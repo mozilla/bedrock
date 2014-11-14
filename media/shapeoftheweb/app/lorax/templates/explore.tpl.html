@@ -1,0 +1,7 @@
+<div ng-controller="ExploreCtrl">
+  <ul class="explore-menu">
+    <li><a ng-class="{'is-active': (explore.currentView === 'explore')}" class="explore-menu__link" href="#" ng-click="explore.switchView('explore');"><span class="icon-circle-empty"></span> Explore</a></li>
+    <li><a ng-class="{'is-active': (explore.currentView === 'topics')}" class="explore-menu__link" href="#" ng-click="explore.switchView('topics');"><span class="icon-th"></span> Topics</a></li>
+    <li><a ng-class="{'is-active': (explore.currentView === 'issues')}" class="explore-menu__link" href="#" ng-click="explore.switchView('issues');"><span class="icon-menu"></span> Issues</a></li>
+  </ul>
+</div>

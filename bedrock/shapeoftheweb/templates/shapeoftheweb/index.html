@@ -1,0 +1,39 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>The Shape of the Web</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!--link rel="shortcut icon" href="/favicon.ico"-->
+
+
+    <!-- styles -->
+    <link rel="stylesheet" href="{{ MEDIA_URL }}shapeoftheweb/css/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- build:js /scripts/lorax-head.min.js -->
+    <script src="{{ MEDIA_URL }}shapeoftheweb/scripts/components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+  </head>
+
+  <body ng-controller="CoreCtrl" data-lorax-window>
+    <header role="banner" class="banner">
+      <h1 class="banner-logo"><a href="/en-US/shapeoftheweb">Open Internet Project</a></h1>
+      <h2 class="banner-mozilla"><span class="is-hidden-sm">Published </span>by <a href="https://www.mozilla.org">Mozilla</a></h2>
+      <a href="#" class="banner-info">Information</a>
+    </header>
+    <div data-lorax-explore-canvas></div>
+
+    <div class="container" data-ng-view data-ng-cloak></div>
+  </body>
+
+  <!-- build:js /scripts/lorax.min.js -->
+  <script src="{{ MEDIA_URL }}shapeoftheweb/scripts/components/requirejs/require.js"></script>
+  <script src="{{ MEDIA_URL }}shapeoftheweb/scripts/config.js"></script>
+  <!-- endbuild -->
+</html>

@@ -1,0 +1,507 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+/* ==========================================================================
+   Mixins
+   ========================================================================== */
+
+/* Clearfix
+   ========================================================================== */
+
+.clearfix() {
+    &:after {
+        clear: both;
+        content: '';
+        display: table;
+    }
+}
+
+
+/* Breakpoints
+   ========================================================================== */
+
+.at-medium(@rules) {
+    @media screen and (min-width: 560px) { @rules(); }
+}
+
+.at-large(@rules) {
+    @media screen and (min-width: 960px) { @rules(); }
+}
+
+.at-xlarge(@rules) {
+    @media screen and (min-width: 1360px) { @rules(); }
+}
+
+
+/* Display
+   ========================================================================== */
+
+.reset-list() {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
+    background: @color;
+    background: -webkit-gradient(linear,
+                               left bottom,
+                               left top,
+                               color-stop(0, @start),
+                               color-stop(1, @stop));
+    background: -ms-linear-gradient(bottom,
+                                  @start,
+                                  @stop);
+    background: -moz-linear-gradient(center bottom,
+                                   @start 0%,
+                                   @stop 100%);
+    background: -o-linear-gradient(@stop,
+                                 @start);
+    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+
+.opacity(@opacity: 0.5) {
+    -moz-opacity: @opacity;
+    -khtml-opacity: @opacity;
+    -webkit-opacity: @opacity;
+    opacity: @opacity;
+    @opperc: @opacity * 100;
+    -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+    filter: ~"alpha(opacity=@{opperc})";
+}
+
+.transform(@arguments) {
+    -webkit-transform: @arguments;
+    -moz-transform: @arguments;
+    -o-transform: @arguments;
+    -ms-transform: @arguments;
+    transform: @arguments;
+}
+
+.transition(@arguments) {
+    -webkit-transition: @arguments;
+    -moz-transition: @arguments;
+    -o-transition: @arguments;
+    transition: @arguments;
+}
+
+.box-shadow(@arguments) {
+    -webkit-box-shadow: @arguments;
+    -moz-box-shadow: @arguments;
+    box-shadow: @arguments;
+}
+
+.box-sizing(@sizing: border-box) {
+    -ms-box-sizing: @sizing;
+    -moz-box-sizing: @sizing;
+    -webkit-box-sizing: @sizing;
+    box-sizing: @sizing;
+}
+
+
+/* Flexbox
+ * Big thanks: https://github.com/ProLoser/Flexbox.less/blob/master/flexbox.less
+   ========================================================================== */
+
+// flexbox //
+
+.flexbox() {
+    // 2009 spec
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    display: -o-box;
+    display: box;
+    // // tweener -ms- spec
+    // display: -webkit-flexbox;
+    // display: -moz-flexbox;
+    display: -ms-flexbox;
+    // display: -o-flexbox;
+    // display: flexbox;
+    // 2013 spec
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+
+// flex-direction //
+
+// applies to flex container
+
+// 2009 spec
+.flex-direction(@direction) when (@direction = row) {
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -ms-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    box-orient: horizontal;
+}
+// 2009 spec
+.flex-direction(@direction) when (@direction = row-reverse) {
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -ms-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -moz-box-direction: reverse;
+    -ms-box-direction: reverse;
+    -o-box-direction: reverse;
+    box-direction: reverse;
+}
+// 2009 spec
+.flex-direction(@direction) when (@direction = column) {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    -o-box-orient: vertical;
+    box-orient: vertical;
+}
+// 2009 spec
+.flex-direction(@direction) when (@direction = column-reverse) {
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    -o-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -moz-box-direction: reverse;
+    -ms-box-direction: reverse;
+    -o-box-direction: reverse;
+    box-direction: reverse;
+}
+// 2013 spec
+.flex-direction(@direction) {
+    -webkit-flex-direction: @direction;
+    -moz-flex-direction: @direction;
+    -ms-flex-direction: @direction;
+    -o-flex-direction: @direction;
+    flex-direction: @direction;
+}
+
+// flex-wrap //
+
+// applies to flex container
+
+// 2009 property is box-lines
+// single == nowrap
+// multiple == wrap
+// no equivalent to wrap-reverse
+// initial = single
+
+// 2009 spec
+.flex-wrap(@wrap-method) when (@wrap-method = wrap) {
+    -webkit-lines: multiple;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-box-lines: multiple;
+    -o-box-lines: multiple;
+    box-lines: multiple;
+}
+
+//box lines doesn't have wrap reverse, so use box-direction
+// 2009 spec
+.flex-wrap(@wrap-method) when (@wrap-method = wrap-reverse) {
+    -webkit-lines: multiple;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -ms-box-lines: multiple;
+    -o-box-lines: multiple;
+    box-lines: multiple;
+    -webkit-box-direction: reverse;
+    -moz-box-direction: reverse;
+    -ms-box-direction: reverse;
+    -o-box-direction: reverse;
+    box-direction: reverse;
+}
+
+// 2009 spec
+.flex-wrap(@wrap-method) when (@wrap-method = nowrap) {
+    -webkit-lines: single;
+    -webkit-box-lines: single;
+    -moz-box-lines: single;
+    -ms-box-lines: single;
+    -o-box-lines: single;
+    box-lines: single;
+}
+
+// 2013 spec is flex-wrap instead of box-lines
+// nowrap = single line LTR
+// wrap = multiple lines LTR
+// wrap-reverse = multiple lines, reversed children LTR
+// initial = nowrap
+// not inherited by default; spec inherit to force it
+
+// 2013 spec
+.flex-wrap(@wrap-method) {
+    -webkit-flex-wrap: @wrap-method;
+    -moz-flex-wrap: @wrap-method;
+    -ms-flex-wrap: @wrap-method;
+    -o-flex-wrap: @wrap-method;
+    flex-wrap: @wrap-method;
+}
+
+// align-items //
+
+// applies to flex container
+
+// Specifies the alignment of flex items within a container on the cross axis
+
+// 2009 property is box-align
+// tweener -ms- spec is flex-align
+// start == flex-start
+// end == flex-end
+// center == center
+// baseline == baseline
+// stretch = stretch
+
+.align-items(@align-item-method) when (@align-item-method = start) {
+    // 2009 spec
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -ms-box-align: start;
+    -o-box-align: start;
+    box-align: start;
+    // tweener -ms- spec
+    -ms-flex-align: start;
+    // 2013 spec
+    -webkit-align-items: flex-start;
+    -moz-align-items: flex-start;
+    -ms-align-items: flex-start;
+    -o-align-items: flex-start;
+    align-items: flex-start;
+}
+
+.align-items(@align-item-method) when (@align-item-method = end) {
+    // 2009 spec
+    -webkit-box-align: end;
+    -moz-box-align: end;
+    -ms-box-align: end;
+    -o-box-align: end;
+    box-align: end;
+    // tweener -ms- spec
+    -ms-flex-align: end;
+    // 2013 spec
+    -webkit-align-items: flex-end;
+    -moz-align-items: flex-end;
+    -ms-align-items: flex-end;
+    -o-align-items: flex-end;
+    align-items: flex-end;
+}
+
+// for center, baseline, and stretch, which are the same in all specs
+.align-items(@align-item-method) when
+                                  (@align-item-method = center),
+                                  (@align-item-method = baseline),
+                                  (@align-item-method = stretch) {
+    // 2009 spec
+    -webkit-box-align: @align-item-method;
+    -moz-box-align: @align-item-method;
+    -ms-box-align: @align-item-method;
+    -o-box-align: @align-item-method;
+    box-align: @align-item-method;
+    // tweener -ms- spec
+    -ms-flex-align: @align-item-method;
+    // 2013 spec
+    -webkit-align-items: @align-item-method;
+    -moz-align-items: @align-item-method;
+    -ms-align-items: @align-item-method;
+    -o-align-items: @align-item-method;
+    align-items: @align-item-method;
+}
+
+// Align Content //
+
+// applies to flex container
+
+// Flex line alignment: specifying alignment of flex lines (not individual items) along the cross-axis
+// note: only applies when there is more than one line of content
+
+// 2009 spec does not have an equivalent fallback
+// microsoft property is flex-line-pack
+// flex-end == end
+// flex-start == start
+// space-between == justify
+// space-around == distribute
+// center == center
+// stretch == stretch
+
+.align-content(@align-content-method) when (@align-content-method = start) {
+    // tweener -ms- spec
+    -ms-flex-line-pack: @align-content-method;
+    // 2013 spec
+    -webkit-align-content: flex-start;
+    -moz-align-content: flex-start;
+    -o-align-content: flex-start;
+    align-content: flex-start;
+}
+
+.align-content(@align-content-method) when (@align-content-method = end) {
+    // tweener -ms- spec
+    -ms-flex-line-pack: @align-content-method;
+    // 2013 spec
+    -webkit-align-content: flex-end;
+    -moz-align-content: flex-end;
+    -o-align-content: flex-end;
+    align-content: flex-end;
+}
+
+.align-content(@align-content-method) when (@align-content-method = space-between) {
+    // tweener -ms- spec
+    -ms-flex-line-pack: justify;
+    // 2013 spec
+    -webkit-align-content: space-between;
+    -moz-align-content: space-between;
+    -o-align-content: space-between;
+    align-content: space-between;
+}
+
+.align-content(@align-content-method) when (@align-content-method = space-around) {
+    // tweener -ms- spec
+    -ms-flex-line-pack: distribute;
+    // 2013 spec
+    -webkit-align-content: space-around;
+    -moz-align-content: space-around;
+    -o-align-content: space-around;
+    align-content: space-around;
+}
+
+.align-content(@align-content-method) when
+                                  (@align-content-method = center),
+                                  (@align-content-method = stretch) {
+    // tweener -ms- spec
+    -ms-flex-line-pack: @align-content-method;
+    // 2013 spec
+    -webkit-align-content: @align-content-method;
+    -moz-align-content: @align-content-method;
+    -o-align-content: @align-content-method;
+    align-content: @align-content-method;
+}
+
+// Justify Content //
+
+// applies to flex container
+
+// Main Axis Alignment: specifying the alignment of flex items within a container on the primary axis
+
+// 2009 spec == box-pack
+// tweener MS spec == flex-pack
+// current spec == justify-content
+
+// flex-start == start
+// center == center
+// flex-end == end
+// space-between == justify
+// space-around == distribute
+// 2009 spec does not support 'distribute' or 'space-around' property
+
+.justify-content(@justify-method) when (@justify-method = start) {
+    //2009
+    -webkit-box-pack: @justify-method;
+    -moz-box-pack: @justify-method;
+    -ms-box-pack: @justify-method;
+    -o-box-pack: @justify-method;
+    box-pack: @justify-method;
+    //tweener -ms-
+    -ms-flex-pack: @justify-method;
+    // current spec
+    -webkit-justify-content: flex-start;
+    -moz-justify-content: flex-start;
+    -ms-justify-content: flex-start;
+    -o-justify-content: flex-start;
+    justify-content: flex-start;
+}
+
+.justify-content(@justify-method) when (@justify-method = end) {
+    // 2009 spec
+    -webkit-box-pack: @justify-method;
+    -moz-box-pack: @justify-method;
+    -ms-box-pack: @justify-method;
+    -o-box-pack: @justify-method;
+    box-pack: @justify-method;
+    // tweener -ms- spec
+    -ms-flex-pack: @justify-method;
+    // 2013 spec
+    -webkit-justify-content: flex-end;
+    -moz-justify-content: flex-end;
+    -ms-justify-content: flex-end;
+    -o-justify-content: flex-end;
+    justify-content: flex-end;
+}
+
+.justify-content(@justify-method) when (@justify-method = center) {
+    // 2009 spec
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    // tweener -ms- spec
+    -ms-flex-pack: center;
+    // 2013 spec
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    -o-justify-content: center;
+    justify-content: center;
+}
+
+.justify-content(@justify-method) when (@justify-method = space-between) {
+    // 2009 spec
+    -webkit-box-pack: justify;
+    -moz-box-pack: justify;
+    // tweener -ms- spec
+    -ms-flex-pack: justify;
+    // 2013 spec
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    -o-justify-content: space-between;
+    justify-content: space-between;
+}
+
+.justify-content(@justify-method) when (@justify-method = space-around) {
+    // 2009 spec has no equivalent
+    // tweener -ms- spec
+    -ms-flex-pack: distribute;
+    // 2013 spec
+    -webkit-justify-content: space-around;
+    -moz-justify-content: space-around;
+    -ms-justify-content: space-around;
+    -o-justify-content: space-around;
+  justify-content: space-around;
+}
+
+
+/* Text
+   ========================================================================== */
+
+.font-size (@sizeValue) {
+    @remValue: @sizeValue;
+    @pxValue: (@sizeValue * 10);
+    font-size: ~"@{pxValue}px";
+    font-size: ~"@{remValue}rem";
+}
+
+.text-overflow-ellipsis() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.link-underline() {
+    text-decoration: underline;
+
+    .no-touch &:hover {
+        text-decoration: none;
+    }
+}
+
+
+/* Misc
+   ========================================================================== */
+
+.overflow-scroll-touch() {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}

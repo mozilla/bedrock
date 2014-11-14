@@ -1,0 +1,276 @@
+{
+  "topics":{
+    "access":{
+      "issues":{
+        "available":{
+          "status":0,
+          "infographicType":"data-lorax-chart-world-map",
+          "infographicOverflow":true,
+          "tags":[
+            "Mobile",
+            "Emerging economies"
+          ]
+        },
+        "affordable":{
+          "status":1,
+          "infographicType":"data-lorax-chart-top-internet-companies",
+          "infographicOverflow":false,
+          "tags":[
+            "Mobile",
+            "Emerging economies",
+            "Network operators"
+          ]
+        },
+        "localization":{
+          "status":1,
+          "infographicType":"data-lorax-chart-common-languages",
+          "infographicOverflow":true,
+          "tags":[
+            "User rights",
+            "Emerging economies"
+          ]
+        },
+        "accessible":{
+          "status":1,
+          "infographicType":"data-lorax-chart-accessible",
+          "infographicOverflow":false,
+          "tags":[
+            "User rights",
+            "Emerging economies"
+          ]
+        },
+        "infrastructure":{
+          "status":1,
+          "infographicType":"data-lorax-chart-world-map",
+          "infographicOverflow":true,
+          "tags":[
+            "Mobile",
+            "Network operators",
+            "Internet companies",
+            "Private internet"
+          ]
+        }
+      }
+    },
+    "control":{
+      "issues":{
+        "contentCreation":{
+          "status":2,
+          "infographicType":"static-image",
+          "infographicOverflow":false,
+          "tags":[
+            "Internet companies",
+            "Google",
+            "Facebook",
+            "Apple",
+            "User rights",
+            "Regulation"
+          ]
+        },
+        "identityControl":{
+          "status":1,
+          "infographicType":"static-image",
+          "infographicOverflow":false,
+          "tags":[
+            "Internet companies",
+            "Google",
+            "Facebook",
+            "User data",
+            "User rights"
+          ]
+        },
+        "publicTrust":{
+          "status":1,
+          "infographicType":"static-image",
+          "infographicOverflow":false,
+          "tags":[
+            "Government",
+            "Internet companies",
+            "Privacy"
+          ]
+        },
+        "dataTracking":{
+          "status":1,
+          "infographicType":"data-lorax-chart-data-tracking",
+          "infographicOverflow":false,
+          "tags":[
+            "Internet companies",
+            "Google",
+            "Facebook",
+            "User data",
+            "Privacy"
+          ]
+        },
+        "surveillance":{
+          "status":2,
+          "infographicType":"data-lorax-chart-surveillance",
+          "infographicOverflow":false,
+          "tags":[
+            "Network operators",
+            "Government",
+            "Internet companies",
+            "User data",
+            "Privacy",
+            "User rights",
+            "Regulation"
+          ]
+        },
+        "userAgreements":{
+          "status":2,
+          "infographicType":"data-lorax-chart-terms-and-conditions",
+          "infographicOverflow":false,
+          "tags":[
+            "Internet companies",
+            "Google",
+            "Facebook",
+            "Apple",
+            "User rights",
+            "Regulation"
+          ]
+        },
+        "openSource":{
+          "status":1,
+          "infographicType":"data-lorax-chart-open-source",
+          "infographicOverflow":false,
+          "tags":[
+          ]
+        },
+        "openDataStandards":{
+          "status":1,
+          "infographicType":"data-lorax-chart-data-portability",
+          "infographicOverflow":false,
+          "tags":[
+          ]
+        },
+        "dataRegulation":{
+          "status":2,
+          "infographicType":"static-image",
+          "infographicOverflow":false,
+          "tags":[
+            "Government",
+            "User data",
+            "User rights",
+            "Regulation"
+          ]
+        },
+        "lobbyPower":{
+          "status":1,
+          "infographicType":"data-lorax-chart-lobbying",
+          "infographicOverflow":false,
+          "tags":[
+            "Government",
+            "Internet companies",
+            "Google",
+            "Facebook"
+          ]
+        },
+        "censorship":{
+          "status":1,
+          "infographicType":"static-image",
+          "infographicOverflow":false,
+          "tags":[
+            "Government",
+            "User rights"
+          ]
+        }
+      }
+    },
+    "safety":{
+      "issues":{
+        "cyberThreats":{
+          "status":1,
+          "infographicType":"data-lorax-chart-cyber-threats",
+          "infographicOverflow":false,
+          "tags":[
+          ]
+        },
+        "cyberBullying":{
+          "status":1,
+          "infographicType":"bar-graph",
+          "infographicOverflow":false,
+          "tags":[
+            "Facebook",
+            "User rights",
+            "Regulation"
+          ]
+        },
+        "networkDecentralization":{
+          "status":1,
+          "infographicType":"map",
+          "infographicOverflow":true,
+          "tags":[
+            "Network operators",
+            "Government"
+          ]
+        },
+        "cloudSecurity":{
+          "status":2,
+          "infographicType":"bar-graph",
+          "infographicOverflow":false,
+          "tags":[
+            "Internet companies",
+            "Google",
+            "Facebook",
+            "Apple",
+            "User data"
+          ]
+        }
+      }
+    },
+    "fairness":{
+      "issues":{
+        "netNeutrality":{
+          "status":1,
+          "infographicType":"map",
+          "infographicOverflow":true,
+          "tags":[
+            "Network operators",
+            "Internet companies",
+            "Net neutrality",
+            "Regulation"
+          ]
+        },
+        "zeroRating":{
+          "status":1,
+          "infographicType":"map",
+          "infographicOverflow":true,
+          "tags":[
+            "Mobile",
+            "Network operators",
+            "Internet companies",
+            "Google",
+            "Facebook",
+            "Net neutrality",
+            "Emerging economies",
+            "Private internet"
+          ]
+        },
+        "platformNeutrality":{
+          "status":1,
+          "infographicType":"data-lorax-chart-platform-neutrality",
+          "infographicOverflow":false,
+          "tags":[
+            "Mobile",
+            "Internet companies",
+            "Google",
+            "Apple",
+            "Net neutrality",
+            "Private internet"
+          ]
+        },
+        "concentrationOfPower":{
+          "status":2,
+          "infographicType":"map",
+          "infographicOverflow":true,
+          "tags":[
+            "Internet companies",
+            "Google",
+            "Facebook",
+            "Apple",
+            "Regulation"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+/* ==========================================================================
+   Base styles - Scaffolding
+   ========================================================================== */
+
+
+/* Reset the box-sizing
+========================================================================== */
+
+* {
+    .box-sizing(border-box);
+}
+
+html {
+    font-size: 62.5%;
+    min-height: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+}
+
+body {
+    background-color: @body-bg;
+    color: @text-color;
+    .fira-sans-regular;
+    .font-size(1.2);
+    line-height: 16px;
+    min-width: 320px;
+    -webkit-overflow-scrolling: touch;
+    text-rendering: optimizeLegibility;
+    .transition(background-color 0.3s ease-in-out);
+
+    &.is-detail[data-bg-mode="stop"] {
+        background-color: @stop;
+    }
+
+    &.is-detail[data-bg-mode="wait"] {
+        background-color: @wait;
+    }
+
+    &.is-detail[data-bg-mode="go"] {
+        background-color: @go;
+    }
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1600px;
+    position: relative;
+}
+
+
+/* Links
+========================================================================== */
+
+a {
+    color: @link-color;
+    outline: none;
+    text-decoration: none;
+
+    .no-touch &:hover {
+        //text-decoration: underline;
+    }
+
+    &:focus {
+        //outline: none;
+        //text-decoration: underline;
+    }
+}
+
+.link-underline {
+    .link-underline;
+}
+
+.btn {
+    border: 2px solid @white;
+    color: @white;
+    display: inline-block;
+    .fira-sans-semibold;
+    .font-size(1.1);
+    letter-spacing: 1px;
+    line-height: 36px;
+    padding: 0 30px;
+    text-transform: uppercase;
+
+    .no-touch &:hover,
+    &:focus {
+        color: @white;
+    }
+}
+
+/* Images
+========================================================================== */
+
+img {
+    max-width: 100%;
+}
+
+
+/* Helpers
+========================================================================== */
+
+.is-hidden-sm {
+    display: none;
+
+    .at-medium({
+        display: block;
+    });
+}
+
+
+/* Clearfix
+========================================================================== */
+
+.cf {
+    .clearfix();
+}

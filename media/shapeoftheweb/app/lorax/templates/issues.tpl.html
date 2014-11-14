@@ -1,0 +1,9 @@
+<nav class="banner-nav-wrap" ng-controller="NavCtrl">
+  <ul class="banner-nav">
+    <li><a href="/en-US/shapeoftheweb/detail/?topic=access" class="banner-nav__link" ng-class="{'is-active': nav.active==='access'}" ng-click="nav.handleClick('access')">Access</a></li>
+    <li><a href="/en-US/shapeoftheweb/detail/?topic=control" class="banner-nav__link" ng-class="{'is-active': nav.active==='control'}" ng-click="nav.handleClick('control')">Control</a></li>
+    <li><a href="/en-US/shapeoftheweb/detail/?topic=safety" class="banner-nav__link" ng-class="{'is-active': nav.active==='safety'}" ng-click="nav.handleClick('safety')">Safety</a></li>
+    <li><a href="/en-US/shapeoftheweb/detail/?topic=fairness" class="banner-nav__link" ng-class="{'is-active': nav.active==='fairness'}" ng-click="nav.handleClick('fairness')">Fairness</a></li>
+  </ul>
+</nav>
+<section class="main--detail" data-lorax-issue-all></section>

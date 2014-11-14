@@ -1,0 +1,16 @@
+<div class="opensource__legend">
+	<div class="opensource__label opensource__label-os">
+		<h3>{{::lineGraph.data.lineGraphData[0].data[0]}}%</h3>
+		<p>{{::lineGraph.dataLabels.os[0]}}
+	</div>
+	<div class="opensource__label opensource__label-browser">
+		<h3>{{::lineGraph.data.lineGraphData[5].data[4]}}%</h3>
+		<p>{{::lineGraph.dataLabels.browser[1]}}
+	</div>
+		<ul class="opensource__legend-os">
+		<li ng-repeat="label in ::lineGraph.dataLabels.os"><div></div>{{::label}}</li>
+	</ul>
+	<ul class="opensource__legend-browser">
+		<li ng-repeat="label in ::lineGraph.dataLabels.browser"><div></div>{{::label}}</li>
+	</ul>
+</div>

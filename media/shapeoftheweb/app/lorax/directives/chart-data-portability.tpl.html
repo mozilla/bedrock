@@ -1,0 +1,18 @@
+<table class="data-portability">
+	<thead>
+		<tr>
+			<th>Services</th>
+			<th></th>
+			<th></th>
+			<th>Data Extractable?</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="company in ::dataStandards.data" class="data-portability__company">
+			<td class="data-portability__service">{{::company.service}}</td>
+			<td class="data-portability__line"><div></div></td>
+			<td class="data-portability__symbol"></td>
+			<td class="data-portability__answer">{{::company.answer}}. {{::company.comments}}</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,24 @@
+{
+  "termsAndConditions": [
+    {
+      "name": "Facebook",
+      "length": 12000
+    },
+    {
+      "name": "Apple iOS 5",
+      "length": 14000
+    },
+    {
+      "name": "Windows Live",
+      "length": 15000
+    },
+    {
+      "name": "Apple iTunes",
+      "length": 20000
+    },
+    {
+      "name": "Paypal",
+      "length": 37000
+    }
+  ]
+}

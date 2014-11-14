@@ -1,0 +1,24 @@
+{
+  "internetCompaniesByRevenue": [
+    {
+      "name": "Amazon",
+      "revenue": 74.45
+    },
+    {
+      "name": "Google",
+      "revenue": 59.82
+    },
+    {
+      "name": "eBay",
+      "revenue": 16.05
+    },
+    {
+      "name": "Tencent",
+      "revenue": 9.91
+    },
+    {
+      "name": "Facebook",
+      "revenue": 7.87
+    }
+  ]
+}
