@@ -100,9 +100,15 @@
           <span class="number">05</span>
           <div class="message">
             <p>
+          {% if l10n_has_tag('history_nov2014') %}
+            {% trans %}
+              Firefox Add-Ons allow you to customize and take control of your Web experience. Nearly 4 billion of them have been downloaded by users so far.
+            {% endtrans %}
+          {% else %}
             {% trans %}
               Firefox Add-Ons allow you to customize and take control of your Web experience. Over 3 billion of them have been downloaded by users so far.
             {% endtrans %}
+          {% endif %}
             </p>
           </div>
           <span class="block1"></span>
@@ -184,13 +190,19 @@
           <span class="number">11</span>
           <div class="message">
             <p>
+          {% if l10n_has_tag('history_nov2014') %}
+            {% trans %}
+              Firefox for Android brings the Firefox desktop browsing experience to phones and tablets. Available on Google Play, it has been downloaded more than 80 million times.
+            {% endtrans %}
+          {% else %}
             {% trans %}
               Mozilla leads the Open Badges program, an online standard that helps people gain recognition for 21st century skills and unlock new career opportunities.
             {% endtrans %}
+          {% endif %}
             </p>
           </div>
           <span class="block1"></span>
-          <span class="logo"></span>
+          <span class="droid"></span>
           <span class="back"></span>
         </li>
 

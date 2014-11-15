@@ -1436,57 +1436,57 @@
 
 #fact11 .number {
     background-position: -479px -143px;
-    height: 142px;
+    height: 141px;
     margin-left: -141px;
-    width: 125px;
+    width: 124px;
 }
 
 .on #fact11 {
     .number,
     .message,
     .block1,
-    .logo {
+    .droid {
         background: url(/media/img/mozorg/history/fact11-pads.png) no-repeat;
     }
 
     .number {
         .transition-duration(2s);
         background-position: 0 0;
-        height: 139px;
+        height: 141px;
         margin-left: 2200px;
         top: 85px;
-        width: 126px;
+        width: 124px;
     }
 
     .message {
         .transition-duration(2s);
-        background-position: -126px 0;
-        height: 230px;
+        background-position: -124px 0;
+        height: 228px;
         margin-left: 3000px;
         padding: 40px 40px 0 40px;
         top: 48px;
-        width: 436px;
+        width: 434px;
     }
 
     .block1 {
-        width: 211px;
-        height: 227px;
-        background-position: -641px 0;
+        width: 210px;
+        height: 225px;
+        background-position: -638px 0;
         top: 22px;
         margin-top: 90px;
         margin-left: 4000px;
     }
 
-    .logo {
-        background-position: 0 -142px;
+    .droid {
+        background-position: 0 -141px;
         display: block;
-        height: 110px;
+        height: 164px;
         left: 50%;
         margin-left: -2200px;
         opacity: 0;
         position: absolute;
-        top: 31px;
-        width: 90px;
+        top: 55px;
+        width: 124px;
         z-index: 15;
         -webkit-transition: opacity 1s cubic-bezier(.86,.01,.86,.87),
                             margin-left 2s cubic-bezier(.6,-0.08,.6,1);
@@ -1508,8 +1508,8 @@
             margin-top: 0;
         }
 
-        .logo {
-            .animation(fact11-logo-in 2s forwards 1s);
+        .droid {
+            .animation(fact11-droid-in 2s forwards 1s);
             .transition(opacity 1s cubic-bezier(.86,.01,.86,.87));
             opacity: 1;
         }
@@ -1529,31 +1529,31 @@
             margin-top: -60px;
         }
 
-        .logo {
-            .animation(fact11-logo-out 1s forwards);
+        .droid {
+            .animation(fact11-droid-out 1s forwards);
             .transition(opacity 1s cubic-bezier(.86,.01,.86,.87));
             opacity: 0;
         }
     }
 }
 
-@-webkit-keyframes fact11-logo-in {
+@-webkit-keyframes fact11-droid-in {
       0% { margin-left: -2000px; }
-    100% { margin-left: 313px; }
+    100% { margin-left: 268px; }
 }
 
-@keyframes fact11-logo-in {
+@keyframes fact11-droid-in {
       0% { margin-left: -2000px; }
-    100% { margin-left: 313px; }
+    100% { margin-left: 268px; }
 }
 
-@-webkit-keyframes fact11-logo-out {
-      0% { margin-left: 270px; }
+@-webkit-keyframes fact11-droid-out {
+      0% { margin-left: 268px; }
     100% { margin-left: 2000px; }
 }
 
-@keyframes fact11-logo-out {
-      0% { margin-left: 270px; }
+@keyframes fact11-droid-out {
+      0% { margin-left: 268px; }
     100% { margin-left: 2000px; }
 }
 
