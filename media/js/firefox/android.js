@@ -35,7 +35,7 @@
     }
 
     // show SMS link for all desktop users (en-US only for now)
-    if ($html.attr('lang') === 'en-US' && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
+    if ($html.is('[lang|="en"]') && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
         $.getScript('//geo.mozilla.org/country.js', function() {
             try {
                 if (geoip_country_code().toLowerCase() === 'us') {

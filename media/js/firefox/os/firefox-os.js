@@ -29,7 +29,7 @@
         var $provider = $('#provider-links').find('.provider[data-country="' + COUNTRY_CODE + '"]');
 
         // show language content selector if user is in india visiting the en-US/en-GB page
-        if (COUNTRY_CODE.toLowerCase() === 'in' && /en-US|en-GB/.test($('html').attr('lang'))) {
+        if (COUNTRY_CODE.toLowerCase() === 'in' && $('html').is('[lang|="en"]')) {
             var suppressLangContentSelector = false;
 
             // if user has already selected en-IN, don't bug them a second time
