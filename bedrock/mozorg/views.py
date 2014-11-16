@@ -32,7 +32,6 @@ from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.util import hide_contrib_form
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
-from bedrock.openstandard.utils import categorized_articles
 
 
 credits_file = CreditsFile('credits')
@@ -356,7 +355,6 @@ def new_home(request, locale=None):
         request, 'mozorg/home/home-new.html', {
             'has_contribute': lang_file_is_active('mozorg/contribute'),
             'tweets': home_tweets(locale),
-            'categorized_articles': categorized_articles(),
             'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(
                 locale, settings.MOBILIZER_LOCALE_LINK['en-US'])})
 

@@ -24,4 +24,4 @@ BEDROCK_DEPLOY=/data/bedrock/deploy
 # bug 1087533
 # TODO: redirect stdout and stderr to null after initial deployment and verification
 42 * * * * root cd $BEDROCK && python manage.py cron update_reps_ical
-43 * * * * root cd $BEDROCK && python manage.py cron update_openstandard_feeds && $BEDROCK_DEPLOY -a && python manage.py cron update_openstandard_on_homepage
+
