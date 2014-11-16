@@ -5,6 +5,7 @@
 # Django settings file for bedrock.
 
 from funfactory.settings_base import *  # noqa
+from django.utils.http import urlquote
 
 # Production uses MySQL, but Sqlite should be sufficient for local development.
 # Our CI server tests against MySQL.
@@ -1200,8 +1201,9 @@ OPTIMIZELY_PROJECT_ID = None
 # Link to Firefox for Android on the Google Play store with Google Analytics
 # campaign parameters
 GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?'
-                            'id=org.mozilla.firefox&utm_source=mozilla&'
-                            'utm_medium=Referral&utm_campaign=mozilla-org')
+                             + 'id=org.mozilla.firefox&referrer='
+                             + urlquote('utm_source=mozilla&utm_medium=Referral&'
+                                        'utm_campaign=mozilla-org'))
 
 # Use bedrock Gruntfile.js for live reload
 USE_GRUNT_LIVERELOAD = False
