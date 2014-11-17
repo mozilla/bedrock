@@ -47,6 +47,11 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Alcatel One Touch Fire E',
             'countries': ['cz', 'de', 'hu', 'pl']
         },
+        'cherrymobile_ace': {
+            'type': 'smartphone',
+            'display': 'Cherry Mobile Ace',
+            'countries': ['ph']
+        },
         'huawei_y300-2': {
             'type': 'smartphone',
             'display': 'Huawei Y300II',
