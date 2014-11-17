@@ -172,7 +172,14 @@
       <h3>{{ _('Choose Firefox') }}</h3>
       {{ download_firefox('aurora', icon=False, small=True, simple=True) }}
     </div>
-  {{ super() }}
+    {# See Bug 1095176 #}
+    {% if LANG.startswith('en-') %}
+      {{ email_newsletter_form('app-dev', 'Firefox Apps & Hacks') }}
+    {% elif LANG.startswith('es-') %}
+      {{ email_newsletter_form('app-dev', 'Firefox Apps y Hacks') }}
+    {% else %}
+      {{ super() }}
+    {% endif %}
   </div>
 </section>
 {% endblock %}
