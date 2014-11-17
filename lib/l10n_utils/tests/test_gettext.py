@@ -15,7 +15,8 @@ from nose.tools import eq_, ok_
 
 from lib.l10n_utils.gettext import (_append_to_lang_file, langfiles_for_path,
                                     parse_python, parse_template,
-                                    po_msgs, pot_to_langfiles, template_is_active)
+                                    po_msgs, pot_to_langfiles, template_is_active,
+                                    _get_template_tag_set, template_has_tag)
 from lib.l10n_utils.tests import TempFileMixin
 from bedrock.mozorg.tests import TestCase
 
@@ -65,6 +66,16 @@ class TestTemplateTagFuncs(TestCase):
                                   get_lang_path):
         """Should return a unique set of tags from all lang files."""
         parse_template_mock.return_value = ['dude', 'walter']
+        lang_file_tag_set.side_effect = [set(['dude', 'donny']),
+                                         set(['dude', 'uli', 'bunny']),
+                                         set(['walter', 'brandt'])]
+        self.assertSetEqual(_get_template_tag_set('stuff', 'es'),
+                            set(['dude', 'walter', 'donny', 'uli', 'bunny', 'brandt']))
+
+    @override_settings(LANGUAGE_CODE='en-US')
+    def test_template_tag_set_default_locale(self):
+        """The default language should always have every tag."""
+        ok_(template_has_tag('the_dude', 'en-US', 'active'))
 
 
 class TestPOFiles(TestCase):
