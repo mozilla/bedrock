@@ -30,38 +30,41 @@ TRUE_MOCK = Mock()
 TRUE_MOCK.return_value = True
 
 
-class TestTemplateIsActive(TestCase):
-    @override_settings(DEV=False)
-    @patch('lib.l10n_utils.gettext.parse_template')
-    @patch('lib.l10n_utils.gettext.lang_file_is_active')
+@override_settings(DEV=False)
+class TestTemplateTagFuncs(TestCase):
+    @patch('lib.l10n_utils.gettext._get_template_tag_set')
     @patch('lib.l10n_utils.gettext.cache.get')
     @patch('lib.l10n_utils.gettext.cache.set')
-    def test_cache_hit(self, cache_set_mock, cache_get_mock, lang_active_mock,
-                       parse_template_mock):
+    def test_cache_hit(self, cache_set_mock, cache_get_mock, template_tags_mock):
         """Should not call other methods on cache hit."""
-        cache_get_mock.return_value = True
+        cache_get_mock.return_value = set(['active'])
         self.assertTrue(template_is_active('the/dude', 'de'))
-        cache_get_mock.assert_called_once_with('template_active:de:the/dude')
-        self.assertFalse(lang_active_mock.called)
-        self.assertFalse(parse_template_mock.called)
+        cache_get_mock.assert_called_once_with('template_tag_set:the/dude:de')
+        self.assertFalse(template_tags_mock.called)
         self.assertFalse(cache_set_mock.called)
 
-    @override_settings(DEV=False)
-    @patch('lib.l10n_utils.gettext.parse_template')
-    @patch('lib.l10n_utils.gettext.lang_file_is_active')
+    @patch('lib.l10n_utils.gettext._get_template_tag_set')
     @patch('lib.l10n_utils.gettext.cache.get')
     @patch('lib.l10n_utils.gettext.cache.set')
-    def test_cache_miss(self, cache_set_mock, cache_get_mock, lang_active_mock,
-                        parse_template_mock):
+    def test_cache_miss(self, cache_set_mock, cache_get_mock, template_tags_mock):
         """Should check the files and set the cache on cache miss."""
         cache_get_mock.return_value = None
-        lang_active_mock.return_value = True
+        template_tags_mock.return_value = set(['active'])
         self.assertTrue(template_is_active('the/dude', 'de'))
-        cache_key = 'template_active:de:the/dude'
+        cache_key = 'template_tag_set:the/dude:de'
         cache_get_mock.assert_called_once_with(cache_key)
-        self.assertTrue(lang_active_mock.called)
-        self.assertFalse(parse_template_mock.called)
-        cache_set_mock.assert_called_once_with(cache_key, True, settings.DOTLANG_CACHE)
+        self.assertTrue(template_tags_mock.called)
+        cache_set_mock.assert_called_once_with(cache_key, set(['active']),
+                                               settings.DOTLANG_CACHE)
+
+    @patch('lib.l10n_utils.gettext.get_lang_path')
+    @patch('lib.l10n_utils.gettext.get_template')
+    @patch('lib.l10n_utils.gettext.parse_template')
+    @patch('lib.l10n_utils.gettext.lang_file_tag_set')
+    def test_get_template_tag_set(self, lang_file_tag_set, parse_template_mock, get_template,
+                                  get_lang_path):
+        """Should return a unique set of tags from all lang files."""
+        parse_template_mock.return_value = ['dude', 'walter']
 
 
 class TestPOFiles(TestCase):

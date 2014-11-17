@@ -106,7 +106,7 @@
         <img src="{{ media('/img/contribute/logos/qmo.png') }}" alt="">
         <h3>{{_('Quality Assurance')}}</h3>
         <p>
-        {% if l10n_has_tag('contribute_mayupdates', 'mozorg/contribute') or settings.DEV %}
+        {% if l10n_has_tag('contribute_mayupdates') %}
           {% trans %}
           Quality Assurance testing is one of the easiest ways to get started with Mozilla and is a great way to get familiar with our code and tools.
           {% endtrans %}
@@ -165,7 +165,7 @@
         </p>
       </li>
 
-    {% if l10n_has_tag('contribute_mayupdates', 'mozorg/contribute') or settings.DEV %}
+    {% if l10n_has_tag('contribute_mayupdates') %}
       <li id="markeplace">
         <img src="{{ media('/img/contribute/logos/marketplace.png') }}" alt="">
         <h3>{{ _('Firefox Marketplace') }}</h3>
@@ -181,7 +181,7 @@
         <img src="{{ media('/img/contribute/logos/addons.png') }}" alt="">
         <h3>{{_('Add-ons') }}</h3>
         <p>
-        {% if l10n_has_tag('contribute_mayupdates', 'mozorg/contribute') or settings.DEV %}
+        {% if l10n_has_tag('contribute_mayupdates') %}
           {% trans addons_url='https://addons.mozilla.org/developers/docs/getting-started', addons_wiki='https://wiki.mozilla.org/Marketplace/Contributing/Addons' %}
           Add-ons are what make Firefox the most extensible and customizable browser available. Get started <a href="{{ addons_url }}">building an add-on</a>, and <a href="{{ addons_wiki }}">learn more about the different ways you can contribute</a>.
           {% endtrans %}
@@ -217,7 +217,7 @@
         <img src="{{ media('/img/contribute/logos/webmaker.png') }}" alt="">
         <h3>{{_('Education') }}</h3>
         <p>
-      {% if l10n_has_tag('webmaker_update', 'mozorg/contribute') or settings.DEV %}
+      {% if l10n_has_tag('webmaker_update') %}
         {% trans webmaker='https://webmaker.org/',
             webmaker_tools='https://webmaker.org/tools/',
             webmaker_resources='https://webmaker.org/resources/',
@@ -233,7 +233,7 @@
         </p>
       </li>
 
-    {% if l10n_has_tag('contribute_fellowship', 'mozorg/contribute') or settings.DEV %}
+    {% if l10n_has_tag('contribute_fellowship') %}
       <li id="fellowship">
         <img src="{{ media('/img/contribute/logos/fellowship.png') }}" alt="">
         <h3>{{ _('Fellowships') }}</h3>
@@ -245,7 +245,7 @@
       </li>
     {% endif %}
 
-    {% if l10n_has_tag('hiveglobal', 'mozorg/contribute') or settings.DEV %}
+    {% if l10n_has_tag('hiveglobal') %}
       <li id="hivenetworks">
         <img src="{{ media('/img/contribute/logos/hive.png') }}" alt="">
         <h3>{{ _('Hive Networks') }}</h3>

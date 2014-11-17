@@ -41,8 +41,8 @@ class TestTwitterAPI(TestCase):
                                                                   count=100)
 
 
+@override_settings(ROOT=ROOT, DEV=False)
 class TestHideContribForm(TestCase):
-    @override_settings(ROOT=ROOT)
     def test_lang_file_is_hiding(self):
         """
         `hide_contrib_form` should return true if lang file has the

@@ -74,7 +74,7 @@
     <div class="row">
       <img src="{{ media('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />
       <h1 class="large">
-      {% if l10n_has_tag('fx10_independent') or settings.DEV %}
+      {% if l10n_has_tag('fx10_independent') %}
         {{ _('Choose Independent.') }}
         <br>
         {{ _('Choose Firefox.') }}
@@ -106,7 +106,7 @@
             <ul>
               <li><a href="{{ url('firefox.desktop.index') }}">{{_('Learn more about Firefox for desktop')}}</a></li>
               <li><a href="https://support.mozilla.org/products/firefox">{{_('Need help?')}}</a></li>
-              {% if l10n_has_tag('mobile_links') or settings.DEV %}
+              {% if l10n_has_tag('mobile_links') %}
               <li><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
               <li><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
               {% endif %}
@@ -126,7 +126,7 @@
           </div>
           <div class="ios-links-wrapper latest-links-wrapper">
             <ul>
-              {% if l10n_has_tag('mobile_links') or settings.DEV %}
+              {% if l10n_has_tag('mobile_links') %}
               <li>
                 <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a>
               </li>

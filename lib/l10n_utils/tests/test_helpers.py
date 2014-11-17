@@ -13,13 +13,18 @@ from l10n_utils import helpers
 
 @patch.object(helpers, 'lang_file_has_tag')
 class TestL10nHasTag(TestCase):
-    def test_gets_right_langfile(self, lfht_mock):
-        helpers.l10n_has_tag({'langfile': 'dude'}, 'abide')
-        lfht_mock.assert_called_with('dude', tag='abide')
-
-    def test_override_langfile(self, lfht_mock):
-        helpers.l10n_has_tag({'langfile': 'dude'}, 'abide', 'uli')
+    def test_uses_langfile(self, lfht_mock):
+        """If langfile param specified should only check that file."""
+        helpers.l10n_has_tag({'langfile': 'dude'}, 'abide', langfile='uli')
         lfht_mock.assert_called_with('uli', tag='abide')
+
+    @patch.object(helpers, 'template_has_tag')
+    def test_checks_template_by_default(self, tht_mock, lfht_mock):
+        helpers.l10n_has_tag({'langfile': 'dude',
+                              'template': 'home.html',
+                              'LANG': 'de'}, 'abide')
+        tht_mock.assert_called_with('home.html', 'de', 'abide')
+        self.assertFalse(lfht_mock.called)
 
 
 class TestCurrentLocale(TestCase):

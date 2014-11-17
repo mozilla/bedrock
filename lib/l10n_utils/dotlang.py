@@ -223,22 +223,14 @@ def lang_file_is_active(path, lang=None):
     return lang_file_has_tag(path, lang, 'active')
 
 
-def lang_file_has_tag(path, lang=None, tag='active'):
-    """
-    Return True if the lang file exists and has a line like "^## tag ##"
-    at the top. Stops looking at the line that doesn't have a tag.
-
-    Always returns true for the default lang.
+def lang_file_tag_set(path, lang=None):
+    """Return a set of tags for a specific lang file and locale.
 
     :param path: the relative lang file name
     :param lang: the language code or the lang of the request if omitted
-    @param tag: The string that should appear between ##'s. Can contain
-       alphanumerics and "_".
-    @return: bool
+    :return: set of strings
     """
     lang = lang or fix_case(translation.get_language())
-    if lang == settings.LANGUAGE_CODE:
-        return True
     rel_path = os.path.join('locale', lang, '%s.lang' % path)
     cache_key = 'tag:%s' % rel_path
     tag_set = cache.get(cache_key)
@@ -261,7 +253,26 @@ def lang_file_has_tag(path, lang=None, tag='active'):
 
         cache.set(cache_key, tag_set, settings.DOTLANG_CACHE)
 
-    return tag in tag_set
+    return tag_set
+
+
+def lang_file_has_tag(path, lang=None, tag='active'):
+    """
+    Return True if the lang file exists and has a line like "^## tag ##"
+    at the top. Stops looking at the line that doesn't have a tag.
+
+    Always returns true for the default lang.
+
+    :param path: the relative lang file name
+    :param lang: the language code or the lang of the request if omitted
+    @param tag: The string that should appear between ##'s. Can contain
+       alphanumerics and "_".
+    @return: bool
+    """
+    if settings.DEV or lang == settings.LANGUAGE_CODE:
+        return True
+
+    return tag in lang_file_tag_set(path, lang)
 
 
 def get_translations_for_langfile(langfile):

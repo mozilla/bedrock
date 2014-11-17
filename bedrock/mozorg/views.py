@@ -364,7 +364,7 @@ def new_home(request, locale=None):
 def home(request):
     locale = l10n_utils.get_locale(request)
     new_template = 'mozorg/home/home-new.html'
-    if l10n_utils.template_is_active(new_template, locale) or settings.DEV:
+    if l10n_utils.template_is_active(new_template, locale):
         return new_home(request, locale=locale)
     else:
         return HomeTestView.as_view()(request)

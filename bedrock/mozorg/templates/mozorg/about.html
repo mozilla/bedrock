@@ -60,7 +60,7 @@
     </li>
     <li>
       <h4><a href="https://careers.mozilla.org/">{{ _('Career center') }}</a></h4>
-      {% if l10n_has_tag('about_links') or settings.DEV %}
+      {% if l10n_has_tag('about_links') %}
       <p>{{ _('Want to work at Mozilla? Apply today!') }}</p>
       {% else %}
       <p>{{ _('Want to work on Firefox? Apply today!') }}</p>
@@ -78,7 +78,7 @@
       <h4><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{ _('Locations & contacts') }}</a></h4>
       <p>{{ _('Addresses, emails, support and feedback forms') }}</p>
     </li>
-    {% if l10n_has_tag('about_links') or settings.DEV %}
+    {% if l10n_has_tag('about_links') %}
     <li>
       <h4><a href="{{ url('foundation.moco') }} ">{{ _('The Mozilla Corporation') }} </a></h4>
       <p>{{ _('A corporation that serves the public good. Seriously.') }}</p>
@@ -107,7 +107,7 @@
       <h4><a href="{{ php_url('/about/partnerships') }}">{{ _('Mozilla partnerships') }}</a></h4>
       <p>{{ _('Details about partnering with us') }}</p>
     </li>
-    {% if l10n_has_tag('about_links') or settings.DEV %}
+    {% if l10n_has_tag('about_links') %}
     <li>
       <h4><a href="{{ url('foundation.index') }}">{{ _('The Mozilla Foundation') }}</a></h4>
       <p>{{ _('The non-profit organization behind Firefox and all Mozilla products') }}</p>

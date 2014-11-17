@@ -98,7 +98,7 @@
               <p>
                 {{ _('Click the star to add bookmarks and manage them from the same spot.') }}
                 <a href="https://support.mozilla.org/kb/use-bookmarks-to-save-and-organize-websites">
-                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                {% if l10n_has_tag('sync_device_note') %}
                   {{ _('Learn more about bookmarks') }}
                 {% else %}
                   {{ _('Learn more') }}
@@ -129,7 +129,7 @@
               <p>
                 {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button out of the toolbar.') }}
                 <a rel="external" href="https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars">
-                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                {% if l10n_has_tag('sync_device_note') %}
                   {{ _('Learn more about customizing') }}
                 {% else %}
                   {{ _('Learn more') }}
@@ -159,7 +159,7 @@
               <p>
                 {{ _('Open the menu, select “<strong>Customize</strong>” and drag any button into the toolbar or menu.') }}
                 <a rel="external" href="https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars?src=tips-arrange">
-                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                {% if l10n_has_tag('sync_device_note') %}
                   {{ _('Learn more about customizing') }}
                 {% else %}
                   {{ _('Learn more') }}
@@ -179,7 +179,7 @@
 
             <h3>{{ _('Stay in Sync') }}</h3>
             <p>
-            {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+            {% if l10n_has_tag('sync_device_note') %}
               {{ _('Use Sync to magically access your open tabs, passwords and more wherever you use Firefox.') }}
             {% else %}
               {{ _('Use Sync to magically access your open tabs, passwords and more from any device.') }}
@@ -193,7 +193,7 @@
               <p>
                 {{ _('Choose “<strong>Sign in to Sync</strong>” from the menu and make Firefox your own wherever you use it.') }}
                 <a rel="external" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">
-                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                {% if l10n_has_tag('sync_device_note') %}
                   {{ _('Learn more about Sync') }}
                 {% else %}
                   {{ _('Learn more') }}
@@ -223,7 +223,7 @@
               <p>
                 {{ _('Select “<strong>Customize</strong>” from the menu and drag in the add-ons you want.') }}
                 <a rel="external" href="https://support.mozilla.org/kb/find-and-install-add-ons-add-features-to-firefox">
-                {% if l10n_has_tag('sync_device_note') or settings.DEV %}
+                {% if l10n_has_tag('sync_device_note') %}
                   {{ _('Learn more about add-ons') }}
                 {% else %}
                   {{ _('Learn more') }}
