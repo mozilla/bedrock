@@ -25,7 +25,10 @@ from jinja2 import Markup
 from tower import tweak_message
 from product_details import product_details
 
+from lib.l10n_utils.utils import ContainsEverything
 
+
+ALL_THE_THINGS = ContainsEverything()
 FORMAT_IDENTIFIER_RE = re.compile(r"""(%
                                       (?:\((\w+)\))? # Mapping key
                                       s)""", re.VERBOSE)
@@ -230,6 +233,9 @@ def lang_file_tag_set(path, lang=None):
     :param lang: the language code or the lang of the request if omitted
     :return: set of strings
     """
+    if settings.DEV or lang == settings.LANGUAGE_CODE:
+        return ALL_THE_THINGS
+
     lang = lang or fix_case(translation.get_language())
     rel_path = os.path.join('locale', lang, '%s.lang' % path)
     cache_key = 'tag:%s' % rel_path
@@ -269,9 +275,6 @@ def lang_file_has_tag(path, lang=None, tag='active'):
        alphanumerics and "_".
     @return: bool
     """
-    if settings.DEV or lang == settings.LANGUAGE_CODE:
-        return True
-
     return tag in lang_file_tag_set(path, lang)
 
 

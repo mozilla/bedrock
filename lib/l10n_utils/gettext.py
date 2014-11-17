@@ -19,8 +19,10 @@ from jinja2 import Environment
 
 from dotlang import (parse as parse_lang, get_lang_path,
                      get_translations_for_langfile, lang_file_tag_set)
+from lib.l10n_utils.utils import ContainsEverything
 
 
+ALL_THE_THINGS = ContainsEverything()
 REGEX_URL = re.compile(r'.* (\S+/\S+\.[^:]+).*')
 cache = get_cache('l10n')
 
@@ -192,6 +194,9 @@ def template_tag_set(path, lang):
     :param lang: language code
     :return: set of strings
     """
+    if settings.DEV or lang == settings.LANGUAGE_CODE:
+        return ALL_THE_THINGS
+
     cache_key = 'template_tag_set:{path}:{lang}'.format(lang=lang, path=path)
     tag_set = cache.get(cache_key)
     if tag_set is None:
@@ -212,9 +217,6 @@ def template_has_tag(path, lang, tag):
     :param tag: the tag in question
     :return: boolean
     """
-    if settings.DEV:
-        return True
-
     return tag in template_tag_set(path, lang)
 
 
