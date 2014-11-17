@@ -8,7 +8,15 @@
     var isIE = /MSIE/.test(navigator.userAgent);
     var isTrident = /Trident/.test(navigator.userAgent);
     var isOldOpera= /Presto/.test(navigator.userAgent);
-    var $logo = $('#intro-firefox-logo');
+
+    function cutsTheMustard() {
+        // temporarily disable on Firefox OSX until graphics bug (1083079) is fixed
+        if (window.isFirefox() && window.getFirefoxMasterVersion() >= 35 && $('html').hasClass('osx')) {
+            return false;
+        }
+
+        return supportsInlineSVG() && !isIE && !isTrident && !isOldOpera;
+    }
 
     function supportsInlineSVG () {
         var div = document.createElement('div');
@@ -16,26 +24,12 @@
         return (div.firstChild && div.firstChild.namespaceURI) == 'http://www.w3.org/2000/svg';
     }
 
-    if (isIE || isTrident || isOldOpera || !supportsInlineSVG()) {
+    if (!cutsTheMustard()) {
         // use fallback browser image
         $('body').addClass('no-svg-anim');
     } else {
-
-        // listen for the load event on Firefox logo image
-        // before starting the animation.
-        $logo.one('load', function () {
-            $('body').addClass('svg-anim');
-        }).each(function () {
-            // if the image is already loaded or cached,
-            // call the load event handler.
-            if (this.complete) {
-                $(this).load();
-            }
-        });
-
-        // if there's an error loading the image,
-        // run the animation anyway
-        $logo.one('error', function () {
+        // show svg anim
+        $(window).on('load', function() {
             $('body').addClass('svg-anim');
         });
     }
