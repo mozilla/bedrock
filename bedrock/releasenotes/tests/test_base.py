@@ -55,15 +55,18 @@ class TestRNAViews(TestCase):
         Q.__or__.assert_called()
 
     @override_settings(DEV=False)
+    @patch('bedrock.releasenotes.views.release_notes_template')
     @patch('bedrock.releasenotes.views.get_release_or_404')
     @patch('bedrock.releasenotes.views.equivalent_release_url')
-    def test_release_notes(self, mock_equiv_rel_url, get_release_or_404):
+    def test_release_notes(self, mock_equiv_rel_url, get_release_or_404,
+                           mock_release_notes_template):
         """
         Should use release returned from get_release_or_404 with the
         correct params and pass the correct context variables and
         template to l10n_utils.render.
         """
         mock_release = get_release_or_404.return_value
+        mock_release.major_version.return_value = '34'
         mock_release.notes.return_value = ([Release(id=1), Release(id=2)],
                                            [Release(id=3), Release(id=4)])
 
@@ -75,8 +78,10 @@ class TestRNAViews(TestCase):
         eq_(self.last_ctx['new_features'], [Release(id=1), Release(id=2)])
         eq_(self.last_ctx['known_issues'], [Release(id=3), Release(id=4)])
         eq_(self.mock_render.call_args[0][1],
-            'firefox/releases/release-notes.html')
+            mock_release_notes_template.return_value)
         mock_equiv_rel_url.assert_called_with(mock_release)
+        mock_release_notes_template.assert_called_with(
+            mock_release.channel, 'Firefox', 34)
 
     @patch('bedrock.releasenotes.views.get_release_or_404')
     @patch('bedrock.releasenotes.views.releasenotes_url')
