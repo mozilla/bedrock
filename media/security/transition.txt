@@ -1,0 +1,51 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+The Mozilla security team is transitioning to a new GPG key. The old one
+will continue to be valid for a short time but we prefer all new
+correspondance to be encrypted in the new key, and we will be making
+all signatures going forward with the new key.
+
+This transition document is signed with both keys to validate the
+transition.
+
+The old key, which we are transitioning away from, is:
+
+  pub   4096R/961A92C8 2014-07-17
+      Key fingerprint = 48A1 1F68 9FC5 D2EE C4F9  5323 3259 4375 961A 92C8
+
+The new key, to which we are transitioning, is:
+
+  pub   4096R/06C16402 2014-10-22
+      Key fingerprint = 2D65 5550 2EE8 931C 344B  D122 2A61 C714 06C1 6402
+
+Please contact us via e-mail at <security@mozilla.org> if you have any
+questions about this document or this transition.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.20 (MingW32)
+
+iQIcBAEBAgAGBQJUR0ssAAoJEDJZQ3WWGpLII5kP/jf2EHsvwbC/VimSCnVoKt8e
+FWtfAfVgWXGihzeAomNerlaBP7YgU9YGVsBO1I5u8MJWNHrqWZ4g/dhwvSgKoHH1
+3F16zKTnWeDgOmD4uu9FSpDSWcWdzyG/pmveuneQNq4enhkD3gEemANoU03Imjf8
+0yQ5p8BOJBTt9e4R2X8b1aRnbSXRxnQDSsFzhg0DkyKzkrzj9hvUcQwHQqb1CiYA
+5vwBUSpjhb/N86+YqzUcp0CSegnBuexzZn81DgyBDnEGhoUDe6a9xVcuvvr9OPrv
+BqOsOwlu/pyjBCmtxnMM4Qzq3WEGCs8YXOUTZxBI85SZKZ54IQfj2KxVwb4+N35b
+iEHofdk3xvDQp8u22H09Kx1HwTfFDCv4LcoGSmut+3vk9fi4zJyxtTp2mwkSvoKt
+TBwCwt51GJijyotpi80TGcXYSfFUGL0YjVMpQRHA8VKcXjy5S3DKgYNFI+a4Us2/
+UXXx7Qrr50ZVGe7yzP1ynw7LdMPGq1FYAErZ8zI9dn2P6UXBzuU/owpFQfm6RPmH
+dL801HJJQ0Y/BuztWgK8EGaD/NtEGlYB7RP5SLd8MhNERHBYDJMs/DrWTzdB68iJ
+ZWmipwBiKjGW35/ASPYKHY3/PZmaDdM8bn1LWS7hAO+1QS3uLw63TpvqUTZwSaum
+Q21rvgMGo6Nx4ykEDGaYiQIcBAEBAgAGBQJUR0ssAAoJECphxxQGwWQCI5kQAIvY
+DBDUvaBvgd/WeZqGQdSNvBRGLDha21wpf4VcawLjggxf5HswdSrVrg6xmBRHLh7L
+9MRNbbRyyYc7QyEL9B68XcHjUhhmZbI2PYlI5hPM2y5TKtYuv4ykayoe+KTqpOlp
+920NZOOMCirn1Uk3ytW46UrJAIiu+Dmt5MYPpV7EdaXSNSSCsOZru7MEf75/0gzw
+gf30vVJ6Glznj8Qlbfzol2QTNwmlQ8wIdlVV48A8TPInR2U5mEzdTXXYvsFvYf2u
+GPpllWzHL5Re8TaHqe+emKwUZB5dIIFEeiZYNPhR/pF8iApkncoTNs2mxH73cBpo
+W0Jg+1ytimCTLXNs4kVfgk1kwOs9jAc0Ed/hcMO0uVQ4hAFoXtOr5ddrBVZCsV0P
+0G6F7sq1ug/H5fmBb8u7Kw4n/3qJp9gSpQMdMUqIhAQgjD8RGMaKBKFK4MbKH0Lv
+l1Hb7Qy+2dluHWZTEoCDGyDAoxE0y5H4to7U60J2q0OgnuDXLLDZsP/Uo4Ck5Lc2
+3oZ9NjdMofsWNUbYw62Y8635aDeTUR+mqUjk9HJfc+COi5RUZhQNeBO7D4VkENwJ
+LlEiYas+VUBjwMLYFlViU3JvjYeNef/ym+SxuGMdFKncABk7eudpwuBWGBNV7yrk
+hP98aEy30w2cpRtJ+szrmDciw4yUcvzObtJcnp4L
+=QGhv
+-----END PGP SIGNATURE-----
