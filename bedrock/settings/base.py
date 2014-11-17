@@ -68,7 +68,6 @@ SUPPORTED_NONLOCALES += [
     'gameon',
     'robots.txt',
     'credits',
-    'security',
     'contribute.json',
 ]
 

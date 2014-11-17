@@ -146,7 +146,8 @@ class TestLastModified(TestCase):
 
 class TestKVRedirects(TestCase):
     def _test_names(self, url_component, expected):
-        path = '/security/known-vulnerabilities/{0}.html'.format(url_component)
+        # old urls lack '/en-US' prefix, but that will be the first redirect.
+        path = '/en-US/security/known-vulnerabilities/{0}.html'.format(url_component)
         resp = self.client.get(path)
         eq_(resp.status_code, 301)
         eq_(expected, resp['Location'].split('/')[-2])
