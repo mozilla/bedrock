@@ -107,6 +107,11 @@ function onYouTubeIframeAPIReady() {
 
     }
 
+    // make sure we strip any HTML tags before injecting door hanger text
+    function getText(string) {
+        return $('<div/>').html(window.trans(string)).text();
+    }
+
     // shows the Dev Tools doorhanger step
     function showDevToolsDoorhanger() {
         var icon = isHighRes ? window.trans('devtoolsIconHighRes') : window.trans('devtoolsIcon');
@@ -126,12 +131,12 @@ function onYouTubeIframeAPIReady() {
 
             buttons = [
                 {
-                    label: window.trans('doorhangerClose'),
+                    label: getText('doorhangerClose'),
                     style: 'link',
                     callback: devToolsDoorhangerClose
                 },
                 {
-                    label: window.trans(nextLabel),
+                    label: getText(nextLabel),
                     style: 'primary',
                     callback: nextStep
                 }
@@ -146,8 +151,8 @@ function onYouTubeIframeAPIReady() {
             setTimeout(function() {
                 Mozilla.UITour.showInfo(
                     TARGET_1,
-                    window.trans('devtoolsTitle'),
-                    window.trans('devtoolsText'),
+                    getText('devtoolsTitle'),
+                    getText('devtoolsText'),
                     icon,
                     buttons,
                     options
@@ -184,12 +189,12 @@ function onYouTubeIframeAPIReady() {
 
             buttons = [
                 {
-                    label: window.trans('doorhangerClose'),
+                    label: getText('doorhangerClose'),
                     style: 'link',
                     callback: webIDEDoorhangerClose
                 },
                 {
-                    label: window.trans('nextSync'),
+                    label: getText('nextSync'),
                     style: 'primary',
                     callback: nextSyncButton
                 }
@@ -205,8 +210,8 @@ function onYouTubeIframeAPIReady() {
             setTimeout(function() {
                 Mozilla.UITour.showInfo(
                     TARGET_2,
-                    window.trans('webideTitle'),
-                    window.trans('webideText'),
+                    getText('webideTitle'),
+                    getText('webideText'),
                     icon,
                     buttons,
                     options
@@ -233,12 +238,12 @@ function onYouTubeIframeAPIReady() {
         var icon = isHighRes ? window.trans('syncIconHighRes') : window.trans('syncIcon');
         var buttons = [
             {
-                label: window.trans('doorhangerClose'),
+                label: getText('doorhangerClose'),
                 style: 'link',
                 callback: syncDoorhangerClose
             },
             {
-                label: window.trans('doorhangerSync'),
+                label: getText('doorhangerSync'),
                 style: 'primary',
                 callback: showSyncInMenu
             }
@@ -252,8 +257,8 @@ function onYouTubeIframeAPIReady() {
 
         Mozilla.UITour.showInfo(
             TARGET_3,
-            window.trans('syncTitle'),
-            window.trans('syncText'),
+            getText('syncTitle'),
+            getText('syncText'),
             icon,
             buttons,
             options
@@ -300,8 +305,8 @@ function onYouTubeIframeAPIReady() {
 
             Mozilla.UITour.showInfo(
                 TARGET_3,
-                window.trans('syncReminderTitle'),
-                window.trans('syncReminderText'),
+                getText('syncReminderTitle'),
+                getText('syncReminderText'),
                 icon,
                 null,
                 options
