@@ -15,7 +15,6 @@ src/django-waffle
 src/jingo-markdown
 src/pystatsd
 src/Python-Markdown
-src/raven
 src/requests
 src/rna
 src/six
