@@ -986,6 +986,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.events' % PROJECT_MODULE,
     '%s.releasenotes' % PROJECT_MODULE,
     '%s.thunderbird' % PROJECT_MODULE,
+    '%s.shapeoftheweb' % PROJECT_MODULE,
 
     # libs
     'django_extensions',

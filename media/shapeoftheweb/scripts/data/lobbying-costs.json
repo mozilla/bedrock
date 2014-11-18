@@ -1,0 +1,79 @@
+{
+  "lobbyingCosts": [
+    {
+      "year": 2000,
+      "revolvers": 20,
+      "expenditure": 10
+    },
+    {
+      "year": 2001,
+      "revolvers": 22,
+      "expenditure": 12
+    },
+    {
+      "year": 2002,
+      "revolvers": 23,
+      "expenditure": 12
+    },
+    {
+      "year": 2003,
+      "revolvers": 25,
+      "expenditure": 14
+    },
+    {
+      "year": 2004,
+      "revolvers": 27,
+      "expenditure": 15
+    },
+    {
+      "year": 2005,
+      "revolvers": 30,
+      "expenditure": 20
+    },
+    {
+      "year": 2006,
+      "revolvers": 31,
+      "expenditure": 21
+    },
+    {
+      "year": 2007,
+      "revolvers": 31,
+      "expenditure": 21
+    },
+    {
+      "year": 2008,
+      "revolvers": 31,
+      "expenditure": 22
+    },
+    {
+      "year": 2009,
+      "revolvers": 35,
+      "expenditure": 23
+    },
+    {
+      "year": 2010,
+      "revolvers": 36,
+      "expenditure": 25
+    },
+    {
+      "year": 2011,
+      "revolvers": 37,
+      "expenditure": 26
+    },
+    {
+      "year": 2012,
+      "revolvers": 38,
+      "expenditure": 27
+    },
+    {
+      "year": 2013,
+      "revolvers": 39,
+      "expenditure": 28
+    },
+    {
+      "year": 2014,
+      "revolvers": 40,
+      "expenditure": 29
+    }
+  ]
+}

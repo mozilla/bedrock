@@ -1,0 +1,8 @@
+<div class="terms-and-conditions cf">
+  <div class="terms-company cf" ng-repeat="company in ::tAndC.data" ng-class="{'terms-company--shakespeare': company.shakespeare}">
+    <div class="terms-company__length">{{::tAndC.minutesToString(company.minutes)}}</div>
+    <div class="terms-company__title">{{::company.name}}</div>
+    <div class="terms-company__stacks"></div>
+    <div class="terms-company__words">{{::company.length | number:0}}</div>
+  </div>
+</div>

@@ -39,6 +39,7 @@ urlpatterns = patterns(
     (r'', include('bedrock.newsletter.urls')),
     (r'', include('bedrock.redirects.urls')),
     (r'', include('bedrock.research.urls')),
+    (r'', include('bedrock.shapeoftheweb.urls')),
     (r'^(?P<path>contribute\.json)$', 'django.views.static.serve',
      {'document_root': settings.ROOT}),
 

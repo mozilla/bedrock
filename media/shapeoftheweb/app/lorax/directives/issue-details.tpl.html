@@ -1,0 +1,45 @@
+<article class="detail cf" data-status="{{::issueDetails.issueStatus}}">
+  <header class="detail__header">
+    <div class="detail-header-section">{{::issueDetails.issue.getName()}}</div>
+    <h1 class="detail-header-title">{{::issueDetails.issue.getTitle()}}</h1>
+  </header>
+  <section class="detail__main">
+    <div class="detail-main">
+      <div class="detail-main__copy">{{::issueDetails.issue.getNarrative()}}</div>
+      <!--a href="#" class="detail-main-read-more">Read More</a-->
+      <div class="detail-tags detail-tags--main" ng-if="::issueDetails.issue.getTags()">
+        <span class="detail-tags__title">Related Tags:</span>
+        <a href="#" class="detail-tags__tag" ng-repeat="tag in ::issueDetails.issue.getTags()">{{tag.getName()}}</a>
+      </div>
+    </div>
+  </section>
+  <section class="detail__infographic">
+    <section class="infographic" ng-transclude></section>
+  </section>
+  <section class="detail__more">
+    <ul class="detail-links cf">
+      <li>
+        <section class="detail-link">
+          <header class="detail-link__header">
+            <h1>What Mozilla is doing</h1>
+          </header>
+          <p class="detail-link__copy">{{::issueDetails.issue.getMozActionCopy()}}</p>
+          <a ng-if="::issueDetails.issue.getMozActionLink()" href="{{::issueDetails.issue.getMozActionLink()}}" class="btn detail-link__btn">Read More</a>
+        </section>
+      </li>
+      <li>
+        <section class="detail-link">
+          <header class="detail-link__header">
+            <h1>What you can do</h1>
+          </header>
+          <p class="detail-link__copy">{{::issueDetails.issue.getYourActionCopy()}}</p>
+          <a ng-if="::issueDetails.issue.getYourActionLink()" href="{{::issueDetails.issue.getYourActionLink()}}" class="btn detail-link__btn">Sign Petition</a>
+        </section>
+      </li>
+    </ul>
+    <div class="detail-tags detail-tags--more" ng-if="::issueDetails.issue.getTags()">
+      <span class="detail-tags__title">Related Tags:</span>
+      <a href="#" class="detail-tags__tag" ng-repeat="tag in ::issueDetails.issue.getTags()">{{tag.getName()}}</a>
+    </div>
+  </section>
+</article>

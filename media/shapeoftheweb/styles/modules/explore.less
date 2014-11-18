@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Explore page
+   ========================================================================== */
+
+.explore-canvas {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.explore-menu {
+    .reset-list;
+    pointer-events: none;
+    position: fixed;
+    width: 100%;
+    bottom: 20px;
+    margin: 0 auto;
+
+    .flexbox & {
+        .flexbox;
+        .justify-content(center);
+    }
+
+    .no-flexbox & {
+        .clearfix;
+    }
+
+    .at-medium({
+        bottom: 80px;
+    });
+
+    > li {
+        min-height: 50px;
+        pointer-events: auto;
+
+        .no-flexbox & {
+            float: left;
+            width: 33%;
+        }
+
+        &:first-child a {
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        &:last-child a {
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+    }
+}
+
+.explore-menu__link {
+    background-color: @white;
+    color: @extra-dark-grey;
+    .fira-sans-medium;
+    .font-size(1);
+    padding: 10px 20px;
+    text-transform: uppercase;
+    display: inline-block;
+    width: 100%;
+
+    margin-right: 1px;
+    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.1);
+
+    .at-medium({
+        padding: 15px 35px;
+        .font-size(1.1);
+    });
+
+    .no-touch &:hover,
+    &:focus,
+    &.is-active {
+        color: @white;
+        background-color: @extra-dark-grey;
+
+        .icon-circle-empty:before {
+            background-position: 0 100%;
+        }
+
+        .icon-th:before {
+            background-position: 50% 100%;
+        }
+
+        .icon-menu:before {
+            background-position: 100% 100%;
+        }
+    }
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url('../images/explore-buttons.png') 0 0 no-repeat;
+    content: ' ';
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.icon-circle-empty:before {
+    background-position: 0 0;
+}
+
+.icon-th:before {
+    background-position: 50% 0;
+}
+
+.icon-menu:before {
+    background-position: 100% 0;
+}

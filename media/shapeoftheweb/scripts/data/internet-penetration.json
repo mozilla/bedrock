@@ -1,0 +1,74 @@
+{
+  "countries": [
+    {
+      "name": "india",
+      "displayName": "India",
+      "value": 0.0237,
+      "label": {
+        "x": 630,
+        "y": 340,
+        "bar": {
+          "x": 30,
+          "y": -32,
+          "rotate": 25
+        }
+      }
+    },
+    {
+      "name": "jamaica",
+      "displayName": "Jamaica",
+      "value": 0.533,
+      "label": {
+        "x": 270,
+        "y": 250,
+        "bar": {
+          "x": -6,
+          "y": 15,
+          "rotate": 55
+        }
+      }
+    },
+    {
+      "name": "morocco",
+      "displayName": "Morocco",
+      "value": 0.25,
+      "label": {
+        "x": 340,
+        "y": 215,
+        "bar": {
+          "x": 70,
+          "y": 38,
+          "rotate": 125
+        }
+      }
+    },
+    {
+      "name": "usa",
+      "displayName": "United States",
+      "value": 0.723,
+      "label": {
+        "x": 30,
+        "y": 180,
+        "bar": {
+          "x": 90,
+          "y": 16,
+          "rotate": 100
+        }
+      }
+    },
+    {
+      "name": "norway",
+      "displayName": "Norway",
+      "value": 0.972,
+      "label": {
+        "x": 420,
+        "y": 90,
+        "bar": {
+          "x": 40,
+          "y": 38,
+          "rotate": 125
+        }
+      }
+    }
+  ]
+}

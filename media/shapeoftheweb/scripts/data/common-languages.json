@@ -1,0 +1,105 @@
+{
+  "topPercentageOfLanguages": 26,
+  "commonLanguages": [
+    {
+      "spoken": {
+        "lang": "Chinese",
+        "pct": 26
+      },
+      "internet": {
+        "lang": "English",
+        "pct": 26
+      }
+    },
+    {
+      "spoken": {
+        "lang": "Spanish",
+        "pct": 20
+      },
+      "internet": {
+        "lang": "Chinese",
+        "pct": 20
+      }
+    },
+    {
+      "spoken": {
+        "lang": "English",
+        "pct": 16
+      },
+      "internet": {
+        "lang": "Spanish",
+        "pct": 16
+      }
+    },
+    {
+      "spoken": {
+        "lang": "Hindi",
+        "pct": 14
+      },
+      "internet": {
+        "lang": "Japanese",
+        "pct": 14
+      }
+    },
+    {
+      "spoken": {
+        "lang": "Arabic",
+        "pct": 12
+      },
+      "internet": {
+        "lang": "Portuguese",
+        "pct": 12
+      }
+    },
+    {
+      "spoken": {
+        "lang": "Portuguese",
+        "pct": 10
+      },
+      "internet": {
+        "lang": "German",
+        "pct": 10
+      }
+    },
+    {
+      "spoken": {
+        "lang": "Bengali",
+        "pct": 9
+      },
+      "internet": {
+        "lang": "Arabic",
+        "pct": 9
+      }
+    },
+    {
+      "spoken": {
+        "lang": "Russian",
+        "pct": 8
+      },
+      "internet": {
+        "lang": "French",
+        "pct": 8
+      }
+    },
+    {
+      "spoken": {
+        "lang": "Japanese",
+        "pct": 5
+      },
+      "internet": {
+        "lang": "Russian",
+        "pct": 5
+      }
+    },
+    {
+      "spoken": {
+        "lang": "Punjabi",
+        "pct": 3
+      },
+      "internet": {
+        "lang": "Korean",
+        "pct": 3
+      }
+    }
+  ]
+}

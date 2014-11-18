@@ -1,0 +1,111 @@
+/* ==========================================================================
+   Infographic Section
+   ========================================================================== */
+
+.infographic {
+
+}
+
+.infographic__header {
+    padding: 0 20px;
+
+    .at-medium({
+        padding: 0 70px;
+    });
+
+    .at-large({
+        padding: 0 70px 0 20px;
+    });
+
+    .at-xlarge({
+        padding: 0 100px 0 30px;
+    });
+
+    > h1 {
+        .fira-sans-book;
+        .font-size(1.8);
+        line-height: 20px;
+        margin: 0 0 24px;
+
+        .at-medium({
+            line-height: 26px;
+        });
+
+        .at-xlarge({
+            .font-size(2.2);
+            margin: 0 0 36px;
+        });
+
+        > span {
+            color: @extra-dark-grey;
+            display: block;
+            .font-size(1.2);
+            font-style: italic;
+            line-height: 18px;
+
+            .at-medium({
+                .font-size(1.4);
+                line-height: 22px;
+            });
+
+            .at-xlarge({
+                .font-size(1.6);
+            });
+        }
+    }
+}
+
+.infographic__wrapper {
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding: 0 20px;
+
+    .at-medium({
+        margin-bottom: 30px;
+        padding: 0 70px;
+    });
+
+    .at-large({
+        padding: 0 70px 0 20px;
+    });
+
+    .at-xlarge({
+        padding: 0 100px 0 30px;
+    });
+}
+
+.infographic__wrapper--overflow {
+    padding: 0 20px;
+
+    .at-medium({
+        padding: 0 0 0 70px;
+    });
+
+    .at-large({
+        padding: 0 0 0 20px;
+    });
+
+    .at-xlarge({
+        padding: 0 0 0 30px;
+    });
+
+    //.touch & {
+        overflow-x: auto;
+    //}
+}
+
+.infographic__footer {
+    padding: 0 20px;
+
+    .at-medium({
+        padding: 0 70px;
+    });
+
+    .at-large({
+        padding: 0 70px 0 20px;
+    });
+
+    .at-xlarge({
+        padding: 0 100px 0 30px;
+    });
+}
