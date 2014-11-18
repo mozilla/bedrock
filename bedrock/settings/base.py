@@ -1159,7 +1159,11 @@ MOBILIZER_LOCALE_LINK = {
 }
 
 DONATE_LOCALE_LINK = {
-    'en-US': 'https://sendto.mozilla.org/page/contribute/Give-Now',
+    'default': ('https://sendto.mozilla.org/page/contribute/Give-Now?'
+                'source={source}'),
+    'en-US': ('https://sendto.mozilla.org/page/contribute/givenow-1page?'
+              'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014&'
+              'utm_source=mozilla.org&utm_medium=referral&utm_content={source}'),
 }
 
 # Official Firefox Twitter accounts

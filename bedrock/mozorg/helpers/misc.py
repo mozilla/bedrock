@@ -318,7 +318,7 @@ def press_blog_url(ctx):
 
 @jingo.register.function
 @jinja2.contextfunction
-def donate_url(ctx):
+def donate_url(ctx, source=''):
     """Output a link to the donation page taking locales into account.
 
     Uses the locale from the current request. Checks to see if we have
@@ -352,9 +352,16 @@ def donate_url(ctx):
     """
     locale = getattr(ctx['request'], 'locale', 'en-US')
     if locale not in settings.DONATE_LOCALE_LINK:
-        locale = 'en-US'
+        if 'default' in settings.DONATE_LOCALE_LINK:
+            locale = 'default'
+        else:
+            locale = 'en-US'
 
-    return settings.DONATE_LOCALE_LINK[locale]
+        # The source of the new donation URL is different from the old one,
+        # so replace it if needed (Bug 1100548)
+        source = source.replace('mozillaorg', 'mozillaorg_default')
+
+    return settings.DONATE_LOCALE_LINK[locale].format(source=source)
 
 
 @jingo.register.function

@@ -743,7 +743,7 @@ var Tabzilla = (function (Tabzilla) {
     + '              <li><a href="https://www.mozilla.org/contribute/?icn=tabz">{{ _('Volunteer')|js_escape }}</a></li>'
     + '              <li><a href="https://careers.mozilla.org/?icn=tabz">{{ _('Careers')|js_escape }}</a></li>'
     + '              <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/?icn=tabz">{{ _('Find us')|js_escape }}</a></li>'
-    + '              <li><a href="{{ donate_url() }}?icn=tabz&amp;source=mozillaorg_default_tabzillaTXT" class="donate">{{ _('Donate')|js_escape }}</a></li>'
+    + '              <li><a href="{{ donate_url('mozillaorg_tabzillaTXT') }}&icn=tabz" class="donate">{{ _('Donate')|js_escape }}</a></li>'
     + '              <li><a href="https://www.mozilla.org/about/partnerships/?icn=tabz">{{ _('Partner')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
