@@ -21,10 +21,9 @@ TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, 'media', '%s', 'l10n')
 
 TEST_DONATE_LOCALE_LINK = {
-    'de': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE',
-    'en-US': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla',
-    'fr': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR',
-    'pt-BR': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR',
+    'default': 'https://sendto.mozilla.org/page/contribute/EOYFR2013?source={source}',
+    'en-US': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla?source={source}',
+    'pt-BR': 'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR?source={source}',
 }
 
 TEST_FIREFOX_TWITTER_ACCOUNTS = {
@@ -337,46 +336,35 @@ class TestPressBlogUrl(TestCase):
 class TestDonateUrl(TestCase):
     rf = RequestFactory()
 
-    def _render(self, locale):
+    def _render(self, locale, source=''):
         req = self.rf.get('/')
         req.locale = locale
-        return render('{{ donate_url() }}', {'request': req})
+        return render("{{{{ donate_url('{0}') }}}}".format(source),
+                      {'request': req})
 
     def test_donate_url_no_locale(self):
         """No locale, fallback to default page"""
-        eq_(self._render(''),
-            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+        eq_(self._render('', 'mozillaorg_footer'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013?'
+            'source=mozillaorg_default_footer')
 
     def test_donate_url_english(self):
         """en-US locale, default page"""
-        eq_(self._render('en-US'),
-            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
-
-    def test_donate_url_spanish(self):
-        """de locale, a localed page"""
-        eq_(self._render('de'),
-            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webDE')
-
-    def test_donate_url_french(self):
-        """fr locale, a localed page"""
-        eq_(self._render('fr'),
-            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webFR')
+        eq_(self._render('en-US', 'mozillaorg_footer'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla?'
+            'source=mozillaorg_footer')
 
     def test_donate_url_portuguese(self):
         """pt-BR locale, a localed page"""
-        eq_(self._render('pt-BR'),
-            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR')
+        eq_(self._render('pt-BR', 'mozillaorg_footer'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013-webPTBR?'
+            'source=mozillaorg_footer')
 
     def test_donate_url_other_locale(self):
         """No page for locale, fallback to default page"""
-        eq_(self._render('es-AR'),
-            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
-        eq_(self._render('es-CL'),
-            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
-        eq_(self._render('es-MX'),
-            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
-        eq_(self._render('pt-PT'),
-            'https://sendto.mozilla.org/page/contribute/EOYFR2013-tabzilla')
+        eq_(self._render('pt-PT', 'mozillaorg_footer'),
+            'https://sendto.mozilla.org/page/contribute/EOYFR2013?'
+            'source=mozillaorg_default_footer')
 
 
 @override_settings(FIREFOX_TWITTER_ACCOUNTS=TEST_FIREFOX_TWITTER_ACCOUNTS)

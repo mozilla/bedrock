@@ -68,7 +68,7 @@
     <nav id="nav-main" role="navigation">
       <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
       <ul id="nav-main-menu">
-        <li class="first"><a data-name="donate" href="https://sendto.mozilla.org/page/contribute/givenow-1page?preset=2&amp;source=mozillaorg_topNAV&amp;ref=EOYFR2014&amp;utm_campaign=EOYFR2014&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_topNAV">{{_('Donate')}}</a></li>
+        <li class="first"><a data-name="donate" href="{{ donate_url('mozillaorg_topNAV') }}">{{_('Donate')}}</a></li>
         <li><a data-name="mission" href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
         <li><a data-name="firefox" href="{{ url('firefox.desktop.index') }}">{{_('Firefox')}}</a></li>
         <li class="last"><a data-name="community" href="{{ url('mozorg.contribute') }}">{{_('Community')}}</a></li>
@@ -179,7 +179,7 @@
       {% if l10n_has_tag('fundraising_2014') %}
         <li id="promo-11" class="item promo-large-landscape donate" tabindex="0" data-name="Donate to support the open web">
           <h2 class="primary go">{{ _('Donate to Mozilla') }}</h2>
-          <a class="panel-link" href="https://sendto.mozilla.org/page/contribute/givenow-1page?preset=2&amp;source=mozillaorg_largeblock&amp;ref=EOYFR2014&amp;utm_campaign=EOYFR2014&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_largeblock">
+          <a class="panel-link" href="{{ donate_url('mozillaorg_largeblock') }}">
             <div class="secondary">
               <h3>{{ _('Your gift helps us build the Internet the world needs.') }}</h3>
               <p class="more">{{ _('Donate today') }}</p>
