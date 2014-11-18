@@ -816,30 +816,6 @@
 }
 
 /****************************************************************************/
-// Open Standard
-.promo-large-portrait.open-standard,
-.promo-large-landscape.open-standard {
-    background: #0c99d5; // bright blue
-
-    h2 {
-        padding: 100px @baseLine 0 @baseLine;
-        margin-top: @baseLine * 2;
-        background-image: url(/media/img/home/voices/promos/open-standard/tos-logo.png);
-        background-position: top center;
-        background-repeat: no-repeat;
-        .background-size(67px, 85px);
-    }
-
-    h3 {
-        padding: (@baseLine * 5) @baseLine 0 @baseLine;
-    }
-}
-
-.promo-large-landscape.open-standard h3 {
-    padding-top: @baseLine * 2;
-}
-
-/****************************************************************************/
 // Mission
 .promo-large-portrait.mission,
 .promo-large-landscape.mission {
@@ -896,6 +872,41 @@
         background-position: top center;
         background-repeat: no-repeat;
         .background-size(94px, 94px);
+    }
+}
+
+/****************************************************************************/
+// Donate
+.promo-large-landscape.donate {
+    background: #ffcd02; // yellow
+
+    h2 {
+        color: #555;
+        padding: 120px @baseLine 0 @baseLine;
+        margin-top: @baseLine;
+        background-image: url(/media/img/home/voices/promos/donate/donate.png);
+        background-position: top center;
+        background-repeat: no-repeat;
+        .background-size(110px, 110px);
+
+        &.go:after {
+            color: #555;
+            border-color: #555;
+        }
+    }
+
+    h3 {
+        color: #555;
+        margin-top: @baseLine * 2;
+    }
+
+    .more {
+        color: #555;
+        border-color: rgba(120, 120, 120, .5);
+
+        &:hover {
+            border-color: #555;
+        }
     }
 }
 
@@ -1316,7 +1327,7 @@
         // force "Teach the Web" to break onto 2 lines in Engligh only.
         .promo-large-landscape.webmaker {
             h2 {
-                padding: 90px (@baseLine * 2) 0 (@baseLine * 2);
+                padding: 120px (@baseLine * 2) 0 (@baseLine * 2);
             }
             h3 {
                 padding: (@baseLine * 5) @baseLine 0 @baseLine;
@@ -1648,14 +1659,6 @@
        only screen and (                min-resolution: 1.5dppx),
        only screen and (                min-resolution: 144dpi) {
 
-    // Open Standard
-    .promo-large-portrait.open-standard {
-        h2 {
-            background-image: url(/media/img/home/voices/promos/open-standard/tos-logo-high-res.png);
-            .background-size(67px, 85px);
-        }
-    }
-
     // Webmaker
     .promo-large-landscape.webmaker {
         h2 {
@@ -1718,6 +1721,14 @@
         h2 {
             background-image: url(/media/img/home/voices/promos/independent/independent-high-res.png);
             .background-size(105px, 105px);
+        }
+    }
+
+    // Donate
+    .promo-large-landscape.donate {
+        h2 {
+            background-image: url(/media/img/home/voices/promos/donate/donate-high-res.png);
+            .background-size(110px, 110px);
         }
     }
 
