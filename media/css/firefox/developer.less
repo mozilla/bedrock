@@ -74,9 +74,14 @@
         margin-bottom: @baseLine * 2;
     }
     .screenshot {
-        margin: @baseLine*3 auto;
+        margin: @baseLine*2 auto @baseLine*3;
         border-radius: 4px;
         box-shadow: 0 4px 10px #000;
+    }
+    .privacy {
+        margin: @baseLine/2 auto 0;
+        font-size: @smallFontSize;
+        opacity: .8;
     }
 }
 
@@ -155,6 +160,15 @@
     .video {
         display: none;
     }
+}
+
+.feedback-note {
+    clear: both;
+    color: @blueprintTextColorSecondary;
+    font-size: @smallFontSize;
+    text-align: center;
+    margin: @baseLine 0 0;
+    opacity: .7;
 }
 
 .video-play {
