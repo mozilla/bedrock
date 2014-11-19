@@ -40,9 +40,6 @@
 [submodule "vendor-local/src/six"]
 	path = vendor-local/src/six
 	url = https://github.com/kelp404/six.git
-[submodule "vendor-local/src/raven"]
-	path = vendor-local/src/raven
-	url = git://github.com/getsentry/raven-python.git
 [submodule "vendor-local/src/tweepy"]
 	path = vendor-local/src/tweepy
 	url = https://github.com/tweepy/tweepy.git

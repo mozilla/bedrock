@@ -16,7 +16,6 @@ from django.core.management.base import NoArgsCommand, BaseCommand
 from django.db import transaction
 
 from dateutil.parser import parse as parsedate
-from raven.contrib.django.raven_compat.models import client as raven_client
 
 from bedrock.security.models import Product, SecurityAdvisory
 from bedrock.security.utils import chdir, parse_md_file
@@ -253,7 +252,6 @@ class Command(NoArgsCommand):
                     update_db_from_file(mf)
                 except (KeyError, ValueError) as e:
                     print 'ERROR parsing %s: %s' % (mf, e)
-                    raven_client.captureException()
                     continue
                 if not quiet:
                     sys.stdout.write('.')

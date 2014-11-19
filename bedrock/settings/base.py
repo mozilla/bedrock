@@ -992,7 +992,6 @@ INSTALLED_APPS = get_apps(exclude=(
     'lib.l10n_utils',
     'captcha',
     'rna',
-    'raven.contrib.django.raven_compat',
 ))
 
 LOCALE_PATHS = (
@@ -1226,7 +1225,6 @@ MOFO_SECURITY_ADVISORIES_REPO = 'https://github.com/mozilla/foundation-security-
 LOGGING = {
     'root': {
         'level': 'WARNING',
-        'handlers': ['sentry'],
     },
     'formatters': {
         'verbose': {
@@ -1234,10 +1232,6 @@ LOGGING = {
         },
     },
     'handlers': {
-        'sentry': {
-            'level': 'ERROR',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
@@ -1247,16 +1241,6 @@ LOGGING = {
     'loggers': {
         'django.db.backends': {
             'level': 'ERROR',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        'raven': {
-            'level': 'WARNING',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        'sentry.errors': {
-            'level': 'WARNING',
             'handlers': ['console'],
             'propagate': False,
         },
