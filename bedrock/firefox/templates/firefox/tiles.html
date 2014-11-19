@@ -61,10 +61,17 @@
 
 <p>
 {{ _('As with all Mozilla products, Tiles provide users with extensive control over their personal data.') }}
+{% if LANG in ['en-US'] %}{# Bug 1099159, The new copy is only for en-US at first #}
+{{ _('Mozilla respects your privacy and any data collected by Mozilla via Tiles will be done in accordance with our <a href="%s">Privacy Notice</a>.')|format(url('privacy.notices.firefox')) }}
+{{ _('Only aggregated data from Tiles is stored by Mozilla (e.g., we calculate the total number of views and clicks an individual Tile receives).') }}
+{{ _('This helps us deliver the most interesting and relevant content to our users.') }}
+{{ _('You can deactivate the Tiles feature by clicking on the gear icon on the top right corner of the new tab page, and selecting Classic to show just history tiles or blank mode.') }}
+{% else %}
 {{ _('Data collection is limited to the aggregate number of impressions, clicks and Tile placement.') }}
 {{ _('Nothing is ever personally identifiable. In other words, we don’t know who clicks on what.') }}
 {{ _('We just know the total number of views and clicks an individual Tile receives. This helps us deliver the most interesting and relevant content.') }}
 {{ _('You can deactivate click and impression tracking by clicking on the gear icon on the top right corner of the new tab page, and selecting Classic to show only unenhanced History Tiles or Blank mode.') }}
+{% endif %}
 </p>
 
 {% endblock %}
@@ -105,9 +112,18 @@
   <h3 data-accordion-role="tab">{{ _('What data is being collected?') }}</h3>
   <div data-accordion-role="tabpanel">
     <p>
+      {% if LANG in ['en-US'] %}
+      {% trans %}
+        Mozilla collects Tiles related data such as number of clicks, impressions and tile specific
+        data (e.g., position and size of grid) to help Mozilla determine how frequently the tile has
+        been seen or interacted with, as well as your IP address (collected by Firefox client side
+        only, quickly translated into a region code and then deleted).
+      {% endtrans %}
+      {% else %}
       {% trans %}
         Aggregate data from the New Tab page includes impressions, clicks and tile placement.
       {% endtrans %}
+      {% endif %}
     </p>
   </div>
 </section>
@@ -127,6 +143,11 @@
   <h3 data-accordion-role="tab">{{ _('Where can I learn more?') }}</h3>
   <div data-accordion-role="tabpanel">
     <ul>
+      {% if LANG in ['en-US'] %}
+      <li><a href="https://support.mozilla.org/kb/how-do-tiles-work-firefox">
+        {{ _('How do Tiles work?') }}
+      </a></li>
+      {% else %}
       <li><a href="https://blog.mozilla.org/futurereleases/2014/09/04/new-tab-page-experiments-in-firefox-beta/">
         {{ _('New Tab Experiments in Firefox Beta') }}
       </a></li>
@@ -136,6 +157,7 @@
       <li><a href="https://blog.mozilla.org/netpolicy/2014/08/21/trust-should-be-the-currency/">
         {{ _('Trust should be the currency') }}
       </a></li>
+      {% endif %}
     </ul>
   </div>
 </section>
@@ -152,7 +174,7 @@
 
 <h4>{{ _('Tiles Preferences') }}</h4>
 
-<img src="{{ media('/img/firefox/tiles/new-tab-enhanced.png') }}" alt="{{ _('Screenshot') }}" }}" />
+<img src="{{ media('/img/firefox/tiles/new-tab-enhanced.png') }}" alt="{{ _('Screenshot') }}">
 
 <p>
   {% trans url='https://support.mozilla.org/kb/how-do-tiles-work-firefox' %}
