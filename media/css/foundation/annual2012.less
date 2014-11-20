@@ -258,7 +258,7 @@ dl.faq dt {
 	margin-bottom: @baseLine;
 }
 
-html[lang="en-US"] {
+html[lang|="en"] {
 	.banner h1 span {
 		.image-replaced;
 		display: block;
@@ -322,7 +322,7 @@ html[dir="rtl"] {
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-	html[lang="en-US"] {
+	html[lang|="en"] {
 		.banner h1 span {
 			background-image: url(/media/img/foundation/annualreport/2012/state-of-mozilla-high-res.png);
 		}
@@ -610,7 +610,7 @@ html[lang="ar"] {
 }
 
 /* Larger font size in English */
-html[lang="en-US"] .banner blockquote {
+html[lang|="en"] .banner blockquote {
   font-size: 48px;
   line-height: 1.1;
 }

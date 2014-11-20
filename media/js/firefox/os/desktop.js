@@ -6,7 +6,7 @@
 
   var $w = $(window);
 
-  var isUS = $('html').attr('lang') === 'en-US';
+  var isUS = $('html').is('[lang|="en"]');
 
   var isSmallViewport = $w.width() < 760;
   var isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport;

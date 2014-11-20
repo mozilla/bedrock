@@ -9,7 +9,7 @@
     {% for code, label in translations|dictsort -%}
       {# Don't escape the label as it may include entity references
        # like "Português (do&nbsp;Brasil)" (Bug 861149) #}
-      <option lang="{{ code }}" value="{{ code }}"{{ code|ifeq(LANG, " selected") }}>{{ label|safe }}</option>
+      <option lang="{{ code }}" value="{{ code }}"{{ code|ifeq(LANG, " selected") }}>{{ label|safe|replace('English (US)', 'English') }}</option>
     {% endfor %}
   </select>
   <noscript>
