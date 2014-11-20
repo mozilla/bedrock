@@ -1065,3 +1065,30 @@ class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
         # if there's no oldversion parameter, show no tour
         response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
         self.assertNotIn(self.expected, response.content)
+
+
+class TestHelloStartView(TestCase):
+    def setUp(self):
+        self.user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:35.0) '
+                      'Gecko/20100101 Firefox/35.0')
+        self.url = reverse('firefox.hello.start', args=['35.0'])
+
+    def test_fx_hello_no_conversation(self):
+        """Should identify when there is no conversation"""
+
+        response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
+        self.assertIn('data-incoming-conversation="none"', response.content)
+
+    def test_fx_hello_conversation_open(self):
+        """Should identify when a conversation is open"""
+
+        response = self.client.get(self.url + '?incomingConversation=open',
+            HTTP_USER_AGENT=self.user_agent)
+        self.assertIn('data-incoming-conversation="open"', response.content)
+
+    def test_fx_hello_conversation_waiting(self):
+        """Should identify when a conversation is waiting"""
+
+        response = self.client.get(self.url + '?incomingConversation=waiting',
+            HTTP_USER_AGENT=self.user_agent)
+        self.assertIn('data-incoming-conversation="waiting"', response.content)

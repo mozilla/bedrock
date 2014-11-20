@@ -18,6 +18,7 @@ latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 tour_re = latest_re % (version_re, 'tour')
+hello_start_re = latest_re % (version_re, 'hello/start')
 product_re = '(?P<product>firefox|mobile)'
 channel_re = '(?P<channel>beta|aurora|developer|organizations)'
 releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
@@ -65,6 +66,7 @@ urlpatterns = patterns('',
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
     url(tour_re, views.TourView.as_view(), name='firefox.tour'),
+    url(hello_start_re, views.HelloStartView.as_view(), name='firefox.hello.start'),
     url(r'^firefox/partners/$', views.firefox_partners,
         name='firefox.partners.index'),
 
