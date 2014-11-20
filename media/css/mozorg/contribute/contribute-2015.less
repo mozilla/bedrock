@@ -1519,6 +1519,21 @@ textarea:focus {
 .events-list {
     background: #fff;
     text-align: left;
+
+    .ical-link {
+        position: relative;
+        margin-bottom: 20px;
+
+        a:before {
+            content: url(/media/img/contribute/logos/ical.png);
+            position: absolute;
+            left: 0;
+        }
+
+        a {
+            margin-left: 25px;
+        }
+    }
 }
 
 .events-head {
