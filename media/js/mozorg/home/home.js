@@ -5,6 +5,7 @@
 $(function () {
     'use strict';
 
+    var $allElements = $('*');
     var $promos = $('.promo-grid');
     var $promoLarge = $('.promo-large-landscape, .promo-large-portrait');
     var $downloadPromo = $('.promo-small-landscape.firefox-download');
@@ -239,9 +240,14 @@ $(function () {
         });
 
         // close when something outside the takeover gets focus
-        $('a, input, textarea, button, :focus').bind('focus.splash', function(e) {
+        $allElements.on('focus.splash', function(e) {
             var $focused = $(e.target);
-            if (!$focused.parents().is($splash)) {
+
+            // make sure focused element is not within the splash screen
+            // also make sure it's not the body that has focus (IE 11 seems to give body focus
+            // automatically sometimes? bug 1101964)
+            if (!$focused.parents().is($splash) && $focused[0].tagName.toLowerCase() !== 'body') {
+                $allElements.off('focus.splash');
                 closeSplash();
             }
         });
