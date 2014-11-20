@@ -113,10 +113,10 @@ urlpatterns = patterns(
     # Bug 896585 - Send /contact/ to the spaces landing
     redirect(r'^contact/$', '/contact/spaces/'),
 
-    # Bug 944213 /foundation/annualreport/ ->
-    # /foundation/annualreport/20xx/
+    # Bug 1102336 /foundation/annualreport/ ->
+    # /foundation/annualreport/2013/
     redirect(r'^foundation/annualreport/$',
-             'foundation.annualreport.2012.index',
+             'foundation.annualreport.2013.index',
              name='foundation.annualreport'),
 
     # Bug 997577 - /legal/ -> /about/legal/
