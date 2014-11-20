@@ -313,6 +313,13 @@ MINIFY_BUNDLES = {
             'css/firefox/privacy_tour/common.less',
             'css/firefox/privacy_tour/no-tour.less',
         ),
+        'firefox_search_tour': (
+            'css/firefox/search_tour/common.less',
+            'css/firefox/search_tour/tour.less',
+        ),
+        'firefox_search_no_tour': (
+            'css/firefox/search_tour/common.less',
+        ),
         'firefox_tour': (
             'css/firefox/australis/australis-ui-tour.less',
             'css/firefox/australis/australis-page-common.less',
@@ -708,6 +715,15 @@ MINIFY_BUNDLES = {
             'js/base/firefox-anniversary-video.js',
             'js/firefox/privacy_tour/common.js',
             'js/firefox/privacy_tour/no-tour.js',
+        ),
+        'firefox_search_tour': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/search_tour/common.js',
+            'js/firefox/search_tour/tour.js',
+        ),
+        'firefox_search_no_tour': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/search_tour/common.js',
         ),
         'firefox_tour': (
             'js/libs/jquery.waypoints.min.js',

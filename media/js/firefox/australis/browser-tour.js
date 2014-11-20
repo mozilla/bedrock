@@ -651,10 +651,7 @@ if (typeof Mozilla == 'undefined') {
         // or info panels
         clearInterval(this.highlightTimer);
 
-        if (!$current.hasClass('app-menu')) {
-            Mozilla.UITour.hideMenu('appMenu');
-        }
-
+        Mozilla.UITour.hideMenu('appMenu');
         Mozilla.UITour.hideInfo();
         Mozilla.UITour.hideHighlight();
 
