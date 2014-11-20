@@ -231,6 +231,16 @@ $(function() {
                     'img_alt_txt': window.trans('icon_alt_txt'),
                     'url': plugin.url
                 };
+            } else if(plugin.status === 'unknown') {
+                currentPlugin.unknownPlugins = {
+                    'icon': mediaURL + iconFor(plugin.name),
+                    'plugin_name': plugin.name,
+                    'plugin_detail': plugin.description,
+                    'plugin_status': window.trans('unknown'),
+                    'plugin_version': plugin.version,
+                    'button_research': window.trans('button_research'),
+                    'url': unknownPluginUrl(plugin.name)
+                };
             }
 
             showPlugin(currentPlugin);
