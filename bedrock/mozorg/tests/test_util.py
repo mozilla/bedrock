@@ -121,3 +121,14 @@ class TestPageUtil(TestCase):
         url.callback(self.rf.get('/'))
         ok_(not djrender_mock.called)
         l10n_mock.render.assert_called_with(ANY, 'index.html', {'urlname': 'index'})
+
+    def test_url_name_set_from_template(self, l10n_mock, djrender_mock):
+        """If not provided the URL pattern name should be set from the template path."""
+        url = page('lebowski/urban_achievers', 'lebowski/achievers.html')
+        eq_(url.name, 'lebowski.achievers')
+
+    def test_url_name_set_from_param(self, l10n_mock, djrender_mock):
+        """If provided the URL pattern name should be set from the parameter."""
+        url = page('lebowski/urban_achievers', 'lebowski/achievers.html',
+                   url_name='proud.we.are.of.all.of.them')
+        eq_(url.name, 'proud.we.are.of.all.of.them')

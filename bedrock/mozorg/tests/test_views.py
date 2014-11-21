@@ -112,6 +112,39 @@ class TestContributeSignup(TestCase):
         self.assertFalse(basket_mock.called)
 
 
+class TestContributeSignupSwitcher(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+        patcher = patch('bedrock.mozorg.views.lang_file_has_tag')
+        self.lang_file_has_tag = patcher.start()
+        self.addCleanup(patcher.stop)
+
+        patcher = patch('bedrock.mozorg.views.ContributeSignup')
+        self.ContributeSignup = patcher.start()
+        self.addCleanup(patcher.stop)
+
+        patcher = patch('bedrock.mozorg.views.ContributeSignupOldForm')
+        self.ContributeSignupOldForm = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def test_uses_new_view(self):
+        """Uses new view when lang file has the tag."""
+        req = self.rf.get('/')
+        self.lang_file_has_tag.return_value = True
+        views.contribute_signup(req)
+        self.ContributeSignup.as_view.return_value.assert_called_with(req)
+        self.assertFalse(self.ContributeSignupOldForm.as_view.return_value.called)
+
+    def test_uses_old_view(self):
+        """Uses old view when lang file does not have the tag."""
+        req = self.rf.get('/')
+        self.lang_file_has_tag.return_value = False
+        views.contribute_signup(req)
+        self.ContributeSignupOldForm.as_view.return_value.assert_called_with(req)
+        self.assertFalse(self.ContributeSignup.as_view.return_value.called)
+
+
 @patch('bedrock.mozorg.views.l10n_utils.render')
 class TestHome(TestCase):
     def setUp(self):
@@ -243,8 +276,8 @@ class TestContributeStudentAmbassadorsLanding(TestCase):
         mock_render.assert_called_with(ANY, ANY, {'tweets': good_val})
 
 
-@patch.object(l10n_utils.dotlang, 'lang_file_is_active', lambda *x: True)
-class TestContribute(TestCase):
+@patch.object(views, 'lang_file_is_active', lambda *x: False)
+class TestContributeOldPage(TestCase):
     def setUp(self):
         with self.activate('en-US'):
             self.url_en = reverse('mozorg.contribute')
@@ -373,6 +406,175 @@ class TestContribute(TestCase):
         eq_(m.cc, [])
         eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
                                                   cc))
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    def test_emails_not_escaped(self):
+        """
+        Strings in the contribute form should not be HTML escaped
+        when inserted into the email, which is just text.
+
+        E.g. if they entered
+
+            J'adore le ''Renard de feu''
+
+        the email should not contain
+
+            J&#39;adore le &#39;&#39;Renard de feu&#39;&#39;
+
+        Tags are still stripped, though.
+        """
+        STRING = u"J'adore Citröns & <Piñatas> so there"
+        EXPECTED = u"J'adore Citröns &  so there"
+        self.data.update(comments=STRING)
+        self.client.post(self.url_en, self.data)
+        eq_(len(mail.outbox), 2)
+        m = mail.outbox[0]
+        self.assertIn(EXPECTED, m.body)
+
+
+@patch.object(l10n_utils.dotlang, 'lang_file_is_active', lambda *x: True)
+@patch.object(views, 'lang_file_has_tag', lambda *x: False)
+class TestContribute(TestCase):
+    def setUp(self):
+        with self.activate('en-US'):
+            self.url_en = reverse('mozorg.contribute.signup')
+        with self.activate('pt-BR'):
+            self.url_pt_br = reverse('mozorg.contribute.signup')
+        self.contact = 'foo@bar.com'
+        self.data = {
+            'contribute-form': 'Y',
+            'email': self.contact,
+            'interest': 'coding',
+            'privacy': True,
+            'comments': 'Wesh!',
+        }
+
+    def tearDown(self):
+        mail.outbox = []
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    def test_with_autoresponse(self):
+        """Test contacts for functional area with autoresponses"""
+        self.data.update(interest='support')
+        self.client.post(self.url_en, self.data)
+        eq_(len(mail.outbox), 2)
+
+        cc = ['mana@mozilla.com']
+        m = mail.outbox[0]
+        eq_(m.from_email, 'contribute@mozilla.org')
+        eq_(m.to, ['contribute@mozilla.org'])
+        eq_(m.cc, cc)
+        eq_(m.extra_headers['Reply-To'], self.contact)
+
+        m = mail.outbox[1]
+        eq_(m.from_email, 'contribute@mozilla.org')
+        eq_(m.to, [self.contact])
+        eq_(m.cc, [])
+        eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
+                                                  cc))
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.basket.subscribe')
+    @patch('bedrock.mozorg.email_contribute.requests.post')
+    def test_webmaker_mentor_signup(self, mock_post, mock_subscribe):
+        """Test Webmaker Mentor signup form for education functional area"""
+        self.data.update(interest='education', newsletter=True)
+        self.client.post(self.url_en, self.data)
+
+        assert_false(mock_subscribe.called)
+        payload = {'email': self.contact, 'custom-1788': '1'}
+        mock_post.assert_called_with('https://sendto.mozilla.org/page/s/mentor-signup',
+                                     data=payload, timeout=2)
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.basket.subscribe')
+    @patch('bedrock.mozorg.email_contribute.requests.post')
+    def test_webmaker_mentor_signup_newsletter_fail(self, mock_post, mock_subscribe):
+        """Test Webmaker Mentor signup form when newsletter is not selected"""
+        self.data.update(interest='education', newsletter=False)
+        self.client.post(self.url_en, self.data)
+
+        assert_false(mock_subscribe.called)
+        assert_false(mock_post.called)
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.basket.subscribe')
+    @patch('bedrock.mozorg.email_contribute.requests.post')
+    def test_webmaker_mentor_signup_functional_area_fail(self, mock_post, mock_subscribe):
+        """Test Webmaker Mentor signup form when functional area is not education"""
+        self.data.update(interest='coding', newsletter=True)
+        self.client.post(self.url_en, self.data)
+
+        mock_subscribe.assert_called_with(self.contact, 'about-mozilla', source_url=ANY)
+        assert_false(mock_post.called)
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.basket.subscribe')
+    @patch('bedrock.mozorg.email_contribute.requests.post')
+    def test_webmaker_mentor_signup_timeout_fail(self, mock_post, mock_subscribe):
+        """Test Webmaker Mentor signup form when request times out"""
+        mock_post.side_effect = Timeout('Timeout')
+        self.data.update(interest='education', newsletter=True)
+        res = self.client.post(self.url_en, self.data)
+
+        assert_false(mock_subscribe.called)
+        eq_(res.status_code, 302)  # redirect to thankyou page
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.jingo.render_to_string')
+    def test_no_autoresponse_locale(self, render_mock):
+        """
+        L10N version to test contacts for functional area without autoresponses
+        """
+        # first value is for send() and 2nd is for autorespond()
+        render_mock.side_effect = ['The Dude minds, man!',
+                                   TemplateNotFound('coding.txt')]
+        self.data.update(interest='coding')
+        self.client.post(self.url_pt_br, self.data)
+        eq_(len(mail.outbox), 1)
+
+        m = mail.outbox[0]
+        eq_(m.from_email, 'contribute@mozilla.org')
+        eq_(m.to, ['contribute@mozilla.org'])
+        eq_(m.cc, ['envolva-se-mozilla-brasil@googlegroups.com'])
+        eq_(m.extra_headers['Reply-To'], self.contact)
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.email_contribute.jingo.render_to_string')
+    def test_with_autoresponse_locale(self, render_mock):
+        """
+        L10N version to test contacts for functional area with autoresponses
+        """
+        render_mock.side_effect = 'The Dude abides.'
+        self.data.update(interest='support')
+        self.client.post(self.url_pt_br, self.data)
+        eq_(len(mail.outbox), 2)
+
+        cc = ['envolva-se-mozilla-brasil@googlegroups.com']
+        m = mail.outbox[0]
+        eq_(m.from_email, 'contribute@mozilla.org')
+        eq_(m.to, ['contribute@mozilla.org'])
+        eq_(m.cc, cc)
+        eq_(m.extra_headers['Reply-To'], self.contact)
+
+        m = mail.outbox[1]
+        eq_(m.from_email, 'contribute@mozilla.org')
+        eq_(m.to, [self.contact])
+        eq_(m.cc, [])
+        eq_(m.extra_headers['Reply-To'], ','.join(['contribute@mozilla.org'] +
+                                                  cc))
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    def test_honeypot(self):
+        """
+        If honeypot is triggered no email should go out but page should proceed normally.
+        """
+        self.data.update(interest='support')
+        self.data.update(office_fax='Yes')
+        resp = self.client.post(self.url_en, self.data)
+        eq_(len(mail.outbox), 0)
+        eq_(resp.status_code, 302)
+        ok_(resp['location'].endswith('/thankyou/'))
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     def test_emails_not_escaped(self):

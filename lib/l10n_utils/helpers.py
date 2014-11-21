@@ -74,7 +74,7 @@ def js_escape(string):
 def l10n_has_tag(ctx, tag, langfile=None):
     """Return boolean whether the given template's lang files have the given tag."""
     if langfile:
-        return lang_file_has_tag(langfile, tag=tag)
+        return lang_file_has_tag(langfile, ctx['LANG'], tag)
     else:
         return template_has_tag(ctx['template'], ctx['LANG'], tag)
 
