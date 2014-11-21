@@ -360,9 +360,6 @@ MINIFY_BUNDLES = {
             'css/mozorg/home/home-promo.less',
             'css/firefox/independent-splash.less',
         ),
-        'home-2015-open-standard': (
-            'css/mozorg/home/home-open-standard.less',
-        ),
         'home-2015-ie8': (
             'css/mozorg/home/home-ie8.less',
         ),
@@ -745,9 +742,6 @@ MINIFY_BUNDLES = {
             'js/mozorg/home/ga-tracking.js',
             'js/mozorg/home/scroll-prompt.js',
         ),
-        'home-2015-open-standard': (
-            'js/mozorg/home/open-standard.js',
-        ),
         'home-2015-ie9': (
             'js/libs/matchMedia.addListener.js',
         ),
@@ -980,7 +974,6 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.legal' % PROJECT_MODULE,
     '%s.mozorg' % PROJECT_MODULE,
     '%s.newsletter' % PROJECT_MODULE,
-    '%s.openstandard' % PROJECT_MODULE,
     '%s.persona' % PROJECT_MODULE,
     '%s.press' % PROJECT_MODULE,
     '%s.privacy' % PROJECT_MODULE,
@@ -1189,16 +1182,6 @@ HOMEPAGE_TWITTER_ACCOUNTS = {
     'es-MX': 'firefox_es',
     'pt-BR': 'firefoxbrasil',
 }
-
-OPENSTANDARD_CATEGORY_FEEDS = (
-    ('live', 'https://openstandard.mozilla.org/category/live/feed/'),
-    ('learn', 'https://openstandard.mozilla.org/category/learn/feed/'),
-    ('innovate', 'https://openstandard.mozilla.org/category/innovate/feed/'),
-    ('engage', 'https://openstandard.mozilla.org/category/engage/feed/'),
-    ('opinion', 'https://openstandard.mozilla.org/category/opinion/feed/'),
-)
-OPENSTANDARD_IMAGE_ROOT = MEDIA_ROOT + '/img/openstandard/'
-OPENSTANDARD_IMAGE_URL = MEDIA_URL + 'img/openstandard/'
 
 # Mapbox token for spaces and communities pages
 MAPBOX_TOKEN = 'examples.map-i86nkdio'

@@ -18,5 +18,3 @@ def database(ctx):
         ctx.local("python2.6 manage.py update_security_advisories --force --quiet")
         ctx.local("python2.6 manage.py cron update_reps_ical")
         ctx.local("python2.6 manage.py cron update_tweets")
-        ctx.local("python2.6 manage.py cron update_openstandard_feeds")
-        ctx.local("python2.6 manage.py cron update_openstandard_on_homepage")

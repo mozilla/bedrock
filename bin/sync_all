@@ -3,8 +3,6 @@ cd $(readlink --canonicalize --no-newline ${0%/*})/..
 ./manage.py syncdb --migrate --noinput
 ./manage.py rnasync
 ./manage.py cron update_reps_ical
-./manage.py cron update_openstandard_feeds
-./manage.py cron update_openstandard_on_homepage
 ./manage.py update_product_details
 ./manage.py update_externalfiles
 ./manage.py update_security_advisories
