@@ -45,7 +45,7 @@ if (typeof Mozilla == 'undefined') {
         'alcatel_onetouchfiree': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire E',
-            'countries': ['cz', 'de', 'hu', 'pl']
+            'countries': ['cz', 'de', 'hu', 'pl', 'ru']
         },
         'cherrymobile_ace': {
             'type': 'smartphone',
