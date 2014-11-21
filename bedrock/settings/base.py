@@ -45,6 +45,15 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
+# Map short locale names to long, preferred locale names. This overrides the
+# setting in funfactory and will be used in urlresolvers to determine the
+# best-matching locale from the user's Accept-Language header.
+CANONICAL_LOCALES = {
+    'en': 'en-US',
+    'es': 'es-ES',
+    'pt': 'pt-BR',
+}
+
 FEED_CACHE = 3900
 DOTLANG_CACHE = 600
 
