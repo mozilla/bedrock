@@ -116,7 +116,7 @@ def ping_newrelic(ctx):
         try:
             request = urllib2.Request(NEW_RELIC_URL, data, headers)
             urllib2.urlopen(request)
-        except urllib.URLError as exp:
+        except urllib2.URLError as exp:
             print 'Error notifying New Relic: {0}'.format(exp)
 
 
