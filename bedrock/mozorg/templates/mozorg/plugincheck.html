@@ -91,20 +91,6 @@
         </table>
       </div>
 
-      <div id="sec-plugin-unknown" class="shadow-separator">
-        <table class="table status">
-          <caption>{{_('Unknown Plugins')}}</caption>
-          <thead>
-            <tr>
-              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
-              <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
-              <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
-            </tr>
-          </thead>
-          <tbody id="plugin-unknown"></tbody>
-        </table>
-      </div>
-
       <div id="sec-plugin-uptodate" class="shadow-separator">
         <table class="table status">
           <caption>{{_('These plugins are up to date')}}</caption>
@@ -118,6 +104,20 @@
           <tbody id="plugin-uptodate"></tbody>
         </table>
       </div>
+
+      <div id="sec-plugin-unknown" class="shadow-separator">
+        <table class="table status status-unknown">
+          <caption>{{_('Unknown Plugins')}}</caption>
+          <thead>
+            <tr>
+              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
+              <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
+            </tr>
+          </thead>
+          <tbody id="plugin-unknown"></tbody>
+        </table>
+      </div>
+
       <p><a href="#top">{{_('Back to Top')}}</a></p>
   </section>
 </main>
