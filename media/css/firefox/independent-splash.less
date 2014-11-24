@@ -86,93 +86,6 @@
     }
 }
 
-// Some special styling for the home page
-#home {
-    #fx10-splash {
-        display: none;
-        background: #003356 url(/media/img/firefox/independent/bg-gradient-large.jpg) center top no-repeat;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, .75);
-        color: #fff;
-        padding-top: 6em;
-        text-shadow: 0 1px 0 rgba(0, 40, 65, .25);
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 8;
-
-        .container {
-            width: @widthDesktop - (@gridGutterWidth * 2);
-            .clearfix();
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0;
-            position: relative;
-        }
-
-        .logo,
-        .tail-middle {
-            top: 0;
-        }
-
-        .close {
-            .open-sans;
-            background: #fff;
-            background: rgba(255, 255, 255, .92);
-            border: 0;
-            color: @linkBlue;
-            cursor: pointer;
-            font-size: @largeFontSize;
-            font-weight: bold;
-            text-align: center;
-            text-transform: uppercase;
-            padding: 10px 0;
-            position: absolute;
-            left: 0;
-            top: 0;
-            z-index: 9;
-            width: 100%;
-            .transition(all .2s ease);
-
-            &:after {
-                content: '\00BB'; /* raquo */
-                white-space: nowrap;
-                border: 1px solid;
-                border-radius: 50%;
-                width: 25px;
-                height: 25px;
-                display: inline-block;
-                text-align: center;
-                margin-left: 10px;
-                font-size: 20px;
-                line-height: 20px;
-            }
-
-            &:hover,
-            &:focus {
-                color: darken(@linkBlue, 10%);
-                background: #fff;
-            }
-
-        }
-    }
-
-    #fx10-overlay {
-        display: none;
-        background: #666;
-        background: rgba(0, 0, 0, .7);
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-    }
-
-}
-
-
 // Video
 #fx-anniversary-video-widget {
     width: 780px;
@@ -646,20 +559,6 @@
         background-size: 640px 360px;
     }
 
-    // Some special styling for the home page
-    #home {
-        #fx10-splash {
-            .container {
-                width: @widthTablet - (@gridGutterWidth * 2);
-            }
-
-            .logo,
-            .tail-middle {
-                top: 0;
-            }
-        }
-    }
-
     [lang='de'] {
         #fx10-splash .main-title {
             font-size: 46px;
@@ -709,21 +608,6 @@
         .tail-middle,
         .tail-end {
             display: none;
-        }
-    }
-
-    // Some special styling for the home page
-    #home {
-        #fx10-splash {
-            padding-top: 180px;
-
-            .container {
-                width: 100%;
-            }
-
-            .logo {
-                top: -40px;
-            }
         }
     }
 

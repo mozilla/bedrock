@@ -367,7 +367,6 @@ MINIFY_BUNDLES = {
         'home-2015': (
             'css/mozorg/home/home.less',
             'css/mozorg/home/home-promo.less',
-            'css/firefox/independent-splash.less',
         ),
         'home-2015-ie8': (
             'css/mozorg/home/home-ie8.less',
