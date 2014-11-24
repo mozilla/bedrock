@@ -19,8 +19,9 @@ from bedrock.security.views import (
 urlpatterns = patterns('',  # noqa
     page('', 'security/index.html'),
     page('bug-bounty', 'security/bug-bounty.html'),
-    page('bug-bounty-faq', 'security/bug-bounty-faq.html'),
-    page('bug-bounty-faq-webapp', 'security/bug-bounty-faq-webapp.html'),
+    page('bug-bounty/faq', 'security/bug-bounty/faq.html'),
+    page('bug-bounty/faq-webapp', 'security/bug-bounty/faq-webapp.html'),
+    page('bug-bounty/hall-of-fame', 'security/bug-bounty/hall-of-fame.html'),
     url(r'^advisories/$',
         AdvisoriesView.as_view(), name='security.advisories'),
     url(r'^advisories/mfsa(?P<pk>\d{4}-\d{2,3})/$',
