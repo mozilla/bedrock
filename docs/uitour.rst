@@ -113,7 +113,7 @@ Displays a customizable information panel pointing to a given target:
         {
             label: 'Cancel',
             style: 'link',
-            callback: cancalBtnCallback
+            callback: cancelBtnCallback
         },
         {
             label: 'Confirm',
