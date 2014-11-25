@@ -824,7 +824,7 @@ html[lang|="en"] {
     h2 {
         padding: 110px @baseLine 0 @baseLine;
         margin-top: @baseLine;
-        background-image: url(/media/img/home/voices/promos/webmaker/webmaker.png?11-10-2014);
+        background-image: url(/media/img/home/voices/promos/webmaker/webmaker.png?11-21-2014);
         background-position: top center;
         background-repeat: no-repeat;
         .background-size(104px, 104px);
@@ -844,7 +844,8 @@ html[lang|="en"] {
 
     h2 {
         padding: 35px 0 35px 140px;
-        background: url(/media/img/home/voices/promos/webmaker/webmaker.png?11-10-2014) 20px 15px no-repeat;
+        min-height: 50px;
+        background: url(/media/img/home/voices/promos/webmaker/webmaker.png?11-21-2014) 20px 15px no-repeat;
     }
 }
 
@@ -862,6 +863,23 @@ html[lang|="en"] {
         .background-size(94px, 94px);
     }
 }
+
+
+/****************************************************************************/
+// Gear
+.promo-large-landscape.gear {
+    background: #95368c; // purple
+
+    h2 {
+        padding: 100px @baseLine 0 @baseLine;
+        margin-top: @baseLine * 2;
+        background-image: url(/media/img/home/voices/promos/gear/gear.png);
+        background-position: top center;
+        background-repeat: no-repeat;
+        .background-size(75px, 80px);
+    }
+}
+
 
 /****************************************************************************/
 // Donate
@@ -1644,7 +1662,7 @@ html[lang|="en"] {
     // Webmaker
     .promo-large-landscape.webmaker {
         h2 {
-            background-image: url(/media/img/home/voices/promos/webmaker/webmaker-high-res.png?11-10-2014);
+            background-image: url(/media/img/home/voices/promos/webmaker/webmaker-high-res.png?11-21-2014);
             .background-size(104px, 104px);
         }
     }
@@ -1711,6 +1729,14 @@ html[lang|="en"] {
         h2 {
             background-image: url(/media/img/home/voices/promos/donate/donate-high-res.png);
             .background-size(110px, 110px);
+        }
+    }
+
+    // Gear
+    .promo-large-landscape.gear {
+        h2 {
+            background-image: url(/media/img/home/voices/promos/gear/gear-high-res.png);
+            .background-size(75px, 80px);
         }
     }
 

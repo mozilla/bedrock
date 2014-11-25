@@ -700,12 +700,20 @@ var Tabzilla = (function (Tabzilla) {
       '<div id="tabzilla-panel" class="tabzilla-closed" tabindex="-1">'
     + '  <div id="tabzilla-contents">'
     + '    <div id="tabzilla-promo">'
+        {% if l10n_has_tag('gear_store') %}
+    + '      <div class="snippet" id="tabzilla-promo-gear">'
+    + '        <a href="https://gear.mozilla.org/?ref=OMG_launch&amp;utm_campaign=OMG_launch&amp;utm_source=gear.mozilla.org&amp;utm_medium=referral&amp;utm_content=tabzilla">'
+    + '          <h4>{{ _('Official Mozilla gear is here')|js_escape }}</h4>'
+    + '        </a>'
+    + '      </div>'
+        {% else %}
     + '      <div class="snippet" id="tabzilla-promo-fxos">'
     + '        <a href="https://www.mozilla.org/firefox/os/?icn=tabz">'
     + '          <h4>{{ _('Look ahead')|js_escape }}</h4>'
     + '          <p>{{ _('Learn all about Firefox OS')|js_escape }} »</p>'
     + '        </a>'
     + '      </div>'
+        {% endif %}
     + '    </div>'
     + '    <div id="tabzilla-nav">'
     + '      <ul>'
