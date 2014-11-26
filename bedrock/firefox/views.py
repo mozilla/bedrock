@@ -274,6 +274,24 @@ def show_10th_anniversary(version):
     return version >= Version('33.1')
 
 
+def show_search_whatsnew_tour(oldversion):
+    try:
+        oldversion = Version(oldversion)
+    except ValueError:
+        return False
+
+    return oldversion < Version('34.0')
+
+
+def show_search_firstrun(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('34.0')
+
+
 class LatestFxView(TemplateView):
 
     """
@@ -333,9 +351,12 @@ class FirstrunView(LatestFxView):
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
+        locale = l10n_utils.get_locale(self.request)
 
         if show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
+        elif show_search_firstrun(version) and locale == 'en-US':
+            template = 'firefox/australis/firstrun-34-tour.html'
         else:
             template = 'firefox/australis/firstrun-tour.html'
 
@@ -387,7 +408,15 @@ class WhatsnewView(LatestFxView):
             oldversion = oldversion[3:]
         versions = ('29.', '30.', '31.', '32.')
 
-        if version.startswith('33.'):
+        if version.startswith('34.'):
+            if locale == 'en-US':
+                if show_search_whatsnew_tour(oldversion):
+                    template = 'firefox/search_tour/tour.html'
+                else:
+                    template = 'firefox/search_tour/no-tour.html'
+            else:
+                template = 'firefox/australis/whatsnew-no-tour.html'
+        elif version.startswith('33.'):
             if show_10th_anniversary(version):
                 if show_whatsnew_tour(oldversion):
                     template = 'firefox/privacy_tour/tour.html'
@@ -419,9 +448,12 @@ class TourView(LatestFxView):
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
+        locale = l10n_utils.get_locale(self.request)
 
         if show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
+        elif show_search_firstrun(version) and locale == 'en-US':
+            template = 'firefox/australis/help-menu-34-tour.html'
         else:
             template = 'firefox/australis/help-menu-tour.html'
 
