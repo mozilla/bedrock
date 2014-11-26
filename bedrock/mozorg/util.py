@@ -32,13 +32,14 @@ class HttpResponseJSON(HttpResponse):
                                                status=status)
 
 
-def page(name, tmpl, decorators=None, **kwargs):
+def page(name, tmpl, decorators=None, url_name=None, **kwargs):
     """
     Define a bedrock page.
 
     The URL name is the template name, with the extension stripped and the
     slashes changed to dots. So if tmpl="path/to/template.html", then the
-    page's URL name will be "path.to.template".
+    page's URL name will be "path.to.template". Set the `url_name` parameter
+    to override this name.
 
     @param name: The URL regex pattern.  If not empty, a trailing slash is
         added automatically, so it shouldn't be included in the parameter
@@ -46,14 +47,17 @@ def page(name, tmpl, decorators=None, **kwargs):
     @param tmpl: The template name.  Also used to come up with the URL name.
     @param decorators: A decorator or an iterable of decorators that should
         be applied to the view.
+    @param url_name: The value to use as the URL name, default is to coerce
+        the template path into a name as described above.
     @param kwargs: Any additional arguments are passed to l10n_utils.render
         after the request and the template name.
     """
     pattern = r'^%s/$' % name if name else r'^$'
 
-    # Set the name of the view to the template path replaced with dots
-    (base, ext) = os.path.splitext(tmpl)
-    view_name = base.replace('/', '.')
+    if url_name is None:
+        # Set the name of the view to the template path replaced with dots
+        (base, ext) = os.path.splitext(tmpl)
+        url_name = base.replace('/', '.')
 
     # we don't have a caching backend yet, so no csrf (it's just a
     # newsletter form anyway)
@@ -62,8 +66,8 @@ def page(name, tmpl, decorators=None, **kwargs):
         if newrelic:
             # Name this in New Relic to differentiate pages
             newrelic.agent.set_transaction_name(
-                'mozorg.util.page:' + view_name.replace('.', '_'))
-        kwargs.setdefault('urlname', view_name)
+                'mozorg.util.page:' + url_name.replace('.', '_'))
+        kwargs.setdefault('urlname', url_name)
 
         # skip l10n if path exempt
         name_prefix = request.path_info.split('/', 2)[1]
@@ -73,7 +77,7 @@ def page(name, tmpl, decorators=None, **kwargs):
         return l10n_utils.render(request, tmpl, kwargs)
 
     # This is for graphite so that we can differentiate pages
-    _view.page_name = view_name
+    _view.page_name = url_name
 
     # Apply decorators
     if decorators:
@@ -90,7 +94,7 @@ def page(name, tmpl, decorators=None, **kwargs):
                 log.exception('decorators not iterable or does not contain '
                               'callable items')
 
-    return url(pattern, _view, name=view_name)
+    return url(pattern, _view, name=url_name)
 
 
 def hide_contrib_form(lang):

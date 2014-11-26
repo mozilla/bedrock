@@ -19,7 +19,7 @@ import requests
 from lib import l10n_utils
 from commonware.decorators import xframe_allow
 from funfactory.urlresolvers import reverse
-from lib.l10n_utils.dotlang import _, lang_file_is_active
+from lib.l10n_utils.dotlang import _, lang_file_is_active, lang_file_has_tag
 
 from bedrock.mozorg import email_contribute
 from bedrock.mozorg.credits import CreditsFile
@@ -117,6 +117,33 @@ class ContributeSignup(l10n_utils.LangFilesMixin, FormView):
         return super(ContributeSignup, self).form_valid(form)
 
 
+class ContributeSignupOldForm(l10n_utils.LangFilesMixin, FormView):
+    template_name = 'mozorg/contribute/signup.html'
+    form_class = ContributeForm
+
+    def get_context_data(self, **kwargs):
+        kwargs['is_old_form'] = True
+        return super(ContributeSignupOldForm, self).get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        honeypot = form.cleaned_data.get('office_fax')
+        if not honeypot:
+            email_contribute.handle_form(self.request, form)
+
+        return super(ContributeSignupOldForm, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('mozorg.contribute.thankyou')
+
+
+def contribute_signup(request):
+    use_new_form = lang_file_has_tag('mozorg/contribute/index',
+                                     l10n_utils.get_locale(request),
+                                     '2015_signup_form')
+    view_class = ContributeSignup if use_new_form else ContributeSignupOldForm
+    return view_class.as_view()(request)
+
+
 class ContributeSignupThankyou(l10n_utils.LangFilesMixin, TemplateView):
     template_name = 'mozorg/contribute/thankyou.html'
     category_re = re.compile('^\w{5,20}$')
@@ -128,6 +155,10 @@ class ContributeSignupThankyou(l10n_utils.LangFilesMixin, TemplateView):
         if match:
             cxt['category'] = category
         return cxt
+
+
+class ContributeIndex(l10n_utils.LangFilesMixin, TemplateView):
+    template_name = 'mozorg/contribute/index.html'
 
 
 @csrf_exempt
@@ -159,6 +190,14 @@ def contribute(request, template, return_to_form):
                               'contribute_success': contribute_success,
                               'return_to_form': return_to_form,
                               'hide_form': hide_contrib_form(request.locale)})
+
+
+def contribute_index(request):
+    if lang_file_is_active('mozorg/contribute/index',
+                           l10n_utils.get_locale(request)):
+        return ContributeIndex.as_view()(request)
+    else:
+        return contribute(request, 'mozorg/contribute/contribute-old.html', False)
 
 
 @xframe_allow

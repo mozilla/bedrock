@@ -42,9 +42,11 @@
        {% if contribute_success and return_to_form %} style="display:none"{% endif %}>
     <fieldset>
       <div class="row">
-        <div class="form-column-1">
-          <h3>{{_('Want to help?')}}</h3>
-        </div>
+        {% if not is_old_form %}
+          <div class="form-column-1">
+            <h3>{{_('Want to help?')}}</h3>
+          </div>
+        {% endif %}
         <div class="form-column-2">
           <div class="field field-interest">
             {{ form.interest|safe }}

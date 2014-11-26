@@ -23,6 +23,9 @@
 {% block contrib_content %}
   <section class="section inquiry">
     <div class="container">
+      {% if is_old_form %}
+        {% include "mozorg/contribute/contribute-form.html" %}
+      {% else %}
       <form class="inquiry-form" id="inquiry-form" method="post" action="{{ url('mozorg.contribute.signup') }}">
         {% if form.errors %}
           {{ form.non_field_errors()|safe }}
@@ -205,6 +208,7 @@
         <p>{{ _('Not sure how you want to help? No problem. We can find the appropriate contribution activity for you.') }}</p>
       </div>
     </aside>
+    {% endif %}
 
   </div>
 </section>

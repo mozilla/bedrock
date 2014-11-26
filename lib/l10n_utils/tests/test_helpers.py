@@ -15,8 +15,8 @@ from l10n_utils import helpers
 class TestL10nHasTag(TestCase):
     def test_uses_langfile(self, lfht_mock):
         """If langfile param specified should only check that file."""
-        helpers.l10n_has_tag({'langfile': 'dude'}, 'abide', langfile='uli')
-        lfht_mock.assert_called_with('uli', tag='abide')
+        helpers.l10n_has_tag({'langfile': 'dude', 'LANG': 'fr'}, 'abide', langfile='uli')
+        lfht_mock.assert_called_with('uli', 'fr', 'abide')
 
     @patch.object(helpers, 'template_has_tag')
     def test_checks_template_by_default(self, tht_mock, lfht_mock):
