@@ -83,6 +83,10 @@ firefox_cloud_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-cloud.html',
     legal_doc_name='firefox_cloud_services_PrivacyNotice')
 
+firefox_hello_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-hello.html',
+    legal_doc_name='WebRTC_PrivacyNotice')
+
 websites_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/websites.html',
     legal_doc_name='websites_privacy_notice')

@@ -24,6 +24,9 @@ urlpatterns = patterns('',
     url(r'^terms/firefox/$', LegalDocView.as_view(template_name='legal/terms/firefox.html', legal_doc_name='firefox_about_rights'),
         name='legal.terms.firefox'),
 
+    url(r'^terms/firefox-hello/$', LegalDocView.as_view(template_name='legal/terms/firefox-hello.html', legal_doc_name='WebRTC_ToS'),
+        name='legal.terms.firefox-hello'),
+
     url(r'^terms/thunderbird/$', LegalDocView.as_view(template_name='legal/terms/thunderbird.html', legal_doc_name='thunderbird_about_rights'),
         name='legal.terms.thunderbird'),
 
