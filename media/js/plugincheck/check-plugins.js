@@ -14,6 +14,7 @@ $(function() {
         outdatedFx.show();
     }
 
+    var readerRegEx = /Adobe \b(Reader|Acrobat)\b.*/;
     var iconFor = function (pluginName) {
         if (pluginName.indexOf('Flash') >= 0) {
             return 'icon-flash.png';
@@ -37,7 +38,7 @@ $(function() {
             return 'icon-shockwave.png';
         } else if (pluginName.indexOf('RealPlayer') >= 0) {
             return 'icon-real.png';
-        } else if (pluginName.indexOf('Adobe Acrobat') >= 0) {
+        } else if (readerRegEx.test(pluginName)) {
             return 'icon-acrobat.png';
         } else if (pluginName.indexOf('Office Live') >= 0) {
             return 'icon-officelive.png';
