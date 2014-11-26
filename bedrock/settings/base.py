@@ -411,9 +411,6 @@ MINIFY_BUNDLES = {
         'privacy': (
             'css/privacy/privacy.less',
         ),
-        'security': (
-            'css/security/security.less',
-        ),
         'privacy-day': (
             'css/privacy/privacy-day.less',
         ),
@@ -431,6 +428,13 @@ MINIFY_BUNDLES = {
         ),
         'research': (
             'css/research/research.less',
+        ),
+        'security': (
+            'css/security/security.less',
+        ),
+        'security-bug-bounty-hall-of-fame': (
+            'css/security/hall-of-fame.less',
+            'css/base/mozilla-accordion.less',
         ),
         'security-tld-idn': (
             'css/mozorg/security-tld-idn.less',

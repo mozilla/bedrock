@@ -1,0 +1,282 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}Mozilla Security Bug Bounty Program Hall of Fame{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
+    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
+    <a href="{{ url('security.bug-bounty') }}">{{ _('Bug Bounty') }}</a> &gt;
+  </nav>
+{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {{ css('security-bug-bounty-hall-of-fame') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('accordion') }}
+{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name" class="title-shadow-box">Firefox Bug Bounty Rewards</h1>
+    </header>
+    <div itemprop="articleBody">
+
+      <p>On behalf of the Mozilla and the millions of people who visit our sites, use Firefox and our other products we would like to thank them for their hard work in helping to make us more secure.</p>
+
+      <p>As of this date, we have paid out almost <b>$1,000,000</b> across all of our bounties. Congratulations to everybody who has participicated!</p>
+
+      <div class="accordion accordion-auto-init zebra">
+
+      <section id="year-2014">
+        <h3 data-accordion-role="tab">{{ _('2014') }}</h3>
+        <div data-accordion-role="tabpanel">
+          <h4>3rd Quarter 2014</h4>
+          <ul>
+            <li>regenrecht</li>
+            <li>Attek Kettunun</li>
+            <li>Abhishek Arya</li>
+            <li>Michal Zalewski</li>
+            <li>Antoine Delignat-Lavaud</li>
+          </ul>
+          <h4>2nd Quarter 2014</h4>
+          <ul>
+            <li>Karl Tomlinson</li>
+            <li>Mariusz Mlynski</li>
+            <li>Holger Fuhrmannek</li>
+            <li>Jordi Chancel</li>
+            <li>Abhishek Arya</li>
+            <li>Zaza Crub</li>
+            <li>Looban Yang</li>
+            <li>codyc</li>
+            <li>James Kitchener</li>
+            <li>Atte Kettunen</li>
+            <li>Jethro Beekman</li>
+          </ul>
+          <h4>1st Quarter 2014</h4>
+          <ul>
+            <li>Abhishek Arya</li>
+            <li>Holger Fuhrmannek</li>
+            <li>Aki Helin</li>
+            <li>Tyson Smith</li>
+            <li>Atte Kettunen</li>
+            <li>Mariusz Mlynski</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="year-2013">
+        <h3 data-accordion-role="tab">{{ _('2013') }}</h3>
+        <div data-accordion-role="tabpanel">
+          <h4>4th Quarter 2013</h4>
+          <ul>
+            <li>Abhishek Arya</li>
+            <li>Atte Kettunen</li>
+            <li>Chris</li>
+            <li>Cody Crews</li>
+            <li>Jesse Schwartzentruber</li>
+            <li>Jordi Chancel</li>
+            <li>Sachin Shinde</li>
+            <li>Tyson Smith</li>
+            <li>Gabor Molnar</li>
+            <li>Holger Fuhrmannek</li>
+            <li>Masato Kinugawa</li>
+          </ul>
+          <h4>3rd Quarter 2013</h4>
+          <ul>
+            <li>Abhishek Arya</li>
+            <li>Ash</li>
+            <li>Atte Kettunen</li>
+            <li>federico lanusse</li>
+            <li>miaubiz</li>
+            <li>Seb Patane</li>
+          </ul>
+          <h4>2nd Quarter 2013</h4>
+          <ul>
+            <li>Aki Helin</li>
+            <li>Ash</li>
+            <li>Atte Kettunen</li>
+            <li>Cody Crews</li>
+            <li>federico lanusse</li>
+            <li>Johnathan Kuskos</li>
+            <li>Jordi Chancel</li>
+            <li>Mariusz Mlynski</li>
+            <li>Nils</li>
+            <li>Seb Patane</li>
+          </ul>
+          <h4>1st Quarter 2013</h4>
+          <ul>
+            <li>Abhishek Arya</li>
+            <li>Ash</li>
+            <li>Cody Crews</li>
+            <li>Frederic Hoguin</li>
+            <li>Nils</li>
+            <li>Robert Kugler</li>
+            <li>Seb Patane</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="year-2012">
+        <h3 data-accordion-role="tab">{{ _('2012') }}</h3>
+        <div data-accordion-role="tabpanel">
+        <h4>4th Quarter 2012</h4>
+        <ul>
+          <li>Abhishek Arya</li>
+          <li>Antoine Delignat-Lavaud</li>
+          <li>Arthur Gerkis</li>
+          <li>Atte Kettunen</li>
+          <li>Breen Machine</li>
+          <li>Cody Crews</li>
+          <li>Michal Zalewski</li>
+          <li>Mariusz Mlynski</li>
+          <li>Masato Kinugawa</li>
+          <li>miaubiz</li>
+          <li>Nils</li>
+        </ul>
+        <h4>3rd Quarter 2012</h4>
+        <ul>
+          <li>Abhishek Arya</li>
+          <li>Alice0775 White</li>
+          <li>Arthur Gerkis</li>
+          <li>Atte Kettunen</li>
+          <li>Colby Russell</li>
+          <li>Frédéric Hoguin</li>
+          <li>Frederik Braun</li>
+          <li>Mariusz Mlynski</li>
+          <li>miaubiz</li>
+          <li>Ms2ger</li>
+          <li>Robert Kugler</li>
+          <li>Scott Bell</li>
+          <li>Thai Duong</li>
+        </ul>
+        <h4>2nd Quarter 2012</h4>
+        <ul>
+          <li>Abhishek Arya</li>
+          <li>Adam Barth</li>
+          <li>Arthur Gerkis</li>
+          <li>Atte Kettunen</li>
+          <li>James Forshaw</li>
+          <li>Karthikeyan Bhargavan</li>
+          <li>Mario Heiderich</li>
+          <li>Mariusz Mlynski</li>
+          <li>Matias Juntunen</li>
+          <li>Soroush Dalili</li>
+        </ul>
+        <h4>1st Quarter 2012</h4>
+        <ul>
+          <li>Aki Helin</li>
+          <li>Atte Kettunen</li>
+          <li>Chris McGowen</li>
+          <li>Jeroen van der Gun</li>
+          <li>Kaspar Brand</li>
+          <li>Mariusz Mlynski</li>
+          <li>Michal Zalewski</li>
+          <li>Ms2ger</li>
+          <li>Soroush Dalili</li>
+        </ul>
+        </div>
+      </section>
+
+      <section id="year-2011">
+        <h3 data-accordion-role="tab">{{ _('2011') }}</h3>
+        <div data-accordion-role="tabpanel">
+          <h4>4th Quarter 2011</h4>
+          <ul>
+            <li>Aki Helin</li>
+            <li>Alex Dvorov</li>
+            <li>Jordi Chancel</li>
+            <li>Nicolas Grégoire</li>
+            <li>Paul Stone</li>
+            <li>sczimmer</li>
+            <li>Soroush Dalili</li>
+          </ul>
+          <h4>3rd Quarter 2011</h4>
+          <ul>
+            <li>Ahu</li>
+            <li>Aral Yaman</li>
+            <li>Blair Strang</li>
+            <li>Jordi Chancel</li>
+            <li>Marc Schoenefeld</li>
+            <li>Mariusz Mlynski</li>
+            <li>Mark Kaplan</li>
+            <li>Paul Stone</li>
+            <li>Rh0</li>
+            <li>sczimmer</li>
+            <li>Yosuke HASEGAWA</li>
+          </ul>
+          <h4>2nd Quarter 2011</h4>
+          <ul>
+            <li>Aki Helin</li>
+            <li>Chris Rohlf</li>
+            <li>David Rees</li>
+            <li>Mariusz Mlynski</li>
+            <li>Michael Jordon</li>
+            <li>Mike Cardwell</li>
+            <li>nasalislarvatus3000</li>
+            <li>Paul Stone</li>
+            <li>Rh0</li>
+            <li>secenv</li>
+            <li>Thai Dong</li>
+            <li>Vivekanand Bolajwar</li>
+          </ul>
+          <h4>1st Quarter 2011</h4>
+          <ul>
+            <li>Aki Helin</li>
+            <li>Christian Holler</li>
+            <li>Daniel Kozlowski</li>
+            <li>db</li>
+            <li>Jan de Mooij</li>
+            <li>Jordi Chancel</li>
+            <li>Ian Beer</li>
+            <li>Martin Barbella</li>
+            <li>Mitja Kolsek</li>
+            <li>shutdown</li>
+            <li>Soroush Dalili</li>
+            <li>Zach Hoffman</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="year-2010">
+        <h3 data-accordion-role="tab">{{ _('2010') }}</h3>
+        <div data-accordion-role="tabpanel">
+          <h4>4th Quarter 2010</h4>
+          <ul>
+            <li>Alex Miller</li>
+            <li>Aki Helin</li>
+            <li>Christian Holler</li>
+            <li>Dirk Heinrich</li>
+            <li>echo</li>
+            <li>Giorgio Maone</li>
+            <li>Jan de Mooij</li>
+            <li>Jordi Chancel</li>
+            <li>Konrad</li>
+            <li>Martin Barbella</li>
+            <li>Michal Zalewski</li>
+            <li>timeless</li>
+            <li>wushi</li>
+            <li>Zach Hoffman</li>
+          </ul>
+          <h4>3rd Quarter 2010</h4>
+          <ul>
+            <li>David Lin-Shung Huang</li>
+            <li>Gregory Fleischer</li>
+            <li>Marc Schoenefeld</li>
+            <li>Sergey Glazunov</li>
+            <li>Siddharth Agarwal</li>
+          </ul>
+        </div>
+      </section>
+
+      </div>
+
+      <p>If your name is on the list incorrectly or you feel you should be on the list please feel free to mail us at <a href="mailto:security@mozilla.org">security@mozilla.org</a>.</p>
+
+    </div>
+  </article>
+{% endblock %}
