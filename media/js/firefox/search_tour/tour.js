@@ -299,10 +299,15 @@
 
                             } else {
                                 // user already has yahoo as default
+                                Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'whatsnew_Default');
+                                Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
                                 gaTrack(['_trackEvent', 'whatsnew srch-chg interactions', 'All', 'yahooDefault']);
                             }
                         });
                     } else {
+                        // searchbar is not present in main browser toolbar
+                        Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'whatsnew_Default');
+                        Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
                         gaTrack(['_trackEvent', 'whatsnew srch-chg interactions', 'All', 'noSearchbox']);
                     }
                 }
