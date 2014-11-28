@@ -128,4 +128,7 @@ urlpatterns = patterns(
     # Bug 1073269 /dnt/ -> /firefox/dnt/
     redirect(r'^dnt/$', 'firefox.dnt'),
 
+    # Bug 1106010 /hello/start -> https://support.mozilla.org/kb/firefox-hello-make-and-receive-calls-guest-mode
+    redirect(r'hello/start/$', 'https://support.mozilla.org/kb/firefox-hello-make-and-receive-calls-guest-mode'),
+
 )
