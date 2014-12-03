@@ -274,13 +274,13 @@ def show_10th_anniversary(version):
     return version >= Version('33.1')
 
 
-def show_search_whatsnew_tour(oldversion):
+def show_search_whatsnew_tour(version, oldversion):
     try:
         oldversion = Version(oldversion)
     except ValueError:
         return False
 
-    return oldversion < Version('34.0')
+    return oldversion < Version(version)
 
 
 def show_search_firstrun(version):
@@ -408,9 +408,17 @@ class WhatsnewView(LatestFxView):
             oldversion = oldversion[3:]
         versions = ('29.', '30.', '31.', '32.')
 
-        if version.startswith('34.'):
+        if version.startswith('35.'):
             if locale == 'en-US':
-                if show_search_whatsnew_tour(oldversion):
+                if show_search_whatsnew_tour('35.0', oldversion):
+                    template = 'firefox/search_tour/tour-35-beta.html'
+                else:
+                    template = 'firefox/search_tour/no-tour.html'
+            else:
+                template = 'firefox/australis/whatsnew-no-tour.html'
+        elif version.startswith('34.'):
+            if locale == 'en-US':
+                if show_search_whatsnew_tour('34.0', oldversion):
                     template = 'firefox/search_tour/tour.html'
                 else:
                     template = 'firefox/search_tour/no-tour.html'

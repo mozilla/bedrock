@@ -535,6 +535,23 @@ class TestWhatsNew(TestCase):
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
     @override_settings(DEV=True)
+    def test_fx_35_0(self, render_mock):
+        """Should use search tour template for 35.0"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='35.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/search_tour/no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_35_0_locale(self, render_mock):
+        """Should use australis template for 35.0 non en-US locales"""
+        req = self.rf.get('/de/firefox/whatsnew/')
+        req.locale = 'de'
+        self.view(req, version='35.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
+
+    @override_settings(DEV=True)
     def test_rv_prefix(self, render_mock):
         """Prefixed oldversion shouldn't impact version sniffing."""
         req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=rv:10.0')

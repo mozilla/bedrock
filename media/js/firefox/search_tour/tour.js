@@ -13,6 +13,7 @@
     var variants = ['ravioli', 'flare', 'independence'];
     var icon;
     var _trackingID;
+    var pageId = $('body').prop('id');
 
     /*
      * Set the default search provider to Yahoo!
@@ -165,6 +166,11 @@
 
     function determinePageVariation() {
         var rand = variants[Math.floor(Math.random() * variants.length)];
+
+        if (pageId === 'whatsnew-search-tour-35-beta') {
+            rand = 'independence';
+        }
+
         showPageVariant(rand);
     }
 
@@ -175,6 +181,10 @@
     function rollTheDice() {
         var SAMPLE_RATE = 0.5;
         var forced = (Math.random() < SAMPLE_RATE) ? true : false;
+
+        if (pageId === 'whatsnew-search-tour-35-beta') {
+            forced = true;
+        }
 
         if (forced) {
             userForced = true;
@@ -318,7 +328,7 @@
             gaTrack(['_trackEvent', 'whatsnew srch-chg interactions', 'Default', 'ViewPage']);
         }
 
-        Mozilla.UITour.registerPageID('whatsnew-search-tour-34');
+        Mozilla.UITour.registerPageID(pageId);
     }
 
 })(window.jQuery, window.Mozilla);
