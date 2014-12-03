@@ -1190,7 +1190,7 @@ DONATE_LOCALE_LINK = {
                 'source={source}'),
     'en-US': ('https://sendto.mozilla.org/page/contribute/givenow-seq?'
               'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-              '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}#page-1'),
+              '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'),
 }
 
 # Official Firefox Twitter accounts
