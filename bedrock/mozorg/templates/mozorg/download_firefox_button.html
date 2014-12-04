@@ -33,6 +33,9 @@
     <p class="unsupported-download">
       {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format(url=product_url('firefox', 'sysreq', build)) }}
     </p>
+    <p class="linux-arm-download">
+      {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
+    </p>
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}

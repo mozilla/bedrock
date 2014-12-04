@@ -21,6 +21,7 @@ describe("site.js", function () {
 
         it("should identify Linux", function () {
             expect(window.site.getPlatform('foo', 'Linux')).toBe('linux');
+            expect(window.site.getPlatform('Mozilla/5.0 (X11; Ubuntu; Linux armv7l; rv:32.0) Gecko/20100101 Firefox/32.0', 'Linux armv7l')).toBe('linux');
         });
 
         it("should identify old-Mac", function () {
@@ -63,6 +64,7 @@ describe("site.js", function () {
         it("should identify ARM", function () {
             expect(window.site.getArchType('Mozilla/5.0 (Android; Mobile; rv:27.0) Gecko/27.0 Firefox/27.0', 'Linux armv7l')).toBe('armv7');
             expect(window.site.getArchType('Mozilla/5.0 (X11; U; Linux armv6l; en-US; rv:1.9.1b2pre) Gecko/20081116 Fennec/1.0a2pre', 'Linux armv6l')).toBe('armv6');
+            expect(window.site.getArchType('Mozilla/5.0 (X11; Ubuntu; Linux armv7l; rv:32.0) Gecko/20100101 Firefox/32.0', 'Linux armv7l')).toBe('armv7');
         });
 
         it("should identify PowerPC", function () {
@@ -83,6 +85,7 @@ describe("site.js", function () {
             expect(window.site.getArchSize('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:27.0) Gecko/20100101 Firefox/27.0', 'MacIntel')).toBe(32);
             expect(window.site.getArchSize('Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:27.0) Gecko/20100101 Firefox/27.0', 'Linux i686')).toBe(32);
             expect(window.site.getArchSize('Mozilla/5.0 (X11; U; Linux armv6l; en-US; rv:1.9.1b2pre) Gecko/20081116 Fennec/1.0a2pre', 'Linux armv6l')).toBe(32);
+            expect(window.site.getArchSize('Mozilla/5.0 (X11; Ubuntu; Linux armv7l; rv:32.0) Gecko/20100101 Firefox/32.0', 'Linux armv7l')).toBe(32);
         });
     });
 });
