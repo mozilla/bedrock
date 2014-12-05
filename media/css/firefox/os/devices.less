@@ -66,7 +66,7 @@ html, body {
     }
 
     label {
-        font-size: 14px;
+        font-size: @baseFontSize;
         font-weight: bold;
         color: #a5dcff;
         text-transform: uppercase;
@@ -133,7 +133,7 @@ html, body {
         display: block;
         width: 240px;
         padding: @baseLine;
-        font-size: 16px;
+        font-size: @largeFontSize;
         text-transform: uppercase;
         text-align: center;
         .transition(all 0.3s ease);
@@ -181,7 +181,7 @@ html, body {
             padding-top: 6px;
             text-align: center;
             text-transform: none;
-            font-size: 14px;
+            font-size: @baseFontSize;
             .open-sans-light;
             overflow: hidden;
 
@@ -316,7 +316,7 @@ html, body {
         margin-right: 0;
 
         h4 {
-            font-size: 14px;
+            font-size: @baseFontSize;
             color: @textColorPrimary;
             text-transform: uppercase;
             margin-bottom: 13px;
@@ -342,7 +342,7 @@ html, body {
     margin-top: @baseLine * 2;
 
     h4 {
-        font-size: 14px;
+        font-size: @baseFontSize;
         text-transform: uppercase;
         font-weight: bold;
         margin-bottom: @baseLine / 2;
@@ -398,7 +398,7 @@ html, body {
 
 // tooltip plugin overrides
 .tipsy {
-    font-size: 12px;
+    font-size: @smallFontSize;
     letter-spacing: 0.5px;
 }
 .tipsy-inner { background-color: #758797; }
@@ -484,7 +484,7 @@ html, body {
     }
 
     dl {
-        font-size: 14px;
+        font-size: @baseFontSize;
         .clearfix();
     }
 
@@ -492,7 +492,7 @@ html, body {
         float: left;
         clear: left;
         width: 40%;
-        font-size: 14px;
+        font-size: @baseFontSize;
         font-weight: bold;
     }
 
@@ -615,7 +615,7 @@ html, body {
 
         .device-thumbnail {
             width: 180px;
-            font-size: 12px;
+            font-size: @smallFontSize;
         }
     }
 
@@ -716,7 +716,7 @@ html, body {
 
         .button {
             padding: 7px 14px;
-            font-size: 12px;
+            font-size: @smallFontSize;
             line-height: 1;
         }
     }
@@ -738,7 +738,7 @@ html, body {
         .device-thumbnail {
             width: 50px;
             padding: (@baseLine / 2) (@baseLine * 2);
-            font-size: 12px;
+            font-size: @smallFontSize;
 
             img {
                 margin-bottom: 0;
@@ -817,7 +817,7 @@ html, body {
                 float: none;
                 display: block;
                 width: auto;
-                font-size: 16px;
+                font-size: @largeFontSize;
             }
 
             .color-picker {
@@ -999,7 +999,7 @@ html, body {
                 float: none;
                 display: block;
                 width: auto;
-                font-size: 16px;
+                font-size: @largeFontSize;
             }
 
             .color-picker {
