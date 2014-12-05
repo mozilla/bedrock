@@ -44,7 +44,7 @@
     border-radius: 6px;
     background: @syncBlue;
     color: #fff;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     text-transform: uppercase;
     .transition();
     &:focus,
@@ -110,7 +110,7 @@
         p {
             display: inline-block;
             font-style: italic;
-            font-size: 18px;
+            .font-size(18px);
             padding: 0 35px;
             position: relative;
             &:before {
@@ -140,11 +140,11 @@
         text-align: center;
         margin-bottom: @baseLine * 2;
         h2 {
-            font-size: 48px;
+            .font-size(48px);
         }
         p {
             .open-sans-light();
-            font-size: 18px;
+            .font-size(18px);
         }
     }
     .inner-wrapper {
@@ -173,13 +173,13 @@
             border-left: 1px solid rgba(198,218,229,.8);
             padding-left: @baseLine;
             .open-sans-light();
-            font-size: 20px;
+            .font-size(20px);
             margin: 0;
         }
     }
     h3 {
         color: #fff;
-        font-size: 32px;
+        .font-size(32px);
         letter-spacing: -0.02em;
         b {
             .open-sans();
@@ -214,7 +214,7 @@
         &.feature-go:before   { background-position: -140px 0; }
     }
     h3 {
-        font-size: 24px;
+        .font-size(24px);
     }
 }
 
@@ -351,12 +351,12 @@
     margin: @baseLine auto 0;
     text-align: center;
     h1 {
-        font-size: 64px;
+        .font-size(64px);
         line-height: 1.2;
     }
     p {
         .open-sans-light;
-        font-size: 28px;
+        .font-size(28px);
         line-height: 1.4;
         margin: 0;
     }
@@ -404,10 +404,10 @@ html[dir="rtl"] {
     .intro {
         width: @widthTablet - (@gridGutterWidth * 4);
         h1 {
-            font-size: 42px;
+            .font-size(42px);
         }
         p {
-            font-size: 18px;
+            .font-size(18px);
             margin-left: 40px;
             margin-right: 40px;
         }
@@ -427,7 +427,7 @@ html[dir="rtl"] {
             .offset_narrow(1);
             margin-bottom: @baseLine;
             h2 {
-                font-size: 36px;
+                .font-size(36px);
             }
         }
     }
@@ -463,7 +463,7 @@ html[dir="rtl"] {
         aside {
             .span_narrow(4);
             p {
-                font-size: @largeFontSize;
+                .font-size(@largeFontSize);
             }
         }
     }
@@ -510,10 +510,10 @@ html[dir="rtl"] {
         width: @widthMobileLandscape - (@gridGutterWidth * 2);
         padding-bottom: 0;
         h1 {
-            font-size: 36px;
+            .font-size(36px);
         }
         p {
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
         }
     }
 
@@ -538,10 +538,10 @@ html[dir="rtl"] {
             .span-all();
             margin-bottom: @baseLine;
             h2 {
-                font-size: 24px;
+                .font-size(24px);
             }
             p {
-                font-size: @largeFontSize;
+                .font-size(@largeFontSize);
             }
         }
     }
@@ -551,7 +551,7 @@ html[dir="rtl"] {
             .span-all();
         }
         h3 {
-            font-size: 20px;
+            .font-size(20px);
         }
     }
 

@@ -23,14 +23,14 @@
 
     h1 {
         color: #4E4F53;
-        font-size: 60px;
+        .font-size(60px);
     }
 
     p {
         margin: 20px auto 0;
         width: 620px;
         color: #4E4F53;
-        font-size: 20px;
+        .font-size(20px);
     }
 }
 
@@ -62,11 +62,11 @@
             margin: 0;
             color: #4B5C66;
             .open-sans-light;
-            font-size: 48px;
+            .font-size(48px);
 
             strong {
                 display: block;
-                font-size: 58px;
+                .font-size(58px);
                 .open-sans-extrabold;
                 text-transform: uppercase;
             }
@@ -77,7 +77,7 @@
                 top: 15px;
                 color: #E3E5E6;
                 .open-sans-light;
-                font-size: 100px;
+                .font-size(100px);
                 font-weight: bold;
             }
 
@@ -112,7 +112,7 @@
     }
 
     & > footer {
-        font-size: 18px;
+        .font-size(18px);
         font-style: italic;
         text-align: center;
 
@@ -196,7 +196,7 @@
         margin: 0;
         color: #FFF;
         text-shadow: none;
-        font-size: 22px;
+        .font-size(22px);
         line-height: 1.25;
         font-style: italic;
 
@@ -207,7 +207,7 @@
             left: -70px;
             opacity: .25;
             .open-sans;
-            font-size: 45px;
+            .font-size(45px);
             line-height: 1;
             font-style: normal;
             font-weight: bold;
@@ -227,7 +227,7 @@
         color: #FFF;
         text-shadow: none;
         .open-sans;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         text-transform: uppercase;
     }
 
@@ -277,7 +277,7 @@
             float: left;
             margin: 0 10px 10px 0;
             width: 120px;
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
             list-style-type: none;
         }
 
@@ -298,7 +298,7 @@
             display: block;
             float: left;
             margin: -10px 0 0 -40px;
-            font-size: 64px;
+            .font-size(64px);
             line-height: 1;
             font-family: Candara, "Trebuchet MS", sans-serif;
             font-weight: bold;
@@ -307,14 +307,14 @@
 
         p {
             display: inline;
-            font-size: 20px;
+            .font-size(20px);
             font-style: italic;
         }
 
         footer {
             margin-top: 10px;
             .open-sans-light;
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
             text-align: right;
 
             cite:before {
@@ -353,7 +353,7 @@
 
 #sec-tell h2,
 #sec-learn h2 {
-    font-size: 28px;
+    .font-size(28px);
     text-align: center;
 }
 
@@ -377,7 +377,7 @@
         color: #A0A0A0;
         background-color: #FAFAFA;
         box-shadow: inset 0 2px 1px rgba(0, 0, 0, .08);
-        font-size: inherit;
+        .font-size(inherit);
         line-height: 1.5;
         resize: none;
 
@@ -453,7 +453,7 @@
             }
 
             input[type="submit"] {
-                font-size: 18px;
+                .font-size(18px);
                 font-weight: normal;
             }
         }
@@ -539,7 +539,7 @@
                 -ms-filter: none; /* Remove the gradient on IE */
                 filter: none; /* Remove the gradient on IE */
                 box-shadow: none;
-                font-size: 20px;
+                .font-size(20px);
             }
         }
 
@@ -564,7 +564,7 @@
                     margin: 0;
                     color: #FFF;
                     text-shadow: none;
-                    font-size: 32px;
+                    .font-size(32px);
                     line-height: 1.25;
                     .open-sans;
                     font-style: italic;
@@ -572,7 +572,7 @@
                     span {
                         left: -120px;
                         opacity: .5;
-                        font-size: 82px;
+                        .font-size(82px);
                         line-height: .8;
                         font-style: normal;
                     }
@@ -764,7 +764,7 @@ html.js {
 html[lang|="es"],
 html[lang="it"] {
     #sec-principles > header h2 strong {
-        font-size: inherit;
+        .font-size(inherit);
     }
 }
 
@@ -939,7 +939,7 @@ html[dir="rtl"] {
         }
 
         .overlay-contents header h3 {
-            font-size: 24px;
+            .font-size(24px);
         }
     }
 
@@ -962,30 +962,30 @@ html[dir="rtl"] {
 @media only screen and (max-width: @breakMobileLandscape) {
     #main-feature {
         h1 {
-            font-size: 48px;
+            .font-size(48px);
         }
 
         p {
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
         }
     }
 
     #sec-principles header h2 {
-        font-size: 38px;
+        .font-size(38px);
 
         strong {
-            font-size: 44px;
+            .font-size(44px);
         }
 
         &:before,
         &:after {
             top: 12px;
-            font-size: 80px;
+            .font-size(80px);
         }
     }
 
     .principle h3 {
-        font-size: 18px;
+        .font-size(18px);
     }
 
     #sec-tell .outer {
@@ -1013,12 +1013,12 @@ html[dir="rtl"] {
             padding: 80px 20px 20px;
 
             header h3 {
-                font-size: 20px;
+                .font-size(20px);
 
                 span {
                     position: static;
                     margin-bottom: 20px;
-                    font-size: 64px;
+                    .font-size(64px);
                 }
             }
         }

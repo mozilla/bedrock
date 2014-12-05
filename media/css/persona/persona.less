@@ -68,7 +68,7 @@
         margin: 0;
         padding: @baseLine 0;
         border-bottom: 1px dotted @borderColor;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         line-height: @baseLine * .75;
     }
 
@@ -82,7 +82,7 @@
 
     #main-feature {
         &.large h1 {
-            font-size: 64px;
+            .font-size(64px);
             margin-bottom: 5px;
         }
     }
@@ -107,11 +107,11 @@
 
     #main-feature.large {
         h1 {
-            font-size: 42px;
+            .font-size(42px);
             margin-bottom: 5px;
         }
         h2 {
-            font-size: 22px;
+            .font-size(22px);
         }
     }
     #openphoto {

@@ -15,7 +15,7 @@
     background: url(/media/img/firefox/firstrun/logo.png?2013-06) 0 0 no-repeat;
     position: relative;
     z-index: 10;
-    font-size: 72px;
+    .font-size(72px);
     letter-spacing: -3px;
 }
 
@@ -27,10 +27,10 @@
         .offset(6);
         text-align: center;
         h2 {
-            font-size: 68px;
+            .font-size(68px);
         }
         .button {
-            font-size: 18px;
+            .font-size(18px);
             line-height: @baseLine * 3;
             height: @baseLine * 3;
             padding:  0 (@baseLine * 2);
@@ -98,14 +98,14 @@
         }
         .primary {
             font-family: @baseFontFamily;
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
             a:after {
             content: " »";
             color: #2983c8;
             }
         }
         .secondary {
-            font-size: 11px;
+            .font-size(11px);
             a,
             a:link,
             a:visited {
@@ -127,7 +127,7 @@
     }
 
     #firstrun-header {
-        font-size: 64px;
+        .font-size(64px);
         padding-top: 30px;
     }
 
@@ -137,7 +137,7 @@
             .span_narrow(6);
             .offset_narrow(6);
             h2 {
-                font-size: 52px;
+                .font-size(52px);
             }
         }
     }
@@ -146,7 +146,7 @@
         width: auto;
         h3 {
             .span_narrow(3);
-            font-size: 22px;
+            .font-size(22px);
             padding-top: 8px;
         }
     }
@@ -166,7 +166,7 @@
     }
 
     #firstrun-header {
-        font-size: 26px;
+        .font-size(26px);
         padding-top: 25px;
         background-size: 62px auto;
         padding: 10px 20px 30px 76px;
@@ -180,13 +180,13 @@
             width: auto;
             float: none;
             h2 {
-                font-size: 30px;
+                .font-size(30px);
             }
             h3 {
-                font-size: 18px;
+                .font-size(18px);
             }
             .button {
-                font-size: 18px;
+                .font-size(18px);
                 line-height: @baseLine * 3;
                 height: @baseLine * 3;
                 padding:  0 @baseLine;
@@ -198,7 +198,7 @@
     #main-content {
         padding-top: @baseLine;
         h3 {
-            font-size: 18px;
+            .font-size(18px);
             letter-spacing: normal;
             margin: 0;
         }

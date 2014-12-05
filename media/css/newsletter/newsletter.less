@@ -24,7 +24,7 @@
         .field-label {
             .span(3);
             .open-sans-light;
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
             text-align: right;
         }
         .field-contents {
@@ -34,7 +34,7 @@
                 width: auto;
                 margin: auto;
                 font-family: inherit;
-                font-size: @baseFontSize;
+                .font-size(@baseFontSize);
                 text-align: left;
             }
             input[type="email"],
@@ -62,7 +62,7 @@
         }
     }
     h3 {
-        font-size: 24px;
+        .font-size(24px);
     }
     h3.field-label {
         letter-spacing: normal;
@@ -80,7 +80,7 @@
             width: auto;
             margin: auto;
             font-family: inherit;
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
             text-align: left;
             color: @textColorTertiary;
         }
@@ -98,17 +98,17 @@
                 text-align: left;
                 h4 {
                     margin: 0 0 5px 0;
-                    font-size: 22px;
+                    .font-size(22px);
                     .en-only {
                         color: @textColorTertiary;
-                        font-size: @baseFontSize;
+                        .font-size(@baseFontSize);
                     }
                 }
                 .description {
                     margin: 0.2em 0 0 0;
                     color: @textColorTertiary;
                     font-weight: normal;
-                    font-size: @smallFontSize;
+                    .font-size(@smallFontSize);
                     line-height: 1.3;
                 }
             }
@@ -195,12 +195,12 @@
 #newsletter {
     #main-feature {
         h1 {
-            font-size: 56px;
+            .font-size(56px);
             margin-top: @baseLine;
             margin-bottom: @baseLine / 2;
         }
         p {
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
         }
     }
     #newsletter-form {
@@ -259,10 +259,10 @@
     #newsletter {
         #main-feature {
             h1 {
-                font-size: 48px;
+                .font-size(48px);
             }
             p {
-                font-size: inherit;
+                .font-size(inherit);
             }
         }
         #newsletter-form {
@@ -297,7 +297,7 @@
 
     #main-feature {
         h1 {
-            font-size: 26px;
+            .font-size(26px);
         }
     }
 
@@ -334,11 +334,11 @@
     #newsletter {
         #main-feature {
             h1 {
-                font-size: 28px;
+                .font-size(28px);
                 letter-spacing: -1px;
             }
             p {
-                font-size: @smallFontSize;
+                .font-size(@smallFontSize);
             }
         }
         #newsletter-form {

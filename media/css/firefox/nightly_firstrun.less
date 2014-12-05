@@ -46,12 +46,12 @@ main {
 
     h1 {
         .open-sans();
-        font-size: 48px;
+        .font-size(48px);
         text-shadow: 0 2px 0 rgba(0, 0, 0, .15);
     }
     h2 {
         .open-sans();
-        font-size: 20px;
+        .font-size(20px);
         letter-spacing: 0;
         color: #79d8ff;
         text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
@@ -83,7 +83,7 @@ main {
                 padding-top: 85px;
             }
             h4 {
-                font-size: 29px;
+                .font-size(29px);
                 text-transform: uppercase;
             }
         }
@@ -94,7 +94,7 @@ main {
         }
         a.button {
             color: white;
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
             font-weight: normal;
             text-transform: uppercase;
             width: 100%;
@@ -118,7 +118,7 @@ main {
             }
         }
         h3 {
-            font-size: 20px;
+            .font-size(20px);
             line-height: 1.4em;
         }
     }
@@ -126,16 +126,16 @@ main {
     #nightly-box .description,
     .blue-box.badge a,
     .blue-box.l10n a {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         color: #79d8ff;
         text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
     }
     .blue-box.l10n {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         color: white;
         text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
         h4 {
-            font-size: 20px;
+            .font-size(20px);
         }
         h5,
         h6 {
@@ -176,7 +176,7 @@ html[dir="rtl"] {
             display: none;
         }
         h1 {
-            font-size: 37px;
+            .font-size(37px);
         }
         #nightly-box .blue-box {
             margin-right: 0;

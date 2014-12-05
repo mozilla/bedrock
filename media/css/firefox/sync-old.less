@@ -19,12 +19,12 @@
     margin: @baseLine auto;
     text-align: center;
     h1 {
-        font-size: 64px;
+        .font-size(64px);
         line-height: 1.2;
     }
     p {
         .open-sans-light;
-        font-size: 22px;
+        .font-size(22px);
         line-height: 1.4;
         margin: 0 0 (@baseLine / 2);
     }
@@ -42,7 +42,7 @@
     clear: both;
     margin-top: @baseLine;
     h2 {
-        font-size: 24px;
+        .font-size(24px);
         line-height: 1.2;
         padding-right: @baseLine;
     }
@@ -140,10 +140,10 @@ html[dir="rtl"] {
     .intro {
         width: @widthTablet - (@gridGutterWidth * 4);
         h1 {
-            font-size: 42px;
+            .font-size(42px);
         }
         p {
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
         }
     }
 
@@ -181,10 +181,10 @@ html[dir="rtl"] {
         .span-all();
         padding-bottom: 0;
         h1 {
-            font-size: 36px;
+            .font-size(36px);
         }
         p {
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
         }
     }
 

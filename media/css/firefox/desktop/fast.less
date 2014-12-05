@@ -20,20 +20,20 @@
 }
 
 #main-content .container {
-    font-size: 18px;
+    .font-size(18px);
 }
 
 #intro {
     .grainy-sky();
 
     h3 {
-        font-size: 18px;
+        .font-size(18px);
         text-transform: uppercase;
         .open-sans;
     }
 
     .lead {
-        font-size: 22px;
+        .font-size(22px);
     }
 }
 
@@ -708,7 +708,7 @@ html[dir="rtl"] {
             padding-left: 320px;
 
             h2 {
-                font-size: 38px;
+                .font-size(38px);
             }
         }
     }
@@ -740,11 +740,11 @@ html[dir="rtl"] {
     }
 
     #main-content .container {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
     }
 
     #intro .lead {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
     }
 
     #cutting-edge {

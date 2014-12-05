@@ -72,7 +72,7 @@ html, body {
   float: left;
   width: 480px;
   color: #fff;
-  font-size: @largeFontSize;
+  .font-size(@largeFontSize);
   padding-bottom: @baseLine * 3;
 
   header {
@@ -84,7 +84,7 @@ html, body {
     text-shadow: none;
     .open-sans-extrabold;
     font-style: italic;
-    font-size: 78px;
+    .font-size(78px);
     letter-spacing: -3px;
     text-transform: uppercase;
     margin-bottom: 8px;
@@ -93,7 +93,7 @@ html, body {
   h2 {
     color: #fff;
     text-shadow: none;
-    font-size: 20px;
+    .font-size(20px);
     font-weight: bold;
     letter-spacing: 0;
   }
@@ -158,7 +158,7 @@ html, body {
 
   h3 {
     color: #4e4f53;
-    font-size: 20px;
+    .font-size(20px);
     line-height: 140%;
     text-align: center;
     font-weight: bold;
@@ -186,11 +186,11 @@ html, body {
       float: left;
       list-style-type: none;
       margin-left: 0;
-      font-size: @smallFontSize;
+      .font-size(@smallFontSize);
       line-height: 20px;
 
       h4 {
-        font-size: 20px;
+        .font-size(20px);
         font-style: italic;
         margin-bottom: @baseLine;
         display: block;
@@ -458,14 +458,14 @@ html, body {
 
   #intro-copy {
     width: 380px;
-    font-size: @baseFontSize;
+    .font-size(@baseFontSize);
 
     h1 {
-      font-size: 60px;
+      .font-size(60px);
     }
 
     h2 {
-      font-size: 18px;
+      .font-size(18px);
     }
   }
 
@@ -553,14 +553,14 @@ html, body {
   #intro-copy {
     float: none;
     width: 300px;
-    font-size: @baseFontSize;
+    .font-size(@baseFontSize);
 
     h1 {
-      font-size: 44px;
+      .font-size(44px);
     }
 
     h2 {
-      font-size: @baseFontSize;
+      .font-size(@baseFontSize);
     }
 
     br {
@@ -593,7 +593,7 @@ html, body {
   #info {
     h3 {
       width: auto;
-      font-size: 22px;
+      .font-size(22px);
       margin-bottom: @baseLine;
     }
 
@@ -602,7 +602,7 @@ html, body {
 
       li strong {
         margin-bottom: @baseLine/2;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
       }
     }
 
@@ -700,14 +700,14 @@ html, body {
   #intro-copy {
     float: none;
     width: 420px;
-    font-size: @baseFontSize;
+    .font-size(@baseFontSize);
 
     h1 {
-      font-size: 60px;
+      .font-size(60px);
     }
 
     h2 {
-      font-size: 20px;
+      .font-size(20px);
     }
   }
 
@@ -732,7 +732,7 @@ html, body {
   #info {
     h3 {
       width: auto;
-      font-size: 22px;
+      .font-size(22px);
       margin-bottom: @baseLine;
     }
 
@@ -741,7 +741,7 @@ html, body {
 
       li strong {
         margin-bottom: @baseLine/2;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
       }
     }
 

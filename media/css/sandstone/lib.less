@@ -20,7 +20,7 @@
 // When unit is pixels, pass it through and convert to rem
 .font-size(@value) when (ispixel(@value)) {
     font-size: @value;
-    font-size: unit(@value / 16, rem);
+    .font-size(unit(@value / 16, rem));
 }
 
 // When unit is rem, convert it to pixels and pass it through
@@ -324,7 +324,7 @@
 
 .required-star() {
     content: " *";
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     font-weight: bold;
     color: @linkRed;
 }

@@ -38,7 +38,7 @@ header[role="banner"] {
 
     p {
         .open-sans-light;
-        font-size: 24px;
+        .font-size(24px);
         line-height: 1.5;
         text-shadow: 0px 1px 0px rgba(255,255,255,0.75);
         color: @textColorSecondary;
@@ -62,7 +62,7 @@ header[role="banner"] {
         margin: 0;
         width: 50%;
         .open-sans-light;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         line-height: 1.5;
         background: #fff;
 
@@ -144,7 +144,7 @@ header[role="banner"] {
         .button {
             position: relative;
             .open-sans-light;
-            font-size: 18px;
+            .font-size(18px);
             padding: .7em 40px;
             margin: 0 auto;
             text-indent: 30px;
@@ -173,7 +173,7 @@ aside {
         display: inline-block;
         color: #fff;
         text-shadow: none;
-        font-size: 32px;
+        .font-size(32px);
         line-height: 98px;
         padding-left: 110px;
         background: url('/media/img/firefox/search_tour/banner-logo.png') 20px 13px no-repeat;
@@ -187,7 +187,7 @@ aside {
         &:link,
         &:visited {
             padding: 1em;
-            font-size: 18px;
+            .font-size(18px);
             font-weight: normal;
         }
     }
@@ -202,7 +202,7 @@ footer[role="contentinfo"] {
         list-style-type: none;
         width: 100%;
         padding: 0;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         .clearfix();
         li {
             float: left;
@@ -225,7 +225,7 @@ footer[role="contentinfo"] {
         a:visited {
             color: @textColorTertiary;
             &.more {
-                font-size: @largeFontSize;
+                .font-size(@largeFontSize);
                 color: @textColorSecondary;
 
                 &:after {

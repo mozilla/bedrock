@@ -63,7 +63,7 @@
 
             a {
                 display: inline-block;
-                font-size: @baseFontSize;
+                .font-size(@baseFontSize);
                 height: 36px;
                 padding: 12px 0 0;
             }
@@ -133,7 +133,7 @@ html[dir="rtl"] {
     float: right;
     margin-top: 10px;
     font-weight: normal;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     padding: 8px 30px;
     border-radius: .4em;
 }
@@ -172,7 +172,7 @@ html[dir="rtl"] {
 
 section .container {
     .open-sans-light;
-    font-size: 20px;
+    .font-size(20px);
     text-align: center;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
     padding: (@baseLine * 3) 0 (@baseLine * 2) 0;
@@ -184,7 +184,7 @@ section .container {
     }
 
     h2 {
-        font-size: 48px;
+        .font-size(48px);
         margin-bottom: @baseLine * 2;
     }
 
@@ -253,7 +253,7 @@ html[dir="rtl"] {
     span {
         text-transform: uppercase;
         font-weight: bold;
-        font-size: 30px;
+        .font-size(30px);
         line-height: 1;
         color: #5d7489;
     }
@@ -261,7 +261,7 @@ html[dir="rtl"] {
     a {
         .open-sans;
         margin-top: 5px;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
 
         &:before {
             content: '';
@@ -305,22 +305,22 @@ html[lang^="en"] {
         }
 
         a {
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
         }
     }
 
     #trust-line1 {
-        font-size: 53px;
+        .font-size(53px);
         line-height: 53px;
     }
 
     #trust-line2 {
-        font-size: 40px;
+        .font-size(40px);
         line-height: 40px;
     }
 
     #trust-line3 {
-        font-size: 61px;
+        .font-size(61px);
         line-height: 61px;
     }
 }
@@ -342,7 +342,7 @@ html[lang^="en"] {
         height: 43px;
         margin-bottom: 0;
         text-align: right;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         line-height: 40px;
         background: url(/media/img/firefox/desktop/sprite-browser-logos.png) right top no-repeat;
         padding: 0 70px 0 0;
@@ -388,7 +388,7 @@ html[lang^="en"] {
         border-color: rgba(0, 0, 0, .2);
         line-height: 40px;
         color: #fff;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         text-shadow: none;
     }
 
@@ -583,7 +583,7 @@ html[dir="rtl"] {
 
     h3 {
         color: #fff;
-        font-size: 40px;
+        .font-size(40px);
         float: none;
         width: auto;
         margin-bottom: 30px;
@@ -694,7 +694,7 @@ html[dir="rtl"] {
 
     #subscribe-download-wrapper {
         h3 {
-            font-size: 30px;
+            .font-size(30px);
         }
     }
 
@@ -780,10 +780,10 @@ html[dir="rtl"] {
 
     #main-content .container {
         min-height: 0;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
 
         h2 {
-            font-size: 30px;
+            .font-size(30px);
         }
     }
 
@@ -824,7 +824,7 @@ html[dir="rtl"] {
     }
 
     #subscribe-download-wrapper h3 {
-        font-size: 26px;
+        .font-size(26px);
     }
 
     .wide-br {

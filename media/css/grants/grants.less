@@ -15,7 +15,7 @@
 }
 
 .meta {
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     font-family: Georgia;
     line-height: 24px;
     letter-spacing: 0;
@@ -24,13 +24,13 @@
 
 .filters {
     h4 {
-        font-size: 13px;
+        .font-size(13px);
         text-transform: uppercase;
     }
     ul {
         overflow: hidden;
         list-style-type: none;
-        font-size: 13px;
+        .font-size(13px);
     }
     li {
         float: left;
@@ -48,7 +48,7 @@
 }
 
 #grants_table {
-    font-size: 13px;
+    .font-size(13px);
     border-collapse: collapse;
     th,
     td {
@@ -91,7 +91,7 @@
     }
     h2, h3 {
         display: inline-block;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         margin-bottom: 0;
         margin-right: 5px;
         font-weight: normal;

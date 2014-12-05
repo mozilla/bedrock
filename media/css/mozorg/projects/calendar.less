@@ -21,12 +21,12 @@
             line-height: 1.3;
         }
         h1 {
-            font-size: 57px;
+            .font-size(57px);
         }
     }
     h2 {
         letter-spacing: -0.5px;
-        font-size: 24px;
+        .font-size(24px);
     }
     .midbox {
         padding: @baseLine 0 0 0;
@@ -77,7 +77,7 @@
         span.title {
             background: url(/media/img/sandstone/buttons/download-arrow-small.png) no-repeat scroll 10px 14px transparent;
             display: block;
-            font-size: 20px;
+            .font-size(20px);
             font-style: italic;
             min-height: 30px;
             padding: 8px 8px 0 40px;
@@ -95,7 +95,7 @@
         color: #bbb;
         display: block;
         .open-sans;
-        font-size: 11px;
+        .font-size(11px);
         text-align: center;
     }
 }
@@ -113,17 +113,17 @@
         .span(5);
         .open-sans;
         padding: (@baseLine / 4) 0;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         list-style-type: none;
         .itemtext {
             display: inline-block;
             vertical-align: middle;
             width: 80%;
             a.title {
-                font-size: 20px;
+                .font-size(20px);
             }
             span.desc {
-                font-size: @largeFontSize;
+                .font-size(@largeFontSize);
             }
         }
         a {
@@ -167,7 +167,7 @@
             float: none;
             text-align: center;
             h1 {
-                font-size: 36px;
+                .font-size(36px);
             }
             #download {
                 display: none;
@@ -184,10 +184,10 @@
             .itemtext {
                 width: 60%;
                 a.title {
-                    font-size: @baseFontSize;
+                    .font-size(@baseFontSize);
                 }
                 span.desc {
-                    font-size: @smallFontSize;
+                    .font-size(@smallFontSize);
                 }
             }
         }

@@ -85,7 +85,7 @@
     width: auto;
     padding: 5px 0;
     margin: 0;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     background: #000;
     background: rgba(0, 0, 0, .8);
     box-shadow: 3px 3px 1px rgba(0, 0, 0, .1);
@@ -144,7 +144,7 @@
 // Tabs to toggle spaces or communities
 .category-tabs {
     .open-sans;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     left: 22px;
     margin: 0;
     position: absolute;
@@ -233,7 +233,7 @@
 
             a {
                 background-color: @lightBeige;
-                font-size: @smallFontSize;
+                .font-size(@smallFontSize);
                 font-weight: normal;
                 padding-left: 30px;
                 color: @textColorPrimary;
@@ -337,7 +337,7 @@
     margin: 0 10px 20px;
     width: 96%;
     padding: 5px 2%;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     font-family: inherit;
     height: auto;
 }
@@ -352,7 +352,7 @@
         .box-shadow(0 1px 0 rgba(0, 0, 0, .1));
         background: @lightGray;
         border: 1px solid @lightGray;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         margin: 0 0 20px;
         min-height: 210px;
         padding: 20px 10px;
@@ -369,7 +369,7 @@
 
         h2 {
             .open-sans;
-            font-size: 18px;
+            .font-size(18px);
             font-weight: normal;
             letter-spacing: normal;
             text-shadow: none;
@@ -475,7 +475,7 @@
     padding: 20px 20px 0;
 
     h3 {
-        font-size: 18px;
+        .font-size(18px);
         .open-sans;
         font-weight: normal;
         letter-spacing: normal;
@@ -531,7 +531,7 @@
     .clearfix;
     border-top: 1px solid @lightBeige;
     clear: both;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     margin: 0 10px;
     padding: 20px 0 0;
 
@@ -562,7 +562,7 @@
 
     h4 {
         .open-sans;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         letter-spacing: normal;
         text-transform: uppercase;
     }
@@ -594,7 +594,7 @@
 }
 
 .attribution {
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     margin-bottom: 30px;
     margin-top: -20px;
     opacity: .7;
@@ -619,7 +619,7 @@
 
         .page-title {
             .span_narrow(6);
-            font-size: 32px;
+            .font-size(32px);
             margin-bottom: -.75em;
         }
 
@@ -738,7 +738,7 @@
     }
 
     .category-tabs {
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         left: 0;
 
         li {

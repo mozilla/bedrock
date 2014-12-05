@@ -18,7 +18,7 @@
     .primary li {
         a, a:link, a:visited {
             text-transform: uppercase;
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
             color: @linkSkyBlue;
             &:after {
                 content: " \00BB";
@@ -35,7 +35,7 @@
             border: dotted @textColorLight;
             border-width: 0 0 0 1px;
             a, a:link, a:visited {
-                font-size: @smallFontSize;
+                .font-size(@smallFontSize);
                 color: @textColorLight;
             }
             &:first-child {

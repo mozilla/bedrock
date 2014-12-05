@@ -52,28 +52,28 @@ img {
 .video-description {
   margin: 1em @gridGutterWidth 1.5em;
   h3 {
-    font-size: 20px;
+    .font-size(20px);
     letter-spacing: normal;
   }
   h4 {
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     letter-spacing: normal;
   }
   .download {
     margin: 0 0 .5em;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
   }
 }
 
 .timestamp {
-  font-size: 20px;
+  .font-size(20px);
   letter-spacing: normal;
 }
 
 .nav-paging {
   clear: both;
   list-style: none;
-  font-size: @largeFontSize;
+  .font-size(@largeFontSize);
   font-style: italic;
   margin: 15px 0;
   padding: 0;
@@ -90,7 +90,7 @@ img {
 }
 
 .nav-paging .prev a:before {
-  font-size: 24px;
+  .font-size(24px);
   content: "\00AB\00A0";
 }
 
@@ -101,12 +101,12 @@ img {
 }
 
 .nav-paging .next a:after {
-  font-size: 24px;
+  .font-size(24px);
   content: "\00A0\00BB";
 }
 
 .return-to-top {
-  font-size: @smallFontSize;
+  .font-size(@smallFontSize);
 }
 
 .trademarks {
@@ -135,7 +135,7 @@ img {
 
 /* Q and A (FAQ) */
 .qandaset .question {
-  font-size: large;
+  .font-size(large);
   font-weight: bold;
 }
 
@@ -155,13 +155,13 @@ img {
   #main-content {
     .intro {
       .span_narrow(4);
-      font-size: 22px;
+      .font-size(22px);
     }
 
     ul.links {
       .span_narrow(4);
       h4 {
-        font-size: 20px;
+        .font-size(20px);
       }
     }
 
@@ -188,7 +188,7 @@ img {
 
     .title-banner {
       width: 240px;
-      font-size: 28px;
+      .font-size(28px);
       letter-spacing: -.5px;
       margin: -25px 0 @baseLine;
     }
@@ -199,7 +199,7 @@ img {
 
     .intro {
       width: auto;
-      font-size: 1em;
+      .font-size(1em);
       margin-bottom: @baseLine;
     }
 

@@ -66,7 +66,7 @@ textarea {
     background: @lightbeige;
     border-radius: 6px;
     border: 2px solid @darkbeige;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     padding: .5em 8px;
     width: 100%;
     -webkit-box-sizing: border-box;
@@ -98,7 +98,7 @@ textarea:focus {
     select {
         background: none;
         border: none;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         font-family: inherit;
         width: 100%;
         padding: 0 20% 0 0;
@@ -123,7 +123,7 @@ textarea:focus {
         content: '\f0d7';
         display: block;
         font-family: 'Font Awesome';
-        font-size: 20px;
+        .font-size(20px);
         height: 100%;
         width: 30px;
         line-height: 32px;
@@ -188,12 +188,12 @@ textarea:focus {
     letter-spacing: -.05em;
     line-height: 1.1;
     text-align: center;
-    font-size: 42px;
+    .font-size(42px);
     margin: 0 auto 30px;
 }
 
 .section-tagline {
-    font-size: 28px;
+    .font-size(28px);
     line-height: 1.2;
     text-align: center;
     .open-sans-light;
@@ -240,7 +240,7 @@ textarea:focus {
 }
 
 .page-title {
-    font-size: 72px;
+    .font-size(72px);
     text-align: center;
     color: @mozillared;
 }
@@ -258,7 +258,7 @@ textarea:focus {
 
     strong {
         display: block;
-        font-size: 42px;
+        .font-size(42px);
         font-weight: normal;
         line-height: 1.1;
         .open-sans-light;
@@ -280,7 +280,7 @@ textarea:focus {
     }
 
     .select select {
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
     }
 }
 
@@ -409,7 +409,7 @@ textarea:focus {
         a {
             .button-flat;
             .trailing-arrow;
-            font-size: 18px;
+            .font-size(18px);
             padding: 20px 40px;
             min-width: 240px;
         }
@@ -493,12 +493,12 @@ textarea:focus {
 .landing-mission {
     .mission-content {
         .span(6);
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         margin-top: 20px;
         text-align: center;
 
         h2 {
-            font-size: 28px;
+            .font-size(28px);
         }
 
         .mission-cta {
@@ -512,7 +512,7 @@ textarea:focus {
                 content: '\f01d'; /* play circle */
                 margin-right: 8px;
                 font-weight: normal;
-                font-size: @largeFontSize;
+                .font-size(@largeFontSize);
                 text-decoration: none;
             }
         }
@@ -536,7 +536,7 @@ textarea:focus {
             content: '\f04b'; /* play */
             display: block;
             font-family: 'Font Awesome';
-            font-size: 42px;
+            .font-size(42px);
             text-align: center;
             text-indent: 8px;
             line-height: 95px;
@@ -601,7 +601,7 @@ textarea:focus {
 
         .fn {
             font-weight: bold;
-            font-size: 18px;
+            .font-size(18px);
             letter-spacing: normal;
             margin: 0 0 .25em;
         }
@@ -646,7 +646,7 @@ textarea:focus {
         a {
             .button-flat;
             .trailing-arrow;
-            font-size: 18px;
+            .font-size(18px);
             min-width: 240px;
             padding: 20px 30px;
         }
@@ -669,7 +669,7 @@ textarea:focus {
         &:after {
             content: '\f178'; // long right arrow
             font-family: 'Font Awesome';
-            font-size: 45px;
+            .font-size(45px);
             color: @darkbeige;
             position: absolute;
             right: -35px;
@@ -835,7 +835,7 @@ textarea:focus {
         position: relative;
         left: 50%;
         margin: 0 0 20px -90px;
-        font-size: 32px;
+        .font-size(32px);
         .transition(background .15s ease);
 
         abbr {
@@ -846,11 +846,11 @@ textarea:focus {
 
     .date-day {
         display: block;
-        font-size: 44px;
+        .font-size(44px);
     }
 
     .event-title {
-        font-size: 20px;
+        .font-size(20px);
         font-weight: bold;
     }
 
@@ -895,7 +895,7 @@ textarea:focus {
 .extra-links li,
 .extra-actions li {
     list-style: none;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     margin: 0 0 .5em;
     padding: 0;
 
@@ -936,7 +936,7 @@ textarea:focus {
 }
 
 .thank h3 {
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     letter-spacing: normal;
     font-weight: bold;
 }
@@ -982,7 +982,7 @@ textarea:focus {
 
         label {
             display: block;
-            font-size: 32px;
+            .font-size(32px);
             line-height: 1.1;
             .open-sans-light;
             letter-spacing: -.01em;
@@ -1009,7 +1009,7 @@ textarea:focus {
         .label {
             display: block;
             margin: 0 0 .25em;
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
         }
 
         label.inline,
@@ -1030,7 +1030,7 @@ textarea:focus {
             margin: 0 10px 20px;
 
             label {
-                font-size: @baseFontSize;
+                .font-size(@baseFontSize);
             }
         }
 
@@ -1047,7 +1047,7 @@ textarea:focus {
 
             label {
                 margin-right: 10px;
-                font-size: @baseFontSize;
+                .font-size(@baseFontSize);
             }
         }
 
@@ -1073,7 +1073,7 @@ textarea:focus {
         button {
             .button-flat;
             .trailing-arrow;
-            font-size: 18px;
+            .font-size(18px);
             width: 440px;
             padding: 20px 40px;
             position: absolute;
@@ -1086,7 +1086,7 @@ textarea:focus {
     input[type='checkbox'] {
         width: 16px;
         height: 16px;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
     }
 
     .errorlist {
@@ -1112,7 +1112,7 @@ textarea:focus {
         .span(3);
         padding: 205px 0 1.4em;
         margin-bottom: 20px;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         line-height: 1.2;
         text-align: center;
         position: relative;
@@ -1137,7 +1137,7 @@ textarea:focus {
             cursor: pointer;
             display: block;
             font-family: 'Font Awesome';
-            font-size: 80px;
+            .font-size(80px);
             line-height: 155px;
             text-align: center;
             height: 150px;
@@ -1220,7 +1220,7 @@ textarea:focus {
             color: #fff;
             display: block;
             font-family: 'Font Awesome';
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
             text-align: center;
             line-height: 22px;
             text-indent: 0;
@@ -1240,7 +1240,7 @@ textarea:focus {
         left: -20px;
         background: #eee;
         color: @textColorPrimary;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         font-weight: normal;
         text-shadow: none;
         border: 1px solid #dfdfdf;
@@ -1263,7 +1263,7 @@ textarea:focus {
 
         &:before {
             font-family: 'Font Awesome';
-            font-size: 40px;
+            .font-size(40px);
             line-height: 60px;
             width: 60px;
             height: 60px;
@@ -1359,7 +1359,7 @@ textarea:focus {
 
         &:before {
             font-family: 'Font Awesome';
-            font-size: 30px;
+            .font-size(30px);
             position: absolute;
             top: 180px;
             width: 40px;
@@ -1422,7 +1422,7 @@ textarea:focus {
     }
 
     .section-tagline {
-        font-size: 24px;
+        .font-size(24px);
         font-style: italic;
         margin: 0 0 30px;
     }
@@ -1431,7 +1431,7 @@ textarea:focus {
         .button-hollow;
         border: 0;
         padding: 20px 40px;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
 
         &:hover,
         &:focus,
@@ -1457,13 +1457,13 @@ textarea:focus {
         box-shadow: 0 2px 2px rgba(0, 0, 0, .1);
 
         h3 {
-            font-size: 24px;
+            .font-size(24px);
             line-height: 1.4;
             font-style: italic;
         }
 
         .other-actions li {
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
         }
     }
 
@@ -1491,7 +1491,7 @@ textarea:focus {
         left: 245px;
         bottom: 330px;
         width: 160px;
-        font-size: 24px;
+        .font-size(24px);
         font-weight: bold;
         color: @linkBlue;
     }
@@ -1518,7 +1518,7 @@ textarea:focus {
 
 .attribution {
     clear: both;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     margin: 20px 10px -20px;
     color: #666;
 }
@@ -1570,7 +1570,7 @@ textarea:focus {
         background: @lightbeige;
         border-radius: 6px;
         border: 2px solid @darkbeige;
-        font-size: inherit;
+        .font-size(inherit);
         padding: .5em 2%;
         width: 95%;
     }
@@ -1578,7 +1578,7 @@ textarea:focus {
     .form-submit {
         padding-top: 1.5em;
         button {
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
             width: 100%;
         }
     }
@@ -1598,7 +1598,7 @@ textarea:focus {
 
     thead th {
         text-transform: uppercase;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         background: #edebe4;
     }
 
@@ -1630,7 +1630,7 @@ textarea:focus {
 }
 
 .story-main .container {
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     padding-top: 140px;
 }
 
@@ -1653,7 +1653,7 @@ textarea:focus {
 
 .story-areas h3 {
     .open-sans;
-    font-size: 1em;
+    .font-size(1em);
     font-weight: bold;
     letter-spacing: normal;
 }
@@ -1687,7 +1687,7 @@ textarea:focus {
 
         &:after {
             font-family: 'Font Awesome';
-            font-size: 30px;
+            .font-size(30px);
             line-height: 55px;
             width: 55px;
             text-align: center;
@@ -1745,7 +1745,7 @@ textarea:focus {
 }
 
 .story-title {
-    font-size: 48px;
+    .font-size(48px);
     line-height: 1.2;
     text-align: center;
     margin: 0 0 40px;
@@ -1770,7 +1770,7 @@ textarea:focus {
         color: @linkBlue;
         cursor: pointer;
         font-family: inherit;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         font-weight: bold;
         text-transform: uppercase;
 
@@ -1981,7 +1981,7 @@ textarea:focus {
     }
 
     .page-title {
-        font-size: 60px;
+        .font-size(60px);
     }
 
     .contribute-nav {
@@ -2022,7 +2022,7 @@ textarea:focus {
                 height: 70px;
                 top: 50px;
                 margin-left: -38px;
-                font-size: 36px;
+                .font-size(36px);
                 line-height: 72px;
             }
         }
@@ -2071,7 +2071,7 @@ textarea:focus {
                 top: -145px;
                 width: 120px;
                 height: 120px;
-                font-size: 60px;
+                .font-size(60px);
                 line-height: 125px;
                 margin-left: -70px;
             }
@@ -2106,13 +2106,13 @@ textarea:focus {
                 background-size: 350px 350px;
 
         .profile-greeting {
-            font-size: 18px;
+            .font-size(18px);
             left: 190px;
             bottom: 255px;
         }
 
         .profile-name {
-            font-size: 11px;
+            .font-size(11px);
             left: 70px;
             bottom: 175px;
         }
@@ -2175,7 +2175,7 @@ textarea:focus {
             &:after {
                 font-family: 'Font Awesome';
                 content: '\f0c9';
-                font-size: 30px;
+                .font-size(30px);
                 color: #fff;
                 position: absolute;
                 left: 0;
@@ -2213,15 +2213,15 @@ textarea:focus {
     }
 
     .page-title {
-        font-size: 34px;
+        .font-size(34px);
     }
 
     .section-title {
-        font-size: 30px;
+        .font-size(30px);
     }
 
     .section-tagline {
-        font-size: 20px;
+        .font-size(20px);
     }
 
     .head-stats {
@@ -2238,7 +2238,7 @@ textarea:focus {
 
         strong {
             display: inline;
-            font-size: 18px;
+            .font-size(18px);
             font-weight: bold;
         }
     }
@@ -2256,13 +2256,13 @@ textarea:focus {
         min-height: 280px;
 
         .section-title {
-            font-size: 24px;
+            .font-size(24px);
         }
 
         .cta a {
             min-width: 0;
             padding: 10px 30px;
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
         }
     }
 
@@ -2319,7 +2319,7 @@ textarea:focus {
 
             &:after {
                 content: '\f078'; // down chevron
-                font-size: 30px;
+                .font-size(30px);
                 right: 0;
                 bottom: -35px;
                 top: auto;
@@ -2385,17 +2385,17 @@ textarea:focus {
         }
 
         tbody .event-name {
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
             font-weight: bold;
         }
 
         tbody .event-date {
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
         }
     }
 
     .story-main .container {
-        font-size: inherit;
+        .font-size(inherit);
     }
 
     .story-intro,
@@ -2414,7 +2414,7 @@ textarea:focus {
     }
 
     .story-title {
-        font-size: 32px;
+        .font-size(32px);
         margin: 90px 0 20px;
     }
 
@@ -2428,7 +2428,7 @@ textarea:focus {
             margin: 0 0 20px;
 
             label {
-                font-size: 24px;
+                .font-size(24px);
             }
         }
 
@@ -2462,7 +2462,7 @@ textarea:focus {
         }
 
         label:before {
-            font-size: 26px;
+            .font-size(26px);
             width: 30px;
             height: 30px;
             border-width: 3px;

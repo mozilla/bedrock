@@ -38,14 +38,14 @@ header[role="banner"],
         position: relative;
         margin: 0 0 (@baseLine / 2) 0;
         padding: 0;
-        font-size: 64px;
+        .font-size(64px);
         line-height: 1.1;
         letter-spacing: -2px;
         color: @textColorSecondary;
     }
     p {
         margin: 0 0 (@baseLine * 2) 0;
-        font-size: 24px;
+        .font-size(24px);
         line-height: 1.2;
     }
     .logo {
@@ -73,7 +73,7 @@ header[role="banner"],
     header[role="banner"],
     #ui-tour-mask .mask-inner {
         h1 {
-            font-size: 60px;
+            .font-size(60px);
             margin: 0 0 (@baseLine * 2) 0;
         }
     }
@@ -130,10 +130,10 @@ header[role="banner"],
     overflow: hidden;
     margin-bottom: @baseLine;
     h2 {
-        font-size: 30px;
+        .font-size(30px);
     }
     p {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         line-height: 1.5;
         margin-bottom: 20px;
     }
@@ -148,7 +148,7 @@ header[role="banner"],
     .button {
         position: relative;
         .open-sans-light;
-        font-size: 18px;
+        .font-size(18px);
         padding: .7em 40px;
         margin: 0 auto;
         text-indent: 30px;
@@ -187,7 +187,7 @@ header[role="banner"],
         .open-sans-light;
         margin-bottom: @baseLine * 4;
         padding: .7em 3em;
-        font-size: 18px;
+        .font-size(18px);
         color: #000;
         background: linear-gradient(to bottom, #fff, #d1d1d1);
         &:hover {
@@ -330,7 +330,7 @@ header[role="banner"],
         .open-sans-light;
         float: right;
         padding: .4em 1em;
-        font-size: 18px;
+        .font-size(18px);
     }
 }
 
@@ -361,7 +361,7 @@ footer[role="contentinfo"] {
         list-style-type: none;
         width: 100%;
         padding: 0;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         li {
             float: left;
             width: 468px;
@@ -382,7 +382,7 @@ footer[role="contentinfo"] {
         a:visited {
             color: @textColorTertiary;
             &.more {
-                font-size: @largeFontSize;
+                .font-size(@largeFontSize);
                 color: #484848;
             }
         }

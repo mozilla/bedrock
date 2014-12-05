@@ -97,7 +97,7 @@ html[dir='rtl'] #tabzilla {
     font-style: normal;
     font-weight: normal;
     line-height: 1.3;
-    font-size: 11px;
+    .font-size(11px);
     color: #484848;
     position: relative;
     overflow: hidden;
@@ -135,7 +135,7 @@ html[dir='rtl'] #tabzilla {
 #tabzilla-contents:after {
     visibility: hidden;
     display: block;
-    font-size: 0;
+    .font-size(0);
     content: " ";
     clear: both;
     height: 0;
@@ -149,7 +149,7 @@ html[dir='rtl'] #tabzilla {
     margin: 0 10px;
     background: #f8f8f8;
     position: relative;
-    font-size: 13px;
+    .font-size(13px);
     line-height: 1.5;
 }
 
@@ -185,14 +185,14 @@ html[dir='rtl'] #tabzilla {
 
 #tabzilla-promo .snippet h4 {
     line-height: 1.1;
-    font-size: 13px;
+    .font-size(13px);
     font-weight: bold;
     margin-bottom: .4em;
 }
 
 #tabzilla-panel #tabzilla-nav h2 {
     font-weight: bold;
-    font-size: 13px;
+    .font-size(13px);
     margin: 0 20px .4em 0;
     word-wrap: break-word;
     letter-spacing: -1px;
@@ -201,7 +201,7 @@ html[dir='rtl'] #tabzilla {
 #tabzilla-panel #tabzilla-nav ul {
     margin: 0;
     padding: 0;
-    font-size: inherit;
+    .font-size(inherit);
 }
 
 #tabzilla-panel #tabzilla-nav ul li {
@@ -287,7 +287,7 @@ html[dir='rtl'] #tabzilla {
     -moz-transition: all .2s linear;
     -webkit-transition: all .2s linear;
     transition: all .2s linear;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     line-height: normal;
 }
 
@@ -321,7 +321,7 @@ html[dir='rtl'] #tabzilla {
     overflow: hidden;
     margin: 0 auto;
     width: 940px;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     line-height: 1.5;
 
     div {
@@ -397,7 +397,7 @@ html[dir='rtl'] #tabzilla {
     background-position: 0 0;
     background-color: #226aa7;
     color: #fff;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     padding: 20px 80px 20px 20px;
     height: 170px;
     line-height: 20px;
@@ -408,12 +408,12 @@ html[dir='rtl'] #tabzilla {
         font-style: italic;
         text-transform: uppercase;
         letter-spacing: -.1ex;
-        font-size: 40px;
+        .font-size(40px);
         line-height: 1;
         margin-bottom: 10px;
     }
     p {
-        font-size: 18px;
+        .font-size(18px);
     }
 }
 
@@ -427,7 +427,7 @@ html[lang="sl"],
 html[lang="tr"] {
     #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
         margin: 10px 0 20px;
-        font-size: 54px;
+        .font-size(54px);
         line-height: .85;
     }
 }
@@ -446,7 +446,7 @@ html[lang="sv-SE"],
 html[lang="vi"],
 html[lang|="zh"] {
     #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
-        font-size: 54px;
+        .font-size(54px);
     }
 }
 
@@ -457,13 +457,13 @@ html[lang="id"],
 html[lang="ms"],
 html[lang="ru"] {
     #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
-        font-size: 35px;
+        .font-size(35px);
     }
 }
 
 html[lang="ml"] {
     #tabzilla-promo .snippet#tabzilla-promo-fxos a h4 {
-        font-size: 30px;
+        .font-size(30px);
     }
 }
 
@@ -484,13 +484,13 @@ html[lang="km"] {
     background-image: url("/media/img/tabzilla/promo-webwewant.jpg");
     background-position: 0 0;
     text-shadow: 0 0 2px #000;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     line-height: 20px;
     h4 {
         margin-bottom: 10px;
         color: #fff;
         text-shadow: inherit;
-        font-size: 36px;
+        .font-size(36px);
         line-height: 1;
         .open-sans-light;
         font-weight: normal;
@@ -499,7 +499,7 @@ html[lang="km"] {
     }
     p {
         margin: 0 80px 0 0;
-        font-size: 18px;
+        .font-size(18px);
         &:after {
             content: "\00A0\00BB"; /* nbsp raquo */
         }
@@ -517,7 +517,7 @@ html[lang="uz"],
 html[lang="vi"],
 html[lang="xh"] {
     #tabzilla-promo .snippet#tabzilla-promo-webwewant a h4 {
-        font-size: 32px;
+        .font-size(32px);
     }
 }
 
@@ -543,7 +543,7 @@ html[lang="te"],
 html[lang="uk"],
 html[lang="zh-CN"] {
     #tabzilla-promo .snippet#tabzilla-promo-webwewant a h4 {
-        font-size: 40px;
+        .font-size(40px);
     }
 }
 
@@ -556,7 +556,7 @@ html[lang="sq"],
 html[lang="sr"],
 html[lang="zh-TW"] {
     #tabzilla-promo .snippet#tabzilla-promo-webwewant a h4 {
-        font-size: 44px;
+        .font-size(44px);
     }
 }
 
@@ -576,7 +576,7 @@ html[lang="mr"] {
 
 html[lang="kk"] {
     #tabzilla-promo .snippet#tabzilla-promo-webwewant a p {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
     }
 }
 
@@ -608,7 +608,7 @@ html[dir="rtl"] {
 
     h4 {
         color: #fff;
-        font-size: 32px;
+        .font-size(32px);
         line-height: 1;
         text-transform: none;
         .open-sans;

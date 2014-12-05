@@ -9,12 +9,12 @@
 .forum-group .top {
     float: right;
     color: @textColorLight;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     text-transform: uppercase;
 }
 
 .forums {
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     & > li {
         list-style-type: none;
         border-top: 1px dotted @borderColor;
@@ -36,13 +36,13 @@
         letter-spacing: 0;
         margin: 0 .5em 0 0;
         .open-sans();
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         font-weight: bold;
         a {
             position: absolute;
             top: 0;
             left: -1em;
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
             color: #ccc;
         }
     }
@@ -77,7 +77,7 @@
 }
 
 .main-column .table {
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     margin-bottom: (@baseLine * 2);
     th,
     td {
@@ -85,7 +85,7 @@
         padding-right: 5px;
     }
     th sup {
-        font-size: 10px;
+        .font-size(10px);
         .open-sans-light();
         vertical-align: baseline;
         color: @textColorLight;
