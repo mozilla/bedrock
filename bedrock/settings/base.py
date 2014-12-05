@@ -1216,7 +1216,7 @@ MAPBOX_TOKEN = 'examples.map-i86nkdio'
 # Tabzilla Information Bar default options
 TABZILLA_INFOBAR_OPTIONS = 'update translation'
 
-# Optimize.ly project code for base template JS snippet
+# Optimize.ly project code
 OPTIMIZELY_PROJECT_ID = None
 
 # Link to Firefox for Android on the Google Play store with Google Analytics

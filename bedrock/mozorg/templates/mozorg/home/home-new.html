@@ -24,6 +24,12 @@
   <![endif]-->
 {% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('mozorg-home-optimizely') %}
+     {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block js %}
   <!--[if IE 9]>
     {{ js('home-2015-ie9') }}
