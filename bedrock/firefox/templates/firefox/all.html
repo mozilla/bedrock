@@ -42,7 +42,7 @@
     </p>
   </header>
 
-  <form id="language-search" method="get">
+  <form id="language-search" class="billboard" method="get">
     <div class="search-column">
       <input type="search"
              placeholder="{{ _('Search languages') }}"
@@ -134,7 +134,7 @@
 {% macro build_table(builds, title, description) %}
   <div class="build-table-container">
     {% if builds %}
-      <table class="build-table">
+      <table class="table build-table">
         <caption>
           <h3>{{ title }}</h3>
             {% if description %}
