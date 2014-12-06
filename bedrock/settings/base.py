@@ -1185,12 +1185,93 @@ MOBILIZER_LOCALE_LINK = {
     'cs': 'https://wiki.mozilla.org/Mobilizer/MobilizerCzechRepublic/'
 }
 
+DONATE_SPANISH_LINK = ('https://sendto.mozilla.org/page/contribute/givenow-seq-es?'
+    'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+    '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_ES')
+
 DONATE_LOCALE_LINK = {
-    'default': ('https://sendto.mozilla.org/page/contribute/Give-Now?'
-                'source={source}'),
-    'en-US': ('https://sendto.mozilla.org/page/contribute/givenow-seq?'
-              'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-              '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'),
+    'default': (
+        'https://sendto.mozilla.org/page/contribute/Give-Now?source={source}'
+    ),
+    'en-US': (
+        'https://sendto.mozilla.org/page/contribute/givenow-seq?'
+        'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
+    ),
+    'cs': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-czk/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_CZK'
+    ),
+    'da': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-dkk/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source={source}&utm_medium=referral&utm_content=PPcurrency_DKK'
+    ),
+    'de': (
+        'https://sendto.mozilla.org/page/contribute/givenow-seq-de?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_DE'
+    ),
+    'es-AR': DONATE_SPANISH_LINK,
+    'es-CL': DONATE_SPANISH_LINK,
+    'es-ES': DONATE_SPANISH_LINK,
+    'es-MX': DONATE_SPANISH_LINK,
+    'fr': (
+        'https://sendto.mozilla.org/page/contribute/givenow-seq-fr?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_FR'
+    ),
+    'he': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-ils/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_ILS'
+    ),
+    'hu': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-huf/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_HUF'
+    ),
+    'ja': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-jpy/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_JPY'
+    ),
+    'nb-NO': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-nok/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_NOK'
+    ),
+    'nn-NO': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-nok/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_NOK'
+    ),
+    'pl': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-pln/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_PLN'
+    ),
+    'pt-BR': (
+        'https://sendto.mozilla.org/page/contribute/givenow-seq-pt-br?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_PTBR'
+    ),
+    'ru': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-rub/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_RUB'
+    ),
+    'sv-SE': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-sek/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_SEK'
+    ),
+    'th': (
+        'https://sendto.mozilla.org/page/content/paypal-donate-thb/?'
+        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_THB'
+    ),
 }
 
 # Official Firefox Twitter accounts
