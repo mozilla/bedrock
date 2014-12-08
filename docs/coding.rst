@@ -123,6 +123,14 @@ Use the ``.open-sans``, ``.open-sans-light`` and ``.open-sans-extrabold`` mixins
 to specify font families to allow using international fonts. See the :ref:
 `CSS<l10n>` section in the l10n doc for details.
 
+Use the ``.font-size()`` mixin to generate root-relative font sizes. You can
+declare a font size in pixels and the mixin will convert it to an equivalent
+``rem`` (root em) unit while also including the pixel value as a fallback for
+older browsers that don't support ``rem``. This is preferable to declaring font
+sizes in either fixed units (``px``, ``pt``, etc) or element-relative units (``em``, ``%``).
+See `this post by Jonathan Snook <http://snook.ca/archives/html_and_css/font-size-with-rem>`_
+for more info.
+
 Configuring your code editor
 ----------------------------
 
