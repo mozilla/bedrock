@@ -18,10 +18,13 @@ function onYouTubeIframeAPIReady() {
 
 
     var trackClick = function (gaArgs, href, event) {
-        event.preventDefault();
-        gaTrack(gaArgs, function() {
-            window.location = href;
-        });
+        if (event.metaKey || event.ctrlKey) {
+            // Open link in new tab
+            gaTrack(gaArgs);
+        } else {
+            event.preventDefault();
+            gaTrack(gaArgs, function() { window.location = href; });
+        }
     };
 
     // Setup GA tracking for misc links
