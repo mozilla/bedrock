@@ -1159,7 +1159,8 @@ CDN_BASE_URL = ''
 
 CSRF_FAILURE_VIEW = 'bedrock.mozorg.views.csrf_failure'
 
-from .newsletters import DEFAULT_NEWSLETTERS  # noqa
+from .newsletters import (DEFAULT_NEWSLETTERS, OTHER_NEWSLETTERS,  # noqa
+                          MARKETPLACE_NEWSLETTERS)
 
 # Regional press blogs map to locales
 PRESS_BLOG_ROOT = 'https://blog.mozilla.org/'

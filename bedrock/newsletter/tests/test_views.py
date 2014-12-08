@@ -98,24 +98,22 @@ class TestExistingNewsletterView(TestCase):
         # in the test as desired. Also, user has accepted privacy
         # checkbox.
         self.data = {
-            u'form-MAX_NUM_FORMS': 5,
-            u'form-INITIAL_FORMS': 5,
-            u'form-TOTAL_FORMS': 5,
+            u'form-MAX_NUM_FORMS': 4,
+            u'form-INITIAL_FORMS': 4,
+            u'form-TOTAL_FORMS': 4,
             u'email': self.user['email'],
             u'lang': self.user['lang'],
             u'country': self.user['country'],
             u'format': self.user['format'],
             u'privacy': u'on',
-            u'form-0-subscribed': u'True',
             u'form-0-newsletter': u'mozilla-and-you',
-            u'form-1-subscribed': u'False',
+            u'form-0-subscribed_radio': u'True',
             u'form-1-newsletter': u'mobile',
+            u'form-1-subscribed_radio': u'False',
             u'form-2-newsletter': u'firefox-tips',
-            u'form-2-subscribed': u'False',
-            u'form-3-subscribed': u'False',
-            u'form-3-newsletter': u'beta',
-            u'form-4-newsletter': u'join-mozilla',
-            u'form-4-subscribed': u'False',
+            u'form-2-subscribed_check': u'False',
+            u'form-3-newsletter': u'join-mozilla',
+            u'form-3-subscribed_check': u'False',
             u'submit': u'Save Preferences',
         }
         super(TestExistingNewsletterView, self).setUp()
@@ -144,7 +142,7 @@ class TestExistingNewsletterView(TestCase):
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_show(self, get_newsletters, mock_basket_request):
         # Newsletters are only listed if the user is subscribed to them,
-        # or they are marked 'show' in the settings
+        # or they are marked 'show' and 'active' in the settings
         get_newsletters.return_value = newsletters
         # Find a newsletter without 'show' and subscribe the user to it
         for newsletter, data in newsletters.iteritems():
@@ -165,13 +163,16 @@ class TestExistingNewsletterView(TestCase):
         forms = context['formset'].initial_forms
 
         shown = set([form.initial['newsletter'] for form in forms])
+        inactive = set([newsletter for newsletter, data
+                       in newsletters.iteritems()
+                       if not data.get('active', False)])
         to_show = set([newsletter for newsletter, data
                        in newsletters.iteritems()
-                       if data.get('show', False)])
+                       if data.get('show', False)]) - inactive
         subscribed = set(self.user['newsletters'])
 
-        # All subscribed newsletters are shown
-        self.assertEqual(set(), subscribed - shown)
+        # All subscribed newsletters except inactive ones are shown
+        self.assertEqual(set(), subscribed - inactive - shown)
         # All 'show' newsletters are shown
         self.assertEqual(set(), to_show - shown)
         # No other newsletters are shown
@@ -245,7 +246,7 @@ class TestExistingNewsletterView(TestCase):
     def test_subscribing(self, get_newsletters, mock_basket_request):
         get_newsletters.return_value = newsletters
         # They subscribe to firefox-tips
-        self.data['form-2-subscribed'] = u'True'
+        self.data['form-2-subscribed_check'] = u'True'
         # in English - and that's their language too
         self.user['lang'] = u'en'
         self.data['lang'] = u'en'
@@ -281,7 +282,7 @@ class TestExistingNewsletterView(TestCase):
     def test_unsubscribing(self, get_newsletters, mock_basket_request):
         get_newsletters.return_value = newsletters
         # They unsubscribe from the one newsletter they're subscribed to
-        self.data['form-0-subscribed'] = u'False'
+        self.data['form-0-subscribed_radio'] = u'False'
         url = reverse('newsletter.existing.token', args=(self.token,))
         with patch.multiple('basket',
                             update_user=DEFAULT,
@@ -391,7 +392,7 @@ class TestExistingNewsletterView(TestCase):
         forms = context['formset'].initial_forms
 
         newsletters_in_order = [form.initial['newsletter'] for form in forms]
-        self.assertEqual([u'firefox-tips', u'beta', u'mozilla-and-you'],
+        self.assertEqual([u'firefox-tips', u'mozilla-and-you'],
                          newsletters_in_order)
 
     @patch('bedrock.newsletter.utils.get_newsletters')
@@ -420,7 +421,7 @@ class TestExistingNewsletterView(TestCase):
         forms = context['formset'].initial_forms
 
         newsletters_in_order = [form.initial['newsletter'] for form in forms]
-        self.assertEqual([u'beta', u'mozilla-and-you', u'firefox-tips'],
+        self.assertEqual([u'mozilla-and-you', u'firefox-tips'],
                          newsletters_in_order)
 
 

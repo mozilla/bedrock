@@ -163,13 +163,18 @@ def existing(request, token=None):
     # as already subscribed.
     initial = []
     for newsletter, data in newsletter_data.iteritems():
-        # Only show a newsletter if it has ['show'] == True or the
-        # user is already subscribed
+        # Only show a newsletter if it has ['active'] == True and
+        # ['show'] == True or the user is already subscribed
+        if not data.get('active', False):
+            continue
         if data.get('show', False) or newsletter in user['newsletters']:
             langs = data['languages']
             form_data = {
-                'title': _(data['title']),
-                'subscribed': newsletter in user['newsletters'],
+                # Firefox Marketplace for Desktop/Android/Firefox OS should be
+                # shorten in the titles
+                'title': _(data['title'].replace('Firefox Marketplace for ', '')),
+                'subscribed_radio': newsletter in user['newsletters'],
+                'subscribed_check': newsletter in user['newsletters'],
                 'newsletter': newsletter,
                 'description': _(data['description']),
                 'english_only': len(langs) == 1 and langs[0].startswith('en'),
@@ -213,7 +218,8 @@ def existing(request, token=None):
                 # What newsletters do they say they want to be subscribed to?
                 newsletters = set([subform.cleaned_data['newsletter']
                                    for subform in formset
-                                   if subform.cleaned_data['subscribed']])
+                                   if (subform.cleaned_data['subscribed_radio'] or
+                                       subform.cleaned_data['subscribed_check'])])
                 form_kwargs['newsletters'] = newsletters
 
         form = ManageSubscriptionsForm(locale, data=request.POST, initial=user,
