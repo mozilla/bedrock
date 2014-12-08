@@ -249,7 +249,7 @@
 #overview {
     background: url(/media/img/firefox/partners/overview-bg.png?2013-06) center -15px no-repeat;
     h2 {
-        font-size: 80px;
+        .font-size(80px);
         letter-spacing: -4px;
         .span-all();
         padding-top: 60px;
@@ -259,7 +259,7 @@
         margin-top: @baseLine;
         p {
             .open-sans-light;
-            font-size: 18px;
+            .font-size(18px);
             letter-spacing: -0.01em;
         }
         .partner-logos {
@@ -270,7 +270,7 @@
             float: left;
             display: none;
             font-family: Journal;
-            font-size: 23px;
+            .font-size(23px);
             color: @textColorTertiary;
             padding-right: 50px;
             text-align: right;
@@ -351,13 +351,13 @@
         }
     }
     h3 {
-        font-size: 42px;
+        .font-size(42px);
     }
     #os-operators-intro {
         .span-all();
         padding-top: 120px;
         h3 {
-            font-size: 50px;
+            .font-size(50px);
             letter-spacing: -2px;
             margin-left: 0;
             margin-bottom: 40px;
@@ -428,7 +428,7 @@
         .intro {
             .span-all();
             h3 {
-                font-size: 48px;
+                .font-size(48px);
                 letter-spacing: -2px;
                 text-align: center;
                 margin-bottom: @baseLine * 2;
@@ -457,7 +457,7 @@
             .intro {
                 .span-all();
                 h3 {
-                    font-size: 48px;
+                    .font-size(48px);
                     letter-spacing: -2px;
                     text-align: center;
                     margin-bottom: @baseLine * 2;
@@ -518,7 +518,7 @@
     }
     .article-header {
         h2 {
-            font-size: 78px;
+            .font-size(78px);
         }
     }
     .android-dude {
@@ -537,10 +537,10 @@
         .intro {
             padding-top: 120px;
             h3 {
-                font-size: 42px;
+                .font-size(42px);
             }
             h4 {
-                font-size: 26px;
+                .font-size(26px);
             }
         }
         .android-dude {
@@ -603,7 +603,7 @@ body #partner-menu, body #mwc-menu {
     width: 50px;
     padding: 0 0 18px 50px;
     margin: 0;
-    font-size: 23px;
+    .font-size(23px);
     background: url(/media/img/firefox/partners/menu-icons.png) 0 -720px no-repeat;
 }
 
@@ -629,7 +629,7 @@ body #partner-menu, body #mwc-menu {
             color: #fff;
             text-transform: uppercase;
             font-weight: bold;
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
             text-align: center;
         }
     }
@@ -789,7 +789,7 @@ body #partner-menu, body #mwc-menu {
 
 html[lang="de"] {
     #overview h2 {
-        font-size: 66px;
+        .font-size(66px);
     }
 }
 
@@ -799,23 +799,23 @@ html[lang="el"] {
     }
 
     #overview h2 {
-        font-size: 66px;
+        .font-size(66px);
     }
 
     .partner-article .article-header nav a {
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         line-height: 1.2;
     }
 
     .partner-article .article-content .intro h4 {
-        font-size: 24px;
+        .font-size(24px);
     }
 }
 
 html[lang="fr"],
 html[lang="pt-BR"] {
     #overview h2 {
-        font-size: 72px;
+        .font-size(72px);
     }
 }
 
@@ -833,7 +833,7 @@ html[lang="ro"],
 html[lang="sr"] {
     #explore,
     #overview .intro #more-partners {
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         line-height: 1.2;
         font-family: inherit;
     }
@@ -846,13 +846,13 @@ html[lang="sr"] {
 html[lang|="es"],
 html[lang|="sr"] {
     #overview h2 {
-        font-size: 70px;
+        .font-size(70px);
     }
 }
 
 html[lang="ca"] {
     #overview-links li {
-        font-size: 13px;
+        .font-size(13px);
         line-height: 1.3em;
     }
 }

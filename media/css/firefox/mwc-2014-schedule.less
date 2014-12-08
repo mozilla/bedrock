@@ -6,7 +6,7 @@
   float: left;
   width: 45%;
   display: block;
-  font-size: @largeFontSize;
+  .font-size(@largeFontSize);
   .open-sans-light;
   margin-bottom: @baseLine / 2;
   font-style: italic;
@@ -44,14 +44,14 @@
     background: #f4f6f6;
     background: -webkit-linear-gradient(top,  #f4f6f6 0%,#ecedee 100%);
     background: linear-gradient(to bottom,  #f4f6f6 0%,#ecedee 100%);
-    font-size: 18px;
+    .font-size(18px);
     .open-sans;
     color: @textColorSecondary;
     letter-spacing: 0;
 
     span {
       display: block;
-      font-size: @smallFontSize;
+      .font-size(@smallFontSize);
       .open-sans;
       color: #8d8d8d;
       text-transform: uppercase;
@@ -68,7 +68,7 @@
     margin: 0;
     padding: 0 @baseLine 14px;
     list-style-type: none;
-    font-size: @baseFontSize;
+    .font-size(@baseFontSize);
     line-height: 18px;
     .open-sans-light;
     color: @textColorSecondary;
@@ -76,13 +76,13 @@
 
   .timeframe {
     margin-top: 4px;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     background: url(/media/img/firefox/os/mwc-2014-preview/sprite-icons.png) left -85px no-repeat;
     padding-left: @baseLine;
   }
 
   small {
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     display: block;
     margin-top: @baseLine / 2;
   }

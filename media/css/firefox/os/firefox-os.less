@@ -213,7 +213,7 @@ html, body {
     }
 
     p {
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         &:focus {
             outline: none;
         }
@@ -248,12 +248,12 @@ html, body {
 }
 
 h2 {
-  font-size: 48px;
+  .font-size(48px);
   letter-spacing: -2px;
 }
 
 section p, header p {
-  font-size: 18px;
+  .font-size(18px);
 }
 
 //fixed position left hand navigation
@@ -326,7 +326,7 @@ section p, header p {
       right: @baseLine / 2;
       height: 20px;
       width: 20px;
-      font-size: 20px;
+      .font-size(20px);
       color: #484848;
       span {
         display: block;
@@ -371,7 +371,7 @@ section p, header p {
 
       a {
         .open-sans-light;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         font-weight: normal;
       }
 
@@ -465,7 +465,7 @@ section p, header p {
       padding-left: 50px;
       background: #fff;
       text-align: left;
-      font-size: @largeFontSize;
+      .font-size(@largeFontSize);
       color: @textColorTertiary;
     }
     .type {
@@ -483,7 +483,7 @@ section p, header p {
   }
   .small {
     float: left;
-    font-size: @baseFontSize;
+    .font-size(@baseFontSize);
     line-height: 1.5em;
     width: 240px;
     text-align: left;
@@ -1137,7 +1137,7 @@ html[lang=hu] {
   #have-it-all {
     .messages-text {
       h2 {
-        font-size: 36px;
+        .font-size(36px);
       }
     }
   }
@@ -1373,7 +1373,7 @@ html[lang="pl"] {
     margin-right: @baseLine;
   }
   h3 {
-    font-size: 32px;
+    .font-size(32px);
     letter-spacing: -1px;
     padding-left: 5px;
   }
@@ -1386,7 +1386,7 @@ html[lang="pl"] {
   ul li {
     float: left;
     width: 430px;
-    font-size: 22px;
+    .font-size(22px);
     letter-spacing: -1px;
     .open-sans-light();
     padding: @gridGutterWidth;
@@ -1394,7 +1394,7 @@ html[lang="pl"] {
     margin: 5px;
     a {
       display: block;
-      font-size: @largeFontSize;
+      .font-size(@largeFontSize);
       color: #149fd3;
       letter-spacing: 0px;
       &:after {
@@ -1407,7 +1407,7 @@ html[lang="pl"] {
 // email signup form no-JS styles
 #email-form-content {
   h3 {
-    font-size: 26px;
+    .font-size(26px);
     line-height: 32px;
     text-shadow: none;
   }
@@ -1605,12 +1605,12 @@ html[lang|="en"].js {
     //.fox-wrapper { display: none; }
     .content {
       h2 {
-        font-size: 40px;
+        .font-size(40px);
       }
     }
     ul {
       li {
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
       }
       .discover {
         margin-top: 0;
@@ -1860,15 +1860,15 @@ html[lang|="en"].js {
       .small {
         float: none;
         width: auto;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         text-align: center;
       }
       h2 {
-        font-size: 30px; // for non-US locales
+        .font-size(30px); // for non-US locales
         br { display: none; } // ignore any custom line breaks (no room for that on mobile)
       }
       p {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
       }
       .button {
         float: none;
@@ -1883,7 +1883,7 @@ html[lang|="en"].js {
       width: auto;
       li {
         margin-left: 0;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
       }
       .discover {
         margin-top: 0;
@@ -1905,7 +1905,7 @@ html[lang|="en"].js {
       .content {
         left: 80px;
         h2 {
-          font-size: 36px;
+          .font-size(36px);
         }
       }
       ul {
@@ -2109,7 +2109,7 @@ html[lang|="en"].js {
       left: 65px;
       right: 8px;
       .small {
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
       }
     }
     ul {

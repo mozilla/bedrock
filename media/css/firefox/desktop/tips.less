@@ -61,13 +61,13 @@
     }
 
     h1 {
-        font-size: 54px;
+        .font-size(54px);
         margin: 0 0 14px 0;
         padding-top: 24px;
     }
 
     h2 {
-        font-size: 24px;
+        .font-size(24px);
         padding: 0;
         margin: 0 0 30px 0;
     }
@@ -118,7 +118,7 @@
             background: url(/media/img/firefox/desktop/tips/sprite-tabs.png) left -84px no-repeat;
             text-align: center;
             color: #fff;
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
             text-transform: uppercase;
             line-height: 1.2;
             padding: 0 30px;
@@ -155,7 +155,7 @@
 
         span {
             border-bottom: 0;
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
         }
     }
 
@@ -190,13 +190,13 @@ html[lang^='en'] #tips-nav-direct li a span:after {
     margin-left: 40px;
     padding: 30px @baseLine 0;
     text-align: center;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     line-height: 1.6;
     color: @textColorTertiary;
     .open-sans-light();
 
     h3 {
-        font-size: 30px;
+        .font-size(30px);
     }
 
     hr {
@@ -205,7 +205,7 @@ html[lang^='en'] #tips-nav-direct li a span:after {
     }
 
     h4 {
-        font-size: 20px;
+        .font-size(20px);
     }
 
     strong {
@@ -268,7 +268,7 @@ html[lang^='en'] #tips-nav-direct li a span:after {
     background: #ff7200;
     color: #fff;
     .open-sans-light();
-    font-size: 34px;
+    .font-size(34px);
     line-height: 46px;
     border-radius: 50%;
     text-align: center;
@@ -500,11 +500,11 @@ html[dir='rtl'] {
                     inset 0 -30px 0 0 #2f7bbc;
 
         h1 {
-            font-size: 44px;
+            .font-size(44px);
         }
 
         h2 {
-            font-size: 22px;
+            .font-size(22px);
         }
 
         #share-nav-wrapper {
@@ -529,11 +529,11 @@ html[dir='rtl'] {
         width: 220px;
         margin-left: @baseLine * 2;
         padding: 0;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         line-height: 1.4;
 
         h3 {
-            font-size: 24px;
+            .font-size(24px);
         }
     }
 
@@ -637,12 +637,12 @@ html[dir='rtl'] {
                     inset 0 -16px 0 0 #2f7bbc;
 
         h1 {
-            font-size: 30px;
+            .font-size(30px);
             padding-top: 30px;
         }
 
         h2 {
-            font-size: 20px;
+            .font-size(20px);
             margin: 0 0 10px 0;
         }
 
@@ -678,11 +678,11 @@ html[dir='rtl'] {
         width: 440px;
         margin: 0;
         padding: 0;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         line-height: 1.4;
 
         h3 {
-            font-size: 24px;
+            .font-size(24px);
         }
     }
 
@@ -767,7 +767,7 @@ html[dir='rtl'] {
                 color: lighten(#dfe5e8, 2%);
                 margin: 10px 10px 0;
                 text-align: center;
-                font-size: 1px;
+                .font-size(1px);
                 .transition(all .2s ease);
 
                 &.active {
@@ -776,7 +776,7 @@ html[dir='rtl'] {
                     background: #ff7200;
                     color: #fff;
                     .open-sans-light();
-                    font-size: 24px;
+                    .font-size(24px);
                     line-height: 36px;
                     margin-top: 0;
                 }

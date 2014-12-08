@@ -68,7 +68,7 @@
 
     h1 {
         color: #c13832;
-        font-size: 84px;
+        .font-size(84px);
         font-weight: bold;
         letter-spacing: -.05em;
         margin: 0 0 .05em;
@@ -79,7 +79,7 @@
     }
 
     .tagline {
-       font-size: 55px;
+       .font-size(55px);
        letter-spacing: -.025em;
        margin: 0;
     }
@@ -94,7 +94,7 @@
 [lang='mk'],
 [lang^='es'] {
     .mission .tagline {
-        font-size: 42px;
+        .font-size(42px);
     }
 }
 
@@ -168,7 +168,7 @@
 // A title visible when the panel is in its initial state.
 .panel-title {
     color: #fff;
-    font-size: 18px;
+    .font-size(18px);
     line-height: 1.2;
     font-weight: bold;
     text-align: center;
@@ -217,14 +217,14 @@
 .panel-content {
     .open-sans-light;
     color: #fff;
-    font-size: 20px;
+    .font-size(20px);
     line-height: 1.3;
     position: relative;
     text-shadow: 0 1px 0 rgba(0, 0, 0, .15);
 
     h3 {
         font-weight: bold;
-        font-size: 100%;
+        .font-size(100%);
         color: inherit;
         letter-spacing: -.03em;
         margin: 0 0 .25em;
@@ -233,7 +233,7 @@
     }
 
     .go {
-        font-size: 90%;
+        .font-size(90%);
         font-weight: bold;
         letter-spacing: -.025em;
 
@@ -309,7 +309,7 @@
     text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
 
     h2 {
-        font-size: 34px;
+        .font-size(34px);
         margin: 0 0 .75em;
         color: #fff;
         text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
@@ -340,7 +340,7 @@
 
 .footer-newsletter-form {
     h3 {
-        font-size: 34px;
+        .font-size(34px);
         margin: 0 0 .75em;
         color: #fff;
         text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
@@ -446,7 +446,7 @@
                 border: dotted @borderColor;
                 border-width: 0 0 0 1px;
                 padding: 5px 0 5px 20px;
-                font-size: 40px;
+                .font-size(40px);
                 line-height: 1.1;
                 font-weight: normal;
                 letter-spacing: -.05em;
@@ -479,7 +479,7 @@
         text-transform: uppercase;
         font-weight: bold;
         display: block;
-        font-size: 18px;
+        .font-size(18px);
         line-height: 1.1;
         letter-spacing: -.05em;
         /* Reset the styles for Android: */
@@ -493,7 +493,7 @@
         .open-sans-light;
         color: #360;
         display: inline;
-        font-size: 11px;
+        .font-size(11px);
         font-weight: bold;
         text-shadow: 0 1px #9c6;
     }
@@ -536,7 +536,7 @@
     .entry-title {
         margin: 0;
         height: 3.8em;
-        font-size: 20px;
+        .font-size(20px);
         line-height: 1.2;
         .open-sans;
     }
@@ -582,7 +582,7 @@
 
     p {
         .open-sans-light;
-        font-size: 20px;
+        .font-size(20px);
     }
 
 }
@@ -620,7 +620,7 @@
     }
 
     .mission .tagline {
-        font-size: 42px;
+        .font-size(42px);
     }
 
     .pillars {
@@ -629,12 +629,12 @@
     }
 
     .panel-title {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         width: 160px;
     }
 
     .wide .panel-content {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         height: 280px;
         width: 250px;
         padding: 80px 20px 20px 200px;
@@ -645,7 +645,7 @@
         }
 
         .go {
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
         }
 
         & > a {
@@ -695,7 +695,7 @@
 
             h4 {
                 strong {
-                    font-size: 30px;
+                    .font-size(30px);
                 }
             }
         }
@@ -731,7 +731,7 @@
 
         h1 {
             font-weight: normal;
-            font-size: 36px;
+            .font-size(36px);
             text-align: left;
 
             img {
@@ -741,7 +741,7 @@
         }
 
         .tagline {
-            font-size: 30px;
+            .font-size(30px);
         }
     }
 
@@ -754,7 +754,7 @@
     [lang='mk'],
     [lang^='es'] {
         .mission .tagline {
-            font-size: 24px;
+            .font-size(24px);
         }
     }
 
@@ -799,7 +799,7 @@
         padding: .75em 35px .75em 40%;
         min-height: 3em;
         text-align: left;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
 
         &:after {
             content: '\25bc'; /* Down arrow */
@@ -810,7 +810,7 @@
     }
 
     .panel-content {
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         line-height: 1.2;
         width: 100%;
         height: 100%;
@@ -881,7 +881,7 @@
                     margin: 0;
                     border-width: 0;
                     padding: 0;
-                    font-size: 30px;
+                    .font-size(30px);
                 }
             }
         }

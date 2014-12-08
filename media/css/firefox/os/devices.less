@@ -60,13 +60,13 @@ html, body {
 
     h1 {
         color: #fff;
-        font-size: 60px;
+        .font-size(60px);
         text-shadow: none;
         margin-bottom: (@baseLine * 1.5);
     }
 
     label {
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         font-weight: bold;
         color: #a5dcff;
         text-transform: uppercase;
@@ -106,7 +106,7 @@ html, body {
 
 .section-heading {
     float: left;
-    font-size: 32px;
+    .font-size(32px);
     .open-sans-light;
     margin-bottom: 4px;
 }
@@ -133,7 +133,7 @@ html, body {
         display: block;
         width: 240px;
         padding: @baseLine;
-        font-size: @largeFontSize;
+        .font-size(@largeFontSize);
         text-transform: uppercase;
         text-align: center;
         .transition(all 0.3s ease);
@@ -181,7 +181,7 @@ html, body {
             padding-top: 6px;
             text-align: center;
             text-transform: none;
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
             .open-sans-light;
             overflow: hidden;
 
@@ -223,7 +223,7 @@ html, body {
 .device-title {
     float: left;
     width: 400px;
-    font-size: 28px;
+    .font-size(28px);
     .open-sans-light;
     padding-left: @baseLine;
     text-shadow: none;
@@ -240,7 +240,7 @@ html, body {
         margin: 0;
         text-align: center;
         .open-sans;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         text-transform: uppercase;
         li {
             .inline-block;
@@ -287,7 +287,7 @@ html, body {
     margin-bottom: @baseLine;
 
     h1 {
-        font-size: 38px;
+        .font-size(38px);
         margin-bottom: @baseLine;
     }
 }
@@ -316,7 +316,7 @@ html, body {
         margin-right: 0;
 
         h4 {
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
             color: @textColorPrimary;
             text-transform: uppercase;
             margin-bottom: 13px;
@@ -327,7 +327,7 @@ html, body {
 
 .logo-colors {
     em {
-        font-size: 20px;
+        .font-size(20px);
         color: #adadad;
         .open-sans-light;
     }
@@ -342,7 +342,7 @@ html, body {
     margin-top: @baseLine * 2;
 
     h4 {
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         text-transform: uppercase;
         font-weight: bold;
         margin-bottom: @baseLine / 2;
@@ -398,7 +398,7 @@ html, body {
 
 // tooltip plugin overrides
 .tipsy {
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     letter-spacing: 0.5px;
 }
 .tipsy-inner { background-color: #758797; }
@@ -421,7 +421,7 @@ html, body {
 
         strong {
             display: block;
-            font-size: 22px;
+            .font-size(22px);
             line-height: 16px;
             margin-bottom: 6px;
             font-weight: normal;
@@ -484,7 +484,7 @@ html, body {
     }
 
     dl {
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         .clearfix();
     }
 
@@ -492,7 +492,7 @@ html, body {
         float: left;
         clear: left;
         width: 40%;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         font-weight: bold;
     }
 
@@ -615,7 +615,7 @@ html, body {
 
         .device-thumbnail {
             width: 180px;
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
         }
     }
 
@@ -703,7 +703,7 @@ html, body {
         }
 
         h1 {
-            font-size: 40px;
+            .font-size(40px);
         }
     }
 
@@ -716,7 +716,7 @@ html, body {
 
         .button {
             padding: 7px 14px;
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
             line-height: 1;
         }
     }
@@ -726,7 +726,7 @@ html, body {
     }
 
     .section-heading {
-        font-size: 24px;
+        .font-size(24px);
     }
 
     .device-thumbnails {
@@ -738,7 +738,7 @@ html, body {
         .device-thumbnail {
             width: 50px;
             padding: (@baseLine / 2) (@baseLine * 2);
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
 
             img {
                 margin-bottom: 0;
@@ -787,7 +787,7 @@ html, body {
     }
 
     .device-title {
-        font-size: 22px;
+        .font-size(22px);
         padding-left: @baseLine;
         margin-bottom: @baseLine / 2;
     }
@@ -796,7 +796,7 @@ html, body {
         padding: @baseLine;
 
         h1 {
-            font-size: 28px;
+            .font-size(28px);
         }
     }
 
@@ -817,7 +817,7 @@ html, body {
                 float: none;
                 display: block;
                 width: auto;
-                font-size: @largeFontSize;
+                .font-size(@largeFontSize);
             }
 
             .color-picker {
@@ -865,7 +865,7 @@ html, body {
                 }
 
                 strong {
-                    font-size: 18px;
+                    .font-size(18px);
                 }
             }
         }
@@ -933,7 +933,7 @@ html, body {
         }
 
         h1 {
-            font-size: 26px;
+            .font-size(26px);
         }
     }
 
@@ -942,7 +942,7 @@ html, body {
     }
 
     .section-heading {
-        font-size: 20px;
+        .font-size(20px);
         margin-top: 2px;
     }
 
@@ -969,7 +969,7 @@ html, body {
     }
 
     .device-details h1 {
-        font-size: 22px;
+        .font-size(22px);
         margin-bottom: 0;
     }
 
@@ -999,7 +999,7 @@ html, body {
                 float: none;
                 display: block;
                 width: auto;
-                font-size: @largeFontSize;
+                .font-size(@largeFontSize);
             }
 
             .color-picker {

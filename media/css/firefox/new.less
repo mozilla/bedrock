@@ -37,7 +37,7 @@
 
 .version-message-container {
     text-align: center;
-    font-size: 20px;
+    .font-size(20px);
     font-style: italic;
     padding: 0 30px 20px;
     display: none;
@@ -62,7 +62,7 @@
     display: block;
     padding: 0;
     background: transparent;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
 }
 
 
@@ -93,7 +93,7 @@
     margin-left: -170px;
     width: 340px;
     text-align: center;
-    font-size: @baseFontSize;
+    .font-size(@baseFontSize);
     color: @textColorLight;
     z-index: 2;
 }
@@ -307,7 +307,7 @@ html.fxos {
     h1.large {
         margin: 12px 50px;
         text-align: center;
-        font-size: 60px;
+        .font-size(60px);
         span { white-space: nowrap; }
     }
     img { display: none; }
@@ -329,7 +329,7 @@ html[lang|="en"] #main-feature h1.large span:first-child {
         margin: 0 130px 0;
         color: @buttonGreenDark;
         font-style: italic;
-        font-size: 18px;
+        .font-size(18px);
         .open-sans-light;
         &:focus {
             outline: none;
@@ -347,7 +347,7 @@ html[lang|="en"] #main-feature h1.large span:first-child {
             *display: inline;
             overflow: hidden;
             text-align: left;
-            font-size: @smallFontSize;
+            .font-size(@smallFontSize);
             color: @textColorTertiary;
             font-style: italic;
             .screen {
@@ -468,7 +468,7 @@ html[lang|="en"] #main-feature h1.large span:first-child {
     text-align: left;
     margin: 5px auto 0 -35px;
     font-style: normal;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     div > a {
         background: none;
         padding: 0px 28px 0px 0;
@@ -519,7 +519,7 @@ html[dir="rtl"] {
 
     #main-feature h1.large {
         margin: 12px 0;
-        font-size: 55px;
+        .font-size(55px);
     }
 
     #firefox-screenshot {
@@ -585,7 +585,7 @@ html[dir="rtl"] {
     }
     .version-message-container {
         padding: 0 20px 20px;
-        font-size: 18px;
+        .font-size(18px);
     }
     #main-feature {
         margin: 0;
@@ -597,7 +597,7 @@ html[dir="rtl"] {
         }
         h1.large {
             margin: 12px 0;
-            font-size: 36px;
+            .font-size(36px);
             letter-spacing: -1px;
         }
         img {
@@ -678,7 +678,7 @@ html[dir="rtl"] {
     .ready-for-scene2 {
         .thankyou {
             margin: 10px 0 0 0;
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
             letter-spacing: auto;
         }
 

@@ -48,7 +48,7 @@
 
 .top-figcaption {
     .open-sans-light;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     color: #eee;
 }
 
@@ -90,7 +90,7 @@
 .firefox-os-action-icons {
     #content_area {
         h3 {
-            font-size: 24px;
+            .font-size(24px);
         }
     }
     .swatch-card {
@@ -98,7 +98,7 @@
         margin-bottom: @baseLine * 1.5;
         h4 {
             small {
-                font-size: @smallFontSize;
+                .font-size(@smallFontSize);
                 .open-sans;
                 letter-spacing: normal;
                 display: block;
@@ -141,7 +141,7 @@
         }
     }
     h4 {
-        font-size: 20px;
+        .font-size(20px);
     }
     #basics {
         .divider-dark;
@@ -182,7 +182,7 @@
                         li {
                             list-style-type: none;
                             margin-left: 0;
-                            font-size: @smallFontSize;
+                            .font-size(@smallFontSize);
                             color: @darkThemeText;
                         }
                     }
@@ -456,7 +456,7 @@
     }
     #recommended_gradients h3,
     #examples h3 {
-        font-size: @baseLine;
+        .font-size(@baseLine);
         margin-top: 40px;
     }
     #main_colors,
@@ -724,13 +724,13 @@
             .span_guide(12);
             margin-top: @baseLine;
             h3 {
-                font-size: @baseLine;
+                .font-size(@baseLine);
                 margin-top: @baseLine * 2;
                 padding-bottom: 10px;
                 border-bottom: 1px #04c1e7 solid;
             }
             p {
-                font-size: 36px;
+                .font-size(36px);
             }
         }
     }
@@ -778,7 +778,7 @@
             margin-bottom: @baseLine;
         }
         h3 {
-            font-size: @baseLine;
+            .font-size(@baseLine);
         }
         table {
             .span_guide(6);

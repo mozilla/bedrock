@@ -46,7 +46,7 @@ body {
 			height: 100px;
 			color: #352B33;
 			background-color: #FFF;
-			font-size: 20px;
+			.font-size(20px);
 			line-height: 1.2;
 			font-weight: bold;
 			vertical-align: middle;
@@ -57,7 +57,7 @@ body {
 	blockquote {
 		position: relative;
 		padding-left: 80px;
-		font-size: 40px;
+		.font-size(40px);
 		line-height: 1.2;
 		.open-sans-light;
 
@@ -78,7 +78,7 @@ body {
 		}
 
 		cite {
-			font-size: 50%;
+			.font-size(50%);
 			font-style: italic;
 		}
 	}
@@ -92,7 +92,7 @@ body {
 		float: left;
 		width: 210px;
 		h1 {
-			font-size: 36px;
+			.font-size(36px);
 			color: #0095dd;
 		}
 	}
@@ -105,7 +105,7 @@ body {
 		float: right;
 		width: 460px;
 		color: #4d4e53;
-		font-size: @largeFontSize;
+		.font-size(@largeFontSize);
 	}
 }
 
@@ -139,7 +139,7 @@ body {
 			height: 100%;
 			font-weight: 800;
 			font-style: italic;
-			font-size: 18px;
+			.font-size(18px);
 			line-height: 100%;
 			text-transform: uppercase;
 			color: #fff;
@@ -234,7 +234,7 @@ body {
 			padding: @baseLine;
 			.transition;
 			small {
-				font-size: 18px;
+				.font-size(18px);
 				font-style: italic;
 				display: block;
 				font-weight: 100;
@@ -286,7 +286,7 @@ html[dir="rtl"] {
 			footer {
 				text-align: left;
 			}
-	
+
 			&:before {
 				right: 0;
 				left: auto;
@@ -375,7 +375,7 @@ html[dir="rtl"] {
 			margin-bottom: 40px;
 		}
 		blockquote {
-			font-size: 30px !important;
+			.font-size(30px) !important;
 			padding-left: 50px;
 			&:before {
 				width: 40px;
@@ -392,7 +392,7 @@ html[dir="rtl"] {
 		header {
 			width: 180px;
 			h1 {
-				font-size: 30px;
+				.font-size(30px);
 			}
 		}
 	}
@@ -422,7 +422,7 @@ html[dir="rtl"] {
 		li {
 			width: 220px;
 			a {
-				font-size: 16px;
+				.font-size(16px);
 			}
 		}
 	}
@@ -520,7 +520,7 @@ html[dir="rtl"] {
 		li {
 			width: 440px;
 			a {
-				font-size: 18px;
+				.font-size(18px);
 			}
 		}
 	}
@@ -555,7 +555,7 @@ html[dir="rtl"] {
 				padding: 15px;
 				width: 70px;
 				height: 70px;
-				font-size: @baseFontSize;
+				.font-size(@baseFontSize);
 			}
 		}
 		blockquote {
@@ -563,12 +563,12 @@ html[dir="rtl"] {
 			margin-left: -20px;
 			width: @breakMobile - (@baseLine * 2);
 			padding: @baseLine;
-			font-size: 26px !important;
+			.font-size(26px) !important;
 		}
 	}
 
 	.content-section header h1 {
-		font-size: 30px;
+		.font-size(30px);
 	}
 
 	.videos {
@@ -586,7 +586,7 @@ html[dir="rtl"] {
 		li {
 			width: 300px;
 			a {
-				font-size: 16px;
+				.font-size(16px);
 			}
 		}
 	}
@@ -611,7 +611,7 @@ html[lang="ar"] {
 
 /* Larger font size in English */
 html[lang|="en"] .banner blockquote {
-  font-size: 48px;
+  .font-size(48px);
   line-height: 1.1;
 }
 

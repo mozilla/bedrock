@@ -15,7 +15,7 @@
     #gradient > .vertical(@buttonBlue, @buttonBlueDark);
     color: @buttonTextColor;
     text-align: center;
-    font-size: @baseFontSize;
+    .font-size(@baseFontSize);
     font-weight: bold;
     padding: (@baseLine / 4) (@baseLine / 2);
     line-height: 1.1;
@@ -100,7 +100,7 @@
     background: #fff;
     padding: (@baseLine / 5) @baseFontSize * 0.75;
     color: @textColorSecondary;
-    font-size: @baseFontSize * 0.75;
+    .font-size(@baseFontSize * 0.75);
     font-weight: normal;
     text-shadow: none;
     @shadow: 0 0 12px rgba(230,230,230,0.2) inset, 0 -2px #e8e8e8 inset;
@@ -170,9 +170,9 @@
     padding: 0;
     // Font size set to 0 on UL and reset to body size on the LI tags
     // This avoids putting a horizontal space between inline-block links
-    font-size: 0;
+    .font-size(0);
     li {
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
         margin: 0;
         padding: 0;
         list-style-style: none;
@@ -286,7 +286,7 @@
     text-align: left;
     font-weight: normal;
     line-height: @baseLine;
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
     .border-radius(6px);
     .download-content {
         display: block;
@@ -305,7 +305,7 @@
     .download-title span {
         display: block;
         color: #fff;
-        font-size: 30px;
+        .font-size(30px);
         font-weight: normal;
         letter-spacing: -0.02em;
         padding-top: 8px;
@@ -323,7 +323,7 @@
         display: block;
         color: #346012;
         padding-top: 2px;
-        font-size: 11px;
+        .font-size(11px);
         line-height: 100%;
         text-shadow: 0 1px rgba(255,255,255,0.2);
     }
@@ -347,11 +347,11 @@
         min-height: 45px;
         padding: 10px 20px 10px 73px;
         overflow: visible;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         .border-radius(6px);
     }
     .download-title {
-        font-size: 22px;
+        .font-size(22px);
         padding-top: 0;
         margin-bottom: 0;
     }
@@ -373,7 +373,7 @@
 .download-button-aurora {
     .download-link .download-title,
     .download-link .download-title span {
-        font-size: 24px;
+        .font-size(24px);
     }
 }
 
@@ -381,17 +381,17 @@
 .download-button-aurora.download-button-small {
     .download-link .download-title,
     .download-link .download-title span {
-        font-size: 20px;
+        .font-size(20px);
     }
 }
 
 .download-button-aurora.download-button-small {
     .download-link {
         .download-title {
-            font-size: 13px;
+            .font-size(13px);
             font-style: italic;
             span {
-                font-size: 18px;
+                .font-size(18px);
                 font-style: normal;
                 margin-bottom: 0;
                 letter-spacing: normal;
@@ -419,7 +419,7 @@
 .download-button.download-button-mobile.download-button-aurora.download-button-small,
 .download-button.download-button-mobile.download-button-beta.download-button-small {
     .download-link .download-title span {
-        font-size: 18px;
+        .font-size(18px);
         letter-spacing: -0.01em;
     }
 }
@@ -502,7 +502,7 @@
         }
 
         .download-subtitle {
-            font-size: 20px;
+            .font-size(20px);
         }
     }
 
@@ -515,7 +515,7 @@
             }
 
             .download-subtitle {
-                font-size: @largeFontSize;
+                .font-size(@largeFontSize);
             }
         }
     }
@@ -570,7 +570,7 @@
 .android .download-button-desktop small.download-other {
     .open-sans;
     display: block;
-    font-size: 11px;
+    .font-size(11px);
     text-align: center;
     margin-top: 6px;
     color: @textColorLight;
@@ -599,14 +599,14 @@
     h4 {
         text-shadow: none;
         margin: 0 0 6px 0;
-        font-size: 18px;
+        .font-size(18px);
     }
     ul li {
         display: inline;
     }
 
     small {
-        font-size: 11px;
+        .font-size(11px);
         letter-spacing: normal;
     }
     .button-green {
@@ -626,7 +626,7 @@
        .download-title {
             padding-top: 0;
             margin-bottom: 5px;
-            font-size: @largeFontSize;
+            .font-size(@largeFontSize);
             color: #346012;
             text-shadow: 0 1px rgba(255, 255, 255, 0.2);
         }
@@ -636,7 +636,7 @@
             text-align: left;
             margin-right: 40px;
             color: #fff;
-            font-size: 11px;
+            .font-size(11px);
             line-height: 1.2;
             letter-spacing: normal;
             text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -650,12 +650,12 @@
        .download-title {
             padding-top: 0;
             margin-bottom: 5px;
-            font-size: 13px;
+            .font-size(13px);
             color: #346012;
             text-shadow: 0 1px rgba(255, 255, 255, 0.2);
             letter-spacing: normal;
             span {
-                font-size: 22px;
+                .font-size(22px);
                 margin-bottom: 0;
             }
         }
@@ -722,7 +722,7 @@ html[lang="ml"] {
     .download-button .download-link {
         .download-title,
         .download-title span {
-            font-size: 26px;
+            .font-size(26px);
             line-height: 1.2em;
         }
     }

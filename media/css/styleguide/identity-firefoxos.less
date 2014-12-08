@@ -33,7 +33,7 @@
         padding: 40px;
     }
     .caption {
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         font-style: italic;
     }
 }
@@ -87,11 +87,11 @@
         }
     }
     #purpose h3 {
-        font-size: 40px;
+        .font-size(40px);
         padding-right: 100px;
     }
     #principles h3 {
-        font-size: 30px;
+        .font-size(30px);
     }
 }
 
@@ -177,7 +177,7 @@
                 margin: 0 0 0 10px;
                 span {
                     display: block;
-                    font-size: 18px;
+                    .font-size(18px);
                 }
                 p {
                     margin-bottom: 0;
@@ -265,7 +265,7 @@
 
 .firefoxos-community {
     h3 {
-        font-size: 20px;
+        .font-size(20px);
     }
     .split {
         width: (320px - @baseLine);
@@ -353,7 +353,7 @@
             p.sample {
                 float: left;
                 width: 460px;
-                font-size: 60px;
+                .font-size(60px);
                 line-height: 1;
                 color: #0095dd;
                 margin-bottom: 60px;
@@ -406,19 +406,19 @@
             p#approved-headlines {
                 .open-sans-extrabold;
                 font-style: italic;
-                font-size: 60px;
+                .font-size(60px);
                 line-height: 90%;
                 color: #0095dd;
                 text-transform: uppercase;
             }
             p#headlines {
                 .open-sans-light;
-                font-size: 60px;
+                .font-size(60px);
                 line-height: 90%;
                 color: #0095dd;
             }
             p#subheads {
-                font-size: 20px;
+                .font-size(20px);
                 line-height: 120%;
                 font-weight: bold;
                 .break {
@@ -426,7 +426,7 @@
                 }
             }
             p#body-copy {
-                font-size: 15px;
+                .font-size(15px);
                 line-height: 120%;
             }
         }

@@ -10,6 +10,25 @@
 @smallFontSize:     12px;
 @largeFontSize:     16px;
 
+// Use rem (root em) units for font-size.
+// Assumes default 16px to match sizes but will respect user preferences.
+// Pass through any units that aren't px or rem
+.font-size(@value) {
+    font-size: @value;
+}
+
+// When unit is pixels, pass it through and convert to rem
+.font-size(@value) when (ispixel(@value)) {
+    font-size: @value;
+    .font-size(unit(@value / 16, rem));
+}
+
+// When unit is rem, convert it to pixels and pass it through
+.font-size(@value) when (isunit(@value, rem)) {
+    font-size: unit(@value * 16, px);
+    font-size: @value;
+}
+
 @textColorPrimary:   #333;
 @textColorSecondary: #484848;
 @textColorTertiary:  #666;
@@ -305,7 +324,7 @@
 
 .required-star() {
     content: " *";
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     font-weight: bold;
     color: @linkRed;
 }

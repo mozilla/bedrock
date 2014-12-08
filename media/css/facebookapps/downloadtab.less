@@ -83,10 +83,10 @@ h1 {
     clear: both;
     margin: 30px 0 0;
 
-    font-size: 52px;
+    .font-size(52px);
 }
 h2 {
-    font-size: 30px;
+    .font-size(30px);
 }
 
 // Header
@@ -123,7 +123,7 @@ h2 {
     margin: 0 auto;
     width: 560px;
 
-    font-size: @largeFontSize;
+    .font-size(@largeFontSize);
 }
 
 // Steps progress bar
@@ -144,7 +144,7 @@ h2 {
             width: 33.3%;
 
             .open-sans-light;
-            font-size: 21px;
+            .font-size(21px);
         }
     }
     .step1 { text-align: left }
@@ -171,7 +171,7 @@ h2 {
     padding: 0 15px;
     height: 45px;
 
-    font-size: 22px;
+    .font-size(22px);
     font-weight: normal;
     line-height: 45px;
     text-shadow: 0 -1px 0 rgba(0,0,0,.75);
@@ -216,7 +216,7 @@ h2 {
         background: url(/media/img/firefox/new/features-divider.png) right top no-repeat;
         color: @textColorSecondary;
         .open-sans-light;
-        font-size: 24px;
+        .font-size(24px);
         letter-spacing: -0.03em;
         line-height: 110%;
         text-align: center;
@@ -269,7 +269,7 @@ h2 {
         padding: 0;
         width: 175px;
         color: @textColorTertiary;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         text-align: left;
 
         &:after {
@@ -406,7 +406,7 @@ h2 {
 
     h3 {
         margin: 0;
-        font-size: 17px;
+        .font-size(17px);
 
         &.single-line {
             margin-top: 9px;
@@ -414,7 +414,7 @@ h2 {
     }
     p {
         margin: 0;
-        font-size: @baseFontSize;
+        .font-size(@baseFontSize);
     }
 
     .button,
@@ -430,7 +430,7 @@ h2 {
         padding: 0 20px;
         height: 40px;
 
-        font-size: 18px;
+        .font-size(18px);
         line-height: 40px;
     }
     .like-txt { margin-top: -21px }

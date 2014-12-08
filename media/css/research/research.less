@@ -47,7 +47,7 @@ nav.menu-bar ul li a {
     .intro {
         .span(6);
         padding-top: @baseLine;
-        font-size: 18px;
+        .font-size(18px);
         .open-sans-light;
     }
 
@@ -101,7 +101,7 @@ nav.menu-bar ul li a {
             em {
                 display: block;
                 font-style: normal;
-                font-size: 18px;
+                .font-size(18px);
             }
         }
         p {
@@ -118,7 +118,7 @@ nav.menu-bar ul li a {
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     .large h2 {
-        font-size: 36px;
+        .font-size(36px);
     }
     #main-content {
         .intro {
@@ -149,11 +149,11 @@ nav.menu-bar ul li a {
 @media only screen and (max-width: @breakTablet) {
     .large {
         h1 {
-            font-size: 40px;
+            .font-size(40px);
             margin-bottom: 5px;
         }
         h2 {
-            font-size: 24px;
+            .font-size(24px);
         }
     }
     #research #main-feature {
@@ -167,7 +167,7 @@ nav.menu-bar ul li a {
             float: none;
         }
         .intro {
-            font-size: @baseFontSize;
+            .font-size(@baseFontSize);
             .open-sans;
         }
     }

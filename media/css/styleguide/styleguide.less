@@ -133,7 +133,7 @@ a[href="#TODO"] { color: #f00 !important; }
     }
     h2 {
         text-align: center;
-        font-size: 24px;
+        .font-size(24px);
         img {
             display: block;
             margin: 0 auto 5px auto;
@@ -145,7 +145,7 @@ a[href="#TODO"] { color: #f00 !important; }
     nav {
         text-transform: uppercase;
         .open-sans-light;
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
         margin: @baseLine auto;
         width: 160px;
         ul {
@@ -237,7 +237,7 @@ h1 {
     right: 0;
     text-transform: uppercase;
     .open-sans-light;
-    font-size: 11px;
+    .font-size(11px);
     line-height: 20px;
     a,b {
         display: inline-block;
@@ -356,13 +356,13 @@ body.dark {
         margin-right: 20px;
     }
     h5 {
-        font-size: 28px;
+        .font-size(28px);
     }
     p {
         margin-bottom: @baseLine / 2;
     }
     td,tr {
-        font-size: @smallFontSize;
+        .font-size(@smallFontSize);
     }
     td {
         padding-right: 20px;
@@ -386,7 +386,7 @@ body.dark {
             position: absolute;
             top: 0;
             left: 0;
-            font-size: 48px;
+            .font-size(48px);
             .open-sans-light;
         }
     }
@@ -398,7 +398,7 @@ body.dark {
 .styleguide-home {
     #content_area h1 {
         .span_guide(4);
-        font-size: 72px;
+        .font-size(72px);
         letter-spacing: -3px;
         line-height: 100%;
         margin-top: 60px;

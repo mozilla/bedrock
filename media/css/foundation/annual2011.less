@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 #sustainability h2, #sustainability h3 { color: @red; }
 
 .section-title {
-  font-size: 38px;
+  .font-size(38px);
   margin: 0 -20px .35em;
   padding: .5em 20px 0;
   border-top: 2px solid;
@@ -63,7 +63,7 @@ a.vid-youtube:focus {
   position: relative;
   h1 {
     font-style: normal;
-    font-size: 72px;
+    .font-size(72px);
     letter-spacing: -2px;
     margin: (@baseLine / 2) 0;
   }
@@ -187,7 +187,7 @@ body.noscroll {
   border: 1px solid #ccc;
   color: #ccc;
   .open-sans;
-  font-size: 1em;
+  .font-size(1em);
   text-transform: uppercase;
   padding: .2em 10px;
   cursor: pointer;
@@ -270,7 +270,7 @@ body.noscroll {
   border: 0;
   padding: .2em 20px;
   .open-sans;
-  font-size: 1em;
+  .font-size(1em);
   text-transform: uppercase;
   background: #ccc;
   background: rgba(255,255,255,.65);
@@ -280,7 +280,7 @@ body.noscroll {
 }
 .read:after {
   content: " »";
-  font-size: 1.2em;
+  .font-size(1.2em);
   line-height: 1;
 }
 
@@ -297,7 +297,7 @@ body.noscroll {
   .open-sans-light;
   background: #000;
   color: #fff;
-  font-size: 24px;
+  .font-size(24px);
   padding: 40px 20px;
   margin: 0;
   text-align: center;
@@ -342,7 +342,7 @@ body.noscroll {
     background: #004980 url(/media/img/foundation/annualreport/2011/mob-firefoxos.jpg) center top no-repeat;
     background-size: cover;
     padding: 100px 90px;
-    font-size: 38px;
+    .font-size(38px);
     font-style: italic;
     text-align: center;
     color: #f7f4ec;
@@ -363,7 +363,7 @@ body.noscroll {
   h4 {
     padding: 85px 20px 0 215px;
     min-height: 235px;
-    font-size: 42px;
+    .font-size(42px);
     font-style: normal;
     color: #f7f4ec;
     text-shadow: none;
@@ -392,7 +392,7 @@ body.noscroll {
   padding: 120px 100px 0;
   text-align: center;
   .open-sans-light;
-  font-size: 42px;
+  .font-size(42px);
   font-style: italic;
   color: #f7f4ec;
   text-shadow: none;
@@ -410,7 +410,7 @@ body.noscroll {
   padding: 100px 120px 0;
   text-align: center;
   .open-sans-light;
-  font-size: 42px;
+  .font-size(42px);
   font-style: italic;
   color: #f7f4ec;
   text-shadow: none;
@@ -432,7 +432,7 @@ body.noscroll {
   margin: 0;
   text-align: center;
   .open-sans-light;
-  font-size: 32px;
+  .font-size(32px);
   font-style: italic;
   color: #f7f4ec;
   text-shadow: none;
@@ -450,7 +450,7 @@ body.noscroll {
   padding: 130px 40px 0;
   text-align: center;
   .open-sans-light;
-  font-size: 38px;
+  .font-size(38px);
   font-style: italic;
   color: #f7f4ec;
   text-shadow: none;
@@ -523,7 +523,7 @@ body.noscroll {
     padding: 95px;
     text-align: center;
     vertical-align: middle;
-    font-size: 46px;
+    .font-size(46px);
     text-shadow: 0 0 3px rgba(255,255,255,.25), 0 1px 1px rgba(0,0,0,.5);
   }
   img {
@@ -673,11 +673,11 @@ body.noscroll {
       color: #fff;
     }
     h4 {
-      font-size: 1.071em;
+      .font-size(1.071em);
       margin: 10px 0 .15em;
     }
     h5 {
-      font-size: .928em;
+      .font-size(.928em);
     }
     .note {
       .visually-hidden();
@@ -741,7 +741,7 @@ body.noscroll {
     display: block;
     padding: 20px 10px;
     height: 94px;
-    font-size: 1.285em;
+    .font-size(1.285em);
     line-height: 1.1;
     text-transform: uppercase;
     .open-sans-light;
@@ -750,12 +750,12 @@ body.noscroll {
     display: block;
     text-align: center;
     font-style: italic;
-    font-size: .611em;
+    .font-size(.611em);
     margin-top: 1em;
   }
   a.sus-faq {
     text-align: center;
-    font-size: 34px;
+    .font-size(34px);
     padding-top: 40px;
     height: 74px;
     color: @red;
@@ -814,7 +814,7 @@ body.noscroll {
 
   .mob-fxandroid {
     h4 {
-      font-size: 32px;
+      .font-size(32px);
       min-height: 200px;
       background-position: 0 -15px;
     }
@@ -829,7 +829,7 @@ body.noscroll {
   }
 
   .mob-standards .pull {
-    font-size: 26px;
+    .font-size(26px);
     min-height: 160px;
   }
 
@@ -844,7 +844,7 @@ body.noscroll {
   .com-intro .pull {
     height: 340px;
     h3 {
-      font-size: 38px;
+      .font-size(38px);
     }
   }
 
@@ -864,7 +864,7 @@ body.noscroll {
   #story-slider,
   #story-slider-clone {
     .vcard {
-      font-size: @smallFontSize;
+      .font-size(@smallFontSize);
       min-height: 77px;
     }
   }
@@ -884,7 +884,7 @@ body.noscroll {
   }
 
   #masthead h1 {
-    font-size: 32px;
+    .font-size(32px);
     letter-spacing: -1px;
   }
 
@@ -958,7 +958,7 @@ body.noscroll {
   .mob-topics {
     padding: 0 20px 20px;
     margin: 0 0 20px;
-    font-size: @smallFontSize;
+    .font-size(@smallFontSize);
     li {
       padding-top: 100px;
     }
@@ -984,7 +984,7 @@ body.noscroll {
   .mob-webmaker .pull,
   .mob-standards .pull,
   .act-intro .pull {
-    font-size: 18px;
+    .font-size(18px);
     padding: 20px;
     min-height: 0;
     background-size: cover;
@@ -1019,7 +1019,7 @@ body.noscroll {
     background: darken(@orange, 20%);
     h3 {
       display: block;
-      font-size: 32px;
+      .font-size(32px);
       padding: 0;
     }
     img {
@@ -1054,7 +1054,7 @@ body.noscroll {
     }
     a.sus-faq {
       text-align: left;
-      font-size: 1.285em;
+      .font-size(1.285em);
       padding: 6px 20px;
       height: auto;
       background: #e5e5e5 none;
@@ -1101,7 +1101,7 @@ body.noscroll {
   }
 
   .mob-topics {
-    font-size: 18px;
+    .font-size(18px);
   }
 
   .mob-firefoxos .pull,
@@ -1109,7 +1109,7 @@ body.noscroll {
   .mob-webmaker .pull,
   .mob-standards .pull,
   .act-intro .pull {
-    font-size: 24px;
+    .font-size(24px);
     padding: 30px;
   }
 
@@ -1134,7 +1134,7 @@ body.noscroll {
 /* Various Fixes for locales */
 
 html[lang='fr'] #masthead h1 {
-  font-size:68px;
+  .font-size(68px);
 }
 
 html[lang='cs'] .mob-fxandroid h4,
@@ -1144,12 +1144,12 @@ html[lang='el'] .mob-fxandroid h4,
 html[lang='es-ES'] .mob-fxandroid h4,
 html[lang='it'] .mob-fxandroid h4,
 html[lang='sq'] .mob-fxandroid h4 {
-  font-size: 37px;
+  .font-size(37px);
   padding-left: 200px;
 }
 
 html[lang='csb'] .mob-fxandroid h4 {
-  font-size: 33px;
+  .font-size(33px);
   line-height: 45px;
 }
 
@@ -1157,9 +1157,9 @@ html[lang='el'] .sus-links ul a.sus-faq,
 html[lang='is'] .sus-links ul a.sus-faq,
 html[lang='lij'] .sus-links ul a.sus-faq,
 html[lang='pt-BR'] .sus-links ul a.sus-faq {
-  font-size: 20px;
+  .font-size(20px);
 }
 
 html[lang='sv-SE'] .sus-links ul a.sus-faq {
-  font-size: 17px;
+  .font-size(17px);
 }
