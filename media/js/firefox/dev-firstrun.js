@@ -386,9 +386,13 @@ function onYouTubeIframeAPIReady() {
     // shows the current tour step and binds event listeners
     function bindTour() {
         clearTimeout(highlightTimeout);
-        highlightTimeout = setTimeout(function () {
-            showTourStep();
-        }, 900);
+
+        if (!document.hidden) {
+            highlightTimeout = setTimeout(function () {
+                showTourStep();
+            }, 900);
+        }
+
         $document.on('visibilitychange', handleVisibilityChange);
         $window.on('beforeunload', hideAppMenu);
     }
