@@ -52,3 +52,18 @@ DEFAULT_NEWSLETTERS = {
         u'vendor_id': u'FIREFOX_OS',
         u'welcome': u'OS_welcome'},
 }
+
+# Used on the newsletter preference center, included in the "interests" section.
+OTHER_NEWSLETTERS = [
+    'firefox-desktop',
+    'mobile',
+    'os',
+    'mozilla-general',
+    'firefox-os',
+]
+
+MARKETPLACE_NEWSLETTERS = [
+    'marketplace-desktop',
+    'marketplace-android',
+    'marketplace',
+]

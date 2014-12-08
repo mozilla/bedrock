@@ -202,8 +202,12 @@ class NewsletterForm(forms.Form):
     """
     title = forms.CharField(required=False)
     description = forms.CharField(required=False)
-    subscribed = forms.BooleanField(
+    subscribed_radio = forms.BooleanField(
         widget=forms.RadioSelect(renderer=BooleanRadioRenderer),
+        required=False,  # they have to answer, but answer can be False
+    )
+    subscribed_check = forms.BooleanField(
+        widget=TableCheckboxInput,
         required=False,  # they have to answer, but answer can be False
     )
     newsletter = forms.CharField(widget=forms.HiddenInput)

@@ -13,13 +13,15 @@ utils.basket.get_newsletters = news_mock
 # In the format returned by utils.get_newsletters()
 newsletters = {
     u'mozilla-and-you': {
+        'active': True,
+        'show': True,
         'title': "Firefox & You",
         'languages': ['en', 'fr', 'de', 'pt', 'ru'],
-        'show': True,
         'description': 'Firefox and you',
         'order': 4,
     },
     u'firefox-tips': {
+        'active': True,
         'show': True,
         'title': 'Firefox Tips',
         'languages': ['en', 'fr', 'de', 'pt', 'ru'],
@@ -27,6 +29,7 @@ newsletters = {
         'order': 2,
     },
     u'beta': {
+        'active': False,
         'show': False,
         'title': 'Beta News',
         'languages': ['en'],
@@ -34,6 +37,7 @@ newsletters = {
         'order': 3,
     },
     u'join-mozilla': {
+        'active': True,
         'show': False,
         'title': 'Join Mozilla',
         'languages': ['en', 'es'],

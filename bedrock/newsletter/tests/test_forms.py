@@ -112,7 +112,8 @@ class TestNewsletterForm(TestCase):
         initial = {
             'title': title,
             'newsletter': newsletter,
-            'subscribed': True,
+            'subscribed_radio': True,
+            'subscribed_check': True,
         }
         form = NewsletterForm(initial=initial)
         rendered = str(form)
