@@ -283,6 +283,15 @@ def show_search_whatsnew_tour(version, oldversion):
     return oldversion < Version(version)
 
 
+def show_34_0_5_search_template(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('34.0.5') and version < Version('36.0')
+
+
 def show_search_firstrun(version):
     try:
         version = Version(version)
@@ -408,7 +417,7 @@ class WhatsnewView(LatestFxView):
             oldversion = oldversion[3:]
         versions = ('29.', '30.', '31.', '32.')
 
-        if version.startswith('35.') or version.startswith('34.0.5'):
+        if show_34_0_5_search_template(version):
             if locale == 'en-US':
                 if show_search_whatsnew_tour('34.0', oldversion):
                     template = 'firefox/search_tour/tour-34.0.5.html'
