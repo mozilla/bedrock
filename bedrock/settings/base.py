@@ -724,6 +724,11 @@ MINIFY_BUNDLES = {
             'js/firefox/search_tour/common.js',
             'js/firefox/search_tour/tour.js',
         ),
+        'firefox_search_tour_34.0.5': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/search_tour/common.js',
+            'js/firefox/search_tour/tour-34.0.5.js',
+        ),
         'firefox_search_no_tour': (
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/search_tour/common.js',

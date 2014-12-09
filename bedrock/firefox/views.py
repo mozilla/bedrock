@@ -408,10 +408,10 @@ class WhatsnewView(LatestFxView):
             oldversion = oldversion[3:]
         versions = ('29.', '30.', '31.', '32.')
 
-        if version.startswith('35.'):
+        if version.startswith('35.') or version.startswith('34.0.5'):
             if locale == 'en-US':
-                if show_search_whatsnew_tour('35.0', oldversion):
-                    template = 'firefox/search_tour/tour-35-beta.html'
+                if show_search_whatsnew_tour('34.0', oldversion):
+                    template = 'firefox/search_tour/tour-34.0.5.html'
                 else:
                     template = 'firefox/search_tour/no-tour.html'
             else:
