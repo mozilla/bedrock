@@ -503,11 +503,19 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_34_0(self, render_mock):
-        """Should use search tour template for 34.0"""
+        """Should use no tour template for 34.0"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='34.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/search_tour/no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_34_0_with_oldversion(self, render_mock):
+        """Should use search tour template for 34.0 with old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=33.0')
+        self.view(req, version='34.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/search_tour/tour.html'])
 
     @override_settings(DEV=True)
     def test_fx_34_0_1(self, render_mock):
@@ -519,7 +527,7 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_34_1(self, render_mock):
-        """Should use search tour template for 34.1"""
+        """Should use no tour template for 34.1"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='34.1')
         template = render_mock.call_args[0][1]
@@ -535,14 +543,6 @@ class TestWhatsNew(TestCase):
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
 
     @override_settings(DEV=True)
-    def test_fx_35_0(self, render_mock):
-        """Should use search tour template for 35.0"""
-        req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='35.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/search_tour/no-tour.html'])
-
-    @override_settings(DEV=True)
     def test_fx_35_0_locale(self, render_mock):
         """Should use australis template for 35.0 non en-US locales"""
         req = self.rf.get('/de/firefox/whatsnew/')
@@ -550,6 +550,60 @@ class TestWhatsNew(TestCase):
         self.view(req, version='35.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
+
+    # 34.0.5 search tour tests
+
+    @override_settings(DEV=True)
+    def test_fx_34_0_5(self, render_mock):
+        """Should use no tour template for 34.0.5"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='34.0.5')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/search_tour/no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_34_0_5_with_oldversion(self, render_mock):
+        """Should use 34.0.5 search tour template for 34.0.5 with old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=33.0')
+        self.view(req, version='34.0.5')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/search_tour/tour-34.0.5.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_34_0_5_locale(self, render_mock):
+        """Should use australis template for 34.0.5 non en-US locales"""
+        req = self.rf.get('/de/firefox/whatsnew/?oldversion=33.0')
+        req.locale = 'de'
+        self.view(req, version='34.0.5')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_35_0(self, render_mock):
+        """Should use no tour template for 35.0 with no old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='35.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/search_tour/no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_35_0_with_oldversion(self, render_mock):
+        """Should use 34.0.5 search tour template for 35.0 with old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=33.0')
+        self.view(req, version='35.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/search_tour/tour-34.0.5.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_35_locale(self, render_mock):
+        """Should use australis template for 35 non en-US locales"""
+        req = self.rf.get('/de/firefox/whatsnew/?oldversion=33.0')
+        req.locale = 'de'
+        self.view(req, version='35.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
+
+    # end 34.0.5 search tour tests
 
     @override_settings(DEV=True)
     def test_rv_prefix(self, render_mock):
