@@ -50,23 +50,25 @@
         } catch (e) {}
 
         // track default search engine for Firefox 34
-        Mozilla.UITour.getConfiguration('selectedSearchEngine', function (data) {
-            var selectedEngineID = data.searchEngineIdentifier;
+        if (window.getFirefoxMasterVersion() >= 34) {
+            Mozilla.UITour.getConfiguration('selectedSearchEngine', function (data) {
+                var selectedEngineID = data.searchEngineIdentifier;
 
-            if (!selectedEngineID) {
-                return;
-            }
+                if (!selectedEngineID) {
+                    return;
+                }
 
-            if (selectedEngineID === 'yahoo') {
-                Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_yahooDefault');
-                Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
-                gaTrack(['_trackEvent', 'firstrun srch-chg interactions', 'yahooDefault', 'ViewPage']);
-            } else {
-                Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_otherDefault');
-                Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
-                gaTrack(['_trackEvent', 'firstrun srch-chg interactions', 'otherDefault', 'ViewPage']);
-            }
-        });
+                if (selectedEngineID === 'yahoo') {
+                    Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_yahooDefault');
+                    Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
+                    gaTrack(['_trackEvent', 'firstrun srch-chg interactions', 'yahooDefault', 'ViewPage']);
+                } else {
+                    Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_otherDefault');
+                    Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
+                    gaTrack(['_trackEvent', 'firstrun srch-chg interactions', 'otherDefault', 'ViewPage']);
+                }
+            });
+        }
 
     }
 
