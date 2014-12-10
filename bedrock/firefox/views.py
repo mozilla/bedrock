@@ -419,7 +419,12 @@ class WhatsnewView(LatestFxView):
 
         if show_34_0_5_search_template(version):
             if locale == 'en-US':
-                if show_search_whatsnew_tour('34.0', oldversion):
+                if version.startswith('35.'):
+                    min_version = '35.0'
+                else:
+                    min_version = '34.0'
+
+                if show_search_whatsnew_tour(min_version, oldversion):
                     template = 'firefox/search_tour/tour-34.0.5.html'
                 else:
                     template = 'firefox/search_tour/no-tour.html'

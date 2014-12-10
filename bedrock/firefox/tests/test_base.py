@@ -586,6 +586,14 @@ class TestWhatsNew(TestCase):
         eq_(template, ['firefox/search_tour/tour-34.0.5.html'])
 
     @override_settings(DEV=True)
+    def test_fx_34_0_5_with_wrong_oldversion(self, render_mock):
+        """Should no tour template for 34.0.5 with old version 34.x"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=34.0')
+        self.view(req, version='34.0.5')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/search_tour/no-tour.html'])
+
+    @override_settings(DEV=True)
     def test_fx_34_0_5_locale(self, render_mock):
         """Should use australis template for 34.0.5 non en-US locales"""
         req = self.rf.get('/de/firefox/whatsnew/?oldversion=33.0')
@@ -605,7 +613,7 @@ class TestWhatsNew(TestCase):
     @override_settings(DEV=True)
     def test_fx_35_0_with_oldversion(self, render_mock):
         """Should use 34.0.5 search tour template for 35.0 with old version"""
-        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=33.0')
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=34.0')
         self.view(req, version='35.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/search_tour/tour-34.0.5.html'])
@@ -613,11 +621,19 @@ class TestWhatsNew(TestCase):
     @override_settings(DEV=True)
     def test_fx_35_locale(self, render_mock):
         """Should use australis template for 35 non en-US locales"""
-        req = self.rf.get('/de/firefox/whatsnew/?oldversion=33.0')
+        req = self.rf.get('/de/firefox/whatsnew/?oldversion=34.0')
         req.locale = 'de'
         self.view(req, version='35.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_35_0_with_wrong_oldversion(self, render_mock):
+        """Should no tour template for 35.0 with old version that is greater"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=35.1')
+        self.view(req, version='35.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/search_tour/no-tour.html'])
 
     # end 34.0.5 search tour tests
 
