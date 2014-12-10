@@ -1,0 +1,860 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/sandstone-resp.less";
+
+@font-face {
+    font-family: 'Fira SemiBold';
+    src: url('/media/fonts/FiraSans-SemiBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira UltraLightItalic';
+    src: url('/media/fonts/FiraSans-UltraLightItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@textGrey: #4d4e53;
+@bgBlue: #0ea0db;
+
+/* {{{ Template overrides */
+
+html {
+    overflow: auto;
+}
+
+#outer-wrapper {
+    background: #fff url(/media/img/sandstone/grain.png) repeat;
+    background: url(/media/img/sandstone/grain.png) repeat 0 0,
+                #fff;
+}
+
+#wrapper {
+    width: auto;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+#masthead {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -500px;
+    z-index: 15;
+}
+
+.container {
+    width: 940px;
+}
+
+#main-content {
+    position: relative;
+    padding-top: 80px;
+}
+
+#page-header {
+    position: relative;
+    width: 301px;
+    height: 91px;
+    background: url(/media/img/firefox/os/ecosystem/sprite-fxos-logo.png) left top no-repeat;
+    .image-replaced();
+}
+
+.fxos-logo {
+    display: block;
+    margin-left: 102px;
+    width: 199px;
+    height: 91px;
+    background: url(/media/img/firefox/os/ecosystem/sprite-fxos-logo.png) left -96px no-repeat;
+}
+
+#contents {
+    font-size: @largeFontSize;
+
+    .copy-heading {
+        font: 48px/1.1 'Fira UltraLightItalic';
+        text-shadow: none;
+        margin-bottom: @baseLine;
+    }
+}
+
+#intro-mobile {
+    display: none;
+}
+
+#nav-button-wrapper {
+    .hidden;
+}
+
+.media {
+    width: 500px;
+    height: auto;
+    background: #fff;
+
+    &.media-blue {
+        background: #0ea0db;
+    }
+
+    .caption {
+        color: @textColorPrimary;
+        font-size: @smallFontSize;
+        font-style: italic;
+        margin-top: @baseLine / 2;
+        text-align: right;
+        padding-right: 5px;
+    }
+}
+
+.js {
+    #outer-wrapper {
+        background: #fff;
+    }
+
+    #wrapper {
+        position: relative;
+    }
+
+    .bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    #bg-white {
+        background: #fff url(/media/img/sandstone/grain.png) repeat;
+        background: url(/media/img/sandstone/grain.png) repeat 0 0,
+                    #fff;
+        z-index: 1;
+    }
+
+    #bg-blue {
+        background: #0ea0db;
+        z-index: 2;
+        -webkit-transform: translateX(120%);
+        transform: translateX(120%);
+        border-radius: 50%;
+        top: 10%;
+        left: 10%;
+        width: 80%;
+        height: 80%;
+        // this is the exit transition - as the blue bg goes away
+        -webkit-transition: 0.5s -webkit-transform ease-out 0.1s,
+                    0.5s border-radius ease,
+                    0.5s width ease,
+                    0.5s height ease,
+                    0.5s top ease,
+                    0.5s left ease;
+        transition: 0.5s -webkit-transform ease-out 0.1s,
+                    0.5s transform ease-out 0.1s,
+                    0.5s border-radius ease,
+                    0.5s width ease,
+                    0.5s height ease,
+                    0.5s top ease,
+                    0.5s left ease;
+
+        &.active {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            // this is the entrance transition - as the blue bg enters
+            -webkit-transition: 0.4s -webkit-transform ease,
+                    0.4s border-radius ease 0.2s,
+                    0.5s width ease,
+                    0.5s height ease,
+                    0.5s top ease,
+                    0.5s left ease;
+            transition: 0.4s -webkit-transform ease,
+                    0.4s transform ease,
+                    0.4s border-radius ease 0.2s,
+                    0.5s width ease,
+                    0.5s height ease,
+                    0.5s top ease,
+                    0.5s left ease;
+        }
+    }
+
+    #fox-tail {
+        position: absolute;
+        opacity: 1;
+        right: 0;
+        top: 322px;
+        width: 731px;
+        height: 497px;
+        background: url(/media/img/firefox/os/ecosystem/fox-tail.png) top left no-repeat;
+        z-index: 3;
+        .transition(all 0.7s ease-in-out);
+
+        // tail is offset after clicking an icon in the phone
+        &.offset {
+            -webkit-transform: translateX(630px);
+            transform: translateX(630px);
+            opacity: 0.4;
+        }
+
+        // tail is unloaded at page load
+        &.unloaded {
+            -webkit-transform: translateX(800px);
+            transform: translateX(800px);
+        }
+    }
+
+    #main-content {
+        min-height: 800px;
+        padding-top: 150px;
+        z-index: 3;
+
+        h1 {
+            position: relative;
+            margin-top: @baseLine * 3;
+        }
+    }
+
+    #contents {
+        position: relative;
+        z-index: 1;
+        margin-left: 100px;
+        color: @textGrey;
+
+        .pager-page {
+            // non-default pages should be hidden to avoid fouc
+            // will be set to opacity: 1 in JS
+            opacity: 0;
+            .clearfix();
+            color: #fff;
+
+            &.default-page {
+                opacity: 1;
+            }
+        }
+
+        .copy-heading {
+            color: #fff;
+            padding-right: 84px;
+            position: relative;
+
+            &:after {
+                position: absolute;
+                right: 0;
+                top: 0;
+                content: '';
+                width: 64px;
+                height: 64px;
+                background-image: url(/media/img/firefox/os/ecosystem/sprite-icons.png);
+                background-repeat: no-repeat;
+                background-position: right 100px;
+            }
+        }
+
+        .heading-os:after {
+            background-position: right -1031px;
+        }
+
+        .heading-users:after {
+            background-position: right -6px;
+        }
+
+        .heading-services:after {
+            background-position: right -120px;
+        }
+
+        .heading-community:after {
+            background-position: right -232px;
+        }
+
+        .heading-apps:after {
+            background-position: right -348px;
+        }
+
+        .heading-marketplace:after {
+            background-position: right -462px;
+        }
+
+        .heading-channel:after {
+            background-position: right -575px;
+        }
+
+        .heading-developers:after {
+            background-position: right -690px;
+        }
+
+        .heading-operators:after {
+            background-position: right -804px;
+        }
+
+        .heading-m-commerce:after {
+            background-position: right -917px;
+        }
+
+        .heading-chipsets:after {
+            background-position: right -1145px;
+        }
+
+        .heading-handsets:after {
+            background-position: right -1261px;
+        }
+
+        // first <p> of content gets special formatting
+        .copy-body > p:first-child {
+            font-size: 21px;
+            padding-right: @baseLine * 8;
+            margin-bottom: @baseLine * 1.5;
+        }
+
+        .copy-column {
+            float: left;
+            width: 300px;
+
+            &.copy-wide {
+                width: 360px;
+                color: @textGrey;
+
+                h2 {
+                    color: @textGrey;
+                }
+            }
+        }
+
+        .media {
+            float: left;
+            margin-left: @baseLine * 2;
+
+            .framed {
+                border: 6px solid #fff;
+            }
+        }
+    }
+
+    .fxos-logo {
+        position: absolute;
+        .transition();
+    }
+
+    #page-header.light {
+        #fxos-logo-light {
+            opacity: 1;
+        }
+
+        #fxos-logo-dark {
+            opacity: 0;
+        }
+    }
+
+    #fxos-logo-light {
+        background-position: left -187px;
+        opacity: 0;
+    }
+
+    #nav-button-wrapper {
+        position: absolute;
+        top: 150px;
+        right: @baseLine;
+        display: none;
+        .clearfix();
+
+        button {
+            display: block;
+            float: right;
+            height: 69px;
+            width: 69px;
+            margin: 0 @baseLine / 2;
+            padding: 0;
+            // defaults to close icon
+            background: url(/media/img/firefox/os/ecosystem/sprite-nav-buttons.png) right -160px no-repeat;
+            cursor: pointer;
+            border: 0;
+            font-size: @largeFontSize;
+            color: #fff;
+
+            &:focus {
+                outline: 0;
+            }
+        }
+
+        #prev {
+            background-position: right 0px;
+        }
+
+        #next {
+            background-position: right -80px;
+        }
+
+        // hide button text
+        span {
+            .visually-hidden();
+        }
+    }
+
+    #phone {
+        position: absolute;
+        z-index: 4;
+        top: 95px;
+        right: 0;
+        width: 447px;
+        height: 790px;
+        background: url(/media/img/firefox/os/ecosystem/bg-phone.png) center center no-repeat;
+        .transition(all 0.5s ease-out);
+
+        // phone is offest after clicking an icon
+        &.offset {
+            -webkit-transform: translateX(500px);
+            transform: translateX(500px);
+
+            ul {
+                opacity: 0.3;
+            }
+
+            // make sure the user doesn't think they can click
+            a {
+                cursor: default;
+            }
+        }
+
+        // phone is unloaded at page load
+        &.unloaded {
+            -webkit-transform: translateY(-1000px);
+            transform: translateY(-1000px);
+        }
+
+        ul {
+            list-style-type: none;
+            width: 292px;
+            height: 480px;
+            margin: 150px 0 0 78px;
+            overflow: visible;
+            .transition();
+        }
+
+        li {
+            display: block;
+            float: left;
+            width: 84px;
+            height: 110px;
+            overflow: hidden;
+            margin: 0 @baseLine (@baseLine / 2) 0;
+            opacity: 0;
+            -webkit-transform: translateY(-40px) scale(1.6);
+            transform: translateY(-40px) scale(1.6);
+            .transition(all 0.4s ease-in-out);
+
+            &.loaded {
+                opacity: 1;
+                -webkit-transform: translateY(0) scale(1);
+                transform: translateY(0) scale(1);
+            }
+
+            &:nth-child(3n+3) {
+                margin-right: 0;
+            }
+        }
+
+        a {
+            display: block;
+            color: #fff;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.3;
+            font-family: 'Fira SemiBold';
+            text-transform: uppercase;
+
+            &:before {
+                display: block;
+                margin: 0 auto 7px;
+                content: '';
+                width: 70px;
+                height: 70px;
+                background: #fff url(/media/img/firefox/os/ecosystem/sprite-icons.png) 3px 3px no-repeat;
+                border-radius: 50%;
+                .transition(box-shadow 0.3s ease);
+            }
+
+            &[href='#services']:before {
+                background-position: 2px -110px;
+            }
+
+            &[href='#community']:before {
+                background-position: 2px -223px;
+            }
+
+            &[href='#apps']:before {
+                background-position: 3px -338px;
+            }
+
+            &[href='#marketplace']:before {
+                background-position: 3px -452px;
+            }
+
+            &[href='#channel']:before {
+                background-position: 3px -566px;
+            }
+
+            &[href='#developers']:before {
+                background-position: 3px -681px;
+            }
+
+            &[href='#operators']:before {
+                background-position: 3px -795px;
+            }
+
+            &[href='#m-commerce']:before {
+                background-position: 3px -908px;
+            }
+
+            &[href='#os']:before {
+                background-position: 3px -1021px;
+            }
+
+            &[href='#chipsets']:before {
+                background-position: 3px -1136px;
+            }
+
+            &[href='#handsets']:before {
+                background-position: 3px -1252px;
+            }
+
+            &:hover {
+                text-decoration: none;
+
+                &:before {
+                    box-shadow: inset 0 0 0 35px rgba(14, 160, 219, 0.35);
+                }
+            }
+        }
+    }
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+// Desktop
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+    .js {
+        #contents .copy-heading:after, #phone li a:before {
+            background-image: url(/media/img/firefox/os/ecosystem/sprite-icons-high-res.png);
+            background-size: 128px 1318px;
+        }
+
+        #nav-button-wrapper button {
+            background-image: url(/media/img/firefox/os/ecosystem/sprite-nav-buttons-high-res.png);
+            background-size: 69px 240px;
+        }
+
+        #fox-tail {
+            background-image: url(/media/img/firefox/os/ecosystem/fox-tail-high-res.png);
+            background-size: 731px 497px;
+        }
+    }
+}
+
+// @Tablet Layout: 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    #masthead {
+        position: relative;
+        width: @breakTablet - (@baseLine * 2);
+        left: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #intro-desktop {
+        display: none;
+    }
+
+    #intro-mobile {
+        display: block;
+    }
+
+    .js {
+        #main-content {
+            padding-top: @baseLine * 2;
+
+            h1 {
+                margin-top: 0;
+            }
+        }
+
+        #bg-blue, #nav-button-wrapper, #phone, #fox-tail {
+            display: none;
+        }
+
+        #contents {
+            margin-left: 0;
+
+            .pager-page {
+                opacity: 1;
+                padding: @baseLine * 2;
+                background: #0ea0db;
+                margin-bottom: @baseLine * 2;
+            }
+
+            #intro {
+                background: transparent;
+            }
+
+            .copy-heading {
+                cursor: pointer;
+
+                &:focus {
+                    outline: rgba(255, 255, 255, 0.4) solid 2px;
+                }
+            }
+
+            .heading-intro {
+                cursor: default;
+            }
+
+            .copy-column {
+                float: none;
+                width: auto;
+                margin-right: 0;
+
+                &.copy-wide {
+                    width: auto;
+                }
+            }
+
+            .copy-body {
+                display: none;
+
+                & > p:first-child {
+                    font-size: @largeFontSize;
+                    margin-bottom: @baseLine;
+                    padding-right: 0;
+                }
+            }
+
+            .media {
+                float: none;
+                margin: (@baseLine * 2) auto 0;
+            }
+
+            p {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+// @Wide @mobile layout: 480px
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+    #masthead {
+        position: relative;
+        width: @breakMobileLandscape - @baseLine;
+        left: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #main-content {
+        width: @breakMobileLandscape - @baseLine;
+    }
+
+    #intro-desktop {
+        display: none;
+    }
+
+    #intro-mobile {
+        display: block;
+    }
+
+    .js {
+        #main-content {
+            padding-top: @baseLine * 2;
+
+            h1 {
+                margin-top: 0;
+            }
+        }
+
+        #bg-blue, #nav-button-wrapper, #phone, #fox-tail {
+            display: none;
+        }
+
+        #contents {
+            margin-left: 0;
+
+            .pager-page {
+                opacity: 1;
+                padding: @baseLine;
+                background: #0ea0db;
+                margin-bottom: @baseLine;
+            }
+
+            #intro {
+                background: transparent;
+            }
+
+            .copy-heading {
+                cursor: pointer;
+                font-size: 32px;
+                min-height: 54px;
+
+                &:after {
+                    top: 50%;
+                    margin-top: -32px;
+                }
+
+                &:focus {
+                    outline: rgba(255, 255, 255, 0.4) solid 2px;
+                }
+            }
+
+            .heading-intro {
+                cursor: default;
+            }
+
+            .copy-column {
+                float: none;
+                width: auto;
+                margin-right: 0;
+
+                &.copy-wide {
+                    width: auto;
+                }
+            }
+
+            .copy-body {
+                display: none;
+
+                & > p:first-child {
+                    font-size: @largeFontSize;
+                    margin-bottom: @baseLine;
+                    padding-right: 0;
+                }
+            }
+
+            .media {
+                float: none;
+                margin: (@baseLine * 2) auto 0;
+                width: 420px;
+
+                video {
+                    width: 420px;
+                    height: 236px;
+                }
+            }
+
+            p {
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+// @mobile layout: 320px
+@media only screen and (max-width: @breakMobileLandscape) {
+    #masthead {
+        position: relative;
+        width: @breakMobile - @baseLine;
+        left: auto;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #main-content {
+        width: @breakMobile - @baseLine;
+    }
+
+    #intro-desktop {
+        display: none;
+    }
+
+    #intro-mobile {
+        display: block;
+    }
+
+    .js {
+        #main-content {
+            padding-top: @baseLine * 2;
+
+            h1 {
+                margin-top: 0;
+            }
+        }
+
+        #bg-blue, #nav-button-wrapper, #phone, #fox-tail {
+            display: none;
+        }
+
+        #contents {
+            margin-left: 0;
+            font-size: @baseFontSize;
+
+            .pager-page {
+                opacity: 1;
+                padding: @baseLine;
+                background: #0ea0db;
+                margin-bottom: @baseLine;
+            }
+
+            #intro {
+                background: transparent;
+            }
+
+            .copy-heading {
+                font-size: 28px;
+                cursor: pointer;
+                min-height: 54px;
+                padding-top: 10px;
+
+                &:after {
+                    top: 50%;
+                    margin-top: -32px;
+                }
+
+                &:focus {
+                    outline: rgba(255, 255, 255, 0.4) solid 2px;
+                }
+            }
+
+            .heading-intro {
+                cursor: default;
+            }
+
+            .copy-column {
+                float: none;
+                width: auto;
+                margin-right: 0;
+
+                &.copy-wide {
+                    width: auto;
+                }
+            }
+
+            .copy-body {
+                display: none;
+
+                & > p:first-child {
+                    font-size: @baseFontSize;
+                    margin-bottom: @baseLine;
+                    padding-right: 0;
+                }
+            }
+
+            .media {
+                float: none;
+                margin: @baseLine auto 0;
+                width: 260px;
+
+                video {
+                    width: 260px;
+                    height: 146px;
+                }
+            }
+
+            p {
+                margin-left: 0;
+            }
+        }
+    }
+}

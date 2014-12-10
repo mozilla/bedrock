@@ -1,0 +1,547 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox OS — Mobile Smartphone Ecosystem') }}{% endblock %}
+
+{% block page_desc %}{{ _('Explore how Firefox OS, the next major mobile platform, has changed the industry after just one year.') }}{% endblock %}
+
+{% block body_id %}firefox-os-ecosystem{% endblock %}
+{% block body_class %}firefox-os-ecosystem{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block extrahead %}
+  <!--[if !lte IE 9]><!-->
+  {{ css('firefox_os_ecosystem') }}
+  <!--<![endif]-->
+
+  <!--[if lte IE 9]>
+  {{ css('firefox_os_ecosystem_ie') }}
+  <![endif]-->
+{% endblock %}
+
+{% block content %}
+<main role="main" id="main-content" class="container pager pager-no-history">
+  <h1 id="page-header">
+    <span class="fxos-logo" id="fxos-logo-dark"></span>
+    <span class="fxos-logo" id="fxos-logo-light"></span>
+    {{ _('Firefox OS') }}
+  </h1>
+
+  <div id="nav-button-wrapper">
+    <button type="button" id="close" title="{{ _('Home') }}"><span>{{ _('Home') }}</span></button>
+    <button type="button" id="next" title="{{ _('Next Section') }}"><span>{{ _('Next Section') }}</span></button>
+    <button type="button" id="prev" title="{{ _('Previous Section') }}"><span>{{ _('Previous Section') }}</span></button>
+  </div>
+
+  <div id="phone" class="unloaded">
+    <ul role="region" aria-label="phone">
+      <li id="nav-os">
+        <a href="#os">{{ _('OS') }}</a>
+      </li>
+      <li id="nav-users">
+        <a href="#users">{{ _('Users') }}</a>
+      </li>
+      <li id="nav-services">
+        <a href="#services">{{ _('Services') }}</a>
+      </li>
+      <li id="nav-community">
+        <a href="#community">{{ _('Community') }}</a>
+      </li>
+      <li id="nav-apps">
+        <a href="#apps">{{ _('Apps/Content') }}</a>
+      </li>
+      <li id="nav-marketplace">
+        <a href="#marketplace">{{ _('Marketplace') }}</a>
+      </li>
+      <li id="nav-channel">
+        <a href="#channel">{{ _('Channel') }}</a>
+      </li>
+      <li id="nav-developers">
+        <a href="#developers">{{ _('Developers') }}</a>
+      </li>
+      <li id="nav-operators">
+        <a href="#operators">{{ _('Operators') }}</a>
+      </li>
+      <li id="nav-m-commerce">
+        <a href="#m-commerce">{{ _('M-Commerce') }}</a>
+      </li>
+      <li id="nav-chipsets">
+        <a href="#chipsets">{{ _('Chipsets') }}</a>
+      </li>
+      <li id="nav-handsets">
+        <a href="#handsets">{{ _('Handsets') }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <article id="contents" class="pager-content">
+    <section id="intro" class="pager-page default-page">
+      <div class="copy-column copy-wide">
+        <h2 class="copy-heading heading-intro">{{ _('Unleash the Future') }}</h2>
+
+        <p>
+        {% trans %}
+          Before there was Firefox OS, there was an idea: to create the world’s
+          first truly open, independent operating system and provide an innovative
+          new option outside the existing mobile duopoly.
+        {% endtrans %}
+        </p>
+
+        <p id="intro-desktop">
+          {{ _('Click the icons on the phone to explore how Firefox OS has changed the mobile industry in just one year.') }}
+        </p>
+
+        <p id="intro-mobile">
+          {{ _('Click the headings below to explore how Firefox OS has changed the mobile industry in just one year.') }}
+        </p>
+      </div>
+    </section>
+    <section id="os" class="pager-page">
+      <h2 class="copy-heading heading-os">{{ _('OS') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {% trans %}
+          After only a year on the market, Firefox OS has become a true global
+          contender, available on multiple chipsets and across different networks.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+            Thanks to the close collaboration with our partners, we continue to bring
+            more people to the Web from more places and in more ways than ever before.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            We started with a simple, yet revolutionary idea &mdash; to create the first
+            truly open, alternative operating system &mdash; and, in the process, proved
+            that the Web is the next major mobile platform.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column -- #}
+        <div class="media">
+          {{ video('https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS.mp4',
+                   'https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS.webm',
+                   poster=media('/img/firefox/os/ecosystem/poster-os.jpg'),
+                   preload='none',
+                   w=500, h=280, id='os-video') }}
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="users" class="pager-page">
+      <h2 class="copy-heading heading-users">{{ _('Users') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {# L10n: Line breaks below are for en-US formatting only. #}
+        {% trans %}
+          Mozilla creates products that help people take control and <br>explore the
+          full potential of their lives online &mdash; and Firefox OS <br>is no exception.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+            Users now have the access, services and content that they need,
+            available on a wide array of devices.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            They can customize those devices, as well as their online experiences,
+            thanks to an open ecosystem that uniquely delivers what matters most
+            to them, whoever or wherever they may be.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column -- #}
+        <div class="media">
+          <figure class="framed">
+            <img src="{{ media('/img/firefox/os/ecosystem/fxos-stories_users.jpg') }}" alt="{{ _('First Alcatel One Touch Fire (with Firefox OS) customer') }}">
+            <figcaption class="caption">{{ _('Photo by') }} <a href="https://www.flickr.com/photos/hubertgajewski/9296580926/in/set-72157634658514942" rel="external">Hubert Gajewski</a></figcaption>
+          </figure>
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="services" class="pager-page">
+      <h2 class="copy-heading heading-services">{{ _('Services') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {% trans %}
+          The open, participatory platform of Firefox OS unleashes mobile
+          ecosystem players to create new, surprising innovations and inventions
+          in the area of services.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+            {{ _('Service providers are free to build for what matters most to the users in their markets.') }}
+            {{ _('They decide what it looks like and how to monetize it.') }}
+          </p>
+
+          <p>
+          {% trans %}
+            This opens up new service options for operators to explore, ones not
+            previously available to them in the two-player system.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column -- #}
+        <div class="media">
+          {{ video('https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_services.mp4',
+                   'https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_services.webm',
+                   poster=media('/img/firefox/os/ecosystem/poster-services.jpg'),
+                   preload='none',
+                   w=500, h=280, id='services-video') }}
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="community" class="pager-page">
+      <h2 class="copy-heading heading-community">{{ _('Community') }}</h2>
+
+      <div class="copy-body">
+        <p>
+          {{ _('Firefox OS comes with a built-in passionate community already engaged with the Open Web.') }}
+        </p>
+
+        <div class="copy-column">
+          <p>
+            {{ _('The people that make up this community are Web pioneers and innovators.') }}
+            {{ _('They’re a globally-distributed group with hyperlocal expertise, ready to support new users and new markets.') }}
+          </p>
+
+          <p>
+            {{ _('Their knowledge and experience help leverage the full power and potential of the Web as the platform.') }}
+          </p>
+        </div> {#/-- .copy-column #}
+        <div class="media">
+          {{ video('https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_community.mp4',
+                   'https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_community.webm',
+                   poster=media('/img/firefox/os/ecosystem/poster-community.jpg'),
+                   preload='none',
+                   w=500, h=280, id='community-video') }}
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="apps" class="pager-page">
+      <h2 class="copy-heading heading-apps">{{ _('Apps/Content') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {% trans %}
+          The standards-based, HTML5 platform of Firefox OS makes content
+          development and delivery in the mobile space easier than ever.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+            Because the Web itself is the platform, more people around the
+            world can create, offer and share content on a mobile device.
+          {% endtrans %}
+
+          {% trans %}
+            And Firefox OS has opened up a new, cross-platform market for
+            these partners, free from gatekeepers or permission barriers.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            This has allowed them to reach their users more easily and design
+            complete market strategies among themselves, carriers, chipset
+            vendors and operators.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column #}
+        <div class="media">
+          {{ video('https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_app_content.mp4',
+                   'https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_app_content.webm',
+                   poster=media('/img/firefox/os/ecosystem/poster-apps.jpg'),
+                   preload='none',
+                   w=500, h=280, id='apps-video') }}
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="marketplace" class="pager-page">
+      <h2 class="copy-heading heading-marketplace">{{ _('Marketplace') }}</h2>
+
+      <div class="copy-body">
+        <p>
+          {{ _('The Firefox Marketplace is ready to scale.') }}
+
+        {% trans %}
+          Already available in 22 countries and 30 languages, the Marketplace
+          can launch quickly and easily in new locales, thanks to standards-based
+          HTML5 tools and our worldwide payment partners.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+            Based on their specific needs, operators can either customize a
+            corner of the existing Marketplace or use our open source API to
+            build their own.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Users find what they’re looking for quickly and discover new,
+            relevant content more easily than ever.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column #}
+        <div class="media">
+          {{ video('https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_Marketplace.mp4',
+                   'https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_Marketplace.webm',
+                   poster=media('/img/firefox/os/ecosystem/poster-marketplace.jpg'),
+                   preload='none',
+                   w=500, h=280, id='marketplace-video') }}
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="channel" class="pager-page">
+      <h2 class="copy-heading heading-channel">{{ _('Channel') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {% trans %}
+          The non-proprietary nature of Firefox OS has brought a more diverse
+          selection of handsets to a wider range of markets.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+            The channel can now deliver ultra-low-end devices to emerging markets
+            and mid-tier devices to first-time smartphone buyers.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            This improved level of user segmentation and targeting has brought
+            new value to the channel, increasing volume and widening markets.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column #}
+        <div class="media">
+          <figure class="framed">
+            <img src="{{ media('/img/firefox/os/ecosystem/fxos-stories_channels.jpg') }}" alt="{{ _('Firefox OS billboard, Riviera building in Warsaw') }}">
+            <figcaption class="caption">{{ _('Photo by') }} <a href="https://www.flickr.com/photos/witia/9214353137/in/photolist-f3eYax-dvw2PR-dZThxu-dvw2Sx-dvw2UT-dvw2U8-dvw2Rx-e6QC6m-e6JYcX-e6QBP9-e6JYwR-e6QBVY-e6QBSC-k9jrbv-nbSDB1-nbSDzh-nbSDzN-ndXtnu-nbSDzs-ndXtnj-nbSDzY-dZMAyF-cAtfbo-f3eX7p-cAtfFC-dNG7Ta-f3uy3y-eiWTcW-f3upub-dXzHZ5-dvw2Tn-deN8vj-f3eSpD-gmSjSU-f3unGW-f3uhWw-f3feoH-f3fhqP-f3f6Yp-f3faXP-f3fcYp-f3ugQw-f3udb9-f3fmAv-gmSNgd-Djq4F-deN7zW-eZSF3" rel="external">Wojciech Szczęsny</a></figcaption>
+          </figure>
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="developers" class="pager-page">
+      <h2 class="copy-heading heading-developers">{{ _('Developers') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {# L10n: Line breaks below are for en-US formatting only. #}
+        {% trans %}
+          The Web-based, HTML5 platform of Firefox OS means that developers can
+          use the language of the Web to get their content <br>in front of users
+          quickly and easily, using skills and tools they <br>already have.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+            An independent, unlocked system also means that they can determine
+            their own revenue models.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Firefox OS gives developers immediate access to the innovations and
+            powerful new toolkits being created by the global Web community.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column #}
+        <div class="media">
+          {{ video('https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_Developers.mp4',
+                   'https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_Developers.webm',
+                   poster=media('/img/firefox/os/ecosystem/poster-developers.jpg'),
+                   preload='none',
+                   w=500, h=280, id='developers-video') }}
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="operators" class="pager-page">
+      <h2 class="copy-heading heading-operators">{{ _('Operators') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {% trans %}
+          Firefox OS broke open the closed two-player system, allowing operators
+          greater flexibility to customize their own services and content
+          solutions and offer them to their users.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+            Operators can now also bundle services and applications that are
+            relevant to their users in specific markets and locales.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            More relevant, targeted content leads to greater customer satisfaction,
+            reduced churn and increased revenue in a brand new mobile world.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column #}
+        <div class="media">
+          {{ video('https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_operators.mp4',
+                   'https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_operators.webm',
+                   poster=media('/img/firefox/os/ecosystem/poster-operators.jpg'),
+                   preload='none',
+                   w=500, h=280, id='operators-video') }}
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="m-commerce" class="pager-page">
+      <h2 class="copy-heading heading-m-commerce">{{ _('M-Commerce') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {% trans %}
+          The freedom offered by Firefox OS extends to payment systems, allowing
+          our partners to choose any provider they prefer.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+             Content publishers can enable operator billing, for example, or accept
+             credit card payments via services like Bango.
+           {% endtrans %}
+
+           {% trans %}
+             That results in more seamless payment experiences for users, increased
+             transactions and higher revenues for developers and publishers.
+           {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            After only one year, nine countries already have customized payment
+            systems enabled, six of which include operator billing, with many more
+            markets coming online in the next several months.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column #}
+        <div class="media">
+          {{ video('https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_M-Commerce.mp4',
+                   'https://videos.cdn.mozilla.net/uploads/FirefoxOS1/Firefox_OS_M-Commerce.webm',
+                   poster=media('/img/firefox/os/ecosystem/poster-m-commerce.jpg'),
+                   w=500, h=280, id='m-commerce-video') }}
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="chipsets" class="pager-page">
+      <h2 class="copy-heading heading-chipsets">{{ _('Chipsets') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {# L10n: Line break below is for en-US visual formatting only. #}
+        {% trans %}
+          With Firefox OS, chipset manufacturers now enjoy direct collaboration with
+          their mobile partners, without intermediation <br>or control by the OS.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+            This new viable platform is designed to help bring the next billion
+            users online, creating a broader market for manufacturers and their
+            chipset portfolios.
+          {% endtrans %}
+          </p>
+
+          <p>
+            {{ _('More choice in the market leads to more volume and creates more opportunity for all.') }}
+          </p>
+        </div> {#/-- .copy-column #}
+        <div class="media media-blue">
+          <figure>
+            <img src="{{ media('/img/firefox/os/ecosystem/fxos-stories_chipsets.png') }}" alt="{{ _('Firefox OS chipset manufacturers') }}">
+          </figure>
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+    <section id="handsets" class="pager-page">
+      <h2 class="copy-heading heading-handsets">{{ _('Handsets') }}</h2>
+
+      <div class="copy-body">
+        <p>
+        {% trans %}
+          Thanks to our open ecosystem, manufacturers have been able to design,
+          develop and partner in ways that weren’t permissible &mdash; or even
+          considered possible &mdash; before.
+        {% endtrans %}
+        </p>
+
+        <div class="copy-column">
+          <p>
+          {% trans %}
+            They now have full control over user environments and form factors,
+            allowing them to design devices for their unique markets and users.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            The Web-based platform of Firefox OS enables faster and more flexible
+            development so manufacturers can offer more affordable and accessible
+            devices to more users around the world.
+          {% endtrans %}
+          </p>
+        </div> {#/-- .copy-column #}
+        <div class="media media-blue">
+          <figure>
+            <img src="{{ media('/img/firefox/os/ecosystem/fxos-stories_handsets.png') }}" alt="{{ _('Firefox OS Handsets') }}">
+          </figure>
+        </div>
+      </div> {#/-- .copy-body #}
+    </section>
+  </article>
+</main>
+
+{% block email_form %}{% endblock %}
+
+{% endblock %}
+
+{% block js %}
+  <!--[if !lte IE 9]><!-->
+  {{ js('firefox_os_ecosystem') }}
+  <!--<![endif]-->
+
+  <!--[if lte IE 9]>
+  {{ js('firefox_os_ecosystem_ie') }}
+  <![endif]-->
+{% endblock %}
