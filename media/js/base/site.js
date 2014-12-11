@@ -80,6 +80,11 @@
 
             var re;
 
+            // Windows RT and Windows Phone using ARMv7
+            if (/Windows/.test(ua) && /ARM/.test(ua)) {
+                return 'armv7';
+            }
+
             // IE-specific property
             if (navigator.cpuClass) {
                 return navigator.cpuClass.toLowerCase();
