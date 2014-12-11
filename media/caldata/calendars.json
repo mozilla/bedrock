@@ -141,13 +141,13 @@
   {
     "country":"Finland (Finnish)",
     "filename":"FinlandHolidays.ics",
-    "datespan":"2007-2014",
+    "datespan":"2007-2015",
     "authors":"Magnus Melin"
   },
   {
     "country":"Finland (Swedish)",
     "filename":"FinlandHolidaysSwedish.ics",
-    "datespan":"2007-2014",
+    "datespan":"2007-2015",
     "authors":"Magnus Melin"
   },
   {
@@ -429,6 +429,12 @@
     "filename":"UKHolidays.ics",
     "datespan":"2010-2015",
     "authors":"Brian Wray, Dave Ewart"
+  },
+  {
+    "country":"Ukraine",
+    "filename":"UkraineHolidays.ics",
+    "datespan":"2014-2020",
+    "authors":"Kostya Nesterenko"
   },
   {
     "country":"Uruguay",
