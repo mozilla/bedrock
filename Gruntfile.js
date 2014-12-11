@@ -63,7 +63,78 @@ module.exports = function (grunt) {
             configFile: 'media/js/test/karma.conf.js'
           }
         },
-        clean: ['media/css/**/*.less.css']
+        clean: ['media/css/**/*.less.css'],
+        phantomas: {
+            options: {
+                group: {
+                    'REQUESTS' : [
+                        'requests',
+                        'gzipRequests',
+                        'notFound',
+                        'multipleRequests',
+                        'assetsNotGzipped'
+                    ],
+                    'TIMINGS' : [
+                        'timeToFirstByte',
+                        'timeToLastByte',
+                        'timeToFirstCss',
+                        'timeToFirstJs',
+                        'timeToFirstImage',
+                        'fastestResponse',
+                        'slowestResponse',
+                        'onDOMReadyTime',
+                        'onDOMReadyTimeEnd',
+                        'windowOnLoadTime',
+                        'windowOnLoadTimeEnd'
+                    ],
+                    'HTML' : [
+                        'bodyHTMLSize',
+                        'hiddenContentSize',
+                        'whiteSpacesSize',
+                        'DOMelementsCount',
+                        'DOMelementMaxDepth'
+                    ],
+                    'JAVASCRIPT' : [
+                        'eventsBound',
+                        'jsErrors',
+                        'consoleMessages',
+                        'globalVariables',
+                        'localStorageEntries'
+                    ],
+                    'COUNTS & SIZES' : [
+                        'contentLength',
+                        'bodySize',
+                        'htmlSize',
+                        'htmlCount',
+                        'cssSize',
+                        'cssCount',
+                        'jsSize',
+                        'jsCount',
+                        'imageSize',
+                        'imageCount',
+                        'webfontSize',
+                        'webfontCount'
+                    ]
+                },
+                options: {
+                    'film-strip': false,
+                    'timeout': 60
+                },
+                buildUi: true
+            },
+            homepage: {
+                options: {
+                    indexPath: './phantomas/home/',
+                    url: 'https://www.allizom.org/en-US/'
+                }
+            },
+            firefoxnew: {
+                options: {
+                    indexPath: './phantomas/firefoxnew/',
+                    url: 'https://www.allizom.org/en-US/firefox/new/'
+                }
+            }
+        }
     });
 
     // Update the config to only build the changed files.

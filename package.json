@@ -27,6 +27,7 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-jsonlint": "^1.0.4",
     "grunt-karma": "~0.6.2",
+    "grunt-phantomas": "^0.11.0",
     "karma": "~0.10.9",
     "karma-chrome-launcher": "~0.1.2",
     "karma-coffee-preprocessor": "~0.1.3",
