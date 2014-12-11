@@ -751,6 +751,12 @@ MINIFY_BUNDLES = {
             'js/firefox/hello/start.js',
         ),
         'firefox_new': (
+            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/spin.min.js',
+            'js/base/global.js',
+            'js/newsletter/form.js',
+            'js/base/mozilla-input-placeholder.js',
+            'js/base/mozilla-image-helper.js',
             'js/libs/socialshare.min.js',
             'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',

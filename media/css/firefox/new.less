@@ -178,6 +178,45 @@ html.firefox-latest {
     }
 }
 
+// desktop user with version exactly matching latest release version
+#refresh-firefox-wrapper {
+    display: none;
+}
+
+html.show-refresh {
+    #refresh-firefox-wrapper {
+        display: block;
+        margin: (@baseLine * 2) 0 @baseLine;
+
+        p {
+            font-style: normal;
+            margin-bottom: @baseLine / 2;
+        }
+
+        a {
+            color: @textColorTertiary;
+            font-style: normal;
+            .font-size(12px);
+            .trailing-arrow();
+        }
+    }
+
+    #refresh-firefox {
+        display: block;
+        width: 260px;
+        margin: 0 auto;
+        border-radius: 8px;
+        padding: 15px;
+        font-weight: normal;
+        .font-size(22px);
+    }
+
+    #main-feature,
+    .hide-for-refresh {
+        display: none;
+    }
+}
+
 html.firefox-old {
     .version-message-container {
         display: block;
