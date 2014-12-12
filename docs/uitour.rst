@@ -79,7 +79,8 @@ Target types:
 * ``'home'``
 * ``'quit'``
 * ``'search'``
-* ``'searchProvider'``
+* ``'searchProvider'`` (Firefox 33 and below)
+* ``'searchIcon'`` (Firefox 34 and above)
 * ``'urlbar'``
 * ``'loop'``
 * ``'forget'``
@@ -178,7 +179,7 @@ Available targets:
 
 * ``'appMenu'``
 * ``'bookmarks'``
-* ``'searchEngines'``
+* ``'searchEngines'`` (only works for the old Search UI prior to Firefox 34)
 
 Optional parameters:
 
@@ -276,8 +277,18 @@ getConfiguration(type, callback)
 Queries the current browser configuration so the web page can make informed decisions on
 available highlight targets.
 
-* ``type`` can be either ``'sync'`` or ``'availableTargets'`` or ``'appinfo'`` (string)
-* ``callback`` to excecute and return with the queried data (function)
+Available ``type`` values:
+
+* ``'sync'``
+* ``'availableTargets'``
+* ``'appinfo'``
+* ``'selectedSearchEngine'``
+
+Other parameters:
+
+* ``callback`` function to excecute and return with the queried data
+
+Specific use cases:
 
 If ``'sync'`` is queried the object returned by the callback will contain an object called ``setup``. This can be used to determine if the user is already using Firefox Sync:
 
@@ -308,6 +319,19 @@ If ``'appinfo'`` is queried the object returned gives information on the users c
 .. Important::
 
     ``appinfo`` is only available in Firefox 35 onward.
+
+If ``'selectedSearchEngine'`` is queried the object returned gives the currently selected default search provider.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.getConfiguration('selectedSearchEngine', function (data) {
+        console.log(data.searchEngineIdentifier); // 'google'
+    });
+
+.. Important::
+
+    ``selectedSearchEngine`` is only available in Firefox 34 onward.
+
 
 showFirefoxAccounts();
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -349,5 +373,94 @@ Adds an icon to the users toolbar
         console.log('forget button added to toolbar');
     });
 
+.. Important::
+
+    Only available in Firefox 33.1 onward.
+
+setDefaultSearchEngine(id);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the browser default search engine provider.
+
+* ``id`` string identifier e.g. 'yahoo' or 'google'.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.setDefaultSearchEngine('yahoo');
+
+* Identifiers for en-US builds: https://mxr.mozilla.org/mozilla-release/source/browser/locales/en-US/searchplugins/list.txt
+* Identifiers for other locales: https://mxr.mozilla.org/l10n-mozilla-release/find?string=browser%2Fsearchplugins%2Flist.txt
+
+.. Important::
+
+    Only available in Firefox 34 onward.
+
+setSearchTerm(string);
+^^^^^^^^^^^^^^^^^^^^^^
+
+Populates the search UI with a given search term.
+
+* ``string`` search term e.g. 'Firefox'
+
+.. code-block:: javascript
+
+    Mozilla.UITour.setSearchTerm('Firefox');
+
+.. Important::
+
+    Only available in Firefox 34 onward.
+
+openSearchPanel(callback);
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Opens the search UI drop down panel.
+
+* ``callback`` function to excecute once the search panel has opened
+
+.. code-block:: javascript
+
+    Mozilla.UITour.openSearchPanel(function() {
+        console.log('search panel opened');
+    });
+
+.. Important::
+
+    Only available in Firefox 34 onward.
+
+setTreatmentTag(name, value);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets a key value pair as a treatment tag for recording in `FHR`_.
+
+* ``name`` tag name for the treatment
+* ``value`` tag value for the treatment
+
+.. code-block:: javascript
+
+    Mozilla.UITour.setTreatmentTag('srch-chg-action', 'Switch');
+
+.. Important::
+
+    Only available in Firefox 34 onward.
+
+getTreatmentTag(name, callback);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieved the value for a set `FHR`_. treatment tag.
+
+* ``name`` tag name to be retrieved
+* ``callback`` function to execute once the data has been retrieved
+
+.. code-block:: javascript
+
+    Mozilla.UITour.getTreatmentTag('srch-chg-action', function(value) {
+        console.log(value);
+    });
+
+.. Important::
+
+    Only available in Firefox 34 onward.
+
 .. _Mozilla Central: http://dxr.mozilla.org/mozilla-central/source/browser/modules/test/uitour.js
 .. _Telemetry: https://wiki.mozilla.org/Telemetry
+.. _FHR: https://support.mozilla.org/en-US/kb/firefox-health-report-understand-your-browser-perf
