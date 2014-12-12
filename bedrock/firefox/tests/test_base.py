@@ -395,7 +395,11 @@ class TestFirefoxPartners(TestCase):
             'state': u'',
             'country': u'',
             'mobile': u'',
-            '00NU0000002pDJr': [],
+            '00NU0000002pDJr': [],  # interest (multi-select)
+            '00NU00000053D4G': u'',  # interested_countries
+            '00NU00000053D4L': u'',  # interested_languages
+            '00NU00000053D4a': u'',  # campaign_type
+            'industry': u'',
             'email': u'thedude@mozilla.com',
             'lead_source': 'www.mozilla.org/about/partnerships/',
         })
