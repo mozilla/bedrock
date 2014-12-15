@@ -19,10 +19,15 @@
         }
     }
 
-    // track button clicks on Sync cta button
-    $('.sync-cta a.button').on('click', function(e) {
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        trackClick(e, this.href, 'syncButton', newTab);
+    Mozilla.UITour.getConfiguration('sync', function (config) {
+        // track button clicks on Sync cta button
+        $('.sync-cta a.button').on('click', function(e) {
+            e.preventDefault();
+            var goToAccounts = function () {
+                Mozilla.UITour.showFirefoxAccounts();
+            };
+            gaTrack(['_trackEvent', 'whatsnew srch-chg interactions', 'All', 'syncButton'], goToAccounts);
+        });
     });
 
     // track button clicks on fx10 banner

@@ -4,7 +4,6 @@
     var pageId = $('body').prop('id');
     var $window = $(window);
 
-    var $rays = $('.share .rays');
     var $syncAnim = $('.sync-anim');
     var $laptop = $syncAnim.find('.laptop');
     var $laptopScreen = $laptop.find('.inner');
@@ -16,31 +15,25 @@
         $window.scrollTop(0);
     }
 
-    function trackGlowClick (e) {
+    // track Sync CTA click and link to about:accounts where posiible
+    function trackSyncClick(e) {
         e.preventDefault();
         var url = this.href;
-        window.open(url, '_blank');
-        gaTrack(['_trackEvent', pageId + ' Page Interactions - New Firefox Tour', 'button click', 'Share Your Vision CTA']);
-    }
+        var goToAccounts = function () {
+            // available on Firefox 31 and greater
+            Mozilla.UITour.showFirefoxAccounts();
+        };
 
-    // Highlight sync in the app menu and track cta click
-    function showSyncInMenu (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        Mozilla.UITour.showHighlight('accountStatus', 'wobble');
-        // temp fix for Bug 1049130
-        Mozilla.UITour.showHighlight('accountStatus', 'wobble');
-
-        // hide app menu when user clicks anywhere on the page
-        $(document.body).one('click', function () {
-            Mozilla.UITour.hideHighlight();
-        });
-
-        gaTrack(['_trackEvent', pageId + ' Page Interactions - New Firefox Tour', 'button click', 'Get Started with Sync']);
+        if (window.getFirefoxMasterVersion() >= 31) {
+            gaTrack(['_trackEvent', pageId + ' Page Interactions - New Firefox Tour', 'button click', 'Get Started with Sync'], goToAccounts);
+        } else {
+            window.open(url, '_blank');
+            gaTrack(['_trackEvent', pageId + ' Page Interactions - New Firefox Tour', 'button click', 'Get Started with Sync']);
+        }
     }
 
     // Open learn more links in new window and track
-    function trackLearnMoreLinks (e) {
+    function trackLearnMoreLinks(e) {
         e.preventDefault();
         var url = this.href;
         window.open(url, '_blank');
@@ -51,14 +44,13 @@
     $('#masthead').waypoint(function(direction) {
         if (direction === 'down') {
             syncAnimation();
-            $rays.addClass('on');
         }
     }, {
         triggerOnce: true,
         offset: -20
     });
 
-    function syncAnimation () {
+    function syncAnimation() {
         $syncAnim.addClass('on');
 
         $arrows.one('animationstart', function () {
@@ -74,13 +66,12 @@
         });
     }
 
-    // show sync in menu when user clicks cta
-    $('.sync-cta').on('click', '.menu-cta', showSyncInMenu);
+    // link directly to Firefox Accounts when clicking the Sync CTA button
+    Mozilla.UITour.getConfiguration('sync', function (config) {
+        $('.sync-cta').on('click', '.button', trackSyncClick);
+    });
 
     // track learn more links on click
     $('.learn-more a').on('click', trackLearnMoreLinks);
-
-    // track Glow CTA button click
-    $('.share-cta .button').on('click', trackGlowClick);
 
 })(window.jQuery, window.Mozilla);
