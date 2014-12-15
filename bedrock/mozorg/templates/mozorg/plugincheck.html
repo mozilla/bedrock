@@ -12,6 +12,9 @@
   {{ css('plugincheck') }}
 {% endblock %}
 
+{#- Override the infobar options not to run the version check Bug 1111656 -#}
+{% block tabzilla_infobar %}translation{% endblock %}
+
 {% block body_class %}sky{% endblock %}
 
 {% block string_data %}
