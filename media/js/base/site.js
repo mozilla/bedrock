@@ -12,7 +12,7 @@
             ua = ua || navigator.userAgent;
 
             if (/Win(16|9[x58]|NT( [1234]| 5\.0| [^0-9]|[^ -]|$))/.test(ua) ||
-                    /Windows ([MC]E|9[x58]|3\.1|4\.10|NT( [1234]| 5\.0| [^0-9]|[^ ]|$))/.test(ua) ||
+                    /Windows ([MC]E|9[x58]|3\.1|4\.10|NT( [1234]\D| 5\.0| [^0-9]|[^ ]|$))/.test(ua) ||
                     /Windows_95/.test(ua)) {
                 /**
                  * Officially unsupported platforms are Windows 95, 98, ME, NT 4.x, 2000

@@ -12,6 +12,12 @@ describe("site.js", function () {
         it("should identify Windows", function () {
             expect(window.site.getPlatform('foo', 'Win32')).toBe('windows');
             expect(window.site.getPlatform('foo', 'Win64')).toBe('windows');
+            expect(window.site.getPlatform('Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727)', 'Win64')).toBe('windows');
+            expect(window.site.getPlatform('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 7.1; Trident/5.0)', 'Win32')).toBe('windows');
+            // Win 10/IE 11
+            expect(window.site.getPlatform('Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0', 'Win32')).toBe('windows');
+            // Win 10 Preview/IE 11
+            expect(window.site.getPlatform('Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2249.0 Safari/537.36', 'Win64')).toBe('windows');
         });
 
         it("should identify Android", function () {
