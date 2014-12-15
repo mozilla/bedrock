@@ -1,0 +1,233 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox Hello — Free, easy video conversations') }}{% endblock %}
+{% block page_desc %}{{ _('Learn all about Firefox Hello and see for yourself how easy it is to have a free video conversation with anyone, anywhere, right from your browser') }}{% endblock %}
+{% block body_id %}firefox-hello{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_hello') }}
+{% endblock %}
+
+{% block js %}
+  <!--[if IE 9]>
+    {{ js('firefox_hello_ie9') }}
+  <![endif]-->
+  {{ js('firefox_hello') }}
+{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+    <div class="container">
+      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+
+      {% block site_header_nav %}
+        {% include 'firefox/includes/top-menu.html' %}
+      {% endblock %}
+
+      {% block site_header_logo %}
+        {{ super() }}
+      {% endblock %}
+    </div>
+  </header>
+{% endblock %}
+
+{% block content %}
+
+<main role="main">
+  <section id="intro">
+    <div class="container">
+      {#-- No-JS/IE fallback image --#}
+      <h2 id="intro-image">{{ _('Firefox Hello') }}</h2>
+
+      <div id="animation-stage">
+        <!--[if gt IE 9]><!-->
+        <div class="svg-wrapper" id="intro-face-wrapper">
+          <div id="intro-face">
+            <div class="intro-face-eye" id="intro-face-eye-left">
+              <div class="intro-face-eyelid"></div>
+              <div class="intro-face-eyeball"></div>
+            </div>
+
+            <div class="intro-face-eye" id="intro-face-eye-right">
+              <div class="intro-face-eyelid"></div>
+              <div class="intro-face-eyeball"></div>
+            </div>
+
+            <div class="anim-sprite" id="intro-face-mouth"></div>
+
+            <svg version="1.1" class="actor" id="intro-face-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 374 357" style="enable-background:new 0 0 374 357;" xml:space="preserve">
+              <g>
+                <path id="intro-face-bubble" d="M187,2C84.8,2,2,74.8,2,164.5c0,44.7,20.5,85.1,53.7,114.5C50,299.3,38.6,326.9,16,353.8
+                  c3.8,6.8,67.4-17.2,112.2-35.3c18.5,5.4,38.2,8.4,58.8,8.4c102.2,0,185-72.7,185-162.5C372,74.8,289.2,2,187,2z"/>
+              </g>
+            </svg>
+          </div>{#-- /#intro-face --#}
+        </div>{#-- /#intro-face-wrapper --#}
+
+        <div class="anim-sprite" id="laptop">
+          <div class="anim-sprite" id="laptop-camera-on"></div>
+        </div>
+
+        <div class="anim-sprite" id="browser">
+          <div id="hello-panel">
+            <div id="hello-panel-contents">
+              <div class="hello-panel-text" id="hello-panel-text1"></div>
+              <div class="hello-panel-text" id="hello-panel-text2"></div>
+              <div class="hello-panel-text last" id="hello-panel-text3"></div>
+              <div id="hello-panel-button"></div>
+            </div>
+          </div>{#-- /#hello-panel --#}
+
+          <div class="chat-window" id="chat-window-green">
+            <div class="anim-sprite green-face" id="chatter-green"></div>
+          </div>
+
+          <div class="chat-window" id="chat-window-blue">
+            <div class="anim-sprite blue-face" id="chatter-blue"></div>
+          </div>
+        </div>{#-- /#browser --#}
+
+        <div id="conversation">
+          <div class="anim-sprite message" id="message-blue1"></div>
+          <div class="anim-sprite message" id="message-green1"></div>
+          <div class="anim-sprite message" id="message-blue2"></div>
+          <div class="anim-sprite message" id="message-green2"></div>
+          <div class="anim-sprite message" id="message-blue3"></div>
+          <div class="anim-sprite message" id="message-green3"></div>
+          <div class="anim-sprite message" id="message-blue4"></div>
+          <div class="anim-sprite message" id="message-green4"></div>
+          <div class="anim-sprite message blue-face" id="message-blue-face"></div>
+          <div class="anim-sprite message green-face" id="message-green-face"></div>
+        </div>
+
+        <div class="anim-sprite" id="wordmark"></div>
+        <!--<![endif]-->
+      </div>{#-- /#animation-stage --#}
+
+      <h1 class="heading-primary">{{ _('As easy as saying hello') }}</h1>
+
+      <h2 class="heading-tertiary">
+        {{ _('Meet Firefox Hello, the easiest way to connect for free over video with anyone, anywhere.') }}
+      </h2>
+
+      <button class="try-hello" id="try-hello-intro">{{ _('Try Firefox Hello') }}</button>
+
+      {#
+      Share widget pulled from 35, will be back for 36:
+      https://bugzilla.mozilla.org/show_bug.cgi?id=1113917#c4
+
+      <div id="share-wrapper">
+        {% include 'firefox/includes/social-share.html' %}
+      </div>
+      #}
+    </div>{# /.container #}
+  </section>
+
+  <section id="features">
+    <div class="container">
+      <ul>
+        <li id="feature-simple">
+          <h3 class="heading-tertiary">{{ _('All you need is Firefox') }}</h3>
+
+          <p>
+            {{ _('If you have the latest version of Firefox, you already have Hello.') }}
+            {{ _('There’s no account or sign-in required and nothing extra to download.') }}
+            {{ _('Just start a conversation, send your friend a link and ask them to click it.') }}
+            {{ _('Simple.') }}
+          </p>
+        </li>
+        <li id="feature-invite">
+          <h3 class="heading-tertiary">{{ _('Invite anyone, anywhere') }}</h3>
+
+          <p>
+            {{ _('Hello is super easy to use and your friends and family don’t even need Firefox to join your conversation.') }}
+            {{ _('As long as they have a compatible browser, they’re good to go.') }}
+          </p>
+
+          <a rel="external" href="https://support.mozilla.org/kb/which-browsers-will-work-firefox-hello-video-chat">{{ _('Learn more about compatible browsers') }}</a>
+        </li>
+        <li id="feature-secure">
+          <h3 class="heading-tertiary">{{ _('Safe, secure, protected') }}</h3>
+
+          <p>
+            {{ _('Because Hello is built right into Firefox, you can rest easy knowing that your conversations and information will remain private and secure.') }}
+            {{ _('That’s part of our mission, and it’s behind everything we do around here.') }}
+          </p>
+        </li>
+        <li id="feature-account">
+          <h3 class="heading-tertiary">{{ _('Do more with a Firefox Account') }}</h3>
+
+          <p>
+            {{ _('To start a conversation with someone directly, simply create a free Firefox Account or sign in if you have one already &mdash; it’s the same account you use with Sync.') }}
+            {{ _('You can then add contacts to keep them close at hand.') }}
+          </p>
+        </li>
+        <li id="feature-getfx">
+          <h3 class="heading-tertiary">{{ _('Get Firefox to get started') }}</h3>
+
+          <p>
+            {{ _('Want to start using Hello?') }}
+            {{ _('All you need is Firefox &mdash; the open source browser that helps you stay in control of your online life while you stay connected with friends and family.') }}
+            {{ _('Download Firefox to start your first conversation.') }}
+          </p>
+        </li>
+      </ul>
+    </div>{# /.container #}
+  </section>
+
+  <section id="download-try">
+    <div class="container">
+      <div class="ctacopy-wrapper">
+        <h2 class="dltry-copy heading-secondary" id="ctacopy-nonfx">{{ _('Get Firefox and start your first conversation') }}</h2>
+        <h2 class="dltry-copy heading-secondary" id="ctacopy-oldfx">{{ _('Update your Firefox to start using Hello') }}</h2>
+        <h2 class="dltry-copy heading-secondary" id="ctacopy-hellofx">{{ _('Start your first conversation today') }}</h2>
+      </div>
+
+      <div class="cta-wrapper">
+        {{ download_firefox(simple=True, dom_id='download-fx') }}
+        <a class="try-hello" id="try-hello-footer" rel="external" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Hello now') }}</a>
+      </div>
+    </div>{# /.container #}
+  </section>
+
+{% if video_url != '' %}
+  <section id="video">
+    <div class="container">
+      <div class="ctacopy-wrapper">
+        <h2 class="heading-secondary">{{ _('Get to know Hello') }}</h2>
+
+        <p>
+          {{ _('Want to reconnect with friends around the world?') }}
+          {{ _('Celebrate a birthday when you can’t be there in person?') }}
+          {{ _('Learn more about Firefox Hello and see for yourself how easy it is to have a free video conversation with anyone, anywhere, right from your browser.') }}
+        </p>
+
+        <p>
+          {{ _('Questions?') }}
+          <a rel="external" href="https://support.mozilla.org/kb/firefox-hello-video-and-voice-conversations-online">{{ _('Visit Mozilla Support') }}</a>
+        </p>
+      </div>
+      <div class="cta-wrapper">
+        <a id="video-link" href="{{ video_url }}.mp4">
+          <img src="{{ media('/img/firefox/hello/video-screenshot.jpg') }}" alt="{{ _('Get to know Hello') }}">
+        </a>
+      </div>
+    </div>{# /.container #}
+  </section>
+
+  <div id="video-modal-wrapper">
+    <div id="video-modal">
+      {{ video(video_url + '.mp4', video_url + '.webm', id='hello-video') }}
+    </div>
+  </div>
+{% endif %}
+</main>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
