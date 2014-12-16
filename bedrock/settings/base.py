@@ -110,11 +110,13 @@ CACHEBUST_IMGS = False
 MINIFY_BUNDLES = {
     'css': {
         'csrf-failure': (
+            'css/sandstone/sandstone-resp.less',
             'css/csrf-failure.less',
         ),
         'about': (
             'css/sandstone/video-resp.less',
-            'css/mozorg/about.less',
+            'css/mozorg/about-base.less',
+            'css/mozorg/mosaic.less',
         ),
         'about-base': (
             'css/mozorg/about-base.less',
@@ -165,10 +167,12 @@ MINIFY_BUNDLES = {
             'css/mozorg/contact-spaces-ie7.less',
         ),
         'contribute-old': (
+            'css/mozorg/contribute/contribute-form.less',
             'css/mozorg/contribute/contribute-old.less',
             'css/sandstone/video-resp.less',
         ),
         'contribute-page': (
+            'css/mozorg/contribute/contribute-form.less',
             'css/mozorg/contribute/contribute-page.less',
         ),
         'contribute-studentambassadors-landing': (
@@ -179,16 +183,24 @@ MINIFY_BUNDLES = {
             'css/mozorg/contribute/studentambassadors/join.less',
         ),
         'dnt': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/menu-resp.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/dnt.less',
         ),
         'firefox': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/menu.less',
             'css/firefox/template.less',
         ),
         'firefox_all': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/menu-resp.less',
             'css/firefox/all.less',
         ),
         'firefox_android': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/menu-resp.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/android.less',
         ),
@@ -205,7 +217,10 @@ MINIFY_BUNDLES = {
             'css/firefox/channel.less',
         ),
         'firefox-dashboard': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
             'css/base/mozilla-accordion.less',
+            'css/firefox/menu-resp.less',
             'css/firefox/dashboard.less',
         ),
         'firefox_desktop': (
@@ -231,6 +246,7 @@ MINIFY_BUNDLES = {
             'css/firefox/desktop/trust.less',
         ),
         'firefox_sms': (
+            'css/sandstone/sandstone-resp.less',
             'css/libs/socialshare/socialshare.less',
             'css/firefox/template-resp.less',
             'css/sandstone/video-resp.less',
@@ -245,37 +261,56 @@ MINIFY_BUNDLES = {
             'css/base/mozilla-accordion.less',
         ),
         'firefox_firstrun': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
             'css/sandstone/video.less',
             'css/base/mozilla-modal.less',
             'css/firefox/firstrun.less',
         ),
         'firefox_developer_firstrun': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/dev-firstrun.less',
         ),
         'nightly_firstrun': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
             'css/firefox/nightly_firstrun.less',
         ),
         'firefox_geolocation': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
+            'css/firefox/menu-resp.less',
             'css/base/mozilla-accordion.less',
             'css/base/mozilla-modal.less',
             'css/libs/mapbox-1.6.3.css',
             'css/firefox/geolocation.less'
         ),
         'firefox_developer': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
+            'css/firefox/menu-resp.less',
             'css/firefox/developer.less',
         ),
         'firefox_new': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
             'css/libs/socialshare/socialshare.less',
+            'css/firefox/simple_footer-resp.less',
             'css/firefox/new.less',
         ),
         'firefox_organizations': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
             'css/firefox/organizations.less',
         ),
         'firefox_os': (
+            'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-modal.less',
             'css/libs/jquery.pageslide.css',
+            'css/firefox/os/get_device.less',
             'css/firefox/os/firefox-os.less',
         ),
         'firefox_os_ie': (
@@ -284,6 +319,7 @@ MINIFY_BUNDLES = {
         'firefox_os_devices': (
             'css/libs/tipsy.css',
             'css/base/mozilla-modal.less',
+            'css/firefox/os/get_device.less',
             'css/firefox/os/devices.less',
         ),
         'firefox_os_devices_ie': (
@@ -297,9 +333,13 @@ MINIFY_BUNDLES = {
             'css/firefox/os/mwc-2014-preview-ie7.less',
         ),
         'firefox_releases_index': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
+            'css/firefox/menu-resp.less',
             'css/firefox/releases-index.less',
         ),
         'firefox_privacy_tour': (
+            'css/sandstone/sandstone.less',
             'css/base/mozilla-modal.less',
             'css/firefox/independent-splash.less',
             'css/firefox/australis/australis-ui-tour.less',
@@ -313,6 +353,7 @@ MINIFY_BUNDLES = {
             'css/firefox/privacy_tour/no-tour.less',
         ),
         'firefox_search_tour': (
+            'css/sandstone/sandstone.less',
             'css/firefox/search_tour/common.less',
             'css/firefox/search_tour/tour.less',
         ),
@@ -320,20 +361,28 @@ MINIFY_BUNDLES = {
             'css/firefox/search_tour/common.less',
         ),
         'firefox_tour': (
+            'css/sandstone/sandstone.less',
             'css/firefox/australis/australis-ui-tour.less',
             'css/firefox/australis/australis-page-common.less',
             'css/firefox/sync-animation.less',
             'css/firefox/australis/australis-page-stacked.less',
         ),
         'firefox_whatsnew': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
             'css/sandstone/video.less',
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
         ),
         'firefox_whatsnew_fxos': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/simple_footer.less',
             'css/firefox/whatsnew-fxos.less',
         ),
         'firefox_releasenotes': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
+            'css/firefox/menu-resp.less',
             'css/firefox/releasenotes.less',
         ),
         'firefox_sync': (
@@ -350,8 +399,10 @@ MINIFY_BUNDLES = {
             'css/firefox/independent.less',
         ),
         'installer_help': (
-            'css/base/mozilla-modal.less',
+            'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
+            'css/firefox/menu-resp.less',
+            'css/base/mozilla-modal.less',
             'css/firefox/installer-help.less',
         ),
         'history-slides': (
@@ -378,21 +429,25 @@ MINIFY_BUNDLES = {
             'css/mozorg/home/home-ie8.less',
         ),
         'legal': (
+            'css/sandstone/sandstone-resp.less',
             'css/legal/legal.less',
         ),
         'legal-eula': (
             'css/legal/eula.less',
         ),
         'legal_fraud_report': (
+            'css/sandstone/sandstone-resp.less',
             'css/legal/fraud-report.less',
         ),
         'manifesto': (
             'css/base/mozilla-modal.less',
             'css/libs/socialshare/socialshare.less',
+            'css/mozorg/mosaic.less',
             'css/mozorg/manifesto.less',
         ),
         'mission': (
             'css/sandstone/video-resp.less',
+            'css/mozorg/mosaic.less',
             'css/mozorg/mission.less',
         ),
         'mozilla_accordion': (
@@ -405,6 +460,7 @@ MINIFY_BUNDLES = {
             'css/persona/persona.less',
         ),
         'powered-by': (
+            'css/sandstone/sandstone-resp.less',
             'css/mozorg/powered-by.less',
         ),
         'plugincheck': (
@@ -412,6 +468,7 @@ MINIFY_BUNDLES = {
             'css/plugincheck/qtip.css',
         ),
         'press_speaker_request': (
+            'css/sandstone/sandstone-resp.less',
             'css/press/speaker-request.less',
         ),
         'privacy': (
@@ -436,6 +493,7 @@ MINIFY_BUNDLES = {
             'css/research/research.less',
         ),
         'security': (
+            'css/sandstone/sandstone-resp.less',
             'css/security/security.less',
         ),
         'security-bug-bounty-hall-of-fame': (
@@ -446,6 +504,7 @@ MINIFY_BUNDLES = {
             'css/mozorg/security-tld-idn.less',
         ),
         'styleguide': (
+            'css/sandstone/fonts.less',
             'css/styleguide/styleguide.less',
             'css/styleguide/websites-sandstone.less',
             'css/styleguide/identity-mozilla.less',
@@ -463,6 +522,7 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone-resp.less',
         ),
         'styleguide-docs-mozilla-pager': (
+            'css/sandstone/sandstone-resp.less',
             'css/styleguide/docs/mozilla-pager.less',
         ),
         'tabzilla': (

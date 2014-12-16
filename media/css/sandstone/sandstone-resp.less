@@ -52,28 +52,6 @@ a.more {
     .trailing-arrow();
 }
 
-// Make a button look like an anchor
-.link-button {
-    border: none;
-    background: transparent;
-    color: @linkBlue;
-    .font-size(@baseFontSize);
-    padding: 0;
-    margin: 0;
-    line-height: 1.5;
-    .open-sans();
-    cursor: pointer;
-
-    &:hover {
-        text-decoration: underline;
-        color: darken(@linkBlue, 10%);
-    }
-
-    &:focus {
-        outline: 0;
-    }
-}
-
 .sand #outer-wrapper {
     background: #f5f1e8 url(/media/img/sandstone/bg-gradient-sand.png) repeat-x;
     background: url(/media/img/sandstone/bg-gradient-sand.png) repeat-x,
@@ -459,7 +437,7 @@ input.invalid {
     input[type=email],
     input[type=password],
     input[type=text] {
-        .form-field-error;
+        .form-field-error();
     }
     select {
         .box-shadow(@formFieldSelectErrorShadow);
@@ -471,7 +449,7 @@ input.invalid {
 
 input[type=email], input[type=password], input[type=text] {
     &.error {
-        .form-field-error;
+        .form-field-error();
     }
 }
 
@@ -578,20 +556,6 @@ label.error {
     padding-right: @gridGutterWidth;
     position: relative;
     .clearfix;
-}
-
-// White content box, often used with .title-shadow-box
-// See /about/powered-by for example.
-.callout-content {
-    .clearfix;
-    display: block;
-    @shadow: 0 0 0 1px #fff inset;
-    .box-shadow(@shadow);
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    margin: 0 auto @baseLine;
-    padding-left: @gridGutterWidth;
-    padding-right: @gridGutterWidth;
 }
 
 /* }}} */
@@ -1051,7 +1015,7 @@ nav.menu-bar {
             }
 
             span {
-                .visually-hidden; /* for a11y */
+                .visually-hidden(); /* for a11y */
             }
         }
     }
@@ -1061,6 +1025,10 @@ nav.menu-bar {
     .col, .col-2 ul li {
         float: right;
     }
+}
+
+.hidden {
+    .hidden();
 }
 
 .invert {

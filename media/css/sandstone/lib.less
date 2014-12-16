@@ -1,3 +1,11 @@
+// THIS FILE SHOULD OUTPUT NOTHING!
+//
+// As this file is included in many places (for variable/mixin access),
+// it must output nothing for performance reasons.
+//
+// IF IT'S NOT A MIXIN OR VARIABLE, IT DOESN'T GO HERE!
+
+
 // Fonts and color
 
 // The custom X-LocaleSpecific font family is defined with a @font-face rule in
@@ -144,8 +152,6 @@
 @widthMobileLandscape:    440px;
 @widthMobile:             320px;
 
-
-
 .clearfix() {
     zoom: 1;
     &:after {
@@ -237,6 +243,20 @@
   box-sizing: border-box;
 }
 
+// White content box, often used with .title-shadow-box
+// See /about/powered-by for example.
+.callout-content() {
+    .clearfix;
+    display: block;
+    @shadow: 0 0 0 1px #fff inset;
+    .box-shadow(@shadow);
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    margin: 0 auto @baseLine;
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
+}
+
 // Gradients
 #gradient {
   .horizontal (@startColor: #555, @endColor: #333) {
@@ -317,9 +337,9 @@
 @formFieldErrorShadow:       0 0 0 2px rgba(175, 50, 50, .4);
 @formFieldSelectErrorShadow: 0 0 0 3px rgba(175, 50, 50, .4);
 
-.form-field-error {
-  border-color: rgb(175,50,50);
-  .box-shadow(@formFieldErrorShadow);
+.form-field-error() {
+    border-color: rgb(175,50,50);
+    .box-shadow(@formFieldErrorShadow);
 }
 
 .required-star() {
@@ -333,7 +353,7 @@
 // Classes used to hide content from users. Choose wisely!
 
 // Hide visually, but not to screen readers
-.visually-hidden {
+.visually-hidden() {
     position: absolute!important;
     height: 1px;
     width: 1px;
@@ -345,14 +365,14 @@
 }
 
 // Hide visually & from screen readers
-.hidden {
+.hidden() {
     display: none;
 }
 
 /****************************************************************************/
 
 // not the most up to date method, but works in IE7
-.image-replaced {
+.image-replaced() {
     text-indent: 120%; // extra 20% to account for fancy fonts that may overhang
     white-space: nowrap;
     overflow: hidden;
@@ -372,6 +392,28 @@
     }
 }
 
+// Make a button look like an anchor
+.link-button() {
+    border: none;
+    background: transparent;
+    color: @linkBlue;
+    .font-size(@baseFontSize);
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+    .open-sans();
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+        color: darken(@linkBlue, 10%);
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
 .multi-column(@width: auto, @count: auto, @gap: normal) {
   -webkit-column-width: @width;
      -moz-column-width: @width;
@@ -387,11 +429,11 @@
             column-gap: @gap;
 }
 
-.multi-column-clear {
+.multi-column-clear() {
   .multi-column(auto, auto, normal);
 }
 
-.multi-column-avoid-break {
+.multi-column-avoid-break() {
             page-break-inside: avoid;
   -webkit-column-break-inside: avoid;
      -moz-column-break-inside: avoid;

@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../../sandstone/lib.less";
-@import "get_device.less";
 
 /* {{{ Template overrides */
 
@@ -275,7 +274,7 @@ html, body {
     cursor: pointer;
     float: right;
     margin: 5px 25px 0 0;
-    .image-replaced;
+    .image-replaced();
     background: url(/media/img/firefox/os/devices/close.png) center center no-repeat;
     width: 25px;
     height: 26px;
@@ -750,14 +749,14 @@ html, body {
                 .is-available, .coming-soon {
                     width: 20px;
                     padding: 0;
-                    .image-replaced;
+                    .image-replaced();
                     background-position: center center;
                 }
             }
         }
 
         .device-name {
-            .visually-hidden;
+            .visually-hidden();
         }
     }
 
