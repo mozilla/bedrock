@@ -211,6 +211,7 @@ MINIFY_BUNDLES = {
             'css/firefox/unsupported-systems.less',
         ),
         'firefox-resp': (
+            'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
         ),
         'firefox_channel': (
@@ -318,6 +319,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_os_devices': (
             'css/libs/tipsy.css',
+            'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/os/get_device.less',
             'css/firefox/os/devices.less',
@@ -386,15 +388,20 @@ MINIFY_BUNDLES = {
             'css/firefox/releasenotes.less',
         ),
         'firefox_sync': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/menu-resp.less',
             'css/firefox/sync.less',
         ),
         'firefox_sync_old': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/menu-resp.less',
             'css/firefox/sync-old.less',
         ),
         'firefox_sync_anim': (
             'css/firefox/sync-animation.less',
         ),
         'firefox_independent': (
+            'css/sandstone/sandstone-resp.less',
             'css/firefox/independent-splash.less',
             'css/firefox/independent.less',
         ),
