@@ -349,6 +349,7 @@ MINIFY_BUNDLES = {
             'css/firefox/privacy_tour/tour.less',
         ),
         'firefox_privacy_no_tour': (
+            'css/sandstone/sandstone.less',
             'css/base/mozilla-modal.less',
             'css/firefox/independent-splash.less',
             'css/firefox/privacy_tour/common.less',
@@ -360,6 +361,7 @@ MINIFY_BUNDLES = {
             'css/firefox/search_tour/tour.less',
         ),
         'firefox_search_no_tour': (
+            'css/sandstone/sandstone.less',
             'css/firefox/search_tour/common.less',
         ),
         'firefox_tour': (
