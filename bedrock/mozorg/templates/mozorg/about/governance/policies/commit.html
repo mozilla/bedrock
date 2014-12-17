@@ -15,10 +15,9 @@
 
 <p>
 {% trans policy=url('mozorg.about.governance.policies.commit.access-policy') %}
-  In all cases, you need to demonstrate you know what's going on, find a
+  You will need to demonstrate you know what's going on, and find a
   <a href="{{ policy }}">person or people who have adequate authority</a> and
-  will vouch for your competence, and complete and sign a Committer's
-  Agreement.
+  will vouch for your competence.
 {% endtrans %}
 </p>
 
@@ -40,10 +39,9 @@
     </ul>
   </li>
   <li>{{ _('Attach your SSH <em>public</em> key to the bug - a file with extension ".pub". (Please mark it as <code>text/plain</code> when attaching it!)') }}</li>
-  <li>{% trans notification=url('mozorg.about.governance.policies.commit.notification') %}
-    Send us a <a href="{{ notification }}">completed Committer's Agreement</a>.
+  <li>{% trans requirements=url('mozorg.about.governance.policies.commit.requirements') %}
+    Make sure you are happy with the <a href="{{ requirements }}">Commit Access Requirements</a>.
   {% endtrans %}</li>
-  <li>{{ _('Update the bug to note that you’ve sent in the Agreement.') }}</li>
   <li>{{ _('Get your voucher(s), and/or the owner of the exception tree you want access for, to add a comment to the bug saying they support your application.') }}</li>
   <li>{{ _('An appropriate Mozilla representative will update the bug when they have received your signed Agreement.') }}</li>
   <li>{{ _('So, to recap, the bug needs:') }}
@@ -51,20 +49,11 @@
       <li>{{ _('Declaration of what level you want and the email address to use') }}
       <li>{{ _('SSH public key') }}
       <li>{{ _('Comments from all the necessary vouchers') }}
-      <li>{{ _('Comment from Mozilla that agreement has been received') }}
     </ul>
   </li>
   <li>{{ _('A Mozilla representative will double-check that the needed info is recorded and, if so, reassign the bug to IT to have your account created.') }}</li>
   <li>{{ _('A Mozilla IT representative will update the bug with account creation information and close the bug.') }}</li>
 </ol>
-
-<h2 id="form">{{ _('Contributor Form') }}</h2>
-<p>
-{% trans notification=url('mozorg.about.governance.policies.commit.notification'), pdf='https://static.mozilla.com/foundation/documents/commit-access/committers-agreement.pdf' %}
-You'll need to fill out and <a href="{{ notification }}">submit</a> the <a href="{{ pdf }}">Committer's Agreement</a> 
-(both sections 1 and 6) to get your account set up. Read it carefully - signing it indicates you understand and agree to our legal requirements. Breaking these rules could cause legal problems for Mozilla and may cause us to revoke your access. If you have any questions, ask us.
-{% endtrans %}
-</p>
 
 <h2 id="vouchers">{{ _('Vouchers') }}</h2>
 <p>
@@ -78,13 +67,10 @@ You will need one or more vouchers. The <a href="{{ policy }}">Commit Access Pol
 <h2 id="dormant-accounts">{{ _('Dormant Accounts') }}</h2>
 <p>{{ _('If your account in a particular SCM is inactive for more than 6 months, it may be deactivated. However, the knowledge that you have achieved a particular level of access is retained. Therefore, getting your account reactivated is a simple matter of filing a bug asking IT to turn it back on. Such bugs should be dealt with extremely quickly.') }}</p>
 
-<h2 id="problems">{{ _('Problems With Your Account') }}</h2>
+<h2 id="problems">{{ _('Useful Information') }}</h2>
 <ul>
   <li>{% trans rheeet='https://ftp.mozilla.org/pub/mozilla.org/mozilla/libraries/bonus-tracks/rheet.wav' %}
     Need to hear a <a href="{{ rheeet }}">rheeet</a>?
-  {% endtrans %}</li>
-  <li>{% trans notification=url('mozorg.about.governance.policies.commit.notification') %}
-    If you find that someone is using your account, <a href="{{ notification }}">notify us of the problem</a>.
   {% endtrans %}</li>
   <li>{% trans mercurial='https://developer.mozilla.org/Mercurial_FAQ#How_do_I_check_stuff_in.3F' %}
     We have a document on <a href="{{ mercurial }}">checking in using Hg</a>.
