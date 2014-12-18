@@ -118,11 +118,13 @@ LOCALE_CONTACTS = {
     'ro': ['contact@mozilla.ro'],
     'ru': ['contribute@mozilla-russia.org'],
     'sl': ['info@mozilla.si'],
+    'son': ['hantum@bagoundie.net'],
     'sq': ['besnik@mozilla-albania.org'],
     'sr': ['prikljucise@mozilla.rs'],
     'sv-SE': ['mozilla.sweden@gmail.com'],
     'ta': ['vallavan2valluvan@gmail.com'],
     'tr': ['bilgi@mozilla.org.tr'],
+    'uk': ['contribute@mozilla.org.ua'],
     'zh-CN': ['contributor-zh-cn@mozilla.org'],
     'zh-TW': ['contribute@mail.moztw.org'],
 }
