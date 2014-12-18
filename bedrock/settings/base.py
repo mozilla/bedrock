@@ -257,6 +257,8 @@ MINIFY_BUNDLES = {
             'css/firefox/tiles.less',
         ),
         'firefox_faq': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/menu-resp.less',
             'css/firefox/faq.less',
             'css/firefox/template-resp.less',
             'css/base/mozilla-accordion.less',
