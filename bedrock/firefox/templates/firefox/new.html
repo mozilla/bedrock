@@ -47,6 +47,12 @@
   {{ js('firefox_new') }}
 {% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-new-optimizely') %}
+     {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 
 <main role="main">

@@ -13,6 +13,12 @@
   {% endif %}
 {% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-desktop-optimizely') %}
+     {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block site_css %}
   {{ css('firefox_desktop') }}
 {% endblock %}

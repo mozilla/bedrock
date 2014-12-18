@@ -248,6 +248,43 @@ You can use git or svn to checkout the repo. Make sure that it is named ``locale
 
 You can read more details about how to localize content :ref:`here<l10n>`.
 
+Waffle
+------
+
+`Waffle
+<http://waffle.readthedocs.org/en/latest/index.html>`_ is used to configure behavior and/or features of select pages on bedrock.
+
+Currently, Waffle switches are used to enable/disable Optimizely on the following URLs (Waffle switch names follow in parentheses):
+
+* ``/`` (``mozorg-home-optimizely``)
+* ``/firefox/desktop/`` (``firefox-desktop-optimizely``)
+* ``/firefox/firstrun/`` (``firefox-firstrun-optimizely``)
+* ``/firefox/installer-help/`` (``firefox-installer-help-optimizely``)
+* ``/firefox/new/`` (``firefox-new-optimizely``)
+* ``/firefox/whatsnew/`` (``firefox-whatsnew-optimizely``)
+* ``/plugincheck/`` (``plugincheck-optimizely``)
+
+To work with/test these Waffle/Optimizely switches locally, you must add the switches to your local database. For example::
+
+    ./manage.py switch firefox-new-optimizely on --create
+
+You then must set an Optimizely project code in ``settings/local.py``::
+
+    # Optimize.ly project code
+    OPTIMIZELY_PROJECT_ID = 12345
+
+.. note::
+
+    You are not required to set up Waffle & Optimizely as detailed above. If not configured, Waffle will treat the switches as set to ``off``.
+
+For quick reference, to toggle a Waffle switch::
+
+    ./manage.py switch firefox-desktop-optimizely off
+
+And to list all Waffle switches::
+
+    ./manage.py switch -l
+
 Upgrading
 ---------
 
