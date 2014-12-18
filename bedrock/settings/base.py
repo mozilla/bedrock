@@ -571,6 +571,10 @@ MINIFY_BUNDLES = {
             'css/libs/h5bp_main.css',
             'css/facebookapps/downloadtab.less',
         ),
+        'thunderbird-start': (
+            'css/sandstone/fonts.less',
+            'css/thunderbird/start.less',
+        ),
     },
     'js': {
         'site': (

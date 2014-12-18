@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-channel="release">
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <title>{% filter striptags|e %}{{ _('Welcome to <span>Thunderbird</span>') }}{% endfilter %}</title>
+    {{ l10n_css() }}
+    {% block extrahead %}
+      {{ css('thunderbird-start') }}
+    {% endblock %}
+  </head>
+  <body class="sky">
+    <main>
+      <header>
+        <h1>{{ _('Welcome to <span>Thunderbird</span>') }}</h1>
+      </header>
+      <div>
+        <section>
+          <h2>{{ _('Happy 10th Birthday Thunderbird!') }}</h2>
+          <p>{{ _('Mozilla announced Thunderbird version 1.0 ten years ago. Can you imagine the last ten years without e-mail? Can you imagine e-mail without Thunderbird? We can’t!') }}</p>
+        </section>
+        <section>
+          <h2>{{ _('Contribute to Thunderbird') }}</h2>
+          <p>{{ _('To ensure that Thunderbird continues to improve, as it has for the last ten years, active contributors <a href="%s">recently organized</a> to focus on the future.')|format('https://blog.mozilla.org/thunderbird/2014/11/thunderbird-reorganizes-at-2014-toronto-summit/') }}
+             {{ _('Now is a great time for you to <a href="%s" class="iconic">get involved</a>.')|format('https://wiki.mozilla.org/Thunderbird#Contributing') }}
+             {{ _('Please help us assist users of Thunderbird, and improve the Thunderbird product and eco-system.') }}</p>
+          <p>{{ _('We look forward to <a href="%s">hearing from you</a>.')|format('https://wiki.mozilla.org/Thunderbird#Contributing') }}</p>
+          <p><a class="more" href="https://wiki.mozilla.org/Thunderbird">{{ _('Learn more') }}</a></p>
+        </section>
+      </div>
+      <div>
+        <section class="help">
+          <h2 class="iconic">{{ _('Need Support?') }}</h2>
+          <p>{{ _('Most Thunderbird support questions are answered on the <a href="%s">Knowledge Base</a>.')|format('https://support.mozilla.org/products/thunderbird') }}
+             {{ _('If you can’t find an answer, <a href="%s">ask your question on our support forum</a>.')|format('https://support.mozilla.org/questions/new/thunderbird') }}</p>
+        </section>
+      </div>
+      <footer>
+        <nav>
+          <ul>
+            <li><a href="/thunderbird/features/">{{ _('Features') }}</a></li>
+            <li><a href="https://blog.mozilla.org/thunderbird/">{{ _('Visit our blog') }}</a></li>
+            <li><a href="https://wiki.mozilla.org/Thunderbird#Contributing">{{ _('Contribute') }}</a></li>
+            <li><a href="https://support.mozilla.org/products/thunderbird/how">{{ _('Tips') }}</a></li>
+            <li><a href="https://addons.mozilla.org/thunderbird/">{{ _('Add-ons') }}</a></li>
+            <li><a href="https://support.mozilla.org/products/thunderbird">{{ _('Get help') }}</a></li>
+          </ul>
+        </nav>
+      </footer>
+    </main>
+  </body>
+</html>

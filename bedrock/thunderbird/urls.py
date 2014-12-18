@@ -5,6 +5,7 @@ from django.conf.urls import patterns, url
 
 import bedrock.releasenotes.views
 from bedrock.releasenotes import version_re
+from bedrock.mozorg.util import page
 
 
 latest_re = r'^thunderbird(?:/(?P<version>%s))?/%s/$'
@@ -29,4 +30,7 @@ urlpatterns = patterns('',
     url('^thunderbird/latest/releasenotes/$',
         bedrock.releasenotes.views.latest_notes,
         {'product': 'thunderbird'}),
+
+    # Start pages by channel
+    page('thunderbird/release/start', 'thunderbird/start/release.html'),
 )
