@@ -1,0 +1,83 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{{ _('Firefox OS — ') }}{% endblock %}
+{% block page_title %}{{ _('Beyond smartphones — Bringing the power of the Web to Panasonic TVs') }}{% endblock %}
+{% block page_desc %}{{ _('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.') }}{% endblock %}
+{% block body_id %}firefox-os-tv{% endblock %}
+{% block body_class %}firefox-os-tv blueprint{% endblock %}
+
+
+{% block site_css %}
+  {{ css('firefox_os_tv') }}
+{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+
+{% block site_header_logo %}
+  <h2><a href="{{ url('firefox.os.index') }}">
+  {{ high_res_img('img/firefox/os/devices/tv/logo.png', {'alt': 'Firefox OS', 'width': '221', 'height': '67'}) }}</a></h2>
+{% endblock %}
+
+{% block content %}
+
+<div class="main-feature">
+  <h1>{{_('Firefox OS comes to TVs')}}</h1>
+  <h2>{{ _('We’re bringing the power of the Web to Panasonic televisions later this year.') }}</h2>
+</div>
+
+<div id="main-content">
+
+  <div class="pager pager-auto-init pager-with-nav pager-with-tabs pager-no-history" id="mozilla-pager-1">
+
+    <div class="tv">
+      <div class="pager-content" id="mozilla-pager-tv-pages">
+        <div id="tv1" class="pager-page">
+          {{ high_res_img('img/firefox/os/devices/tv/screen1.jpg', {'alt': _('Screenshot'), 'width': '796', 'height': '448'}) }}
+        </div>
+        <div id="tv2" class="pager-page">
+          {{ high_res_img('img/firefox/os/devices/tv/screen2.jpg', {'alt': _('Screenshot'), 'width': '796', 'height': '448'}) }}
+        </div>
+        <div id="tv3" class="pager-page">
+          {{ high_res_img('img/firefox/os/devices/tv/screen3.jpg', {'alt': _('Screenshot'), 'width': '796', 'height': '448'}) }}
+        </div>
+        <div id="tv4" class="pager-page">
+          {{ high_res_img('img/firefox/os/devices/tv/screen4.jpg', {'alt': _('Screenshot'), 'width': '796', 'height': '448'}) }}
+        </div>
+      </div>
+    </div>
+
+    <ol class="pager-tabs">
+      <li>
+        <a href="#tv1"><img src="{{ media('img/firefox/os/devices/tv/screen1.jpg') }}" alt="{{ _('Screenshot') }}"></a>
+      </li>
+      <li>
+        <a href="#tv2"><img src="{{ media('img/firefox/os/devices/tv/screen2.jpg') }}" alt="{{ _('Screenshot') }}"></a>
+      </li>
+      <li>
+        <a href="#tv3"><img src="{{ media('img/firefox/os/devices/tv/screen3.jpg') }}" alt="{{ _('Screenshot') }}"></a>
+      </li>
+      <li>
+        <a href="#tv4"><img src="{{ media('img/firefox/os/devices/tv/screen4.jpg') }}" alt="{{ _('Screenshot') }}"></a>
+      </li>
+    </ol>
+
+  </div>
+
+  <p class="details">
+    {{ _('It’s not just a phone operating system on a bigger screen.') }}
+    {{ _('It’s a whole new experience that brings your television to life and gives you a new level of choice and control.') }}
+  </p>
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_os_tv') }}
+{% endblock %}
+
+{% block email_form %}{% endblock %}
