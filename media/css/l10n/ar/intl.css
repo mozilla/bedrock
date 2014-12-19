@@ -21,3 +21,15 @@
 * {
   letter-spacing: normal !important;
 }
+/* Fixes line height for all the headers */
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6,  
+.huge, 
+.large, 
+legend {  
+  line-height: 1.5 !important;
+}
