@@ -55,3 +55,9 @@
 [submodule "vendor-local/src/chkcrontab"]
 	path = vendor-local/src/chkcrontab
 	url = git://github.com/lyda/chkcrontab.git
+[submodule "vendor-local/src/django-pagedown"]
+	path = vendor-local/src/django-pagedown
+	url = https://github.com/timmyomahony/django-pagedown.git
+[submodule "vendor-local/src/django-filter"]
+	path = vendor-local/src/django-filter
+	url = https://github.com/alex/django-filter.git

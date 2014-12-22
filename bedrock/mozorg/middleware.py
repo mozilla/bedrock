@@ -6,7 +6,17 @@ import datetime
 from email.utils import formatdate
 import time
 
+from django.conf import settings
+from django.contrib.auth.middleware import AuthenticationMiddleware
+
 from django_statsd.middleware import GraphiteRequestTimingMiddleware
+
+
+class ConditionalAuthMiddleware(object):
+    def process_request(self, request):
+        if any(request.path.startswith(prefix)
+               for prefix in settings.AUTHENTICATED_URL_PREFIXES):
+            AuthenticationMiddleware().process_request(request)
 
 
 class CacheMiddleware(object):
