@@ -43,15 +43,15 @@ if (typeof Mozilla == 'undefined') {
         var id = _generateCallbackID();
 
         function listener(event) {
-            if (typeof event.detail != "object")
+            if (typeof event.detail != 'object')
                 return;
             if (event.detail.callbackID != id)
                 return;
 
-            document.removeEventListener("mozUITourResponse", listener);
+            document.removeEventListener('mozUITourResponse', listener);
             callback(event.detail.data);
         }
-        document.addEventListener("mozUITourResponse", listener);
+        document.addEventListener('mozUITourResponse', listener);
 
         return id;
     }
@@ -178,6 +178,13 @@ if (typeof Mozilla == 'undefined') {
         });
     };
 
+    Mozilla.UITour.setConfiguration = function(configName, configValue) {
+        _sendEvent('setConfiguration', {
+            configuration: configName,
+            value: configValue
+        });
+    };
+
     Mozilla.UITour.showFirefoxAccounts = function() {
         _sendEvent('showFirefoxAccounts');
     };
@@ -223,6 +230,36 @@ if (typeof Mozilla == 'undefined') {
         _sendEvent('openSearchPanel', {
             callbackID: _waitForCallback(callback)
         });
+    };
+
+    Mozilla.UITour.ping = function(callback) {
+        var data = {};
+        if (callback) {
+            data.callbackID = _waitForCallback(callback);
+        }
+        _sendEvent('ping', data);
+    };
+
+    var notificationListener = null;
+    function _notificationListener(event) {
+        if (typeof event.detail != 'object') {
+            return;
+        }
+        if (typeof notificationListener != 'function') {
+            return;
+        }
+        notificationListener(event.detail.event, event.detail.params);
+    }
+
+    Mozilla.UITour.observe = function(listener, callback) {
+        notificationListener = listener;
+
+        if (listener) {
+            document.addEventListener('mozUITourNotification', _notificationListener);
+            Mozilla.UITour.ping(callback);
+        } else {
+            document.removeEventListener('mozUITourNotification', _notificationListener);
+        }
     };
 
 })();
