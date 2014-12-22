@@ -269,8 +269,8 @@ class TestNotesRedirects(TestCase):
 
     @patch.dict(product_details.firefox_versions,
                 FIREFOX_AURORA='24.0a2')
-    def test_desktop_aurora_version(self):
-        self._test('/firefox/aurora/notes/',
+    def test_desktop_developer_version(self):
+        self._test('/firefox/developer/notes/',
                    '/firefox/24.0a2/auroranotes/')
 
     @patch.dict(product_details.firefox_versions,
@@ -326,8 +326,8 @@ class TestSysreqRedirect(TestCase):
 
     @patch.dict(product_details.firefox_versions,
                 FIREFOX_AURORA='24.0a2')
-    def test_desktop_aurora_version(self):
-        self._test('/firefox/aurora/system-requirements/',
+    def test_desktop_developer_version(self):
+        self._test('/firefox/developer/system-requirements/',
                    '/firefox/24.0a2/system-requirements/')
 
     @patch.dict(product_details.firefox_versions,

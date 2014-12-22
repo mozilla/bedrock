@@ -14,7 +14,7 @@ $(document).ready(function() {
     }
 
     pager.$container.bind('changePage', function(e, tab) {
-        if (pager.currentPage.id == 'aurora') {
+        if (pager.currentPage.id == 'developer') {
             $('body').addClass('blueprint');
             $logo.attr('src', $logo.attr('data-inverse-src'));
         } else {
@@ -39,7 +39,7 @@ $(document).ready(function() {
     });
 
     // init
-    if (pager.currentPage.id == 'aurora') {
+    if (pager.currentPage.id == 'developer') {
         $('body').removeClass('sky');
         $('body').addClass('blueprint');
         $logo.attr('src', $logo.attr('data-inverse-src'));
@@ -52,4 +52,8 @@ $(document).ready(function() {
     $('.pager-tabs a.selected').bind('click.outgoing', function() {
         redirect(this);
     });
+
+    if (location.hash === '#aurora') {
+        location.hash = '#developer';
+    }
 });

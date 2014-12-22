@@ -35,7 +35,7 @@
   <ul id="toggler-container" class="pager-tabs">
     <li id="beta-link"><a href="#beta"><img src="{{ media('/img/firefox/channel/toggler-beta.png?2013-06') }}" alt="Firefox Beta" id="toggler-logo-beta" /></a></li>
     <li id="firefox-link"><a href="#firefox"><img src="{{ media('/img/firefox/channel/toggler-firefox.png?2013-06') }}" alt="Firefox" id="toggler-logo-firefox" /></a></li>
-    <li id="aurora-link"><a href="#aurora"><img src="{{ media('/img/firefox/channel/toggler-dev.png') }}" alt="Firefox Developer Edition" id="toggler-logo-aurora" /></a></li>
+    <li id="aurora-link"><a href="#developer"><img src="{{ media('/img/firefox/channel/toggler-dev.png') }}" alt="Firefox Developer Edition" id="toggler-logo-aurora" /></a></li>
   </ul>
 
   <a href="#" id="carousel-left" aria-hidden="true"></a>
@@ -80,7 +80,7 @@
       <p class="more"><a href="{{ php_url('/firefox/') }}">{{_('Learn more about Firefox')}}</a></p>
     </div>
 
-    <div id="aurora" class="pager-page">
+    <div id="developer" class="pager-page">
       <h2 class="channel-title channel-title-aurora">{{ high_res_img('img/firefox/channel/title-dev.png', {'alt': 'Firefox Developer Edition', 'width': '214', 'height': '100'}) }}</h2>
       {# L10n: This description applies to Firefox Developer Edition #}
       {% if l10n_has_tag('channel_dev_edition') %}

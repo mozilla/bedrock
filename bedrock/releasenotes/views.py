@@ -116,6 +116,9 @@ def system_requirements(request, version, product='Firefox'):
 
 
 def latest_notes(request, product='firefox', channel='release'):
+    if product == 'firefox' and channel == 'developer':
+        channel = 'aurora'
+
     if product == 'thunderbird':
         version = thunderbird_get_latest_version(product, channel)
     else:
@@ -135,6 +138,9 @@ def latest_notes(request, product='firefox', channel='release'):
 
 
 def latest_sysreq(request, channel, product):
+    if product == 'firefox' and channel == 'developer':
+        channel = 'aurora'
+
     if product == 'thunderbird':
         version = thunderbird_get_latest_version(product, channel)
     else:
