@@ -180,6 +180,7 @@ Available targets:
 * ``'appMenu'``
 * ``'bookmarks'``
 * ``'searchEngines'`` (only works for the old Search UI prior to Firefox 34)
+* ``'loop'`` (Firefox 35 and greater)
 
 Optional parameters:
 
@@ -332,6 +333,28 @@ If ``'selectedSearchEngine'`` is queried the object returned gives the currently
 
     ``selectedSearchEngine`` is only available in Firefox 34 onward.
 
+setConfiguration(name, value);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets a specific browser preference using a given key value pair.
+
+Available key names:
+
+* ``'Loop:ResumeTourOnFirstJoin'``
+
+Specific use cases:
+
+Setting the value for ``'Loop:ResumeTourOnFirstJoin'`` will enable Firefox to resume the FTE tour when the user joins their first conversation.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.setConfiguration('Loop:ResumeTourOnFirstJoin', true);
+
+Note: Don't try setting this value to ``false``. The current Hello code in Firefox handles when ``false`` should be set, and will actually set this value to ``true`` regardless whenever it is called. This will likely lead to unexpected results.
+
+.. Important::
+
+    ``setConfiguration('Loop:ResumeTourOnFirstJoin', ...)`` is only available in Firefox 35 onward.
 
 showFirefoxAccounts();
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -460,6 +483,63 @@ Retrieved the value for a set `FHR`_. treatment tag.
 .. Important::
 
     Only available in Firefox 34 onward.
+
+ping(callback);
+^^^^^^^^^^^^^^^
+
+Pings Firefox to register that the page is using UiTour API.
+
+* ``callback`` function to execute when Firefox has acknowledged the ping.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.ping(function() {
+        console.log('UiTour is working!');
+    });
+
+.. Important::
+
+    Only available in Firefox 35 onward.
+
+observe(listener, callback);
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Register to listen for Firefox Hello events.
+
+* ``listener`` event handler for receiving Hello events
+* ``callback`` function to execute when event listener has been registered correctly
+
+.. code-block:: javascript
+
+    Mozilla.UITour.observe(function(event, data) {
+        console.log(event);
+        console.log(data);
+    }, function () {
+        console.log('event listener registered successfully');
+    });
+
+Event types:
+
+* ``'Loop:ChatWindowOpened'`` - User opens the chat window.
+* ``'Loop:ChatWindowClosed'`` - User closes the chat window.
+* ``'Loop:ChatWindowShown'`` - User expands the chat window (also fires when chat window is opened).
+* ``'Loop:ChatWindowHidden'`` - User hides the chat window.
+* ``'Loop:ChatWindowDetached'`` - User detaches the chat window.
+* ``'Loop:IncomingConversation'`` - User has an incoming conversation. Event will have data boolean value ``conversationOpen`` set to ``true`` or ``false`` depending on if the chat window is open or not.
+* ``'Loop:RoomURLCopied'`` - User clicks the email or copy buttons to share a chat URL.
+
+Note: UiTour can only create a single listener that is responsible for handling all event types. It is not currently possible to listen for only specific event types.
+
+To unbind listening for events, you can do:
+
+.. code-block:: javascript
+
+    Mozilla.UITour.observe(null);
+
+.. Important::
+
+    Only available in Firefox 35 onward.
+
 
 .. _Mozilla Central: http://dxr.mozilla.org/mozilla-central/source/browser/modules/test/uitour.js
 .. _Telemetry: https://wiki.mozilla.org/Telemetry
