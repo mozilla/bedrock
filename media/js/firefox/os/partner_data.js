@@ -67,6 +67,11 @@ if (typeof Mozilla == 'undefined') {
             'display': 'LG Fireweb',
             'countries': ['br', 'uy']
         },
+        'lg_fx0': {
+            'type': 'smartphone',
+            'display': 'LG Fx0',
+            'countries': ['jp']
+        },
         'spice_fireonemifx1': {
             'type': 'smartphone',
             'display': 'Spice Fire One MI FX1',

@@ -56,6 +56,9 @@
           <option value="hu">{{ _('Hungary') }}</option>
           <option value="in">{{ _('India') }}</option>
           <option value="it">{{ _('Italy') }}</option>
+        {% if waffle.switch('lg-fx0-available') %}
+          <option value="jp">{{ _('Japan') }}</option>
+        {% endif %}
           <option value="lu">{{ _('Luxembourg') }}</option>
           <option value="mk">{{ _('Macedonia') }}</option>
           <option value="me">{{ _('Montenegro') }}</option>
@@ -1845,6 +1848,17 @@
               </div>
             </a>
           </li>
+        {% if waffle.switch('lg-fx0-available') %}
+          <li class="last">
+            <a href="#lg_fx0" class="device-thumbnail">
+              <img src="{{ media('/img/firefox/os/devices/smartphones/lg-fx0-thumb.png') }}" alt="">
+              <span class="device-name">{{ _('LG Fx0') }}</span>
+              <div class="availability-notice">
+                <span class="is-available">{{ _('Available') }}</span>
+              </div>
+            </a>
+          </li>
+        {% endif %}
         </ul>
       </div>
 
@@ -2085,6 +2099,131 @@
             </div>{#--/.pager-content--#}
           </div>{#--/.container--#}
         </section>{#--/#cherrymobile_ace--#}
+
+      {% if waffle.switch('lg-fx0-available') %}
+        <section class="device-detail smartphone-detail" id="lg_fx0">
+          <div id="lg_fx0-pager" class="container pager pager-with-tabs pager-no-history">
+            <header class="device-detail-header">
+              <h3 class="device-title">{{ _('LG Fx0') }}</h3>
+
+              <ul class="pager-tabs">
+                <li><a href="#p1" data-label="Features">{{_('Features')}}</a></li>
+                <li><a href="#p2" data-label="Specifications">{{_('Specifications')}}</a></li>
+              </ul>
+
+              <button class="device-detail-close">{{ _('Close') }}</button>
+            </header>
+
+            <div class="pager-content">
+              <div class="device-details features pager-page default-page" id="lg_fx0-features">
+                <div class="feature-group logo-colors">
+                </div>
+
+                <div class="feature-group image">
+                  <img src="{{ media('/img/firefox/os/devices/smartphones/lg-fx0.png') }}" alt="{{ _('LG Fx0') }}">
+                </div>
+
+                <div class="feature-group stats">
+                  <ul>
+                    <li class="stat-screen">
+                      <strong>{{ _('4.7"') }}</strong>
+                      <br>
+                    </li>
+                    <li class="stat-camera">
+                      <strong>{{ _('8.0 MP') }}</strong>
+                      {{ _('Rear camera') }}
+                    </li>
+                    <li class="stat-storage">
+                      <strong>{{ _('16 GB') }}</strong>
+                      {{ _('Internal memory') }} *
+                    </li>
+                  </ul>
+
+                  <small>* {{ memory_disclaimer }}</small>
+                </div>
+
+                <div class="feature-group availability">
+                  <h5>{{ _('Available in') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('Japan') }}</li>
+                  </ul>
+
+                  <h5>{{ _('Brand') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('LG') }}</li>
+                  </ul>
+                </div>
+              </div>{#--/.features--#}
+              <div class="device-details specifications pager-page" id="lg_fx0-specifications">
+                <h4 class="device-details-title">{{ _('Specifications') }}</h4>
+
+                <table>
+                  <tr>
+                    <th>{{ _('Screen') }}</th>
+                    <td>
+                      {{ _('4.7"') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Camera') }}</th>
+                    <td>
+                      {{ _('8.0 MP rear, 2.1 MP front') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Dimensions') }}</th>
+                    <td>
+                      {{ _('70 x 139 x 10.5 mm') }}
+                      <br>
+                      {{ _('148 g') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Processor') }}</th>
+                    <td>
+                      {{ _('1.2 GHz') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Memory') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('ROM') }} *</dt>
+                        <dd>{{ _('16 GB') }}</dd>
+
+                        <dt>{{ _('RAM') }}</dt>
+                        <dd>{{ _('1.5 GB') }}</dd>
+
+                        <dt>{{ _('Expansion slot') }}</dt>
+                        <dd>{{ _('Up to 64 GB') }}</dd>
+                      </dl>
+
+                      <small>* {{ memory_disclaimer }}</small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Battery') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Capacity') }}</dt>
+                        <dd>{{ _('2370 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 16 h') }}</dd>
+
+                        <dt>{{ _('Standby time') }}</dt>
+                        <dd>{{ _('Up to 720 h (LTE), 820 h (3G)') }}</dd>
+                      </dl>
+                    </td>
+                  </tr>
+                </table>
+              </div>{#--/.specifications--#}
+            </div>{#--/.pager-content--#}
+          </div>{#--/.container--#}
+        </section>{#--/#lg_fx0--#}
+      {% endif %}
       </div>{#--/.device-detail-list--#}
     </section>{#--/#smartphones--#}
 
