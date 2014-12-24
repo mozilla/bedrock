@@ -3,5 +3,8 @@
     {% if translations -%}
     {% for code, label in translations|dictsort -%}
     <link rel="alternate" hreflang="{{ code|replace('en-US', 'en') }}" href="{{ settings.CANONICAL_URL + '/' + code + canonical_path }}" title="{{ label|safe|replace('English (US)', 'English') }}">
+    {% if code == 'en-US' -%}{# Append en-CA for Bug 1097049 -#}
+    <link rel="alternate" hreflang="{{ code|replace('en-US', 'en-CA') }}" href="{{ settings.CANONICAL_URL + '/' + code + canonical_path }}" title="{{ label|safe|replace('English (US)', 'English (Canada)') }}">
+    {% endif -%}
     {% endfor -%}
     {% endif %}
