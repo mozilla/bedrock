@@ -47,6 +47,11 @@ if (typeof Mozilla == 'undefined') {
             'display': 'Alcatel One Touch Fire E',
             'countries': ['cz', 'de', 'hu', 'pl', 'ru']
         },
+        'au_fx0': {
+            'type': 'smartphone',
+            'display': 'au Fx0',
+            'countries': ['jp']
+        },
         'cherrymobile_ace': {
             'type': 'smartphone',
             'display': 'Cherry Mobile Ace',
@@ -66,11 +71,6 @@ if (typeof Mozilla == 'undefined') {
             'type': 'smartphone',
             'display': 'LG Fireweb',
             'countries': ['br', 'uy']
-        },
-        'lg_fx0': {
-            'type': 'smartphone',
-            'display': 'LG Fx0',
-            'countries': ['jp']
         },
         'spice_fireonemifx1': {
             'type': 'smartphone',
