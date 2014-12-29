@@ -235,22 +235,28 @@ $(function () {
         });
     }
 
-    var $form = $('#fundraiser-form');
     var $options = $('#fundraiser-form input[name=amount]');
-    var action = $form.attr('action');
+    var $donatelink = $('#donate-link');
+    var donateurl = $donatelink.attr('href');
 
     // Do stuff when an option is selected
     var select_option = function(option) {
         // Style the selected option (reset all of them first to unstyle previous selection)
         $options.parents('label').removeClass('selected');
         option.parents('label').addClass('selected');
-        action = action.split('#')[0] + '#amount-' + option.val();
-        $form.attr('action', action);
+        donateurl = donateurl.split('#')[0] + '#amount-' + option.val();
+        $donatelink.attr('href', donateurl);
     };
 
     $options.on('change', function() {
         var $this = $(this);
         select_option($this);
+    });
+
+    $options.on('focus', function() {
+        var $this = $(this);
+        $options.parents('label').removeClass('selected');
+        $this.parents('label').addClass('selected');
     });
 
     // If an option is checked at pageload, do the selection stuff
