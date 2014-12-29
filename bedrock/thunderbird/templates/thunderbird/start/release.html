@@ -31,8 +31,9 @@
       <div>
         <section class="help">
           <h2 class="iconic">{{ _('Need Support?') }}</h2>
+          {# L10n: If your locale has a dedicated Thunderbird support forum, you can localize the URL to point there. -#}
           <p>{{ _('Most Thunderbird support questions are answered on the <a href="%s">Knowledge Base</a>.')|format('https://support.mozilla.org/products/thunderbird') }}
-             {{ _('If you can’t find an answer, <a href="%s">ask your question on our support forum</a>.')|format('https://support.mozilla.org/questions/new/thunderbird') }}</p>
+             {{ _('If you can’t find an answer, <a href="%s">ask your question on our support forum</a>.')|format(_('https://support.mozilla.org/questions/new/thunderbird')) }}</p>
         </section>
       </div>
       <footer>
