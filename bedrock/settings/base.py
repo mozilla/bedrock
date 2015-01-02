@@ -343,6 +343,11 @@ MINIFY_BUNDLES = {
         'firefox_os_mwc_2014_preview_ie7': (
             'css/firefox/os/mwc-2014-preview-ie7.less',
         ),
+        'firefox_os_tv': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
+            'css/firefox/os/tv.less',
+        ),
         'firefox_releases_index': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
@@ -771,6 +776,9 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-modal.js',
             'js/firefox/mwc-2014-map.js',
             'js/firefox/os/mwc-2014-preview.js',
+        ),
+        'firefox_os_tv': (
+            'js/base/mozilla-pager.js',
         ),
         'firefox_faq': (
             'js/base/mozilla-accordion.js',
