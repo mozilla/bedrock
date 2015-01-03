@@ -334,34 +334,6 @@
   <button id="scroll-prompt">{{ _('Discover more') }}</button>
 </main>
 
-{% if waffle.switch('fundraiser-home-takeover') and LANG.startswith('en-') %}
-  <article id="fundraiser-splash">
-    <div class="container">
-      <h2 class="main-title">Your Gift Helps</h2>
-      <h3 class="sub-title">People everywhere are helping us build the Internet the world needs — an Internet where the public good comes first.</h3>
-      <form id="fundraiser-form" method="get" action="#">
-        <fieldset>
-          <p>
-            <label for="donate35">
-              <input type="radio" value="35" id="donate35" name="amount" tabindex="1" checked> $35
-            </label>
-            <label for="donate25">
-              <input type="radio" value="25" id="donate25" name="amount" tabindex="1"> $25
-            </label>
-            <label for="donate15">
-              <input type="radio" value="15" id="donate15" name="amount" tabindex="1"> $15
-            </label>
-          </p>
-          <p><a href="{{ donate_url('mozillaorg_takeover') }}#amount-35" id="donate-link" class="submit" tabindex="2">Donate Now</a></p>
-        </fieldset>
-      </form>
-
-    </div>
-    <button class="close" type="button">Continue to mozilla.org</button>
-  </article>
-  <div id="page-overlay"></div>
-{% endif %}
-
 {% endblock %}
 
 {% block email_form %}{% endblock %}
