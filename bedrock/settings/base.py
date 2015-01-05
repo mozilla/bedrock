@@ -1065,6 +1065,7 @@ MIDDLEWARE_CLASSES = (
     'dnt.middleware.DoNotTrackMiddleware',
     'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
     'bedrock.mozorg.middleware.ConditionalAuthMiddleware',
+    'bedrock.mozorg.middleware.CrossOriginResourceSharingMiddleware',
 ))
 
 AUTHENTICATED_URL_PREFIXES = ('/admin/', '/rna/')
@@ -1114,6 +1115,7 @@ INSTALLED_APPS = get_apps(exclude=(
     '%s.events' % PROJECT_MODULE,
     '%s.releasenotes' % PROJECT_MODULE,
     '%s.thunderbird' % PROJECT_MODULE,
+    '%s.shapeoftheweb' % PROJECT_MODULE,
 
     # libs
     'django_extensions',
@@ -1423,6 +1425,10 @@ RNA = {
 
 MOFO_SECURITY_ADVISORIES_PATH = path('mofo_security_advisories')
 MOFO_SECURITY_ADVISORIES_REPO = 'https://github.com/mozilla/foundation-security-advisories.git'
+
+CORS_URLS = {
+    r'^/([a-zA-Z-]+/)?shapeoftheweb': '*',
+}
 
 LOGGING = {
     'root': {

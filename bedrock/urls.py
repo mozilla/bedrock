@@ -34,6 +34,7 @@ urlpatterns = patterns(
     (r'^styleguide/', include('bedrock.styleguide.urls')),
     (r'^tabzilla/', include('bedrock.tabzilla.urls')),
     (r'^security/', include('bedrock.security.urls')),
+    (r'^shapeoftheweb/', include('bedrock.shapeoftheweb.urls')),
     (r'', include('bedrock.firefox.urls')),
     (r'', include('bedrock.thunderbird.urls')),
     (r'', include('bedrock.mozorg.urls')),
