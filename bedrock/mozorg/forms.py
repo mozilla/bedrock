@@ -161,7 +161,7 @@ class ContributeSignupForm(forms.Form):
         empty_choice,
         ('teaching-webmaker', _lazy('Teach the Web (Webmaker)')),
         ('teaching-fellowships', _lazy('Open News fellowships')),
-        ('teaching-hive', _lazy('Hive - Community based digital education')),
+        ('teaching-hive', _lazy('Hive - Community networks of educators/mentors')),
         ('teaching-science', _lazy('Open Web science research')),
     )
 
