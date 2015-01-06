@@ -136,17 +136,6 @@
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
-      {% if l10n_has_tag('fundraising_2014') %}
-        <li id="promo-6" class="item promo-large-landscape donate" tabindex="0" data-name="Donate to support the open web">
-          <h2 class="primary go">{{ _('Donate to Mozilla') }}</h2>
-          <a class="panel-link" href="{{ donate_url('mozillaorg_largeblock') }}">
-            <div class="secondary">
-              <h3>{{ _('Your gift helps us build the Internet the world needs.') }}</h3>
-              <p class="more">{{ _('Donate today') }}</p>
-            </div>
-          </a>
-        </li>
-      {% else %}
         <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0" data-name="Teach the Web">
           <h2 class="primary go">{{ _('Teach the Web') }}</h2>
           <a class="panel-link" rel="external" href="https://webmaker.org/">
@@ -156,23 +145,14 @@
             </div>
           </a>
         </li>
-      {% endif %}
         <li id="promo-7" class="item promo-face">
           {{ promo_face(3) }}
         </li>
-      {% if l10n_has_tag('gear_store') %}
-        <li id="promo-8" class="item promo-small-landscape webmaker" data-name="Webmaker">
-          <a class="panel-link" rel="external" href="https://webmaker.org/">
-            <h2>{{ _('Become a Webmaker') }}</h2>
-          </a>
-        </li>
-      {% else %}
         <li id="promo-8" class="item promo-small-landscape appmaker" data-name="Build an app in seconds">
           <a class="panel-link" rel="external" href="https://webmaker.org/appmaker">
             <h2>{{ _('Build an app <br>in seconds') }}</h2>
           </a>
         </li>
-      {% endif %}
         <li id="promo-9" class="item promo-small-landscape volunteer" data-name="Volunteer with Mozilla">
           <a class="panel-link" href="{{ url('mozorg.contribute') }}">
             <h2>{{ _('Volunteer <br>with Mozilla') }}</h2>
