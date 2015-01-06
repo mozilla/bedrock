@@ -2,10 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from collections import defaultdict
 import json
-from operator import itemgetter
 import re
+from cgi import escape
+from collections import defaultdict
+from operator import itemgetter
 
 from django.contrib import messages
 from django.forms.formsets import formset_factory
@@ -460,6 +461,9 @@ def newsletter_subscribe(request):
             for fieldname in ('fmt', 'lang', 'country'):
                 if fieldname in form.errors:
                     errors.extend(form.errors[fieldname])
+
+        # form error messages may contain unsanitized user input
+        errors = map(escape, errors)
 
         if request.is_ajax():
             # return JSON
