@@ -26,6 +26,9 @@ else:
 if DEV:
     ALLOWED_HOSTS = ['*']
 
+# waffle flags, switches, and samples should default to True in DEV mode
+WAFFLE_FLAG_DEFAULT = WAFFLE_SWITCH_DEFAULT = WAFFLE_SAMPLE_DEFAULT = DEV
+
 # Any databases configured other than "default" should be
 # read-only slaves, which funfactory's default router
 # should use with this setting.
