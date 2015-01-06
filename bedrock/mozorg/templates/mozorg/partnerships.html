@@ -40,11 +40,17 @@
   <img src="{{ media('/img/mozorg/partnerships/icon-firefox.png?2013-06') }}" alt="{{ _('Firefox icon') }}" class="icon" />
   <h3>{{ _('Firefox for Desktop') }}</h3>
   <p>
-    {% trans url1=url('mozorg.partnerships-distribution') %}
-    Opportunities include distribution, customized versions and more of our PC, Mac &amp; Linux browser. Learn more
-    about <a href="{{ url1 }}">Mozilla Firefox distribution policies »</a>
-    {% endtrans %}
+    {{ _('Opportunities include promoted content, distribution, customized versions and more of our PC, Mac &amp; Linux browser.') }}
   </p>
+
+  <ul>
+    <li>
+      <a href="{{ url('firefox.tiles') }}">{{ _('Learn more about promoted content in Mozilla Firefox') }}</a>
+    </li>
+    <li>
+      <a href="{{ url('mozorg.partnerships-distribution') }}">{{ _('Learn more about Mozilla Firefox distribution policies') }}</a>
+    </li>
+  </ul>
 </section>
 
 <section id="android">
@@ -202,6 +208,26 @@
     <div class="field">
       <label for="description">{{ _('Description') }}</label>
       {{ form.description }}
+    </div>
+
+    <div class="field tiles-field">
+      <label for="campaign_type">{{ _('Campaign Type') }}</label>
+      {{ form.campaign_type }}
+    </div>
+
+    <div class="field tiles-field">
+      <label for="campaign_type">{{ _('Industry') }}</label>
+      {{ form.industry }}
+    </div>
+
+    <div class="field tiles-field">
+      <label for="campaign_type">{{ _('Countries of Interest') }}</label>
+      {{ form.interested_countries }}
+    </div>
+
+    <div class="field tiles-field">
+      <label for="campaign_type">{{ _('Languages of Interest') }}</label>
+      {{ form.interested_languages }}
     </div>
 
     <div class="field footer-field">

@@ -227,6 +227,7 @@ class WebToLeadForm(forms.Form):
         ('Firefox OS', _lazy(u'Firefox OS')),
         ('Persona', _lazy(u'Persona')),
         ('Marketing and Co-promotions', _lazy(u'Marketing and Co-promotions')),
+        ('Promoted Content ("Tiles")', _lazy(u'Promoted Content ("Tiles")')),
         ('Other', _lazy(u'Other')),
     )
 
@@ -235,6 +236,42 @@ class WebToLeadForm(forms.Form):
         ('Firefox Marketplace', _lazy(u'Firefox Marketplace')),
         ('Firefox OS', _lazy(u'Firefox OS')),
         ('Other', _lazy(u'Other')),
+    )
+
+    industries = (
+        ('', 'Select Industry'),
+        ('Agriculture', _lazy(u'Agriculture')),
+        ('Apparel', _lazy(u'Apparel')),
+        ('Banking', _lazy(u'Banking')),
+        ('Biotechnology', _lazy(u'Biotechnology')),
+        ('Chemicals', _lazy(u'Chemicals')),
+        ('Communications', _lazy(u'Communications')),
+        ('Construction', _lazy(u'Construction')),
+        ('Consulting', _lazy(u'Consulting')),
+        ('Education', _lazy(u'Education')),
+        ('Electronics', _lazy(u'Electronics')),
+        ('Energy', _lazy(u'Energy')),
+        ('Engineering', _lazy(u'Engineering')),
+        ('Entertainment', _lazy(u'Entertainment')),
+        ('Environmental', _lazy(u'Environmental')),
+        ('Finance', _lazy(u'Finance')),
+        ('Food &amp; Beverage', _lazy(u'Food &amp; Beverage')),
+        ('Government', _lazy(u'Government')),
+        ('Healthcare', _lazy(u'Healthcare')),
+        ('Hospitality', _lazy(u'Hospitality')),
+        ('Insurance', _lazy(u'Insurance')),
+        ('Machinery', _lazy(u'Machinery')),
+        ('Manufacturing', _lazy(u'Manufacturing')),
+        ('Media', _lazy(u'Media')),
+        ('Not For Profit', _lazy(u'Not For Profit')),
+        ('Other', _lazy(u'Other')),
+        ('Recreation', _lazy(u'Recreation')),
+        ('Retail', _lazy(u'Retail')),
+        ('Shipping', _lazy(u'Shipping')),
+        ('Technology', _lazy(u'Technology')),
+        ('Telecommunications', _lazy(u'Telecommunications')),
+        ('Transportation', _lazy(u'Transportation')),
+        ('Utilities', _lazy(u'Utilities')),
     )
 
     first_name = forms.CharField(
@@ -401,6 +438,49 @@ class WebToLeadForm(forms.Form):
             }
         )
     )
+    interested_countries = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _lazy(u'Countries of Interest'),
+                'rows': '',
+                'cols': ''
+            }
+        )
+    )
+    interested_languages = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _lazy(u'Languages of Interest'),
+                'rows': '',
+                'cols': ''
+            }
+        )
+    )
+    industry = forms.ChoiceField(
+        choices=industries,
+        required=False,
+        widget=forms.Select(
+            attrs={
+                'title': _lazy('Industry'),
+                'size': 1
+            }
+        )
+    )
+    campaign_type = forms.ChoiceField(
+        choices=(
+            ('', _lazy(u'Select Campaign Type')),
+            ('Brand', _lazy(u'Brand')),
+            ('Direct Response', _lazy(u'Direct Response'))
+        ),
+        required=False,
+        widget=forms.Select(
+            attrs={
+                'title': _lazy('Campaign Type')
+            }
+        )
+    )
     # honeypot
     office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
     # uncomment below to debug salesforce
@@ -420,7 +500,7 @@ class WebToLeadForm(forms.Form):
             widget=forms.SelectMultiple(
                 attrs={
                     'title': _lazy(u'Interest'),
-                    'size': 7
+                    'size': 8
                 }
             )
         )

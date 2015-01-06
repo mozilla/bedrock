@@ -31,6 +31,7 @@
             background: url(/media/img/mozorg/partnerships/divider.png) 50% 100% no-repeat;
             padding-bottom: @baseLine * 1.5;
             p,
+            ul,
             h3 {
                 .span(6);
                 margin-left: 0;
@@ -46,6 +47,9 @@
                     top: 60px;
                     right: 0;
                 }
+            }
+            a {
+                .trailing-arrow();
             }
             &#cobrand {
                 background: none;
@@ -104,6 +108,10 @@
 #distributions {
     .span(8);
     margin-left: 0;
+}
+
+.tiles-field {
+    display: none;
 }
 
 #partner-form-error {
