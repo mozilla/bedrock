@@ -551,6 +551,28 @@ class TestNewsletterSubscribe(TestCase):
         self.assertFalse(basket_mock.called)
 
     @patch('bedrock.newsletter.views.basket')
+    def test_returns_sanitized_ajax_errors(self, basket_mock):
+        """Error messages should be HTML escaped.
+
+        Bug 1116754
+        """
+        data = {
+            'newsletters': 'flintstones',
+            'email': 'fred@example.com',
+            'fmt': 'H',
+            'privacy': True,
+            'country': '<svg/onload=alert("NEFARIOUSNESS")>',
+        }
+        resp = self.ajax_request(data)
+        resp_data = json.loads(resp.content)
+        self.assertFalse(resp_data['success'])
+        self.assertEqual(len(resp_data['errors']), 1)
+        self.assertNotIn(data['country'], resp_data['errors'][0])
+        self.assertIn('NEFARIOUSNESS', resp_data['errors'][0])
+        self.assertIn('&lt;svg', resp_data['errors'][0])
+        self.assertFalse(basket_mock.called)
+
+    @patch('bedrock.newsletter.views.basket')
     def test_returns_ajax_success(self, basket_mock):
         """Good post should return success JSON"""
         data = {
