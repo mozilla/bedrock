@@ -91,6 +91,13 @@
     "authors":"Chen Wei"
   },
   {
+    "country":"China",
+    "filename":"ChinaPublicHolidays.ics",
+    "datespan":"2015",
+    "title":"China public holidays",
+    "authors":"Chen Wei"
+  },
+  {
     "country":"Colombia",
     "filename":"ColombianHolidays.ics",
     "datespan":"2000-2020",
