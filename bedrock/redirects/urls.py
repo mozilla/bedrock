@@ -77,6 +77,10 @@ urlpatterns = patterns(
     # Bug 815527 /m/privacy.html -> /privacy/firefox/
     redirect(r'^m/privacy.html$', 'privacy.notices.firefox'),
 
+    # Bug 1109318 /privacy/you -> privacy/tips/
+    redirect(r'^privacy/you/$',
+             'privacy.privacy-day'),
+
     # Bug 821047 /about/mission.html -> /mission/
     redirect(r'^about/mission.html$', '/mission/'),
 
