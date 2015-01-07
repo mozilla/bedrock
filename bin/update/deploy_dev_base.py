@@ -10,11 +10,10 @@ log = logging.getLogger(__name__)
 
 @task
 def database(ctx):
-    with ctx.lcd(settings.SRC_DIR):
-        # only ever run this one on demo and dev.
-        ctx.local("python2.6 manage.py bedrock_truncate_database --yes-i-am-sure")
-        ctx.local("python2.6 manage.py syncdb --migrate --noinput")
-        ctx.local("python2.6 manage.py rnasync")
-        ctx.local("python2.6 manage.py update_security_advisories --force --quiet")
-        ctx.local("python2.6 manage.py cron update_reps_ical")
-        ctx.local("python2.6 manage.py cron update_tweets")
+    # only ever run this one on demo and dev.
+    management_cmd(ctx, 'bedrock_truncate_database --yes-i-am-sure')
+    management_cmd(ctx, 'syncdb --migrate --noinput')
+    management_cmd(ctx, 'rnasync')
+    management_cmd(ctx, 'update_security_advisories --force --quiet')
+    management_cmd(ctx, 'cron update_reps_ical')
+    management_cmd(ctx, 'cron update_tweets')

@@ -1,0 +1,24 @@
+#
+# {{ header }}
+#
+
+MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
+
+*/10 * * * * root /data/bedrock/src/update-www.mozilla.org.sh
+
+*/5    * * * * {{ django_manage }} rnasync > /dev/null 2>&1
+*/15 * * * * {{ user }} /data/bedrock/src/update-www.mozilla.org-cron-svn-locale.sh &> /dev/null
+# outputs when the run completed to http://www.mozilla.org/media/locale_finished.txt
+
+# disabled per bug 1042074
+#1-59/15 * * * * {{ user }} /data/bedrock/src/update-www.mozilla.org-product-details.sh
+
+# bug 996144 & 1014586
+2 */6 * * * {{ django_cron }} update_tweets > /dev/null 2>&1
+
+# bug 1072999, 1109344
+*/30 * * * * {{ django_manage }} update_security_advisories --quiet > /dev/null 2>&1
+
+# bug 1087533
+42 * * * * {{ django_cron }} update_reps_ical > /dev/null 2>&1
+

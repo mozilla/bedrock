@@ -15,6 +15,7 @@ from commander.deploy import commands, task, hostgroups
 import commander_settings as settings
 
 
+PYTHON = getattr(settings, 'PYTHON_PATH', 'python2.6')
 NEW_RELIC_API_KEY = getattr(settings, 'NEW_RELIC_API_KEY', None)
 NEW_RELIC_APP_ID = getattr(settings, 'NEW_RELIC_APP_ID', None)
 NEW_RELIC_URL = 'https://rpm.newrelic.com/deployments.xml'
@@ -24,7 +25,7 @@ GITHUB_URL = 'https://github.com/mozilla/bedrock/compare/{oldrev}...{newrev}'
 def management_cmd(ctx, cmd):
     """Run a Django management command correctly."""
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('LANG=en_US.UTF-8 python2.6 manage.py ' + cmd)
+        ctx.local('LANG=en_US.UTF-8 {0} manage.py {1}'.format(PYTHON, cmd))
 
 
 @task
@@ -139,6 +140,8 @@ def update(ctx):
 
 @task
 def deploy(ctx):
+    if 'update_cron' in commands:
+        commands['update_cron']()
     commands['checkin_changes']()
     commands['deploy_app']()
     commands['ping_newrelic']()
@@ -187,3 +190,12 @@ def generate_desc(from_commit, to_commit, changelog):
         else:
             desc = get_random_desc()
     return desc
+
+
+def generate_cron_file(ctx, tmpl_name):
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local("{python} bin/gen-crons.py -p {python} -s {src_dir} -w {www_dir} "
+                  "-t {template}".format(python=PYTHON,
+                                         src_dir=settings.SRC_DIR,
+                                         www_dir=settings.WWW_DIR,
+                                         template=tmpl_name))
