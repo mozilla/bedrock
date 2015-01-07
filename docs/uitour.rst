@@ -526,7 +526,8 @@ Event types:
 * ``'Loop:ChatWindowHidden'`` - User hides the chat window.
 * ``'Loop:ChatWindowDetached'`` - User detaches the chat window.
 * ``'Loop:IncomingConversation'`` - User has an incoming conversation. Event will have data boolean value ``conversationOpen`` set to ``true`` or ``false`` depending on if the chat window is open or not.
-* ``'Loop:RoomURLCopied'`` - User clicks the email or copy buttons to share a chat URL.
+* ``'Loop:RoomURLCopied'`` - User clicks the copy button to share a chat URL.
+* ``'Loop:RoomURLEmailed'`` - User clicks the email button to share a chat URL.
 
 Note: UiTour can only create a single listener that is responsible for handling all event types. It is not currently possible to listen for only specific event types.
 
@@ -541,6 +542,6 @@ To unbind listening for events, you can do:
     Only available in Firefox 35 onward.
 
 
-.. _Mozilla Central: http://dxr.mozilla.org/mozilla-central/source/browser/modules/test/uitour.js
+.. _Mozilla Central: http://dxr.mozilla.org/mozilla-central/source/browser/components/uitour/UITour-lib.js
 .. _Telemetry: https://wiki.mozilla.org/Telemetry
 .. _FHR: https://support.mozilla.org/en-US/kb/firefox-health-report-understand-your-browser-perf
