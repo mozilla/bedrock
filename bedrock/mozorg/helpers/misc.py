@@ -456,6 +456,8 @@ def product_url(product, page, channel=None):
     # Tweak the channel name for the naming URL pattern in urls.py
     if channel == 'release':
         channel = None
+    if channel == 'aurora' and product == 'firefox':
+        channel = 'developer'
     if channel == 'esr':
         channel = 'organizations'
 

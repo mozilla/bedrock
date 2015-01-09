@@ -9,7 +9,7 @@
   {% if channel == 'beta' %}
     {{ _('Download Firefox Beta in your language and experience cutting edge features before they make it to final release. Provide feedback to help us refine and polish the next version of Firefox.') }}
   {% elif channel == 'aurora' %}
-    {{ _('Download Firefox Aurora in your language to experience the newest features and innovations in an unstable environment even before they go to Beta. Give us feedback that will determine what makes it to Final Release and help shape the future of Firefox.') }}
+    {{ _('Download Firefox Developer Edition in your language to experience the newest features and innovations in an unstable environment even before they go to Beta. Give us feedback that will determine what makes it to Final Release and help shape the future of Firefox.') }}
   {% elif channel == 'esr' %}
     {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.organizations.organizations')) }}
   {% else %}
@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block body_class -%}
-  sky firefox-all-{{ channel }} {% if channel == 'aurora' %}space{% endif %}
+  sky firefox-all-{{ channel }} {% if channel == 'aurora' %}blueprint{% endif %}
 {% endblock %}
 
 {% block site_css %}
@@ -27,7 +27,7 @@
 
 {% block site_header_logo %}
   {% if channel == 'aurora' %}
-    <h2><a href="{{ url('firefox') }}"><img alt="Mozilla Firefox" height="70" width="185" src="{{media('img/firefox/template/header-logo-inverse.png?2013-06') }}"></a></h2>
+    <h2><a href="{{ url('firefox.developer') }}">{{ high_res_img('img/firefox/developer/title.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</a></h2>
   {% else %}
     {{ super() }}
   {% endif %}

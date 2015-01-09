@@ -191,7 +191,8 @@ def dnt(request):
 def all_downloads(request, channel):
     if channel is None:
         channel = 'release'
-
+    if channel == 'developer':
+        channel = 'aurora'
     if channel == 'organizations':
         channel = 'esr'
 
@@ -201,7 +202,7 @@ def all_downloads(request, channel):
     channel_names = {
         'release': _('Firefox'),
         'beta': _('Firefox Beta'),
-        'aurora': _('Firefox Aurora'),
+        'aurora': _('Developer Edition'),
         'esr': _('Firefox Extended Support Release'),
     }
 

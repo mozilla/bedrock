@@ -520,7 +520,7 @@ class TestProductURL(TestCase):
         eq_(self._render('firefox', 'all', 'beta'),
             '/en-US/firefox/beta/all/')
         eq_(self._render('firefox', 'all', 'aurora'),
-            '/en-US/firefox/aurora/all/')
+            '/en-US/firefox/developer/all/')
         eq_(self._render('firefox', 'all', 'esr'),
             '/en-US/firefox/organizations/all/')
         eq_(self._render('firefox', 'all', 'organizations'),
@@ -535,7 +535,7 @@ class TestProductURL(TestCase):
         eq_(self._render('firefox', 'sysreq', 'beta'),
             '/en-US/firefox/beta/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'aurora'),
-            '/en-US/firefox/aurora/system-requirements/')
+            '/en-US/firefox/developer/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'esr'),
             '/en-US/firefox/organizations/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'organizations'),
@@ -550,7 +550,7 @@ class TestProductURL(TestCase):
         eq_(self._render('firefox', 'notes', 'beta'),
             '/en-US/firefox/beta/notes/')
         eq_(self._render('firefox', 'notes', 'aurora'),
-            '/en-US/firefox/aurora/notes/')
+            '/en-US/firefox/developer/notes/')
         eq_(self._render('firefox', 'notes', 'esr'),
             '/en-US/firefox/organizations/notes/')
         eq_(self._render('firefox', 'notes', 'organizations'),
