@@ -1,7 +1,7 @@
 A new speaker request form has been submitted with the following information:
 
 + Event Name
-{{ sr_event_name|safe|strip_tags }}
+{{ sr_event_name|strip_tags|safe }}
 
 + Event URL
 {{ sr_event_url }}
@@ -15,12 +15,12 @@ Guest Speaker
 
 {% if sr_guest_speaker1 %}
 + Choice 1
-{{ sr_guest_speaker1|safe|strip_tags }}
+{{ sr_guest_speaker1|strip_tags|safe }}
 {% endif %}
 {% if sr_guest_speaker2 %}
 
 + Choice 2
-{{ sr_guest_speaker2|safe|strip_tags }}
+{{ sr_guest_speaker2|strip_tags|safe }}
 {% endif %}
 
 {% endif %}
@@ -28,16 +28,16 @@ Guest Speaker
 Contact Information
 
 + Name
-{{ sr_contact_name|safe|strip_tags }}
+{{ sr_contact_name|strip_tags|safe }}
 {% if sr_contact_title %}
 
 + Title
-{{ sr_contact_title|safe|strip_tags }}
+{{ sr_contact_title|strip_tags|safe }}
 {% endif %}
 {% if sr_contact_company %}
 
 + Company
-{{ sr_contact_company|safe|strip_tags }}
+{{ sr_contact_company|strip_tags|safe }}
 {% endif %}
 {% if sr_contact_phone %}
 
@@ -58,22 +58,22 @@ Event Details
 
 {% if sr_event_venue %}
 + Venue
-{{ sr_event_venue|safe|strip_tags }}
+{{ sr_event_venue|strip_tags|safe }}
 {% endif %}
 {% if sr_event_theme %}
 
 + Theme
-{{ sr_event_theme|safe|strip_tags }}
+{{ sr_event_theme|strip_tags|safe }}
 {% endif %}
 {% if sr_event_goal %}
 
 + Goal
-{{ sr_event_goal|safe|strip_tags }}
+{{ sr_event_goal|strip_tags|safe }}
 {% endif %}
 {% if sr_event_format %}
 
 + Format
-{{ sr_event_format|safe|strip_tags }}
+{{ sr_event_format|strip_tags|safe }}
 {% endif %}
 {% if sr_event_audience_size %}
 
@@ -83,32 +83,32 @@ Event Details
 {% if sr_event_audience_demographics %}
 
 + Audience Demographics
-{{ sr_event_audience_demographics|safe|strip_tags }}
+{{ sr_event_audience_demographics|strip_tags|safe }}
 {% endif %}
 {% if sr_event_speakers_confirmed %}
 
 + Confirmed Speakers
-{{ sr_event_speakers_confirmed|safe|strip_tags }}
+{{ sr_event_speakers_confirmed|strip_tags|safe }}
 {% endif %}
 {% if sr_event_speakers_invited %}
 
 + Invited Speakers
-{{ sr_event_speakers_invited|safe|strip_tags }}
+{{ sr_event_speakers_invited|strip_tags|safe }}
 {% endif %}
 {% if sr_event_speakers_past %}
 
 + Past Speakers
-{{ sr_event_speakers_past|safe|strip_tags }}
+{{ sr_event_speakers_past|strip_tags|safe }}
 {% endif %}
 {% if sr_event_media_coverage %}
 
 + Media Coverage
-{{ sr_event_media_coverage|safe|strip_tags }}
+{{ sr_event_media_coverage|strip_tags|safe }}
 {% endif %}
 {% if sr_event_sponsors %}
 
 + Event Sponsors
-{{ sr_event_sponsors|safe|strip_tags }}
+{{ sr_event_sponsors|strip_tags|safe }}
 {% endif %}
 {% if sr_event_confirmation_deadline %}
 
@@ -126,12 +126,12 @@ Presentation Details
 {% if sr_presentation_panelists %}
 
 + Other Panelists
-{{ sr_presentation_panelists|safe|strip_tags }}
+{{ sr_presentation_panelists|strip_tags|safe }}
 {% endif %}
 {% if sr_presentation_topic %}
 
 + Topic of Presentation
-{{ sr_presentation_topic|safe|strip_tags }}
+{{ sr_presentation_topic|strip_tags|safe }}
 {% endif %}
 {% if sr_presentation_length %}
 

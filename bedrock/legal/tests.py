@@ -227,10 +227,10 @@ class TestFraudReport(TestCase):
         Tags are still stripped, though.
         """
 
-        STRING1 = u"J'adore Citröns & <Piñatas> so there"
-        EXPECTED1 = u"J'adore Citröns &  so there"
+        STRING1 = u"<em>J'adore Citröns</em> & <Piñatas> so there"
+        EXPECTED1 = u"J'adore Citröns & <Piñatas> so there"
 
-        STRING2 = u"J'adore Piñatas & <fromage> so here"
+        STRING2 = u"<em>J'adore Piñatas</em> & <fromage> so here"
         EXPECTED2 = u"J'adore Piñatas &  so here"
 
         STRING3 = u"J'adore <coffee>el café</coffee> también"

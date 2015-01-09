@@ -244,8 +244,8 @@ class TestSpeakerRequest(TestCase):
         Tags are still stripped, though.
         """
 
-        STRING1 = u"J'adore Citröns & <Piñatas> so there"
-        EXPECTED1 = u"J'adore Citröns &  so there"
+        STRING1 = u"<blink>J'adore Citröns</blink> & <Piñatas> so there"
+        EXPECTED1 = u"J'adore Citröns & <Piñatas> so there"
 
         STRING2 = u"J'adore Piñatas & <fromage> so here"
         EXPECTED2 = u"J'adore Piñatas &  so here"

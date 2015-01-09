@@ -61,3 +61,6 @@
 [submodule "vendor-local/src/django-filter"]
 	path = vendor-local/src/django-filter
 	url = https://github.com/alex/django-filter.git
+[submodule "vendor-local/src/django"]
+	path = vendor-local/src/django
+	url = git://github.com/django/django.git

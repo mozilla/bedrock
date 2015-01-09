@@ -33,11 +33,16 @@ class FraudReportForm(forms.Form):
     )
     input_category = forms.ChoiceField(
         choices=(
-            ('Charging for software', _lazy(u'Charging for software')),
-            ('Collecting personal information', _lazy(u'Collecting personal information')),
-            ('Domain name violation', _lazy(u'Domain name violation')),
-            ('Logo misuse/modification', _lazy(u'Logo misuse/modification')),
-            ('Distributing modified Firefox/malware', _lazy(u'Distributing modified Firefox/malware')),
+            ('Charging for software',
+             _lazy(u'Charging for software')),
+            ('Collecting personal information',
+             _lazy(u'Collecting personal information')),
+            ('Domain name violation',
+             _lazy(u'Domain name violation')),
+            ('Logo misuse/modification',
+             _lazy(u'Logo misuse/modification')),
+            ('Distributing modified Firefox/malware',
+             _lazy(u'Distributing modified Firefox/malware')),
         ),
         required=True,
         error_messages={

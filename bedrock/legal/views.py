@@ -34,7 +34,7 @@ def submit_form(request, form):
 
         attachment = form.cleaned_data['input_attachment']
 
-        if (attachment):
+        if attachment:
             email.attach(attachment.name, attachment.read(), attachment.content_type)
 
         email.send()
