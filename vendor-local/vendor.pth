@@ -6,6 +6,7 @@ packages/pytz
 packages/PyYAML/lib
 src/basket-client
 src/chkcrontab
+src/django
 src/django-dnt
 src/django-extensions
 src/django-filter
