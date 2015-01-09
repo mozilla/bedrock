@@ -10,8 +10,8 @@
     var isOldOpera= /Presto/.test(navigator.userAgent);
 
     function cutsTheMustard() {
-        // temporarily disable on Firefox OSX until graphics bug (1083079) is fixed
-        if (window.isFirefox() && window.getFirefoxMasterVersion() >= 35 && $('html').hasClass('osx')) {
+        // Bug (1083079) fixed but effects Firefox 35
+        if (window.isFirefox() && window.getFirefoxMasterVersion() === 35 && $('html').hasClass('osx')) {
             return false;
         }
 
