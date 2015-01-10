@@ -1,4 +1,4 @@
-# -*- coding: utf8 -*-
+# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -245,7 +245,7 @@ class TestSpeakerRequest(TestCase):
         """
 
         STRING1 = u"<blink>J'adore Citröns</blink> & <Piñatas> so there"
-        EXPECTED1 = u"J'adore Citröns & <Piñatas> so there"
+        EXPECTED1 = u"J'adore Citröns &  so there"
 
         STRING2 = u"J'adore Piñatas & <fromage> so here"
         EXPECTED2 = u"J'adore Piñatas &  so here"

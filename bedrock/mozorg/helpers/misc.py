@@ -5,6 +5,7 @@ from os import path
 from django.conf import settings
 from django.template.defaultfilters import slugify as django_slugify
 
+import bleach
 import jingo
 import jinja2
 from funfactory.settings_base import path as base_path
@@ -517,3 +518,8 @@ def slugify(text):
     trailing whitespace.
     """
     return django_slugify(text)
+
+
+@jingo.register.filter
+def bleach_tags(text):
+    return bleach.clean(text, tags=[], strip=True).replace('&amp;', '&')
