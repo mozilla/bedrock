@@ -1619,7 +1619,28 @@ textarea:focus {
     }
 }
 
+[dir='rtl'] {
+    .events-list .ical-link {
+        float: right;
 
+        a {
+            margin-left: 0;
+            margin-right: 25px;
+
+            &:before {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+
+    .events-table {
+        td,
+        th {
+            text-align: right;
+        }
+    }
+}
 
 /*-------------------------------------------------------------------------*/
 // Mozillian @Stories
