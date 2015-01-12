@@ -70,12 +70,23 @@ section h2.iconic {
     }
 }
 
+footer a {
+    display: inline-block;
+    -moz-padding-start: 25px;
+         padding-start: 25px;
+
+    &:before {
+        -moz-margin-start: -25px;
+             margin-start: -25px;
+    }
+}
+
 footer a,
 section a.iconic {
     &:before {
         display: inline-block;
-        -moz-margin-end: .5ex;
-             margin-end: .5ex;
+        -moz-margin-end: 5px;
+             margin-end: 5px;
         width: 20px;
         height: 20px;
         background-image: url('/media/img/thunderbird/start/sprite.png');
@@ -210,8 +221,12 @@ footer {
 
 @media (min-width: 1024px) {
     footer li {
-        width: 33%;
+        width: 50%;
         min-width: 10em;
+    }
+
+    [lang|="en"] footer li {
+        width: 33%;
     }
 }
 
@@ -280,8 +295,12 @@ footer {
 
 @media (min-width: 480px) and (max-width: 639px) {
     footer li {
-        width: 33%;
+        width: 50%;
         min-width: 10em;
+    }
+
+    [lang|="en"] footer li {
+        width: 33%;
     }
 
     [dir="ltr"] footer li {
