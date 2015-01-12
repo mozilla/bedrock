@@ -1,0 +1,83 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% set_lang_files "firefox/hello" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_hello_start') }}
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox Hello') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block body_id %}firefox-hello-start{% endblock %}
+{% block body_class %}sky{% endblock %}
+
+{% block string_data %}
+data-get-started-title="{{ _('Welcome to Hello') }}"
+data-get-started-text="{{ _('Open a video conversation with a single click, then invite a friend to join.') }}"
+data-invite-title="{{ _('Share your link with a friend') }}"
+data-invite-text="{{ _('They don’t even need Firefox to join. They just need to click the link.') }}"
+data-shared-title="{{ _('No need to wait around') }}"
+data-shared-text="{{ _('Once your friend clicks the link, the Hello icon will change to blue, letting you know they’re there.') }}"
+data-room-list-title="{{ _('You have a conversation waiting') }}"
+data-room-list-text="{{ _('Click now to join and say hello.') }}"
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <div class="spacer"></div>
+  <main role="main" data-incoming-conversation="{{ incoming_conversation }}">
+    <h1>{{ high_res_img('img/firefox/hello/firefox-hello-logo.png?01-2015', {'alt': _('Firefox Hello'), 'width': '535', 'height': '88'}) }}</h1>
+    <section class="default">
+      <h2>{{ _('The easiest way to have a free video conversation with anyone, anywhere') }}</h2>
+      <ol>
+        <li>{{ _('Start a conversation right from Firefox') }}</li>
+        <li>{{ _('Invite a friend by sending them a link') }}</li>
+        <li>{{ _('The Hello icon will change to blue once they’ve joined') }}</li>
+      </ol>
+      <aside>
+        <ul>
+          <li><a rel="external" href="https://support.mozilla.org/kb/firefox-hello-video-and-voice-conversations-online" class="more">{{ _('Need help? Get support here') }}</a></li>
+          <li><a href="{{ url('firefox.hello') }}" class="more">{{ _('Learn all about Hello') }}</a></li>
+        </ul>
+        <ul>
+          <li><a rel="external" href="https://support.mozilla.org/kb/create-and-manage-your-contacts-list-firefox-hello" class="more">{{ _('Do more with a Firefox Account') }}</a></li>
+          {# Removing link for now, as per Bug 1109132#c14
+          <li><a href="#" class="more">{{ _('Tell a friend about Hello') }}</a></li>
+          #}
+        </ul>
+      </aside>
+    </section>
+    <section class="start">
+      <h2>{{ _('The easiest way to connect for free over video') }}</h2>
+      <p>{{ _('Start right from Firefox and invite anyone, anywhere to have a conversation. All they have to do is click a link to join. There’s no account or sign-in required.') }}</p>
+    </section>
+    <section class="end">
+      <h2>{{ _('You’ve started your first conversation. Wasn’t that easy?') }}</h2>
+      <ul>
+        {# Removing link for now, as per Bug 1109132#c14
+        <li><a href="#" class="more">{{ _('Tell a friend about Hello') }}</a></li>
+        #}
+        <li><a rel="external" href="https://support.mozilla.org/kb/firefox-hello-video-and-voice-conversations-online" class="more">{{ _('Need help? Get support here') }}</a></li>
+        <li><a href="{{ url('firefox.hello') }}" class="more">{{ _('Learn all about Hello') }}</a></li>
+        <li><a rel="external" href="https://support.mozilla.org/kb/create-and-manage-your-contacts-list-firefox-hello" class="more">{{ _('Do more with a Firefox Account') }}</a></li>
+      </ul>
+    </section>
+  </main>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}{% endblock %}
+
+{% block js %}
+  {{ js('firefox_hello_start') }}
+{% endblock %}

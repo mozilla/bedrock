@@ -304,6 +304,10 @@ MINIFY_BUNDLES = {
             'css/firefox/menu-resp.less',
             'css/firefox/developer.less',
         ),
+        'firefox_hello_start': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/hello/start.less',
+        ),
         'firefox_new': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
@@ -741,6 +745,10 @@ MINIFY_BUNDLES = {
             'js/firefox/australis/australis-uitour.js',
             'js/base/mozilla-modal.js',
             'js/firefox/dev-firstrun.js',
+        ),
+        'firefox_hello_start': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/hello/start.js',
         ),
         'firefox_new': (
             'js/libs/socialshare.min.js',

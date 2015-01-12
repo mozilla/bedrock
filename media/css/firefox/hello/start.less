@@ -1,0 +1,185 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+html,
+body {
+    height: 100%;
+}
+
+h1 {
+    margin: (@baseLine * 14) @baseLine @baseLine;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+h2 {
+    margin: @baseLine;
+    .font-size(48px);
+}
+
+p {
+    margin: @baseLine;
+    .open-sans-light;
+    .font-size(20px);
+}
+
+ol {
+    list-style-type: none;
+    margin: @baseLine;
+    padding: 0;
+    .open-sans-light;
+    .font-size(24px);
+    font-style: italic;
+    counter-reset: steps-counter;
+
+    li {
+        position: relative;
+        margin: (@baseLine / 2) 0;
+        line-height: 1.5;
+        padding-left: 2em;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: counter(steps-counter);
+            counter-increment: steps-counter;
+            float: left;
+            width: 1.5em;
+            height: 1.5em;
+            color: #fff;
+            background: #00A9DC;
+            border-radius: 100%;
+            text-align: center;
+            font-style: normal;
+            .open-sans;
+        }
+    }
+}
+
+ul {
+    list-style-type: none;
+    margin: @baseLine;
+    padding: 0;
+    .font-size(@largeFontSize);
+
+    li {
+        margin: (@baseLine / 2) 0;
+        padding: 0;
+    }
+}
+
+main {
+    width: 70%;
+    margin-bottom: @baseLine * 4;
+}
+
+.js main {
+    visibility: hidden;
+}
+
+.spacer {
+    width: 30%;
+    height: 700px;
+    float: right;
+}
+
+aside {
+    position: relative;
+    padding: @baseLine;
+    .clearfix();
+    ul {
+        float: left;
+        width: 50%;
+        margin: 0;
+    }
+}
+
+#outer-wrapper {
+    min-height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+#wrapper {
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+}
+
+.start,
+.end {
+    display: none;
+}
+
+.html-rtl {
+    .spacer {
+        float: left;
+    }
+
+    ol li {
+        padding-left: 0;
+        padding-right: 2em;
+
+        &:before {
+            left: auto;
+            right: 0;
+        }
+    }
+
+    aside ul {
+        float: right;
+    }
+}
+
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    main {
+        width: 65%;
+    }
+
+    .spacer {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+
+    main {
+        width: 100%;
+    }
+
+    .spacer {
+        display: none;
+        float: none;
+    }
+
+    h2 {
+        .font-size(32px);
+    }
+
+    p {
+        .font-size(16px);
+    }
+
+    aside ul {
+        float: none;
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-height: 600px) {
+    h2 {
+        .font-size(32px);
+    }
+    p {
+        .font-size(18px);
+    }
+}
