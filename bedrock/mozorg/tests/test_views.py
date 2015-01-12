@@ -423,7 +423,7 @@ class TestContributeOldPage(TestCase):
 
         Tags are still stripped, though.
         """
-        STRING = u"J'adore Citröns & <Piñatas> so there"
+        STRING = u"<strong>J'adore Citröns</strong> & <Piñatas> so there"
         EXPECTED = u"J'adore Citröns &  so there"
         self.data.update(comments=STRING)
         self.client.post(self.url_en, self.data)
@@ -592,7 +592,7 @@ class TestContribute(TestCase):
 
         Tags are still stripped, though.
         """
-        STRING = u"J'adore Citröns & <Piñatas> so there"
+        STRING = u"<em>J'adore Citröns</em> & <Piñatas> so there"
         EXPECTED = u"J'adore Citröns &  so there"
         self.data.update(comments=STRING)
         self.client.post(self.url_en, self.data)

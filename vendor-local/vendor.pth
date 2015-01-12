@@ -5,7 +5,9 @@ packages/python-memcached
 packages/pytz
 packages/PyYAML/lib
 src/basket-client
+src/bleach
 src/chkcrontab
+src/django
 src/django-dnt
 src/django-extensions
 src/django-filter
@@ -15,6 +17,7 @@ src/django-rest-framework
 src/django-statsd
 src/django-waffle
 src/feedparser/feedparser
+src/html5lib
 src/icalendar/src
 src/jingo-markdown
 src/legal-docs

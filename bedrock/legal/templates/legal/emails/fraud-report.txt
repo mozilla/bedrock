@@ -10,13 +10,13 @@ A new violating website report has been submitted with the following information
 {{ input_product }}
 
 + Specific product
-{{ input_specific_product|safe|strip_tags }}
+{{ input_specific_product|bleach_tags|safe }}
 
 + Other details...
-{{ input_details|safe|strip_tags }}
+{{ input_details|bleach_tags|safe }}
 
 + Attachments...
-{{ input_attachment_desc|safe|strip_tags }}
+{{ input_attachment_desc|bleach_tags|safe }}
 
 + Email
 {{ input_email }}
