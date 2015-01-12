@@ -197,14 +197,16 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 2)
-        eq_(pq(list[0]).attr('class'), 'os_android armv7')
-        eq_(pq(list[1]).attr('class'), 'os_android x86')
+        eq_(list.length, 3)
+        eq_(pq(list[0]).attr('class'), 'os_android armv7 api-9')
+        eq_(pq(list[1]).attr('class'), 'os_android armv7 api-11')
+        eq_(pq(list[2]).attr('class'), 'os_android x86')
 
         list = doc('.download-other .arch')
-        eq_(list.length, 2)
-        eq_(pq(list[0]).attr('class'), 'arch armv7')
-        eq_(pq(list[1]).attr('class'), 'arch x86')
+        eq_(list.length, 3)
+        eq_(pq(list[0]).attr('class'), 'arch armv7 api-9')
+        eq_(pq(list[1]).attr('class'), 'arch armv7 api-11')
+        eq_(pq(list[2]).attr('class'), 'arch x86')
 
     def test_beta_mobile(self):
         rf = RequestFactory()

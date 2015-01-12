@@ -133,6 +133,11 @@
         var platform = window.site.platform = window.site.getPlatform();
         if (platform !== 'windows') {
             h.className = h.className.replace('windows', platform);
+
+            // Add class to support downloading Firefox Aurora for Android Gingerbread
+            if (platform === 'android' && navigator.userAgent.match(/Android\ 2\.3/)) {
+                h.className += ' gingerbread';
+            }
         }
 
         // Add class to reflect the microprocessor architecture info

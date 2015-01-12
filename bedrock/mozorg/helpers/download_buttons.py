@@ -31,8 +31,10 @@ download_urls = {
     'direct': 'https://download.mozilla.org/',
     'aurora': nightly_desktop,
     'aurora-l10n': nightly_desktop + '-l10n',
-    'aurora-android-armv7': nightly_android + (
-        '/en-US/fennec-%s.en-US.android-arm.apk'),
+    'aurora-android-api-9': nightly_android + (
+        '-api-9/fennec-%s.multi.android-arm.apk'),
+    'aurora-android-api-11': nightly_android + (
+        '-api-11/fennec-%s.multi.android-arm.apk'),
     'aurora-android-x86': nightly_android + (
         '-x86/fennec-%s.multi.android-i386.apk'),
 }
@@ -128,6 +130,11 @@ def make_download_link(product, build, version, platform, locale,
 def android_builds(build, builds=None):
     builds = builds or []
     android_link = settings.GOOGLE_PLAY_FIREFOX_LINK
+    variations = {
+        'api-9': 'Gingerbread',
+        'api-11': 'Honeycomb+ ARMv7',
+        'x86': 'x86',
+    }
 
     if build.lower() == 'beta':
 
@@ -135,15 +142,14 @@ def android_builds(build, builds=None):
                                             'org.mozilla.firefox_beta')
 
     if build == 'aurora':
-        for arch_pretty in ['ARMv7', 'x86']:
-            arch = arch_pretty.lower()
-            link = (download_urls['aurora-android-%s' % arch] %
+        for type, arch_pretty in variations.items():
+            link = (download_urls['aurora-android-%s' % type] %
                     mobile_details.latest_version('aurora'))
 
             builds.append({'os': 'os_android',
                            'os_pretty': 'Android',
                            'os_arch_pretty': 'Android %s' % arch_pretty,
-                           'arch': arch,
+                           'arch': 'x86' if type == 'x86' else 'armv7 %s' % type,
                            'arch_pretty': arch_pretty,
                            'download_link': link})
 
