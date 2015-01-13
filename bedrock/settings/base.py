@@ -363,6 +363,7 @@ MINIFY_BUNDLES = {
         'firefox_privacy_tour': (
             'css/sandstone/sandstone.less',
             'css/base/mozilla-modal.less',
+            'css/base/mozilla-share-cta.less',
             'css/firefox/independent-splash.less',
             'css/firefox/australis/australis-ui-tour.less',
             'css/firefox/privacy_tour/common.less',
@@ -371,6 +372,7 @@ MINIFY_BUNDLES = {
         'firefox_privacy_no_tour': (
             'css/sandstone/sandstone.less',
             'css/base/mozilla-modal.less',
+            'css/base/mozilla-share-cta.less',
             'css/firefox/independent-splash.less',
             'css/firefox/privacy_tour/common.less',
             'css/firefox/privacy_tour/no-tour.less',
@@ -430,6 +432,7 @@ MINIFY_BUNDLES = {
         ),
         'firefox_independent': (
             'css/sandstone/sandstone-resp.less',
+            'css/base/mozilla-share-cta.less',
             'css/firefox/independent-splash.less',
             'css/firefox/independent.less',
         ),
