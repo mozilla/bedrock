@@ -5,6 +5,41 @@
 ;(function($, Modernizr, _gaq, site) {
     'use strict';
 
+    var $window = $(window);
+    var $document = $(document);
+
+    var uiTourSendEvent = function(action, data) {
+        var event = new CustomEvent('mozUITour', {
+            bubbles: true,
+            detail: {
+                action: action,
+                data: data || {}
+            }
+        });
+
+        document.dispatchEvent(event);
+    };
+
+    var uiTourGetConfiguration = function(configName, callback) {
+        uiTourSendEvent('getConfiguration', {
+            configuration: configName,
+            callbackID: function() {
+                var id = Math.random().toString(36).replace(/[^a-z]+/g, '');
+
+                function listener(event) {
+                    if (typeof event.detail === 'object' && event.detail.callbackID === id) {
+                        document.removeEventListener('mozUITourResponse', listener);
+                        callback(event.detail.data);
+                    }
+                }
+
+                document.addEventListener('mozUITourResponse', listener);
+
+                return id;
+            }.call()
+        });
+    };
+
     var isIELT9 = (site.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent));
     var path_parts = window.location.pathname.split('/');
     var query_str = window.location.search ? window.location.search + '&' : '?';
@@ -16,8 +51,11 @@
     var $html = $(document.documentElement);
 
     if (isFirefox()) {
-        var latestFirefoxVersion = $html.attr('data-latest-firefox');
-        latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
+        // data-latest-firefox includes point release information
+        var latestFirefoxVersionFull = $html.attr('data-latest-firefox');
+
+        // get latest full version (no point release info) for initial check
+        var latestFirefoxVersion = parseInt(latestFirefoxVersionFull.split('.')[0], 10);
 
         if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
             if (window.location.hash !== '#download-fx' && window.location.search !== '?scene=2') {
@@ -27,6 +65,18 @@
                 // (from a download button) then we want them to see the same scene 2
                 // as non-firefox users and initiate a download
                 $html.addClass('firefox-latest');
+
+                // if user is on release channel and has latest version, offer refresh button
+                uiTourGetConfiguration('appinfo', function(config) {
+                    if (config.defaultUpdateChannel === 'release' && config.version === latestFirefoxVersionFull) {
+                        $html.addClass('show-refresh');
+
+                        // DOM may not be ready yet, so bind filtered click handler to document
+                        $document.on('click', '#refresh-firefox', function() {
+                            uiTourSendEvent('resetFirefox');
+                        });
+                    }
+                });
             }
         } else {
             $html.addClass('firefox-old');
@@ -71,7 +121,7 @@
         || site.platform === 'android'  // download goes to Play Store
     );
 
-    $(document).ready(function() {
+    $document.ready(function() {
         var $scene1 = $('#scene1');
         var $stage = $('#stage-firefox');
         var $thankYou = $('.thankyou');
@@ -208,7 +258,7 @@
         });
 
         if (hash_change && !no_scene2) {
-            $(window).on('hashchange', function() {
+            $window.on('hashchange', function() {
                 if (window.location.hash === '#download-fx') {
                     show_scene_anim(2);
                 }
@@ -218,7 +268,7 @@
             });
         }
 
-        $(window).on('load', function() {
+        $window.on('load', function() {
             // Add CSS class that allows scene2 images to load. Done on ready()
             // so as not to block the loading of other images.
             $('body').addClass('ready-for-scene2');

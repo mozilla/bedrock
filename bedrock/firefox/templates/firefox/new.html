@@ -21,29 +21,9 @@
 
 {% block extrahead %}
   {{ css('firefox_new') }}
-
-  {% if request.locale == 'en-US' %}
-    <!-- Google Analytics Content Experiment code -->
-    <script>function utmx_section(){}function utmx(){}(function(){
-    if (! /[?&]f=[0-9]+/.test(window.location.search)){
-    var k='71153379-28',d=document,l=d.location,c=d.cookie;
-    if(l.search.indexOf('utm_expid='+k)>0)return;
-    function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-    indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-    length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-    '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-    '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-    '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-    valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-    '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')}})();
-
-    </script><script>utmx('url','A/B');</script>
-    <!-- End of Google Analytics Content Experiment code -->
-  {% endif %}
 {% endblock %}
 
 {% block js_pretrack %}
-  {{ js('firefox-resp') }}
   {{ js('firefox_new') }}
 {% endblock %}
 
@@ -68,6 +48,14 @@
     </div>
     <div id="version-message-desktop-latest" class="version-message">
       {{_('Congrats! You’re using the latest version of Firefox.')}}
+
+    {% if l10n_has_tag('firefox_new_refresh_button') %}
+      <div id="refresh-firefox-wrapper">
+        <p>{{ _('Give Firefox a tune up') }}</p>
+        <button type="button" id="refresh-firefox" class="button">{{ _('Refresh Firefox') }}</button>
+        <a href="https://support.mozilla.org/kb/reset-firefox-easily-fix-most-problems" rel="external">{{ _('Learn more') }}</a>
+      </div>
+    {% endif %}
     </div>
     <div id="version-message-desktop-old" class="version-message">
       {{_('Looks like you’re using an older version of Firefox.')}}
@@ -79,7 +67,7 @@
       {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
     </div>
   </div>
-  <div id="main-feature">
+  <div id="main-feature" class="hide-for-refresh">
     <div class="row">
       <img src="{{ media('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />
       <h1 class="large">
@@ -113,11 +101,11 @@
           </div>
           <div class="desktop-latest-links-wrapper latest-links-wrapper">
             <ul>
-              <li><a href="{{ url('firefox.desktop.index') }}">{{_('Learn more about Firefox for desktop')}}</a></li>
+              <li class="hide-for-refresh"><a href="{{ url('firefox.desktop.index') }}">{{_('Learn more about Firefox for desktop')}}</a></li>
               <li><a href="https://support.mozilla.org/products/firefox">{{_('Need help?')}}</a></li>
               {% if l10n_has_tag('mobile_links') %}
-              <li><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
-              <li><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
+              <li class="hide-for-refresh"><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
+              <li class="hide-for-refresh"><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
               {% endif %}
               <li><a href="{{ url('firefox.all') }}">{{_('Download a fresh copy')}}</a></li>
             </ul>
