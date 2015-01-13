@@ -201,6 +201,20 @@
   </div>
 </section>
 
+{% if l10n_has_tag('geolocation_faq_update') %}
+  <section>
+    <h3 data-accordion-role="tab">{{ _('How can I add support for Geolocation to my web site?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+      {% trans url="https://developer.mozilla.org/docs/Web/API/Geolocation/Using_geolocation" %}
+        You can integrate Geolocation support into your service by following the instruction at
+        <a href="{{ url }}">Mozilla Developer Center</a>.
+      {% endtrans %}
+      </p>
+    </div>
+  </section>
+{% endif %}
+
 </section><!-- end #faq -->
 
 <div style="display:none">
