@@ -488,7 +488,10 @@ def hello(request):
     videos = {
         'de': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_german',
         'en-US': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+        'es-AR': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_spanish',
+        'es-CL': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_spanish',
         'es-ES': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_spanish',
+        'es-MX': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_spanish',
         'id': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_indonesian',
         'pt-BR': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_portugese',
         'zh-TW': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_chinese'
