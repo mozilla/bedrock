@@ -4,6 +4,8 @@
 
 # Django settings file for bedrock.
 
+from os.path import abspath
+
 from funfactory.settings_base import *  # noqa
 from django.utils.http import urlquote
 
@@ -1453,7 +1455,7 @@ RNA = {
     'VERIFY_SSL_CERT': os.environ.get('VERIFY_SSL_CERT', False),
 }
 
-MOFO_SECURITY_ADVISORIES_PATH = path('mofo_security_advisories')
+MOFO_SECURITY_ADVISORIES_PATH = abspath(path('..', 'mofo_security_advisories'))
 MOFO_SECURITY_ADVISORIES_REPO = 'https://github.com/mozilla/foundation-security-advisories.git'
 
 CORS_URLS = {
