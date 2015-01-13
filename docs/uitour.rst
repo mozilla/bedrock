@@ -317,6 +317,14 @@ If ``'appinfo'`` is queried the object returned gives information on the users c
         console.dir(config); //{defaultUpdateChannel: "nightly", version: "36.0a1"}
     });
 
+The ``defaultUpdateChannel`` key has many possible values, the most important being:
+
+* ``'release'``
+* ``'beta'``
+* ``'aurora'``
+* ``'nightly'``
+* ``'default'`` (self-build or automated testing builds)
+
 .. Important::
 
     ``appinfo`` is only available in Firefox 35 onward.
