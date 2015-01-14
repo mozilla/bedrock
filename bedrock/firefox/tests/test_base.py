@@ -641,6 +641,26 @@ class TestWhatsNew(TestCase):
 
     # end 34.0.5 search tour tests
 
+    # ESR31 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_esr_31_4_0_with_oldversion(self, render_mock):
+        """Should use australis tour template for 31.4.0 with old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=24.8.0')
+        self.view(req, version='31.4.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/whatsnew-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_esr_31_4_0_with_wrong_oldversion(self, render_mock):
+        """Should not show tour for 31.4.0 with wrong old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=30.0')
+        self.view(req, version='31.4.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
+
+    # end ESR31 whatsnew tests
+
     @override_settings(DEV=True)
     def test_rv_prefix(self, render_mock):
         """Prefixed oldversion shouldn't impact version sniffing."""

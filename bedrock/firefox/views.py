@@ -257,6 +257,15 @@ def show_devbrowser_firstrun(version):
     return False
 
 
+def show_australis_whatsnew_tour(oldversion):
+    try:
+        oldversion = Version(oldversion)
+    except ValueError:
+        return False
+
+    return oldversion < Version('29.0')
+
+
 def show_whatsnew_tour(oldversion):
     try:
         oldversion = Version(oldversion)
@@ -416,7 +425,7 @@ class WhatsnewView(LatestFxView):
         # old versions of Firefox sent a prefixed version
         if oldversion.startswith('rv:'):
             oldversion = oldversion[3:]
-        versions = ('29.', '30.', '31.', '32.')
+        versions = ('29.', '30.', '32.')
 
         if show_34_0_5_search_template(version):
             if locale == 'en-US':
@@ -445,6 +454,12 @@ class WhatsnewView(LatestFxView):
                     template = 'firefox/privacy_tour/tour.html'
                 else:
                     template = 'firefox/privacy_tour/no-tour.html'
+            else:
+                template = 'firefox/australis/whatsnew-no-tour.html'
+        # show australis tour for ESR 31 updates
+        elif version.startswith('31.'):
+            if show_australis_whatsnew_tour(oldversion):
+                template = 'firefox/australis/whatsnew-tour.html'
             else:
                 template = 'firefox/australis/whatsnew-no-tour.html'
         elif version.startswith(versions):
