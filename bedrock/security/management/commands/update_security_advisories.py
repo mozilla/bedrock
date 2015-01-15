@@ -18,7 +18,7 @@ from django.db import transaction
 from dateutil.parser import parse as parsedate
 
 from bedrock.security.models import Product, SecurityAdvisory
-from bedrock.security.utils import chdir, parse_md_file
+from bedrock.security.utils import FILENAME_RE, chdir, parse_md_file
 
 
 ADVISORIES_REPO = settings.MOFO_SECURITY_ADVISORIES_REPO
@@ -54,6 +54,11 @@ def mkdir_p(path):
             raise
 
 
+def filter_advisory_filenames(filenames):
+    return [os.path.join(ADVISORIES_PATH, fn) for fn in filenames
+            if FILENAME_RE.search(fn)]
+
+
 @chdir(ADVISORIES_PATH)
 def git_pull():
     old_hash = get_current_git_hash()
@@ -64,16 +69,12 @@ def git_pull():
 
 @chdir(ADVISORIES_PATH)
 def git_diff(old_hash, new_hash):
-    modified_files = []
     if old_hash != new_hash:
         proc = Popen((GIT, 'diff', '--name-only', old_hash, new_hash), stdout=PIPE)
         git_out = proc.communicate()[0].split()
-        for mf in git_out:
-            if not mf.endswith('.md'):
-                continue
-            modified_files.append(os.path.join(ADVISORIES_PATH, mf))
+        return filter_advisory_filenames(git_out)
 
-    return modified_files
+    return []
 
 
 @chdir(ADVISORIES_PATH)
