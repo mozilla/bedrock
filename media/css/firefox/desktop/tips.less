@@ -363,37 +363,32 @@ html[lang^='en'] #tips-nav-direct li a span:after {
         button {
             .transition(color .2s ease);
             .link-button();
-        }
 
-        button:disabled {
-            color: #ccc;
-            cursor: default;
+            &.tip-prev {
+                float: left;
+                .leading-arrow();
+            }
 
-            &:hover {
-                text-decoration: none;
+            &.tip-next {
+                float: right;
+                text-align: right;
+                .trailing-arrow();
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                color: #ccc;
+                cursor: default;
+
+                &:hover {
+                    text-decoration: none;
+                }
             }
         }
     }
 
     #tips-nav-dots {
         display: none;
-    }
-
-    #tip-prev {
-        float: left;
-
-        &:before {
-            content: '« ';
-        }
-    }
-
-    #tip-next {
-        float: right;
-        text-align: right;
-
-        &:after {
-            content: ' »';
-        }
     }
 
     #tips-wrapper {
@@ -450,14 +445,16 @@ html[dir='rtl'] {
         #tips-nav-prev-next {
             right: auto;
             left: 20px;
-        }
 
-        #tip-prev {
-            float: right;
-        }
+            button {
+                &.tip-prev {
+                    float: right;
+                }
 
-        #tip-next {
-            float: left;
+                &.tip-next {
+                    float: left;
+                }
+            }
         }
     }
 }
@@ -564,15 +561,15 @@ html[dir='rtl'] {
                 &.inactive {
                     opacity: .4;
                 }
+
+                &.tip-prev {
+                    background-position: left top;
+                }
+
+                &.tip-next {
+                    background-position: -60px top;
+                }
             }
-        }
-
-        #tip-prev {
-            background-position: left top;
-        }
-
-        #tip-next {
-            background-position: -60px top;
         }
 
         #tips-wrapper {
@@ -581,12 +578,12 @@ html[dir='rtl'] {
     }
 
     html[dir='rtl'] {
-        &.js {
-            #tip-prev {
+        &.js #tips-nav-prev-next button {
+            &.tip-prev {
                 background-position: -60px top;
             }
 
-            #tip-next {
+            &.tip-next {
                 background-position: left top;
             }
         }
@@ -747,6 +744,14 @@ html[dir='rtl'] {
                 &.inactive {
                     opacity: .4;
                 }
+
+                &.tip-prev {
+                    background-position: left top;
+                }
+
+                &.tip-next {
+                    background-position: -60px top;
+                }
             }
         }
 
@@ -784,14 +789,6 @@ html[dir='rtl'] {
             }
         }
 
-        #tip-prev {
-            background-position: left top;
-        }
-
-        #tip-next {
-            background-position: -60px top;
-        }
-
         #tips-wrapper {
             min-height: 500px;
         }
@@ -810,22 +807,37 @@ html[dir='rtl'] {
             float: none;
         }
 
+        .tip-copy {
+            float: none;
+            margin: 0;
+        }
+
+        #heading-logo-wrapper {
+            padding-top: 45px;
+
+            .heading-group {
+                margin-right: 155px;
+            }
+        }
+
         &.js {
             #tips-nav-prev-next {
                 left: 10px;
                 right: auto;
+
+                button {
+                    &.tip-prev {
+                        background-position: -60px top;
+                    }
+
+                    &.tip-next {
+                        background-position: left top;
+                    }
+                }
             }
 
             #tips-nav-dots span {
                 float: right;
-            }
-
-            #tip-prev {
-                background-position: -60px top;
-            }
-
-            #tip-next {
-                background-position: left top;
             }
         }
     }
@@ -928,6 +940,14 @@ html[dir='rtl'] {
         #page-header-logo {
             float: none;
             margin: 0 0 0 -150px;
+        }
+
+        #masthead {
+            overflow: hidden;
+        }
+
+        #heading-logo-wrapper .heading-group {
+            margin-right: 0;
         }
     }
 }

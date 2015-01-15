@@ -34,9 +34,10 @@
     <div class="container">
       <div id="heading-logo-wrapper">
         <img src="{{ media('/img/firefox/desktop/tips/firefox-logo.png') }}" alt="Firefox" id="page-header-logo">
-
-        <h1>{{ _('The best of the latest Firefox') }}</h1>
-        <h2>{{ _('5 top tips, tricks and time-saving tools') }}</h2>
+        <div class="heading-group">
+          <h1>{{ _('The best of the latest Firefox') }}</h1>
+          <h2>{{ _('5 top tips, tricks and time-saving tools') }}</h2>
+        </div>
       </div>
 
       <div id="share-nav-wrapper" class="share-wrapper">
@@ -67,7 +68,7 @@
   <div id="page-content">
     <div class="container pager pager-no-history pager-auto-init">
       <div id="tips-nav-prev-next">
-        <button class="link-button" id="tip-prev" aria-controls="tips-wrapper">{{ _('back') }}</button>
+        <button class="link-button tip-prev" id="tip-prev" aria-controls="tips-wrapper">{{ _('back') }}</button>
 
         <div id="tips-nav-dots">
           <span data-tip="bookmarks">{{ _('1') }}</span>
@@ -77,7 +78,7 @@
           <span data-tip="addons">{{ _('5') }}</span>
         </div>
 
-        <button class="link-button" type="button" id="tip-next" aria-controls="tips-wrapper">{{ _('next') }}</button>
+        <button class="link-button tip-next" type="button" id="tip-next" aria-controls="tips-wrapper">{{ _('next') }}</button>
       </div>
 
       <div id="tips-wrapper" class="pager-content">
