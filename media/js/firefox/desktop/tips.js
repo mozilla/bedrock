@@ -162,7 +162,7 @@
         // GA tracking
         $('.share-button').on('click', function() {
             // determine position
-            var pos = ($(this).closest('.share-wrapper').prop('id') === 'share-nav-wrapper') ? 'top' : 'bottom';
+            var pos = ($(this).closest('.button-wrapper').prop('id') === 'main-nav-wrapper') ? 'top' : 'bottom';
 
             gaTrack(['_trackEvent','/desktop/tips/ Interactions','Social Share', 'share drop-down ' + pos]);
         });
