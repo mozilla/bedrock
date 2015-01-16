@@ -10,11 +10,6 @@ $(function () {
     var $downloadPromo = $('.promo-small-landscape.firefox-download');
     var hasTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints;
 
-    function initFirefoxDownloadPromo() {
-        // show download button small links
-        $downloadPromo.find('.download-other-desktop').show();
-    }
-
     /*
      * For non-touch devices promos are transitioned on hover
      */
@@ -196,7 +191,6 @@ $(function () {
         }
     }
 
-    initFirefoxDownloadPromo();
     initEllipsis();
     initFacesGrid();
 
