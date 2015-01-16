@@ -16,6 +16,9 @@
 {% endblock %}
 
 {% block js %}
+  <!--[if IE 9]>
+    {{ js('annual_2011_ie9') }}
+  <![endif]-->
   {{ js('annual_2011') }}
 {% endblock %}
 
@@ -696,164 +699,167 @@
           </div>
         </figure>
 
-          <ul id="story-slider">
+        <div class="jcarousel-container">
+          <button type="button" class="btn-prev">{{ _('Previous') }}</button>
+          <button type="button" class="btn-next">{{ _('Next') }}</button>
+          <div class="jcarousel-clip">
+            <ul id="story-slider">
+              <li id="story-chit" class="vcard">
+                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory1.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/chit-poster.jpg') }}">
+                  <hgroup>
+                    <h4 class="fn">{{ _('Chit Thiri Maung') }}</h4>
+                    <h5>
+                      <span class="role">{{ _('Mozilla Rep, Web Developer') }}</span>
+                      <span class="country-name">{{ _('Myanmar') }}</span>
+                    </h5>
+                  </hgroup>
+                  <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/chit-thumb.jpg') }}" alt="">
+                  <p class="note">
+                  {% trans %}
+                    Chit started contributing to Mozilla in 2010 and has been
+                    leading community building efforts in Myanmar ever since.
+                  {% endtrans %}
+                  </p>
+                </a>
+              </li>
 
-            <li id="story-chit" class="vcard">
-              <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory1.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/chit-poster.jpg') }}">
-                <hgroup>
-                  <h4 class="fn">{{ _('Chit Thiri Maung') }}</h4>
-                  <h5>
-                    <span class="role">{{ _('Mozilla Rep, Web Developer') }}</span>
-                    <span class="country-name">{{ _('Myanmar') }}</span>
-                  </h5>
-                </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/chit-thumb.jpg') }}" alt="">
-                <p class="note">
-                {% trans %}
-                  Chit started contributing to Mozilla in 2010 and has been
-                  leading community building efforts in Myanmar ever since.
-                {% endtrans %}
-                </p>
-              </a>
-            </li>
+              <li id="story-viking" class="vcard">
+                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory2.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/viking-poster.jpg') }}">
+                  <hgroup>
+                    <h4 class="fn">{{ _('Viking Karwur') }}</h4>
+                    <h5>
+                      <span class="role">{{ _('Mozilla Rep & Community Lead') }}</span>
+                      <span class="country-name">{{ _('Indonesia') }}</span>
+                    </h5>
+                  </hgroup>
+                  <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/viking-thumb.jpg') }}" alt="">
+                  <p class="note">
+                  {% trans %}
+                    Viking organized the first ever Firefox launch party in
+                    Indonesia back in 2007 and has led community marketing efforts
+                    across the country.
+                  {% endtrans %}
+                  </p>
+                </a>
+              </li>
 
-            <li id="story-viking" class="vcard">
-              <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory2.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/viking-poster.jpg') }}">
-                <hgroup>
-                  <h4 class="fn">{{ _('Viking Karwur') }}</h4>
-                  <h5>
-                    <span class="role">{{ _('Mozilla Rep & Community Lead') }}</span>
-                    <span class="country-name">{{ _('Indonesia') }}</span>
-                  </h5>
-                </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/viking-thumb.jpg') }}" alt="">
-                <p class="note">
-                {% trans %}
-                  Viking organized the first ever Firefox launch party in
-                  Indonesia back in 2007 and has led community marketing efforts
-                  across the country.
-                {% endtrans %}
-                </p>
-              </a>
-            </li>
+              <li id="story-keng" class="vcard">
+                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory4.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/keng-poster.jpg') }}">
+                  <hgroup>
+                    <h4 class="fn">{{ _('Patipat “Keng” Susumpow') }}</h4>
+                    <h5>
+                      <span class="role">{{ _('Mozilla Rep & Localization Lead') }}</span>
+                      <span class="country-name">{{ _('Thailand') }}</span>
+                    </h5>
+                  </hgroup>
+                  <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/keng-thumb.jpg') }}" alt="">
+                  <p class="note">
+                  {% trans %}
+                    Keng kickstarted efforts to get Firefox localized in Thai and
+                    has been a community lead since 2008.
+                  {% endtrans %}
+                  </p>
+                </a>
+              </li>
 
-            <li id="story-keng" class="vcard">
-              <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory4.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/keng-poster.jpg') }}">
-                <hgroup>
-                  <h4 class="fn">{{ _('Patipat “Keng” Susumpow') }}</h4>
-                  <h5>
-                    <span class="role">{{ _('Mozilla Rep & Localization Lead') }}</span>
-                    <span class="country-name">{{ _('Thailand') }}</span>
-                  </h5>
-                </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/keng-thumb.jpg') }}" alt="">
-                <p class="note">
-                {% trans %}
-                  Keng kickstarted efforts to get Firefox localized in Thai and
-                  has been a community lead since 2008.
-                {% endtrans %}
-                </p>
-              </a>
-            </li>
+              <li id="story-claire" class="vcard">
+                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory5.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/claire-poster.jpg') }}">
+                  <hgroup>
+                    <h4 class="fn">{{ _('Claire Corgnou') }}</h4>
+                    <h5>
+                      <span class="role">{{ _('Mozilla Rep & Communications Lead') }}</span>
+                      <span class="country-name">{{ _('France') }}</span>
+                    </h5>
+                  </hgroup>
+                  <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/claire-thumb.jpg') }}" alt="">
+                  <p class="note">
+                  {% trans %}
+                    Claire started contributing to Mozilla in 2009 and is the editor
+                    of the Bonjour Mozilla blog.
+                  {% endtrans %}
+                  </p>
+                </a>
+              </li>
 
-            <li id="story-claire" class="vcard">
-              <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory5.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/claire-poster.jpg') }}">
-                <hgroup>
-                  <h4 class="fn">{{ _('Claire Corgnou') }}</h4>
-                  <h5>
-                    <span class="role">{{ _('Mozilla Rep & Communications Lead') }}</span>
-                    <span class="country-name">{{ _('France') }}</span>
-                  </h5>
-                </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/claire-thumb.jpg') }}" alt="">
-                <p class="note">
-                {% trans %}
-                  Claire started contributing to Mozilla in 2009 and is the editor
-                  of the Bonjour Mozilla blog.
-                {% endtrans %}
-                </p>
-              </a>
-            </li>
+              <li id="story-haitham" class="vcard">
+                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory6.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/haitham-poster.jpg') }}">
+                  <hgroup>
+                    <h4 class="fn">{{ _('Haitham El-Ghareeb') }}</h4>
+                    <h5>
+                      <span class="role">{{ _('Mozilla Rep, Open Source Evangelist') }}</span>
+                      <span class="country-name">{{ _('Egypt') }}</span>
+                    </h5>
+                  </hgroup>
+                  <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/haitham-thumb.jpg') }}" alt="">
+                  <p class="note">
+                  {% trans %}
+                    A passionate open source evangelist in his native Egypt, Haitham
+                    became a Mozilla Rep in early 2011.
+                  {% endtrans %}
+                  </p>
+                </a>
+              </li>
 
-            <li id="story-haitham" class="vcard">
-              <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory6.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/haitham-poster.jpg') }}">
-                <hgroup>
-                  <h4 class="fn">{{ _('Haitham El-Ghareeb') }}</h4>
-                  <h5>
-                    <span class="role">{{ _('Mozilla Rep, Open Source Evangelist') }}</span>
-                    <span class="country-name">{{ _('Egypt') }}</span>
-                  </h5>
-                </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/haitham-thumb.jpg') }}" alt="">
-                <p class="note">
-                {% trans %}
-                  A passionate open source evangelist in his native Egypt, Haitham
-                  became a Mozilla Rep in early 2011.
-                {% endtrans %}
-                </p>
-              </a>
-            </li>
+              <li id="story-ioana" class="vcard">
+                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory7.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/ioana-poster.jpg') }}">
+                  <hgroup>
+                    <h4 class="fn">{{ _('Ioana Chiorean') }}</h4>
+                    <h5>
+                      <span class="role">{{ _('Mozilla Rep, QA Lead') }}</span>
+                      <span class="country-name">{{ _('Romania') }}</span>
+                    </h5>
+                  </hgroup>
+                  <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/ioana-thumb.jpg') }}" alt="">
+                  <p class="note">
+                  {% trans %}
+                    Ioana has been driving Mozilla hackathons across her native Romania
+                    since 2010.
+                  {% endtrans %}
+                  </p>
+                </a>
+              </li>
 
-            <li id="story-ioana" class="vcard">
-              <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory7.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/ioana-poster.jpg') }}">
-                <hgroup>
-                  <h4 class="fn">{{ _('Ioana Chiorean') }}</h4>
-                  <h5>
-                    <span class="role">{{ _('Mozilla Rep, QA Lead') }}</span>
-                    <span class="country-name">{{ _('Romania') }}</span>
-                  </h5>
-                </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/ioana-thumb.jpg') }}" alt="">
-                <p class="note">
-                {% trans %}
-                  Ioana has been driving Mozilla hackathons across her native Romania
-                  since 2010.
-                {% endtrans %}
-                </p>
-              </a>
-            </li>
+              <li id="story-brian" class="vcard">
+                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory8.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/brian-poster.jpg') }}">
+                  <hgroup>
+                    <h4 class="fn">{{ _('Brian King') }}</h4>
+                    <h5>
+                      <span class="role">{{ _('Mozilla Rep, Add-ons Developer') }}</span>
+                      <span class="country-name">{{ _('Slovenia') }}</span>
+                    </h5>
+                  </hgroup>
+                  <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/brian-thumb.jpg') }}" alt="">
+                  <p class="note">
+                  {% trans %}
+                    Brian has been contributing to Mozilla for more than a decade and
+                    recently sat on the Mozilla Reps Council.
+                  {% endtrans %}
+                  </p>
+                </a>
+              </li>
 
-            <li id="story-brian" class="vcard">
-              <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory8.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/brian-poster.jpg') }}">
-                <hgroup>
-                  <h4 class="fn">{{ _('Brian King') }}</h4>
-                  <h5>
-                    <span class="role">{{ _('Mozilla Rep, Add-ons Developer') }}</span>
-                    <span class="country-name">{{ _('Slovenia') }}</span>
-                  </h5>
-                </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/brian-thumb.jpg') }}" alt="">
-                <p class="note">
-                {% trans %}
-                  Brian has been contributing to Mozilla for more than a decade and
-                  recently sat on the Mozilla Reps Council.
-                {% endtrans %}
-                </p>
-              </a>
-            </li>
-
-            <li id="story-mohomodou" class="vcard">
-              <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory9.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/mohomodou-poster.jpg') }}">
-                <hgroup>
-                  <h4 class="fn">{{ _('Mohomodou Houssouba') }}</h4>
-                  <h5>
-                    <span class="role">{{ _('Localization Lead') }}</span>
-                    <span class="country-name">{{ _('Mali') }}</span>
-                  </h5>
-                </hgroup>
-                <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/mohomodou-thumb.jpg') }}" alt="">
-                <p class="note">
-                {% trans %}
-                  Passionate about reviving Songay, a dialect in his native Mali,
-                  Mohomodou has led localization efforts to get Firefox translated
-                  into Songay.
-                {% endtrans %}
-                </p>
-              </a>
-            </li>
-
-          </ul>
-
+              <li id="story-mohomodou" class="vcard">
+                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory9.webm" data-poster="{{ media('img/foundation/annualreport/2011/contributors/mohomodou-poster.jpg') }}">
+                  <hgroup>
+                    <h4 class="fn">{{ _('Mohomodou Houssouba') }}</h4>
+                    <h5>
+                      <span class="role">{{ _('Localization Lead') }}</span>
+                      <span class="country-name">{{ _('Mali') }}</span>
+                    </h5>
+                  </hgroup>
+                  <img class="photo" src="{{ media('img/foundation/annualreport/2011/contributors/mohomodou-thumb.jpg') }}" alt="">
+                  <p class="note">
+                  {% trans %}
+                    Passionate about reviving Songay, a dialect in his native Mali,
+                    Mohomodou has led localization efforts to get Firefox translated
+                    into Songay.
+                  {% endtrans %}
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
     </section>

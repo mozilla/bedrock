@@ -14,39 +14,31 @@
     var navHeight = $nav.height() + 30;
     var ARIASHOW = $('button.read').data('aria-show');
     var ARIAHIDE = $('button.read').data('aria-hide');
+    var queryTablet = matchMedia('(min-width: 768px)');
 
     setupThumbnails();
 
-    if ($window.width() >= 768) {
+    if(queryTablet.matches) {
         wideMode = true;
         setupCarousel();
         setStage();
         $("#video-stage").show();
     } else {
+        wideMode = false;
         $("#video-stage").hide();
     }
 
-    $window.resize(function() {
-        clearTimeout(this.id);
-        this.id = setTimeout(doneResizing, 500);
-    });
-
-    function doneResizing() {
-        navHeight = $nav.height() + 30;
-        if ($window.width() >= 768) {
+    queryTablet.addListener(function(mq){
+        if(mq.matches) {
             wideMode = true;
-            if ($("#story-slider-clone").length === 0) {
-                setupCarousel();
-                $("#video-stage").show();
-            }
+            setupCarousel();
+            setStage();
+            $("#video-stage").show();
         } else {
             wideMode = false;
-            if ($("#story-slider-clone").length > 0) {
-                removeCarousel();
-                $("#video-stage").hide();
-            }
+            $("#video-stage").hide();
         }
-    }
+    });
 
     // Add the read buttons
     $("button.read").clone().insertBefore(".overlay").attr({'aria-pressed':"false",'aria-label':ARIASHOW});
@@ -147,9 +139,9 @@
 
     // Change the navbar color and current item to match the section waypoint
     function waypointCallback(current, previous) {
-        return function(event, direction) {
+        return function(dir) {
             if (fixed) {
-                if (direction === 'down') {
+                if (dir === 'down') {
                     $nav.attr('class', 'fixed ' + current);
                     $nav.find("li").removeClass();
                     $("#nav-" + current).addClass("current");
@@ -163,8 +155,8 @@
         };
     }
 
-    // Fire the waypoints for each section, passing classes for the current and previous sections
-    // Uses jQuery Waypoints http://imakewebthings.com/jquery-waypoints/
+    //Fire the waypoints for each section, passing classes for the current and previous sections
+    //Uses jQuery Waypoints http://imakewebthings.com/jquery-waypoints/
     $('#welcome').waypoint(waypointCallback('welcome', 'welcome'), { offset: navHeight });
     $('#mobilized').waypoint(waypointCallback('mobilized', 'welcome'), { offset: navHeight });
     $('#action').waypoint(waypointCallback('action', 'mobilized'), { offset: navHeight });
@@ -172,7 +164,7 @@
     $('#sustainability').waypoint(waypointCallback('sustainability', 'community'), { offset: navHeight });
 
 
-    // Scroll to the linked section
+    //Scroll to the linked section
     $window.on('click', '#page-nav a[href^="#"]', function(e) {
         e.preventDefault();
         // Extract the target element's ID from the link's href.
@@ -215,12 +207,7 @@
 
     // Set up the contributor stories carousel
     function setupCarousel() {
-        $sliderPrime.clone().attr("id", "story-slider-clone").insertAfter($("#video-stage"));
-        if ( $("#story-vid").length > 0 ) {
-            $("#story-vid")[0].pause();
-        }
-        $sliderPrime.hide();
-        $("#story-slider-clone").jcarousel({
+        $(".jcarousel-clip").jcarousel({
             scroll: 4,
             visible: 4,
             buttonNextHTML: null,
@@ -229,15 +216,19 @@
             itemLastInCallback: { onAfterAnimation: disableButtons },
             initCallback: controlButtons
         });
+        if ( $("#story-vid").length > 0 ) {
+            $("#story-vid")[0].pause();
+        }
         setStage();
         setupThumbnails();
+        controlButtons();
     }
 
     // Set up video stage
     function setStage() {
-        var video = $("#story-slider-clone a.contributor:first").attr("href");
-        var poster = $("#story-slider-clone a.contributor:first").data("poster");
-        var desc = $("#story-slider-clone .vcard:first .note").html();
+        var video = $("#story-slider a.contributor:first").attr("href");
+        var poster = $("#story-slider a.contributor:first").data("poster");
+        var desc = $("#story-slider .vcard:first .note").html();
         if ( $("#story-vid").length > 0) {
             $("#story-vid").attr('poster', poster).attr('src', video);
         }
@@ -258,12 +249,26 @@
 
     // Add the left and right control buttons
     function controlButtons(carousel) {
-        $(".btn-prev, .btn-next").clone().prependTo(".jcarousel-container");
-        $('.btn-next').bind('click', function() {
-            carousel.next();
+        $('.btn-prev')
+            .on('jcarouselcontrol:active', function() {
+                $(this).removeClass('inactive');
+            })
+            .on('jcarouselcontrol:inactive', function() {
+                $(this).addClass('inactive');
+            })
+            .jcarouselControl({
+                target: '-=1'
         });
-        $('.btn-prev').bind('click', function() {
-            carousel.prev();
+
+        $('.btn-next')
+            .on('jcarouselcontrol:active', function() {
+                $(this).removeClass('inactive');
+            })
+            .on('jcarouselcontrol:inactive', function() {
+                $(this).addClass('inactive');
+            })
+            .jcarouselControl({
+                target: '+=1'
         });
     }
 
@@ -279,15 +284,6 @@
         } else {
             $('.btn-next').removeAttr('disabled').removeClass('disabled');
         }
-    }
-
-    // Remove the carousel when we don't need it, redo the thumbnails and show the original
-    // This is for smaller viewports that don't get the slider
-    function removeCarousel() {
-        $("#story-slider-clone").parents(".jcarousel-container").remove();
-        $("#story-vid")[0].pause();
-        setupThumbnails();
-        $sliderPrime.show();
     }
 
     // Contributor story thumbnails play the corresponding video
