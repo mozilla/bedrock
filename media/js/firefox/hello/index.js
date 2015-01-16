@@ -2,7 +2,7 @@
 * License, v. 2.0. If a copy of the MPL was not distributed with this
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function(w, $, Modernizr) {
+;(function(Mozilla, w, $) {
     'use strict';
 
     var $w = $(w);
@@ -16,22 +16,9 @@
     var supportsHTML5Video = !!document.createElement('video').canPlayType;
     var isWideViewport = $w.width() >= 740;
     var mqIsWide;
-    var isIE = /MSIE/.test(navigator.userAgent);
-    var isTrident = /Trident/.test(navigator.userAgent);
-    var isOldOpera= /Presto/.test(navigator.userAgent);
-
-    var supportsSVGAnimation = function() {
-        return supportsInlineSVG() && !isIE && !isTrident && !isOldOpera;
-    };
-
-    var supportsInlineSVG = function() {
-        var div = document.createElement('div');
-        div.innerHTML = '<svg/>';
-        return (div.firstChild && div.firstChild.namespaceURI) === 'http://www.w3.org/2000/svg';
-    };
 
     if (isWideViewport) {
-        if (supportsSVGAnimation()) {
+        if (Mozilla.SVGAnimCheck()) {
             $w.on('load', function() {
                 $animationStage.addClass('animate wide');
             });
@@ -39,7 +26,7 @@
             $('body').addClass('no-animation');
         }
     } else {
-        if (Modernizr.cssanimations) {
+        if (Mozilla.SVGAnimCheck.supportsCSSAnimations()) {
             $w.on('load', function() {
                 $animationStage.addClass('animate mini');
             });
@@ -199,4 +186,4 @@
     $video.on('play', function() {
         w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'PlayVideo']);
     });
-})(window, window.jQuery, window.Modernizr);
+})(Mozilla, window, window.jQuery);

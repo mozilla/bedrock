@@ -2,12 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function($) {
+(function(Mozilla, $) {
     'use strict';
-
-    var isIE = /MSIE/.test(navigator.userAgent);
-    var isTrident = /Trident/.test(navigator.userAgent);
-    var isOldOpera= /Presto/.test(navigator.userAgent);
 
     function cutsTheMustard() {
         // Bug (1083079) fixed but effects Firefox 35
@@ -15,13 +11,7 @@
             return false;
         }
 
-        return supportsInlineSVG() && !isIE && !isTrident && !isOldOpera;
-    }
-
-    function supportsInlineSVG () {
-        var div = document.createElement('div');
-        div.innerHTML = '<svg/>';
-        return (div.firstChild && div.firstChild.namespaceURI) == 'http://www.w3.org/2000/svg';
+        return Mozilla.SVGAnimCheck();
     }
 
     if (!cutsTheMustard()) {
@@ -34,4 +24,4 @@
         });
     }
 
-})(window.jQuery);
+})(Mozilla, window.jQuery);
