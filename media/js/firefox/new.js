@@ -73,6 +73,8 @@
 
                         // DOM may not be ready yet, so bind filtered click handler to document
                         $document.on('click', '#refresh-firefox', function() {
+                            gaTrack(['_trackEvent', '/new Interaction', 'Refresh Firefox', 'Firefox Desktop']);
+
                             uiTourSendEvent('resetFirefox');
                         });
                     }
