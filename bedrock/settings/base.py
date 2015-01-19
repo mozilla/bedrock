@@ -53,7 +53,10 @@ DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 CANONICAL_LOCALES = {
     'en': 'en-US',
     'es': 'es-ES',
+    'ja-jp-mac': 'ja',
+    'no': 'nb-NO',
     'pt': 'pt-BR',
+    'sv': 'sv-SE',
 }
 
 FEED_CACHE = 3900
