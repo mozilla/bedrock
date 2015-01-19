@@ -4,6 +4,8 @@
 
 {% extends "firefox/base-resp.html" %}
 
+{% set_lang_files "firefox/hello" %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Firefox Hello — Free, easy video conversations') }}{% endblock %}
 {% block page_desc %}{{ _('Learn all about Firefox Hello and see for yourself how easy it is to have a free video conversation with anyone, anywhere, right from your browser') }}{% endblock %}
@@ -116,6 +118,10 @@
       </h2>
 
       <button class="try-hello" id="try-hello-intro">{{ _('Try Firefox Hello') }}</button>
+
+      <aside id="powered-by">
+        {{ _('Powered by %s')|format(high_res_img('/img/firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}
+      </aside>
 
       {#
       Share widget pulled from 35, will be back for 36:

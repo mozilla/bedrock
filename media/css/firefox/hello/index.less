@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "../sandstone/lib.less";
+@import "../../sandstone/lib.less";
 
 .grainy-sky() {
     background: #cae1f4;
@@ -178,7 +178,7 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1113917#c4
         border: 2px solid #a9bcca;
         background: transparent;
         color: #00a0db;
-        margin: 34px auto 0;
+        margin: (@baseLine * 1.5) auto 0;
 
         &:hover {
             background: #fff;
@@ -198,6 +198,21 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1113917#c4
     height: 314px;
     margin: @baseLine auto;
     background: url(/media/img/firefox/hello/hello-intro.png) center center no-repeat;
+}
+
+#powered-by {
+    .font-size(@smallFontSize);
+    text-align: center;
+    margin-top: @baseLine * 1.5;
+
+    img {
+        vertical-align: middle;
+    }
+}
+
+html[lang^="en"] #powered-by {
+    text-transform: uppercase;
+    .font-size(10px);
 }
 
 // Animation

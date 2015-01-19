@@ -512,7 +512,7 @@ def hello(request):
         'zh-TW': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_chinese'
     }
 
-    return l10n_utils.render(request, 'firefox/hello.html', {'video_url': videos.get(request.locale, '')})
+    return l10n_utils.render(request, 'firefox/hello/index.html', {'video_url': videos.get(request.locale, '')})
 
 
 class HelloStartView(LatestFxView):
