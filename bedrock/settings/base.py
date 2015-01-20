@@ -310,6 +310,12 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone-resp.less',
             'css/firefox/hello/start.less',
         ),
+        'firefox_hello': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/menu-resp.less',
+            'css/base/mozilla-modal.less',
+            'css/firefox/hello/index.less',
+        ),
         'firefox_new': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
@@ -423,12 +429,6 @@ MINIFY_BUNDLES = {
         ),
         'firefox_sync_anim': (
             'css/firefox/sync-animation.less',
-        ),
-        'firefox_hello': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/menu-resp.less',
-            'css/base/mozilla-modal.less',
-            'css/firefox/hello.less',
         ),
         'firefox_independent': (
             'css/sandstone/sandstone-resp.less',
@@ -751,10 +751,6 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-modal.js',
             'js/firefox/dev-firstrun.js',
         ),
-        'firefox_hello_start': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/hello/start.js',
-        ),
         'firefox_new': (
             'js/libs/jquery-1.11.0.min.js',
             'js/libs/spin.min.js',
@@ -818,11 +814,15 @@ MINIFY_BUNDLES = {
             'js/firefox/sync-animation.js',
             'js/firefox/sync-old.js',
         ),
+        'firefox_hello_start': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/hello/start.js',
+        ),
         'firefox_hello': (
             'js/firefox/australis/australis-uitour.js',
             'js/libs/modernizr.custom.cssanimations.js',
             'js/base/mozilla-modal.js',
-            'js/firefox/hello.js',
+            'js/firefox/hello/index.js',
         ),
         'firefox_hello_ie9': (
             'js/libs/matchMedia.js',
