@@ -317,6 +317,24 @@ def show_search_firstrun(version):
     return version >= Version('34.0')
 
 
+def show_36_firstrun(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('36.0')
+
+
+def show_36_whatsnew_tour(oldversion):
+    try:
+        oldversion = Version(oldversion)
+    except ValueError:
+        return False
+
+    return oldversion < Version('36.0')
+
+
 class LatestFxView(TemplateView):
 
     """
@@ -389,6 +407,8 @@ class FirstrunView(LatestFxView):
             template = 'firefox/australis/growth-firstrun-test2.html'
         elif show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
+        elif show_36_firstrun(version):
+            template = 'firefox/australis/fx36/firstrun-tour.html'
         elif show_search_firstrun(version) and locale == 'en-US':
             template = 'firefox/australis/firstrun-34-tour.html'
         else:
@@ -442,7 +462,12 @@ class WhatsnewView(LatestFxView):
             oldversion = oldversion[3:]
         versions = ('29.', '30.', '32.')
 
-        if show_34_0_5_search_template(version):
+        if version.startswith('36.'):
+            if show_36_whatsnew_tour(oldversion):
+                template = 'firefox/australis/fx36/whatsnew-tour.html'
+            else:
+                template = 'firefox/australis/fx36/whatsnew-no-tour.html'
+        elif show_34_0_5_search_template(version):
             if locale == 'en-US':
                 if version.startswith('35.'):
                     min_version = '35.0'

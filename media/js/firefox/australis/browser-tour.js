@@ -33,11 +33,15 @@ if (typeof Mozilla == 'undefined') {
         this.tourIsAnimating = false;
         this.onTourCompleteHasFired = false;
 
+        // flag when hello panel is showing
+        this.helloPanelVisible = false;
+
         // set timeout for highlights
         this.highlightTimer = null;
 
         this.isLargeViewport = matchMedia('(min-width: 800px)');
 
+        this.$window = $(window);
         this.$body = $('body');
         this.$doc = $(document);
         this.$tour = $('#ui-tour').detach().show();
@@ -125,12 +129,12 @@ if (typeof Mozilla == 'undefined') {
         // door-hanger menu buttons
         var buttons = [
             {
-                label: window.trans('later'),
+                label: this.getText(window.trans('later')),
                 style: 'link',
                 callback: this.postponeTour.bind(this)
             },
             {
-                label: window.trans('start'),
+                label: this.getText(window.trans('start')),
                 style: 'primary',
                 callback: this.startTour.bind(this)
             }
@@ -141,14 +145,17 @@ if (typeof Mozilla == 'undefined') {
             closeButtonCallback: this.postponeTour.bind(this)
         };
 
+        var doorHangerTitle = this.getText(window.trans('title'));
+        var doorHangerText = this.getText(window.trans('text'));
+
         // show the door-hanger info panel
         $('.tour-init').on('tour-step', function () {
             var icon = Mozilla.ImageHelper.isHighDpi() ? this.dataset.iconHighRes : this.dataset.icon;
 
             Mozilla.UITour.showInfo(
                 this.dataset.target,
-                window.trans('title'),
-                window.trans('text'),
+                doorHangerTitle,
+                doorHangerText,
                 icon,
                 buttons,
                 options
@@ -170,6 +177,10 @@ if (typeof Mozilla == 'undefined') {
 
         // 33.1 privacy tour search engine highlight
         $('.tour-search-engine').on('tour-step', this.highlightSearchEngine);
+
+        // 36.0 show hello menu panel
+        $('.tour-show-hello-panel').on('tour-step', this.showHelloPanel.bind(this));
+        $('.hello-reminder-door-hanger').on('tour-step', this.reminderHelloButton.bind(this));
 
         // handle page visibility changes to show the appropriate tour step
         this.$doc.on('visibilitychange', this.handleVisibilityChange.bind(this));
@@ -215,6 +226,7 @@ if (typeof Mozilla == 'undefined') {
             if (!mq.matches && that.tourIsVisible) {
                 Mozilla.UITour.hideHighlight();
                 Mozilla.UITour.hideInfo();
+                Mozilla.UITour.hideMenu('appMenu');
             } else if (mq.matches && that.tourIsVisible) {
                 clearInterval(that.highlightTimer);
                 that.highlightTimer = setTimeout(function () {
@@ -222,6 +234,15 @@ if (typeof Mozilla == 'undefined') {
                 }, 900);
             }
         });
+    };
+
+    /*
+     * Strips HTML from string to make sure markup
+     * does not get injected in any UITour door-hangers.
+     * @param string (data attribute string)
+     */
+    BrowserTour.prototype.getText = function (string) {
+        return $('<div/>').html(string).text();
     };
 
     /*
@@ -510,6 +531,183 @@ if (typeof Mozilla == 'undefined') {
     };
 
     /*
+     * Open hello menu panel
+     */
+    BrowserTour.prototype.showHelloPanel = function () {
+        var target = 'loop';
+        var that = this;
+        Mozilla.UITour.getConfiguration('availableTargets', function (config) {
+            if (config.targets) {
+                if ($.inArray(target, config.targets) !== -1) {
+                    that.helloPanelVisible = true;
+                    Mozilla.UITour.showMenu(target, function () {
+                        that.$window.one('resize.hello', that.hideHelloPanel.bind(that));
+                    });
+                } else {
+                    that.promptAddHelloButton();
+                }
+            }
+
+        });
+    };
+
+    /*
+     * Hide Hello menu panel
+     */
+    BrowserTour.prototype.hideHelloPanel = function () {
+        Mozilla.UITour.hideHighlight();
+        Mozilla.UITour.hideMenu('loop');
+        this.$window.off('resize.hello');
+        this.helloPanelVisible = false;
+    };
+
+    /*
+     * Show door-hanger prompting user to add the Hello button
+     */
+    BrowserTour.prototype.promptAddHelloButton = function () {
+        var $dataElm = $('.hello-prompt-door-hanger');
+        var icon = '';
+
+        var buttons = [
+            {
+                label: this.getText($dataElm.data('buttonLater')),
+                style: 'link',
+                callback: this.laterHelloButton.bind(this)
+            },
+            {
+                label: this.getText($dataElm.data('buttonAdd')),
+                style: 'primary',
+                callback: this.addHelloButton.bind(this)
+            }
+        ];
+
+        var options = {
+            closeButtonCallback: this.closeHelloDoorhanger.bind(this),
+            targetCallback: this.closeHelloDoorhanger.bind(this)
+        };
+
+        // two consecutive calls temp fix for Bug 1049130
+        Mozilla.UITour.showHighlight('appMenu', 'wobble');
+        Mozilla.UITour.showHighlight('appMenu', 'wobble');
+
+        Mozilla.UITour.showInfo(
+            'appMenu',
+            this.getText($dataElm.data('title')),
+            this.getText($dataElm.data('text')),
+            icon,
+            buttons,
+            options
+        );
+    };
+
+    /*
+     * Add the Hello icon to the toolbar
+     */
+    BrowserTour.prototype.addHelloButton = function () {
+        var that = this;
+        Mozilla.UITour.addNavBarWidget('loop', function() {
+            that.highlightHelloButton();
+            gaTrack(['_trackEvent', 'Tour Interaction', 'Add it now', 'Add Hello to your toolbar']);
+        });
+    };
+
+    /*
+     * Highlight Hello icon once added to the toolbar
+     */
+    BrowserTour.prototype.highlightHelloButton = function () {
+        var $dataElm = $('.hello-added-door-hanger');
+        var target = 'loop';
+
+        Mozilla.UITour.showHighlight(target, 'wobble');
+
+        var icon = null;
+        var buttons = [];
+
+        var options = {
+            closeButtonCallback: this.closeHelloDoorhanger.bind(this)
+        };
+
+        Mozilla.UITour.showInfo(
+            target,
+            this.getText($dataElm.data('title')),
+            this.getText($dataElm.data('text')),
+            icon,
+            buttons,
+            options
+        );
+    };
+
+    /*
+     * Remind user they can add Hello button later
+     */
+    BrowserTour.prototype.laterHelloButton = function () {
+        var $dataElm = $('.hello-later-door-hanger');
+
+        var icon = '';
+        var buttons = [];
+
+        var options = {
+            closeButtonCallback: this.closeHelloDoorhanger.bind(this),
+            targetCallback: this.closeHelloDoorhanger.bind(this)
+        };
+
+        Mozilla.UITour.showInfo(
+            'appMenu',
+            this.getText($dataElm.data('title')),
+            this.getText($dataElm.data('text')),
+            icon,
+            buttons,
+            options
+        );
+
+        gaTrack(['_trackEvent', 'Tour Interaction', 'Later', 'Add Hello to your toolbar']);
+    };
+
+    /*
+     * Remind user where the Hello icon is
+     */
+    BrowserTour.prototype.reminderHelloButton = function () {
+        var $dataElm = $('.hello-reminder-door-hanger');
+        var target = 'loop';
+        var that = this;
+
+        Mozilla.UITour.getConfiguration('availableTargets', function (config) {
+            var buttons = [];
+            var options = {};
+
+            if (config.targets) {
+                if ($.inArray(target, config.targets) !== -1) {
+
+                    options = {
+                        closeButtonCallback: that.closeHelloDoorhanger.bind(that)
+                    };
+
+                    // two consecutive calls temp fix for Bug 1049130
+                    Mozilla.UITour.showHighlight(target, 'wobble');
+                    Mozilla.UITour.showHighlight(target, 'wobble');
+
+                    Mozilla.UITour.showInfo(
+                        target,
+                        that.getText($dataElm.data('title')),
+                        that.getText($dataElm.data('text')),
+                        null,
+                        buttons,
+                        options
+                    );
+                }
+            }
+        });
+    };
+
+    /*
+     * Closes Hello door-hanger / highlight
+     */
+    BrowserTour.prototype.closeHelloDoorhanger = function () {
+        Mozilla.UITour.hideHighlight();
+        Mozilla.UITour.hideInfo();
+    };
+
+    /*
      * Shows current tour step highlight item
      */
     BrowserTour.prototype.showHighlight = function () {
@@ -654,6 +852,10 @@ if (typeof Mozilla == 'undefined') {
         Mozilla.UITour.hideMenu('appMenu');
         Mozilla.UITour.hideInfo();
         Mozilla.UITour.hideHighlight();
+
+        if (this.helloPanelVisible) {
+            this.hideHelloPanel();
+        }
 
         this.$tourTip.removeClass('show-tip');
 
@@ -987,6 +1189,10 @@ if (typeof Mozilla == 'undefined') {
         Mozilla.UITour.hideMenu('appMenu');
         Mozilla.UITour.hideHighlight();
         Mozilla.UITour.hideInfo();
+
+        if (this.helloPanelVisible) {
+            this.hideHelloPanel();
+        }
     };
 
     /*

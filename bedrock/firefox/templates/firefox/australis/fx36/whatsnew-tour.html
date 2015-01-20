@@ -1,0 +1,136 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/australis/fx36/tour-base.html" %}
+
+{% set_lang_files "firefox/australis/fx36_tour" %}
+
+{% block telemetry_id %}whatsnew-tour-36-release{% endblock %}
+
+{% block site_css %}
+  {{ css('firefox_fx36_whatsnew') }}
+{% endblock %}
+
+{% block js %}
+  {{ js('firefox_fx36_whatsnew') }}
+{% endblock %}
+
+{% block string_data %}
+data-open="{{ _('Open tour') }}"
+data-close="{{ _('Close tour') }}"
+data-next="{{ _('Next') }}"
+
+data-title="{{ _('Meet Hello') }}"
+data-text="{{ _('The easiest way to connect for free over video with anyone, anywhere') }}"
+data-start="{{ _('Show me how') }}"
+data-later="{{ _('Not now') }}"
+
+data-title-no-icon="{{ _('Did you know?') }}"
+data-text-no-icon="{{ _('You can have free video conversations right from your Firefox browser.') }}"
+
+data-later-cta="{{ _('Take the tour to see what’s new') }}"
+{# L10n: This is the label that represents tour step one of two #}
+data-step1="{{ _('1/2') }}"
+{# L10n: This is the label that represents tour step two of two #}
+data-step2="{{ _('2/2') }}"
+{% endblock %}
+
+{% block main_heading %}
+  <header role="banner">
+    <div class="logo"></div>
+    <div class="stage">
+      <h1>{{ _('Get to know Firefox Hello') }}</h1>
+      <p>{{ _('Want to reconnect with friends around the world? Celebrate a birthday when you can’t be there in person? Try Firefox Hello — the easiest way to have a free video conversation with anyone, anywhere.') }}</p>
+    </div>
+  </header>
+{% endblock %}
+
+{% block promo_content %}
+  <section>
+    <p>{{ _('Firefox Hello is the easiest way to connect with friends and family for free over video.') }}</p>
+    <a href="{{ url('firefox.hello') }}">{{ _('Learn more') }}</a>
+    <p>{{ _('Powered by %s')|format(high_res_img('img/firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}</p>
+  </section>
+{% endblock %}
+
+{% block tour_content %}
+  <div id="ui-tour" tabindex="-1" aria-expanded="false">
+    <div class="cta">
+      <button type="button" aria-controls="ui-tour">{{ _('Start browsing') }}</button>
+    </div>
+    <div class="tour-tip"></div>
+    <div class="ui-tour-controls">
+      <button type="button" class="step prev" aria-controls="tour-steps tour-progress">{{ _('Previous') }}</button>
+      <button type="button" class="step next" aria-controls="tour-steps tour-progress">{{ _('Next') }}</button>
+      <button type="button" class="close" aria-controls="tour-steps tour-progress">{{ _('Close') }}</button>
+    </div>
+    <div class="tour-background">
+      <div class="tour-inner">
+        <div id="tour-progress" class="progress-step">
+          <div class="logo"></div>
+          <span class="step"></span>
+          <div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="2">
+            <span class="indicator"></span>
+          </div>
+        </div>
+        <ul id="tour-steps" class="ui-tour-list">
+          <li class="tour-step current app-menu visible" data-step="1" data-tip-next="{{ _('<span>Next:</span> Get started') }}">
+            <div class="tour-item">
+              {# L10n: <br> tag below used for formatting only. #}
+              <h2 class="tour-show-hello-panel step-target">
+                {{ _('Free video conversations,<br> right from Firefox') }}
+              </h2>
+              <ul>
+                <li>{{ _('No account, sign-in or downloads required') }}</li>
+                <li>{{ _('Simply start a conversation and share a link') }}</li>
+                <li>{{ _('Invite anyone, anywhere to join') }}</li>
+              </ul>
+              <div class="hello-prompt-door-hanger" data-title="{{ _('Keep conversations one click away') }}" data-text="{{ _('Add Hello to your toolbar so it’s here whenever you need it.') }}" data-button-add="{{ _('Add it now') }}" data-button-later="{{ _('Later') }}"></div>
+              <div class="hello-added-door-hanger" data-title="{{ _('Perfect!') }}" data-text="{{ _('Now using Hello will be even easier. To move or remove the icon, just open the menu and select Customize.') }}" data-try="{{ _('Try it now') }}"></div>
+              <div class="hello-later-door-hanger" data-title="{{ _('Want to add it later?') }}" data-text="{{ _('No problem. Just open this menu, select Customize and simply drag the Hello icon into your toolbar.') }}"></div>
+            </div>
+            {{ high_res_img('img/firefox/australis/hello-1.png', {'alt': _('The features you use most, all in one place'), 'width': '300', 'height': '188'}) }}
+          </li>
+          <li class="tour-step" data-step="2" data-tip-prev="{{ _('<span>Previous:</span> Firefox Hello') }}">
+            <div class="tour-item">
+              <h2>
+                {{ _('As easy as saying hello') }}
+              </h2>
+              <ul>
+                <li>{{ _('Start a video conversation with a single click') }}</li>
+                <li>{{ _('Invite a friend to talk by sending them a link') }}</li>
+                <li>{{ _('Anyone can join — with or without Firefox') }}</li>
+              </ul>
+              <div class="hello-reminder-door-hanger step-target" data-title="{{ _('Here when you need it') }}" data-text="{{ _('Start and join conversations right from your toolbar.') }}"></div>
+            </div>
+            {{ high_res_img('img/firefox/australis/hello-2.png', {'alt': _('Connect with anyone over video right from Firefox'), 'width': '300', 'height': '188'}) }}
+          </li>
+        </ul>
+        <div class="compact-title"></div>
+        <div class="tour-init" data-target="appMenu" data-icon="{{ MEDIA_URL }}img/firefox/australis/logo.png?2014-03" data-icon-high-res="{{ MEDIA_URL }}img/firefox/australis/logo-high-res.png?2014-03"></div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block tour_mask %}
+  <div id="ui-tour-mask" tabindex="-1">
+    <div class="mask-inner">
+      <div class="logo"></div>
+      <div class="stage">
+        <h1>{{ _('Get to know Firefox Hello') }}</h1>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block noscript %}
+  <noscript>
+    <p>{{ _('Please turn on JavaScript to display this page correctly.') }}</p>
+  </noscript>
+{% endblock %}
+
+{% block aside_content %}
+  {{ email_newsletter_form() }}
+{% endblock %}
