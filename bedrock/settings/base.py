@@ -112,6 +112,7 @@ def JINJA_CONFIG():
 MEDIA_URL = '/user-media/'
 STATIC_URL = '/media/'
 STATIC_ROOT = path('static')
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
 STATICFILES_DIRS = (
     path('media'),
 )

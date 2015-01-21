@@ -35,11 +35,25 @@ WAFFLE_FLAG_DEFAULT = WAFFLE_SWITCH_DEFAULT = WAFFLE_SAMPLE_DEFAULT = DEV
 if 'manage.py' not in sys.argv:
     SLAVE_DATABASES = [db for db in DATABASES if db != 'default']
 
+if len(sys.argv) > 1 and sys.argv[1] == 'test':
+    # Using the CachedStaticFilesStorage for tests breaks all the things.
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
 # cache for lang files
 CACHES['l10n'] = {
     'BACKEND': 'lib.l10n_utils.cache.L10nCache',
     'LOCATION': 'l10n',
     'TIMEOUT': DOTLANG_CACHE,
+    'OPTIONS': {
+        'MAX_ENTRIES': 5000,
+        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
+    }
+}
+# cache for static files
+CACHES['staticfiles'] = {
+    'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    'LOCATION': 'staticfiles',
+    'TIMEOUT': None,
     'OPTIONS': {
         'MAX_ENTRIES': 5000,
         'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached

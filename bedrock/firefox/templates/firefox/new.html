@@ -14,7 +14,7 @@
 
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}
-  <h2><img src="{{ static('img/firefox/new/header-firefox.png?2013-06') }}" alt="{{_('Firefox for desktop')}}"></h2>
+  <h2><img src="{{ static('img/firefox/new/header-firefox.png') }}" alt="{{_('Firefox for desktop')}}"></h2>
 {% endblock %}
 
 {% block site_css %}{% endblock %}
@@ -69,7 +69,7 @@
   </div>
   <div id="main-feature" class="hide-for-refresh">
     <div class="row">
-      <img src="{{ static('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />
+      <img src="{{ static('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
       <h1 class="large">
       {% if l10n_has_tag('fx10_independent') %}
         {{ _('Choose Independent.') }}
@@ -137,7 +137,7 @@
         </div>
 
         <div class="desktop" id="firefox-screenshot">
-          {{ platform_img('img/firefox/new/browser.png?2014-12', {'alt': _('Firefox screenshot'), 'data-additional-platforms': 'android ios', 'data-high-res': 'true'}) }}
+          {{ platform_img('img/firefox/new/browser.png', {'alt': _('Firefox screenshot'), 'data-additional-platforms': 'android ios', 'data-high-res': 'true'}) }}
         </div>
 
         <div id="newsletter-latest">
