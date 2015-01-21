@@ -11,7 +11,7 @@
 {% block body_class %}firefox-desktop{% endblock %}
 
 {% block extrahead %}
-  <script src="{{ media('/js/libs/modernizr.custom.cssanimations.js') }}"></script>
+  <script src="{{ static('/js/libs/modernizr.custom.cssanimations.js') }}"></script>
 {% endblock %}
 
 {% block site_header %}
@@ -21,7 +21,7 @@
 
       <div id="masthead-logo-nav">
       {% block site_header_logo %}
-        <a id="site-header-logo" href="{{ url('firefox.desktop.index') }}"><img src="{{ MEDIA_URL }}img/firefox/desktop/firefox-header.png" alt="Firefox"></a>
+        <a id="site-header-logo" href="{{ url('firefox.desktop.index') }}"><img src="{{ static('img/firefox/desktop/firefox-header.png') }}" alt="Firefox"></a>
       {% endblock %}
       {% block site_header_nav %}
         <nav id="nav-main" role="navigation">

@@ -45,7 +45,7 @@
         <video id="faces-video" preload="auto">
           <source src="https://videos.cdn.mozilla.net/uploads/bedrock/contribute-faces001.webm" type="video/webm">
           <source src="https://videos.cdn.mozilla.net/uploads/bedrock/contribute-faces001.mp4" type="video/mp4">
-          <img src="{{ media('img/contribute/faces-poster.jpg') }}" alt="">
+          <img src="{{ static('img/contribute/faces-poster.jpg') }}" alt="">
         </video>
         <p class="caption">{{ _('We are Mozillians') }} <br> <b>{{ _('#IamaMozillian') }}</b></p>
         <figcaption>{{ _('This video shows members of the worldwide Mozilla community.') }}</figcaption>
@@ -93,7 +93,7 @@
 
     <ul class="contribute-options">
       <li id="support">
-        <img src="{{ media('/img/contribute/logos/sumo.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/sumo.png') }}" alt="">
         <h3>{{_('Helping Users')}}</h3>
         <p>
         {% trans fx_support_url='https://support.mozilla.org/get-involved', tb_support_url='https://support.mozilla.org/get-involved' %}
@@ -103,7 +103,7 @@
       </li>
 
       <li id="qa">
-        <img src="{{ media('/img/contribute/logos/qmo.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/qmo.png') }}" alt="">
         <h3>{{_('Quality Assurance')}}</h3>
         <p>
         {% if l10n_has_tag('contribute_mayupdates') %}
@@ -126,7 +126,7 @@
       </li>
 
       <li id="coding">
-        <img src="{{ media('/img/contribute/logos/dinohead.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/dinohead.png') }}" alt="">
         <h3>{{_('Coding')}}</h3>
         <p>
         {% trans dev_intro_url='https://developer.mozilla.org/docs/Introduction', what_url='http://www.whatcanidoformozilla.org/' %}
@@ -136,7 +136,7 @@
       </li>
 
       <li id="marketing">
-        <img src="{{ media('/img/contribute/logos/firefox.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/firefox.png') }}" alt="">
         <h3>{{_('Spread the Word')}}</h3>
         <p>
         {% trans affiliates_url='https://affiliates.mozilla.org', marketing_url='https://wiki.mozilla.org/MarketingGuide' %}
@@ -146,7 +146,7 @@
       </li>
 
       <li id="l10n">
-        <img src="{{ media('/img/contribute/logos/localization.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/localization.png') }}" alt="">
         <h3>{{_('Localization') }}</h3>
         <p>
         {% trans l10n_url='https://wiki.mozilla.org/L10n', l10n_web_url='https://wiki.mozilla.org/L10n:Web_parts' %}
@@ -156,7 +156,7 @@
       </li>
 
       <li id="webdev">
-        <img src="{{ media('/img/contribute/logos/web.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/web.png') }}" alt="">
         <h3>{{_('Web Development') }}</h3>
         <p>
         {% trans webdev_url='https://wiki.mozilla.org/Webdev/GetInvolved', gaia_url='https://developer.mozilla.org/docs/Mozilla/Firefox_OS/Platform/Gaia/Hacking' %}
@@ -167,7 +167,7 @@
 
     {% if l10n_has_tag('contribute_mayupdates') %}
       <li id="markeplace">
-        <img src="{{ media('/img/contribute/logos/marketplace.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/marketplace.png') }}" alt="">
         <h3>{{ _('Firefox Marketplace') }}</h3>
         <p>
           {% trans marketplace_url='https://marketplace.firefox.com', mktcontrib_url='https://wiki.mozilla.org/Marketplace/Contributing/Apps' %}
@@ -178,7 +178,7 @@
     {% endif %}
 
       <li id="addons">
-        <img src="{{ media('/img/contribute/logos/addons.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/addons.png') }}" alt="">
         <h3>{{_('Add-ons') }}</h3>
         <p>
         {% if l10n_has_tag('contribute_mayupdates') %}
@@ -194,7 +194,7 @@
       </li>
 
       <li id="design">
-      <img src="{{ media('/img/contribute/logos/creativecollective.png') }}" alt="">
+      <img src="{{ static('/img/contribute/logos/creativecollective.png') }}" alt="">
       <h3>{{_('Visual Design') }}</h3>
       <p>
       {% trans creative_url='https://blog.mozilla.org/creative/' %}
@@ -204,7 +204,7 @@
       </li>
 
       <li id="docs">
-        <img src="{{ media('/img/contribute/logos/mdn.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/mdn.png') }}" alt="">
         <h3>{{_('Documentation and Writing') }}</h3>
         <p>
         {% trans dev_url='https://developer.mozilla.org/docs/MDN/Getting_started' %}
@@ -214,7 +214,7 @@
       </li>
 
       <li id="education">
-        <img src="{{ media('/img/contribute/logos/webmaker.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/webmaker.png') }}" alt="">
         <h3>{{_('Education') }}</h3>
         <p>
       {% if l10n_has_tag('webmaker_update') %}
@@ -235,7 +235,7 @@
 
     {% if l10n_has_tag('contribute_fellowship') %}
       <li id="fellowship">
-        <img src="{{ media('/img/contribute/logos/fellowship.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/fellowship.png') }}" alt="">
         <h3>{{ _('Fellowships') }}</h3>
         <p>
           {% trans fellowship='http://opennews.org/fellowships/' %}
@@ -247,7 +247,7 @@
 
     {% if l10n_has_tag('hiveglobal') %}
       <li id="hivenetworks">
-        <img src="{{ media('/img/contribute/logos/hive.png') }}" alt="">
+        <img src="{{ static('/img/contribute/logos/hive.png') }}" alt="">
         <h3>{{ _('Hive Networks') }}</h3>
         <p>
           {% trans hivenetworks='http://hivelearningnetworks.org' %}
@@ -266,37 +266,37 @@
     <ul class="locations">
       <li>
         <a href="{{ url('mozorg.contact.communities.north-america') }}">
-          <img src="{{ media('/img/contribute/local/map-th-northamerica.png?03-2014') }}" alt="">
+          <img src="{{ static('/img/contribute/local/map-th-northamerica.png?03-2014') }}" alt="">
           <h3>{{_('US and Canada')}}</h3>
         </a>
       </li>
       <li>
         <a href="{{ url('mozorg.contact.communities.europe') }}">
-          <img src="{{ media('/img/contribute/local/map-th-europe.png?03-2014') }}" alt="">
+          <img src="{{ static('/img/contribute/local/map-th-europe.png?03-2014') }}" alt="">
           <h3>{{_('Europe')}}</h3>
         </a>
       </li>
       <li>
         <a href="{{ url('mozorg.contact.communities.latin-america') }}">
-          <img src="{{ media('/img/contribute/local/map-th-latinamerica.png?03-2014') }}" alt="">
+          <img src="{{ static('/img/contribute/local/map-th-latinamerica.png?03-2014') }}" alt="">
           <h3>{{_('Latin America')}}</h3>
         </a>
       </li>
       <li>
         <a href="{{ url('mozorg.contact.communities.africa-middle-east') }}">
-          <img src="{{ media('/img/contribute/local/map-th-africamideast.png?03-2014') }}" alt="">
+          <img src="{{ static('/img/contribute/local/map-th-africamideast.png?03-2014') }}" alt="">
           <h3>{{_('Africa and the Middle East')}}</h3>
         </a>
       </li>
       <li>
         <a href="{{ url('mozorg.contact.communities.asia-south-pacific') }}">
-          <img src="{{ media('/img/contribute/local/map-th-asia.png?03-2014') }}" alt="">
+          <img src="{{ static('/img/contribute/local/map-th-asia.png?03-2014') }}" alt="">
           <h3>{{_('Asia and the South Pacific')}}</h3>
         </a>
       </li>
       <li>
         <a href="{{ url('mozorg.contact.communities.antarctica') }}">
-          <img src="{{ media('/img/contribute/local/map-th-southpole.png?03-2014') }}" alt="">
+          <img src="{{ static('/img/contribute/local/map-th-southpole.png?03-2014') }}" alt="">
           <h3>{{_('Antarctica')}}</h3>
         </a>
       </li>

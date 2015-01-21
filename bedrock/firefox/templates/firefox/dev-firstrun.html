@@ -38,12 +38,12 @@ data-next-sync="{{ _('Next: Sync') }}"
 
 data-doorhanger-close="{{ _('Close') }}"
 data-doorhanger-nothanks="{{ _('No thanks') }}"
-data-webide-icon="{{ MEDIA_URL }}img/firefox/dev-firstrun/webide-blue.png"
-data-webide-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/webide-blue-high-res.png"
-data-devtools-icon="{{ MEDIA_URL }}img/firefox/dev-firstrun/devtools-blue.png"
-data-devtools-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/devtools-blue-high-res.png"
-data-sync-icon="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue.png"
-data-sync-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue-high-res.png"
+data-webide-icon="{{ static('img/firefox/dev-firstrun/webide-blue.png') }}"
+data-webide-icon-high-res="{{ static('img/firefox/dev-firstrun/webide-blue-high-res.png') }}"
+data-devtools-icon="{{ static('img/firefox/dev-firstrun/devtools-blue.png') }}"
+data-devtools-icon-high-res="{{ static('img/firefox/dev-firstrun/devtools-blue-high-res.png') }}"
+data-sync-icon="{{ static('img/firefox/dev-firstrun/sync-blue.png') }}"
+data-sync-icon-high-res="{{ static('img/firefox/dev-firstrun/sync-blue-high-res.png') }}"
 
 {% if l10n_has_tag('new_doorhanger') %}
   data-sync-reminder-title="{{ _('Before you go&hellip;') }}"
@@ -68,7 +68,7 @@ data-sync-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue-high-
     <ul class="features">
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=1R9_WdXwUsE" rel="external" class="video-play">
-          <img src="{{ media('/img/firefox/firstrun/dev/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('/img/firefox/firstrun/dev/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('WebIDE')}}</h2>
         <p>{{_('Develop, deploy and debug Firefox OS apps directly in your browser, or on a Firefox OS device, with this tool that replaces App Manager.')}}</p>
@@ -79,7 +79,7 @@ data-sync-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue-high-
       </li>
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=eH0R10Ga4Hs" rel="external" class="video-play">
-          <img src="{{ media('/img/firefox/firstrun/dev/feature-valence.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('/img/firefox/firstrun/dev/feature-valence.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('Valence')}}</h2>
         <p>{{_('Develop and debug your apps across multiple browsers and devices with this powerful extension that comes pre-installed with Firefox Developer Edition.')}}</p>
@@ -108,7 +108,7 @@ data-sync-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue-high-
       <ul class="features">
         <li class="feature">
           <a href="https://www.youtube.com/watch?v=eQqNfkqIJdw" rel="external" class="video-play">
-            <img src="{{ media('/img/firefox/firstrun/dev/feature-inspector.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+            <img src="{{ static('/img/firefox/firstrun/dev/feature-inspector.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
           </a>
           <h2>{{_('Page Inspector')}}</h2>
           <p>{{_('Examine the HTML and CSS of any Web page and easily modify the structure and layout of a page.')}}</p>
@@ -119,7 +119,7 @@ data-sync-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue-high-
         </li>
         <li class="feature">
           <a href="https://www.youtube.com/watch?v=iEDk8o9ehlw" rel="external" class="video-play">
-            <img src="{{ media('/img/firefox/firstrun/dev/feature-console.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+            <img src="{{ static('/img/firefox/firstrun/dev/feature-console.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
           </a>
           <h2>{{_('Web Console')}}</h2>
           <p>{{_('See logged information associated with a Web page and use Web Console to interact with Web pages using JavaScript.')}}</p>
@@ -130,7 +130,7 @@ data-sync-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue-high-
         </li>
         <li class="feature">
           <a href="https://www.youtube.com/watch?v=OS4AxYFLCIE" rel="external" class="video-play">
-            <img src="{{ media('/img/firefox/firstrun/dev/feature-debugger.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+            <img src="{{ static('/img/firefox/firstrun/dev/feature-debugger.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
           </a>
           <h2>{{_('JavaScript Debugger')}}</h2>
           <p>{{_('Step through JavaScript code and examine or modify its state to help track down bugs.')}}</p>
@@ -141,7 +141,7 @@ data-sync-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue-high-
         </li>
         <li class="feature">
           <a href="https://www.youtube.com/watch?v=w4zSG53Qlbk" rel="external" class="video-play">
-            <img src="{{ media('/img/firefox/firstrun/dev/feature-network.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+            <img src="{{ static('/img/firefox/firstrun/dev/feature-network.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
           </a>
           <h2>{{_('Network Monitor')}}</h2>
           <p>{{_('See all the network requests your browser makes, how long each request takes and details of each request.')}}</p>
@@ -152,7 +152,7 @@ data-sync-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue-high-
         </li>
         <li class="feature">
           <a href="https://www.youtube.com/watch?v=R_qDaLQ8ghg" rel="external" class="video-play">
-            <img src="{{ media('/img/firefox/firstrun/dev/feature-webaudio.jpg?2014-12') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+            <img src="{{ static('/img/firefox/firstrun/dev/feature-webaudio.jpg?2014-12') }}" alt="{{ _('Screenshot') }}" class="screenshot">
           </a>
           <h2>{{_('Web Audio Editor')}}</h2>
           <p>{{_('Inspect and interact with Web Audio API in real time to ensure that all audio nodes are connected in the way you expect.')}}</p>
@@ -163,7 +163,7 @@ data-sync-icon-high-res="{{ MEDIA_URL }}img/firefox/dev-firstrun/sync-blue-high-
         </li>
         <li class="feature">
           <a href="https://www.youtube.com/watch?v=3kdBvvIZIqU" rel="external" class="video-play">
-            <img src="{{ media('/img/firefox/firstrun/dev/feature-style-editor.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+            <img src="{{ static('/img/firefox/firstrun/dev/feature-style-editor.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
           </a>
           <h2>{{_('Style Editor')}}</h2>
           <p>{{_('View and edit CSS styles associated with a Web page, create new ones and apply existing CSS stylesheets to any page.')}}</p>

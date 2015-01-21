@@ -5,16 +5,18 @@
 from django.conf import settings
 from django.conf.urls import patterns
 
+from funfactory.helpers import static
+
 from util import redirect
 
 
 def tabzilla_css_redirect(r):
     suffix = '/tabzilla.less' if settings.TEMPLATE_DEBUG else '-min'
     if settings.LESS_PREPROCESS:
-        from jingo_minify.helpers import build_less
-        build_less('css/tabzilla/tabzilla.less')
+        from jingo_minify.helpers import compile_css
+        compile_css('css/tabzilla/tabzilla.less')
 
-    return '%scss/tabzilla%s.css' % (settings.MEDIA_URL, suffix)
+    return static('css/tabzilla%s.css' % suffix)
 
 
 urlpatterns = patterns(

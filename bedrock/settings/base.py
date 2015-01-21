@@ -109,10 +109,14 @@ def JINJA_CONFIG():
         'auto_reload': True,
     }
 
-STATIC_URL = '/static/'
+MEDIA_URL = '/user-media/'
+STATIC_URL = '/media/'
 STATIC_ROOT = path('static')
+STATICFILES_DIRS = (
+    path('media'),
+)
 
-JINGO_MINIFY_USE_STATIC = False
+JINGO_MINIFY_USE_STATIC = True
 JINGO_EXCLUDE_APPS = (
     'admin', 'registration', 'rest_framework', 'rna', 'waffle')
 CACHEBUST_IMGS = False

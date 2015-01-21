@@ -51,10 +51,10 @@ def update_locales(ctx):
 
 @task
 def update_assets(ctx):
+    management_cmd(ctx, 'collectstatic --noinput')
     management_cmd(ctx, 'compress_assets')
     management_cmd(ctx, 'update_product_details')
     management_cmd(ctx, 'update_externalfiles')
-    management_cmd(ctx, 'collectstatic --noinput')
 
 
 @task
@@ -135,13 +135,13 @@ def update(ctx):
     commands['update_assets']()
     commands['update_locales']()
     commands['update_revision_file']()
+    if 'update_cron' in commands:
+        commands['update_cron']()
     commands['reload_crond']()
 
 
 @task
 def deploy(ctx):
-    if 'update_cron' in commands:
-        commands['update_cron']()
     commands['checkin_changes']()
     commands['deploy_app']()
     commands['ping_newrelic']()

@@ -3,21 +3,19 @@ import urlparse
 from os import path
 
 from django.conf import settings
+from django.contrib.staticfiles.finders import find as find_static
 from django.template.defaultfilters import slugify as django_slugify
 
 import bleach
 import jingo
 import jinja2
-from funfactory.settings_base import path as base_path
 from funfactory.urlresolvers import reverse
-
-
-L10N_MEDIA_PATH = base_path('media', '%s', 'l10n')
+from funfactory.helpers import static
 
 
 def _l10n_media_exists(type, locale, url):
     """ checks if a localized media file exists for the locale """
-    return path.exists(path.join(L10N_MEDIA_PATH % type, locale, url))
+    return find_static(path.join(type, 'l10n', locale, url)) is not None
 
 
 @jingo.register.function
@@ -82,11 +80,11 @@ def l10n_img(ctx, url):
 
     For en-US this would output:
 
-        {{ MEDIA_URL }}img/l10n/en-US/firefox/screenshot.png
+        {{ static('img/l10n/en-US/firefox/screenshot.png') }}
 
     For fr this would output:
 
-        {{ MEDIA_URL }}img/l10n/fr/firefox/screenshot.png
+        {{ static('img/l10n/fr/firefox/screenshot.png') }}
 
     If that file did not exist it would default to the en-US version (if en-US
     was the default language for this install).
@@ -113,7 +111,7 @@ def l10n_img(ctx, url):
         if not _l10n_media_exists('img', locale, url):
             locale = settings.LANGUAGE_CODE
 
-    return media(path.join('img', 'l10n', locale, url))
+    return static(path.join('img', 'l10n', locale, url))
 
 
 @jingo.register.function
@@ -133,7 +131,7 @@ def l10n_css(ctx):
     For a locale that has locale-specific stylesheet, this would output:
 
         <link rel="stylesheet" media="screen,projection,tv"
-              href="{{ MEDIA_URL }}css/l10n/{{ LANG }}/intl.css">
+              href="{{ STATIC_URL }}css/l10n/{{ LANG }}/intl.css">
 
     For a locale that doesn't have any locale-specific stylesheet, this would
     output nothing.
@@ -151,7 +149,7 @@ def l10n_css(ctx):
 
     if _l10n_media_exists('css', locale, 'intl.css'):
         markup = ('<link rel="stylesheet" media="screen,projection,tv" href='
-                  '"%s">' % media(path.join('css', 'l10n', locale, 'intl.css')))
+                  '"%s">' % static(path.join('css', 'l10n', locale, 'intl.css')))
     else:
         markup = ''
 
@@ -172,7 +170,7 @@ def platform_img(ctx, url, optional_attributes=None):
     if (optional_attributes and optional_attributes.pop('l10n', False) is True):
         url = l10n_img(ctx, url)
     else:
-        url = media(url)
+        url = static(url)
 
     if optional_attributes:
         attrs = ' '.join('%s="%s"' % (attr, val)
@@ -196,7 +194,7 @@ def high_res_img(ctx, url, optional_attributes=None):
     if (optional_attributes and optional_attributes.pop('l10n', False) is True):
         url = l10n_img(ctx, url)
     else:
-        url = media(url)
+        url = static(url)
 
     if optional_attributes:
         attrs = ' '.join(('%s="%s"' % (attr, val)
@@ -413,14 +411,14 @@ def absolute_url(url):
 
     In Template
     -----------
-    This filter can be used in combination with the media helper like this:
+    This filter can be used in combination with the static helper like this:
 
-        {{ media('path/to/img')|absolute_url }}
+        {{ static('path/to/img')|absolute_url }}
 
     With a block:
 
         {% filter absolute_url %}
-          {% block page_image %}{{ media('path/to/img') }}{% endblock %}
+          {% block page_image %}{{ static('path/to/img') }}{% endblock %}
         {% endfilter %}
     """
 

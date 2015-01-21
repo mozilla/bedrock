@@ -5,6 +5,7 @@ from mock import patch
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from funfactory.helpers import static
 
 import jingo
 from funfactory.urlresolvers import reverse
@@ -77,7 +78,7 @@ class TestSecureURL(TestCase):
         self._test('', 'https://' + self.host + self.test_path, True)
 
 
-@patch('bedrock.mozorg.helpers.misc.L10N_MEDIA_PATH', TEST_L10N_MEDIA_PATH)
+@patch('bedrock.mozorg.helpers.misc._l10n_media_exists')
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
 class TestImgL10n(TestCase):
     rf = RequestFactory()
@@ -88,55 +89,67 @@ class TestImgL10n(TestCase):
         return render("{{{{ l10n_img('{0}') }}}}".format(url),
                       {'request': req})
 
-    def test_works_for_default_lang(self):
+    def test_works_for_default_lang(self, media_exists_mock):
         """Should output correct path for default lang always."""
+        media_exists_mock.return_value = True
         eq_(self._render('en-US', 'dino/head.png'),
-            settings.MEDIA_URL + 'img/l10n/en-US/dino/head.png')
+            static('img/l10n/en-US/dino/head.png'))
 
         eq_(self._render('en-US', 'dino/does-not-exist.png'),
-            settings.MEDIA_URL + 'img/l10n/en-US/dino/does-not-exist.png')
+            static('img/l10n/en-US/dino/does-not-exist.png'))
 
-    def test_works_for_other_lang(self):
+    def test_works_for_other_lang(self, media_exists_mock):
         """Should use the request lang if file exists."""
+        media_exists_mock.return_value = True
         eq_(self._render('de', 'dino/head.png'),
-            settings.MEDIA_URL + 'img/l10n/de/dino/head.png')
+            static('img/l10n/de/dino/head.png'))
 
-    def test_defaults_when_lang_file_missing(self):
+    def test_defaults_when_lang_file_missing(self, media_exists_mock):
         """Should use default lang when file doesn't exist for lang."""
+        media_exists_mock.return_value = False
         eq_(self._render('is', 'dino/head.png'),
-            settings.MEDIA_URL + 'img/l10n/en-US/dino/head.png')
+            static('img/l10n/en-US/dino/head.png'))
 
-    def test_latam_spanishes_fallback_to_european_spanish(self):
+    def test_latam_spanishes_fallback_to_european_spanish(self, media_exists_mock):
         """Should use es-ES image when file doesn't exist for lang."""
+        media_exists_mock.side_effect = [False, True]
         eq_(self._render('es-AR', 'dino/head.png'),
-            settings.MEDIA_URL + 'img/l10n/es-ES/dino/head.png')
-        eq_(self._render('es-CL', 'dino/head.png'),
-            settings.MEDIA_URL + 'img/l10n/es-ES/dino/head.png')
-        eq_(self._render('es-MX', 'dino/head.png'),
-            settings.MEDIA_URL + 'img/l10n/es-ES/dino/head.png')
-        eq_(self._render('es', 'dino/head.png'),
-            settings.MEDIA_URL + 'img/l10n/es-ES/dino/head.png')
+            static('img/l10n/es-ES/dino/head.png'))
 
-    @patch('bedrock.mozorg.helpers.misc.path.exists')
-    def test_file_not_checked_for_default_lang(self, exists_mock):
+        media_exists_mock.reset_mock()
+        media_exists_mock.side_effect = [False, True]
+        eq_(self._render('es-CL', 'dino/head.png'),
+            static('img/l10n/es-ES/dino/head.png'))
+
+        media_exists_mock.reset_mock()
+        media_exists_mock.side_effect = [False, True]
+        eq_(self._render('es-MX', 'dino/head.png'),
+            static('img/l10n/es-ES/dino/head.png'))
+
+        media_exists_mock.reset_mock()
+        media_exists_mock.side_effect = [False, True]
+        eq_(self._render('es', 'dino/head.png'),
+            static('img/l10n/es-ES/dino/head.png'))
+
+    def test_file_not_checked_for_default_lang(self, media_exists_mock):
         """
         Should not check filesystem for default lang, but should for others.
         """
         eq_(self._render('en-US', 'dino/does-not-exist.png'),
-            settings.MEDIA_URL + 'img/l10n/en-US/dino/does-not-exist.png')
-        ok_(not exists_mock.called)
+            static('img/l10n/en-US/dino/does-not-exist.png'))
+        ok_(not media_exists_mock.called)
 
         self._render('is', 'dino/does-not-exist.png')
-        exists_mock.assert_called_once_with(os.path.join(
-            TEST_L10N_MEDIA_PATH % 'img', 'is', 'dino', 'does-not-exist.png'))
+        media_exists_mock.assert_called_once_with('img', 'is', 'dino/does-not-exist.png')
 
 
-@patch('bedrock.mozorg.helpers.misc.L10N_MEDIA_PATH', TEST_L10N_MEDIA_PATH)
+@override_settings(DEBUG=False)
+@patch('bedrock.mozorg.helpers.misc._l10n_media_exists')
 class TestL10nCSS(TestCase):
     rf = RequestFactory()
-    media_url_dev = '/media/'
-    media_url_prod = '//mozorg.cdn.mozilla.net/media/'
+    static_url_dev = '/static/'
     cdn_url = '//mozorg.cdn.mozilla.net'
+    static_url_prod = cdn_url + static_url_dev
     markup = ('<link rel="stylesheet" media="screen,projection,tv" href='
               '"%scss/l10n/%s/intl.css">')
 
@@ -146,30 +159,32 @@ class TestL10nCSS(TestCase):
         return render('{{ l10n_css() }}', {'request': req})
 
     @override_settings(DEV=True)
-    @override_settings(MEDIA_URL=media_url_dev)
-    def test_dev_when_css_file_exists(self):
+    @patch('django.contrib.staticfiles.storage.staticfiles_storage.base_url', static_url_dev)
+    def test_dev_when_css_file_exists(self, media_exists_mock):
         """Should output a path to the CSS file if exists."""
-        eq_(self._render('de'), self.markup % (self.media_url_dev, 'de'))
-        eq_(self._render('es-ES'), self.markup % (self.media_url_dev, 'es-ES'))
+        media_exists_mock.return_value = True
+        eq_(self._render('de'), self.markup % (self.static_url_dev, 'de'))
+        eq_(self._render('es-ES'), self.markup % (self.static_url_dev, 'es-ES'))
 
     @override_settings(DEV=True)
-    @override_settings(MEDIA_URL=media_url_dev)
-    def test_dev_when_css_file_missing(self):
+    def test_dev_when_css_file_missing(self, media_exists_mock):
         """Should output nothing if the CSS file is missing."""
+        media_exists_mock.return_value = False
         eq_(self._render('en-US'), '')
         eq_(self._render('fr'), '')
 
     @override_settings(DEV=False)
-    @override_settings(MEDIA_URL=media_url_prod)
-    def test_prod_when_css_file_exists(self):
+    @patch('django.contrib.staticfiles.storage.staticfiles_storage.base_url', static_url_prod)
+    def test_prod_when_css_file_exists(self, media_exists_mock):
         """Should output a path to the CSS file if exists."""
-        eq_(self._render('de'), self.markup % (self.media_url_prod, 'de'))
-        eq_(self._render('es-ES'), self.markup % (self.media_url_prod, 'es-ES'))
+        media_exists_mock.return_value = True
+        eq_(self._render('de'), self.markup % (self.static_url_prod, 'de'))
+        eq_(self._render('es-ES'), self.markup % (self.static_url_prod, 'es-ES'))
 
     @override_settings(DEV=False)
-    @override_settings(MEDIA_URL=media_url_prod)
-    def test_prod_when_css_file_missing(self):
+    def test_prod_when_css_file_missing(self, media_exists_mock):
         """Should output nothing if the CSS file is missing."""
+        media_exists_mock.return_value = False
         eq_(self._render('en-US'), '')
         eq_(self._render('fr'), '')
 
@@ -256,7 +271,7 @@ class TestPlatformImg(TestCase):
         return render("{{{{ l10n_img('{0}') }}}}".format(url),
                       {'request': req})
 
-    @override_settings(MEDIA_URL='/media/')
+    @override_settings(STATIC_URL='/media/')
     def test_platform_img_no_optional_attributes(self):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
@@ -266,7 +281,7 @@ class TestPlatformImg(TestCase):
             u'</noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(MEDIA_URL='/media/')
+    @override_settings(STATIC_URL='/media/')
     def test_platform_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         markup = self._render('test.png', {'data-test-attr': 'test'})
@@ -276,7 +291,7 @@ class TestPlatformImg(TestCase):
             u'src="/media/test.png" data-test-attr="test"></noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(MEDIA_URL='/media/')
+    @override_settings(STATIC_URL='/media/')
     def test_platform_img_with_l10n(self):
         """Should return expected markup with l10n image path"""
         l10n_url = self._render_l10n('test.png')
@@ -287,7 +302,7 @@ class TestPlatformImg(TestCase):
             u'</noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(MEDIA_URL='/media/')
+    @override_settings(STATIC_URL='/media/')
     def test_platform_img_with_l10n_and_optional_attributes(self):
         """
         Should return expected markup with l10n image path and optional
@@ -426,7 +441,7 @@ class TestHighResImg(TestCase):
         return render("{{{{ l10n_img('{0}') }}}}".format(url),
                       {'request': req})
 
-    @override_settings(MEDIA_URL='/media/')
+    @override_settings(STATIC_URL='/media/')
     def test_high_res_img_no_optional_attributes(self):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
@@ -436,7 +451,7 @@ class TestHighResImg(TestCase):
             u'<noscript><img src="/media/test.png" ></noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(MEDIA_URL='/media/')
+    @override_settings(STATIC_URL='/media/')
     def test_high_res_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         markup = self._render('test.png', {'data-test-attr': 'test'})
@@ -447,7 +462,7 @@ class TestHighResImg(TestCase):
             u'</noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(MEDIA_URL='/media/')
+    @override_settings(STATIC_URL='/media/')
     def test_high_res_img_with_l10n(self):
         """Should return expected markup with l10n image path"""
         l10n_url = self._render_l10n('test.png')
@@ -459,7 +474,7 @@ class TestHighResImg(TestCase):
             u'</noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(MEDIA_URL='/media/')
+    @override_settings(STATIC_URL='/media/')
     def test_high_res_img_with_l10n_and_optional_attributes(self):
         """Should return expected markup with l10n image path"""
         l10n_url = self._render_l10n('test.png')
@@ -474,27 +489,27 @@ class TestHighResImg(TestCase):
 
 class TestAbsoluteURLFilter(TestCase):
     rf = RequestFactory()
-    media_url_dev = '/media/'
-    media_url_prod = '//mozorg.cdn.mozilla.net/media/'
+    static_url_dev = '/static/'
+    static_url_prod = '//mozorg.cdn.mozilla.net/static/'
     image_path = 'img/mozorg/mozilla-256.jpg'
-    inline_template = "{{ media('%s')|absolute_url }}" % image_path
+    inline_template = "{{ static('%s')|absolute_url }}" % image_path
     block_template = ("{% filter absolute_url %}{% block page_image %}" +
-        "{{ media('%s') }}" % image_path + "{% endblock %}{% endfilter %}")
+                      "{{ static('%s') }}" % image_path + "{% endblock %}{% endfilter %}")
 
     def _render(self, template):
         return render(template, {'request': self.rf.get('/')})
 
-    @override_settings(MEDIA_URL=media_url_dev)
+    @patch('django.contrib.staticfiles.storage.staticfiles_storage.base_url', static_url_dev)
     def test_dev(self):
         """Should return a fully qualified URL including a protocol"""
-        expected = settings.CANONICAL_URL + self.media_url_dev + self.image_path
+        expected = settings.CANONICAL_URL + self.static_url_dev + self.image_path
         eq_(self._render(self.inline_template), expected)
         eq_(self._render(self.block_template), expected)
 
-    @override_settings(MEDIA_URL=media_url_prod)
+    @patch('django.contrib.staticfiles.storage.staticfiles_storage.base_url', static_url_prod)
     def test_prod(self):
         """Should return a fully qualified URL including a protocol"""
-        expected = 'https:' + self.media_url_prod + self.image_path
+        expected = 'https:' + self.static_url_prod + self.image_path
         eq_(self._render(self.inline_template), expected)
         eq_(self._render(self.block_template), expected)
 

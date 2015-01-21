@@ -14,6 +14,7 @@ from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
+from funfactory.helpers import static
 from funfactory.urlresolvers import reverse
 from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from lib import l10n_utils
@@ -110,7 +111,7 @@ def get_js_bundle_files(bundle):
         if bundle_full in BUNDLE_HASHES:
             build_id = BUNDLE_HASHES[bundle_full]
         items = ("js/%s-min.js?build=%s" % (bundle, build_id,),)
-    return json.dumps([settings.MEDIA_URL + i for i in items])
+    return json.dumps([static(i) for i in items])
 
 
 JS_COMMON = get_js_bundle_files('partners_common')
