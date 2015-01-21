@@ -275,38 +275,30 @@ describe('global.js', function() {
 
     describe('isFirefoxUpToDate', function () {
 
-        it('should consider up to date if latest is equal to firefox version', function() {
+        it('should consider up to date if latest version is equal to user version', function() {
             var result;
             /* Use a stub to return a pre-programmed value
              * from getFirefoxMasterVersion */
             getFirefoxMasterVersion = sinon.stub().returns(21);
-            result = isFirefoxUpToDate('21.0', [10, 17]);
+            result = isFirefoxUpToDate('21.0');
             expect(getFirefoxMasterVersion.called).toBeTruthy();
             expect(result).toBeTruthy();
         });
 
-        it('should consider up to date if latest is less than firefox version', function() {
+        it('should consider up to date if latest version is less than user version', function() {
             var result;
             getFirefoxMasterVersion = sinon.stub().returns(22);
-            result = isFirefoxUpToDate('21.0', [10, 17]);
+            result = isFirefoxUpToDate('21.0');
             expect(getFirefoxMasterVersion.called).toBeTruthy();
             expect(result).toBeTruthy();
         });
 
-        it('should not consider up to date if latest greater than firefox version', function() {
+        it('should not consider up to date if latest version greater than user version', function() {
             var result;
             getFirefoxMasterVersion = sinon.stub().returns(20);
-            result = isFirefoxUpToDate('21.0', [10, 17]);
+            result = isFirefoxUpToDate('21.0');
             expect(getFirefoxMasterVersion.called).toBeTruthy();
             expect(result).not.toBeTruthy();
-        });
-
-        it('should consider esr builds up to date', function() {
-            var result;
-            getFirefoxMasterVersion = sinon.stub().returns(10);
-            result = isFirefoxUpToDate('21.0', [10, 17]);
-            expect(getFirefoxMasterVersion.called).toBeTruthy();
-            expect(result).toBeTruthy();
         });
     });
 
