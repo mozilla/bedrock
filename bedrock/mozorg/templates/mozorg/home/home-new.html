@@ -148,7 +148,7 @@
       {% if LANG.startswith('en') and waffle.switch('mozorg-home-privacy-promo-jan28') %}
         <li id="promo-6" class="item promo-large-landscape privacy-day" tabindex="0" data-name="January 28 is Data Privacy Day">
           <h2 class="primary go">January 28 is Data Privacy Day</h2>
-          <a class="panel-link" rel="external" href="{{ url('privacy.privacy-day') }}">
+          <a class="panel-link" rel="external" href="{{ url('privacy.privacy-day') }}?utm_source=mozorg&amp;utm_medium=tile&amp;utm_campaign=DPD15">
             <div class="secondary">
               <h3>Get smart on privacy<br> in four easy steps.</h3>
               <p class="more">Learn how</p>
@@ -158,7 +158,7 @@
       {% else %}
         <li id="promo-6" class="item promo-large-landscape privacy-day" tabindex="0" data-name="Get smart on privacy">
           <h2 class="primary go">{{ _('Get Smart on Privacy') }}</h2>
-          <a class="panel-link" rel="external" href="{{ url('privacy.privacy-day') }}">
+          <a class="panel-link" rel="external" href="{{ url('privacy.privacy-day') }}?utm_source=mozorg&amp;utm_medium=tile&amp;utm_campaign=DPD15">
             <div class="secondary">
               <h3>{{ _('Learn how to give yourself more control online in four easy steps.') }}</h3>
               <p class="more">{{ _('Get smart on privacy') }}</p>
