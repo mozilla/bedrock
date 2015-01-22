@@ -58,7 +58,6 @@
         color: #fff;
         overflow: hidden;
         opacity: 1;
-        .transition(opacity .3s ease-in-out);
     }
 
     #promo-1 {
@@ -139,18 +138,6 @@
     #promo-16 {
         top: 1120px;
         left: 640px;
-    }
-}
-
-.js {
-    .promo-grid {
-        .item {
-            opacity: 0;
-        }
-
-        &.reveal .item {
-            opacity: 1;
-        }
     }
 }
 
@@ -1569,6 +1556,19 @@ html[lang|="en"] {
  * transition delay when they fade in
  */
 @media only screen and (min-width: (@widthSquareGrid_6)) {
+
+    .js {
+        .promo-grid {
+            .item {
+                opacity: 0;
+                .transition(opacity .3s ease-in-out);
+            }
+
+            &.reveal .item {
+                opacity: 1;
+            }
+        }
+    }
 
     .promo-grid.stagger .item {
 
