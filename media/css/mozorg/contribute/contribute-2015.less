@@ -1543,6 +1543,15 @@ textarea:focus {
     }
 }
 
+html[dir="rtl"] .events-list {
+  .ical-link{
+    float: right;
+
+    a:before {
+      position: relative;
+    }
+  }
+}
 .events-head {
     .clearfix;
     margin: 0 0 30px;
@@ -1619,7 +1628,12 @@ textarea:focus {
     }
 }
 
-
+html[dir="rtl"] .events-table {
+  td,
+  th {
+      text-align:right;
+  }
+}
 
 /*-------------------------------------------------------------------------*/
 // Mozillian @Stories
