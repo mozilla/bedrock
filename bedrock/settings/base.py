@@ -239,6 +239,7 @@ MINIFY_BUNDLES = {
         'firefox_desktop': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/intro-anim.less',
+            'css/base/svg-animation-check.less',
             'css/firefox/desktop/index.less',
         ),
         'firefox_desktop_fast': (
@@ -317,6 +318,7 @@ MINIFY_BUNDLES = {
             'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/base/mozilla-modal.less',
+            'css/base/svg-animation-check.less',
             'css/firefox/hello/index.less',
         ),
         'firefox_new': (
@@ -728,6 +730,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/speed-graph.js',
+            'js/base/svg-animation-check.js',
             'js/firefox/desktop/intro-anim.js',
             'js/firefox/desktop/index.js',
         ),
@@ -823,8 +826,8 @@ MINIFY_BUNDLES = {
         ),
         'firefox_hello': (
             'js/firefox/australis/australis-uitour.js',
-            'js/libs/modernizr.custom.cssanimations.js',
             'js/base/mozilla-modal.js',
+            'js/base/svg-animation-check.js',
             'js/firefox/hello/index.js',
         ),
         'firefox_hello_ie9': (
