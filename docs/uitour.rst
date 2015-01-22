@@ -68,7 +68,6 @@ and ``effect`` is the animation type:
 
 Target types:
 
-* ``'pinnedTab'``
 * ``'accountStatus'``
 * ``'addons'``
 * ``'appMenu'``
@@ -252,25 +251,6 @@ Cycles through an array of themes at a set interval with a callback on each step
 * ``themes`` (array)
 * ``delay`` in milliseconds (number)
 * ``callback`` to excecute at each step (function)
-
-addPinnedTab()
-^^^^^^^^^^^^^^
-
-Adds a pinned tab to the browser window. For security reasons the URL for this pinned tab
-is hard-coded in the browser, and currently points to ``https://support.mozilla.org/kb/pinned-tabs-keep-favorite-websites-open``
-
-.. code-block:: javascript
-
-    Mozilla.UITour.addPinnedTab();
-
-removePinnedTab()
-^^^^^^^^^^^^^^^^^
-
-Removes the pinned tab if one was created.
-
-.. code-block:: javascript
-
-    Mozilla.UITour.removePinnedTab();
 
 getConfiguration(type, callback)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
