@@ -7,6 +7,11 @@
 {% block page_title %}{{ _('Commit Access Requirements') }}{% endblock %}
 {% block body_id %}commit-access-requirements{% endblock %}
 
+{% block extrahead %}
+  {{ super() }}
+  {{ css('commit-access-requirements') }}
+{% endblock %}
+
 {% block article %}
 <h1 class="title-shadow-box">{{ self.page_title() }}</h1>
 
@@ -18,7 +23,7 @@ Repository") - you are indicating your agreement to the terms set out below.') }
 <p>{{ _('For the avoidance of doubt: this document commits you to a set of
 good behaviours; it is not a copyright assignment.') }}</p>
 
-<h2>{{ _('1. Treatment of Account') }}</h2>
+<h2>{{ _('Treatment of Account') }}</h2>
 
 <p>{{ _('You will receive one or more sets of Mozilla project access credentials, and/or
 one or more sets of credentials you already have will be given the power to
@@ -34,7 +39,7 @@ them for any reason at any time. Your name and email address, or a derivative
 of it, may be attached to your contributions and so be visible worldwide via
 the Internet.') }}</p>
 
-<h2>{{ _('2. License Terms') }}</h2>
+<h2>{{ _('License Terms') }}</h2>
 
 <p>
 {% trans license_policy='https://www.mozilla.org/MPL/license-policy.html',
@@ -50,7 +55,7 @@ You will verify that committed Code contains
 {% endtrans %}
 </p>
 
-<h2>{{ _('3. Notices and Knowledge') }}</h2>
+<h2>{{ _('Notices and Knowledge') }}</h2>
 
 <p>{{ _('By contributing Code, You confirm that, to the best of Your knowledge, the Code
 does not violate the rights of any person or entity.') }}</p>
@@ -60,7 +65,7 @@ appropriate representative of that employer has authorized the inclusion of
 such Code in a Mozilla Repository and that it meets these
 requirements.') }}</p>
 
-<h2>{{ _('4. Committing Code Created by Others') }}</h2>
+<h2>{{ _('Committing Code Created by Others') }}</h2>
 
 <p>{{ _('You may check in Code to a Mozilla Foundation repository that was not written
 by You, provided that:') }}</p>

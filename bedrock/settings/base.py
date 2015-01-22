@@ -127,6 +127,9 @@ MINIFY_BUNDLES = {
         'commit-access-policy': (
             'css/mozorg/commit-access-policy.less',
         ),
+        'commit-access-requirements': (
+            'css/mozorg/commit-access-requirements.less',
+        ),
         'about-forums': (
             'css/mozorg/about-forums.less',
         ),
