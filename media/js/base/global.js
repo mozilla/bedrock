@@ -110,10 +110,10 @@ function isFirefox(userAgent) {
     );
 }
 
-function isFirefoxUpToDate(latest, esr) {
+// 2015-01-20: Gives no special consideration to ESR builds
+function isFirefoxUpToDate(latest) {
     var $html = $(document.documentElement);
     var fx_version = getFirefoxMasterVersion();
-    var esrFirefoxVersions = esr || $html.data('esr-versions');
     var latestFirefoxVersion;
 
     if (!latest) {
@@ -123,8 +123,7 @@ function isFirefoxUpToDate(latest, esr) {
         latestFirefoxVersion = parseInt(latest.split('.')[0], 10);
     }
 
-    return ($.inArray(fx_version, esrFirefoxVersions) !== -1 ||
-            latestFirefoxVersion <= fx_version);
+    return (latestFirefoxVersion <= fx_version);
 }
 
 // used in bedrock for desktop specific checks like `isFirefox() && !isFirefoxMobile()`
