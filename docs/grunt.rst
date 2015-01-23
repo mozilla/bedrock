@@ -69,7 +69,7 @@ Testing
 
 Bedrock has a suite of JavaScript unit tests written using `Jasmine <http://pivotal.github.io/jasmine/>`_
 and `Sinon <http://sinonjs.org/>`_. You can run these tests on the command line using
-`Karma <http://karma-runner.github.io>`_ test runner and `PhantomJS <http://phantomjs.org/>`_.
+`Karma <http://karma-runner.github.io>`_ test runner and Firefox.
 
 To perform a single run of the test suite, type the following command::
 
