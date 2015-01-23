@@ -149,6 +149,11 @@
     $('#inquiry-form input[name="category"]').on('change', function() {
         var $this = $(this);
         select_category($this);
+    }).on('invalid', function() {
+        // If no category is selected, the input element fires an invalid event
+        // and shows an error tooltip when the user attempts to submit the form.
+        // In that case, display the entire list so the user won't get confused.
+        $('#inquiry-form .option-list').get(0).scrollIntoView();
     });
 
     // If a category is checked at pageload, do the selection stuff
