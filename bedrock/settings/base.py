@@ -559,6 +559,8 @@ MINIFY_BUNDLES = {
             'css/styleguide/identity-webmaker.less',
             'css/styleguide/communications.less',
             'css/styleguide/products-firefox-os.less',
+            'css/libs/jquery-ui.css',
+            'css/styleguide/mozilla-logo-generator.css',
         ),
         'styleguide-docs-mozilla-accordion': (
             'css/base/mozilla-accordion.less',
@@ -1019,6 +1021,14 @@ MINIFY_BUNDLES = {
             'js/styleguide/logo-prototype/vendor/dat.gui.js',
             'js/libs/jquery-1.11.0.min.js',
             'js/styleguide/logo-prototype/clock-data.js',
+        ),
+        'mozilla-logo': (
+            'js/styleguide/mozilla-logo/lodash.js',
+            'js/styleguide/mozilla-logo/d3.js',
+            'js/styleguide/mozilla-logo/jquery-2.1.1.js',
+            'js/styleguide/mozilla-logo/jquery-ui.js',
+            'js/styleguide/mozilla-logo/logo.js',
+            'js/styleguide/mozilla-logo/controls.js'
         ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
