@@ -1,142 +1,310 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% extends "base-resp.html" %}
 
+{% from "macros.html" import share_cta with context %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Get smart on privacy') }}{% endblock %}
+
+{% block page_image %}{{ media('img/privacy/you/sharing-tile.png') }}{% endblock %}
+
+{% block page_desc %}
+  {{ _('Feel like you’ve lost control of how your information is used online?') }}
+  {{ _('Here are 4 easy steps to raising your privacy IQ & protecting yourself online.') }}
+{% endblock %}
+
 {% block body_id %}privacy-day{% endblock %}
 
-{% block page_title %}{{ _('We put your privacy first') }}{% endblock %}
-
-{% block extrahead %}
+{% block site_css %}
   {{ css('privacy-day') }}
 {% endblock %}
 
-{% block body_class %}privacy-day{% endblock %}
+{%
+set share_urls = {
+    'twitter': 'http://mzl.la/1E63Mxm',
+    'googleplus': 'https://www.mozilla.org/' + LANG + '/privacy/tips/?utm_source=Google&utm_medium=MozLandingPage&utm_campaign=privacy2015&utm_content=WebsiteShare',
+    'facebook': 'https://www.mozilla.org/' + LANG + '/privacy/tips/?utm_source=Facebook&utm_medium=MozLandingPage&utm_campaign=privacy2015&utm_content=WebsiteShare'
+}
+%}
 
 {% block site_header %}
   <header id="masthead">
     <div class="container">
       <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
-    {% block site_header_logo %}
-      <h2><a href="{{ url('mozorg.home') }}">{{ high_res_img('img/sandstone/mozilla-wordmark-white.png', {'alt': 'Mozilla', 'width': '170', 'height': '46'}) }}</a></h2>
-    {% endblock %}
+      {% block site_header_nav %}{% endblock %}
     </div>
   </header>
 {% endblock %}
 
 {% block content %}
-
-<main role="main">
-  <article id="main-content">
-    <header>
-      <div class="container">
-        <h1>{{ _('We put your privacy first') }}</h1>
-        <div id="download">
-          {{ download_firefox(small=True) }}
-        </div>
-        <p id="principles"><a href="{{ url('privacy.principles') }}">{{ _('Explore our privacy principles') }}</a></p>
-      </div>
-    </header>
-
+<main role="main" id="main-content">
+  <div id="page-header">
     <div class="container">
-      <div class="intro">
-        <p>
-        {% trans manifesto=url('mozorg.about.manifesto') %}
-          At Mozilla, we have a long history of taking privacy seriously. It’s front and center
-          in every piece of software we make. It's in our <a href="{{ manifesto }}">Manifesto</a>.
-        {% endtrans %}
-        {% trans %}
-          It’s part of our DNA. The Web is an amazing thing and it's at its best when it’s open,
-          transparent and safe for everyone. Here are some of the ways we work to give you a better
-          understanding — and more control — of your privacy online.
-        {% endtrans %}
-        </p>
-      </div>
-
-      <div class="main">
-
-          <div class="block">
-            <h2>{{ _('Privacy Principles') }}</h2>
-            <p>
-            {% trans %}
-              We have a set of privacy principles that stem from the Mozilla Manifesto and
-              inform how we develop our websites, products and services.
-            {% endtrans %}
-            </p>
-            <p class="go"><a href="{{ url('privacy.principles') }}">{{ _('Learn about our privacy principles') }}</a></p>
-          </div>
-
-          <div class="block">
-            <h2>{{ _('Do Not Track') }}</h2>
-            <p>
-            {% trans %}
-              Do Not Track is a feature in Firefox that helps put you in control of the way your
-              information is collected and used online.
-            {% endtrans %}
-            {% trans %}
-              When enabled, Do Not Track will tell advertising networks and websites that you want
-              to opt-out of tracking for purposes like behavioral advertising.
-            {% endtrans %}
-            </p>
-            <p class="go"><a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">{{ _('Enable Do Not Track in your Firefox today') }}</a></p>
-          </div>
-
-          <div class="block">
-            <h2>Lightbeam</h2>
-            <p>
-            {% trans %}
-              A Firefox add-on, Lightbeam allows you to see the first and hidden third party sites
-              you interact with on the Web. Using interactive visualizations, it’s an innovative way
-              to see who’s tracking you online.
-            {% endtrans %}
-            </p>
-            <p class="go"><a href="{{ url('lightbeam.lightbeam') }}">{{ _('Download Lightbeam and shine a light on who’s watching you') }}</a></p>
-          </div>
-
-          <div class="block">
-            <h2>{{ _('Firefox privacy add-ons') }}</h2>
-            <p>
-            {% trans %}
-              We’ve gathered some of the best Firefox add-ons for privacy &amp; security in one great
-              collection — sorted by featured, top rated and most popular.
-            {% endtrans %}
-            </p>
-            <p class="go"><a href="https://addons.mozilla.org/firefox/extensions/privacy-security/">{{ _('Make your browsing better with privacy add-ons for Firefox') }}</a></p>
-          </div>
-
-          <div class="block">
-            <h2>Webmaker</h2>
-            <p>
-            {% trans %}
-              Help educate others about privacy. Use these free resources and teaching guides
-              from Mozilla Webmaker to empower others.
-            {% endtrans %}
-            </p>
-            <p class="go"><a href="https://webmaker.org/privacy-makes">{{ _('Teach online privacy with Mozilla’s Webmaker') }}</a></p>
-          </div>
-
-          <div class="block">
-            <h2>Firefox</h2>
-            <p>
-            {% trans %}
-              Our award-winning Web browser is packed with advanced security features designed to
-              help you stay safe, and in control, online.
-            {% endtrans %}
-            </p>
-            <p class="go"><a href="{{ url('firefox.new') }}">{{ _('Download Firefox today') }}</a></p>
-          </div>
-
-      </div>
+      <h1>{{ _('Get smart on privacy') }}</h1>
+      <h2>{{ _('In four easy steps') }}</h2>
     </div>
-  </article>
-</main>
+  </div>
 
+  <div class="pager pager-auto-init pager-with-tabs pager-no-history">
+
+  <div id="button-nav-wrapper" class="button-wrapper">
+    <div class="container">
+      <div class="share-widget">
+        {{ share_cta(_('Share'), share_urls, _('I’m taking control of my online privacy. Here’s how you can, too: #SmartOnPrivacy')) }}
+      </div>
+      <nav id="tips-nav-direct">
+        <ol role="tablist" class="pager-tabs">
+          <li role="presentation">
+            <a href="#ask" id="tab-ask"><span>{{ _('1') }}</span> {{ _('ASK') }}</a>
+          </li>
+          <li role="presentation">
+            <a href="#learn" id="tab-learn"><span>{{ _('2') }}</span> {{ _('LEARN') }}</a>
+          </li>
+          <li role="presentation">
+            <a href="#act" id="tab-act"><span>{{ _('3') }}</span> {{ _('ACT') }}</a>
+          </li>
+          <li role="presentation">
+            <a href="#discuss" id="tab-discuss"><span>{{ _('4') }}</span> {{ _('DISCUSS') }}</a>
+          </li>
+        </ol>
+      </nav>
+    </div>{# /#share-nav-wrapper #}
+  </div>{# /.container #}
+
+
+  <div id="page-content">
+    <div class="container">
+      <div id="tips-wrapper" class="pager-content">
+        <div class="tip pager-page default-page" id="ask">
+          <h3 class="tip-title">{{ _('How important is privacy to you?') }}</h3>
+          <div class="tip-content">
+            <div class="tip-column">
+              <p class="intro">
+                {{ _('Before we get into understanding privacy and share some of our favorite related tips and tools with you, take a moment to ask yourself how important privacy is to you.') }}
+                {{ _('If you haven’t given it much thought before, your answer might surprise you.') }}
+              </p>
+              <div class="charts">
+                <div class="chart chart1">
+                  <p>
+                    <span class="percentage">{{ _('91<sup>%</sup>') }}</span>
+                    {{ _('of adults think that consumers have lost control over how their personal information is used by companies') }}
+                    <sup>*</sup>
+                  </p>
+                </div>
+                <div class="chart chart2">
+                  <p>
+                    <span class="percentage">{{ _('61<sup>%</sup>') }}</span>
+                    {{ _('say they <em>“would like to do more”</em> to protect their privacy') }}
+                    <sup>*</sup>
+                  </p>
+                </div>
+              </div>
+              <p class="footnote">
+                <sup>*</sup>
+                {{ _('(stats from Pew Research Internet Project)') }}
+              </p>
+            </div>
+            <aside>
+              <p class="quote">
+                {{ _('Privacy is at the heart of freedom and autonomy…') }}
+                {{ _('It’s up to all of us to get involved and speak up so that it stays that way.') }}
+              </p>
+              <p class="attribute">{{ _('— Michelle De Mooy, Deputy Director, Consumer Privacy Project at the Center for Democracy & Technology') }}</p>
+            </aside>
+            <ul class="tip-footer">
+              <li class="next">
+                <a href="#learn">{{ _('LEARN MORE ABOUT PRIVACY') }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip pager-page" id="learn">
+          <h3 class="tip-title">{{ _('Understanding privacy') }}</h3>
+          <div class="tip-content">
+            <div class="tip-column">
+              <p class="intro">
+                {{ _('While the Internet provides countless ways for us to share and connect, it can also open our personal information to others.') }}
+                {{ _('Understanding privacy on the Web is the biggest step to being able to take better control of it.') }}
+              </p>
+              <h4>{{ _('“But I have nothing to hide”') }}</h4>
+              <p>
+                {{ _('This is a common misperception, but the truth is we all have things we don’t want everyone to know about.') }}
+                {{ _('It’s why we use passwords and PINs on our bank, email and social media accounts. For more, watch <a href="%s">Glenn Greenwald’s TED Talk, “Why Privacy Matters.”</a>')|format('http://www.ted.com/talks/glenn_greenwald_why_privacy_matters') }}
+              </p>
+              <figure class="greenwald">
+                <a href="http://www.ted.com/talks/glenn_greenwald_why_privacy_matters">
+                  <img src="{{ media('/img/privacy/you/greenwald.jpg') }}" alt="{{ _('Watch “Why
+Privacy Matters”') }}">
+                  <figcaption><span>
+                    {{ _('WATCH “WHY PRIVACY MATTERS”') }}
+                  </span></figcaption>
+                </a>
+              </figure>
+              <h4>{{ _('Shine a light on who’s watching you') }}</h4>
+              <div class="lightbeam">
+                <p>
+                  {{ _('Another key to understanding privacy is to know who’s tracking your online behaviour.') }}
+                  {{ _('If you’re a Firefox user, be sure to check out <a href="%s">Lightbeam</a>.')|format(url('lightbeam.lightbeam')) }}
+                  {{ _('It’s a simple and insightful add-on that reveals the full depth of the Web today, including parts that are not transparent to the average user.') }}
+                </p>
+                <p><a href="{{ url('lightbeam.lightbeam') }}" class="more">{{ _('Learn more about Lightbeam') }}</a></p>
+              </div>
+            </div>
+            <aside>
+              <p class="quote">
+                {{ _('Our online houses are becoming increasingly built of glass… visible to whoever wants to look.') }}
+                {{ _('Let’s ask ourselves: Do we want to live in a house or a fishbowl?') }}
+              </p>
+              <p class="attribute">{{ _('— Mitchell Baker, Mozilla') }}</p>
+            </aside>
+            <ul class="tip-footer">
+              <li class="previous">
+                <a href="#ask">{{ _('ASK YOURSELF ABOUT PRIVACY') }}</a>
+              </li>
+              <li class="next">
+                <a href="#act">{{ _('TAKE ACTION') }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip pager-page" id="act">
+          <h3 class="tip-title">{{ _('What you can do') }}</h3>
+          <div class="tip-content">
+            <div class="tip-column">
+              <p class="intro">
+                {{ _('To help put you in control of your privacy, Mozilla has implemented a number of privacy features in Firefox.') }}
+                {{ _('But even if you’re not a Firefox user there are a lot of simple things you can do to help keep yourself in control of your personal information online.') }}
+              </p>
+              <div class="privacy-features">
+                <h4>{{ _('Privacy Features in Firefox') }}</h4>
+                <ul class="features-list">
+                  <li class="feature-dnt">
+                    <a href="{{ url('firefox.dnt') }}">
+                      <h5>{{ _('DO NOT TRACK') }}</h5>
+                      <p>{{ _('With this feature enabled, Firefox will tell advertising networks, websites and applications that you want to opt-out of tracking for purposes like behavioral advertising.') }}</p>
+                    </a>
+                  </li>
+                  <li class="feature-forget">
+                    <a href="https://support.mozilla.org/kb/forget-button-quickly-delete-your-browsing-history">
+                      <h5>{{ _('FORGET BUTTON') }}</h5>
+                      <p>
+                        {{ _('Want to delete your recent activity?') }}
+                        {{ _('Firefox makes it easy with the Forget button.') }}
+                        {{ _('Clear your history, from 5 minutes to 24 hours, in a single click. ') }}
+                      </p>
+                    </a>
+                  </li>
+                  <li class="feature-ddg">
+                    <a href="https://duckduckgo.com/">
+                      <h5>{{ _('DUCKDUCKGO') }}</h5>
+                      <p>
+                        {{ _('A pre-installed search option in Firefox, DuckDuckGo gives you search results without tracking who you are or what you search for.') }}
+                      </p>
+                    </a>
+                  </li>
+                  <li class="feature-add-ons">
+                    <a href="https://addons.mozilla.org/firefox/extensions/privacy-security/">
+                      <h5>{{ _('PRIVACY ADD-ONS') }}</h5>
+                      <p>{{ _('For even more more ways to protect your privacy on Firefox, check out our privacy add-ons collection.') }}</p>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <h4>{{ _('Easy ways anyone can protect their privacy') }}</h4>
+              <p>{{ _('Stay Safe Online has several guides that can help, including social networking and mobile privacy tips and an easy reference for updating your privacy settings on the services many of us use every day.') }}</p>
+              <ul class="stay-safe-online">
+                <li class="safe-go">
+                  <a href="http://staysafeonline.org/stay-safe-online/mobile-and-on-the-go/mobile-devices">
+                    {{ _('Stay safe on the go') }}
+                  </a>
+                </li>
+                <li class="safe-social">
+                  <a href="http://staysafeonline.org/stay-safe-online/protect-your-personal-information/social-networks">
+                    {{ _('Protect yourself on social networks') }}
+                  </a>
+                </li>
+                <li class="safe-privacy">
+                  <a href="http://www.staysafeonline.org/data-privacy-day/check-your-privacy-settings/">
+                    {{ _('Check your privacy settings') }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <aside>
+              <p class="quote">
+                {{ _('Each of us should have a meaningful choice about where and how our data is stored and managed.') }}
+              </p>
+              <p class="attribute">{{ _('— Mitchell Baker, Mozilla') }}</p>
+            </aside>
+            <ul class="tip-footer">
+              <li class="previous">
+                <a href="#learn">{{ _('LEARN MORE ABOUT PRIVACY') }}</a>
+              </li>
+              <li class="next">
+                <a href="#discuss">{{ _('BE PART OF THE DISCUSSION') }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip pager-page" id="discuss">
+          <h3 class="tip-title">{{ _('Start a conversation') }}</h3>
+          <div class="tip-content">
+            <div class="tip-column">
+              <p class="intro">
+                {{ _('At Mozilla, empowering people to be in control of their online lives is an important part of our mission — it guides our <a href="%s">principles</a> and it’s why we want everyone to be smart on privacy.')|format(url('mozorg.about.manifesto')) }}
+                {{ _('If you’re feeling smarter already, share what you’ve learned here with your friends and family.') }}
+                {{ _('It’s as easy as starting a conversation.') }}
+              </p>
+              <div>
+                <h4>{{ _('Here are some questions you can ask to get the ball rolling:') }}</h4>
+                <ol class="big-list">
+                  <li>
+                    <p>{{ _(' When you think about your online life, does privacy matter to you, and why? ') }}</p>
+                  </li>
+                  <li>
+                    <p>{{ _('How much do you think about who has access to your online data (advertisers, corporations, governments, etc.)?') }}</p>
+                  </li>
+                  <li>
+                    <p>{{ _('How do you protect and manage your personal information on social networks? On your phone?') }}</p>
+                  </li>
+                </ol>
+                <h4>{{ _('Spread the word') }}</h4>
+                <div class="share-widget">
+                  {{ share_cta(_('Share this site'), share_urls, _('I’m taking control of my online privacy. Here’s how you can, too: #SmartOnPrivacy')) }}
+                </div>
+                <p class="share-p">{{ _('Feeling smart on privacy? <b>Share this site</b> with your friends and help them raise their awareness too.') }}</p>
+              </div>
+            </div>
+            <aside>
+              <p class="quote">{{ _('Individuals’ security and privacy on the Internet are fundamental and must not be treated as optional.') }}</p>
+              <p class="attribute">{{ _('— Mozilla Manifesto') }}</p>
+            </aside>
+            <ul class="tip-footer">
+              <li class="previous">
+                <a href="#act">{{ _('TAKE ACTION') }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      </div>{# /#tips-wrapper #}
+    </div>{# /.container #}
+  </div>{# /#page-content #}
+
+</main>
 {% endblock %}
 
-{% block email_form %}{% endblock %}
+{% block email_form %}
+{% endblock %}
 
 {% block js %}
   {{ js('privacy-day') }}
-{% endblock  %}
-
+{% endblock %}
