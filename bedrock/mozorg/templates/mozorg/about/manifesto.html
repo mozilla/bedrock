@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('manifesto') }}
+  {% stylesheet 'manifesto' %}
 {% endblock %}
 
 {% block site_header_logo %}{% endblock %}
@@ -333,10 +333,10 @@
 
 {% block js %}
   <!--[if IE 9]>
-    {{ js('manifesto_ie9') }}
+    {% javascript 'manifesto_ie9' %}
   <![endif]-->
-  {{ js('mosaic') }}
-  {{ js('manifesto') }}
+  {% javascript 'mosaic' %}
+  {% javascript 'manifesto' %}
 {% endblock %}
 
   {#- End the redesigned landing page -#}

@@ -2,6 +2,7 @@ sudo: false
 language: python
 python:
   - "2.6"
+  - "2.7"
 env:
   - PIP_DOWNLOAD_CACHE="pip_cache"
 cache:
@@ -10,9 +11,9 @@ cache:
 before_script:
   - flake8 bedrock lib
   - mysql -e 'create database bedrock_test;'
-  - python manage.py collectstatic --noinput
   - python manage.py version
   - python manage.py syncdb --noinput --migrate
+  - python manage.py collectstatic --noinput -v 0
   - python manage.py update_product_details
   - svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
 script: coverage run manage.py test

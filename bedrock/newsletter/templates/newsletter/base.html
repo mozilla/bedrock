@@ -8,7 +8,7 @@
 
 {% block site_css %}
   {{ super() }}
-  {{ css('newsletter') }}
+  {% stylesheet 'newsletter' %}
 {% endblock %}
 
 {# Don't display an email signup form in the footer of this page, #}

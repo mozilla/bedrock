@@ -33,7 +33,7 @@
 {% block body_id %}independent{% endblock %}
 
 {% block page_css %}
-  {{ css('firefox_independent') }}
+  {% stylesheet 'firefox_independent' %}
 {% endblock %}
 
 {% block site_header_nav %}{% endblock %}
@@ -100,7 +100,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_independent') }}
+  {% javascript 'firefox_independent' %}
 {% endblock %}
 
 {% block email_form %}{% endblock %}

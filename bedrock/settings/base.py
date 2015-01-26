@@ -103,6 +103,7 @@ def JINJA_CONFIG():
             'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
             'lib.l10n_utils.template.lang_blocks',
             'jingo_markdown.extensions.MarkdownExtension',
+            'pipeline.jinja2.ext.PipelineExtension',
         ],
         # Make None in templates render as ''
         'finalize': lambda x: x if x is not None else '',
@@ -112,197 +113,334 @@ def JINJA_CONFIG():
 MEDIA_URL = '/user-media/'
 STATIC_URL = '/media/'
 STATIC_ROOT = path('static')
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+STATICFILES_STORAGE = 'bedrock.base.storage.ManifestPipelineStorage'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.CachedFileFinder',
+    'pipeline.finders.PipelineFinder',
+)
 STATICFILES_DIRS = (
     path('media'),
 )
 
-JINGO_MINIFY_USE_STATIC = True
 JINGO_EXCLUDE_APPS = (
     'admin', 'registration', 'rest_framework', 'rna', 'waffle')
-CACHEBUST_IMGS = False
+
+PIPELINE_DISABLE_WRAPPER = True
+PIPELINE_COMPILERS = (
+    'pipeline.compilers.less.LessCompiler',
+)
+
+# PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
-MINIFY_BUNDLES = {
-    'css': {
-        'csrf-failure': (
+PIPELINE_CSS = {
+    'csrf-failure': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/csrf-failure.less',
         ),
-        'about': (
+        'output_filename': 'css/csrf-failure-bundle.css',
+    },
+    'about': {
+        'source_filenames': (
             'css/sandstone/video-resp.less',
             'css/mozorg/about-base.less',
             'css/mozorg/mosaic.less',
         ),
-        'about-base': (
+        'output_filename': 'css/about-bundle.css',
+    },
+    'about-base': {
+        'source_filenames': (
             'css/mozorg/about-base.less',
         ),
-        'credits-faq': (
+        'output_filename': 'css/about-base-bundle.css',
+    },
+    'credits-faq': {
+        'source_filenames': (
             'css/mozorg/credits-faq.less',
         ),
-        'commit-access-policy': (
+        'output_filename': 'css/credits-faq-bundle.css',
+    },
+    'commit-access-policy': {
+        'source_filenames': (
             'css/mozorg/commit-access-policy.less',
         ),
-        'commit-access-requirements': (
+        'output_filename': 'css/commit-access-policy-bundle.css',
+    },
+    'commit-access-requirements': {
+        'source_filenames': (
             'css/mozorg/commit-access-requirements.less',
         ),
-        'about-forums': (
+        'output_filename': 'css/commit-access-requirements.css',
+    },
+    'about-forums': {
+        'source_filenames': (
             'css/mozorg/about-forums.less',
         ),
-        'foundation': (
+        'output_filename': 'css/about-forums-bundle.css',
+    },
+    'foundation': {
+        'source_filenames': (
             'css/foundation/foundation.less',
         ),
-        'gigabit': (
+        'output_filename': 'css/foundation-bundle.css',
+    },
+    'gigabit': {
+        'source_filenames': (
             'css/gigabit/gigabit.less',
         ),
-        'grants': (
+        'output_filename': 'css/gigabit-bundle.css',
+    },
+    'grants': {
+        'source_filenames': (
             'css/grants/grants.less',
         ),
-        'lightbeam': (
+        'output_filename': 'css/grants-bundle.css',
+    },
+    'lightbeam': {
+        'source_filenames': (
             'css/lightbeam/lightbeam.less',
         ),
-        'itu': (
+        'output_filename': 'css/lightbeam-bundle.css',
+    },
+    'itu': {
+        'source_filenames': (
             'css/mozorg/itu.less',
         ),
-        'common': (
+        'output_filename': 'css/itu-bundle.css',
+    },
+    'common': {
+        'source_filenames': (
             'css/sandstone/sandstone.less',
         ),
-        'responsive': (
+        'output_filename': 'css/common-bundle.css',
+    },
+    'responsive': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
         ),
-        'oldIE': (
+        'output_filename': 'css/responsive-bundle.css',
+    },
+    'oldIE': {
+        'source_filenames': (
             'css/sandstone/oldIE.less',
         ),
-        'newsletter': (
+        'output_filename': 'css/oldIE-bundle.css',
+    },
+    'newsletter': {
+        'source_filenames': (
             'css/newsletter/newsletter.less',
         ),
-        'contact-spaces': (
+        'output_filename': 'css/newsletter-bundle.css',
+    },
+    'contact-spaces': {
+        'source_filenames': (
             'css/libs/mapbox-1.6.3.css',
             'css/libs/magnific-popup.css',
             'css/base/mozilla-video-poster.less',
             'css/mozorg/contact-spaces.less',
         ),
-        'contact-spaces-ie7': (
+        'output_filename': 'css/contact-spaces-bundle.css',
+    },
+    'contact-spaces-ie7': {
+        'source_filenames': (
             'css/mozorg/contact-spaces-ie7.less',
         ),
-        'contribute-old': (
+        'output_filename': 'css/contact-spaces-ie7-bundle.css',
+    },
+    'contribute-old': {
+        'source_filenames': (
             'css/mozorg/contribute/contribute-form.less',
             'css/mozorg/contribute/contribute-old.less',
             'css/sandstone/video-resp.less',
         ),
-        'contribute-page': (
+        'output_filename': 'css/contribute-old-bundle.css',
+    },
+    'contribute-page': {
+        'source_filenames': (
             'css/mozorg/contribute/contribute-form.less',
             'css/mozorg/contribute/contribute-page.less',
         ),
-        'contribute-studentambassadors-landing': (
+        'output_filename': 'css/contribute-page-bundle.css',
+    },
+    'contribute-studentambassadors-landing': {
+        'source_filenames': (
             'css/base/social-widgets.less',
             'css/mozorg/contribute/studentambassadors/landing.less',
         ),
-        'contribute-studentambassadors-join': (
+        'output_filename': 'css/contribute-studentambassadors-landing-bundle.css',
+    },
+    'contribute-studentambassadors-join': {
+        'source_filenames': (
             'css/mozorg/contribute/studentambassadors/join.less',
         ),
-        'dnt': (
+        'output_filename': 'css/contribute-studentambassadors-join-bundle.css',
+    },
+    'dnt': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/dnt.less',
         ),
-        'firefox': (
+        'output_filename': 'css/dnt-bundle.css',
+    },
+    'firefox': {
+        'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/firefox/menu.less',
             'css/firefox/template.less',
         ),
-        'firefox_all': (
+        'output_filename': 'css/firefox-bundle.css',
+    },
+    'firefox_all': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/all.less',
         ),
-        'firefox_android': (
+        'output_filename': 'css/firefox_all-bundle.css',
+    },
+    'firefox_android': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/android.less',
         ),
-        'firefox_unsupported': (
+        'output_filename': 'css/firefox_android-bundle.css',
+    },
+    'firefox_unsupported': {
+        'source_filenames': (
             'css/firefox/unsupported.less',
         ),
-        'firefox_unsupported_systems': (
+        'output_filename': 'css/firefox_unsupported-bundle.css',
+    },
+    'firefox_unsupported_systems': {
+        'source_filenames': (
             'css/firefox/unsupported-systems.less',
         ),
-        'firefox-resp': (
+        'output_filename': 'css/firefox_unsupported_systems-bundle.css',
+    },
+    'firefox-resp': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
         ),
-        'firefox_channel': (
+        'output_filename': 'css/firefox-resp-bundle.css',
+    },
+    'firefox_channel': {
+        'source_filenames': (
             'css/firefox/channel.less',
         ),
-        'firefox-dashboard': (
+        'output_filename': 'css/firefox_channel-bundle.css',
+    },
+    'firefox-dashboard': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/menu-resp.less',
             'css/firefox/dashboard.less',
         ),
-        'firefox_desktop': (
+        'output_filename': 'css/firefox-dashboard-bundle.css',
+    },
+    'firefox_desktop': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/intro-anim.less',
             'css/base/svg-animation-check.less',
             'css/firefox/desktop/index.less',
         ),
-        'firefox_desktop_fast': (
+        'output_filename': 'css/firefox_desktop-bundle.css',
+    },
+    'firefox_desktop_fast': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/fast.less',
         ),
-        'firefox_desktop_customize': (
+        'output_filename': 'css/firefox_desktop_fast-bundle.css',
+    },
+    'firefox_desktop_customize': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/customize.less',
         ),
-        'firefox_desktop_tips': (
+        'output_filename': 'css/firefox_desktop_customize-bundle.css',
+    },
+    'firefox_desktop_tips': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/libs/socialshare/socialshare.less',
             'css/firefox/desktop/tips.less',
         ),
-        'firefox_desktop_trust': (
+        'output_filename': 'css/firefox_desktop_tips-bundle.css',
+    },
+    'firefox_desktop_trust': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/desktop/trust.less',
         ),
-        'firefox_sms': (
+        'output_filename': 'css/firefox_desktop_trust-bundle.css',
+    },
+    'firefox_sms': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/libs/socialshare/socialshare.less',
             'css/firefox/template-resp.less',
             'css/sandstone/video-resp.less',
             'css/firefox/mobile-sms.less',
         ),
-        'firefox-tiles': (
+        'output_filename': 'css/firefox_sms-bundle.css',
+    },
+    'firefox-tiles': {
+        'source_filenames': (
             'css/firefox/tiles.less',
         ),
-        'firefox_faq': (
+        'output_filename': 'css/firefox-tiles-bundle.css',
+    },
+    'firefox_faq': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/faq.less',
             'css/firefox/template-resp.less',
             'css/base/mozilla-accordion.less',
         ),
-        'firefox_firstrun': (
+        'output_filename': 'css/firefox_faq-bundle.css',
+    },
+    'firefox_firstrun': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/sandstone/video.less',
             'css/base/mozilla-modal.less',
             'css/firefox/firstrun.less',
         ),
-        'firefox_developer_firstrun': (
+        'output_filename': 'css/firefox_firstrun-bundle.css',
+    },
+    'firefox_developer_firstrun': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/dev-firstrun.less',
         ),
-        'nightly_firstrun': (
+        'output_filename': 'css/firefox_developer_firstrun-bundle.css',
+    },
+    'nightly_firstrun': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/firefox/nightly_firstrun.less',
         ),
-        'firefox_geolocation': (
+        'output_filename': 'css/nightly_firstrun-bundle.css',
+    },
+    'firefox_geolocation': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/firefox/menu-resp.less',
@@ -311,18 +449,27 @@ MINIFY_BUNDLES = {
             'css/libs/mapbox-1.6.3.css',
             'css/firefox/geolocation.less'
         ),
-        'firefox_developer': (
+        'output_filename': 'css/firefox_geolocation-bundle.css',
+    },
+    'firefox_developer': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/menu-resp.less',
             'css/firefox/developer.less',
         ),
-        'firefox_hello_start': (
+        'output_filename': 'css/firefox_developer-bundle.css',
+    },
+    'firefox_hello_start': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/hello/start.less',
         ),
-        'firefox_hello': (
+        'output_filename': 'css/firefox_hello_start-bundle.css',
+    },
+    'firefox_hello': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/base/mozilla-modal.less',
@@ -330,57 +477,90 @@ MINIFY_BUNDLES = {
             'css/base/mozilla-share-cta.less',
             'css/firefox/hello/index.less',
         ),
-        'firefox_new': (
+        'output_filename': 'css/firefox_hello-bundle.css',
+    },
+    'firefox_new': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/libs/socialshare/socialshare.less',
             'css/firefox/simple_footer-resp.less',
             'css/firefox/new.less',
         ),
-        'firefox_organizations': (
+        'output_filename': 'css/firefox_new-bundle.css',
+    },
+    'firefox_organizations': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/firefox/organizations.less',
         ),
-        'firefox_os': (
+        'output_filename': 'css/firefox_organizations-bundle.css',
+    },
+    'firefox_os': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-modal.less',
             'css/libs/jquery.pageslide.css',
             'css/firefox/os/get_device.less',
             'css/firefox/os/firefox-os.less',
         ),
-        'firefox_os_ie': (
+        'output_filename': 'css/firefox_os-bundle.css',
+    },
+    'firefox_os_ie': {
+        'source_filenames': (
             'css/firefox/os/firefox-os-ie.less',
         ),
-        'firefox_os_devices': (
+        'output_filename': 'css/firefox_os_ie-bundle.css',
+    },
+    'firefox_os_devices': {
+        'source_filenames': (
             'css/libs/tipsy.css',
             'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/os/get_device.less',
             'css/firefox/os/devices.less',
         ),
-        'firefox_os_devices_ie': (
+        'output_filename': 'css/firefox_os_devices-bundle.css',
+    },
+    'firefox_os_devices_ie': {
+        'source_filenames': (
             'css/firefox/os/devices-ie.less',
         ),
-        'firefox_os_mwc_2014_preview': (
+        'output_filename': 'css/firefox_os_devices_ie-bundle.css',
+    },
+    'firefox_os_mwc_2014_preview': {
+        'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/firefox/os/mwc-2014-preview.less',
         ),
-        'firefox_os_mwc_2014_preview_ie7': (
+        'output_filename': 'css/firefox_os_mwc_2014_preview-bundle.css',
+    },
+    'firefox_os_mwc_2014_preview_ie7': {
+        'source_filenames': (
             'css/firefox/os/mwc-2014-preview-ie7.less',
         ),
-        'firefox_os_tv': (
+        'output_filename': 'css/firefox_os_mwc_2014_preview_ie7-bundle.css',
+    },
+    'firefox_os_tv': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/firefox/os/tv.less',
         ),
-        'firefox_releases_index': (
+        'output_filename': 'css/firefox_os_tv-bundle.css',
+    },
+    'firefox_releases_index': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/releases-index.less',
         ),
-        'firefox_privacy_tour': (
+        'output_filename': 'css/firefox_releases_index-bundle.css',
+    },
+    'firefox_privacy_tour': {
+        'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/base/mozilla-modal.less',
             'css/base/mozilla-share-cta.less',
@@ -389,7 +569,10 @@ MINIFY_BUNDLES = {
             'css/firefox/privacy_tour/common.less',
             'css/firefox/privacy_tour/tour.less',
         ),
-        'firefox_privacy_no_tour': (
+        'output_filename': 'css/firefox_privacy_tour-bundle.css',
+    },
+    'firefox_privacy_no_tour': {
+        'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/base/mozilla-modal.less',
             'css/base/mozilla-share-cta.less',
@@ -397,167 +580,287 @@ MINIFY_BUNDLES = {
             'css/firefox/privacy_tour/common.less',
             'css/firefox/privacy_tour/no-tour.less',
         ),
-        'firefox_search_tour': (
+        'output_filename': 'css/firefox_privacy_no_tour-bundle.css',
+    },
+    'firefox_search_tour': {
+        'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/firefox/search_tour/common.less',
             'css/firefox/search_tour/tour.less',
         ),
-        'firefox_search_no_tour': (
+        'output_filename': 'css/firefox_search_tour-bundle.css',
+    },
+    'firefox_search_no_tour': {
+        'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/firefox/search_tour/common.less',
         ),
-        'firefox_tour': (
+        'output_filename': 'css/firefox_search_no_tour-bundle.css',
+    },
+    'firefox_tour': {
+        'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/firefox/australis/australis-ui-tour.less',
             'css/firefox/australis/australis-page-common.less',
             'css/firefox/sync-animation.less',
             'css/firefox/australis/australis-page-stacked.less',
         ),
-        'firefox_whatsnew': (
+        'output_filename': 'css/firefox_tour-bundle.css',
+    },
+    'firefox_whatsnew': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/sandstone/video.less',
             'css/firefox/whatsnew.less',
             'css/firefox/whatsnew-android.less',
         ),
-        'firefox_whatsnew_fxos': (
+        'output_filename': 'css/firefox_whatsnew-bundle.css',
+    },
+    'firefox_whatsnew_fxos': {
+        'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/firefox/simple_footer.less',
             'css/firefox/whatsnew-fxos.less',
         ),
-        'firefox_releasenotes': (
+        'output_filename': 'css/firefox_whatsnew_fxos-bundle.css',
+    },
+    'firefox_releasenotes': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/releasenotes.less',
         ),
-        'firefox_sync': (
+        'output_filename': 'css/firefox_releasenotes-bundle.css',
+    },
+    'firefox_sync': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/sync.less',
         ),
-        'firefox_sync_old': (
+        'output_filename': 'css/firefox_sync-bundle.css',
+    },
+    'firefox_sync_old': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/sync-old.less',
         ),
-        'firefox_sync_anim': (
+        'output_filename': 'css/firefox_sync_old-bundle.css',
+    },
+    'firefox_sync_anim': {
+        'source_filenames': (
             'css/firefox/sync-animation.less',
         ),
-        'firefox_independent': (
+        'output_filename': 'css/firefox_sync_anim-bundle.css',
+    },
+    'firefox_independent': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-share-cta.less',
             'css/firefox/independent-splash.less',
             'css/firefox/independent.less',
         ),
-        'installer_help': (
+        'output_filename': 'css/firefox_independent-bundle.css',
+    },
+    'installer_help': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/firefox/menu-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/installer-help.less',
         ),
-        'history-slides': (
+        'output_filename': 'css/installer_help-bundle.css',
+    },
+    'history-slides': {
+        'source_filenames': (
             'css/mozorg/history-slides.less',
         ),
-        'home': (
+        'output_filename': 'css/history-slides-bundle.css',
+    },
+    'home': {
+        'source_filenames': (
             'css/mozorg/home.less',
             'css/mozorg/home-promo.less',
         ),
-        'home-ie9': (
+        'output_filename': 'css/home-bundle.css',
+    },
+    'home-ie9': {
+        'source_filenames': (
             'css/mozorg/home-ie9.less',
         ),
-        'home-ie8': (
+        'output_filename': 'css/home-ie9-bundle.css',
+    },
+    'home-ie8': {
+        'source_filenames': (
             'css/mozorg/home-ie8.less',
         ),
-        'home-ie': (
+        'output_filename': 'css/home-ie8-bundle.css',
+    },
+    'home-ie': {
+        'source_filenames': (
             'css/mozorg/home-ie.less',
         ),
-        'home-2015': (
+        'output_filename': 'css/home-ie-bundle.css',
+    },
+    'home-2015': {
+        'source_filenames': (
             'css/mozorg/home/home.less',
             'css/mozorg/home/home-promo.less',
         ),
-        'home-2015-ie8': (
+        'output_filename': 'css/home-2015-bundle.css',
+    },
+    'home-2015-ie8': {
+        'source_filenames': (
             'css/mozorg/home/home-ie8.less',
         ),
-        'legal': (
+        'output_filename': 'css/home-2015-ie8-bundle.css',
+    },
+    'legal': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/legal/legal.less',
         ),
-        'legal-eula': (
+        'output_filename': 'css/legal-bundle.css',
+    },
+    'legal-eula': {
+        'source_filenames': (
             'css/legal/eula.less',
         ),
-        'legal_fraud_report': (
+        'output_filename': 'css/legal-eula-bundle.css',
+    },
+    'legal_fraud_report': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/legal/fraud-report.less',
         ),
-        'manifesto': (
+        'output_filename': 'css/legal_fraud_report-bundle.css',
+    },
+    'manifesto': {
+        'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/libs/socialshare/socialshare.less',
             'css/mozorg/mosaic.less',
             'css/mozorg/manifesto.less',
         ),
-        'mission': (
+        'output_filename': 'css/manifesto-bundle.css',
+    },
+    'mission': {
+        'source_filenames': (
             'css/sandstone/video-resp.less',
             'css/mozorg/mosaic.less',
             'css/mozorg/mission.less',
         ),
-        'mozilla_accordion': (
+        'output_filename': 'css/mission-bundle.css',
+    },
+    'mozilla_accordion': {
+        'source_filenames': (
             'css/base/mozilla-accordion.less',
         ),
-        'partnerships': (
+        'output_filename': 'css/mozilla_accordion-bundle.css',
+    },
+    'partnerships': {
+        'source_filenames': (
             'css/mozorg/partnerships.less',
         ),
-        'persona': (
+        'output_filename': 'css/partnerships-bundle.css',
+    },
+    'persona': {
+        'source_filenames': (
             'css/persona/persona.less',
         ),
-        'powered-by': (
+        'output_filename': 'css/persona-bundle.css',
+    },
+    'powered-by': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/mozorg/powered-by.less',
         ),
-        'plugincheck': (
+        'output_filename': 'css/powered-by-bundle.css',
+    },
+    'plugincheck': {
+        'source_filenames': (
             'css/plugincheck/plugincheck.less',
             'css/plugincheck/qtip.css',
         ),
-        'press_speaker_request': (
+        'output_filename': 'css/plugincheck-bundle.css',
+    },
+    'press_speaker_request': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/press/speaker-request.less',
         ),
-        'privacy': (
+        'output_filename': 'css/press_speaker_request-bundle.css',
+    },
+    'privacy': {
+        'source_filenames': (
             'css/privacy/privacy.less',
         ),
-        'privacy-day': (
+        'output_filename': 'css/privacy-bundle.css',
+    },
+    'privacy-day': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-share-cta.less',
             'css/privacy/privacy-day.less',
         ),
-        'fb_privacy': (
+        'output_filename': 'css/privacy-day-bundle.css',
+    },
+    'fb_privacy': {
+        'source_filenames': (
             'css/privacy/fb-privacy.less',
         ),
-        'products': (
+        'output_filename': 'css/fb_privacy-bundle.css',
+    },
+    'products': {
+        'source_filenames': (
             'css/mozorg/products.less',
         ),
-        'projects_mozilla_based': (
+        'output_filename': 'css/products-bundle.css',
+    },
+    'projects_mozilla_based': {
+        'source_filenames': (
             'css/mozorg/projects/mozilla-based.less',
         ),
-        'projects-calendar': (
+        'output_filename': 'css/projects_mozilla_based-bundle.css',
+    },
+    'projects-calendar': {
+        'source_filenames': (
             'css/mozorg/projects/calendar.less',
         ),
-        'research': (
+        'output_filename': 'css/projects-calendar-bundle.css',
+    },
+    'research': {
+        'source_filenames': (
             'css/research/research.less',
         ),
-        'security': (
+        'output_filename': 'css/research-bundle.css',
+    },
+    'security': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/security/security.less',
         ),
-        'security-bug-bounty-hall-of-fame': (
+        'output_filename': 'css/security-bundle.css',
+    },
+    'security-bug-bounty-hall-of-fame': {
+        'source_filenames': (
             'css/security/hall-of-fame.less',
             'css/base/mozilla-accordion.less',
         ),
-        'security-tld-idn': (
+        'output_filename': 'css/security-bug-bounty-hall-of-fame-bundle.css',
+    },
+    'security-tld-idn': {
+        'source_filenames': (
             'css/mozorg/security-tld-idn.less',
         ),
-        'styleguide': (
+        'output_filename': 'css/security-tld-idn-bundle.css',
+    },
+    'styleguide': {
+        'source_filenames': (
             'css/sandstone/fonts.less',
             'css/styleguide/styleguide.less',
             'css/styleguide/websites-sandstone.less',
@@ -571,73 +874,128 @@ MINIFY_BUNDLES = {
             'css/styleguide/communications.less',
             'css/styleguide/products-firefox-os.less',
         ),
-        'styleguide-docs-mozilla-accordion': (
+        'output_filename': 'css/styleguide-bundle.css',
+    },
+    'styleguide-docs-mozilla-accordion': {
+        'source_filenames': (
             'css/base/mozilla-accordion.less',
             'css/sandstone/sandstone-resp.less',
         ),
-        'styleguide-docs-mozilla-pager': (
+        'output_filename': 'css/styleguide-docs-mozilla-accordion-bundle.css',
+    },
+    'styleguide-docs-mozilla-pager': {
+        'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/styleguide/docs/mozilla-pager.less',
         ),
-        'tabzilla': (
+        'output_filename': 'css/styleguide-docs-mozilla-pager-bundle.css',
+    },
+    'tabzilla': {
+        'source_filenames': (
             'css/tabzilla/tabzilla.less',
         ),
-        'contribute-2015': (
+        'output_filename': 'css/tabzilla-min.css',
+    },
+    'contribute-2015': {
+        'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/mozorg/contribute/contribute-2015.less',
         ),
-        'video': (
+        'output_filename': 'css/contribute-2015-bundle.css',
+    },
+    'video': {
+        'source_filenames': (
             'css/sandstone/video.less',
         ),
-        'video-resp': (
+        'output_filename': 'css/video-bundle.css',
+    },
+    'video-resp': {
+        'source_filenames': (
             'css/sandstone/video-resp.less',
         ),
-        'page_not_found': (
+        'output_filename': 'css/video-resp-bundle.css',
+    },
+    'page_not_found': {
+        'source_filenames': (
             'css/base/page-not-found.less',
         ),
-        'annual_2011': (
+        'output_filename': 'css/page_not_found-bundle.css',
+    },
+    'annual_2011': {
+        'source_filenames': (
             'css/foundation/annual2011.less',
         ),
-        'annual_2012': (
+        'output_filename': 'css/annual_2011-bundle.css',
+    },
+    'annual_2012': {
+        'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/foundation/annual2012.less',
         ),
-        'annual_2013': (
+        'output_filename': 'css/annual_2012-bundle.css',
+    },
+    'annual_2013': {
+        'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/foundation/annual2013.less',
         ),
-        'partners': (
+        'output_filename': 'css/annual_2013-bundle.css',
+    },
+    'partners': {
+        'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/libs/jquery.pageslide.css',
             'css/firefox/partners.less',
         ),
-        'partners-ie7': (
+        'output_filename': 'css/partners-bundle.css',
+    },
+    'partners-ie7': {
+        'source_filenames': (
             'css/firefox/partners/ie7.less',
         ),
-        'facebookapps_downloadtab': (
+        'output_filename': 'css/partners-ie7-bundle.css',
+    },
+    'facebookapps_downloadtab': {
+        'source_filenames': (
             'css/libs/h5bp_main.css',
             'css/facebookapps/downloadtab.less',
         ),
-        'thunderbird-start': (
+        'output_filename': 'css/facebookapps_downloadtab-bundle.css',
+    },
+    'thunderbird-start': {
+        'source_filenames': (
             'css/sandstone/fonts.less',
             'css/thunderbird/start.less',
         ),
+        'output_filename': 'css/thunderbird-start-bundle.css',
     },
-    'js': {
-        'site': (
+}
+
+PIPELINE_JS = {
+    'site': {
+        'source_filenames': (
             'js/base/site.js',  # this is automatically included on every page
         ),
-        'lightbeam': (
+        'output_filename': 'js/site-bundle.js',
+    },
+    'lightbeam': {
+        'source_filenames': (
             'js/lightbeam/d3.v3.min.js',
             'js/lightbeam/rAF.js',
             'js/lightbeam/lightbeam.js',
             'js/lightbeam/ui.js',
             'js/libs/jquery.validate.js',
         ),
-        'projects-calendar': (
+        'output_filename': 'js/lightbeam-bundle.js',
+    },
+    'projects-calendar': {
+        'source_filenames': (
             'js/mozorg/calendar.js',
         ),
-        'common': (
+        'output_filename': 'js/projects-calendar-bundle.js',
+    },
+    'common': {
+        'source_filenames': (
             'js/libs/jquery-1.11.0.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
@@ -646,7 +1004,10 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
-        'common-resp': (
+        'output_filename': 'js/common-bundle.js',
+    },
+    'common-resp': {
+        'source_filenames': (
             'js/libs/jquery-1.11.0.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
@@ -656,7 +1017,10 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
-        'contact-spaces': (
+        'output_filename': 'js/common-resp-bundle.js',
+    },
+    'contact-spaces': {
+        'source_filenames': (
             'js/libs/mapbox-1.6.3.js',
             'js/libs/jquery.history.js',
             'js/mozorg/contact-data.js',
@@ -664,31 +1028,55 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-video-poster.js',
             'js/mozorg/contact-spaces.js',
         ),
-        'contact-spaces-ie7': (
+        'output_filename': 'js/contact-spaces-bundle.js',
+    },
+    'contact-spaces-ie7': {
+        'source_filenames': (
             'js/mozorg/contact-spaces-ie7.js',
         ),
-        'contribute-faces': (
+        'output_filename': 'js/contact-spaces-ie7-bundle.js',
+    },
+    'contribute-faces': {
+        'source_filenames': (
             'js/mozorg/contribute/contribute-faces.js',
         ),
-        'contribute-form': (
+        'output_filename': 'js/contribute-faces-bundle.js',
+    },
+    'contribute-form': {
+        'source_filenames': (
             'js/mozorg/contribute/contribute-form.js',
             'js/base/mozilla-input-placeholder.js',
         ),
-        'contribute-studentambassadors-landing': (
+        'output_filename': 'js/contribute-form-bundle.js',
+    },
+    'contribute-studentambassadors-landing': {
+        'source_filenames': (
             'js/base/social-widgets.js',
         ),
-        'contribute-studentambassadors-join': (
+        'output_filename': 'js/contribute-studentambassadors-landing-bundle.js',
+    },
+    'contribute-studentambassadors-join': {
+        'source_filenames': (
             'js/mozorg/contribute/contribute-studentambassadors-join.js',
             'js/base/mozilla-input-placeholder.js',
         ),
-        'existing': (
+        'output_filename': 'js/contribute-studentambassadors-join-bundle.js',
+    },
+    'existing': {
+        'source_filenames': (
             'js/newsletter/existing.js',
         ),
-        'accordion': (
+        'output_filename': 'js/existing-bundle.js',
+    },
+    'accordion': {
+        'source_filenames': (
             'js/base/mozilla-accordion.js',
             'js/base/mozilla-accordion-gatrack.js',
         ),
-        'firefox': (
+        'output_filename': 'js/accordion-bundle.js',
+    },
+    'firefox': {
+        'source_filenames': (
             'js/libs/jquery-1.11.0.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
@@ -698,21 +1086,33 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
-        'firefox_all': (
+        'output_filename': 'js/firefox-bundle.js',
+    },
+    'firefox_all': {
+        'source_filenames': (
             'js/base/mozilla-pager.js',
             'js/firefox/firefox-language-search.js',
         ),
-        'firefox_android': (
+        'output_filename': 'js/firefox_all-bundle.js',
+    },
+    'firefox_android': {
+        'source_filenames': (
             'js/base/mozilla-accordion.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.cycle2.min.js',
             'js/firefox/sync-animation.js',
             'js/firefox/android.js',
         ),
-        'firefox_android_ie9': (
+        'output_filename': 'js/firefox_android-bundle.js',
+    },
+    'firefox_android_ie9': {
+        'source_filenames': (
             'js/libs/matchMedia.addListener.js',
         ),
-        'firefox-resp': (
+        'output_filename': 'js/firefox_android_ie9-bundle.js',
+    },
+    'firefox-resp': {
+        'source_filenames': (
             'js/libs/jquery-1.11.0.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
@@ -722,26 +1122,41 @@ MINIFY_BUNDLES = {
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
         ),
-        'firefox_channel': (
+        'output_filename': 'js/firefox-resp-bundle.js',
+    },
+    'firefox_channel': {
+        'source_filenames': (
             'js/base/mozilla-pager.js',
             'js/firefox/channel.js',
         ),
-        'firefox_desktop_common': (
+        'output_filename': 'js/firefox_channel-bundle.js',
+    },
+    'firefox_desktop_common': {
+        'source_filenames': (
             'js/firefox/desktop/common.js',
         ),
-        'firefox_desktop_customize': (
+        'output_filename': 'js/firefox_desktop_common-bundle.js',
+    },
+    'firefox_desktop_customize': {
+        'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/sync-animation.js',
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/customize.js',
         ),
-        'firefox_desktop_fast': (
+        'output_filename': 'js/firefox_desktop_customize-bundle.js',
+    },
+    'firefox_desktop_fast': {
+        'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/speed-graph.js',
             'js/firefox/desktop/fast.js',
         ),
-        'firefox_desktop_index': (
+        'output_filename': 'js/firefox_desktop_fast-bundle.js',
+    },
+    'firefox_desktop_index': {
+        'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/speed-graph.js',
@@ -749,30 +1164,48 @@ MINIFY_BUNDLES = {
             'js/firefox/desktop/intro-anim.js',
             'js/firefox/desktop/index.js',
         ),
-        'firefox_desktop_tips': (
+        'output_filename': 'js/firefox_desktop_index-bundle.js',
+    },
+    'firefox_desktop_tips': {
+        'source_filenames': (
             'js/base/mozilla-pager.js',
             'js/libs/hammer.1.1.2.min.js',
             'js/libs/socialshare.min.js',
             'js/firefox/desktop/tips.js',
         ),
-        'firefox_desktop_trust': (
+        'output_filename': 'js/firefox_desktop_tips-bundle.js',
+    },
+    'firefox_desktop_trust': {
+        'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/desktop/common.js',
         ),
-        'firefox_developer': (
+        'output_filename': 'js/firefox_desktop_trust-bundle.js',
+    },
+    'firefox_developer': {
+        'source_filenames': (
             'js/firefox/developer.js',
             'js/base/mozilla-modal.js',
         ),
-        'firefox_firstrun': (
+        'output_filename': 'js/firefox_developer-bundle.js',
+    },
+    'firefox_firstrun': {
+        'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/firefox/firstrun/firstrun.js',
         ),
-        'firefox_developer_firstrun': (
+        'output_filename': 'js/firefox_firstrun-bundle.js',
+    },
+    'firefox_developer_firstrun': {
+        'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
             'js/base/mozilla-modal.js',
             'js/firefox/dev-firstrun.js',
         ),
-        'firefox_new': (
+        'output_filename': 'js/firefox_developer_firstrun-bundle.js',
+    },
+    'firefox_new': {
+        'source_filenames': (
             'js/libs/jquery-1.11.0.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
@@ -784,12 +1217,18 @@ MINIFY_BUNDLES = {
             'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
         ),
-        'firefox_independent': (
+        'output_filename': 'js/firefox_new-bundle.js',
+    },
+    'firefox_independent': {
+        'source_filenames': (
             'js/base/mozilla-share-cta.js',
             'js/base/firefox-anniversary-video.js',
             'js/firefox/independent.js',
         ),
-        'firefox_os': (
+        'output_filename': 'js/firefox_independent-bundle.js',
+    },
+    'firefox_os': {
+        'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
@@ -803,10 +1242,16 @@ MINIFY_BUNDLES = {
             'js/firefox/os/desktop.js',
             'js/firefox/os/have-it.js',
         ),
-        'firefox_os_ie9': (
+        'output_filename': 'js/firefox_os-bundle.js',
+    },
+    'firefox_os_ie9': {
+        'source_filenames': (
             'js/libs/matchMedia.addListener.js',
         ),
-        'firefox_os_devices': (
+        'output_filename': 'js/firefox_os_ie9-bundle.js',
+    },
+    'firefox_os_devices': {
+        'source_filenames': (
             'js/libs/jquery.tipsy.js',
             'js/base/mozilla-pager.js',
             'js/base/mozilla-modal.js',
@@ -815,43 +1260,70 @@ MINIFY_BUNDLES = {
             'js/firefox/os/partner_data.js',
             'js/firefox/os/devices.js',
         ),
-        'firefox_os_mwc_2014_preview': (
+        'output_filename': 'js/firefox_os_devices-bundle.js',
+    },
+    'firefox_os_mwc_2014_preview': {
+        'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/firefox/mwc-2014-map.js',
             'js/firefox/os/mwc-2014-preview.js',
         ),
-        'firefox_os_tv': (
+        'output_filename': 'js/firefox_os_mwc_2014_preview-bundle.js',
+    },
+    'firefox_os_tv': {
+        'source_filenames': (
             'js/base/mozilla-pager.js',
         ),
-        'firefox_faq': (
+        'output_filename': 'js/firefox_os_tv-bundle.js',
+    },
+    'firefox_faq': {
+        'source_filenames': (
             'js/base/mozilla-accordion.js',
             'js/base/mozilla-accordion-gatrack.js',
         ),
-        'firefox_sync': (
+        'output_filename': 'js/firefox_faq-bundle.js',
+    },
+    'firefox_sync': {
+        'source_filenames': (
             'js/firefox/sync-animation.js',
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/sync.js',
         ),
-        'firefox_sync_old': (
+        'output_filename': 'js/firefox_sync-bundle.js',
+    },
+    'firefox_sync_old': {
+        'source_filenames': (
             'js/firefox/sync-animation.js',
             'js/firefox/sync-old.js',
         ),
-        'firefox_hello_start': (
+        'output_filename': 'js/firefox_sync_old-bundle.js',
+    },
+    'firefox_hello_start': {
+        'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/hello/start.js',
         ),
-        'firefox_hello': (
+        'output_filename': 'js/firefox_hello_start-bundle.js',
+    },
+    'firefox_hello': {
+        'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
             'js/base/mozilla-modal.js',
             'js/base/svg-animation-check.js',
             'js/base/mozilla-share-cta.js',
             'js/firefox/hello/index.js',
         ),
-        'firefox_hello_ie9': (
+        'output_filename': 'js/firefox_hello-bundle.js',
+    },
+    'firefox_hello_ie9': {
+        'source_filenames': (
             'js/libs/matchMedia.js',
             'js/libs/matchMedia.addListener.js',
         ),
-        'firefox_privacy_tour': (
+        'output_filename': 'js/firefox_hello_ie9-bundle.js',
+    },
+    'firefox_privacy_tour': {
+        'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/base/mozilla-share-cta.js',
             'js/base/firefox-anniversary-video.js',
@@ -860,61 +1332,94 @@ MINIFY_BUNDLES = {
             'js/firefox/privacy_tour/common.js',
             'js/firefox/privacy_tour/tour.js',
         ),
-        'firefox_privacy_no_tour': (
+        'output_filename': 'js/firefox_privacy_tour-bundle.js',
+    },
+    'firefox_privacy_no_tour': {
+        'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/base/mozilla-share-cta.js',
             'js/base/firefox-anniversary-video.js',
             'js/firefox/privacy_tour/common.js',
             'js/firefox/privacy_tour/no-tour.js',
         ),
-        'firefox_search_tour': (
+        'output_filename': 'js/firefox_privacy_no_tour-bundle.js',
+    },
+    'firefox_search_tour': {
+        'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/search_tour/common.js',
             'js/firefox/search_tour/tour.js',
         ),
-        'firefox_search_tour_34.0.5': (
+        'output_filename': 'js/firefox_search_tour-bundle.js',
+    },
+    'firefox_search_tour_34.0.5': {
+        'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/search_tour/common.js',
             'js/firefox/search_tour/tour-34.0.5.js',
         ),
-        'firefox_search_no_tour': (
+        'output_filename': 'js/firefox_search_tour_34.0.5-bundle.js',
+    },
+    'firefox_search_no_tour': {
+        'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/search_tour/common.js',
         ),
-        'firefox_tour': (
+        'output_filename': 'js/firefox_search_no_tour-bundle.js',
+    },
+    'firefox_tour': {
+        'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/australis/browser-tour.js',
             'js/firefox/australis/common.js',
             'js/firefox/australis/tour.js',
         ),
-        'firefox_tour_none': (
+        'output_filename': 'js/firefox_tour-bundle.js',
+    },
+    'firefox_tour_none': {
+        'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/australis/common.js',
             'js/firefox/australis/no-tour.js',
         ),
-        'firefox_sms': (
+        'output_filename': 'js/firefox_tour_none-bundle.js',
+    },
+    'firefox_sms': {
+        'source_filenames': (
             'js/firefox/sms.js',
             'js/libs/socialshare.min.js',
         ),
-        'firefox_whatsnew_fxos': (
+        'output_filename': 'js/firefox_sms-bundle.js',
+    },
+    'firefox_whatsnew_fxos': {
+        'source_filenames': (
             'js/firefox/whatsnew-fxos.js',
         ),
-        'geolocation': (
+        'output_filename': 'js/firefox_whatsnew_fxos-bundle.js',
+    },
+    'geolocation': {
+        'source_filenames': (
             'js/libs/mapbox-1.6.3.js',
             'js/base/mozilla-accordion.js',
             'js/base/mozilla-accordion-gatrack.js',
             'js/firefox/geolocation-demo.js',
             'js/base/mozilla-modal.js',
         ),
-        'home': (
+        'output_filename': 'js/geolocation-bundle.js',
+    },
+    'home': {
+        'source_filenames': (
             'js/libs/jquery.ellipsis.min.js',
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.cycle2.carousel.min.js',
             'js/mozorg/home.js',
         ),
-        'home-2015': (
+        'output_filename': 'js/home-bundle.js',
+    },
+    'home-2015': {
+        'source_filenames': (
             'js/base/mozilla-share-cta.js',
             'js/base/firefox-anniversary-video.js',
             'js/libs/jquery.waypoints.min.js',
@@ -922,31 +1427,52 @@ MINIFY_BUNDLES = {
             'js/mozorg/home/ga-tracking.js',
             'js/mozorg/home/scroll-prompt.js',
         ),
-        'home-2015-ie9': (
+        'output_filename': 'js/home-2015-bundle.js',
+    },
+    'home-2015-ie9': {
+        'source_filenames': (
             'js/libs/matchMedia.addListener.js',
         ),
-        'history-slides': (
+        'output_filename': 'js/home-2015-ie9-bundle.js',
+    },
+    'history-slides': {
+        'source_filenames': (
             'js/libs/jquery.sequence.js',
             'js/mozorg/history-slides.js',
         ),
-        'installer_help': (
+        'output_filename': 'js/history-slides-bundle.js',
+    },
+    'installer_help': {
+        'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/firefox/installer-help.js',
         ),
-        'legal_fraud_report': (
+        'output_filename': 'js/installer_help-bundle.js',
+    },
+    'legal_fraud_report': {
+        'source_filenames': (
             'js/libs/jquery.validate.js',
             'js/legal/fraud-report.js',
             'js/base/mozilla-input-placeholder.js',
         ),
-        'manifesto': (
+        'output_filename': 'js/legal_fraud_report-bundle.js',
+    },
+    'manifesto': {
+        'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/libs/socialshare.min.js',
             'js/mozorg/manifesto.js',
         ),
-        'manifesto_ie9': (
+        'output_filename': 'js/manifesto-bundle.js',
+    },
+    'manifesto_ie9': {
+        'source_filenames': (
             'js/libs/matchMedia.addListener.js',
         ),
-        'mozorg-resp': (
+        'output_filename': 'js/manifesto_ie9-bundle.js',
+    },
+    'mozorg-resp': {
+        'source_filenames': (
             'js/libs/jquery-1.11.0.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
@@ -955,88 +1481,145 @@ MINIFY_BUNDLES = {
             'js/base/nav-main-resp.js',
             'js/base/mozilla-image-helper.js',
         ),
-        'nightly-firstrun': (
+        'output_filename': 'js/mozorg-resp-bundle.js',
+    },
+    'nightly-firstrun': {
+        'source_filenames': (
             'js/firefox/firstrun/nightly-firstrun.js',
         ),
-        'partnerships': (
+        'output_filename': 'js/nightly-firstrun-bundle.js',
+    },
+    'partnerships': {
+        'source_filenames': (
             'js/libs/jquery.validate.js',
             'js/base/mozilla-form-helper.js',
             'js/mozorg/partnerships.js',
             'js/base/mozilla-input-placeholder.js',
         ),
-        'plugincheck': (
+        'output_filename': 'js/partnerships-bundle.js',
+    },
+    'plugincheck': {
+        'source_filenames': (
             'js/plugincheck/plugincheck.min.js',
             'js/plugincheck/lib/mustache.js',
             'js/plugincheck/tmpl/plugincheck.ui.tmpl.js',
             'js/plugincheck/check-plugins.js',
         ),
-        'press_speaker_request': (
+        'output_filename': 'js/plugincheck-bundle.js',
+    },
+    'press_speaker_request': {
+        'source_filenames': (
             'js/libs/jquery.validate.js',
             'js/libs/modernizr.custom.inputtypes.js',
             'js/press/speaker-request.js',
             'js/base/mozilla-input-placeholder.js',
         ),
-        'privacy': (
+        'output_filename': 'js/press_speaker_request-bundle.js',
+    },
+    'privacy': {
+        'source_filenames': (
             'js/privacy/privacy.js',
         ),
-        'privacy-day': (
+        'output_filename': 'js/privacy-bundle.js',
+    },
+    'privacy-day': {
+        'source_filenames': (
             'js/base/mozilla-pager.js',
             'js/base/mozilla-share-cta.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/privacy/privacy-day.js',
         ),
-        'products': (
+        'output_filename': 'js/privacy-day-bundle.js',
+    },
+    'products': {
+        'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/mozorg/products.js',
         ),
-        'styleguide': (
+        'output_filename': 'js/products-bundle.js',
+    },
+    'styleguide': {
+        'source_filenames': (
             'js/styleguide/styleguide.js',
         ),
-        'styleguide-docs-mozilla-accordion': (
+        'output_filename': 'js/styleguide-bundle.js',
+    },
+    'styleguide-docs-mozilla-accordion': {
+        'source_filenames': (
             'js/base/mozilla-accordion.js',
             'js/styleguide/docs/mozilla-accordion.js',
         ),
-        'styleguide-docs-mozilla-pager': (
+        'output_filename': 'js/styleguide-docs-mozilla-accordion-bundle.js',
+    },
+    'styleguide-docs-mozilla-pager': {
+        'source_filenames': (
             'js/base/mozilla-pager.js',
             'js/styleguide/docs/mozilla-pager.js',
         ),
-        'video': (
+        'output_filename': 'js/styleguide-docs-mozilla-pager-bundle.js',
+    },
+    'video': {
+        'source_filenames': (
             'js/base/mozilla-video-tools.js',
         ),
-        'contribute-2015': (
+        'output_filename': 'js/video-bundle.js',
+    },
+    'contribute-2015': {
+        'source_filenames': (
             'js/mozorg/contribute/contribute-2015-ga.js',
             'js/mozorg/contribute/contribute-2015.js',
         ),
-        'contribute-2015-landing': (
+        'output_filename': 'js/contribute-2015-bundle.js',
+    },
+    'contribute-2015-landing': {
+        'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.cycle2.min.js',
             'js/base/mozilla-modal.js',
         ),
-        'mosaic': (
+        'output_filename': 'js/contribute-2015-landing-bundle.js',
+    },
+    'mosaic': {
+        'source_filenames': (
             'js/libs/modernizr.custom.26887.js',
             'js/libs/jquery.transit.min.js',
             'js/libs/jquery.gridrotator.js',
         ),
-        'annual_2011_ie9': (
+        'output_filename': 'js/mosaic-bundle.js',
+    },
+    'annual_2011_ie9': {
+        'source_filenames': (
             'js/libs/matchMedia.addListener.js',
         ),
-        'annual_2011': (
+        'output_filename': 'js/annual_2011_ie9-bundle.js',
+    },
+    'annual_2011': {
+        'source_filenames': (
             'js/libs/jquery.hoverIntent.minified.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
             'js/foundation/annual2011.js',
         ),
-        'annual_2012': (
+        'output_filename': 'js/annual_2011-bundle.js',
+    },
+    'annual_2012': {
+        'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/foundation/annual2012.js',
         ),
-        'annual_2013': (
+        'output_filename': 'js/annual_2012-bundle.js',
+    },
+    'annual_2013': {
+        'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/foundation/annual2013.js',
         ),
-        'logo-prototype': (
+        'output_filename': 'js/annual_2013-bundle.js',
+    },
+    'logo-prototype': {
+        'source_filenames': (
             'js/styleguide/logo-prototype/vendor/raf.polyfill.js',
             'js/styleguide/logo-prototype/vendor/tween.js',
             'js/styleguide/logo-prototype/vendor/lodash.compat.min.js',
@@ -1045,33 +1628,51 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.11.0.min.js',
             'js/styleguide/logo-prototype/clock-data.js',
         ),
-        'partners': (
+        'output_filename': 'js/logo-prototype-bundle.js',
+    },
+    'partners': {
+        'source_filenames': (
             'js/libs/modernizr.custom.shiv-load.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-pager.js',
             'js/base/mozilla-modal.js',
             'js/firefox/partners.js',
         ),
-        'partners_common': (
+        'output_filename': 'js/partners-bundle.js',
+    },
+    'partners_common': {
+        'source_filenames': (
             'js/libs/enquire.min.js',
             'js/base/mozilla-form-helper.js',
             'js/firefox/partners/common.js',
         ),
-        'partners_mobile': (
+        'output_filename': 'js/partners_common-bundle.js',
+    },
+    'partners_mobile': {
+        'source_filenames': (
             'js/firefox/partners/mobile.js',
         ),
-        'partners_desktop': (
+        'output_filename': 'js/partners_mobile-bundle.js',
+    },
+    'partners_desktop': {
+        'source_filenames': (
             'js/libs/jquery.pageslide.min.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/tweenmax.1.9.7.min.js',
             'js/libs/jquery.spritely-0.6.7.js',
             'js/firefox/partners/desktop.js',
         ),
-        'facebookapps_redirect': (
+        'output_filename': 'js/partners_desktop-bundle.js',
+    },
+    'facebookapps_redirect': {
+        'source_filenames': (
             'js/libs/jquery-1.11.0.min.js',
             'js/facebookapps/redirect.js',
         ),
-        'facebookapps_downloadtab': (
+        'output_filename': 'js/facebookapps_redirect-bundle.js',
+    },
+    'facebookapps_downloadtab': {
+        'source_filenames': (
             'js/facebookapps/downloadtab-init.js',
             'js/facebookapps/Base.js',
             'js/facebookapps/Facebook.js',
@@ -1080,12 +1681,16 @@ MINIFY_BUNDLES = {
             'js/facebookapps/App.js',
             'js/facebookapps/downloadtab.js',
         ),
-        'newsletter_form': (
+        'output_filename': 'js/facebookapps_downloadtab-bundle.js',
+    },
+    'newsletter_form': {
+        'source_filenames': (
             'js/libs/jquery-1.11.0.min.js',
             'js/libs/spin.min.js',
             'js/newsletter/form.js',
         ),
-    }
+        'output_filename': 'js/newsletter_form-bundle.js',
+    },
 }
 
 PROJECT_MODULE = 'bedrock'
@@ -1145,12 +1750,13 @@ INSTALLED_APPS = get_apps(exclude=(
 ), append=(
     # third-party apps
     'jingo_markdown',
-    'jingo_minify',
+    # 'jingo_minify',
     'django_statsd',
     'pagedown',
     'rest_framework',
     'waffle',
     'south',
+    'pipeline',
 
     # Django contrib apps
     'django.contrib.admin',

@@ -66,7 +66,7 @@ Mozilla.ImageHelper.initPlatformImages = function() {
         var src = base + suffix + ext;
 
         if ($img.data('high-res') && Mozilla.ImageHelper.isHighDpi()) {
-            src = Mozilla.ImageHelper.convertUrlToHighRes(src);
+            src = $img.data('high-res-src');
         }
 
         this.src = src;
@@ -85,7 +85,7 @@ Mozilla.ImageHelper.initHighResImages = function() {
         var $img = $(this);
         var src = $img.data('src');
         if (Mozilla.ImageHelper.isHighDpi()) {
-            src = Mozilla.ImageHelper.convertUrlToHighRes(src);
+            src = $img.data('high-res-src');
         }
         this.src = src;
         $img.attr('data-processed', 'true');
@@ -107,16 +107,6 @@ Mozilla.ImageHelper.isHighDpi = function() {
     }
 
     return Mozilla.ImageHelper.is_high_dpi;
-};
-
-// }}}
-// {{{ convertUrlToHighRes()
-
-Mozilla.ImageHelper.convertUrlToHighRes = function(url) {
-    var i = url.lastIndexOf('.');
-    var base = url.substring(0, i);
-    var ext = url.substring(i);
-    return base + '-high-res' + ext;
 };
 
 // }}}

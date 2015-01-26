@@ -76,7 +76,7 @@ Finally, for outputting an image that differs depending on the platform being us
 
     platform_img('img/firefox/new/browser.png', {'alt': 'Firefox screenshot'})
 
-`platform_img()` will automatically look for the images `browser-mac.png`, `browser-win.png`, `browser-linux.png`, etc. Platform image also supports hi-res images by adding `'data-high-res': true` to the list of optional attributes.
+`platform_img()` will automatically look for the images `browser-mac.png`, `browser-win.png`, `browser-linux.png`, etc. Platform image also supports hi-res images by adding `'high-res': True` to the list of optional attributes.
 
 `platform_img()` supports localized images by setting the `'l10n'` parameter to `True`::
 

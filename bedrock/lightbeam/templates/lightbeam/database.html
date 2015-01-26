@@ -26,11 +26,11 @@
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('lightbeam') }}
+  {% stylesheet 'lightbeam' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('lightbeam') }}
+  {% javascript 'lightbeam' %}
 {% endblock %}
 
 {% block content %}

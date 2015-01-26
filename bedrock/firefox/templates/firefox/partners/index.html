@@ -18,9 +18,9 @@
 {% block body_class %}sky{% endblock %}
 
 {% block extrahead %}
-  {{ css('partners') }}
+  {% stylesheet 'partners' %}
 <!--[if lte IE 7]>
-  {{ css('partners-ie7') }}
+  {% stylesheet 'partners-ie7' %}
 <![endif]-->
   <script>
     COMMON_JS_FILES = {{ js_common|safe }};
@@ -30,11 +30,11 @@
 {% endblock %}
 
 {% block site_js %}
-  {{ js('firefox-resp') }}
+  {% javascript 'firefox-resp' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('partners') }}
+  {% javascript 'partners' %}
 {% endblock %}
 
 {% block site_header %}

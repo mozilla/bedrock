@@ -11,7 +11,7 @@
 {% block body_class %}firefox-desktop{% endblock %}
 
 {% block extrahead %}
-  <script src="{{ static('/js/libs/modernizr.custom.cssanimations.js') }}"></script>
+  <script src="{{ static('js/libs/modernizr.custom.cssanimations.js') }}"></script>
 {% endblock %}
 
 {% block site_header %}
@@ -57,5 +57,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_desktop_common') }}
+  {% javascript 'firefox_desktop_common' %}
 {% endblock %}

@@ -12,7 +12,7 @@
 {% block body_class %}sky{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox-resp') }}
+  {% stylesheet 'firefox-resp' %}
 {% endblock %}
 
 {% block site_header_nav %}
@@ -87,5 +87,5 @@
 {% endblock %}
 
 {% block site_js %}
-  {{ js('firefox-resp') }}
+  {% javascript 'firefox-resp' %}
 {% endblock %}

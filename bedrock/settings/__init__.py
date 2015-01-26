@@ -37,23 +37,17 @@ if 'manage.py' not in sys.argv:
 
 if len(sys.argv) > 1 and sys.argv[1] == 'test':
     # Using the CachedStaticFilesStorage for tests breaks all the things.
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+    # TEMPLATE_DEBUG has to be True for jingo to call the template_rendered
+    # signal which Django's test client uses to save away the contexts for your
+    # test to look at later.
+    TEMPLATE_DEBUG = True
 
 # cache for lang files
 CACHES['l10n'] = {
     'BACKEND': 'lib.l10n_utils.cache.L10nCache',
     'LOCATION': 'l10n',
     'TIMEOUT': DOTLANG_CACHE,
-    'OPTIONS': {
-        'MAX_ENTRIES': 5000,
-        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
-    }
-}
-# cache for static files
-CACHES['staticfiles'] = {
-    'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-    'LOCATION': 'staticfiles',
-    'TIMEOUT': None,
     'OPTIONS': {
         'MAX_ENTRIES': 5000,
         'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached

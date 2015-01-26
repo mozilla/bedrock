@@ -5,7 +5,7 @@
 {% extends "/firefox/dashboard-base.html" %}
 {% block site_css %}
   {{ super() }}
-  {{ css('firefox-tiles') }}
+  {% stylesheet 'firefox-tiles' %}
 {% endblock %}
 
 
@@ -239,7 +239,7 @@ For more on what data Mozilla collects via Tiles, see below.
 
 <h4>{{ _('Tiles Preferences') }}</h4>
 
-<img src="{{ static('/img/firefox/tiles/new-tab-enhanced.png') }}" alt="{{ _('Screenshot') }}">
+<img src="{{ static('img/firefox/tiles/new-tab-enhanced.png') }}" alt="{{ _('Screenshot') }}">
 
 <p>
   {% trans url='https://support.mozilla.org/kb/how-do-tiles-work-firefox' %}

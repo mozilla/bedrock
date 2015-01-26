@@ -13,7 +13,7 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from rna.models import Release
 
-from bedrock.mozorg.helpers.misc import releasenotes_url
+from bedrock.mozorg.helpers.misc import convert_to_high_res, releasenotes_url
 from bedrock.mozorg.tests import TestCase
 
 
@@ -45,6 +45,12 @@ TEST_FIREFOX_TWITTER_ACCOUNTS = {
 def render(s, context=None):
     t = jingo.env.from_string(s)
     return t.render(context or {})
+
+
+def test_convert_to_high_res():
+    eq_(convert_to_high_res('/media/img/the.dude.png'), '/media/img/the.dude-high-res.png')
+    eq_(convert_to_high_res('/media/thats-a-bummer-man.jpg'),
+        '/media/thats-a-bummer-man-high-res.jpg')
 
 
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
@@ -256,6 +262,7 @@ class TestVideoTag(TestCase):
         eq_(doc('video object').length, 0)
 
 
+@override_settings(STATIC_URL='/media/')
 class TestPlatformImg(TestCase):
     rf = RequestFactory()
 
@@ -271,17 +278,15 @@ class TestPlatformImg(TestCase):
         return render("{{{{ l10n_img('{0}') }}}}".format(url),
                       {'request': req})
 
-    @override_settings(STATIC_URL='/media/')
     def test_platform_img_no_optional_attributes(self):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
         expected = (
-            u'<img class="platform-img js" src="" data-processed="false" data-src="/media/test.png" >'
-            u'<noscript><img class="platform-img win" src="/media/test.png" >'
+            u'<img class="platform-img js" src="" data-processed="false" data-src="/media/test.png">'
+            u'<noscript><img class="platform-img win" src="/media/test.png">'
             u'</noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(STATIC_URL='/media/')
     def test_platform_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         markup = self._render('test.png', {'data-test-attr': 'test'})
@@ -291,18 +296,25 @@ class TestPlatformImg(TestCase):
             u'src="/media/test.png" data-test-attr="test"></noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(STATIC_URL='/media/')
+    def test_platform_img_with_high_res(self):
+        """Should return expected markup with high resolution image attrs"""
+        markup = self._render('test.png', {'high-res': True})
+        expected = (
+            u'<img class="platform-img js" src="" data-processed="false" data-src="/media/test.png" '
+            u'data-high-res="true" data-high-res-src="/media/test-high-res.png"><noscript>'
+            u'<img class="platform-img win" src="/media/test.png"></noscript>')
+        self.assertEqual(markup, expected)
+
     def test_platform_img_with_l10n(self):
         """Should return expected markup with l10n image path"""
         l10n_url = self._render_l10n('test.png')
         markup = self._render('test.png', {'l10n': True})
         expected = (
-            u'<img class="platform-img js" src="" data-processed="false" data-src="' + l10n_url + '" >'
-            u'<noscript><img class="platform-img win" src="' + l10n_url + '" >'
+            u'<img class="platform-img js" src="" data-processed="false" data-src="' + l10n_url + '">'
+            u'<noscript><img class="platform-img win" src="' + l10n_url + '">'
             u'</noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(STATIC_URL='/media/')
     def test_platform_img_with_l10n_and_optional_attributes(self):
         """
         Should return expected markup with l10n image path and optional
@@ -314,6 +326,20 @@ class TestPlatformImg(TestCase):
             u'<img class="platform-img js" src="" data-processed="false" data-src="' + l10n_url + '" '
             u'data-test-attr="test"><noscript><img class="platform-img win" '
             u'src="' + l10n_url + '" data-test-attr="test"></noscript>')
+        self.assertEqual(markup, expected)
+
+    def test_platform_img_with_l10n_and_high_res(self):
+        """
+        Should return expected markup with l10n image path and high resolution
+        attributes
+        """
+        l10n_url = self._render_l10n('test.png')
+        l10n_hr_url = convert_to_high_res(l10n_url)
+        markup = self._render('test.png', {'l10n': True, 'high-res': True})
+        expected = (
+            u'<img class="platform-img js" src="" data-processed="false" data-src="' + l10n_url + '" '
+            u'data-high-res="true" data-high-res-src="' + l10n_hr_url + '"><noscript>'
+            u'<img class="platform-img win" src="' + l10n_url + '"></noscript>')
         self.assertEqual(markup, expected)
 
 
@@ -426,6 +452,7 @@ class TestFirefoxTwitterUrl(TestCase):
         eq_(self._render('pt-PT'), 'https://twitter.com/firefox')
 
 
+@override_settings(STATIC_URL='/media/')
 class TestHighResImg(TestCase):
     rf = RequestFactory()
 
@@ -441,47 +468,44 @@ class TestHighResImg(TestCase):
         return render("{{{{ l10n_img('{0}') }}}}".format(url),
                       {'request': req})
 
-    @override_settings(STATIC_URL='/media/')
     def test_high_res_img_no_optional_attributes(self):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
         expected = (
             u'<img class="js" src="" data-processed="false" data-src="/media/test.png" '
-            u'data-high-res="true" >'
-            u'<noscript><img src="/media/test.png" ></noscript>')
+            u'data-high-res="true" data-high-res-src="/media/test-high-res.png">'
+            u'<noscript><img src="/media/test.png"></noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(STATIC_URL='/media/')
     def test_high_res_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         markup = self._render('test.png', {'data-test-attr': 'test'})
         expected = (
             u'<img class="js" src="" data-processed="false" data-src="/media/test.png" '
-            u'data-high-res="true" data-test-attr="test">'
-            u'<noscript><img src="/media/test.png" data-test-attr="test">'
-            u'</noscript>')
+            u'data-high-res="true" data-high-res-src="/media/test-high-res.png" '
+            u'data-test-attr="test"><noscript>'
+            u'<img src="/media/test.png" data-test-attr="test"></noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(STATIC_URL='/media/')
     def test_high_res_img_with_l10n(self):
         """Should return expected markup with l10n image path"""
         l10n_url = self._render_l10n('test.png')
+        l10n_hr_url = convert_to_high_res(l10n_url)
         markup = self._render('test.png', {'l10n': True})
         expected = (
             u'<img class="js" src="" data-processed="false" data-src="' + l10n_url + '" '
-            u'data-high-res="true" >'
-            u'<noscript><img src="' + l10n_url + '" >'
-            u'</noscript>')
+            u'data-high-res="true" data-high-res-src="' + l10n_hr_url + '">'
+            u'<noscript><img src="' + l10n_url + '"></noscript>')
         self.assertEqual(markup, expected)
 
-    @override_settings(STATIC_URL='/media/')
     def test_high_res_img_with_l10n_and_optional_attributes(self):
         """Should return expected markup with l10n image path"""
         l10n_url = self._render_l10n('test.png')
+        l10n_hr_url = convert_to_high_res(l10n_url)
         markup = self._render('test.png', {'l10n': True, 'data-test-attr': 'test'})
         expected = (
             u'<img class="js" src="" data-processed="false" data-src="' + l10n_url + '" '
-            u'data-high-res="true" data-test-attr="test">'
+            u'data-high-res="true" data-high-res-src="' + l10n_hr_url + '" data-test-attr="test">'
             u'<noscript><img src="' + l10n_url + '" data-test-attr="test">'
             u'</noscript>')
         self.assertEqual(markup, expected)

@@ -9,7 +9,7 @@
 {% block body_class %}sand{% endblock %}
 
 {% block site_css %}
-  {{ css('styleguide-docs-mozilla-pager') }}
+  {% stylesheet 'styleguide-docs-mozilla-pager' %}
 {% endblock %}
 
 {% block content %}
@@ -209,5 +209,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('styleguide-docs-mozilla-pager') }}
+  {% javascript 'styleguide-docs-mozilla-pager' %}
 {% endblock %}

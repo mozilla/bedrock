@@ -8,7 +8,7 @@
 {% block page_title %}{{ _("Firefox — Customize and make it your own — The most flexible browser on the Web") }}{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_desktop_customize') }}
+  {% stylesheet 'firefox_desktop_customize' %}
 {% endblock %}
 
 {% block body_id %}firefox-desktop-customize{% endblock %}
@@ -25,7 +25,7 @@
       </p>
 
       <div class="animation-wrapper" id="flexible-top-animation">
-        <img src="{{ static('/img/firefox/desktop/customize/animations/flexible-top-fallback.png') }}" class="fallback" alt="">
+        <img src="{{ static('img/firefox/desktop/customize/animations/flexible-top-fallback.png') }}" class="fallback" alt="">
 
         <div class="stage">
           <div id="browser-customize-orange"></div>
@@ -52,7 +52,7 @@
         {{ high_res_img('img/firefox/desktop/customize/designed-redesigned.png', { 'alt': '', 'id': 'designed-mobile'}) }}
       </div>
       <div class="animation-wrapper" id="flexible-bottom-animation">
-        <img src="{{ static('/img/firefox/desktop/customize/animations/flexible-bottom-fallback.png') }}" class="fallback" alt="">
+        <img src="{{ static('img/firefox/desktop/customize/animations/flexible-bottom-fallback.png') }}" class="fallback" alt="">
 
         <div class="stage">
           <div id="panel-start">
@@ -176,7 +176,7 @@
         <a class="next show-customizer" href="#add-ons" role="button">{{ _('Next') }}</a>
 
         <div class="customizer-visual">
-          <img id="theme-demo" src="{{ static('/img/firefox/desktop/customize/theme-red.png') }}" alt="{{ _('Preview of the currently selected theme') }}">
+          <img id="theme-demo" src="{{ static('img/firefox/desktop/customize/theme-red.png') }}" alt="{{ _('Preview of the currently selected theme') }}">
         </div>
       </div>
     </section>
@@ -204,7 +204,7 @@
         </div><!--/.customizer-copy-->
 
         <div class="customizer-visual">
-          <img src="{{ static('/img/firefox/desktop/customize/add-ons.png') }}" alt="">
+          <img src="{{ static('img/firefox/desktop/customize/add-ons.png') }}" alt="">
         </div>
       </div>
     </section>
@@ -224,7 +224,7 @@
         </div>
 
         <div class="customizer-visual">
-          <img src="{{ static('/img/firefox/desktop/customize/awesome-bar.png') }}" alt="{{ _('Firefox Awesome Bar') }}">
+          <img src="{{ static('img/firefox/desktop/customize/awesome-bar.png') }}" alt="{{ _('Firefox Awesome Bar') }}">
         </div>
       </div>
     </section>
@@ -249,5 +249,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_desktop_customize')}}
+  {% javascript 'firefox_desktop_customize' %}
 {% endblock %}

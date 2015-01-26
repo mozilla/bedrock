@@ -14,7 +14,7 @@
 {% set active_page = active_page|default('index') -%}
 
 {% block extrahead %}
- {{ css('research') }}
+ {% stylesheet 'research' %}
 {% endblock %}
 
 {% block page_title_prefix %}{{_('Mozilla Research — ')}}{% endblock %}
@@ -47,7 +47,7 @@
 {% endblock %}
 
 {% block site_js %}
-  {{ js('mozorg-resp') }}
+  {% javascript 'mozorg-resp' %}
 {% endblock %}
 
 {% block email_form %}{% endblock %}

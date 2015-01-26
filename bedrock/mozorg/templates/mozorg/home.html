@@ -20,15 +20,15 @@
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('home') }}
+  {% stylesheet 'home' %}
 <!--[if IE 9]>
-  {{ css('home-ie9') }}
+  {% stylesheet 'home-ie9' %}
 <![endif]-->
 <!--[if IE 8]>
-  {{ css('home-ie8') }}
+  {% stylesheet 'home-ie8' %}
 <![endif]-->
 <!--[if lt IE 8]>
-  {{ css('home-ie') }}
+  {% stylesheet 'home-ie' %}
 <![endif]-->
 {% endblock %}
 
@@ -42,7 +42,7 @@
 {% block js %}
 {# This hides the script from IE 7 and lower #}
 <!--[if gt IE 7]> <!-- -->
-  {{ js('home') }}
+  {% javascript 'home' %}
 <!-- <![endif]-->
 {% endblock %}
 

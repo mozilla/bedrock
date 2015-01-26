@@ -14,9 +14,9 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_os_mwc_2014_preview') }}
+  {% stylesheet 'firefox_os_mwc_2014_preview' %}
   <!--[if lt IE 8]>
-  {{ css('firefox_os_mwc_2014_preview_ie7') }}
+  {% stylesheet 'firefox_os_mwc_2014_preview_ie7' %}
   <![endif]-->
 {% endblock %}
 
@@ -200,5 +200,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_os_mwc_2014_preview') }}
+  {% javascript 'firefox_os_mwc_2014_preview' %}
 {% endblock %}

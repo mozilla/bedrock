@@ -42,8 +42,8 @@
 
     <dt>{% trans %}Where can I get versions of the feed icon?{% endtrans %}</dt>
     <dd><p>
-    {% trans icon14=media('img/trademarks/feed-icon-14x14.png'),
-        icon28=media('img/trademarks/feed-icon-28x28.png'),
+    {% trans icon14=static('img/trademarks/feed-icon-14x14.png'),
+        icon28=static('img/trademarks/feed-icon-28x28.png'),
         feedicons="http://www.feedicons.com/" %}
     The <q>canonical</q> icon is available in a
     <a href="{{ icon14 }}" title="14 by 14-pixel canonical version of the feed icon">14x14-pixel version</a>
@@ -103,7 +103,7 @@
     formats?{% endtrans %}</dt>
     <dd>
       <p>{% trans %}
-        We don&#8217;t believe so. We believe our proposed approach 
+        We don&#8217;t believe so. We believe our proposed approach
         is consistent with encouraging innovation, for the following reasons:
       {% endtrans %}</p>
       <ul>
@@ -113,7 +113,7 @@
         restrict use of the icon to the present-day RSS or Atom
         formats; in addition, the guidelines do not rule out the use
         of protocols other than HTTP to deliver web feeds.{% endtrans %}</li>
-  
+
         <li>{% trans %}The usage guidelines as proposed do not rule out
         techniques like using proprietary media types for content
         items within a web feed published using an open web
@@ -121,7 +121,7 @@
         practices would lessen the usefulness of having open formats,
         but that&#8217;s a question for the broader community to
         consider in interpreting and evolving the guidelines.{% endtrans %}</li>
-  
+
         <li>{% trans %}Finally, the guidelines are not legally binding. If you
         believe that the goal of innovation requires your defining and
         using partly or completely proprietary web syndication formats

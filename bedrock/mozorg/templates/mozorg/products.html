@@ -9,7 +9,7 @@
 {% block body_id %}products-page{% endblock %}
 
 {% block extrahead %}
-  {{ css('products') }}
+  {% stylesheet 'products' %}
 {% endblock %}
 
 {% block content %}
@@ -32,28 +32,28 @@
   <ul>
     <li>
       <a href="{{ url('firefox.desktop.index') }}">
-        <img src="{{ static('/img/products/badge-firefox.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-firefox.jpg') }}" alt="">
         <h3>{{ _('Desktop') }}</h3>
         <p>{{ _('The free, non-profit browser for your desktop.') }}</p>
       </a>
     </li>
     <li>
       <a href="{{ url('firefox.android.index') }}">
-        <img src="{{ static('/img/products/badge-android.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-android.jpg') }}" alt="">
         <h3>Android</h3>
         <p>{{ _('The fast, smart, safe choice for Android browsing.') }}</p>
       </a>
     </li>
     <li>
       <a href="{{ url('firefox.os.index') }}">
-        <img src="{{ static('/img/products/badge-firefoxos.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-firefoxos.jpg') }}" alt="">
         <h3>{{ _('OS') }}</h3>
         <p>{{ _('An open operating system for mobile devices.') }}</p>
       </a>
     </li>
     <li>
       <a href="https://marketplace.firefox.com/">
-        <img src="{{ static('/img/products/badge-marketplace.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-marketplace.jpg') }}" alt="">
         <h3>Marketplace</h3>
         <p>{{ _('A creation and distribution platform for apps.') }}</p>
       </a>
@@ -66,21 +66,21 @@
   <ul>
     <li>
       <a href="{{ url('persona.persona') }}">
-        <img src="{{ static('/img/products/badge-persona.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-persona.jpg') }}" alt="">
         <h3>Persona</h3>
         <p>{{ _('A better way to sign in to websites.') }}</p>
       </a>
     </li>
     <li>
       <a href="https://webmaker.org">
-        <img src="{{ static('/img/products/badge-webmaker.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-webmaker.jpg') }}" alt="">
         <h3>Webmaker</h3>
         <p>{{ _('Make something amazing with the Web.') }}</p>
       </a>
     </li>
     <li>
       <a href="{{ php_url('/thunderbird/') }}">
-        <img src="{{ static('/img/products/badge-thunderbird.jpg') }}" alt="" />
+        <img src="{{ static('img/products/badge-thunderbird.jpg') }}" alt="" />
         <h3>Thunderbird</h3>
         <p>{{ _('Safe, fast and easy email.') }}</p>
       </a>
@@ -97,35 +97,35 @@
   <ul>
     <li>
       <a href="http://www.bugzilla.org/">
-        <img src="{{ static('/img/products/badge-bugzilla.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-bugzilla.jpg') }}" alt="">
         <h3>Bugzilla</h3>
         <p>{{ _('A bug tracking system to help manage software development.') }}</p>
       </a>
     </li>
     <li>
       <a href="http://getfirebug.com/">
-        <img src="{{ static('/img/products/badge-firebug.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-firebug.jpg') }}" alt="">
         <h3>Firebug</h3>
         <p>{{ _('Inspect, debug, analyze and more inside your browser.') }}</p>
       </a>
     </li>
     <li>
       <a href="https://developer.mozilla.org/docs/Mozilla/Projects/XULRunner">
-        <img src="{{ static('/img/products/badge-xulrunner.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-xulrunner.jpg') }}" alt="">
         <h3>XUL Runner</h3>
         <p>{{ _('An environment for XUL-based applications.') }}</p>
       </a>
     </li>
     <li>
       <a href="https://developer.mozilla.org/docs/Mozilla/Gecko">
-        <img src="{{ static('/img/products/badge-gecko.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-gecko.jpg') }}" alt="">
         <h3>Gecko</h3>
         <p>{{ _('The layout engine that drives Firefox.') }}</p>
       </a>
     </li>
     <li>
       <a href="https://developer.mozilla.org/Apps/Reference">
-        <img src="{{ static('/img/products/badge-api.jpg') }}" alt="">
+        <img src="{{ static('img/products/badge-api.jpg') }}" alt="">
         <h3>{{ _('Firefox APIs') }}</h3>
         <p>{{ _('The foundations for building a Firefox OS app.') }}</p>
       </a>
@@ -141,5 +141,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('products') }}
+  {% javascript 'products' %}
 {% endblock %}

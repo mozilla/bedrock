@@ -13,7 +13,7 @@
 {% block body_class %}firefox-desktop-tips{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_desktop_tips') }}
+  {% stylesheet 'firefox_desktop_tips' %}
 {% endblock %}
 
 {% block site_header %}
@@ -33,7 +33,7 @@
   <div id="page-header">
     <div class="container">
       <div id="heading-logo-wrapper">
-        <img src="{{ static('/img/firefox/desktop/tips/firefox-logo.png') }}" alt="Firefox" id="page-header-logo">
+        <img src="{{ static('img/firefox/desktop/tips/firefox-logo.png') }}" alt="Firefox" id="page-header-logo">
         <div class="heading-group">
           <h1>{{ _('The best of the latest Firefox') }}</h1>
           <h2>{{ _('5 top tips, tricks and time-saving tools') }}</h2>
@@ -274,5 +274,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_desktop_tips') }}
+  {% javascript 'firefox_desktop_tips' %}
 {% endblock %}

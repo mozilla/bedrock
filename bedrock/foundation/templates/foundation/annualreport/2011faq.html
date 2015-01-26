@@ -11,12 +11,12 @@
 {% block body_class %}sand{% endblock %}
 
 {% block extrahead %}
-  {{ css('annual_2011') }}
+  {% stylesheet 'annual_2011' %}
   <link rel="stylesheet" media="print" href="{{ static('css/foundation/annual2011print.css') }}">
 {% endblock %}
 
 {% block js %}
-  {{ js('annual_2011') }}
+  {% javascript 'annual_2011' %}
 {% endblock %}
 
 

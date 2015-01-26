@@ -7,11 +7,11 @@
 {% set_lang_files "firefox/privacy_tour/privacy_tour" %}
 
 {% block site_css %}
-  {{ css('firefox_privacy_tour') }}
+  {% stylesheet 'firefox_privacy_tour' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_privacy_tour') }}
+  {% javascript 'firefox_privacy_tour' %}
 {% endblock %}
 
 {% block noscript %}
@@ -57,7 +57,7 @@
                 <div class="forget-hanger-3" data-title="{{ _('The new Forget button') }}" data-text="{{ _('Want to add it later? Open this menu and select Customize. Then drag it (or any other button) where you want.') }}"></div>
               </div>
             </div>
-            {{ platform_img('firefox/privacy_tour/forget-panel.png', {'l10n': True, 'alt': '', 'id': 'forget-button-img', 'width': '300', 'height': '163', 'data-high-res': 'true'}) }}
+            {{ platform_img('firefox/privacy_tour/forget-panel.png', {'l10n': True, 'alt': '', 'id': 'forget-button-img', 'width': '300', 'height': '163', 'high-res': True}) }}
           </li>
           <li class="tour-step" data-step="2" data-tip-prev="{{ _('<span>Previous:</span> Forget') }}" data-tip-next="{{ _('<span>Next:</span> Private Browsing') }}">
             <div class="tour-item">

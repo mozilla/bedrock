@@ -305,7 +305,7 @@ class TestFirefoxPartners(TestCase):
         with the STATIC_URL.
         """
         bundle = 'partners_desktop'
-        files = settings.MINIFY_BUNDLES['js'][bundle]
+        files = settings.PIPELINE_JS[bundle]['source_filenames']
         files = [static(f) for f in files]
         self.assertEqual(files,
                          json.loads(fx_views.get_js_bundle_files(bundle)))
@@ -316,10 +316,10 @@ class TestFirefoxPartners(TestCase):
         When DEBUG is off the bundle should return a single minified filename.
         """
         bundle = 'partners_desktop'
-        filename = static('js/%s-min.js?build=' % bundle)
+        filename = static('js/%s-bundle.js' % bundle)
         bundle_file = json.loads(fx_views.get_js_bundle_files(bundle))
         self.assertEqual(len(bundle_file), 1)
-        self.assertTrue(bundle_file[0].startswith(filename))
+        self.assertEqual(bundle_file[0], filename)
 
     @patch('bedrock.mozorg.views.requests.post')
     def test_sf_form_proxy_error_response(self, post_patch):

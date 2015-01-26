@@ -9,11 +9,11 @@
 {% block body_id %}geolocation{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_geolocation') }}
+  {% stylesheet 'firefox_geolocation' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('geolocation') }}
+  {% javascript 'geolocation' %}
 {% endblock %}
 
 {% block content %}

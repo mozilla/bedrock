@@ -20,11 +20,11 @@
 {% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_tour') }}
+  {% stylesheet 'firefox_tour' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_tour') }}
+  {% javascript 'firefox_tour' %}
 {% endblock %}
 
 {% block main_heading %}

@@ -28,4 +28,5 @@ src/requests
 src/rna
 src/six
 src/tweepy
-src/jingo-minify
+src/django-pipeline
+src/whitenoise

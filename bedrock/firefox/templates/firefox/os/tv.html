@@ -12,7 +12,7 @@
 
 
 {% block site_css %}
-  {{ css('firefox_os_tv') }}
+  {% stylesheet 'firefox_os_tv' %}
 {% endblock %}
 
 {% block site_header_nav %}{% endblock %}
@@ -77,7 +77,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_os_tv') }}
+  {% javascript 'firefox_os_tv' %}
 {% endblock %}
 
 {% block email_form %}{% endblock %}

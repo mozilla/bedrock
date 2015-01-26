@@ -6,7 +6,7 @@
 {% block body_class %}sand{% endblock %}
 
 {% block extrahead %}
-  {{ css('itu') }}
+  {% stylesheet 'itu' %}
 {% endblock %}
 
 {% block content %}
@@ -43,7 +43,7 @@
             </li>
           </ol>
         </section>
-        <section class="micro-grants">    
+        <section class="micro-grants">
           <h2>{{ _("Micro-grants for Civil Society") }}</h2>
           <p>{{ _("We've provided support to 10 amazing open web advocates from around the world. <a href='%s'>Check out their projects and get involved!</a>")|format("https://webmaker.org/ITU/advocates/") }}</p>
         </section>

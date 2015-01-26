@@ -6,17 +6,23 @@ from django.conf import settings
 from django.conf.urls import patterns
 
 from funfactory.helpers import static
+from pipeline.collector import default_collector
+from pipeline.packager import Packager
 
 from util import redirect
 
 
 def tabzilla_css_redirect(r):
-    suffix = '/tabzilla.less' if settings.TEMPLATE_DEBUG else '-min'
-    if settings.LESS_PREPROCESS:
-        from jingo_minify.helpers import compile_css
-        compile_css('css/tabzilla/tabzilla.less')
+    packer = Packager()
+    tabzilla_package = packer.package_for('css', 'tabzilla')
+    if not settings.DEBUG:
+        file_path = tabzilla_package.output_filename
+    else:
+        default_collector.collect()
+        paths = packer.compile(tabzilla_package.paths)
+        file_path = paths[0]
 
-    return static('css/tabzilla%s.css' % suffix)
+    return static(file_path)
 
 
 urlpatterns = patterns(

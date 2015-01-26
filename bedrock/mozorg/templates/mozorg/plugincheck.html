@@ -9,7 +9,7 @@
 {% block page_title %}{{_('Plugin Check &amp; Updates')}}{% endblock %}
 
 {% block extrahead %}
-  {{ css('plugincheck') }}
+  {% stylesheet 'plugincheck' %}
 {% endblock %}
 
 {#- Override the infobar options not to run the version check Bug 1111656 -#}
@@ -215,5 +215,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('plugincheck') }}
+  {% javascript 'plugincheck' %}
 {% endblock %}

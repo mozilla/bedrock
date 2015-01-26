@@ -12,11 +12,11 @@
 
 {% block extrahead %}
   {{ super() }}
-  {{ css('security-bug-bounty-hall-of-fame') }}
+  {% stylesheet 'security-bug-bounty-hall-of-fame' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('accordion') }}
+  {% javascript 'accordion' %}
 {% endblock %}
 
 {% block article %}

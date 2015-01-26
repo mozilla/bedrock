@@ -13,7 +13,7 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_whatsnew') }}
+  {% stylesheet 'firefox_whatsnew' %}
 {% endblock %}
 
 {% block content %}
@@ -90,7 +90,7 @@
   <div id="video-player" class="mozilla-video-control mozilla-video-shadow">
     <video
       controls="controls"
-      poster="{{ static('/img/firefox/whatsnew/video-poster.jpg') }}"
+      poster="{{ static('img/firefox/whatsnew/video-poster.jpg') }}"
       height="360"
       width="640"
       data-overlay-hidden-text="{{_('Play video')}}">

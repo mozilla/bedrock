@@ -10,7 +10,7 @@
 
 {% block page_title_prefix %}{{_('Mozilla Firefox Web Browser')}} — {% endblock %}
 {% block page_image %}{{ static('img/firefox/firefox-256.jpg') }}{% endblock %}
-{% block page_favicon %}{{ static('img/firefox/favicon.ico?2013-08') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/favicon.ico') }}{% endblock %}
 {% block page_favicon_large %}{{ static('img/firefox/favicon-196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/firefox/ios-icon-180.png') }}{% endblock %}
 
@@ -18,7 +18,7 @@
 {% block twitter_id %}firefox{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox-resp') }}
+  {% stylesheet 'firefox-resp' %}
 {% endblock %}
 
 {% block site_header_nav %}
@@ -30,5 +30,5 @@
 {% endblock %}
 
 {% block site_js %}
-  {{ js('firefox-resp') }}
+  {% javascript 'firefox-resp' %}
 {% endblock %}

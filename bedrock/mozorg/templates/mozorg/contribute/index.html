@@ -9,8 +9,8 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('contribute-2015-landing') }}
-  {{ js('contribute-2015') }}
+  {% javascript 'contribute-2015-landing' %}
+  {% javascript 'contribute-2015' %}
 {% endblock %}
 
 {% block body_id %}landing{% endblock %}
@@ -77,7 +77,7 @@
                'Mozilla_2014_i_am.ogv',
                'Mozilla_2014_i_am.mp4',
                prefix='//videos.cdn.mozilla.net/uploads/mozillaorg/',
-               poster=media('img/mozorg/about/poster-i-am.jpg')) }}
+               poster=static('img/mozorg/about/poster-i-am.jpg')) }}
         </div>
       </div>
     </div>

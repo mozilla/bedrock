@@ -16,7 +16,7 @@
 {% block twitter_id %}firefox{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox-resp') }}
+  {% stylesheet 'firefox-resp' %}
 {% endblock %}
 
 {% block site_header_nav %}{% endblock %}
@@ -26,5 +26,5 @@
 {% endblock %}
 
 {% block site_js %}
-  {{ js('firefox-resp') }}
+  {% javascript 'firefox-resp' %}
 {% endblock %}

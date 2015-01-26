@@ -20,11 +20,11 @@
 {% block site_css %}{% endblock %}
 
 {% block extrahead %}
-  {{ css('firefox_new') }}
+  {% stylesheet 'firefox_new' %}
 {% endblock %}
 
 {% block js_pretrack %}
-  {{ js('firefox_new') }}
+  {% javascript 'firefox_new' %}
 {% endblock %}
 
 {% block optimizely %}
@@ -137,7 +137,7 @@
         </div>
 
         <div class="desktop" id="firefox-screenshot">
-          {{ platform_img('img/firefox/new/browser.png', {'alt': _('Firefox screenshot'), 'data-additional-platforms': 'android ios', 'data-high-res': 'true'}) }}
+          {{ platform_img('img/firefox/new/browser.png', {'alt': _('Firefox screenshot'), 'data-additional-platforms': 'android ios', 'high-res': True}) }}
         </div>
 
         <div id="newsletter-latest">

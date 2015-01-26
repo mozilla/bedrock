@@ -11,18 +11,18 @@
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Firefox Hello — Free, easy video conversations') }}{% endblock %}
 {% block page_desc %}{{ _('Learn all about Firefox Hello and see for yourself how easy it is to have a free video conversation with anyone, anywhere, right from your browser') }}{% endblock %}
-{% block page_image %}{{ media('img/firefox/hello/hello-share.jpg') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/hello/hello-share.jpg') }}{% endblock %}
 {% block body_id %}firefox-hello{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_hello') }}
+  {% stylesheet 'firefox_hello' %}
 {% endblock %}
 
 {% block js %}
   <!--[if IE 9]>
-    {{ js('firefox_hello_ie9') }}
+    {% javascript 'firefox_hello_ie9' %}
   <![endif]-->
-  {{ js('firefox_hello') }}
+  {% javascript 'firefox_hello' %}
 {% endblock %}
 
 {% block site_header %}
@@ -136,7 +136,7 @@
       <button class="try-hello" id="try-hello-intro">{{ _('Try Firefox Hello') }}</button>
 
       <aside id="powered-by">
-        {{ _('Powered by %s')|format(high_res_img('/img/firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}
+        {{ _('Powered by %s')|format(high_res_img('img/firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}
       </aside>
     </div>{# /.container #}
   </section>
@@ -227,7 +227,7 @@
       </div>
       <div class="cta-wrapper">
         <a id="video-link" href="{{ video_url }}.mp4">
-          <img src="{{ static('/img/firefox/hello/video-screenshot.jpg') }}" alt="{{ _('Get to know Hello') }}">
+          <img src="{{ static('img/firefox/hello/video-screenshot.jpg') }}" alt="{{ _('Get to know Hello') }}">
         </a>
       </div>
     </div>{# /.container #}

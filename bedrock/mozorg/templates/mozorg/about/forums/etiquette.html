@@ -8,7 +8,7 @@
 {% block body_id %}about-forum-etiquette{% endblock %}
 
 {% block page_css %}
-  {{ css('about-forums') }}
+  {% stylesheet 'about-forums' %}
 {% endblock %}
 
 {% block article %}
@@ -159,7 +159,7 @@
     {{ _('Remember that if someone wants to read the original message, they can; it is easily accessible.') }}
     {{ _('A good rule of thumb is, don’t include more quoted text than new text.') }}
     </p>
-    
+
     <p>
       {{ _('There is always a need for some trimming - either a salutation, a signature, some blank lines or whatever.') }}
       {{ _('If you are doing no trimming whatsoever of the quoted text, then you aren’t trimming enough.') }}

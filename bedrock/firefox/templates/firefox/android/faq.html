@@ -9,7 +9,7 @@
 {% block body_id %}mobile-faq{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_faq') }}
+  {% stylesheet 'firefox_faq' %}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -209,5 +209,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_faq') }}
+  {% javascript 'firefox_faq' %}
 {% endblock %}

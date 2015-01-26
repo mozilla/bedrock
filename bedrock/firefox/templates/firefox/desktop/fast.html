@@ -8,7 +8,7 @@
 {% block page_title %}{{ _('Firefox — The "speed king" - The fastest browser on the Web') }}{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_desktop_fast') }}
+  {% stylesheet 'firefox_desktop_fast' %}
 {% endblock %}
 
 {% block body_id %}firefox-desktop-fast{% endblock %}
@@ -72,7 +72,7 @@
       </p>
 
       <div class="animation-wrapper" id="feel-animation">
-        <img src="{{ static('/img/firefox/desktop/fast/feel-composite.png') }}" class="fallback" alt="">
+        <img src="{{ static('img/firefox/desktop/fast/feel-composite.png') }}" class="fallback" alt="">
 
         <div class="stage">
           <div id="feel-tabs">
@@ -106,5 +106,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_desktop_fast') }}
+  {% javascript 'firefox_desktop_fast' %}
 {% endblock %}

@@ -12,7 +12,7 @@
 {% block site_header_nav %}{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_whatsnew_fxos') }}
+  {% stylesheet 'firefox_whatsnew_fxos' %}
 {% endblock %}
 
 {% block content %}
@@ -42,5 +42,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_whatsnew_fxos') }}
+  {% javascript 'firefox_whatsnew_fxos' %}
 {% endblock %}

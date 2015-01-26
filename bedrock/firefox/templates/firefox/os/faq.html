@@ -9,7 +9,7 @@
 {% block body_id %}firefox-os-faq{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_faq') }}
+  {% stylesheet 'firefox_faq' %}
 {% endblock %}
 
 {% block content %}
@@ -174,5 +174,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_faq') }}
+  {% javascript 'firefox_faq' %}
 {% endblock %}

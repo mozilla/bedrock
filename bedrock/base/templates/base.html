@@ -40,7 +40,7 @@
     {{ l10n_css() }}
 
     {% block tabzilla_css %}
-      {{ css('tabzilla') }}
+      {% stylesheet 'tabzilla' %}
     {% endblock %}
 
     <!--[if lte IE 8]>
@@ -50,13 +50,13 @@
 
     <!--[if lte IE 7]>
       {# Basic styles, only for IE7 and lower #}
-      {{ css('oldIE') }}
+      {% stylesheet 'oldIE' %}
     <![endif]-->
 
     <!--[if !lte IE 7]><!-->
     {# Global styles, hidden from IE7 and lower #}
     {% block site_css %}
-      {{ css('common') }}
+      {% stylesheet 'common' %}
     {% endblock %}
 
     {# Page-specific styles, hidden from IE7 and lower #}
@@ -67,7 +67,7 @@
       {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE7 and lower. #}
     {% endblock %}
 
-    {{ js('site') }}
+    {% javascript 'site' %}
 
     {% block optimizely %}{% endblock %}
 
@@ -133,10 +133,10 @@
     </div><!-- close #outer-wrapper -->
 
     {% block site_js %}
-      {{ js('common') }}
+      {% javascript 'common' %}
     {% endblock %}
     {% block tabzilla_js %}
-      <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla') }}?build={{ BUILD_ID_JS }}"></script>
+      <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla') }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% if settings.USE_GRUNT_LIVERELOAD %}

@@ -8,7 +8,7 @@
 {% block body_id %}csrf-failure{% endblock %}
 
 {% block extrahead %}
-  {{ css('csrf-failure') }}
+  {% stylesheet 'csrf-failure' %}
 {% endblock %}
 
 {% block content %}

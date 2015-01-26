@@ -5,7 +5,7 @@
 {% block page_title %}{{ _('Download Firefox') }}{% endblock %}
 
 {% block site_css %}
-    {{ css('facebookapps_downloadtab') }}
+    {% stylesheet 'facebookapps_downloadtab' %}
 {% endblock %}
 
 {% block body_class -%}
@@ -127,5 +127,5 @@
 
     <div id="fb-root"></div>
 
-    {{ js('facebookapps_downloadtab') }}
+    {% javascript 'facebookapps_downloadtab' %}
 {% endblock %}

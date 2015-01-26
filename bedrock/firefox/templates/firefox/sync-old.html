@@ -8,9 +8,9 @@
 {% block body_id %}firefox-sync{% endblock %}
 
 {% block extrahead %}
-  {{ css('firefox_sync_old') }}
+  {% stylesheet 'firefox_sync_old' %}
   <!--[if gt IE 9]><!-->
-    {{ css('firefox_sync_anim') }}
+    {% stylesheet 'firefox_sync_anim' %}
   <!--<![endif]-->
 {% endblock %}
 
@@ -78,5 +78,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_sync_old') }}
+  {% javascript 'firefox_sync_old' %}
 {% endblock %}

@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_all') }}
+  {% stylesheet 'firefox_all' %}
 {% endblock %}
 
 {% block site_header_logo %}
@@ -127,7 +127,7 @@
 {% block js %}
   {# searching with js only makes sense if we're displaying all #}
   {% if not query %}
-    {{ js('firefox_all') }}
+    {% javascript 'firefox_all' %}
   {% endif %}
 {% endblock %}
 

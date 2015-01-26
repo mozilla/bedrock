@@ -6,7 +6,7 @@
     <title>{% filter striptags|e %}{{ _('Welcome to <span>Thunderbird</span>') }}{% endfilter %}</title>
     {{ l10n_css() }}
     {% block extrahead %}
-      {{ css('thunderbird-start') }}
+      {% stylesheet 'thunderbird-start' %}
     {% endblock %}
   </head>
   <body class="sky">
