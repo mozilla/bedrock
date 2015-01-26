@@ -141,15 +141,15 @@ describe("tabzilla.js", function() {
 
     describe("infobar.update", function () {
 
-        var setup = function (ua) {
+        var setup = function (ua, buildID) {
             // Test a case where the latest version is a non-dot release
-            var result1 = Tabzilla.infobar.update(ua, '26.0');
+            var result1 = Tabzilla.infobar.update('35.0', ua, buildID);
 
             // Cleanup
             $('#tabzilla-infobar').remove();
 
             // Test a case where the latest version is a dot release
-            var result2 = Tabzilla.infobar.update(ua, '25.0.1');
+            var result2 = Tabzilla.infobar.update('35.0.1', ua, buildID);
 
             // Cleanup
             $('#tabzilla-infobar').remove();
@@ -165,9 +165,9 @@ describe("tabzilla.js", function() {
         });
 
         it('should return false if the user agent is a latest Firefox version', function () {
-            expect(setup('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:29.0) Gecko/20100101 Firefox/29.0')).toBeFalsy();
-            expect(setup('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:26.0) Gecko/20100101 Firefox/26.0')).toBeFalsy();
-            expect(setup('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:24.0) Gecko/20100101 Firefox/24.0')).toBeFalsy();
+            expect(setup('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:39.0) Gecko/20100101 Firefox/39.0')).toBeFalsy();
+            expect(setup('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:36.0) Gecko/20100101 Firefox/36.0')).toBeFalsy();
+            expect(setup('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:34.0) Gecko/20100101 Firefox/34.0')).toBeFalsy();
         });
 
         it('should return false if the user agent is Firefox for mobile', function () {
@@ -181,10 +181,19 @@ describe("tabzilla.js", function() {
             expect(setup('Mozilla/5.0 (Tablet; rv:26.0) Gecko/26.0 Firefox/26.0')).toBeFalsy();
         });
 
+        it('should return false if the user agent is Firefox ESR', function () {
+            // Firefox 31 ESR
+            expect(setup('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:31.0) Gecko/20100101 Firefox/31.0', '20140717132905')).toBeFalsy();
+            // Firefox 31.4.0 ESR
+            expect(setup('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:31.0) Gecko/20100101 Firefox/31.0', '20150105205548')).toBeFalsy();
+        });
+
         it('should return true if the user agent is an outdated Firefox version', function () {
             expect(setup('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:22.0) Gecko/20100101 Firefox/22.0')).toBeTruthy();
             expect(setup('Mozilla/5.0 (Windows NT 6.2; WOW64; rv:16.0.1) Gecko/20121011 Firefox/16.0.1')).toBeTruthy();
             expect(setup('Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.2.9) Gecko/20100915 Gentoo Firefox/3.6.9')).toBeTruthy();
+            // Firefox 31 non-ESR
+            expect(setup('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:31.0) Gecko/20100101 Firefox/31.0', '20140716183446')).toBeTruthy();
         });
 
     });

@@ -484,15 +484,17 @@ var Tabzilla = (function (Tabzilla) {
 
         return offeredLang;
     };
-    Infobar.update = function (ua, latestVersion) {
-        ua = ua || navigator.userAgent;
+    Infobar.update = function (latestVersion, ua, buildID) {
         latestVersion = parseInt(latestVersion || '{{ latest_firefox_version }}', 10);
+        ua = ua || navigator.userAgent;
+        buildID = buildID || navigator.buildID;
 
         var updatebar = new Infobar('updatebar', 'Update Bar');
         var isFirefox = ((/\sFirefox\/\d+/).test(ua) &&
                          !(/like\ Firefox|Iceweasel|SeaMonkey/i).test(ua)); // Exclude Camino and others
         var isMobile = (/Mobile|Tablet|Fennec/i).test(ua);
         var userVersion = (isFirefox) ? parseInt(ua.match(/Firefox\/(\d+)/)[1], 10) : 0;
+        var isFirefox31ESR = !isMobile && userVersion === 31 && buildID && buildID !== '20140716183446';
         var showInfobar = function () {
             if ($('body').data('defaultSlug') === 'update-firefox-latest-version') {
                 // Don't show the info bar on the page that the info bar sends the user to.
@@ -516,7 +518,7 @@ var Tabzilla = (function (Tabzilla) {
             });
         };
 
-        if (updatebar.disabled || !isFirefox || isMobile ||
+        if (updatebar.disabled || !isFirefox || isMobile || isFirefox31ESR ||
                 userVersion > latestVersion) {
             return false;
         }
@@ -524,10 +526,9 @@ var Tabzilla = (function (Tabzilla) {
         // Show the Update Bar if the user's major version is older than 3 major
         // versions. Once the Mozilla.UITour API starts providing the channel
         // info (Bug 1065525, Firefox 35+), we can show the Bar only to Release
-        // channel users. Until then, because we cannot distinguish between ESR
-        // users and Release users, some ESR users may see a wrong message even
-        // when they are using one of the latest ESR builds, but it's a
-        // compromise; we rather care about many older Release users.
+        // channel users. 31 ESR can be detected only with the navigator.buildID
+        // property. 20140716183446 is the non-ESR build ID that can be found at
+        // https://wiki.mozilla.org/Releases/Firefox_31/Test_Plan
         if (userVersion < latestVersion - 2) {
             showInfobar();
 
