@@ -131,6 +131,8 @@ PIPELINE_DISABLE_WRAPPER = True
 PIPELINE_COMPILERS = (
     'pipeline.compilers.less.LessCompiler',
 )
+PIPELINE_LESS_BINARY = path('node_modules', 'less', 'bin', 'lessc')
+PIPELINE_YUGLIFY_BINARY = path('node_modules', 'yuglify', 'bin', 'yuglify')
 
 # PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
 
