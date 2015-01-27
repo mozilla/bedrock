@@ -41,7 +41,8 @@ def render(request, template, context=None, **kwargs):
     context['langfile'] = get_lang_path(template)
 
     # Get the available translation list of the current page
-    context['translations'] = translations_for_template(template)
+    context.setdefault('translations', {})
+    context['translations'].update(translations_for_template(template))
 
     # Look for localized template if not default lang.
     if hasattr(request, 'locale') and request.locale != settings.LANGUAGE_CODE:
@@ -49,6 +50,13 @@ def render(request, template, context=None, **kwargs):
         # Redirect to one of the user's accept languages or the site's default
         # language (en-US) if the current locale not active
         if not template_is_active(template, get_locale(request)):
+            # Use the default (en-US) template to render instead of redirecting
+            # if the template is not localized yet but the content itself is
+            # localized. This is useful especially for legal documents where the
+            # content is translated in the external legal-docs repository.
+            if context.get('localized', False):
+                return django_render(request, template, context, **kwargs)
+
             matched = None
 
             for lang in get_accept_languages(request):
