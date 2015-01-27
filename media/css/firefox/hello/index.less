@@ -4,6 +4,15 @@
 
 @import "../../sandstone/lib.less";
 
+@font-face {
+    font-family: 'Font Awesome';
+    src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'),
+         url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'),
+         url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .grainy-sky() {
     background: #cae1f4;
     background: url(/media/img/sandstone/grain.png) repeat,
@@ -39,9 +48,14 @@
     }
 
     h2 {
-        padding-top: 48px;
+        float: left;
+        padding-top: 0;
         width: 185px;
     }
+}
+
+html[dir="rtl"] #masthead h2 {
+    float: right;
 }
 
 // Common styles
@@ -100,60 +114,59 @@ main {
     }
 }
 
-/*
-Share widget pulled from 35, but will be back for 36:
-https://bugzilla.mozilla.org/show_bug.cgi?id=1113917#c4
-
 // Share
 
-#share-wrapper {
-    margin: 30px auto 0;
-    width: 200px;
-    text-align: center;
+#hello-header-nav,
+#hello-logo-wrapper {
+    .clearfix();
+}
 
-    .socialshare {
-        & > div > a {
-            background-image: url(/media/img/firefox/hello/sprite-share.png);
-            color: #2983c8;
+#spread-hello {
+    display: none;
+    float: right;
+    margin-top: 15px;
+}
 
-            span {
-                border-color: #2983c8;
-            }
+.js #spread-hello {
+    display: block;
+}
 
-            &:hover,
-            &:focus {
-                background-position: 0 8px;
-                color: #2983c8;
+html[dir="rtl"] #spread-hello {
+    float: left;
+}
 
-                span {
-                    border-color: #2983c8;
-                }
-            }
+.mozilla-share-cta {
+    border: 0;
+    background: transparent;
+    width: 140px;
 
-            &:after {
-                background-image: url(/media/img/firefox/hello/sprite-share.png);
-                background-position: 4px -19px;
-            }
+    &:hover,
+    &:focus {
+        background: transparent;
+    }
+
+    h3 {
+        .font-size(@smallFontSize);
+        padding-left: @baseLine / 2;
+        padding-right: @baseLine / 2;
+        width: 120px;
+        color: @linkBlue;
+    }
+
+    ul li a {
+        color: @linkBlue;
+
+        &:before {
+            .font-size(18px);
+            line-height: 43px;
         }
 
-        &.open > div > a{
-            background-position: 0 8px;
-
-            &:after {
-                background-position: 5px -17px;
-            }
-        }
-
-        #share-options {
-            width: 85px;
-
-            ul {
-                text-align: left;
-            }
+        &:hover,
+        &:focus {
+            color: @linkBlue;
         }
     }
 }
-*/
 
 // Intro
 
@@ -1486,6 +1499,12 @@ html[lang^="en"] #powered-by {
         .font-size(20px);
     }
 
+    // Share
+
+    #spread-hello {
+        margin-top: 25px;
+    }
+
     // Intro
 
     #intro {
@@ -1901,6 +1920,12 @@ html[lang^="en"] #powered-by {
 
     .heading-tertiary {
         .font-size(20px);
+    }
+
+    // Share
+
+    .js #spread-hello {
+        display: none;
     }
 
     // Intro

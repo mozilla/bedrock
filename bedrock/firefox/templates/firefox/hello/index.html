@@ -6,6 +6,8 @@
 
 {% set_lang_files "firefox/hello" %}
 
+{% from "macros.html" import share_cta with context %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Firefox Hello — Free, easy video conversations') }}{% endblock %}
 {% block page_desc %}{{ _('Learn all about Firefox Hello and see for yourself how easy it is to have a free video conversation with anyone, anywhere, right from your browser') }}{% endblock %}
@@ -26,14 +28,27 @@
 {% block site_header %}
   <header id="masthead">
     <div class="container">
-      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+      <div id="hello-header-nav">
+        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
 
-      {% block site_header_nav %}
-        {% include 'firefox/includes/top-menu.html' %}
-      {% endblock %}
+        {% block site_header_nav %}
+          {% include 'firefox/includes/top-menu.html' %}
+        {% endblock %}
+      </div>
 
       {% block site_header_logo %}
-        {{ super() }}
+        <div id="hello-logo-wrapper">
+          {{ super() }}
+
+          {%
+          set share_urls = {
+            'twitter': 'http://mzl.la/1wz83AN',
+            'googleplus': 'https://www.mozilla.org/firefox/hello/?utm_source=Google&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare',
+            'facebook': 'https://www.mozilla.org/firefox/hello/?utm_source=Facebook&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare'
+          }
+          %}
+          {{ share_cta(_('Share'), share_urls, _('Meet Firefox Hello, the easiest way to connect for free over video with anyone, anywhere.'), 'spread-hello') }}
+        </div>
       {% endblock %}
     </div>
   </header>
@@ -123,15 +138,6 @@
       <aside id="powered-by">
         {{ _('Powered by %s')|format(high_res_img('/img/firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}
       </aside>
-
-      {#
-      Share widget pulled from 35, will be back for 36:
-      https://bugzilla.mozilla.org/show_bug.cgi?id=1113917#c4
-
-      <div id="share-wrapper">
-        {% include 'firefox/includes/social-share.html' %}
-      </div>
-      #}
     </div>{# /.container #}
   </section>
 
