@@ -319,6 +319,7 @@ MINIFY_BUNDLES = {
             'css/firefox/menu-resp.less',
             'css/base/mozilla-modal.less',
             'css/base/svg-animation-check.less',
+            'css/base/mozilla-share-cta.less',
             'css/firefox/hello/index.less',
         ),
         'firefox_new': (
@@ -830,6 +831,7 @@ MINIFY_BUNDLES = {
             'js/firefox/australis/australis-uitour.js',
             'js/base/mozilla-modal.js',
             'js/base/svg-animation-check.js',
+            'js/base/mozilla-share-cta.js',
             'js/firefox/hello/index.js',
         ),
         'firefox_hello_ie9': (
