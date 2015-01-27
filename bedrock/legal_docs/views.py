@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from os import path
+from os import path, listdir
 import StringIO
 
 from django.conf import settings
@@ -14,6 +14,7 @@ import markdown as md
 
 from bedrock.settings import path as base_path
 from lib import l10n_utils
+from product_details import product_details
 
 LEGAL_DOCS_PATH = base_path('vendor-local', 'src', 'legal-docs')
 CACHE_TIMEOUT = getattr(settings, 'LEGAL_DOCS_CACHE_TIMEOUT', 60 * 60)
@@ -25,24 +26,40 @@ def load_legal_doc(doc_name, locale):
 
     :param doc_name: name of the legal doc folder
     :param locale: preferred language version of the doc
-    :return: string content of the file or None
+    :return: dict containing string content of the file (or None), a boolean
+             value indicating whether the file is localized into the specified
+             locale, and a dict of all available locales for that document
     """
-    source = path.join(LEGAL_DOCS_PATH, doc_name, locale + '.md')
+    source_dir = path.join(LEGAL_DOCS_PATH, doc_name)
+    source_file = path.join(source_dir, locale + '.md')
     output = StringIO.StringIO()
-    if not path.exists(source):
-        source = path.join(LEGAL_DOCS_PATH, doc_name, 'en-US.md')
+    locales = [f.replace('.md', '') for f in listdir(source_dir) if f.endswith('.md')]
+    translations = {}
+
+    if not path.exists(source_file):
+        source_file = path.join(LEGAL_DOCS_PATH, doc_name, 'en-US.md')
 
     try:
         # Parse the Markdown file
-        md.markdownFromFile(input=source, output=output,
+        md.markdownFromFile(input=source_file, output=output,
                             extensions=['attr_list', 'headerid', 'outline(wrapper_cls=)'])
         content = output.getvalue().decode('utf8')
+        localized = locale != settings.LANGUAGE_CODE
     except IOError:
-        return None
+        content = None
+        localized = False
     finally:
         output.close()
 
-    return content
+    for lang in locales:
+        if lang in product_details.languages:
+            translations[lang] = product_details.languages[lang]['native']
+
+    return {
+        'content': content,
+        'localized': localized,
+        'translations': translations,
+    }
 
 
 class LegalDocView(TemplateView):
@@ -80,7 +97,9 @@ class LegalDocView(TemplateView):
             raise Http404('Legal doc not found')
 
         context = super(LegalDocView, self).get_context_data(**kwargs)
-        context[self.legal_doc_context_name] = legal_doc
+        context[self.legal_doc_context_name] = legal_doc['content']
+        context['localized'] = legal_doc['localized']
+        context['translations'] = legal_doc['translations']
         return context
 
     @classmethod

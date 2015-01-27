@@ -68,7 +68,8 @@ def process_legal_doc(content):
 class PrivacyDocView(LegalDocView):
     def get_legal_doc(self):
         doc = super(PrivacyDocView, self).get_legal_doc()
-        return process_legal_doc(doc)
+        doc['content'] = process_legal_doc(doc['content'])
+        return doc
 
 
 firefox_notices = PrivacyDocView.as_view(
@@ -138,13 +139,15 @@ def privacy(request):
         form_submitted = form_results['form_submitted']
         form_error = form_results['form_error']
 
+    doc = load_legal_doc('mozilla_privacy_policy', l10n_utils.get_locale(request))
+
     template_vars = {
         'form': form,
         'form_submitted': form_submitted,
         'form_error': form_error,
-        'doc': process_legal_doc(load_legal_doc('mozilla_privacy_policy',
-                                                l10n_utils.get_locale(request))
-        ),
+        'doc': process_legal_doc(doc['content']),
+        'localized': doc['localized'],
+        'translations': doc['translations'],
     }
 
     return l10n_utils.render(request, 'privacy/index.html', template_vars)
