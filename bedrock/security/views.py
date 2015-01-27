@@ -11,6 +11,7 @@ from django.views.generic import DetailView, ListView, RedirectView
 from funfactory.urlresolvers import reverse
 from product_details import product_details
 from product_details.version_compare import Version
+from lib.l10n_utils import LangFilesMixin
 
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.security.models import Product, SecurityAdvisory
@@ -101,7 +102,7 @@ def latest_advisory(request, *args, **kwargs):
     return latest.last_modified
 
 
-class AdvisoriesView(ListView):
+class AdvisoriesView(LangFilesMixin, ListView):
     template_name = 'security/advisories.html'
     queryset = SecurityAdvisory.objects.only('id', 'impact', 'title', 'announced')
     context_object_name = 'advisories'
@@ -112,7 +113,7 @@ class AdvisoriesView(ListView):
         return super(AdvisoriesView, self).dispatch(request, *args, **kwargs)
 
 
-class AdvisoryView(DetailView):
+class AdvisoryView(LangFilesMixin, DetailView):
     model = SecurityAdvisory
     template_name = 'security/advisory.html'
     context_object_name = 'advisory'
@@ -123,7 +124,7 @@ class AdvisoryView(DetailView):
         return super(AdvisoryView, self).dispatch(request, *args, **kwargs)
 
 
-class ProductView(ListView):
+class ProductView(LangFilesMixin, ListView):
     template_name = 'security/product-advisories.html'
     context_object_name = 'product_versions'
     allow_empty = False
@@ -152,7 +153,7 @@ class ProductView(ListView):
         return cxt
 
 
-class ProductVersionView(ListView):
+class ProductVersionView(LangFilesMixin, ListView):
     template_name = 'security/product-advisories.html'
     context_object_name = 'product_versions'
     allow_empty = False
