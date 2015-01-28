@@ -1025,7 +1025,6 @@ MINIFY_BUNDLES = {
         'mozilla-logo': (
             'js/styleguide/mozilla-logo/lodash.js',
             'js/styleguide/mozilla-logo/d3.js',
-            'js/styleguide/mozilla-logo/jquery-2.1.1.js',
             'js/styleguide/mozilla-logo/jquery-ui.js',
             'js/styleguide/mozilla-logo/logo.js',
             'js/styleguide/mozilla-logo/controls.js'
