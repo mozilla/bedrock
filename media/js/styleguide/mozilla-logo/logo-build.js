@@ -16265,7 +16265,7 @@
   var mY;
   var defs;
   var historicalOffset = 0
-  var areaGen;
+  var lineGenerator;
   var numDataSources = 3;
   var colors = [
     { name: "nightly blue", colors: {base: '#23336A', vibrant:'#204182'} },
@@ -16499,10 +16499,9 @@
 
   function drawShapes() {
     var shapesPath = svg.selectAll('path.shape').data(shapes)
-    areaGen = d3.svg.area()
-      .x(function(d) { return d.x })
-      .y(function(d) { return d.y })
-      .y0(function(d) { return 0 })
+    lineGenerator = d3.svg.line()
+      .x(function(d) { return (d.x) })
+      .y(function(d) { return (d.y) })
       .interpolate('cardinal')
       .tension(options.curveTightness)
     shapesPath.enter().append('path').attr('class','shape')
@@ -16514,13 +16513,9 @@
         return 'translate(' + x + ',' + y + ') rotate(' + angle + ')'
       }).attr('d', function(d) {
         var pointsToUse = [
-          { x: d.width, y: 0 },
-          { x: d.width, y: 0 },
-
-          { x: 0, y: 0 },
-          { x: 0, y: 0 },
           { x: 0, y: 0 }
         ]
+        
         d.historicalOffset = historicalOffset
         if(options.animation === 'static') {
           d.historicalOffset = d.data.length - options.numDataPoints
@@ -16541,9 +16536,9 @@
         })
     
         pointsToUse = pointsToUse.concat(points)
-        pointsToUse.push(pointsToUse[0]);
+        pointsToUse.push({ x: d.width, y: 0 })
         d.nullPoints = pointsToUse
-        return areaGen(pointsToUse)
+        return lineGenerator(pointsToUse) + 'Z'
       }).style('fill', function(d,i) { return 'url(#gradient' + i + ')' })
       .style('opacity', options.opacity/100)
     if(options.animation === "animated") {
@@ -16554,11 +16549,6 @@
       .attr('d', function(d) {
 
         var pointsToUse = [
-          { x: d.width, y: 0 },
-          { x: d.width, y: 0 },
-
-          { x: 0, y: 0 },
-          { x: 0, y: 0 },
           { x: 0, y: 0 }
         ]
         var dataPoints = d.data.slice(d.historicalOffset, options.numDataPoints + d.historicalOffset)
@@ -16574,9 +16564,9 @@
 
           pointsToUse.push({x: x, y: scaled})
         })
-        pointsToUse.push(pointsToUse[0]);
+        pointsToUse.push({x: d.width, y: 0 });
 
-        return areaGen(pointsToUse)
+        return lineGenerator(pointsToUse) + 'Z'
       }).each('end', nextAnimation)
     }
   }
@@ -16587,11 +16577,6 @@
     var trans = path.transition().duration(options.animationDuration).ease('linear')
       .attr('d', function() {
         var pointsToUse = [
-          { x: d.width, y: 0 },
-          { x: d.width, y: 0 },
-
-          { x: 0, y: 0 },
-          { x: 0, y: 0 },
           { x: 0, y: 0 }
         ]
         var dataPoints = d.data.slice(d.historicalOffset, options.numDataPoints + d.historicalOffset)
@@ -16606,8 +16591,8 @@
           var scaled =  - map(d, min, max, options.shapeMinSize, options.shapeMaxSize)
           pointsToUse.push({x: x, y: scaled})
         })
-        pointsToUse.push(pointsToUse[0]);
-        return areaGen(pointsToUse)
+        pointsToUse.push({ x: d.width, y: 0 });
+        return lineGenerator(pointsToUse) + 'Z'
 
       })
       if(d.historicalOffset + options.numDataPoints < d.data.length) {
