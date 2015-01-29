@@ -1027,7 +1027,11 @@ MINIFY_BUNDLES = {
             'js/styleguide/mozilla-logo/d3.js',
             'js/styleguide/mozilla-logo/jquery-ui.js',
             'js/styleguide/mozilla-logo/logo.js',
-            'js/styleguide/mozilla-logo/controls.js'
+            'js/styleguide/mozilla-logo/controls.js',
+            'js/styleguide/mozilla-logo/logo-init.js',
+        ),
+        'mozilla-logo-embed': (
+            'js/styleguide/mozilla-logo/logo-embed.js',
         ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
