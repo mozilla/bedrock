@@ -85,6 +85,21 @@
         $('#try-hello-footer').css('display', 'block');
     };
 
+    var addLinkEvent = function (linkSelector, eventName) {
+        $(linkSelector).on('click', function(e) {
+            var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
+            var href = this.href;
+            if (newTab) {
+                w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', eventName]);
+            } else {
+                e.preventDefault();
+                w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', eventName], function() {
+                    w.location = href;
+                });
+            }
+        });
+    };
+
     if (w.isFirefox()) {
         // if Fx, hide all footer messaging
         // (correct messaging to display determined below)
@@ -140,19 +155,7 @@
                 } else {
                     // if Hello is not in toolbar/menu, change footer button to link
                     // to a SUMO article and do some GA tracking
-                    $('#try-hello-footer').on('click', function(e) {
-                        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-                        var href = this.href;
-
-                        if (newTab) {
-                            w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'IneligibleClick']);
-                        } else {
-                            e.preventDefault();
-                            w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'IneligibleClick'], function() {
-                                w.location = href;
-                            });
-                        }
-                    });
+                    addLinkEvent('#try-hello-footer', 'IneligibleClick');
 
                     w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'IneligibleView']);
                 }
@@ -160,12 +163,16 @@
         } else {
             // if Fx is version 34 or lower (no Hello support) display update messaging in footer
             $('#ctacopy-oldfx').show();
+
+            addLinkEvent('.download-link', 'ClickUpgrade');
         }
     } else {
         // for non-Fx users, show get Fx feature & remove node to maintain nth-child margin rules
         // (we wont need this node/copy for non-Fx users)
         $('#feature-account').remove();
         $('#feature-getfx').show();
+
+        addLinkEvent('.download-link', 'ClickDownload');
     }
 
     $videoLink.on('click', function(e) {
