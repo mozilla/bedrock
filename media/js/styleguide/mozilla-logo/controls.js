@@ -457,17 +457,17 @@
     "  size: <b>500</b>,\n" +
     "  options: " + optionJSON + "\n" +
     "};\n"
-
+    //TODO update the server address in the embed
     var embedCode = "(function() {\n" +
       "  var ml = document.createElement('script');\n" +
-      "  ml.src = ('https:' == document.location.protocol ? 'https' : 'http') +\n" +
-      "    '://50.250.207.157/mozillaid/deploy/logo-build.js';\n" +
+      "  ml.src = '//50.250.207.157/mozillaid/deploy/logo-build.js';\n" +
       "  ml.type = 'text/javascript';\n" +
       "  ml.async = 'true';\n" +
       "  var s = document.getElementsByTagName('script')[0];\n" +
       "  s.parentNode.insertBefore(ml, s);\n" +
       "})();\n"
-    var templateContainer = "&lt;div class='mozillaLogo'&gt;&lt;/div&gt;\n"
+    var fallbackImage = "  &lt;img src='//50.250.207.157/mozillaid/deploy/images/staticLogo.png' width='500' height='500' alt='Mozilla' /&gt;";
+    var templateContainer = "&lt;div class='mozillaLogo'&gt;\n" + fallbackImage + "\n&lt;/div&gt;\n"
     var scriptTag = "&lt;script&gt;\n" + config + embedCode + "&lt;/scr" + "ipt&gt";
     var fullCode = templateContainer + scriptTag
     embedModal.select('.modalContent code').html(fullCode)

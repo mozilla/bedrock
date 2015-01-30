@@ -42,13 +42,20 @@
     {x1: 0, y1: 0.19776364832, x2: 0.09512860274, y2: 0},
 
   ]
+  function compatible() {
+    return  !!document.createElementNS &&
+      !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect
+  }
   function init(_selector, _size, _options) {
+    if(! compatible()) {
+      return
+    }
     selector = _selector;
     size = _size;
     mScale *= size / 500;
     mX = size / 2.0 - (mDimensions.w * mScale) / 2.0
     mY = size / 2.0 - (mDimensions.h * mScale) / 2.0
-
+    d3.select(selector).selectAll('*').remove()
     svg = d3.select(selector).append('svg').attr('width', size)
       .attr('height', size)
       .attr('xmlns','http://www.w3.org/2000/svg')
