@@ -4,10 +4,12 @@
 
 @import "../sandstone/lib.less";
 
-h2 {
-    counter-increment: step-counter;
-}
+.main-column {
+    h2 {
+        counter-increment: step-counter;
 
-h2::before {
-    content: counter(step-counter) ". ";
+        &::before {
+            content: counter(step-counter) ". ";
+        }
+    }
 }
