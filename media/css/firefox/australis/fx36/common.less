@@ -29,6 +29,36 @@ body {
     opacity: 0.4;
 }
 
+// it would be great if we could more easily generally customize this element
+#footer_email_submit {
+    .inline-block();
+    .border-radius(6px);
+    .transition();
+    text-align: center;
+    padding: 12px (@baseLine * 2);
+    margin-bottom: @baseLine;
+    margin-top: -8px;
+    background: rgba(255, 255, 255, 0.4);
+    color: #00a0dc;
+    .font-size(@baseFontSize);
+    border: 2px solid #00a0dc;
+    cursor: pointer;
+    box-shadow: none;
+    text-shadow: none;
+    font-weight: normal;
+
+    &:hover {
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.8);
+        color: #00a0dc;
+        box-shadow: none;
+    }
+}
+
+html[lang^='en'] #footer_email_submit {
+    text-transform: uppercase;
+}
+
 header[role="banner"],
 #ui-tour-mask .mask-inner {
     position: relative;
@@ -126,6 +156,60 @@ header[role="banner"],
         .font-size(@largeFontSize);
         line-height: 1.5;
         margin-bottom: 20px;
+    }
+}
+
+.promo {
+    .clearfix();
+    border: @baseLine solid #fff;
+    margin-bottom: @baseLine * 2;
+    background: #f7f7f7;
+    padding: (@baseLine * 2) 0 @baseLine 0;
+}
+
+.promo-copy,
+.promo-media {
+    float: left;
+    text-align: center;
+}
+
+.promo-copy {
+    width: (470px - (@baseLine * 6));
+    padding: 0 (@baseLine * 3);
+}
+
+.promo-media {
+    width: 470px;
+    padding-top: @baseLine;
+}
+
+#powered-by {
+    color: #85939e;
+    .font-size(@smallFontSize);
+    text-align: center;
+    font-style: italic;
+
+    img {
+        vertical-align: middle;
+    }
+}
+
+// used for whatsnew page
+.promo.whatsnew {
+    width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    background: transparent;
+    border: none;
+    padding-top: 0;
+
+    .promo-copy {
+        width: 350px;
+        padding: (@baseLine * 3) @baseLine 0 0;
+    }
+
+    .promo-media {
+        width: 350px;
     }
 }
 

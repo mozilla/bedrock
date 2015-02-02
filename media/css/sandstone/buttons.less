@@ -4,6 +4,47 @@
 
 // General buttons
 
+@buttonFlatBlue: #00a0dc;
+
+.button-flat,
+.button-flat:link,
+.button-flat:visited {
+    .inline-block();
+    .border-radius(6px);
+    .transition();
+    text-align: center;
+    padding: 12px (@baseLine * 2);
+    margin-bottom: @baseLine;
+    background: @buttonFlatBlue;
+    color: #fff;
+    .font-size(@baseFontSize);
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+        background: lighten(@buttonFlatBlue, 3%);
+        color: #fff;
+    }
+}
+
+.button-flat-inverted {
+    .button-flat;
+    background: rgba(255, 255, 255, 0.4);
+    color: @buttonFlatBlue;
+    border: 2px solid @buttonFlatBlue;
+
+    &:hover {
+        background: rgba(255, 255, 255, 1);
+    }
+}
+
+html[lang^='en'] {
+    .button-flat,
+    .button-flat-inverted {
+        text-transform: uppercase;
+    }
+}
 
 .button,
 .button:link,

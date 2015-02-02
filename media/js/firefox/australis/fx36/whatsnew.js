@@ -2,6 +2,7 @@
     'use strict';
 
     var $tourStrings = $('#strings');
+    var helloAnimationStage = $('#hello-animation-stage');
 
     //track if this is the first time a user has seen tour
     function trackFirstTimeUse() {
@@ -14,6 +15,10 @@
             }
             gaTrack(['_trackEvent', 'Tour Interaction', 'First Time Seeing Tour', firstTime, 0, true]);
         } catch (e) {}
+    }
+
+    function triggerHelloAnimation() {
+        helloAnimationStage.addClass('animate');
     }
 
     //Only run the tour if user is on Firefox 29 for desktop.
@@ -30,7 +35,13 @@
 
             var tour = new Mozilla.BrowserTour({
                 id: $('#tour-page').data('telemetry'),
-                allowScroll: true
+                allowScroll: true,
+                onCloseTour: function() {
+                    triggerHelloAnimation();
+                },
+                onCompactTour: function() {
+                    triggerHelloAnimation();
+                }
             });
 
             tour.init();

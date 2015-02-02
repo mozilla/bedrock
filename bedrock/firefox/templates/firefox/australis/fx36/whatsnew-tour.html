@@ -47,11 +47,15 @@ data-step2="{{ _('2/2') }}"
 {% endblock %}
 
 {% block promo_content %}
-  <section>
-    <p>{{ _('Firefox Hello is the easiest way to connect with friends and family for free over video.') }}</p>
-    <a href="{{ url('firefox.hello') }}">{{ _('Learn more') }}</a>
-    <p>{{ _('Powered by %s')|format(high_res_img('img/firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}</p>
-  </section>
+  <article class="promo whatsnew">
+    <div class="promo-copy">
+      <a href="{{ url('firefox.hello') }}" class="button-flat">{{ _('Learn more') }}</a>
+      <p id="powered-by">{{ _('Powered by %s')|format(high_res_img('img/firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}</p>
+    </div>
+    <div class="promo-media">
+      {% include 'firefox/includes/hello-animation.html' %}
+    </div>
+  </article>
 {% endblock %}
 
 {% block tour_content %}

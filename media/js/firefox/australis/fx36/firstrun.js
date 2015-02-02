@@ -1,6 +1,8 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    var helloAnimationStage = $('#hello-animation-stage');
+
     function trackDefaultSearchEngine() {
         Mozilla.UITour.getConfiguration('selectedSearchEngine', function (data) {
             var selectedEngineID = data.searchEngineIdentifier;
@@ -34,6 +36,10 @@
         } catch (e) {}
     }
 
+    function triggerHelloAnimation() {
+        helloAnimationStage.addClass('animate');
+    }
+
     //Only run the tour if user is on Firefox 29 for desktop.
     if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 36) {
 
@@ -42,7 +48,13 @@
 
             var tour = new Mozilla.BrowserTour({
                 id: $('#tour-page').data('telemetry'),
-                allowScroll: true
+                allowScroll: true,
+                onCloseTour: function() {
+                    triggerHelloAnimation();
+                },
+                onCompactTour: function() {
+                    triggerHelloAnimation();
+                }
             });
 
             tour.init();

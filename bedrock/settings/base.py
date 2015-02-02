@@ -1259,6 +1259,7 @@ PIPELINE_JS = {
     'firefox_fx36_whatsnew_no_tour': {
         'source_filenames': (
             'js/firefox/australis/fx36/common.js',
+            'js/firefox/australis/fx36/whatsnew-notour.js',
         ),
         'output_filename': 'js/firefox_fx36_whatsnew_no_tour-bundle.js',
     },

@@ -1,0 +1,330 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+// Fallback image
+#hello-animation-fallback {
+    transition: opacity 0.3s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+// Animation
+
+#hello-animation-stage {
+    position: relative;
+    width: 300px;
+    height: 189px;
+    margin: 0 auto;
+
+    div {
+        display: none;
+        position: absolute;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    #hello-conversation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+    }
+
+    .hello-message {
+        opacity: 0;
+        .transform(scale(0) translateY(100px));
+    }
+
+    .hello-message-green {
+        right: 0;
+    }
+
+    #hello-message-blue1 {
+        background-position: left -257px;
+        width: 140px;
+        height: 119px;
+    }
+
+    #hello-message-green1 {
+        background-position: left -376px;
+        width: 140px;
+        height: 122px;
+        .hello-message-green;
+    }
+
+    #hello-message-blue2 {
+        background-position: left -498px;
+        width: 140px;
+        height: 120px;
+    }
+
+    #hello-message-green2 {
+        background-position: left -618px;
+        width: 130px;
+        height: 121px;
+        right: 10px;
+    }
+
+    #hello-message-blue3 {
+        background-position: left -739px;
+        width: 125px;
+        height: 118px;
+        left: 10px;
+    }
+
+    #hello-message-green3 {
+        background-position: left -857px;
+        width: 140px;
+        height: 117px;
+        .hello-message-green;
+    }
+
+    #hello-message-blue4 {
+        background-position: left -974px;
+        width: 130px;
+        height: 122px;
+        left: 12px;
+    }
+
+    #hello-message-green4 {
+        background-position: left -1096px;
+        width: 140px;
+        height: 118px;
+        .hello-message-green;
+    }
+
+    #hello-message-blue-face {
+        background-position: left top;
+        width: 140px;
+        height: 133px;
+        left: 5px;
+        top: 0;
+    }
+
+    #hello-message-green-face {
+        background-position: left -133px;
+        width: 130px;
+        height: 124px;
+        right: 5px;
+        bottom: 44px;
+    }
+
+    #hello-wordmark {
+        background-position: left -1214px;
+        width: 300px;
+        height: 49px;
+        top: 48px;
+        left: 0;
+        opacity: 0;
+        .transform(translateY(10px));
+        z-index: 4;
+    }
+
+    &.animate {
+        #hello-animation-fallback {
+            opacity: 0;
+        }
+
+        div {
+            display: block;
+        }
+
+        .hello-sprite {
+            background-image: url(/media/img/firefox/hello/sprite-animation-mini.png);
+            background-repeat: no-repeat;
+        }
+
+        #hello-message-blue1 {
+            @animations: hello-message-in 0.4s ease forwards 0.2s,
+                         hello-message-out 0.3s ease-in forwards 0.7s;
+            .animation(@animations);
+        }
+
+        #hello-message-green1 {
+            @animations: hello-message-in 0.4s ease forwards 0.4s,
+                         hello-message-out 0.3s ease-in forwards 0.9s;
+            .animation(@animations);
+        }
+
+        #hello-message-blue2 {
+            @animations: hello-message-in 0.4s ease forwards 1s,
+                         hello-message-out 0.3s ease-in forwards 1.5s;
+            .animation(@animations);
+        }
+
+        #hello-message-green2 {
+            @animations: hello-message-in 0.4s ease forwards 1.2s,
+                         hello-message-out 0.3s ease-in forwards 1.7s;
+            .animation(@animations);
+        }
+
+        #hello-message-blue3 {
+            @animations: hello-message-in 0.4s ease forwards 1.8s,
+                         hello-message-out 0.3s ease-in forwards 2.3s;
+            .animation(@animations);
+        }
+
+        #hello-message-green3 {
+            @animations: hello-message-in 0.4s ease forwards 2s,
+                         hello-message-out 0.3s ease-in forwards 2.5s;
+            .animation(@animations);
+        }
+
+        #hello-message-blue4 {
+            @animations: hello-message-in 0.4s ease forwards 2.6s,
+                         hello-message-out 0.3s ease-in forwards 3.1s;
+            .animation(@animations);
+        }
+
+        #hello-message-green4 {
+            @animations: hello-message-in 0.4s ease forwards 2.8s,
+                         hello-message-out 0.3s ease-in forwards 3.3s;
+            .animation(@animations);
+        }
+
+        #hello-message-blue-face {
+            @animations: hello-message-in 0.4s ease forwards 3.4s,
+                         hello-message-blue-face-shrink 0.6s ease forwards 4.5s;
+            .animation(@animations);
+        }
+
+        #hello-message-green-face {
+            @animations: hello-message-in 0.4s ease forwards 3.6s,
+                         hello-message-green-face-out 0.3s ease forwards 4.5s;
+            .animation(@animations);
+        }
+
+        #hello-wordmark {
+            .animation(hello-wordmark-in 0.75s ease forwards 4.6s);
+        }
+    }
+}
+
+@-webkit-keyframes hello-message-in {
+    0% {
+        .transform(scale(0) translateY(100px));
+        opacity: 0;
+    }
+    100% {
+        .transform(scale(1) translateY(0));
+        opacity: 1;
+    }
+}
+
+@keyframes hello-message-in {
+    0% {
+        .transform(scale(0) translateY(100px));
+        opacity: 0;
+    }
+    100% {
+        .transform(scale(1) translateY(0));
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes hello-message-out {
+    0% {
+        .transform(scale(1) translateY(0));
+        opacity: 1;
+    }
+    100% {
+        .transform(scale(0.7) translateY(-50px));
+        opacity: 0;
+    }
+}
+
+@keyframes hello-message-out {
+    0% {
+        .transform(scale(1) translateY(0));
+        opacity: 1;
+    }
+    100% {
+        .transform(scale(0.7) translateY(-50px));
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes hello-message-green-face-out {
+    0% {
+        .transform(scale(1) translateY(0));
+        opacity: 1;
+    }
+    100% {
+        .transform(scale(0.4) translateY(0));
+        opacity: 0;
+    }
+}
+
+@keyframes hello-message-green-face-out {
+    0% {
+        .transform(scale(1) translateY(0));
+        opacity: 1;
+    }
+    100% {
+        .transform(scale(0.4) translateY(0));
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes hello-message-blue-face-shrink {
+    0% {
+        .transform(scale(1) translateY(0));
+        opacity: 1;
+    }
+    100% {
+        .transform(scale(0.375) translate(-133px, 22px));
+        opacity: 1;
+    }
+}
+
+@keyframes hello-message-blue-face-shrink {
+    0% {
+        .transform(scale(1) translateY(0));
+        opacity: 1;
+    }
+    100% {
+        .transform(scale(0.375) translate(-133px, 22px));
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes hello-wordmark-in {
+    0% {
+        .transform(translateY(15px));
+        opacity: 0;
+    }
+    100% {
+        .transform(translateY(0));
+        opacity: 1;
+    }
+}
+
+@keyframes hello-wordmark-in {
+    0% {
+        .transform(translateY(15px));
+        opacity: 0;
+    }
+    100% {
+        .transform(translateY(0));
+        opacity: 1;
+    }
+}
+
+/****************************************************************************/
+// @High resolution images for @retina-type displays
+@media (-webkit-min-device-pixel-ratio: 1.5),
+       (min-resolution: 1.5dppx),
+       (min-resolution: 144dpi) {
+
+    #hello-animation-stage.animate .hello-sprite {
+        background-image: url(/media/img/firefox/hello/sprite-animation-mini-high-res.png);
+        .background-size(300px, 1263px);
+    }
+}
