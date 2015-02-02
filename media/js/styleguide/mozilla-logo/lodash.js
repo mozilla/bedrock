@@ -2953,6 +2953,8 @@
   }
   else {
     // in a browser or Rhino
-    root._ = _;
+    if(typeof root._ === 'undefined') {
+      root._ = _;
+    }
   }
 }.call(this));

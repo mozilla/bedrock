@@ -1022,7 +1022,7 @@ MINIFY_BUNDLES = {
             'js/libs/jquery-1.11.0.min.js',
             'js/styleguide/logo-prototype/clock-data.js',
         ),
-        'mozilla-logo': (
+        'mozilla-logo-generator': (
             'js/styleguide/mozilla-logo/lodash.js',
             'js/styleguide/mozilla-logo/d3.js',
             'js/styleguide/mozilla-logo/jquery-ui.js',
@@ -1030,8 +1030,13 @@ MINIFY_BUNDLES = {
             'js/styleguide/mozilla-logo/controls.js',
             'js/styleguide/mozilla-logo/logo-init.js',
         ),
-        'mozilla-logo-embed': (
+        'mozilla-logo-embed-snippet': (
             'js/styleguide/mozilla-logo/logo-embed.js',
+        ),
+        'mozilla-logo-build': (
+            'js/styleguide/mozilla-logo/d3.js',
+            'js/styleguide/mozilla-logo/lodash.js',
+            'js/styleguide/mozilla-logo/logo.js'
         ),
         'partners': (
             'js/libs/modernizr.custom.shiv-load.js',
