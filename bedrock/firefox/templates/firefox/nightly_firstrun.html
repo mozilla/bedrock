@@ -75,7 +75,7 @@
     {% if l10n_has_tag('promo_locale') %}
     {# The following block is entirely defined by locales, and the placeholder in en-US here will never be exposed to production #}
       <div class="blue-box l10n">
-        {% l10n promo_locale %}
+        {% l10n promo_locale 20150101 %}
           <h3>Learn more about your local Mozilla community</h3>
           <ul class="unstyled">
             <li><a href="http://www.example.com">Meet our community</a></li>
