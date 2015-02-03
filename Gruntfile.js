@@ -80,7 +80,7 @@ module.exports = function (grunt) {
     // Default task(s).
     grunt.registerTask('default', ['watch']);
 
-    // Run JS tests in PhantomJS using Karma test runner
+    // Run JS tests in Firefox using Karma test runner
     grunt.registerTask('test', ['karma']);
 
 };
