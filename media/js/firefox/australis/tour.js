@@ -3,6 +3,14 @@
 
     var firstTime = 'True';
 
+    // GA tracking for Firstrun tests
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1128726
+    // should be removed after 2/24/2015
+    if (window.location.search.indexOf('f=34') > -1) {
+        gaTrack(['_setCustomVar' ,7, 'first run tests', 'variation 1', 2]);
+        gaTrack(['_trackEvent','/firstrun/ Optimization f34', 'page load', 'variation 1']);
+    }
+
     //Only run the tour if user is on Firefox 29 for desktop.
     if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 29) {
 

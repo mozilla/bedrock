@@ -678,6 +678,28 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/installer_help-bundle.css',
     },
+    'growth_firstrun_test1': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/australis/australis-page-common.less',
+            'css/firefox/sync-animation.less',
+            'css/firefox/australis/australis-page-stacked.less',
+            'css/firefox/australis/growth-firstrun-test-common.less',
+            'css/firefox/australis/growth-firstrun-test1.less',
+        ),
+        'output_filename': 'css/growth-firstrun-test1-bundle.css'
+    },
+    'growth_firstrun_test2': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/australis/australis-page-common.less',
+            'css/firefox/sync-animation.less',
+            'css/firefox/australis/australis-page-stacked.less',
+            'css/firefox/australis/growth-firstrun-test-common.less',
+            'css/firefox/australis/growth-firstrun-test2.less',
+        ),
+        'output_filename': 'css/growth-firstrun-test2-bundle.css'
+    },
     'history-slides': {
         'source_filenames': (
             'css/mozorg/history-slides.less',
@@ -1421,6 +1443,25 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/home-bundle.js',
     },
+    'growth_firstrun_test1': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/growth-browser-tour.js',
+            'js/libs/fxa-relier-client.min.js',
+            'js/firefox/sync-animation.js',
+            'js/firefox/australis/growth-firstrun-test1.js',
+        ),
+        'output_filename': 'js/growth-firstrun-test1-bundle.js',
+    },
+    'growth_firstrun_test2': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/growth-browser-tour.js',
+            'js/firefox/sync-animation.js',
+            'js/firefox/australis/growth-firstrun-test2.js',
+        ),
+        'output_filename': 'js/growth-firstrun-test2-bundle.js',
+    },
     'home-2015': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',
@@ -2079,6 +2120,32 @@ TABZILLA_INFOBAR_OPTIONS = 'update translation'
 
 # Optimize.ly project code
 OPTIMIZELY_PROJECT_ID = None
+
+# Fx Accounts Relier Service Client ID
+# Prod, stage, & dev all have these set in their local.py files.
+# For local testing, override in your own local.py.
+
+# For demo servers & localhost:
+#   FXA_RELIER_CONTENT_HOST = 'https://stable.dev.lcip.org'
+#   FXA_RELIER_CONTENT_OAUTH = 'https://oauth-stable.dev.lcip.org/v1'
+#   FXA_RELIER_REDIRECT_URI = 'http://localhost:8000/'
+#
+#   Client IDs:
+#       localhost:8000: efc5413fa614224e
+#       demo5: 591e9db45a43f7e9
+#
+#   Additional dev IDs can be created here:
+#   https://developer.mozilla.org/en-US/Firefox_Accounts_OAuth_Dashboard
+#
+# Below is full code needed for demo5:
+# FXA_RELIER_CLIENT_ID = '591e9db45a43f7e9'
+# FXA_RELIER_CONTENT_HOST = 'https://stable.dev.lcip.org'
+# FXA_RELIER_CONTENT_OAUTH = 'https://oauth-stable.dev.lcip.org/v1'
+# FXA_RELIER_REDIRECT_URI = 'http://localhost:8000/'
+FXA_RELIER_CLIENT_ID = ''
+FXA_RELIER_CONTENT_HOST = ''
+FXA_RELIER_CONTENT_OAUTH = ''
+FXA_RELIER_REDIRECT_URI = ''
 
 # Link to Firefox for Android on the Google Play store with Google Analytics
 # campaign parameters
