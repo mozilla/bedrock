@@ -1014,6 +1014,9 @@ MINIFY_BUNDLES = {
             'js/libs/jquery.transit.min.js',
             'js/libs/jquery.gridrotator.js',
         ),
+        'annual_2011_ie9': (
+            'js/libs/matchMedia.addListener.js',
+        ),
         'annual_2011': (
             'js/libs/jquery.hoverIntent.minified.js',
             'js/libs/jquery.waypoints.min.js',

@@ -629,27 +629,18 @@ body.noscroll {
   margin: 0 auto;
 }
 
-.jcarousel-container {
-  padding: 0 40px;
-  margin: 1em -20px;
-  position: relative;
-}
-
-.jcarousel-clip {
-  width: 740px;
+#story-slider {
   overflow: hidden;
-}
-
-#story-slider,
-#story-slider-clone {
-  position: relative;
-  overflow: hidden;
+  top: 0;
+  
   .vcard {
     background: rgba(255,100,0,.1);
     width: 175px;
     min-height: 96px;
     margin: 0 5px;
     position: relative;
+    list-style: none;
+    
     .photo {
       position: absolute;
       top: 0;
@@ -707,6 +698,7 @@ body.noscroll {
   position: absolute;
   top: 0;
   cursor: pointer;
+  visibility: hidden;
 }
 
 .jcarousel-container .btn-prev {
@@ -795,6 +787,33 @@ body.noscroll {
   }
 }
 
+/* Tablet and Desktop overlap: 768px and beyond */
+@media only screen and (min-width: @widthTablet) {
+  .jcarousel-container {
+    padding: 0 40px;
+    margin: 1em -20px;
+    position: relative;
+
+    .btn-next, .btn-prev {
+      visibility: visible;
+    }
+  }
+
+  .jcarousel-clip {
+    position: relative;
+    overflow: hidden;
+    width: 740px;
+  }
+
+  #story-slider {
+    position: relative;
+    width: 20000em;
+    .vcard {
+      float: left;
+    }
+  }
+}
+
 /* Tablet  Layout: 768px */
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
 
@@ -861,8 +880,7 @@ body.noscroll {
     width: 660px;
   }
 
-  #story-slider,
-  #story-slider-clone {
+  #story-slider {
     .vcard {
       .font-size(@smallFontSize);
       min-height: 77px;
