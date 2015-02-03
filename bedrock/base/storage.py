@@ -7,8 +7,8 @@
 
 from pipeline.storage import PipelineMixin
 # This part of whitenoise is Python 2.6 compatible
-from whitenoise.storage_backport import ManifestStaticFilesStorage
+from whitenoise.django import GzipManifestStaticFilesStorage
 
 
-class ManifestPipelineStorage(PipelineMixin, ManifestStaticFilesStorage):
+class ManifestPipelineStorage(PipelineMixin, GzipManifestStaticFilesStorage):
     pass

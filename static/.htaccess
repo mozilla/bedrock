@@ -1,0 +1,44 @@
+# Neither Firefox nor Safari will draw these if they're text/xml
+AddType image/svg+xml .svg
+AddType application/octet-stream .exe
+AddType application/font-woff .woff
+AddType application/vnd.ms-fontobject .eot
+AddType application/octet-stream .ttf
+
+AddCharset utf-8 .css .js .ics
+
+# From whitenoise...
+# Set 'Access-Control-Allow-Orign: *' header on all files.
+# As these are all public static files this is safe (See
+# http://www.w3.org/TR/cors/#security) and ensures that things (e.g
+# webfonts in Firefox) still work as expected when your static files are
+# served from a CDN, rather than your primary domain.
+Header set Access-Control-Allow-Origin "*"
+
+# Set far-future Expires headers for static media
+ExpiresActive on
+
+# all non-hashed static files
+ExpiresDefault "access plus 10 minutes"
+
+# tabzilla
+<Files tabzilla-min.css>
+    ExpiresByType text/css "access plus 2 hours"
+</Files>
+
+FileETag MTime
+
+<FilesMatch "\.txt$">
+    FileETag None
+</FilesMatch>
+
+# fonts
+<FilesMatch "\.(eot|svg|ttf|woff)$">
+    ExpiresByType application/octet-stream "access plus 1 year"
+</FilesMatch>
+
+# immutable filenames
+<FilesMatch ".+\.[a-f0-9]{12}\.[a-z]+$">
+    # Ten years is what nginx sets a max age if you use 'expires max;'
+    ExpiresDefault "access plus 10 years"
+</FilesMatch>

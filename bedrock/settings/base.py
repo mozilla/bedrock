@@ -133,6 +133,7 @@ PIPELINE_COMPILERS = (
 )
 PIPELINE_LESS_BINARY = path('node_modules', 'less', 'bin', 'lessc')
 PIPELINE_YUGLIFY_BINARY = path('node_modules', 'yuglify', 'bin', 'yuglify')
+WHITENOISE_ROOT = path('root_files')
 
 # PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
 

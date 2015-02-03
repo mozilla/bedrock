@@ -26,8 +26,10 @@ site.addsitedir(os.path.abspath(os.path.join(wsgidir, '../')))
 # manage adds /apps, /lib, and /vendor to the Python path.
 import manage
 
-import django.core.handlers.wsgi
-application = django.core.handlers.wsgi.WSGIHandler()
+from django.core.wsgi import get_wsgi_application
+from whitenoise.django import DjangoWhiteNoise
+
+application = DjangoWhiteNoise(get_wsgi_application())
 
 if newrelic:
     application = newrelic.agent.wsgi_application()(application)
