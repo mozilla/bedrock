@@ -27,13 +27,9 @@
   {% endtrans %}</p>
 
   <p>
-    {% trans
-      blog="//blog.lizardwrangler.com/2008/02/28/steering-committee/"
-    %}
-      More information about the Steering Committee and its formation can be
-      found in <a href="{{ blog }}">this blog post</a>.
-      It has a standing weekly meeting, periodic multi-day sessions and meets
-      additionally on an as needed basis.
+    {% trans %}
+      The Steering Committee has a standing weekly meeting, periodic
+      multi-day sessions and meets additionally on an as needed basis.
     {% endtrans %}
   </p>
 
@@ -44,12 +40,12 @@
   </p>
 
   <ul>
-    <li>Mitchell Baker, {{ _('Executive Chairwoman') }}</li>
-    <li>Chris Beard, {{ _('CEO') }}</li>
+    <li><a href="https://blog.mozilla.org/press/bios/mitchell-baker/">Mitchell Baker, {{ _('Executive Chairwoman') }}</a></li>
+    <li><a href="https://blog.mozilla.org/press/bios/chris-beard/">Chris Beard, {{ _('CEO') }}</a></li>
     <li>Jim Cook,  {{ _('Chief Finance Officer') }}</li>
-    <li>Denelle Dixon-Thayer, {{ _('Senior Vice President Business and Legal Affairs') }}</li>
-    <li>Andreas Gal, {{ _('CTO') }}</li>
-    <li>Li Gong, {{ _('President') }}</li>
-    <li>David Slater, {{ _('Chief of Staff and SVP of Operations') }}</li>
+    <li><a href="https://blog.mozilla.org/press/bios/denelle-dixon-thayer/">Denelle Dixon-Thayer, {{ _('Senior Vice President Business and Legal Affairs') }}</a></li>
+    <li><a href="https://blog.mozilla.org/press/bios/andreas-gal/">Andreas Gal, {{ _('CTO') }}</a></li>
+    <li><a href="https://blog.mozilla.org/press/bios/li-gong/">Li Gong, {{ _('President') }}</a></li>
+    <li><a href="https://blog.mozilla.org/press/bios/david-slater/">David Slater, {{ _('Chief of Staff and SVP of Operations') }}</a></li>
   </ul>
 {% endblock %}
