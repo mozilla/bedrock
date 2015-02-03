@@ -236,6 +236,9 @@ Mozilla.Accordion = function Accordion($accordion, options) {
             if (typeof Mozilla.Accordion.GLOBAL_ONEXPAND === 'function') {
                 Mozilla.Accordion.GLOBAL_ONEXPAND(this);
             }
+
+            // Fire a custom event on the panel
+            section.$panel.trigger('expand');
         }
     };
 
@@ -268,6 +271,9 @@ Mozilla.Accordion = function Accordion($accordion, options) {
             if (typeof Mozilla.Accordion.GLOBAL_ONCOLLAPSE === 'function') {
                 Mozilla.Accordion.GLOBAL_ONCOLLAPSE(this);
             }
+
+            // Fire a custom event on the panel
+            section.$panel.trigger('collapse');
         }
     };
 
