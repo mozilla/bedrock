@@ -121,6 +121,22 @@ function isFirefoxMobile(userAgent) {
     return /Mobile|Tablet|Fennec/.test(ua);
 }
 
+// Detect Firefox 31 ESR using navigator.buildID. 20140716183446 is the *non-ESR*
+// build ID that can be found at https://wiki.mozilla.org/Releases/Firefox_31/Test_Plan
+// Since this is a simple and only way to detect ESR, there would be some false
+// positives if the browser is a pre-release (Nightly, Aurora, Beta), semi-official
+// (e.g. Ubuntu build by Canonical) or unofficial version of Firefox 31, because
+// those builds have a different build ID from the official non-ESR build.
+function isFirefox31ESR(userAgent, buildID) {
+    userAgent = userAgent || navigator.userAgent;
+    buildID = buildID || navigator.buildID;
+
+    return !isFirefoxMobile(userAgent) &&
+        getFirefoxMasterVersion(userAgent) === 31 &&
+        buildID && buildID !== '20140716183446';
+}
+
+
 // Create text translation function using #strings element.
 // TODO: Move to docs
 // In order to use it, you need a block string_data bit inside your template,
