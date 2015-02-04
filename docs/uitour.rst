@@ -264,6 +264,7 @@ Available ``type`` values:
 * ``'availableTargets'``
 * ``'appinfo'``
 * ``'selectedSearchEngine'``
+* ``'loop'``
 
 Other parameters:
 
@@ -320,6 +321,18 @@ If ``'selectedSearchEngine'`` is queried the object returned gives the currently
 .. Important::
 
     ``selectedSearchEngine`` is only available in Firefox 34 onward.
+
+If ``'loop'`` is queried the object returns the boolean value for the ``'loop.gettingStarted.seen'`` preference.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.getConfiguration('loop', function (data) {
+        console.log(data.gettingStartedSeen); // true
+    });
+
+.. Important::
+
+    ``loop`` is only available in Firefox 36 onward.
 
 setConfiguration(name, value);
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
