@@ -115,10 +115,10 @@
           </a>
         </li>
       {% endif %}
-      {% if l10n_has_tag('privacy_day') and waffle.switch('mozorg-home-privacy-promo') %}
-        <li id="promo-2" class="item promo-small-landscape advocacy" data-name="Learn about Mozilla Advocacy">
-          <a class="panel-link" href="https://advocacy.mozilla.org">
-            <h2>{{ _('Learn about Mozilla Advocacy') }}</h2>
+      {% if LANG == 'en-US' %}
+        <li id="promo-2" class="item promo-small-landscape net-neutrality" data-name="Protect net neutrality today">
+          <a class="panel-link" href="https://sendto.mozilla.org/page/s/FCCvote-net-neutrality?ref=20150205Advocacy_NN&amp;utm_campaign=20150205Advocacy_NN&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=homepage_promo">
+            <h2>Protect net neutrality today</h2>
           </a>
         </li>
       {% else %}
@@ -144,18 +144,7 @@
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
-    {% if l10n_has_tag('privacy_day') and waffle.switch('mozorg-home-privacy-promo') %}
-      {% if LANG.startswith('en') and waffle.switch('mozorg-home-privacy-promo-jan28') %}
-        <li id="promo-6" class="item promo-large-landscape privacy-day" tabindex="0" data-name="January 28 is Data Privacy Day">
-          <h2 class="primary go">January 28 is Data Privacy Day</h2>
-          <a class="panel-link" rel="external" href="{{ url('privacy.privacy-day') }}?utm_source=mozorg&amp;utm_medium=tile&amp;utm_campaign=DPD15">
-            <div class="secondary">
-              <h3>Get smart on privacy<br> in four easy steps.</h3>
-              <p class="more">Learn how</p>
-            </div>
-          </a>
-        </li>
-      {% else %}
+      {% if l10n_has_tag('privacy_day') and waffle.switch('mozorg-home-privacy-promo') %}
         <li id="promo-6" class="item promo-large-landscape privacy-day" tabindex="0" data-name="Get smart on privacy">
           <h2 class="primary go">{{ _('Get Smart on Privacy') }}</h2>
           <a class="panel-link" rel="external" href="{{ url('privacy.privacy-day') }}?utm_source=mozorg&amp;utm_medium=tile&amp;utm_campaign=DPD15">
@@ -165,8 +154,7 @@
             </div>
           </a>
         </li>
-      {% endif %}
-    {% else %}
+      {% else %}
         <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0" data-name="Teach the Web">
           <h2 class="primary go">{{ _('Teach the Web') }}</h2>
           <a class="panel-link" rel="external" href="https://webmaker.org/">
@@ -176,7 +164,7 @@
             </div>
           </a>
         </li>
-    {% endif %}
+      {% endif %}
         <li id="promo-7" class="item promo-face">
           {{ promo_face(3) }}
         </li>
