@@ -81,6 +81,8 @@ Developers: satdav
 Developers: gueroJeff
 Developers: jasager
 Developers: meghprkh
+Developers: utkbansal
+Developers: pollti
 
 Localizers on SVN
 Localize: akilaa@wippies.fi
