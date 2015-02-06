@@ -2149,3 +2149,5 @@ REST_FRAMEWORK = {
 
     'DEFAULT_FILTER_BACKENDS': ('rna.filters.TimestampedFilterBackend',)
 }
+
+TABLEAU_DB_URL = None
