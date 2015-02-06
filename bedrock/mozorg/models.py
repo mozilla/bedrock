@@ -31,3 +31,16 @@ class TwitterCache(models.Model):
 
     def __unicode__(self):
         return u'Tweets from @' + self.account
+
+
+class ContributorActivity(models.Model):
+    date = models.DateField()
+    source_name = models.CharField(max_length=100)
+    team_name = models.CharField(max_length=100)
+    total = models.IntegerField()
+    new = models.IntegerField()
+
+    class Meta:
+        unique_together = ('date', 'source_name', 'team_name')
+        get_latest_by = 'date'
+        ordering = ['-date']
