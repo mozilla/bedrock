@@ -10,7 +10,7 @@ $(function() {
     }
 
     // show for outdated Fx versions
-    if (isFirefox() &&  !isFirefoxUpToDate()) {
+    if (isFirefox() &&  !isFirefoxUpToDate() && !isFirefox31ESR()) {
         outdatedFx.show();
     }
 
