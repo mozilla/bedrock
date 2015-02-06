@@ -15,6 +15,12 @@ from dotlang import translate, lang_file_has_tag
 from gettext import template_has_tag
 
 
+babel_format_locale_map = {
+    'hsb': 'de',
+    'dsb': 'de',
+}
+
+
 def install_lang_files(ctx):
     """Install the initial set of .lang files"""
     req = ctx['request']
@@ -81,6 +87,7 @@ def l10n_has_tag(ctx, tag, langfile=None):
 
 def get_locale(lang):
     """Return a babel Locale object for lang. defaults to LANGUAGE_CODE."""
+    lang = babel_format_locale_map.get(lang) or lang
     try:
         return Locale.parse(lang, sep='-')
     except (UnknownLocaleError, ValueError):

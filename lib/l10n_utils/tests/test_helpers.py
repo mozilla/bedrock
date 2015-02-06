@@ -11,6 +11,19 @@ from bedrock.mozorg.tests import TestCase
 from l10n_utils import helpers
 
 
+def test_get_locale():
+    """Test that the get_locale() helper works."""
+    eq_(helpers.get_locale('pt-BR').language, 'pt')
+    eq_(helpers.get_locale('not-a-lang').language, 'en')
+
+
+def test_get_locale_hsb():
+    """Should treat hsb and dsb as de."""
+    # bug 1130285
+    eq_(helpers.get_locale('dsb').language, 'de')
+    eq_(helpers.get_locale('hsb').language, 'de')
+
+
 @patch.object(helpers, 'lang_file_has_tag')
 class TestL10nHasTag(TestCase):
     def test_uses_langfile(self, lfht_mock):
