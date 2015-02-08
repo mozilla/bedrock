@@ -122,19 +122,45 @@ class TestFirefoxDetails(TestCase):
     @patch.dict(firefox_details.firefox_versions,
                 FIREFOX_AURORA='28.0a2')
     def test_get_download_url_aurora(self):
-        """The Aurora version should give us an FTP url."""
+        """
+        The Aurora version should give us a permanent url. For Windows, a url of
+        the stub installer is used.
+        """
+        url = firefox_details.get_download_url('Windows', 'en-US', '28.0a2')
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-aurora-stub'),
+                              ('os', 'win'),
+                              ('lang', 'en-US')])
         url = firefox_details.get_download_url('OS X', 'en-US', '28.0a2')
-        self.assertIn('ftp.mozilla.org', url)
-        self.assertIn('latest-mozilla-aurora/firefox-28.0a2.en-US.mac.dmg', url)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-aurora-latest-ssl'),
+                              ('os', 'osx'),
+                              ('lang', 'en-US')])
+        url = firefox_details.get_download_url('Linux', 'en-US', '28.0a2')
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-aurora-latest-ssl'),
+                              ('os', 'linux'),
+                              ('lang', 'en-US')])
 
     @patch.dict(firefox_details.firefox_versions,
                 FIREFOX_AURORA='28.0a2')
     def test_get_download_url_aurora_l10n(self):
-        """Aurora non en-US should have a slightly different path."""
+        """Aurora non en-US should have a different product name."""
+        url = firefox_details.get_download_url('Windows', 'pt-BR', '28.0a2')
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-aurora-latest-l10n'),
+                              ('os', 'win'),
+                              ('lang', 'pt-BR')])
+        url = firefox_details.get_download_url('OS X', 'pt-BR', '28.0a2')
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-aurora-latest-l10n'),
+                              ('os', 'osx'),
+                              ('lang', 'pt-BR')])
         url = firefox_details.get_download_url('Linux', 'pt-BR', '28.0a2')
-        self.assertIn('ftp.mozilla.org', url)
-        self.assertIn('latest-mozilla-aurora-l10n/firefox-28.0a2.pt-BR.linux-i686.tar.bz2',
-                      url)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-aurora-latest-l10n'),
+                              ('os', 'linux'),
+                              ('lang', 'pt-BR')])
 
     @override_settings(STUB_INSTALLER_LOCALES={'win': settings.STUB_INSTALLER_ALL})
     def get_download_url_ssl(self):

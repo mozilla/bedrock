@@ -8,9 +8,6 @@ from product_details import ProductDetails
 # TODO: port this to django-mozilla-product-details
 class FirefoxDetails(ProductDetails):
     download_base_url_direct = 'https://download.mozilla.org/'
-    download_base_url_transition = '/products/download.html'
-    download_base_url_aurora = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/' \
-                               'nightly/latest-mozilla-aurora'
 
     platform_info = {
         'Windows': {
@@ -168,16 +165,22 @@ class FirefoxDetails(ProductDetails):
                          ])])
 
     def _get_aurora_download_url(self, platform, language, version):
-        base_url = self.download_base_url_aurora
-        if language != 'en-US':
-            base_url += '-l10n'
+        # Download links are different for localized versions
+        if language == 'en-US':
+            if platform == 'Windows':
+                product = 'firefox-aurora-stub'
+            else:
+                product = 'firefox-aurora-latest-ssl'
+        else:
+            product = 'firefox-aurora-latest-l10n'
 
-        return '{base_url}/firefox-{version}.{lang}.{file_ext}'.format(
-            base_url=base_url,
-            version=version,
-            lang=language,
-            file_ext=self.platform_info[platform]['file_ext']
-        )
+        return '?'.join([self.download_base_url_direct,
+                         urlencode([
+                             ('product', product),
+                             ('os', self.platform_info[platform]['id']),
+                             # Order matters, lang must be last for bouncer.
+                             ('lang', language),
+                         ])])
 
 
 class MobileDetails(ProductDetails):
