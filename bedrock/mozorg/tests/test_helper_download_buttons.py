@@ -50,9 +50,6 @@ GOOD_VERSIONS = {
     'FIREFOX_ESR': '24.1.0esr',
 }
 
-AURORA_DIR = ('https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/'
-              'latest-mozilla-aurora')
-
 mkln = make_download_link
 
 

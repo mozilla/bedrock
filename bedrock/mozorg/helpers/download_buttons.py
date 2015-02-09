@@ -8,7 +8,7 @@ of terms and example values for them:
 
 * product: 'firefox' or 'thunderbird'
 * version: 7.0, 8.0b3, 9.0a2
-* build: 'beta', 'aurora', or None (for latest)
+* channel: 'beta', 'aurora', or None (for latest)
 * platform: 'os_windows', 'os_linux', 'os_linux64', or 'os_osx'
 * locale: a string in the form of 'en-US'
 """
@@ -21,16 +21,12 @@ import jinja2
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils import get_locale
 
-nightly_desktop = ('https://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/'
-                   'latest-mozilla-aurora')
 nightly_android = ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/'
                    'latest-mozilla-aurora-android')
 
 download_urls = {
     'transition': '/firefox/new/?scene=2#download-fx',
     'direct': 'https://download.mozilla.org/',
-    'aurora': nightly_desktop,
-    'aurora-l10n': nightly_desktop + '-l10n',
     'aurora-android-api-9': nightly_android + (
         '-api-9/fennec-%s.multi.android-arm.apk'),
     'aurora-android-api-11': nightly_android + (
@@ -78,11 +74,11 @@ def make_aurora_link(product, version, platform, locale,
         plat=platform.replace('os_', '').replace('windows', 'win'))
 
 
-def make_download_link(product, build, version, platform, locale,
+def make_download_link(product, channel, version, platform, locale,
                        force_direct=False, force_full_installer=False,
                        force_funnelcake=False, funnelcake_id=None):
     # Aurora has a special download link format
-    if build == 'aurora':
+    if channel == 'aurora':
         return make_aurora_link(product, version, platform, locale,
                                 force_full_installer=force_full_installer)
 
@@ -103,7 +99,7 @@ def make_download_link(product, build, version, platform, locale,
         if force_funnelcake or force_full_installer:
             suffix = 'latest'
 
-        version = ('beta-' if build == 'beta' else '') + suffix
+        version = ('beta-' if channel == 'beta' else '') + suffix
     elif not funnelcake_id:
         # Force download via SSL. Stub installers are always downloaded via SSL.
         # Funnelcakes may not be ready for SSL download
@@ -127,7 +123,7 @@ def make_download_link(product, build, version, platform, locale,
         return download_urls['transition']
 
 
-def android_builds(build, builds=None):
+def android_builds(channel, builds=None):
     builds = builds or []
     android_link = settings.GOOGLE_PLAY_FIREFOX_LINK
     variations = {
@@ -136,12 +132,11 @@ def android_builds(build, builds=None):
         'x86': 'x86',
     }
 
-    if build.lower() == 'beta':
-
+    if channel.lower() == 'beta':
         android_link = android_link.replace('org.mozilla.firefox',
                                             'org.mozilla.firefox_beta')
 
-    if build == 'aurora':
+    if channel == 'aurora':
         for type, arch_pretty in variations.items():
             link = (download_urls['aurora-android-%s' % type] %
                     mobile_details.latest_version('aurora'))
@@ -153,7 +148,7 @@ def android_builds(build, builds=None):
                            'arch_pretty': arch_pretty,
                            'download_link': link})
 
-    if build != 'aurora':
+    if channel != 'aurora':
         builds.append({'os': 'os_android',
                        'os_pretty': 'Android',
                        'download_link': android_link})
@@ -163,14 +158,14 @@ def android_builds(build, builds=None):
 
 @jingo.register.function
 @jinja2.contextfunction
-def download_firefox(ctx, build='release', small=False, icon=True,
+def download_firefox(ctx, channel='release', small=False, icon=True,
                      mobile=None, dom_id=None, locale=None, simple=False,
                      force_direct=False, force_full_installer=False,
                      force_funnelcake=False, check_old_fx=False):
     """ Output a "download firefox" button.
 
     :param ctx: context from calling template.
-    :param build: name of build: 'release', 'beta' or 'aurora'.
+    :param channel: name of channel: 'release', 'beta' or 'aurora'.
     :param small: Display the small button if True.
     :param icon: Display the Fx icon on the button if True.
     :param mobile: Display the android download button if True, the desktop
@@ -192,18 +187,18 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             'simple' param being true.
     :return: The button html.
     """
-    alt_build = '' if build == 'release' else build
+    alt_channel = '' if channel == 'release' else channel
     platform = 'mobile' if mobile else 'desktop'
     locale = locale or get_locale(ctx['request'])
     funnelcake_id = ctx.get('funnelcake_id', False)
-    dom_id = dom_id or 'download-button-%s-%s' % (platform, build)
+    dom_id = dom_id or 'download-button-%s-%s' % (platform, channel)
 
-    l_version = latest_version(locale, build)
+    l_version = latest_version(locale, channel)
     if l_version:
         version, platforms = l_version
     else:
         locale = 'en-US'
-        version, platforms = latest_version('en-US', build)
+        version, platforms = latest_version('en-US', channel)
 
     # Gather data about the build for each platform
     builds = []
@@ -231,7 +226,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
 
             # And generate all the info
             download_link = make_download_link(
-                'firefox', build, version, plat_os, _locale,
+                'firefox', channel, version, plat_os, _locale,
                 force_direct=force_direct,
                 force_full_installer=force_full_installer,
                 force_funnelcake=force_funnelcake,
@@ -245,7 +240,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
                 download_link_direct = False
             else:
                 download_link_direct = make_download_link(
-                    'firefox', build, version, plat_os, _locale,
+                    'firefox', channel, version, plat_os, _locale,
                     force_direct=True,
                     force_full_installer=force_full_installer,
                     force_funnelcake=force_funnelcake,
@@ -259,7 +254,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
     if mobile is not False:
-        builds = android_builds(build, builds)
+        builds = android_builds(channel, builds)
 
     # Get the native name for current locale
     langs = firefox_details.languages
@@ -273,7 +268,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
         'id': dom_id,
         'small': small,
         'simple': simple,
-        'build': alt_build,
+        'channel': alt_channel,
         'show_mobile': mobile is not False,
         'show_desktop': mobile is not True,
         'icon': icon,
