@@ -72,6 +72,16 @@ describe('browser-tour.js', function() {
                       '</ul>',
                     '</div>',
                   '</li>',
+                  '<li class="tour-step" data-step="4" data-tip-prev="Previous">',
+                    '<div class="tour-item">',
+                      '<h2 class="tour-show-hello-panel step-target">',
+                        'Title text',
+                      '</h2>',
+                      '<ul>',
+                        '<li><a href="#" role="button" class="more">Link text</a></li>',
+                      '</ul>',
+                    '</div>',
+                  '</li>',
                 '</ul>',
                 '<div class="compact-title"></div>',
                 '<div class="tour-init" data-target="appMenu" data-icon="logo.png" data-icon-high-res="logo-high-res.png"></div>',
@@ -137,6 +147,9 @@ describe('browser-tour.js', function() {
         spyOn(Mozilla.BrowserTour.prototype, 'updateControls').andCallThrough();
         spyOn(Mozilla.BrowserTour.prototype, 'onTourComplete').andCallThrough();
         spyOn(Mozilla.BrowserTour.prototype, 'onTourStep').andCallThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'showHelloPanel').andCallThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'hideHelloPanel').andCallThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'promptAddHelloButton').andCallThrough();
 
         // custom callback stubs
         onCloseTourCallback = sinon.stub();
@@ -479,13 +492,155 @@ describe('browser-tour.js', function() {
         });
     });
 
+    describe('Hello panel', function() {
+
+        describe('showHelloPanel', function() {
+
+            beforeEach(function() {
+                Mozilla.UITour.getConfiguration = function(configName, callback) {
+                    callback({
+                        targets: ['loop']
+                    });
+                };
+            });
+
+            it('should query availableTargets', function() {
+                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                $('.tour-show-hello-panel').trigger('tour-step');
+                expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
+            });
+
+            it('should open the hello panel if available', function() {
+                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                $('.tour-show-hello-panel').trigger('tour-step');
+                expect(Mozilla.BrowserTour.prototype.showHelloPanel).toHaveBeenCalled();
+                expect(Mozilla.UITour.showMenu.calledWith('loop')).toBeTruthy();
+            });
+
+            it('should call promptAddHelloButton if target is not available', function() {
+                Mozilla.UITour.getConfiguration = function(configName, callback) {
+                    callback({
+                        targets: ['foo']
+                    });
+                };
+                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                $('.tour-show-hello-panel').trigger('tour-step');
+                expect(Mozilla.BrowserTour.prototype.showHelloPanel).toHaveBeenCalled();
+                expect(Mozilla.UITour.showMenu.called).toBeFalsy();
+                expect(Mozilla.BrowserTour.prototype.promptAddHelloButton).toHaveBeenCalled();
+            });
+
+        });
+
+        describe('hideHelloPanel', function () {
+
+            it('should hide the Hello panel', function() {
+                tour.hideHelloPanel();
+                expect(Mozilla.UITour.hideMenu.calledWith('loop')).toBeTruthy();
+                expect(Mozilla.UITour.hideHighlight.called).toBeTruthy();
+            });
+        });
+
+        describe('promptAddHelloButton', function () {
+
+            it('should show a door-hanger on appMenu target', function() {
+                tour.promptAddHelloButton();
+                expect(Mozilla.UITour.showHighlight.calledWith('appMenu')).toBeTruthy();
+                expect(Mozilla.UITour.showInfo.calledWith('appMenu')).toBeTruthy();
+            });
+        });
+
+        describe('addHelloButton', function () {
+
+            it('should add the icon using addNavBarWidget', function() {
+                tour.addHelloButton();
+                expect(Mozilla.UITour.addNavBarWidget.calledWith('loop')).toBeTruthy();
+            });
+        });
+
+        describe('highlightHelloButton', function () {
+
+            it('should show a door-hanger on loop target', function() {
+                tour.highlightHelloButton();
+                expect(Mozilla.UITour.showHighlight.calledWith('loop')).toBeTruthy();
+                expect(Mozilla.UITour.showInfo.calledWith('loop')).toBeTruthy();
+            });
+        });
+
+        describe('laterHelloButton', function () {
+
+            it('should show a door-hanger on appMenu target', function() {
+                tour.laterHelloButton();
+                expect(Mozilla.UITour.showInfo.calledWith('appMenu')).toBeTruthy();
+            });
+        });
+
+        describe('reminderHelloButton', function() {
+
+            beforeEach(function() {
+                Mozilla.UITour.getConfiguration = function(configName, callback) {
+                    callback({
+                        targets: ['loop']
+                    });
+                };
+            });
+
+            it('should query availableTargets', function() {
+                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                tour.reminderHelloButton();
+                expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
+            });
+
+            it('should show a door-hanger on loop target available', function() {
+                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                tour.reminderHelloButton();
+                expect(Mozilla.UITour.showHighlight.calledWith('loop')).toBeTruthy();
+                expect(Mozilla.UITour.showInfo.calledWith('loop')).toBeTruthy();
+            });
+
+            it('should do nothing if loop target is not available', function() {
+                Mozilla.UITour.getConfiguration = function(configName, callback) {
+                    callback({
+                        targets: ['foo']
+                    });
+                };
+                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                tour.reminderHelloButton();
+                expect(Mozilla.UITour.showHighlight.called).toBeFalsy();
+                expect(Mozilla.UITour.showInfo.called).toBeFalsy();
+            });
+
+        });
+
+    });
+
     describe('hideAnnotations', function () {
 
-        it('should hide all UITour annotations', function() {
+        it('should hide UITour annotations', function() {
             tour.hideAnnotations();
             expect(Mozilla.UITour.hideMenu.calledWith('appMenu')).toBeTruthy();
             expect(Mozilla.UITour.hideHighlight.called).toBeTruthy();
             expect(Mozilla.UITour.hideInfo.called).toBeTruthy();
+        });
+
+        it('should hide Hello panel if it is open', function() {
+            Mozilla.UITour.getConfiguration = function(configName, callback) {
+                callback({
+                    targets: ['loop']
+                });
+            };
+            spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+            tour.showHelloPanel();
+            tour.hideAnnotations();
+            expect(Mozilla.BrowserTour.prototype.hideHelloPanel).toHaveBeenCalled();
+        });
+    });
+
+    describe('getText', function () {
+
+        it('should string HTML from a string', function() {
+            var text = tour.getText('Some <strong>text</strong>')
+            expect(text).toEqual('Some text');
         });
     });
 

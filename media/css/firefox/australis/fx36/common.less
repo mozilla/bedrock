@@ -29,6 +29,13 @@ body {
     opacity: 0.4;
 }
 
+#newsletter-form,
+#newsletter-form-thankyou {
+    width: 900px;
+    padding: @baseLine * 2;
+    margin-bottom: @baseLine * 4;
+}
+
 // it would be great if we could more easily generally customize this element
 #footer_email_submit {
     .inline-block();
@@ -52,6 +59,48 @@ body {
         background: rgba(255, 255, 255, 0.8);
         color: #00a0dc;
         box-shadow: none;
+    }
+}
+
+footer[role="contentinfo"] {
+    width: 980px;
+    margin: (@baseLine * 2) auto (@baseLine * 8) auto;
+    padding: 0;
+    overflow: hidden;
+    ul {
+        list-style-type: none;
+        width: 100%;
+        padding: 0;
+        .font-size(@smallFontSize);
+        li {
+            float: left;
+            width: 468px;
+            margin: 0 0 @baseLine 0;
+            padding: 0;
+            line-height: 1.5;
+            &:first-child {
+                text-align: right;
+                padding-right: @baseLine;
+                border-right: 1px dotted #666;
+            }
+            &:last-child {
+                padding-left: @baseLine;
+                text-align: left;
+            }
+        }
+        a:link,
+        a:visited {
+            color: @textColorTertiary;
+            &.more {
+                .font-size(@largeFontSize);
+                color: #484848;
+            }
+        }
+        a:hover,
+        a:active,
+        a:focus {
+            color: #000;
+        }
     }
 }
 

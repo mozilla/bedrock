@@ -160,6 +160,10 @@ if (typeof Mozilla == 'undefined') {
                 buttons,
                 options
             );
+
+            // temp fix for Bug 1049130
+            Mozilla.UITour.showHighlight(this.dataset.target, 'wobble');
+            Mozilla.UITour.showHighlight(this.dataset.target, 'wobble');
         });
 
         // show a hightlighted target feature in the browser UI
@@ -566,7 +570,7 @@ if (typeof Mozilla == 'undefined') {
      */
     BrowserTour.prototype.promptAddHelloButton = function () {
         var $dataElm = $('.hello-prompt-door-hanger');
-        var icon = '';
+        var icon = Mozilla.ImageHelper.isHighDpi() ? $dataElm.data('iconHighRes') : $dataElm.data('icon');
 
         var buttons = [
             {
@@ -586,8 +590,6 @@ if (typeof Mozilla == 'undefined') {
             targetCallback: this.closeHelloDoorhanger.bind(this)
         };
 
-        // two consecutive calls temp fix for Bug 1049130
-        Mozilla.UITour.showHighlight('appMenu', 'wobble');
         Mozilla.UITour.showHighlight('appMenu', 'wobble');
 
         Mozilla.UITour.showInfo(
@@ -682,8 +684,6 @@ if (typeof Mozilla == 'undefined') {
                         closeButtonCallback: that.closeHelloDoorhanger.bind(that)
                     };
 
-                    // two consecutive calls temp fix for Bug 1049130
-                    Mozilla.UITour.showHighlight(target, 'wobble');
                     Mozilla.UITour.showHighlight(target, 'wobble');
 
                     Mozilla.UITour.showInfo(
@@ -1134,6 +1134,7 @@ if (typeof Mozilla == 'undefined') {
         this.tourHasStarted = true;
         this.tourIsAnimating = true;
 
+        Mozilla.UITour.hideHighlight();
         Mozilla.UITour.hideInfo();
 
         // toggle/close with escape key
