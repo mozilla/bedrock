@@ -1,1 +1,1 @@
-mozillaID.logo.init('.logo', 480)
+mozillaID.logo.init('.logo', 480);
