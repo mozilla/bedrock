@@ -76,6 +76,7 @@ SUPPORTED_NONLOCALES += [
     'robots.txt',
     'telemetry',
     'webmaker',
+    'contributor-data',
 ]
 
 ALLOWED_HOSTS = [
