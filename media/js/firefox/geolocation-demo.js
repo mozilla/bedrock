@@ -8,8 +8,11 @@ $(document).ready(function() {
 
     var geodemo = {
         initialize: function() {
+            var $main = $('#main-content');
+
             if (!map) {
-                var token = $('#main-content').data('mapbox');
+                var token = $main.data('mapbox');
+                L.mapbox.accessToken = $main.data('token');
                 map = L.mapbox.map('map_canvas', token);
             }
             map.setView([37.41, -122.08], 1);
@@ -20,7 +23,7 @@ $(document).ready(function() {
 
         handleSuccess: function(position) {
             $('#locateButton').siblings('img').hide();
-            
+
             var center = [position.coords.latitude, position.coords.longitude];
             var radius = position.coords.accuracy;
             var zoomLevel = 14;

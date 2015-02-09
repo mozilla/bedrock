@@ -34,7 +34,7 @@
 
 {% block content %}
 
-<main id="main-content" role="main" data-mapbox="{{ settings.MAPBOX_TOKEN }}">
+<main id="main-content" role="main" data-mapbox="{{ settings.MAPBOX_TOKEN }}" data-token="{{ settings.MAPBOX_ACCESS_TOKEN }}">
   <header class="page-head container">
     <h1 class="page-title title-shadow-box">{{ _('Where is Mozilla?') }}</h1>
     <p class="help">

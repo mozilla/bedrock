@@ -27,7 +27,7 @@
         </ul>
 
         <figure class="feature-img">
-          <img src="//api.tiles.mapbox.com/v3/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(2.341210,48.871951)/2.341210,48.871951,16/460x250.png?2013-12" alt="">
+          <img src="//api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(2.341210,48.871951)/2.341210,48.871951,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
         </figure>
       </div>
 

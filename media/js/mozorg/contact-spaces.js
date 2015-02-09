@@ -36,8 +36,11 @@
          * This should only be called once on page load.
          */
         init: function () {
-            // get the mapbox api token.
-            var token = $('#main-content').data('mapbox');
+            var $main = $('#main-content');
+            // get the mapbox map id.
+            var mapId = $main.data('mapbox');
+            // mapbox access token
+            L.mapbox.accessToken = $main.data('token');
             // set page nav state.
             mozMap.setInitialPageNavState();
             // create mobile navigation
@@ -47,7 +50,7 @@
             //initialize map and center.
             map = L.mapbox.map('map').setView([28, 0], 2);
             // load mozilla custom map tiles
-            var mapLayer = L.mapbox.tileLayer(token,{
+            var mapLayer = L.mapbox.tileLayer(mapId,{
                 detectRetina: true
             });
             // when ready, set the map and page default states
@@ -461,14 +464,14 @@
          * Creates spaces markers and then hide them using setFilter()
          */
         initSpacesMarkers: function () {
-            map.markerLayer.on('layeradd', function(e) {
+            map.featureLayer.on('layeradd', function(e) {
                 var marker = e.layer,
                     feature = marker.feature;
 
                 marker.setIcon(L.icon(feature.properties.icon));
             });
-            map.markerLayer.setGeoJSON(window.mozSpaces);
-            map.markerLayer.setFilter(function () {
+            map.featureLayer.setGeoJSON(window.mozSpaces);
+            map.featureLayer.setFilter(function () {
                 return false;
             });
         },
@@ -478,24 +481,24 @@
          * Sets an initial panned out view of the world map.
          */
         addSpacesMarkers: function () {
-            map.markerLayer.setFilter(function () {
+            map.featureLayer.setFilter(function () {
                 return true;
             });
-            map.markerLayer.on('click', mozMap.onMarkerClick);
-            map.markerLayer.on('mouseover', mozMap.openMarkerPopup);
-            map.markerLayer.on('mouseout', mozMap.closeMarkerPopup);
+            map.featureLayer.on('click', mozMap.onMarkerClick);
+            map.featureLayer.on('mouseover', mozMap.openMarkerPopup);
+            map.featureLayer.on('mouseout', mozMap.closeMarkerPopup);
         },
 
         /*
          * Removes spaces markers from the map and unbinds events.
          */
         removeSpacesMarkers: function () {
-            map.markerLayer.setFilter(function () {
+            map.featureLayer.setFilter(function () {
                 return false;
             });
-            map.markerLayer.off('click', mozMap.onMarkerClick);
-            map.markerLayer.off('mouseover', mozMap.openMarkerPopup);
-            map.markerLayer.off('mouseout', mozMap.closeMarkerPopup);
+            map.featureLayer.off('click', mozMap.onMarkerClick);
+            map.featureLayer.off('mouseover', mozMap.openMarkerPopup);
+            map.featureLayer.off('mouseout', mozMap.closeMarkerPopup);
             map.setView([28, 0], 2);
         },
 
@@ -533,7 +536,7 @@
                 return;
             }
             // else find the right marker and fire a click.
-            map.markerLayer.eachLayer(function (marker) {
+            map.featureLayer.eachLayer(function (marker) {
                 if (marker.feature.properties.id === id) {
                     map.setView(marker.getLatLng(), 12, {
                         animate: true
@@ -724,12 +727,14 @@
 
             // if the content is already cached display it
             if (contentCache.hasOwnProperty(cacheId)) {
+                // abort any pending xhr if we're loading from cache
+                mozMap.abortRequest();
                 $('#entry-container').html(contentCache[cacheId]);
                 // pan to the new marker
                 mozMap.panToMarker(cacheId);
                 // update the page title
                 mozMap.setPageTitle(cacheId);
-            } else if (id === $('section.entry').prop('id')) {
+            } else if (id && id === $('section.entry').prop('id')) {
                 // pan to the new marker
                 mozMap.panToMarker(id);
             } else {
@@ -782,12 +787,14 @@
             var contentUrl = url || current.prop('href');
 
             if (contentCache.hasOwnProperty(cacheId)) {
+                // abort any pending xhr if we're loading from cache
+                mozMap.abortRequest();
                 // if the content is already cached display it
                 $('#entry-container').html(contentCache[cacheId]);
                 mozMap.showCommunityRegion(cacheId);
                 // update the page title
                 mozMap.setPageTitle(cacheId);
-            } else if (id === $('section.entry').prop('id')) {
+            } else if (id && id === $('section.entry').prop('id')) {
                 // if we're already on the right page,
                 // just show the map layer
                 mozMap.showCommunityRegion(id);
@@ -1042,15 +1049,19 @@
             }
         },
 
+        abortRequest: function () {
+            if (xhr && xhr.readystate !== 4) {
+                xhr.abort();
+            }
+        },
+
         /*
          * Requests content for displaying current space information
          * Params: @id space identifier string, @url url to request
          */
         requestContent: function (url) {
             //abort previous request if one exists
-            if (xhr && xhr.readystate !== 4) {
-                xhr.abort();
-            }
+            mozMap.abortRequest();
 
             //get the page content
             xhr = $.ajax({
