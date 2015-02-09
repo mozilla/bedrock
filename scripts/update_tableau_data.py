@@ -13,8 +13,13 @@ QUERY = ('SELECT c_date, team_name, source_name, count(*) AS total, IFNULL(SUM(i
          'FROM contributor_active {where} GROUP BY c_date, team_name, source_name')
 
 
-def run():
-    """Get contributor activity data from Tableau and insert it into bedrock DB."""
+def process_name_fields(team_name):
+    """Lowercase and remove spaces"""
+    return team_name.replace(' ', '').lower()
+
+
+def get_external_data():
+    """Get the data and return it as a tuple of tuples."""
     if not settings.TABLEAU_DB_URL:
         print 'Must set TABLEAU_DB_URL.'
         sys.exit(1)
@@ -44,20 +49,7 @@ def run():
         con = MySQLdb.connect(**con_data)
         cur = con.cursor()
         cur.execute(QUERY.format(where=where_clause))
-        rows = cur.fetchall()
-        activities = []
-        for row in rows:
-            activities.append(ContributorActivity(
-                date=row[0],
-                team_name=row[1],
-                source_name=row[2],
-                total=row[3],
-                new=row[4],
-            ))
-
-        ContributorActivity.objects.bulk_create(activities)
-        print 'Created {0} contributor activity rows'.format(len(rows))
-
+        return cur.fetchall()
     except MySQLdb.Error as e:
         sys.stderr.write('Error %d: %s' % (e.args[0], e.args[1]))
         sys.exit(1)
@@ -65,3 +57,18 @@ def run():
     finally:
         if con:
             con.close()
+
+
+def run():
+    """Get contributor activity data from Tableau and insert it into bedrock DB."""
+    activities = []
+    for row in get_external_data():
+        activities.append(ContributorActivity(
+            date=row[0],
+            team_name=process_name_fields(row[1]),
+            source_name=process_name_fields(row[2]),
+            total=row[3],
+            new=row[4],
+        ))
+
+    ContributorActivity.objects.bulk_create(activities)
