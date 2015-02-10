@@ -42,10 +42,10 @@
       {% include "security/partials/impact_key.html" %}
 
       {% for version in product_versions %}
-        <h3 id="{{ version.html_id }}" class="level-heading">
-          <a class="anchor" href="#{{ version.html_id }}">#</a>
+        <h3 id="{{ version.html_id }}" class="level-heading"><a href="#{{ version.html_id }}">
+          <span class="anchor">#</span>
           Fixed in {{ version.name }}
-        </h3>
+        </a></h3>
         <ul>
         {% for advisory in version.advisories.all() %}
           <li class="level-item"><a href="{{ advisory.get_absolute_url() }}">

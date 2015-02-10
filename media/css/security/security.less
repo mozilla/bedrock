@@ -106,9 +106,25 @@ p.note {
 
 .level-heading {
     position: relative;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            .anchor {
+                visibility: visible;
+            }
+        }
+    }
+
     .anchor {
         position: absolute;
         left: -1em;
+        width: 1em;
+        visibility: hidden;
         .font-size(@baseFontSize);
         color: @textColorLight;
         vertical-align: middle;
