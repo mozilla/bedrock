@@ -13,7 +13,6 @@ from subprocess import check_call, Popen, PIPE, STDOUT
 from django.conf import settings
 from django.core.cache import cache
 from django.core.management.base import NoArgsCommand, BaseCommand
-from django.db import transaction
 
 from dateutil.parser import parse as parsedate
 
@@ -97,7 +96,6 @@ def get_current_git_hash():
     return p.communicate()[0].strip()
 
 
-@transaction.commit_on_success
 def delete_files(filenames):
     ids = []
     for filename in filenames:
@@ -107,7 +105,6 @@ def delete_files(filenames):
     SecurityAdvisory.objects.filter(id__in=ids).delete()
 
 
-@transaction.commit_on_success
 def add_or_update_advisory(data, html):
     """
     Add or update an advisory in the database.

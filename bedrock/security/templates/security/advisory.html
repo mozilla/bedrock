@@ -27,7 +27,7 @@
         {% endif %}
         {% if advisory.reporter %}
           <dt>Reporter</dt>
-          <dd>{{ advisory.reporter }}</dd>
+          <dd>{{ advisory.reporter|safe }}</dd>
         {% endif %}
         {% if 'risk' in advisory.extra_data %}
           <dt>Risk</dt>
