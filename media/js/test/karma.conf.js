@@ -17,6 +17,7 @@ module.exports = function(config) {
             '../base/mozilla-accordion.js',
             '../base/mozilla-pager.js',
             'http://localhost:8000/tabzilla/tabzilla.js?build=dev',
+            '../firefox/australis/browser-tour.js',
             'spec/site.js',
             'spec/global.js',
             'spec/mozilla-form-helper.js',
@@ -24,6 +25,7 @@ module.exports = function(config) {
             'spec/mozilla-accordion.js',
             'spec/mozilla-pager.js',
             'spec/tabzilla.js',
+            'spec/browser-tour.js',
             {
                 pattern: '../../../node_modules/sinon/pkg/sinon.js',
                 watched: false,
