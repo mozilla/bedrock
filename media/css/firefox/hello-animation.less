@@ -279,7 +279,7 @@
         opacity: 1;
     }
     100% {
-        .transform(scale(0.375) translate(-133px, 22px));
+        .transform(scale(0.37) translate(-133px, 22px));
         opacity: 1;
     }
 }
@@ -290,7 +290,7 @@
         opacity: 1;
     }
     100% {
-        .transform(scale(0.375) translate(-133px, 22px));
+        .transform(scale(0.37) translate(-133px, 22px));
         opacity: 1;
     }
 }
@@ -326,5 +326,28 @@
     #hello-animation-stage.animate .hello-sprite {
         background-image: url(/media/img/firefox/hello/sprite-animation-mini-high-res.png);
         .background-size(300px, 1263px);
+    }
+
+    // improve rendering for high-res screens by altering scale slightly
+    @-webkit-keyframes hello-message-blue-face-shrink {
+        0% {
+            .transform(scale(1) translateY(0));
+            opacity: 1;
+        }
+        100% {
+            .transform(scale(0.375) translate(-133px, 22px));
+            opacity: 1;
+        }
+    }
+
+    @keyframes hello-message-blue-face-shrink {
+        0% {
+            .transform(scale(1) translateY(0));
+            opacity: 1;
+        }
+        100% {
+            .transform(scale(0.375) translate(-133px, 22px));
+            opacity: 1;
+        }
     }
 }

@@ -21,7 +21,8 @@
     border: none;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &:focus {
         text-decoration: none;
         background: lighten(@buttonFlatBlue, 3%);
         color: #fff;
@@ -34,7 +35,8 @@
     color: @buttonFlatBlue;
     border: 2px solid @buttonFlatBlue;
 
-    &:hover {
+    &:hover,
+    &:focus {
         background: rgba(255, 255, 255, 1);
     }
 }

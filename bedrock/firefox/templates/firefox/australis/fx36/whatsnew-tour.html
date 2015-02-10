@@ -54,7 +54,7 @@ data-step2="{{ _('2/2') }}"
 {% block promo_content %}
   <article class="promo whatsnew">
     <div class="promo-copy">
-      <a href="{{ url('firefox.hello') }}" class="button-flat">{{ _('Learn more') }}</a>
+      <a id="learn-more" href="{{ url('firefox.hello') }}" class="button-flat">{{ _('Learn more') }}</a>
       <p id="powered-by">{{ _('Powered by %s')|format(high_res_img('img/firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}</p>
     </div>
     <div class="promo-media">
