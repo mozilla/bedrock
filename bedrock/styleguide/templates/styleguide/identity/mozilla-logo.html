@@ -1,0 +1,21 @@
+{% extends "styleguide/base.html" %}
+
+{% block body_class %}
+  {{ super() }}
+  mozilla-logo
+{% endblock %}
+
+{% set page_title = 'Mozilla logo' %}
+
+
+{% block content_area %}
+<div class="logoGenerator dataControls colorControls ui-front">
+  <div class="leftControls controlParent"></div>
+  <div class="logo"></div>
+  <div class="rightControls controlParent"></div>
+</div>
+{% endblock %}
+
+{% block js %}
+{{ js('mozilla-logo-generator') }}
+{% endblock %}

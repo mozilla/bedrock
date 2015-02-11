@@ -14,6 +14,7 @@ all_children = [
         PageNode('Mozilla', path='mozilla', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/mozilla-branding.html'),
             PageNode('Color', path='color', template='styleguide/identity/mozilla-color.html'),
+            PageNode('Logo', path='logo', template='styleguide/identity/mozilla-logo.html'),
         )),
         PageNode('Firefox Family', path='firefox-family', children=(
             PageNode('Overview', path='overview', template='styleguide/identity/firefox-family-overview.html'),
@@ -106,3 +107,4 @@ if settings.DEV:
 urlpatterns = PageRoot('Home', children=tuple(all_children)).as_urlpatterns()
 
 urlpatterns += [page('identity/mozilla/logo-prototype', 'styleguide/identity/logo-prototype.html')]
+urlpatterns += [page('identity/mozilla/logo', 'styleguide/identity/mozilla-logo.html')]

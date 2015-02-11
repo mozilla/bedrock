@@ -35,6 +35,7 @@
     {{ js('home-2015-ie9') }}
   <![endif]-->
   {{ js('home-2015') }}
+  {{ js('mozilla-logo-embed-snippet') }}
 {% endblock %}
 
 {% block string_data %}
@@ -85,8 +86,8 @@
 {% block content %}
 <main role="main">
   <header class="main-header">
-    <div class="container">
-      <h1>{{ high_res_img('img/home/voices/mozilla-wordmark-white.png', {'alt': 'Mozilla', 'width': '313', 'height': '82'}) }}</h1>
+    <div style="text-align: center;" class='mozillaLogo'>
+      <img width="200" height="200" src="{{ media('img/styleguide/identity/mozilla/logo/staticLogo.png') }}" alt="Mozilla">
     </div>
   </header>
 
