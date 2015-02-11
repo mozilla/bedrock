@@ -14,9 +14,9 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_os_mwc_2014_preview') }}
+  {% stylesheet 'firefox_os_mwc_2014_preview' %}
   <!--[if lt IE 8]>
-  {{ css('firefox_os_mwc_2014_preview_ie7') }}
+  {% stylesheet 'firefox_os_mwc_2014_preview_ie7' %}
   <![endif]-->
 {% endblock %}
 
@@ -24,7 +24,7 @@
 <main role="main">
   <section id="intro">
     <div class="container">
-      <img class="logo" src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/firefox-os.png" alt="{{ _('Firefox OS') }}">
+      <img class="logo" src="{{ static('img/firefox/os/mwc-2014-preview/firefox-os.png') }}" alt="{{ _('Firefox OS') }}">
 
       <div id="intro-copy">
         <header>
@@ -50,10 +50,10 @@
         {% endtrans %}
         </p>
 
-        <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/mwc-logo.png" alt="{{ _('Mobile World Congress') }}">
+        <img src="{{ static('img/firefox/os/mwc-2014-preview/mwc-logo.png') }}" alt="{{ _('Mobile World Congress') }}">
       </div>
       <figure id="intro-phone">
-        <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/phone-fox.png" alt="{{ _('Firefox OS') }}" />
+        <img src="{{ static('img/firefox/os/mwc-2014-preview/phone-fox.png') }}" alt="{{ _('Firefox OS') }}" />
         <div class="tail"></div>
       </figure>
     </div>
@@ -73,28 +73,28 @@
 
       <ul id="list-partners">
         <li>
-          <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/partners/deutsche-telekom.png" alt="{{ _('Deutsche Telekom') }}">
+          <img src="{{ static('img/firefox/os/mwc-2014-preview/partners/deutsche-telekom.png') }}" alt="{{ _('Deutsche Telekom') }}">
         </li>
         <li>
-          <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/partners/qualcomm.png" alt="{{ _('Qualcomm') }}">
+          <img src="{{ static('img/firefox/os/mwc-2014-preview/partners/qualcomm.png') }}" alt="{{ _('Qualcomm') }}">
         </li>
         <li>
-          <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/partners/telenor.png" alt="{{ _('Telenor') }}">
+          <img src="{{ static('img/firefox/os/mwc-2014-preview/partners/telenor.png') }}" alt="{{ _('Telenor') }}">
         </li>
         <li>
-          <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/partners/telefonica.png" alt="{{ _('Telefonica') }}">
+          <img src="{{ static('img/firefox/os/mwc-2014-preview/partners/telefonica.png') }}" alt="{{ _('Telefonica') }}">
         </li>
         <li>
-          <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/partners/lg.png" alt="{{ _('LG') }}">
+          <img src="{{ static('img/firefox/os/mwc-2014-preview/partners/lg.png') }}" alt="{{ _('LG') }}">
         </li>
         <li>
-          <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/partners/alcatel.png" alt="{{ _('Alcatel') }}">
+          <img src="{{ static('img/firefox/os/mwc-2014-preview/partners/alcatel.png') }}" alt="{{ _('Alcatel') }}">
         </li>
         <li>
-          <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/partners/telecom-italia.png" alt="{{ _('Telecom Italia') }}">
+          <img src="{{ static('img/firefox/os/mwc-2014-preview/partners/telecom-italia.png') }}" alt="{{ _('Telecom Italia') }}">
         </li>
         <li>
-          <img src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/partners/zte.png" alt="{{ _('ZTE') }}">
+          <img src="{{ static('img/firefox/os/mwc-2014-preview/partners/zte.png') }}" alt="{{ _('ZTE') }}">
         </li>
       </ul>
 
@@ -200,5 +200,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_os_mwc_2014_preview') }}
+  {% javascript 'firefox_os_mwc_2014_preview' %}
 {% endblock %}

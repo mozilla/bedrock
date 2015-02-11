@@ -1,0 +1,174 @@
+#!/usr/bin/env node
+
+/*
+Copyright (c) 2012, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://yuilibrary.com/license/
+*/
+var nopt = require('nopt'),
+    path = require('path'),
+    fs = require('fs'),
+    util = require('util'),
+    pwd = path.resolve(),
+    exists = fs.existsSync || path.existsSync,
+    pack = require('../package.json'),
+    jsmin = require('../').jsmin,
+    cssmin = require('../').cssmin,
+    hasColor = process.stdin.isTTY,
+    defaults = {
+        name: '%s.min%s'
+    },
+    known = {
+        type: ['css', 'js'],
+        output: path,
+        terminal: Boolean,
+        help: Boolean,
+        version: Boolean,
+        combine: String
+    },
+    shorts = {
+        'o': ['--output'],
+        't': ['--type'],
+        'h': ['--help'],
+        'v': ['--version'],
+        'c': ['--combine']
+    },
+    filename = defaults.name,
+    parsed = nopt(known, shorts);
+    parsed.type = parsed.type || 'js'; //Default to JS files
+
+if (parsed.version) {
+    console.log(pack.version);
+    process.exit(0);
+}
+
+if (parsed.help || (!parsed.argv.remain.length && !parsed.terminal)) {
+    var help = [
+        'yuglify@' + pack.version,
+        '',
+        '           yuglify ./foo.js #Auto saves to ./foo.min.js',
+        '           yuglify ./foo/foo.js ./bar/bar.js #Auto saves to ./foo/foo.min.js and ./bar/bar.min.js',
+        '           yuglify ./foo/foo.css ./bar/bar.js #Auto saves to ./foo/foo.min.css and ./bar/bar.min.js',
+        '',
+        '   --help/-h       show this',
+        '   --version/-v    show version',
+        '   --type js|css   what type of file to compress (used with stdin)',
+        '   --terminal      use stdin and stdout instead of files',
+        '   --output <file> use this file when using --terminal',
+        '   --combine/-c <file> compresses and combines all files into a single one.',
+        '   <files to compress>'
+    ];
+    console.log(help.join('\n'));
+    process.exit(0);
+}
+
+if (parsed.terminal) {
+    var stdin = process.openStdin(),
+        data = '';
+
+    stdin.setEncoding('utf8');
+    stdin.on('data', function(buffer) {
+        data += buffer;
+    });
+    stdin.on('end', function() {
+        var compfn = (parsed.type === 'css' ? cssmin : jsmin);
+        compfn(data, function(err, smashed) {
+            if (err) {
+                throw(err);
+                process.exit(1);
+            }
+            if (parsed.output) {
+                fs.writeFileSync(parsed.output, smashed, 'utf8');
+            } else {
+                process.stdout.write(smashed);
+            }
+        });
+    });
+} else {
+
+    console.log('Compressing ' + parsed.argv.remain.join(', ') + '...');
+
+    var buffer = {js: '', css: ''},
+        files = parsed.argv.remain;
+
+    // Uglify is blocking, so we will do this in sync.
+    files.forEach(function(file, index) {
+        
+        file = path.resolve(file);
+        
+        if (exists(file)) {
+
+            var data = fs.readFileSync(file, 'utf8'),
+                destination = path.dirname(file) + '/',
+                extension = path.extname(file),
+                basename = path.basename(file).replace(extension, ''),
+                compressed = destination.concat(util.format(filename, basename, extension)),
+                compfn = (extension === '.css' ? cssmin : jsmin);
+
+            compfn(data, function(err, smashed) {
+
+                if (err) {
+                    throw(err);
+                    process.exit(1);
+                }
+                
+                if(parsed.combine) {
+
+                    // Fill the buffer content by its type.
+                    buffer[extension.slice(1)] += smashed;
+
+                } else {
+
+                    fs.writeFileSync(compressed, smashed, 'utf8');
+
+                    var log = 'Successfully generated ' + extension.slice(1).toUpperCase() + ' file: ';
+                    if (hasColor) {
+                        // Those bizarre sets of characters are for coloring the output.
+                        log += '\u001b[32m' + path.relative(pwd, compressed) + '\033[0m';
+                    } else {
+                        log += path.relative(pwd, compressed);
+                    }
+                    console.log(log);
+                }
+                
+            });
+        } else {
+            console.log('Failed to find:', file);
+            process.exit(1);
+        }
+    });
+
+    if(parsed.combine) {
+
+        var combined;
+
+        // Looping through known types.
+        known.type.forEach(function( type ) {
+
+            if(buffer[type] !== '') {
+
+                // It uses the default file name (which is main) in case user doesn't give a custom one.
+                // The file is always generated on the current folder.
+                combined = util.format(filename, parsed.combine !== 'true' ? parsed.combine : 'main', '.'.concat(type));
+
+                fs.writeFileSync(combined, buffer[type].replace(/(\n|\r)/gi, ''), 'utf8');
+
+                var log = 'Generated combined ' + type.toUpperCase() + ' file: ';
+                if (hasColor) {
+                    // Those bizarre sets of characters are for coloring the output.
+                    log += '\u001b[32m' + combined + '\033[0m';
+                } else {
+                    log += combined;
+                }
+                console.log(log);
+
+            }
+
+            // Cleaning up buffer.
+            buffer[type] = '';
+
+        });
+
+    }
+
+}

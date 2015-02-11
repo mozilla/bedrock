@@ -7,11 +7,11 @@
 {% set_lang_files "firefox/privacy_tour/privacy_tour" %}
 
 {% block site_css %}
-  {{ css('firefox_privacy_tour') }}
+  {% stylesheet 'firefox_privacy_tour' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_privacy_tour') }}
+  {% javascript 'firefox_privacy_tour' %}
 {% endblock %}
 
 {% block noscript %}
@@ -51,13 +51,13 @@
                 <li>{{ _('Erase website information after the fact') }}</li>
                 <li>{{ _('Add it above for quick, easy access') }}</li>
               </ul>
-              <div class="tour-forget-widget step-target" data-icon="{{ MEDIA_URL }}img/firefox/privacy_tour/forget-button.png?30-10-2014" data-icon-high-res="{{ MEDIA_URL }}img/firefox/privacy_tour/forget-button-high-res.png?30-10-2014">
+              <div class="tour-forget-widget step-target" data-icon="{{ static('img/firefox/privacy_tour/forget-button.png') }}" data-icon-high-res="{{ static('img/firefox/privacy_tour/forget-button-high-res.png') }}">
                 <div class="forget-hanger-1" data-title="{{ _('The new Forget button') }}" data-text="{{ _('Want to cover your tracks? Activate the Forget button and leave no trace.') }}" data-button-add="{{ _('Add it now') }}" data-button-later="{{ _('Later') }}"></div>
                 <div class="forget-hanger-2" data-title="{{ _('The new Forget button') }}" data-text="{{ _('Now it’s here whenever you need it. To move or remove it, just open the menu and select Customize.') }}"></div>
                 <div class="forget-hanger-3" data-title="{{ _('The new Forget button') }}" data-text="{{ _('Want to add it later? Open this menu and select Customize. Then drag it (or any other button) where you want.') }}"></div>
               </div>
             </div>
-            {{ platform_img('firefox/privacy_tour/forget-panel.png', {'l10n': True, 'alt': '', 'id': 'forget-button-img', 'width': '300', 'height': '163', 'data-high-res': 'true'}) }}
+            {{ platform_img('firefox/privacy_tour/forget-panel.png', {'l10n': True, 'alt': '', 'id': 'forget-button-img', 'width': '300', 'height': '163', 'high-res': True}) }}
           </li>
           <li class="tour-step" data-step="2" data-tip-prev="{{ _('<span>Previous:</span> Forget') }}" data-tip-next="{{ _('<span>Next:</span> Private Browsing') }}">
             <div class="tour-item">
@@ -75,7 +75,7 @@
                 <li>{{ _('Find what you’re looking for, your way') }}</li>
               </ul>
             </div>
-            {{ high_res_img('img/firefox/privacy_tour/duckduckgo.png?30-10-2104', {'alt': '', 'width': '190', 'height': '188', 'id': 'ddg-img'}) }}
+            {{ high_res_img('img/firefox/privacy_tour/duckduckgo.png', {'alt': '', 'width': '190', 'height': '188', 'id': 'ddg-img'}) }}
           </li>
           <li class="tour-step" data-step="3" data-tip-prev="{{ _('<span>Previous:</span> %s')|format('DuckDuckGo') }}">
             <div class="tour-item">
@@ -89,11 +89,11 @@
                 <li>{{ _('So others using your computer can’t see it') }}</li>
               </ul>
             </div>
-            {{ high_res_img('img/firefox/privacy_tour/private-browsing.png?30-10-2014', {'alt': '', 'width': '190', 'height': '188', 'id': 'private-img'}) }}
+            {{ high_res_img('img/firefox/privacy_tour/private-browsing.png', {'alt': '', 'width': '190', 'height': '188', 'id': 'private-img'}) }}
           </li>
         </ul>
         <div class="compact-title"></div>
-        <div class="tour-init" data-target="appMenu" data-icon="{{ MEDIA_URL }}img/firefox/australis/logo.png?2014-03" data-icon-high-res="{{ MEDIA_URL }}img/firefox/australis/logo-high-res.png?2014-03"></div>
+        <div class="tour-init" data-target="appMenu" data-icon="{{ static('img/firefox/australis/logo.png') }}" data-icon-high-res="{{ static('img/firefox/australis/logo-high-res.png') }}"></div>
       </div>
     </div>
   </div>

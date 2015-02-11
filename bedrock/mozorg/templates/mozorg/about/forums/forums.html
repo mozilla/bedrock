@@ -8,7 +8,7 @@
 {% block body_id %}about-forums{% endblock %}
 
 {% block page_css %}
-  {{ css('about-forums') }}
+  {% stylesheet 'about-forums' %}
 {% endblock %}
 
 {% block article %}
@@ -31,7 +31,7 @@
 
   <p>
   {{ _('Mozilla newsgroups are sponsored by <a href="%s">Giganews Newsgroups</a>, to whom we are very grateful.')|format('http://www.giganews.com/') }}
-  <a href="http://www.giganews.com/"><img src="{{ media('img/mozorg/about/giganews.png') }}" alt="" height="25" width="89" /></a>
+  <a href="http://www.giganews.com/"><img src="{{ static('img/mozorg/about/giganews.png') }}" alt="" height="25" width="89" /></a>
   </p>
 
   <form method="get" action="https://groups.google.com/groups">

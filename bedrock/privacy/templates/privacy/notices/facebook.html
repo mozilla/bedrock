@@ -7,7 +7,7 @@
 {% block page_title %}{{ doc.h1.string }}{% endblock %}
 
 {% block extrahead %}
-  {{ css('fb_privacy') }}
+  {% stylesheet 'fb_privacy' %}
 {% endblock %}
 
 {% block body_id %}fb-privacy{% endblock %}

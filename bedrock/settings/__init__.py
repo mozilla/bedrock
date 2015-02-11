@@ -35,6 +35,14 @@ WAFFLE_FLAG_DEFAULT = WAFFLE_SWITCH_DEFAULT = WAFFLE_SAMPLE_DEFAULT = DEV
 if 'manage.py' not in sys.argv:
     SLAVE_DATABASES = [db for db in DATABASES if db != 'default']
 
+if len(sys.argv) > 1 and sys.argv[1] == 'test':
+    # Using the CachedStaticFilesStorage for tests breaks all the things.
+    STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+    # TEMPLATE_DEBUG has to be True for jingo to call the template_rendered
+    # signal which Django's test client uses to save away the contexts for your
+    # test to look at later.
+    TEMPLATE_DEBUG = True
+
 # cache for lang files
 CACHES['l10n'] = {
     'BACKEND': 'lib.l10n_utils.cache.L10nCache',
@@ -47,3 +55,4 @@ CACHES['l10n'] = {
 }
 
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL
+STATIC_URL = CDN_BASE_URL + STATIC_URL

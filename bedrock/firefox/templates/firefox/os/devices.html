@@ -14,9 +14,9 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block extrahead %}
-  {{ css('firefox_os_devices') }}
+  {% stylesheet 'firefox_os_devices' %}
   <!--[if lt IE 9]>
-  {{ css('firefox_os_devices_ie') }}
+  {% stylesheet 'firefox_os_devices_ie' %}
   <![endif]-->
 {% endblock %}
 
@@ -26,7 +26,7 @@
 <main role="main">
   <section id="header">
     <div class="container">
-      <img class="logo" src="{{ MEDIA_URL }}img/firefox/os/mwc-2014-preview/firefox-os.png" alt="{{ _('Firefox OS') }}">
+      <img class="logo" src="{{ static('img/firefox/os/mwc-2014-preview/firefox-os.png') }}" alt="{{ _('Firefox OS') }}">
 
       <h1>
         {# L10n: <br> tag below used for formatting only. #}
@@ -91,7 +91,7 @@
         <ul class="device-thumbnails">
           <li>
             <a href="#alcatel_onetouchfire" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfire-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Alcatel One Touch Fire') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -100,7 +100,7 @@
           </li>
           <li>
             <a href="#lg_fireweb" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/lg-fireweb-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/lg-fireweb-thumb.png') }}" alt="">
               <span class="device-name">{{ _('LG Fireweb') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -109,7 +109,7 @@
           </li>
           <li class="last">
             <a href="#zte_open" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/zte-open-thumb.png') }}" alt="">
               <span class="device-name">{{ _('ZTE Open') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -136,7 +136,7 @@
             <div class="pager-content">
               <div class="device-details features pager-page default-page" id="alcatel_onetouchfire-features">
                 <div class="feature-group logo-colors">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-logo.png') }}" alt="{{ _('One Touch Fire') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfire-logo.png') }}" alt="{{ _('One Touch Fire') }}">
 
                   <em>{{ _('Set your world on fire') }}</em>
 
@@ -147,13 +147,13 @@
 
                     <ul>
                       <li>
-                        <button class="alcatel-onetouchfire-orange" data-image="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire.png') }}" title="{{ _('Firefox Orange') }}"></button>
+                        <button class="alcatel-onetouchfire-orange" data-image="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfire.png') }}" title="{{ _('Firefox Orange') }}"></button>
                       </li>
                       <li>
-                        <button class="alcatel-onetouchfire-green" data-image="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-green.png') }}" title="{{ _('Green') }}"></button>
+                        <button class="alcatel-onetouchfire-green" data-image="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfire-green.png') }}" title="{{ _('Green') }}"></button>
                       </li>
                       <li>
-                        <button href="#" class="alcatel-onetouchfire-white" data-image="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire-white.png') }}" title="{{ _('White') }}"></button>
+                        <button href="#" class="alcatel-onetouchfire-white" data-image="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfire-white.png') }}" title="{{ _('White') }}"></button>
                       </li>
                     </ul>
                   </section>
@@ -161,7 +161,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfire.png') }}" alt="{{ _('Alcatel One Touch Fire') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfire.png') }}" alt="{{ _('Alcatel One Touch Fire') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -341,11 +341,11 @@
               <div class="device-details pager-page default-page features" id="lg_fireweb-features">
 
                 <div class="feature-group logo-colors">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/lg-fireweb-logo.png') }}" alt="{{ _('LG') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/lg-fireweb-logo.png') }}" alt="{{ _('LG') }}">
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/lg-fireweb.png') }}" alt="{{ _('LG Fireweb') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/lg-fireweb.png') }}" alt="{{ _('LG Fireweb') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -507,7 +507,7 @@
               <div class="device-details pager-page default-page features" id="zte_open-features">
 
                 <div class="feature-group logo-colors">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open-logo.png') }}" alt="{{ _('ZTE Open') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/zte-open-logo.png') }}" alt="{{ _('ZTE Open') }}">
 
                   {#
                   Will be implemented when images are provided.
@@ -516,13 +516,13 @@
 
                     <ul>
                       <li>
-                        <button class="zte-open-black" data-image="{{ media('/img/firefox/os/devices/smartphones/zte-open.png') }}" title="{{ _('Black') }}"></button>
+                        <button class="zte-open-black" data-image="{{ static('img/firefox/os/devices/smartphones/zte-open.png') }}" title="{{ _('Black') }}"></button>
                       </li>
                       <li>
-                        <button class="zte-open-blue" data-image="{{ media('/img/firefox/os/devices/smartphones/zte-open-blue.png') }}" title="{{ _('Blue') }}"></button>
+                        <button class="zte-open-blue" data-image="{{ static('img/firefox/os/devices/smartphones/zte-open-blue.png') }}" title="{{ _('Blue') }}"></button>
                       </li>
                       <li>
-                        <button class="zte-open-orange" data-image="{{ media('/img/firefox/os/devices/smartphones/zte-open-orange.png') }}" title="{{ _('Orange') }}"></button>
+                        <button class="zte-open-orange" data-image="{{ static('img/firefox/os/devices/smartphones/zte-open-orange.png') }}" title="{{ _('Orange') }}"></button>
                       </li>
                     </ul>
                   </section>
@@ -530,7 +530,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open.png') }}" alt="{{ _('ZTE Open') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/zte-open.png') }}" alt="{{ _('ZTE Open') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -685,7 +685,7 @@
         <ul class="device-thumbnails">
           <li>
             <a href="#huawei_y300-2" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/huawei-y300-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/huawei-y300-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Huawei Y300II') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -694,7 +694,7 @@
           </li>
           <li>
             <a href="#alcatel_onetouchfirec" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfirec-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfirec-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Alcatel One Touch Fire C') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -703,7 +703,7 @@
           </li>
           <li class="last">
             <a href="#zte_openc" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/zte-openc-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/zte-openc-thumb.png') }}" alt="">
               <span class="device-name">{{ _('ZTE Open C') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -730,11 +730,11 @@
             <div class="pager-content">
               <div class="device-details features pager-page default-page" id="huawei_y300-2-features">
                 <div class="feature-group logo-colors">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/huawei-logo.png') }}" alt="{{ _('Huawei') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/huawei-logo.png') }}" alt="{{ _('Huawei') }}">
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/huawei-y300.png') }}" alt="{{ _('Huawei Y300II') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/huawei-y300.png') }}" alt="{{ _('Huawei Y300II') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -872,7 +872,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfirec.png') }}" alt="{{ _('Alcatel One Touch Fire C') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfirec.png') }}" alt="{{ _('Alcatel One Touch Fire C') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -937,7 +937,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/zte-openc.png') }}" alt="{{ _('ZTE Open C') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/zte-openc.png') }}" alt="{{ _('ZTE Open C') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -1034,7 +1034,7 @@
         <ul class="device-thumbnails">
           <li>
             <a href="#zte_open2" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open2-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/zte-open2-thumb.png') }}" alt="">
               <span class="device-name">{{ _('ZTE Open II') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -1043,7 +1043,7 @@
           </li>
           <li>
             <a href="#alcatel_onetouchfiree" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfiree-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfiree-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Alcatel One Touch Fire E') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -1052,7 +1052,7 @@
           </li>
           <li class="last">
             <a href="#intex_cloudfx" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/intex-cloudfx-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/intex-cloudfx-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Intex Cloud FX') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -1082,7 +1082,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/zte-open2.png') }}" alt="{{ _('ZTE Open II') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/zte-open2.png') }}" alt="{{ _('ZTE Open II') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -1192,7 +1192,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfiree.png') }}" alt="{{ _('Alcatel One Touch Fire E') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfiree.png') }}" alt="{{ _('Alcatel One Touch Fire E') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -1294,7 +1294,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/intex-cloudfx.png') }}" alt="{{ _('Intex Cloud FX') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/intex-cloudfx.png') }}" alt="{{ _('Intex Cloud FX') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -1408,7 +1408,7 @@
         <ul class="device-thumbnails">
           <li>
             <a href="#spice_fireonemifx1" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/spice-fire-one-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/spice-fire-one-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Spice Fire One MI FX1') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -1417,7 +1417,7 @@
           </li>
           <li>
             <a href="#symphony_gofoxf15" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/symphony-gofoxf15-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/symphony-gofoxf15-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Symphony GoFox F15') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -1426,7 +1426,7 @@
           </li>
           <li class="last">
             <a href="#alcatel_onetouchfirec2g" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfirec2g-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfirec2g-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Alcatel One Touch Fire C 2G') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -1456,7 +1456,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/spice-fire-one.png') }}" alt="{{ _('Spice Fire One MI FX1') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/spice-fire-one.png') }}" alt="{{ _('Spice Fire One MI FX1') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -1592,7 +1592,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/symphony-gofoxf15.png') }}" alt="{{ _('Symphony GoFox F15') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/symphony-gofoxf15.png') }}" alt="{{ _('Symphony GoFox F15') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -1700,7 +1700,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/alcatel-onetouchfirec2g.png') }}" alt="{{ _('Alcatel One Touch Fire C 2G') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/alcatel-onetouchfirec2g.png') }}" alt="{{ _('Alcatel One Touch Fire C 2G') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -1830,7 +1830,7 @@
         <ul class="device-thumbnails">
           <li>
             <a href="#zen_105fire" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/zen-105fire-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/zen-105fire-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Zen 105 Fire') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -1839,7 +1839,7 @@
           </li>
           <li>
             <a href="#cherrymobile_ace" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/cherrymobile-ace-thumb.png') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/cherrymobile-ace-thumb.png') }}" alt="">
               <span class="device-name">{{ _('Cherry Mobile Ace') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -1848,7 +1848,7 @@
           </li>
           <li class="last">
             <a href="#au_fx0" class="device-thumbnail">
-              <img src="{{ media('/img/firefox/os/devices/smartphones/au-fx0-thumb.png?2015-01') }}" alt="">
+              <img src="{{ static('img/firefox/os/devices/smartphones/au-fx0-thumb.png') }}" alt="">
               <span class="device-name raw-format">{{ _('Fx0') }}</span>
               <div class="availability-notice">
                 <span class="is-available">{{ _('Available') }}</span>
@@ -1878,7 +1878,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/zen-105fire.png') }}" alt="{{ _('Zen 105 Fire') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/zen-105fire.png') }}" alt="{{ _('Zen 105 Fire') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -1998,7 +1998,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/cherrymobile-ace.png') }}" alt="{{ _('Cherry Mobile Ace') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/cherrymobile-ace.png') }}" alt="{{ _('Cherry Mobile Ace') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -2115,7 +2115,7 @@
                 </div>
 
                 <div class="feature-group image">
-                  <img src="{{ media('/img/firefox/os/devices/smartphones/au-fx0.png?2015-01') }}" alt="{{ _('au Fx0') }}">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/au-fx0.png') }}" alt="{{ _('au Fx0') }}">
                 </div>
 
                 <div class="feature-group stats">
@@ -2252,5 +2252,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_os_devices') }}
+  {% javascript 'firefox_os_devices' %}
 {% endblock %}

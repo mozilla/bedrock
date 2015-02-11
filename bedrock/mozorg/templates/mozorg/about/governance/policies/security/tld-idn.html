@@ -8,7 +8,7 @@
 {% block body_class %}sand{% endblock %}
 
 {% block extrahead %}
-  {{ css('security-tld-idn') }}
+  {% stylesheet 'security-tld-idn' %}
 {% endblock %}
 
 {% block article %}
@@ -310,7 +310,7 @@ This document is of historical interest only. Firefox now uses <a href="{{ url }
     <td>.xn--mgberp4a5d4ar  and variants</td>
     <td>.&lt;al-Saudiah&gt;</td>
     <td><a href="http://nic.net.sa/">{{ _('Registry') }}</a></td>
-    <td><a href="http://nic.net.sa/adn-en.php">{{ _('Policy') }}</a></td> 
+    <td><a href="http://nic.net.sa/adn-en.php">{{ _('Policy') }}</a></td>
     <td><a href="http://tools.ietf.org/html/rfc5564">{{ _('Character List') }}</a></td>
   </tr>
   <tr>

@@ -14,8 +14,8 @@ from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
+from funfactory.helpers import static
 from funfactory.urlresolvers import reverse
-from jingo_minify.helpers import BUILD_ID_JS, BUNDLE_HASHES
 from lib import l10n_utils
 
 from bedrock.releasenotes import version_re
@@ -101,16 +101,12 @@ def get_js_bundle_files(bundle):
     Return a JSON string of the list of file names for lazy loaded
     javascript.
     """
-    # mostly stolen from jingo_minify.helpers.js
+    bundle = settings.PIPELINE_JS[bundle]
     if settings.DEBUG:
-        items = settings.MINIFY_BUNDLES['js'][bundle]
+        items = bundle['source_filenames']
     else:
-        build_id = BUILD_ID_JS
-        bundle_full = "js:%s" % bundle
-        if bundle_full in BUNDLE_HASHES:
-            build_id = BUNDLE_HASHES[bundle_full]
-        items = ("js/%s-min.js?build=%s" % (bundle, build_id,),)
-    return json.dumps([settings.MEDIA_URL + i for i in items])
+        items = (bundle['output_filename'],)
+    return json.dumps([static(i) for i in items])
 
 
 JS_COMMON = get_js_bundle_files('partners_common')

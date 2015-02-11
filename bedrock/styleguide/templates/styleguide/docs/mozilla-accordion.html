@@ -9,7 +9,7 @@
 {% block body_class %}sand{% endblock %}
 
 {% block site_css %}
-  {{ css('styleguide-docs-mozilla-accordion') }}
+  {% stylesheet 'styleguide-docs-mozilla-accordion' %}
 {% endblock %}
 
 {% block content %}
@@ -114,5 +114,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('styleguide-docs-mozilla-accordion') }}
+  {% javascript 'styleguide-docs-mozilla-accordion' %}
 {% endblock %}

@@ -31,10 +31,12 @@ def main():
     if not opts.template:
         parser.error('-t must be defined')
 
-    django_manage = 'cd %s && %s manage.py' % (opts.webapp, opts.python)
+    django_manage = 'cd {{dir}} && {py} manage.py'.format(py=opts.python)
+    django_cron = '{0} cron'.format(django_manage)
     ctx = {
-        'django_manage': django_manage,
-        'django_cron': '%s cron' % django_manage,
+        'django_manage': django_manage.format(dir=opts.webapp),
+        'django_src_manage': django_manage.format(dir=opts.source),
+        'django_cron': django_cron.format(dir=opts.webapp),
     }
 
     for k, v in ctx.iteritems():

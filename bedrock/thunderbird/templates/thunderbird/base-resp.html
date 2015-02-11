@@ -4,15 +4,15 @@
 
 {% extends "base-resp.html" %}
 
-{% block page_image %}{{ media('img/thunderbird/thunderbird-256.jpg') }}{% endblock %}
-{% block page_favicon %}{{ media('img/thunderbird/favicon.ico') }}{% endblock %}
-{% block page_favicon_large %}{{ media('img/thunderbird/favicon-196.png') }}{% endblock %}
-{% block page_ios_icon %}{{ media('img/thunderbird/ios-icon-180.png') }}{% endblock %}
+{% block page_image %}{{ static('img/thunderbird/thunderbird-256.jpg') }}{% endblock %}
+{% block page_favicon %}{{ static('img/thunderbird/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/thunderbird/favicon-196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/thunderbird/ios-icon-180.png') }}{% endblock %}
 
 {% block body_class %}sky{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox-resp') }}
+  {% stylesheet 'firefox-resp' %}
 {% endblock %}
 
 {% block site_header_nav %}
@@ -78,14 +78,14 @@
 {% block site_header_logo %}
 <h2>
   <a href="/thunderbird/">
-    <img src="{{ media('img/thunderbird/template/thunderbird.png?2014-10') }}" 
-         alt="Mozilla Thunderbird" 
-         height="70" 
+    <img src="{{ static('img/thunderbird/template/thunderbird.png') }}"
+         alt="Mozilla Thunderbird"
+         height="70"
          width="260">
   </a>
 </h2>
 {% endblock %}
 
 {% block site_js %}
-  {{ js('firefox-resp') }}
+  {% javascript 'firefox-resp' %}
 {% endblock %}

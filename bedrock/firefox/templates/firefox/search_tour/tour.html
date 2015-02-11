@@ -5,7 +5,7 @@
 {% extends "firefox/search_tour/index.html" %}
 
 {% block site_css %}
-  {{ css('firefox_search_tour') }}
+  {% stylesheet 'firefox_search_tour' %}
 {% endblock %}
 
 {% block body_id %}whatsnew-search-tour-34{% endblock %}
@@ -18,13 +18,13 @@ data-opt-in-title="{{ _('Choose Yahoo for searches') }}"
 data-opt-in-text="{{ _('Make it your default and be one of the first to experience a brand new way to search.') }}"
 data-opt-in-cta="{{ _('Switch to Yahoo') }}"
 data-later="{{ _('Later') }}"
-data-icon="{{ MEDIA_URL }}img/firefox/search_tour/search-icon.png"
-data-icon-high-res="{{ MEDIA_URL }}img/firefox/search_tour/search-icon-high-res.png"
+data-icon="{{ static('img/firefox/search_tour/search-icon.png') }}"
+data-icon-high-res="{{ static('img/firefox/search_tour/search-icon-high-res.png') }}"
 data-has-tour="True"
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_search_tour') }}
+  {% javascript 'firefox_search_tour' %}
 {% endblock %}
 
 {% block noscript %}

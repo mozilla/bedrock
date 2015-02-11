@@ -4,6 +4,7 @@ packages/chardet
 packages/python-memcached
 packages/pytz
 packages/PyYAML/lib
+packages/futures
 src/basket-client
 src/bleach
 src/chkcrontab
@@ -28,3 +29,5 @@ src/requests
 src/rna
 src/six
 src/tweepy
+src/django-pipeline
+src/whitenoise

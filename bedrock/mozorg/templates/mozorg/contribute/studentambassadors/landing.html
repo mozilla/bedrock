@@ -6,9 +6,9 @@
 
 {% block page_title %}{{ _('Firefox Student Ambassadors') }}{% endblock %}
 {% block page_desc %}{{ _('Individuals who are passionate about Mozilla and raise awareness about the many benefits of Firefox &amp; other Mozilla products - especially <a href="%s">Firefox&nbsp;OS</a>!') }}{% endblock %}
-{% block page_image %}{{ media('img/contribute/studentambassadors/hero.jpg') }}{% endblock %}
+{% block page_image %}{{ static('img/contribute/studentambassadors/hero.jpg') }}{% endblock %}
 {% block extrahead %}
-  {{ css('contribute-studentambassadors-landing') }}
+  {% stylesheet 'contribute-studentambassadors-landing' %}
 {% endblock %}
 
 {% block body_id %}contribute-studentambassadors-landing{% endblock %}
@@ -104,5 +104,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {{ js('contribute-studentambassadors-landing') }}
+  {% javascript 'contribute-studentambassadors-landing' %}
 {% endblock %}

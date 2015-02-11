@@ -45,11 +45,11 @@
 
         <div class="moz-video-container">
           <button class="moz-video-button" type="button" aria-controls="spaces-video">{{ _('Play video') }}</button>
-          <video id="spaces-video" poster="{{ media('img/contact/poster-sphere.jpg') }}" controls preload="metadata">
+          <video id="spaces-video" poster="{{ static('img/contact/poster-sphere.jpg') }}" controls preload="metadata">
             <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm" type="video/webm">
             <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4" type="video/mp4">
             <figure>
-              <img src="{{ media('img/contact/poster-sphere.jpg') }}" alt="">
+              <img src="{{ static('img/contact/poster-sphere.jpg') }}" alt="">
               <figcaption>
             {% trans link_webm='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm',
                      link_mp4='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4' %}

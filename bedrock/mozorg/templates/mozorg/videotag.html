@@ -17,7 +17,7 @@
   {% endfor %}
   {% if flash_fallback %}
     {% with swf = '{0}?flv={1}&autoplay={2}&msg=Play%20Video'|f(
-      media('flash/playerWithControls.swf'), flash_fallback, 'true' if autoplay else 'false') %}
+      static('flash/playerWithControls.swf'), flash_fallback, 'true' if autoplay else 'false') %}
       <object type="application/x-shockwave-flash" style="width: {{ w }}px; height: {{ h }}px;" data="{{ swf }}">
         <param name="movie" value="{{ swf }}" />
         <param name="wmode" value="transparent" />

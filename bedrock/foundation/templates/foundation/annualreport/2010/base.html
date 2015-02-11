@@ -7,13 +7,13 @@
 {% extends 'foundation/base-resp.html' %}
 
 {% block extrahead %}
-  {{ css('foundation') }}
-  {{ css('video-resp') }}
+  {% stylesheet 'foundation' %}
+  {% stylesheet 'video-resp' %}
 {% endblock %}
 
 {% block js %}
   {{ super() }}
-  {{ js('video') }}
+  {% javascript 'video' %}
 {% endblock %}
 
 {% block subnav %}

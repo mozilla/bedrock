@@ -10,10 +10,10 @@
 {% block body_id %}firefox-android{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_android') }}
+  {% stylesheet 'firefox_android' %}
 
   <!--[if gt IE 9]><!-->
-    {{ css('firefox_sync_anim') }}
+    {% stylesheet 'firefox_sync_anim' %}
   <!--<![endif]-->
 {% endblock %}
 
@@ -34,7 +34,7 @@
 
 <section id="intro">
   <div class="container">
-    {{ high_res_img('/img/firefox/android/firefox-android-logo.png', { 'alt': _('Firefox for Android'), 'width': 219, 'height': 82 }) }}
+    {{ high_res_img('img/firefox/android/firefox-android-logo.png', { 'alt': _('Firefox for Android'), 'width': 219, 'height': 82 }) }}
 
     <div class="content-primary">
       <h2 class="heading">
@@ -362,7 +362,7 @@
 
 {% block js %}
 <!--[if IE 9]>
-  {{ js('firefox_android_ie9') }}
+  {% javascript 'firefox_android_ie9' %}
 <![endif]-->
-  {{ js('firefox_android') }}
+  {% javascript 'firefox_android' %}
 {% endblock %}

@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block site_css %}
-  {{ css('installer_help') }}
+  {% stylesheet 'installer_help' %}
 {% endblock %}
 
 {% block content %}
@@ -76,5 +76,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('installer_help') }}
+  {% javascript 'installer_help' %}
 {% endblock  %}

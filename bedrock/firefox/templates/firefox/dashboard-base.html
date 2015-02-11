@@ -8,7 +8,7 @@
 {% block page_title %}{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox-dashboard') }}
+  {% stylesheet 'firefox-dashboard' %}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -52,7 +52,7 @@
 {% endblock %}
 
 {% block js %}
-{{ js('accordion') }}
+{% javascript 'accordion' %}
 {% endblock %}
 
 {% block email_form %}{% endblock %}

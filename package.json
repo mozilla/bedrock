@@ -7,7 +7,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "less": "~1.4.1"
+    "less": "2.2.0",
+    "yuglify": "0.1.4"
   },
   "repository": {
     "type": "git",

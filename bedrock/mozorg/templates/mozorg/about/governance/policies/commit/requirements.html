@@ -9,7 +9,7 @@
 
 {% block extrahead %}
   {{ super() }}
-  {{ css('commit-access-requirements') }}
+  {% stylesheet 'commit-access-requirements' %}
 {% endblock %}
 
 {% block article %}

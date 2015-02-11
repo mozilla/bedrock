@@ -9,11 +9,11 @@
 {% block body_id %}geolocation{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_geolocation') }}
+  {% stylesheet 'firefox_geolocation' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('geolocation') }}
+  {% javascript 'geolocation' %}
 {% endblock %}
 
 {% block content %}
@@ -221,7 +221,7 @@
   <div id="geo-demo">
     <div id="map_canvas"></div>
     <button id="locateButton" type="button">{{ _('Where am I?') }}</button>
-    <img id="geo-busy" src="{{ MEDIA_URL }}img/ajax_loading.gif" alt="busy"/>
+    <img id="geo-busy" src="{{ static('img/ajax_loading.gif') }}" alt="busy"/>
     <p id="geodemo-error">{{ _('Oops! An error occurred while trying to determine your position.') }}</p>
   </div>
 </div>

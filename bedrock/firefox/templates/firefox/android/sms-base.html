@@ -10,7 +10,7 @@
 {% block body_id %}mobile-sms{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_sms') }}
+  {% stylesheet 'firefox_sms' %}
 {% endblock %}
 
 {% block site_header_nav %}{% endblock %}
@@ -18,7 +18,7 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-    {{ js('firefox_sms') }}
+    {% javascript 'firefox_sms' %}
 {% endblock %}
 
 {% block content %}

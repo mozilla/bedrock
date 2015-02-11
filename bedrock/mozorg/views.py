@@ -6,6 +6,7 @@ import json
 import re
 
 from django.conf import settings
+from django.contrib.staticfiles.finders import find as find_static
 from django.core.context_processors import csrf
 from django.db.utils import DatabaseError
 from django.http import HttpResponseRedirect
@@ -15,6 +16,7 @@ from django.views.generic import FormView, TemplateView
 from django.shortcuts import redirect, render as django_render
 
 import basket
+from funfactory.helpers import static
 import requests
 from lib import l10n_utils
 from commonware.decorators import xframe_allow
@@ -328,7 +330,7 @@ def contribute_studentambassadors_join(request):
 def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'):
     """Generate the table of holiday calendars from JSON."""
     calendars = []
-    json_file = settings.MEDIA_ROOT + '/caldata/calendars.json'
+    json_file = find_static('caldata/calendars.json')
     with open(json_file) as calendar_data:
         calendars = json.load(calendar_data)
 
@@ -339,7 +341,7 @@ def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'
     data = {
         'calendars': sorted(calendars, key=lambda k: k['country']),
         'letters': sorted(letters),
-        'CALDATA_URL': settings.MEDIA_URL + 'caldata/'
+        'CALDATA_URL': static('caldata/')
     }
 
     return l10n_utils.render(request, template, data)

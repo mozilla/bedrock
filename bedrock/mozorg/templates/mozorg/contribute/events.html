@@ -10,12 +10,12 @@
 {% block body_id %}events{% endblock %}
 
 {% block page_css %}
-  {{ css('contribute-2015') }}
+  {% stylesheet 'contribute-2015' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('contribute-2015') }}
-  {{ js('contribute-form') }}
+  {% javascript 'contribute-2015' %}
+  {% javascript 'contribute-form' %}
 {% endblock %}
 
 {% block contrib_page_title %}{{ _('Community Events') }}{% endblock %}
@@ -26,7 +26,7 @@
   <!-- map -->
   </div>
 #}
-  
+
   <section class="section events-list">
 
     <div class="container">

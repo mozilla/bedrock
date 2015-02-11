@@ -14,13 +14,13 @@
     <title>Mozilla — {{_('Get Involved: Volunteer Opportunities at Mozilla')}} — mozilla.org</title>
 
     <!--[if lte IE 8]>
-    <script src="{{ MEDIA_URL }}js/libs/html5shiv.js"></script>
+    <script src="{{ static('js/libs/html5shiv.js') }}"></script>
     <![endif]-->
 
-    {{ css('responsive') }}
-    {{ css('contribute-old') }}
-    <link rel="shortcut icon" href="{{ MEDIA_URL }}img/favicon.ico">
-    {{ js('site') }}
+    {% stylesheet 'responsive' %}
+    {% stylesheet 'contribute-old' %}
+    <link rel="shortcut icon" href="{{ static('img/favicon.ico') }}">
+    {% javascript 'site' %}
 
     {% include 'includes/google-analytics.html' %}
   </head>
@@ -29,8 +29,8 @@
     <div id="wrapper">
       {% include "mozorg/contribute/contribute-form.html" %}
     </div>
-    {{ js('common') }}
-    {{ js('contribute-form') }}
+    {% javascript 'common' %}
+    {% javascript 'contribute-form' %}
     <script>
       {# set target without invalidating already translated strings. #}
       $('.field-privacy a').attr('target', '_top');

@@ -14,17 +14,17 @@
 
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}
-  <h2><img src="{{ MEDIA_URL }}img/firefox/new/header-firefox.png?2013-06" alt="{{_('Firefox for desktop')}}"></h2>
+  <h2><img src="{{ static('img/firefox/new/header-firefox.png') }}" alt="{{_('Firefox for desktop')}}"></h2>
 {% endblock %}
 
 {% block site_css %}{% endblock %}
 
 {% block extrahead %}
-  {{ css('firefox_new') }}
+  {% stylesheet 'firefox_new' %}
 {% endblock %}
 
 {% block js_pretrack %}
-  {{ js('firefox_new') }}
+  {% javascript 'firefox_new' %}
 {% endblock %}
 
 {% block optimizely %}
@@ -69,7 +69,7 @@
   </div>
   <div id="main-feature" class="hide-for-refresh">
     <div class="row">
-      <img src="{{ media('img/firefox/new/firefox-logo.png?2013-06') }}" alt="Firefox" />
+      <img src="{{ static('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
       <h1 class="large">
       {% if l10n_has_tag('fx10_independent') %}
         {{ _('Choose Independent.') }}
@@ -137,7 +137,7 @@
         </div>
 
         <div class="desktop" id="firefox-screenshot">
-          {{ platform_img('img/firefox/new/browser.png?2014-12', {'alt': _('Firefox screenshot'), 'data-additional-platforms': 'android ios', 'data-high-res': 'true'}) }}
+          {{ platform_img('img/firefox/new/browser.png', {'alt': _('Firefox screenshot'), 'data-additional-platforms': 'android ios', 'high-res': True}) }}
         </div>
 
         <div id="newsletter-latest">
@@ -194,7 +194,7 @@
   <meta itemprop="name" content="{{_('Firefox')}}">
   <meta itemprop="description" content="{% block product_desc %}{{_('Mozilla Firefox, free web browser, is created by a global non-profit dedicated to putting individuals in control &amp; shaping the future of the web for the public good.')}}{% endblock %}">
   <meta itemprop="url" content="{{ settings.CANONICAL_URL }}/firefox/">
-  <meta itemprop="image" content="{% block product_logo %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}">
+  <meta itemprop="image" content="{% block product_logo %}{{ static('img/firefox/firefox-256.jpg') }}{% endblock %}">
   <div itemprop="author" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="{{_('Mozilla')}}">
   </div>

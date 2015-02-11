@@ -17,11 +17,11 @@
 {% block site_css %}{% endblock %}
 
 {% block extrahead %}
-  {{ css('firefox_developer') }}
+  {% stylesheet 'firefox_developer' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_developer') }}
+  {% javascript 'firefox_developer' %}
 {% endblock %}
 
 {% block content %}
@@ -39,7 +39,7 @@
   </p>
   {% endif %}
 
-  <img src="{{ media('img/firefox/developer/screenshot.jpg?2014-12') }}" alt="{{ _('Firefox Developer Edition') }}" class="screenshot" />
+  <img src="{{ static('img/firefox/developer/screenshot.jpg') }}" alt="{{ _('Firefox Developer Edition') }}" class="screenshot" />
 
   <ul class="intro-features">
     <li class="intro-feature">
@@ -70,7 +70,7 @@
     <ul class="features">
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=1R9_WdXwUsE" class="video-play" rel="external">
-          <img src="{{ media('/img/firefox/developer/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('img/firefox/developer/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('WebIDE')}}</h2>
         <p>{{_('Develop, deploy and debug Firefox OS apps directly in your browser, or on a Firefox OS device, with this tool that replaces App Manager.')}}</p>
@@ -81,7 +81,7 @@
       </li>
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=iJ4C7VnIMC8" class="video-play" rel="external">
-          <img src="{{ media('/img/firefox/developer/feature-responsive.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('img/firefox/developer/feature-responsive.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{ _('Responsive Design View ') }}</h2>
         <p>{{ _('See how your Website or Web app will look on different screen sizes without changing the size of your browser window.') }}</p>
@@ -92,7 +92,7 @@
       </li>
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=eH0R10Ga4Hs" class="video-play" rel="external">
-          <img src="{{ media('/img/firefox/developer/feature-valence.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('img/firefox/developer/feature-valence.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('Valence')}}</h2>
         <p>{{_('Develop and debug your apps across multiple browsers and devices with this powerful extension that comes pre-installed with Firefox Developer Edition.')}}</p>
@@ -103,7 +103,7 @@
       </li>
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=R_qDaLQ8ghg" class="video-play" rel="external">
-          <img src="{{ media('/img/firefox/developer/feature-webaudio.jpg?2014-12') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('img/firefox/developer/feature-webaudio.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('Web Audio Editor')}}</h2>
         <p>{{_('Inspect and interact with Web Audio API in real time to ensure that all audio nodes are connected in the way you expect.')}}</p>
@@ -114,7 +114,7 @@
       </li>
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=eQqNfkqIJdw" class="video-play" rel="external">
-          <img src="{{ media('/img/firefox/developer/feature-inspector.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('img/firefox/developer/feature-inspector.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('Page Inspector')}}</h2>
         <p>{{_('Examine the HTML and CSS of any Web page and easily modify the structure and layout of a page.')}}</p>
@@ -125,7 +125,7 @@
       </li>
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=iEDk8o9ehlw" class="video-play" rel="external">
-          <img src="{{ media('/img/firefox/developer/feature-console.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('img/firefox/developer/feature-console.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('Web Console')}}</h2>
         <p>{{_('See logged information associated with a Web page and use Web Console to interact with Web pages using JavaScript.')}}</p>
@@ -136,7 +136,7 @@
       </li>
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=OS4AxYFLCIE" class="video-play" rel="external">
-          <img src="{{ media('/img/firefox/developer/feature-debugger.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('img/firefox/developer/feature-debugger.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('JavaScript Debugger')}}</h2>
         <p>{{_('Step through JavaScript code and examine or modify its state to help track down bugs.')}}</p>
@@ -147,7 +147,7 @@
       </li>
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=w4zSG53Qlbk" class="video-play" rel="external">
-          <img src="{{ media('/img/firefox/developer/feature-network.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('img/firefox/developer/feature-network.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('Network Monitor')}}</h2>
         <p>{{_('See all the network requests your browser makes, how long each request takes and details of each request.')}}</p>
@@ -158,7 +158,7 @@
       </li>
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=3kdBvvIZIqU" class="video-play" rel="external">
-          <img src="{{ media('/img/firefox/developer/feature-style-editor.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          <img src="{{ static('img/firefox/developer/feature-style-editor.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
         <h2>{{_('Style Editor')}}</h2>
         <p>{{_('View and edit CSS styles associated with a Web page, create new ones and apply existing CSS stylesheets to any page.')}}</p>

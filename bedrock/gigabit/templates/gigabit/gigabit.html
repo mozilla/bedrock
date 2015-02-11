@@ -8,13 +8,13 @@
 {% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
 {% block body_id %}gigabit{% endblock %}
 {% block body_class %}sand gigabit{% endblock %}
-{% block page_image %}{{ media('img/gigabit/gigabit-wordmarklarge.png') }}{% endblock %}
-{% block page_favicon %}{{ media('img/gigabit/favicon.png') }}?2013-11{% endblock %}
+{% block page_image %}{{ static('img/gigabit/gigabit-wordmarklarge.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/gigabit/favicon.png') }}?2013-11{% endblock %}
 {% block site_header_logo %}
 {% endblock %}
 
 {% block extrahead %}
-  {{ css('gigabit') }}
+  {% stylesheet 'gigabit' %}
 {% endblock %}
 
 {% block site_header_nav %}
@@ -30,7 +30,7 @@
 
 
 {% block content %}
-  <h1 id="wordmark"><img src="{{ media('img/gigabit/gigabit-wordmark.png') }}" alt="{{_('Mozilla Gigabit Community Fund')}}"></h1>
+  <h1 id="wordmark"><img src="{{ static('img/gigabit/gigabit-wordmark.png') }}" alt="{{_('Mozilla Gigabit Community Fund')}}"></h1>
 
   <main role="main">
     <article>
@@ -167,14 +167,14 @@
 
       <aside id="partners" class="container">
         <ul class="partner-logos center">
-          <li><a href="http://www.nsf.gov/"><img src="{{ media('img/gigabit/logo-nsf.png') }}" alt="NSF"></a></li>
-          <li><a href="http://us-ignite.org/"><img src="{{ media('img/gigabit/logo-ignite.png') }}" alt="US Ignite"></a></li>
-          <li><a href="http://www.geni.net/"><img src="{{ media('img/gigabit/logo-geni.png') }}" alt="GENI"></a></li>
-          <li><a href="http://www.kcdigitaldrive.com/"><img src="{{ media('img/gigabit/logo-kc-digital-drive.png') }}" alt="KC Digital Drive"></a></li>
-          <li><a href="http://www.chattanooga.gov/"><img src="{{ media('img/gigabit/logo-chatt-city-seal.png') }}" alt="Chatt City Seal"></a></li>
-          <li><a href="http://www.hamiltontn.gov/"><img src="{{ media('img/gigabit/logo-hamilton-county-seal.png') }}" alt="Hamilton County Seal"></a></li>
-          <li><a href="http:///www.kcmo.org/CKCMO/index.htm"><img src="{{ media('img/gigabit/logo-kcmo.png') }}" alt="KC MO"></a></li>
-          <li><a href="http://www.wycokck.org/"><img src="{{ media('img/gigabit/logo-kc-unified-gov.png') }}" alt="KC Unified Gov"></a></li>
+          <li><a href="http://www.nsf.gov/"><img src="{{ static('img/gigabit/logo-nsf.png') }}" alt="NSF"></a></li>
+          <li><a href="http://us-ignite.org/"><img src="{{ static('img/gigabit/logo-ignite.png') }}" alt="US Ignite"></a></li>
+          <li><a href="http://www.geni.net/"><img src="{{ static('img/gigabit/logo-geni.png') }}" alt="GENI"></a></li>
+          <li><a href="http://www.kcdigitaldrive.com/"><img src="{{ static('img/gigabit/logo-kc-digital-drive.png') }}" alt="KC Digital Drive"></a></li>
+          <li><a href="http://www.chattanooga.gov/"><img src="{{ static('img/gigabit/logo-chatt-city-seal.png') }}" alt="Chatt City Seal"></a></li>
+          <li><a href="http://www.hamiltontn.gov/"><img src="{{ static('img/gigabit/logo-hamilton-county-seal.png') }}" alt="Hamilton County Seal"></a></li>
+          <li><a href="http:///www.kcmo.org/CKCMO/index.htm"><img src="{{ static('img/gigabit/logo-kcmo.png') }}" alt="KC MO"></a></li>
+          <li><a href="http://www.wycokck.org/"><img src="{{ static('img/gigabit/logo-kc-unified-gov.png') }}" alt="KC Unified Gov"></a></li>
         </ul>
       </aside>
 

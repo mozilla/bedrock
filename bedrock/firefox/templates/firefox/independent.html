@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="{{ _('Mozilla') }}">
 <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
 <meta property="og:url" content="{% block canonical_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}">
-<meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ media('img/firefox/independent/page-image.jpg') }}{% endblock %}{% endfilter %}">
+<meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ static('img/firefox/independent/page-image.jpg') }}{% endblock %}{% endfilter %}">
 <meta property="og:title" content="{{ self.page_title()|striptags }}">
 <meta property="og:description" content="{{ self.page_desc()|striptags }}">
 <meta property="fb:page_id" content="{% block facebook_id %}{{ super() }}{% endblock %}">
@@ -33,7 +33,7 @@
 {% block body_id %}independent{% endblock %}
 
 {% block page_css %}
-  {{ css('firefox_independent') }}
+  {% stylesheet 'firefox_independent' %}
 {% endblock %}
 
 {% block site_header_nav %}{% endblock %}
@@ -100,7 +100,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_independent') }}
+  {% javascript 'firefox_independent' %}
 {% endblock %}
 
 {% block email_form %}{% endblock %}

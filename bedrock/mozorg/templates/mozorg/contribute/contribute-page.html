@@ -9,11 +9,11 @@
 {% block body_class %}sand{% endblock %}
 
 {% block extrahead %}
-  {{ css('contribute-page') }}
+  {% stylesheet 'contribute-page' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('contribute-form') }}
+  {% javascript 'contribute-form' %}
 {% endblock %}
 
 {% block content %}

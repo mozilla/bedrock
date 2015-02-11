@@ -8,7 +8,7 @@
 {% block body_id %}annual-2013{% endblock %}
 
 {% block extrahead %}
-  {{ css('annual_2013') }}
+  {% stylesheet 'annual_2013' %}
 {% endblock %}
 
 {% block site_header %}
@@ -67,7 +67,7 @@
         <header>
           <h2>{{ _('Powered By Mozillians') }}</h2>
         </header>
-        <div class="copy">  
+        <div class="copy">
           <p>
           {% trans %}
             Mozillians are a community of technologists, thinkers, builders, and
@@ -95,7 +95,7 @@
                 'A%20different%20kind%20of%20browser.mp4',
                 id='a-different-kind-of-browser',
                 preload='none',
-                poster=media('/img/foundation/annualreport/2013/bg-a-mozillian.jpg'),
+                poster=static('img/foundation/annualreport/2013/bg-a-mozillian.jpg'),
                 prefix='//videos.cdn.mozilla.net/uploads/mozillaorg/') }}
           </div>
         </li>
@@ -153,5 +153,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('annual_2013') }}
+  {% javascript 'annual_2013' %}
 {% endblock %}

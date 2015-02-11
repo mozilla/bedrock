@@ -71,42 +71,49 @@ class TabzillaRedirectTests(TestCase):
         self.assertEqual(resp['Location'],
                          'http://testserver/de/tabzilla/tabzilla.js')
 
-    @patch.object(settings, 'MEDIA_URL', '//example.com/')
-    @patch.object(settings, 'TEMPLATE_DEBUG', False)
-    def test_tabzilla_css_redirect(self):
+    @patch('bedrock.redirects.urls.default_collector')
+    @patch('bedrock.redirects.urls.Packager')
+    def test_tabzilla_css_redirect(self, packager_mock, collector_mock):
         """
-        Tabzilla css redirect should use MEDIA_URL setting and switch
-        based on TEMPLATE_DEBUG setting.
+        Tabzilla css redirect should use STATIC_URL setting and switch
+        based on DEBUG setting.
         Bug 826866.
         """
+        packager = packager_mock.return_value
+        package = packager.package_for.return_value
+        package.output_filename = settings.PIPELINE_CSS['tabzilla']['output_filename']
+        packager.compile.return_value = ['css/tabzilla/tabzilla.css']
         tabzilla_css_url = '/en-US/tabzilla/media/css/tabzilla.css'
-        with self.activate('en-US'):
-            response = self.client.get(tabzilla_css_url)
-        eq_(response.status_code, 301)
-        eq_(response['Location'], 'http://example.com/css/tabzilla-min.css')
-
-        with patch.object(settings, 'TEMPLATE_DEBUG', True):
+        with override_settings(DEBUG=False):
             with self.activate('en-US'):
                 response = self.client.get(tabzilla_css_url)
         eq_(response.status_code, 301)
-        eq_(response['Location'], 'http://example.com/css/tabzilla/tabzilla.less.css')
+        ok_(response['location'].endswith('/css/tabzilla-min.css'), response['location'])
 
-    @patch('jingo_minify.helpers.build_less')
-    def test_tabzilla_css_less_processing(self, less_mock):
+        with override_settings(DEBUG=True):
+            with self.activate('en-US'):
+                response = self.client.get(tabzilla_css_url)
+        eq_(response.status_code, 301)
+        ok_(response['location'].endswith('/css/tabzilla/tabzilla.css'), response['location'])
+
+    @patch('bedrock.redirects.urls.default_collector')
+    @patch('bedrock.redirects.urls.Packager')
+    def test_tabzilla_css_less_processing(self, packager_mock, collector_mock):
         """
         The tabzilla.less file should be compiled by the redirect if
-        settings.LESS_PREPROCESS is True.
+        settings.DEBUG is True.
         """
+        compiler = packager_mock.return_value.compile
         tabzilla_css_url = '/en-US/tabzilla/media/css/tabzilla.css'
-        with patch.object(settings, 'LESS_PREPROCESS', False):
+        with override_settings(DEBUG=False):
             with self.activate('en-US'):
                 self.client.get(tabzilla_css_url)
-        eq_(less_mock.call_count, 0)
+        eq_(compiler.call_count, 0)
 
-        with patch.object(settings, 'LESS_PREPROCESS', True):
+        with override_settings(DEBUG=True):
             with self.activate('en-US'):
                 self.client.get(tabzilla_css_url)
-        eq_(less_mock.call_count, 1)
+        eq_(compiler.call_count, 1)
 
     @patch('bedrock.tabzilla.middleware.settings.CDN_BASE_URL', '//example.com')
     @patch('bedrock.tabzilla.middleware.settings.TEMPLATE_DEBUG', True)

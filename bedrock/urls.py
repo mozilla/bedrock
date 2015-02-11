@@ -41,8 +41,6 @@ urlpatterns = patterns(
     (r'', include('bedrock.newsletter.urls')),
     (r'', include('bedrock.redirects.urls')),
     (r'', include('bedrock.research.urls')),
-    (r'^(?P<path>contribute\.json)$', 'django.views.static.serve',
-     {'document_root': settings.ROOT}),
 
     # L10n example.
     (r'^l10n_example/',
@@ -56,13 +54,8 @@ urlpatterns = patterns(
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 )
 
-# In DEBUG mode, serve media files through Django.
 if settings.DEBUG:
-    # Remove leading and trailing slashes so the regex matches.
-    media_url = settings.MEDIA_URL.lstrip('/').rstrip('/')
     urlpatterns += patterns(
         '',
-        (r'^%s/(?P<path>.*)$' % media_url, 'django.views.static.serve',
-         {'document_root': settings.MEDIA_ROOT}),
         (r'^404/$', handler404),
         (r'^500/$', handler500))

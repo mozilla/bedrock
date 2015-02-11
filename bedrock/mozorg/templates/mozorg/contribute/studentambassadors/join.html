@@ -5,9 +5,9 @@
 
 {% block page_title %}{{_('Become a member of Firefox Student Ambassadors!')}}{% endblock %}
 {% block page_desc %}{{ _('Show your university why Firefox rocks and encourage others to get involved with Mozilla.') }}{% endblock %}
-{% block page_image %}{{ media('img/contribute/studentambassadors/hero.jpg') }}{% endblock %}
+{% block page_image %}{{ static('img/contribute/studentambassadors/hero.jpg') }}{% endblock %}
 {% block extrahead %}
-  {{ css('contribute-studentambassadors-join') }}
+  {% stylesheet 'contribute-studentambassadors-join' %}
 {% endblock %}
 
 {% block body_id %}contribute-studentambassadors-join{% endblock %}
@@ -166,5 +166,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {{ js('contribute-studentambassadors-join') }}
+  {% javascript 'contribute-studentambassadors-join' %}
 {% endblock %}

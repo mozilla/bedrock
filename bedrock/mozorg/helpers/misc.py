@@ -1,23 +1,30 @@
+from __future__ import unicode_literals
+
+from os.path import splitext
 import random
 import urlparse
 from os import path
 
 from django.conf import settings
+from django.contrib.staticfiles.finders import find as find_static
 from django.template.defaultfilters import slugify as django_slugify
 
 import bleach
 import jingo
 import jinja2
-from funfactory.settings_base import path as base_path
 from funfactory.urlresolvers import reverse
-
-
-L10N_MEDIA_PATH = base_path('media', '%s', 'l10n')
+from funfactory.helpers import static
 
 
 def _l10n_media_exists(type, locale, url):
     """ checks if a localized media file exists for the locale """
-    return path.exists(path.join(L10N_MEDIA_PATH % type, locale, url))
+    return find_static(path.join(type, 'l10n', locale, url)) is not None
+
+
+def convert_to_high_res(url):
+    """Convert a file name to the high-resolution version."""
+    filename, ext = splitext(url)
+    return ''.join([filename, '-high-res', ext])
 
 
 @jingo.register.function
@@ -60,11 +67,6 @@ def secure_url(ctx, viewname=None):
 
 
 @jingo.register.function
-def media(url):
-    return path.join(settings.MEDIA_URL, url.lstrip('/'))
-
-
-@jingo.register.function
 @jinja2.contextfunction
 def l10n_img(ctx, url):
     """Output the url to a localized image.
@@ -82,11 +84,11 @@ def l10n_img(ctx, url):
 
     For en-US this would output:
 
-        {{ MEDIA_URL }}img/l10n/en-US/firefox/screenshot.png
+        {{ static('img/l10n/en-US/firefox/screenshot.png') }}
 
     For fr this would output:
 
-        {{ MEDIA_URL }}img/l10n/fr/firefox/screenshot.png
+        {{ static('img/l10n/fr/firefox/screenshot.png') }}
 
     If that file did not exist it would default to the en-US version (if en-US
     was the default language for this install).
@@ -113,7 +115,7 @@ def l10n_img(ctx, url):
         if not _l10n_media_exists('img', locale, url):
             locale = settings.LANGUAGE_CODE
 
-    return media(path.join('img', 'l10n', locale, url))
+    return static(path.join('img', 'l10n', locale, url))
 
 
 @jingo.register.function
@@ -133,7 +135,7 @@ def l10n_css(ctx):
     For a locale that has locale-specific stylesheet, this would output:
 
         <link rel="stylesheet" media="screen,projection,tv"
-              href="{{ MEDIA_URL }}css/l10n/{{ LANG }}/intl.css">
+              href="{{ STATIC_URL }}css/l10n/{{ LANG }}/intl.css">
 
     For a locale that doesn't have any locale-specific stylesheet, this would
     output nothing.
@@ -151,7 +153,7 @@ def l10n_css(ctx):
 
     if _l10n_media_exists('css', locale, 'intl.css'):
         markup = ('<link rel="stylesheet" media="screen,projection,tv" href='
-                  '"%s">' % media(path.join('css', 'l10n', locale, 'intl.css')))
+                  '"%s">' % static(path.join('css', 'l10n', locale, 'intl.css')))
     else:
         markup = ''
 
@@ -169,23 +171,39 @@ def field_with_attrs(bfield, **kwargs):
 @jingo.register.function
 @jinja2.contextfunction
 def platform_img(ctx, url, optional_attributes=None):
-    if (optional_attributes and optional_attributes.pop('l10n', False) is True):
-        url = l10n_img(ctx, url)
+    optional_attributes = optional_attributes or {}
+    if optional_attributes.pop('high-res', False):
+        url_high_res = convert_to_high_res(url)
     else:
-        url = media(url)
+        url_high_res = None
+
+    if optional_attributes.pop('l10n', False):
+        url = l10n_img(ctx, url)
+        if url_high_res:
+            url_high_res = l10n_img(ctx, url_high_res)
+    else:
+        url = static(url)
+        if url_high_res:
+            url_high_res = static(url_high_res)
+
+    if url_high_res:
+        high_res_attr = ' data-high-res="true" data-high-res-src="{0}"'.format(url_high_res)
+    else:
+        high_res_attr = ''
 
     if optional_attributes:
-        attrs = ' '.join('%s="%s"' % (attr, val)
-                         for attr, val in optional_attributes.items())
+        attrs = ' ' + ' '.join('%s="%s"' % (attr, val)
+                               for attr, val in optional_attributes.items())
     else:
         attrs = ''
 
     # Don't download any image until the javascript sets it based on
     # data-src so we can do platform detection. If no js, show the
     # windows version.
-    markup = ('<img class="platform-img js" src="" data-processed="false" data-src="%s" %s>'
-              '<noscript><img class="platform-img win" src="%s" %s></noscript>'
-              % (url, attrs, url, attrs))
+    markup = ('<img class="platform-img js" src="" data-processed="false" '
+              'data-src="{url}"{attrs}{high_res_attr}><noscript>'
+              '<img class="platform-img win" src="{url}"{attrs}>'
+              '</noscript>').format(url=url, attrs=attrs, high_res_attr=high_res_attr)
 
     return jinja2.Markup(markup)
 
@@ -193,23 +211,29 @@ def platform_img(ctx, url, optional_attributes=None):
 @jingo.register.function
 @jinja2.contextfunction
 def high_res_img(ctx, url, optional_attributes=None):
-    if (optional_attributes and optional_attributes.pop('l10n', False) is True):
+    url_high_res = convert_to_high_res(url)
+    if optional_attributes and optional_attributes.pop('l10n', False) is True:
         url = l10n_img(ctx, url)
+        url_high_res = l10n_img(ctx, url_high_res)
     else:
-        url = media(url)
+        url = static(url)
+        url_high_res = static(url_high_res)
 
     if optional_attributes:
-        attrs = ' '.join(('%s="%s"' % (attr, val)
-                          for attr, val in optional_attributes.items()))
+        attrs = ' ' + ' '.join('%s="%s"' % (attr, val)
+                               for attr, val in optional_attributes.items())
     else:
         attrs = ''
 
     # Don't download any image until the javascript sets it based on
     # data-src so we can do high-dpi detection. If no js, show the
     # normal-res version.
-    markup = ('<img class="js" src="" data-processed="false" data-src="%s" data-high-res="true" %s>'
-              '<noscript><img src="%s" %s></noscript>'
-              % (url, attrs, url, attrs))
+    markup = ('<img class="js" src="" data-processed="false" '
+              'data-src="{url}" data-high-res="true" '
+              'data-high-res-src="{url_high_res}"{attrs}><noscript>'
+              '<img src="{url}"{attrs}></noscript>').format(url=url,
+                                                            url_high_res=url_high_res,
+                                                            attrs=attrs)
 
     return jinja2.Markup(markup)
 
@@ -413,14 +437,14 @@ def absolute_url(url):
 
     In Template
     -----------
-    This filter can be used in combination with the media helper like this:
+    This filter can be used in combination with the static helper like this:
 
-        {{ media('path/to/img')|absolute_url }}
+        {{ static('path/to/img')|absolute_url }}
 
     With a block:
 
         {% filter absolute_url %}
-          {% block page_image %}{{ media('path/to/img') }}{% endblock %}
+          {% block page_image %}{{ static('path/to/img') }}{% endblock %}
         {% endfilter %}
     """
 

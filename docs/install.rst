@@ -214,7 +214,7 @@ restart apache:
 
     sudo a2ensite mozilla.com
     sudo a2enmod expires headers actions
-    python manage.py compress_assets
+    python manage.py collectstatic
     sudo service apache2 restart
 
 Troubleshooting
@@ -223,7 +223,7 @@ Troubleshooting
 If you get Django error pages reporting I/O errors for .css files, it's because
 not all the .css files were compiled before starting Apache and Apache does not
 have write permissions in the media directories. Running
-`python manage.py compress_assets` should solve it.  Remember to run that
+`python manage.py collectstatic` should solve it.  Remember to run that
 command again anytime the css or less files change.
 
 If you change Python files, either restart Apache or touch playdoh.wsgi, so

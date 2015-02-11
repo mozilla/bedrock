@@ -18,9 +18,9 @@
 
 {% block extrahead %}
   {{ super() }}
-  {{ css('firefox_os') }}
+  {% stylesheet 'firefox_os' %}
 <!--[if lt IE 9]>
-  {{ css('firefox_os_ie') }}
+  {% stylesheet 'firefox_os_ie' %}
 <![endif]-->
 {% endblock %}
 
@@ -31,7 +31,7 @@
         <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
 
         {% block site_header_logo %}
-        <h2 id="ffos-main-logo"><a href="#masthead" class="nav"><img src="{{ MEDIA_URL }}img/firefox/os/logo/firefox-os.png" alt="Firefox OS"></a></h2>
+        <h2 id="ffos-main-logo"><a href="#masthead" class="nav"><img src="{{ static('img/firefox/os/logo/firefox-os.png') }}" alt="Firefox OS"></a></h2>
         {% endblock %}
         {% block site_header_nav %}
           <nav id="nav-main" role="navigation">
@@ -455,12 +455,12 @@
 {% endblock %}
 
 {% block site_js %}
-  {{ js('firefox-resp') }}
+  {% javascript 'firefox-resp' %}
 {% endblock %}
 
 {% block js %}
 <!--[if IE 9]>
-  {{ js('firefox_os_ie9') }}
+  {% javascript 'firefox_os_ie9' %}
 <![endif]-->
-  {{ js('firefox_os') }}
+  {% javascript 'firefox_os' %}
 {% endblock  %}

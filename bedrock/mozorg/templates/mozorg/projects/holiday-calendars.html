@@ -9,7 +9,7 @@
 {% block body_id %}holiday-calendars{% endblock %}
 
 {% block extrahead %}
-  {{ css('projects-calendar') }}
+  {% stylesheet 'projects-calendar' %}
 {% endblock %}
 
 {% block content %}
@@ -80,7 +80,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js('projects-calendar') }}
+  {% javascript 'projects-calendar' %}
 {% endblock %}
 
 

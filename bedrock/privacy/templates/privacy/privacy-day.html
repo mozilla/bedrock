@@ -9,7 +9,7 @@
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Get smart on privacy') }}{% endblock %}
 
-{% block page_image %}{{ media('img/privacy/you/sharing-tile.png?2015-01') }}{% endblock %}
+{% block page_image %}{{ static('img/privacy/you/sharing-tile.png') }}{% endblock %}
 
 {% block page_desc %}
   {{ _('Feel like you’ve lost control of how your information is used online?') }}
@@ -19,7 +19,7 @@
 {% block body_id %}privacy-day{% endblock %}
 
 {% block site_css %}
-  {{ css('privacy-day') }}
+  {% stylesheet 'privacy-day' %}
 {% endblock %}
 
 {%
@@ -134,7 +134,7 @@ set share_urls = {
               </p>
               <figure class="greenwald">
                 <a href="http://www.ted.com/talks/glenn_greenwald_why_privacy_matters">
-                  <img src="{{ media('/img/privacy/you/greenwald.jpg') }}" alt="{{ _('Watch “Why
+                  <img src="{{ static('img/privacy/you/greenwald.jpg') }}" alt="{{ _('Watch “Why
 Privacy Matters”') }}">
                   <figcaption><span>
                     {{ _('WATCH “WHY PRIVACY MATTERS”') }}
@@ -298,5 +298,5 @@ Privacy Matters”') }}">
 {% endblock %}
 
 {% block js %}
-  {{ js('privacy-day') }}
-{% endblock %}
+  {% javascript 'privacy-day' %}
+{% endblock  %}

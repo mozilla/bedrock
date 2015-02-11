@@ -9,7 +9,7 @@
 
 {% block extrahead %}
   {{ super() }}
-  {{ css('commit-access-policy') }}
+  {% stylesheet 'commit-access-policy' %}
 {% endblock %}
 
 {% block article %}

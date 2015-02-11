@@ -6,10 +6,10 @@
 
 {% block page_title %}{{ _('Firefox OS, Marketplace, Android — Partners') }}{% endblock %}
 {% block page_desc %}{{ _('We’re enabling operators, phone manufacturers and developers to manage, customize and improve relationships with their customers directly through our mobile products: <a %(url1)s>Firefox OS</a>, <a %(url2)s>Firefox Marketplace</a> and <a %(url3)s>Firefox for Android</a>.') }}{% endblock %}
-{% block page_image %}{{ media('img/firefox/firefox-256.jpg') }}{% endblock %}
-{% block page_favicon %}{{ media('img/firefox/favicon.ico?2013-08') }}{% endblock %}
-{% block page_favicon_large %}{{ media('img/firefox/favicon-196.png') }}{% endblock %}
-{% block page_ios_icon %}{{ media('img/firefox/ios-icon-180.png') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/firefox-256.jpg') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/favicon.ico?2013-08') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/favicon-196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/firefox/ios-icon-180.png') }}{% endblock %}
 
 {% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
 {% block twitter_id %}firefoxapps{% endblock %}
@@ -18,9 +18,9 @@
 {% block body_class %}sky{% endblock %}
 
 {% block extrahead %}
-  {{ css('partners') }}
+  {% stylesheet 'partners' %}
 <!--[if lte IE 7]>
-  {{ css('partners-ie7') }}
+  {% stylesheet 'partners-ie7' %}
 <![endif]-->
   <script>
     COMMON_JS_FILES = {{ js_common|safe }};
@@ -30,11 +30,11 @@
 {% endblock %}
 
 {% block site_js %}
-  {{ js('firefox-resp') }}
+  {% javascript 'firefox-resp' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('partners') }}
+  {% javascript 'partners' %}
 {% endblock %}
 
 {% block site_header %}
@@ -103,7 +103,7 @@
 
           <div id="overview-news-links">
             <div id="overview-news-wrapper">
-              <img src="{{ media('img/firefox/partners/mwc-2014-banner.png') }}" alt="{{ _('Mobile World Congress 2014') }}">
+              <img src="{{ static('img/firefox/partners/mwc-2014-banner.png') }}" alt="{{ _('Mobile World Congress 2014') }}">
               <div id="overview-news">
                 <h3>{{ _('Recent news') }}</h3>
                 <ul>
@@ -123,46 +123,46 @@
                 <div class="pager-page default-page">
                   <ul class="logos">
 
-                    <li><img src="{{ media('img/firefox/partners/logos/light/telefonica.png') }}" alt="Telefonica" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/dt.png') }}" alt="DT" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/lg.png') }}" alt="LG" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/qualcomm.png') }}" alt="Qualcomm" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/telefonica.png') }}" alt="Telefonica" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/dt.png') }}" alt="DT" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/lg.png') }}" alt="LG" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/qualcomm.png') }}" alt="Qualcomm" ></li>
 
-                    <li><img src="{{ media('img/firefox/partners/logos/light/zte.png') }}" alt="ZTE" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/telenor.png') }}" alt="Telenor" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/americamovil.png') }}" alt="America Movil" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/tcl.png') }}" alt="TCL" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/zte.png') }}" alt="ZTE" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/telenor.png') }}" alt="Telenor" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/americamovil.png') }}" alt="America Movil" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/tcl.png') }}" alt="TCL" ></li>
 
-                    <li><img src="{{ media('img/firefox/partners/logos/light/telecomitalia.png') }}" alt="Telecom Italia" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/huawei.png') }}" alt="Huawei"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/chinaunicom.png') }}" alt="China Unicom" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/kddi.png') }}" alt="KDDI" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/telecomitalia.png') }}" alt="Telecom Italia" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/huawei.png') }}" alt="Huawei"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/chinaunicom.png') }}" alt="China Unicom" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/kddi.png') }}" alt="KDDI" ></li>
 
-                    <li><img src="{{ media('img/firefox/partners/logos/light/sprint.png') }}" alt="Sprint" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/spreadtrum.png') }}" alt="Spreadtrum"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/etisalat.png') }}" alt="Etisalat" ></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/light/koreatelecom.png') }}" alt="Korea Telecom" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/sprint.png') }}" alt="Sprint" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/spreadtrum.png') }}" alt="Spreadtrum"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/etisalat.png') }}" alt="Etisalat" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/koreatelecom.png') }}" alt="Korea Telecom" ></li>
                   </ul>
                 </div>
                 <div class="pager-page">
                   <ul class="logos">
 
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/twitter.png') }}" alt="Twitter"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/wikipedia.png') }}" alt="Wikipedia"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/disney-wheresmywater.png') }}" alt="Disney - Where's My Water"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/soundcloud.png') }}" alt="SoundCloud"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/twitter.png') }}" alt="Twitter"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/wikipedia.png') }}" alt="Wikipedia"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/disney-wheresmywater.png') }}" alt="Disney - Where's My Water"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/soundcloud.png') }}" alt="SoundCloud"></li>
 
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/line.png') }}" alt="Line"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/cut-the-rope.png') }}" alt="Cut The Rope"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/pinterest.png') }}" alt="Pinterest"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/yelp.png') }}" alt="Yelp"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/line.png') }}" alt="Line"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/cut-the-rope.png') }}" alt="Cut The Rope"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/pinterest.png') }}" alt="Pinterest"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/yelp.png') }}" alt="Yelp"></li>
 
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/napster.png') }}" alt="Napster"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/youtube.png') }}" alt="YouTube"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/the-weather-channel.png') }}" alt="The Weather Channel"></li>
-                    <li><img src="{{ media('img/firefox/partners/logos/marketplace/new-york-times.png') }}" alt="New York Times"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/napster.png') }}" alt="Napster"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/youtube.png') }}" alt="YouTube"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/the-weather-channel.png') }}" alt="The Weather Channel"></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/new-york-times.png') }}" alt="New York Times"></li>
 
-                    <li><img src="{{ media('img/firefox/partners/logos/light/singtel.png') }}" alt="SingTel" ></li>
+                    <li><img src="{{ static('img/firefox/partners/logos/light/singtel.png') }}" alt="SingTel" ></li>
                   </ul>
                 </div>
               </div><!--/pager-content-->
@@ -183,7 +183,7 @@
     <div class="giantfox"><div class="giantfox-foreground"></div></div>
     <div class="article-header">
       <h2 id="os-overview-headline" class="tween">
-        <img src="{{ media('img/firefox/partners/firefoxos-title.png?2013-06')}}" alt="{{ _('Firefox OS') }}" />
+        <img src="{{ static('img/firefox/partners/firefoxos-title.png')}}" alt="{{ _('Firefox OS') }}" />
       </h2>
       <nav class="tween">
         <a href="" class="view-section" data-section="os-overview"><span>{{ _('Overview') }}</span></a>
@@ -234,31 +234,31 @@
 
           <ul id="os-operators-logos1" class="logos">
 
-            <li><img src="{{ media('img/firefox/partners/logos/dark/telefonica.png') }}" alt="Telefonica" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/dt.png') }}" alt="DT" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/lg.png') }}" alt="LG" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/telefonica.png') }}" alt="Telefonica" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/dt.png') }}" alt="DT" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/lg.png') }}" alt="LG" ></li>
 
-            <li><img src="{{ media('img/firefox/partners/logos/dark/qualcomm.png') }}" alt="Qualcomm" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/zte.png') }}" alt="ZTE" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/telenor.png') }}" alt="Telenor" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/qualcomm.png') }}" alt="Qualcomm" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/zte.png') }}" alt="ZTE" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/telenor.png') }}" alt="Telenor" ></li>
 
-            <li><img src="{{ media('img/firefox/partners/logos/dark/kddi.png') }}" alt="KDDI" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/tcl.png') }}" alt="TCL" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/telecomitalia.png') }}" alt="Telecom Italia" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/kddi.png') }}" alt="KDDI" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/tcl.png') }}" alt="TCL" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/telecomitalia.png') }}" alt="Telecom Italia" ></li>
 
-            <li><img src="{{ media('img/firefox/partners/logos/dark/chinaunicom.png') }}" alt="China Unicom" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/sprint.png') }}" alt="Sprint" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/vimpelcom.png') }}" alt="VimpelCom" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/chinaunicom.png') }}" alt="China Unicom" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/sprint.png') }}" alt="Sprint" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/vimpelcom.png') }}" alt="VimpelCom" ></li>
 
-            <li><img src="{{ media('img/firefox/partners/logos/dark/singtel.png') }}" alt="SingTel" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/etisalat.png') }}" alt="Etisalat" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/koreatelecom.png') }}" alt="Korea Telecom" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/singtel.png') }}" alt="SingTel" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/etisalat.png') }}" alt="Etisalat" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/koreatelecom.png') }}" alt="Korea Telecom" ></li>
 
-            <li><img src="{{ media('img/firefox/partners/logos/dark/smartcom.png') }}" alt="SMART Communications" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/megafon.png') }}" alt="Megafon" ></li>
-            <li><img src="{{ media('img/firefox/partners/logos/dark/portugaltelecom.png') }}" alt="Portugal Telecom" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/smartcom.png') }}" alt="SMART Communications" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/megafon.png') }}" alt="Megafon" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/portugaltelecom.png') }}" alt="Portugal Telecom" ></li>
 
-            <li><img src="{{ media('img/firefox/partners/logos/dark/americamovil.png') }}" alt="American Movil" ></li>
+            <li><img src="{{ static('img/firefox/partners/logos/dark/americamovil.png') }}" alt="American Movil" ></li>
 
           </ul>
         </div>
@@ -269,7 +269,7 @@
   <article id="marketplace" class="partner-article" data-section="marketplace-overview">
     <div class="article-header">
       <h2 class="tween">
-        <img src="{{ media('img/firefox/partners/marketplace-title.png')}}" alt="{{ _('Firefox Marketplace') }}" />
+        <img src="{{ static('img/firefox/partners/marketplace-title.png')}}" alt="{{ _('Firefox Marketplace') }}" />
       </h2>
       <nav class="tween">
         <a href="" class="view-section" data-section="marketplace-overview"><span>{{ _('Overview') }}</span></a>
@@ -324,37 +324,37 @@
             <div class="pager-content">
               <div class="pager-page default-page">
                 <ul class="logos">
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/avg.png') }}" alt="AVG"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/aviary.png') }}" alt="Aviary"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/cut-the-rope.png') }}" alt="Cut The Rope"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/despegar.png') }}" alt="despegar.com"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/disney-wheresmywater.png') }}" alt="Disney - Where's My Water"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/enclave-games.png') }}" alt="Enclave Games"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/ever-nav.png') }}" alt="EverNav"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/fifa.png') }}" alt="FIFA"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/life-rescuer.png') }}" alt="LifeRescuer"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/line.png') }}" alt="Line"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/napster.png') }}" alt="Napster"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/new-york-times.png') }}" alt="New York Times"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/pinterest.png') }}" alt="Pinterest"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/planine-srbije.png') }}" alt="Planine Srbije"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/the-pond.png') }}" alt="The Pond"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/avg.png') }}" alt="AVG"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/aviary.png') }}" alt="Aviary"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/cut-the-rope.png') }}" alt="Cut The Rope"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/despegar.png') }}" alt="despegar.com"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/disney-wheresmywater.png') }}" alt="Disney - Where's My Water"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/enclave-games.png') }}" alt="Enclave Games"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/ever-nav.png') }}" alt="EverNav"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/fifa.png') }}" alt="FIFA"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/life-rescuer.png') }}" alt="LifeRescuer"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/line.png') }}" alt="Line"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/napster.png') }}" alt="Napster"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/new-york-times.png') }}" alt="New York Times"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/pinterest.png') }}" alt="Pinterest"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/planine-srbije.png') }}" alt="Planine Srbije"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/the-pond.png') }}" alt="The Pond"></li>
                 </ul>
               </div><!--/.pager-page-->
               <div class="pager-page">
                 <ul class="logos">
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/rakuten.png') }}" alt="Rakuten"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/recruit.png') }}" alt="Recruit"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/soundcloud.png') }}" alt="SoundCloud"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/surf-time.png') }}" alt="Surf Time"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/timeout.png') }}" alt="TimeOut"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/twitter.png') }}" alt="Twitter"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/urlist.png') }}" alt="Urlist"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/the-weather-channel.png') }}" alt="The Weather Channel"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/wikipedia.png') }}" alt="Wikipedia"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/xe.png') }}" alt="XE"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/yelp.png') }}" alt="Yelp"></li>
-                  <li><img src="{{ media('img/firefox/partners/logos/marketplace/youtube.png') }}" alt="YouTube"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/rakuten.png') }}" alt="Rakuten"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/recruit.png') }}" alt="Recruit"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/soundcloud.png') }}" alt="SoundCloud"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/surf-time.png') }}" alt="Surf Time"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/timeout.png') }}" alt="TimeOut"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/twitter.png') }}" alt="Twitter"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/urlist.png') }}" alt="Urlist"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/the-weather-channel.png') }}" alt="The Weather Channel"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/wikipedia.png') }}" alt="Wikipedia"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/xe.png') }}" alt="XE"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/yelp.png') }}" alt="Yelp"></li>
+                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/youtube.png') }}" alt="YouTube"></li>
                 </ul>
               </div>
             </div><!--/.pager-content-->
@@ -402,7 +402,7 @@
     </div>
     <div class="article-header">
       <h2 class="tween">
-        <img src="{{ media('img/firefox/partners/android-title.png?2013-06')}}" alt="{{ _('Firefox for Android') }}" />
+        <img src="{{ static('img/firefox/partners/android-title.png')}}" alt="{{ _('Firefox for Android') }}" />
       </h2>
       <nav class="tween">
         <a href="" class="view-section" data-section="android-overview"><span>{{ _('Overview') }}</span></a>
@@ -413,7 +413,7 @@
       <div class="article-content">
         <div class="intro tween">
           <h4>{{ _('A superior Web experience') }}</h4>
-          <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ media('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
+          <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ static('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
           {# L10n: The line break before the link below is presentational only. #}
           <p>{% trans url='class="view-section block-text" data-section="android-partner" href="#"'|safe %}
             With high-performance, advanced cross-platform features and the latest in security, our top-rated browser offers an alternative to closed platforms, giving you the flexibility to design, distribute and charge as you see fit. <a {{ url }}>Learn more about partner opportunities.</a>

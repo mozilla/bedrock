@@ -26,9 +26,9 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 #0 * * * * * root cd /data/www.allizom.org-django/bedrock; python manage.py --settings=settings/memcache-scl3.py cron update_feeds 2>&1 1> /dev/null | grep -v 'old-style Playdoh layout'"
 
 # bug 1072999
-41 * * * * {{ django_manage }} update_security_advisories --quiet
+# Have to do this in the SRC dir because rsync destroys git repos in WWW dir.
+41 * * * * {{ django_src_manage }} update_security_advisories --quiet
 
 # bug 1087533
-# TODO: redirect output to null after initial deployment and verification
-42 * * * * {{ django_cron }} update_reps_ical
+42 * * * * {{ django_cron }} update_reps_ical > /dev/null 2>&1
 
