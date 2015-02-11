@@ -3,7 +3,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import json
-
 import os
 from urlparse import parse_qsl, urlparse
 
@@ -11,7 +10,6 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
-from django.utils import simplejson
 from funfactory.helpers import static
 
 from funfactory.urlresolvers import reverse
@@ -338,7 +336,7 @@ class TestFirefoxPartners(TestCase):
         self.assertEqual(resp.status_code, 400)
 
         # decode JSON response
-        resp_data = simplejson.loads(resp.content)
+        resp_data = json.loads(resp.content)
 
         self.assertEqual(resp_data['msg'], 'bad_request')
         self.assertTrue(post_patch.called)
@@ -353,8 +351,7 @@ class TestFirefoxPartners(TestCase):
             }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 400)
 
-        # decode JSON response
-        resp_data = simplejson.loads(resp.content)
+        resp_data = json.loads(resp.content)
 
         self.assertEqual(resp_data['msg'], 'Form invalid')
         self.assertFalse(post_patch.called)
@@ -375,8 +372,7 @@ class TestFirefoxPartners(TestCase):
             }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 200)
 
-        # decode JSON response
-        resp_data = simplejson.loads(resp.content)
+        resp_data = json.loads(resp.content)
 
         self.assertEqual(resp_data['msg'], 'ok')
         post_patch.assert_called_once_with(ANY, {
