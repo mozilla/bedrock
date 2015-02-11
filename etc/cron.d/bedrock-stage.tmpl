@@ -6,7 +6,8 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 
 */10 * * * * {{ user }} /data/bedrock-stage/src/update-www.allizom.org.sh
 
-*/15 * * * * {{ user }} /data/bedrock-stage/src/update-www.allizom.org-svn-locale.sh
+# TODO Make this script only sync locales
+# */15 * * * * {{ user }} /data/bedrock-stage/src/update-www.allizom.org-svn-locale.sh
 # outputs when the run completed to http://www.allizom.org/media/locale_finished.txt
 
 # In testing for bug 753566 resolution...
@@ -18,12 +19,6 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 
 # bug 996144
 1 */2 * * * {{ django_cron }} update_tweets > /dev/null 2>&1
-
-#
-# alternative- run the cron twice right on the admin node, passing --settings=settings/memcache-XXX.py... will this work?
-# requires maintaining 2 extra settings files, at least wrt memcache settings
-#0 * * * * * root cd /data/www.allizom.org-django/bedrock; python manage.py --settings=settings/memcache-phx1.py cron update_feeds 2>&1 1> /dev/null | grep -v 'old-style Playdoh layout'"
-#0 * * * * * root cd /data/www.allizom.org-django/bedrock; python manage.py --settings=settings/memcache-scl3.py cron update_feeds 2>&1 1> /dev/null | grep -v 'old-style Playdoh layout'"
 
 # bug 1072999
 # Have to do this in the SRC dir because rsync destroys git repos in WWW dir.
