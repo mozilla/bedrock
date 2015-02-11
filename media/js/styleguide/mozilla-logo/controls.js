@@ -36,7 +36,7 @@
     dataSource1: dataSources[2],
     dataSource2: dataSources[3],
     numDataPoints: 4,
-    graphRange: [0.15, 0.5],
+    graphRange: [0.35, 1.0],
     curveTightness: 0.5,
     angleOffset: 0,
     opacity: 90,
@@ -56,7 +56,7 @@
   };
   var dataSliders = [
     {label: "Data points", min: 2, max: 10, optionKey: 'numDataPoints'},
-    {label: "Graph range", min: 0, max: 1.01, optionKey: 'graphRange', range: true, step: 0.01},
+    {label: "Graph range", min: 0.1, max: 1.00, optionKey: 'graphRange', range: true, step: 0.01},
     {label: "Curve tightness", min: -2, max: 2.01, step: 0.01, optionKey: 'curveTightness'},
     {label: "Angle offset", min: -1, max: 1.01, optionKey: 'angleOffset', step: 0.01},
   ];

@@ -60,8 +60,10 @@
     svgElement = svg;
     defs = svg.append('defs');
     var translate = size * 0.5;
-    var scaleAmount = 0.75;
-    var transform = 'translate(' + translate + ',' + translate + ') scale(' + scaleAmount + ') translate(-' + translate +',-' + translate + ')';
+    var horizontalOffset = size * 0.1;
+    var scaleAmount = 0.70;
+    var horizontalOffsetTranslate = translate - horizontalOffset
+    var transform = 'translate(' + translate + ',' + translate + ') scale(' + scaleAmount + ') translate(-' + horizontalOffsetTranslate +',-' + translate + ')';
     svg = svg.append('g')
       .attr('transform', transform );
 
@@ -144,9 +146,9 @@
     initShapes();
   }
   function initShapes() {
-    
-    options.shapeMaxSize = size * options.graphRange[1];
-    options.shapeMinSize = size * options.graphRange[0];
+    var shapeSizingMaxRange = size * 0.5;
+    options.shapeMaxSize = shapeSizingMaxRange * options.graphRange[1];
+    options.shapeMinSize = shapeSizingMaxRange * options.graphRange[0];
 
     defs.selectAll('*').remove();
     shapes = [];
