@@ -48,13 +48,10 @@
 
             var tour = new Mozilla.BrowserTour({
                 id: $('#tour-page').data('telemetry'),
+                helloPageId: 'hello-tour_OpenPanel_firstrun',
                 allowScroll: true,
-                onCloseTour: function() {
-                    triggerHelloAnimation();
-                },
-                onCompactTour: function() {
-                    triggerHelloAnimation();
-                }
+                onCloseTour: triggerHelloAnimation,
+                onCompactTour: triggerHelloAnimation
             });
 
             tour.init();

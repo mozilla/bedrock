@@ -14,6 +14,7 @@ if (typeof Mozilla == 'undefined') {
 
         this.options = {
             id: null,
+            helloPageId: null,
             onTourComplete: null
         };
 
@@ -545,6 +546,7 @@ if (typeof Mozilla == 'undefined') {
                 if ($.inArray(target, config.targets) !== -1) {
                     that.helloPanelVisible = true;
                     Mozilla.UITour.showMenu(target, function () {
+                        Mozilla.UITour.registerPageID(that.options.helloPageId);
                         that.$window.one('resize.hello', that.hideHelloPanel.bind(that));
                     });
                 } else {
@@ -609,7 +611,7 @@ if (typeof Mozilla == 'undefined') {
         var that = this;
         Mozilla.UITour.addNavBarWidget('loop', function() {
             that.highlightHelloButton();
-            gaTrack(['_trackEvent', 'Tour Interaction', 'Add it now', 'Add Hello to your toolbar']);
+            gaTrack(['_trackEvent', 'Tour Interaction', 'Add it now', 'The Hello icon']);
         });
     };
 
@@ -661,8 +663,6 @@ if (typeof Mozilla == 'undefined') {
             buttons,
             options
         );
-
-        gaTrack(['_trackEvent', 'Tour Interaction', 'Later', 'Add Hello to your toolbar']);
     };
 
     /*

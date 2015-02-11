@@ -31,17 +31,17 @@
             if (config.targets && $.inArray('loop', config.targets) === -1) {
                 $tourStrings.data('title', $tourStrings.data('title-no-icon'));
                 $tourStrings.data('text', $tourStrings.data('text-no-icon'));
+                gaTrack(['_setCustomVar', 12, 'Hello Available', 'No', 2]);
+            } else {
+                gaTrack(['_setCustomVar', 12, 'Hello Available', 'Yes', 2]);
             }
 
             var tour = new Mozilla.BrowserTour({
                 id: $('#tour-page').data('telemetry'),
+                helloPageId: 'hello-tour_OpenPanel_whatsnew',
                 allowScroll: true,
-                onCloseTour: function() {
-                    triggerHelloAnimation();
-                },
-                onCompactTour: function() {
-                    triggerHelloAnimation();
-                }
+                onCloseTour: triggerHelloAnimation,
+                onCompactTour: triggerHelloAnimation
             });
 
             tour.init();
