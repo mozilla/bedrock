@@ -6,8 +6,7 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 
 */10 * * * * {{ user }} /data/bedrock-stage/src/update-www.allizom.org.sh
 
-# TODO Make this script only sync locales
-# */15 * * * * {{ user }} /data/bedrock-stage/src/update-www.allizom.org-svn-locale.sh
+*/15 * * * * {{ user }} /data/bedrock-stage/src/update-www.allizom.org-svn-locale.sh
 # outputs when the run completed to http://www.allizom.org/media/locale_finished.txt
 
 # In testing for bug 753566 resolution...
