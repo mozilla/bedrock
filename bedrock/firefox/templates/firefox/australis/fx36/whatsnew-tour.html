@@ -9,11 +9,11 @@
 {% block telemetry_id %}whatsnew-tour-36-release{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_fx36_whatsnew') }}
+  {% stylesheet 'firefox_fx36_whatsnew' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_fx36_whatsnew') }}
+  {% javascript 'firefox_fx36_whatsnew' %}
 {% endblock %}
 
 {% block string_data %}
@@ -21,24 +21,21 @@ data-open="{{ _('Open tour') }}"
 data-close="{{ _('Close tour') }}"
 data-next="{{ _('Next') }}"
 data-title="{{ _('Meet Hello') }}"
-
 {% if LANG.startswith('en-') %}
 data-text="The easiest way to connect for free over video with anyone, anywhere."
 {% else %}
 data-text="{{ _('The easiest way to connect for free over video with anyone, anywhere') }}"
 {% endif %}
-
 data-start="{{ _('Show me how') }}"
 data-later="{{ _('Not now') }}"
-
 data-title-no-icon="{{ _('Did you know?') }}"
 data-text-no-icon="{{ _('You can have free video conversations right from your Firefox browser.') }}"
-
 data-later-cta="{{ _('Take the tour to see what’s new') }}"
 {# L10n: This is the label that represents tour step one of two #}
 data-step1="{{ _('1/2') }}"
 {# L10n: This is the label that represents tour step two of two #}
 data-step2="{{ _('2/2') }}"
+data-has-tour="True"
 {% endblock %}
 
 {% block main_heading %}
@@ -95,11 +92,11 @@ data-step2="{{ _('2/2') }}"
                 <li>{{ _('Simply start a conversation and share a link') }}</li>
                 <li>{{ _('Invite anyone, anywhere to join') }}</li>
               </ul>
-              <div class="hello-prompt-door-hanger" data-title="{{ _('Keep conversations one click away') }}" data-text="{{ _('Add Hello to your toolbar so it’s here whenever you need it.') }}" data-button-add="{{ _('Add it now') }}" data-button-later="{{ _('Later') }}" data-icon="{{ MEDIA_URL }}img/firefox/australis/hello-icon.png" data-icon-high-res="{{ MEDIA_URL }}img/firefox/australis/hello-icon-high-res.png"></div>
+              <div class="hello-prompt-door-hanger" data-title="{{ _('Keep conversations one click away') }}" data-text="{{ _('Add Hello to your toolbar so it’s here whenever you need it.') }}" data-button-add="{{ _('Add it now') }}" data-button-later="{{ _('Later') }}"></div>
               <div class="hello-added-door-hanger" data-title="{{ _('Perfect!') }}" data-text="{{ _('Now using Hello will be even easier. To move or remove the icon, just open the menu and select Customize.') }}" data-try="{{ _('Try it now') }}"></div>
               <div class="hello-later-door-hanger" data-title="{{ _('Want to add it later?') }}" data-text="{{ _('No problem. Just open this menu, select Customize and simply drag the Hello icon into your toolbar.') }}"></div>
             </div>
-            {{ high_res_img('img/firefox/australis/hello-1.png?02-2015', {'alt': _('The features you use most, all in one place'), 'width': '300', 'height': '188'}) }}
+            {{ high_res_img('img/firefox/australis/hello-1.png', {'alt': '', 'width': '240', 'height': '178', 'id': 'hello-img-1'}) }}
           </li>
           <li class="tour-step" data-step="2" data-tip-prev="{{ _('<span>Previous:</span> Firefox Hello') }}">
             <div class="tour-item">
@@ -113,11 +110,11 @@ data-step2="{{ _('2/2') }}"
               </ul>
               <div class="hello-reminder-door-hanger step-target" data-title="{{ _('Here when you need it') }}" data-text="{{ _('Start and join conversations right from your toolbar.') }}"></div>
             </div>
-            {{ high_res_img('img/firefox/australis/hello-2.png?02-2015', {'alt': _('Connect with anyone over video right from Firefox'), 'width': '300', 'height': '188'}) }}
+            {{ high_res_img('img/firefox/australis/hello-2.png', {'alt': '', 'width': '240', 'height': '178', 'id': 'hello-img-2'}) }}
           </li>
         </ul>
         <div class="compact-title"></div>
-        <div class="tour-init" data-target="appMenu" data-icon="{{ MEDIA_URL }}img/firefox/australis/hello-icon.png" data-icon-high-res="{{ MEDIA_URL }}img/firefox/australis/hello-icon-high-res.png"></div>
+        <div class="tour-init" data-target="appMenu" data-icon="{{ static('img/firefox/australis/hello-icon.png') }}" data-icon-high-res="{{ static('img/firefox/australis/hello-icon-high-res.png') }}"></div>
       </div>
     </div>
   </div>

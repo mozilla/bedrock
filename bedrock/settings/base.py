@@ -429,6 +429,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/hello-animation.less',
             'css/firefox/australis/fx36/common.less',
         ),
         'output_filename': 'css/firefox_fx36_firstrun-bundle.css',
@@ -437,6 +438,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/hello-animation.less',
             'css/firefox/australis/fx36/common.less',
         ),
         'output_filename': 'css/firefox_fx36_whatsnew-bundle.css',
@@ -444,6 +446,7 @@ PIPELINE_CSS = {
     'firefox_fx36_whatsnew_no_tour': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
+            'css/firefox/hello-animation.less',
             'css/firefox/australis/fx36/common.less',
         ),
         'output_filename': 'css/firefox_fx36_whatsnew_no_tour-bundle.css',

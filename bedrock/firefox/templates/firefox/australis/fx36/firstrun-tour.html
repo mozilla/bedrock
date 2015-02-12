@@ -9,11 +9,11 @@
 {% block telemetry_id %}firstrun-tour-36-release{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_fx36_firstrun') }}
+  {% stylesheet 'firefox_fx36_firstrun' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_fx36_firstrun') }}
+  {% javascript 'firefox_fx36_firstrun' %}
 {% endblock %}
 
 {% block string_data %}
@@ -92,7 +92,7 @@ data-step4="{{ _('4/4') }}"
                 <li><a href="#" role="button" class="more">{{ _('Connect with anyone over video right from Firefox') }}</a></li>
               </ul>
             </div>
-            {{ high_res_img('img/firefox/australis/diag-menu-bar.jpg?03-2014', {'alt': _('The features you use most, all in one place'), 'width': '300', 'height': '188'}) }}
+            {{ high_res_img('img/firefox/australis/diag-menu-bar.jpg', {'alt': _('The features you use most, all in one place'), 'width': '300', 'height': '188'}) }}
           </li>
           <li class="tour-step" data-step="2" data-tip-prev="{{ _('<span>Previous:</span> Menu') }}" data-tip-next="{{ _('<span>Next:</span> Search') }}">
             <div class="tour-item">
@@ -105,7 +105,7 @@ data-step4="{{ _('4/4') }}"
                 <li><a href="#" role="button" class="more">{{ _('Choose how you want to search') }}</a></li>
               </ul>
             </div>
-            {{ high_res_img('img/firefox/australis/hello-1.png?02-2015', {'alt': _('Connect with anyone over video right from Firefox'), 'width': '300', 'height': '188'}) }}
+            {{ high_res_img('img/firefox/australis/hello-1.png', {'alt': _('Connect with anyone over video right from Firefox'), 'width': '240', 'height': '178', 'id': 'hello-img-1'}) }}
           </li>
           <li class="tour-step" data-step="3" data-tip-prev="{{ _('<span>Previous:</span> Firefox Hello') }}" data-tip-next="{{ _('<span>Next:</span> Bookmarks') }}">
             <div class="tour-item">
@@ -119,7 +119,7 @@ data-step4="{{ _('4/4') }}"
                 <li><a href="#" role="button" class="more">{{ _('Use the star to create bookmarks') }}</a></li>
               </ul>
             </div>
-            {{ high_res_img('img/firefox/australis/diag-search.jpg?25-11-04', {'alt': _('Search suggestions appear as you type'), 'width': '300', 'height': '188'}) }}
+            {{ high_res_img('img/firefox/australis/diag-search.jpg', {'alt': _('Search suggestions appear as you type'), 'width': '300', 'height': '188'}) }}
           </li>
           <li class="tour-step" data-step="4" data-tip-prev="{{ _('<span>Previous:</span> Search') }}">
             <div class="tour-item">
@@ -132,11 +132,11 @@ data-step4="{{ _('4/4') }}"
                 <li>{{ _('Save sites with a single click') }}</li>
               </ul>
             </div>
-            {{ high_res_img('img/firefox/australis/diag-bookmarks.jpg?03-2014', {'alt': _('Use the star to create bookmarks'), 'width': '300', 'height': '188'}) }}
+            {{ high_res_img('img/firefox/australis/diag-bookmarks.jpg', {'alt': _('Use the star to create bookmarks'), 'width': '300', 'height': '188'}) }}
           </li>
         </ul>
         <div class="compact-title"></div>
-        <div class="tour-init" data-target="appMenu" data-icon="{{ MEDIA_URL }}img/firefox/australis/logo.png?2014-03" data-icon-high-res="{{ MEDIA_URL }}img/firefox/australis/logo-high-res.png?2014-03"></div>
+        <div class="tour-init" data-target="appMenu" data-icon="{{ static('img/firefox/australis/logo.png') }}" data-icon-high-res="{{ static('img/firefox/australis/logo-high-res.png') }}"></div>
       </div>
     </div>
   </div>

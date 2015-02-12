@@ -3,26 +3,6 @@
 
     var helloAnimationStage = $('#hello-animation-stage');
 
-    function trackDefaultSearchEngine() {
-        Mozilla.UITour.getConfiguration('selectedSearchEngine', function (data) {
-            var selectedEngineID = data.searchEngineIdentifier;
-
-            if (!selectedEngineID) {
-                return;
-            }
-
-            if (selectedEngineID === 'yahoo') {
-                Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_yahooDefault');
-                Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
-                gaTrack(['_trackEvent', 'firstrun srch-chg interactions', 'yahooDefault', 'ViewPage']);
-            } else {
-                Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_otherDefault');
-                Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
-                gaTrack(['_trackEvent', 'firstrun srch-chg interactions', 'otherDefault', 'ViewPage']);
-            }
-        });
-    }
-
     //track if this is the first time a user has seen tour
     function trackFirstTimeUse() {
         var firstTime = 'True';
@@ -57,7 +37,6 @@
             tour.init();
 
             trackFirstTimeUse();
-            trackDefaultSearchEngine();
         });
     }
 

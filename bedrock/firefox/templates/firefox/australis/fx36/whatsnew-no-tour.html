@@ -9,11 +9,11 @@
 {% block telemetry_id %}whatsnew-no-tour-36-release{% endblock %}
 
 {% block site_css %}
-  {{ css('firefox_fx36_whatsnew_no_tour') }}
+  {% stylesheet 'firefox_fx36_whatsnew_no_tour' %}
 {% endblock %}
 
 {% block js %}
-  {{ js('firefox_fx36_whatsnew_no_tour') }}
+  {% javascript 'firefox_fx36_whatsnew_no_tour' %}
 {% endblock %}
 
 {% block string_data %}{% endblock %}

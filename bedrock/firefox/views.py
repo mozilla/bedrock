@@ -530,6 +530,8 @@ class TourView(LatestFxView):
 
         if show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
+        elif show_36_firstrun(version):
+            template = 'firefox/australis/fx36/help-menu-36-tour.html'
         elif show_search_firstrun(version) and locale == 'en-US':
             template = 'firefox/australis/help-menu-34-tour.html'
         else:

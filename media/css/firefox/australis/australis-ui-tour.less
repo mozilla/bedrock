@@ -365,6 +365,13 @@ body.noscroll {
         width: 100%;
     }
 
+    .progress[aria-valuemax="2"][aria-valuenow="1"] .indicator {
+        width: 50%;
+    }
+    .progress[aria-valuemax="2"][aria-valuenow="2"] .indicator {
+        width: 100%;
+    }
+
     .logo {
         width: 43px;
         height: 44px;
@@ -500,7 +507,6 @@ html[dir="rtl"] {
     .floating-cta {
         right: auto;
         left: 30px;
-        padding: 10px 60px 10px 10px;
     }
 
     #start-tour-btn {

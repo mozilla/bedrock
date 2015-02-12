@@ -17,7 +17,7 @@ body {
 #wrapper {
     width: 980px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 @baseLine;
 }
 
 #masthead {
@@ -27,6 +27,19 @@ body {
 
 #tabzilla {
     opacity: 0.4;
+}
+
+#ui-tour {
+
+    #hello-img-1 {
+        width: 240px;
+        height: 178px;
+    }
+
+    #hello-img-2 {
+        width: 240px;
+        height: 178px;
+    }
 }
 
 #newsletter-form,
@@ -93,7 +106,7 @@ footer[role="contentinfo"] {
             color: @textColorTertiary;
             &.more {
                 .font-size(@largeFontSize);
-                color: #484848;
+                color: @textColorSecondary;
             }
         }
         a:hover,
@@ -260,6 +273,10 @@ header[role="banner"],
     .promo-media {
         width: 350px;
     }
+}
+
+noscript p {
+    text-align: center;
 }
 
 @keyframes slideInFromTop {
