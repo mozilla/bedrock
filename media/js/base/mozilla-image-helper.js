@@ -37,39 +37,35 @@ Mozilla.ImageHelper.is_high_dpi = null;
 Mozilla.ImageHelper.initPlatformImages = function() {
     $('.platform-img').each(function() {
         var $img = $(this);
-        var suffix = '';
-        var platforms;
-        var additional_platforms;
+        var data_attribute = 'src-';
+        var is_high_res = $img.data('high-res') && Mozilla.ImageHelper.isHighDpi();
+        var suffix;
+        var new_src;
 
-        // special handling for mac
-        if (site.platform === 'osx' || site.platform === 'oldmac') {
-            suffix = '-mac';
-        } else {
-            platforms = ['linux']; // linux is supported by default
-
-            // use 'data-additional-platforms' to specify other supported platforms
-            // beyond the defaults
-            if ($img.data('additional-platforms')) {
-                additional_platforms = $img.data('additional-platforms').split(' ');
-                platforms = platforms.concat(additional_platforms);
-            }
-
-            if ($.inArray(site.platform, platforms) > -1) {
-                suffix = '-' + site.platform;
-            }
+        if (site.platform == 'oldwin') {
+            data_attribute += 'windows';
+        }
+        else if (site.platform === 'osx' || site.platform === 'oldmac') {
+            data_attribute += 'mac';
+        }
+        else {
+            data_attribute += site.platform;
         }
 
-        var orig_src = $img.data('src');
-        var i = orig_src.lastIndexOf('.');
-        var base = orig_src.substring(0, i);
-        var ext = orig_src.substring(i);
-        var src = base + suffix + ext;
-
-        if ($img.data('high-res') && Mozilla.ImageHelper.isHighDpi()) {
-            src = $img.data('high-res-src');
+        if (is_high_res) {
+            suffix = '-high-res';
+        }
+        else {
+            suffix = '';
         }
 
-        this.src = src;
+        new_src = $img.data(data_attribute + suffix);
+        if (!new_src) {
+            // fall back to windows
+            new_src = $img.data('src-windows' + suffix);
+        }
+
+        this.src = new_src;
         $img.attr('data-processed', 'true');
         $img.addClass(site.platform);
     });
