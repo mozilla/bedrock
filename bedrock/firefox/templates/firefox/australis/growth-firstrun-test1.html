@@ -1,0 +1,147 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/australis/tour-base.html" %}
+
+{% set_lang_files "firefox/australis/firefox_tour" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block body_id %}firstrun{% endblock %}
+
+{% block telemetry_id %}australis-tour-firstrun-35-test1{% endblock %}
+
+{% block doorhanger_text %}
+  data-text="{{ _('To get more from Firefox, take a minute to complete this one-time set-up.') }}"
+{% endblock %}
+
+{% block doorhanger_title %}
+  data-title="{{ _('Get set up now') }}"
+{% endblock %}
+
+{% block site_css %}
+  {% stylesheet 'growth_firstrun_test1' %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'growth_firstrun_test1' %}
+{% endblock %}
+
+{% block main_heading %}
+  <header role="banner">
+    <div class="logo"></div>
+    <div class="stage">
+      <h1>{{ _('Welcome to Firefox') }}</h1>
+      <p>{{ _('Committed to you, your privacy and an open Web.') }}</p>
+    </div>
+  </header>
+{% endblock %}
+
+{% block tour_content %}
+  <div class="tour-init" data-target="appMenu" data-icon="{{ static('img/firefox/australis/logo.png') }}" data-icon-high-res="{{ static('img/firefox/australis/logo-high-res.png') }}"></div>
+{% endblock %}
+
+{% block tour_mask %}
+  <div id="ui-tour-mask" tabindex="-1">
+    <div class="mask-inner">
+      <div class="logo"></div>
+      <div class="stage">
+        <h1>{{ _('Welcome to Firefox') }}</h1>
+        <p>{{ _('Committed to you, your privacy and an open Web.') }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block secondary_content %}
+  <div id="fxa-extra" tabindex="-1"
+    data-fxa-client-id="{{ settings.FXA_RELIER_CLIENT_ID }}"
+    data-fxa-content-host="{{ settings.FXA_RELIER_CONTENT_HOST }}"
+    data-fxa-content-oauth="{{ settings.FXA_RELIER_CONTENT_OAUTH }}"
+    data-fxa-redirect-uri="{{ settings.FXA_RELIER_REDIRECT_URI }}">
+
+    <header id="fxa-value-prop" class="fxa-extra-content">
+      <div id="fxa-value-prop-intro">
+        <h2>
+          <i class="icon icon-sync"></i>
+          {{ _('Sign in below to Sync your bookmarks, history, and more.') }}
+        </h2>
+      </div>
+
+      <div id="fxa-value-prop-verified">
+        <h2>{{ _('Thanks for signing up!') }}</h2>
+      </div>
+    </header>
+
+    <ul id="fxa-delayed-ctas" class="fxa-extra-content">
+      <li>
+        <i class="icon icon-sync"></i>
+
+        <strong>{{ _('Firefox Sync') }}</strong>
+
+        <p>
+          {{ _('Sync your bookmarks, history, and more.') }}
+        </p>
+
+        <a href="{{ url('firefox.sync') }}" id="highlight-sync">{{ _('Sync Now') }}</a>
+      </li>
+      <li>
+        <i class="icon icon-hello"></i>
+        <strong>{{ _('Firefox Hello') }}</strong>
+
+        <p>
+          {{ _('Hello is the easiest way to connect for free over video with anyone, anywhere.') }}
+        </p>
+
+        <a id="hello-link" href="{{ url('firefox.hello') }}" target="_blank">{{ _('Try Hello') }}</a>
+      </li>
+      <li>
+        <i class="icon icon-ghostery"></i>
+
+        <strong>{{ _('Ghostery add-on') }}</strong>
+
+        <p>
+          {{ _('Protect your privacy.') }}
+          {{ _('See who’s tracking your web browsing and block them with Ghostery.') }}
+        </p>
+
+        <iframe class="addon" data-src="https://addons.mozilla.org/static/html/mozorg/ghostery.html" frameborder="0" scrolling="no"></iframe>
+      </li>
+    </ul>
+  </div>{#-- /#fxa-extra --#}
+{% endblock %}
+
+{% block sync_content %}
+  <div class="sync-content">
+    <header>
+      <h2>{{ _('Have Firefox on another device?') }}</h2>
+      <p>{{ _('You don’t have to start over. Access your history, bookmarks and more.')}}</p>
+    </header>
+    <div class="sync-cta">
+      <a href="{{ url('firefox.sync') }}" class="button">{{ _('Get started with Sync') }}</a>
+    </div>
+  </div>
+  <div class="sync-anim-wrapper">
+    {% include 'firefox/includes/sync-animation.html' %}
+  </div>
+{% endblock %}
+
+{% block aside_content %}
+  {{ email_newsletter_form() }}
+{% endblock %}
+
+{% block site_footer %}
+  <footer role="contentinfo">
+    <ul>
+      <li><a href="{{ url('firefox.desktop.index') }}" class="more">{{ _('Firefox Features') }}</a></li>
+      <li><a href="https://support.mozilla.org/products/firefox" class="more">{{ _('Firefox Help') }}</a></li>
+    </ul>
+    <ul>
+      <li><a href="{{ url('legal.index') }}">{{ _('Legal') }}</a></li>
+      <li><a href="{{ url('privacy') }}">{{ _('Privacy') }}</a></li>
+    </ul>
+  </footer>
+{% endblock %}

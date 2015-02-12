@@ -20,6 +20,7 @@ from lib import l10n_utils
 
 from bedrock.releasenotes import version_re
 from bedrock.firefox.forms import SMSSendForm
+from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
@@ -368,7 +369,16 @@ class FirstrunView(LatestFxView):
         version = self.kwargs.get('version') or ''
         locale = l10n_utils.get_locale(self.request)
 
-        if show_devbrowser_firstrun(version):
+        # variant is present for growth tests
+        ctx = funnelcake_param(self.request)
+
+        variant = ctx.get('funnelcake_id', None)
+
+        if variant == '35' and version == '35.0.1':
+            template = 'firefox/australis/growth-firstrun-test1.html'
+        elif variant == '36' and version == '35.0.1':
+            template = 'firefox/australis/growth-firstrun-test2.html'
+        elif show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
         elif show_search_firstrun(version) and locale == 'en-US':
             template = 'firefox/australis/firstrun-34-tour.html'
