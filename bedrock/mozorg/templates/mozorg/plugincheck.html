@@ -215,5 +215,8 @@
 {% endblock %}
 
 {% block js %}
+  {# Bug 1132289 temp fix for plugincheck.min.js breaking on re-minification #}
+  {# We can add this back to the bundle once we have the un-minified source in bedrock #}
+  <script type="text/javascript" src="{{ static('js/plugincheck/plugincheck.min.js') }}" charset="utf8"></script>
   {% javascript 'plugincheck' %}
 {% endblock %}

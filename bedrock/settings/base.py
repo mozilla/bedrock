@@ -1503,7 +1503,6 @@ PIPELINE_JS = {
     },
     'plugincheck': {
         'source_filenames': (
-            'js/plugincheck/plugincheck.min.js',
             'js/plugincheck/lib/mustache.js',
             'js/plugincheck/tmpl/plugincheck.ui.tmpl.js',
             'js/plugincheck/check-plugins.js',
