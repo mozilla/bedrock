@@ -16,15 +16,23 @@ from funfactory.urlresolvers import reverse
 from funfactory.helpers import static
 
 
+ALL_FX_PLATFORMS = ('windows', 'linux', 'mac', 'android', 'ios')
+
+
 def _l10n_media_exists(type, locale, url):
     """ checks if a localized media file exists for the locale """
     return find_static(path.join(type, 'l10n', locale, url)) is not None
 
 
+def add_string_to_image_url(url, addition):
+    """Add the platform string to an image url."""
+    filename, ext = splitext(url)
+    return ''.join([filename, '-', addition, ext])
+
+
 def convert_to_high_res(url):
     """Convert a file name to the high-resolution version."""
-    filename, ext = splitext(url)
-    return ''.join([filename, '-high-res', ext])
+    return add_string_to_image_url(url, 'high-res')
 
 
 @jingo.register.function
@@ -66,6 +74,24 @@ def secure_url(ctx, viewname=None):
     return _url
 
 
+def l10n_img_file_name(ctx, url):
+    """Return the filename of the l10n image for use by static()"""
+    url = url.lstrip('/')
+    locale = getattr(ctx['request'], 'locale', None)
+    if not locale:
+        locale = settings.LANGUAGE_CODE
+
+    # We use the same localized screenshots for all Spanishes
+    if locale.startswith('es') and not _l10n_media_exists('img', locale, url):
+        locale = 'es-ES'
+
+    if locale != settings.LANGUAGE_CODE:
+        if not _l10n_media_exists('img', locale, url):
+            locale = settings.LANGUAGE_CODE
+
+    return path.join('img', 'l10n', locale, url)
+
+
 @jingo.register.function
 @jinja2.contextfunction
 def l10n_img(ctx, url):
@@ -102,20 +128,7 @@ def l10n_img(ctx, url):
         $ROOT/media/img/l10n/fr/firefoxos/screenshot.png
 
     """
-    url = url.lstrip('/')
-    locale = getattr(ctx['request'], 'locale', None)
-    if not locale:
-        locale = settings.LANGUAGE_CODE
-
-    # We use the same localized screenshots for all Spanishes
-    if locale.startswith('es') and not _l10n_media_exists('img', locale, url):
-        locale = 'es-ES'
-
-    if locale != settings.LANGUAGE_CODE:
-        if not _l10n_media_exists('img', locale, url):
-            locale = settings.LANGUAGE_CODE
-
-    return static(path.join('img', 'l10n', locale, url))
+    return static(l10n_img_file_name(ctx, url))
 
 
 @jingo.register.function
@@ -172,38 +185,38 @@ def field_with_attrs(bfield, **kwargs):
 @jinja2.contextfunction
 def platform_img(ctx, url, optional_attributes=None):
     optional_attributes = optional_attributes or {}
-    if optional_attributes.pop('high-res', False):
-        url_high_res = convert_to_high_res(url)
-    else:
-        url_high_res = None
+    img_urls = {}
+    add_high_res = optional_attributes.pop('high-res', False)
+    is_l10n = optional_attributes.pop('l10n', False)
 
-    if optional_attributes.pop('l10n', False):
-        url = l10n_img(ctx, url)
-        if url_high_res:
-            url_high_res = l10n_img(ctx, url_high_res)
-    else:
-        url = static(url)
-        if url_high_res:
-            url_high_res = static(url_high_res)
+    for platform in ALL_FX_PLATFORMS:
+        img_urls[platform] = add_string_to_image_url(url, platform)
+        if add_high_res:
+            img_urls[platform + '-high-res'] = convert_to_high_res(img_urls[platform])
 
-    if url_high_res:
-        high_res_attr = ' data-high-res="true" data-high-res-src="{0}"'.format(url_high_res)
-    else:
-        high_res_attr = ''
+    img_attrs = {}
+    for platform, image in img_urls.iteritems():
+        if is_l10n:
+            image = l10n_img_file_name(ctx, image)
 
-    if optional_attributes:
-        attrs = ' ' + ' '.join('%s="%s"' % (attr, val)
-                               for attr, val in optional_attributes.items())
-    else:
-        attrs = ''
+        if find_static(image):
+            key = 'data-src-' + platform
+            img_attrs[key] = static(image)
+
+    if add_high_res:
+        img_attrs['data-high-res'] = 'true'
+
+    img_attrs.update(optional_attributes)
+    attrs = ' '.join('%s="%s"' % (attr, val)
+                     for attr, val in img_attrs.iteritems())
 
     # Don't download any image until the javascript sets it based on
     # data-src so we can do platform detection. If no js, show the
     # windows version.
-    markup = ('<img class="platform-img js" src="" data-processed="false" '
-              'data-src="{url}"{attrs}{high_res_attr}><noscript>'
-              '<img class="platform-img win" src="{url}"{attrs}>'
-              '</noscript>').format(url=url, attrs=attrs, high_res_attr=high_res_attr)
+    print img_attrs
+    markup = ('<img class="platform-img js" src="" data-processed="false" {attrs}>'
+              '<noscript><img class="platform-img win" src="{win_src}" {attrs}>'
+              '</noscript>').format(attrs=attrs, win_src=img_attrs['data-src-windows'])
 
     return jinja2.Markup(markup)
 

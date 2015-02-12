@@ -1007,7 +1007,8 @@ class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='16.0')
-    def test_whatsnew_tour_oldversion(self):
+    @patch('bedrock.mozorg.helpers.misc.find_static', return_value=True)
+    def test_whatsnew_tour_oldversion(self, find_static):
         """Should not show tour if upgrading from 33.1 onwards."""
         # sanity check that it should show for other values of "oldversion"
         response = self.client.get(self.url + '?oldversion=28.0', HTTP_USER_AGENT=self.user_agent)

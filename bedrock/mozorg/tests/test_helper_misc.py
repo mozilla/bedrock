@@ -263,6 +263,7 @@ class TestVideoTag(TestCase):
 
 
 @override_settings(STATIC_URL='/media/')
+@patch('bedrock.mozorg.helpers.misc.find_static', return_value=True)
 class TestPlatformImg(TestCase):
     rf = RequestFactory()
 
@@ -278,69 +279,57 @@ class TestPlatformImg(TestCase):
         return render("{{{{ l10n_img('{0}') }}}}".format(url),
                       {'request': req})
 
-    def test_platform_img_no_optional_attributes(self):
+    def test_platform_img_no_optional_attributes(self, find_static):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
-        expected = (
-            u'<img class="platform-img js" src="" data-processed="false" data-src="/media/test.png">'
-            u'<noscript><img class="platform-img win" src="/media/test.png">'
-            u'</noscript>')
-        self.assertEqual(markup, expected)
+        self.assertIn(u'data-src-windows="/media/test-windows.png"', markup)
+        self.assertIn(u'data-src-mac="/media/test-mac.png"', markup)
 
-    def test_platform_img_with_optional_attributes(self):
+    def test_platform_img_with_optional_attributes(self, find_static):
         """Should return expected markup with optional attributes"""
         markup = self._render('test.png', {'data-test-attr': 'test'})
-        expected = (
-            u'<img class="platform-img js" src="" data-processed="false" data-src="/media/test.png" '
-            u'data-test-attr="test"><noscript><img class="platform-img win" '
-            u'src="/media/test.png" data-test-attr="test"></noscript>')
-        self.assertEqual(markup, expected)
+        self.assertIn(u'data-test-attr="test"', markup)
 
-    def test_platform_img_with_high_res(self):
+    def test_platform_img_with_high_res(self, find_static):
         """Should return expected markup with high resolution image attrs"""
         markup = self._render('test.png', {'high-res': True})
-        expected = (
-            u'<img class="platform-img js" src="" data-processed="false" data-src="/media/test.png" '
-            u'data-high-res="true" data-high-res-src="/media/test-high-res.png"><noscript>'
-            u'<img class="platform-img win" src="/media/test.png"></noscript>')
-        self.assertEqual(markup, expected)
+        self.assertIn(u'data-src-windows-high-res="/media/test-windows-high-res.png"', markup)
+        self.assertIn(u'data-src-mac-high-res="/media/test-mac-high-res.png"', markup)
+        self.assertIn(u'data-high-res="true"', markup)
 
-    def test_platform_img_with_l10n(self):
+    def test_platform_img_with_l10n(self, find_static):
         """Should return expected markup with l10n image path"""
-        l10n_url = self._render_l10n('test.png')
+        l10n_url_win = self._render_l10n('test-windows.png')
+        l10n_url_mac = self._render_l10n('test-mac.png')
         markup = self._render('test.png', {'l10n': True})
-        expected = (
-            u'<img class="platform-img js" src="" data-processed="false" data-src="' + l10n_url + '">'
-            u'<noscript><img class="platform-img win" src="' + l10n_url + '">'
-            u'</noscript>')
-        self.assertEqual(markup, expected)
+        self.assertIn(u'data-src-windows="' + l10n_url_win + '"', markup)
+        self.assertIn(u'data-src-mac="' + l10n_url_mac + '"', markup)
 
-    def test_platform_img_with_l10n_and_optional_attributes(self):
+    def test_platform_img_with_l10n_and_optional_attributes(self, find_static):
         """
         Should return expected markup with l10n image path and optional
         attributes
         """
-        l10n_url = self._render_l10n('test.png')
+        l10n_url_win = self._render_l10n('test-windows.png')
+        l10n_url_mac = self._render_l10n('test-mac.png')
         markup = self._render('test.png', {'l10n': True, 'data-test-attr': 'test'})
-        expected = (
-            u'<img class="platform-img js" src="" data-processed="false" data-src="' + l10n_url + '" '
-            u'data-test-attr="test"><noscript><img class="platform-img win" '
-            u'src="' + l10n_url + '" data-test-attr="test"></noscript>')
-        self.assertEqual(markup, expected)
+        self.assertIn(u'data-src-windows="' + l10n_url_win + '"', markup)
+        self.assertIn(u'data-src-mac="' + l10n_url_mac + '"', markup)
+        self.assertIn(u'data-test-attr="test"', markup)
 
-    def test_platform_img_with_l10n_and_high_res(self):
+    def test_platform_img_with_l10n_and_high_res(self, find_static):
         """
         Should return expected markup with l10n image path and high resolution
         attributes
         """
-        l10n_url = self._render_l10n('test.png')
-        l10n_hr_url = convert_to_high_res(l10n_url)
+        l10n_url_win = self._render_l10n('test-windows.png')
+        l10n_hr_url_win = convert_to_high_res(l10n_url_win)
+        l10n_url_mac = self._render_l10n('test-mac.png')
+        l10n_hr_url_mac = convert_to_high_res(l10n_url_mac)
         markup = self._render('test.png', {'l10n': True, 'high-res': True})
-        expected = (
-            u'<img class="platform-img js" src="" data-processed="false" data-src="' + l10n_url + '" '
-            u'data-high-res="true" data-high-res-src="' + l10n_hr_url + '"><noscript>'
-            u'<img class="platform-img win" src="' + l10n_url + '"></noscript>')
-        self.assertEqual(markup, expected)
+        self.assertIn(u'data-src-windows-high-res="' + l10n_hr_url_win + '"', markup)
+        self.assertIn(u'data-src-mac-high-res="' + l10n_hr_url_mac + '"', markup)
+        self.assertIn(u'data-high-res="true"', markup)
 
 
 class TestPressBlogUrl(TestCase):
