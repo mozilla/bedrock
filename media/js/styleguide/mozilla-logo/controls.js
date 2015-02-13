@@ -57,7 +57,7 @@
   var dataSliders = [
     {label: "Data points", min: 2, max: 10, optionKey: 'numDataPoints'},
     {label: "Graph range", min: 0.1, max: 1.00, optionKey: 'graphRange', range: true, step: 0.01},
-    {label: "Curve tightness", min: -2, max: 2.01, step: 0.01, optionKey: 'curveTightness'},
+    {label: "Curve tightness", min: 0, max: 1.01, step: 0.01, optionKey: 'curveTightness'},
     {label: "Angle offset", min: -1, max: 1.01, optionKey: 'angleOffset', step: 0.01},
   ];
 
