@@ -37,6 +37,8 @@ def process_legal_doc(content):
 
         # Append elements to <header> or <div>
         for tag in section.children:
+            if not tag.name:
+                continue
             match = HN_PATTERN.match(tag.name)
             if match:
                 header.append(tag)
