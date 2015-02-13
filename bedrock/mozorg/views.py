@@ -8,7 +8,6 @@ import re
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
 from django.core.context_processors import csrf
-from django.db.utils import DatabaseError
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import last_modified, require_safe
@@ -299,10 +298,7 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
 
 @xframe_allow
 def contribute_studentambassadors_landing(request):
-    try:
-        tweets = TwitterCache.objects.get(account='mozstudents').tweets
-    except (TwitterCache.DoesNotExist, DatabaseError):
-        tweets = []
+    tweets = TwitterCache.objects.get_tweets_for('mozstudents')
     return l10n_utils.render(request,
                              'mozorg/contribute/studentambassadors/landing.html',
                              {'tweets': tweets})
@@ -395,10 +391,7 @@ class HomeTestView(l10n_utils.LangFilesMixin, TemplateView):
 def home_tweets(locale):
     account = settings.HOMEPAGE_TWITTER_ACCOUNTS.get(locale)
     if account:
-        try:
-            return TwitterCache.objects.get(account=account).tweets
-        except (TwitterCache.DoesNotExist, DatabaseError):
-            pass  # TODO: see if we should catch other errors
+        return TwitterCache.objects.get_tweets_for(account)
     return []
 
 
