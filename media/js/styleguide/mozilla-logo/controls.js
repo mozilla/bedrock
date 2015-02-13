@@ -453,6 +453,8 @@
     "};\n";
     //TODO update the server address in the embed
     var embedCode = "(function() {\n" +
+      "  var compatible = typeof Array.prototype.map === 'function' && !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect;\n" +
+      "  if(!compatible) return;\n" +
       "  var ml = document.createElement('script');\n" +
       "  ml.src = '//50.250.207.157/mozillaid/deploy/logo-build.js';\n" +
       "  ml.type = 'text/javascript';\n" +
