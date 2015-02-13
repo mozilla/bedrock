@@ -13,6 +13,7 @@
     var highlightTimeout;
     var highlightsSupressed = false;
     var tourStep = 'default';
+    var tourSource = getParameterByName('utm_content').replace('hello-tour_OpenPanel_','');
 
     /*
      * Strips HTML from string to make sure markup
@@ -25,7 +26,32 @@
 
     // GA event for successful Hello conversations
     function trackGAConversationConnect() {
+        // get source from localStorage
+        try {
+            tourSource = localStorage.getItem('hello_ftu_tour_source');
+        } catch (ex) {
+            tourSource = 'none';
+        }
+        gaTrack(['_setCustomVar', 13, 'Hello FTU Referral', tourSource, 2]);
         gaTrack(['_trackEvent', '/hello/start interactions', 'tour', 'TourConnectConversation']);
+        try {
+            localStorage.removeItem('hello_ftu_tour_source');
+        } catch (ex) { }
+    }
+
+    // Save the tourSource to localStorage for use in conversation connect
+    function saveTourSourceToLocalStorage() {
+        try {
+            localStorage.setItem('hello_ftu_tour_source', tourSource);
+        } catch (ex) { }
+    }
+
+    // Get query string parameters
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
+            results = regex.exec(location.search);
+        return results === null ? 'none' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 
     /*
@@ -251,14 +277,22 @@
             case 'Loop:RoomURLCopied':
                 tourStep = 'shared';
                 showTourStep();
+                saveTourSourceToLocalStorage();
                 // track user has clicked copy button
                 gaTrack(['_trackEvent', '/hello/start interactions', 'tour', 'URLCopied-Tour']);
                 break;
             case 'Loop:RoomURLEmailed':
                 tourStep = 'shared';
                 showTourStep();
+                saveTourSourceToLocalStorage();
                 // track user has clicked email button
                 gaTrack(['_trackEvent', '/hello/start interactions', 'tour', 'URLEmailed-Tour']);
+                break;
+            case 'Loop:PanelTabChanged':
+                // hide info panels if user switches to the Contacts tab in the Hello panel
+                if (data && data === 'contacts') {
+                    Mozilla.UITour.hideInfo();
+                }
             }
 
         }, function () {
@@ -294,7 +328,7 @@
 
     function init() {
         // URL query param populated at template level in the view
-        var incomingConversation = $main.data('incomingConversation');
+        var incomingConversation = getParameterByName('incomingConversation');
 
         // set the tour state based on incomingConversation status
         switch(incomingConversation) {
@@ -337,6 +371,8 @@
 
                     // track start of tour in GA
                     if (tourStep === 'get-started') {
+                        // Get referrer and set Custom Variable. none is okay here.
+                        gaTrack(['_setCustomVar', 13, 'Hello FTU Referral', tourSource, 2]);
                         gaTrack(['_trackEvent', '/hello/start interactions', 'tour', 'GetStarted']);
                     }
                 }

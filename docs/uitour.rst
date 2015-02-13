@@ -529,6 +529,7 @@ Event types:
 * ``'Loop:IncomingConversation'`` - User has an incoming conversation. Event will have data boolean value ``conversationOpen`` set to ``true`` or ``false`` depending on if the chat window is open or not.
 * ``'Loop:RoomURLCopied'`` - User clicks the copy button to share a chat URL.
 * ``'Loop:RoomURLEmailed'`` - User clicks the email button to share a chat URL.
+* ``'Loop:PanelTabChanged'`` - User clicks on the Contacts or Room tab in the panel. Event will return data = ``rooms`` or ``contacts`` depending on which tab the user clicked on.
 
 Note: UiTour can only create a single listener that is responsible for handling all event types. It is not currently possible to listen for only specific event types.
 
