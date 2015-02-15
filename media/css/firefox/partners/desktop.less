@@ -239,20 +239,13 @@
     .partner-button, #overview-news-links {
         display: none;
     }
-    .partner-button {
-        margin-top: -35px;
-    }
-    .intro #more-partners {
-        display: block;
-    }
 }
 #overview {
-    background: url(/media/img/firefox/partners/overview-bg.png) center -15px no-repeat;
     h2 {
         .font-size(80px);
         letter-spacing: -4px;
         .span-all();
-        padding-top: 60px;
+        padding-top: 20px;
         padding-bottom: 10px;
     }
     .intro {
@@ -265,27 +258,14 @@
         .partner-logos {
             margin-top: @baseLine;
         }
-        #more-partners {
-            margin: -30px 0 0 0;
-            float: left;
-            display: none;
-            font-family: Journal;
-            .font-size(23px);
-            color: @textColorTertiary;
-            padding-right: 50px;
-            text-align: right;
-            width: 210px;
-            background: url(/media/img/firefox/partners/partners-arrow.png) 100% 50% no-repeat;
-        }
         .partner-button {
             float: right;
-            margin-bottom: 5px;
         }
     }
 }
 
 #overview-news-links {
-    padding-top: (@baseLine * 1.5);
+    clear: both;
 }
 
 #overview-news-wrapper {
@@ -369,7 +349,7 @@
                 margin: 10px 20px;
             }
         }
-        .logos {
+        .operator-screenshots {
             .span(6);
             margin-left: 0;
             margin-right: 0;
@@ -560,8 +540,8 @@
         .tablet-screen {
             position: absolute;
             display: block;
-            top: 58px;
-            right: 127px;
+            top: 61px;
+            right: 139px;
             width: 767px;
             height: 488px;
             background: url(/media/img/firefox/partners/android-tablet-screen.jpg) no-repeat 0 0;
@@ -582,7 +562,9 @@ body #partner-nav {
     padding: 0;
 }
 
-body #partner-menu, body #mwc-menu {
+body #partner-menu,
+body #mwc-menu,
+body #devices-menu {
     width: 60px;
     li {
         width: auto;
@@ -613,15 +595,20 @@ body #partner-menu, body #mwc-menu {
         display: block;
         float: none;
         width: auto;
+        border-radius: 0;
         a {
             @shadow: 0 -1px rgba(0,0,0,0.1) inset;
             .box-shadow(@shadow);
+            border-radius: 0;
         }
         &:first-child a {
             border-radius: 3px 3px 0 0;
         }
         &:last-child a {
             border-radius: 0 0 3px 3px;
+        }
+        &.first a {
+            border-radius: 0;
         }
         &.title {
             border-radius: 3px 3px 0 0;

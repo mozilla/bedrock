@@ -24,12 +24,12 @@
     li {
         float: left;
         width: 120px;
-        height: 46px;
-        line-height: 46px;
+        height: 60px;
+        line-height: 60px;
         padding: 0;
         text-align: center;
         color: rgba(0,0,0,0.4);
-        margin: 5px 10px;
+        margin: 10px 10px;
     }
 }
 
@@ -54,31 +54,9 @@
 
 #form,
 .partner-article {
-    .button {
-        display: block;
-        &:after {
-            content: " ";
-            display: inline-block;
-            height: 24px;
-            width: 20px;
-            vertical-align: middle;
-            margin-left: 10px;
-            background: url(/media/img/sandstone/buttons/arrow-go-r.png) 0 0;
-        }
-        &:before {
-            content: " ";
-            display: inline-block;
-            height: 24px;
-            width: 10px;
-            vertical-align: middle;
-        }
-        &:hover,
-        &:focus {
-            .box-shadow(@localShadowHover);
-        }
-        &:active {
-            .box-shadow(@localShadowActive);
-        }
+    .button-flat {
+        .open-sans();
+        margin-bottom: 0;
     }
 }
 
@@ -225,7 +203,7 @@
 #partner-nav {
     position: absolute;
     z-index: 1000;
-    top: 60px;
+    top: 20px;
     left: 50%;
     width: auto;
     margin-left: -(@widthDesktop / 2);
@@ -266,15 +244,19 @@
                 .transition(background-color ease-in .1s);
             }
         }
+        &.first a,
         &:first-child a {
-            border-radius: 3px 0 0 3px;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
         }
         &:last-child a {
-            border-radius: 0 3px 3px 0;
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
         }
         &.active a,
         &#menu-mwc-map a:hover,
-        &#menu-mwc-schedule a:hover {
+        &#menu-mwc-schedule a:hover,
+        &#menu-devices a:hover {
             background-color: #15aaff;
         }
         &#menu-overview           a { background-position: 50% 0; }
@@ -290,25 +272,26 @@
         &#menu-mwc-map:hover      a { background-position: 50% -540px; }
         &#menu-mwc-schedule       a { background-position: 50% -600px; }
         &#menu-mwc-schedule:hover a { background-position: 50% -660px; }
+
+        &#menu-devices            a { background-position: 50% -1200px; }
+        &#menu-devices:hover      a { background-position: 50% -1260px; }
     }
 }
 
-#partner-menu {
-    width: 1000px;
-    /* When used with #mwc-menu (during MWC)
-    width: 680px;
-    margin-right: @baseLine * 3;
-    */
-    li {
-        width: 25%;
-    }
+.menu li {
+    width: 40px;
 }
 
-
+#partner-menu,
 #mwc-menu {
-    width: 260px;
+    margin-right: @baseLine * 3;
+}
+
+#devices-menu {
     li {
-        width: 50%;
+        a {
+            border-radius: 3px;
+        }
     }
 }
 
@@ -322,7 +305,10 @@
 }
 
 .partner-article.dark {
-    #gradient > .vertical(#0f9fdb, #0055a0);
+    background-image: url("/media/img/firefox/partners/background-shapes.png");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-color:  #0095dd;
     color: #fff;
     text-shadow: none;
     p,
@@ -361,6 +347,7 @@
                 .font-size(@largeFontSize);
                 text-transform: uppercase;
             }
+
             ul {
                 text-align: left;
                 .font-size(@baseFontSize);
@@ -371,6 +358,10 @@
                 }
             }
         }
+    }
+
+    .partner-button {
+        margin-bottom: 0;
     }
 }
 
@@ -512,7 +503,7 @@
                     h5 {
                         font-weight: bold;
                         text-transform: uppercase;
-                        color: #7ecdff;
+                        color: #005189;
                         margin-bottom: 5px;
                     }
                 }
@@ -766,7 +757,9 @@
 }
 
 @media only screen and (min-width: 1000px) and (max-width: 1090px)  {
-    body #partner-menu, body #mwc-menu {
+    body #partner-menu,
+    body #mwc-menu,
+    body #devices-menu {
         float: none;
         width: 38px;
         li {
@@ -802,6 +795,7 @@
 @media only screen and (min-width: @breakTablet) {
 
     #masthead,
+    #partner-nav,
     .partner-article .article-content {
         width: @widthDesktop - 40px;
         margin-left: auto;
@@ -887,24 +881,19 @@
         z-index: 1000;
         top: 60px;
         left: 50%;
-        width: @widthTablet;
-        margin-left: -(@widthTablet / 2);
         padding: 0 10px;
         h3 {
             display: none;
         }
     }
 
-    #partner-menu {
-        width: 740px;
-        /* When used with #mwc-menu (during MWC)
-        //width: 500px;
-        //margin-right: @baseLine * 2;
-        */
+    #partner-menu,
+    #mwc-menu {
+        margin-right: @baseLine * 2;
     }
 
-    #mwc-menu {
-        width: 220px;
+    .menu li {
+        width: 91px;
     }
 
     #overview {
@@ -912,6 +901,11 @@
             .font-size(48px);
         }
     }
+
+    .menu li.title {
+        display: none;
+    }
+
 }
 
 
@@ -919,7 +913,6 @@
 @media only screen and (max-width: @breakTablet) {
 
     #masthead,
-    #partner-nav,
     .partner-article .article-header,
     .partner-article .article-content {
         width: @widthMobile - 20px;
@@ -932,29 +925,26 @@
         margin-left: -(@widthMobile / 2);
     }
 
-    #partner-menu {
-        width: 300px;
-        /* When used with #mwc-menu (during MWC)
-        width: 200px;
-        margin-right: @baseLine / 2;
-        */
-    }
-
+    #partner-menu,
     #mwc-menu {
-        width: 90px;
+        margin-right: @baseLine / 2;
     }
 
     #modal video {
         width: 100%;
         height: auto;
     }
+
+    .menu li.title {
+        display: none;
+    }
+
 }
 
 /* Wide Mobile Layout: 480px */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
 
     #masthead,
-    #partner-nav,
     .partner-article .article-header,
     .partner-article .article-content {
         width: @widthMobileLandscape - 20px;
@@ -967,16 +957,13 @@
         margin-left: -(@widthMobileLandscape / 2);
     }
 
-    #partner-menu {
-        width: 420px;
-        /* When used with #mwc-menu (during MWC)
-        width: 280px;
-        margin-right: @baseLine;
-        */
+    #partner-menu,
+    #mwc-menu {
+        margin-right: @baseLine / 2;
     }
 
-    #mwc-menu {
-        width: 120px;
+    .menu li {
+        width: 56px;
     }
 
     #overview {

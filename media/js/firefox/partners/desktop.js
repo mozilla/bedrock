@@ -9,6 +9,7 @@
     var $body = $('body');
     var $article_wrapper = $('#article-wrapper');
     var article_height = 820;
+    var header_height = 130; // leave room for the Fx family nav
     var parallax_offset = 0;
     var phone_offset = 200; // distance from top of article to top of phone
     var phone_speed = 0.7; // seconds phone movement speed between articles
@@ -67,13 +68,19 @@
                 destination = 0;
                 break;
             case '#os':
-                destination = (article_height - parallax_offset);
+                destination = (
+                    article_height - parallax_offset + header_height
+                );
                 break;
             case '#marketplace':
-                destination = ((article_height * 2) - (parallax_offset * 2));
+                destination = (
+                    (article_height * 2) - (parallax_offset * 2) + header_height
+                );
                 break;
             case '#android':
-                destination = ((article_height * 3) - (parallax_offset * 3));
+                destination = (
+                    (article_height * 3) - (parallax_offset * 3) + header_height
+                );
                 break;
         }
 
@@ -163,7 +170,7 @@
 
     // re-arrange news, partner button, & links if #overview
     var $overview_news_links = $('#overview-news-links').detach();
-    $('#more-partners').after($overview_news_links);
+    $('#overview .partner-logos').after($overview_news_links);
     $overview_news_links.fadeIn('fast');
 
     var $overview_actions= $('#overview .overview-actions').detach();
