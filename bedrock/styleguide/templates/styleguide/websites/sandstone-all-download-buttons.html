@@ -72,37 +72,37 @@
       <tr>
         <th>Full-size + icon</th>
         <td>
-          {{ download_firefox(mobile=True) }}
+          {{ download_firefox(platform='android') }}
         </td>
         <td>
-          {{ download_firefox(mobile=True, build='beta') }}
+          {{ download_firefox(platform='android', build='beta') }}
         </td>
       </tr>
       <tr>
         <th>Compact + icon</th>
         <td>
-          {{ download_firefox(mobile=True, small=True) }}
+          {{ download_firefox(platform='android', small=True) }}
         </td>
         <td>
-          {{ download_firefox(mobile=True, small=True, build='beta') }}
+          {{ download_firefox(platform='android', small=True, build='beta') }}
         </td>
       </tr>
       <tr>
         <th>Full-size + no icon</th>
         <td>
-          {{ download_firefox(mobile=True, icon=False) }}
+          {{ download_firefox(platform='android', icon=False) }}
         </td>
         <td>
-          {{ download_firefox(mobile=True, icon=False, build='beta') }}
+          {{ download_firefox(platform='android', icon=False, build='beta') }}
         </td>
       </tr>
       <tr>
         <th>Compact + no icon</th>
         <td>
-          {{ download_firefox(mobile=True, small=True, icon=False) }}
+          {{ download_firefox(platform='android', small=True, icon=False) }}
         </td>
         <td>
-          {{ download_firefox(mobile=True, small=True, icon=False, build='beta') }}
+          {{ download_firefox(platform='android', small=True, icon=False, build='beta') }}
         </td>
       </tr>
     </tbody>

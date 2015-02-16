@@ -482,27 +482,30 @@ def product_url(product, page, channel=None):
 
         {{ product_url('firefox', 'all', 'organizations') }}
         {{ product_url('firefox', 'sysreq', channel) }}
-        {{ product_url('mobile', 'notes') }}
+        {{ product_url('android', 'notes') }}
     """
 
     app = product
     kwargs = {}
 
-    if product == 'mobile':
+    if product == 'android':
         app = 'firefox'
 
     # Tweak the channel name for the naming URL pattern in urls.py
     if channel == 'release':
         channel = None
-    if channel == 'aurora' and product == 'firefox':
-        channel = 'developer'
+    if channel == 'alpha':
+        if product == 'firefox':
+            channel = 'developer'
+        if product == 'android':
+            channel = 'aurora'
     if channel == 'esr':
         channel = 'organizations'
 
     if channel:
         kwargs['channel'] = channel
     if page == 'notes':
-        kwargs['product'] = product
+        kwargs['product'] = 'mobile' if product == 'android' else product
 
     return reverse('%s.%s' % (app, page), kwargs=kwargs)
 
