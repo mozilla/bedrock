@@ -582,8 +582,8 @@ class ContributeStudentAmbassadorForm(forms.Form):
 
     def clean(self, *args, **kwargs):
         super(ContributeStudentAmbassadorForm, self).clean(*args, **kwargs)
-        if (self.cleaned_data.get('status', '') == 'student'
-                and not self.cleaned_data.get('grad_year', '')):
+        if (self.cleaned_data.get('status', '') == 'student' and
+                not self.cleaned_data.get('grad_year', '')):
             self._errors['grad_year'] = (
                 self.error_class([_('This field is required.')]))
         return self.cleaned_data
