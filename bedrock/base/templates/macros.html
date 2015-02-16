@@ -357,15 +357,15 @@
   </section>
 {%- endmacro %}
 
-{% macro share_cta(cta_text, share_urls, share_text, id) %}
-<div class="mozilla-share-cta" tabindex="0"{% if id %} id="{{ id }}"{% endif -%}>
+{% macro share_cta(cta_text, share_urls, share_text, id, class) %}
+<aside class="mozilla-share-cta{% if class %} {{ class }}{% endif %}" tabindex="0"{% if id %} id="{{ id }}"{% endif -%}>
   <h3>{{ cta_text }}</h3>
   <ul>
-    <li><a class="twitter" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s'|format(share_urls.get('twitter')|urlencode, share_text|urlencode)|e }}" title="Twitter">Twitter</a></li>
+    <li><a class="twitter" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(share_urls.get('twitter')|urlencode, share_text|urlencode)|e }}" title="Twitter">Twitter</a></li>
     <li><a class="facebook" href="{{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(share_urls.get('facebook')|urlencode)|e }}" title="Facebook">Facebook</a></li>
-    <li><a class="g-plus" href="{{ 'https://plus.google.com/share?url=%s&amp;hl=%s'|format(share_urls.get('googleplus')|urlencode, LANG)|e }}" title="Google+">Google+</a></li>
+    <li><a class="g-plus" href="{{ 'https://plus.google.com/share?url=%s&hl=%s'|format(share_urls.get('googleplus')|urlencode, LANG)|e }}" title="Google+">Google+</a></li>
   </ul>
-</div>
+</aside>
 {%- endmacro %}
 
 {% macro anniversary_video(buttons_overlay, button_footer, embed_video) %}
