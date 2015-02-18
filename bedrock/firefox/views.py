@@ -14,6 +14,8 @@ from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
+import waffle
+
 from funfactory.helpers import static
 from funfactory.urlresolvers import reverse
 from lib import l10n_utils
@@ -223,6 +225,13 @@ def all_downloads(request, channel):
     return l10n_utils.render(request, 'firefox/all.html', context)
 
 
+def firefox_os_index(request):
+    if waffle.switch_is_active('firefox-os-index-2015'):
+        return l10n_utils.render(request, 'firefox/os/index-2015.html')
+    else:
+        return l10n_utils.render(request, 'firefox/os/index.html')
+
+
 @csrf_protect
 def firefox_partners(request):
     # If the current locale isn't in our list, return the en-US value
@@ -308,6 +317,24 @@ def show_search_firstrun(version):
     return version >= Version('34.0')
 
 
+def show_36_firstrun(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('36.0')
+
+
+def show_36_whatsnew_tour(oldversion):
+    try:
+        oldversion = Version(oldversion)
+    except ValueError:
+        return False
+
+    return oldversion < Version('36.0')
+
+
 class LatestFxView(TemplateView):
 
     """
@@ -380,6 +407,8 @@ class FirstrunView(LatestFxView):
             template = 'firefox/australis/growth-firstrun-test2.html'
         elif show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
+        elif show_36_firstrun(version):
+            template = 'firefox/australis/fx36/firstrun-tour.html'
         elif show_search_firstrun(version) and locale == 'en-US':
             template = 'firefox/australis/firstrun-34-tour.html'
         else:
@@ -433,7 +462,12 @@ class WhatsnewView(LatestFxView):
             oldversion = oldversion[3:]
         versions = ('29.', '30.', '32.')
 
-        if show_34_0_5_search_template(version):
+        if version.startswith('36.'):
+            if show_36_whatsnew_tour(oldversion):
+                template = 'firefox/australis/fx36/whatsnew-tour.html'
+            else:
+                template = 'firefox/australis/fx36/whatsnew-no-tour.html'
+        elif show_34_0_5_search_template(version):
             if locale == 'en-US':
                 if version.startswith('35.'):
                     min_version = '35.0'
@@ -496,6 +530,8 @@ class TourView(LatestFxView):
 
         if show_devbrowser_firstrun(version):
             template = 'firefox/dev-firstrun.html'
+        elif show_36_firstrun(version):
+            template = 'firefox/australis/fx36/help-menu-36-tour.html'
         elif show_search_firstrun(version) and locale == 'en-US':
             template = 'firefox/australis/help-menu-34-tour.html'
         else:
@@ -532,9 +568,3 @@ def hello(request):
 class HelloStartView(LatestFxView):
 
     template_name = 'firefox/hello/start.html'
-
-    def get_context_data(self, **kwargs):
-        ctx = super(HelloStartView, self).get_context_data(**kwargs)
-        incoming = self.request.GET.get('incomingConversation') or 'none'
-        ctx['incoming_conversation'] = incoming
-        return ctx

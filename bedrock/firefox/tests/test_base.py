@@ -3,7 +3,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import json
-
 import os
 from urlparse import parse_qsl, urlparse
 
@@ -11,7 +10,6 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
-from django.utils import simplejson
 from funfactory.helpers import static
 
 from funfactory.urlresolvers import reverse
@@ -338,7 +336,7 @@ class TestFirefoxPartners(TestCase):
         self.assertEqual(resp.status_code, 400)
 
         # decode JSON response
-        resp_data = simplejson.loads(resp.content)
+        resp_data = json.loads(resp.content)
 
         self.assertEqual(resp_data['msg'], 'bad_request')
         self.assertTrue(post_patch.called)
@@ -353,8 +351,7 @@ class TestFirefoxPartners(TestCase):
             }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 400)
 
-        # decode JSON response
-        resp_data = simplejson.loads(resp.content)
+        resp_data = json.loads(resp.content)
 
         self.assertEqual(resp_data['msg'], 'Form invalid')
         self.assertFalse(post_patch.called)
@@ -375,8 +372,7 @@ class TestFirefoxPartners(TestCase):
             }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         self.assertEqual(resp.status_code, 200)
 
-        # decode JSON response
-        resp_data = simplejson.loads(resp.content)
+        resp_data = json.loads(resp.content)
 
         self.assertEqual(resp_data['msg'], 'ok')
         post_patch.assert_called_once_with(ANY, {
@@ -642,6 +638,34 @@ class TestWhatsNew(TestCase):
 
     # end 34.0.5 search tour tests
 
+    # begin 36.0 hello tour tests
+
+    @override_settings(DEV=True)
+    def test_fx_36_0(self, render_mock):
+        """Should use no tour template for 36.0 with no old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/whatsnew-no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_36_0_with_oldversion(self, render_mock):
+        """Should use hello whatsnew tour template for 36.0 with old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=35.0')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/whatsnew-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_36_0_with_wrong_oldversion(self, render_mock):
+        """Should no tour template for 36.0 with old version that is greater"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=36.1')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/whatsnew-no-tour.html'])
+
+    # end 36.0 hello tour tests
+
     # ESR31 whatsnew tests
 
     @override_settings(DEV=True)
@@ -770,6 +794,14 @@ class TestTourView(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/help-menu-tour.html'])
 
+    @override_settings(DEV=True)
+    def test_fx_firstrun_tour_36_0(self, render_mock):
+        """Should use fx36 tour template for 36.0"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/help-menu-36-tour.html'])
+
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
         """Should redirect to https"""
@@ -878,6 +910,14 @@ class TestFirstRun(TestCase):
         self.view(req, version='34.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/firstrun-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_tour_36_0(self, render_mock):
+        """Should use fx36 tour template for 36.0"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/firstrun-tour.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
@@ -1121,22 +1161,10 @@ class TestHelloStartView(TestCase):
                       'Gecko/20100101 Firefox/35.0')
         self.url = reverse('firefox.hello.start', args=['35.0'])
 
-    def test_fx_hello_no_conversation(self):
-        """Should identify when there is no conversation"""
+    def test_fx_hello_redirect_non_firefox(self):
+        """Should redirect to /firefox/new if not on Firefox"""
 
-        response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
-        self.assertIn('data-incoming-conversation="none"', response.content)
-
-    def test_fx_hello_conversation_open(self):
-        """Should identify when a conversation is open"""
-
-        response = self.client.get(self.url + '?incomingConversation=open',
-            HTTP_USER_AGENT=self.user_agent)
-        self.assertIn('data-incoming-conversation="open"', response.content)
-
-    def test_fx_hello_conversation_waiting(self):
-        """Should identify when a conversation is waiting"""
-
-        response = self.client.get(self.url + '?incomingConversation=waiting',
-            HTTP_USER_AGENT=self.user_agent)
-        self.assertIn('data-incoming-conversation="waiting"', response.content)
+        self.user_agent = ('Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')
+        self.url = reverse('firefox.hello.start', args=['35.0'])
+        response = self.client.get(self.url)
+        self.assertIn('/firefox/new/', response['location'])

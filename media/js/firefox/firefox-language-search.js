@@ -13,7 +13,10 @@
         var $input = $('#language-search-q');
         var $tables = $('table.build-table');
 
-        $form.on('submit', function(e){
+        $form.on('submit', function(e) { filter(e); });
+        $input.on('input', function(e) { filter(e); });
+
+        function filter (e) {
             e.preventDefault();
             var search_q = $.trim($input.val());  // trim whitespace
             if (!search_q) {
@@ -57,7 +60,7 @@
                 history.pushState({ query: search_q }, document.title,
                                   '?q=' + encodeURI(search_q));
             }
-        });
+        }
 
         $(window).on('popstate', function (e) {
             var state = e.originalEvent.state;

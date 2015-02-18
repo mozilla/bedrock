@@ -42,8 +42,8 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'ka', 'kk', 'km', 'kn', 'ko', 'lij', 'lt', 'lv',
                   'mai', 'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'nl',
                   'nn-NO', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
-                  'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
-                  'sv-SE', 'ta', 'te', 'th', 'tr', 'uk', 'ur',
+                  'rm', 'ro', 'ru', 'sat', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
+                  'sv-SE', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'ur',
                   'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
@@ -76,6 +76,7 @@ SUPPORTED_NONLOCALES += [
     'robots.txt',
     'telemetry',
     'webmaker',
+    'contributor-data',
 ]
 
 ALLOWED_HOSTS = [
@@ -425,6 +426,32 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun-bundle.css',
     },
+    'firefox_fx36_firstrun': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/hello-animation.less',
+            'css/firefox/australis/fx36/common.less',
+        ),
+        'output_filename': 'css/firefox_fx36_firstrun-bundle.css',
+    },
+    'firefox_fx36_whatsnew': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/hello-animation.less',
+            'css/firefox/australis/fx36/common.less',
+        ),
+        'output_filename': 'css/firefox_fx36_whatsnew-bundle.css',
+    },
+    'firefox_fx36_whatsnew_no_tour': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/hello-animation.less',
+            'css/firefox/australis/fx36/common.less',
+        ),
+        'output_filename': 'css/firefox_fx36_whatsnew_no_tour-bundle.css',
+    },
     'firefox_developer_firstrun': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -532,18 +559,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_os_devices_ie-bundle.css',
     },
-    'firefox_os_mwc_2014_preview': {
+    'firefox_os_mwc_2015_preview': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
-            'css/firefox/os/mwc-2014-preview.less',
+            'css/firefox/os/mwc-2015-preview.less',
         ),
-        'output_filename': 'css/firefox_os_mwc_2014_preview-bundle.css',
-    },
-    'firefox_os_mwc_2014_preview_ie7': {
-        'source_filenames': (
-            'css/firefox/os/mwc-2014-preview-ie7.less',
-        ),
-        'output_filename': 'css/firefox_os_mwc_2014_preview_ie7-bundle.css',
+        'output_filename': 'css/firefox_os_mwc_2015_preview-bundle.css',
     },
     'firefox_os_tv': {
         'source_filenames': (
@@ -1221,6 +1242,31 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_firstrun-bundle.js',
     },
+    'firefox_fx36_firstrun': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/australis/fx36/common.js',
+            'js/firefox/australis/fx36/firstrun.js',
+        ),
+        'output_filename': 'js/firefox_fx36_firstrun-bundle.js',
+    },
+    'firefox_fx36_whatsnew': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/australis/fx36/common.js',
+            'js/firefox/australis/fx36/whatsnew.js',
+        ),
+        'output_filename': 'js/firefox_fx36_whatsnew-bundle.js',
+    },
+    'firefox_fx36_whatsnew_no_tour': {
+        'source_filenames': (
+            'js/firefox/australis/fx36/common.js',
+            'js/firefox/australis/fx36/whatsnew-notour.js',
+        ),
+        'output_filename': 'js/firefox_fx36_whatsnew_no_tour-bundle.js',
+    },
     'firefox_developer_firstrun': {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
@@ -1287,13 +1333,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_os_devices-bundle.js',
     },
-    'firefox_os_mwc_2014_preview': {
+    'firefox_os_mwc_2015_preview': {
         'source_filenames': (
             'js/base/mozilla-modal.js',
-            'js/firefox/mwc-2014-map.js',
-            'js/firefox/os/mwc-2014-preview.js',
+            'js/firefox/mwc-2015-map.js',
+            'js/firefox/os/mwc-2015-preview.js',
         ),
-        'output_filename': 'js/firefox_os_mwc_2014_preview-bundle.js',
+        'output_filename': 'js/firefox_os_mwc_2015_preview-bundle.js',
     },
     'firefox_os_tv': {
         'source_filenames': (
@@ -2216,3 +2262,17 @@ REST_FRAMEWORK = {
 
     'DEFAULT_FILTER_BACKENDS': ('rna.filters.TimestampedFilterBackend',)
 }
+
+FIREFOX_OS_FEEDS = (
+    ('de', 'https://blog.mozilla.org/press-de/category/firefox-os/feed/'),
+    ('en-US', 'https://blog.mozilla.org/blog/category/firefox-os/feed/'),
+    ('es-ES', 'https://blog.mozilla.org/press-es/category/firefox-os/feed/'),
+    ('es', 'https://blog.mozilla.org/press-latam/category/firefox-os/feed/'),
+    ('fr', 'https://blog.mozilla.org/press-fr/category/firefox-os/feed/'),
+    ('it', 'https://blog.mozilla.org/press-it/category/firefox-os/feed/'),
+    ('pl', 'https://blog.mozilla.org/press-pl/category/firefox-os/feed/'),
+    ('pt-BR', 'https://blog.mozilla.org/press-br/category/firefox-os/feed/'),
+)
+FIREFOX_OS_FEED_LOCALES = [feed[0] for feed in FIREFOX_OS_FEEDS]
+
+TABLEAU_DB_URL = None

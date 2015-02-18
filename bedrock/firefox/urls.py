@@ -73,11 +73,12 @@ urlpatterns = patterns('',
     # This dummy page definition makes it possible to link to /firefox/ (Bug 878068)
     url('^firefox/$', views.fx_home_redirect, name='firefox'),
 
-    page('firefox/os', 'firefox/os/index.html'),
+    url('^firefox/os/$', views.firefox_os_index, name='firefox.os.index'),
     page('firefox/os/releases', 'firefox/os/releases.html'),
 
+    page('mwc', 'firefox/os/mwc-2015-preview.html',
+        decorators=waffle_switch('mwc-2015-preview')),
 
-    page('mwc', 'firefox/os/mwc-2014-preview.html'),
     page('firefox/os/devices', 'firefox/os/devices.html'),
     page('firefox/os/devices/tv', 'firefox/os/tv.html',
         decorators=waffle_switch('firefox-os-tv')),

@@ -8,8 +8,8 @@ import re
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
 from django.core.context_processors import csrf
-from django.db.utils import DatabaseError
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
+from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import last_modified, require_safe
 from django.views.generic import FormView, TemplateView
@@ -30,9 +30,8 @@ from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
                                   WebToLeadForm, ContributeSignupForm)
 from bedrock.mozorg.forums import ForumsFile
-from bedrock.mozorg.models import TwitterCache
-from bedrock.mozorg.util import hide_contrib_form
-from bedrock.mozorg.util import HttpResponseJSON
+from bedrock.mozorg.models import ContributorActivity, TwitterCache
+from bedrock.mozorg.util import hide_contrib_form, HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 
 
@@ -50,6 +49,21 @@ def csrf_failure(request, reason=''):
 def hacks_newsletter(request):
     return l10n_utils.render(request,
                              'mozorg/newsletter/hacks.mozilla.org.html')
+
+
+@cache_page(60 * 60 * 24 * 7)  # one week
+def mozid_data_view(request, source_name):
+    try:
+        qs = ContributorActivity.objects.group_by_date_and_source(source_name)
+    except ContributorActivity.DoesNotExist:
+        # not a valid source_name
+        raise Http404
+
+    data = [{'wkcommencing': activity['date'].isoformat(),
+             'totalactive': activity['total__sum'],
+             'new': activity['new__sum']} for activity in qs]
+
+    return HttpResponseJSON(data, cors=True)
 
 
 class ContributeSignup(l10n_utils.LangFilesMixin, FormView):
@@ -299,10 +313,7 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
 
 @xframe_allow
 def contribute_studentambassadors_landing(request):
-    try:
-        tweets = TwitterCache.objects.get(account='mozstudents').tweets
-    except (TwitterCache.DoesNotExist, DatabaseError):
-        tweets = []
+    tweets = TwitterCache.objects.get_tweets_for('mozstudents')
     return l10n_utils.render(request,
                              'mozorg/contribute/studentambassadors/landing.html',
                              {'tweets': tweets})
@@ -395,10 +406,7 @@ class HomeTestView(l10n_utils.LangFilesMixin, TemplateView):
 def home_tweets(locale):
     account = settings.HOMEPAGE_TWITTER_ACCOUNTS.get(locale)
     if account:
-        try:
-            return TwitterCache.objects.get(account=account).tweets
-        except (TwitterCache.DoesNotExist, DatabaseError):
-            pass  # TODO: see if we should catch other errors
+        return TwitterCache.objects.get_tweets_for(account)
     return []
 
 
