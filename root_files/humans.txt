@@ -83,6 +83,7 @@ Developers: jasager
 Developers: meghprkh
 Developers: utkbansal
 Developers: pollti
+Developers: lismanb
 
 Localizers on SVN
 Localize: akilaa@wippies.fi
