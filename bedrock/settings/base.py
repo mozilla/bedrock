@@ -532,18 +532,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_os_devices_ie-bundle.css',
     },
-    'firefox_os_mwc_2014_preview': {
+    'firefox_os_mwc_2015_preview': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
-            'css/firefox/os/mwc-2014-preview.less',
+            'css/firefox/os/mwc-2015-preview.less',
         ),
-        'output_filename': 'css/firefox_os_mwc_2014_preview-bundle.css',
-    },
-    'firefox_os_mwc_2014_preview_ie7': {
-        'source_filenames': (
-            'css/firefox/os/mwc-2014-preview-ie7.less',
-        ),
-        'output_filename': 'css/firefox_os_mwc_2014_preview_ie7-bundle.css',
+        'output_filename': 'css/firefox_os_mwc_2015_preview-bundle.css',
     },
     'firefox_os_tv': {
         'source_filenames': (
@@ -1287,13 +1281,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_os_devices-bundle.js',
     },
-    'firefox_os_mwc_2014_preview': {
+    'firefox_os_mwc_2015_preview': {
         'source_filenames': (
             'js/base/mozilla-modal.js',
-            'js/firefox/mwc-2014-map.js',
-            'js/firefox/os/mwc-2014-preview.js',
+            'js/firefox/mwc-2015-map.js',
+            'js/firefox/os/mwc-2015-preview.js',
         ),
-        'output_filename': 'js/firefox_os_mwc_2014_preview-bundle.js',
+        'output_filename': 'js/firefox_os_mwc_2015_preview-bundle.js',
     },
     'firefox_os_tv': {
         'source_filenames': (
