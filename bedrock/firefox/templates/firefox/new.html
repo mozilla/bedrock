@@ -37,9 +37,15 @@
 
 <main role="main">
   <div class="version-message-container">
-    <div id="version-message-ios" class="version-message">
-      {{_('Sorry, Firefox is currently unsupported by iOS devices.')}}
-    </div>
+    {% if l10n_has_tag('ios_announce') %}
+      <div id="version-message-ios" class="version-message">
+        {{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}
+      </div>
+    {% else %}
+      <div id="version-message-ios" class="version-message">
+        {{_('Sorry, Firefox is currently unsupported by iOS devices.')}}
+      </div>
+    {% endif %}
     <div id="version-message-android-latest" class="version-message">
       {{_('Congrats! You’re using the latest version of Firefox.')}}
     </div>
@@ -123,15 +129,19 @@
           </div>
           <div class="ios-links-wrapper latest-links-wrapper">
             <ul>
-              {% if l10n_has_tag('mobile_links') %}
-              <li>
-                <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a>
-              </li>
-              <li>
-                <a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a>
-              </li>
+              {% if l10n_has_tag('ios_announce') %}
+                <li><a href="{{ url('newsletter.ios') }}">{{_('Learn more about Firefox on iOS')}}</a></li>
+              {% elif l10n_has_tag('mobile_links') %}
+                <li>
+                  <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a>
+                </li>
+                <li>
+                  <a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a>
+                </li>
+                <li>
+                  <a href="https://support.mozilla.org/kb/is-firefox-available-iphone-or-ipad">{{_('Why don’t we offer an iOS version?')}}</a>
+                </li>
               {% endif %}
-              <li><a href="https://support.mozilla.org/kb/is-firefox-available-iphone-or-ipad">{{_('Why don’t we offer an iOS version?')}}</a></li>
             </ul>
           </div>
         </div>

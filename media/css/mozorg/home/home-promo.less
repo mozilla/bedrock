@@ -573,9 +573,16 @@ html[lang|="en"] {
 
             &.download-other-desktop {
                 display: block !important;
+
+                /* unless we're in iOS */
+                .ios & {
+                    display: none !important;
+                }
             }
         }
 
+        .ios-download,
+        .linux-arm-download,
         .unsupported-download {
             color: #4c781c;
 

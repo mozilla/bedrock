@@ -61,6 +61,11 @@
           <a href="{{ url('firefox.sms') }}">Text a download link to my Android phone</a>
         </p>
       </div>
+
+      {% if l10n_has_tag('ios_announce', 'firefox/new') %}
+        <p class="ios-link">{{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}</p>
+      {% endif %}
+
     </div>{# /.content-primary #}
     <div class="content-secondary">
       {{ high_res_img('img/firefox/android/phone-intro.png', { 'id': 'intro-phone' }) }}

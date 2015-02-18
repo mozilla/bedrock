@@ -136,6 +136,20 @@
     }
 }
 
+// Only displayed if the user is on iOS
+.ios-link {
+    display: none;
+    text-align: center;
+
+    & a:after {
+        content: '' !important;
+    }
+}
+
+.ios .ios-link {
+    display: block;
+}
+
 #intro-phone {
     position: absolute;
     top: 0;
@@ -971,6 +985,11 @@ html[lang="ja"] #privacy p {
 
     .lead {
         .font-size(20px);
+    }
+
+    .ios-link a:before {
+        content: '\A';
+        white-space: pre;
     }
 
     // hide intro phone, customize phone, and sync animation

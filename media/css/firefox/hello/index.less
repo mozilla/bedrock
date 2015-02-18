@@ -1192,6 +1192,17 @@ html[lang^="en"] #powered-by {
     padding: 45px 0 50px 0;
     .clearfix();
 
+    a:link,
+    a:visited {
+        color: #fff;
+    }
+
+    a:active,
+    a:hover,
+    a:focus {
+        color: #5dd3ff;
+    }
+
     .ctacopy-wrapper {
         float: left;
         width: 400px;
@@ -1227,8 +1238,14 @@ html[lang^="en"] #powered-by {
 
 // default to showing only non-fx copy/cta
 #ctacopy-oldfx,
+#ctacopy-ios,
 #ctacopy-hellofx {
     display: none;
+}
+
+// show ctacopy-ios if body class matches
+.ios #ctacopy-ios {
+    display: block;
 }
 
 #try-hello-footer {
@@ -1802,6 +1819,10 @@ html[lang^="en"] #powered-by {
             display: block;
             margin: 0 auto;
             width: 240px;
+
+            .ios & {
+                width: 100%;
+            }
         }
 
         .cta-wrapper {

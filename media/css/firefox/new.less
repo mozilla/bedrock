@@ -47,13 +47,12 @@
 
     &:before {
         .inline-block;
-        margin: 0 6px 0 0;
-        width: 30px;
-        height: 26px;
+        margin: 0 4px 0 0;
+        width: 25px;
+        height: 25px;
         vertical-align: text-bottom;
-        background-image: url(/media/img/firefox/new/teardrop-arrow.png);
-        background-repeat: no-repeat;
-        content: ""
+        background: url(/media/img/firefox/new/icon-alert.svg) center center no-repeat;
+        content: '';
     }
 }
 
@@ -115,6 +114,10 @@ html.ios {
 
     #version-message-ios {
         display: inline;
+
+        &:before {
+            background-image: url(/media/img/firefox/new/icon-mobile.svg);
+        }
     }
 
     .desktop.download-button-wrapper {
@@ -140,7 +143,7 @@ html.firefox-latest {
         display: inline;
 
         &:before {
-            background-position: 0 100%;
+            background-image: url(/media/img/firefox/new/icon-check.svg);
         }
     }
 
@@ -238,7 +241,7 @@ html.android {
             display: inline;
 
             &:before {
-                background-position: 0 100%;
+                background-image: url(/media/img/firefox/new/icon-check.svg);
             }
         }
 
@@ -434,6 +437,11 @@ html[lang|="en"] #main-feature h1.large span:first-child {
     width: 100%;
     height: 420px;
     overflow: hidden;
+
+    /* shorter list in iOS, decrease available space */
+    .ios & {
+        height: 360px;
+    }
 }
 
 .mobile {
@@ -475,6 +483,11 @@ html[lang|="en"] #main-feature h1.large span:first-child {
     width: 100%;
     .clearfix;
     overflow: hidden;
+
+    /* shorter list in iOS, decrease available space */
+    .ios & {
+        height: 360px;
+    }
 }
 
 #scene1 {
@@ -538,24 +551,28 @@ noscript {
     }
 }
 
-/* RTL support */
-html[dir="rtl"] {
-    .version-message {
-        &:before {
-            margin: 0 0 0 6px;
-            background-image: url(/media/img/firefox/new/teardrop-arrow-rtl.png);
-        }
-    }
-}
-
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     #wrapper {
         width: 760px;
         padding: 0;
     }
-    .theater, .stage, .js .scene {
+    .theater, .stage {
         height: 360px;
+
+        /* shorter list in iOS, decrease available space */
+        .ios & {
+            height: 300px;
+        }
+    }
+
+    .js .scene {
+        height: 360px;
+
+        /* shorter list in iOS, decrease available space */
+        .ios& {
+            height: 300px;
+        }
     }
 
     #main-feature h1.large {

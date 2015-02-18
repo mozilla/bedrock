@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox on iOS — Sign up for email updates — Mozilla') }}{% endblock %}
+{% block page_desc %}{{ _('Sign up today to receive email updates about the iOS version of Firefox.') }}{% endblock %}
+{% block body_id %}newsletter-ios{% endblock %}
+
+{% block site_css %}{% endblock %}
+{% block extrahead %}
+  {% stylesheet 'newsletter_ios' %}
+{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+
+{% block site_header_logo %}
+  <h2><img src="{{ static('img/firefox/new/header-firefox.png') }}" alt="{{_('Firefox')}}"></h2>
+{% endblock %}
+
+{% block content %}
+
+  <section>
+    <div class="container feature">
+
+      <h1>{{ _('Firefox is coming soon to iOS!') }}</h1>
+
+    </div>{# /.container #}
+
+    {% set newsletter_title = _('Sign up below for updates and to be notified when it launches.') %}
+    {% set newsletter_id = 'firefox-ios' %}
+    {% set newsletter_details = _('*You’ll only receive updates and announcements about the iOS version of Firefox.') %}
+    {% set newsletter_thankyou_head = _('Thanks for your interest in the upcoming iOS version of Firefox. We’re pretty excited about it too!') %}
+    {% set newsletter_thankyou_content = _('Don’t forget to check your inbox to confirm your request to get Firefox for iOS updates. If you don’t see an email from mozilla@e.mozilla.org, check your spam filter. You must confirm your request in order to receive the updates.') %}
+
+    {{ email_newsletter_form(newsletter_id, title=newsletter_title, details=newsletter_details, thankyou_head=newsletter_thankyou_head,thankyou_content=newsletter_thankyou_content) }}
+
+  </section>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}{# Don't need another signup form on the page. #}
+
+{% block js %}{% endblock %}
