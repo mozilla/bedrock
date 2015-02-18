@@ -4,6 +4,9 @@ python:
   - "2.7"
 env:
   - PIP_DOWNLOAD_CACHE="pip_cache"
+branches:
+  only:
+    - master
 cache:
   directories:
     - pip_cache
