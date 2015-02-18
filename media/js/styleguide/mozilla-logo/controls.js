@@ -52,7 +52,8 @@
     animation: animationOptions[0],
     gradientDirection0: true,
     gradientDirection1: true,
-    gradientDirection2: true
+    gradientDirection2: true,
+    numHistoryToShow: 10
   };
   var dataSliders = [
     {label: "Data points", min: 2, max: 10, optionKey: 'numDataPoints'},
@@ -453,7 +454,9 @@
     "};\n";
     //TODO update the server address in the embed
     var embedCode = "(function() {\n" +
-      "  var compatible = typeof Array.prototype.map === 'function' && !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect;\n" +
+      "  function supportsSVG() { return !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect; }\n" +
+      "  function supportsCanvas() { var elem = document.createElement('canvas'); return !!(elem.getContext && elem.getContext('2d')); }\n" +
+      "  var compatible = typeof Array.prototype.map === 'function' && supportsCanvas() && supportsSVG()\n" +
       "  if(!compatible) return;\n" +
       "  var ml = document.createElement('script');\n" +
       "  ml.src = '//50.250.207.157/mozillaid/deploy/logo-build.js';\n" +

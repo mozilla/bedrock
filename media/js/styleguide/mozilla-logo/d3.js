@@ -190,9 +190,8 @@
     }
   }
   var d3_vendorPrefixes = [ "webkit", "ms", "moz", "Moz", "o", "O" ];
-  var d3_timer_queueHead, d3_timer_queueTail, d3_timer_interval, d3_timer_timeout, d3_timer_active, d3_timer_frame =  function(callback) {
-    setTimeout(callback, 83);
-  };
+  var d3_timer_queueHead, d3_timer_queueTail, d3_timer_interval, d3_timer_timeout, d3_timer_active, d3_timer_frame = this[d3_vendorSymbol(this, "requestAnimationFrame")] || function(callback) { setTimeout(callback, 17); };
+
   d3.timer = function(callback, delay, then) {
     var n = arguments.length;
     if (n < 2) delay = 0;

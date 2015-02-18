@@ -3,6 +3,7 @@
   var selector;
   var svgElement;
   var svg;
+  var canvas;
   var shapes;
   var controls = null;
   var sources = ['all','sumo','bugzilla','firefox','firefoxos','firefoxforandroid','github','qa'];
@@ -17,6 +18,19 @@
   var historicalOffset = 0;
   var lineGenerator;
   var numDataSources = 3;
+  var drawingModes = ['svg','canvas'];
+  var drawingMode = drawingModes[1];
+  var tweens = {
+    popup: 0,
+    history: 0,
+    popupDuration: 1000,
+    popupDelay: 540,
+    historyDuration: null,
+    popupStarttime: null,
+    historyStarttime: null,
+    curTime: null,
+    stop: false
+  };
   var colors = [
     { name: "nightly blue", colors: {base: '#23336A', vibrant:'#204182'} },
     { name: "developer blue", colors: {base: '#16498C', vibrant:'#1454A5'} },
@@ -40,8 +54,14 @@
     {x1: 0, y1: 0.19776364832, x2: 0.09512860274, y2: 0},
   ];
   function compatible() {
-    return  !!document.createElementNS &&
-      !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect;
+    return supportsSVG() && supportsCanvas();
+    function supportsSVG() {    
+      return  !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect;
+    }
+    function supportsCanvas() {
+      var elem = document.createElement('canvas');
+      return !!(elem.getContext && elem.getContext('2d'));
+    }
   }
   function init(_selector, _size, _options) {
     if(! compatible()) {
@@ -52,11 +72,20 @@
     mScale *= size / 500;
     mX = size / 2.0 - (mDimensions.w * mScale) / 2.0;
     mY = size / 2.0 - (mDimensions.h * mScale) / 2.0;
-    d3.select(selector).selectAll('*').remove();
-    svg = d3.select(selector).append('svg').attr('width', size)
+    d3.select(selector).style('position','relative')
+      .selectAll('*').remove();
+    var canvasElement = d3.select(selector).append('canvas')
+      .attr('width',size).attr('height', size)
+    canvas = canvasElement[0][0].getContext('2d');
+    svg = d3.select(selector).append('div')
+      .style('position','absolute')
+      .style('left','0')
+      .style('top', '0')
+      .append('svg').attr('width', size)
       .attr('height', size)
       .attr('xmlns','http://www.w3.org/2000/svg')
       .attr('version', '1.1');
+      
     svgElement = svg;
     defs = svg.append('defs');
     var translate = size * 0.5;
@@ -67,6 +96,11 @@
     svg = svg.append('g')
       .attr('transform', transform );
 
+    canvas.translate(translate, translate)
+    canvas.scale(scaleAmount, scaleAmount)
+    canvas.translate(-horizontalOffsetTranslate, -translate)
+
+
     if(typeof _options !== 'undefined') {
       options = _options;
       var sourcesToLoad = [];
@@ -74,8 +108,10 @@
       sourcesToLoad.push(options.dataSource1.key);
       sourcesToLoad.push(options.dataSource2.key);
       sources = sourcesToLoad;
+      drawingMode = 'canvas';
     } else {
       initGUI();
+      drawingMode = 'svg'
     }
     
     loadSourceData();
@@ -172,12 +208,17 @@
     if(options.fill === 'gradient') {
       color2Index = options['colorIndex' + shapeIndex] + 1;
       color2Index = color2Index % colors.length;
-    
     } else if(options.fill == 'flat') {
       color2Index = options['colorIndex' + shapeIndex];
     }
     shape.color2 = colors[color2Index];
     
+    var shapeGradient = canvas.createLinearGradient(0, 0, 0, -options.shapeMaxSize)
+    shapeGradient.addColorStop(0, shape.color.colors[options.colorPalette])
+    shapeGradient.addColorStop(1, shape.color2.colors[options.colorPalette])
+
+    shape.gradient = shapeGradient
+
     shape.width = size * 0.65;
     shape.data = shapeData;
     _.each(shapeData, function(dataPoint, index) {
@@ -246,15 +287,21 @@
     }
   }
   function drawMozillaM() {
-    var offset = 0.5;
+    var offset = drawingMode === "svg" ? 0.5 : 1.5
     svg.append('path').attr('d', MPathData)
       .attr('transform', function() {
         return 'translate(' + (mX + offset) + ',' + (mY + offset) + ') scale(' + mScale + ')';
       }).style('fill', options.mColor);
     
   }
-
   function drawShapes() {
+    if(drawingMode === 'svg') {
+      drawShapesSVG();
+    } else if(drawingMode === 'canvas') {
+      initDrawShapesCanvas();
+    }
+  }
+  function drawShapesSVG() {
     var shapesPath = svg.selectAll('path.shape').data(shapes);
     lineGenerator = d3.svg.line()
       .x(function(d) { return (d.x); })
@@ -326,6 +373,159 @@
         return lineGenerator(pointsToUse) + 'Z';
       }).each('end', nextAnimation);
     }
+  }
+  function getControlPoints(x0,y0,x1,y1,x2,y2){
+    var t = 1 - options.curveTightness
+    var d01=Math.sqrt(Math.pow(x1-x0,2)+Math.pow(y1-y0,2));
+    var d12=Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
+
+    var denom = d01 + d12;
+    if(denom === 0) {
+      denom = 1
+    }
+    var fa=t*d01/denom
+    var fb=t-fa;
+  
+    var p1x=x1+fa*(x0-x2);
+    var p1y=y1+fa*(y0-y2);
+
+    var p2x=x1-fb*(x0-x2);
+    var p2y=y1-fb*(y0-y2);
+    
+    return [p1x,p1y,p2x,p2y];
+  }
+
+  function drawCurvedShape(pts, ctxt) {
+    ctxt.beginPath();
+    var cp = [];
+    var n = pts.length;
+    var startPoints = [pts[0], pts[1]];
+    pts.push(pts[0],pts[1],pts[2],pts[3]);
+    pts.unshift(pts[n-1]);
+    pts.unshift(pts[n-1]);
+    for(var i=0;i<n;i+=2){
+        cp=cp.concat(getControlPoints(pts[i],pts[i+1],pts[i+2],pts[i+3],pts[i+4],pts[i+5]));
+    }
+    cp=cp.concat(cp[0],cp[1]);
+    ctxt.moveTo(startPoints[0], startPoints[1]);
+    for(var i=2;i<n+2;i+=2){
+        ctxt.bezierCurveTo(cp[2*i-2],cp[2*i-1],cp[2*i],cp[2*i+1],pts[i+2],pts[i+3]);
+    }
+    ctxt.fill();
+      
+  }
+  function clearCanvas() {
+    //clear larger than we would expect to account for canvas transformations
+    canvas.clearRect(-size,-size, size*4, size*4);
+  }
+  function initDrawShapesCanvas() {
+    tweens.popup = 0;
+    tweens.history = 0;
+    tweens.startTime = Date.now()
+    tweens.now = Date.now()
+    tweens.historyDuration = options['animationDuration']
+    tweens.popupStarttime = null;
+    tweens.historyStarttime = null;
+    _.each(shapes, function(shape) {
+      if(options.animation === 'static') {
+        shape.historicalOffset = options.numHistoryToShow - 1
+        shape.historicalTween = 1
+      } else {
+        shape.historicalTween = 0
+        shape.historicalOffset = 0
+      }
+    })
+    //stops the tween and allows next tween to be scheduled properly
+    tweens.stop = true;
+
+    setTimeout(function() {
+      if(options.animation === 'static') {
+        //set the popup tween to be well beyond its max value
+        tweens.popup = 10;
+        canvasTick()
+      } else {
+        tweens.stop = false
+        d3.timer(canvasTick)
+      }
+    },1)
+  }
+  function canvasTick() {
+    tweens.now = Date.now()
+    if(options.animation === 'animated') {
+      if(tweens.popupStarttime === null) {
+        tweens.popupStarttime = tweens.now;
+      }
+      tweens.popup = (tweens.now - tweens.popupStarttime) / tweens.popupDuration;
+      if(tweens.popup >= (tweens.popupDuration + tweens.popupDelay) / 1000) {
+        if(tweens.historyStarttime === null) {
+          tweens.historyStarttime = tweens.now;
+        }
+        //tween history
+        tweens.history = (tweens.now - tweens.historyStarttime) / tweens.historyDuration;
+        var historicalOffset = ~~ tweens.history;
+        historicalOffset = clamp(historicalOffset,0,options.numHistoryToShow - 1);
+        var historicalTween = clamp(tweens.history - historicalOffset,0,1);
+        _.each(shapes, function(shape) {
+          shape.historicalOffset = historicalOffset;
+          shape.historicalTween = historicalTween;
+        });
+        if(tweens.history > options.numHistoryToShow) {
+          tweens.stop = true
+        }
+      }
+    }
+    drawShapesCanvas();
+
+    if(tweens.stop) {
+      tweens.stop = false
+      return true
+    }
+
+  }
+  function drawShapesCanvas() {
+    clearCanvas();
+    canvas.globalAlpha = options['opacity'] * 0.01;
+    _.each(shapes, function(shape, shapeIndex) {
+      canvas.fillStyle = shape.gradient
+      canvas.save();
+
+      canvas.translate(shape.position.x, shape.position.y)
+      canvas.rotate(Math.PI / 180 * shape.angle);
+      var pointsToUse = [
+        shape.width, 0, shape.width, 0, 0,0,0,0
+      ];
+      
+      if(options.animation === 'static') {
+        shape.historicalOffset = shape.data.length - options.numDataPoints - 1;
+      }
+      var dataPoints = shape.data.slice(shape.historicalOffset, options.numDataPoints + shape.historicalOffset);
+      var nextDataPoints = shape.data.slice(shape.historicalOffset + 1, options.numDataPoints + shape.historicalOffset + 1)
+      var min = _.min(dataPoints);
+      var max = _.max(dataPoints);
+      var nextMin = _.min(nextDataPoints);
+      var nextMax = _.max(nextDataPoints);
+      var points = _.each(dataPoints,  function(d,i) {
+        var x = map(i, 0, options.numDataPoints - 1, 0, shape.width);
+        var angleOffset = options.angleOffset * size / 12;
+        var xOffset = map(i, 0, options.numDataPoints - 1, angleOffset, -angleOffset);
+        x += xOffset;
+        var scaled =  - map(d, min, max, options.shapeMinSize, options.shapeMaxSize);
+        var nextScaled = - map(nextDataPoints[i], nextMin, nextMax, options.shapeMinSize, options.shapeMaxSize)
+        scaled = scaled * (1-shape.historicalTween) + nextScaled * shape.historicalTween
+        var popupTween = clamp(tweens.popup - 0.5 * shapeIndex * 0.5, 0, 1)
+        scaled *= popupTween;
+        var y = options.animation === "animated" ? 0 : scaled;
+
+        pointsToUse.push(x,scaled); 
+      });
+      pointsToUse.push(shape.width, 0)
+      drawCurvedShape(pointsToUse, canvas)
+
+      canvas.restore()
+    });
+  }
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value,min),max)
   }
   function nextAnimation(d,i) {
     var path = d3.select(this);
