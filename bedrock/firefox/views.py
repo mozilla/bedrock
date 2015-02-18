@@ -19,6 +19,7 @@ import waffle
 from funfactory.helpers import static
 from funfactory.urlresolvers import reverse
 from lib import l10n_utils
+from lib.l10n_utils.dotlang import lang_file_is_active
 
 from bedrock.releasenotes import version_re
 from bedrock.firefox.forms import SMSSendForm
@@ -226,10 +227,16 @@ def all_downloads(request, channel):
 
 
 def firefox_os_index(request):
-    if waffle.switch_is_active('firefox-os-index-2015'):
-        return l10n_utils.render(request, 'firefox/os/index-2015.html')
+
+    locale = l10n_utils.get_locale(request)
+    lang_file = 'firefox/os/index-new'
+    old_home = 'firefox/os/index.html'
+    new_home = 'firefox/os/index-new.html'
+
+    if waffle.switch_is_active('firefox-os-index-2015') and lang_file_is_active(lang_file, locale):
+            return l10n_utils.render(request, new_home)
     else:
-        return l10n_utils.render(request, 'firefox/os/index.html')
+        return l10n_utils.render(request, old_home)
 
 
 @csrf_protect

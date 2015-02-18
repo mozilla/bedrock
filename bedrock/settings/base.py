@@ -537,6 +537,16 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_os-bundle.css',
     },
+    'firefox_os_new': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/base/mozilla-modal.less',
+            'css/firefox/family-nav.less',
+            'css/firefox/os/get_device.less',
+            'css/firefox/os/firefox-os-new.less',
+        ),
+        'output_filename': 'css/firefox_os_new-bundle.css',
+    },
     'firefox_os_ie': {
         'source_filenames': (
             'css/firefox/os/firefox-os-ie.less',
@@ -1329,6 +1339,17 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_os-bundle.js',
     },
+    'firefox_os_new': {
+        'source_filenames': (
+            'js/base/mozilla-modal.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/libs/script.js',
+            'js/firefox/family-nav.js',
+            'js/firefox/os/firefox-os-new.js',
+        ),
+        'output_filename': 'js/firefox_os_new-bundle.js',
+    },
     'firefox_os_ie9': {
         'source_filenames': (
             'js/libs/matchMedia.addListener.js',
@@ -2068,6 +2089,17 @@ PRESS_BLOGS = {
     'fr': 'press-fr/',
     'it': 'press-it/',
     'pl': 'press-pl/',
+}
+
+FXOS_PRESS_BLOG_LINKS = {
+    'en': 'https://blog.mozilla.org/press/category/firefox-os/',
+    'de': 'https://blog.mozilla.org/press-de/category/firefox-os/',
+    'es-ES': 'https://blog.mozilla.org/press-es/category/firefox-os/',
+    'es': 'https://blog.mozilla.org/press-latam/category/firefox-os/',
+    'fr': 'https://blog.mozilla.org/press-fr/category/firefox-os/',
+    'it': 'https://blog.mozilla.org/press-it/category/firefox-os/',
+    'pb-BR': 'https://blog.mozilla.org/press-br/category/firefox-os/',
+    'pl': 'https://blog.mozilla.org/press-pl/category/firefox-os/',
 }
 
 MOBILIZER_LOCALE_LINK = {
