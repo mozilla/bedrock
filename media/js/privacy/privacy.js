@@ -48,17 +48,25 @@ $(function() {
             var expanded = false;
             var id = this.id || $(this).parent().attr('id')
                              || 'accordion-' + accordionIndex + '-tab-' + tabIndex;
-            var $tab = $(this).attr({
-              'tabindex': '-1',
-              'aria-controls': id + '-tabpanel',
-              'aria-expaned': 'false'
-            });
+            var $tab = $(this);
             var $panel = $('#' + $(this).attr('aria-controls'));
             var $anchor = $('<a href="#" role="button">' + panel_open_text + '</a>');
 
             if (!$panel.length) {
               $panel = $tab.next('[role="tabpanel"]').attr('id', id + '-tabpanel');
             }
+
+            // Still cannot find the tabpanel, stop adding tweaks
+            if (!$panel.length) {
+                $tab.removeAttr('role');
+                return;
+            }
+
+            $tab.attr({
+              'tabindex': '-1',
+              'aria-controls': id + '-tabpanel',
+              'aria-expaned': 'false'
+            });
 
             $panel.attr({
               'tabindex': '-1',

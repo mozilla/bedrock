@@ -829,6 +829,7 @@ PIPELINE_CSS = {
     },
     'plugincheck': {
         'source_filenames': (
+            'css/base/mozilla-share-cta.less',
             'css/plugincheck/plugincheck.less',
             'css/plugincheck/qtip.css',
         ),
@@ -1590,6 +1591,7 @@ PIPELINE_JS = {
     },
     'plugincheck': {
         'source_filenames': (
+            'js/base/mozilla-share-cta.js',
             'js/plugincheck/lib/mustache.js',
             'js/plugincheck/tmpl/plugincheck.ui.tmpl.js',
             'js/plugincheck/check-plugins.js',
