@@ -39,7 +39,7 @@
 
   <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
 
-  {{ download_firefox(mobile=True, icon=False, small=True) }}
+  {{ download_firefox(platform='android', icon=False, small=True) }}
 
 {% if request.locale not in locales_with_video.keys() %}
   <div id="promo-android">

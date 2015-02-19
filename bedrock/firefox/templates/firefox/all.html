@@ -8,7 +8,7 @@
 {% block page_desc %}
   {% if channel == 'beta' %}
     {{ _('Download Firefox Beta in your language and experience cutting edge features before they make it to final release. Provide feedback to help us refine and polish the next version of Firefox.') }}
-  {% elif channel == 'aurora' %}
+  {% elif channel == 'alpha' %}
     {{ _('Download Firefox Developer Edition in your language to experience the newest features and innovations in an unstable environment even before they go to Beta. Give us feedback that will determine what makes it to Final Release and help shape the future of Firefox.') }}
   {% elif channel == 'esr' %}
     {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.organizations.organizations')) }}
@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block body_class -%}
-  sky firefox-all-{{ channel }} {% if channel == 'aurora' %}blueprint{% endif %}
+  sky firefox-all-{{ channel }} {% if channel == 'alpha' %}blueprint{% endif %}
 {% endblock %}
 
 {% block site_css %}
@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block site_header_logo %}
-  {% if channel == 'aurora' %}
+  {% if channel == 'alpha' %}
     <h2><a href="{{ url('firefox.developer') }}">{{ high_res_img('img/firefox/developer/title.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</a></h2>
   {% else %}
     {{ super() }}
@@ -165,21 +165,21 @@
   <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }}, {{ build.name_native|lower }}">
     <th scope="row">{{ build.name_en }}</th>
     <td lang="{{ build.locale }}">{{ build.name_native }}</td>
-    {{ build_link(build, 'Windows', _('Download for Windows')) }}
-    {{ build_link(build, 'OS X', _('Download for Mac OS X')) }}
-    {{ build_link(build, 'Linux', _('Download for Linux')) }}
-    {{ build_link(build, 'Linux 64', _('Download for 64-bit Linux')) }}
+    {{ build_link(build, 'win', _('Download for Windows')) }}
+    {{ build_link(build, 'osx', _('Download for Mac OS X')) }}
+    {{ build_link(build, 'linux', _('Download for Linux')) }}
+    {{ build_link(build, 'linux64', _('Download for 64-bit Linux')) }}
   </tr>
 {% endmacro %}
 
 <!--
   build: Locale dictionary from product details.
-  platform: Value in build.platforms to use. One of 'Windows', 'OS X', 'Linux'.
+  platform: Value in build.platforms to use. One of 'win', 'osx', 'linux' and 64-bit variants.
   tooltip: Text to display as tooltip for download link.
 -->
 {% macro build_link(build, platform, tooltip) %}
   {% if build.platforms[platform] %}
-    <td class="download {% if platform == 'Windows' %}win{% elif platform == 'OS X' %}mac{% elif platform == 'Linux' %}linux{% elif platform == 'Linux 64' %}linux64{% endif %}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
+    <td class="download {{ platform }}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
   {% else %}
     <td class="unavailable">{{ _('Not Yet Available') }}</td>
   {% endif %}

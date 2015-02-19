@@ -2,40 +2,35 @@ import re
 from operator import itemgetter
 from urllib import urlencode
 
+from django.conf import settings
 from product_details import ProductDetails
 
 
 # TODO: port this to django-mozilla-product-details
-class FirefoxDetails(ProductDetails):
+class FirefoxDesktop(ProductDetails):
     download_base_url_direct = 'https://download.mozilla.org/'
-    download_base_url_transition = '/products/download.html'
-    download_base_url_aurora = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/' \
-                               'nightly/latest-mozilla-aurora'
+    download_base_url_transition = '/firefox/new/?scene=2#download-fx'
 
     platform_info = {
-        'Windows': {
+        'win': {
             'title': 'Windows',
-            'id': 'win',
             'file_ext': 'win32.installer.exe',
         },
-        'OS X': {
-            'title': 'Mac OS X',
-            'id': 'osx',
+        'osx': {
+            'title': 'OS X',
             'file_ext': 'mac.dmg',
         },
-        'Linux': {
+        'linux': {
             'title': 'Linux',
-            'id': 'linux',
             'file_ext': 'linux-i686.tar.bz2',
         },
-        'Linux 64': {
+        'linux64': {
             'title': 'Linux 64-bit',
-            'id': 'linux64',
             'file_ext': 'linux-x86_64.tar.bz2',
         },
     }
     channel_map = {
-        'aurora': 'FIREFOX_AURORA',
+        'alpha': 'FIREFOX_AURORA',
         'beta': 'LATEST_FIREFOX_DEVEL_VERSION',
         'esr': 'FIREFOX_ESR',
         'esr_next': 'FIREFOX_ESR_NEXT',
@@ -43,7 +38,7 @@ class FirefoxDetails(ProductDetails):
     }
 
     def __init__(self):
-        super(FirefoxDetails, self).__init__()
+        super(FirefoxDesktop, self).__init__()
 
     def latest_version(self, channel):
         version = self.channel_map.get(channel, 'LATEST_FIREFOX_VERSION')
@@ -73,20 +68,41 @@ class FirefoxDetails(ProductDetails):
 
         return versions
 
+    def latest_builds(self, locale, channel='release'):
+        """Return build info for a locale and channel.
+
+        :param locale: locale string of the build
+        :param channel: channel of the build: release, beta, or aurora
+        :return: dict or None
+        """
+        all_builds = (self.firefox_primary_builds,
+                      self.firefox_beta_builds)
+        version = self.latest_version(channel)
+
+        for builds in all_builds:
+            if locale in builds and version in builds[locale]:
+                _builds = builds[locale][version]
+                # Append 64-bit builds
+                if 'Linux' in _builds:
+                    _builds['Linux 64-bit'] = _builds['Linux']
+                return version, _builds
+
     def _matches_query(self, info, query):
         words = re.split(r',|,?\s+', query.strip().lower())
         return all((word in info['name_en'].lower() or
                     word in info['name_native'].lower()) for word in words)
 
-    def _get_filtered_builds(self, builds, version, query=None):
+    def _get_filtered_builds(self, builds, channel, version=None, query=None):
         """
         Get a list of builds, sorted by english locale name, for a specific
         Firefox version.
         :param builds: a build dict from the JSON
+        :param channel: one of self.channel_map.keys().
         :param version: a firefox version. one of self.latest_versions.
         :param query: a string to match against native or english locale name
         :return: list
         """
+        version = version or self.latest_version(channel)
         f_builds = []
         for locale, build in builds.iteritems():
             if locale not in self.languages:
@@ -107,93 +123,148 @@ class FirefoxDetails(ProductDetails):
             if query is not None and not self._matches_query(build_info, query):
                 continue
 
-            for plat in platforms:
-                build_info['platforms'][plat] = {
-                    'download_url': self.get_download_url(plat, locale,
-                                                          version),
-                }
-
-            # Append a Linux 64-bit build
-            if 'Linux' in platforms:
-                build_info['platforms']['Linux 64'] = {
-                    'download_url': self.get_download_url('Linux 64', locale,
-                                                          version),
+            for platform in self.platform_info.keys():
+                build_info['platforms'][platform] = {
+                    'download_url': self.get_download_url(channel, version,
+                                                          platform, locale,
+                                                          True),
                 }
 
             f_builds.append(build_info)
 
         return sorted(f_builds, key=itemgetter('name_en'))
 
-    def get_filtered_full_builds(self, version, query=None):
+    def get_filtered_full_builds(self, channel, version=None, query=None):
         """
         Return filtered builds for the fully translated releases.
+        :param channel: one of self.channel_map.keys().
         :param version: a firefox version. one of self.latest_version.
         :param query: a string to match against native or english locale name
         :return: list
         """
         return self._get_filtered_builds(self.firefox_primary_builds,
-                                         version, query)
+                                         channel, version, query)
 
-    def get_filtered_test_builds(self, version, query=None):
+    def get_filtered_test_builds(self, channel, version=None, query=None):
         """
         Return filtered builds for the translated releases in beta.
+        :param channel: one of self.channel_map.keys().
         :param version: a firefox version. one of self.latest_version.
         :param query: a string to match against native or english locale name
         :return: list
         """
         return self._get_filtered_builds(self.firefox_beta_builds,
-                                         version, query)
+                                         channel, version, query)
 
-    def get_download_url(self, platform, language, version, product='firefox'):
+    def get_download_url(self, channel, version, platform, locale,
+                         force_direct=False, force_full_installer=False,
+                         force_funnelcake=False, funnelcake_id=None):
         """
         Get direct download url for the product.
-        :param platform: OS. one of self.platform_info.keys()
-        :param language: a locale. e.g. pt-BR. one exception is ja-JP-mac
+        :param channel: one of self.channel_map.keys().
         :param version: a firefox version. one of self.latest_version.
-        :param product: optional. probably 'firefox'
+        :param platform: OS. one of self.platform_info.keys().
+        :param locale: e.g. pt-BR. one exception is ja-JP-mac.
+        :param force_direct: Force the download URL to be direct.
+        :param force_full_installer: Force the installer download to not be
+                the stub installer (for aurora).
+        :param force_funnelcake: Force the download version for en-US Windows to be
+                'latest', which bouncer will translate to the funnelcake build.
+        :param funnelcake_id: ID for the the funnelcake build.
         :return: string url
         """
-        if platform == 'OS X' and language == 'ja':
-            language = 'ja-JP-mac'
+        _version = version
+        _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
 
-        if version == self.latest_version('aurora'):
-            return self._get_aurora_download_url(platform, language, version)
+        # Aurora has a special download link format
+        if channel == 'alpha':
+            return self._get_aurora_download_url(version, platform, _locale)
+
+        # stub installer exceptions
+        # TODO: NUKE FROM ORBIT!
+        stub_langs = settings.STUB_INSTALLER_LOCALES.get(platform, [])
+        if stub_langs and (stub_langs == settings.STUB_INSTALLER_ALL or
+                           _locale.lower() in stub_langs):
+            suffix = 'stub'
+            if force_funnelcake or force_full_installer:
+                suffix = 'latest'
+
+            _version = ('beta-' if channel == 'beta' else '') + suffix
+        elif not funnelcake_id:
+            # Force download via SSL. Stub installers are always downloaded via SSL.
+            # Funnelcakes may not be ready for SSL download
+            _version += '-SSL'
+
+        # append funnelcake id to version if we have one
+        if funnelcake_id:
+            _version = '{vers}-f{fc}'.format(vers=_version, fc=funnelcake_id)
+
+        # Check if direct download link has been requested
+        # (bypassing the transition page)
+        if force_direct:
+            # build a direct download link
+            return '?'.join([self.download_base_url_direct,
+                             urlencode([
+                                 ('product', 'firefox-%s' % _version),
+                                 ('os', platform),
+                                 # Order matters, lang must be last for bouncer.
+                                 ('lang', _locale),
+                             ])])
+        else:
+            # build a link to the transition page
+            return self.download_base_url_transition
+
+    def _get_aurora_download_url(self, version, platform, locale):
+        # Download links are different for localized versions
+        if locale == 'en-US':
+            if platform == 'win':
+                _product = 'firefox-aurora-stub'
+            else:
+                _product = 'firefox-aurora-latest-ssl'
+        else:
+            _product = 'firefox-aurora-latest-l10n'
 
         return '?'.join([self.download_base_url_direct,
                          urlencode([
-                             ('product', '-'.join([product, version, 'SSL'])),
-                             ('os', self.platform_info[platform]['id']),
+                             ('product', _product),
+                             ('os', platform),
                              # Order matters, lang must be last for bouncer.
-                             ('lang', language),
+                             ('lang', locale),
                          ])])
 
-    def _get_aurora_download_url(self, platform, language, version):
-        base_url = self.download_base_url_aurora
-        if language != 'en-US':
-            base_url += '-l10n'
 
-        return '{base_url}/firefox-{version}.{lang}.{file_ext}'.format(
-            base_url=base_url,
-            version=version,
-            lang=language,
-            file_ext=self.platform_info[platform]['file_ext']
-        )
-
-
-class MobileDetails(ProductDetails):
+class FirefoxAndroid(ProductDetails):
     channel_map = {
-        'aurora': 'alpha_version',
+        'alpha': 'alpha_version',
         'beta': 'beta_version',
         'release': 'version',
     }
+    store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
+    aurora_url_base = ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/'
+                       'latest-mozilla-aurora-android')
+    aurora_urls = {
+        'api-9': aurora_url_base + '-api-9/fennec-%s.multi.android-arm.apk',
+        'api-11': aurora_url_base + '-api-11/fennec-%s.multi.android-arm.apk',
+        'x86': aurora_url_base + '-x86/fennec-%s.multi.android-i386.apk',
+    }
 
     def __init__(self):
-        super(MobileDetails, self).__init__()
+        super(FirefoxAndroid, self).__init__()
 
     def latest_version(self, channel):
         version = self.channel_map.get(channel, 'version')
         return self.mobile_details[version]
 
+    def get_download_url(self, channel, type=None):
+        if channel == 'alpha':
+            return self.aurora_urls[type] % self.latest_version('alpha')
 
-firefox_details = FirefoxDetails()
-mobile_details = MobileDetails()
+        if channel == 'beta':
+            return self.store_url.replace('org.mozilla.firefox',
+                                          'org.mozilla.firefox_beta')
+
+        return self.store_url
+
+
+firefox_desktop = FirefoxDesktop()
+firefox_android = FirefoxAndroid()

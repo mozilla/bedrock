@@ -547,7 +547,7 @@ class TestProductURL(TestCase):
             '/en-US/firefox/all/')
         eq_(self._render('firefox', 'all', 'beta'),
             '/en-US/firefox/beta/all/')
-        eq_(self._render('firefox', 'all', 'aurora'),
+        eq_(self._render('firefox', 'all', 'alpha'),
             '/en-US/firefox/developer/all/')
         eq_(self._render('firefox', 'all', 'esr'),
             '/en-US/firefox/organizations/all/')
@@ -562,7 +562,7 @@ class TestProductURL(TestCase):
             '/en-US/firefox/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'beta'),
             '/en-US/firefox/beta/system-requirements/')
-        eq_(self._render('firefox', 'sysreq', 'aurora'),
+        eq_(self._render('firefox', 'sysreq', 'alpha'),
             '/en-US/firefox/developer/system-requirements/')
         eq_(self._render('firefox', 'sysreq', 'esr'),
             '/en-US/firefox/organizations/system-requirements/')
@@ -577,7 +577,7 @@ class TestProductURL(TestCase):
             '/en-US/firefox/notes/')
         eq_(self._render('firefox', 'notes', 'beta'),
             '/en-US/firefox/beta/notes/')
-        eq_(self._render('firefox', 'notes', 'aurora'),
+        eq_(self._render('firefox', 'notes', 'alpha'),
             '/en-US/firefox/developer/notes/')
         eq_(self._render('firefox', 'notes', 'esr'),
             '/en-US/firefox/organizations/notes/')
@@ -586,13 +586,13 @@ class TestProductURL(TestCase):
 
     def test_mobile_notes(self):
         """Should return a reversed path for the mobile notes page"""
-        eq_(self._render('mobile', 'notes'),
+        eq_(self._render('android', 'notes'),
             '/en-US/mobile/notes/')
-        eq_(self._render('mobile', 'notes', 'release'),
+        eq_(self._render('android', 'notes', 'release'),
             '/en-US/mobile/notes/')
-        eq_(self._render('mobile', 'notes', 'beta'),
+        eq_(self._render('android', 'notes', 'beta'),
             '/en-US/mobile/beta/notes/')
-        eq_(self._render('mobile', 'notes', 'aurora'),
+        eq_(self._render('android', 'notes', 'alpha'),
             '/en-US/mobile/aurora/notes/')
 
 
