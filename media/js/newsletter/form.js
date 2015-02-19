@@ -11,10 +11,12 @@ $(function () {
     function initFooterEmailForm () {
         var $submitButton = $('.footer-newsletter-form input[type=submit]');
         var $formDetails = $('.footer-newsletter-form #form-details');
+        var $formDetailsSecondary = $('.footer-newsletter-form .form-details');
 
         function footerEmailFormShowDetails() {
             if (!$formDetails.is(':visible')) {
                 $formDetails.slideDown('normal');
+                $formDetailsSecondary.slideDown('normal');
             }
         }
 
