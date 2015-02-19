@@ -9,29 +9,27 @@ from product_details import ProductDetails
 class FirefoxDetails(ProductDetails):
     download_base_url_direct = 'https://download.mozilla.org/'
     download_base_url_transition = '/products/download.html'
-    download_base_url_aurora = 'http://ftp.mozilla.org/pub/mozilla.org/firefox/' \
-                               'nightly/latest-mozilla-aurora'
 
     platform_info = {
         'Windows': {
             'title': 'Windows',
             'id': 'win',
-            'file_ext': 'win32.installer.exe',
         },
         'OS X': {
             'title': 'Mac OS X',
             'id': 'osx',
-            'file_ext': 'mac.dmg',
+        },
+        'Windows 64': {
+            'title': 'Windows 64-bit',
+            'id': 'win64',
         },
         'Linux': {
             'title': 'Linux',
             'id': 'linux',
-            'file_ext': 'linux-i686.tar.bz2',
         },
         'Linux 64': {
             'title': 'Linux 64-bit',
             'id': 'linux64',
-            'file_ext': 'linux-x86_64.tar.bz2',
         },
     }
     channel_map = {
@@ -113,6 +111,13 @@ class FirefoxDetails(ProductDetails):
                                                           version),
                 }
 
+            # Append a Windows 64-bit build for Aurora
+            if 'Windows' in platforms and version in [self.latest_version('aurora')]:
+                build_info['platforms']['Windows 64'] = {
+                    'download_url': self.get_download_url('Windows 64', locale,
+                                                          version),
+                }
+
             # Append a Linux 64-bit build
             if 'Linux' in platforms:
                 build_info['platforms']['Linux 64'] = {
@@ -157,27 +162,25 @@ class FirefoxDetails(ProductDetails):
             language = 'ja-JP-mac'
 
         if version == self.latest_version('aurora'):
-            return self._get_aurora_download_url(platform, language, version)
+            # Download links are different for localized versions
+            if language == 'en-US':
+                # Use the stub installer for 32-bit Windows
+                if platform == 'Windows':
+                    product = 'firefox-aurora-stub'
+                else:
+                    product = 'firefox-aurora-latest-ssl'
+            else:
+                product = 'firefox-aurora-latest-l10n'
+        else:
+            product = '-'.join([product, version, 'SSL'])
 
         return '?'.join([self.download_base_url_direct,
                          urlencode([
-                             ('product', '-'.join([product, version, 'SSL'])),
+                             ('product', product),
                              ('os', self.platform_info[platform]['id']),
                              # Order matters, lang must be last for bouncer.
                              ('lang', language),
                          ])])
-
-    def _get_aurora_download_url(self, platform, language, version):
-        base_url = self.download_base_url_aurora
-        if language != 'en-US':
-            base_url += '-l10n'
-
-        return '{base_url}/firefox-{version}.{lang}.{file_ext}'.format(
-            base_url=base_url,
-            version=version,
-            lang=language,
-            file_ext=self.platform_info[platform]['file_ext']
-        )
 
 
 class MobileDetails(ProductDetails):

@@ -9,7 +9,7 @@ of terms and example values for them:
 * product: 'firefox' or 'thunderbird'
 * version: 7.0, 8.0b3, 9.0a2
 * build: 'beta', 'aurora', or None (for latest)
-* platform: 'os_windows', 'os_linux', 'os_linux64', or 'os_osx'
+* platform: 'os_windows', 'os_windows64', 'os_linux', 'os_linux64', or 'os_osx'
 * locale: a string in the form of 'en-US'
 """
 
@@ -54,6 +54,9 @@ def latest_version(locale, channel='release'):
     for builds in all_builds:
         if locale in builds and version in builds[locale]:
             _builds = builds[locale][version]
+            # Append Windows 64-bit build for Aurora
+            if 'Windows' in _builds and channel in ['aurora']:
+                _builds['Windows 64'] = _builds['Windows']
             # Append Linux 64-bit build
             if 'Linux' in _builds:
                 _builds['Linux 64'] = _builds['Linux']
@@ -89,6 +92,7 @@ def make_download_link(product, build, version, platform, locale,
     # The downloaders expect the platform in a certain format
     platform = {
         'os_windows': 'win',
+        'os_windows64': 'win64',
         'os_linux': 'linux',
         'os_linux64': 'linux64',
         'os_osx': 'osx'
@@ -209,7 +213,12 @@ def download_firefox(ctx, build='release', small=False, icon=True,
     builds = []
 
     if not mobile:
-        for plat_os in ['Windows', 'Linux', 'Linux 64', 'OS X']:
+        for plat_os in ['Windows', 'Windows 64', 'Linux', 'Linux 64', 'OS X']:
+            # Windows 64-bit builds are currently available only on the Aurora
+            # channel
+            if plat_os == 'Windows 64' and build not in ['aurora']:
+                continue
+
             # Fallback to en-US if this plat_os/version isn't available
             # for the current locale
             _locale = locale
@@ -225,6 +234,7 @@ def download_firefox(ctx, build='release', small=False, icon=True,
             plat_os_pretty = {
                 'os_osx': 'Mac OS X',
                 'os_windows': 'Windows',
+                'os_windows64': 'Windows 64-bit',
                 'os_linux': 'Linux',
                 'os_linux64': 'Linux 64-bit',
             }[plat_os]
