@@ -23,3 +23,6 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 # bug 1087533
 42 * * * * {{ django_cron }} update_reps_ical > /dev/null 2>&1
 
+# bug 1128587
+38 * * * * {{ django_manage }} runscript update_firefox_os_feeds > /dev/null 2>&1
+

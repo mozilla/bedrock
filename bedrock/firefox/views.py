@@ -14,6 +14,8 @@ from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
+import waffle
+
 from funfactory.helpers import static
 from funfactory.urlresolvers import reverse
 from lib import l10n_utils
@@ -221,6 +223,13 @@ def all_downloads(request, channel):
             context['test_builds_next'] = firefox_details.get_filtered_test_builds(next_version,
                                                                                    query)
     return l10n_utils.render(request, 'firefox/all.html', context)
+
+
+def firefox_os_index(request):
+    if waffle.switch_is_active('firefox-os-index-2015'):
+        return l10n_utils.render(request, 'firefox/os/index-2015.html')
+    else:
+        return l10n_utils.render(request, 'firefox/os/index.html')
 
 
 @csrf_protect
