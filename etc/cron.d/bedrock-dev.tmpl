@@ -6,9 +6,12 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 
 0-59/10 * * * * root /data/bedrock-dev/src/update-www-dev.allizom.org.sh
 # TODO Make this run chief
-# 1-59/10 * * * * root /data/bedrock-dev/src/update-www-dev.allizom.org-django.sh
+1-59/10 * * * * root /data/bedrock-dev/src/update-www-dev.allizom.org-django.sh
+
 */5    * * * * {{ django_manage }} rnasync > /dev/null 2>&1
 
+*/15 * * * * root /data/bedrock-dev/src/update-www-dev.allizom.org-svn-locale.sh
+ 
 # bug 1014586
 3 */2 * * * {{ django_cron }} update_tweets > /dev/null 2>&1
 
