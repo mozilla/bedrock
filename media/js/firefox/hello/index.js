@@ -16,6 +16,7 @@
     var supportsHTML5Video = !!document.createElement('video').canPlayType;
     var isWideViewport = $w.width() >= 740;
     var mqIsWide;
+    var tourSource = getParameterByName('utm_source');
 
     if (isWideViewport) {
         if (Mozilla.SVGAnimCheck()) {
@@ -100,6 +101,14 @@
         });
     };
 
+    // get query string parameters
+    function getParameterByName (name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
+        results = regex.exec(location.search);
+        return results === null ? 'none' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
     if (w.isFirefox()) {
         // if Fx, hide all footer messaging
         // (correct messaging to display determined below)
@@ -127,6 +136,11 @@
                     $('.try-hello').on('click', function(e) {
                         e.preventDefault();
 
+                        // (bug 1115227, bug 1130194) pass source to FTU; limit to set values.
+                        if (tourSource === 'twitter' || tourSource === 'facebook' || tourSource === 'wiki' || tourSource === 'email') {
+                            Mozilla.UITour.registerPageID('hello-tour_OpenPanel_' + tourSource);
+                        }
+                        
                         // show Hello menu when icon in toolbar, customize menu, or overflow
                         Mozilla.UITour.showMenu('loop', function() {
                             // clicking Hello icon in toolbar does not close the menu
