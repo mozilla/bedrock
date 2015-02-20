@@ -22,12 +22,16 @@
 
 {% set memory_disclaimer = _('Available storage for user content varies depending on the version and is subject to change based on phone software updates and apps usage.') %}
 
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {% include 'firefox/includes/family-nav.html' %}
+{% endblock %}
+
 {% block content %}
 <main role="main">
   <section id="header">
     <div class="container">
-      <img class="logo" src="{{ static('img/firefox/os/firefox-os.png') }}" alt="{{ _('Firefox OS') }}">
-
       <h1>
         {# L10n: <br> tag below used for formatting only. #}
         <span id="page-title-js">{{ _('Find Firefox OS <br>near you') }}</span>
@@ -84,7 +88,8 @@
         <header class="section-header">
           <h2 class="section-heading">{{ _('Smartphones') }}</h2>
           <a href="{{ url('firefox.os.faq') }}" class="faq-button arrow-link button">{{ _('Firefox OS FAQ') }}</a>
-          <a id="purchase-device" href="#" class="purchase-button arrow-link button">{{ _('Get a phone') }}</a>
+          <a href="#" class="purchase-button arrow-link button">{{ _('Get a phone') }}</a>
+          <a id="purchase-device-sticky" href="#" class="purchase-button arrow-link button">{{ _('Get a phone') }}</a>
         </header>
 
         {# phone thumbnails #}
@@ -2252,5 +2257,8 @@
 {% endblock %}
 
 {% block js %}
+  <!--[if IE 9]>
+  {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
   {% javascript 'firefox_os_devices' %}
 {% endblock %}

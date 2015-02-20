@@ -88,6 +88,10 @@
       data-global-update-firefox="{{ _('Update your Firefox') }}"
       {% block string_data %}{% endblock %}></div>
     <div id="outer-wrapper">
+
+    {# for headers not to be confined by #wrapper (like fx family nav) #}
+    {% block site_header_unwrapped %}{% endblock %}
+
     <div id="wrapper">
 
     {% block site_header %}

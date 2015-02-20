@@ -15,7 +15,7 @@ html, body {
 }
 
 #outer-wrapper {
-    background: #fff;
+    background: #0095dd;
 }
 
 #wrapper {
@@ -30,6 +30,10 @@ html, body {
     left: 50%;
     margin-left: -500px;
     z-index: 15;
+}
+
+#colophon {
+    margin-top: 0;
 }
 
 .container {
@@ -48,7 +52,7 @@ html, body {
     border-bottom: 10px solid #0095dd; // give fox background a bit of padding on the bottom
 
     .container {
-        padding-top: 44px;
+        padding-top: 30px;
         min-height: 320px;
         background: url(/media/img/firefox/os/devices/fox.png) center bottom no-repeat;
     }
@@ -61,7 +65,7 @@ html, body {
         color: #fff;
         .font-size(60px);
         text-shadow: none;
-        margin-bottom: (@baseLine * 1.5);
+        margin: (@baseLine * 2) 0 (@baseLine * 1.5);
     }
 
     label {
@@ -90,12 +94,21 @@ html, body {
     }
 }
 
-.device-list {
-    .button {
-        float: right;
-        padding: (@baseLine / 2) @baseLine;
-        font-weight: normal;
+#purchase-device-sticky,
+.device-list .button {
+    display: none;
+    float: right;
+    padding: (@baseLine / 2) @baseLine;
+    font-weight: normal;
+
+    &.visible {
+        display: inline-block;
     }
+}
+
+#purchase-device-sticky {
+    float: none;
+    margin-top: 5px;
 }
 
 .section-header {

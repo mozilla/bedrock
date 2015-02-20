@@ -2,7 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "../../sandstone/sandstone-resp.less";
 @import "../../firefox/mwc-2015-schedule.less";
 @import "../../firefox/mwc-2015-map.less";
 
@@ -28,6 +27,7 @@ html, body {
 
 #outer-wrapper {
     background: #0f9fdb;
+    background: #0095dd url(/media/img/firefox/os/mwc-2015-preview/background-shapes.png) top right no-repeat;
 }
 
 #wrapper {
@@ -48,11 +48,7 @@ html, body {
 
 #intro {
     position: relative;
-    // push up into #masthead
-    top: -44px;
-    padding-top: 44px;
     width: 100%;
-    background: #0095dd url(/media/img/firefox/os/mwc-2015-preview/background-shapes.png) top right no-repeat;
     overflow: hidden;
 
     .logo {
@@ -60,7 +56,8 @@ html, body {
     }
 
     .container {
-     z-index: 10;
+        z-index: 10;
+        padding-top: @baseLine * 2;
     }
 }
 
@@ -133,8 +130,6 @@ html, body {
 
 #info {
     position: relative;
-    // compensate for negative top value on #intro section
-    margin-top: -44px;
     background: #eaeff2;
     background: -webkit-linear-gradient(top,    #eaeff2 0%,#d4dde4 100%);
     background: linear-gradient(to bottom,    #eaeff2 0%,#d4dde4 100%);

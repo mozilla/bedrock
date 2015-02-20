@@ -3,11 +3,11 @@
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
-;(function($) {
+;(function($, Mozilla) {
     'use strict';
 
     var COUNTRY_CODE = '';
@@ -17,7 +17,7 @@ if (typeof Mozilla === 'undefined') {
     //var isSmallViewport = $(window).width() < 760;
     //var isTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints || isSmallViewport;
 
-    var $purchaseDeviceButton = $('#purchase-device');
+    var $purchaseDeviceButtons = $('.purchase-button');
     var $locationSelect = $('#location');
     var $deviceThumbnails = $('.device-thumbnail');
     var $deviceDetailLists = $('.device-detail-list');
@@ -58,7 +58,7 @@ if (typeof Mozilla === 'undefined') {
             // select the current COUNTRY_CODE
             $locationSelect.find('option[value="' + COUNTRY_CODE + '"]').prop('selected', 'selected');
 
-            $purchaseDeviceButton.fadeIn('fast');
+            $purchaseDeviceButtons.addClass('visible');
 
             for (var device in Mozilla.FxOs.Devices) {
                 if ($.inArray(COUNTRY_CODE, Mozilla.FxOs.Devices[device].countries) > -1) {
@@ -69,7 +69,7 @@ if (typeof Mozilla === 'undefined') {
             // show the provider applicable for the user country.
             $provider.show();
         } else {
-            $purchaseDeviceButton.fadeOut('fast');
+            $purchaseDeviceButtons.removeClass('visible');
         }
     };
 
@@ -117,7 +117,7 @@ if (typeof Mozilla === 'undefined') {
     });
 
     // wire up purchase button
-    $purchaseDeviceButton.on('click', function(e) {
+    $purchaseDeviceButtons.on('click', function(e) {
         e.preventDefault();
 
         Mozilla.Modal.createModal(this, $('#get-device'), {
@@ -214,21 +214,23 @@ if (typeof Mozilla === 'undefined') {
     }
 
     // hide/disable pagers in mobile view
-    var queryIsMobile = matchMedia('(max-width: 480px)');
+    if (typeof matchMedia !== 'undefined') {
+        var queryIsMobile = matchMedia('(max-width: 480px)');
 
-    setTimeout(function() {
-        if (!queryIsMobile.matches) {
-            togglePagers(true);
-        }
-    }, 500);
+        setTimeout(function() {
+            if (!queryIsMobile.matches) {
+                togglePagers(true);
+            }
+        }, 500);
 
-    queryIsMobile.addListener(function(mq) {
-        if (mq.matches) {
-            togglePagers(false);
-        } else {
-            togglePagers(true);
-        }
-    });
+        queryIsMobile.addListener(function(mq) {
+            if (mq.matches) {
+                togglePagers(false);
+            } else {
+                togglePagers(true);
+            }
+        });
+    }
 
     // display specific device if in URL hash
     if (window.location.hash !== '') {
@@ -269,4 +271,7 @@ if (typeof Mozilla === 'undefined') {
     $('.pager-tabs').on('click', 'a', function() {
         gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', $(this).data('label') + ' Tab']);
     });
-})(window.jQuery);
+
+    // initialize fx family nav
+    Mozilla.FxFamilyNav.init({ primaryId: 'os', subId: 'devices', ctaId: 'purchase-device-sticky' });
+})(window.jQuery, window.Mozilla);
