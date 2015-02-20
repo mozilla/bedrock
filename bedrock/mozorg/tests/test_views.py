@@ -5,6 +5,8 @@
 
 from django.conf import settings
 from django.core import mail
+from django.core.cache import cache
+from django.db.utils import DatabaseError
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils import simplejson
@@ -249,29 +251,30 @@ class TestContributeStudentAmbassadorsLanding(TestCase):
         self.rf = RequestFactory()
         self.get_req = self.rf.get('/')
         self.no_exist = views.TwitterCache.DoesNotExist()
+        cache.clear()
 
     @patch.object(views.l10n_utils, 'render')
-    @patch.object(views.TwitterCache, 'objects')
+    @patch.object(views.TwitterCache.objects, 'get')
     def test_db_exception_works(self, mock_manager, mock_render):
         """View should function properly without the DB."""
-        mock_manager.get.side_effect = views.DatabaseError
+        mock_manager.side_effect = DatabaseError
         views.contribute_studentambassadors_landing(self.get_req)
         mock_render.assert_called_with(ANY, ANY, {'tweets': []})
 
     @patch.object(views.l10n_utils, 'render')
-    @patch.object(views.TwitterCache, 'objects')
+    @patch.object(views.TwitterCache.objects, 'get')
     def test_no_db_row_works(self, mock_manager, mock_render):
         """View should function properly without data in the DB."""
-        mock_manager.get.side_effect = views.TwitterCache.DoesNotExist
+        mock_manager.side_effect = views.TwitterCache.DoesNotExist
         views.contribute_studentambassadors_landing(self.get_req)
         mock_render.assert_called_with(ANY, ANY, {'tweets': []})
 
     @patch.object(views.l10n_utils, 'render')
-    @patch.object(views.TwitterCache, 'objects')
+    @patch.object(views.TwitterCache.objects, 'get')
     def test_db_cache_works(self, mock_manager, mock_render):
         """View should use info returned by DB."""
         good_val = 'The Dude tweets, man.'
-        mock_manager.get.return_value.tweets = good_val
+        mock_manager.return_value.tweets = good_val
         views.contribute_studentambassadors_landing(self.get_req)
         mock_render.assert_called_with(ANY, ANY, {'tweets': good_val})
 
