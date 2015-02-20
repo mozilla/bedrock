@@ -213,7 +213,6 @@ def platform_img(ctx, url, optional_attributes=None):
     # Don't download any image until the javascript sets it based on
     # data-src so we can do platform detection. If no js, show the
     # windows version.
-    print img_attrs
     markup = ('<img class="platform-img js" src="" data-processed="false" {attrs}>'
               '<noscript><img class="platform-img win" src="{win_src}" {attrs}>'
               '</noscript>').format(attrs=attrs, win_src=img_attrs['data-src-windows'])
