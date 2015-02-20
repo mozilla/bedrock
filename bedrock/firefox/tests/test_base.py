@@ -1117,22 +1117,10 @@ class TestHelloStartView(TestCase):
                       'Gecko/20100101 Firefox/35.0')
         self.url = reverse('firefox.hello.start', args=['35.0'])
 
-    def test_fx_hello_no_conversation(self):
-        """Should identify when there is no conversation"""
+    def test_fx_hello_redirect_non_firefox(self):
+        """Should redirect to /firefox/new if not on Firefox"""
 
-        response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
-        self.assertIn('data-incoming-conversation="none"', response.content)
-
-    def test_fx_hello_conversation_open(self):
-        """Should identify when a conversation is open"""
-
-        response = self.client.get(self.url + '?incomingConversation=open',
-            HTTP_USER_AGENT=self.user_agent)
-        self.assertIn('data-incoming-conversation="open"', response.content)
-
-    def test_fx_hello_conversation_waiting(self):
-        """Should identify when a conversation is waiting"""
-
-        response = self.client.get(self.url + '?incomingConversation=waiting',
-            HTTP_USER_AGENT=self.user_agent)
-        self.assertIn('data-incoming-conversation="waiting"', response.content)
+        self.user_agent = ('Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')
+        self.url = reverse('firefox.hello.start', args=['35.0'])
+        response = self.client.get(self.url)
+        self.assertIn('/firefox/new/', response['location'])
