@@ -1,0 +1,177 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Blaze Your Own Path - Mozilla at MWC 2015')}}{% endblock %}
+
+{% block body_id %}firefox-os{% endblock %}
+{% block body_class %}firefox-os{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_os_mwc_2015_preview' %}
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <section id="intro">
+    <div class="container">
+      <h2 class="logo">
+        {{ high_res_img('img/firefox/os/mwc-2015-preview/firefox-os.png', {'alt': 'Firefox OS', 'width': '224', 'height': '70'}) }}
+      </h2>
+
+      <div id="intro-copy">
+        <header>
+          <h1>{{ _('Unleash the future') }}</h1>
+          <h2>{{ _('Mozilla at Mobile World Congress 2015') }}</h2>
+        </header>
+
+        <p>
+          {{ _('Since launching just two short years ago, Firefox OS has gone through some dramatic growth and exciting changes.') }}
+          {{ _('Now in over 30 countries around the globe, Firefox OS devices are available from entry level handsets to mid-tier smartphones manufactured by top-end partners.') }}
+        </p>
+
+        <p>
+          {{ _('For 2015, we’re going to continue to build on what we’ve started.') }}
+          {{ _('We’ve seen 50+ launches since July 2013 and things are about to get even more exciting.') }}
+          {{ _('We’re introducing new chipsets in India and the Philippines, continuing to build the Firefox Marketplace with a bigger ecosystem and even more content, and with our partner Panasonic, we’re about to release a line of Firefox OS-powered televisions out into the world.') }}
+        </p>
+
+        <p>
+          {{ _('Come and partner with Firefox OS — the most exciting new platform in mobile.') }}
+        </p>
+
+        {{ high_res_img('img/firefox/os/mwc-2015-preview/mwc-logo.png', {'alt': 'Mobile World Congress', 'width': '168', 'height': '68'}) }}
+      </div>
+      <div id="intro-phone">
+        <img src="{{ static('img/firefox/os/mwc-2015-preview/phone-fox.png') }}" alt="" />
+        <div class="tail"></div>
+      </div>
+    </div>
+
+    <div class="rays-container">
+      <div class="rays-inner">
+        <div class="rays-bottom"></div>
+        <div class="rays-mid"></div>
+        <div class="rays-top"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="info">
+    <div class="container">
+      <h3>{{ _('Be part of our growing family of partners') }}</h3>
+      <ul id="list-partners">
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/alcatel.png', {'alt': 'Alcatel OneTouch', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/america-movil.png', {'alt': 'America Movil', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/cherry-mobile.png', {'alt': 'Cherry Mobile', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/deutsche-telekom.png', {'alt': 'Deutsche Telekom', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/grameenphone.png', {'alt': 'GrameenPhone', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/huawei.png', {'alt': 'Huawei', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/intex.png', {'alt': 'Intex', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/kddi.png', {'alt': 'KDDI', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/megafon.png', {'alt': 'MegaFon', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/panasonic.png', {'alt': 'Panasonic', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/qualcomm.png', {'alt': 'Qualcomm', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/spice.png', {'alt': 'Spice', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/spreadtrum.png', {'alt': 'Spreadtrum', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/symphony.png', {'alt': 'Symphony', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/telecom-italia.png', {'alt': 'Telecom Italia', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/telefonica.png', {'alt': 'Telefonica', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/telenor.png', {'alt': 'Telenor', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/zen-mobile.png', {'alt': 'ZEN Mobile', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/zte.png', {'alt': 'ZTE', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/lg.png', {'alt': 'LG', 'width': '220', 'height': '100'}) }}</li>
+      </ul>
+
+      <h3>{{ _('Here’s how') }}</h3>
+
+      <ul id="list-how">
+        <li id="how-look">
+          <h4>{{ _('Visit our booth') }}</h4>
+          <p>
+            {{ _('Join us at our stand in Hall 3 to see our products in action and what they can do for you.') }}
+          </p>
+          <a id="map-link" class="arrow modal-link" href="#map">{{ _('View the map') }}</a>
+        </li>
+        <li id="how-listen">
+          <h4>{{ _('Watch a presentation') }}</h4>
+          <p>
+            {{ _('We’ll be delivering a few at our booth and participating in some sponsored MWC sessions.') }}
+          </p>
+          <a id="schedule-link" class="arrow modal-link" href="#schedule">{{ _('See the schedule') }}</a>
+        </li>
+        <li id="how-learn" class="last">
+          <h4>{{ _('Partner with us') }}</h4>
+          <p>
+          {% trans url1='mailto:mwc2015@mozilla.com' %}
+            To get on board with us, or for any partnership inquiries, email our Business Development Team at <a class="ga" href="{{ url1 }}">mwc2015@mozilla.com</a>.
+          {% endtrans %}
+          </p>
+        </li>
+      </ul>
+
+      <h3>{{ _('The future is open') }}</h3>
+
+      <ul id="list-platform">
+        <li id="platform-firefoxos">
+          <h4>
+            {{ high_res_img('img/firefox/os/mwc-2015-preview/platform-firefox-os.png', {'alt': 'Firefox OS', 'width': '262', 'height': '76'}) }}
+          </h4>
+
+          <p>
+            {{ _('We’re working with major global partners to enable the Open Web as a platform for mobile devices, free from the rules and restrictions of existing proprietary platforms.') }}
+
+            {{ _('This allows operators and manufacturers to customize phones to meet the specific needs of their target markets and to own and manage the relationship with their customers themselves.') }}
+
+            <a class="arrow" href="{{ url('firefox.os.index') }}">{{ _('Learn more') }}</a>
+          </p>
+        </li>
+        <li>
+          <h4>
+            {{ high_res_img('img/firefox/os/mwc-2015-preview/platform-firefox-marketplace.png', {'alt': 'Firefox Marketplace', 'width': '436', 'height': '76'}) }}
+          </h4>
+
+          <p>
+            {{ _('Firefox Marketplace offers an open app environment that leverages the scale of the Web as a development platform, allowing operators, manufacturers and developers greater flexibility.') }}
+
+            {{ _('It is now possible to provide unique app content and a customized experience targeted at users’ demographics and usage while owning billing and payment relationships.') }}
+
+            <a class="arrow ga" href="https://marketplace.firefox.com">{{ _('Learn more') }}</a>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="modal-content">
+    <section id="map">
+      <div class="container">
+        <h1 class="modal-content-header">{{ _('Firefox at MWC 2015 &ndash; Hall 3, Stand 3C30') }}</h1>
+
+        {% include "firefox/includes/mwc_2015_map.html" %}
+      </div>
+    </section> <!--/#map-->
+
+    <section id="schedule">
+      <div class="container">
+        <h1 class="modal-content-header">{{ _('Firefox at MWC 2015 &ndash; Schedule of Events') }}</h1>
+
+        {% include "/firefox/includes/mwc_2015_schedule.html" %}
+      </div><!--/.container-->
+    </section>
+  </div> <!--/#modal-content-->
+</main>
+
+{% block email_form %}{% endblock %}
+
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_os_mwc_2015_preview' %}
+{% endblock %}
