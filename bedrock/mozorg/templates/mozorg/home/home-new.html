@@ -94,13 +94,13 @@
     <div class="promo-grid-inner">
       <ul class="promo-grid {% if tweets %}has-twitter-promo{% endif %}">
       {# L10n: Begin home page promos. Line breaks are for visual formatting only. #}
-      {% if l10n_has_tag('fx10_independent') %}
-        <li id="promo-1" class="item promo-large-portrait firefox-independent" data-name="Firefox: The indepedent choice" tabindex="0">
-          <h2 class="primary go">{{ _('Firefox: The independent choice') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.independent') }}#play">
+      {% if l10n_has_tag('hello_promo') %}
+        <li id="promo-1" class="item promo-large-portrait firefox-hello" data-name="Meet Firefox Hello" tabindex="0">
+          <h2 class="primary go">{{ _('Meet<br> Firefox Hello') }}</h2>
+          <a class="panel-link" href="{{ url('firefox.hello') }}">
             <div class="secondary">
-              <h3>{{ _('Help us celebrate 10 years of choice and independence online.') }}</h3>
-              <p class="more">{{ _('Watch our video') }}</p>
+              <h3>{{ _('The easiest way to connect for free over video') }}</h3>
+              <p class="more">{{ _('Try Firefox Hello') }}</p>
             </div>
           </a>
         </li>
@@ -115,10 +115,16 @@
           </a>
         </li>
       {% endif %}
-      {% if LANG == 'en-US' %}
+      {% if LANG == 'en-US' and waffle.switch('mozorg-home-neutrality-promo') %}
         <li id="promo-2" class="item promo-small-landscape net-neutrality" data-name="Protect net neutrality today">
           <a class="panel-link" href="https://sendto.mozilla.org/page/s/FCCvote-net-neutrality?ref=20150205Advocacy_NN&amp;utm_campaign=20150205Advocacy_NN&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=homepage_promo">
             <h2>Protect net neutrality today</h2>
+          </a>
+        </li>
+      {% elif l10n_has_tag('privacy_day') %}
+        <li id="promo-2" class="item promo-small-landscape advocacy" data-name="Learn about Mozilla Advocacy">
+          <a class="panel-link" href="https://advocacy.mozilla.org">
+            <h2>{{ _('Learn about Mozilla Advocacy') }}</h2>
           </a>
         </li>
       {% else %}
@@ -144,13 +150,13 @@
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
-      {% if l10n_has_tag('privacy_day') and waffle.switch('mozorg-home-privacy-promo') %}
-        <li id="promo-6" class="item promo-large-landscape privacy-day" tabindex="0" data-name="Get smart on privacy">
-          <h2 class="primary go">{{ _('Get Smart on Privacy') }}</h2>
-          <a class="panel-link" rel="external" href="{{ url('privacy.privacy-day') }}?utm_source=mozorg&amp;utm_medium=tile&amp;utm_campaign=DPD15">
+      {% if l10n_has_tag('webmaker_promo_make') %}
+        <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0" data-name="Make the Web you want">
+          <h2 class="primary go">{{ _('Make the Web you want') }}</h2>
+          <a class="panel-link" rel="external" href="https://webmaker.org/">
             <div class="secondary">
-              <h3>{{ _('Learn how to give yourself more control online in four easy steps.') }}</h3>
-              <p class="more">{{ _('Get smart on privacy') }}</p>
+              <h3>{{ _('Build a webpage or app in minutes<br> — no coding required') }}</h3>
+              <p class="more">{{ _('Become a Webmaker') }}</p>
             </div>
           </a>
         </li>
@@ -173,22 +179,19 @@
             <h2>{{ _('Build an app <br>in seconds') }}</h2>
           </a>
         </li>
+      {% if l10n_has_tag('gear_store') %}
+        <li id="promo-9" class="item promo-small-landscape gear" data-name="Get gear">
+          <a class="panel-link" href="https://gear.mozilla.org/?utm_source=gear.mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_smallblock">
+            <h2>{{ _('Official Mozilla gear is here') }}</h2>
+          </a>
+        </li>
+      {% else %}
         <li id="promo-9" class="item promo-small-landscape volunteer" data-name="Volunteer with Mozilla">
           <a class="panel-link" href="{{ url('mozorg.contribute') }}">
             <h2>{{ _('Volunteer <br>with Mozilla') }}</h2>
           </a>
         </li>
-      {% if l10n_has_tag('fx10_independent') %}
-        <li id="promo-10" class="item promo-large-portrait firefox-developer" tabindex="0" data-name="Introducing Firefox Developer Edition">
-          <h2 class="primary go">{{ _('Introducing Firefox Developer Edition') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.developer') }}">
-            <div class="secondary">
-              <h3>{{ _('The only browser made only for developers.') }}</h3>
-              <p class="more">{{ _('Get Firefox Developer Edition') }}</p>
-            </div>
-          </a>
-        </li>
-      {% else %}
+      {% endif %}
         <li id="promo-10" class="item promo-large-portrait firefox-android" tabindex="0" data-name="Put your Firefox on your Android">
           <h2 class="primary go">{{ _('Put your Firefox on your Android') }}</h2>
           <a class="panel-link" href="{{ url('firefox.android.index') }}">
@@ -198,14 +201,13 @@
             </div>
           </a>
         </li>
-      {% endif %}
-      {% if l10n_has_tag('gear_store') %}
-        <li id="promo-11" class="item promo-large-landscape gear" tabindex="0" data-name="Get gear">
-          <h2 class="primary go">{{ _('Official Mozilla gear is here') }}</h2>
-          <a class="panel-link" href="https://gear.mozilla.org/?ref=OMG_launch&amp;utm_campaign=OMG_launch&amp;utm_source=gear.mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_largeblock">
+      {% if l10n_has_tag('fx10_independent') %}
+        <li id="promo-11" class="item promo-large-landscape firefox-developer" tabindex="0" data-name="Introducing Firefox Developer Edition">
+          <h2 class="primary go">{{ _('Introducing Firefox Developer Edition') }}</h2>
+          <a class="panel-link" href="{{ url('firefox.developer') }}">
             <div class="secondary">
-              <h3>{{ _('Merch with a mission. <br>Products with a purpose. <br>Goods that do good.') }}</h3>
-              <p class="more">{{ _('Get your Mozilla gear') }}</p>
+              <h3>{{ _('The only browser made only for developers.') }}</h3>
+              <p class="more">{{ _('Get Firefox Developer Edition') }}</p>
             </div>
           </a>
         </li>
