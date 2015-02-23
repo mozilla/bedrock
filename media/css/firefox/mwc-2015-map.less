@@ -2,7 +2,7 @@
 
 #map-container {
     width: 100%;
-    height: 394px;
+    height: 387px;
     overflow-x: scroll;
     overflow-y: hidden;
 
@@ -24,41 +24,8 @@
 
 #map-image {
     background: url(/media/img/firefox/os/mwc-2015-preview/map.png) top left no-repeat;
-    width: 1857px;
-    height: 394px;
-}
+    background-size: contain;
+    width: 920px;
+    height: 387px;
 
-#map-menu {
-    .clearfix;
-
-    a {
-        float: right;
-        text-align: right;
-    }
-}
-
-/* Mobile layout: 320px */
-@media only screen and (max-width: @breakMobileLandscape) {
-    #map-container {
-        height: 268px;
-    }
-
-    #map-image {
-        background: url(/media/img/firefox/os/mwc-2015-preview/map-mobile.png) top left no-repeat;
-        width: 1267px;
-        height: 268;
-    }
-}
-
-/* Mobile layout: 480px */
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-    #map-container {
-        height: 268px;
-    }
-
-    #map-image {
-        background: url(/media/img/firefox/os/mwc-2015-preview/map-mobile.png) top left no-repeat;
-        width: 1267px;
-        height: 268;
-    }
 }
