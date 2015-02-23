@@ -12,7 +12,7 @@ class TwitterCacheManager(models.Manager):
         tweets = cache.get(cache_key)
         if tweets is None:
             try:
-                tweets = TwitterCache.objects.get(account=account).tweets
+                tweets = self.get(account=account).tweets
             except (TwitterCache.DoesNotExist, DatabaseError):
                 # TODO: see if we should catch other errors
                 tweets = []
