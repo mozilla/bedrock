@@ -26,10 +26,13 @@ log = commonware.log.getLogger('mozorg.util')
 
 
 class HttpResponseJSON(HttpResponse):
-    def __init__(self, data, status=None):
+    def __init__(self, data, status=None, cors=False):
         super(HttpResponseJSON, self).__init__(content=json.dumps(data),
                                                content_type='application/json',
                                                status=status)
+
+        if cors:
+            self['Access-Control-Allow-Origin'] = '*'
 
 
 def page(name, tmpl, decorators=None, url_name=None, **kwargs):

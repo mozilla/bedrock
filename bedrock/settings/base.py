@@ -76,6 +76,7 @@ SUPPORTED_NONLOCALES += [
     'robots.txt',
     'telemetry',
     'webmaker',
+    'contributor-data',
 ]
 
 ALLOWED_HOSTS = [
@@ -2273,3 +2274,5 @@ FIREFOX_OS_FEEDS = (
     ('pt-BR', 'https://blog.mozilla.org/press-br/category/firefox-os/feed/'),
 )
 FIREFOX_OS_FEED_LOCALES = [feed[0] for feed in FIREFOX_OS_FEEDS]
+
+TABLEAU_DB_URL = None

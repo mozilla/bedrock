@@ -26,3 +26,7 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 # bug 1128587
 38 * * * * {{ django_manage }} runscript update_firefox_os_feeds > /dev/null 2>&1
 
+# bug 1116511
+# every tuesday midnight
+0 0 * * 2 {{ django_manage }} runscript update_tableau_data
+

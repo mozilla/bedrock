@@ -2,11 +2,14 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from datetime import date
+import json
 
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
 from django.db.utils import DatabaseError
+from django.http.response import Http404
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils import simplejson
@@ -21,6 +24,7 @@ from nose.tools import assert_false, eq_, ok_
 from bedrock.mozorg.tests import TestCase
 from bedrock.mozorg import views
 from lib import l10n_utils
+from scripts import update_tableau_data
 
 
 _ALL = settings.STUB_INSTALLER_ALL
@@ -743,6 +747,52 @@ class TestProcessPartnershipForm(TestCase):
             return mock.call_args[0][1]['lead_source']
 
         eq_(_req(None),
-           'www.mozilla.org/about/partnerships/')
+            'www.mozilla.org/about/partnerships/')
         eq_(_req({'lead_source': 'www.mozilla.org/firefox/partners/'}),
-           'www.mozilla.org/firefox/partners/')
+            'www.mozilla.org/firefox/partners/')
+
+
+class TestMozIDDataView(TestCase):
+    def setUp(self):
+        with patch.object(update_tableau_data, 'get_external_data') as ged:
+            ged.return_value = (
+                (date(2015, 2, 2), 'Firefox', 'bugzilla', 100, 10),
+                (date(2015, 2, 2), 'Firefox OS', 'bugzilla', 100, 10),
+                (date(2015, 2, 9), 'Sumo', 'sumo', 100, 10),
+                (date(2015, 2, 9), 'Firefox OS', 'sumo', 100, 10),
+                (date(2015, 2, 9), 'QA', 'reps', 100, 10),
+            )
+            update_tableau_data.run()
+
+    def _get_json(self, source):
+        cache.clear()
+        req = RequestFactory().get('/')
+        resp = views.mozid_data_view(req, source)
+        eq_(resp['content-type'], 'application/json')
+        eq_(resp['access-control-allow-origin'], '*')
+        return json.loads(resp.content)
+
+    def test_all(self):
+        eq_(self._get_json('all'), [
+            {'wkcommencing': '2015-02-09', 'totalactive': 300, 'new': 30},
+            {'wkcommencing': '2015-02-02', 'totalactive': 200, 'new': 20},
+        ])
+
+    def test_team(self):
+        """When acting on a team, should just return sums for that team."""
+        eq_(self._get_json('firefoxos'), [
+            {'wkcommencing': '2015-02-09', 'totalactive': 100, 'new': 10},
+            {'wkcommencing': '2015-02-02', 'totalactive': 100, 'new': 10},
+        ])
+
+    def test_source(self):
+        """When acting on a source, should just return sums for that source."""
+        eq_(self._get_json('sumo'), [
+            {'wkcommencing': '2015-02-09', 'totalactive': 100, 'new': 10},
+        ])
+
+    @patch('bedrock.mozorg.models.CONTRIBUTOR_SOURCE_NAMES', {})
+    def test_unknown(self):
+        """An unknown source should raise a 404."""
+        with self.assertRaises(Http404):
+            self._get_json('does-not-exist')

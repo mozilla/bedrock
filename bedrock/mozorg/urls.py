@@ -202,4 +202,6 @@ urlpatterns = patterns('',
         views.plugincheck,
         name='mozorg.plugincheck'),
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
+    url(r'^contributor-data/(?P<source_name>[a-z]{2,20})\.json$', views.mozid_data_view,
+        name='mozorg.contributor-data'),
 )
