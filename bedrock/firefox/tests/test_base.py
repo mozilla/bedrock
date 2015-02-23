@@ -638,6 +638,34 @@ class TestWhatsNew(TestCase):
 
     # end 34.0.5 search tour tests
 
+    # begin 36.0 hello tour tests
+
+    @override_settings(DEV=True)
+    def test_fx_36_0(self, render_mock):
+        """Should use no tour template for 36.0 with no old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/whatsnew-no-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_36_0_with_oldversion(self, render_mock):
+        """Should use hello whatsnew tour template for 36.0 with old version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=35.0')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/whatsnew-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_36_0_with_wrong_oldversion(self, render_mock):
+        """Should no tour template for 36.0 with old version that is greater"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=36.1')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/whatsnew-no-tour.html'])
+
+    # end 36.0 hello tour tests
+
     # ESR31 whatsnew tests
 
     @override_settings(DEV=True)
@@ -766,6 +794,14 @@ class TestTourView(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/help-menu-tour.html'])
 
+    @override_settings(DEV=True)
+    def test_fx_firstrun_tour_36_0(self, render_mock):
+        """Should use fx36 tour template for 36.0"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/help-menu-36-tour.html'])
+
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
         """Should redirect to https"""
@@ -874,6 +910,14 @@ class TestFirstRun(TestCase):
         self.view(req, version='34.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/firstrun-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_tour_36_0(self, render_mock):
+        """Should use fx36 tour template for 36.0"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='36.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx36/firstrun-tour.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):

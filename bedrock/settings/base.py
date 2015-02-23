@@ -425,6 +425,32 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun-bundle.css',
     },
+    'firefox_fx36_firstrun': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/hello-animation.less',
+            'css/firefox/australis/fx36/common.less',
+        ),
+        'output_filename': 'css/firefox_fx36_firstrun-bundle.css',
+    },
+    'firefox_fx36_whatsnew': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/hello-animation.less',
+            'css/firefox/australis/fx36/common.less',
+        ),
+        'output_filename': 'css/firefox_fx36_whatsnew-bundle.css',
+    },
+    'firefox_fx36_whatsnew_no_tour': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/firefox/hello-animation.less',
+            'css/firefox/australis/fx36/common.less',
+        ),
+        'output_filename': 'css/firefox_fx36_whatsnew_no_tour-bundle.css',
+    },
     'firefox_developer_firstrun': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -1214,6 +1240,31 @@ PIPELINE_JS = {
             'js/firefox/firstrun/firstrun.js',
         ),
         'output_filename': 'js/firefox_firstrun-bundle.js',
+    },
+    'firefox_fx36_firstrun': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/australis/fx36/common.js',
+            'js/firefox/australis/fx36/firstrun.js',
+        ),
+        'output_filename': 'js/firefox_fx36_firstrun-bundle.js',
+    },
+    'firefox_fx36_whatsnew': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/australis/fx36/common.js',
+            'js/firefox/australis/fx36/whatsnew.js',
+        ),
+        'output_filename': 'js/firefox_fx36_whatsnew-bundle.js',
+    },
+    'firefox_fx36_whatsnew_no_tour': {
+        'source_filenames': (
+            'js/firefox/australis/fx36/common.js',
+            'js/firefox/australis/fx36/whatsnew-notour.js',
+        ),
+        'output_filename': 'js/firefox_fx36_whatsnew_no_tour-bundle.js',
     },
     'firefox_developer_firstrun': {
         'source_filenames': (
