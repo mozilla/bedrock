@@ -244,17 +244,23 @@ class Command(NoArgsCommand):
             printout('Updating repository and finding modified files.')
             modified_files, deleted_files = update_repo()
 
+        errors = []
+        updates = 0
         if modified_files:
             for mf in modified_files:
                 try:
                     update_db_from_file(mf)
-                except (KeyError, ValueError) as e:
-                    print 'ERROR parsing %s: %s' % (mf, e)
+                except Exception as e:
+                    errors.append('ERROR parsing %s: %s' % (mf, e))
+                    if not quiet:
+                        sys.stdout.write('E')
+                        sys.stdout.flush()
                     continue
                 if not quiet:
                     sys.stdout.write('.')
                     sys.stdout.flush()
-            printout('\nUpdated {0} files.'.format(len(modified_files)))
+                updates += 1
+            printout('\nUpdated {0} files.'.format(updates))
 
         if deleted_files:
             delete_files(deleted_files)
@@ -262,3 +268,7 @@ class Command(NoArgsCommand):
 
         if not modified_files and not deleted_files:
             printout('Nothing to update.')
+
+        if errors:
+            sys.stderr.write('Encountered {0} errors:\n\n'.format(len(errors)) +
+                             '\n==========\n'.join(errors))
