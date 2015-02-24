@@ -1591,8 +1591,8 @@ PIPELINE_JS = {
     },
     'plugincheck': {
         'source_filenames': (
-            'js/base/mozilla-share-cta.js',
             'js/plugincheck/lib/mustache.js',
+            'js/base/mozilla-share-cta.js',
             'js/plugincheck/tmpl/plugincheck.ui.tmpl.js',
             'js/plugincheck/check-plugins.js',
         ),
