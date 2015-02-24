@@ -4,15 +4,6 @@
 
 @import "../../sandstone/lib.less";
 
-@font-face {
-    font-family: 'Font Awesome';
-    src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'),
-         url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'),
-         url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 .grainy-sky() {
     background: #cae1f4;
     background: url(/media/img/sandstone/grain.png) repeat,
@@ -122,50 +113,12 @@ main {
 }
 
 #spread-hello {
-    display: none;
     float: right;
     margin-top: 15px;
 }
 
-.js #spread-hello {
-    display: block;
-}
-
 html[dir="rtl"] #spread-hello {
     float: left;
-}
-
-.mozilla-share-cta {
-    border: 0;
-    background: transparent;
-    width: 140px;
-
-    &:hover,
-    &:focus {
-        background: transparent;
-    }
-
-    h3 {
-        .font-size(@smallFontSize);
-        padding-left: @baseLine / 2;
-        padding-right: @baseLine / 2;
-        width: 120px;
-        color: @linkBlue;
-    }
-
-    ul li a {
-        color: @linkBlue;
-
-        &:before {
-            .font-size(18px);
-            line-height: 43px;
-        }
-
-        &:hover,
-        &:focus {
-            color: @linkBlue;
-        }
-    }
 }
 
 // Intro
