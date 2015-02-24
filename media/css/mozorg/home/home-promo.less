@@ -758,7 +758,7 @@ html[lang|="en"] {
 /****************************************************************************/
 // Net Neutrality
 .promo-small-landscape.net-neutrality {
-    background-color: #3fa9f1;
+    background-color: #b7bad6; // lavender
     background-image: url(/media/img/home/voices/promos/net-neutrality/net-neutrality-date.svg);
     background-position: 15px 20px;
     background-repeat: no-repeat;
@@ -772,6 +772,27 @@ html[lang|="en"] {
 
 [lang|='en'] {
     .promo-small-landscape.net-neutrality h2 {
+        .font-size(22px);
+    }
+}
+
+/****************************************************************************/
+// Advocacy
+.promo-small-landscape.advocacy {
+    background-color: #b7bad6; // lavender
+    background-image: url(/media/img/home/voices/promos/advocacy/advocacy-logo.png);
+    background-position: 15px 20px;
+    background-repeat: no-repeat;
+    .background-size(100px, 100px);
+
+    h2 {
+        padding: 20px 10px 10px 125px;
+        .font-size(16px);
+    }
+}
+
+[lang|='en'] {
+    .promo-small-landscape.advocacy h2 {
         .font-size(22px);
     }
 }
@@ -865,20 +886,6 @@ html[lang|="en"] {
     }
 }
 
-/****************************************************************************/
-// Privacy Day
-.promo-large-landscape.privacy-day {
-    background: #c33b32; // red
-
-    h2 {
-        padding: 120px @baseLine 0 @baseLine;
-        margin-top: @baseLine;
-        background-image: url(/media/img/home/voices/promos/privacy/privacy-shield.svg?1-27-2015);
-        background-position: top center;
-        background-repeat: no-repeat;
-        .background-size(90px, 103px);
-    }
-}
 
 /****************************************************************************/
 // Support
@@ -911,6 +918,25 @@ html[lang|="en"] {
     }
 }
 
+.promo-small-landscape.gear {
+    background-color: #95368c; // purple
+
+    h2 {
+        padding: @baseLine @baseLine @baseLine 120px;
+        min-height: 80px;
+        background-image: url(/media/img/home/voices/promos/gear/gear.png);
+        background-position: 15px 25px;
+        background-repeat: no-repeat;
+        .background-size(75px, 80px);
+        .font-size(16px);
+    }
+}
+
+[lang|='en'] {
+    .promo-small-landscape.gear h2 {
+        .font-size(22px);
+    }
+}
 
 /****************************************************************************/
 // Firefox Desktop
@@ -937,25 +963,43 @@ html[lang|="en"] {
 
 
 /****************************************************************************/
-// Firefox Independent
-.promo-large-portrait.firefox-independent {
-    background: #e55525; // orange
+// Firefox Hello
+.promo-large-portrait.firefox-hello {
+    background: #00a9dc; // turquoise
 
     h2 {
-        padding-top: 145px;
-        background: url(/media/img/home/voices/promos/independent/independent.png) center 25px no-repeat;
+        padding-top: 220px;
+        background: url(/media/img/home/voices/promos/hello/hello.svg) center 55px no-repeat;
+        .background-size(120px 120px);
+    }
+}
+
+html[lang|="en"] {
+    .promo-large-portrait.firefox-hello {
+        h3 {
+            padding-top: @baseLine * 4;
+        }
     }
 }
 
 
 /****************************************************************************/
 // Firefox Developer Edition
-.promo-large-portrait.firefox-developer {
+.promo-large-landscape.firefox-developer {
     background: #005da5; // dark blue
 
     h2 {
-        padding-top: 145px;
-        background: url(/media/img/home/voices/promos/firefoxdev/firefoxdev.png) center 25px no-repeat;
+        padding-top: 125px;
+        background: url(/media/img/home/voices/promos/firefoxdev/firefoxdev.png) center 15px no-repeat;
+    }
+}
+
+html[lang|='en'] {
+    .promo-large-landscape.firefox-developer {
+        h2 {
+            max-width: 440px;
+            margin: 0 auto;
+        }
     }
 }
 
@@ -1698,6 +1742,12 @@ html[lang|="en"] {
     .promo-small-landscape.privacy {
         background-image: url(/media/img/home/voices/promos/privacy/privacy-high-res.png);
         .background-size(121px, 120px);
+    }
+
+    // Advocacy
+    .promo-small-landscape.advocacy {
+        background-image: url(/media/img/home/voices/promos/advocacy/advocacy-logo-high-res.png);
+        .background-size(100px, 100px);
     }
 
     // Volunteer
