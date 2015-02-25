@@ -487,6 +487,7 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
+            'css/base/mozilla-share-cta.less',
             'css/firefox/menu-resp.less',
             'css/firefox/developer.less',
         ),
@@ -1235,6 +1236,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/firefox/developer.js',
             'js/base/mozilla-modal.js',
+            'js/base/mozilla-share-cta.js',
         ),
         'output_filename': 'js/firefox_developer-bundle.js',
     },
