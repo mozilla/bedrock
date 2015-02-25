@@ -202,6 +202,9 @@
       </div>
 
       <div class="cta-wrapper">
+        {% if l10n_has_tag('ios_announce', 'firefox/new') %}
+          <p id="ctacopy-ios">{{ _('Unfortunately, iOS doesn’t support Hello. To start having free video conversations, use Hello on Firefox for desktop, Firefox OS or Firefox for Android.') }}</p>
+        {% endif %}
         {{ download_firefox(simple=True, dom_id='download-fx') }}
         <a class="try-hello" id="try-hello-footer" rel="external" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Hello now') }}</a>
       </div>

@@ -67,18 +67,35 @@
       <input type="submit" id="footer_email_submit"
              value="{{ _('Sign me up') }} »" class="button">
 
-      <p class="form-details">
-        <small>{{ _('We will only send you Mozilla-related information.') }}</small>
-      </p>
+      {% if details %}
+        <p class="form-details">
+          <small>{{ details }}</small>
+        </p>
+      {% else %}
+        <p class="form-details">
+          <small>{{ _('We will only send you Mozilla-related information.') }}</small>
+        </p>
+      {% endif %}
+
     </div>
 
     <div id="newsletter-spinner" class="hidden"></div>
   </form>
   <div id="newsletter-form-thankyou" class="thank billboard newsletter-form hidden">
-    {{ email_form_thankyou() }}
+    {% if thankyou_content %}
+      <h3>{{ thankyou_head }}</h3>
+      <p>{{ thankyou_content }}</p>
+    {% else %}
+      {{ email_form_thankyou() }}
+    {% endif %}
   </div>
 {% elif use_thankyou %}
   <div id="newsletter-form" class="thank billboard newsletter-form footer-newsletter-form">
-    {{ email_form_thankyou() }}
+    {% if thankyou_content %}
+      <h3>{{ thankyou_head }}</h3>
+      <p>{{ thankyou_content }}</p>
+    {% else %}
+      {{ email_form_thankyou() }}
+    {% endif %}
   </div>
 {% endif %}

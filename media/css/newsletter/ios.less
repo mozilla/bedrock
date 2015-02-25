@@ -1,0 +1,147 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+.feature {
+    margin-bottom: @baseLine;
+    text-align: center;
+}
+
+#newsletter-form {
+    width: (@gridColumnWidth * 8) + (@gridGutterWidth * 7);
+
+    h3 {
+        float: none;
+        margin: 0 auto @baseLine auto;
+        width: auto;
+        max-width: 450px; /* because the text looks funny if we give it too much space to wrap */
+        text-align: center;
+    }
+
+    .form-contents {
+        margin: 0;
+        width: 50%;
+
+        input[type="email"] {
+            -webkit-appearance: none;
+            background: #fbf9f4;
+            border: 2px solid #e1ddd3;
+            border-radius: 7px;
+            height: 32px;
+            padding: 5px 10px;
+        }
+
+        ::-webkit-input-placeholder {
+           color: #e1ddd3;
+           .open-sans;
+           font-weight: bold;
+           opacity: 1;
+        }
+
+        ::-moz-placeholder {
+           color: #e1ddd3;
+           .open-sans;
+           font-weight: bold;
+           opacity: 1;
+        }
+
+        :-ms-input-placeholder {
+           color: #e1ddd3;
+           .open-sans;
+           font-weight: bold;
+           opacity: 1;
+        }
+    }
+
+    .form-submit {
+        margin: 0;
+        width: 50%;
+
+        input[type="submit"] {
+            -webkit-appearance: none;
+            background: #0095dd;
+            border-radius: 7px;
+            box-shadow: none;
+            .font-size(18px);
+            font-weight: normal;
+            min-height: 45px;
+            text-shadow: none;
+            text-transform: uppercase;
+            width: 100%;
+
+            &:hover,
+            &:focus {
+                background: lighten(#0095dd, 5%);
+            }
+        }
+    }
+
+    .form-fine {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+
+    .privacy-check-label .title {
+        padding: 0 20px 0 25px;
+    }
+}
+
+.newsletter-form.thank {
+    width: (@gridColumnWidth * 8) + (@gridGutterWidth * 7);;
+    margin: 0 auto;
+}
+
+@media (max-width: @breakDesktop) {
+
+    #newsletter-form {
+
+        .form-contents,
+        .form-submit {
+            margin: 0;
+            width: 50%;
+        }
+    }
+
+}
+@media (max-width: @breakTablet) {
+
+    .feature {
+        margin-bottom: (@baseLine / 2);
+    }
+
+    #newsletter-form {
+        width: auto;
+
+        h3 {
+            margin: 0 10px @baseLine 10px;
+            text-align: center;
+            width: auto;
+        }
+
+        .form-contents {
+            width: 100%;
+
+            input[type="email"] {
+                .border-box();
+                height: 44px;
+                width: 100%;
+            }
+        }
+
+        .form-submit {
+            width: 100%;
+
+            input[type="submit"] {
+                width: 100%;
+            }
+        }
+    }
+
+    .newsletter-form.thank {
+        width: auto;
+    }
+
+}
+
