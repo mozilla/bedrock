@@ -13,7 +13,7 @@
   {% elif channel == 'esr' %}
     {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.organizations.organizations')) }}
   {% else %}
-    {{ _('Firefox is available in more than %s languages thanks to the contributions of Mozilla community members from around the world.')|format('80') }}
+    {{ _('Firefox is available in more than 80 languages thanks to the contributions of Mozilla community members from around the world.') }}
   {% endif %}
 {% endblock %}
 
@@ -31,6 +31,14 @@
   {% else %}
     {{ super() }}
   {% endif %}
+{% endblock %}
+
+{% block site_header_share %}
+  {% if channel == 'release' -%}
+    {% set share_urls = { 'twitter': 'http://mzl.la/1IMdR5T', 'googleplus': 'http://mzl.la/1y7TgOf', 'facebook': 'http://mzl.la/1ATF965' } -%}
+    {% set share_text = _('Thanks to contributions of Mozilla community members around the world, Firefox is available in 80 languages:') %}
+    {{ share_cta(_('Share'), share_urls, share_text, 'spread-firefox-all', 'sky mini') }}
+  {% endif -%}
 {% endblock %}
 
 {% block content %}
