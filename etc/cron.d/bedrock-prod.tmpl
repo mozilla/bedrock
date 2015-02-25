@@ -18,7 +18,7 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 
 # bug 1072999, 1109344
 # Have to do this in the SRC dir because rsync destroys git repos in WWW dir.
-*/30 * * * * {{ django_src_manage }} update_security_advisories --quiet > /dev/null 2>&1
+*/30 * * * * {{ django_src_manage }} update_security_advisories --quiet > /dev/null
 
 # bug 1087533
 42 * * * * {{ django_cron }} update_reps_ical > /dev/null 2>&1
