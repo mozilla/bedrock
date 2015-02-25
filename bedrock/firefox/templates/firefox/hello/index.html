@@ -6,8 +6,6 @@
 
 {% set_lang_files "firefox/hello" %}
 
-{% from "macros.html" import share_cta with context %}
-
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Firefox Hello — Free, easy video conversations') }}{% endblock %}
 {% block page_desc %}{{ _('Learn all about Firefox Hello and see for yourself how easy it is to have a free video conversation with anyone, anywhere, right from your browser') }}{% endblock %}
@@ -25,33 +23,13 @@
   {% javascript 'firefox_hello' %}
 {% endblock %}
 
-{% block site_header %}
-  <header id="masthead">
-    <div class="container">
-      <div id="hello-header-nav">
-        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
-
-        {% block site_header_nav %}
-          {% include 'firefox/includes/top-menu.html' %}
-        {% endblock %}
-      </div>
-
-      {% block site_header_logo %}
-        <div id="hello-logo-wrapper">
-          {{ super() }}
-
-          {%
-          set share_urls = {
-            'twitter': 'http://mzl.la/1wz83AN',
-            'googleplus': 'https://www.mozilla.org/firefox/hello/?utm_source=Google&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare',
-            'facebook': 'https://www.mozilla.org/firefox/hello/?utm_source=Facebook&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare'
-          }
-          %}
-          {{ share_cta(_('Share'), share_urls, _('Meet Firefox Hello, the easiest way to connect for free over video with anyone, anywhere.'), 'spread-hello', 'sky mini') }}
-        </div>
-      {% endblock %}
-    </div>
-  </header>
+{% block site_header_share %}
+  {% set share_urls = {
+    'twitter': 'http://mzl.la/1wz83AN',
+    'googleplus': 'https://www.mozilla.org/firefox/hello/?utm_source=Google&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare',
+    'facebook': 'https://www.mozilla.org/firefox/hello/?utm_source=Facebook&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare'
+  } %}
+  {{ share_cta(_('Share'), share_urls, _('Meet Firefox Hello, the easiest way to connect for free over video with anyone, anywhere.'), 'spread-hello', 'sky mini') }}
 {% endblock %}
 
 {% block content %}

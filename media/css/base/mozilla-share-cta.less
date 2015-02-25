@@ -177,3 +177,34 @@
         }
     }
 }
+
+/* For the standard #masthead header, e.g. /firefox/all/ */
+#masthead .mozilla-share-cta {
+    position: absolute;
+    top: 60px;
+    right: 24px;
+}
+
+html[dir="rtl"] #masthead .mozilla-share-cta {
+    right: auto;
+    left: 24px;
+}
+
+/* Wide Mobile Layout: 480px */
+@media only screen and (max-width: @breakTablet) {
+    #masthead .mozilla-share-cta {
+        right: 14px;
+    }
+
+    html[dir="rtl"] #masthead .mozilla-share-cta {
+        right: auto;
+        left: 14px;
+    }
+}
+
+/* Mobile Layout: 320px */
+@media only screen and (max-width: @breakMobileLandscape) {
+    #masthead .mozilla-share-cta {
+        display: none;
+    }
+}

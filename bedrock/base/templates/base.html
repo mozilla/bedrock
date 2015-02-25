@@ -1,3 +1,4 @@
+{% from "macros.html" import share_cta with context %}
 {%- set_lang_files "main" -%}
 <!doctype html>
 {# Note the "windows" class, without javascript platform-specific
@@ -109,6 +110,7 @@
 
         {% block breadcrumbs %}{% endblock %}
 
+        {% block site_header_share %}{% endblock %}
       </header>
     {% endblock %}
 

@@ -4,8 +4,6 @@
 
 {% extends "base-resp.html" %}
 
-{% from "macros.html" import share_cta with context %}
-
 {% block body_id %}plugincheck{% endblock %}
 
 {% block page_title %}{{_('Plugin Check &amp; Updates')}}{% endblock %}
@@ -50,20 +48,23 @@
   data-media-url="{{ static('') }}"
 {% endblock %}
 
+{% block site_header_share %}
+  {% set share_urls = { 'twitter': 'http://mzl.la/17aqnLZ', 'googleplus': 'http://mzl.la/1FuAhTS', 'facebook': 'http://mzl.la/1z4Noqm' } -%}
+  {% if l10n_has_tag('share_cta') -%}
+    {% set share_text = _('Plugins don’t always update automatically. Check yours now to stay safe and browse without interruption!') %}
+  {%- else -%}
+    {# If the new copy is not localized yet, just use the same text as the existing preamble #}
+    {% set share_text = _('Keeping your plugins up to date helps Firefox run safely and smoothly.') %}
+  {% endif -%}
+  {{ share_cta(_('Share'), share_urls, share_text, 'spread-plugincheck', 'sky mini') }}
+{% endblock %}
+
 {% block content %}
 <main role="main">
   <header id="main-feature">
       {{ download_firefox(small=True) }}
       <h1 class="large">{{_('Check Your Plugins')}}</h1>
       <p class="preamble">{{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}</p>
-      {% set share_urls = { 'twitter': 'http://mzl.la/17aqnLZ', 'googleplus': 'http://mzl.la/1FuAhTS', 'facebook': 'http://mzl.la/1z4Noqm' } -%}
-      {% if l10n_has_tag('share_cta') -%}
-        {% set share_text = _('Plugins don’t always update automatically. Check yours now to stay safe and browse without interruption!') %}
-      {%- else -%}
-        {# If the new copy is not localized yet, just use the same text as the existing preamble #}
-        {% set share_text = _('Keeping your plugins up to date helps Firefox run safely and smoothly.') %}
-      {% endif -%}
-      {{ share_cta(_('Share'), share_urls, share_text, 'spread-plugincheck', 'sky mini') }}
   </header>
 
   <section class="plugin-status-container billboard">
