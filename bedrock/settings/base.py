@@ -547,6 +547,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/libs/tipsy.css',
             'css/sandstone/sandstone-resp.less',
+            'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/firefox/os/get_device.less',
             'css/firefox/os/devices.less',
@@ -561,7 +562,9 @@ PIPELINE_CSS = {
     },
     'firefox_os_mwc_2015_preview': {
         'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-modal.less',
+            'css/firefox/family-nav.less',
             'css/firefox/os/mwc-2015-preview.less',
         ),
         'output_filename': 'css/firefox_os_mwc_2015_preview-bundle.css',
@@ -1332,10 +1335,11 @@ PIPELINE_JS = {
     'firefox_os_devices': {
         'source_filenames': (
             'js/libs/jquery.tipsy.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
             'js/base/mozilla-pager.js',
             'js/base/mozilla-modal.js',
-            'js/libs/matchMedia.js',
-            'js/libs/matchMedia.addListener.js',
+            'js/firefox/family-nav.js',
             'js/firefox/os/partner_data.js',
             'js/firefox/os/devices.js',
         ),
@@ -1344,6 +1348,9 @@ PIPELINE_JS = {
     'firefox_os_mwc_2015_preview': {
         'source_filenames': (
             'js/base/mozilla-modal.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/mwc-2015-map.js',
             'js/firefox/os/mwc-2015-preview.js',
         ),
@@ -1788,6 +1795,12 @@ PIPELINE_JS = {
             'js/newsletter/form.js',
         ),
         'output_filename': 'js/newsletter_form-bundle.js',
+    },
+    'matchmedia_addlistener': {
+        'source_filenames': (
+            'js/libs/matchMedia.addListener.js',
+        ),
+        'output_filename': 'js/matchmedia_addlistener-bundle.js',
     },
 }
 

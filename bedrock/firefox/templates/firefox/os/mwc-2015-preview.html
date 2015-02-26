@@ -17,14 +17,16 @@
   {% stylesheet 'firefox_os_mwc_2015_preview' %}
 {% endblock %}
 
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {% include 'firefox/includes/family-nav.html' %}
+{% endblock %}
+
 {% block content %}
 <main role="main">
   <section id="intro">
     <div class="container">
-      <h2 class="logo">
-        {{ high_res_img('img/firefox/os/mwc-2015-preview/firefox-os.png', {'alt': 'Firefox OS', 'width': '224', 'height': '70'}) }}
-      </h2>
-
       <div id="intro-copy">
         <header>
           <h1>{{ _('Unleash the future') }}</h1>
@@ -173,5 +175,8 @@
 {% endblock %}
 
 {% block js %}
+  <!--[if IE 9]>
+  {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
   {% javascript 'firefox_os_mwc_2015_preview' %}
 {% endblock %}

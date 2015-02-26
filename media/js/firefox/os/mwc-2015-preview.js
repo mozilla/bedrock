@@ -48,4 +48,7 @@
         $('#schedule-link').trigger('click');
         break;
     }
+
+    // initialize fx family nav
+    Mozilla.FxFamilyNav.init({ primaryId: 'os', subId: 'mwc' });
 })(window.jQuery);

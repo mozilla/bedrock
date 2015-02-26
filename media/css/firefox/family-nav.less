@@ -1,0 +1,491 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+@mozIDBlue: #0c99d5;
+@mozIDGrey: #56565a;
+
+// mixin for sprite images
+.fxfamilynav-sprite(@top) {
+    background-image: url(/media/img/firefox/family/nav-sprite.png);
+    background-position: 0 @top;
+
+    @media (-webkit-min-device-pixel-ratio: 1.5),
+       (                min-resolution: 1.5dppx),
+       (                min-resolution: 144dpi) {
+
+        background-image: url(/media/img/firefox/family/nav-sprite-high-res.png);
+        .background-size(146px 273px);
+    }
+}
+
+// <header> containing all family nav stuff: logo, tabzilla link, & <nav>
+#fxfamilynav-header {
+    .clearfix();
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 210px;
+    border-top: 2px solid #fff;
+    background-color: transparent;
+    // Safari 5.1+, Chrome 10+
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+        -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+    // the standard
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+    background-repeat: no-repeat;
+    background-position: 0 0, 0 120px;
+    .background-size(100% 120px, 100% 90px);
+    .transition(background 0.2s ease);
+
+    .container {
+        width: @breakDesktop;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    // sub/tertiary navs hidden by default
+    .subnav,
+    .tertiarynav {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    // icons for specific links
+    .icon-mwc {
+        .fxfamilynav-sprite(-233px);
+        position: relative;
+        top: 2px;
+        margin-right: 5px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+    }
+
+    // Desktop Wide
+    @media (min-width: @breakDesktopWide) {
+        .container {
+            width: @breakDesktopWide;
+        }
+    }
+
+    // Tablet
+    @media (max-width: @breakDesktop) {
+        .container {
+            width: @breakTablet;
+        }
+    }
+
+    // Mobile
+    @media (max-width: @breakTablet) {
+        position: relative;
+        height: auto;
+        background: #fff;
+
+        &.overlay {
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+        }
+    }
+}
+
+// <nav> element containing primary, sub, and tertiary navs
+#fxfamilynav {
+    display: block;
+    float: left;
+    width: 592px;
+    height: 160px;
+    margin-top: 50px;
+
+    ul {
+        .clearfix();
+        display: block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        a {
+            display: table-cell;
+            vertical-align: middle;
+            color: #fff;
+            padding: 0 (@baseLine / 2);
+            border-bottom: 3px solid transparent;
+            .font-size(18px);
+            line-height: 1.3;
+            .transition(all 0.2s ease);
+
+            &.selected {
+                border-color: #fff;
+            }
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+
+            // "for" text
+            span {
+                .font-size(@largeFontSize);
+                font-style: italic;
+            }
+        }
+
+        &.primarynav a {
+            opacity: 0.7;
+            height: 67px;
+
+            &.selected,
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        &.subnav a {
+            opacity: 0.8;
+            height: 87px;
+
+            &.selected,
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    li {
+        float: left;
+        margin: 0 (@baseLine / 2) 0 0;
+        max-width: 138px;
+    }
+
+    // Desktop Wide
+    @media (min-width: @breakDesktopWide) {
+        width: 920px;
+
+        li {
+            max-width: 210px;
+            margin-right: @baseLine;
+        }
+    }
+
+    // Tablet
+    @media (max-width: @breakDesktop) {
+        width: 556px;
+
+        ul a {
+            .font-size(@largeFontSize);
+        }
+
+        li {
+            max-width: 129px;
+            margin-right: @baseLine / 2;
+        }
+    }
+
+    // Mobile
+    @media (max-width: @breakTablet) {
+        float: none;
+        width: 100%;
+        height: auto;
+        margin-top: 0;
+        padding-top: 30px;
+
+        ul {
+            a {
+                display: block;
+                text-align: center;
+                color: @mozIDBlue;
+                padding: 14px @baseLine (@baseLine / 2);
+                .font-size(@largeFontSize);
+                line-height: @largeFontSize;
+
+                &.selected {
+                    border-color: transparent;
+                }
+            }
+
+            &.primarynav a {
+                opacity: 1;
+                height: auto;
+            }
+        }
+
+        li {
+            float: none;
+            max-width: none;
+            margin: 0;
+            border-bottom: 1px solid rgba(187, 187, 187, 0.6);
+        }
+    }
+}
+
+#fxfamilynav-subnav {
+    height: 90px;
+    overflow: hidden;
+
+    // Mobile
+    @media (max-width: @breakTablet) {
+        display: none;
+    }
+}
+#fxfamilynav-tertiarynav {
+    display: none;
+    position: absolute;
+    right: 2px;
+    top: 189px;
+    z-index: 10;
+    height: auto;
+    width: (238px - (@baseLine * 2));
+    border: 1px solid #d1d2d3;
+    box-shadow: 0 1px 2px rgba(86, 86, 90, 0.5);
+    padding:  @baseLine;
+    background: #fff;
+
+    .triangle,
+    .triangle-border {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+    }
+
+    .triangle {
+        top: -12px;
+        right: 11px;
+        border-width: 0 12px 12px;
+        border-color: transparent transparent #fff;
+        z-index: 2;
+    }
+
+    .triangle-border {
+        top: -13px;
+        right: 10px;
+        border-width: 0 13px 13px;
+        border-color: transparent transparent #d1d2d3;
+        z-index: 1;
+    }
+
+    ul a {
+        display: block;
+        padding: (@baseLine / 4) 0;
+        color: @mozIDBlue;
+        .font-size(@baseFontSize);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    li {
+        float: none;
+        margin: 0;
+    }
+
+    &.active {
+        display: block;
+    }
+}
+
+#fxfamilynav-cta-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    float: left;
+    width: 160px;
+    height: 50px;
+    overflow: hidden;
+    margin: 140px (@baseLine * 1.5) 0 4px;
+    .transition(all 0.2s ease);
+
+    // Desktop wide
+    @media (min-width: @breakDesktopWide) {
+        margin-left: @baseLine / 2;
+    }
+
+    // Tablet and mobile
+    @media (max-width: @breakDesktop) {
+        display: none;
+    }
+}
+
+// icon triggering show/hide of tertiary nav
+#fxfamilynav-tertiarynav-trigger {
+    .clearfix();
+    float: left;
+    width: 36px;
+    height: 26px;
+    border-radius: 6px;
+    background: transparent;
+    color: @mozIDBlue;
+    margin-top: 150px;
+    border: none;
+    letter-spacing: 0px;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0;
+    .transition(all 0.2s ease);
+
+    // "Menu" text for screen readers only
+    span {
+        .visually-hidden();
+    }
+
+    #trigger-dots {
+        width: 22px;
+        margin: 0 auto;
+    }
+
+    .trigger-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #fff;
+        float: left;
+        margin-right: 2px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    &.visible {
+        opacity: 1;
+    }
+
+    &:hover,
+    &.active {
+        background: @mozIDBlue;
+    }
+
+    // Mobile
+    @media (max-width: @breakTablet) {
+        display: none;
+    }
+}
+
+#fxfamilynav-logo {
+    float: left;
+    width: 140px;
+    height: 146px;
+    margin: 38px @baseLine 0 (@baseLine / 2);
+    .fxfamilynav-sprite(0);
+    .image-replaced();
+    .transition(all 0.3s ease);
+
+    // Desktop wide
+    @media (min-width: @breakDesktopWide) {
+        margin-right: 75px;
+        margin-left: @baseLine;
+    }
+
+    // Tablet
+    @media (max-width: @breakDesktop) {
+        margin-right: @baseLine / 2;
+        margin-left: @baseLine / 2;
+    }
+
+    // Mobile
+    @media (max-width: @breakTablet) {
+        display: none;
+    }
+}
+
+#fxfamilynav-tabzilla {
+    position: absolute;
+    top: -2px;
+    right: 0;
+    width: 146px;
+    height: 36px;
+    .fxfamilynav-sprite(-146px);
+    .image-replaced();
+
+    // switch to inverted tabzilla image
+    @media (max-width: @breakTablet) {
+        .fxfamilynav-sprite(-182px);
+    }
+}
+
+// change top border color to match inverted tabzilla image
+@media (max-width: @breakTablet) {
+    #outer-wrapper {
+        border-color: @mozIDBlue;
+    }
+}
+
+// State styles - sticky nav and dark text version
+
+// broken out for readability
+#fxfamilynav-header {
+    &.dark {
+        ul {
+            a.selected {
+                border-color: @mozIDBlue;
+            }
+
+            &.primarynav a {
+                color: @mozIDBlue;
+            }
+
+            &.subnav a {
+                color: @mozIDGrey;
+            }
+        }
+
+        // make ticket orange
+        .icon-mwc {
+            .fxfamilynav-sprite(-253px);
+        }
+    }
+
+    &.stuck {
+        position: fixed;
+        z-index: 200; // seems to be above everything on /firefox/partners...
+        .transform(translateY(-123px));
+        background: #fff;
+        background: rgba(255, 255, 255, 0.97);
+        background-image: none;
+        box-shadow: 0 1px 3px rgba(50, 50, 50, 0.4);
+
+        #fxfamilynav-logo {
+            .transform(scale(0.5) translateY(106px));
+        }
+
+        ul.subnav a {
+            color: @mozIDGrey;
+
+            &.selected {
+                border-color: @mozIDBlue;
+            }
+        }
+
+        // make ticket orange
+        .icon-mwc {
+            .fxfamilynav-sprite(-253px);
+        }
+
+        #fxfamilynav-tertiarynav-trigger {
+            .trigger-dot {
+                background: @mozIDBlue;
+            }
+
+            &:hover,
+            &.active {
+                .trigger-dot {
+                    background: #fff;
+                }
+            }
+        }
+
+        #fxfamilynav-cta-wrapper {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
