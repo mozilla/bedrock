@@ -19,12 +19,10 @@ SHAAVAILABLE=$(git ls-remote git://github.com/mozilla/bedrock.git master | awk '
 # Nix the 4 bytes before the sha because it's http smart protocol
 #SHAAVAILABLE="${SHAAVAILABLE:4}"
 
-echo "We have ${SHADEPLOYED:0:8} and ${SHAAVAILABLE:0:8} is available."
 
 if [ "$SHADEPLOYED" = "$SHAAVAILABLE" ];
 then
     # Nothing to deploy
-    echo "Nothing to deploy."
     exit 0
 fi
 
@@ -37,6 +35,7 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
+echo "We have ${SHADEPLOYED:0:8} and ${SHAAVAILABLE:0:8} is available."
 echo "Calling Chief for '$WEBAPP' to deploy '${SHAAVAILABLE:0:8}'"
 
 # This just creates a POST event to the Chief app. We populate the form fields with the information gathered above ($SHAAVAILABLE, $PASSWORD, $WEBAPP)
