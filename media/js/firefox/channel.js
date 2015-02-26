@@ -15,10 +15,10 @@ $(document).ready(function() {
 
     pager.$container.bind('changePage', function(e, tab) {
         if (pager.currentPage.id == 'developer') {
-            $('body').addClass('blueprint');
+            $('body').removeClass('sky').addClass('blueprint');
             $logo.attr('src', $logo.attr('data-inverse-src'));
         } else {
-            $('body').removeClass('blueprint');
+            $('body').removeClass('blueprint').addClass('sky');
             $logo.attr('src', logoOriginalSrc);
         }
 
@@ -40,12 +40,10 @@ $(document).ready(function() {
 
     // init
     if (pager.currentPage.id == 'developer') {
-        $('body').removeClass('sky');
-        $('body').addClass('blueprint');
+        $('body').removeClass('sky').addClass('blueprint');
         $logo.attr('src', $logo.attr('data-inverse-src'));
     } else {
-        $('body').removeClass('blueprint');
-        $('body').addClass('sky');
+        $('body').removeClass('blueprint').addClass('sky');
         $logo.attr('src', logoOriginalSrc);
     }
 
