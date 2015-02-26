@@ -213,27 +213,27 @@ class TestRNAViews(TestCase):
 
 
 class TestReleaseNotesIndex(TestCase):
-    def test_relnotes_index_firefox(self):
+    @patch('bedrock.releasenotes.views.l10n_utils.render')
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='36.0')
+    def test_relnotes_index_firefox(self, render_mock):
         with self.activate('en-US'):
-            response = self.client.get(reverse('firefox.releases.index'))
-        doc = pq(response.content)
-        eq_(len(doc('a[href="0.1.html"]')), 1)
-        eq_(len(doc('a[href="0.10.html"]')), 1)
-        eq_(len(doc('a[href="1.0.html"]')), 1)
-        eq_(len(doc('a[href="1.0.8.html"]')), 1)
-        eq_(len(doc('a[href="1.5.html"]')), 1)
-        eq_(len(doc('a[href="1.5.0.12.html"]')), 1)
-        eq_(len(doc('a[href="../2.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../2.0.0.20/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../3.6/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../3.6.28/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../17.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../17.0.11/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../24.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../24.1.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../24.1.1/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../25.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../25.0.1/releasenotes/"]')), 1)
+            self.client.get(reverse('firefox.releases.index'))
+        releases = render_mock.call_args[0][2]['releases']
+        eq_(len(releases), len(product_details.firefox_history_major_releases))
+        eq_(releases[0][0], 36.0)
+        eq_(releases[0][1]['major'], '36.0')
+        eq_(releases[0][1]['minor'], [])
+        eq_(releases[3][0], 33.1)
+        eq_(releases[3][1]['major'], '33.1')
+        eq_(releases[3][1]['minor'], ['33.1.1'])
+        eq_(releases[4][0], 33.0)
+        eq_(releases[4][1]['major'], '33.0')
+        eq_(releases[4][1]['minor'], ['33.0.1', '33.0.2', '33.0.3'])
+        eq_(releases[6][0], 31.0)
+        eq_(releases[6][1]['major'], '31.0')
+        eq_(releases[6][1]['minor'],
+            ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0', '31.5.0'])
 
     def test_relnotes_index_thunderbird(self):
         with self.activate('en-US'):
