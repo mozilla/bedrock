@@ -145,3 +145,26 @@
 
 }
 
+@media (max-width: @breakMobileLandscape) {
+
+    .form-contents {
+
+        input[type="email"],
+        .field select {
+            .font-size(16px);
+        }
+
+        ::-webkit-input-placeholder {
+            .font-size(16px);
+            line-height: 1.4;
+        }
+
+        ::-moz-placeholder {
+            .font-size(16px);
+        }
+
+        :-ms-input-placeholder {
+            .font-size(16px);
+        }
+    }
+}
