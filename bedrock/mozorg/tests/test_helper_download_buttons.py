@@ -189,6 +189,52 @@ class TestDownloadButtons(TestCase):
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
+    def test_aurora_desktop(self):
+        """The Aurora channel should have Windows 64 build"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_firefox('aurora', mobile=False) }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_windows')
+        eq_(pq(list[1]).attr('class'), 'os_windows64')
+        eq_(pq(list[2]).attr('class'), 'os_linux')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_osx')
+
+    def test_beta_desktop(self):
+        """The Beta channel should not have Windows 64 build yet"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_firefox('beta', mobile=False) }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 4)
+        eq_(pq(list[0]).attr('class'), 'os_windows')
+        eq_(pq(list[1]).attr('class'), 'os_linux')
+        eq_(pq(list[2]).attr('class'), 'os_linux64')
+        eq_(pq(list[3]).attr('class'), 'os_osx')
+
+    def test_firefox_desktop(self):
+        """The Release channel should not have Windows 64 build yet"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_firefox(mobile=False) }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 4)
+        eq_(pq(list[0]).attr('class'), 'os_windows')
+        eq_(pq(list[1]).attr('class'), 'os_linux')
+        eq_(pq(list[2]).attr('class'), 'os_linux64')
+        eq_(pq(list[3]).attr('class'), 'os_osx')
+
     def test_aurora_mobile(self):
         rf = RequestFactory()
         get_request = rf.get('/fake')

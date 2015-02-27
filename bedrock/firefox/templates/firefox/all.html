@@ -145,6 +145,9 @@
           <tr>
             <th colspan="2" scope="col">{{ _('Language') }}</th>
             <th scope="col">{{ _('Windows') }}</th>
+            {% if channel in ['aurora'] -%}
+            <th scope="col">{{ _('Windows 64-bit') }}</th>
+            {% endif -%}
             <th scope="col">{{ _('Mac OS X') }}</th>
             <th scope="col">{{ _('Linux') }}</th>
             <th scope="col">{{ _('Linux 64-bit') }}</th>
@@ -166,6 +169,10 @@
     <th scope="row">{{ build.name_en }}</th>
     <td lang="{{ build.locale }}">{{ build.name_native }}</td>
     {{ build_link(build, 'Windows', _('Download for Windows')) }}
+    {# Windows 64-bit builds are currently available only on the Aurora channel -#}
+    {% if channel in ['aurora'] -%}
+    {{ build_link(build, 'Windows 64', _('Download for 64-bit Windows')) }}
+    {% endif -%}
     {{ build_link(build, 'OS X', _('Download for Mac OS X')) }}
     {{ build_link(build, 'Linux', _('Download for Linux')) }}
     {{ build_link(build, 'Linux 64', _('Download for 64-bit Linux')) }}
@@ -174,12 +181,12 @@
 
 <!--
   build: Locale dictionary from product details.
-  platform: Value in build.platforms to use. One of 'Windows', 'OS X', 'Linux'.
+  platform: Value in build.platforms to use. One of 'Windows', 'Windows 64', 'OS X', 'Linux' and 'Linux 64'.
   tooltip: Text to display as tooltip for download link.
 -->
 {% macro build_link(build, platform, tooltip) %}
   {% if build.platforms[platform] %}
-    <td class="download {% if platform == 'Windows' %}win{% elif platform == 'OS X' %}mac{% elif platform == 'Linux' %}linux{% elif platform == 'Linux 64' %}linux64{% endif %}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
+    <td class="download {{ platform|lower|replace(' ', '') }}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
   {% else %}
     <td class="unavailable">{{ _('Not Yet Available') }}</td>
   {% endif %}

@@ -74,6 +74,17 @@
             return 'other';
         },
 
+        getPlatformVersion: function (ua) {
+            ua = ua || navigator.userAgent;
+
+            // On OS X, Safari and Chrome have underscores instead of dots
+            var match = ua.match(/Windows\ NT\ (\d+\.\d+)/) ||
+                        ua.match(/Mac\ OS\ X\ (\d+[\._]\d+)/) ||
+                        ua.match(/Android\ (\d+\.\d+)/);
+
+            return match ? match[1].replace('_', '.') : undefined;
+        },
+
         getArchType: function (ua, pf) {
             pf = (pf === '') ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
@@ -111,7 +122,7 @@
             pf = (pf === '') ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
 
-            var re = /x64|x86_64|Win64/i;
+            var re = /x64|x86_64|Win64|WOW64/i;
             if (re.test(pf) || re.test(ua)) {
                 return 64;
             }
@@ -122,6 +133,7 @@
         },
 
         platform: 'other',
+        platformVersion: undefined,
         archType: 'x64',
         archSize: 32
     };
@@ -131,11 +143,18 @@
         // if other than 'windows', immediately replace the platform classname on the html-element
         // to avoid lots of flickering
         var platform = window.site.platform = window.site.getPlatform();
-        if (platform !== 'windows') {
+        var version = window.site.platformVersion = window.site.getPlatformVersion();
+
+        if (platform === 'windows') {
+            // Add class to support downloading Firefox for Windows 64-bit on Windows 7 and later
+            if (version && parseFloat(version) >= 6.1) {
+                h.className += ' win7up';
+            }
+        } else {
             h.className = h.className.replace('windows', platform);
 
             // Add class to support downloading Firefox Aurora for Android Gingerbread
-            if (platform === 'android' && navigator.userAgent.match(/Android\ 2\.3/)) {
+            if (platform === 'android' && version && parseFloat(version) === 2.3) {
                 h.className += ' gingerbread';
             }
         }
