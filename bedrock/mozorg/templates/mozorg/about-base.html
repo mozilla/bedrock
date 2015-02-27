@@ -8,9 +8,10 @@
 {% set navigation_bar = [
     (url('mozorg.about'), _('About Mozilla')),
     (url('mozorg.mission'),  _('Mission')),
-    (url('mozorg.about.forums.forums'), _('Forums')),
-    (url('mozorg.about.governance.governance'), _('Governance')),
     (url('mozorg.about.history'), _('History')),
+    (url('mozorg.about.leadership'),  _('Leadership')),
+    (url('mozorg.about.governance.governance'), _('Governance')),
+    (url('mozorg.about.forums.forums'), _('Forums')),
 ] -%}
 
 {% block extrahead %}
@@ -20,7 +21,6 @@
 {% block content %}
 
 <div id="main-content">
-<div class="row">
 
 <article class="main-column">
 {% block article %}{% endblock %}
@@ -55,7 +55,6 @@
 
 </aside>
 
-</div>
 </div>
 
 {% endblock %}

@@ -4,6 +4,15 @@
 
 @import "../sandstone/lib.less";
 
+@font-face {
+    font-family: 'FA-Icons-Contact';
+    src: url('/media/fonts/icons-contact.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/icons-contact.woff') format('woff'),
+         url('/media/fonts/icons-contact.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #wrapper {
     width: 100%;
 }
@@ -36,6 +45,14 @@
         & + * {
             clear: left;
         }
+    }
+
+    .main-column {
+        .span(8);
+    }
+
+    .sidebar {
+        .offset(1);
     }
 
     .intro {
@@ -107,8 +124,111 @@
     .sidebar {
         margin-top: 20px;
     }
-
 }
+
+// Leadership
+.about-leadership .main-column h2 {
+    padding-bottom: 15px;
+    margin-bottom: @baseLine;
+    background: url(/media/img/mission/thin-stripe.png) center bottom repeat-x;
+}
+
+#page-nav {
+    padding: 5px 0;
+    background: #f5f5f5;
+    margin-bottom: @baseLine * 2;
+
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    li {
+        display: inline;
+        margin: 0 10px;
+    }
+}
+
+
+
+.gallery {
+    list-style: none;
+    margin: 0 -10px @baseLine;
+    .clearfix();
+
+    .vcard {
+        .span(2);
+        .font-size(12px);
+        margin-bottom: @baseLine;
+
+        img {
+            padding: 3px;
+            background: #fff;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+            margin-left: -3px;
+        }
+
+        &:nth-child(4n+1) {
+            clear: left;
+        }
+    }
+}
+
+.brass .gallery .vcard {
+    padding-left: 160px;
+
+    .fn {
+        .font-size(16px);
+        display: block;
+    }
+
+    .title {
+        display: block;
+    }
+
+    .note {
+        display: block;
+        color: @textColorTertiary;
+        .font-size(11px);
+    }
+
+    .elsewhere {
+        list-style: none;
+        margin: 1em 0 0;
+
+        li {
+            margin: 0;
+        }
+    }
+
+    img {
+        float: left;
+        margin-left: -163px;
+    }
+
+    &:nth-child(odd) {
+        clear: left;
+    }
+}
+
+// Icons
+.elsewhere a {
+    padding-left: 20px;
+    position: relative;
+
+    &:before {
+        color: #b50f10;
+        font: 105% 'FA-Icons-Contact';
+        position: absolute;
+        left: 0;
+        top: .125em;
+    }
+}
+
+.elsewhere a.website:before { content: '\e803'; } /* '' */
+.elsewhere a.twitter:before { content: '\e804'; } /* '' */
+.elsewhere a.book:before { content: '\e80e'; } /* '' */
+
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
@@ -122,6 +242,14 @@
     #main-content {
         .title-shadow-box {
             margin-right: 250px;
+        }
+
+        .main-column {
+            .span_narrow(8);
+        }
+
+        .sidebar {
+            .offset_narrow(1);
         }
 
         .video {
@@ -141,6 +269,22 @@
             }
         }
 
+    }
+
+    .gallery .vcard {
+        .span_narrow(2);
+        margin-bottom: @baseLine;
+    }
+
+    .brass .gallery {
+        margin: 0 0 @baseLine;
+
+        .vcard {
+            width: auto;
+            float: none;
+            margin: 0 0 @baseLine;
+            .clearfix();
+        }
     }
 
 }
@@ -166,6 +310,11 @@
             margin-right: 0;
         }
 
+        .main-column,
+        .sidebar {
+            .span-all();
+        }
+
         .video {
             width: 100%;
             margin: 0;
@@ -185,6 +334,36 @@
             }
         }
 
+    }
+
+    .gallery .vcard {
+        .span_narrow(2);
+        margin-bottom: @baseLine;
+
+        &:nth-child(4n+1) {
+            clear: none;
+        }
+
+        &:nth-child(odd) {
+            clear: left;
+        }
+    }
+
+    .brass .gallery {
+        margin: 0 0 @baseLine;
+
+        .vcard {
+            width: auto;
+            float: none;
+            margin: 0 0 @baseLine;
+            .clearfix();
+            padding-left: 120px;
+
+            img {
+                width: 100px;
+                margin-left: -123px;
+            }
+        }
     }
 
 }
@@ -219,6 +398,16 @@
             clear: right;
         }
 
+    }
+
+    .gallery .vcard {
+        &:nth-child(odd) {
+            clear: none;
+        }
+
+        &:nth-child(3n+1) {
+            clear: left;
+        }
     }
 
 }
