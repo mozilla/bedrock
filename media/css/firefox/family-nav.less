@@ -340,6 +340,19 @@
     #trigger-dots {
         width: 22px;
         margin: 0 auto;
+
+        // hey old IE, i made this triangle for you
+        &.fallback {
+            width: 0;
+            height: 0;
+            border-left: 11px solid transparent;
+            border-right: 11px solid transparent;
+            border-top: 11px solid #fff;
+
+            .trigger-dot {
+                display: none;
+            }
+        }
     }
 
     .trigger-dot {
@@ -447,7 +460,7 @@
     &.stuck {
         position: fixed;
         z-index: 200; // seems to be above everything on /firefox/partners...
-        .transform(translateY(-123px));
+        .transform(translateY(-124px));
         background: #fff;
         background: rgba(255, 255, 255, 0.97);
         background-image: none;
