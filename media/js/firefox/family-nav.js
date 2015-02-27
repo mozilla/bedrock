@@ -130,9 +130,14 @@ if (typeof window.Mozilla === 'undefined') {
                 $tertiaryNavTrigger.removeClass('active');
             });
 
-            $fxFamilyHeader.waypoint('sticky', {
-                offset: -120
-            });
+            // ensure only browsers that support CSS transforms
+            // get the sticky nav (matchMedia support overlap is
+            // almost exact)
+            if (mqDesktop) {
+                $fxFamilyHeader.waypoint('sticky', {
+                    offset: -120
+                });
+            }
         };
 
         // remove all desktop interactions (mobile clean-up)
@@ -146,7 +151,9 @@ if (typeof window.Mozilla === 'undefined') {
             $tertiaryNavContainer.off();
             $fxFamilyHeader.off();
 
-            $fxFamilyHeader.waypoint('unsticky');
+            if (mqDesktop) {
+                $fxFamilyHeader.waypoint('unsticky');
+            }
         };
 
         // public initialization point, called from page specific script
@@ -192,6 +199,11 @@ if (typeof window.Mozilla === 'undefined') {
             } else {
                 // if matchMedia not available, just wire up the desktop stuff
                 _enableDesktop();
+
+                // check if IE 8 and replace ... button
+                if (/MSIE\s[1-8]\./.test(navigator.userAgent)) {
+                    $('#trigger-dots').addClass('fallback');
+                }
             }
         };
 
