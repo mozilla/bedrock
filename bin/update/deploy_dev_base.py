@@ -17,3 +17,4 @@ def database(ctx):
     management_cmd(ctx, 'update_security_advisories --force --quiet', use_src_dir=True)
     management_cmd(ctx, 'cron update_reps_ical')
     management_cmd(ctx, 'cron update_tweets')
+    management_cmd(ctx, 'runscript update_firefox_os_feeds')
