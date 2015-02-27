@@ -17,7 +17,7 @@
         <ul>
           {% for advisory in group.list %}
             <li class="level-item">
-              <a href="{{ advisory.get_absolute_url() }}"><span class="level {{ advisory.impact_class }}">MSFA-{{ advisory.id }}</span> {{ advisory.title|safe }}</a></li>
+              <a href="{{ advisory.get_absolute_url() }}"><span class="level {{ advisory.impact_class }}">MFSA {{ advisory.id }}</span> {{ advisory.title|safe }}</a></li>
           {% endfor %}
         </ul>
       {% endfor %}
