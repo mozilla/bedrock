@@ -12,3 +12,16 @@
         COMMON_JS_FILES
     ]);
 })(window.Modernizr);
+
+;(function($, Mozilla) {
+
+    // initialize fx family nav
+    var fxNavConfig = {
+        primaryId: 'os', // id of primary nav item to highlight (REQUIRED)
+        subId: 'partners', // id of sub nav item to highlight (OPTIONAL)
+    };
+
+    Mozilla.FxFamilyNav.init(fxNavConfig);
+
+
+})(window.jQuery, window.Mozilla);

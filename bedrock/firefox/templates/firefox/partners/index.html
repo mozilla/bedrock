@@ -31,28 +31,23 @@
 
 {% block site_js %}
   {% javascript 'firefox-resp' %}
+  <!--[if IE 9]>
+    {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
 {% endblock %}
 
 {% block js %}
   {% javascript 'partners' %}
 {% endblock %}
 
-{% block site_header %}
-  <header id="masthead">
-    <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
-    {% block site_header_nav %}
-    <nav id="nav-main" role="navigation">
-      <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
-      <ul id="nav-main-menu">
-        <li class="first"><a href="#os">{{_('Firefox OS')}}</a></li>
-        <li><a href="#marketplace">{{_('Marketplace')}}</a></li>
-        <li class="last"><a href="#android">{{_('Android')}}</a></li>
-      </ul>
-    </nav>
-    {% endblock %}
+{% block site_header %}{% endblock %}
 
-  </header>
-  <h3 id="explore">{{_('Explore the site') }}</h3>
+{% block site_header_unwrapped %}
+  {% set fxfamilynav_class = 'dark' %}
+  {% include 'firefox/includes/family-nav.html' %}
+{% endblock %}
+
+{% block content %}
   <nav id="partner-nav" role="navigation">
     <ul id="partner-menu" class="menu">
       <li id="menu-overview" class="active"><a href="#overview">{{_('Overview')}}</a></li>
@@ -60,16 +55,17 @@
       <li id="menu-marketplace"><a href="#marketplace">{{_('Marketplace')}}</a></li>
       <li id="menu-android"><a href="#android">{{_('Android')}}</a></li>
     </ul>
-    {# Save for probable re-use during MWC 2015
     <ul id="mwc-menu" class="menu">
-      <li id="menu-mwc-map"><a href="#map" class="modal">{{ _('Map') }}</a></li>
+      {% if l10n_has_tag('mwc_2015') %}
+      <li class="title">{{ _('MWC') }}</li>
+      {% endif %}
+      <li id="menu-mwc-map" class="first"><a href="#map" class="modal">{{ _('Map') }}</a></li>
       <li id="menu-mwc-schedule"><a href="#schedule" class="modal">{{ _('Schedule') }}</a></li>
     </ul>
-    #}
+    <ul id="devices-menu" class="menu">
+      <li id="menu-devices"><a href="{{ url('firefox.os.devices') }}">{{ _('Devices') }}</a></li>
+    </ul>
   </nav>
-{% endblock %}
-
-{% block content %}
 
 <div class="phone-container" id="phone-common">
   <div class="phone">
@@ -90,31 +86,41 @@
       <div class="article-content">
         <h2>{{ _('Unleash the future') }}</h2>
         <div class="intro">
-
           <p>
-            {{ _('In our first year, we’ve brought openness, accessibility and opportunity to 15 countries with 4 hardware partners, 7 operators and 16 launches.') }}
-          {% trans url1='class="nav" href="#os"'|safe, url2='class="nav" href="#marketplace"'|safe, url3='class="nav" href="#android"'|safe %}
-            See what’s next for mobile with <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a>
-            and <a {{url3}}>Firefox for Android</a>.
-          {% endtrans %}
+            {% if l10n_has_tag('mwc_2015') %}
+              {{ _('Firefox OS has brought openness, accessibility and opportunity to 29 countries with more than 50 launches and 14 global operators — and that momentum continues in 2015.') }}
+            {% else %}
+              {{ _('In our first year, we’ve brought openness, accessibility and opportunity to 15 countries with 4 hardware partners, 7 operators and 16 launches.') }}
+            {% endif %}
+            {% trans url1='class="nav" href="#os"'|safe, url2='class="nav" href="#marketplace"'|safe, url3='class="nav" href="#android"'|safe %}
+              See what’s next for mobile with <a {{url1}}>Firefox OS</a>, <a {{url2}}>Firefox Marketplace</a>
+              and <a {{url3}}>Firefox for Android</a>.
+            {% endtrans %}
           </p>
 
-          <p class="partner-button"><a href="https://mobilepartners.mozilla.org/" class="button">{{ _('Partner with us') }}</a></p>
+          <p class="partner-button"><a href="https://mobilepartners.mozilla.org/" class="button-flat">
+          {% if l10n_has_tag('mwc_2015') %}
+            {{ _('Be a partner') }}
+          {% else %}
+            {{ _('Partner with us') }}
+          {% endif %}
+          </a></p>
 
           <div id="overview-news-links">
             <div id="overview-news-wrapper">
-              <img src="{{ static('img/firefox/partners/mwc-2014-banner.png') }}" alt="{{ _('Mobile World Congress 2014') }}">
+              <img src="{{ static('img/firefox/partners/mwc-2015-banner.png') }}" alt="{{ _('Mobile World Congress 2015') }}">
               <div id="overview-news">
+              {% set feed_links = firefox_os_feed_links(LANG) %}
+              {% if feed_links %}
+                {% set feed_link = feed_links[0] %}
+                {% set feed_url, feed_title = feed_links[0] %}
                 <h3>{{ _('Recent news') }}</h3>
                 <ul>
-                  <li><a href="{{ locale_headline_url }}">{{ locale_headline_title }}</a></li>
+                  <li><a href="{{ feed_url }}">{{ feed_title }}</a></li>
                 </ul>
-              </div> <!--/#overview-news-->
+              {% endif %}
+            </div> <!--/#overview-news-->
             </div> <!--/#overview-news-wrapper-->
-
-            <div id="overview-links">
-              <a class="fxos-devices-link" href="{{ url('firefox.os.devices') }}">{{ _('View available Firefox OS devices') }}</a>
-            </div> <!--/#overview-links-->
           </div> <!--/#overview-news-links-->
 
           <div class="partner-logos">
@@ -122,58 +128,56 @@
               <div class="pager-content">
                 <div class="pager-page default-page">
                   <ul class="logos">
-
-                    <li><img src="{{ static('img/firefox/partners/logos/light/telefonica.png') }}" alt="Telefonica" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/dt.png') }}" alt="DT" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/lg.png') }}" alt="LG" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/qualcomm.png') }}" alt="Qualcomm" ></li>
-
-                    <li><img src="{{ static('img/firefox/partners/logos/light/zte.png') }}" alt="ZTE" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/telenor.png') }}" alt="Telenor" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/americamovil.png') }}" alt="America Movil" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/tcl.png') }}" alt="TCL" ></li>
-
-                    <li><img src="{{ static('img/firefox/partners/logos/light/telecomitalia.png') }}" alt="Telecom Italia" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/huawei.png') }}" alt="Huawei"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/chinaunicom.png') }}" alt="China Unicom" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/kddi.png') }}" alt="KDDI" ></li>
-
-                    <li><img src="{{ static('img/firefox/partners/logos/light/sprint.png') }}" alt="Sprint" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/spreadtrum.png') }}" alt="Spreadtrum"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/etisalat.png') }}" alt="Etisalat" ></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/light/koreatelecom.png') }}" alt="Korea Telecom" ></li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/kddi.png', {'alt': 'KDDI', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/telefonica.png', {'alt': 'Telefonica', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/telenor.png', {'alt': 'Telenor', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/deutsche-telekom.png', {'alt': 'Deutsche Telekom', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/panasonic.png', {'alt': 'Panasonic', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/alcatel.png', {'alt': 'Alcatel ONETOUCH', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/spreadtrum.png', {'alt': 'Spreadtrum', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/qualcomm.png', {'alt': 'Qualcomm', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/america-movil.png', {'alt': 'America Movil', 'width': '120', 'height': '60'}) }}</li>
                   </ul>
                 </div>
                 <div class="pager-page">
                   <ul class="logos">
-
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/twitter.png') }}" alt="Twitter"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/wikipedia.png') }}" alt="Wikipedia"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/disney-wheresmywater.png') }}" alt="Disney - Where's My Water"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/soundcloud.png') }}" alt="SoundCloud"></li>
-
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/line.png') }}" alt="Line"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/cut-the-rope.png') }}" alt="Cut The Rope"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/pinterest.png') }}" alt="Pinterest"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/yelp.png') }}" alt="Yelp"></li>
-
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/napster.png') }}" alt="Napster"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/youtube.png') }}" alt="YouTube"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/the-weather-channel.png') }}" alt="The Weather Channel"></li>
-                    <li><img src="{{ static('img/firefox/partners/logos/marketplace/new-york-times.png') }}" alt="New York Times"></li>
-
-                    <li><img src="{{ static('img/firefox/partners/logos/light/singtel.png') }}" alt="SingTel" ></li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/grameenphone.png', {'alt': 'GrameenPhone', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/telecom-italia.png', {'alt': 'Telecom Italia', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/huawei.png', {'alt': 'Huawei', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/zte.png', {'alt': 'ZTE', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/symphony.png', {'alt': 'Symphony', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/cherry-mobile.png', {'alt': 'Cherry Mobile', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/intex.png', {'alt': 'Intex', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/zen-mobile.png', {'alt': 'ZEN Mobile', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/megafon.png', {'alt': 'MegaFon', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/spice.png', {'alt': 'Spice', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/lg.png', {'alt': 'LG', 'width': '120', 'height': '60'}) }}</li>
+                  </ul>
+                </div>
+                <div class="pager-page">
+                  <ul class="logos">
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/youtube.png', {'alt': 'YouTube', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/twitter.png', {'alt': 'Twitter', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/pinterest.png', {'alt': 'Pinterest', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/disney.png', {'alt': 'Disney', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/wikimedia.png', {'alt': 'Wikimedia', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/soundcloud.png', {'alt': 'SoundCloud', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/line.png', {'alt': 'Line', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/the-weather-channel.png', {'alt': 'The Weather Channel', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/here-maps.png', {'alt': 'Here Maps', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/kobo.png', {'alt': 'Kobo', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/outlook.png', {'alt': 'Outlook', 'width': '120', 'height': '60'}) }}</li>
+                    <li>{{ high_res_img('img/firefox/partners/logos/light/ebay-india.png', {'alt': 'eBay India', 'width': '120', 'height': '60'}) }}</li>
                   </ul>
                 </div>
               </div><!--/pager-content-->
               <ul class="pager-tabs">
                 <li><a href="#p1">●</a></li>
                 <li><a href="#p2">●</a></li>
+                <li><a href="#p3">●</a></li>
               </ul>
             </div><!--/pager-->
           </div><!--/partner-logos-->
-
-          <p id="more-partners">{{_('See more partners') }}</p>
         </div>
       </div>
     </section>
@@ -194,14 +198,24 @@
       <div class="phone-shadow"></div>
       <div class="article-content">
         <div id="os-overview-intro" class="intro tween">
-          <h4 class="narrow">{{ _('The Web is the platform')}}</h4>
-          <p class="narrow">{% trans url='class="view-section" data-section="os-operators" href="#"'|safe,
-            url2=url('firefox.os.index') %}
-            Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a {{ url }}>See how you can get involved</a> or <a href="{{ url2 }}">learn more about what it means for consumers</a>.
-          {% endtrans %}</p>
-          <a class="fxos-devices-link" href="{{ url('firefox.os.devices') }}">{{ _('View available Firefox OS devices') }}</a>
-          <h4 class="narrow">{{ _('Made of the Web') }}</h4>
-          <p class="narrow">{{ _('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.') }}</p>
+          {% if l10n_has_tag('mwc_2015') %}
+            <h4 class="narrow">{{ _('Just what your customers need')}}</h4>
+            <p class="narrow">{{ _('Easy to use. Easy to customize. Firefox OS is an open platform that fosters greater participation in the value chain.') }}</p>
+            <h4 class="narrow">{{ _('The Web is the platform') }}</h4>
+            <p class="narrow">
+              {{ _('Firefox OS is an independent alternative ecosystem free from the rules and restrictions of existing proprietary platforms.') }}
+              {{ _('Our partners are industry leaders that have realized the value that a differentiated offering can bring to their target markets.') }}
+            </p>
+          {% else %}
+            <h4 class="narrow">{{ _('The Web is the platform')}}</h4>
+            <p class="narrow">{% trans url='class="view-section" data-section="os-operators" href="#"'|safe,
+              url2=url('firefox.os.index') %}
+              Backed by some of the biggest names in the industry, Firefox OS is an open platform that fosters greater participation in the value chain. <a {{ url }}>See how you can get involved</a> or <a href="{{ url2 }}">learn more about what it means for consumers</a>.
+            {% endtrans %}</p>
+            <a class="fxos-devices-link" href="{{ url('firefox.os.devices') }}">{{ _('View available Firefox OS devices') }}</a>
+            <h4 class="narrow">{{ _('Made of the Web') }}</h4>
+            <p class="narrow">{{ _('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.') }}</p>
+          {% endif %}
           <h4 class="narrow">{{ _('Made by Firefox') }}</h4>
           <p class="narrow">{{ _('For the past 15 years, we’ve been instrumental in innovating and shaping the Web to keep it open and accessible to all. As a result of our efforts, one fifth of all Web activity today happens through Firefox products.') }}</p>
         </div>
@@ -210,20 +224,41 @@
     <section id="os-operators" class="section-2" data-pos="2">
       <div class="article-content">
         <div id="os-operators-intro" class="intro tween">
-          <h3 id="os-operators-headline" class="tween">{{ _('The difference the Open Web makes') }}</h3>
+          <h3 id="os-operators-headline" class="tween">
+          {% if l10n_has_tag('mwc_2015') %}
+            {{ _('The Open Web advantage') }}
+          {% else %}
+            {{ _('The difference the Open Web makes') }}
+          {% endif %}
+          </h3>
           <div class="left">
-            <h4>{{ _('Firefox OS offers:') }}</h4>
-            <ul>
-              <li>{{ _('A level playing field against other OS and marketplace providers') }}</li>
-              <li>{{ _('Greater participation in the value chain') }}</li>
-              <li>{{ _('Ownership and control over relationships with customers') }}</li>
-              <li>{{ _('Customized phones that meet the specific needs of various target markets') }}</li>
-            </ul>
-            <p class="partner-button"><a href="https://mobilepartners.mozilla.org/" class="button">{{ _('Partner with us') }}</a></p>
+            {% if l10n_has_tag('mwc_2015') %}
+              <h4>{{ _('With Firefox OS you can:') }}</h4>
+              <ul>
+                <li>{{ _('Create unique user experiences to deliver on specific market needs') }}</li>
+                <li>{{ _('Own and control your relationship with your consumers') }}</li>
+                <li>{{ _('Explore alternative business models') }}</li>
+                <li>{{ _('Stimulate increased Internet use') }}</li>
+                <li>{{ _('Level the playing field against other OS and marketplace providers') }}</li>
+              </ul>
+            {% else %}
+               <h4>{{ _('Firefox OS offers:') }}</h4>
+               <ul>
+                <li>{{ _('A level playing field against other OS and marketplace providers') }}</li>
+                <li>{{ _('Greater participation in the value chain') }}</li>
+                <li>{{ _('Ownership and control over relationships with customers') }}</li>
+                <li>{{ _('Customized phones that meet the specific needs of various target markets') }}</li>
+               </ul>
+            {% endif %}
             <div id="os-promos" class="promos">
               <div>
-                <h4>{{ _('Get involved') }}</h4>
-                <a href="https://mobilepartners.mozilla.org/">{{ _('Contact our business development team to get on board') }}</a>
+                {% if l10n_has_tag('mwc_2015') %}
+                  <h4>{{ _('Firefox OS at home') }}</h4>
+                  <a href="{{ url('firefox.os.tv') }}">{{ _('The power of the Web is coming to Panasonic TVs later this year') }}</a>
+                {% else %}
+                  <h4>{{ _('Get involved') }}</h4>
+                  <a href="https://mobilepartners.mozilla.org/">{{ _('Contact our business development team to get on board') }}</a>
+                {% endif %}
               </div>
               <div>
                 <h4>{{ _('View the version notes') }}</h4>
@@ -231,36 +266,9 @@
               </div>
             </div>
           </div>
-
-          <ul id="os-operators-logos1" class="logos">
-
-            <li><img src="{{ static('img/firefox/partners/logos/dark/telefonica.png') }}" alt="Telefonica" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/dt.png') }}" alt="DT" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/lg.png') }}" alt="LG" ></li>
-
-            <li><img src="{{ static('img/firefox/partners/logos/dark/qualcomm.png') }}" alt="Qualcomm" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/zte.png') }}" alt="ZTE" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/telenor.png') }}" alt="Telenor" ></li>
-
-            <li><img src="{{ static('img/firefox/partners/logos/dark/kddi.png') }}" alt="KDDI" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/tcl.png') }}" alt="TCL" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/telecomitalia.png') }}" alt="Telecom Italia" ></li>
-
-            <li><img src="{{ static('img/firefox/partners/logos/dark/chinaunicom.png') }}" alt="China Unicom" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/sprint.png') }}" alt="Sprint" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/vimpelcom.png') }}" alt="VimpelCom" ></li>
-
-            <li><img src="{{ static('img/firefox/partners/logos/dark/singtel.png') }}" alt="SingTel" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/etisalat.png') }}" alt="Etisalat" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/koreatelecom.png') }}" alt="Korea Telecom" ></li>
-
-            <li><img src="{{ static('img/firefox/partners/logos/dark/smartcom.png') }}" alt="SMART Communications" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/megafon.png') }}" alt="Megafon" ></li>
-            <li><img src="{{ static('img/firefox/partners/logos/dark/portugaltelecom.png') }}" alt="Portugal Telecom" ></li>
-
-            <li><img src="{{ static('img/firefox/partners/logos/dark/americamovil.png') }}" alt="American Movil" ></li>
-
-          </ul>
+          <div class="operator-screenshots">
+            <img src="{{ static('img/firefox/partners/firefox-os-partners.png')}}" alt="{{ _('Firefox OS partners') }}" />
+          </div>
         </div>
       </div>
     </section>
@@ -282,13 +290,21 @@
       <div class="article-content">
         <div id="marketplace-overview-intro" class="intro tween">
           <h4>{{ _('HTML5 apps for all')}}</h4>
-          <p class="narrow">{% trans url1='class="view-section" data-section="marketplace-operators" href="#"'|safe, url2='class="view-section" data-section="marketplace-developers" href="#"'|safe %}
-            Discover a new way to participate in an ecosystem that features the world’s most popular apps as well as more relevant, targeted content to suit customers’ local needs. See how that can help <a {{ url1 }}>operators and manufacturers</a> as well as <a {{ url2 }}>developers</a>.
-          {% endtrans %}</p>
-          <h4>{{ _('Your needs') }}</h4>
-          <p>{{ _('Grow your business by combining your own customer payment plans with our open source service offerings, reach new markets and customize purchasing and app experiences to meet your specific needs.') }}</p>
-          <h4>{{ _('Our experience') }}</h4>
-          <p class="less-narrow">{{ _('Our proven track record of providing excellent user experiences and serving content to huge global audiences runs through everything we do. Our directory of add-ons serves content to hundreds of millions of users worldwide.') }}</p>
+          {% if l10n_has_tag('mwc_2015') %}
+            <p class="narrow">{{ _('Discover a new way to participate in an ecosystem that features the world’s most popular apps as well as more relevant, targeted content to suit your customers’ local needs.') }}</p>
+            <h4>{{ _('Your own business model') }}</h4>
+            <p>{{ _('Grow your business by combining your own customer payment plans with our open source service offerings. Customize purchasing and app experiences to meet your specific needs and reach new markets.') }}</p>
+            <h4>{{ _('Revolutionary content discovery') }}</h4>
+            <p class="less-narrow">{{ _('App experts and Mozilla community members from all over the world help identify relevant content on the Firefox Marketplace. This ensures that your customers can easily find the content that matters most to them.') }}</p>
+          {% else %}
+            <p class="narrow">{% trans url1='class="view-section" data-section="marketplace-operators" href="#"'|safe, url2='class="view-section" data-section="marketplace-developers" href="#"'|safe %}
+              Discover a new way to participate in an ecosystem that features the world’s most popular apps as well as more relevant, targeted content to suit customers’ local needs. See how that can help <a {{ url1 }}>operators and manufacturers</a> as well as <a {{ url2 }}>developers</a>.
+            {% endtrans %}</p>
+            <h4>{{ _('Your needs') }}</h4>
+            <p>{{ _('Grow your business by combining your own customer payment plans with our open source service offerings, reach new markets and customize purchasing and app experiences to meet your specific needs.') }}</p>
+            <h4>{{ _('Our experience') }}</h4>
+            <p class="less-narrow">{{ _('Our proven track record of providing excellent user experiences and serving content to huge global audiences runs through everything we do. Our directory of add-ons serves content to hundreds of millions of users worldwide.') }}</p>
+          {% endif %}
           <div id="marketplace-promos" class="promos">
             <div class="promo-testimonials icon">
               <span></span>
@@ -308,59 +324,75 @@
     <section id="marketplace-operators" class="section-2" data-pos="2">
       <div class="article-content">
         <div class="intro tween">
-          <h3>{{ _('The world’s largest developer community') }}</h3>
-          <div class="left">
-            <h4>{{ _('Marketplace offers:') }}</h4>
-            <ul>
-              <li>{{ _('Commitment from well-known, tier 1 developers') }}</li>
-              <li>{{ _('Micro-targeted content for every use-case to meet customers’ local needs') }}</li>
-              <li>{{ _('Lower barriers to entry for local app developers in both resource and cost') }}</li>
-            </ul>
-            <p class="partner-button">
-              <a href="https://mobilepartners.mozilla.org/" class="button">{{ _('Partner with us') }}</a>
-            </p>
-          </div>
+          {% if l10n_has_tag('mwc_2015') %}
+            <h3>{{ _('A direct path to your customers') }}</h3>
+            <div class="left">
+              <h4>{{ _('Marketplace offers:') }}</h4>
+              <ul>
+                <li>{{ _('Operator billing that lets you participate in the mobile ecosystem and develop direct relationships with end users') }}</li>
+                <li>{{ _('An operator shelf where you can promote your messaging, content and app collections relevant to your customers and markets') }}</li>
+                <li>{{ _('A unique content discovery mechanism with fresh, regularly-updated, relevant apps micro-targeted to meet customers’ local needs') }}</li>
+                <li>{{ _('Commitment from well-known, tier 1 developers') }}</li>
+                <li>{{ _('Lower barriers to entry for local app developers in both resource and cost') }}</li>
+              </ul>
+            </div>
+          {% else %}
+            <h3>{{ _('The world’s largest developer community') }}</h3>
+            <div class="left">
+              <h4>{{ _('Marketplace offers:') }}</h4>
+              <ul>
+                <li>{{ _('Commitment from well-known, tier 1 developers') }}</li>
+                <li>{{ _('Micro-targeted content for every use-case to meet customers’ local needs') }}</li>
+                <li>{{ _('Lower barriers to entry for local app developers in both resource and cost') }}</li>
+              </ul>
+            </div>
+          {% endif %}
           <div class="marketplace-logos pager pager-with-tabs pager-no-history pager-auto-init">
             <div class="pager-content">
               <div class="pager-page default-page">
                 <ul class="logos">
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/avg.png') }}" alt="AVG"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/aviary.png') }}" alt="Aviary"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/cut-the-rope.png') }}" alt="Cut The Rope"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/despegar.png') }}" alt="despegar.com"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/disney-wheresmywater.png') }}" alt="Disney - Where's My Water"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/enclave-games.png') }}" alt="Enclave Games"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/ever-nav.png') }}" alt="EverNav"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/fifa.png') }}" alt="FIFA"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/life-rescuer.png') }}" alt="LifeRescuer"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/line.png') }}" alt="Line"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/napster.png') }}" alt="Napster"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/new-york-times.png') }}" alt="New York Times"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/pinterest.png') }}" alt="Pinterest"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/planine-srbije.png') }}" alt="Planine Srbije"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/the-pond.png') }}" alt="The Pond"></li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/disney.png', {'alt': 'Disney', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/box.png', {'alt': 'BOX', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/line.png', {'alt': 'LINE', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/twitter.png', {'alt': 'Twitter', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/yelp.png', {'alt': 'Yelp', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/cut-the-rope.png', {'alt': 'Cut the Rope', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/zedge.png', {'alt': 'Zedge', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/here-maps.png', {'alt': 'HERE Maps', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/the-weather-channel.png', {'alt': 'The Weather Channel', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/khan-academy.png', {'alt': 'Khan Academy', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/wikimedia.png', {'alt': 'Wikimedia', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/8tracks.png', {'alt': '8tracks', 'width': '120', 'height': '60'}) }}</li>
                 </ul>
               </div><!--/.pager-page-->
               <div class="pager-page">
                 <ul class="logos">
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/rakuten.png') }}" alt="Rakuten"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/recruit.png') }}" alt="Recruit"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/soundcloud.png') }}" alt="SoundCloud"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/surf-time.png') }}" alt="Surf Time"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/timeout.png') }}" alt="TimeOut"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/twitter.png') }}" alt="Twitter"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/urlist.png') }}" alt="Urlist"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/the-weather-channel.png') }}" alt="The Weather Channel"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/wikipedia.png') }}" alt="Wikipedia"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/xe.png') }}" alt="XE"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/yelp.png') }}" alt="Yelp"></li>
-                  <li><img src="{{ static('img/firefox/partners/logos/marketplace/youtube.png') }}" alt="YouTube"></li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/outlook.png', {'alt': 'Outlook', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/bandai-namco.png', {'alt': 'Bandai Namco', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/pinterest.png', {'alt': 'Pinterest', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/rakuten.png', {'alt': 'Rakuten', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/soundcloud.png', {'alt': 'Soundcloud', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/jalan.png', {'alt': 'Jalan', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/tresensa.png', {'alt': 'Tresensa', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/vuclip.png', {'alt': 'Vuclip', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/kobo.png', {'alt': 'Kobo', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/aviary.png', {'alt': 'Aviary', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/youtube.png', {'alt': 'YouTube', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/easy-taxi.png', {'alt': 'Easy Taxi', 'width': '120', 'height': '60'}) }}</li>
+                </ul>
+              </div>
+              <div class="pager-page">
+                <ul class="logos">
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/ebay-india.png', {'alt': 'Ebay India', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/espn-cricinfo.png', {'alt': 'ESPNcricinfo', 'width': '120', 'height': '60'}) }}</li>
+                  <li>{{ high_res_img('img/firefox/partners/logos/light/enclave-games.png', {'alt': 'Enclave Games', 'width': '120', 'height': '60'}) }}</li>
                 </ul>
               </div>
             </div><!--/.pager-content-->
             <ul class="pager-tabs">
               <li><a href="#p1">●</a></li>
               <li><a href="#p2">●</a></li>
+              <li><a href="#p3">●</a></li>
             </ul>
           </div><!--/.pager-->
         </div><!--/.intro-->
@@ -373,10 +405,19 @@
           <div class="left">
             <h4>{{ _('Marketplace offers:') }}</h4>
             <ul>
+            {% if l10n_has_tag('mwc_2015') %}
+              <li>{{ _('Apps that customers can discover easily and access across multiple platforms, devices and operating systems') }}</li>
+              <li>{{ _('Flexible business models, including advertising and multiple payment monetization options that make in-app payments simple') }}</li>
+            {% else %}
               <li>{{ _('Apps that customers can access across multiple platforms, devices and operating systems') }}</li>
               <li>{{ _('Flexible business models and multiple payment monetization options') }}</li>
+            {% endif %}
               <li>{{ _('Optional carrier billing in regional currencies') }}</li>
+            {% if l10n_has_tag('mwc_2015') %}
+              <li>{{ _('The ability to connect with hundreds of millions of Firefox users and supporters around the world') }}</li>
+            {% else %}
               <li>{{ _('The ability to connect with hundreds of millions of Firefox supporters around the world') }}</li>
+            {% endif %}
               <li>{{ _('Access to relatively untapped markets') }}</li>
             </ul>
           </div>
@@ -412,16 +453,28 @@
     <section id="android-overview" class="section-1" data-pos="1" data-current="1">
       <div class="article-content">
         <div class="intro tween">
-          <h4>{{ _('A superior Web experience') }}</h4>
-          <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ static('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
-          {# L10n: The line break before the link below is presentational only. #}
-          <p>{% trans url='class="view-section block-text" data-section="android-partner" href="#"'|safe %}
-            With high-performance, advanced cross-platform features and the latest in security, our top-rated browser offers an alternative to closed platforms, giving you the flexibility to design, distribute and charge as you see fit. <a {{ url }}>Learn more about partner opportunities.</a>
-          {% endtrans %}</p>
-          <h4>{{ _('Strengthen customer relationships') }}</h4>
-          <p>{{ _('Create your own unique branded sections of Firefox for Android and Firefox Marketplace for a more engaging user experience and to increase the visibility of your brand.') }}</p>
-          <h4 class="narrow">{{ _('Create new value for both you and your users') }}</h4>
-          <p class="narrow">{{ _('Take advantage of service opportunities like Firefox Marketplace and WebRTC to create new, platform-independent offerings and establish direct customer billing.') }}</p>
+          {% if l10n_has_tag('mwc_2015') %}
+            <h4>{{ _('A superior mobile experience') }}</h4>
+            <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ static('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
+            <p>{{ _('With connected features and the latest in security and privacy, our top-rated browser offers an alternative to closed platforms and provides a valuable way to connect with smartphones and tablets users alike.') }}</p>
+            <h4>{{ _('Customize relationships') }}</h4>
+            <p>{{ _('Provide your users with your own flavor of Firefox for Android and Firefox Marketplace for a more engaging user experience that increases the visibility of your brand.') }}</p>
+            <h4 class="narrow">{{ _('Create new value') }}</h4>
+            <p class="narrow">{{ _('Step into the Firefox ecosystem to take advantage of opportunities like Firefox Marketplace and WebRTC. You can display new Web content or integrate into your customer’s living room to create new, platform-independent offerings.') }}</p>
+            <p><a class="view-section block-text" data-section="android-partner" href="#">
+              {{ _('Learn more about partner opportunities.') }}
+            </a></p>
+          {% else %}
+            <h4>{{ _('A superior Web experience') }}</h4>
+            <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ static('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
+            <p>{% trans url='class="view-section block-text" data-section="android-partner" href="#"'|safe %}
+              With high-performance, advanced cross-platform features and the latest in security, our top-rated browser offers an alternative to closed platforms, giving you the flexibility to design, distribute and charge as you see fit. <a {{ url }}>Learn more about partner opportunities.</a>
+            {% endtrans %}</p>
+            <h4>{{ _('Strengthen customer relationships') }}</h4>
+            <p>{{ _('Create your own unique branded sections of Firefox for Android and Firefox Marketplace for a more engaging user experience and to increase the visibility of your brand.') }}</p>
+            <h4 class="narrow">{{ _('Create new value for both you and your users') }}</h4>
+            <p class="narrow">{{ _('Take advantage of service opportunities like Firefox Marketplace and WebRTC to create new, platform-independent offerings and establish direct customer billing.') }}</p>
+          {% endif %}
         </div>
       </div>
     </section>
@@ -431,7 +484,13 @@
           <div class="android-dude"></div>
           {# L10n: The line break in this headline is essentially presentational. Place the break wherever it seems best for your locale, or omit it if it isn't needed. #}
           <h3>{{ _('Stand out <br>from the crowd') }}</h3>
-          <p>{{ _('Take advantage of our strong brand and service offerings to differentiate your product and drive sales.') }}</p>
+          <p>
+          {% if l10n_has_tag('mwc_2015') %}
+            {{ _('Take advantage of our differentiated offering, strong brand and customer love for the Firefox ecosystem to drive sales and data usage.') }}
+          {% else %}
+            {{ _('Take advantage of our strong brand and service offerings to differentiate your product and drive sales.') }}
+          {% endif %}
+          </p>
           <h4>{{ _('Firefox for Android lets you:') }}</h4>
           <ul>
             <li>
@@ -439,15 +498,24 @@
               <p>{{ _('Add your brand and content to increase customer touchpoints, improve retention and drive future sales.') }}</p>
             </li>
             <li>
+            {% if l10n_has_tag('mwc_2015') %}
+              <h5>{{ _('Build new differentiated offerings') }}</h5>
+              <p>{{ _('Integrate services directly into the browser to free yourself from the constraints of proprietary platforms.') }}</p>
+            {% else %}
               <h5>{{ _('Build new service offerings') }}</h5>
               <p>{{ _('Integrate services directly into the browser with Firefox Marketplace and WebRTC to free yourself from the constraints of proprietary platforms.') }}</p>
+            {% endif %}
             </li>
             <li>
+            {% if l10n_has_tag('mwc_2015') %}
+              <h5>{{ _('Step into the Firefox ecosystem') }}</h5>
+              <p>{{ _('Leverage the Firefox Marketplace, WebRTC technology, direct customer billing support, search enhancements, new Firefox cloud services and more.') }}</p>
+            {% else %}
               <h5>{{ _('Direct customer billing') }}</h5>
               <p>{{ _('Grow your business by combining your own customer payment plans with our open source service offerings.') }}</p>
+            {% endif %}
             </li>
           </ul>
-          <p class="partner-button"><a href="#form" class="button toggle-form">{{ _('Partner with us') }}</a></p>
         </div>
       </div>
     </section>
@@ -547,6 +615,14 @@
       </div>
     </form>
     <button id="pageslider-close" type="button" class="modal-close close">{{ _('Close') }}</button>
+  </section>
+  <section id="schedule" class="overlay-contents">
+    <h2 class="overlay-title">{{ _('Firefox at MWC 2015 &ndash; Schedule of Events') }}</h2>
+    {% include "firefox/includes/mwc_2015_schedule.html" %}
+  </section>
+  <section id="map" class="overlay-contents">
+    <h2 class="overlay-title">{{ _('Firefox at MWC 2015 &ndash; Hall 3, Stand 3C30') }}</h2>
+    {% include "firefox/includes/mwc_2015_map.html" %}
   </section>
 </div>
 
