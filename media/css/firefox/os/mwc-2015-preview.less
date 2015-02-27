@@ -128,6 +128,49 @@ html, body {
     }
 }
 
+#news {
+    position: relative;
+    background: #fff;
+    padding: (@baseLine * 3) 0;
+
+    .container {
+        .clearfix();
+    }
+
+    h3 {
+        .font-size(48px);
+    }
+
+    a {
+        color: #2bb8a0;
+        .trailing-arrow();
+    }
+
+    .left,
+    .right {
+        float: left;
+        width: 50%;
+    }
+
+    .left a {
+        .font-size(@largeFontSize);
+    }
+
+    ul {
+        margin: 0;
+    }
+
+    li {
+        list-style-type: none;
+        margin: 0 0 @baseLine;
+
+        a {
+            .font-size(20px);
+            font-style: italic;
+        }
+    }
+}
+
 #info {
     position: relative;
     background: #eaeff2;
@@ -550,6 +593,28 @@ html, body {
         }
     }
 
+    #news {
+        text-align: center;
+
+        h3 {
+            .font-size(28px);
+        }
+
+        .left,
+        .right {
+            float: none;
+            width: auto;
+        }
+
+        ul {
+            margin-top: @baseLine * 2;
+        }
+
+        li a {
+            .font-size(@largeFontSize);
+        }
+    }
+
     #info {
         h3 {
             .font-size(28px);
@@ -672,6 +737,28 @@ html, body {
             height: 166px;
             left: 8px;
             top: 121px;
+        }
+    }
+
+    #news {
+        text-align: center;
+
+        h3 {
+            .font-size(28px);
+        }
+
+        .left,
+        .right {
+            float: none;
+            width: auto;
+        }
+
+        ul {
+            margin-top: @baseLine * 2;
+        }
+
+        li a {
+            .font-size(@largeFontSize);
         }
     }
 

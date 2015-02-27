@@ -65,6 +65,27 @@
     </div>
   </section>
 
+  <section id="news">
+    <div class="container">
+      <div class="left">
+        <h3>{{ _('In the news') }}</h3>
+        <a href="">{{ _('See all press') }}</a>
+      </div>
+
+      <div class="right">
+      {% set feed_links = firefox_os_feed_links(LANG) %}
+      {% if feed_links %}
+        <ul>
+        {% for link, title in feed_links[:3] %}
+          <li><a rel="external" href="{{ link }}">{{ title }}</a></li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section id="info">
     <div class="container">
       <h3>{{ _('Be part of our growing family of partners') }}</h3>
