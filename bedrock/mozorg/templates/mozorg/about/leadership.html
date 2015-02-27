@@ -1,0 +1,423 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Mozilla Leadership') }}{% endblock %}
+{% block body_id %}about-leadership{% endblock %}
+{% block body_class %}sand about-leadership{% endblock %}
+
+{% block article %}
+
+  <h1 class="title-shadow-box">{{ _('Leadership') }}</h1>
+
+  <p>
+  {{ _('Our leadership team is made up of both paid staff and volunteers who represent a breadth of experience and expertise in building products that people love and empowering communities to make a significant impact on the project and in the world.') }}
+  {{ _('While these teams have different day-to-day responsibilities and areas of focus, they are all guided by our non-profit, open-source, community-based mission, identity and values.') }}
+  </p>
+
+  <nav id="page-nav">
+    <ul>
+      <li><a href="#management">{{ _('Management Teams') }}</a></li>
+      <li><a href="#reps-council">{{ _('Mozilla Reps Council') }}</a></li>
+      <li><a href="#directors">{{ _('Boards of Directors') }}</a></li>
+    </ul>
+  </nav>
+
+  <section id="management" class="brass">
+    <h2>{{ _('Management Teams') }}</h2>
+
+    <h3 id="mgmt-corp"><a href="{{ url('foundation.moco') }}">{{ _('Mozilla Corporation') }}</a></h3>
+    <ul class="gallery">
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/mitchell-baker/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/mitchell-baker.jpg') }}">
+          <span class="fn" itemprop="name">Mitchell Baker</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('Executive Chairwoman') }}</span>
+        <span class="note">{{ _('Steering Committee') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/MitchellBaker">@MitchellBaker</a></li>
+          <li><a class="url website" itemprop="url" href="https://blog.lizardwrangler.com">lizardwrangler.com</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/mitchell/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/chris-beard/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/chris-beard.jpg') }}">
+          <span class="fn" itemprop="name">Chris Beard</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('Chief Executive Officer') }}</span>
+        <span class="note">{{ _('Steering Committee') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/cbeard">@cbeard</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/cbeard/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/li-gong/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/li-gong.jpg') }}">
+          <span class="fn" itemprop="name">Li Gong</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('President') }}</span>
+        <span class="note">{{ _('Steering Committee') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/ligong/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/jim-cook/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/jim-cook.jpg') }}">
+          <span class="fn" itemprop="name">Jim Cook</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('Chief Finance Officer') }}</span>
+        <span class="note">{{ _('Steering Committee') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/cookflix">@cookflix</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/jcook/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/denelle-dixon-thayer/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/denelle-dixon-thayer.jpg') }}">
+          <span class="fn" itemprop="name">Denelle Dixon-Thayer</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('Senior Vice President, Business and Legal Affairs') }}</span>
+        <span class="note">{{ _('Steering Committee') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/ddixon/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/andreas-gal/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/andreas-gal.jpg') }}">
+          <span class="fn" itemprop="name">Andreas Gal</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('Chief Technology Officer') }}</span>
+        <span class="note">{{ _('Steering Committee') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/andreasgal">@andreasgal</a></li>
+          <li><a class="url website" itemprop="url" href="http://andreasgal.com">andreasgal.com</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/gal/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/david-slater/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/david-slater.jpg') }}">
+          <span class="fn" itemprop="name">David Slater</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('Chief of Staff and SVP of Operations') }}</span>
+        <span class="note">{{ _('Steering Committee') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/seeyaslater">@seeyaslater</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/dslater/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/rick-fant/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/rick-fant.jpg') }}">
+          <span class="fn" itemprop="name">Rick Fant</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP, Planning and Ecosystem') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/rickfant">@rickfant</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/rfant/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/darren-herman/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/darren-herman.jpg') }}">
+          <span class="fn" itemprop="name">Darren Herman</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP, Content Services') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/dherman76">@dherman76</a></li>
+          <li><a class="url website" itemprop="url" href="http://www.darrenherman.com">darrenherman.com</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/daherman/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/mark-mayo/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/mark-mayo.jpg') }}">
+          <span class="fn" itemprop="name">Mark Mayo</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP and General Manager, Firefox') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/mmayo">@mmayo</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/mmayo/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/mary-ellen-muckerman/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/mary-ellen-muckerman.jpg') }}">
+          <span class="fn" itemprop="name">Mary Ellen Muckerman</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP, Brand Engagement') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/maryellen/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/pete-scanlon/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/pete-scanlon.jpg') }}">
+          <span class="fn" itemprop="name">Pete Scanlon</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP, New Initiatives') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/pbscanlon">@pbscanlon</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/pscanlon/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/sylvie-veilleux/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/sylvie-veilleux.jpg') }}">
+          <span class="fn" itemprop="name">Sylvie Veilleux</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP, Information Technology') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/sveilleux/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <h3 id="mgmt-foundation"><a href="{{ url('foundation.index') }}">{{ _('Mozilla Foundation') }}</a></h3>
+    <ul class="gallery">
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/mark-surman/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/mark-surman.jpg') }}">
+          <span class="fn" itemprop="name">Mark Surman</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('President and Executive Director') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/msurman">@msurman</a></li>
+          <li><a class="url website" itemprop="url" href="https://commonspace.wordpress.com/">{{ _('Website') }}</a></li>
+          <li><a class="url book" itemprop="url" href="https://mozillians.org/u/surman/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://mozillians.org/u/davida/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/david-ascher.jpg') }}">
+          <span class="fn" itemprop="name">David Ascher</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP, Product') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/davidascher">@davidascher</a></li>
+          <li><a class="url website" itemprop="url" href="http://blog.ascher.ca/">ascher.ca</a></li>
+          <li><a class="book" href="https://mozillians.org/u/davida/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://mozillians.org/u/CLAW/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/chris-lawrence.jpg') }}">
+          <span class="fn" itemprop="name">Chris Lawrence</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP, Learning') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/chrislarry33">@chrislarry33</a></li>
+          <li><a class="book" href="https://mozillians.org/u/CLAW/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="http://intangible.ca/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/geoffrey-macdougall.jpg') }}" title="Photo by Lisbon Council, https://www.flickr.com/photos/lisboncouncil/9697188965/">
+          <span class="fn" itemprop="name">Geoffrey MacDougall</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP, Engagement') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/taliesan">@taliesan</a></li>
+          <li><a class="website" href="http://intangible.ca/">intangible.ca</a></li>
+        </ul>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://mozillians.org/u/aplohman/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/angela-plohman.jpg') }}">
+          <span class="fn" itemprop="name">Angela Plohman</span>
+        </a>
+        <span class="title" itemprop="jobTitle">{{ _('VP, Operations') }}</span>
+
+        <ul class="elsewhere">
+          <li><a class="url twitter" itemprop="url" href="https://twitter.com/angelaplohman">@angelaplohman</a></li>
+          <li><a class="book" href="https://mozillians.org/u/aplohman/">{{ _('Mozillians profile') }}</a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section id="reps-council">
+    <h2>{{ _('Mozilla Reps Council') }}</h2>
+    <p>{{ ('The Mozilla Reps Council is composed of volunteer Mozillians who function as official representatives of Mozilla in their region or locale. The council provides the general vision for the Mozilla Reps Program and oversees day-to-day operations globally.') }}</p>
+    <ul class="gallery">
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://reps.mozilla.org/u/rardila/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/rosana-ardila.jpg') }}">
+          <span class="fn" itemprop="name">Rosana Ardila</span>
+        </a>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://reps.mozilla.org/u/gautha91/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/gauthamraj-elango.jpg') }}">
+          <span class="fn" itemprop="name">Gauthamraj Elango</span>
+        </a>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://reps.mozilla.org/u/ankitgadgil/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/ankit-gadgil.jpg') }}">
+          <span class="fn" itemprop="name">Ankit Gadgil</span>
+        </a>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://reps.mozilla.org/u/emma_irwin_/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/emma-irwin.jpg') }}">
+          <span class="fn" itemprop="name">Emma Irwin</span>
+        </a>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://reps.mozilla.org/u/jsan4christ/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/san-emmanuel-james.jpg') }}">
+          <span class="fn" itemprop="name">San Emmanuel James</span>
+        </a>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://reps.mozilla.org/u/nukeador/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/ruben-martin.jpg') }}">
+          <span class="fn" itemprop="name">Rubén Martin</span>
+        </a>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://reps.mozilla.org/u/thephoenixbird/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/arturo-martinez.jpg') }}">
+          <span class="fn" itemprop="name">Arturo Martinez</span>
+        </a>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://reps.mozilla.org/u/bobreyes/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/robert-reyes.jpg') }}">
+          <span class="fn" itemprop="name">Robert Reyes</span>
+        </a>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://reps.mozilla.org/u/lasr21/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/luis-a-sanchez.jpg') }}">
+          <span class="fn" itemprop="name">Luis A. Sanchez</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="directors">
+    <h2>{{ _('Boards of Directors') }}</h2>
+
+    <h3 id="board-corp">{{ _('Mozilla Corporation') }}</h3>
+    <ul class="gallery">
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/mitchell-baker/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/mitchell-baker.jpg') }}">
+          {# L10n: This "Chair" is the chairperson of the board of directors, not something to sit on #}
+          <span class="fn" itemprop="name">Mitchell Baker, {{ _('Chair') }}</span>
+        </a>
+      </li>
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/chris-beard/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/chris-beard.jpg') }}">
+          <span class="fn" itemprop="name">Chris Beard</span>
+        </a>
+      </li>
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://www.linkedin.com/in/reidhoffman">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/reid-hoffman.jpg') }}">
+          <span class="fn" itemprop="name">Reid Hoffman</span>
+        </a>
+      </li>
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://twitter.com/lyssaslounge">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/katharina-borchert.jpg') }}">
+          <span class="fn" itemprop="name">Katharina Borchert</span>
+        </a>
+      </li>
+    </ul>
+
+    <h3 id="board-foundation">{{ _('Mozilla Foundation') }}</h3>
+    <ul class="gallery">
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://blog.mozilla.org/press/bios/mitchell-baker/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/mitchell-baker.jpg') }}">
+          {# L10n: This "Chair" is the chairperson of the board of directors, not something to sit on #}
+          <span class="fn" itemprop="name">Mitchell Baker, {{ _('Chair') }}</span>
+        </a>
+      </li>
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="http://brian.behlendorf.com/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/brian-behlendorf.jpg') }}">
+          <span class="fn" itemprop="name">Brian Behlendorf</span>
+        </a>
+      </li>
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="http://joi.ito.com/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/joi-ito.jpg') }}">
+          <span class="fn" itemprop="name">Joi Ito</span>
+        </a>
+      </li>
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://twitter.com/lisbonne">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/bob-lisbonne.jpg') }}">
+          <span class="fn" itemprop="name">Bob Lisbonne</span>
+        </a>
+      </li>
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="http://www.cathydavidson.com/">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/cathy-davidson.jpg') }}">
+          <span class="fn" itemprop="name">Cathy Davidson</span>
+        </a>
+      </li>
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <a class="url" itemprop="url" href="https://twitter.com/lemos_ronaldo">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/ronaldo-lemos.jpg') }}">
+          <span class="fn" itemprop="name">Ronaldo Lemos</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+{% endblock %}

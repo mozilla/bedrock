@@ -87,6 +87,12 @@
   </ul>
 
   <ul class="links">
+    {% if l10n_has_tag('about_leadership') %}
+    <li>
+      <h4><a href="{{ url('mozorg.about.leadership') }}">{{ _('Mozilla leadership') }}</a></h4>
+      <p>{{ _('Our Management Teams, Reps Council and Boards of Directors') }}</p>
+    </li>
+    {% endif %}
     <li>
       <h4><a href="{{ url('mozorg.products') }}">{{ _('Our products') }}</a></h4>
       <p>{{ _('An overview of what we make and what we’re working on') }}</p>
@@ -102,10 +108,6 @@
     <li>
       <h4><a href="{{ url('privacy') }}">{{ _('Privacy center') }}</a></h4>
       <p>{{ _('How Mozilla handles your personal information') }}</p>
-    </li>
-    <li>
-      <h4><a href="{{ php_url('/about/partnerships') }}">{{ _('Mozilla partnerships') }}</a></h4>
-      <p>{{ _('Details about partnering with us') }}</p>
     </li>
     {% if l10n_has_tag('about_links') %}
     <li>
