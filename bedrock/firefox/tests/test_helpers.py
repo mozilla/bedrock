@@ -51,3 +51,28 @@ class FirefoxOSFeedLinksTest(TestCase):
         eq_(helpers.firefox_os_feed_links('xx-xx'), cache.get.return_value)
         cache.get.assert_called_with('firefox-os-feed-links-xx')
         assert_false(FirefoxOSFeedLink.objects.filter.called)
+
+
+class FirefoxOSBlogLinkTest(TestCase):
+    def test_correct_link_returned_for_es(self):
+        """
+        Should return the corect link for the es-ES locale
+        """
+        blog_link_es = 'https://blog.mozilla.org/press-es/category/firefox-os/'
+
+        eq_(helpers.firefox_os_blog_link('es-ES'), blog_link_es)
+
+    def test_correct_link_returned_for_locale_prefix(self):
+        """
+        Should return the latam link for the es-mx and es-ar locale
+        """
+        blog_link_latam = 'https://blog.mozilla.org/press-latam/category/firefox-os/'
+
+        eq_(helpers.firefox_os_blog_link('es-mx'), blog_link_latam)
+        eq_(helpers.firefox_os_blog_link('es-ar'), blog_link_latam)
+
+    def test_none_returned(self):
+        """
+        Should return None as the locale will not be found
+        """
+        eq_(helpers.firefox_os_blog_link('esmx'), None)

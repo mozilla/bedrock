@@ -1,0 +1,243 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% add_lang_files "firefox/os/devices" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Firefox OS — The Adaptive Phone — Great Smartphone Features, Apps and More')}}{% endblock %}
+{% block page_desc %}{{_('Firefox OS smartphones give you great adaptive features and apps that let you live every moment to its fullest and build a brighter future for the Web.')}}{% endblock %}
+
+{% block body_id %}firefox-os{% endblock %}
+{% block body_class %}firefox-os{% endblock %}
+
+{# Do not load CSS bundle specified in base template (duplicate CSS). #}
+{% block site_css %}{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% stylesheet 'firefox_os_new' %}
+<!--[if lt IE 9]>
+  {% stylesheet 'firefox_os_ie' %}
+<![endif]-->
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {% include 'firefox/includes/family-nav.html' %}
+{% endblock %}
+
+{% block content %}
+  <main role="main">
+    <section class="fxos-hero-space">
+      <div class="content-wrapper">
+        <div class="phone">
+          <div class="fxos-cta">
+            <h1><span>{{_('Firefox OS')}}</span></h1>
+            <p class="tagline">{{_('Designed to give you just what you need, just when you need it.')}}</p>
+
+            <div id="primary-cta-signup" class="signup hidden">
+              <a href="#email-form-wrapper" class="cta-button get-newsletter newsletter-signup-toggle" role="button" aria-haspopup="true">{{_('Sign me up')}}</a>
+              <p class="signup-txt">{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
+            </div>
+            <a id="primary-cta-phone" href="#get-device" class="cta-button get-phone hidden" role="button" aria-haspopup="true">{{_('Get a phone')}}</a>
+          </div>
+
+          <div href="#" class="phone-container">
+            <img src="{{ static('img/firefox/os-new/device_static.png') }}" width="520" height="394" alt="{{_('Firefox OS device illustration')}}" />
+
+            {# device demo triggers, not going live on March 1, so commenting out for now
+            <a href="#" id="trigger-homescreen" class="try-homescreen" role="button">
+              TODO: descriptive content to be added post March 1 for a11y
+              <div class="throbber throb-one"></div>
+              <div class="throbber throb-two"></div>
+              <div class="throbber throb-three"></div>
+              <div class="throbber throb-four"></div>
+            </a>
+
+            <a href="#" id="trigger-swipe" class="try-swipe" role="button">
+              TODO: descriptive content to be added post March 1 for a11y
+              <div class="throbber throb-one"></div>
+              <div class="throbber throb-two"></div>
+              <div class="throbber throb-three"></div>
+              <div class="throbber throb-four"></div>
+            </a> #}
+          </div>
+        </div>
+
+        {# device demo, not going live on March 1, so commenting out for now
+        <div class="demo">
+          <h2>{{_('Give these a try')}}</h2>
+          <a href="#" id="close-demo" class="close">
+            <span>{{_('Close')}}</span>
+          </a>
+          <div class="stage scroll-homescreen" data-button="#scroll-homescreen">
+            <img src="{{ static('img/firefox/os-new/device.png') }}" width="304" height="637" alt="" />
+            <div class="homescreen"></div>
+          </div>
+
+          <div class="stage swipe-apps" data-button="#swipe-apps">
+            <img src="{{ static('img/firefox/os-new/device.png') }}" width="304" height="637" alt="cellphone outlines" />
+            <img src="{{ static('img/firefox/os-new/wireframes-sprite.png') }}" class="wireframe-screens" height="499" width="1205" alt="" />
+            <div class="screens-sprite"></div>
+          </div>
+
+          <ul>
+            <li><a href="#" id="scroll-homescreen" class="active-state">{{_('Scroll the homepage')}}</a></li>
+            <li><a href="#" id="swipe-apps">{{_('Swipe between apps')}}</a></li>
+          </ul>
+        </div> #}
+      </div>
+    </section>
+    <section class="fxos-features">
+      <div class="content-wrapper">
+        <h2>{{_('Smart has never been so simple')}}</h2>
+        <div class="feature">
+          <img src="{{ static('img/firefox/os-new/icons/scroll_icon.png') }}" width="140" height="140" alt="{{_('interaction icon')}}" />
+          <h3>{{_('Scroll for what you need')}}</h3>
+          <p>{{_('Say goodbye to multiple home screens. Everything you need is right there in one clean, continuous scroll. What could be easier?')}}</p>
+        </div>
+
+        <div class="feature">
+          <img src="{{ static('img/firefox/os-new/icons/search_icon.png') }}" width="140" height="140" alt="{{_('interaction icon')}}" />
+          <h3>{{_('Search in a snap')}}</h3>
+          <p>{{_('Search the Web and the Firefox Marketplace, or visit a website directly —  all from the search bar at the top of your home screen.')}}</p>
+        </div>
+
+        <div class="feature">
+          <img src="{{ static('img/firefox/os-new/icons/swipe_icon.png') }}" width="140" height="140" alt="{{_('interaction icon')}}" />
+          <h3>{{_('Swipe&nbsp;between apps')}}</h3>
+          <p>{{_('Access your recently used apps in a flash. Just swipe from the edge of the screen to cycle through all of your open apps.')}}</p>
+        </div>
+      </div>
+    </section>
+    <section class="fxos-apps">
+      <div class="content-wrapper">
+        <h2>{{_('Apps for all you do')}}</h2>
+        <ul class="app-group-selector">
+          <li><a href="#" id="connected" data-category="connected" role="button">{{_('Stay connected')}}</a></li>
+          <li><a href="#" id="entertained" data-category="entertained" role="button">{{_('Stay entertained')}}</a></li>
+          <li><a href="#" id="organized" data-category="organized" role="button">{{_('Stay organized')}}</a></li>
+        </ul>
+        <ul class="apps">
+          <li><img src="{{ static('img/firefox/os-new/icons/dialer.png') }}" width="142" height="142" class="connected fade" alt="{{_('Phone')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/camera.png') }}" width="142" height="142" class="entertained fade" alt="{{_('Camera')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/video.png') }}" width="142" height="142" class="entertained fade" alt="{{_('Video')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/email.png') }}" width="142" height="142" class="connected fade" alt="{{_('E-Mail')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/sms.png') }}" width="142" height="142" class="connected fade" alt="{{_('Messages')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/calendar.png') }}" width="142" height="142" class="organized fade" alt="{{_('Calendar')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/browser.png') }}" width="142" height="142" class="connected entertained fade" alt="{{_('Browser')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/clock.png') }}" width="142" height="142" class="organized fade" alt="{{_('Clock')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/contacts.png') }}" width="142" height="142" class="connected organized fade" alt="{{_('Contacts')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/music.png') }}" width="142" height="142" class="entertained fade" alt="{{_('Music')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/fmradio.png') }}" width="142" height="142" class="entertained fade" alt="{{_('FM Radio')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/settings.png') }}" width="142" height="142" class="organized fade" alt="{{_('Settings')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/gallery.png') }}" width="142" height="142" class="entertained organized fade" alt="{{_('Gallery')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/usage.png') }}" width="142" height="142" class="organized fade" alt="{{_('Usage')}}" /></li>
+          <li><img src="{{ static('img/firefox/os-new/icons/marketplace.png') }}" width="142" height="142" class="connected entertained organized fade" alt="{{_('Marketplace')}}" /></li>
+        </ul>
+      </div>
+    </section>
+    <section class="fxos-marketplace">
+      <div class="content-wrapper">
+        <h2>{{_('Add more from the Firefox Marketplace')}}</h2>
+        <p>{{_('Get all the most popular games and social networking apps right here.')}}</p>
+        <ul class="apps-marketplace">
+          <li>
+            <img src="{{ static('img/firefox/os-new/icons/facebook.png') }}" width="142" height="142" alt="Facebook" />
+            <span>Facebook</span>
+          </li>
+          <li>
+            <img src="{{ static('img/firefox/os-new/icons/youtube.png') }}" width="142" height="142" alt="YouTube" />
+            <span>YouTube</span>
+          </li>
+          <li>
+            <img src="{{ static('img/firefox/os-new/icons/line.png') }}" width="142" height="142" alt="Line" />
+            <span>Line</span>
+          </li>
+        </ul>
+        <a href="https://marketplace.firefox.com/" class="cta-button marketplace" rel="external">{{_('Go to the Marketplace')}}</a>
+        <p class="footnote">{{_('* Pre-installed apps may vary by manufacturers and operators.')}}</p>
+      </div>
+    </section>
+
+    {% set feed_links = firefox_os_feed_links(LANG) %}
+    {% if feed_links %}
+    <section class="fxos-news">
+      <div class="content-wrapper">
+        <aside>
+          <h2>{{_('In the news')}}</h2>
+          <p><a href="{{ firefox_os_blog_link(LANG) }}">{{_('See more')}}</a></p>
+        </aside>
+        <ul>
+          {% for link, title in feed_links[:3] %}
+          <li><a href="{{ link }}">{{ title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="fxos-community">
+      <div class="content-wrapper">
+        <img src="{{ static('img/firefox/os-new/mozilla_groupshot.png') }}" width="260" height="260" alt="{{_('Mozilla community photo')}}" />
+        <h2>{{_('Powered by the Mozilla community')}}</h2>
+        <p>{{_('Mozilla is a non-profit organization fueled by a passionate global community. Together, we’re able to create and innovate with local interests in mind, while making the Web better and more accessible for everyone everywhere.')}}</p>
+        <p><a href="{{ url('mozorg.home') }}">{{_('Learn more about Mozilla')}}</a></p>
+      </div>
+    </section>
+    <section class="fxos-help">
+      <div class="content-wrapper">
+        <div class="help">
+          <h3>{{_('Need Help?')}}</h3>
+          <ul>
+            <li><a href="https://support.mozilla.org/products/firefox-os" rel="external">{{_('Firefox OS Support')}}</a></li>
+            <li><a href="https://find.firefox.com/" rel="external">{{_('Find My Device')}}</a></li>
+          </ul>
+        </div>
+        <div class="help">
+          <h3>{{_('For Developers')}}</h3>
+          <ul>
+            <li><a href="https://developer.mozilla.org" rel="external">{{_('Mozilla Developer Network')}}</a></li>
+            <li><a href="https://webmaker.org/appmaker" rel="external">{{_('Mozilla Appmaker')}}</a></li>
+            <li><a href="{{ url('firefox.os.devices') }}">{{_('Firefox OS devices')}}</a></li>
+            <li><a href="{{ url('firefox.os.tv') }}">{{_('Other Firefox OS versions')}}</a></li>
+          </ul>
+        </div>
+        <div class="help">
+          <h3>{{_('For Partners')}}</h3>
+          <ul>
+            <li><a href="https://mobilepartners.mozilla.org/" rel="external">{{_('Partnership opportunities')}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {% include '/firefox/os/_get_device.html' %}
+
+{% endblock %}
+
+{% block email_form %}
+  <div id="email-form-wrapper">
+    <div id="email-form-content" class="modal-content">
+      <div class="content">
+        {{ email_newsletter_form('mozilla-and-you,os', _('Sign up for our monthly newsletter')) }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block site_js %}
+  {% javascript 'firefox-resp' %}
+{% endblock %}
+
+{% block js %}
+<!--[if IE 9]>
+  {% javascript 'firefox_os_ie9' %}
+<![endif]-->
+  {% javascript 'firefox_os_new' %}
+{% endblock  %}
