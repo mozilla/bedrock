@@ -4,7 +4,6 @@ Deployment for Bedrock in production.
 Requires commander (https://github.com/oremj/commander) which is installed on
 the systems that need it.
 """
-import os
 import random
 import re
 import urllib
@@ -28,7 +27,6 @@ GITHUB_URL = 'https://github.com/mozilla/bedrock/compare/{oldrev}...{newrev}'
 @task
 def pre_update(ctx, ref=settings.UPDATE_REF):
     commands['update_code'](ref)
-    commands['update_locales']()
     commands['update_info']()
 
 
@@ -74,13 +72,6 @@ def update_code(ctx, tag):
         ctx.local("git submodule sync")
         ctx.local("git submodule update --init --recursive")
         ctx.local("find . -name '*.pyc' -delete")
-
-
-@task
-def update_locales(ctx):
-    """Update translations via svn."""
-    with ctx.lcd(os.path.join(settings.SRC_DIR, 'locale')):
-        ctx.local("svn up")
 
 
 @task
