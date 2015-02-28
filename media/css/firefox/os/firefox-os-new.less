@@ -15,31 +15,31 @@
 main {
     margin: 0 auto;
     text-align: center;
+
     h1 {
-        background: transparent url(/media/img/firefox/os-new/fxos_wordmark420.png) 0 0 no-repeat;
-        margin: 0px auto @baseLine auto;
+        background: url(/media/img/firefox/os-new/fxos_wordmark420.png) center top no-repeat;
+        margin: 0 auto @baseLine;
         width: 440px;
         height: 84px;
 
         @media only screen and (max-width: 1366px) {
             background-image: url(/media/img/firefox/os-new/fxos_wordmark420.png);
-            margin-bottom: 20px;
             width: 420px;
             height: 84px;
         }
 
         @media only screen and (max-width: 1024px) {
             background-image: url(/media/img/firefox/os-new/fxos_wordmark320.png);
-            margin: 0px auto 10px auto;
+            margin: 0 auto 10px;
             width: 320px;
             height: 60px;
         }
 
         @media only screen and (max-width: @breakMobileLandscape) {
-            background-image: url(/media/img/firefox/os-new/fxos_wordmark300.png);
+            background-image: url(/media/img/firefox/os-new/fxos_wordmark260.png);
             margin: 0 auto 20px;
-            width: 300px;
-            height: 60px;
+            width: 260px;
+            height: 52px;
         }
         span {
             .visually-hidden();
@@ -61,9 +61,10 @@ main {
     .tagline {
         .open-sans-light();
         color: #bee1f5;
-        margin-bottom: 20px;
+        margin: 0 auto 20px;
         font-size: 2em;
         letter-spacing: -0.03em;
+        max-width: 480px;
 
         @media only screen and (max-width: 1366px) {
             .font-size(1.6rem);
@@ -80,6 +81,7 @@ main {
         }
     }
 }
+
 .content-wrapper {
     margin: 0 auto;
     width: 100%;
@@ -135,21 +137,6 @@ main {
     overflow: hidden;
     clear: both;
 
-    @media only screen and (max-width: 1366px) {
-        height: 405px;
-    }
-    @media only screen and (max-width: 1024px) {
-        height: 325px;
-        padding-top: 1em;
-    }
-    @media only screen and (max-width: @breakTablet) {
-        height: 595px
-    }
-    @media only screen and (max-width: @breakMobile) {
-        padding-top: 1em;
-        height: 550px;
-    }
-
     ul {
         margin: 0;
         padding: 0;
@@ -162,25 +149,27 @@ main {
 }
 .phone {
     position: relative;
-    top: 0;
     margin: 0 auto;
-    opacity: 1;
+    padding: 0 40px;
+    overflow: hidden;
     .transition(all .7s);
+
     .signup {
         margin-bottom: 25px;
     }
+
     .signup-txt {
         color: #BEE1F5;
         margin: 0 auto;
-        width: 340px;
-        .font-size(.9rem);
-        letter-spacing: -0.03em;
+        max-width: 300px;
+        .font-size(14px);
+    }
 
-        @media only screen and (max-width: 1024px) {
-            .font-size(.9rem);
-        }
+    @media only screen and (max-width: @breakMobile) {
+        padding: 0 20px;
     }
 }
+
 .scale {
     position: absolute;
     top: -824px;
@@ -191,39 +180,56 @@ main {
 .fxos-cta,
 .phone-container {
     position: relative;
-    float: left;
-    width: 45%;
+    width: 48%;
     vertical-align: middle;
 
     @media only screen and (max-width: @breakTablet) {
-        display: block;
-        float: none;
         width: 100%;
     }
 }
 .fxos-cta {
+    float: left;
+
     @media only screen and (max-width: 1024px) {
         margin-top: 10px;
     }
+
+    @media only screen and (max-width: @breakTablet) {
+        float: none;
+    }
 }
 .phone-container {
-    img {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    height: 100%;
+
+    @media only screen and (max-width: @breakTablet) {
         position: relative;
-        bottom: -10px;
+        right: auto;
+        top: auto;
+        height: 280px;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        height: 200px;
+    }
+
+
+    @media only screen and (max-width: @breakMobile) {
+        height: 140px;
+    }
+
+    img {
         width: 520px;
         height: auto;
         transition: width .2s,
                     height .2s;
 
-        @media only screen and (max-width: 1600px) {
-            bottom: -20px;
-        }
         @media only screen and (max-width: 1024px) {
-            bottom: -50px;
             width: 400px;
         }
         @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-            bottom: 0;
             width: 460px;
         }
         @media only screen and (max-width: @breakMobile) {
