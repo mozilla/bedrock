@@ -202,8 +202,9 @@ main {
     }
 }
 .fxos-cta {
-    @media only screen and (max-width: 1024px) {
-        margin-top: 10px;
+    margin: 10px;
+    @media only screen and (max-width: @breakMobileLandscape) {
+        margin: 5px;
     }
 }
 .phone-container {
