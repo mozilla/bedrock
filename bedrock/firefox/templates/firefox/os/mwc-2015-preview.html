@@ -90,11 +90,9 @@
     <div class="container">
       <h3>{{ _('Be part of our growing family of partners') }}</h3>
       <ul id="list-partners">
-        {% if waffle.switch('mwc-2015-logos') %}
-        <li><img src="https://static.mozilla.com/moco/img/logo/220-o.png" height="100" width="220" alt=""></li>
-        <li><img src="https://static.mozilla.com/moco/img/logo/220-v.png" height="100" width="220" alt=""></li>
-        <li><img src="https://static.mozilla.com/moco/img/logo/220-m.png" height="100" width="220" alt=""></li>
-        {% endif %}
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/orange.png', {'alt': 'Orange', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/verizon.png', {'alt': 'Verizon', 'width': '220', 'height': '100'}) }}</li>
+        <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/mtn.png', {'alt': 'MTN', 'width': '220', 'height': '100'}) }}</li>
         <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/alcatel.png', {'alt': 'Alcatel OneTouch', 'width': '220', 'height': '100'}) }}</li>
         <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/america-movil.png', {'alt': 'America Movil', 'width': '220', 'height': '100'}) }}</li>
         <li>{{ high_res_img('img/firefox/os/mwc-2015-preview/partners/cherry-mobile.png', {'alt': 'Cherry Mobile', 'width': '220', 'height': '100'}) }}</li>
