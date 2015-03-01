@@ -115,13 +115,7 @@
           </a>
         </li>
       {% endif %}
-      {% if LANG == 'en-US' and waffle.switch('mozorg-home-neutrality-promo') %}
-        <li id="promo-2" class="item promo-small-landscape net-neutrality" data-name="Protect net neutrality today">
-          <a class="panel-link" href="https://sendto.mozilla.org/page/s/FCCvote-net-neutrality?ref=20150205Advocacy_NN&amp;utm_campaign=20150205Advocacy_NN&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=homepage_promo">
-            <h2>Protect net neutrality today</h2>
-          </a>
-        </li>
-      {% elif l10n_has_tag('privacy_day') %}
+      {% if l10n_has_tag('privacy_day') %}
         <li id="promo-2" class="item promo-small-landscape advocacy" data-name="Learn about Mozilla Advocacy">
           <a class="panel-link" href="https://advocacy.mozilla.org">
             <h2>{{ _('Learn about Mozilla Advocacy') }}</h2>
