@@ -32,8 +32,8 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 
 @task
 def update(ctx):
-    commands['update_assets']()
     commands['update_revision_file']()
+    commands['update_assets']()
     # moves files from SRC_DIR to WWW_DIR
     commands['checkin_changes']()
     commands['database']()
