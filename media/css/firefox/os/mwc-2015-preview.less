@@ -636,6 +636,7 @@ html, body {
 
         #list-partners li {
             .span-all();
+            margin-bottom: @baseLine;
         }
 
         #list-how {
@@ -799,7 +800,12 @@ html, body {
         }
 
         #list-partners li {
-            .span-all();
+            .span_narrow(3.5);
+            margin-bottom: @baseLine;
+
+            img {
+                height: auto;
+            }
         }
 
         #list-platform li {
