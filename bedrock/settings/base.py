@@ -302,6 +302,7 @@ PIPELINE_CSS = {
     },
     'firefox_all': {
         'source_filenames': (
+            'css/base/mozilla-share-cta.less',
             'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/all.less',
@@ -486,6 +487,7 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
+            'css/base/mozilla-share-cta.less',
             'css/firefox/menu-resp.less',
             'css/firefox/developer.less',
         ),
@@ -1160,6 +1162,7 @@ PIPELINE_JS = {
     },
     'firefox_all': {
         'source_filenames': (
+            'js/base/mozilla-share-cta.js',
             'js/base/mozilla-pager.js',
             'js/firefox/firefox-language-search.js',
         ),
@@ -1256,6 +1259,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/firefox/developer.js',
             'js/base/mozilla-modal.js',
+            'js/base/mozilla-share-cta.js',
         ),
         'output_filename': 'js/firefox_developer-bundle.js',
     },

@@ -7,11 +7,15 @@
 .grainy-sky() {
     background: #cae1f4;
     background: url(/media/img/sandstone/grain.png) repeat,
-                    -webkit-linear-gradient(top, #cae1f4, #d9e1e7)
+                    -webkit-linear-gradient(top, #cae1f4, #d9e1e7),
                     #cae1f4;
     background: url(/media/img/sandstone/grain.png) repeat,
                     linear-gradient(to bottom, #cae1f4, #d9e1e7),
                     #cae1f4;
+}
+
+.grainy-sky-solid() {
+    background: url(/media/img/sandstone/grain.png) repeat #cae1f4;
 }
 
 // Base template overrides
@@ -22,31 +26,13 @@
 
 #wrapper {
     width: 100%;
+    padding-bottom: 0;
+    .grainy-sky-solid();
 }
 
 #masthead {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -470px;
-    z-index: 10;
-    padding-left: 0;
-    padding-right: 0;
-
-    .container {
-        overflow: visible;
-        padding: 0;
-    }
-
-    h2 {
-        float: left;
-        padding-top: 0;
-        width: 185px;
-    }
-}
-
-html[dir="rtl"] #masthead h2 {
-    float: right;
+    margin: 0 auto;
+    width: @widthDesktop - (@gridGutterWidth * 2);
 }
 
 // Common styles
@@ -112,25 +98,11 @@ main {
     .clearfix();
 }
 
-#spread-hello {
-    float: right;
-    margin-top: 15px;
-}
-
-html[dir="rtl"] #spread-hello {
-    float: left;
-}
-
 // Intro
 
 #intro {
     .grainy-sky();
     padding-bottom: @baseLine * 2;
-
-    .container {
-        padding-top: 116px; // compensate for pushing up under tabzilla
-        overflow: visible; // allow share widget to bleed over
-    }
 
     .heading-primary,
     .heading-tertiary {
@@ -1359,8 +1331,7 @@ html[lang^="en"] #powered-by {
 // @Tablet Layout: 760px
 @media (max-width: @breakDesktop) and (min-width: (@breakTablet + 1)) {
     #masthead {
-        padding: 0;
-        margin-left: -360px;
+        width: @widthTablet - (@gridGutterWidth * 2);
     }
 
     .container {
@@ -1444,11 +1415,8 @@ html[lang^="en"] #powered-by {
 // @Wide mobile Layout: 480px
 @media (max-width: @breakTablet) {
     #masthead {
-        margin-left: -220px;
-
-        h2 {
-            padding-top: 10px;
-        }
+        padding-bottom: 0;
+        width: @widthMobile - @gridGutterWidth;
     }
 
     .container {
@@ -1469,20 +1437,10 @@ html[lang^="en"] #powered-by {
         .font-size(20px);
     }
 
-    // Share
-
-    #spread-hello {
-        margin-top: 25px;
-    }
-
     // Intro
 
     #intro {
         padding-bottom: @baseLine;
-
-        .container {
-            padding-top: 136px;
-        }
 
         .heading-primary,
         .heading-tertiary {
@@ -1855,6 +1813,14 @@ html[lang^="en"] #powered-by {
 }
 
 /****************************************************************************/
+// @Mobile Layout: 480px
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+    #masthead {
+        width: @widthMobileLandscape;
+    }
+}
+
+/****************************************************************************/
 // @High resolution images for @retina-type displays
 // Mobile
 @media (max-width: @breakTablet) and (-webkit-min-device-pixel-ratio: 1.5),
@@ -1870,10 +1836,6 @@ html[lang^="en"] #powered-by {
 /****************************************************************************/
 // @Mobile Layout: 320px
 @media (max-width: @breakMobileLandscape) {
-    #masthead {
-        margin-left: -150px;
-    }
-
     .container {
         width: (320px - @baseLine);
         padding-left: @baseLine / 2;
@@ -1894,12 +1856,6 @@ html[lang^="en"] #powered-by {
 
     .heading-tertiary {
         .font-size(20px);
-    }
-
-    // Share
-
-    .js #spread-hello {
-        display: none;
     }
 
     // Intro
