@@ -1,13 +1,16 @@
-var PromiseConstructor = typeof Promise === 'undefined' ? require('promise') : Promise;
+var PromiseConstructor;
 
 module.exports = function(environment, ParseTree, ImportManager) {
     var render = function (input, options, callback) {
-        if (typeof(options) === 'function') {
+        if (typeof options === 'function') {
             callback = options;
             options = {};
         }
 
         if (!callback) {
+            if (!PromiseConstructor) {
+                PromiseConstructor = typeof Promise === 'undefined' ? require('promise') : Promise;
+            }
             var self = this;
             return new PromiseConstructor(function (resolve, reject) {
                 render.call(self, input, options, function(err, output) {

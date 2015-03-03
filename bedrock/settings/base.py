@@ -133,10 +133,12 @@ PIPELINE_COMPILERS = (
     'pipeline.compilers.less.LessCompiler',
 )
 PIPELINE_LESS_BINARY = path('node_modules', 'less', 'bin', 'lessc')
-PIPELINE_YUGLIFY_BINARY = path('node_modules', 'yuglify', 'bin', 'yuglify')
+PIPELINE_LESS_ARGUMENTS = '-s'
 WHITENOISE_ROOT = path('root_files')
-
-# PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
+PIPELINE_UGLIFYJS_BINARY = path('node_modules', 'uglify-js', 'bin', 'uglifyjs')
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
+PIPELINE_CSSMIN_BINARY = path('node_modules', 'cssmin', 'bin', 'cssmin')
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
