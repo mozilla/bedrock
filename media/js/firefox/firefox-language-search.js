@@ -18,9 +18,18 @@
 
         function filter (e) {
             e.preventDefault();
+
+            var historyEnabled = typeof history.replaceState === 'function' && e.originalEvent;
             var search_q = $.trim($input.val());  // trim whitespace
+
             if (!search_q) {
                 show_all();
+
+                // Replace the browser history to clear the search query
+                if (historyEnabled) {
+                    history.replaceState({}, document.title, '.');
+                }
+
                 return;
             }
 
@@ -56,9 +65,9 @@
             });
 
             // Replace the browser history to save the search query
-            if (typeof history.pushState === 'function' && e.originalEvent) {
-                history.pushState({ query: search_q }, document.title,
-                                  '?q=' + encodeURI(search_q));
+            if (historyEnabled) {
+                history.replaceState({ query: search_q }, document.title,
+                                     '?q=' + encodeURI(search_q));
             }
         }
 
