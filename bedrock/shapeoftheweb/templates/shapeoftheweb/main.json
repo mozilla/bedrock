@@ -7,20 +7,16 @@
       "name": "Access",
       "tagline": "Everyone is able to participate",
       "issues": {
-        "available": {
-          "name": "Available",
+        "adoption": {
+          "name": "Adoption",
           "title": "Who's online?",
-          "narrative": "Internet usage is spreading like wildfire, and that’s a good thing. The more people connected to the network, the more powerful that network can be. This process will only accelerate as the price for access gets lower and lower, and as Web-enabled devices proliferate, spawning more affordable options.",
-          "mozActionCopy": "Mozilla is the maker of Firefox OS, an open mobile operating system to unleash access for the next billion. Mozilla and partner are releasing Firefox OS in new countries to expand access to the mobile web.",
+          "narrative": "Though some countries lag behind others, Internet usage is spreading like wildfire. That’s a good thing, because the more people connected to the network, the more powerful that network can be. This process will accelerate as access gets more affordable, as service and device options multiply and as content gets developed for more and more granular regions of the globe.",
+          "mozActionCopy": "Mozilla is the maker of Firefox OS, an open mobile operating system to unleash access for the next billion.",
           "yourActionCopy": "",
           "mozActionLink": [
             {
-              "copy": "About Firefox OS",
-              "url": "https://www.mozilla.org/en-US/firefox/os/"
-            },
-            {
-              "copy": "Expanding Mobile Web",
-              "url": "https://blog.mozilla.org/blog/2014/11/05/firefox-os-ecosystem-to-expand-to-africa-with-support-from-new-partners/"
+              "copy": "Read more",
+              "url": "https://www.mozilla.org/firefox/os/"
             }
         ],
           "yourActionLink": []
@@ -28,417 +24,363 @@
         "affordable": {
           "name": "Affordability",
           "title": "The price of admission.",
-          "narrative": "If you imagine everyone with online access as a point of light on a globe, some parts would glow intensely, while others would be dark. In many developing countries, a month of broadband access costs almost a month’s paycheck, making it a luxury beyond reach.",
-          "mozActionCopy": "Mozilla is the maker of Firefox OS, a mobile operating system to unleash access for the next billion.",
-          "yourActionCopy": "",
+          "narrative": "In many developing countries, a month of broadband access costs almost a month’s paycheck, and the latest devices are luxuries beyond reach. However, emerging technologies are leading to more affordable devices and connections for people everywhere.",
+          "mozActionCopy": "Mozilla is the maker of Firefox OS, a mobile operating system to bring affordable access to the next billion.",
+          "yourActionCopy": "Understand why mobile matters to affordability with this video.",
           "mozActionLink": [
             {
-              "copy": "About Mozilla",
-              "url": "https://www.mozilla.org/"
-            },
-            {
-              "copy": "Expanding access",
-              "url": "http://time.com/2857448/mozilla-25-smartphone-firefox/"
+              "copy": "Read more",
+              "url": "https://www.mozilla.org/firefox/os/"
             }
           ],
           "yourActionLink": [
             {
-              "copy": "Understand why Mobile matters to affordability",
-              "url": "https://www.youtube.com/watch?v=TMP45DupbhI&list=PLFlAJDI87Jg2vk3THSt8RBoD7vLG2tnwH"
+              "copy": "Watch now",
+              "url": "https://www.youtube.com/watch?v=TMP45DupbhI&list=PLFlAJDI87Jg2vk3THSt8RBoD7vLG2tnw"
             }
           ]
         },
         "localization": {
-          "name": "Localization",
-          "title": "Content chases money, and money speaks English.",
-          "narrative": "Although only 25% of Internet users are English-speaking, 55% of the world's websites are in English. Why? Most Internet content creators are driven by advertising goals, and they target the largest markets possible. Right now those markets are North America and partly Western Europe, where English is the dominant language.",
-          "mozActionCopy": "Mozilla's browser Firefox is localized into over 80 languages by a global community of volunteers. With Firefox OS, Mozilla is enabling local developers to create apps easily.",
-          "yourActionCopy": "",
+          "name": "Local content",
+          "title": "Bridging the language divide",
+          "narrative": "Only a quarter of the globe speaks English natively, but 55% of the world’s websites are in English. This is because content creators target the largest markets, which are currently in North America and Western Europe. But as other markets become more active, more cultures will expect the Web to be in their language, for a Web that is more relevant to their lives.",
+          "mozActionCopy": "Firefox is localized in 80 languages and our Webmaker app empowers people to contribute to the Web in ways that are relevant to their communities.",
+          "yourActionCopy": "Help make web content accessible in your language:",
           "mozActionLink": [
             {
-              "copy": "Enabling local developers",
-              "url": "https://www.mozilla.org/en-US/firefox/os/#mission"
+              "copy": "Firefox in your language",
+              "url": "https://www.mozilla.org/firefox/all/"
+            },
+            {
+              "copy": "More on Webmaker",
+              "url": "https://www.webmaker.org/localweb"
             }
           ],
           "yourActionLink": [
             {
-              "copy": "Make videos you like accessible in your language",
-              "url": "http://amara.org/en/"
+              "copy": "Join our localization team",
+              "url": "https://www.mozilla.org/contribute/"
             },
             {
-              "copy": "Contribute to Mozilla localization",
-              "url": "https://www.mozilla.org/en-US/contribute/"
+              "copy": "Install the Webmaker app",
+              "url": "https://www.webmaker.org/app"
+            },
+            {
+              "copy": "Translate video subtitles",
+              "url": "http://amara.org/"
             }
           ]
         },
         "accessible": {
           "name": "Accessibility",
-          "title": "The Web can’t see the blind.",
-          "narrative": "You're probably reading these words on a screen. But if you can't see, you're hearing them spoken aloud by screen-reading software, which works on any Web page built with HTML. The problem is, when sites are built using non-HTML proprietary platforms, such as mobile apps, blind users - who make up 8.5% of the world's population - miss out.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
+          "title": "Disabilities should not hinder access",
+          "narrative": "People with visual, aural, learning or other disabilities can not experience the full range of digital expression available on the Web. But content creators can change that: if they build for the open Web, they can easily take advantage of existing Web accessibility tools and enable greater worldwide participation.",
+          "mozActionCopy": "Firefox includes many features to make the browser and web content accessible to all users.",
+          "yourActionCopy": "Learn more with this introduction to Web accessibility from WebAIM.",
           "mozActionLink": [
             {
-              "copy": "Find out about accessibility features in Firefox",
-              "url": "https://support.mozilla.org/en-US/kb/accessibility-features-firefox-make-firefox-and-we"
-            },
-            {
-              "copy": "Accessibility resources from the Mozilla community",
-              "url": "http://www.accessfirefox.org/"
+              "copy": "Find out more",
+              "url": "https://support.mozilla.org/kb/accessibility-features-firefox-make-firefox-and-we"
             }
           ],
           "yourActionLink": [
             {
-              "copy": "Learn more about web accessibility",
+              "copy": "Read this article",
               "url": "http://webaim.org/intro/"
             }
           ]
         },
-        "infrastructure": {
-          "name": "Infrastructure",
-          "title": "Is the wired network here to stay?",
-          "narrative": "Today, the fastest Internet connections come from network operators - the guys who pipe broadband access, and also phone service, directly into our homes and offices over physical wires. But long-distance calling and other services are now moving to the Internet, and software companies are capturing that revenue from the network operators, leaving them with less resources and incentive for building new pipelines. The risk is to see Internet companies build their own wired networks and bias them toward their content.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
+        "speed": {
+          "name": "Speed",
+          "title": "Speed matters",
+          "narrative": "Network speed and reliability can make or break the Web experience. Some are cruising with the latest Web technologies and content, while others are left with sluggish performance. The first digital divide is over connectivity, but the next is about speed.",
+          "mozActionCopy": "Mozilla advocates for sensible competition policy reforms which help drive investment into faster speeds and better services, such as the adoption of effective net neutrality rules.",
+          "yourActionCopy": "Test your connection periodically to contribute to growing databases of information on actual service speeds.",
           "mozActionLink": [],
-          "yourActionLink": []
+          "yourActionLink": [
+            {
+              "copy": "On your smartphone",
+              "url": "https://www.fcc.gov/measuring-broadband-america/mobile"
+            },
+            {
+              "copy": "On your desktop",
+              "url": "http://www.speedtest.net"
+            }
+          ]
         }
       }
     },
     "control": {
       "name": "Control",
-      "tagline": "Power is in the hands of individuals",
+      "tagline": "We own our experience online",
       "issues": {
-        "contentCreation": {
-          "name": "Content creation",
-          "title": "You published it, but is it still yours?",
-          "narrative": "The Internet opened up the floodgates for all forms of creativity, giving the Web its multi-faceted, organic character. Social networks and blogging platforms let us speak our minds without learning code or configuring servers. But this creative outpouring is threatened: Some platforms maintain copyright over our content, and some can censor us, damming the flow of expression. And when we switch services, we often have to leave our creations behind.",
-          "mozActionCopy": "Webmaker - a platform for learning and remixing content where Mozilla retains no rights to your content.",
-          "yourActionCopy": "",
+        "digitalIdentities": {
+          "name": "Digital identities",
+          "title": "Who manages your digital identity?",
+          "narrative": "We all have to keep track of so many usernames and passwords, and this is daunting. Social media accounts can provide a digital passport to several sites, and password-management applications help prevent risky password habits. But  if only a few entities control our digital identities, we’re at their mercy.",
+          "mozActionCopy": "Mozilla was recognized Most Trusted Internet Company for Privacy in 2014.",
+          "yourActionCopy": "Use tools and services that protect your persona online.",
           "mozActionLink": [
             {
-              "copy": "About Webmaker",
-              "url": "https://webmaker.org/"
+              "copy": "Read more",
+              "url": "http://www.ponemon.org/blog/ponemon-institute-announces-results-of-2014-most-trusted-companies-for-privacy-study"
             }
           ],
-          "yourActionLink": []
-        },
-        "identityControl": {
-          "name": "Identity control",
-          "title": "Who owns your digital passport?",
-          "narrative": "Too many passwords! Email providers and social networks are aware of how painful this can be, and are only too happy to also act as identity providers, letting you access multiple sites using a single name-and-password combo. But if we hand our digital passports over to a single company, we’re at their mercy if they get breached, or go out of business.",
-          "mozActionCopy": "Mozilla was recognized Most Trusted Internet Company for Privacy. In November 2014, we introduced Polaris, an initiative to reinforce user-focused privacy online.",
-          "yourActionCopy": "",
-          "mozActionLink": [
+          "yourActionLink": [
             {
-              "copy": "Mozilla And Privacy",
-              "url": "https://blog.mozilla.org/blog/2013/01/28/privacy-day-2013/"
+              "copy": "Firefox password manager",
+              "url": "https://support.mozilla.org/kb/password-manager-remember-delete-change-passwords"
             },
             {
-              "copy": "More on Polaris",
-              "url": "https://blog.mozilla.org/privacy/2014/11/10/introducing-polaris-privacy-initiative-to-accelerate-user-focused-privacy-online/"
+              "copy": "Firefox account",
+              "url": "https://accounts.firefox.com/signup"
+            }
+          ]
+        },
+        "dataPortability": {
+          "name": "Data portability",
+          "title": "Is your data portable?",
+          "narrative": "Services like social networks and cloud storage help us share and archive important pictures and stories about our lives. But unless we can move our data when we switch services, we’re stuck with the first services we join. Some services have taken important steps toward  granting portability, but others, especially mobile apps, have been disconcertingly sluggish to do so.",
+          "mozActionCopy": "Mozilla Firefox enables users to move their data between browsers.",
+          "yourActionCopy": "",
+          "mozActionLink": [
+            {
+              "copy": "Find out more",
+              "url": "https://support.mozilla.org/kb/import-bookmarks-data-another-browser"
             }
           ],
           "yourActionLink": []
         },
-        "publicTrust": {
-          "name": "Public trust",
-          "title": "The giant seems too big to fight.",
-          "narrative": "Snowden revealed just how freely our personal information is shared between companies and the U.S. government. This dealt a double blow: it shattered public trust, and it told us the power was beyond our control, that there was no use trying to fight it. The second blow was the fiercest. If apathy sets in, the Internet could someday be permanently at odds with individual rights and the potential for good.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
+        "dataProtection": {
+          "name": "Data protection",
+          "title": "Data protection varies across borders",
+          "narrative": "Data is protected by different frameworks as it journeys across the globe. Europe and the African Union are ahead of the pack in updating their approaches, while the United States lags behind. Countries should work together on data management and broader adherence to shared standards. If they did, we would have greater certainty that our data will always be protected, no matter where in the world it might travel.",
+          "mozActionCopy": "Mozilla has engaged in many conversations with key privacy regulators in the U.S. and E.U. as data protection frameworks evolve in both regions.",
+          "yourActionCopy": "Follow these four easy steps to get smart on privacy and be in control of your online life.",
           "mozActionLink": [],
           "yourActionLink": [
             {
-              "copy": "Watch and share the Web We Want video",
-              "url": "https://www.youtube.com/watch?v=Xm5i5kbIXzc"
-            },
-            {
-              "copy": "Install the Interest Dashboard",
-              "url": "https://addons.mozilla.org/firefox/addon/firefox-interest-dashboard"
+              "copy": "Get smart on privacy",
+              "url": "https://www.mozilla.org/privacy/tips/"
             }
           ]
         },
-        "dataTracking": {
-          "name": "Tracking",
-          "title": "The product is you.",
-          "narrative": "All of our moves on the Web are tracked, as if by the paparazzi. It’s the price we pay for free information and services. But we don’t want to be the last ones to know that our privacy has been violated. And we certainly don’t want drugstores to be the ones announcing pregnancies. As tracking techniques grow in sophistication, capturing finer details, we’re completely left out of the process.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
+        "governmentCensorship": {
+          "name": "Government censorship",
+          "title": "Open is powerful",
+          "narrative": "The open Web is a powerful platform for speech, but some governments actively censor access to a range of content and services. Recently, Turkey, Ukraine and Russia have shown sharp increases in censorship activities. The more powerful these restrictions, the less the Web can realize its true potential.",
+          "mozActionCopy": "Mozilla actively supports the idea that censorship harms the Web. We were also one of the frontrunners of the anti-SOPA, PIPA campaign.",
+          "yourActionCopy": "Watch and share these TED-Ed lessons on social media and censorship:",
           "mozActionLink": [
             {
-              "copy": "Understanding the tracking of your daily online life.",
-              "url": "https://www.youtube.com/watch?v=PvqGy9wz_wA"
-            },
-            {
-              "copy": "\"Do Not Track\": a technology and policy proposal to opt out of tracking",
-              "url": "http://donottrack.us/"
-            },
-            {
-              "copy": "DuckDuckGo is pre-installed on Firefox for search without tracking",
-              "url": "https://duckduckgo.com/"
+              "copy": "Read more",
+              "url": "http://www.pcmag.com/article2/0,2817,2399138,00.asp"
             }
           ],
           "yourActionLink": [
             {
-              "copy": "Know how you are being tracked: Lightbeam for Firefox",
-              "url": "https://www.mozilla.org/en-US/lightbeam/"
+              "copy": "Behind the Great Wall of China",
+              "url": "http://ed.ted.com/lessons/behind-the-great-firewall-of-china-michael-anti"
             },
             {
-              "copy": "Disconnect on your browser",
-              "url": "https://disconnect.me/disconnect#"
-            },
-            {
-              "copy": "Install Interest Dashboard",
-              "url": "https://addons.mozilla.org/firefox/addon/firefox-interest-dashboard"
-            },
-            {
-              "copy": "Learn about the role of personal data in the modern age with \"Terms of Service\"",
-              "url": "http://projects.aljazeera.com/2014/terms-of-service/#1"
+              "copy": "How Social Media Can Make History",
+              "url": "http://www.ted.com/talks/clay_shirky_how_cellphones_twitter_facebook_can_make_history"
             }
           ]
-        },
-        "surveillance": {
-          "name": "Surveillance",
-          "title": "Big Brother really is watching you.",
-          "narrative": "In Orwell’s 1984, the government monitors citizens day and night. That might seem like a paranoid scenario, but part of this nightmare is actually happening: when government agencies want our data, and Internet companies are motivated to collect and sell it, who is left to advocate for users?",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
+        }
+      }
+    },
+    "trust": {
+      "name": "Trust",
+      "tagline": "Our security and privacy are respected",
+      "issues": {
+        "governmentSurveillance": {
+          "name": "Government surveillance",
+          "title": "Has surveillance crossed the creepy line?",
+          "narrative": "We expect our governments to enforce the law and keep an eye out for us. But recent headlines about government spying have made it clear: overly broad, hidden surveillance crosses the line, creating an environment of mistrust and fear. We need effective safeguards to maintain a balance and promote trust.",
+          "mozActionCopy": "In 2013, Mozilla launched StopWatchingUs, a campaign to end digital surveillance and joined the EFF Tor Challenge in 2014 to help protect privacy online.",
+          "yourActionCopy": "Watch and share this Ted Talk from privacy researcher Christopher Soghoian, and Citizenfour, a documentary about the Snowden revelations.",
           "mozActionLink": [
             {
-              "copy": "In 2013, Mozilla launched  StopWatchingUs, a campaign to end digital surveillance",
+              "copy": "StopWatchingUs",
               "url": "https://optin.stopwatching.us/"
             },
             {
-              "copy": "Mozilla joined the EFF Tor Challenge to help protect privacy online",
+              "copy": "Tor Challenge",
               "url": "https://www.eff.org/torchallenge/"
             }
           ],
           "yourActionLink": [
             {
-              "copy": "Watch and share this TED video from privacy researcher Christopher Soghoian",
+              "copy": "Soghoian's Ted Talk",
               "url": "http://www.ted.com/talks/christopher_soghoian_government_surveillance_this_is_just_the_beginning"
             },
             {
-              "copy": "Watch Citizenfour, a documentary about the Snowden revelations",
+              "copy": "Citizenfour",
               "url": "https://citizenfourfilm.com/"
             }
           ]
         },
-        "userAgreements": {
-          "name": "User Agreements",
-          "title": "Signing in the dark.",
-          "narrative": "User agreements are getting progressively longer and more complex, leaving many of us with a fuzzy notion of what they actually say.  But by not fully understanding these documents, we’re not really in control of our online lives. What have we agreed to? Often, we’re handing over copyright ownership, saying yes to censorship and signing up for spam.",
-          "mozActionCopy": "Transparency and user control are key principles of the Mozilla Manifesto.",
-          "yourActionCopy": "",
+        "adTracking": {
+          "name": "Ad tracking",
+          "title": "Trust is the currency",
+          "narrative": "The Web is built largely on a personalized advertising model, and tracking people’s online activities is a crucial part of that effort. But for the Web to inspire greater trust and participation, ad tracking needs to be transparent so we can make rational choices, and then respect them. As tracking techniques grow in sophistication, simple actions — like clearing the browser’s history and cookies — aren’t as effective as they used to be.",
+          "mozActionCopy": "We are actively engaging with the industry to show how advertising can support privacy and preserve transparency, choice - therefore respect.",
+          "yourActionCopy": "Follow these four easy steps to get smart on privacy and be in control of your online life.",
           "mozActionLink": [
             {
-              "copy": "Mozilla Privacy Policy",
-              "url": "https://www.mozilla.org/en-US/privacy/"
+              "copy": "Privacy in Firefox",
+              "url": "https://www.mozilla.org/firefox/desktop/trust/"
+            },
+            {
+              "copy": "The Polaris initiative",
+              "url": "https://blog.mozilla.org/privacy/2014/11/10/introducing-polaris-privacy-initiative-to-accelerate-user-focused-privacy-online/"
             }
           ],
           "yourActionLink": [
             {
-              "copy": "Install TOS;DR to better understand Terms of Service",
-              "url": "https://tosdr.org/"
-            },
-            {
-              "copy": "Watch this trailer for the documentary Terms and Conditions May Apply",
-              "url": "http://vimeo.com/93664881"
+              "copy": "Get smart on privacy",
+              "url": "https://www.mozilla.org/privacy/tips/"
             }
           ]
         },
+        "security": {
+          "name": "Security",
+          "title": "Offense is easier than defense",
+          "narrative": "It takes time to respond to new security threats, especially when software, which is constantly growing in complexity, needs to be patched. Worse, we often don’t even know we’ve been compromised. Risk mitigations  is getting faster, and more intelligent, but it’s still far more difficult and expensive to defend than it is to attack. The Web would benefit from increased investment in  security research, education, testing and development.",
+          "mozActionCopy": "Firefox is designed to keep you safe and our bug bounty program ensures prompt detection of potential bugs, so you can browse without worry.",
+          "yourActionCopy": "Follow these tips to stay safe online.",
+          "mozActionLink": [
+            {
+              "copy": "Learn more",
+              "url": "https://www.mozilla.org/firefox/desktop/trust/"
+            }
+          ],
+          "yourActionLink": [
+            {
+              "copy": "Read more",
+              "url": "https://support.mozilla.org/kb/how-stay-safe-web#w_follow-best-practices-to-protect-your-information"
+            }
+          ]
+        },
+        "civility": {
+          "name": "Civility",
+          "title": "Virtual behavior has real-world effects",
+          "narrative": "Free speech is an important right, online or offline, but when people use social networks to deliver insults or threats of physical violence, or stalk and harass, they can leave deep, lasting harm. Promoting online civility — without censoring the open Web — is a balance that we must work hard to maintain.",
+          "mozActionCopy": "Mozilla strives to build a community where inclusion and respect are at the heart of everything we do.",
+          "yourActionCopy": "Find out how to protect children online with these good practises.",
+          "mozActionLink": [
+            {
+              "copy": "Read our guidelines",
+              "url": "https://www.mozilla.org/about/governance/policies/participation/"
+            }
+          ],
+          "yourActionLink": [
+            {
+              "copy": "Learn more",
+              "url": "http://www.staysafeonline.org/stay-safe-online/for-parents/cyberbullying-and-harassment"
+            }
+          ]
+        }
+      }
+    },
+    "openness": {
+      "name": "Openness",
+      "tagline": "Fair and transparent rules preserve our independence",
+      "issues": {
         "openSource": {
           "name": "Open Source",
-          "title": "Can you look under the hood?",
-          "narrative": "The Web, when it’s built on HTML, is fully transparent: to see how something works, just look at the code. HTML, which is free and open source software, is also built and evaluated in a fully public setting. But proprietary software, which is built behind closed doors, is gaining prominence, especially in the arena of mobile apps.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
+          "title": "Open source. Open minds.",
+          "narrative": "When software is released as open source, anyone can look at the code to see how it works, and this provides us with a measure of trust. Open source licenses also allow for collaboration in developing the software, or for the code to be freely reused in other projects, increasing its value to the larger community. However, many open source products are tightly controlled by one developer, and may still be effectively closed systems - this is especially true on mobile devices.",
+          "mozActionCopy": "Commitment to open source is core to our mission. This is why Firefox is the only browser made of 100% free, open source code that anyone can view, remix and contribute to.",
+          "yourActionCopy": "Watch this video explaining open source in LEGO and use open source tools.",
           "mozActionLink": [
             {
-              "copy": "The Mozilla Manifesto",
-              "url": "https://www.mozilla.org/en-US/about/manifesto/"
+              "copy": "Read more",
+              "url": "https://www.mozilla.org/about/manifesto/"
             }
           ],
           "yourActionLink": [
             {
-              "copy": "The best open source tools",
-              "url": "http://www.thesimpledollar.com/30-essential-pieces-of-free-and-open-software-for-windows/"
+              "copy": "Watch now",
+              "url": "http://www.youtube.com/watch?v=a8fHgx9mE5U"
             },
             {
-              "copy": "Watch and share this video explaining Open Source in LEGO",
-              "url": "http://www.youtube.com/watch?v=a8fHgx9mE5U"
+              "copy": "Use open-source tools",
+              "url": "http://www.thesimpledollar.com/30-essential-pieces-of-free-and-open-software-for-windows/"
             }
           ]
         },
-        "openDataStandards": {
-          "name": "Open Data Standards",
-          "title": "We’re locking up our data, throwing away the key.",
-          "narrative": "The Internet relies on open standards: Servers, browsers and content all speak the same language. But there is a trend, mostly in the mobile apps market, towards using closed standards, and this prevents data from being moved from one service to another, even with the consent of the owner. The upshot? We lose control over our own data, which gets locked away under closed, proprietary systems.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
-          "mozActionLink": [],
-          "yourActionLink": [
-            {
-              "copy": "Watch this video from Internet Society about Open Standards",
-              "url": "http://www.youtube.com/watch?v=VbWkhMKS6mg"
-            }
-          ]
-        },
-        "dataRegulation": {
-          "name": "Data Regulation",
-          "title": "The world’s data is not in good hands.",
-          "narrative": "Most of the world's data is stored in the U.S., which has some of the most relaxed data-privacy regulations on the planet. This means less scrutiny over how the world’s data is collected, how it is used and who can access it, with more potential for abuse.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
-          "mozActionLink": [],
-          "yourActionLink": []
-        },
-        "lobbyPower": {
-          "name": "Lobby Power",
-          "title": "Meet the U.S. Silicon Government.",
-          "narrative": "The Internet industry has incredibly deep pockets for lobbying. In 2013, Internet companies spent $141million on lobbying in the U.S. alone, with Google spending the most, recently surpassing even Lockheed-Martin. This is cause for concern: with a government so deeply influenced by these companies, U.S. consumer protection laws won’t likely receive as much support.",
-          "mozActionCopy": "Mozilla is not a lobbying organisation: we take firm stances",
-          "yourActionCopy": "",
-          "mozActionLink": [],
-          "yourActionLink": [
-            {
-              "copy": "Read more with this Wall Street Journal article: A Decade in Google Lobbying",
-              "url": "http://blogs.wsj.com/numbers/a-decade-in-google-lobbying-1713/"
-            }
-          ]
-        },
-        "censorship": {
-          "name": "Censorship",
-          "title": "Too big to silence.",
-          "narrative": "The Web is a living, breathing ecosystem, sustained by billions of contributors all over the planet. It can’t be stopped, though some repressive governments have successfully restricted access. 2014 has seen an unwelcome increase of censorship  in Turkey and Ukraine. Still, due to the sheer size and distributed nature of the Web, citizens of censored countries have still found ways for their voices to be heard.",
-          "mozActionCopy": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus maximus imperdiet sem et dapibus. Duis quam ante, vestibulum in lectus.",
-          "yourActionCopy": "Donec quis magna eleifend turpis pharetra pulvinar sit amet ut velit. Mauris velit eros, consectetur id ex sed, malesuada tincidunt.",
+        "netNeutrality": {
+          "name": "Net neutrality",
+          "title": "No slow lanes on the highway of innovation",
+          "narrative": "Intentionally slowing Internet content, or speeding up some at the expense of others, is the opposite of open. Violations of network neutrality would tilt the level playing field that underlies the Internet, making it harder for startups and small companies to compete. Tinkering with Internet traffic for profit would go against the best interests of Internet users and the future of the Internet as a whole. But things are looking up: in the U.S., for example, recent laws will preserve net neutrality for the foreseeable future.",
+          "mozActionCopy": "Mozilla is a strong proponent of Net Neutrality.",
+          "yourActionCopy": "Find out more about Net Neutrality with this video from John Oliver's Last Week Tonight.",
           "mozActionLink": [
             {
-              "copy": "The Mozilla Manifesto",
-              "url": "https://www.mozilla.org/en-US/about/manifesto/"
-            },
-            {
-              "copy": "Read \"The Open Standard\"",
-              "url": "https://openstandard.mozilla.org/"
+              "copy": "Read more",
+              "url": "https://blog.mozilla.org/blog/2015/02/04/victory-for-net-neutrality-lets-take-it-across-the-finish-line/"
             }
           ],
           "yourActionLink": [
             {
               "copy": "Watch video",
-              "url": "http://www.youtube.com/watch?v=VbWkhMKS6mg"
+              "url": "https://amara.org/videos/ZpNyeDbGO3lw/info/last-week-tonight-with-john-oliver-hbo-net-neutrality/"
             }
           ]
-        }
-      }
-    },
-    "safety": {
-      "name": "Safety",
-      "tagline": "Our security and privacy are protected",
-      "issues": {
-        "cyberThreats": {
-          "name": "Cyber-Threats",
-          "title": "New threats, new vulnerabilities.",
-          "narrative": "Do the bad guys ever sleep? They’re launching more and more attacks, and they’re getting sneakier, mixing up identity theft, spoofing and viruses. Some of this can be spotted a mile away (that isn’t your aunt Sally emailing you with a strange-looking link) while much of it is more insidious.  Stay vigilant; what’s at stake is the trust that holds the Web together.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
+        },
+        "platformIndependence": {
+          "name": "Platform independence",
+          "title": "The Web is more than the sum of its apps",
+          "narrative": "The Web was designed to be platform-neutral, so that we can view the same content - and run the same services - on any device, operating system or application. But proprietary platforms, such as Apple iTunes or Google Play, act as silos that constrain open, independent user choice. And with multiple silos, developers have to reinvent the wheel multiple times, preventing them from focusing their resources on improving their products for one universal environment.",
+          "mozActionCopy": "Defending the interoperability of content and data is one of the ten principles of the Mozilla Manifesto.",
+          "yourActionCopy": "Build for the Web - build HTML5 applications that will work easily on any platform that can use the Web.",
           "mozActionLink": [
             {
-              "copy": "Find out about Firefox security features",
-              "url": "https://www.mozilla.org/en-US/firefox/desktop/trust/"
+              "copy": "Read more",
+              "url": "https://www.mozilla.org/about/manifesto/?utm_content=6"
             }
           ],
           "yourActionLink": [
             {
-              "copy": "Learn more about online security with this Webmaker module",
-              "url": "https://webmaker.org/resources/literacy/weblit-Security"
+              "copy": "Learn more",
+              "url": "https://developer.mozilla.org/Apps"
             }
           ]
         },
-        "cyberBullying": {
-          "name": "Cyber Bullying",
-          "title": "Virtual torment, real-life damage",
-          "narrative": "The Web represents the widest range of human behavior, from the civil to the obnoxious, and that’s OK. But the Web also facilitates insults, physical threats, stalking and sexual harassment, and that’s not OK: such behavior can be as damaging as physical injury. On social networking sites, which are becoming central to our lives and identities, such activities can be particularly harmful.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
+        "softwarePatents": {
+          "name": "Software patents",
+          "title": "Patents should not be straightjackets",
+          "narrative": "Intellectual property rights should protect creators without stifling collaboration and innovation. But sometimes this careful balance falls out of whack, such as when software companies are prevented from reusing existing code from others when all they want is ensure interoperability, or in other words, be certain their software will work with other software. If information is unnecessarily hindered, or if businesses are afraid to invest in new technologies, copyrights and patents are hurting more than they’re helping.",
+          "mozActionCopy": "Mozilla supported the Innovation Act in 2013 in the U.S. House of Representatives, legislative reform to limit patent abuse.",
+          "yourActionCopy": "Find out more about software patents abuses with this article.",
           "mozActionLink": [],
-          "yourActionLink": []
-        },
-        "networkDecentralization": {
-          "name": "Network Centralisation",
-          "title": "Fewer control points create network vulnerabilities and encourage surveillance.",
-          "narrative": "Like our central nervous systems, the Internet was built to support many paths, so if one path got blocked, information could find another. But while some countries have a robust set of networks connecting to the global Internet, others have only a handful. With fewer, more obvious control points, such networks are more vulnerable, and enable more censorship and surveillance.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
-          "mozActionLink": [],
-          "yourActionLink": []
-        },
-        "cloudSecurity": {
-          "name": "Cloud Storage",
-          "title": "Don’t put all your nude pictures in one basket.",
-          "narrative": "Celebrities got a rude awakening in September 2014 when their iCloud accounts were hacked, and their personal photos were broadcast over Twitter. The rest of us might want to think twice about what we store in the cloud. Services like Apple’s iCloud, Google Drive and Dropbox make attractive targets for hackers, housing data from millions of users.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
-          "mozActionLink": [],
-          "yourActionLink": []
-        }
-      }
-    },
-    "fairness": {
-      "name": "Fairness",
-      "tagline": "A level playing field for all",
-      "issues": {
-        "netNeutrality": {
-          "name": "Net neutrality",
-          "title": "No slow lane on the highway of innovation.",
-          "narrative": "Intentionally slow Internet connections? Charging extra for the fastest speeds? That’s highway robbery. Net neutrality is the simple idea that network operators — companies like Comcast, AT&T and Verizon — must treat all data equally. Attacks on net neutrality threaten to tilt the playing field that’s been level since the Internet began, making it harder for startups to compete with the status quo. ",
-          "mozActionCopy": "Mozilla is a strong proponent of Net Neutrality",
-          "yourActionCopy": "",
-          "mozActionLink": [
+          "yourActionLink": [
             {
-              "copy": "Mozilla on Net Neutrality",
-              "url": "https://blog.mozilla.org/netpolicy/2014/06/16/tell-the-u-s-congress-to-protect-net-neutrality/"
+              "copy": "Read more",
+              "url": "http://www.vox.com/2014/7/7/5862284/9-charts-that-show-patents-are-bad-for-the-software-industry"
             }
-          ],
-          "yourActionLink": []
-        },
-        "zeroRating": {
-          "name": "Zero Rates",
-          "title": "“The internet”, brought to you by...",
-          "narrative": "Imagine a Web where all sites are curated by a single company. It would feel more like a single department store than an open, global marketplace. This is “zero rating” at work: Companies like Facebook and Google are striking deals with network operators to offer limited free browsing on mobiles devices or in hot spots, while charging for access to additional sites. True, free access is better than no access. But for many, the sponsored view would be their only view.",
-          "mozActionCopy": "Defending the interoperability of content and data is one of the ten principles of the Mozilla Manifesto.",
-          "yourActionCopy": "",
-          "mozActionLink": [
-            {
-              "copy": "Mozilla Manifesto",
-              "url": "https://www.mozilla.org/en-US/about/manifesto/"
-            }
-          ],
-          "yourActionLink": []
-        },
-        "platformNeutrality": {
-          "name": "Platform neutrality",
-          "title": "Your apps, everywhere.",
-          "narrative": "The Web is designed to be platform-neutral, which allows us to access any Web page on virtually any browser. Unfortunately, proprietary platforms are gaining traction. iTunes or Google Play, for example, require code that’s specific to each platform. So if we switch platforms, we have to buy everything all over again.",
-          "mozActionCopy": "Defending the interoperability of content and data is one of the ten principles of the Mozilla Manifesto.",
-          "yourActionCopy": "",
-          "mozActionLink": [
-            {
-              "copy": "Mozilla Manifesto",
-              "url": "https://www.mozilla.org/en-US/about/manifesto/"
-            }
-          ],
-          "yourActionLink": []
+          ]
         },
         "concentrationOfPower": {
-          "name": "Decentralization of power",
-          "title": "Digital empires are on the rise.",
-          "narrative": "The Internet is the world’s largest shared resource. But it’s being controlled by a decreasing number of companies, and those in control are increasing in power. This is a dangerous scenario: Some companies as rich as governments, and have more direct contact with people than most governments. But unlike governments, which are held accountable to their citizens, companies are accountable only to shareholders.",
-          "mozActionCopy": "",
-          "yourActionCopy": "",
-          "mozActionLink": [],
-          "yourActionLink": []
+          "name": "Concentration of power",
+          "title": "Digital empires are on the rise",
+          "narrative": "The Internet is the world’s largest shared resource, but it’s being controlled by a decreasing number of companies that are increasing in power. These Internet giants have deeper pockets and wider reach than some governments, but they are accountable only to shareholders. If this trend continues, fewer individual voices will be heard, and there will be a natural deceleration of innovation and ideas.",
+          "mozActionCopy": "Magnifying the public benefit on the Internet is one of the ten principles of the Mozilla Manifesto.",
+          "yourActionCopy": "What kind of Web do you want? Ask yourself and let us know.",
+          "mozActionLink": [
+            {
+              "copy": "Read more",
+              "url": "https://www.mozilla.org/about/manifesto/?utm_content=10"
+            }
+          ],
+          "yourActionLink": [
+            {
+              "copy": "Visit web we want",
+              "url": "https://webwewant.mozilla.org//#video"
+            }
+          ]
         }
       }
     }
@@ -494,9 +436,9 @@
     "about": {
       "title": "About",
       "copy": [
-        "The Web is a living ecosystem that exists in a delicate balance and we all have a role to play in shaping - and ensuring - its future.",
+        "The Web is a living ecosystem that exists in a delicate balance and we all have a role to play in shaping — and ensuring — its future.",
         "At Mozilla, we believe that the more you know about the Web, the easier it is for you to make more informed choices and be a more empowered digital citizen.",
-        "That's why we created this site: to show you where the Web stands today, the issues that impact it and what you can do to get involved."
+        "That’s why we created this site: to show you where the Web stands today, the issues that impact it and what you can do to get involved."
       ]
     },
     "email": {
@@ -508,7 +450,7 @@
     },
     "legend": {
       "title": "Legend",
-      "description": "Explore the most important issues on the web today and what shape they're in.",
+      "description": "Explore the most important issues on the Web today and what shape they're in.",
       "copy": [
         [
           {
@@ -554,20 +496,20 @@
         "description": "These are the four requirements that we believe are necessary to the health and continued success of the Web.",
         "copy": [
             {
-                "heading": "Availability",
+                "heading": "Access",
                 "text": "Everyone is able to participate"
             },
             {
-                "heading": "Control",
-                "text": "Power is in the hands of individuals"
+                "heading": "Trust",
+                "text": "We own our experience online"
             },
             {
-                "heading": "Safety",
+                "heading": "Control",
                 "text": "Our security and privacy are protected"
             },
             {
-                "heading": "Fairness",
-                "text": "A level playing field for all"
+                "heading": "Openness",
+                "text": "Fair and transparent rules preserve our independence"
             }
         ]
     },
@@ -593,9 +535,9 @@
         },
         "navLabels": {
             "access": "Access",
+            "trust": "Trust",
             "control": "Control",
-            "safety": "Safety",
-            "fairness": "Fairness"
+            "openness": "Openness"
         },
         "intro": {
             "internet": "( THE WEB )",
