@@ -13,7 +13,7 @@
     var $getPhoneContent;
 
     var $appGroupSelector = $('.app-group-selector');
-    var $apps = $('img', '.apps');
+    var $apps = $('li', '.apps');
     var $categoryTriggers = $('a', $appGroupSelector);
 
     var $demoContainer = $('.demo');

@@ -128,21 +128,66 @@
           <li><a href="#" id="organized" data-category="organized" role="button">{{_('Stay organized')}}</a></li>
         </ul>
         <ul class="apps">
-          <li><img src="{{ static('img/firefox/os-new/icons/dialer.png') }}" width="142" height="142" class="connected fade" alt="{{_('Phone')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/camera.png') }}" width="142" height="142" class="entertained fade" alt="{{_('Camera')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/video.png') }}" width="142" height="142" class="entertained fade" alt="{{_('Video')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/email.png') }}" width="142" height="142" class="connected fade" alt="{{_('E-Mail')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/sms.png') }}" width="142" height="142" class="connected fade" alt="{{_('Messages')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/calendar.png') }}" width="142" height="142" class="organized fade" alt="{{_('Calendar')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/browser.png') }}" width="142" height="142" class="connected entertained fade" alt="{{_('Browser')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/clock.png') }}" width="142" height="142" class="organized fade" alt="{{_('Clock')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/contacts.png') }}" width="142" height="142" class="connected organized fade" alt="{{_('Contacts')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/music.png') }}" width="142" height="142" class="entertained fade" alt="{{_('Music')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/fmradio.png') }}" width="142" height="142" class="entertained fade" alt="{{_('FM Radio')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/settings.png') }}" width="142" height="142" class="organized fade" alt="{{_('Settings')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/gallery.png') }}" width="142" height="142" class="entertained organized fade" alt="{{_('Gallery')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/usage.png') }}" width="142" height="142" class="organized fade" alt="{{_('Usage')}}" /></li>
-          <li><img src="{{ static('img/firefox/os-new/icons/marketplace.png') }}" width="142" height="142" class="connected entertained organized fade" alt="{{_('Marketplace')}}" /></li>
+          <li class="connected fade">
+            <img src="{{ static('img/firefox/os-new/icons/dialer.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Phone')}}</span>
+          </li>
+          <li class="entertained fade">
+            <img src="{{ static('img/firefox/os-new/icons/camera.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Camera')}}</span>
+          </li>
+          <li class="entertained fade">
+            <img src="{{ static('img/firefox/os-new/icons/video.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Video')}}</span>
+          </li>
+          <li class="connected fade">
+            <img src="{{ static('img/firefox/os-new/icons/email.png') }}" width="142" height="142" alt="" />
+            <span>{{_('E-Mail')}}</span>
+          </li>
+          <li class="connected fade">
+            <img src="{{ static('img/firefox/os-new/icons/sms.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Messages')}}</span>
+          </li>
+          <li class="organized fade">
+            <img src="{{ static('img/firefox/os-new/icons/calendar.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Calendar')}}</span>
+          </li>
+          <li class="connected entertained fade">
+            <img src="{{ static('img/firefox/os-new/icons/browser.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Browser')}}</span>
+          </li>
+          <li class="organized fade">
+            <img src="{{ static('img/firefox/os-new/icons/clock.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Clock')}}</span>
+          </li>
+          <li class="connected organized fade">
+            <img src="{{ static('img/firefox/os-new/icons/contacts.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Contacts')}}</span>
+          </li>
+          <li class="entertained fade">
+            <img src="{{ static('img/firefox/os-new/icons/music.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Music')}}</span>
+          </li>
+          <li class="entertained fade">
+            <img src="{{ static('img/firefox/os-new/icons/fmradio.png') }}" width="142" height="142" alt="" />
+            <span>{{_('FM Radio')}}</span>
+          </li>
+          <li class="organized fade">
+            <img src="{{ static('img/firefox/os-new/icons/settings.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Settings')}}</span>
+          </li>
+          <li class="entertained organized fade">
+            <img src="{{ static('img/firefox/os-new/icons/gallery.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Gallery')}}</span>
+          </li>
+          <li class="organized fade">
+            <img src="{{ static('img/firefox/os-new/icons/usage.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Usage')}}</span>
+          </li>
+          <li class="connected entertained organized fade">
+            <img src="{{ static('img/firefox/os-new/icons/marketplace.png') }}" width="142" height="142" alt="" />
+            <span>{{_('Marketplace')}}</span>
+          </li>
         </ul>
       </div>
     </section>

@@ -384,6 +384,32 @@ main {
                 border-left: 0;
             }
         }
+
+        @media only screen and (max-width: @breakTablet) {
+            width: auto;
+            margin: 0 @baseLine (@baseLine * 2) @baseLine;
+
+            li {
+                display: block;
+                width: 100%;
+
+                a {
+                    display: block;
+                    border: 2px solid #71c4ea;
+                }
+
+                &:first-child a {
+                    border-radius: 0;
+                    border: 2px solid #71c4ea;
+                    border-bottom-width: 1px;
+                }
+                &:last-child a {
+                    border-radius: 0;
+                    border: 2px solid #71c4ea;
+                    border-top-width: 1px;
+                }
+            }
+        }
     }
     a {
         &:link,
@@ -707,36 +733,81 @@ main {
     }
 }
 ul.apps {
+    width: @widthDesktop;
     margin: 0 auto;
-    width: 90%;
+
     li {
         display: inline-block;
-        margin: 0 35px 40px 35px;
+        margin-bottom: @baseLine * 2;
+        width: 20%;
 
-        @media only screen and (max-width: 1440px) {
-            margin: 0 35px 40px 35px;
+        @media only screen and (max-width: @breakDesktop) {
+            width: 25%;
         }
+
+        @media only screen and (max-width: @breakTablet) {
+            width: 33%;
+        }
+
         @media only screen and (max-width: @breakMobileLandscape) {
-            margin: 0 18px 10px 18px;
-        }
-        @media only screen and (max-width: @breakMobile) {
-            margin: 0 10px 5px 10px;
+            width: 50%;
+            margin-bottom: @baseLine;
         }
     }
+
     img {
         width: 142px;
         height: 142px;
         opacity: 1;
-        .transition(all .5s ease-in);
+        .transition(all .5s ease-in-out);
+
+        @media only screen and (max-width: @breakTablet) {
+            width: 100px;
+            height: 100px;
+        }
 
         @media only screen and (max-width: @breakMobileLandscape) {
+            width: 80px;
+            height: 80px;
+        }
+
+        @media only screen and (max-width: @breakMobile) {
             width: 71px;
             height: 71px;
         }
     }
+
+    span {
+        display: block;
+        margin-top: @baseLine / 2;
+        .font-size(@largeFontSize);
+        opacity: 1;
+        .transition(opacity .5s ease-in-out);
+
+        @media only screen and (max-width: @breakTablet) {
+            margin-top: 0;
+            .font-size(@baseFontSize);
+        }
+    }
+
     .fade {
-        .transform(scale(.5, .5));
-        opacity: .4;
+        img {
+            .transform(scale(.5, .5));
+            opacity: .4;
+        }
+
+        span {
+            opacity: 0;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: auto;
+        margin: 0 @baseLine;
     }
 }
 .apps-marketplace {
