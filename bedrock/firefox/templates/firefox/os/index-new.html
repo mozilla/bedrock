@@ -40,11 +40,15 @@
             <h1><span>{{_('Firefox OS')}}</span></h1>
             <p class="tagline">{{_('Designed to give you just what you need, just when you need it.')}}</p>
 
-            <div id="primary-cta-signup" class="signup hidden">
+            <div class="primary-cta-signup signup hidden">
               <a href="#email-form-wrapper" class="cta-button get-newsletter newsletter-signup-toggle" role="button" aria-haspopup="true">{{_('Sign me up')}}</a>
               <p class="signup-txt">{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
             </div>
-            <a id="primary-cta-phone" href="#get-device" class="cta-button get-phone hidden" role="button" aria-haspopup="true">{{_('Get a phone')}}</a>
+            <a href="#get-device" class="primary-cta-phone cta-button get-phone hidden" role="button" aria-haspopup="true">{{_('Get a phone')}}</a>
+            <div id="cta-sticky">
+              <a href="#email-form-wrapper" class="primary-cta-signup cta-button-small newsletter-signup-toggle hidden" role="button" aria-haspopup="true">{{_('Sign me up')}}</a>
+              <a href="#get-device" class="primary-cta-phone cta-button-small hidden" role="button" aria-haspopup="true">{{_('Get a phone')}}</a>
+            </div>
           </div>
 
           <div class="phone-container">

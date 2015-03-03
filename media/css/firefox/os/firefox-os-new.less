@@ -97,6 +97,7 @@ main {
     color: white;
     font-size: 1.4em;
     padding: .7em 3em;
+    .transition(background-color .1s ease-in-out);
 
     @media only screen and (max-width: 1600px) {
         margin-bottom: 50px;
@@ -141,6 +142,31 @@ main {
         margin: 0;
         padding: 0;
         list-style: none;
+    }
+}
+
+#cta-sticky {
+    .cta-button-small {
+        display: inline-block;
+        float: right;
+        padding: (@baseLine / 2) @baseLine;
+        font-weight: normal;
+        background: #005189;
+        color: #fff;
+        border-radius: 10px;
+        .trailing-arrow();
+        .transition(background-color .1s ease-in-out);
+
+        &.hidden {
+            display: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+            background-color: #005da5;
+        }
     }
 }
 /* class is added to fxos-hero-space when switching to demo mode */

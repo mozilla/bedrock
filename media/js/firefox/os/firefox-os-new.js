@@ -26,7 +26,8 @@
 
     var fxNavConfig = {
         primaryId: 'os',
-        subId: 'index'
+        subId: 'index',
+        ctaId: 'cta-sticky'
     };
 
     Mozilla.FxFamilyNav.init(fxNavConfig);
@@ -236,7 +237,7 @@
         // if there are partners available, update UI
         if (COUNTRY_CODE !== '' && $provider.length > 0) {
             // show get phone calls to action
-            $('#primary-cta-phone').removeClass('hidden');
+            $('.primary-cta-phone').removeClass('hidden');
 
             // if country has more than one provider, show the multi intro text
             if ($provider.find('li').length > 1) {
@@ -250,7 +251,7 @@
             // setup GA event tracking on telecom provider exit links
             $('#provider-links a').on('click', trackProviderExit);
         } else {
-            $('#primary-cta-signup').removeClass('hidden');
+            $('.primary-cta-signup').removeClass('hidden');
         }
     }
 
