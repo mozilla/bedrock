@@ -24,6 +24,9 @@
     var $scrollHomescreen = $('.scroll-homescreen');
     var $swipeApps = $('.swipe-apps');
 
+    //get modal logo path from data attribute in template
+    var modalLogo = $('#modal-logo').data('src');
+
     var fxNavConfig = {
         primaryId: 'os',
         subId: 'index',
@@ -44,7 +47,7 @@
 
       Mozilla.Modal.createModal(this, $signupContent, {
           allowScroll: !isSmallViewport,
-          title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
+          title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
       });
 
       //track GA event for newsletter CTA
@@ -67,7 +70,7 @@
 
       Mozilla.Modal.createModal(this, $getPhoneContent, {
           allowScroll: !isSmallViewport,
-          title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
+          title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
       });
 
       //track GA event for get a phone CTA
@@ -93,8 +96,6 @@
             }
         });
     });
-
-    $('li:first-child a', $appGroupSelector).addClass('active-state').click();
 
     /**
      * Toggles the active-state class on all links in the container, essentially

@@ -17,32 +17,10 @@ main {
     text-align: center;
 
     h1 {
-        background: url(/media/img/firefox/os-new/fxos_wordmark420.png) center top no-repeat;
         margin: 0 auto @baseLine;
-        width: 440px;
-        height: 84px;
 
-        @media only screen and (max-width: 1366px) {
-            background-image: url(/media/img/firefox/os-new/fxos_wordmark420.png);
-            width: 420px;
-            height: 84px;
-        }
-
-        @media only screen and (max-width: 1024px) {
-            background-image: url(/media/img/firefox/os-new/fxos_wordmark320.png);
-            margin: 0 auto 10px;
-            width: 320px;
-            height: 60px;
-        }
-
-        @media only screen and (max-width: @breakMobileLandscape) {
-            background-image: url(/media/img/firefox/os-new/fxos_wordmark260.png);
-            margin: 0 auto 20px;
-            width: 260px;
-            height: 52px;
-        }
-        span {
-            .visually-hidden();
+        img {
+            height: auto;
         }
     }
     h2 {
@@ -61,23 +39,14 @@ main {
     .tagline {
         .open-sans-light();
         color: #bee1f5;
-        margin: 0 auto 20px;
+        margin: 0 auto @baseLine;
         font-size: 2em;
         letter-spacing: -0.03em;
         max-width: 480px;
 
-        @media only screen and (max-width: 1366px) {
-            .font-size(1.6rem);
-            line-height: 1.1;
-        }
-        @media only screen and (max-width: 1024px) {
-            margin-bottom: 15px;
-            .font-size(1.4rem);
-            line-height: 1.3;
-        }
-        @media only screen and (max-width: @breakMobileLandscape) {
-            margin-bottom: 20px;
-            .font-size(1.2rem);
+        @media only screen and (max-width: @breakDesktop) {
+            font-size: 1.7em;
+            max-width: 420px;
         }
     }
 }
@@ -85,7 +54,7 @@ main {
 .content-wrapper {
     margin: 0 auto;
     width: 100%;
-    max-width: 1400px;
+    max-width: 1100px;
 }
 /* Buttons */
 .cta-button {
@@ -94,7 +63,7 @@ main {
     margin: 0 auto 30px;
     border: 0;
     border-radius: 6px;
-    color: white;
+    color: #fff;
     font-size: 1.4em;
     padding: .7em 3em;
     .transition(background-color .1s ease-in-out);
@@ -115,7 +84,7 @@ main {
     &:focus,
     &:active {
         background-color: #005da5;
-        color: white;
+        color: #fff;
         text-decoration: none;
     }
 }
@@ -149,11 +118,11 @@ main {
     .cta-button-small {
         display: inline-block;
         float: right;
-        padding: (@baseLine / 2) @baseLine;
+        padding: (@baseLine / 2) @gridGutterWidth;
         font-weight: normal;
         background: #005189;
         color: #fff;
-        border-radius: 10px;
+        border-radius: 6px;
         .trailing-arrow();
         .transition(background-color .1s ease-in-out);
 
@@ -176,9 +145,8 @@ main {
 .phone {
     position: relative;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 (@gridGutterWidth * 2);
     overflow: hidden;
-    .transition(all .7s);
 
     .signup {
         margin-bottom: 25px;
@@ -191,8 +159,8 @@ main {
         .font-size(14px);
     }
 
-    @media only screen and (max-width: @breakMobile) {
-        padding: 0 20px;
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding: 0 @gridGutterWidth;
     }
 }
 
@@ -215,6 +183,7 @@ main {
 }
 .fxos-cta {
     float: left;
+    padding: (@baseLine * 2) 0;
 
     @media only screen and (max-width: 1024px) {
         margin-top: 10px;
@@ -229,12 +198,14 @@ main {
     right: 20px;
     top: 0;
     height: 100%;
+    padding-left: @gridGutterWidth;
 
     @media only screen and (max-width: @breakTablet) {
         position: relative;
         right: auto;
         top: auto;
         height: 280px;
+        padding-left: 0;
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
@@ -249,8 +220,6 @@ main {
     img {
         width: 520px;
         height: auto;
-        transition: width .2s,
-                    height .2s;
 
         @media only screen and (max-width: 1024px) {
             width: 400px;
@@ -387,7 +356,7 @@ main {
 
         @media only screen and (max-width: @breakTablet) {
             width: auto;
-            margin: 0 @baseLine (@baseLine * 2) @baseLine;
+            margin: 0 @baseLine (@gridGutterWidth * 2) @baseLine;
 
             li {
                 display: block;
@@ -399,12 +368,12 @@ main {
                 }
 
                 &:first-child a {
-                    border-radius: 0;
+                    border-radius: 6px 6px 0 0;
                     border: 2px solid #71c4ea;
                     border-bottom-width: 1px;
                 }
                 &:last-child a {
-                    border-radius: 0;
+                    border-radius: 0 0 6px 6px;
                     border: 2px solid #71c4ea;
                     border-top-width: 1px;
                 }
@@ -412,6 +381,7 @@ main {
         }
     }
     a {
+        .transition(background-color .1s ease-in-out);
         &:link,
         &:visited {
             display: inline-block;
@@ -486,43 +456,47 @@ main {
     }
 }
 .fxos-features {
-    background-color: white;
-    padding: 80px 3em 100px;
+    background-color: #fff;
+    padding: (@baseLine * 4) @gridGutterWidth (@baseLine * 5);
     .clearfix();
 
-    @media only screen and (max-width: @breakMobileLandscape) {
-        padding: 40px 0 60px;
-    }
     h2 {
         margin-bottom: 40px;
     }
     h3 {
         margin-top: 20px;
     }
-    .feature {
-        display: inline-block;
-        width: 29%;
-        margin: 0 5% 0 0;
-        vertical-align: top;
+    .features {
+        position: relative;
+        list-style-type: none;
+        margin: 0 auto;
+        padding: 0;
 
-        @media only screen and (max-width: 1440px) {
-            width: 24%;
+        li {
+            float: left;
+            margin: 0;
+            padding: 0 @gridGutterWidth;
+            width: 33%;
+
+            p {
+                color: #999;
+                .font-size(@largeFontSize);
+                max-width: 20em;
+                margin: @baseLine auto;
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                float: none;
+                display: block;
+                width: auto;
+                padding: 0;
+                margin-bottom: @baseLine * 2;
+
+                p {
+                    max-width: 25em;
+                }
+            }
         }
-        @media only screen and (max-width: 1024px) {
-            width: 29%;
-        }
-        @media only screen and (max-width: @breakMobileLandscape) {
-            display: block;
-            margin: 0 auto;
-            width: 90%;
-        }
-        p {
-            color: #999;
-            font-size: 1.1em;
-        }
-    }
-    :last-child.feature {
-        margin: 0;
     }
 }
 .fxos-features,
@@ -543,6 +517,7 @@ main {
     }
 }
 .fxos-marketplace {
+    padding: 0 @gridGutterWidth;
     h2 {
         margin-bottom: 30px;
     }
@@ -601,7 +576,7 @@ main {
     background-color: #f2f2f2;
     padding: 50px 50px 40px;
 
-    @media only screen and (max-width: @breakMobileLandscape) {
+    @media only screen and (max-width: @breakTablet) {
         padding: 30px 23px 10px;
         text-align: left;
     }
@@ -614,7 +589,7 @@ main {
         @media only screen and (max-width: 1366px) {
             margin-right: 50px;
         }
-        @media only screen and (max-width: @breakMobileLandscape) {
+        @media only screen and (max-width: @breakTablet) {
             display: block;
             margin-right: 0;
         }
@@ -639,15 +614,16 @@ main {
         @media only screen and (max-width: 1366px) {
             width: 40%;
         }
-        @media only screen and (max-width: @breakMobileLandscape) {
+        @media only screen and (max-width: @breakTablet) {
             display: block;
             width: auto;
             line-height: 1.3;
         }
         li {
             margin: 0 0 1em 0;
+            line-height: 1.5;
 
-            @media only screen and (max-width: @breakMobileLandscape) {
+            @media only screen and (max-width: @breakTablet) {
                 margin-left: 0;
             }
         }
@@ -657,67 +633,65 @@ main {
     background-color: white;
     color: #333;
     padding: 80px 0;
+    h2 {
+        padding: 0 @gridGutterWidth;
+        margin-bottom: @baseLine;
+    }
     p {
         color: #999;
-        padding: 0 10%;
+        padding: 0 (@gridGutterWidth * 3);
         .open-sans-light();
         font-size: 1.7em;
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            padding: 0 @gridGutterWidth;
+        }
     }
     img {
         margin: 0 0 3em 0;
     }
 }
 .fxos-help {
+    width: @widthDesktop;
     margin: 0 auto;
-    padding: 80px 0;
+    padding: (@baseLine * 4) 0;
     .clearfix();
 
+    .content-wrapper {
+        padding: 0 @gridGutterWidth;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @breakTablet;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+
     @media only screen and (max-width: @breakMobileLandscape) {
-        padding: 30px 0 10px;
+        width: @widthMobile;
     }
 
     .help {
-        display: inline-block;
-        width: 300px;
+        float: left;
+        width: 33%;
         vertical-align: top;
+        padding: 0 @gridGutterWidth 0 (@gridGutterWidth / 2);
 
-        @media only screen and (max-width: 1024px) {
-            width: 220px;
-        }
-        @media only screen and (max-width: 768px) {
-            width: 180px;
-        }
-        @media only screen and (max-width: @breakMobileLandscape) {
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
             display: block;
-            margin: 0 0 30px 50px;
             width: auto;
-        }
-        @media only screen and (max-width: @breakMobile) {
-            display: block;
-            margin: 0 0 20px 20px;
-            width: auto;
-        }
+            padding: 0;
+            margin-bottom: @baseLine;
 
-        &:first-child {
-            margin-left: 190px;
-
-            @media only screen and (max-width: 1440px) {
-                margin-left: 80px;
-            }
-            @media only screen and (max-width: 1024px) {
-                margin-left: 80px;
-            }
-            @media only screen and (max-width: 768px) {
-                margin-left: 30px;
-            }
-            @media only screen and (max-width: @breakMobileLandscape) {
-                margin-left: 50px;
-            }
-            @media only screen and (max-width: @breakMobile) {
-                margin-left: 20px;
+            h3, ul, li {
+                text-align: center;
             }
         }
     }
+
     h3 {
         text-align: left;
     }
@@ -733,15 +707,19 @@ main {
     }
 }
 ul.apps {
-    width: @widthDesktop;
+    width: 1100px;
     margin: 0 auto;
+
+    @media only screen and (max-width: 1100px) {
+        width: @widthDesktop;
+    }
 
     li {
         display: inline-block;
         margin-bottom: @baseLine * 2;
         width: 20%;
 
-        @media only screen and (max-width: @breakDesktop) {
+        @media only screen and (max-width: 1100px) {
             width: 25%;
         }
 
@@ -807,7 +785,7 @@ ul.apps {
 
     @media only screen and (max-width: @breakTablet) {
         width: auto;
-        margin: 0 @baseLine;
+        margin: 0 @gridGutterWidth;
     }
 }
 .apps-marketplace {
@@ -819,10 +797,10 @@ ul.apps {
     }
     li {
         display: inline-block;
-        margin: 0 20px 20px 60px;
+        margin: 0 (@gridGutterWidth * 2) @baseLine (@gridGutterWidth * 2);
 
-        @media only screen and (max-width: @breakMobileLandscape) {
-            margin: 0 10px 0 10px;
+        @media only screen and (max-width: @breakTablet) {
+            margin: 0 (@gridGutterWidth / 2);
         }
     }
     img {
@@ -869,31 +847,6 @@ ul.apps {
 
 // JS specific styles for signup and get phone modal content
 .js {
-    #signup-toggle-icon {
-        position: fixed;
-        top: (@baseLine + 80); // @baseLine below height of masthead
-        right: @baseLine;
-        z-index: 1000;
-        width: 28px;
-        height: 28px;
-        background: url(/media/img/firefox/os/signup-slide-toggle.png) left top no-repeat;
-        text-indent: 105%;
-        white-space: nowrap;
-        overflow: hidden;
-        @transition: right, box-shadow linear 0.25s;
-        .transition(@transition);
-        &.form-open {
-          right: 300px;
-          background-position: left -28px;
-        }
-    }
-
-    #signup-toggle-icon:hover,
-    #signup-toggle-icon:focus {
-        outline: none;
-        .transition(box-shadow .5s linear);
-        .box-shadow(0 0 20px 0px rgb(255,255,255));
-    }
 
     #email-form-wrapper {
         display: none;
