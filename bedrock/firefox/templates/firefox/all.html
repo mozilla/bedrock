@@ -8,7 +8,7 @@
 {% block page_desc %}
   {% if channel == 'beta' %}
     {{ _('Download Firefox Beta in your language and experience cutting edge features before they make it to final release. Provide feedback to help us refine and polish the next version of Firefox.') }}
-  {% elif channel == 'aurora' %}
+  {% elif channel == 'alpha' %}
     {{ _('Download Firefox Developer Edition in your language to experience the newest features and innovations in an unstable environment even before they go to Beta. Give us feedback that will determine what makes it to Final Release and help shape the future of Firefox.') }}
   {% elif channel == 'esr' %}
     {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.organizations.organizations')) }}
@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block body_class -%}
-  sky firefox-all-{{ channel }} {% if channel == 'aurora' %}blueprint{% endif %}
+  sky firefox-all-{{ channel }} {% if channel == 'alpha' %}blueprint{% endif %}
 {% endblock %}
 
 {% block site_css %}
@@ -34,7 +34,7 @@
 {% endblock %}
 
 {% block site_header_logo %}
-  {% if channel == 'aurora' %}
+  {% if channel == 'alpha' %}
     <h2><a href="{{ url('firefox.developer') }}">{{ high_res_img('img/firefox/developer/title.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</a></h2>
   {% else %}
     {{ super() }}
@@ -53,8 +53,8 @@
   <header id="main-feature">
     <h1>{{ self.page_title()  }}</h1>
     <h2>{{ self.page_desc() }}</h2>
-    <p><a class="sysreq" href="{{ product_url('firefox', 'sysreq', channel) }}">{{ _('Check the system requirements') }}</a><br />
-    <a class="sysreq" href="{{ product_url('firefox', 'notes', channel) }}">{{ _('Release notes') }}</a>
+    <p><a class="sysreq" href="{{ firefox_url('desktop', 'sysreq', channel) }}">{{ _('Check the system requirements') }}</a><br />
+    <a class="sysreq" href="{{ firefox_url('desktop', 'notes', channel) }}">{{ _('Release notes') }}</a>
     </p>
   </header>
 
@@ -161,7 +161,7 @@
           <tr>
             <th colspan="2" scope="col">{{ _('Language') }}</th>
             <th scope="col">{{ _('Windows') }}</th>
-            {% if channel in ['aurora'] -%}
+            {% if channel in ['alpha'] -%}
             <th scope="col">{{ _('Windows 64-bit') }}</th>
             {% endif -%}
             <th scope="col">{{ _('Mac OS X') }}</th>
@@ -184,25 +184,25 @@
   <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }}, {{ build.name_native|lower }}">
     <th scope="row">{{ build.name_en }}</th>
     <td lang="{{ build.locale }}">{{ build.name_native }}</td>
-    {{ build_link(build, 'Windows', _('Download for Windows')) }}
+    {{ build_link(build, 'win', _('Download for Windows')) }}
     {# Windows 64-bit builds are currently available only on the Aurora channel -#}
-    {% if channel in ['aurora'] -%}
-    {{ build_link(build, 'Windows 64', _('Download for 64-bit Windows')) }}
+    {% if channel in ['alpha'] -%}
+    {{ build_link(build, 'win64', _('Download for 64-bit Windows')) }}
     {% endif -%}
-    {{ build_link(build, 'OS X', _('Download for Mac OS X')) }}
-    {{ build_link(build, 'Linux', _('Download for Linux')) }}
-    {{ build_link(build, 'Linux 64', _('Download for 64-bit Linux')) }}
+    {{ build_link(build, 'osx', _('Download for Mac OS X')) }}
+    {{ build_link(build, 'linux', _('Download for Linux')) }}
+    {{ build_link(build, 'linux64', _('Download for 64-bit Linux')) }}
   </tr>
 {% endmacro %}
 
 <!--
   build: Locale dictionary from product details.
-  platform: Value in build.platforms to use. One of 'Windows', 'Windows 64', 'OS X', 'Linux' and 'Linux 64'.
+  platform: Value in build.platforms to use. One of 'win', 'win64', 'osx', 'linux' and 'linux64'.
   tooltip: Text to display as tooltip for download link.
 -->
 {% macro build_link(build, platform, tooltip) %}
   {% if build.platforms[platform] %}
-    <td class="download {{ platform|lower|replace(' ', '') }}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
+    <td class="download {{ platform }}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
   {% else %}
     <td class="unavailable">{{ _('Not Yet Available') }}</td>
   {% endif %}
