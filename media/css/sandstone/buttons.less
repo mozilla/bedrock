@@ -409,12 +409,12 @@ html[lang^='en'] {
 }
 
 .download-button-beta.download-button-small .download-link .download-lang,
-.download-button-aurora.download-button-small .download-link .download-lang {
+.download-button-alpha.download-button-small .download-link .download-lang {
     top: 33px;
 }
 
 .download-button-beta,
-.download-button-aurora {
+.download-button-alpha {
     .download-link .download-title,
     .download-link .download-title span {
         .font-size(24px);
@@ -422,14 +422,14 @@ html[lang^='en'] {
 }
 
 .download-button-beta.download-button-small,
-.download-button-aurora.download-button-small {
+.download-button-alpha.download-button-small {
     .download-link .download-title,
     .download-link .download-title span {
         .font-size(20px);
     }
 }
 
-.download-button-aurora.download-button-small {
+.download-button-alpha.download-button-small {
     .download-link {
         .download-title {
             .font-size(13px);
@@ -451,7 +451,7 @@ html[lang^='en'] {
     }
 }
 
-.download-button-aurora.download-button-simple {
+.download-button-alpha.download-button-simple {
     .download-link .download-subtitle {
         // Don't hide the subtitle for Aurora if simple=True
         display: block;
@@ -459,9 +459,9 @@ html[lang^='en'] {
 }
 
 .download-button.download-button-beta.download-button-small .download-list .os_android,
-.download-button.download-button-aurora.download-button-small .download-list .os_android,
-.download-button.download-button-mobile.download-button-aurora.download-button-small,
-.download-button.download-button-mobile.download-button-beta.download-button-small {
+.download-button.download-button-alpha.download-button-small .download-list .os_android,
+.download-button.download-button-android.download-button-alpha.download-button-small,
+.download-button.download-button-android.download-button-beta.download-button-small {
     .download-link .download-title span {
         .font-size(18px);
         letter-spacing: -0.01em;
@@ -476,11 +476,11 @@ html[lang^='en'] {
   background-image: url(/media/img/sandstone/buttons/beta-small.png);
 }
 
-.download-button-large.aurora .download-link .download-content {
+.download-button-large.alpha .download-link .download-content {
   background-image: url(/media/img/sandstone/buttons/aurora-large.png);
 }
 
-.download-button-small.aurora .download-link .download-content {
+.download-button-small.alpha .download-link .download-content {
   background-image: url(/media/img/sandstone/buttons/aurora-small.png);
 }
 
@@ -501,7 +501,7 @@ html[lang^='en'] {
 }
 
 .download-button-noicon .download-list .os_android,
-.download-button-mobile.download-button-noicon {
+.download-button-android.download-button-noicon {
     .download-link .download-title span {
         padding-top: 7px;
     }
@@ -517,7 +517,7 @@ html[lang^='en'] {
 }
 
 .download-button-small.download-button-noicon .download-list .os_android,
-.download-button-small.download-button-mobile.download-button-noicon {
+.download-button-small.download-button-android.download-button-noicon {
     .download-link .download-title span {
         padding-top: 0;
     }
@@ -577,15 +577,15 @@ html[lang^='en'] {
 
 // OS detection
 
-.download-button .os_windows64,
+.download-button .os_win64,
 .download-button .os_linux,
 .download-button .os_linux64,
 // Uncomment this to enable the win64 download buttons:
-// .win7up.x86.x64 .download-button-aurora .os_windows,
-.windows.arm .download-button .os_windows,
+// .win7up.x86.x64 .download-button-aurora .os_win,
+.windows.arm .download-button .os_win,
 .linux.arm .download-button .os_linux,
 .linux.x86.x64 .download-list .os_linux,
-.download-button .os_windows,
+.download-button .os_win,
 .download-button .os_osx,
 .download-button .os_android,
 .no-js .download-list,
@@ -595,18 +595,18 @@ html[lang^='en'] {
 
 .ios .download-button .ios-download,
 // Uncomment this to enable the win64 download buttons:
-// .win7up.x86.x64 .download-button-aurora .os_windows64,
+// .win7up.x86.x64 .download-button-aurora .os_win64,
 .linux .download-button .os_linux,
 .linux.x86.x64 .download-button .os_linux64,
-.windows .download-button .os_windows,
+.windows .download-button .os_win,
 .osx .download-button .os_osx,
 .android .download-button .os_android,
-.download-button-mobile .os_android,
+.download-button-android .os_android,
 .android .download-button-desktop .download-list,
-.android .download-button-desktop small.os_windows,
-.no-js .download-button-mobile .download-list,
-.other .download-button-mobile .download-list,
-.other .download-button small.os_windows {
+.android .download-button-desktop small.os_win,
+.no-js .download-button-android .download-list,
+.other .download-button-android .download-list,
+.other .download-button small.os_win {
     display: block !important;
 }
 
@@ -621,7 +621,7 @@ html[lang^='en'] {
 // Small print
 
 .download-button small.download-other,
-.other .download-button-mobile small.download-other,
+.other .download-button-android small.download-other,
 .android .download-button-desktop small.download-other {
     .open-sans;
     display: block;
@@ -683,7 +683,7 @@ html[lang^='en'] {
 // Mobile download buttons
 
 .download-button .download-list .os_android,
-.download-button-mobile {
+.download-button-android {
     .download-link {
        .download-title {
             padding-top: 0;
@@ -707,7 +707,7 @@ html[lang^='en'] {
 }
 
 .download-button.download-button-small .download-list .os_android,
-.download-button.download-button-small.download-button-mobile {
+.download-button.download-button-small.download-button-android {
     .download-link {
        .download-title {
             padding-top: 0;
@@ -762,7 +762,7 @@ html[lang="es-ES"],
 html[lang="es-MX"],
 html[lang="pt-BR"],
 html[lang="pt-PT"] {
-    .download-button-aurora.download-button-small .download-link .download-lang,
+    .download-button-alpha.download-button-small .download-link .download-lang,
     .download-button-beta.download-button-small .download-link .download-lang {
         top: 30px;
     }
@@ -770,7 +770,7 @@ html[lang="pt-PT"] {
 
 html[lang="gd"],
 html[lang="mk"] {
-    .download-button-aurora.download-button-small .download-link,
+    .download-button-alpha.download-button-small .download-link,
     .download-button-beta.download-button-small .download-link {
         .download-subtitle {
             padding-right: 50px;
@@ -778,7 +778,7 @@ html[lang="mk"] {
     }
 
     .download-button.download-button-small .download-list .os_android,
-    .download-button.download-button-small.download-button-mobile {
+    .download-button.download-button-small.download-button-android {
         .download-subtitle {
             padding-right: 0;
         }
@@ -810,7 +810,7 @@ html[lang="ml"],
 html[lang="ms"],
 html[lang="ta"],
 html[lang="te"] {
-    .download-button.download-button-beta.download-button-mobile.download-button-small,
+    .download-button.download-button-beta.download-button-android.download-button-small,
     .download-button.download-button-small .download-list .os_android {
         .download-subtitle {
             width: auto;

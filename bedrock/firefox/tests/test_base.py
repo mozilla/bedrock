@@ -4,7 +4,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import json
 import os
-from urlparse import parse_qsl, urlparse
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -18,7 +17,7 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDetails, MobileDetails
+from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
 from bedrock.firefox.utils import product_details
 from bedrock.mozorg.tests import TestCase
 
@@ -28,8 +27,8 @@ PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
 
 with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
-    firefox_details = FirefoxDetails()
-    mobile_details = MobileDetails()
+    firefox_desktop = FirefoxDesktop()
+    firefox_android = FirefoxAndroid()
 
 
 class TestInstallerHelp(TestCase):
@@ -56,7 +55,7 @@ class TestInstallerHelp(TestCase):
             call(force_direct=True, force_full_installer=True, locale='fr'),
             call('beta', small=ANY, force_direct=True,
                  force_full_installer=True, icon=ANY, locale='fr'),
-            call('aurora', small=ANY, force_direct=True,
+            call('alpha', small=ANY, force_direct=True,
                  force_full_installer=True, icon=ANY, locale='fr'),
         ])
 
@@ -71,7 +70,7 @@ class TestInstallerHelp(TestCase):
             call(force_direct=True, force_full_installer=True, locale=None),
             call('beta', small=ANY, force_direct=True,
                  force_full_installer=True, icon=ANY, locale=None),
-            call('aurora', small=ANY, force_direct=True,
+            call('alpha', small=ANY, force_direct=True,
                  force_full_installer=True, icon=ANY, locale=None),
         ])
 
@@ -86,7 +85,7 @@ class TestInstallerHelp(TestCase):
             call(force_direct=True, force_full_installer=True, locale=None),
             call('beta', small=ANY, force_direct=True,
                  force_full_installer=True, icon=ANY, locale=None),
-            call('aurora', small=ANY, force_direct=True,
+            call('alpha', small=ANY, force_direct=True,
                  force_full_installer=True, icon=ANY, locale=None),
         ])
 
@@ -102,229 +101,7 @@ class TestInstallerHelp(TestCase):
                                                  locale=None)
 
 
-@patch.object(fx_views, 'firefox_details', firefox_details)
-class TestFirefoxDetails(TestCase):
-
-    def test_get_download_url(self):
-        url = firefox_details.get_download_url('OS X', 'pt-BR', '17.0.1')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-17.0.1-SSL'),
-                              ('os', 'osx'),
-                              ('lang', 'pt-BR')])
-        # Windows 64-bit
-        url = firefox_details.get_download_url('Windows 64', 'en-US', '38.0')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-38.0-SSL'),
-                              ('os', 'win64'),
-                              ('lang', 'en-US')])
-        # Linux 64-bit
-        url = firefox_details.get_download_url('Linux 64', 'en-US', '17.0.1')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-17.0.1-SSL'),
-                              ('os', 'linux64'),
-                              ('lang', 'en-US')])
-
-    @patch.dict(firefox_details.firefox_versions,
-                FIREFOX_AURORA='28.0a2')
-    def test_get_download_url_aurora(self):
-        """
-        The Aurora version should give us a bouncer url. For Windows, a stub
-        url should be returned.
-        """
-        url = firefox_details.get_download_url('Windows', 'en-US', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-stub'),
-                              ('os', 'win'),
-                              ('lang', 'en-US')])
-        url = firefox_details.get_download_url('Windows 64', 'en-US', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-ssl'),
-                              ('os', 'win64'),
-                              ('lang', 'en-US')])
-        url = firefox_details.get_download_url('OS X', 'en-US', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-ssl'),
-                              ('os', 'osx'),
-                              ('lang', 'en-US')])
-        url = firefox_details.get_download_url('Linux', 'en-US', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-ssl'),
-                              ('os', 'linux'),
-                              ('lang', 'en-US')])
-        url = firefox_details.get_download_url('Linux 64', 'en-US', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-ssl'),
-                              ('os', 'linux64'),
-                              ('lang', 'en-US')])
-
-    @patch.dict(firefox_details.firefox_versions,
-                FIREFOX_AURORA='28.0a2')
-    def test_get_download_url_aurora_l10n(self):
-        """Aurora non en-US should have a slightly different product name."""
-        url = firefox_details.get_download_url('Windows', 'pt-BR', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-l10n'),
-                              ('os', 'win'),
-                              ('lang', 'pt-BR')])
-        url = firefox_details.get_download_url('Windows 64', 'pt-BR', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-l10n'),
-                              ('os', 'win64'),
-                              ('lang', 'pt-BR')])
-        url = firefox_details.get_download_url('OS X', 'pt-BR', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-l10n'),
-                              ('os', 'osx'),
-                              ('lang', 'pt-BR')])
-        url = firefox_details.get_download_url('Linux', 'pt-BR', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-l10n'),
-                              ('os', 'linux'),
-                              ('lang', 'pt-BR')])
-        url = firefox_details.get_download_url('Linux 64', 'pt-BR', '28.0a2')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-l10n'),
-                              ('os', 'linux64'),
-                              ('lang', 'pt-BR')])
-
-    @override_settings(STUB_INSTALLER_LOCALES={'win': settings.STUB_INSTALLER_ALL})
-    def get_download_url_ssl(self):
-        """
-        SSL-enabled links should always be used except Windows stub installers.
-        """
-
-        # SSL-enabled links won't be used for Windows builds (but SSL download
-        # is enabled by default for stub installers)
-        url = firefox_details.get_download_url('Windows', 'pt-BR', '27.0')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-27.0'),
-                              ('os', 'win'),
-                              ('lang', 'pt-BR')])
-
-        # SSL-enabled links will be used for OS X builds
-        url = firefox_details.get_download_url('OS X', 'pt-BR', '27.0')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-27.0-SSL'),
-                              ('os', 'osx'),
-                              ('lang', 'pt-BR')])
-
-        # SSL-enabled links will be used for Linux builds
-        url = firefox_details.get_download_url('Linux', 'pt-BR', '27.0')
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-27.0-SSL'),
-                              ('os', 'linux'),
-                              ('lang', 'pt-BR')])
-
-    def test_filter_builds_by_locale_name(self):
-        # search english
-        builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_version('release'),
-            'ujara'
-        )
-        eq_(len(builds), 1)
-        eq_(builds[0]['name_en'], 'Gujarati')
-
-        # search native
-        builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_version('release'),
-            u'જરા'
-        )
-        eq_(len(builds), 1)
-        eq_(builds[0]['name_en'], 'Gujarati')
-
-        # with a space
-        builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_version('release'),
-            'british english'
-        )
-        eq_(len(builds), 1)
-        eq_(builds[0]['name_en'], 'English (British)')
-
-        # with a comma
-        builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_version('release'),
-            u'French, Français'
-        )
-        eq_(len(builds), 1)
-        eq_(builds[0]['name_en'], 'French')
-
-    def test_windows64_build(self):
-        # Aurora
-        builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_version('aurora')
-        )
-        url = builds[0]['platforms']['Windows 64']['download_url']
-        eq_(parse_qsl(urlparse(url).query)[1], ('os', 'win64'))
-
-        # Beta
-        builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_version('beta')
-        )
-        ok_('Windows 64' not in builds[0]['platforms'])
-
-        # Release
-        builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_version('release')
-        )
-        ok_('Windows 64' not in builds[0]['platforms'])
-
-    def test_linux64_build(self):
-        builds = firefox_details.get_filtered_full_builds(
-            firefox_details.latest_version('release')
-        )
-        url = builds[0]['platforms']['Linux 64']['download_url']
-        eq_(parse_qsl(urlparse(url).query)[1], ('os', 'linux64'))
-
-    @patch.dict(firefox_details.firefox_versions,
-                FIREFOX_ESR='24.2')
-    def test_esr_major_versions(self):
-        """ESR versions should be dynamic based on data."""
-        eq_(firefox_details.esr_major_versions, [24])
-
-    @patch.dict(firefox_details.firefox_versions,
-                FIREFOX_ESR='24.6.0',
-                FIREFOX_ESR_NEXT='31.0.0')
-    def test_esr_major_versions_prev(self):
-        """ESR versions should show previous when available."""
-        eq_(firefox_details.esr_major_versions, [24, 31])
-
-    @patch.dict(firefox_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='Phoenix',
-                FIREFOX_ESR='Albuquerque')
-    def test_esr_major_versions_no_latest(self):
-        """ESR versions should not blow up if current version is broken."""
-        eq_(firefox_details.esr_major_versions, [])
-
-    @patch.dict(firefox_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='18.0.1')
-    def test_latest_major_version(self):
-        """latest_major_version should return an int of the major version."""
-        eq_(firefox_details.latest_major_version('release'), 18)
-
-    @patch.dict(firefox_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='Phoenix')
-    def test_latest_major_version_no_int(self):
-        """latest_major_version should return 0 when no int."""
-        eq_(firefox_details.latest_major_version('release'), 0)
-
-
-@patch.object(fx_views, 'mobile_details', mobile_details)
-class TestMobileDetails(TestCase):
-
-    @patch.dict(mobile_details.mobile_details,
-                version='22.0.1')
-    def test_latest_release_version(self):
-        """latest_version should return the latest release version."""
-        eq_(mobile_details.latest_version('release'), '22.0.1')
-
-    @patch.dict(mobile_details.mobile_details,
-                beta_version='23.0')
-    def test_latest_beta_version(self):
-        """latest_version should return the latest beta version."""
-        eq_(mobile_details.latest_version('beta'), '23.0')
-
-
-@patch.object(fx_views, 'firefox_details', firefox_details)
+@patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class TestFirefoxAll(TestCase):
     def setUp(self):
         with self.activate('en-US'):
@@ -349,9 +126,8 @@ class TestFirefoxAll(TestCase):
         eq_(len(doc('.build-table')), 2)
         eq_(len(doc('.not-found.hide')), 2)
 
-        release = firefox_details.latest_version('release')
-        num_builds = len(firefox_details.get_filtered_full_builds(release))
-        num_builds += len(firefox_details.get_filtered_test_builds(release))
+        num_builds = len(firefox_desktop.get_filtered_full_builds('release'))
+        num_builds += len(firefox_desktop.get_filtered_test_builds('release'))
         eq_(len(doc('tr[data-search]')), num_builds)
 
     def test_no_locale_details(self):
@@ -360,10 +136,9 @@ class TestFirefoxAll(TestCase):
         locale details are not updated yet, the filtered build list should not
         include the localized build.
         """
-        release = firefox_details.latest_version('release')
-        builds = firefox_details.get_filtered_full_builds(release)
-        ok_('uz' in firefox_details.firefox_primary_builds)
-        ok_('uz' not in firefox_details.languages)
+        builds = firefox_desktop.get_filtered_full_builds('release')
+        ok_('uz' in firefox_desktop.firefox_primary_builds)
+        ok_('uz' not in firefox_desktop.languages)
         eq_(len([build for build in builds if build['locale'] == 'uz']), 0)
 
 
@@ -1053,7 +828,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/australis/growth-firstrun-test2.html'])
 
 
-@patch.object(fx_views, 'firefox_details', firefox_details)
+@patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class FxVersionRedirectsMixin(object):
     @override_settings(DEV=True)  # avoid https redirects
     def assert_ua_redirects_to(self, ua, url_name, status_code=301):
@@ -1082,7 +857,7 @@ class FxVersionRedirectsMixin(object):
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='13.0.5')
-    @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
+    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
            return_value=('13.0.5', GOOD_PLATS))
     def test_current_minor_version_firefox(self, latest_mock):
         """
@@ -1098,7 +873,7 @@ class FxVersionRedirectsMixin(object):
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='25.0',
                 FIREFOX_ESR='24.1')
-    @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
+    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
            return_value=('25.0', GOOD_PLATS))
     def test_esr_firefox(self, latest_mock):
         """
@@ -1114,7 +889,7 @@ class FxVersionRedirectsMixin(object):
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='16.0')
-    @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
+    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
            return_value=('16.0', GOOD_PLATS))
     def test_current_firefox(self, latest_mock):
         """
@@ -1129,7 +904,7 @@ class FxVersionRedirectsMixin(object):
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
                 LATEST_FIREFOX_VERSION='16.0')
-    @patch('bedrock.mozorg.helpers.download_buttons.latest_version',
+    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
            return_value=('16.0', GOOD_PLATS))
     def test_future_firefox(self, latest_mock):
         """

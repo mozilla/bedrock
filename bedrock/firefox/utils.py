@@ -4,7 +4,7 @@
 
 from product_details import product_details
 from product_details.version_compare import Version
-from bedrock.firefox.firefox_details import firefox_details
+from bedrock.firefox.firefox_details import firefox_desktop
 
 
 def is_current_or_newer(user_version):
@@ -16,7 +16,7 @@ def is_current_or_newer(user_version):
     user = Version(user_version)
 
     # check for ESR
-    if user.major in firefox_details.esr_major_versions:
+    if user.major in firefox_desktop.esr_major_versions:
         return True
 
     # similar to the way comparison is done in the Version class,

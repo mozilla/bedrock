@@ -111,10 +111,10 @@
             {{ download_firefox(force_direct=true, simple=true) }}
           </div>
           <div class="mobile download-button-wrapper">
-            {{ download_firefox(mobile=True) }}
+            {{ download_firefox(platform='android') }}
           </div>
           <div class="android download-button-wrapper" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
-            {{ download_firefox(mobile=True, small=True, icon=False, dom_id='download-button-android') }}
+            {{ download_firefox(platform='android', small=True, icon=False, dom_id='download-button-android') }}
           </div>
           <div class="desktop-latest-links-wrapper latest-links-wrapper">
             <ul>
