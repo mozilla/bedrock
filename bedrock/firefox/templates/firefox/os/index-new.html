@@ -51,7 +51,7 @@
       <div class="content-wrapper">
         <div class="phone">
           <div class="fxos-cta">
-            <h1><img src="{{ static('img/firefox/os-new/fxos_wordmark420.png') }}" width="420" height="84" alt="{{_('Firefox OS')}}"></span></h1>
+            <h1>{{ high_res_img('img/firefox/os-new/fxos-wordmark.png', {'alt': _('Firefox OS'), 'width': '420', 'height': '85'}) }}</h1>
             <p class="tagline">{{_('Designed to give you just what you need, just when you need it.')}}</p>
 
             <div class="primary-cta-signup signup hidden">
@@ -116,17 +116,17 @@
         <h2>{{_('Smart has never been so simple')}}</h2>
         <ul class="features">
           <li>
-            <img src="{{ static('img/firefox/os-new/icons/scroll_icon.png') }}" width="140" height="140" alt="{{_('interaction icon')}}" />
+            <div class="icon scroll"></div>
             <h3>{{_('Scroll for what you need')}}</h3>
             <p>{{_('Say goodbye to multiple home screens. Everything you need is right there in one clean, continuous scroll. What could be easier?')}}</p>
           </li>
           <li>
-            <img src="{{ static('img/firefox/os-new/icons/search_icon.png') }}" width="140" height="140" alt="{{_('interaction icon')}}" />
+            <div class="icon search"></div>
             <h3>{{_('Search in a snap')}}</h3>
             <p>{{_('Search the Web and the Firefox Marketplace, or visit a website directly —  all from the search bar at the top of your home screen.')}}</p>
           </li>
           <li>
-            <img src="{{ static('img/firefox/os-new/icons/swipe_icon.png') }}" width="140" height="140" alt="{{_('interaction icon')}}" />
+            <div class="icon swipe"></div>
             <h3>{{_('Swipe&nbsp;between apps')}}</h3>
             <p>{{_('Access your recently used apps in a flash. Just swipe from the edge of the screen to cycle through all of your open apps.')}}</p>
           </li>
@@ -145,65 +145,65 @@
           <li><a href="#" id="organized" data-category="organized" role="button">{{_('Stay organized')}}</a></li>
         </ul>
         <ul class="apps">
-          <li class="connected">
-            <img src="{{ static('img/firefox/os-new/icons/dialer.png') }}" width="142" height="142" alt="" />
-            <span>{{_('Phone')}}</span>
-          </li>
-          <li class="entertained">
-            <img src="{{ static('img/firefox/os-new/icons/camera.png') }}" width="142" height="142" alt="" />
-            <span>{{_('Camera')}}</span>
-          </li>
-          <li class="entertained">
-            <img src="{{ static('img/firefox/os-new/icons/video.png') }}" width="142" height="142" alt="" />
-            <span>{{_('Video')}}</span>
-          </li>
-          <li class="connected">
-            <img src="{{ static('img/firefox/os-new/icons/email.png') }}" width="142" height="142" alt="" />
-            <span>{{_('E-Mail')}}</span>
-          </li>
-          <li class="connected">
-            <img src="{{ static('img/firefox/os-new/icons/sms.png') }}" width="142" height="142" alt="" />
-            <span>{{_('Messages')}}</span>
-          </li>
-          <li class="organized">
-            <img src="{{ static('img/firefox/os-new/icons/calendar.png') }}" width="142" height="142" alt="" />
-            <span>{{_('Calendar')}}</span>
-          </li>
           <li class="connected entertained">
-            <img src="{{ static('img/firefox/os-new/icons/browser.png') }}" width="142" height="142" alt="" />
+            {{ high_res_img('img/firefox/os-new/icons/browser.png', {'alt': '', 'width': '142', 'height': '142'}) }}
             <span>{{_('Browser')}}</span>
           </li>
           <li class="organized">
-            <img src="{{ static('img/firefox/os-new/icons/clock.png') }}" width="142" height="142" alt="" />
+            {{ high_res_img('img/firefox/os-new/icons/calendar.png', {'alt': '', 'width': '142', 'height': '142'}) }}
+            <span>{{_('Calendar')}}</span>
+          </li>
+          <li class="entertained">
+            {{ high_res_img('img/firefox/os-new/icons/camera.png', {'alt': '', 'width': '142', 'height': '142'}) }}
+            <span>{{_('Camera')}}</span>
+          </li>
+          <li class="organized">
+            {{ high_res_img('img/firefox/os-new/icons/clock.png', {'alt': '', 'width': '142', 'height': '142'}) }}
             <span>{{_('Clock')}}</span>
           </li>
           <li class="connected organized">
-            <img src="{{ static('img/firefox/os-new/icons/contacts.png') }}" width="142" height="142" alt="" />
+            {{ high_res_img('img/firefox/os-new/icons/contacts.png', {'alt': '', 'width': '142', 'height': '142'}) }}
             <span>{{_('Contacts')}}</span>
           </li>
-          <li class="entertained">
-            <img src="{{ static('img/firefox/os-new/icons/music.png') }}" width="142" height="142" alt="" />
-            <span>{{_('Music')}}</span>
+          <li class="connected">
+            {{ high_res_img('img/firefox/os-new/icons/email.png', {'alt': '', 'width': '142', 'height': '142'}) }}
+            <span>{{_('E-Mail')}}</span>
           </li>
           <li class="entertained">
-            <img src="{{ static('img/firefox/os-new/icons/fmradio.png') }}" width="142" height="142" alt="" />
+            {{ high_res_img('img/firefox/os-new/icons/fmradio.png', {'alt': '', 'width': '142', 'height': '142'}) }}
             <span>{{_('FM Radio')}}</span>
           </li>
-          <li class="organized">
-            <img src="{{ static('img/firefox/os-new/icons/settings.png') }}" width="142" height="142" alt="" />
-            <span>{{_('Settings')}}</span>
-          </li>
           <li class="entertained organized">
-            <img src="{{ static('img/firefox/os-new/icons/gallery.png') }}" width="142" height="142" alt="" />
+            {{ high_res_img('img/firefox/os-new/icons/gallery.png', {'alt': '', 'width': '142', 'height': '142'}) }}
             <span>{{_('Gallery')}}</span>
           </li>
+          <li class="connected entertained organized">
+            {{ high_res_img('img/firefox/os-new/icons/marketplace.png', {'alt': '', 'width': '142', 'height': '142'}) }}
+            <span>{{_('Marketplace')}}</span>
+          </li>
+          <li class="connected">
+            {{ high_res_img('img/firefox/os-new/icons/sms.png', {'alt': '', 'width': '142', 'height': '142'}) }}
+            <span>{{_('Messages')}}</span>
+          </li>
+          <li class="entertained">
+            {{ high_res_img('img/firefox/os-new/icons/music.png', {'alt': '', 'width': '142', 'height': '142'}) }}
+            <span>{{_('Music')}}</span>
+          </li>
+          <li class="connected">
+            {{ high_res_img('img/firefox/os-new/icons/dialer.png', {'alt': '', 'width': '142', 'height': '142'}) }}
+            <span>{{_('Phone')}}</span>
+          </li>
           <li class="organized">
-            <img src="{{ static('img/firefox/os-new/icons/usage.png') }}" width="142" height="142" alt="" />
+            {{ high_res_img('img/firefox/os-new/icons/settings.png', {'alt': '', 'width': '142', 'height': '142'}) }}
+            <span>{{_('Settings')}}</span>
+          </li>
+          <li class="organized">
+            {{ high_res_img('img/firefox/os-new/icons/usage.png', {'alt': '', 'width': '142', 'height': '142'}) }}
             <span>{{_('Usage')}}</span>
           </li>
-          <li class="connected entertained organized">
-            <img src="{{ static('img/firefox/os-new/icons/marketplace.png') }}" width="142" height="142" alt="" />
-            <span>{{_('Marketplace')}}</span>
+          <li class="entertained">
+            {{ high_res_img('img/firefox/os-new/icons/video.png', {'alt': '', 'width': '142', 'height': '142'}) }}
+            <span>{{_('Video')}}</span>
           </li>
         </ul>
       </div>
@@ -214,15 +214,15 @@
         <p>{{_('Get all the most popular games and social networking apps right here.')}}</p>
         <ul class="apps-marketplace">
           <li>
-            <img src="{{ static('img/firefox/os-new/icons/facebook.png') }}" width="142" height="142" alt="Facebook" />
+            <div class="icon facebook"></div>
             <span>Facebook</span>
           </li>
           <li>
-            <img src="{{ static('img/firefox/os-new/icons/youtube.png') }}" width="142" height="142" alt="YouTube" />
+            <div class="icon youtube"></div>
             <span>YouTube</span>
           </li>
           <li>
-            <img src="{{ static('img/firefox/os-new/icons/line.png') }}" width="142" height="142" alt="Line" />
+            <div class="icon line"></div>
             <span>Line</span>
           </li>
         </ul>
@@ -250,7 +250,7 @@
 
     <section class="fxos-community">
       <div class="content-wrapper">
-        <img src="{{ static('img/firefox/os-new/mozilla_groupshot.png') }}" width="260" height="260" alt="{{_('Mozilla community photo')}}" />
+        {{ high_res_img('img/firefox/os-new/mozilla-groupshot.png', {'alt': '', 'width': '260', 'height': '260'}) }}
         <h2>{{_('Powered by the Mozilla community')}}</h2>
         <p>{{_('Mozilla is a non-profit organization fueled by a passionate global community. Together, we’re able to create and innovate with local interests in mind, while making the Web better and more accessible for everyone everywhere.')}}</p>
         <p><a class="more" href="{{ url('mozorg.home') }}">{{_('Learn more about Mozilla')}}</a></p>

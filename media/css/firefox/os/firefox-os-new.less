@@ -21,6 +21,7 @@ main {
 
         img {
             height: auto;
+            color: #fff;
         }
     }
     h2 {
@@ -341,10 +342,6 @@ main {
                 padding: 10px 5px;
                 .font-size(.9rem);
             }
-            @media only screen and (max-width: @breakMobile) {
-                padding: 10px 5px;
-                .font-size(.7rem);
-            }
         }
     }
     .app-group-selector {
@@ -478,6 +475,25 @@ main {
             padding: 0 @gridGutterWidth;
             width: 33%;
 
+            .icon {
+                display: inline-block;
+                width: 140px;
+                height: 140px;
+                background-image: url(/media/img/firefox/os-new/icons/features-sprite.png);
+                background-repeat: no-repeat;
+                background-position: 0 0;
+
+                &.search {
+                    background-position: 0 -145px;
+                }
+
+                &.swipe {
+                    background-position: 0 -290px;
+                }
+
+                .at2x('/media/img/firefox/os-new/icons/features-sprite.png', 140px);
+            }
+
             p {
                 color: #999;
                 .font-size(@largeFontSize);
@@ -549,16 +565,18 @@ main {
     }
     .marketplace {
         display: inline-block;
-        background: #005189 url(/media/img/firefox/os-new/icons/marketplace_glyph.png) 15px 9px no-repeat;
+        background: #005189 url(/media/img/firefox/os-new/icons/marketplace-glyph.png) 15px center no-repeat;
         color: white;
         margin: 0 auto 60px;
         padding: .7em 3em .7em 80px;
         border-radius: 6px;
         font-size: 1.4em;
+        .at2x('/media/img/firefox/os-new/icons/marketplace-glyph.png', 40px, 37px);
 
         @media only screen and (max-width: @breakMobileLandscape) {
             margin-bottom: 30px;
             padding: 15px 20px 15px 70px;
+            font-size: 1.2em;
         }
         &:hover,
         &:active,
@@ -737,7 +755,8 @@ ul.apps {
         width: 142px;
         height: 142px;
         opacity: 1;
-        .transition(all .5s ease-in-out);
+        -webkit-transition: -webkit-transform .5s ease-in-out, opacity .5s ease-in-out;
+                transition: transform .5s ease-in-out, opacity .5s ease-in-out;
 
         @media only screen and (max-width: @breakTablet) {
             width: 100px;
@@ -800,16 +819,47 @@ ul.apps {
         margin: 0 (@gridGutterWidth * 2) @baseLine (@gridGutterWidth * 2);
 
         @media only screen and (max-width: @breakTablet) {
-            margin: 0 (@gridGutterWidth / 2);
+            margin: 0 5px;
         }
     }
-    img {
+
+    .icon {
+        width: 142px;
+        height: 144px;
+        background-image: url(/media/img/firefox/os-new/icons/marketplace-apps.png);
+        background-repeat: no-repeat;
+        background-position: 0 0;
+
+        &.facebook {
+            background-position: 0 0;
+        }
+
+        &.youtube {
+            background-position: 0 -292px;
+        }
+
+        &.line {
+            background-position: 0 -146px;
+        }
+
         @media only screen and (max-width: @breakMobileLandscape) {
             width: 71px;
-            height: 71px;
+            height: 73px;
+            .background-size(100%);
+
+            &.youtube {
+                background-position: 0 -147px;
+            }
+
+            &.line {
+                background-position: 0 -73px;
+            }
         }
+
+        .at2x('/media/img/firefox/os-new/icons/marketplace-apps.png', 100%);
     }
 }
+
 
 // email signup form no-JS styles
 #email-form-content {

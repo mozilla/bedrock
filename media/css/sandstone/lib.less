@@ -459,7 +459,8 @@
     @at2x_path: ~`@{path}.replace(/\.\w+$/, function(match) { return "-high-res" + match; })`;
     @media @highdpi {
         background-image: url("@{at2x_path}");
-        background-size: @w @h;
+        -webkit-background-size: @w @h;
+                background-size: @w @h;
     }
 }
 
