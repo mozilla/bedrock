@@ -612,3 +612,15 @@ class HelloStartView(LatestFxView):
 
         # return a list to conform with original intention
         return [template]
+
+
+class FeedbackView(TemplateView):
+
+    def get_template_names(self):
+        rating = self.request.GET.get('rating', 0)
+        if rating > '3':
+            template = 'firefox/feedback/happy.html'
+        else:
+            template = 'firefox/feedback/unhappy.html'
+
+        return [template]
