@@ -434,10 +434,12 @@
             h4 {
                 margin-left: 80px;
             }
+
             a {
                 line-height: 1.3;
                 .font-size(13px);
             }
+
             span {
                 display: block;
                 position: absolute;
@@ -448,10 +450,12 @@
                 background-image: url(/media/img/firefox/partners/marketplace-icons.png);
                 background-repeat: no-repeat;
             }
+
             &.promo-conversation span { background-position: 0 -68px; }
             &.wipjam span             { background-position: 0 -146px; }
             &.wipjam a { .font-size(15px); }
         }
+
         .register {
             a {
                 line-height: @baseLine * 2;
@@ -465,48 +469,44 @@
             }
         }
     }
+
     #marketplace-operators {
         padding-top: @baseLine * 2;
-        .left {
-            .partner-button {
-                a:first-child {
-                    margin-bottom: 10px;
-                }
-            }
+        .left .partner-button a:first-child {
+            margin-bottom: 10px;
         }
     }
+
     #marketplace-developers {
         padding-top: @baseLine * 2;
     }
+
+    .marketplace-logos .logos {
+        min-height: 320px;
+    }
+
 }
 
 /* }}} */
 /* {{{ Firefox for Android section */
 
 #android {
-    #android-overview {
-        .intro {
-            .play {
-                display: block;
-                margin: 5px 0 5px 20px;
-            }
-        }
+    #android-overview .intro .play {
+        display: block;
+        margin: 5px 0 5px 20px;
     }
+
     #android-partner {
         padding-top: @baseLine * 2;
-        .intro {
-            ul {
-                li {
-                    list-style-type: none;
-                    margin: 10px 0;
-                    padding: 0;
-                    h5 {
-                        font-weight: bold;
-                        text-transform: uppercase;
-                        color: #005189;
-                        margin-bottom: 5px;
-                    }
-                }
+        .intro ul li {
+            list-style-type: none;
+            margin: 10px 0;
+            padding: 0;
+            h5 {
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #005189;
+                margin-bottom: 5px;
             }
         }
     }
@@ -905,6 +905,10 @@
         display: none;
     }
 
+    #marketplace .marketplace-logos .logos {
+        min-height: 250px;
+    }
+
 }
 
 
@@ -936,6 +940,10 @@
 
     .menu li.title {
         display: none;
+    }
+
+    #marketplace .marketplace-logos .logos {
+        min-height: 480px;
     }
 
 }
@@ -977,6 +985,11 @@
             margin-right: 6px;
         }
     }
+
+    #marketplace .marketplace-logos .logos {
+        min-height: 320px;
+    }
+
 
     #android {
         #android-overview {
