@@ -475,20 +475,6 @@
             "text": "an issue trending downward (negative)",
             "class": "legend-symbol--reddot"
           }
-        ],
-        [
-          {
-            "text": "all issues and their connections",
-            "class": "icon-explore-dark"
-          },
-          {
-            "text": "four requirements for a healthy Web",
-            "class": "icon-topic-dark"
-          },
-          {
-            "text": "the individual issues as a list",
-            "class": "icon-issues-dark"
-          }
         ]
       ]
     },
