@@ -41,4 +41,3 @@ echo "Calling Chief for '$WEBAPP' to deploy '${SHAAVAILABLE:0:8}'"
 # This just creates a POST event to the Chief app. We populate the form fields with the information gathered above ($SHAAVAILABLE, $PASSWORD, $WEBAPP)
 curl -s -F 'who=web-ops_cli_script' -F "password=$PASSWORD" -F "ref=$SHAAVAILABLE" http://$(hostname)/chief/$WEBAPP -o /dev/null
 checkretval
-

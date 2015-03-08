@@ -4,16 +4,9 @@
 
 MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 
-*/10 * * * * {{ user }} /data/bedrock-stage/src/update-www.allizom.org.sh
+*/10 * * * * {{ user }} {{ source }}/bin/update-scripts/stage/update-stage-php.sh
+*/15 * * * * {{ user }} {{ source }}/bin/update-scripts/stage/update-stage-locale.sh
 
-*/15 * * * * {{ user }} /data/bedrock-stage/src/update-www.allizom.org-svn-locale.sh
-# outputs when the run completed to http://www.allizom.org/media/locale_finished.txt
-
-# In testing for bug 753566 resolution...
-# not completely sure how I want to solve this yet
-#
-# run the crons from the admin node, but on the web nodes... does extra work, but works
-#0 * * * * *  {{ user }} echo "cd /data/www/www.allizom.org-django/bedrock; python manage.py cron update_feeds | /usr/bin/issue-multi-command bedrock-stage
 */5    * * * * {{ django_manage }} rnasync > /dev/null 2>&1
 
 # bug 996144
