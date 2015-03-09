@@ -4,9 +4,25 @@
 
 {% extends "base-resp.html" %}
 
-{% block body_id %}plugincheck{% endblock %}
+{% block page_image %}{{ static('img/plugincheck/page-image.png') }}{% endblock %}
 
-{% block page_title %}{{_('Plugin Check &amp; Updates')}}{% endblock %}
+{% block page_title %}
+  {% if l10n_has_tag('meta_update_201503') %}
+    {{_('Keep your Firefox healthy with a quick checkup')}}
+  {% else %}
+    {{_('Plugin Check &amp; Updates')}}
+  {% endif %}
+{% endblock %}
+
+{% block page_desc %}
+  {% if l10n_has_tag('meta_update_201503') %}
+    {{_('Use Flash? QuickTime? Java? If you use these to make your Firefox experience more awesome, check your plugins! They may need to be updated.')}}
+  {% else %}
+    {{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}
+  {% endif %}
+{% endblock %}
+
+{% block body_id %}plugincheck{% endblock %}
 
 {% block extrahead %}
   {% stylesheet 'plugincheck' %}
