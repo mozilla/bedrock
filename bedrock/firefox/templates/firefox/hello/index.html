@@ -23,6 +23,12 @@
   {% javascript 'firefox_hello' %}
 {% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-hello-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block site_header_share %}
   {% set share_urls = {
     'twitter': 'http://mzl.la/1wz83AN',
