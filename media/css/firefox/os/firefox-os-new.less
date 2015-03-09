@@ -41,13 +41,18 @@ main {
         .open-sans-light();
         color: #bee1f5;
         margin: 0 auto @baseLine;
-        font-size: 2em;
+        .font-size(44px);
+        line-height: 1.2;
         letter-spacing: -0.03em;
         max-width: 480px;
 
         @media only screen and (max-width: @breakDesktop) {
-            font-size: 1.7em;
+            .font-size(28px);
             max-width: 420px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(24px);
         }
     }
 }
@@ -117,10 +122,14 @@ main {
 
 #cta-sticky {
     .cta-button-small {
-        display: inline-block;
-        float: right;
-        padding: (@baseLine / 2) @gridGutterWidth;
+        display: table-cell;
+        vertical-align: middle;
+        width: 160px;
+        height: 50px;
+        padding: 0 @gridGutterWidth;
+        .font-size(@smallFontSize);
         font-weight: normal;
+        text-align: center;
         background: #005189;
         color: #fff;
         border-radius: 6px;
@@ -139,6 +148,13 @@ main {
         }
     }
 }
+
+html[lang|="en"] {
+    #cta-sticky .cta-button-small {
+        .font-size(@baseFontSize);
+    }
+}
+
 /* class is added to fxos-hero-space when switching to demo mode */
 .trim-height {
     height: 900px;
@@ -233,86 +249,13 @@ main {
         }
     }
 }
-.try-homescreen,
-.try-swipe {
-    display: none;
-    span {
-        .visually-hidden();
-    }
-}
-
-.try-homescreen {
-    position: absolute;
-    top: 320px;
-    left: 210px;
-    background: transparent url(/media/img/firefox/os-new/icons/arrows-vertical.png) 0 0 no-repeat;
-    width: 134px;
-    height: 134px;
-}
-.try-swipe {
-    position: absolute;
-    top: 390px;
-    left: 950px;
-    background: transparent url(/media/img/firefox/os-new/icons/arrows-horizontal.png) 0 0 no-repeat;
-    width: 134px;
-    height: 134px;
-}
-.throbber {
-    position: absolute;
-    top: 75px;
-    left: 77px;
-    display: inline-block;
-    background-color: white;
-    border-radius: 100px;
-    width: 100px;
-    height: 100px;
-    opacity: 0;
-    .transform(scale(0, 0));
-    .animation(throb 4s ease-in-out 0 infinite normal forwards);
-}
-.try-swipe .throbber {
-    top: 75px;
-    left: -43px;
-}
-.throb-one {
-    -webkit-animation-delay: 0;
-    animation-delay: 0;
-}
-.throb-two {
-    -webkit-animation-delay: 1s;
-    animation-delay: 1s;
-}
-.throb-three {
-    -webkit-animation-delay: 2s;
-    animation-delay: 2s;
-}
-.throb-four {
-    -webkit-animation-delay: 3s;
-    animation-delay: 3s;
-}
-.demo {
-    position: relative;
-    width: 0;
-    height: 0;
-    opacity: 0;
-    .transition(opacity 3s);
-    h2 {
-        margin-bottom: 1em;
-        font-size: 3.5em;
-    }
-    img {
-        position: relative;
-        left: 7px;
-        z-index: 3;
-    }
-}
-.demo,
 .fxos-apps {
     ul,
     .app-group-selector {
-        margin: 0 0 40px 0;
+        margin: 0 0 80px 0;
         padding: 0;
-        font-size: 1.5em;
+        .font-size(20px);
+        .open-sans-light;
         list-style: none;
 
         @media only screen and (max-width: @breakMobile) {
@@ -410,7 +353,7 @@ main {
     }
 }
 .fxos-apps {
-    padding: 80px 0 100px;
+    padding: 80px 0 60px;
 
     @media only screen and (max-width: @breakMobileLandscape) {
         padding: 40px 0 40px;
@@ -424,34 +367,6 @@ main {
     height: 640px;
     opacity: 1;
 }
-.homescreen,
-.screens-sprite {
-    position: absolute;
-    top: 145px;
-    left: 567px;
-    clip: rect(0, 277px, 498px, 0);
-    width: 277px;
-    height: 498px;
-    z-index: 2;
-}
-.scroll-homescreen {
-    display: none;
-    .homescreen {
-        background: transparent url(/media/img/firefox/os-new/homescreen.png) 0 0 no-repeat;
-    }
-}
-.swipe-apps {
-    display: none;
-    img.wireframe-screens {
-        position: absolute;
-        top: 145px;
-        left: 262px;
-        z-index: 1;
-    }
-    .screens-sprite {
-        background: transparent url(/media/img/firefox/os-new/screens-sprite.png) -310px 0 no-repeat;
-    }
-}
 .fxos-features {
     background-color: #fff;
     padding: (@baseLine * 4) @gridGutterWidth (@baseLine * 5);
@@ -462,6 +377,7 @@ main {
     }
     h3 {
         margin-top: 20px;
+        .font-size(24px);
     }
     .features {
         position: relative;
@@ -496,7 +412,8 @@ main {
 
             p {
                 color: #999;
-                .font-size(@largeFontSize);
+                .font-size(20px);
+                .open-sans-light;
                 max-width: 20em;
                 margin: @baseLine auto;
             }
@@ -535,13 +452,13 @@ main {
 .fxos-marketplace {
     padding: 0 @gridGutterWidth;
     h2 {
-        margin-bottom: 30px;
+        margin-bottom: @baseLine / 2;
     }
     p {
         color: #BEE1F5;
         margin-bottom: 60px;
         .open-sans-light();
-        font-size: 2em;
+        .font-size(28px);
 
         @media only screen and (max-width: @breakMobileLandscape) {
             margin-bottom: 30px;
@@ -557,7 +474,6 @@ main {
     span {
         display: block;
         margin: 20px 0 60px;
-        font-size: 1.2em;
 
         @media only screen and (max-width: @breakMobileLandscape) {
             margin-bottom: 30px;
@@ -568,7 +484,7 @@ main {
         background: #005189 url(/media/img/firefox/os-new/icons/marketplace-glyph.png) 15px center no-repeat;
         color: white;
         margin: 0 auto 60px;
-        padding: .7em 3em .7em 80px;
+        padding: .7em 3em .7em 75px;
         border-radius: 6px;
         font-size: 1.4em;
         .at2x('/media/img/firefox/os-new/icons/marketplace-glyph.png', 40px, 37px);
@@ -588,6 +504,7 @@ main {
         color: #bee1f5;
         .open-sans-italic();
         font-size: .9em;
+        margin-bottom: 100px;
     }
 }
 .fxos-news {
@@ -616,22 +533,21 @@ main {
         }
         p {
             margin-left: 2px;
-            font-size: 1.2em;
+            .font-size(18px);
             text-align: left;
         }
     }
     ul {
         display: inline-block;
+        width: 40%;
         margin: 10px 0;
         padding: 0;
         list-style: none;
-        font-size: 1.2em;
+        .font-size(20px);
+        .open-sans-light;
         text-align: left;
         line-height: 1.1;
 
-        @media only screen and (max-width: 1366px) {
-            width: 40%;
-        }
         @media only screen and (max-width: @breakTablet) {
             display: block;
             width: auto;
@@ -639,7 +555,7 @@ main {
         }
         li {
             margin: 0 0 1em 0;
-            line-height: 1.5;
+            line-height: 1.2;
 
             @media only screen and (max-width: @breakTablet) {
                 margin-left: 0;
@@ -659,10 +575,19 @@ main {
         color: #999;
         padding: 0 (@gridGutterWidth * 3);
         .open-sans-light();
-        font-size: 1.7em;
+        .font-size(28px);
+        line-height: 1.5;
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(24px);
+        }
 
         @media only screen and (max-width: @breakMobileLandscape) {
             padding: 0 @gridGutterWidth;
+        }
+
+        a {
+            .font-size(20px);
         }
     }
     img {
@@ -712,6 +637,7 @@ main {
 
     h3 {
         text-align: left;
+        .font-size(28px);
     }
     ul {
         margin: 0;
@@ -721,6 +647,12 @@ main {
         li {
             margin-left: 0;
             line-height: 2;
+            .font-size(18px);
+
+            a:link,
+            a:visited {
+                color: #bee1f5;
+            }
         }
     }
 }
@@ -817,9 +749,16 @@ ul.apps {
     li {
         display: inline-block;
         margin: 0 (@gridGutterWidth * 2) @baseLine (@gridGutterWidth * 2);
+        .font-size(24px);
+        .open-sans-light;
 
         @media only screen and (max-width: @breakTablet) {
+            .font-size(@largeFontSize);
             margin: 0 5px;
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(12px);
         }
     }
 
@@ -928,164 +867,4 @@ ul.apps {
 // override
 #colophon {
     margin: 0;
-}
-
-.scroll-homescreen.animate {
-    display: block;
-
-    @-webkit-keyframes scroll-homescreen {
-        0% {
-            background-position: 0 0;
-        }
-        50% {
-            background-position: 0 -303px;
-        }
-        100% {
-            background-position: 0 0;
-        }
-    }
-    @keyframes scroll-homescreen {
-        0% {
-            background-position: 0 0;
-        }
-        50% {
-            background-position: 0 -303px;
-        }
-        100% {
-            background-position: 0 0;
-        }
-    }
-
-    .homescreen {
-        .animation(scroll-homescreen 5s ease 1s 1 normal forwards);
-    }
-}
-.swipe-apps.animate {
-    display: block;
-
-    @-webkit-keyframes swipe {
-        15% {
-            left: 262px;
-        }
-        40% {
-            left: -50px;
-        }
-        65% {
-            left: -357px;
-        }
-        70% {
-            left: -50px;
-        }
-        75% {
-            left: 262px;
-        }
-        90% {
-            left: 571px;
-        }
-    }
-    @keyframes swipe {
-        15% {
-            left: 262px;
-        }
-        40% {
-            left: -50px;
-        }
-        65% {
-            left: -357px;
-        }
-        70% {
-            left: -50px;
-        }
-        75% {
-            left: 262px;
-        }
-        90% {
-            left: 571px;
-        }
-    }
-
-    @-webkit-keyframes swipe-screens {
-        15% {
-            background-position: -310px 0;
-        }
-        40% {
-            background-position: -621px 0;
-        }
-        65% {
-            background-position: -926px 0;
-        }
-        70% {
-            background-position: -621px 0;
-        }
-        75% {
-            background-position: -310px 0;
-        }
-        90% {
-            background-position: 0 0;
-        }
-    }
-    @keyframes swipe-screens {
-        15% {
-            background-position: -310px 0;
-        }
-        40% {
-            background-position: -621px 0;
-        }
-        65% {
-            background-position: -926px 0;
-        }
-        70% {
-            background-position: -621px 0;
-        }
-        75% {
-            background-position: -310px 0;
-        }
-        90% {
-            background-position: 0 0;
-        }
-    }
-
-    img.wireframe-screens {
-        .animation(swipe 8s ease 1s 1 normal forwards);
-    }
-    .screens-sprite {
-        .animation(swipe-screens 8s ease 1s 1 normal forwards);
-    }
-}
-
-@-webkit-keyframes throb {
-  0% {
-    .transform(scale(.2, .2));
-    opacity: .5;
-  }
-  25% {
-    .transform(scale(.5, .5));
-    opacity: .5;
-  }
-  50% {
-    .transform(scale(1, 1));
-    opacity: .3;
-  }
-  100% {
-    .transform(scale(1.5, 1.5));
-    opacity: 0;
-  }
-}
-@keyframes throb {
-  0% {
-    .transform(scale(.2, .2));
-    opacity: .5;
-  }
-  25% {
-    .transform(scale(.5, .5));
-    opacity: .5;
-  }
-  50% {
-    .transform(scale(1, 1));
-    opacity: .3;
-  }
-  100% {
-    .transform(scale(1.5, 1.5));
-    opacity: 0;
-  }
 }

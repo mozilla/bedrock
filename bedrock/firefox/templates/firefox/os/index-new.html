@@ -64,51 +64,10 @@
               <a href="#get-device" class="primary-cta-phone cta-button-small hidden" role="button" aria-haspopup="true">{{_('Get a phone')}}</a>
             </div>
           </div>
-
           <div class="phone-container">
-            <img src="{{ static('img/firefox/os-new/device_static.png') }}" width="520" alt="">
-
-            {# device demo triggers, not going live on March 1, so commenting out for now
-            <a href="#" id="trigger-homescreen" class="try-homescreen" role="button">
-              TODO: descriptive content to be added post March 1 for a11y
-              <div class="throbber throb-one"></div>
-              <div class="throbber throb-two"></div>
-              <div class="throbber throb-three"></div>
-              <div class="throbber throb-four"></div>
-            </a>
-
-            <a href="#" id="trigger-swipe" class="try-swipe" role="button">
-              TODO: descriptive content to be added post March 1 for a11y
-              <div class="throbber throb-one"></div>
-              <div class="throbber throb-two"></div>
-              <div class="throbber throb-three"></div>
-              <div class="throbber throb-four"></div>
-            </a> #}
+            {{ high_res_img('firefox/os-new/homescreen/homescreen-2-0.png', {'l10n': True, 'alt': '', 'width': '495'}) }}
           </div>
         </div>
-
-        {# device demo, not going live on March 1, so commenting out for now
-        <div class="demo">
-          <h2>{{_('Give these a try')}}</h2>
-          <a href="#" id="close-demo" class="close">
-            <span>{{_('Close')}}</span>
-          </a>
-          <div class="stage scroll-homescreen" data-button="#scroll-homescreen">
-            <img src="{{ static('img/firefox/os-new/device.png') }}" width="304" height="637" alt="" />
-            <div class="homescreen"></div>
-          </div>
-
-          <div class="stage swipe-apps" data-button="#swipe-apps">
-            <img src="{{ static('img/firefox/os-new/device.png') }}" width="304" height="637" alt="cellphone outlines" />
-            <img src="{{ static('img/firefox/os-new/wireframes-sprite.png') }}" class="wireframe-screens" height="499" width="1205" alt="" />
-            <div class="screens-sprite"></div>
-          </div>
-
-          <ul>
-            <li><a href="#" id="scroll-homescreen" class="active-state">{{_('Scroll the homepage')}}</a></li>
-            <li><a href="#" id="swipe-apps">{{_('Swipe between apps')}}</a></li>
-          </ul>
-        </div> #}
       </div>
     </section>
     <section class="fxos-features">
@@ -127,6 +86,7 @@
           </li>
           <li>
             <div class="icon swipe"></div>
+            {# l10n this &nbsp; is a dirty hack to differentiate an equivalent matching string #}
             <h3>{{_('Swipe&nbsp;between apps')}}</h3>
             <p>{{_('Access your recently used apps in a flash. Just swipe from the edge of the screen to cycle through all of your open apps.')}}</p>
           </li>
