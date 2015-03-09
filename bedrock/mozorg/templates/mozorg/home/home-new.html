@@ -6,7 +6,22 @@
 
 {% add_lang_files "mozorg/home/index" %}
 
-{% block page_title %}{{_('Home of the Mozilla Project')}}{% endblock %}
+{% block page_image %}{{ static('img/home/page-image.png') }}{% endblock %}
+
+{% block page_title %}
+  {% if l10n_has_tag('meta_update_201503') %}
+    {{_('We’re building a better Internet')}}
+  {% else %}
+    {{_('Home of the Mozilla Project')}}
+  {% endif %}
+{% endblock %}
+
+{% block page_desc %}
+  {% if l10n_has_tag('meta_update_201503') %}
+    {{_('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource open and accessible to all.')}}
+  {% endif %}
+{% endblock %}
+
 {% block body_id %}home{% endblock %}
 {% block body_class %}lang-{{ LANG }}{% endblock %}
 
