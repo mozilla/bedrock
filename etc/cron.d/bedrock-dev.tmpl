@@ -4,15 +4,18 @@
 
 MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 
-*/10 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-php.sh
-*/20 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-django.sh
-*/15 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-locale.sh
+# add date/time info to cron log
+0    * * * * {{ user }} date {{ log }}
 
-*/5  * * * * {{ django_manage }} rnasync > /dev/null 2>&1
+*/10 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-php.sh {{ log }}
+*/20 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-django.sh {{ log }}
+*/15 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-locale.sh {{ log }}
+
+*/5  * * * * {{ django_manage }} rnasync {{ log }}
 
 # bug 1014586
-3 */2 * * * {{ django_cron }} update_tweets > /dev/null 2>&1
+3 */2 * * * {{ django_cron }} update_tweets {{ log }}
 
 # bug 1128587
-38 * * * * {{ django_manage }} runscript update_firefox_os_feeds > /dev/null 2>&1
+38 * * * * {{ django_manage }} runscript update_firefox_os_feeds {{ log }}
 
