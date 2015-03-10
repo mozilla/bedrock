@@ -415,6 +415,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-tiles-bundle.css',
     },
+    'firefox_family': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/family/index.less',
+        ),
+        'output_filename': 'css/firefox-family-index-bundle.css',
+    },
     'firefox_faq': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -1442,6 +1449,12 @@ PIPELINE_JS = {
             'js/firefox/tiles.js',
         ),
         'output_filename': 'js/firefox_tiles-bundle.js',
+    },
+    'firefox_family_index': {
+        'source_filenames': (
+            'js/firefox/family-index.js',
+        ),
+        'output_filename': 'js/firefox_family_index-bundle.js',
     },
     'firefox_faq': {
         'source_filenames': (

@@ -1,0 +1,883 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+// potential general styles for new mozilla id themed pages
+@mozIDBlue: #0c99d5;
+
+.mozid {
+    color: #fff;
+
+    #outer-wrapper {
+        background: @mozIDBlue url(/media/img/firefox/family/index/aurora.png) right top no-repeat;
+        border-top: 4px solid #fff;
+
+        @media only screen and (max-width: @breakTablet) {
+            background-position: -200px -100px;
+        }
+    }
+
+    #wrapper {
+        width: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6, .huge, .large {
+        color: #fff;
+        text-shadow: none;
+    }
+}
+
+.content {
+    .border-box();
+    width: @widthDesktopWide;
+    margin: 0 auto;
+
+    @media only screen and (max-width: @breakDesktopWide) {
+        width: @widthDesktop;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobile;
+    }
+
+    @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+}
+
+
+// Handy sprite mixin
+.fxfamily-sprite(@posx, @posy) {
+    background-image: url(/media/img/firefox/family/index/family-sprite.png);
+    background-position: @posx @posy;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    position: absolute;
+    display: block;
+    content: '';
+    .at2x('/media/img/firefox/family/index/family-sprite.png', 500px, 645px);
+}
+
+
+
+/*--------------------------------------------------------------------------*/
+// Conditional download bar
+#conditional-download-bar {
+    background: #fff;
+    color: @textColorPrimary;
+    min-height: 1.5em;
+    overflow: hidden;
+    padding: 15px 0;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    .transition(all 0.25s ease);
+
+    .message {
+        display: none;
+        padding: 0 (@gridGutterWidth * 3) 0 @gridGutterWidth;
+    }
+
+    .btn-download {
+        .font-size(@smallFontSize);
+        padding: .5em 30px;
+        margin: 5px 10px 0;
+        background-color: #6fbe4a;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: lighten(#6fbe4a, 5%);
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            display: block;
+        }
+    }
+
+    .btn-close {
+        .image-replaced();
+        border: 0;
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+        padding: 0;
+        position: absolute;
+        right: 30px;
+        top: 10px;
+        background: #efefef url(/media/img/firefox/family/index/closex.png) center center no-repeat;
+        .at2x('/media/img/firefox/family/index/closex.png', 19px, 19px);
+
+        &:hover {
+            background-color: darken(#efefef, 5%);
+        }
+    }
+}
+
+#conditional-download-bar #dlbar-nonfx {
+    display: block;
+}
+
+html.firefox-latest {
+    #conditional-download-bar  {
+        display: none;
+    }
+}
+
+html.firefox-old {
+    #conditional-download-bar #dlbar-oldfx-desktop {
+        display: block;
+    }
+}
+
+html.ios {
+    #conditional-download-bar #dlbar-ios {
+        display: block;
+    }
+}
+
+html.android {
+    #conditional-download-bar #dlbar-nonfx-android {
+        display: block;
+    }
+}
+
+html.firefox-old,
+html.android,
+html.ios {
+    #conditional-download-bar #dlbar-nonfx {
+        display: none;
+    }
+}
+
+
+
+/*--------------------------------------------------------------------------*/
+// Mozilla tab (like tabzilla, but not)
+#moztab {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    a {
+        .image-replaced();
+        background: url(/media/img/firefox/family/index/family-sprite.png) -90px -556px no-repeat;
+        display: block;
+        width: 148px;
+        height: 36px;
+        position: relative;
+        z-index: 10;
+        .at2x('/media/img/firefox/family/index/family-sprite.png', 500px, 645px);
+    }
+
+    &:before {
+        content: '';
+        display: block;
+        width: 88px;
+        height: 26px;
+        background: @mozIDBlue;
+        position: absolute;
+        left: 28px;
+        top: 0;
+        z-index: 9;
+    }
+}
+
+
+
+/*--------------------------------------------------------------------------*/
+// Header
+#header {
+    position: relative;
+    z-index: 2;
+    height: 570px;
+    background: url(/media/img/firefox/family/index/fox.png) ~"calc(50% + 580px)" bottom no-repeat;
+    margin-bottom: -8px;
+    .at2x('/media/img/firefox/family/index/fox.png', 1184px, 704px);
+
+    .content {
+        padding: 150px 0 0;
+        position: relative;
+
+        // Firefox logo
+        &:before {
+            .fxfamily-sprite(-380px, 0);
+            width: 108px;
+            height: 112px;
+            top: 30px;
+            left: 80px;
+            z-index: 5;
+        }
+    }
+
+    h1 {
+        margin: 0 0 20px 80px;
+        width: 520px;
+        text-align: center;
+
+        img {
+            margin: 10px 5px 0;
+            vertical-align: baseline;
+        }
+    }
+
+    @media only screen and (max-height: 600px) {
+        height: 420px;
+    }
+
+}
+
+// Fancy title for English
+[lang~='en'] #header h1 {
+    color: #bee1f5;
+    .font-size(60px);
+    text-align: right;
+
+    span {
+        display: block;
+        text-align: left;
+    }
+
+    b {
+        color: #fff;
+        font-weight: normal;
+        .font-size(96px);
+        letter-spacing: -.05em;
+    }
+
+    img {
+        float: right;
+        vertical-align: top;
+        margin: 16px 0 0 20px;
+    }
+}
+
+
+
+/*--------------------------------------------------------------------------*/
+// Base styles for product groups
+.product-list {
+    .clearfix();
+    .flexbox();
+    margin: 0;
+    list-style: none;
+
+    .product {
+        .border-box();
+        float: left;
+        margin: 0;
+        width: 33.3%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    h2 {
+        .trailing-arrow();
+        margin: 0 0 .15em;
+
+        span {
+            font-style: italic;
+            font-size: .75em;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        display: block;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+
+            h2, h3 {
+                text-decoration: underline;
+            }
+        }
+    }
+
+}
+
+
+/*--------------------------------------------------------------------------*/
+// Primary tier - Desktop, Android, OS
+#products-primary {
+    background: #00a7e0;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+
+    .product {
+        padding: 50px (@gridGutterWidth * 2) 180px;
+
+        @media only screen and (max-width: @breakDesktopWide) {
+            padding: 40px @gridGutterWidth 130px;
+        }
+
+        @media only screen and (max-width: @breakDesktop) and (min-width: @breakTablet) {
+            padding: 40px @gridGutterWidth 130px;
+        }
+    }
+
+    li {
+        text-align: center;
+    }
+
+    h2 {
+        .font-size(32px);
+        display: inline-block;
+
+        @media only screen and (max-width: @breakDesktopWide) {
+            .font-size(28px);
+        }
+    }
+
+    p {
+        .font-size(18px);
+
+        @media only screen and (max-width: @breakDesktopWide) {
+            .font-size(@largeFontSize);
+        }
+    }
+
+    a {
+        color: #fff;
+
+        h2 {
+            padding-bottom: 1px;
+        }
+
+        p {
+            color: #bee1f5;
+        }
+
+        &:hover h2,
+        &:focus h2,
+        &:active h2 {
+            text-decoration: none;
+            padding-bottom: 0;
+            border-bottom: 1px solid;
+        }
+    }
+
+    // Highlighted product
+    .highlight {
+        background: #ffcd02 url(/media/img/firefox/family/index/promo-bg.png) center top no-repeat;
+        color: #e14164;
+        .at2x('/media/img/firefox/family/index/promo-bg.png', 600px, 450px);
+
+        a {
+            color: #e14164;
+
+            h2, h3, p {
+                color: #e14164;
+            }
+        }
+    }
+}
+
+
+// Firefox for Desktop
+#product-desktop:after {
+    .fxfamily-sprite(0, 0);
+    width: 378px;
+    height: 220px;
+    bottom: -65px;
+    left: 50%;
+    margin-left: -189px;
+
+    @media only screen and (max-width: @breakDesktopWide) {
+        bottom: -90px;
+    }
+}
+
+// Firefox for Android
+#product-android {
+    &:after {
+        .fxfamily-sprite(0, -225px);
+        width: 470px;
+        height: 176px;
+        bottom: 0;
+        left: -160px;
+    }
+
+    // Android mascot
+    &:before {
+        .fxfamily-sprite(-225px, -405px);
+        width: 115px;
+        height: 125px;
+        top: -30px;
+        left: -45px;
+    }
+
+    // Google Play button
+    .btn-google-play {
+        position: absolute;
+        right: 30px;
+        bottom: 60px;
+        z-index: 5;
+    }
+
+    @media only screen and (max-width: @breakDesktopWide) {
+        &:after {
+            left: -245px;
+            bottom: -45px;
+        }
+
+        &:before {
+            top: -50px;
+            left: -50px;
+        }
+
+        .btn-google-play {
+            right: 20px;
+            bottom: 40px;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) and (min-width: @breakTablet) {
+        &:after {
+            left: 50%;
+            bottom: -45px;
+            margin-left: -235px;
+        }
+
+        &:before {
+            top: -30px;
+            left: -45px;
+        }
+
+        .btn-google-play {
+            position: static;
+        }
+    }
+
+    @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+        &:after {
+            left: 50%;
+            bottom: -45px;
+            margin-left: -235px;
+        }
+
+        &:before {
+            top: -30px;
+        }
+
+        .btn-google-play {
+            position: static;
+        }
+    }
+}
+
+// Firefox OS
+#product-fxos:after {
+    .fxfamily-sprite(0, -405px);
+    width: 224px;
+    height: 146px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -112px;
+
+    @media only screen and (max-width: @breakDesktopWide) {
+        bottom: -20px;
+    }
+}
+
+
+/*--------------------------------------------------------------------------*/
+// Secondary tier - Hello, Marketplace, Sync
+#products-secondary {
+    background: #efefef;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+
+    .product {
+        padding: 50px 20px 50px 160px;
+        min-height: 50px;
+    }
+
+    h2 {
+        .font-size(24px);
+        margin: 0 0 .15em;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    a {
+        color: @linkBlue;
+
+        h2 {
+            color: @linkBlue;
+        }
+
+        p {
+            color: #999;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: darken(@linkBlue, 10%);
+
+            h2, p {
+                color: darken(@linkBlue, 10%);
+            }
+        }
+    }
+}
+
+// Hello
+#product-hello h2:before {
+    .fxfamily-sprite(-380px, -115px);
+    width: 84px;
+    height: 80px;
+    top: 40px;
+    left: 60px;
+}
+
+// Sync
+#product-sync h2:before {
+    .fxfamily-sprite(-345px, -405px);
+    width: 120px;
+    height: 81px;
+    top: 32px;
+    left: 30px;
+}
+
+// Marketplace
+#product-marketplace {
+    h2:before {
+        .fxfamily-sprite(0, -555px);
+        width: 87px;
+        height: 83px;
+        top: 35px;
+        left: 55px;
+    }
+
+    // New window icon
+    h2:after {
+        content: '';
+        width: 14px;
+        height: 14px;
+        background: url(/media/img/firefox/family/index/family-sprite.png) -344px -515px no-repeat;
+        display: inline-block;
+        margin-left: 8px;
+        .at2x('/media/img/firefox/family/index/family-sprite.png', 500px, 645px);
+    }
+}
+
+@media only screen and (max-width: @breakDesktopWide) {
+    #products-secondary .product {
+        padding-left: 140px;
+    }
+
+    #product-hello h2:before {
+        left: 40px;
+    }
+
+    #product-marketplace h2:before {
+        left: 30px;
+    }
+
+    #product-sync h2:before {
+        left: 10px;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Footer
+#footer {
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+
+    .content {
+        padding: (@baseLine * 2) 0 (@baseLine * 3);
+    }
+
+    .mozlogo {
+        .image-replaced();
+        display: inline-block;
+        margin: 0 auto @baseLine;
+        background: url(/media/img/firefox/family/index/family-sprite.png) -345px -485px no-repeat;
+        width: 94px;
+        height: 25px;
+        float: left;
+        .at2x('/media/img/firefox/family/index/family-sprite.png', 500px, 645px);
+    }
+
+    ul {
+        float: right;
+        margin: 0;
+        list-style: none;
+        .font-size(@smallFontSize);
+
+        li {
+            display: inline;
+            margin: 0 10px;
+
+            &:after {
+                content: '•';
+                color: @textColorPrimary;
+                margin: 0 -10px 0 10px;
+            }
+
+            &:last-child:after {
+                content: '';
+            }
+        }
+    }
+}
+
+
+
+/*--------------------------------------------------------------------------*/
+// Regular desktop layout, 1000px
+@media only screen and (max-width: @breakDesktopWide) {
+    #header {
+        background-position: ~"calc(50% + 540px)" bottom;
+        .background-size(1006px 598px);
+        height: 480px;
+
+        .content:before {
+            left: 30px;
+        }
+
+        h1 {
+            width: 420px;
+            margin-left: 30px;
+
+            img {
+                width: 248px;
+                height: auto;
+            }
+        }
+    }
+
+    [lang~='en'] #header h1 {
+        .font-size(44px);
+
+        b {
+            .font-size(72px);
+        }
+    }
+}
+
+
+
+/*--------------------------------------------------------------------------*/
+// Tablet layout, 760px
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #header {
+        background-position: ~"calc(50% + 540px)" bottom;
+        .background-size(888px 528px);
+        height: 400px;
+
+        .content:before {
+            left: 30px;
+        }
+
+        h1 {
+            margin-left: 30px;
+        }
+    }
+
+    .product-list {
+        display: block;
+
+        .product {
+            width: auto;
+            float: none;
+            display: block;
+        }
+    }
+
+    #products-primary {
+        .content {
+            width: auto;
+        }
+
+        .highlight {
+            background-position: left top;
+        }
+    }
+
+    #products-secondary {
+        .product {
+            width: 33.3%;
+            float: left;
+            text-align: center;
+            padding: 120px @gridGutterWidth @baseLine;
+        }
+
+        h2 {
+            .font-size(20px);
+
+            &:before {
+                left: 50%;
+            }
+        }
+    }
+
+    #product-hello h2:before {
+        top: @baseLine + 14;
+        margin-left: -41px;
+    }
+
+    #product-sync h2:before {
+        top: @baseLine + 4;
+        margin-left: -60px;
+    }
+
+    #product-marketplace h2:before {
+        top: @baseLine;
+        margin-left: -43px;
+    }
+}
+
+
+/*--------------------------------------------------------------------------*/
+// Mobile layout, 320px
+@media only screen and (max-width: @breakTablet) {
+
+    #header {
+        background-image: none;
+        height: auto;
+
+        .content {
+            padding: 160px 0 40px;
+
+            &:before {
+                top: 45px;
+                left: 50%;
+                margin-left: -52px;
+            }
+        }
+
+        h1 {
+            width: auto;
+            margin: 0 @gridGutterWidth @baseLine;
+            .font-size(30px);
+
+            b {
+                .font-size(40px);
+            }
+        }
+    }
+
+    [lang~='en'] #header h1 {
+        .font-size(30px);
+
+        b {
+            .font-size(40px);
+        }
+
+        img {
+            width: 165px;
+            height: 48px;
+            margin: 6px 0 0 10px;
+        }
+    }
+
+    .product-list {
+        display: block;
+
+        .product {
+            width: 100%;
+            float: none;
+            min-width: @widthMobile;
+        }
+    }
+
+    #products-primary {
+        .content {
+            width: auto;
+        }
+
+        .highlight {
+            background-position: left top;
+        }
+    }
+
+    #products-secondary {
+        .product {
+            padding: @baseLine @gridGutterWidth @baseLine 120px;
+            min-height: 50px;
+        }
+
+        // Shrink icons by 25%
+        h2:before {
+            .background-size(375px 484px);
+        }
+    }
+
+    #product-hello h2:before {
+        width: 63px;
+        height: 60px;
+        background-position: -286px -87px;
+        top: @baseLine - 5;
+        left: 30px;
+    }
+
+    #product-sync h2:before {
+        width: 90px;
+        height: 60px;
+        background-position: -258px -303px;
+        top: @baseLine - 5;
+        left: 15px;
+    }
+
+    #product-marketplace h2:before {
+        width: 68px;
+        height: 68px;
+        background-position: 0 -417px;
+        top: @baseLine - 5;
+        left: 30px;
+    }
+
+    #footer {
+        .content {
+            padding: @baseLine 0;
+            text-align: center;
+        }
+
+        .mozlogo {
+            float: none;
+        }
+
+        ul {
+            float: none;
+
+            li {
+                display: block;
+                margin: 0 0 .25em;
+
+                &:after {
+                    content: '';
+                }
+            }
+        }
+    }
+
+}
+
+
+/*--------------------------------------------------------------------------*/
+// Wide Mobile layout, 480px
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+
+    [lang~='en'] #header h1 {
+        width: @widthMobile - (@gridGutterWidth * 2);
+        margin: 0 auto @baseLine;
+    }
+
+}
+

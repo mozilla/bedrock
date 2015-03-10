@@ -1,0 +1,144 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox — Desktop browser, Android, OS, Hello, Sync, Marketplace') }}{% endblock %}
+{% block page_desc %}{{ _('Learn more about our complete lineup of products for desktop and mobile browsing (and more) that help keep you in control online. Free yourself with Firefox.') }}{% endblock %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_family' %}
+{% endblock %}
+
+{% block body_class %}mozid{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<div id="conditional-download-bar">
+  <div class="content">
+    <div class="message" id="dlbar-oldfx-desktop">
+      {{ _('You’re using an older version of Firefox for desktop.') }}
+      {{ _('Update today to stay fast and safe.') }}
+      <a class="button-flat btn-download" href="{{ url('firefox.new') }}" data-product="Firefox for Desktop, outdated Firefox">{{ _('Download') }}</a>
+    </div>
+    <div class="message" id="dlbar-nonfx">
+      {{ _('Choose Independent.') }}
+      {{ _('Choose Firefox.') }}
+      <a class="button-flat btn-download" href="{{ url('firefox.new') }}" data-product="Firefox for Desktop, other browser">{{ _('Download') }}</a>
+    </div>
+    <div class="message" id="dlbar-nonfx-android">
+      <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-product="Firefox for Android">{{ _('Get Firefox for Android') }}</a>
+    </div>
+    <div class="message" id="dlbar-ios">
+      {{ _('Firefox is coming soon to iOS! <a href="%s">Sign up to learn more</a>.')|format(url('newsletter.ios')) }}
+    </div>
+
+    <button type="button" class="btn-close button-flat" title="{{ _('Close') }}">{{ _('Close') }}</button>
+  </div>{#-- /.content --#}
+</div>{#-- /#conditional-download-bar --#}
+
+<header id="header">
+  <div class="content">
+    <div id="moztab">
+      <a href="{{ url('mozorg.home') }}">Mozilla</a>
+    </div>
+
+    <h1>
+    {% if LANG.startswith('en') %}
+      <span><b>Free</b> yourself</span> with {{ high_res_img('img/firefox/family/index/firefox-wordmark.png', {'alt': 'Firefox', 'width': '330', 'height': '95'}) }}
+    {% else %}
+      {{ _('Free yourself with %s')|format(high_res_img('img/firefox/family/index/firefox-wordmark.png', {'alt': 'Firefox', 'width': '330', 'height': '95'})) }}
+    {% endif %}
+    </h1>
+  </div>{#-- /.content --#}
+</header>{#-- /#header --#}
+
+<section id="products-primary">
+  <div class="content">
+    <ul class="product-list">
+      <li class="product" id="product-desktop">
+        <a href="{{ url('firefox.desktop.index') }}" data-product="Firefox for Desktop">
+          {# L10n: <span> tag below adds visual style to "for" text #}
+          <h2>{{ _('Firefox <span>for</span> desktop') }}</h2>
+          <p>{{ _('Trusted. Flexible. Fast.') }}</p>
+        </a>
+      </li>
+
+      <li class="product highlight" id="product-android">
+        <a href="{{ url('firefox.android.index') }}" data-product="Firefox for Android">
+          {# L10n: span below adds visual style to "for" text #}
+          <h2>{{ _('Firefox <span>for</span> Android') }}</h2>
+          <p>{{ _('Make it uniquely yours.') }}</p>
+        </a>
+
+        <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" class="btn-google-play" data-product="Firefox for Android, Google Play">
+          {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
+        </a>
+      </li>
+
+      <li class="product" id="product-fxos">
+        <a href="{{ url('firefox.os.index') }}" data-product="Firefox OS">
+          <h2>{{ _('Firefox OS') }}</h2>
+          <p>{{ _('Get just what you need.') }}</p>
+        </a>
+      </li>
+    </ul>
+  </div>{#-- /.content --#}
+</section>{#-- /#products-primary --#}
+
+<section id="products-secondary">
+  <div class="content">
+    <ul class="product-list">
+      <li class="product" id="product-hello">
+        <a href="{{ url('firefox.hello') }}" data-product="Firefox Hello">
+          <h2>{{ _('Firefox Hello') }}</h2>
+          <p>{{ _('Free, easy video conversations.') }}</p>
+        </a>
+      </li>
+
+      <li class="product" id="product-sync">
+        <a href="{{ url('firefox.sync') }}" data-product="Firefox Sync">
+          <h2>{{ _('Sync') }}</h2>
+          <p>{{ _('Connect Firefox wherever you use it.') }}</p>
+        </a>
+      </li>
+
+      <li class="product" id="product-marketplace">
+        <a rel="external" href="https://marketplace.firefox.com/" data-product="Firefox Marketplace">
+          <h2>{{ _('Firefox Marketplace') }}</h2>
+          <p>{{ _('Discover and download Web apps.') }}</p>
+        </a>
+      </li>
+    </ul>
+  </div>{#-- /.content --#}
+</section>{#-- /#products-secondary --#}
+{% endblock %}
+
+{% block site_footer %}
+<footer id="footer">
+  <div class="content">
+    <a class="mozlogo" href="{{ url('mozorg.home') }}">Mozilla</a>
+
+    <ul>
+      <li>
+        <a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a>
+      </li>
+      <li>
+        <a href="{{ url('privacy.notices.websites') }}#cookies">{{ _('Cookies') }}</a>
+      </li>
+      <li>
+        <a href="{{ url('legal.index') }}">{{ _('Legal Notices') }}</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_family_index' %}
+{% endblock  %}
