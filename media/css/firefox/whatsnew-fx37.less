@@ -1,0 +1,500 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+@whatsnewBlue: #00a0db;
+
+#outer-wrapper {
+    background: #0c99d5 url(/media/img/firefox/whatsnew-fx37/rays-of-light.png) top right no-repeat;
+}
+
+main {
+    width: 100%;
+
+    header {
+        width: 70%;
+        margin: 0 auto (@baseLine * 2) auto;
+        color: #fff;
+        text-align: center;
+
+        h1 {
+            color: #fff;
+            text-shadow: none;
+            .font-size(40px);
+        }
+    }
+}
+
+.button-blue-flat() {
+    padding: 0 (@gridGutterWidth / 2);
+    background: @whatsnewBlue;
+    color: #fff;
+    border: 1px solid transparent;
+    box-shadow: none;
+    border-radius: 6px;
+    text-shadow: none;
+    font-weight: bold;
+    .transition(background .1s ease-in-out);
+
+    &:hover,
+    &:focus {
+        cursor: pointer;
+        box-shadow: none;
+        background: lighten(@whatsnewBlue, 5%);
+        .transition(background .1s ease-in-out);
+    }
+}
+
+input[type="tel"],
+input[type="email"],
+input[type="submit"],
+button[type="submit"] {
+    -moz-appearance: none;
+    padding: 0 (@baseLine / 2);
+    line-height: 3;
+    font-size: 0.875rem;
+}
+
+input[type="tel"],
+input[type="email"] {
+    border: 2px solid #d1d2d3;
+    box-shadow: inset 0 0 12px rgba(209, 210, 211, 0.35);
+}
+
+input::-moz-placeholder {
+    text-transform: uppercase;
+    .font-size(13px);
+    color: #d1d2d3;
+    opacity: 1;
+    .open-sans;
+    font-weight: bold;
+}
+
+input[type="submit"],
+button[type="submit"] {
+    .button-blue-flat();
+    min-width: 140px;
+}
+
+html[lang|="en"] {
+    input[type="submit"],
+    button[type="submit"] {
+        text-transform: uppercase;
+    }
+}
+
+.toggle {
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline-block;
+            min-width: 220px;
+            margin: 0;
+            background: #f4f4f4;
+            .font-size(12px);
+            text-align: center;
+
+            a {
+                display: block;
+                padding: @baseLine (@gridGutterWidth * 2);
+            }
+
+            a:link,
+            a:visited {
+                color: @whatsnewBlue;
+            }
+
+            a:hover,
+            a:focus {
+                color: darken(@whatsnewBlue, 10%);
+            }
+        }
+    }
+}
+
+html[lang|="en"] {
+    .toggle ul li {
+        text-transform: uppercase;
+    }
+}
+
+.active-tab() {
+    background: #fff;
+
+    a:link,
+    a:visited {
+        color: #aaa;
+    }
+
+    a:hover,
+    a:focus {
+        cursor: default;
+        text-decoration: none;
+    }
+}
+
+.tab-panel {
+    position: relative;
+    margin: 0;
+    padding: @baseLine * 2;
+    background: #fff url(/media/img/firefox/whatsnew-fx37/sms-android-bg.png) bottom right no-repeat;
+    min-height: 260px;
+    .clearfix();
+
+    h3 {
+        width: auto;
+        margin: 0 0 @baseLine 0;
+    }
+
+    footer {
+        display: block;
+        width: 540px;
+        line-height: 1.5;
+        padding-top: @baseLine / 2;
+        border-top: 1px dotted @textColorPrimary;
+        .font-size(10px);
+    }
+}
+
+.tab-content {
+    float: left;
+    width: 540px;
+    margin: 0 0 (@baseLine * 2) 0;
+}
+
+.up-to-date {
+    .font-size(18px);
+    .open-sans-italic;
+
+    &:before {
+        .inline-block;
+        margin: 0 (@gridGutterWidth / 2) 0 0;
+        width: 30px;
+        height: 30px;
+        vertical-align: text-bottom;
+        background: url(/media/img/firefox/whatsnew-fx37/checkmark.png) center center no-repeat;
+        content: '';
+    }
+}
+
+.tagline {
+    width: 80%;
+    margin: @baseLine auto;
+    .font-size(@largeFontSize);
+}
+
+#send-sms {
+    .inner-wrapper {
+        padding-bottom: (@baseLine * 3);
+    }
+    label {
+        .visually-hidden();
+    }
+}
+
+.newsletter-form {
+    border: none;
+    padding: 0 0 (@baseLine * 2.5) 0;
+    margin: 0;
+    background: transparent;
+    box-shadow: none;
+
+    .form-contents {
+        width: 390px;
+        margin: 0;
+    }
+
+    .field-email {
+        background-image: url(/media/img/firefox/whatsnew-fx37/lock.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+    }
+
+    .form-submit {
+        float: right;
+        width: 140px;
+        margin: 0;
+    }
+
+    .field-privacy .title {
+        max-width: 25em;
+    }
+
+    input[type="email"] {
+        width: 89%;
+    }
+
+    &.thank p > a {
+        display: block;
+        margin-top: @baseLine;
+    }
+}
+
+#footer-email-errors {
+    margin-bottom: @baseLine;
+}
+
+#sms-form {
+    padding-bottom: @baseLine * 2.5;
+
+    .input {
+        float: left;
+        width: 390px;
+        background-image: url(/media/img/firefox/whatsnew-fx37/lock.png);
+        background-position: right center;
+        background-repeat: no-repeat;
+    }
+
+    input[type="tel"] {
+        width: 89%;
+    }
+
+    button[type="submit"] {
+        .open-sans;
+        float: right;
+    }
+}
+
+.html-rtl {
+    .newsletter-form {
+        .field-email {
+            background-position: left center;
+        }
+        .form-submit {
+            float: left;
+        }
+    }
+    #sms-form {
+        .input {
+            float: right;
+            background-position: left center;
+        }
+        button[type="submit"] {
+            float: left;
+        }
+    }
+}
+
+.js {
+    main[data-active="email"] {
+        #send-email {
+            display: block;
+        }
+        #send-sms {
+            display: none;
+        }
+        .email-tab {
+            .active-tab();
+        }
+    }
+    main[data-active="sms"] {
+        #send-email {
+            display: none;
+        }
+        #send-sms {
+            display: block;
+        }
+        .sms-tab {
+            .active-tab();
+        }
+    }
+
+    .tab-content {
+        margin: 0;
+    }
+
+    .tab-panel footer {
+        position: absolute;
+        left: @gridGutterWidth * 2;
+        bottom: @baseLine * 2;
+    }
+}
+
+@media only screen and (max-width: @breakDesktop) {
+
+    main header {
+        width: auto;
+        padding: 0 (@baseLine / 2);
+    }
+
+    .tab-panel {
+        background: #fff;
+    }
+
+    #newsletter-form {
+        width: 680px;
+
+        h3 {
+            padding-top: 0;
+        }
+
+        input[type="email"] {
+            width: 84%;
+        }
+
+        .form-submit {
+            float: right;
+            width: 140px;
+            margin: 0;
+        }
+    }
+
+    .tab-content {
+        float: none;
+        width: 100%;
+        h3 {
+            width: 220px;
+            float: left;
+        }
+        footer {
+            width: 680px;
+        }
+    }
+
+    #sms-form {
+        float: left;
+        width: 460px;
+
+        .input {
+            float: right;
+            margin-bottom: @baseLine;
+            background-position: left center;
+            text-align: right;
+        }
+    }
+
+    .html-rtl {
+
+        .tab-content {
+            h3 {
+                float: right;
+            }
+        }
+
+        #newsletter-form {
+            h3 {
+                float: right;
+            }
+            .form-contents {
+                float: right;
+            }
+        }
+
+        #sms-form {
+            float: right;
+
+            .input {
+                float: left;
+                background-position: right center;
+                text-align: left;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+
+    #outer-wrapper {
+        background: #0c99d5;
+    }
+
+    .toggle {
+        display: table;
+        border-spacing: 0;
+        width: 100%;
+        ul {
+            display: table-row;
+            li {
+                display: table-cell;
+                min-width: 50%;
+            }
+        }
+    }
+
+    #newsletter-form {
+        width: 100%;
+
+        h3 {
+            margin-bottom: @baseLine;
+        }
+
+        .form-submit {
+            float: none;
+            width: auto;
+            margin-top: @baseLine;
+        }
+    }
+
+    #sms-form {
+        float: none;
+        width: 100%;
+
+        .input {
+            width: 100%;
+            text-align: left;
+            background-position: right center;
+        }
+
+        input[type="tel"] {
+            width: 84%;
+        }
+
+        button[type="submit"] {
+            float: none;
+        }
+    }
+
+    .tab-content {
+        h3 {
+            width: auto;
+            float: none;
+        }
+        footer {
+            width: 360px;
+        }
+    }
+
+    .html-rtl {
+        .tab-content {
+            h3 {
+                float: none;
+            }
+        }
+
+        #newsletter-form {
+            h3 {
+                float: none;
+            }
+            .form-contents {
+                float: none;
+            }
+        }
+
+        #sms-form {
+            float: none;
+
+            .input {
+                float: none;
+                background-position: left center;
+                text-align: right;
+            }
+
+            button[type="submit"] {
+                float: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+    .tab-content {
+        footer {
+            width: 240px;
+        }
+    }
+}

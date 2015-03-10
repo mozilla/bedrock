@@ -469,7 +469,9 @@ class WhatsnewView(LatestFxView):
             oldversion = oldversion[3:]
         versions = ('29.', '30.', '32.')
 
-        if version.startswith('36.'):
+        if version.startswith('37.'):
+            template = 'firefox/whatsnew-fx37.html'
+        elif version.startswith('36.'):
             if show_36_whatsnew_tour(oldversion):
                 template = 'firefox/australis/fx36/whatsnew-tour.html'
             else:

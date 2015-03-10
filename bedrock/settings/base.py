@@ -651,6 +651,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew-bundle.css',
     },
+    'firefox_whatsnew_37': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/template-resp.less',
+            'css/firefox/whatsnew-fx37.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_37-bundle.css',
+    },
     'firefox_whatsnew_fxos': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
@@ -1501,6 +1509,12 @@ PIPELINE_JS = {
             'js/libs/socialshare.min.js',
         ),
         'output_filename': 'js/firefox_sms-bundle.js',
+    },
+    'firefox_whatsnew_fx37': {
+        'source_filenames': (
+            'js/firefox/whatsnew-fx37.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_fx37-bundle.js',
     },
     'firefox_whatsnew_fxos': {
         'source_filenames': (

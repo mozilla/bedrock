@@ -1,0 +1,100 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Now add Firefox to your Android devices') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block body_id %}firefox-whatsnew-37{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}
+  <h2><a href="{{ url('firefox') }}">
+    {{ high_res_img('img/firefox/whatsnew-fx37/firefox-wordmark.png', {'alt': 'Mozilla Firefox', 'width': '220', 'height': '90'}) }}
+  </a></h2>
+{% endblock %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_whatsnew_37' %}
+{% endblock %}
+
+{% macro thank_you_message() %}
+  {{_('Check your device to start downloading.') }} <a href="#send-another" class="more">{{ _('Send to another device') }}</a>
+{%- endmacro %}
+
+{% block content %}
+<main role="main" data-active="email">
+  <header>
+    <p class="up-to-date">{{ _('Your Firefox is up to date!') }}</p>
+    <h1>{{ _('Now add Firefox to your Android devices') }}</h1>
+    <p class="tagline">{{ _('Get the features you love and the privacy you trust in our most customizable Android browser yet. Simply send a download link straight to your phone or tablet — or both.') }}</p>
+  </header>
+  <nav class="toggle">
+    <ul>
+      <li class="sms-tab">
+        <a href="#send-sms">{{ _('Send by text message') }}</a>
+      </li>
+      <li class="email-tab">
+        <a href="#send-email">{{ _('Send by email') }}</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="tab-panel">
+    <section id="send-email" class="tab-content">
+      {% set newsletter_title = _('Send yourself a link by email') %}
+      {% set newsletter_submit = _('Send') %}
+      {% set newsletter_thankyou_head = _('Your link has been sent!') %}
+      {% set newsletter_thankyou_content = thank_you_message() %}
+
+      {{ email_newsletter_form(title=newsletter_title, submit_text=newsletter_submit, thankyou_head=newsletter_thankyou_head,thankyou_content=newsletter_thankyou_content) }}
+      <footer>
+        {% trans url=settings.GOOGLE_PLAY_FIREFOX_LINK %}
+          Also available from <a href="{{ url }}">Google Play</a>.
+        {% endtrans %}
+      </footer>
+    </section>
+    <section id="send-sms" class="tab-content">
+      <div class="inner-wrapper">
+        <h3>{{ _('Send yourself a link by text message') }}</h3>
+        <form id="sms-form" method="post" action="{{ secure_url() }}">
+          <div class="input">
+            <label for="number">{{ _('Enter your 10-digit phone number') }}</label>
+            <input type="tel"
+                   maxlength="14"
+                   id="number"
+                   name="number"
+                   placeholder="{{ _('Enter your 10-digit phone number') }}"
+                   value=""
+                   required>
+          </div>
+          <button type="submit">{{ _('Send') }}</button>
+        </form>
+        <div class="sms-form-thank-you hidden">
+          <h3>{{ _('Your link has been sent!') }}</h3>
+          {{ thank_you_message() }}
+        </div>
+        <footer>
+          {% trans url=settings.GOOGLE_PLAY_FIREFOX_LINK %}
+            Also available from <a href="{{ url }}">Google Play</a>.
+          {% endtrans %}
+          <br>
+          {{ _('SMS & data rates may apply. The intended recipient of the SMS must have consented.') }}
+          <br>
+          <a href="#">{{ _('Learn more') }}</a>
+        </footer>
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock%}
+
+{% block js %}
+  {% javascript 'firefox_whatsnew_fx37' %}
+{% endblock %}
