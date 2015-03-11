@@ -1,18 +1,8 @@
 $(function() {
     'use strict';
 
-    var nonFxDownload = $('#main-feature > .download-button');
     var outdatedFx = $('.version-message-container');
-
-    // show main download button to non Fx traffic
-    if(!isFirefox()) {
-        nonFxDownload.css('display', 'inline-block');
-    }
-
-    // show for outdated Fx versions
-    if (isFirefox() &&  !isFirefoxUpToDate() && !isFirefox31ESR()) {
-        outdatedFx.show();
-    }
+    var wrapper = $('#wrapper');
 
     var readerRegEx = /Adobe \b(Reader|Acrobat)\b.*/;
     var iconFor = function (pluginName) {
@@ -49,8 +39,11 @@ $(function() {
         }
     };
     var mediaURL = window.trans('media-url') + 'img/plugincheck/app-icons/';
+    var unknownPluginUrl = function (pluginName) {
+        return 'https://www.google.com/search?q=' + encodeURI(window.trans('googleSearchq') + ' ' + pluginName);
+    };
 
-    var showPlugin = function(data) {
+    function showPlugin(data) {
         var vulnerablePluginsSection = $('#sec-plugin-vulnerable'),
             vulnerablePluginsBody = $('#plugin-vulnerable'),
             vulnerablePluginsHtml = '',
@@ -100,101 +93,11 @@ $(function() {
 
             upToDatePluginsSection.show();
         }
-    },
-    unknownPluginUrl = function (pluginName) {
-        return 'https://www.google.com/search?q=' + encodeURI(window.trans('googleSearchq') + ' ' + pluginName);
-    },
-    buildObject = function(data) {
-
-        // The v3 bit will kick in once we flip the navigator.plugins switch
-        // to no longer be enumarable
-        if (data.pluginDetectVersion === 'v3') {
-            displayPlugins(data.plugins);
-            return;
-        }
-
-        var plugin = data.pluginInfo.raw,
-            url = data.url,
-            currentPlugin = {},
-            vulnerableStatusArray = ['should_disable', 'vulnerable', 'maybe_vulnerable',
-                                    'outdated', 'maybe_outdated'];
-
-        // There are rare occasions when the update URL for a plugin is not known.
-        // In these cases, we want to add the plugin to the unknownPlugins array and not
-        // the vulnerablePlugins nor the outdatedPlugins array.
-        // @see https://bugzilla.mozilla.org/show_bug.cgi?id=887245
-        if(typeof url === 'undefined' && $.inArray(data.status, vulnerableStatusArray) > -1) {
-            currentPlugin.unknownPlugins = {
-                'icon': mediaURL + iconFor(plugin.name),
-                'plugin_name': plugin.name,
-                'plugin_detail': plugin.description,
-                'plugin_status': window.trans('vulnerable'),
-                'plugin_version': plugin.version,
-                'button_research': window.trans('button_research'),
-                'img_alt_txt': window.trans('icon_alt_txt'),
-                'url': unknownPluginUrl(plugin.name)
-            };
-        } else {
-            // Our URL has a value, do the usual song and dance.
-            if(data.status === 'should_disable' || data.status === 'vulnerable' ||
-                data.status === 'maybe_vulnerable') {
-                currentPlugin.vulnerablePlugins = {
-                    'icon': mediaURL + iconFor(plugin.name),
-                    'plugin_name': plugin.name,
-                    'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('vulnerable'),
-                    'plugin_version': plugin.version,
-                    'button_update': window.trans('button_update'),
-                    'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': url
-                };
-
-            } else if(data.status === 'outdated' || data.status === 'maybe_outdated') {
-                currentPlugin.outdatedPlugins = {
-                    'icon': mediaURL + iconFor(plugin.name),
-                    'plugin_name': plugin.name,
-                    'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('vulnerable'),
-                    'plugin_version': plugin.version,
-                    'button_update': window.trans('button_update'),
-                    'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': url
-                };
-            } else if(data.status === 'unknown') {
-                currentPlugin.unknownPlugins = {
-                    'icon': mediaURL + iconFor(plugin.name),
-                    'plugin_name': plugin.name,
-                    'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('unknown'),
-                    'plugin_version': plugin.version,
-                    'button_research': window.trans('button_research'),
-                    'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': unknownPluginUrl(plugin.name)
-                };
-            } else if(data.status === 'latest' || data.status === 'newer') {
-                currentPlugin.upToDatePlugins = {
-                    'icon': mediaURL + iconFor(plugin.name),
-                    'plugin_name': plugin.name,
-                    'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('button_uptodate'),
-                    'plugin_version': plugin.version,
-                    'button_uptodate': window.trans('button_uptodate'),
-                    'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': url
-                };
-            }
-        }
-
-        showPlugin(currentPlugin);
-    },
-    pluginCheckComplete = function() {
-        var pfsStatus = $('#pfs-status');
-        pfsStatus.empty();
-    };
+    }
 
     function displayPlugins(pluginList) {
 
-        for (var i = 0; i < pluginList.length; i++) {
+        for (var i = 0, l = pluginList.length; i < l; i++) {
             var currentPlugin = {};
             var plugin = pluginList[i];
 
@@ -246,8 +149,24 @@ $(function() {
 
             showPlugin(currentPlugin);
         }
-        pluginCheckComplete();
     }
 
-    checkPlugins('https://plugins.mozilla.org/pfs/v2', buildObject, pluginCheckComplete);
+    // show main download button to non Fx traffic
+    if(!isFirefox()) {
+        wrapper.addClass('non-fx');
+    }
+
+    // show for outdated Fx versions
+    if (isFirefox() &&  !isFirefoxUpToDate() && !isFirefox31ESR()) {
+        outdatedFx.show();
+    }
+
+    // only execute the plugincheck code if this is Firefox
+    if (isFirefox()) {
+        PluginCheck.getPluginsStatus('https://plugins.mozilla.org/en-us/plugins_list.json?callback=?',
+            function(response) {
+                displayPlugins(response);
+            }
+        );
+    }
 });
