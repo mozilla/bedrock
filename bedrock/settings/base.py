@@ -44,7 +44,7 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'nn-NO', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                   'rm', 'ro', 'ru', 'sat', 'si', 'sk', 'sl', 'son', 'sq', 'sr',
                   'sv-SE', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'ur',
-                  'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
+                  'uz', 'vi', 'wo', 'xh', 'zh-CN', 'zh-TW', 'zu')
 DEV_LANGUAGES = list(DEV_LANGUAGES) + ['en-US']
 
 # Map short locale names to long, preferred locale names. This overrides the
