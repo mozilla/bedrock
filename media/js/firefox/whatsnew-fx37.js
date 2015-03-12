@@ -20,4 +20,23 @@
             $main.attr('data-active', 'email');
         }
     });
+
+    $('#sms-form').on('submit', function (e) {
+        e.preventDefault();
+        var $form = $(e.target);
+        var action = $form.attr('action');
+        $.post(action, $form.serialize())
+            .done(function (data) {
+                // TODO make this fancier like email one
+                if (data.success) {
+                    $form.hide();
+                    $('.sms-form-thank-you').show();
+                }
+                else {
+                    $form.find('.error').html(data.error).show();
+            }})
+            .fail(function () {
+                $form.find('.error').html('We have had a problem. Please try again later.').show();
+            });
+    });
 })(window.jQuery);

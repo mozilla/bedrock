@@ -6,6 +6,7 @@
 
 import json
 import re
+from cgi import escape
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
@@ -25,6 +26,7 @@ from bedrock.releasenotes import version_re
 from bedrock.firefox.forms import SMSSendForm
 from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.views import process_partnership_form
+from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.firefox.firefox_details import firefox_details, mobile_details
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
@@ -148,20 +150,42 @@ def installer_help(request):
 @csrf_exempt
 def sms_send(request):
     form = SMSSendForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        try:
-            basket.send_sms(form.cleaned_data['number'],
-                            'SMS_Android',
-                            form.cleaned_data['optin'])
-        except basket.BasketException:
-            msg = form.error_class(
-                [_('An error occurred in our system. '
-                   'Please try again later.')]
-            )
-            form.errors['__all__'] = msg
+    if request.method == 'POST':
+        error_msg = _('An error occurred in our system. Please try again later.')
+        error = None
+        if form.is_valid():
+            try:
+                basket.send_sms(form.cleaned_data['number'],
+                                'SMS_Android',
+                                form.cleaned_data['optin'])
+            except basket.BasketException:
+                error = error_msg
+
         else:
-            return HttpResponseRedirect(
-                reverse('firefox.android.sms-thankyou'))
+            number_errors = form.errors.get('number')
+            if number_errors:
+                # form error messages may contain unsanitized user input
+                error = escape(number_errors[0])
+            else:
+                error = error_msg
+
+        if request.is_ajax():
+            # return JSON
+            if error:
+                resp = {
+                    'success': False,
+                    'error': error,
+                }
+            else:
+                resp = {'success': True}
+
+            return HttpResponseJSON(resp)
+        else:
+            if error:
+                form.errors['__all__'] = form.error_class([error])
+            else:
+                return HttpResponseRedirect(reverse('firefox.android.sms-thankyou'))
+
     return l10n_utils.render(request, 'firefox/android/sms-send.html',
                              {'sms_form': form})
 

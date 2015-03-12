@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "/firefox/base-resp.html" %}
+{% extends "firefox/base-resp.html" %}
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
@@ -61,7 +61,7 @@
     <section id="send-sms" class="tab-content">
       <div class="inner-wrapper">
         <h3>{{ _('Send yourself a link by text message') }}</h3>
-        <form id="sms-form" method="post" action="{{ secure_url() }}">
+        <form id="sms-form" method="post" action="{{ secure_url('firefox.sms') }}">
           <div class="input">
             <label for="number">{{ _('Enter your 10-digit phone number') }}</label>
             <input type="tel"
@@ -71,6 +71,7 @@
                    placeholder="{{ _('Enter your 10-digit phone number') }}"
                    value=""
                    required>
+            <div class="error hidden"></div>
           </div>
           <button type="submit">{{ _('Send') }}</button>
         </form>
