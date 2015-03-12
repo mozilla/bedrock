@@ -4,25 +4,28 @@
 
 MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 
-*/10 * * * * {{ user }} {{ source }}/bin/update-scripts/stage/update-stage-php.sh
-*/15 * * * * {{ user }} {{ source }}/bin/update-scripts/stage/update-stage-locale.sh
+# add date/time info to cron log
+0    * * * * {{ user }} date {{ log }}
 
-*/5    * * * * {{ django_manage }} rnasync > /dev/null 2>&1
+*/10 * * * * {{ user }} {{ source }}/bin/update-scripts/stage/update-stage-php.sh {{ log }}
+*/15 * * * * {{ user }} {{ source }}/bin/update-scripts/stage/update-stage-locale.sh {{ log }}
+
+*/5  * * * * {{ django_manage }} rnasync {{ log }}
 
 # bug 996144
-1 */2 * * * {{ django_cron }} update_tweets > /dev/null 2>&1
+1 */2 * * * {{ django_cron }} update_tweets {{ log }}
 
 # bug 1072999
 # Have to do this in the SRC dir because rsync destroys git repos in WWW dir.
-41 * * * * {{ django_src_manage }} update_security_advisories --quiet
+41 * * * * {{ django_src_manage }} update_security_advisories --quiet {{ log }}
 
 # bug 1087533
-42 * * * * {{ django_cron }} update_reps_ical > /dev/null 2>&1
+42 * * * * {{ django_cron }} update_reps_ical {{ log }}
 
 # bug 1128587
-38 * * * * {{ django_manage }} runscript update_firefox_os_feeds > /dev/null 2>&1
+38 * * * * {{ django_manage }} runscript update_firefox_os_feeds {{ log }}
 
 # bug 1116511
 # every tuesday midnight
-0 0 * * 2 {{ django_manage }} runscript update_tableau_data
+0 0 * * 2 {{ django_manage }} runscript update_tableau_data {{ log }}
 
