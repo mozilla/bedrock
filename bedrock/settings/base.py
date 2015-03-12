@@ -282,7 +282,7 @@ PIPELINE_CSS = {
     'dnt': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
-            'css/firefox/menu-resp.less',
+            'css/firefox/family-nav.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/dnt.less',
         ),
@@ -308,7 +308,7 @@ PIPELINE_CSS = {
     'firefox_android': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
-            'css/firefox/menu-resp.less',
+            'css/firefox/family-nav.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/android.less',
         ),
@@ -352,6 +352,7 @@ PIPELINE_CSS = {
     'firefox_desktop': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/firefox/family-nav.less',
             'css/firefox/desktop/intro-anim.less',
             'css/base/svg-animation-check.less',
             'css/firefox/desktop/index.less',
@@ -361,6 +362,7 @@ PIPELINE_CSS = {
     'firefox_desktop_fast': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/firefox/family-nav.less',
             'css/firefox/desktop/fast.less',
         ),
         'output_filename': 'css/firefox_desktop_fast-bundle.css',
@@ -368,6 +370,7 @@ PIPELINE_CSS = {
     'firefox_desktop_customize': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/firefox/family-nav.less',
             'css/firefox/desktop/customize.less',
         ),
         'output_filename': 'css/firefox_desktop_customize-bundle.css',
@@ -383,6 +386,7 @@ PIPELINE_CSS = {
     'firefox_desktop_trust': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/firefox/family-nav.less',
             'css/firefox/desktop/trust.less',
         ),
         'output_filename': 'css/firefox_desktop_trust-bundle.css',
@@ -397,8 +401,16 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_sms-bundle.css',
     },
+    'firefox-interest-dashboard': {
+        'source_filenames': (
+            'css/firefox/family-nav.less',
+            'css/firefox/interest-dashboard.less',
+        ),
+        'output_filename': 'css/firefox-interest-dashboard-bundle.css',
+    },
     'firefox-tiles': {
         'source_filenames': (
+            'css/firefox/family-nav.less',
             'css/firefox/tiles.less',
         ),
         'output_filename': 'css/firefox-tiles-bundle.css',
@@ -499,7 +511,7 @@ PIPELINE_CSS = {
     'firefox_hello': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
-            'css/firefox/menu-resp.less',
+            'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/base/svg-animation-check.less',
             'css/base/mozilla-share-cta.less',
@@ -680,7 +692,7 @@ PIPELINE_CSS = {
     'firefox_sync': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
-            'css/firefox/menu-resp.less',
+            'css/firefox/family-nav.less',
             'css/firefox/sync.less',
         ),
         'output_filename': 'css/firefox_sync-bundle.css',
@@ -1151,6 +1163,17 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/accordion-bundle.js',
     },
+    'dnt': {
+        'source_filenames': (
+            'js/base/mozilla-accordion.js',
+            'js/base/mozilla-accordion-gatrack.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+            'js/firefox/dnt.js',
+        ),
+        'output_filename': 'js/firefox_dnt-bundle.js',
+    },
     'firefox': {
         'source_filenames': (
             'js/libs/jquery-1.11.0.min.js',
@@ -1177,16 +1200,13 @@ PIPELINE_JS = {
             'js/base/mozilla-accordion.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.cycle2.min.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/sync-animation.js',
             'js/firefox/android.js',
         ),
         'output_filename': 'js/firefox_android-bundle.js',
-    },
-    'firefox_android_ie9': {
-        'source_filenames': (
-            'js/libs/matchMedia.addListener.js',
-        ),
-        'output_filename': 'js/firefox_android_ie9-bundle.js',
     },
     'firefox-resp': {
         'source_filenames': (
@@ -1208,15 +1228,11 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_channel-bundle.js',
     },
-    'firefox_desktop_common': {
-        'source_filenames': (
-            'js/firefox/desktop/common.js',
-        ),
-        'output_filename': 'js/firefox_desktop_common-bundle.js',
-    },
     'firefox_desktop_customize': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/sync-animation.js',
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/customize.js',
@@ -1226,6 +1242,8 @@ PIPELINE_JS = {
     'firefox_desktop_fast': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/speed-graph.js',
             'js/firefox/desktop/fast.js',
@@ -1235,6 +1253,8 @@ PIPELINE_JS = {
     'firefox_desktop_index': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/desktop/common.js',
             'js/firefox/desktop/speed-graph.js',
             'js/base/svg-animation-check.js',
@@ -1255,7 +1275,10 @@ PIPELINE_JS = {
     'firefox_desktop_trust': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/desktop/common.js',
+            'js/firefox/desktop/trust.js',
         ),
         'output_filename': 'js/firefox_desktop_trust-bundle.js',
     },
@@ -1394,6 +1417,24 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_os_tv-bundle.js',
     },
+    'firefox_interest_dashboard': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+            'js/firefox/interest-dashboard.js',
+        ),
+        'output_filename': 'js/firefox_interest_dashboard-bundle.js',
+    },
+    'firefox_tiles': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+            'js/firefox/tiles.js',
+        ),
+        'output_filename': 'js/firefox_tiles-bundle.js',
+    },
     'firefox_faq': {
         'source_filenames': (
             'js/base/mozilla-accordion.js',
@@ -1403,6 +1444,9 @@ PIPELINE_JS = {
     },
     'firefox_sync': {
         'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/sync-animation.js',
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/sync.js',
@@ -1429,6 +1473,9 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
             'js/base/svg-animation-check.js',
             'js/base/mozilla-share-cta.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/hello/index.js',
         ),
         'output_filename': 'js/firefox_hello-bundle.js',

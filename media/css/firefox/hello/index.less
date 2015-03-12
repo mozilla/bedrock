@@ -26,6 +26,7 @@
 
 #wrapper {
     width: 100%;
+    margin-top: -162px; // family nav
     padding-bottom: 0;
     .grainy-sky-solid();
 }
@@ -41,17 +42,17 @@ main {
     .font-size(@largeFontSize);
     color: @textColorSecondary;
 
-    .container a[rel="external"] {
-        .trailing-arrow();
-    }
-}
+    .container {
+        .clearfix();
+        position: relative;
+        width: 940px;
+        margin: 0 auto;
+        overflow: hidden;
 
-.container {
-    .clearfix();
-    position: relative;
-    width: 940px;
-    margin: 0 auto;
-    overflow: hidden;
+        a[rel="external"] {
+            .trailing-arrow();
+        }
+    }
 }
 
 .heading-primary {
@@ -93,16 +94,17 @@ main {
 
 // Share
 
-#hello-header-nav,
-#hello-logo-wrapper {
-    .clearfix();
+#spread-hello {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 // Intro
 
 #intro {
     .grainy-sky();
-    padding-bottom: @baseLine * 2;
+    padding: 210px 0 @baseLine * 2;
 
     .heading-primary,
     .heading-tertiary {
@@ -1164,17 +1166,6 @@ html[lang^="en"] #powered-by {
     padding: 45px 0 50px 0;
     .clearfix();
 
-    a:link,
-    a:visited {
-        color: #fff;
-    }
-
-    a:active,
-    a:hover,
-    a:focus {
-        color: #5dd3ff;
-    }
-
     .ctacopy-wrapper {
         float: left;
         width: 400px;
@@ -1334,7 +1325,7 @@ html[lang^="en"] #powered-by {
         width: @widthTablet - (@gridGutterWidth * 2);
     }
 
-    .container {
+    main .container {
         width: 720px;
     }
 
@@ -1348,6 +1339,13 @@ html[lang^="en"] #powered-by {
 
     .heading-tertiary {
         .font-size(24px);
+    }
+
+    // Share
+
+    #spread-hello {
+        position: relative;
+        margin: @baseLine auto 0;
     }
 
     // Features
@@ -1419,7 +1417,7 @@ html[lang^="en"] #powered-by {
         width: @widthMobile - @gridGutterWidth;
     }
 
-    .container {
+    main .container {
         width: (480px - (@baseLine * 2));
         padding-left: @baseLine;
         padding-right: @baseLine;
@@ -1456,6 +1454,13 @@ html[lang^="en"] #powered-by {
         width: 400px;
         height: 263px;
         .background-size(380px, 266px);
+    }
+
+    // Share
+
+    #spread-hello {
+        position: relative;
+        margin: @baseLine auto 0;
     }
 
     // Animation
@@ -1836,14 +1841,14 @@ html[lang^="en"] #powered-by {
 /****************************************************************************/
 // @Mobile Layout: 320px
 @media (max-width: @breakMobileLandscape) {
-    .container {
-        width: (320px - @baseLine);
-        padding-left: @baseLine / 2;
-        padding-right: @baseLine / 2;
-    }
-
     main {
         .font-size(@baseFontSize);
+
+        .container {
+            width: (320px - @baseLine);
+            padding-left: @baseLine / 2;
+            padding-right: @baseLine / 2;
+        }
     }
 
     .heading-primary {

@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import fxfamilynav with context %}
+
 {% extends "firefox/base-resp.html" %}
 
 {% set_lang_files "firefox/hello" %}
@@ -29,14 +31,22 @@
   {% endif %}
 {% endblock %}
 
-{% block site_header_share %}
-  {% set share_urls = {
-    'twitter': 'http://mzl.la/1wz83AN',
-    'googleplus': 'https://www.mozilla.org/firefox/hello/?utm_source=Google&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare',
-    'facebook': 'https://www.mozilla.org/firefox/hello/?utm_source=Facebook&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare'
-  } %}
-  {{ share_cta(_('Share'), share_urls, _('Meet Firefox Hello, the easiest way to connect for free over video with anyone, anywhere.'), 'spread-hello', 'sky mini') }}
+{%
+set share_urls = {
+  'twitter': 'http://mzl.la/1wz83AN',
+  'googleplus': 'https://www.mozilla.org/firefox/hello/?utm_source=Google&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare',
+  'facebook': 'https://www.mozilla.org/firefox/hello/?utm_source=Facebook&utm_medium=social&utm_campaign=Hello&utm_content=WebsiteShare'
+}
+%}
+
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {{ fxfamilynav('dark') }}
 {% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
 
 {% block content %}
 
@@ -122,6 +132,8 @@
       <aside id="powered-by">
         {{ _('Powered by %s')|format(high_res_img('img/firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}
       </aside>
+
+      {{ share_cta(_('Share'), share_urls, _('Meet Firefox Hello, the easiest way to connect for free over video with anyone, anywhere.'), 'spread-hello', 'sky mini') }}
     </div>{# /.container #}
   </section>
 

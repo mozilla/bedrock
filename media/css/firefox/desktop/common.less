@@ -22,22 +22,6 @@
                 #eeeeee;
 }
 
-.nav-pointer() {
-    position: relative;
-
-    &:after {
-        display: block;
-        position: absolute;
-        content: '';
-        background: url(/media/img/firefox/desktop/nav-pointer.png) center top no-repeat;
-        width: 193px;
-        height: 39px;
-        bottom: -39px;
-        left: 50%;
-        margin-left: -97px;
-    }
-}
-
 /* {{{ Template overrides */
 
 #outer-wrapper {
@@ -46,6 +30,11 @@
 
 #wrapper {
     width: 100%;
+    margin-top: -162px; // family nav
+}
+
+#intro {
+    padding-top: 162px; // family nav
 }
 
 #masthead {

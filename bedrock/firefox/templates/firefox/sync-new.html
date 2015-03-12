@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import fxfamilynav with context %}
+
 {% extends "/firefox/base-resp.html" %}
 
 {% block page_title %}{{ _('Keep your Firefox in sync') }}{% endblock %}
@@ -17,6 +19,15 @@
     {% stylesheet 'firefox_sync_anim' %}
   <!--<![endif]-->
 {% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {{ fxfamilynav('dark') }}
+{% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
 
 {% block content %}
 {% include 'firefox/includes/sync-animation.html' %}
@@ -217,5 +228,8 @@
 {% endblock %}
 
 {% block js %}
+  <!--[if IE 9]>
+    {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
   {% javascript 'firefox_sync' %}
 {% endblock %}

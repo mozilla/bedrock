@@ -140,7 +140,7 @@
                         if (tourSource === 'twitter' || tourSource === 'facebook' || tourSource === 'wiki' || tourSource === 'email') {
                             Mozilla.UITour.registerPageID('hello-tour_OpenPanel_' + tourSource);
                         }
-                        
+
                         // show Hello menu when icon in toolbar, customize menu, or overflow
                         Mozilla.UITour.showMenu('loop', function() {
                             // clicking Hello icon in toolbar does not close the menu
@@ -207,4 +207,6 @@
     $video.on('play', function() {
         w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'PlayVideo']);
     });
-})(Mozilla, window, window.jQuery);
+
+    Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'hello' });
+})(window.Mozilla, window, window.jQuery);
