@@ -27,6 +27,11 @@ main {
     }
 }
 
+h2 a {
+    color: #fff;
+    text-shadow: none;
+}
+
 .button-blue-flat() {
     padding: 0 (@gridGutterWidth / 2);
     background: @whatsnewBlue;
@@ -85,6 +90,22 @@ html[lang|="en"] {
     }
 }
 
+/*
+ * Override CSS input invalid default styling, since the form can be re-submitted
+ * after the browser performs input validation on first submission.
+ */
+input[type="email"]:-moz-ui-invalid:not(output),
+input[type="tel"]:-moz-ui-invalid:not(output) {
+    border-color: #D1D2D3;
+    box-shadow: none;
+}
+
+input[type="email"]:-moz-ui-invalid:not(output):focus,
+input[type="tel"]:-moz-ui-invalid:not(output):focus {
+    border-color: #42A4E0;
+    box-shadow: 0px 0px 0px 2px rgba(73, 173, 227, 0.4);
+}
+
 .toggle {
     ul {
         list-style-type: none;
@@ -117,10 +138,8 @@ html[lang|="en"] {
     }
 }
 
-html[lang|="en"] {
-    .toggle ul li {
-        text-transform: uppercase;
-    }
+html[lang|="en"] .toggle ul li {
+    text-transform: uppercase;
 }
 
 .active-tab() {
@@ -138,7 +157,7 @@ html[lang|="en"] {
     }
 }
 
-.tab-panel {
+.tab-container {
     position: relative;
     margin: 0;
     padding: @baseLine * 2;
@@ -211,7 +230,7 @@ html[lang|="en"] {
 
     .field-email {
         background-image: url(/media/img/firefox/whatsnew-fx37/lock.png);
-        background-position: right center;
+        background-position: right 16px;
         background-repeat: no-repeat;
     }
 
@@ -228,11 +247,6 @@ html[lang|="en"] {
     input[type="email"] {
         width: 89%;
     }
-
-    &.thank p > a {
-        display: block;
-        margin-top: @baseLine;
-    }
 }
 
 #footer-email-errors {
@@ -246,7 +260,7 @@ html[lang|="en"] {
         float: left;
         width: 390px;
         background-image: url(/media/img/firefox/whatsnew-fx37/lock.png);
-        background-position: right center;
+        background-position: right 16px;
         background-repeat: no-repeat;
     }
 
@@ -258,12 +272,50 @@ html[lang|="en"] {
         .open-sans;
         float: right;
     }
+
+    p {
+        margin: @baseLine 0;
+    }
+}
+
+.sms-form-wrapper {
+    position: relative;
+    .clearfix();
+
+    &.loading {
+        h3, form {
+            .transition(opacity .2s ease-in-out);
+            opacity: 0.2;
+        }
+    }
+}
+
+#sms-spinner {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#sms-form-thank-you {
+    display: none;
+    overflow: hidden;
+    h3 {
+        width: auto;
+        float: none;
+        .animation(sand-bounce-down 0.7s ease-in 0.2s 1 normal both);
+    }
+    p {
+        .animation(sand-fade-in 0.5s ease-in 0.8s 1 normal both);
+    }
 }
 
 .html-rtl {
     .newsletter-form {
         .field-email {
-            background-position: left center;
+            background-position: left 16px;
         }
         .form-submit {
             float: left;
@@ -272,11 +324,20 @@ html[lang|="en"] {
     #sms-form {
         .input {
             float: right;
-            background-position: left center;
+            background-position: left 16px;
         }
         button[type="submit"] {
             float: left;
         }
+    }
+}
+
+main[data-active="email-only"] {
+    .toggle {
+        display: none;
+    }
+    #send-sms {
+        display: none;
     }
 }
 
@@ -308,10 +369,15 @@ html[lang|="en"] {
         margin: 0;
     }
 
-    .tab-panel footer {
-        position: absolute;
-        left: @gridGutterWidth * 2;
-        bottom: @baseLine * 2;
+    .tab-container {
+        footer {
+            position: absolute;
+            left: @gridGutterWidth * 2;
+            bottom: @baseLine * 2;
+        }
+        .inner-wrapper {
+            display: none;
+        }
     }
 }
 
@@ -322,7 +388,7 @@ html[lang|="en"] {
         padding: 0 (@baseLine / 2);
     }
 
-    .tab-panel {
+    .tab-container {
         background: #fff;
     }
 
@@ -363,13 +429,12 @@ html[lang|="en"] {
         .input {
             float: right;
             margin-bottom: @baseLine;
-            background-position: left center;
+            background-position: left 16px;
             text-align: right;
         }
     }
 
     .html-rtl {
-
         .tab-content {
             h3 {
                 float: right;
@@ -390,7 +455,7 @@ html[lang|="en"] {
 
             .input {
                 float: left;
-                background-position: right center;
+                background-position: right 16px;
                 text-align: left;
             }
         }
@@ -437,7 +502,7 @@ html[lang|="en"] {
         .input {
             width: 100%;
             text-align: left;
-            background-position: right center;
+            background-position: right 16px;
         }
 
         input[type="tel"] {
@@ -480,7 +545,7 @@ html[lang|="en"] {
 
             .input {
                 float: none;
-                background-position: left center;
+                background-position: left 16px;
                 text-align: right;
             }
 
@@ -492,9 +557,7 @@ html[lang|="en"] {
 }
 
 @media only screen and (max-width: @breakMobileLandscape) {
-    .tab-content {
-        footer {
-            width: 240px;
-        }
+    .tab-content footer {
+        width: 240px;
     }
 }

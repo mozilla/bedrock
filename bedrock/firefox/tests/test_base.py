@@ -738,6 +738,14 @@ class TestWhatsNew(TestCase):
 
     # end 36.0 hello tour tests
 
+    @override_settings(DEV=True)
+    def test_fx_37_0_whatsnew(self, render_mock):
+        """Should show Android SMS template for 37.0"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=36.0')
+        self.view(req, version='37.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew-fx37.html'])
+
     # ESR31 whatsnew tests
 
     @override_settings(DEV=True)

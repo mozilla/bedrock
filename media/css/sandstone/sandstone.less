@@ -268,7 +268,8 @@ img[data-high-res] {
 textarea,
 input[type=email],
 input[type=password],
-input[type=text] {
+input[type=text],
+input[type=tel] {
     height: @baseLine;
     background: #fafafa;
     border-color: #dbdbdb;
@@ -286,7 +287,8 @@ textarea { height: auto; }
 textarea:focus,
 input[type=email]:focus,
 input[type=password]:focus,
-input[type=text]:focus {
+input[type=text]:focus,
+input[type=tel]:focus {
     border-color: #bbb;
     @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(103,167,208,0.6);
     .box-shadow(@shadow);
@@ -311,7 +313,8 @@ input[type=text]:focus {
 .field-error {
     input[type=email],
     input[type=password],
-    input[type=text] {
+    input[type=text],
+    input[type=tel] {
         border-color: rgb(175,50,50);
         @shadow: 0 2px 1px rgba(0,0,0,0.1) inset, 0 0 8px 0 rgba(175,50,50,.6);
         .box-shadow(@shadow);

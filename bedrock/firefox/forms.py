@@ -8,6 +8,8 @@ from django import forms
 
 from lib.l10n_utils.dotlang import _
 
+LANG_FILES = ['firefox/whatsnew-fx37']
+
 
 class SMSSendForm(forms.Form):
     number = forms.CharField(max_length=14)
