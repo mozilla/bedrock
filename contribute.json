@@ -4,7 +4,7 @@
     "repository": {
         "url": "https://github.com/mozilla/bedrock",
         "license": "MPL2",
-        "tests": "https://ci.mozilla.org/job/bedrock/"
+        "tests": "https://travis-ci.org/mozilla/bedrock/"
     },
     "participate": {
         "home": "https://wiki.mozilla.org/Mozilla.org",
@@ -12,16 +12,21 @@
         "mailing-list": "https://www.mozilla.org/about/forums/#dev-mozilla-org",
         "irc": "irc://irc.mozilla.org/#www",
         "irc-contacts": [
-            "pmac",
-            "jgmize",
+            "agibson",
+            "bensternthal",
             "craigcook",
+            "espressive",
+            "jgmize",
+            "jpetto",
+            "kohei",
             "malexis",
-            "cmore"
+            "pmac",
+            "sgarrity"
         ]
     },
     "bugs": {
-        "list": "https://bugzilla.mozilla.org/buglist.cgi?query_format=advanced&bug_status=UNCONFIRMED&bug_status=NEW&product=www.mozilla.org",
-        "report": "https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org&component=Bedrock",
+        "list": "https://bugzilla.mozilla.org/describecomponents.cgi?product=www.mozilla.org",
+        "report": "https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org",
         "mentored": "https://bugzilla.mozilla.org/buglist.cgi?f1=bug_mentor&o1=isnotempty&query_format=advanced&bug_status=NEW&product=www.mozilla.org&list_id=10866041"
     },
     "urls": {
