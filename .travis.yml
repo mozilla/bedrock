@@ -5,7 +5,6 @@ python:
 env:
   global:
     - PIP_DOWNLOAD_CACHE="pip_cache"
-    - CRON_LOG_DIR="/tmp/bedrock-cron-log"
 branches:
   only:
     - master
