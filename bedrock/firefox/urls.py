@@ -75,6 +75,12 @@ urlpatterns = patterns('',
     url('^firefox/$', views.fx_home_redirect, name='firefox'),
 
     url('^firefox/os/$', views.firefox_os_index, name='firefox.os.index'),
+    page('firefox/os/2.0', 'firefox/os/ver/2.0.html'),
+    page('firefox/os/1.4', 'firefox/os/ver/1.4.html'),
+    page('firefox/os/1.3t', 'firefox/os/ver/1.3T.html'),
+    page('firefox/os/1.3', 'firefox/os/ver/1.3.html'),
+    page('firefox/os/1.1', 'firefox/os/ver/1.1.html'),
+
     page('firefox/os/releases', 'firefox/os/releases.html'),
 
     page('mwc', 'firefox/os/mwc-2015-preview.html',

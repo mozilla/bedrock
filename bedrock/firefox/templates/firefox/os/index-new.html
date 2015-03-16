@@ -71,7 +71,9 @@
             <a href="#get-device" class="primary-cta-phone cta-button get-phone hidden" role="button" aria-haspopup="true">{{_('Get a phone')}}</a>
           </div>
           <div class="phone-container">
+          {% block phone_image %}
             {{ high_res_img('firefox/os-new/homescreen/homescreen-2-0.png', {'l10n': True, 'alt': '', 'width': '495'}) }}
+          {% endblock %}
           </div>
         </div>
       </div>
@@ -79,29 +81,26 @@
     <section class="fxos-features">
       <div class="content-wrapper">
         <h2>{{_('Smart has never been so simple')}}</h2>
-        <ul class="features">
-          <li>
-            <div class="icon scroll"></div>
-            <h3>{{_('Scroll for what you need')}}</h3>
-            <p>{{_('Say goodbye to multiple home screens. Everything you need is right there in one clean, continuous scroll. What could be easier?')}}</p>
-          </li>
-          <li>
-            <div class="icon search"></div>
-            <h3>{{_('Search in a snap')}}</h3>
-            <p>{{_('Search the Web and the Firefox Marketplace, or visit a website directly —  all from the search bar at the top of your home screen.')}}</p>
-          </li>
-          <li>
-            <div class="icon swipe"></div>
-            {# l10n this &nbsp; is a dirty hack to differentiate an equivalent matching string #}
-            <h3>{{_('Swipe&nbsp;between apps')}}</h3>
-            <p>{{_('Access your recently used apps in a flash. Just swipe from the edge of the screen to cycle through all of your open apps.')}}</p>
-          </li>
-        </ul>
-        {% if l10n_has_tag('new_fxos_title') %}
-          <p class="hidden">{{_('Firefox OS is designed to fit your life and with Adaptive App Search it does just that. Just start typing to get fast and easy access to related apps and local content. It’s smart and simple — the way every search should be.')}}</p>
-        {% endif %}
+        {% block features_copy %}
+          <ul class="features">
+            <li class="scroll">
+              <h3>{{_('Scroll for what you need')}}</h3>
+              <p>{{_('Say goodbye to multiple home screens. Everything you need is right there in one clean, continuous scroll. What could be easier?')}}</p>
+            </li>
+            <li class="search">
+              <h3>{{_('Search in a snap')}}</h3>
+              <p>{{_('Search the Web and the Firefox Marketplace, or visit a website directly —  all from the search bar at the top of your home screen.')}}</p>
+            </li>
+            <li class="swipe">
+              {# l10n this &nbsp; is a dirty hack to differentiate an equivalent matching string #}
+              <h3>{{_('Swipe&nbsp;between apps')}}</h3>
+              <p>{{_('Access your recently used apps in a flash. Just swipe from the edge of the screen to cycle through all of your open apps.')}}</p>
+            </li>
+          </ul>
+        {% endblock %}
       </div>
     </section>
+    {% block fxox_apps %}
     <section class="fxos-apps">
       <div class="content-wrapper">
         <h2>{{_('Apps for all you do')}}</h2>
@@ -174,23 +173,17 @@
         </ul>
       </div>
     </section>
+    {% endblock %}
     <section class="fxos-marketplace">
       <div class="content-wrapper">
-        <h2>{{_('Add more from the Firefox Marketplace')}}</h2>
+        {% block marketplace_headline %}
+          <h2>{{_('Add more from the Firefox Marketplace')}}</h2>
+        {% endblock %}
         <p>{{_('Get all the most popular games and social networking apps right here.')}}</p>
         <ul class="apps-marketplace">
-          <li>
-            <div class="icon facebook"></div>
-            <span>Facebook</span>
-          </li>
-          <li>
-            <div class="icon youtube"></div>
-            <span>YouTube</span>
-          </li>
-          <li>
-            <div class="icon line"></div>
-            <span>Line</span>
-          </li>
+          <li class="facebook">Facebook</li>
+          <li class="youtube">YouTube</li>
+          <li class="line">Line</li>
         </ul>
         <a href="https://marketplace.firefox.com/" class="cta-button marketplace" rel="external">{{_('Go to the Marketplace')}}</a>
         <p class="footnote">{{_('* Pre-installed apps may vary by manufacturers and operators.')}}</p>

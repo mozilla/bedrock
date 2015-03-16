@@ -391,28 +391,33 @@ html[lang|="en"] {
         padding: 0;
 
         li {
+            position: relative;
             float: left;
             margin: 0;
-            padding: 0 @gridGutterWidth;
+            padding: 140px @gridGutterWidth 0;
             width: 33%;
 
-            .icon {
-                display: inline-block;
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin-left: -70px;
                 width: 140px;
                 height: 140px;
+                content: '';
                 background-image: url(/media/img/firefox/os-new/icons/features-sprite.png);
-                background-repeat: no-repeat;
                 background-position: 0 0;
-
-                &.search {
-                    background-position: 0 -145px;
-                }
-
-                &.swipe {
-                    background-position: 0 -290px;
-                }
+                background-repeat: no-repeat;
 
                 .at2x('/media/img/firefox/os-new/icons/features-sprite.png', 140px);
+            }
+
+            &.search:before {
+                background-position: 0 -145px;
+            }
+
+            &.swipe:before {
+                background-position: 0 -290px;
             }
 
             p {
@@ -475,14 +480,6 @@ html[lang|="en"] {
         display: inline-block;
         margin-left: 0;
         margin-right: 100px;
-    }
-    span {
-        display: block;
-        margin: 20px 0 60px;
-
-        @media only screen and (max-width: @breakMobileLandscape) {
-            margin-bottom: 30px;
-        }
     }
     .marketplace {
         display: inline-block;
@@ -746,61 +743,68 @@ ul.apps {
 }
 .apps-marketplace {
     margin: 0 auto;
-    width: 90%;
 
-    @media only screen and (max-width: 768px) {
-        width: 100%;
-    }
     li {
+        position: relative;
         display: inline-block;
-        margin: 0 (@gridGutterWidth * 2) @baseLine (@gridGutterWidth * 2);
+        width: 140px;
+        margin: 0 (@gridGutterWidth * 2) (@baseLine * 3);
+        padding-top: 160px;
         .font-size(24px);
         .open-sans-light;
 
-        @media only screen and (max-width: @breakTablet) {
-            .font-size(@largeFontSize);
-            margin: 0 5px;
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -70px;
+            width: 142px;
+            height: 144px;
+            content: '';
+            background-image: url(/media/img/firefox/os-new/icons/marketplace-apps.png);
+            background-repeat: no-repeat;
+            background-position: 0 0;
+
+            .at2x('/media/img/firefox/os-new/icons/marketplace-apps.png', 100%);
         }
 
-        @media only screen and (max-width: @breakMobileLandscape) {
-            .font-size(12px);
-        }
-    }
-
-    .icon {
-        width: 142px;
-        height: 144px;
-        background-image: url(/media/img/firefox/os-new/icons/marketplace-apps.png);
-        background-repeat: no-repeat;
-        background-position: 0 0;
-
-        &.facebook {
+        &.facebook:before {
             background-position: 0 0;
         }
 
-        &.youtube {
+        &.youtube:before {
             background-position: 0 -292px;
         }
 
-        &.line {
+        &.line:before {
             background-position: 0 -146px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(@largeFontSize);
+            margin: 0 (@baseLine / 2) (@baseLine * 1.5);
         }
 
         @media only screen and (max-width: @breakMobileLandscape) {
             width: 71px;
-            height: 73px;
-            .background-size(100%);
+            .font-size(12px);
+            padding-top: 93px;
 
-            &.youtube {
+            &:before {
+                width: 71px;
+                height: 73px;
+                margin-left: -35.5px;
+                .background-size(100%);
+            }
+
+            &.youtube:before {
                 background-position: 0 -147px;
             }
 
-            &.line {
+            &.line:before {
                 background-position: 0 -73px;
             }
         }
-
-        .at2x('/media/img/firefox/os-new/icons/marketplace-apps.png', 100%);
     }
 }
 
@@ -872,4 +876,42 @@ ul.apps {
 // override
 #colophon {
     margin: 0;
+}
+
+
+/**
+ * Older firefox OS version specific styles
+ */
+.v1-1,
+.v1-3,
+.v1-3T,
+.v1-4 {
+    .fxos-marketplace {
+        padding-top: @baseLine * 3;
+    }
+}
+
+.adaptive-app-search {
+    position: relative;
+    color: #999;
+    .font-size(20px);
+    .open-sans-light;
+    margin: @baseLine auto;
+    padding-top: 160px;
+    max-width: 40em;
+
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -70px;
+        width: 140px;
+        height: 140px;
+        content: '';
+        background-image: url(/media/img/firefox/os-new/icons/search-icon.png);
+        background-position: 0 0;
+        background-repeat: no-repeat;
+
+        .at2x('/media/img/firefox/os-new/icons/search-icon.png', 140px);
+    }
 }

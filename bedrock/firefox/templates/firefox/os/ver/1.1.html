@@ -1,0 +1,20 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/os/index-new.html" %}
+
+{% add_lang_files "firefox/os/devices" %}
+
+{% block body_class %}{{ super() }} v1-1{% endblock %}
+
+{% block phone_image %}
+  {{ high_res_img('firefox/os-new/homescreen/homescreen-1-1.png', {'l10n': True, 'alt': '', 'width': '495'}) }}
+{% endblock %}
+
+{% block features_copy %}
+  <p class="adaptive-app-search">{{_('Firefox OS is designed to fit your life and with Adaptive App Search it does just that. Just start typing to get fast and easy access to related apps and local content. It’s smart and simple — the way every search should be.')}}</p>
+{% endblock %}
+
+{% block fxox_apps %}{% endblock %}
+{% block marketplace_headline %}{% endblock %}
