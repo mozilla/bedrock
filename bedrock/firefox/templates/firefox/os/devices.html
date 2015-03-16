@@ -45,6 +45,7 @@
         <select name="location" id="location" autocomplete="off">
           <option value="" selected>{{ _('Select a location') }}</option>
           {# be nice to populate these via JS, but would make L10n difficult? #}
+          <option value="ar">{{ _('Argentina') }}</option>
           <option value="au">{{ _('Australia') }}</option>
           <option value="bd">{{ _('Bangladesh') }}</option>
           <option value="be">{{ _('Belgium') }}</option>
@@ -1114,6 +1115,7 @@
                   <h5>{{ _('Available in') }}</h5>
 
                   <ul class="comma-list">
+                    <li>{{ _('Argentina') }}</li>
                     <li>{{ _('Colombia') }}</li>
                     <li>{{ _('El Salvador') }}</li>
                     <li>{{ _('Guatemala') }}</li>
