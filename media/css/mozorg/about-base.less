@@ -149,8 +149,6 @@
     }
 }
 
-
-
 .gallery {
     list-style: none;
     margin: 0 -10px @baseLine;
@@ -229,6 +227,10 @@
 .elsewhere a.twitter:before { content: '\e804'; } /* '' */
 .elsewhere a.book:before { content: '\e80e'; } /* '' */
 
+// Super-specific selector needed here to override too-specific selector above. Sorry.
+#about-leadership .vcard .elsewhere {
+    margin-bottom: 0;
+}
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
