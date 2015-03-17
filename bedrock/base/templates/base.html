@@ -74,12 +74,13 @@
     {% block optimizely %}{% endblock %}
 
     {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
-    {% block google_analytics %}
-      {% include 'includes/google-analytics.html' %}
-    {% endblock %}
+    <script>window.dataLayer = window.dataLayer || [];</script>
   </head>
 
   <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
+    {% block google_analytics %}
+      {% include 'includes/google-analytics.html' %}
+    {% endblock %}
     <div id="strings"
       data-global-close="{{ _('Close') }}"
       data-global-next="{{ _('Next') }}"
