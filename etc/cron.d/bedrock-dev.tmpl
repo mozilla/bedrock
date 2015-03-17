@@ -11,11 +11,3 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 */20 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-django.sh {{ log }}
 */15 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-locale.sh {{ log }}
 
-*/5  * * * * {{ django_manage }} rnasync {{ log }}
-
-# bug 1014586
-3 */2 * * * {{ django_cron }} update_tweets {{ log }}
-
-# bug 1128587
-38 * * * * {{ django_manage }} runscript update_firefox_os_feeds {{ log }}
-
