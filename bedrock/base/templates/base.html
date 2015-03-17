@@ -79,7 +79,6 @@
     {% block google_analytics %}
       {% include 'includes/google-analytics.html' %}
     {% endblock %}
-    <script>window.dataLayer = window.dataLayer || [];</script>
   </head>
 
   <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
