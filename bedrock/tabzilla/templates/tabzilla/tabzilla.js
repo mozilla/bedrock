@@ -208,7 +208,7 @@ var Tabzilla = (function (Tabzilla) {
         panel.focus();
 
         if (typeof(_gaq) == 'object') {
-            window._gaq.push(['_trackEvent', 'Tabzilla', 'click', 'Open Tabzilla']);
+            window.dataLayer.push({event: 'tabzilla-tab-interaction', interaction: 'Open Tabzilla'});
         }
 
         return panel;
@@ -225,7 +225,7 @@ var Tabzilla = (function (Tabzilla) {
             .removeClass('tabzilla-opened');
 
         if (typeof(_gaq) == 'object') {
-            window._gaq.push(['_trackEvent', 'Tabzilla', 'click', 'Close Tabzilla']);
+            window.dataLayer.push({event: 'tabzilla-tab-interaction', interaction: 'Close Tabzilla'});
         }
 
         return tab;
@@ -710,7 +710,7 @@ var Tabzilla = (function (Tabzilla) {
         {% else %}
     + '      <div class="snippet" id="tabzilla-promo-fxos">'
     + '        <a href="https://www.mozilla.org/firefox/os/?icn=tabz">'
-    + '          <h4>{{ _('Look ahead')|js_escape }}</h4>'
+    + '          <h4>'Hello'{{ _('Look ahead')|js_escape }}</h4>'
     + '          <p>{{ _('Learn all about Firefox OS')|js_escape }} »</p>'
     + '        </a>'
     + '      </div>'
@@ -721,38 +721,38 @@ var Tabzilla = (function (Tabzilla) {
     + '        <li><h2>Mozilla</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://www.mozilla.org/mission/?icn=tabz">{{ _('Mission')|js_escape }}</a></li>'
-    + '              <li><a href="https://www.mozilla.org/about/?icn=tabz">{{ _('About')|js_escape }}</a></li>'
-    + '              <li><a href="https://www.mozilla.org/projects/?icn=tabz">{{ _('Projects')|js_escape }}</a></li>'
-    + '              <li><a href="https://support.mozilla.org/?icn=tabz">{{ _('Support')|js_escape }}</a></li>'
-    + '              <li><a href="https://developer.mozilla.org/?icn=tabz">{{ _('Developer Network')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/mission/?icn=tabz" data-element-location="tabzilla">{{ _('Mission')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/about/?icn=tabz" data-element-location="tabzilla">{{ _('About')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/projects/?icn=tabz" data-element-location="tabzilla">{{ _('Projects')|js_escape }}</a></li>'
+    + '              <li><a href="https://support.mozilla.org/?icn=tabz" data-element-location="tabzilla">{{ _('Support')|js_escape }}</a></li>'
+    + '              <li><a href="https://developer.mozilla.org/?icn=tabz" data-element-location="tabzilla">{{ _('Developer Network')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
     + '        </li>'
     + '        <li><h2>{{ _('Products')|js_escape }}</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://www.mozilla.org/firefox/?icn=tabz">Firefox</a></li>'
-    + '              <li><a href="https://www.mozilla.org/thunderbird/?icn=tabz">Thunderbird</a></li>'
-    + '              <li><a href="https://www.mozilla.org/firefox/os/?icn=tabz">Firefox OS</a></li>'
+    + '              <li><a href="https://www.mozilla.org/firefox/?icn=tabz" data-element-location="tabzilla">Firefox</a></li>'
+    + '              <li><a href="https://www.mozilla.org/thunderbird/?icn=tabz" data-element-location="tabzilla">Thunderbird</a></li>'
+    + '              <li><a href="https://www.mozilla.org/firefox/os/?icn=tabz" data-element-location="tabzilla">Firefox OS</a></li>'
     + '            </ul>'
     + '          </div>'
     + '        </li>'
     + '        <li><h2>{{ _('Innovations')|js_escape }}</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://webmaker.org/?icn=tabz">Webmaker</a></li>'
-    + '              <li><a href="https://www.mozilla.org/research/?icn=tabz">{{ _('Research')|js_escape }}</a></li>'
+    + '              <li><a href="https://webmaker.org/?icn=tabz" data-element-location="tabzilla">Webmaker</a></li>'
+    + '              <li><a href="https://www.mozilla.org/research/?icn=tabz" data-element-location="tabzilla">{{ _('Research')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
     + '        </li>'
     + '        <li><h2>{{ _('Get Involved')|js_escape }}</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://www.mozilla.org/contribute/?icn=tabz">{{ _('Volunteer')|js_escape }}</a></li>'
-    + '              <li><a href="https://careers.mozilla.org/?icn=tabz">{{ _('Careers')|js_escape }}</a></li>'
-    + '              <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/?icn=tabz">{{ _('Find us')|js_escape }}</a></li>'
-    + '              <li><a href="{{ donate_url('mozillaorg_tabzillaTXT') }}&icn=tabz" class="donate">{{ _('Donate')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/contribute/?icn=tabz" data-element-location="tabzilla">{{ _('Volunteer')|js_escape }}</a></li>'
+    + '              <li><a href="https://careers.mozilla.org/?icn=tabz" data-element-location="tabzilla">{{ _('Careers')|js_escape }}</a></li>'
+    + '              <li><a href="https://www.mozilla.org/en-US/about/mozilla-spaces/?icn=tabz" data-element-location="tabzilla">{{ _('Find us')|js_escape }}</a></li>'
+    + '              <li><a href="{{ donate_url('mozillaorg_tabzillaTXT') }}&icn=tabz" class="donate" data-element-location="tabzilla">{{ _('Donate')|js_escape }}</a></li>'
     + '              <li><a href="https://www.mozilla.org/about/partnerships/?icn=tabz">{{ _('Partner')|js_escape }}</a></li>'
     + '            </ul>'
     + '          </div>'
