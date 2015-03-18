@@ -13,7 +13,15 @@
   {% elif channel == 'esr' %}
     {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.organizations.organizations')) }}
   {% else %}
-    {{ _('Firefox is available in more than 80 languages thanks to the contributions of Mozilla community members from around the world.') }}
+    {{ _('Firefox is made in large part by volunteers around the world. That’s why we offer it in 80 languages (and why there’s heart and soul in every piece of code).') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_image %}
+  {% if channel == 'aurora' %}
+    {{ static('img/firefox/developer/page-image.png') }}
+  {% else %}
+    {{ static('img/firefox/all/page-image.png') }}
   {% endif %}
 {% endblock %}
 
