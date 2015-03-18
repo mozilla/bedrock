@@ -7,7 +7,6 @@ from jinja2 import Template
 
 HEADER = '!!AUTO-GENERATED!! Edit {template}.tmpl instead.'
 TEMPLATE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'etc', 'cron.d'))
-LOG_DIR = os.getenv('CRON_LOG_DIR', '/var/log/bedrock')
 
 
 def main():
@@ -23,6 +22,8 @@ def main():
                             'Only define for cron.d style crontabs.'))
     parser.add_option('-p', '--python', default='python2.6',
                       help='Python interpreter to use.')
+    parser.add_option('-l', '--logdir',
+                      help='Directory in which to store logs from cron jobs.')
 
     (opts, args) = parser.parse_args()
 
@@ -33,11 +34,11 @@ def main():
         parser.error('-t must be defined')
 
     # ensure log path exists
-    if not os.path.isdir(LOG_DIR):
+    if opts.logdir and not os.path.isdir(opts.logdir):
         try:
-            os.mkdir(LOG_DIR)
+            os.mkdir(opts.logdir)
         except OSError:
-            parser.error('failed to create log directory: ' + LOG_DIR)
+            parser.error('failed to create log directory: ' + opts.logdir)
 
     log_file = 'cron-{0}.log'.format(opts.template.split('-')[1])
     django_manage = 'cd {{dir}} && {py} manage.py'.format(py=opts.python)
@@ -53,7 +54,7 @@ def main():
         ctx[k] = '%s %s' % (opts.user, v)
 
     # Needs to stay below the opts.user injection.
-    ctx['log'] = '>> {0}/{1} 2>&1'.format(LOG_DIR, log_file)
+    ctx['log'] = '>> {0}/{1} 2>&1'.format(opts.logdir, log_file) if opts.logdir else ''
     ctx['user'] = opts.user
     ctx['webapp'] = opts.webapp
     ctx['source'] = opts.source

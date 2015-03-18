@@ -9,6 +9,7 @@ from os.path import abspath, basename, dirname, exists, join
 from datetime import datetime
 
 from django.conf import settings
+from django.core.cache import get_cache, InvalidCacheBackendError
 from django.utils.functional import cached_property
 from django.utils.http import parse_http_date_safe
 
@@ -21,11 +22,18 @@ UPDATED_FILE = '{0}.updated.txt'
 
 
 class ExternalFile(object):
+    cache_key = None
+
     def __init__(self, file_id):
         try:
             fileinfo = settings.EXTERNAL_FILES[file_id]
         except KeyError:
             raise ValueError('No external file with the {0} ID.'.format(file_id))
+
+        try:
+            self._cache = get_cache('externalfiles')
+        except InvalidCacheBackendError:
+            self._cache = get_cache('default')
 
         self.file_id = file_id
         self.url = fileinfo['url']
@@ -131,3 +139,7 @@ class ExternalFile(object):
 
         log.info('Successfully updated {0}.'.format(self.name))
         return True
+
+    def clear_cache(self):
+        if self.cache_key:
+            self._cache.delete(self.cache_key)

@@ -13,6 +13,7 @@ from bedrock.mozorg.tests import TestCase
 class TestCredits(TestCase):
     def setUp(self):
         self.credits_file = credits.CreditsFile('credits')
+        self.credits_file.clear_cache()
 
     def test_credits_list(self):
         self.credits_file.readlines = Mock(return_value=[
