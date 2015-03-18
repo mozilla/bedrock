@@ -94,13 +94,6 @@ activated, so running the tests is as simple as::
     you can move your ``settings/local.py`` to a backup, copy ``settings/jenkins.py`` to
     ``settings/local.py`` and tweak the DB settings yourself to make it work.
 
-.. note::
-
-    Another possible culprit when your tests pass but Jenkins doesn't is that we use Python version
-    2.6 on our servers. We are hoping to upgrade to 2.7 in the future, but so far we're using the
-    default version that ships with :abbr:`RHEL (Red Hat Enterprise Linux)` 6. If you use Python 2.7
-    specific features the tests will fail.
-
 Make it run
 -----------
 
