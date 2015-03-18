@@ -462,8 +462,10 @@ def absolute_url(url):
 
     if url.startswith('//'):
         prefix = 'https:'
-    else:
+    elif url.startswith('/'):
         prefix = settings.CANONICAL_URL
+    else:
+        prefix = ''
 
     return prefix + url
 
