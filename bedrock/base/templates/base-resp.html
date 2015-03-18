@@ -23,10 +23,10 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="{{ _('Mozilla') }}">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
-    <meta property="og:url" content="{% block canonical_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}">
-    <meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
-    <meta property="og:title" content="{{ self.page_title_full()|striptags }}">
-    <meta property="og:description" content="{{ self.page_desc()|striptags }}">
+    <meta property="og:url" content="{% filter trim|absolute_url %}{% block page_og_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}{% endfilter %}">
+    <meta property="og:image" content="{% filter trim|absolute_url %}{% block page_image %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
+    <meta property="og:title" content="{% filter striptags|e %}{% block page_og_title %}{{ self.page_title_full() }}{% endblock %}{% endfilter %}">
+    <meta property="og:description" content="{% filter striptags|e %}{% block page_og_desc %}{{ self.page_desc() }}{% endblock %}{% endfilter %}">
     <meta property="fb:page_id" content="{% block facebook_id %}262134952380{# facebook.com/mozilla #}{% endblock %}">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@{% block twitter_id %}mozilla{% endblock %}">

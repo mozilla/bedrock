@@ -13,7 +13,8 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from rna.models import Release
 
-from bedrock.mozorg.helpers.misc import convert_to_high_res, releasenotes_url
+from bedrock.mozorg.helpers.misc import (convert_to_high_res, releasenotes_url,
+                                         absolute_url)
 from bedrock.mozorg.tests import TestCase
 
 
@@ -504,6 +505,7 @@ class TestAbsoluteURLFilter(TestCase):
     rf = RequestFactory()
     static_url_dev = '/static/'
     static_url_prod = '//mozorg.cdn.mozilla.net/static/'
+    static_url_full = 'https://mozorg.cdn.mozilla.net/static/'
     image_path = 'img/mozorg/mozilla-256.jpg'
     inline_template = "{{ static('%s')|absolute_url }}" % image_path
     block_template = ("{% filter absolute_url %}{% block page_image %}" +
@@ -513,18 +515,26 @@ class TestAbsoluteURLFilter(TestCase):
         return render(template, {'request': self.rf.get('/')})
 
     @patch('django.contrib.staticfiles.storage.staticfiles_storage.base_url', static_url_dev)
-    def test_dev(self):
+    def test_image_dev(self):
         """Should return a fully qualified URL including a protocol"""
         expected = settings.CANONICAL_URL + self.static_url_dev + self.image_path
         eq_(self._render(self.inline_template), expected)
         eq_(self._render(self.block_template), expected)
 
     @patch('django.contrib.staticfiles.storage.staticfiles_storage.base_url', static_url_prod)
-    def test_prod(self):
+    def test_image_prod(self):
         """Should return a fully qualified URL including a protocol"""
         expected = 'https:' + self.static_url_prod + self.image_path
         eq_(self._render(self.inline_template), expected)
         eq_(self._render(self.block_template), expected)
+
+    @override_settings(DEV=False)
+    def test_urls(self):
+        """Should return a fully qualified URL including a protocol"""
+        expected = 'https://www.mozilla.org/en-US/firefox/new/'
+        eq_(absolute_url('/en-US/firefox/new/'), expected)
+        eq_(absolute_url('//www.mozilla.org/en-US/firefox/new/'), expected)
+        eq_(absolute_url('https://www.mozilla.org/en-US/firefox/new/'), expected)
 
 
 class TestProductURL(TestCase):
