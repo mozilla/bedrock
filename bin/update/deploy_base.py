@@ -213,9 +213,10 @@ def generate_desc(from_commit, to_commit, changelog):
 
 def generate_cron_file(ctx, tmpl_name):
     with ctx.lcd(settings.WWW_DIR):
-        ctx.local("{python} bin/gen-crons.py -p {python} -s {src_dir} -w {www_dir} -l {log_dir}"
-                  "-t {template}".format(python=PYTHON,
-                                         src_dir=settings.SRC_DIR,
-                                         www_dir=settings.WWW_DIR,
-                                         log_dir=CRON_LOG_DIR,
-                                         template=tmpl_name))
+        ctx.local("{python} bin/gen-crons.py -p {python} -s {src_dir} "
+                  "-w {www_dir} -l {log_dir} -t {template}".format(
+                      python=PYTHON,
+                      src_dir=settings.SRC_DIR,
+                      www_dir=settings.WWW_DIR,
+                      log_dir=CRON_LOG_DIR,
+                      template=tmpl_name))
