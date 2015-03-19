@@ -54,6 +54,7 @@ describe("tabzilla.js", function() {
             expect(setup(['fr', 'de'], 'fr')).toBeFalsy();
             expect(setup(['de', 'fr', 'en'], 'fr')).toBeFalsy();
             expect(setup(['ja', 'pt-PT', 'el', 'fr', 'en'], 'el')).toBeFalsy();
+            expect(setup(['en-ZA', 'en-GB', 'en'], 'en-GB')).toBeFalsy();
             // obsolete ab-XX
             expect(setup(['fr-FR'], 'fr')).toBeFalsy();
             expect(setup(['el-GR'], 'el')).toBeFalsy();
@@ -76,6 +77,7 @@ describe("tabzilla.js", function() {
             expect(setup(['ar', 'fr'], 'el')).toEqual('fr');
             expect(setup(['de', 'fr', 'en'], 'en-US')).toEqual('fr');
             expect(setup(['de', 'el', 'fr', 'en-US'], 'fr')).toEqual('el');
+            expect(setup(['el', 'en-US'], 'en-US')).toEqual('el');
             // obsolete ab-XX
             expect(setup(['fr-FR'], 'en-US')).toEqual('fr');
             expect(setup(['el-GR'], 'fr')).toEqual('el');

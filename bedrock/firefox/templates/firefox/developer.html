@@ -6,7 +6,16 @@
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Firefox Developer Edition')}}{% endblock %}
-{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox today!')}}{% endblock %}
+{% block page_image %}{{ static('img/firefox/developer/page-image.png') }}{% endblock %}
+
+{% block page_desc %}
+  {% if l10n_has_tag('meta_update_201503') %}
+    {{_('Built for those who build the Web. Introducing the only browser made for developers.')}}
+  {%- else -%}
+    {{ _('Introducing the only browser made for developers like you.') }}
+  {% endif %}
+{% endblock %}
+
 {% block body_id %}firefox-developer{% endblock %}
 {% block body_class %}blueprint{% endblock %}
 

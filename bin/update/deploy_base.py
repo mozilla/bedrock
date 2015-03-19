@@ -19,6 +19,7 @@ NEW_RELIC_API_KEY = getattr(settings, 'NEW_RELIC_API_KEY', None)
 NEW_RELIC_APP_ID = getattr(settings, 'NEW_RELIC_APP_ID', None)
 NEW_RELIC_URL = 'https://rpm.newrelic.com/deployments.xml'
 GITHUB_URL = 'https://github.com/mozilla/bedrock/compare/{oldrev}...{newrev}'
+CRON_LOG_DIR = '/var/log/bedrock'
 
 
 # ########## Commands run by chief ##############
@@ -212,8 +213,10 @@ def generate_desc(from_commit, to_commit, changelog):
 
 def generate_cron_file(ctx, tmpl_name):
     with ctx.lcd(settings.WWW_DIR):
-        ctx.local("{python} bin/gen-crons.py -p {python} -s {src_dir} -w {www_dir} "
-                  "-t {template}".format(python=PYTHON,
-                                         src_dir=settings.SRC_DIR,
-                                         www_dir=settings.WWW_DIR,
-                                         template=tmpl_name))
+        ctx.local("{python} bin/gen-crons.py -p {python} -s {src_dir} "
+                  "-w {www_dir} -l {log_dir} -t {template}".format(
+                      python=PYTHON,
+                      src_dir=settings.SRC_DIR,
+                      www_dir=settings.WWW_DIR,
+                      log_dir=CRON_LOG_DIR,
+                      template=tmpl_name))

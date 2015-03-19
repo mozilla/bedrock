@@ -265,13 +265,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/contribute-old-bundle.css',
     },
-    'contribute-page': {
-        'source_filenames': (
-            'css/mozorg/contribute/contribute-form.less',
-            'css/mozorg/contribute/contribute-page.less',
-        ),
-        'output_filename': 'css/contribute-page-bundle.css',
-    },
     'contribute-studentambassadors-landing': {
         'source_filenames': (
             'css/base/social-widgets.less',
