@@ -73,7 +73,9 @@
 
     {% block optimizely %}{% endblock %}
 
-    {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
+    {% block js_pretrack %}
+      {% include 'includes/core-dataLayer.html' %}
+    {% endblock %}
     {% block google_analytics %}
       {% include 'includes/google-analytics.html' %}
     {% endblock %}
