@@ -6,7 +6,7 @@ $(function() {
     'use strict';
     var versionBox = document.getElementById('version-box');
     var downloadBox = document.getElementById('download-link');
-    var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
+    var lang = document.getElementById('lightning').getAttribute('data-lang');
 
     $.ajax({
         type: 'GET',
