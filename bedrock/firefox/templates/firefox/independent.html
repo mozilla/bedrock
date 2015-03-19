@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ _('Mozilla') }}">
 <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
-<meta property="og:url" content="{% block canonical_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}">
+<meta property="og:url" content="{% filter trim|absolute_url %}{% block page_og_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}{% endfilter %}">
 <meta property="og:image" content="{% filter absolute_url %}{% block page_image %}{{ static('img/firefox/independent/page-image.jpg') }}{% endblock %}{% endfilter %}">
 <meta property="og:title" content="{{ self.page_title()|striptags }}">
 <meta property="og:description" content="{{ self.page_desc()|striptags }}">

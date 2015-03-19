@@ -16,7 +16,7 @@
               <li class="wrap"><a href="{{ url('mozorg.partnerships') }}">{{ _('Partner with Us' ) }}</a></li>
               <li class="clear"><a href="{{ donate_url('mozillaorg_footer') }}" class="donate">{{ _('Donate') }}</a></li>
               <li class="wrap"><a href="https://affiliates.mozilla.org/">{{ _('Firefox Affiliates') }}</a></li>
-              <li class="clear"><a href="{{ url('mozorg.contribute_page') }}">{{ _('Contribute to this page') }}</a></li>
+              <li class="clear"><a href="https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org">{% if LANG.startswith('en') %}{{ _('Contribute to this site') }}{% else %}{{ _('Contribute to this page') }}{% endif %}</a></li>
             </ul>
             <ul class="links-legal">
               <li><a href="{{ url('privacy') }}">{{ _('Privacy') }}</a></li>

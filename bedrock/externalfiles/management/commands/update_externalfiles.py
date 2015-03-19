@@ -22,13 +22,19 @@ class Command(BaseCommand):
                     dest='quiet',
                     default=False,
                     help='Do not print output to stdout.'),
+        make_option('--status',
+                    action='store_true',
+                    dest='status',
+                    default=False,
+                    help='Print only a final status to stdout. Mostly for scripts.')
     )
 
     def handle(self, *args, **options):
         file_ids = args or settings.EXTERNAL_FILES.keys()
+        updated = False
 
         def printout(msg, ending=None):
-            if not options['quiet']:
+            if not (options['quiet'] or options['status']):
                 self.stdout.write(msg, ending=ending)
 
         for fid in file_ids:
@@ -42,4 +48,11 @@ class Command(BaseCommand):
             if result is None:
                 printout('already up-to-date')
             else:
+                updated = True
                 printout('done')
+
+        if options['status']:
+            if updated:
+                self.stdout.write('updated')
+            else:
+                self.stdout.write('up-to-date')

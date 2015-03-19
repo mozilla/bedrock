@@ -7,6 +7,9 @@
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
+{% block page_image %}{{ static('img/firefox/os/page-image.png') }}{% endblock %}
+{% block page_og_url %}{{ url('firefox.os.index') }}{% endblock %}
+
 {% block body_id %}firefox-whatsnew{% endblock %}
 
 {% block site_header_nav %}{% endblock %}

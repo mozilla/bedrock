@@ -50,7 +50,7 @@ If you are on OSX and some of the compiled dependencies fails to compile, try ex
 
 If you are on Linux, you will need at least the following packages or their equivalent for your distro:
 
-    libmysqlclient-dev libxslt-dev
+    python-dev libmysqlclient-dev libxslt-dev
 
 Now configure the application to run locally by creating your local settings file::
 
@@ -62,18 +62,15 @@ Sync the database and all of the external data locally. This gets product-detail
 
     $ bin/sync_all
 
-Lastly, you need to install `node` and the `less` package. Soon you won't need this for local development but currently it compiles the LESS CSS code on the server-side::
-
-    $ npm -g install less
-
-You don't have to use npm to install less; feel free to install it however you want.
-
-Add the path to the LESS compiler (found by using `which lessc`) to `bedrock/settings/local.py` with the following line::
-
-    LESS_BIN = '/path/to/lessc'
+Lastly, you need to have `Node.js <https://nodejs.org/>`_ installed. The node dependencies for running the site are in the repository, but if you'd like to run the JS test suite you'll need everything, which you can get by running `npm install` from the root directory of the project.
 
 Run the tests
 -------------
+
+.. Important::
+
+    We're working on fixing this, but for now you need the localization files for the tests to pass.
+    See the `Localization`_ section below for instructions on checking those out.
 
 Now that we have everything installed, let's make sure all of our tests pass.
 This will be important during development so that you can easily know when
@@ -96,13 +93,6 @@ activated, so running the tests is as simple as::
     MySQL database server running and configured correctly, but may help you debug. Alternately
     you can move your ``settings/local.py`` to a backup, copy ``settings/jenkins.py`` to
     ``settings/local.py`` and tweak the DB settings yourself to make it work.
-
-.. note::
-
-    Another possible culprit when your tests pass but Jenkins doesn't is that we use Python version
-    2.6 on our servers. We are hoping to upgrade to 2.7 in the future, but so far we're using the
-    default version that ships with :abbr:`RHEL (Red Hat Enterprise Linux)` 6. If you use Python 2.7
-    specific features the tests will fail.
 
 Make it run
 -----------

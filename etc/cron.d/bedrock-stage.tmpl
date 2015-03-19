@@ -10,6 +10,9 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 */10 * * * * {{ user }} {{ source }}/bin/update-scripts/stage/update-stage-php.sh {{ log }}
 */15 * * * * {{ user }} {{ source }}/bin/update-scripts/stage/update-stage-locale.sh {{ log }}
 
+# bug 1142850
+0    * * * * {{ user }} {{ source }}/bin/update-scripts/stage/update-externalfiles.sh {{ log }}
+
 */5  * * * * {{ django_manage }} rnasync {{ log }}
 
 # bug 996144

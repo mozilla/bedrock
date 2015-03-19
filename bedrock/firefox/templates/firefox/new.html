@@ -7,6 +7,17 @@
 {% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
 {% block page_title %}{{_('Free Web Browser')}}{% endblock %}
 {% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox today!')}}{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}
+  {{_('Choose the independent browser')}}
+{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}
+  {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
+{% endblock %}
+
 {% block body_id %}firefox-new{% endblock %}
 
 {#- Override the infobar options not to run the version check -#}
