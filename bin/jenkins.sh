@@ -25,28 +25,24 @@ else
 fi
 
 pip install -q -r requirements/dev.txt
+rm -rf src  # clean up after pip fails to do so
 
 #TODO: get mysql working in new jenkins
 #echo "Creating database if we need it..."
 #echo "CREATE DATABASE IF NOT EXISTS \`${JOB_NAME}\`"|mysql -u $DB_USER -h $DB_HOST
 
-echo Django version
+cp bedrock/settings/local.py-dist bedrock/settings/local.py
+
 python manage.py version
 
 python manage.py syncdb --noinput --migrate
 
-echo collectstatic
 python manage.py collectstatic --noinput -v 0
 
-echo "Update product_details"
 python manage.py update_product_details
 
-echo "Check PEP-8"
 flake8 bedrock lib
 
-echo "Starting tests..."
 export FORCE_DB=1
 coverage run manage.py test --noinput
 coverage xml $(find bedrock lib -name '*.py')
-
-echo "FIN"
