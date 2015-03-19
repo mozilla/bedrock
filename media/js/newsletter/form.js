@@ -87,9 +87,10 @@ $(function () {
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 $self.off('submit');
-                gaTrack(['_trackEvent', 'Newsletter Registration', 'submit', newsletter], function () {
-                    $self.submit();
-                });
+                gaTrack({event: 'newsletter-interaction', browserAction: 'submit', newsletter: newsletter},
+                // gaTrack(['_trackEvent', 'Newsletter Registration', 'submit', newsletter], function () {
+                    $self.submit()
+                );
             }
         }
         // Else, just let the form submit.
@@ -153,7 +154,8 @@ $(function () {
 
                 // track signup in GA
                 var newsletter = getNewsletterName($self);
-                gaTrack(['_trackEvent', 'Newsletter Registration', 'submit', newsletter]);
+                gaTrack({event: 'Newsletter Registration', browserAction: 'submit', newsletter: newsletter});
+                // gaTrack(['_trackEvent', 'Newsletter Registration', 'submit', newsletter]);
 
             } else if (data.errors) {
                 for (var i = 0; i < data.errors.length; i++) {
