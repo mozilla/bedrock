@@ -30,11 +30,13 @@ jQuery(function($) {
         // if newsletter is checked and wasn't previously subscribed to, track the subscription
         if (subscribed === 'True' && initialNewsletters.indexOf(newsletter) === -1) {
           // newly subscribed to this newsletter
-          events.push(['_trackEvent', 'Newsletter Registration', 'subscribe', newsletter]);
+          events.push({event: 'newsletter-interaction', browserAction: 'subscribe', newsletter: newsletter});
+          // events.push(['_trackEvent', 'Newsletter Registration', 'subscribe', newsletter]);
         // if newsletter is not checked and was previously subscribed to, track the unsubscription
         } else if (subscribed === 'False' && initialNewsletters.indexOf(newsletter) > -1) {
           // newly unsubscribed to this newsletter
-          events.push(['_trackEvent', 'Newsletter Registration', 'unsubscribe', newsletter]);
+          events.push({event: 'newsletter-interaction', browserAction: 'subscribe', newsletter: newsletter});
+          // events.push(['_trackEvent', 'Newsletter Registration', 'unsubscribe', newsletter]);
         }
 
         // make sure we don't re-process this newsletter
