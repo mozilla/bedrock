@@ -7,6 +7,7 @@
 [submodule "vendor-local/src/feedparser"]
 	path = vendor-local/src/feedparser
 	url = https://github.com/kurtmckee/feedparser.git
+	ignore = untracked
 [submodule "vendor-local/src/django-dnt"]
 	path = vendor-local/src/django-dnt
 	url = https://github.com/mozilla/django-dnt.git
