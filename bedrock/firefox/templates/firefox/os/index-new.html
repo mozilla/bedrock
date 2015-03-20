@@ -259,6 +259,10 @@
   </div>
 {% endblock %}
 
+{# family nav pages should not load Tabzilla #}
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
+
 {% block site_js %}
   {% javascript 'firefox-resp' %}
 {% endblock %}
