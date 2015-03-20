@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: ipaddr
+Version: 2.1.11
+Summary: UNKNOWN
+Home-page: http://code.google.com/p/ipaddr-py/
+Author: Google
+Author-email: ipaddr-py-dev@googlegroups.com
+License: Apache License, Version 2.0
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Internet
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: System :: Networking
