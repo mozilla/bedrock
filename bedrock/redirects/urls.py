@@ -35,6 +35,11 @@ urlpatterns = patterns(
     redirect(r'^contribute/areas.html$', 'mozorg.contribute'),
     redirect(r'^contribute/universityambassadors',
              'mozorg.contribute.studentambassadors.landing'),
+
+    # Bug 1144949
+    redirect(r'^contribute/page/?$',
+             'https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org'),
+
     # Bug 763665
     redirect(r'^projects/$', 'mozorg.products'),
 
