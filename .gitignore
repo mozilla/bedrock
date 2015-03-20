@@ -27,6 +27,7 @@ Desktop.ini
 venv
 .vagrant
 *.db
+*.mmdb
 james.ini
 /media/js/test/test-results.xml
 bedrock/externalfiles/files_cache

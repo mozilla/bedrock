@@ -75,22 +75,22 @@ function onYouTubeIframeAPIReady() {
                 if (window.site.platform !== 'ios' && window.site.platform !== 'android') {
                     event.target.playVideo();
                 }
-                gaTrack(
-                    ['_trackEvent',
-                     '/firefox/developer/ Interactions',
-                     'play',
-                     videoTitle + ' video']
-                );
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'video-interaction',
+                    'interaction': 'play',
+                    'videoTitle': videoTitle
+                });
             }
 
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.ENDED) {
-                    gaTrack(
-                        ['_trackEvent',
-                         '/firefox/developer/ Interactions',
-                         'finish',
-                         videoTitle + ' video']
-                    );
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'video-interaction',
+                        'interaction': 'finish',
+                        'videoTitle': videoTitle
+                    });
                 }
             }
 

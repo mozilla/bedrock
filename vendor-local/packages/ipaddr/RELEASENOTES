@@ -1,0 +1,295 @@
+#summary notes from releases
+
+= Release Notes =
+
+Here are the visible changes for each release.
+
+== 2.1.11 ==
+
+(2014-01-31)
+
+  * hostmask parsing bug fixed by pmarks (a nearly complete rewrite of the mask parsing code)
+  * i97, incorrectly parses some v6 addresses.
+  * docstring typos.
+  * i95, refer to the nets in the exception raised by collapse_address_list
+  * add license to boilerplate to test-2to3.sh
+
+== 2.1.10 ==
+
+(2012-01-20)
+
+Friday night, LAUNCH LAUNCH LAUNCH!
+
+  * i84, fix iterhosts for /31's or /127's
+  * private method arg cleanup.
+  * i83, docstring issue.
+  * i87, new ipv4/ipv6 parser. patch from pmarks
+  * i90, fix copyright.
+  * bytes fix. patch from pmarks.
+	    
+== 2.1.9 ==
+
+(2011-02-22)
+
+The last outstanding issues.
+
+  * fix warnings from python3.2
+  * fix bug in _is_shorthand_ip resulting in bad teredo addresses.
+
+== 2.1.8 ==
+
+(2011-02-09)
+
+This release fixes regressions.
+
+  * Address and networks now again compare true, if the address matches.
+  * ipaddr works again on Python 2.4 and 2.5.
+
+== 2.1.7 ==
+
+(2011-01-13)
+
+  * turn teredo and sixtofour into properties as opposed to normal methods.
+
+== 2.1.6 ==
+
+(2011-01-13)
+
+  * typo fixes.
+  * fix for ipaddr_test referring to an old version of ipaddr.
+  * add test cases for r176 and r196.
+  * fix for recognizing IPv6 addresses with embedded IPv4 address not being recognized.
+  * additional unit tests for network comparisons and sorting.
+  * force hash() to long to ensure consistency
+  * turn v4_int_to_packed and v6_int_to_packed into public functions to aid converting between integers and network objects.
+  * add support for pulling teredo and 6to4 embedded addresses out of an IPv6 address.
+  
+== 2.1.5 ==
+
+(2010-09-11)
+
+  * containment test should always return false on mixed-type tests.
+
+== 2.1.4 ==
+
+(2010-08-15)
+
+  * fix for issue66, more invalid IPv6 addresses will be rejected
+
+== 2.1.3 ==
+
+(2010-06-12)
+
+  * fix for issue61, incorrect network containment (thanks bw.default)
+  
+== 2.1.2 ==
+
+(2010-05-31)
+
+  * Happy Memorial day.
+  * arithmetic for v4 and v6 address objects and ints (issue 57).
+  * fix address_exclude issue where excluding an address from itself puked.
+  * make sure addresses and networks don't compare.
+  * doc-string fixes (issue60)
+  * and masked() method to _BaseNet to return a network object with the host bits masked out (issue58)
+  * fix v6 subnet representation (email to ipaddr-py-dev)
+    
+
+== 2.1.1 ==
+
+(2010-03-02)
+
+ * bug with list comprehension in {{{ IPv4Network._is_valid_netmask() }}}
+ * kill the last remaining instances of the old exceptions in the docstrings(thanks Scott Kitterman)
+
+== 2.1.0 ==
+
+(2010-02-13)
+
+Easier change this time :)
+
+  * networks and addresses are unsortable by default (see https://groups.google.com/group/ipaddr-py-dev/browse_thread/thread/8fbc5166be71adbc for discussion).
+  * exception text cleanup.
+  * fixing inconsistent behavior of v4/v6 address/network comparisons.
+  * add IPv4Network().is_unspecified (thanks rep.dot.net)
+  * fix for decoding mapped addresses (thanks rlaager)
+  * docstring updates (thanks Scott Kitterman)
+  * fix errant ref to non-existent variable(s) (thanks Harry Bock)
+  * fix exceptions  (most exceptions are subclassed from ValueError now, so this can easily be caught)
+  * iterator for looping through subnets (thanks Marco Giutsi)
+
+That's mostly it. there were quite a few other minor changes, but this should cover the major bits. Usage.wiki will be updated in the coming days.
+
+== 2.0.0 ==
+
+First and foremost, this is a backwards incompatible change.  Code written for ipaddr-1.x will likely not work stock with ipaddr-2.0. For users of the 1.x branch, I'll continue to provide support, but new-feature development has ceased. But it's not so bad, take a look.All in all, I think this new version of ipaddr is much more intuitive and easy to use. 
+
+The best way to get a feel for this code is to download it and try and out, but I've tried to list some of the more important changes below to help you out.
+
+The major changes.
+
+  # IPvXAddress and IPvXNetwork classes.
+
+  * Individual addresses are now (IPv4|IPv6)Address objects. Network attributes that are actually addresses (eg, broadcast, network, hostmask) are now (IPv4|IPv6)Address objects. That means no more IPv4/IPv6 classes handling only networks.
+{{{
+In [3]: ipaddr.IPv4Network("1.1.1.0/24")
+Out[3]: IPv4Network('1.1.1.0/24')
+
+In [4]: ipaddr.IPv4Network("1.1.1.0/24").network
+Out[4]: IPv4Address('1.1.1.0')
+
+In [5]: ipaddr.IPv4Network("1.1.1.0/24").broadcast
+Out[5]: IPv4Address('1.1.1.255')
+}}}
+
+  * no more ext methods. To reference the stringified version of any attribute, you call str() on (similar for the numeric value with int()).
+{{{
+In [6]: str(ipaddr.IPv4Network("1.1.1.0/24").broadcast)
+Out[6]: '1.1.1.255'
+
+In [7]: int(ipaddr.IPv4Network("1.1.1.0/24").broadcast)
+Out[7]: 16843263
+
+In [8]: int(ipaddr.IPv4Network("1.1.1.0/24").network)
+Out[8]: 16843008
+
+In [9]: str(ipaddr.IPv4Network("1.1.1.0/24").network)
+Out[9]: '1.1.1.0'
+}}}
+
+  * IP() everything-constructor has been replaced by IPAddress() and IPNetwork() constructors.  It seems reasonable to assume that an application programmer will know when they are dealing strictly with ip addresses vs. networks and making this separation de-clutters the code.  IPNetwork still assumes a default prefixlength of 32 for IPv4 and 128 for IPv6 if none is supplied (just like IP() used to), so when in doubt, you can always use IPNetwork.
+{{{
+In [16]: ipaddr.IPNetwork('1.1.1.1')
+Out[16]: IPv4Network('1.1.1.1/32')
+
+In [17]: ipaddr.IPNetwork('1.1.1.1/12')
+Out[17]: IPv4Network('1.1.1.1/12')
+
+In [18]: ipaddr.IPNetwork('::1')
+Out[18]: IPv6Network('::1/128')
+
+In [19]: ipaddr.IPNetwork('::1/64')
+Out[19]: IPv6Network('::1/64')
+}}}
+
+  # Some other (but no less important) bug fixes/improvements:
+
+  * __ contains __ accepts strings/ints as well as (IPv4|IPv6)Address objects.
+{{{
+In [9]: ipaddr.IPAddress('1.1.1.1') in ipaddr.IPNetwork('1.1.1.0/24')
+Out[9]: True
+
+In [10]: '1.1.1.1' in  ipaddr.IPv4Network("1.1.1.0/24")         
+Out[10]: True
+
+In [11]: '1' in ipaddr.IPv4Network("0.0.0.0/0")
+Out[11]: True
+
+In [12]: 1 in ipaddr.IPv4Network("0.0.0.0/0")
+Out[12]: True
+}}}
+  * summarize_address_range. You can now get a list of all of the networks between two distinct (IPv4|IPv6)Address'es (results in potentially huge speed boosts for address collapsing)
+{{{
+In [14]: ipaddr.summarize_address_range(ipaddr.IPAddress('1.1.0.0'), ipaddr.IPAddress('1.1.255.255'))
+Out[14]: [IPv4Network('1.1.0.0/16')]
+
+In [15]: ipaddr.summarize_address_range(ipaddr.IPAddress('1.1.0.0'), ipaddr.IPAddress('1.1.255.254'))
+Out[15]: 
+[IPv4Network('1.1.0.0/17'),
+ IPv4Network('1.1.128.0/18'),
+ IPv4Network('1.1.192.0/19'),
+ IPv4Network('1.1.224.0/20'),
+ IPv4Network('1.1.240.0/21'),
+ IPv4Network('1.1.248.0/22'),
+ IPv4Network('1.1.252.0/23'),
+ IPv4Network('1.1.254.0/24'),
+ IPv4Network('1.1.255.0/25'),
+ IPv4Network('1.1.255.128/26'),
+ IPv4Network('1.1.255.192/27'),
+ IPv4Network('1.1.255.224/28'),
+ IPv4Network('1.1.255.240/29'),
+ IPv4Network('1.1.255.248/30'),
+ IPv4Network('1.1.255.252/31'),
+ IPv4Network('1.1.255.254/32')]
+}}}
+
+  * network iterators. the (IPv4|IPv6)Network classes now implement iterators to help quickly access each member of a network in sequence:
+{{{
+
+In [24]: for addr in iter(ipaddr.IPNetwork('1.1.1.1/28')): addr
+   ....: 
+Out[24]: IPv4Address('1.1.1.0')
+Out[24]: IPv4Address('1.1.1.1')
+Out[24]: IPv4Address('1.1.1.2')
+Out[24]: IPv4Address('1.1.1.3')
+Out[24]: IPv4Address('1.1.1.4')
+Out[24]: IPv4Address('1.1.1.5')
+Out[24]: IPv4Address('1.1.1.6')
+Out[24]: IPv4Address('1.1.1.7')
+Out[24]: IPv4Address('1.1.1.8')
+Out[24]: IPv4Address('1.1.1.9')
+Out[24]: IPv4Address('1.1.1.10')
+Out[24]: IPv4Address('1.1.1.11')
+Out[24]: IPv4Address('1.1.1.12')
+Out[24]: IPv4Address('1.1.1.13')
+Out[24]: IPv4Address('1.1.1.14')
+Out[24]: IPv4Address('1.1.1.15')
+}}}
+
+  * additionally, an iterhosts() method has been added to allow for iterating over all of the usable addresses on a network (everything except the network and broadcast addresses)
+{{{
+In [26]: for addr in ipaddr.IPNetwork('1.1.1.1/28').iterhosts(): addr
+   ....: 
+Out[26]: IPv4Address('1.1.1.1')
+Out[26]: IPv4Address('1.1.1.2')
+Out[26]: IPv4Address('1.1.1.3')
+Out[26]: IPv4Address('1.1.1.4')
+Out[26]: IPv4Address('1.1.1.5')
+Out[26]: IPv4Address('1.1.1.6')
+Out[26]: IPv4Address('1.1.1.7')
+Out[26]: IPv4Address('1.1.1.8')
+Out[26]: IPv4Address('1.1.1.9')
+Out[26]: IPv4Address('1.1.1.10')
+Out[26]: IPv4Address('1.1.1.11')
+Out[26]: IPv4Address('1.1.1.12')
+Out[26]: IPv4Address('1.1.1.13')
+Out[26]: IPv4Address('1.1.1.14')
+}}}
+
+Thanks to the python community and everyone who's made feature suggestions or submitted patches. Please continue to send bugs/enhancements/patches to the mailing list.
+
+== 1.1.1 ==
+
+This release contains a single important bugfix.  All users of 1.1.0 should upgrade.
+
+  * r77 A logical error caused ordering operators to behave incorrectly.
+
+== 1.1.0 ==
+
+`ipaddr.py` is now part of the standard library in Python 2.7 and 3.1!  This release is compatible with the `ipaddr` from future versions of Python.
+
+Special thanks to Philipp Hagemeister for making most of the improvements to this release, and to Gregory P. Smith for shepherding this into the Python standard library.
+
+  * r59 Method names are now PEP-8 compliant, instead of Google-style camel case.  The old method names remain, but are deprecated; you should use the lowercase names to be compatible with Python 2.7/3.1. (pmoody)
+  * r63 .prefixlen is now a property. (pmoody)
+  * r64 Stronger validation. (Philipp Hagemeister)
+  * r65 1.2.3.4 is not a valid v6 address, so we can simplify the constructor. (Philipp Hagemeister)
+  * r66 Expand rich comparison operations and their tests, with a goal of supporting 2to3.  Add a new method .networks_key().  Add a new script to run through 2to3 and make sure tests pass under Python 3 with the converted version. (Philipp Hagemeister)
+  * r68 New method .packed(). (Philipp Hagemeister)
+  * r69 Add `is_multicast`, `is_unspecified`, `is_loopback`, `is_link_local`, `is_site_local`, and `is_private` for IPv6. Make more methods into properties. Improved documentation and tests for `is_*` properties for IPv4 and IPv6. Rename `networks_key()` to `_get_networks_key()`.
+  * r71 Fix off-by-one bug (issue 15). (gpsmith)
+
+== 1.0.2 ==
+  * r52 Force the return value in testHexRepresentation to uppercase to workaround Python version. (smart)
+  * r51 Fix testHexRepresentation().  Hex representations of longs are uppercase. (smart)
+  * r50 Remove trailing whitespace and update docstrings. (smart)
+  * r44. this makes the spacing and docstrings pep8 compliant. (pmoody)
+  * r43. When processing the IPv4 mapped address 16 bits at a time, the components are stored in the reverse order.  Updated the test to use a non-symmetric IPv4 address, which exhibited the bug. (smart)
+  * r40. implment __int__ and __hex__. will need to be updated for py3k (to use __index__) (pmoody)
+  * r38 A cleanup from  issue 9 : Make exception messages consistent for IP(''), IPv4(''), IPv6('') (smart)
+  * r37 Fix for  issue 9 : ipaddr.IP('') should raise ValueError (mshields)
+
+== 1.0.1 ==
+
+  * str() now produces lowercase for IPv6 addresses, to match inet_pton(3). (http://codereview.appspot.com/7678)
+  * repr() now produces strings that can be pasted back into the interpreter.
