@@ -287,7 +287,7 @@
   {%- else -%}
     {% set label = _('Follow') %}
   {%- endif -%}
-  <a href="https://twitter.com/{{ account_id }}" title="{{ _('Follow %s on Twitter')|format(account_name) }}" class="twitter-follow-button">{{ label }}</a>
+  <a href="https://twitter.com/{{ account_id }}" title="{{ _('Follow %s on Twitter')|format(account_name) }}" class="twitter-follow-button" data-social-network="twitter-only" data-social-action="Twitter Follow">{{ label }}</a>
 {%- endmacro %}
 
 {% macro twitter_timeline_widget(title='', heading_level=3, max_length=0) -%}
@@ -315,12 +315,12 @@
         <article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
           <header>
             <h{{ heading_level + 1 }} class="timestamp">
-              <a href="https://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}" class="post">
+              <a href="https://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}" class="post" data-social-network="twitter-only" data-social-action="Post Link Exit">
                 {{ format_tweet_timestamp(tweet)|safe }}
               </a>
             </h{{ heading_level + 1 }}>
             <div itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <a href="https://twitter.com/{{ tweet.user.screen_name }}" class="author">
+              <a href="https://twitter.com/{{ tweet.user.screen_name }}" class="author" data-social-network="twitter-only" data-social-action="Author Link Exit">
                 <img src="{{ tweet.user.profile_image_url_https }}" alt="" itemprop="image">
                 <span itemprop="name">{{ tweet.user.name }}</span>
                 <span itemprop="alternateName">@{{ tweet.user.screen_name }}</span>
@@ -330,21 +330,21 @@
           <div>
             <p itemprop="articleBody">{{ format_tweet_body(tweet)|safe }}</p>
             {% if retweet -%}
-              <p class="retweet-credit">{{ _('Retweeted by %s')|format('<a href="%s" class="credit">%s</a>'|format('https://twitter.com/'+_tweet.user.screen_name, _tweet.user.name)|safe) }}</p>
+              <p class="retweet-credit">{{ _('Retweeted by %s')|format('<a href="%s" class="credit" data-social-network="twitter-only" data-social-action="Retweet Credit Link Exit">%s</a>'|format('https://twitter.com/'+_tweet.user.screen_name, _tweet.user.name)|safe) }}</p>
             {% endif -%}
             {% if tweet.entities.media -%}
               {% for medium in tweet.entities.media -%}
                 {% if medium.type == 'photo' -%}
-                  <p class="media"><a href="{{ medium.expanded_url }}" class="image"><img src="{{ medium.media_url_https }}" alt="" itemprop="image"></a></p>
+                  <p class="media"><a href="{{ medium.expanded_url }}" class="image" data-social-network="twitter-only" data-social-action="Preview Image Exit"><img src="{{ medium.media_url_https }}" alt="" itemprop="image"></a></p>
                 {% endif -%}
               {% endfor -%}
             {% endif -%}
           </div>
           <footer>
             <ul class="actions">
-              <li><a class="reply" href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}">{{ _('Reply') }}</a></li>
-              <li><a class="retweet" href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}">{{ _('Retweet') }}</a></li>
-              <li><a class="favorite" href="https://twitter.com/intent/favorite?tweet_id={{ tweet.id }}">{{ _('Favorite') }}</a></li>
+              <li><a class="reply" href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}" data-social-network="twitter-only" data-social-action="Reply">{{ _('Reply') }}</a></li>
+              <li><a class="retweet" href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}" data-social-network="twitter-only" data-social-action="Retweet">{{ _('Retweet') }}</a></li>
+              <li><a class="favorite" href="https://twitter.com/intent/favorite?tweet_id={{ tweet.id }}" data-social-network="twitter-only" data-social-action="Favorite">{{ _('Favorite') }}</a></li>
             </ul>
           </footer>
         </article>
@@ -361,9 +361,9 @@
 <aside class="mozilla-share-cta{% if class %} {{ class }}{% endif %}" tabindex="0"{% if id %} id="{{ id }}"{% endif -%}>
   <h3>{{ cta_text }}</h3>
   <ul>
-    <li><a class="twitter" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(share_urls.get('twitter')|urlencode, share_text|urlencode)|e }}" title="Twitter">Twitter</a></li>
-    <li><a class="facebook" href="{{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(share_urls.get('facebook')|urlencode)|e }}" title="Facebook">Facebook</a></li>
-    <li><a class="g-plus" href="{{ 'https://plus.google.com/share?url=%s&hl=%s'|format(share_urls.get('googleplus')|urlencode, LANG)|e }}" title="Google+">Google+</a></li>
+    <li><a class="twitter" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(share_urls.get('twitter')|urlencode, share_text|urlencode)|e }}" title="Twitter" data-button-type="social" data-social-network="Twitter">Twitter</a></li>
+    <li><a class="facebook" href="{{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(share_urls.get('facebook')|urlencode)|e }}" title="Facebook" data-button-type="social" data-social-network="Facebook">Facebook</a></li>
+    <li><a class="g-plus" href="{{ 'https://plus.google.com/share?url=%s&hl=%s'|format(share_urls.get('googleplus')|urlencode, LANG)|e }}" title="Google+" data-button-type="social" data-social-network="Google+">Google+</a></li>
   </ul>
 </aside>
 {%- endmacro %}
