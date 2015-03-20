@@ -3,8 +3,30 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from django.http import HttpRequest, HttpResponse
 
-from bedrock.mozorg.middleware import CrossOriginResourceSharingMiddleware
+from bedrock.mozorg.middleware import (ClacksOverheadMiddleware,
+                                       CrossOriginResourceSharingMiddleware)
 from bedrock.mozorg.tests import TestCase
+
+
+class TestClacksOverheadMiddleware(TestCase):
+    def setUp(self):
+        self.middleware = ClacksOverheadMiddleware()
+        self.request = HttpRequest()
+        self.response = HttpResponse()
+
+    def test_good_response_has_header(self):
+        self.response.status_code = 200
+        self.middleware.process_response(self.request, self.response)
+        self.assertEqual(self.response['X-Clacks-Overhead'], 'GNU Terry Pratchett')
+
+    def test_other_response_has_no_header(self):
+        self.response.status_code = 301
+        self.middleware.process_response(self.request, self.response)
+        self.assertNotIn('X-Clacks-Overhead', self.response)
+
+        self.response.status_code = 404
+        self.middleware.process_response(self.request, self.response)
+        self.assertNotIn('X-Clacks-Overhead', self.response)
 
 
 class TestCrossOriginResourceSharingMiddleware(TestCase):
