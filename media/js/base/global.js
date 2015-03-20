@@ -180,7 +180,7 @@ function gaTrack(obj, callback) {
 
     var hasCallback = typeof(callback) === 'function';
 
-    // if (typeof(window._gaq) === 'object') {
+    if (typeof(window.dataLayer) === 'object') {
         // send event to GA
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(obj);
@@ -191,11 +191,11 @@ function gaTrack(obj, callback) {
             // order to register the GA event, before excecuting the callback.
             setTimeout(callback, 600);
         }
-    // } else {
+    } else {
         // GA disabled or blocked or something, make sure we still
         // call the caller's callback:
-        // if (hasCallback) {
-        //     callback();
-        // }
-    // }
+        if (hasCallback) {
+            callback();
+        }
+    }
 }
