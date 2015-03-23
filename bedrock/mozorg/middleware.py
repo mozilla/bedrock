@@ -60,3 +60,12 @@ class CrossOriginResourceSharingMiddleware(object):
             if re.search(pattern, request.path):
                 response['Access-Control-Allow-Origin'] = origin
         return response
+
+
+class ClacksOverheadMiddleware(object):
+    # bug 1144901
+    @staticmethod
+    def process_response(request, response):
+        if response.status_code == 200:
+            response['X-Clacks-Overhead'] = 'GNU Terry Pratchett'
+        return response

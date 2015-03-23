@@ -7,6 +7,7 @@ MAILTO="webops-cron@mozilla.com,cron-bedrock@mozilla.com"
 # add date/time info to cron log
 0    * * * * {{ user }} date {{ log }}
 
+*/6  * * * * {{ django_manage }} rnasync {{ log }}
 */10 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-php.sh {{ log }}
 */20 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-django.sh {{ log }}
 */15 * * * * {{ user }} {{ source }}/bin/update-scripts/dev/update-dev-locale.sh {{ log }}
