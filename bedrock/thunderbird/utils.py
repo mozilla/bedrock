@@ -6,5 +6,5 @@
 from product_details import product_details
 
 
-def get_latest_version(product='Thunderbird', channel='release'):
+def get_latest_version(channel='release'):
     return product_details.thunderbird_versions.get('LATEST_THUNDERBIRD_VERSION')
