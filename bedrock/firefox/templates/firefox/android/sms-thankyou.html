@@ -6,6 +6,12 @@
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
+{% block site_header_share %}
+  {% set share_urls = { 'twitter': 'http://mzl.la/1wuPaWo', 'googleplus': 'http://mzl.la/1DhUfhK', 'facebook': 'http://mzl.la/185Xdgo' } -%}
+  {% set share_text = _('For faster, better mobile browsing on your Android device, get Firefox for free today.') %}
+  {{ share_cta(_('Share'), share_urls, share_text, 'spread-firefox-android', 'sky mini') }}
+{% endblock %}
+
 {% block content %}
 
 <div id="main-feature">
@@ -27,10 +33,6 @@
         data-overlay-hidden-text="{{_('Play video')}}">
         <source src="//videos.cdn.mozilla.net/serv/marketing/fxforandroid/10-07-12_firefox_for_android_american-640x360 Video Sharing.webm">
       </video>
-    </div>
-
-    <div class="share">
-      {% include 'firefox/includes/social-share.html' %}
     </div>
 
   </div>

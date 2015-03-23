@@ -389,7 +389,7 @@ PIPELINE_CSS = {
     'firefox_sms': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
-            'css/libs/socialshare/socialshare.less',
+            'css/base/mozilla-share-cta.less',
             'css/firefox/template-resp.less',
             'css/sandstone/video-resp.less',
             'css/firefox/mobile-sms.less',
@@ -1498,7 +1498,7 @@ PIPELINE_JS = {
     'firefox_sms': {
         'source_filenames': (
             'js/firefox/sms.js',
-            'js/libs/socialshare.min.js',
+            'js/base/mozilla-share-cta.js',
         ),
         'output_filename': 'js/firefox_sms-bundle.js',
     },
