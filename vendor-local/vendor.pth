@@ -5,6 +5,7 @@ packages/python-memcached
 packages/pytz
 packages/PyYAML/lib
 packages/futures
+packages/ipaddr
 src/basket-client
 src/bleach
 src/chkcrontab
