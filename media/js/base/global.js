@@ -64,10 +64,13 @@ function init_android_download_links() {
 function init_lang_switcher() {
     $('#language').change(function(event) {
         event.preventDefault();
-        gaTrack(
-            ['_trackEvent', 'Language Switcher', 'change', $(this).val()],
-            function() {$('#lang_form').submit();}
-        );
+        //Google Analytics
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'change-language',
+            'selected-language': $(this).val()
+                    //e.g. 'Spanish', etc.
+        });
     });
 }
 
@@ -150,7 +153,7 @@ window.trans = function trans(stringId) {
 };
 
 
-function gaTrack(eventArray, callback) {
+function gaTrack(obj, callback) {
     // submit eventArray to GA and call callback only after tracking has
     // been sent, or if sending fails.
     //
@@ -162,10 +165,14 @@ function gaTrack(eventArray, callback) {
     //      var handler = function(e) {
     //           var _this = this;
     //           e.preventDefault();
-    //           $(_this).off('submit', handler);
+    //           $(_this).off('submit', handler); 
     //           gaTrack(
-    //              ['_trackEvent', 'Newsletter Registration', 'submit', newsletter],
-    //              function() {$(_this).submit();}
+    //             {
+    //               'event': 'newsletter-registration',
+    //               'browserAction': 'submit',
+    //               'newsletter': newsletter  
+    //              }, 
+    //                function() {$(_this).submit();}
     //           );
     //      };
     //      $(thing).on('submit', handler);
@@ -173,9 +180,11 @@ function gaTrack(eventArray, callback) {
 
     var hasCallback = typeof(callback) === 'function';
 
-    if (typeof(window._gaq) === 'object') {
+    if (typeof(window.dataLayer) === 'object') {
         // send event to GA
-        window._gaq.push(eventArray);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(obj);
+        // window._gaq.push(eventArray);
         // Only set up timer and hitCallback if a callback exists.
         if (hasCallback) {
             // Need a timeout in order for __utm.gif request to complete in

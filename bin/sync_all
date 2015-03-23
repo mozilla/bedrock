@@ -1,5 +1,18 @@
 #!/bin/bash
-cd $(readlink --canonicalize --no-newline ${0%/*})/..
+if [ `uname` == "Linux" ]; then
+    cd $(readlink --canonicalize --no-newline ${0%/*})/..
+elif [ `uname` == "Darwin" ]; then
+    if [ -h ${0%/*} ]; then
+        # echo $(readlink -n ${0%/*})/..
+        cd $(readlink -n ${0%/*})/..
+    else
+        # echo ${0%/*}/..
+        cd ${0%/*}/..
+    fi
+else
+    echo "OS is neither Linux nor Mac... Exiting..."
+    exit 0
+fi
 ./manage.py syncdb --migrate --noinput
 ./manage.py rnasync
 ./manage.py cron update_reps_ical
@@ -7,4 +20,4 @@ cd $(readlink --canonicalize --no-newline ${0%/*})/..
 ./manage.py update_externalfiles
 ./manage.py update_security_advisories
 #requires twitter api credentials not distributed publicly
-./manage.py cron update_tweets 
+./manage.py cron update_tweets
