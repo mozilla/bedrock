@@ -199,6 +199,10 @@
 
 {% endblock %}
 
+{# family nav pages should not load Tabzilla #}
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
+
 {% block js %}
   <!--[if IE 9]>
   {% javascript 'matchmedia_addlistener' %}
