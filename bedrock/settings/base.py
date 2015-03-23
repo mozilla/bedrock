@@ -2460,5 +2460,5 @@ FIREFOX_OS_COUNTRY_VERSIONS = {
 
 TABLEAU_DB_URL = None
 
-MAXMIND_DB_PATH = os.getenv('MAXMIND_DB_PATH', path('GeoIP2-Country.mmdb'))
+MAXMIND_DB_PATH = os.getenv('MAXMIND_DB_PATH', abspath(path('..', 'GeoIP2-Country.mmdb')))
 MAXMIND_DEFAULT_COUNTRY = os.getenv('MAXMIND_DEFAULT_COUNTRY', 'US')
