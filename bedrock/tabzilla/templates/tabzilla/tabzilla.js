@@ -208,8 +208,7 @@ var Tabzilla = (function (Tabzilla) {
         panel.focus();
         //Google Analytics
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({event: 'tabzilla-interaction', browserAction: 'Open Tabzilla'});
-
+        window.dataLayer.push({event: 'tabzilla-interaction', browserAction: 'Open Tabzilla', interaction: 'click'});
         return panel;
     };
     Tabzilla.close = function () {
@@ -224,7 +223,7 @@ var Tabzilla = (function (Tabzilla) {
             .removeClass('tabzilla-opened');
         //Google Analytics
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({event: 'tabzilla-tab', browserAction: 'Close Tabzilla'});
+        window.dataLayer.push({event: 'tabzilla-tab', browserAction: 'Close Tabzilla', interaction: 'click'});
 
         return tab;
     };
