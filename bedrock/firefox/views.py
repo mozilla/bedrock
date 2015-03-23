@@ -10,26 +10,25 @@ from cgi import escape
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
-import waffle
-
 from funfactory.helpers import static
 from funfactory.urlresolvers import reverse
 from lib import l10n_utils
-from lib.l10n_utils.dotlang import lang_file_is_active
+from lib.l10n_utils.dotlang import _
+from product_details.version_compare import Version
 
-from bedrock.releasenotes import version_re
+from bedrock.base.geo import get_country_from_request
+from bedrock.firefox.firefox_details import firefox_desktop
 from bedrock.firefox.forms import SMSSendForm
 from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.util import HttpResponseJSON
-from bedrock.firefox.firefox_details import firefox_desktop
-from lib.l10n_utils.dotlang import _
-from product_details.version_compare import Version
+from bedrock.releasenotes import version_re
 
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
@@ -240,17 +239,15 @@ def all_downloads(request, channel):
     return l10n_utils.render(request, 'firefox/all.html', context)
 
 
-def firefox_os_index(request):
+@never_cache
+def firefox_os_geo_redirect(request):
+    country = get_country_from_request(request)
+    version = settings.FIREFOX_OS_COUNTRY_VERSIONS.get(
+        country,
+        settings.FIREFOX_OS_COUNTRY_VERSIONS['default']
+    )
 
-    locale = l10n_utils.get_locale(request)
-    lang_file = 'firefox/os/index-new'
-    old_home = 'firefox/os/index.html'
-    new_home = 'firefox/os/index-new.html'
-
-    if waffle.switch_is_active('firefox-os-index-2015') and lang_file_is_active(lang_file, locale):
-            return l10n_utils.render(request, new_home)
-    else:
-        return l10n_utils.render(request, old_home)
+    return HttpResponseRedirect(reverse('firefox.os.ver.{0}'.format(version)))
 
 
 @csrf_protect

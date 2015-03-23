@@ -2426,6 +2426,38 @@ FIREFOX_OS_FEEDS = (
 )
 FIREFOX_OS_FEED_LOCALES = [feed[0] for feed in FIREFOX_OS_FEEDS]
 
+# Bug 1133146
+FIREFOX_OS_COUNTRY_VERSIONS = {
+    'default': '2.0',
+    'AU': '1.3',
+    'BD': '1.4',
+    'BR': '1.1',
+    'CL': '1.3',
+    'CO': '1.3',
+    'CR': '1.3',
+    'CZ': '1.3',
+    'SV': '1.3',
+    'FR': '1.3',
+    'DE': '1.3',
+    'GR': '1.3',
+    'GT': '1.3',
+    'HU': '1.3',
+    'IN': '1.3T',
+    'IT': '1.1',
+    'MK': '1.3',
+    'MX': '1.3',
+    'ME': '1.3',
+    'NI': '1.3',
+    'PA': '1.3',
+    'PE': '1.3',
+    'PH': '1.3T',
+    'PL': '1.3',
+    'RU': '1.3',
+    'ES': '1.3',
+    'UY': '1.3',
+    'VE': '1.3',
+}
+
 TABLEAU_DB_URL = None
 
 MAXMIND_DB_PATH = os.getenv('MAXMIND_DB_PATH', path('GeoIP2-Country.mmdb'))
