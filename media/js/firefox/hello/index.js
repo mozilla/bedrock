@@ -184,7 +184,7 @@
         // for non-Fx users, show get Fx feature & remove node to maintain nth-child margin rules
         // (we wont need this node/copy for non-Fx users)
         $('#feature-account').remove();
-        $('#feature-getfx').show();
+        $('#feature-getfx').css('display', 'inline-table');
 
         addLinkEvent('.download-link', 'ClickDownload');
     }
