@@ -35,10 +35,11 @@ LANGUAGE_CODE = 'en-US'
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'cy',
-                  'da', 'de', 'dsb', 'el', 'en-GB', 'en-US', 'en-ZA', 'eo', 'es-AR',
-                  'es-CL', 'es-ES', 'es-MX', 'et', 'eu', 'fa', 'ff', 'fi', 'fr',
-                  'fy-NL', 'ga-IE', 'gd', 'gl', 'gu-IN', 'ha', 'he', 'hi-IN', 'hr',
-                  'hsb', 'hu', 'hy-AM', 'id', 'is', 'it', 'ja', 'ja-JP-mac',
+                  'da', 'de', 'dsb', 'el', 'en-GB', 'en-US', 'en-ZA',
+                  'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et', 'eu',
+                  'fa', 'ff', 'fi', 'fr', 'fy-NL', 'ga-IE', 'gd', 'gl',
+                  'gu-IN', 'ha', 'he', 'hi-IN', 'hr', 'hsb', 'hu',
+                  'hy-AM', 'id', 'ig', 'is', 'it', 'ja', 'ja-JP-mac',
                   'ka', 'kk', 'km', 'kn', 'ko', 'lij', 'lt', 'lv',
                   'mai', 'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'nl',
                   'nn-NO', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
@@ -1859,6 +1860,7 @@ MIDDLEWARE_CLASSES = (
     'django_statsd.middleware.GraphiteMiddleware',
     'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
     'commonware.middleware.RobotsTagHeader',
+    'bedrock.mozorg.middleware.ClacksOverheadMiddleware',
 ) + get_middleware(exclude=(
     'funfactory.middleware.LocaleURLMiddleware',
     'multidb.middleware.PinningRouterMiddleware',
