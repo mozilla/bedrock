@@ -33,6 +33,7 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 
 @task
 def update(ctx):
+    commands['peep_install']()
     commands['update_revision_file']()
     commands['update_assets']()
     # moves files from SRC_DIR to WWW_DIR
@@ -126,6 +127,13 @@ def update_info(ctx):
         with ctx.lcd("locale"):
             ctx.local("svn info")
             ctx.local("svn status")
+
+
+@task
+def peep_install(ctx):
+    """Install things using peep."""
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local('../venv/bin/peep install -r requirements/compiled.txt')
 
 
 @task
