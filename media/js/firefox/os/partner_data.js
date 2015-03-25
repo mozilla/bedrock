@@ -55,7 +55,7 @@ if (typeof Mozilla == 'undefined') {
         'cherrymobile_ace': {
             'type': 'smartphone',
             'display': 'Cherry Mobile Ace',
-            'countries': ['ph']
+            'countries': ['mm', 'ph']
         },
         'huawei_y300-2': {
             'type': 'smartphone',
