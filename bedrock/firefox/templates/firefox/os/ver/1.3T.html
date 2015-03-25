@@ -6,6 +6,9 @@
 
 {% add_lang_files "firefox/os/devices" %}
 
+{# Search engines should only index latest Firefox OS 2.0 template #}
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
 {% block body_class %}{{ super() }} v1-3T{% endblock %}
 
 {% block phone_image %}
