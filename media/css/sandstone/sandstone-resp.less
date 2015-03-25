@@ -330,6 +330,7 @@ input[type=email]:focus,
 input[type=password]:focus,
 input[type=search]:focus,
 input[type=text]:focus,
+input[type=tel]:focus,
 input.focus {
     border-color: #42a4e0;
     @shadow: 0 0 0 2px rgba(73,173,227,0.4);
@@ -347,6 +348,7 @@ input[type=email]:-moz-ui-invalid:not(output),
 input[type=password]:-moz-ui-invalid:not(output),
 input[type=search]:-moz-ui-invalid:not(output),
 input[type=text]:-moz-ui-invalid:not(output),
+input[type=tel]:-moz-ui-invalid:not(output),
 input.invalid {
     border-color: #a91300;
     @shadow: 0 0 0 2px rgba(255,80,80,0.4);
@@ -436,7 +438,8 @@ input.invalid {
 .field-error {
     input[type=email],
     input[type=password],
-    input[type=text] {
+    input[type=text],
+    input[type=tel] {
         .form-field-error();
     }
     select {
@@ -447,7 +450,7 @@ input.invalid {
     }
 }
 
-input[type=email], input[type=password], input[type=text], textarea {
+input[type=email], input[type=password], input[type=text], input[type=tel], textarea {
     &.error {
         .form-field-error();
     }

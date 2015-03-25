@@ -65,7 +65,7 @@
 
     <div class="form-submit">
       <input type="submit" id="footer_email_submit"
-             value="{{ _('Sign me up') }} »" class="button">
+             value="{% if submit_text %}{{ submit_text }}{% else %}{{ _('Sign me up') }} »{% endif %}" class="button">
 
       {% if details %}
         <p class="form-details">
