@@ -19,15 +19,15 @@ Adding the universal tab to a site requires:
 
 2. Include the tabzilla CSS by adding the following tag inside the ``<head>`` of your template::
 
-    <link href="//mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
+    <link href="https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css" rel="stylesheet" />
 
 3. Include the tabzilla.js file in your template (preferably just before the ``</body>``)::
 
-    <script src="//mozorg.cdn.mozilla.net/tabzilla/tabzilla.js"></script>
+    <script src="https://mozorg.cdn.mozilla.net/tabzilla/tabzilla.js"></script>
 
    This will choose the best locale for your visitor. If you prefer to force the locale, you can use::
 
-    <script src="//mozorg.cdn.mozilla.net/{locale}/tabzilla/tabzilla.js"></script>
+    <script src="https://mozorg.cdn.mozilla.net/{locale}/tabzilla/tabzilla.js"></script>
 
    Where ``{locale}`` is the language in which you'd like Tabzilla to be loaded (e.g. fr or de).
    If Tabzilla is not yet translated into said locale the user will get the en-US version.
