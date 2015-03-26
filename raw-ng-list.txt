@@ -240,7 +240,6 @@ mozilla.webapps.pt-br                   Web application development in Brazilian
 
 mozilla.dev.l10n.announce               Announcements about new localization projects and important updates to the existing ones.  If you want to subscribe to only one localization-related newsgroup, make it this one (low volume, high signal-to-noise ratio). (Moderated)
 mozilla.dev.l10n.new-locales            For people willing to start a new localization team (a new locale). Connect with other speakers of your language and get help from other community members. (Moderated)
-mozilla.dev.l10n.cs                     Czech localization discussions.
 mozilla.dev.l10n.de                     German localization discussions.
 mozilla.dev.l10n.fa                     Persian localization discussions.
 mozilla.dev.l10n.hi                     Hindi localization discussions. (Moderated)
