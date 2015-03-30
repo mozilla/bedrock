@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{%- set_lang_files "main" -%}
+{% extends "mozorg/base-resp.html" %}
+
+{% block body_class %}sand{% endblock %}
+
+{% set navigation_bar = [
+    (url('mozorg.contentservices.index'), _('Content Services')),
+    (url('mozorg.contentservices.start'),  _('Get started')),
+    (url('mozorg.contentservices.tiles'),  _('What are Tiles?')),
+    (url('mozorg.contentservices.faq'),  _('Frequently asked questions')),
+    (url('mozorg.contentservices.user-respect'),  _('User respect')),
+    (url('mozorg.contentservices.about'),  _('About Content Services')),
+] -%}
+
+{% block extrahead %}
+    {% stylesheet 'about-base' %}
+{% endblock %}
+
+{% block content %}
+
+<div id="main-content">
+
+<article class="main-column">
+{% block article %}{% endblock %}
+</article>
+
+<aside class="sidebar">
+  <nav>
+    <ul>
+    {% for href, caption in navigation_bar %}
+      <li>
+      {% if href == request.path %}
+        <b>{{ caption|e }}</b>
+      {% else %}
+        <a href="{{ href|e }}">{{ caption|e }}</a>
+      {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  </nav>
+</aside>
+
+</div>
+
+{% endblock %}

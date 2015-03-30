@@ -29,7 +29,8 @@ from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (ContributeForm,
                                   ContributeStudentAmbassadorForm,
-                                  WebToLeadForm, ContributeSignupForm)
+                                  WebToLeadForm, ContributeSignupForm,
+                                  ContentServicesForm)
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import ContributorActivity, TwitterCache
 from bedrock.mozorg.util import hide_contrib_form, HttpResponseJSON
@@ -306,6 +307,88 @@ def process_partnership_form(request, template, success_url_name, template_vars=
 @csrf_protect
 def partnerships(request):
     return process_partnership_form(request, 'mozorg/partnerships.html', 'mozorg.partnerships')
+
+
+def process_content_services_form(request, template, success_url_name, template_vars=None, form_kwargs=None):
+    template_vars = template_vars or {}
+    form_kwargs = form_kwargs or {}
+
+    if request.method == 'POST':
+        form = ContentServicesForm(data=request.POST, **form_kwargs)
+
+        msg = 'Form invalid'
+        stat = 400
+        success = False
+
+        if form.is_valid():
+            data = form.cleaned_data.copy()
+
+            honeypot = data.pop('office_fax')
+
+            if honeypot:
+                msg = 'Visitor invalid'
+                stat = 400
+            else:
+                # rename custom Salesforce fields to their real GUID name
+
+                interested_countries = data.pop('interested_countries')
+                data['00NU00000053D4G'] = interested_countries
+
+                interested_languages = data.pop('interested_languages')
+                data['00NU00000053D4L'] = interested_languages
+
+                campaign_type = data.pop('campaign_type')
+                data['00NU00000053D4a'] = campaign_type
+
+                data['oid'] = '00DU0000000IrgO'
+
+                data['lead_source'] = form_kwargs.get('lead_source', 'www.mozilla.org/about/partnerships/contentservices/')
+                # As we're doing the Salesforce POST in the background here,
+                # `retURL` is never visited/seen by the user. I believe it
+                # is required by Salesforce though, so it should hang around
+                # as a placeholder (with a valid URL, just in case).
+                data['retURL'] = ('http://www.mozilla.org/en-US/'
+                                  'about/partnerships/'
+                                  'contentservices/start?success=1')
+
+                r = requests.post('https://www.salesforce.com/servlet/'
+                                  'servlet.WebToLead?encoding=UTF-8', data)
+                msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
+                stat = r.status_code
+
+                success = True
+
+        if request.is_ajax():
+            return HttpResponseJSON({'msg': msg, 'errors': form.errors}, status=stat)
+        # non-AJAX POST
+        else:
+            # if form is not valid, render template to retain form data/error messages
+            if not success:
+                template_vars.update(csrf(request))
+                template_vars['form'] = form
+                template_vars['form_success'] = success
+
+                return l10n_utils.render(request, template, template_vars)
+            # if form is valid, redirect to avoid refresh double post possibility
+            else:
+                return HttpResponseRedirect("%s?success" % (reverse(success_url_name)))
+    # no form POST - build form, add CSRF, & render template
+    else:
+        # without auto_id set, all id's get prefixed with 'id_'
+        form = ContentServicesForm(auto_id='%s', **form_kwargs)
+
+        template_vars.update(csrf(request))
+        template_vars['form'] = form
+        template_vars['form_success'] = True if ('success' in request.GET) else False
+
+        return l10n_utils.render(request, template, template_vars)
+
+
+@csrf_protect
+def content_services_start(request):
+    return process_content_services_form(request,
+                                         'mozorg/contentservices/start.html',
+                                         'mozorg.contentservices.start')
 
 
 def plugincheck(request, template='mozorg/plugincheck.html'):

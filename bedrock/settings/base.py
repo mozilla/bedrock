@@ -329,6 +329,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'waffle',
     'pipeline',
+    'localflavor',
 
     # Local apps
     '%s.base' % PROJECT_MODULE,

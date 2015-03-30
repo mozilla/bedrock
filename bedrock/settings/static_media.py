@@ -40,6 +40,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/commit-access-requirements.css',
     },
+    'contentservices': {
+        'source_filenames': (
+            'css/sandstone/video-resp.less',
+            'css/base/mozilla-accordion.less',
+            'css/mozorg/contentservices.less',
+        ),
+        'output_filename': 'css/contentservices-bundle.css',
+    },
     'about-forums': {
         'source_filenames': (
             'css/mozorg/about-forums.less',
@@ -945,6 +953,15 @@ PIPELINE_JS = {
             'js/mozorg/contact-spaces-ie7.js',
         ),
         'output_filename': 'js/contact-spaces-ie7-bundle.js',
+    },
+    'content-services-form': {
+        'source_filenames': (
+            'js/libs/jquery.validate.js',
+            'js/base/mozilla-form-helper.js',
+            'js/mozorg/content-services-form.js',
+            'js/base/mozilla-input-placeholder.js',
+        ),
+        'output_filename': 'js/content-services-form-bundle.js',
     },
     'contribute-faces': {
         'source_filenames': (
