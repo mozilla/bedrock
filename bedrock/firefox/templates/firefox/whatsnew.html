@@ -39,7 +39,7 @@
 
   <h2>{{ _('Now get the mobile browser that’s got your back') }}</h2>
 
-  {{ download_firefox(mobile=True, icon=False, small=True) }}
+  {{ download_firefox(platform='android', icon=False, small=True) }}
 
 {% if request.locale not in locales_with_video.keys() %}
   <div id="promo-android">
@@ -114,7 +114,7 @@
 <section id="colophon" class="billboard">
   <nav>
     <ul class="primary">
-      <li> <a href="{{ product_url('firefox', 'notes') }}">{{ _('Release Notes') }}</a></li>
+      <li> <a href="{{ firefox_url('desktop', 'notes') }}">{{ _('Release Notes') }}</a></li>
       <li><a href="{{ url('firefox.desktop.index') }}">{{ _('Firefox Features') }}</a></li>
       <li><a href="https://support.mozilla.org/">{{ _('Firefox Help') }}</a></li>
     </ul>

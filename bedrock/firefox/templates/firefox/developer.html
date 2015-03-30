@@ -50,7 +50,7 @@
 
   <h1>{{ _('Built for those who build the Web') }}</h1>
   <h2>{{ _('Introducing the only browser made for developers like you.') }}</h2>
-  {{ download_firefox('aurora', icon=False, small=True, simple=True) }}
+  {{ download_firefox('alpha', icon=False, small=True, simple=True) }}
 
   {% if l10n_has_tag('new_doorhanger') %}
   <p class="feedback-note">
@@ -198,7 +198,7 @@
   <div class="container">
     <div class="dev-footer-download">
       <h3>{{ _('Choose Firefox') }}</h3>
-      {{ download_firefox('aurora', icon=False, small=True, simple=True) }}
+      {{ download_firefox('alpha', icon=False, small=True, simple=True) }}
     </div>
     {# See Bug 1095176 #}
     {% if LANG.startswith('en-') %}

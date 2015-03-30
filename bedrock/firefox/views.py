@@ -27,7 +27,7 @@ from bedrock.firefox.forms import SMSSendForm
 from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.util import HttpResponseJSON
-from bedrock.firefox.firefox_details import firefox_details, mobile_details
+from bedrock.firefox.firefox_details import firefox_desktop
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
 
@@ -97,7 +97,7 @@ LOCALE_FXOS_HEADLINES = {
 INSTALLER_CHANNElS = [
     'release',
     'beta',
-    'aurora',
+    'alpha',
     # 'nightly',  # soon
 ]
 
@@ -120,16 +120,6 @@ JS_MOBILE = get_js_bundle_files('partners_mobile')
 JS_DESKTOP = get_js_bundle_files('partners_desktop')
 
 
-def get_latest_version(product='firefox', channel='release'):
-    if channel == 'organizations':
-        channel = 'esr'
-
-    if product == 'mobile':
-        return mobile_details.latest_version(channel)
-    else:
-        return firefox_details.latest_version(channel)
-
-
 def installer_help(request):
     installer_lang = request.GET.get('installer_lang', None)
     installer_channel = request.GET.get('channel', None)
@@ -138,7 +128,7 @@ def installer_help(request):
         'installer_channel': None,
     }
 
-    if installer_lang and installer_lang in firefox_details.languages:
+    if installer_lang and installer_lang in firefox_desktop.languages:
         context['installer_lang'] = installer_lang
 
     if installer_channel and installer_channel in INSTALLER_CHANNElS:
@@ -216,37 +206,37 @@ def all_downloads(request, channel):
     if channel is None:
         channel = 'release'
     if channel == 'developer':
-        channel = 'aurora'
+        channel = 'alpha'
     if channel == 'organizations':
         channel = 'esr'
 
-    version = get_latest_version('firefox', channel)
+    version = firefox_desktop.latest_version(channel)
     query = request.GET.get('q')
 
     channel_names = {
         'release': _('Firefox'),
         'beta': _('Firefox Beta'),
-        'aurora': _('Developer Edition'),
+        'alpha': _('Developer Edition'),
         'esr': _('Firefox Extended Support Release'),
     }
 
     context = {
         'full_builds_version': version.split('.', 1)[0],
-        'full_builds': firefox_details.get_filtered_full_builds(version, query),
-        'test_builds': firefox_details.get_filtered_test_builds(version, query),
+        'full_builds': firefox_desktop.get_filtered_full_builds(channel, version, query),
+        'test_builds': firefox_desktop.get_filtered_test_builds(channel, version, query),
         'query': query,
         'channel': channel,
         'channel_name': channel_names[channel]
     }
 
     if channel == 'esr':
-        next_version = get_latest_version('firefox', 'esr_next')
+        next_version = firefox_desktop.latest_version('esr_next')
         if next_version:
             context['full_builds_next_version'] = next_version.split('.', 1)[0]
-            context['full_builds_next'] = firefox_details.get_filtered_full_builds(next_version,
-                                                                                   query)
-            context['test_builds_next'] = firefox_details.get_filtered_test_builds(next_version,
-                                                                                   query)
+            context['full_builds_next'] = firefox_desktop.get_filtered_full_builds('esr_next',
+                                                                                   next_version, query)
+            context['test_builds_next'] = firefox_desktop.get_filtered_test_builds('esr_next',
+                                                                                   next_version, query)
     return l10n_utils.render(request, 'firefox/all.html', context)
 
 
