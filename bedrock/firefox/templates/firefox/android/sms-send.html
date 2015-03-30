@@ -21,7 +21,7 @@
       Send yourself a text message <br>to download it from Google Play.
     {% endtrans %}
     </h2>
-    <p class="note">{{ _('SMS service available in the U.S. only') }}</p>
+    <p class="note">{{ _('SMS service available in the U.S. only. SMS &amp; data rates may apply. The intended recipient of the SMS must have consented. <a href="%s">Learn more</a>')|format(url('privacy.notices.websites') + '#campaigns') }}</p>
 
     <p class="input{% if sms_form.errors %} error{% endif %}">
       {% if sms_form.errors %}
