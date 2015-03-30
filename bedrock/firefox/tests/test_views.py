@@ -5,7 +5,7 @@ import json
 from django.test.client import RequestFactory
 from funfactory.urlresolvers import reverse
 from mock import patch
-from nose.tools import ok_
+from nose.tools import eq_, ok_
 
 from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
@@ -87,3 +87,20 @@ class TestSMSView(TestCase):
             'success': False,
             'error': u'An error occurred in our system. Please try again later.',
         })
+
+
+class TestFeedbackView(TestCase):
+    def test_get_template_names_default_unhappy(self):
+        view = views.FeedbackView()
+        view.request = RequestFactory().get('/')
+        eq_(view.get_template_names(), ['firefox/feedback/unhappy.html'])
+
+    def test_get_template_names_happy(self):
+        view = views.FeedbackView()
+        view.request = RequestFactory().get('/?rating=5')
+        eq_(view.get_template_names(), ['firefox/feedback/happy.html'])
+
+    def test_get_template_names_unhappy(self):
+        view = views.FeedbackView()
+        view.request = RequestFactory().get('/?rating=1')
+        eq_(view.get_template_names(), ['firefox/feedback/unhappy.html'])

@@ -85,7 +85,6 @@ urlpatterns = patterns('',
 
     page('firefox/independent', 'firefox/independent.html'),
 
-
     # Release notes
     url('^(?:%s)/(?:%s/)?notes/$' % (product_re, channel_re),
         bedrock.releasenotes.views.latest_notes, name='firefox.notes'),
@@ -105,4 +104,8 @@ urlpatterns = patterns('',
         name='firefox.os.releasenotes'),
     url('^firefox/releases/$', bedrock.releasenotes.views.releases_index,
         {'product': 'Firefox'}, name='firefox.releases.index'),
+
+    # Bug 1108828. Different templates for different URL params.
+    url('firefox/feedback', views.FeedbackView.as_view(), name='firefox.feedback'),
+
 )

@@ -466,6 +466,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/nightly_firstrun-bundle.css',
     },
+    'firefox_feedback': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/base/mozilla-share-cta.less',
+            'css/firefox/feedback.less',
+        ),
+        'output_filename': 'css/firefox_feedback-bundle.css',
+    },
     'firefox_geolocation': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -1415,6 +1423,13 @@ PIPELINE_JS = {
             'js/firefox/sync-old.js',
         ),
         'output_filename': 'js/firefox_sync_old-bundle.js',
+    },
+    'firefox_feedback': {
+        'source_filenames': (
+            'js/base/mozilla-share-cta.js',
+            'js/firefox/feedback-ga-tracking.js',
+        ),
+        'output_filename': 'js/firefox_feedback-bundle.js',
     },
     'firefox_hello_start': {
         'source_filenames': (
