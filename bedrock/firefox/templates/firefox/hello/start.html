@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "/firefox/base-resp.html" %}
+{% extends "firefox/base-resp.html" %}
 
 {% set_lang_files "firefox/hello" %}
 
@@ -16,7 +16,7 @@
 {% block page_title %}{{ _('Firefox Hello') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 {% block body_id %}firefox-hello-start{% endblock %}
-{% block body_class %}sky{% endblock %}
+{% block body_class %}rays-light-blue{% endblock %}
 
 {% block string_data %}
 data-get-started-title="{{ _('Welcome to Hello') }}"
@@ -34,7 +34,7 @@ data-room-list-text="{{ _('Click now to join and say hello.') }}"
 {% block content %}
   <div class="spacer"></div>
   <main role="main">
-    <h1>{{ high_res_img('img/firefox/hello/firefox-hello-logo.png', {'alt': _('Firefox Hello'), 'width': '535', 'height': '88'}) }}</h1>
+    <h1><img src="{{ static('img/firefox/hello/firefox-hello-logo.svg') }}" alt="{{ _('Firefox Hello') }}" width="535"></h1>
     <section class="default">
       <h2>{{ _('The easiest way to have a free video conversation with anyone, anywhere') }}</h2>
       <ol>
@@ -61,6 +61,7 @@ data-room-list-text="{{ _('Click now to join and say hello.') }}"
     </section>
     <section class="end">
       <h2>{{ _('You’ve started your first conversation. Wasn’t that easy?') }}</h2>
+      {% block screen_sharing %}{% endblock %}
       <ul>
         {# Removing link for now, as per Bug 1109132#c14
         <li><a href="#" class="more">{{ _('Tell a friend about Hello') }}</a></li>
@@ -77,6 +78,10 @@ data-room-list-text="{{ _('Click now to join and say hello.') }}"
 {% block email_form %}{% endblock %}
 
 {% block site_footer %}{% endblock %}
+
+{# no need to load Tabzilla on this page #}
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
 
 {% block js %}
   {% javascript 'firefox_hello_start' %}
