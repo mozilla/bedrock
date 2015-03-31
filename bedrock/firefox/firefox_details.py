@@ -120,7 +120,7 @@ class FirefoxDesktop(ProductDetails):
                 build_info['platforms'][platform] = {
                     'download_url': self.get_download_url(channel, version,
                                                           platform, locale,
-                                                          True),
+                                                          True, True),
                 }
 
             f_builds.append(build_info)
@@ -194,9 +194,10 @@ class FirefoxDesktop(ProductDetails):
         stub_langs = settings.STUB_INSTALLER_LOCALES.get(platform, [])
         if (stub_langs and (stub_langs == settings.STUB_INSTALLER_ALL or
                             _locale.lower() in stub_langs) and
+                           not force_full_installer and
                            channel in ['beta', 'release']):
             suffix = 'stub'
-            if force_funnelcake or force_full_installer:
+            if force_funnelcake:
                 suffix = 'latest'
 
             _version = ('beta-' if channel == 'beta' else '') + suffix
