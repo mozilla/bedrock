@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros.html" import fxfamilynav with context %}
+
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
@@ -26,8 +28,13 @@
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {% include 'firefox/includes/family-nav.html' %}
+  {% call fxfamilynav() %}
+    <a id="purchase-device-sticky" href="#" class="purchase-button arrow-link button">{{ _('Get a phone') }}</a>
+  {% endcall %}
 {% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
 
 {% block content %}
 <main role="main">
@@ -92,7 +99,6 @@
           <h2 class="section-heading">{{ _('Smartphones') }}</h2>
           <a href="{{ url('firefox.os.faq') }}" class="faq-button arrow-link button">{{ _('Firefox OS FAQ') }}</a>
           <a href="#" class="purchase-button arrow-link button">{{ _('Get a phone') }}</a>
-          <a id="purchase-device-sticky" href="#" class="purchase-button arrow-link button">{{ _('Get a phone') }}</a>
         </header>
 
         {# phone thumbnails #}
@@ -2260,10 +2266,6 @@
 {% block email_form %}{% endblock %}
 
 {% endblock %}
-
-{# family nav pages should not load Tabzilla #}
-{% block tabzilla_css %}{% endblock %}
-{% block tabzilla_js %}{% endblock %}
 
 {% block js %}
   <!--[if IE 9]>

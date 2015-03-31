@@ -21,8 +21,7 @@
 
     var fxNavConfig = {
         primaryId: 'os',
-        subId: 'index',
-        ctaId: 'cta-sticky'
+        subId: 'index'
     };
 
     Mozilla.FxFamilyNav.init(fxNavConfig);

@@ -2,15 +2,30 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import fxfamilynav with context %}
+
 {% extends "/firefox/dashboard-base.html" %}
 
 {# The contents of the page_title block appears in the:
    1. HTML page title
    3. Breadcrumbs ("Home > Title")
-   3. Page title (large headline) 
+   3. Page title (large headline)
 #}
 {% block page_title %}{{ _('Firefox Interest Dashboard') }}{% endblock %}
 
+{% block site_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-interest-dashboard' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {{ fxfamilynav('dark') }}
+{% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
 
 {# The contents of the dashboard_intro block appears at the top of the page
    below the page title. Paragraphs should be wrapped like this:
@@ -88,7 +103,7 @@ We will continue to add features in future versions that will make you know more
   <div data-accordion-role="tabpanel">
     <p>
       {% trans %}
-        The Interest Dashboard uses both a site-matched and keywords text analysis to categorize interest. The former is based on the categorization of certain URLs we have a high confidence of belonging to a particular interest (i.e. ESPN being Sports). The latter uses statistical analysis of keywords that appear within the title of a webpage mapped to keywords that appear on Wikipedia pages. Those pages are then summarized to IAB’s (Internet Advertising Bureau) content categories. 
+        The Interest Dashboard uses both a site-matched and keywords text analysis to categorize interest. The former is based on the categorization of certain URLs we have a high confidence of belonging to a particular interest (i.e. ESPN being Sports). The latter uses statistical analysis of keywords that appear within the title of a webpage mapped to keywords that appear on Wikipedia pages. Those pages are then summarized to IAB’s (Internet Advertising Bureau) content categories.
       {% endtrans %}
     </p>
   </div>
@@ -139,3 +154,10 @@ We will continue to add features in future versions that will make you know more
 #}
 
 {% block dashboard_sidebar %}{% endblock %}
+
+{% block js %}
+  <!--[if IE 9]>
+  {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
+  {% javascript 'firefox_interest_dashboard' %}
+{% endblock %}

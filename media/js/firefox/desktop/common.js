@@ -31,6 +31,9 @@
         // show the download button on the overview page intro section
         $('#overview-intro-download-wrapper').fadeIn('fast');
 
+        // show download button in sticky nav on overview page
+        $('#sticky-download-desktop').fadeIn('fast');
+
         // show the top nav download button and set up GA tracking
         $masthead_download_firefox.fadeIn('fast').on('click', function(e) {
             e.preventDefault();
