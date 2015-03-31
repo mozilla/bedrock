@@ -415,6 +415,19 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-tiles-bundle.css',
     },
+    'firefox_family': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/firefox/family/index.less',
+        ),
+        'output_filename': 'css/firefox-family-bundle.css',
+    },
+    'firefox_family_ie': {
+        'source_filenames': (
+            'css/firefox/family/index-ie.less',
+        ),
+        'output_filename': 'css/firefox-family-ie-bundle.css',
+    },
     'firefox_faq': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -907,12 +920,6 @@ PIPELINE_CSS = {
             'css/privacy/fb-privacy.less',
         ),
         'output_filename': 'css/fb_privacy-bundle.css',
-    },
-    'products': {
-        'source_filenames': (
-            'css/mozorg/products.less',
-        ),
-        'output_filename': 'css/products-bundle.css',
     },
     'projects_mozilla_based': {
         'source_filenames': (
@@ -1442,6 +1449,12 @@ PIPELINE_JS = {
             'js/firefox/tiles.js',
         ),
         'output_filename': 'js/firefox_tiles-bundle.js',
+    },
+    'firefox_family_index': {
+        'source_filenames': (
+            'js/firefox/family-index.js',
+        ),
+        'output_filename': 'js/firefox_family_index-bundle.js',
     },
     'firefox_faq': {
         'source_filenames': (

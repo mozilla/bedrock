@@ -51,7 +51,7 @@
 
     <dt>{% trans %}Can I distribute any of the Mozilla software from my website, by CD, or to my friends, employees or students?{% endtrans %}</dt>
     <dd>
-      <p>{% trans binaries=url('mozorg.products'), mpl=php_url('/MPL') %}<strong>If you are redistributing unchanged
+      <p>{% trans binaries=url('firefox.family.index'), mpl=php_url('/MPL') %}<strong>If you are redistributing unchanged
         <a href="{{ binaries }}">official stable binaries</a>
         downloaded from mozilla.org, to anyone in any way and for any
         purpose, no further permissions are required from us.</strong>
@@ -140,7 +140,7 @@
 
   <p>{% trans trademarks=url('foundation.trademarks.index'), styleguide=url('styleguide.home') %}
       If your question isn't covered here, time to move on to
-      <a href="{{ trademarks }}">one of the other Trademark Policy documents</a> 
+      <a href="{{ trademarks }}">one of the other Trademark Policy documents</a>
       or the <a href="{{ styleguide }}">Mozilla Style Guide</a>.
   {% endtrans %}</p>
 
