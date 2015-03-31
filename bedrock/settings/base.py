@@ -915,12 +915,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/fb_privacy-bundle.css',
     },
-    'products': {
-        'source_filenames': (
-            'css/mozorg/products.less',
-        ),
-        'output_filename': 'css/products-bundle.css',
-    },
     'projects_mozilla_based': {
         'source_filenames': (
             'css/mozorg/projects/mozilla-based.less',
