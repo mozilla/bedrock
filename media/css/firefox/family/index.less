@@ -34,11 +34,11 @@
 
 .content {
     .border-box();
-    width: @widthDesktopWide;
+    width: @widthDesktop;
     margin: 0 auto;
 
-    @media only screen and (max-width: @breakDesktopWide) {
-        width: @widthDesktop;
+    @media only screen and (min-width: @breakDesktopWide) {
+        width: @widthDesktopWide;
     }
 
     @media only screen and (max-width: @breakDesktop) {
@@ -80,6 +80,7 @@
     position: relative;
     text-align: center;
     width: 100%;
+    z-index: 10;
     .transition(all 0.25s ease);
 
     .message {
@@ -127,28 +128,20 @@
     display: block;
 }
 
-html.firefox-latest {
-    #conditional-download-bar  {
-        display: none;
-    }
+html.firefox-latest #conditional-download-bar  {
+    display: none;
 }
 
-html.firefox-old {
-    #conditional-download-bar #dlbar-oldfx-desktop {
-        display: block;
-    }
+html.firefox-old #conditional-download-bar #dlbar-oldfx-desktop {
+    display: block;
 }
 
-html.ios {
-    #conditional-download-bar #dlbar-ios {
-        display: block;
-    }
+html.ios #conditional-download-bar #dlbar-ios {
+    display: block;
 }
 
-html.android {
-    #conditional-download-bar #dlbar-nonfx-android {
-        display: block;
-    }
+html.android #conditional-download-bar #dlbar-nonfx-android {
+    display: block;
 }
 
 html.firefox-old,
@@ -199,10 +192,23 @@ html.ios {
 #header {
     position: relative;
     z-index: 2;
-    height: 570px;
-    background: url(/media/img/firefox/family/index/fox.png) ~"calc(50% + 580px)" bottom no-repeat;
+    height: 480px;
     margin-bottom: -8px;
-    .at2x('/media/img/firefox/family/index/fox.png', 1184px, 704px);
+
+    // Fox
+    &:after {
+        content: '';
+        display: block;
+        background: url(/media/img/firefox/family/index/fox.png) left bottom no-repeat;
+        .background-size(1006px 598px);
+        width: 1006px;
+        height: 598px;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        margin-left: 30px;
+        .at2x('/media/img/firefox/family/index/fox.png', 1184px, 704px);
+    }
 
     .content {
         padding: 150px 0 0;
@@ -214,19 +220,21 @@ html.ios {
             width: 108px;
             height: 112px;
             top: 30px;
-            left: 80px;
+            left: 30px;
             z-index: 5;
         }
     }
 
     h1 {
-        margin: 0 0 20px 80px;
-        width: 520px;
+        margin: @baseLine 0 @baseLine 30px;
+        width: 420px;
         text-align: center;
 
         img {
             margin: 10px 5px 0;
             vertical-align: baseline;
+            width: 248px;
+            height: auto;
         }
     }
 
@@ -238,9 +246,11 @@ html.ios {
 
 // Fancy title for English
 [lang~='en'] #header h1 {
+    width: 390px;
     color: #bee1f5;
-    .font-size(60px);
+    .font-size(44px);
     text-align: right;
+    margin-top: 0;
 
     span {
         display: block;
@@ -250,14 +260,14 @@ html.ios {
     b {
         color: #fff;
         font-weight: normal;
-        .font-size(96px);
+        .font-size(72px);
         letter-spacing: -.05em;
     }
 
     img {
         float: right;
         vertical-align: top;
-        margin: 16px 0 0 20px;
+        margin: 15px 0 0 10px;
     }
 }
 
@@ -315,10 +325,10 @@ html.ios {
     border-top: 1px solid rgba(0, 0, 0, .1);
 
     .product {
-        padding: 50px (@gridGutterWidth * 2) 180px;
+        padding: 40px @gridGutterWidth 130px;
 
-        @media only screen and (max-width: @breakDesktopWide) {
-            padding: 40px @gridGutterWidth 130px;
+        @media only screen and (min-width: @breakDesktopWide) {
+            padding: 50px (@gridGutterWidth * 2) 180px;
         }
 
         @media only screen and (max-width: @breakDesktop) and (min-width: @breakTablet) {
@@ -331,19 +341,19 @@ html.ios {
     }
 
     h2 {
-        .font-size(32px);
+        .font-size(28px);
         display: inline-block;
 
-        @media only screen and (max-width: @breakDesktopWide) {
-            .font-size(28px);
+        @media only screen and (min-width: @breakDesktopWide) {
+            .font-size(32px);
         }
     }
 
     p {
-        .font-size(18px);
+        .font-size(@largeFontSize);
 
-        @media only screen and (max-width: @breakDesktopWide) {
-            .font-size(@largeFontSize);
+        @media only screen and (min-width: @breakDesktopWide) {
+            .font-size(18px);
         }
     }
 
@@ -389,12 +399,12 @@ html.ios {
     .fxfamily-sprite(0, 0);
     width: 378px;
     height: 220px;
-    bottom: -65px;
+    bottom: -90px;
     left: 50%;
     margin-left: -189px;
 
-    @media only screen and (max-width: @breakDesktopWide) {
-        bottom: -90px;
+    @media only screen and (min-width: @breakDesktopWide) {
+        bottom: -65px;
     }
 }
 
@@ -404,8 +414,8 @@ html.ios {
         .fxfamily-sprite(0, -225px);
         width: 470px;
         height: 176px;
-        bottom: 0;
-        left: -160px;
+        left: -270px;
+        bottom: -45px;
     }
 
     // Android mascot
@@ -413,39 +423,39 @@ html.ios {
         .fxfamily-sprite(-225px, -405px);
         width: 115px;
         height: 125px;
-        top: -30px;
-        left: -45px;
+        top: -50px;
+        left: -50px;
     }
 
     // Google Play button
     .btn-google-play {
         position: absolute;
-        right: 30px;
-        bottom: 60px;
+        right: 20px;
+        bottom: 40px;
         z-index: 5;
     }
 
-    @media only screen and (max-width: @breakDesktopWide) {
+    @media only screen and (min-width: @breakDesktopWide) {
         &:after {
-            left: -245px;
-            bottom: -45px;
+            left: -160px;
+            bottom: 0;
         }
 
         &:before {
-            top: -50px;
-            left: -50px;
+            top: -30px;
+            left: -45px;
         }
 
         .btn-google-play {
-            right: 20px;
-            bottom: 40px;
+            right: 30px;
+            bottom: 60px;
         }
     }
 
     @media only screen and (max-width: @breakDesktop) and (min-width: @breakTablet) {
         &:after {
             left: 50%;
-            bottom: -45px;
+            bottom: -55px;
             margin-left: -235px;
         }
 
@@ -462,7 +472,7 @@ html.ios {
     @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
         &:after {
             left: 50%;
-            bottom: -45px;
+            bottom: -55px;
             margin-left: -235px;
         }
 
@@ -481,12 +491,12 @@ html.ios {
     .fxfamily-sprite(0, -405px);
     width: 224px;
     height: 146px;
-    bottom: 0;
+    bottom: -20px;
     left: 50%;
     margin-left: -112px;
 
-    @media only screen and (max-width: @breakDesktopWide) {
-        bottom: -20px;
+    @media only screen and (min-width: @breakDesktopWide) {
+        bottom: 0;
     }
 }
 
@@ -498,7 +508,7 @@ html.ios {
     border-top: 1px solid rgba(0, 0, 0, .1);
 
     .product {
-        padding: 50px 20px 50px 160px;
+        padding: 50px 20px 50px 140px;
         min-height: 50px;
     }
 
@@ -540,7 +550,7 @@ html.ios {
     width: 84px;
     height: 80px;
     top: 40px;
-    left: 60px;
+    left: 40px;
 }
 
 // Sync
@@ -549,7 +559,7 @@ html.ios {
     width: 120px;
     height: 81px;
     top: 32px;
-    left: 30px;
+    left: 10px;
 }
 
 // Marketplace
@@ -559,7 +569,7 @@ html.ios {
         width: 87px;
         height: 83px;
         top: 35px;
-        left: 55px;
+        left: 30px;
     }
 
     // New window icon
@@ -574,21 +584,21 @@ html.ios {
     }
 }
 
-@media only screen and (max-width: @breakDesktopWide) {
+@media only screen and (min-width: @breakDesktopWide) {
     #products-secondary .product {
-        padding-left: 140px;
+        padding-left: 160px;
     }
 
     #product-hello h2:before {
-        left: 40px;
-    }
-
-    #product-marketplace h2:before {
-        left: 30px;
+        left: 60px;
     }
 
     #product-sync h2:before {
-        left: 10px;
+        left: 30px;
+    }
+
+    #product-marketplace h2:before {
+        left: 55px;
     }
 }
 
@@ -639,33 +649,43 @@ html.ios {
 
 
 /*--------------------------------------------------------------------------*/
-// Regular desktop layout, 1000px
-@media only screen and (max-width: @breakDesktopWide) {
+// Wide desktop layout, 1400px
+@media only screen and (min-width: @breakDesktopWide) {
     #header {
-        background-position: ~"calc(50% + 540px)" bottom;
-        .background-size(1006px 598px);
-        height: 480px;
+        height: 570px;
+
+        &:after {
+            .background-size(1184px 704px);
+            width: 1184px;
+            height: 704px;
+            margin-left: -15px;
+        }
 
         .content:before {
-            left: 30px;
+            left: 80px;
         }
 
         h1 {
-            width: 420px;
-            margin-left: 30px;
+            width: 520px;
+            margin-left: 80px;
 
             img {
-                width: 248px;
+                width: 330px;
                 height: auto;
             }
         }
     }
 
     [lang~='en'] #header h1 {
-        .font-size(44px);
+        width: 520px;
+        .font-size(60px);
 
         b {
-            .font-size(72px);
+            .font-size(96px);
+        }
+
+        img {
+            margin-left: 15px;
         }
     }
 }
@@ -677,9 +697,14 @@ html.ios {
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
     #header {
-        background-position: ~"calc(50% + 540px)" bottom;
-        .background-size(888px 528px);
         height: 400px;
+
+        &:after {
+            .background-size(888px 528px);
+            width: 888px;
+            height: 528px;
+            margin-left: 120px;
+        }
 
         .content:before {
             left: 30px;
@@ -749,8 +774,12 @@ html.ios {
 @media only screen and (max-width: @breakTablet) {
 
     #header {
-        background-image: none;
         height: auto;
+
+        &:after {
+            background-image: none;
+            display: none;
+        }
 
         .content {
             padding: 160px 0 40px;
@@ -775,6 +804,8 @@ html.ios {
 
     [lang~='en'] #header h1 {
         .font-size(30px);
+        width: 250px;
+        margin: 0 auto @baseLine;
 
         b {
             .font-size(40px);
@@ -808,6 +839,8 @@ html.ios {
     }
 
     #products-secondary {
+        padding: @baseLine 0;
+
         .product {
             padding: @baseLine @gridGutterWidth @baseLine 120px;
             min-height: 50px;
@@ -868,16 +901,3 @@ html.ios {
     }
 
 }
-
-
-/*--------------------------------------------------------------------------*/
-// Wide Mobile layout, 480px
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-
-    [lang~='en'] #header h1 {
-        width: @widthMobile - (@gridGutterWidth * 2);
-        margin: 0 auto @baseLine;
-    }
-
-}
-

@@ -24,13 +24,7 @@
 
     // Check Firefox version
     if (isFirefox()) {
-        // data-latest-firefox includes point release information
-        var latestFirefoxVersionFull = $html.attr('data-latest-firefox');
-
-        // get latest full version (no point release info) for initial check
-        var latestFirefoxVersion = parseInt(latestFirefoxVersionFull.split('.')[0], 10);
-
-        if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
+        if (isFirefoxUpToDate()) {
             $html.addClass('firefox-latest');
         } else {
             $html.addClass('firefox-old');
@@ -47,10 +41,10 @@
         };
 
         if (newTab) {
-            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'product click', href]);
+            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'product click', product]);
         } else {
             e.preventDefault();
-            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'product click', href], callback);
+            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'product click', product], callback);
         }
     });
 
@@ -64,10 +58,10 @@
         };
 
         if (newTab) {
-            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'Firefox downloads', href]);
+            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'Firefox downloads', product]);
         } else {
             e.preventDefault();
-            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'Firefox downloads', href], callback);
+            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'Firefox downloads', product], callback);
         }
     });
 

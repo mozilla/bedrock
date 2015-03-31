@@ -420,7 +420,13 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone-resp.less',
             'css/firefox/family/index.less',
         ),
-        'output_filename': 'css/firefox-family-index-bundle.css',
+        'output_filename': 'css/firefox-family-bundle.css',
+    },
+    'firefox_family_ie': {
+        'source_filenames': (
+            'css/firefox/family/index-ie.less',
+        ),
+        'output_filename': 'css/firefox-family-ie-bundle.css',
     },
     'firefox_faq': {
         'source_filenames': (
