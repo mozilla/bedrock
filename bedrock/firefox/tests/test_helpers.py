@@ -149,11 +149,12 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 4)
+        eq_(list.length, 5)
         eq_(pq(list[0]).attr('class'), 'os_win')
-        eq_(pq(list[1]).attr('class'), 'os_osx')
-        eq_(pq(list[2]).attr('class'), 'os_linux')
-        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
 
     def test_firefox_desktop(self):
         """The Release channel should not have Windows 64 build yet"""

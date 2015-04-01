@@ -161,7 +161,7 @@
           <tr>
             <th colspan="2" scope="col">{{ _('Language') }}</th>
             <th scope="col">{{ _('Windows') }}</th>
-            {% if channel in ['alpha'] -%}
+            {% if channel in ['alpha', 'beta'] -%}
             <th scope="col">{{ _('Windows 64-bit') }}</th>
             {% endif -%}
             <th scope="col">{{ _('Mac OS X') }}</th>
@@ -185,8 +185,8 @@
     <th scope="row">{{ build.name_en }}</th>
     <td lang="{{ build.locale }}">{{ build.name_native }}</td>
     {{ build_link(build, 'win', _('Download for Windows')) }}
-    {# Windows 64-bit builds are currently available only on the Aurora channel -#}
-    {% if channel in ['alpha'] -%}
+    {# Windows 64-bit builds are currently available only on the Aurora and Beta channel -#}
+    {% if channel in ['alpha', 'beta'] -%}
     {{ build_link(build, 'win64', _('Download for 64-bit Windows')) }}
     {% endif -%}
     {{ build_link(build, 'osx', _('Download for Mac OS X')) }}
