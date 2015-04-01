@@ -559,7 +559,7 @@ set share_urls = {
 
 <header id="fxfamilynav-header" class="fxfamilynav-header{% if (navclass) %} {{ navclass }}{% endif %}">
   <div class="container">
-    <i class="fxfamilynav-logo">{{ _('Firefox') }}</i>
+    <a href="{{ url('firefox.family.index') }}"><i class="fxfamilynav-logo">{{ _('Firefox') }}</i></a>
     <nav id="fxfamilynav" class="fxfamilynav" role="navigation">
       <ul id="fxfamilynav-primary" class="primarynav">
         {# L10n: The <span> elements below are for visual formatting #}
@@ -649,7 +649,7 @@ set share_urls = {
 
 <header id="fxfamilynavV2-header" class="fxfamilynav-header{% if (navclass) %} {{ navclass }}{% endif %}">
   <div class="container">
-    <i class="fxfamilynav-logo">{{ _('Firefox') }}</i>
+    <a href="{{ url('firefox.family.index') }}"><i class="fxfamilynav-logo">{{ _('Firefox') }}</i></a>
     <nav id="fxfamilynavV2" class="fxfamilynav" role="navigation">
       <ul id="fxfamilynavV2-primary" class="primarynav">
         <li id="desktops">
