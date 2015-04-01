@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import fxfamilynav with context %}
+
 {% extends "/firefox/dashboard-base.html" %}
 {% block site_css %}
   {{ super() }}
@@ -22,6 +24,15 @@ Our New Tab Experience
 {{ _('A Brand New Tiles Experience') }}
 {%- endif -%}
 {%- endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {{ fxfamilynav('dark') }}
+{% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
 
 {# The contents of the dashboard_intro block appears at the top of the page
    below the page title. Paragraphs should be wrapped like this:
@@ -247,4 +258,11 @@ For more on what data Mozilla collects via Tiles, see below.
   {% endtrans %}
 </p>
 
+{% endblock %}
+
+{% block js %}
+  <!--[if IE 9]>
+  {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
+  {% javascript 'firefox_tiles' %}
 {% endblock %}

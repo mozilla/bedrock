@@ -40,8 +40,8 @@ urlpatterns = patterns(
     redirect(r'^contribute/page/?$',
              'https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org'),
 
-    # Bug 763665
-    redirect(r'^projects/$', 'mozorg.products'),
+    # Bug 763665, 1148127
+    redirect(r'^projects/$', 'firefox.family.index'),
 
     # Bug 792185 Brand Toolkit -> Style Guide
     redirect(r'^firefox/brand/$', 'styleguide.home'),

@@ -5,9 +5,8 @@
 @import '../../sandstone/lib.less';
 @import 'common.less';
 
-// set nav pointer
-#site-header-logo {
-    .nav-pointer();
+#wrapper {
+    margin-top: -162px; // family nav
 }
 
 // animation defaults
@@ -25,7 +24,7 @@
 
     .container {
         position: relative;
-        padding: (@baseLine * 2) 0 0 0;
+        padding: 50px 0 0 0;
         min-height: 0;
     }
 
@@ -40,12 +39,30 @@
     }
 }
 
+// download buttons
+
 #overview-intro-download-wrapper {
     display: none;
 }
 
+#sticky-download-desktop {
+    display: none;
+
+    .download-link {
+        width: 160px;
+
+        .download-content {
+            padding: 4px 10px;
+        }
+    }
+}
+
+html[lang^="en"] #sticky-download-desktop .download-link .download-content {
+    padding: 10px 20px;
+}
+
 #trust {
-    background: #fcfcfa url(/media/img/firefox/desktop/bg-pixelfox.png) center bottom no-repeat;
+    background: #fcfcfa url(/media/img/firefox/desktop/bg-pixelfox-new.png) center bottom no-repeat;
 
     a {
         .open-sans;

@@ -13,11 +13,10 @@ from lib import l10n_utils
 from rna.models import Release
 from product_details import product_details
 
-from bedrock.firefox.firefox_details import firefox_details
-from bedrock.firefox.views import get_latest_version as firefox_get_latest_version
+from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.helpers.misc import releasenotes_url
-from bedrock.mozorg.helpers.download_buttons import android_builds
+from bedrock.firefox.helpers import android_builds
 from bedrock.thunderbird.utils import get_latest_version as thunderbird_get_latest_version
 
 
@@ -71,7 +70,7 @@ def get_download_url(release):
         return android_builds(release.channel)[0]['download_link']
     else:
         if release.channel == 'Aurora':
-            return reverse('firefox.channel') + '#aurora'
+            return reverse('firefox.channel') + '#developer'
         elif release.channel == 'Beta':
             return reverse('firefox.channel') + '#beta'
         else:
@@ -117,19 +116,25 @@ def system_requirements(request, version, product='Firefox'):
 
 def latest_notes(request, product='firefox', channel='release'):
     if product == 'firefox' and channel == 'developer':
-        channel = 'aurora'
+        channel = 'alpha'
+    if product == 'mobile' and channel == 'aurora':
+        channel = 'alpha'
+    if channel == 'organizations':
+        channel = 'esr'
 
     if product == 'thunderbird':
-        version = thunderbird_get_latest_version(product, channel)
+        version = thunderbird_get_latest_version(channel)
+    elif product == 'mobile':
+        version = firefox_android.latest_version(channel)
     else:
-        version = firefox_get_latest_version(product, channel)
+        version = firefox_desktop.latest_version(channel)
 
     if channel == 'beta':
         version = re.sub(r'b\d+$', 'beta', version)
-    if channel == 'organizations':
+    if channel == 'esr':
         version = re.sub(r'esr$', '', version)
 
-    dir = 'auroranotes' if channel == 'aurora' else 'releasenotes'
+    dir = 'auroranotes' if channel == 'alpha' else 'releasenotes'
     path = [product, version, dir]
     locale = getattr(request, 'locale', None)
     if locale:
@@ -139,16 +144,20 @@ def latest_notes(request, product='firefox', channel='release'):
 
 def latest_sysreq(request, channel, product):
     if product == 'firefox' and channel == 'developer':
-        channel = 'aurora'
+        channel = 'alpha'
+    if channel == 'organizations':
+        channel = 'esr'
 
     if product == 'thunderbird':
-        version = thunderbird_get_latest_version(product, channel)
+        version = thunderbird_get_latest_version(channel)
+    elif product == 'mobile':
+        version = firefox_android.latest_version(channel)
     else:
-        version = firefox_get_latest_version(product, channel)
+        version = firefox_desktop.latest_version(channel)
 
     if channel == 'beta':
         version = re.sub(r'b\d+$', 'beta', version)
-    if channel == 'organizations':
+    if channel == 'esr':
         version = re.sub(r'^(\d+).+', r'\1.0', version)
 
     dir = 'system-requirements'
@@ -162,11 +171,11 @@ def latest_sysreq(request, channel, product):
 def releases_index(request, product):
     releases = {}
     esr_major_versions = range(
-        10, int(firefox_get_latest_version(product).split('.')[0]), 7)
+        10, int(firefox_desktop.latest_version().split('.')[0]), 7)
 
     if product == 'Firefox':
-        major_releases = firefox_details.firefox_history_major_releases
-        minor_releases = firefox_details.firefox_history_stability_releases
+        major_releases = firefox_desktop.firefox_history_major_releases
+        minor_releases = firefox_desktop.firefox_history_stability_releases
     elif product == 'Thunderbird':
         major_releases = product_details.thunderbird_history_major_releases
         minor_releases = product_details.thunderbird_history_stability_releases

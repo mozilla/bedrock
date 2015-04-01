@@ -21,12 +21,20 @@ h1 {
 h2 {
     margin: @baseLine;
     .font-size(48px);
+    color: #4b4c51;
+    text-shadow: none;
 }
 
 p {
     margin: @baseLine;
     .open-sans-light;
     .font-size(20px);
+    color: #4b4c51;
+
+    &.screen-sharing {
+        font-style: italic;
+        .font-size(@largeFontSize);
+    }
 }
 
 ol {
@@ -67,7 +75,7 @@ ul {
     list-style-type: none;
     margin: @baseLine;
     padding: 0;
-    .font-size(@largeFontSize);
+    .font-size(@baseFontSize);
 
     li {
         margin: (@baseLine / 2) 0;

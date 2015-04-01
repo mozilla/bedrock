@@ -1,0 +1,40 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+// The bare minimum of styling to make sure the page is at least readable in old IEs
+
+#conditional-download-bar {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+
+    .btn-download {
+        background-color: #6fbe4a;
+    }
+
+    .btn-close,
+    #dlbar-ios,
+    #dlbar-oldfx-desktop,
+    #dlbar-nonfx-android {
+        display: none;
+    }
+}
+
+#header {
+    color: #fff;
+    background: #0c99d5;
+
+    h1 {
+        color: #fff;
+        text-shadow: none;
+        text-align: center;
+    }
+}
+
+#footer {
+    width: @widthDesktop;
+    margin: 0 auto;
+}

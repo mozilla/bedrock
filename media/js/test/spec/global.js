@@ -74,7 +74,7 @@ describe('global.js', function() {
             // Button subtitle text should never change.
             var html1 = ['<div id="download-button1" class="download-button download-button-simple">',
                 '<ul class="download-list" role="presentation">',
-                '<li class="os_windows">',
+                '<li class="os_win">',
                 '<a class="download-link" href="/firefox/new/?scene=2#download-fx">',
                 '<span class="download-content">',
                     '<strong class="download-title">Firefox</strong>',
@@ -90,7 +90,7 @@ describe('global.js', function() {
             // isFirefox() == true and isFirefoxUpToDate() == true.
             var html2 = ['<div id="download-button2" class="download-button download-button-simple download-button-check-old-fx">',
                 '<ul class="download-list" role="presentation">',
-                '<li class="os_windows">',
+                '<li class="os_win">',
                 '<a class="download-link" href="/firefox/new/?scene=2#download-fx">',
                 '<span class="download-content">',
                     '<strong class="download-title">Firefox</strong>',

@@ -44,6 +44,7 @@ urlpatterns = patterns('',
     page('firefox/android', 'firefox/android/index.html'),
     page('firefox/android/faq', 'firefox/android/faq.html'),
     page('firefox/os/faq', 'firefox/os/faq.html'),
+    page('firefox/products', 'firefox/family/index.html'),
     url('^firefox/sms/$', views.sms_send, name='firefox.sms'),
     page('firefox/sms/sent', 'firefox/android/sms-thankyou.html'),
     page('firefox/sync', 'firefox/sync.html'),
@@ -85,7 +86,6 @@ urlpatterns = patterns('',
 
     page('firefox/independent', 'firefox/independent.html'),
 
-
     # Release notes
     url('^(?:%s)/(?:%s/)?notes/$' % (product_re, channel_re),
         bedrock.releasenotes.views.latest_notes, name='firefox.notes'),
@@ -105,4 +105,8 @@ urlpatterns = patterns('',
         name='firefox.os.releasenotes'),
     url('^firefox/releases/$', bedrock.releasenotes.views.releases_index,
         {'product': 'Firefox'}, name='firefox.releases.index'),
+
+    # Bug 1108828. Different templates for different URL params.
+    url('firefox/feedback', views.FeedbackView.as_view(), name='firefox.feedback'),
+
 )

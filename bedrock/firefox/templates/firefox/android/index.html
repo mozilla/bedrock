@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import fxfamilynav with context %}
+
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
@@ -17,25 +19,23 @@
   <!--<![endif]-->
 {% endblock %}
 
-{% block site_header %}
-  <header id="masthead">
-    <div class="container">
-      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+{% block site_header %}{% endblock %}
 
-      {% block site_header_logo %}{% endblock %}
-      {% block site_header_nav %}
-        {% include 'firefox/includes/top-menu.html' %}
-      {% endblock %}
-    </div>
-  </header>
+{% block site_header_unwrapped %}
+  {% call fxfamilynav('dark') %}
+    <a class="dl-button" id="nav-dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
+      {{ _('Download on Google Play') }}
+    </a>
+  {% endcall %}
 {% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
 
 {% block content %}
 
 <section id="intro">
   <div class="container">
-    {{ high_res_img('img/firefox/android/firefox-android-logo.png', { 'alt': _('Firefox for Android'), 'width': 219, 'height': 82 }) }}
-
     <div class="content-primary">
       <h2 class="heading">
         {{ _('We make it Firefox.') }}
@@ -353,7 +353,7 @@
               <a rel="external" href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported devices') }}</a>
             </li>
             <li>
-              <a href="{{ product_url('mobile', 'notes') }}">{{ _('Release notes') }}</a>
+              <a href="{{ firefox_url('android', 'notes') }}">{{ _('Release notes') }}</a>
             </li>
           </ul>
         </div>{#-- /#download-content --#}
@@ -367,7 +367,7 @@
 
 {% block js %}
 <!--[if IE 9]>
-  {% javascript 'firefox_android_ie9' %}
+  {% javascript 'matchmedia_addlistener' %}
 <![endif]-->
   {% javascript 'firefox_android' %}
 {% endblock %}

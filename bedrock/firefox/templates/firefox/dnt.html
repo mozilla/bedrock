@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import fxfamilynav with context %}
+
 {% extends "/firefox/base-resp.html" %}
 
 {% block page_title %}{{ _('Do Not Track') }}{% endblock %}
@@ -12,12 +14,14 @@
   {% stylesheet 'dnt' %}
 {% endblock %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> >
-    <span>{{ _('Do Not Track FAQ') }}</span>
-  </nav>
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {{ fxfamilynav('dark') }}
 {% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
 
 {% block content %}
 
@@ -265,7 +269,10 @@
 {% endblock %}
 
 {% block js %}
-{% javascript 'accordion' %}
+  <!--[if IE 9]>
+  {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
+  {% javascript 'dnt' %}
 {% endblock %}
 
 {% block email_form %}{% endblock %}

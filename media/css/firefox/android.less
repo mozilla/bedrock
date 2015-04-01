@@ -12,6 +12,7 @@
 
 #wrapper {
     width: 100%;
+    margin-top: -162px; // family nav
 }
 
 #masthead {
@@ -49,10 +50,6 @@
     text-align: center;
 }
 
-.container a:not(.dl-button) {
-    .trailing-arrow();
-}
-
 .sky .dl-button {
     display: inline-block;
     .font-size(@largeFontSize);
@@ -68,17 +65,29 @@
     }
 }
 
-.container {
+#nav-dl-button {
+    padding: 7px (@baseLine / 2);
+    .font-size(@smallFontSize);
+    color: #fff;
+    text-align: center;
+}
+
+#wrapper .container {
     .clearfix();
     position: relative;
     width: 940px;
     margin: 0 auto;
     overflow: hidden;
+
+    a:not(.dl-button) {
+        .trailing-arrow();
+    }
 }
 
 // Intro
 
 #intro {
+    padding-top: 162px;
     background: #cae1f4;
     background: url(/media/img/sandstone/grain.png) repeat,
                     url(/media/img/firefox/android/bg-cubes.png) repeat,
@@ -90,12 +99,11 @@
                     #cae1f4;
 
     .container {
-        min-height: 566px;
-        padding-top: 44px; // compensate for pushing up under tabzilla
+        min-height: 484px;
     }
 
     .content-primary {
-        margin-top: 48px;
+        margin-top: 50px;
         position: relative;
         width: 540px;
         z-index: 2;
@@ -105,7 +113,7 @@
         position: absolute;
         width: 460px;
         right: 10px;
-        top: 128px;
+        top: 46px;
         z-index: 1;
     }
 
@@ -792,7 +800,7 @@ html[lang="ja"] #privacy p {
         margin-left: -360px;
     }
 
-    .container {
+    #wrapper .container {
         width: 720px;
     }
 
@@ -973,7 +981,7 @@ html[lang="ja"] #privacy p {
         margin-left: -220px;
     }
 
-    .container {
+    #wrapper .container {
         width: (480px - (@baseLine * 2));
         padding-left: @baseLine;
         padding-right: @baseLine;
@@ -1002,7 +1010,7 @@ html[lang="ja"] #privacy p {
     #intro {
         .container {
             min-height: 0;
-            padding-top: 64px;
+            padding-top: @baseLine;
             padding-bottom: @baseLine * 2;
         }
 
@@ -1218,7 +1226,7 @@ html[lang="ja"] #privacy p {
         margin-left: -150px;
     }
 
-    .container {
+    #wrapper .container {
         width: (320px - @baseLine);
         padding-left: @baseLine / 2;
         padding-right: @baseLine / 2;

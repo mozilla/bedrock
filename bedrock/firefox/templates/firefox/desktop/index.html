@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros.html" import fxfamilynav with context %}
+
 {% extends "firefox/desktop/desktop-base.html" %}
 
 {% block page_title_prefix %}{% endblock %}
@@ -23,7 +25,16 @@
   {% stylesheet 'firefox_desktop' %}
 {% endblock %}
 
-{% block site_header_download_button %}{% endblock %}
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {% call fxfamilynav('dark') %}
+    {{ download_firefox(simple=True, small=True, dom_id="sticky-download-desktop") }}
+  {% endcall %}
+{% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
 
 {% block content %}
 <main role="main" id="main-content">
@@ -151,5 +162,8 @@
 {% endblock %}
 
 {% block js %}
+  <!--[if IE 9]>
+  {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
   {% javascript 'firefox_desktop_index' %}
 {% endblock %}
