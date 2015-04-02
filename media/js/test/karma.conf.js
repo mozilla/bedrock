@@ -16,6 +16,7 @@ module.exports = function(config) {
             '../base/mozilla-image-helper.js',
             '../base/mozilla-accordion.js',
             '../base/mozilla-pager.js',
+            '../base/search-params.js',
             'http://localhost:8000/tabzilla/tabzilla.js?build=dev',
             '../firefox/australis/browser-tour.js',
             'spec/site.js',
@@ -24,6 +25,7 @@ module.exports = function(config) {
             'spec/mozilla-image-helper.js',
             'spec/mozilla-accordion.js',
             'spec/mozilla-pager.js',
+            'spec/search-params.js',
             'spec/tabzilla.js',
             'spec/browser-tour.js',
             {

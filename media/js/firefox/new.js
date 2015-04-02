@@ -43,6 +43,7 @@
     var isIELT9 = (site.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent));
     var path_parts = window.location.pathname.split('/');
     var query_str = window.location.search ? window.location.search + '&' : '?';
+    var params = new _SearchParams();
     var referrer = path_parts[path_parts.length - 2];
     var locale = path_parts[1];
     var virtual_url = ('/' + locale + '/products/download.html' +
@@ -58,7 +59,7 @@
         var latestFirefoxVersion = parseInt(latestFirefoxVersionFull.split('.')[0], 10);
 
         if (isFirefoxUpToDate(latestFirefoxVersion + '')) {
-            if (window.location.hash !== '#download-fx' && window.location.search !== '?scene=2') {
+            if (window.location.hash !== '#download-fx' && params.get('scene') !== 2) {
                 // the firefox-latest class prevents the download from triggering
                 // and scene 2 from showing, which we want if the user lands on
                 // /firefox/new/ but if the user visits /firefox/new/?scene=2#download-fx
@@ -241,7 +242,7 @@
                 // still need to use the regular track_and_redirect() function because
                 // the popup will be blocked and then the download will also be blocked
                 // in the popup.
-                if (window.location.hash === '#download-fx' || window.location.search === '?scene=2') {
+                if (window.location.hash === '#download-fx' || params.get('scene') === 2) {
                     track_and_redirect(url, virtual_url);
                 } else {
                     track_and_popup(url, virtual_url);
@@ -279,7 +280,7 @@
             // some older browsers will not preserve the #download-fx when they are redirected
             // so we use a url parameter, but we don't want to use a url param when the user
             // clicks the download button on /firefox/new/ because that can trigger an unecessary page load
-            if (window.location.hash === '#download-fx' || window.location.search === '?scene=2') {
+            if (window.location.hash === '#download-fx' || params.get('scene') === 2) {
                 if (no_scene2) {
                     // if using an unsupported platform just try to drop the URL hash
                     if (window.history && window.history.replaceState) {
