@@ -63,6 +63,6 @@ class CreditsFile(ExternalFile):
                 names.append([name.decode('utf8'), sortkey.upper()])
 
             sorted_names = sorted(names, key=itemgetter(1))
-            self._cache.set(self.cache_key, 3600)  # 1 hour
+            self._cache.set(self.cache_key, sorted_names, 3600)  # 1 hour
 
         return sorted_names
