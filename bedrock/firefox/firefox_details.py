@@ -3,6 +3,7 @@ from collections import OrderedDict
 from operator import itemgetter
 from urllib import urlencode
 
+from funfactory.urlresolvers import reverse
 from django.conf import settings
 from product_details import ProductDetails
 
@@ -10,7 +11,6 @@ from product_details import ProductDetails
 # TODO: port this to django-mozilla-product-details
 class FirefoxDesktop(ProductDetails):
     download_base_url_direct = 'https://download.mozilla.org/'
-    download_base_url_transition = '/firefox/new/?scene=2#download-fx'
 
     platform_labels = OrderedDict([
         ('win', 'Windows'),
@@ -223,7 +223,7 @@ class FirefoxDesktop(ProductDetails):
                              ])])
         else:
             # build a link to the transition page
-            return self.download_base_url_transition
+            return reverse('firefox.new') + '?scene=2#download-fx'
 
 
 class FirefoxAndroid(ProductDetails):
