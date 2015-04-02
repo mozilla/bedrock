@@ -76,14 +76,7 @@
 {% endblock email_form %}
 
 {% block site_header_logo %}
-<h2>
-  <a href="/thunderbird/">
-    <img src="{{ static('img/thunderbird/template/thunderbird.png') }}"
-         alt="Mozilla Thunderbird"
-         height="70"
-         width="260">
-  </a>
-</h2>
+<h2><a href="/thunderbird/">{{ high_res_img('img/thunderbird/template/logo-wordmark.png', {'alt': 'Thunderbird', 'width': '260', 'height': '72'}) }}</a></h2>
 {% endblock %}
 
 {% block site_js %}
