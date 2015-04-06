@@ -352,6 +352,10 @@ var Tabzilla = (function (Tabzilla) {
     Infobar.prototype.trackEvent = function (action, label, value,
                                              nonInteraction, callback) {
         if (typeof(_gaq) !== 'object') {
+            if (callback) {
+                callback();
+            }
+
             return;
         }
 
