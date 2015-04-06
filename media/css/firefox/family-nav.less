@@ -326,11 +326,14 @@
                 opacity: 1;
             }
 
-            &.selected:before {
+            &:before {
                 content: '';
                 width: 15px;
                 height: 16px;
                 display: inline-block;
+            }
+
+            &.selected:before {
                 .fxfamilynav-sprite(-257px);
             }
         }
