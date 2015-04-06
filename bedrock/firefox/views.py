@@ -381,6 +381,15 @@ def show_36_whatsnew_tour(oldversion):
     return oldversion < Version('36.0')
 
 
+def show_38_0_5_firstrun(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('38.0.5')
+
+
 class LatestFxView(TemplateView):
 
     """
@@ -438,6 +447,23 @@ class FirstrunView(LatestFxView):
             return HttpResponsePermanentRedirect(uri)
         return super(FirstrunView, self).get(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        ctx = super(FirstrunView, self).get_context_data(**kwargs)
+
+        # Firstrun 38.0.5 context - can be removed when these tests are complete
+        ctx = funnelcake_param(self.request)
+        funnelcake_id = ctx.get('funnelcake_id', None)
+
+        # funnelcake 39 prevents video regardless of locale
+        if (funnelcake_id != '39'):
+            locale = l10n_utils.get_locale(self.request)
+
+            ctx['video_url'] = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
+        else:
+            ctx['video_url'] = False
+
+        return ctx
+
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
         locale = l10n_utils.get_locale(self.request)
@@ -456,6 +482,8 @@ class FirstrunView(LatestFxView):
                 template = 'firefox/dev-firstrun-spring-campaign.html'
             else:
                 template = 'firefox/dev-firstrun.html'
+        elif show_38_0_5_firstrun(version):
+            template = 'firefox/australis/fx38_0_5/firstrun.html'
         elif show_36_firstrun(version):
             template = 'firefox/australis/fx36/firstrun-tour.html'
         elif show_search_firstrun(version) and locale == 'en-US':
@@ -521,6 +549,8 @@ class TourView(LatestFxView):
                 template = 'firefox/dev-firstrun-spring-campaign.html'
             else:
                 template = 'firefox/dev-firstrun.html'
+        elif show_38_0_5_firstrun(version):
+            template = 'firefox/australis/fx38_0_5/firstrun.html'
         elif show_36_firstrun(version):
             template = 'firefox/australis/fx36/help-menu-36-tour.html'
         elif show_search_firstrun(version) and locale == 'en-US':
