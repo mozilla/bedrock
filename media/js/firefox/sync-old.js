@@ -7,4 +7,5 @@
 
     setTimeout(Mozilla.syncAnimation, 1000);
 
+    Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'sync' });
 })(window.jQuery);
