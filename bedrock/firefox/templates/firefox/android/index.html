@@ -2,18 +2,26 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxfamilynav with context %}
+{% from "macros.html" import fxfamilynav, send_to_device with context %}
 
 {% extends "firefox/base-resp.html" %}
+
+{% add_lang_files "firefox/sendto" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Firefox for Android — Mobile Web browser — More ways to customize and protect your privacy') }}{% endblock %}
 {% block page_desc %}{{ _('Only Firefox for Android offers so many ways to make your mobile browsing experience truly your own') }}{% endblock %}
 {% block body_id %}firefox-android{% endblock %}
+{% block body_class %}firefox-android{% endblock %}
+
+{% block optimizely %}
+  {% if waffle.switch('firefox-android-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
 
 {% block site_css %}
   {% stylesheet 'firefox_android' %}
-
   <!--[if gt IE 9]><!-->
     {% stylesheet 'firefox_sync_anim' %}
   <!--<![endif]-->
@@ -21,11 +29,16 @@
 
 {% block site_header %}{% endblock %}
 
+{% set has_widget = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
 {% block site_header_unwrapped %}
-  {% call fxfamilynav('dark') %}
-    <a class="dl-button" id="nav-dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
-      {{ _('Download on Google Play') }}
-    </a>
+  {% call fxfamilynav() %}
+    <div class="{% if has_widget %}show-widget{% endif %}">
+      <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
+        {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
+      </a>
+      <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for Android') }}</button>
+    </div>
   {% endcall %}
 {% endblock %}
 
@@ -48,28 +61,23 @@
         {{ _('Our most customizable Firefox for Android yet.') }}
       </p>
 
-      <div class="dl-button-wrapper">
+      <div class="dl-button-wrapper {% if has_widget %}show-widget{% endif %}">
         <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
-          {{ _('Download on Google Play') }}
+          {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
         </a>
+        <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for Android') }}</button>
 
-        {#
-          This sms-link will only be shown to en-US visitors for the foreseeable future,
-          so not wrapped for localization (yet).
-        #}
-        <p id="sms-link">
-          <a href="{{ url('firefox.sms') }}">Text a download link to my Android phone</a>
-        </p>
+        {% if l10n_has_tag('ios_announce', 'firefox/new') %}
+          <p class="ios-link">{{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}</p>
+        {% endif %}
       </div>
 
-      {% if l10n_has_tag('ios_announce', 'firefox/new') %}
-        <p class="ios-link">{{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}</p>
-      {% endif %}
+      {# happy little droid #}
+      <div id="intro-android"></div>
 
     </div>{# /.content-primary #}
     <div class="content-secondary">
-      {{ high_res_img('img/firefox/android/phone-intro.png', { 'id': 'intro-phone' }) }}
-      {{ high_res_img('img/firefox/android/the-android.png', { 'id': 'intro-android' }) }}
+      <img src="{{ static('img/firefox/android/phone-tablet.png') }}" id="intro-phone-tablet" width="970" height="800" alt="">
     </div>{# /.content-secondary #}
   </div>{# /.container #}
 </section>
@@ -190,6 +198,29 @@
             <div class="line"></div>
           </div>
         </section>
+        {% if l10n_has_tag('android_spring_updates') and waffle.switch('android-spring-updates') %}
+          <section class="customize-section" id="reading">
+            <h3 data-accordion-role="tab">{{ _('Read and save articles easily') }}</h3>
+
+            <div data-accordion-role="tabpanel">
+              <p>
+                {{ _('Enjoy a more pleasant reading experience with Reader View and Reading List.') }}
+                {{ _('Access your saved articles even when you’re not online.') }}
+              </p>
+
+              <figure>
+                <div class="media-desktop">
+                  {{ high_res_img('firefox/android/customize/desktop-reading-list.jpg', { 'l10n': True, 'alt': 'Enjoy a more pleasant reading experience with Reader View and Reading List.'}) }}
+                </div>
+                <div class="media-mobile">
+                  {{ high_res_img('firefox/android/customize/mobile-reading-list.png', { 'l10n': True, 'alt': 'Enjoy a more pleasant reading experience with Reader View and Reading List.' }) }}
+                </div>
+              </figure>
+
+              <div class="line"></div>
+            </div>
+          </section>
+        {% endif %}
         <section class="customize-section" id="language">
           <h3 data-accordion-role="tab">{{ _('Change your language') }}</h3>
 
@@ -288,7 +319,13 @@
         {% endtrans %}
         </p>
 
-        <a rel="external" href="https://www.youtube.com/watch?v=Ewk0YtFTBec&amp;list=PLA8ABF6B7A66A0C5E&amp;index=15">{{ _('See how Private Browsing works') }}</a>
+        <a rel="external" href="https://www.youtube.com/watch?v=Ewk0YtFTBec&amp;list=PLA8ABF6B7A66A0C5E&amp;index=15">
+          {% if l10n_has_tag('android_spring_updates') %}
+            {{ _('Learn how to open a private window') }}
+          {% else %}
+            {{ _('See how Private Browsing works') }}
+          {% endif %}
+        </a>
       </li>
       <li id="clear-history">
         <h3>{{ _('Clear history') }}</h3>
@@ -310,7 +347,13 @@
         {% endtrans %}
         </p>
 
-        <a rel="external" href="https://www.youtube.com/watch?v=u6Ww0udnVA0&amp;index=16&amp;list=PLA8ABF6B7A66A0C5E">{{ _('See how Guest Browsing works') }}</a>
+        <a rel="external" href="https://www.youtube.com/watch?v=u6Ww0udnVA0&amp;index=16&amp;list=PLA8ABF6B7A66A0C5E">
+          {% if l10n_has_tag('android_spring_updates') %}
+            {{ _('Learn how to share your browser') }}
+          {% else %}
+            {{ _('See how Guest Browsing works') }}
+          {% endif %}
+        </a>
       </li>
     </ul>
   </div>{# /.container #}
@@ -334,20 +377,26 @@
   </div>{# /.container #}
 </section>
 
+{% if has_widget %}
+  <div id="send-to-modal-container">
+    {{ send_to_device(platform='android', include_logo=True) }}
+  </div>
+{% endif %}
+
 {% endblock %}
 
 {% block email_form %}
   <div id="subscribe-download-wrapper" class="ga-section" data-ga-label="Get Firefox news">
     <div class="container">
-      <div id="download-wrapper" class="dl-button-wrapper">
+      <div id="download-wrapper" class="dl-button-wrapper {% if has_widget %}show-widget{% endif %}">
         {{ high_res_img('img/firefox/android/firefox-logo-footer.png', { 'id': 'footer-logo' }) }}
 
         <div id="download-content">
           <h3>{{ _('Choose Firefox') }}</h3>
-          <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="button download click" data-download-version="Firefox for Android">
-            {{ _('Download on Google Play') }}
+          <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="button download click" data-download-version="Firefox for Android" data-alt="{{ _('Get Firefox for Android') }}">
+            {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
           </a>
-
+          <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for Android') }}</button>
           <ul>
             <li>
               <a rel="external" href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported devices') }}</a>

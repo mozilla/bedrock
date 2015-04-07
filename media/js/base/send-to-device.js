@@ -185,7 +185,7 @@ if (typeof Mozilla === 'undefined') {
         // if we know the user has not been prompted to enter an SMS number,
         // perform some basic email validation before submitting the form.
         if (!this.smsEnabled && !this.checkEmailValidity(this.$input.val())) {
-            this.onFormError('email');
+            this.onFormError(['email']);
             return;
         }
 
@@ -210,6 +210,14 @@ if (typeof Mozilla === 'undefined') {
         this.$formHeading.addClass('hidden');
         this.$thankyou.removeClass('hidden');
         this.enableForm();
+
+        // track signup type in GA
+        var isEmail = this.checkEmailValidity(this.$input.val());
+
+        window.dataLayer.push({
+            'event': 'send-to-device-success',
+            'input': isEmail ? 'email-address' : 'phone-number'
+        });
     };
 
     SendToDevice.prototype.onFormError = function(errors) {

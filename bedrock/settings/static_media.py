@@ -180,6 +180,8 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/family-nav.less',
+            'css/base/mozid-modal.less',
+            'css/base/send-to-device.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/android.less',
         ),
@@ -1042,6 +1044,8 @@ PIPELINE_JS = {
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/firefox/family-nav.js',
             'js/firefox/sync-animation.js',
+            'js/base/mozilla-modal.js',
+            'js/base/send-to-device.js',
             'js/firefox/android.js',
         ),
         'output_filename': 'js/firefox_android-bundle.js',
