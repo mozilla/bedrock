@@ -721,7 +721,7 @@ PIPELINE_CSS = {
     'firefox_sync_old': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
-            'css/firefox/menu-resp.less',
+            'css/firefox/family-nav.less',
             'css/firefox/sync-old.less',
         ),
         'output_filename': 'css/firefox_sync_old-bundle.css',
@@ -1477,6 +1477,9 @@ PIPELINE_JS = {
     },
     'firefox_sync_old': {
         'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/sync-animation.js',
             'js/firefox/sync-old.js',
         ),
