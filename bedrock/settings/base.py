@@ -1351,6 +1351,7 @@ PIPELINE_JS = {
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/base/global-init.js',
+            'js/base/search-params.js',
             'js/newsletter/form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
