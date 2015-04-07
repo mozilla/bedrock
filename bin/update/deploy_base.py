@@ -60,6 +60,12 @@ def management_cmd(ctx, cmd, use_src_dir=False):
         ctx.local('LANG=en_US.UTF-8 {0} manage.py {1}'.format(PYTHON, cmd))
 
 
+def peep_install_cmd(req_file):
+    """Return the command for installing a requirements file."""
+    return ('{0} bin/peep.py install -r requirements/{1}.txt '
+            '--no-use-wheel'.format(PYTHON, req_file))
+
+
 @task
 def reload_crond(ctx):
     """Restart cron daemon."""
@@ -72,8 +78,8 @@ def update_code(ctx, tag):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("git fetch --all")
         ctx.local("git checkout -f %s" % tag)
-        ctx.local("git submodule sync")
-        ctx.local("git submodule update --init --recursive")
+        ctx.local(peep_install_cmd('prod'))
+        ctx.local(peep_install_cmd('compiled'))
         ctx.local("find . -name '*.pyc' -delete")
 
 

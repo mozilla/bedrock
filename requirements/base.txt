@@ -1,0 +1,178 @@
+# sha256: byzISLK3Kt9TpvPyG-BJxHfoLECLznzttX7-sJhL3iQ
+Django==1.6.11
+
+# sha256: 4h6LijS01EbJtWCQ4yh847Y9GuHPbe8ejb-Ij0DkbMw
+django-pipeline==1.4.7
+
+# sha256: QZSbCQMWEXmRNuAZFouE617Ymcjk5pIRfS04UEZZ_RY
+icalendar==3.8.3
+
+# sha256: dEJWIK08Kh8FFR8MyFGrfiYYbaOfsDma_Aqo7uu9IBs
+django-waffle==0.10.1
+
+# sha256: xuo7xc6G8xnNOP8XC-2vWAvRtHVcDqEHTMSwCyBUu1s
+jingo-markdown==1.3
+
+# sha256: YW-TRcQTQ853Y3AFRqO-nGPI-KQKobUlA6LWTIvx3us
+django-statsd-mozilla==0.3.14
+
+# sha256: eI_6Kd-3VJAOCLkIgffqFsPCXKKUlUjup7Q9LKc54z8
+statsd==3.1
+
+# sha256: w2yTiocuX_SUk4szsUqqFWy0OexnVI_Ks1Nbt4sIRug
+PyYAML==3.11
+
+# sha256: n9IrNUpMR1WtjH0WHZP1AmrKTP6Zm9LlMWjxR2XALNY
+futures==2.2.0
+
+# sha256: G1VbiogAE0_a_jK30MtS9b2_3Qk3B8PdSExepZ8dmLc
+ipaddr==2.1.11
+
+# sha256: Vt7B6U0vrRPZAJoUC4FoCAhqed337fnrSTHIT2WrsSo
+pytz==2014.7
+
+# sha256: RXPZHsnm2Ixr4d_gBOozfUd1TtOSS0wYH3d8YTRlV4s
+chardet==1.0.1
+
+# sha256: ZrvGLZUZ-dUxsfd-aH2fL15SHLkG8f1yMfQDmX4BEMQ
+python-memcached==1.48
+
+# sha256: orKb0EjKL-VKBGspdwlkc4hyqXRwA6NxNEqT7t961Y4
+beautifulsoup4==4.3.2
+
+# sha256: Ruz191JqCMwfi8gjKt8M_84Eb0bO_5VTna7ELrxISe8
+certifi==0.0.8
+
+# sha256: SjoIXs8fzSc2VzU4_6EU8fQzGzu73Wk4Hm4XLEnJdQ8
+Babel==0.9.6
+
+# sha256: u7c2WkL5XjKULmokZX56dgyb5mDvZB2szsn6gzb66mk
+django-recaptcha==1.0.3
+
+# sha256: 2ZQmvkb9kv5rZLn1xZJuqYWTlOROw--eH3xkfTomZX8
+django-picklefield==0.3.1
+
+# sha256: KuY89HXwvQSbci-sIIE9Yq7cFJV91aO_ANEg0rVARGA
+python-dateutil==2.4.2
+
+# sha256: QYqTw5en7asj5ViNvAZ6x0pyPts9VBvUk295R252Rdo
+six==1.9.0
+
+# sha256: zDw_3qAwgTFur-9mCWjpgeBBi20qlgago_6FA2NDhsg
+jingo-minify==0.5
+
+# sha256: LRy1WDkWc99RCaP-XoT95hYO3IskGz6xmrPTq-m43zE
+cef==0.5
+
+# sha256: RORjnsBXprap3duGnU46SBj8knjsSQzOOa7whEBZKpM
+django-session-csrf==0.5
+
+# sha256: Pk2AGZlglZuCiVGqJMv6o2zr7RSdzXKMEehVeYsV-HA
+whitenoise==1.0.6
+
+# sha256: 02C9MYmPnfWfb6p4ZVEGW7pFs15-48ObOBtPv-9zkvQ
+South==1.0.2
+
+# django-rest-framework: master
+# sha256: gfmft9XJ7xdSYzkyvCuqYGZra3-4SDg1SzpsFy5SMJU
+https://github.com/tomchristie/django-rest-framework/archive/6e92e415aa7dd6871ef7d6500a85cacebde8dca2.tar.gz#egg=djangorestframework
+
+# html5lib: master
+# sha256: M0ZwRFnRCzd-i2XC0dxRmdHXh5iBxnSr0s8vBvtieC8
+https://github.com/html5lib/html5lib-python/archive/3b3c1031b3dadf5369af83253fff2a2e6aa42dfd.tar.gz#egg=html5lib
+
+# django-filter: tags/v0.8^2~16
+# sha256: GFyJ_JtlbAEGWUUnhenod0nPSxdUSXnThRTdUx9jG6s
+https://github.com/alex/django-filter/archive/e58e15ebf27e90cc0d47b7e58a2181e9150c49ab.tar.gz#egg=django-filter
+
+# feedparser: master~44
+# sha256: cKBTW8klKgHwYnE6-ABliiHu405UdLKCPqcG7aIiom8
+https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1844bcb43.tar.gz#egg=feedparser
+
+# rna: remotes/origin/rm-authtoken
+# sha256: Gqr31NCxxFle8Y3gEVv9y8jVgpoWDNpARbKLymhcqCo
+https://github.com/mozilla/rna/archive/47771c3aed24ff2c284b7fee83fe7dbc2cbb6b6a.tar.gz#egg=rna
+
+# tweepy: remotes/origin/fixes~1
+# sha256: qbdyjZS-66Yk-uS-N4VCoiLPHFz4RbkWupqLP4-eRVk
+https://github.com/tweepy/tweepy/archive/3941489457db86710b770bc120409d6947904afa.tar.gz#egg=tweepy
+
+# Python-Markdown: master
+# sha256: N2BBZyiBsBYZ3q-hcpYLTgRxITyuAH-9QD8ISLUHPXU
+https://github.com/waylan/Python-Markdown/archive/d7fa7931bec55eec5498cd79882b770d1110b9b7.tar.gz#egg=Markdown
+
+# django-extensions: tags/1.4.9
+# sha256: n2ZARMQgCSk__PvX3adbyN4rJy62ZuJMtSaMu_q59b8
+https://github.com/django-extensions/django-extensions/archive/ee12d9188d0ed9bace79fddc33d584146422a831.tar.gz#egg=django-extensions
+
+# bleach: master
+# sha256: 8O7xk9eTfMmT-KBKHfOfrHHQu6_2E75nvLpXvzW4iTY
+https://github.com/jsocol/bleach/archive/f9fc1c5e70463d5ca91efaa6f19f82d56ff346d8.tar.gz#egg=bleach
+
+# mdx_outline: master
+# sha256: B_6gVsT4XUCThW2P3wis6fzEbhg6BHufR1jp1-9k-g8
+https://github.com/aleray/mdx_outline/archive/41e22622a17a0d8e410bd921698ec767213a6305.tar.gz#egg=mdx_outline
+
+# django-dnt: master
+# sha256: J_bW66_BBkRriF-3naZerGa8c5wu97X_C5cjTqcDDjM
+https://github.com/mozilla/django-dnt/archive/269289b1ccd5e31b313ba669f59d4cab3bf466ce.tar.gz#egg=django-dnt
+
+# django-pagedown: tags/v0.1~23
+# sha256: Pnv69UpWCImDgQTBANizeTAwYkPYkTlCxGdc_MVLzMc
+https://github.com/timmyomahony/django-pagedown/archive/78556863faa5654f749c5562b390317c6cad10b3.tar.gz#egg=django-pagedown
+
+# basket-client: master
+# sha256: L5EMxH-YT81MixhPCTse0RMoSBC7wTaz_cl5Gg_u2lY
+https://github.com/mozilla/basket-client/archive/3ed2f4e16052a7a375cc28f2e195c7270dfc25c3.tar.gz#egg=basket-client
+
+# requests: remotes/origin/HEAD
+# sha256: oACosSbCnC4k0NAis97Nrf1oFBDG5-wWHBypx3T82V8
+https://github.com/kennethreitz/requests/archive/46d646064ca0836a7d7b4d50ea2c762d12ff8ce1.tar.gz#egg=requests
+
+###### FROM PLAYDOH-LIB ######
+
+# django-sha2: master~1
+# sha256: TBUJueJfjaBHp4GeUtY0o_IaGHk4DOUf0ZbJZ4YXPPM
+https://github.com/fwenzel/django-sha2/archive/3ba2b4771056fb722bc9fe52cf26918a3f0388bb.tar.gz#egg=django-sha2
+
+# django-mobility: master
+# sha256: vWKlBersFicnz_K9LUwnYlm1HhXt9bgxvWKB915vfog
+https://github.com/jbalogh/django-mobility/archive/e2b60a1f96e4c4aed736395c01bf707e969d8e83.tar.gz#egg=django-mobility
+
+# django-product-details: master
+# sha256: tLy18AIevr3_Rd7saf4cKuq_W1M3zpKFVOLBmggiCck
+https://github.com/mozilla/django-product-details/archive/d168ab2e689a1b54a30a923386fe7948a74ff334.tar.gz#egg=django-mozilla-product-details
+
+# django-appconf: develop~28
+# sha256: PoDkmCCdclPizBpPmwLn2oGReakQySddW8Iy3kjmfDM
+https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79e0f1b222c.tar.gz#egg=django-appconf
+
+# django-multidb-router: tags/v0.5.1~4
+# sha256: I0E4DVGgHJ6DNZiKaPGiZ1s59QAG7iRC9GP_sTDG_Vg
+https://github.com/jbalogh/django-multidb-router/archive/4f78662026b21cfff1ecfddc487fa0f0c31a0215.tar.gz#egg=django-multidb-router
+
+# funfactory: tags/2.3.0~2
+# sha256: WZK7DOHqxxCVXMeEXbN4GqjK7Nc7zRFW-83LKRO2PA4
+https://github.com/mozilla/funfactory/archive/0caf8b6cb3d583301192651b4fc20df20dd82f00.tar.gz#egg=funfactory
+
+# commonware: tags/v0.4.2
+# sha256: k9gjEUXUPKAuHsPO41UzOvqOcq25z4FXZ-F1lXSXdNQ
+https://github.com/jsocol/commonware/archive/b5544185b2d24adc1eb512735990752400ce9cbd.tar.gz#egg=commonware
+
+# jingo: remotes/origin/unpin-tox~1
+# sha256: Orqipd_IL9e7ZWjQsG0DDHclCBmuCITl4Iv0kQAlnxE
+https://github.com/jbalogh/jingo/archive/5e985a5c16e343a30482cc526127a856b1cb45ed.tar.gz#egg=jingo
+
+# tower: tags/v0.4.0~3
+# sha256: cDfV-k9SVqAeb5MBwQ9DUsMZk_f6aImtmya8kLELB_4
+https://github.com/clouserw/tower/archive/6112ea0749bf523eb87ebc6ead90c1757fb60113.tar.gz#egg=tower
+
+# django-cronjobs: tags/v0.2.3
+# sha256: lVao25u2Xj98ofZHQZPM_szNLaqxhWljy7ugRNt4_ug
+https://github.com/jsocol/django-cronjobs/archive/cfda8176c5c3a50d1b58fcf57e87e23c467789bd.tar.gz#egg=django-cronjobs
+
+# nuggets: master~9
+# sha256: eeq_z415NQPBF3j59fmy6JGjtnpDgVQxwwvFKxnDQx0
+https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets
+
+

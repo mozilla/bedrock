@@ -3,10 +3,9 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
+from collections import OrderedDict
 
 from django.utils.functional import cached_property
-
-from ordereddict import OrderedDict
 
 from bedrock.externalfiles import ExternalFile
 
