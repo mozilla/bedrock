@@ -60,9 +60,6 @@ if (typeof window.Mozilla === 'undefined') {
         // top level nav <li> elements (for handling hover)
         var $primaryLis = $('#fxfamilynavV2-primary > li');
 
-        // just the <a> tags in the top level nav
-        var $primaryLinks = $fxFamilyNav.find('.primary-link');
-
         // reference the currently active primary <li>
         var $activePrimaryLi;
 
@@ -116,18 +113,9 @@ if (typeof window.Mozilla === 'undefined') {
         var _enableDesktop = function() {
             // hide '.active' primary <li> when hovering/focusing other sibling <li>'s
             $primaryLis.on('mouseenter', function() {
-                $primaryLinks.blur();
                 $activePrimaryLi.removeClass('active');
             }).on('mouseleave', function() {
                 $activePrimaryLi.addClass('active');
-            });
-
-            $primaryLinks.on('focus', function() {
-                $activePrimaryLi.removeClass('active');
-            }).on('blur', function() {
-                $activePrimaryLi.addClass('active');
-            }).on('click', function(e) {
-                e.preventDefault();
             });
 
             // toggle tertiary nav visibility
@@ -171,7 +159,6 @@ if (typeof window.Mozilla === 'undefined') {
             $tertiaryNavContainer.removeClass('active');
 
             $primaryLis.off();
-            $primaryLinks.off();
             $tertiaryNavTrigger.off();
             $tertiaryNavContainer.off();
             $fxFamilyHeader.off();
@@ -222,8 +209,8 @@ if (typeof window.Mozilla === 'undefined') {
             currentNavId = config.primaryId;
 
             // select primary nav (always)
-            $('a[data-id="' + config.primaryId + '"]').addClass('selected').closest('li').addClass('active');
-            $activePrimaryLi = $('a[data-id="' + config.primaryId + '"]').closest('li');
+            $('span[data-id="' + config.primaryId + '"]').addClass('selected').closest('li').addClass('active');
+            $activePrimaryLi = $('span[data-id="' + config.primaryId + '"]').closest('li');
 
             // if subsubnav id was sent, select it
             if (config.subSubId) {
@@ -389,14 +376,34 @@ if (typeof window.Mozilla === 'undefined') {
                 // if tabbing to a link, then mousing over another, must blur tabbed to link
                 // to prevent text overlap
                 $primaryLinks.blur();
+
+                // hide the default active subnav
                 $activePrimaryLi.removeClass('active');
+
+                // show the hovered over subnav
+                $(this).find('.subnav').addClass('active');
             }).on('mouseleave', function() {
+                // hide any focus/hover activated subnavs
+                $subNavs.removeClass('active');
+
+                // show the default subnav
                 $activePrimaryLi.addClass('active');
             });
 
             $primaryLinks.on('focus', function() {
+                // hide any focus/hover activated subnavs
+                $subNavs.removeClass('active');
+
+                // hide the default subnav
                 $activePrimaryLi.removeClass('active');
+
+                // show the related subnav
+                $(this).siblings('.subnav:first').addClass('active');
             }).on('blur', function() {
+                // hide any focus/hover activated subnavs
+                $subNavs.removeClass('active');
+
+                // show the default active subnav
                 $activePrimaryLi.addClass('active');
             });
 
