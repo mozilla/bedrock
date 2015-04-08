@@ -3,7 +3,12 @@ import sys
 
 from django.conf import settings
 
-import MySQLdb
+try:
+    import MySQLdb
+except ImportError:
+    # not everyone needs the mysql lib, but this function needs it.
+    # we'll pass here and fail later so tests can work.
+    MySQLdb = None
 
 from bedrock.mozorg.models import ContributorActivity
 

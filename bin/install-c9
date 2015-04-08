@@ -3,8 +3,9 @@ cd $(readlink --canonicalize --no-newline ${0%/*})/..
 git submodule update --init --recursive
 sudo apt-get update
 sudo apt-get install -y libmysqlclient-dev libxml2-dev libxslt1-dev python-dev
-sudo pip install -r requirements/dev.txt
-sudo pip uninstall -y django  # included as submodule, we do not want the one installed by django-nose requirements
+sudo python bin/peep.py install -r requirements/dev.txt --no-use-wheel
+# mysql in the prod requirements
+sudo python bin/peep.py install -r requirements/prod.txt --no-use-wheel
 sudo pip install ipython # highly recommended, but not required so not in requirements/dev.txt
 # default npm install -g destination in c9 is in /home/ubuntu/.nvm/v0.10.28/
 npm install -g less

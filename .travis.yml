@@ -23,7 +23,8 @@ script: coverage run manage.py test
 before_install:
   - git submodule update --init --recursive
 install:
-  - pip install -r requirements/dev.txt
+  - python bin/peep.py install -r requirements/dev.txt --no-use-wheel
+  - python bin/peep.py install -r requirements/prod.txt --no-use-wheel
 after_success:
   - pip install coveralls
   - coveralls

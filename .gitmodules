@@ -1,3 +1,3 @@
 [submodule "vendor-local/src/legal-docs"]
 	path = vendor-local/src/legal-docs
-	url = git://github.com/mozilla/legal-docs.git
+	url = https://github.com/mozilla/legal-docs.git

@@ -7,6 +7,7 @@
 Sphinx==1.0.7
 
 # sha256: CjoiZeHvsN76ci0fQpcw3J35da3DxgrH0rQyvfA8BB0
+# sha256: cyCRkITm2sj0VAY4pGRHo71zD8oXKvwX0sA-7SLPT1E
 Pygments==2.0.2
 
 # sha256: x9txeBCraWX2bIzwOYqYydjfmC2jm0zX8WKRHriVlvo
@@ -18,12 +19,15 @@ docutils==0.12
 flake8==2.0
 
 # sha256: ic9r9P9kT_i5EuL6fiq7aNV6jn6Rjjk8coQNMNLrzws
+# sha256: PYypv2XFAU9GkYBUTR3Vu1ud9wmq1jBPnC5DcK4Ke3w
 mccabe==0.3
 
 # sha256: SqEp342QB7GSv4IBP0FVM5lGUtfKqTDQAmh-tCpsKkE
+# sha256: uLfjVjC1U54moZffxgBb6eHpoTVJazd3I6jrwBuby_8
 pep8==1.6.2
 
 # sha256: rEVxaVwQzhU2vNuhopS58tPmzJ0OoXG2fVCghkzj4EI
+# sha256: P6gKELNtUWhr93RPXcmWIs1cmM6O1kAi5imGiq_Bd2k
 pyflakes==0.8.1
 
 # sha256: D41ubgIjuPsEEUtKcgk4DhrPJ-Ch3Rq5j-zghafDxSU
