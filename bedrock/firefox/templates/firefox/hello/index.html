@@ -13,6 +13,7 @@
 {% block page_desc %}{{ _('Learn all about Firefox Hello and see for yourself how easy it is to have a free video conversation with anyone, anywhere, right from your browser') }}{% endblock %}
 {% block page_image %}{{ static('img/firefox/hello/hello-share.jpg') }}{% endblock %}
 {% block body_id %}firefox-hello{% endblock %}
+{% block body_class %}rays-light-blue{% endblock %}
 
 {% block site_css %}
   {% stylesheet 'firefox_hello' %}
@@ -146,26 +147,48 @@ set share_urls = {
           <p>
             {{ _('If you have the latest version of Firefox, you already have Hello.') }}
             {{ _('There’s no account or sign-in required and nothing extra to download.') }}
-            {{ _('Just start a conversation, send your friend a link and ask them to click it.') }}
-            {{ _('Simple.') }}
+            {% if l10n_has_tag('hello_screen_sharing') and waffle.switch('hello-screen-sharing') %}
+              {{ _('Just send a conversation link to a friend and ask them to click it.')}} <a rel="external" href="https://support.mozilla.org/kb/which-browsers-will-work-firefox-hello-video-chat">{{ _('See which browsers are compatible with Firefox Hello')}}</a>
+            {% else %}
+              {{ _('Just start a conversation, send your friend a link and ask them to click it.') }}
+              {{ _('Simple.') }}
+            {% endif %}
           </p>
         </li>
-        <li id="feature-invite">
-          <h3 class="heading-tertiary">{{ _('Invite anyone, anywhere') }}</h3>
+        {% if l10n_has_tag('hello_screen_sharing') and waffle.switch('hello-screen-sharing') %}
+          <li id="feature-screenshare">
+            <h3 class="heading-tertiary">{{ _('Share and share alike') }}</h3>
 
-          <p>
-            {{ _('Hello is super easy to use and your friends and family don’t even need Firefox to join your conversation.') }}
-            {{ _('As long as they have a compatible browser, they’re good to go.') }}
-          </p>
+            <p>
+              {{ _('Want to show off some new baby pictures?') }}
+              {{ _('Share travel options over the Web?') }}
+              {{ _('Check in on a project from half a world away?') }}
+              {{ _('Screen sharing on Firefox Hello makes it all possible.') }}
+              {{ _('Try it out in your next conversation and share the things that matter most.') }}
+            </p>
+          </li>
+        {% else %}
+          <li id="feature-invite">
+            <h3 class="heading-tertiary">{{ _('Invite anyone, anywhere') }}</h3>
 
-          <a rel="external" href="https://support.mozilla.org/kb/which-browsers-will-work-firefox-hello-video-chat">{{ _('Learn more about compatible browsers') }}</a>
-        </li>
+            <p>
+              {{ _('Hello is super easy to use and your friends and family don’t even need Firefox to join your conversation.') }}
+              {{ _('As long as they have a compatible browser, they’re good to go.') }}
+            </p>
+
+            <a rel="external" href="https://support.mozilla.org/kb/which-browsers-will-work-firefox-hello-video-chat">{{ _('Learn more about compatible browsers') }}</a>
+          </li>
+        {% endif %}
         <li id="feature-secure">
           <h3 class="heading-tertiary">{{ _('Safe, secure, protected') }}</h3>
 
           <p>
             {{ _('Because Hello is built right into Firefox, you can rest easy knowing that your conversations and information will remain private and secure.') }}
-            {{ _('That’s part of our mission, and it’s behind everything we do around here.') }}
+            {% if l10n_has_tag('hello_screen_sharing') and waffle.switch('hello-screen-sharing') %}
+              {{ _('And thanks to WebRTC-grade encryption, you’ll enjoy an added level of security.')}} <a class="more" href="#">{{ _('Learn more about WebRTC encryption')}}</a>
+            {% else %}
+              {{ _('That’s part of our mission, and it’s behind everything we do around here.') }}
+            {% endif %}
           </p>
         </li>
         <li id="feature-account">

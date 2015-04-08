@@ -16,7 +16,7 @@ $(document).ready(function() {
     pager.$container.bind('changePage', function(e, tab) {
         if (pager.currentPage.id == 'developer') {
             $('body').removeClass('sky').addClass('blueprint');
-            $logo.attr('src', $logo.attr('data-inverse-src'));
+            $logo.attr('src', logoOriginalSrc.replace('header-logo', 'header-logo-inverse'));
         } else {
             $('body').removeClass('blueprint').addClass('sky');
             $logo.attr('src', logoOriginalSrc);
@@ -41,7 +41,7 @@ $(document).ready(function() {
     // init
     if (pager.currentPage.id == 'developer') {
         $('body').removeClass('sky').addClass('blueprint');
-        $logo.attr('src', $logo.attr('data-inverse-src'));
+        $logo.attr('src', logoOriginalSrc.replace('header-logo', 'header-logo-inverse'));
     } else {
         $('body').removeClass('blueprint').addClass('sky');
         $logo.attr('src', logoOriginalSrc);

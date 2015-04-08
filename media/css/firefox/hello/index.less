@@ -4,31 +4,12 @@
 
 @import "../../sandstone/lib.less";
 
-.grainy-sky() {
-    background: #cae1f4;
-    background: url(/media/img/sandstone/grain.png) repeat,
-                    -webkit-linear-gradient(top, #cae1f4, #d9e1e7),
-                    #cae1f4;
-    background: url(/media/img/sandstone/grain.png) repeat,
-                    linear-gradient(to bottom, #cae1f4, #d9e1e7),
-                    #cae1f4;
-}
-
-.grainy-sky-solid() {
-    background: url(/media/img/sandstone/grain.png) repeat #cae1f4;
-}
-
 // Base template overrides
-
-.sky #outer-wrapper {
-    background: #fff;
-}
 
 #wrapper {
     width: 100%;
     margin-top: -162px; // family nav
     padding-bottom: 0;
-    .grainy-sky-solid();
 }
 
 #masthead {
@@ -103,7 +84,6 @@ main {
 // Intro
 
 #intro {
-    .grainy-sky();
     padding: 210px 0 @baseLine * 2;
 
     .heading-primary,
@@ -115,14 +95,15 @@ main {
 
     .try-hello {
         width: 220px;
-        border: 2px solid #a9bcca;
-        background: transparent;
-        color: #00a0db;
+        border: none;
+        background: #0c99d5;
+        color: #fff;
         margin: (@baseLine * 1.5) auto 0;
 
-        &:hover {
-            background: #fff;
-            background: rgba(255, 255, 255, 0.3);
+        &:active,
+        &:hover,
+        &:focus {
+            background: #2165a9;
         }
 
         &.active {
@@ -141,18 +122,15 @@ main {
 }
 
 #powered-by {
-    .font-size(@smallFontSize);
+    .font-size(@baseFontSize);
+    font-style: italic;
+    color: #85949e;
     text-align: center;
     margin-top: @baseLine * 1.5;
 
     img {
         vertical-align: middle;
     }
-}
-
-html[lang^="en"] #powered-by {
-    text-transform: uppercase;
-    .font-size(10px);
 }
 
 // Animation
@@ -1116,25 +1094,26 @@ html[lang^="en"] #powered-by {
 
     p {
         color: #85949f;
+        .open-sans-light;
+        margin-top: @baseLine;
     }
 
     .heading-tertiary {
         color: #5c5e64;
     }
 
+    ul {
+        text-align: center;
+    }
+
     li {
-        float: left;
+        display: inline-table;
         // each icon in sprite is at left edge of 460px wide area
         background: url(/media/img/firefox/hello/sprite-features.png) left top no-repeat;
         list-style-type: none;
         margin: 0 0 (@baseLine * 3) 0;
         width: 460px - (@baseLine * 4);
         padding: 144px (@baseLine * 2) 0;
-        text-align: center;
-
-        &:nth-child(odd) {
-            margin-right: @baseLine;
-        }
     }
 
     #feature-simple {
@@ -1151,11 +1130,26 @@ html[lang^="en"] #powered-by {
 
     #feature-account,
     #feature-getfx {
-        background-position: -1210px top
+        background-position: -1210px top;
     }
 
     #feature-getfx {
         display: none;
+    }
+
+    #feature-screenshare {
+        background-position: -1670px top;
+    }
+
+    a:link,
+    a:active {
+        color: #0c99d5;
+    }
+
+    a:active,
+    a:hover,
+    a:focus {
+        color: #2165a9;
     }
 }
 
@@ -1186,11 +1180,15 @@ html[lang^="en"] #powered-by {
     .try-hello {
         width: 280px;
         border: none;
-        background: @buttonGreen;
+        border: 2px solid #fff;
+        background: #0c99d5;
         color: #fff;
 
-        &:hover {
-            background: darken(@buttonGreen, 2%);
+        &:active,
+        &:hover,
+        &:focus {
+            color: #fff;
+            background: #2165a9;
         }
 
         &:after {
@@ -1218,7 +1216,6 @@ html[lang^="en"] #powered-by {
 // Video
 
 #video {
-    .grainy-sky();
     .clearfix();
     padding: 90px 0;
 
@@ -1226,7 +1223,22 @@ html[lang^="en"] #powered-by {
         float: left;
         width: 380px;
         padding-left: @baseLine * 4;
-        margin-right: @baseLine;
+        margin-right: @baseLine * 2;
+
+        p {
+            .open-sans-light;
+        }
+
+        a:link,
+        a:active {
+            color: #0c99d5;
+        }
+
+        a:active,
+        a:hover,
+        a:focus {
+            color: #2165a9;
+        }
     }
 
     .cta-wrapper {
@@ -1290,7 +1302,7 @@ html[lang^="en"] #powered-by {
 
     #features li {
         background-image: url(/media/img/firefox/hello/sprite-features-high-res.png);
-        .background-size(1840px, 120px);
+        .background-size(2300px, 120px);
     }
 
     // (seems to) remove scaling artifact by changing the scale by .001
@@ -1372,6 +1384,10 @@ html[lang^="en"] #powered-by {
         #feature-account,
         #feature-getfx {
             background-position: -1265px top
+        }
+
+        #feature-screenshare {
+            background-position: -1725px top;
         }
     }
 
@@ -1731,7 +1747,6 @@ html[lang^="en"] #powered-by {
 
     #features {
         li {
-            float: none;
             display: block;
             width: auto;
             margin: 0 auto (@baseLine * 2) auto;
@@ -1758,6 +1773,10 @@ html[lang^="en"] #powered-by {
         #feature-account,
         #feature-getfx {
             background-position: -1220px top
+        }
+
+        #feature-screenshare {
+            background-position: -1680px top;
         }
     }
 
@@ -1889,6 +1908,10 @@ html[lang^="en"] #powered-by {
         #feature-account,
         #feature-getfx {
             background-position: -1290px top
+        }
+
+        #feature-screenshare {
+            background-position: -1750px top;
         }
     }
 
