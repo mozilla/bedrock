@@ -236,7 +236,6 @@ html[dir="rtl"] {
 }
 #old_browser,
 #modern_browsers,
-#exploder,
 #sec-plugin-vulnerable,
 #sec-plugin-outdated,
 #sec-plugin-unknown,
@@ -245,6 +244,47 @@ html[dir="rtl"] {
 }
 .footer-newsletter-form {
     padding: 40px 20px;
+}
+.warning {
+    .offset(2);
+    clear: both;
+    display: inline-block;
+    margin-bottom: @baseLine;
+    padding: 0 35px;
+    font-style: italic;
+    text-align: center;
+    .font-size(18px);
+}
+// assume Fx users by default and hide nonFx user info.
+// assume js is enabled
+.not-supported,
+.enable-js {
+    display: none;
+}
+// Styles to show information for nonFx users
+.non-fx {
+    main,
+    .pluginfaq-container {
+        display: none;
+    }
+    .not-supported {
+        display: block;
+        #main-feature {
+            padding-bottom: 28px;
+        }
+        section {
+            background-color: #fff;
+            margin-bottom: @baseLine;
+            padding: @baseLine;
+            text-align: center;
+        }
+    }
+}
+// no-js styles
+.no-js {
+    .enable-js {
+        display: block;
+    }
 }
 
 /* Tablet Layout: 760px */

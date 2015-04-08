@@ -78,7 +78,6 @@
 {% block content %}
 <main role="main">
   <header id="main-feature">
-      {{ download_firefox(small=True) }}
       <h1 class="large">{{_('Check Your Plugins')}}</h1>
       <p class="preamble">{{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}</p>
   </header>
@@ -91,13 +90,13 @@
         </div>
       </div>
 
+      <p class="enable-js warning">{{_('Please turn on JavaScript to display this page correctly.')}}</p>
+
       <h2>{{_('Plugin Status')}}</h2>
       <ul>
-        <li id="exploder">{{_('Plugin Check <strong>support for Internet Explorer is limited</strong>. Also use Tools &gt; Manage Addons')}}</li>
         <li>{{_('Step 1: Click Update to update a plugin.')}}</li>
         <li>{{_('Step 2: Complete all recommended updates before restarting your browser.')}}</li>
       </ul>
-      <p id="pfs-status"></p>
 
       <div id="sec-plugin-vulnerable">
         <table class="table status">
@@ -239,11 +238,23 @@
     </div>
     <p><a href="#top">{{_('Back to Top')}}</a></p>
 </section>
+
+<!-- dislayed to nonFx users -->
+<div class="not-supported">
+  <header id="main-feature">
+      <h1 class="large">{{_('Check Your Plugins')}}</h1>
+      <p class="preamble">{{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}</p>
+  </header>
+
+  <section>
+    {% if l10n_has_tag('plugincheck_nosupport') %}
+      <p>{{_('Currently the plugin check service is only available to Firefox users.')}}</p>
+    {% endif %}
+    {{ download_firefox(small=True) }}
+  </section>
+</div>
 {% endblock %}
 
 {% block js %}
-  {# Bug 1132289 temp fix for plugincheck.min.js breaking on re-minification #}
-  {# We can add this back to the bundle once we have the un-minified source in bedrock #}
-  <script type="text/javascript" src="{{ static('js/plugincheck/plugincheck.min.js') }}" charset="utf8"></script>
   {% javascript 'plugincheck' %}
 {% endblock %}
