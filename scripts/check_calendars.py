@@ -22,7 +22,7 @@ def check_if_correct_parse(ics_file):
         fh.close()
 
 
-if __name__ == '__main__':
+def run(*args):
     calendars_dir = os.path.join('media','caldata')
     ics_files = map(lambda x: os.path.join(calendars_dir, x), 
                     filter(get_ics, os.listdir(calendars_dir)))
