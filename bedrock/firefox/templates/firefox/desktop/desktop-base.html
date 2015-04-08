@@ -21,7 +21,7 @@
 
       <div id="masthead-logo-nav">
       {% block site_header_logo %}
-        <a id="site-header-logo" href="{{ url('firefox.desktop.index') }}"><img src="{{ static('img/firefox/desktop/firefox-header.png') }}" alt="Firefox"></a>
+        <a id="site-header-logo" href="{{ url('firefox.desktop.index') }}">{{ high_res_img('img/firefox/desktop/firefox-header.png', {'alt': 'Firefox', 'width': '132', 'height': '49'}) }}</a>
       {% endblock %}
       {% block site_header_nav %}
         <nav id="nav-main" role="navigation">
