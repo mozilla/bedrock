@@ -236,7 +236,7 @@
                     // track user has clicked "Start a conversation" button
                     gaTrack(['_trackEvent', '/hello/start interactions', 'tour', 'StartConversation-Tour']);
 
-                } if (tourStep === 'invite') {
+                } else if (tourStep === 'invite') {
 
                     showTourStep();
                 } else if (tourStep === 'conversation-waiting') {
