@@ -16,6 +16,12 @@
   {% javascript 'firefox_fx36_firstrun' %}
 {% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-firstrun-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block string_data %}
 data-open="{{ _('Open tour') }}"
 data-close="{{ _('Close tour') }}"
