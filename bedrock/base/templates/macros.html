@@ -653,7 +653,7 @@ set share_urls = {
     <nav id="fxfamilynavV2" class="fxfamilynav" role="navigation">
       <ul id="fxfamilynavV2-primary" class="primarynav">
         <li id="desktops">
-          <a href="#" class="primary-link" data-id="desktops"><div>{{ _('For desktops &amp; laptops') }}</div></a>
+          <span class="primary-link" data-id="desktops"><div>{{ _('For desktops &amp; laptops') }}</div></span>
 
           <ul class="subnav" data-parent="desktops" id="desktops-subnav">
             <li class="hassubsubnav">
@@ -670,7 +670,7 @@ set share_urls = {
           </ul>{#-- /subnav-desktops --#}
         </li>
         <li id="mobiles">
-          <a href="#" class="primary-link" data-id="mobiles"><div>{{ _('For phones &amp; tablets') }}</div></a>
+          <span class="primary-link" data-id="mobiles"><div>{{ _('For phones &amp; tablets') }}</div></span>
 
           <ul class="subnav" data-parent="mobiles" id="mobiles-subnav">
             <li class="hassubsubnav">
@@ -681,7 +681,7 @@ set share_urls = {
               </ul>
             </li>
             <li>
-              <a href="{{ url('firefox.os.index') }}" class="primary-link" data-id="mobiles-os-index"><div>{{ _('Firefox OS') }}</div></a>
+              <a href="{{ url('firefox.os.index') }}" data-id="mobiles-os-index"><div>{{ _('Firefox OS') }}</div></a>
 
               <ul class="subsubnav" id="mobiles-os-subnav">
                 <li><a href="{{ url('firefox.os.devices') }}" data-id="mobiles-os-devices">{{ _('Devices') }}</a></li>

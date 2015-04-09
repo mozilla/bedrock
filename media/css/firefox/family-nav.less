@@ -202,7 +202,8 @@
                 padding-right: 0;
             }
 
-            & > a {
+            & > a,
+            & > .primary-link {
                 display: block;
                 color: #fff;
                 padding: 0 5px;
@@ -237,7 +238,8 @@
     }
 
     .primarynav {
-        a {
+        .primary-link {
+            cursor: pointer; // to account for <span>'s used in V2
             opacity: 0.7;
             height: 67px;
             line-height: 67px;
@@ -627,11 +629,12 @@ html[lang^='en'] .fxfamilynav .subsubnav a {
 .fxfamilynav-header {
     &.dark {
         ul {
-            a.selected {
+            a.selected,
+            .primary-link.selected {
                 border-color: @mozIDBlue;
             }
 
-            &.primarynav a {
+            &.primarynav .primary-link {
                 color: @mozIDBlue;
             }
 
@@ -786,6 +789,31 @@ html[lang^='en'] .fxfamilynav .subsubnav a {
         // V1 shown for all mobiles
         @media (max-width: @breakTablet) {
             display: block;
+        }
+    }
+
+    // remove ability to hover and show subnav
+    // must be done in JS to avoid hover/tab focus text overlap
+    // V1 only - V2 has no top level links to focus
+    #fxfamilynav {
+        .primarynav {
+            li {
+                &:hover,
+                &:focus {
+                    .subnav {
+                        display: none;
+                    }
+                }
+            }
+
+            .primary-link:focus + .subnav {
+                display: none;
+            }
+        }
+
+        .subnav.active {
+            // really sorry, but needs to override display values set directly above
+            display: block !important;
         }
     }
 }
