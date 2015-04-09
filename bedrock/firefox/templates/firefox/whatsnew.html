@@ -17,12 +17,6 @@
 {% endblock %}
 
 {% block content %}
-{% if request.locale.startswith('en') %}
-  {% set mobile_link = url('firefox.android.index') %}
-{% else %}
-  {% set mobile_link = php_url('/mobile/') %}
-{% endif %}
-
 <h1 id="whatsnew-header">{{ _('Hooray! Your Firefox is up to date.') }}</h1>
 
 <article id="main-content" class="billboard">
@@ -43,7 +37,7 @@
 
 {% if request.locale not in locales_with_video.keys() %}
   <div id="promo-android">
-    <a href="{{ mobile_link }}" class="container">
+    <a href="{{ url('firefox.android.index') }}" class="container">
       <img src="{{ static('img/firefox/whatsnew/android-promo.jpg') }}" alt="{{ _('Firefox for Android artwork') }}">
       <div>
         <h3>{{ _('Fast. Smart. Safe.') }}</h3>
