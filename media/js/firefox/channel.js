@@ -5,6 +5,7 @@
 $(document).ready(function() {
     var $logo = $('#masthead h2 img');
     var logoOriginalSrc = $logo.attr('src');
+    var isHighDpi = Mozilla.ImageHelper.isHighDpi();
 
     var pager = Mozilla.Pager.pagers[0];
     var selected_href = false;
@@ -16,7 +17,7 @@ $(document).ready(function() {
     pager.$container.bind('changePage', function(e, tab) {
         if (pager.currentPage.id == 'developer') {
             $('body').removeClass('sky').addClass('blueprint');
-            $logo.attr('src', logoOriginalSrc.replace('header-logo', 'header-logo-inverse'));
+            $logo.attr('src', isHighDpi ? $logo.attr('data-inverse-high-res-src') : $logo.attr('data-inverse-src'));
         } else {
             $('body').removeClass('blueprint').addClass('sky');
             $logo.attr('src', logoOriginalSrc);
@@ -41,7 +42,7 @@ $(document).ready(function() {
     // init
     if (pager.currentPage.id == 'developer') {
         $('body').removeClass('sky').addClass('blueprint');
-        $logo.attr('src', logoOriginalSrc.replace('header-logo', 'header-logo-inverse'));
+        $logo.attr('src', isHighDpi ? $logo.attr('data-inverse-high-res-src') : $logo.attr('data-inverse-src'));
     } else {
         $('body').removeClass('blueprint').addClass('sky');
         $logo.attr('src', logoOriginalSrc);
