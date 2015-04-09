@@ -22,6 +22,7 @@ module.exports = function(config) {
             '../plugincheck/lib/utils.js',
             '../plugincheck/lib/version-compare.js',
             '../plugincheck/lib/plugincheck.js',
+            '../base/send-to-device.js',
             'spec/site.js',
             'spec/global.js',
             'spec/mozilla-form-helper.js',
@@ -34,6 +35,7 @@ module.exports = function(config) {
             'spec/utils.js',
             'spec/version-compare.js',
             'spec/plugincheck.js',
+            'spec/send-to-device.js',
             {
                 pattern: '../../../node_modules/sinon/pkg/sinon.js',
                 watched: false,

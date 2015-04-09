@@ -805,6 +805,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/styleguide-docs-mozilla-pager-bundle.css',
     },
+    'styleguide-docs-send-to-device': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/base/send-to-device.less',
+        ),
+        'output_filename': 'css/styleguide-docs-send-to-device-bundle.css',
+    },
     'tabzilla': {
         'source_filenames': (
             'css/tabzilla/tabzilla.less',
@@ -1564,6 +1571,13 @@ PIPELINE_JS = {
             'js/styleguide/docs/mozilla-pager.js',
         ),
         'output_filename': 'js/styleguide-docs-mozilla-pager-bundle.js',
+    },
+    'styleguide-docs-send-to-device': {
+        'source_filenames': (
+            'js/base/send-to-device.js',
+            'js/styleguide/docs/send-to-device.js',
+        ),
+        'output_filename': 'js/styleguide-docs-send-to-device-bundle.js',
     },
     'video': {
         'source_filenames': (

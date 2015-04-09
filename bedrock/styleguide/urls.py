@@ -100,6 +100,8 @@ if settings.DEV:
                     template='styleguide/docs/mozilla-pager.html'),
             PageNode('Mozilla Accordion JS', path='mozilla-accordion',
                     template='styleguide/docs/mozilla-accordion.html'),
+            PageNode('Send to Device widget', path='send-to-device',
+                    template='styleguide/docs/send-to-device.html'),
         )),
     ))
 

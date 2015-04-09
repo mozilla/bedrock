@@ -1,0 +1,582 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import "../sandstone/lib.less";
+
+#send-to-device {
+    width: 100%;
+    margin: 0 auto;
+    background: #f2f2f2;
+    color: #56565a;
+    text-align: center;
+
+    .form-container {
+        position: relative;
+        width: @widthDesktop - (@gridGutterWidth * 2);
+        padding-top: (@baseLine * 2);
+    }
+
+    h2 {
+        margin: 0 auto;
+        padding: 0 @baseLine (@baseLine * 2);
+        color: #56565a;
+        .font-size(42px);
+        text-shadow: none;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    footer {
+        margin-top: @baseLine;
+        padding: (@baseLine / 2) 0;
+        background: #e1e2e2;
+        border-top: 1px solid #d3d4d4;
+        .clearfix();
+
+        ul {
+            position: relative;
+
+            li {
+                float: left;
+                width: 50%;
+
+                a {
+                    padding: (@baseLine / 2) (@baseLine * 2);
+                    .font-size(@largeFontSize);
+                    line-height: 4;
+                }
+
+                &.app-store {
+                    text-align: right;
+                }
+
+                &.google-play {
+                    text-align: left;
+                }
+
+                &:nth-child(2) a {
+                    border-left: 1px dotted #56565a;
+                }
+            }
+
+            &.ios .google-play {
+                display: none;
+            }
+
+            &.android .app-store {
+                display: none;
+            }
+
+            &.ios,
+            &.android {
+                li {
+                    float: none;
+                    width: 100%;
+                    text-align: center;
+
+                    &:nth-child(2) a {
+                        border-left: none;
+                    }
+                }
+            }
+        }
+    }
+
+    a {
+        color: #0c99d5;
+        .transition(color .1s ease-in-out);
+
+        &:active,
+        &:hover,
+        &:focus {
+            color: darken(#0c99d5, 5%);
+        }
+    }
+
+    &.logo {
+        margin-top: 80px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+
+        .form-container {
+            padding-top: 40px;
+
+            &:before {
+                position: absolute;
+                top: -56px;
+                left: 50%;
+                width: 114px;
+                height: 118px;
+                margin-left: -57px;
+                content: '';
+                .at2x('/media/img/send-to-device/logo.png', 114px, 118px);
+            }
+        }
+
+        &.no-title .form-container {
+            padding-top: 80px;
+        }
+
+        &.title h2 {
+            padding: (@baseLine * 2) @baseLine;
+        }
+
+        footer {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    }
+}
+
+#send-to-device-form {
+    position: relative;
+    padding: 0 @gridGutterWidth;
+
+    .input {
+        margin: 0 auto @baseLine;
+
+        label {
+            display: block;
+            margin-bottom: @baseLine / 2;
+            .font-size(@largeFontSize);
+            text-align: left;
+        }
+
+        .inline-field {
+            position: relative;
+            width: 620px;
+            margin: 0 auto;
+            .clearfix();
+
+            .form-input {
+                float: left;
+                width: 460px;
+            }
+
+            .form-submit {
+                float: right;
+                width: 140px;
+            }
+        }
+
+        input[type="text"] {
+            width: 440px;
+            height: 32px;
+            padding: 5px 10px;
+            line-height: 2;
+            .transition(none);
+            .font-size(@baseFontSize);
+
+            /*
+             * Override CSS input invalid default styling, since the form can be re-submitted
+             * after the browser performs input validation on first submission.
+             */
+            &:-moz-ui-invalid:not(output) {
+                border-color: #D1D2D3;
+                box-shadow: none;
+            }
+
+            &:-moz-ui-invalid:not(output):focus {
+                border-color: #42A4E0;
+                box-shadow: 0px 0px 0px 2px rgba(73, 173, 227, 0.4);
+            }
+        }
+
+        button[type="submit"] {
+            padding: 12px 5px;
+            min-width: 140px;
+            margin-bottom: 0;
+            background-color: #0c99d5;
+            .transition(background-color .1s ease-in-out);
+
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: lighten(#0c99d5, 5%)
+            }
+        }
+
+        ::-moz-placeholder {
+            color: rgba(86, 86, 90, 0.8);
+            .open-sans;
+        }
+
+        ::-webkit-input-placeholder {
+            color: rgba(86, 86, 90, 0.8);
+            .open-sans;
+        }
+
+        :-ms-input-placeholder {
+            color: rgba(86, 86, 90, 0.8);
+            .open-sans;
+        }
+
+        .legal {
+            .font-size(13px);
+            max-width: 38em;
+            margin: (@baseLine * 2) auto;
+            clear: both;
+        }
+    }
+
+    .error-list {
+        margin: @baseLine 0;
+
+        li {
+            background: #c33b32;
+            color: #fff;
+            max-width: 40em;
+            margin: @baseLine auto;
+            padding: .5em;
+            text-align: left;
+            border-radius: 3px;
+        }
+    }
+
+    .email {
+        display: block;
+    }
+
+    .sms {
+        display: none;
+    }
+
+    &.us {
+        .email {
+            display: none;
+        }
+
+        .sms {
+            display: block;
+        }
+    }
+
+    .loading-spinner {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    &.loading {
+        .transition(opacity .2s ease-in-out);
+        opacity: 0.2;
+    }
+
+    .thank-you {
+        margin: 0 0 (@baseLine * 2);
+
+        p {
+            position: relative;
+            padding-top: 92px;
+            .font-size(20px);
+
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                content: '';
+                width: 72px;
+                height: 72px;
+                margin-left: -36px;
+                .at2x('/media/img/send-to-device/device-icon.png', 72px, 72px);
+            }
+        }
+
+        a {
+            .font-size(@largeFontSize);
+        }
+    }
+
+    &.dropdown .input {
+        position: relative;
+        width: 780px;
+
+        .platform-container {
+            float: left;
+            width: 220px;
+            text-align: left;
+
+            select {
+                width: 100%;
+                margin-bottom: @baseLine;
+                .font-size(@largeFontSize);
+                .open-sans-light;
+            }
+        }
+
+        .inline-field {
+            float: right;
+            width: 540px;
+
+            .form-input {
+                width: 380px;
+            }
+
+            .form-submit {
+                float: right;
+                width: 140px;
+            }
+        }
+
+        input[type="text"] {
+            width: 360px;
+        }
+
+        .legal {
+            padding-top: @baseLine;
+        }
+    }
+}
+
+html[dir="rtl"] #send-to-device-form {
+
+    .input  {
+        label {
+            text-align: right;
+        }
+
+        .form-input {
+            float: right;
+        }
+
+        .form-submit {
+            float: left;
+        }
+    }
+
+    &.dropdown .input {
+
+        .platform-container {
+            float: right;
+            text-align: right;
+        }
+
+        .inline-field {
+            float: left;
+
+            .form-submit {
+                float: left;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakDesktop) {
+    #send-to-device {
+        h2 {
+            max-width: 12em;
+        }
+
+        .form-container {
+            width: @widthTablet - (@gridGutterWidth * 2);
+        }
+    }
+
+    #send-to-device-form {
+
+        .input {
+            .inline-field {
+                width: 640px;
+
+                .form-submit {
+                    width: 160px;
+                }
+            }
+
+            button[type="submit"] {
+                min-width: 160px;
+            }
+        }
+
+        &.dropdown .input {
+            width: auto;
+
+            .platform-container {
+                float: none;
+                width: auto;
+                text-align: center;
+
+                label {
+                    text-align: center;
+                }
+
+                select {
+                    width: auto;
+                    min-width: 220px;
+                }
+            }
+
+            .inline-field {
+                float: none;
+                width: 640px;
+
+                .form-input {
+                    width: 460px;
+                }
+
+                .form-submit {
+                    width: 160px;
+                }
+            }
+
+            input[type="text"] {
+                width: 440px;
+            }
+        }
+    }
+
+    html[dir="rtl"] #send-to-device-form.dropdown .input {
+
+        .platform-container {
+            float: none;
+            width: auto;
+            text-align: center;
+
+            label {
+                text-align: center;
+            }
+
+            select {
+                width: auto;
+            }
+        }
+
+        .inline-field {
+            float: none;
+        }
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    #send-to-device {
+
+        h2 {
+            max-width: none;
+        }
+
+        .form-container {
+            width: @widthMobileLandscape - @gridGutterWidth;
+        }
+
+        footer {
+            padding: 0 (@baseLine / 2);
+
+            ul {
+                li {
+                    float: none;
+                    width: 100%;
+
+                    &.app-store,
+                    &.google-play {
+                        text-align: center;
+                    }
+
+                    a {
+                        display: block;
+                        padding: @baseLine;
+                        line-height: 1.5;
+                    }
+
+                    &:nth-child(2) a {
+                        border-left: none;
+                        border-top: 1px dotted #56565a;
+                    }
+                }
+
+                &.android li:nth-child(2) a {
+                    border-top: none;
+                }
+            }
+        }
+    }
+
+    #send-to-device-form {
+
+        .input {
+
+            label {
+                text-align: center;
+            }
+
+            .inline-field {
+                width: auto;
+
+                .form-input {
+                    float: none;
+                    width: auto;
+                }
+
+                .form-submit {
+                    float: none;
+                    width: auto;
+                }
+            }
+
+            input[type="text"] {
+                float: none;
+                .border-box();
+                display: block;
+                width: 100%;
+            }
+
+            button[type="submit"] {
+                display: block;
+                float: none;
+                width: 100%;
+                margin-top: @baseLine;
+            }
+        }
+
+        &.dropdown .input {
+
+            .inline-field {
+                width: auto;
+
+                .form-input {
+                    width: 100%;
+                }
+
+                .form-submit {
+                    width: 100%;
+                }
+            }
+
+            input[type="text"] {
+                width: 100%;
+            }
+        }
+    }
+
+    html[dir="rtl"] #send-to-device-form {
+        .input  {
+            label {
+                text-align: center;
+            }
+            .form-input {
+                float: none;
+            }
+            .form-submit {
+                float: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+    #send-to-device .form-container {
+        width: @widthMobile - @gridGutterWidth;
+    }
+}

@@ -34,3 +34,4 @@ Contents
    newsletters
    tabzilla
    uitour
+   send-to-device
