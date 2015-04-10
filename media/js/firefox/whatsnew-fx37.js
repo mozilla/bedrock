@@ -148,6 +148,7 @@
                     $smsFormHeading.hide();
                     $self.hide();
                     $smsThankYou.show();
+                    gaTrack(['_trackEvent', 'Whatsnew Fx 37', 'submit', 'sms']);
                 } else if (data.error) {
                     $self.find('.error').html(data.error).show();
                 }
