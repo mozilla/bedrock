@@ -708,7 +708,12 @@ FXA_IFRAME_SRC = config('FXA_IFRAME_SRC', default='')
 GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
                             'id=org.mozilla.firefox&referrer=' +
                             urlquote('utm_source=mozilla&utm_medium=Referral&'
-                                        'utm_campaign=mozilla-org'))
+                                     'utm_campaign=mozilla-org'))
+
+# Link to Firefox for iOS on the Apple App Store with Google Analytics
+# campaign patameters
+APPLE_APPSTORE_FIREFOX_LINK = ('https://itunes.apple.com/app/id989804926')
+
 
 # Locales that should display the 'Send to Device' widget
 SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',

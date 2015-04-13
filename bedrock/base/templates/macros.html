@@ -638,7 +638,7 @@ set share_urls = {
 {%- endmacro %}
 
 {% macro send_to_device(platform, include_title=True, title_text='', include_logo=False) %}
-  {% set ios_link = '#' %}
+  {% set ios_link = settings.APPLE_APPSTORE_FIREFOX_LINK %}
   {% set android_link = settings.GOOGLE_PLAY_FIREFOX_LINK %}
   <section id="send-to-device" class="{% if include_logo %}logo {% endif %}{% if include_title %}title{% else %}no-title{% endif %}">
     <div class="form-container">
