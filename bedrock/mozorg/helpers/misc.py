@@ -476,11 +476,11 @@ def absolute_url(url):
 def releasenotes_url(release):
     prefix = 'aurora' if release.channel == 'Aurora' else 'release'
     if release.product == 'Firefox for Android':
-        return reverse('mobile.releasenotes', args=(release.version, prefix))
+        return reverse('firefox.android.releasenotes', args=(release.version, prefix))
     elif release.product == 'Firefox OS':
         return reverse('firefox.os.releasenotes', args=[release.version])
     else:
-        return reverse('firefox.releasenotes', args=(release.version, prefix))
+        return reverse('firefox.desktop.releasenotes', args=(release.version, prefix))
 
 
 @jingo.register.filter

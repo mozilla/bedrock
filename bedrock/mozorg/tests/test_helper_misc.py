@@ -547,7 +547,7 @@ class TestReleaseNotesURL(TestCase):
             channel='Aurora', version='42.0a2', product='Firefox for Android')
         eq_(releasenotes_url(release), mock_reverse.return_value)
         mock_reverse.assert_called_with(
-            'mobile.releasenotes', args=('42.0a2', 'aurora'))
+            'firefox.android.releasenotes', args=('42.0a2', 'aurora'))
 
     @patch('bedrock.mozorg.helpers.misc.reverse')
     def test_desktop_releasenotes_url(self, mock_reverse):
@@ -557,7 +557,7 @@ class TestReleaseNotesURL(TestCase):
         release = Release(version='42.0', product='Firefox')
         eq_(releasenotes_url(release), mock_reverse.return_value)
         mock_reverse.assert_called_with(
-            'firefox.releasenotes', args=('42.0', 'release'))
+            'firefox.desktop.releasenotes', args=('42.0', 'release'))
 
     @patch('bedrock.mozorg.helpers.misc.reverse')
     def test_firefox_os_releasenotes_url(self, mock_reverse):

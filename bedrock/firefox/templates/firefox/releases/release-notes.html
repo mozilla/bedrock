@@ -37,10 +37,10 @@
         <ul>
         {% if release.product == 'Firefox' %}
           <li><span>{{ _('Desktop') }}</span></li>
-          <li><a href="{{ equivalent_release_url }}">{{ _('Mobile') }}</a></li>
+          <li><a href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
         {% else %}
           <li><a href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
-          <li><span>{{ _('Mobile') }}</span></li>
+          <li><span>{{ _('Android') }}</span></li>
         {% endif %}
         </ul>
       </aside>

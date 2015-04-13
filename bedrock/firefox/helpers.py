@@ -184,8 +184,8 @@ def firefox_url(platform, page, channel=None):
 
     if channel:
         kwargs['channel'] = channel
-    if page == 'notes':
-        kwargs['product'] = 'mobile' if platform == 'android' else 'firefox'
+    if page == 'notes' and platform != 'desktop':
+        kwargs['platform'] = platform
 
     return reverse('firefox.%s' % page, kwargs=kwargs)
 

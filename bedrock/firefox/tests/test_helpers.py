@@ -292,8 +292,8 @@ class TestFirefoxURL(TestCase):
         eq_(self._render('desktop', 'sysreq', 'organizations'),
             '/en-US/firefox/organizations/system-requirements/')
 
-    def test_firefox_notes(self):
-        """Should return a reversed path for the Firefox notes page"""
+    def test_desktop_notes(self):
+        """Should return a reversed path for the desktop notes page"""
         eq_(self._render('desktop', 'notes'),
             '/en-US/firefox/notes/')
         eq_(self._render('desktop', 'notes', 'release'),
@@ -307,16 +307,16 @@ class TestFirefoxURL(TestCase):
         eq_(self._render('desktop', 'notes', 'organizations'),
             '/en-US/firefox/organizations/notes/')
 
-    def test_mobile_notes(self):
-        """Should return a reversed path for the mobile notes page"""
+    def test_android_notes(self):
+        """Should return a reversed path for the Android notes page"""
         eq_(self._render('android', 'notes'),
-            '/en-US/mobile/notes/')
+            '/en-US/firefox/android/notes/')
         eq_(self._render('android', 'notes', 'release'),
-            '/en-US/mobile/notes/')
+            '/en-US/firefox/android/notes/')
         eq_(self._render('android', 'notes', 'beta'),
-            '/en-US/mobile/beta/notes/')
+            '/en-US/firefox/android/beta/notes/')
         eq_(self._render('android', 'notes', 'alpha'),
-            '/en-US/mobile/aurora/notes/')
+            '/en-US/firefox/android/aurora/notes/')
 
 
 @override_settings(FIREFOX_OS_FEED_LOCALES=['xx'])

@@ -19,10 +19,10 @@ firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 tour_re = latest_re % (version_re, 'tour')
 hello_start_re = latest_re % (version_re, 'hello/start')
-product_re = '(?P<product>firefox|mobile)'
+platform_re = '(?P<platform>android)'
 channel_re = '(?P<channel>beta|aurora|developer|organizations)'
 releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
-mobile_releasenotes_re = releasenotes_re.replace('firefox', 'mobile')
+android_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/android')
 sysreq_re = latest_re % (version_re, 'system-requirements')
 
 
@@ -93,16 +93,16 @@ urlpatterns = patterns('',
     page('firefox/independent', 'firefox/independent.html'),
 
     # Release notes
-    url('^(?:%s)/(?:%s/)?notes/$' % (product_re, channel_re),
+    url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),
         bedrock.releasenotes.views.latest_notes, name='firefox.notes'),
     url('firefox/latest/releasenotes/$', bedrock.releasenotes.views.latest_notes,
         {'product': 'firefox'}),
     url('^firefox/(?:%s/)?system-requirements/$' % channel_re,
         bedrock.releasenotes.views.latest_sysreq,
         {'product': 'firefox'}, name='firefox.sysreq'),
-    url(releasenotes_re, bedrock.releasenotes.views.release_notes, name='firefox.releasenotes'),
-    url(mobile_releasenotes_re, bedrock.releasenotes.views.release_notes,
-        {'product': 'Firefox for Android'}, name='mobile.releasenotes'),
+    url(releasenotes_re, bedrock.releasenotes.views.release_notes, name='firefox.desktop.releasenotes'),
+    url(android_releasenotes_re, bedrock.releasenotes.views.release_notes,
+        {'product': 'Firefox for Android'}, name='firefox.android.releasenotes'),
     url(sysreq_re, bedrock.releasenotes.views.system_requirements,
         name='firefox.system_requirements'),
     # firefox/os/notes/ should redirect to the latest version; update this in /redirects/urls.py
