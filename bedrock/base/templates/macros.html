@@ -606,6 +606,14 @@ set share_urls = {
       <div class="triangle"></div>
       <div class="triangle-border"></div>
 
+      {% if LANG.startswith('en-') %}
+      <div class="survey">
+        <a rel="external" target="_blank" href="http://www.surveygizmo.com/s3/2094311/Firefox-Family-Tertiary-Navigation">
+          What are you looking for in this menu?
+        </a>
+      </div>
+      {% endif %}
+
       <ul class="tertiarynav" data-parent="desktop">
         <li><a href="{{ url('firefox.dnt') }}" data-ga="desktop - dnt">{{ _('Do Not Track') }}</a></li>
         <li><a href="{{ url('firefox.tiles') }}" data-ga="desktop - tiles">{{ _('Tiles') }}</a></li>
@@ -698,6 +706,14 @@ set share_urls = {
       {# the triangle needs a border, so :before content doesn't cut it #}
       <div class="triangle"></div>
       <div class="triangle-border"></div>
+
+      {% if LANG.startswith('en-') %}
+      <div class="survey">
+        <a rel="external" target="_blank" href="http://www.surveygizmo.com/s3/2094311/Firefox-Family-Tertiary-Navigation">
+          What are you looking for in this menu?
+        </a>
+      </div>
+      {% endif %}
 
       <ul class="tertiarynav" data-parent="desktops">
         <li><a href="{{ url('firefox.dnt') }}" data-ga="V2 desktops - dnt">{{ _('Do Not Track') }}</a></li>
