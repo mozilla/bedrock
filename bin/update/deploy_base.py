@@ -14,7 +14,7 @@ from commander.deploy import commands, task, hostgroups
 import commander_settings as settings
 
 
-PYTHON = getattr(settings, 'PYTHON_PATH', 'python2.6')
+PYTHON = settings.PYTHON_PATH
 NEW_RELIC_API_KEY = getattr(settings, 'NEW_RELIC_API_KEY', None)
 NEW_RELIC_APP_ID = getattr(settings, 'NEW_RELIC_APP_ID', None)
 NEW_RELIC_URL = 'https://rpm.newrelic.com/deployments.xml'
@@ -60,6 +60,12 @@ def management_cmd(ctx, cmd, use_src_dir=False):
         ctx.local('LANG=en_US.UTF-8 {0} manage.py {1}'.format(PYTHON, cmd))
 
 
+def peep_install_cmd(req_file):
+    """Return the command for installing a requirements file."""
+    return ('{0} bin/peep.py install -r requirements/{1}.txt '
+            '--no-use-wheel'.format(PYTHON, req_file))
+
+
 @task
 def reload_crond(ctx):
     """Restart cron daemon."""
@@ -72,6 +78,8 @@ def update_code(ctx, tag):
     with ctx.lcd(settings.SRC_DIR):
         ctx.local("git fetch --all")
         ctx.local("git checkout -f %s" % tag)
+        # keeping submodule handling for now because legal-docs
+        # TODO delete next two lines when all submodules are gone
         ctx.local("git submodule sync")
         ctx.local("git submodule update --init --recursive")
         ctx.local("find . -name '*.pyc' -delete")
@@ -133,7 +141,10 @@ def update_info(ctx):
 def peep_install(ctx):
     """Install things using peep."""
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('../venv/bin/peep install -r requirements/compiled.txt')
+        ctx.local(peep_install_cmd('prod'))
+        # update any newly installed libs to be relocatable
+        # this call is idempotent
+        ctx.local('virtualenv-2.7 --relocatable ../venv')
 
 
 @task
