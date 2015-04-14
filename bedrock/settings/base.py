@@ -2046,7 +2046,7 @@ TEMPLATE_CONTEXT_PROCESSORS = get_template_context_processors(append=(
     'bedrock.mozorg.context_processors.facebook_locale',
     'bedrock.firefox.context_processors.latest_firefox_versions',
     'jingo_minify.helpers.build_ids',
-))
+), exclude=('session_csrf.context_processor',))
 
 # Auth
 PWD_ALGORITHM = 'bcrypt'

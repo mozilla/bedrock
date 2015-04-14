@@ -1,17 +1,60 @@
+-r base.txt
 -r compiled.txt
 
 # Documentation
+
+# sha256: gNYvP3kTwzIr8nnsJr-xLBznBASwD0yH3DrBkNFQsKs
 Sphinx==1.0.7
 
+# sha256: CjoiZeHvsN76ci0fQpcw3J35da3DxgrH0rQyvfA8BB0
+# sha256: cyCRkITm2sj0VAY4pGRHo71zD8oXKvwX0sA-7SLPT1E
+Pygments==2.0.2
+
+# sha256: x9txeBCraWX2bIzwOYqYydjfmC2jm0zX8WKRHriVlvo
+docutils==0.12
+
 # Testing
+
+# sha256: jc5PfmTMICzG2pPquEss5mARD_aEtnOLumSgpDGzvGk
 flake8==2.0
+
+# sha256: ic9r9P9kT_i5EuL6fiq7aNV6jn6Rjjk8coQNMNLrzws
+# sha256: PYypv2XFAU9GkYBUTR3Vu1ud9wmq1jBPnC5DcK4Ke3w
+mccabe==0.3
+
+# sha256: SqEp342QB7GSv4IBP0FVM5lGUtfKqTDQAmh-tCpsKkE
+# sha256: uLfjVjC1U54moZffxgBb6eHpoTVJazd3I6jrwBuby_8
+pep8==1.6.2
+
+# sha256: rEVxaVwQzhU2vNuhopS58tPmzJ0OoXG2fVCghkzj4EI
+# sha256: P6gKELNtUWhr93RPXcmWIs1cmM6O1kAi5imGiq_Bd2k
+pyflakes==0.8.1
+
+# sha256: D41ubgIjuPsEEUtKcgk4DhrPJ-Ch3Rq5j-zghafDxSU
 nose==1.0.0
+
+# sha256: uDndLZwRfHAUMMFJlWkYpCOphjtIsJyQ4wpgE-fS9E8
 mock==1.0.1
--e git://github.com/jbalogh/django-nose.git#egg=django_nose
--e git://github.com/jbalogh/test-utils.git#egg=test-utils
+
+# sha256: NmfSakH-wwNkoO9yWAgyylMogC1VP21ucq9awhyzY2U
+django-nose==1.3
+
+# sha256: ifAFimx-1y5qwpmyuDR6zd_VzM1g3Y_TCkoDHfCRy5s
+https://github.com/jbalogh/test-utils/archive/e42e031d31ea63d593e47d564545149a0f30b95f.tar.gz#egg=test-utils
+
+# sha256: -yNFBlZHIRUH0jNVsQJtmV3tQOCI2G_K4mJWKSHYBAg
 pyquery==1.0
-factory_boy==2.2.1
+
+# sha256: 2UxjgUGVyuj_rYkEbUJc2rQUrs8sDyyxfIjL5Ju7VUw
+factory-boy==2.2.1
+
+# sha256: 3zvxadRyfz-tFGynFaSaH3KoJYaJZR753pCAIuc5cA0
 coverage==3.6
 
+# sha256: EP2G5-PT0DOeDpPgh2qHAurIJknsO0q-TTUNwIw4mg4
+chkcrontab==1.6
+
 # L10n
+
+# sha256: sUbYzcKH2wf270SRdm2EGpMbGyZwQP74HrVZpHX-Pbk
 translate-toolkit==1.8.0
