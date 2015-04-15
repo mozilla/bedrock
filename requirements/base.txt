@@ -182,4 +182,11 @@ https://github.com/jsocol/django-cronjobs/archive/cfda8176c5c3a50d1b58fcf57e87e2
 # sha256: eeq_z415NQPBF3j59fmy6JGjtnpDgVQxwwvFKxnDQx0
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets
 
+# because funfactory
+# TODO move back to dev.txt
 
+# sha256: D41ubgIjuPsEEUtKcgk4DhrPJ-Ch3Rq5j-zghafDxSU
+nose==1.0.0
+
+# sha256: NmfSakH-wwNkoO9yWAgyylMogC1VP21ucq9awhyzY2U
+django-nose==1.3
