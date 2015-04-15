@@ -30,14 +30,8 @@ pep8==1.6.2
 # sha256: P6gKELNtUWhr93RPXcmWIs1cmM6O1kAi5imGiq_Bd2k
 pyflakes==0.8.1
 
-# sha256: D41ubgIjuPsEEUtKcgk4DhrPJ-Ch3Rq5j-zghafDxSU
-nose==1.0.0
-
 # sha256: uDndLZwRfHAUMMFJlWkYpCOphjtIsJyQ4wpgE-fS9E8
 mock==1.0.1
-
-# sha256: NmfSakH-wwNkoO9yWAgyylMogC1VP21ucq9awhyzY2U
-django-nose==1.3
 
 # sha256: ifAFimx-1y5qwpmyuDR6zd_VzM1g3Y_TCkoDHfCRy5s
 https://github.com/jbalogh/test-utils/archive/e42e031d31ea63d593e47d564545149a0f30b95f.tar.gz#egg=test-utils
