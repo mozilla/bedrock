@@ -32,7 +32,7 @@ class TestRenderers(TestCase):
         self.assertTrue(output.endswith("</td>"))
         self.assertIn("</td><td>", output)
 
-    def test_boolean_true(self):
+    def test_str_true(self):
         """renderer starts with True selected if value given is True"""
         choices = ((False, "False"), (True, "True"))
         renderer = BooleanRadioRenderer("name", value="True", attrs={},
@@ -42,10 +42,30 @@ class TestRenderers(TestCase):
         # The True choice should be checked
         self.assertIn('checked=checked value="True"', output)
 
-    def test_boolean_false(self):
+    def test_str_false(self):
         """renderer starts with False selected if value given is False"""
         choices = ((False, "False"), (True, "True"))
         renderer = BooleanRadioRenderer("name", value="False", attrs={},
+                                        choices=choices)
+        output = str(renderer)
+
+        # The False choice should be checked
+        self.assertIn('checked=checked value="False"', output)
+
+    def test_boolean_true(self):
+        """renderer starts with True selected if value given is True"""
+        choices = ((False, "False"), (True, "True"))
+        renderer = BooleanRadioRenderer("name", value=True, attrs={},
+                                        choices=choices)
+        output = str(renderer)
+
+        # The True choice should be checked
+        self.assertIn('checked=checked value="True"', output)
+
+    def test_boolean_false(self):
+        """renderer starts with False selected if value given is False"""
+        choices = ((False, "False"), (True, "True"))
+        renderer = BooleanRadioRenderer("name", value=False, attrs={},
                                         choices=choices)
         output = str(renderer)
 
