@@ -21,36 +21,23 @@ Start by getting the source::
     $ git clone --recursive git://github.com/mozilla/bedrock.git
     $ cd bedrock
 
-**(Make sure you use --recursive)**
-
-.. Important::
-
-    Because Bedrock uses submodules, it is important not only to use
-    ``--recursive`` on the initial clone, but every time you checkout
-    a different branch, to update the submodules with::
-
-        git submodule update --init --recursive
-
-    You might want to create a post-checkout hook to do that every time
-    automatically, by putting that command in a file
-    ``bedrock/.git/hooks/post-checkout``.
+**(Make sure you use --recursive so that legal-docs are included)**
 
 You need to create a virtual environment for Python libraries. Skip the first instruction if you already have virtualenv installed::
 
-    $ pip install virtualenv                     # installs virtualenv, skip if already have it
-    $ virtualenv venv                            # create a virtual env in the folder `venv`
-    $ source venv/bin/activate                   # activate the virtual env
-    $ pip install -r requirements/compiled.txt   # installs compiled dependencies
-    $ pip install -r requirements/dev.txt        # installs test dependencies
+    $ pip install virtualenv                       # installs virtualenv, skip if already have it
+    $ virtualenv venv                              # create a virtual env in the folder `venv`
+    $ source venv/bin/activate                     # activate the virtual env
+    $ bin/peep.py install -r requirements/dev.txt  # installs dependencies
 
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
 
     $ export ARCHFLAGS="-arch i386 -arch x86_64"
-    $ pip install -r requirements/compiled.txt
+    $ bin/peep.py install -r requirements/dev.txt
 
 If you are on Linux, you will need at least the following packages or their equivalent for your distro:
 
-    python-dev libmysqlclient-dev libxslt-dev
+    python-dev libxslt-dev
 
 Now configure the application to run locally by creating your local settings file::
 
