@@ -1,0 +1,36 @@
+#!/bin/bash
+set -ex
+trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
+
+SCRIPT_PARENT_DIR=${0%/*}/..
+cd $SCRIPT_PARENT_DIR
+VOLUMES=/var/lib/docker/volumes
+TARGET=$VOLUMES/mozilla/bedrock
+if [ $(boot2docker status) == "poweroff" ]; then
+    boot2docker start
+fi
+boot2docker ssh "sudo mkdir -p $TARGET && sudo chown -R docker $VOLUMES"
+boot2docker ssh "which rsync || tce-load -wi rsync"
+
+#TODO: eliminate settings/local.py in favor of env variables
+if [ ! -e bedrock/settings/local.py ]; then
+    cp bedrock/settings/local.py-dist bedrock/settings/local.py
+fi
+
+RSYNC_ARGS=(
+    -e "ssh -i $HOME/.ssh/id_boot2docker"
+    -avz
+    --exclude .git
+    --exclude .svn
+    #--exclude-from .gitignore  # this excludes settings/local.py
+    . docker@$(boot2docker ip):$TARGET)
+rsync "${RSYNC_ARGS[@]}"
+fswatch -o . | xargs -n1 -I{} rsync "${RSYNC_ARGS[@]}" &
+
+eval $(boot2docker shellinit)
+if [ ! "$(docker images | grep bedrock_b2d)" ]; then
+    docker-compose build b2d
+fi
+docker-compose run b2d bin/sync_all
+echo Once you see "Attaching to bedrock_b2d" visit http://$(boot2docker ip):8000 in your browser
+docker-compose up b2d

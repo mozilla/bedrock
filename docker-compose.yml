@@ -1,0 +1,18 @@
+local:
+  build: .
+  command: python manage.py runserver 0.0.0.0:8000
+  ports:
+    - "8000:8000"
+  volumes:
+    - .:/app
+  environment:
+    - PYTHONDONTWRITEBYTECODE=1
+b2d:
+  build: .
+  command: python manage.py runserver 0.0.0.0:8000
+  ports:
+    - "8000:8000"
+  volumes:
+    - /var/lib/docker/volumes/mozilla/bedrock:/app
+  environment:
+    - PYTHONDONTWRITEBYTECODE=1
