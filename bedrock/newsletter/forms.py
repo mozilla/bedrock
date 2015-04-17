@@ -82,12 +82,13 @@ class BooleanRadioRenderer(widgets.RadioFieldRenderer):
     true and the second false, rendered as two table cells.
     """
     def render(self):
-        if self.value == 'True':
+        if self.value is True or self.value == 'True':
             trueattrs = 'checked=checked'
             falseattrs = ''
         else:
             trueattrs = ''
             falseattrs = 'checked=checked'
+
         template = \
             """
             <td>
