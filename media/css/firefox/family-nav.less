@@ -723,79 +723,9 @@ html[lang^='en'] .fxfamilynav .subsubnav a {
     }
 }
 
-// V2 SPECIFIC THINGS
-
-// temporary while testing 2 versions of the nav
-#fxfamilynav-wrapper {
-    position: relative;
-    // make sure nav sits atop any content that may be moved up with a negative top margin
-    z-index: 200;
-    display: block;
-    height: 162px;
-
-    @media (max-width: @breakTablet) {
-        height: auto;
-        opacity: 1;
-    }
-}
-
-#fxfamilynavV2-header {
-    display: none;
-
-    .tertiarynav[data-parent="mobiles"] > li:first-child {
-        margin-bottom: @baseLine;
-    }
-
-    .tertiarynav-heading {
-        color: @textColorTertiary;
-        padding-bottom: 4px;
-        border-bottom: 1px solid @textColorLight;
-    }
-
-    &.active {
-        display: block;
-    }
-
-    // only V1 shows for mobile (V2 doesn't have clickable top-level links)
-    @media (max-width: @breakTablet) {
-        display: none;
-
-        &.active {
-            display: none;
-        }
-    }
-}
-
-// when JS present, hide both navs initially so we can use JS
-// to determine which to show
+// remove ability to hover and show subnav
+// must be done in JS to avoid hover/tab focus text overlap
 .js {
-    // make wrapper fade in nicely after nav is chosen
-    #fxfamilynav-wrapper {
-        opacity: 0;
-        .transition(all 0.25s ease);
-
-        &.active {
-            opacity: 1;
-        }
-    }
-
-    // hide V1
-    #fxfamilynav-header {
-        display: none;
-
-        &.active {
-            display: block;
-        }
-
-        // V1 shown for all mobiles
-        @media (max-width: @breakTablet) {
-            display: block;
-        }
-    }
-
-    // remove ability to hover and show subnav
-    // must be done in JS to avoid hover/tab focus text overlap
-    // V1 only - V2 has no top level links to focus
     #fxfamilynav {
         .primarynav {
             li {
@@ -815,33 +745,6 @@ html[lang^='en'] .fxfamilynav .subsubnav a {
         .subnav.active {
             // really sorry, but needs to override display values set directly above
             display: block !important;
-        }
-    }
-}
-
-// temporary survey for tertiary nav
-.survey {
-    padding-bottom: 4px;
-    margin: 0 -10px 6px;
-
-    a {
-        display: block;
-        padding: 4px 10px;
-        background: #eee;
-
-        &:before {
-            content: '';
-            display: block;
-            float: left;
-            width: 30px;
-            height: 30px;
-            border-radius: 6px;
-            background-color: @mozIDBlue;
-            background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE4LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCA1MCA1MCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTAgNTA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRkZGRkZGO30KPC9zdHlsZT4KPGc+Cgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMzQuMSwyNy45Yy0yLjMsMS4zLTMuNyw0LTMuNyw1LjFjMCwwLjgtMC43LDEuOC0xLjUsMS44aC05LjJjLTAuOCwwLTEuNC0xLjMtMS40LTIuMlYzMQoJCWMwLTQuNyw0LjYtOC42LDgtMTAuMmMzLTEuMyw0LjItMi42LDQuMi01LjFjMC0yLjItMi44LTQuMS01LjktNC4xYy0xLjcsMC0zLjMsMC41LTQuMiwxLjFjLTAuOSwwLjctMS44LDEuNi00LjEsNC40CgkJYy0wLjMsMC40LTAuOCwwLjYtMS4yLDAuNmMtMC4zLDAtMC43LTAuMS0xLTAuM2wtNi4zLTQuOGMtMC43LTAuNS0wLjgtMS4zLTAuNC0yYzQuMi02LjksMTAtMTAuMiwxNy44LTEwLjIKCQljOC4yLDAsMTcuNCw2LjYsMTcuNCwxNS40QzQyLjgsMjMuMSwzNy44LDI1LjksMzQuMSwyNy45eiBNMzAuNiw0OC4xYzAsMC44LTAuNywxLjUtMS41LDEuNWgtOS4yYy0wLjgsMC0xLjUtMC43LTEuNS0xLjV2LTkuMgoJCWMwLTAuOCwwLjctMS41LDEuNS0xLjVoOS4yYzAuOCwwLDEuNSwwLjcsMS41LDEuNVY0OC4xeiIvPgo8L2c+Cjwvc3ZnPg==");
-            background-size: 18px 18px;
-            background-position: center center;
-            background-repeat: no-repeat;
-            margin: 6px 10px 0 0;
         }
     }
 }

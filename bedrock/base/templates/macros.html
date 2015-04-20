@@ -552,11 +552,6 @@ set share_urls = {
   }
 #}
 
-<div id="fxfamilynav-wrapper">
-
-{# Temporary holding place for optional CTA. Will be moved to proper place after nav version is decided. #}
-<div id="fxfamilynav-cta-stager">{% if caller %}{{ caller() }}{% endif %}</div>
-
 <header id="fxfamilynav-header" class="fxfamilynav-header{% if (navclass) %} {{ navclass }}{% endif %}">
   <div class="container">
     <a href="{{ url('firefox.family.index') }}"><i class="fxfamilynav-logo">{{ _('Firefox') }}</i></a>
@@ -606,14 +601,6 @@ set share_urls = {
       <div class="triangle"></div>
       <div class="triangle-border"></div>
 
-      {% if LANG.startswith('en-') %}
-      <div class="survey">
-        <a rel="external" target="_blank" href="http://www.surveygizmo.com/s3/2094311/Firefox-Family-Tertiary-Navigation">
-          What are you looking for in this menu?
-        </a>
-      </div>
-      {% endif %}
-
       <ul class="tertiarynav" data-parent="desktop">
         <li><a href="{{ url('firefox.dnt') }}" data-ga="desktop - dnt">{{ _('Do Not Track') }}</a></li>
         <li><a href="{{ url('firefox.tiles') }}" data-ga="desktop - tiles">{{ _('Tiles') }}</a></li>
@@ -640,7 +627,7 @@ set share_urls = {
     </div>{#-- /#fxfamilynav-tertiarynav --#}
 
     {# Page will dictate CTA (button, usually) to be placed in this wrapper #}
-    <div id="fxfamilynav-cta-wrapper" class="fxfamilynav-cta-wrapper"></div>
+    <div id="fxfamilynav-cta-wrapper" class="fxfamilynav-cta-wrapper">{% if caller %}{{ caller() }}{% endif %}</div>
 
     <button type="button" id="fxfamilynav-tertiarynav-trigger" class="fxfamilynav-tertiarynav-trigger" aria-controls="fxfamilynav-tertiarynav">
       <span>{{ _('Menu') }}</span>
@@ -654,116 +641,4 @@ set share_urls = {
     <div id="fxfamilynav-tabzilla" class="fxfamilynav-tabzilla"><a href="{{ url('mozorg.home') }}">{{ _('Mozilla') }}</a></div>
   </div>{#-- /.container --#}
 </header>{#-- /#fxfamilynav-header --#}
-
-<header id="fxfamilynavV2-header" class="fxfamilynav-header{% if (navclass) %} {{ navclass }}{% endif %}">
-  <div class="container">
-    <a href="{{ url('firefox.family.index') }}"><i class="fxfamilynav-logo">{{ _('Firefox') }}</i></a>
-    <nav id="fxfamilynavV2" class="fxfamilynav" role="navigation">
-      <ul id="fxfamilynavV2-primary" class="primarynav">
-        <li id="desktops">
-          <span class="primary-link" data-id="desktops"><div>{{ _('For desktops &amp; laptops') }}</div></span>
-
-          <ul class="subnav" data-parent="desktops" id="desktops-subnav">
-            <li class="hassubsubnav">
-              <a href="{{ url('firefox.desktop.index') }}" data-id="desktops-index"><div>{{ _('Overview') }}</div></a>
-
-              <ul class="subsubnav" id="desktops-index-subnav">
-                <li><a href="{{ url('firefox.desktop.trust') }}" data-id="desktops-trust">{{ _('Trusted') }}</a></li>
-                <li><a href="{{ url('firefox.desktop.customize') }}" data-id="desktops-customize">{{ _('Flexible') }}</a></li>
-                <li><a href="{{ url('firefox.desktop.fast') }}" data-id="desktops-fast">{{ _('Fast') }}</a></li>
-              </ul>
-            </li>
-            <li><a href="{{ url('firefox.sync') }}" data-id="desktops-sync"><div>{{ _('Sync') }}</div></a></li>
-            <li><a href="{{ url('firefox.hello') }}" data-id="desktops-hello"><div>{{ _('Hello') }}</div></a></li>
-          </ul>{#-- /subnav-desktops --#}
-        </li>
-        <li id="mobiles">
-          <span class="primary-link" data-id="mobiles"><div>{{ _('For phones &amp; tablets') }}</div></span>
-
-          <ul class="subnav" data-parent="mobiles" id="mobiles-subnav">
-            <li class="hassubsubnav">
-              <a href="{{ url('firefox.android.index') }}" data-id="mobiles-android-index"><div>{{ _('Android') }}</div></a>
-
-              <ul class="subsubnav subsubnav-single" id="mobiles-android-subnav">
-                <li><a href="{{ url('firefox.sync') }}" data-id="mobiles-android-sync">{{ _('Sync') }}</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="{{ url('firefox.os.index') }}" data-id="mobiles-os-index"><div>{{ _('Firefox OS') }}</div></a>
-
-              <ul class="subsubnav" id="mobiles-os-subnav">
-                <li><a href="{{ url('firefox.os.devices') }}" data-id="mobiles-os-devices">{{ _('Devices') }}</a></li>
-                <li><a href="{{ url('firefox.partners.index') }}" data-id="mobiles-os-partners">{{ _('For partners') }}</a></li>
-                <li><a rel="external" href="https://marketplace.firefox.com/" data-id="mobiles-os-marketplace">{{ _('Marketplace') }}<i class="icon-external"></i></a></li>
-              </ul>
-            </li>
-          </ul>{#-- /subnav-mobiles --#}
-        </li>
-      </ul>
-    </nav> {#-- /#fxfamillynav --#}
-
-    <div id="fxfamilynavV2-tertiarynav" class="fxfamilynav-tertiarynav">
-      {# the triangle needs a border, so :before content doesn't cut it #}
-      <div class="triangle"></div>
-      <div class="triangle-border"></div>
-
-      {% if LANG.startswith('en-') %}
-      <div class="survey">
-        <a rel="external" target="_blank" href="http://www.surveygizmo.com/s3/2094311/Firefox-Family-Tertiary-Navigation">
-          What are you looking for in this menu?
-        </a>
-      </div>
-      {% endif %}
-
-      <ul class="tertiarynav" data-parent="desktops">
-        <li><a href="{{ url('firefox.dnt') }}" data-ga="V2 desktops - dnt">{{ _('Do Not Track') }}</a></li>
-        <li><a href="{{ url('firefox.tiles') }}" data-ga="V2 desktops - tiles">{{ _('Tiles') }}</a></li>
-        <li><a href="{{ url('firefox.interest-dashboard') }}" data-ga="V2 desktops - interest dashboard">{{ _('Interest Dashboard') }}</a></li>
-        <li><a href="{{ url('firefox.developer') }}" data-ga="V2 desktops - developer edition">{{ _('Developer Edition') }}</a></li>
-        <li><a rel="external" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info" data-ga="V2 desktops - private browsing">{{ _('Private Browsing') }}</a></li>
-        <li><a rel="external" href="https://addons.mozilla.org" data-ga="V2 desktops - addons">{{ _('Add-ons') }}</a></li>
-        <li><a rel="external" href="https://support.mozilla.org/products/firefox" data-ga="V2 desktops - support">{{ _('Need help?') }}</a></li>
-      </ul>
-
-      <ul class="tertiarynav" data-parent="mobiles">
-        <li>
-          <div class="tertiarynav-heading">{{ _('Android') }}</div>
-
-          <ul>
-            <li><a href="{{ url('firefox.dnt') }}" data-ga="V2 mobiles - android - dnt">{{ _('Do Not Track') }}</a></li>
-            <li><a rel="external" href="https://www.youtube.com/watch?v=Ewk0YtFTBec&amp;list=PLA8ABF6B7A66A0C5E&amp;index=15" data-ga="V2 mobiles - android - private browsing">{{ _('Private Browsing') }}</a></li>
-            <li><a rel="external" href="https://addons.mozilla.org/android/" data-ga="V2 mobiles - android - addons">{{ _('Add-ons') }}</a></li>
-            <li><a rel="external" href="https://support.mozilla.org/products/mobile" data-ga="V2 mobiles - android - support">{{ _('Need help?') }}</a></li>
-          </ul>
-        </li>
-        <li>
-          <div class="tertiarynav-heading">{{ _('Firefox OS') }}</div>
-
-          <ul>
-            <li><a rel="external" href="https://blog.mozilla.org/blog/category/firefox-os/" data-ga="V2 mobiles - os - news">{{ _('News') }}</a></li>
-            <li><a rel="external" href="https://developer.mozilla.org/Firefox_OS" data-ga="V2 mobiles - os - developers">{{ _('For developers') }}</a></li>
-            <li><a rel="external" href="https://find.firefox.com" data-ga="V2 mobiles - os - find my device">{{ _('Find My Device') }}</a></li>
-            <li><a rel="external" href="https://support.mozilla.org/products/firefox-os" data-ga="V2 mobiles - os - support">{{ _('Need help?') }}</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div> {#-- /#fxfamilynav-tertiarynav --#}
-
-    {# Page will dictate CTA (button, usually) to be placed in this wrapper #}
-    <div id="fxfamilynavV2-cta-wrapper" class="fxfamilynav-cta-wrapper"></div>
-
-    <button type="button" id="fxfamilynavV2-tertiarynav-trigger" class="fxfamilynav-tertiarynav-trigger" aria-controls="fxfamilynav-tertiarynav">
-      <span>{{ _('Menu') }}</span>
-      <div class="trigger-dots">
-        <div class="trigger-dot"></div>
-        <div class="trigger-dot"></div>
-        <div class="trigger-dot"></div>
-      </div>
-    </button>
-
-    <div id="fxfamilynavV2-tabzilla" class="fxfamilynav-tabzilla"><a href="{{ url('mozorg.home') }}">{{ _('Mozilla') }}</a></div>
-  </div>{#-- /.container --#}
-</header>
-
-</div>{# --/#fxfamilynav-wrapper --#}
 {%- endmacro %}
