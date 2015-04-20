@@ -1,0 +1,236 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/developer" %}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_developer_firstrun' %}
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Welcome to Firefox Developer Edition')}}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block page_image %}{{ static('img/firefox/developer/page-image.png') }}{% endblock %}
+{% block page_og_url %}{{ url('firefox.developer') }}{% endblock %}
+
+{% block page_og_desc %}
+  {% if l10n_has_tag('meta_update_201503') %}
+    {{_('Built for those who build the Web. Introducing the only browser made for developers.')}}
+  {%- else -%}
+    {{ _('Introducing the only browser made for developers like you.') }}
+  {% endif %}
+{% endblock %}
+
+{% block body_id %}firefox-developer-firstrun{% endblock %}
+{% block body_class %}blueprint{% endblock %}
+
+{% block string_data %}
+data-devtools-title="{{ _('Developer Tools') }}"
+data-devtools-text="{{ _('The most complete browser made just for developers, Firefox Developer Edition has every dev tool you’ll need built right in.') }}"
+data-next-webide="{{ _('Next: WebIDE') }}"
+data-webide-title="{{ _('Try WebIDE') }}"
+data-webide-text="{{ _('Develop, deploy and debug Firefox OS apps directly in your browser or on a Firefox OS device.') }}"
+data-next-sync="{{ _('Next: Sync') }}"
+
+{% if l10n_has_tag('new_doorhanger') %}
+  data-sync-title="{{ _('Important') }}"
+  data-sync-text="{{ _('Sync your new Developer Edition profile to your Firefox Account to access bookmarks, browsing history, passwords and more from your existing Firefox profile.') }}"
+  data-doorhanger-sync="{{ _('Sync now') }}"
+{% else %}
+  data-sync-title="{{ _('Keep your browser in Sync') }}"
+  data-sync-text="{{ _('Sync your Firefox desktop and mobile browsers to get instant access to your bookmarks, open tabs, passwords and more.') }}"
+  data-doorhanger-sync="{{ _('Sync my Firefox') }}"
+{% endif %}
+
+data-doorhanger-close="{{ _('Close') }}"
+data-doorhanger-nothanks="{{ _('No thanks') }}"
+data-webide-icon="{{ static('img/firefox/dev-firstrun/webide-blue.png') }}"
+data-webide-icon-high-res="{{ static('img/firefox/dev-firstrun/webide-blue-high-res.png') }}"
+data-devtools-icon="{{ static('img/firefox/dev-firstrun/devtools-blue.png') }}"
+data-devtools-icon-high-res="{{ static('img/firefox/dev-firstrun/devtools-blue-high-res.png') }}"
+data-sync-icon="{{ static('img/firefox/dev-firstrun/sync-blue.png') }}"
+data-sync-icon-high-res="{{ static('img/firefox/dev-firstrun/sync-blue-high-res.png') }}"
+
+{% if l10n_has_tag('new_doorhanger') %}
+  data-sync-reminder-title="{{ _('Before you go&hellip;') }}"
+  data-sync-reminder-text="{{ _('If you continue without syncing your new Developer Edition profile, you could lose access to important browsing data from your existing Firefox profile.') }} {{ _('To sync now, choose the Sync option from this menu.') }}"
+{% endif %}
+
+{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}
+  <h2>{{ high_res_img('img/firefox/firstrun/dev/title.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</h2>
+{% endblock %}
+
+{% block content %}
+
+<main role="main" {% if l10n_has_tag('new_doorhanger') %}class="sync-reminder"{% endif %} >
+  <section class="intro container">
+    <header>
+      <h1>{{_('Welcome to <span>Firefox Developer Edition</span>')}}</h1>
+      <p>{{_('Get to know the features that make it the most complete browser for building the Web.')}}</p>
+    </header>
+    <ul class="features">
+    {% if l10n_has_tag('spring_release') %}
+      <li class="feature">
+        <a href="https://developer.mozilla.org/docs/Tools/Performance" rel="external">
+          <img src="{{ static('img/firefox/firstrun/dev/feature-performancetools.png') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        </a>
+        <h2>{{_('Performance Tools')}}</h2>
+        <p>{{_('Examine your web content’s frame rate, memory consumption and JS profile in a consolidated timeline view to help easily identify and troubleshoot performance bottlenecks.')}}</p>
+        <a href="https://developer.mozilla.org/docs/Tools/Performance" rel="external" class="more">{{_('Learn more about Performance Tools')}}</a>
+        <div class="responsive-video-container">
+          <div class="video" data-video-id="eH0R10Ga4Hs"></div>
+        </div>
+      </li>
+    {% endif %}
+      <li class="feature">
+        <a href="https://www.youtube.com/watch?v=eQqNfkqIJdw" rel="external" class="video-play">
+          <img src="{{ static('img/firefox/firstrun/dev/feature-inspector-large.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        </a>
+        <h2>{{_('Page Inspector')}}</h2>
+        <p>{{_('Examine the HTML and CSS of any Web page and easily modify the structure and layout of a page.')}}</p>
+        <a href="https://developer.mozilla.org/docs/Tools/Page_Inspector" rel="external" class="more">{{_('Learn more about Page Inspector')}}</a>
+        <div class="responsive-video-container">
+          <div class="video" data-video-id="eQqNfkqIJdw"></div>
+        </div>
+      </li>
+    {% if not l10n_has_tag('spring_release') %}
+      <li class="feature">
+        <a href="https://www.youtube.com/watch?v=R_qDaLQ8ghg" rel="external" class="video-play">
+          <img src="{{ static('img/firefox/firstrun/dev/feature-webaudio-large.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        </a>
+        <h2>{{_('Web Audio Editor')}}</h2>
+        <p>{{_('Inspect and interact with Web Audio API in real time to ensure that all audio nodes are connected in the way you expect.')}}</p>
+        <a href="https://developer.mozilla.org/docs/Tools/Web_Audio_Editor" rel="external" class="more">{{_('Learn more about Web Audio Editor')}}</a>
+        <div class="responsive-video-container">
+          <div class="video" data-video-id="R_qDaLQ8ghg"></div>
+        </div>
+      </li>
+    {% endif %}
+    </ul>
+    {% if l10n_has_tag('new_doorhanger') %}
+      <div class="notice">
+        <h4>{{ _('Important: Sync your new profile') }}</h4>
+        <p>
+          {{ _('Developer Edition comes with a new profile so you can run it alongside other versions of Firefox.') }} {{ _('To access your bookmarks, browsing history and more, you need to sync the profile with your existing Firefox Account, or create a new one.') }}
+          <a href="https://support.mozilla.org/kb/recover-lost-bookmarks-firefox-developer-edition" rel="external" class="more">{{ _('Learn more') }}</a>
+        </p>
+      </div>
+    {% endif %}
+  </section>
+
+  <section class="more-features">
+    <div class="container">
+      <header>
+        <h2>{{_('Features and tools')}}</h2>
+      </header>
+      <ul class="features">
+      {% if l10n_has_tag('spring_release') %}
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=R_qDaLQ8ghg" rel="external" class="video-play">
+            <img src="{{ static('img/firefox/firstrun/dev/feature-webaudio.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Web Audio Editor')}}</h2>
+          <p>{{_('Inspect and interact with Web Audio API in real time to ensure that all audio nodes are connected in the way you expect.')}}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/Web_Audio_Editor" rel="external" class="more">{{_('Learn more about Web Audio Editor')}}</a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="R_qDaLQ8ghg"></div>
+          </div>
+        </li>
+      {% endif %}
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=iEDk8o9ehlw" rel="external" class="video-play">
+            <img src="{{ static('img/firefox/firstrun/dev/feature-console.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Web Console')}}</h2>
+          <p>{{_('See logged information associated with a Web page and use Web Console to interact with Web pages using JavaScript.')}}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/Web_Console" rel="external" class="more">{{_('Learn more about Web Console')}}</a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="iEDk8o9ehlw"></div>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=OS4AxYFLCIE" rel="external" class="video-play">
+            <img src="{{ static('img/firefox/firstrun/dev/feature-debugger.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('JavaScript Debugger')}}</h2>
+          <p>{{_('Step through JavaScript code and examine or modify its state to help track down bugs.')}}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/Debugger" rel="external" class="more">{{_('Learn more about JavaScript Debugger')}}</a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="OS4AxYFLCIE"></div>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=w4zSG53Qlbk" rel="external" class="video-play">
+            <img src="{{ static('img/firefox/firstrun/dev/feature-network.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Network Monitor')}}</h2>
+          <p>{{_('See all the network requests your browser makes, how long each request takes and details of each request.')}}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/Network_Monitor" rel="external" class="more">{{_('Learn more about Network Monitor')}}</a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="w4zSG53Qlbk"></div>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=3kdBvvIZIqU" rel="external" class="video-play">
+            <img src="{{ static('img/firefox/firstrun/dev/feature-style-editor.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Style Editor')}}</h2>
+          <p>{{_('View and edit CSS styles associated with a Web page, create new ones and apply existing CSS stylesheets to any page.')}}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/Style_Editor" rel="external" class="more">{{_('Learn more about Style Editor')}}</a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="3kdBvvIZIqU"></div>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=iJ4C7VnIMC8" class="video-play" rel="external">
+            <img src="{{ static('img/firefox/developer/feature-responsive.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{ _('Responsive Design View ') }}</h2>
+          <p>{{ _('See how your Website or Web app will look on different screen sizes without changing the size of your browser window.') }}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/Responsive_Design_View" class="more" rel="external">{{ _('Learn more about Responsive Design View') }}</a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="iJ4C7VnIMC8"></div>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=1R9_WdXwUsE" class="video-play" rel="external">
+            <img src="{{ static('img/firefox/developer/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('WebIDE')}}</h2>
+          <p>{{_('Develop, deploy and debug Firefox OS apps directly in your browser, or on a Firefox OS device, with this tool that replaces App Manager.')}}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/WebIDE" class="more" rel="external">{{_('Learn more about WebIDE')}}</a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="1R9_WdXwUsE"></div>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=eH0R10Ga4Hs" class="video-play" rel="external">
+            <img src="{{ static('img/firefox/developer/feature-valence.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Valence')}}</h2>
+          <p>{{_('Develop and debug your apps across multiple browsers and devices with this powerful extension that comes pre-installed with Firefox Developer Edition.')}}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/Firefox_Tools_Adapter" class="more" rel="external">{{_('Learn more about Valence')}}</a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="eH0R10Ga4Hs"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_developer_firstrun' %}
+{% endblock %}
