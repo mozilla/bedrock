@@ -9,7 +9,7 @@ from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_protect
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 
 from forms import FraudReportForm
 

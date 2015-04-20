@@ -8,14 +8,14 @@ from django.core.urlresolvers import NoReverseMatch
 from django.conf.urls import url
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 
 
 def redirect(pattern, to, permanent=True, anchor=None, name='', query=None):
     """
     Return a tuple suited for urlpatterns.
 
-    This will redirect the pattern to the viewname by applying funfactory's
+    This will redirect the pattern to the viewname by applying our
     locale-aware reverse to the given string.
 
     If a url is given instead of a viewname, the redirect will go directly to

@@ -9,7 +9,7 @@ from django.utils.translation import get_language
 
 import test_utils
 from tower import activate
-from funfactory.urlresolvers import (get_url_prefix, Prefixer, set_url_prefix)
+from bedrock.base.urlresolvers import (get_url_prefix, Prefixer, set_url_prefix)
 
 
 class TestCase(TestCase):

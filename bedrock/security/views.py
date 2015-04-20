@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.http import last_modified
 from django.views.generic import DetailView, ListView, RedirectView
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from product_details import product_details
 from product_details.version_compare import Version
 from lib.l10n_utils import LangFilesMixin

@@ -8,7 +8,7 @@ from functools import wraps
 from django.shortcuts import redirect
 from django.utils.decorators import available_attrs
 
-from funfactory import urlresolvers
+from bedrock.base import urlresolvers
 
 from bedrock.facebookapps import utils
 

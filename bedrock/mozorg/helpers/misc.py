@@ -12,8 +12,8 @@ from django.template.defaultfilters import slugify as django_slugify
 import bleach
 import jingo
 import jinja2
-from funfactory.urlresolvers import reverse
-from funfactory.helpers import static
+from bedrock.base.urlresolvers import reverse
+from bedrock.base.helpers import static
 
 
 ALL_FX_PLATFORMS = ('windows', 'linux', 'mac', 'android', 'ios')

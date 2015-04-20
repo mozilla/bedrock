@@ -9,9 +9,9 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
-from funfactory.helpers import static
+from bedrock.base.helpers import static
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from mock import ANY, call, Mock, patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq

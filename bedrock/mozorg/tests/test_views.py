@@ -15,7 +15,7 @@ from django.test.utils import override_settings
 from django.utils import simplejson
 
 from captcha.fields import ReCaptchaField
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from jinja2.exceptions import TemplateNotFound
 from requests.exceptions import Timeout
 from mock import ANY, Mock, patch

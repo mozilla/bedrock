@@ -7,7 +7,7 @@ import json
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from mock import patch
 from nose.tools import eq_, ok_
 

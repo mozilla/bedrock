@@ -8,7 +8,7 @@ import datetime
 from django.core import mail
 from django.test.client import RequestFactory
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from mock import Mock, patch
 from nose.tools import eq_, ok_
 

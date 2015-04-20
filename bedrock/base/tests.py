@@ -4,14 +4,15 @@
 
 import os
 from subprocess import call
+
 from django.test.utils import override_settings
-from mock import patch
 
 import chkcrontab_lib as chkcrontab
-from funfactory.settings_base import path
+from mock import patch
 
 from bedrock.base import geo
 from bedrock.mozorg.tests import TestCase
+from bedrock.settings.base import path
 
 
 CRONTAB_FILE_NAMES = ['bedrock-dev', 'bedrock-stage', 'bedrock-prod']

@@ -8,7 +8,7 @@ import jinja2
 
 from bedrock.firefox.models import FirefoxOSFeedLink
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils import get_locale
 
 

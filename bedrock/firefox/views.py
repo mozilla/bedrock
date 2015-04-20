@@ -16,8 +16,8 @@ from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
-from funfactory.helpers import static
-from funfactory.urlresolvers import reverse
+from bedrock.base.helpers import static
+from bedrock.base.urlresolvers import reverse
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version

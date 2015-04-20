@@ -5,10 +5,10 @@ from mock import patch
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from funfactory.helpers import static
+from bedrock.base.helpers import static
 
 import jingo
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from rna.models import Release

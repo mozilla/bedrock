@@ -5,7 +5,7 @@
 from django.conf import settings
 from django.conf.urls import patterns
 
-from funfactory.helpers import static
+from bedrock.base.helpers import static
 from pipeline.collector import default_collector
 from pipeline.packager import Packager
 
