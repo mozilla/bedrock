@@ -1,0 +1,64 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% add_lang_files "firefox/whatsnew_38" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}
+  {{ _('Choose the independent browser') }}
+{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}
+  {{ _('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.') }}
+{% endblock %}
+
+{#- Override <meta property="og:url"> for social share -#}
+{% block page_og_url %}{{ url('firefox') }}{% endblock %}
+
+{% block optimizely %}
+  {% if waffle.switch('firefox-whatsnew-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block site_css %}{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{% endblock %}
+{% block body_id %}{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}
+<header id="masthead">
+  <div id="tabzilla">
+    <a href="{{ url('mozorg.home') }}">Mozilla</a>
+  </div>
+  <h2>{{ _('Congrats. You’re up to date!') }}</h2>
+</header>
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block site_footer %}
+  <footer role="contentinfo">
+    <a class="logo" href="{{ url('mozorg.home') }}">Mozilla</a>
+    <ul>
+      <li><a href="{{ url('privacy') }}#cookies">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ url('privacy.notices.websites') }}#cookies">{{ _('Cookies') }}</a></li>
+      <li><a href="{{ url('legal.index') }}">{{ _('Legal Notices') }}</a></li>
+    </ul>
+  </footer>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}{% endblock %}
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}

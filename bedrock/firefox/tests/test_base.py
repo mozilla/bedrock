@@ -322,6 +322,42 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew-fx37.html'])
 
+    # begin 38.0.5 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_38_0_5_whatsnew_en_us(self, render_mock):
+        """Should show Pocket + Video template for en-US"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=38.0')
+        self.view(req, version='38.0.5')
+        template = render_mock.call_args[0][1]
+        ctx = render_mock.call_args[0][2]
+        ok_('video_url' in ctx)
+        eq_(template, ['firefox/whatsnew_38/whatsnew-pocket-video.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_38_0_5_whatsnew_fr(self, render_mock):
+        """Should show Video template for fr"""
+        req = self.rf.get('/fr/firefox/whatsnew/?oldversion=38.0')
+        req.locale = 'fr'
+        self.view(req, version='38.0.5')
+        template = render_mock.call_args[0][1]
+        ctx = render_mock.call_args[0][2]
+        ok_('video_url' in ctx)
+        eq_(template, ['firefox/whatsnew_38/whatsnew-video.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_38_0_5_whatsnew_ja(self, render_mock):
+        """Should show Pocket template for ja"""
+        req = self.rf.get('/ja/firefox/whatsnew/?oldversion=38.0')
+        req.locale = 'ja'
+        self.view(req, version='38.0.5')
+        template = render_mock.call_args[0][1]
+        ctx = render_mock.call_args[0][2]
+        ok_('video_url' not in ctx)
+        eq_(template, ['firefox/whatsnew_38/whatsnew-pocket.html'])
+
+    # end 38.0.5 whatsnew tests
+
     @override_settings(DEV=True)
     def test_older_whatsnew(self, render_mock):
         """Should show default no tour template for 35 and below"""

@@ -1,0 +1,278 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+html,
+body {
+    height: 100%;
+    background: @mozIDBlue;
+}
+
+#tabzilla:before {
+    background: @mozIDBlue;
+}
+
+#outer-wrapper {
+    min-height: 100%;
+    background: transparent;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #fff;
+        text-shadow: none;
+    }
+
+    p {
+        color: #fff;
+    }
+}
+
+#wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+#masthead {
+    position: relative;
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: 0 auto (@baseLine * 2);
+    padding: 0;
+    height: 167px;
+
+    h2 {
+        position: absolute;
+        top: 90px;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        .font-size(24px);
+        .open-sans-light;
+        line-height: 30px;
+        letter-spacing: -0.25px;
+
+        &:before {
+            display: inline-block;
+            content: '';
+            width: 30px;
+            height: 30px;
+            margin: 0 .3em -4px 0;
+            .at2x('/media/img/firefox/whatsnew_38/fx-header-sprite.png', 141px, 181px);
+            background-position: 0 0;
+        }
+    }
+
+    // Firefox logo
+    &:before {
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 0;
+        width: 141px;
+        height: 147px;
+        content: '';
+        .at2x('/media/img/firefox/whatsnew_38/fx-header-sprite.png', 141px, 181px);
+        background-position: 0 -32px;
+        overflow: hidden;
+    }
+}
+
+.video-thumbnail {
+    // Play button container
+    span {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: 40px;
+        width: 100%;
+        padding-top: 120px;
+        margin-top: -70px;
+
+        // Play button circle
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 96px;
+            height: 96px;
+            margin-left: -50px;
+            background: #0882be;
+            border-radius: 50%;
+            border: 2px solid #9ccde5;
+            content: '';
+            .transition(background .2s ease-in-out);
+        }
+
+        // Play button triangle
+        &:after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -49px 0 0 -15px;
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 40px solid #fff;
+        }
+    }
+
+    &:visited {
+        color: #fff;
+    }
+
+    &:hover,
+    &:focus {
+        color: #fff;
+
+        span:before {
+            background: lighten(#0882be, 5%);
+        }
+    }
+}
+
+html[lang|="en"] {
+    .video-thumbnail {
+        text-transform: uppercase;
+    }
+}
+
+main {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: 0 auto;
+
+    a:link {
+        color: #fff;
+    }
+
+    a:visited {
+        color: darken(#fff, 10%);
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        text-decoration: underline;
+    }
+}
+
+.video-embed {
+    position: relative;
+    width: 94%;
+
+    video {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+footer[role="contentinfo"] {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: (@baseLine * 6) auto (@baseLine * 2);
+
+    ul {
+        display: inline-block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline;
+            margin: 0;
+            padding: 0;
+            color: #bee1f5;
+            .font-size(13px);
+
+            &:after {
+                content: '•';
+                margin: 0 10px;
+            }
+
+            &:last-child:after {
+                content: '';
+                margin: 0;
+            }
+        }
+    }
+
+    a:link {
+        color: #bee1f5;
+        .transition(color .1s ease-in-out);
+    }
+
+    a:visited {
+        color: darken(#bee1f5, 10%);
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #fff;
+    }
+
+    .logo {
+        display: inline-block;
+        width: 93px;
+        height: 24px;
+        margin-right: @gridGutterWidth;
+        .at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
+        .image-replaced();
+    }
+}
+
+@media only screen and (max-width: @breakDesktop) {
+
+    main,
+    #masthead,
+    footer[role="contentinfo"] {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    #masthead h2 {
+        .font-size(24px);
+    }
+
+}
+
+@media only screen and (max-width: @breakTablet) {
+
+    main,
+    #masthead,
+    footer[role="contentinfo"] {
+        width: @widthMobileLandscape - @gridGutterWidth;
+    }
+
+    #masthead {
+        text-align: center;
+        height: auto;
+        margin-bottom: @baseLine;
+
+        h2 {
+            position: static;
+            width: 100%;
+            margin: 0;
+            padding-top: @baseLine * 4;
+            .font-size(18px);
+        }
+
+        // hide Firefox logo
+        &:before {
+            content: none;
+        }
+    }
+
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+
+    main,
+    #masthead,
+    footer[role="contentinfo"] {
+        width: @widthMobile - @gridGutterWidth;
+    }
+}
