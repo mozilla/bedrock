@@ -1,0 +1,100 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+#outer-wrapper {
+    .aurora-bars();
+}
+
+.js #modal-content {
+    h2 {
+        display: none;
+    }
+
+    .video-embed {
+        display: none;
+    }
+}
+
+.video-embed {
+    position: relative;
+}
+
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #293039;
+    color: #fff;
+    text-align: center;
+    border: 2px solid #fff;
+    .font-size(@largeFontSize);
+}
+
+#pocket {
+    position: relative;
+    .clearfix();
+
+    .content {
+        float: left;
+        width: 580px;
+    }
+
+    p {
+        .font-size(20px);
+        color: #bee1f5;
+        max-width: 22em;
+    }
+
+    aside {
+        float: right;
+        width: 260px;
+        padding: @baseLine;
+        background: #fff;
+        border-radius: 10px;
+        text-align: center;
+
+        .try-pocket {
+            margin-bottom: 0;
+
+            &:focus {
+                outline-color: #000;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakDesktop) {
+    #pocket .content {
+        width: 380px;
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    #pocket {
+        text-align: center;
+
+        .content {
+            float: none;
+            width: auto;
+        }
+
+        p {
+            .font-size(@largeFontSize);
+            margin: @baseLine auto;
+        }
+
+        aside {
+            float: none;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+
+}

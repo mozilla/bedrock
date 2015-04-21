@@ -1,0 +1,37 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew_38/whatsnew-base.html" %}
+
+{% add_lang_files "firefox/whatsnew_38" %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_whatsnew_38_video' %}
+{% endblock %}
+
+{% block page_title %}{{ _('From our hands to yours') }}{% endblock %}
+{% block body_id %}whatsnew-38-video{% endblock %}
+
+{% block content %}
+<main role="main">
+  <section id="video-content">
+    <h1>{{ _('From our hands to yours') }}</h1>
+    <p class="tagline">{{ _('Firefox is built from the heart by thousands who believe in personal freedom on the Web.') }}</p>
+    <a class="video-thumbnail" href="{{ video_url }}.mp4">
+      <span>{{ _('Watch the video') }}</span>
+    </a>
+    <div class="video-embed">
+      {{ video(video_url + '.webm',
+        video_url + '.ogv',
+        video_url + '.mp4',
+        h='auto', w='100%',
+        id='whatsnew-video') }}
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_whatsnew_38_video' %}
+{% endblock %}

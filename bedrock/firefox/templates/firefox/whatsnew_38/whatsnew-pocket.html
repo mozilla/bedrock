@@ -1,0 +1,15 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew_38/whatsnew-pocket-video.html" %}
+
+{% add_lang_files "firefox/whatsnew_38" "firefox/pocket" %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_whatsnew_38_pocket' %}
+{% endblock %}
+
+{% block body_id %}whatsnew-38-pocket{% endblock %}
+
+{% block video %}{% endblock %}

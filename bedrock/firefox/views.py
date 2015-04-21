@@ -101,6 +101,18 @@ INSTALLER_CHANNElS = [
     # 'nightly',  # soon
 ]
 
+LOCALE_SPRING_CAMPAIGN_VIDEOS = {
+    'en-US': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'en-GB': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'de': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'es-ES': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'es-MX': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'pt-BR': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+    'fr': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
+}
+
+POCKET_LOCALES = ['en-US', 'es-ES', 'ru', 'ja', 'de']
+
 
 def get_js_bundle_files(bundle):
     """
@@ -309,6 +321,15 @@ def show_36_whatsnew_tour(oldversion):
     return oldversion < Version('36.0')
 
 
+def show_38_0_5_whatsnew(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('38.0.5')
+
+
 class LatestFxView(TemplateView):
 
     """
@@ -403,14 +424,36 @@ class WhatsnewView(LatestFxView):
             return HttpResponsePermanentRedirect(uri)
         return super(WhatsnewView, self).get(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        ctx = super(WhatsnewView, self).get_context_data(**kwargs)
+
+        locale = l10n_utils.get_locale(self.request)
+
+        ctx['video_url'] = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
+
+        return ctx
+
     def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
         if oldversion.startswith('rv:'):
             oldversion = oldversion[3:]
 
-        if version.startswith('37.'):
+        if show_38_0_5_whatsnew(version):
+            locale_has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
+            if locale in POCKET_LOCALES:
+                if locale_has_video:
+                    template = 'firefox/whatsnew_38/whatsnew-pocket-video.html'
+                else:
+                    template = 'firefox/whatsnew_38/whatsnew-pocket.html'
+            else:
+                if locale_has_video:
+                    template = 'firefox/whatsnew_38/whatsnew-video.html'
+                else:
+                    template = 'firefox/australis/whatsnew-no-tour.html'
+        elif version.startswith('37.'):
             template = 'firefox/whatsnew-fx37.html'
         elif version.startswith('36.'):
             if show_36_whatsnew_tour(oldversion):
