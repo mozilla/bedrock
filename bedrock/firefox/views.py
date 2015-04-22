@@ -281,51 +281,6 @@ def show_devbrowser_firstrun(version):
     return False
 
 
-def show_australis_whatsnew_tour(oldversion):
-    try:
-        oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    return oldversion < Version('29.0')
-
-
-def show_whatsnew_tour(oldversion):
-    try:
-        oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    return oldversion < Version('33.1')
-
-
-def show_10th_anniversary(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version('33.1')
-
-
-def show_search_whatsnew_tour(version, oldversion):
-    try:
-        oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    return oldversion < Version(version)
-
-
-def show_34_0_5_search_template(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version('34.0.5') and version < Version('36.0')
-
-
 def show_search_firstrun(version):
     try:
         version = Version(version)
@@ -437,20 +392,6 @@ class FirstrunView(LatestFxView):
 
 
 class WhatsnewView(LatestFxView):
-    # Locales targeted for FxOS
-    fxos_locales = []
-
-    locales_with_video = {
-        'en-US': 'american',
-        'en-GB': 'british',
-        'de': 'german_final',
-        'it': 'italian_final',
-        'ja': 'japanese_final',
-        'es-AR': 'spanish_final',
-        'es-CL': 'spanish_final',
-        'es-ES': 'spanish_final',
-        'es-MX': 'spanish_final',
-    }
 
     def get(self, request, *args, **kwargs):
         if not settings.DEV and not request.is_secure():
@@ -461,24 +402,12 @@ class WhatsnewView(LatestFxView):
             return HttpResponsePermanentRedirect(uri)
         return super(WhatsnewView, self).get(request, *args, **kwargs)
 
-    def get_context_data(self, **kwargs):
-        ctx = super(WhatsnewView, self).get_context_data(**kwargs)
-
-        locale = l10n_utils.get_locale(self.request)
-
-        if locale not in self.fxos_locales:
-            ctx['locales_with_video'] = self.locales_with_video
-
-        return ctx
-
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
-        locale = l10n_utils.get_locale(self.request)
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
         if oldversion.startswith('rv:'):
             oldversion = oldversion[3:]
-        versions = ('29.', '30.', '32.')
 
         if version.startswith('37.'):
             template = 'firefox/whatsnew-fx37.html'
@@ -487,47 +416,8 @@ class WhatsnewView(LatestFxView):
                 template = 'firefox/australis/fx36/whatsnew-tour.html'
             else:
                 template = 'firefox/australis/fx36/whatsnew-no-tour.html'
-        elif show_34_0_5_search_template(version):
-            if locale == 'en-US':
-                if version.startswith('35.'):
-                    min_version = '35.0'
-                else:
-                    min_version = '34.0'
-
-                if show_search_whatsnew_tour(min_version, oldversion):
-                    template = 'firefox/search_tour/tour-34.0.5.html'
-                else:
-                    template = 'firefox/search_tour/no-tour.html'
-            else:
-                template = 'firefox/australis/whatsnew-no-tour.html'
-        elif version.startswith('34.'):
-            if locale == 'en-US':
-                if show_search_whatsnew_tour('34.0', oldversion):
-                    template = 'firefox/search_tour/tour.html'
-                else:
-                    template = 'firefox/search_tour/no-tour.html'
-            else:
-                template = 'firefox/australis/whatsnew-no-tour.html'
-        elif version.startswith('33.'):
-            if show_10th_anniversary(version):
-                if show_whatsnew_tour(oldversion):
-                    template = 'firefox/privacy_tour/tour.html'
-                else:
-                    template = 'firefox/privacy_tour/no-tour.html'
-            else:
-                template = 'firefox/australis/whatsnew-no-tour.html'
-        # show australis tour for ESR 31 updates
-        elif version.startswith('31.'):
-            if show_australis_whatsnew_tour(oldversion):
-                template = 'firefox/australis/whatsnew-tour.html'
-            else:
-                template = 'firefox/australis/whatsnew-no-tour.html'
-        elif version.startswith(versions):
-            template = 'firefox/australis/whatsnew-no-tour.html'
-        elif locale in self.fxos_locales:
-            template = 'firefox/whatsnew-fxos.html'
         else:
-            template = 'firefox/whatsnew.html'
+            template = 'firefox/australis/whatsnew-no-tour.html'
 
         # return a list to conform with original intention
         return [template]
