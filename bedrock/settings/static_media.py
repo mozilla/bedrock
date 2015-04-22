@@ -485,44 +485,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_releases_index-bundle.css',
     },
-    'firefox_privacy_tour': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/base/mozilla-modal.less',
-            'css/base/mozilla-share-cta.less',
-            'css/firefox/independent-splash.less',
-            'css/firefox/australis/australis-ui-tour.less',
-            'css/firefox/privacy_tour/common.less',
-            'css/firefox/privacy_tour/tour.less',
-        ),
-        'output_filename': 'css/firefox_privacy_tour-bundle.css',
-    },
-    'firefox_privacy_no_tour': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/base/mozilla-modal.less',
-            'css/base/mozilla-share-cta.less',
-            'css/firefox/independent-splash.less',
-            'css/firefox/privacy_tour/common.less',
-            'css/firefox/privacy_tour/no-tour.less',
-        ),
-        'output_filename': 'css/firefox_privacy_no_tour-bundle.css',
-    },
-    'firefox_search_tour': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/firefox/search_tour/common.less',
-            'css/firefox/search_tour/tour.less',
-        ),
-        'output_filename': 'css/firefox_search_tour-bundle.css',
-    },
-    'firefox_search_no_tour': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/firefox/search_tour/common.less',
-        ),
-        'output_filename': 'css/firefox_search_no_tour-bundle.css',
-    },
     'firefox_tour': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
@@ -533,16 +495,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_tour-bundle.css',
     },
-    'firefox_whatsnew': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
-            'css/sandstone/video.less',
-            'css/firefox/whatsnew.less',
-            'css/firefox/whatsnew-android.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew-bundle.css',
-    },
     'firefox_whatsnew_37': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -550,14 +502,6 @@ PIPELINE_CSS = {
             'css/firefox/whatsnew-fx37.less',
         ),
         'output_filename': 'css/firefox_whatsnew_37-bundle.css',
-    },
-    'firefox_whatsnew_fxos': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/firefox/simple_footer.less',
-            'css/firefox/whatsnew-fxos.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew_fxos-bundle.css',
     },
     'firefox_releasenotes': {
         'source_filenames': (
@@ -1376,51 +1320,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_hello_ie9-bundle.js',
     },
-    'firefox_privacy_tour': {
-        'source_filenames': (
-            'js/base/mozilla-modal.js',
-            'js/base/mozilla-share-cta.js',
-            'js/base/firefox-anniversary-video.js',
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/privacy_tour/common.js',
-            'js/firefox/privacy_tour/tour.js',
-        ),
-        'output_filename': 'js/firefox_privacy_tour-bundle.js',
-    },
-    'firefox_privacy_no_tour': {
-        'source_filenames': (
-            'js/base/mozilla-modal.js',
-            'js/base/mozilla-share-cta.js',
-            'js/base/firefox-anniversary-video.js',
-            'js/firefox/privacy_tour/common.js',
-            'js/firefox/privacy_tour/no-tour.js',
-        ),
-        'output_filename': 'js/firefox_privacy_no_tour-bundle.js',
-    },
-    'firefox_search_tour': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/search_tour/common.js',
-            'js/firefox/search_tour/tour.js',
-        ),
-        'output_filename': 'js/firefox_search_tour-bundle.js',
-    },
-    'firefox_search_tour_34.0.5': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/search_tour/common.js',
-            'js/firefox/search_tour/tour-34.0.5.js',
-        ),
-        'output_filename': 'js/firefox_search_tour_34.0.5-bundle.js',
-    },
-    'firefox_search_no_tour': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/search_tour/common.js',
-        ),
-        'output_filename': 'js/firefox_search_no_tour-bundle.js',
-    },
     'firefox_tour': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
@@ -1452,12 +1351,6 @@ PIPELINE_JS = {
             'js/firefox/whatsnew-fx37.js',
         ),
         'output_filename': 'js/firefox_whatsnew_fx37-bundle.js',
-    },
-    'firefox_whatsnew_fxos': {
-        'source_filenames': (
-            'js/firefox/whatsnew-fxos.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_fxos-bundle.js',
     },
     'geolocation': {
         'source_filenames': (
