@@ -163,7 +163,7 @@ $(function() {
 
     // only execute the plugincheck code if this is Firefox
     if (isFirefox()) {
-        PluginCheck.getPluginsStatus('https://plugins.mozilla.org/en-us/plugins_list.json?callback=?',
+        PluginCheck.getPluginsStatus('https://plugins.mozilla.org/en-us/plugins_list.json',
             function(response) {
                 displayPlugins(response);
             }
