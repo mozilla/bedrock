@@ -55,6 +55,11 @@
   {# L10n: This is the string used to indicate that the plugin is unknown #}
   data-unknown="{{ _('unknown') }}"
 
+  {% if l10n_has_tag('share_cta') -%}
+    {# L10n: This is the string used to indicate that the plugin is outdated #}
+    data-outdated="{{ _('outdated') }}"
+  {% endif %}
+
   {# L10n: This is the string used to indicate that the plugin is vulnerable #}
   data-vulnerable="{{ _('vulnerable') }}"
 
