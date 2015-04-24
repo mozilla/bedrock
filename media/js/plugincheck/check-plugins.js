@@ -118,7 +118,7 @@ $(function() {
                     'icon': mediaURL + iconFor(plugin.name),
                     'plugin_name': plugin.name,
                     'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('vulnerable'),
+                    'plugin_status': window.trans('outdated'),
                     'plugin_version': plugin.version,
                     'button_update': window.trans('button_update'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
