@@ -58,6 +58,9 @@
   {% if l10n_has_tag('plugin_outdated') -%}
     {# L10n: This is the string used to indicate that the plugin is outdated #}
     data-outdated="{{ _('outdated') }}"
+  {% else %}
+    {# L10n: This is the string used to indicate that the plugin is outdated #}
+    data-outdated="{{ _('vulnerable') }}"
   {% endif %}
 
   {# L10n: This is the string used to indicate that the plugin is vulnerable #}
