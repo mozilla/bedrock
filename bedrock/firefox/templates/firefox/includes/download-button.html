@@ -64,6 +64,9 @@
               {% if channel != 'alpha' %}
                 <span class="download-subtitle">{{ _('Get it free on Google Play') }}</span>
               {% endif %}
+            {% elif plat.os == 'ios' and waffle.switch('ios-active') %}
+              <strong class="download-title">{{ _('<span>Firefox</span> for iOS') }}</strong>
+              <span class="download-subtitle">{{ _('Get it free from the App Store') }}</span>
             {% else %}
               {% if channel == 'beta' %}
                 <strong class="download-title">{{ _('Firefox Beta') }}</strong>
