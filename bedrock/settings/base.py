@@ -533,7 +533,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/family-nav.less',
-            'css/base/mozilla-modal.less',
+            'css/base/mozid-modal.less',
             'css/base/svg-animation-check.less',
             'css/base/mozilla-share-cta.less',
             'css/firefox/hello/index.less',
