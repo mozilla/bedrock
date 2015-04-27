@@ -4,7 +4,7 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "scripts": {
-    "test": "grunt test"
+    "test": "PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test tests/functional --config=tests/config.json"
   },
   "dependencies": {
     "cssmin": "0.4.3",
@@ -21,6 +21,7 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
+    "casperjs": "^1.1.0-beta3",
     "grunt": "~0.4.2",
     "grunt-cli": "~0.1.11",
     "grunt-contrib-clean": "^0.6.0",
@@ -40,6 +41,7 @@
     "karma-requirejs": "~0.2.1",
     "karma-script-launcher": "~0.1.0",
     "load-grunt-tasks": "^1.0.0",
+    "phantomjs": "^1.9.15",
     "requirejs": "~2.1.11",
     "sinon": "~1.8.2"
   }

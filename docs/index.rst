@@ -28,6 +28,7 @@ Contents
    php
    l10n
    coding
+   testing
    javascript-libs
    contribute
    grunt
