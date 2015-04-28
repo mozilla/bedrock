@@ -114,6 +114,12 @@ function isFirefoxUpToDate(latest) {
     return (latestFirefoxVersion <= fx_version);
 }
 
+// Used on the plugincheck page to also support SeaMonkey
+function isSeaMonkey(userAgent) {
+    var ua = userAgent || navigator.userAgent;
+    return /SeaMonkey/i.test(ua);
+}
+
 // used in bedrock for desktop specific checks like `isFirefox() && !isFirefoxMobile()`
 // reference https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
 function isFirefoxMobile(userAgent) {
