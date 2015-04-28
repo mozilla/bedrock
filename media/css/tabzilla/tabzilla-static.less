@@ -1,0 +1,57 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+/*
+Template markup:
+----------------
+
+{% block tabzilla_tab %}
+  <div id="tabzilla">
+    <a href="{{ url('mozorg.home') }}">Mozilla</a>
+  </div>
+{% endblock %}
+
+Customize wordmark background color:
+------------------------------------
+
+#tabzilla:before {
+    background-color: purple;
+}
+
+Override default Tabzilla assets
+--------------------------------
+
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
+*/
+
+#tabzilla {
+    position: relative;
+    float: right;
+
+    a {
+        position: relative;
+        display: block;
+        width: 147px;
+        height: 37px;
+        .image-replaced();
+        .at2x('/media/img/tabzilla/tabzilla-static.png', 147px, 37px);
+        background-repeat: no-repeat;
+        z-index: 2;
+    }
+
+    &:before {
+        position: absolute;
+        display: block;
+        left: 28px;
+        top: 0;
+        width: 88px;
+        height: 26px;
+        content: '';
+        background-color: transparent;
+        z-index: 1;
+    }
+}

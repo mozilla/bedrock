@@ -418,6 +418,7 @@ PIPELINE_CSS = {
     'firefox_family': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family/index.less',
         ),
         'output_filename': 'css/firefox-family-bundle.css',

@@ -57,6 +57,7 @@
 
 // Handy sprite mixin
 .fxfamily-sprite(@posx, @posy) {
+    // note: the tabzilla image in this sprite is no longer used
     background-image: url(/media/img/firefox/family/index/family-sprite.png);
     background-position: @posx @posy;
     background-repeat: no-repeat;
@@ -155,33 +156,12 @@ html.ios {
 
 
 /*--------------------------------------------------------------------------*/
-// Mozilla tab (like tabzilla, but not)
-#moztab {
-    position: absolute;
-    right: 0;
-    top: 0;
-
-    a {
-        .image-replaced();
-        background: url(/media/img/firefox/family/index/family-sprite.png) -90px -556px no-repeat;
-        display: block;
-        width: 148px;
-        height: 36px;
-        position: relative;
-        z-index: 10;
-        .at2x('/media/img/firefox/family/index/family-sprite.png', 500px, 645px);
-    }
+// Tabzillita (little tabzilla) customizations
+#tabzilla {
+    z-index: 3;
 
     &:before {
-        content: '';
-        display: block;
-        width: 88px;
-        height: 26px;
         background: @mozIDBlue;
-        position: absolute;
-        left: 28px;
-        top: 0;
-        z-index: 9;
     }
 }
 
