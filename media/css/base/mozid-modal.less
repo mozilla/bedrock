@@ -28,14 +28,13 @@ html.noscroll body {
         .inner {
             position: relative;
 
-            header {
+            &> header {
                 display: block;
                 height: auto;
                 .font-size(60px);
                 text-align: center;
                 color: #fff;
                 .open-sans-light;
-                .transition;
             }
 
             #modal-close {
@@ -100,7 +99,7 @@ html[dir="rtl"] {
 
 @media only screen and (min-width: @breakDesktop) {
     #modal .inner {
-        width: @widthDesktop;
+        width: @widthDesktop - (@gridGutterWidth * 2);
         margin: 60px auto;
         .footer {
             .clearfix();
@@ -147,7 +146,7 @@ html[dir="rtl"] {
         .inner {
             margin-top: 20px;
 
-            header {
+            &> header {
                 // remove left/right padding so the .image-replaced works as expected
                 padding: 10px 0;
                 .image-replaced();
