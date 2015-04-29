@@ -62,6 +62,9 @@
 @buttonBlue: #43a6e2;
 @buttonBlueDark: #277ac1;
 
+// potential general styles for new mozilla id themed pages
+@mozIDBlue: #0c99d5;
+
 .open-sans() {
     font-family: @baseFontFamily;
 }
@@ -484,4 +487,38 @@
 .background-size(...) {
     -webkit-background-size: @arguments;
             background-size: @arguments;
+}
+
+// Will usually be added to #outer-wrapper
+.aurora-bars(@pageBgColor: @mozIDBlue, @auroraStartColor: #00a7e0) {
+    background: @pageBgColor;
+    background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%), fade(@pageBgColor, 0%) 100px, @pageBgColor 450px, @pageBgColor),
+        repeating-linear-gradient(-62deg,
+            @auroraStartColor, fade(@pageBgColor, 0%) 700px,
+            @auroraStartColor 700px, fade(@pageBgColor, 0%) 850px,
+            @auroraStartColor 850px, fade(@pageBgColor, 0%) 1100px);
+
+    @media (max-width: @breakDesktop) {
+        background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%), fade(@pageBgColor, 0%) 100px, @pageBgColor 350px, @pageBgColor),
+            repeating-linear-gradient(-62deg,
+                @auroraStartColor, fade(@pageBgColor, 0%) 200px,
+                @auroraStartColor 200px, fade(@pageBgColor, 0%) 550px,
+                @auroraStartColor 550px, fade(@pageBgColor, 0%) 800px);
+    }
+
+    @media (max-width: @breakTablet) {
+        background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%), fade(@pageBgColor, 0%) 100px, @pageBgColor 250px, @pageBgColor),
+            repeating-linear-gradient(-62deg,
+                @auroraStartColor, fade(@pageBgColor, 0%) 100px,
+                @auroraStartColor 100px, fade(@pageBgColor, 0%) 200px,
+                @auroraStartColor 200px, fade(@pageBgColor, 0%) 600px);
+    }
+
+    @media (max-width: @breakMobileLandscape) {
+        background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%), fade(@pageBgColor, 0%) 100px, @pageBgColor 250px, @pageBgColor),
+            repeating-linear-gradient(-62deg,
+                @auroraStartColor, fade(@pageBgColor, 0%) 150px,
+                @auroraStartColor 150px, fade(@pageBgColor, 0%) 250px,
+                @auroraStartColor 250px, fade(@pageBgColor, 0%) 400px);
+    }
 }

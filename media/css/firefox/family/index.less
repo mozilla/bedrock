@@ -4,19 +4,12 @@
 
 @import "../../sandstone/lib.less";
 
-// potential general styles for new mozilla id themed pages
-@mozIDBlue: #0c99d5;
-
 .mozid {
     color: #fff;
 
     #outer-wrapper {
-        background: @mozIDBlue url(/media/img/firefox/family/index/aurora.png) right top no-repeat;
+        .aurora-bars();
         border-top: 4px solid #fff;
-
-        @media only screen and (max-width: @breakTablet) {
-            background-position: -200px -100px;
-        }
     }
 
     #wrapper {
