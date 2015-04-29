@@ -320,6 +320,51 @@ describe('global.js', function() {
         });
     });
 
+    describe('isSeaMonkey', function() {
+
+        it('should consider SeaMonkey as SeaMonkey', function() {
+            var ua = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0 SeaMonkey/2.37a1';
+            var result = isSeaMonkey(ua);
+            expect(result).toBeTruthy();
+        });
+
+        it('should not consider Firefox to be SeaMonkey', function() {
+            var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0';
+            var result = isSeaMonkey(ua);
+            expect(result).not.toBeTruthy();
+        });
+
+        it('should not consider Camino to be SeaMonkey', function() {
+            var ua = 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10.4; en; rv:1.9.2.24) Gecko/20111114 Camino/2.1 (like Firefox/3.6.24)';
+            var result = isSeaMonkey(ua);
+            expect(result).not.toBeTruthy();
+        });
+
+        it('should not consider Chrome to be SeaMonkey', function() {
+            var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36';
+            var result = isSeaMonkey(ua);
+            expect(result).not.toBeTruthy();
+        });
+
+        it('should not consider Safari to be SeaMonkey', function() {
+            var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2';
+            var result = isSeaMonkey(ua);
+            expect(result).not.toBeTruthy();
+        });
+
+        it('should not consider IE to be SeaMonkey', function() {
+            var ua = 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)';
+            var result = isSeaMonkey(ua);
+            expect(result).not.toBeTruthy();
+        });
+
+        it('should not consider Iceweasel to be SeaMonkey', function() {
+            var ua = 'Mozilla/5.0 (X11; Linux x86_64; rv:17.0) Gecko/20121202 Firefox/17.0 Iceweasel/17.0.1';
+            var result = isSeaMonkey(ua);
+            expect(result).not.toBeTruthy();
+        });
+    })
+
     describe('gaTrack', function () {
 
         var clock;

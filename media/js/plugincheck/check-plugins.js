@@ -152,17 +152,17 @@ $(function() {
     }
 
     // show main download button to non Fx traffic
-    if(!isFirefox()) {
+    if(!isFirefox() && !isSeaMonkey() ) {
         wrapper.addClass('non-fx');
     }
 
     // show for outdated Fx versions
-    if (isFirefox() &&  !isFirefoxUpToDate() && !isFirefox31ESR()) {
+    if (isFirefox() && !isFirefoxUpToDate() && !isFirefox31ESR()) {
         outdatedFx.show();
     }
 
     // only execute the plugincheck code if this is Firefox
-    if (isFirefox()) {
+    if (isFirefox() || isSeaMonkey()) {
         PluginCheck.getPluginsStatus('https://plugins.mozilla.org/en-us/plugins_list.json',
             function(response) {
                 displayPlugins(response);
