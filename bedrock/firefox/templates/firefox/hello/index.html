@@ -185,7 +185,7 @@ set share_urls = {
           <p>
             {{ _('Because Hello is built right into Firefox, you can rest easy knowing that your conversations and information will remain private and secure.') }}
             {% if l10n_has_tag('hello_screen_sharing') and waffle.switch('hello-screen-sharing') %}
-              {{ _('And thanks to WebRTC-grade encryption, you’ll enjoy an added level of security.')}} <a class="more" href="#">{{ _('Learn more about WebRTC encryption')}}</a>
+              {{ _('And thanks to WebRTC-grade encryption, you’ll enjoy an added level of security.')}}
             {% else %}
               {{ _('That’s part of our mission, and it’s behind everything we do around here.') }}
             {% endif %}
