@@ -34,7 +34,7 @@ LANGUAGE_CODE = 'en-US'
 
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
-                  'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cs', 'cy',
+                  'bn-BD', 'bn-IN', 'br', 'brx', 'bs', 'ca', 'cs', 'cy',
                   'da', 'de', 'dsb', 'ee', 'el', 'en-GB', 'en-US', 'en-ZA',
                   'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et', 'eu',
                   'fa', 'ff', 'fi', 'fr', 'fy-NL', 'ga-IE', 'gd', 'gl',
