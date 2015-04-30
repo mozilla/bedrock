@@ -1041,33 +1041,33 @@ class TestHelloStartView(TestCase):
         eq_(template, ['firefox/hello/start.html'])
 
     @override_settings(DEV=True)
+    def test_fx_hello_36_0_a2(self, render_mock):
+        """Should use start.html template for Hello 36.0a2"""
+        req = self.rf.get('/en-US/firefox/hello/start/')
+        self.view(req, version='36.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/hello/start.html'])
+
+    @override_settings(DEV=True)
     def test_fx_hello_38_0(self, render_mock):
         """Should use start.html template for Hello 38.0"""
         req = self.rf.get('/en-US/firefox/hello/start/')
-        self.view(req, version='36.0')
+        self.view(req, version='38.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/hello/start.html'])
 
     @override_settings(DEV=True)
-    def test_fx_hello_38_0_a2(self, render_mock):
-        """Should use start.html template for Hello 38.0a2"""
+    def test_fx_hello_38_0_5(self, render_mock):
+        """Should use start-38.0.5.html template for Hello 38.0.5"""
         req = self.rf.get('/en-US/firefox/hello/start/')
-        self.view(req, version='38.0a2')
+        self.view(req, version='38.0.5')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/hello/start.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_hello_38_1(self, render_mock):
-        """Should use start-38.1.html template for Hello 38.1"""
-        req = self.rf.get('/en-US/firefox/hello/start/')
-        self.view(req, version='38.1')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/hello/start-38.1.html'])
+        eq_(template, ['firefox/hello/start-38.0.5.html'])
 
     @override_settings(DEV=True)
     def test_fx_hello_39_0_a2(self, render_mock):
-        """Should use start-38.1.html template for Hello 39.0a1"""
+        """Should use start-38.0.5.html template for Hello 39.0a1"""
         req = self.rf.get('/en-US/firefox/hello/start/')
         self.view(req, version='39.0a1')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/hello/start-38.1.html'])
+        eq_(template, ['firefox/hello/start-38.0.5.html'])

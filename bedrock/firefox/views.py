@@ -594,7 +594,7 @@ def hello_screen_sharing(version):
     except ValueError:
         return False
 
-    return version >= Version('38.1')
+    return version >= Version('38.0.5')
 
 
 class HelloStartView(LatestFxView):
@@ -603,7 +603,7 @@ class HelloStartView(LatestFxView):
         version = self.kwargs.get('version') or ''
 
         if hello_screen_sharing(version):
-            template = 'firefox/hello/start-38.1.html'
+            template = 'firefox/hello/start-38.0.5.html'
         else:
             template = 'firefox/hello/start.html'
 
