@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.test.client import RequestFactory
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 
 from nose.tools import eq_
 

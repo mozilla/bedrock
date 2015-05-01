@@ -4,7 +4,7 @@
 
 from django.conf.urls import patterns
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 
 from bedrock.mozorg.util import page
 

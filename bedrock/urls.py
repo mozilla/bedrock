@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls import handler404, include, patterns
 from django.contrib import admin
 
-from funfactory.monkeypatches import patch
+from bedrock.base.monkeypatches import patch
 
 
 patch()

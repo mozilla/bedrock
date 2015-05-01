@@ -101,7 +101,7 @@ class TestRedirectUrlPattern(TestCase):
     @patch('bedrock.redirects.util.reverse')
     def test_to_view(self, mock_reverse):
         """
-        Should use return value of funfactory reverse as redirect location
+        Should use return value of our locale-aware reverse as redirect location
         """
         mock_reverse.return_value = '/just/your/opinion/man'
         pattern, view = redirect(r'^the/dude$', 'yeah.well.you.know.thats')

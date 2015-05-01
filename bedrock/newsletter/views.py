@@ -21,7 +21,7 @@ import lib.l10n_utils as l10n_utils
 import requests
 from lib.l10n_utils.dotlang import _, _lazy
 from commonware.decorators import xframe_allow
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 
 from .forms import (EmailForm, ManageSubscriptionsForm, NewsletterForm, NewsletterFooterForm)
 # Cannot use short "from . import utils" because we need to mock

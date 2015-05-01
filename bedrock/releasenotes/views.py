@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from lib import l10n_utils
 from rna.models import Release
 from product_details import product_details

@@ -11,7 +11,7 @@ from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.utils.http import parse_http_date
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from mock import patch
 from nose.tools import eq_, ok_
 

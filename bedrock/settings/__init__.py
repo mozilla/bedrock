@@ -30,7 +30,7 @@ if DEV:
 WAFFLE_FLAG_DEFAULT = WAFFLE_SWITCH_DEFAULT = WAFFLE_SAMPLE_DEFAULT = DEV
 
 # Any databases configured other than "default" should be
-# read-only slaves, which funfactory's default router
+# read-only slaves, which our default router
 # should use with this setting.
 if 'manage.py' not in sys.argv:
     SLAVE_DATABASES = [db for db in DATABASES if db != 'default']

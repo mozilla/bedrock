@@ -1,4 +1,4 @@
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from mock import patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq

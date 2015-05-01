@@ -10,7 +10,7 @@ from django.shortcuts import render as django_render
 from django.template import TemplateDoesNotExist
 from django.utils.translation.trans_real import parse_accept_lang_header
 
-from funfactory.urlresolvers import split_path
+from bedrock.base.urlresolvers import split_path
 
 from .dotlang import get_lang_path
 from .gettext import template_is_active, translations_for_template

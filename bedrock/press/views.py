@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic.edit import FormView
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 
 from .forms import SpeakerRequestForm
 from lib import l10n_utils

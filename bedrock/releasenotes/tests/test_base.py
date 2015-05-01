@@ -5,7 +5,7 @@ from django.http import Http404
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from mock import patch, Mock
 from nose.tools import eq_
 from rna.models import Release

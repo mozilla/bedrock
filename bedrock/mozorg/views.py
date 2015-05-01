@@ -16,11 +16,11 @@ from django.views.generic import FormView, TemplateView
 from django.shortcuts import redirect, render as django_render
 
 import basket
-from funfactory.helpers import static
+from bedrock.base.helpers import static
 import requests
 from lib import l10n_utils
 from commonware.decorators import xframe_allow
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils.dotlang import _, lang_file_is_active, lang_file_has_tag
 
 from bedrock.mozorg import email_contribute

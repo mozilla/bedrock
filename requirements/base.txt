@@ -138,14 +138,6 @@ https://github.com/kennethreitz/requests/archive/46d646064ca0836a7d7b4d50ea2c762
 
 ###### FROM PLAYDOH-LIB ######
 
-# django-sha2: master~1
-# sha256: TBUJueJfjaBHp4GeUtY0o_IaGHk4DOUf0ZbJZ4YXPPM
-https://github.com/fwenzel/django-sha2/archive/3ba2b4771056fb722bc9fe52cf26918a3f0388bb.tar.gz#egg=django-sha2
-
-# django-mobility: master
-# sha256: vWKlBersFicnz_K9LUwnYlm1HhXt9bgxvWKB915vfog
-https://github.com/jbalogh/django-mobility/archive/e2b60a1f96e4c4aed736395c01bf707e969d8e83.tar.gz#egg=django-mobility
-
 # django-product-details: master
 # sha256: tLy18AIevr3_Rd7saf4cKuq_W1M3zpKFVOLBmggiCck
 https://github.com/mozilla/django-product-details/archive/d168ab2e689a1b54a30a923386fe7948a74ff334.tar.gz#egg=django-mozilla-product-details
@@ -157,10 +149,6 @@ https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79
 # django-multidb-router: tags/v0.5.1~4
 # sha256: I0E4DVGgHJ6DNZiKaPGiZ1s59QAG7iRC9GP_sTDG_Vg
 https://github.com/jbalogh/django-multidb-router/archive/4f78662026b21cfff1ecfddc487fa0f0c31a0215.tar.gz#egg=django-multidb-router
-
-# funfactory: tags/2.3.0~2
-# sha256: WZK7DOHqxxCVXMeEXbN4GqjK7Nc7zRFW-83LKRO2PA4
-https://github.com/mozilla/funfactory/archive/0caf8b6cb3d583301192651b4fc20df20dd82f00.tar.gz#egg=funfactory
 
 # commonware: tags/v0.4.2
 # sha256: k9gjEUXUPKAuHsPO41UzOvqOcq25z4FXZ-F1lXSXdNQ
@@ -182,11 +170,11 @@ https://github.com/jsocol/django-cronjobs/archive/cfda8176c5c3a50d1b58fcf57e87e2
 # sha256: eeq_z415NQPBF3j59fmy6JGjtnpDgVQxwwvFKxnDQx0
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets
 
-# because funfactory
-# TODO move back to dev.txt
-
 # sha256: D41ubgIjuPsEEUtKcgk4DhrPJ-Ch3Rq5j-zghafDxSU
 nose==1.0.0
 
 # sha256: NmfSakH-wwNkoO9yWAgyylMogC1VP21ucq9awhyzY2U
 django-nose==1.3
+
+# sha256: aUBxjfw-_0JYIDrVAhCQkz5cBHB9XKjMnnPJSniU6p8
+pathlib==1.0.1

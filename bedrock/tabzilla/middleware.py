@@ -4,7 +4,7 @@
 
 from django.conf import settings
 
-from funfactory.middleware import LocaleURLMiddleware
+from bedrock.base.middleware import LocaleURLMiddleware
 
 
 class TabzillaLocaleURLMiddleware(LocaleURLMiddleware):

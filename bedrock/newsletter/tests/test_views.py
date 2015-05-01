@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from django.test.client import RequestFactory
 
 import basket
-from funfactory.urlresolvers import reverse
+from bedrock.base.urlresolvers import reverse
 from mock import DEFAULT, Mock, patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
