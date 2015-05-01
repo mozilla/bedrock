@@ -114,17 +114,20 @@ def system_requirements(request, version, product='Firefox'):
         {'release': release, 'version': version})
 
 
-def latest_notes(request, product='firefox', channel='release'):
-    if product == 'firefox' and channel == 'developer':
-        channel = 'alpha'
-    if product == 'mobile' and channel == 'aurora':
+def latest_notes(request, product='firefox', platform=None, channel=None):
+    if not platform:
+        platform = 'desktop'
+
+    if not channel:
+        channel = 'release'
+    if channel in ['aurora', 'developer']:
         channel = 'alpha'
     if channel == 'organizations':
         channel = 'esr'
 
     if product == 'thunderbird':
         version = thunderbird_get_latest_version(channel)
-    elif product == 'mobile':
+    elif platform == 'android':
         version = firefox_android.latest_version(channel)
     else:
         version = firefox_desktop.latest_version(channel)
@@ -137,6 +140,8 @@ def latest_notes(request, product='firefox', channel='release'):
     dir = 'auroranotes' if channel == 'alpha' else 'releasenotes'
     path = [product, version, dir]
     locale = getattr(request, 'locale', None)
+    if product == 'firefox' and platform != 'desktop':
+        path.insert(1, platform)
     if locale:
         path.insert(0, locale)
     return HttpResponseRedirect('/' + '/'.join(path) + '/')

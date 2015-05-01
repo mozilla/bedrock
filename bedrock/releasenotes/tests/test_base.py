@@ -281,21 +281,21 @@ class TestNotesRedirects(TestCase):
 
     @patch.dict(product_details.mobile_details,
                 version='22.0')
-    def test_mobile_release_version(self):
-        self._test('/mobile/notes/',
-                   '/mobile/22.0/releasenotes/')
+    def test_android_release_version(self):
+        self._test('/firefox/android/notes/',
+                   '/firefox/android/22.0/releasenotes/')
 
     @patch.dict(product_details.mobile_details,
                 beta_version='23.0b1')
-    def test_mobile_beta_version(self):
-        self._test('/mobile/beta/notes/',
-                   '/mobile/23.0beta/releasenotes/')
+    def test_android_beta_version(self):
+        self._test('/firefox/android/beta/notes/',
+                   '/firefox/android/23.0beta/releasenotes/')
 
     @patch.dict(product_details.mobile_details,
                 alpha_version='24.0a2')
-    def test_mobile_aurora_version(self):
-        self._test('/mobile/aurora/notes/',
-                   '/mobile/24.0a2/auroranotes/')
+    def test_android_aurora_version(self):
+        self._test('/firefox/android/aurora/notes/',
+                   '/firefox/android/24.0a2/auroranotes/')
 
     @patch.dict(product_details.thunderbird_versions,
                 LATEST_THUNDERBIRD_VERSION='22.0')
