@@ -22,15 +22,12 @@ from bedrock.thunderbird.utils import get_latest_version as thunderbird_get_late
 
 SUPPORT_URLS = {
     'Firefox for Android': 'https://support.mozilla.org/products/mobile',
-    'Firefox OS': 'https://support.mozilla.org/products/firefox-os',
     'Firefox': 'https://support.mozilla.org/products/firefox',
     'Thunderbird': 'https://support.mozilla.org/products/thunderbird/',
 }
 
 
 def release_notes_template(channel, product, version=None):
-    if product == 'Firefox OS':
-        return 'firefox/releases/os-notes.html'
     prefix = dict((c, c.lower()) for c in Release.CHANNELS)
 
     if product == 'Firefox' and channel == 'Aurora' and version >= 35:
@@ -79,10 +76,6 @@ def get_download_url(release):
 
 @cache_control_expires(1)
 def release_notes(request, version, product='Firefox'):
-    if product == 'Firefox OS' and version in ('1.0.1', '1.1', '1.2'):
-        return l10n_utils.render(
-            request, 'firefox/os/notes-%s.html' % version)
-
     try:
         release = get_release_or_404(version, product)
     except Http404:

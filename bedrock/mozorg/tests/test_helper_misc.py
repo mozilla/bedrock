@@ -558,13 +558,3 @@ class TestReleaseNotesURL(TestCase):
         eq_(releasenotes_url(release), mock_reverse.return_value)
         mock_reverse.assert_called_with(
             'firefox.desktop.releasenotes', args=('42.0', 'release'))
-
-    @patch('bedrock.mozorg.helpers.misc.reverse')
-    def test_firefox_os_releasenotes_url(self, mock_reverse):
-        """
-        Should return the results of reverse with the correct args
-        """
-        release = Release(version='42.0', product='Firefox OS')
-        eq_(releasenotes_url(release), mock_reverse.return_value)
-        mock_reverse.assert_called_with(
-            'firefox.os.releasenotes', args=['42.0'])

@@ -105,10 +105,6 @@ urlpatterns = patterns('',
         {'product': 'Firefox for Android'}, name='firefox.android.releasenotes'),
     url(sysreq_re, bedrock.releasenotes.views.system_requirements,
         name='firefox.system_requirements'),
-    # firefox/os/notes/ should redirect to the latest version; update this in /redirects/urls.py
-    url('^firefox/os/notes/(?P<version>%s)/$' % version_re,
-        bedrock.releasenotes.views.release_notes, {'product': 'Firefox OS'},
-        name='firefox.os.releasenotes'),
     url('^firefox/releases/$', bedrock.releasenotes.views.releases_index,
         {'product': 'Firefox'}, name='firefox.releases.index'),
 
