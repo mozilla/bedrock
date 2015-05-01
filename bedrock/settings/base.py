@@ -115,13 +115,18 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'uz', 'vi', 'wo', 'xh', 'yo', 'zh-CN', 'zh-TW', 'zu')
 
 LOCALES_PATH = ROOT_PATH / 'locale'
-try:
-    DEV_LANGUAGES = [lang.name for lang in LOCALES_PATH.iterdir()
-                     if lang.is_dir() and lang.name != 'templates']
-except OSError:
-    # no locale dir
-    DEV_LANGUAGES = []
 
+
+def get_dev_languages():
+    try:
+        return [lang.name for lang in LOCALES_PATH.iterdir()
+                if lang.is_dir() and lang.name != 'templates']
+    except OSError:
+        # no locale dir
+        return []
+
+
+DEV_LANGUAGES = get_dev_languages()
 DEV_LANGUAGES.append('en-US')
 
 # Map short locale names to long, preferred locale names. This
