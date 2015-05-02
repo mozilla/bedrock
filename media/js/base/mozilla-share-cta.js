@@ -61,20 +61,4 @@ $(function() {
             hideLinks($this);
         }
     });
-
-    $allLinks.find('a').on('click', function (e) {
-        var $this = $(this);
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-
-        if (newTab) {
-            gaTrack(['_trackEvent', 'Share CTA Interactions', 'Social link click', $this.attr('title')]);
-        } else {
-            e.preventDefault();
-            gaTrack(['_trackEvent', 'Share CTA Interactions', 'Social link click', $this.attr('title')], callback);
-        }
-    });
 });

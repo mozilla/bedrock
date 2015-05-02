@@ -31,38 +31,11 @@
         }
     }
 
-    // Track product clicks
-    $('.product-list').on('click', 'a', function(e) {
-        var newTab = ($(this).target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = $(this).attr('href');
-        var product = $(this).data('product');
-        var callback = function() {
-            window.location = href;
-        };
+    // add gtm tracking attributes
+    $('.product-list a').attr('data-interaction', 'click');
+     
+    // add gtm tracking attributes
+    $('#conditional-download-bar a').attr('data-interaction', 'Firefox downloads');
 
-        if (newTab) {
-            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'product click', product]);
-        } else {
-            e.preventDefault();
-            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'product click', product], callback);
-        }
-    });
-
-    // Track download bar clicks
-    $downloadbar.on('click', 'a', function(e) {
-        var newTab = ($(this).target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = $(this).attr('href');
-        var product = $(this).data('product');
-        var callback = function() {
-            window.location = href;
-        };
-
-        if (newTab) {
-            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'Firefox downloads', product]);
-        } else {
-            e.preventDefault();
-            gaTrack(['_trackEvent', '/firefox/products/ Interactions', 'Firefox downloads', product], callback);
-        }
-    });
 
 })(window.jQuery);

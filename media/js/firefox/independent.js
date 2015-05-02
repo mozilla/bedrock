@@ -13,20 +13,8 @@
         $('#fx10-download').show();
     }
 
-    $('#fx10-download .download-link').on('click', function(e) {
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-
-        if (newTab) {
-            gaTrack(['_trackEvent', 'Firefox Downloads', 'download click', window.site.platform]);
-        } else {
-            e.preventDefault();
-            gaTrack(['_trackEvent', 'Firefox Downloads', 'download click', window.site.platform], callback);
-        }
-    });
+    //set up GA tracking through GTM
+    $('#fx10-download .download-link').attr({'data-interaction': 'download-click', 'data-download-version': window.site.platform});
 
     // Initialize the video
     // Defined in /js/base/firefox-anniversary-video.js
@@ -35,19 +23,31 @@
         'onPlay': function() {
             Mozilla.FirefoxAnniversaryVideo.playEmbed();
             Mozilla.FirefoxAnniversaryVideo.setFooterButton('share');
-            gaTrack(['_trackEvent', '/firefox/independent/ Interactions', 'click to play', '10th Anniversary Video']);
+            window.dataLayer.push({
+                event: 'video-interaction',
+                interaction: 'click to play',
+                videoTitle: '10th Anniversary'
+            });
         },
         'onComplete': function() {
             Mozilla.FirefoxAnniversaryVideo.setOverlayButtons('replay');
             Mozilla.FirefoxAnniversaryVideo.hideEmbed();
-            gaTrack(['_trackEvent', '/firefox/independent/ Interactions', 'Finish', '10th Anniversary Video']);
+            window.dataLayer.push({
+                event: 'video-interaction',
+                interaction: 'Finish',
+                videoTitle: '10th Anniversary'
+            });
         }
     });
 
     // Autoplay if URL includes the proper hash and client is not a known mobile OS
     if (window.location.href.indexOf('#play') > -1 && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
         Mozilla.FirefoxAnniversaryVideo.playEmbed();
-        gaTrack(['_trackEvent', '/firefox/independent/ Interactions', 'autoplay', '10th Anniversary Video']);
+        window.dataLayer.push({
+            event: 'video-interaction',
+            interaction: 'autoplay',
+            videoTitle: '10th Anniversary'
+        });
     }
 
 })(window.jQuery);

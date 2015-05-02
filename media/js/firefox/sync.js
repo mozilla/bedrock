@@ -31,7 +31,6 @@
 
     // Variations 1-5 are Firefox
     if (window.isFirefox()) {
-
         // Variation #5: Firefox for Android
         if (window.isFirefoxMobile()) {
 
@@ -43,7 +42,7 @@
 
             if (fxMasterVersion >= 31) {
 
-                // Set syncCapable so we know not to call gaTrack()
+                // Set syncCapable so we know not to send tracking info
                 // again later
                 syncCapable = true;
 
@@ -64,8 +63,11 @@
 
                     // Call GA tracking here to ensure it waits for the
                     // getConfiguration async call
-                    gaTrack(['_trackEvent', '/sync/ Page Interactions', 'load', state]);
-
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        event: 'page-load',
+                        browser: state
+                    });
                 });
 
             // Variation #3: Firefox 29 or 30
@@ -90,47 +92,40 @@
     // Send page state to GA if it hasn't already been sent in the
     // getConfiguration callback
     if (syncCapable === false) {
-        gaTrack(['_trackEvent', '/sync/ Page Interactions', 'load', state]);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: 'page-load',
+            browser: state
+        });
     }
 
-    var trackClick = function (gaArgs, element, event) {
-        event.preventDefault();
-        gaTrack(gaArgs, function() {
-            window.location = element.href;
-        });
-    };
-
-    // Setup GA tracking for misc links
-    $('.ga-link').on('click', function(e) {
-        trackClick(['_trackEvent', '/sync/ Page Interactions', 'outbound link click', this.href], this, e);
-    });
-
     // Setup GA tracking for Firefox download button
-    $('#cta-firefox, .download-button .download-link').on('click', function(e) {
-        trackClick(['_trackEvent', 'Firefox Downloads', 'download click', 'Firefox'], this, e);
+    $('#cta-firefox, .download-button .download-link').attr({
+        'data-interaction': 'download click', 
+        'data-download-version': 'Firefox'
     });
+
 
     // Setup GA tracking for Firefox update button
-    $('#cta-update').on('click', function(e) {
-        trackClick(['_trackEvent', 'Firefox Downloads', 'update click', 'Firefox'], this, e);
+    $('#cta-update').attr({
+        'data-interaction': 'update click',
+        'data-download-version': 'Firefox'
     });
+
 
     // Setup GA tracking for Firefox for primary Android download button
-    $('#cta-android').on('click', function(e) {
-        trackClick(['_trackEvent', 'Firefox Downloads', 'top', 'Firefox for Android'], this, e);
+    $('#cta-android').attr({
+        'data-interaction': 'top',
+        'data-download-version': 'Firefox for Android'
     });
+
 
     // Setup GA tracking for Firefox for Android footer download button
-    $('#cta-android-footer').on('click', function(e) {
-        trackClick(['_trackEvent', 'Firefox Downloads', 'bottom', 'Firefox for Android'], this, e);
+    $('#cta-android-footer').attr({
+        'data-interaction': 'bottom',
+        'data-download-version': 'Firefox for Android'
     });
 
-    // Setup GA tracking for Sync button
-    $('#cta-sync').on('click', function(e) {
-        e.preventDefault();
-        gaTrack(['_trackEvent', '/sync/ Page Interactions', 'button click', 'Sync CTA'],
-            Mozilla.UITour.showFirefoxAccounts);
-    });
 
     Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'sync' });
 })(window.jQuery, window.Mozilla);

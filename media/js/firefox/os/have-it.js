@@ -387,7 +387,11 @@
             $(window).scrollTop($($(this).attr('href')).offset().top - primaryNavHeight + secondaryNavHeight);
 
             //track GA event for icon clicks
-            trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', this.hash]);
+            window.dataLayer.push({
+                event: 'fxos-consumer',
+                interaction: 'click',
+                location: this.hash
+            });
         });
 
         $('#landing').waypoint(function (direction) {
@@ -449,6 +453,7 @@
             case 'photos-link':
                 slider.toSlide(1);
                 break;
+
             case 'music-link':
                 slider.toSlide(2);
                 break;
@@ -468,7 +473,11 @@
             }, 200);
 
             //track GA event for icon clicks
-            trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', this.hash]);
+            window.dataLayer.push({
+                event: 'fxos-consumer',
+                interaction: 'click',
+                location: this.hash
+            });
         });
     }
 

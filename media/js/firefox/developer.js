@@ -16,45 +16,10 @@ function onYouTubeIframeAPIReady() {
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-
-    var trackClick = function (gaArgs, href, event) {
-        if (event.metaKey || event.ctrlKey) {
-            // Open link in new tab
-            gaTrack(gaArgs);
-        } else {
-            event.preventDefault();
-            gaTrack(gaArgs, function() { window.location = href; });
-        }
-    };
-
-    // Setup GA tracking for misc links
-    $('.feature .more').on('click', function(e) {
-        trackClick([
-            '_trackEvent',
-            '/firefox/developer/ Interactions',
-            'learn more link clicks',
-            $(this).text()
-        ], $(this).attr('href'), e);
-    });
-
     // GA tracking for download buttons
-    $('.intro .download-link').on('click', function(e) {
-        trackClick([
-            '_trackEvent',
-            '/firefox/developer/ Interactions',
-            'primary CTA - download click',
-            'Firefox Developer Edition',
-        ], $(this).attr('href'), e);
-    });
+    $('.intro .download-link').attr('data-element-location', 'primary CTA - download click');
+    $('.dev-footer .download-link').attr('data-element-location', 'secondary CTA - bottom download click');
 
-    $('.dev-footer .download-link').on('click', function(e) {
-        trackClick([
-            '_trackEvent',
-            '/firefox/developer/ Interactions',
-            'secondary CTA - bottom download click',
-            'Firefox Developer Edition',
-        ], $(this).attr('href'), e);
-    });
 
     function onYouTubeIframeAPIReady() {
 
@@ -75,22 +40,20 @@ function onYouTubeIframeAPIReady() {
                 if (window.site.platform !== 'ios' && window.site.platform !== 'android') {
                     event.target.playVideo();
                 }
-                gaTrack(
-                    ['_trackEvent',
-                     '/firefox/developer/ Interactions',
-                     'play',
-                     videoTitle + ' video']
-                );
+                window.dataLayer.push({
+                    'event': 'video-interaction',
+                    'interaction': 'play',
+                    'videoTitle': videoTitle
+                });
             }
 
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.ENDED) {
-                    gaTrack(
-                        ['_trackEvent',
-                         '/firefox/developer/ Interactions',
-                         'finish',
-                         videoTitle + ' video']
-                    );
+                    window.dataLayer.push({
+                        'event': 'video-interaction',
+                        'interaction': 'finish',
+                        'videoTitle': videoTitle
+                    });
                 }
             }
 
