@@ -42,7 +42,11 @@
       });
 
       //track GA event for newsletter CTA
-      gaTrack(['_trackEvent', 'FxOs Consumer Page', 'click', 'Sign Me Up - Primary']);
+      window.dataLayer.push({
+        event: 'fxos-consumer',
+        interaction: 'click',
+        location: 'Sign Me Up - Primary'
+      });
     });
 
     $('#sign-up-form-close').on('click', function() {
@@ -65,7 +69,11 @@
       });
 
       //track GA event for get a phone CTA
-      gaTrack(['_trackEvent', 'FxOs Consumer Page', 'click', 'Get a Phone']);
+      window.dataLayer.push({
+        event: 'fxos-consumer',
+        interaction: 'click',
+        location: 'Get a Phone'
+      });
     });
 
     $appGroupSelector.on('click', 'a', function(event) {
@@ -129,26 +137,6 @@
     }
 
     /*
-    * Track telecom provider link clicks/page exits in Google Analytics
-    */
-    function trackProviderExit (e) {
-        var $this = $(this);
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-        var href = this.href;
-
-        var callback = function () {
-            window.location = href;
-        };
-
-        if (newTab) {
-            gaTrack(['_trackEvent', 'FxOs Consumer Page', 'Get A Phone Exit', $this.text()]);
-        } else {
-            e.preventDefault();
-            gaTrack(['_trackEvent', 'FxOs Consumer Page', 'Get A Phone Exit', $this.text()], callback);
-        }
-    }
-
-    /*
     * Set page specific content relating to geo for partner data etc
     */
     function setPartnerContent () {
@@ -170,7 +158,12 @@
             $provider.show();
 
             // setup GA event tracking on telecom provider exit links
-            $('#provider-links a').on('click', trackProviderExit);
+            $('#provider-links a').each(function() {
+                $(this).attr({
+                    'data-element-location': $(this).text(),
+                    'data-interaction': 'Get A Phone Exit'
+                });
+            });
         } else {
             $('.primary-cta-signup').removeClass('hidden');
         }

@@ -5,7 +5,6 @@
     var $body;
     var $ghosteryIframe;
     var $outerWrapper = $('#outer-wrapper');
-    var pageId = $('body').prop('id');
 
     // determines if tour opens or not
     var showDoorhanger;
@@ -67,9 +66,6 @@
         // GA
         gaVariation = (showDoorhanger) ? 'a' : 'b';
 
-        window.gaTrack(['_setCustomVar', 7, 'first run tests', 'variation 2' + gaVariation, 2]);
-        window.gaTrack(['_trackEvent','/firstrun/ Optimization f35', 'page load', 'variation 2' + gaVariation]);
-
         enableIframe = function() {
             $ghosteryIframe.attr('src', $ghosteryIframe.attr('data-src'));
         };
@@ -87,7 +83,6 @@
             setTimeout(function() {
                 $fxaDelayedCTAs.addClass('visible');
 
-                window.gaTrack(['_trackEvent', '/firstrun/ Optimization f35', 'show addons','addons appear under signup form']);
             }, 40000);
         };
 
@@ -146,7 +141,6 @@
                 Mozilla.UITour.showFirefoxAccounts();
             };
 
-            gaTrack(['_trackEvent', pageId + ' Page Interactions - New Firefox Tour', 'button click', 'Get Started with Sync'], goToAccounts);
         };
 
         randomStringMaker = function() {
@@ -178,15 +172,7 @@
 
                     showFxA();
                 }
-                // oauth_complete sent after user verifies account
-                else if (event.data.indexOf('oauth_complete') > -1) {
-                    window.gaTrack(['_trackEvent', '/firstrun/ Optimization f35', 'Sign Up for Firefox Account', 'Verified Email Address']);
-                }
-            } else if (event.origin === 'https://addons.mozilla.org' && typeof event.data === 'object') {
-                if (event.data.addon) {
-                    window.gaTrack(['_trackEvent', '/firstrun/ Optimization f35', 'Add to Firefox', event.data.addon]);
-                }
-            }
+            } 
         });
 
         // if chosen to show doorhanger, get tour setup
@@ -214,7 +200,6 @@
                             tour.doCloseTour();
                         }, 600);
 
-                        window.gaTrack(['_trackEvent', '/firstrun/ Optimization f35', 'doorhanger button', buttonCopy]);
                     },
                     cancelTour: function(buttonCopy) {
                         tour.doCloseTour();
@@ -225,7 +210,6 @@
                             $fxaOverlay.fadeOut('fast');
                         }
 
-                        window.gaTrack(['_trackEvent', '/firstrun/ Optimization f35', 'doorhanger button', buttonCopy]);
                     }
                 });
 
@@ -258,21 +242,6 @@
                 });
             }, 50);
 
-            window.gaTrack(['_trackEvent', '/firstrun/ Optimization f35', 'Add to Firefox', 'Sync Now']);
-        });
-
-        $('#hello-link').on('click', function(e) {
-            var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-            var href = this.href;
-
-            if (newTab) {
-                window.gaTrack(['_trackEvent', '/firstrun/ Optimization f35', 'Add to Firefox', 'Firefox Hello']);
-            } else {
-                e.preventDefault();
-                window.gaTrack(['_trackEvent', '/firstrun/ Optimization f35', 'Add to Firefox', 'Firefox Hello'], function() {
-                    window.location = href;
-                });
-            }
         });
     }
 })(window.jQuery, window.Mozilla);

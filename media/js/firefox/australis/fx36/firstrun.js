@@ -12,7 +12,6 @@
             } else {
                 localStorage.setItem('mozUITourGlobalFlag', 'taken');
             }
-            gaTrack(['_trackEvent', 'Tour Interaction', 'First Time Seeing Tour', firstTime, 0, true]);
         } catch (e) {}
     }
 

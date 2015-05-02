@@ -63,11 +63,8 @@ function init_android_download_links() {
 
 function init_lang_switcher() {
     $('#language').change(function(event) {
-        event.preventDefault();
-        gaTrack(
-            ['_trackEvent', 'Language Switcher', 'change', $(this).val()],
-            function() {$('#lang_form').submit();}
-        );
+        var language = $(this).val();
+        $('#lang_form').attr('data-language', language).submit();
     });
 }
 

@@ -180,9 +180,12 @@ if (typeof Mozilla == 'undefined') {
         this.tourHasFinished = true;
 
         this.hideAnnotations();
-
         if (this.tourHasStarted) {
-            gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Close tour']);
+            window.dataLayer.push({
+                event: 'firstrun-tour-interaction',
+                interaction: 'click',
+                browserAction: 'Close tour'
+            });
         }
 
         this.$mask.addClass('out');
@@ -235,10 +238,6 @@ if (typeof Mozilla == 'undefined') {
         // if tab is hidden then hide all the UITour things.
         if (document.hidden) {
             this.hideAnnotations();
-
-            if (this.tourIsVisible) {
-                gaTrack(['_trackEvent', 'Tour Interaction', 'visibility', 'Leave tour']);
-            }
         } else {
             // if tab is visible and tour is open, show the current step.
             if (this.tourIsVisible) {
@@ -247,7 +246,6 @@ if (typeof Mozilla == 'undefined') {
                         that.showHighlight();
                     }
                 }, 900);
-                gaTrack(['_trackEvent', 'Tour Interaction', 'visibility', 'Return to tour']);
                 // Update page id for Telemetry when returning to tab
                 Mozilla.UITour.registerPageID(this.options.id);
             } else if (!this.tourHasStarted && !this.tourHasFinished) {

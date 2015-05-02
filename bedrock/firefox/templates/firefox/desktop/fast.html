@@ -48,7 +48,7 @@
         {% trans url1=l10n_url.get(
             request.locale,
             'http://www.tomshardware.com/reviews/chrome-27-firefox-21-opera-next,3534.html') %}
-        Firefox outperformed other browsers in recent independent tests to be named <br class="wide-br">the <a href="{{ url1 }}">“speed king.”</a>
+        Firefox outperformed other browsers in recent independent tests to be named <br class="wide-br">the <a href="{{ url1 }}" data-interaction="outbound link">“speed king.”</a>
         {% endtrans %}
         {{ _('So you can browse with confidence with the fastest on the Web.') }}
       </p>
@@ -64,7 +64,7 @@
         {{ _('Firefox is leading the charge in online gaming as part of our efforts to make every aspect of your browsing experience faster.') }}
       </p>
 
-      <a class="more" rel="external" href="https://blog.mozilla.org/javascript/2014/01/23/the-monkeys-in-2013/">
+      <a class="more" rel="external" data-interaction="outbound link" href="https://blog.mozilla.org/javascript/2014/01/23/the-monkeys-in-2013/">
         {# L10n: Line break below is for wide screen formatting only. #}
         {{ _('Learn more about how we’re <br class="wide-br">pushing the limits of speed') }}
       </a>

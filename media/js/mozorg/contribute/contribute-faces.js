@@ -100,14 +100,21 @@
         if ($caption.is(':visible') || $caption.is(':animated')) {
             return;
         }
-
         if (!$facesVid[0].paused) { // If the video is not paused
             $facesVid[0].pause();
-            gaTrack(['_trackEvent', '/contribute Page Interactions', 'pause', 'Get Involved video']);
+            window.dataLayer.push({
+                event: 'video-interaction',
+                interaction: 'pause',
+                videoTitle: 'Get Involved'
+            });
             paused = true;
         } else if ($caption.is(':hidden') && $facesVid[0].paused) { // If the video is paused and caption is hidden
             $facesVid[0].play();
-            gaTrack(['_trackEvent', '/contribute Page Interactions', 'play', 'Get Involved video']);
+            window.dataLayer.push({
+                event: 'video-interaction',
+                interaction: 'play',
+                videoTitle: 'Get Involved'
+            });
             paused = false;
         }
 
@@ -124,21 +131,20 @@
         e.preventDefault();
         var $form = $(this);
         $form.unbind('submit');
-
-        gaTrack(
-            ['_trackEvent', '/contribute Page Interactions', 'Want to Help Form - Area of Interest', $('#id_contribute-interest')[0].value],
-            function() { $form.submit(); }
-        );
+        var action = $('#id_contribute-interest')[0].value;
+        $form.attr({
+            'data-element-location': 'Want to Help Form - Area of Interest',
+            'data-element-action': action,
+            'data-tracking-flag': 'contribute-interaction'
+        });
+        $form.submit();
     });
 
     // Track opportunity links
-    $('#opportunities a').on('click', function(e) {
-        e.preventDefault();
-        var href = this.href;
-        gaTrack(
-            ['_trackEvent', '/contribute Page Interactions', 'exit link', href],
-            function() { window.location = href; }
-        );
+    $('#opportunities a').attr({
+        'data-element-action': 'href',
+        'data-element-location': 'exit link',
+        'data-tracking-flag': 'contribute-interaction'
     });
 
 
