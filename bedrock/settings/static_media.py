@@ -123,6 +123,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/contribute-old-bundle.css',
     },
+    'contribute-friends': {
+        'source_filenames': (
+            'css/mozorg/contribute/friends.less',
+        ),
+        'output_filename': 'css/contribute-friends-bundle.css',
+    },
     'contribute-studentambassadors-landing': {
         'source_filenames': (
             'css/base/social-widgets.less',
