@@ -109,7 +109,6 @@ mozilla.addons.user-experience          Improving the user experience for using/
 mozilla.dev.tech.crypto                 For discussions about cryptography, and cryptographic issues surrounding the Mozilla source code. See the <a href="../../projects/security/pki/">PKI</a> project for more info. (Moderated)
 mozilla.dev.tech.crypto.checkins        Join this list if you'd like to be automatically notified of all check-ins to Mozilla's crypto code. (Moderated)
 css?
-mozilla.dev.tech.editor                 For discussions about HTML and text editing controls, including the <a href="../../editor/">Composer</a> component, <a href="../../editor/midas-spec.html">rich text editing</a> and text widgets.
 mozilla.dev.tech.electrolysis           For discussions multi-process Firefox. (Moderated)
 mozilla.dev.tech.java                   For discussions about Java: both embedding <abbr title="Java Runtime Environment">JRE</abbr>s in Mozilla and extending Mozilla itself using Java code. Also check out the <a href="#dev-tech-plugins">plug-in forum</a>.
 mozilla.dev.tech.js-engine              For <a href="../../js/">JavaScript engines</a>, including <a href="../../js/spidermonkey/">Spidermonkey</a> (JavaScript in C) and <a href="../../rhino/">Rhino</a> (JavaScript in Java). For scripting support, see the <a href="../../js/scripting/">scripting resources</a>.
