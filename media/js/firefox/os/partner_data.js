@@ -72,6 +72,11 @@ if (typeof Mozilla == 'undefined') {
             'display': 'LG Fireweb',
             'countries': ['br', 'uy']
         },
+        'orange_klif': {
+            'type': 'smartphone',
+            'display': 'Orange Klif',
+            'countries': ['mg']
+        },
         'spice_fireonemifx1': {
             'type': 'smartphone',
             'display': 'Spice Fire One MI FX1',
