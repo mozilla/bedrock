@@ -65,7 +65,7 @@ class AcceptedLocalesTest(test_utils.TestCase):
         """
         settings.DEV = True
         langs = get_dev_languages()
-        assert (langs == ['en-US', 'fr'] or langs == ['fr', 'en-US'],
+        assert langs == ['en-US', 'fr'] or langs == ['fr', 'en-US'], (
                 'DEV_LANGUAGES do not correspond to the contents of locale/.')
 
     def test_dev_languages(self):
@@ -89,6 +89,6 @@ class AcceptedLocalesTest(test_utils.TestCase):
 
         """
         settings.DEV = False
-        assert (settings.LANGUAGE_URL_MAP == {'en-us': 'en-US'},
+        assert settings.LANGUAGE_URL_MAP == {'en-us': 'en-US'}, (
                 'DEV is False, but PROD_LANGUAGES are not used to define the '
                 'allowed locales.')

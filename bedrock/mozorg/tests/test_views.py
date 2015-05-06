@@ -12,7 +12,6 @@ from django.db.utils import DatabaseError
 from django.http.response import Http404
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from django.utils import simplejson
 
 from captcha.fields import ReCaptchaField
 from bedrock.base.urlresolvers import reverse
@@ -709,7 +708,7 @@ class TestProcessPartnershipForm(TestCase):
                                                       self.view)
 
             # decode JSON response
-            resp_data = simplejson.loads(response.content)
+            resp_data = json.loads(response.content)
 
             self.assertEqual(resp_data['msg'], 'ok')
             self.assertEqual(response.status_code, 200)
@@ -724,7 +723,7 @@ class TestProcessPartnershipForm(TestCase):
                                                       self.view)
 
             # decode JSON response
-            resp_data = simplejson.loads(response.content)
+            resp_data = json.loads(response.content)
 
             self.assertEqual(resp_data['msg'], 'Form invalid')
             self.assertEqual(response.status_code, 400)
