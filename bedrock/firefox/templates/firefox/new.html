@@ -53,20 +53,17 @@
 
 <main role="main">
   <div class="version-message-container">
-    {% if l10n_has_tag('ios_announce') %}
-      <div id="version-message-ios" class="version-message">
-        {{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}
-      </div>
-    {% else %}
-      <div id="version-message-ios" class="version-message">
-        {{_('Sorry, Firefox is currently unsupported by iOS devices.')}}
-      </div>
-    {% endif %}
     <div id="version-message-android-latest" class="version-message">
       {{_('Congrats! You’re using the latest version of Firefox.')}}
     </div>
     <div id="version-message-android-old" class="version-message">
       {{_('Looks like you’re using an older version of Firefox. Update on Google Play.')}}
+    </div>
+    <div id="version-message-ios-latest" class="version-message">
+      {{_('Congrats! You’re using the latest version of Firefox.')}}
+    </div>
+    <div id="version-message-ios-old" class="version-message">
+      {{_('Looks like you’re using an older version of Firefox. Update on the App Store.')}}
     </div>
     <div id="version-message-desktop-latest" class="version-message">
       {{_('Congrats! You’re using the latest version of Firefox.')}}
@@ -115,11 +112,11 @@
           <div class="desktop download-button-wrapper">
             {{ download_firefox(force_direct=true, simple=true) }}
           </div>
-          <div class="mobile download-button-wrapper">
-            {{ download_firefox(platform='android') }}
-          </div>
           <div class="android download-button-wrapper" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
             {{ download_firefox(platform='android', small=True, icon=False, dom_id='download-button-android') }}
+          </div>
+          <div class="ios download-button-wrapper" data-upgrade-subtitle="{{_('Get it free from the App Store')}}">
+            {{ download_firefox(platform='ios', small=True, icon=False, dom_id='download-button-ios') }}
           </div>
           <div class="desktop-latest-links-wrapper latest-links-wrapper">
             <ul>
@@ -127,6 +124,7 @@
               <li><a href="https://support.mozilla.org/products/firefox">{{_('Need help?')}}</a></li>
               {% if l10n_has_tag('mobile_links') %}
               <li class="hide-for-refresh"><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
+              <li class="hide-for-refresh"><a href="{{settings.APP_STORE_FIREFOX_LINK }}">{{_('Get Firefox on your iOS device')}}</a></li>
               <li class="hide-for-refresh"><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
               {% endif %}
               <li><a href="{{ url('firefox.all') }}">{{_('Download a fresh copy')}}</a></li>
@@ -134,30 +132,18 @@
           </div>
           <div class="android-latest-links-wrapper latest-links-wrapper">
             <ul>
-              <li><a href="{{ url('firefox.android.index') }}">{{_('Learn more about Firefox for Mobile')}}</a></li>
+              <li><a href="{{ url('firefox.android.index') }}">{{_('Learn more about Firefox for Android')}}</a></li>
+            </ul>
+          </div>
+          <div class="ios-latest-links-wrapper latest-links-wrapper">
+            <ul>
+              <li><a href="{{ url('firefox.ios.index') }}">{{_('Learn more about Firefox for iOS')}}</a></li>
             </ul>
           </div>
           <div class="fxos-latest-links-wrapper latest-links-wrapper">
             <ul>
               <li><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
               <li><a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
-            </ul>
-          </div>
-          <div class="ios-links-wrapper latest-links-wrapper">
-            <ul>
-              {% if l10n_has_tag('ios_announce') %}
-                <li><a href="{{ url('newsletter.ios') }}">{{_('Learn more about Firefox on iOS')}}</a></li>
-              {% elif l10n_has_tag('mobile_links') %}
-                <li>
-                  <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a>
-                </li>
-                <li>
-                  <a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a>
-                </li>
-                <li>
-                  <a href="https://support.mozilla.org/kb/is-firefox-available-iphone-or-ipad">{{_('Why don’t we offer an iOS version?')}}</a>
-                </li>
-              {% endif %}
             </ul>
           </div>
         </div>
@@ -234,6 +220,7 @@
   <meta itemprop="operatingSystem" content="Mac">
   <meta itemprop="operatingSystem" content="Linux">
   <meta itemprop="operatingSystem" content="Android">
+  <meta itemprop="operatingSystem" content="iOS">
 </div>
 
 <div itemscope itemtype="http://schema.org/Product">

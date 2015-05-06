@@ -15,8 +15,9 @@
 
 {% set download_class = 'download-button' %}
 {% set download_class = download_class ~ ' download-button-' ~ channel if channel else download_class %}
-{% set download_class = download_class ~ ' download-button-android' if not show_desktop else download_class %}
-{% set download_class = download_class ~ ' download-button-desktop' if not show_android else download_class %}
+{% set download_class = download_class ~ ' download-button-desktop' if show_desktop else download_class %}
+{% set download_class = download_class ~ ' download-button-android' if show_android else download_class %}
+{% set download_class = download_class ~ ' download-button-ios' if show_ios else download_class %}
 {% set download_class = download_class ~ ' download-button-small' if small else download_class %}
 {% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
 {% set download_class = download_class ~ ' download-button-simple' if simple else download_class %}
@@ -36,15 +37,6 @@
     <p class="linux-arm-download">
       {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
     </p>
-    {% if l10n_has_tag('ios_announce', 'firefox/new') %}
-      <p class="ios-download">
-        {{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}
-      </p>
-    {% else %}
-      <p class="ios-download">
-        {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format( url=firefox_url('desktop', 'sysreq', build)) }}
-      </p>
-    {% endif %}
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}
@@ -96,6 +88,13 @@
       <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a>
       {%- if channel == 'alpha' %}<br>{% else %} |{% endif %}
       <a href="{{ firefox_url('android', 'notes', channel) }}">{{ _('What’s New') }}</a> |
+      <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>
+    </small>
+  {% endif %}
+  {% if show_ios and waffle.switch('ios-active') %}
+    <small class="download-other os_ios">
+      <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a> |
+      <a href="{{ firefox_url('ios', 'notes', channel) }}">{{ _('What’s New') }}</a> |
       <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
