@@ -117,8 +117,6 @@ class TestRNAViews(TestCase):
         Should return correct template name based on channel
         and product
         """
-        eq_(views.release_notes_template('', 'Firefox OS'),
-            'firefox/releases/os-notes.html')
         eq_(views.release_notes_template('Nightly', 'Firefox'),
             'firefox/releases/nightly-notes.html')
         eq_(views.release_notes_template('Aurora', 'Firefox'),
@@ -139,16 +137,6 @@ class TestRNAViews(TestCase):
             'thunderbird/releases/beta-notes.html')
         eq_(views.release_notes_template('', ''),
             'firefox/releases/release-notes.html')
-
-    @patch('bedrock.releasenotes.views.get_release_or_404')
-    def test_firefox_os_manual_template(self, get_release_or_404):
-        """
-        Should render from pre-RNA template without querying DB
-        """
-        views.release_notes(self.request, '1.0.1', product='Firefox OS')
-        get_release_or_404.assert_never_called()
-        eq_(self.mock_render.call_args[0][1],
-            'firefox/os/notes-1.0.1.html')
 
     @override_settings(DEV=False)
     @patch('bedrock.releasenotes.views.get_object_or_404')
