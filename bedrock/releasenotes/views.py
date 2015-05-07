@@ -14,10 +14,10 @@ from rna.models import Release
 from product_details import product_details
 
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
+from bedrock.thunderbird.details import thunderbird_desktop
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.helpers.misc import releasenotes_url
 from bedrock.firefox.helpers import android_builds
-from bedrock.thunderbird.utils import get_latest_version as thunderbird_get_latest_version
 
 
 SUPPORT_URLS = {
@@ -119,7 +119,7 @@ def latest_notes(request, product='firefox', platform=None, channel=None):
         channel = 'esr'
 
     if product == 'thunderbird':
-        version = thunderbird_get_latest_version(channel)
+        version = thunderbird_desktop.latest_version(channel)
     elif platform == 'android':
         version = firefox_android.latest_version(channel)
     else:
@@ -147,7 +147,7 @@ def latest_sysreq(request, channel, product):
         channel = 'esr'
 
     if product == 'thunderbird':
-        version = thunderbird_get_latest_version(channel)
+        version = thunderbird_desktop.latest_version(channel)
     elif product == 'mobile':
         version = firefox_android.latest_version(channel)
     else:

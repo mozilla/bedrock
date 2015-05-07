@@ -19,6 +19,7 @@ from pyquery import PyQuery as pq
 from bedrock.firefox import views as fx_views
 from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
 from bedrock.firefox.utils import product_details
+from bedrock.thunderbird.details import ThunderbirdDesktop
 from bedrock.mozorg.tests import TestCase
 
 
@@ -29,6 +30,9 @@ GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
 with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
     firefox_desktop = FirefoxDesktop()
     firefox_android = FirefoxAndroid()
+    # We don't use Thunerbird data here but require this to prevent product data
+    # from being overridden unexpectedly
+    thunderbird_desktop = ThunderbirdDesktop()
 
 
 class TestInstallerHelp(TestCase):

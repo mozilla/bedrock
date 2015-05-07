@@ -1,0 +1,53 @@
+{% from "product-all-macros.html" import build_search_box, build_table, build_row, build_link with context %}
+{% extends "thunderbird/base-resp.html" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block page_title %}{{ _('Download %s in your language')|format(channel_name) }}{% endblock %}
+{% block body_id %}thunderbird-all{% endblock %}
+
+{% block page_desc %}
+  {% if channel == 'beta' %}
+    {{ _('Be one of the first to try the newest features in Thunderbird. By giving us your feedback, you’ll help us to refine the features that will be included in the final version.') }}
+  {% else %}
+    {{ _('Get the award-winning email application from Mozilla. Import your existing mail and enjoy our new features like tabbed email and advanced search.') }}
+  {% endif %}
+{% endblock %}
+
+{% block body_class -%}
+  sky thunderbird-all-{{ channel }} {% if channel == 'alpha' %}blueprint{% endif %}
+{% endblock %}
+
+{% block site_css %}
+  {# Share with Firefox #}
+  {% stylesheet 'firefox_all' %}
+{% endblock %}
+
+{% block content %}
+  <header id="main-feature">
+    <h1>{{ self.page_title()  }}</h1>
+    <h2>{{ self.page_desc() }}</h2>
+    <p><a class="sysreq" href="{{ thunderbird_url('desktop', 'sysreq', channel) }}">{{ _('Check the system requirements') }}</a><br />
+    <a class="sysreq" href="{{ thunderbird_url('desktop', 'notes', channel) }}">{{ _('Release notes') }}</a>
+    </p>
+  </header>
+
+  {{ build_search_box(query, full_builds, test_builds) }}
+
+  <main id="main-content" role="main" class="pager pager-with-tabs pager-no-history">
+    <section class="pager-content">
+      <div class="pager-page" id="builds">
+        <div class="localized">
+          {{ build_table(full_builds, _('Fully localized versions')) }}
+        </div>
+      </div> {#-- /builds --#}
+    </section>
+  </main>
+{% endblock %}
+
+{% block js %}
+  {# Share with Firefox; searching with js only makes sense if we're displaying all #}
+  {% if not query %}
+    {% javascript 'firefox_all' %}
+  {% endif %}
+{% endblock %}
