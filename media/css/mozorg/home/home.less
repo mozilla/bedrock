@@ -778,15 +778,16 @@ h1, h2, h3, h4, h5, h6 {
     background: #565a5c;
     color: @textColorLight;
 
-    a:link,
-    a:visited {
+    a,
+    a:link {
         color: #43c2ff;
     }
 
     a:hover,
+    a:focus,
     a:active,
-    a:focus {
-        color: lighten(#43c2ff, 10%);
+    a:visited {
+        color: darken(#43c2ff, 10%);
     }
 
     .logo a {

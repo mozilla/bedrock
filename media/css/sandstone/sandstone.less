@@ -33,11 +33,16 @@ body {
 a {
     color: @linkBlue;
     text-decoration: none;
+
     &:hover,
     &:focus,
     &:active {
         color: darken(@linkBlue, 10%);
         text-decoration: underline;
+    }
+
+    &:visited {
+        color: darken(@linkBlue, 10%);
     }
 }
 
@@ -696,14 +701,14 @@ nav.menu-bar {
     }
 
     a,
-    a:link,
-    a:visited {
+    a:link {
         color: @linkBlue;
     }
 
     a:hover,
     a:focus,
-    a:active {
+    a:active,
+    a:visited {
         color: darken(@linkBlue, 10%);
     }
 
