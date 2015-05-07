@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from django.conf.urls import patterns, url
 
+import views
 import bedrock.releasenotes.views
 from bedrock.releasenotes import version_re
 from bedrock.mozorg.util import page
@@ -11,9 +12,13 @@ from bedrock.mozorg.util import page
 latest_re = r'^thunderbird(?:/(?P<version>%s))?/%s/$'
 thunderbird_releasenotes_re = latest_re % (version_re, r'releasenotes')
 sysreq_re = latest_re % (version_re, 'system-requirements')
+channel_re = '(?P<channel>beta|earlybird)'
 
 
 urlpatterns = patterns('',
+    url(r'^thunderbird/(?:%s/)?all/$' % channel_re,
+        views.all_downloads, name='thunderbird.all'),
+
     url('^thunderbird/releases/$', bedrock.releasenotes.views.releases_index,
         {'product': 'Thunderbird'}, name='thunderbird.releases.index'),
 
@@ -29,7 +34,7 @@ urlpatterns = patterns('',
 
     url('^thunderbird/latest/releasenotes/$',
         bedrock.releasenotes.views.latest_notes,
-        {'product': 'thunderbird'}),
+        {'product': 'thunderbird'}, name='thunderbird.notes'),
 
     # Start pages by channel
     page('thunderbird/release/start', 'thunderbird/start/release.html'),

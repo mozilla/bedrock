@@ -1,3 +1,4 @@
+{% from "product-all-macros.html" import build_search_box, build_table, build_row, build_link with context %}
 {% extends "firefox/base-resp.html" %}
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
@@ -58,39 +59,7 @@
     </p>
   </header>
 
-  <form id="language-search" class="billboard" method="get">
-    <div class="search-column">
-      <input type="search"
-             placeholder="{{ _('Search languages') }}"
-             name="q"
-             id="language-search-q"
-             list="languages"
-             {% if query %}value="{{ query }}"{% endif %}>
-      <datalist id="languages">
-        {% for build in full_builds -%}
-          {% if build.name_en != build.name_native %}
-            <option value="{{ build.name_en }}, {{ build.name_native }}"></option>
-          {% else %}
-            <option value="{{ build.name_en }}"></option>
-          {% endif %}
-        {% endfor -%}
-        {% for build in test_builds -%}
-          {% if build.name_en != build.name_native %}
-            <option value="{{ build.name_en }}, {{ build.name_native }}"></option>
-          {% else %}
-            <option value="{{ build.name_en }}"></option>
-          {% endif %}
-        {% endfor -%}
-      </datalist>
-      <button class="button arrow" type="submit"><span>{{ _('Search') }}</span></button>
-    </div>
-    {% if test_builds %}
-      <div class="other-column">
-        <h4>{{ _('Other Firefox downloads') }}</h4>
-        <a href="#localized-testing">{{ _('New languages still in beta') }}</a>
-      </div>
-    {% endif %}
-  </form>
+  {{ build_search_box(query, full_builds, test_builds) }}
 
   <main id="main-content" role="main" class="pager pager-with-tabs pager-no-history">
   {% if full_builds_next %}
@@ -146,64 +115,3 @@
     {% javascript 'firefox_all' %}
   {% endif %}
 {% endblock %}
-
-{% macro build_table(builds, title, description) %}
-  <div class="build-table-container">
-    {% if builds %}
-      <table class="table build-table">
-        <caption>
-          <h3>{{ title }}</h3>
-            {% if description %}
-              <p>{{ description }}</p>
-            {% endif %}
-        </caption>
-        <thead>
-          <tr>
-            <th colspan="2" scope="col">{{ _('Language') }}</th>
-            <th scope="col">{{ _('Windows') }}</th>
-            {% if channel in ['alpha', 'beta'] -%}
-            <th scope="col">{{ _('Windows 64-bit') }}</th>
-            {% endif -%}
-            <th scope="col">{{ _('Mac OS X') }}</th>
-            <th scope="col">{{ _('Linux') }}</th>
-            <th scope="col">{{ _('Linux 64-bit') }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for build in builds %}
-            {{ build_row(build) }}
-          {% endfor %}
-        </tbody>
-      </table>
-    {% endif %}
-    <h4 class="not-found{% if builds %} hide{% endif %}">{{ _('No matching languages found.') }}</h4>
-  </div>
-{% endmacro %}
-
-{% macro build_row(build) %}
-  <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }}, {{ build.name_native|lower }}">
-    <th scope="row">{{ build.name_en }}</th>
-    <td lang="{{ build.locale }}">{{ build.name_native }}</td>
-    {{ build_link(build, 'win', _('Download for Windows')) }}
-    {# Windows 64-bit builds are currently available only on the Aurora and Beta channel -#}
-    {% if channel in ['alpha', 'beta'] -%}
-    {{ build_link(build, 'win64', _('Download for 64-bit Windows')) }}
-    {% endif -%}
-    {{ build_link(build, 'osx', _('Download for Mac OS X')) }}
-    {{ build_link(build, 'linux', _('Download for Linux')) }}
-    {{ build_link(build, 'linux64', _('Download for 64-bit Linux')) }}
-  </tr>
-{% endmacro %}
-
-<!--
-  build: Locale dictionary from product details.
-  platform: Value in build.platforms to use. One of 'win', 'win64', 'osx', 'linux' and 'linux64'.
-  tooltip: Text to display as tooltip for download link.
--->
-{% macro build_link(build, platform, tooltip) %}
-  {% if build.platforms[platform] %}
-    <td class="download {{ platform }}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}">{{ _('Download') }}</a></td>
-  {% else %}
-    <td class="unavailable">{{ _('Not Yet Available') }}</td>
-  {% endif %}
-{% endmacro %}

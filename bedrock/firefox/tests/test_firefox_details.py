@@ -12,6 +12,7 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
+from bedrock.thunderbird.details import ThunderbirdDesktop
 from bedrock.mozorg.tests import TestCase
 
 
@@ -22,6 +23,9 @@ PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
     firefox_desktop = FirefoxDesktop()
     firefox_android = FirefoxAndroid()
+    # We don't use Thunerbird data here but require this to prevent product data
+    # from being overridden unexpectedly
+    thunderbird_desktop = ThunderbirdDesktop()
 
 
 GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
