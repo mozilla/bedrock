@@ -106,33 +106,6 @@ html.oldwin {
     }
 }
 
-/* iOS */
-html.ios {
-    .version-message-container {
-        display: block;
-    }
-
-    #version-message-ios {
-        display: inline;
-
-        &:before {
-            background-image: url(/media/img/firefox/new/icon-mobile.svg);
-        }
-    }
-
-    .desktop.download-button-wrapper {
-        display: none;
-    }
-
-    .ios-links-wrapper {
-        display: block;
-        padding-top: 26px;
-    }
-    .desktop-latest-links-wrapper {
-        display: none;
-    }
-}
-
 /* desktop version (with Firefox) */
 html.firefox-latest {
     .version-message-container {
@@ -291,6 +264,67 @@ html.android {
     }
 }
 
+/* iOS version message (with Firefox) */
+html.ios {
+    &.firefox-latest {
+        .version-message-container {
+            display: block;
+        }
+
+        #version-message-ios-latest {
+            display: inline;
+
+            &:before {
+                background-image: url(/media/img/firefox/new/icon-check.svg);
+            }
+        }
+
+        #version-message-desktop-latest {
+            display: none;
+        }
+
+        /* hide download button */
+       .ios.download-button-wrapper {
+            display: none;
+        }
+
+        /* show helpful links */
+        .ios-latest-links-wrapper {
+            display: block;
+            padding-top: 38px;
+        }
+        .desktop-latest-links-wrapper {
+            display: none;
+        }
+    }
+
+    &.firefox-old {
+        .version-message-container {
+            display: block;
+        }
+
+        #version-message-ios-old {
+            display: inline;
+        }
+
+        #version-message-desktop-old {
+            display: none;
+        }
+    }
+
+    .download-button-wrapper {
+        display: none;
+        width: 250px;
+        margin: 0 auto;
+        text-align: center;
+
+        &.ios {
+            display: block;
+            margin-top: 22px;
+        }
+    }
+}
+
 /* FxOS */
 html.fxos {
     // hide conditional messaging for firefox users,
@@ -360,7 +394,8 @@ html[lang|="en"] #main-feature h1.large span:first-child {
     width: 100%;
 }
 
-.download-button-wrapper.android {
+.download-button-wrapper.android,
+.download-button-wrapper.ios {
     display: none;
 }
 
@@ -444,15 +479,9 @@ html[lang|="en"] #main-feature h1.large span:first-child {
     }
 }
 
-.mobile {
-    display: none;
-}
-
-// android view
-.android {
-    .mobile {
-        display: none;
-    }
+// Android and iOS view
+.android,
+.ios {
     .desktop {
         display: block;
     }
@@ -687,10 +716,8 @@ noscript {
         }
     }
 
-    html.android {
-        .mobile {
-            display: none;
-        }
+    html.android,
+    html.ios {
         .desktop {
             display: none;
         }
@@ -699,10 +726,11 @@ noscript {
         .theater {
             height: 200px;
         }
+    }
 
-        &.firefox-latest .android-latest-links-wrapper {
-            padding: 0;
-        }
+    html.android.firefox-latest .android-latest-links-wrapper,
+    html.ios.firefox-latest .ios-latest-links-wrapper, {
+        padding: 0;
     }
 
     html.fxos {

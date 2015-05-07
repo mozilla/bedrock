@@ -11,7 +11,7 @@ from django.test.utils import override_settings
 from mock import patch
 from nose.tools import eq_, ok_
 
-from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
+from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid, FirefoxIOS
 from bedrock.mozorg.tests import TestCase
 
 
@@ -22,6 +22,7 @@ PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
     firefox_desktop = FirefoxDesktop()
     firefox_android = FirefoxAndroid()
+    firefox_ios = FirefoxIOS()
 
 
 GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}

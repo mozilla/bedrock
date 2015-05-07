@@ -40,12 +40,13 @@ class TestDownloadButtons(TestCase):
     def check_dumb_button(self, doc):
         # Make sure 5 links are present
         links = doc('li a')
-        eq_(links.length, 5)
+        eq_(links.length, 6)
 
         self.check_desktop_links(links[:4])
 
-        # Check that last link is Android
+        # Check that the rest of the links are Android and iOS
         eq_(pq(links[4]).attr('href'), settings.GOOGLE_PLAY_FIREFOX_LINK)
+        eq_(pq(links[5]).attr('href'), settings.APP_STORE_FIREFOX_LINK)
 
     def test_button_force_direct(self):
         """
@@ -218,6 +219,17 @@ class TestDownloadButtons(TestCase):
         list = doc('.download-other .arch')
         eq_(list.length, 0)
 
+    def test_ios(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox(platform='ios') }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'os_ios')
+
     def test_check_old_firefox(self):
         """
         Make sure check_old_fx class is only applied if both check_old_fx=True
@@ -317,6 +329,13 @@ class TestFirefoxURL(TestCase):
             '/en-US/firefox/android/beta/notes/')
         eq_(self._render('android', 'notes', 'alpha'),
             '/en-US/firefox/android/aurora/notes/')
+
+    def test_ios_notes(self):
+        """Should return a reversed path for the iOS notes page"""
+        eq_(self._render('ios', 'notes'),
+            '/en-US/firefox/ios/notes/')
+        eq_(self._render('ios', 'notes', 'release'),
+            '/en-US/firefox/ios/notes/')
 
 
 @override_settings(FIREFOX_OS_FEED_LOCALES=['xx'])

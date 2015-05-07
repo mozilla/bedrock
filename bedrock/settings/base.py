@@ -691,6 +691,9 @@ GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
                             urlquote('utm_source=mozilla&utm_medium=Referral&'
                                         'utm_campaign=mozilla-org'))
 
+# Link to Firefox for iOS on the App Store
+APP_STORE_FIREFOX_LINK = 'http://appstore.com/firefox'
+
 # Use bedrock Gruntfile.js for live reload
 USE_GRUNT_LIVERELOAD = False
 
