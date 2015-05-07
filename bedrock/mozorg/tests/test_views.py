@@ -702,7 +702,7 @@ class TestProcessPartnershipForm(TestCase):
         with self.activate('en-US'):
             # test AJAX POST with valid form data
             request = self.factory.post(self.url, self.post_data,
-                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+                                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
             response = views.process_partnership_form(request, self.template,
                                                       self.view)
@@ -717,7 +717,7 @@ class TestProcessPartnershipForm(TestCase):
 
             # test AJAX POST with invalid form data
             request = self.factory.post(self.url, self.invalid_post_data,
-                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+                                        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
             response = views.process_partnership_form(request, self.template,
                                                       self.view)
@@ -728,6 +728,32 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(resp_data['msg'], 'Form invalid')
             self.assertEqual(response.status_code, 400)
             self.assertTrue('email' in resp_data['errors'])
+            self.assertEqual(response._headers['content-type'][1],
+                             'application/json')
+
+    def test_post_ajax_error_xss(self):
+        """
+        POSTing with AJAX should return sanitized error messages.
+        Bug 945845.
+        """
+        with self.activate('en-US'):
+            # test AJAX POST with valid form data
+            post_data = self.post_data.copy()
+            post_data['interest'] = '"><img src=x onerror=alert(1);>'
+            escaped_data = '"&gt;&lt;img src=x onerror=alert(1);&gt;'
+            request = self.factory.post(self.url, post_data,
+                HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+
+            response = views.process_partnership_form(request, self.template,
+                                                      self.view)
+
+            # decode JSON response
+            resp_data = json.loads(response.content)
+
+            self.assertEqual(resp_data['msg'], 'Form invalid')
+            self.assertEqual(response.status_code, 400)
+            self.assertTrue(post_data['interest'] not in resp_data['errors']['interest'][0])
+            self.assertTrue(escaped_data in resp_data['errors']['interest'][0])
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
 
