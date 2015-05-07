@@ -4,6 +4,7 @@
 
 import json
 import re
+from cgi import escape
 
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
@@ -274,7 +275,10 @@ def process_partnership_form(request, template, success_url_name, template_vars=
                 success = True
 
         if request.is_ajax():
-            return HttpResponseJSON({'msg': msg, 'errors': form.errors}, status=stat)
+            form_errors = {fn: [escape(msg) for msg in msgs] for fn, msgs
+                           in form.errors.iteritems()}
+
+            return HttpResponseJSON({'msg': msg, 'errors': form_errors}, status=stat)
         # non-AJAX POST
         else:
             # if form is not valid, render template to retain form data/error messages
