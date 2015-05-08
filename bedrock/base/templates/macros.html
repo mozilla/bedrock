@@ -656,11 +656,11 @@ set share_urls = {
         {% endif %}
       {% endif %}
       <h2 class="thank-you hidden">{{ _('Your download link was sent.') }}</h2>
-      <form id="send-to-device-form" action="{{ secure_url() }}" method="post" {% if platform == 'select' %}class="dropdown"{% endif %}>
+      <form id="send-to-device-form" action="{{ secure_url('firefox.send-to-device-post') }}" method="post"{% if platform == 'select' %} class="dropdown"{% endif %}>
         <ul class="error-list hidden">
           <li class="sms">{{ _('Sorry. This number isn’t valid. Please enter a U.S. phone number.') }}</li>
           <li class="email">{{ _('Please enter an email address.') }}</li>
-          <li class="platformn">{{ _('Please make a selection before proceeding.') }}</li>
+          <li class="platform">{{ _('Please make a selection before proceeding.') }}</li>
           <li class="system">{{ _('An error occurred in our system. Please try again later.') }}</li>
         </ul>
         <div class="input">
@@ -670,26 +670,27 @@ set share_urls = {
               <label for="id-platform">
                 {{ _('Select iOS or Android') }}
               </label>
-              <select id="id-platform" autocomplete="off" required>
+              <select id="id-platform" name="platform" autocomplete="off" required>
                 <option value="" selected>{{ _('Choose OS') }}</option>
                 <option value="ios">iOS</option>
                 <option value="android">Android</option>
               </select>
             {% elif platform == 'ios' %}
             {# User receives link for iOS. #}
-              <input type="hidden" id="id-platform" value="ios">
+              <input type="hidden" id="id-platform" name="platform" value="ios">
             {% elif platform == 'android' %}
               {# User receives link for Android. #}
-              <input type="hidden" id="id-platform" value="android">
+              <input type="hidden" id="id-platform" name="platform" value="android">
             {% else %}
               {# User receives links for both iOS and Android. #}
-              <input type="hidden" id="id-platform" value="all">
+              <input type="hidden" id="id-platform" name="platform" value="all">
             {% endif %}
+            <input type="hidden" name="source-url" value="{{ secure_url() }}">
           </div>
           <div class="inline-field">
             <label id="form-input-label" for="id-input" data-alt="{{ _('Enter your email or 10-digit phone number') }}">{{ _('Enter your email') }}</label>
             <div class="form-input">
-                <input id="id-input" type="text" required>
+                <input id="id-input" name="phone-or-email" type="text" required>
             </div>
             <div class="form-submit">
                 <button type="submit" class="button-flat">{{ _('Send') }}</button>

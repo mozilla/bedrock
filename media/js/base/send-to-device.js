@@ -14,6 +14,7 @@ if (typeof Mozilla === 'undefined') {
 
         this.formLoaded = false;
         this.formTimeout = null;
+        this.smsEnabled = false;
 
         this.$widget = $('#send-to-device');
         this.$form = this.$widget.find('#send-to-device-form');
@@ -43,7 +44,7 @@ if (typeof Mozilla === 'undefined') {
     };
 
     // static value for user country code
-    SendToDevice.COUNTRY_CODE = '';
+    SendToDevice.COUNTRY_CODE = 'us';
 
     /**
      * Initialise the form messaging and bind events.
@@ -106,6 +107,7 @@ if (typeof Mozilla === 'undefined') {
         this.$form.addClass('us');
         $label.html($label.data('alt'));
         this.$input.attr('placeholder', this.$input.data('alt'));
+        this.smsEnabled = true;
     };
 
     /**
@@ -179,12 +181,9 @@ if (typeof Mozilla === 'undefined') {
             .done(function(data) {
                 if (data.success) {
                     self.onFormSuccess(data.success);
-                } else if (data.error) {
-                    self.onFormError(data.error);
+                } else if (data.errors) {
+                    self.onFormError(data.errors);
                 }
-
-                // TODO remove this once form is working properly
-                self.onFormSuccess();
             })
             .fail(function(error) {
                 self.onFormFailure(error);
@@ -192,6 +191,7 @@ if (typeof Mozilla === 'undefined') {
     };
 
     SendToDevice.prototype.onFormSuccess = function(data) {
+        this.$errorList.addClass('hidden');
         this.$formFields.addClass('hidden');
         this.$formHeading.addClass('hidden');
         this.$thankyou.removeClass('hidden');
@@ -199,13 +199,27 @@ if (typeof Mozilla === 'undefined') {
         this.enableForm();
     };
 
-    SendToDevice.prototype.onFormError = function(data) {
-        // TODO show error fields etc.
+    SendToDevice.prototype.onFormError = function(errors) {
+        this.$errorList.find('li').hide();
+        this.$errorList.removeClass('hidden');
+        var error_class;
+        if (errors.indexOf('platform') !== -1) {
+            error_class = '.platform';
+        }
+        else if (this.smsEnabled && errors.indexOf('number') !== -1) {
+            error_class = '.sms';
+        }
+        else {
+            error_class = '.email';
+        }
+        this.$errorList.find(error_class).show();
         this.enableForm();
     };
 
     SendToDevice.prototype.onFormFailure = function(data) {
-        // TODO show generic error field
+        this.$errorList.find('li').hide();
+        this.$errorList.removeClass('hidden');
+        this.$errorList.find('.system').show();
         this.enableForm();
     };
 
