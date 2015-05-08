@@ -583,6 +583,16 @@ set share_urls = {
             <li><a href="{{ url('firefox.sync') }}" data-id="android-sync"><div>{{ _('Sync') }}</div></a></li>
           </ul>
         </li>
+        {% if waffle.switch('ios-active') %}
+        <li>
+          <a href="{{ url('firefox') }}" class="primary-link" data-id="ios"><div>{{ _('<span>for</span> iOS') }}</div></a>
+
+          <ul class="subnav" id="ios-subnav">
+            <li><a href="{{ url('firefox') }}" data-id="ios-index"><div>{{ _('Overview') }}</div></a></li>
+            <li><a href="{{ url('firefox.sync') }}" data-id="ios-sync"><div>{{ _('Sync') }}</div></a></li>
+          </ul>
+        </li>
+        {% endif %}
         <li>
           <a href="{{ url('firefox.os.index') }}" class="primary-link" data-id="os"><div>{{ _('OS') }}</div></a>
 
@@ -591,6 +601,7 @@ set share_urls = {
             <li><a href="{{ url('firefox.os.devices') }}" data-id="os-devices"><div>{{ _('Devices') }}</div></a></li>
             <li><a href="{{ url('firefox.partners.index') }}" data-id="os-partners"><div>{{ _('For partners') }}</div></a></li>
             <li><a rel="external" href="https://marketplace.firefox.com/" data-id="os-marketplace"><div>{{ _('Marketplace') }}<i class="icon-external"></i></div></a></li>
+            <li><a rel="external" href="https://marketplace.firefox.com/" data-id="os-apps"><div>{{ _('Apps') }}<i class="icon-external"></i></div></a></li>
           </ul>
         </li>
       </ul>
