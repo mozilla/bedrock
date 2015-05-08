@@ -1,0 +1,213 @@
+@import "../sandstone/lib.less";
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('/media/fonts/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-Regular.woff') format('woff'),
+         url('/media/fonts/FiraSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('/media/fonts/FiraSans-Bold.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-Bold.woff') format('woff'),
+         url('/media/fonts/FiraSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FiraSans Light';
+    src: url('/media/fonts/FiraSans-Light.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-Light.woff') format('woff'),
+         url('/media/fonts/FiraSans-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* copied from buttons.less */
+@buttonFlatGreen: #6fbe4a;
+
+body {
+    font-family: 'Fira Sans'
+}
+
+#outer-wrapper {
+    background: none;
+}
+#wrapper {
+    width: 100%;
+}
+#masthead {
+    background: #0c99d5 url(/media/img/firefox/personal/header.png) 0 0 no-repeat;
+
+    @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+        width: 100%;
+    }
+}
+.header-content {
+    margin: 0 auto;
+    padding: 0 30px 20px;
+    width: 90%;
+    max-width: 1400px;
+    text-align: center;
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding-bottom: 60px;
+    }
+
+    h1 {
+        color: #bee1f5;
+        margin: 0 0 55px 0;
+        padding-top: 40px;
+        font-family: 'Fira Sans';
+        .font-size(5rem);
+        font-weight: bold;
+        line-height: 1.1;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-shadow: none;
+
+        @media only screen and (max-width: @breakDesktop) {
+            .font-size(3rem);
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            font-family: 'Fira Sans';
+            .font-size(2.5rem);
+            letter-spacing: -1px;
+        }
+
+        span {
+            display: block;
+            color: #fff;
+            margin-left: 28%;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                margin-left: 0;
+            }
+        }
+    }
+    h1:before {
+        display: block;
+        background: transparent url(/media/img/firefox/personal/logo.png) 0 0 no-repeat;
+        margin: 0 auto @baseLine;
+        width: 147px;
+        height: 147px;
+        content: '';
+    }
+    .download-button.download-button-simple {
+        /* copied from buttons.less :: .button-flat */
+        text-align: center;
+        padding: 12px (@baseLine * 2);
+        margin-bottom: @baseLine;
+        background: @buttonFlatGreen;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        .inline-block();
+        .border-radius(6px);
+        .transition();
+        .font-size(@baseFontSize);
+        &:hover {
+            background-color: lighten(@buttonFlatGreen, 3%);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            display: none;
+        }
+
+        .download-link {
+            box-shadow: none;
+            background-color: inherit;
+            background-image: none;
+            width: 260px;
+        }
+    }
+    .download-content {
+        text-transform: uppercase;
+    }
+}
+main {
+    margin: 0 auto;
+    padding: 60px 0 150px 0;
+    width: 100%;
+    max-width: 1400px;
+    text-align: center;
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding-bottom: 60px;
+    }
+}
+.mission {
+    display: inline-block;
+    padding: 0 25px;
+    width: 25%;
+    vertical-align: top;
+
+    @media only screen and (max-width: @breakTablet) {
+        display: block;
+        margin: (@baseLine * 3) 0 0 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    p {
+        color: #999;
+        font-family: 'FiraSans Light';
+        .font-size(1.4rem);
+        font-weight: 300;
+        span {
+            display: block;
+            color: #56565a;
+            font-family: 'Fira Sans';
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    p:before {
+        display: block;
+        background: transparent url(/media/img/firefox/personal/mission-icons-sprite.png) 50% 0 no-repeat;
+        margin-top: @baseLine;
+        height: 175px;
+        content: '';
+    }
+    p.data:before {
+        background-position: 50% -174px;
+    }
+    p.choice:before {
+        background-position: 50% -380px;
+    }
+    a {
+        .font-size(1.2rem);
+    }
+}
+/* specific styles to show download from play store buttons on mobile. */
+.mobile-download,
+section.mobile-download {
+    display: none;
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        display: block;
+    }
+}
+section.mobile-download {
+    background-color: #f2f2f2;
+    color: #56565a;
+    margin: 0 auto;
+    padding: 40px 0;
+    width: 100%;
+    max-width: 1400px;
+    text-align: center;
+    p {
+        margin: 0 auto 20px;
+        max-width: 300px;
+        .font-size(2rem);
+        font-weight: bold;
+        line-height: 1.2;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+    }
+}

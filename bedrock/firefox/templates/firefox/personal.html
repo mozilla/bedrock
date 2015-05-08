@@ -1,0 +1,67 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-resp.html" %}
+
+{% block page_title_prefix %}{{_('Firefox Web Browser')}} - {% endblock %}
+{% block page_title %}{{_('When it’s personal, choose Firefox')}}{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/personal/logo.png') }}{% endblock %}
+{% block page_desc %}{{_('Choose Firefox when you want to browse the Web without the Web browsing you.')}}'{% endblock %}
+
+{% block site_css %}
+  {% stylesheet 'firefox-personal' %}
+{% endblock %}
+
+{% block tabzilla_tab %}{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block alt_header %}
+<div class="header-content">
+  <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{% block tabzilla_infobar %}{{ settings.TABZILLA_INFOBAR_OPTIONS }}{% endblock %}">Mozilla</a>
+  <h1>{{_('When it’s personal,<span>choose Firefox</span>')}}</h1>
+  {{ download_firefox(simple=true) }}
+
+  <div class="mobile-download">
+    <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
+      {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '172', 'l10n': True}) }}
+    </a>
+  </div>
+</div>
+{% endblock alt_header %}
+
+{% block content %}
+<main role="main">
+  <div class="mission">
+    <p><span>We believe</span> that your personal<br /> information belongs<br /> only to you.</p>
+    <a href="{{ url('firefox.desktop.trust') }}" class="more">See how we put you first</a>
+  </div>
+
+  <div class="mission">
+    <p class="data"><span>We never</span> act in a way that<br /> would compromise<br /> that belief.</p>
+    <a href="{{ url('mozorg.about.manifesto') }}" class="more">Learn about our mission</a>
+  </div>
+
+  <div class="mission">
+    <p class="choice"><span>You choose</span> how your information<br /> is collected and<br /> shared online.</p>
+    <a href="{{ url('privacy.privacy-day') }}" class="more">Get tips about your privacy</a>
+  </div>
+</main>
+
+<section class="mobile-download">
+  <p>{{_('Add Firefox to your smartphone or tablet')}}</p>
+  <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
+    {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '172', 'l10n': True}) }}
+  </a>
+</section>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_js %}
+  {{ super() }}
+  {% javascript 'firefox-personal' %}
+{% endblock %}
