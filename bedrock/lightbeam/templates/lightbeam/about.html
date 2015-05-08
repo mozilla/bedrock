@@ -45,10 +45,14 @@
       {{_('Lightbeam visualizes the relationships between the sites you visit and the third party sites that are active on those pages.')}}
     </p>
     <p>
+    {% if l10n_has_tag('update_may2015') %}
+      {{_('Using two distinct interactive graphic representations — Graph and List — Lightbeam enables you to examine individual third parties, identify where they connect to your online activity and provides ways for you to engage with this unique view of the Web.')}}
+    {% else %}
       {{_('Using three distinct interactive graphic representations — Graph, Clock and List — Lightbeam enables you to examine individual third parties over time and space, identify where they connect to your online activity and provides ways for you to engage with this unique view of the Web.')}}
+    {% endif %}
     </p>
     <p>
-      {{_('The default Graph view provides a real time visualization of every site you visit and all third party requests made from your browser.')}} {{_('The Graph view also provides adjustable filters that allow you to visualize more types of data at a glance.')}} {{_('The Clock view allows you to examine connections over a 24-hour period.')}} {{_('The List view provides more options for drilling down into individual sites.')}} {{_('Site preferences in the List view enable you to block sites from connecting to your Firefox browser, watch sites you’re interested in or hide sites you don’t want to see visualized.')}}
+      {{_('The default Graph view provides a real time visualization of every site you visit and all third party requests made from your browser.')}} {{_('The Graph view also provides adjustable filters that allow you to visualize more types of data at a glance.')}} {{_('The List view provides more options for drilling down into individual sites.')}} {{_('Site preferences in the List view enable you to block sites from connecting to your Firefox browser, watch sites you’re interested in or hide sites you don’t want to see visualized.')}}
     </p>
     <p>
       {{_('Lightbeam also offers an information panel that provides additional details about the site you selected and the sites it has connected to.')}}
@@ -101,7 +105,11 @@
   <div class="span6">
     <h2>{{_('Data formats in Lightbeam')}}</h2>
     <p>
-      {{_('Visit our <a href="%s">documentation on Github</a> to learn more about the file formats used in Lightbeam and to see details of the data that is uploaded if you opt in to contribute data.')|format('https://github.com/mozilla/lightbeam/blob/master/doc/data_format.v1.1.md')}}
+    {% if l10n_has_tag('update_may2015') %}
+      {{_('Visit our <a href="%s">documentation on Github</a> to learn more about the file formats used in Lightbeam.')|format('https://github.com/mozilla/lightbeam/blob/master/doc/data_format.v1.2.md')}}
+    {% else %}
+      {{_('Visit our <a href="%s">documentation on Github</a> to learn more about the file formats used in Lightbeam and to see details of the data that is uploaded if you opt in to contribute data.')|format('https://github.com/mozilla/lightbeam/blob/master/doc/data_format.v1.2.md')}}
+    {% endif %}
     </p>
   </div>
   <div class="span6">
