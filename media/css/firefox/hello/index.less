@@ -60,7 +60,10 @@ main {
 .try-hello {
     display: none;
     text-align: center;
+    background: #0c99d5;
+    color: #fff;
     .border-radius(6px);
+    border: none;
     text-transform: uppercase;
     .font-size(@baseFontSize);
     font-weight: bold;
@@ -71,6 +74,18 @@ main {
     &:hover {
         text-decoration: none;
     }
+
+    &.active {
+        display: block;
+    }
+}
+
+// Nav
+
+#try-hello-nav {
+    .font-size(@smallFontSize);
+    font-weight: normal;
+    width: 152px;
 }
 
 // Share
@@ -95,19 +110,12 @@ main {
 
     .try-hello {
         width: 220px;
-        border: none;
-        background: #0c99d5;
-        color: #fff;
         margin: (@baseLine * 1.5) auto 0;
 
         &:active,
         &:hover,
         &:focus {
             background: #2165a9;
-        }
-
-        &.active {
-            display: block;
         }
     }
 }
@@ -1179,10 +1187,7 @@ main {
 
     .try-hello {
         width: 280px;
-        border: none;
         border: 2px solid #fff;
-        background: #0c99d5;
-        color: #fff;
 
         &:active,
         &:hover,
@@ -1207,10 +1212,6 @@ main {
 // show ctacopy-ios if body class matches
 .ios #ctacopy-ios {
     display: block;
-}
-
-#try-hello-footer {
-    display: none;
 }
 
 // Video

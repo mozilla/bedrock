@@ -43,7 +43,9 @@ set share_urls = {
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {{ fxfamilynav('dark') }}
+  {% call fxfamilynav('dark') %}
+    <button id="try-hello-nav" class="try-hello">{{ _('Try Hello now') }}</button>
+  {% endcall %}
 {% endblock %}
 
 {% block tabzilla_css %}{% endblock %}

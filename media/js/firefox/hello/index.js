@@ -14,27 +14,26 @@
     var $video = $('#hello-video');
 
     var supportsHTML5Video = !!document.createElement('video').canPlayType;
-    var isWideViewport = $w.width() >= 740;
     var mqIsWide;
     var tourSource = getParameterByName('utm_source');
 
-    if (isWideViewport) {
-        if (Mozilla.SVGAnimCheck()) {
-            $w.on('load', function() {
+    // delay checking window size to account for fennec bug
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1071620
+    $w.on('load', function() {
+        if ($w.width() >= 740) {
+            if (Mozilla.SVGAnimCheck()) {
                 $animationStage.addClass('animate wide');
-            });
+            } else {
+                $('body').addClass('no-animation');
+            }
         } else {
-            $('body').addClass('no-animation');
-        }
-    } else {
-        if (Mozilla.SVGAnimCheck.supportsCSSAnimations()) {
-            $w.on('load', function() {
+            if (Mozilla.SVGAnimCheck.supportsCSSAnimations()) {
                 $animationStage.addClass('animate mini');
-            });
-        } else {
-            $('body').addClass('no-animation');
+            } else {
+                $('body').addClass('no-animation');
+            }
         }
-    }
+    });
 
     // resizing the browser with animation just displays the intro image
     if (typeof matchMedia !== 'undefined') {
@@ -83,7 +82,7 @@
         $('#download-fx').hide();
 
         // show footer try button
-        $('#try-hello-footer').css('display', 'block');
+        $('#try-hello-footer').addClass('active');
     };
 
     var addLinkEvent = function (linkSelector, eventName) {
@@ -127,7 +126,10 @@
                 // 'loop' is the snazzy internal code name for Hello
                 if (config.targets && config.targets.indexOf('loop') > -1) {
                     // show the intro try hello button
-                    $('#intro .try-hello').addClass('active');
+                    $('#try-hello-intro').addClass('active');
+
+                    // activate sticky nav button
+                    $('#try-hello-nav').addClass('active');
 
                     // convert the footer try hello link to a button
                     $('#try-hello-footer').attr('role', 'button');
