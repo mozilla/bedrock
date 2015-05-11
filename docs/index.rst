@@ -10,8 +10,7 @@ Welcome to mozilla.org's documentation!
 shiny, awesome, and open sourcy as always. Perhaps even a little more.
 
 bedrock is a web application based on `Django
-<http://www.djangoproject.com/>`_/`Playdoh
-<https://github.com/mozilla/playdoh>`_.
+<http://www.djangoproject.com/>`_.
 
 Patches are welcome! Feel free to fork and contribute to this project on
 `Github <https://github.com/mozilla/bedrock>`_.

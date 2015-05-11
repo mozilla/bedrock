@@ -11,9 +11,6 @@ Installing Bedrock
 Installation
 ------------
 
-It's a simple `Playdoh
-<http://playdoh.readthedocs.org/en/latest/index.html>`_ instance, which is a Django project.
-
 These instructions assume you have `git` and `pip` installed. If you don't have `pip` installed, you can install it with `easy_install pip`.
 
 Start by getting the source::
@@ -171,8 +168,7 @@ Apache config - create file ``/etc/apache2/sites-available/mozilla.com``::
         RewriteMap org-urls-410 txt:/path/to/mozilla.com/org-urls-410.txt
         RewriteMap org-urls-301 txt:/path/to/mozilla.com/org-urls-301.txt
 
-        # In the path below, update "python2.6" to whatever version of python2 is provided.
-        WSGIDaemonProcess bedrock_local python-path=/path/to/bedrock:/path/to/venv-for-bedrock/lib/python2.6/site-packages
+        WSGIDaemonProcess bedrock_local python-path=/path/to/bedrock:/path/to/venv-for-bedrock/lib/python2.7/site-packages
         WSGIProcessGroup bedrock_local
         WSGIScriptAlias /b /path/to/bedrock/wsgi/playdoh.wsgi process-group=bedrock_local application-group=bedrock_local
 
@@ -261,32 +257,6 @@ For quick reference, to toggle a Waffle switch::
 And to list all Waffle switches::
 
     ./manage.py switch -l
-
-Upgrading
----------
-
-On May 15th, 2013 we upgraded to a newer version of Playdoh_. This brought with it a lot of structural changes to the code.
-Here are the required steps to get up and running again with the latest code::
-
-    # get the code
-    git pull origin master
-    # update the submodules
-    git submodule update --init --recursive
-    # move your local settings file
-    mv settings/local.py bedrock/settings/local.py
-    # remove old empty directories
-    rm -rf apps
-    rm -rf settings
-    rm -rf vendor-local/src/django
-    rm -rf vendor-local/src/tower
-    rm -rf vendor-local/src/jingo-minify
-
-That should do it. If you're not able to run the tests at that point (``python manage.py test``) then there are a couple more things to try.
-
-1. If you have a line like ``from settings.base import *`` in your ``bedrock/settings/local.py`` file, remove it.
-2. If you were setting a logging level in your ``bedrock/settings/local.py`` file, you may now need to explicitly need to import it (``import logging``).
-
-Otherwise please pop into our IRC channel (``#www`` on ``irc.mozilla.org``) and we'll be happy to help.
 
 Notes
 -----

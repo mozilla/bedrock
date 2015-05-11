@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# playdoh documentation build configuration file, created by
+# bedrock documentation build configuration file, created by
 # sphinx-quickstart on Tue Jan  4 15:11:09 2011.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -164,7 +164,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'playdohdoc'
+htmlhelp_basename = 'bedrockdoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -178,7 +178,7 @@ htmlhelp_basename = 'playdohdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'playdoh.tex', u'playdoh Documentation',
+  ('index', 'bedrock.tex', u'bedrock Documentation',
    u'Mozilla', 'manual'),
 ]
 
