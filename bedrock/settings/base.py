@@ -54,11 +54,11 @@ SITE_ID = 1
 # Logging
 LOG_LEVEL = logging.INFO
 HAS_SYSLOG = True
-SYSLOG_TAG = "http_app_playdoh"  # Change this after you fork.
+SYSLOG_TAG = "http_app_bedrock"
 LOGGING_CONFIG = None
 
 # CEF Logging
-CEF_PRODUCT = 'Playdoh'
+CEF_PRODUCT = 'Bedrock'
 CEF_VENDOR = 'Mozilla'
 CEF_VERSION = '0'
 CEF_DEVICE_VERSION = '0'

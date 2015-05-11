@@ -10,12 +10,12 @@ awesome, and open sourcy as always. Perhaps even a little more.
 Docs
 ----
 
-bedrock is a [playdoh project][playdoh]. Check out the [playdoh docs][pd-docs]
+Bedrock is a [Django][django] project. Check out the [django docs][dj-docs]
 for general technical documentation. In addition, there are project-specific
 [bedrock docs][br-docs].
 
-[playdoh]: https://github.com/mozilla/playdoh
-[pd-docs]: http://playdoh.readthedocs.org/
+[django]: https://www.djangoproject.com/
+[dj-docs]: https://docs.djangoproject.com/
 [br-docs]: http://bedrock.readthedocs.org/
 
 Contributing
