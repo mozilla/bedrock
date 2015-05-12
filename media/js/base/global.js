@@ -87,15 +87,17 @@ function getFirefoxMasterVersion(userAgent) {
     return version;
 }
 
+// Used on the plugincheck page to also support all browsers based on Gecko.
+function isLikeFirefox(userAgent) {
+    var ua = userAgent || navigator.userAgent;
+    return (/Iceweasel/i).test(ua) || (/IceCat/i).test(ua) ||
+        (/SeaMonkey/i).test(ua) || (/Camino/i).test(ua) ||
+        (/like Firefox/i).test(ua);
+}
+
 function isFirefox(userAgent) {
     var ua = userAgent || navigator.userAgent;
-    // camino UA string contains 'like Firefox'
-    return (
-        (/\sFirefox/).test(ua) &&
-        !(/like Firefox/i).test(ua) &&
-        !(/Iceweasel/i).test(ua) &&
-        !(/SeaMonkey/i).test(ua)
-    );
+    return (/\sFirefox/).test(ua) && !isLikeFirefox(ua);
 }
 
 // 2015-01-20: Gives no special consideration to ESR builds
@@ -112,12 +114,6 @@ function isFirefoxUpToDate(latest) {
     }
 
     return (latestFirefoxVersion <= fx_version);
-}
-
-// Used on the plugincheck page to also support SeaMonkey
-function isSeaMonkey(userAgent) {
-    var ua = userAgent || navigator.userAgent;
-    return /SeaMonkey/i.test(ua);
 }
 
 // used in bedrock for desktop specific checks like `isFirefox() && !isFirefoxMobile()`
