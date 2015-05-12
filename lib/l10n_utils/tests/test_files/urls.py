@@ -4,10 +4,14 @@
 
 from django.conf.urls import patterns
 
+from bedrock.urls import urlpatterns
 from bedrock.mozorg.util import page
 
 
-urlpatterns = patterns('',
+# have to append these to existing site patterns
+# because calls to e.g. {{ url('mozorg.home') }}
+# in templates don't work otherwise.
+urlpatterns += patterns('',
     page('trans-block-reload-test', 'trans_block_reload_test.html'),
     page('active-de-lang-file', 'active_de_lang_file.html'),
     page('inactive-de-lang-file', 'inactive_de_lang_file.html'),

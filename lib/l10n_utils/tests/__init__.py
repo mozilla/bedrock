@@ -42,9 +42,10 @@ class TempFileMixin(object):
 
 @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
 @override_settings(ROOT=ROOT)
-@override_settings(ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls')
 @override_settings(DEV=False)
 class TestRender(TestCase):
+    urls = 'lib.l10n_utils.tests.test_files.urls'
+
     def _test(self, path, template, locale, accept_lang, status, destination=None):
         request = RequestFactory().get(path)
         request.META['HTTP_ACCEPT_LANGUAGE'] = accept_lang

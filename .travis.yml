@@ -13,7 +13,7 @@ before_script:
   - python manage.py runscript check_calendars
   - mysql -e 'create database bedrock_test;'
   - python manage.py version
-  - python manage.py syncdb --noinput --migrate
+  - python manage.py migrate --noinput
   - python manage.py collectstatic --noinput -v 0
   - travis_retry python manage.py update_product_details
   - travis_retry svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
