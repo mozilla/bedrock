@@ -1,0 +1,54 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/contribute-base.html" %}
+
+{% block page_title %}
+  {{_('Join Firefox Friends today!') }}
+{% endblock %}
+
+{% block body_class %}{{ super() }} firefox-friends{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'contribute-friends' %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block contrib_page_title %}{{ _('Join Firefox Friends today!') }}{% endblock %}
+
+{% block alt_header %}
+<img src="{{ static('img/contribute/friends/firefox-friends-logo.png') }}" width="186" class="ff-logo" alt="{{_('Firefox Friends logo')}}" />
+<div class="ff-header-content">
+  <h1>{{_('Join Firefox Friends today!')}}</h1>
+  <p>{{_('Step to the frontline to help us tell the world how awesome Firefox is and about all the important work Mozilla does every day.')}}</p>
+  <a href="https://friends.mozilla.org" id="ff-join" class="ff-join-now" rel="external">{{_('Join now')}}</a>
+</div>
+{% endblock %}
+
+{% block contrib_head %}{% endblock contrib_head %}
+
+{% block contrib_content %}
+<section class="ff-body-content">
+  <h2>{{_('How it works')}}</h2>
+
+  <div class="how">
+    <h3 class="connected">{{_('Get connected')}}</h3>
+    <p>{{_('Sign up using your Twitter, Facebook or LinkedIn profile, or simply enter your email.')}}</p>
+  </div>
+
+  <div class="how">
+    <h3 class="sharing">{{_('Start sharing')}}</h3>
+    <p>{{_('Browse through our news feeds for topics that interest you, or submit your own content.')}}</p>
+  </div>
+
+  <div class="how">
+    <h3 class="rewarded">{{_('Get rewarded')}}</h3>
+    <p>{{_('Track your impact and share often for opportunities to be recognized and rewarded.')}}</p>
+  </div>
+</section>
+{% endblock contrib_content %}
+
+{% block contrib_footer %}{% endblock contrib_footer %}

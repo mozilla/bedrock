@@ -1,0 +1,185 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+.firefox-friends {
+    #wrapper {
+        padding-bottom: 0;
+        width: 100%;
+    }
+    #masthead {
+        background: #373737 url(/media/img/contribute/friends/header-img-wide.jpg) 50% 0 no-repeat;
+        padding: 0 180px;
+        width: 100%;
+        .border-box();
+
+        @media only screen and (max-width: 1100px) {
+            padding: 0 100px;
+        }
+
+        @media only screen and (max-width: 790px) {
+            padding: 0 50px;
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            padding: 0 20px;
+        }
+    }
+    #colophon {
+        margin-top: 0;
+    }
+    h1,
+    h2,
+    h3 {
+        color: #fff;
+        font-weight: 700;
+    }
+    h2 {
+        .font-size(2.5rem);
+    }
+    h3 {
+        .font-size(1.2rem);
+        text-transform: uppercase;
+
+        @media only screen and (max-width: 790px) {
+            .font-size(1rem);
+            line-height: 1.5;
+        }
+    }
+    hr {
+        margin: 100px auto;
+        border: 1px solid #fff;
+        width: 20%;
+    }
+    .ff-logo {
+        padding-top: 25px;
+    }
+    .ff-header-content {
+        color: #fff;
+        margin: 0 auto;
+        padding: 95px 0 160px 0;
+        width: 100%;
+        text-align: center;
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            padding-bottom: 80px;
+        }
+
+        h1 {
+            .font-size(4rem);
+            text-shadow: 1px 1px 2px #333;
+
+            @media only screen and (max-width: 790px) {
+                .font-size(3rem);
+            }
+        }
+        p {
+            margin: 0 auto;
+            max-width: 610px;
+            .font-size(1.4rem);
+            text-shadow: 1px 1px 2px #333;
+
+            @media only screen and (max-width: 790px) {
+                max-width: 500px;
+                .font-size(1.2rem);
+            }
+        }
+    }
+    .ff-join-now {
+        display: block;
+        background-color: #f26c24;
+        color: #fff;
+        margin: 70px auto 0 auto;
+        padding: 10px 30px;
+        border: 0;
+        border-radius: 6px;
+        width: 200px;
+        .font-size(1.2rem);
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            margin-top: 35px;
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+    main {
+        background-color: #06a6e0;
+    }
+    .ff-body-content {
+        color: #fff;
+        margin: 0 auto;
+        padding: 95px 180px;
+        text-align: center;
+        max-width: 1400px;
+
+        @media only screen and (max-width: 1100px) {
+            padding: 95px 100px;
+        }
+
+        @media only screen and (max-width: 790px) {
+            padding: 75px 20px;
+        }
+
+        h2 {
+            margin-bottom: 80px;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                margin-bottom: 40px;
+            }
+        }
+        .how {
+            display: inline-block;
+            padding-left: 5%;
+            width: 27%;
+            vertical-align: top;
+
+            @media only screen and (max-width: @breakTablet) {
+                padding-left: 3%;
+                width: 30%;
+            }
+
+            @media only screen and (max-width: 640px) {
+                display: block;
+                padding-left: 0;
+                width: 100%;
+            }
+
+            h3:before {
+                display: block;
+                background: transparent url(/media/img/contribute/friends/icon-sprite.png) 50% 0 no-repeat;
+                margin-top: @baseLine;
+                height: 175px;
+                content: '';
+            }
+            h3.sharing:before {
+                background-position: 50% -240px;
+            }
+            h3.rewarded:before {
+                background-position: 50% -470px;
+            }
+
+            &:first-of-type {
+                padding-left: 0;
+            }
+            p {
+                margin: 0 auto;
+                max-width: 200px;
+
+                @media only screen and (max-width: 640px) {
+                    max-width: 240px;
+                }
+            }
+        }
+    }
+}
+/* Tweaks for RTL locales */
+html[dir="rtl"] {
+    .how {
+        padding-right: 7%;
+        padding-left: 0;
+    }
+}
