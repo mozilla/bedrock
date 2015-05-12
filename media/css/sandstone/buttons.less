@@ -5,6 +5,7 @@
 // General buttons
 
 @buttonFlatBlue: #00a0dc;
+@buttonFlatGreen: #6fbe4a;
 
 .button-flat,
 .button-flat:link,
@@ -12,6 +13,7 @@
     .inline-block();
     .border-radius(6px);
     .transition();
+    .open-sans();
     text-align: center;
     padding: 12px (@baseLine * 2);
     margin-bottom: @baseLine;
@@ -26,6 +28,16 @@
         text-decoration: none;
         background: lighten(@buttonFlatBlue, 3%);
         color: #fff;
+    }
+}
+
+.button-flat-green {
+    .button-flat;
+    background: @buttonFlatGreen;
+
+    &:hover,
+    &:focus {
+        background: lighten(@buttonFlatGreen, 3%);
     }
 }
 
