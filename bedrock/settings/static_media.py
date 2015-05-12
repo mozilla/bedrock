@@ -508,6 +508,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew_37-bundle.css',
     },
+    'firefox_pocket': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/pocket.less',
+        ),
+        'output_filename': 'css/firefox_pocket-bundle.css',
+    },
     'firefox_releasenotes': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -1188,6 +1196,13 @@ PIPELINE_JS = {
             'js/firefox/independent.js',
         ),
         'output_filename': 'js/firefox_independent-bundle.js',
+    },
+    'firefox_pocket': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/pocket.js',
+        ),
+        'output_filename': 'js/firefox_pocket-bundle.js',
     },
     'firefox_os': {
         'source_filenames': (

@@ -92,6 +92,9 @@ urlpatterns = patterns('',
     page('firefox/os/devices/tv', 'firefox/os/tv.html',
         decorators=waffle_switch('firefox-os-tv')),
 
+    page('firefox/pocket', 'firefox/pocket.html',
+        decorators=waffle_switch('pocket-active')),
+
     page('firefox/independent', 'firefox/independent.html'),
 
     # Release notes
