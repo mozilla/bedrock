@@ -970,6 +970,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/contribute-form-bundle.js',
     },
+    'contribute-friends': {
+        'source_filenames': (
+            'js/libs/jquery-1.11.0.min.js',
+            'js/mozorg/contribute/friends.js',
+        ),
+        'output_filename': 'js/contribute-friends-bundle.js'
+    },
     'contribute-studentambassadors-landing': {
         'source_filenames': (
             'js/base/social-widgets.js',
