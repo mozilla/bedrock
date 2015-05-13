@@ -21,6 +21,7 @@ from bedrock.base.urlresolvers import reverse
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
+import waffle
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.firefox.firefox_details import firefox_desktop
@@ -511,3 +512,12 @@ class FeedbackView(TemplateView):
             template = 'firefox/feedback/unhappy.html'
 
         return [template]
+
+
+def os_devices_view(request):
+    if (waffle.switch_is_active('fxos-devices-panasonic-tv')):
+        template = 'devices-panasonic-tv'
+    else:
+        template = 'devices'
+
+    return l10n_utils.render(request, 'firefox/os/' + template + '.html')
