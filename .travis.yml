@@ -2,15 +2,12 @@ sudo: false
 language: python
 python:
   - "2.7"
-env:
-  global:
-    - PIP_DOWNLOAD_CACHE="pip_cache"
 branches:
   only:
     - master
 cache:
   directories:
-    - pip_cache
+    - $HOME/.cache/pip
 before_script:
   - flake8 bedrock lib
   - python manage.py runscript check_calendars
