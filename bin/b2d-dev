@@ -39,6 +39,12 @@ fi
 
 fswatch -o . | xargs -n1 -I{} rsync "${RSYNC_ARGS[@]}" &
 
+if [ ! "$(which docker-compose)" ]; then
+    curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` \
+         > /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+fi
+
 eval $(boot2docker shellinit)
 if [ ! "$(docker images | grep bedrock_b2d)" ]; then
     docker-compose build b2d
