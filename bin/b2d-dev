@@ -25,6 +25,18 @@ RSYNC_ARGS=(
     #--exclude-from .gitignore  # this excludes settings/local.py
     . docker@$(boot2docker ip):$TARGET)
 rsync "${RSYNC_ARGS[@]}"
+
+if [ ! "$(which fswatch)" ]; then
+    if [ $(uname) == "Darwin" ]; then
+        if [ ! "$(which brew)" ]; then
+            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        fi
+        brew install fswatch
+    else
+        echo This script requires fswatch: https://github.com/emcrisostomo/fswatch/blob/master/INSTALL
+    fi
+fi
+
 fswatch -o . | xargs -n1 -I{} rsync "${RSYNC_ARGS[@]}" &
 
 eval $(boot2docker shellinit)
