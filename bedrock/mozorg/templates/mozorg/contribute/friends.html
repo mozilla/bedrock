@@ -49,6 +49,16 @@
     <p>{{_('Track your impact and share often for opportunities to be recognized and rewarded.')}}</p>
   </div>
 </section>
+
+{% if LANG.startswith('en') %}
+<hr />
+
+<section class="ff-video">
+  <h2>{{_('Watch the video')}}</h2>
+  <iframe src="https://www.youtube.com/embed/ZKcv8HHyyy8" frameborder="0" allowfullscreen></iframe>
+</section>
+{% endif %}
+
 {% endblock contrib_content %}
 
 {% block contrib_footer %}{% endblock contrib_footer %}

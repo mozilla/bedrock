@@ -49,11 +49,6 @@
             line-height: 1.5;
         }
     }
-    hr {
-        margin: 100px auto;
-        border: 1px solid #fff;
-        width: 20%;
-    }
     .ff-logo {
         padding-top: 25px;
     }
@@ -113,12 +108,12 @@
     .ff-body-content {
         color: #fff;
         margin: 0 auto;
-        padding: 95px 180px;
+        padding: 75px 180px;
         text-align: center;
         max-width: 1400px;
 
         @media only screen and (max-width: 1100px) {
-            padding: 95px 100px;
+            padding: 75px 100px;
         }
 
         @media only screen and (max-width: 790px) {
@@ -126,7 +121,7 @@
         }
 
         h2 {
-            margin-bottom: 80px;
+            margin-bottom: 50px;
 
             @media only screen and (max-width: @breakMobileLandscape) {
                 margin-bottom: 40px;
@@ -173,6 +168,40 @@
                 @media only screen and (max-width: 640px) {
                     max-width: 240px;
                 }
+            }
+        }
+    }
+    hr {
+        margin: 25px auto 55px;
+        border: 1px solid #fff;
+        width: 20%;
+    }
+    .ff-video {
+        margin: 0 auto;
+        padding-bottom: 75px;
+        text-align: center;
+        max-width: 1400px;
+
+        h2 {
+            margin-bottom: 60px;
+        }
+        iframe {
+            width: 750px;
+            height: 424px;
+
+            @media only screen and (max-width: 1100px) {
+                width: 550px;
+                height: 311px;
+            }
+
+            @media only screen and (max-width: 790px) {
+                width: 400px;
+                height: 226px;
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                width: 310px;
+                height: 175px;
             }
         }
     }
