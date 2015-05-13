@@ -106,7 +106,7 @@ def update_revision_file(ctx):
 @task
 def database(ctx):
     """Update the database."""
-    management_cmd(ctx, 'migrate --fake --noinput')
+    management_cmd(ctx, 'migrate --noinput')
 
 
 @task
