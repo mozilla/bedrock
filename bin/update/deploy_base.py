@@ -141,6 +141,9 @@ def update_info(ctx):
 def peep_install(ctx):
     """Install things using peep."""
     with ctx.lcd(settings.SRC_DIR):
+        # keep pip updated and do it separately
+        # so that the subsequent call uses the new one
+        ctx.local(peep_install_cmd('pip'))
         ctx.local(peep_install_cmd('prod'))
         # update any newly installed libs to be relocatable
         # this call is idempotent
