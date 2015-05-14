@@ -242,25 +242,17 @@ def process_partnership_form(request, template, success_url_name, template_vars=
             honeypot = data.pop('office_fax')
 
             if honeypot:
-                msg = 'Visitor invalid'
-                stat = 400
+                msg = 'ok'
+                stat = 200
             else:
                 # rename custom Salesforce fields to their real GUID name
-                interest = data.pop('interest')
-                data['00NU0000002pDJr'] = interest
-
-                interested_countries = data.pop('interested_countries')
-                data['00NU00000053D4G'] = interested_countries
-
-                interested_languages = data.pop('interested_languages')
-                data['00NU00000053D4L'] = interested_languages
-
-                campaign_type = data.pop('campaign_type')
-                data['00NU00000053D4a'] = campaign_type
-
+                data['00NU0000002pDJr'] = data.pop('interest')
+                data['00NU00000053D4G'] = data.pop('interested_countries')
+                data['00NU00000053D4L'] = data.pop('interested_languages')
+                data['00NU00000053D4a'] = data.pop('campaign_type')
                 data['oid'] = '00DU0000000IrgO'
-
-                data['lead_source'] = form_kwargs.get('lead_source', 'www.mozilla.org/about/partnerships/')
+                data['lead_source'] = form_kwargs.get('lead_source',
+                                                      'www.mozilla.org/about/partnerships/')
                 # As we're doing the Salesforce POST in the background here,
                 # `retURL` is never visited/seen by the user. I believe it
                 # is required by Salesforce though, so it should hang around
@@ -326,23 +318,23 @@ def process_content_services_form(request, template, success_url_name, template_
             honeypot = data.pop('office_fax')
 
             if honeypot:
-                msg = 'Visitor invalid'
-                stat = 400
+                # don't let on there was a problem
+                msg = 'ok'
+                stat = 200
             else:
                 # rename custom Salesforce fields to their real GUID name
-
-                interested_countries = data.pop('interested_countries')
-                data['00NU00000053D4G'] = interested_countries
-
-                interested_languages = data.pop('interested_languages')
-                data['00NU00000053D4L'] = interested_languages
-
-                campaign_type = data.pop('campaign_type')
-                data['00NU00000053D4a'] = campaign_type
-
+                data['00NU00000053D4G'] = data.pop('interested_countries')
+                data['00NU00000053D4L'] = data.pop('interested_languages')
+                data['00NU00000053D4a'] = data.pop('campaign_type')
+                data['00NU0000004ELEK'] = data.pop('mobile')
                 data['oid'] = '00DU0000000IrgO'
 
-                data['lead_source'] = form_kwargs.get('lead_source', 'www.mozilla.org/about/partnerships/contentservices/')
+                if data['country'] != 'us':
+                    data['state'] = data.pop('province')
+
+                data['lead_source'] = form_kwargs.get(
+                    'lead_source',
+                    'www.mozilla.org/about/partnerships/contentservices/')
                 # As we're doing the Salesforce POST in the background here,
                 # `retURL` is never visited/seen by the user. I believe it
                 # is required by Salesforce though, so it should hang around
@@ -359,7 +351,10 @@ def process_content_services_form(request, template, success_url_name, template_
                 success = True
 
         if request.is_ajax():
-            return HttpResponseJSON({'msg': msg, 'errors': form.errors}, status=stat)
+            # ensure no unescaped values sent back.
+            form_errors = {fn: [escape(msg) for msg in msgs] for fn, msgs
+                           in form.errors.iteritems()}
+            return HttpResponseJSON({'msg': msg, 'errors': form_errors}, status=stat)
         # non-AJAX POST
         else:
             # if form is not valid, render template to retain form data/error messages
@@ -372,6 +367,7 @@ def process_content_services_form(request, template, success_url_name, template_
             # if form is valid, redirect to avoid refresh double post possibility
             else:
                 return HttpResponseRedirect("%s?success" % (reverse(success_url_name)))
+
     # no form POST - build form, add CSRF, & render template
     else:
         # without auto_id set, all id's get prefixed with 'id_'
