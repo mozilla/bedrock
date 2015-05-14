@@ -1,2263 +1,917 @@
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 @import "../../sandstone/lib.less";
 
-html {
-  overflow: auto;
-}
-
-html, body {
-  height: 100%;
-  min-width: @widthDesktop;
-}
+/*!
+  Updating images for Bug 1144753.
+  This comment will survive CSS minification and cache bust referenced images.
+*/
 
 #outer-wrapper {
-  background: #d3dae2;
-  border-top: none;
+    background: #0c99d5 url(/media/img/firefox/os-new/raysoflight.png) 0 0 no-repeat;
 }
-
 #wrapper {
-  width: 100%;
-  padding-bottom: 0;
-}
-
-#masthead {
-  width: 100%;
-  height: 80px;
-  z-index: 1000;
-  padding: 0;
-  background: #fff;
-
-  .wrapper {
-    position: relative;
-    height: 80px;
+    background-color: #0C99D5;
     width: 100%;
-    background-color: #d3dae2;
-    border-top: 2px solid #fff;
-  }
+    padding-bottom: 0;
 
-  .inner {
-    position: relative;
-    width: @widthDesktop - (@gridGutterWidth * 2);
+    * {
+        .border-box();
+    }
+}
+main {
     margin: 0 auto;
-    padding: 0;
-  }
+    text-align: center;
 
-  nav {
-    float: left;
-    margin: 0;
-  }
+    h1 {
+        margin: 0 auto @baseLine;
 
-  ul {
-    margin: 30px 0 0 45px;
-    li {
-      margin: 0;
-      padding-right: @baseLine * 2;
-      line-height: @baseLine;
-      a, a:link, a:visited {
-        text-transform: none;
-        padding: 0;
-      }
-    }
-    li.last {
-      padding-left: @baseLine * 2;
-      padding-right: 0;
-      border-left: 1px dotted #000;
-    }
-  }
-
-  h2 {
-    float: left;
-    padding-top: 20px;
-    margin: 0;
-    line-height: 100%;
-  }
-
-  .cta-button {
-    display: none;
-  }
-
-  .button-green, .button {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 18px @baseLine;
-    padding: .75em;
-    display: none;
-  }
-
-  .curr, li:hover, li:focus {
-    position: relative;
-    border-top-color: #D3DAE2;
-  }
-
-  .scroll {
-    .curr {
-      border-top-color: #fff;
-    }
-    .curr:before,
-    .curr:after {
-      top: 50px;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-    }
-
-    .curr:after {
-      border: 12px solid transparent;
-      border-color: rgba(211, 218, 226, 0);
-      border-top-color: inherit;
-      border-width: 12px;
-      left: 50%;
-      margin-left: -12px;
-    }
-
-    .curr:before {
-      border: 13px solid transparent;
-      border-color: rgba(221, 221, 221, 0);
-      border-top-color: #ddd;
-      border-width: 13px;
-      left: 50%;
-      margin-left: -13px;
-    }
-    ul li {
-      a, a:link, a:visited {
-        color: #0096dd;
-        &:hover {
-          color: #0073aa;
-        }
-      }
-    }
-  }
-}
-
-.js #masthead {
-  .wrapper.stuck {
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-}
-
-#lang-panel-container {
-    display: none;
-    position: relative;
-    float: left;
-    width: 44px;
-    height: 44px;
-    margin: 29px 0 0 @gridGutterWidth;
-
-    button {
-      border: none;
-      cursor: pointer;
-      padding: 0;
-    }
-}
-
-#open-lang-panel {
-    width: 37px;
-    height: 21px;
-    .image-replaced();
-    background: url(/media/img/firefox/os/icon-lang-select.png) center center no-repeat;
-}
-
-#lang-panel {
-    display: none;
-    position: absolute;
-    top: 32px;
-    left: 0;
-    width: 200px;
-    padding: @baseLine (@baseLine / 2) (@baseLine / 2);
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-    opacity: 0;
-    .transition(opacity .3s ease-in-out);
-
-    // triangle common
-    &:before, &:after {
-      position: absolute;
-      content: '';
-      width: 0;
-      height: 0;
-      display: block;
-      border-style: solid;
-      border-color: transparent;
-      border-top: 0;
-    }
-
-    // triangle stroke
-    &:before {
-      top: -8px;
-      left: 24px;
-      border-bottom-color: rgba(0, 0, 0, 0.1);
-      border-width: 8px;
-    }
-
-    // triangle fill
-    &:after {
-      top: -7px;
-      left: 25px;
-      border-bottom-color: #fff;
-      border-width: 7px;
-    }
-
-    &.visible {
-        opacity: 1;
-    }
-
-    p {
-        .font-size(@baseFontSize);
-        &:focus {
-            outline: none;
+        img {
+            height: auto;
+            color: #fff;
         }
     }
+    h2 {
+        .open-sans-light();
+        .font-size(3rem);
 
-    #lang-panel-options {
-        list-style-type: none;
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(2.2rem);
+            line-height: 1.1;
+        }
+    }
+    h2, h3 {
+        color: white;
+        text-shadow: none;
+    }
+    .tagline {
+        .open-sans-light();
+        color: #bee1f5;
+        margin: 0 auto @baseLine;
+        .font-size(44px);
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        max-width: 480px;
+
+        @media only screen and (max-width: @breakDesktop) {
+            .font-size(28px);
+            max-width: 420px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(24px);
+        }
+    }
+}
+
+.content-wrapper {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1100px;
+}
+/* Buttons */
+.cta-button {
+    display: inline-block;
+    background-color: #005189;
+    margin: 0 auto 30px;
+    border: 0;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 1.4em;
+    padding: .7em 3em;
+    .transition(background-color .1s ease-in-out);
+
+    @media only screen and (max-width: 1600px) {
+        margin-bottom: 50px;
+    }
+
+    @media only screen and (max-width: 1366px) {
+        margin-bottom: 30px;
+    }
+
+    @media only screen and (max-width: 1024px) {
+        margin-bottom: 20px;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: #005da5;
+        color: #fff;
+        text-decoration: none;
+    }
+}
+.get-phone,
+.get-newsletter {
+    display: block;
+    width: 13em;
+    min-width: 13em;
+    &.hidden {
+        display: none;
+    }
+}
+.get-newsletter {
+    margin-bottom: 10px;
+}
+.fxos-hero-space {
+    color: white;
+    padding-top: 3.5em; // approx 50px on desktop
+    height: auto;
+    overflow: hidden;
+    clear: both;
+
+    ul {
         margin: 0;
         padding: 0;
-        li {
-            display: inline-block;
-            margin: 0;
-            padding: 0 (@gridGutterWidth / 2);
-            border-right: 1px dotted #000;
+        list-style: none;
+    }
+}
 
-            &.last {
-                border: none;
+#cta-sticky {
+    .cta-button-small {
+        display: table-cell;
+        vertical-align: middle;
+        width: 160px;
+        height: 50px;
+        padding: 0 @gridGutterWidth;
+        .font-size(@smallFontSize);
+        font-weight: normal;
+        text-align: center;
+        background: #005189;
+        color: #fff;
+        border-radius: 6px;
+        .trailing-arrow();
+        .transition(background-color .1s ease-in-out);
+
+        &.hidden {
+            display: none;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+            background-color: #005da5;
+        }
+    }
+}
+
+html[lang|="en"] {
+    #cta-sticky .cta-button-small {
+        .font-size(@baseFontSize);
+    }
+}
+
+/* class is added to fxos-hero-space when switching to demo mode */
+.trim-height {
+    height: 900px;
+}
+.phone {
+    position: relative;
+    margin: 0 auto;
+    padding: 0 (@gridGutterWidth * 2);
+    overflow: hidden;
+
+    .signup {
+        margin-bottom: 25px;
+    }
+
+    .signup-txt {
+        color: #BEE1F5;
+        margin: 0 auto;
+        max-width: 300px;
+        .font-size(14px);
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding: 0 @gridGutterWidth;
+    }
+}
+
+.scale {
+    position: absolute;
+    top: -824px;
+    left: 353px;
+    .transform(scale(.3, .3));
+    opacity: 0;
+}
+.fxos-cta,
+.phone-container {
+    position: relative;
+    width: 48%;
+    vertical-align: middle;
+
+    @media only screen and (max-width: @breakTablet) {
+        width: 100%;
+    }
+}
+.fxos-cta {
+    float: left;
+    padding: (@baseLine * 2) 0;
+
+    @media only screen and (max-width: 1024px) {
+        margin-top: 10px;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        float: none;
+    }
+}
+.phone-container {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    height: 100%;
+    padding-left: @gridGutterWidth;
+
+    @media only screen and (max-width: @breakTablet) {
+        position: relative;
+        right: auto;
+        top: auto;
+        height: 280px;
+        padding-left: 0;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        height: 200px;
+    }
+
+
+    @media only screen and (max-width: @breakMobile) {
+        height: 140px;
+    }
+
+    img {
+        width: 520px;
+        height: auto;
+
+        @media only screen and (max-width: 1024px) {
+            width: 400px;
+        }
+        @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+            width: 460px;
+        }
+        @media only screen and (max-width: @breakMobile) {
+            width: 300px;
+        }
+    }
+}
+.fxos-apps {
+    ul,
+    .app-group-selector {
+        margin: 0 0 80px 0;
+        padding: 0;
+        .font-size(20px);
+        .open-sans-light;
+        list-style: none;
+
+        @media only screen and (max-width: @breakMobile) {
+            margin-bottom: 20px;
+        }
+        li {
+            display: inline;
+            margin-left: -6px;
+            &:first-child a {
+                border: 2px solid #71c4ea;
+                border-right: 0;
+                border-radius: 6px 0 0 6px;
+            }
+            &:last-child a {
+                border: 2px solid #71c4ea;
+                border-radius: 0 6px 6px 0;
+            }
+        }
+        a {
+            padding: .5em 2.5em;
+
+            @media only screen and (max-width: 1024px) {
+                padding: .5em 1.5em;
+                .font-size(1.1rem);
+            }
+            @media only screen and (max-width: @breakMobileLandscape) {
+                padding: 10px 5px;
+                .font-size(.9rem);
+            }
+        }
+    }
+    .app-group-selector {
+        li {
+            &:last-child a {
+                border-left: 0;
+            }
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            width: auto;
+            margin: 0 @baseLine (@gridGutterWidth * 2) @baseLine;
+
+            li {
+                display: block;
+                width: 100%;
+
+                a {
+                    display: block;
+                    border: 2px solid #71c4ea;
+                }
+
+                &:first-child a {
+                    border-radius: 6px 6px 0 0;
+                    border: 2px solid #71c4ea;
+                    border-bottom-width: 1px;
+                }
+                &:last-child a {
+                    border-radius: 0 0 6px 6px;
+                    border: 2px solid #71c4ea;
+                    border-top-width: 1px;
+                }
+            }
+        }
+    }
+    a {
+        .transition(background-color .1s ease-in-out);
+        &:link,
+        &:visited {
+            display: inline-block;
+            background-color: #005189;
+            color: white;
+            border: 2px solid #71c4ea;
+        }
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: #005da5;
+            text-decoration: none;
+        }
+        &.close {
+            position: absolute;
+            top: -30px;
+            right: 20px;
+            background: transparent url(/media/img/firefox/os-new/icons/close.png) 0 0 no-repeat;
+            border: 0;
+            width: 42px;
+            height: 42px;
+            span {
+                .visually-hidden();
+            }
+        }
+        &.active-state {
+            background-color: #e14164;
+        }
+    }
+}
+.fxos-apps {
+    padding: 80px 0 60px;
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding: 40px 0 40px;
+    }
+    h2 {
+        margin-bottom: 40px;
+    }
+}
+.fxos-active {
+    width: 100%;
+    height: 640px;
+    opacity: 1;
+}
+.fxos-features {
+    background-color: #fff;
+    padding: (@baseLine * 4) @gridGutterWidth (@baseLine * 5);
+    .clearfix();
+
+    h2 {
+        margin-bottom: 40px;
+    }
+    h3 {
+        margin-top: 20px;
+        .font-size(24px);
+    }
+    .features {
+        position: relative;
+        list-style-type: none;
+        margin: 0 auto;
+        padding: 0;
+
+        li {
+            position: relative;
+            float: left;
+            margin: 0;
+            padding: 140px @gridGutterWidth 0;
+            width: 33%;
+
+            &:before {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin-left: -70px;
+                width: 140px;
+                height: 140px;
+                content: '';
+                background-image: url(/media/img/firefox/os-new/icons/features-sprite.png);
+                background-position: 0 0;
+                background-repeat: no-repeat;
+
+                .at2x('/media/img/firefox/os-new/icons/features-sprite.png', 140px);
+            }
+
+            &.search:before {
+                background-position: 0 -145px;
+            }
+
+            &.swipe:before {
+                background-position: 0 -290px;
+            }
+
+            p {
+                color: #999;
+                .font-size(20px);
+                .open-sans-light;
+                max-width: 20em;
+                margin: @baseLine auto;
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                float: none;
+                display: block;
+                width: auto;
+                padding: 140px 0 0;
+                margin-bottom: @baseLine * 2;
+
+                p {
+                    max-width: 25em;
+                }
+            }
+        }
+    }
+}
+.fxos-features,
+.fxos-community {
+    h2,
+    h3 {
+        color: #56565a;
+    }
+}
+.fxos-apps,
+.fxos-marketplace,
+.fxos-help {
+    background-color: #0c99d5;
+    color: white;
+    a:link,
+    a:visited {
+        color: white;
+    }
+}
+.fxos-marketplace {
+    padding: 0 @gridGutterWidth;
+    h2 {
+        margin-bottom: @baseLine / 2;
+    }
+    p {
+        color: #BEE1F5;
+        margin-bottom: 60px;
+        .open-sans-light();
+        .font-size(28px);
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            margin-bottom: 30px;
+            padding: 5px;
+            .font-size(1.4rem);
+        }
+    }
+    li {
+        display: inline-block;
+        margin-left: 0;
+        margin-right: 100px;
+    }
+    .marketplace {
+        display: inline-block;
+        background: #005189 url(/media/img/firefox/os-new/icons/marketplace-glyph.png) 15px center no-repeat;
+        color: white;
+        margin: 0 auto 60px;
+        padding: .7em 3em .7em 75px;
+        border-radius: 6px;
+        font-size: 1.4em;
+        .at2x('/media/img/firefox/os-new/icons/marketplace-glyph.png', 40px, 37px);
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            margin-bottom: 30px;
+            padding: 15px 20px 15px 70px;
+            font-size: 1.2em;
+        }
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: #005da5;
+        }
+    }
+    .footnote {
+        color: #bee1f5;
+        .open-sans-italic();
+        font-size: .9em;
+        margin-bottom: 100px;
+    }
+}
+.fxos-news {
+    background-color: #f2f2f2;
+    padding: 50px 50px 40px;
+
+    @media only screen and (max-width: @breakTablet) {
+        padding: 30px 23px 10px;
+        text-align: left;
+    }
+    aside {
+        display: inline-block;
+        margin-right: 100px;
+        text-align: left;
+        vertical-align: top;
+
+        @media only screen and (max-width: 1366px) {
+            margin-right: 50px;
+        }
+        @media only screen and (max-width: @breakTablet) {
+            display: block;
+            margin-right: 0;
+        }
+        h2 {
+            color: #56565a;
+        }
+        p {
+            margin-left: 2px;
+            .font-size(18px);
+            text-align: left;
+        }
+    }
+    ul {
+        display: inline-block;
+        width: 40%;
+        margin: 10px 0;
+        padding: 0;
+        list-style: none;
+        .font-size(20px);
+        .open-sans-light;
+        text-align: left;
+        line-height: 1.1;
+
+        @media only screen and (max-width: @breakTablet) {
+            display: block;
+            width: auto;
+            line-height: 1.3;
+        }
+        li {
+            margin: 0 0 1em 0;
+            line-height: 1.2;
+
+            @media only screen and (max-width: @breakTablet) {
+                margin-left: 0;
+            }
+        }
+    }
+}
+.fxos-community {
+    background-color: white;
+    color: #333;
+    padding: 80px 0;
+    h2 {
+        padding: 0 @gridGutterWidth;
+        margin-bottom: @baseLine;
+    }
+    p {
+        color: #999;
+        padding: 0 (@gridGutterWidth * 3);
+        .open-sans-light();
+        .font-size(28px);
+        line-height: 1.5;
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(24px);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            padding: 0 @gridGutterWidth;
+        }
+
+        a {
+            .font-size(20px);
+        }
+    }
+    img {
+        margin: 0 0 3em 0;
+    }
+}
+.fxos-help {
+    width: @widthDesktop;
+    margin: 0 auto;
+    padding: (@baseLine * 4) 0;
+    .clearfix();
+
+    .content-wrapper {
+        padding: 0 @gridGutterWidth;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @breakTablet;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @widthMobile;
+    }
+
+    .help {
+        float: left;
+        width: 33%;
+        vertical-align: top;
+        padding: 0 @gridGutterWidth 0 (@gridGutterWidth / 2);
+
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
+            display: block;
+            width: auto;
+            padding: 0;
+            margin-bottom: @baseLine;
+
+            h3, ul, li {
+                text-align: center;
+            }
+        }
+    }
+
+    h3 {
+        text-align: left;
+        .font-size(28px);
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: left;
+        li {
+            margin-left: 0;
+            line-height: 2;
+            .font-size(18px);
+
+            a:link,
+            a:visited {
+                color: #bee1f5;
+            }
+        }
+    }
+}
+ul.apps {
+    width: 1100px;
+    margin: 0 auto;
+
+    @media only screen and (max-width: 1100px) {
+        width: @widthDesktop;
+    }
+
+    li {
+        display: inline-block;
+        margin-bottom: @baseLine * 2;
+        width: 20%;
+
+        @media only screen and (max-width: 1100px) {
+            width: 25%;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            width: 33%;
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            width: 50%;
+            margin-bottom: @baseLine;
+        }
+    }
+
+    img {
+        width: 142px;
+        height: 142px;
+        opacity: 1;
+        -webkit-transition: -webkit-transform .5s ease-in-out, opacity .5s ease-in-out;
+                transition: transform .5s ease-in-out, opacity .5s ease-in-out;
+
+        @media only screen and (max-width: @breakTablet) {
+            width: 100px;
+            height: 100px;
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            width: 80px;
+            height: 80px;
+        }
+
+        @media only screen and (max-width: @breakMobile) {
+            width: 71px;
+            height: 71px;
+        }
+    }
+
+    span {
+        display: block;
+        margin-top: @baseLine / 2;
+        .font-size(@largeFontSize);
+        opacity: 1;
+        .transition(opacity .5s ease-in-out);
+
+        @media only screen and (max-width: @breakTablet) {
+            margin-top: 0;
+            .font-size(@baseFontSize);
+        }
+    }
+
+    .fade {
+        img {
+            .transform(scale(.5, .5));
+            opacity: .4;
+        }
+
+        span {
+            opacity: 0;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: auto;
+        margin: 0 @gridGutterWidth;
+    }
+}
+.apps-marketplace {
+    margin: 0 auto;
+
+    li {
+        position: relative;
+        display: inline-block;
+        width: 140px;
+        margin: 0 (@gridGutterWidth * 2) (@baseLine * 3);
+        padding-top: 160px;
+        .font-size(24px);
+        .open-sans-light;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -70px;
+            width: 142px;
+            height: 144px;
+            content: '';
+            background-image: url(/media/img/firefox/os-new/icons/marketplace-apps.png);
+            background-repeat: no-repeat;
+            background-position: 0 0;
+
+            .at2x('/media/img/firefox/os-new/icons/marketplace-apps.png', 100%);
+        }
+
+        &.facebook:before {
+            background-position: 0 0;
+        }
+
+        &.youtube:before {
+            background-position: 0 -292px;
+        }
+
+        &.line:before {
+            background-position: 0 -146px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(@largeFontSize);
+            margin: 0 (@baseLine / 2) (@baseLine * 1.5);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            width: 71px;
+            .font-size(12px);
+            padding-top: 93px;
+
+            &:before {
+                width: 71px;
+                height: 73px;
+                margin-left: -35.5px;
+                .background-size(100%);
+            }
+
+            &.youtube:before {
+                background-position: 0 -147px;
+            }
+
+            &.line:before {
+                background-position: 0 -73px;
             }
         }
     }
 }
 
-#close-lang-panel {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  width: 15px;
-  height: 15px;
-  overflow: hidden;
-  .image-replaced();
-  background: url(/media/img/firefox/os/icon-close.png) center center no-repeat;
-}
-
-h2 {
-  .font-size(48px);
-  letter-spacing: -2px;
-}
-
-section p, header p {
-  .font-size(18px);
-}
-
-//fixed position left hand navigation
-#side-nav {
-  position: fixed;
-  z-index: 1000;
-  top: 50%;
-  left: 30px;
-  width: auto;
-  margin-top: -77px;
-  padding: 0;
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    li {
-      margin: 12px 0;
-    }
-    li a {
-      display: block;
-      width: 12px;
-      text-indent: 105%;
-      white-space: nowrap;
-      overflow: hidden;
-      opacity: 0.5;
-      .transition();
-      &:hover, &:focus, &.curr {
-        opacity: 1;
-      }
-    }
-    li a.nav {
-      height: 12px;
-      padding: 0;
-      background: #fff;
-      .border-radius(7px);
-    }
-    li .share {
-      height: 27px;
-      border-top: 1px dashed #666;
-      background: transparent url('/media/img/firefox/os/heart-nav.png') 0 12px no-repeat;
-      padding: 12px 1px 1px 1px;
-    }
-  }
-
-  #share-pane {
-    position: relative;
-    display: none;
-    width: auto;
-    background: rgb(255,255,255);
-    background: rgba(255,255,255,0.5);
-    padding: @baseLine / 2;
-    margin: -(@baseLine * 2) 0 0 @baseLine;
-    .border-radius(@baseLine / 4);
-    .share-button {
-      visibility: hidden;
-      display: none;
-    }
-    #share-options {
-      margin-top: @baseLine / 2;
-      padding-top: 5px;
-    }
-    ul li {
-      margin: 0;
-      padding: 0;
-    }
-    a.close {
-      position: absolute;
-      top: 0;
-      right: @baseLine / 2;
-      height: 20px;
-      width: 20px;
-      .font-size(20px);
-      color: #484848;
-      span {
-        display: block;
-        text-indent: 105%;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-      &:before {
-        position: absolute;
-        top: 0;
-        right: 0;
-        content: "\00D7";
-        font-weight: bold;
-      }
-    }
-
-  }
-}
-
-// general item container class
-// used throughout main sections
-// to fit content to grid
-.item {
-  position: relative;
-  width: @widthDesktop - (@gridGutterWidth * 2);
-  margin: 0 auto;
-}
-
-.content {
-  height: 100%;
-}
-
-#modal {
-  .window .inner {
-    header {
-      padding: 20px 20px 20px 30px;
-    }
-
-    #modal-close {
-      top: 21px;
-      right: 28px;
-
-      a {
-        .open-sans-light;
-        .font-size(@largeFontSize);
-        font-weight: normal;
-      }
-
-      button {
-        box-shadow: none;
-        background: url(/media/img/firefox/os/closex-purchase.png) right top no-repeat;
-        text-indent: 105%;
-        overflow: hidden;
-        white-space: nowrap;
-        height: 32px;
-        width: 32px;
-        .transition(none);
-      }
-
-      &:hover button {
-        background-position-y: 100%;
-      }
-    }
-  }
-}
-
-//get phone modals are JS dependent, so hide by default
-#primary-cta-phone, #secondary-cta-phone {
-  display: none;
-}
-
-//if JS enabled hide the primary signup cta initially
-.js #primary-cta-signup {
-  display: none;
-}
-
-.stop-scrolling {
-  height: 100%;
-  overflow: hidden;
-}
-
-#get-firefox-os {
-  position: relative;
-  #every-moment {
-    z-index: 3;
-  }
-  .item-wrapper {
-    width: 100%;
-    height: 620px;
-    position: relative;
-  }
-  .item {
-    height: 620px;
-  }
-  .phone-item {
-    position: absolute;
-    left: 50%;
-    margin-left: -480px;
-  }
-  .content {
-    position: absolute;
-    top: 105px;
-    right: 26px;
-    width: 460px;
-    text-align: center;
-    z-index: 2;
-  }
-  #adaptive-bgs {
-    display: none;
-  }
-  #adapt-features .content {
-    top: 55px;
-  }
-  h2, p {
-    color: #fff;
-    text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
-  }
-  #adapt3 {
-    display: none; // hide birthday scene for non-js users
-  }
-  .adapt-feature-sprite {
-    display: none;
-    position: absolute;
-    background-color: transparent;
-    background-image: url('/media/img/firefox/os/adapt/pseudo-sprite.png');
-    background-repeat: no-repeat;
-  }
-  ul {
-    list-style-type: none;
-    margin: (@baseLine * 2) 0 0 0;
-    padding: 0;
-    li {
-      position: relative;
-      padding: 1em .5em;
-      margin-bottom: 10px;
-      padding-left: 50px;
-      background: #fff;
-      text-align: left;
-      .font-size(@largeFontSize);
-      color: @textColorTertiary;
-    }
-    .type {
-      background: #fff url('/media/img/firefox/os/adapt/icon-search.png') no-repeat 10px center;
-    }
-    .results {
-      background: #fff url('/media/img/firefox/os/adapt/icon-check.png') no-repeat 10px center;
-    }
-    .save {
-      background: #fff url('/media/img/firefox/os/adapt/icon-hand.png') no-repeat 10px center;
-    }
-    .discover {
-      background: #fff url('/media/img/firefox/os/adapt/icon-marketplace.png') no-repeat 10px center;
-    }
-  }
-  .small {
-    float: left;
-    .font-size(@baseFontSize);
-    line-height: 1.5em;
-    width: 240px;
-    text-align: left;
-  }
-  .button-green {
-    width: 100%;
-    padding: 1em 0;
-  }
-  .button {
-    float: right;
-    padding: 1em;
-  }
-  .button.wide {
-    float: none;
-    width: 100%;
-    padding: 1em;
-    padding: 1em 0;
-  }
-  // javascript only styles
-  #adaptive-wrapper.scroller-on {
-    position: relative;
-    width: 100%;
-    height: 1860px;
-    z-index: 2;
-    background: #0f9fdb;
-
-    //sticky adaptive background while content scrolls naturally
-    #adaptive-bgs {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 620px;
-      z-index: 2;
-      .adaptive-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 620px;
-        opacity: 1;
-        z-index: 1;
-        .transition(opacity 0.3s ease);
-        background-repeat: no-repeat;
-        background-position: center center;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        &.inactive {
-          opacity: 0;
-        }
-        &.top {
-          z-index: 2;
-          opacity: 1;
-        }
-      }
-      #adaptive-bg-birthday {
-        opacity: 1;
-      }
-    }
-
-    #adaptive-mask {
-      position: absolute;
-      top: 620px;
-      width: 100%;
-      background: #0f9fdb;
-      z-index: 5;
-    }
-
-    #keep-scrolling {
-      position: absolute;
-      top: 550px;
-      left: 50%;
-      margin-left: -48px;
-      display: block;
-      background: url('/media/img/firefox/os/adapt/keep-scrolling.png') no-repeat left top;
-      width: 24px;
-      height: 35px;
-      z-index: 1;
-
-      -moz-animation: keep-scrolling 2s steps(25) infinite;
-      -webkit-animation: keep-scrolling 2s steps(25) infinite;
-      animation: keep-scrolling 2s steps(25) infinite;
-    }
-
-    #phone-item-soccer, #phone-item-cafe {
-      display: none;
-    }
-
-    #adapt1 {
-      background: transparent;
-    }
-
-    #adapt2 {
-      background: transparent;
-      z-index: 2;
-    }
-
-    #adapt3 {
-      display: block;
-      background: transparent;
-    }
-
-    #adaptive-app-search {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-    }
-    ul {
-      .type {
-        z-index: 4;
-      }
-      .results, .save, .discover {
-        margin-top: -66px;
-      }
-      .type, .results, .save, .discover {
-        opacity: 0;
-        .transition;
-        &.active {
-          margin-top: 0px;
-          opacity: 1;
-        }
-      }
-      .results {
-        z-index: 3;
-      }
-      .save {
-        z-index: 2;
-      }
-      .discover {
-        z-index: 1;
-      }
-    }
-
-    #fox-tail-tip {
-      display: block;
-      position: fixed;
-      bottom: -45px;
-      right: 0;
-      width: 604px;
-      height: 45px;
-      background: url('/media/img/firefox/os/adapt/fox-tail-tip.png') top right no-repeat;
-      z-index: 5;
-    }
-  }
-  // placeholders for scroll position based animations
-  #scene-hooks {
-    display: block;
-    z-index: 1;
-    position: absolute;
-    top: 620px;
-  }
-
-  .scene-hook {
-    background: transparent;
-  }
-}
-
-// sprites (dotted lines/plus) should essentially only show for English language pages
-html[lang|="en"] #get-firefox-os {
-  #adapt-features .content {
-    top: 105px;
-  }
-  #adapt-feature-sprite-plus {
-    display: block;
-    height: 24px;
-    width: 24px;
-    background-position: left -168px;
-    top: 286px;
-    left: 50%;
-  }
-  ul {
-    .discover {
-      margin-top: 46px;
-    }
-  }
-  #adaptive-wrapper.scroller-on {
-    ul {
-      .discover {
-        margin-top: -66px;
-        &.active {
-          margin-top: 44px;
-        }
-      }
-    }
-    .adapt-feature-sprite {
-      display: block;
-      width: 0;
-      z-index: -1;
-    }
-    #adapt-feature-sprite-plus {
-      opacity: 0;
-      width: 26px;
-      top: 200px; // animate to 286px
-      z-index: 2;
-      .transition(all 0.5s ease);
-      &.active {
-        top: 286px;
-        opacity: 1;
-      }
-    }
-  }
-}
-
-#scene-hooks, #fox-tail-tip, #signup-toggle-icon { display: none; }
-
-#bg-wrapper {
-  position: relative;
-}
-
-.phone-wrapper {
-  position: relative;
-  z-index: 10;
-  .phone {
-    position: absolute;
-    top: 70px;
-    left: 100px;
-    width: 308px;
-    height: 523px;
-    background: url('/media/img/firefox/os/phone/phone-overlay.png') no-repeat top left;
-    z-index: 1;
-  }
-
-  .screen-wrapper {
-    position: absolute;
-    top: 140px;
-    left: 143px;
-    z-index: 2;
-    width: 218px;
-    height: 334px;
-    background-color: #221F1E;
-    border-left: 1px solid #221F1E;
-    overflow: hidden;
-  }
-
-  .screen {
-    width: 218px;
-    height: 332px;
-    background-image: url('/media/img/firefox/os/phone/screens-en-us.jpg');
-    background-repeat: no-repeat;
-  }
-
-  .screen-soccer {
-    background-position: left top;
-  }
-
-  .screen-cafe {
-    background-position: -218px top;
-  }
-
-  .screen-birthday {
-    background-position: -436px top;
-  }
-
-  .fox-wrapper {
-    position: absolute;
-  }
-
-  #phone-hook {
-    z-index: 2;
-  }
-
-  .fox {
-    position: absolute;
-    top: 350px;
-    left: 50px;
-    width: 416px;
-    height: 244px;
-    background: url('/media/img/firefox/os/fox.png') no-repeat top left;
-    z-index: 3;
-  }
-
-  .tail {
-    position: absolute;
-    top: 140px;
-    left: -310px;
-    width: 580px;
-    height: 267px;
-    background: url('/media/img/firefox/os/fox-tail.png') no-repeat top left;
-    z-index: 0;
-  }
-}
-
-// hack for en-US visitors in India
-html[lang|="en"].en-IN {
-  .phone-wrapper .screen {
-    background-image: url('/media/img/firefox/os/phone/screens-en-in.jpg');
-  }
-}
-
-html[lang='hi-IN'] {
-  .phone-wrapper .screen {
-    background-image: url('/media/img/firefox/os/phone/screens-hi-in.jpg');
-  }
-}
-
-html[lang='ta'] {
-  .phone-wrapper .screen {
-    background-image: url('/media/img/firefox/os/phone/screens-ta.jpg');
-  }
-}
-
-html[lang^="es"] {
-  .phone-wrapper .screen {
-    background-image: url('/media/img/firefox/os/phone/screens-es-es.jpg');
-  }
-}
-
-html[lang="pl"] {
-  .phone-wrapper .screen {
-    background-image: url('/media/img/firefox/os/phone/screens-pl-pl.jpg');
-  }
-}
-
-html[lang="pt-BR"] {
-  .phone-wrapper .screen {
-    background-image: url('/media/img/firefox/os/phone/screens-pt-br.jpg');
-  }
-}
-
-html[lang="de"] {
-  .phone-wrapper .screen {
-    background-image: url('/media/img/firefox/os/phone/screens-de.jpg');
-  }
-}
-
-html[lang="hu"] {
-  .phone-wrapper .screen {
-    background-image: url('/media/img/firefox/os/phone/screens-hu.jpg');
-  }
-}
-
-html[lang="el"] {
-  .phone-wrapper .screen {
-    background-image: url('/media/img/firefox/os/phone/screens-el.jpg');
-  }
-}
-
-.intro-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 620px;
-  opacity: 1;
-  .transition(opacity 1s ease);
-  background-repeat: no-repeat;
-  background-position: center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  &.inactive {
-    opacity: 0;
-  }
-}
-
-.bg-soccer {
-  background-image: url('/media/img/firefox/os/bg/1400/soccer.jpg');
-}
-
-.bg-cafe {
-  background-image: url('/media/img/firefox/os/bg/1400/cafe.jpg');
-}
-
-.bg-birthday {
-  background-image: url('/media/img/firefox/os/bg/1400/birthday.jpg');
-}
-
-#have-it-all-masthead {
-  position: relative;
-  width: 100%;
-  background: #0f9fdb url('/media/img/firefox/os/have-it-all/fox-tail-detail.png') no-repeat top right;
-  z-index: 100;
-  header {
-    width: @widthDesktop;
-    margin: 0 auto;
-    padding-top: 82px;
-    text-align: center;
-    overflow: hidden;
-    h2, p {
-      width: 70%;
-      margin: 0 auto;
-      color: #e7e7e7;
-    }
-    p {
-      margin: @baseLine auto;
-    }
-  }
-  ul {
-    position: relative;
-    list-style-type: none;
-    padding: 16px 0 0;
-    margin: 0;
-    text-align: center;
-    overflow: hidden;
-    background: transparent url('/media/img/firefox/os/have-it-all/app-icons-grad.png') no-repeat center top;
-    li {
-      display: inline-block;
-      width: 160px;
-      margin: 0 0 (@baseLine/2) 0;
-      padding: 0;
-      text-align: left;
-      color: #fff;
-      zoom: 1;
-      *display: inline;
-      a {
-        color: #fff;
-        line-height: 46px;
-        text-indent: 8px;
-        display: block;
-      }
-      .icon {
-        width: 50px;
-        height: 52px;
-        margin: 0 auto;
-        float: left;
-        background-color: transparent;
-        background-image: url('/media/img/firefox/os/have-it-all/app-icons.png');
-      }
-      .curr {
-        .transition(text-shadow 0.2s linear);
-        text-shadow: 0 0 10px #fff, 0 0 10px #fff;
-      }
-      .social {
-        background-position: 0px 0px;
-        background-repeat: no-repeat;
-      }
-      .photos {
-        background-position: -50px 0px;
-        background-repeat: no-repeat;
-      }
-      .music {
-        background-position: -100px 0px;
-        background-repeat: no-repeat;
-      }
-      .maps {
-        background-position: -150px 0px;
-        background-repeat: no-repeat;
-      }
-      .messages {
-        background-position: -200px 0px;
-        background-repeat: no-repeat;
-      }
-      .marketplace {
-        background-position: -250px 0px;
-        background-repeat: no-repeat;
-      }
-      .settings {
-        background-position: -300px 0px;
-        background-repeat: no-repeat;
-      }
-    }
-  }
-  &:after {
-    position: absolute;
-    left: 0;
-    bottom: -28px;
-    content: "";
-    width: 100%;
-    height: 28px;
-    background: transparent url('/media/img/firefox/os/have-it-all/grad-top.png') top left;
-    z-index: 100;
-  }
-}
-
-#have-it-all {
-  background: #38424b url('/media/img/firefox/os/have-it-all/gray-pattern.png');
-  position: relative;
-  z-index: 10;
-  .main-wrapper {
-    position: relative;
-    height: 3298px; // 6x .main-item @ 508px + landing @ 250px
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    &:after {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      content: "";
-      width: 100%;
-      height: 28px;
-      background: transparent url('/media/img/firefox/os/have-it-all/grad-bottom.png') top left;
-      z-index: 100;
-    }
-  }
-  .item {
-    height: 508px;
-  }
-  h2 {
-    color: #fff;
-    text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
-    line-height: 1.2em;
-  }
-  p {
-    color: #b5b4b2;
-    text-shadow: 0px 1px 1px rgba(0,0,0,0.5);
-  }
-  #landing {
-    height: 250px;
-    text-align: center;
-    h2 {
-      position: absolute;
-      width: 100%;
-      top: 100px;
-    }
-  }
-  .content {
-    position: absolute;
-    text-align: center;
-    width: 300px;
-    padding-top: @baseLine * 7;
-  }
-  .content.wide {
-    margin-top: @baseLine *4;
-    width: 600px;
-  }
-  .content.center {
-    top: 0;
-    left: 50%;
-    margin-left: -150px;
-  }
-  .content.left {
-    top: 0;
-    left: 0;
-  }
-  .content.right {
-    top: 0;
-    right: 0;
-  }
-  .app {
-    max-width: 100%;
-    height: auto;
-    .box-shadow(1.5px 2.5px 5px 0px #050606);
-  }
-  .app.center {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -150px;
-  }
-  .app.left {
-    position: absolute;
-    top: 0;
-    left: 0px;
-  }
-  .app.right {
-    position: absolute;
-    top: 0;
-    right: 0px;
-  }
-  #stage {
-    display: none;
-    visibility: hidden;
-  }
-  .icon-list {
-    position: relative;
-    list-style-type: none;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    li {
-      display: inline-block;
-      width: 62px;
-      height: 65px;
-      margin: 0;
-      padding: 0;
-      zoom: 1;
-      *display: inline;
-    }
-  }
-  .icon {
-    width: 62px;
-    height: 65px;
-    margin: 0 auto;
-    background: url('/media/img/firefox/os/have-it-all/content-icons.png') no-repeat top left;
-  }
-  .contacts {
-    background-position: 0 -114px;
-    width: 62px;
-    height: 64px;
-  }
-  .twitter {
-    background-position: 0 -1141px;
-    width: 62px;
-    height: 64px;
-  }
-  .facebook {
-    background-position: 0 -228px;
-    width: 62px;
-    height: 64px;
-  }
-  .camera {
-    background-position: 0 0;
-    width: 62px;
-    height: 64px;
-  }
-  .gallery {
-    background-position: 0 -342px;
-    width: 62px;
-    height: 64px;
-  }
-  .music {
-    background-position: 0 -913px;
-    width: 62px;
-    height: 64px;
-  }
-  .radio {
-    background-position: 0 -1027px;
-    width: 62px;
-    height: 64px;
-  }
-  .videos {
-    background-position: 0 -1255px;
-    width: 62px;
-    height: 64px;
-  }
-  .maps {
-    background-position: 0 -571px;
-    width: 62px;
-    height: 64px;
-  }
-  .mail {
-    background-position: 0 -456px;
-    width: 62px;
-    height: 65px;
-  }
-  .messages {
-    background-position: 0 -799px;
-    width: 62px;
-    height: 64px;
-  }
-  .marketplace {
-    background-position: 0 -685px;
-    width: 62px;
-    height: 64px;
-  }
-  .settings {
-    background-position: 0 -1369px;
-    width: 62px;
-    height: 64px;
-  }
-}
-
-html[lang=hu] {
-  #have-it-all {
-    .messages-text {
-      h2 {
-        .font-size(36px);
-      }
-    }
-  }
-}
-
-// initialize scroller class positions
-#have-it-all {
-  .scroller-on {
-    position: relative;
-    height: 7920px; // 7x .item @ 1000px + landing @920px
-    .item-wrapper {
-      width: 100%;
-      height: 1000px;
-    }
-    .item {
-      height: 1000px;
-      width: @widthDesktop - @gridGutterWidth;
-      margin: 0 auto;
-      .app {
-        padding-top: @baseLine * 4;
-        -webkit-backface-visibility: hidden;
-        -webkit-perspective: 1000;
-      }
-      .content {
-        -webkit-backface-visibility: hidden;
-        -webkit-perspective: 1000;
-      }
-    }
-    #stage {
-      display: block;
-      visibility: visible;
-      text-align: center;
-      #landing-heading {
-        position: absolute;
-        top: 240px;
-        left: 0;
-        width: 100%;
-        -webkit-backface-visibility: hidden;
-        -webkit-perspective: 1000;
-      }
-      img {
-        position: absolute;
-      }
-      // specifically added to address conditional content for India
-      .app-image-wrapper {
-        height: 450px;
-
-        img {
-          position: relative;
-        }
-      }
-      .app {
-        padding-top: 0;
-      }
-      #music-app {
-        top: -270px;
-        margin-left: 0;
-      }
-      #photos-app {
-        top: -270px;
-        margin-left: -150px;
-      }
-      #photos-edit-app {
-        margin-top: 80px;
-      }
-      #mail-app {
-        top: -270px;
-        margin-right: 0;
-      }
-      #marketplace-app {
-        top: 350px;
-        margin-left: 0;
-      }
-      #contacts-app {
-        top: 350px;
-        margin-left: -150px;
-      }
-      #maps-app {
-        top: 350px;
-        margin-right: 0;
-      }
-      #radio-app, #messages-app {
-        margin-top: 80px;
-      }
-    }
-    #landing {
-      height: 920px;
-      h2 {
-        top: 240px;
-      }
-    }
-  }
-  // slider styles for touch / mobile devices
-  .plusslider {
-    overflow: hidden;
-    position: relative;
-  }
-  .plusslider-container {
-    position: relative;
-  }
-  .plusslider .child {
-    float: left;
-    min-height: 508px;
-    padding-top: @baseLine;
-  }
-  .plustype-fader .child {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-  .plustype-fader .current {
-    z-index: 5;
-  }
-  .plusslider {
-    #social .left .icon-list {
-      display: none;
-      visibility: hidden;
-    }
-    .content {
-      padding-top: @baseLine * 3;
-    }
-    .content.wide {
-      margin-top: 0;
-    }
-    #social .icon-list {
-      margin-top: 0;
-    }
-  }
-  .plusslider-arrows {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    margin: @baseLine 0 0 0;
-    overflow: hidden;
-    li {
-      width: 34px;
-      height: 34px;
-      padding: 0;
-      cursor: pointer;
-      text-indent: 105%;
-      white-space: nowrap;
-      overflow: hidden;
-      .border-radius(11px);
-    }
-    .prev {
-      float: left;
-      margin-left: @baseLine;
-      background: #333 url('/media/img/sandstone/buttons/arrow-go-l.png') no-repeat center center;
-      -webkit-background-size: 22px 20px;
-      -moz-background-size: 22px 20px;
-      background-size: 22px 20px;
-    }
-    .next {
-      float: right;
-      margin-right: @baseLine;
-      background: #333 url('/media/img/sandstone/buttons/arrow-go-r.png') no-repeat center center;
-      -webkit-background-size: 22px 20px;
-      -moz-background-size: 22px 20px;
-      background-size: 22px 20px;
-    }
-  }
-}
-
-html[lang="pl"] {
-  #have-it-all .scroller-on {
-    #stage #landing-heading {
-      top: 210px;
-    }
-  }
-}
-
-#mission {
-  color: @textColorTertiary;
-  position: relative;
-  background: #d3dae2;
-  z-index: 101;
-  .open-sans-light();
-}
-
-#transform-the-future {
-  padding: (@baseLine * 2) 0;
-  text-align: center;
-  h2, p {
-    width: 70%;
-    margin: 0 auto;
-  }
-  p {
-    margin: @baseLine auto;
-  }
-}
-
-#our-community {
-  position: relative;
-  overflow: hidden;
-  section {
-    float: right;
-    width: 460px;
-  }
-  .bubbles {
-    float: left;
-    width: 452px;
-    height: 446px;
-    background: transparent url('/media/img/firefox/os/bubbles.png') no-repeat top left;
-  }
-}
-
-#best-of-the-web {
-  position: relative;
-  margin: 0 auto;
-  .content {
-    float: left;
-    width: 460px;
-    margin-top: 60px;
-  }
-  img {
-    float: right;
-    max-width: 100%;
-    height: auto;
-    margin-top: -140px;
-  }
-}
-
-#useful-links {
-  overflow: visible;
-  padding: (@baseLine * 4) 0;
-  .column {
-    width: (@widthDesktop - (@gridGutterWidth * 2))/2;
-    float: left;
-  }
-  .column-first {
-    width: ((@widthDesktop - (@gridGutterWidth * 2))/2) - @baseLine;
-    margin-right: @baseLine;
-  }
-  h3 {
-    .font-size(32px);
-    letter-spacing: -1px;
-    padding-left: 5px;
-  }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  ul li {
-    float: left;
-    width: 430px;
-    .font-size(22px);
-    letter-spacing: -1px;
-    .open-sans-light();
-    padding: @gridGutterWidth;
-    background: #fff;
-    margin: 5px;
-    a {
-      display: block;
-      .font-size(@largeFontSize);
-      color: #149fd3;
-      letter-spacing: 0px;
-      &:after {
-        content: "\00A0\00BB";
-      }
-    }
-  }
-}
 
 // email signup form no-JS styles
 #email-form-content {
-  h3 {
-    .font-size(26px);
-    line-height: 32px;
-    text-shadow: none;
-  }
-  header {
-    display: none;
-  }
+    h3 {
+        .font-size(26px);
+        line-height: 32px;
+        text-shadow: none;
+    }
+    header {
+        display: none;
+    }
 }
 
 .footer-newsletter-form {
-  width: @widthDesktop - (@gridGutterWidth * 4);
-  margin: 0 auto @baseLine auto;
-  background: #fff;
-  border: 0;
-  box-shadow: none;
-  a {
-    color: #47b8e4;
-    text-decoration: underline;
-  }
+    width: @widthDesktop - (@gridGutterWidth * 4);
+    margin: 0 auto @baseLine auto;
+    background: #fff;
+    border: 0;
+    box-shadow: none;
+    a {
+        color: #47b8e4;
+        text-decoration: underline;
+    }
 }
 
 .newsletter-form.thank {
-  border: none;
-  box-shadow: none;
+    border: none;
+    box-shadow: none;
 }
 
 #footer-email-errors {
-  width: @widthDesktop - (@gridGutterWidth * 2);
-  margin: 0 auto;
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: 0 auto;
 }
 
 // JS specific styles for signup and get phone modal content
 .js {
-  #signup-toggle-icon {
-    position: fixed;
-    top: (@baseLine + 80); // @baseLine below height of masthead
-    right: @baseLine;
-    z-index: 1000;
-    width: 28px;
-    height: 28px;
-    background: url(/media/img/firefox/os/signup-slide-toggle.png) left top no-repeat;
-    text-indent: 105%;
-    white-space: nowrap;
-    overflow: hidden;
-    @transition: right, box-shadow linear 0.25s;
-    .transition(@transition);
-    &.form-open {
-      right: 300px;
-      background-position: left -28px;
-    }
-  }
 
-  #signup-toggle-icon:hover, #signup-toggle-icon:focus {
-    outline: none;
-    .transition(box-shadow .5s linear);
-    .box-shadow(0 0 20px 0px rgb(255,255,255));
-  }
-
-  #email-form-wrapper {
-    display: none;
-    width: 100%;
-  }
-
-  #email-form-content {
-    header {
-      display: block;
-    }
-  }
-
-  .footer-newsletter-form {
-    width: 100%;
-    background: transparent;
-    margin: 0 auto;
-    #form-details, .form-details {
-      display: block;
-    }
-    h3 {
-      margin: 0 10px 10px 10px;
-    }
-    .error {
-      border: 1px solid rgb(175,50,50);
-    }
-  }
-
-  .modal-content {
-    h2 {
-      background: url('/media/img/firefox/os/purchase-hr.png') center bottom no-repeat;
+    #email-form-wrapper {
+        display: none;
+        width: 100%;
     }
 
-    .content {
-      color: #666;
-      .open-sans-light;
+    #email-form-content {
+        header {
+          display: block;
+        }
     }
-  }
 
-  // animation for #keep-scrolling
-  @keyframes keep-scrolling {
-    from { background-position: 0 0; }
-    to { background-position: 0 -875px; }
-  }
-  @-moz-keyframes keep-scrolling {
-    from { background-position: 0 0; }
-    to { background-position: 0 -875px; }
-  }
-  @-webkit-keyframes keep-scrolling {
-    from { background-position: 0 1px; } // webkit browsers seem to need this 1px offset
-    to { background-position: 0 -875px; }
-  }
-
-  #screen-intro {
-    .screen {
-      position: absolute;
-      top: 0;
-      z-index: 2;
-      &.inactive {
-        z-index: 1;
-      }
+    .footer-newsletter-form {
+        width: 100%;
+        background: transparent;
+        margin: 0 auto;
+        #form-details,
+        .form-details {
+          display: block;
+        }
+        h3 {
+          margin: 0 10px 10px 10px;
+        }
+        .error {
+          border: 1px solid rgb(175,50,50);
+        }
     }
-  }
 }
-
-// get sprites (dotted lines) to sit on top of phone
-html[lang|="en"].js {
-  #get-firefox-os {
-    .adapt-feature-sprite {
-      display: block;
-      .transition(all 0.5s ease);
-    }
-  }
-  .adapt-feature-sprite-line {
-    z-index: 10;
-    display: block;
-    left: 370px;
-    -webkit-backface-visibility: hidden;
-  }
-  #adapt-feature-sprite-blue-line {
-    top: 164px;
-    height: 56px;
-    background-position: left top;
-  }
-  #adapt-feature-sprite-orange-line {
-    top: 277px;
-    height: 12px;
-    background-position: left -106px;
-  }
-  #adapt-feature-sprite-blue-line, #adapt-feature-sprite-orange-line {
-    width: 0px;
-    &.active {
-      width: 123px;
-    }
-  }
-}
-
+// override
 #colophon {
-  margin: 0;
-  z-index: 101;
+    margin: 0;
 }
 
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-  html, body {
-    min-width: @widthTablet;
-  }
-  #masthead {
-    nav {
-      margin-right: 0;
-    }
-    ul {
-      margin: 30px 0 0;
-      li {
-        padding: 0 5px;
-        &.last {
-          padding-left: 20px;
-        }
-      }
-    }
-    h2 {
-      display: none;
-    }
-    .inner {
-      width: @widthTablet  - (@gridGutterWidth * 2);
-    }
-  }
-  #side-nav {
-    display: none;
-  }
-  .item {
-    width: @widthTablet - (@gridGutterWidth * 2);
-  }
-  #have-it-all-masthead {
-    header {
-      width: @widthTablet - (@gridGutterWidth * 2);
-    }
-  }
-  #get-firefox-os {
-    //.fox-wrapper { display: none; }
-    .content {
-      h2 {
-        .font-size(40px);
-      }
-    }
-    ul {
-      li {
-        .font-size(@baseFontSize);
-      }
-      .discover {
-        margin-top: 0;
-      }
-    }
-    .phone-item {
-      .fox-wrapper {
-        display: none;
-      }
-    }
-    //#adapt-feature-sprites { display: none; }
-  }
-  #have-it-all {
-    .scroller-off {
-      #contacts-app, #photos-app, #messages-app {
-        left: auto;
-        right: 0;
-      }
-      .content {
+
+/**
+ * Older firefox OS version specific styles
+ */
+.v1-1,
+.v1-3,
+.v1-3T,
+.v1-4 {
+    .fxos-marketplace {
         padding-top: @baseLine * 3;
-      }
-      .content.wide {
-        margin-top: 0;
-        width: 300px;
-      }
-      #social .icon-list {
-        margin-top: 0;
-      }
-      #social .content.right,
-      #photos-edit-app,
-      #radio-app,
-      #mail-app {
-        display: none;
-        visibility: hidden;
-      }
-      #social .left .icon-list {
-        display: block;
-        visibility: visible;
-      }
     }
-    .scroller-on {
-      #stage {
-        //width: @widthTablet - (@gridGutterWidth * 2);
-      }
-      .item {
-        width: @widthTablet - (@gridGutterWidth * 2);
-      }
-      .content.center, .app.center {
-        display: none;
-      }
-      .content.wide {
-        padding-top: @baseLine * 3;
-        width: 300px;
-      }
-    }
-  }
-  #our-community {
-    section {
-      float: none;
-      width: @widthTablet - (@gridGutterWidth * 2);
-      margin-top: @baseLine * 2;
-      text-align: center;
-    }
-    .bubbles {
-      float: none;
-      margin: 0 auto;
-    }
-  }
-  #best-of-the-web {
-    width: @widthTablet  - (@gridGutterWidth * 2);
-    margin-top: @baseLine * 2;
-    overflow: hidden;
-    .content {
-      margin-top: 0;
-      width: 280px;
-    }
-    img {
-      float: right;
-      max-width: 100%;
-      height: auto;
-      margin-top: 0;
-      margin-right: -75px;
-    }
-  }
-  #useful-links {
-    padding: (@baseLine * 4) 0;
-    .item {
-      width: @widthTablet - (@gridGutterWidth * 2);
-    }
-    .column {
-      width: 100%;
-      margin: 0;
-    }
-    .column-first {
-      width: 100%;
-      margin: 0;
-    }
-    ul {
-      list-style-type: none;
-      display: block;
-      margin: @baseLine 0;
-      padding: 0;
-    }
-    ul li {
-      display: block;
-      width: 100%;
-      margin: 5px 0;
-    }
-  }
-  .bg-soccer {
-    background: url('/media/img/firefox/os/bg/1000/soccer.jpg') no-repeat center center;
-  }
-  .bg-cafe {
-    background: url('/media/img/firefox/os/bg/1000/cafe.jpg') no-repeat center center;
-  }
-  .bg-birthday {
-    background: url('/media/img/firefox/os/bg/1000/birthday.jpg') no-repeat center center;
-  }
-  #get-firefox-os {
-    .content {
-      width: 400px;
-    }
-  }
-  .footer-newsletter-form,
-  #footer-email-errors,
-  .newsletter-form.thank {
-    width: @widthTablet - (@gridGutterWidth * 6);
-  }
-  .js {
-    #get-firefox-os.scroller-on {
-      #adaptive-app-search {
-        ul {
-          .results, .save, .discover {
-            display: block;
-            opacity: 0;
-          }
-        }
-      }
-    }
-  }
-  html[lang|="en"] {
-    #masthead {
-      ul li {
-        margin: 0 10px;
-        &.last {
-          padding-left: 25px;
-        }
-      }
-    }
-    #get-firefox-os {
-      #adaptive-wrapper.scroller-on {
-        #adapt-feature-sprite-plus {
-          display: none;
-        }
-        ul .discover.active {
-          margin-top: 0;
-        }
-      }
-      #adapt-feature-sprite-plus {
-        top: 258px;
-      }
-    }
-    .adapt-feature-sprite {
-      display: none;
-    }
-    &.js {
-      #get-firefox-os {
-        .adapt-feature-sprite {
-          display: none;
-        }
-      }
-    }
-  }
 }
 
-/* Mobile layout: 480px */
-@media only screen and (max-width: @breakTablet) {
-  html, body {
-    min-width: @widthMobileLandscape;
-  }
-  #masthead {
-    height: 0;
-    h2 {
-      display: none;
-    }
-    ul {
-      margin: 15px 0 0 -10px;
-    }
-    ul li {
-      line-height: 1.5em;
-      padding: 0;
-      &.last {
-        padding-left: 0;
-        border-left: 0;
-      }
-    }
-    .inner {
-      width: @widthMobileLandscape  - @gridGutterWidth;
-    }
-    .curr:before, .curr:after {
-      border: none;
-    }
-    .wrapper {
-      background: transparent;
-    }
-  }
-  .js {
-    #masthead {
-      .wrapper.stuck {
-        position: relative; //override fixed position for mobile
-      }
-    }
-    #signup-toggle-icon {
-      display: none;
-    }
-  }
-  #lang-panel-container {
-    margin: 10px 0px 0px 20px;
-  }
-  #side-nav, #secondary-masthead {
-    display: none;
-    visibility: hidden;
-  }
-  .item {
-    width: @widthMobileLandscape - @gridGutterWidth;
-  }
-  #signup-toggle-icon {
-    display: none;
-    visibility: hidden;
-  }
-  #get-firefox-os {
-    margin-top: 0;
-    .phone-item {
-      margin-left: auto;
-      left: -310px;
-      .fox-wrapper {
-        display: none;
-      }
-    }
-    #intro-bg-a {
-      background: url('/media/img/firefox/os/bg/760/birthday.jpg') no-repeat center center;
-    }
-    .content {
-      width: auto;
-      top: 85px; // for non en-US locales
-      left: 80px;
-      .small {
-        float: none;
-        width: auto;
-        .font-size(@baseFontSize);
-        text-align: center;
-      }
-      h2 {
-        .font-size(30px); // for non-US locales
-        br { display: none; } // ignore any custom line breaks (no room for that on mobile)
-      }
-      p {
-        .font-size(@largeFontSize);
-      }
-      .button {
-        float: none;
-      }
-    }
-    #adapt-features {
-      .content {
-        top: 35px; // for non en-US locales - this content is much taller than the others in this section
-      }
-    }
-    ul {
-      width: auto;
-      li {
-        margin-left: 0;
-        .font-size(@baseFontSize);
-      }
-      .discover {
-        margin-top: 0;
-      }
-      .type:before {
-        background: transparent;
-      }
-      .results:before {
-        background: transparent;
-      }
-    }
-    #adapt-feature-sprite-plus {
-      display: none;
-    }
-  }
-  // content top pos for en-US only
-  html[lang|="en"] {
-    #get-firefox-os {
-      .content {
-        left: 80px;
-        h2 {
-          .font-size(36px);
-        }
-      }
-      ul {
-        .discover {
-          margin-top: 0;
-        }
-      }
-      #adapt-features {
-        .content {
-          top: 85px;
-        }
-      }
-      #adapt-feature-sprite-plus {
-        display: none;
-      }
-    }
-  }
-  .phone-wrapper {
-    z-index: 1;
-    display: block;
-  }
-  #have-it-all {
-    .scroller-off {
-      height: auto;
-      .item {
-        height: auto;
-        text-align: center;
-      }
-      .content {
-        padding-top: 0;
-        position: relative;
-        width: auto;
-        margin: 0 auto @baseLine auto;
-      }
-      .app.left, .app.right, .app.center {
-        position: relative;
-        left: auto;
-        right: auto;
-        top: auto;
-        margin: @baseLine 0 0 0;
-      }
-      // added for India specific content
-      .app.app-image-wrapper {
-        width: 300px;
-        height: 450px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      #social .right {
-        display: none;
-        visibility: hidden;
-      }
-      #social .left .icon-list {
-        display: block;
-        visibility: visible;
-      }
-      #social .icon-list {
-        margin-top: 0;
-      }
-      #photos-edit-app, #radio-app, #mail-app {
-        display: none;
-        visibility: hidden;
-      }
-      #landing {
-        height: auto;
-        h2 {
-          position: relative;
-          top: auto;
-          margin: @baseLine 0 (@baseLine * 2) 0;
-        }
-      }
-    }
-    .plusslider .child {
-      min-height: 800px;
-    }
-  }
-  #have-it-all-masthead {
-    background-position: top 0 right -400px;
-    header {
-      padding-top: @baseLine;
-      width: @widthMobileLandscape - @gridGutterWidth;
-      h2, p {
-        width: auto;
-      }
-    }
-  }
-  #transform-the-future {
-    h2, p {
-      width: 100%;
-    }
-  }
-  #our-community {
-    section {
-      float: none;
-      width: @widthMobileLandscape - @gridGutterWidth;
-      margin-top: @baseLine;
-    }
-    .bubbles {
-      float: none;
-      margin: 0 auto;
-    }
-  }
-  #best-of-the-web {
-    width: @widthMobileLandscape - @gridGutterWidth;
-    margin-top: @baseLine * 2;
-    .content {
-      float: none;
-      margin-top: @baseLine;
-      width: auto;
-    }
-    img {
-      display: block;
-      float: none;
-      margin: -@baseLine auto 0 auto;
-    }
-  }
-  #useful-links {
-    padding: 0 0 (@baseLine * 2) 0;
-    .column, .column-first, ul {
-      width: @widthMobileLandscape - @gridGutterWidth;
-      margin: (@baseLine / 2) 0;
-    }
-    ul li {
-      width: @widthMobileLandscape - @gridGutterWidth * 3;
-      margin: 5px 0;
-    }
-  }
-  .bg-soccer {
-    background: url('/media/img/firefox/os/bg/760/soccer.jpg') no-repeat center center;
-  }
-  .bg-cafe {
-    background: url('/media/img/firefox/os/bg/760/cafe.jpg') no-repeat center center;
-  }
-  .bg-birthday {
-    background: url('/media/img/firefox/os/bg/760/birthday.jpg') no-repeat center center;
-  }
-  .footer-newsletter-form {
-    width: @widthMobileLandscape - (@gridGutterWidth * 2);
-  }
-  #footer-email-errors {
-    width: auto;
-  }
-}
+.adaptive-app-search {
+    position: relative;
+    color: #999;
+    .font-size(20px);
+    .open-sans-light;
+    margin: @baseLine auto;
+    padding-top: 160px;
+    max-width: 40em;
 
-/* Mobile layout: 320px */
-@media only screen and (max-width: @breakMobileLandscape) {
-  html, body {
-    min-width: @widthMobile;
-  }
-  #masthead {
-    height: 0;
-    h2 {
-      display: none;
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -70px;
+        width: 140px;
+        height: 140px;
+        content: '';
+        background-image: url(/media/img/firefox/os-new/icons/search-icon.png);
+        background-position: 0 0;
+        background-repeat: no-repeat;
+
+        .at2x('/media/img/firefox/os-new/icons/search-icon.png', 140px);
     }
-    ul {
-      margin: 15px 0 0 -10px;
-    }
-    ul li {
-      line-height: 1.5em;
-      padding: 0;
-    }
-    .inner {
-      width: @widthMobile - @gridGutterWidth;
-    }
-    .curr:before, .curr:after {
-      border: none;
-    }
-    .wrapper {
-      background: transparent;
-    }
-  }
-  .js #masthead {
-    .wrapper.stuck {
-      position: relative; //override fixed position for mobile
-    }
-  }
-  #lang-panel-container {
-    margin: 10px 0px 0px 20px;
-  }
-  #signup-toggle-icon {
-    display: none;
-    visibility: hidden;
-  }
-  #have-it-all-masthead {
-    background-position: top 0 right -400px;
-    h2, p {
-      width: auto;
-    }
-  }
-  #side-nav, #secondary-masthead {
-    display: none;
-    visibility: hidden;
-  }
-  .item {
-    width: @widthMobile - @gridGutterWidth;
-  }
-  #get-firefox-os {
-    margin-top: 0;
-    .content {
-      width: auto;
-      left: 65px;
-      right: 8px;
-      .small {
-        .font-size(@smallFontSize);
-      }
-    }
-    ul {
-      width: auto;
-      li {
-        margin-left: 0;
-      }
-      .type:before {
-        background: transparent;
-      }
-      .results:before {
-        background: transparent;
-      }
-    }
-  }
-  // content top pos for en-US only
-  html[lang|="en"] #get-firefox-os {
-    .content {
-      left: 65px;
-    }
-  }
-  #have-it-all {
-    .scroller-off {
-      height: auto;
-      .item {
-        height: auto;
-        text-align: center;
-      }
-      .content {
-        padding-top: 0;
-        position: relative;
-        width: auto;
-        margin: 0 auto @baseLine auto;
-      }
-      .app {
-        position: relative;
-        left: auto;
-        right: auto;
-        top: auto;
-        margin: 0;
-      }
-      #landing {
-        height: auto;
-        h2 {
-          position: relative;
-          top: auto;
-          margin: @baseLine 0 (@baseLine * 2) 0;
-        }
-      }
-      #social .icon-list {
-        margin-top: 0;
-      }
-      #social .right {
-        display: none;
-        visibility: hidden;
-      }
-      #social .left .icon-list {
-        display: block;
-        visibility: visible;
-      }
-      #photos-edit-app, #radio-app, #mail-app {
-        display: none;
-        visibility: hidden;
-      }
-    }
-    .plusslider .child {
-      min-height: 725px;
-    }
-  }
-  #have-it-all-masthead {
-    header {
-      padding-top: @baseLine;
-      width: @widthMobile - @gridGutterWidth;
-      h2, p {
-        width: auto;
-      }
-    }
-    ul {
-      background: transparent;
-      li {
-        width: auto;
-        margin: 0 5px (@baseLine/2) 5px;
-        text-align: center;
-        a {
-          text-indent: 0;
-        }
-        .icon {
-          float: none;
-        }
-      }
-    }
-  }
-  #transform-the-future {
-    h2, p {
-      width: 100%;
-    }
-  }
-  #our-community {
-    section {
-      float: none;
-      width: @widthMobile - @gridGutterWidth;
-      margin-top: @baseLine;
-    }
-    .bubbles {
-      float: none;
-      margin: 0 auto;
-      width: 300px;
-      height: 296px;
-      background-size: 300px 296px;
-    }
-  }
-  #best-of-the-web {
-    width: @widthMobile - @gridGutterWidth;
-    margin: (@baseLine * 2) auto;
-    .content {
-      float: none;
-      margin-top: @baseLine;
-      width: auto;
-    }
-    img {
-      margin: -@baseLine auto 0 auto;
-      display: block;
-      float: none;
-    }
-  }
-  #useful-links {
-    padding: 0 0 (@baseLine * 2) 0;
-    .column, .column-first, ul {
-      width: @widthMobile - @gridGutterWidth;
-      margin: (@baseLine / 2) 0;
-    }
-    ul li {
-      width: @widthMobile - @gridGutterWidth * 3;
-      margin: 5px 0;
-    }
-  }
-  .footer-newsletter-form {
-    width: @widthMobile - (@gridGutterWidth * 2);
-  }
-  #footer-email-errors {
-    width: auto;
-  }
-  .bg-soccer {
-    background: url('/media/img/firefox/os/bg/480/soccer.jpg') no-repeat center center;
-  }
-  .bg-cafe {
-    background: url('/media/img/firefox/os/bg/480/cafe.jpg') no-repeat center center;
-  }
-  .bg-birthday {
-    background: url('/media/img/firefox/os/bg/480/birthday.jpg') no-repeat center center;
-  }
 }
