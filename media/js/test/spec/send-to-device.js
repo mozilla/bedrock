@@ -15,34 +15,19 @@ describe('send-to-device.js', function() {
             '<section id="send-to-device">' +
                 '<div class="form-container">' +
                     '<form id="send-to-device-form">' +
-                        '<ul class="error-list hidden">' +
-                            '<li>An error occurred in our system. Please try again later.</li>' +
-                        '</ul>' +
+                        '<ul class="error-list hidden"></ul>' +
                         '<div class="input">' +
                             '<input type="hidden" id="id-platform" value="all">' +
                             '<label id="form-input-label" for="id-input" data-alt="Enter your email or 10-digit phone number.">Enter your email.</label>' +
                             '<div class="inline-field">' +
-                                '<input id="id-input" type="text" data-alt="Enter your email or 10-digit phone number." placeholder="Enter your email." required>' +
-                                '<button type="submit" class="button-flat">Send</button>' +
+                                '<input id="id-input" type="text" required>' +
+                                '<button type="submit">Send</button>' +
                             '</div>' +
                         '</div>' +
-                        '<div class="thank-you hidden">' +
-                            '<p>Check your device for the email or text message!</p>' +
-                            '<a href="#" role="button" class="more send-another">Send to another device</a>' +
-                        '</div>' +
+                        '<div class="thank-you hidden"></div>' +
                         '<div class="loading-spinner"></div>' +
                         '</form>' +
                     '</div>' +
-                '<footer>' +
-                    '<ul>' +
-                        '<li class="app-store">' +
-                            '<a class="more" href="#">Go to the App Store</a>' +
-                        '</li>' +
-                        '<li class="google-play">' +
-                            '<a class="more" href="#">Go to Google Play</a>' +
-                        '</li>' +
-                    '</ul>' +
-                '</footer>' +
             '</section>'
         ].join();
 
@@ -114,6 +99,23 @@ describe('send-to-device.js', function() {
         });
     });
 
+    describe('checkEmailValidity', function() {
+
+        it('should return true for primitive email format', function() {
+            expect(form.checkEmailValidity('a@a')).toBeTruthy();
+            expect(form.checkEmailValidity('example@example.com')).toBeTruthy();
+        });
+
+        it('should return false for anything else', function() {
+            expect(form.checkEmailValidity(1234567890)).toBeFalsy();
+            expect(form.checkEmailValidity('aaa')).toBeFalsy();
+            expect(form.checkEmailValidity(null)).toBeFalsy();
+            expect(form.checkEmailValidity(undefined)).toBeFalsy();
+            expect(form.checkEmailValidity(true)).toBeFalsy();
+            expect(form.checkEmailValidity(false)).toBeFalsy();
+        });
+    });
+
     describe('onFormSubmit', function() {
 
         it('should handle success', function() {
@@ -140,7 +142,7 @@ describe('send-to-device.js', function() {
             spyOn($, 'post').andCallFake(function (req) {
                 var d = $.Deferred();
                 var data = {
-                    'error': 'Please enter an email address.'
+                    'errors': 'Please enter an email address.'
                 };
                 d.resolve(data);
                 return d.promise();

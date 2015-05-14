@@ -644,16 +644,18 @@ set share_urls = {
 {%- endmacro %}
 
 {% macro send_to_device(platform, include_title=True, title_text='', include_logo=False) %}
-  {% set ios_link = settings.IOS_APP_STORE_FIREFOX_LINK %}
+  {% set ios_link = '#' %}
   {% set android_link = settings.GOOGLE_PLAY_FIREFOX_LINK %}
   <section id="send-to-device" class="{% if include_logo %}logo {% endif %}{% if include_title %}title{% else %}no-title{% endif %}">
     <div class="form-container">
       {% if include_title %}
+        <h2 class="form-heading">
         {% if title_text %}
-          <h2 class="form-heading">{{ title_text }}</h2>
+          {{ title_text }}
         {% else %}
-          <h2 class="form-heading">{{ _('Send Firefox to your smartphone or tablet') }}</h2>
+          {{ _('Send Firefox to your smartphone or tablet') }}
         {% endif %}
+        </h2>
       {% endif %}
       <h2 class="thank-you hidden">{{ _('Your download link was sent.') }}</h2>
       <form id="send-to-device-form" action="{{ secure_url('firefox.send-to-device-post') }}" method="post"{% if platform == 'select' %} class="dropdown"{% endif %}>
@@ -675,25 +677,18 @@ set share_urls = {
                 <option value="ios">iOS</option>
                 <option value="android">Android</option>
               </select>
-            {% elif platform == 'ios' %}
-            {# User receives link for iOS. #}
-              <input type="hidden" id="id-platform" name="platform" value="ios">
-            {% elif platform == 'android' %}
-              {# User receives link for Android. #}
-              <input type="hidden" id="id-platform" name="platform" value="android">
             {% else %}
-              {# User receives links for both iOS and Android. #}
-              <input type="hidden" id="id-platform" name="platform" value="all">
+              <input type="hidden" id="id-platform" name="platform" value="{{ platform }}">
             {% endif %}
             <input type="hidden" name="source-url" value="{{ secure_url() }}">
           </div>
           <div class="inline-field">
             <label id="form-input-label" for="id-input" data-alt="{{ _('Enter your email or 10-digit phone number') }}">{{ _('Enter your email') }}</label>
             <div class="form-input">
-                <input id="id-input" name="phone-or-email" type="text" required>
+              <input id="id-input" name="phone-or-email" type="text" required>
             </div>
             <div class="form-submit">
-                <button type="submit" class="button-flat">{{ _('Send') }}</button>
+              <button type="submit" class="button-flat">{{ _('Send') }}</button>
             </div>
           </div>
           <p class="legal sms">

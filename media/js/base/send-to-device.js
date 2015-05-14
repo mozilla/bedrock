@@ -2,6 +2,8 @@
 * License, v. 2.0. If a copy of the MPL was not distributed with this
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/* globals Spinner */
+
 // create namespace
 if (typeof Mozilla === 'undefined') {
     var Mozilla = {};
@@ -44,7 +46,7 @@ if (typeof Mozilla === 'undefined') {
     };
 
     // static value for user country code
-    SendToDevice.COUNTRY_CODE = 'us';
+    SendToDevice.COUNTRY_CODE = '';
 
     /**
      * Initialise the form messaging and bind events.
@@ -129,14 +131,6 @@ if (typeof Mozilla === 'undefined') {
     };
 
     /**
-     * Track footer app store link clicks
-     */
-    SendToDevice.prototype.trackFooterLinks = function(e) {
-        e.preventDefault();
-        // TODO add GA handler
-    };
-
-    /**
      * Show the form again to send another link
      */
     SendToDevice.prototype.sendAnother = function(e) {
@@ -153,6 +147,7 @@ if (typeof Mozilla === 'undefined') {
      * Enable form fields and hide loading indicator
      */
     SendToDevice.prototype.enableForm = function() {
+        this.$input.prop('disabled', false);
         this.$form.removeClass('loading');
         this.$spinnerTarget.hide();
     };
@@ -161,8 +156,18 @@ if (typeof Mozilla === 'undefined') {
      * Disable form fields and show loading indicator
      */
     SendToDevice.prototype.disableForm = function() {
+        this.$input.prop('disabled', true);
         this.$form.addClass('loading');
         this.spinner.spin(this.$spinnerTarget.show()[0]);
+    };
+
+    /**
+     * Reallly primative validation (e.g a@a)
+     * matches built-in validation in Firefox
+     * @param {email}
+     */
+    SendToDevice.prototype.checkEmailValidity = function(email) {
+        return /\S+@\S+/.test(email);
     };
 
     /**
@@ -177,6 +182,15 @@ if (typeof Mozilla === 'undefined') {
 
         this.disableForm();
 
+        // if we know the user has not been prompted to enter an SMS number,
+        // perform some basic email validation before submitting the form.
+        if (!this.smsEnabled && !this.checkEmailValidity(this.$input.val())) {
+            this.onFormError('email');
+            return;
+        }
+
+        // else POST and let the server work out whether the input is a
+        // valid email address or US phone number.
         $.post(action, formData)
             .done(function(data) {
                 if (data.success) {
@@ -190,33 +204,32 @@ if (typeof Mozilla === 'undefined') {
             });
     };
 
-    SendToDevice.prototype.onFormSuccess = function(data) {
+    SendToDevice.prototype.onFormSuccess = function() {
         this.$errorList.addClass('hidden');
         this.$formFields.addClass('hidden');
         this.$formHeading.addClass('hidden');
         this.$thankyou.removeClass('hidden');
-
         this.enableForm();
     };
 
     SendToDevice.prototype.onFormError = function(errors) {
+        var errorClass;
         this.$errorList.find('li').hide();
         this.$errorList.removeClass('hidden');
-        var error_class;
-        if (errors.indexOf('platform') !== -1) {
-            error_class = '.platform';
+
+        if ($.inArray('platform', errors) !== -1) {
+            errorClass = '.platform';
+        } else if (this.smsEnabled && $.inArray('number', errors) !== -1) {
+            errorClass = '.sms';
+        } else {
+            errorClass = '.email';
         }
-        else if (this.smsEnabled && errors.indexOf('number') !== -1) {
-            error_class = '.sms';
-        }
-        else {
-            error_class = '.email';
-        }
-        this.$errorList.find(error_class).show();
+
+        this.$errorList.find(errorClass).show();
         this.enableForm();
     };
 
-    SendToDevice.prototype.onFormFailure = function(data) {
+    SendToDevice.prototype.onFormFailure = function() {
         this.$errorList.find('li').hide();
         this.$errorList.removeClass('hidden');
         this.$errorList.find('.system').show();
