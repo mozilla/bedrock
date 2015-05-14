@@ -20,7 +20,7 @@
 {% block contrib_page_title %}{{ _('Join Firefox Friends today!') }}{% endblock %}
 
 {% block alt_header %}
-<img src="{{ static('img/contribute/friends/firefox-friends-logo.png') }}" width="186" class="ff-logo" alt="{{_('Firefox Friends logo')}}" />
+<img src="{{ static('img/contribute/friends/firefox-friends-logo.svg') }}" width="186" class="ff-logo" data-png="{{ static('img/contribute/friends/firefox-friends-logo.png') }}" data-fallback="true" alt="{{_('Firefox Friends logo')}}" />
 <div class="ff-header-content">
   <h1>{{_('Join Firefox Friends today!')}}</h1>
   <p>{{_('Step to the frontline to help us tell the world how awesome Firefox is and about all the important work Mozilla does every day.')}}</p>
@@ -52,3 +52,7 @@
 {% endblock contrib_content %}
 
 {% block contrib_footer %}{% endblock contrib_footer %}
+
+{% block site_js %}
+  {% javascript 'contribute-friends' %}
+{% endblock %}
