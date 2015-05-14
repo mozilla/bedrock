@@ -49,7 +49,13 @@
           <a id="device-nav-smartphones" href="#smartphones">{{ _('Smartphones') }}</a>
         </li>
         <li>
-          <a id="device-nav-tvs" href="#tvs">{{ _('Televisions') }}</a>
+          <a id="device-nav-tvs" href="#tvs">
+          {% if l10n_has_tag('fxos_devices_panasonic_tv_update_1') %}
+            {{ _('Television') }}
+          {% else %}
+            {{ _('Televisions') }}
+          {% endif %}
+          </a>
         </li>
       </ul>
     </div>
@@ -2433,7 +2439,13 @@
     <section id="tvs" class="device-type-wrapper">
       <div class="container device-list">
         <header class="section-header">
-          <h2 class="section-heading">{{ _('Televisions') }}</h2>
+          <h2 class="section-heading">
+          {% if l10n_has_tag('fxos_devices_panasonic_tv_update_1') %}
+            {{ _('Television') }}
+          {% else %}
+            {{ _('Televisions') }}
+          {% endif %}
+          </h2>
         </header>
 
         <ul class="device-thumbnails">
