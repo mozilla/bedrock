@@ -630,41 +630,16 @@ PIPELINE_CSS = {
     },
     'home': {
         'source_filenames': (
-            'css/mozorg/home.less',
-            'css/mozorg/home-promo.less',
-        ),
-        'output_filename': 'css/home-bundle.css',
-    },
-    'home-ie9': {
-        'source_filenames': (
-            'css/mozorg/home-ie9.less',
-        ),
-        'output_filename': 'css/home-ie9-bundle.css',
-    },
-    'home-ie8': {
-        'source_filenames': (
-            'css/mozorg/home-ie8.less',
-        ),
-        'output_filename': 'css/home-ie8-bundle.css',
-    },
-    'home-ie': {
-        'source_filenames': (
-            'css/mozorg/home-ie.less',
-        ),
-        'output_filename': 'css/home-ie-bundle.css',
-    },
-    'home-2015': {
-        'source_filenames': (
             'css/mozorg/home/home.less',
             'css/mozorg/home/home-promo.less',
         ),
-        'output_filename': 'css/home-2015-bundle.css',
+        'output_filename': 'css/home-bundle.css',
     },
-    'home-2015-ie8': {
+    'home-ie8': {
         'source_filenames': (
             'css/mozorg/home/home-ie8.less',
         ),
-        'output_filename': 'css/home-2015-ie8-bundle.css',
+        'output_filename': 'css/home-ie8-bundle.css',
     },
     'legal': {
         'source_filenames': (
@@ -1436,15 +1411,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/geolocation-bundle.js',
     },
-    'home': {
-        'source_filenames': (
-            'js/libs/jquery.ellipsis.min.js',
-            'js/libs/jquery.cycle2.min.js',
-            'js/libs/jquery.cycle2.carousel.min.js',
-            'js/mozorg/home.js',
-        ),
-        'output_filename': 'js/home-bundle.js',
-    },
     'growth_firstrun_test1': {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
@@ -1464,22 +1430,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/growth-firstrun-test2-bundle.js',
     },
-    'home-2015': {
+    'home': {
         'source_filenames': (
-            'js/base/mozilla-share-cta.js',
-            'js/base/firefox-anniversary-video.js',
             'js/libs/jquery.waypoints.min.js',
             'js/mozorg/home/home.js',
             'js/mozorg/home/ga-tracking.js',
             'js/mozorg/home/scroll-prompt.js',
         ),
-        'output_filename': 'js/home-2015-bundle.js',
-    },
-    'home-2015-ie9': {
-        'source_filenames': (
-            'js/libs/matchMedia.addListener.js',
-        ),
-        'output_filename': 'js/home-2015-ie9-bundle.js',
+        'output_filename': 'js/home-bundle.js',
     },
     'history-slides': {
         'source_filenames': (

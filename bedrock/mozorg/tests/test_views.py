@@ -153,15 +153,14 @@ class TestContributeSignupSwitcher(TestCase):
 @patch('bedrock.mozorg.views.l10n_utils.render')
 class TestHome(TestCase):
     def setUp(self):
-        self.view = views.HomeTestView.as_view()
         self.rf = RequestFactory()
 
-    @override_settings(MOBILIZER_LOCALE_LINK={'es-ES': 'El Dudarino', 'de': 'Herr Dude'})
+    @override_settings(MOBILIZER_LOCALE_LINK={'en-US': 'His Dudeness', 'de': 'Herr Dude'})
     def test_gets_right_mobilizer_url(self, resp_mock):
         """Home page should get correct mobilizer link for locale."""
         req = self.rf.get('/')
         req.locale = 'de'
-        self.view(req)
+        views.home(req)
         ctx = resp_mock.call_args[0][2]
         self.assertEqual(ctx['mobilizer_link'], 'Herr Dude')
 
@@ -170,7 +169,7 @@ class TestHome(TestCase):
         """Home page should get default mobilizer link for other locale."""
         req = self.rf.get('/')
         req.locale = 'xx'  # does not exist
-        self.view(req)
+        views.home(req)
         ctx = resp_mock.call_args[0][2]
         self.assertEqual(ctx['mobilizer_link'], 'His Dudeness')
 
