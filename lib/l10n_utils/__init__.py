@@ -59,13 +59,30 @@ def render(request, template, context=None, **kwargs):
 
             matched = None
 
+            # Look for the user's Accept-Language HTTP header to find another
+            # locale we can offer
             for lang in get_accept_languages(request):
                 if template_is_active(template, lang):
                     matched = lang
                     break
 
+            # Check for the fallback locales if the previous look-up doesn't
+            # work. This is useful especially in the Spanish locale where es-ES
+            # should be offered as the fallback of es, es-AR, es-CL and es-MX
+            if not matched:
+                for lang in get_accept_languages(request):
+                    lang = settings.FALLBACK_LOCALES.get(lang)
+                    if lang and template_is_active(template, lang):
+                        matched = lang
+                        break
+
+            # If all the attempts failed, just use en-US, the default locale of
+            # the site
+            if not matched:
+                matched = settings.LANGUAGE_CODE
+
             response = HttpResponseRedirect('/' + '/'.join([
-                matched or settings.LANGUAGE_CODE,
+                matched,
                 split_path(request.get_full_path())[1]
             ]))
 
