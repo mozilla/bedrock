@@ -141,6 +141,15 @@ CANONICAL_LOCALES = {
     'sv': 'sv-SE',
 }
 
+# Unlocalized pages are usually redirected to the English (en-US) equivalent,
+# but sometimes it would be better to offer another locale as fallback. This map
+# specifies such cases.
+FALLBACK_LOCALES = {
+    'es-AR': 'es-ES',
+    'es-CL': 'es-ES',
+    'es-MX': 'es-ES',
+}
+
 
 def lazy_lang_url_map():
     from django.conf import settings

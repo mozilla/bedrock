@@ -83,6 +83,12 @@ class TestRender(TestCase):
             self._test(path, template, 'zu', 'zu,fr;q=0.7,en;q=0.3',
                        302, '/fr/firefox/new/')
 
+            active_mock.reset_mock()
+            active_mock.side_effect = [False, False, False, False, True]
+            # Should fallback to one of the site's fallback languages
+            self._test(path, template, 'es-CL', 'es-CL,es;q=0.7,en;q=0.3',
+                       302, '/es-ES/firefox/new/')
+
 
 class TestGetAcceptLanguages(TestCase):
     def _test(self, accept_lang, list):
