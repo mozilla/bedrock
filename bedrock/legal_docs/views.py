@@ -34,17 +34,18 @@ def load_legal_doc(doc_name, locale):
     source_file = path.join(source_dir, locale + '.md')
     output = StringIO.StringIO()
     locales = [f.replace('.md', '') for f in listdir(source_dir) if f.endswith('.md')]
+    localized = locale != settings.LANGUAGE_CODE
     translations = {}
 
     if not path.exists(source_file):
         source_file = path.join(LEGAL_DOCS_PATH, doc_name, 'en-US.md')
+        localized = False
 
     try:
         # Parse the Markdown file
         md.markdownFromFile(input=source_file, output=output,
                             extensions=['attr_list', 'headerid', 'outline(wrapper_cls=)'])
         content = output.getvalue().decode('utf8')
-        localized = locale != settings.LANGUAGE_CODE
     except IOError:
         content = None
         localized = False

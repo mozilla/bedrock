@@ -36,7 +36,7 @@ class TestLoadLegalDoc(TestCase):
         md_mock.markdownFromFile.assert_called_with(
             input=good_path, output=ANY, extensions=ANY)
         self.assertEqual(doc['content'], "You're not wrong Walter...")
-        self.assertTrue(doc['localized'])
+        self.assertFalse(doc['localized'])
         self.assertDictEqual(doc['translations'], {'de': 'Deutsch', 'en-US': 'English (US)'})
 
     @patch('os.path.exists')
