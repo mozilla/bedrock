@@ -16,3 +16,8 @@ b2d:
     - /var/lib/docker/volumes/mozilla/bedrock:/app
   environment:
     - PYTHONDONTWRITEBYTECODE=1
+b2dgrunt:
+  build: .
+  command: bin/grunter
+  volumes:
+    - /var/lib/docker/volumes/mozilla/bedrock:/app
