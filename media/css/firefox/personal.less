@@ -55,7 +55,8 @@ body {
     text-align: center;
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        padding-bottom: 60px;
+        padding: 0 0 60px;
+        width: 100%;
     }
 
     h1 {
@@ -111,14 +112,14 @@ body {
         .border-radius(6px);
         .transition();
         .font-size(@baseFontSize);
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            padding: 6px @baseLine;
+        }
+
         &:hover {
             background-color: lighten(@buttonFlatGreen, 3%);
         }
-
-        @media only screen and (max-width: @breakMobileLandscape) {
-            display: none;
-        }
-
         .download-link {
             box-shadow: none;
             background-color: inherit;
@@ -184,30 +185,35 @@ main {
         .font-size(1.2rem);
     }
 }
-/* specific styles to show download from play store buttons on mobile. */
-.mobile-download,
-section.mobile-download {
+/* specific styles to show download from play store buttons on android. */
+.android-download,
+section.android-download {
     display: none;
-
-    @media only screen and (max-width: @breakMobileLandscape) {
+}
+.android {
+    .download-button.download-button-simple {
+        display: none;
+    }
+    .android-download,
+    section.android-download {
         display: block;
     }
-}
-section.mobile-download {
-    background-color: #f2f2f2;
-    color: #56565a;
-    margin: 0 auto;
-    padding: 40px 0;
-    width: 100%;
-    max-width: 1400px;
-    text-align: center;
-    p {
-        margin: 0 auto 20px;
-        max-width: 300px;
-        .font-size(2rem);
-        font-weight: bold;
-        line-height: 1.2;
-        letter-spacing: -1px;
-        text-transform: uppercase;
+    section.android-download {
+        background-color: #f2f2f2;
+        color: #56565a;
+        margin: 0 auto;
+        padding: 40px 0;
+        width: 100%;
+        max-width: 1400px;
+        text-align: center;
+        p {
+            margin: 0 auto 20px;
+            max-width: 300px;
+            .font-size(2rem);
+            font-weight: bold;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
     }
 }
