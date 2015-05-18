@@ -163,28 +163,39 @@
 
     a {
       display: table-cell;
+      position: relative;
       padding: 0 0 0 48px;
-      background-image: url(/media/img/legal/icons.png);
-      background-repeat: no-repeat;
       line-height: 1.2;
       vertical-align: middle;
+
+      &:before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        background-image: url(/media/img/legal/icons.png);
+        background-repeat: no-repeat;
+        content: '';
+      }
     }
 
-    &.policy-firefox a,
-    &.policy-firefox-os a,
-    &.policy-firefox-cloud a {
+    &.policy-firefox a:before,
+    &.policy-firefox-os a:before,
+    &.policy-firefox-cloud a:before {
       background-position: left -40px;
     }
 
-    &.policy-marketplace a {
+    &.policy-marketplace a:before {
       background-position: left -80px;
     }
 
-    &.policy-persona a {
+    &.policy-persona a:before {
       background-position: left -120px;
     }
 
-    &.policy-firefox-hello a {
+    &.policy-firefox-hello a:before {
       background-position: left -320px;
     }
   }
@@ -276,23 +287,11 @@ html[dir="rtl"] {
   #side-notices nav li {
     a {
       padding: 0 48px 0 0;
-    }
 
-    &.policy-websites a {
-      background-position: right 0;
-    }
-
-    &.policy-firefox a,
-    &.policy-firefox-os a {
-      background-position: right -40px;
-    }
-
-    &.policy-marketplace a {
-      background-position: right -80px;
-    }
-
-    &.policy-persona a {
-      background-position: right -120px;
+      &:before {
+        right: 0;
+        left: auto;
+      }
     }
   }
 
@@ -300,44 +299,12 @@ html[dir="rtl"] {
     margin: 0 20px 0 0;
   }
 
-  #privacy-landing #contact {
-    header {
-      float: right;
-    }
-
-    form {
-      margin: 0 275px 0 0;
-    }
+  #contact [dir="ltr"] {
+    text-align: right;
   }
-
 }
 
 /* Tablet & Mobile */
-
-@media only screen and (max-width: @breakDesktop) {
-  #privacy-landing #contact {
-    header {
-      float: none;
-      width: auto;
-    }
-
-    form {
-      margin: 0;
-    }
-  }
-
-  html[dir="rtl"] {
-    #privacy-landing #contact {
-      header {
-        float: none;
-      }
-
-      form {
-        margin: 0;
-      }
-    }
-  }
-}
 
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
   #main-content {

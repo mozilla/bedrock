@@ -249,6 +249,32 @@
     }
 }
 
+html[dir="rtl"] {
+    .main-column,
+    .sidebar {
+        float: right;
+    }
+
+    article li {
+        margin-right: 20px;
+        margin-left: 0;
+    }
+
+    .section-terms .icon-list li {
+        float: right;
+
+        a span {
+            padding-right: 50px;
+            padding-left: auto;
+        }
+
+        a:before {
+            right: 0;
+            left: auto;
+        }
+    }
+}
+
 @media only screen and (max-width: @breakDesktop) {
 
     .section-terms .icon-list {

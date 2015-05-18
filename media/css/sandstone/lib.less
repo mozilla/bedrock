@@ -406,6 +406,12 @@
     overflow: hidden;
 }
 
+// Flip an element horizontally for RTL locales such as Arabic. Usually applied
+// to :before or :after pseudo-elements with a background-image
+.flip-horizontally() {
+    .transform(scale(-1, 1));
+}
+
 .trailing-arrow() {
     &:after {
         content: "\00A0\00BB"; /* nbsp raquo */
