@@ -1,6 +1,6 @@
-# sha256: byzISLK3Kt9TpvPyG-BJxHfoLECLznzttX7-sJhL3iQ
-# sha256: flDlc-SEQ1hzs1FdeYLYAJOyaVq6F_0P8CQwdFTcOlY
-Django==1.6.11
+# sha256: PGPU6Ka6t9Tsz0EkDOG83FnPkqCUmeynW8twHjQjBqo
+# sha256: 8KsSx8iKAzaB5E4uS_SpPZPIXVsejpyHW0uRerskaSE
+Django==1.7.8
 
 # sha256: 4h6LijS01EbJtWCQ4yh847Y9GuHPbe8ejb-Ij0DkbMw
 # sha256: Vibe-NP1i9L1ne67vn7-KckiAGpFFQblwH3VtKSQ_8M
@@ -77,9 +77,6 @@ django-session-csrf==0.5
 # sha256: 2slBnbPs4nu1PHQzJD_CLtQs9o3p1sQSk5Dh2a7-YxA
 whitenoise==1.0.6
 
-# sha256: 02C9MYmPnfWfb6p4ZVEGW7pFs15-48ObOBtPv-9zkvQ
-South==1.0.2
-
 # django-rest-framework: master
 # sha256: gfmft9XJ7xdSYzkyvCuqYGZra3-4SDg1SzpsFy5SMJU
 https://github.com/tomchristie/django-rest-framework/archive/6e92e415aa7dd6871ef7d6500a85cacebde8dca2.tar.gz#egg=djangorestframework
@@ -108,9 +105,9 @@ https://github.com/tweepy/tweepy/archive/3941489457db86710b770bc120409d6947904af
 # sha256: N2BBZyiBsBYZ3q-hcpYLTgRxITyuAH-9QD8ISLUHPXU
 https://github.com/waylan/Python-Markdown/archive/d7fa7931bec55eec5498cd79882b770d1110b9b7.tar.gz#egg=Markdown
 
-# django-extensions: tags/1.4.9
-# sha256: n2ZARMQgCSk__PvX3adbyN4rJy62ZuJMtSaMu_q59b8
-https://github.com/django-extensions/django-extensions/archive/ee12d9188d0ed9bace79fddc33d584146422a831.tar.gz#egg=django-extensions
+# sha256: ykZFd928KV6lqTIZrd53I-LnNPRKnIy5KLdcYUDWFRk
+# sha256: uI1Hc2l6FqCiqbpvywgsbFHslUPKD2NFQWgP7EpoZ7E
+django-extensions==1.5.3
 
 # bleach: master
 # sha256: 8O7xk9eTfMmT-KBKHfOfrHHQu6_2E75nvLpXvzW4iTY
@@ -154,9 +151,9 @@ https://github.com/jbalogh/django-multidb-router/archive/4f78662026b21cfff1ecfdd
 # sha256: k9gjEUXUPKAuHsPO41UzOvqOcq25z4FXZ-F1lXSXdNQ
 https://github.com/jsocol/commonware/archive/b5544185b2d24adc1eb512735990752400ce9cbd.tar.gz#egg=commonware
 
-# jingo: remotes/origin/unpin-tox~1
-# sha256: Orqipd_IL9e7ZWjQsG0DDHclCBmuCITl4Iv0kQAlnxE
-https://github.com/jbalogh/jingo/archive/5e985a5c16e343a30482cc526127a856b1cb45ed.tar.gz#egg=jingo
+# jingo: tags/v0.7.1
+# sha256: RUGcZGGuja1Rbhc2ZBwdgv4Wlvaf6L06JlrP2cR1umw
+https://github.com/jbalogh/jingo/archive/v0.7.1.tar.gz#egg=jingo==0.7.1
 
 # tower: tags/v0.4.0~3
 # sha256: cDfV-k9SVqAeb5MBwQ9DUsMZk_f6aImtmya8kLELB_4
@@ -170,11 +167,13 @@ https://github.com/jsocol/django-cronjobs/archive/cfda8176c5c3a50d1b58fcf57e87e2
 # sha256: eeq_z415NQPBF3j59fmy6JGjtnpDgVQxwwvFKxnDQx0
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets
 
-# sha256: D41ubgIjuPsEEUtKcgk4DhrPJ-Ch3Rq5j-zghafDxSU
-nose==1.0.0
+# sha256: R3KrUYkik5LRbHC6e4u2a108GAdmlMVTR6-5jJULKDw
+# sha256: 9h4JCadD7tN7Egfjio57Si_gqCGF428r4lLvGz-QF1g
+nose==1.3.6
 
-# sha256: NmfSakH-wwNkoO9yWAgyylMogC1VP21ucq9awhyzY2U
-django-nose==1.3
+# sha256: 7ZCm7YglpRbGU_yQmcBTvjNbZPoASpA6GBt-AUiOxdQ
+# sha256: Js7zxvYt8u7pVaJRld5veTiBMXwPX9GhxvniLzUakxM
+django-nose==1.4
 
 # sha256: aUBxjfw-_0JYIDrVAhCQkz5cBHB9XKjMnnPJSniU6p8
 pathlib==1.0.1

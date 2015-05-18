@@ -1,36 +1,48 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import django.utils.timezone
+import django_extensions.db.fields
+import picklefield.fields
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'TwitterCache'
-        db.create_table(u'mozorg_twittercache', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('account', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100, db_index=True)),
-            ('tweets', self.gf('picklefield.fields.PickledObjectField')(default=[])),
-            ('updated', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-        ))
-        db.send_create_signal(u'mozorg', ['TwitterCache'])
+    dependencies = [
+    ]
 
-
-    def backwards(self, orm):
-        # Deleting model 'TwitterCache'
-        db.delete_table(u'mozorg_twittercache')
-
-
-    models = {
-        u'mozorg.twittercache': {
-            'Meta': {'object_name': 'TwitterCache'},
-            'account': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100', 'db_index': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'tweets': ('picklefield.fields.PickledObjectField', [], {'default': '[]'}),
-            'updated': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'})
-        }
-    }
-
-    complete_apps = ['mozorg']
+    operations = [
+        migrations.CreateModel(
+            name='ContributorActivity',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('date', models.DateField()),
+                ('source_name', models.CharField(max_length=100)),
+                ('team_name', models.CharField(max_length=100)),
+                ('total', models.IntegerField()),
+                ('new', models.IntegerField()),
+            ],
+            options={
+                'ordering': ['-date'],
+                'get_latest_by': 'date',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='TwitterCache',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('account', models.CharField(unique=True, max_length=100, db_index=True)),
+                ('tweets', picklefield.fields.PickledObjectField(default=list, editable=False)),
+                ('updated', django_extensions.db.fields.ModificationDateTimeField(default=django.utils.timezone.now, editable=False, blank=True)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AlterUniqueTogether(
+            name='contributoractivity',
+            unique_together=set([('date', 'source_name', 'team_name')]),
+        ),
+    ]

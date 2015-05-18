@@ -3,6 +3,8 @@ cd $(readlink --canonicalize --no-newline ${0%/*})/..
 git submodule update --init --recursive
 sudo apt-get update
 sudo apt-get install -y libmysqlclient-dev libxml2-dev libxslt1-dev python-dev
+# keep pip updated
+sudo python bin/peep.py install -r requirements/pip.txt --no-use-wheel
 sudo python bin/peep.py install -r requirements/dev.txt --no-use-wheel
 # mysql in the prod requirements
 sudo python bin/peep.py install -r requirements/prod.txt --no-use-wheel

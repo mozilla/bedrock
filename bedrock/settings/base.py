@@ -303,9 +303,11 @@ INSTALLED_APPS = (
     'cronjobs',  # for ./manage.py cron * cmd line tasks
 
     # Django contrib apps
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
+    'django.contrib.messages',
 
     # Third-party apps, patches, fixes
     'commonware.response.cookies',
@@ -322,13 +324,7 @@ INSTALLED_APPS = (
     'pagedown',
     'rest_framework',
     'waffle',
-    'south',
     'pipeline',
-
-    # Django contrib apps
-    'django.contrib.admin',
-    'django.contrib.contenttypes',
-    'django.contrib.messages',
 
     # Local apps
     '%s.base' % PROJECT_MODULE,

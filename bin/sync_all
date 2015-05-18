@@ -5,7 +5,7 @@ if [ ! -e ./manage.py ]; then
     script_parent_dir=${0%/*}/..
     cd $script_parent_dir
 fi
-./manage.py syncdb --migrate --noinput
+./manage.py migrate --noinput
 ./manage.py rnasync
 ./manage.py cron update_reps_ical
 ./manage.py update_product_details
