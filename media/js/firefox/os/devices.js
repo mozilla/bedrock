@@ -32,6 +32,17 @@ if (typeof window.Mozilla === 'undefined') {
         Mozilla.FxOs = {};
     }
 
+    // smooth scrolling for device type nav
+    $('#device-nav a').on('click', function(e) {
+        e.preventDefault();
+
+        var target = $(this).attr('href');
+
+        $('html, body').animate({
+            scrollTop: $(target).offset().top - 100
+        }, 400);
+    });
+
     // select available devices & set modal partner content based on chosen/detected location
     var selectDevicesAndSetPartnerContent = function() {
         var $provider = $providerLinks.find('.provider[data-country="' + COUNTRY_CODE + '"]');
@@ -58,7 +69,7 @@ if (typeof window.Mozilla === 'undefined') {
             // select the current COUNTRY_CODE
             $locationSelect.find('option[value="' + COUNTRY_CODE + '"]').prop('selected', 'selected');
 
-            $purchaseDeviceButtons.addClass('visible');
+            $purchaseDeviceButtons.prop('disabled', false);
 
             for (var device in Mozilla.FxOs.Devices) {
                 if ($.inArray(COUNTRY_CODE, Mozilla.FxOs.Devices[device].countries) > -1) {
@@ -69,7 +80,7 @@ if (typeof window.Mozilla === 'undefined') {
             // show the provider applicable for the user country.
             $provider.show();
         } else {
-            $purchaseDeviceButtons.removeClass('visible');
+            $purchaseDeviceButtons.prop('disabled', true);
         }
     };
 

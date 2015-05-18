@@ -459,17 +459,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_os_devices-bundle.css',
     },
-    'firefox_os_devices_panasonic_tv': {
-        'source_filenames': (
-            'css/libs/tipsy.css',
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/family-nav.less',
-            'css/base/mozilla-modal.less',
-            'css/firefox/os/get_device.less',
-            'css/firefox/os/devices-panasonic-tv.less',
-        ),
-        'output_filename': 'css/firefox_os_devices_panasonic_tv-bundle.css',
-    },
     'firefox_os_devices_ie': {
         'source_filenames': (
             'css/firefox/os/devices-ie.less',
@@ -1240,19 +1229,6 @@ PIPELINE_JS = {
             'js/firefox/os/devices.js',
         ),
         'output_filename': 'js/firefox_os_devices-bundle.js',
-    },
-    'firefox_os_devices_panasonic_tv': {
-        'source_filenames': (
-            'js/libs/jquery.tipsy.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-modal.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/os/partner_data.js',
-            'js/firefox/os/devices-panasonic-tv.js',
-        ),
-        'output_filename': 'js/firefox_os_devices_panasonic_tv-bundle.js',
     },
     'firefox_os_mwc_2015_preview': {
         'source_filenames': (

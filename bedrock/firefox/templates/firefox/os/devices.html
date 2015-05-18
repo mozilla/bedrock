@@ -29,7 +29,7 @@
 
 {% block site_header_unwrapped %}
   {% call fxfamilynav() %}
-    <a id="purchase-device-sticky" href="#" class="purchase-button arrow-link button">{{ _('Get a phone') }}</a>
+    <button type="button" id="purchase-device-sticky" class="purchase-button arrow-link button" disabled>{{ _('Get a phone') }}</button>
   {% endcall %}
 {% endblock %}
 
@@ -40,68 +40,76 @@
 <main role="main">
   <section id="header">
     <div class="container">
-      <h1>
-        {# L10n: <br> tag below used for formatting only. #}
-        <span id="page-title-js">{{ _('Find Firefox OS <br>near you') }}</span>
-        {# L10n: <br> tag below used for formatting only. #}
-        <span id="page-title-nojs">{{ _('Explore <br>Firefox OS devices') }}</span>
-      </h1>
+      <h1>{{ _('Firefox OS devices') }}</h1>
 
-      <form id="form-locations">
-        <label for="location">{{ _('Find a device in:') }}</label>
-        <select name="location" id="location" autocomplete="off">
-          <option value="" selected>{{ _('Select a location') }}</option>
-          {# be nice to populate these via JS, but would make L10n difficult? #}
-          <option value="ar">{{ _('Argentina') }}</option>
-          <option value="au">{{ _('Australia') }}</option>
-          <option value="bd">{{ _('Bangladesh') }}</option>
-          <option value="be">{{ _('Belgium') }}</option>
-          <option value="br">{{ _('Brazil') }}</option>
-          <option value="cl">{{ _('Chile') }}</option>
-          <option value="co">{{ _('Colombia') }}</option>
-          <option value="cr">{{ _('Costa Rica') }}</option>
-          <option value="cz">{{ _('Czech Republic') }}</option>
-          <option value="sv">{{ _('El Salvador') }}</option>
-          <option value="fr">{{ _('France') }}</option>
-          <option value="de">{{ _('Germany') }}</option>
-          <option value="gr">{{ _('Greece') }}</option>
-          <option value="gt">{{ _('Guatemala') }}</option>
-          <option value="hu">{{ _('Hungary') }}</option>
-          <option value="in">{{ _('India') }}</option>
-          <option value="it">{{ _('Italy') }}</option>
-          <option value="jp">{{ _('Japan') }}</option>
-          <option value="lu">{{ _('Luxembourg') }}</option>
-          <option value="mk">{{ _('Macedonia') }}</option>
-          <option value="mg">{{ _('Madagascar') }}</option>
-          <option value="mx">{{ _('Mexico') }}</option>
-          <option value="me">{{ _('Montenegro') }}</option>
-          <option value="mm">{{ _('Myanmar') }}</option>
-          <option value="ni">{{ _('Nicaragua') }}</option>
-          <option value="pa">{{ _('Panama') }}</option>
-          <option value="pe">{{ _('Peru') }}</option>
-          <option value="ph">{{ _('Philippines') }}</option>
-          <option value="pl">{{ _('Poland') }}</option>
-          <option value="ru">{{ _('Russia') }}</option>
-          <option value="rs">{{ _('Serbia') }}</option>
-          <option value="za">{{ _('South Africa') }}</option>
-          <option value="es">{{ _('Spain') }}</option>
-          <option value="ch">{{ _('Switzerland') }}</option>
-          <option value="gb">{{ _('United Kingdom') }}</option>
-          <option value="uy">{{ _('Uruguay') }}</option>
-          <option value="ve">{{ _('Venezuela') }}</option>
-        </select>
-      </form>
+      <ul id="device-nav">
+        <li>
+          <a id="device-nav-smartphones" href="#smartphones">{{ _('Smartphones') }}</a>
+        </li>
+        <li>
+          <a id="device-nav-tvs" href="#tvs">{{ _('Televisions') }}</a>
+        </li>
+      </ul>
     </div>
   </section>
 
   <article id="devices">
-    <section id="smartphones">
+    <section id="smartphones" class="device-type-wrapper">
       <div class="container device-list">
         <header class="section-header">
           <h2 class="section-heading">{{ _('Smartphones') }}</h2>
           <a href="{{ url('firefox.os.faq') }}" class="faq-button arrow-link button">{{ _('Firefox OS FAQ') }}</a>
-          <a href="#" class="purchase-button arrow-link button">{{ _('Get a phone') }}</a>
         </header>
+
+        <div class="location-select-wrapper">
+          <form id="form-locations">
+            <label for="location">{{ _('Find a device in:') }}</label>
+            <select name="location" id="location" autocomplete="off">
+              <option value="" selected>{{ _('Select a location') }}</option>
+              {# be nice to populate these via JS, but would make L10n difficult? #}
+              <option value="ar">{{ _('Argentina') }}</option>
+              <option value="au">{{ _('Australia') }}</option>
+              <option value="bd">{{ _('Bangladesh') }}</option>
+              <option value="be">{{ _('Belgium') }}</option>
+              <option value="br">{{ _('Brazil') }}</option>
+              <option value="cl">{{ _('Chile') }}</option>
+              <option value="co">{{ _('Colombia') }}</option>
+              <option value="cr">{{ _('Costa Rica') }}</option>
+              <option value="cz">{{ _('Czech Republic') }}</option>
+              <option value="sv">{{ _('El Salvador') }}</option>
+              <option value="fr">{{ _('France') }}</option>
+              <option value="de">{{ _('Germany') }}</option>
+              <option value="gr">{{ _('Greece') }}</option>
+              <option value="gt">{{ _('Guatemala') }}</option>
+              <option value="hu">{{ _('Hungary') }}</option>
+              <option value="in">{{ _('India') }}</option>
+              <option value="it">{{ _('Italy') }}</option>
+              <option value="jp">{{ _('Japan') }}</option>
+              <option value="lu">{{ _('Luxembourg') }}</option>
+              <option value="mk">{{ _('Macedonia') }}</option>
+              <option value="mg">{{ _('Madagascar') }}</option>
+              <option value="mx">{{ _('Mexico') }}</option>
+              <option value="me">{{ _('Montenegro') }}</option>
+              <option value="mm">{{ _('Myanmar') }}</option>
+              <option value="ni">{{ _('Nicaragua') }}</option>
+              <option value="pa">{{ _('Panama') }}</option>
+              <option value="pe">{{ _('Peru') }}</option>
+              <option value="ph">{{ _('Philippines') }}</option>
+              <option value="pl">{{ _('Poland') }}</option>
+              <option value="ru">{{ _('Russia') }}</option>
+              <option value="rs">{{ _('Serbia') }}</option>
+              <option value="za">{{ _('South Africa') }}</option>
+              <option value="es">{{ _('Spain') }}</option>
+              <option value="ch">{{ _('Switzerland') }}</option>
+              <option value="tn">{{ _('Tunisia') }}</option>
+              <option value="gb">{{ _('United Kingdom') }}</option>
+              <option value="uy">{{ _('Uruguay') }}</option>
+              <option value="ve">{{ _('Venezuela') }}</option>
+            </select>
+          </form>
+
+          <button type="button" class="purchase-button arrow-link button" disabled>{{ _('Get a phone') }}</button>
+        </div>
 
         {# phone thumbnails #}
         <ul class="device-thumbnails">
@@ -2250,6 +2258,15 @@
               </div>
             </a>
           </li>
+          <li>
+            <a href="#spice_fireonemifx2" class="device-thumbnail">
+              <img src="{{ static('img/firefox/os/devices/smartphones/spice-fire-one-mi-fx2-thumb.png') }}" alt="">
+              <span class="device-name">{{ _('Spice Fire One MI FX2') }}</span>
+              <div class="availability-notice">
+                <span class="is-available">{{ _('Available') }}</span>
+              </div>
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -2304,6 +2321,7 @@
 
                   <ul class="comma-list">
                     <li>{{ _('Madagascar') }}</li>
+                    <li>{{ _('Tunisia') }}</li>
                   </ul>
 
                   <h5>{{ _('Operator') }}</h5>
@@ -2418,8 +2436,218 @@
             </div>{#--/.pager-content--#}
           </div>{#--/.container--#}
         </section>{#--/#orange_klif--#}
+
+        <section class="device-detail smartphone-detail" id="spice_fireonemifx2">
+          <div id="spice_fireonemifx2-pager" class="container pager pager-with-tabs pager-no-history">
+            <header class="device-detail-header">
+              <h3 class="device-title">{{ _('Spice Fire One MI FX2') }}</h3>
+
+              <ul class="pager-tabs">
+                <li><a href="#p1" data-label="Features">{{_('Features')}}</a></li>
+                <li><a href="#p2" data-label="Specifications">{{_('Specifications')}}</a></li>
+              </ul>
+
+              <button class="device-detail-close">{{ _('Close') }}</button>
+            </header>
+
+            <div class="pager-content">
+              <div class="device-details features pager-page default-page" id="spice_fireonemifx2-features">
+                <div class="feature-group logo-colors">
+                </div>
+
+                <div class="feature-group image">
+                  <img src="{{ static('img/firefox/os/devices/smartphones/spice-fire-one-mi-fx2.png') }}" alt="{{ _('Spice Fire One MI FX2') }}">
+                </div>
+
+                <div class="feature-group stats">
+                  <ul>
+                    <li class="stat-screen">
+                      <strong>{{ _('3.5" HVGA') }}</strong>
+                      {{ _('320 x 480 pixels') }}
+                    </li>
+                    <li class="stat-camera">
+                      <strong>{{ _('2.0 MP') }}</strong>
+                      {{ _('Rear camera') }}
+                    </li>
+                    <li class="stat-storage">
+                      <strong>{{ _('512 MB') }}</strong>
+                      {{ _('Internal memory') }} *
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('6.5 h') }}</strong>
+                      {{ _('Talk time') }}
+                    </li>
+                  </ul>
+
+                  <small>* {{ memory_disclaimer }}</small>
+                </div>
+
+                <div class="feature-group availability">
+                  <h5>{{ _('Available in') }}</h5>
+
+                  <ul class="comma-list">
+                    <li>{{ _('India') }}</li>
+                  </ul>
+
+                  <h5>{{ _('Brand') }}</h5>
+                  <ul class="comma-list">
+                    <li>{{ _('Spice') }}</li>
+                  </ul>
+                </div>
+              </div>{#--/.features--#}
+              <div class="device-details specifications pager-page" id="spice_fireonemifx2-specifications">
+                <h4 class="device-details-title">{{ _('Specifications') }}</h4>
+
+                <table>
+                  <tr>
+                    <th>{{ _('Screen') }}</th>
+                    <td>
+                      {{ _('3.5" HVGA 320 x 480 pixels') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Camera') }}</th>
+                    <td>
+                      {{ _('2.0 MP rear, 1.3 MP front') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Processor') }}</th>
+                    <td>
+                      {{ _('1.0 GHz') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Memory') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('ROM') }} *</dt>
+                        <dd>{{ _('512 MB') }}</dd>
+
+                        <dt>{{ _('RAM') }}</dt>
+                        <dd>{{ _('256 MB') }}</dd>
+
+                        <dt>{{ _('Expansion slot') }}</dt>
+                        <dd>{{ _('MicroSD up to 32 GB') }}</dd>
+                      </dl>
+
+                      <small>* {{ memory_disclaimer }}</small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Battery') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Capacity') }}</dt>
+                        <dd>{{ _('1100 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 6.5 h (2G)') }}</dd>
+
+                        <dt>{{ _('Standby time') }}</dt>
+                        <dd>{{ _('Up to 96 h (2G)') }}</dd>
+                      </dl>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Networks') }}</th>
+                    <td>
+                      {{ _('3G/GPRS/EDGE') }}
+                      <br>
+                      {{ _('GSM 900/1800 MHz') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Wireless') }}</th>
+                    <td>
+                      {{ _('Bluetooth v3.0') }}
+                      <br>
+                      {{ _('Wi-Fi') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Ports') }}</th>
+                    <td>
+                      {{ _('Micro USB 2.0 high speed') }}
+                      <br>
+                      {{ _('3.5 mm stereo headset jack') }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Radio') }}</th>
+                    <td>
+                      {{ _('Stereo FM') }}
+                    </td>
+                  </tr>
+                </table>
+              </div>{#--/.specifications--#}
+            </div>{#--/.pager-content--#}
+          </div>{#--/.container--#}
+        </section>{#--/#spice_fireonemifx2--#}
       </div>{#--/.device-detail-list--#}
     </section>{#--/#smartphones--#}
+
+    <section id="tvs" class="device-type-wrapper">
+      <div class="container device-list">
+        <header class="section-header">
+          <h2 class="section-heading">{{ _('Televisions') }}</h2>
+        </header>
+
+        <ul class="device-thumbnails">
+          <li>
+            <a href="#panasonic_cx700" class="device-thumbnail">
+              <img src="{{ static('img/firefox/os/devices/tvs/panasonic-cx700-thumb.png') }}" alt="">
+              <span class="device-name">{{ _('Panasonic CX700') }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="device-detail-list tvs-detail-list">
+        <section class="device-detail smartphone-detail" id="panasonic_cx700">
+          <div id="panasonic_cx700-pager" class="container pager pager-with-tabs pager-no-history">
+            <header class="device-detail-header">
+              <h3 class="device-title">{{ _('Panasonic CX700') }}</h3>
+
+              <ul class="pager-tabs">
+                <li><a href="#p1" data-label="Features">{{_('Features')}}</a></li>
+              </ul>
+
+              <button class="device-detail-close">{{ _('Close') }}</button>
+            </header>
+
+            <div class="pager-content">
+              <div class="device-details features pager-page default-page" id="panasonic_cx700-features">
+                <div class="feature-group image wide">
+                  <img src="{{ static('img/firefox/os/devices/tvs/panasonic-cx700.png') }}" alt="{{ _('Panasonic CX700') }}">
+                </div>
+
+                <div class="feature-group stats">
+                  <ul>
+                    <li class="stat-general">
+                      <strong>{{ _('Picture Quality') }}</strong>
+                      {{ _('4K ULTRA HD TV') }}
+                      <br>
+                      {{ _('3840 x 2160p') }}
+                    </li>
+                    <li class="stat-general">
+                      <strong>{{ _('Web Browser') }}</strong>
+                      {{ _('Firefox') }}
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="feature-group availability">
+                  <p>
+                    <a rel="external" class="button arrow-link" href="http://www.panasonic.com">{{ _('Learn more') }}</a>
+                  </p>
+                </div>
+              </div>{#--/.features--#}
+            </div>{#--/.pager-content--#}
+          </div>{#--/.container--#}
+        </section>{#--/#panasonic_cx700--#}
+      </div>{#--/.device-detail-list--#}
+    </section>{#--/#tvs--#}
 
     <div class="container">
       <aside id="fxos-links">

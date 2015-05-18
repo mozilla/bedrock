@@ -75,11 +75,16 @@ if (typeof Mozilla == 'undefined') {
         'orange_klif': {
             'type': 'smartphone',
             'display': 'Orange Klif',
-            'countries': ['mg']
+            'countries': ['mg', 'tn']
         },
         'spice_fireonemifx1': {
             'type': 'smartphone',
             'display': 'Spice Fire One MI FX1',
+            'countries': ['in']
+        },
+        'spice_fireonemifx2': {
+            'type': 'smartphone',
+            'display': 'Spice Fire One MI FX2',
             'countries': ['in']
         },
         'symphony_gofoxf15': {

@@ -41,8 +41,8 @@ html, body {
     z-index: 2; // forces grain/noise :after bg to be under text
 }
 
-.arrow-link:after {
-    content: ' »';
+.arrow-link {
+    .trailing-arrow();
 }
 
 #header {
@@ -65,15 +65,50 @@ html, body {
         color: #fff;
         .font-size(60px);
         text-shadow: none;
-        margin: (@baseLine * 2) 0 (@baseLine * 1.5);
+        margin: (@baseLine * 2.5) 0 (@baseLine * 2.5);
+        max-width: 570px;
+    }
+}
+
+#device-nav {
+    li {
+        float: left;
+        list-style-type: none;
+        margin: 0;
+        padding-right: (@baseLine * 1.5);
+        margin-left: 5px;
+
+        &:first-child {
+            padding-right: 5px;
+            border-right: 1px dotted #41aadd;
+            margin-left: 0;
+        }
     }
 
-    label {
-        .font-size(@baseFontSize);
-        font-weight: bold;
-        color: #a5dcff;
-        text-transform: uppercase;
-        margin-right: @baseLine / 2;
+    a {
+        display: block;
+        .font-size(@largeFontSize);
+        color: #fff;
+        .at2x('/media/img/firefox/os/devices/device-types-sprite.png', 48px, 300px);
+        background-size: 48px 300px;
+        background-repeat: no-repeat;
+        padding: 60px 15px 15px;
+        .transition(all 0.2s ease);
+        border-radius: 6px;
+
+        &:hover,
+        &:focus {
+            background-color: #41aadd;
+            text-decoration: none;
+        }
+    }
+
+    #device-nav-smartphones {
+        background-position: center -130px;
+    }
+
+    #device-nav-tvs {
+        background-position: center 20px;
     }
 }
 
@@ -94,15 +129,33 @@ html, body {
     }
 }
 
-#purchase-device-sticky,
-.device-list .button {
-    display: none;
-    float: right;
+.button,
+.button:link,
+.button:visited {
     padding: (@baseLine / 2) @baseLine;
     font-weight: normal;
+}
 
-    &.visible {
-        display: inline-block;
+.faq-button {
+    float: right;
+}
+
+.purchase-button {
+    float: left;
+
+    &:disabled {
+        color: #676767;
+        text-shadow: none;
+        background: #ccc;
+        box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1),
+                        inset 0px -1px 0px 0px rgba(0, 0, 0, 0.1);
+
+        &:hover,
+        &:focus {
+            background: darken(#ccc, 3%);
+            box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1),
+                        inset 0px -1px 0px 0px rgba(0, 0, 0, 0.1);
+        }
     }
 }
 
@@ -110,10 +163,18 @@ html, body {
     float: none;
     margin-top: 5px;
     padding: 6px 20px;
+
+    &:disabled {
+        display: none;
+    }
 }
 
 html[lang^="en"] #purchase-device-sticky {
     padding: 10px 20px;
+}
+
+.device-type-wrapper {
+    margin-bottom: @baseLine * 2;
 }
 
 .section-header {
@@ -126,6 +187,25 @@ html[lang^="en"] #purchase-device-sticky {
     .font-size(32px);
     .open-sans-light;
     margin-bottom: 4px;
+}
+
+.location-select-wrapper {
+    .clearfix();
+    border-top: 1px dotted #6f7375;
+    padding: @baseLine 0;
+}
+
+#form-locations {
+    float: left;
+    margin-right: @baseLine;
+    padding-top: 8px;
+
+    label {
+        .font-size(@baseFontSize);
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-right: @baseLine / 2;
+    }
 }
 
 .device-thumbnails {
@@ -318,6 +398,10 @@ html[lang^="en"] #purchase-device-sticky {
     width: 220px;
     padding-top: 48px;
     margin-right: @baseLine;
+
+    &.wide {
+        width: 460px;
+    }
 }
 
 .features {
@@ -461,6 +545,11 @@ html[lang^="en"] #purchase-device-sticky {
     .stat-battery {
         background-position: left -300px;
     }
+
+    .stat-general {
+        background: none;
+        padding-left: 0;
+    }
 }
 
 // formats a ul/ol as a comma separated string
@@ -543,24 +632,22 @@ html[lang^="en"] #purchase-device-sticky {
 }
 
 // elements hidden from non-js users
-#page-title-js,
 .device-thumbnails,
 .color-picker,
 #form-locations,
 .pager-tabs,
 .device-detail-close,
-.button.purchase-button {
+.purchase-button {
     display: none;
 }
 
 .js {
-    #page-title-js,
     #form-locations {
-        display: block;
+        display: inline-block;
     }
 
-    #page-title-nojs {
-        display: none;
+    .purchase-button {
+        display: inline-block;
     }
 
     .faq-button {
@@ -624,8 +711,14 @@ html[lang^="en"] #purchase-device-sticky {
         width: @widthTablet - (@gridGutterWidth * 2);
     }
 
-    #header .container {
-        background-position: right bottom;
+    #header {
+        .container {
+            background-position: right bottom;
+        }
+
+        h1 {
+            max-width: 400px;
+        }
     }
 
     .device-thumbnails {
@@ -724,8 +817,30 @@ html[lang^="en"] #purchase-device-sticky {
         }
 
         h1 {
+            max-width: 250px;
             .font-size(40px);
+            margin: (@baseLine * 1.5) 0 @baseLine;
         }
+
+        a {
+            .font-size(@largeFontSize);
+        }
+    }
+
+    .purchase-button {
+        float: none;
+    }
+
+    .device-type-wrapper {
+        margin-bottom: @baseLine;
+    }
+
+    .js #form-locations {
+        float: none;
+        display: block;
+        padding-top: 0;
+        margin: 0 0 10px 0;
+        display: block;
     }
 
     #devices {
@@ -865,6 +980,12 @@ html[lang^="en"] #purchase-device-sticky {
             margin-bottom: @baseLine;
         }
 
+        .wide {
+            width: 100%;
+            text-align: center;
+            margin-left: 0;
+        }
+
         .stats {
             float: none;
             width: auto;
@@ -954,7 +1075,12 @@ html[lang^="en"] #purchase-device-sticky {
         }
 
         h1 {
+            max-width: 200px;
             .font-size(26px);
+        }
+
+        a {
+            .font-size(@baseFontSize);
         }
     }
 
