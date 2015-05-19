@@ -48,6 +48,10 @@ CACHES = {
     }
 }
 
+# in case django-pylibmc is in use
+PYLIBMC_MIN_COMPRESS_LEN = 150 * 1024
+PYLIBMC_COMPRESS_LEVEL = 1  # zlib.Z_BEST_SPEED
+
 # Site ID is used by Django's Sites framework.
 SITE_ID = 1
 
