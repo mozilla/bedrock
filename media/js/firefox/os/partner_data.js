@@ -75,7 +75,7 @@ if (typeof Mozilla == 'undefined') {
         'orange_klif': {
             'type': 'smartphone',
             'display': 'Orange Klif',
-            'countries': ['mg', 'tn']
+            'countries': ['cm', 'mg', 'tn']
         },
         'spice_fireonemifx1': {
             'type': 'smartphone',
