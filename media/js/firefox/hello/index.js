@@ -118,13 +118,46 @@
             showFxFooterMessaging();
         }
         // Hello exists in desktop version 35 and up
-        else if (w.getFirefoxMasterVersion() >= 35) {
+        else if (w.getFirefoxMasterVersion() >= 35 && 'Promise' in window) {
             showFxFooterMessaging();
 
-            // see if Hello is an available target in toolbar/overflow/customize menu
-            Mozilla.UITour.getConfiguration('availableTargets', function(config) {
+            Promise.all([
+                // check for the browser channel info
+                new Promise(function(resolve) {
+                    Mozilla.UITour.getConfiguration('appinfo', function(config) {
+                        resolve(config.defaultUpdateChannel);
+                    });
+                }),
+                // see if Hello is an available target in toolbar/overflow/customize menu
+                new Promise(function(resolve) {
+                    Mozilla.UITour.getConfiguration('availableTargets', function(config) {
+                        resolve(config.targets);
+                    });
+                }),
+            ]).then(function(results) {
+                var channel = results[0];
+                var targets = results[1];
+
+                // Because Hello is disabled on Firefox 38 ESR, we encourage ESR
+                // users to download non-ESR Firefox to try Hello
+                if (channel === 'esr') {
+                    // Change the copy
+                    $('#ctacopy-hellofx').hide();
+                    $('#ctacopy-esrfx').show();
+
+                    // Instead of the "Try Hellow now" button, show the download
+                    // button and change the label to "Try it now"
+                    $('#try-hello-footer').removeClass('active');
+                    $('#download-fx').show();
+                    $('.download-subtitle').text(window.trans('try-now'));
+
+                    addLinkEvent('.download-link', 'ClickDownload');
+
+                    return;
+                }
+
                 // 'loop' is the snazzy internal code name for Hello
-                if (config.targets && config.targets.indexOf('loop') > -1) {
+                if (targets && targets.indexOf('loop') > -1) {
                     // show the intro try hello button
                     $('#try-hello-intro').addClass('active');
 

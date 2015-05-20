@@ -48,6 +48,10 @@ set share_urls = {
   {% endcall %}
 {% endblock %}
 
+{% block string_data %}
+data-try-now="{{ _('Try it now') }}"
+{% endblock %}
+
 {% block tabzilla_css %}{% endblock %}
 {% block tabzilla_js %}{% endblock %}
 
@@ -218,6 +222,7 @@ set share_urls = {
     <div class="container">
       <div class="ctacopy-wrapper">
         <h2 class="dltry-copy heading-secondary" id="ctacopy-nonfx">{{ _('Get Firefox and start your first conversation') }}</h2>
+        <h2 class="dltry-copy heading-secondary" id="ctacopy-esrfx">{{ _('You need a different version of Firefox to use Hello.') }}</h2>
         <h2 class="dltry-copy heading-secondary" id="ctacopy-oldfx">{{ _('Update your Firefox to start using Hello') }}</h2>
         <h2 class="dltry-copy heading-secondary" id="ctacopy-hellofx">{{ _('Start your first conversation today') }}</h2>
       </div>
