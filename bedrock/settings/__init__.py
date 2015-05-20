@@ -45,6 +45,13 @@ if len(sys.argv) > 1 and sys.argv[1] == 'test':
     # test to look at later.
     TEMPLATE_DEBUG = True
 
+if CACHES['default']['BACKEND'] == 'django_pylibmc.memcached.PyLibMCCache':
+    CACHES['default']['BINARY'] = True
+    CACHES['default']['OPTIONS'] = {  # Maps to pylibmc "behaviors"
+        'tcp_nodelay': True,
+        'ketama': True,
+    }
+
 # cache for lang files
 CACHES['l10n'] = {
     'BACKEND': 'lib.l10n_utils.cache.L10nCache',

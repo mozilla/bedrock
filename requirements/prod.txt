@@ -11,3 +11,10 @@ maxminddb==1.1.1
 
 # sha256: _d1HqNBI4MX0Lu5RGoqvNYkcmW1slZVTx77Is6x0s8s
 newrelic==2.50.0.39
+
+# sha256: VZxCRyjkBCDajJmLE8PE8IYbR1JpoKh2-xcY__J20QY
+# sha256: YhN9U7WsovukJHRLobsw6SoRXZqGgcvmpkEdskGx0a0
+django-pylibmc==0.6.0
+
+# sha256: MOGaBuZQ_eMfQKYtsKPaN6HK2WFuHP0EuOJI-0vV9KE
+pylibmc==1.4.2
