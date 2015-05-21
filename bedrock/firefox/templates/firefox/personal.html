@@ -16,12 +16,17 @@
 
 {% block tabzilla_tab %}{% endblock %}
 
+{% block tabzilla_css %}{% endblock %}
+{% block tabzilla_js %}{% endblock %}
+
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}{% endblock %}
 
 {% block alt_header %}
 <div class="header-content">
-  <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{% block tabzilla_infobar %}{{ settings.TABZILLA_INFOBAR_OPTIONS }}{% endblock %}">Mozilla</a>
+  <div id="tabzilla">
+    <a href="{{ url('mozorg.home') }}">Mozilla</a>
+  </div>
   <h1>{{_('When it’s personal,<span>choose Firefox</span>')}}</h1>
   {{ download_firefox(simple=true) }}
 

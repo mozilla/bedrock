@@ -563,6 +563,7 @@ PIPELINE_CSS = {
     'firefox-personal': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
             'css/firefox/personal.less',
         ),
         'output_filename': 'css/firefox-personal-bundle.css',
