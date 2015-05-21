@@ -1,4 +1,4 @@
-local:
+runserver:
   build: .
   command: python manage.py runserver 0.0.0.0:8000
   ports:
@@ -7,6 +7,11 @@ local:
     - .:/app
   environment:
     - PYTHONDONTWRITEBYTECODE=1
+grunt:
+  build: .
+  command: bin/grunter
+  volumes:
+    - .:/app
 b2d:
   build: .
   command: python manage.py runserver 0.0.0.0:8000
