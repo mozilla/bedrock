@@ -102,12 +102,6 @@
             // display specified customizer
             $next.fadeIn('fast').addClass('active');
         }
-
-        var ga_type = $this.hasClass('next') ? 'Next Link' : 'Icon';
-
-        // capitalize event name
-        var ga_event = $this.attr('href').replace('#', '');
-        ga_event = ga_event.charAt(0).toUpperCase() + ga_event.slice(1);
     });
 
     // handle clicks on theme thumbnails

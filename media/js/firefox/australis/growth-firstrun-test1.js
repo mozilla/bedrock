@@ -27,7 +27,6 @@
     var initFxA;
     var enableIframe;
     var showFxA;
-    var trackSyncClick;
     var randomStringMaker;
 
     var toggleDefaultContent = function(show) {
@@ -125,22 +124,14 @@
 
                 // link directly to Firefox Accounts when clicking the Sync CTA button
                 Mozilla.UITour.getConfiguration('sync', function() {
-                    $('.sync-cta').on('click', '.button', trackSyncClick);
+                    $('.sync-cta').on('click', '.button', function(e) {
+                        e.preventDefault();
+                        Mozilla.UITour.showFirefoxAccounts();
+                    });
                 });
 
                 toggleDefaultContent(true);
             });
-        };
-
-        // track Sync CTA click and link to about:accounts where posiible
-        trackSyncClick = function(e) {
-            e.preventDefault();
-
-            var goToAccounts = function () {
-                // available on Firefox 31 and greater
-                Mozilla.UITour.showFirefoxAccounts();
-            };
-
         };
 
         randomStringMaker = function() {
@@ -172,7 +163,7 @@
 
                     showFxA();
                 }
-            } 
+            }
         });
 
         // if chosen to show doorhanger, get tour setup
@@ -183,7 +174,10 @@
                 toggleDefaultContent(false);
 
                 // wire up sync click in default content
-                $('.sync-cta').on('click', '.button', trackSyncClick);
+                $('.sync-cta').on('click', '.button', function(e) {
+                    e.preventDefault();
+                    Mozilla.UITour.showFirefoxAccounts();
+                });
 
                 // id is used for Telemetry
                 var tour = new Mozilla.BrowserTour({

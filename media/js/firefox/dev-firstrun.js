@@ -12,6 +12,8 @@ function onYouTubeIframeAPIReady() {
 ;(function($, Mozilla) {
     'use strict';
 
+    window.dataLayer = window.dataLayer || [];
+
     var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -205,14 +207,14 @@ function onYouTubeIframeAPIReady() {
 
     function webIDEDoorhangerClose() {
         showReminderDoorhanger();
-        window.dataLayer = window.dataLayer || [];
+
         window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Try WebIDE doorhanger - link click', browserAction: 'Close Tour'});
     }
 
     // show webIDE doorhanger and track button click
     function nextSyncButton() {
         showSyncDoorhanger();
-        window.dataLayer = window.dataLayer || [];
+
         window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Try WebIDE doorhanger - button click', browserAction: 'Next:Sync'});
     }
 

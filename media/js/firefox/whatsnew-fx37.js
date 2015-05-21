@@ -148,7 +148,7 @@
                     $smsFormHeading.hide();
                     $self.hide();
                     $smsThankYou.show();
-                    window.dataLayer = window.dataLayer || [];
+
                     window.dataLayer.push({
                         event: 'whatsnew-37'
                     });

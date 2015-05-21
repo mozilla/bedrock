@@ -8,7 +8,6 @@ $(function() {
     var pager = Mozilla.Pager.pagers[0];
     var $documentRoot = $(document);
     var $firstPager = $('.pager').first();
-    var href;
 
     // scroll to top of pager when switching tabs so all
     // tab content is visible after switching tabs
@@ -33,7 +32,7 @@ $(function() {
     // Setup GA tracking for main tabs
     $('#tips-nav-direct a').on('click', function() {
         var thisTabName = $(this).attr('href');
-        console.log(thisTabName);
+
         window.dataLayer.push({
             event: 'privacy-interactions',
             browserAction: thisTabName.substr(1),

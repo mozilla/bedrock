@@ -1,13 +1,14 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    window.dataLayer = window.dataLayer || [];
+
     var firstTime = 'True';
 
     // GA tracking for Firstrun tests
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1128726
     // should be removed after 2/24/2015
     if (window.location.search.indexOf('f=34') > -1) {
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'firstrun-optimization',
             testVaration: 'variation 1'
@@ -40,7 +41,6 @@
             }
 
             // Push custom GA variable to track Sync visibility
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'set-sync-visibility',
                 syncVisibility: visible
@@ -54,7 +54,7 @@
             } else {
                 localStorage.setItem('mozUITourGlobalFlag', 'taken');
             }
-            window.dataLayer = window.dataLayer || [];
+
             window.dataLayer.push({
                 'event': 'firstrun-tour-view',
                 'interaction': 'First Time Seeing Tour',
@@ -71,7 +71,6 @@
                     return;
                 }
 
-                window.dataLayer = window.dataLayer || [];
                 if (selectedEngineID === 'yahoo') {
                     Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_yahooDefault');
                     Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');

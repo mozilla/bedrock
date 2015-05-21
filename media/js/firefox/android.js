@@ -275,33 +275,21 @@
         }
     }
 
-    var trackClick = function (gaObj, event) {
-        window.dataLayer = window.dataLayer || [];
-        if (event.metaKey || event.ctrlKey) {
-            // Open link in new tab
-            window.dataLayer.push(gaObj);
-        } else {
-            event.preventDefault();
-            gaObj.eventCallback = function() { window.location = event.target.href;};
-            window.dataLayer.push(gaObj);
-        }
-    };
-
     // track link on the primary CTA
     $('#intro .dl-button').attr({
-        'data-interaction': 'download click', 
+        'data-interaction': 'download click',
         'data-download-version': 'Firefox for Android'
     });
 
     // track link on the secondary CTA
     $('#subscribe-download-wrapper .dl-button').attr({
-        'data-interaction': 'button download click', 
+        'data-interaction': 'button download click',
         'data-download-version': 'Firefox for Android'
     });
 
     // track links except the accordion
     $('#privacy, #sync, #subscribe-download-wrapper ul').attr({
-        'data-interaction': 'link click', 
+        'data-interaction': 'link click',
         'data-download-version': 'href'
     });
 

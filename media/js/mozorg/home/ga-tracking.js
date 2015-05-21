@@ -68,7 +68,7 @@ $(function () {
         'data-element-location': 'button-click',
         'data-link-type': 'Get Involved with Mozilla today'
     });
-    
+
     $('#secondary-links a').attr({
         'data-element-location': 'Secondary Link Clicks',
         'data-link-type': 'href'
@@ -84,16 +84,15 @@ $(function () {
 
     // track download firefox promo clicks
     $('.promo-small-landscape.firefox-download a.download-link').each(function() {
-        var platform;
         var $this = $(this);
         var $promo = $this.closest('.promo-small-landscape');
         var isAndroid = $promo.find('li.os_android:visible').length > 0;
         var type = isAndroid ? 'Firefox Android' : 'Firefox Desktop';
         var tilePosition = $promo.prop('id');
         var tileSize = 'promo-small-landscape';
-        
+
         $this.attr({
-            'data-interaction': 'download click - top', 
+            'data-interaction': 'download click - top',
             'data-download-version': type,
             'data-tile-position': tilePosition,
             'data-tile-size': tileSize
@@ -110,7 +109,7 @@ $(function () {
             platform = 'Firefox Desktop';
         }
         $this.attr({
-            'data-interaction': 'download click - primary', 
+            'data-interaction': 'download click - primary',
             'data-download-version': platform
         });
 

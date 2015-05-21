@@ -31,19 +31,6 @@ function onYouTubeIframeAPIReady() {
     var openFinalNotice;
     var enableIframes;
 
-    // track Sync CTA click and link to about:accounts where posiible
-    var trackSyncClick = function(e) {
-        e.preventDefault();
-
-        var goToAccounts = function () {
-            // available on Firefox 31 and greater
-            Mozilla.UITour.showFirefoxAccounts();
-        };
-
-        goToAccounts();
-
-    };
-
     // in case UITour fails
     $outerWrapper.show();
 
@@ -134,7 +121,10 @@ function onYouTubeIframeAPIReady() {
             $outerWrapper.hide();
 
             // wire up default content sync button
-            $('.sync-cta').on('click', '.button', trackSyncClick);
+            $('.sync-cta').on('click', '.button', function(e) {
+                e.preventDefault();
+                Mozilla.UITour.showFirefoxAccounts();
+            });
 
             var suppressDoorhanger = Math.random() >= 0.5;
 

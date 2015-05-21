@@ -5,6 +5,8 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    window.dataLayer = window.dataLayer || [];
+
     setTimeout(Mozilla.syncAnimation, 1000);
 
     /* This shows six different content variations, depending on the browser/state
@@ -63,7 +65,6 @@
 
                     // Call GA tracking here to ensure it waits for the
                     // getConfiguration async call
-                    window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                         event: 'page-load',
                         browser: state
@@ -92,7 +93,6 @@
     // Send page state to GA if it hasn't already been sent in the
     // getConfiguration callback
     if (syncCapable === false) {
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'page-load',
             browser: state
@@ -101,7 +101,7 @@
 
     // Setup GA tracking for Firefox download button
     $('#cta-firefox, .download-button .download-link').attr({
-        'data-interaction': 'download click', 
+        'data-interaction': 'download click',
         'data-download-version': 'Firefox'
     });
 

@@ -30,50 +30,50 @@
     * Sign up form
     */
     $('.newsletter-signup-toggle').on('click', function(e) {
-      e.preventDefault();
+        e.preventDefault();
 
-      if (!$signupContent) {
-        $signupContent = $('#email-form-content').detach();
-      }
+        if (!$signupContent) {
+            $signupContent = $('#email-form-content').detach();
+        }
 
-      Mozilla.Modal.createModal(this, $signupContent, {
-          allowScroll: !isSmallViewport,
-          title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
-      });
+        Mozilla.Modal.createModal(this, $signupContent, {
+            allowScroll: !isSmallViewport,
+            title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
+        });
 
-      //track GA event for newsletter CTA
-      window.dataLayer.push({
-        event: 'fxos-consumer',
-        interaction: 'click',
-        location: 'Sign Me Up - Primary'
-      });
+        //track GA event for newsletter CTA
+        window.dataLayer.push({
+            event: 'fxos-consumer',
+            interaction: 'click',
+            location: 'Sign Me Up - Primary'
+        });
     });
 
     $('#sign-up-form-close').on('click', function() {
-      Mozilla.Modal.closeModal();
+        Mozilla.Modal.closeModal();
     });
 
     /*
     * Purchase modal
     */
     $('a[href="#get-device"]').on('click', function(e) {
-      e.preventDefault();
+        e.preventDefault();
 
-      if (!$getPhoneContent) {
-        $getPhoneContent= $('#get-device').detach();
-      }
+        if (!$getPhoneContent) {
+            $getPhoneContent= $('#get-device').detach();
+        }
 
-      Mozilla.Modal.createModal(this, $getPhoneContent, {
-          allowScroll: !isSmallViewport,
-          title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
-      });
+        Mozilla.Modal.createModal(this, $getPhoneContent, {
+            allowScroll: !isSmallViewport,
+            title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
+        });
 
-      //track GA event for get a phone CTA
-      window.dataLayer.push({
-        event: 'fxos-consumer',
-        interaction: 'click',
-        location: 'Get a Phone'
-      });
+        //track GA event for get a phone CTA
+        window.dataLayer.push({
+            event: 'fxos-consumer',
+            interaction: 'click',
+            location: 'Get a Phone'
+        });
     });
 
     $appGroupSelector.on('click', 'a', function(event) {
@@ -95,8 +95,6 @@
             }
         });
     });
-
-    window.pause_ga_tracking = false;
 
     /*
     * Get country code via geo-ip lookup
@@ -140,7 +138,6 @@
     * Set page specific content relating to geo for partner data etc
     */
     function setPartnerContent () {
-
         var $provider = $('#provider-links').find('.provider[data-country="' + COUNTRY_CODE + '"]');
 
         // if there are partners available, update UI
@@ -159,8 +156,10 @@
 
             // setup GA event tracking on telecom provider exit links
             $('#provider-links a').each(function() {
-                $(this).attr({
-                    'data-element-location': $(this).text(),
+                var $this = $(this);
+
+                $this.attr({
+                    'data-element-location': $this.text(),
                     'data-interaction': 'Get A Phone Exit'
                 });
             });

@@ -981,12 +981,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/contribute-friends-bundle.js'
     },
-    'contribute-studentambassadors-landing': {
-        'source_filenames': (
-            'js/base/social-widgets.js',
-        ),
-        'output_filename': 'js/contribute-studentambassadors-landing-bundle.js',
-    },
     'contribute-studentambassadors-join': {
         'source_filenames': (
             'js/mozorg/contribute/contribute-studentambassadors-join.js',
@@ -1145,7 +1139,6 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/fx36/common.js',
             'js/firefox/australis/fx36/firstrun.js',
         ),
         'output_filename': 'js/firefox_fx36_firstrun-bundle.js',
@@ -1154,14 +1147,12 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/fx36/common.js',
             'js/firefox/australis/fx36/whatsnew.js',
         ),
         'output_filename': 'js/firefox_fx36_whatsnew-bundle.js',
     },
     'firefox_fx36_whatsnew_no_tour': {
         'source_filenames': (
-            'js/firefox/australis/fx36/common.js',
             'js/firefox/australis/fx36/whatsnew-notour.js',
         ),
         'output_filename': 'js/firefox_fx36_whatsnew_no_tour-bundle.js',
@@ -1300,7 +1291,6 @@ PIPELINE_JS = {
     'firefox_feedback': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',
-            'js/firefox/feedback-ga-tracking.js',
         ),
         'output_filename': 'js/firefox_feedback-bundle.js',
     },
@@ -1465,12 +1455,6 @@ PIPELINE_JS = {
             'js/base/mozilla-image-helper.js',
         ),
         'output_filename': 'js/mozorg-resp-bundle.js',
-    },
-    'nightly-firstrun': {
-        'source_filenames': (
-            'js/firefox/firstrun/nightly-firstrun.js',
-        ),
-        'output_filename': 'js/nightly-firstrun-bundle.js',
     },
     'partnerships': {
         'source_filenames': (

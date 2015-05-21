@@ -4,6 +4,8 @@
 ;(function(w, $, enquire, Modernizr, trans) {
     'use strict';
 
+    window.dataLayer = window.dataLayer || [];
+
     var _load_mobile = function() {
         w.Modernizr.load([{
             both: MOBILE_JS_FILES,
@@ -111,7 +113,6 @@
     // GA tracking
     w.ga_track = function(virtual_page) {
         if (last_virtual_page !== virtual_page) {
-            window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'virtual-pageview',
                 virtualUrl: '/' + locale + '/firefox/partners/' + virtual_page

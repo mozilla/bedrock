@@ -294,19 +294,21 @@ var Tabzilla = (function (Tabzilla) {
 
         bar.find('.btn-accept').click(function (event) {
             event.preventDefault();
-            self.trackEvent(self.onaccept.trackAction || 'accept',
-                            self.onaccept.trackLabel,
-                            0, false, // A user interaction event
-                            self.onaccept.callback);
+
+            if (self.onaccept.callback) {
+                self.onaccept.callback();
+            }
+
             self.hide();
         });
 
         bar.find('.btn-cancel').click(function (event) {
             event.preventDefault();
-            self.trackEvent(self.oncancel.trackAction || 'cancel',
-                            self.oncancel.trackLabel,
-                            0, false, // A user interaction event
-                            self.oncancel.callback);
+
+            if (self.oncancel.callback) {
+                self.oncancel.callback();
+            }
+
             self.hide();
             try {
                 sessionStorage.setItem(self.prefName, 'true');
@@ -314,10 +316,10 @@ var Tabzilla = (function (Tabzilla) {
         });
 
         panel.trigger('infobar-showing');
-        self.trackEvent(self.onshow.trackAction || 'show',
-                        self.onshow.trackLabel,
-                        0, true, // An auto-triggered, non-interaction event
-                        self.onshow.callback);
+
+        if (self.onshow.callback) {
+            self.onshow.callback();
+        }
 
         if (opened) {
             bar.css('height', 0)
@@ -340,16 +342,6 @@ var Tabzilla = (function (Tabzilla) {
             self.element.remove();
             panel.trigger('infobar-hidden');
         });
-    };
-    Infobar.prototype.trackEvent = function (action, label, value,
-                                             nonInteraction, callback) {
-        if (typeof(window.gaTrack) !== 'function') {
-            return;
-        }
-
-        // The 5th value and 6th nonInteraction parameters are optional.
-        // See the Google Analytics Developer Guide for details:
-        // https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide
     };
     Infobar.prototype.onshow = {};
     Infobar.prototype.onaccept = {};
@@ -534,24 +526,6 @@ var Tabzilla = (function (Tabzilla) {
     };
     // Expose the object for the tests
     Tabzilla.infobar = Infobar;
-    var setupGATracking = function () {
-        // track search keywords in GA
-        $('#tabzilla-search form').on('submit', function (e) {
-            e.preventDefault();
-
-            var $form = $(this);
-            var keyword = $form.find('#q').val();
-            var timer = null;
-            var callback = function () {
-                clearTimeout(timer);
-                $form.submit();
-            };
-
-            $form.unbind('submit');
-
-            timer = setTimeout(callback, 500);
-        });
-    };
     var addEaseInOut = function () {
         $.extend($.easing, {
             'easeInOut':  function (x, t, b, c, d) {
@@ -633,8 +607,6 @@ var Tabzilla = (function (Tabzilla) {
             }
         });
 
-        setupGATracking();
-
         // Careers teaser in error console.
         $(window).load(function() {
             try {
@@ -693,7 +665,6 @@ var Tabzilla = (function (Tabzilla) {
     + '            <ul>'
     + '              <li><a href="https://www.mozilla.org/mission/?icn=tabz">{{ _('Mission')|js_escape }}</a></li>'
     + '              <li><a href="https://www.mozilla.org/about/?icn=tabz">{{ _('About')|js_escape }}</a></li>'
-    + '              <li><a href="https://www.mozilla.org/projects/?icn=tabz">{{ _('Projects')|js_escape }}</a></li>'
     + '              <li><a href="https://support.mozilla.org/?icn=tabz">{{ _('Support')|js_escape }}</a></li>'
     + '              <li><a href="https://developer.mozilla.org/?icn=tabz">{{ _('Developer Network')|js_escape }}</a></li>'
     + '            </ul>'
@@ -702,7 +673,7 @@ var Tabzilla = (function (Tabzilla) {
     + '        <li><h2>{{ _('Products')|js_escape }}</h2>'
     + '          <div>'
     + '            <ul>'
-    + '              <li><a href="https://www.mozilla.org/firefox/?icn=tabz">Firefox</a></li>'
+    + '              <li><a href="https://www.mozilla.org/firefox/products?icn=tabz">Firefox</a></li>'
     + '              <li><a href="https://www.mozilla.org/thunderbird/?icn=tabz">Thunderbird</a></li>'
     + '              <li><a href="https://www.mozilla.org/firefox/os/?icn=tabz">Firefox OS</a></li>'
     + '            </ul>'

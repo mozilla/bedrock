@@ -275,7 +275,7 @@ if (typeof Mozilla == 'undefined') {
             window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'link click to',
-                'browserAction': 'Step' + step 
+                'browserAction': 'Step' + step
             });
 
         }
@@ -328,16 +328,16 @@ if (typeof Mozilla == 'undefined') {
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'click',
                 'browserAction': 'Signpost CTA',
-                'firstTime': firstTime 
+                'firstTime': firstTime
             });
 
         }, this));
 
         this.doCloseTour();
         window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
-                'interaction': 'click',
-                'browserAction': 'Not now' 
+            'event': 'firstrun-tour-interaction',
+            'interaction': 'click',
+            'browserAction': 'Not now'
         });
     };
 
@@ -495,9 +495,9 @@ if (typeof Mozilla == 'undefined') {
         Mozilla.UITour.hideHighlight();
         Mozilla.UITour.addNavBarWidget('forget', this.highlightForgetButton.bind(this));
         window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
-                'interaction': 'Add it now',
-                'browserAction': 'The new Forget Button' 
+            'event': 'firstrun-tour-interaction',
+            'interaction': 'Add it now',
+            'browserAction': 'The new Forget Button'
         });
     };
 
@@ -524,12 +524,11 @@ if (typeof Mozilla == 'undefined') {
             buttons,
             options
         );
-        
-        window.dataLayer = window.dataLayer || [];
+
         window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
-                'interaction': 'Later',
-                'browserAction': 'The new Forget Button' 
+            'event': 'firstrun-tour-interaction',
+            'interaction': 'Later',
+            'browserAction': 'The new Forget Button'
         });
     };
 
@@ -642,7 +641,7 @@ if (typeof Mozilla == 'undefined') {
             window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'Add it now',
-                'browserAction': 'The Hello icon' 
+                'browserAction': 'The Hello icon'
             });
 
         });
@@ -699,10 +698,10 @@ if (typeof Mozilla == 'undefined') {
             options
         );
         window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
-                'interaction': 'Later',
-                'browserAction': 'The Hello icon' 
-            });
+            'event': 'firstrun-tour-interaction',
+            'interaction': 'Later',
+            'browserAction': 'The Hello icon'
+        });
     };
 
     /*
@@ -871,9 +870,9 @@ if (typeof Mozilla == 'undefined') {
             step += 1;
         }
         window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
-                'interaction': 'arrow click to',
-                'browserAction': 'Step ' + step 
+            'event': 'firstrun-tour-interaction',
+            'interaction': 'arrow click to',
+            'browserAction': 'Step ' + step
         });
     };
 
@@ -959,9 +958,9 @@ if (typeof Mozilla == 'undefined') {
         }
         this.doCloseTour();
         window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
-                'interaction': 'button click',
-                'browserAction': 'Start Browsing' 
+            'event': 'firstrun-tour-interaction',
+            'interaction': 'button click',
+            'browserAction': 'Start Browsing'
         });
     };
 
@@ -996,7 +995,7 @@ if (typeof Mozilla == 'undefined') {
             window.dataLayer.push({
                 'event': 'firstrun-tour-interaction',
                 'interaction': 'click',
-                'browserAction': 'Close tour' 
+                'browserAction': 'Close tour'
             });
 
         }
@@ -1049,9 +1048,9 @@ if (typeof Mozilla == 'undefined') {
 
         setTimeout(this.onCompactTour.bind(this), 600);
         window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
-                'interaction': 'click',
-                'browserAction': 'Compact tour' 
+            'event': 'firstrun-tour-interaction',
+            'interaction': 'click',
+            'browserAction': 'Compact tour'
         });
     };
 
@@ -1103,9 +1102,9 @@ if (typeof Mozilla == 'undefined') {
             that.$mask.removeClass('out');
         }, 50);
         window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
-                'interaction': 'click',
-                'browserAction': 'Expand tour' 
+            'event': 'firstrun-tour-interaction',
+            'interaction': 'click',
+            'browserAction': 'Expand tour'
         });
     };
 
@@ -1219,7 +1218,7 @@ if (typeof Mozilla == 'undefined') {
                 'event': 'firstrun-tour-interaction',
                 'firstTime': firstTime,
                 'interaction': 'click',
-                'browserAction': 'Lets go' 
+                'browserAction': 'Lets go'
             });
         } else {
             this.tourIsPostponed = false;
@@ -1282,9 +1281,9 @@ if (typeof Mozilla == 'undefined') {
                 window.dataLayer.push({
                     'event': 'firstrun-tour-interaction',
                     'interaction': 'visibility',
-                    'browserAction': 'Leave tour' 
+                    'browserAction': 'Leave tour'
                 });
-    
+
             }
         } else {
             // if tab is visible and tour is open, show the current step.
@@ -1299,9 +1298,9 @@ if (typeof Mozilla == 'undefined') {
                 window.dataLayer.push({
                     'event': 'firstrun-tour-interaction',
                     'interaction': 'visibility',
-                    'browserAction': 'Return to tour' 
+                    'browserAction': 'Return to tour'
                 });
-    
+
                 // Update page id for Telemetry when returning to tab
                 Mozilla.UITour.registerPageID(this.options.id);
             } else if (!this.tourHasStarted && !this.tourIsPostponed && !this.tourHasFinished) {

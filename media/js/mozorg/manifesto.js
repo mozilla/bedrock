@@ -31,8 +31,8 @@ $(function() {
         $origin.addClass('modal-origin');
 
         window.dataLayer.push({
-            event: 'manifesto-interaction', 
-            browserAction: action, 
+            event: 'manifesto-interaction',
+            browserAction: action,
             section: section_id.match(/\d+/)[0]
         });
     };
@@ -170,10 +170,12 @@ $(function() {
 
     // Set up content link handler
     $('#main-content a').each(function() {
-        if (!$(this).hasClass('share-button')) {
-            $(this).attr({
+        var $this = $(this);
+
+        if (!$this.hasClass('share-button')) {
+            $this.attr({
                 'data-element-action': 'content link click',
-                'data-element-section': $(this).text()
+                'data-element-section': $this.text()
             });
         }
     });

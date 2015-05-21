@@ -182,8 +182,8 @@
     // Track when/which accordion panels are opened
     var track_accordion = function(position, id) {
         window.dataLayer.push({
-            event: 'homepage-interaction', 
-            interaction: 'open', 
+            event: 'homepage-interaction',
+            interaction: 'open',
             location: position + ':' + id});
     };
 
@@ -212,7 +212,7 @@
     // Track news & contribute clicks
     $('.extra-news a, .extra-contribute a, .engage a').each(function() {
         var action = (/external/.test($(this).attr('rel'))) ? 'outbound link' : 'click';
-        
+
         $(this).attr({
             'data-tracking-flag': 'home',
             'data-interaction': action,
@@ -223,14 +223,14 @@
     // Track Firefox downloads
     $('.download-link').each(function() {
         var platform;
-        $this = $(this);
+        var $this = $(this);
         if ($this.parents('li').hasClass('os_android')) {
             platform = 'Firefox for Android';
         } else {
             platform = 'Firefox Desktop';
         }
         $this.attr({
-            'data-interaction': 'download click', 
+            'data-interaction': 'download click',
             'data-download-version': platform
         });
     });

@@ -62,7 +62,7 @@ function init_android_download_links() {
 // language switcher
 
 function init_lang_switcher() {
-    $('#language').change(function(event) {
+    $('#language').change(function() {
         var language = $(this).val();
         $('#lang_form').attr('data-language', language).submit();
     });
@@ -147,45 +147,3 @@ var $strings = $('#strings');
 window.trans = function trans(stringId) {
     return $strings.data(stringId);
 };
-
-
-function gaTrack(eventArray, callback) {
-    // submit eventArray to GA and call callback only after tracking has
-    // been sent, or if sending fails.
-    //
-    // callback is optional.
-    //
-    // Example usage:
-    //
-    // $(function() {
-    //      var handler = function(e) {
-    //           var _this = this;
-    //           e.preventDefault();
-    //           $(_this).off('submit', handler);
-    //           gaTrack(
-    //              ['_trackEvent', 'Newsletter Registration', 'submit', newsletter],
-    //              function() {$(_this).submit();}
-    //           );
-    //      };
-    //      $(thing).on('submit', handler);
-    // });
-
-    var hasCallback = typeof(callback) === 'function';
-
-    if (typeof(window._gaq) === 'object') {
-        // send event to GA
-        window._gaq.push(eventArray);
-        // Only set up timer and hitCallback if a callback exists.
-        if (hasCallback) {
-            // Need a timeout in order for __utm.gif request to complete in
-            // order to register the GA event, before excecuting the callback.
-            setTimeout(callback, 600);
-        }
-    } else {
-        // GA disabled or blocked or something, make sure we still
-        // call the caller's callback:
-        if (hasCallback) {
-            callback();
-        }
-    }
-}

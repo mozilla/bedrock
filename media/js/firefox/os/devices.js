@@ -10,6 +10,8 @@ if (typeof window.Mozilla === 'undefined') {
 ;(function($, Mozilla) {
     'use strict';
 
+    window.dataLayer = window.dataLayer || [];
+
     var COUNTRY_CODE = '';
     var selectedDevice;
 
@@ -107,16 +109,16 @@ if (typeof window.Mozilla === 'undefined') {
     $locationSelect.on('change', function() {
         COUNTRY_CODE = $locationSelect.val();
         selectDevicesAndSetPartnerContent();
+
         window.dataLayer.push({
-                event: 'device-drop-down',
-                countryCode: COUNTRY_CODE,
-                nonInteraction: false
+            event: 'device-drop-down',
+            countryCode: COUNTRY_CODE,
+            nonInteraction: false
         });
     });
 
     // wire up purchase button
-    $purchaseDeviceButtons.attr('data-track', 'true');
-    $purchaseDeviceButtons.on('click', function(e) {
+    $purchaseDeviceButtons.attr('data-track', 'true').on('click', function(e) {
         e.preventDefault();
 
         Mozilla.Modal.createModal(this, $('#get-device'), {
@@ -211,7 +213,6 @@ if (typeof window.Mozilla === 'undefined') {
             $provider = $providerLinks.find('.provider[data-country="' + COUNTRY_CODE + '"]');
 
             if (COUNTRY_CODE !== '' && $provider.length > 0) {
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
                     event: 'device-drop-down',
                     countryCode: COUNTRY_CODE,

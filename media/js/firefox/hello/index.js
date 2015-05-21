@@ -5,6 +5,8 @@
 ;(function(Mozilla, w, $) {
     'use strict';
 
+    w.dataLayer = w.dataLayer || [];
+
     var $w = $(w);
     var $document = $(document);
     var $introImage = $('#intro-image');
@@ -14,27 +16,26 @@
     var $video = $('#hello-video');
 
     var supportsHTML5Video = !!document.createElement('video').canPlayType;
-    var isWideViewport = $w.width() >= 740;
     var mqIsWide;
     var tourSource = getParameterByName('utm_source');
 
-    if (isWideViewport) {
-        if (Mozilla.SVGAnimCheck()) {
-            $w.on('load', function() {
+    // delay checking window size to account for fennec bug
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1071620
+    $w.on('load', function() {
+        if ($w.width() >= 740) {
+            if (Mozilla.SVGAnimCheck()) {
                 $animationStage.addClass('animate wide');
-            });
+            } else {
+                $('body').addClass('no-animation');
+            }
         } else {
-            $('body').addClass('no-animation');
-        }
-    } else {
-        if (Mozilla.SVGAnimCheck.supportsCSSAnimations()) {
-            $w.on('load', function() {
+            if (Mozilla.SVGAnimCheck.supportsCSSAnimations()) {
                 $animationStage.addClass('animate mini');
-            });
-        } else {
-            $('body').addClass('no-animation');
+            } else {
+                $('body').addClass('no-animation');
+            }
         }
-    }
+    });
 
     // resizing the browser with animation just displays the intro image
     if (typeof matchMedia !== 'undefined') {
@@ -83,7 +84,7 @@
         $('#download-fx').hide();
 
         // show footer try button
-        $('#try-hello-footer').css('display', 'block');
+        $('#try-hello-footer').addClass('active');
     };
 
     var addLinkEvent = function (linkSelector, eventName) {
@@ -119,16 +120,51 @@
             showFxFooterMessaging();
         }
         // Hello exists in desktop version 35 and up
-        else if (w.getFirefoxMasterVersion() >= 35) {
+        else if (w.getFirefoxMasterVersion() >= 35 && 'Promise' in window) {
             showFxFooterMessaging();
 
-            // see if Hello is an available target in toolbar/overflow/customize menu
-            Mozilla.UITour.getConfiguration('availableTargets', function(config) {
-                w.dataLayer = w.dataLayer || [];
+            Promise.all([
+                // check for the browser channel info
+                new Promise(function(resolve) {
+                    Mozilla.UITour.getConfiguration('appinfo', function(config) {
+                        resolve(config.defaultUpdateChannel);
+                    });
+                }),
+                // see if Hello is an available target in toolbar/overflow/customize menu
+                new Promise(function(resolve) {
+                    Mozilla.UITour.getConfiguration('availableTargets', function(config) {
+                        resolve(config.targets);
+                    });
+                }),
+            ]).then(function(results) {
+                var channel = results[0];
+                var targets = results[1];
+
+                // Because Hello is disabled on Firefox 38 ESR, we encourage ESR
+                // users to download non-ESR Firefox to try Hello
+                if (channel === 'esr') {
+                    // Change the copy
+                    $('#ctacopy-hellofx').hide();
+                    $('#ctacopy-esrfx').show();
+
+                    // Instead of the "Try Hellow now" button, show the download
+                    // button and change the label to "Try it now"
+                    $('#try-hello-footer').removeClass('active');
+                    $('#download-fx').show();
+                    $('.download-subtitle').text(window.trans('try-now'));
+
+                    addLinkEvent('.download-link', 'ClickDownload');
+
+                    return;
+                }
+
                 // 'loop' is the snazzy internal code name for Hello
-                if (config.targets && config.targets.indexOf('loop') > -1) {
+                if (targets && targets.indexOf('loop') > -1) {
                     // show the intro try hello button
-                    $('#intro .try-hello').addClass('active');
+                    $('#try-hello-intro').addClass('active');
+
+                    // activate sticky nav button
+                    $('#try-hello-nav').addClass('active');
 
                     // convert the footer try hello link to a button
                     $('#try-hello-footer').attr('role', 'button');
@@ -206,7 +242,6 @@
     });
 
     $video.on('play', function() {
-        w.dataLayer = w.dataLayer || [];
         w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'PlayVideo'});
     });
 

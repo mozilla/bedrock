@@ -68,7 +68,6 @@ $(function () {
         'data-element-action': 'twitter search link',
         'data-element-location': '#IAmAMozillian',
         'data-tracking-flag': 'mozillians'
-
     });
 
     // Track Mozillian personal links
@@ -80,19 +79,19 @@ $(function () {
             'data-element-location': person + ' - ' + link,
             'data-element-action': 'social button click',
             'data-tracking-flag': 'mozillians'
-
         });
     });
 
     // Track other actions on landing page
-    $('.landing-notready .other-actions a')
-        .attr('data-element-location', 'not ready');
+    $('.landing-notready .other-actions a').attr('data-element-location', 'not ready');
 
     // Track other actions on confirmation page
     $('#thankyou .other-actions a').each(function() {
-        var label = $(this).data('label');
+        var $this = $(this);
 
-        $(this).attr({
+        var label = $this.data('label');
+
+        $this.attr({
             'data-element-location': 'Other Ways to Support Mozilla',
             'data-element-action': label,
             'data-tracking-flag': 'contribute-confirmation'
@@ -113,7 +112,10 @@ $(function () {
     $('.contrib-extra .event-link').attr('data-element-location', 'bottom');
 
     // Track 'all events' link in the footer
-    $('.contrib-extra .events-all a').attr({'data-element-location': 'bottom','data-element-action': 'See All Events'});
+    $('.contrib-extra .events-all a').attr({
+        'data-element-location': 'bottom',
+        'data-element-action': 'See All Events'
+    });
 
     // Track external links in the footer
     $('.extra-links a').attr('data-element-location', 'bottom');
@@ -123,7 +125,7 @@ $(function () {
         var category = this.value;
         $('#inquiry-form').attr('data-contribute-category', category);
         window.dataLayer.push({
-            event: 'contribute-signup-interaction', 
+            event: 'contribute-signup-interaction',
             interaction: 'Category',
             contributeCategory: this.value
         });
@@ -134,7 +136,7 @@ $(function () {
         var area = this.value;
         $('#inquiry-form').attr('data-contribute-area', area);
         window.dataLayer.push({
-            event: 'contribute-signup-interaction', 
+            event: 'contribute-signup-interaction',
             interaction: 'Area',
             contributeArea: area
         });

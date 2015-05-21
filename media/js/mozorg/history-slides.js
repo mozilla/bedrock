@@ -70,7 +70,6 @@
     // Track slide views
     var track = function() {
         // must use nextFrame here - currentFrame (oddly) isn't updated yet.
-        window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: 'mozilla-slideshow',
             interaction: action,

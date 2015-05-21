@@ -4,8 +4,7 @@
 
 ;(function($) {
     'use strict';
-    $('.modal-link').attr('data-track', 'true');
-    $('.modal-link').on('click', function(e) {
+    $('.modal-link').attr('data-track', 'true').on('click', function(e) {
         e.preventDefault();
 
         var href = $(this).attr('href');
