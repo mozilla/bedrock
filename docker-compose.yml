@@ -1,4 +1,4 @@
-runserver:
+dev:
   build: .
   command: python manage.py runserver 0.0.0.0:8000
   ports:
@@ -7,22 +7,9 @@ runserver:
     - .:/app
   environment:
     - PYTHONDONTWRITEBYTECODE=1
-grunt:
-  build: .
-  command: bin/grunter
-  volumes:
-    - .:/app
 b2d:
-  build: .
-  command: python manage.py runserver 0.0.0.0:8000
-  ports:
-    - "8000:8000"
-  volumes:
-    - /var/lib/docker/volumes/mozilla/bedrock:/app
-  environment:
-    - PYTHONDONTWRITEBYTECODE=1
-b2dgrunt:
-  build: .
-  command: bin/grunter
+  extends:
+    file: docker-compose.yml
+    service: dev
   volumes:
     - /var/lib/docker/volumes/mozilla/bedrock:/app

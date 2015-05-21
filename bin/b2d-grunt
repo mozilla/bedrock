@@ -1,24 +1,14 @@
-#!/bin/bash -ex
-trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
+#!/bin/bin/grunter -ex
 
-SCRIPT_DIR=${0%/*}
-$SCRIPT_DIR/b2d-fswatch-rsync
-cd $SCRIPT_DIR/..
-
-if [ ! "$(which docker-compose)" ]; then
-    curl -L https://github.com/docker/compose/releases/download/1.2.0/docker-compose-`uname -s`-`uname -m` \
-         > /usr/local/bin/docker-compose
-    chmod +x /usr/local/bin/docker-compose
+if [ $(boot2docker status) != "running" ]; then
+    boot2docker start
 fi
-
 eval $(boot2docker shellinit)
-if [ ! "$(docker images | grep bedrock_b2d)" ]; then
-    docker-compose build b2d
-fi
 
-if [ ! "$(docker images | grep bedrock_b2dgrunt)" ]; then
-    docker-compose build b2dgrunt
+if [ "$(docker ps | grep bedrock_b2d_1)" ]; then
+   docker exec -t bedrock_b2d_1 bin/grunter
+else
+    SCRIPT_DIR=${0%/*}
+    cd $SCRIPT_DIR/..
+    docker-compose run b2d bin/grunter
 fi
-
-docker-compose run b2d bash -c "if [ ! -e .synced ]; then bin/sync_all && touch .synced; fi"
-docker-compose up b2d b2dgrunt
