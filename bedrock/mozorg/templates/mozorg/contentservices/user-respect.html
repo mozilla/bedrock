@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contentservices/base.html" %}
+
+{% block page_title %}{{ _('User respect') }}{% endblock %}
+{% block body_id %}contentservices-user-respect{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block article %}
+  <h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+  <p class="lede">{{ _('Mozilla believes that advertising must respect the needs and preferences of the user, and that advertisers have much to gain by doing so.') }}</p>
+
+  <p>{{ _('To deliver Suggested Tiles, our first advertising product directed towards users’ interests, we are looking to partner with companies that share this vision, such as those committed to respecting Do Not Track.') }}</p>
+
+  <p>
+    {{ _('<strong>We do not build user profiles,</strong> and we will not work with companies that attempt to do so using techniques like canvas fingerprinting or supercookies.') }}
+    {{ _('Spyware, adware or any form of malware will never be included in a Suggested Tiles campaign.') }}
+  </p>
+  <p>
+  <strong>{{ _('We strictly limit data collection.') }}</strong>
+  {{ _('Data is encrypted in transmission and the limited data that Mozilla collects is anonymized and aggregated the week of collection.') }}
+  {{ _('User data is only shared with advertisers in aggregate form.') }}
+  </p>
+  <p>
+    {{ _('<strong>Users can opt out of Suggested Tiles at any time,</strong> simply by unchecking a box, independently from their Do Not Track preferences.') }}
+  </p>
+
+  <p>
+    {% trans url=url('privacy.principles') %}
+      Learn more about our <a href="{{ url }}">data privacy</a> principles.
+    {% endtrans %}
+  </p>
+
+{% endblock %}

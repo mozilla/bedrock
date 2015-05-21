@@ -1,0 +1,79 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contentservices/base.html" %}
+
+{% block page_title %}{{ _('What are Tiles?') }}{% endblock %}
+{% block body_id %}contentservices-tiles{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block article %}
+  <h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+
+  <p>
+    {{ _('Online advertising can be an ongoing battle for user attention — a fight against content as well as other ads.') }}
+    {{ _('And consumers, increasingly concerned about the privacy of their online data, are opting out in greater numbers.') }}
+    {{ _('A lack of transparency can also be a problem for digital advertisers often making ROI hard to measure.') }}
+    {{ _('Nobody really wins.') }}
+  </p>
+
+  <p>
+   {{ _('What if ads could work with users, instead of against them?') }}
+  </p>
+
+  <p>
+    {{ _('We believe this is possible, and that is why we developed Tiles. Tiles are are visual bookmarks or thumbnails that Firefox users see each time they open a new browser tab.') }}
+    {{ _('By providing sponsored content in Tiles, as long as it’s relevant, brands can reach large numbers of consumers, scaling to millions more over time, while enhancing the user experience.') }}
+  </p>
+
+  <h3 id="directory-tiles">{{ _('Directory Tiles') }}</h3>
+
+  <p>
+    {{ _('New users of Firefox with no browsing history will see Mozilla Directory Tiles, a set of default Tiles that may include sponsored content.') }}
+    {{ _('Directory Tiles allow advertisers to reach all of the new Firefox users within a given country, as long as they meet our criteria for new-user content.') }}
+  </p>
+
+  <p>
+    {{ high_res_img('img/contentservices/directory-tiles.jpg', {'alt': 'Directory Tiles screenshot', 'width': '620'}) }}
+  </p>
+
+  <h3 id="suggested-tiles">{{ _('Suggested Tiles') }}</h3>
+
+  <p>
+    {{ _('After users browse, they generate their own browsing histories, and Firefox begins to use Tiles to show suggested sites, based on sites that the user has visited frequently and recently.') }}
+    {{ _('Mozilla Suggested Tiles offer sponsored placement in a designated interest category.') }}
+    {{ _('The browser makes these suggestions based on categories of sites that the user has already shown an interest in.') }}
+    {{ _('To protect users’ privacy, Mozilla strictly limits what data we collect about users’ interaction with Tiles.') }}
+    {{ _('We don’t collect browsing history, always encrypt data in transmission and discard IP addresses after a week.') }}
+  </p>
+
+  <p>
+    {{ high_res_img('img/contentservices/suggested-tiles.jpg', {'alt': 'Suggested Tiles screenshot', 'width': '620'}) }}
+  </p>
+
+  <p>
+    {{ _('Unlike banners and other traditional online ads, tiles appear in an uncluttered grid at the start of a search or site visit, when users are highly receptive to saving time by clicking on a helpful link.') }}
+  </p>
+
+  <p>
+    {{ _('Users can always opt out of any Tiles experience, so those who see your advert remain receptive.') }}
+    {{ _('Firefox users can also view the rationale behind every suggestion with a single click — so advertisers are connecting with an engaged audience.') }}
+  </p>
+
+  <p>
+    {{ high_res_img('img/contentservices/tiles-settings.jpg', {'alt': 'Tiles settings screenshot', 'width': '620'}) }}
+  </p>
+
+  <h3 id="partnering">{{ _('Partnering With Mozilla') }}</h3>
+
+  <p>
+    {{ _('Firefox has hundreds of millions of users worldwide, and over 80 million in the US.') }}
+    {{ _('Using Suggested Tiles, advertisers can quickly reach users across 110 countries in 17 different languages.') }}
+  </p>
+
+  <p>
+  {{ _('Everybody wins.') }}
+  </p>
+
+{% endblock %}

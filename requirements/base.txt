@@ -77,6 +77,9 @@ django-session-csrf==0.5
 # sha256: 2slBnbPs4nu1PHQzJD_CLtQs9o3p1sQSk5Dh2a7-YxA
 whitenoise==1.0.6
 
+# sha256: O1UDtRIkivZhz5Hk9AIydhn_w7xbOw6ndKlp7Tv4RZQ
+django-localflavor==1.1
+
 # django-rest-framework: master
 # sha256: gfmft9XJ7xdSYzkyvCuqYGZra3-4SDg1SzpsFy5SMJU
 https://github.com/tomchristie/django-rest-framework/archive/6e92e415aa7dd6871ef7d6500a85cacebde8dca2.tar.gz#egg=djangorestframework

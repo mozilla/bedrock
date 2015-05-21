@@ -1,0 +1,70 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/base-resp.html" %}
+
+{% block page_title %}{{ _('Content Services') }}{% endblock %}
+{% block body_id %}contentservices{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block site_css %}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'contentservices' %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'video' %}
+{% endblock %}
+
+{% block content %}
+<article id="main-content">
+  <h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+
+  <div class="main">
+    <h2>
+      {% trans url=url('mozorg.contentservices.tiles') %}
+        Introducing <a href="{{ url }}">Suggested Tiles</a>
+      {% endtrans %}
+    </h2>
+    <p class="lede">
+      {{ _('Get the attention of millions of Web users interested in what you have to say.') }}
+    </p>
+    <div class="start">
+      <a href="{{ url('mozorg.contentservices.start') }}" class="button-flat">{{ _('Get Started') }}</a>
+    </div>
+
+  </div>
+
+  <div class="video">
+    <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
+      {{ video('mozilla_suggestedTilesHD.webm',
+               'mozilla_suggestedTilesHD.mp4',
+               h=259, w=460,
+               prefix='//videos.cdn.mozilla.net/uploads/contentservices/',
+               poster=static('img/contentservices/poster.jpg')) }}
+    </div>
+  </div>
+
+  <ul class="links">
+    <li class="link-tiles">
+      <h4><a href="{{ url('mozorg.contentservices.tiles') }}">{{ _('What are Tiles?') }}</a></h4>
+      <p>{{ _('Learn how tiles can quickly address millions of users within select interest areas.') }}</p>
+    </li>
+    <li class="link-faq">
+      <h4><a href="{{ url('mozorg.contentservices.faq') }}">{{ _('FAQs') }}</a></h4>
+      <p>{{ _('How do Tiles differ from other online advertising approaches?') }}</p>
+    </li>
+    <li class="link-respect">
+      <h4><a href="{{ url('mozorg.contentservices.user-respect') }}">{{ _('User respect') }}</a></h4>
+      <p>{{ _('Learn how Tiles give users complete control over their experience.') }}</p>
+    </li>
+    <li class="link-about">
+      <h4><a href="{{ url('mozorg.contentservices.about') }}">{{ _('About') }}</a></h4>
+      <p>{{ _('Advancing the Mozilla mission through innovative new advertising products and services.') }}</p>
+    </li>
+  </ul>
+
+</article>
+{% endblock %}

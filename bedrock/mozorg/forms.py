@@ -10,9 +10,13 @@ from datetime import datetime
 from random import randrange
 
 from django import forms
+from django.core.exceptions import ValidationError
+from django.core.urlresolvers import reverse
 from django.forms import widgets
 from django.utils.safestring import mark_safe
-from django.core.urlresolvers import reverse
+
+from localflavor.us.forms import USStateField
+from localflavor.us.us_states import STATE_CHOICES
 
 import basket
 from basket.base import request
@@ -504,6 +508,241 @@ class WebToLeadForm(forms.Form):
                 }
             )
         )
+
+
+class USStateSelectBlank(widgets.Select):
+    """Version of USStateSelect widget with a blank first selection."""
+
+    def __init__(self, attrs=None, empty_msg=None):
+        if empty_msg is None:
+            empty_msg = ''
+        us_states_blank = (('', empty_msg),) + STATE_CHOICES
+        super(USStateSelectBlank, self).__init__(attrs, choices=us_states_blank)
+
+
+class ContentServicesForm(forms.Form):
+    industries = (
+        ('', 'Select Industry'),
+        ('Agriculture', _lazy(u'Agriculture')),
+        ('Apparel', _lazy(u'Apparel')),
+        ('Banking', _lazy(u'Banking')),
+        ('Biotechnology', _lazy(u'Biotechnology')),
+        ('Chemicals', _lazy(u'Chemicals')),
+        ('Communications', _lazy(u'Communications')),
+        ('Construction', _lazy(u'Construction')),
+        ('Consulting', _lazy(u'Consulting')),
+        ('Education', _lazy(u'Education')),
+        ('Electronics', _lazy(u'Electronics')),
+        ('Energy', _lazy(u'Energy')),
+        ('Engineering', _lazy(u'Engineering')),
+        ('Entertainment', _lazy(u'Entertainment')),
+        ('Environmental', _lazy(u'Environmental')),
+        ('Finance', _lazy(u'Finance')),
+        ('Food &amp; Beverage', _lazy(u'Food &amp; Beverage')),
+        ('Government', _lazy(u'Government')),
+        ('Healthcare', _lazy(u'Healthcare')),
+        ('Hospitality', _lazy(u'Hospitality')),
+        ('Insurance', _lazy(u'Insurance')),
+        ('Machinery', _lazy(u'Machinery')),
+        ('Manufacturing', _lazy(u'Manufacturing')),
+        ('Media', _lazy(u'Media')),
+        ('Not For Profit', _lazy(u'Not For Profit')),
+        ('Other', _lazy(u'Other')),
+        ('Recreation', _lazy(u'Recreation')),
+        ('Retail', _lazy(u'Retail')),
+        ('Shipping', _lazy(u'Shipping')),
+        ('Technology', _lazy(u'Technology')),
+        ('Telecommunications', _lazy(u'Telecommunications')),
+        ('Transportation', _lazy(u'Transportation')),
+        ('Utilities', _lazy(u'Utilities')),
+    )
+
+    first_name = forms.CharField(
+        max_length=40,
+        required=True,
+        error_messages={
+            'required': _lazy(u'Please enter your first name.')
+        },
+        widget=forms.TextInput(
+            attrs={
+                'size': 20,
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+    last_name = forms.CharField(
+        max_length=40,
+        required=True,
+        error_messages={
+            'required': _lazy(u'Please enter your last name.')
+        },
+        widget=forms.TextInput(
+            attrs={
+                'size': 20,
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+    company = forms.CharField(
+        max_length=40,
+        required=True,
+        error_messages={
+            'required': _lazy(u'Please enter your company name.')
+        },
+        widget=forms.TextInput(
+            attrs={
+                'size': 20,
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+    email = forms.EmailField(
+        max_length=80,
+        required=True,
+        error_messages={
+            'required': _lazy(u'Please enter your email address.'),
+            'invalid': _lazy(u'Please enter a valid email address')
+        },
+        widget=forms.TextInput(
+            attrs={
+                'size': 20,
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+    phone = forms.CharField(
+        max_length=40,
+        required=True,
+        error_messages={
+            'required': _lazy(u'Please enter your phone number.')
+        },
+        widget=forms.TextInput(
+            attrs={
+                'size': 20,
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+    mobile = forms.CharField(
+        max_length=40,
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                'size': 20
+            }
+        )
+    )
+    street = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': ''
+            }
+        )
+    )
+    city = forms.CharField(
+        required=False,
+        max_length=40
+    )
+    state = USStateField(
+        required=False,
+        initial='',
+        widget=USStateSelectBlank()
+    )
+    province = forms.CharField(
+        required=False,
+        max_length=40
+    )
+    country = forms.ChoiceField(
+        required=True,
+    )
+    zip = forms.CharField(
+        required=False,
+        max_length=40
+    )
+    campaign_type_description = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': ''
+            }
+        )
+    )
+    interested_countries = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': ''
+            }
+        )
+    )
+    interested_languages = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': ''
+            }
+        )
+    )
+    industry = forms.ChoiceField(
+        choices=industries,
+        required=False,
+        widget=forms.Select(
+            attrs={
+                'title': _lazy('Industry'),
+                'size': 1
+            }
+        )
+    )
+    campaign_type = forms.ChoiceField(
+        choices=(
+            ('', _lazy(u'Select Campaign Type')),
+            ('Brand', _lazy(u'Brand')),
+            ('Direct Response', _lazy(u'Direct Response')),
+            ('Other', _lazy(u'Other'))
+        ),
+        required=False,
+        widget=forms.Select(
+            attrs={
+                'title': _lazy('Campaign Type')
+            }
+        )
+    )
+    # honeypot
+    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
+    # uncomment below to debug salesforce
+    # debug = forms.IntegerField(required=False)
+    # debugEmail = forms.EmailField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        kwargs.pop('lead_source', None)
+        super(ContentServicesForm, self).__init__(*args, **kwargs)
+        locale = kwargs.get('locale', 'en-US')
+        country_list = product_details.get_regions(locale).items()
+        country_list = sorted(country_list, key=lambda country: country[1])
+        country_list.insert(0, ('', ''))
+        self.fields['country'].choices = country_list
+
+    def clean(self):
+        data = super(ContentServicesForm, self).clean()
+        if data.get('country') == 'us' and not data.get('state'):
+            raise ValidationError(self.fields['state'].error_messages['invalid'])
+
+        return data
 
 
 class ContributeStudentAmbassadorForm(forms.Form):
