@@ -115,16 +115,21 @@ body {
         cursor: pointer;
         min-width: 300px;
         max-height: 68px;
+        font-family: 'FiraSans Light';
+        font-weight: bold;
+        .font-size(1.5rem);
         text-align: center;
         .inline-block();
         .border-radius(10px);
         .transition();
-        font-family: 'FireSans Light';
-        font-weight: bold;
-        .font-size(1.5rem);
 
         @media only screen and (max-width: @breakMobileLandscape) {
             padding: 6px @baseLine;
+        }
+
+        @media only screen and (max-width: @breakMobile) {
+            min-width: 260px;
+            .font-size(1rem);
         }
 
         &:hover {
@@ -134,7 +139,7 @@ body {
             box-shadow: none;
             background-color: inherit;
             background-image: none;
-            width: 260px;
+            font-family: inherit;
             text-shadow: none;
         }
     }
