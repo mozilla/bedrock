@@ -27,8 +27,14 @@
     font-style: normal;
 }
 
-/* copied from buttons.less */
-@buttonFlatGreen: #6fbe4a;
+@font-face {
+    font-family: 'FiraSans Light';
+    src: url('/media/fonts/FiraSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-SemiBold.woff') format('woff'),
+         url('/media/fonts/FiraSans-SemiBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
 
 body {
     font-family: 'Fira Sans'
@@ -41,7 +47,7 @@ body {
     width: 100%;
 }
 #masthead {
-    background: #0c99d5 url(/media/img/firefox/personal/header.png) 0 0 no-repeat;
+    background: #1a9bd4 url(/media/img/firefox/personal/header.png) 0 0 no-repeat;
 
     @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
         width: 100%;
@@ -49,7 +55,7 @@ body {
 }
 .header-content {
     margin: 0 auto;
-    padding: 0 30px 20px;
+    padding: 0 0 80px;
     width: 90%;
     max-width: 1400px;
     text-align: center;
@@ -63,12 +69,12 @@ body {
         color: #bee1f5;
         margin: 0 0 55px 0;
         padding-top: 40px;
-        font-family: 'Fira Sans';
-        .font-size(5rem);
+        font-family: 'FiraSans Light';
+        .font-size(4.5rem);
         font-weight: bold;
-        line-height: 1.1;
+        line-height: 1;
         text-transform: uppercase;
-        letter-spacing: 1px;
+        letter-spacing: 0.035em;
         text-shadow: none;
 
         @media only screen and (max-width: @breakDesktop) {
@@ -100,31 +106,36 @@ body {
         content: '';
     }
     .download-button.download-button-simple {
-        /* copied from buttons.less :: .button-flat */
-        text-align: center;
-        padding: 12px (@baseLine * 2);
-        margin-bottom: @baseLine;
-        background: @buttonFlatGreen;
+        /* copied from buttons.less :: .button-flat - with amendments */
+        background: #6fbe4a;
         color: #fff;
+        padding: 12px (@baseLine * 2);
+        margin-bottom: 0;
         border: none;
         cursor: pointer;
+        min-width: 300px;
+        max-height: 68px;
+        text-align: center;
         .inline-block();
-        .border-radius(6px);
+        .border-radius(10px);
         .transition();
-        .font-size(@baseFontSize);
+        font-family: 'FireSans Light';
+        font-weight: bold;
+        .font-size(1.5rem);
 
         @media only screen and (max-width: @breakMobileLandscape) {
             padding: 6px @baseLine;
         }
 
         &:hover {
-            background-color: lighten(@buttonFlatGreen, 3%);
+            background-color: #7dc14c;
         }
         .download-link {
             box-shadow: none;
             background-color: inherit;
             background-image: none;
             width: 260px;
+            text-shadow: none;
         }
     }
     .download-content {
@@ -158,12 +169,12 @@ main {
     p {
         color: #999;
         font-family: 'FiraSans Light';
-        .font-size(1.4rem);
+        .font-size(1.75rem);
         font-weight: 300;
         span {
             display: block;
             color: #56565a;
-            font-family: 'Fira Sans';
+            .font-size(2rem);
             font-weight: bold;
             text-transform: uppercase;
         }
@@ -182,9 +193,82 @@ main {
         background-position: 50% -380px;
     }
     a {
-        .font-size(1.2rem);
+        .font-size(1.25rem);
+        &:hover {
+            color: #005da5;
+        }
     }
 }
+
+/*--------------------------------------------------------------------------*/
+// Simple Footer
+#footer {
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+
+    .content {
+        margin: 0 auto;
+        padding: (@baseLine * 2) 0 (@baseLine * 3);
+        width: 1400px;
+
+        @media only screen and (max-width: @breakTablet) {
+            padding: @baseLine 0;
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    .mozlogo {
+        .image-replaced();
+        display: inline-block;
+        margin: 0 auto @baseLine;
+        background: url(/media/img/firefox/family/index/family-sprite.png) -345px -485px no-repeat;
+        width: 94px;
+        height: 25px;
+        float: left;
+        .at2x('/media/img/firefox/family/index/family-sprite.png', 500px, 645px);
+
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
+        }
+    }
+
+    ul {
+        float: right;
+        margin: 0;
+        list-style: none;
+        .font-size(@smallFontSize);
+
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
+        }
+
+        li {
+            display: inline;
+            margin: 0 10px;
+
+            @media only screen and (max-width: @breakTablet) {
+                display: block;
+                margin: 0 0 .25em;
+            }
+
+            &:after {
+                content: '•';
+                color: @textColorPrimary;
+                margin: 0 -10px 0 10px;
+
+                @media only screen and (max-width: @breakTablet) {
+                    content: '';
+                }
+            }
+
+            &:last-child:after {
+                content: '';
+            }
+        }
+    }
+}
+
 /* specific styles to show download from play store buttons on android. */
 .android-download,
 section.android-download {

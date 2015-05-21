@@ -61,6 +61,26 @@
 
 {% block email_form %}{% endblock %}
 
+{% block site_footer %}
+<footer id="footer">
+  <div class="content">
+    <a class="mozlogo" href="{{ url('mozorg.home') }}">Mozilla</a>
+
+    <ul>
+      <li>
+        <a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a>
+      </li>
+      <li>
+        <a href="{{ url('privacy.notices.websites') }}#cookies">{{ _('Cookies') }}</a>
+      </li>
+      <li>
+        <a href="{{ url('legal.index') }}">{{ _('Legal Notices') }}</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+{% endblock %}
+
 {% block site_js %}
   {{ super() }}
   {% javascript 'firefox-personal' %}
