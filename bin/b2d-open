@@ -1,0 +1,2 @@
+#!/bin/bash -ex
+open http://$(boot2docker ip):8000
