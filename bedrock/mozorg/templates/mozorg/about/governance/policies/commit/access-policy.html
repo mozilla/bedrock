@@ -66,14 +66,11 @@ Therefore, a good policy balances the use of technical and social controls to mi
 
 <p>
 {% trans try='https://wiki.mozilla.org/Build:TryServer',
-         user='https://developer.mozilla.org/docs/Creating_Mercurial_User_Repositories',
-         incubator='https://www.mozilla.org/hacking/incubator-repository.html'
+         user='https://developer.mozilla.org/docs/Creating_Mercurial_User_Repositories'
 %}
-This is the lowest level of access. It allows someone to check in to the <a href="{{ try }}">try trees</a> (<code>try</code> and <code>try-comm-central</code>), the <a href="{{ user }}">user trees</a> and the <a href="{{ incubator }}">incubator trees</a>. Because this is all it gives, this sort of access can be given out generously to anyone who would find it convenient when helping us or working on a developer's personal project, without worrying about them affecting core code. In other words, the target audience for this sort of access might be defined as "friends of and collaborators with Mozilla".
+This is the lowest level of access. It allows someone to check in to the <a href="{{ try }}">try trees</a> (<code>try</code> and <code>try-comm-central</code>) and the <a href="{{ user }}">user trees</a>. Because this is all it gives, this sort of access can be given out generously to anyone who would find it convenient when helping us or working on a developer's personal project, without worrying about them affecting core code. In other words, the target audience for this sort of access might be defined as "friends of and collaborators with Mozilla".
 {% endtrans %}
 </p>
-
-<p>{{ _('Incubators are in this group because they were set up as a mechanism to allow people in exactly that target audience to work with us.') }}</p>
 
 <h3 id="Level1a">{{ _('Level 1a - Named Voucher') }}</h3>
 
@@ -99,19 +96,11 @@ This is the lowest level of access. It allows someone to check in to the <a href
 <table class="table module-table">
   <tr>
     <td>mozilla.org/trunk</td>
-    <td>David Boswell or Reed Loden</td>
+    <td>Reed Loden</td>
   </tr>
   <tr>
     <td>mozilla.com/tags/production</td>
     <td>John Slater</td>
-  </tr>
-  <tr>
-    <td>mozilla-europe.org/tags/production</td>
-    <td>Pascal Chevrel</td>
-  </tr>
-  <tr>
-    <td>crm/tags/production</td>
-    <td>Michael Haggerty</td>
   </tr>
   <tr>
     <td>services.mozilla.com/tags/production</td>
@@ -133,21 +122,17 @@ This is the lowest level of access. It allows someone to check in to the <a href
     <td>mozillaonline.com/tags/production</td>
     <td>Jia Mi</td>
   </tr>
-  <tr>
-    <td>spreadfirefox.com/affiliates_buttons/tags/production</td>
-    <td>???</td>
-  </tr>
 </table>
 
 <p>
-{% trans bug='https://bugzilla.mozilla.org/enter_bug.cgi?alias=&amp;assigned_to=server-ops%40mozilla-org.bugs&amp;blocked=&amp;bug_file_loc=http%3A%2F%2F&amp;bug_severity=normal&amp;bug_status=NEW&amp;cc=gerv%40mozilla.org&amp;comment=%3CRemember%20to%20include%20the%20name%20of%20the%20owner%3E&amp;component=Server%20Operations&amp;contenttypeentry=&amp;contenttypemethod=autodetect&amp;contenttypeselection=text%2Fplain&amp;data=&amp;dependson=&amp;description=&amp;flag_type-4=X&amp;flag_type-607=X&amp;form_name=enter_bug&amp;keywords=&amp;maketemplate=Remember%20values%20as%20bookmarkable%20template&amp;op_sys=All&amp;priority=--&amp;product=mozilla.org&amp;qa_contact=mrz%40mozilla.com&amp;rep_platform=All&amp;short_desc=Restrict%20access%20to%20SVN%20tag%2Fbranch%3A%20%3Clocation%3E&amp;status_whiteboard=&amp;target_milestone=---&amp;version=other' %}
+{% trans bug='https://bugzilla.mozilla.org/form.itrequest' %}
 (To get a part of SVN added to this list, <a href="{{ bug }}">file a bug</a> on IT with the name of the restricted tag or branch and the name of the owner. Please try and keep restricted areas to a minimum.)
 {% endtrans %}
 </p>
 
 <h4 id="L10n">{{ _('L10n') }}</h4>
 
-<p>{{ _('In addition, l10n is a separate category so l10n-only access can be more freely given than might be the case if it were included in level 2. This exception is worth making because of the size and diversity of the l10n community and the looser relationship people in it sometimes have to the rest of the project. l10n access implies level 1 access but not level 2 access.') }}</p>
+<p>{{ _('In addition, l10n is a separate category so l10n-only access can be more freely given than might be the case if it were included in level 2. This exception is worth making because of the size and diversity of the l10n community and the looser relationship people in it sometimes have to the rest of the project. l10n access implies level 1 access but not level 2 access. The named vouchers are Axel Hecht, Jeff Beatty and Chris Hofmann.') }}</p>
 
 <h2 id="Level2">{{ _('Level 2 - General Access') }}</h2>
 
@@ -159,9 +144,9 @@ This is the lowest level of access. It allows someone to check in to the <a href
 
 <p>{{ _('Requirements: two vouchers - module owners or peers of code stored at this level') }}</p>
 
-<p>{{ _('This permission gives access to check into any tree from which executable code becomes part of our core products - Firefox, Fennec and Thunderbird. To put it another way, the unifying factor is that it should not be possible to break core product tinderboxes unless you have this access. This is fundamentally a statement of trust in and familiarity with an individual, and so access to one such tree gives access to all such trees, although social controls may prevent people checking in to certain ones. (Peers can vouch because the number of modules at this level is smaller, and because if you are working only in a single area of the code, there may not be multiple module owners familiar with your work.)') }}</p>
+<p>{{ _('This permission gives access to check into any tree from which executable code becomes part of our core products - Firefox, Firefox for Android and Thunderbird. To put it another way, the unifying factor is that it should not be possible to break core product tinderboxes unless you have this access. This is fundamentally a statement of trust in and familiarity with an individual, and so access to one such tree gives access to all such trees, although social controls may prevent people checking in to certain ones. (Peers can vouch because the number of modules at this level is smaller, and because if you are working only in a single area of the code, there may not be multiple module owners familiar with your work.)') }}</p>
 
-<p>{{ _('People with this access may not actually be working on Firefox, Fennec or Thunderbird, but their ability to affect them means that the level of trust and familarity required for access are higher.') }}</p>
+<p>{{ _('People with this access may not actually be working on Firefox, Firefox for Android or Thunderbird, but their ability to affect them means that the level of trust and familarity required for access are higher.') }}</p>
 
 <p>{{ _('The repositories which fall in this category are:') }}</p>
 
@@ -172,9 +157,6 @@ mozilla-inbound
 mozilla-central
 comm-central
 releases/*
-mobile-browser
-projects/electrolysis
-projects/firefox-lorentz
 </pre>
 
 <p>{{ _('...plus any other repo from which code is merged to any of the above without a thorough review at merge time.') }}</p>
