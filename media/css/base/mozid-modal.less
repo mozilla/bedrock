@@ -31,7 +31,9 @@ html.noscroll body {
             &> header {
                 display: block;
                 height: auto;
-                .font-size(60px);
+                .font-size(48px);
+                line-height: 1.3;
+                padding: 0 (@gridGutterWidth * 3);
                 text-align: center;
                 color: #fff;
                 .open-sans-light;
@@ -69,7 +71,8 @@ html.noscroll body {
                     border: 2px solid #fff;
                     .transition(all 0.2s ease);
 
-                    &:hover {
+                    &:hover,
+                    &:focus {
                         .transform(scale(1.1));
                         box-shadow: none;
                     }
@@ -100,7 +103,7 @@ html[dir="rtl"] {
 @media only screen and (min-width: @breakDesktop) {
     #modal .inner {
         width: @widthDesktop - (@gridGutterWidth * 2);
-        margin: 60px auto;
+        margin: @baseLine auto (@baseLine * 3);
         .footer {
             .clearfix();
             padding-left: 30px;
@@ -123,7 +126,7 @@ html[dir="rtl"] {
     #modal .inner {
         .span_narrow(12);
         float: none;
-        margin: 60px auto;
+        margin: @baseLine auto (@baseLine * 3);
     }
 }
 
