@@ -40,6 +40,10 @@ Build the dev docker image::
 
     $ docker-compose build dev
 
+Create a local settings file::
+
+    $ cp bedrock/settings/local.py-dist bedrock/settings/local.py
+
 Run the ``bin/sync_all`` script inside a dev docker container::
 
     $ docker-compose run dev bin/sync_all
