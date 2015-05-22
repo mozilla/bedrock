@@ -9,6 +9,11 @@ First, install `Docker https://docs.docker.com/installation/`_ and `Compose http
 
 **(Make sure you use --recursive so that legal-docs are included)**
 
+To work with locales other than en-US, you will also need to clone the locales from their subversion repository::
+
+    $ git svn clone https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
+    # or
+    $ svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
 
 OS X
 ----
