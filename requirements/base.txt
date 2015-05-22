@@ -78,6 +78,7 @@ django-session-csrf==0.5
 whitenoise==1.0.6
 
 # sha256: O1UDtRIkivZhz5Hk9AIydhn_w7xbOw6ndKlp7Tv4RZQ
+# sha256: r9ZifND9OWgk5EpeT3v-nI16Rdm_CbTbLAaD2SaBupM
 django-localflavor==1.1
 
 # django-rest-framework: master
