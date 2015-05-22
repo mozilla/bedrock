@@ -38,12 +38,18 @@ and use the following to launch ``grunt`` in a container::
 
     $ bin/b2d-grunt
 
+If you make or pull a change to the dependencies, such as in ``requirements/dev.txt`` or ``package.json``, you will need to rebuild your local dev image::
+
+    $ bin/b2d-build
+  
 Linux
 -----
 
 Build the dev docker image::
 
     $ docker-compose build dev
+
+If you make or pull a change to the dependencies, such as in ``requirements/dev.txt`` or ``package.json``, you will need to rebuild your local dev image with the command above.
 
 Create a local settings file::
 

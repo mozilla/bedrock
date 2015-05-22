@@ -1,0 +1,9 @@
+#!/bin/bash -ex
+trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
+SCRIPT_DIR=${0%/*}
+cd $SCRIPT_DIR/..
+if [ $(boot2docker status) == "poweroff" ]; then
+    boot2docker start
+fi
+eval $(boot2docker shellinit)
+docker-compose build b2d
