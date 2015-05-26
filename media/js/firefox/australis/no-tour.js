@@ -17,8 +17,11 @@
             }
 
             // Push custom GA variable to track Sync visibility
-            gaTrack(['_setCustomVar', 6, 'Sync Visible', visible, 2]);
-            gaTrack(['_trackEvent', 'Tour Visibility', 'on load', 'No Tour Visible', 0, 1]);
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'tour-visiblity',
+                syncVisibility: visible
+            });
         });
     }
 

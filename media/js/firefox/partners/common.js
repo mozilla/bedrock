@@ -4,6 +4,8 @@
 ;(function(w, $, enquire, Modernizr, trans) {
     'use strict';
 
+    window.dataLayer = window.dataLayer || [];
+
     var _load_mobile = function() {
         w.Modernizr.load([{
             both: MOBILE_JS_FILES,
@@ -110,12 +112,12 @@
 
     // GA tracking
     w.ga_track = function(virtual_page) {
-        if (w._gaq) {
-            if (last_virtual_page !== virtual_page) {
-                window._gaq.push(['_trackPageview', '/' + locale + '/firefox/partners/' + virtual_page]);
-
-                last_virtual_page = virtual_page;
-            }
+        if (last_virtual_page !== virtual_page) {
+            window.dataLayer.push({
+                event: 'virtual-pageview',
+                virtualUrl: '/' + locale + '/firefox/partners/' + virtual_page
+            });
+            last_virtual_page = virtual_page;
         }
     };
 

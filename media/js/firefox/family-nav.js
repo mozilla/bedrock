@@ -122,7 +122,11 @@ if (typeof window.Mozilla === 'undefined') {
 
                 // track when opening menu
                 if ($tertiaryNavTrigger.hasClass('active')) {
-                    window.gaTrack(['_trackEvent', 'Fx Family Nav Interactions', 'Side Menu', 'Open Menu']);
+                    window.dataLayer.push({
+                        event: 'family-nav-interaction',
+                        location: 'Side Menu',
+                        browserAction: 'Open Menu'
+                    });
                 }
             }).addClass('visible');
 
@@ -206,57 +210,6 @@ if (typeof window.Mozilla === 'undefined') {
                     $('.trigger-dots').addClass('fallback');
                 }
             }
-
-            _initGA();
-        };
-
-        // analytics
-        var _initGA = function() {
-            // clicks on top level nav links
-            $primaryLinks.on('click', function(e) {
-                var $this = $(this);
-
-                if (e.metaKey || e.ctrlKey) {
-                    window.gaTrack(['_trackEvent', 'Fx Family Nav Interactions', $this.data('id'), $this.data('id') + ' - top nav link']);
-                } else {
-                    e.preventDefault();
-                    window.gaTrack(['_trackEvent', 'Fx Family Nav Interactions', $this.data('id'), $this.data('id') + ' - top nav link'], function() {
-                        window.location = $this.attr('href');
-                    });
-                }
-            });
-
-            // clicks on subnav links
-            $subNavs.on('click', 'a', function(e) {
-                var $this = $(this);
-
-                var parentName = $this.data('id').split('-');
-
-                var trackName = ($fxFamilyHeader.hasClass('stuck')) ? parentName[0] + ' - Persistent Nav' : parentName[0];
-
-                if (e.metaKey || e.ctrlKey) {
-                    window.gaTrack(['_trackEvent', 'Fx Family Nav Interactions', trackName, parentName[1]]);
-                } else {
-                    e.preventDefault();
-                    window.gaTrack(['_trackEvent', 'Fx Family Nav Interactions', trackName, parentName[1]], function() {
-                        window.location = $this.attr('href');
-                    });
-                }
-            });
-
-            // clicks on tertiary nav links
-            $tertiaryNavs.on('click', 'a', function(e) {
-                var $this = $(this);
-
-                if (e.metaKey || e.ctrlKey || $this.attr('rel') === 'external') {
-                    window.gaTrack(['_trackEvent', 'Fx Family Nav Interactions', 'Side Menu', $this.data('ga')]);
-                } else {
-                    e.preventDefault();
-                    window.gaTrack(['_trackEvent', 'Fx Family Nav Interactions', 'Side Menu', $this.data('ga')], function() {
-                        window.location = $this.attr('href');
-                    });
-                }
-            });
         };
 
         // public interface

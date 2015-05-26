@@ -70,7 +70,11 @@
     // Track slide views
     var track = function() {
         // must use nextFrame here - currentFrame (oddly) isn't updated yet.
-        gaTrack(['_trackEvent', 'mozilla15 SlideShow', action, slideshow.nextFrame[0].id]);
+        window.dataLayer.push({
+            event: 'mozilla-slideshow',
+            interaction: action,
+            slide: slideshow.nextFrame[0].id
+        });
 
         // reset action to autoplay
         action = 'auto';

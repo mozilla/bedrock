@@ -101,9 +101,11 @@ DOWNLOADTAB.classes.App = (function (singleton) {
                 self.theater.showScene(2);
             }
 
-            if (self.window._gaq) {
-                self.window._gaq.push(['_trackPageview', self.virtualUrl]);
-            }
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'virtual-pageview',
+                virtualUrl: self.virtualUrl
+            });
 
             // Delay download so window.location redirect doesn't interrupt
             // rendering and to give Google Analytics time to track

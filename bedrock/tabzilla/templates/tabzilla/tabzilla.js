@@ -207,10 +207,6 @@ var Tabzilla = (function (Tabzilla) {
 
         panel.focus();
 
-        if (typeof(_gaq) == 'object') {
-            window._gaq.push(['_trackEvent', 'Tabzilla', 'click', 'Open Tabzilla']);
-        }
-
         return panel;
     };
     Tabzilla.close = function () {
@@ -223,10 +219,6 @@ var Tabzilla = (function (Tabzilla) {
             .attr({'aria-expanded' : 'false'})
             .addClass('tabzilla-closed')
             .removeClass('tabzilla-opened');
-
-        if (typeof(_gaq) == 'object') {
-            window._gaq.push(['_trackEvent', 'Tabzilla', 'click', 'Close Tabzilla']);
-        }
 
         return tab;
     };
@@ -302,19 +294,21 @@ var Tabzilla = (function (Tabzilla) {
 
         bar.find('.btn-accept').click(function (event) {
             event.preventDefault();
-            self.trackEvent(self.onaccept.trackAction || 'accept',
-                            self.onaccept.trackLabel,
-                            0, false, // A user interaction event
-                            self.onaccept.callback);
+
+            if (self.onaccept.callback) {
+                self.onaccept.callback();
+            }
+
             self.hide();
         });
 
         bar.find('.btn-cancel').click(function (event) {
             event.preventDefault();
-            self.trackEvent(self.oncancel.trackAction || 'cancel',
-                            self.oncancel.trackLabel,
-                            0, false, // A user interaction event
-                            self.oncancel.callback);
+
+            if (self.oncancel.callback) {
+                self.oncancel.callback();
+            }
+
             self.hide();
             try {
                 sessionStorage.setItem(self.prefName, 'true');
@@ -322,10 +316,10 @@ var Tabzilla = (function (Tabzilla) {
         });
 
         panel.trigger('infobar-showing');
-        self.trackEvent(self.onshow.trackAction || 'show',
-                        self.onshow.trackLabel,
-                        0, true, // An auto-triggered, non-interaction event
-                        self.onshow.callback);
+
+        if (self.onshow.callback) {
+            self.onshow.callback();
+        }
 
         if (opened) {
             bar.css('height', 0)
@@ -348,32 +342,6 @@ var Tabzilla = (function (Tabzilla) {
             self.element.remove();
             panel.trigger('infobar-hidden');
         });
-    };
-    Infobar.prototype.trackEvent = function (action, label, value,
-                                             nonInteraction, callback) {
-        if (typeof(_gaq) !== 'object') {
-            if (callback) {
-                callback();
-            }
-
-            return;
-        }
-
-        // The 5th value and 6th nonInteraction parameters are optional.
-        // See the Google Analytics Developer Guide for details:
-        // https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide
-        window._gaq.push(['_trackEvent', 'Tabzilla - ' + this.name, action,
-                          label, value || 0, nonInteraction || false]);
-
-        if (callback) {
-            var timer = null;
-            var _callback = function () {
-                clearTimeout(timer);
-                callback();
-            };
-            timer = setTimeout(_callback, 500);
-            window._gaq.push(_callback);
-        }
     };
     Infobar.prototype.onshow = {};
     Infobar.prototype.onaccept = {};
@@ -558,49 +526,6 @@ var Tabzilla = (function (Tabzilla) {
     };
     // Expose the object for the tests
     Tabzilla.infobar = Infobar;
-    var setupGATracking = function () {
-        // track tabzilla links in GA
-        $('#tabzilla-contents').on('click', 'a', function (e) {
-            var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-            var href = this.href;
-            var timer = null;
-            var callback = function () {
-                clearTimeout(timer);
-                window.location = href;
-            };
-
-            if (typeof(_gaq) == 'object') {
-                if (newTab) {
-                    window._gaq.push(['_trackEvent', 'Tabzilla', 'click', href]);
-                } else {
-                    e.preventDefault();
-                    timer = setTimeout(callback, 500);
-                    window._gaq.push(['_trackEvent', 'Tabzilla', 'click', href], callback);
-                }
-            }
-        });
-        // track search keywords in GA
-        $('#tabzilla-search form').on('submit', function (e) {
-            e.preventDefault();
-
-            var $form = $(this);
-            var keyword = $form.find('#q').val();
-            var timer = null;
-            var callback = function () {
-                clearTimeout(timer);
-                $form.submit();
-            };
-
-            $form.unbind('submit');
-
-            if (typeof(_gaq) == 'object' && keyword !== '') {
-                timer = setTimeout(callback, 500);
-                window._gaq.push(['_trackEvent', 'Tabzilla', 'search', keyword], callback);
-            } else {
-                $form.submit();
-            }
-        });
-    };
     var addEaseInOut = function () {
         $.extend($.easing, {
             'easeInOut':  function (x, t, b, c, d) {
@@ -681,8 +606,6 @@ var Tabzilla = (function (Tabzilla) {
                 setup.call();
             }
         });
-
-        setupGATracking();
 
         // Careers teaser in error console.
         $(window).load(function() {

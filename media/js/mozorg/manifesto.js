@@ -30,8 +30,11 @@ $(function() {
 
         $origin.addClass('modal-origin');
 
-        gaTrack(['_trackEvent', '/about/manifesto/ Interactions',
-                 action, section_id.match(/\d+/)[0]]);
+        window.dataLayer.push({
+            event: 'manifesto-interaction',
+            browserAction: action,
+            section: section_id.match(/\d+/)[0]
+        });
     };
 
     // Set up the modal
@@ -57,8 +60,11 @@ $(function() {
                         nav_modal($(this).hasClass('prev') ? -1 : 1);
                     });
 
-                    gaTrack(['_trackEvent', '/about/manifesto/ Interactions',
-                             'modal open', section_id.match(/\d+/)[0]]);
+                    window.dataLayer.push({
+                        event: 'manifesto-interaction',
+                        browserAction: 'modal open',
+                        section: section_id.match(/\d+/)[0]
+                    });
                 }
             });
         }).on('keydown', function (event) {
@@ -99,8 +105,12 @@ $(function() {
     // Open Twitter in a sub window
     // https://dev.twitter.com/docs/intents
     var open_twitter_subwin = function (section, url) {
-        gaTrack(['_trackEvent', '/about/manifesto/ Interactions',
-                 'tweet', section]);
+
+        window.dataLayer.push({
+            event: 'manifesto-interaction',
+            browserAction: 'tweet',
+            section: section
+        });
 
         // Check if the official Twitter widget is activated. If so, we don't
         // have to open a popup window ourselves as it will be opened by the
@@ -141,8 +151,12 @@ $(function() {
             $this.attr('target', '_blank');
             action = href.match(/youtube/) ? 'modal video link click'
                                            : 'modal link click';
-            gaTrack(['_trackEvent', '/about/manifesto/ Interactions',
-                     action, section + ': ' + $this.text()]);
+
+            window.dataLayer.push({
+                event: 'manifesto-interaction',
+                browserAction: action,
+                section: section + ': ' + $this.text()
+            });
         }
     });
 
@@ -155,6 +169,16 @@ $(function() {
     });
 
     // Set up content link handler
+    $('#main-content a').each(function() {
+        var $this = $(this);
+
+        if (!$this.hasClass('share-button')) {
+            $this.attr({
+                'data-element-action': 'content link click',
+                'data-element-section': $this.text()
+            });
+        }
+    });
     $('#main-content a').on('click', function (event) {
         var $this = $(this);
         var href = $this.attr('href');
@@ -166,9 +190,8 @@ $(function() {
             open_twitter_subwin('custom', href);
         } else if (!$this.hasClass('share-button')) {
             // Open the link in the current tab
-            gaTrack(['_trackEvent', '/about/manifesto/ Interactions',
-                     'content link click ', $this.text()],
-                    function () { location.href = href; });
+            location.href = href;
+
         }
     });
 

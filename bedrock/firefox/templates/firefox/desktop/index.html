@@ -65,7 +65,7 @@
       <p class="lead ga-track-links">
         {{ _('We’ve always designed Firefox to protect and respect your private information.') }}
       {% trans url1='https://blog.mozilla.org/blog/2015/01/27/get-smart-on-international-data-privacy-day/' %}
-        That’s why we’re proud to be voted the <a href="{{ url1 }}">Most Trusted Internet Company for Privacy.</a>
+        That’s why we’re proud to be voted the <a href="{{ url1 }}" data-interaction="outbound link">Most Trusted Internet Company for Privacy.</a>
       {% endtrans %}
       </p>
 
@@ -74,7 +74,7 @@
       {% endwith %}
 
       <p>
-        <a class="more" href="{{ url('firefox.desktop.trust') }}">{{ _('Find out what makes Firefox the most trusted browser on the Web') }}</a>
+        <a class="more" href="{{ url('firefox.desktop.trust') }}" data-interaction="outbound link">{{ _('Find out what makes Firefox the most trusted browser on the Web') }}</a>
       </p>
     </div><!--/.container-->
   </section>
@@ -113,7 +113,7 @@
               <div class="panel-footer" id="panel-footer-ok"></div>
               <div class="panel-footer" id="panel-footer-on"></div>
               <div class="panel-footer" id="panel-footer">
-                <a role="button" href="#" id="flexible-replay">
+                <a role="button" href="#" id="flexible-replay" data-interaction="replay-link" data-element-action="australis">
                   <span>{{ _('Replay') }}</span>
                   <div id="panel-replay"></div>
                 </a>

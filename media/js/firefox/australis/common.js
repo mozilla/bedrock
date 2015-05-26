@@ -15,31 +15,6 @@
         $window.scrollTop(0);
     }
 
-    // track Sync CTA click and link to about:accounts where posiible
-    function trackSyncClick(e) {
-        e.preventDefault();
-        var url = this.href;
-        var goToAccounts = function () {
-            // available on Firefox 31 and greater
-            Mozilla.UITour.showFirefoxAccounts();
-        };
-
-        if (window.getFirefoxMasterVersion() >= 31) {
-            gaTrack(['_trackEvent', pageId + ' Page Interactions - New Firefox Tour', 'button click', 'Get Started with Sync'], goToAccounts);
-        } else {
-            window.open(url, '_blank');
-            gaTrack(['_trackEvent', pageId + ' Page Interactions - New Firefox Tour', 'button click', 'Get Started with Sync']);
-        }
-    }
-
-    // Open learn more links in new window and track
-    function trackLearnMoreLinks(e) {
-        e.preventDefault();
-        var url = this.href;
-        window.open(url, '_blank');
-        gaTrack(['_trackEvent', pageId + ' Page Interactions - New Firefox Tour', 'link click', url]);
-    }
-
     // start in-page animations when user scrolls down from header
     $('#masthead').waypoint(function(direction) {
         if (direction === 'down') {
@@ -68,10 +43,33 @@
 
     // link directly to Firefox Accounts when clicking the Sync CTA button
     Mozilla.UITour.getConfiguration('sync', function (config) {
-        $('.sync-cta').on('click', '.button', trackSyncClick);
+        $('.sync-cta .button').each(function() {
+            $(this).attr({
+                'data-page-name': pageId,
+                'data-interaction': 'button click',
+                'data-element-location': 'Get Started with Sync'
+            }).on('click', function(e) {
+                e.preventDefault();
+
+                if (window.getFirefoxMasterVersion() >= 31) {
+                    Mozilla.UITour.showFirefoxAccounts();
+                } else {
+                    window.open(this.href, '_blank');
+                }
+            });
+        });
     });
 
-    // track learn more links on click
-    $('.learn-more a').on('click', trackLearnMoreLinks);
+    // track learn more links
+    $('.learn-more a').each(function() {
+        $(this).attr({
+            'data-page-name': pageId,
+            'data-interaction': 'button click',
+            'data-element-location': 'Get Started with Sync'
+        }).on('click', function(e) {
+            e.preventDefault();
+            window.open(this.href, '_blank');
+        });
+    });
 
 })(window.jQuery, window.Mozilla);

@@ -83,7 +83,6 @@
 
     // Custom Globals for bedrock
     "globals"       : {
-        "Mozilla"   : false,
-        "gaTrack"   : false
+        "Mozilla"   : false
     }
 }

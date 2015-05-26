@@ -165,74 +165,74 @@
         $buttons.prependTo('.extra-news > .control');
 
         $('.news-buttons .btn-next').bind('click', function() {
-            gaTrack(['_trackEvent', 'Mozilla in the News Interactions', 'Next', 'News Navigation Arrows']);
+            window.dataLayer.push({
+                event: 'mozilla-news-interaction',
+                browserAction: 'Next'
+            });
         });
         $('.news-buttons .btn-prev').bind('click', function() {
-            gaTrack(['_trackEvent', 'Mozilla in the News Interactions', 'Previous', 'News Navigation Arrows']);
+            window.dataLayer.push({
+                event: 'mozilla-news-interaction',
+                browserAction: 'Previous'
+            });
         });
     }
     controlButtons();
 
     // Track when/which accordion panels are opened
     var track_accordion = function(position, id) {
-        gaTrack(['_trackEvent','Homepage Interactions', 'open', position+':'+id]);
+        window.dataLayer.push({
+            event: 'homepage-interaction',
+            interaction: 'open',
+            location: position + ':' + id});
     };
 
     // Track panel clicks
-    $('.panel-content a').on('click', function(e) {
-        e.preventDefault();
+    $('.panel-content a').each(function() {
         var panel = $(this).parents('.panel');
-        var href = this.href;
-        var callback = function() {
-            $(this).blur();
-            window.location = href;
-        };
-        gaTrack(['_trackEvent','Homepage Interactions', 'click', (panel.index() + 1)+':'+panel.attr('id')], callback);
+        var location = (panel.index() + 1)+':'+panel.attr('id');
+        $(this).attr({
+            'data-tracking-flag': 'home',
+            'data-interaction': 'click',
+            'data-element-location': location
+        });
     });
 
     // Track donate clicks
-    $('#home-promo-donate-form').submit(function(e) {
-        e.preventDefault();
-
-        var $form = $(this);
-        $form.unbind('submit');
-
+    $('#home-promo-donate-form').each(function() {
         var panel = $(this).parents('.panel');
-
-        gaTrack(
-            ['_trackEvent', 'Homepage Interactions', 'submit', (panel.index() + 1) + ':donate'],
-            function (){ $form.submit(); }
-        );
+        var location = (panel.index() + 1) + ':donate';
+        $(this).attr({
+            'data-tracking-flag': 'home',
+            'data-interaction': 'submit',
+            'data-element-location': location
+        });
     });
 
     // Track news & contribute clicks
-    $('.extra-news a, .extra-contribute a, .engage a').on('click', function(e) {
-        e.preventDefault();
-
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
-
+    $('.extra-news a, .extra-contribute a, .engage a').each(function() {
         var action = (/external/.test($(this).attr('rel'))) ? 'outbound link' : 'click';
 
-        gaTrack(['_trackEvent', 'Homepage Interactions', action, href], callback);
+        $(this).attr({
+            'data-tracking-flag': 'home',
+            'data-interaction': action,
+            'data-element-location': this.href
+        });
     });
 
     // Track Firefox downloads
-    $('.download-link').on('click', function(e) {
-        e.preventDefault();
-        var href = this.href;
-        var callback = function() {
-            window.location = href;
-        };
+    $('.download-link').each(function() {
         var platform;
-        if ($(this).parents('li').hasClass('os_android')) {
+        var $this = $(this);
+        if ($this.parents('li').hasClass('os_android')) {
             platform = 'Firefox for Android';
         } else {
             platform = 'Firefox Desktop';
         }
-        gaTrack(['_trackEvent', 'Firefox Downloads', 'download click', platform], callback);
+        $this.attr({
+            'data-interaction': 'download click',
+            'data-download-version': platform
+        });
     });
 
 })(window.jQuery);

@@ -12,6 +12,8 @@ function onYouTubeIframeAPIReady() {
 ;(function($, Mozilla) {
     'use strict';
 
+    window.dataLayer = window.dataLayer || [];
+
     var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -29,36 +31,6 @@ function onYouTubeIframeAPIReady() {
     var highlightTimeout;
     var queryIsLargeScreen = matchMedia('(min-width: 900px)');
     var isHighRes = Mozilla.ImageHelper.isHighDpi();
-
-    var trackClick = function (gaArgs, href, event) {
-        if (event.metaKey || event.ctrlKey) {
-            // Open link in new tab
-            gaTrack(gaArgs);
-        } else {
-            event.preventDefault();
-            gaTrack(gaArgs, function() { window.location = href; });
-        }
-    };
-
-    // Setup GA tracking for misc links
-    $('.feature .more').on('click', function(e) {
-        trackClick([
-            '_trackEvent',
-            'Developer /firstrun/ Interactions',
-            'learn more link clicks',
-            $(this).text()
-        ], $(this).attr('href'), e);
-    });
-
-    // Setup GA tracking for theme reset link
-    $('.notice .more').on('click', function(e) {
-        trackClick([
-            '_trackEvent',
-            'Developer /firstrun/ Interactions',
-            'learn more link clicks',
-            'Want the old look back?'
-        ], $(this).attr('href'), e);
-    });
 
     function onYouTubeIframeAPIReady() {
 
@@ -85,12 +57,20 @@ function onYouTubeIframeAPIReady() {
 
             function onPlayerReady(event) {
                 event.target.playVideo();
-                gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'play', videoTitle + ' video']);
+                window.dataLayer.push({
+                    event: 'video-interaction',
+                    interaction: 'play',
+                    videoTitle: videoTitle
+                });
             }
 
             function onPlayerStateChange(event) {
                 if (event.data === YT.PlayerState.ENDED) {
-                    gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'finish', videoTitle + ' video']);
+                    window.dataLayer.push({
+                        event: 'video-interaction',
+                        interaction: 'finish',
+                        videoTitle: videoTitle
+                    });
                 }
             }
 
@@ -169,13 +149,13 @@ function onYouTubeIframeAPIReady() {
     // close tour and track button click
     function devToolsDoorhangerClose() {
         showReminderDoorhanger();
-        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Developer Tools doorhanger - link click', 'Close Tour']);
+        window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Developer Tools doorhanger - button click', browserAction: 'Close Tour'});
     }
 
     // show webIDE doorhanger and track button click
     function nextWebIDEButton() {
         showWebIDEDoorhanger();
-        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Developer Tools doorhanger - button click', 'Next:WebIDE']);
+        window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Developer Tools doorhanger - button click', browserAction: 'Next:WebIDE'});
     }
 
     // shows the WebIDE doorhanger step
@@ -227,13 +207,15 @@ function onYouTubeIframeAPIReady() {
 
     function webIDEDoorhangerClose() {
         showReminderDoorhanger();
-        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Try WebIDE doorhanger - link click', 'Close Tour']);
+
+        window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Try WebIDE doorhanger - link click', browserAction: 'Close Tour'});
     }
 
     // show webIDE doorhanger and track button click
     function nextSyncButton() {
         showSyncDoorhanger();
-        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Try WebIDE doorhanger - button click', 'Next:Sync']);
+
+        window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Try WebIDE doorhanger - button click', browserAction: 'Next:Sync'});
     }
 
     // shows the Sync doorhanger step
@@ -272,7 +254,7 @@ function onYouTubeIframeAPIReady() {
 
     function syncDoorhangerClose() {
         showReminderDoorhanger();
-        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Sync doorhanger - link click', 'No Thanks']);
+        window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Sync doorhanger - link click', browserAction: 'No Thanks'});
     }
 
     // highlights sync sign in button in the app menu
@@ -285,8 +267,7 @@ function onYouTubeIframeAPIReady() {
         });
 
         current = TARGET_4;
-
-        gaTrack(['_trackEvent', 'Developer /firstrun/ Interactions', 'Sync doorhanger - button click', 'Sync My Firefox']);
+        window.dataLayer.push({event: 'dev-firstrun-tour', interaction: 'Sync doorhanger - button click', browserAction: 'Sync My Firefox'});
     }
 
     function showReminderDoorhanger() {
