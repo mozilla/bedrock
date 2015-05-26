@@ -4,7 +4,7 @@
 
 ;(function($) {
     'use strict';
-
+    $('.modal-link').attr('data-track', 'true');
     $('.modal-link').on('click', function(e) {
         e.preventDefault();
 
@@ -22,22 +22,10 @@
             title: $content.find('.modal-content-header:first').text(),
             onCreate: create_callback
         });
-
-        gaTrack(['_trackEvent','/mwc/ Interactions','link click', href]);
     });
 
     // GA tracking on specific links
-    $('.ga').on('click', function(e) {
-        e.preventDefault();
-
-        var href = this.href;
-
-        var callback = function() {
-            window.location = href;
-        };
-
-        gaTrack(['_trackEvent','/mwc/ Interactions','link click', href], callback);
-    });
+    $('.ga').attr('data-track', 'true');
 
     // trigger modal on page load if hash is present
     switch (window.location.hash) {

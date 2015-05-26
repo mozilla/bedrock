@@ -30,11 +30,11 @@ jQuery(function($) {
         // if newsletter is checked and wasn't previously subscribed to, track the subscription
         if (subscribed === 'True' && initialNewsletters.indexOf(newsletter) === -1) {
           // newly subscribed to this newsletter
-          events.push(['_trackEvent', 'Newsletter Registration', 'subscribe', newsletter]);
+          events.push({'event': 'newsletter-interaction', 'category': 'Newsletter Registration', 'browserAction': 'subscribe', 'newsletter': newsletter});
         // if newsletter is not checked and was previously subscribed to, track the unsubscription
         } else if (subscribed === 'False' && initialNewsletters.indexOf(newsletter) > -1) {
           // newly unsubscribed to this newsletter
-          events.push(['_trackEvent', 'Newsletter Registration', 'unsubscribe', newsletter]);
+          events.push({'event': 'newsletter-interaction', 'category': 'Newsletter Registration', 'browserAction': 'unsubscribe', 'newsletter': newsletter});
         }
 
         // make sure we don't re-process this newsletter
@@ -42,19 +42,8 @@ jQuery(function($) {
       }
     });
 
-    if (typeof(gaTrack) === 'function' && events.length > 0) {
-      // make GA call for each event
-      $.each(events, function(i, evt) {
-        // if the last event, add callback to submit the form
-        if (i === (events.length - 1)) {
-          gaTrack(evt, function() { $form.submit(); });
-        } else {
-          gaTrack(evt);
-        }
-      });
-    } else {
-      $form.submit();
-    }
+    $form.submit();
+    
   };
 
   $('form#existing-newsletter-form').on('submit', handler);

@@ -16,14 +16,7 @@
             $masthead_download_firefox.attr('href', $masthead_download_firefox.attr('href') + '#download-fx');
         }
 
-        var trackDownloadButtonClick = function(a, position) {
-            var href = a.href;
-
-            gaTrack(['_trackEvent', 'Firefox Downloads', 'download click - ' + position, 'Firefox for Desktop'], function() {
-                window.location = href;
-            });
-        };
-
+        var downloadVersion = 'Firefox for Desktop';
         // hide the footer download button and extend email form to full width
         $('#download-wrapper').show();
         $('#subscribe-wrapper').addClass('columned');
@@ -35,54 +28,25 @@
         $('#sticky-download-desktop').fadeIn('fast');
 
         // show the top nav download button and set up GA tracking
-        $masthead_download_firefox.fadeIn('fast').on('click', function(e) {
-            e.preventDefault();
-
-            trackDownloadButtonClick(this, 'nav');
-        });
+        $masthead_download_firefox.attr({'data-interaction': 'download click - nav', 'data-download-version': downloadVersion});
+        $masthead_download_firefox.fadeIn('fast');
 
         // Track Firefox download click in overview intro section
-        $('#firefox-desktop #intro .download-link').on('click', function(e) {
-            e.preventDefault();
-
-            trackDownloadButtonClick(this, 'primary');
-        });
+        $('#firefox-desktop #intro .download-link').attr({'data-interaction': 'download click - primary', 'data-download-version': downloadVersion});
 
         // Track Firefox download click in footer
-        $('#subscribe-download-wrapper .download-link').on('click', function(e) {
-            e.preventDefault();
-
-            trackDownloadButtonClick(this, 'bottom');
-        });
+        $('#subscribe-download-wrapper .download-link').attr({'data-interaction': 'download click - bottom', 'data-download-version': downloadVersion});
     }
-
-    // set up common GA tracking
-    var trackOutboundLink = function(a) {
-        var href = a.href;
-
-        gaTrack(['_trackEvent', 'firefox/desktop/ Interactions', 'outbound link', href], function() {
-            window.location = href;
-        });
-    };
 
     $('.ga-section').waypoint(function(dir) {
         // only track scrolling down
         if (dir === 'down') {
-            gaTrack(['_trackEvent', 'firefox/desktop/ Interactions', 'scroll', $(this).data('ga-label')]);
+            window.dataLayer.push({
+                event: 'scroll-tracking', 
+                section: $(this).data('ga-label')
+            });
         }
     }, {
         offset: 100
-    });
-
-    $('a[rel="external"]').on('click', function(e) {
-        e.preventDefault();
-
-        trackOutboundLink(this);
-    });
-
-    $('.ga-track-links a').on('click', function(e) {
-        e.preventDefault();
-
-        trackOutboundLink(this);
     });
 })(window.jQuery);

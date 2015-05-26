@@ -272,7 +272,12 @@ if (typeof Mozilla == 'undefined') {
         } else {
             this.goToTourStep('next');
             step += 1;
-            gaTrack(['_trackEvent', 'Tour Interaction', 'link click to', 'Step ' + step]);
+            window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'link click to',
+                'browserAction': 'Step' + step 
+            });
+
         }
     };
 
@@ -310,6 +315,7 @@ if (typeof Mozilla == 'undefined') {
      * Close the tour and display sign-post cta top right corner.
      */
     BrowserTour.prototype.postponeTour = function () {
+        var firstTime;
         this.tourIsPostponed = true;
         var $cta = $('<button class="floating-cta"></button>');
         $cta.html(window.trans('laterCta'));
@@ -317,12 +323,22 @@ if (typeof Mozilla == 'undefined') {
         $('.floating-cta').one('click', $.proxy(function (e) {
             e.preventDefault();
             this.restartTour();
-            this.setCustomGAVariable();
-            gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Signpost CTA']);
+            firstTime = this.checkFirstTime();
+            window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'click',
+                'browserAction': 'Signpost CTA',
+                'firstTime': firstTime 
+            });
+
         }, this));
 
         this.doCloseTour();
-        gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Not now']);
+        window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'click',
+                'browserAction': 'Not now' 
+        });
     };
 
     /*
@@ -478,7 +494,11 @@ if (typeof Mozilla == 'undefined') {
     BrowserTour.prototype.addForgetButton = function () {
         Mozilla.UITour.hideHighlight();
         Mozilla.UITour.addNavBarWidget('forget', this.highlightForgetButton.bind(this));
-        gaTrack(['_trackEvent', 'Tour Interaction', 'Add it now', 'The new Forget Button']);
+        window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'Add it now',
+                'browserAction': 'The new Forget Button' 
+        });
     };
 
     /*
@@ -504,8 +524,13 @@ if (typeof Mozilla == 'undefined') {
             buttons,
             options
         );
-
-        gaTrack(['_trackEvent', 'Tour Interaction', 'Later', 'The new Forget Button']);
+        
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'Later',
+                'browserAction': 'The new Forget Button' 
+        });
     };
 
     /*
@@ -614,7 +639,12 @@ if (typeof Mozilla == 'undefined') {
         var that = this;
         Mozilla.UITour.addNavBarWidget('loop', function() {
             that.highlightHelloButton();
-            gaTrack(['_trackEvent', 'Tour Interaction', 'Add it now', 'The Hello icon']);
+            window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'Add it now',
+                'browserAction': 'The Hello icon' 
+            });
+
         });
     };
 
@@ -668,8 +698,11 @@ if (typeof Mozilla == 'undefined') {
             buttons,
             options
         );
-
-        gaTrack(['_trackEvent', 'Tour Interaction', 'Later', 'The Hello icon']);
+        window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'Later',
+                'browserAction': 'The Hello icon' 
+            });
     };
 
     /*
@@ -823,7 +856,6 @@ if (typeof Mozilla == 'undefined') {
         var $button = $(e.target);
         var $current = this.$tourList.find('li.current');
         var step = $current.data('step');
-
         // if the tour is compact do nothing
         // as uses it's own handler
         if ($button.hasClass('up')) {
@@ -838,8 +870,11 @@ if (typeof Mozilla == 'undefined') {
         } else {
             step += 1;
         }
-
-        gaTrack(['_trackEvent', 'Tour Interaction', 'arrow click to', 'Step ' + step]);
+        window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'arrow click to',
+                'browserAction': 'Step ' + step 
+        });
     };
 
     /*
@@ -922,9 +957,12 @@ if (typeof Mozilla == 'undefined') {
         if (this.tourIsAnimating || !this.tourIsVisible) {
             return;
         }
-
         this.doCloseTour();
-        gaTrack(['_trackEvent', 'Tour Interaction', 'button click', 'Start Browsing']);
+        window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'button click',
+                'browserAction': 'Start Browsing' 
+        });
     };
 
     /*
@@ -954,9 +992,13 @@ if (typeof Mozilla == 'undefined') {
         this.tourHasFinished = true;
 
         this.hideAnnotations();
-
         if (this.tourHasStarted) {
-            gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Close tour']);
+            window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'click',
+                'browserAction': 'Close tour' 
+            });
+
         }
 
         this.$cta.fadeOut('fast', $.proxy(function () {
@@ -1006,8 +1048,11 @@ if (typeof Mozilla == 'undefined') {
         this.$mask.addClass('out');
 
         setTimeout(this.onCompactTour.bind(this), 600);
-
-        gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Compact tour']);
+        window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'click',
+                'browserAction': 'Compact tour' 
+        });
     };
 
     BrowserTour.prototype.onCompactTour = function () {
@@ -1057,8 +1102,11 @@ if (typeof Mozilla == 'undefined') {
         setTimeout(function () {
             that.$mask.removeClass('out');
         }, 50);
-
-        gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Expand tour']);
+        window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'interaction': 'click',
+                'browserAction': 'Expand tour' 
+        });
     };
 
     BrowserTour.prototype.onTourExpand = function () {
@@ -1109,10 +1157,10 @@ if (typeof Mozilla == 'undefined') {
     };
 
     /*
-     * Set custom GA variable so we know if the tour is taken for the first time
-     * The custom var should only be set if cookies are enabled.
+     * Finds if the tour is taken for the first time
+     * for custom dimension
      */
-    BrowserTour.prototype.setCustomGAVariable = function () {
+    BrowserTour.prototype.checkFirstTime = function () {
         var firstTime = 'True';
         try {
             if (localStorage.getItem(this.options.id) === 'taken') {
@@ -1120,8 +1168,10 @@ if (typeof Mozilla == 'undefined') {
             } else {
                 localStorage.setItem(this.options.id, 'taken');
             }
-            gaTrack(['_setCustomVar', 5, 'First Time Taking Firefox Tour', firstTime, 2]);
-        } catch (e) {}
+            return firstTime;
+        } catch (e) {
+            return 'False';
+        }
     };
 
     /*
@@ -1133,6 +1183,7 @@ if (typeof Mozilla == 'undefined') {
         var that = this;
         var $current = this.$tourList.find('li.current');
         var step = $current.data('step');
+        var firstTime;
 
         this.$progressStep.html(window.trans('step' + step));
 
@@ -1162,8 +1213,14 @@ if (typeof Mozilla == 'undefined') {
         setTimeout(this.onStartTour.bind(this), 600);
 
         if (!this.tourIsPostponed) {
-            this.setCustomGAVariable();
-            gaTrack(['_trackEvent', 'Tour Interaction', 'click', 'Lets go']);
+            firstTime = this.checkFirstTime();
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'firstrun-tour-interaction',
+                'firstTime': firstTime,
+                'interaction': 'click',
+                'browserAction': 'Lets go' 
+            });
         } else {
             this.tourIsPostponed = false;
         }
@@ -1222,7 +1279,12 @@ if (typeof Mozilla == 'undefined') {
             this.hideAnnotations();
 
             if (this.tourIsVisible) {
-                gaTrack(['_trackEvent', 'Tour Interaction', 'visibility', 'Leave tour']);
+                window.dataLayer.push({
+                    'event': 'firstrun-tour-interaction',
+                    'interaction': 'visibility',
+                    'browserAction': 'Leave tour' 
+                });
+    
             }
         } else {
             // if tab is visible and tour is open, show the current step.
@@ -1234,7 +1296,12 @@ if (typeof Mozilla == 'undefined') {
                         that.$progress.find('.progress').attr('aria-valuenow', step);
                     }
                 }, 900);
-                gaTrack(['_trackEvent', 'Tour Interaction', 'visibility', 'Return to tour']);
+                window.dataLayer.push({
+                    'event': 'firstrun-tour-interaction',
+                    'interaction': 'visibility',
+                    'browserAction': 'Return to tour' 
+                });
+    
                 // Update page id for Telemetry when returning to tab
                 Mozilla.UITour.registerPageID(this.options.id);
             } else if (!this.tourHasStarted && !this.tourIsPostponed && !this.tourHasFinished) {

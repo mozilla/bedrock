@@ -13,6 +13,9 @@ DEBUG = TEMPLATE_DEBUG = DEV = True
 # Google Apps tracking code
 GA_ACCOUNT_CODE = ''
 
+# Google Tag Manager ID Example: UA-XXXXX-XX
+GTM_CONTAINER_ID = ''
+
 SESSION_COOKIE_SECURE = False
 
 USE_GRUNT_LIVERELOAD = False

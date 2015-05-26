@@ -87,26 +87,10 @@ if (typeof window.Mozilla === 'undefined') {
     /*
     * Track telecom provider link clicks/page exits in Google Analytics
     */
-    var trackProviderExit = function(e) {
-        var $this = $(this);
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-
-        if (newTab) {
-            gaTrack(['_trackEvent', '/os/devices/ Interactions', 'Get a Phone Overlay Exits', $this.text()]);
-        } else {
-            e.preventDefault();
-
-            var href = this.href;
-            var callback = (newTab) ? null : function() {
-                window.location = href;
-            };
-
-            gaTrack(['_trackEvent', '/os/devices/ Interactions', 'Get a Phone Overlay Exits', $this.text()], callback);
-        }
-    };
 
     // setup GA event tracking on telecom provider exit links
-    $providerLinks.on('click', 'a', trackProviderExit);
+    $('#provider-links a').attr({'data-element-action': 'overlay exit'});
+
 
     /*
     * Disable/enable mozilla-pagers.js
@@ -123,11 +107,15 @@ if (typeof window.Mozilla === 'undefined') {
     $locationSelect.on('change', function() {
         COUNTRY_CODE = $locationSelect.val();
         selectDevicesAndSetPartnerContent();
-
-        gaTrack(['_trackEvent', '/os/devices/ Interactions', 'drop-down menu', COUNTRY_CODE, 0, false]);
+        window.dataLayer.push({
+                event: 'device-drop-down',
+                countryCode: COUNTRY_CODE,
+                nonInteraction: false
+        });
     });
 
     // wire up purchase button
+    $purchaseDeviceButtons.attr('data-track', 'true');
     $purchaseDeviceButtons.on('click', function(e) {
         e.preventDefault();
 
@@ -135,8 +123,6 @@ if (typeof window.Mozilla === 'undefined') {
             allowScroll: false,
             title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
         });
-
-        gaTrack(['_trackEvent', '/os/devices/ Interactions', 'Get a Phone CTA Clicks', (selectedDevice || 'none selected')]);
     });
 
     // wire up thumbnail select
@@ -163,7 +149,12 @@ if (typeof window.Mozilla === 'undefined') {
                     }, 200);
                 });
 
-                gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', 'Open Features']);
+                window.dataLayer.push({
+                    'event': 'device-interaction',
+                    'deviceName': selectedDevice + ' Interactions',
+                    'browserAction': 'Open Features',
+                    deviceSelected: selectedDevice
+                });
             }
         } else {
             e.preventDefault();
@@ -179,10 +170,12 @@ if (typeof window.Mozilla === 'undefined') {
         $(this).parents('.device-detail-list:first').slideUp('fast', function() {
             $deviceDetails.hide();
         });
-
-        gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', 'Close Features']);
-
-        selectedDevice = null;
+        window.dataLayer.push({
+            event: 'device-interaction',
+            deviceName: selectedDevice + ' Interactions',
+            browserAction: 'Close Features',
+            deviceSelected: null
+        });
     });
 
     /*
@@ -218,7 +211,12 @@ if (typeof window.Mozilla === 'undefined') {
             $provider = $providerLinks.find('.provider[data-country="' + COUNTRY_CODE + '"]');
 
             if (COUNTRY_CODE !== '' && $provider.length > 0) {
-                gaTrack(['_trackEvent', '/os/devices/ Interactions', 'drop-down menu', COUNTRY_CODE, 0, true]);
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'device-drop-down',
+                    countryCode: COUNTRY_CODE,
+                    nonInteraction: true
+                });
                 selectDevicesAndSetPartnerContent();
             }
         });
@@ -260,27 +258,15 @@ if (typeof window.Mozilla === 'undefined') {
     // GA specific interactions
 
     // track all 'regular' links (non-CTA, non-device)
-    $('.standard-link').on('click', function(e) {
-        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-
-        var href = this.href;
-
-        if (newTab) {
-            gaTrack(['_trackEvent', '/os/devices/ Interactions', 'link clicks', href]);
-        } else {
-            e.preventDefault();
-
-            var callback = function() {
-                window.location = href;
-            };
-
-            gaTrack(['_trackEvent', '/os/devices/ Interactions', 'link clicks', href], callback);
-        }
-    });
+    $('.standard-link').attr('data-track', 'true');
 
     // track mozilla pager tab clicks
     $('.pager-tabs').on('click', 'a', function() {
-        gaTrack(['_trackEvent', '/os/devices/ Interactions', selectedDevice + ' Interactions', $(this).data('label') + ' Tab']);
+        window.dataLayer.push({
+            event: 'device-interaction',
+            deviceName: selectedDevice + ' Interactions',
+            browserAction: $(this).data('label') + ' Tab'
+        });
     });
 
     // initialize fx family nav

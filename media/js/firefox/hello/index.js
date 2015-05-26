@@ -14,26 +14,27 @@
     var $video = $('#hello-video');
 
     var supportsHTML5Video = !!document.createElement('video').canPlayType;
+    var isWideViewport = $w.width() >= 740;
     var mqIsWide;
     var tourSource = getParameterByName('utm_source');
 
-    // delay checking window size to account for fennec bug
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=1071620
-    $w.on('load', function() {
-        if ($w.width() >= 740) {
-            if (Mozilla.SVGAnimCheck()) {
+    if (isWideViewport) {
+        if (Mozilla.SVGAnimCheck()) {
+            $w.on('load', function() {
                 $animationStage.addClass('animate wide');
-            } else {
-                $('body').addClass('no-animation');
-            }
+            });
         } else {
-            if (Mozilla.SVGAnimCheck.supportsCSSAnimations()) {
-                $animationStage.addClass('animate mini');
-            } else {
-                $('body').addClass('no-animation');
-            }
+            $('body').addClass('no-animation');
         }
-    });
+    } else {
+        if (Mozilla.SVGAnimCheck.supportsCSSAnimations()) {
+            $w.on('load', function() {
+                $animationStage.addClass('animate mini');
+            });
+        } else {
+            $('body').addClass('no-animation');
+        }
+    }
 
     // resizing the browser with animation just displays the intro image
     if (typeof matchMedia !== 'undefined') {
@@ -52,13 +53,13 @@
         Mozilla.UITour.observe(function(e) {
             switch (e) {
                 case 'Loop:ChatWindowOpened':
-                    w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'StartConversation-NoTour']);
+                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'StartConversation-NoTour'});
                     break;
                 case 'Loop:RoomURLCopied':
-                    w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'URLCopied-NoTour']);
+                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'URLCopied-NoTour'});
                     break;
                 case 'Loop:RoomURLEmailed':
-                    w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'URLEmailed-NoTour']);
+                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'URLEmailed-NoTour'});
                     break;
             }
         });
@@ -82,7 +83,7 @@
         $('#download-fx').hide();
 
         // show footer try button
-        $('#try-hello-footer').addClass('active');
+        $('#try-hello-footer').css('display', 'block');
     };
 
     var addLinkEvent = function (linkSelector, eventName) {
@@ -90,10 +91,10 @@
             var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
             var href = this.href;
             if (newTab) {
-                w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', eventName]);
+                w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': eventName});
             } else {
                 e.preventDefault();
-                w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', eventName], function() {
+                w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': eventName}, function() {
                     w.location = href;
                 });
             }
@@ -118,51 +119,16 @@
             showFxFooterMessaging();
         }
         // Hello exists in desktop version 35 and up
-        else if (w.getFirefoxMasterVersion() >= 35 && 'Promise' in window) {
+        else if (w.getFirefoxMasterVersion() >= 35) {
             showFxFooterMessaging();
 
-            Promise.all([
-                // check for the browser channel info
-                new Promise(function(resolve) {
-                    Mozilla.UITour.getConfiguration('appinfo', function(config) {
-                        resolve(config.defaultUpdateChannel);
-                    });
-                }),
-                // see if Hello is an available target in toolbar/overflow/customize menu
-                new Promise(function(resolve) {
-                    Mozilla.UITour.getConfiguration('availableTargets', function(config) {
-                        resolve(config.targets);
-                    });
-                }),
-            ]).then(function(results) {
-                var channel = results[0];
-                var targets = results[1];
-
-                // Because Hello is disabled on Firefox 38 ESR, we encourage ESR
-                // users to download non-ESR Firefox to try Hello
-                if (channel === 'esr') {
-                    // Change the copy
-                    $('#ctacopy-hellofx').hide();
-                    $('#ctacopy-esrfx').show();
-
-                    // Instead of the "Try Hellow now" button, show the download
-                    // button and change the label to "Try it now"
-                    $('#try-hello-footer').removeClass('active');
-                    $('#download-fx').show();
-                    $('.download-subtitle').text(window.trans('try-now'));
-
-                    addLinkEvent('.download-link', 'ClickDownload');
-
-                    return;
-                }
-
+            // see if Hello is an available target in toolbar/overflow/customize menu
+            Mozilla.UITour.getConfiguration('availableTargets', function(config) {
+                w.dataLayer = w.dataLayer || [];
                 // 'loop' is the snazzy internal code name for Hello
-                if (targets && targets.indexOf('loop') > -1) {
+                if (config.targets && config.targets.indexOf('loop') > -1) {
                     // show the intro try hello button
-                    $('#try-hello-intro').addClass('active');
-
-                    // activate sticky nav button
-                    $('#try-hello-nav').addClass('active');
+                    $('#intro .try-hello').addClass('active');
 
                     // convert the footer try hello link to a button
                     $('#try-hello-footer').attr('role', 'button');
@@ -184,7 +150,7 @@
                                 Mozilla.UITour.hideMenu('loop');
                             });
 
-                            w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'Open']);
+                            w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'Open'});
 
                             // hide the hello panel when browser resizes due to
                             // https://bugzilla.mozilla.org/show_bug.cgi?id=1091785
@@ -200,13 +166,13 @@
                     // enable/disable listeners when document visibility changes
                     $document.on('visibilitychange', handleVisibilityChange);
 
-                    w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'EligibleView']);
+                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'EligibleView'});
                 } else {
                     // if Hello is not in toolbar/menu, change footer button to link
                     // to a SUMO article and do some GA tracking
                     addLinkEvent('#try-hello-footer', 'IneligibleClick');
 
-                    w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'IneligibleView']);
+                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'IneligibleView'});
                 }
             });
         } else {
@@ -240,7 +206,8 @@
     });
 
     $video.on('play', function() {
-        w.gaTrack(['_trackEvent', '/hello interactions', 'productPage', 'PlayVideo']);
+        w.dataLayer = w.dataLayer || [];
+        w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'PlayVideo'});
     });
 
     Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'hello' });

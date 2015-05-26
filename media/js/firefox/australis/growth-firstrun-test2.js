@@ -13,7 +13,6 @@ function onYouTubeIframeAPIReady() {
     'use strict';
 
     var $document;
-    var pageId = $('body').prop('id');
     var $outerWrapper = $('#outer-wrapper');
     var tour;
     var installedAddons;
@@ -41,7 +40,8 @@ function onYouTubeIframeAPIReady() {
             Mozilla.UITour.showFirefoxAccounts();
         };
 
-        gaTrack(['_trackEvent', pageId + ' Page Interactions - New Firefox Tour', 'button click', 'Get Started with Sync'], goToAccounts);
+        goToAccounts();
+
     };
 
     // in case UITour fails
@@ -109,13 +109,8 @@ function onYouTubeIframeAPIReady() {
                     e.preventDefault();
                     closeTour();
 
-                    window.gaTrack(['_trackEvent', '/firstrun/ Optimization f36', 'link click', 'thanks']);
                 });
             });
-
-            if (trackCloseClick) {
-                window.gaTrack(['_trackEvent', '/firstrun/ Optimization f36', 'link click', 'close']);
-            }
         };
 
         enableIframes = function() {
@@ -131,24 +126,6 @@ function onYouTubeIframeAPIReady() {
             if (e.origin === 'https://addons.mozilla.org' && e.data.addon) {
                 logAddonInstall(e.data.addon);
 
-                window.gaTrack(['_trackEvent', '/firstrun/ Optimization f36', 'Add to Firefox', e.data.addon]);
-            }
-        });
-
-        // GA for both "what is an add-on?" links
-        $('.what-is-addon').on('click', function(e) {
-            var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-            var href = this.href;
-            var parent = $(this).parents('div:first').attr('id');
-            var version = (parent === 'ui-final') ? 'final' : 'main';
-
-            if (newTab) {
-                window.gaTrack(['_trackEvent', '/firstrun/ Optimization f36', 'link click', 'what is an addon - ' + version]);
-            } else {
-                e.preventDefault();
-                window.gaTrack(['_trackEvent', '/firstrun/ Optimization f36', 'link click', 'what is an addon - ' + version], function() {
-                    window.location = href;
-                });
             }
         });
 
@@ -163,9 +140,6 @@ function onYouTubeIframeAPIReady() {
 
             // GA
             gaVariation = (suppressDoorhanger) ? 'a' : 'b';
-
-            window.gaTrack(['_setCustomVar', 7, 'first run tests', 'variation 3' + gaVariation, 2]);
-            window.gaTrack(['_trackEvent','/firstrun/ Optimization f36', 'page load', 'variation 3' + gaVariation]);
 
             tour = new Mozilla.BrowserTour({
                 id: $('#tour-page').data('telemetry'),
@@ -184,12 +158,10 @@ function onYouTubeIframeAPIReady() {
                     // mark tour as finished (but don't get rid of mask yet)
                     tour.tourHasFinished = true;
 
-                    window.gaTrack(['_trackEvent', '/firstrun/ Optimization f36', 'doorhanger button', buttonCopy]);
                 },
                 cancelTour: function(buttonCopy) {
                     closeTour();
 
-                    window.gaTrack(['_trackEvent', '/firstrun/ Optimization f36', 'doorhanger button', buttonCopy]);
                 }
             });
 
@@ -233,7 +205,6 @@ function onYouTubeIframeAPIReady() {
 
     listenYTStateChange = function(e) {
         var videoID = e.target.t.getAttribute('id');
-        var videoName = (videoID === 'yt-ghostery')  ? 'Ghostery' : 'Lightbeam';
         var state;
 
         switch (e.data) {
@@ -243,11 +214,6 @@ function onYouTubeIframeAPIReady() {
             case 0:
                 state = 'finish';
                 break;
-        }
-
-        // only track if playing or ended
-        if (state) {
-            window.gaTrack(['_trackEvent', '/firstrun/ Optimization f36', videoName, state]);
         }
     };
 

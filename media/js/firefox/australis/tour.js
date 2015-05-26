@@ -7,8 +7,11 @@
     // https://bugzilla.mozilla.org/show_bug.cgi?id=1128726
     // should be removed after 2/24/2015
     if (window.location.search.indexOf('f=34') > -1) {
-        gaTrack(['_setCustomVar' ,7, 'first run tests', 'variation 1', 2]);
-        gaTrack(['_trackEvent','/firstrun/ Optimization f34', 'page load', 'variation 1']);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: 'firstrun-optimization',
+            testVaration: 'variation 1'
+        });
     }
 
     //Only run the tour if user is on Firefox 29 for desktop.
@@ -37,7 +40,11 @@
             }
 
             // Push custom GA variable to track Sync visibility
-            gaTrack(['_setCustomVar', 6, 'Sync Visible', visible, 2]);
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'set-sync-visibility',
+                syncVisibility: visible
+            });
         });
 
         //track if this is the first time a user has seen any tour (firstrun or whatsnew)
@@ -47,7 +54,12 @@
             } else {
                 localStorage.setItem('mozUITourGlobalFlag', 'taken');
             }
-            gaTrack(['_trackEvent', 'Tour Interaction', 'First Time Seeing Tour', firstTime, 0, true]);
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'firstrun-tour-view',
+                'interaction': 'First Time Seeing Tour',
+                'browserAction': firstTime
+            });
         } catch (e) {}
 
         // track default search engine for Firefox 34
@@ -59,14 +71,21 @@
                     return;
                 }
 
+                window.dataLayer = window.dataLayer || [];
                 if (selectedEngineID === 'yahoo') {
                     Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_yahooDefault');
                     Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
-                    gaTrack(['_trackEvent', 'firstrun srch-chg interactions', 'yahooDefault', 'ViewPage']);
+                    window.dataLayer.push({
+                        event: 'search-change-interaction',
+                        searchEngine: 'yahooDefault'
+                    });
                 } else {
                     Mozilla.UITour.setTreatmentTag('srch-chg-treatment', 'firstrun_otherDefault');
                     Mozilla.UITour.setTreatmentTag('srch-chg-action', 'ViewPage');
-                    gaTrack(['_trackEvent', 'firstrun srch-chg interactions', 'otherDefault', 'ViewPage']);
+                    window.dataLayer.push({
+                        event: 'search-change-interaction',
+                        searchEngine: 'otherDefault'
+                    });
                 }
             });
         }

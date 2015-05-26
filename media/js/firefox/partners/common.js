@@ -110,12 +110,13 @@
 
     // GA tracking
     w.ga_track = function(virtual_page) {
-        if (w._gaq) {
-            if (last_virtual_page !== virtual_page) {
-                window._gaq.push(['_trackPageview', '/' + locale + '/firefox/partners/' + virtual_page]);
-
-                last_virtual_page = virtual_page;
-            }
+        if (last_virtual_page !== virtual_page) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'virtual-pageview',
+                virtualUrl: '/' + locale + '/firefox/partners/' + virtual_page
+            });
+            last_virtual_page = virtual_page;
         }
     };
 

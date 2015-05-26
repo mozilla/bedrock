@@ -48,7 +48,7 @@ $(function () {
                     $scrollPrompt.on('click', scrollPastPromos);
                     $window.one('scroll.prompt', destroyScrollPrompt);
                     // track that the scroll prompt has been show in GA
-                    gaTrack(['_trackEvent', 'Homepage Interactions', 'scroll prompt']);
+                    window.dataLayer.push({event: 'homepage-interaction', interaction: 'scroll prompt'});
                 }
             }, 4000);
         }

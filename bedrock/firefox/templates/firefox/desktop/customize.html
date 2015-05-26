@@ -106,7 +106,7 @@
             <div id="panel-end-addons" class="icon panel-icon-addons"></div>
             <div id="panel-end-history" class="icon panel-icon-history"></div>
             <div id="panel-end-footer">
-              <a role="button" href="#" id="flexible-replay">
+              <a role="button" href="#" id="flexible-replay" data-interaction="replay-link" >
                 <span>{{ _('Replay') }}</span>
                 <div id="panel-end-replay"></div>
               </a>
@@ -122,7 +122,7 @@
 
       <ul class="feature-list" id="customizer-list" role="tablist">
         <li>
-          <a class="show-customizer selected" id="customize-themes" href="#themes">
+          <a class="show-customizer selected" data-interaction="themes" data-element-action="Icon" id="customize-themes" href="#themes">
             <div class="stage">
               <div class="circle-mask"></div>
               <div id="brush"></div>
@@ -134,7 +134,7 @@
           </a>
         </li>
         <li>
-          <a class="show-customizer" id="customize-addons" href="#add-ons">
+          <a class="show-customizer" data-interaction="add-ons" data-element-action="Icon" id="customize-addons" href="#add-ons">
             <div class="stage">
               <div class="circle-mask"></div>
               <div id="puzzle-pieces">
@@ -146,7 +146,7 @@
           </a>
         </li>
         <li class="last">
-          <a class="show-customizer" id="customize-awesomebar" href="#awesome-bar">
+          <a class="show-customizer" data-interaction="awesome-bar" data-element-action="Icon" id="customize-awesomebar" href="#awesome-bar">
             <div class="stage">
               <div class="circle-mask"></div>
               <div id="awesomebar-on" class="awesomebar-icon"></div>
@@ -173,18 +173,18 @@
           </p>
 
           <div id="themes-thumbs">
-            <button type="button" aria-controls="theme-demo" id="theme-yellow">{{ _('Preview yellow theme') }}</button>
-            <button type="button" aria-controls="theme-demo" id="theme-green">{{ _('Preview green theme') }}</button>
-            <button type="button" aria-controls="theme-demo" id="theme-blue">{{ _('Preview blue theme') }}</button>
-            <button type="button" aria-controls="theme-demo" id="theme-red" class="selected">{{ _('Preview red theme') }}</button>
+            <button data-interaction="Themes" data-element-action="theme-yellow" type="button" aria-controls="theme-demo" id="theme-yellow">{{ _('Preview yellow theme') }}</button>
+            <button data-interaction="Themes" data-element-action="theme-green"type="button" aria-controls="theme-demo" id="theme-green">{{ _('Preview green theme') }}</button>
+            <button data-interaction="Themes" data-element-action="theme-blue"type="button" aria-controls="theme-demo" id="theme-blue">{{ _('Preview blue theme') }}</button>
+            <button data-interaction="Themes" data-element-action="theme-red"type="button" aria-controls="theme-demo" id="theme-red" class="selected">{{ _('Preview red theme') }}</button>
           </div>
 
-          <a class="more" rel="external" href="https://addons.mozilla.org/firefox/themes/">{{ _('Try it now') }}</a>
+          <a class="more" rel="external" data-interaction="outbound link" href="https://addons.mozilla.org/firefox/themes/">{{ _('Try it now') }}</a>
           <br>
-          <a class="more" rel="external" href="https://support.mozilla.org/kb/use-themes-change-look-of-firefox">{{ _('Learn more') }}</a>
+          <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/use-themes-change-look-of-firefox">{{ _('Learn more') }}</a>
         </div>
 
-        <a class="next show-customizer" href="#add-ons" role="button">{{ _('Next') }}</a>
+        <a class="next show-customizer" data-interaction="add-ons" data-element-action="Next" href="#add-ons" role="button">{{ _('Next') }}</a>
 
         <div class="customizer-visual">
           <img id="theme-demo" src="{{ static('img/firefox/desktop/customize/theme-red.png') }}" alt="{{ _('Preview of the currently selected theme') }}">
@@ -196,7 +196,7 @@
         <div class="customizer-copy">
           <h3>{{ _('Add-ons') }}</h3>
 
-          <a class="next show-customizer" href="#awesome-bar" role="button">{{ _('Next') }}</a>
+          <a class="next show-customizer" data-interaction="awesome-bar" data-element-action="Next" href="#awesome-bar" role="button">{{ _('Next') }}</a>
 
           <p class="lead">
             {{ _('Add-ons are like apps that you install to add features to Firefox.') }}
@@ -209,9 +209,9 @@
             <li>{{ _('Watch videos & view photos') }}</li>
           </ul>
 
-          <a class="more" rel="external" href="https://addons.mozilla.org/firefox/extensions/?sort=featured">{{ _('Here are a few of our favorites') }}</a>
+          <a class="more" rel="external" data-interaction="outbound link" href="https://addons.mozilla.org/firefox/extensions/?sort=featured">{{ _('Here are a few of our favorites') }}</a>
           <br>
-          <a class="more" rel="external" href="https://support.mozilla.org/kb/find-and-install-add-ons-add-features-to-firefox">{{ _('Learn more') }}</a>
+          <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/find-and-install-add-ons-add-features-to-firefox">{{ _('Learn more') }}</a>
         </div><!--/.customizer-copy-->
 
         <div class="customizer-visual">
@@ -224,14 +224,14 @@
         <div class="customizer-copy">
           <h3>{{ _('Awesome Bar') }}</h3>
 
-          <a class="next show-customizer" href="#themes" role="button">{{ _('Next') }}</a>
+          <a class="next show-customizer" data-interaction="themes" data-element-action="Next" href="#themes" role="button">{{ _('Next') }}</a>
 
           <p class="lead">
             {{ _('The Awesome Bar learns as you browse to make your version of Firefox unique.') }}
             {{ _('Find and return to your favorite sites without having to remember a URL.') }}
           </p>
 
-          <a class="more" rel="external" href="https://support.mozilla.org/kb/awesome-bar-find-your-bookmarks-history-and-tabs">{{ _('See what it can do for you') }}</a>
+          <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/awesome-bar-find-your-bookmarks-history-and-tabs">{{ _('See what it can do for you') }}</a>
         </div>
 
         <div class="customizer-visual">
@@ -251,9 +251,9 @@
 
       {% include 'firefox/includes/sync-animation.html' %}
 
-      <a class="button" id="sync-button" href="http://www.mozilla.org/mobile/sync/"><span></span>{{ _('Learn more about Sync') }}</a>
+      <a class="button" id="sync-button" data-interaction="button click" data-element-action="Sync CTA" href="http://www.mozilla.org/mobile/sync/"><span></span>{{ _('Learn more about Sync') }}</a>
       <br>
-      <a class="more" rel="external" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get help with Sync') }}</a>
+      <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get help with Sync') }}</a>
     </div>
   </section>
 </main>

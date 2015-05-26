@@ -233,7 +233,11 @@
     });
 
     //track GA event for newsletter CTA
-    trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', cta]);
+    window.dataLayer.push({
+      event: 'fxos-consumer',
+      interaction: 'click',
+      location: cta
+    });
   });
 
   $('#sign-up-form-close').on('click', function() {
@@ -256,7 +260,11 @@
     });
 
     //track GA event for get a phone CTA
-    trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', 'Get a Phone']);
+    window.dataLayer.push({
+      event: 'fxos-consumer',
+      interaction: 'click',
+      location: 'Get a Phone'
+    });
   });
 
   // toggle sticky masthead when tabzilla is opened/closed
@@ -367,7 +375,11 @@
   // tracks click even on nav link, and pauses scroll tracking momentarily
   function navClickGATrack(section_hash) {
     //track GA event for nav clicks
-    trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'nav click', section_hash]);
+    window.dataLayer.push({
+      event: 'fxos-consumer',
+      interaction: 'nav click',
+      location: section_hash
+    });
 
     // do not track while page is flying around
     pause_ga_tracking = true;
@@ -652,40 +664,44 @@
       e.preventDefault();
 
       //track GA event for monitoring if users are clicking on animated scroller
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', 'Adaptive animated scroll arrows']);
+      window.dataLayer.push({
+        event: 'fxos-consumer',
+        interaction: 'click',
+        location: 'Adaptive animated scroll arrows'
+      });
     });
   }
 
   function trackGAPageNoScroll () {
     $('#adapt1').waypoint(function () {
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'It adapts, so you can too']);
+      window.dataLayer.push({event: 'scroll-tracking', section: 'It adapts, so you can too'});
     });
     $('#adapt2').waypoint(function () {
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Adaptive App Search']);
+      window.dataLayer.push({event: 'scroll-tracking', section: 'Adaptive App Search'});
     });
     $have_it_all.waypoint(function () {
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Have it All']);
+      window.dataLayer.push({event: 'scroll-tracking', section: 'Have it All'});
     });
     $('#mission').waypoint(function () {
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Transform the Future']);
+      window.dataLayer.push({event: 'scroll-tracking', section: 'Transform the Future'});
     });
   }
 
   function trackGAPageScroller () {
     $soccer_hook.waypoint(function () {
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'It adapts, so you can too']);
+      window.dataLayer.push({event: 'scroll-tracking', section: 'It adapts, so you can too'});
     });
     $cafe_hook.waypoint(function () {
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Adaptive App Search (restaurant)']);
+      window.dataLayer.push({event: 'scroll-tracking', section: 'Adaptive App Search (restaurant)'});
     });
     $bday_hook.waypoint(function () {
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Adaptive App Search (birthday)']);
+      window.dataLayer.push({event: 'scroll-tracking', section: 'Adaptive App Search (birthday)'});
     });
     $have_it_all.waypoint(function () {
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Have it All']);
+      window.dataLayer.push({event: 'scroll-tracking', section: 'Have it All'});
     });
     $('#mission').waypoint(function () {
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'scroll', 'Transform the Future']);
+      window.dataLayer.push({event: 'scroll-tracking', section: 'Transform the Future'});
     });
   }
 
@@ -695,7 +711,11 @@
 
     $('#adapt-feature-sprite-plus').on(click_event, function(e) {
       e.preventDefault();
-      trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', 'Adaptive sprite plus']);
+      window.dataLayer.push({
+        event: 'consumer-page-interaction',
+        interaction: 'click',
+        location: 'Adaptive sprite plus'
+      });
     });
   }
 
