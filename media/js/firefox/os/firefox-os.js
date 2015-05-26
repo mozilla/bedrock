@@ -2,176 +2,103 @@
 * License, v. 2.0. If a copy of the MPL was not distributed with this
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*
-  http://dev.maxmind.com/geoip/legacy/csv (used by geo.mozilla.org)
-  http://en.wikipedia.org/wiki/ISO_3166-1 (full list of cc's)
-*/
 ;(function($) {
     'use strict';
 
-    window.pause_ga_tracking = false;
     var COUNTRY_CODE = '';
 
-    var $document = $(document);
     var $window = $(window);
-    var $langContainer = $('#lang-panel-container');
-    var $langButtonOpen = $('#open-lang-panel');
-    var $langPanel = $('#lang-panel');
-    var langTimer;
+    var isSmallViewport = $window.width() < 760;
+    var $signupContent;
+    var $getPhoneContent;
 
-    var sessionLangPrefName = 'firefox.os.india-lang';
+    var $appGroupSelector = $('.app-group-selector');
+    var $apps = $('li', '.apps');
+    var $categoryTriggers = $('a', $appGroupSelector);
+
+    //get modal logo path from data attribute in template
+    var modalLogo = $('#modal-logo').data('src');
+
+    var fxNavConfig = {
+        primaryId: 'os',
+        subId: 'index'
+    };
+
+    Mozilla.FxFamilyNav.init(fxNavConfig);
 
     /*
-    * Set page specific content relating to geo for partner data etc
+    * Sign up form
     */
-    function setPartnerContent () {
-        var $provider = $('#provider-links').find('.provider[data-country="' + COUNTRY_CODE + '"]');
+    $('.newsletter-signup-toggle').on('click', function(e) {
+      e.preventDefault();
 
-        // show language content selector if user is in india visiting the en-US/en-GB page
-        if (COUNTRY_CODE.toLowerCase() === 'in' && $('html').is('[lang|="en"]')) {
-            var suppressLangContentSelector = false;
+      if (!$signupContent) {
+        $signupContent = $('#email-form-content').detach();
+      }
 
-            // if user has already selected en-IN, don't bug them a second time
-            try {
-                if (sessionStorage.getItem(sessionLangPrefName) === 'en-IN') {
-                    suppressLangContentSelector = true;
-                    setEnInContent();
-                }
-            } catch (ex) {}
+      Mozilla.Modal.createModal(this, $signupContent, {
+          allowScroll: !isSmallViewport,
+          title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
+      });
 
-            initLangContentSelector(suppressLangContentSelector);
-        }
+      //track GA event for newsletter CTA
+      gaTrack(['_trackEvent', 'FxOs Consumer Page', 'click', 'Sign Me Up - Primary']);
+    });
 
-        // if there are partners available, update UI
-        if (COUNTRY_CODE !== '' && $provider.length > 0) {
-            // show get phone calls to action
-            $('#primary-cta-phone').fadeIn();
-            $('#primary-cta-signup').addClass('visibility', 'hidden');
-            $('#secondary-cta-phone').css('display', 'inline-block');
-
-            // if country has more than one provider, show the multi intro text
-            if ($provider.find('li').length > 1) {
-                $('#provider-text-single').hide();
-                $('#provider-text-multi').show();
-            }
-
-            // show the provider applicable for the user country.
-            $provider.show();
-
-            // setup GA event tracking on telecom provider exit links
-            $('#provider-links a').on('click', trackProviderExit);
-
-            // persistent pencil icon is distracting/obtrusive on small screens
-            if ($window.width() > 480) {
-                $('#signup-toggle-icon').fadeIn();
-            }
-        } else {
-            $('#primary-cta-signup').fadeIn();
-            $('#primary-cta-phone').addClass('visibility', 'hidden');
-            $('#secondary-cta-signup').css('display', 'inline-block');
-        }
-    }
+    $('#sign-up-form-close').on('click', function() {
+      Mozilla.Modal.closeModal();
+    });
 
     /*
-     * Init language content selector
-     * Only applicable to en-US visitors in India
-     */
-    function initLangContentSelector (suppressSelector) {
-        //show the panel on init
-        $langContainer.fadeIn(function () {
-            if (!suppressSelector) {
-                $langButtonOpen.focus();
-                toggleLangContentSelector();
+    * Purchase modal
+    */
+    $('a[href="#get-device"]').on('click', function(e) {
+      e.preventDefault();
+
+      if (!$getPhoneContent) {
+        $getPhoneContent= $('#get-device').detach();
+      }
+
+      Mozilla.Modal.createModal(this, $getPhoneContent, {
+          allowScroll: !isSmallViewport,
+          title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
+      });
+
+      //track GA event for get a phone CTA
+      gaTrack(['_trackEvent', 'FxOs Consumer Page', 'click', 'Get a Phone']);
+    });
+
+    $appGroupSelector.on('click', 'a', function(event) {
+        event.preventDefault();
+        var $eventTarget = $(this);
+        var category = $eventTarget.data('category');
+
+        // reset all the app icons
+        $apps.addClass('fade');
+        // reset all the category selector buttons
+        $categoryTriggers.removeClass('active-state');
+        // set the clicked element to active
+        $eventTarget.addClass('active-state');
+
+        $apps.each(function() {
+            var $currentImg = $(this);
+            if ($currentImg.hasClass(category)) {
+                $currentImg.removeClass('fade');
             }
         });
+    });
 
-        $langButtonOpen.on('click', toggleLangContentSelector);
-    }
-
-    /*
-     * Directs page to show India specific content while still in en-US locale
-     */
-    function setEnInContent () {
-        $('html').addClass('en-IN');
-        $('.india-show').show();
-        $('.india-hide').hide();
-    }
+    window.pause_ga_tracking = false;
 
     /*
-     * Toggle language content selector visibility
-     */
-    function toggleLangContentSelector () {
-        clearTimeout(langTimer);
-
-        if ($langPanel.hasClass('visible')) {
-            $langPanel.removeClass('visible');
-
-            // wait for CSS transition to complete before hiding
-            langTimer = setTimeout(function() {
-                $langPanel.hide();
-                $langButtonOpen.attr('aria-expanded', false);
-                $langButtonOpen.focus();
-            }, 300);
-
-            // remove listeners for performance boostingness
-            $document.off('click.lang-panel');
-            $window.off('scroll.lang-panel');
-        } else {
-            $langPanel.show();
-            $langButtonOpen.attr('aria-expanded', true);
-            langTimer = setTimeout(function () {
-                $langPanel.addClass('visible');
-
-                // hide panel when clicking outside in document
-                $document.on('click.lang-panel', function (e) {
-                    var $target = $(e.target);
-
-                    if (!$target.parents().is('#lang-panel') || $target.attr('id') === 'close-lang-panel') {
-                        toggleLangContentSelector();
-                    } else {
-                        e.preventDefault();
-
-                        var language = $target.data('lang');
-
-                        // if selecting English, swap content and remain on page
-                        if (language === 'English') {
-                            setEnInContent();
-
-                            toggleLangContentSelector();
-
-                            // save choice in session so as to not bug user a second time
-                            try {
-                                sessionStorage.setItem(sessionLangPrefName, 'en-IN');
-                            } catch (ex) {}
-                        }
-
-                        gaTrack(['_trackEvent', 'FxOs Consumer Page', 'Indian Language Selection', language], function() {
-                            if (language !== 'English') {
-                                window.location = $target.attr('href');
-                            }
-                        });
-                    }
-                });
-
-                // hide panel on scroll
-                $window.on('scroll.lang-panel', toggleLangContentSelector);
-            }, 50);
-        }
-    }
-
-    /*
-    * Track telecom provider link clicks/page exits in Google Analytics
+    * Get country code via geo-ip lookup
     */
-    function trackProviderExit (e) {
-        e.preventDefault();
-        var $this = $(this);
-        var href = this.href;
-
-        var callback = function () {
-            window.location = href;
-        };
-
-        trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'Get A Phone Exit', $this.text()], callback);
+    function getGeoLocation () {
+        try {
+            COUNTRY_CODE = geoip_country_code().toLowerCase();
+        } catch (e) {
+            COUNTRY_CODE = '';
+        }
     }
 
     /*
@@ -202,52 +129,68 @@
     }
 
     /*
-    * Get country code via geo-ip lookup
+    * Track telecom provider link clicks/page exits in Google Analytics
     */
-    function getGeoLocation () {
-        try {
-            COUNTRY_CODE = geoip_country_code().toLowerCase();
-        } catch (e) {
-            COUNTRY_CODE = '';
+    function trackProviderExit (e) {
+        var $this = $(this);
+        var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
+        var href = this.href;
+
+        var callback = function () {
+            window.location = href;
+        };
+
+        if (newTab) {
+            gaTrack(['_trackEvent', 'FxOs Consumer Page', 'Get A Phone Exit', $this.text()]);
+        } else {
+            e.preventDefault();
+            gaTrack(['_trackEvent', 'FxOs Consumer Page', 'Get A Phone Exit', $this.text()], callback);
         }
     }
 
-    window.trackGAEvent = function (eventsArray, callback) {
-        if (!pause_ga_tracking) {
-            var timer = null;
-            var hasCallback = typeof(callback) == 'function';
-            var gaCallback = function () {
-                clearTimeout(timer);
-                callback();
-            };
+    /*
+    * Set page specific content relating to geo for partner data etc
+    */
+    function setPartnerContent () {
 
-            if (typeof(window._gaq) == 'object') {
-                if (hasCallback) {
-                    timer = setTimeout(gaCallback, 500);
-                    window._gaq.push(eventsArray, gaCallback);
-                } else {
-                    window._gaq.push(eventsArray);
-                }
-            } else if (hasCallback) {
-                callback();
+        var $provider = $('#provider-links').find('.provider[data-country="' + COUNTRY_CODE + '"]');
+
+        // if there are partners available, update UI
+        if (COUNTRY_CODE !== '' && $provider.length > 0) {
+            // show get phone calls to action
+            $('.primary-cta-phone').removeClass('hidden');
+
+            // if country has more than one provider, show the multi intro text
+            if ($provider.find('li').length > 1) {
+                $('#provider-text-single').hide();
+                $('#provider-text-multi').show();
             }
+
+            // show the provider applicable for the user country.
+            $provider.show();
+
+            // setup GA event tracking on telecom provider exit links
+            $('#provider-links a').on('click', trackProviderExit);
+        } else {
+            $('.primary-cta-signup').removeClass('hidden');
         }
-    };
-
-    $('#useful-links').on('click', 'a', function (e) {
-        e.preventDefault();
-        var that = this;
-        var callback = function () {
-            window.location = that.href;
-        };
-
-        //track GA event for useful links
-        trackGAEvent(['_trackEvent', 'FxOs Consumer Page', 'click', this.href], callback);
-    });
+    }
 
     $script('//geo.mozilla.org/country.js', function() {
         getGeoLocation();
         setNewsletterDefaults();
         setPartnerContent();
     });
+
+    function supportsSVG() {
+        return document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Image', '1.1');
+    }
+
+    // fallback to .png for browsers that don't support .svg as an image.
+    if (!supportsSVG()) {
+        $('img[src*="svg"][data-fallback="true"]').attr('src', function() {
+            return $(this).attr('data-png');
+        });
+    }
+
 })(jQuery);
