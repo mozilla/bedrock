@@ -701,6 +701,11 @@ GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
                             urlquote('utm_source=mozilla&utm_medium=Referral&'
                                         'utm_campaign=mozilla-org'))
 
+# Locales that should display the 'Send to Device' widget
+SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
+                          'es-AR', 'es-CL', 'es-ES', 'es-MX',
+                          'fr', 'hu', 'id', 'pl', 'pt-BR', 'ru']
+
 # Use bedrock Gruntfile.js for live reload
 USE_GRUNT_LIVERELOAD = False
 

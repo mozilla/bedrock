@@ -24,6 +24,90 @@ FXOS_COUNTRIES = {
 }
 
 
+class TestSendToDeviceView(TestCase):
+    def setUp(self):
+        patcher = patch('bedrock.firefox.views.basket.subscribe')
+        self.mock_subscribe = patcher.start()
+        self.addCleanup(patcher.stop)
+
+        patcher = patch('bedrock.firefox.views.basket.send_sms')
+        self.mock_send_sms = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def _request(self, data, expected_status=200):
+        rf = RequestFactory()
+        resp = views.send_to_device_ajax(rf.post('/', data))
+        eq_(resp.status_code, expected_status)
+        return json.loads(resp.content)
+
+    def test_phone_or_email_required(self):
+        resp_data = self._request({
+            'platform': 'android',
+        })
+        ok_(not resp_data['success'])
+        ok_('phone-or-email' in resp_data['errors'])
+        ok_(not self.mock_send_sms.called)
+        ok_(not self.mock_subscribe.called)
+
+    def test_send_android_sms(self):
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': '5558675309',
+        })
+        ok_(resp_data['success'])
+        self.mock_send_sms.assert_called_with('15558675309', views.SMS_MESSAGES['android'])
+
+    def test_send_android_sms_basket_error(self):
+        self.mock_send_sms.side_effect = views.basket.BasketException
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': '5558675309',
+        }, 400)
+        ok_(not resp_data['success'])
+        ok_('system' in resp_data['errors'])
+
+    def test_send_bad_sms_number(self):
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': '555',
+        })
+        ok_(not resp_data['success'])
+        ok_('number' in resp_data['errors'])
+        ok_(not self.mock_send_sms.called)
+
+    def test_send_android_email(self):
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': 'dude@example.com',
+            'source-url': 'https://nihilism.info',
+        })
+        ok_(resp_data['success'])
+        self.mock_subscribe.assert_called_with('dude@example.com',
+                                               views.EMAIL_MESSAGES['android'],
+                                               source_url='https://nihilism.info',
+                                               lang='en-US')
+
+    def test_send_android_email_basket_error(self):
+        self.mock_subscribe.side_effect = views.basket.BasketException
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': 'dude@example.com',
+            'source-url': 'https://nihilism.info',
+        }, 400)
+        ok_(not resp_data['success'])
+        ok_('system' in resp_data['errors'])
+
+    def test_send_android_bad_email(self):
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': '@example.com',
+            'source-url': 'https://nihilism.info',
+        })
+        ok_(not resp_data['success'])
+        ok_('email' in resp_data['errors'])
+        ok_(not self.mock_subscribe.called)
+
+
 class TestFirefoxNew(TestCase):
     def test_frames_allow(self):
         """

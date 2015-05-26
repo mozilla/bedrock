@@ -12,6 +12,7 @@ from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
@@ -24,7 +25,7 @@ from product_details.version_compare import Version
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.firefox.firefox_details import firefox_desktop
-from bedrock.firefox.forms import SMSSendForm
+from bedrock.firefox.forms import SMSSendForm, SendToDeviceWidgetForm
 from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.util import HttpResponseJSON
@@ -100,6 +101,16 @@ INSTALLER_CHANNElS = [
     # 'nightly',  # soon
 ]
 
+SMS_MESSAGES = {
+    'android': 'SMS_Android',
+}
+
+EMAIL_MESSAGES = {
+    'android': 'download-firefox-android',
+    'ios': 'download-firefox-ios',
+    'all': 'download-firefox-mobile',
+}
+
 
 def get_js_bundle_files(bundle):
     """
@@ -145,7 +156,7 @@ def sms_send(request):
         if form.is_valid():
             try:
                 basket.send_sms(form.cleaned_data['number'],
-                                'SMS_Android',
+                                SMS_MESSAGES['android'],
                                 form.cleaned_data['optin'])
             except basket.BasketException:
                 error = error_msg
@@ -177,6 +188,57 @@ def sms_send(request):
 
     return l10n_utils.render(request, 'firefox/android/sms-send.html',
                              {'sms_form': form})
+
+
+@require_POST
+@csrf_exempt
+def send_to_device_ajax(request):
+    locale = l10n_utils.get_locale(request)
+    phone_or_email = request.POST.get('phone-or-email')
+    if not phone_or_email:
+        return HttpResponseJSON({'success': False, 'errors': ['phone-or-email']})
+
+    data = {
+        'platform': request.POST.get('platform'),
+    }
+
+    data_type = 'email' if '@' in phone_or_email else 'number'
+    data[data_type] = phone_or_email
+    form = SendToDeviceWidgetForm(data)
+    if form.is_valid():
+        phone_or_email = form.cleaned_data.get(data_type)
+        platform = form.cleaned_data.get('platform')
+        if data_type == 'number':
+            if platform in SMS_MESSAGES:
+                try:
+                    basket.send_sms(phone_or_email, SMS_MESSAGES[platform])
+                except basket.BasketException:
+                    return HttpResponseJSON({'success': False, 'errors': ['system']},
+                                            status=400)
+            else:
+                # TODO define all platforms in SMS_MESSAGES
+                return HttpResponseJSON({'success': False, 'errors': ['platform']})
+        else:  # email
+            if platform in EMAIL_MESSAGES:
+                try:
+                    basket.subscribe(phone_or_email, EMAIL_MESSAGES[platform],
+                                     source_url=request.POST.get('source-url'),
+                                     lang=locale)
+                except basket.BasketException:
+                    return HttpResponseJSON({'success': False, 'errors': ['system']},
+                                            status=400)
+            else:
+                # TODO define all platforms in EMAIL_MESSAGES
+                return HttpResponseJSON({'success': False, 'errors': ['platform']})
+
+        resp_data = {'success': True}
+    else:
+        resp_data = {
+            'success': False,
+            'errors': form.errors.keys(),
+        }
+
+    return HttpResponseJSON(resp_data)
 
 
 def windows_billboards(req):
