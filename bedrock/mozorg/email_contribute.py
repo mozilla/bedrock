@@ -15,7 +15,7 @@ from lib.l10n_utils.dotlang import _lazy as _
 
 
 fa = namedtuple('FunctionalArea', ['id', 'name', 'subject', 'contacts'])
-LANG_FILES = 'mozorg/contribute'
+LANG_FILES = 'mozorg/contribute/index'
 FUNCTIONAL_AREAS = (
     fa('support',
         _('Helping Users'),
