@@ -1,25 +1,17 @@
+
+<!-- Google Tag Manager -->
+<!-- Customized for Mozilla.org-->
+<!-- Region Container: NONE -->
+<!-- Rollup Container: System Filtered -->
+<!-- Site Container: NONE -->
 <script>
-var _gaq = _gaq || [];
-var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
-_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
-_gaq.push(['_setAccount', '{{ settings.GA_ACCOUNT_CODE }}']);
-_gaq.push(['_setAllowLinker', true]);
-_gaq.push(['_setAllowAnchor', true]);
-_gaq.push(['_gat._anonymizeIp']);
-_gaq.push(['_trackPageview']);
-
-{% if settings.GA_ACCOUNT_CODE %}
-{% set GA_FILE = 'u/ga_debug.js' if settings.TEMPLATE_DEBUG else 'ga.js' %}
-(function() {
-    var ga = document.createElement('script');
-    ga.type = 'text/javascript';
-    ga.async = true;
-
-    var prefix = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www');
-    ga.src = prefix + '.google-analytics.com/{{ GA_FILE }}';
-
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-})();
+{% if settings.GTM_CONTAINER_ID %}
+(function(w,d,s,l,i,j,f,dl,k,q){
+  w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});f=d.getElementsByTagName(s)[0];
+  k=i.length;q='//www.googletagmanager.com/gtm.js?id=@&l='+(l||'dataLayer');
+  while(k--){j=d.createElement(s);j.async=!0;j.src=q.replace('@',i[k]);f.parentNode.insertBefore(j,f);}
+}(window,document,'script','dataLayer',['{{settings.GTM_CONTAINER_ID}}']));
 {% endif %}
 </script>
+<!-- End Google Tag Manager -->
+
