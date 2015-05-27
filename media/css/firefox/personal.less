@@ -156,7 +156,7 @@ main {
     text-align: center;
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        padding: 40px 0;
+        padding: 20px 0;
     }
 }
 .mission {
@@ -172,14 +172,24 @@ main {
         width: 100%;
     }
 
+    &:first-child {
+        @media only screen and (max-width: @breakTablet) {
+            margin-top: 0;
+        }
+    }
+
     p {
         color: #999;
         font-family: 'FiraSans Light';
         .font-size(1.75rem);
-        font-weight: 300;
+        line-height: 1.3;
 
-        @media only screen and (max-width: @breakMobile) {
-            .font-size(1.45rem);
+        @media only screen and (max-width: @breakDesktop) {
+            .font-size(1.35rem);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(1.25rem);
         }
 
         span {
@@ -205,6 +215,11 @@ main {
     }
     a {
         .font-size(1.25rem);
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(1.1rem);
+        }
+
         &:hover {
             color: #005da5;
         }
