@@ -142,6 +142,8 @@ body {
             font-family: inherit;
             font-weight: bold;
             text-shadow: none;
+            /* for IE */
+            filter: none;
         }
     }
     .download-content {
@@ -247,10 +249,9 @@ main {
         .image-replaced();
         display: inline-block;
         margin: 0 20px -2px 0;
-        background: url(/media/img/firefox/family/index/family-sprite.png) -345px -485px no-repeat;
+        background: url(/media/img/firefox/personal/mozilla_wordmark.png) 0 0 no-repeat;
         width: 94px;
-        height: 25px;
-        .at2x('/media/img/firefox/family/index/family-sprite.png', 500px, 645px);
+        height: 29px;
 
         @media only screen and (max-width: @breakTablet) {
             margin-bottom: 15px;
@@ -258,7 +259,7 @@ main {
     }
 
     ul {
-        display: inline-block;
+        display: inline;
         margin: 0;
         list-style: none;
         .font-size(@smallFontSize);
