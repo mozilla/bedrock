@@ -47,7 +47,6 @@ all_children = [
             PageNode('Logo', path='logo', template='styleguide/identity/thunderbird-logo.html'),
             PageNode('Channels', path='channels', template='styleguide/identity/thunderbird-channels.html'),
             PageNode('Wordmarks', path='wordmarks', template='styleguide/identity/thunderbird-wordmarks.html'),
-            PageNode('Color', path='color', template='styleguide/identity/thunderbird-color.html'),
         )),
     )),
     PageNode('Websites', path='websites', children=(
