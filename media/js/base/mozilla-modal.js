@@ -78,10 +78,7 @@ Mozilla.Modal = (function(w, $) {
             }
         });
 
-        $modal.hide();
-        $modal.fadeIn('fast', function() {
-            $modal.focus();
-        });
+        $modal.focus();
 
         // close with escape key
         $d.on('keyup.' + evtNamespace, function(e) {
@@ -115,16 +112,14 @@ Mozilla.Modal = (function(w, $) {
             e.preventDefault();
         }
 
-        $('#modal').fadeOut('fast', function() {
-            $contentParent.append($content);
-            $(this).remove();
+        $contentParent.append($content);
+        $('#modal').remove();
 
-            // allow page to scroll again
-            $html.removeClass('noscroll');
+        // allow page to scroll again
+        $html.removeClass('noscroll');
 
-            // restore focus to element that opened the modal
-            $('.modal-origin').focus().removeClass('modal-origin');
-        });
+        // restore focus to element that opened the modal
+        $('.modal-origin').focus().removeClass('modal-origin');
 
         open = false;
         $modal = null;
