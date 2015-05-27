@@ -47,7 +47,7 @@ body {
     width: 100%;
 }
 #masthead {
-    background: #1a9bd4 url(/media/img/firefox/personal/header.png) 0 0 no-repeat;
+    background: #0c99d5 url(/media/img/firefox/personal/header.png) 0 0 no-repeat;
 
     @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
         width: 100%;
@@ -74,7 +74,7 @@ body {
         font-weight: bold;
         line-height: 1;
         text-transform: uppercase;
-        letter-spacing: 0.035em;
+        letter-spacing: -0.035em;
         text-shadow: none;
 
         @media only screen and (max-width: @breakDesktop) {
@@ -113,7 +113,7 @@ body {
         margin-bottom: 0;
         border: none;
         cursor: pointer;
-        min-width: 300px;
+        max-width: 300px;
         max-height: 68px;
         font-family: 'FiraSans Light';
         font-weight: bold;
@@ -140,6 +140,7 @@ body {
             background-color: inherit;
             background-image: none;
             font-family: inherit;
+            font-weight: bold;
             text-shadow: none;
         }
     }
@@ -155,7 +156,7 @@ main {
     text-align: center;
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        padding-bottom: 60px;
+        padding: 40px 0;
     }
 }
 .mission {
@@ -176,6 +177,11 @@ main {
         font-family: 'FiraSans Light';
         .font-size(1.75rem);
         font-weight: 300;
+
+        @media only screen and (max-width: @breakMobile) {
+            .font-size(1.45rem);
+        }
+
         span {
             display: block;
             color: #56565a;
@@ -209,43 +215,41 @@ main {
 // Simple Footer
 #footer {
     background: #fff;
-    border-top: 1px solid rgba(0, 0, 0, .1);
 
     .content {
         margin: 0 auto;
         padding: (@baseLine * 2) 0 (@baseLine * 3);
-        width: 1400px;
+        max-width: 1400px;
+        text-align: center;
 
         @media only screen and (max-width: @breakTablet) {
             padding: @baseLine 0;
             width: 100%;
-            text-align: center;
         }
     }
 
     .mozlogo {
         .image-replaced();
         display: inline-block;
-        margin: 0 auto @baseLine;
+        margin: 0 20px -2px 0;
         background: url(/media/img/firefox/family/index/family-sprite.png) -345px -485px no-repeat;
         width: 94px;
         height: 25px;
-        float: left;
         .at2x('/media/img/firefox/family/index/family-sprite.png', 500px, 645px);
 
         @media only screen and (max-width: @breakTablet) {
-            float: none;
+            margin-bottom: 15px;
         }
     }
 
     ul {
-        float: right;
+        display: inline-block;
         margin: 0;
         list-style: none;
         .font-size(@smallFontSize);
 
         @media only screen and (max-width: @breakTablet) {
-            float: none;
+            display: block;
         }
 
         li {
@@ -253,18 +257,14 @@ main {
             margin: 0 10px;
 
             @media only screen and (max-width: @breakTablet) {
-                display: block;
-                margin: 0 0 .25em;
+                display: inline-block;
+                margin: 0 -5px 0 10px;
             }
 
             &:after {
                 content: '•';
                 color: @textColorPrimary;
-                margin: 0 -10px 0 10px;
-
-                @media only screen and (max-width: @breakTablet) {
-                    content: '';
-                }
+                margin: 0 0 0 10px;
             }
 
             &:last-child:after {
