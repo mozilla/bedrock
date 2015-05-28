@@ -14,6 +14,12 @@
   {% stylesheet 'firefox_releasenotes' %}
 {% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-releasenotes-optimizely') %}
+     {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {# channel_name is for display purposes where needed.  #}
 {% set channel_name = channel_name|default('') %}
 
