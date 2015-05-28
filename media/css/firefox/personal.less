@@ -100,10 +100,12 @@ body {
     h1:before {
         display: block;
         background: transparent url(/media/img/firefox/personal/logo.png) 0 0 no-repeat;
+        background-size: 148px;
         margin: 0 auto @baseLine;
-        width: 147px;
-        height: 147px;
+        width: 148px;
+        height: 148px;
         content: '';
+        .at2x('/media/img/firefox/personal/logo.png', 295, 295);
     }
     .download-button.download-button-simple {
         /* copied from buttons.less :: .button-flat - with amendments */
@@ -161,6 +163,17 @@ main {
         padding: 20px 0;
     }
 }
+.mission-icons-sprite(@posx, @posy) {
+    display: block;
+    background-image: url(/media/img/firefox/personal/mission-icons-sprite.png);
+    background-position: @posx @posy;
+    background-size: 175px;
+    background-repeat: no-repeat;
+    margin-top: @baseLine;
+    height: 190px;
+    content: '';
+    .at2x('/media/img/firefox/personal/mission-icons-sprite.png', '50%', 0);
+}
 .mission {
     display: inline-block;
     padding: 0 25px;
@@ -203,17 +216,13 @@ main {
         }
     }
     p:before {
-        display: block;
-        background: transparent url(/media/img/firefox/personal/mission-icons-sprite.png) 50% 0 no-repeat;
-        margin-top: @baseLine;
-        height: 175px;
-        content: '';
+        .mission-icons-sprite(50%, 0);
     }
     p.data:before {
-        background-position: 50% -174px;
+        .mission-icons-sprite(50%, -184px);
     }
     p.choice:before {
-        background-position: 50% -380px;
+        .mission-icons-sprite(50%, -380px);
     }
     a {
         .font-size(1.25rem);
