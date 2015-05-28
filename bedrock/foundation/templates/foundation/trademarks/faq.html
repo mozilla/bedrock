@@ -82,8 +82,8 @@
       {% endtrans %}</dd>
 
     <dt>{% trans %}Can I put Firefox banners on my website? Can I link to you?{% endtrans %}</dt>
-    <dd>{% trans styleguide=url('styleguide.home'), affiliates="https://affiliates.mozilla.org/" %}
-    Thanks for your support :-) Of course you may. Our <a href="{{ affiliates }}">Firefox Affiliates</a> program is a centralized hub for getting and sharing Firefox and Mozilla download buttons. Our <a href="{{ styleguide }}">style guide</a> has any additional assets you may need: {% endtrans %}<br />
+    <dd>{% trans styleguide=url('styleguide.home') %}
+    Thanks for your support :-) Of course you may. Our <a href="{{ styleguide }}">style guide</a> has additional assets you may need: {% endtrans %}<br />
       <ul>
         <li>
           <a href="{{ url('styleguide.identity.firefox-branding') }}">{{ _('Firefox logo') }}</a>
