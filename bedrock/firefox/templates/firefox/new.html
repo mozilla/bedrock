@@ -93,16 +93,15 @@
     <div class="row">
       <img src="{{ static('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
       <h1 class="large">
-      {% if l10n_has_tag('fx10_independent') %}
+      {% if LANG == 'en-US' %}
+        {# L10n: Line break below for visual formatting only. #}
+        {{ _('When it’s personal,<br>choose Firefox.') }}
+      {% elif l10n_has_tag('fx10_independent') %}
         {{ _('Choose Independent.') }}
         <br>
         {{ _('Choose Firefox.') }}
       {% else %}
-        {%- if LANG in ['en-GB', 'en-US', 'en-ZA'] -%}
-          <span>Committed to you,</span> <span>your privacy</span> <span>and an open Web</span>
-        {%- else -%}
-          {{_('Committed to you, your privacy and an open Web')}}
-        {%- endif -%}
+        {{_('Committed to you, your privacy and an open Web')}}
       {% endif %}
       </h1>
     </div>
