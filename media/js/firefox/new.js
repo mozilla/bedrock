@@ -171,10 +171,39 @@
                     $thankYou.focus();
                 }, 500);
             }
+
+            // Added measurements fire only when the download is fired
+            spring_campaign_measurement();
         }
 
         function show_scene_anim(scene) {
             show_scene(scene, true);
+        }
+
+        // Pixel to be removed on July 31st, 2015 (Bug 1168440)
+        function spring_campaign_measurement () {
+            var _dntStatus = navigator.doNotTrack || navigator.msDoNotTrack;
+            var fxMatch = navigator.userAgent.match(/Firefox\/(\d+)/);
+            var ieMatch = navigator.userAgent.match(/MSIE/);
+
+            if (fxMatch && Number(fxMatch[1]) < 32) {
+                // Can't say for sure if it is 1 or 0, due to Fx bug 887703
+                _dntStatus = (_dntStatus === 'yes') ? 'Unknown' : 'Unspecified';
+            } else if (ieMatch) {
+                _dntStatus = 'Unspecified';
+            } else {
+                _dntStatus = { '0': 'Disabled', '1': 'Enabled' }[_dntStatus] || 'Unspecified';
+            }
+
+            if (_dntStatus !== 'Enabled'){
+                var $body = $('body');
+                var $pixel = $('<img />', {
+                    width: '1',
+                    height: '1',
+                    src: 'https://servedby.flashtalking.com/spot/8/6247;40428;4669/?spotName=Mozilla_Download_Conversion'
+                });
+                $body.append($pixel);
+            }
         }
 
         // Pull download link from the download button and add to the
