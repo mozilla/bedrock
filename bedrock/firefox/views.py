@@ -111,6 +111,16 @@ EMAIL_MESSAGES = {
     'all': 'download-firefox-mobile',
 }
 
+LOCALE_SPRING_CAMPAIGN_VIDEOS = {
+    'en-US': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_english',
+    'en-GB': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_englishUK',
+    'de': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_german',
+    'es-ES': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_spanish',
+    'es-MX': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_spanishMX',
+    'fr': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_french',
+    'pt-BR': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_portugeseBrazil',
+}
+
 
 def get_js_bundle_files(bundle):
     """
