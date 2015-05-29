@@ -102,7 +102,9 @@ INSTALLER_CHANNElS = [
 ]
 
 SMS_MESSAGES = {
-    'android': 'SMS_Android',
+    'android': 'android',
+    'ios': 'ios',
+    'all': 'mobile',
 }
 
 EMAIL_MESSAGES = {
@@ -166,7 +168,7 @@ def sms_send(request):
         if form.is_valid():
             try:
                 basket.send_sms(form.cleaned_data['number'],
-                                SMS_MESSAGES['android'],
+                                'SMS_Android',
                                 form.cleaned_data['optin'])
             except basket.BasketException:
                 error = error_msg
