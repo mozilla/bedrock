@@ -5,12 +5,11 @@
 ;(function($, Mozilla) {
     'use strict';
 
-    var $html = $('html');
-
     var isOldIE = (/MSIE\s[1-7]\./.test(navigator.userAgent));
 
     // slideshow/accordion variables
     var customizeAccordion;
+    var $accordionElem = $('#customize-accordion');
     var $phoneWrapper = $('#phone-wrapper');
     var $screencastWrapper = $('#screencast-wrapper');
     var $phoneScreens = $('#phone-screens');
@@ -32,19 +31,6 @@
         $('.dl-button-wrapper').hide();
 
         $('#subscribe-wrapper').removeClass('floating');
-    }
-
-    // show SMS link for all desktop users (en-US only for now)
-    if ($html.is('[lang|="en"]') && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
-        $.getScript('//geo.mozilla.org/country.js', function() {
-            try {
-                if (geoip_country_code().toLowerCase() === 'us') {
-                    $('#sms-link').fadeIn();
-                }
-            } catch(err) {
-                // no action taken - leave #sms-link hidden
-            }
-        });
     }
 
     // stops any running slideshow
@@ -123,7 +109,7 @@
     };
 
     var initAccordionsDesktop = function() {
-        customizeAccordion = new Mozilla.Accordion($('#customize-accordion'));
+        customizeAccordion = new Mozilla.Accordion($accordionElem);
         var hasExpanded = -1;
 
         // if no accordions are open, open the first section
@@ -184,6 +170,10 @@
                 for (var i = 0; i < customizeAccordion.sections.length; i++) {
                     section = customizeAccordion.sections[i];
 
+                    // set the min-height of the accordion to current height
+                    // before collapsing section to avoid page height jump.
+                    $accordionElem.css('min-height', $accordionElem.height());
+
                     if (section.expanded) {
                         section.collapse();
                     }
@@ -233,7 +223,7 @@
         $('.accordion [data-accordion-role="tab"]').off('click.android-desktop');
         $('.customize-pager').off('click');
 
-        customizeAccordion = new Mozilla.Accordion($('#customize-accordion'));
+        customizeAccordion = new Mozilla.Accordion($accordionElem);
     };
 
     // fire sync animation when scrolled to
@@ -293,12 +283,17 @@
         'data-download-version': 'href'
     });
 
+    Mozilla.FxFamilyNav.init({ primaryId: 'android', subId: 'index' });
 
-    // document ready stuff
-    $(function() {
-        // make android robot say hello
-        $('#intro-android').addClass('hello');
+    // init send-to-device form
+    var form = new Mozilla.SendToDevice();
+    form.init();
+
+    var $widget = $('#send-to-modal-container');
+
+    $('.send-to').on('click', function(e) {
+        e.preventDefault();
+        Mozilla.Modal.createModal(this, $widget);
     });
 
-    Mozilla.FxFamilyNav.init({ primaryId: 'android', subId: 'index' });
 })(window.jQuery, window.Mozilla);

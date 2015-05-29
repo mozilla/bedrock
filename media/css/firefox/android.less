@@ -6,13 +6,14 @@
 
 // Base template overrides
 
-.sky #outer-wrapper {
-    background: #fff;
+#outer-wrapper {
+    .aurora-bars();
 }
 
 #wrapper {
     width: 100%;
     margin-top: -162px; // family nav
+    padding-bottom: 0;
 }
 
 #masthead {
@@ -50,104 +51,87 @@
     text-align: center;
 }
 
-.sky .dl-button {
-    display: inline-block;
-    .font-size(@largeFontSize);
-    text-transform: uppercase;
-    background: #14c329;
-    border-radius: 8px;
-    padding: 24px 40px;
-    color: #fff;
-
-    &:hover {
-        text-decoration: none;
-        color: #fff;
-    }
-}
-
-#nav-dl-button {
-    padding: 7px (@baseLine / 2);
-    .font-size(@smallFontSize);
-    color: #fff;
-    text-align: center;
-}
-
 #wrapper .container {
     .clearfix();
     position: relative;
     width: 940px;
     margin: 0 auto;
-    overflow: hidden;
 
     a:not(.dl-button) {
         .trailing-arrow();
     }
 }
 
+#fxfamilynav-cta-wrapper .send-to {
+    padding: 7px (@baseLine / 2);
+    .font-size(@smallFontSize);
+    color: #fff;
+    text-align: center;
+}
+
 // Intro
 
 #intro {
-    padding-top: 162px;
-    background: #cae1f4;
-    background: url(/media/img/sandstone/grain.png) repeat,
-                    url(/media/img/firefox/android/bg-cubes.png) repeat,
-                    -webkit-linear-gradient(top, #cae1f4, #d9e1e7)
-                    #cae1f4;
-    background: url(/media/img/sandstone/grain.png) repeat,
-                    url(/media/img/firefox/android/bg-cubes.png) repeat,
-                    linear-gradient(to bottom, #cae1f4, #d9e1e7),
-                    #cae1f4;
+    position: relative;
+    text-align: left;
+    margin-top: 162px;
+    overflow: hidden;
 
     .container {
         min-height: 484px;
     }
 
     .content-primary {
-        margin-top: 50px;
+        display: inline-block;
+        margin: 50px 0 (@baseLine * 6);
         position: relative;
         width: 540px;
-        z-index: 2;
     }
 
     .content-secondary {
         position: absolute;
-        width: 460px;
-        right: 10px;
-        top: 46px;
-        z-index: 1;
+        width: 970px;
+        right: -560px;
+        top: 50px;
     }
 
     .heading {
-        .font-size(55px);
+        .font-size(58px);
+        color: #fff;
+        text-align: left;
     }
 
     .lead {
-        .font-size(28px);
-        line-height: 1.2;
-        padding: 0 (@baseLine * 2);
+        .font-size(30px);
+        color: #fff;
+        line-height: 1.3;
+        padding: 0 @baseLine 0 0;
+        text-align: left;
     }
 
     .dl-button-wrapper {
+        width: 380px;
         margin: 32px 0;
-        text-align: center;
+        text-align: left;
     }
-}
 
-// only displayed after geolocation verifies user is in US
-#sms-link {
-    display: none;
-    text-align: center;
-    margin-top: @baseLine / 2;
-
-    a {
-        color: #0092db;
+    .send-to {
+        .font-size(18px);
     }
 }
 
 // Only displayed if the user is on iOS
 .ios-link {
     display: none;
-    text-align: center;
+    max-width: 15em;
+    margin: @baseLine auto;
+    color: #fff;
+    .font-size(@largeFontSize);
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
 
     & a:after {
         content: '' !important;
@@ -158,127 +142,86 @@
     display: block;
 }
 
-#intro-phone {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 356px;
-    height: 647px;
-    z-index: 2;
+#intro-phone-tablet {
+    z-index: 1;
+}
+
+@-webkit-keyframes android-jump {
+    50% {
+        .transform(translate(0, 0));
+    }
+    55% {
+        .transform(translate(0, -16px));
+    }
+    60% {
+        .transform(translate(0, 0));
+    }
+    100% {
+        .transform(translate(0, 0));
+    }
+}
+
+@keyframes android-jump {
+    50% {
+        .transform(translate(0, 0));
+    }
+    55% {
+        .transform(translate(0, -16px));
+    }
+    60% {
+        .transform(translate(0, 0));
+    }
+    100% {
+        .transform(translate(0, 0));
+    }
+}
+
+@-webkit-keyframes android-wave {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 -110px;
+    }
+}
+
+@keyframes android-wave {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 0 -110px;
+    }
 }
 
 #intro-android {
     position: absolute;
-    top: 250px;
-    right: 218px;
-    width: 228px;
-    height: 224px;
-    z-index: 1;
-}
-
-@-webkit-keyframes androidHello {
-    25% {
-        .transform(translate(0, 0));
-    }
-    50% {
-        .transform(translate(0, 0));
-    }
-    60% {
-        .transform(translate(0, -16px));
-    }
-    70% {
-        .transform(translate(0, 0));
-    }
-    100% {
-        .transform(translate(0, 0));
-    }
-}
-
-@keyframes androidHello {
-    25% {
-        .transform(translate(0, 0));
-    }
-    50% {
-        .transform(translate(0, 0));
-    }
-    60% {
-        .transform(translate(0, -16px));
-    }
-    70% {
-        .transform(translate(0, 0));
-    }
-    100% {
-        .transform(translate(0, 0));
-    }
-}
-
-.js #intro-android {
-    .transform(translateX(150px));
-
-    &.hello {
-        .animation(androidHello 1.3s ease-out 0.9s 1 normal forwards);
-    }
+    bottom: -100px;
+    right: 0;
+    width: 55px;
+    height: 55px;
+    .at2x('/media/img/firefox/android/android-sprite.png', 55px);
+    -webkit-animation: android-jump 5s infinite, android-wave 5s steps(2) infinite;
+            animation: android-jump 5s infinite, android-wave 5s steps(2) infinite;
 }
 
 html[dir="rtl"] {
-    @-webkit-keyframes androidHelloRTL {
-        25% {
-            .transform(translate(16px, 0) rotateY(180deg));
-        }
-        50% {
-            .transform(translate(16px, 0) rotateY(180deg));
-        }
-        60% {
-            .transform(translate(16px, -20px) rotateY(180deg));
-        }
-        70% {
-            .transform(translate(16px, 0) rotateY(180deg));
-        }
-        100% {
-            .transform(translate(16px, 0) rotateY(180deg));
-        }
-    }
 
-    @keyframes androidHelloRTL {
-        25% {
-            .transform(translate(16px, 0) rotateY(180deg));
+    #intro {
+        .heading,
+        .lead {
+            text-align: right;
+            padding-right: @baseLine;
         }
-        50% {
-            .transform(translate(16px, 0) rotateY(180deg));
-        }
-        60% {
-            .transform(translate(16px, -16px) rotateY(180deg));
-        }
-        70% {
-            .transform(translate(16px, 0) rotateY(180deg));
-        }
-        100% {
-            .transform(translate(16px, 0) rotateY(180deg));
-        }
-    }
 
-    #intro .content-secondary {
-        left: 10px;
-        right: auto;
-    }
-
-    #intro-phone {
-        left: -20px;
-        right: auto;
+        .dl-button-wrapper {
+            padding-right: @baseLine;
+            text-align: right;
+        }
     }
 
     #intro-android {
-        right: auto;
-        left: 218px;
-        .transform(translateX(16px) rotateY(180deg));
-    }
-
-    &.js #intro-android {
-        .transform(translateX(-120px) rotateY(180deg));
-
-        &.hello {
-            .animation(androidHelloRTL 1.3s ease-out 0.9s 1 normal forwards);
-        }
+        display: none;
     }
 }
 
@@ -286,6 +229,8 @@ html[dir="rtl"] {
 
 #customize {
     position: relative;
+    background: #fff;
+    z-index: 10;
 
     .container {
         width: 820px;
@@ -461,6 +406,7 @@ html[dir="rtl"] {
         height: 58px;
     }
 
+    #reading .line,
     #language .line {
         background-position: 0 -288px;
         height: 58px;
@@ -531,13 +477,7 @@ html[dir="rtl"] #phone-wrapper figure {
 // Privacy
 
 #privacy {
-    background: #5d7489;
-    background: url(/media/img/firefox/android/bg-cubes-dark.png) repeat,
-                    -webkit-linear-gradient(top, #5d7489, #3d4c59)
-                    #5d7489;
-    background: url(/media/img/firefox/android/bg-cubes-dark.png) repeat,
-                    linear-gradient(to bottom, #5d7489, #3d4c59),
-                    #5d7489;
+    background: #005189;
     color: #fff;
 
     .container {
@@ -554,7 +494,7 @@ html[dir="rtl"] #phone-wrapper figure {
     }
 
     a {
-        color: #ffcd02;
+        color: #71c4ea;
     }
 
     li {
@@ -600,6 +540,8 @@ html[dir="rtl"] #phone-wrapper figure {
 // Sync
 
 #sync {
+    background: #fff;
+
     .container {
         width: 860px;
         padding: 40px 0 40px 80px;
@@ -641,12 +583,45 @@ html[dir="rtl"] #phone-wrapper figure {
     z-index: 1;
 }
 
+// Send to Device Widget
+.js #send-to-device {
+    display: none;
+}
+
+#modal #send-to-device {
+    display: block;
+}
+
+.send-to {
+    display: none;
+}
+
+// Hide play store button for locales that get the widget
+.js .show-widget {
+    .dl-button {
+        display: none;
+    }
+    .send-to {
+        display: block;
+    }
+}
+
+// Android users should only see play store button
+.js.android .show-widget {
+    .dl-button {
+        display: block;
+    }
+    .send-to {
+        display: none;
+    }
+}
+
 // Newsletter / Download
 
 #subscribe-download-wrapper {
     background: #0092db;
     color: #fff;
-    padding-top: @baseLine * 2;
+    padding: (@baseLine * 2) 0;
 
     h3 {
         .font-size(40px);
@@ -660,17 +635,9 @@ html[dir="rtl"] #phone-wrapper figure {
     }
 }
 
-.sky #subscribe-download-wrapper {
+#subscribe-download-wrapper {
     a {
         color: #fff;
-        text-decoration: underline;
-    }
-
-    .dl-button {
-        .font-size(@baseFontSize);
-        padding: @baseLine (@baseLine * 2);
-        margin-bottom: @baseLine / 2;
-        text-decoration: none;
     }
 }
 
@@ -756,6 +723,10 @@ html[dir="rtl"] #phone-wrapper figure {
     box-shadow: none;
 }
 
+#colophon {
+    margin: 0;
+}
+
 // Locale-specific rules
 
 html[lang="ja"] #privacy p {
@@ -823,6 +794,10 @@ html[lang="ja"] #privacy p {
             width: 450px;
         }
 
+        .content-secondary {
+            right: -680px;
+        }
+
         .heading {
             .font-size(40px);
         }
@@ -832,31 +807,8 @@ html[lang="ja"] #privacy p {
         }
     }
 
-    #intro-phone {
-        width: 280px;
-        height: 509px;
-    }
-
     #intro-android {
-        width: 179px;
-        height: 176px;
-        top: 220px;
-        right: 150px;
-    }
-
-    html[dir="rtl"] {
-        #intro-android {
-            .transform(translateX(-60px) rotateY(180deg));
-        }
-
-        &.js #intro-android {
-            .transform(translateX(-60px) rotateY(180deg));
-
-            &.hello {
-                .transform(translateX(-60px) rotateY(180deg));
-                .animation(none);
-            }
-        }
+        display: none;
     }
 
     // Customize
@@ -1016,15 +968,43 @@ html[lang="ja"] #privacy p {
 
         .heading {
             .font-size(36px);
+            text-align: center;
         }
 
         .lead {
             .font-size(22px);
+            text-align: center;
+            padding: 0;
+        }
+
+        .dl-button-wrapper {
+            text-align: center;
+            width: auto;
         }
 
         .content-primary {
             width: auto;
+            margin-bottom: 0;
         }
+    }
+
+    html[dir="rtl"] {
+        #intro {
+            .heading {
+                text-align: center;
+            }
+
+            .lead {
+                text-align: center;
+            }
+            .dl-button-wrapper {
+                text-align: center;
+            }
+        }
+    }
+
+    #intro-android {
+        display: none;
     }
 
     // Customize
@@ -1240,10 +1220,6 @@ html[lang="ja"] #privacy p {
         .font-size(18px);
     }
 
-    .sky .dl-button {
-        padding: 16px @baseLine;
-    }
-
     // Intro
 
     #intro {
@@ -1337,6 +1313,10 @@ html[lang="ja"] #privacy p {
         .newsletter-form {
             input[type="email"] {
                 width: 260px;
+            }
+
+            .form-submit {
+                width: auto;
             }
 
             #footer_email_submit {
