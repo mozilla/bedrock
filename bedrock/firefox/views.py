@@ -381,7 +381,7 @@ def show_36_whatsnew_tour(oldversion):
     return oldversion < Version('36.0')
 
 
-def show_38_0_5_firstrun(version):
+def show_38_0_5_firstrun_or_whatsnew(version):
     try:
         version = Version(version)
     except ValueError:
@@ -482,7 +482,7 @@ class FirstrunView(LatestFxView):
                 template = 'firefox/dev-firstrun-spring-campaign.html'
             else:
                 template = 'firefox/dev-firstrun.html'
-        elif show_38_0_5_firstrun(version):
+        elif show_38_0_5_firstrun_or_whatsnew(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         elif show_36_firstrun(version):
             template = 'firefox/australis/fx36/firstrun-tour.html'
@@ -497,6 +497,8 @@ class FirstrunView(LatestFxView):
 
 class WhatsnewView(LatestFxView):
 
+    pocket_locales = ['en-US', 'es-ES', 'ru', 'ja', 'de']
+
     def get(self, request, *args, **kwargs):
         if not settings.DEV and not request.is_secure():
             uri = 'https://{host}{path}'.format(
@@ -506,7 +508,18 @@ class WhatsnewView(LatestFxView):
             return HttpResponsePermanentRedirect(uri)
         return super(WhatsnewView, self).get(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        ctx = super(WhatsnewView, self).get_context_data(**kwargs)
+        locale = l10n_utils.get_locale(self.request)
+        video_url = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
+
+        if video_url:
+            ctx['video_url'] = video_url
+
+        return ctx
+
     def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
@@ -515,6 +528,17 @@ class WhatsnewView(LatestFxView):
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-whatsnew.html'
+        elif show_38_0_5_firstrun_or_whatsnew(version):
+            has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
+            has_pocket = locale in self.pocket_locales
+            if has_pocket and has_video:
+                template = 'firefox/whatsnew_38/whatsnew-pocket-video.html'
+            elif has_video:
+                template = 'firefox/whatsnew_38/whatsnew-video.html'
+            elif has_pocket:
+                template = 'firefox/whatsnew_38/whatsnew-pocket.html'
+            else:
+                template = 'firefox/australis/fx36/whatsnew-no-tour.html'
         elif version.startswith('37.'):
             template = 'firefox/whatsnew-fx37.html'
         elif version.startswith('36.'):
@@ -549,7 +573,7 @@ class TourView(LatestFxView):
                 template = 'firefox/dev-firstrun-spring-campaign.html'
             else:
                 template = 'firefox/dev-firstrun.html'
-        elif show_38_0_5_firstrun(version):
+        elif show_38_0_5_firstrun_or_whatsnew(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         elif show_36_firstrun(version):
             template = 'firefox/australis/fx36/help-menu-36-tour.html'
