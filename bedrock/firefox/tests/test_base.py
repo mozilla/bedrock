@@ -4,6 +4,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import json
 import os
+import waffle
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -381,6 +382,7 @@ class TestTourView(TestCase):
         eq_(template, ['firefox/australis/help-menu-tour.html'])
 
     @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=False))
     def test_fx_dev_browser_35_0_a2(self, render_mock):
         """Should use dev browser firstrun template for 35.0a2"""
         req = self.rf.get('/en-US/firefox/tour/')
@@ -389,6 +391,7 @@ class TestTourView(TestCase):
         eq_(template, ['firefox/dev-firstrun.html'])
 
     @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=False))
     def test_fx_dev_browser_35_1_a2(self, render_mock):
         """Should use dev browser firstrun template for 35.1a2"""
         req = self.rf.get('/en-US/firefox/tour/')
@@ -397,12 +400,22 @@ class TestTourView(TestCase):
         eq_(template, ['firefox/dev-firstrun.html'])
 
     @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=False))
     def test_fx_dev_browser_36_0_a2(self, render_mock):
         """Should use dev browser firstrun template for 36.0a2"""
         req = self.rf.get('/en-US/firefox/tour/')
         self.view(req, version='36.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/dev-firstrun.html'])
+
+    @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    def test_fx_dev_browser_40_0_a2(self, render_mock):
+        """Should use dev browser firstrun template for 40.0a2"""
+        req = self.rf.get('/en-US/firefox/tour/')
+        self.view(req, version='40.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/dev-firstrun-spring-campaign.html'])
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_34_0_a2(self, render_mock):
@@ -498,6 +511,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/australis/firstrun-tour.html'])
 
     @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=False))
     def test_fx_dev_browser_35_0_a2(self, render_mock):
         """Should use dev browser firstrun template for 35.0a2"""
         req = self.rf.get('/en-US/firefox/firstrun/')
@@ -506,6 +520,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/dev-firstrun.html'])
 
     @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=False))
     def test_fx_dev_browser_35_1_a2(self, render_mock):
         """Should use dev browser firstrun template for 35.1a2"""
         req = self.rf.get('/en-US/firefox/firstrun/')
@@ -514,6 +529,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/dev-firstrun.html'])
 
     @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=False))
     def test_fx_dev_browser_36_0_a2(self, render_mock):
         """Should use dev browser firstrun template for 36.0a2"""
         req = self.rf.get('/en-US/firefox/firstrun/')
@@ -528,6 +544,15 @@ class TestFirstRun(TestCase):
         self.view(req, version='34.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/firstrun-tour.html'])
+
+    @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    def test_fx_dev_browser_40_0_a2(self, render_mock):
+        """Should use dev browser firstrun spring campaign template for 40.0a2"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='40.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/dev-firstrun-spring-campaign.html'])
 
     @override_settings(DEV=True)
     def test_fx_search_tour_34_0(self, render_mock):

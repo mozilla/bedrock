@@ -9,8 +9,8 @@
 {% block page_image %}{{ static('img/firefox/developer/page-image.png') }}{% endblock %}
 
 {% block page_desc %}
-  {% if l10n_has_tag('meta_update_201503') %}
-    {{_('Built for those who build the Web. Introducing the only browser made for developers.')}}
+  {% if l10n_has_tag('spring_release') %}
+    {{_('Built for those who build the Web. The only browser made for developers like you.')}}
   {%- else -%}
     {{ _('Introducing the only browser made for developers like you.') }}
   {% endif %}
@@ -49,7 +49,13 @@
 <section class="intro container">
 
   <h1>{{ _('Built for those who build the Web') }}</h1>
-  <h2>{{ _('Introducing the only browser made for developers like you.') }}</h2>
+  <h2>
+  {% if l10n_has_tag('spring_release') %}
+    {{ _('The only browser made for developers like you.') }}
+  {%- else -%}
+    {{ _('Introducing the only browser made for developers like you.') }}
+  {% endif -%}
+  </h2>
   {{ download_firefox('alpha', icon=False, small=True, simple=True) }}
 
   {% if l10n_has_tag('new_doorhanger') %}
@@ -88,37 +94,30 @@
 <section class="feature-overview">
   <div class="container">
     <ul class="features">
+    {% if l10n_has_tag('spring_release') %}
       <li class="feature">
-        <a href="https://www.youtube.com/watch?v=1R9_WdXwUsE" class="video-play" rel="external">
-          <img src="{{ static('img/firefox/developer/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        <a href="https://developer.mozilla.org/docs/Tools/Performance" rel="external">
+          <img src="{{ static('img/firefox/developer/feature-performancetools.png') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
-        <h2>{{_('WebIDE')}}</h2>
-        <p>{{_('Develop, deploy and debug Firefox OS apps directly in your browser, or on a Firefox OS device, with this tool that replaces App Manager.')}}</p>
-        <a href="https://developer.mozilla.org/docs/Tools/WebIDE" class="more" rel="external" data-link-type="learn-more">{{_('Learn more about WebIDE')}}</a>
+        <h2>{{ _('Performance Tools') }}</h2>
+        <p>
+          {{ _('Examine your web content’s frame rate, memory consumption and JS profile in a consolidated timeline view to help easily identify and troubleshoot performance bottlenecks.') }}
+        </p>
+        <a href="https://developer.mozilla.org/docs/Tools/Performance" class="more" rel="external">{{ _('Learn more about Performance Tools') }}</a>
         <div class="responsive-video-container">
           <div class="video" data-video-id="1R9_WdXwUsE"></div>
         </div>
       </li>
+    {% endif -%}
       <li class="feature">
-        <a href="https://www.youtube.com/watch?v=iJ4C7VnIMC8" class="video-play" rel="external">
-          <img src="{{ static('img/firefox/developer/feature-responsive.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        <a href="https://www.youtube.com/watch?v=eQqNfkqIJdw" class="video-play" rel="external">
+          <img src="{{ static('img/firefox/developer/feature-inspector.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
         </a>
-        <h2>{{ _('Responsive Design View ') }}</h2>
-        <p>{{ _('See how your Website or Web app will look on different screen sizes without changing the size of your browser window.') }}</p>
-        <a href="https://developer.mozilla.org/docs/Tools/Responsive_Design_View" class="more" rel="external" data-link-type="learn-more">{{ _('Learn more about Responsive Design View') }}</a>
+        <h2>{{_('Page Inspector')}}</h2>
+        <p>{{_('Examine the HTML and CSS of any Web page and easily modify the structure and layout of a page.')}}</p>
+        <a href="https://developer.mozilla.org/docs/Tools/Page_Inspector" class="more" rel="external">{{_('Learn more about Page Inspector')}}</a>
         <div class="responsive-video-container">
-          <div class="video" data-video-id="iJ4C7VnIMC8"></div>
-        </div>
-      </li>
-      <li class="feature">
-        <a href="https://www.youtube.com/watch?v=eH0R10Ga4Hs" class="video-play" rel="external">
-          <img src="{{ static('img/firefox/developer/feature-valence.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
-        </a>
-        <h2>{{_('Valence')}}</h2>
-        <p>{{_('Develop and debug your apps across multiple browsers and devices with this powerful extension that comes pre-installed with Firefox Developer Edition.')}}</p>
-        <a href="https://developer.mozilla.org/docs/Tools/Firefox_Tools_Adapter" class="more" rel="external" data-link-type="learn-more">{{_('Learn more about Valence')}}</a>
-        <div class="responsive-video-container">
-          <div class="video" data-video-id="eH0R10Ga4Hs"></div>
+          <div class="video" data-video-id="eQqNfkqIJdw"></div>
         </div>
       </li>
       <li class="feature">
@@ -130,17 +129,6 @@
         <a href="https://developer.mozilla.org/docs/Tools/Web_Audio_Editor" class="more" rel="external" data-link-type="learn-more">{{_('Learn more about Web Audio Editor')}}</a>
         <div class="responsive-video-container">
           <div class="video" data-video-id="R_qDaLQ8ghg"></div>
-        </div>
-      </li>
-      <li class="feature">
-        <a href="https://www.youtube.com/watch?v=eQqNfkqIJdw" class="video-play" rel="external">
-          <img src="{{ static('img/firefox/developer/feature-inspector.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
-        </a>
-        <h2>{{_('Page Inspector')}}</h2>
-        <p>{{_('Examine the HTML and CSS of any Web page and easily modify the structure and layout of a page.')}}</p>
-        <a href="https://developer.mozilla.org/docs/Tools/Page_Inspector" class="more" rel="external" data-link-type="learn-more">{{_('Learn more about Page Inspector')}}</a>
-        <div class="responsive-video-container">
-          <div class="video" data-video-id="eQqNfkqIJdw"></div>
         </div>
       </li>
       <li class="feature">
@@ -185,6 +173,39 @@
         <a href="https://developer.mozilla.org/docs/Tools/Style_Editor" class="more" rel="external" data-link-type="learn-more">{{_('Learn more about Style Editor')}}</a>
         <div class="responsive-video-container">
           <div class="video" data-video-id="3kdBvvIZIqU"></div>
+        </div>
+      </li>
+      <li class="feature">
+        <a href="https://www.youtube.com/watch?v=iJ4C7VnIMC8" class="video-play" rel="external">
+          <img src="{{ static('img/firefox/developer/feature-responsive.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        </a>
+        <h2>{{ _('Responsive Design View ') }}</h2>
+        <p>{{ _('See how your Website or Web app will look on different screen sizes without changing the size of your browser window.') }}</p>
+        <a href="https://developer.mozilla.org/docs/Tools/Responsive_Design_View" class="more" rel="external">{{ _('Learn more about Responsive Design View') }}</a>
+        <div class="responsive-video-container">
+          <div class="video" data-video-id="iJ4C7VnIMC8"></div>
+        </div>
+      </li>
+      <li class="feature">
+        <a href="https://www.youtube.com/watch?v=1R9_WdXwUsE" class="video-play" rel="external">
+          <img src="{{ static('img/firefox/developer/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        </a>
+        <h2>{{_('WebIDE')}}</h2>
+        <p>{{_('Develop, deploy and debug Firefox OS apps directly in your browser, or on a Firefox OS device, with this tool that replaces App Manager.')}}</p>
+        <a href="https://developer.mozilla.org/docs/Tools/WebIDE" class="more" rel="external">{{_('Learn more about WebIDE')}}</a>
+        <div class="responsive-video-container">
+          <div class="video" data-video-id="1R9_WdXwUsE"></div>
+        </div>
+      </li>
+      <li class="feature">
+        <a href="https://www.youtube.com/watch?v=eH0R10Ga4Hs" class="video-play" rel="external">
+          <img src="{{ static('img/firefox/developer/feature-valence.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+        </a>
+        <h2>{{_('Valence')}}</h2>
+        <p>{{_('Develop and debug your apps across multiple browsers and devices with this powerful extension that comes pre-installed with Firefox Developer Edition.')}}</p>
+        <a href="https://developer.mozilla.org/docs/Tools/Firefox_Tools_Adapter" class="more" rel="external">{{_('Learn more about Valence')}}</a>
+        <div class="responsive-video-container">
+          <div class="video" data-video-id="eH0R10Ga4Hs"></div>
         </div>
       </li>
     </ul>
