@@ -166,7 +166,44 @@ a.more {
             }
         }
     }
+}
 
+// mozID visual style
+// full width rows w/differing bg colors
+// TODO: needs responsive styles
+.mozID {
+    a:link,
+    a:active,
+    a:focus,
+    a:visited {
+        color: #fff;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6, .huge, .large {
+        color: #fff;
+        text-shadow: none;
+    }
+
+    #wrapper {
+        width: 100%;
+
+        .container {
+            width: @widthDesktop - (@baseLine * 2);
+            padding-left: @baseLine;
+            padding-right: @baseLine;
+        }
+    }
+
+    #masthead {
+        z-index: 10;
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 h1, h2, h3, h4, h5, h6, legend, .huge, .large, legend {
@@ -1061,6 +1098,10 @@ nav.menu-bar {
       width: @widthTablet;
     }
 
+    .mozID #wrapper .container {
+        width: @widthTablet;
+    }
+
     #masthead,
     #main-feature,
     #main-content,
@@ -1147,6 +1188,10 @@ nav.menu-bar {
 
     #wrapper {
       width: @widthMobile;
+    }
+
+    .mozID #wrapper .container {
+        width: @widthMobile;
     }
 
     #masthead,
@@ -1484,6 +1529,9 @@ nav.menu-bar {
         }
     }
 
+    .mozID #wrapper .container {
+        width: @widthMobileLandscape;
+    }
 }
 /* }}} */
 

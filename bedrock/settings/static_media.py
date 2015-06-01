@@ -348,6 +348,16 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_fx36_whatsnew_no_tour-bundle.css',
     },
+    'firefox_fx38_0_5_firstrun': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/sandstone/video-resp.less',
+            'css/base/mozid-modal.less',
+            'css/firefox/australis/fx38_0_5/firstrun.less',
+        ),
+        'output_filename': 'css/firefox_fx38_0_5_firstrun-bundle.css',
+    },
     'firefox_developer_firstrun': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -1176,6 +1186,15 @@ PIPELINE_JS = {
             'js/firefox/australis/fx36/whatsnew-notour.js',
         ),
         'output_filename': 'js/firefox_fx36_whatsnew_no_tour-bundle.js',
+    },
+    'firefox_fx38_0_5_firstrun': {
+        'source_filenames': (
+            'js/base/mozilla-video-tools.js',
+            'js/firefox/australis/australis-uitour.js',
+            'js/base/mozilla-modal.js',
+            'js/firefox/australis/fx38_0_5/firstrun.js',
+        ),
+        'output_filename': 'js/firefox_fx38_0_5_firstrun-bundle.js',
     },
     'firefox_developer_firstrun': {
         'source_filenames': (

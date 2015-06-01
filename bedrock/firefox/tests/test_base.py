@@ -453,10 +453,18 @@ class TestTourView(TestCase):
     @override_settings(DEV=True)
     def test_fx_firstrun_tour_36_0(self, render_mock):
         """Should use fx36 tour template for 36.0"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
+        req = self.rf.get('/en-US/firefox/tour/')
         self.view(req, version='36.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/fx36/help-menu-36-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_search_tour_38_0_5(self, render_mock):
+        """Should use fx38.0.5 firstrun template for 38.0.5"""
+        req = self.rf.get('/en-US/firefox/tour/')
+        self.view(req, version='38.0.5')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx38_0_5/firstrun.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
@@ -586,6 +594,14 @@ class TestFirstRun(TestCase):
         self.view(req, version='36.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/fx36/firstrun-tour.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_38_0_5(self, render_mock):
+        """Should use fx38.0.5 firstrun template for 38.0.5"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='38.0.5')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/fx38_0_5/firstrun.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
