@@ -51,6 +51,9 @@
         <h2>{{_('Performance Tools')}}</h2>
         <p>{{_('Examine your web content’s frame rate, memory consumption and JS profile in a consolidated timeline view to help easily identify and troubleshoot performance bottlenecks.')}}</p>
         <a href="https://developer.mozilla.org/docs/Tools/Performance" rel="external" class="more">{{_('Learn more about Performance Tools')}}</a>
+        {% if LANG.startswith('en-') %}
+          <br><a href="http://codepen.io/mozhacks/pen/xGgevw?editors=001?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=firefox-developer-game&amp;utm_content=whatsnew-dev-tour" rel="external" class="more">{{_('Play the game on Codepen')}}</a>
+        {% endif %}
       </li>
       {% if LANG.startswith('en-') %}
         <li class="feature">

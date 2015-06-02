@@ -104,6 +104,9 @@
           {{ _('Examine your web content’s frame rate, memory consumption and JS profile in a consolidated timeline view to help easily identify and troubleshoot performance bottlenecks.') }}
         </p>
         <a href="https://developer.mozilla.org/docs/Tools/Performance" class="more" rel="external">{{ _('Learn more about Performance Tools') }}</a>
+        {% if LANG.startswith('en-') %}
+          <br><a href="http://codepen.io/mozhacks/pen/xGgevw?editors=001?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=firefox-developer-game&amp;utm_content=dev-edition-product-page" rel="external" class="more">{{_('Play the game on Codepen')}}</a>
+        {% endif %}
         <div class="responsive-video-container">
           <div class="video" data-video-id="1R9_WdXwUsE"></div>
         </div>
