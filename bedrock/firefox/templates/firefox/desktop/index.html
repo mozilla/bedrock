@@ -53,6 +53,12 @@
         <div id="overview-intro-download-wrapper">
           {{ download_firefox(small=True, icon=False, dom_id="intro_download_desktop") }}
         </div>
+      {% if l10n_has_tag('firefox_updated') %}
+        <div id="overview-intro-up-to-date">
+          {{ _('Your Firefox is up to date.') }}
+          <a href="https://support.mozilla.org/products/firefox" rel="external">{{ _('Need help with anything?') }}</a>
+        </div>
+      {% endif %}
       </div>
       {% include 'firefox/desktop/includes/intro-anim.html' %}
     </div><!--/.container-->
