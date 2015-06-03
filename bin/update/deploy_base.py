@@ -89,7 +89,6 @@ def update_code(ctx, tag):
 def update_assets(ctx):
     """Compile/compress static assets and fetch external data."""
     management_cmd(ctx, 'collectstatic --noinput', use_src_dir=True)
-    management_cmd(ctx, 'update_product_details', use_src_dir=True)
     management_cmd(ctx, 'update_externalfiles', use_src_dir=True)
 
 
