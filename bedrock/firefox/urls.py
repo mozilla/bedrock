@@ -84,8 +84,6 @@ urlpatterns = patterns('',
     page('firefox/os/1.3', 'firefox/os/ver/1.3.html'),
     page('firefox/os/1.1', 'firefox/os/ver/1.1.html'),
 
-    page('firefox/os/releases', 'firefox/os/releases.html'),
-
     page('mwc', 'firefox/os/mwc-2015-preview.html',
         decorators=waffle_switch('mwc-2015-preview')),
 
