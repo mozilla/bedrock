@@ -13,14 +13,14 @@
         "irc": "irc://irc.mozilla.org/#www",
         "irc-contacts": [
             "agibson",
-            "bensternthal",
             "craigcook",
+            "pmac",
+            "bensternthal",
             "espressive",
             "jgmize",
             "jpetto",
             "kohei",
             "malexis",
-            "pmac",
             "sgarrity"
         ]
     },
