@@ -15,9 +15,9 @@ from bedrock.security.views import (ProductView, ProductVersionView, latest_quer
                                     product_is_obsolete)
 
 
-@patch.dict(product_details.firefox_versions, {'LATEST_FIREFOX_VERSION': '33.0',
-                                               'FIREFOX_ESR': '31.2.0'})
-@patch.dict(product_details.thunderbird_versions, {'LATEST_THUNDERBIRD_VERSION': '31.2.0'})
+@patch.object(product_details, 'firefox_versions', {'LATEST_FIREFOX_VERSION': '33.0',
+                                                    'FIREFOX_ESR': '31.2.0'})
+@patch.object(product_details, 'thunderbird_versions', {'LATEST_THUNDERBIRD_VERSION': '31.2.0'})
 def test_product_is_obsolete():
     ok_(product_is_obsolete('firefox', '3.6'))
     ok_(product_is_obsolete('firefox', '32'))
