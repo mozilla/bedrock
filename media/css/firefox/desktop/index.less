@@ -57,6 +57,28 @@
     }
 }
 
+// up to date message
+
+#overview-intro-up-to-date {
+    display: none;
+    padding: 10px 0 20px;
+    font-style: italic;
+
+    &.active {
+        display: block;
+    }
+
+    &:before {
+        display: inline-block;
+        content: '';
+        width: 24px;
+        height: 24px;
+        background: transparent url(/media/img/firefox/new/icon-check.svg) left top no-repeat;
+        margin-right: 5px;
+        vertical-align: text-bottom;
+    }
+}
+
 html[lang^="en"] #sticky-download-desktop .download-link .download-content {
     padding: 10px 20px;
 }

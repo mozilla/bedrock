@@ -7,13 +7,13 @@
 
     var isDesktopViewport = $(window).width() >= 1000;
 
-    var $customize_stage = $('#customize .stage');
-    var $customize_animation = $('#customize .animation-wrapper');
+    var $customizeStage = $('#customize .stage');
+    var $customizeAnimation = $('#customize .animation-wrapper');
 
     // animations only run on full desktop sized viewport
     if (isDesktopViewport) {
         $('#customize').waypoint(function() {
-            $customize_animation.addClass('animate');
+            $customizeAnimation.addClass('animate');
         }, {
             triggerOnce: true,
             offset: 50
@@ -23,22 +23,26 @@
             e.preventDefault();
 
             // Fade out stage with opacity transition.
-            $customize_stage.addClass('resetting');
+            $customizeStage.addClass('resetting');
 
             // After opacity transition completes, reset animation by removing
             // 'animate' class, then restore opacity by removing the 'resetting'
             // class.
             setTimeout(function() {
-                $customize_animation.removeClass('animate');
-                $customize_stage.removeClass('resetting');
+                $customizeAnimation.removeClass('animate');
+                $customizeStage.removeClass('resetting');
 
                 // After opacity has been restored, trigger the animation
                 // again by adding the 'animate' class.
                 setTimeout(function() {
-                    $customize_animation.addClass('animate');
+                    $customizeAnimation.addClass('animate');
                 }, 200);
             }, 200);
         });
+    }
+
+    if (window.isFirefoxUpToDate()) {
+        $('#overview-intro-up-to-date').addClass('active');
     }
 
     Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'index' });
