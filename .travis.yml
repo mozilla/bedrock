@@ -22,7 +22,7 @@ before_script:
   - travis_retry svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
   - travis_retry npm install --quiet casperjs@1.1.0-beta3 phantomjs@1.9.15
 script:
-  - PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test tests/functional --domain=https://www-dev.allizom.org --config=tests/config.json --concise
+  - PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test tests/functional --domain=https://www-dev.allizom.org --config=tests/config.json
   - coverage run manage.py test
 before_install:
   - travis_retry git submodule update --init --recursive

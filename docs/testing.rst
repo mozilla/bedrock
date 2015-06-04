@@ -50,7 +50,7 @@ To run the functional tests against your local bedrock instance, type::
 
 This is a shortcut for the following command::
 
-    PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test tests/functional --config=tests/config.json --concise
+    PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test tests/functional --config=tests/config.json
 
 This will run all test files found in the ``tests/functional`` directory and assumes you
 have bedrock running at ``localhost`` on port ```8000``
