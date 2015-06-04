@@ -158,3 +158,19 @@ class TestKVRedirects(TestCase):
         self._test_names('firefox20', 'firefox-2.0')
         self._test_names('thunderbird15', 'thunderbird-1.5')
         self._test_names('suite17', 'mozilla-suite')
+
+    def test_spaces_removed(self):
+        """Should succeed even if accidental spaces are in the URL.
+
+        Bug 1171181.
+        """
+        self._test_names('firefox3%20%200', 'firefox-3.0')
+
+    def test_unknown_is_404(self):
+        """Should 410 instead of 500 if an unknown url matches the redirector.
+
+        Bug 1171181.
+        """
+        path = '/en-US/security/known-vulnerabilities/the-dude-abides-15.html'
+        resp = self.client.get(path)
+        eq_(resp.status_code, 410)

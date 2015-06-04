@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import re
 
+from django.core.urlresolvers import NoReverseMatch
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import last_modified
@@ -205,19 +206,26 @@ class KVRedirectsView(CachedRedirectView):
     prod_ver_re = re.compile('(\w+)(\d{2})$')
 
     def get_redirect_url(self, *args, **kwargs):
-        url_component = kwargs['filename']
+        url_component = kwargs['filename'].replace(' ', '')
+        try:
+            return reverse(**self.get_redirect_args(url_component))
+        except NoReverseMatch:
+            return None
+
+    def get_redirect_args(self, url_component):
         if url_component == 'suite17':
-            return reverse('security.product-advisories', kwargs={'slug': 'mozilla-suite'})
+            return dict(viewname='security.product-advisories',
+                        kwargs={'slug': 'mozilla-suite'})
 
         match = self.prod_ver_re.match(url_component)
         if match:
             product, version = match.groups()
             version = '{0}.{1}'.format(*version)
-            return reverse('security.product-version-advisories', kwargs={'product': product,
-                                                                          'version': version})
+            return dict(viewname='security.product-version-advisories',
+                        kwargs={'product': product, 'version': version})
 
         if url_component.endswith('ESR'):
-            return reverse('security.product-advisories',
-                           kwargs={'slug': url_component[:-3] + '-esr'})
+            return dict(viewname='security.product-advisories',
+                        kwargs={'slug': url_component[:-3] + '-esr'})
 
-        return reverse('security.product-advisories', kwargs={'slug': url_component})
+        return dict(viewname='security.product-advisories', kwargs={'slug': url_component})
