@@ -10,6 +10,12 @@
 {% block page_image %}{{ static('img/firefox/personal/logo.png') }}{% endblock %}
 {% block page_desc %}{{_('Choose Firefox when you want to browse the Web without the Web browsing you.')}}'{% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-personal-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block site_css %}
   {% stylesheet 'firefox-personal' %}
 {% endblock %}
