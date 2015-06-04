@@ -567,14 +567,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_sync-bundle.css',
     },
-    'firefox_sync_old': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/family-nav.less',
-            'css/firefox/sync-old.less',
-        ),
-        'output_filename': 'css/firefox_sync_old-bundle.css',
-    },
     'firefox_sync_anim': {
         'source_filenames': (
             'css/firefox/sync-animation.less',
@@ -1352,16 +1344,6 @@ PIPELINE_JS = {
             'js/firefox/sync.js',
         ),
         'output_filename': 'js/firefox_sync-bundle.js',
-    },
-    'firefox_sync_old': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/sync-animation.js',
-            'js/firefox/sync-old.js',
-        ),
-        'output_filename': 'js/firefox_sync_old-bundle.js',
     },
     'firefox_feedback': {
         'source_filenames': (
