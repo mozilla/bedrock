@@ -1,0 +1,50 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}Mozilla Security Bug Bounty Program{% endblock %}
+{% set body_id = "bug-bounty" %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name" class="title-shadow-box">Web and Services Bug Bounty Program</h1>
+    </header>
+    <div itemprop="articleBody">
+      <h2>Introduction</h2>
+
+      <p>The Mozilla Web Application Security Bug Bounty Program is designed to encourage security research in Mozilla websites and services  and to reward those who help us protect Mozilla users data.</p>
+
+      <h2>General Bounty Guidelines</h2>
+
+      <p>Mozilla will pay a bounty for certain website and service security bugs,  as detailed below.  All security bugs must follow the following general criteria to be eligible:</p>
+      <ul>
+        <li>Security bug must be original and previously unreported.</li>
+
+        <li>Security bug must be a remote exploit, compromise user data, allow access to Mozilla infrastructure or resources, or easily manipulate a user.</li>
+
+        <li>Submitter must not be the author of the buggy code nor otherwise involved in its contribution to the Mozilla project (such as by providing check-in reviews).</li>
+
+        <li>Employees of the Mozilla Foundation and its subsidiaries are ineligible.</li>
+      </ul>
+      <p>If two or more people report the bug together, or working independently at approximately the same time, the reward will be divided between them.</p>
+
+      <h2>Reward Guidelines</h2>
+
+      <p>Mozilla will pay a bounty for website and service  security bugs as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
+      <ul>
+        <li>Eligible security bugs may be present in any of eligible sites or services as outlined <a href="{{ url('security.bug-bounty.faq-webapp') }}">here</a></li>
+        <li>The security rating given by the Bounty Committee for a bug must be "sec-critical", "sec-high" or "sec-moderate" in order for it to be eligible for a bounty. (See <a href="https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings">Web App Ratings</a> for details of the rating qualifications.)</li>
+        <li>All bounties paid will be at the discretion of the Mozilla Bounty Committee, which will evaluate the severity of reported issues with the help of engineers who work on the affected code. Security researchers are invited to participate in the assignment of ratings, but final decisions on the rating are at the discretion of the Bounty Committee.</li>
+      </ul>
+    <h2>Rewards Amounts</h2>
+
+    <p>Vulnerabilities found in Mozilla Web applications and services are eligible for bounties between $500 (USD) and $4000 (USD), for extraordinary or critical vulnerabilities in valid web applications or Mozilla services.  Rewards for some critical sites can be even higher (e.g. FxAccounts, FindMyDevice, Update Services, Bugzilla)</p>
+    <p>Bounties will be awarded for sec-critical,  sec-high, or sec-moderate rated security bugs that meet the following criteria:</p>
+    <ul>
+      <li>Security bug is present in the web properties outlined in the Web Application Security Bounty FAQ <a href="{{ url('security.bug-bounty.faq-webapp') }}">here.</a></li>
+
+      <li>Security bug is on the list of sites which part of the bounty. See the eligible bugs section of the Web Application Security Bounty FAQ <a href="{{ url('security.bug-bounty.faq-webapp') }}">here</a> for the list of sites which is included under the bounty.</li>
+      <li>More information about this program can be found <a href="{{ url('security.bug-bounty.faq-webapp') }}">here</a> in the Web Application Security Bounty FAQ.</li>
+    </ul>
+  </div>
+</article>
+{% endblock %}
