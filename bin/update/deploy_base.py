@@ -6,13 +6,13 @@ the systems that need it.
 """
 import random
 import re
+import time
 import urllib
 import urllib2
 
 from commander.deploy import commands, task, hostgroups
 
 import commander_settings as settings
-
 
 PYTHON = settings.PYTHON_PATH
 NEW_RELIC_API_KEY = getattr(settings, 'NEW_RELIC_API_KEY', None)
@@ -115,12 +115,13 @@ def checkin_changes(ctx):
     ctx.local(settings.DEPLOY_SCRIPT)
 
 
-@hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY})
+@hostgroups(settings.WEB_HOSTGROUP, remote_kwargs={'ssh_key': settings.SSH_KEY}, remote_limit=1)
 def deploy_app(ctx):
     """Push code to the webheads"""
+    print 'pushing code to {0}'.format(ctx.env['host'])
     ctx.remote(settings.REMOTE_UPDATE_SCRIPT)
-#    ctx.remote("/bin/touch %s" % settings.REMOTE_WSGI)
     ctx.remote("service httpd graceful")
+    time.sleep(5)
 
 
 @task
