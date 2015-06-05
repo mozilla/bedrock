@@ -573,8 +573,6 @@ class TourView(LatestFxView):
                 template = 'firefox/dev-firstrun-spring-campaign.html'
             else:
                 template = 'firefox/dev-firstrun.html'
-        elif show_38_0_5_firstrun_or_whatsnew(version):
-            template = 'firefox/australis/fx38_0_5/firstrun.html'
         elif show_36_firstrun(version):
             template = 'firefox/australis/fx36/help-menu-36-tour.html'
         elif show_search_firstrun(version) and locale == 'en-US':
