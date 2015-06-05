@@ -68,6 +68,7 @@ def main():
         with open(tmpl_src_name, 'r') as src_fh:
             with open(tmpl_temp_name, 'w') as out_fh:
                 out_fh.write(Template(src_fh.read()).render(**ctx))
+                out_fh.write('\n\n')
     except IOError:
         parser.error('file must exist: ' + tmpl_src_name)
 
