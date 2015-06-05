@@ -18,7 +18,6 @@ from lib.l10n_utils.management.commands.l10n_check import (
     get_todays_version,
     L10nParser,
     L10nTemplate,
-    list_templates,
     update_templates,
 )
 from lib.l10n_utils.management.commands.l10n_extract import extract_from_files
@@ -124,14 +123,6 @@ class TestL10nCheck(TestCase):
     def _get_block(self, blocks, name):
         """Out of all blocks, grab the one with the specified name."""
         return next((b for b in blocks if b['name'] == name), None)
-
-    def test_list_templates(self):
-        """Make sure we capture both html and txt templates."""
-        TEMPLATES = ['mozorg/home.html',
-                     'mozorg/emails/other.txt']
-        tmpls = [t for t in list_templates()
-                 if L10nTemplate(t).rel_path in TEMPLATES]
-        assert len(tmpls) == len(TEMPLATES)
 
     def test_parse_templates(self):
         """Make sure the parser grabs the l10n block content

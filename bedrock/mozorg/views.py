@@ -473,19 +473,6 @@ class Robots(TemplateView):
         return {'disallow_all': not SITE_URL.endswith('://www.mozilla.org')}
 
 
-class HomeTestView(l10n_utils.LangFilesMixin, TemplateView):
-    """Home page view that will use a different template for a QS."""
-    template_name = 'mozorg/home.html'
-
-    def get_context_data(self, **kwargs):
-        ctx = super(HomeTestView, self).get_context_data(**kwargs)
-        ctx['has_contribute'] = lang_file_is_active('mozorg/contribute')
-        locale = l10n_utils.get_locale(self.request)
-        locale = locale if locale in settings.MOBILIZER_LOCALE_LINK else 'en-US'
-        ctx['mobilizer_link'] = settings.MOBILIZER_LOCALE_LINK[locale]
-        return ctx
-
-
 def home_tweets(locale):
     account = settings.HOMEPAGE_TWITTER_ACCOUNTS.get(locale)
     if account:
@@ -493,20 +480,11 @@ def home_tweets(locale):
     return []
 
 
-def new_home(request, locale=None):
-    locale = locale or l10n_utils.get_locale(request)
+def home(request):
+    locale = l10n_utils.get_locale(request)
     return l10n_utils.render(
-        request, 'mozorg/home/home-new.html', {
+        request, 'mozorg/home/home.html', {
             'has_contribute': lang_file_is_active('mozorg/contribute'),
             'tweets': home_tweets(locale),
             'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(
                 locale, settings.MOBILIZER_LOCALE_LINK['en-US'])})
-
-
-def home(request):
-    locale = l10n_utils.get_locale(request)
-    new_template = 'mozorg/home/home-new.html'
-    if l10n_utils.template_is_active(new_template, locale):
-        return new_home(request, locale=locale)
-    else:
-        return HomeTestView.as_view()(request)

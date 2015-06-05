@@ -33,9 +33,9 @@
 {% endblock %}
 
 {% block extrahead %}
-  {% stylesheet 'home-2015' %}
+  {% stylesheet 'home' %}
   <!--[if lte IE 8]>
-    {% stylesheet 'home-2015-ie8' %}
+    {% stylesheet 'home-ie8' %}
   <![endif]-->
 {% endblock %}
 
@@ -47,9 +47,9 @@
 
 {% block js %}
   <!--[if IE 9]>
-    {% javascript 'home-2015-ie9' %}
+    {% javascript 'matchmedia_addlistener' %}
   <![endif]-->
-  {% javascript 'home-2015' %}
+  {% javascript 'home' %}
 {% endblock %}
 
 {% block string_data %}
