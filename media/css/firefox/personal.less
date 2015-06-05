@@ -107,50 +107,65 @@ body {
         .at2x('/media/img/firefox/personal/logo.png', 148px);
     }
     .download-button.download-button-simple {
-        /* copied from buttons.less :: .button-flat - with amendments */
-        background: #6fbe4a;
         color: #fff;
-        padding: 12px (@baseLine * 2);
         margin-bottom: 0;
         border: none;
-        cursor: pointer;
-        max-width: 300px;
-        max-height: 68px;
         font-family: 'FiraSans Light';
         font-weight: bold;
         .font-size(1.5rem);
         text-align: center;
         .inline-block();
-        .border-radius(10px);
-        .transition();
 
-        @media only screen and (max-width: @breakMobileLandscape) {
-            padding: 6px @baseLine;
-        }
-
-        @media only screen and (max-width: @breakMobile) {
-            min-width: 260px;
-            .font-size(1rem);
-        }
-
-        &:hover {
-            background-color: #7dc14c;
-        }
         .download-link {
+            padding: 0 (@baseLine * 2);
+            line-height: normal;
+            max-width: 300px;
+            min-height: 80px;
             box-shadow: none;
-            background-color: inherit;
+            background: #6fbe4a;
             background-image: none;
             font-family: inherit;
             font-weight: bold;
             text-shadow: none;
+            border-radius: 10px;
+            .transition(background-color .2s ease-in-out);
             /* for IE */
             filter: none;
+
+            &:hover,
+            &:focus  {
+                cursor: pointer;
+                background-color: #7dc14c;
+            }
+
+            .download-content {
+                padding: 30px 20px;
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                padding: 0 @baseLine;
+                max-width: 260px;
+            }
+        }
+
+        .ios-download,
+        .unsupported-download {
+            max-width: 350px;
+            a {
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+
+        .download-dumb h4 {
+            color: #fff;
         }
     }
     .download-content {
         text-transform: uppercase;
     }
 }
+
 main {
     margin: 0 auto;
     padding: 60px 0 150px 0;
