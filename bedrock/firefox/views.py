@@ -396,8 +396,11 @@ class LatestFxView(TemplateView):
     Base class to be extended by views that require visitor to be
     using latest version of Firefox. Classes extending this class must
     implement either `get_template_names` function or provide
-    `template_name` class attribute.
+    `template_name` class attribute. Control where to redirect non
+    Firefox users by setting the `non_fx_redirect` attribute to
+    a url name.
     """
+    non_fx_redirect = 'firefox.new'
 
     @vary_on_headers('User-Agent')
     def dispatch(self, *args, **kwargs):
@@ -414,15 +417,17 @@ class LatestFxView(TemplateView):
 
         - Up-to-date Firefox users pass through.
         - Other Firefox users go to the new page.
-        - Non Firefox users go to the new page.
+        - Non Firefox users go to the configured page.
         """
         query = self.request.META.get('QUERY_STRING')
         query = '?' + query if query else ''
 
         user_agent = self.request.META.get('HTTP_USER_AGENT', '')
         if 'Firefox' not in user_agent:
-            return reverse('firefox.new') + query
+            return reverse(self.non_fx_redirect) + query
             # TODO : Where to redirect bug 757206
+
+        return None
 
     def render_to_response(self, context, **response_kwargs):
         redirect_url = self.redirect_to()
@@ -621,6 +626,7 @@ def hello_screen_sharing(version):
 
 
 class HelloStartView(LatestFxView):
+    non_fx_redirect = 'firefox.hello'
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
