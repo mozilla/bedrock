@@ -620,7 +620,55 @@ def hello_screen_sharing(version):
     return version >= Version('38.0.5')
 
 
-class HelloStartView(LatestFxView):
+class HelloFxView(TemplateView):
+
+    """
+    Base class to be extended by views that require visitor to be
+    using latest version of Firefox. Classes extending this class must
+    implement either `get_template_names` function or provide
+    `template_name` class attribute.
+    """
+
+    @vary_on_headers('User-Agent')
+    def dispatch(self, *args, **kwargs):
+        return super(HelloFxView, self).dispatch(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        # required for newsletter form post that is handled in
+        # newsletter/helpers.py
+        return self.get(request, *args, **kwargs)
+
+    def redirect_to(self):
+        """
+        Redirect visitors based on their user-agent.
+
+        - Firefox users go to the FTE.
+        - Non Firefox users redirect to the Hello product page.
+        """
+
+        query = self.request.META.get('QUERY_STRING')
+        query = '?' + query if query else ''
+
+        user_agent = self.request.META.get('HTTP_USER_AGENT', '')
+
+        if 'Firefox' not in user_agent:
+            return reverse('firefox.hello') + query
+
+        return None
+
+    def render_to_response(self, context, **response_kwargs):
+        redirect_url = self.redirect_to()
+
+        if redirect_url is not None:
+            return HttpResponsePermanentRedirect(redirect_url)
+        else:
+            return l10n_utils.render(self.request,
+                                     self.get_template_names(),
+                                     context,
+                                     **response_kwargs)
+
+
+class HelloStartView(HelloFxView):
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
