@@ -10,7 +10,7 @@ from warnings import warn
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect
-from django.utils.encoding import smart_str
+from django.utils.encoding import smart_str, force_text
 
 import tower
 
@@ -59,7 +59,8 @@ class LocaleURLMiddleware(object):
             full_path = urllib.quote(full_path.encode('utf-8'))
 
             if query_string:
-                full_path = '%s?%s' % (full_path, query_string)
+                full_path = '?'.join(
+                    [full_path, force_text(query_string, errors='ignore')])
 
             response = HttpResponsePermanentRedirect(full_path)
 
