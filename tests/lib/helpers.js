@@ -8,6 +8,7 @@
 var config = require('../lib/config');
 
 function done() {
+    casper.options.pageSettings.userAgent = config.userAgent.phantomjs;
     casper.options.viewportSize = config.viewport.desktop;
 }
 
