@@ -10,12 +10,16 @@ var helpers = require('../lib/helpers');
 var path = '/';
 var url = config.base() + path;
 
-casper.test.begin('Home page, Elements: ' + url, 9, function suite(test) {
+casper.test.begin('Home page, Elements: ' + url, 12, function suite(test) {
 
     casper.start(url, function() {
         test.assertHttpStatus(200);
         test.assertExists('.main-header h1', 'Mozilla wordmark exists');
-        test.assertElementCount('.promo-grid > li', 16, '16 home page promos exist');
+        test.assertElementCount('.download-button', 2, 'Download buttons exist');
+        test.assertElementCount('.promo-grid > .promo-large-portrait', 2, '2 large portrait promos');
+        test.assertElementCount('.promo-grid > .promo-large-landscape', 2, '2 large landscape promos');
+        // small promos can vary in number (e.g. twitter), so we're just testing for the selector here.
+        test.assertExists('.promo-grid > .promo-small-landscape', 'Small landscape promos exist');
         test.assertExists('#community .contribute-btn', 'Contribute CTA button exists');
         test.assertExists('#upcoming-events .featured-event', 'Featured event exists');
         test.assertElementCount('#upcoming-events .events-list > li > a', 3, 'Upcoming events exist');

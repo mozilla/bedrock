@@ -57,3 +57,17 @@ casper.test.begin('Firefox New, Click download button: ' + url, 2, function suit
         helpers.done();
     });
 });
+
+casper.test.begin('Firefox New, Automatic download: ' + url, 1, function suite(test) {
+
+    casper.open(url + '?scene=2#download-fx');
+
+    casper.waitForResource(/https:\/\/download\.mozilla\.org\//, function() {
+        test.assert(true, 'Download started successfully');
+    });
+
+    casper.run(function() {
+        test.done();
+        helpers.done();
+    });
+});
