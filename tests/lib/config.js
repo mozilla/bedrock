@@ -17,6 +17,14 @@ var viewport = {
     mobile: { width: 320, height: 460 }
 };
 
+// commonly used userAgent strings
+var userAgent = {
+    fx: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0',
+    fxOutdated: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:33.0) Gecko/20100101 Firefox/33.0',
+    chrome: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.81 Safari/537.36',
+    phantomjs: 'Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34'
+};
+
 // set default viewport size to desktop
 casper.options.viewportSize = viewport.desktop;
 
@@ -33,5 +41,6 @@ module.exports = {
     base: base,
     locale: locale,
     domain: domain,
-    viewport: viewport
+    viewport: viewport,
+    userAgent: userAgent
 };
