@@ -105,20 +105,17 @@
         'data-download-version': 'Firefox'
     });
 
-
     // Setup GA tracking for Firefox update button
     $('#cta-update').attr({
         'data-interaction': 'update click',
         'data-download-version': 'Firefox'
     });
 
-
     // Setup GA tracking for Firefox for primary Android download button
     $('#cta-android').attr({
         'data-interaction': 'top',
         'data-download-version': 'Firefox for Android'
     });
-
 
     // Setup GA tracking for Firefox for Android footer download button
     $('#cta-android-footer').attr({
@@ -131,7 +128,4 @@
         e.preventDefault();
         Mozilla.UITour.showFirefoxAccounts();
     });
-
-
-    Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'sync' });
 })(window.jQuery, window.Mozilla);

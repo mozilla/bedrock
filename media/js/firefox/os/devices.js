@@ -269,7 +269,4 @@ if (typeof window.Mozilla === 'undefined') {
             browserAction: $(this).data('label') + ' Tab'
         });
     });
-
-    // initialize fx family nav
-    Mozilla.FxFamilyNav.init({ primaryId: 'os', subId: 'devices' });
 })(window.jQuery, window.Mozilla);

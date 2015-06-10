@@ -32,7 +32,7 @@
 {% set has_widget = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 
 {% block site_header_unwrapped %}
-  {% call fxfamilynav() %}
+  {% call fxfamilynav('android', 'index') %}
     <div class="{% if has_widget %}show-widget{% endif %}">
       <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
         {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}

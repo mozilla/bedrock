@@ -19,13 +19,6 @@
     //get modal logo path from data attribute in template
     var modalLogo = $('#modal-logo').data('src');
 
-    var fxNavConfig = {
-        primaryId: 'os',
-        subId: 'index'
-    };
-
-    Mozilla.FxFamilyNav.init(fxNavConfig);
-
     /*
     * Sign up form
     */

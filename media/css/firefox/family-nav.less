@@ -4,20 +4,17 @@
 
 @import "../sandstone/lib.less";
 
-@mozIDBlue: #0c99d5;
-@mozIDGrey: #56565a;
-
 // mixin for sprite images
 .fxfamilynav-sprite(@top) {
-    background-image: url(/media/img/firefox/family/nav-sprite5.png);
+    background-image: url(/media/img/firefox/family/nav-sprite6.png);
     background-position: 0 @top;
 
     @media (-webkit-min-device-pixel-ratio: 1.5),
        (                min-resolution: 1.5dppx),
        (                min-resolution: 144dpi) {
 
-        background-image: url(/media/img/firefox/family/nav-sprite-high-res5.png);
-        .background-size(146px 297px);
+        background-image: url(/media/img/firefox/family/nav-sprite6-high-res.png);
+        .background-size(146px 437px);
     }
 }
 
@@ -191,7 +188,7 @@
     .subnav {
         .clearfix();
 
-        // only direct children <li>'s - don't affect subsubnav <li>'s
+        // only direct children <li>'s - don't affect .subsubnav <li>'s
         & > li {
             .clearfix();
             float: left;
@@ -202,8 +199,8 @@
                 padding-right: 0;
             }
 
-            & > a,
-            & > .primary-link {
+            // only direct children <a>'s - don't affect .subsubnav <a>'s
+            & > a {
                 display: block;
                 color: #fff;
                 padding: 0 5px;
@@ -234,6 +231,11 @@
                     font-style: normal;
                 }
             }
+
+            // any <a>'s within an active <li> have a visible white border
+            &.active > a {
+                border-color: #fff;
+            }
         }
     }
 
@@ -252,18 +254,17 @@
             &:hover {
                 opacity: 1;
             }
-
-            &:focus + .subnav {
-                display: block;
-            }
         }
 
-        // show subnav on hover (CSS only menu)
-        li {
-            &:hover,
-            &:focus,
-            &.active {
-                .subnav {
+        li.active {
+            .primary-link {
+                opacity: 1;
+            }
+
+            .subnav {
+                display: block;
+
+                .subsubnav {
                     display: block;
                 }
             }
@@ -281,9 +282,23 @@
 
         & > li {
             &.hassubsubnav {
-                border-right: 1px solid rgba(12, 153, 213, 0.3);
+                position: relative;
                 margin-right: 20px;
                 padding-right: 20px;
+
+                &:after {
+                    clear: both;
+                    visibility: visible;
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    display: block;
+                    width: 1px;
+                    height: 70px;
+                    margin-top: 5px;
+                    .fxfamilynav-sprite(-367px);
+                }
             }
 
             & > a {
@@ -401,37 +416,31 @@
         padding-top: 30px;
 
         // primary nav just stacks for mobile
-        .primarynav > li {
-            float: none;
-            margin: 0;
-            border-bottom: 1px solid rgba(187, 187, 187, 0.6);
-            padding-right: 0;
+        .primarynav {
+            & > li {
+                float: none;
+                margin: 0;
+                border-bottom: 1px solid rgba(187, 187, 187, 0.6);
+                padding-right: 0;
 
-            & > a,
-            & > .primary-link {
-                display: block;
-                text-align: center;
-                color: @mozIDBlue;
-                padding: 6px @baseLine 4px;
-                .font-size(@largeFontSize);
-                line-height: @largeFontSize;
-                max-width: none;
-                opacity: 1;
-                height: auto;
+                & > a,
+                & > .primary-link {
+                    display: block;
+                    text-align: center;
+                    color: @mozIDBlue;
+                    padding: 6px @baseLine 4px;
+                    .font-size(@largeFontSize);
+                    line-height: @largeFontSize;
+                    max-width: none;
+                    opacity: 1;
+                    height: auto;
 
-                &:focus + .subnav {
-                    display: none;
+                    &.selected {
+                        border-color: transparent;
+                    }
                 }
 
-                &.selected {
-                    border-color: transparent;
-                }
-            }
-
-            &:hover,
-            &:focus,
-            &.active {
-                .subnav {
+                &.active .subnav {
                     display: none;
                 }
             }
@@ -630,17 +639,25 @@ html[lang^='en'] .fxfamilynav .subsubnav a {
 .fxfamilynav-header {
     &.dark {
         ul {
-            a.selected,
-            .primary-link.selected {
-                border-color: @mozIDBlue;
+            li.active {
+                .primary-link,
+                .selected {
+                    border-color: @mozIDBlue;
+                }
             }
 
             &.primarynav .primary-link {
                 color: @mozIDBlue;
             }
 
-            &.subnav a {
-                color: @mozIDGrey;
+            &.subnav {
+                a {
+                    color: @mozIDGrey;
+                }
+
+                & > li.hassubsubnav:after {
+                    .fxfamilynav-sprite(-297px);
+                }
             }
         }
 
@@ -665,8 +682,9 @@ html[lang^='en'] .fxfamilynav .subsubnav a {
             }
         }
 
+        // Mobile
         @media (max-width: @breakTablet) {
-            ul.primarynav a.selected {
+            ul li.active .primary-link {
                 border-color: transparent;
             }
         }
@@ -686,8 +704,8 @@ html[lang^='en'] .fxfamilynav .subsubnav a {
         }
 
         .fxfamilynav .subnav {
-            & > li.hassubsubnav {
-                border-color: #d1d2d3;
+            & > li.hassubsubnav:after {
+                .fxfamilynav-sprite(-297px);
             }
 
             a {
@@ -719,32 +737,6 @@ html[lang^='en'] .fxfamilynav .subsubnav a {
         .fxfamilynav-cta-wrapper {
             opacity: 1;
             visibility: visible;
-        }
-    }
-}
-
-// remove ability to hover and show subnav
-// must be done in JS to avoid hover/tab focus text overlap
-.js {
-    #fxfamilynav {
-        .primarynav {
-            li {
-                &:hover,
-                &:focus {
-                    .subnav {
-                        display: none;
-                    }
-                }
-            }
-
-            .primary-link:focus + .subnav {
-                display: none;
-            }
-        }
-
-        .subnav.active {
-            // really sorry, but needs to override display values set directly above
-            display: block !important;
         }
     }
 }
