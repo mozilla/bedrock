@@ -492,34 +492,34 @@
 
 // Will usually be added to #outer-wrapper
 .aurora-bars(@pageBgColor: @mozIDBlue, @auroraStartColor: #00a7e0) {
-    background: @pageBgColor;
-    background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%), fade(@pageBgColor, 0%) 100px, @pageBgColor 450px, @pageBgColor),
-        repeating-linear-gradient(-62deg,
-            @auroraStartColor, fade(@pageBgColor, 0%) 700px,
-            @auroraStartColor 700px, fade(@pageBgColor, 0%) 850px,
-            @auroraStartColor 850px, fade(@pageBgColor, 0%) 1100px);
+    background-color: @pageBgColor;
+    background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%) 0px, fade(@pageBgColor, 0%) 100px, @pageBgColor 450px, @pageBgColor),
+        repeating-linear-gradient(118deg,
+            fade(@pageBgColor, 0%) 0px, @auroraStartColor 550px,
+            fade(@pageBgColor, 0%) 550px, @auroraStartColor 800px,
+            fade(@pageBgColor, 0%) 800px, @auroraStartColor 950px);
 
     @media (max-width: @breakDesktop) {
-        background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%), fade(@pageBgColor, 0%) 100px, @pageBgColor 350px, @pageBgColor),
-            repeating-linear-gradient(-62deg,
-                @auroraStartColor, fade(@pageBgColor, 0%) 200px,
-                @auroraStartColor 200px, fade(@pageBgColor, 0%) 550px,
-                @auroraStartColor 550px, fade(@pageBgColor, 0%) 800px);
+        background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%) 0px, fade(@pageBgColor, 0%) 100px, @pageBgColor 350px, @pageBgColor),
+            repeating-linear-gradient(118deg,
+                fade(@pageBgColor, 0%) 0px, @auroraStartColor 410px,
+                fade(@pageBgColor, 0%) 410px, @auroraStartColor 600px,
+                fade(@pageBgColor, 0%) 600px, @auroraStartColor 720px);
     }
 
     @media (max-width: @breakTablet) {
-        background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%), fade(@pageBgColor, 0%) 100px, @pageBgColor 250px, @pageBgColor),
-            repeating-linear-gradient(-62deg,
-                @auroraStartColor, fade(@pageBgColor, 0%) 100px,
-                @auroraStartColor 100px, fade(@pageBgColor, 0%) 200px,
-                @auroraStartColor 200px, fade(@pageBgColor, 0%) 600px);
+        background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%) 0px, fade(@pageBgColor, 0%) 100px, @pageBgColor 300px, @pageBgColor),
+            repeating-linear-gradient(118deg,
+                fade(@pageBgColor, 0%) 0px, @auroraStartColor 320px,
+                fade(@pageBgColor, 0%) 320px, @auroraStartColor 480px,
+                fade(@pageBgColor, 0%) 480px, @auroraStartColor 570px);
     }
 
     @media (max-width: @breakMobileLandscape) {
-        background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%), fade(@pageBgColor, 0%) 100px, @pageBgColor 250px, @pageBgColor),
-            repeating-linear-gradient(-62deg,
-                @auroraStartColor, fade(@pageBgColor, 0%) 150px,
-                @auroraStartColor 150px, fade(@pageBgColor, 0%) 250px,
-                @auroraStartColor 250px, fade(@pageBgColor, 0%) 400px);
+        background-image: linear-gradient(to bottom, fade(@pageBgColor, 0%) 0px, fade(@pageBgColor, 0%) 100px, @pageBgColor 250px, @pageBgColor),
+            repeating-linear-gradient(118deg,
+                fade(@pageBgColor, 0%) 0px, @auroraStartColor 200px,
+                fade(@pageBgColor, 0%) 200px, @auroraStartColor 320px,
+                fade(@pageBgColor, 0%) 320px, @auroraStartColor 380px);
     }
 }
