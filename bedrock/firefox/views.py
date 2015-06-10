@@ -389,6 +389,18 @@ def show_38_0_5_firstrun_or_whatsnew(version):
     return version >= Version('38.0.5')
 
 
+def show_40_firstrun(version):
+    if (waffle.switch_is_active('fx40-firstrun')):
+        try:
+            version = Version(version)
+        except ValueError:
+            return False
+
+        return version >= Version('40.0')
+    else:
+        return False
+
+
 class LatestFxView(TemplateView):
 
     """
@@ -472,6 +484,8 @@ class FirstrunView(LatestFxView):
                 template = 'firefox/dev-firstrun-spring-campaign.html'
             else:
                 template = 'firefox/dev-firstrun.html'
+        elif show_40_firstrun(version):
+            template = 'firefox/australis/fx40/firstrun.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         elif show_36_firstrun(version):
