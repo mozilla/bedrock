@@ -1,0 +1,14 @@
+#!/bin/bin/grunter -ex
+
+if [ $(boot2docker status) != "running" ]; then
+    boot2docker start
+fi
+eval $(boot2docker shellinit)
+
+if [ "$(docker ps | grep bedrock_b2d_1)" ]; then
+   docker exec -t bedrock_b2d_1 bin/grunter
+else
+    SCRIPT_DIR=${0%/*}
+    cd $SCRIPT_DIR/..
+    docker-compose run b2d bin/grunter
+fi

@@ -1,0 +1,19 @@
+#!/bin/bash -ex
+
+SCRIPT_DIR=${0%/*}
+cd $SCRIPT_DIR/..
+TARGET=/var/lib/docker/volumes/mozilla/bedrock
+
+if [ $(boot2docker status) == "poweroff" ]; then
+    boot2docker start
+fi
+
+RSYNC_ARGS=(
+    -e "ssh -i $HOME/.ssh/id_boot2docker"
+    -avz
+    --exclude .git
+    --exclude .svn
+    --delete
+    #--exclude-from .gitignore  # this excludes settings/local.py
+    . docker@$(boot2docker ip):$TARGET)
+rsync "${RSYNC_ARGS[@]}"

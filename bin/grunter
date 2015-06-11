@@ -1,0 +1,17 @@
+#!/bin/bash -ex
+
+if [ ! -e Gruntfile.js ]; then
+    # this does not support symlinks
+    SCRIPT_DIR=${0%/*}
+    cd $SCRIPT_DIR/..
+fi
+if [ ! "$(which grunt)" ]; then
+    npm install -g grunt-cli
+fi
+if [ ! "$(which jshint)" ]; then
+    npm install -g jshint
+fi
+if [ ! -e node_modules/grunt ]; then
+    npm install
+fi
+grunt
