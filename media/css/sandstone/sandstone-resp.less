@@ -563,10 +563,6 @@ label.error {
 
 .main-column {
     .span(7);
-
-    .title-shadow-box {
-        margin-left: 0;
-    }
 }
 
 .sidebar {
@@ -703,7 +699,7 @@ label.error {
     text-shadow: none;
     background: #b30406;
     background: rgba(179,4,6,.95);
-    margin: -60px 10px 40px;
+    margin: -60px 0 40px;
     position: relative;
     float: left;
 }
@@ -718,6 +714,16 @@ label.error {
     bottom: -40px;
     left: 0;
     background: url(/media/img/mission/title-banner-shadow.png) no-repeat;
+}
+
+html[dir="rtl"] {
+    .title-shadow-box {
+        float: right;
+
+        &:after {
+            .flip-horizontally;
+        }
+    }
 }
 
 /* }}} */
