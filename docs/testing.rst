@@ -4,24 +4,27 @@
 
 .. _testing:
 
-==================
-Functional testing
-==================
+=================
+Front-end testing
+=================
 
 Bedrock runs a suite of front-end functional tests using `CasperJS`_, which is powered by
-a headless web browser called `PhantomJS`_. These tests live in the ``tests`` directory.
+a headless web browser called `PhantomJS`_. We also have an additional suite of `Jasmine`_
+behavioral/unit tests, which use `Karma`_ as a test runner. All these test suites live in
+the ``tests`` directory.
 
 The ``tests`` directory comprises of:
 
 * ``/functional`` contains individual CasperJS test suites.
-* ``/lib`` contains various ``config`` and ``helpers`` functions used to run the tests.
+* ``/unit`` contains the Jasmine tests and Karma config file.
+* ``/lib`` contains various ``config`` and ``helpers`` functions used to run the functional tests.
 * ``config.json`` a configuration file used by PhantomJS when running tests.
 
 Installation
 ------------
 
-The specific version of CasperJS and PhantomJS needed to run the tests can be installed
-by running the following command from the root directory of the project::
+The specific versions of CasperJS, PhantomJS and Jasmine/Karma which are needed to run the
+tests, can be installed by running the following command from the root directory of the project::
 
     npm install
 
@@ -47,12 +50,12 @@ You should see output that starts with something similar to::
 
     CasperJS version 1.1.0-beta3 at /bedrock/node_modules/casperjs, using phantomjs version 1.9.8
 
-Running tests
--------------
+Running CasperJS tests
+----------------------
 
 .. Note::
 
-  Before running the tests, please make sure to follow the bedrock :ref:`installation
+  Before running the CasperJS tests, please make sure to follow the bedrock :ref:`installation
   docs<install>`, including the database sync that is needed to pull in external data such
   as event/blog feeds etc. These are required for some of the tests to pass.
 
@@ -85,8 +88,8 @@ You can also easily run the tests against any bedrock environment by specifying 
     file ``--config=tests/config.json`` when running tests, as this is sometimes needed
     for PhantomJS to open certain URLs served over https.
 
-Writing tests
--------------
+Writing CasperJS tests
+----------------------
 
 Tests usually consist of telling CasperJS to open a web page, then verifying things you
 expect to exist, and clicking does what you expect. An example test is as follows:
@@ -117,15 +120,15 @@ expect to exist, and clicking does what you expect. An example test is as follow
 
 Please take some time to read over the `CasperJS documentation`_ for details on the testing API.
 
-Debugging
----------
+Debugging CasperJS
+------------------
 
 You can enable logging on the command line by passing the following additional flags::
 
     --verbose --log-level=debug
 
-Guidelines for writing tests
-----------------------------
+Guidelines for writing functional tests
+---------------------------------------
 
 * Try and keep tests organized and cleanly separated. Each page should have its own test file, and each test should be responsible for a specific purpose, or component of a page.
 * Avoid using generic timeouts. Always use CasperJS methods such as ``waitUntilVisible``, ``waitForSelector``, ``waitForUrl`` etc.
@@ -135,7 +138,24 @@ Guidelines for writing tests
 * If you write something reusable, consider adding it to ``helpers.js`` or ``config.js``.
 * When writing tests, try and run them against a staging or demo environment in addition to local testing.
 
+Running Jasmine tests using Karma
+---------------------------------
+
+To perform a single run of the Jasmine test suite using Firefox, type the following command::
+
+	grunt test
+
+.. note::
+
+    The Tabzilla tests require that you have your local bedrock development server running on port 8000.
+
+See the `Jasmine`_ documentation for tips on how to write JS behavioral or unit tests.
+We also use `Sinon`_ for creating test spies, stubs and mocks.
+
 .. _CasperJS: http://casperjs.org/
 .. _CasperJS documentation: http://casperjs.readthedocs.org/en/latest/
 .. _PhantomJS: http://phantomjs.org/
 .. _PhantomJS 1.9.8: https://bitbucket.org/ariya/phantomjs/downloads
+.. _Jasmine: https://jasmine.github.io/1.3/introduction.html
+.. _Karma: https://karma-runner.github.io/
+.. _Sinon: http://sinonjs.org/
