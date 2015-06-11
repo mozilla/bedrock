@@ -29,7 +29,7 @@ venv
 *.db
 *.mmdb
 james.ini
-/media/js/test/test-results.xml
+test-results.xml
 bedrock/externalfiles/files_cache
 mofo_security_advisories
 .idea
