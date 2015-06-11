@@ -827,16 +827,27 @@ class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
 class TestHelloStartRedirect(TestCase):
     def setUp(self):
         self.user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:35.0) '
-                      'Gecko/20100101 Firefox/35.0')
+                           'Gecko/20100101 Firefox/35.0')
         self.url = reverse('firefox.hello.start', args=['35.0'])
 
     def test_fx_hello_redirect_non_firefox(self):
-        """Should redirect to /firefox/new if not on Firefox"""
+        """Should redirect to /firefox/hello if not on Firefox"""
 
-        self.user_agent = ('Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36')
+        self.user_agent = ('Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, '
+                           'like Gecko) Chrome/41.0.2228.0 Safari/537.36')
         self.url = reverse('firefox.hello.start', args=['35.0'])
-        response = self.client.get(self.url)
-        self.assertIn('/firefox/new/', response['location'])
+        response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
+        eq_(response.status_code, 301)
+        eq_(response.get('Vary'), 'User-Agent')
+        eq_('http://testserver%s' % reverse('firefox.hello'),
+            response.get('Location'))
+
+    def test_fx_hello_no_redirect(self):
+        """Should not redirect to /firefox/hello if on Firefox"""
+
+        response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
+        eq_(response.status_code, 200)
+        eq_(response.get('Vary'), 'User-Agent')
 
 
 @patch.object(fx_views.HelloStartView, 'redirect_to', none_mock)
