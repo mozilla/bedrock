@@ -120,8 +120,12 @@
             showFxFooterMessaging();
         }
         // Hello exists in desktop version 35 and up
-        else if (w.getFirefoxMasterVersion() >= 35 && 'Promise' in window) {
+        else if (w.getFirefoxMasterVersion() >= 35) {
             showFxFooterMessaging();
+
+            if (!'Promise' in window) {
+                return;
+            }
 
             Promise.all([
                 // check for the browser channel info
