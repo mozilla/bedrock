@@ -1,0 +1,182 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/contribute-base.html" %}
+
+{% block body_id %}inquiry{% endblock %}
+
+{% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
+
+{% block optimizely %}
+  {% if waffle.switch('contribute-signup-optimizely') and LANG == 'en-US' %}
+    <script src="//cdn.optimizely.com/js/246059135.js"></script>
+  {% endif %}
+{% endblock %}
+
+{% block contrib_nav_cta %}{% endblock %}
+{% block contrib_country_form %}{% endblock %}
+
+{% block contrib_title %}
+  <div class="container">
+    <h1 class="page-title">{{ _('Get involved with Mozilla today!') }}</h1>
+    <p class="section-tagline">{{ _('There are a lots of ways to contribute to Mozilla. Pick one below that you think would be right for you.') }}</p>
+  </div>
+{% endblock %}
+
+{% block contrib_content %}
+  {% if variation == '1' %}
+    <section class="section inquiry">
+      <div class="container inquiry-choices">
+        <div class="option-group">
+          <h2>{{ _('Only have a little time?') }}</h2>
+          <ul class="option-list">
+            <li class="option">
+              <a data-task-id="1" class="ab-task category category-nightly" title="{{ _('Opens new window') }}" href="https://nightly.mozilla.org/" target="_blank">
+                <span class="label-text">{{ _('Help us test by downloading Firefox Nightly') }}</span>
+              </a>
+            </li>
+            <li class="option">
+                <a data-task-id="2" class="ab-task category category-stumbling" title="{{ _('Opens new window') }}" href="https://oneanddone.mozilla.org/tasks/92/" target="_blank">
+                  <span class="label-text">{{ _('Download our Stumbler App') }}</span>
+                </a>
+            </li>
+            <li class="option">
+              <a data-task-id="3" class="ab-task category category-activism" title="{{ _('Opens new window') }}" href="{{ donate_url('mozillaorg_tabzillaTXT') }}&icn=tabz" target="_blank">
+                <span class="label-text">{{ _('Donate to Mozilla') }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="option-group">
+          <h2>{{ _('Have more time?') }}</h2>
+          <ul class="option-list">
+            <li class="option">
+              <a data-task-id="4" class="ab-task category category-coding" title="{{ _('Opens new window') }}" href="http://mozilla.github.io/webmaker-launch/activity.html" target="_blank">
+                <span class="label-text">{{ _('Test a mobile app!') }}'</span>
+              </a>
+            </li>
+            <li class="option">
+              <a data-task-id="6" class="ab-task category category-video" title="{{ _('Opens new window') }}" href="https://air.mozilla.org/channels/project-meeting/" target="_blank">
+                <span class="label-text">{{ _('Attend a Mozilla community meeting right now!') }}'</span>
+              </a>
+            </li>
+            <li class="option">
+              <a data-task-id="7" class="ab-task category category-testing" title="{{ _('Opens new window') }}" href="https://oneanddone.mozilla.org/" target="_blank">
+                <span class="label-text">{{ _('Pick from a list of first-time tasks here') }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  {% elif variation == '2' %}
+    <section class="section inquiry">
+      <div class="container inquiry-choices">
+        <div class="option-group option-double">
+          <h2>{{ _('Only have a little time?') }}</h2>
+          <ul class="option-list">
+            <li class="option">
+              <a data-task-id="3" class="ab-task category category-activism" title="{{ _('Opens new window') }}" href="{{ donate_url('mozillaorg_tabzillaTXT') }}&icn=tabz" target="_blank">
+                <span class="label-text">{{ _('Donate to Mozilla') }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="option-group option-double">
+          <h2>{{ _('Have more time?') }}</h2>
+          <ul class="option-list">
+            <li class="option">
+              <a data-task-id="6" class="ab-task category category-video" title="{{ _('Opens new window') }}" href="https://air.mozilla.org/channels/project-meeting/" target="_blank">
+                <span class="label-text">{{ _('Attend a Mozilla community meeting right now!') }}'</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  {% elif variation == '3' %}
+    <section class="section inquiry">
+      <div class="container inquiry-choices">
+        <div class="option-group">
+          <h2>{{ _('Try something simple.') }}</h2>
+          <ul class="option-list">
+            <li class="option">
+              <a data-task-id="6" class="ab-task category category-video" title="{{ _('Opens new window') }}" href="https://air.mozilla.org/channels/project-meeting/" target="_blank">
+                <span class="label-text">{{ _('Attend a Mozilla community meeting right now!') }}</span>
+              </a>
+            </li>
+            <li class="option">
+              <a data-task-id="3" class="ab-task category category-activism" title="{{ _('Opens new window') }}" href="{{ donate_url('mozillaorg_tabzillaTXT') }}&icn=tabz" target="_blank">
+                <span class="label-text">{{ _('Donate to Mozilla') }}</span>
+              </a>
+            </li>
+            <li class="option">
+              <a data-task-id="2" class="ab-task category category-stumbling" title="{{ _('Opens new window') }}" href="https://oneanddone.mozilla.org/tasks/92/" target="_blank"></a>
+                <span class="label-text">{{ _('Download our Stumbler App') }}</span>
+              </a>
+            </li>
+            <li class="option">
+              <a data-task-id="4" class="ab-task category category-coding" title="{{ _('Opens new window') }}" href="http://mozilla.github.io/webmaker-launch/activity.html" target="_blank">
+                <span class="label-text">{{ _('Test a mobile app!') }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="option-group">
+          <h2>{{ _('Try something more challenging.') }}</h2>
+          <ul class="option-list">
+            <li class="option">
+              <a data-task-id="1" class="ab-task category category-nightly" title="{{ _('Opens new window') }}" href="https://nightly.mozilla.org/" target="_blank">
+                <span class="label-text">{{ _('Help us test by downloading Firefox Nightly') }}</span>
+              </a>
+            </li>
+            <li class="option">
+              <a data-task-id="7" class="ab-task category category-testing" title="{{ _('Opens new window') }}" href="https://oneanddone.mozilla.org/" target="_blank">
+                <span class="label-text">{{ _('Pick from a list of first-time tasks here') }}</span>
+              </a>
+            </li>
+            <li class="option">
+              <a data-task-id="5" class="ab-task category category-helping" title="{{ _('Opens new window') }}" href="https://support.mozilla.org/get-involved/questions" target="_blank">
+                <span class="label-text">{{ _('Help users by answering a support question.') }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  {% else %}
+    <section class="section inquiry">
+      <div class="container inquiry-choices">
+        <div class="option-group option-double">
+          <h2>{{ _('Try something simple.') }}</h2>
+          <ul class="option-list">
+            <li class="option">
+              <a data-task-id="6" class="ab-task category category-video" title="{{ _('Opens new window') }}" href="https://air.mozilla.org/channels/project-meeting/" target="_blank">
+                <span class="label-text">{{ _('Attend a Mozilla community meeting right now!') }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="option-group option-double">
+          <h2>{{ _('Try something more challenging.') }}</h2>
+          <ul class="option-list">
+            <li class="option">
+              <a data-task-id="5" class="ab-task category category-helping" title="{{ _('Opens new window') }}" href="https://support.mozilla.org/get-involved/questions" target="_blank">
+                <span class="label-text">{{ _('Help users by answering a support question.') }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="section inquiry">
+    <div class="container center">
+      <a href="{{ url('mozorg.contribute.taskssurvey') }}" class="button-flat">{{ _('Not ready to try a task?') }} »</a>
+    </div>
+  </section>
+{% endblock contrib_content %}
+
+{% block contrib_footer %}{% endblock %}
