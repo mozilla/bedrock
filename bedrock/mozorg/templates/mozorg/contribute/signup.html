@@ -10,6 +10,12 @@
 
 {% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('contribute-signup-optimizely') and LANG == 'en-US' %}
+    <script src="//cdn.optimizely.com/js/246059135.js"></script>
+  {% endif %}
+{% endblock %}
+
 {% block contrib_nav_cta %}{% endblock %}
 {% block contrib_country_form %}{% endblock %}
 
@@ -48,7 +54,7 @@
         <ul class="option-list">
           {% for category in form.category %}
             <li class="option">
-              <label class="category-{{ category.choice_value }}">
+              <label class="category category-{{ category.choice_value }}">
                 {{ category.tag() }}
                 <span class="label-text">{{ category.choice_label }}</span>
                 <a class="info" href="#info-{{ category.choice_value }}">{{ category_info[category.choice_value] }}</a>
@@ -226,4 +232,3 @@
 {% endblock contrib_content %}
 
 {% block contrib_footer %}{% endblock %}
-

@@ -118,6 +118,12 @@
         }
     };
 
+    // Redirect on thankyou page on task selection
+    $('.ab-task').on('click', function() {
+        var task = $(this).data("task-id");
+        document.location.href="/contribute/tasks-survey/?task=" + task;
+    });
+
     // Show 'other ways to contribute' block on thankyou page
     $('.cta-other button').on('click', function() {
         $('.cta-other').fadeOut('fast', function() {

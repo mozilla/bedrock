@@ -948,6 +948,10 @@ textarea:focus {
 
     .container {
         padding-top: 0;
+
+        .button-flat {
+            .font-size(18px);
+        }
     }
 
     // old inquiry form
@@ -955,6 +959,49 @@ textarea:focus {
         border-bottom: none;
         margin: 0;
         padding: 0;
+    }
+}
+
+.inquiry-choices {
+    .option-group {
+        text-align: center;
+
+        h2 {
+            .font-size(24px);
+        }
+    }
+
+    ul.option-list {
+        list-style: none;
+        text-align: center;
+
+        li.option {
+            display: inline-block;
+            vertical-align: top;
+            float: none;
+            width: 210px;
+        }
+    }
+
+    .option-double {
+        width: 440px;
+        display: inline-block;
+        text-align: center;
+        float: left;
+
+        ul.option-list {
+            text-align: center;
+        }
+    }
+
+    a {
+        color: @textColorPrimary;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
     }
 }
 
@@ -966,6 +1013,12 @@ textarea:focus {
     .section-title {
         text-align: left;
         margin-left: 10px;
+    }
+
+    .section-subtitle {
+        margin: 10px;
+        text-align: left;
+        .font-size(16px);
     }
 
     .areas {
@@ -1125,7 +1178,7 @@ textarea:focus {
         .visually-hidden();
     }
 
-    label {
+    .category {
         position: relative;
         display: block;
 
@@ -1180,6 +1233,18 @@ textarea:focus {
 
         &.category-dontknow:before {
             content: '\f128'; /* ? */
+        }
+
+        &.category-video:before {
+            content: '\f030'; /* camera */
+        }
+
+        &.category-stumbling:before {
+            content: '\f041'; /* map marker */
+        }
+
+        &.category-nightly:before {
+            content: '\f0ac'; /* star */
         }
 
         &:hover:before,
@@ -1465,7 +1530,17 @@ textarea:focus {
             .font-size(@smallFontSize);
         }
     }
+}
 
+.survey {
+    padding-left: 0px;
+
+    iframe {
+        width: 700px;
+        height: 160px;
+        overflow: none;
+
+    }
 }
 
 .js .confirm-body #other {
@@ -2087,7 +2162,7 @@ textarea:focus {
             .span_narrow(3);
             padding-top: 170px;
 
-            label:before {
+            .category:before {
                 top: -145px;
                 width: 120px;
                 height: 120px;
@@ -2099,6 +2174,12 @@ textarea:focus {
 
         .tooltip {
             width: 170px;
+        }
+    }
+
+    .inquiry-choices {
+        .option-double {
+            width: 340px;
         }
     }
 
@@ -2115,6 +2196,17 @@ textarea:focus {
 
     .confirm-body {
         padding-left: 380px;
+    }
+
+    .survey {
+        padding-left: 0px;
+
+        iframe {
+            width: 700px;
+            height: 160px;
+            overflow: none;
+
+        }
     }
 
     .mozillians-profile {
@@ -2438,6 +2530,31 @@ textarea:focus {
         margin: 90px 0 20px;
     }
 
+    .inquiry {
+        .container {
+            .button-flat {
+                .font-size(13px);
+            }
+
+            .option-group {
+                text-align: left;
+
+                .option-list {
+                    text-align: left;
+                }
+
+                h2 {
+                    .font-size(20px);
+                }
+            }
+        }
+    }
+
+    .inquiry-choices {
+        .option-double {
+            width: auto;
+        }
+    }
 
     .inquiry-form {
         .section-title {
@@ -2481,7 +2598,7 @@ textarea:focus {
             text-align: left;
         }
 
-        label:before {
+        .category:before {
             .font-size(26px);
             width: 30px;
             height: 30px;
@@ -2515,6 +2632,14 @@ textarea:focus {
 
     .confirm-body {
         padding-left: 0;
+    }
+
+    .survey {
+        iframe {
+            width: 320px;
+            height: 260px;
+            overflow: none;
+        }
     }
 
     .mozillians-profile {

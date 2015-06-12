@@ -223,6 +223,22 @@ class ContributeForm(forms.Form):
     office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
 
 
+class ContributeTasksForm(forms.Form):
+    required_attr = {'required': 'required'}
+    empty_choice = ('', '')
+
+    email = forms.EmailField(widget=EmailInput(attrs=required_attr))
+    name = forms.CharField(widget=forms.TextInput(attrs=required_attr))
+    privacy = forms.BooleanField(widget=PrivacyWidget)
+
+    def __init__(self, locale, *args, **kwargs):
+        regions = product_details.get_regions(locale)
+        regions = sorted(regions.iteritems(), key=itemgetter(1))
+        regions.insert(0, self.empty_choice)
+        super(ContributeTasksForm, self).__init__(*args, **kwargs)
+        self.fields['country'] = forms.ChoiceField(choices=regions, widget=L10nSelect)
+
+
 class WebToLeadForm(forms.Form):
     interests_standard = (
         ('Firefox for Desktop', _lazy(u'Firefox for Desktop')),
