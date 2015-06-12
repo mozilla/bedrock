@@ -4,38 +4,6 @@
 
 @import "../sandstone/lib.less";
 
-#project-list {
-    width: auto;
-    margin-top: @baseLine;
-}
-
-nav.menu-bar ul li a {
-    padding-left: 17px;
-    padding-right: 17px;
-}
-
-#projects {
-    > section {
-        .clearfix;
-        border-bottom: 1px dotted @borderColor;
-        margin-bottom: @baseLine * 2;
-        padding-bottom: @baseLine;
-        .intro {
-            .span(3);
-            padding-top: 0;
-        }
-        .details {
-            .span(9);
-        }
-    }
-}
-
-#main-feature {
-    .span(12);
-    width: auto;
-    float: none;
-    padding-bottom: 0;
-}
 
 #research {
     #main-feature {
@@ -73,48 +41,6 @@ nav.menu-bar ul li a {
     }
 }
 
-.people {
-    padding-top: @baseLine * 2;
-    h2 {
-        .span(2);
-        margin-left: 0;
-        margin-bottom: @baseLine;
-    }
-    .intro {
-        .span(3);
-    }
-    ul {
-        .clearfix;
-        clear: left;
-    }
-    li {
-        .clearfix;
-        list-style-type: none;
-        margin: 0 0 (@baseLine * 2) 0;
-        border-top: 1px dotted @borderColor;
-        padding-top: (@baseLine * 2);
-        img {
-            .span(2);
-        }
-        h3 {
-            .span(4);
-            em {
-                display: block;
-                font-style: normal;
-                .font-size(18px);
-            }
-        }
-        p {
-            .span(6);
-            margin-bottom: 0;
-        }
-    }
-    li.more {
-        border: 0;
-        padding-top: 0;
-    }
-}
-
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     .large h2 {
@@ -129,20 +55,6 @@ nav.menu-bar ul li a {
             .span_narrow(6);
         }
     }
-    #projects {
-        section {
-            .intro {
-                .span_narrow(4);
-            }
-            .details {
-                .span_narrow(8);
-            }
-        }
-    }
-    nav.menu-bar ul li a {
-        padding-left: 7px;
-        padding-right: 7px;
-    }
 }
 
 /* Mobile layout: 320px */
@@ -156,9 +68,6 @@ nav.menu-bar ul li a {
             .font-size(24px);
         }
     }
-    #research #main-feature {
-        padding-bottom: @baseLine;
-    }
     #main-content {
         .intro,
         ul.links {
@@ -169,34 +78,6 @@ nav.menu-bar ul li a {
         .intro {
             .font-size(@baseFontSize);
             .open-sans;
-        }
-    }
-    #projects {
-        section {
-            .intro {
-                float: none;
-                width: auto;
-                ul {
-                    margin-bottom: @baseLine / 2;
-                }
-            }
-            .details {
-                float: none;
-                width: auto;
-            }
-        }
-    }
-    .people {
-        li {
-            img {
-                .span_narrow(2);
-            }
-            h3 {
-                .span_narrow(3);
-            }
-            p {
-                .span_narrow(5);
-            }
         }
     }
 }
