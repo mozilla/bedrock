@@ -4,7 +4,7 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "scripts": {
-    "test": "PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test tests/functional --config=tests/config.json"
+    "test": "PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test"
   },
   "dependencies": {
     "cssmin": "0.4.3",
