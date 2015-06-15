@@ -1,8 +1,8 @@
 #!/bin/bash
 
-DEPLOY_SCRIPT=/data/bedrock/deploy
-WORKING_DIR=/data/bedrock/src/www.mozilla.org-django/bedrock
-SITE_NAME=www.mozilla.org
+DEPLOY_SCRIPT=/data/bedrock-stage/deploy
+WORKING_DIR=/data/bedrock-stage/src/www.allizom.org-django/bedrock
+SITE_NAME=www.allizom.org
 PYTHON=../venv/bin/python
 PD_PATH=lib/product_details_json
 

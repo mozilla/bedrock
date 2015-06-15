@@ -139,9 +139,8 @@ https://github.com/kennethreitz/requests/archive/46d646064ca0836a7d7b4d50ea2c762
 
 ###### FROM PLAYDOH-LIB ######
 
-# django-product-details: master
-# sha256: tLy18AIevr3_Rd7saf4cKuq_W1M3zpKFVOLBmggiCck
-https://github.com/mozilla/django-product-details/archive/d168ab2e689a1b54a30a923386fe7948a74ff334.tar.gz#egg=django-mozilla-product-details
+# sha256: xQv_uYKKkTkVaQShHFCHMtE9v1esJWJevF7ao-0xKEA
+django-mozilla-product-details==0.7.1
 
 # django-appconf: develop~28
 # sha256: PoDkmCCdclPizBpPmwLn2oGReakQySddW8Iy3kjmfDM

@@ -35,16 +35,6 @@ WAFFLE_FLAG_DEFAULT = WAFFLE_SWITCH_DEFAULT = WAFFLE_SAMPLE_DEFAULT = DEV
 if 'manage.py' not in sys.argv:
     SLAVE_DATABASES = [db for db in DATABASES if db != 'default']
 
-if len(sys.argv) > 1 and sys.argv[1] == 'test':
-    # Using the CachedStaticFilesStorage for tests breaks all the things.
-    STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
-    # Turn off less compilation in tests
-    PIPELINE_ENABLED = True
-    # TEMPLATE_DEBUG has to be True for jingo to call the template_rendered
-    # signal which Django's test client uses to save away the contexts for your
-    # test to look at later.
-    TEMPLATE_DEBUG = True
-
 if CACHES['default']['BACKEND'] == 'django_pylibmc.memcached.PyLibMCCache':
     CACHES['default']['BINARY'] = True
     CACHES['default']['OPTIONS'] = {  # Maps to pylibmc "behaviors"
@@ -63,5 +53,27 @@ CACHES['l10n'] = {
     }
 }
 
+# cache for product details
+CACHES['product-details'] = {
+    'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    'LOCATION': 'product-details',
+    'OPTIONS': {
+        'MAX_ENTRIES': 200,  # currently 104 json files
+        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
+    }
+}
+
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL
 STATIC_URL = CDN_BASE_URL + STATIC_URL
+
+if len(sys.argv) > 1 and sys.argv[1] == 'test':
+    # Using the CachedStaticFilesStorage for tests breaks all the things.
+    STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+    # Turn off less compilation in tests
+    PIPELINE_ENABLED = True
+    # TEMPLATE_DEBUG has to be True for jingo to call the template_rendered
+    # signal which Django's test client uses to save away the contexts for your
+    # test to look at later.
+    TEMPLATE_DEBUG = True
+    # don't cache product-details
+    CACHES['product-details']['BACKEND'] = 'django.core.cache.backends.dummy.DummyCache'

@@ -102,6 +102,8 @@ LANGUAGE_CODE = 'en-US'
 # Tells the product_details module where to find our local JSON files.
 # This ultimately controls how LANGUAGES are constructed.
 PROD_DETAILS_DIR = path('lib', 'product_details_json')
+PROD_DETAILS_CACHE_NAME = 'product-details'
+PROD_DETAILS_CACHE_TIMEOUT = 60 * 15  # 15 min
 
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',

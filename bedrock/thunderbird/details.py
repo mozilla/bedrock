@@ -20,9 +20,6 @@ class ThunderbirdDesktop(ProductDetails):
         'release': 'LATEST_THUNDERBIRD_VERSION',
     }
 
-    def __init__(self):
-        super(ThunderbirdDesktop, self).__init__()
-
     def latest_version(self, channel='release'):
         version = self.channel_map.get(channel, 'LATEST_THUNDERBIRD_VERSION')
         try:

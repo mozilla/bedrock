@@ -27,8 +27,8 @@ class FirefoxDesktop(ProductDetails):
         'release': 'LATEST_FIREFOX_VERSION',
     }
 
-    def __init__(self):
-        super(FirefoxDesktop, self).__init__()
+    def __init__(self, **kwargs):
+        super(FirefoxDesktop, self).__init__(**kwargs)
 
     def latest_version(self, channel='release'):
         version = self.channel_map.get(channel, 'LATEST_FIREFOX_VERSION')
@@ -240,9 +240,6 @@ class FirefoxAndroid(ProductDetails):
         'api-11': aurora_url_base + '-api-11/fennec-%s.multi.android-arm.apk',
         'x86': aurora_url_base + '-x86/fennec-%s.multi.android-i386.apk',
     }
-
-    def __init__(self):
-        super(FirefoxAndroid, self).__init__()
 
     def latest_version(self, channel):
         version = self.channel_map.get(channel, 'version')

@@ -8,12 +8,19 @@ from django.test.utils import override_settings
 from bedrock.base.urlresolvers import reverse
 from mock import patch, Mock
 from nose.tools import eq_
-from rna.models import Release
+from pathlib import Path
 from pyquery import PyQuery as pq
+from rna.models import Release
 
+from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import views
-from bedrock.firefox.utils import product_details
+from bedrock.thunderbird.details import ThunderbirdDesktop
+
+
+DATA_PATH = str(Path(__file__).parent / 'data')
+firefox_desktop = FirefoxDesktop(json_dir=DATA_PATH)
+thunderbird_desktop = ThunderbirdDesktop(json_dir=DATA_PATH)
 
 
 class TestRNAViews(TestCase):
@@ -202,13 +209,12 @@ class TestRNAViews(TestCase):
 
 class TestReleaseNotesIndex(TestCase):
     @patch('bedrock.releasenotes.views.l10n_utils.render')
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='36.0')
+    @patch('bedrock.releasenotes.views.firefox_desktop', firefox_desktop)
     def test_relnotes_index_firefox(self, render_mock):
         with self.activate('en-US'):
             self.client.get(reverse('firefox.releases.index'))
         releases = render_mock.call_args[0][2]['releases']
-        eq_(len(releases), len(product_details.firefox_history_major_releases))
+        eq_(len(releases), len(firefox_desktop.firefox_history_major_releases))
         eq_(releases[0][0], 36.0)
         eq_(releases[0][1]['major'], '36.0')
         eq_(releases[0][1]['minor'], [])
@@ -223,6 +229,7 @@ class TestReleaseNotesIndex(TestCase):
         eq_(releases[6][1]['minor'],
             ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0', '31.5.0'])
 
+    @patch('bedrock.releasenotes.views.thunderbird_desktop', thunderbird_desktop)
     def test_relnotes_index_thunderbird(self):
         with self.activate('en-US'):
             response = self.client.get(reverse('thunderbird.releases.index'))
@@ -241,52 +248,52 @@ class TestNotesRedirects(TestCase):
         eq_(response.status_code, 302)
         eq_(response['Location'], 'http://testserver/en-US' + url_to)
 
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='22.0')
+    @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
+           Mock(return_value='22.0'))
     def test_desktop_release_version(self):
         self._test('/firefox/notes/',
                    '/firefox/22.0/releasenotes/')
         self._test('/firefox/latest/releasenotes/',
                    '/firefox/22.0/releasenotes/')
 
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_DEVEL_VERSION='23.0b1')
+    @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
+           Mock(return_value='23.0b1'))
     def test_desktop_beta_version(self):
         self._test('/firefox/beta/notes/',
                    '/firefox/23.0beta/releasenotes/')
 
-    @patch.dict(product_details.firefox_versions,
-                FIREFOX_AURORA='24.0a2')
+    @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
+           Mock(return_value='24.0a2'))
     def test_desktop_developer_version(self):
         self._test('/firefox/developer/notes/',
                    '/firefox/24.0a2/auroranotes/')
 
-    @patch.dict(product_details.firefox_versions,
-                FIREFOX_ESR='24.2.0esr')
+    @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
+           Mock(return_value='24.2.0esr'))
     def test_desktop_esr_version(self):
         self._test('/firefox/organizations/notes/',
                    '/firefox/24.2.0/releasenotes/')
 
-    @patch.dict(product_details.mobile_details,
-                version='22.0')
+    @patch('bedrock.releasenotes.views.firefox_android.latest_version',
+           Mock(return_value='22.0'))
     def test_android_release_version(self):
         self._test('/firefox/android/notes/',
                    '/firefox/android/22.0/releasenotes/')
 
-    @patch.dict(product_details.mobile_details,
-                beta_version='23.0b1')
+    @patch('bedrock.releasenotes.views.firefox_android.latest_version',
+           Mock(return_value='23.0b1'))
     def test_android_beta_version(self):
         self._test('/firefox/android/beta/notes/',
                    '/firefox/android/23.0beta/releasenotes/')
 
-    @patch.dict(product_details.mobile_details,
-                alpha_version='24.0a2')
+    @patch('bedrock.releasenotes.views.firefox_android.latest_version',
+           Mock(return_value='24.0a2'))
     def test_android_aurora_version(self):
         self._test('/firefox/android/aurora/notes/',
                    '/firefox/android/24.0a2/auroranotes/')
 
-    @patch.dict(product_details.thunderbird_versions,
-                LATEST_THUNDERBIRD_VERSION='22.0')
+    @patch('bedrock.releasenotes.views.thunderbird_desktop.latest_version',
+           Mock(return_value='22.0'))
     def test_thunderbird_release_version(self):
         self._test('/thunderbird/latest/releasenotes/',
                    '/thunderbird/22.0/releasenotes/')
@@ -300,32 +307,32 @@ class TestSysreqRedirect(TestCase):
         eq_(response.status_code, 302)
         eq_(response['Location'], 'http://testserver/en-US' + url_to)
 
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='22.0')
+    @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
+           Mock(return_value='22.0'))
     def test_desktop_release_version(self):
         self._test('/firefox/system-requirements/',
                    '/firefox/22.0/system-requirements/')
 
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_DEVEL_VERSION='23.0b1')
+    @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
+           Mock(return_value='23.0b1'))
     def test_desktop_beta_version(self):
         self._test('/firefox/beta/system-requirements/',
                    '/firefox/23.0beta/system-requirements/')
 
-    @patch.dict(product_details.firefox_versions,
-                FIREFOX_AURORA='24.0a2')
+    @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
+           Mock(return_value='24.0a2'))
     def test_desktop_developer_version(self):
         self._test('/firefox/developer/system-requirements/',
                    '/firefox/24.0a2/system-requirements/')
 
-    @patch.dict(product_details.firefox_versions,
-                FIREFOX_ESR='24.2.0esr')
+    @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
+           Mock(return_value='24.2.0esr'))
     def test_desktop_esr_version(self):
         self._test('/firefox/organizations/system-requirements/',
                    '/firefox/24.0/system-requirements/')
 
-    @patch.dict(product_details.thunderbird_versions,
-                LATEST_THUNDERBIRD_VERSION='22.0')
+    @patch('bedrock.releasenotes.views.thunderbird_desktop.latest_version',
+           Mock(return_value='22.0'))
     def test_thunderbird_release_version(self):
         self._test('/thunderbird/latest/system-requirements/',
                    '/thunderbird/22.0/system-requirements/')

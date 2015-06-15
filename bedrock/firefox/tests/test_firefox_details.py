@@ -8,11 +8,10 @@ from urlparse import parse_qsl, urlparse
 from django.conf import settings
 from django.test.utils import override_settings
 
-from mock import patch
+from mock import patch, Mock
 from nose.tools import eq_, ok_
 
 from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
-from bedrock.thunderbird.details import ThunderbirdDesktop
 from bedrock.mozorg.tests import TestCase
 
 
@@ -20,12 +19,8 @@ TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 
 
-with patch.object(settings, 'PROD_DETAILS_DIR', PROD_DETAILS_DIR):
-    firefox_desktop = FirefoxDesktop()
-    firefox_android = FirefoxAndroid()
-    # We don't use Thunerbird data here but require this to prevent product data
-    # from being overridden unexpectedly
-    thunderbird_desktop = ThunderbirdDesktop()
+firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
+firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
 
 
 GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
@@ -52,7 +47,7 @@ GOOD_VERSIONS = {
 
 @patch.object(firefox_desktop, 'firefox_primary_builds', GOOD_BUILDS)
 @patch.object(firefox_desktop, 'firefox_beta_builds', {})
-@patch.dict(firefox_desktop.firefox_versions, GOOD_VERSIONS)
+@patch.object(firefox_desktop, 'firefox_versions', GOOD_VERSIONS)
 class TestLatestBuilds(TestCase):
     def test_latest_builds(self):
         """Should return platforms if localized build does exist."""
@@ -77,7 +72,6 @@ class TestLatestBuilds(TestCase):
 
 
 class TestFirefoxDesktop(TestCase):
-
     def test_get_download_url(self):
         url = firefox_desktop.get_download_url('release', '17.0.1', 'osx', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
@@ -97,8 +91,6 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'linux64'),
                               ('lang', 'en-US')])
 
-    @patch.dict(firefox_desktop.firefox_versions,
-                FIREFOX_AURORA='28.0a2')
     def test_get_download_url_aurora(self):
         """
         The Aurora version should give us a bouncer url. For Windows, a stub url
@@ -130,8 +122,6 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'linux64'),
                               ('lang', 'en-US')])
 
-    @patch.dict(firefox_desktop.firefox_versions,
-                FIREFOX_AURORA='28.0a2')
     def test_get_download_url_aurora_l10n(self):
         """Aurora non en-US should have a slightly different product name."""
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win', 'pt-BR', True)
@@ -233,34 +223,34 @@ class TestFirefoxDesktop(TestCase):
         url = builds[0]['platforms']['linux64']['download_url']
         eq_(parse_qsl(urlparse(url).query)[1], ('os', 'linux64'))
 
-    @patch.dict(firefox_desktop.firefox_versions,
-                FIREFOX_ESR='24.2')
+    @patch.object(firefox_desktop, '_get_json_data',
+                  Mock(return_value=dict(FIREFOX_ESR='24.2')))
     def test_esr_major_versions(self):
         """ESR versions should be dynamic based on data."""
         eq_(firefox_desktop.esr_major_versions, [24])
 
-    @patch.dict(firefox_desktop.firefox_versions,
-                FIREFOX_ESR='24.6.0',
-                FIREFOX_ESR_NEXT='31.0.0')
+    @patch.object(firefox_desktop, '_get_json_data',
+                  Mock(return_value=dict(FIREFOX_ESR='24.6.0',
+                                         FIREFOX_ESR_NEXT='31.0.0')))
     def test_esr_major_versions_prev(self):
         """ESR versions should show previous when available."""
         eq_(firefox_desktop.esr_major_versions, [24, 31])
 
-    @patch.dict(firefox_desktop.firefox_versions,
-                LATEST_FIREFOX_VERSION='Phoenix',
-                FIREFOX_ESR='Albuquerque')
+    @patch.object(firefox_desktop, '_get_json_data',
+                  Mock(return_value=dict(LATEST_FIREFOX_VERSION='Phoenix',
+                                         FIREFOX_ESR='Albuquerque')))
     def test_esr_major_versions_no_latest(self):
         """ESR versions should not blow up if current version is broken."""
         eq_(firefox_desktop.esr_major_versions, [])
 
-    @patch.dict(firefox_desktop.firefox_versions,
-                LATEST_FIREFOX_VERSION='18.0.1')
+    @patch.object(firefox_desktop, '_get_json_data',
+                  Mock(return_value=dict(LATEST_FIREFOX_VERSION='18.0.1')))
     def test_latest_major_version(self):
         """latest_major_version should return an int of the major version."""
         eq_(firefox_desktop.latest_major_version('release'), 18)
 
-    @patch.dict(firefox_desktop.firefox_versions,
-                LATEST_FIREFOX_VERSION='Phoenix')
+    @patch.object(firefox_desktop, '_get_json_data',
+                  Mock(return_value=dict(LATEST_FIREFOX_VERSION='Phoenix')))
     def test_latest_major_version_no_int(self):
         """latest_major_version should return 0 when no int."""
         eq_(firefox_desktop.latest_major_version('release'), 0)
@@ -303,16 +293,14 @@ class TestFirefoxDesktop(TestCase):
         ok_('product=firefox-beta-stub&' not in url)
 
 
+@patch.object(firefox_android, '_get_json_data',
+              Mock(return_value=dict(version='22.0.1', beta_version='23.0')))
 class TestFirefoxAndroid(TestCase):
 
-    @patch.dict(firefox_android.mobile_details,
-                version='22.0.1')
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
         eq_(firefox_android.latest_version('release'), '22.0.1')
 
-    @patch.dict(firefox_android.mobile_details,
-                beta_version='23.0')
     def test_latest_beta_version(self):
         """latest_version should return the latest beta version."""
         eq_(firefox_android.latest_version('beta'), '23.0')
