@@ -61,9 +61,9 @@ Running CasperJS tests
 
 To run the full functional test suite against your local bedrock instance, type::
 
-    npm test
+    npm test -- tests/functional --config=tests/config.json
 
-This is just a simple shortcut for the following command::
+This is just shorthand for the following command::
 
     PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test tests/functional --config=tests/config.json
 
@@ -73,20 +73,18 @@ have bedrock running at ``localhost`` on port ``8000``.
 To run a single test suite you must tell CasperJS to execute a specific file
 e.g. ``tests/functional/home.js``::
 
-    PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test tests/functional/home.js --config=tests/config.json
+    npm test -- tests/functional/home.js --config=tests/config.json
 
 You can also easily run the tests against any bedrock environment by specifying the
 ``--domain`` variable. For example, to run all functional tests against dev::
 
-    PHANTOMJS_EXECUTABLE=./node_modules/.bin/phantomjs ./node_modules/.bin/casperjs test tests/functional --domain=https://www-dev.allizom.org --config=tests/config.json
+    npm test -- tests/functional --domain=https://www-dev.allizom.org --config=tests/config.json
 
 .. Note::
 
-    ``npm test`` is just a simple shortcut and not something you can pass options to. If
-    you want to specify a particular file to run or a different domain, you must use the
-    full command like in the examples above. Also, make sure to include the configuration
-    file ``--config=tests/config.json`` when running tests, as this is sometimes needed
-    for PhantomJS to open certain URLs served over https.
+    Passing arguments to ``npm test`` requires at least npm v2.0.0. If you're using an
+    older version of npm, you can still run the tests using the full, long verion of the
+    command shown above, instead of using the ``npm test`` shortcut.
 
 Writing CasperJS tests
 ----------------------
