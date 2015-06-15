@@ -14,40 +14,58 @@ from pytz import timezone
 from bedrock.events.countries import country_to_continent
 
 
+def calendar_id_from_google_url(feed_url):
+    return feed_url.split('/')[5]
+
+
+def calendar_url_for_event(event, calendar_id):
+    template = 'https://www.google.com/calendar/embed?showCalendars=0&mode=week&wkst=1&' \
+               'src={calendar_id}&ctz=America/Los_Angeles&' \
+               'dates={event.start_time:%Y%m%d}%2f{event.end_time:%Y%m%d}'
+    return template.format(calendar_id=calendar_id, event=event)
+
+
+def utcnow():
+    if settings.USE_TZ:
+        # We have to be sure to use a tz-aware datetime because otherwise
+        # it will be converted using django.utils.timezone.make_aware, which
+        # will throw an error during DST change, because Zen.
+        # https://code.djangoproject.com/ticket/22598
+        return timezone('UTC').localize(datetime.utcnow())
+
+    return datetime.utcnow()
+
+
 class EventQuerySet(QuerySet):
     def future(self):
-        if settings.USE_TZ:
-            # We have to be sure to use a tz-aware datetime because otherwise
-            # it will be converted using django.utils.timezone.make_aware, which
-            # will throw an error during DST change, because Zen.
-            # https://code.djangoproject.com/ticket/22598
-            utcnow = timezone('UTC').localize(datetime.utcnow())
-        else:
-            utcnow = datetime.utcnow()
-        return self.filter(start_time__gt=utcnow).order_by('start_time')
+        return self.filter(end_time__gt=utcnow()).order_by('start_time')
+
+    def past(self):
+        return self.filter(end_time__lt=utcnow()).order_by('end_time')
 
 
 class EventManager(models.Manager):
-    def get_query_set(self):
+    def get_queryset(self):
         return EventQuerySet(self.model, using=self._db)
 
     def future(self):
-        return self.get_query_set().future()
+        return self.get_queryset().future()
 
-    def sync_with_ical(self, ical_feed):
+    def past(self):
+        return self.get_queryset().past()
+
+    def sync_with_ical(self, ical_feed, feed_url):
         """
         Parse an icalendar feed and sync the events in the database with it.
 
         :param ical_feed: ical formatted string.
         :return: None
         """
+        today = utcnow().date()
         cal = Calendar.from_ical(ical_feed)
-        current_uids = self.values_list('id', flat=True)
-        new_uids = []
         for event in cal.walk('vevent'):
             uid = event.decoded('uid')
             sequence = event.decoded('sequence')
-            new_uids.append(uid)
             try:
                 event_obj = self.get(id=uid)
                 if event_obj and event_obj.sequence == sequence:
@@ -56,10 +74,19 @@ class EventManager(models.Manager):
                 event_obj = Event()
 
             event_obj.update_from_ical(event)
-            event_obj.save()
+            end_date = event_obj.end_time
+            if isinstance(end_date, datetime):
+                # use date since some feeds only produce date objects
+                end_date = end_date.date()
 
-        to_delete = set(current_uids) - set(new_uids)
-        self.filter(id__in=list(to_delete)).delete()
+            if today > end_date:
+                continue
+
+            if not event_obj.url and 'google.com' in feed_url:
+                event_obj.url = calendar_url_for_event(event_obj,
+                                                       calendar_id_from_google_url(feed_url))
+
+            event_obj.save()
 
 
 class Event(models.Model):
@@ -70,10 +97,10 @@ class Event(models.Model):
     sequence = models.SmallIntegerField()
     start_time = models.DateTimeField(db_index=True)
     end_time = models.DateTimeField()
-    url = models.URLField()
-    latitude = models.FloatField()
-    longitude = models.FloatField()
-    country_code = models.CharField(max_length=2)
+    url = models.URLField(blank=True)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
+    country_code = models.CharField(max_length=2, blank=True)
     continent_code = models.CharField(max_length=2, null=True)
 
     objects = EventManager()
@@ -110,7 +137,14 @@ class Event(models.Model):
 
     def update_from_ical(self, ical_event):
         for field, ical_prop in self.field_to_ical.iteritems():
-            setattr(self, field, ical_event.decoded(ical_prop))
+            try:
+                value = ical_event.decoded(ical_prop)
+            except KeyError:
+                pass
+            else:
+                if isinstance(value, basestring):
+                    value = value.strip()
+                setattr(self, field, value)
 
     def save(self, *args, **kwargs):
         self.country_code = self.country_code.upper()

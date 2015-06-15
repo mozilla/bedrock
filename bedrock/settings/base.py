@@ -403,7 +403,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 FEEDS = {
     'mozilla': 'https://blog.mozilla.org/feed/'
 }
-REPS_ICAL_FEED = 'https://reps.mozilla.org/events/period/future/ical/'
+EVENTS_ICAL_FEEDS = (
+    'https://reps.mozilla.org/events/period/future/ical/',
+    'https://www.google.com/calendar/ical/mozilla.com_l9g7ie050ngr3g4qv6bgiinoig%40group.calendar.google.com/public/basic.ics',
+)
 
 # Twitter accounts to retrieve tweets with the API
 TWITTER_ACCOUNTS = (

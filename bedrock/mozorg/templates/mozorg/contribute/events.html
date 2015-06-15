@@ -6,7 +6,7 @@
 
 {% add_lang_files "mozorg/contribute/index" %}
 
-{% block page_title %}{{_('Community Events')}}{% endblock %}
+{% block page_title %}{{_('Events')}}{% endblock %}
 {% block body_id %}events{% endblock %}
 
 {% block page_css %}
@@ -18,7 +18,7 @@
   {% javascript 'contribute-form' %}
 {% endblock %}
 
-{% block contrib_page_title %}{{ _('Community Events') }}{% endblock %}
+{% block contrib_page_title %}{{ _('Events') }}{% endblock %}
 
 {% block contrib_content %}
 {# No map for now
@@ -30,9 +30,6 @@
   <section class="section events-list">
 
     <div class="container">
-      <p class="ical-link ">
-        <a href="https://reps.mozilla.org/events/period/future/ical/" rel="external">{{ _('Subscribe to community events') }}</a>
-      </p>
 {# No filtering for now
     <div class="events-head">
       <form id="events-filter" method="get" action="#">
@@ -97,7 +94,7 @@
         {% for event in future_events() %}
           <tr>
             <td class="event-date"><time datetime="{{ event.start_time.isoformat() }}">{{ event.start_time|l10n_format_date }}</time></td>
-            <th class="event-name" scope="row"><a href="{{ event.url }}">{{ event.title|safe }}</a></th>
+            <th class="event-name" scope="row">{% if event.url %}<a href="{{ event.url }}">{% endif %}{{ event.title|safe }}{% if event.url %}</a>{% endif %}</th>
             <td>{{ event.location|safe }}</td>
           </tr>
         {% endfor %}
