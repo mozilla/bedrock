@@ -131,11 +131,10 @@
         e.preventDefault();
         var $form = $(this);
         $form.unbind('submit');
-        var action = $('#id_contribute-interest')[0].value;
-        $form.attr({
-            'data-element-location': 'Want to Help Form - Area of Interest',
-            'data-element-action': action,
-            'data-tracking-flag': 'contribute-interaction'
+        window.dataLayer.push({
+            event: 'contribute-page-interaction',
+            location: 'Want to Help Form - Area of Interest',
+            browserAction: $('#id_contribute-interest')[0].value
         });
         $form.submit();
     });
