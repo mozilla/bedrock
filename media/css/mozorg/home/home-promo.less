@@ -839,6 +839,55 @@ html[lang|="en"] {
     }
 }
 
+
+/****************************************************************************/
+// Maker Party
+.promo-large-landscape.makerparty {
+    background: #fee700; // yellow
+
+    h2 {
+        color: #50504b;
+        padding: 110px @baseLine 0 @baseLine;
+        margin-top: @baseLine;
+        background-image: url(/media/img/home/voices/promos/makerparty/maker-party.png);
+        background-position: top center;
+        background-repeat: no-repeat;
+        .background-size(104px, 104px);
+
+        &.go:after {
+            color: #50504b;
+            border-color: #50504b;
+        }
+    }
+
+    h3 {
+        color: #50504b;
+    }
+
+    p.more {
+        color: #50504b;
+        border-color: rgba(80, 80, 75, .5);
+
+        &:hover {
+            border-color: #50504b;
+        }
+    }
+
+    .panel-link:focus p.more {
+        border-color: #50504b;
+    }
+
+}
+
+html[lang|="en"] {
+    .promo-large-landscape.makerparty {
+        h3 {
+            padding: (@baseLine * 3) @baseLine 0 @baseLine;
+        }
+    }
+}
+
+
 /****************************************************************************/
 // Webmaker
 .promo-large-landscape.webmaker {
@@ -847,10 +896,10 @@ html[lang|="en"] {
     h2 {
         padding: 110px @baseLine 0 @baseLine;
         margin-top: @baseLine;
-        background-image: url(/media/img/home/voices/promos/webmaker/webmaker.png);
+        background-image: url(/media/img/home/voices/promos/webmaker/webmaker-logo.svg);
         background-position: top center;
         background-repeat: no-repeat;
-        .background-size(104px, 104px);
+        .background-size(100px, 100px);
     }
 }
 
@@ -866,9 +915,10 @@ html[lang|="en"] {
     background: #e14164; // pinkish red
 
     h2 {
-        padding: 35px 0 35px 140px;
+        padding: 35px 0 35px 130px;
         min-height: 50px;
-        background: url(/media/img/home/voices/promos/webmaker/webmaker.png) 20px 15px no-repeat;
+        background: url(/media/img/home/voices/promos/webmaker/webmaker-logo.svg) 15px 15px no-repeat;
+        .background-size(100px, 100px);
     }
 }
 
@@ -956,6 +1006,14 @@ html[lang|="en"] {
     h2 {
         padding-top: 135px;
         background: url(/media/img/home/voices/promos/firefoxfriends/firefox-friends.png) center 20px no-repeat;
+    }
+}
+
+html[lang|="en"] {
+    .promo-large-landscape.firefox-friends {
+        h3 {
+            padding: (@baseLine * 3) @baseLine 0 @baseLine;
+        }
     }
 }
 
@@ -1334,7 +1392,7 @@ html[lang|="en"] {
     }
 
     html[lang|="en"] {
-        // force "Teach the Web" to break onto 2 lines in Engligh only.
+        // force "Teach the Web" to break onto 2 lines in English only.
         .promo-large-landscape.webmaker {
             h2 {
                 padding: 120px (@baseLine * 2) 0 (@baseLine * 2);
@@ -1684,11 +1742,11 @@ html[lang|="en"] {
        only screen and (                min-resolution: 1.5dppx),
        only screen and (                min-resolution: 144dpi) {
 
-    // Webmaker
-    .promo-large-landscape.webmaker {
+    // Maker Party
+    .promo-large-landscape.makerparty {
         h2 {
-            background-image: url(/media/img/home/voices/promos/webmaker/webmaker-high-res.png);
-            .background-size(104px, 104px);
+            background-image: url(/media/img/home/voices/promos/makerparty/maker-party-high-res.png);
+            .background-size(105px, 105px);
         }
     }
 
