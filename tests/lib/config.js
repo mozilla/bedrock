@@ -28,6 +28,9 @@ var userAgent = {
 // set default viewport size to desktop
 casper.options.viewportSize = viewport.desktop;
 
+// set default wait timeout
+casper.options.waitTimeout = 5000;
+
 /*
  * Returns the environment being tested
  * plus the specified locale.
