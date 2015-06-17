@@ -26,25 +26,11 @@ module.exports = function (grunt) {
                 ]
             }
         },
-        less: {
-            development: {
-                options: {
-                    paths: ['media/css/']
-                },
-                files: {
-                    'media/css/**/*.css': 'media/css/**/*.less'
-                }
-            }
-        },
         watch: {
             options: {
                 port: 35729,
                 livereload: true,
                 nospawn: true
-            },
-            css: {
-                files: ['media/css/**/*.less'],
-                tasks: ['less']
             },
             scripts: {
                 files: ['media/js/**/*.js'],
@@ -68,12 +54,7 @@ module.exports = function (grunt) {
 
     // Update the config to only build the changed files.
     grunt.event.on('watch', function (action, filepath) {
-        grunt.config(['less', 'development', 'files'], [
-            { src: filepath, dest: filepath + '.css' }
-        ]);
-
         grunt.config(['jshint', 'development'], [filepath]);
-
         grunt.config(['jsonlint', 'all'], [filepath]);
     });
 
