@@ -33,10 +33,10 @@
             tourSource = 'none';
         }
         window.dataLayer.push({
-            'event': 'hello-interactions', 
-            'category': '/hello/start interactions', 
-            'location': 'tour', 
-            'browserAction': 'TourConnectConversation', 
+            'event': 'hello-interactions',
+            'category': '/hello/start interactions',
+            'location': 'tour',
+            'browserAction': 'TourConnectConversation',
             'helloFTUReferral': tourSource
         });
         try {
@@ -222,6 +222,19 @@
         );
     }
 
+    function roomShared(button) {
+        tourStep = 'shared';
+        showTourStep();
+        saveTourSourceToLocalStorage();
+        // track user has shared room
+        window.dataLayer.push({
+            'event': 'hello-interactions',
+            'category': '/hello/start interactions',
+            'location': 'tour',
+            'browserAction': button
+        });
+    }
+
     // register for Hello UITour events
     function bindHelloEvents() {
         Mozilla.UITour.observe(function(event, data) {
@@ -240,9 +253,9 @@
 
                     // track user has clicked "Start a conversation" button
                     window.dataLayer.push({
-                        'event': 'hello-interactions', 
-                        'category': '/hello/start interactions', 
-                        'location': 'tour', 
+                        'event': 'hello-interactions',
+                        'category': '/hello/start interactions',
+                        'location': 'tour',
                         'browserAction': 'StartConversation-Tour'
                     });
 
@@ -285,28 +298,13 @@
                 }
                 break;
             case 'Loop:RoomURLCopied':
-                tourStep = 'shared';
-                showTourStep();
-                saveTourSourceToLocalStorage();
-                // track user has clicked copy button
-                window.dataLayer.push({
-                    'event': 'hello-interactions', 
-                    'category': '/hello/start interactions', 
-                    'location': 'tour', 
-                    'browserAction': 'URLCopied-Tour'
-                });
+                roomShared('URLCopied-Tour');
                 break;
             case 'Loop:RoomURLEmailed':
-                tourStep = 'shared';
-                showTourStep();
-                saveTourSourceToLocalStorage();
-                // track user has clicked email button
-                window.dataLayer.push({
-                    'event': 'hello-interactions', 
-                    'category': '/hello/start interactions', 
-                    'location': 'tour', 
-                    'browserAction': 'URLEmailed-Tour'
-                });
+                roomShared('URLEmailed-Tour');
+                break;
+            case 'Loop:RoomURLShared':
+                roomShared('URLShared-Tour');
                 break;
             case 'Loop:PanelTabChanged':
                 // hide info panels if user switches to the Contacts tab in the Hello panel
@@ -393,10 +391,10 @@
                     if (tourStep === 'get-started') {
                         // Get referrer and set Custom Variable. none is okay here.
                         window.dataLayer.push({
-                            'event': 'hello-interactions-referral', 
-                            'category': '/hello/start interactions', 
-                            'location': 'tour', 
-                            'browserAction': 'GetStarted', 
+                            'event': 'hello-interactions-referral',
+                            'category': '/hello/start interactions',
+                            'location': 'tour',
+                            'browserAction': 'GetStarted',
                             'helloFTUReferral': tourSource
                         });
                     }
