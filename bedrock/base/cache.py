@@ -1,0 +1,52 @@
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.core.cache.backends.locmem import LocMemCache
+
+
+class SimpleDictCache(LocMemCache):
+    """A local memory cache that doesn't pickle values.
+
+    Only for use with simple immutable data structures that can be
+    inserted into a dict.
+    """
+    def add(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):
+        key = self.make_key(key, version=version)
+        self.validate_key(key)
+        with self._lock.writer():
+            if self._has_expired(key):
+                self._set(key, value, timeout)
+                return True
+            return False
+
+    def get(self, key, default=None, version=None):
+        key = self.make_key(key, version=version)
+        self.validate_key(key)
+        value = None
+        with self._lock.reader():
+            if not self._has_expired(key):
+                value = self._cache[key]
+        if value is not None:
+            return value
+
+        with self._lock.writer():
+            try:
+                del self._cache[key]
+                del self._expire_info[key]
+            except KeyError:
+                pass
+            return default
+
+    def set(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):
+        key = self.make_key(key, version=version)
+        self.validate_key(key)
+        with self._lock.writer():
+            self._set(key, value, timeout)
+
+    def incr(self, key, delta=1, version=None):
+        value = self.get(key, version=version)
+        if value is None:
+            raise ValueError("Key '%s' not found" % key)
+        new_value = value + delta
+        key = self.make_key(key, version=version)
+        with self._lock.writer():
+            self._cache[key] = new_value
+        return new_value

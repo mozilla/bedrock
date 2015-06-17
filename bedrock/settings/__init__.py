@@ -44,7 +44,7 @@ if CACHES['default']['BACKEND'] == 'django_pylibmc.memcached.PyLibMCCache':
 
 # cache for lang files
 CACHES['l10n'] = {
-    'BACKEND': 'lib.l10n_utils.cache.L10nCache',
+    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
     'LOCATION': 'l10n',
     'TIMEOUT': DOTLANG_CACHE,
     'OPTIONS': {
@@ -55,7 +55,7 @@ CACHES['l10n'] = {
 
 # cache for product details
 CACHES['product-details'] = {
-    'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
     'LOCATION': 'product-details',
     'OPTIONS': {
         'MAX_ENTRIES': 200,  # currently 104 json files
