@@ -62,7 +62,7 @@ If jQuery is already included on the page, it will be used by Tabzilla. If jQuer
 Translation Bar
 ---------------
 
-Tabzilla has an opt-in extension called *Translation Bar* that automatically offers a link to a localized page, if available, based on the user's locale. It is intended to improve international user experience. 
+Tabzilla has an opt-in extension called *Translation Bar* that automatically offers a link to a localized page, if available, based on the user's locale. It is intended to improve international user experience.
 
 Adding the Translation Bar extension to Tabzilla requires:
 
@@ -94,3 +94,33 @@ Adding the Update Bar extension to Tabzilla requires:
     <a href="https://www.mozilla.org/" id="tabzilla" data-infobar="update translation">mozilla</a>
 
 The value of the ``data-infobar`` attribute is the order of priority. You can enable both the Update Bar and Translation Bar as the example above, but one information bar will be shown at a time.
+
+
+Tabzilla Static
+---------------
+
+There is also a static (non-opening) version of Tabzilla available for use in bedrock.
+Just add the following file to your CSS bundle::
+
+    'css/tabzilla/tabzilla-static.less'
+
+To use the static Tabzilla tab in your page, add the following markup to your template::
+
+    {% block tabzilla_tab %}
+      <div id="tabzilla">
+        <a href="{{ url('mozorg.home') }}">Mozilla</a>
+      </div>
+    {% endblock %}
+
+To customize the Mozilla wordmark color to suite the page design, you can use the
+following CSS selector:
+
+    #tabzilla:before {
+        background-color: purple;
+    }
+
+Finally, don't forget to override the regular Tabzilla asset blocks when using the
+static version, as they are no longer needed::
+
+    {% block tabzilla_css %}{% endblock %}
+    {% block tabzilla_js %}{% endblock %}
