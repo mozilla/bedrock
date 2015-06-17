@@ -7,7 +7,7 @@
 {% block page_image %}{{ static('img/plugincheck/page-image.png') }}{% endblock %}
 
 {% block page_title %}
-  {% if l10n_has_tag('meta_update_201503') %}
+  {% if l10n_has_tag('plugincheck_nosupport') %}
     {{_('Keep your Firefox healthy with a quick checkup')}}
   {% else %}
     {{_('Plugin Check &amp; Updates')}}
@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block page_desc %}
-  {% if l10n_has_tag('meta_update_201503') %}
+  {% if l10n_has_tag('plugincheck_nosupport') %}
     {{_('Use Flash? QuickTime? Java? If you use these to make your Firefox experience more awesome, check your plugins! They may need to be updated.')}}
   {% else %}
     {{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}
@@ -74,7 +74,7 @@
 
 {% block site_header_share %}
   {% set share_urls = { 'twitter': 'http://mzl.la/17aqnLZ', 'googleplus': 'http://mzl.la/1FuAhTS', 'facebook': 'http://mzl.la/1z4Noqm' } -%}
-  {% if l10n_has_tag('share_cta') -%}
+  {% if l10n_has_tag('plugincheck_nosupport') -%}
     {% set share_text = _('Plugins don’t always update automatically. Check yours now to stay safe and browse without interruption!') %}
   {%- else -%}
     {# If the new copy is not localized yet, just use the same text as the existing preamble #}
@@ -226,7 +226,7 @@
         </li>
       </ol>
       <p class="small">
-          {% if l10n_has_tag('plugin_disable_warning') %}
+          {% if l10n_has_tag('plugin_updated_content') %}
             {{ _('Caution: disabling a plugin means that you will no longer be able to do certain things. For example, if you disable Flash, you will not be able to watch videos on some streaming video websites.') }}
           {% else %}
             {{ _('Caution: disabling a plugin means that you will no longer be able to do certain things. For example, if you disable Flash, you will not be able to watch videos on YouTube.') }}
