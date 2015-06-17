@@ -43,6 +43,7 @@ urlpatterns = patterns(
     # Bug 763665, 1148127
     redirect(r'^projects/$', 'firefox.family.index'),
 
+
     # Bug 792185 Brand Toolkit -> Style Guide
     redirect(r'^firefox/brand/$', 'styleguide.home'),
     redirect(r'^firefox/brand/platform/$',
@@ -96,6 +97,9 @@ urlpatterns = patterns(
 
     # Bug 821047 /about/mission.html -> /mission/
     redirect(r'^about/mission.html$', '/mission/'),
+
+    # Bug 1171763 - delete researchers and projects and redirect
+    redirect(r'^research/.+', '/research/'),
 
     # Bug 800298 /webmaker/ -> wm.o and /webmaker/videos/ ->
     # wm.o/videos/

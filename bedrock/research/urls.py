@@ -7,8 +7,4 @@ from bedrock.mozorg.util import page
 
 urlpatterns = patterns('',
     page('research', 'research/research.html'),
-    page('research/researchers', 'research/researchers.html'),
-    page('research/projects', 'research/projects.html'),
-    page('research/collaborations', 'research/collaborations.html'),
-    page('research/publications', 'research/publications.html'),
 )
