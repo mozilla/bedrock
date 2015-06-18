@@ -3,6 +3,7 @@ $(function() {
 
     var outdatedFx = $('.version-message-container');
     var wrapper = $('#wrapper');
+    var $loader = $('.plugincheck-loader');
 
     var readerRegEx = /Adobe \b(Reader|Acrobat)\b.*/;
     var iconFor = function (pluginName) {
@@ -163,8 +164,12 @@ $(function() {
 
     // only execute the plugincheck code if this is Firefox
     if (isFirefox() || isLikeFirefox()) {
+
+        $loader.show();
+
         PluginCheck.getPluginsStatus('https://plugins.mozilla.org/en-us/plugins_list.json',
             function(response) {
+                $loader.hide();
                 displayPlugins(response);
             }
         );
