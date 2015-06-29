@@ -160,6 +160,7 @@ urlpatterns = patterns('',
     page('contact/communities/vietnam', 'mozorg/contact/communities/vietnam.html'),
 
     page('contact/communities/algeria', 'mozorg/contact/communities/algeria.html'),
+    page('contact/communities/cameroon', 'mozorg/contact/communities/cameroon.html'),
     page('contact/communities/ivory-coast', 'mozorg/contact/communities/ivory-coast.html'),
     page('contact/communities/egypt', 'mozorg/contact/communities/egypt.html'),
     page('contact/communities/ghana', 'mozorg/contact/communities/ghana.html'),
