@@ -153,7 +153,12 @@ $(function () {
         }
 
         $(this).off('submit');
-        $(this).attr('data-contribute-newsletter', newsletterstate);
+
+        window.dataLayer.push({
+            event: 'contribute-submit',
+            newsletterSignup: newsletterstate
+        });
+
         $(this).submit();
     });
 

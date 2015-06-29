@@ -84,10 +84,10 @@ $(function () {
             newsletter = getNewsletterName($self);
 
             if (newsletter !== '') {
-                $self.attr({
-                    'data-element-action': 'submit',
-                    'data-newsletter-name': newsletter,
-                    'data-tracking-flag': 'newsletter'
+                window.dataLayer.push({
+                    event: 'mozorg-newsletter',
+                    interaction: 'submit',
+                    newsletterName: newsletter
                 });
             }
 
