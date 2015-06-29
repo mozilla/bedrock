@@ -126,6 +126,12 @@
         'data-download-version': 'Firefox for Android'
     });
 
+    // Firefox Sync sign in flow button
+    $('#cta-sync').on('click', function(e) {
+        e.preventDefault();
+        Mozilla.UITour.showFirefoxAccounts();
+    });
+
 
     Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'sync' });
 })(window.jQuery, window.Mozilla);
