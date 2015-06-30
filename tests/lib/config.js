@@ -34,6 +34,9 @@ casper.options.viewportSize = viewport.desktop;
 // set default wait timeout
 casper.options.waitTimeout = 5000;
 
+// load client script DOM helper
+casper.options.clientScripts.push('tests/lib/client-scripts.js');
+
 /*
  * Returns the environment being tested
  * plus the specified locale.
