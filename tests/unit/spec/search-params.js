@@ -1,10 +1,13 @@
-/* Base JS unit test spec for bedrock global.js
- * For reference read the Jasmine and Sinon docs
+/* For reference read the Jasmine and Sinon docs
  * Jasmine docs: http://pivotal.github.io/jasmine/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+
 describe('search-params.js', function() {
+
+    'use strict';
 
     describe('_SearchParams', function () {
 

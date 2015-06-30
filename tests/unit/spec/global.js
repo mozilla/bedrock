@@ -1,10 +1,13 @@
-/* Base JS unit test spec for bedrock global.js
- * For reference read the Jasmine and Sinon docs
+/* For reference read the Jasmine and Sinon docs
  * Jasmine docs: http://pivotal.github.io/jasmine/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+
 describe('global.js', function() {
+
+    'use strict';
 
     describe('trigger_ie_download', function () {
 

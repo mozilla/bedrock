@@ -1,10 +1,14 @@
-/* Base JS unit test spec for bedrock plugincheck/lib/version-comapre.js
- * For reference read the Jasmine and Sinon docs
- * Jasmine docs: https://jasmine.github.io/
+/* For reference read the Jasmine and Sinon docs
+ * Jasmine docs: http://pivotal.github.io/jasmine/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-describe("version-compare.js", function() {
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+
+describe('version-compare.js', function() {
+
+    'use strict';
+
     it('should match', function() {
         var match = versionCompare('1.0.0.2', '1.0.0.2');
         expect(!match).toBe(true);
