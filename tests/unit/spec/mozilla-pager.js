@@ -1,4 +1,13 @@
+/* For reference read the Jasmine and Sinon docs
+ * Jasmine docs: http://pivotal.github.io/jasmine/
+ * Sinon docs: http://sinonjs.org/docs/
+ */
+
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+
 describe('mozilla-pager.js', function () {
+
+    'use strict';
 
     describe('Mozilla.Pager instantiation', function () {
 
@@ -248,13 +257,20 @@ describe('mozilla-pager.js', function () {
             expect(Mozilla.Pager.prototype.setStateFromPath).toHaveBeenCalled();
         });
 
-        it('should update pager when hash changes', function () {
-            spyOn(Mozilla.Pager, 'checkLocation');
-            Mozilla.Pager.createPagers();
-            window.location.hash = 'page2';
-            waits(200);
-            runs(function () {
+        describe('Mozilla.Pager checkLocation', function() {
+
+            beforeEach(function (done) {
+                spyOn(Mozilla.Pager, 'checkLocation');
+                Mozilla.Pager.createPagers();
+                window.location.hash = 'page2';
+                setTimeout(function() {
+                    done();
+                }, 200);
+            });
+
+            it('should update pager when hash changes', function (done) {
                 expect(Mozilla.Pager.checkLocation).toHaveBeenCalled();
+                done();
             });
         });
 

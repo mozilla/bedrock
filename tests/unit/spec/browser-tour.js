@@ -1,10 +1,13 @@
-/* Base JS unit test spec for bedrock tabzilla.js
- * For reference read the Jasmine and Sinon docs
+/* For reference read the Jasmine and Sinon docs
  * Jasmine docs: http://pivotal.github.io/jasmine/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+
 describe('browser-tour.js', function() {
+
+    'use strict';
 
     var windowTransStub;
     var tour;
@@ -125,31 +128,31 @@ describe('browser-tour.js', function() {
         Mozilla.ImageHelper.isHighDpi = sinon.stub();
 
         // spy on BrowserTour prototype methods
-        spyOn(Mozilla.BrowserTour.prototype, 'bindEvents').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'bindResize').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'handleVisibilityChange').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'onStartTour').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'showHighlight').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'onStepClick').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'closeTour').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'doCloseTour').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'onCloseTour').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'onCompactTour').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'onTourExpand').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'doCompactTour').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'restartTour').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'startBrowsing').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'onStepHover').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'offStepHover').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'onTourLinkClick').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'goToTourStep').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'hideAnnotations').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'updateControls').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'onTourComplete').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'onTourStep').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'showHelloPanel').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'hideHelloPanel').andCallThrough();
-        spyOn(Mozilla.BrowserTour.prototype, 'promptAddHelloButton').andCallThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'bindEvents').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'bindResize').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'handleVisibilityChange').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'onStartTour').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'showHighlight').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'onStepClick').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'closeTour').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'doCloseTour').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'onCloseTour').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'onCompactTour').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'onTourExpand').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'doCompactTour').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'restartTour').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'startBrowsing').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'onStepHover').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'offStepHover').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'onTourLinkClick').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'goToTourStep').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'hideAnnotations').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'updateControls').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'onTourComplete').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'onTourStep').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'showHelloPanel').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'hideHelloPanel').and.callThrough();
+        spyOn(Mozilla.BrowserTour.prototype, 'promptAddHelloButton').and.callThrough();
 
         // custom callback stubs
         onCloseTourCallback = sinon.stub();
@@ -358,13 +361,13 @@ describe('browser-tour.js', function() {
         });
 
         it('should query availableTargets', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
             tour.showHighlight();
             expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
         });
 
         it('should trigger a highlight if target is available', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
             tour.showHighlight();
             clock.tick(300);
             expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
@@ -376,7 +379,7 @@ describe('browser-tour.js', function() {
                     targets: ['foo']
                 });
             };
-            spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
             tour.showHighlight();
             clock.tick(300);
             expect(Mozilla.UITour.showHighlight.called).toBeFalsy();
@@ -396,13 +399,13 @@ describe('browser-tour.js', function() {
             });
 
             it('should query availableTargets', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
                 $('.tour-forget-widget').trigger('tour-step');
                 expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
             });
 
             it('should trigger a highlight if target is available', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
                 $('.tour-forget-widget').trigger('tour-step');
                 expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
             });
@@ -413,7 +416,7 @@ describe('browser-tour.js', function() {
                         targets: ['foo']
                     });
                 };
-                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
                 $('.tour-forget-widget').trigger('tour-step');
                 expect(Mozilla.UITour.showInfo.called).toBeTruthy();
                 expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
@@ -459,7 +462,7 @@ describe('browser-tour.js', function() {
         });
 
         it('should query availableTargets', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
             $('.tour-search-engine').trigger('tour-step');
             expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
         });
@@ -505,13 +508,13 @@ describe('browser-tour.js', function() {
             });
 
             it('should query availableTargets', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
                 $('.tour-show-hello-panel').trigger('tour-step');
                 expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
             });
 
             it('should open the hello panel if available', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
                 $('.tour-show-hello-panel').trigger('tour-step');
                 expect(Mozilla.BrowserTour.prototype.showHelloPanel).toHaveBeenCalled();
                 expect(Mozilla.UITour.showMenu.calledWith('loop')).toBeTruthy();
@@ -523,7 +526,7 @@ describe('browser-tour.js', function() {
                         targets: ['foo']
                     });
                 };
-                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
                 $('.tour-show-hello-panel').trigger('tour-step');
                 expect(Mozilla.BrowserTour.prototype.showHelloPanel).toHaveBeenCalled();
                 expect(Mozilla.UITour.showMenu.called).toBeFalsy();
@@ -586,13 +589,13 @@ describe('browser-tour.js', function() {
             });
 
             it('should query availableTargets', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
                 tour.reminderHelloButton();
                 expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
             });
 
             it('should show a door-hanger on loop target available', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
                 tour.reminderHelloButton();
                 expect(Mozilla.UITour.showHighlight.calledWith('loop')).toBeTruthy();
                 expect(Mozilla.UITour.showInfo.calledWith('loop')).toBeTruthy();
@@ -604,7 +607,7 @@ describe('browser-tour.js', function() {
                         targets: ['foo']
                     });
                 };
-                spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
                 tour.reminderHelloButton();
                 expect(Mozilla.UITour.showHighlight.called).toBeFalsy();
                 expect(Mozilla.UITour.showInfo.called).toBeFalsy();
@@ -629,7 +632,7 @@ describe('browser-tour.js', function() {
                     targets: ['loop']
                 });
             };
-            spyOn(Mozilla.UITour, 'getConfiguration').andCallThrough();
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
             tour.showHelloPanel();
             tour.hideAnnotations();
             expect(Mozilla.BrowserTour.prototype.hideHelloPanel).toHaveBeenCalled();
@@ -639,7 +642,7 @@ describe('browser-tour.js', function() {
     describe('getText', function () {
 
         it('should string HTML from a string', function() {
-            var text = tour.getText('Some <strong>text</strong>')
+            var text = tour.getText('Some <strong>text</strong>');
             expect(text).toEqual('Some text');
         });
     });

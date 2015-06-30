@@ -50,10 +50,6 @@ module.exports = function(config) {
         // possible values: 'dots', 'progress', 'junit'
         reporters: ['dots', 'junit'],
 
-        junitReporter: {
-          outputFile: 'test-results.xml'
-        },
-
         // web server port
         port: 9876,
 

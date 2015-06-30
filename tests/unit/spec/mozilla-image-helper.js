@@ -1,10 +1,13 @@
-/*
- * For reference read the Jasmine and Sinon docs
+/* For reference read the Jasmine and Sinon docs
  * Jasmine docs: http://pivotal.github.io/jasmine/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+
 describe('mozilla-image-helper.js', function() {
+
+    'use strict';
 
     describe('Mozilla.ImageHelper.initPlatformImages', function() {
 

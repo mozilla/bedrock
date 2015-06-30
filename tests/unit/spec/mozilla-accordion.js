@@ -1,4 +1,13 @@
+/* For reference read the Jasmine and Sinon docs
+ * Jasmine docs: http://pivotal.github.io/jasmine/
+ * Sinon docs: http://sinonjs.org/docs/
+ */
+
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+
 describe('mozilla-accordion.js', function () {
+
+    'use strict';
 
     beforeEach(function () {
         // turn off animation effects so we can test post expand/collapse states
@@ -170,8 +179,8 @@ describe('mozilla-accordion.js', function () {
 
             var $firstHeading = accordion.sections[0].$header;
 
-            spyOn(accordion, 'onExpand').andCallThrough();
-            spyOn(accordion, 'onCollapse').andCallThrough();
+            spyOn(accordion, 'onExpand').and.callThrough();
+            spyOn(accordion, 'onCollapse').and.callThrough();
 
             $firstHeading.trigger('click');
             expect(accordion.onExpand).toHaveBeenCalled();
@@ -193,8 +202,8 @@ describe('mozilla-accordion.js', function () {
                 collapseReturn = section.title;
             };
 
-            spyOn(Mozilla.Accordion, 'GLOBAL_ONEXPAND').andCallThrough();
-            spyOn(Mozilla.Accordion, 'GLOBAL_ONCOLLAPSE').andCallThrough();
+            spyOn(Mozilla.Accordion, 'GLOBAL_ONEXPAND').and.callThrough();
+            spyOn(Mozilla.Accordion, 'GLOBAL_ONCOLLAPSE').and.callThrough();
 
             var accordion = new Mozilla.Accordion($('#accordion1'));
             var $secondHeading = accordion.sections[1].$header;

@@ -1,10 +1,13 @@
-/* Base JS unit test spec for bedrock plugincheck/lib/version-comapre.js
- * For reference read the Jasmine and Sinon docs
- * Jasmine docs: https://jasmine.github.io/
+/* For reference read the Jasmine and Sinon docs
+ * Jasmine docs: http://pivotal.github.io/jasmine/
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-describe("utils.js", function() {
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+
+describe('utils.js', function() {
+
+    'use strict';
 
     var macUA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:36.0) Gecko/20100101 Firefox/36.0';
     var winUA = 'Mozilla/5.0 (Windows NT 6.1; rv:36.0) Gecko/20100101 Firefox/36.0';
