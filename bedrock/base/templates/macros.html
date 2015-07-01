@@ -451,7 +451,7 @@ set share_urls = {
 </section>{#-- /#fx-anniversary-video-widget #}
 {%- endmacro %}
 
-{% macro fxfamilynav(navclass) %}
+{% macro fxfamilynav(activeprimary, activesub, navclass) %}
 {#
 1. Add to page:
   a. Include this macro:
@@ -461,24 +461,41 @@ set share_urls = {
 
     {% block site_header %}{% endblock %}
 
-  c. Add new site_header_unwrapped, including this macro:
+  c. Add site_header_unwrapped block, including this macro and specifying the
+    active primary and sub nav items:
 
     {% block site_header_unwrapped %}
-      {{ fxfamilynav() }}
+      {{ fxfamilynav('android', 'index') }}
     {% endblock %}
 
-    If you need the dark text version (like for /firefox/partners), pass
+    If you need the dark text version (like for /firefox/desktop), pass
     in the 'dark' argument:
 
     {% block site_header_unwrapped %}
-      {{ fxfamilynav('dark') }}
+      {{ fxfamilynav('desktop', 'index', dark') }}
     {% endblock %}
+
+    Available primary/sub nav ID values:
+
+    desktop
+      - index
+      - trust
+      - customize
+      - fast
+      - sync
+      - hello
+    android
+      - index
+    os
+      - index
+      - devices
+      - partners
 
     If you need a CTA in the sticky nav, call the macro and include
     the CTA element:
 
     {% block site_header_unwrapped %}
-      {% call fxfamilynav() %}
+      {% call fxfamilynav('desktop', 'index') %}
         <a href="{{ url('firefox.new') }}">Download Firefox</a>
       {% endcall %}
     {% endblock %}
@@ -507,29 +524,6 @@ set share_urls = {
     <![endif]-->
 
 
-3. Initialize menu in your page's JS:
-  Quick example:
-
-  var fxNavConfig = {
-    primaryId: 'os', // id of primary nav item to highlight (REQUIRED)
-    subId: 'devices' // id of sub nav item to highlight (OPTIONAL)
-  };
-
-  Mozilla.FxFamilyNav.init(fxNavConfig);
-
-  Available nav/sub nav ID values:
-
-  desktop
-    - index
-    - trust
-    - customize
-    - fast
-  android
-    - index
-  os
-    - index
-    - devices
-    - partners
 
   ## Notes on CTA:
 
@@ -540,6 +534,7 @@ set share_urls = {
   room (this may change in the future).
 
   CTA is purposefully hidden for mobile.
+
 
   ## Notes on tabzilla wordmark
 
@@ -558,39 +553,41 @@ set share_urls = {
     <nav id="fxfamilynav" class="fxfamilynav" role="navigation">
       <ul id="fxfamilynav-primary" class="primarynav">
         {# L10n: The <span> elements below are for visual formatting #}
-        <li>
-          <a href="{{ url('firefox.desktop.index') }}" class="primary-link" data-id="desktop"><div>{{ _('<span>for</span> Desktop') }}</div></a>
+        <li{% if activeprimary == 'desktop' %} class="active"{% endif %}>
+          <a data-id="desktop" href="{{ url('firefox.desktop.index') }}" class="primary-link"><div>{{ _('<span>for</span> Desktop') }}</div></a>
 
           <ul class="subnav" id="desktop-subnav">
-            <li class="hassubsubnav">
-              <a href="{{ url('firefox.desktop.index') }}" data-id="desktop-index"><div>{{ _('Overview') }}</div></a>
+            <li{% if activesub in ('index', 'trust', 'customize', 'fast') %} class="hassubsubnav"{% endif %}>
+              <a href="{{ url('firefox.desktop.index') }}"{% if activesub == 'index' %} class="selected"{% endif %}><div>{{ _('Overview') }}</div></a>
 
+              {% if activesub in ('index', 'trust', 'customize', 'fast') %}
               <ul class="subsubnav" id="desktop-subsubnav">
-                <li><a href="{{ url('firefox.desktop.trust') }}" data-id="desktop-trust">{{ _('Trusted') }}</a></li>
-                <li><a href="{{ url('firefox.desktop.customize') }}" data-id="desktop-customize">{{ _('Flexible') }}</a></li>
-                <li><a href="{{ url('firefox.desktop.fast') }}" data-id="desktop-fast">{{ _('Fast') }}</a></li>
+                <li><a href="{{ url('firefox.desktop.trust') }}"{% if activesub == 'trust' %} class="selected"{% endif %}>{{ _('Trusted') }}</a></li>
+                <li><a href="{{ url('firefox.desktop.customize') }}"{% if activesub == 'customize' %} class="selected"{% endif %}>{{ _('Flexible') }}</a></li>
+                <li><a href="{{ url('firefox.desktop.fast') }}"{% if activesub == 'fast' %} class="selected"{% endif %}>{{ _('Fast') }}</a></li>
               </ul>
+              {% endif %}
             </li>
-            <li><a href="{{ url('firefox.sync') }}" data-id="desktop-sync"><div>{{ _('Sync') }}</div></a></li>
-            <li><a href="{{ url('firefox.hello') }}" data-id="desktop-hello"><div>{{ _('Hello') }}</div></a></li>
+            <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %}><div>{{ _('Sync') }}</div></a></li>
+            <li><a href="{{ url('firefox.hello') }}"{% if activesub == 'hello' %} class="selected"{% endif %}><div>{{ _('Hello') }}</div></a></li>
           </ul>
         </li>
-        <li>
-          <a href="{{ url('firefox.android.index') }}" class="primary-link" data-id="android"><div>{{ _('<span>for</span> Android') }}</div></a>
+        <li{% if activeprimary == 'android' %} class="active"{% endif %}>
+          <a data-id="android" href="{{ url('firefox.android.index') }}" class="primary-link"><div>{{ _('<span>for</span> Android') }}</div></a>
 
           <ul class="subnav" id="android-subnav">
-            <li><a href="{{ url('firefox.android.index') }}" data-id="android-index"><div>{{ _('Overview') }}</div></a></li>
-            <li><a href="{{ url('firefox.sync') }}" data-id="android-sync"><div>{{ _('Sync') }}</div></a></li>
+            <li><a href="{{ url('firefox.android.index') }}"{% if activesub == 'index' %} class="selected"{% endif %}><div>{{ _('Overview') }}</div></a></li>
+            <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %}><div>{{ _('Sync') }}</div></a></li>
           </ul>
         </li>
-        <li>
-          <a href="{{ url('firefox.os.index') }}" class="primary-link" data-id="os"><div>{{ _('OS') }}</div></a>
+        <li{% if activeprimary == 'os' %} class="active"{% endif %}>
+          <a data-id="os" href="{{ url('firefox.os.index') }}" class="primary-link"><div>{{ _('Firefox OS') }}</div></a>
 
           <ul class="subnav" id="os-subnav">
-            <li><a href="{{ url('firefox.os.index') }}" data-id="os-index"><div>{{ _('Overview') }}</div></a></li>
-            <li><a href="{{ url('firefox.os.devices') }}" data-id="os-devices"><div>{{ _('Devices') }}</div></a></li>
-            <li><a href="{{ url('firefox.partners.index') }}" data-id="os-partners"><div>{{ _('For partners') }}</div></a></li>
-            <li><a rel="external" href="https://marketplace.firefox.com/" data-id="os-marketplace"><div>{{ _('Marketplace') }}<i class="icon-external"></i></div></a></li>
+            <li><a data-id="os-index" href="{{ url('firefox.os.index') }}"{% if activesub == 'index' %} class="selected"{% endif %}><div>{{ _('Overview') }}</div></a></li>
+            <li><a data-id="os-devices" href="{{ url('firefox.os.devices') }}"{% if activesub == 'devices' %} class="selected"{% endif %}><div>{{ _('Devices') }}</div></a></li>
+            <li><a data-id="os-partners" href="{{ url('firefox.partners.index') }}"{% if activesub == 'partners' %} class="selected"{% endif %}><div>{{ _('For partners') }}</div></a></li>
+            <li><a data-id="os-marketplace" rel="external" href="https://marketplace.firefox.com/"><div>{{ _('Marketplace') }}<i class="icon-external"></i></div></a></li>
           </ul>
         </li>
       </ul>
@@ -601,7 +598,7 @@ set share_urls = {
       <div class="triangle"></div>
       <div class="triangle-border"></div>
 
-      <ul class="tertiarynav" data-parent="desktop">
+      <ul class="tertiarynav{% if activeprimary == 'desktop' %} active{% endif %}">
         <li><a href="{{ url('firefox.dnt') }}" data-ga="desktop - dnt">{{ _('Do Not Track') }}</a></li>
         <li><a href="{{ url('firefox.tiles') }}" data-ga="desktop - tiles">{{ _('Tiles') }}</a></li>
         <li><a href="{{ url('firefox.interest-dashboard') }}" data-ga="desktop - interest dashboard">{{ _('Interest Dashboard') }}</a></li>
@@ -611,14 +608,14 @@ set share_urls = {
         <li><a rel="external" href="https://support.mozilla.org/products/firefox" data-ga="desktop - support">{{ _('Need help?') }}</a></li>
       </ul>
 
-      <ul class="tertiarynav" data-parent="android">
+      <ul class="tertiarynav{% if activeprimary == 'android' %} active{% endif %}">
         <li><a href="{{ url('firefox.dnt') }}" data-ga="android - dnt">{{ _('Do Not Track') }}</a></li>
         <li><a rel="external" href="https://www.youtube.com/watch?v=Ewk0YtFTBec&amp;list=PLA8ABF6B7A66A0C5E&amp;index=15" data-ga="android - private browsing">{{ _('Private Browsing') }}</a></li>
         <li><a rel="external" href="https://addons.mozilla.org/android/" data-ga="android - addons">{{ _('Add-ons') }}</a></li>
         <li><a rel="external" href="https://support.mozilla.org/products/mobile" data-ga="android - support">{{ _('Need help?') }}</a></li>
       </ul>
 
-      <ul class="tertiarynav" data-parent="os">
+      <ul class="tertiarynav{% if activeprimary == 'os' %} active{% endif %}">
         <li><a rel="external" href="https://blog.mozilla.org/blog/category/firefox-os/" data-ga="os - news">{{ _('News') }}</a></li>
         <li><a rel="external" href="https://developer.mozilla.org/Firefox_OS" data-ga="os - developers">{{ _('For developers') }}</a></li>
         <li><a rel="external" href="https://find.firefox.com" data-ga="os - find my device">{{ _('Find My Device') }}</a></li>

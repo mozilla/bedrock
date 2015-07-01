@@ -248,6 +248,4 @@
     $video.on('play', function() {
         w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'PlayVideo'});
     });
-
-    Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'hello' });
 })(window.Mozilla, window, window.jQuery);

@@ -43,7 +43,7 @@ set share_urls = {
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {% call fxfamilynav('dark') %}
+  {% call fxfamilynav('desktop', 'hello', 'dark') %}
     <button id="try-hello-nav" class="try-hello">{{ _('Try Hello now') }}</button>
   {% endcall %}
 {% endblock %}

@@ -123,6 +123,4 @@
         $theme_demo.attr('src', new_src);
 
     });
-
-    Mozilla.FxFamilyNav.init({ primaryId: 'desktop', subId: 'customize' });
 })(window.jQuery, window.Mozilla);

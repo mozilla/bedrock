@@ -283,8 +283,6 @@
         'data-download-version': 'href'
     });
 
-    Mozilla.FxFamilyNav.init({ primaryId: 'android', subId: 'index' });
-
     // init send-to-device form
     var form = new Mozilla.SendToDevice();
     form.init();
@@ -295,5 +293,4 @@
         e.preventDefault();
         Mozilla.Modal.createModal(this, $widget);
     });
-
 })(window.jQuery, window.Mozilla);
