@@ -40,8 +40,17 @@ module.exports = function(config) {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
                 watched: false,
                 included: true
+            },
+            {
+                pattern: 'tests/img/*',
+                included: false,
+                served: true
             }
         ],
+
+        proxies: {
+            '/img/': '/base/tests/img/'
+        },
 
         // list of files to exclude
         exclude: [],
