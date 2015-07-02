@@ -407,7 +407,6 @@ PIPELINE_CSS = {
     },
     'firefox_hello_start': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/firefox/hello/start.less',
         ),
         'output_filename': 'css/firefox_hello_start-bundle.css',
@@ -1331,6 +1330,14 @@ PIPELINE_JS = {
             'js/firefox/hello/start.js',
         ),
         'output_filename': 'js/firefox_hello_start-bundle.js',
+    },
+    'firefox_hello_start_minimal': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/hello/hello-ftu-minimal.js',
+            'js/firefox/hello/start-minimal.js',
+        ),
+        'output_filename': 'js/firefox_hello_start_minimal-bundle.js',
     },
     'firefox_hello': {
         'source_filenames': (
