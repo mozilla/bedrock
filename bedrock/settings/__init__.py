@@ -25,6 +25,9 @@ else:
 
 if DEV:
     ALLOWED_HOSTS = ['*']
+else:
+    MIDDLEWARE_CLASSES += ('commonware.middleware.FrameOptionsHeader',)
+
 
 # waffle flags, switches, and samples should default to True in DEV mode
 WAFFLE_FLAG_DEFAULT = WAFFLE_SWITCH_DEFAULT = WAFFLE_SAMPLE_DEFAULT = DEV

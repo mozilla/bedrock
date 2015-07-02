@@ -161,6 +161,9 @@
       <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla') }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
+    {% if settings.DEV %}
+      <script src="https://pontoon.mozilla.org/pontoon.js"></script>
+    {% endif %}
     {% if settings.USE_GRUNT_LIVERELOAD %}
       <script src="//localhost:35729/livereload.js"></script>
     {% endif %}
