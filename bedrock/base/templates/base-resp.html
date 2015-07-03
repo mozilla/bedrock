@@ -42,10 +42,6 @@
 
     {{ l10n_css() }}
 
-    {% block tabzilla_css %}
-      {% stylesheet 'tabzilla' %}
-    {% endblock %}
-
     <!--[if lte IE 8]>
       {# Only needed for IE before v9 #}
       <script src="{{ static('js/libs/html5shiv.js') }}"></script>
@@ -92,28 +88,31 @@
     {# for headers not to be confined by #wrapper (like fx family nav) #}
     {% block site_header_unwrapped %}{% endblock %}
 
-    <div id="wrapper">
+      <div id="wrapper">
 
-    {% block site_header %}
-      <header id="masthead">
+      {% block site_header %}
+        <header id="masthead">
+
         {% block tabzilla_tab %}
-        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{% block tabzilla_infobar %}{{ settings.TABZILLA_INFOBAR_OPTIONS }}{% endblock %}">Mozilla</a>
+          <div id="tabzilla">
+            <a href="{{ url('mozorg.home') }}">Mozilla</a>
+          </div>
         {% endblock %}
 
         {% block site_header_nav %}
-        <nav id="nav-main" role="navigation">
-          <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
-          <ul id="nav-main-menu">
-            <li class="first mission-item"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
-            <li class="about-item"><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
-            <li class="products-item"><a href="{{ url('firefox.family.index') }}">{{_('Products')}}</a></li>
-            <li class="last contribute-item"><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
-          </ul>
-        </nav>
+          <nav id="nav-main" role="navigation">
+            <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
+            <ul id="nav-main-menu">
+              <li class="first mission-item"><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
+              <li class="about-item"><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
+              <li class="products-item"><a href="{{ url('firefox.family.index') }}">{{_('Products')}}</a></li>
+              <li class="last contribute-item"><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
+            </ul>
+          </nav>
         {% endblock %}
 
         {% block site_header_logo %}
-        <h2><a href="{{ url('mozorg.home') }}">{{ high_res_img('img/sandstone/header-mozilla-stone.png', {'alt': 'Mozilla', 'width': '170', 'height': '45'}) }}</a></h2>
+          <h2><a href="{{ url('mozorg.home') }}">{{ high_res_img('img/sandstone/header-mozilla-stone.png', {'alt': 'Mozilla', 'width': '170', 'height': '45'}) }}</a></h2>
         {% endblock %}
 
         {% block alt_header %}{% endblock %}
@@ -123,30 +122,31 @@
         {% block breadcrumbs %}{% endblock %}
 
         {% block site_header_share %}{% endblock %}
-      </header>
-    {% endblock %}
 
-    {% block mosaic %}{% endblock %}
+        </header>
+      {% endblock %}
 
-    {% block messages %}
-      {% if messages %}
-        <ul class="messagelist billboard">
-          {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endblock messages %}
+      {% block mosaic %}{% endblock %}
 
-    {% block content %}{% endblock %}
+      {% block messages %}
+        {% if messages %}
+          <ul class="messagelist billboard">
+            {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endblock messages %}
 
-    {% block email_form %}{{ email_newsletter_form() }}{% endblock %}
+      {% block content %}{% endblock %}
 
-    </div><!-- close #wrapper -->
+      {% block email_form %}{{ email_newsletter_form() }}{% endblock %}
 
-    {% block site_footer %}
-      {% include 'includes/site-footer.html' %}
-    {% endblock %}
+      </div><!-- close #wrapper -->
+
+      {% block site_footer %}
+        {% include 'includes/site-footer.html' %}
+      {% endblock %}
 
     </div><!-- close #outer-wrapper -->
 
@@ -156,9 +156,6 @@
 
     {% block site_js %}
       {% javascript 'common-resp' %}
-    {% endblock %}
-    {% block tabzilla_js %}
-      <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla') }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% if settings.DEV %}

@@ -4,8 +4,7 @@
 
 @import 'common.less';
 
-// customize family nav
-.fxfamilynav-tabzilla:before {
+#fxfamilynav-tabzilla:before {
     background-color: @textColorSecondary;
 }
 
@@ -173,6 +172,11 @@ html[dir="rtl"] {
 }
 
 @media (max-width: @breakTablet) {
+
+    #fxfamilynav-tabzilla:before {
+        background-color: transparent; 
+    }
+
     // unset nav pointer
     #nav-main-trust:after {
         display: none;

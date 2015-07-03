@@ -87,12 +87,14 @@ PIPELINE_CSS = {
     'common': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
+            'css/tabzilla/tabzilla-static.less',
         ),
         'output_filename': 'css/common-bundle.css',
     },
     'responsive': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
         ),
         'output_filename': 'css/responsive-bundle.css',
     },
@@ -152,7 +154,6 @@ PIPELINE_CSS = {
     },
     'dnt': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/firefox/family-nav.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/dnt.less',
@@ -164,13 +165,13 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone.less',
             'css/firefox/menu.less',
             'css/firefox/template.less',
+            'css/tabzilla/tabzilla-static.less',
         ),
         'output_filename': 'css/firefox-bundle.css',
     },
     'firefox_all': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
-            'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/all.less',
         ),
@@ -178,7 +179,6 @@ PIPELINE_CSS = {
     },
     'firefox_android': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/base/send-to-device.less',
@@ -203,6 +203,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
+            'css/tabzilla/tabzilla-static.less',
         ),
         'output_filename': 'css/firefox-resp-bundle.css',
     },
@@ -214,8 +215,6 @@ PIPELINE_CSS = {
     },
     'firefox-dashboard': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/menu-resp.less',
             'css/firefox/dashboard.less',
@@ -224,7 +223,6 @@ PIPELINE_CSS = {
     },
     'firefox_desktop': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/firefox/family-nav.less',
             'css/firefox/desktop/intro-anim.less',
             'css/base/svg-animation-check.less',
@@ -250,7 +248,6 @@ PIPELINE_CSS = {
     },
     'firefox_desktop_tips': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/libs/socialshare/socialshare.less',
             'css/firefox/desktop/tips.less',
         ),
@@ -304,10 +301,8 @@ PIPELINE_CSS = {
     },
     'firefox_faq': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/faq.less',
-            'css/firefox/template-resp.less',
             'css/base/mozilla-accordion.less',
         ),
         'output_filename': 'css/firefox_faq-bundle.css',
@@ -349,8 +344,6 @@ PIPELINE_CSS = {
     },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/sandstone/video-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/australis/fx38_0_5/firstrun.less',
@@ -359,8 +352,6 @@ PIPELINE_CSS = {
     },
     'firefox_developer_firstrun': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/dev-firstrun.less',
         ),
@@ -368,8 +359,6 @@ PIPELINE_CSS = {
     },
     'nightly_firstrun': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/firefox/nightly_firstrun.less',
         ),
         'output_filename': 'css/nightly_firstrun-bundle.css',
@@ -384,8 +373,6 @@ PIPELINE_CSS = {
     },
     'firefox_geolocation': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/firefox/menu-resp.less',
             'css/base/mozilla-accordion.less',
             'css/base/mozilla-modal.less',
@@ -396,8 +383,6 @@ PIPELINE_CSS = {
     },
     'firefox_developer': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
             'css/base/mozilla-share-cta.less',
             'css/firefox/menu-resp.less',
@@ -426,6 +411,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
+            'css/tabzilla/tabzilla-static.less',
             'css/libs/socialshare/socialshare.less',
             'css/firefox/simple_footer-resp.less',
             'css/firefox/new.less',
@@ -434,8 +420,6 @@ PIPELINE_CSS = {
     },
     'firefox_organizations': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/firefox/organizations.less',
         ),
         'output_filename': 'css/firefox_organizations-bundle.css',
@@ -460,7 +444,6 @@ PIPELINE_CSS = {
     'firefox_os_devices': {
         'source_filenames': (
             'css/libs/tipsy.css',
-            'css/sandstone/sandstone-resp.less',
             'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/firefox/os/get_device.less',
@@ -485,16 +468,12 @@ PIPELINE_CSS = {
     },
     'firefox_os_tv': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/firefox/os/tv.less',
         ),
         'output_filename': 'css/firefox_os_tv-bundle.css',
     },
     'firefox_releases_index': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/releases-index.less',
         ),
@@ -502,7 +481,6 @@ PIPELINE_CSS = {
     },
     'firefox_tour': {
         'source_filenames': (
-            'css/sandstone/sandstone.less',
             'css/firefox/australis/australis-ui-tour.less',
             'css/firefox/australis/australis-page-common.less',
             'css/firefox/sync-animation.less',
@@ -542,16 +520,12 @@ PIPELINE_CSS = {
     },
     'firefox_pocket': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/pocket.less',
         ),
         'output_filename': 'css/firefox_pocket-bundle.css',
     },
     'firefox_releasenotes': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/firefox/menu-resp.less',
             'css/firefox/releasenotes.less',
         ),
@@ -559,7 +533,6 @@ PIPELINE_CSS = {
     },
     'firefox_sync': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/firefox/family-nav.less',
             'css/firefox/sync.less',
         ),
@@ -573,7 +546,6 @@ PIPELINE_CSS = {
     },
     'firefox_independent': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-share-cta.less',
             'css/firefox/independent-splash.less',
             'css/firefox/independent.less',
@@ -582,16 +554,12 @@ PIPELINE_CSS = {
     },
     'firefox-personal': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/personal.less',
         ),
         'output_filename': 'css/firefox-personal-bundle.css',
     },
     'installer_help': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/firefox/menu-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/installer-help.less',
@@ -641,7 +609,6 @@ PIPELINE_CSS = {
     },
     'legal': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/legal/legal.less',
         ),
         'output_filename': 'css/legal-bundle.css',
@@ -654,7 +621,6 @@ PIPELINE_CSS = {
     },
     'legal_fraud_report': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/legal/fraud-report.less',
         ),
         'output_filename': 'css/legal_fraud_report-bundle.css',
@@ -782,6 +748,7 @@ PIPELINE_CSS = {
     },
     'styleguide': {
         'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
             'css/sandstone/fonts.less',
             'css/styleguide/styleguide.less',
             'css/styleguide/websites-sandstone.less',

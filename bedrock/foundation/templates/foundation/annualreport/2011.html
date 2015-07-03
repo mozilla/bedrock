@@ -25,7 +25,9 @@
 
 {% block site_header %}
   <header id="masthead">
-    <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}">{{ _('Mozilla') }}</a>
+    </div>
 
     {% block site_header_nav %}{% endblock %}
 

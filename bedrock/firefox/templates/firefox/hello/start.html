@@ -79,10 +79,6 @@ data-room-list-text="{{ _('Click now to join and say hello.') }}"
 
 {% block site_footer %}{% endblock %}
 
-{# no need to load Tabzilla on this page #}
-{% block tabzilla_css %}{% endblock %}
-{% block tabzilla_js %}{% endblock %}
-
 {% block js %}
   {% javascript 'firefox_hello_start' %}
 {% endblock %}

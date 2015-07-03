@@ -13,8 +13,7 @@
 #}
 {% block page_title %}{{ _('Firefox Interest Dashboard') }}{% endblock %}
 
-{% block site_css %}
-  {{ super() }}
+{% block page_css %}
   {% stylesheet 'firefox-interest-dashboard' %}
 {% endblock %}
 
@@ -23,9 +22,6 @@
 {% block site_header_unwrapped %}
   {{ fxfamilynav('desktop', '', 'dark') }}
 {% endblock %}
-
-{% block tabzilla_css %}{% endblock %}
-{% block tabzilla_js %}{% endblock %}
 
 {# The contents of the dashboard_intro block appears at the top of the page
    below the page title. Paragraphs should be wrapped like this:
