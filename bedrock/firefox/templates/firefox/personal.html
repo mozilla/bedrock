@@ -37,6 +37,9 @@
     <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
       {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '172', 'l10n': True}) }}
     </a>
+    <small class="download-other">
+      <a href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
+    </small>
   </div>
 </div>
 {% endblock alt_header %}

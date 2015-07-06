@@ -459,7 +459,12 @@
         <div class="intro tween">
           {% if l10n_has_tag('mwc_2015') %}
             <h4>{{ _('A superior mobile experience') }}</h4>
-            <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ static('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
+            <div class="play-button"> 
+              <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ static('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
+              <small class="download-other">
+                <a href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
+              </small>
+            </div>
             <p>{{ _('With connected features and the latest in security and privacy, our top-rated browser offers an alternative to closed platforms and provides a valuable way to connect with smartphones and tablets users alike.') }}</p>
             <h4>{{ _('Customize relationships') }}</h4>
             <p>{{ _('Provide your users with your own flavor of Firefox for Android and Firefox Marketplace for a more engaging user experience that increases the visibility of your brand.') }}</p>

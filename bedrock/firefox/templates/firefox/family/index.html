@@ -95,11 +95,15 @@
           <p>{{ _('Make it uniquely yours.') }}</p>
         </a>
 
-        <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" class="btn-google-play" data-product="Firefox for Android, Google Play">
-          {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
-        </a>
+        <div class="btn-google-play">
+          <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-product="Firefox for Android, Google Play">
+            {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
+          </a>
+          <small class="download-other">
+            <a href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
+          </small>
+        <div>
       </li>
-
       <li class="product" id="product-fxos">
         <a href="{{ url('firefox.os.index') }}" data-product="Firefox OS">
           <h2>{{ _('Firefox OS') }}</h2>

@@ -62,6 +62,9 @@
         <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
           {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
         </a>
+        <small class="download-other">
+          <a class="dl-button" href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
+        </small>
         <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for Android') }}</button>
 
         {% if l10n_has_tag('ios_announce', 'firefox/new') %}
@@ -413,6 +416,9 @@
           <ul>
             <li>
               <a rel="external" href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported devices') }}</a>
+            </li>
+            <li>
+              <a href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
             </li>
             <li>
               <a href="{{ firefox_url('android', 'notes') }}">{{ _('Release notes') }}</a>
