@@ -36,8 +36,6 @@ casper.test.begin('Home page, Elements: ' + url, 12, function suite(test) {
 
 casper.test.begin('Home page, Newsletter submission: ' + url, 1, function suite(test) {
 
-    casper.options.waitTimeout = 10000;
-
     casper.start(url, function() {
         this.fillSelectors('#mozorg-newsletter-form', {
             '#id_email': 'noreply@mozilla.com',

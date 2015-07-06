@@ -56,8 +56,6 @@ casper.test.begin('Contact, Communities elements: ' + communitiesUrl, 10, functi
 
 casper.test.begin('Contact, Spaces navigation click: ' + spacesUrl, 2, function suite(test) {
 
-    casper.options.waitTimeout = 10000;
-
     casper.start(spacesUrl, function() {
         this.click('#nav-spaces li[data-id="mountain-view"] > a');
     });
@@ -77,8 +75,6 @@ casper.test.begin('Contact, Spaces navigation click: ' + spacesUrl, 2, function 
 });
 
 casper.test.begin('Contact, Tab navigation click: ' + spacesUrl, 3, function suite(test) {
-
-    casper.options.waitTimeout = 10000;
 
     casper.start(spacesUrl, function() {
         this.click('.category-tabs li[data-id="communities"] > a');
@@ -102,7 +98,6 @@ casper.test.begin('Contact, Tab navigation click: ' + spacesUrl, 3, function sui
 casper.test.begin('Contact, Mobile interaction: ' + spacesUrl, 6, function suite(test) {
 
     casper.options.viewportSize = config.viewport.mobile;
-    casper.options.waitTimeout = 10000;
 
     casper.start(url, function() {
         test.assertNotVisible('#map', 'Map is not visible on mobile');
