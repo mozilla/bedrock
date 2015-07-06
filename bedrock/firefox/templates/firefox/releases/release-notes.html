@@ -91,11 +91,10 @@
       {% endif %}
       {% if known_issues %}
       <section class="notes-section" id="known-issues">
-        <h3>{{ _('Known Issues') }}</h3>
         <ul class="section-items tagged">
+        <h1> KNOWN </h1>
           {% for note in known_issues %}
-            <li id="note-{{ note.id }}">
-                <b class="tag tag-unresolved">{{ _('unresolved') }}</b>
+            <li style = "visibility:hidden" id="note-{{ note.id }}">
                 {{ note.note|markdown|safe }}
             {% if note.fixed_in_release %}
               <p class="note">
@@ -115,6 +114,7 @@
       {% if new_features %}
       <section class="notes-section" id="new-features">
         <ul class="section-items tagged">
+         <h1 style="visibility:hidden"> NEW </h1>
           {% for note in new_features %}
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -125,11 +125,10 @@
       {% endif %}
       {% if known_issues %}
       <section class="notes-section" id="known-issues">
-        <h3>{{ _('Known Issues') }}</h3>
         <ul class="section-items tagged">
+        <h1 style="visibility:hidden"> KNOWN </h1>
           {% for note in known_issues %}
             <li id="note-{{ note.id }}">
-                <b class="tag tag-unresolved">{{ _('unresolved') }}</b>
                 {{ note.note|markdown|safe }}
             {% if note.fixed_in_release %}
               <p class="note">
