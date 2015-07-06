@@ -10,7 +10,7 @@ var config = require('../lib/config');
 function done() {
     casper.options.pageSettings.userAgent = config.userAgent.phantomjs;
     casper.options.viewportSize = config.viewport.desktop;
-    casper.options.waitTimeout = 5000;
+    casper.options.waitTimeout = 10000;
 }
 
 module.exports = {
