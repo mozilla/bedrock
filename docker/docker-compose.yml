@@ -1,0 +1,21 @@
+db:
+  image: mysql:5.5
+  environment:
+    - MYSQL_DATABASE=bedrock
+    - MYSQL_USER=bedrock
+    - MYSQL_PASSWORD=bedrock
+    - MYSQL_ROOT_PASSWORD=root
+web:
+  build: ../
+  ports:
+    - "8000:8000"
+  links:
+    - db
+  environment:
+    - PYTHONDONTWRITEBYTECODE=1
+    - DATABASE_URL=mysql://bedrock:bedrock@db/bedrock
+    - DEBUG=True
+    - ALLOWED_HOSTS=localhost,127.0.0.1,
+    - SECRET_KEY=39114b6a-2858-4caf-8878-482a24ee9542
+    - DOCKER=True
+  command: ./docker/run-dev.sh

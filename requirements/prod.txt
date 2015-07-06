@@ -18,3 +18,7 @@ django-pylibmc==0.6.0
 
 # sha256: MOGaBuZQ_eMfQKYtsKPaN6HK2WFuHP0EuOJI-0vV9KE
 pylibmc==1.4.2
+
+# sha256: pRec3pItK04EXuWxHocyPud9NjrkApT8glLyXWoOrwY
+# sha256: i8g1CCiCrZoBLNeQxGABHk2WvzUS2YoE09q75FOToIk
+gunicorn==19.3.0
