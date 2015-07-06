@@ -187,6 +187,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_android-bundle.css',
     },
+    'firefox_android_all': {
+        'source_filenames': (
+            'css/base/mozilla-share-cta.less',
+            'css/firefox/menu-resp.less',
+            'css/firefox/android/all.less',
+        ),
+        'output_filename': 'css/firefox-android-all.css',
+    },
     'firefox_unsupported': {
         'source_filenames': (
             'css/firefox/unsupported.less',
