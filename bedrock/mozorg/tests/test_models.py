@@ -5,6 +5,7 @@
 
 from django.core.cache import cache
 from django.db.utils import DatabaseError
+from django.db.models.signals import post_save
 
 from mock import patch
 
@@ -55,3 +56,9 @@ class TestTwitterCacheManager(TestCase):
 
         # and even errors should be cached
         get_mock.assert_called_once_with(account='walter')
+
+    @patch('bedrock.mozorg.models.cache_tweets')
+    def test_cache_post_save(self, mock_cache_tweets, get_mock):
+        post_save.send(TwitterCache,
+                       instance=TwitterCache(account='me', tweets=['I twote']))
+        mock_cache_tweets.assert_called_once_with('me', ['I twote'])
