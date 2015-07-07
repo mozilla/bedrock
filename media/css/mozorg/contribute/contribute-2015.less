@@ -564,16 +564,21 @@ textarea:focus {
     }
 }
 
-#modal .video {
-    display: block;
-    margin: 0 auto;
+#modal  {
+    .video {
+        display: block;
+        margin: 0 auto;
 
-    video {
-        width: 100%;
-        height: auto;
+        video {
+            width: 100%;
+            height: auto;
+        }
     }
-}
 
+    .window .inner .overlay-contents {
+        padding-top: 40px; 
+    }
+} 
 
 
 /*-------------------------------------------------------------------------*/
@@ -1331,10 +1336,6 @@ textarea:focus {
 // @modal dialog
 #modal {
     background-color: rgba(0, 0, 0, .75);
-}
-
-#modal .window .inner header {
-    background-color: @mozillaRed;
 }
 
 #modal-close .button {

@@ -176,6 +176,9 @@ body {
 		}
 	}
 
+	.video {
+		display: none;
+	}
 	.baker {
 		background-image: url(/media/img/foundation/annualreport/2012/bg-baker.jpg);
 	}
@@ -202,16 +205,17 @@ body {
 	}
 }
 
-.video {
-	display: none;
-	width: auto;
-	video {
-		margin: 0 auto;
-	}
-}
 
-#modal .video {
-	display: block;
+#modal {
+	.video {
+		display: block;
+
+		video {
+			margin: 0 auto;
+			width: 100%;
+			height: auto;
+		}
+	}
 }
 
 .site-footer {

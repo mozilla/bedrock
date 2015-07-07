@@ -809,7 +809,14 @@ ul.apps {
 
 
 // email signup form no-JS styles
+#modal {
+    #email-form-content {
+        background-color: #fff;
+    }
+}
+
 #email-form-content {
+
     h3 {
         .font-size(26px);
         line-height: 32px;
@@ -826,6 +833,7 @@ ul.apps {
     background: #fff;
     border: 0;
     box-shadow: none;
+    .border-box();
     a {
         color: #47b8e4;
         text-decoration: underline;
@@ -914,3 +922,11 @@ ul.apps {
         .at2x('/media/img/firefox/os-new/icons/search-icon.png', 140px);
     }
 }
+
+
+@media only screen and (max-width: @breakTablet) {
+    #modal .window .inner > header {
+        padding: 20px 0;
+    }
+}
+

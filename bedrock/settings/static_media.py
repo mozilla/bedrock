@@ -180,7 +180,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/family-nav.less',
-            'css/base/mozid-modal.less',
+            'css/base/mozilla-modal.less',
             'css/base/send-to-device.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/android.less',
@@ -317,7 +317,6 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/sandstone/video.less',
-            'css/base/mozilla-modal.less',
             'css/firefox/firstrun.less',
         ),
         'output_filename': 'css/firefox_firstrun-bundle.css',
@@ -353,7 +352,7 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone.less',
             'css/tabzilla/tabzilla-static.less',
             'css/sandstone/video-resp.less',
-            'css/base/mozid-modal.less',
+            'css/base/mozilla-modal.less',
             'css/firefox/australis/fx38_0_5/firstrun.less',
         ),
         'output_filename': 'css/firefox_fx38_0_5_firstrun-bundle.css',
@@ -417,7 +416,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/family-nav.less',
-            'css/base/mozid-modal.less',
+            'css/base/mozilla-modal.less',
             'css/base/svg-animation-check.less',
             'css/base/mozilla-share-cta.less',
             'css/firefox/hello/index.less',
@@ -524,7 +523,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
-            'css/base/mozid-modal.less',
+            'css/base/mozilla-modal.less',
             'css/tabzilla/tabzilla-static.less',
             'css/firefox/whatsnew_38/common.less',
             'css/firefox/whatsnew_38/whatsnew-video.less',
@@ -535,7 +534,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
-            'css/base/mozid-modal.less',
+            'css/base/mozilla-modal.less',
             'css/tabzilla/tabzilla-static.less',
             'css/firefox/whatsnew_38/common.less',
             'css/firefox/whatsnew_38/whatsnew-pocket.less',
