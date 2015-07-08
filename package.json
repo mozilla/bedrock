@@ -33,6 +33,7 @@
     "karma": "^0.12.37",
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "^0.3.5",
+    "karma-coverage": "^0.3.0",
     "load-grunt-tasks": "^1.0.0",
     "phantomjs": "^1.9.15",
     "requirejs": "~2.1.11",

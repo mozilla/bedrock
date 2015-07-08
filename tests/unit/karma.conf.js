@@ -12,28 +12,38 @@ module.exports = function(config) {
             'media/js/libs/jquery-1.11.0.min.js',
             'media/js/base/site.js',
             'media/js/base/global.js',
+            'media/js/base/firefox-anniversary-video.js',
+            'media/js/base/mozilla-accordion-gatrack.js',
+            'media/js/base/mozilla-accordion.js',
             'media/js/base/mozilla-form-helper.js',
             'media/js/base/mozilla-image-helper.js',
-            'media/js/base/mozilla-accordion.js',
+            'media/js/base/mozilla-input-placeholder.js',
+            'media/js/base/mozilla-modal.js',
             'media/js/base/mozilla-pager.js',
+            'media/js/base/mozilla-share-cta.js',
+            'media/js/base/mozilla-video-poster.js',
+            'media/js/base/mozilla-video-tools.js',
+            'media/js/base/nav-main-resp.js',
+            'media/js/base/nav-main.js',
             'media/js/base/search-params.js',
+            'media/js/base/svg-animation-check.js',
             'media/js/firefox/australis/browser-tour.js',
             'media/js/plugincheck/lib/utils.js',
             'media/js/plugincheck/lib/version-compare.js',
             'media/js/plugincheck/lib/plugincheck.js',
             'media/js/base/send-to-device.js',
-            'tests/unit/spec/site.js',
-            'tests/unit/spec/global.js',
-            'tests/unit/spec/mozilla-form-helper.js',
-            'tests/unit/spec/mozilla-image-helper.js',
-            'tests/unit/spec/mozilla-accordion.js',
-            'tests/unit/spec/mozilla-pager.js',
-            'tests/unit/spec/search-params.js',
-            'tests/unit/spec/browser-tour.js',
-            'tests/unit/spec/utils.js',
-            'tests/unit/spec/version-compare.js',
-            'tests/unit/spec/plugincheck.js',
-            'tests/unit/spec/send-to-device.js',
+            'tests/unit/spec/base/site.js',
+            'tests/unit/spec/base/global.js',
+            'tests/unit/spec/base/mozilla-form-helper.js',
+            'tests/unit/spec/base/mozilla-image-helper.js',
+            'tests/unit/spec/base/mozilla-accordion.js',
+            'tests/unit/spec/base/mozilla-pager.js',
+            'tests/unit/spec/base/search-params.js',
+            'tests/unit/spec/firefox/australis/browser-tour.js',
+            'tests/unit/spec/plugincheck/lib/utils.js',
+            'tests/unit/spec/plugincheck/lib/version-compare.js',
+            'tests/unit/spec/plugincheck/lib/plugincheck.js',
+            'tests/unit/spec/base/send-to-device.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
                 watched: false,
@@ -54,8 +64,22 @@ module.exports = function(config) {
         exclude: [],
 
         // test results reporter to use
-        // possible values: 'dots', 'progress', 'junit'
-        reporters: ['dots'],
+        // possible values: 'dots', 'progress', 'junit', 'coverage'
+        reporters: ['dots', 'coverage'],
+
+        preprocessors: {
+            'media/js/**/!(libs|test)/*.js': ['coverage']
+        },
+
+        coverageReporter: {
+            type: 'lcov',
+            dir: 'tests/unit/coverage/',
+            instrumenterOptions: {
+                istanbul: {
+                    noCompact: true
+                }
+            }
+        },
 
         // web server port
         port: 9876,
