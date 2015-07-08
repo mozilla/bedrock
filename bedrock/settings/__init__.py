@@ -18,9 +18,7 @@ else:
     try:
         from .local import *  # noqa
     except ImportError as exc:
-        exc.args = tuple(['%s (did you rename bedrock/settings/local.py-dist?)' %
-                          exc.args[0]])
-        raise exc
+        'local.py is supported, but no longer necessary'
 
 
 if DEV:

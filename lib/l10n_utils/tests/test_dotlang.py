@@ -155,11 +155,12 @@ class TestDotlang(TestCase):
         }
         eq_(parsed, expected)
 
+    @override_settings(EMAIL_SUBJECT_PREFIX='[bedrock] ')
     def test_parse_utf8_error(self):
         path = os.path.join(ROOT, 'test_utf8_error.lang')
         parsed = parse(path)
         eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject, '[Django] %s is corrupted' % path)
+        eq_(mail.outbox[0].subject, '[bedrock] %s is corrupted' % path)
         expected = {
             u'Update now': u'Niha rojane bike',
             u'Supported Devices': u'C�haz�n pi�tgiriy'
@@ -183,7 +184,7 @@ class TestDotlang(TestCase):
         eq_(FORMAT_IDENTIFIER_RE.findall('%(foo_bar)s %s'),
             [('%(foo_bar)s', 'foo_bar'), ('%s', '')])
 
-    @patch.object(settings, 'ROOT', ROOT)
+    @override_settings(ROOT=ROOT, EMAIL_SUBJECT_PREFIX='[bedrock] ')
     def test_format_identifier_mismatch(self):
         path = 'format_identifier_mismatch'
         expected = '%(foo)s is the new %s'
@@ -192,7 +193,7 @@ class TestDotlang(TestCase):
         eq_(expected, result)
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject,
-            '[Django] locale/fr/%s.lang is corrupted' % path)
+            '[bedrock] locale/fr/%s.lang is corrupted' % path)
         mail.outbox = []
 
     @patch.object(settings, 'ROOT', ROOT)

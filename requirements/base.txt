@@ -180,3 +180,10 @@ django-nose==1.4
 
 # sha256: aUBxjfw-_0JYIDrVAhCQkz5cBHB9XKjMnnPJSniU6p8
 pathlib==1.0.1
+
+# sha256: 8uJz7TSsu1YJYtXPEpF5NtjfAil98JvTCJuFRtRYQTg
+# sha256: ygF2j97N4TQwHzFwdDIm9g7f9cOTXxJDc3jr2RFQY1M
+dj-database-url==0.3.0
+
+# sha256: ufv3R_qOcR0zDy9Da5suz17tnrZ6Y3yoGrzRHCq-3sg
+python-decouple==2.3

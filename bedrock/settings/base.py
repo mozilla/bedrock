@@ -2,13 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import json
 import logging
-import os
 from os.path import abspath
 
 from django.utils.functional import lazy
 from django.utils.http import urlquote
 
+import dj_database_url
+from decouple import Csv, config
 from pathlib import Path
 
 from .static_media import PIPELINE_CSS, PIPELINE_JS  # noqa
@@ -24,29 +26,30 @@ def path(*args):
 
 
 # Is this a dev instance?
-DEV = False
+DEV = config('DEV', cast=bool, default=False)
 
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+DEBUG = TEMPLATE_DEBUG = config('DEBUG', cast=bool, default=False)
 
 # Production uses MySQL, but Sqlite should be sufficient for local development.
 # Our CI server tests against MySQL.
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'bedrock.db',
-    }
-}
-SLAVE_DATABASES = []
+DATABASES = config(
+    'DATABASES',
+    cast=json.loads,
+    default=json.dumps(
+        {'default': config('DATABASE_URL',
+                           cast=dj_database_url.parse,
+                           default='sqlite:///bedrock.db')}))
+
+SLAVE_DATABASES = config('SLAVE_DATABASES', cast=Csv(), default=',')
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
-# Override in local.py for memcached.
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'translations'
-    }
-}
+CACHES = config(
+    'CACHES',
+    cast=json.loads,
+    default=json.dumps(
+        {'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'translations'}}))
 
 # in case django-pylibmc is in use
 PYLIBMC_MIN_COMPRESS_LEN = 150 * 1024
@@ -56,7 +59,7 @@ PYLIBMC_COMPRESS_LEVEL = 1  # zlib.Z_BEST_SPEED
 SITE_ID = 1
 
 # Logging
-LOG_LEVEL = logging.INFO
+LOG_LEVEL = config('LOG_LEVEL', cast=int, default=logging.INFO)
 HAS_SYSLOG = True
 SYSLOG_TAG = "http_app_bedrock"
 LOGGING_CONFIG = None
@@ -77,7 +80,7 @@ CEF_DEVICE_VERSION = '0'
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = config('TIME_ZONE', default='America/Los_Angeles')
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -200,17 +203,15 @@ SUPPORTED_NONLOCALES = [
     'contributor-data',
 ]
 
-ALLOWED_HOSTS = [
-    'www.mozilla.org',
-    'www.ipv6.mozilla.org',
-    'www.allizom.org',
-]
+ALLOWED_HOSTS = config(
+    'ALLOWED_HOSTS', cast=Csv(),
+    default='www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org')
 
 # The canonical, production URL without a trailing slash
 CANONICAL_URL = 'https://www.mozilla.org'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'ssssshhhhh'
+SECRET_KEY = config('SECRET_KEY', default='ssssshhhhh')
 
 TEMPLATE_DIRS = (
     path('locale'),
@@ -233,10 +234,10 @@ def JINJA_CONFIG():
     }
 
 
-MEDIA_URL = '/user-media/'
-MEDIA_ROOT = path('media')
-STATIC_URL = '/media/'
-STATIC_ROOT = path('static')
+MEDIA_URL = config('MEDIA_URL', default='/user-media/')
+MEDIA_ROOT = config('MEDIA_ROOT', default=path('media'))
+STATIC_URL = config('STATIC_URL', default='/media/')
+STATIC_ROOT = config('STATIC_ROOT', default=path('static'))
 STATICFILES_STORAGE = 'bedrock.base.storage.ManifestPipelineStorage'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -260,14 +261,18 @@ PIPELINE_DISABLE_WRAPPER = True
 PIPELINE_COMPILERS = (
     'pipeline.compilers.less.LessCompiler',
 )
-PIPELINE_LESS_BINARY = path('node_modules', 'less', 'bin', 'lessc')
-PIPELINE_LESS_ARGUMENTS = '-s'
-WHITENOISE_ROOT = path('root_files')
-WHITENOISE_MAX_AGE = 6 * 60 * 60  # 6 hours
+PIPELINE_LESS_BINARY = config('PIPELINE_LESS_BINARY',
+                              default=path('node_modules', 'less', 'bin', 'lessc'))
+PIPELINE_LESS_ARGUMENTS = config('PIPELINE_LESS_ARGUMENTS', default='-s')
 PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
-PIPELINE_UGLIFYJS_BINARY = path('node_modules', 'uglify-js', 'bin', 'uglifyjs')
+PIPELINE_UGLIFYJS_BINARY = config('PIPELINE_UGLIFYJS_BINARY',
+                                  default=path('node_modules', 'uglify-js', 'bin', 'uglifyjs'))
 PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
-PIPELINE_CSSMIN_BINARY = path('node_modules', 'cssmin', 'bin', 'cssmin')
+PIPELINE_CSSMIN_BINARY = config('PIPELINE_CSSMIN_BINARY',
+                                default=path('node_modules', 'cssmin', 'bin', 'cssmin'))
+
+WHITENOISE_ROOT = config('WHITENOISE_ROOT', default=path('root_files'))
+WHITENOISE_MAX_AGE = 6 * 60 * 60  # 6 hours
 
 PROJECT_MODULE = 'bedrock'
 
@@ -420,6 +425,7 @@ TWITTER_ACCOUNTS = (
 # Add optional parameters specific to accounts here
 # e.g. 'firefox': {'exclude_replies': False}
 TWITTER_ACCOUNT_OPTS = {}
+TWITTER_APP_KEYS = config('TWITTER_APP_KEYS', cast=json.loads, default='{}')
 
 # Contribute numbers
 # TODO: automate these
@@ -428,16 +434,18 @@ CONTRIBUTE_NUMBERS = {
     'num_languages': 87,
 }
 
-BASKET_URL = 'https://basket.mozilla.org'
+BASKET_URL = config('BASKET_URL', default='https://basket.mozilla.org')
+BASKET_API_KEY = config('BASKET_API_KEY', default='')
+BASKET_TIMEOUT = config('BASKET_TIMEOUT', cast=int, default=10)
 
 # This prefixes /b/ on all URLs generated by `reverse` so that links
 # work on the dev site while we have a mix of Python/PHP
 FORCE_SLASH_B = False
 
 # reCAPTCHA keys
-RECAPTCHA_PUBLIC_KEY = ''
-RECAPTCHA_PRIVATE_KEY = ''
-RECAPTCHA_USE_SSL = True
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY', default='')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY', default='')
+RECAPTCHA_USE_SSL = config('RECAPTCHA_USE_SSL', cast=bool, default=True)
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
@@ -445,13 +453,13 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # This can be changed to use session once we do add a database.
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
+EMAIL_BACKEND = config(
+    'EMAIL_BACKEND',
+    default='django.core.mail.backends.console.EmailBackend' if DEBUG else
+            'django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX', default='[bedrock] ')
 
-def lazy_email_backend():
-    from django.conf import settings
-    return ('django.core.mail.backends.console.EmailBackend' if settings.DEBUG
-            else 'django.core.mail.backends.smtp.EmailBackend')
-
-EMAIL_BACKEND = lazy(lazy_email_backend, str)()
 
 AURORA_STUB_INSTALLER = False
 
@@ -713,14 +721,14 @@ SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
                           'fr', 'hu', 'id', 'pl', 'pt-BR', 'ru']
 
 # Use bedrock Gruntfile.js for live reload
-USE_GRUNT_LIVERELOAD = False
+USE_GRUNT_LIVERELOAD = config('USE_GRUNT_LIVERELOAD', cast=bool, default=False)
 
 # Publishing system config
 RNA = {
-    'BASE_URL': os.environ.get('RNA_BASE_URL', 'https://nucleus.mozilla.org/rna/'),
+    'BASE_URL': config('RNA_BASE_URL', default='https://nucleus.mozilla.org/rna/'),
 
     # default False as temporary workaround for bug 973499
-    'VERIFY_SSL_CERT': os.environ.get('VERIFY_SSL_CERT', False),
+    'VERIFY_SSL_CERT': config('VERIFY_SSL_CERT', cast=bool, default=False),
 }
 
 MOFO_SECURITY_ADVISORIES_PATH = path('..', 'mofo_security_advisories')
@@ -827,7 +835,20 @@ FIREFOX_OS_COUNTRY_VERSIONS = {
     'VE': '1.3',
 }
 
-TABLEAU_DB_URL = None
+TABLEAU_DB_URL = config('TABLEAU_DB_URL', default=None)
 
-MAXMIND_DB_PATH = os.getenv('MAXMIND_DB_PATH', path('..', 'GeoIP2-Country.mmdb'))
-MAXMIND_DEFAULT_COUNTRY = os.getenv('MAXMIND_DEFAULT_COUNTRY', 'US')
+MAXMIND_DB_PATH = config('MAXMIND_DB_PATH',
+                         default=path('..', 'GeoIP2-Country.mmdb'))
+MAXMIND_DEFAULT_COUNTRY = config('MAXMIND_DEFAULT_COUNTRY', default='US')
+
+ADMINS = MANAGERS = config('ADMINS', cast=json.loads,
+                           default=json.dumps([['admin', 'admin@example.com']]))
+
+GTM_CONTAINER_ID = config('GTM_CONTAINER_ID', default='')
+GMAP_API_KEY = config('GMAP_API_KEY', default='')
+HMAC_KEYS = config('HMAC_KEYS', cast=json.loads, default='{}')
+
+STATSD_CLIENT = config('STATSD_CLIENT', default='django_statsd.clients.normal')
+STATSD_HOST = config('STATSD_HOST', default='127.0.0.1')
+STATSD_PORT = config('STATSD_PORT', cast=int, default=8125)
+STATSD_PREFIX = config('STATSD_PREFIX', default='bedrock')
