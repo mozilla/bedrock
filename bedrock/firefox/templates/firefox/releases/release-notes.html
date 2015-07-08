@@ -11,6 +11,7 @@
 
 {% block site_css %}
   {% stylesheet 'firefox_releasenotes' %}
+  {% stylesheet 'styleguide' %}
 {% endblock %}
 
 {% block optimizely %}
@@ -80,12 +81,24 @@
       {% if new_features %}
       <section class="notes-section" id="new-features">
         <ul class="section-items tagged">
-        <h1> NEW </h1>
-        {% for note in new_features %}
-          <li style="visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+
+        {% for note in new_features if note.tag =="New" %}
+          {% if loop.first %}
+            <p> New </p>
+          {% endif %}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
-          {% endfor %}
+        {% endfor %}
+
+          {% for note in new_features if note.tag =="Fixed" %}
+          {% if loop.first %}
+            <p> Fixed </p>
+          {% endif %}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
         </ul>
       </section>
       {% endif %}
@@ -114,12 +127,25 @@
       {% if new_features %}
       <section class="notes-section" id="new-features">
         <ul class="section-items tagged">
-         <h1 style="visibility:hidden"> NEW </h1>
-          {% for note in new_features %}
+        <ul class="section-items tagged">
+
+        {% for note in new_features if note.tag =="New" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> New </p>
+          {% endif %}
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
-          {% endfor %}
+        {% endfor %}
+
+          {% for note in new_features if note.tag =="Fixed" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> Fixed </p>
+          {% endif %}
+          <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
         </ul>
       </section>
       {% endif %}
