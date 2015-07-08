@@ -99,25 +99,58 @@
               {{ note.note|markdown|safe }}
           </li>
         {% endfor %}
+
+        {% for note in new_features if note.tag =="Changed" %}
+          {% if loop.first %}
+            <p> Changed </p>
+          {% endif %}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+          {% for note in new_features if note.tag =="Developer" %}
+          {% if loop.first %}
+            <p> Developer </p>
+          {% endif %}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+          {% for note in new_features if note.tag =="HTML5" %}
+          {% if loop.first %}
+            <p> HTML 5 </p>
+          {% endif %}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+          {% for note in new_features if note.tag =="Resolved" %}
+          {% if loop.first %}
+            <p> Resolved </p>
+          {% endif %}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
         </ul>
       </section>
       {% endif %}
+
       {% if known_issues %}
       <section class="notes-section" id="known-issues">
         <ul class="section-items tagged">
-        <h1> KNOWN </h1>
           {% for note in known_issues %}
-            <li style = "visibility:hidden" id="note-{{ note.id }}">
-                {{ note.note|markdown|safe }}
-            {% if note.fixed_in_release %}
-              <p class="note">
-                <a href="{{ releasenotes_url(note.fixed_in_release) }}">
-                  {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_release.version) }}
-                </a>
-              </p>
-            {% endif %}
-            </li>
-          {% endfor %}
+          {% if loop.first %}
+            <p> Unresolved </p>
+          {% endif %}
+          <li style="visibility:hidden" id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
         </ul>
       </section>
       {% endif %}
@@ -146,25 +179,56 @@
               {{ note.note|markdown|safe }}
           </li>
         {% endfor %}
+
+          {% for note in new_features if note.tag =="Changed" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> Changed </p>
+          {% endif %}
+          <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+        {% for note in new_features if note.tag =="Developer" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> Developer </p>
+          {% endif %}
+          <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+        {% for note in new_features if note.tag =="HTML5" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> HTML 5 </p>
+          {% endif %}
+          <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+          {% for note in new_features if note.tag =="Resolved" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> Resolved </p>
+          {% endif %}
+          <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
         </ul>
       </section>
       {% endif %}
       {% if known_issues %}
       <section class="notes-section" id="known-issues">
         <ul class="section-items tagged">
-        <h1 style="visibility:hidden"> KNOWN </h1>
           {% for note in known_issues %}
-            <li id="note-{{ note.id }}">
-                {{ note.note|markdown|safe }}
-            {% if note.fixed_in_release %}
-              <p class="note">
-                <a href="{{ releasenotes_url(note.fixed_in_release) }}">
-                  {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_release.version) }}
-                </a>
-              </p>
-            {% endif %}
-            </li>
-          {% endfor %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> Unresolved </p>
+          {% endif %}
+          <li id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
         </ul>
       </section>
       {% endif %}
