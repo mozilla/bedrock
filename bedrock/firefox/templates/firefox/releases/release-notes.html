@@ -84,7 +84,7 @@
 
         {% for note in new_features if note.tag =="New" %}
           {% if loop.first %}
-            <p> New </p>
+            <p class="note_label"> NEW </p>
           {% endif %}
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -93,7 +93,7 @@
 
           {% for note in new_features if note.tag =="Fixed" %}
           {% if loop.first %}
-            <p> Fixed </p>
+            <p class="note_label"> FIXED </p>
           {% endif %}
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -102,7 +102,7 @@
 
         {% for note in new_features if note.tag =="Changed" %}
           {% if loop.first %}
-            <p> Changed </p>
+            <p class="note_label"> CHANGED </p>
           {% endif %}
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -111,7 +111,7 @@
 
           {% for note in new_features if note.tag =="Developer" %}
           {% if loop.first %}
-            <p> Developer </p>
+            <p class="note_label"> DEVELOPER </p>
           {% endif %}
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -120,7 +120,7 @@
 
           {% for note in new_features if note.tag =="HTML5" %}
           {% if loop.first %}
-            <p> HTML 5 </p>
+            <p class="note_label"> HTML 5 </p>
           {% endif %}
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -129,7 +129,7 @@
 
           {% for note in new_features if note.tag =="Resolved" %}
           {% if loop.first %}
-            <p> Resolved </p>
+            <p class="note_label"> RESOLVED </p>
           {% endif %}
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -145,7 +145,7 @@
         <ul class="section-items tagged">
           {% for note in known_issues %}
           {% if loop.first %}
-            <p> Unresolved </p>
+            <p class="note_label"> UNRESOLVED </p>
           {% endif %}
           <li style="visibility:hidden" id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -164,7 +164,7 @@
 
         {% for note in new_features if note.tag =="New" %}
           {% if loop.first %}
-            <p style="visibility:hidden"> New </p>
+            <p style="visibility:hidden"> NEW </p>
           {% endif %}
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -173,7 +173,7 @@
 
           {% for note in new_features if note.tag =="Fixed" %}
           {% if loop.first %}
-            <p style="visibility:hidden"> Fixed </p>
+            <p style="visibility:hidden"> FIXED </p>
           {% endif %}
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -182,7 +182,7 @@
 
           {% for note in new_features if note.tag =="Changed" %}
           {% if loop.first %}
-            <p style="visibility:hidden"> Changed </p>
+            <p style="visibility:hidden"> CHANGED </p>
           {% endif %}
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -191,7 +191,7 @@
 
         {% for note in new_features if note.tag =="Developer" %}
           {% if loop.first %}
-            <p style="visibility:hidden"> Developer </p>
+            <p style="visibility:hidden"> DEVELOPER </p>
           {% endif %}
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -209,7 +209,7 @@
 
           {% for note in new_features if note.tag =="Resolved" %}
           {% if loop.first %}
-            <p style="visibility:hidden"> Resolved </p>
+            <p style="visibility:hidden"> RESOLVED </p>
           {% endif %}
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
@@ -223,9 +223,87 @@
         <ul class="section-items tagged">
           {% for note in known_issues %}
           {% if loop.first %}
-            <p style="visibility:hidden"> Unresolved </p>
+            <p style="visibility:hidden"> UNRESOLVED </p>
           {% endif %}
           <li id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+    </div>
+
+            <div class="tri-column">
+      {% if new_features %}
+      <section class="notes-section" id="new-features">
+        <ul class="section-items tagged">
+        <ul class="section-items tagged">
+
+        {% for note in new_features if note.tag =="New" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> NEW </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+          {% for note in new_features if note.tag =="Fixed" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> FIXED </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+          {% for note in new_features if note.tag =="Changed" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> CHANGED </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+        {% for note in new_features if note.tag =="Developer" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> DEVELOPER </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+        {% for note in new_features if note.tag =="HTML5" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> HTML 5 </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+
+          {% for note in new_features if note.tag =="Resolved" %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> RESOLVED </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+              {{ note.note|markdown|safe }}
+          </li>
+        {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+      {% if known_issues %}
+      <section class="notes-section" id="known-issues">
+        <ul class="section-items tagged">
+          {% for note in known_issues %}
+          {% if loop.first %}
+            <p style="visibility:hidden"> UNRESOLVED </p>
+          {% endif %}
+          <li style="visibility:hidden"id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
         {% endfor %}
