@@ -7,8 +7,8 @@ MANAGERS = ADMINS
 DEBUG = TEMPLATE_DEBUG = DEV = True
 
 # Settings for Download Firefox Facebook tab
-#FACEBOOK_PAGE_NAMESPACE = ''
-#FACEBOOK_APP_ID = ''
+# FACEBOOK_PAGE_NAMESPACE = ''
+# FACEBOOK_APP_ID = ''
 
 # Google Tag Manager ID Example: GTM-123456
 GTM_CONTAINER_ID = ''

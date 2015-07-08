@@ -5,38 +5,18 @@
 
 # This script makes sure that Jenkins can properly run your tests against your
 # codebase.
-set -e
+set -ex
 
-if [ -z $WORKSPACE ] ; then
-  WORKSPACE=`/bin/pwd`
-fi
+cd /app
+apt-get update
+apt-get install -y libmysqlclient-dev libxml2-dev libxslt1-dev python-dev subversion
 
-cd $WORKSPACE
-VENV=$WORKSPACE/venv
-
-export DB_HOST="localhost"
-export DB_USER="hudson"
-
-echo "Starting build on executor $EXECUTOR_NUMBER..."
 
 # Make sure there's no old pyc files around.
 find . -name '*.pyc' -exec rm {} \;
 
-if [ ! -d "$VENV/bin" ]; then
-  echo "No virtualenv found.  Making one..."
-  virtualenv $VENV --no-site-packages
-  . $VENV/bin/activate
-  pip install --upgrade pip
-  pip install coverage
-fi
-
 git submodule sync -q
 git submodule update --init --recursive
-
-if [ ! -d "$WORKSPACE/vendor" ]; then
-    echo "No /vendor... crap."
-    exit 1
-fi
 
 if [ -d "$WORKSPACE/locale" ]; then
     svn up locale
@@ -44,22 +24,25 @@ else
     svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
 fi
 
-. $VENV/bin/activate
-pip install -q -r requirements/compiled.txt
 pip install -q -r requirements/dev.txt
+rm -rf src  # clean up after pip fails to do so
 
-echo "Creating database if we need it..."
-echo "CREATE DATABASE IF NOT EXISTS \`${JOB_NAME}\`"|mysql -u $DB_USER -h $DB_HOST
+#TODO: get mysql working in new jenkins
+#echo "Creating database if we need it..."
+#echo "CREATE DATABASE IF NOT EXISTS \`${JOB_NAME}\`"|mysql -u $DB_USER -h $DB_HOST
 
-echo "Update product_details"
+cp bedrock/settings/local.py-dist bedrock/settings/local.py
+
+python manage.py version
+
+python manage.py syncdb --noinput --migrate
+
+python manage.py collectstatic --noinput -v 0
+
 python manage.py update_product_details
 
-echo "Check PEP-8"
 flake8 bedrock lib
 
-echo "Starting tests..."
 export FORCE_DB=1
 coverage run manage.py test --noinput
 coverage xml $(find bedrock lib -name '*.py')
-
-echo "FIN"
