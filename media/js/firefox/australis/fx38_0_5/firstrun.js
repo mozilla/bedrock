@@ -13,13 +13,10 @@
     var ctaDirect;
     var videoOnLoad = false;
 
-    // 37 sends user to sync in hamburger menu
+    // ctaDirect var determines text displayed on CTA.
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1177817#c8
     if (funnelcakeId === 37) {
         ctaDirect = false;
-    // 38 and 39 send user directly to signup form
-    } else if (funnelcakeId === 38 || funnelcakeId === 39) {
-        ctaDirect = true;
-    // anything else sends user to signup form
     } else {
         ctaDirect = true;
     }
@@ -96,47 +93,35 @@
 
     // to be safe, make sure user is on desktop firefox version 38 or higher
     if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 38) {
-        // if primary CTA should highlight Sync in settings
-        if (!ctaDirect) {
-            // Query if the UITour API is working before we start the tour
-            Mozilla.UITour.getConfiguration('sync', function() {
-                $document = $(document);
+        // Query if the UITour API is working before binding click handler.
+        // If this fails, CTA falls back to linking to /firefox/sync/.
+        Mozilla.UITour.getConfiguration('sync', function() {
+            $document = $(document);
 
-                $ctaSignup.on('click', function(e) {
-                    e.preventDefault();
+            $ctaSignup.on('click', function(e) {
+                e.preventDefault();
 
-                    // call twice two correctly position highlight
-                    // https://bugzilla.mozilla.org/show_bug.cgi?id=1049130
-                    Mozilla.UITour.showHighlight('accountStatus', 'wobble');
-                    Mozilla.UITour.showHighlight('accountStatus', 'wobble');
+                // call twice two correctly position highlight
+                // https://bugzilla.mozilla.org/show_bug.cgi?id=1049130
+                Mozilla.UITour.showHighlight('accountStatus', 'wobble');
+                Mozilla.UITour.showHighlight('accountStatus', 'wobble');
 
-                    // allow clicking anywhere in page to hide menu
-                    // behind a timeout so event isn't captured with *this* click
-                    setTimeout(function() {
-                        $document.one('click.hideHighlight', function() {
-                            Mozilla.UITour.hideHighlight();
-                        });
-                    }, 50);
-                });
-
-                $document.on('visibilitychange', function() {
-                    if (document.hidden) {
-                        $document.off('click.hideHighlight');
+                // allow clicking anywhere in page to hide menu
+                // behind a timeout so event isn't captured with *this* click
+                setTimeout(function() {
+                    $document.one('click.hideHighlight', function() {
                         Mozilla.UITour.hideHighlight();
-                    }
-                });
+                    });
+                }, 50);
             });
-        } else {
-            // make sure UITour is working before binding the click handler
-            Mozilla.UITour.ping(function() {
-                $ctaSignup.on('click', function(e) {
 
-                    e.preventDefault();
-
-                    Mozilla.UITour.showFirefoxAccounts();
-                });
+            $document.on('visibilitychange', function() {
+                if (document.hidden) {
+                    $document.off('click.hideHighlight');
+                    Mozilla.UITour.hideHighlight();
+                }
             });
-        }
+        });
 
         // if showing video on page load, hide video copy/CTA and show video
         if (videoOnLoad) {
