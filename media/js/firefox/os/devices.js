@@ -40,9 +40,9 @@ if (typeof window.Mozilla === 'undefined') {
 
         var target = $(this).attr('href');
 
-        $('html, body').animate({
-            scrollTop: $(target).offset().top - 100
-        }, 400);
+        Mozilla.smoothScroll({
+            top: $(target).offset().top - 100
+        });
     });
 
     // select available devices & set modal partner content based on chosen/detected location

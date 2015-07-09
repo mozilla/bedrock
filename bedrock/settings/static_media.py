@@ -1253,6 +1253,7 @@ PIPELINE_JS = {
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/base/mozilla-pager.js',
             'js/base/mozilla-modal.js',
+            'js/base/mozilla-smoothscroll.js',
             'js/firefox/family-nav.js',
             'js/firefox/os/partner_data.js',
             'js/firefox/os/devices.js',

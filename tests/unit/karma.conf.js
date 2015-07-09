@@ -25,6 +25,7 @@ module.exports = function(config) {
             'media/js/base/mozilla-video-tools.js',
             'media/js/base/nav-main-resp.js',
             'media/js/base/nav-main.js',
+            'media/js/base/mozilla-smoothscroll.js',
             'media/js/base/search-params.js',
             'media/js/base/svg-animation-check.js',
             'media/js/firefox/australis/browser-tour.js',
