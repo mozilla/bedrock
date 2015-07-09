@@ -1473,18 +1473,29 @@ textarea:focus {
     display: none;
 }
 
+
+
 .mozillians-profile {
     width: 450px;
     height: 450px;
     border: 5px solid @mozillaRed;
     border-radius: 100%;
-    background: #fff url('/media/img/contribute/mozillians-profile.png') center center no-repeat;
     float: left;
     margin-left: -480px;
     margin-top: -75px;
     position: relative;
     text-align: left;
     line-height: 1.1;
+
+    &.friends {
+        background: #fff url('/media/img/contribute/mozillians-firefoxfriends.png') center center no-repeat;
+        background-size: 100%;
+    }
+
+    &.oneanddone {
+        background: #fff url('/media/img/contribute/mozillians-oneanddone.png') center center no-repeat;
+        background-size: 100%;
+    }
 
     .profile-greeting {
         position: absolute;
@@ -2110,10 +2121,15 @@ textarea:focus {
         }
     }
 
-    #thankyou .page-head {
-        padding-bottom: 40px;
+    #thankyou {
+        .page-head {
+            padding-bottom: 40px;
+        }
+        .section-tagline {
+            margin: 0 25px 20px; 
+        }
     }
-
+    
     .confirm-body {
         padding-left: 380px;
     }
@@ -2123,8 +2139,6 @@ textarea:focus {
         height: 350px;
         margin-left: -380px;
         margin-top: -65px;
-        -webkit-background-size: 350px 350px;
-                background-size: 350px 350px;
 
         .profile-greeting {
             .font-size(18px);

@@ -43,21 +43,51 @@
     <div class="container">
       <div class="confirm-body">
 
-        <div class="mozillians-profile">
-          <span class="profile-greeting">{{ _('Hello!') }}</span>
-          <span class="profile-name">{{ _('Your Name') }}</span>
-        </div>
-        <h2 class="section-title">{{ _('In the meantime&hellip;') }}</h2>
-        <p class="section-tagline">{{ _('You can create your Mozillians account now to connect with fellow Mozillians.' ) }}</p>
-        <p class="cta-mozillians">
-          {% if settings.DEV %}
-          <a href="https://mozillians-dev.allizom.org/?source=contribute&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute-page">
+        {% if category in ['coding', 'testing', 'helping', 'translating'] %}
+        <div class="mozillians-profile oneanddone"></div>
+        <h2 class="section-title">
+          {{ _('In the meantime&hellip;') }}
+        </h2>
+        <p class="section-tagline">
+          {% if l10n_has_tag('contribute_cta_updates') %}
+            {{ _('You can help by picking an easy task that only takes a few minutes &mdash; or take on a bigger challenge.') }}
           {% else %}
-          <a href="https://mozillians.org/?source=contribute&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute-page">
+            {{ _('You can create your Mozillians account now to connect with fellow Mozillians.' ) }}
           {% endif %}
+        </p>
+        <p class="cta-mozillians">
+          <a href="https://oneanddone.mozilla.org?source=contribute&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute-page">
+          {% if l10n_has_tag('contribute_cta_updates') %}
+            {{ _('Choose a Task Now') }}
+          {% else %}
             {{ _('Yes, create my Mozillians account') }} *
+          {% endif %}
           </a>
         </p>
+        
+      {% else %} 
+        <div class="mozillians-profile friends"></div>
+        <h2 class="section-title">
+          {{ _('In the meantime&hellip;') }}
+        </h2>
+        <p class="section-tagline">
+          {% if l10n_has_tag('contribute_cta_updates') %}
+            {{ _('Help us tell the world how awesome Firefox is and about all the important work Mozilla does every day.') }}
+          {% else %}
+            {{ _('You can create your Mozillians account now to connect with fellow Mozillians.' ) }}
+          {% endif %}
+        </p>
+        <p class="cta-mozillians">
+          <a href="https://www.mozilla.org/contribute/friends/?source=contribute&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute-page">
+          {% if l10n_has_tag('contribute_cta_updates') %}
+            {{ _('Join Now') }}
+          {% else %}
+            {{ _('Yes, create my Mozillians account') }} *
+          {% endif %}
+          </a>
+        </p>
+      {% endif %}
+
         <p class="note">* {{ _('You will be asked to sign in before proceeding') }}</p>
 
         <div class="cta-other">
