@@ -928,7 +928,7 @@ PIPELINE_JS = {
     },
     'common': {
         'source_filenames': (
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/base/global-init.js',
@@ -940,7 +940,7 @@ PIPELINE_JS = {
     },
     'common-resp': {
         'source_filenames': (
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/base/global-init.js',
@@ -992,7 +992,7 @@ PIPELINE_JS = {
     },
     'contribute-friends': {
         'source_filenames': (
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/mozorg/contribute/friends.js',
         ),
         'output_filename': 'js/contribute-friends-bundle.js'
@@ -1030,7 +1030,7 @@ PIPELINE_JS = {
     },
     'firefox': {
         'source_filenames': (
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/base/global-init.js',
@@ -1066,7 +1066,7 @@ PIPELINE_JS = {
     },
     'firefox-resp': {
         'source_filenames': (
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/base/global-init.js',
@@ -1200,7 +1200,7 @@ PIPELINE_JS = {
     },
     'firefox_new': {
         'source_filenames': (
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/base/global-init.js',
@@ -1476,7 +1476,7 @@ PIPELINE_JS = {
     },
     'mozorg-resp': {
         'source_filenames': (
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/libs/spin.min.js',
             'js/base/global.js',
             'js/base/global-init.js',
@@ -1632,7 +1632,7 @@ PIPELINE_JS = {
             'js/styleguide/logo-prototype/vendor/lodash.compat.min.js',
             'js/styleguide/logo-prototype/vendor/perlin.js',
             'js/styleguide/logo-prototype/vendor/dat.gui.js',
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/styleguide/logo-prototype/clock-data.js',
         ),
         'output_filename': 'js/logo-prototype-bundle.js',
@@ -1676,7 +1676,7 @@ PIPELINE_JS = {
     },
     'facebookapps_redirect': {
         'source_filenames': (
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/facebookapps/redirect.js',
         ),
         'output_filename': 'js/facebookapps_redirect-bundle.js',
@@ -1695,7 +1695,7 @@ PIPELINE_JS = {
     },
     'newsletter_form': {
         'source_filenames': (
-            'js/libs/jquery-1.11.0.min.js',
+            'js/libs/jquery-1.11.3.min.js',
             'js/libs/spin.min.js',
             'js/newsletter/form.js',
         ),
