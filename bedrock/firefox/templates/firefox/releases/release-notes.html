@@ -26,17 +26,7 @@
 {% block content %}
 <main role="main">
   <article id="main-content">
-
-  {% block notes_header %}
-    <header class="notes-head">
-    {% block notes_heading_primary %}
-      <h1>{{ _('Firefox {channel} Notes')|f(channel=channel_name) }}</h1>
-    {% endblock %}
-    {% block notes_heading_secondary %}
-      <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
-    {% endblock %}
-
-    {% block platform_switch %}
+      {% block platform_switch %}
     {% if equivalent_release_url %}
       <aside id="platform">
         <h4>{{ _('View notes for:') }}</h4>
@@ -51,6 +41,15 @@
         </ul>
       </aside>
     {% endif %}
+    {% endblock %}
+
+  {% block notes_header %}
+    <header class="notes-head">
+    <p>
+     <h1>{{ version }}</h1>
+     <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }}</h2>
+     </p>
+    {% block notes_heading_secondary %}
     {% endblock %}
 
       <p>
@@ -89,6 +88,9 @@
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+           {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
           {% for note in new_features if note.tag =="Fixed" %}
@@ -98,6 +100,9 @@
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
         {% for note in new_features if note.tag =="Changed" %}
@@ -107,6 +112,9 @@
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
           {% for note in new_features if note.tag =="Developer" %}
@@ -116,6 +124,9 @@
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
           {% for note in new_features if note.tag =="HTML5" %}
@@ -125,6 +136,9 @@
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+        {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
           {% for note in new_features if note.tag =="Resolved" %}
@@ -134,6 +148,9 @@
           <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
         </ul>
@@ -150,6 +167,9 @@
           <li style="visibility:hidden" id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
         </ul>
       </section>
@@ -169,6 +189,9 @@
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
           {% for note in new_features if note.tag =="Fixed" %}
@@ -178,6 +201,9 @@
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
           {% for note in new_features if note.tag =="Changed" %}
@@ -187,6 +213,9 @@
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
         {% for note in new_features if note.tag =="Developer" %}
@@ -196,6 +225,9 @@
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
         {% for note in new_features if note.tag =="HTML5" %}
@@ -205,6 +237,9 @@
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+          {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
 
           {% for note in new_features if note.tag =="Resolved" %}
@@ -214,6 +249,9 @@
           <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+           {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
         </ul>
       </section>
@@ -228,6 +266,9 @@
           <li id="note-{{ note.id }}">
               {{ note.note|markdown|safe }}
           </li>
+                    {% if loop.last %}
+            <hr>
+          {% endif %}
         {% endfor %}
         </ul>
       </section>
