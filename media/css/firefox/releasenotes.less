@@ -4,12 +4,36 @@
 
 @import "../sandstone/lib.less";
 
+@font-face {
+    font-family: 'Font Awesome';
+    src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'),
+         url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'),
+         url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .space #wrapper {
     background-repeat: no-repeat;
     background-position: 0px 180px;
     background-color: white;
 }
 
+.tri-column {
+    .span(4);
+}
+
+.label-column {
+    .span(6);
+}
+
+.notes-column {
+    .span(6);
+}
+
+#note-media {
+    display: none;
+}
 .notes-head {
     .clearfix;
     margin-bottom: @baseLine * 2;
