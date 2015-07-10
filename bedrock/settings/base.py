@@ -94,6 +94,7 @@ TEXT_DOMAIN = 'messages'
 STANDALONE_DOMAINS = [TEXT_DOMAIN, 'javascript']
 TOWER_KEYWORDS = {'_lazy': None}
 TOWER_ADD_HEADERS = True
+TOWER_INSTALL_JINJA_TRANSLATIONS = False
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
