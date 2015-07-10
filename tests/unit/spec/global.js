@@ -294,6 +294,28 @@ describe('global.js', function() {
 
     });
 
+    describe('isFirefox38ESR', function () {
+
+        it('should return true for Firefox ESR', function () {
+            // Firefox 38.0 ESR
+            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150505103531')).toBeTruthy();
+            // Firefox 38.0.1 ESR
+            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150514102509')).toBeTruthy();
+            // Firefox 38.1.0 ESR
+            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150624141534')).toBeTruthy();
+        });
+
+        it('should return false for Firefox non-ESR', function () {
+            // Firefox 38.0 non-ESR
+            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150508094354')).toBeFalsy();
+            // Firefox 38.0.1 non-ESR
+            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150513174244')).toBeFalsy();
+            // Firefox 38.0.5 non-ESR
+            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150525141253')).toBeFalsy();
+        });
+
+    });
+
     describe('isFirefoxUpToDate', function () {
 
         it('should consider up to date if latest version is equal to user version', function() {

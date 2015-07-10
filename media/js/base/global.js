@@ -138,6 +138,17 @@ function isFirefox31ESR(userAgent, buildID) {
         buildID && buildID !== '20140716183446';
 }
 
+// Detect Firefox 38 ESR by the *non-ESR* build IDs.
+// 38.0: 20150508094354, 38.0.1: 20150513174244, 38.0.5: 20150525141253
+// https://wiki.mozilla.org/Releases/Firefox_38/Test_Plan
+function isFirefox38ESR(userAgent, buildID) {
+    userAgent = userAgent || navigator.userAgent;
+    buildID = buildID || navigator.buildID;
+
+    return !isFirefoxMobile(userAgent) &&
+        getFirefoxMasterVersion(userAgent) === 38 && buildID &&
+        ['20150508094354', '20150513174244', '20150525141253'].indexOf(buildID) === -1;
+}
 
 // Create text translation function using #strings element.
 // TODO: Move to docs
