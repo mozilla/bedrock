@@ -158,9 +158,9 @@ https://github.com/jsocol/commonware/archive/b5544185b2d24adc1eb512735990752400c
 # sha256: RUGcZGGuja1Rbhc2ZBwdgv4Wlvaf6L06JlrP2cR1umw
 https://github.com/jbalogh/jingo/archive/v0.7.1.tar.gz#egg=jingo==0.7.1
 
-# tower: tags/v0.4.0~3
-# sha256: cDfV-k9SVqAeb5MBwQ9DUsMZk_f6aImtmya8kLELB_4
-https://github.com/clouserw/tower/archive/6112ea0749bf523eb87ebc6ead90c1757fb60113.tar.gz#egg=tower
+# tower: master
+# sha256: CKFoJ6Is4KIDHQCwdA8zxr5G81lEJ6_z7RXlUbpxJJk
+https://github.com/clouserw/tower/archive/e2ac254f7dac887952441592f7772af7bb25cc7b.tar.gz#egg=tower
 
 # django-cronjobs: tags/v0.2.3
 # sha256: lVao25u2Xj98ofZHQZPM_szNLaqxhWljy7ugRNt4_ug
