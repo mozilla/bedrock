@@ -3,7 +3,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../sandstone/lib.less";
-
+@import "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css";
 @font-face {
     font-family: 'Font Awesome';
     src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'),
@@ -19,6 +19,7 @@
     background-color: white;
 }
 
+
 .tri-column {
     .span(4);
 }
@@ -29,11 +30,21 @@
 
 .notes-column {
     .span(6);
+    text-align:center;
 }
 
 #note-media {
     display: none;
 }
+
+.gray_note {
+    background-color: #F5FAFF;
+}
+
+.blue_note {
+    background-color: #F0F2F2;
+}
+
 .notes-head {
     .clearfix;
     margin-bottom: @baseLine * 2;
@@ -209,6 +220,9 @@ article {
         margin: 0;
         padding: .714rem 0 .5rem;
         position: relative;
+        padding-bottom: 30px;
+        padding-right:5px;
+        padding-left:5px;
     }
 
     h4 {
@@ -224,6 +238,7 @@ article {
         .font-size(@smallFontSize);
         color: @textColorSecondary;
         margin: 0 0 .25em;
+        padding-right: 20px;
     }
 }
 
