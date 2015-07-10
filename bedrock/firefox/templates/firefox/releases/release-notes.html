@@ -85,8 +85,8 @@
             <br>
             <p class="note_label"> <i class="fa fa-diamond"></i>  NEW </p>
           {% endif %}
-          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
            {% if loop.last %}
             <hr>
@@ -97,8 +97,8 @@
           {% if loop.first %}
             <p class="note_label"><i class="fa fa-check-circle"></i>  FIXED </p>
           {% endif %}
-          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -109,8 +109,8 @@
           {% if loop.first %}
             <p class="note_label"><i class="fa fa-refresh"></i>  CHANGED </p>
           {% endif %}
-          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -121,8 +121,8 @@
           {% if loop.first %}
             <p class="note_label"><i class="fa fa-cog"></i>  DEVELOPER </p>
           {% endif %}
-          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -134,8 +134,8 @@
             <p class="note_label"><i class="fa fa-wrench"></i>
   HTML 5 </p>
           {% endif %}
-          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
         {% if loop.last %}
             <hr>
@@ -143,11 +143,11 @@
         {% endfor %}
 
           {% for note in new_features if note.tag =="Resolved" %}
-          {% if loop.first %}
+          {% if loop.first %} 
             <p class="note_label"> RESOLVED </p>
           {% endif %}
-          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -165,8 +165,8 @@
           {% if loop.first %}
             <p class="note_label"> <i class="fa fa-ban"></i>  UNRESOLVED </p>
           {% endif %}
-          <li style="visibility:hidden" id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li style="visibility:hidden" id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -188,8 +188,8 @@
              <br>
             <p style="visibility:hidden"> NEW </p>
           {% endif %}
-          <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -200,8 +200,8 @@
           {% if loop.first %}
             <p style="visibility:hidden"> FIXED </p>
           {% endif %}
-          <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -212,8 +212,8 @@
           {% if loop.first %}
             <p style="visibility:hidden"> CHANGED </p>
           {% endif %}
-          <li {% if not note.tag %}class="untagged"{% endif %}{% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li {% if not note.tag %}class="untagged"{% endif %}{% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -224,8 +224,8 @@
           {% if loop.first %}
             <p style="visibility:hidden"> DEVELOPER </p>
           {% endif %}
-          <li {% if not note.tag %}class="untagged"{% endif %}{% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li {% if not note.tag %}class="untagged"{% endif %}{% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -236,8 +236,8 @@
           {% if loop.first %}
             <p style="visibility:hidden"> HTML 5 </p>
           {% endif %}
-          <li {% if not note.tag %}class="untagged"{% endif %}{% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li {% if not note.tag %}class="untagged"{% endif %}{% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
           {% if loop.last %}
             <hr>
@@ -248,8 +248,8 @@
           {% if loop.first %}
             <p style="visibility:hidden"> RESOLVED </p>
           {% endif %}
-          <li {% if not note.tag %}class="untagged"{% endif %}{% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li {% if not note.tag %}class="untagged"{% endif %}{% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
            {% if loop.last %}
             <hr>
@@ -265,8 +265,8 @@
           {% if loop.first %}
             <p style="visibility:hidden"> <i class="fa fa-ban"></i>  UNRESOLVED </p>
           {% endif %}
-          <li {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}"> <div class="note_wrap">
+              {{ note.note|markdown|safe }} </div>
           </li>
                     {% if loop.last %}
             <hr>
@@ -287,8 +287,8 @@
           {% if loop.first %}
             <p style="visibility:hidden"> NEW </p>
           {% endif %}
-          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-              {{ note.note|markdown|safe }}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}"><div class="note_wrap">
+              {{ note.note|markdown|safe }}</div>
           </li>
         {% endfor %}
 
