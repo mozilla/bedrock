@@ -78,21 +78,14 @@
     <div class="label-column">
       {% if new_features %}
       <section class="notes-section" id="new-features">
-        <ul class="section-items tagged">
 
-        {% for note in new_features if note.tag =="New" %}
-          {% if loop.first %}
+      <div id = "new-label" >
             <br>
             <p class="note_label"> <i class="fa fa-diamond"></i>  NEW </p>
-          {% endif %}
-          <li style = "visibility:hidden" {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
-              {{ note.note|markdown|safe }} </div>
-          </li>
-           {% if loop.last %}
             <hr>
-          {% endif %}
-        {% endfor %}
+        </div>
 
+          <div id = "fixed-label">
           {% for note in new_features if note.tag =="Fixed" %}
           {% if loop.first %}
             <p class="note_label"><i class="fa fa-check-circle"></i>  FIXED </p>
@@ -104,7 +97,9 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </div>
 
+        <div id = "changed-label">
         {% for note in new_features if note.tag =="Changed" %}
           {% if loop.first %}
             <p class="note_label"><i class="fa fa-refresh"></i>  CHANGED </p>
@@ -116,7 +111,9 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </div>
 
+          <div id = "developer-label">
           {% for note in new_features if note.tag =="Developer" %}
           {% if loop.first %}
             <p class="note_label"><i class="fa fa-cog"></i>  DEVELOPER </p>
@@ -128,7 +125,10 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </div>
 
+
+        <div id = "html-label">
           {% for note in new_features if note.tag =="HTML5" %}
           {% if loop.first %}
             <p class="note_label"><i class="fa fa-wrench"></i>
@@ -141,7 +141,9 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </div>
 
+          <div id = "resolved-label">
           {% for note in new_features if note.tag =="Resolved" %}
           {% if loop.first %} 
             <p class="note_label"> RESOLVED </p>
@@ -153,13 +155,14 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </div>
 
-        </ul>
       </section>
       {% endif %}
 
       {% if known_issues %}
       <section class="notes-section" id="known-issues">
+      <div id  = "unresolved-label">
         <ul class="section-items tagged">
           {% for note in known_issues %}
           {% if loop.first %}
@@ -173,6 +176,7 @@
           {% endif %}
         {% endfor %}
         </ul>
+        </div>
       </section>
       {% endif %}
     </div>
@@ -180,9 +184,11 @@
         <div class="notes-column">
       {% if new_features %}
       <section class="notes-section" id="new-features">
-        <ul class="section-items tagged">
-        <ul class="section-items tagged">
 
+
+
+        <div id = "new-wrapper">
+        <ul class="section-items tagged">
         {% for note in new_features if note.tag =="New" %}
           {% if loop.first %}
              <br>
@@ -195,7 +201,12 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </ul>
+        </div>
 
+
+        <div id = "fixed-wrapper">
+        <ul class="section-items tagged">
           {% for note in new_features if note.tag =="Fixed" %}
           {% if loop.first %}
             <p style="visibility:hidden"> FIXED </p>
@@ -207,7 +218,12 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </ul>
+        </div>
 
+
+         <div id = "changed-wrapper">
+         <ul class="section-items tagged">
           {% for note in new_features if note.tag =="Changed" %}
           {% if loop.first %}
             <p style="visibility:hidden"> CHANGED </p>
@@ -219,7 +235,12 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </ul>
+        </div>
 
+
+        <div id = "developer-wrapper">
+        <ul class="section-items tagged">
         {% for note in new_features if note.tag =="Developer" %}
           {% if loop.first %}
             <p style="visibility:hidden"> DEVELOPER </p>
@@ -231,7 +252,13 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </ul>
+        </div>
 
+
+
+        <div id = "html-wrapper">
+        <ul class="section-items tagged">
         {% for note in new_features if note.tag =="HTML5" %}
           {% if loop.first %}
             <p style="visibility:hidden"> HTML 5 </p>
@@ -243,7 +270,12 @@
             <hr>
           {% endif %}
         {% endfor %}
+        </ul>
+        </div>
 
+
+        <div id = "resolved-wrapper">
+        <ul class="section-items tagged">
           {% for note in new_features if note.tag =="Resolved" %}
           {% if loop.first %}
             <p style="visibility:hidden"> RESOLVED </p>
@@ -256,7 +288,12 @@
           {% endif %}
         {% endfor %}
         </ul>
+        </div>
       </section>
+
+
+      <div id = "unresolved-wrapper">
+      <ul class="section-items tagged">
       {% endif %}
       {% if known_issues %}
       <section class="notes-section" id="known-issues">
@@ -273,6 +310,7 @@
           {% endif %}
         {% endfor %}
         </ul>
+        </section>
       </section>
       {% endif %}
     </div>
@@ -359,4 +397,33 @@
 </main>
 {% endblock %}
 
-{% block js %}{% endblock  %}
+{% block js %}
+  <script type=text/javascript src="http://code.jquery.com/jquery-1.10.1.min.js"> 
+JQuery(document).ready(function() {
+  Tabzilla.disableEasterEgg();
+  console.log("SUp");
+  var newHeight = JQuery("#new-wrapper").height();
+  JQuery("#new-label").height(newHeight);
+  console.log("Hi");
+
+  var fixedHeight = JQuery("#fixed-wrapper").height();
+  JQuery("#fixed-label").height(fixedHeight);
+
+  var changedHeight = JQuery("#changed-wrapper").height();
+  JQuery("#changed-label").height(changedHeight);
+
+  var developerHeight = JQuery("#developer-wrapper").height();
+  JQuery("#developer-label").height(developerHeight);
+
+  var htmlHeight = JQuery("#html-wrapper").height();
+  JQuery("#html-label").height(htmlHeight);
+
+  var resolvedHeight = JQuery("#resolved-wrapper").height();
+  JQuery("#resolved-label").height(resolvedHeight);
+
+  var unresolvedHeight = JQuery("#unresolved-wrapper").height();
+  JQuery("#unresolved-label").height(unresolvedHeight);
+
+});
+</script> 
+{% endblock  %}
