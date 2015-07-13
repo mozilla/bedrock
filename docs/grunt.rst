@@ -75,10 +75,6 @@ To perform a single run of the test suite, type the following command::
 
 	grunt test
 
-.. note::
-
-    The Tabzilla tests require that you have your local bedrock development server running on port 8000.
-
 
 Cleaning generated CSS files
 ----------------------------
@@ -88,6 +84,3 @@ want to clear out your cached CSS that gets generated. To make this easier, you 
 ``*.less.css`` files located in ``media/css/`` directories with the following command::
 
     grunt clean
-
-
-

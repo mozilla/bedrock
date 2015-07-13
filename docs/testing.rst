@@ -143,10 +143,6 @@ To perform a single run of the Jasmine test suite using Firefox, type the follow
 
 	grunt test
 
-.. note::
-
-    The Tabzilla tests require that you have your local bedrock development server running on port 8000.
-
 See the `Jasmine`_ documentation for tips on how to write JS behavioral or unit tests.
 We also use `Sinon`_ for creating test spies, stubs and mocks.
 

@@ -753,15 +753,16 @@ if (typeof Mozilla == 'undefined') {
     /*
      * Shows current tour step highlight item
      */
-    BrowserTour.prototype.showHighlight = function () {
+    BrowserTour.prototype.showHighlight = function (show) {
         var $current = this.$tourList.find('li.current');
         var $stepTarget = $current.find('.step-target');
         var that = this;
         var target;
+        var showHighlight = show || (!document.hidden && this.isLargeViewport.matches);
 
         // if the tab is not visible when event fires or viewport is too small
         // don't show the highlight step
-        if (document.hidden || !this.isLargeViewport.matches) {
+        if (!showHighlight) {
             return;
         }
 
