@@ -2,12 +2,15 @@ sudo: false
 language: python
 python:
   - "2.7"
+node_js:
+  - "0.12"
 branches:
   only:
     - master
 cache:
   directories:
     - $HOME/.cache/pip
+    - node_modules
 before_script:
   - flake8 bedrock lib
   - python manage.py runscript check_calendars
@@ -17,7 +20,12 @@ before_script:
   - python manage.py collectstatic --noinput -v 0
   - travis_retry python manage.py update_product_details
   - travis_retry svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
-script: coverage run manage.py test
+  - travis_retry npm install
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+script:
+  - grunt test
+  - coverage run manage.py test
 before_install:
   - travis_retry git submodule update --init --recursive
 install:
@@ -34,3 +42,5 @@ notifications:
     on_success: change
     on_failure: always
     use_notice: true
+addons:
+  firefox: "35.0"

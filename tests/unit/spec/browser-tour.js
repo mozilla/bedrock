@@ -122,6 +122,7 @@ describe('browser-tour.js', function() {
         Mozilla.UITour.showMenu = sinon.stub();
         Mozilla.UITour.hideInfo = sinon.stub();
         Mozilla.UITour.hideMenu = sinon.stub();
+        Mozilla.UITour.getConfiguration = sinon.stub();
         Mozilla.UITour.addNavBarWidget = sinon.stub();
 
         // stub out Mozilla.ImageHelper.isHighDpi
@@ -352,35 +353,45 @@ describe('browser-tour.js', function() {
 
     describe('showHighlight', function() {
 
-        beforeEach(function() {
-            Mozilla.UITour.getConfiguration = function(configName, callback) {
+        it('should query availableTargets', function() {
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                 callback({
                     targets: ['appMenu']
                 });
-            };
-        });
-
-        it('should query availableTargets', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
-            tour.showHighlight();
+            });
+            tour.showHighlight(true);
             expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
         });
 
         it('should trigger a highlight if target is available', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
-            tour.showHighlight();
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
+                callback({
+                    targets: ['appMenu']
+                });
+            });
+            tour.showHighlight(true);
             clock.tick(300);
             expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
         });
 
         it('if target is not available it should not trigger a highlight', function() {
-            Mozilla.UITour.getConfiguration = function(configName, callback) {
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                 callback({
                     targets: ['foo']
                 });
-            };
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
-            tour.showHighlight();
+            });
+            tour.showHighlight(true);
+            clock.tick(300);
+            expect(Mozilla.UITour.showHighlight.called).toBeFalsy();
+        });
+
+        it('should not trigger a highlight if document is hidden', function() {
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
+                callback({
+                    targets: ['loop']
+                });
+            });
+            tour.showHighlight(false);
             clock.tick(300);
             expect(Mozilla.UITour.showHighlight.called).toBeFalsy();
         });
@@ -390,33 +401,32 @@ describe('browser-tour.js', function() {
 
         describe('highlightForgetButton', function() {
 
-            beforeEach(function() {
-                Mozilla.UITour.getConfiguration = function(configName, callback) {
+            it('should query availableTargets', function() {
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                     callback({
                         targets: ['forget']
                     });
-                };
-            });
-
-            it('should query availableTargets', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+                });
                 $('.tour-forget-widget').trigger('tour-step');
                 expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
             });
 
             it('should trigger a highlight if target is available', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
+                    callback({
+                        targets: ['forget']
+                    });
+                });
                 $('.tour-forget-widget').trigger('tour-step');
                 expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
             });
 
             it('should show a door-hanger if not available', function() {
-                Mozilla.UITour.getConfiguration = function(configName, callback) {
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                     callback({
                         targets: ['foo']
                     });
-                };
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+                });
                 $('.tour-forget-widget').trigger('tour-step');
                 expect(Mozilla.UITour.showInfo.called).toBeTruthy();
                 expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
@@ -453,42 +463,43 @@ describe('browser-tour.js', function() {
 
     describe('highlightSearchEngine', function () {
 
-        beforeEach(function() {
-            Mozilla.UITour.getConfiguration = function(configName, callback) {
+        it('should query availableTargets', function() {
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                 callback({
                     targets: ['searchProvider', 'searchEngine-google']
                 });
-            };
-        });
-
-        it('should query availableTargets', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+            });
             $('.tour-search-engine').trigger('tour-step');
             expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
         });
 
         it('should open the menu if search engine is available', function() {
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
+                callback({
+                    targets: ['searchProvider', 'searchEngine-google']
+                });
+            });
             $('.tour-search-engine').trigger('tour-step');
             expect(Mozilla.UITour.showMenu.calledWith('searchEngines')).toBeTruthy();
         });
 
         it('should highlight if search engine is not available', function() {
-            Mozilla.UITour.getConfiguration = function(configName, callback) {
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                 callback({
                     targets: ['searchProvider', 'searchEngine-foo']
                 });
-            };
+            });
             $('.tour-search-engine').trigger('tour-step');
             expect(Mozilla.UITour.showMenu.calledWith('searchEngines')).toBeFalsy();
             expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
         });
 
         it('should do nothing if search bar is not available', function() {
-            Mozilla.UITour.getConfiguration = function(configName, callback) {
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                 callback({
                     targets: ['foo', 'searchEngine-foo']
                 });
-            };
+            });
             $('.tour-search-engine').trigger('tour-step');
             expect(Mozilla.UITour.showMenu.called).toBeFalsy();
             expect(Mozilla.UITour.showHighlight.called).toBeFalsy();
@@ -499,34 +510,33 @@ describe('browser-tour.js', function() {
 
         describe('showHelloPanel', function() {
 
-            beforeEach(function() {
-                Mozilla.UITour.getConfiguration = function(configName, callback) {
+            it('should query availableTargets', function() {
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                     callback({
                         targets: ['loop']
                     });
-                };
-            });
-
-            it('should query availableTargets', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+                });
                 $('.tour-show-hello-panel').trigger('tour-step');
                 expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
             });
 
             it('should open the hello panel if available', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
+                    callback({
+                        targets: ['loop']
+                    });
+                });
                 $('.tour-show-hello-panel').trigger('tour-step');
                 expect(Mozilla.BrowserTour.prototype.showHelloPanel).toHaveBeenCalled();
                 expect(Mozilla.UITour.showMenu.calledWith('loop')).toBeTruthy();
             });
 
             it('should call promptAddHelloButton if target is not available', function() {
-                Mozilla.UITour.getConfiguration = function(configName, callback) {
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                     callback({
                         targets: ['foo']
                     });
-                };
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+                });
                 $('.tour-show-hello-panel').trigger('tour-step');
                 expect(Mozilla.BrowserTour.prototype.showHelloPanel).toHaveBeenCalled();
                 expect(Mozilla.UITour.showMenu.called).toBeFalsy();
@@ -580,34 +590,33 @@ describe('browser-tour.js', function() {
 
         describe('reminderHelloButton', function() {
 
-            beforeEach(function() {
-                Mozilla.UITour.getConfiguration = function(configName, callback) {
+            it('should query availableTargets', function() {
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                     callback({
                         targets: ['loop']
                     });
-                };
-            });
-
-            it('should query availableTargets', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+                });
                 tour.reminderHelloButton();
                 expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
             });
 
             it('should show a door-hanger on loop target available', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
+                    callback({
+                        targets: ['loop']
+                    });
+                });
                 tour.reminderHelloButton();
                 expect(Mozilla.UITour.showHighlight.calledWith('loop')).toBeTruthy();
                 expect(Mozilla.UITour.showInfo.calledWith('loop')).toBeTruthy();
             });
 
             it('should do nothing if loop target is not available', function() {
-                Mozilla.UITour.getConfiguration = function(configName, callback) {
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                     callback({
                         targets: ['foo']
                     });
-                };
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+                });
                 tour.reminderHelloButton();
                 expect(Mozilla.UITour.showHighlight.called).toBeFalsy();
                 expect(Mozilla.UITour.showInfo.called).toBeFalsy();
@@ -627,12 +636,11 @@ describe('browser-tour.js', function() {
         });
 
         it('should hide Hello panel if it is open', function() {
-            Mozilla.UITour.getConfiguration = function(configName, callback) {
+            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                 callback({
                     targets: ['loop']
                 });
-            };
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callThrough();
+            });
             tour.showHelloPanel();
             tour.hideAnnotations();
             expect(Mozilla.BrowserTour.prototype.hideHelloPanel).toHaveBeenCalled();
