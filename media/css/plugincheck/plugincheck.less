@@ -304,6 +304,32 @@ html[dir="rtl"] {
     }
 }
 
+// Flash exploit notice
+.flash-warning {
+    .warning;
+    color: #fff;
+    background-color: #a91300;
+    #gradient > .vertical(#da5132, #a91300);
+    padding: 20px;
+    font-style: normal;
+    margin: 20px auto;
+    display: block;
+    width: 80%;
+    border-radius: 8px;
+
+    a,
+    a:active,
+    a:hover,
+    a:link {
+        color: #fff;
+        .trailing-arrow();
+    }
+
+    @media (max-width: @breakDesktop) {
+        width: auto;
+    }
+}
+
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     #main-feature > .download-button {

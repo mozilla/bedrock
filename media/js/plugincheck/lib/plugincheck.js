@@ -55,6 +55,8 @@
      * also set.
      */
      function setPluginStatus (plugin, installedVersion, knownVersions) {
+        var knownAbsLatest;
+
         // sort versions from low to high
         knownVersions.latest.sort(function(v1, v2) {
             // TODO: the server currently returns some versions with a leading
@@ -63,24 +65,27 @@
             return versionCompare($.trim(v1.version), $.trim(v2.version));
         });
 
-        // store the absolutly latest known version.
-        var knownAbsLatest = knownVersions.latest[knownVersions.latest.length - 1].version;
-
         if (Utils.isMatch(installedVersion, knownVersions.latest)) {
 
             plugin['status'] = 'latest';
             return plugin;
 
-        } else if (Utils.isMatch(installedVersion, knownVersions.vulnerable)) {
-
+        } else if (Utils.isMatch(installedVersion, knownVersions.vulnerable) || knownVersions.latest.length === 0) {
+            // If falling into this branch due to knownVersions.latest.length being 0,
+            // vulnerableInfo is false, leaving 'vulnerability_description' and
+            // 'vulnerability_url' as undefined. This seems to not cause any problems...
             var vulnerableInfo = Utils.isMatch(installedVersion, knownVersions.vulnerable);
             plugin['status'] = 'vulnerable';
             plugin['vulnerability_description'] = vulnerableInfo.vulnerability_description;
             plugin['vulnerability_url'] = vulnerableInfo.vulnerability_url;
 
             return plugin;
+        }
 
-        } else if (versionCompare(installedVersion, knownAbsLatest) < 0) {
+        // after checking for empty latest array, store the absolutely latest known version.
+        knownAbsLatest = knownVersions.latest[knownVersions.latest.length - 1].version;
+
+        if (versionCompare(installedVersion, knownAbsLatest) < 0) {
 
             // it is not the latest but also not vulnerable so, just outdated
             plugin['status'] = 'outdated';
