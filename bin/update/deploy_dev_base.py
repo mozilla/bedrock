@@ -17,7 +17,7 @@ def database(ctx):
     base_database()
     management_cmd(ctx, 'rnasync')
     management_cmd(ctx, 'update_security_advisories --force --quiet', use_src_dir=True)
-    management_cmd(ctx, 'cron update_reps_ical')
+    management_cmd(ctx, 'cron update_ical_feeds')
     management_cmd(ctx, 'cron update_tweets')
     management_cmd(ctx, 'runscript update_firefox_os_feeds')
 

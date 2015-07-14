@@ -22,8 +22,8 @@ BEGIN:VEVENT
 UID:https://reps.mozilla.org@2080
 CLASS:PUBLIC
 DTSTAMP:20141007T184543
-DTSTART;TZID=Africa/Johannesburg:20141008T060000
-DTEND;TZID=Africa/Johannesburg:20141009T130000
+DTSTART;VALUE=DATE:20150719
+DTEND;VALUE=DATE:20150720
 LOCATION:Mary Fitzgerald Square\, Newtown\, Johannesburg\, Johannesburg\, 
  South Africa
 SUMMARY:Tech 4 Africa
@@ -464,7 +464,6 @@ SUMMARY:Security Days 2014
 DESCRIPTION:The third edition of the workshop on computer security called 
  &#34;Security Days&#34; event filled with satisfaction last year for the return an
  d well accepted by the general public.
-URL:https://reps.mozilla.org/e/security-days-2014/
 SEQUENCE:2
 X-COORDINATES-LAT:-25.5174831491
 X-COORDINATES-LON:-54.6176977147
