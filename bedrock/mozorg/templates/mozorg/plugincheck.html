@@ -106,13 +106,6 @@
         <li>{{_('Step 2: Complete all recommended updates before restarting your browser.')}}</li>
       </ul>
 
-      <div class="flash-warning">
-        <p>
-          All versions of Adobe’s Flash Player plugin are currently vulnerable.
-        </p>
-        <a rel="external" href="https://support.mozilla.org/kb/set-adobe-flash-click-play-firefox">Learn more</a>
-      </div>
-
       <div class="plugincheck-loader"></div>
 
       <div id="sec-plugin-vulnerable">
@@ -266,13 +259,6 @@
       <p>{{_('Currently the plugin check service is only available to Firefox users.')}}</p>
     {% endif %}
     {{ download_firefox(small=True) }}
-
-    <div class="flash-warning">
-      <p>
-        All versions of Adobe’s Flash Player plugin are currently vulnerable.
-      </p>
-      <a rel="external" href="https://support.mozilla.org/kb/set-adobe-flash-click-play-firefox">Learn more</a>
-    </div>
   </section>
 </div>
 {% endblock %}
