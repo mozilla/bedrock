@@ -30,8 +30,9 @@ RUN ./manage.py update_product_details
 # Cleanup
 RUN apt-get purge -y python-dev build-essential libxml2-dev libxslt1-dev libmemcached-dev git
 RUN apt-get autoremove -y
-RUN rm -rf /var/lib/{apt,dpkg,cache,log} /usr/share/doc /usr/share/man /tmp/* /var/cache/* /app/.git /app/media
+RUN rm -rf /var/lib/{apt,dpkg,cache,log} /usr/share/doc /usr/share/man /tmp/* /var/cache/* /app/.git
 RUN find /app -name *.pyc -delete
+RUN ./docker/softlinkstatic.py
 
 # Change User
 RUN chown webdev.webdev -R .
