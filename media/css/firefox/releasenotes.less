@@ -19,6 +19,9 @@
     background-color: white;
 }
 
+.release-notes {
+    background-color:white;
+}
 
 .tri-column {
     .span(4);
@@ -104,35 +107,6 @@
     padding-bottom:50px;
 }
 
-#new-label {
-    .span(6);
-}
-
-#fixed-label {
-    .span(6);
-}
-
-#changed-label {
-    .span(6);
-}
-
-#developer-label {
-    .span(6);
-}
-
-#html-label {
-    .span(6);
-}
-
-#resolved-label {
-    .span(6);
-}
-
-#unresolved-label {
-    .span(6);
-}
-
-
 
 .note_wrap {
     height : 40px;
@@ -144,11 +118,11 @@
 }
 
 .gray_note {
-    background-color: #F5FAFF;
+background-color: #F5FAFF;
 }
 
 .blue_note {
-    background-color: #F0F2F2;
+    background-color: #FFF;
 }
 
 .notes-head {
@@ -563,6 +537,29 @@ article {
         background-size: 320px;
     }
 
+    .label_wrapper {
+        width: @widthMobile;
+        position: relative;
+        float: left;
+        .span-all();
+        font-weight:bold;
+        p {
+        text-align:left; }
+    }
+
+    .note_wrapper {
+        width: @widthMobile;
+        padding-top:10px;
+        float: left;
+        position: relative;
+        .span-all();
+    }
+
+    .note_wrap {
+    float:left;
+    overflow:hidden;
+    }
+
     .notes-head,
     .blueprint .notes-head {
         h1,
@@ -588,12 +585,70 @@ article {
         margin: @baseLine 10px;
     }
 
-    .section-items {
+    #new-wrapper {
+    .span-all();
+    overflow: hidden;
+    position: relative;
+    width: @widthMobile;
+    padding-bottom:20px;
+    }
+
+    #fixed-wrapper {
+    .span-all();
+    overflow: hidden;
+    position: relative;
+    width: @widthMobile;
+    padding-bottom:20px;
+    }
+
+    #changed-wrapper {
+    .span-all();
+    overflow: hidden;
+    position: relative;
+    width: @widthMobile;
+    padding-bottom:20px;
+    }
+
+    #developer-wrapper {
+    .span-all();
+    overflow: hidden;
+    position: relative;
+    width: @widthMobile;
+    padding-bottom:20px;
+    }
+
+    #html-wrapper {
+    .span-all();
+    overflow: hidden;
+    position: relative;
+    width: @widthMobile;
+    padding-bottom:20px;
+    }
+
+    #resolved-wrapper {
+    .span-all();
+    overflow: hidden;
+    position: relative;
+    width: @widthMobile;
+    padding-bottom:20px;
+    }
+
+    #unresolved-wrapper {
+    .span-all();
+    overflow: hidden;
+    position: relative;
+    width: @widthMobile;
+    padding-bottom:20px;
+    }
+
+
+    .section-items.tagged {
         > li {
-            padding-left: 0;
-            span {
-                word-break: break-all;
-            }
+            float:left;
+            overflow:hidden;
+            width: @widthMobile;
+            .span-all();
+            position: relative;
         }
 
         .tag {

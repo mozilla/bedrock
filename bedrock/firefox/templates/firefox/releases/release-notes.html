@@ -23,7 +23,7 @@
 {% set channel_name = channel_name|default('') %}
 
 {% block content %}
-<main role="main">
+<main role="main" class="release-notes">
   <article id="main-content">
       {% block platform_switch %}
     {% if equivalent_release_url %}
@@ -102,8 +102,6 @@
         </span>
         {% endfor %}
         </div>
-
-        <hr>
         
 
 
