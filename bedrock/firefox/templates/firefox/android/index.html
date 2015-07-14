@@ -207,6 +207,11 @@
                 {{ _('Enjoy a more pleasant reading experience with Reader View and Reading List.') }}
                 {{ _('Access your saved articles even when you’re not online.') }}
               </p>
+              
+              {% if l10n_has_tag('android_reader_links') %}
+                <a rel="external" href="https://support.mozilla.org/kb/save-web-pages-your-reading-list-firefox-android" class="learn-more">{{ _('Learn more about Reading List') }}</a><br>
+                <a rel="external" href="https://support.mozilla.org/kb/view-articles-reader-view-firefox-android" class="learn-more">{{ _('Learn more about Reader View') }}</a>
+              {% endif %}
 
               <figure>
                 <div class="media-desktop">
