@@ -25,6 +25,18 @@
 {% block content %}
 <main role="main" class="release-notes">
   <article id="main-content">
+
+  {% block notes_header %}
+    <header class="notes-head">
+    <p>
+    <h1>Firefox Notes </h1>
+     <h1>{{ version }}</h1>
+     <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2>
+     </p>
+
+     {% endblock %}
+
+
       {% block platform_switch %}
     {% if equivalent_release_url %}
       <aside id="platform">
@@ -42,15 +54,8 @@
     {% endif %}
     {% endblock %}
 
-  {% block notes_header %}
-    <header class="notes-head">
-    <p>
-     <h1>{{ version }}</h1>
-     <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }}</h2>
-     </p>
-    {% block notes_heading_secondary %}
-    {% endblock %}
 
+    {% block notes_heading_secondary %}
       <p>
         {{ _('Check out "What’s New" and "Known Issues" for this version of Firefox below.') }}
       {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
@@ -74,6 +79,7 @@
       </p>
     </header>
   {% endblock %}
+
 
 
         <div class="notes-column">
