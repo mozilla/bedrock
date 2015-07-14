@@ -268,9 +268,11 @@ Available ``type`` values:
 
 Other parameters:
 
-* ``callback`` function to excecute and return with the queried data
+* ``callback`` function to execute and return with the queried data
 
 Specific use cases:
+
+**sync**
 
 If ``'sync'`` is queried the object returned by the callback will contain an object called ``setup``. This can be used to determine if the user is already using Firefox Sync:
 
@@ -282,6 +284,8 @@ If ``'sync'`` is queried the object returned by the callback will contain an obj
         }
     });
 
+**availableTargets**
+
 If ``'availableTargets'`` is queried the object returned by the callback contain array called ``targets``. This can be used to determine what highlight targets are currently available in the browser chrome:
 
 .. code-block:: javascript
@@ -290,12 +294,14 @@ If ``'availableTargets'`` is queried the object returned by the callback contain
         console.dir(config.targets);
     });
 
+**appinfo**
+
 If ``'appinfo'`` is queried the object returned gives information on the users current Firefox version.
 
 .. code-block:: javascript
 
     Mozilla.UITour.getConfiguration('appinfo', function (config) {
-        console.dir(config); //{defaultUpdateChannel: "nightly", version: "36.0a1"}
+        console.dir(config); //{defaultBrowser: true, defaultUpdateChannel: "nightly", version: "42.0a1"}
     });
 
 The ``defaultUpdateChannel`` key has many possible values, the most important being:
@@ -308,7 +314,9 @@ The ``defaultUpdateChannel`` key has many possible values, the most important be
 
 .. Important::
 
-    ``appinfo`` is only available in Firefox 35 onward.
+    ``appinfo`` is only available in Firefox 35 onward, and ``defaultBrowser`` will only be returned on Firefox 40 or later.
+
+**selectedSearchEngine**
 
 If ``'selectedSearchEngine'`` is queried the object returned gives the currently selected default search provider.
 
@@ -321,6 +329,8 @@ If ``'selectedSearchEngine'`` is queried the object returned gives the currently
 .. Important::
 
     ``selectedSearchEngine`` is only available in Firefox 34 onward.
+
+**loop**
 
 If ``'loop'`` is queried the object returns the boolean value for the ``'loop.gettingStarted.seen'`` preference.
 
@@ -342,8 +352,11 @@ Sets a specific browser preference using a given key value pair.
 Available key names:
 
 * ``'Loop:ResumeTourOnFirstJoin'``
+* ``'defaultBrowser'``
 
 Specific use cases:
+
+**Loop:ResumeTourOnFirstJoin**
 
 Setting the value for ``'Loop:ResumeTourOnFirstJoin'`` will enable Firefox to resume the FTE tour when the user joins their first conversation.
 
@@ -356,6 +369,18 @@ Note: Don't try setting this value to ``false``. The current Hello code in Firef
 .. Important::
 
     ``setConfiguration('Loop:ResumeTourOnFirstJoin', ...)`` is only available in Firefox 35 onward.
+
+**defaultBrowser**
+
+Passing ``defaultBrowser`` will set Firefox as the default web browser.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.setConfiguration('defaultBrowser');
+
+.. Important::
+
+    ``setConfiguration('defaultBrowser')`` is only available in Firefox 40 onward.
 
 showFirefoxAccounts();
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -529,7 +554,8 @@ Event types:
 * ``'Loop:IncomingConversation'`` - User has an incoming conversation. Event will have data boolean value ``conversationOpen`` set to ``true`` or ``false`` depending on if the chat window is open or not.
 * ``'Loop:RoomURLCopied'`` - User clicks the copy button to share a chat URL.
 * ``'Loop:RoomURLEmailed'`` - User clicks the email button to share a chat URL.
-* ``'Loop:PanelTabChanged'`` - User clicks on the Contacts or Room tab in the panel. Event will return data = ``rooms`` or ``contacts`` depending on which tab the user clicked on.
+* ``'Loop:RoomURLShared'`` - User clicks the share button to share a chat URL.
+* ``'Loop:PanelTabChanged'`` - User clicks on the Contacts or Room tab in the panel. The data object passed with the event will be a string with a value of either ``rooms`` or ``contacts``, depending on which tab the user clicked.
 
 Note: UiTour can only create a single listener that is responsible for handling all event types. It is not currently possible to listen for only specific event types.
 
