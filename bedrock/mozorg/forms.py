@@ -154,7 +154,6 @@ class ContributeSignupForm(forms.Form):
     )
     writing_choices = (
         empty_choice,
-        ('writing-social', _lazy('Social media')),
         ('writing-journalism', _lazy('Journalism')),
         ('writing-techusers', _lazy('Technical docs for users')),
         ('writing-techdevs', _lazy('Technical docs for developers')),
