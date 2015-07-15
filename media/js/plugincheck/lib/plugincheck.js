@@ -43,70 +43,69 @@
         };
     }
 
-    /**
-     * Sets the status of the current plugin.
-     *
-     * @param {object} plugin - The plugin object to update
-     * @param {string} installedVersion - Version of the current installed plugin
-     * @param {array} knownVersions - Array of all known versions
-     *
-     * @returns the updated plugin object with the status set. For vulnerable
-     * plugins, the vulnerability_description and vulnerability_url fields are
-     * also set.
-     */
-     function setPluginStatus (plugin, installedVersion, knownVersions) {
-        var knownAbsLatest;
-
-        // sort versions from low to high
-        knownVersions.latest.sort(function(v1, v2) {
-            // TODO: the server currently returns some versions with a leading
-            // space, therefore the trim workaround is currently required.
-            // Remove the trims once the backend rewrite is done.
-            return versionCompare($.trim(v1.version), $.trim(v2.version));
-        });
-
-        if (Utils.isMatch(installedVersion, knownVersions.latest)) {
-
-            plugin['status'] = 'latest';
-            return plugin;
-
-        } else if (Utils.isMatch(installedVersion, knownVersions.vulnerable) || knownVersions.latest.length === 0) {
-            // If falling into this branch due to knownVersions.latest.length being 0,
-            // vulnerableInfo is false, leaving 'vulnerability_description' and
-            // 'vulnerability_url' as undefined. This seems to not cause any problems...
-            var vulnerableInfo = Utils.isMatch(installedVersion, knownVersions.vulnerable);
-            plugin['status'] = 'vulnerable';
-            plugin['vulnerability_description'] = vulnerableInfo.vulnerability_description;
-            plugin['vulnerability_url'] = vulnerableInfo.vulnerability_url;
-
-            return plugin;
-        }
-
-        // after checking for empty latest array, store the absolutely latest known version.
-        knownAbsLatest = knownVersions.latest[knownVersions.latest.length - 1].version;
-
-        if (versionCompare(installedVersion, knownAbsLatest) < 0) {
-
-            // it is not the latest but also not vulnerable so, just outdated
-            plugin['status'] = 'outdated';
-            return plugin;
-
-        } else if (versionCompare(installedVersion, knownAbsLatest) > 0) {
-
-            // if newer than our known absolutely latest version, set status as newer but currently,
-            // it will still show up as up to date (latest) in the UI
-            plugin['status'] = 'newer';
-            return plugin;
-        }
-    }
-
     var PluginCheck = {
+        /**
+         * Sets the status of the current plugin.
+         *
+         * @param {object} plugin - The plugin object to update
+         * @param {string} installedVersion - Version of the current installed plugin
+         * @param {array} knownVersions - Array of all known versions
+         *
+         * @returns the updated plugin object with the status set. For vulnerable
+         * plugins, the vulnerability_description and vulnerability_url fields are
+         * also set.
+         */
+         setPluginStatus: function(plugin, installedVersion, knownVersions) {
+            var knownAbsLatest;
+
+            // sort versions from low to high
+            knownVersions.latest.sort(function(v1, v2) {
+                // TODO: the server currently returns some versions with a leading
+                // space, therefore the trim workaround is currently required.
+                // Remove the trims once the backend rewrite is done.
+                return versionCompare($.trim(v1.version), $.trim(v2.version));
+            });
+
+            // Only test for a latest release if there are items in the array
+            if ((knownVersions.latest.length > 0) && Utils.isMatch(installedVersion, knownVersions.latest)) {
+                plugin['status'] = 'latest';
+                return plugin;
+            } else if (Utils.isMatch(installedVersion, knownVersions.vulnerable) || knownVersions.latest.length === 0) {
+                // If falling into this branch due to knownVersions.latest.length being 0,
+                // vulnerableInfo is false, leaving 'vulnerability_description' and
+                // 'vulnerability_url' as undefined. This will not cause problems as these values
+                // will simply be ignored by the template engine and not populated.
+                var vulnerableInfo = Utils.isMatch(installedVersion, knownVersions.vulnerable);
+                plugin['status'] = 'vulnerable';
+                plugin['vulnerability_description'] = vulnerableInfo.vulnerability_description || '';
+                plugin['vulnerability_url'] = vulnerableInfo.vulnerability_url  || '';
+
+                return plugin;
+            }
+
+            knownAbsLatest = knownVersions.latest[knownVersions.latest.length - 1].version;
+
+            // The installed version was not in the array of latest or vulnerable
+            // versions so, next we need to determine whether the version is just
+            // outdated or newer.
+            if (versionCompare(installedVersion, knownAbsLatest) < 0) {
+                // it is not the latest but also not vulnerable so, just outdated
+                plugin['status'] = 'outdated';
+                return plugin;
+
+            } else if (versionCompare(installedVersion, knownAbsLatest) > 0) {
+                // if newer than our known absolutely latest version, set status as newer but currently,
+                // it will still show up as up to date (latest) in the UI
+                plugin['status'] = 'newer';
+                return plugin;
+            }
+        },
         /**
         * Returns the latest and vulnrable known versions for the current plugin.
         * @params {object} knownPluginReleases
         * @returns The latest and vulnerable versions for this plugin.
         */
-        getKnownVersionInfo:function (knownPluginReleases) {
+        getKnownVersionInfo: function (knownPluginReleases) {
             var latest;
             var vulnerable;
 
@@ -154,7 +153,7 @@
                 url: pluginInfo.url
             };
 
-            return setPluginStatus(plugin, installedVersion, knownVersions);
+            return PluginCheck.setPluginStatus(plugin, installedVersion, knownVersions);
         },
         /**
         * Determines whether we are dealing with one of the known plugins and returns it,
