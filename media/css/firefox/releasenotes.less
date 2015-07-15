@@ -13,14 +13,30 @@
     font-style: normal;
 }
 
+#outer-wrapper {
+    background: #fff;
+    width: 100%;
+}
+
+#wrapper {
+    padding:0px;
+    width: 100%;
+}
+
 .space #wrapper {
     background-repeat: no-repeat;
     background-position: 0px 180px;
     background-color: white;
+    width : 100%;
+}
+
+#main-content {
+    width: 100%;
 }
 
 .release-notes {
     background-color:white;
+    width: 100%;
 }
 
 .tri-column {
@@ -33,18 +49,18 @@
 }
 
 .notes-column {
-    .span(12);
+    width: 100%;
     text-align:left;
     background-color: white;
 }
 
 .note_wrapper {
-    .span(10);
+    width: 75%;
      float: right;
 }
 
 .label_wrapper {
-    .span(2);
+    width: 25%;
     height: 100%;
     position: absolute;
     left: 0;
@@ -52,7 +68,6 @@
 }
 
 #new-wrapper {
-    .span(12);
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -60,7 +75,6 @@
 }
 
 #fixed-wrapper {
-    .span(12);
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -109,7 +123,7 @@
 
 
 .note_wrap {
-    height : 40px;
+    height : 30px;
     padding-left: 20px;
 }
 
@@ -128,11 +142,15 @@ background-color: #F5FAFF;
 .notes-head {
     .clearfix;
     margin-bottom: @baseLine * 2;
+    background-color: #F0F0F0;
 
-    h1,
     h2,
     p {
         .span(12);
+    }
+
+    h1 {
+        .span(9);
     }
 
     h1 {
@@ -165,7 +183,8 @@ background-color: #F5FAFF;
         .span(8);
     }
     h1 {
-        margin-bottom: .15em;
+        margin-top: .25em;
+        padding-top: 20px;
     }
     h2 {
         margin-bottom: .75em;
@@ -177,8 +196,10 @@ background-color: #F5FAFF;
 }
 
 #platform {
-    float: right;
     overflow: hidden;
+    padding-top:10px;
+    .span(3);
+    float:right;
 
     a {
         color: #000;
@@ -263,7 +284,6 @@ article {
     .box-shadow(@shadow);
     @shadow: 0 0 0 1px #fff inset;
     background: #fff;
-    margin: 0 -@gridGutterWidth @baseLine;
 }
 
 .blueprint .notes-section {

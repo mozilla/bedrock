@@ -28,19 +28,9 @@
 
   {% block notes_header %}
     <header class="notes-head">
-    <p>
-    <h1>Firefox Notes </h1>
-     <h1>{{ version }}</h1>
-     <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2>
-     </p>
-
-     {% endblock %}
-
-
-      {% block platform_switch %}
-    {% if equivalent_release_url %}
+    <h1>Release Notes </h1>
+        {% if equivalent_release_url %}
       <aside id="platform">
-        <h4>{{ _('View notes for:') }}</h4>
         <ul>
         {% if release.product == 'Firefox' %}
           <li><span>{{ _('Desktop') }}</span></li>
@@ -52,6 +42,15 @@
         </ul>
       </aside>
     {% endif %}
+    <p>
+     <h1>{{ version }}</h1>
+     <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2>
+     </p>
+
+     {% endblock %}
+
+
+      {% block platform_switch %}
     {% endblock %}
 
 
