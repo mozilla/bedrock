@@ -529,6 +529,23 @@ html[dir="rtl"] #header h1 {
     left: 40px;
 }
 
+html[dir='rtl'] {
+    #product-hello h2:before {
+        left: auto;
+        right: 40px;
+    }
+
+    #product-sync h2:before {
+        left: auto;
+        right: 10px;
+    }
+
+    #product-marketplace h2:before {
+        left: auto;
+        right: 30px;
+    }
+}
+
 // Sync
 #product-sync h2:before {
     .fxfamily-sprite(-345px, -405px);
@@ -555,8 +572,14 @@ html[dir="rtl"] #header h1 {
         height: 14px;
         background: url(/media/img/firefox/family/index/family-sprite.png) -344px -515px no-repeat;
         display: inline-block;
-        margin-left: 8px;
+        margin: 0 8px;
         .at2x('/media/img/firefox/family/index/family-sprite.png', 500px, 645px);
+    }
+}
+
+html[dir='rtl'] {
+    #products-secondary .product {
+        padding: 50px 140px 50px 20px;
     }
 }
 
@@ -576,6 +599,28 @@ html[dir="rtl"] #header h1 {
     #product-marketplace h2:before {
         left: 55px;
     }
+
+    html[dir='rtl'] {
+        #products-secondary .product {
+            padding-right: 160px;
+        }
+
+        #product-hello h2:before {
+            left: auto;
+            right: 60px;
+        }
+
+        #product-sync h2:before {
+            left: auto;
+            right: 30px;
+        }
+
+        #product-marketplace h2:before {
+            left: auto;
+            right: 55px;
+        }
+    }
+
 }
 
 /*--------------------------------------------------------------------------*/
@@ -742,6 +787,20 @@ html[dir="rtl"] #header h1 {
         top: @baseLine;
         margin-left: -43px;
     }
+
+    html[dir='rtl'] {
+        #products-secondary {
+            .product {
+                padding: 120px @gridGutterWidth @baseLine;
+            }
+
+            h2:before {
+                left: 50%;
+                right: auto;
+            }
+        }
+    }
+
 }
 
 
@@ -850,6 +909,23 @@ html[dir="rtl"] #header h1 {
         background-position: 0 -417px;
         top: @baseLine - 5;
         left: 30px;
+    }
+
+    html[dir='rtl'] {
+        #products-secondary .product {
+            padding: @baseLine 120px @baseLine @gridGutterWidth;
+        }
+
+        #product-hello h2:before,
+        #product-marketplace h2:before {
+            left: auto;
+            right: 30px;
+        }
+
+        #product-sync h2:before {
+            left: auto;
+            right: 15px;
+        }
     }
 
     #footer {
