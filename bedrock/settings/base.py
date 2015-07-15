@@ -263,6 +263,7 @@ PIPELINE_COMPILERS = (
 PIPELINE_LESS_BINARY = path('node_modules', 'less', 'bin', 'lessc')
 PIPELINE_LESS_ARGUMENTS = '-s'
 WHITENOISE_ROOT = path('root_files')
+WHITENOISE_MAX_AGE = 6 * 60 * 60  # 6 hours
 PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
 PIPELINE_UGLIFYJS_BINARY = path('node_modules', 'uglify-js', 'bin', 'uglifyjs')
 PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
