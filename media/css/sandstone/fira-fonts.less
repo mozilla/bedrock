@@ -1,0 +1,70 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('/media/fonts/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-Regular.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-Regular.woff') format('woff'),
+         url('/media/fonts/FiraSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('/media/fonts/FiraSans-Bold.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-Bold.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-Bold.woff') format('woff'),
+         url('/media/fonts/FiraSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Sans Light';
+    src: url('/media/fonts/FiraSans-Light.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-Light.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-Light.woff') format('woff'),
+         url('/media/fonts/FiraSans-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Sans Light';
+    src: url('/media/fonts/FiraSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-SemiBold.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-SemiBold.woff') format('woff'),
+         url('/media/fonts/FiraSans-SemiBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Sans Light';
+    src: url('/media/fonts/FiraSans-LightItalic.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-LightItalic.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-LightItalic.woff') format('woff'),
+         url('/media/fonts/FiraSans-LightItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@baseFiraFontFamily: 'Fira Sans', X-LocaleSpecific, sans-serif;
+
+.fira-sans() {
+    font-family: @baseFiraFontFamily;
+}
+
+.fira-sans-light() {
+    font-family: 'Fira Sans Light', X-LocaleSpecific-Light, @baseFiraFontFamily;
+    font-weight: normal;
+}
+
+.fira-sans-light-italic() {
+    font-family: 'Fira Sans Light', X-LocaleSpecific-Light, @baseFiraFontFamily;
+    font-weight: normal;
+    font-style: italic;
+}
