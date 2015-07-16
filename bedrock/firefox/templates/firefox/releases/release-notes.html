@@ -82,10 +82,7 @@
 
         <div class="notes-column">
       {% if new_features %}
-      <section class="notes-section" id="new-features">
-
-
-       
+      <section class="notes-section" id="new-features">       
         <div id="new-wrapper">
         {% for note in new_features if note.tag =="New" %}
         {% if loop.first %}
@@ -103,6 +100,11 @@
               {{ note.note|markdown|safe }} </div>
           </li>
         </ul>
+        {% if loop.last %}
+        <br>
+        <br>
+        <br>
+        {% endif %}
         </span>
         {% endfor %}
         </div>
@@ -123,6 +125,11 @@
               {{ note.note|markdown|safe }} </div>
           </li>
         </ul>
+        {% if loop.last %}
+        <br>
+        <br>
+        <br>
+        {% endif %}
         </span>
         {% endfor %}
         </div>
@@ -141,6 +148,11 @@
               {{ note.note|markdown|safe }} </div>
           </li>
         </ul>
+        {% if loop.last %}
+        <br>
+        <br>
+        <br>
+        {% endif %}
         </span>
         {% endfor %}
         </div>
@@ -148,18 +160,23 @@
         <div id="developer-wrapper">
         {% for note in new_features if note.tag =="Developer" %}
         {% if loop.first %}
-          <div class="label_wrapper">
+          <span class="label_wrapper">
              <p class="note_label"><i class="fa fa-cog"></i>  DEVELOPER </p>
-          </div>
+          </span>
         {% endif %}
 
-        <div class="note_wrapper">
+        <span class="note_wrapper">
         <ul class="section-items tagged">
           <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
               {{ note.note|markdown|safe }} </div>
           </li>
         </ul>
-        </div>
+        {% if loop.last %}
+        <br>
+        <br>
+        <br>
+        {% endif %}
+        </span>
         {% endfor %}
         </div>
 
@@ -168,18 +185,23 @@
         <div id="html-wrapper">
         {% for note in new_features if note.tag =="HTML5" %}
         {% if loop.first %}
-          <div class="label_wrapper">
+          <span class="label_wrapper">
              <p class="note_label"><i class="fa fa-wrench"></i>
   HTML 5 </p>
-          </div>
+          </span>
         {% endif %}
-        <div class="note_wrapper">
+        <span class="note_wrapper">
         <ul class="section-items tagged">
           <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
               {{ note.note|markdown|safe }} </div>
           </li>
         </ul>
-        </div>
+        {% if loop.last %}
+        <br>
+        <br>
+        <br>
+        {% endif %}
+        </span>
         {% endfor %}
         </div>
 
@@ -187,17 +209,22 @@
         <div id="resolved">
         {% for note in new_features if note.tag =="Resolved" %}
         {% if loop.first %}
-          <div class="label_wrapper">
+          <span class="label_wrapper">
              <p class="note_label"> RESOLVED </p>
-          </div>
+          </span>
         {% endif %}
-        <div class="note_wrapper">
+        <span class="note_wrapper">
         <ul class="section-items tagged">
           <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> <div class="note_wrap">
               {{ note.note|markdown|safe }} </div>
           </li>
         </ul>
-        </div>
+        {% if loop.last %}
+        <br>
+        <br>
+        <br>
+        {% endif %}
+        </span>
         {% endfor %}
         </div>
 
