@@ -9,6 +9,11 @@
 Vagrant Installation
 ========================
 
+.. warning::
+  July 16, 2015 - The Vagrant installation is not currently working or maintained and
+  is being replaced with a Docker installation. Please use the virtualenv install until
+  the Docker method is ready.
+
 The Vagrant installation will help you work on the Python bedrock codebase
 and the PHP legacy codebase with a minimum amount of effort (hopefully).
 
@@ -263,5 +268,3 @@ Tips & Tricks
 Troubleshooting
 ---------------------
   Find us on irc in #webprod
-
-
