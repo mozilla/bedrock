@@ -132,7 +132,7 @@
 }
 
 .gray_note {
-background-color: #B9D2ED;
+background-color: #DFECFA;
 }
 
 .blue_note {
@@ -141,9 +141,12 @@ background-color: #B9D2ED;
 
 .notes-head {
     .clearfix;
-    padding:20px;
+    padding:5%;
+    padding-bottom:0px;
+    padding-top:10px;
     margin-bottom: @baseLine * 2;
     background-color: #F0F0F0;
+    text-align:center;
 
     h2,
     p {
@@ -151,7 +154,18 @@ background-color: #B9D2ED;
     }
 
     h1 {
-        .span(9);
+        .span(12);
+        font-weight: 400;
+        font-size: 250%;
+        padding-bottom: 15px;
+    }
+
+    h3 {
+        .span(3);
+        font-weight: 900;
+        font-size: 225%;
+        float:left;
+        padding-left:0px;
     }
 
     h1 {
@@ -162,6 +176,8 @@ background-color: #B9D2ED;
         .font-size(1.428em);
         letter-spacing: normal;
         margin-bottom: .75em;
+        float:left;
+        .span(3);
     }
 
     p {
@@ -196,11 +212,18 @@ background-color: #B9D2ED;
     text-align: center;
 }
 
+.first {
+        padding-left: 40%;
+        padding-right: 5%;
+}
+
 #platform {
     overflow: hidden;
     padding-top:10px;
-    .span(3);
-    float:right;
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    text-align: center;
 
     a {
         color: #000;
@@ -214,16 +237,16 @@ background-color: #B9D2ED;
 
     ul {
         margin: 0;
-        padding: 3px;
         float: left;
         background: #fff;
+        width: 100%;
     }
 
     li {
         margin: 0;
-        padding: 0;
         list-style-type: none;
         float: left;
+        width: 60px;
     }
 
     a {
@@ -258,6 +281,7 @@ background-color: #B9D2ED;
 
 .space #platform {
     ul {
+        padding: 0px;
     }
 
     a {
@@ -508,6 +532,10 @@ article {
         background-size: 650px;
     }
 
+    .first {
+        padding-left: 40%;
+    }
+
     .notes-head {
         h1,
         h2,
@@ -544,6 +572,10 @@ article {
 
     .space #wrapper {
         background-size: 320px;
+    }
+
+    .first {
+        padding-left: 15%;
     }
 
     .label_wrapper {

@@ -29,33 +29,7 @@
   {% block notes_header %}
     <header class="notes-head">
     <h1>Release Notes </h1>
-        {% if equivalent_release_url %}
-      <aside id="platform">
-        <ul>
-        {% if release.product == 'Firefox' %}
-          <li><span>{{ _('Desktop') }}</span></li>
-          <li><a href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
-        {% else %}
-          <li><a href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
-          <li><span>{{ _('Android') }}</span></li>
-        {% endif %}
-        </ul>
-      </aside>
-    {% endif %}
-    <p>
-     <h1>{{ version }}</h1>
-     <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2>
-     </p>
-
-     {% endblock %}
-
-
-      {% block platform_switch %}
-    {% endblock %}
-
-
-    {% block notes_heading_secondary %}
-      <p>
+          <p>
         {{ _('Release Notes tell you what’s new in Firefox. As always, we welcome your ') }}
       {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
           if release.product == 'Firefox for Android'
@@ -73,8 +47,37 @@
       {% else %}
           or see the <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
       {% endif %}
-        {{ release.text|markdown|safe }}
       </p>
+
+        {% if equivalent_release_url %}
+      <aside id="platform">
+        <ul>
+        {% if release.product == 'Firefox' %}
+          <li class = "first"><span>{{ _('Desktop') }}</span></li>
+          <li><a href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
+        {% else %}
+          <li class="first"><a href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
+          <li><span>{{ _('Android') }}</span></li>
+        {% endif %}
+        </ul>
+      </aside>
+    {% endif %}
+    <p>
+     <h3>{{ version }}</h3></p>
+     <p>
+     <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2></p>
+     <p>
+     {{ release.text|markdown|safe }}
+     </p>
+
+     {% endblock %}
+
+
+      {% block platform_switch %}
+    {% endblock %}
+
+
+    {% block notes_heading_secondary %}
     </header>
   {% endblock %}
 
