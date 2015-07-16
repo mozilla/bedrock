@@ -187,7 +187,11 @@
         <div class="feature-home">
           <h3>{{ _('At home') }}</h3>
           <p>
-            {{ _('Move from your desk to the couch without skipping a beat. Access your open tabs on your smartphone, or keep browsing your bookmarks right on your tablet.') }}
+            {% if LANG.startswith('en-') %}
+              {{ _('Move from your desk to the couch without skipping a beat. Access your open tabs on your smartphone, or keep browsing your bookmarks right on your tablet.') }}
+            {% else %}
+              {{ _('Move from your desk to the couch without skipping a beat. Access your open tabs on your smartphone, or keeping browsing your bookmarks right on your tablet.') }}
+            {% endif %}
           </p>
         </div>
         <div class="feature-work">
