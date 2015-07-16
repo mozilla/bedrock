@@ -56,23 +56,22 @@
 
     {% block notes_heading_secondary %}
       <p>
-        {{ _('Check out "What’s New" and "Known Issues" for this version of Firefox below.') }}
+        {{ _('Release Notes tell you what’s new in Firefox. As always, we welcome your ') }}
       {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
           if release.product == 'Firefox for Android'
           else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
           bugzilla='https://bugzilla.mozilla.org/' %}
-        As always, you’re encouraged to
-        <a href="{{ feedback }}">tell us what you think</a>,
-        or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
+        <a href="{{ feedback }}">feedback. </a>
+        You can also  <a href="{{ bugzilla }}"> file a bug in Bugzilla</a>
       {% endtrans %}
       {% if release.bug_list %}
       <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
         <input type="hidden" name="limit" value="0">
         <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
-        <p>If interested, please see the <button type="submit">complete list of changes</button> in this release.</p>
+        <p> <button type="submit">complete list of changes</button> in this release.</p>
       </form>
       {% else %}
-          If interested, please see the  <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
+          or see the <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
       {% endif %}
         {{ release.text|markdown|safe }}
       </p>
@@ -308,33 +307,4 @@
 {% endblock %}
 
 {% block js %}
- {% javascript 'firefox-resp' %}
-  <script type=text/javascript src="http://code.jquery.com/jquery-1.10.1.min.js"> 
-JQuery(document).ready(function() {
-  Tabzilla.disableEasterEgg();
-  console.log("SUp");
-  var newHeight = JQuery("#new-wrapper").height();
-  JQuery("#new-label").height(newHeight);
-  console.log("Hi");
-
-  var fixedHeight = JQuery("#fixed-wrapper").height();
-  JQuery("#fixed-label").height(fixedHeight);
-
-  var changedHeight = JQuery("#changed-wrapper").height();
-  JQuery("#changed-label").height(changedHeight);
-
-  var developerHeight = JQuery("#developer-wrapper").height();
-  JQuery("#developer-label").height(developerHeight);
-
-  var htmlHeight = JQuery("#html-wrapper").height();
-  JQuery("#html-label").height(htmlHeight);
-
-  var resolvedHeight = JQuery("#resolved-wrapper").height();
-  JQuery("#resolved-label").height(resolvedHeight);
-
-  var unresolvedHeight = JQuery("#unresolved-wrapper").height();
-  JQuery("#unresolved-label").height(unresolvedHeight);
-
-});
-</script> 
 {% endblock  %}
