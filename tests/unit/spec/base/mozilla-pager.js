@@ -241,6 +241,7 @@ describe('mozilla-pager.js', function () {
         afterEach(function () {
             Mozilla.Pager.destroyPagers();
             $('#pager').remove();
+            window.location.hash = '';
         });
 
         it('should monitor hash changes', function () {

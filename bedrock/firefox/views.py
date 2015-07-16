@@ -528,6 +528,8 @@ class WhatsnewView(LatestFxView):
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-whatsnew.html'
+        elif version.startswith('40.'):
+            template = 'firefox/whatsnew_40/index.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
             has_pocket = locale in self.pocket_locales
