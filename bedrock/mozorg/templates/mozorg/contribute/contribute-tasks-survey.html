@@ -1,0 +1,99 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/contribute-base.html" %}
+
+{% block page_title %}{{_('Thank you!')}}{% endblock %}
+
+{% block optimizely %}
+  {% if waffle.switch('contribute-signup-optimizely') and LANG == 'en-US' %}
+    <script src="//cdn.optimizely.com/js/246059135.js"></script>
+  {% endif %}
+{% endblock %}
+
+{% block body_id %}thankyou{% endblock %}
+
+{% block contrib_country_form %}{% endblock %}
+
+{% block contrib_title %}
+  <div class="container">
+    <h1 class="page-title">{{ _('Thanks!') }}</h1>
+    <p class="section-tagline">
+      {{ _('We’re thrilled to see that you’re interested in contributing and can’t wait to get you started.') }}
+      {{ _('Keep an eye on your inbox for an important message from us.') }}
+    </p>
+
+    {% if task %}
+      <div class="confirm-body survey">
+        <iframe src="https://www.surveygizmo.com/s3/2184089/Participation-ratings-survey-questions-for-each-selection-7-questions?task={{ task }}" frameborder="0" scrolling="no"></iframe>
+      </div>
+    {% endif %}
+
+    <form class="inquiry-form" id="inquiry-form" method="post" action="{{ url('mozorg.contribute.taskssurvey') }}">
+
+      {% if form.errors %}
+        {{ form.non_field_errors()|safe }}
+        <ul class="errorlist">
+          {% if form.email.errors %}
+            <li>{{_('Please enter a valid email address.')}}</li>
+          {% endif %}
+
+          {% if form.privacy.errors %}
+            <li>{{_('You must agree to the privacy policy.')}}</li>
+          {% endif %}
+
+          {% if form.category.errors %}
+            <li>{{_('Please select an area of interest.')}}</li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
+      <fieldset class="personal">
+        <h2 class="section-title">
+          {{ _('Interested in trying something else?') }}
+        </h2>
+        <div class="section-subtitle">
+          {{ _('Share your email and interest with us and we‘ll be in touch shortly with more things we think you‘ll enjoy.') }}
+        </div>
+        <ul>
+          <li>
+            <label for="person-name">{{ _('Name') }}</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+          </li>
+          <li>
+            <label for="person-email">{{ _('Email address') }}</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+          </li>
+          <li>
+            <label for="person-country">{{ _('Country') }}</label>
+            <span class="select">
+              {{ form.country }}
+            </span>
+            {{ form.country.errors }}
+          </li>
+          <li class="form-agree">
+            {{ form.privacy }}
+            {{ form.privacy.errors }}
+          </li>
+        </ul>
+      </fieldset>
+
+      {{ form.category }}
+
+      <fieldset class="submit">
+        <button type="submit">{{ _('Send me an Email') }}</button>
+      </fieldset>
+
+    </form>
+  </div>
+
+
+{% endblock %}
+
+{% block contrib_content %}
+{% endblock contrib_content %}
+
+{% block contrib_footer %}{% endblock %}
