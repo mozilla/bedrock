@@ -7,7 +7,7 @@
 {% block page_title %}{{_('Thank you!')}}{% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('contribute-signup-optimizely') and LANG == 'en-US' %}
+  {% if LANG == 'en-US' and waffle.switch('contribute-signup-optimizely') %}
     <script src="//cdn.optimizely.com/js/246059135.js"></script>
   {% endif %}
 {% endblock %}
@@ -41,10 +41,6 @@
 
           {% if form.privacy.errors %}
             <li>{{_('You must agree to the privacy policy.')}}</li>
-          {% endif %}
-
-          {% if form.category.errors %}
-            <li>{{_('Please select an area of interest.')}}</li>
           {% endif %}
         </ul>
       {% endif %}
@@ -80,8 +76,6 @@
           </li>
         </ul>
       </fieldset>
-
-      {{ form.category }}
 
       <fieldset class="submit">
         <button type="submit">{{ _('Send me an Email') }}</button>

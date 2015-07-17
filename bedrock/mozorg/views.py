@@ -155,17 +155,15 @@ class ContributeSignupOldForm(l10n_utils.LangFilesMixin, FormView):
 
 
 class ContributeTasks(l10n_utils.LangFilesMixin, TemplateView):
+    template_name = 'mozorg/contribute/contribute-tasks.html'
     variation_re = re.compile('^[1-4]$')
 
     def get_context_data(self, **kwargs):
         cxt = super(ContributeTasks, self).get_context_data(**kwargs)
         variation = self.request.GET.get('variation', '4')
-        match = self.variation_re.match(variation)
-        if match:
+        if self.variation_re.match(variation):
             cxt['variation'] = variation
         return cxt
-
-    template_name = 'mozorg/contribute/contribute-tasks.html'
 
 
 class ContributeTasksSurvey(l10n_utils.LangFilesMixin, FormView):
@@ -176,8 +174,7 @@ class ContributeTasksSurvey(l10n_utils.LangFilesMixin, FormView):
     def get_context_data(self, **kwargs):
         cxt = super(ContributeTasksSurvey, self).get_context_data(**kwargs)
         task = self.request.GET.get('task', '')
-        match = self.task_re.match(task)
-        if match:
+        if self.task_re.match(task):
             cxt['task'] = task
         return cxt
 
@@ -191,16 +188,14 @@ class ContributeTasksSurvey(l10n_utils.LangFilesMixin, FormView):
 
     def get_basket_data(self, form):
         data = form.cleaned_data
-        basket_data = {
+        return {
             'email': data['email'],
             'name': data['name'],
             'country': data['country'],
             'interest_id': 'dontknow',
-            'lang': l10n_utils.get_locale(self.request)
+            'lang': form.locale,
+            'source_url': self.request.build_absolute_uri(),
         }
-
-        basket_data['source_url'] = self.request.build_absolute_uri()
-        return basket_data
 
     def form_valid(self, form):
         try:

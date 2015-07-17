@@ -4,6 +4,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from datetime import date
 import json
+import basket
 
 from django.conf import settings
 from django.core import mail
@@ -27,6 +28,108 @@ from scripts import update_tableau_data
 
 
 _ALL = settings.STUB_INSTALLER_ALL
+
+
+class TestContributeTasks(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+        self.view = views.ContributeTasks()
+
+    def test_query_param(self):
+        self.view.request = self.rf.get('/', {'variation': '3'})
+        cxt = self.view.get_context_data()
+        self.assertEqual(cxt['variation'], '3')
+
+    def test_no_query_param(self):
+        self.view.request = self.rf.get('/')
+        cxt = self.view.get_context_data()
+        self.assertEqual(cxt['variation'], '4')
+
+    def test_invalid_query_param(self):
+        self.view.request = self.rf.get('/', {'variation': 'dude'})
+        cxt = self.view.get_context_data()
+        self.assertNotIn('variation', cxt)
+
+
+class TestContributeTasksSurvey(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+        self.view = views.ContributeTasksSurvey()
+
+    def test_query_param(self):
+        self.view.request = self.rf.get('/', {'task': '3'})
+        cxt = self.view.get_context_data()
+        self.assertEqual(cxt['task'], '3')
+
+    def test_no_query_param(self):
+        self.view.request = self.rf.get('/')
+        cxt = self.view.get_context_data()
+        self.assertNotIn('task', cxt)
+
+    def test_invalid_query_param(self):
+        self.view.request = self.rf.get('/', {'task': 'dude'})
+        cxt = self.view.get_context_data()
+        self.assertNotIn('task', cxt)
+
+    @patch('bedrock.mozorg.views.basket.request')
+    def test_basket_data(self, basket_mock):
+        req = self.rf.post('/', {
+            'email': 'dude@example.com',
+            'name': 'The Dude',
+            'privacy': 'yes',
+            'country': 'us',
+        })
+        resp = views.ContributeTasksSurvey.as_view()(req)
+        self.assertEqual(resp.status_code, 302)
+        basket_mock.assert_called_with('post', 'get-involved', {
+            'email': 'dude@example.com',
+            'name': 'The Dude',
+            'country': 'us',
+            'interest_id': 'dontknow',
+            'lang': 'en-US',
+            'source_url': 'http://testserver/',
+        })
+
+    @patch('bedrock.mozorg.views.basket.request')
+    def test_privacy_required(self, basket_mock):
+        req = self.rf.post('/', {
+            'email': 'dude@example.com',
+            'name': 'The Dude',
+            'country': 'us',
+        })
+        resp = views.ContributeTasksSurvey.as_view()(req)
+        self.assertEqual(resp.status_code, 200)
+        self.assertFalse(basket_mock.called)
+
+    @patch('bedrock.mozorg.views.basket.request')
+    def test_basket_error(self, basket_mock):
+        basket_mock.side_effect = basket.BasketException
+        req = self.rf.post('/', {
+            'email': 'dude@example.com',
+            'name': 'The Dude',
+            'privacy': 'yes',
+            'country': 'us',
+        })
+        with self.activate('en-US'):
+            resp = views.ContributeTasksSurvey.as_view()(req)
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn('We apologize, but an error occurred in our system.', resp.content)
+        self.assertTrue(basket_mock.called)
+
+    @patch('bedrock.mozorg.views.basket.request')
+    def test_basket_email_error(self, basket_mock):
+        basket_mock.side_effect = basket.BasketException(code=basket.errors.BASKET_INVALID_EMAIL)
+        req = self.rf.post('/', {
+            'email': 'dude@example.com',
+            'name': 'The Dude',
+            'privacy': 'yes',
+            'country': 'us',
+        })
+        with self.activate('en-US'):
+            resp = views.ContributeTasksSurvey.as_view()(req)
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn('Whoops! Be sure to enter a valid email address.', resp.content)
+        self.assertTrue(basket_mock.called)
 
 
 class TestContributeSignup(TestCase):

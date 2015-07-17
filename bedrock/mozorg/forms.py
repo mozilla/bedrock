@@ -231,6 +231,7 @@ class ContributeTasksForm(forms.Form):
     privacy = forms.BooleanField(widget=PrivacyWidget)
 
     def __init__(self, locale, *args, **kwargs):
+        self.locale = locale
         regions = product_details.get_regions(locale)
         regions = sorted(regions.iteritems(), key=itemgetter(1))
         regions.insert(0, self.empty_choice)
