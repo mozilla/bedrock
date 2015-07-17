@@ -12,6 +12,8 @@ if (typeof Mozilla === 'undefined') {
 
     var HelloFTU = {};
     var _helloPanelTimeout;
+    var $window = $(window);
+    var $document = $(document);
 
     // User has clicked "Get Started" button in the Hello panel.
     HelloFTU.getStartedClicked = false;
@@ -51,14 +53,18 @@ if (typeof Mozilla === 'undefined') {
             if (config.targets && $.inArray('loop', config.targets) !== -1) {
                 Mozilla.UITour.showMenu('loop', function() {
                     HelloFTU.helloPanelVisible = true;
-                    $(window).one('resize.hello', HelloFTU.handleResize);
+                    HelloFTU.bindHelloPanelEvents();
                 });
             }
         });
     };
 
     HelloFTU.hideHelloPanel = function() {
-        Mozilla.UITour.hideMenu('loop');
+        if (HelloFTU.helloPanelVisible) {
+            Mozilla.UITour.hideMenu('loop');
+            HelloFTU.helloPanelVisible = false;
+            HelloFTU.unbindHelloPanelEvents();
+        }
     };
 
     /**
@@ -85,10 +91,7 @@ if (typeof Mozilla === 'undefined') {
      * overflow pallet (bug 1109868).
      */
     HelloFTU.handleResize = function() {
-        if (!HelloFTU.getStartedClicked && HelloFTU.helloPanelVisible) {
-            HelloFTU.hideHelloPanel();
-            HelloFTU.helloPanelVisible = false;
-        }
+        HelloFTU.hideHelloPanel();
     };
 
     HelloFTU.trackRoomShareButton = function(button) {
@@ -157,6 +160,17 @@ if (typeof Mozilla === 'undefined') {
         });
 
         HelloFTU.getStartedClicked = true;
+        HelloFTU.unbindHelloPanelEvents();
+    };
+
+    HelloFTU.bindHelloPanelEvents = function() {
+        $document.one('click.hello', HelloFTU.hideHelloPanel);
+        $window.one('resize.hello', HelloFTU.handleResize);
+    };
+
+    HelloFTU.unbindHelloPanelEvents = function() {
+        $document.off('click.hello', HelloFTU.hideHelloPanel);
+        $window.off('resize.hello', HelloFTU.handleResize);
     };
 
     /**

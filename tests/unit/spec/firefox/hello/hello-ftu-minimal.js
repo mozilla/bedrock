@@ -88,12 +88,12 @@ describe('hello-ftu-minimal.js', function() {
                     targets: ['loop']
                 });
             });
-            spyOn($.fn, 'one');
+            spyOn(Mozilla.HelloFTU, 'bindHelloPanelEvents');
             Mozilla.HelloFTU.showHelloPanel();
             expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
             expect(Mozilla.UITour.showMenu).toHaveBeenCalled();
             expect(Mozilla.HelloFTU.helloPanelVisible).toBeTruthy();
-            expect($.fn.one).toHaveBeenCalledWith('resize.hello', jasmine.any(Function));
+            expect(Mozilla.HelloFTU.bindHelloPanelEvents).toHaveBeenCalled();
         });
 
         it('should not show panel if loop target unavailable', function() {
@@ -120,10 +120,21 @@ describe('hello-ftu-minimal.js', function() {
 
     describe('hideHelloPanel', function () {
 
-        it('should hide panel', function() {
+        it('should hide panel if visible', function() {
+            Mozilla.HelloFTU.helloPanelVisible = true;
             spyOn(Mozilla.UITour, 'hideMenu');
+            spyOn(Mozilla.HelloFTU, 'unbindHelloPanelEvents');
             Mozilla.HelloFTU.hideHelloPanel();
             expect(Mozilla.UITour.hideMenu).toHaveBeenCalledWith('loop');
+            expect(Mozilla.HelloFTU.unbindHelloPanelEvents).toHaveBeenCalled();
+        });
+
+        it('should not hide panel if not visible', function() {
+            spyOn(Mozilla.UITour, 'hideMenu');
+            spyOn(Mozilla.HelloFTU, 'unbindHelloPanelEvents');
+            Mozilla.HelloFTU.hideHelloPanel();
+            expect(Mozilla.UITour.hideMenu).not.toHaveBeenCalledWith('loop');
+            expect(Mozilla.HelloFTU.unbindHelloPanelEvents).not.toHaveBeenCalled();
         });
     });
 
@@ -169,24 +180,10 @@ describe('hello-ftu-minimal.js', function() {
 
     describe('handleResize', function () {
 
-        it('should hide panel', function() {
-            Mozilla.HelloFTU.helloPanelVisible = true;
+        it('should hide Hello panel', function() {
             spyOn(Mozilla.HelloFTU, 'hideHelloPanel');
             Mozilla.HelloFTU.handleResize();
             expect(Mozilla.HelloFTU.hideHelloPanel).toHaveBeenCalled();
-        });
-
-        it('should not hide panel if not visible', function() {
-            spyOn(Mozilla.HelloFTU, 'hideHelloPanel');
-            Mozilla.HelloFTU.handleResize();
-            expect(Mozilla.HelloFTU.hideHelloPanel).not.toHaveBeenCalled();
-        });
-
-        it('should not hide panel if "get started" has been clicked', function() {
-            Mozilla.HelloFTU.getStartedClicked = true;
-            spyOn(Mozilla.HelloFTU, 'hideHelloPanel');
-            Mozilla.HelloFTU.handleResize();
-            expect(Mozilla.HelloFTU.hideHelloPanel).not.toHaveBeenCalled();
         });
     });
 
@@ -277,6 +274,32 @@ describe('hello-ftu-minimal.js', function() {
             expect(Mozilla.HelloFTU.getStartedClicked).toBeFalsy();
             Mozilla.HelloFTU.onChatWindowOpened();
             expect(Mozilla.HelloFTU.getStartedClicked).toBeTruthy();
+        });
+
+        it('should unbind Hello panel events', function() {
+            spyOn(Mozilla.HelloFTU, 'unbindHelloPanelEvents');
+            Mozilla.HelloFTU.onChatWindowOpened();
+            expect(Mozilla.HelloFTU.unbindHelloPanelEvents).toHaveBeenCalled();
+        });
+    });
+
+    describe('bindHelloPanelEvents', function () {
+
+        it('should bind events correctly', function() {
+            spyOn($.fn, 'one');
+            Mozilla.HelloFTU.bindHelloPanelEvents();
+            expect($.fn.one).toHaveBeenCalledWith('click.hello', Mozilla.HelloFTU.hideHelloPanel);
+            expect($.fn.one).toHaveBeenCalledWith('resize.hello', Mozilla.HelloFTU.handleResize);
+        });
+    });
+
+    describe('unbindHelloPanelEvents', function () {
+
+        it('should unbind events correctly', function() {
+            spyOn($.fn, 'off');
+            Mozilla.HelloFTU.unbindHelloPanelEvents();
+            expect($.fn.off).toHaveBeenCalledWith('click.hello', Mozilla.HelloFTU.hideHelloPanel);
+            expect($.fn.off).toHaveBeenCalledWith('resize.hello', Mozilla.HelloFTU.handleResize);
         });
     });
 
