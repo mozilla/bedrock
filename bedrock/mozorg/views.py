@@ -27,7 +27,7 @@ from lib.l10n_utils.dotlang import _, lang_file_is_active, lang_file_has_tag
 from bedrock.mozorg import email_contribute
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.decorators import cache_control_expires
-from bedrock.mozorg.forms import (ContributeForm,
+from bedrock.mozorg.forms import (ContributeForm, ContributeTasksForm,
                                   ContributeStudentAmbassadorForm,
                                   WebToLeadForm, ContributeSignupForm,
                                   ContentServicesForm)
@@ -154,12 +154,68 @@ class ContributeSignupOldForm(l10n_utils.LangFilesMixin, FormView):
         return reverse('mozorg.contribute.thankyou')
 
 
-def contribute_signup(request):
-    use_new_form = lang_file_has_tag('mozorg/contribute/index',
-                                     l10n_utils.get_locale(request),
-                                     '2015_signup_form')
-    view_class = ContributeSignup if use_new_form else ContributeSignupOldForm
-    return view_class.as_view()(request)
+class ContributeTasks(l10n_utils.LangFilesMixin, TemplateView):
+    template_name = 'mozorg/contribute/contribute-tasks.html'
+    variation_re = re.compile('^[1-4]$')
+
+    def get_context_data(self, **kwargs):
+        cxt = super(ContributeTasks, self).get_context_data(**kwargs)
+        variation = self.request.GET.get('variation', '4')
+        if self.variation_re.match(variation):
+            cxt['variation'] = variation
+        return cxt
+
+
+class ContributeTasksSurvey(l10n_utils.LangFilesMixin, FormView):
+    template_name = 'mozorg/contribute/contribute-tasks-survey.html'
+    task_re = re.compile('^[1-7]$')
+    form_class = ContributeTasksForm
+
+    def get_context_data(self, **kwargs):
+        cxt = super(ContributeTasksSurvey, self).get_context_data(**kwargs)
+        task = self.request.GET.get('task', '')
+        if self.task_re.match(task):
+            cxt['task'] = task
+        return cxt
+
+    def get_form_kwargs(self):
+        kwargs = super(ContributeTasksSurvey, self).get_form_kwargs()
+        kwargs['locale'] = l10n_utils.get_locale(self.request)
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('mozorg.contribute.tasksthankyou')
+
+    def get_basket_data(self, form):
+        data = form.cleaned_data
+        return {
+            'email': data['email'],
+            'name': data['name'],
+            'country': data['country'],
+            'interest_id': 'dontknow',
+            'lang': form.locale,
+            'source_url': self.request.build_absolute_uri(),
+        }
+
+    def form_valid(self, form):
+        try:
+            basket.request('post', 'get-involved', self.get_basket_data(form))
+        except basket.BasketException as e:
+            if e.code == basket.errors.BASKET_INVALID_EMAIL:
+                msg = _(u'Whoops! Be sure to enter a valid email address.')
+                field = 'email'
+            else:
+                msg = _(u'We apologize, but an error occurred in our system. '
+                        u'Please try again later.')
+                field = '__all__'
+            form.errors[field] = form.error_class([msg])
+            return self.form_invalid(form)
+
+        return super(ContributeTasksSurvey, self).form_valid(form)
+
+
+class ContributeTasksThankyou(l10n_utils.LangFilesMixin, TemplateView):
+    template_name = 'mozorg/contribute/contribute-tasks-thankyou.html'
 
 
 class ContributeSignupThankyou(l10n_utils.LangFilesMixin, TemplateView):
@@ -177,6 +233,14 @@ class ContributeSignupThankyou(l10n_utils.LangFilesMixin, TemplateView):
 
 class ContributeIndex(l10n_utils.LangFilesMixin, TemplateView):
     template_name = 'mozorg/contribute/index.html'
+
+
+def contribute_signup(request):
+    use_new_form = lang_file_has_tag('mozorg/contribute/index',
+                                     l10n_utils.get_locale(request),
+                                     '2015_signup_form')
+    view_class = ContributeSignup if use_new_form else ContributeSignupOldForm
+    return view_class.as_view()(request)
 
 
 @csrf_exempt
