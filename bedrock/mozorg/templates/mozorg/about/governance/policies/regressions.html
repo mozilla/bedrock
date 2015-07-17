@@ -1,0 +1,70 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-base.html" %}
+
+{% block page_title %}{{ _('Performance Regressions Policy') }}{% endblock %}
+{% block body_id %}regression{% endblock %}
+
+{% block article %}
+<h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+<nav role="directory">
+  <p>{{ _('In this document:') }}</p>
+  <ul>
+    <li><a href="#basic-policy">{{ _('Basic Policy') }}</a>: {{ _('The tree is to be closed in response to serious performance regressions.') }}</li>
+    <li><a href="#implementation">{{ _('Implementation') }}</a>: {{ _('When the tree is to be closed and how it is to be reopened.') }}</li>
+    <li><a href="#new-features">{{ _('New Features vs. Performance') }}</a>: {{ _('Potential approaches for a valuable new feature that causes performance regressions.') }}</li>
+    <li><a href="#footprint-increases">{{ _('Footprint Increases') }}</a>: {{ _('Tree closure policy not applicable.') }}</li>
+  </ul>
+</nav>
+
+<section id="basic-policy">
+  <h2>{{ _('Basic Policy: Tree Closure') }}</h2>
+  <p>{{ _('Performance is a critical goal for Mozilla releases and the commercial products that will be based on Mozilla. We cannot allow performance regressions to go unnoticed or unresolved during our development cycles. Yet our automated tools are of only limited help in determining the cause of performance regressions. The sheriffs are the first line of defense and those monitoring the tree must take an active stance in responding to performance regressions. We have therefore implemented a policy of tree closure for serious performance regressions.') }}</p>
+</section>
+
+<section id="implementation">
+  <h2>{{ _('Implementation') }}</h2> 
+  <p>{{ _('Performance regressions are measured against the numbers reported on tinderbox by various regression tests including tests for startup time (Ts), pageload (Tp), and new window open (Txul). These tests are run on several machines with varying processor speeds and memory configurations. When a performance regression appears that is “bad enough,”* then') }}</p>
+  <ul>
+    <li>{{ _('The tree is to be closed') }}
+      <ul>
+        <li>{{ _('Those on the hook are on the hook - it’s the job of each person on the hook to figure out whether his or her check-in caused the problem.') }}</li>
+        <li>{{ _('The hook gets one hour.') }}</li>
+        <li>{{ _('Those on the hook may exonerate their individual check-ins through an explanation as to why their code is not the problem (e.g., my code doesn’t run at start-up for a regression in start-up performance). To be effective, the explanation must be convincing to the sheriff and the performance gurus.') }}</li>
+      </ul>
+    </li>
+    <li>{{ _('Starting on the 61st minute, checkins that have not been exonerated are backed out by the sheriff') }}</li>
+    <li>{{ _('If there is no good idea as to what caused the problem, then') }}
+    <ul>
+      <li>{{ _('the tree remains closed') }}</li>
+      <li>{{ _('everyone is backed out') }}</li>
+      <li>{{ _('those who were backed out are allowed to check-in only through a metering process. The sheriff decides the check-in order.') }}</li>
+    </ul>
+    </li>
+    <li>{{ _('If there is a reasonable idea about what caused the problem, then') }}
+      <ul>
+        <li>{{ _('the suspect checkin is backed out') }}</li>
+        <li>{{ _('we wait for the tinderboxen to cycle and verify that the regression is fixed') }}</li>
+        <li>{{ _('the tree is opened') }}</li>
+      </ul>
+    </li>
+  </ul>
+  <aside>
+    <p><strong>*</strong> We have not tried to define “bad enough.” We believe that the sheriff in conjunction with performance gurus, super-reviewers, mozilla.org staff and concerned developers will be able to determine when a regression is bad enough. If it turns out a significant number of these decisions are controversial, then mozilla.org staff will look at creating more precise guidelines, and will use the experiences gained with this current policy to create a more detailed one. So please, do not attack the sheriffs for personal disagreement over what is bad enough. We expect sheriffs to do their best, to get input from the relevant people and to act when appropriate. We expect post-mortems regarding what was backed out, when, why, and how we might proceed better the next time. We expect civil discussion. We do not expect our sheriffs to be the subject of virulent attacks because they did or did not back out a particular check-in.</p>
+  </aside>
+</section>
+
+<section id="new-features">
+  <h2>{{ _('New Features vs. Performance') }}</h2>
+  <p>{{ _('It may happen that a highly desirable feature results in a performance regression. In that case, those wishing to include the feature in Mozilla ought to do the following. Enlist help to reduce the performance degradation as much as possible. Repeat this step. Evaluate how important the feature really is. Be brutal. If the feature is important only to a few, the case for accepting a performance regression will be very hard. If the feature is important to a significant number of users, then start a discussion with drivers@mozilla.org about the value of your feature and why it is important enough to warrant a performance regression. Your chances of success will go way up if you can fix an equivalent performance bug or find a way to separate out another feature that has a similar performance cost. Even small declines in performance add up, so expect to have to work hard to justify regressions.') }}</p>
+</section>
+
+<section id="footprint-increases">
+  <h2>{{ _('Footprint Increases') }}</h2>
+  <p>{{ _('This policy does not apply to unexpected increases in Mozilla’s footprint. Staff feels that the cause of bloat and leaks has not been so difficult to identify, and so this policy is not required.') }}</p>
+</section>
+
+<p><strong>{{ _('Contact') }}</strong>: Mitchell Baker &lt;<a href="mailto:mitchell@mozilla.org">mitchell@mozilla.org</a>&gt;</p>
+{% endblock %}

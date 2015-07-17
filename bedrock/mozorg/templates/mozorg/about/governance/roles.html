@@ -16,7 +16,7 @@
 <h2>{{_('Module Owners and Peers')}}</h2>
 
 {% trans
-	moduleowners_url="//www.mozilla.org/hacking/module-ownership.html",
+	moduleowners_url=url('mozorg.about.governance.policies.module-ownership'),
 	module_url="//wiki.mozilla.org/Modules",
 	module_activities_url="//wiki.mozilla.org/Module_Owners_Activities_Modules" %}
 <p><a href="{{ moduleowners_url }}">Module owners</a> are responsible for leading the development of a module of code or a community activity. This role requires a range of tasks, including approving patches to be checked into the module or resolving conflicts among community members. Lists of <a href="{{ module_url }}">code module owners</a> and <a href="{{ module_activities_url }}">non-code module owners are available.</a></p>
@@ -25,7 +25,7 @@
 <h2>{{_('Super-Reviewers')}} </h2>
 {% trans
 	super_reviewers_url= url('mozorg.about.governance.roles'),
-	code_review_url ="//www.mozilla.org/hacking/code-review-faq.html" %}
+	code_review_url ="https://developer.mozilla.org/docs/Code_Review_FAQ" %}
 <p><a href="{{ super_reviewers_url }}">Super-reviewers</a> are a designated group of strong hackers who review code for its effects on the overall state of the tree and adherence to Mozilla coding guidelines. Super-review generally follows code review by the module owner, and the approval of a super-reviewer is generally required to check in code. More information on code review can be found in the <a href="{{ code_review_url }}"> mozilla.org code review FAQ.</a></p>
 
 {% endtrans %}
