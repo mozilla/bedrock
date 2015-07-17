@@ -39,3 +39,9 @@
        url('/media/fonts/l10n/az/mplus-2c-black-az-subset.woff') format('woff'),
        url('/media/fonts/l10n/az/mplus-2c-black-az-subset.ttf') format('truetype');
 }
+
+/* Bug 1174423 */
+
+* {
+  font-variant: normal !important;
+}
