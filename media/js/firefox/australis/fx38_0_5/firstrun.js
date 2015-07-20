@@ -5,29 +5,20 @@
 
     var hasVideo = $('#video').length > 0;
     var $ctaSignup = $('#cta-signup');
+    var $ctaSignin = $('#cta-signin');
     var $videoFrame = $('#video-frame');
     var $videoTitle = $('#video-title');
     var $video = $('#firstrun-video');
-    var funnelcakeId = parseInt($('#intro').data('funnelcake'), 10);
 
-    var ctaDirect;
     var videoOnLoad = false;
-
-    // ctaDirect var determines text displayed on CTA.
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=1177817#c8
-    if (funnelcakeId === 37) {
-        ctaDirect = false;
-    } else {
-        ctaDirect = true;
-    }
 
     // if locale has video, do A/B test
     if (hasVideo) {
         videoOnLoad = (Math.random() >= 0.5);
 
         // manual override to test videos
-        if (window.location.href.indexOf('&v=') !== -1) {
-            var parts = window.location.href.split('&v=');
+        if (window.location.href.indexOf('v=') !== -1) {
+            var parts = window.location.href.split('v=');
             var variation = parts[1];
 
             if (variation === '1') {
@@ -67,13 +58,6 @@
         });
     }
 
-    // display appropriate copy
-    if (!ctaDirect) {
-        $('.ctaMenu').addClass('visible');
-    } else {
-        $('.ctaDirect').addClass('visible');
-    }
-
     var showVideo = function(origin, autoplay) {
         var opts = {
             title: $videoTitle.text()
@@ -98,10 +82,18 @@
         Mozilla.UITour.getConfiguration('sync', function() {
             $document = $(document);
 
+            // signup CTA opens about:accounts
             $ctaSignup.on('click', function(e) {
                 e.preventDefault();
 
-                // call twice two correctly position highlight
+                Mozilla.UITour.showFirefoxAccounts();
+            });
+
+            // signin CTA opens hamburger menu
+            $ctaSignin.on('click', function(e) {
+                e.preventDefault();
+
+                // call twice to correctly position highlight
                 // https://bugzilla.mozilla.org/show_bug.cgi?id=1049130
                 Mozilla.UITour.showHighlight('accountStatus', 'wobble');
                 Mozilla.UITour.showHighlight('accountStatus', 'wobble');
@@ -109,8 +101,12 @@
                 // allow clicking anywhere in page to hide menu
                 // behind a timeout so event isn't captured with *this* click
                 setTimeout(function() {
-                    $document.one('click.hideHighlight', function() {
-                        Mozilla.UITour.hideHighlight();
+                    $document.one('click.hideHighlight', function(e) {
+                        // don't create race condition if user clicks twice in
+                        // succession on the sign in link
+                        if ($(e.target).prop('id') !== 'cta-signin') {
+                            Mozilla.UITour.hideHighlight();
+                        }
                     });
                 }, 50);
             });

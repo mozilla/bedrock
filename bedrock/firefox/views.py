@@ -455,17 +455,12 @@ class FirstrunView(LatestFxView):
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
 
-        # Firstrun 38.0.5 context - can be removed when these tests are complete
-        ctx = funnelcake_param(self.request)
-        funnelcake_id = ctx.get('funnelcake_id', None)
+        # add spring campaign video for 38.0.5
+        version = self.kwargs.get('version') or ''
 
-        # funnelcake 39 prevents video regardless of locale
-        if (funnelcake_id != '39'):
+        if show_38_0_5_firstrun_or_whatsnew(version):
             locale = l10n_utils.get_locale(self.request)
-
             ctx['video_url'] = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
-        else:
-            ctx['video_url'] = False
 
         return ctx
 

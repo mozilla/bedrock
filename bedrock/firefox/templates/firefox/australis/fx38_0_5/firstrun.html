@@ -50,7 +50,7 @@
 {% endblock %}
 
 {% block content %}
-<section id="intro" data-funnelcake="{{ funnelcake_id }}">
+<section id="intro">
   <div class="container">
     <div id="logo">
       {{ high_res_img('img/firefox/australis/fx38.0.5/firefox-logo.png', {'alt': 'Firefox', 'width': '142', 'height': '147'}) }}
@@ -62,9 +62,8 @@
       </h1>
 
       <h2>
-        {# L10n: Line breaks below are for visual formatting only. #}
-        <span class="ctaMenu">{{ _('Set up Sync and <br>you’re good to go.') }}</span>
-        <span class="ctaDirect">{{ _('Sign in to Firefox and <br>you’re good to go.') }}</span>
+        {# L10n: Line break below for visual formatting only. #}
+        {{ _('Sign in to Firefox and <br>you’re good to go.') }}
       </h2>
 
       <p>
@@ -74,10 +73,8 @@
 
     <div class="rightcol">
       {{ high_res_img('img/firefox/australis/fx38.0.5/sync.png', {'alt': 'Firefox Sync', 'width': '219', 'height': '118'}) }}
-      <a href="{{ url('firefox.sync') }}" id="cta-signup" class="button-flat-green">
-        <span class="ctaMenu">{{ _('Sign in to get started') }}</span>
-        <span class="ctaDirect">{{ _('Create a Firefox Account') }}</span>
-      </a>
+      <a href="{{ url('firefox.sync') }}" id="cta-signup" class="button-flat-green">{{ _('Create a Firefox Account') }}</a>
+      <a id="cta-signin" rel="external" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Already have one? Sign in.') }}</a>
     </div>
   </div>
 </section>
