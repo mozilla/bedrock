@@ -1,5 +1,6 @@
-/* Bug 854756 */
+/* Bug 854756, 1174423 */
 
 * {
   text-transform: none !important;
+  font-variant: normal !important;
 }

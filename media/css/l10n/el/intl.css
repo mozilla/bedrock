@@ -1,0 +1,5 @@
+/* Bug 1174423 */
+
+* {
+  font-variant: normal !important;
+}
