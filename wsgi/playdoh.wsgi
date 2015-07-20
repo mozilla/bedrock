@@ -19,10 +19,10 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bedrock.settings')
 
 # must be imported after env var is set above.
 from django.core.wsgi import get_wsgi_application
-from whitenoise.django import DjangoWhiteNoise
+from bedrock.base.static import BedrockWhiteNoise
 
 application = get_wsgi_application()
-application = DjangoWhiteNoise(application)
+application = BedrockWhiteNoise(application)
 
 if newrelic:
     application = newrelic.agent.wsgi_application()(application)
