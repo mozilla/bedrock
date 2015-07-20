@@ -18,11 +18,18 @@
 
 {% block contrib_title %}
   <div class="container">
-    <h1 class="page-title">{{ _('Thanks!') }}</h1>
+    <h1 class="page-title">
+    {% if task %}
+      {{ _('Thanks!') }}
+    {% else %}
+      {{ _('Awesome!') }}
+    {% endif %}
+    </h1>
+    {% if not task %}
     <p class="section-tagline">
       {{ _('We’re thrilled to see that you’re interested in contributing and can’t wait to get you started.') }}
-      {{ _('Keep an eye on your inbox for an important message from us.') }}
     </p>
+    {% endif %}
 
     {% if task %}
       <div class="confirm-body survey">
@@ -47,10 +54,18 @@
 
       <fieldset class="personal">
         <h2 class="section-title">
+        {% if task %}
           {{ _('Interested in trying something else?') }}
+        {% else %}
+          {{ _('Not sure where to begin?') }}
+        {% endif %}
         </h2>
         <div class="section-subtitle">
-          {{ _('Share your email and interest with us and we‘ll be in touch shortly with more things we think you‘ll enjoy.') }}
+        {% if task %}
+          {{ _('Share your email with us and we‘ll be in touch shortly with more things we think you‘ll enjoy.') }}
+        {% else %}
+          {{ _('Share your email with us and we‘ll be in touch shortly with some ideas about how you can help.') }}
+        {% endif %}
         </div>
         <ul>
           <li>
