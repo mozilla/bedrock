@@ -885,9 +885,41 @@ class TestHelloStartView(TestCase):
         eq_(template, ['firefox/hello/start-38.0.5.html'])
 
     @override_settings(DEV=True)
-    def test_fx_hello_39_0_a2(self, render_mock):
+    def test_fx_hello_39_0_a1(self, render_mock):
         """Should use start-38.0.5.html template for Hello 39.0a1"""
         req = self.rf.get('/en-US/firefox/hello/start/')
         self.view(req, version='39.0a1')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/hello/start-38.0.5.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_hello_39_0_a2(self, render_mock):
+        """Should use start-38.0.5.html template for Hello 39.0a2"""
+        req = self.rf.get('/en-US/firefox/hello/start/')
+        self.view(req, version='39.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/hello/start-38.0.5.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_hello_40_0(self, render_mock):
+        """Should use start-40.0.html template for Hello 40.0"""
+        req = self.rf.get('/en-US/firefox/hello/start/')
+        self.view(req, version='40.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/hello/start-40.0.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_hello_40_0_a1(self, render_mock):
+        """Should use start-40.0.html template for Hello 40.0a1"""
+        req = self.rf.get('/en-US/firefox/hello/start/')
+        self.view(req, version='40.0a1')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/hello/start-40.0.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_hello_40_0_a2(self, render_mock):
+        """Should use start-40.0.html template for Hello 40.0a2"""
+        req = self.rf.get('/en-US/firefox/hello/start/')
+        self.view(req, version='40.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/hello/start-40.0.html'])
