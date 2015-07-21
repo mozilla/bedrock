@@ -98,8 +98,7 @@ main {
         .font-size(18px);
         margin-left: @gridGutterWidth;
         li {
-            margin: 0;
-            line-height: 2;
+            margin: 0 0 (@baseLine / 2);
         }
     }
 }
@@ -146,6 +145,11 @@ main {
                 display: block;
                 width: 200px;
                 margin: 0 auto @baseLine;
+
+                svg {
+                    display: block;
+                    margin: 0 auto (@baseLine / 2);
+                }
 
                 .circle,
                 .highlight {
