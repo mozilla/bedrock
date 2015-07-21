@@ -39,7 +39,7 @@ casper.test.begin('Contribute Signup, Elements: ' + url, 15, function suite(test
     });
 });
 
-casper.test.begin('Contribute Signup, Areas of interest interaction: ' + url, 8, function suite(test) {
+casper.test.begin('Contribute Signup, Areas of interest interaction: ' + url, 9, function suite(test) {
     casper.start(url, function() {
         casper.click('.option-list li:first-child label');
     });
@@ -66,6 +66,21 @@ casper.test.begin('Contribute Signup, Areas of interest interaction: ' + url, 8,
     casper.waitWhileVisible('#area-writing', function() {
         test.assert(true, 'The writing area of interest is hidden');
         test.assertNotVisible('.areas', 'Areas of interest select fields hidden');
+
+        // the form should submit successfully and not be blocked by a
+        // stray required field. @see
+        // https://bugzilla.mozilla.org/show_bug.cgi?id=1185457
+        this.fill('#inquiry-form', {
+            name: 'Casper the friendly Ghost',
+            email: 'noreply@mozilla.com',
+            country: 'af',
+            format: 'T',
+            privacy: true
+        }, true);
+    });
+
+    casper.waitForUrl(/contribute\/thankyou\//g, function() {
+        test.assert(true, 'Form was submitted successfully');
     });
 
     casper.run(function() {
