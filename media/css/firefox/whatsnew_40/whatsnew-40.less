@@ -37,6 +37,7 @@ main {
     h1 {
         .fira-sans-light-italic;
         .font-size(50px);
+        letter-spacing: normal;
     }
 
     a:link, p, ol, ul {
@@ -93,9 +94,9 @@ main {
     }
 
     ol {
-        list-style-position: inside;
         .fira-sans-light;
         .font-size(18px);
+        margin-left: @gridGutterWidth;
         li {
             margin: 0;
             line-height: 2;
@@ -112,6 +113,11 @@ main {
             left: auto;
             right: 0;
         }
+    }
+
+    ol {
+        margin-left: 0;
+        margin-right: @gridGutterWidth;
     }
 }
 
@@ -134,10 +140,11 @@ main {
             margin: 0;
             padding: 0;
             width: 33.3%;
+            overflow: hidden;
 
             a {
                 display: block;
-                width: 140px;
+                width: 200px;
                 margin: 0 auto @baseLine;
 
                 .circle,
@@ -259,6 +266,13 @@ footer[role="contentinfo"] {
     }
 }
 
+.html-rtl {
+    footer[role="contentinfo"] .logo {
+        margin-left: @gridGutterWidth;
+        margin-right: 0;
+    }
+}
+
 @media only screen and (max-width: @breakDesktop) {
     main,
     #masthead,
@@ -290,6 +304,10 @@ footer[role="contentinfo"] {
 
     .button-flat-dark {
         .font-size(20px);
+    }
+
+    .firefox-learn-links ul {
+        width: 100%;
     }
 }
 
