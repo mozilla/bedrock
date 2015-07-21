@@ -10,6 +10,7 @@
         Mozilla.FirefoxDefault.isDefaultBrowser(function(isDefault) {
             if (window.location.href.indexOf('?default=false') !== -1 || isDefault === 'no') {
                 $('main').addClass('firefox-not-default');
+                $('#set-default').on('click', Mozilla.FirefoxDefault.setDefaultBrowser);
             } else {
                 $('main').addClass('firefox-default');
             }
