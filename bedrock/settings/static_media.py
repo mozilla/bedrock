@@ -540,6 +540,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew_38_pocket-bundle.css',
     },
+    'firefox_whatsnew_40': {
+        'source_filenames': (
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/whatsnew_40/whatsnew-40.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_40-bundle.css',
+    },
     'firefox_pocket': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -1403,6 +1410,14 @@ PIPELINE_JS = {
             'js/firefox/whatsnew_38/whatsnew-pocket.js',
         ),
         'output_filename': 'css/firefox_whatsnew_38_pocket-bundle.js',
+    },
+    'firefox_whatsnew_40': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/base/mozilla-firefox-default.js',
+            'js/firefox/whatsnew_40/whatsnew-40.js',
+        ),
+        'output_filename': 'css/firefox_whatsnew_40-bundle.js',
     },
     'geolocation': {
         'source_filenames': (

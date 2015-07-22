@@ -1,0 +1,437 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+@import "../../sandstone/fira-fonts.less";
+
+body {
+    .fira-sans;
+}
+
+html,
+body {
+    height: 100%;
+    background: @mozIDBlue;
+}
+
+#outer-wrapper {
+    .aurora-bars();
+}
+
+#tabzilla:before {
+    background: @mozIDBlue;
+}
+
+#masthead {
+    position: relative;
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: 0 auto 33px;
+    padding: 0;
+}
+
+main {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: 0 auto;
+
+    h1 {
+        .fira-sans-light-italic;
+        .font-size(50px);
+        letter-spacing: normal;
+    }
+
+    a:link, p, ol, ul {
+        color: #fff;
+    }
+
+    a:visited {
+        color: darken(#fff, 10%);
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        text-decoration: underline;
+    }
+
+    .tagline {
+        color: #bee1f5;
+        .fira-sans-light;
+        .font-size(22px);
+        max-width: 35em;
+        margin: @baseLine auto;
+    }
+
+    .main-header {
+        text-align: center;
+    }
+}
+
+.firefox-default-cta {
+    position: relative;
+    display: none;
+    width: 377px;
+    padding-left: 417px;
+    margin: (@baseLine * 2) auto;
+
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 377px;
+        height: 232px;
+        content: '';
+        .at2x('/media/img/firefox/whatsnew_40/win10.png', 100%, 100%);
+        background-repeat: no-repeat;
+        background-position: top left;
+        box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+        .fira-sans-light-italic;
+        .font-size(20px);
+        letter-spacing: normal;
+    }
+
+    ol {
+        .fira-sans-light;
+        .font-size(18px);
+        margin-left: @gridGutterWidth;
+        li {
+            margin: 0 0 (@baseLine / 2);
+        }
+    }
+}
+
+.html-rtl {
+    .firefox-default-cta {
+        padding-left: 0;
+        padding-right: 417px;
+
+        &:before {
+            left: auto;
+            right: 0;
+        }
+    }
+
+    ol {
+        margin-left: 0;
+        margin-right: @gridGutterWidth;
+    }
+}
+
+.firefox-learn-links {
+    display: none;
+
+    ul {
+        position: relative;
+        width: 70%;
+        margin: (@baseLine * 2) auto;
+        padding: 0;
+        list-style-type: none;
+        .fira-sans-light;
+        .font-size(20px);
+        text-align: center;
+        .clearfix();
+
+        li {
+            float: left;
+            margin: 0;
+            padding: 0;
+            width: 33.3%;
+            overflow: hidden;
+
+            a {
+                display: block;
+                width: 200px;
+                margin: 0 auto @baseLine;
+
+                svg {
+                    display: block;
+                    margin: 0 auto (@baseLine / 2);
+                }
+
+                .circle,
+                .highlight {
+                    .transition(fill .15s ease-in-out);
+                }
+            }
+
+            a:link,
+            a:visited {
+                color: #ffcd02;
+            }
+
+            a:hover,
+            a:active,
+            a:focus {
+                outline: none;
+                text-decoration: none;
+
+                .circle {
+                    fill: #ffd300;
+                }
+                .highlight {
+                    fill: #eb6b30;
+                }
+            }
+        }
+    }
+}
+
+.firefox-not-default {
+    .main-header {
+        padding-top: 219px;
+        .at2x('/media/img/firefox/whatsnew_40/firefox-logo.png', 191px, 199px);
+        background-position: top center;
+        background-repeat: no-repeat;
+    }
+    .firefox-default-cta {
+        display: block;
+    }
+}
+
+.firefox-default {
+    .main-header {
+        padding-top: 300px;
+        .at2x('/media/img/firefox/whatsnew_40/firefox-logo-large.png', 270px, 281px);
+        background-position: top center;
+        background-repeat: no-repeat;
+    }
+    .firefox-learn-links {
+        display: block;
+    }
+}
+
+.button-flat-dark {
+    .fira-sans-light;
+    .font-size(22px);
+    .trailing-arrow();
+    .transition(background .2s ease-in-out);
+}
+
+html[lang^='en'] {
+    .button-flat-dark {
+        text-transform: none;
+    }
+}
+
+footer[role="contentinfo"] {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: (@baseLine * 6) auto (@baseLine * 2);
+
+    ul {
+        display: inline-block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline;
+            margin: 0;
+            padding: 0;
+            color: #bee1f5;
+            .font-size(13px);
+
+            &:after {
+                content: '•';
+                margin: 0 10px;
+            }
+
+            &:last-child:after {
+                content: '';
+                margin: 0;
+            }
+        }
+    }
+
+    a:link {
+        color: #bee1f5;
+        .transition(color .1s ease-in-out);
+    }
+
+    a:visited {
+        color: darken(#bee1f5, 10%);
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #fff;
+    }
+
+    .logo {
+        display: inline-block;
+        width: 93px;
+        height: 24px;
+        margin-right: @gridGutterWidth;
+        .at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
+        .image-replaced();
+    }
+}
+
+.html-rtl {
+    footer[role="contentinfo"] .logo {
+        margin-left: @gridGutterWidth;
+        margin-right: 0;
+    }
+}
+
+.no-js {
+    .main-header {
+        padding-top: 100px;
+    }
+    .firefox-learn-links {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: @breakDesktop) {
+    main,
+    #masthead,
+    footer[role="contentinfo"] {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    main {
+        h1 {
+            .font-size(46px);
+        }
+
+        .tagline {
+            .font-size(20px);
+        }
+    }
+
+    .firefox-default-cta {
+        width: 303px;
+
+        h2 {
+            .font-size(18px);
+        }
+
+        ol {
+            .font-size(18px);
+        }
+    }
+
+    .button-flat-dark {
+        .font-size(20px);
+    }
+
+    .firefox-learn-links ul {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    main,
+    #masthead,
+    footer[role="contentinfo"] {
+        width: @widthMobileLandscape - @gridGutterWidth;
+    }
+
+    main {
+        h1 {
+            .font-size(40px);
+        }
+
+        .tagline {
+            .font-size(18px);
+        }
+    }
+
+    .firefox-default {
+        .main-header {
+            padding-top: 219px;
+            .background-size(191px, 199px);
+            background-position: top center;
+            background-repeat: no-repeat;
+        }
+    }
+
+    .firefox-default-cta {
+        width: auto;
+        padding-left: 0;
+        padding-top: 279px;
+
+        &:before {
+            left: 21.5px;
+        }
+    }
+
+    .html-rtl {
+        .firefox-default-cta {
+            padding-left: 0;
+            padding-right: 0;
+
+            &:before {
+                left: 21.5px;
+                right: auto;
+            }
+        }
+    }
+
+    .firefox-learn-links {
+
+        ul {
+            width: auto;
+
+            li {
+                float: none;
+                margin: @baseLine 0;
+                width: auto;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+    main,
+    #masthead,
+    footer[role="contentinfo"] {
+        width: @widthMobile - @gridGutterWidth;
+    }
+
+    main {
+        h1 {
+            .font-size(32px);
+        }
+
+        .tagline {
+            .font-size(@largeFontSize);
+        }
+    }
+
+    .firefox-default-cta {
+        width: auto;
+        padding-left: 0;
+        padding-top: 205px;
+
+        &:before {
+            width: 300px;
+            height: 185px;
+            left: 0;
+        }
+
+        h2 {
+            .font-size(@largeFontSize);
+        }
+
+        ol {
+            .font-size(@largeFontSize);
+        }
+    }
+
+    .html-rtl {
+        .firefox-default-cta {
+            &:before {
+                left: 0;
+            }
+        }
+    }
+
+    .button-flat-dark {
+        .font-size(18px);
+    }
+}
