@@ -453,10 +453,15 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # This can be changed to use session once we do add a database.
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
-EMAIL_BACKEND = config(
-    'EMAIL_BACKEND',
-    default='django.core.mail.backends.console.EmailBackend' if DEBUG else
+
+def lazy_email_backend():
+    'Needed in case DEBUG is enabled in local.py instead of environment variable'
+    from django.conf import settings
+    return ('django.core.mail.backends.console.EmailBackend' if settings.DEBUG else
             'django.core.mail.backends.smtp.EmailBackend')
+
+
+EMAIL_BACKEND = config('EMAIL_BACKEND', default=lazy(lazy_email_backend, str)())
 EMAIL_HOST = config('EMAIL_HOST', default='localhost')
 EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX', default='[bedrock] ')
 
@@ -673,8 +678,10 @@ HOMEPAGE_TWITTER_ACCOUNTS = {
 }
 
 # Mapbox token for spaces and communities pages
-MAPBOX_TOKEN = 'examples.map-i86nkdio'
-MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibW96aWxsYS13ZWJwcm9kIiwiYSI6Ii0xYVEtTW8ifQ.3ikA2IgKATeXStfC5wKDaQ'
+MAPBOX_TOKEN = config('MAPBOX_TOKEN', default='examples.map-i86nkdio')
+MAPBOX_ACCESS_TOKEN = config(
+    'MAPBOX_ACCESS_TOKEN',
+    default='pk.eyJ1IjoibW96aWxsYS13ZWJwcm9kIiwiYSI6Ii0xYVEtTW8ifQ.3ikA2IgKATeXStfC5wKDaQ')
 
 # Tabzilla Information Bar default options
 TABZILLA_INFOBAR_OPTIONS = 'update translation'
@@ -703,10 +710,10 @@ OPTIMIZELY_PROJECT_ID = None
 # FXA_RELIER_CONTENT_HOST = 'https://stable.dev.lcip.org'
 # FXA_RELIER_CONTENT_OAUTH = 'https://oauth-stable.dev.lcip.org/v1'
 # FXA_RELIER_REDIRECT_URI = 'http://localhost:8000/'
-FXA_RELIER_CLIENT_ID = ''
-FXA_RELIER_CONTENT_HOST = ''
-FXA_RELIER_CONTENT_OAUTH = ''
-FXA_RELIER_REDIRECT_URI = ''
+FXA_RELIER_CLIENT_ID = config('FXA_RELIER_CLIENT_ID', default='')
+FXA_RELIER_CONTENT_HOST = config('FXA_RELIER_CONTENT_HOST', default='')
+FXA_RELIER_CONTENT_OAUTH = config('FXA_RELIER_CONTENT_OAUTH', default='')
+FXA_RELIER_REDIRECT_URI = config('FXA_RELIER_REDIRECT_URI', default='')
 
 # Link to Firefox for Android on the Google Play store with Google Analytics
 # campaign parameters
