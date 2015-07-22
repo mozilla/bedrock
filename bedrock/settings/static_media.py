@@ -195,6 +195,7 @@ PIPELINE_CSS = {
     },
     'firefox_unsupported_systems': {
         'source_filenames': (
+            'css/firefox/menu-resp.less',
             'css/firefox/unsupported-systems.less',
         ),
         'output_filename': 'css/firefox_unsupported_systems-bundle.css',
