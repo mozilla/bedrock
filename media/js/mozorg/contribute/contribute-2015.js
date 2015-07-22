@@ -155,8 +155,17 @@
                 show_area(categoryarea);
             }
         } else {
+            // get and store the previous area before collapsing and hiding
+            // it's container else, we will not be able to get att it using
+            // the :visible psuedo selector.
+            var previouslySelectedArea = $('.area:visible');
+            previouslySelectedArea.find('select')
+                .prop('selectedIndex', 0)
+                .attr('required', false);
             $areascontainer.slideUp('fast', function() {
-                $('.area:visible').hide().find('select').prop('selectedIndex', 0);
+                // instead of using .hide() which is going to change in the
+                // upcoming jQuery 3 release, just remove the style attrbiute.
+                previouslySelectedArea.removeAttr('style');
             });
         }
     };
