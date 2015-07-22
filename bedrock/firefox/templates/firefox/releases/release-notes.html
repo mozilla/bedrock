@@ -64,10 +64,11 @@
     {% endif %}
 
     <div class="title_text_wrapper" >
+    <span class="release_details">
     <span class="version_wrapper">
-     <h3>{{ version }}</h3>
-     <p>
-     <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2></p> </span>
+    <h3>{{ version }}</h3></span>
+    <br>
+     <span class ="details_wrapper"><h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2></span></span>
      <span class="thank_wrapper">
      {{ release.text|markdown|safe }} </span> </div>
 
