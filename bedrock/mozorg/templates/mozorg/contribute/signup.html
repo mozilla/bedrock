@@ -33,23 +33,6 @@
         {% include "mozorg/contribute/contribute-form.html" %}
       {% else %}
       <form class="inquiry-form" id="inquiry-form" method="post" action="{{ url('mozorg.contribute.signup') }}">
-        {% if form.errors %}
-          {{ form.non_field_errors()|safe }}
-          <ul class="errorlist">
-            {% if form.email.errors %}
-              <li>{{_('Please enter a valid email address.')}}</li>
-            {% endif %}
-
-            {% if form.privacy.errors %}
-              <li>{{_('You must agree to the privacy policy.')}}</li>
-            {% endif %}
-
-            {% if form.category.errors %}
-              <li>{{_('Please select an area of interest.')}}</li>
-            {% endif %}
-          </ul>
-        {% endif %}
-
       <fieldset class="categories">
         <ul class="option-list">
           {% for category in form.category %}
@@ -62,6 +45,16 @@
             </li>
           {% endfor %}
         </ul>
+
+        {% if form.errors %}
+          {{ form.non_field_errors()|safe }}
+          <ul class="errorlist">
+            {% if form.category.errors %}
+              <li>{{_('Please select an area of interest.')}}</li>
+            {% endif %}
+          </ul>
+        {% endif %}
+
       </fieldset>
 
       <fieldset class="areas">
@@ -129,7 +122,11 @@
           <li>
             <label for="id_email">{{ _('Email address') }}</label>
             {{ form.email }}
-            {{ form.email.errors }}
+            {% if form.email.errors %}
+              <ul class="errorlist">
+                <li>{{_('Please enter a valid email address.')}}</li>
+              </ul>
+             {% endif %}
           </li>
           <li>
             <label for="id_country">{{ _('Country') }}</label>
@@ -149,10 +146,15 @@
             {% for radio in form.format %}
               <label class="inline">{{ radio.tag() }} {{ radio.choice_label }}</label>
             {% endfor %}
+            {{ form.format.errors }}
           </li>
           <li class="form-agree">
             {{ form.privacy }}
-            {{ form.privacy.errors }}
+            {% if form.privacy.errors %}
+              <ul class="errorlist">
+                <li>{{_('You must agree to the privacy policy.')}}</li>
+              </ul>
+            {% endif %}
           </li>
         </ul>
       </fieldset>
