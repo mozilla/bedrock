@@ -1,69 +1,54 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 @import "../sandstone/lib.less";
 @import "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css";
 @font-face {
     font-family: 'Font Awesome';
-    src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'),
-         url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'),
-         url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
+    src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'), url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'), url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-
 #outer-wrapper {
     background: #fff;
     width: 100%;
 }
-
 #wrapper {
-    padding:0px;
+    padding: 0px;
     width: 100%;
 }
-
 .space #wrapper {
     background-repeat: no-repeat;
     background-position: 0px 180px;
     background-color: white;
-    width : 100%;
+    width: 100%;
 }
-
-
 .wrap_pad {
-    padding-bottom:30px;
+    padding-bottom: 30px;
 }
-
 #main-content {
     width: 100%;
 }
-
 .release-notes {
-    background-color:white;
+    background-color: white;
     width: 100%;
 }
-
 .tri-column {
     .span(4);
 }
-
 .label-column {
     .span(0);
     background-color: white;
 }
-
 .notes-column {
     width: 100%;
-    text-align:left;
+    text-align: left;
     background-color: white;
 }
-
 .note_wrapper {
     width: 75%;
-     float: right;
+    float: right;
 }
-
 .label_wrapper {
     width: 25%;
     height: 100%;
@@ -71,7 +56,6 @@
     left: 0;
     top: 0;
 }
-
 .release_details {
     width: 50%;
     height: 100%;
@@ -81,141 +65,117 @@
     position: relative;
 }
 .version_wrapper {
-    width:100%;
-    height: 100%; 
+    width: 100%;
+    height: 100%;
     float: left;
-    text-align:left;
+    text-align: left;
     position: relative;
     padding-top: 10px;
 }
-
 .details_wrapper {
     position: relative;
+    float:left;
     width: 100%;
     height: 100%;
 }
-
-
 .thank_wrapper {
     width: 60%;
     float: left;
     text-align: left;
     margin-top: 30px;
 }
-
 .title_text_wrap {
     width: 40%;
     position: relative;
 }
-
 #new-wrapper {
     overflow: hidden;
     position: relative;
     width: 100%;
 }
-
 #fixed-wrapper {
     overflow: hidden;
     position: relative;
     width: 100%;
 }
-
 #changed-wrapper {
     .span(12);
     overflow: hidden;
     position: relative;
     width: 100%;
 }
-
 #developer-wrapper {
     .span(12);
     overflow: hidden;
     position: relative;
     width: 100%;
 }
-
 #html-wrapper {
     .span(12);
     overflow: hidden;
     position: relative;
     width: 100%;
 }
-
 #resolved-wrapper {
     .span(12);
     overflow: hidden;
     position: relative;
     width: 100%;
 }
-
 #unresolved-wrapper {
     .span(12);
     overflow: hidden;
     position: relative;
     width: 100%;
 }
-
-
 .note_wrap {
     padding-left: 20px;
 }
-
 #note-media {
     display: none;
 }
-
 .gray_note {
-background-color: #DFECFA;
+    background-color: #DFECFA;
 }
-
 .blue_note {
     background-color: #FFF;
 }
-
 .notes-head {
     .clearfix;
-    padding-right:5%;
-    padding-left:5%;
-    padding-bottom:0px;
-    padding-top:10px;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-bottom: 0px;
+    padding-top: 10px;
     margin-bottom: @baseLine * 2;
     background-color: #F0F0F0;
-    text-align:center;
-
-    h2,
-    p {
+    text-align: center;
+    h2, p {
         .span(12);
     }
-
     h1 {
         .span(12);
         font-weight: 400;
         font-size: 250%;
         padding-bottom: 15px;
     }
-
     h3 {
         font-weight: 900;
         font-size: 225%;
     }
-
     h1 {
         margin-bottom: .15em;
     }
-
     h2 {
         .font-size(1.428em);
         letter-spacing: normal;
         margin-bottom: .75em;
-        float:left;
+        float: left;
         .span(3);
     }
-
     p {
         margin-bottom: 1em;
     }
 }
-
 .space .notes-head {
     background-repeat: no-repeat;
     background-position: top left;
@@ -223,11 +183,8 @@ background-color: #DFECFA;
     background-size: 150px auto;
     padding: 10px 0 0 150px;
 }
-
 .blueprint .notes-head {
-    h1,
-    h2,
-    p {
+    h1, h2, p {
         .span(8);
     }
     h1 {
@@ -238,34 +195,28 @@ background-color: #DFECFA;
         margin-bottom: .75em;
     }
 }
-
 .note_label {
     text-align: center;
 }
-
 .firstPlatform {
-        padding-left: 40%;
-        padding-right: 5%;
+    padding-left: 40%;
+    padding-right: 5%;
 }
-
 #platform {
     overflow: hidden;
-    padding-top:0px;
+    padding-top: 0px;
     width: 100%;
     padding-right: 0px;
     padding-left: 0px;
     text-align: center;
-
     a {
         color: #000;
     }
-
     h4 {
         .font-size(30px);
         margin: 0 0 6px 0;
         padding: 0;
     }
-
     ul {
         margin: 0;
         float: left;
@@ -273,32 +224,23 @@ background-color: #DFECFA;
         width: 100%;
         border-radius: 10px 10px 10px 10px;
     }
-
     li {
         margin: 0;
         list-style-type: none;
         float: left;
         width: 90px;
     }
-
-    a {
-    }
-
-    span {
+    a {} span {
         color: #000;
         border-radius: 0 6px 6px 0;
         border-bottom: 5px solid rgba(185, 210, 237, 1);
     }
-
     li:first-child {
         padding-right: 1px;
-
-       a,
-      span {
-           border-radius: 6px 0 0 6px;
-        } 
+        a, span {
+            border-radius: 6px 0 0 6px;
+        }
     }
-
     a,
     span {
         display: block;
@@ -310,75 +252,60 @@ background-color: #DFECFA;
         border-radius: 0 6px 6px 0;
     }
 }
-
 .space #platform {
     ul {
         padding: 0px;
     }
-
     a {
         #gradient > .vertical-three-colors(#f2a279, #f28047, 3%, #c63);
     }
-
     span {
         color: #d79676;
         #gradient > .vertical(#7b3816 14%, #ac5022 95%);
     }
-
 }
-
 a.go:after,
 .sidebar a:after {
     content: " »";
     white-space: nowrap;
 }
-
 article {
     .clearfix;
 }
-
 .notes-section {
     .box-shadow(@shadow);
     @shadow: 0 0 0 1px #fff inset;
     background: #fff;
 }
-
 .blueprint .notes-section {
     background: #111;
     background: rgba(9, 68, 121, .1);
     border: 1px solid rgba(25, 93, 153, .5);
     box-shadow: 0 0 10px rgba(9, 68, 121, .36) inset;
 }
-
 .space .notes-section {
     background: #303;
     background: rgba(40, 6, 57, .25);
     border: 1px solid rgba(80, 27, 91, .5);
-    box-shadow: 0 0 10px rgba(72, 23, 95, .36) inset,
-                0 -1px 0 rgba(134, 80, 168, .5) inset;
+    box-shadow: 0 0 10px rgba(72, 23, 95, .36) inset, 0 -1px 0 rgba(134, 80, 168, .5) inset;
 }
-
 .section-items {
     list-style: none;
     margin: 0;
-
     > li {
         margin: 0;
         padding: .714rem 0 .5rem;
         position: relative;
         padding-bottom: 10px;
-        padding-right:5px;
+        padding-right: 5px;
     }
-
     h4 {
         .font-size(18px);
         margin: 0 0 .25em;
     }
-
     p {
         margin: 0 0 .25em;
     }
-
     .note {
         .font-size(@smallFontSize);
         color: @textColorSecondary;
@@ -386,28 +313,23 @@ article {
         padding-right: 20px;
     }
 }
-
 .space .section-items > li {
     border-top-color: #522853;
 }
-
 .blueprint .section-items > li {
     border-top-color: #173e62;
 }
-
 .section-items.tagged {
     > li {
         padding-left: 0;
-
         &.untagged {
             padding-left: 0;
         }
     }
-
     .tag {
         background: #f3f3f3 url(/media/img/firefox/releasenotes/tags.png) 0 0 no-repeat;
         border-right: 3px solid #ccc;
-        box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(0,0,0,0.05) inset;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
         color: @textColorPrimary;
         display: inline-block;
         .font-size(11px);
@@ -421,67 +343,55 @@ article {
         text-transform: uppercase;
         width: 102px;
     }
-
     .tag-new {
         background-color: #ffedcf;
         background-position: 0 -50px;
         border-color: #f90;
     }
-
     .tag-changed {
         background-color: #e9cfff;
         background-position: 0 -100px;
         border-color: #8106e0;
     }
-
     .tag-fixed {
         background-color: #f0ffe1;
         background-position: 0 -150px;
         border-color: #5ba622;
     }
-
     .tag-html5 {
         background-color: #f8dfd8;
         background-position: 0 -200px;
         border-color: #d85027;
     }
-
     .tag-resolved {
         background-color: #dcf6ff;
         background-position: 0 -250px;
         border-color: #038fc0;
     }
-
     .tag-unresolved {
         background-color: #ffc8c8;
         background-position: 0 -300px;
         border-color: #c00;
     }
-
     .tag-developer {
         background-color: #e7e7e7;
         background-position: 0 -350px;
         border-color: #999;
     }
 }
-
 .sidebar section {
     border-bottom: 1px dotted darken(@borderColor, 10%);
     margin-bottom: @baseLine;
-
     h3 {
         .font-size(22px);
     }
 }
-
 .space .sidebar section {
     border-bottom-color: #522853;
 }
-
 .blueprint .sidebar section {
     border-bottom-color: #173e62;
 }
-
 #try {
     .box-shadow(@shadow);
     @shadow: 0 0 0 1px #fff inset;
@@ -489,19 +399,16 @@ article {
     border-bottom: 1px solid #ddd;
     margin: 0 -@gridGutterWidth @baseLine;
     padding: @baseLine @gridGutterWidth;
-
     ol {
         list-style: none;
         margin: 0;
         padding: 0;
     }
-
     li {
         .font-size(1.125rem);
         margin: 0;
         padding: .5em 0 .5em 40px;
         position: relative;
-
         &:before {
             display: block;
             width: 1.25em;
@@ -520,7 +427,6 @@ article {
             vertical-align: middle;
             border-radius: 50%;
         }
-
         &.try1:before {
             content: '1';
         }
@@ -535,52 +441,37 @@ article {
         }
     }
 }
-
 .space #try {
     background: #003;
     background: rgba(165, 165, 165, .08);
     border: 1px solid rgba(80, 80, 80, .25);
-    box-shadow: 0 0 10px rgba(100, 100, 100, .36) inset,
-                0 -1px 0 rgba(153, 153, 153, .25) inset;
-
+    box-shadow: 0 0 10px rgba(100, 100, 100, .36) inset, 0 -1px 0 rgba(153, 153, 153, .25) inset;
     li:before {
         background: #c63;
     }
 }
-
 #problems li {
     margin: 0 0 .5em 20px;
 }
-
 #other p + p {
     margin-top: -.5em;
 }
-
-
 /* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     .space #wrapper {
         background-size: 650px;
     }
-
-    .firstPlatform
-         {
+    .firstPlatform {
         padding-left: 40%;
-        }
-
+    }
     .notes-head {
-        h1,
-        h2,
-        p {
+        h1, h2, p {
             .span_narrow(7);
         }
     }
-
     .blueprint .notes-head {
-        h1,
-        h2,
-        p {
+        h1, h2, p {
             .span-all();
         }
         h1 {
@@ -590,94 +481,80 @@ article {
             margin-bottom: .75em;
         }
     }
-
     .space .notes-head {
         p {
             .span_narrow(6);
         }
     }
-
 }
-
-
 /* Mobile Layout: 320px */
-@media only screen and (max-width: @breakTablet) {
 
+@media only screen and (max-width: @breakTablet) {
     .space #wrapper {
         background-size: 320px;
     }
-
     .firstPlatform {
         padding-left: 15%;
     }
-
     .label_wrapper {
         width: @widthMobile;
         position: relative;
         float: left;
         .span-all();
-        font-weight:bold;
+        font-weight: bold;
         p {
-        text-align:left; }
+            text-align: left;
+        }
     }
-
     .note_wrapper {
         width: @widthMobile;
-        padding-top:10px;
+        padding-top: 10px;
         float: left;
         position: relative;
         .span-all();
     }
-
     .note_wrap {
-    float:left;
-    overflow:hidden;
-    padding-left:5px;
+        float: left;
+        overflow: hidden;
+        padding-left: 5px;
     }
-
     .title_text_wrap {
-    width: 100%;
-    position: absolute;
+        width: 100%;
+        position: absolute;
     }
-
     .release_details {
-    width: 100%;
-    height: 100%;
-    float: left;
-    text-align: left;
-    padding-top: 10px;
-    position: relative;
-}
-
+        width: 100%;
+        height: 100%;
+        float: left;
+        text-align: left;
+        padding-top: 10px;
+        position: relative;
+    }
     .thank_wrapper {
-    width: 100%;
-    height:100%;
-    padding-bottom: 10px;
-    float: left;
-    text-align: left;
-    margin-top: 10px;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 10px;
+        float: left;
+        text-align: left;
+        margin-top: 10px;
     }
-
     .version_wrapper {
-    width:100%;
-    height: 100%; 
-    float: left;
-    padding-left:0px;
-    position: relative;
-    padding-top: 10px;
+        width: 100%;
+        height: 100%;
+        float: left;
+        padding-left: 0px;
+        position: relative;
+        padding-top: 10px;
     }
-
     .details_wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
+        width: 100%;
+        height: 100%;
+        float:left;
+        position: relative;
     }
-
     .notes-head,
     .blueprint .notes-head {
-        h1,
-        h2,
-        p {
+        h1, h2, p {
             .span-all();
         }
         h1 {
@@ -687,81 +564,69 @@ article {
             margin-bottom: .75em;
         }
     }
-
     .space .notes-head {
         background-image: none;
         padding: 0;
     }
-
     #platform {
         float: none;
         padding-right: 10px;
         padding-left: 0px;
-        padding-top:10px;
-        margin:0em;
+        padding-top: 10px;
+        margin: 0em;
     }
-
     #new-wrapper {
-    .span-all();
-    overflow: hidden;
-    position: relative;
-    width: @widthMobile;
+        .span-all();
+        overflow: hidden;
+        position: relative;
+        width: @widthMobile;
     }
-
     #fixed-wrapper {
-    .span-all();
-    overflow: hidden;
-    position: relative;
-    width: @widthMobile;
+        .span-all();
+        overflow: hidden;
+        position: relative;
+        width: @widthMobile;
     }
-
     #changed-wrapper {
-    .span-all();
-    overflow: hidden;
-    position: relative;
-    width: @widthMobile;
+        .span-all();
+        overflow: hidden;
+        position: relative;
+        width: @widthMobile;
     }
-
     #developer-wrapper {
-    .span-all();
-    overflow: hidden;
-    position: relative;
-    width: @widthMobile;
+        .span-all();
+        overflow: hidden;
+        position: relative;
+        width: @widthMobile;
     }
-
     #html-wrapper {
-    .span-all();
-    overflow: hidden;
-    position: relative;
-    width: @widthMobile;
+        .span-all();
+        overflow: hidden;
+        position: relative;
+        width: @widthMobile;
     }
-
     #resolved-wrapper {
-    .span-all();
-    overflow: hidden;
-    position: relative;
-    width: @widthMobile;
+        .span-all();
+        overflow: hidden;
+        position: relative;
+        width: @widthMobile;
     }
-
     #unresolved-wrapper {
-    .span-all();
-    overflow: hidden;
-    position: relative;
-    width: @widthMobile;
-    padding-left:10px;
+        .span-all();
+        overflow: hidden;
+        position: relative;
+        width: @widthMobile;
+        padding-left: 10px;
     }
-
-
     .section-items.tagged {
         > li {
-            float:left;
-            overflow:hidden;
+            float: left;
+            overflow: hidden;
             width: @widthMobile;
             .span-all();
             position: relative;
-            padding-left:0px;
+            padding-left: 0px;
         }
-
         .tag {
             position: static;
             display: block;
