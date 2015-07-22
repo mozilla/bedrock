@@ -80,7 +80,7 @@
         {% for note in new_features if note.tag =="New" %}
         {% if loop.first %}
         <span class="label_wrapper">
-          <p class="note_label"> <i class="fa fa-diamond"></i>  NEW </p>
+          <p class="note_label"> <i class="fa fa-star"></i>  NEW </p>
         </span>
         {% endif %}
         <span class="note_wrapper">
@@ -103,7 +103,7 @@
         {% for note in new_features if note.tag =="Fixed" %}
         {% if loop.first %}
         <span class="label_wrapper">
-          <p class="note_label"><i class="fa fa-check-circle"></i>  FIXED </p>
+          <p class="note_label"><i class="fa fa-check"></i>  FIXED </p>
         </span>
         {% endif %}
         <span class="note_wrapper">
@@ -149,7 +149,7 @@
         {% for note in new_features if note.tag =="Developer" %}
         {% if loop.first %}
         <span class="label_wrapper">
-          <p class="note_label"><i class="fa fa-cog"></i>  DEVELOPER </p>
+          <p class="note_label"><i class="fa fa-wrench"></i>  DEVELOPER </p>
         </span>
         {% endif %}
         <span class="note_wrapper">
@@ -172,7 +172,7 @@
         {% for note in new_features if note.tag =="HTML5" %}
         {% if loop.first %}
         <span class="label_wrapper">
-          <p class="note_label"><i class="fa fa-wrench"></i>
+          <p class="note_label"><i class="fa fa-code"></i>
             HTML 5 
           </p>
         </span>
@@ -197,7 +197,8 @@
         {% for note in new_features if note.tag =="Resolved" %}
         {% if loop.first %}
         <span class="label_wrapper">
-          <p class="note_label"> RESOLVED </p>
+          <p class="note_label"><i class="fa fa-thumbs-up"></i>
+           RESOLVED </p>
         </span>
         {% endif %}
         <span class="note_wrapper">
