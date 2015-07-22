@@ -22,7 +22,7 @@
     {% block notes_header %}
     <header class="notes-head">
       <h1>Release Notes </h1>
-      <p>
+      <span class="release_blurb_wrapper">
         {{ _('Release Notes tell you what’s new in Firefox. As always, we welcome your ') }}
         {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
         if release.product == 'Firefox for Android'
@@ -40,7 +40,7 @@
       {% else %}
       or see the <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
       {% endif %}
-      </p>
+      </span>
       {% if equivalent_release_url %}
       <aside id="platform">
         <ul>
