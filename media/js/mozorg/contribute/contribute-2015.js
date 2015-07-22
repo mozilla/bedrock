@@ -229,7 +229,12 @@
     });
 
     $select.on('blur', function() {
-        $(this).parent('.select').removeClass('focus');
+        $(this).parent('.select').removeClass('focus invalid');
+    });
+
+    // enable invalid style for select elements
+    $select.on('invalid', function() {
+        $(this).parent('.select').addClass('invalid');
     });
 
     // Info tooltips
