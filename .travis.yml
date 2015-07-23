@@ -25,16 +25,13 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 script:
   - grunt test
-  - coverage run manage.py test
+  - python manage.py test
 before_install:
   - travis_retry git submodule update --init --recursive
 install:
   - travis_retry python bin/peep.py install -r requirements/pip.txt --no-use-wheel
   - travis_retry python bin/peep.py install -r requirements/dev.txt --no-use-wheel
   - travis_retry python bin/peep.py install -r requirements/prod.txt --no-use-wheel
-after_success:
-  - travis_retry pip install coveralls
-  - travis_retry coveralls
 notifications:
   irc:
     channels:
