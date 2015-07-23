@@ -192,7 +192,8 @@ class ContributeSignupForm(forms.Form):
         regions.insert(0, self.empty_choice)
         super(ContributeSignupForm, self).__init__(*args, **kwargs)
         self.locale = locale
-        self.fields['country'] = forms.ChoiceField(choices=regions, widget=L10nSelect)
+        self.fields['country'] = forms.ChoiceField(choices=regions,
+            widget=L10nSelect(attrs={'required': 'required'}))
 
     def clean(self):
         cleaned_data = super(ContributeSignupForm, self).clean()
