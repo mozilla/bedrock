@@ -118,7 +118,7 @@ casper.test.begin('Contribute Signup, Server side validation prevents form submi
 
     casper.waitUntilVisible('.errorlist', function() {
         test.assert(true, 'Server side validation failed and returned error list');
-        test.assertElementCount('.errorlist', 5, 'There are five lists containing errors');
+        test.assertElementCount('.errorlist', 6, 'There are six lists containing errors');
     });
 
     casper.run(function() {
