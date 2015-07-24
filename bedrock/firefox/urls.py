@@ -95,6 +95,8 @@ urlpatterns = patterns('',
         decorators=waffle_switch('pocket-active')),
 
     page('firefox/independent', 'firefox/independent.html'),
+    redirect('^firefox/windows-10/welcome/$', 'firefox.desktop.customize',
+             permanent=False),
 
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),
