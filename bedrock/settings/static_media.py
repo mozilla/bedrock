@@ -599,28 +599,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/installer_help-bundle.css',
     },
-    'growth_firstrun_test1': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/firefox/australis/australis-page-common.less',
-            'css/firefox/sync-animation.less',
-            'css/firefox/australis/australis-page-stacked.less',
-            'css/firefox/australis/growth-firstrun-test-common.less',
-            'css/firefox/australis/growth-firstrun-test1.less',
-        ),
-        'output_filename': 'css/growth-firstrun-test1-bundle.css'
-    },
-    'growth_firstrun_test2': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/firefox/australis/australis-page-common.less',
-            'css/firefox/sync-animation.less',
-            'css/firefox/australis/australis-page-stacked.less',
-            'css/firefox/australis/growth-firstrun-test-common.less',
-            'css/firefox/australis/growth-firstrun-test2.less',
-        ),
-        'output_filename': 'css/growth-firstrun-test2-bundle.css'
-    },
     'history-slides': {
         'source_filenames': (
             'css/mozorg/history-slides.less',
@@ -1414,25 +1392,6 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
         ),
         'output_filename': 'js/geolocation-bundle.js',
-    },
-    'growth_firstrun_test1': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/growth-browser-tour.js',
-            'js/libs/fxa-relier-client.min.js',
-            'js/firefox/sync-animation.js',
-            'js/firefox/australis/growth-firstrun-test1.js',
-        ),
-        'output_filename': 'js/growth-firstrun-test1-bundle.js',
-    },
-    'growth_firstrun_test2': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/growth-browser-tour.js',
-            'js/firefox/sync-animation.js',
-            'js/firefox/australis/growth-firstrun-test2.js',
-        ),
-        'output_filename': 'js/growth-firstrun-test2-bundle.js',
     },
     'home': {
         'source_filenames': (

@@ -27,7 +27,6 @@ import waffle
 from bedrock.base.geo import get_country_from_request
 from bedrock.firefox.firefox_details import firefox_desktop
 from bedrock.firefox.forms import SMSSendForm, SendToDeviceWidgetForm
-from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.releasenotes import version_re
@@ -468,16 +467,7 @@ class FirstrunView(LatestFxView):
         version = self.kwargs.get('version') or ''
         locale = l10n_utils.get_locale(self.request)
 
-        # variant is present for growth tests
-        ctx = funnelcake_param(self.request)
-
-        variant = ctx.get('funnelcake_id', None)
-
-        if variant == '35' and version == '35.0.1':
-            template = 'firefox/australis/growth-firstrun-test1.html'
-        elif variant == '36' and version == '35.0.1':
-            template = 'firefox/australis/growth-firstrun-test2.html'
-        elif show_devbrowser_firstrun_or_whatsnew(version):
+        if show_devbrowser_firstrun_or_whatsnew(version):
             if (waffle.switch_is_active('dev-edition-spring-campaign')):
                 template = 'firefox/dev-firstrun-spring-campaign.html'
             else:

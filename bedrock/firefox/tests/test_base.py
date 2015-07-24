@@ -611,6 +611,14 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/australis/firstrun-tour.html'])
 
     @override_settings(DEV=True)
+    def test_fx_search_tour_35_0_1(self, render_mock):
+        """Should use search tour template for 35.0.1"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='35.0.1')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/australis/firstrun-34-tour.html'])
+
+    @override_settings(DEV=True)
     def test_fx_firstrun_tour_36_0(self, render_mock):
         """Should use fx36 tour template for 36.0"""
         req = self.rf.get('/en-US/firefox/firstrun/')
@@ -652,32 +660,6 @@ class TestFirstRun(TestCase):
         with patch.object(req, 'is_secure', return_value=True):
             resp = self.view(req, version='29.0')
         eq_(resp.status_code, 200)
-
-    # tests from growth firstrun test. should be removed after 2/24/2015.
-
-    @override_settings(DEV=True)
-    def test_fx_growth_tour_0_35_0_1(self, render_mock):
-        """Should use firstrun 34 tour template for 35.0.1 with funnelcake 34"""
-        req = self.rf.get('/en-US/firefox/firstrun/?f=34')
-        self.view(req, version='35.0.1')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun-34-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_growth_tour_1_35_0_1(self, render_mock):
-        """Should use growth tour template 1 for 35.0.1 with funnelcake 35"""
-        req = self.rf.get('/en-US/firefox/firstrun/?f=35')
-        self.view(req, version='35.0.1')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/growth-firstrun-test1.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_growth_tour_2_35_0_1(self, render_mock):
-        """Should use growth tour template 2 for 35.0.1 with funnelcake 36"""
-        req = self.rf.get('/en-US/firefox/firstrun/?f=36')
-        self.view(req, version='35.0.1')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/growth-firstrun-test2.html'])
 
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
