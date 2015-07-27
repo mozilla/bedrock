@@ -910,16 +910,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/site-bundle.js',
     },
-    'lightbeam': {
-        'source_filenames': (
-            'js/lightbeam/d3.v3.min.js',
-            'js/lightbeam/rAF.js',
-            'js/lightbeam/lightbeam.js',
-            'js/lightbeam/ui.js',
-            'js/libs/jquery.validate.js',
-        ),
-        'output_filename': 'js/lightbeam-bundle.js',
-    },
     'projects-calendar': {
         'source_filenames': (
             'js/mozorg/calendar.js',
