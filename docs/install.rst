@@ -27,6 +27,14 @@ You need to create a virtual environment for Python libraries. Skip the first in
     $ source venv/bin/activate                     # activate the virtual env
     $ bin/peep.py install -r requirements/dev.txt  # installs dependencies
 
+.. note::
+
+    The final command above (``peep.py``) may fail if you have the wrong version of ``pip``. To correct this run the following command::
+
+        $ pip install -r requirements/pip.txt
+
+    This will ensure you have the right ``pip`` version and that the ``peep.py`` tool will work correctly.
+
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
 
     $ export ARCHFLAGS="-arch i386 -arch x86_64"
