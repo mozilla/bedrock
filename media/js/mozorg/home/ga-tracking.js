@@ -74,14 +74,6 @@ $(function () {
         'data-link-type': 'href'
     });
 
-    // track user scrolling through each section down the page
-    $('.module').waypoint(function(direction) {
-        if (direction === 'down') {
-            var id = $(this).prop('id');
-            window.dataLayer.push({event: 'scroll-tracking', section: id});
-        }
-    }, { offset: '100%' });
-
     // track download firefox promo clicks
     $('.promo-small-landscape.firefox-download a.download-link').each(function() {
         var $this = $(this);
