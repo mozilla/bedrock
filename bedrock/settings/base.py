@@ -689,32 +689,6 @@ TABZILLA_INFOBAR_OPTIONS = 'update translation'
 # Optimize.ly project code
 OPTIMIZELY_PROJECT_ID = None
 
-# Fx Accounts Relier Service Client ID
-# Prod, stage, & dev all have these set in their local.py files.
-# For local testing, override in your own local.py.
-
-# For demo servers & localhost:
-#   FXA_RELIER_CONTENT_HOST = 'https://stable.dev.lcip.org'
-#   FXA_RELIER_CONTENT_OAUTH = 'https://oauth-stable.dev.lcip.org/v1'
-#   FXA_RELIER_REDIRECT_URI = 'http://localhost:8000/'
-#
-#   Client IDs:
-#       localhost:8000: efc5413fa614224e
-#       demo5: 591e9db45a43f7e9
-#
-#   Additional dev IDs can be created here:
-#   https://developer.mozilla.org/en-US/Firefox_Accounts_OAuth_Dashboard
-#
-# Below is full code needed for demo5:
-# FXA_RELIER_CLIENT_ID = '591e9db45a43f7e9'
-# FXA_RELIER_CONTENT_HOST = 'https://stable.dev.lcip.org'
-# FXA_RELIER_CONTENT_OAUTH = 'https://oauth-stable.dev.lcip.org/v1'
-# FXA_RELIER_REDIRECT_URI = 'http://localhost:8000/'
-FXA_RELIER_CLIENT_ID = config('FXA_RELIER_CLIENT_ID', default='')
-FXA_RELIER_CONTENT_HOST = config('FXA_RELIER_CONTENT_HOST', default='')
-FXA_RELIER_CONTENT_OAUTH = config('FXA_RELIER_CONTENT_OAUTH', default='')
-FXA_RELIER_REDIRECT_URI = config('FXA_RELIER_REDIRECT_URI', default='')
-
 # Link to Firefox for Android on the Google Play store with Google Analytics
 # campaign parameters
 GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
