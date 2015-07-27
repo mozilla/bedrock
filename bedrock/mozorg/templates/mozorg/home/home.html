@@ -238,7 +238,17 @@
           </a>
         </li>
       {% endif %}
-      {% if l10n_has_tag('firefox_friends') %}
+      {% if l10n_has_tag('mdn_10_years') %}
+        <li id="promo-11" class="item promo-large-landscape mdn-10-years" tabindex="0" data-name="Mozilla Developer Network">
+          <h2 class="primary go">{{ _('Mozilla Developer Network') }}</h2>
+          <a class="panel-link" href="https://developer.mozilla.org/docs/mdn_at_ten?utm_campaign=mdn10&amp;utm_source=mozilla.org&amp;utm_medium=home-tile">
+            <div class="secondary">
+              <h3>{{ _('10 years of documenting your Web.') }}</h3>
+              <p class="more">{{ _('Celebrate with us') }}</p>
+            </div>
+          </a>
+        </li>
+      {% elif l10n_has_tag('firefox_friends') %}
         <li id="promo-11" class="item promo-large-landscape firefox-friends" tabindex="0" data-name="Introducing Firefox Friends">
           <h2 class="primary go">{{ _('Introducing <br>Firefox Friends') }}</h2>
           <a class="panel-link" href="https://friends.mozilla.org">

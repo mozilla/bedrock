@@ -1002,13 +1002,33 @@ html[lang|="en"] {
 
 
 /****************************************************************************/
-// Firefox Developer Edition
-.promo-large-portrait.firefox-developer {
-    background: #005da5; // dark blue
+// MDN 10th Anniversary
+.promo-large-landscape.mdn-10-years {
+    background: #00659a; // dark blue
 
     h2 {
-        padding-top: 125px;
-        background: url(/media/img/home/voices/promos/firefoxdev/firefoxdev.png) center 15px no-repeat;
+        padding-top: 145px;
+        background: url(/media/img/home/voices/promos/mdn10/logo-mdn10.svg) center 40px no-repeat;
+    }
+}
+
+html[lang|="en"] {
+    .promo-large-landscape.mdn-10-years {
+        h3 {
+            padding: (@baseLine * 3) @baseLine 0 @baseLine;
+        }
+    }
+}
+
+
+/****************************************************************************/
+// Firefox Developer Edition
+.promo-large-portrait.firefox-developer {
+    background: #5f6065; // dark gray
+
+    h2 {
+        padding-top: 155px;
+        background: url(/media/img/home/voices/promos/firefoxdev/firefoxdev.png) center 35px no-repeat;
     }
 }
 
