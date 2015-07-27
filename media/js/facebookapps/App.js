@@ -103,8 +103,8 @@ DOWNLOADTAB.classes.App = (function (singleton) {
 
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
-                event: 'virtual-pageview',
-                virtualUrl: self.virtualUrl
+                'event': 'virtual-pageview',
+                'virtualUrl': self.virtualUrl
             });
 
             // Delay download so window.location redirect doesn't interrupt

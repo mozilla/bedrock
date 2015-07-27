@@ -102,18 +102,18 @@
         }
         if (!$facesVid[0].paused) { // If the video is not paused
             $facesVid[0].pause();
+
             window.dataLayer.push({
-                event: 'video-interaction',
-                interaction: 'pause',
-                videoTitle: 'Get Involved'
+                'event': 'video-pause',
+                'videoTitle': 'Get Involved'
             });
             paused = true;
         } else if ($caption.is(':hidden') && $facesVid[0].paused) { // If the video is paused and caption is hidden
             $facesVid[0].play();
+
             window.dataLayer.push({
-                event: 'video-interaction',
-                interaction: 'play',
-                videoTitle: 'Get Involved'
+                'event': 'video-play',
+                'videoTitle': 'Get Involved'
             });
             paused = false;
         }

@@ -30,6 +30,9 @@
         // show the top nav download button and set up GA tracking
         $mastheadDownloadFirefox.attr({'data-interaction': 'download click - nav', 'data-download-version': downloadVersion}).fadeIn('fast');
 
+        // Track clicks on Nav CTA
+        $('#sticky-download-desktop .download-link').attr('data-interaction', 'download click - nav');
+
         // Track Firefox download click in overview intro section
         $('#firefox-desktop #intro .download-link').attr({'data-interaction': 'download click - primary', 'data-download-version': downloadVersion});
 
@@ -39,10 +42,11 @@
 
     $('.ga-section').waypoint(function(dir) {
         // only track scrolling down
+
         if (dir === 'down') {
             w.dataLayer.push({
-                event: 'scroll-tracking',
-                section: $(this).data('ga-label')
+                'event': 'scroll-section',
+                'section': $(this.element).data('ga-label')
             });
         }
     }, {

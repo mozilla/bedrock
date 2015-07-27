@@ -150,7 +150,7 @@
                     $smsThankYou.show();
 
                     window.dataLayer.push({
-                        event: 'whatsnew-37'
+                        'event': 'whatsnew-37'
                     });
                 } else if (data.error) {
                     $self.find('.error').html(data.error).show();

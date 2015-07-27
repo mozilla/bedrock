@@ -54,11 +54,12 @@ if (typeof window.Mozilla === 'undefined') {
                 $tertiaryNavContainer.toggleClass('active');
 
                 // track when opening menu
+
                 if ($tertiaryNavTrigger.hasClass('active')) {
                     window.dataLayer.push({
-                        event: 'family-nav-interaction',
-                        location: 'Side Menu',
-                        browserAction: 'Open Menu'
+                        'event': 'family-nav-interaction',
+                        'location': 'Side Menu',
+                        'browserAction': 'Open Menu'
                     });
                 }
             }).addClass('visible');
@@ -120,6 +121,13 @@ if (typeof window.Mozilla === 'undefined') {
                 }
             }
         };
+
+        $tertiaryNavs.on('click', 'a', function() {
+            window.dataLayer.push({
+                'event': 'family-nav-interaction',
+                'browserAction': $(this).attr('data-ga')
+            });
+        });
 
         // public interface
         return {

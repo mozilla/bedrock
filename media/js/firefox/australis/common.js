@@ -51,6 +51,12 @@
             }).on('click', function(e) {
                 e.preventDefault();
 
+                // Track sync button clicks
+
+                window.dataLayer.push({
+                    'event': 'first-run-sync'
+                });
+
                 if (window.getFirefoxMasterVersion() >= 31) {
                     Mozilla.UITour.showFirefoxAccounts();
                 } else {
@@ -68,6 +74,13 @@
             'data-element-location': 'Get Started with Sync'
         }).on('click', function(e) {
             e.preventDefault();
+
+            // Track sync button clicks
+
+            window.dataLayer.push({
+                'event': 'first-run-sync'
+            });
+
             window.open(this.href, '_blank');
         });
     });

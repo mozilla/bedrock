@@ -34,11 +34,11 @@
             title: '<img src="' + modalLogo + '" alt="Firefox OS" />'
         });
 
-        //track GA event for newsletter CTA
+         //track GA event for newsletter CTA
         window.dataLayer.push({
-            event: 'fxos-consumer',
-            interaction: 'click',
-            location: 'Sign Me Up - Primary'
+            'event': 'fxos-consumer',
+            'interaction': 'click',
+            'location': 'Sign Me Up - Primary'
         });
     });
 
@@ -63,9 +63,9 @@
 
         //track GA event for get a phone CTA
         window.dataLayer.push({
-            event: 'fxos-consumer',
-            interaction: 'click',
-            location: 'Get a Phone'
+            'event': 'fxos-consumer',
+            'interaction': 'click',
+            'location': 'Get a Phone'
         });
     });
 

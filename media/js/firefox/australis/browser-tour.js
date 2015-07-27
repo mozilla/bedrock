@@ -268,8 +268,9 @@ if (typeof Mozilla == 'undefined') {
         } else {
             this.goToTourStep('next');
             step += 1;
+
             window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
+                'event': 'first-run-tour',
                 'interaction': 'link click to',
                 'browserAction': 'Step' + step
             });
@@ -320,8 +321,9 @@ if (typeof Mozilla == 'undefined') {
             e.preventDefault();
             this.restartTour();
             firstTime = this.checkFirstTime();
+
             window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
+                'event': 'first-run-tour',
                 'interaction': 'click',
                 'browserAction': 'Signpost CTA',
                 'firstTime': firstTime
@@ -330,8 +332,9 @@ if (typeof Mozilla == 'undefined') {
         }, this));
 
         this.doCloseTour();
+
         window.dataLayer.push({
-            'event': 'firstrun-tour-interaction',
+            'event': 'first-run-tour',
             'interaction': 'click',
             'browserAction': 'Not now'
         });
@@ -476,8 +479,9 @@ if (typeof Mozilla == 'undefined') {
         var that = this;
         Mozilla.UITour.addNavBarWidget('loop', function() {
             that.highlightHelloButton();
+
             window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
+                'event': 'first-run-tour',
                 'interaction': 'Add it now',
                 'browserAction': 'The Hello icon'
             });
@@ -535,8 +539,9 @@ if (typeof Mozilla == 'undefined') {
             buttons,
             options
         );
+
         window.dataLayer.push({
-            'event': 'firstrun-tour-interaction',
+            'event': 'first-run-tour',
             'interaction': 'Later',
             'browserAction': 'The Hello icon'
         });
@@ -708,8 +713,9 @@ if (typeof Mozilla == 'undefined') {
         } else {
             step += 1;
         }
+
         window.dataLayer.push({
-            'event': 'firstrun-tour-interaction',
+            'event': 'first-run-tour',
             'interaction': 'arrow click to',
             'browserAction': 'Step ' + step
         });
@@ -796,8 +802,9 @@ if (typeof Mozilla == 'undefined') {
             return;
         }
         this.doCloseTour();
+
         window.dataLayer.push({
-            'event': 'firstrun-tour-interaction',
+            'event': 'first-run-tour',
             'interaction': 'button click',
             'browserAction': 'Start Browsing'
         });
@@ -831,8 +838,9 @@ if (typeof Mozilla == 'undefined') {
 
         this.hideAnnotations();
         if (this.tourHasStarted) {
+
             window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
+                'event': 'first-run-tour',
                 'interaction': 'click',
                 'browserAction': 'Close tour'
             });
@@ -886,8 +894,9 @@ if (typeof Mozilla == 'undefined') {
         this.$mask.addClass('out');
 
         setTimeout(this.onCompactTour.bind(this), 600);
+
         window.dataLayer.push({
-            'event': 'firstrun-tour-interaction',
+            'event': 'first-run-tour',
             'interaction': 'click',
             'browserAction': 'Compact tour'
         });
@@ -940,8 +949,9 @@ if (typeof Mozilla == 'undefined') {
         setTimeout(function () {
             that.$mask.removeClass('out');
         }, 50);
+
         window.dataLayer.push({
-            'event': 'firstrun-tour-interaction',
+            'event': 'first-run-tour',
             'interaction': 'click',
             'browserAction': 'Expand tour'
         });
@@ -1052,11 +1062,11 @@ if (typeof Mozilla == 'undefined') {
 
         if (!this.tourIsPostponed) {
             firstTime = this.checkFirstTime();
+
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
-                'event': 'firstrun-tour-interaction',
+                'event': 'first-run-start-tour',
                 'firstTime': firstTime,
-                'interaction': 'click',
                 'browserAction': 'Lets go'
             });
         } else {
@@ -1117,9 +1127,9 @@ if (typeof Mozilla == 'undefined') {
             this.hideAnnotations();
 
             if (this.tourIsVisible) {
+
                 window.dataLayer.push({
-                    'event': 'firstrun-tour-interaction',
-                    'interaction': 'visibility',
+                    'event': 'first-run-tour-visibility',
                     'browserAction': 'Leave tour'
                 });
 
@@ -1134,9 +1144,9 @@ if (typeof Mozilla == 'undefined') {
                         that.$progress.find('.progress').attr('aria-valuenow', step);
                     }
                 }, 900);
+
                 window.dataLayer.push({
-                    'event': 'firstrun-tour-interaction',
-                    'interaction': 'visibility',
+                    'event': 'first-run-tour-visibility',
                     'browserAction': 'Return to tour'
                 });
 

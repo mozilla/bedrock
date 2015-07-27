@@ -70,17 +70,17 @@
                     $toggle_button.addClass('open').text(window.trans('less'));
                     $(this).removeAttr('aria-hidden');
                     window.dataLayer.push({
-                        event: 'mozillian-stories-interaction',
-                        browserAction: person + ' - more',
-                        location: 'main'
+                        'event': 'mozillian-stories-interaction',
+                        'browserAction': person + ' - more',
+                        'location': 'main'
                     });
                 } else {
                     $toggle_button.removeClass('open').text(window.trans('more'));
                     $(this).attr('aria-hidden', 'true');
                     window.dataLayer.push({
-                        event: 'mozillian-stories-interaction',
-                        browserAction: person + ' - less',
-                        location: 'main'
+                        'event': 'mozillian-stories-interaction',
+                        'browserAction': person + ' - less',
+                        'location': 'main'
                     });
                 }
             });
@@ -246,10 +246,10 @@
         // Get the target element's ID from the link's href.
         var target = $(this).attr('href').replace( /.*?(#.*)/g, "$1" );
         $('<div class="tooltip arrow-top">'+ $(target + ' p').text() +'</div>').insertAfter($this).fadeIn('fast');
-        // Track tooltips
+         // Track tooltips
         window.dataLayer.push({
-            event: 'contribute-tooltip-interaction',
-            location: $(target).prop('id')
+            'event': 'contribute-tooltip-interaction',
+            'location': $(target).prop('id')
         });
     });
 
