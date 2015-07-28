@@ -60,6 +60,9 @@
   <section>
     <h3>{{ _('Takedown requests') }}</h3>
     <p><a href="{{ url('legal.report-abuse') }}">{{ _('Report abuse of your copyrights and trademarks.') }}</a></p>
+    {% if LANG == 'de' %}
+    <p><a href="{{ url('legal.impressum') }}">{{ _('Impressum') }}</a></p>
+    {% endif %}
   </section>
 
 {% endblock %}

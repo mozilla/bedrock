@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     page('eula', 'legal/eula.html'),
     page('eula/firefox-2', 'legal/eula/firefox-2-eula.html'),
     page('eula/firefox-3', 'legal/eula/firefox-3-eula.html'),
+    page('impressum', 'legal/impressum.html'),
 
     page('firefox', 'legal/firefox.html'),
 
@@ -40,4 +41,5 @@ urlpatterns = patterns('',
         name='legal.report-abuse'),
 
     url('^fraud-report/$', views.fraud_report, name='legal.fraud-report'),
+
 )
