@@ -41,7 +41,7 @@ $(function() {
     };
     var mediaURL = window.trans('media-url') + 'img/plugincheck/app-icons/';
     var unknownPluginUrl = function (pluginName) {
-        return 'https://www.google.com/search?q=' + encodeURI(window.trans('googleSearchq') + ' ' + pluginName);
+        return 'https://duckduckgo.com/?q=' + encodeURI(window.trans('ddgSearchq') + ' ' + pluginName);
     };
 
     function showPlugin(data) {
