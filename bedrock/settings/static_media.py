@@ -1385,10 +1385,8 @@ PIPELINE_JS = {
     },
     'home': {
         'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
             'js/mozorg/home/home.js',
             'js/mozorg/home/ga-tracking.js',
-            'js/mozorg/home/scroll-prompt.js',
         ),
         'output_filename': 'js/home-bundle.js',
     },
