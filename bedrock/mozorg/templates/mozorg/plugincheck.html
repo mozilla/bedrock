@@ -101,66 +101,79 @@
       <p class="enable-js warning">{{_('Please turn on JavaScript to display this page correctly.')}}</p>
 
       <h2>{{_('Plugin Status')}}</h2>
-      <ul>
-        <li>{{_('Step 1: Click Update to update a plugin.')}}</li>
-        <li>{{_('Step 2: Complete all recommended updates before restarting your browser.')}}</li>
-      </ul>
 
-      <div class="plugincheck-loader"></div>
+      <div class="plugincheck-loader hidden"></div>
 
-      <div id="sec-plugin-vulnerable">
-        <table class="table status">
-          <caption>{{_('Potentially vulnerable plugins')}}</caption>
-          <thead>
-            <tr>
-              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
-              <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
-              <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
-            </tr>
-          </thead>
-          <tbody id="plugin-vulnerable"></tbody>
-        </table>
+      <div id="no-plugins" class="hidden">
+      {% if l10n_has_tag('no_plugins') %}
+      <p>
+        {% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=Plugin%20Check&component=UI' %}
+          No plugins were found. If you believe this is an error, <a href="{{ bugzilla_url }}">please file a bug</a> and let us know.
+        {% endtrans %}
+      </p>
+      {% endif %}
       </div>
 
-      <div id="sec-plugin-outdated" class="shadow-separator">
-        <table class="table status">
-          <caption>{{_('Outdated Plugins')}}</caption>
-          <thead>
-            <tr>
-              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
-              <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
-              <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
-            </tr>
-          </thead>
-          <tbody id="plugin-outdated"></tbody>
-        </table>
-      </div>
+      <div id="plugins" class="hidden">
+        <ul>
+          <li>{{_('Step 1: Click Update to update a plugin.')}}</li>
+          <li>{{_('Step 2: Complete all recommended updates before restarting your browser.')}}</li>
+        </ul>
 
-      <div id="sec-plugin-uptodate" class="shadow-separator">
-        <table class="table status">
-          <caption>{{_('These plugins are up to date')}}</caption>
-          <thead>
-            <tr>
-              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
-              <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
-              <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
-            </tr>
-          </thead>
-          <tbody id="plugin-uptodate"></tbody>
-        </table>
-      </div>
+        <div id="sec-plugin-vulnerable">
+          <table class="table status">
+            <caption>{{_('Potentially vulnerable plugins')}}</caption>
+            <thead>
+              <tr>
+                <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
+                <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
+                <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
+              </tr>
+            </thead>
+            <tbody id="plugin-vulnerable"></tbody>
+          </table>
+        </div>
 
-      <div id="sec-plugin-unknown" class="shadow-separator">
-        <table class="table status status-unknown">
-          <caption>{{_('Unknown Plugins')}}</caption>
-          <thead>
-            <tr>
-              <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
-              <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
-            </tr>
-          </thead>
-          <tbody id="plugin-unknown"></tbody>
-        </table>
+        <div id="sec-plugin-outdated" class="shadow-separator">
+          <table class="table status">
+            <caption>{{_('Outdated Plugins')}}</caption>
+            <thead>
+              <tr>
+                <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
+                <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
+                <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
+              </tr>
+            </thead>
+            <tbody id="plugin-outdated"></tbody>
+          </table>
+        </div>
+
+        <div id="sec-plugin-uptodate" class="shadow-separator">
+          <table class="table status">
+            <caption>{{_('These plugins are up to date')}}</caption>
+            <thead>
+              <tr>
+                <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
+                <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
+                <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
+              </tr>
+            </thead>
+            <tbody id="plugin-uptodate"></tbody>
+          </table>
+        </div>
+
+        <div id="sec-plugin-unknown" class="shadow-separator">
+          <table class="table status status-unknown">
+            <caption>{{_('Unknown Plugins')}}</caption>
+            <thead>
+              <tr>
+                <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
+                <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
+              </tr>
+            </thead>
+            <tbody id="plugin-unknown"></tbody>
+          </table>
+        </div>
       </div>
 
       <p><a href="#top">{{_('Back to Top')}}</a></p>

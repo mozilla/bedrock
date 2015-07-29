@@ -81,3 +81,22 @@ casper.test.begin('PluginCheck, outated Firefox: ' + url, 1, function suite(test
         helpers.done();
     });
 });
+
+// This test assumes that no plugins will be loaded as the Casper loadPlugins option,
+// casper.options.pageSettings.loadPlugins, has not been set to true.
+// http://docs.casperjs.org/en/latest/modules/casper.html#pagesettings
+casper.test.begin('PluginCheck, no plugins found message: ' + url, 2, function suite(test) {
+    casper.start();
+
+    casper.userAgent(config.userAgent.fx);
+
+    casper.thenOpen(url, function() {
+        test.assertVisible('#no-plugins', 'The no plugins container is visible');
+        test.assertNotVisible('#plugins', 'The plugins container is hidden');
+    });
+
+    casper.run(function() {
+        test.done();
+        helpers.done();
+    });
+});
