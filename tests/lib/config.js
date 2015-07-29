@@ -28,6 +28,34 @@ var userAgent = {
     android: 'Mozilla/5.0 (Linux; U; Android 4.0; en-us; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30'
 };
 
+casper.on('waitFor.timeout', function(timeout, details) {
+    if (details.visible) {
+        casper.echo('Timeout selector visibility change: ' + details.visible, 'ERROR');
+    }
+    if (details.selector) {
+        casper.echo('Timeout waiting for selector: ' + details.selector, 'ERROR');
+    }
+    if (details.url) {
+        casper.echo('Timeout waiting for url: ' + details.url, 'ERROR');
+    }
+    if (details.resource) {
+        casper.echo('Timeout waiting for resource: ' + details.resource, 'ERROR');
+    }
+    if (details.text) {
+        casper.echo('Timeout waiting for text: ' + details.text, 'ERROR');
+    }
+    if (details.selectorTextChange) {
+        casper.echo('Timeout waiting for selectorTextChange: ' + details.selectorTextChange, 'ERROR');
+    }
+    if (details.popup) {
+        casper.echo('Timeout waiting for popup: ' + details.popup, 'ERROR');
+    }
+    // Casper can sometimes run into timing issues recovering from a timeout when waiting
+    // on an async change such as a resource, url or ajax request. Hopefully this will be
+    // fixed in a future CasperJS release, or we can find a better way to circumvent it.
+    casper.die('Exiting test run to avoid a race in which results may be unpredictable.', 1);
+});
+
 // set default viewport size to desktop
 casper.options.viewportSize = viewport.desktop;
 
