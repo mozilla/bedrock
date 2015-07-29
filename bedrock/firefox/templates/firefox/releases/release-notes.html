@@ -64,8 +64,9 @@
             <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2>
           </span>
         </span>
+        {% if release.text %}
         <span class="thank_wrapper">
-        {{ release.text|markdown|safe }} </span> 
+        {{ release.text|markdown|safe }} </span> {% endif %}
       </div>
       {% endblock %}
       {% block platform_switch %}
@@ -241,7 +242,7 @@
         </section>
     </section>
     </div>
-    <div class="tri-column" id="note-media">
+    <!--<div class="tri-column" id="note-media">
       {% if new_features %}
       <section class="notes-section" id="new-features">
         <ul class="section-items tagged">
@@ -313,7 +314,7 @@
         </ul>
       </section>
       {% endif %}
-    </div>
+    </div> -->
   </article>
 </main>
 {% endblock %}
