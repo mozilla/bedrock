@@ -53,7 +53,7 @@ casper.test.begin('Contribute Signup, Areas of interest interaction: ' + url, 9,
         test.assertElementCount('#area-coding select', 1, 'The select field exists');
 
         casper.click('.option-list li:nth-child(3) label');
-    })
+    });
 
     casper.waitUntilVisible('#area-writing', function() {
         test.assert(true, 'The writing area of interest section is visible');
