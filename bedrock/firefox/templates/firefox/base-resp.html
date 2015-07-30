@@ -5,8 +5,9 @@
 {% add_lang_files "firefox/new" %}
 
 {% extends "base-resp.html" %}
+{% from "macros.html" import fxfamilynav, send_to_device with context %}
 
-{% block body_class %}sky{% endblock %}
+{% block body_class %}blank{% endblock %}
 
 {% block page_title_prefix %}{{_('Mozilla Firefox Web Browser')}} — {% endblock %}
 {% block page_image %}{{ static('img/firefox/template/page-image.png') }}{% endblock %}
@@ -17,9 +18,18 @@
 {% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
 {% block twitter_id %}firefox{% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-android-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block site_css %}
   {% stylesheet 'firefox-resp' %}
+  {% stylesheet 'firefox_android' %}
+  {% stylesheet 'firefox_sync_anim' %}
 {% endblock %}
+
 
 {% block site_header_nav %}
   {% include 'firefox/includes/top-menu.html' %}
