@@ -157,13 +157,13 @@
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
-      {% if l10n_has_tag('webmaker_promo_makerparty2015') %}
-        <li id="promo-6" class="item promo-large-landscape makerparty" tabindex="0" data-name="Get creative at Maker Party">
-          <h2 class="primary go">{{ _('Get creative <br>at Maker Party') }}</h2>
-          <a class="panel-link" rel="external" href="https://teach.mozilla.org/events/">
+      {% if l10n_has_tag('webmaker_promo_introducing') %}
+        <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0" data-name="Introducing the new Webmaker">
+          <h2 class="primary go">{{ _('Introducing<br> the new Webmaker') }}</h2>
+          <a class="panel-link" rel="external" href="https://webmaker.org/">
             <div class="secondary">
-              <h3>{{ _('Join Mozilla <br>and help teach the Web.') }}</h3>
-              <p class="more">{{ _('Join the party') }}</p>
+              <h3>{{ _('Discover, create and share original content with the free Webmaker app.') }}</h3>
+              <p class="more">{{ _('Learn more') }}</p>
             </div>
           </a>
         </li>
@@ -191,10 +191,10 @@
         <li id="promo-7" class="item promo-face">
           {{ promo_face(3) }}
         </li>
-      {% if l10n_has_tag('webmaker_promo_makerparty2015b') %}
-        <li id="promo-8" class="item promo-small-landscape webmaker" data-name="Try the new Webmaker">
-          <a class="panel-link" rel="external" href="https://beta.webmaker.org">
-            <h2>{{ _('Try the new Webmaker') }}</h2>
+      {% if l10n_has_tag('webmaker_promo_introducing') %}
+        <li id="promo-8" class="item promo-small-landscape webmaker" data-name="Teach the Web">
+          <a class="panel-link" rel="external" href="https://teach.mozilla.org">
+            <h2>{{ _('Teach<br> the Web') }}</h2>
           </a>
         </li>
       {% else %}
