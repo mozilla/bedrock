@@ -17,8 +17,9 @@
 {% block site_header %}
   <header id="masthead">
     <div class="container">
-      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
-
+      <div id="tabzilla">
+        <a href="{{ url('mozorg.home') }}">Mozilla</a>
+      </div>
       <div id="masthead-logo-nav">
       {% block site_header_logo %}
         <a id="site-header-logo" href="{{ url('firefox.desktop.index') }}">{{ high_res_img('img/firefox/desktop/firefox-header.png', {'alt': 'Firefox', 'width': '132', 'height': '49'}) }}</a>

@@ -23,8 +23,6 @@
 
 {% block body_class %}sky{% endblock %}
 
-{% block site_css %}{% endblock %}
-
 {% block string_data %}
 {# L10n: This is the label for a button that opens the tour modal dialog #}
 data-open="{{ _('Open tour') }}"
@@ -56,7 +54,9 @@ data-has-tour="True"
 
 {% block site_header %}
   <header id="masthead">
-    <a href="{{ url('mozorg.home') }}" id="tabzilla">Mozilla</a>
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}">Mozilla</a>
+    </div>
     {% block site_header_nav %}{% endblock %}
     {% block site_header_logo %}{% endblock %}
     {% block breadcrumbs %}{% endblock %}

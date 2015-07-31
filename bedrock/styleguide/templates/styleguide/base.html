@@ -2,21 +2,19 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% extends "base.html" %}
 
 {% block page_title_prefix %}{{ page_title }} — {% endblock %}
 {% block page_title %}Mozilla Style Guide{% endblock %}
 {% block body_id %}styleguide{% endblock %}
 {% block body_class %}sand{% endblock %}
 
-{% block site_header %}
-{% endblock %}
 
 {% block site_header_logo %}{% endblock %}
 {% block site_header_nav %}{% endblock %}
 {% block email_form %}{% endblock %}
 
-{% block extrahead %}
+{% block page_css %}
   {% stylesheet 'styleguide' %}
 {% endblock %}
 
@@ -26,9 +24,6 @@
 
 {% block content %}
 <div id="content">
-  <header id="masthead">
-  <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">{{ _('Mozilla') }}</a>
-  </header>
 
 {% block sidebar %}
   <div id="sidebar">

@@ -83,7 +83,11 @@
 {% block site_header %}
 <header id="masthead">
   <div class="container">
-    <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+    {% block tabzilla_tab %}
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}">mozilla</a>
+    </div>
+    {% endblock %}
     <nav id="nav-main" role="navigation">
       <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
       <ul id="nav-main-menu">

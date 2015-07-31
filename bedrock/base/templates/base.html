@@ -41,9 +41,6 @@
 
     {{ l10n_css() }}
 
-    {% block tabzilla_css %}
-      {% stylesheet 'tabzilla' %}
-    {% endblock %}
 
     <!--[if lte IE 8]>
       {# Only needed for IE before v9 #}
@@ -91,8 +88,11 @@
 
     {% block site_header %}
       <header id="masthead">
+
         {% block tabzilla_tab %}
-        <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{% block tabzilla_infobar %}{{ settings.TABZILLA_INFOBAR_OPTIONS }}{% endblock %}">Mozilla</a>
+        <div id="tabzilla">
+          <a href="{{ url('mozorg.home') }}">Mozilla</a>
+        </div>
         {% endblock %}
 
         {% block site_header_nav %}
@@ -139,9 +139,6 @@
 
     {% block site_js %}
       {% javascript 'common' %}
-    {% endblock %}
-    {% block tabzilla_js %}
-      <script src="{{ settings.CDN_BASE_URL }}{{ url('tabzilla') }}"></script>
     {% endblock %}
     {% block js %}{% endblock %}
     {% if settings.DEV %}

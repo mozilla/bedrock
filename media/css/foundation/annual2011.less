@@ -4,6 +4,10 @@
 
 @import "../sandstone/lib.less";
 
+#tabzilla:before {
+  background-color: @textColorSecondary;
+}
+
 @mozred:    #ba2725;
 @blue:      #2293d1;
 @orange:    #e56125;
@@ -59,18 +63,16 @@ a.vid-youtube:focus {
 
 #masthead {
   width: auto;
-  padding: 45px 20px 20px;
+  padding: 0px 20px 20px;
   position: relative;
+  margin-top: -10px; 
+
   h1 {
     font-style: normal;
     .font-size(72px);
     letter-spacing: -2px;
     margin: (@baseLine / 2) 0;
-  }
-  #tabzilla {
-    position: absolute;
-    right: 0;
-    top: 0;
+    padding-top: 45px;
   }
 }
 
@@ -892,10 +894,6 @@ body.noscroll {
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
-
-  #wrapper {
-    width: 320px;
-  }
 
   #main-content {
     width: 280px;

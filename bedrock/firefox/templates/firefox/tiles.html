@@ -5,8 +5,8 @@
 {% from "macros.html" import fxfamilynav with context %}
 
 {% extends "/firefox/dashboard-base.html" %}
-{% block site_css %}
-  {{ super() }}
+
+{% block page_css %}
   {% stylesheet 'firefox-tiles' %}
 {% endblock %}
 
@@ -30,9 +30,6 @@ Our New Tab Experience
 {% block site_header_unwrapped %}
   {{ fxfamilynav('desktop', '', 'dark') }}
 {% endblock %}
-
-{% block tabzilla_css %}{% endblock %}
-{% block tabzilla_js %}{% endblock %}
 
 {# The contents of the dashboard_intro block appears at the top of the page
    below the page title. Paragraphs should be wrapped like this:

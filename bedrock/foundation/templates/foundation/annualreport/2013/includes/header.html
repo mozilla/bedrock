@@ -1,5 +1,7 @@
 <header id="masthead">
-  <a href="{{ url('mozorg.home')}}" id="tabzilla">{{ _('Mozilla') }}</a>
+    <div id="tabzilla">
+        <a href="{{ url('mozorg.home')}}">{{ _('Mozilla') }}</a>
+    </div>
 
   {% block site_header_nav %}{% endblock %}
   {% block site_header_logo %}{% endblock %}

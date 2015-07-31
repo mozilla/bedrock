@@ -20,7 +20,7 @@
   {% endif %}
 {% endblock %}
 
-{% block site_css %}
+{% block page_css %}
   {% stylesheet 'firefox_android' %}
   <!--[if gt IE 9]><!-->
     {% stylesheet 'firefox_sync_anim' %}
@@ -41,9 +41,6 @@
     </div>
   {% endcall %}
 {% endblock %}
-
-{% block tabzilla_css %}{% endblock %}
-{% block tabzilla_js %}{% endblock %}
 
 {% block content %}
 

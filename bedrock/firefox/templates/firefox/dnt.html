@@ -10,7 +10,7 @@
 {% block page_desc %}{{ _('Mozilla Firefox offers a Do Not Track feature that lets you express a preference not to be tracked by websites.') }}{% endblock %}
 {% block body_id %}dnt{% endblock %}
 
-{% block site_css %}
+{% block page_css %}
   {% stylesheet 'dnt' %}
 {% endblock %}
 
@@ -19,9 +19,6 @@
 {% block site_header_unwrapped %}
   {{ fxfamilynav('desktop', '', 'dark') }}
 {% endblock %}
-
-{% block tabzilla_css %}{% endblock %}
-{% block tabzilla_js %}{% endblock %}
 
 {% block content %}
 
