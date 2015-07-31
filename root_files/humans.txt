@@ -1,5 +1,6 @@
 Contributors on Github
 Developers: mrmakeit
+Developers: amjadm61
 Developers: sgarrity
 Developers: pmclanahan
 Developers: jlongster
