@@ -16,7 +16,7 @@ def android_builds(channel, builds=None):
     builds = builds or []
     variations = OrderedDict([
         ('api-9', 'Gingerbread'),
-        ('api-11', 'Honeycomb+ ARMv7'),
+        ('api-11', 'Honeycomb+ ARMv7+'),
         ('x86', 'x86'),
     ])
 
@@ -26,7 +26,7 @@ def android_builds(channel, builds=None):
             builds.append({'os': 'android',
                            'os_pretty': 'Android',
                            'os_arch_pretty': 'Android %s' % arch_pretty,
-                           'arch': 'x86' if type == 'x86' else 'armv7 %s' % type,
+                           'arch': 'x86' if type == 'x86' else 'armv7up %s' % type,
                            'arch_pretty': arch_pretty,
                            'download_link': link})
     else:

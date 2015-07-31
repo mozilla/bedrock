@@ -107,6 +107,11 @@
                 return RegExp.lastMatch.toLowerCase();
             }
 
+            // ARMv8 64-bit
+            if (/aarch64/.test(pf)) {
+                return 'armv8';
+            }
+
             // PowerPC
             re = /PowerPC|PPC/i;
             if (re.test(pf) || re.test(ua)) {
@@ -122,7 +127,7 @@
             pf = (pf === '') ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
 
-            var re = /x64|x86_64|Win64|WOW64/i;
+            var re = /x64|x86_64|Win64|WOW64|aarch64/i;
             if (re.test(pf) || re.test(ua)) {
                 return 64;
             }
@@ -162,11 +167,18 @@
         // Add class to reflect the microprocessor architecture info
         var archType = window.site.archType = window.site.getArchType();
         var archSize = window.site.archSize = window.site.getArchSize();
+        var isARM = archType.match(/armv(\d+)/);
+
         if (archType !== 'x86') {
             h.className = h.className.replace('x86', archType);
 
-            if (/armv\d+/.test(archType)) {
+            if (isARM) {
                 h.className += ' arm';
+
+                // Add class to support downloading Firefox for Android on ARMv7 and later
+                if (parseFloat(isARM[1]) >= 7) {
+                    h.className += ' armv7up';
+                }
             }
         }
         if (archSize === 64) {
