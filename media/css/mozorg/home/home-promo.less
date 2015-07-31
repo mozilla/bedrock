@@ -839,31 +839,6 @@ html[lang|="en"] {
     }
 }
 
-
-/****************************************************************************/
-// Maker Party
-.promo-large-landscape.makerparty {
-    background: #e14164; // pinkish red
-
-    h2 {
-        padding: 110px @baseLine 0 @baseLine;
-        margin-top: @baseLine;
-        background-image: url(/media/img/home/voices/promos/makerparty/maker-party.png);
-        background-position: top center;
-        background-repeat: no-repeat;
-        .background-size(105px, 105px);
-    }
-}
-
-html[lang|="en"] {
-    .promo-large-landscape.makerparty {
-        h3 {
-            padding: (@baseLine * 3) @baseLine 0 @baseLine;
-        }
-    }
-}
-
-
 /****************************************************************************/
 // Webmaker
 .promo-large-landscape.webmaker {
@@ -891,18 +866,11 @@ html[lang|="en"] {
     background: #0ad; // bright blue
 
     h2 {
-        padding: 35px 0 35px 130px;
-        min-height: 50px;
-        background: url(/media/img/home/voices/promos/webmaker/webmaker-logo.svg) 15px 15px no-repeat;
-        .background-size(100px, 100px);
+        padding: 30px 20px 10px 140px;
+        min-height: 64px;
+        background: url(/media/img/home/voices/promos/webmaker/webmaker-teacher.svg) 15px 35px no-repeat;
+        .background-size(95px, 64px);
     }
-}
-html[dir="rtl"] {
-	.promo-small-landscape.webmaker{
-		h2 {
-			padding: 12px 35px 35px 130px;
-		}
-	}
 }
 
 
@@ -1744,14 +1712,6 @@ html[lang|="en"] {
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
        only screen and (                min-resolution: 1.5dppx),
        only screen and (                min-resolution: 144dpi) {
-
-    // Maker Party
-    .promo-large-landscape.makerparty {
-        h2 {
-            background-image: url(/media/img/home/voices/promos/makerparty/maker-party-high-res.png);
-            .background-size(105px, 105px);
-        }
-    }
 
     // Support
     .promo-large-landscape.support {
