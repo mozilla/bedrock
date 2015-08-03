@@ -23,13 +23,15 @@
 
 {% block body_class %}sky{% endblock %}
 
-{% block site_css %}{% endblock %}
+{% block page_css %}{% endblock %}
 
 {% block string_data %}{% endblock %}
 
 {% block site_header %}
   <header id="masthead">
-    <a href="{{ url('mozorg.home') }}" id="tabzilla">Mozilla</a>
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}">Mozilla</a>
+    </div>
     {% block site_header_nav %}{% endblock %}
     {% block site_header_logo %}{% endblock %}
     {% block breadcrumbs %}{% endblock %}
