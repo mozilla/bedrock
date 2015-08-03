@@ -1,40 +1,207 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 @import "../sandstone/lib.less";
+@font-face {
+    font-family: 'Font Awesome';
+    src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'), url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'), url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+#outer-wrapper {
+    background: #fff;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
 
+.blank {
+    #outer-wrapper {
+    background: #FFF;
+    width: 100vw;
+    padding: 0px;
+    margin: 0px;
+    }
+}
+#wrapper {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+}
+
+#tabzilla:before {
+    background-color: #0C99D5;
+}
 .space #wrapper {
     background-repeat: no-repeat;
     background-position: 0px 180px;
-    background-image: url('/media/img/firefox/releasenotes/aurora_bg_800.png');
+    background-color: white;
+    width: 100%;
 }
-
+.wrap_pad {
+    padding-bottom: 30px;
+}
+#main-content {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+.release-notes {
+    background-color: white;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.tri-column {
+    .span(4);
+}
+.notes-column {
+    width: 100vw;
+    text-align: left;
+    padding:0px;
+    background-color: white;
+}
+.note_wrapper {
+    width: 75%;
+    float: right;
+}
+.label_wrapper {
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-transform: uppercase;
+}
+.release_blurb_wrapper {
+    width: 100%;
+    float: left;
+    text-align: left;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+.release_details {
+    width: 100%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    padding: 10px 10px 10px 0;
+    position: relative;
+}
+.version_wrapper {
+    width: 11%;
+    padding-left:4%;
+    left:0;
+    top:0;
+    float: left;
+    text-align: center;
+    position: relative;
+    padding-top: 10px;
+    display:inline-block;
+}
+.details_wrapper {
+    position: relative;
+    float: left;
+    text-align: center;
+    width: auto;
+    padding-left:7%;
+    left:0;
+    top:0;
+    padding-top:1.2em;
+    height: 100%;
+    display:inline-block;
+}
+.thank_wrapper {
+    position: relative;
+    float: left;
+    width:75%;
+    padding-left:22%;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display:block;
+}
+.title_text_wrap {
+    width: 40%;
+    position: relative;
+    word-wrap: break-word;
+}
+.release_details_alt {
+    width: 100%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    padding: 10px 10px 10px 0;
+    position: relative;
+}
+.version_wrapper_alt {
+    height: 100%;
+    width:11%;
+    padding-left:4%;
+    float: left;
+    text-align: center;
+    position: relative;
+    padding-top: 10px;
+    display: inline-block;
+}
+.details_wrapper_alt {
+    position: relative;
+    float: left;
+    padding-top:0em;
+    display: inline-block;
+    padding-left:7%;
+}
+.title_text_wrapper_alt {
+    width: 100%;
+    position: relative;
+}
+.section-wrapper {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+.note_wrap {
+    padding-left: 20px;
+}
+#note-media {
+    display: none;
+}
+.gray_note {
+    background-color: rgba(223, 236, 250, 0.41);
+}
+.blue_note {
+    background-color: #FFF;
+}
 .notes-head {
     .clearfix;
+    padding: 10px 5% 0;
     margin-bottom: @baseLine * 2;
-
-    h1,
-    h2,
+    background-color: #F0F0F0;
+    text-align: center;
     p {
-        .span(7);
     }
-
+    h1 {
+        font-weight: 400;
+        font-size: 250%;
+        padding-bottom: 15px;
+        text-align: center;
+    }
+    h3 {
+        font-weight: 900;
+        font-size: 225%;
+    }
     h1 {
         margin-bottom: .15em;
     }
-
     h2 {
         .font-size(1.428em);
         letter-spacing: normal;
         margin-bottom: .75em;
     }
-
     p {
         margin-bottom: 1em;
     }
 }
-
 .space .notes-head {
     background-repeat: no-repeat;
     background-position: top left;
@@ -42,189 +209,194 @@
     background-size: 150px auto;
     padding: 10px 0 0 150px;
 }
-
 .blueprint .notes-head {
-    h1,
-    h2,
-    p {
+    h1, h2, p {
         .span(8);
     }
     h1 {
-        margin-bottom: .15em;
+        margin-top: .25em;
+        padding-top: 20px;
     }
     h2 {
-        margin-bottom: .75em;
+        margin-bottom: 0em;
     }
 }
 
+#new::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f005\00A0";
+}
+
+#fixed::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f00c\00A0";
+}
+
+#changed::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f021\00A0";
+}
+
+#developer::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f0ad\00A0";
+}
+
+#html5::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f121\00A0";
+}
+
+#resolved::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f164\00A0";
+}
+
+#known::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f05e\00A0";
+}
+
+.note_label {
+    text-align: center;
+}
+
+.space_div {
+    padding-bottom: 30px;
+}
+.firstPlatform {
+    padding-left: 40%;
+    padding-right: 5%;
+}
 #platform {
-    float: right;
     overflow: hidden;
-
+    padding-top: 0px;
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    text-align: center;
     a {
-        color: #fff;
+        color: #000;
     }
-
     h4 {
-        .font-size(15px);
-        margin: 0 0 6px 0;
+        .font-size(30px);
+        margin: 0;
         padding: 0;
     }
-
     ul {
         margin: 0;
-        padding: 3px;
         float: left;
-        box-shadow: 0 3px 3px rgba(126, 137, 147, .5) inset,
-                    0 1px rgba(185, 197, 204, .5);
-        border-radius: 9px;
-        background: #b1becc;
-        background: rgba(207, 218, 230, .25);
+        background: #fff;
+        width: 100%;
+        border-radius: 10px;
     }
-
     li {
         margin: 0;
-        padding: 0;
         list-style-type: none;
         float: left;
+        width: 90px;
     }
-
-    a {
-        border-bottom: 1px solid rgba(43, 58, 153, .5);
-        box-shadow: 0 -2px rgba(0, 0, 0, .2) inset;
-        #gradient > .vertical-three-colors(#7ca9f4, #4b79c6, 3%, #2e4e99);
-        text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
-    }
-
     span {
-        color: #506aa1;
-        border-bottom: 1px solid #22366d;
-        .box-shadow(0 2px 1 px #0b1b41 inset);
-        #gradient > .vertical(#1a2f5a 14%, #254d90 95%);
-        border-radius: 0 6px 6px 0;
-        text-shadow: 0 1px rgba(28, 54, 112, .35);
+        color: #000;
+        border-radius: 0;
+        border-bottom: 5px solid rgba(0, 150, 221, 0.7);
     }
-
     li:first-child {
         padding-right: 1px;
-
-        a,
-        span {
-            border-radius: 6px 0 0 6px;
+        a, span {
+            border-radius: 0;
         }
     }
-
     a,
     span {
         display: block;
         padding: 12px 16px;
         .open-sans;
-        .font-size(@smallFontSize);
+        .font-size(15px);
         font-weight: 600;
         text-transform: uppercase;
-        border-radius: 0 6px 6px 0;
+        border-radius: 0;
     }
 }
-
 .space #platform {
     ul {
-        box-shadow: 0 0 10px rgba(72, 23, 95, .35) inset,
-                    0 -1px 0 rgba(134, 80, 168, .5) inset;
+        padding: 0px;
     }
-
     a {
         #gradient > .vertical-three-colors(#f2a279, #f28047, 3%, #c63);
     }
-
     span {
         color: #d79676;
         #gradient > .vertical(#7b3816 14%, #ac5022 95%);
     }
-
 }
-
 a.go:after,
 .sidebar a:after {
     content: " »";
     white-space: nowrap;
 }
-
 article {
     .clearfix;
 }
-
 .notes-section {
     .box-shadow(@shadow);
     @shadow: 0 0 0 1px #fff inset;
     background: #fff;
-    border-bottom: 1px solid #ddd;
-    margin: 0 -@gridGutterWidth @baseLine;
-    padding: @baseLine @gridGutterWidth;
+    padding:0px;
 }
-
 .blueprint .notes-section {
     background: #111;
     background: rgba(9, 68, 121, .1);
     border: 1px solid rgba(25, 93, 153, .5);
     box-shadow: 0 0 10px rgba(9, 68, 121, .36) inset;
 }
-
 .space .notes-section {
     background: #303;
     background: rgba(40, 6, 57, .25);
     border: 1px solid rgba(80, 27, 91, .5);
-    box-shadow: 0 0 10px rgba(72, 23, 95, .36) inset,
-                0 -1px 0 rgba(134, 80, 168, .5) inset;
+    box-shadow: 0 0 10px rgba(72, 23, 95, .36) inset, 0 -1px 0 rgba(134, 80, 168, .5) inset;
 }
-
 .section-items {
     list-style: none;
     margin: 0;
-
     > li {
-        border-top: 1px solid @borderColor;
         margin: 0;
         padding: .714rem 0 .5rem;
         position: relative;
+        padding-bottom: 10px;
+        padding-right: 5px;
     }
-
     h4 {
         .font-size(18px);
         margin: 0 0 .25em;
     }
-
     p {
-        margin: 0 0 .25em;
+        margin: 0;
     }
-
     .note {
         .font-size(@smallFontSize);
         color: @textColorSecondary;
-        margin: 0 0 .25em;
+        margin: 0;
+        padding-right: 0px;
     }
 }
-
 .space .section-items > li {
     border-top-color: #522853;
 }
-
 .blueprint .section-items > li {
     border-top-color: #173e62;
 }
-
 .section-items.tagged {
     > li {
-        padding-left: 160px;
-
+        padding-left: 0;
         &.untagged {
             padding-left: 0;
         }
     }
-
     .tag {
         background: #f3f3f3 url(/media/img/firefox/releasenotes/tags.png) 0 0 no-repeat;
         border-right: 3px solid #ccc;
-        box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(0,0,0,0.05) inset;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
         color: @textColorPrimary;
         display: inline-block;
         .font-size(11px);
@@ -238,67 +410,21 @@ article {
         text-transform: uppercase;
         width: 102px;
     }
-
-    .tag-new {
-        background-color: #ffedcf;
-        background-position: 0 -50px;
-        border-color: #f90;
-    }
-
-    .tag-changed {
-        background-color: #e9cfff;
-        background-position: 0 -100px;
-        border-color: #8106e0;
-    }
-
-    .tag-fixed {
-        background-color: #f0ffe1;
-        background-position: 0 -150px;
-        border-color: #5ba622;
-    }
-
-    .tag-html5 {
-        background-color: #f8dfd8;
-        background-position: 0 -200px;
-        border-color: #d85027;
-    }
-
-    .tag-resolved {
-        background-color: #dcf6ff;
-        background-position: 0 -250px;
-        border-color: #038fc0;
-    }
-
-    .tag-unresolved {
-        background-color: #ffc8c8;
-        background-position: 0 -300px;
-        border-color: #c00;
-    }
-
-    .tag-developer {
-        background-color: #e7e7e7;
-        background-position: 0 -350px;
-        border-color: #999;
-    }
+    
 }
-
 .sidebar section {
     border-bottom: 1px dotted darken(@borderColor, 10%);
     margin-bottom: @baseLine;
-
     h3 {
         .font-size(22px);
     }
 }
-
 .space .sidebar section {
     border-bottom-color: #522853;
 }
-
 .blueprint .sidebar section {
     border-bottom-color: #173e62;
 }
-
 #try {
     .box-shadow(@shadow);
     @shadow: 0 0 0 1px #fff inset;
@@ -306,19 +432,16 @@ article {
     border-bottom: 1px solid #ddd;
     margin: 0 -@gridGutterWidth @baseLine;
     padding: @baseLine @gridGutterWidth;
-
     ol {
         list-style: none;
         margin: 0;
         padding: 0;
     }
-
     li {
         .font-size(1.125rem);
         margin: 0;
         padding: .5em 0 .5em 40px;
         position: relative;
-
         &:before {
             display: block;
             width: 1.25em;
@@ -337,7 +460,6 @@ article {
             vertical-align: middle;
             border-radius: 50%;
         }
-
         &.try1:before {
             content: '1';
         }
@@ -352,47 +474,65 @@ article {
         }
     }
 }
-
 .space #try {
     background: #003;
     background: rgba(165, 165, 165, .08);
     border: 1px solid rgba(80, 80, 80, .25);
-    box-shadow: 0 0 10px rgba(100, 100, 100, .36) inset,
-                0 -1px 0 rgba(153, 153, 153, .25) inset;
-
+    box-shadow: 0 0 10px rgba(100, 100, 100, .36) inset, 0 -1px 0 rgba(153, 153, 153, .25) inset;
     li:before {
         background: #c63;
     }
 }
-
 #problems li {
     margin: 0 0 .5em 20px;
 }
-
 #other p + p {
     margin-top: -.5em;
 }
-
-
 /* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     .space #wrapper {
         background-size: 650px;
     }
-
-    .notes-head {
-        h1,
-        h2,
-        p {
-            .span_narrow(7);
-        }
+    .firstPlatform {
+        padding-left: 40%;
+    }
+    .thank_wrapper {
+        width: 100%;
+        position: relative;
+        word-wrap: break-word;
+        float: right;
+        text-align: left;
+        padding-top: 0;
+        padding-bottom: 20px;
+        padding-left: 0px;
     }
 
+    .details_wrapper {
+        position: relative;
+        float: left;
+        text-align: left;
+        width: 100%;
+        height: 100%;
+        padding-left:0px;
+    }
+
+    .details_wrapper_alt {
+        position: relative;
+        float: left;
+        text-align: left;
+        width: 100%;
+        height: 100%;
+        padding-left:0px;
+    }
+    .notes-head {
+        h1, h2, p {
+            width:100%;
+        }
+    }
     .blueprint .notes-head {
-        h1,
-        h2,
-        p {
+        h1, h2, p {
             .span-all();
         }
         h1 {
@@ -402,28 +542,103 @@ article {
             margin-bottom: .75em;
         }
     }
-
     .space .notes-head {
         p {
             .span_narrow(6);
         }
     }
-
 }
-
-
 /* Mobile Layout: 320px */
+
 @media only screen and (max-width: @breakTablet) {
-
     .space #wrapper {
-        background-size: 320px;
+        width:auto;
     }
-
+    .firstPlatform {
+        padding-left: 25%;
+        width:70vw;
+    }
+    .label_wrapper {
+        width: auto;
+        position: relative;
+        float: left;
+        padding-top:40px;
+        font-weight: bold;
+        p {
+            text-align: left;
+        }
+    }
+    .note_wrapper {
+        width: 100%;
+        padding-top: 0px;
+        float: left;
+        position: relative; 
+    }
+    .note_wrap {
+        float: left;
+        overflow: hidden;
+        padding-left: 5px;
+        width: auto;
+        height:100%;
+    }
+    .title_text_wrap {
+        width: auto;
+        position: absolute;
+    }
+    .release_details {
+        width: auto;
+        height: 100%;
+        float: left;
+        text-align: left;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 0px;
+        position: relative;
+    }
+    .thank_wrapper {
+        width: auto;
+        padding-left:0px;
+        height: 100%;
+        padding-bottom: 20px;
+        padding-top: 5px;
+        float: left;
+        text-align: left;
+    }
+    .version_wrapper {
+        width: 33%;
+        height: 100%;
+        float: left;
+        padding-left: 33%;
+        text-align: left;
+        position: relative;
+        padding-top: 10px;
+    }
+    .details_wrapper {
+        width: 100%;
+        height: 100%;
+        padding-left: 0px;
+        float: left;
+        position: relative;
+    }
+    .version_wrapper_alt {
+        width: 33%;
+        height: 100%;
+        float: left;
+        text-align: left;
+        position: relative;
+        padding-top: 10px;
+    }
+    .details_wrapper_alt {
+        position: relative;
+        float: left;
+        text-align: left;
+        width: 100%;
+        height: 100%;
+        padding-left:0px;
+    }
     .notes-head,
     .blueprint .notes-head {
-        h1,
-        h2,
-        p {
+        h1, h2, p {
             .span-all();
         }
         h1 {
@@ -433,30 +648,31 @@ article {
             margin-bottom: .75em;
         }
     }
-
     .space .notes-head {
         background-image: none;
         padding: 0;
     }
-
     #platform {
         float: none;
-        margin: @baseLine 10px;
+        padding-right: 10px;
+        padding-left: 0px;
+        padding-top: 10px;
+        margin: 0em;
+    }
+    .section-wrapper {
+        overflow: hidden;
+        position: relative;
+        width: auto;
     }
 
     .section-items {
         > li {
-            padding-left: 0;
-            span {
-                word-break: break-all;
-            }
-        }
-
-        .tag {
-            position: static;
-            display: block;
-            width: auto;
-            margin: 0 0 .75em;
+            float: left;
+            overflow: visible;
+            width: 100%;
+            position: relative;
+            padding-left: 0px;
+            word-wrap:break-word;
         }
     }
 }
