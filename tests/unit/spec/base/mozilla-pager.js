@@ -49,34 +49,34 @@ describe('mozilla-pager.js', function () {
         });
 
         it('should start auto rotate', function () {
-            spyOn(Mozilla.Pager.prototype, 'startAutoRotate');
+            spyOn(Mozilla.Pager.prototype, 'startAutoRotate').and.callThrough();
             var pager = new Mozilla.Pager($('#pager'));
             expect(Mozilla.Pager.prototype.startAutoRotate).toHaveBeenCalled();
         });
 
         it('should stop auto rotate on mouseenter', function () {
-            spyOn(Mozilla.Pager.prototype, 'stopAutoRotate');
+            spyOn(Mozilla.Pager.prototype, 'stopAutoRotate').and.callThrough();
             var pager = new Mozilla.Pager($('#pager'));
             $('#pager').trigger('mouseenter.' + Mozilla.Pager.EVENT_NAMESPACE);
             expect(Mozilla.Pager.prototype.stopAutoRotate).toHaveBeenCalled();
         });
 
         it('should start auto rotate on mouseleave', function () {
-            spyOn(Mozilla.Pager.prototype, 'startAutoRotate');
+            spyOn(Mozilla.Pager.prototype, 'startAutoRotate').and.callThrough();
             var pager = new Mozilla.Pager($('#pager'));
             $('#pager').trigger('mouseleave.' + Mozilla.Pager.EVENT_NAMESPACE);
             expect(Mozilla.Pager.prototype.startAutoRotate).toHaveBeenCalled();
         });
 
         it('should stop auto rotate on focusin', function () {
-            spyOn(Mozilla.Pager.prototype, 'stopAutoRotate');
+            spyOn(Mozilla.Pager.prototype, 'stopAutoRotate').and.callThrough();
             var pager = new Mozilla.Pager($('#pager'));
             $('#pager').trigger('focusin.' + Mozilla.Pager.EVENT_NAMESPACE);
             expect(Mozilla.Pager.prototype.stopAutoRotate).toHaveBeenCalled();
         });
 
         it('should start auto rotate on focusout', function () {
-            spyOn(Mozilla.Pager.prototype, 'startAutoRotate');
+            spyOn(Mozilla.Pager.prototype, 'startAutoRotate').and.callThrough();
             var pager = new Mozilla.Pager($('#pager'));
             $('#pager').trigger('focusout.' + Mozilla.Pager.EVENT_NAMESPACE);
             expect(Mozilla.Pager.prototype.startAutoRotate).toHaveBeenCalled();
@@ -126,7 +126,7 @@ describe('mozilla-pager.js', function () {
     describe('Mozilla.Pager with tabs', function () {
 
         beforeEach(function () {
-            $('<div id="pager" class="pager pager-auto-rotate pager-with-tabs"><ol class="pager-tabs"><li><a href="#page1">Page 1</a></li><li><a href="#page2">Page 2</a></li></ol><div class="pager-content"><div class="pager-page"><p>Page 1</p></div><div class="pager-page"><p>Page 2</p></div></div></div>').appendTo('body');
+            $('<div id="pager" class="pager pager-with-tabs"><ol class="pager-tabs"><li><a href="#page1">Page 1</a></li><li><a href="#page2">Page 2</a></li></ol><div class="pager-content"><div class="pager-page"><p>Page 1</p></div><div class="pager-page"><p>Page 2</p></div></div></div>').appendTo('body');
         });
 
         afterEach(function (){
@@ -241,6 +241,7 @@ describe('mozilla-pager.js', function () {
         afterEach(function () {
             Mozilla.Pager.destroyPagers();
             $('#pager').remove();
+            window.location.hash = '';
         });
 
         it('should monitor hash changes', function () {
