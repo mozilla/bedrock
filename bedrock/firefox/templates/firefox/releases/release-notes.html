@@ -1,93 +1,318 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
- # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
-
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 {% extends "firefox/base-resp.html" %}
-
 {% block page_title_prefix %}{% endblock %}
+{% from "macros.html" import fxfamilynav, send_to_device with context %}
 {% block page_title %}{{ _('{product} — {channel} Notes ({version})')|f(product=release.product, channel=channel_name, version=release.version) }}{% endblock %}
-
 {% block body_id %}notes{% endblock %}
-{% block body_class %}fx-notes sky{% endblock %}
-
-{% block page_css %}
-  {% stylesheet 'firefox_releasenotes' %}
+{% block body_class %}fx-notes blank{% endblock %}
+{% block site_css %}
+{% stylesheet 'firefox_releasenotes' %}
+{% stylesheet 'firefox_android' %}
+{% stylesheet 'firefox_sync_anim' %}
 {% endblock %}
-
 {% block optimizely %}
-  {% if waffle.switch('firefox-releasenotes-optimizely') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
+{% if waffle.switch('firefox-releasenotes-optimizely') %}
+{% include 'includes/optimizely.html' %}
+{% endif %}
 {% endblock %}
-
 {# channel_name is for display purposes where needed.  #}
 {% set channel_name = channel_name|default('') %}
-
 {% block content %}
-<main role="main">
+<main role="main" class="release-notes">
   <article id="main-content">
-
-  {% block notes_header %}
+    {% block notes_header %}
     <header class="notes-head">
-    {% block notes_heading_primary %}
-      <h1>{{ _('Firefox {channel} Notes')|f(channel=channel_name) }}</h1>
-    {% endblock %}
-    {% block notes_heading_secondary %}
-      <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
-    {% endblock %}
-
-    {% block platform_switch %}
-    {% if equivalent_release_url %}
-      <aside id="platform">
-        <h4>{{ _('View notes for:') }}</h4>
-        <ul>
-        {% if release.product == 'Firefox' %}
-          <li><span>{{ _('Desktop') }}</span></li>
-          <li><a href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
-        {% else %}
-          <li><a href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
-          <li><span>{{ _('Android') }}</span></li>
-        {% endif %}
-        </ul>
-      </aside>
-    {% endif %}
-    {% endblock %}
-
-      <p>
-        {{ _('Check out "What’s New" and "Known Issues" for this version of Firefox below.') }}
-      {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
-          if release.product == 'Firefox for Android'
-          else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
-          bugzilla='https://bugzilla.mozilla.org/' %}
-        As always, you’re encouraged to
-        <a href="{{ feedback }}">tell us what you think</a>,
-        or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
-      {% endtrans %}
-      {% if release.bug_list %}
+      <h1>Release Notes </h1>
+      <span class="release_blurb_wrapper">
+        {{ _('Release Notes tell you what’s new in Firefox. As always, we welcome your ') }}
+        {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
+        if release.product == 'Firefox for Android'
+        else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
+        bugzilla='https://bugzilla.mozilla.org/' %}
+        <a href="{{ feedback }}">feedback. </a>
+        You can also  <a href="{{ bugzilla }}"> file a bug in Bugzilla</a>
+        {% endtrans %}
+        {% if release.bug_list %}
       <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
         <input type="hidden" name="limit" value="0">
         <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
-        <p>If interested, please see the <button type="submit">complete list of changes</button> in this release.</p>
+        <p> <button type="submit">complete list of changes</button> in this release.</p>
       </form>
       {% else %}
-          If interested, please see the  <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
+      or see the <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
       {% endif %}
-        {{ release.text|markdown|safe }}
-      </p>
-    </header>
-  {% endblock %}
+      </span>
+      {% if equivalent_release_url %}
+      <aside id="platform">
+        <ul>
+          {% if release.product == 'Firefox' %}
+          <li class ="firstPlatform"><span>{{ _('Desktop') }}</span></li>
+          <li><a href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
+          {% else %}
+          <li class="firstPlatform"><a href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
+          <li><span>{{ _('Android') }}</span></li>
+          {% endif %}
+        </ul>
+      </aside>
+      {% endif %}
 
-    <div class="main-column">
+      {% if release.text %}
+      <div class="title_text_wrapper" >
+        <span class="release_details">
+          <span class="version_wrapper">
+            <h3>{{ version }}</h3>
+          </span>
+          <br>
+          <span class ="details_wrapper">
+            <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2>
+          </span>
+        </span>
+        <span class="thank_wrapper">
+        {{ release.text|markdown|safe }} </span> 
+      </div> {% endif %}
+
+      {% if not release.text %}
+            <div class="title_text_wrapper_alt" >
+        <span class="release_details_alt">
+          <span class="version_wrapper_alt">
+            <h3>{{ version }}</h3>
+          </span>
+          <span class ="details_wrapper">
+            <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2>
+          </span>
+        </span>
+      </div> 
+
+      {% endif %}
+      {% endblock %}
+      {% block platform_switch %}
+      {% endblock %}
+      {% block notes_heading_secondary %}
+    </header>
+    {% endblock %}
+    <div class="notes-column">
+    {% if new_features %}
+    <section class="notes-section" id="new-features">
+      <div class="section-wrapper">
+        {% for note in new_features if note.tag =="New" %}
+        {% if loop.first %}
+        <span class="label_wrapper">
+          <p class="note_label"> <i class="fa fa-star"></i>  NEW </p>
+        </span>
+        {% endif %}
+        <span class="note_wrapper">
+          <ul class="section-items tagged">
+            <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> 
+            <div class="note_wrap">
+              {{ note.note|markdown|safe }} 
+            </div>
+            </li>
+          </ul>
+          {% if loop.last %}
+          <br>
+          <br>
+          <br>
+          {% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      <div class="section-wrapper">
+        {% for note in new_features if note.tag =="Fixed" %}
+        {% if loop.first %}
+        <span class="label_wrapper">
+          <p class="note_label"><i class="fa fa-check"></i>  FIXED </p>
+        </span>
+        {% endif %}
+        <span class="note_wrapper">
+          <ul class="section-items tagged">
+            <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> 
+            <div class="note_wrap">
+              {{ note.note|markdown|safe }} 
+            </div>
+            </li>
+          </ul>
+          {% if loop.last %}
+          <br>
+          <br>
+          <br>
+          {% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      <div class="section-wrapper">
+        {% for note in new_features if note.tag =="Changed" %}
+        {% if loop.first %}
+        <span class="label_wrapper">
+          <p class="note_label"><i class="fa fa-refresh"></i>  CHANGED </p>
+        </span>
+        {% endif %}
+        <span class="note_wrapper">
+          <ul class="section-items tagged">
+            <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> 
+            <div class="note_wrap">
+              {{ note.note|markdown|safe }} 
+            </div>
+            </li>
+          </ul>
+          {% if loop.last %}
+          <br>
+          <br>
+          <br>
+          {% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      <div class="section-wrapper">
+        {% for note in new_features if note.tag =="Developer" %}
+        {% if loop.first %}
+        <span class="label_wrapper">
+          <p class="note_label"><i class="fa fa-wrench"></i>  DEVELOPER </p>
+        </span>
+        {% endif %}
+        <span class="note_wrapper">
+          <ul class="section-items tagged">
+            <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> 
+            <div class="note_wrap">
+              {{ note.note|markdown|safe }} 
+            </div>
+            </li>
+          </ul>
+          {% if loop.last %}
+          <br>
+          <br>
+          <br>
+          {% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      <div class="section-wrapper">
+        {% for note in new_features if note.tag =="HTML5" %}
+        {% if loop.first %}
+        <span class="label_wrapper">
+          <p class="note_label"><i class="fa fa-code"></i>
+            HTML 5 
+          </p>
+        </span>
+        {% endif %}
+        <span class="note_wrapper">
+          <ul class="section-items tagged">
+            <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> 
+            <div class="note_wrap">
+              {{ note.note|markdown|safe }} 
+            </div>
+            </li>
+          </ul>
+          {% if loop.last %}
+          <br>
+          <br>
+          <br>
+          {% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      <div class="section-wrapper">
+        {% for note in new_features if note.tag =="Resolved" %}
+        {% if loop.first %}
+        <span class="label_wrapper">
+          <p class="note_label"><i class="fa fa-thumbs-up"></i>
+           RESOLVED </p>
+        </span>
+        {% endif %}
+        <span class="note_wrapper">
+          <ul class="section-items tagged">
+            <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> 
+            <div class="note_wrap">
+              {{ note.note|markdown|safe }} 
+            </div>
+            </li>
+          </ul>
+          {% if loop.last %}
+          <br>
+          <br>
+          <br>
+          {% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <div class="section-wrapper">
+        {% if known_issues %}
+        <section class="notes-section" id="known-issues">
+          {% for note in known_issues %}
+          {% if loop.first %}
+          <div class="label_wrapper">
+            <p class="note_label"> <i class="fa fa-ban"></i>  UNRESOLVED </p>
+          </div>
+          {% endif %}
+          <div class="note_wrapper">
+            <ul class="section-items tagged">
+              <li {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}"> 
+              <div class="note_wrap">
+                {{ note.note|markdown|safe }} 
+              </div>
+              </li>
+            </ul>
+          </div>
+          {% endfor %}
+          {% endif %}
+        </section>
+    </section>
+    </div>
+    <!--<div class="tri-column" id="note-media">
       {% if new_features %}
       <section class="notes-section" id="new-features">
-        <h3>{{ _('What’s New') }}</h3>
         <ul class="section-items tagged">
-          {% for note in new_features %}
-          <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-            {% if note.tag %}
-              <b class="tag tag-{{ note.tag.lower() }}">{{ note.tag }}</b>
-            {% endif %}
-              {{ note.note|markdown|safe }}
+        <ul class="section-items tagged">
+          {% for note in new_features if note.tag =="New" %}
+          {% if loop.first %}
+          <p style="visibility:hidden"> NEW </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+          <div class="note_wrap">
+            {{ note.note|markdown|safe }}
+          </div>
+          </li>
+          {% endfor %}
+          {% for note in new_features if note.tag =="Fixed" %}
+          {% if loop.first %}
+          <p style="visibility:hidden"> FIXED </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+          {{ note.note|markdown|safe }}
+          </li>
+          {% endfor %}
+          {% for note in new_features if note.tag =="Changed" %}
+          {% if loop.first %}
+          <p style="visibility:hidden"> CHANGED </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+          {{ note.note|markdown|safe }}
+          </li>
+          {% endfor %}
+          {% for note in new_features if note.tag =="Developer" %}
+          {% if loop.first %}
+          <p style="visibility:hidden"> DEVELOPER </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+          {{ note.note|markdown|safe }}
+          </li>
+          {% endfor %}
+          {% for note in new_features if note.tag =="HTML5" %}
+          {% if loop.first %}
+          <p style="visibility:hidden"> HTML 5 </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+          {{ note.note|markdown|safe }}
+          </li>
+          {% endfor %}
+          {% for note in new_features if note.tag =="Resolved" %}
+          {% if loop.first %}
+          <p style="visibility:hidden"> RESOLVED </p>
+          {% endif %}
+          <li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
+          {{ note.note|markdown|safe }}
           </li>
           {% endfor %}
         </ul>
@@ -95,72 +320,21 @@
       {% endif %}
       {% if known_issues %}
       <section class="notes-section" id="known-issues">
-        <h3>{{ _('Known Issues') }}</h3>
         <ul class="section-items tagged">
           {% for note in known_issues %}
-            <li id="note-{{ note.id }}">
-                <b class="tag tag-unresolved">{{ _('unresolved') }}</b>
-                {{ note.note|markdown|safe }}
-            {% if note.fixed_in_release %}
-              <p class="note">
-                <a href="{{ releasenotes_url(note.fixed_in_release) }}">
-                  {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_release.version) }}
-                </a>
-              </p>
-            {% endif %}
-            </li>
+          {% if loop.first %}
+          <p style="visibility:hidden"> UNRESOLVED </p>
+          {% endif %}
+          <li style="visibility:hidden"id="note-{{ note.id }}">
+            {{ note.note|markdown|safe }}
+          </li>
           {% endfor %}
         </ul>
       </section>
       {% endif %}
-    </div>
-
-  {% block notes_sidebar %}
-    <aside id="sidebar" class="sidebar">
-      {% block notes_sidebar_download %}
-      <section id="try">
-        <h3>{{ _('Try Firefox %s')|format(channel_name) }}</h3>
-        <ol>
-          {% set check_url = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device' if release.product == 'Firefox for Android' else url('firefox.system_requirements', version) %}
-          <li class="try1"><a href="{{ check_url }}">{{ _('Check') }}</a></li>
-          <li class="try2"><a href="{{ download_url }}">{{ _('Download') }}</a></li>
-          {% if release.product == 'Firefox for Android' %}
-          <li class="try3"><a href="https://support.mozilla.org/products/mobile/download-and-install">{{ _('Install') }}</a></li>
-          {% else %}
-          <li class="try3"><a href="https://support.mozilla.org/products/firefox/download-and-install">{{ _('Install') }}</a></li>
-          {% endif %}
-          <li class="try4"><a href="https://addons.mozilla.org/firefox/">{{ _('Customize') }}</a></li>
-        </ol>
-      </section>
-      {% endblock %}
-
-      <section id="get-involved">
-        <h3>{{ _('Want to get involved?') }}</h3>
-        <p>{{ _('Did you know that most of the content in Firefox Support was written by volunteers?') }}<br>
-        <a href="{{ url('mozorg.contribute') }}">{{ _('Find out more') }}</a></p>
-      </section>
-
-      <section id="problems">
-        <h3>{{ _('Having Problems?') }}</h3>
-        <ol>
-          <li><a href="{{ support_url }}">{{ _('Search for answers on the Firefox Support page') }}</a></li>
-          {% if known_issues %}
-          <li><a href="#known-issues">{{ _('Look at the known issues list and see if we already know about the problem') }}</a></li>
-          {% endif %}
-          <li><a href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ _('If you can’t find reference to your issue, please consider filing a technical bug report') }}</a></li>
-        </ol>
-      </section>
-
-      <section id="other">
-        <h3>{{ _('Other Resources') }}</h3>
-        <p><a href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a></p>
-        <p><a href="https://blog.mozilla.com/futurereleases/">{{ _('Future of Firefox Blog') }}</a></p>
-      </section>
-    </aside>
-  {% endblock %}
-
+    </div> -->
   </article>
 </main>
 {% endblock %}
-
-{% block js %}{% endblock  %}
+{% block js %}
+{% endblock  %}
