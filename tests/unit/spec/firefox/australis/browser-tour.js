@@ -60,22 +60,12 @@ describe('browser-tour.js', function() {
                       '<h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">',
                         'Title text',
                       '</h2>',
-                      '<ul class="tour-forget-widget step-target">',
-                        '<li><a href="#" role="button" class="more">Link text</a></li>',
-                      '</ul>',
-                    '</div>',
-                  '</li>',
-                  '<li class="tour-step" data-step="3" data-tip-prev="Previous">',
-                    '<div class="tour-item">',
-                      '<h2 class="tour-search-engine step-target" data-target="searchEngine-google">',
-                        'Title text',
-                      '</h2>',
                       '<ul>',
                         '<li><a href="#" role="button" class="more">Link text</a></li>',
                       '</ul>',
                     '</div>',
                   '</li>',
-                  '<li class="tour-step" data-step="4" data-tip-prev="Previous">',
+                  '<li class="tour-step" data-step="3" data-tip-prev="Previous">',
                     '<div class="tour-item">',
                       '<h2 class="tour-show-hello-panel step-target">',
                         'Title text',
@@ -183,6 +173,7 @@ describe('browser-tour.js', function() {
         // remove tour after each test
         $('#ui-tour').remove();
         $('#ui-tour-mask').remove();
+        tour.unbindDocument();
         tour = null;
 
         //restore timers
@@ -238,7 +229,7 @@ describe('browser-tour.js', function() {
         });
 
         it('should should handle visibilitychange events', function() {
-            $(document).trigger('visibilitychange');
+            $(document).trigger('visibilitychange.ui-tour');
             expect(Mozilla.BrowserTour.prototype.handleVisibilityChange).toHaveBeenCalled();
         });
     });
@@ -393,115 +384,6 @@ describe('browser-tour.js', function() {
             });
             tour.showHighlight(false);
             clock.tick(300);
-            expect(Mozilla.UITour.showHighlight.called).toBeFalsy();
-        });
-    });
-
-    describe('Forget button', function() {
-
-        describe('highlightForgetButton', function() {
-
-            it('should query availableTargets', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
-                    callback({
-                        targets: ['forget']
-                    });
-                });
-                $('.tour-forget-widget').trigger('tour-step');
-                expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
-            });
-
-            it('should trigger a highlight if target is available', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
-                    callback({
-                        targets: ['forget']
-                    });
-                });
-                $('.tour-forget-widget').trigger('tour-step');
-                expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
-            });
-
-            it('should show a door-hanger if not available', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
-                    callback({
-                        targets: ['foo']
-                    });
-                });
-                $('.tour-forget-widget').trigger('tour-step');
-                expect(Mozilla.UITour.showInfo.called).toBeTruthy();
-                expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
-            });
-        });
-
-        describe('addForgetButton', function() {
-
-            it('should add the icon using addNavBarWidget', function() {
-                tour.addForgetButton();
-                expect(Mozilla.UITour.addNavBarWidget.calledWith('forget')).toBeTruthy();
-                expect(Mozilla.UITour.hideHighlight.called).toBeTruthy();
-            });
-        });
-
-        describe('laterForgetButton', function() {
-
-            it('should show a reminder door-hanger', function() {
-                tour.laterForgetButton();
-                expect(Mozilla.UITour.showInfo.called).toBeTruthy();
-                expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
-            });
-        });
-
-        describe('closeForgetDoorhanger', function() {
-
-            it('should should hide info panel and highlight', function() {
-                tour.closeForgetDoorhanger();
-                expect(Mozilla.UITour.hideInfo.called).toBeTruthy();
-                expect(Mozilla.UITour.hideHighlight.called).toBeTruthy();
-            });
-        });
-    });
-
-    describe('highlightSearchEngine', function () {
-
-        it('should query availableTargets', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
-                callback({
-                    targets: ['searchProvider', 'searchEngine-google']
-                });
-            });
-            $('.tour-search-engine').trigger('tour-step');
-            expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
-        });
-
-        it('should open the menu if search engine is available', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
-                callback({
-                    targets: ['searchProvider', 'searchEngine-google']
-                });
-            });
-            $('.tour-search-engine').trigger('tour-step');
-            expect(Mozilla.UITour.showMenu.calledWith('searchEngines')).toBeTruthy();
-        });
-
-        it('should highlight if search engine is not available', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
-                callback({
-                    targets: ['searchProvider', 'searchEngine-foo']
-                });
-            });
-            $('.tour-search-engine').trigger('tour-step');
-            expect(Mozilla.UITour.showMenu.calledWith('searchEngines')).toBeFalsy();
-            expect(Mozilla.UITour.showHighlight.called).toBeTruthy();
-        });
-
-        it('should do nothing if search bar is not available', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
-                callback({
-                    targets: ['foo', 'searchEngine-foo']
-                });
-            });
-            $('.tour-search-engine').trigger('tour-step');
-            expect(Mozilla.UITour.showMenu.called).toBeFalsy();
             expect(Mozilla.UITour.showHighlight.called).toBeFalsy();
         });
     });
