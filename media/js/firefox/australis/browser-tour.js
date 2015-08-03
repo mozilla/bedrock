@@ -180,18 +180,12 @@ if (typeof Mozilla == 'undefined') {
             Mozilla.UITour.showMenu(this.dataset.target);
         });
 
-        // 33.1 privacy tour 'forget' button doorhanger
-        $('.tour-forget-widget').on('tour-step', this.highlightForgetButton.bind(this));
-
-        // 33.1 privacy tour search engine highlight
-        $('.tour-search-engine').on('tour-step', this.highlightSearchEngine);
-
         // 36.0 show hello menu panel
         $('.tour-show-hello-panel').on('tour-step', this.showHelloPanel.bind(this));
         $('.hello-reminder-door-hanger').on('tour-step', this.reminderHelloButton.bind(this));
 
         // handle page visibility changes to show the appropriate tour step
-        this.$doc.on('visibilitychange', this.handleVisibilityChange.bind(this));
+        this.$doc.on('visibilitychange.ui-tour', this.handleVisibilityChange.bind(this));
 
         // carousel event handlers
         this.$tour.on('transitionend', '.ui-tour-list li.current', this.onTourStep.bind(this));
@@ -214,14 +208,16 @@ if (typeof Mozilla == 'undefined') {
                 this.$mask.focus();
             }
         }, this));
+    };
 
-        // toggle floating signpost visibility when tabzilla opens / closes
-        $('#tabzilla').on('click', this.toggleSignPost.bind(this));
-        $(document).on('keydown', '#tabzilla-panel', $.proxy(function (event) {
-            if (event.which === 27 && this.tourIsPostponed) {
-                $('.floating-cta').fadeIn();
-            }
-        }, this));
+    /*
+     * Unbinds events on document and body. Mainly used for testing purposes where
+     * multiple prototype instances may be created.
+     */
+    BrowserTour.prototype.unbindDocument = function() {
+        this.$body.removeClass('noscroll');
+        this.$body.off('.ui-tour');
+        this.$doc.off('.ui-tour');
     };
 
     /*
@@ -402,164 +398,6 @@ if (typeof Mozilla == 'undefined') {
         } else {
             $('.ui-tour-controls button').removeAttr('disabled').removeClass('faded');
         }
-    };
-
-    /*
-     * Show a doorhanger prompting to add 'forget' button to the toolbar
-     */
-    BrowserTour.prototype.highlightForgetButton = function () {
-        var that = this;
-        var targetIsAvailable = false;
-        var $sequence = $('.tour-forget-widget');
-        var $step;
-        var buttons = [];
-        var options;
-        var icon = '';
-
-        Mozilla.UITour.getConfiguration('availableTargets', function (config) {
-            if (config.targets) {
-
-                icon = Mozilla.ImageHelper.isHighDpi() ? $sequence.data('iconHighRes') : $sequence.data('icon');
-
-                // find if user already has 'forget' button available
-                $.each(config.targets, function(index, value) {
-                    if (value === 'forget') {
-                        targetIsAvailable = true;
-                        return false;
-                    }
-                });
-
-                // if not, show door-hanger prompting to add it
-                if (!targetIsAvailable) {
-                    $step = $sequence.find('.forget-hanger-1');
-
-                    buttons = [
-                        {
-                            label: $step.data('buttonLater'),
-                            style: 'link',
-                            callback: that.laterForgetButton.bind(that)
-                        },
-                        {
-                            label: $step.data('buttonAdd'),
-                            style: 'primary',
-                            callback: that.addForgetButton.bind(that)
-                        }
-                    ];
-
-                    options = {
-                        closeButtonCallback: that.closeForgetDoorhanger.bind(that),
-                        targetCallback: that.closeForgetDoorhanger.bind(that)
-                    };
-
-                    // temp fix for Bug 1049130
-                    Mozilla.UITour.showHighlight('appMenu', 'none');
-                    Mozilla.UITour.showHighlight('appMenu', 'none');
-
-                    Mozilla.UITour.showInfo(
-                        'appMenu',
-                        $step.data('title'),
-                        $step.data('text'),
-                        icon,
-                        buttons,
-                        options
-                    );
-                } else {
-                    // else highlight the forget button with info panel
-                    // $step = $sequence.find('.forget-hanger-2');
-
-                    // options = {
-                    //     closeButtonCallback: that.closeForgetDoorhanger.bind(that)
-                    // };
-
-                    // temp fix for Bug 1049130
-                    Mozilla.UITour.showHighlight('forget', 'wobble');
-                    Mozilla.UITour.showHighlight('forget', 'wobble');
-
-                    // Mozilla.UITour.showInfo(
-                    //     'forget',
-                    //     $step.data('title'),
-                    //     $step.data('text'),
-                    //     icon,
-                    //     buttons,
-                    //     options
-                    // );
-                }
-            }
-        });
-    };
-
-    /*
-     * Add the forget button to the user toolbar
-     */
-    BrowserTour.prototype.addForgetButton = function () {
-        Mozilla.UITour.hideHighlight();
-        Mozilla.UITour.addNavBarWidget('forget', this.highlightForgetButton.bind(this));
-        window.dataLayer.push({
-            'event': 'firstrun-tour-interaction',
-            'interaction': 'Add it now',
-            'browserAction': 'The new Forget Button'
-        });
-    };
-
-    /*
-     * Show doorhanger with instructions on how to add forget button at later date
-     */
-    BrowserTour.prototype.laterForgetButton = function () {
-        var $sequence = $('.tour-forget-widget');
-        var $step = $sequence.find('.forget-hanger-3');
-        var icon = Mozilla.ImageHelper.isHighDpi() ? $sequence.data('iconHighRes') : $sequence.data('icon');
-        var buttons = [];
-        var options = {
-            closeButtonCallback: this.closeForgetDoorhanger.bind(this),
-            targetCallback: this.closeForgetDoorhanger.bind(this)
-        };
-
-        Mozilla.UITour.hideHighlight();
-        Mozilla.UITour.showHighlight('appMenu', 'wobble');
-        Mozilla.UITour.showInfo(
-            'appMenu',
-            $step.data('title'),
-            $step.data('text'),
-            icon,
-            buttons,
-            options
-        );
-
-        window.dataLayer.push({
-            'event': 'firstrun-tour-interaction',
-            'interaction': 'Later',
-            'browserAction': 'The new Forget Button'
-        });
-    };
-
-    /*
-     * Close forget button doorhanger and remove highlight
-     */
-    BrowserTour.prototype.closeForgetDoorhanger = function () {
-        Mozilla.UITour.hideHighlight();
-        Mozilla.UITour.hideInfo();
-    };
-
-    /*
-     * Open search engines menu if available and highlight a specified target
-     */
-    BrowserTour.prototype.highlightSearchEngine = function () {
-        var target = this.dataset.target;
-        Mozilla.UITour.getConfiguration('availableTargets', function (config) {
-            var hasSearchBar;
-            if (config.targets) {
-                hasSearchBar = $.inArray('searchProvider', config.targets) !== -1;
-                // if the searchEngine is available in the list, highlight it
-                if (hasSearchBar && $.inArray(target, config.targets) !== -1) {
-                    Mozilla.UITour.showMenu('searchEngines', function () {
-                        Mozilla.UITour.showHighlight(target);
-                    });
-                // else just highlight the searchProvider drop-down
-                } else if (hasSearchBar) {
-                    Mozilla.UITour.showHighlight('searchProvider', 'wobble');
-                }
-            }
-        });
     };
 
     /*
