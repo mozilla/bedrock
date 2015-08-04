@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import share_cta with context %}
+
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
@@ -25,9 +27,6 @@
 
 {% block body_id %}firefox-new{% endblock %}
 
-{#- Override the infobar options not to run the version check -#}
-{% block tabzilla_infobar %}translation{% endblock %}
-
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}
   <h2>{{ high_res_img('img/firefox/new/header-firefox.png', {'alt': _('Firefox for desktop'), 'width': '223', 'height': '84'}) }}</h2>
@@ -37,10 +36,6 @@
 
 {% block extrahead %}
   {% stylesheet 'firefox_new' %}
-{% endblock %}
-
-{% block js_pretrack %}
-  {% javascript 'firefox_new' %}
 {% endblock %}
 
 {% block optimizely %}
@@ -172,7 +167,9 @@
 
       <div class="scene" id="scene2">
         <div class="share-wrapper">
-          {% include 'firefox/includes/social-share.html' %}
+          {% set share_urls = { 'twitter': 'http://mzl.la/MDrrWk', 'googleplus': 'http://mzl.la/MDrrWk', 'facebook': 'http://mzl.la/MDrrWk' } -%}
+          {% set share_text = _('Choose the independent browser') %}
+          {{ share_cta(_('Share'), share_urls, share_text, 'share-firefox-new', 'sky mini') }}
         </div>
         <div class="thankyou" tabindex="0">
           {{_("Thanks for downloading Firefox!")}}
@@ -257,4 +254,6 @@
   {% include 'firefox/includes/simple_footer.html' %}
 {% endblock %}
 
-{% block site_js %}{% endblock %}
+{% block site_js %}
+  {% javascript 'firefox_new' %}
+{% endblock %}

@@ -16,7 +16,12 @@
 }
 
 #masthead {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -490px;
     z-index: 3;
+    padding: 0;
 
     nav > ul > li {
         & > a,
@@ -48,10 +53,16 @@
 }
 
 #page-header {
-    margin-top: -42px;
+    padding-top: 20px;
     background: @linkBlue;
     box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
                 inset 0 -46px 0 0 #2f7bbc;
+
+    .container {
+        width: 966px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
 
     h1, h2 {
         position: relative;
@@ -141,26 +152,31 @@
 #main-nav-wrapper {
     .clearfix();
 
-    .socialshare {
-        float: left;
-        width: 108px;
-        margin: 12px 6px 0 0;
-    }
+    // override default styles for nav bar integration
+    .mozilla-share-cta {
+        &.mini {
+            float: left;
 
-    .socialshare > div > a {
-        background: transparent url(/media/img/firefox/desktop/tips/sprite-socialshare.png) left 6px no-repeat;
-        padding-left: 16px;
-        color: #fff;
-        text-transform: uppercase;
+            h3 {
+                padding: 13px 10px;
+            }
 
-        span {
-            border-bottom: 0;
-            .font-size(@smallFontSize);
+            ul li a:before {
+                line-height: 40px;
+            }
         }
-    }
 
-    .socialshare.open > div > a:after {
-        background-color: rgba(255, 255, 255, .6);
+        &.sky {
+            color: #fff;
+
+            h3 {
+                color: #fff;
+            }
+
+            ul li a {
+                color: #fff;
+            }
+        }
     }
 }
 
@@ -314,43 +330,6 @@ html[lang^='en'] #tips-nav-direct li a span:after {
     display: none;
 }
 
-.socialshare > div > a {
-    background: none;
-    padding-left: 0;
-    color: @linkBlue;
-
-    &:after {
-        background-image: url(/media/img/firefox/desktop/tips/sprite-socialshare.png);
-        background-repeat: no-repeat;
-        background-position: 4px -19px;
-        top: 0;
-    }
-
-    &:hover, &:focus {
-        color: @linkBlue;
-
-        &:after {
-            background-position: 4px -19px;
-        }
-
-        span {
-            border-color: @linkBlue;
-        }
-    }
-}
-
-.socialshare.open > div > a {
-    color: @linkBlueHover;
-
-    &:after {
-        background-position: 5px -42px;
-    }
-
-    span {
-        border-color: @linkBlueHover;
-    }
-}
-
 .js {
     #tips-nav-prev-next {
         display: block;
@@ -413,7 +392,7 @@ html[dir='rtl'] {
         margin-left: @baseLine;
     }
 
-    #main-nav-wrapper .socialshare {
+    #main-nav-wrapper .mozilla-share-cta.mini {
         float: right;
     }
 
@@ -489,13 +468,19 @@ html[dir='rtl'] {
     }
 
     #masthead {
-        width: 100%;
         padding: 0;
+        margin-left: -380px;
     }
 
     #page-header {
         box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
-                    inset 0 -30px 0 0 #2f7bbc;
+                    inset 0 -40px 0 0 #2f7bbc;
+
+        .container {
+            width: @breakTablet - (@baseLine * 2);
+            padding-left: 20px;
+            padding-right: 20px;
+        }
 
         h1 {
             .font-size(44px);
@@ -507,11 +492,6 @@ html[dir='rtl'] {
 
         #main-nav-wrapper {
             margin: -20px 156px 0 0;
-
-            .socialshare {
-                margin-top: 6px;
-                padding-bottom: 5px;
-            }
         }
     }
 
@@ -616,6 +596,7 @@ html[dir='rtl'] {
 
     #masthead {
         padding-bottom: 0;
+        margin-left: -220px;
 
         nav > ul > li {
             & > a,
@@ -645,7 +626,8 @@ html[dir='rtl'] {
         }
 
         .container {
-            padding-bottom: 10px;
+            width: @breakMobileLandscape - (@baseLine * 2);
+            padding: 0 10px 20px;
         }
     }
 
@@ -722,7 +704,7 @@ html[dir='rtl'] {
         }
     }
 
-    .socialshare {
+    .mozilla-share-cta {
         display: none;
     }
 
@@ -868,6 +850,10 @@ html[dir='rtl'] {
         padding-right: 0;
     }
 
+    #masthead {
+        margin-left: -160px;
+    }
+
     #page-header {
         width: 100%;
         box-shadow: inset 0 12px 38px 0px rgba(0, 0, 0, 0.1),
@@ -881,6 +867,7 @@ html[dir='rtl'] {
         }
 
         .container {
+            width: @breakMobile - @baseLine;
             padding-bottom: 0;
         }
     }
@@ -940,10 +927,6 @@ html[dir='rtl'] {
         #page-header-logo {
             float: none;
             margin: 0 0 0 -150px;
-        }
-
-        #masthead {
-            overflow: hidden;
         }
 
         #heading-logo-wrapper .heading-group {

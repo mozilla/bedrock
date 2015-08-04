@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros.html" import share_cta with context %}
+
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
@@ -42,7 +44,9 @@
       </div>
 
       <div id="main-nav-wrapper" class="button-wrapper">
-        {% include 'firefox/includes/social-share.html' %}
+        {% set share_urls = { 'twitter': 'http://mzl.la/1W09AzQ', 'googleplus': 'http://mzl.la/1W09AzQ', 'facebook': 'http://mzl.la/1W09AzQ' } -%}
+        {% set share_text = _('The best of the latest Firefox') %}
+        {{ share_cta(_('Share'), share_urls, share_text, 'share-firefox-desktop-tips', 'sky mini') }}
         <nav id="tips-nav-direct">
           <ol role="tablist">
             <li role="presentation">
@@ -251,7 +255,7 @@
           {{ _('Now help your friends master Firefox.') }}
         </p>
         <div class="button-wrapper">
-          {% include 'firefox/includes/social-share.html' %}
+          {{ share_cta(_('Share'), share_urls, share_text, 'share-firefox-desktop-tips-footer', 'sky') }}
         </div>
       </div>
 
