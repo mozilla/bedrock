@@ -645,3 +645,7 @@ def android(request):
 
     return l10n_utils.render(request, 'firefox/android/index.html',
         {'variant': variant})
+
+
+class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
+    template_name = 'firefox/tracking-protection-tour.html'

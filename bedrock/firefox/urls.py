@@ -18,6 +18,7 @@ firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 tour_re = latest_re % (version_re, 'tour')
 hello_start_re = latest_re % (version_re, 'hello/start')
+tracking_protection_re = latest_re % (version_re, 'tracking-protection/start')
 platform_re = '(?P<platform>android)'
 channel_re = '(?P<channel>beta|aurora|developer|organizations)'
 releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
@@ -74,6 +75,9 @@ urlpatterns = patterns('',
     url(hello_start_re, views.HelloStartView.as_view(), name='firefox.hello.start'),
     url(r'^firefox/partners/$', views.firefox_partners,
         name='firefox.partners.index'),
+
+    url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
+        name='firefox.tracking-protection-tour.start'),
 
     # This dummy page definition makes it possible to link to /firefox/ (Bug 878068)
     url('^firefox/$', views.fx_home_redirect, name='firefox'),
