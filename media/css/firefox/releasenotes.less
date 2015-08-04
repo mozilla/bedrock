@@ -19,6 +19,9 @@
 .blank {
     #outer-wrapper {
     background: #FFF;
+    width: 100vw;
+    padding: 0px;
+    margin: 0px;
     }
 }
 #wrapper {
@@ -50,8 +53,9 @@
     .span(4);
 }
 .notes-column {
-    width: 100%;
+    width: 100vw;
     text-align: left;
+    padding:0px;
     background-color: white;
 }
 .note_wrapper {
@@ -73,19 +77,20 @@
     padding-top: 5px;
 }
 .release_details {
-    width: 30%;
+    width: 40%;
     height: 100%;
     float: left;
     text-align: center;
     padding-left: 0px;
-    padding-right: 10px;
+    padding-right: 0px;
     padding-top: 10px;
     padding-bottom: 20px;
     position: relative;
 }
 .version_wrapper {
-    width: 100%;
-    height: 100%;
+    width: 25%;
+    left:0;
+    top:0;
     float: left;
     text-align: center;
     position: relative;
@@ -96,22 +101,23 @@
     float: left;
     text-align: center;
     width: 100%;
+    left:0;
+    top:0;
     height: 100%;
 }
 .thank_wrapper {
-    width: 65%;
     position: relative;
-    word-wrap: break-word;
-    float: right;
+    float: left;
     text-align: left;
     padding-top: 40px;
     padding-bottom: 20px;
     padding-left: 0px;
-    margin-right: 10px;
+    padding-right: 0px;
 }
 .title_text_wrap {
     width: 40%;
     position: relative;
+    word-wrap: break-word;
 }
 .release_details_alt {
     width: 100%;
@@ -125,7 +131,6 @@
     position: relative;
 }
 .version_wrapper_alt {
-    width: 30%;
     height: 100%;
     float: left;
     text-align: center;
@@ -136,9 +141,7 @@
 .details_wrapper_alt {
     position: relative;
     float: left;
-    text-align: center;
-    width: 70%;
-    height: 100%;
+    padding-top:.5em;
     display: inline-block;
 }
 .title_text_wrap_alt {
@@ -175,7 +178,6 @@
         .span(12);
     }
     h1 {
-        .span(12);
         font-weight: 400;
         font-size: 250%;
         padding-bottom: 15px;
@@ -235,7 +237,7 @@
     }
     h4 {
         .font-size(30px);
-        margin: 0 0 6px 0;
+        margin: 0 0 0 0;
         padding: 0;
     }
     ul {
@@ -297,6 +299,7 @@ article {
     .box-shadow(@shadow);
     @shadow: 0 0 0 1px #fff inset;
     background: #fff;
+    padding:0px;
 }
 .blueprint .notes-section {
     background: #111;
@@ -325,13 +328,13 @@ article {
         margin: 0 0 .25em;
     }
     p {
-        margin: 0 0 .25em;
+        margin: 0 0 0em;
     }
     .note {
         .font-size(@smallFontSize);
         color: @textColorSecondary;
-        margin: 0 0 .25em;
-        padding-right: 20px;
+        margin: 0 0 0em;
+        padding-right: 0px;
     }
 }
 .space .section-items > li {
@@ -364,41 +367,7 @@ article {
         text-transform: uppercase;
         width: 102px;
     }
-    .tag-new {
-        background-color: #ffedcf;
-        background-position: 0 -50px;
-        border-color: #f90;
-    }
-    .tag-changed {
-        background-color: #e9cfff;
-        background-position: 0 -100px;
-        border-color: #8106e0;
-    }
-    .tag-fixed {
-        background-color: #f0ffe1;
-        background-position: 0 -150px;
-        border-color: #5ba622;
-    }
-    .tag-html5 {
-        background-color: #f8dfd8;
-        background-position: 0 -200px;
-        border-color: #d85027;
-    }
-    .tag-resolved {
-        background-color: #dcf6ff;
-        background-position: 0 -250px;
-        border-color: #038fc0;
-    }
-    .tag-unresolved {
-        background-color: #ffc8c8;
-        background-position: 0 -300px;
-        border-color: #c00;
-    }
-    .tag-developer {
-        background-color: #e7e7e7;
-        background-position: 0 -350px;
-        border-color: #999;
-    }
+    
 }
 .sidebar section {
     border-bottom: 1px dotted darken(@borderColor, 10%);
@@ -495,11 +464,10 @@ article {
         padding-top: 40px;
         padding-bottom: 20px;
         padding-left: 0px;
-        margin-right: 10px;
     }
     .notes-head {
         h1, h2, p {
-            .span_narrow(7);
+            width:100%;
         }
     }
     .blueprint .notes-head {
@@ -523,39 +491,40 @@ article {
 
 @media only screen and (max-width: @breakTablet) {
     .space #wrapper {
-        background-size: 320px;
+        width:auto;
     }
     .firstPlatform {
-        padding-left: 15%;
+        padding-left: 25%;
+        width:70vw;
     }
     .label_wrapper {
-        width: @widthMobile;
+        width: auto;
         position: relative;
         float: left;
-        .span-all();
         font-weight: bold;
         p {
             text-align: left;
         }
     }
     .note_wrapper {
-        width: @widthMobile;
-        padding-top: 10px;
+        width: 100%;
+        padding-top: 0px;
         float: left;
-        position: relative;
-        .span-all();
+        position: relative; 
     }
     .note_wrap {
         float: left;
         overflow: hidden;
         padding-left: 5px;
+        width: auto;
+        height:100%;
     }
     .title_text_wrap {
-        width: 100%;
+        width: auto;
         position: absolute;
     }
     .release_details {
-        width: 100%;
+        width: auto;
         height: 100%;
         float: left;
         text-align: left;
@@ -573,10 +542,10 @@ article {
         text-align: left;
     }
     .version_wrapper {
-        width: 100%;
+        width: 90%;
         height: 100%;
         float: left;
-        padding-left: 80px;
+        padding-left: 10px;
         text-align: left;
         position: relative;
         padding-top: 10px;
@@ -626,63 +595,20 @@ article {
         padding-top: 10px;
         margin: 0em;
     }
-    #new-wrapper {
-        .span-all();
+    .section-wrapper {
         overflow: hidden;
         position: relative;
-        width: @widthMobile;
+        width: auto;
     }
-    #fixed-wrapper {
-        .span-all();
-        overflow: hidden;
-        position: relative;
-        width: @widthMobile;
-    }
-    #changed-wrapper {
-        .span-all();
-        overflow: hidden;
-        position: relative;
-        width: @widthMobile;
-    }
-    #developer-wrapper {
-        .span-all();
-        overflow: hidden;
-        position: relative;
-        width: @widthMobile;
-    }
-    #html-wrapper {
-        .span-all();
-        overflow: hidden;
-        position: relative;
-        width: @widthMobile;
-    }
-    #resolved-wrapper {
-        .span-all();
-        overflow: hidden;
-        position: relative;
-        width: @widthMobile;
-    }
-    #unresolved-wrapper {
-        .span-all();
-        overflow: hidden;
-        position: relative;
-        width: @widthMobile;
-        padding-left: 10px;
-    }
-    .section-items.tagged {
+
+    .section-items {
         > li {
             float: left;
-            overflow: hidden;
-            width: @widthMobile;
-            .span-all();
+            overflow: visible;
+            width: 100%;
             position: relative;
             padding-left: 0px;
-        }
-        .tag {
-            position: static;
-            display: block;
-            width: auto;
-            margin: 0 0 .75em;
+            word-wrap:break-word;
         }
     }
 }
