@@ -18,7 +18,7 @@
 
 {% block body_id %}privacy-day{% endblock %}
 
-{% block site_css %}
+{% block page_css %}
   {% stylesheet 'privacy-day' %}
 {% endblock %}
 
@@ -33,7 +33,9 @@ set share_urls = {
 {% block site_header %}
   <header id="masthead">
     <div class="container">
-      <a href="{{ url('mozorg.home') }}" id="tabzilla" data-infobar="{{ settings.TABZILLA_INFOBAR_OPTIONS }}">Mozilla</a>
+      <div id="tabzilla">
+        <a href="{{ url('mozorg.home') }}">Mozilla</a>
+      </div>
       {% block site_header_nav %}{% endblock %}
     </div>
   </header>
