@@ -12,7 +12,6 @@ RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
 
 COPY ./requirements /app/requirements
-
 # Pin a known to work with peep pip version.
 RUN pip install -r requirements/pip.txt
 
@@ -20,6 +19,7 @@ RUN pip install -r requirements/pip.txt
 COPY ./bin/peep.py /app/bin/peep.py
 RUN ./bin/peep.py install --no-cache-dir -r requirements/dev.txt
 RUN ./bin/peep.py install --no-cache-dir -r requirements/prod.txt
+RUN ./bin/peep.py install --no-cache-dir -r requirements/docker.txt
 COPY . /app
 
 RUN git rev-parse HEAD > static/revision.txt
