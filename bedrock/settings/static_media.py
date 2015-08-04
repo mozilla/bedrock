@@ -820,6 +820,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/tabzilla-min.css',
     },
+    'tracking-protection-tour': {
+        'source_filenames': (
+            'css/firefox/tracking-protection-tour.less',
+        ),
+        'output_filename': 'css/tracking-protection-tour-bundle.css',
+    },
     'contribute-2015': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
@@ -1606,6 +1612,15 @@ PIPELINE_JS = {
             'js/styleguide/docs/send-to-device.js',
         ),
         'output_filename': 'js/styleguide-docs-send-to-device-bundle.js',
+    },
+    'tracking-protection-tour': {
+        'source_filenames': (
+            'js/libs/jquery-1.11.3.min.js',
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/tracking-protection-tour.js',
+            'js/firefox/tracking-protection-tour-init.js',
+        ),
+        'output_filename': 'js/tracking-protection-tour-bundle.js',
     },
     'video': {
         'source_filenames': (
