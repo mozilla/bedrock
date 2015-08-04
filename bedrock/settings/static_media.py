@@ -637,6 +637,7 @@ PIPELINE_CSS = {
     'newsletter_ios': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
             'css/newsletter/ios.less',
         ),
         'output_filename': 'css/newsletter_ios-bundle.css',
