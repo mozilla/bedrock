@@ -60,10 +60,16 @@ html[dir="rtl"] {
             padding: 0;
             .font-size(18px);
         }
-        tbody th {
-            .font-size(18px);
-            font-weight: normal;
-            .open-sans-light;
+        tbody {
+            th, td {
+                padding: 20px 10px 20px 0;
+                .font-size(18px);
+                font-weight: normal;
+                .open-sans-light;
+            }
+            td {
+                .font-size(.9rem);
+            }
         }
     }
 }
@@ -96,6 +102,7 @@ html[dir="rtl"] {
     small {
         display: block;
         .font-size(@smallFontSize);
+        line-height: 1.5;
     }
     .plugin-status-detail {
         width: 60%;
@@ -353,6 +360,43 @@ html[dir="rtl"] {
         position: relative;
         margin-top: 20px;
     }
+
+    .plugin-status-container {
+        small {
+            padding-left: 67px;
+        }
+    }
+
+    .billboard {
+        table {
+            thead {
+                th {
+                    .visually-hidden();
+                }
+            }
+            tbody {
+                th {
+                    display: block;
+                    padding: 10px 0 5px 0;
+                }
+                td {
+                    display: block;
+                    padding: 5px 0px 5px 67px;
+                    border-top: 0;
+                    &:last-child {
+                        padding-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    #sec-plugin-unknown {
+        small, td {
+            padding-left: 0;
+        }
+    }
+
     .moz-support {
         width: auto;
         text-align: center;
@@ -373,13 +417,5 @@ html[dir="rtl"] {
 
     .footer-newsletter-form {
         padding-bottom: 20px;
-    }
-}
-
-/* Wide Mobile Layout: 480px */
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-    #main-feature > .download-button {
-        position: relative;
-        margin-top: 20px;
     }
 }
