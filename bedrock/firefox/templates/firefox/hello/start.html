@@ -18,16 +18,42 @@
 {% block body_id %}firefox-hello-start{% endblock %}
 {% block body_class %}{% endblock %}
 
+{# Override canonical URLs so callers can share the Hello product page. #}
+{% block page_og_url %}{{ url('firefox.hello') }}{% endblock %}
+{% block canonical_urls %}{% endblock %}
+
 {% block string_data %}
 data-get-started-title="{{ _('Welcome to Hello') }}"
-data-get-started-text="{{ _('Open a video conversation with a single click, then invite a friend to join.') }}"
-data-invite-title="{{ _('Share your link with a friend') }}"
-data-invite-text="{{ _('They don’t even need Firefox to join. They just need to click the link.') }}"
+
+{% if l10n_has_tag('hello_ftu_firefox_40_interactive') %}
+  data-get-started-text="{{ _('Click the blue button to start a video conversation, then invite a friend to join.') }}"
+{% else %}
+  data-get-started-text="{{ _('Open a video conversation with a single click, then invite a friend to join.') }}"
+{% endif %}
+
+{% if l10n_has_tag('hello_ftu_firefox_40_interactive') %}
+  data-invite-title="{{ _('Email, copy or share the link') }}"
+  data-invite-text="{{ _('Your friends can connect instantly. They don’t even need Firefox to join.') }}"
+{% else %}
+  data-invite-title="{{ _('Share your link with a friend') }}"
+  data-invite-text="{{ _('They don’t even need Firefox to join. They just need to click the link.') }}"
+{% endif %}
+
 data-shared-title="{{ _('No need to wait around') }}"
-data-shared-text="{{ _('Once your friend clicks the link, the Hello icon will change to blue, letting you know they’re there.') }}"
+
+{% if l10n_has_tag('hello_ftu_firefox_40_interactive') %}
+  data-shared-text="{{ _('Continue browsing from any tab and you will be notified once someone joins.') }}"
+{% else %}
+  data-shared-text="{{ _('Once your friend clicks the link, the Hello icon will change to blue, letting you know they’re there.') }}"
+{% endif %}
+
 data-room-list-title="{{ _('You have a conversation waiting') }}"
 data-room-list-text="{{ _('Click now to join and say hello.') }}"
 {% endblock %}
+
+{% macro screen_sharing_icon() %}
+  <img src="{{ static('img/firefox/hello/screen-sharing-16x16.svg') }}" width="16" height="16" alt="{{ _('sharing icon') }}">
+{%- endmacro %}
 
 {% block site_header %}{% endblock %}
 
@@ -40,7 +66,11 @@ data-room-list-text="{{ _('Click now to join and say hello.') }}"
       <ol>
         <li>{{ _('Start a conversation right from Firefox') }}</li>
         <li>{{ _('Invite a friend by sending them a link') }}</li>
-        <li>{{ _('The Hello icon will change to blue once they’ve joined') }}</li>
+        {% if l10n_has_tag('hello_ftu_firefox_40') %}
+          <li>{{ _('You will receive a notification once they’ve joined') }}</li>
+        {% else %}
+          <li>{{ _('The Hello icon will change to blue once they’ve joined') }}</li>
+        {% endif %}
       </ol>
       <aside>
         <ul>
@@ -61,7 +91,10 @@ data-room-list-text="{{ _('Click now to join and say hello.') }}"
     </section>
     <section class="end">
       <h2>{{ _('You’ve started your first conversation. Wasn’t that easy?') }}</h2>
-      {% block screen_sharing %}{% endblock %}
+      {% if l10n_has_tag('hello_screen_sharing') %}
+        {# L10n: The %s placeholder is an image of the Hello screen sharing icon, and can be moved around to fit the translation appropriately. #}
+        <p class="screen-sharing">{{ _('Now see how easy it is to share your screen. Click %s in your conversation window to try it.')|format(screen_sharing_icon()|safe) }}</p>
+      {% endif %}
       <ul>
         {# Removing link for now, as per Bug 1109132#c14
         <li><a href="#" class="more">{{ _('Tell a friend about Hello') }}</a></li>
