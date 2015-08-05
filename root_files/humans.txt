@@ -86,6 +86,7 @@ Developers: pollti
 Developers: lismanb
 Developers: kenrick95
 Developers: comzeradd
+Developers: yglazko
 
 Localizers on SVN
 Localize: akilaa@wippies.fi
