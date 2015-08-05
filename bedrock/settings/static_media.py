@@ -1135,7 +1135,6 @@ PIPELINE_JS = {
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/firefox/family-nav.js',
             'js/firefox/desktop/common.js',
-            'js/firefox/desktop/trust.js',
         ),
         'output_filename': 'js/firefox_desktop_trust-bundle.js',
     },

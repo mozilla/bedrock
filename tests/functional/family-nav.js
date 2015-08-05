@@ -14,7 +14,7 @@ casper.test.begin('Family Navigation, Elements: ' + url, 6, function suite(test)
 
     casper.start(url, function() {
         test.assertVisible('#fxfamilynav-primary > li > a', 'Primary navigation links are visible');
-        test.assertVisible('.primary-link.selected[data-id="os"]', 'Firefox OS primary link is set as default');
+        test.assertVisible('.active a[data-id="os"]', 'Firefox OS primary link is set as default');
         test.assertVisible('#os-subnav a.selected[data-id="os-index"]', 'Firefox OS secondary links are visible');
         test.assertNotVisible('#fxfamilynav-tertiarynav', 'Tertiary navigation is not visible');
         test.assertVisible('#fxfamilynav-tertiarynav-trigger', 'Tertiary trigger is not visible');
@@ -27,7 +27,7 @@ casper.test.begin('Family Navigation, Elements: ' + url, 6, function suite(test)
     });
 });
 
-casper.test.begin('Family Navigation, Open tertiary link menu: ' + url, 1, function suite(test) {
+casper.test.begin('Family Navigation, Open tertiary link menu: ' + url, 2, function suite(test) {
 
     casper.start(url, function() {
         this.mouse.click('#fxfamilynav-tertiarynav-trigger');
@@ -35,27 +35,11 @@ casper.test.begin('Family Navigation, Open tertiary link menu: ' + url, 1, funct
 
     casper.waitUntilVisible('#fxfamilynav-tertiarynav', function() {
         test.assert(true, 'Tertiary links opened successfully');
+        this.mouse.move(0, 0);
     });
 
-    casper.run(function() {
-        test.done();
-        helpers.done();
-    });
-});
-
-casper.test.begin('Family Navigation, Link hover: ' + url, 2, function suite(test) {
-
-    casper.start(url, function() {
-        this.mouse.move('#fxfamilynav-primary > li > a[data-id="android"]');
-    });
-
-    casper.waitUntilVisible('#android-subnav', function() {
-        test.assert(true, 'Secondary nav shows on hover');
-        this.mouse.move(0,0);
-    });
-
-    casper.waitWhileVisible('#android-subnav', function() {
-        test.assert(true, 'Secondary nav hides on leave');
+    casper.waitWhileVisible('#fxfamilynav-tertiarynav', function() {
+        test.assert(true, 'Tertiary links hide when mouse leaves nav');
     });
 
     casper.run(function() {

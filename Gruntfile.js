@@ -45,9 +45,9 @@ module.exports = function (grunt) {
             }
         },
         karma: {
-          unit: {
-            configFile: 'tests/unit/karma.conf.js'
-          }
+            unit: {
+                configFile: 'tests/unit/karma.conf.js'
+            }
         },
         clean: ['media/css/**/*.less.css']
     });

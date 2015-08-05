@@ -21,32 +21,14 @@ if (typeof window.Mozilla === 'undefined') {
         // entire fx family nav wrapper
         var $fxFamilyHeader = $('#fxfamilynav-header');
 
-        // just the <nav> - primary, sub, and tertiary navs
-        var $fxFamilyNav = $('#fxfamilynav');
-
-        // top level nav <li> elements (for handling hover)
-        var $primaryLis = $('#fxfamilynav-primary > li');
-
-        // just the <a> tags in the top level nav
-        var $primaryLinks = $fxFamilyNav.find('.primary-link');
-
-        // reference the currently active primary <li>
-        var $activePrimaryLi;
-
         // little ... button that triggers tertiary display
         var $tertiaryNavTrigger = $('#fxfamilynav-tertiarynav-trigger');
 
         // wrappers for tertiary nav
         var $tertiaryNavContainer = $('#fxfamilynav-tertiarynav');
 
-        // all ul.subnav elements
-        var $subNavs = $fxFamilyNav.find('.subnav');
-
         // all ul.tertiarynav elements
         var $tertiaryNavs = $fxFamilyHeader.find('.tertiarynav');
-
-        // used to revert subnav after hovering off non-selected primary link
-        var currentNavId;
 
         // initialize the thing
         var _initMq = function() {
@@ -63,58 +45,8 @@ if (typeof window.Mozilla === 'undefined') {
             }
         };
 
-        var _setTertiaryNav = function() {
-            $tertiaryNavs.each(function() {
-                var $this = $(this);
-
-                if ($this.data('parent') === currentNavId) {
-                    $this.addClass('active');
-                    return false;
-                }
-            });
-
-            // all external tertiary nav links open in new tab
-            $tertiaryNavs.find('a[rel="external"]').attr('target', '_blank');
-        };
-
         // wire up all desktop interactions
         var _enableDesktop = function() {
-            // hide '.active' primary <li> when hovering/focusing other sibling <li>'s
-            $primaryLis.on('mouseenter', function() {
-                // if tabbing to a link, then mousing over another, must blur tabbed to link
-                // to prevent text overlap
-                $primaryLinks.blur();
-
-                // hide the default active subnav
-                $activePrimaryLi.removeClass('active');
-
-                // show the hovered over subnav
-                $(this).find('.subnav').addClass('active');
-            }).on('mouseleave', function() {
-                // hide any focus/hover activated subnavs
-                $subNavs.removeClass('active');
-
-                // show the default subnav
-                $activePrimaryLi.addClass('active');
-            });
-
-            $primaryLinks.on('focus', function() {
-                // hide any focus/hover activated subnavs
-                $subNavs.removeClass('active');
-
-                // hide the default subnav
-                $activePrimaryLi.removeClass('active');
-
-                // show the related subnav
-                $(this).siblings('.subnav:first').addClass('active');
-            }).on('blur', function() {
-                // hide any focus/hover activated subnavs
-                $subNavs.removeClass('active');
-
-                // show the default active subnav
-                $activePrimaryLi.addClass('active');
-            });
-
             // toggle tertiary nav visibility
             $tertiaryNavTrigger.on('click', function() {
                 $tertiaryNavTrigger.toggleClass('active');
@@ -159,8 +91,6 @@ if (typeof window.Mozilla === 'undefined') {
         var _disableDesktop = function() {
             $tertiaryNavContainer.removeClass('active');
 
-            $primaryLis.off();
-            $primaryLinks.off();
             $tertiaryNavTrigger.off();
             $tertiaryNavContainer.off();
             $fxFamilyHeader.off();
@@ -170,33 +100,10 @@ if (typeof window.Mozilla === 'undefined') {
             }
         };
 
-        // public initialization point, called from page specific script
-        var _init = function(config) {
-            // default to desktop
-            var primaryId = config.primaryId || 'desktop';
-
-            // default to overview
-            var subId = config.subId || '';
-
-            // store selected nav id for use when hovering off other navs
-            currentNavId = primaryId;
-
-            // select primary nav (always)
-            $('a[data-id="' + primaryId + '"]').addClass('selected').closest('li').addClass('active');
-            $activePrimaryLi = $('a[data-id="' + primaryId + '"]').closest('li');
-            $activePrimaryLi.addClass('active');
-
-            // if subnav id was sent, select it
-            if (subId) {
-                // set subsubnav
-                if ($.inArray(subId, ['index', 'trust', 'customize', 'fast']) > -1) {
-                    $('#desktop-subsubnav').addClass('active');
-                }
-
-                $('a[data-id="' + primaryId + '-' + subId + '"]').addClass('selected');
-            }
-
-            _setTertiaryNav();
+        // public initialization point
+        var _init = function() {
+            // all external tertiary nav links open in new tab
+            $tertiaryNavs.find('a[rel="external"]').attr('target', '_blank');
 
             // initialize matchMedia
             if (mqDesktop) {
@@ -214,26 +121,11 @@ if (typeof window.Mozilla === 'undefined') {
 
         // public interface
         return {
-            // @config (object):
-            //      primaryId (string): ID of primary nav link
-            //      subId (string): ID of sub nav link, dependent upon primary
-            //
-            //      Available nav IDs:
-            //      desktop
-            //          - index
-            //          - trust
-            //          - customize
-            //          - fast
-            //      android
-            //          - index
-            //      os
-            //          - index
-            //          - devices
-            //          - partners
-            //          - mwc
-            init: function(config) {
-                _init(config);
+            init: function() {
+                _init();
             }
         };
     })();
 })(window.Mozilla, window.jQuery);
+
+Mozilla.FxFamilyNav.init();
