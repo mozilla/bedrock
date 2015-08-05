@@ -444,11 +444,14 @@ article {
         margin: @baseLine 10px;
     }
 
-    .section-items {
+    .section-items.tagged {
         > li {
-            padding-left: 0;
+            padding-left: 0px;
+            display:block;
+            word-wrap:break-word;
+            width:auto;
             span {
-                word-break: break-all;
+            word-wrap:break-word;
             }
         }
 
@@ -459,4 +462,6 @@ article {
             margin: 0 0 .75em;
         }
     }
+
+
 }
