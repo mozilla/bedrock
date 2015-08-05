@@ -682,7 +682,6 @@ PIPELINE_CSS = {
     },
     'privacy-day': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-share-cta.less',
             'css/privacy/privacy-day.less',
         ),
