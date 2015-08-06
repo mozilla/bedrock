@@ -22,7 +22,7 @@
   <article id="main-content">
     {% block notes_header %}
     <header class="notes-head">
-      <h1>Release Notes </h1>
+      <h1> {{ _('Release Notes') }} </h1>
       <span class="release_blurb_wrapper">
         {{ _('Release Notes tell you what’s new in Firefox. As always, we welcome your ') }}
         {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
@@ -36,10 +36,10 @@
       <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
         <input type="hidden" name="limit" value="0">
         <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
-        <p> <button type="submit">complete list of changes</button> in this release.</p>
+        <p> <button type="submit">{{ _('complete list of changes') }}</button> {{ _('in this release.') }}</p>
       </form>
       {% else %}
-      or see the <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
+      {{ _('or see the') }} <a href="{{ release.get_bug_search_url() }}">{{ _('complete list of changes') }}</a> {{ _('in this release.') }}
       {% endif %}
       </span>
       {% if equivalent_release_url %}
@@ -64,7 +64,7 @@
           </span>
           <br>
           <span class ="details_wrapper_alt">
-            <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2>
+            <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} {{ _('Channel') }}</h2>
           </span>
         </span>
         <span class="thank_wrapper">
@@ -75,7 +75,7 @@
             <div class="title_text_wrapper" >
         <span class="release_details">
           <span class="version_wrapper">
-            <h3>{{ version }}</h3>
+            <h3>{{ _('{version}')|f(version=release.version) }}</h3>
           </span>
           <span class ="details_wrapper">
             <h2>{{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel</h2>
@@ -97,7 +97,7 @@
         {% for note in new_features if note.tag =="New" %}
         {% if loop.first %}
         <span class="label_wrapper">
-          <p class="note_label">&nbsp;<i class="fa fa-star"></i>  NEW </p>
+          <p class="note_label">&nbsp;<i class="fa fa-star"></i>  {{ _('NEW') }} </p>
         </span>
         {% endif %}
         <span class="note_wrapper">
@@ -120,7 +120,7 @@
         {% for note in new_features if note.tag =="Fixed" %}
         {% if loop.first %}
         <span class="label_wrapper">
-          <p class="note_label">&nbsp;<i class="fa fa-check"></i>  FIXED </p>
+          <p class="note_label">&nbsp;<i class="fa fa-check"></i>  {{ _('FIXED') }} </p>
         </span>
         {% endif %}
         <span class="note_wrapper">
@@ -143,7 +143,7 @@
         {% for note in new_features if note.tag =="Changed" %}
         {% if loop.first %}
         <span class="label_wrapper">
-          <p class="note_label">&nbsp;<i class="fa fa-refresh"></i>  CHANGED </p>
+          <p class="note_label">&nbsp;<i class="fa fa-refresh"></i>  {{ _('CHANGED') }} </p>
         </span>
         {% endif %}
         <span class="note_wrapper">
@@ -166,7 +166,7 @@
         {% for note in new_features if note.tag =="Developer" %}
         {% if loop.first %}
         <span class="label_wrapper">
-          <p class="note_label">&nbsp;<i class="fa fa-wrench"></i>  DEVELOPER </p>
+          <p class="note_label">&nbsp;<i class="fa fa-wrench"></i>  {{ _('DEVELOPER') }} </p>
         </span>
         {% endif %}
         <span class="note_wrapper">
@@ -190,7 +190,7 @@
         {% if loop.first %}
         <span class="label_wrapper">
           <p class="note_label">&nbsp;<i class="fa fa-code"></i>
-            HTML 5 
+            {{ _('HTML 5') }}
           </p>
         </span>
         {% endif %}
@@ -215,7 +215,7 @@
         {% if loop.first %}
         <span class="label_wrapper">
           <p class="note_label">&nbsp;<i class="fa fa-thumbs-up"></i>
-           RESOLVED </p>
+           {{ _('RESOLVED') }} </p>
         </span>
         {% endif %}
         <span class="note_wrapper">
@@ -241,7 +241,7 @@
           {% for note in known_issues %}
           {% if loop.first %}
           <div class="label_wrapper">
-            <p class="note_label"> &nbsp;<i class="fa fa-ban"></i>  UNRESOLVED </p>
+            <p class="note_label"> &nbsp;<i class="fa fa-ban"></i>  {{ _('UNRESOLVED') }} </p>
           </div>
           {% endif %}
           <div class="note_wrapper">
