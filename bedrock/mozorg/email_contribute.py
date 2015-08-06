@@ -102,6 +102,7 @@ LOCALE_CONTACTS = {
     'de': ['contribute@mozilla.de'],
     'dsb': ['sorbian-team@sorbzilla.de'],
     'el': ['core@mozilla-greece.org'],
+    'en-GB': ['contribute@mozilla.org.uk'],
     'es-AR': ['participa@mozilla-hispano.org'],
     'es-CL': ['participa@mozilla-hispano.org'],
     'es-ES': ['participa@mozilla-hispano.org'],
