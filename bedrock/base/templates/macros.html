@@ -499,7 +499,7 @@ set share_urls = {
         <a href="{{ url('firefox.new') }}">Download Firefox</a>
       {% endcall %}
     {% endblock %}
-    
+
 
 2. Make sure necessary files are in your CSS/JS bundles:
   a. CSS
@@ -630,7 +630,9 @@ set share_urls = {
       </div>
     </button>
 
-    <div id="fxfamilynav-tabzilla" class="fxfamilynav-tabzilla"><a href="{{ url('mozorg.home') }}">{{ _('Mozilla') }}</a></div>
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}">Mozilla</a>
+    </div>
   </div>{#-- /.container --#}
 </header>{#-- /#fxfamilynav-header --#}
 {%- endmacro %}

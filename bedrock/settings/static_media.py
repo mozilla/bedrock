@@ -234,6 +234,7 @@ PIPELINE_CSS = {
     'firefox_desktop_fast': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family-nav.less',
             'css/firefox/desktop/fast.less',
         ),
@@ -242,6 +243,7 @@ PIPELINE_CSS = {
     'firefox_desktop_customize': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family-nav.less',
             'css/firefox/desktop/customize.less',
         ),
@@ -257,6 +259,7 @@ PIPELINE_CSS = {
     'firefox_desktop_trust': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family-nav.less',
             'css/firefox/desktop/trust.less',
         ),
@@ -407,6 +410,7 @@ PIPELINE_CSS = {
     'firefox_hello': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/base/svg-animation-check.less',
@@ -436,6 +440,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-modal.less',
+            'css/tabzilla/tabzilla-static.less',
             'css/libs/jquery.pageslide.css',
             'css/firefox/family-nav.less',
             'css/firefox/os/get_device.less',
