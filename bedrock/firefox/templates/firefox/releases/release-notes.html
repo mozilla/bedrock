@@ -60,7 +60,7 @@
       <div class="title_text_wrapper_alt" >
         <span class="release_details_alt">
           <span class="version_wrapper_alt">
-            <h3>{{ version }}</h3>
+            <h3>{{ _('{version}')|f(version=release.version) }}</h3>
           </span>
           <br>
           <span class ="details_wrapper_alt">
@@ -127,7 +127,7 @@
           <ul class="section-items tagged">
             <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}"> 
             <div class="note_wrap">
-              {{ note.note|markdown|safe }} 
+              {{ note.note|markdown|safe }}
             </div>
             </li>
           </ul>
