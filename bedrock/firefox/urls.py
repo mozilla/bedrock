@@ -88,11 +88,9 @@ urlpatterns = patterns('',
         decorators=waffle_switch('mwc-2015-preview')),
 
     page('firefox/os/devices', 'firefox/os/devices.html'),
-    page('firefox/os/devices/tv', 'firefox/os/tv.html',
-        decorators=waffle_switch('firefox-os-tv')),
+    page('firefox/os/devices/tv', 'firefox/os/tv.html'),
 
-    page('firefox/pocket', 'firefox/pocket.html',
-        decorators=waffle_switch('pocket-active')),
+    page('firefox/pocket', 'firefox/pocket.html'),
 
     page('firefox/independent', 'firefox/independent.html'),
     page('firefox/windows-10/welcome', 'firefox/win10-welcome.html'),
