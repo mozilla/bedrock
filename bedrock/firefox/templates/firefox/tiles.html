@@ -18,11 +18,7 @@
 #}
 
 {% block page_title -%}
-{% if LANG in ['en-US'] %}{# Bug 1124724, The new copy is only for en-US at this moment #}
-Our New Tab Experience
-{%- else -%}{# Keep the old copy for l10n #}
-{{ _('A Brand New Tiles Experience') }}
-{%- endif -%}
+  {{ _('More choices for your New Tab') }}
 {%- endblock %}
 
 {% block site_header %}{% endblock %}
@@ -45,197 +41,74 @@ Our New Tab Experience
 #}
 {% block dashboard_intro %}
 
-<p>
-{% if LANG in ['en-US'] %}
-The Firefox new tab page now includes Tiles, providing users easy access to interesting, relevant content, whether it’s the sites they visit most or new sites for them to discover.
-{% else %}
-{{ _('With Enhanced Tiles and Directory Tiles, Firefox provides users easy access to interesting, relevant content, whether it’s the sites they visit most or new sites for them to discover.') }}
-{% endif %}
+<p class="intro">
+  {{ _('The New Tab page offers convenience and more control of your browsing experience.') }}
+  {{ _('Turn on Suggested Sites for a personalized experience of frequently used sites and relevant recommendations every time you open a New Tab.') }}
 </p>
 
-<h3>{{ _('What are Tiles?') }}</h3>
+<section class="tls-personalize">
+  <h2>{{ _('Personalize your New Tab experience') }}</h2>
+  <p>
+    {{ _('You are in complete control of your New Tab page.') }}
+    {{_('Customize your experience by rearranging, pinning or removing sites, and set up New Tab just the way you want it.') }}
+  </p>
+  <ol>
+    <li>{{ _('Drag a site to exactly where you want it.') }}
+      <img src="{{ static('img/firefox/tiles/drag-site.png') }}" alt="">
+    </li>
+    <li>{{ _('Once you’ve found the perfect spot for your site, pin it to make it stay.') }}
+      <img src="{{ static('img/firefox/tiles/pin-site.png') }}" alt="">
+    </li>
+    <li>{{ _('Make a site disappear by deleting it from your New Tab page.') }}
+      <img src="{{ static('img/firefox/tiles/delete-site.png') }}" alt="">
+    </li>
+  </ol>
+  <p>
+    <a href="https://support.mozilla.org/kb/new-tab-page-show-hide-and-customize-top-sites">{{ _('Learn more about customizing New Tab Page') }}</a>
+  </p>
+</section>
 
-<p>
-{% if LANG in ['en-US'] %}
-When you open a new tab in Firefox, you see several rectangles that link to different websites.
-Others call them squares, windows or bookmarks; we call them Tiles.
-{% else %}
-{{ _('When you open a new tab in Firefox, you see several rectangles that link to different websites.') }}
-{{ _('Some people call them squares, windows or bookmarks; we call them Tiles.') }}
-{% endif %}
-</p>
+<section class="tls-discover">
+  <h2>{{ _('Discover new sites and content on the Web') }}</h2>
+  <p>{{ _('If enabled, Firefox displays website links as thumbnails (miniaturized images) or logos on your New Tab page. These are called Tiles.') }}</p>
+  <p>{{ _('Tiles save you time by giving you quick access to your frequently visited sites, as well as showing new sites and content that are similar to sites you already love. Here are the types of Tiles you may see:') }}</p>
 
-<h3>{{ _('What are Enhanced Tiles?') }}</h3>
+  <h4>{{ _('Top sites') }}</h4>
+  <p>{{ _('New Tab will show the “top sites” you visited most recently and frequently, so you can access them quickly.') }}</p>
+  <img src="{{ static('img/firefox/tiles/top-sites.png') }}" alt="">
 
-<p>
-{% if LANG in ['en-US'] %}
-Enhanced Tiles customize a Firefox user’s new tab page, making it unique to that user.
-Firefox will display Tiles based on a user’s browsing history, and the experience is easy to customize and organize with a simple, drag-and-drop interface.
-Enhanced Tiles replace the default screenshot with a better image — they are only displayed for participating sites that the user has visited in the past.
-{% else %}
-{{ _('Existing Firefox users will be offered a set of Enhanced Tiles based on their browsing history.') }}
-{{ _('The Enhanced versions replace the default screenshot with a better image and are displayed only for sites that the user has visited.') }}
-{{ _('The improved image is supplied by the site or partner and can include a logo plus a rollover image.') }}
-{{ _('If you frequent Amazon.com, for example, you might see the Amazon logo or icon, instead of a screenshot.') }}
-{% endif %}
-</p>
+  <h4>{{ _('Suggested sites') }}</h4>
+  <p>
+    {{ _('See sites and content suggested to you based on categories that Firefox matches to your browsing history.') }}
+    {{ _('They will be clearly labeled in your New Tab as “Suggested,” or when the suggestion is from a commercial partner, they will be labeled as “Sponsored,” and will indicate the identified interest category.') }}
+  </p>
+  <img src="{{ static('img/firefox/tiles/suggested-sites.png') }}" alt="">
+</section>
 
-<h3>{{ _('What are Directory Tiles?') }}</h3>
+<section class="tls-started">
+  <h2>{{ _('If you’re getting started') }}</h2>
+  <p>
+    {{ _('If you’re using Firefox for the first time, the New Tab page is already populated with useful and interesting sites and content.') }} 
+    {{ _('This includes both referrals to sponsored sites from commercial partners, labeled as “Sponsored,” and content we consider important to our mission of advancing the public benefit of the Internet.') }}
+  </p>
+  <img src="{{ static('img/firefox/tiles/discover-sites.png') }}" alt="">
+</section>
 
-<p>
-{% if LANG in ['en-US'] %}
-For new users, the new tab page in Firefox provides recommendations on interesting and important content through Directory Tiles.
-This includes both referrals to sponsored partner sites (clearly marked as “sponsored”) and content we considers important to our mission of advancing the public benefit of the Internet.
-{% else %}
-{{ _('New Firefox users are initially given a set of Directory Tiles as suggestions for sites that may be of interest to them.') }}
-{{ _('Instead of displaying a blank set of Tiles, Firefox shows content from Mozilla and some Mozilla partners.') }}
-{{ _('All partner content is marked as “sponsored” and users have complete control to edit or remove any Tile.') }}
-{% endif %}
-</p>
-
-{% if LANG in ['en-US'] %}
-
-<h3>Greater personalization of your Firefox experience</h3>
-
-<p>
-Part of choosing independent means you get to control what you see — and to remove what you don’t want to see.
-Your new tab page will reflect as much or as little of your browsing behavior as you choose.
-It can be unique to you, or it can be completely blank.
-It is easy to rearrange Tiles in your new tab page, and to keep or remove any individual Tile.
-</p>
-
-<h3>A voice for Mozilla</h3>
-
-<p>
-Some Tiles contain sponsored content, while others relate to the <a href="{{ url('mozorg.contribute') }}">Mozilla project</a>, our community and associated causes.
-We believe that these are beneficial for every Web user to know about to help advance our mission to promote openness, innovation and opportunity on the Web.
-</p>
-
-<h3>Easy to control</h3>
-
-<p>
-Tiles are easily pinned, moved around or removed using simple drag-and-drop and close interfaces.
-If you do not want to see any Tiles, you can deactivate them completely in two clicks through the new tab gear control.
-</p>
-
-{% endif %}
-
-<h3>{{ _('Respects your privacy') }}</h3>
-
-<p>
-{% if LANG in ['en-US'] %}
-Tiles are a part of our initiative to set new standards for Internet advertisers and content publishers in the collection and use of personal data.
-</p>
-<p>
-Mozilla respects your privacy and any data collection by Mozilla via Tiles will be done in accordance with our <a href="{{ url('privacy.notices.firefox') }}">Privacy Notice</a>.
-The data we collect is to help us deliver the most interesting and relevant content to our users.
-For more on what data Mozilla collects via Tiles, see below.
-{% else %}
-{{ _('As with all Mozilla products, Tiles provide users with extensive control over their personal data.') }}
-{{ _('Data collection is limited to the aggregate number of impressions, clicks and Tile placement.') }}
-{{ _('Nothing is ever personally identifiable. In other words, we don’t know who clicks on what.') }}
-{{ _('We just know the total number of views and clicks an individual Tile receives. This helps us deliver the most interesting and relevant content.') }}
-{{ _('You can deactivate click and impression tracking by clicking on the gear icon on the top right corner of the new tab page, and selecting Classic to show only unenhanced History Tiles or Blank mode.') }}
-{% endif %}
-</p>
+<section class="tls-privacy">
+  <h2>{{ _('Personalization with your privacy in mind') }}</h2>
+  <p>{{ _('Mozilla promotes a transparent exchange between users and content providers to make the Web enjoyable and sustainable.') }}</p>
+  <p>{{ _('If suggestions are enabled, Firefox will make suggestions to you based on categories matched to your browsing history and will let you know every time why you are seeing specific suggestions.') }}</p>
+  <p>
+    {{ _('In delivering Suggested sites, Firefox does not share your personal data, nor place cookies on your computer.') }} 
+    {{ _('Content providers will only receive aggregated information about interactions users have with their tiles.') }}
+  </p>
+  <p>{{ _('You remain in control of your browsing history, and you can disable recommendations whenever you choose.') }}</p>
+</section>
 
 {% endblock %}
 
-{# The contents of the dashboard_faq block appears below the intro. For each question/answer
-   use the following format:
-
-    <section>
-      <h3 data-accordion-role="tab">{{ _('Question title goes here?') }}</h3>
-      <div data-accordion-role="tabpanel">
-        <p>
-          {% trans %}
-            Question answer goes here.
-          {% endtrans %}
-        </p>
-      </div>
-    </section>
-
-#}
 
 {% block dashboard_faq %}
-<section id="faq" class="accordion accordion-auto-init zebra">
-
-<h2>{{ _('Frequently Asked Questions') }}</h2>
-
-<section>
-  <h3 data-accordion-role="tab">{{ _('Are you tracking users now?') }}</h3>
-  <div data-accordion-role="tabpanel">
-    <p>
-      {% trans %}
-        We only collect data from the New Tab page in aggregate form, meaning no data is personally identifiable.
-      {% endtrans %}
-    </p>
-  </div>
-</section>
-
-<section>
-  <h3 data-accordion-role="tab">{{ _('What data is being collected?') }}</h3>
-  <div data-accordion-role="tabpanel">
-    <p>
-      {% if LANG in ['en-US'] %}
-        Mozilla collects Tiles related data such as number of clicks, impressions and Tile specific
-        data (e.g. position and size of grid) to help Mozilla determine how frequently the Tile has
-        been seen or interacted with, as well as your IP address (collected by Firefox, quickly
-        translated into a region code and then deleted).
-      {% else %}
-      {% trans %}
-        Aggregate data from the New Tab page includes impressions, clicks and tile placement.
-      {% endtrans %}
-      {% endif %}
-    </p>
-  </div>
-</section>
-
-<section>
-  <h3 data-accordion-role="tab">{{ _('What data is collected when I opt out?') }}</h3>
-  <div data-accordion-role="tabpanel">
-    <p>
-      {% if LANG in ['en-US'] %}
-        No data is collected when a user deactivates the Enhanced Tiles experience.
-      {% else %}
-      {% trans %}
-        No data is collected when a user chooses to opt out of the enhanced Tiles experience.
-      {% endtrans %}
-      {% endif %}
-    </p>
-  </div>
-</section>
-
-<section>
-  <h3 data-accordion-role="tab">{{ _('Where can I learn more?') }}</h3>
-  <div data-accordion-role="tabpanel">
-    <ul>
-      {% if LANG in ['en-US'] %}
-      <li><a href="https://support.mozilla.org/kb/how-do-tiles-work-firefox">
-        Mozilla Support: How do Tiles work?
-      </a></li>
-      <li><a href="https://blog.mozilla.org/advancingcontent/">
-        Mozilla Content Services: Advancing Content blog
-      </a></li>
-      <li><a href="https://blog.mozilla.org/netpolicy/2014/11/13/designing-tiles-for-trust/">
-        Mozilla Policy: "Designing Tiles for Trust"
-      </a></li>
-      {% else %}
-      <li><a href="https://blog.mozilla.org/futurereleases/2014/09/04/new-tab-page-experiments-in-firefox-beta/">
-        {{ _('New Tab Experiments in Firefox Beta') }}
-      </a></li>
-      <li><a href="https://blog.mozilla.org/advancingcontent/2014/08/21/a-call-for-trust-transparency-and-user-control-in-advertising/">
-        {{ _('A Call for Trust, Transparency and User Control in Advertising') }}
-      </a></li>
-      <li><a href="https://blog.mozilla.org/netpolicy/2014/08/21/trust-should-be-the-currency/">
-        {{ _('Trust should be the currency') }}
-      </a></li>
-      {% endif %}
-    </ul>
-  </div>
-</section>
-
-</section><!-- end #faq -->
 {% endblock %}
 
 
@@ -245,15 +118,9 @@ For more on what data Mozilla collects via Tiles, see below.
 
 {% block dashboard_sidebar_contents %}
 
-<h4>{{ _('Tiles Preferences') }}</h4>
+<img class="tab" src="{{ static('img/firefox/tiles/new-tab-enhanced.png') }}" alt="{{ _('Screenshot of the Firefox New Tab page') }}">
 
-<img src="{{ static('img/firefox/tiles/new-tab-enhanced.png') }}" alt="{{ _('Screenshot') }}">
-
-<p>
-  {% trans url='https://support.mozilla.org/kb/how-do-tiles-work-firefox' %}
-  For more help please see the <a href="{{ url }}">Tiles Support Page</a>
-  {% endtrans %}
-</p>
+<img class="tab-preferences" src="{{ static('img/firefox/tiles/tab-preferences.png') }}" alt="{{ _('Screenshot of New Tab preferences') }}">
 
 {% endblock %}
 
