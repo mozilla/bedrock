@@ -123,31 +123,27 @@ function isFirefoxMobile(userAgent) {
     return /Mobile|Tablet|Fennec/.test(ua);
 }
 
-// Detect Firefox 31 ESR using navigator.buildID. 20140716183446 is the *non-ESR*
-// build ID that can be found at https://wiki.mozilla.org/Releases/Firefox_31/Test_Plan
-// Since this is a simple and only way to detect ESR, there would be some false
-// positives if the browser is a pre-release (Nightly, Aurora, Beta), semi-official
-// (e.g. Ubuntu build by Canonical) or unofficial version of Firefox 31, because
-// those builds have a different build ID from the official non-ESR build.
-function isFirefox31ESR(userAgent, buildID) {
+// Detect Firefox ESR simply by the *non-ESR* build IDs, as a fallback of the channel detection by
+// the mozUITour API. There would be some false positives if the browser is a pre-release (Nightly,
+// Aurora or Beta), semi-official (e.g. Ubuntu build by Canonical) or unofficial version of Firefox,
+// because those builds have a different build ID from the official non-ESR build.
+function isFirefoxESR(userAgent, buildID) {
     userAgent = userAgent || navigator.userAgent;
     buildID = buildID || navigator.buildID;
 
-    return !isFirefoxMobile(userAgent) &&
-        getFirefoxMasterVersion(userAgent) === 31 &&
-        buildID && buildID !== '20140716183446';
-}
+    if (!isFirefox(userAgent) || isFirefoxMobile(userAgent) || !buildID) {
+        return false;
+    }
 
-// Detect Firefox 38 ESR by the *non-ESR* build IDs.
-// 38.0: 20150508094354, 38.0.1: 20150513174244, 38.0.5: 20150525141253
-// https://wiki.mozilla.org/Releases/Firefox_38/Test_Plan
-function isFirefox38ESR(userAgent, buildID) {
-    userAgent = userAgent || navigator.userAgent;
-    buildID = buildID || navigator.buildID;
+    var version = getFirefoxMasterVersion(userAgent);
+    var ESRs = {
+        // 38.0, 38.0.1, 38.0.5 and 38.0.6
+        // https://wiki.mozilla.org/Releases/Firefox_38/Test_Plan
+        38: ['20150508094354', '20150513174244', '20150525141253', '20150605094246']
+        // 45.0 goes here
+    };
 
-    return !isFirefoxMobile(userAgent) &&
-        getFirefoxMasterVersion(userAgent) === 38 && buildID &&
-        ['20150508094354', '20150513174244', '20150525141253'].indexOf(buildID) === -1;
+    return version in ESRs && ESRs[version].indexOf(buildID) === -1;
 }
 
 // Create text translation function using #strings element.

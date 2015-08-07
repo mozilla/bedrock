@@ -276,42 +276,24 @@ describe('global.js', function() {
 
     });
 
-    describe('isFirefox31ESR', function () {
-
-        it('should return true for Firefox ESR', function () {
-            // Firefox 31 ESR
-            expect(isFirefox31ESR('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:31.0) Gecko/20100101 Firefox/31.0', '20140717132905')).toBeTruthy();
-            // Firefox 31.4.0 ESR
-            expect(isFirefox31ESR('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:31.0) Gecko/20100101 Firefox/31.0', '20150105205548')).toBeTruthy();
-        });
-
-        it('should return false for Firefox non-ESR', function () {
-            // Firefox 31 non-ESR
-            expect(isFirefox31ESR('Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:31.0) Gecko/20100101 Firefox/31.0', '20140716183446')).toBeFalsy();
-            // Firefox 35
-            expect(isFirefox31ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:35.0) Gecko/20100101 Firefox/35.0', '20150122214805')).toBeFalsy();
-        });
-
-    });
-
-    describe('isFirefox38ESR', function () {
+    describe('isFirefoxESR', function () {
 
         it('should return true for Firefox ESR', function () {
             // Firefox 38.0 ESR
-            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150505103531')).toBeTruthy();
+            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150505103531')).toBeTruthy();
             // Firefox 38.0.1 ESR
-            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150514102509')).toBeTruthy();
+            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150514102509')).toBeTruthy();
             // Firefox 38.1.0 ESR
-            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150624141534')).toBeTruthy();
+            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150624141534')).toBeTruthy();
         });
 
         it('should return false for Firefox non-ESR', function () {
             // Firefox 38.0 non-ESR
-            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150508094354')).toBeFalsy();
+            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150508094354')).toBeFalsy();
             // Firefox 38.0.1 non-ESR
-            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150513174244')).toBeFalsy();
+            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150513174244')).toBeFalsy();
             // Firefox 38.0.5 non-ESR
-            expect(isFirefox38ESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150525141253')).toBeFalsy();
+            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150525141253')).toBeFalsy();
         });
 
     });
