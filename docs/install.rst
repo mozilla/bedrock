@@ -23,7 +23,7 @@ Start by getting the source::
 You need to create a virtual environment for Python libraries. Skip the first instruction if you already have virtualenv installed::
 
     $ pip install virtualenv                       # installs virtualenv, skip if already have it
-    $ virtualenv venv                              # create a virtual env in the folder `venv`
+    $ virtualenv -p python2.7 venv                 # create a virtual env in the folder `venv`
     $ source venv/bin/activate                     # activate the virtual env
     $ bin/peep.py install -r requirements/dev.txt  # installs dependencies
 
