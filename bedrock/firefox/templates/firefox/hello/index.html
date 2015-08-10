@@ -150,7 +150,7 @@ data-try-now="{{ _('Try it now') }}"
           <p>
             {{ _('If you have the latest version of Firefox, you already have Hello.') }}
             {{ _('There’s no account or sign-in required and nothing extra to download.') }}
-            {% if l10n_has_tag('hello_screen_sharing') and waffle.switch('hello-screen-sharing') %}
+            {% if l10n_has_tag('hello_screen_sharing') %}
               {{ _('Just send a conversation link to a friend and ask them to click it.')}} <a rel="external" href="https://support.mozilla.org/kb/which-browsers-will-work-firefox-hello-video-chat">{{ _('See which browsers are compatible with Firefox Hello')}}</a>
             {% else %}
               {{ _('Just start a conversation, send your friend a link and ask them to click it.') }}
@@ -158,7 +158,7 @@ data-try-now="{{ _('Try it now') }}"
             {% endif %}
           </p>
         </li>
-        {% if l10n_has_tag('hello_screen_sharing') and waffle.switch('hello-screen-sharing') %}
+        {% if l10n_has_tag('hello_screen_sharing') %}
           <li id="feature-screenshare">
             <h3 class="heading-tertiary">{{ _('Share and share alike') }}</h3>
 
@@ -187,7 +187,7 @@ data-try-now="{{ _('Try it now') }}"
 
           <p>
             {{ _('Because Hello is built right into Firefox, you can rest easy knowing that your conversations and information will remain private and secure.') }}
-            {% if l10n_has_tag('hello_screen_sharing') and waffle.switch('hello-screen-sharing') %}
+            {% if l10n_has_tag('hello_screen_sharing') %}
               {{ _('And thanks to WebRTC-grade encryption, you’ll enjoy an added level of security.')}}
             {% else %}
               {{ _('That’s part of our mission, and it’s behind everything we do around here.') }}

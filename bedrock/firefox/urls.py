@@ -12,8 +12,6 @@ import views
 import bedrock.releasenotes.views
 from bedrock.releasenotes import version_re
 
-from waffle.decorators import waffle_switch
-
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
@@ -84,8 +82,7 @@ urlpatterns = patterns('',
     page('firefox/os/1.3', 'firefox/os/ver/1.3.html'),
     page('firefox/os/1.1', 'firefox/os/ver/1.1.html'),
 
-    page('mwc', 'firefox/os/mwc-2015-preview.html',
-        decorators=waffle_switch('mwc-2015-preview')),
+    page('mwc', 'firefox/os/mwc-2015-preview.html'),
 
     page('firefox/os/devices', 'firefox/os/devices.html'),
     page('firefox/os/devices/tv', 'firefox/os/tv.html'),
