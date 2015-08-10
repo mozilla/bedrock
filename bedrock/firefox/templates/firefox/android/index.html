@@ -195,7 +195,7 @@
             <div class="line"></div>
           </div>
         </section>
-        {% if l10n_has_tag('android_spring_updates') and waffle.switch('android-spring-updates') %}
+        {% if l10n_has_tag('android_spring_updates') %}
           <section class="customize-section" id="reading">
             <h3 data-accordion-role="tab">{{ _('Read and save articles easily') }}</h3>
 
@@ -204,7 +204,7 @@
                 {{ _('Enjoy a more pleasant reading experience with Reader View and Reading List.') }}
                 {{ _('Access your saved articles even when you’re not online.') }}
               </p>
-              
+
               {% if l10n_has_tag('android_reader_links') %}
                 <a rel="external" href="https://support.mozilla.org/kb/save-web-pages-your-reading-list-firefox-android" class="learn-more">{{ _('Learn more about Reading List') }}</a><br>
                 <a rel="external" href="https://support.mozilla.org/kb/view-articles-reader-view-firefox-android" class="learn-more">{{ _('Learn more about Reader View') }}</a>
