@@ -25,8 +25,12 @@ Patches are welcome! Feel free to fork and contribute to this project on
 [github][gh-bedrock]. If you find a problem and wish to report it, please [file
 a bug][bugzilla].
 
+Looking for a good first bug to work on? Take a look at the [wiki page][wiki] for a
+list of mentored bugs.
+
 [gh-bedrock]: https://github.com/mozilla/bedrock
 [bugzilla]: https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org&component=Bedrock
+[wiki]: https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org#Mentored_Bugs
 
 License
 -------
@@ -35,5 +39,3 @@ This software is licensed under the [MPL/GPL/LGPL tri-license][MPL]. For more
 information, read the file ``LICENSE``.
 
 [MPL]: http://www.mozilla.org/MPL/
-
-
