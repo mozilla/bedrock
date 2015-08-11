@@ -160,7 +160,7 @@ $(function() {
     }
 
     // show for outdated Fx versions
-    if (isFirefox() && !isFirefoxUpToDate() && !isFirefox31ESR() && !isFirefox38ESR()) {
+    if (isFirefox() && !isFirefoxUpToDate() && !isFirefoxESR()) {
         outdatedFx.show();
     }
 
