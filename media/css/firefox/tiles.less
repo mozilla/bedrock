@@ -82,9 +82,9 @@
                 margin-top: 0;
             }
         }
-        
+
         ol {
-            list-style: none; 
+            list-style: none;
             counter-reset: array;
             font-style: italic;
             font-weight: bold;
@@ -117,17 +117,23 @@
         .sidebar-inset img.tab {
             width: 100%;
         }
-    } 
+    }
 }
 
 @media only screen and (max-width: 760px) {
+
+    #main-feature {
+        h1 {
+            margin: 0;
+        }
+    }
 
     .main-column {
         width: 100%;
         margin-left: 0;
 
         section {
-            ol li:nth-child(2), 
+            ol li:nth-child(2),
             ol li:nth-child(3) {
                 width: 100%;
             }
@@ -142,5 +148,5 @@
         .sidebar-inset img.tab {
             width: 100%;
         }
-    } 
+    }
 }
