@@ -14,6 +14,12 @@
   <script src="{{ static('js/libs/modernizr.custom.cssanimations.js') }}"></script>
 {% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-desktop-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block content %}{% endblock %}
