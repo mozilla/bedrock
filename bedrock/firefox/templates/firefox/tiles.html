@@ -54,7 +54,7 @@
   </p>
   <ol>
     <li>{{ _('Drag a site to exactly where you want it.') }}
-      <img src="{{ static('img/firefox/tiles/drag-site.png') }}" alt="">
+      {{ high_res_img('img/firefox/tiles/drag-site.png', {'alt': ''}) }}
     </li>
     <li>{{ _('Once you’ve found the perfect spot for your site, pin it to make it stay.') }}
       <img src="{{ static('img/firefox/tiles/pin-site.png') }}" alt="">
@@ -88,10 +88,10 @@
 <section class="tls-started">
   <h2>{{ _('If you’re getting started') }}</h2>
   <p>
-    {{ _('If you’re using Firefox for the first time, the New Tab page is already populated with useful and interesting sites and content.') }} 
+    {{ _('If you’re using Firefox for the first time, the New Tab page is already populated with useful and interesting sites and content.') }}
     {{ _('This includes both referrals to sponsored sites from commercial partners, labeled as “Sponsored,” and content we consider important to our mission of advancing the public benefit of the Internet.') }}
   </p>
-  <img src="{{ static('img/firefox/tiles/discover-sites.png') }}" alt="">
+  {{ high_res_img('img/firefox/tiles/discover-sites.png', {'alt': ''}) }}
 </section>
 
 <section class="tls-privacy">
@@ -99,7 +99,7 @@
   <p>{{ _('Mozilla promotes a transparent exchange between users and content providers to make the Web enjoyable and sustainable.') }}</p>
   <p>{{ _('If suggestions are enabled, Firefox will make suggestions to you based on categories matched to your browsing history and will let you know every time why you are seeing specific suggestions.') }}</p>
   <p>
-    {{ _('In delivering Suggested sites, Firefox does not share your personal data, nor place cookies on your computer.') }} 
+    {{ _('In delivering Suggested sites, Firefox does not share your personal data, nor place cookies on your computer.') }}
     {{ _('Content providers will only receive aggregated information about interactions users have with their tiles.') }}
   </p>
   <p>{{ _('You remain in control of your browsing history, and you can disable recommendations whenever you choose.') }}</p>
@@ -117,11 +117,8 @@
 #}
 
 {% block dashboard_sidebar_contents %}
-
-<img class="tab" src="{{ static('img/firefox/tiles/new-tab-enhanced.png') }}" alt="{{ _('Screenshot of the Firefox New Tab page') }}">
-
-<img class="tab-preferences" src="{{ static('img/firefox/tiles/tab-preferences.png') }}" alt="{{ _('Screenshot of New Tab preferences') }}">
-
+  {{ high_res_img('img/firefox/tiles/new-tab-enhanced.png', {'alt': _('Screenshot of the Firefox New Tab page'), 'class': 'tab'}) }}
+  <img class="tab-preferences" src="{{ static('img/firefox/tiles/tab-preferences.png') }}" alt="{{ _('Screenshot of New Tab preferences') }}">
 {% endblock %}
 
 {% block js %}
