@@ -14,7 +14,7 @@
     // remove trailing slash from iframe src (if present)
     fxaIframeSrc = (fxaIframeSrc[fxaIframeSrc.length - 1] === '/') ? fxaIframeSrc.substr(0, fxaIframeSrc.length - 1) : fxaIframeSrc;
 
-    // communicate with FxA iframe
+    // set up communication with FxA iframe
     window.addEventListener('message', function (e) {
         var data;
         // make sure origin is as expected
@@ -70,6 +70,9 @@
             }
         }
     }, true);
+
+    // load FxA iframe only after postMessage communication is configured
+    $fxaFrame.attr('src', $fxaFrame.data('src'));
 
     // if locale has video, do A/B test
     if (hasVideo) {
