@@ -41,10 +41,10 @@
         {% endtrans %}
         
         {% if release.bug_list %}
-        {% trans %}
+        {% trans bug_list=release.bug_list %}
         <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
           <input type="hidden" name="limit" value="0">
-          <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
+          <input type="hidden" name="bug_id" value="{{ buglist }}">
           <p>
             
             <button type="submit">
@@ -55,9 +55,9 @@
         </form>
         {% endtrans %}
         {% else %}
-        {% trans %}
+        {% trans bug_search_url=release.get_bug_search_url()%}
         or see the
-        <a href="{{ release.get_bug_search_url() }}">
+        <a href="{{ bug_search_url }}">
           complete list of changes
         </a>
         in this release.
