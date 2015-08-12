@@ -63,7 +63,7 @@
       <aside id="platform">
         <ul>
           {% if release.product == 'Firefox' %}
-          <li class ="firstPlatform">
+          <li class="firstPlatform">
             <span>
               {{ _('Desktop') }}
             </span>
@@ -98,7 +98,7 @@
             </h3>
           </span>
           <br>
-          <span class ="details_wrapper_alt">
+          <span class="details_wrapper_alt">
             <h2>
               {{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} {{ _('Channel') }}
             </h2>
@@ -119,7 +119,7 @@
               {{ _('{version}')|f(version=release.version) }}
             </h3>
           </span>
-          <span class ="details_wrapper">
+          <span class="details_wrapper">
             <h2>
               {{ _('{date}')|f(date=release.release_date|l10n_format_date, version=release.version) }} {{ _('{channel}')|f(channel=release.channel) }} Channel
             </h2>
@@ -152,7 +152,7 @@
           {% endif %}
           <span class="note_wrapper">
             <ul class="section-items tagged">
-              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}">
+              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class="gray_note" {% endif %} {% if loop.index % 2 == 0 %}class="blue_note" {% endif %} id="note-{{ note.id }}">
                 
                 <div class="note_wrap">
                   {{ note.note|markdown|safe }} 
@@ -181,7 +181,7 @@
           {% endif %}
           <span class="note_wrapper">
             <ul class="section-items tagged">
-              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}">
+              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class="gray_note" {% endif %} {% if loop.index % 2 == 0 %}class="blue_note" {% endif %} id="note-{{ note.id }}">
                 
                 <div class="note_wrap">
                   {{ note.note|markdown|safe }}
@@ -210,7 +210,7 @@
           {% endif %}
           <span class="note_wrapper">
             <ul class="section-items tagged">
-              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}">
+              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class="gray_note" {% endif %} {% if loop.index % 2 == 0 %}class="blue_note" {% endif %} id="note-{{ note.id }}">
                 
                 <div class="note_wrap">
                   {{ note.note|markdown|safe }} 
@@ -239,7 +239,7 @@
           {% endif %}
           <span class="note_wrapper">
             <ul class="section-items tagged">
-              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}">
+              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class="gray_note" {% endif %} {% if loop.index % 2 == 0 %}class="blue_note" {% endif %} id="note-{{ note.id }}">
                 
                 <div class="note_wrap">
                   {{ note.note|markdown|safe }} 
@@ -268,7 +268,7 @@
           {% endif %}
           <span class="note_wrapper">
             <ul class="section-items tagged">
-              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}">
+              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class="gray_note" {% endif %} {% if loop.index % 2 == 0 %}class="blue_note" {% endif %} id="note-{{ note.id }}">
                 
                 <div class="note_wrap">
                   {{ note.note|markdown|safe }} 
@@ -297,7 +297,7 @@
           {% endif %}
           <span class="note_wrapper">
             <ul class="section-items tagged">
-              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %} id="note-{{ note.id }}">
+              <li {% if not note.tag %}class="untagged"{% endif %} {% if loop.index % 2 != 0 %}class="gray_note" {% endif %} {% if loop.index % 2 == 0 %}class="blue_note" {% endif %} id="note-{{ note.id }}">
                 
                 <div class="note_wrap">
                   {{ note.note|markdown|safe }} 
@@ -329,7 +329,7 @@
             {% endif %}
             <div class="note_wrapper">
               <ul class="section-items tagged">
-                <li {% if loop.index % 2 != 0 %}class = "gray_note" {% endif %} {% if loop.index % 2 == 0 %}class = "blue_note" {% endif %}id="note-{{ note.id }}">
+                <li {% if loop.index % 2 != 0 %}class="gray_note" {% endif %} {% if loop.index % 2 == 0 %}class="blue_note" {% endif %}id="note-{{ note.id }}">
                   
                   <div class="note_wrap">
                     {{ note.note|markdown|safe }} 
@@ -338,99 +338,9 @@
               </ul>
             </div>
             {% endfor %}
-            {% endif %}
           </section>
-        </section>
+            {% endif %}
       </div>
-      <!--
-<div class="tri-column" id="note-media">
-{% if new_features %}
-<section class="notes-section" id="new-features">
-<ul class="section-items tagged">
-<ul class="section-items tagged">
-{% for note in new_features if note.tag =="New" %}
-{% if loop.first %}
-<p style="visibility:hidden">
-NEW 
-</p>
-{% endif %}
-<li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-<div class="note_wrap">
-{{ note.note|markdown|safe }}
-</div>
-</li>
-{% endfor %}
-{% for note in new_features if note.tag =="Fixed" %}
-{% if loop.first %}
-<p style="visibility:hidden">
-FIXED 
-</p>
-{% endif %}
-<li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-{{ note.note|markdown|safe }}
-</li>
-{% endfor %}
-{% for note in new_features if note.tag =="Changed" %}
-{% if loop.first %}
-<p style="visibility:hidden">
-CHANGED 
-</p>
-{% endif %}
-<li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-{{ note.note|markdown|safe }}
-</li>
-{% endfor %}
-{% for note in new_features if note.tag =="Developer" %}
-{% if loop.first %}
-<p style="visibility:hidden">
-DEVELOPER 
-</p>
-{% endif %}
-<li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-{{ note.note|markdown|safe }}
-</li>
-{% endfor %}
-{% for note in new_features if note.tag =="HTML5" %}
-{% if loop.first %}
-<p style="visibility:hidden">
-HTML 5 
-</p>
-{% endif %}
-<li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-{{ note.note|markdown|safe }}
-</li>
-{% endfor %}
-{% for note in new_features if note.tag =="Resolved" %}
-{% if loop.first %}
-<p style="visibility:hidden">
-RESOLVED 
-</p>
-{% endif %}
-<li style="visibility:hidden"{% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-{{ note.note|markdown|safe }}
-</li>
-{% endfor %}
-</ul>
-</section>
-{% endif %}
-{% if known_issues %}
-<section class="notes-section" id="known-issues">
-<ul class="section-items tagged">
-{% for note in known_issues %}
-{% if loop.first %}
-<p style="visibility:hidden">
-UNRESOLVED 
-</p>
-{% endif %}
-<li style="visibility:hidden"id="note-{{ note.id }}">
-{{ note.note|markdown|safe }}
-</li>
-{% endfor %}
-</ul>
-</section>
-{% endif %}
-</div>
--->
     </article>
   </main>
   {% endblock %}
