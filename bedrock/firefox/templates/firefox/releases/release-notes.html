@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 {% extends "firefox/base-resp.html" %}
 {% block page_title_prefix %}{% endblock %}
-{% from "macros.html" import fxfamilynav, send_to_device with context %}
+{% from "macros.html" import fxfamilynav %}
 {% block page_title %}{{ _('{product} — {channel} Notes ({version})')|f(product=release.product, channel=channel_name, version=release.version) }}{% endblock %}
 {% block body_id %}notes{% endblock %}
 {% block body_class %}fx-notes blank{% endblock %}
