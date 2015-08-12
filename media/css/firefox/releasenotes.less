@@ -2,7 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 @import "../sandstone/lib.less";
-@import "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css";
 @font-face {
     font-family: 'Font Awesome';
     src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'), url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'), url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
@@ -12,8 +11,8 @@
 #outer-wrapper {
     background: #fff;
     width: 100%;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 .blank {
@@ -86,10 +85,7 @@
     height: 100%;
     float: left;
     text-align: center;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 10px 10px 0;
     position: relative;
 }
 .version_wrapper {
@@ -181,10 +177,7 @@
 }
 .notes-head {
     .clearfix;
-    padding-right: 5%;
-    padding-left: 5%;
-    padding-bottom: 0px;
-    padding-top: 10px;
+    padding: 10px 5% 0;
     margin-bottom: @baseLine * 2;
     background-color: #F0F0F0;
     text-align: center;
@@ -250,7 +243,7 @@
     }
     h4 {
         .font-size(30px);
-        margin: 0 0 0 0;
+        margin: 0;
         padding: 0;
     }
     ul {
@@ -258,7 +251,7 @@
         float: left;
         background: #fff;
         width: 100%;
-        border-radius: 10px 10px 10px 10px;
+        border-radius: 10px;
     }
     li {
         margin: 0;
@@ -268,13 +261,13 @@
     }
     a {} span {
         color: #000;
-        border-radius: 0 0 0 0;
+        border-radius: 0;
         border-bottom: 5px solid rgba(0, 150, 221, 0.7);
     }
     li:first-child {
         padding-right: 1px;
         a, span {
-            border-radius: 0 0 0 0;
+            border-radius: 0;
         }
     }
     a,
@@ -285,7 +278,7 @@
         .font-size(15px);
         font-weight: 600;
         text-transform: uppercase;
-        border-radius: 0 0 0 0;
+        border-radius: 0;
     }
 }
 .space #platform {
@@ -346,7 +339,7 @@ article {
     .note {
         .font-size(@smallFontSize);
         color: @textColorSecondary;
-        margin: 0 0 0em;
+        margin: 0;
         padding-right: 0px;
     }
 }
