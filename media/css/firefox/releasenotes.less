@@ -131,10 +131,7 @@
     height: 100%;
     float: left;
     text-align: center;
-    padding-left: 0px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 10px 10px 0;
     position: relative;
 }
 .version_wrapper_alt {
@@ -224,9 +221,14 @@
         margin-bottom: 0em;
     }
 }
+
+.note_label::before {
+    content: "\00a0 ";
+}
 .note_label {
     text-align: center;
 }
+
 .firstPlatform {
     padding-left: 40%;
     padding-right: 5%;
