@@ -26,11 +26,11 @@
         {{ _('Release Notes') }} 
       </h1>
       <span class="release_blurb_wrapper">
-        {{ _('Release Notes tell you what’s new in Firefox. As always, we welcome your ') }}
         {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
         if release.product == 'Firefox for Android'
         else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
         bugzilla='https://bugzilla.mozilla.org/' %}
+        Release Notes tell you what’s new in Firefox. As always, we welcome your 
         <a href="{{ feedback }}">
           feedback. 
         </a>
@@ -39,26 +39,32 @@
           file a bug in Bugzilla
         </a>
         {% endtrans %}
+        
         {% if release.bug_list %}
+        {% trans %}
         <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
           <input type="hidden" name="limit" value="0">
           <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
           <p>
             
             <button type="submit">
-              {{ _('complete list of changes') }}
+              or see the complete list of changes
             </button>
-            {{ _('in this release.') }}
+            in this release.
           </p>
         </form>
+        {% endtrans %}
         {% else %}
-        {{ _('or see the') }} 
+        {% trans %}
+        or see the
         <a href="{{ release.get_bug_search_url() }}">
-          {{ _('complete list of changes') }}
+          complete list of changes
         </a>
-        {{ _('in this release.') }}
+        in this release.
+        {% endtrans %}
         {% endif %}
       </span>
+
       {% if equivalent_release_url %}
       <aside id="platform">
         <ul>
