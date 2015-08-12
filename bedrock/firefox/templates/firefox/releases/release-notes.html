@@ -141,9 +141,7 @@
           {% for note in new_features if note.tag =="New" %}
           {% if loop.first %}
           <span class="label_wrapper">
-            <p class="note_label">
-              <i class="fa fa-star">
-              </i>
+            <p class="note_label" id="new">
               {{ _('new') }} 
             </p>
           </span>
@@ -169,9 +167,7 @@
           {% for note in new_features if note.tag =="Fixed" %}
           {% if loop.first %}
           <span class="label_wrapper">
-            <p class="note_label">
-              <i class="fa fa-check">
-              </i>
+            <p class="note_label" id="fixed">
               {{ _('fixed') }} 
             </p>
           </span>
@@ -197,9 +193,7 @@
           {% for note in new_features if note.tag =="Changed" %}
           {% if loop.first %}
           <span class="label_wrapper">
-            <p class="note_label">
-              <i class="fa fa-refresh">
-              </i>
+            <p class="note_label" id="changed">
               {{ _('changed') }} 
             </p>
           </span>
@@ -225,9 +219,7 @@
           {% for note in new_features if note.tag =="Developer" %}
           {% if loop.first %}
           <span class="label_wrapper">
-            <p class="note_label">
-              <i class="fa fa-wrench">
-              </i>
+            <p class="note_label" id="developer">
               {{ _('developer') }} 
             </p>
           </span>
@@ -253,9 +245,7 @@
           {% for note in new_features if note.tag =="HTML5" %}
           {% if loop.first %}
           <span class="label_wrapper">
-            <p class="note_label">
-              <i class="fa fa-code">
-              </i>
+            <p class="note_label" id="html5">
               {{ _('html 5') }}
             </p>
           </span>
@@ -281,9 +271,7 @@
           {% for note in new_features if note.tag =="Resolved" %}
           {% if loop.first %}
           <span class="label_wrapper">
-            <p class="note_label">
-              <i class="fa fa-thumbs-up">
-              </i>
+            <p class="note_label" id="resolved">
               {{ _('resolved') }} 
             </p>
           </span>
@@ -312,9 +300,7 @@
             {% for note in known_issues %}
             {% if loop.first %}
             <div class="label_wrapper">
-              <p class="note_label">
-                <i class="fa fa-ban">
-                </i>
+              <p class="note_label" id="known">
                 {{ _('unresolved') }} 
               </p>
             </div>
