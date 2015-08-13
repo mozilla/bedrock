@@ -21,54 +21,77 @@
 </div>
 
 <div id="main-content">
-
   <div id="faq" class="accordion accordion-auto-init zebra">
     <section>
       <h2 data-accordion-role="tab">{{_('About Firefox OS')}}</h2>
       <div data-accordion-role="tabpanel">
         <dl class="faq">
-
           <dt>{{_('What is Firefox OS?')}}</dt>
           <dd>
-          {{_('Backed by some of the biggest names in the industry, Firefox OS is a new open operating system for smartphones developed by Mozilla.')}}
-          {{_('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.')}}
+          {% if l10n_has_tag('fxos_faq_updates') %}
+            {{_('Firefox OS is the only truly open mobile OS that unlocks the power of the Web as the platform and enables operators, hardware manufacturers and developers to create innovative and customized applications and products for consumers to use across these connected devices.')}}
+          {% else %}
+            {{_('Backed by some of the biggest names in the industry, Firefox OS is a new open operating system for smartphones developed by Mozilla.')}}
+            {{_('Built entirely using HTML5 and other open Web standards, Firefox OS is free from the rules and restrictions of existing proprietary platforms.')}}
+          {% endif %}
           </dd>
 
           <dt>{{_('How is Firefox OS different from other operating systems?')}}</dt>
           <dd>
+          {% if l10n_has_tag('fxos_faq_updates') %}
             <p>
-            {{_('Firefox OS is the only operating system with Adaptive App Search.')}}
-            {{_('While every other phone today is static, giving you the exact same apps each time you turn it on, Firefox OS is always changing to offer exactly the apps you need at any moment in your life.')}}
-            {{_('It adapts so you can live every moment to its fullest.')}}
+              <b>{{_('For users')}}</b> {{_('Firefox OS offers a customized and easy to use experience appropriate to consumers from the value range in India to early tech adopters in Japan.')}}
             </p>
             <p>
-            {{_('Firefox OS is brought to you by Mozilla, a global nonprofit organization that emphasizes principle over profit.')}}
-            {{_('We believe that the Web is a shared public resource to be cared for, not a commodity to be sold.')}}
-            {{_('We work with a worldwide community to create open source products like Mozilla Firefox and to innovate for the benefit of the individual and the betterment of the Web.')}}
-            {{_('The result is great products built by passionate people and better choices for everyone.')}}</p>
+              <b>{{_('For operators and OEMs')}}</b> {{_('Firefox OS offers the opportunity to capture new user segments due to its open development process and tight collaboration with partners searching for new revenue streams and business models.')}}
+            </p>
+            <p>
+              <b>{{_('For developers')}}</b> {{_('Firefox OS offers the freedom to build the most advanced web experiences on mobile. Developers can create apps that customers can access across multiple platforms, devices and operating systems. Firefox OS provides them with the possibility of connecting with hundreds of millions of Firefox supporters around the world as well as access to relatively untapped markets.')}}
+            </p>
+          {% else %}
+            <p>
+              {{_('Firefox OS is the only operating system with Adaptive App Search.')}}
+              {{_('While every other phone today is static, giving you the exact same apps each time you turn it on, Firefox OS is always changing to offer exactly the apps you need at any moment in your life.')}}
+              {{_('It adapts so you can live every moment to its fullest.')}}
+            </p>
+            <p>
+              {{_('Firefox OS is brought to you by Mozilla, a global nonprofit organization that emphasizes principle over profit.')}}
+              {{_('We believe that the Web is a shared public resource to be cared for, not a commodity to be sold.')}}
+              {{_('We work with a worldwide community to create open source products like Mozilla Firefox and to innovate for the benefit of the individual and the betterment of the Web.')}}
+              {{_('The result is great products built by passionate people and better choices for everyone.')}}
+            </p>
+          {% endif %}
           </dd>
-
         </dl>
       </div>
     </section>
+
     <section>
       <h2 data-accordion-role="tab">{{_('Buying Firefox OS')}}</h2>
       <div data-accordion-role="tabpanel">
         <dl class="faq">
-
           <dt>{{_('What phones will Firefox OS be available on?')}}</dt>
-            <dd>
-              {% trans link=url('firefox.os.devices') %}
-              To see a full list of available Firefox OS phones, please visit the <a href="{{ link }}">devices page</a>.
-              {% endtrans %}
-            </dd>
+          <dd>
+          {% if l10n_has_tag('fxos_faq_updates') %}
+            {{_('Since launching, Firefox OS smartphones are available in over 40 markets from multiple global operators on a number of different devices, across different price device categories. These include handsets from Alcatel ONETOUCH, ZTE, Huawei and LG.')}}
+          {% else %} 
+            {% trans link=url('firefox.os.devices') %}
+            To see a full list of available Firefox OS phones, please visit the <a href="{{ link }}">devices page</a>.
+            {% endtrans %}
+          {% endif %}
+          </dd>
+
           <dt>{{_('Where can I buy Firefox OS?')}}</dt>
           <dd>
-            <p>
-              {% trans link=url('firefox.os.devices') %}
-              To purchase a Firefox OS phone, please visit the <a href="{{ link }}">devices page</a> and select your available country.
-              {% endtrans %}
-            </p>
+          {% if l10n_has_tag('fxos_faq_updates') %}
+            {% trans link=url('firefox.os.devices') %}
+            The full list of where to buy Firefox OS devices can be found at the <a href="{{ link }}">devices page</a>.
+            {% endtrans %}
+          {% else %} 
+            {% trans link=url('firefox.os.devices') %}
+            To purchase a Firefox OS phone, please visit the <a href="{{ link }}">devices page</a> and select your available country.
+            {% endtrans %}
+          {% endif %}
           </dd>
 
           <dt>{{_('What will be the price of the phone?')}}</dt>
@@ -76,41 +99,60 @@
 
           <dt>{{_('What apps will be available on Firefox OS?')}}</dt>
           <dd>
-          {{_('The growing list includes leading apps like Facebook, Twitter, Nokia HERE maps, Cut the Rope, and Time Out.')}}
-          {{_('Many more are being made available every day.')}}</dd>
+          {% if l10n_has_tag('fxos_faq_updates') %}
+            <p>{{_('The Firefox Marketplace offers an open app environment that leverages the scale of the Web as a development platform; allowing operators, phone manufacturers and developers greater flexibility.')}}</p>
+            <p>
+              {% trans url='https://marketplace.firefox.com/' %}
+              The growing list of apps for Firefox OS includes Pinterest, Facebook, LINE, Twitter, airbnb, EA Games, SoundCloud, outlook.com, Cut the Rope, Dailymotion, goal.com and TomTom Maps. Many more are being made available every day. For more information, visit <a href="{{ url }}">https://marketplace.firefox.com/</a>
+              {% endtrans %}
+            </p>
+          {% else %}
+            {{_('The growing list includes leading apps like Facebook, Twitter, Nokia HERE maps, Cut the Rope, and Time Out.')}}
+            {{_('Many more are being made available every day.')}}
+          {% endif %}
+          </dd>
 
           <dt>{{_('Is Firefox OS available in my language?')}}</dt>
           <dd>
-          {{_('Firefox OS is currently available in Spanish, Polish, English, Italian, Portuguese, German, Serbian, Hungarian and Greek.')}}
-          {{_('We’re working on adding more languages all the time.')}}</dd>
-
+          {% if l10n_has_tag('fxos_faq_updates') %}
+            <p>
+              {% trans link=url('firefox.os.devices') %}
+              Firefox OS is currently available in a number of different languages. Check out the device market availability at the <a href="{{ link }}">devices page</a>.
+              {% endtrans %}
+            </p>
+            <p>{{_('We’re working on adding more languages as we launch into new markets.')}}</p>
+          {% else %}
+            {{_('Firefox OS is currently available in Spanish, Polish, English, Italian, Portuguese, German, Serbian, Hungarian and Greek.')}}
+            {{_('We’re working on adding more languages all the time.')}}
+          {% endif %}
+          </dd>
         </dl>
       </div>
     </section>
+
     <section>
       <h2 data-accordion-role="tab">{{_('Using Firefox OS')}}</h2>
       <div data-accordion-role="tabpanel">
         <dl class="faq">
-
           <dt>{{_('How do I…')}}</dt>
           <dd>
             <ul>
-              <li><a href="https://support.mozilla.org/kb/make-calls-and-access-voicemail-firefox-os">
+              <li><a href="https://support.mozilla.org/kb/calls-and-voicemail">
                 {{_('…make a call?')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/import-add-and-manage-contacts-firefox-os">
-                {{_('…import my contacts? ')}}
+              <li><a href="https://support.mozilla.org/kb/add-manage-and-share-contacts#w_import-from-facebook">
+                {{_('…import my contacts?')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/how-to-use-messages-app">
-                {{_('…create and view messages? ')}}
+              <li><a href="https://support.mozilla.org/kb/send-messages">
+                {{_('…create and view messages?')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/get-connected-access-wi-fi-and-cellular-networks">
+              <li><a href="https://support.mozilla.org/kb/visit-websites-firefox-os">
                 {{_('…use the internet?')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/how-download-and-install-apps">
+              <li><a href="https://support.mozilla.org/kb/installing-apps-firefox-os">
                 {{_('…download and install an app?')}}
               </a></li>
-              <li><a href="https://support.mozilla.org/kb/taking-photos-firefox-os">
+              <li><a href="https://support.mozilla.org/kb/using-camera">
                 {{_('…take pictures?')}}
               </a></li>
               <li><a href="https://support.mozilla.org/kb/send-and-manage-email">
@@ -118,59 +160,63 @@
               </a></li>
             </ul>
           </dd>
-
         </dl>
       </div>
     </section>
+
     <section>
       <h2 data-accordion-role="tab">{{_('Features')}}</h2>
       <div data-accordion-role="tabpanel">
         <dl class="faq">
-
-          <dt>{{_('Adaptive App Search')}}</dt>
-          <dd>{{_('Get information on any subject right when you need it, brought to you and your phone by Firefox OS.')}}</dd>
-
-          <dt>{{_('Firefox Marketplace')}}</dt>
+          <dt><em>{{_('Firefox Marketplace')}}</em></dt>
           <dd>{{_('Your go-to source for the best apps for Firefox OS.')}}</dd>
 
-          <dt>{{_('Firefox browser')}}</dt>
+          <dt><em>{{_('Firefox browser')}}</em></dt>
           <dd>{{_('The fast, smart, safe way to get the best of the Web.')}}</dd>
 
-          <dt>{{_('Deep integration with social media')}}</dt>
+          <dt><em>{{_('Deep integration with social media')}}</em></dt>
           <dd>{{_('Full access to every Twitter and Facebook update from wherever you are.')}}</dd>
 
-          <dt>{{_('Camera')}}</dt>
+          <dt><em>{{_('Camera')}}</em></dt>
           <dd>{{_('With built-in style filters for fun, creative shots.')}}</dd>
 
-          <dt>{{_('FM Radio')}}</dt>
+          <dt><em>{{_('FM Radio')}}</em></dt>
           <dd>{{_('All the audio you want on the go, all on one device.')}}</dd>
 
-          <dt>{{_('Maps')}}</dt>
+          <dt><em>{{_('Maps')}}</em></dt>
           <dd>{{_('Includes directions, traffic and local transit information.')}}</dd>
         </dl>
       </div>
     </section>
+
     <section>
       <h2 data-accordion-role="tab">{{_('Privacy and Security')}}</h2>
       <div data-accordion-role="tabpanel">
-          <p>
-          {{_('Mozilla was the first to implement the Do Not Track privacy feature.')}}
-          {% trans url='https://support.mozilla.org/kb/how-turn-do-not-track-feature-firefox-os' %}
-          Firefox also features customizable security settings to manage passwords, history, private data, cookies, site options and add-ons. <a href="{{url}}">Learn more.</a>
-          {% endtrans %}
-          </p>
+        <dl class="faq">
+          <dt>
+          {% if l10n_has_tag('fxos_faq_updates') %}
+            {{_('How will Firefox OS keep me safe while I browse?')}}
+          {% endif %}
+          </dt>
+          <dd>{{_('Mozilla was the first to implement the Do Not Track privacy feature.')}}
+            {% trans url='https://support.mozilla.org/kb/how-turn-do-not-track-feature-firefox-os' %}
+            Firefox also features customizable security settings to manage passwords, history, private data, cookies, site options and add-ons. <a href="{{url}}">Learn more.</a>
+            {% endtrans %}
+          </dd>
+        </dl>
       </div>
     </section>
+
     <section>
       <h2 data-accordion-role="tab">{{_('Developer Questions')}}</h2>
       <div data-accordion-role="tabpanel">
-          <p>{% trans url='https://developer.mozilla.org/docs/Mozilla/Firefox_OS' %}
+        <p>{% trans url='https://developer.mozilla.org/docs/Mozilla/Firefox_OS' %}
           Are you a developer? Have questions? <a href="{{url}}">Learn more at the Mozilla Developer Network.</a>
-          {% endtrans %}</p>
+        {% endtrans %}
+        </p>
       </div>
     </section>
   </div>
-
 </div>
 
 {% endblock %}
