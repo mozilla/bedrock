@@ -480,7 +480,7 @@ class FirstrunView(LatestFxView):
         locale = l10n_utils.get_locale(self.request)
 
         if show_devbrowser_firstrun_or_whatsnew(version):
-            template = 'firefox/dev-firstrun-spring-campaign.html'
+            template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
             template = 'firefox/australis/fx40/firstrun.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
@@ -570,7 +570,7 @@ class TourView(LatestFxView):
         locale = l10n_utils.get_locale(self.request)
 
         if show_devbrowser_firstrun_or_whatsnew(version):
-            template = 'firefox/dev-firstrun-spring-campaign.html'
+            template = 'firefox/dev-firstrun.html'
         elif show_36_firstrun(version):
             template = 'firefox/australis/fx36/help-menu-36-tour.html'
         elif show_search_firstrun(version) and locale == 'en-US':

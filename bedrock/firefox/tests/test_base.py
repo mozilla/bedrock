@@ -426,7 +426,7 @@ class TestTourView(TestCase):
         req = self.rf.get('/en-US/firefox/tour/')
         self.view(req, version='35.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun-spring-campaign.html'])
+        eq_(template, ['firefox/dev-firstrun.html'])
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_34_0_a2(self, render_mock):
@@ -527,7 +527,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='35.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun-spring-campaign.html'])
+        eq_(template, ['firefox/dev-firstrun.html'])
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_34_0_a2(self, render_mock):
