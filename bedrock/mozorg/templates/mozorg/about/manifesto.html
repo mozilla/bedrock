@@ -8,7 +8,7 @@
 {% else %}
   {#- Show the redesigned landing page -#}
 
-{% from 'macros.html' import twitter_share_url with context %}
+{% from 'macros.html' import twitter_share_url, share_cta with context %}
 {% extends 'mozorg/base-resp.html' %}
 
 {% block page_title %}{{ _('The Mozilla Manifesto') }}{% endblock %}
@@ -61,7 +61,9 @@
           <header>
             <h2>{{ _('<strong>Our 10</strong> Principles') }}</h2>
             <aside class="share-wrapper">
-              <div class="socialshare" data-type="small-bubbles" data-label="{{ _('Share this') }}" data-fb-lang="{{ facebook_locale }}"></div>
+              {% set share_urls = { 'twitter': 'http://mzl.la/1b858Kd', 'googleplus': 'http://mzl.la/1b858Kd', 'facebook': 'http://mzl.la/1b858Kd' } -%}
+              {% set share_text = _('The Mozilla Manifesto') %}
+              {{ share_cta(_('Share'), share_urls, share_text, 'share-mozilla-manifesto', 'sky mini') }}
             </aside>
           </header>
           <div id="principles">

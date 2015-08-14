@@ -105,13 +105,8 @@
             border-bottom: 1px solid #EDEEEF;
             padding: 20px;
 
-            .socialshare {
-                display: inline-block;
-                width: auto;
-
-                #share-options {
-                    text-align: left;
-                }
+            .mozilla-share-cta.mini {
+                margin: 0 auto;
             }
         }
     }
@@ -123,27 +118,6 @@
 
         a:after {
             content: "\00A0\00BB"; /* nbsp raquo */
-        }
-    }
-}
-
-.socialshare > div > a {
-    background-repeat: no-repeat;
-    background-image: url(/media/img/mozorg/about/manifesto/social/sprite.png);
-
-    &:after {
-        background-repeat: no-repeat;
-        background-position: 4px -45px;
-        background-image: url(/media/img/mozorg/about/manifesto/social/sprite.png);
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-        color: #00A0DB;
-
-        span {
-            border-color: #00A0DB;
         }
     }
 }

@@ -515,28 +515,8 @@ html[lang|="en"] #main-feature h1.large span:first-child {
     margin-bottom: 10px;
 }
 
-.socialshare {
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-    text-align: left;
-    margin: 5px auto 0 -35px;
-    font-style: normal;
-    .font-size(@largeFontSize);
-    div > a {
-        background: none;
-        padding: 0px 28px 0px 0;
-    }
-    .fb-like iframe {
-        min-width: 450px;
-    }
-}
-
-.socialshare.open[data-type="small-bubbles"] {
-    #share-options {
-        .box-shadow(0 0 2px 0 rgba(0,0,0,0.5));
-        margin-left: 0;
-    }
+.mozilla-share-cta {
+    margin: 0 auto;
 }
 
 /* Newsletter signup shown to up-to-date users */
@@ -600,10 +580,6 @@ noscript {
                 &.install3 .screen { background-position: 0 -234px; }
             }
         }
-    }
-
-    .socialshare {
-        display: none;
     }
 }
 
@@ -758,9 +734,6 @@ noscript {
     .windows,
     .winIE8 {
         .ready-for-scene2 .installation li .screen { display: none; }
-    }
-    .socialshare {
-        display: none;
     }
 
     .footer-newsletter-form {

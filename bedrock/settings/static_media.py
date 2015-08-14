@@ -251,7 +251,7 @@ PIPELINE_CSS = {
     },
     'firefox_desktop_tips': {
         'source_filenames': (
-            'css/libs/socialshare/socialshare.less',
+            'css/base/mozilla-share-cta.less',
             'css/firefox/desktop/tips.less',
         ),
         'output_filename': 'css/firefox_desktop_tips-bundle.css',
@@ -424,7 +424,7 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone-resp.less',
             'css/firefox/template-resp.less',
             'css/tabzilla/tabzilla-static.less',
-            'css/libs/socialshare/socialshare.less',
+            'css/base/mozilla-share-cta.less',
             'css/firefox/simple_footer-resp.less',
             'css/firefox/new.less',
         ),
@@ -631,7 +631,7 @@ PIPELINE_CSS = {
     'manifesto': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
-            'css/libs/socialshare/socialshare.less',
+            'css/base/mozilla-share-cta.less',
             'css/mozorg/mosaic.less',
             'css/mozorg/manifesto.less',
         ),
@@ -1081,7 +1081,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/base/mozilla-pager.js',
             'js/libs/hammer.1.1.2.min.js',
-            'js/libs/socialshare.min.js',
+            'js/base/mozilla-share-cta.js',
             'js/firefox/desktop/tips.js',
         ),
         'output_filename': 'js/firefox_desktop_tips-bundle.js',
@@ -1174,7 +1174,7 @@ PIPELINE_JS = {
             'js/newsletter/form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
-            'js/libs/socialshare.min.js',
+            'js/base/mozilla-share-cta.js',
             'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
         ),
@@ -1423,7 +1423,7 @@ PIPELINE_JS = {
     'manifesto': {
         'source_filenames': (
             'js/base/mozilla-modal.js',
-            'js/libs/socialshare.min.js',
+            'js/base/mozilla-share-cta.js',
             'js/mozorg/manifesto.js',
         ),
         'output_filename': 'js/manifesto-bundle.js',
