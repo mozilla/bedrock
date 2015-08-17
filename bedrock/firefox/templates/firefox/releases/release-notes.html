@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
- # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% extends "firefox/base-resp.html" %}
 
@@ -8,164 +8,260 @@
 {% block page_title %}{{ _('{product} — {channel} Notes ({version})')|f(product=release.product, channel=channel_name, version=release.version) }}{% endblock %}
 
 {% block body_id %}notes{% endblock %}
-{% block body_class %}fx-notes sky{% endblock %}
+{% block body_class %}fx-notes blank{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_releasenotes' %}
+  {% stylesheet 'firefox_releasenotes_new' %}
 {% endblock %}
 
 {% block optimizely %}
   {% if waffle.switch('firefox-releasenotes-optimizely') %}
-     {% include 'includes/optimizely.html' %}
+    {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}
 
 {# channel_name is for display purposes where needed.  #}
 {% set channel_name = channel_name|default('') %}
 
+{% block site_header %}
+<header class="relasenotes-header" id="masthead">
+  <div class="container">
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}">Mozilla</a>
+    </div>
+    {% block site_header_nav %}
+      {% include 'firefox/includes/release-menu.html' %}
+    {% endblock %}
+    {% block site_header_logo %}
+      <h2><a href="{{ url('firefox') }}">{{ high_res_img('img/firefox/template/header-logo.png', {'alt': 'Mozilla Firefox', 'width': '185', 'height': '70'}) }}</a></h2>
+    {% endblock %}
+  </div>
+</header>
+{% endblock %}
+
 {% block content %}
-<main role="main">
+<main role="main" class="release-notes">
   <article id="main-content">
 
   {% block notes_header %}
     <header class="notes-head">
-    {% block notes_heading_primary %}
-      <h1>{{ _('Firefox {channel} Notes')|f(channel=channel_name) }}</h1>
-    {% endblock %}
-    {% block notes_heading_secondary %}
-      <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
-    {% endblock %}
+      <div class="intro">
+        <div class="container">
+          {% block notes_heading_primary %}
+          <h1>{{ _('See what’s new in Firefox!') }}</h1>
+          {% endblock %}
+          <p> 
+            {% trans 
+            feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes' 
+            if release.product == 'Firefox for Android' 
+            else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
+            bugzilla='https://bugzilla.mozilla.org/',
+            bug_search_url=release.get_bug_search_url() 
+            %}
+              Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="{{ feedback }}">feedback</a>. You can also <a href="{{ bugzilla }}"> file a bug in Bugzilla </a> or see the <a href="{{ bug_search_url }}">complete list of changes</a> in this release.
+            {% endtrans %}
+          </p>
+        </div>
+      </div>
 
     {% block platform_switch %}
-    {% if equivalent_release_url %}
-      <aside id="platform">
-        <h4>{{ _('View notes for:') }}</h4>
-        <ul>
-        {% if release.product == 'Firefox' %}
-          <li><span>{{ _('Desktop') }}</span></li>
-          <li><a href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
-        {% else %}
-          <li><a href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
-          <li><span>{{ _('Android') }}</span></li>
-        {% endif %}
-        </ul>
-      </aside>
-    {% endif %}
+      {% if equivalent_release_url %}
+      <div class="navigator" id="nav">
+        <div class="container">
+          <ul class="menu">
+          {% if release.product == 'Firefox' %}
+            <li class="current">{{ _('Desktop') }}</li>
+            <li><a href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
+            {% else %}
+            <li><a href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
+            <li class="current">{{ _('Android') }}</li>
+          {% endif %}
+            <li><a href="https://www.mozilla.org/en-US/firefox/ios/1.1/releasenotes/">{{ _('iOS') }}</a></li>
+            <li class="submenu-title">
+              <a>{{ _('Other Recent Releases') }}</a>
+              <div>
+                <ul class="submenu">
+                  <li class="title">Other Desktop Releases</li>
+                  <li><a href="https://www.mozilla.org/en-US/firefox/aurora/notes/">Latest Aurora</a></li>
+                  <li><a href="https://www.mozilla.org/en-US/firefox/beta/notes/">Latest Beta</a></li>
+                  <li class="title">Other Android Releases</a></li>
+                  <li><a href="https://www.mozilla.org/en-US/firefox/android/beta/notes/">Latest Android Beta</a></li>
+                  <li><a href="https://www.mozilla.org/en-US/firefox/android/aurora/notes/">Latest Android Aurora</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
     {% endblock %}
 
-      <p>
-        {{ _('Check out "What’s New" and "Known Issues" for this version of Firefox below.') }}
-      {% trans feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
-          if release.product == 'Firefox for Android'
-          else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
-          bugzilla='https://bugzilla.mozilla.org/' %}
-        As always, you’re encouraged to
-        <a href="{{ feedback }}">tell us what you think</a>,
-        or <a href="{{ bugzilla }}">file a bug in Bugzilla</a>.
-      {% endtrans %}
-      {% if release.bug_list %}
-      <form action="https://bugzilla.mozilla.org/buglist.cgi" method="post">
-        <input type="hidden" name="limit" value="0">
-        <input type="hidden" name="bug_id" value="{{ release.bug_list }}">
-        <p>If interested, please see the <button type="submit">complete list of changes</button> in this release.</p>
-      </form>
-      {% else %}
-          If interested, please see the  <a href="{{ release.get_bug_search_url() }}">complete list of changes</a> in this release.
-      {% endif %}
-        {{ release.text|markdown|safe }}
-      </p>
+    {% if release.text %}
+      <div class="latest-release" >
+        <div class="container">
+          <div class="version">
+            <h3>{{ _('{version}')|f(version=release.version) }}</h3>
+            <p>{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
+          </div>
+          <div class="description">
+            {% block notes_heading_secondary %}
+              <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
+              <p>{{ release.text|markdown|safe }}</p>
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
     </header>
   {% endblock %}
 
-    <div class="main-column">
+    <section class="notes-section">
+
+      <div class="features" id="new-features">
       {% if new_features %}
-      <section class="notes-section" id="new-features">
-        <h3>{{ _('What’s New') }}</h3>
-        <ul class="section-items tagged">
-          {% for note in new_features %}
-          <li {% if not note.tag %}class="untagged"{% endif %} id="note-{{ note.id }}">
-            {% if note.tag %}
-              <b class="tag tag-{{ note.tag.lower() }}">{{ note.tag }}</b>
-            {% endif %}
-              {{ note.note|markdown|safe }}
-          </li>
-          {% endfor %}
-        </ul>
-      </section>
-      {% endif %}
-      {% if known_issues %}
-      <section class="notes-section" id="known-issues">
-        <h3>{{ _('Known Issues') }}</h3>
-        <ul class="section-items tagged">
-          {% for note in known_issues %}
+        <div class="section-wrapper">
+          <p id="New">{{ _('new') }}</p>
+          <ul class="section-items">
+          {% for note in new_features if note.tag == "New" %}
             <li id="note-{{ note.id }}">
-                <b class="tag tag-unresolved">{{ _('unresolved') }}</b>
-                {{ note.note|markdown|safe }}
-            {% if note.fixed_in_release %}
-              <p class="note">
-                <a href="{{ releasenotes_url(note.fixed_in_release) }}">
-                  {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_release.version) }}
-                </a>
-              </p>
-            {% endif %}
+              <p>{{ note.note|markdown|safe }}</p>
             </li>
           {% endfor %}
-        </ul>
-      </section>
+          </ul>
+        </div>
       {% endif %}
-    </div>
 
-  {% block notes_sidebar %}
-    <aside id="sidebar" class="sidebar">
-      {% block notes_sidebar_download %}
-      <section id="try">
-        <h3>{{ _('Try Firefox %s')|format(channel_name) }}</h3>
-        <ol>
-          <li class="try1"><a href="{{ check_url }}">{{ _('Check') }}</a></li>
-          <li class="try2"><a href="{{ download_url }}">{{ _('Download') }}</a></li>
-          {% if release.product == 'Firefox for Android' %}
-          <li class="try3"><a href="https://support.mozilla.org/products/mobile/download-and-install">{{ _('Install') }}</a></li>
-          {% else %}
-          {% if release.product == 'Firefox for iOS' %}
-          <li class="try3"><a href="https://support.mozilla.org/products/ios/install-and-update-firefox-ios">{{ _('Install') }}</a></li>
-          {% else %}
-          <li class="try3"><a href="https://support.mozilla.org/products/firefox/download-and-install">{{ _('Install') }}</a></li>
-          {% endif %}
-          {% endif %}
-          {% if release.product != 'Firefox for iOS' %}
-          <li class="try4"><a href="https://addons.mozilla.org/firefox/">{{ _('Customize') }}</a></li>
-          {% endif %}
-        </ol>
-      </section>
-      {% endblock %}
+      {% if new_features %}
+        <div class="section-wrapper">
+          <p id="Fixed">{{ _('fixed') }}</p>
+          <ul class="section-items">
+          {% for note in new_features if note.tag == "Fixed" %}
+            <li id="note-{{ note.id }}">
+              <p>{{ note.note|markdown|safe }}</p>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
 
-      <section id="get-involved">
-        <h3>{{ _('Want to get involved?') }}</h3>
-        <p>{{ _('Did you know that most of the content in Firefox Support was written by volunteers?') }}<br>
-        <a href="{{ url('mozorg.contribute') }}">{{ _('Find out more') }}</a></p>
-      </section>
+      {% if new_features %}
+        <div class="section-wrapper">
+          <p id="Changed">{{ _('changed') }}</p>
+          <ul class="section-items">
+          {% for note in new_features if note.tag == "Changed" %}
+            <li id="note-{{ note.id }}">
+              <p>{{ note.note|markdown|safe }}</p>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
 
-      <section id="problems">
-        <h3>{{ _('Having Problems?') }}</h3>
-        <ol>
-          <li><a href="{{ support_url }}">{{ _('Search for answers on the Firefox Support page') }}</a></li>
-          {% if known_issues %}
-          <li><a href="#known-issues">{{ _('Look at the known issues list and see if we already know about the problem') }}</a></li>
-          {% endif %}
-          <li><a href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ _('If you can’t find reference to your issue, please consider filing a technical bug report') }}</a></li>
-        </ol>
-      </section>
+      {% if new_features %}
+        <div class="section-wrapper">
+          <p id="Developer">{{ _('developer') }}</p>
+          <ul class="section-items">
+          {% for note in new_features if note.tag == "Developer" %}
+            <li id="note-{{ note.id }}">
+              <p>{{ note.note|markdown|safe }}</p>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
 
-      <section id="other">
-        <h3>{{ _('Other Resources') }}</h3>
-        {% if release.product != 'Firefox for iOS' %}
-        <p><a href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a></p>
+      {% if new_features %}
+        <div class="section-wrapper">
+          <p id="HTML5">{{ _('html5') }}</p>
+          <ul class="section-items">
+          {% for note in new_features if note.tag == "HTML5" %}
+            <li id="note-{{ note.id }}">
+              <p>{{ note.note|markdown|safe }}</p>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      {% if new_features %}
+        <div class="section-wrapper">
+          <p id="Resolved">{{ _('resolved') }}</p>
+          <ul class="section-items">
+          {% for note in new_features if note.tag == "Resolved" %}
+            <li id="note-{{ note.id }}">
+              <p>{{ note.note|markdown|safe }}</p>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      </div>
+
+      <div class="features" id="know-issues">
+        {% if known_issues %}
+          <div class="section-wrapper">
+            <p id="Known">{{ _('unresolved') }}</p>
+            <ul class="section-items">
+            {% for note in known_issues %}
+              <li id="note-{{ note.id }}">
+                <p>{{ note.note|markdown|safe }}</p>
+              </li>
+            {% endfor %}
+            </ul>
+          </div>
         {% endif %}
-        <p><a href="https://blog.mozilla.com/futurereleases/">{{ _('Future of Firefox Blog') }}</a></p>
-      </section>
-    </aside>
-  {% endblock %}
+      </div>
+
+    </section>
+
+    <section class="notes-footer">
+      <div class="container">
+        <div class="rel-download"> 
+          <p>{{ _('Want to download this version of Firefox?') }}</p>
+          <a href="https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">{{ _('All Firefox downloads') }}</a>
+        </div>
+        <div class="download-button-wrapper">
+          {{ download_firefox(small=True, icon=False, platform='android') }}
+        </div>
+      </div>
+    </section>
 
   </article>
 </main>
+{% endblock %}
+
+{% block site_footer %} 
+
+<footer id="colophon" class="release-footer">
+  <nav class="row">
+    <div class="col col-1">
+      <h1>{{ _('Need help or want to leave feedback?') }}</h1>
+      <p><a class="rel" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ _('File a bug') }}</a></p>
+      <p><a class="rel" href="https://input.mozilla.org/en-US/feedback?utm_source=releasenotes">{{ _('Leave feedback') }}</a></p>
+    </div>
+
+    <div class="col col-2">
+      <h1>{{ _('Get Involved') }}</h1>
+      <p>{{ _('Did you know that most of the content in Firefox Support was written by volunteers?') }}</p>
+      <p><a class="rel" href="https://support.mozilla.org/en-US/get-involved">{{ _('Find out more') }}</a></p>
+    </div>
+
+    <div class="col col-3">
+      <h1>{{ _('Other Resources') }}</h1>
+      <p><a class="rel" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a></p>
+      <p><a class="rel" href="{{ release.get_bug_search_url() }}">{{ _('Complete list of changes for this release') }}</a></p>
+      <p><a class="rel" href="https://blog.mozilla.org/press/kits/">{{ _('Press Kit') }}</a></p>
+      <p><a class="rel" href="https://blog.mozilla.org/press/">{{ _('Mozilla and Firefox News') }}</a></p>
+    </div>
+  </nav>
+</footer>
+
+{% endblock %}
+
+{% block email_form %} {% endblock %}
+
+{% block js %}
+   {% javascript 'releasenotes' %}
 {% endblock %}
