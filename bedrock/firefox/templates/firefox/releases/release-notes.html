@@ -308,6 +308,32 @@
     </div>
   </article>
 </main>
+<form id="conditional-download" class="billboard newsletter-form footer-newsletter-form">
+<p> DOwnload firefox today </p>
+</form>
+<form id="colophon" class="billboard newsletter-form footer-newsletter-form">
+<nav class="row">
+<div class="col col-1">
+<h1>{{ _('Need help or want to leave feedback?') }}</h1>
+<p><a class="rel" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ _('File a bug') }}</a></p>
+<p><a class="rel" href="https://input.mozilla.org/en-US/feedback?utm_source=releasenotes">{{ _('Leave feedback') }}</a></p>
+</div>
+<div class="col col-2">
+<h1>{{ _('Get Involved') }}</h1>
+<p>{{ _('Did you know that most of the content in Firefox Support was written by volunteers?') }}</p>
+<p><a class="rel" href="https://support.mozilla.org/en-US/get-involved">{{ _('Find out more') }}</a></p>
+</div>
+<div class="col col-3">
+<h1>{{ _('Other Resources') }}</h1>
+<p><a class="rel" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a></p>
+<p><a class="rel" href="{{ release.get_bug_search_url() }}">{{ _('Complete list of changes for this release') }}</a></p>
+<p><a class="rel" href="https://blog.mozilla.org/press/kits/">{{ _('Press Kit') }}</a></p>
+<p><a class="rel" href="https://blog.mozilla.org/press/">{{ _('Mozilla and Firefox News') }}</a></p>
+</div>
+</nav>
+</form>
+{% endblock %}
+{% block footer %}
 {% endblock %}
 {% block js %}
 {% endblock %}
