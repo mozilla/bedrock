@@ -73,35 +73,6 @@
     </div>
   </div>
 </section>
-
-{% if video_url %}
-<section id="video">
-  <div class="container">
-    <div class="leftcol">
-      <h2 id="video-title">{{ _('From our hands to yours') }}</h2>
-
-      <p>
-        {{ _('Firefox is built from the heart by thousands who believe in personal freedom on the Web.') }}
-      </p>
-
-      <div id="video-container">
-        <div id="video-frame">
-          <video tabindex="0" id="firstrun-video" controls="controls" poster="{{ static('img/firefox/spring-campaign-2015/video-poster.jpg') }}" width="100%" height="auto">
-            <source src="{{ video_url }}.webm" type="video/webm">
-            <source src="{{ video_url }}.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>{#-- /.leftcol --#}
-
-    <div class="rightcol">
-      <a id="cta-video" href="{{ video_url }}.webm"><span>{{ _('Watch the video') }}</span></a>
-    </div>{#-- /.rightcol --#}
-
-  </div>{#-- /.container --#}
-</section>{#-- /#video --#}
-{% endif %}
-
 {% endblock %}
 
 {% block email_form %}{% endblock %}

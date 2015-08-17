@@ -22,7 +22,9 @@ html {
 .rightcol {
     float: left;
     width: 400px;
-    margin-left: 60px;
+    margin: 10px 0 0 60px;
+    border-radius: 6px;
+    background: #fff;
 }
 
 h1 {
@@ -51,12 +53,6 @@ html[dir="rtl"] #logo {
 #intro {
     color: #fff;
     padding-bottom: 60px;
-
-    .rightcol {
-        margin-top: 10px;
-        border-radius: 6px;
-        background: #fff;
-    }
 }
 
 #fxa {
@@ -70,86 +66,6 @@ html[dir="rtl"] #logo {
 
     &.visible {
         opacity: 1;
-    }
-}
-
-#video {
-    background-color: #005189;
-
-    .container {
-        padding: 60px 0;
-        .at2x('/media/img/firefox/australis/fx38.0.5/firefox-logo-bg.png', 576px, 560px);
-        background-position: left center;
-        background-repeat: no-repeat;
-    }
-
-    .rightcol {
-        .clearfix();
-    }
-}
-
-#video-container {
-    display: none;
-}
-
-#video-frame {
-    // make sure modal video is fully visible on 1280x800 screen
-    width: 94%;
-
-    video {
-        display: block;
-        margin: 0 auto;
-        border-radius: 6px;
-        border: 1px solid #fff;
-    }
-}
-
-#cta-video {
-    float: right;
-    position: relative;
-    display: block;
-    width: 304px;
-    margin-right: 20px;
-    height: 172px;
-    border-radius: 8px;
-    border: 2px solid #3374a1;
-    overflow: hidden;
-    .at2x('/media/img/firefox/spring-campaign-2015/video-poster-thumb.jpg', 304px, 172px);
-
-    span {
-        .image-replaced();
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -35px 0 0 -35px;
-        display: block;
-        width: 68px;
-        height: 68px;
-        background: #0882be;
-        border-radius: 50%;
-        border: 2px solid #9ccde5;
-        .transition(background 0.25s ease);
-
-        &:before {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -14px 0 0 -10px;
-            content: '';
-            display: block;
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 28px solid #fff;
-        }
-    }
-
-    &:hover,
-    &:focus {
-        span {
-            background: lighten(#0882be, 5%);
-        }
     }
 }
 

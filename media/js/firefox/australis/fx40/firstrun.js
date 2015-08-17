@@ -1,15 +1,11 @@
-;(function($, Mozilla) {
+;(function($) {
     'use strict';
 
-    var hasVideo = $('#video').length > 0;
-    var $videoFrame = $('#video-frame');
-    var $videoTitle = $('#video-title');
-    var $video = $('#firstrun-video');
     var $fxaFrame = $('#fxa');
     var fxaIframeSrc = $('#intro').data('fxa-iframe-src');
     var fxaFrameTarget = ($fxaFrame.length) ? $('#fxa')[0].contentWindow : null;
-    var videoOnLoad = false;
     var resizeTimer;
+    var fxaHandshake = false;
 
     // remove trailing slash from iframe src (if present)
     fxaIframeSrc = (fxaIframeSrc[fxaIframeSrc.length - 1] === '/') ? fxaIframeSrc.substr(0, fxaIframeSrc.length - 1) : fxaIframeSrc;
@@ -25,6 +21,7 @@
             // tell iframe we are expecting it
             case 'ping':
                 fxaFrameTarget.postMessage(e.data, fxaIframeSrc);
+                fxaHandshake = true;
                 break;
             // just GA tracking when iframe loads
             case 'loaded':
@@ -74,78 +71,11 @@
     // load FxA iframe only after postMessage communication is configured
     $fxaFrame.attr('src', $fxaFrame.data('src'));
 
-    // if locale has video, do A/B test
-    if (hasVideo) {
-        // manual override to test videos
-        if (window.location.href.indexOf('v=') !== -1) {
-            var variation = window.location.href.split('v=')[1];
-
-            videoOnLoad = (variation === '1') ? false : true;
-        } else {
-            videoOnLoad = Math.random() >= 0.5;
+    // set a timeout to show FxA (error page, most likely) should the ping event
+    // above fail for some reason
+    setTimeout(function() {
+        if (!fxaHandshake) {
+            $fxaFrame.css('height', '400px').addClass('visible');
         }
-
-        window.dataLayer.push({
-            'event': 'firstrun-video',
-            'videoPosition': (videoOnLoad) ? 'overlay' : 'bottom',
-            'videoTitle': '/firstrun/ video'
-        });
-
-        $video.on('play', function() {
-            // GA track video play
-            window.dataLayer.push({
-                'event': 'firstrun-video',
-                'interaction': 'play',
-                'videoTitle': '/firstrun/ video'
-            });
-        }).on('ended', function() {
-            // GA track video finish
-            window.dataLayer.push({
-                'event': 'firstrun-video',
-                'interaction': 'finish',
-                'videoTitle': '/firstrun/ video'
-            });
-
-            // take a little breath before closing modal
-            setTimeout(function() {
-                Mozilla.Modal.closeModal();
-            }, 500);
-        });
-    }
-
-    var showVideo = function(origin, autoplay) {
-        var opts = {
-            title: $videoTitle.text(),
-            onDestroy: function() {
-                window.dataLayer.push({
-                    'event': 'firstrun-video',
-                    'interaction': 'close',
-                    'videoTitle': '/firstrun/ video'
-                });
-            }
-        };
-
-        if (autoplay) {
-            opts.onCreate = function() {
-                // slight pause after modal opens
-                setTimeout(function() {
-                    $video[0].play();
-                }, 250);
-            };
-        }
-
-        Mozilla.Modal.createModal(origin, $videoFrame, opts);
-    };
-
-    // if showing video on page load, hide video copy/CTA and show video
-    if (videoOnLoad) {
-        $('#video').addClass('hidden');
-        showVideo(document.documentElement, false);
-    // if not showing video on page load, attach click listener to video CTA
-    } else if (hasVideo) {
-        $('#cta-video').on('click', function(e) {
-            e.preventDefault();
-            showVideo(this, true);
-        });
-    }
-})(window.jQuery, window.Mozilla);
+    }, 2500);
+})(window.jQuery);

@@ -345,8 +345,6 @@ PIPELINE_CSS = {
     },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
-            'css/sandstone/video-resp.less',
-            'css/base/mozilla-modal.less',
             'css/firefox/australis/fx38_0_5/firstrun.less',
         ),
         'output_filename': 'css/firefox_fx38_0_5_firstrun-bundle.css',
@@ -355,8 +353,6 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/tabzilla/tabzilla-static.less',
-            'css/sandstone/video-resp.less',
-            'css/base/mozilla-modal.less',
             'css/firefox/australis/fx40/firstrun.less',
         ),
         'output_filename': 'css/firefox_fx40_firstrun-bundle.css',
@@ -1134,17 +1130,13 @@ PIPELINE_JS = {
     },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
-            'js/base/mozilla-video-tools.js',
             'js/firefox/australis/australis-uitour.js',
-            'js/base/mozilla-modal.js',
             'js/firefox/australis/fx38_0_5/firstrun.js',
         ),
         'output_filename': 'js/firefox_fx38_0_5_firstrun-bundle.js',
     },
     'firefox_fx40_firstrun': {
         'source_filenames': (
-            'js/base/mozilla-video-tools.js',
-            'js/base/mozilla-modal.js',
             'js/firefox/australis/fx40/firstrun.js',
         ),
         'output_filename': 'js/firefox_fx40_firstrun-bundle.js',
