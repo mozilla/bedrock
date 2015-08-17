@@ -1,0 +1,378 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+@font-face {
+    font-family: 'Font Awesome';
+    src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'), url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'), url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#wrapper {
+    padding: 0;
+    width: 100%;
+}
+
+#main-content {
+    padding: 0;
+    width: 100%;
+}
+
+.container {
+    .border-box();
+    width: @widthDesktop;
+}
+
+.release-notes {
+    h1 {
+        .open-sans-light();
+        padding-bottom: 15px;
+        text-align: center;
+    }
+    h2 {
+        .font-size(23px);
+        line-height: 1.2;
+    }
+    h3 {
+        .open-sans-extrabold();
+        .font-size(60px);
+        margin: 0;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.navigator {
+    position: static;
+    top: 0;
+    background-color: #e4e5e5;
+
+    a:hover {
+        text-decoration: none
+    }
+
+    li {
+        display: inline-block;
+        padding: 20px 16px;
+        text-transform: uppercase;
+        position: relative;
+        cursor: pointer;
+    }
+
+    li.current {
+        border-bottom: 5px solid @mozIDBlue;
+    }
+
+    li.submenu-title:hover {
+        ul.submenu {
+            display: block;
+        }
+    }
+
+    &.fixedNav {
+        background-color: #e4e5e5;
+        background-image: none;
+        box-shadow: 0 1px 3px rgba(50, 50, 50, 0.4);
+        position: fixed;
+        margin: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 200;
+    }
+}
+
+ul.submenu {
+    display: none;
+    background-color: #fff;
+    margin-top: 24px;
+    position: absolute;
+    z-index: 1;
+    text-align: left;
+    padding: 5px 10px 10px 10px;
+    width: 300px;
+    border: solid 1px #e4e5e5;
+
+    li {
+        display: inline;
+        .font-size(14px);
+        text-align: left;
+        text-transform: none;
+        margin-left: 0;
+        padding: 5px; 
+    } 
+
+    li.title {
+        .font-size(10px);
+        display: block;
+        text-transform: uppercase;
+        padding: 15px 5px 0 5px;
+    }
+}
+
+ul.submenu:after {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+    content: "";
+    width: 0;
+    height: 0;
+    left: 20px;
+    position: absolute;
+    top: -10px;
+}
+
+
+.notes-head {
+    text-align: center;
+
+    .intro {
+        margin: 50px 0;
+        p {
+            margin: auto;
+            width: 580px;
+        }
+    }
+    .latest-release {
+        background-color: rgba(246, 247, 249, 0.4);
+        margin-bottom: 0;
+        .container {
+            text-align: left;
+            padding: 30px 65px;
+        }
+        .version {
+            float: left;
+            margin-right: 40px;
+            vertical-align: top;
+        }
+        .description {
+            display: inline-block;
+            float: right;
+            width: 570px;
+        }
+    }
+}
+
+.notes-section {
+    clear: both;
+    width: 100%;
+
+    .features {
+        background-color: #fff;
+        width: 100%;
+    }
+
+    .section-wrapper {
+        .border-box();
+        border-bottom: solid 1px #eee;
+        display: table;
+        margin: auto auto;
+        padding: 40px 20px;
+        width: 80%;
+
+        &:last-child {
+            border: none;
+        }
+
+        > p {
+            float: left;
+            margin: 10px 0px;
+            width: 25%;
+        }
+    }
+}
+ul.section-items {
+    float: left;
+    list-style: none;
+    margin: 0;
+    width: 75%;
+
+    li {
+        display: block;
+        margin: 1em 0;
+        padding: 15px;
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    li:nth-child(odd) {
+        background-color: rgba(223, 236, 250, 0.41);
+    }
+    li:nth-child(even) {
+        background-color: #FFF;
+    }
+}
+
+.notes-footer {
+    .container {
+        padding: 30px;
+    }
+    .rel-download {
+        float: left;
+
+        p {
+            margin: 0;
+        }
+    }
+    .download-button-wrapper {
+        float: right;
+    }
+}
+
+footer#colophon {
+    margin: 0;
+    p {
+        margin-bottom: 0;
+    }
+}
+
+#New::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f005\00A0";
+}
+#Fixed::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f00c\00A0";
+}
+#Changed::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f021\00A0";
+}
+#Developer::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f0ad\00A0";
+}
+#HTML5::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f121\00A0";
+}
+#Resolved::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f164\00A0";
+}
+#Known::before {
+    font-family: 'Font Awesome';
+    content: "\00A0\f05e\00A0";
+}
+
+@media only screen and (max-width: @breakDesktop) {
+    .container {
+        width: @widthTablet;
+    }
+    .notes-head {
+        .intro p {
+            text-align: center;
+            width: 70%;
+        }
+        .latest-release .container  {
+            text-align: center;
+
+            .version,
+            .description {
+                float: none;
+                margin: auto auto;
+                width: 70%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    .container {
+        width: @widthMobile;
+    }
+    .release-notes {
+        h2 {
+            .font-size(20px);
+        }
+    }
+    #masthead {
+        width: 100%;
+        padding: 0;
+
+        .container {
+            padding: 0;
+        }
+    }
+    .notes-head {
+        .intro {
+            margin: 20px 0;
+            p {
+                width: 100%;
+            }
+        }
+        .latest-release .container {
+            padding: 30px 0px;
+            .version, 
+            .description  {
+                text-align: center;
+                width: 100%;
+            }
+        }
+    }
+    .notes-section {
+        .section-wrapper {
+            padding: 20px 0;
+            > p, ul {
+                float: none;
+                width: 100%;
+            }
+        }
+    }
+    .notes-footer {
+        .rel-download,
+        .download-button-wrapper {
+            float: none;
+            margin: 0;
+            text-align: center;
+        }
+        .rel-download {
+            margin-bottom: 20px;
+        }
+    }
+    .navigator {
+        .container {
+            padding: 0;
+            width: 100%;
+        }
+    }
+    ul.submenu  {
+        background-color: #fff;
+        left: 25%;
+        margin: 5px 0 0 0;
+        width: 50%;
+
+        li {
+            border: none;
+        }
+    }
+    ul.menu {
+        margin: 0;
+        text-align: center;
+
+        li {
+            border-bottom: solid 1px #fff;
+            clear: both;
+            display: block;
+            margin: 0;
+            padding: 5px 0;
+            text-transform: uppercase;
+            width: 100%;
+        }
+        li.current {
+            background-color: #0096dd;
+            color: #fff;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+    }
+}
