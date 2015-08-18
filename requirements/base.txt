@@ -1,6 +1,6 @@
-# sha256: TVjkUnRLdodtgZnKRBRKJSwlTokUk5JArjUnxOqhiC8
-# sha256: Tz-f5OXSD_jtapC10vLfLY_AVOR4zcw9uBxrKb0heGA
-Django==1.7.9
+# sha256: HbXa_k_oMC80RJKDhkuqdNDWQBNhOqIAkYGHv3aQLV8
+# sha256: uTV9LOvmGZcFXUF9YH-cZQ6BfNGjg7mhuIvx7a15fHU
+Django==1.7.10
 
 # sha256: 4h6LijS01EbJtWCQ4yh847Y9GuHPbe8ejb-Ij0DkbMw
 # sha256: Vibe-NP1i9L1ne67vn7-KckiAGpFFQblwH3VtKSQ_8M
