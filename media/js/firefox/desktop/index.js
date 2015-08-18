@@ -14,8 +14,8 @@
     if (isDesktopViewport) {
         $('#customize').waypoint(function() {
             $customizeAnimation.addClass('animate');
+            this.destroy(); // execute waypoint once
         }, {
-            triggerOnce: true,
             offset: 50
         });
 

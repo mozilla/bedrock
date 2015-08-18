@@ -7,27 +7,27 @@
 
     var isDesktopViewport = $(window).width() >= 1000;
 
-    var $feel_animation;
+    var $feelAnimation;
     var loopAnimation;
 
     if (isDesktopViewport) {
-        $feel_animation = $('#feel-animation');
+        $feelAnimation = $('#feel-animation');
 
         loopAnimation = function() {
             setInterval(function() {
-                $feel_animation.removeClass('animate');
+                $feelAnimation.removeClass('animate');
 
                 setTimeout(function() {
-                    $feel_animation.addClass('animate');
+                    $feelAnimation.addClass('animate');
                 }, 100);
             }, 8800);
         };
 
         $('#feel').waypoint(function() {
-            $feel_animation.addClass('animate');
+            $feelAnimation.addClass('animate');
             loopAnimation();
+            this.destroy(); // execute waypoint once
         }, {
-            triggerOnce: true,
             offset: 50
         });
     }
