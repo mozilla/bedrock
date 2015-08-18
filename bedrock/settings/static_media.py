@@ -1010,7 +1010,6 @@ PIPELINE_JS = {
     'firefox_android': {
         'source_filenames': (
             'js/base/mozilla-accordion.js',
-            'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
@@ -1491,14 +1490,6 @@ PIPELINE_JS = {
             'js/privacy/privacy-day.js',
         ),
         'output_filename': 'js/privacy-day-bundle.js',
-    },
-    'products': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/mozorg/products.js',
-        ),
-        'output_filename': 'js/products-bundle.js',
     },
     'styleguide': {
         'source_filenames': (

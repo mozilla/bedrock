@@ -27,7 +27,9 @@ $(function() {
     });
 
     // enable sticky tab nagivation
-    $('#button-nav-wrapper').waypoint('sticky');
+    new Waypoint.Sticky({
+        element: $('#button-nav-wrapper')
+    });
 
     // Setup GA tracking for main tabs
     $('#tips-nav-direct a').on('click', function() {

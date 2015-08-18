@@ -54,8 +54,8 @@
         // fire sync animation when scrolled to
         $('#sync').waypoint(function() {
             Mozilla.syncAnimation();
+            this.destroy(); // only execute waypoint once
         }, {
-            triggerOnce: true,
             offset: 50
         });
     }
