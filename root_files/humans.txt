@@ -87,6 +87,7 @@ Developers: lismanb
 Developers: kenrick95
 Developers: comzeradd
 Developers: yglazko
+Developers: SujaySKumar
 
 Localizers on SVN
 Localize: akilaa@wippies.fi
@@ -210,4 +211,3 @@ Localize: veeven@gmail.com
 Localize: w.benes@gmail.com
 Localize: witia@aviary.pl
 Localize: yoshino@mozilla-japan.org
-
