@@ -471,11 +471,6 @@ class FirstrunView(LatestFxView):
         # add version to context for use in templates
         ctx['version'] = version
 
-        # add spring campaign video for 38.0.5
-        if show_38_0_5_firstrun_or_whatsnew(version):
-            locale = l10n_utils.get_locale(self.request)
-            ctx['video_url'] = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
-
         return ctx
 
     def get_template_names(self):

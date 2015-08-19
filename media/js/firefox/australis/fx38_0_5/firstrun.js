@@ -3,78 +3,6 @@
 
     var $document;
 
-    var hasVideo = $('#video').length > 0;
-    var $ctaSignup = $('#cta-signup');
-    var $ctaSignin = $('#cta-signin');
-    var $videoFrame = $('#video-frame');
-    var $videoTitle = $('#video-title');
-    var $video = $('#firstrun-video');
-
-    var videoOnLoad = false;
-
-    // if locale has video, do A/B test
-    if (hasVideo) {
-        videoOnLoad = (Math.random() >= 0.5);
-
-        // manual override to test videos
-        if (window.location.href.indexOf('v=') !== -1) {
-            var parts = window.location.href.split('v=');
-            var variation = parts[1];
-
-            if (variation === '1') {
-                videoOnLoad = false;
-            } else {
-                videoOnLoad = true;
-            }
-        }
-
-        window.dataLayer.push({
-            'event': 'dataLayer-initialized',
-            'page': {
-                'category': 'firstrun-38.0.5',
-                'variation': (videoOnLoad) ? '1' : '2'
-            }
-        });
-
-        $video.on('play', function() {
-            // GA track video play
-            window.dataLayer.push({
-                'event': 'firstrun-38.0.5-video',
-                'interaction': 'start',
-                'videoTitle': 'When its Personal Campaign Video'
-            });
-        }).on('ended', function() {
-            // GA track video finish
-            window.dataLayer.push({
-                'event': 'firstrun-38.0.5-video',
-                'interaction': 'finish',
-                'videoTitle': 'When its Personal Campaign Video'
-            });
-
-            // take a little breath before closing modal
-            setTimeout(function() {
-                Mozilla.Modal.closeModal();
-            }, 500);
-        });
-    }
-
-    var showVideo = function(origin, autoplay) {
-        var opts = {
-            title: $videoTitle.text()
-        };
-
-        if (autoplay) {
-            opts.onCreate = function() {
-                // slight pause after modal opens
-                setTimeout(function() {
-                    $video[0].play();
-                }, 250);
-            };
-        }
-
-        Mozilla.Modal.createModal(origin, $videoFrame, opts);
-    };
-
     // to be safe, make sure user is on desktop firefox version 38 or higher
     if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 38) {
         // Query if the UITour API is working before binding click handler.
@@ -83,14 +11,14 @@
             $document = $(document);
 
             // signup CTA opens about:accounts
-            $ctaSignup.on('click', function(e) {
+            $('#cta-signup').on('click', function(e) {
                 e.preventDefault();
 
                 Mozilla.UITour.showFirefoxAccounts();
             });
 
             // signin CTA opens hamburger menu
-            $ctaSignin.on('click', function(e) {
+            $('#cta-signin').on('click', function(e) {
                 e.preventDefault();
 
                 // call twice to correctly position highlight
@@ -118,17 +46,5 @@
                 }
             });
         });
-
-        // if showing video on page load, hide video copy/CTA and show video
-        if (videoOnLoad) {
-            $('#video').addClass('hidden');
-            showVideo(document.documentElement, false);
-        // if not showing video on page load, attach click listener to video CTA
-        } else if (hasVideo) {
-            $('#cta-video').on('click', function(e) {
-                e.preventDefault();
-                showVideo(this, true);
-            });
-        }
     }
 })(window.jQuery, window.Mozilla);
