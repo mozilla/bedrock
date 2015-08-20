@@ -7,11 +7,12 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-;(function(Mozilla, $) {
+;(function(Mozilla, $, Waypoint) {
     'use strict';
 
     Mozilla.FxFamilyNav = (function() {
         var mqDesktop;
+        var fxFamillyNavSticky;
 
         // It's your world, IE
         if (typeof matchMedia !== 'undefined') {
@@ -81,7 +82,8 @@ if (typeof window.Mozilla === 'undefined') {
             // get the sticky nav (matchMedia support overlap is
             // almost exact)
             if (mqDesktop) {
-                $fxFamilyHeader.waypoint('sticky', {
+                fxFamillyNavSticky = new Waypoint.Sticky({
+                    element: $fxFamilyHeader,
                     offset: -80
                 });
             }
@@ -96,7 +98,7 @@ if (typeof window.Mozilla === 'undefined') {
             $fxFamilyHeader.off();
 
             if (mqDesktop) {
-                $fxFamilyHeader.waypoint('unsticky');
+                fxFamillyNavSticky.destroy();
             }
         };
 
@@ -126,6 +128,6 @@ if (typeof window.Mozilla === 'undefined') {
             }
         };
     })();
-})(window.Mozilla, window.jQuery);
+})(window.Mozilla, window.jQuery, window.Waypoint);
 
 Mozilla.FxFamilyNav.init();
