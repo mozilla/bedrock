@@ -15,6 +15,8 @@ urlpatterns = patterns('',
     page('eula', 'legal/eula.html'),
     page('eula/firefox-2', 'legal/eula/firefox-2-eula.html'),
     page('eula/firefox-3', 'legal/eula/firefox-3-eula.html'),
+    page('eula/thunderbird-1.5', 'legal/eula/thunderbird-1.5-eula.html'),
+    page('eula/thunderbird-2', 'legal/eula/thunderbird-2-eula.html'),
     page('impressum', 'legal/impressum.html'),
 
     page('firefox', 'legal/firefox.html'),
