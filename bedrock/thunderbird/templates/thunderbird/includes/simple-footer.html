@@ -1,0 +1,22 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+<footer id="colophon">
+  <div class="row">
+    <ul class="primary">
+      <li><a href="/thunderbird/features/"><span>{{_('Features')}}</span></a></li>
+      <li><a href="https://addons.mozilla.org/thunderbird/"><span>{{_('Add-ons')}}</span></a></li>
+      <li><a href="https://support.mozilla.org/products/thunderbird"><span>{{_('Support')}}</span></a></li>
+      <li><a href="{{ url('mozorg.about') }}"><span>{{_('About')}}</span></a></li>
+    </ul>
+    <ul class="secondary footer-lang">
+      <li>{% include 'includes/lang_switcher.html' %}</li>
+    </ul>
+    <ul class="secondary">
+      <li><a href="{{ url('privacy') }}">{{_('Privacy')}}</a></li>
+      <li><a href="{{ url('privacy.notices.websites') }}#cookies">{{ _('Cookies') }}</a></li>
+      <li><a href="{{ url('legal.index') }}">{{_('Legal')}}</a></li>
+    </ul>
+  </div>
+</footer>

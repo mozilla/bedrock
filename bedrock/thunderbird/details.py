@@ -1,3 +1,7 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 import re
 from collections import OrderedDict
 from operator import itemgetter
@@ -45,7 +49,8 @@ class ThunderbirdDesktop(ProductDetails):
         :param channel: channel of the build: release, beta, or aurora
         :return: dict or None
         """
-        all_builds = self.thunderbird_primary_builds
+        all_builds = (self.thunderbird_primary_builds,
+                      self.thunderbird_beta_builds)
         version = self.latest_version(channel)
 
         for builds in all_builds:
