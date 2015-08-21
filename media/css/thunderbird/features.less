@@ -1,0 +1,179 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+#main-feature h2 {
+    line-height: 1.3;
+}
+
+[role="directory"] ul {
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    border-bottom: 1px solid @borderColor;
+    padding: (@gridGutterWidth / 2);
+    background-color: #FFF;
+    .font-size(@largeFontSize);
+    text-align: center;
+    list-style-type: none;
+
+    li {
+        .inline-block;
+        margin: (@gridGutterWidth / 2);
+        padding: 0;
+    }
+}
+
+main {
+    &> section {
+        margin-top: (@gridGutterWidth * 2);
+        border-bottom: 1px solid @borderColor;
+        padding: 0 @gridGutterWidth;
+        background-color: #FFF;
+    }
+
+    h2 {
+        margin: 0;
+        padding: (@gridGutterWidth * 1.5) (@gridGutterWidth / 2);
+    }
+
+    section section {
+        overflow: hidden;
+        padding: (@gridGutterWidth * 1.5) 0;
+        background: url('/media/img/thunderbird/features/thin-stripe.png') repeat-x center top;
+    }
+
+    p {
+        line-height: 1.7;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .row {
+        overflow: hidden;
+    }
+
+    .col {
+        .span(6);
+
+        &.full {
+            .span-all;
+            overflow: hidden;
+        }
+    }
+
+    img {
+        vertical-align: top;
+    }
+}
+
+[dir="ltr"] main .col {
+    float: left;
+}
+
+[dir="rtl"] main .col {
+    float: right;
+}
+
+[dir="ltr"] main .col.full img {
+    &.first {
+        float: left;
+        margin-right: @gridGutterWidth;
+    }
+
+    &.last {
+        float: right;
+        margin-left: @gridGutterWidth;
+    }
+}
+
+[dir="rtl"] main .col.full img {
+    &.first {
+        float: right;
+        margin-left: @gridGutterWidth;
+    }
+
+    &.last {
+        float: left;
+        margin-right: @gridGutterWidth;
+    }
+}
+
+/* Tablet and Desktop */
+@media only screen and (min-width: @breakTablet) {
+    #main-feature h1 {
+        .font-size(@largeFontSize * 4);
+    }
+
+    main h2 {
+        .font-size(@largeFontSize * 3);
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    main .col {
+        .span_narrow(6);
+
+        &.full {
+            .span-all;
+        }
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+    #main-feature {
+        h2 {
+            .font-size(@largeFontSize * 1.5);
+        }
+    }
+
+    [role="directory"] ul li {
+        display: block;
+    }
+
+    main {
+        &> section {
+            margin-top: @gridGutterWidth;
+            padding: 0 @gridGutterWidth;
+        }
+
+        h2 {
+            padding: (@gridGutterWidth * 1.5) 0;
+        }
+
+        section section,
+        .row {
+            overflow: visible;
+        }
+
+        .col {
+            .span-all;
+            margin: 0;
+
+            &.full {
+                overflow: visible;
+                margin: 0;
+            }
+        }
+    }
+
+    [dir="ltr"] main .col,
+    [dir="rtl"] main .col,
+    [dir="ltr"] main .col.full img.first,
+    [dir="ltr"] main .col.full img.last,
+    [dir="rtl"] main .col.full img.first,
+    [dir="rtl"] main .col.full img.last {
+        float: none;
+        margin: 0;
+    }
+
+    img + h3 {
+        margin-top: @smallFontSize;
+    }
+}

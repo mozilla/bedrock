@@ -37,6 +37,8 @@ urlpatterns = patterns('',
         {'product': 'thunderbird'}, name='thunderbird.notes'),
 
     page('thunderbird', 'thunderbird/index.html'),
+    page('thunderbird/features', 'thunderbird/features.html'),
+    page('thunderbird/email-providers', 'thunderbird/email-providers.html'),
 
     # Start pages by channel
     page('thunderbird/release/start', 'thunderbird/start/release.html'),
