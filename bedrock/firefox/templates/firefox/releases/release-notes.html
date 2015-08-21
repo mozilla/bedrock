@@ -8,9 +8,13 @@
 {% from "macros.html" import fxfamilynav %}
 {% block page_title %}{{ _('{product} — {channel} Notes ({version})')|f(product=release.product, channel=channel_name, version=release.version) }}{% endblock %}
 {% block body_id %}notes{% endblock %}
+{% block tabzilla_infobar %}translation{% endblock %}
 {% block body_class %}fx-notes blank{% endblock %}
 {% block page_css %}
 {% stylesheet 'firefox_releasenotes' %}
+{% endblock %}
+{% block js_pretrack %}
+  {% javascript 'firefox_new' %}
 {% endblock %}
 {% block optimizely %}
 {% if waffle.switch('firefox-releasenotes-optimizely') %}
@@ -308,8 +312,64 @@
     </div>
   </article>
 </main>
-<form id="conditional-download" class="billboard newsletter-form footer-newsletter-form">
-<p> DOwnload firefox today </p>
+<form id="colophon" class="billboard newsletter-form footer-newsletter-form">
+<nav class="row">
+      <div id="version-message-ios" class="version-message">
+        {{_('Sorry, Firefox is currently unsupported by iOS devices.')}}
+      </div>
+    <div id="version-message-android-latest" class="version-message">
+      {{_('Congrats! You’re using the latest version of Firefox.')}}
+    </div>
+    <div id="version-message-android-old" class="version-message">
+      {{_('Looks like you’re using an older version of Firefox. Update on Google Play.')}}
+    </div>
+    <div id="version-message-desktop-latest" class="version-message">
+      {{_('Congrats! You’re using the latest version of Firefox.')}}
+
+    {% if l10n_has_tag('firefox_new_refresh_button') %}
+      <div id="refresh-firefox-wrapper">
+        <p>{{ _('Give Firefox a tune up') }}</p>
+        <button type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" class="button">{{ _('Refresh Firefox') }}</button>
+        <a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link" rel="external">{{ _('Learn more') }}</a>
+        </div>
+        <a class="rel-download" href="https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">{{ _('All Firefox downloads') }}</a>
+      </div>
+    {% endif %}
+    <div id="version-message-desktop-old" class="version-message">
+    <div class="col col-1">
+      {{_('Looks like you’re using an older version of Firefox.')}}
+      <div class="version-message-secondary">
+        <a href="https://support.mozilla.org/kb/update-firefox-latest-version">{{_('Update to stay fast and safe.')}}</a>
+      </div>
+      </div>
+      <div class="col col-3">
+      <a class="rel" href="https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">{{ _('All Firefox downloads') }}</a>
+      </div>
+    </div>
+    <div id="version-message-linux-arm" class="version-message">
+      <div class="col col-1">
+      {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
+      </div>
+      <div class="col col-3">
+        <a class="rel" href="https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">{{ _('All Firefox downloads') }}</a>
+      </div>
+      </div>
+   <div class="desktop download-button-wrapper">
+            <div class="col col-1">
+            {{ download_firefox(force_direct=true, simple=true) }}
+            <p>
+             {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
+             </p>
+            <a class="rel" href="https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/">{{ _('All Firefox downloads') }}</a>
+            </div>
+  </div>
+          <div class="mobile download-button-wrapper">
+            {{ download_firefox(platform='android') }}
+          </div>
+          <div class="android download-button-wrapper" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
+            {{ download_firefox(platform='android', small=True, icon=False, dom_id='download-button-android') }}
+          </div>
+</nav>
 </form>
 <form id="colophon" class="billboard newsletter-form footer-newsletter-form">
 <nav class="row">
