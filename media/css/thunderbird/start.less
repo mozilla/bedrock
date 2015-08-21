@@ -64,10 +64,25 @@ section h2.iconic {
         display: block;
         position: absolute;
         top: 0;
-        background-image: url('/media/img/thunderbird/start/sprite.png');
         background-repeat: no-repeat;
         content: '';
     }
+}
+
+header h1:before {
+    background-image: url('/media/img/thunderbird/logos/release-100.png');
+
+    html[data-channel="earlybird"] & {
+        background-image: url('/media/img/thunderbird/logos/earlybird-100.png');
+    }
+
+    html[data-channel="daily"] & {
+        background-image: url('/media/img/thunderbird/logos/daily-100.png');
+    }
+}
+
+section h2.iconic:before {
+    background-image: url('/media/img/thunderbird/start/sprite.png');
 }
 
 footer a {
@@ -109,7 +124,7 @@ header h1 {
         display: block;
         color: #2666A6;
         font-size: 3rem;
-        letter-spacing: -.1ex;
+        letter-spacing: -.06ex;
     }
 }
 
@@ -133,19 +148,19 @@ section {
     }
 
     &.tip h2:before {
-        background-position: 0 -100px;
+        background-position: 0 0;
     }
 
     &.addons h2:before {
-        background-position: -50px -100px;
+        background-position: -50px 0;
     }
 
     &.help h2:before {
-        background-position: 0 -150px;
+        background-position: 0 -50px;
     }
 
     &.blog h2:before {
-        background-position: -50px -150px;
+        background-position: -50px -50px;
     }
 
     p {
@@ -153,7 +168,7 @@ section {
     }
 
     a[href$="Contributing"]:before {
-        background-position: -40px -200px;
+        background-position: -40px -100px;
     }
 
     a.more {
@@ -176,27 +191,27 @@ footer {
 
     a {
         &[href*="features"]:before {
-            background-position: 0 -200px;
+            background-position: 0 -100px;
         }
 
         &[href*="blog"]:before {
-            background-position: -20px -200px;
+            background-position: -20px -100px;
         }
 
         &[href*="Contributing"]:before {
-            background-position: -40px -200px;
+            background-position: -40px -100px;
         }
 
         &[href*="addons"]:before {
-            background-position: -20px -220px;
+            background-position: -20px -120px;
         }
 
         &[href*="support"]:before {
-            background-position: -40px -220px;
+            background-position: -40px -120px;
         }
 
         &[href*="how"]:before {
-            background-position: 0 -220px;
+            background-position: 0 -120px;
         }
     }
 }
@@ -334,6 +349,21 @@ footer {
         &:before {
             width: 100%;
             background-position: center top;
+        }
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx), (min-resolution: 144dpi) {
+    header h1:before {
+        background-image: url('/media/img/thunderbird/logos/release-200.png');
+        background-size: 100px 100px;
+    
+        html[data-channel="earlybird"] & {
+            background-image: url('/media/img/thunderbird/logos/earlybird-200.png');
+        }
+    
+        html[data-channel="daily"] & {
+            background-image: url('/media/img/thunderbird/logos/daily-200.png');
         }
     }
 }
