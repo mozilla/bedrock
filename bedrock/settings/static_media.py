@@ -421,7 +421,7 @@ PIPELINE_CSS = {
             'css/firefox/template-resp.less',
             'css/tabzilla/tabzilla-static.less',
             'css/base/mozilla-share-cta.less',
-            'css/firefox/simple_footer-resp.less',
+            'css/base/simple_footer-resp.less',
             'css/firefox/new.less',
         ),
         'output_filename': 'css/firefox_new-bundle.css',
@@ -858,6 +858,15 @@ PIPELINE_CSS = {
             'css/facebookapps/downloadtab.less',
         ),
         'output_filename': 'css/facebookapps_downloadtab-bundle.css',
+    },
+    'thunderbird-landing': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/base/simple_footer-resp.less',
+            'css/thunderbird/landing.less',
+        ),
+        'output_filename': 'css/thunderbird-landing-bundle.css',
     },
     'thunderbird-start': {
         'source_filenames': (
@@ -1616,6 +1625,15 @@ PIPELINE_JS = {
             'js/firefox/partners/desktop.js',
         ),
         'output_filename': 'js/partners_desktop-bundle.js',
+    },
+    'thunderbird-landing': {
+        'source_filenames': (
+            'js/libs/jquery-1.11.3.min.js',
+            'js/base/global.js',
+            'js/base/global-init.js',
+            'js/base/mozilla-image-helper.js',
+        ),
+        'output_filename': 'js/thunderbird-landing-bundle.js',
     },
     'facebookapps_redirect': {
         'source_filenames': (

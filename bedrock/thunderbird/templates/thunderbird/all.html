@@ -1,3 +1,7 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
 {% from "product-all-macros.html" import build_search_box, build_table, build_row, build_link with context %}
 {% extends "thunderbird/base-resp.html" %}
 
@@ -27,8 +31,8 @@
   <header id="main-feature">
     <h1>{{ self.page_title()  }}</h1>
     <h2>{{ self.page_desc() }}</h2>
-    <p><a class="sysreq" href="{{ thunderbird_url('desktop', 'sysreq', channel) }}">{{ _('Check the system requirements') }}</a><br />
-    <a class="sysreq" href="{{ thunderbird_url('desktop', 'notes', channel) }}">{{ _('Release notes') }}</a>
+    <p><a class="sysreq" href="{{ thunderbird_url('sysreq', channel) }}">{{ _('Check the system requirements') }}</a><br />
+    <a class="sysreq" href="{{ thunderbird_url('notes', channel) }}">{{ _('Release notes') }}</a>
     </p>
   </header>
 

@@ -174,10 +174,11 @@ def field_with_attrs(bfield, **kwargs):
 def platform_img(ctx, url, optional_attributes=None):
     optional_attributes = optional_attributes or {}
     img_urls = {}
+    platforms = optional_attributes.pop('platforms', ALL_FX_PLATFORMS)
     add_high_res = optional_attributes.pop('high-res', False)
     is_l10n = optional_attributes.pop('l10n', False)
 
-    for platform in ALL_FX_PLATFORMS:
+    for platform in platforms:
         img_urls[platform] = add_string_to_image_url(url, platform)
         if add_high_res:
             img_urls[platform + '-high-res'] = convert_to_high_res(img_urls[platform])

@@ -1,0 +1,62 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% macro alt_buttons(builds) %}
+  <div class="download download-dumb">
+    <h4>{{ _('Download Thunderbird') }} — {{ locale_name|safe }}</h4>
+    <ul>
+      {% for plat in builds -%}
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+{% endmacro %}
+
+{% set download_class = 'download-button' %}
+{% set download_class = download_class ~ ' download-button-' ~ channel if channel else download_class %}
+{% set download_class = download_class ~ ' download-button-small' if small else download_class %}
+{% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
+{% set download_class = download_class ~ ' download-button-simple' if simple else download_class %}
+
+<div id="{{ id }}" class="{{ download_class }}">
+  <noscript>
+    {{ alt_buttons(builds) }}
+  </noscript>
+  <div class="unrecognized-download">
+    {{ alt_buttons(builds) }}
+  </div>
+  <p class="unsupported-download">
+    {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Thunderbird.")|format(url=thunderbird_url('sysreq', channel)) }}
+  </p>
+  <p class="linux-arm-download">
+    {{ _('Please follow <a href="%(url)s">these instructions</a> to install Thunderbird.')|format(url='https://support.mozilla.org/kb/installing-thunderbird-linux') }}
+  </p>
+  <ul class="download-list">
+    {% for plat in builds %}
+      <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
+        <a class="download-link"
+           href="{{ plat.download_link }}"{% if plat.download_link_direct %}
+           data-direct-link="{{ plat.download_link_direct }}"{% endif %}>
+          <span class="download-content">
+            {% if channel == 'beta' %}
+              <strong class="download-title">{{ _('Thunderbird Beta') }}</strong>
+            {% elif channel == 'alpha' %}
+              <strong class="download-title">{{ _('<span>Thunderbird</span> Earlybird') }}</strong>
+            {% else %}
+              <strong class="download-title">{{ _('Thunderbird') }}</strong>
+            {% endif %}
+            <span class="download-subtitle">{{ _('Free Download') }}</span>
+            <span class="download-lang">{{ locale_name|safe }}</span>
+            <span class="download-platform">{{ plat.os_pretty }}</span>
+          </span>
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+  <small class="download-other download-other-desktop os_linux os_linux64 os_osx os_win">
+    <a href="{{ thunderbird_url('all', channel) }}">{{ _('Systems &amp; Languages') }}</a> |
+    <a href="{{ thunderbird_url('notes', channel) }}">{{ _('What’s New') }}</a> |
+    <a href="{{ url('privacy.notices.thunderbird') }}">{{ _('Privacy') }}</a>
+  </small>
+</div>

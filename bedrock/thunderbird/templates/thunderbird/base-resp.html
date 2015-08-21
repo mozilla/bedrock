@@ -19,7 +19,7 @@
 <nav id="nav-main" role="navigation">
   <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
   <ul id="nav-main-menu" class="has-submenus">
-    <li class="first" id="nav-main-features"><a href="/thunderbird/" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{_('Thunderbird')}}</a>
+    <li class="first" id="nav-main-features"><a href="{{ url('thunderbird.index') }}" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{_('Thunderbird')}}</a>
       <ul aria-expanded="false" id="nav-main-features-submenu" class="submenu">
         <li class="first">
           <a href="/thunderbird/channel/" tabindex="-1">
@@ -76,7 +76,7 @@
 {% endblock email_form %}
 
 {% block site_header_logo %}
-<h2><a href="/thunderbird/">{{ high_res_img('img/thunderbird/template/logo-wordmark.png', {'alt': 'Thunderbird', 'width': '260', 'height': '72'}) }}</a></h2>
+<h2><a href="{{ url('thunderbird.index') }}">{{ high_res_img('img/thunderbird/template/logo-wordmark.png', {'alt': 'Thunderbird', 'width': '260', 'height': '72'}) }}</a></h2>
 {% endblock %}
 
 {% block site_js %}
