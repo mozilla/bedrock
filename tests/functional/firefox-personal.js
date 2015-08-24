@@ -13,7 +13,7 @@ var url = config.base() + path;
 casper.test.begin('Firefox Personal, Elements: ' + url, 5, function suite(test) {
     casper.start(url, function() {
         test.assertHttpStatus(200);
-        test.assertVisible('#download-button-desktop-release');
+        test.assertVisible('.download-button');
         test.assertElementCount('main .mission', 3, 'There are three mission items');
 
         test.assertNotVisible('#masthead .android-download', 'Android download button not visible');
@@ -36,7 +36,7 @@ casper.test.begin('Firefox Personal, Android', 4, function suite(test) {
     casper.thenOpen(url, function() {
         test.assertVisible('#masthead .android-download', 'Android download button visible in masthead');
         test.assertVisible('section.android-download', 'Android download button visible above footer');
-        test.assertNotVisible('#download-button-desktop-release', 'Firefox desktop download button not visible');
+        test.assertNotVisible('.download-button', 'Firefox desktop download button not visible');
         test.assertExists('section.android-download p', 'Android download messaging exists');
     });
 
