@@ -145,7 +145,6 @@ p.note {
 }
 
 .main-column {
-    float: left;
     margin: 0;
     padding: 0;
     width: (@gridColumnWidth * 9) + (@gridGutterWidth * 9);
@@ -201,7 +200,7 @@ p.note {
     }
     .links {
         .clearfix();
-        clear: right;
+        .clear-right;
         .span(4);
 
         li {
@@ -227,8 +226,7 @@ p.note {
     }
 }
 .sidebar {
-  float: left;
-  margin: 0;
+  .margin(0, 0, 0, 0);
   padding: 0;
   width: (@gridColumnWidth * 3) + (@gridGutterWidth * 5);
 
@@ -268,9 +266,15 @@ p.note {
     width: (@gridColumnWidthNarrow * 8) + (@gridGutterWidth * 8);
   }
 
+  .section-content {
+    section, .links {
+      .span-all();
+    }
+  }
+
   .sidebar {
     .span_narrow(4);
-    margin: 0;
+    .margin(0, 0, 0, 0);
     width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 6);
   }
 
@@ -294,7 +298,7 @@ p.note {
   .main-column,
   .sidebar {
     .span-all();
-    margin: 0;
+    .margin(0, 0, 0, 0);
   }
 
   .main-column article header {
@@ -316,6 +320,12 @@ p.note {
 
   .main-column article .highlight {
     margin: 15px -15px;
+  }
+
+  .section-content {
+    section, .links {
+      .span-all();
+    }
   }
 
   html[dir="rtl"] {

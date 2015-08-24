@@ -71,7 +71,7 @@
 
     .video {
         .span(6);
-        float: right;
+        .float-right;
         margin-top: -35px;
         margin-bottom: @baseLine;
         figure video {
@@ -90,7 +90,7 @@
     }
 
     ul.links {
-        clear: right;
+        .clear-right;
         .span(6);
 
         li {
@@ -219,7 +219,7 @@ html[dir="rtl"] {
     }
 
     &:nth-child(odd) {
-        clear: left;
+        .clear-left;
     }
 }
 
@@ -304,7 +304,7 @@ html[dir="rtl"] {
 
         .vcard {
             width: auto;
-            float: none;
+            .float-none;
             margin: 0 0 @baseLine;
             .clearfix();
         }
@@ -370,11 +370,11 @@ html[dir="rtl"] {
         margin-bottom: @baseLine;
 
         &:nth-child(4n+1) {
-            clear: none;
+            .clear-none;
         }
 
         &:nth-child(odd) {
-            clear: left;
+            .clear-left;
         }
     }
 
@@ -383,7 +383,7 @@ html[dir="rtl"] {
 
         .vcard {
             width: auto;
-            float: none;
+            .float-none;
             margin: 0 0 @baseLine;
             .clearfix();
             padding-left: 120px;
@@ -424,18 +424,18 @@ html[dir="rtl"] {
         ul.links {
             width: 100%;
             margin: 0;
-            clear: right;
+            .clear-right;
         }
 
     }
 
     .gallery .vcard {
         &:nth-child(odd) {
-            clear: none;
+            .clear-none;
         }
 
         &:nth-child(3n+1) {
-            clear: left;
+            .clear-left;
         }
     }
 

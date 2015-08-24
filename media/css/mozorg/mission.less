@@ -28,8 +28,7 @@
 
   .main {
     .span(6);
-    float: left;
-    clear: left;
+    .clear-left;
     margin-bottom: @baseLine;
   }
 
@@ -42,17 +41,10 @@
   }
 
 }
-// Adjust main style for RTL
-html[dir="rtl"] #main-content {
-  .main {
-    float: right;
-    clear: right;
-  }
-}
 
 .video {
   .span(6);
-  float: right;
+  .float-right;
   margin-top: -50px;
   margin-bottom: @baseLine;
   #welcome-video video {
@@ -136,7 +128,7 @@ ul.links {
     .video,
     ul.links li {
       width: auto;
-      float: none;
+      .float-none;
     }
   }
 }

@@ -161,9 +161,16 @@
     background: @syncBlue;
     color: #fff;
     .inner-wrapper {
-        .at2x('/media/img/firefox/sync/droid-dude.png', 170px, 200px);
-        background-position: 0 20px;
-        background-repeat: no-repeat;
+        &:before {
+            position: absolute;
+            top: 20px;
+            .left(0);
+            width: 170px;
+            height: 200px;
+            .at2x('/media/img/firefox/sync/droid-dude.png', 170px, 200px);
+            background-repeat: no-repeat;
+            content: "";
+        }
     }
     header {
         text-align: center;
@@ -175,8 +182,8 @@
         .offset(1);
         p {
             font-style: italic;
-            border-left: 1px solid rgba(198,218,229,.8);
-            padding-left: @baseLine;
+            .border-left(1px solid rgba(198,218,229,.8));
+            .padding-left(@baseLine);
             .open-sans-light();
             .font-size(20px);
             margin: 0;

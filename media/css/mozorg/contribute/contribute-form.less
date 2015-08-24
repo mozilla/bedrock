@@ -12,7 +12,7 @@
     fieldset,
     .form-row {
         width: (@gridColumnWidth * 10) + (@gridGutterWidth * 9);
-        float: left;
+        .float-left;
     }
 
     .form-row-students {
@@ -37,7 +37,7 @@
 
     .form-submit {
         .span(2);
-        float: right;
+        .float-right;
     }
 
     .field-interest {
@@ -86,22 +86,11 @@
 }
 
 html[dir='rtl'] #help-form {
-    fieldset,
-    .form-column-1,
-    .form-column-2,
-    .form-column-3 {
-        float: right;
-    }
-
     .field-privacy label {
         padding-right: 24px;
         input {
             right: 0;
         }
-    }
-
-    .form-submit {
-        float: left;
     }
 }
 
@@ -119,7 +108,7 @@ html[dir='rtl'] #help-form {
         fieldset,
         .form-row {
             width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 8);
-            float: left;
+            .float-left;
         }
         .form-column-1,
         .form-column-2,
@@ -144,14 +133,14 @@ html[dir='rtl'] #help-form {
         fieldset,
         .form-row {
             width: auto;
-            float: none;
+            .float-left;
         }
         .form-column-1,
         .form-column-2,
         .form-column-3,
         .form-submit {
             width: auto;
-            float: none;
+            .float-none;
             margin: 0 0 .5em;
         }
 
@@ -163,7 +152,7 @@ html[dir='rtl'] #help-form {
         .form-column-2,
         .form-column-3,
         .form-submit {
-            float: none;
+            .float-none;
         }
     }
 

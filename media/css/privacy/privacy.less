@@ -22,7 +22,6 @@
 }
 
 .main-column {
-  float: left;
   margin: 0;
   padding: 0;
   width: (@gridColumnWidth * 9) + (@gridGutterWidth * 9);
@@ -108,8 +107,7 @@
 }
 
 .sidebar {
-  float: left;
-  margin: 0;
+  .margin(0, 0, 0, 0);
   padding: 0;
   width: (@gridColumnWidth * 3) + (@gridGutterWidth * 5);
 
@@ -273,11 +271,6 @@
 /* I18N */
 
 html[dir="rtl"] {
-  .main-column,
-  .sidebar {
-    float: right;
-  }
-
   .main-column article header .logo {
     float: left;
     margin: -80px 0 0 -20px;
@@ -321,13 +314,13 @@ html[dir="rtl"] {
 
   .main-column {
     .span_narrow(8);
-    margin: 0;
+    .margin(0, 0, 0, 0);
     width: (@gridColumnWidthNarrow * 8) + (@gridGutterWidth * 8);
   }
 
   .sidebar {
     .span_narrow(4);
-    margin: 0;
+    .margin(0, 0, 0, 0);
     width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 6);
   }
 
@@ -347,7 +340,7 @@ html[dir="rtl"] {
   .main-column,
   .sidebar {
     .span-all();
-    margin: 0;
+    .margin(0, 0, 0, 0);
   }
 
   .main-column article header {
