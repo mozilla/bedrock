@@ -19,9 +19,9 @@
     $('#masthead').waypoint(function(direction) {
         if (direction === 'down') {
             syncAnimation();
+            this.destroy(); // execute waypoint once
         }
     }, {
-        triggerOnce: true,
         offset: -20
     });
 
