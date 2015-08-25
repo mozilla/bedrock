@@ -62,6 +62,8 @@ describe('site.js', function () {
         it('should identify Firefox OS', function () {
             expect(window.site.getPlatform('Mozilla/5.0 (Mobile; rv:26.0) Gecko/26.0 Firefox/26.0', '')).toBe('fxos');
             expect(window.site.getPlatform('Mozilla/5.0 (Tablet; rv:26.0) Gecko/26.0 Firefox/26.0', '')).toBe('fxos');
+            // Firefox OS TV
+            expect(window.site.getPlatform('Mozilla/5.0 (FreeBSD; Viera; rv:34.0) Gecko/20100101 Firefox/34.0', '')).toBe('fxos');
         });
     });
 
