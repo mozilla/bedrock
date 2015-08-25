@@ -27,7 +27,7 @@ casper.test.begin('PluginCheck, Elements: ' + url, 5, function suite(test) {
 
     casper.thenOpen(url, function() {
         test.assertVisible('#newsletter-form', 'The newletter signup is visible in webkit');
-        test.assertVisible('#download-button-desktop-release', 'Download button visible in webkit');
+        test.assertVisible('.download-button', 'Download button visible in webkit');
     });
 
     casper.run(function() {

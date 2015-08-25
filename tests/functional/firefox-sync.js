@@ -106,7 +106,7 @@ casper.test.begin('Firefox Sync, Not Fx: ' + url, 2, function suite(test) {
 
     casper.thenOpen(url, function() {
         test.assertVisible('.primary .show-not-fx.warning', 'Not Fx messaging shown');
-        test.assertVisible('.primary .buttons #download-button-desktop-release', 'Download button visible');
+        test.assertVisible('.primary .buttons .download-button', 'Download button visible');
     });
 
     casper.run(function() {

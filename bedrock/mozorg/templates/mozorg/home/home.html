@@ -147,7 +147,7 @@
             <img width="176" height="184" src="{{ static('img/home/voices/promos/download-firefox/firefox-logo.png') }}" alt="">
           </div>
           <div class="secondary">
-            {{ download_firefox(simple=true) }}
+            {{ download_firefox(simple=true, dom_id='promo-download-fx-button') }}
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
