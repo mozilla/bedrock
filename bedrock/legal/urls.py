@@ -2,14 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from bedrock.mozorg.util import page
 from bedrock.legal import views
 
 from bedrock.legal_docs.views import LegalDocView
 
-urlpatterns = patterns('',
+urlpatterns = (
     page('', 'legal/index.html'),
 
     page('eula', 'legal/eula.html'),

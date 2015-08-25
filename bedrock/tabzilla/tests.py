@@ -71,8 +71,8 @@ class TabzillaRedirectTests(TestCase):
         self.assertEqual(resp['Location'],
                          'http://testserver/de/tabzilla/tabzilla.js')
 
-    @patch('bedrock.redirects.urls.default_collector')
-    @patch('bedrock.redirects.urls.Packager')
+    @patch('bedrock.tabzilla.urls.default_collector')
+    @patch('bedrock.tabzilla.urls.Packager')
     def test_tabzilla_css_redirect(self, packager_mock, collector_mock):
         """
         Tabzilla css redirect should use STATIC_URL setting and switch
@@ -96,8 +96,8 @@ class TabzillaRedirectTests(TestCase):
         eq_(response.status_code, 301)
         ok_(response['location'].endswith('/css/tabzilla/tabzilla.css'), response['location'])
 
-    @patch('bedrock.redirects.urls.default_collector')
-    @patch('bedrock.redirects.urls.Packager')
+    @patch('bedrock.tabzilla.urls.default_collector')
+    @patch('bedrock.tabzilla.urls.Packager')
     def test_tabzilla_css_less_processing(self, packager_mock, collector_mock):
         """
         The tabzilla.less file should be compiled by the redirect if

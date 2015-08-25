@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from bedrock.mozorg.util import page
 from bedrock.security.views import (
@@ -16,7 +16,7 @@ from bedrock.security.views import (
 )
 
 
-urlpatterns = patterns('',  # noqa
+urlpatterns = (
     page('', 'security/index.html'),
     page('bug-bounty', 'security/bug-bounty.html'),
     page('client-bug-bounty', 'security/client-bug-bounty.html'),

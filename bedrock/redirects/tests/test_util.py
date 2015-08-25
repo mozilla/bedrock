@@ -28,9 +28,9 @@ class TestRedirectUrlPattern(TestCase):
         """
         Should return a 301 redirect
         """
-        pattern, view = redirect(r'^the/dude$', 'abides')
+        pattern = redirect(r'^the/dude$', 'abides')
         request = self.rf.get('the/dude')
-        response = view(request)
+        response = pattern.callback(request)
         eq_(response.status_code, 301)
         eq_(response['Location'], 'abides')
 
@@ -38,9 +38,9 @@ class TestRedirectUrlPattern(TestCase):
         """
         Should preserve querys from the original request by default
         """
-        pattern, view = redirect(r'^the/dude$', 'abides')
+        pattern = redirect(r'^the/dude$', 'abides')
         request = self.rf.get('the/dude?aggression=not_stand')
-        response = view(request)
+        response = pattern.callback(request)
         eq_(response.status_code, 301)
         eq_(response['Location'], 'abides?aggression=not_stand')
 
@@ -48,10 +48,10 @@ class TestRedirectUrlPattern(TestCase):
         """
         Should replace query params if any are provided
         """
-        pattern, view = redirect(r'^the/dude$', 'abides',
+        pattern = redirect(r'^the/dude$', 'abides',
                                  query={'aggression': 'not_stand'})
         request = self.rf.get('the/dude?aggression=unchecked')
-        response = view(request)
+        response = pattern.callback(request)
         eq_(response.status_code, 301)
         eq_(response['Location'], 'abides?aggression=not_stand')
 
@@ -59,9 +59,9 @@ class TestRedirectUrlPattern(TestCase):
         """
         Should strip query params if called with empty query
         """
-        pattern, view = redirect(r'^the/dude$', 'abides', query={})
+        pattern = redirect(r'^the/dude$', 'abides', query={})
         request = self.rf.get('the/dude?white=russian')
-        response = view(request)
+        response = pattern.callback(request)
         eq_(response.status_code, 301)
         eq_(response['Location'], 'abides')
 
@@ -69,9 +69,9 @@ class TestRedirectUrlPattern(TestCase):
         """
         Should use a temporary redirect (status code 302) if permanent == False
         """
-        pattern, view = redirect(r'^the/dude$', 'abides', permanent=False)
+        pattern = redirect(r'^the/dude$', 'abides', permanent=False)
         request = self.rf.get('the/dude')
-        response = view(request)
+        response = pattern.callback(request)
         eq_(response.status_code, 302)
         eq_(response['Location'], 'abides')
 
@@ -79,9 +79,9 @@ class TestRedirectUrlPattern(TestCase):
         """
         Should append anchor text to the end, including after any querystring
         """
-        pattern, view = redirect(r'^the/dude$', 'abides', anchor='toe')
+        pattern = redirect(r'^the/dude$', 'abides', anchor='toe')
         request = self.rf.get('the/dude?want=a')
-        response = view(request)
+        response = pattern.callback(request)
         eq_(response.status_code, 301)
         eq_(response['Location'], 'abides?want=a#toe')
 
@@ -92,9 +92,9 @@ class TestRedirectUrlPattern(TestCase):
         def opinion(request):
             return '/just/your/opinion/man'
 
-        pattern, view = redirect(r'^the/dude$', opinion)
+        pattern = redirect(r'^the/dude$', opinion)
         request = self.rf.get('the/dude')
-        response = view(request)
+        response = pattern.callback(request)
         eq_(response.status_code, 301)
         eq_(response['Location'], '/just/your/opinion/man')
 
@@ -104,9 +104,9 @@ class TestRedirectUrlPattern(TestCase):
         Should use return value of our locale-aware reverse as redirect location
         """
         mock_reverse.return_value = '/just/your/opinion/man'
-        pattern, view = redirect(r'^the/dude$', 'yeah.well.you.know.thats')
+        pattern = redirect(r'^the/dude$', 'yeah.well.you.know.thats')
         request = self.rf.get('the/dude')
-        response = view(request)
+        response = pattern.callback(request)
         mock_reverse.assert_called_with('yeah.well.you.know.thats')
         eq_(response.status_code, 301)
         eq_(response['Location'], '/just/your/opinion/man')
