@@ -1,7 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 import views
 import bedrock.releasenotes.views
@@ -15,7 +15,7 @@ sysreq_re = latest_re % (version_re, 'system-requirements')
 channel_re = '(?P<channel>beta|earlybird)'
 
 
-urlpatterns = patterns('',
+urlpatterns = (
     url(r'^thunderbird/(?:%s/)?all/$' % channel_re,
         views.all_downloads, name='thunderbird.all'),
 

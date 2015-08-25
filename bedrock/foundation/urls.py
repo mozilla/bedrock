@@ -2,13 +2,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf.urls import patterns
 from bedrock.mozorg.util import page
+from bedrock.redirects.util import redirect
 
-
-urlpatterns = patterns('',
+urlpatterns = (
     page('', 'foundation/index.html'),
     page('about', 'foundation/about.html'),
+
+    # Bug 1102336 /foundation/annualreport/ ->
+    # /foundation/annualreport/2013/
+    redirect(r'^foundation/annualreport/$',
+             'foundation.annualreport.2013.index',
+             name='foundation.annualreport', locale_prefix=False),
 
     # Older annual report financial faqs - these are linked from blog posts
     # was e.g.: http://www.mozilla.org/foundation/documents/mozilla-2008-financial-faq.html

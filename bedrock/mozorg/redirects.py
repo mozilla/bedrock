@@ -1,23 +1,4 @@
-from django.conf import settings
-
-from pipeline.collector import default_collector
-from pipeline.packager import Packager
-
-from bedrock.base.helpers import static
 from bedrock.redirects.util import redirect
-
-
-def tabzilla_css_redirect(r):
-    packer = Packager()
-    tabzilla_package = packer.package_for('css', 'tabzilla')
-    if not settings.DEBUG:
-        file_path = tabzilla_package.output_filename
-    else:
-        default_collector.collect()
-        paths = packer.compile(tabzilla_package.paths)
-        file_path = paths[0]
-
-    return static(file_path)
 
 
 redirectpatterns = (
@@ -105,10 +86,6 @@ redirectpatterns = (
 
     # Bug 819317 /gameon/ -> gameon.m.o
     redirect(r'gameon/$', 'https://gameon.mozilla.org'),
-
-    # Tabzilla
-    redirect(r'tabzilla/media/js/tabzilla\.js$', 'tabzilla'),
-    redirect(r'tabzilla/media/css/tabzilla\.css$', tabzilla_css_redirect),
 
     # Bug 822817 /telemetry/ ->
     # https://wiki.mozilla.org/Telemetry/FAQ
