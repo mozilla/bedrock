@@ -1,15 +1,10 @@
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 from django.conf import settings
-from django.conf.urls import patterns
 
-from bedrock.base.helpers import static
 from pipeline.collector import default_collector
 from pipeline.packager import Packager
 
-from util import redirect
+from bedrock.base.helpers import static
+from bedrock.redirects.util import redirect
 
 
 def tabzilla_css_redirect(r):
@@ -25,11 +20,8 @@ def tabzilla_css_redirect(r):
     return static(file_path)
 
 
-urlpatterns = patterns(
-    '',
+redirectpatterns = (
     redirect(r'^b2g', 'firefox.partners.index'),
-    redirect(r'^b2g/faq', 'firefox.partners.index'),
-    redirect(r'^b2g/about', 'firefox.partners.index'),
 
     # Bug 781914
     redirect(r'^contribute/areas.html$', 'mozorg.contribute'),
@@ -139,12 +131,6 @@ urlpatterns = patterns(
     # Bug 896585 - Send /contact/ to the spaces landing
     redirect(r'^contact/$', '/contact/spaces/'),
 
-    # Bug 1102336 /foundation/annualreport/ ->
-    # /foundation/annualreport/2013/
-    redirect(r'^foundation/annualreport/$',
-             'foundation.annualreport.2013.index',
-             name='foundation.annualreport'),
-
     # Bug 997577 - /legal/ -> /about/legal/
     redirect(r'^legal/fraud-report/$', '/about/legal/fraud-report/'),
     redirect(r'^legal/eula/$', '/about/legal/eula/'),
@@ -153,5 +139,4 @@ urlpatterns = patterns(
 
     # Bug 1073269 /dnt/ -> /firefox/dnt/
     redirect(r'^dnt/$', 'firefox.dnt'),
-
 )

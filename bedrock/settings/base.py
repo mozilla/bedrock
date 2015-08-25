@@ -297,6 +297,8 @@ MIDDLEWARE_CLASSES = (
     'sslify.middleware.SSLifyMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
+    # must come before LocaleURLMiddleware
+    'bedrock.redirects.middleware.RedirectsMiddleware',
     'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
     'commonware.middleware.RobotsTagHeader',
     'bedrock.mozorg.middleware.ClacksOverheadMiddleware',
