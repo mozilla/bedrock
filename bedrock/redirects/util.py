@@ -4,14 +4,27 @@
 
 from urllib import urlencode
 
-from django.core.urlresolvers import NoReverseMatch
+from django.core.urlresolvers import NoReverseMatch, RegexURLResolver
 from django.conf.urls import url
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
 from bedrock.base.urlresolvers import reverse
 
 
-def redirect(pattern, to, permanent=True, anchor=None, name='', query=None):
+LOCALE_RE = r'^(?:\w{2,3}(?:-\w{2})?/)?'
+redirectpatterns = []
+
+
+def register(patterns):
+    redirectpatterns.extend(patterns)
+
+
+def get_resolver():
+    return RegexURLResolver(r'^/', redirectpatterns)
+
+
+def redirect(pattern, to, permanent=True, locale_prefix=True,
+             anchor=None, name=None, query=None):
     """
     Return a tuple suited for urlpatterns.
 
@@ -20,6 +33,10 @@ def redirect(pattern, to, permanent=True, anchor=None, name='', query=None):
 
     If a url is given instead of a viewname, the redirect will go directly to
     the specified url.
+
+    If `locale_prefix` is `True` it will automatically match the pattern you specify
+    as well as that patter prefixed with any locale (default: `True`). This implies that
+    the pattern is anchored at the start of the URL (otherwise it doesn't have to be).
 
     If a name is given, reverse lookups by that name will work.
 
@@ -30,10 +47,11 @@ def redirect(pattern, to, permanent=True, anchor=None, name='', query=None):
 
     Usage:
     urlpatterns = patterns('',
-        redirect(r'^projects/$', 'mozorg.product'),
-        redirect(r'^apps/$', 'https://marketplace.firefox.com'),
-        redirect(r'^firefox/$', 'firefox.new', name='firefox'),
-        redirect(r'^the/dude$', 'abides', query={'aggression': 'not_stand'}),
+        redirect(r'projects/$', 'mozorg.product'),
+        redirect(r'^projects/seamonkey$', 'mozorg.product', locale_prefix=False),
+        redirect(r'apps/$', 'https://marketplace.firefox.com'),
+        redirect(r'firefox/$', 'firefox.new', name='firefox'),
+        redirect(r'the/dude$', 'abides', query={'aggression': 'not_stand'}),
     )
     """
     if permanent:
@@ -41,7 +59,11 @@ def redirect(pattern, to, permanent=True, anchor=None, name='', query=None):
     else:
         redirect_class = HttpResponseRedirect
 
-    def _view(request):
+    if locale_prefix:
+        pattern = pattern.lstrip('^/')
+        pattern = LOCALE_RE + pattern
+
+    def _view(request, *args, **kwargs):
         # If it's a callable, call it and get the url out.
         if callable(to):
             to_value = to(request)
@@ -53,6 +75,10 @@ def redirect(pattern, to, permanent=True, anchor=None, name='', query=None):
         except NoReverseMatch:
             # Assume it's a URL
             redirect_url = to_value
+
+        # use info from url captures.
+        if args or kwargs:
+            redirect_url = redirect_url.format(*args, **kwargs)
 
         if query:
             querystring = urlencode(query)
@@ -68,6 +94,4 @@ def redirect(pattern, to, permanent=True, anchor=None, name='', query=None):
             redirect_url = '#'.join([redirect_url, anchor])
         return redirect_class(redirect_url)
 
-    if name:
-        return url(pattern, _view, name=name)
-    return (pattern, _view)
+    return url(pattern, _view, name=name)
