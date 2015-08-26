@@ -38,6 +38,12 @@
   {% stylesheet 'firefox_new' %}
 {% endblock %}
 
+{% block js_pretrack %}
+  {% if waffle.switch('firefox-new-ios-redirect') %}
+    {% javascript 'firefox_new_ios_redirect' %}
+  {% endif %}
+{% endblock %}
+
 {% block optimizely %}
   {% if waffle.switch('firefox-new-optimizely') %}
      {% include 'includes/optimizely.html' %}

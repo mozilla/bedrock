@@ -1237,6 +1237,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new2-bundle.js',
     },
+    'firefox_new_ios_redirect': {
+        'source_filenames': (
+            'js/firefox/new-ios-redirect-helper.js',
+            'js/firefox/new-ios-redirect.js',
+        ),
+        'output_filename': 'js/firefox_new_ios_redirect-bundle.js',
+    },
     'firefox_independent': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',
