@@ -1,0 +1,14 @@
+# sha256: gpJO-16ng6ciNGgqDoBJ2E9erryqw8jAiTt-rpfyg4A
+# sha256: swRX9zVCDQAA0QpEu9R4zwP4vyDiW9dySPm6tA9P1qQ
+pytest==2.7.2
+
+# sha256: 12-TTnf6Bz9IzFIZRaSZAKhZ5hD6Ap3YgNHYuZe3fCM
+# sha256: 0UWsncelV6cZq3l3C-CUEATh4DjhN8NFkZGdnfKnkLE
+pytest-django==2.8.0
+
+# sha256: 529Ztp_AzN6LlHcoSn-3JqJKIfX6rmqzBZOS6LvYiqc
+# sha256: Q4LXqUTB4rHcF_7j_TV1SV-xAjajtulcxpVdsEmEvDw
+pytest-xdist==1.13.1
+
+# sha256: -WfKOb25jhYpmmnEWpRMXUNFOTYV7WRwux5iyjUGv0E
+braceexpand==0.1.1

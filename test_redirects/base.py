@@ -1,17 +1,11 @@
 from braceexpand import braceexpand
 import requests
-from decouple import config
 
 
-BASE_URL = config('MOZORG_URL', 'https://www.mozilla.org')
-if BASE_URL.endswith('/'):
-    BASE_URL = BASE_URL.rstrip('/')
-
-
-def get_abs_url(url):
+def get_abs_url(url, base_url):
     if url.startswith('/'):
         # urljoin messes with query strings too much
-        return ''.join([BASE_URL, url])
+        return ''.join([base_url, url])
 
     return url
 
@@ -66,7 +60,7 @@ def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=N
     return new_urls
 
 
-def assert_valid_url(url, location, status_code, req_headers, req_kwargs):
+def assert_valid_url(url, location, status_code, req_headers, req_kwargs, base_url):
     """
     Define a test of a URL's response.
     :param url: The URL in question (absolute or relative).
@@ -74,6 +68,7 @@ def assert_valid_url(url, location, status_code, req_headers, req_kwargs):
     :param status_code: Expected status code from the request.
     :param req_headers: Extra headers to send with the request.
     :param req_kwargs: Extra arguments to pass to requests.get()
+    :param base_url: Base URL for the site to test.
     """
     kwargs = {'allow_redirects': False}
     if req_headers:
@@ -81,21 +76,21 @@ def assert_valid_url(url, location, status_code, req_headers, req_kwargs):
     if req_kwargs:
         kwargs.update(req_kwargs)
 
-    abs_url = get_abs_url(url)
+    abs_url = get_abs_url(url, base_url)
     resp = requests.get(abs_url, **kwargs)
     assert resp.status_code == status_code
     if location:
         assert 'location' in resp.headers
-        assert resp.headers['location'] == get_abs_url(location)
+        assert resp.headers['location'] == get_abs_url(location, base_url)
 
 
 def flatten(urls_list):
     """Take a list of dicts which may itself contain some lists of dicts, and
-       flatten it into purely a list of dicts.
+       return a generator that will return just the dicts in sequence.
 
        Example:
 
-       flatten([{'dude': 'jeff'}, [{'walter': 'walter'}, {'donny': 'dead'}]]
+       list(flatten([{'dude': 'jeff'}, [{'walter': 'walter'}, {'donny': 'dead'}]]))
        > [{'dude': 'jeff'}, {'walter': 'walter'}, {'donny': 'dead'}]
     """
     for url in urls_list:
