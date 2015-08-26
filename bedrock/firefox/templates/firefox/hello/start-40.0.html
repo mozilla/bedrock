@@ -12,6 +12,10 @@
   {% stylesheet 'firefox_hello_start' %}
 {% endblock %}
 
+{# Override canonical URLs so callers can share the Hello product page. #}
+{% block page_og_url %}{{ url('firefox.hello') }}{% endblock %}
+{% block canonical_urls %}{% endblock %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Firefox Hello') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
