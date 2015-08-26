@@ -1,3 +1,0 @@
-pytest==2.7.2
-pytest-xdist==1.13.1
-braceexpand==0.1.1
