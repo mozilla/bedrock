@@ -37,7 +37,7 @@
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{% block page_ios_icon %}{{ static('img/favicon/apple-touch-icon-180x180.png') }}{% endblock %}">
     <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicon/favicon-196x196.png') }}{% endblock %}">
     <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicon.ico') }}{% endblock %}">
-    {% include 'includes/canonical-url.html' %}
+    {% block canonical_urls %}{% include 'includes/canonical-url.html' %}{% endblock %}
     {% endblock shared_meta %}
 
     {{ l10n_css() }}
