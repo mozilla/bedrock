@@ -38,6 +38,27 @@ def reverse(viewname, urlconf=None, args=None, kwargs=None, prefix=None):
 reverse_lazy = lazy(reverse, str)
 
 
+def _get_language_map():
+    """
+    Return a complete dict of language -> URL mappings, including the canonical
+    short locale maps (e.g. es -> es-ES and en -> en-US).
+    :return: dict
+    """
+    LUM = settings.LANGUAGE_URL_MAP
+    langs = dict(LUM.items() + settings.CANONICAL_LOCALES.items())
+    # Add missing short locales to the list. This will automatically map
+    # en to en-GB (not en-US), es to es-AR (not es-ES), etc. in alphabetical
+    # order. To override this behavior, explicitly define a preferred locale
+    # map with the CANONICAL_LOCALES setting.
+    langs.update((k.split('-')[0], v) for k, v in LUM.items() if
+                 k.split('-')[0] not in langs)
+    return langs
+
+
+# lazy for easier testing mostly
+FULL_LANGUAGE_MAP = lazy(_get_language_map, dict)()
+
+
 def find_supported(test):
     return [settings.LANGUAGE_URL_MAP[x] for
             x in settings.LANGUAGE_URL_MAP if
@@ -52,12 +73,12 @@ def split_path(path_):
     """
     path = path_.lstrip('/')
 
-    # Use partitition instead of split since it always returns 3 parts
+    # Use partition instead of split since it always returns 3 parts
     first, _, rest = path.partition('/')
 
     lang = first.lower()
-    if lang in settings.LANGUAGE_URL_MAP:
-        return settings.LANGUAGE_URL_MAP[lang], rest
+    if lang in FULL_LANGUAGE_MAP:
+        return FULL_LANGUAGE_MAP[lang], rest
     else:
         supported = find_supported(first)
         if len(supported):
@@ -67,7 +88,6 @@ def split_path(path_):
 
 
 class Prefixer(object):
-
     def __init__(self, request):
         self.request = request
         split = split_path(request.path_info)
@@ -81,8 +101,8 @@ class Prefixer(object):
         """
         if 'lang' in self.request.GET:
             lang = self.request.GET['lang'].lower()
-            if lang in settings.LANGUAGE_URL_MAP:
-                return settings.LANGUAGE_URL_MAP[lang]
+            if lang in FULL_LANGUAGE_MAP:
+                return FULL_LANGUAGE_MAP[lang]
 
         if self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
             best = self.get_best_language(
@@ -93,22 +113,14 @@ class Prefixer(object):
 
     def get_best_language(self, accept_lang):
         """Given an Accept-Language header, return the best-matching language."""
-        LUM = settings.LANGUAGE_URL_MAP
-        langs = dict(LUM.items() + settings.CANONICAL_LOCALES.items())
-        # Add missing short locales to the list. This will automatically map
-        # en to en-GB (not en-US), es to es-AR (not es-ES), etc. in alphabetical
-        # order. To override this behavior, explicitly define a preferred locale
-        # map with the CANONICAL_LOCALES setting.
-        langs.update((k.split('-')[0], v) for k, v in LUM.items() if
-                     k.split('-')[0] not in langs)
         ranked = parse_accept_lang_header(accept_lang)
         for lang, _ in ranked:
             lang = lang.lower()
-            if lang in langs:
-                return langs[lang]
+            if lang in FULL_LANGUAGE_MAP:
+                return FULL_LANGUAGE_MAP[lang]
             pre = lang.split('-')[0]
-            if pre in langs:
-                return langs[pre]
+            if pre in FULL_LANGUAGE_MAP:
+                return FULL_LANGUAGE_MAP[pre]
 
     def fix(self, path):
         path = path.lstrip('/')
