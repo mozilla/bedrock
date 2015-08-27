@@ -20,7 +20,7 @@ URLS = flatten((
     url_test('/pt-br/', '/pt-BR/'),
 
     # bug 845988 - remove double slashes in URLs
-    url_test('/en-US/firefox//all/', '/en-US/firefox/all/'),
+    url_test('/en-US/firefox//all/', '/firefox/all/'),
 
     # bug 755826
     url_test('/zh-CN/', 'http://firefox.com.cn/'),
@@ -31,17 +31,17 @@ URLS = flatten((
     url_test('/zh-TW/download/', 'http://mozilla.com.tw/firefox/download/'),
 
     # bug 874913
-    url_test('/en-US/products/download.html', '/en-US/firefox/new/?#download-fx'),
+    url_test('/en-US/products/download.html', '/firefox/new/#download-fx'),
 
     # bug 845580
-    url_test('/en-US/home/', '/en-US/firefox/'),
+    url_test('/en-US/home/', '/firefox/new/'),
 
     # bug 948605
-    url_test('/en-US/firefox/xp-any-random-thing', '/firefox/'),
+    url_test('/en-US/firefox/xp-any-random-thing', '/firefox/new/'),
     url_test('/en-US/products/firefox/start/', 'http://start.mozilla.org'),
     url_test('/start/the-sm-one', 'http://www.seamonkey-project.org/start/',
              req_headers={'User-Agent': 'mozilla seamonkey'}),
-    url_test('/start/any-random-thing', '/firefox/'),
+    url_test('/start/any-random-thing', '/firefox/new/'),
 
     # bug 856081 redirect /about/drivers https://wiki.mozilla.org/Firefox/Drivers
     url_test('/about/drivers{/,.html}', 'https://wiki.mozilla.org/Firefox/Drivers'),
@@ -52,8 +52,8 @@ URLS = flatten((
              'https://wiki.mozilla.org/Websites/Directory'),
 
     # bug 885856
-    url_test('/projects/index.{de,fr,hr,sq}.html', '/{de,fr,hr,sq}/firefox/products/',
-             status_code=302),
+    url_test('/projects/index.{de,fr,hr,sq}.html', '/{de,fr,hr,sq}/firefox/products/'),
+
 
     # bug 856075
     url_test('/projects/technologies.html',
@@ -94,7 +94,7 @@ URLS = flatten((
              'https://mozilla.github.io/python-nss-docs/random/stuff/'),
 
     # bug 780672
-    url_test('/firefox/webhero/random/stuff/', '/firefox/'),
+    url_test('/firefox/webhero/random/stuff/', '/firefox/new/'),
 
     # bug 964107
     url_test('/firefox/video/random/stuff/', 'https://www.youtube.com/firefoxchannel'),

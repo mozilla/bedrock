@@ -2,16 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import re
 from urllib import urlencode
 
-from django.core.urlresolvers import NoReverseMatch, RegexURLResolver
+from django.core.urlresolvers import NoReverseMatch, RegexURLResolver, reverse
 from django.conf.urls import url
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
-from bedrock.base.urlresolvers import reverse
 
-
-LOCALE_RE = r'^(?:\w{2,3}(?:-\w{2})?/)?'
+LOCALE_RE = r'^(?P<locale>\w{2,3}(?:-\w{2})?/)?'
 redirectpatterns = []
 
 
@@ -21,6 +20,25 @@ def register(patterns):
 
 def get_resolver():
     return RegexURLResolver(r'^/', redirectpatterns)
+
+
+def header_redirector(header_name, regex, match_dest, nomatch_dest, case_sensitive=False):
+    flags = 0 if case_sensitive else re.IGNORECASE
+    regex_obj = re.compile(regex, flags)
+
+    def decider(request, *args, **kwargs):
+        value = request.META.get(header_name, '')
+        match = regex_obj.search(value)
+        if match:
+            return match_dest
+        else:
+            return nomatch_dest
+
+    return decider
+
+
+def ua_redirector(regex, match_dest, nomatch_dest, case_sensitive=False):
+    return header_redirector('HTTP_USER_AGENT', regex, match_dest, nomatch_dest, case_sensitive)
 
 
 def redirect(pattern, to, permanent=True, locale_prefix=True,
@@ -66,7 +84,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True,
     def _view(request, *args, **kwargs):
         # If it's a callable, call it and get the url out.
         if callable(to):
-            to_value = to(request)
+            to_value = to(request, *args, **kwargs)
         else:
             to_value = to
 
