@@ -7,7 +7,7 @@ CMD ["./docker/run-prod.sh"]
 RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends python2.7 libpython2.7 gettext build-essential libmysqlclient-dev libxml2-dev libxslt1.1 libxslt1-dev python-dev python-pip libmemcached-dev nodejs git
+    apt-get install -y --no-install-recommends python2.7 libpython2.7 gettext build-essential libmysqlclient-dev libxml2-dev libxslt1.1 libxslt1-dev python-dev python-pip libmemcached-dev nodejs git postgresql-client libpq-dev
 RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
 

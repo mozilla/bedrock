@@ -6,3 +6,6 @@ gunicorn==19.3.0
 
 # sha256: dafTE4z6nNgadgwvikPz2Alh7cjk8nBD3BQSIGySYoc
 uwsgi==2.0.11.1
+
+# sha256: JLo_Moq6CNjVBbwqj2ipTr4kqF6Eg2QLZnIhvA79Ox4
+psycopg2==2.5.4
