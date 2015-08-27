@@ -490,6 +490,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_os_tv-bundle.css',
     },
+    'firefox_push': {
+        'source_filenames': (
+            'css/firefox/family-nav.less',
+            'css/firefox/push.less',
+        ),
+        'output_filename': 'css/firefox_push-bundle.css',
+    },
     'firefox_releases_index': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -1284,6 +1291,16 @@ PIPELINE_JS = {
             'js/base/mozilla-pager.js',
         ),
         'output_filename': 'js/firefox_os_tv-bundle.js',
+    },
+    'firefox_push': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+            'js/base/mozilla-accordion.js',
+            'js/base/mozilla-accordion-gatrack.js',
+        ),
+        'output_filename': 'js/firefox_push-bundle.js',
     },
     'firefox_interest_dashboard': {
         'source_filenames': (

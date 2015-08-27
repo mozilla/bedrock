@@ -1,0 +1,136 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import fxfamilynav with context %}
+
+{% extends "/firefox/dashboard-base.html" %}
+
+{% block page_title %}{{ _('Push') }}{% endblock %}
+{% block page_title_suffix %} — {{ _('Frequently asked questions') }} — {{_('Mozilla Firefox Web Browser')}}{% endblock %}
+{% block page_desc %}{{ _('Push is an optional feature that allows websites to send you messages even when you aren’t visiting the site.') }}{% endblock %}
+{% block body_id %}push-notifications{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_push' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {{ fxfamilynav('desktop', '', 'dark') }}
+{% endblock %}
+
+{% block dashboard_faq %}
+<section id="push-faq" class="accordion accordion-auto-init zebra">
+  <h2>{{ _('Frequently asked questions') }}</h2>
+  <section>
+    <h3 data-accordion-role="tab">{{ _('What is Push?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+        {{ _('Push is an optional feature that allows websites to send you messages even when you aren’t visiting the site.') }}
+        {{ _('Sites can use this feature to provide you with notifications or update data in the background.') }}
+      </p>
+      <p>
+        {{ _('For instance, a webmail site might use Push to provide you with a notification when new messages arrive, or a weather site might use Push to provide storm alerts.') }}
+      </p>
+      <p>
+        {{ _('You will only receive messages from sites for which you have granted permission.') }}
+      </p>
+    </div>
+  </section>
+  <section>
+    <h3 data-accordion-role="tab">{{ _('How does it work?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+        {{ _('Firefox maintains a connection to a push service.') }}
+        {{ _('Sites that you have granted permission for Push can use the service to send you messages.') }}
+        {{ _('Firefox delivers this push message to a small piece of JavaScript called a “worker”.') }}
+        {{ _('The worker then processes the message.') }}
+        {{ _('It might decide to show a visual notification or store the message for later use.') }}
+      </p>
+    </div>
+  </section>
+  <section>
+    <h3 data-accordion-role="tab">{{ _('What information do I share with a site?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+        {{ _('A site can use Push to send you a message at any time, even when you are not actively visiting it.') }}
+        {{ _('A site that sends you a message can learn your IP address if it chooses to do so; this could reveal your location.') }}
+      </p>
+    </div>
+  </section>
+  <section>
+    <h3 data-accordion-role="tab">{{ _('What information does Firefox use to provide Push?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+        {{ _('Firefox maintains a permanent connection to a push service in order to receive push messages.') }}
+        {{ _('On our server we store a randomized identifier for your browser, along with a randomized identifier for each site you authorize.') }}
+      </p>
+      <p>
+        {{ _('On Firefox for desktop, the push service is operated by Mozilla.') }}
+        {{ _('Firefox uses the same <a href="%s">Google Cloud Messaging</a> platform and infrastructure that your other Android applications use.')|format('https://developers.google.com/cloud-messaging/') }}
+      </p>
+      <p>
+        {{ _('In both cases, the push service cannot decrypt your push messages.') }}
+        {{ _('Push messages are encrypted, only your copy of Firefox can decipher them.') }}
+        {{ _('The encrypted messages are stored on the server until they are delivered.') }}
+      </p>
+    </div>
+  </section>
+  <section>
+    <h3 data-accordion-role="tab">{{ _('How do I revoke Push permissions?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+        {{ _('To stop a site from sending you push messages:') }}
+      </p>
+      <ol>
+        <li>{{ _('In the URL bar, type <em>about:permissions</em>.') }}</li>
+        <li>{{ _('Select the site.') }}</li>
+        <li>{{ _('Set <em>Receive Push Notifications</em> to <strong>Always Ask</strong>.') }}</li>
+      </ol>
+    </div>
+  </section>
+  <section>
+    <h3 data-accordion-role="tab">{{ _('How do I disable Push permanently?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+        {{ _('Push is always opt-in in Firefox.') }}
+        {{ _('A site cannot send you push messages without your permission.') }}
+        {{ _('If you wish to disable the feature completely, please follow these steps:') }}
+      </p>
+      <ol>
+        <li>{{ _('In the URL bar, type <em>about:permissions</em>.') }}</li>
+        <li>{{ _('Select <em>All Sites</em>.') }}</li>
+        <li>{{ _('Set the <em>Receive Push Notifications</em> to <strong>Block</strong>. The site will not be able to send you messages or ask for access to Push.') }}</li>
+      </ol>
+    </div>
+  </section>
+  <section>
+    <h3 data-accordion-role="tab">{{ _('Will this cost me money?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+        {{ _('Push uses a small amount of data to operate.') }}
+        {{ _('If you’re on a small data allowance, or are charged for any data usage, you may wish to monitor your usage.') }}
+      </p>
+    </div>
+  </section>
+  <section>
+    <h3 data-accordion-role="tab">{{ _('How do I add Push to my web site?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+        {{ _('The <a href="%s">Push API specification</a> explains how to create a Service Worker and send push messages.')|format('https://developer.mozilla.org/docs/Web/API/Push_API') }}
+      </p>
+    </div>
+  </section>
+</section>
+{% endblock %}
+
+{# no sidebar content for this page currently #}
+{% block dashboard_sidebar_contents %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_push' %}
+{% endblock %}
+
+{% block email_form %}{% endblock %}
