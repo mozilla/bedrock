@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# ./docker/run-common.sh
+./docker/run-common.sh
+
 server=${WSGI_SERVER:-gunicorn}
 if [[ $server == "gunicorn" ]]
 then
