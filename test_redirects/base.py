@@ -10,7 +10,8 @@ def get_abs_url(url, base_url):
     return url
 
 
-def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=None):
+def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=None,
+             resp_headers=None):
     """
     Function for producing a config dict for the redirect test.
 
@@ -31,6 +32,7 @@ def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=N
     :param status_code: Expected status code from the request.
     :param req_headers: Extra headers to send with the request.
     :param req_kwargs: Extra arguments to pass to requests.get()
+    :param resp_headers: Dict of headers expected in the response.
     :return: dict or list of dicts
     """
     test_data = {
@@ -39,6 +41,7 @@ def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=N
         'status_code': status_code,
         'req_headers': req_headers,
         'req_kwargs': req_kwargs,
+        'resp_headers': resp_headers,
     }
     expanded_urls = list(braceexpand(url))
     num_urls = len(expanded_urls)
@@ -60,7 +63,8 @@ def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=N
     return new_urls
 
 
-def assert_valid_url(url, location, status_code, req_headers, req_kwargs, base_url):
+def assert_valid_url(url, location, status_code, req_headers, req_kwargs,
+                     resp_headers, base_url):
     """
     Define a test of a URL's response.
     :param url: The URL in question (absolute or relative).
@@ -68,6 +72,7 @@ def assert_valid_url(url, location, status_code, req_headers, req_kwargs, base_u
     :param status_code: Expected status code from the request.
     :param req_headers: Extra headers to send with the request.
     :param req_kwargs: Extra arguments to pass to requests.get()
+    :param resp_headers: Dict of headers expected in the response.
     :param base_url: Base URL for the site to test.
     """
     kwargs = {'allow_redirects': False}
@@ -82,6 +87,12 @@ def assert_valid_url(url, location, status_code, req_headers, req_kwargs, base_u
     if location:
         assert 'location' in resp.headers
         assert resp.headers['location'] == get_abs_url(location, base_url)
+
+    if resp_headers:
+        for name, value in resp_headers.items():
+            print name, value
+            assert name in resp.headers
+            assert resp.headers[name].lower() == value.lower()
 
 
 def flatten(urls_list):

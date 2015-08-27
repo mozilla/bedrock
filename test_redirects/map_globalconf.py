@@ -39,9 +39,12 @@ URLS = flatten((
     # bug 948605
     url_test('/en-US/firefox/xp-any-random-thing', '/firefox/new/'),
     url_test('/en-US/products/firefox/start/', 'http://start.mozilla.org'),
+
     url_test('/start/the-sm-one', 'http://www.seamonkey-project.org/start/',
-             req_headers={'User-Agent': 'mozilla seamonkey'}),
-    url_test('/start/any-random-thing', '/firefox/new/'),
+             req_headers={'User-Agent': 'mozilla seamonkey'},
+             resp_headers={'vary': 'user-agent'}),
+    url_test('/start/any-random-thing', '/firefox/new/',
+             resp_headers={'vary': 'user-agent'}),
 
     # bug 856081 redirect /about/drivers https://wiki.mozilla.org/Firefox/Drivers
     url_test('/about/drivers{/,.html}', 'https://wiki.mozilla.org/Firefox/Drivers'),

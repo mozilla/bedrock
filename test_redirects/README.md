@@ -7,27 +7,27 @@ release.
 
 ## Setup
 
-1. CD to the directory: `cd test_redirects`
-2. Install dependencies: `pip install -r requirements.txt`
+1. Install dependencies: `bin/peep install -r requirements/test_redirects.txt`
 
 Note: You'll need to have installed the dev requirements from bedrock as well.
-Also it's a really good idea to do the `pip install` step above in a [virtualenv][].
+Also it's a really good idea to do the `peep install` step above in a [virtualenv][].
 
-By default the suite is run against <https://www.mozilla.org>. If you wish to run
-it against another instance of the site (e.g. a local copy) you can set the
-`MOZORG_URL` environment variable, or add that to a file called `.env` in the test
-suite directory.
+By default the suite is run against your local copy of bedrock. If you wish to run
+it against another instance of the site (e.g. www.mozilla.org) you can set the
+`--mozorg-url` commandline switch.
 
 ```bash
-# .env
-MOZORG_URL="http://localhost:8000"
+$ py.test test_redirects --mozorg-url=https://www.mozilla.org
 ```
 
 ## Running the tests
 
 ```bash
-$ py.test
+$ py.test test_redirects
 ```
+
+**Note**: If you intend to run the suite against a remote instance of the site (e.g. production) it will run a lot quicker if you install [pytest-xdist][] and have it use multiple processes (e.g. `py.test test_redirects -n auto`).
 
 [bedrock]: https://github.com/mozilla/bedrock/
 [virtualenv]: https://virtualenv.pypa.io/
+[pytest-xdist]: http://pytest.org/latest/xdist.html
