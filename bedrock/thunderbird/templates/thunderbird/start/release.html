@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-channel="release">
-  <head>
-    <meta charset="utf-8">
-    <meta name="robots" content="noindex">
-    <title>{% filter striptags|e %}{{ _('Welcome to <span>Thunderbird</span>') }}{% endfilter %}</title>
-    {{ l10n_css() }}
-    {% block extrahead %}
-      {% stylesheet 'thunderbird-start' %}
-    {% endblock %}
-  </head>
-  <body class="sky">
-    <main>
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "thunderbird/start/base-resp.html" %}
+
+{% block channel %}release{% endblock %}
+{% block title %}{{ _('Welcome to <span>Thunderbird</span>') }}{% endblock %}
+
+{% block main %}
       <header>
-        <h1>{{ _('Welcome to <span>Thunderbird</span>') }}</h1>
+        <h1>{{ self.title() }}</h1>
       </header>
       <div>
         <section>
@@ -48,6 +45,4 @@
           </ul>
         </nav>
       </footer>
-    </main>
-  </body>
-</html>
+{% endblock %}

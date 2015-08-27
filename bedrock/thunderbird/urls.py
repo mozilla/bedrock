@@ -40,4 +40,11 @@ urlpatterns = patterns('',
 
     # Start pages by channel
     page('thunderbird/release/start', 'thunderbird/start/release.html'),
+    page('thunderbird/beta/start', 'thunderbird/start/beta.html'),
+    page('thunderbird/earlybird/start', 'thunderbird/start/earlybird.html'),
+    page('thunderbird/nightly/start', 'thunderbird/start/daily.html'),
+
+    # What's New pages by channel
+    page('thunderbird/earlybird/whatsnew', 'thunderbird/whatsnew/earlybird.html'),
+    page('thunderbird/nightly/whatsnew', 'thunderbird/whatsnew/daily.html'),
 )
