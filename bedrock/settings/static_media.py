@@ -1267,6 +1267,8 @@ PIPELINE_JS = {
     },
     'firefox_interest_dashboard': {
         'source_filenames': (
+            'js/base/mozilla-accordion.js',
+            'js/base/mozilla-accordion-gatrack.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/firefox/family-nav.js',
