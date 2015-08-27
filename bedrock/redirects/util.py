@@ -9,8 +9,11 @@ from django.core.urlresolvers import NoReverseMatch, RegexURLResolver, reverse
 from django.conf.urls import url
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 
+from bedrock.mozorg.decorators import cache_control_expires
+
 
 LOCALE_RE = r'^(?P<locale>\w{2,3}(?:-\w{2})?/)?'
+# redirects registry
 redirectpatterns = []
 
 
@@ -42,7 +45,7 @@ def ua_redirector(regex, match_dest, nomatch_dest, case_sensitive=False):
 
 
 def redirect(pattern, to, permanent=True, locale_prefix=True,
-             anchor=None, name=None, query=None):
+             anchor=None, name=None, query=None, vary=None):
     """
     Return a tuple suited for urlpatterns.
 
@@ -81,6 +84,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True,
         pattern = pattern.lstrip('^/')
         pattern = LOCALE_RE + pattern
 
+    @cache_control_expires(12)
     def _view(request, *args, **kwargs):
         # If it's a callable, call it and get the url out.
         if callable(to):
@@ -110,6 +114,11 @@ def redirect(pattern, to, permanent=True, locale_prefix=True,
 
         if anchor:
             redirect_url = '#'.join([redirect_url, anchor])
-        return redirect_class(redirect_url)
+
+        resp = redirect_class(redirect_url)
+        if vary:
+            resp['Vary'] = vary
+
+        return resp
 
     return url(pattern, _view, name=name)

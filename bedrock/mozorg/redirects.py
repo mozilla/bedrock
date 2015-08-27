@@ -1,6 +1,14 @@
 from bedrock.redirects.util import redirect, ua_redirector
 
 
+def to_uppercase(url):
+    def decider(request, **kwargs):
+        kwargs = {k: v.upper() for k, v in kwargs.items() if k != 'locale'}
+        return url.format(**kwargs)
+
+    return decider
+
+
 redirectpatterns = (
     # bug 755826
     redirect('^zh-CN/?$', 'http://firefox.com.cn/', locale_prefix=False),
@@ -9,6 +17,13 @@ redirectpatterns = (
     redirect('^zh-TW/?$', 'http://mozilla.com.tw/', locale_prefix=False),
     redirect('^zh-TW/mobile/?', 'http://mozilla.com.tw/firefox/mobile/', locale_prefix=False),
     redirect('^zh-TW/download/?', 'http://mozilla.com.tw/firefox/download/', locale_prefix=False),
+
+    # bug 1013082
+    redirect('^ja/?$', 'http://www.mozilla.jp/', locale_prefix=False),
+
+    # bug 1051686
+    redirect('^ja/firefox/organizations/?$', 'http://www.mozilla.jp/business/downloads/',
+             locale_prefix=False),
 
     # bug 874913
     redirect('products/download.html', 'firefox.new', anchor='download-fx'),
@@ -25,7 +40,7 @@ redirectpatterns = (
     # bug 875052
     redirect('^start/', ua_redirector('seamonkey',
                                       'http://www.seamonkey-project.org/start/',
-                                      'firefox.new')),
+                                      'firefox.new'), vary='User-Agent'),
 
     # bug 856081 redirect /about/drivers https://wiki.mozilla.org/Firefox/Drivers
     redirect('^about/drivers(\.html|/)?$', 'https://wiki.mozilla.org/Firefox/Drivers'),
@@ -57,8 +72,8 @@ redirectpatterns = (
              'https://developer.mozilla.org/docs/Mozilla/Bugzilla/Testopia'),
 
     # bug 874525
-    redirect(r'^projects/security/pki/(?P<arg>[nj])ss',
-             lambda r, arg, locale: 'https://developer.mozilla.org/docs/{}SS'.format(arg.upper())),
+    redirect(r'^projects/security/pki/(?P<match>[nj])ss',
+             to_uppercase('https://developer.mozilla.org/docs/{match}SS')),
 
     # bug 866190
     redirect('^projects/security/pki/python-nss/?$',
@@ -97,12 +112,6 @@ redirectpatterns = (
     redirect('^ports/qtmozilla(?:/|/index.html)?$', 'https://wiki.mozilla.org/Qt'),
     redirect('^ports/os2/?$', 'https://wiki.mozilla.org/Ports/os2'),
     redirect('^ports(?P<path>.*)', 'http://www-archive.mozilla.org/ports{path}'),
-
-    # bug 1013082
-    redirect('^ja/?$', 'http://www.mozilla.jp/', permanent=False),
-
-    # bug 1051686
-    redirect('^ja/firefox/organizations/?$', 'http://www.mozilla.jp/business/downloads/'),
 
     redirect(r'^b2g', 'firefox.partners.index'),
 
