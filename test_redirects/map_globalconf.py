@@ -20,7 +20,7 @@ URLS = flatten((
     url_test('/pt-br/', '/pt-BR/'),
 
     # bug 845988 - remove double slashes in URLs
-    url_test('/en-US/firefox//all/', '/firefox/all/'),
+    url_test('/en-US/firefox//all/', '/en-US/firefox/all/'),
 
     # bug 755826
     url_test('/zh-CN/', 'http://firefox.com.cn/'),
@@ -114,7 +114,7 @@ URLS = flatten((
     url_test('/ports/other-things/', 'http://www-archive.mozilla.org/ports/other-things/'),
 
     # bug 1013082
-    url_test('/ja/', 'http://www.mozilla.jp/', status_code=302),
+    url_test('/ja/', 'http://www.mozilla.jp/'),
 
     # bug 1051686
     url_test('/ja/firefox/organizations/', 'http://www.mozilla.jp/business/downloads/'),
