@@ -69,6 +69,11 @@ urlpatterns = patterns(
              'styleguide.communications.copy-rules'),
     redirect(r'^firefox/brand/downloads/$', 'styleguide.home'),
 
+    # Bug 1186373
+    redirect(r'^firefox/hello/npssurvey/$',
+             'https://www.surveygizmo.com/s3/2227372/Firefox-Hello-Product-Survey',
+             permanent=False),
+
     # Bug 1071318
     redirect(r'^firefox/mobile/$', 'firefox.android.index'),
 
