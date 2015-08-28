@@ -1,0 +1,68 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/base-resp.html" %}
+
+{% block page_title %}{{ _('Mozilla License Headers') }}{% endblock %}
+
+{% block page_desc %}{{ _('Mozilla License Headers') }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'mpl' %}
+{% endblock %}
+
+{% block content %}
+
+<div id="main-content">
+  <h1>Mozilla License Headers</h1>
+
+  <section>
+    <p>This page gives copy-and-pasteable license headers for Mozilla code. When adding license headers to new files to be checked in to the Mozilla source tree, always use the appropriate one of the following.</p>
+    <h2>MPL 2</h2>
+    <p>This license must be used for all new code, unless the containing project, module or externally-imported codebase uses a different license. If you can't put a header in the file due to its structure, please put it in a LICENSE file in the same directory.</p>
+<pre>
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+</pre>
+<pre>
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+</pre>
+<pre>
+&lt;!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. --&gt;
+</pre>
+<pre>
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
+</pre>
+  </section>
+
+  <section>
+    <h2>Public Domain</h2>
+    <p>This license can be used for test scripts and other short code snippets, at the discretion of the author.</p>
+<pre>
+/* Any copyright is dedicated to the Public Domain.
+ * http://creativecommons.org/publicdomain/zero/1.0/ */
+</pre>
+<pre>
+# Any copyright is dedicated to the Public Domain.
+# http://creativecommons.org/publicdomain/zero/1.0/
+</pre>
+<pre>
+&lt;!-- Any copyright is dedicated to the Public Domain.
+   - http://creativecommons.org/publicdomain/zero/1.0/ --&gt;
+</pre>
+<pre>
+Any copyright is dedicated to the Public Domain.
+http://creativecommons.org/publicdomain/zero/1.0/
+</pre>
+    <p>Licensing questions? Ask in <a href="{{ url('mozorg.about.forums.forums') }}#legal">mozilla.legal</a>.</p>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/base-resp.html" %}
+
+{% block page_title %}{{ _('Permissive-Code-into-MPL Developer Guidelines') }}{% endblock %}
+
+{% block page_desc %}{{ _('Copying Permissively-Licensed Code into an MPL 2 File: Guidelines
+  for Developers') }}{% endblock %}
+
+{% block page_css %}
+    {% stylesheet 'mpl' %}
+{% endblock %}
+
+{% block content %}
+
+<div id="main-content">
+  <h1>Copying permissively-Licensed Code into an MPL 2 File: Guidelines for Developers</h1>
+
+  <section>
+    <p>This document explains what to do when you want to copy a piece of code which is licensed under the BSD, MIT, Apache License 2 or another standard permissive open source licence into an existing Mozilla project file which is licensed under the <a href="{{ url('mozorg.MPL.2.0.index') }}">MPL 2</a>.</p>
+    <p>This document is specifically about copying code between files with different licenses which are already part of our codebase. Imports of new third party codebases (e.g. new libraries) is a different matter; such imports need to be checked over by the licensing team.</p>
+    <p>If you need to copy code the other way - MPL 2 code into a permissively-licensed file - then consult the <a href="mailto:licensing@mozilla.org">licensing team</a>.</p>
+    <p>To copy permissively-licensed code into an MPL 2 file, you have three options - Avoid, Relicense and Boilerplate.</p>
+
+    <h2>1. Avoid</h2>
+    <p>If it does not involve serious contortions in your code structure, try and avoid doing the copying at all. It is simpler, and increases reuse, if each file only has a single licence. Consider putting the code in a separate file, including it and calling its functions using whatever language facilities are available to you.</p>
+
+    <h2>2. Relicense</h2>
+    <p>If that is not possible, then you should investigate whether the code can be relicensed. This is not legally required to use the code, but makes the legal situation simpler (as we will see). This should only be attempted without the help of the licensing team in simple circumstances, where it's obvious who all the contributors to the code are and it's a small number. E.g. incorporating code from a one-man project on Github which is BSD-licensed, or code from a Gaia file written by a couple of developers which is Apache-licensed. If the situation is more complicated than this, involving the licensing team at an early stage will increase your chances of success, and of not irritating the developers of the code in question.</p>
+    <p>If the people concerned are all Mozilla employees and wrote the code on company time, then the copyright to the code is owned by the Mozilla Foundation. In this case, for small code sections, Mozilla is happy for such a relicensing to occur. If some contributors to the piece of code in question are not employees, you would need to ask permission of all such contributors, something like this:</p>
+<pre>
+Dear X,
+
+Thank you for writing the most excellent Project Y. I would like to use some
+portions of it (patch attached) in Mozilla's project Z. For licensing
+simplicity we would prefer to use the code under the terms of the Mozilla
+Public License[0], which is the standard licence for Z, rather than licence Q,
+which you use. I believe you are the copyright holder, and so am I asking your
+permission to do this. (There would be no need to change anything in your
+project.) Would that be OK?
+
+Thanks,
+
+J. Random Hacker
+
+[0] http://www.mozilla.org/MPL/2.0/
+</pre>
+    <p>The difficulty with this route is that it makes it harder to be certain we can legally send fixes we make to their code back upstream, which is why option 1) is preferred.</p>
+    <p>In rare circumstances, it might be that it's possible to relicense the MPLed code instead, particularly if it only forms a small part of the resultant combined file. Consult the licensing team if you want to investigate this route.</p>
+
+    <h2>3. Boilerplate</h2>
+    <p>If the copyright holders refuse permission, or if the situation is too complex for it to be possible or worth the time to even seek permission, and if the license is definitely MPL2-compatible, you should do the following. (MPL2-compatible licenses include MIT, ISC, Apache 2, 2-clause BSD and 3-clause BSD - ask if you aren't sure.)</p>
+    <p>For every file which will contain some of the permissively-licensed code, change the MPL 2 header to have the following form (with, of course, the appropriate comment character(s):</p>
+<pre>
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * This file incorporates work covered by the following copyright and
+ * permission notice:
+ *
+ *   [Full copy of permissively-licensed copyright and permissions notice,
+ *   indented two additional spaces]
+ */
+</pre>
+    <p>So that's the standard MPL 2 header, then the extra sentence "This file incorporates...", then the other boilerplate, indented 2 spaces. For example, for the Apache License 2.0:</p>
+<pre>
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * This file incorporates work covered by the following copyright and
+ * permission notice:
+ *
+ *   Copyright 2013 Joe Bloggs
+ *
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ */
+</pre>
+    <p>As you can see, the additional boilerplate makes this solution sub-optimal - and even more so if a file contains code under two or more permissive licences. And copying code <i>out</i> of such a file gets extremely complicated. This is why it is suggested that the other two routes are investigated first.</p>
+    <p>As always, if you have questions, contact the <a href="mailto:licensing@mozilla.org">licensing team</a>.</p>
+  </section>
+</div>
+{% endblock %}

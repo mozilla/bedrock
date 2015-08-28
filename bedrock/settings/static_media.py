@@ -650,6 +650,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mission-bundle.css',
     },
+    'mpl': {
+        'source_filenames': (
+            'css/mozorg/mpl.less',
+        ),
+        'output_filename': 'css/mpl-bundle.css',
+    },
     'mozilla_accordion': {
         'source_filenames': (
             'css/base/mozilla-accordion.less',
