@@ -25,13 +25,14 @@ def register(patterns):
     redirectpatterns.extend(patterns)
 
 
-def get_resolver():
-    return RegexURLResolver(r'^/', redirectpatterns)
+def get_resolver(patterns=None):
+    return RegexURLResolver(r'^/', patterns or redirectpatterns)
 
 
 def header_redirector(header_name, regex, match_dest, nomatch_dest, case_sensitive=False):
     flags = 0 if case_sensitive else re.IGNORECASE
     regex_obj = re.compile(regex, flags)
+    header_name = 'HTTP_' + header_name.upper().replace('-', '_')
 
     def decider(request, *args, **kwargs):
         value = request.META.get(header_name, '')
@@ -45,39 +46,40 @@ def header_redirector(header_name, regex, match_dest, nomatch_dest, case_sensiti
 
 
 def ua_redirector(regex, match_dest, nomatch_dest, case_sensitive=False):
-    return header_redirector('HTTP_USER_AGENT', regex, match_dest, nomatch_dest, case_sensitive)
+    return header_redirector('user-agent', regex, match_dest, nomatch_dest, case_sensitive)
 
 
 def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=None,
              query=None, vary=None, cache_timeout=12, decorators=None):
     """
-    Return a tuple suited for urlpatterns.
+    Return a url matcher suited for urlpatterns.
 
-    This will redirect the pattern to the viewname by applying our
-    locale-aware reverse to the given string.
-
-    If a url is given instead of a viewname, the redirect will go directly to
-    the specified url.
-
-    If `locale_prefix` is `True` it will automatically match the pattern you specify
-    as well as that patter prefixed with any locale (default: `True`). This implies that
-    the pattern is anchored at the start of the URL (otherwise it doesn't have to be).
-
-    If a name is given, reverse lookups by that name will work.
-
-    If query is None (the default), any params from the original request will
-    be appended to the redirect location, after a '?'. Otherwise, query is
-    expected to be a dict or a sequence of two-element tuples for passing
-    to urllib.urlencode.
+    pattern: the regex against which to match the requested URL.
+    to: either a url name that `reverse` will find, a url that will simply be returned,
+        or a function that will be given the request and url captures, and return the
+        destination.
+    permanent: boolean whether to send a 301 or 302 response.
+    locale_prefix: automatically prepend `pattern` with a regex for an optional locale
+        in the url. This locale (or None) will show up in captured kwargs as 'locale'.
+    anchor: if set it will be appended to the destination url after a '#'.
+    name: if used in a `urls.py` the redirect URL will be available as the name
+        for use in calls to `reverse()`. Does _NOT_ work if used in a `redirects.py` file.
+    query: a dict of query params to add to the destination url.
+    vary: if you used an HTTP header to decide where to send users you should include that
+        header's name in the `vary` arg.
+    cache_timeout: number of hours to cache this redirect. just sets the proper `cache-control`
+        and `expires` headers.
+    decorators: a callable (or list of callables) that will wrap the view used to redirect
+        the user. equivalent to adding a decorator to any other view.
 
     Usage:
-    urlpatterns = patterns('',
+    urlpatterns = [
         redirect(r'projects/$', 'mozorg.product'),
         redirect(r'^projects/seamonkey$', 'mozorg.product', locale_prefix=False),
         redirect(r'apps/$', 'https://marketplace.firefox.com'),
         redirect(r'firefox/$', 'firefox.new', name='firefox'),
         redirect(r'the/dude$', 'abides', query={'aggression': 'not_stand'}),
-    )
+    ]
     """
     if permanent:
         redirect_class = HttpResponsePermanentRedirect
@@ -104,6 +106,10 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
             view_decorators.extend(decorators)
 
     def _view(request, *args, **kwargs):
+        # don't want to have 'None' in substitutions
+        kwargs = {k: v or '' for k, v in kwargs.items()}
+        args = [x or '' for x in args]
+
         # If it's a callable, call it and get the url out.
         if callable(to):
             to_value = to(request, *args, **kwargs)

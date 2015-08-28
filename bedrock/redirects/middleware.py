@@ -4,7 +4,8 @@ from .util import get_resolver
 
 
 class RedirectsMiddleware(object):
-    resolver = get_resolver()
+    def __init__(self, resolver=None):
+        self.resolver = resolver or get_resolver()
 
     def process_request(self, request):
         try:

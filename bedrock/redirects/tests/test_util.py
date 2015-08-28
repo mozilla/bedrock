@@ -9,7 +9,29 @@ from django.test.client import RequestFactory
 from mock import patch
 from nose.tools import eq_, ok_
 
-from bedrock.redirects.util import redirect
+from bedrock.redirects.middleware import RedirectsMiddleware
+from bedrock.redirects.util import get_resolver, header_redirector, redirect, ua_redirector
+
+
+class TestHeaderRedirector(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_header_redirects(self):
+        callback = header_redirector('user-agent', 'dude', '/abide/', '/flout/')
+        url = callback(self.rf.get('/take/comfort/', HTTP_USER_AGENT='the dude browses'))
+        self.assertEqual(url, '/abide/')
+
+    def test_ua_redirector(self):
+        callback = ua_redirector('dude', '/abide/', '/flout/')
+        url = callback(self.rf.get('/take/comfort/', HTTP_USER_AGENT='the dude browses'))
+        self.assertEqual(url, '/abide/')
+
+    def test_header_redirects_case_sensitive(self):
+        callback = header_redirector('user-agent', 'dude', '/abide/', '/flout/',
+                                     case_sensitive=True)
+        url = callback(self.rf.get('/take/comfort/', HTTP_USER_AGENT='The Dude Browses'))
+        self.assertEqual(url, '/flout/')
 
 
 class TestRedirectUrlPattern(TestCase):
@@ -49,7 +71,7 @@ class TestRedirectUrlPattern(TestCase):
         Should replace query params if any are provided
         """
         pattern = redirect(r'^the/dude$', 'abides',
-                                 query={'aggression': 'not_stand'})
+                           query={'aggression': 'not_stand'})
         request = self.rf.get('the/dude?aggression=unchecked')
         response = pattern.callback(request)
         eq_(response.status_code, 301)
@@ -101,7 +123,7 @@ class TestRedirectUrlPattern(TestCase):
     @patch('bedrock.redirects.util.reverse')
     def test_to_view(self, mock_reverse):
         """
-        Should use return value of our locale-aware reverse as redirect location
+        Should use return value of reverse as redirect location
         """
         mock_reverse.return_value = '/just/your/opinion/man'
         pattern = redirect(r'^the/dude$', 'yeah.well.you.know.thats')
@@ -110,3 +132,83 @@ class TestRedirectUrlPattern(TestCase):
         mock_reverse.assert_called_with('yeah.well.you.know.thats')
         eq_(response.status_code, 301)
         eq_(response['Location'], '/just/your/opinion/man')
+
+    def test_cache_headers(self):
+        """
+        Should add cache headers based on argument.
+        """
+        pattern = redirect(r'^the/dude$', 'abides', cache_timeout=2)
+        request = self.rf.get('the/dude')
+        response = pattern.callback(request)
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'abides')
+        eq_(response['cache-control'], 'max-age=7200')  # 2 hours
+
+    def test_vary_header(self):
+        """
+        Should add vary header based on argument.
+        """
+        pattern = redirect(r'^the/dude$', 'abides', vary='User-Agent')
+        request = self.rf.get('the/dude')
+        response = pattern.callback(request)
+        eq_(response.status_code, 301)
+        eq_(response['Location'], 'abides')
+        eq_(response['Vary'], 'User-Agent')
+
+    def test_value_capture_and_substitution(self):
+        """
+        Should be able to capture info from URL and use in redirection.
+        """
+        resolver = get_resolver([redirect(r'^iam/the/(?P<name>.+)/$', '/donnie/the/{name}/')])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/iam/the/walrus/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/donnie/the/walrus/')
+
+    def test_locale_value_capture(self):
+        """
+        Should get locale value in kwargs.
+        """
+        resolver = get_resolver([redirect(r'^iam/the/(?P<name>.+)/$',
+                                          '/{locale}donnie/the/{name}/')])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/pt-BR/iam/the/walrus/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/pt-BR/donnie/the/walrus/')
+
+    def test_locale_value_capture_no_locale(self):
+        """
+        Should get locale value in kwargs and not break if no locale in URL.
+        """
+        resolver = get_resolver([redirect(r'^iam/the/(?P<name>.+)/$',
+                                          '/{locale}donnie/the/{name}/')])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/iam/the/walrus/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/donnie/the/walrus/')
+
+    def test_no_locale_prefix(self):
+        """
+        Should be able to define a redirect that ignores locale prefix.
+
+        Also when not using any named captures (like implied locale) unnamed
+        captures should work. For some reason Django only allows unnamed captures
+        to pass through if there are no named ones.
+        """
+        resolver = get_resolver([redirect(r'^iam/the/(.+)/$', '/donnie/the/{}/',
+                                          locale_prefix=False)])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/iam/the/walrus/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/donnie/the/walrus/')
+
+    def test_empty_unnamed_captures(self):
+        """
+        Should be able to define an optional unnamed capture.
+        """
+        resolver = get_resolver([redirect(r'^iam/the(/.+)?/$', '/donnie/the{}/',
+                                          locale_prefix=False)])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/iam/the/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/donnie/the/')
