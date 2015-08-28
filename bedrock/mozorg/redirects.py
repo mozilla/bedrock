@@ -232,5 +232,7 @@ redirectpatterns = (
     redirect('^(.*)/index.html$', '/{}/', locale_prefix=False),
 
     # bug 845988 - remove double slashes in URLs
-    redirect('^(.*)//(.*)$', '/{}/{}', locale_prefix=False),
+    # have to specifically match a non-slash on either side of the slashes
+    # to force it to match all repeating slashes in one go.
+    redirect('^(.*[^/])//+([^/].*)$', '/{}/{}', locale_prefix=False),
 )
