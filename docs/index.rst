@@ -32,6 +32,7 @@ Contents
    javascript-libs
    contribute
    grunt
+   redirects
    newsletters
    tabzilla
    uitour
