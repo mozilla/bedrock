@@ -29,7 +29,7 @@
 {% endblock %}
 
 {% block site_header_logo %}
-<h2><a href="{{ url('firefox') }}">{{ high_res_img('img/firefox/template/header-logo.png', {
+<h2><a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo.png', {
   'alt': 'Mozilla Firefox',
   'width': '185',
   'height': '70',
@@ -54,7 +54,7 @@
   <div class="pager-content">
 
     <div id="beta" class="pager-page">
-      <h2 class="channel-title channel-title-beta">{{ high_res_img('img/firefox/channel/title-beta.png', {'alt': 'Firefox Beta', 'width': '441', 'height': '74'}) }}</h2>
+      <h2 class="channel-title channel-title-beta">{{ high_res_img('firefox/channel/title-beta.png', {'alt': 'Firefox Beta', 'width': '441', 'height': '74'}) }}</h2>
       {# L10n: This description applies to Firefox Beta #}
       <h3>{{_('The latest features in a more stable environment')}}</h3>
       <div class="download-box" id="beta-desktop">
@@ -78,7 +78,7 @@
     </div>
 
     <div id="firefox" class="pager-page">
-      <h2 class="channel-title channel-title-firefox">{{ high_res_img('img/firefox/channel/title-firefox.png', {'alt': 'Firefox', 'width': '258', 'height': '74'}) }}</h2>
+      <h2 class="channel-title channel-title-firefox">{{ high_res_img('firefox/channel/title-firefox.png', {'alt': 'Firefox', 'width': '258', 'height': '74'}) }}</h2>
       {# L10n: This description applies to Firefox on the Release channel #}
       <h3>{{_('Tried, tested and used by millions around the world')}}</h3>
       <div class="download-box" id="firefox-desktop">
@@ -91,7 +91,7 @@
     </div>
 
     <div id="developer" class="pager-page">
-      <h2 class="channel-title channel-title-aurora">{{ high_res_img('img/firefox/channel/title-dev.png', {'alt': 'Firefox Developer Edition', 'width': '214', 'height': '100'}) }}</h2>
+      <h2 class="channel-title channel-title-aurora">{{ high_res_img('firefox/channel/title-dev.png', {'alt': 'Firefox Developer Edition', 'width': '214', 'height': '100'}) }}</h2>
       {# L10n: This description applies to Firefox Developer Edition #}
       {% if l10n_has_tag('channel_dev_edition') %}
         <h3>{{_('Built for those who build the Web')}}</h3>
