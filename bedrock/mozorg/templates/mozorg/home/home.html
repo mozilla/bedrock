@@ -185,7 +185,13 @@
         <li id="promo-7" class="item promo-face">
           {{ promo_face(3) }}
         </li>
-      {% if l10n_has_tag('webmaker_promo_introducing') %}
+      {% if l10n_has_tag('webmaker_promo_thimble') %}
+        <li id="promo-8" class="item promo-small-landscape thimble" tabindex="0"  data-name="Try the Thimble code editor">
+          <a class="panel-link" rel="external" href="https://thimble.mozilla.org/">
+            <h2>{{ _('Try the Thimble code editor') }}</h2>
+          </a>
+        </li>
+      {% elif l10n_has_tag('webmaker_promo_introducing') %}
         <li id="promo-8" class="item promo-small-landscape webmaker" data-name="Teach the Web">
           <a class="panel-link" rel="external" href="https://teach.mozilla.org">
             <h2>{{ _('Teach<br> the Web') }}</h2>
