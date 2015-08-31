@@ -163,7 +163,7 @@ PIPELINE_CSS = {
     'firefox': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
-            'css/firefox/menu.less',
+            'css/base/menu.less',
             'css/firefox/template.less',
             'css/tabzilla/tabzilla-static.less',
         ),
@@ -889,6 +889,13 @@ PIPELINE_CSS = {
             'css/thunderbird/landing.less',
         ),
         'output_filename': 'css/thunderbird-landing-bundle.css',
+    },
+    'thunderbird-organizations': {
+        'source_filenames': (
+            'css/base/menu.less',
+            'css/firefox/organizations.less',
+        ),
+        'output_filename': 'css/thunderbird-organizations-bundle.css',
     },
     'thunderbird-start': {
         'source_filenames': (
