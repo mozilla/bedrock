@@ -52,13 +52,13 @@ high_res_img()
 ^^^^^^^^^^^^^^
 For images that include a high-resolution alternative for displays with a high pixel density, use the `high_res_img()` function::
 
-    high_res_img('img/firefox/new/firefox-logo.png', {'alt': 'Firefox', 'width': '200', 'height': '100'})
+    high_res_img('firefox/new/firefox-logo.png', {'alt': 'Firefox', 'width': '200', 'height': '100'})
 
-The `high_res_img()` function will automatically look for the image in the URL parameter suffixed with `'-high-res'`, e.g. `img/firefox/new/firefox-logo-high-res.png` and switch to it if the display has high pixel density.
+The `high_res_img()` function will automatically look for the image in the URL parameter suffixed with `'-high-res'`, e.g. `firefox/new/firefox-logo-high-res.png` and switch to it if the display has high pixel density.
 
 `high_res_img()` supports localized images by setting the `'l10n'` parameter to `True`::
 
-    high_res_img('img/firefox/new/firefox-logo.png', {'l10n': True, 'alt': 'Firefox', 'width': '200', 'height': '100'})
+    high_res_img('firefox/new/firefox-logo.png', {'l10n': True, 'alt': 'Firefox', 'width': '200', 'height': '100'})
 
 When using localization, `high_res_img()` will look for images in the appropriate locale folder. In the above example, for the `de` locale, both standard and high-res versions of the image should be located at `media/img/l10n/de/firefox/new/`.
 
@@ -74,13 +74,13 @@ platform_img()
 ^^^^^^^^^^^^^^
 Finally, for outputting an image that differs depending on the platform being used, the `platform_img()` function will automatically display the image for the user's browser::
 
-    platform_img('img/firefox/new/browser.png', {'alt': 'Firefox screenshot'})
+    platform_img('firefox/new/browser.png', {'alt': 'Firefox screenshot'})
 
 `platform_img()` will automatically look for the images `browser-mac.png`, `browser-win.png`, `browser-linux.png`, etc. Platform image also supports hi-res images by adding `'high-res': True` to the list of optional attributes.
 
 `platform_img()` supports localized images by setting the `'l10n'` parameter to `True`::
 
-    platform_img('img/firefox/new/firefox-logo.png', {'l10n': True, 'alt': 'Firefox screenshot'})
+    platform_img('firefox/new/firefox-logo.png', {'l10n': True, 'alt': 'Firefox screenshot'})
 
 When using localization, `platform_img()` will look for images in the appropriate locale folder. In the above example, for the `es-ES` locale, all platform versions of the image should be located at `media/img/l10n/es-ES/firefox/new/`.
 

@@ -187,6 +187,8 @@ def platform_img(ctx, url, optional_attributes=None):
     for platform, image in img_urls.iteritems():
         if is_l10n:
             image = l10n_img_file_name(ctx, image)
+        else:
+            image = path.join('img', image)
 
         if find_static(image):
             key = 'data-src-' + platform
@@ -217,8 +219,8 @@ def high_res_img(ctx, url, optional_attributes=None):
         url = l10n_img(ctx, url)
         url_high_res = l10n_img(ctx, url_high_res)
     else:
-        url = static(url)
-        url_high_res = static(url_high_res)
+        url = static(path.join('img', url))
+        url_high_res = static(path.join('img', url_high_res))
 
     if optional_attributes:
         class_name = optional_attributes.pop('class', '')

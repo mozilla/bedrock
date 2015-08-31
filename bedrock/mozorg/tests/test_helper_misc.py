@@ -283,8 +283,8 @@ class TestPlatformImg(TestCase):
     def test_platform_img_no_optional_attributes(self, find_static):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
-        self.assertIn(u'data-src-windows="/media/test-windows.png"', markup)
-        self.assertIn(u'data-src-mac="/media/test-mac.png"', markup)
+        self.assertIn(u'data-src-windows="/media/img/test-windows.png"', markup)
+        self.assertIn(u'data-src-mac="/media/img/test-mac.png"', markup)
 
     def test_platform_img_with_optional_attributes(self, find_static):
         """Should return expected markup with optional attributes"""
@@ -294,8 +294,8 @@ class TestPlatformImg(TestCase):
     def test_platform_img_with_high_res(self, find_static):
         """Should return expected markup with high resolution image attrs"""
         markup = self._render('test.png', {'high-res': True})
-        self.assertIn(u'data-src-windows-high-res="/media/test-windows-high-res.png"', markup)
-        self.assertIn(u'data-src-mac-high-res="/media/test-mac-high-res.png"', markup)
+        self.assertIn(u'data-src-windows-high-res="/media/img/test-windows-high-res.png"', markup)
+        self.assertIn(u'data-src-mac-high-res="/media/img/test-mac-high-res.png"', markup)
         self.assertIn(u'data-high-res="true"', markup)
 
     def test_platform_img_with_l10n(self, find_static):
@@ -462,19 +462,19 @@ class TestHighResImg(TestCase):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
         expected = (
-            u'<img class="js " src="" data-processed="false" data-src="/media/test.png" '
-            u'data-high-res="true" data-high-res-src="/media/test-high-res.png">'
-            u'<noscript><img class="" src="/media/test.png"></noscript>')
+            u'<img class="js " src="" data-processed="false" data-src="/media/img/test.png" '
+            u'data-high-res="true" data-high-res-src="/media/img/test-high-res.png">'
+            u'<noscript><img class="" src="/media/img/test.png"></noscript>')
         self.assertEqual(markup, expected)
 
     def test_high_res_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         markup = self._render('test.png', {'data-test-attr': 'test', 'class': 'logo'})
         expected = (
-            u'<img class="js logo" src="" data-processed="false" data-src="/media/test.png" '
-            u'data-high-res="true" data-high-res-src="/media/test-high-res.png" '
+            u'<img class="js logo" src="" data-processed="false" data-src="/media/img/test.png" '
+            u'data-high-res="true" data-high-res-src="/media/img/test-high-res.png" '
             u'data-test-attr="test"><noscript>'
-            u'<img class="logo" src="/media/test.png" data-test-attr="test"></noscript>')
+            u'<img class="logo" src="/media/img/test.png" data-test-attr="test"></noscript>')
         self.assertEqual(markup, expected)
 
     def test_high_res_img_with_l10n(self):
