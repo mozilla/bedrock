@@ -11,6 +11,16 @@
     }
 }
 
+.stacked h1 span {
+    margin-left: -.1ex; /* Remove a space before "Extended Support Release" */
+}
+
+.stacked p.large {
+    .span-all();
+    .font-size(24px);
+    line-height: 1.3;
+}
+
 #esr-form {
     input[type="email"],
     input[type="text"] {
