@@ -283,14 +283,85 @@
         'data-download-version': 'href'
     });
 
-    // init send-to-device form
-    var form = new Mozilla.SendToDevice();
-    form.init();
+    // send-to-device test variations
+    var sendToDeviceWidget;
+    var $sendToDeviceWidgetForm;
+    var $sendToDeviceModal;
+    var $sendToDeviceEmbeddedWidget;
+    var $sendToLinks = $('.send-to');
 
-    var $widget = $('#send-to-modal-container');
+    // data-* stored in #intro element to determine test configuration
+    // contains two properties: lang (page language) and variant ('a', 'b', 'c', '')
+    var testVars = $('#intro').data();
 
-    $('.send-to').on('click', function(e) {
-        e.preventDefault();
-        Mozilla.Modal.createModal(this, $widget);
-    });
+    var initSendToDeviceForm = function() {
+        sendToDeviceWidget = new Mozilla.SendToDevice();
+        sendToDeviceWidget.init();
+    };
+
+    // set up default behavior for send to device widget - opens in modal
+    // used for no variant (no test) and variant "a"
+    var defaultSendToDevice = function() {
+        // add class to display the widget
+        $('#send-to-device-default').removeClass('send-to-device-variant');
+
+        // reference modal wrapper for widget
+        $sendToDeviceModal = $('#send-to-modal-container');
+
+        // wire nav/footer links to open modal
+        $sendToLinks.on('click', function(e) {
+            e.preventDefault();
+            Mozilla.Modal.createModal(this, $sendToDeviceModal);
+        });
+    };
+
+    // only run tests for en-US desktop users
+    if (testVars.lang === 'en-US' && $.inArray(window.site.platform, ['android', 'ios', 'fxos']) === -1) {
+        $sendToDeviceWidgetForm = $('#send-to-device-form');
+
+        // embed send to device widget in intro
+        if (testVars.variant === 'b') {
+            $sendToDeviceEmbeddedWidget = $('#send-to-device-embedded-widget');
+
+            initSendToDeviceForm();
+
+            // send hidden field to instruct view to change basket id
+            $sendToDeviceWidgetForm.append('<input type="hidden" name="android-send-to-device-test" value="android-test-embed">');
+
+            // move send to device widget into #intro
+            $('#send-to-device').removeClass('logo').appendTo($sendToDeviceEmbeddedWidget);
+
+            // show the widget
+            $sendToDeviceEmbeddedWidget.removeClass('send-to-device-variant');
+
+            // update nav & footer buttons to scroll to embedded widget
+            $sendToLinks.on('click', function(e) {
+                e.preventDefault();
+
+                Mozilla.smoothScroll({
+                    top: $sendToDeviceEmbeddedWidget.offset().top - 100
+                });
+            });
+        // no send to device widget, show google play button only
+        } else if (testVars.variant === 'c') {
+            $('#send-to-device-google-play').removeClass('send-to-device-variant');
+
+            // make sure google play button is shown in nav and footer.
+            $('#fxfamilynav-cta-wrapper > div').removeClass('show-widget');
+            $('#download-wrapper').removeClass('show-widget');
+        } else { // variant "a" or ""
+            // default behavior, but change basket ids so we know this is a test variation
+            initSendToDeviceForm();
+            defaultSendToDevice();
+
+            if (testVars.variant === 'a') {
+                // send hidden field to instruct view to change basket id
+                $sendToDeviceWidgetForm.append('<input type="hidden" name="android-send-to-device-test" value="android-test-modal">');
+            }
+        }
+    } else {
+        // default/no-variant behavior - identical to before tests were added
+        initSendToDeviceForm();
+        defaultSendToDevice();
+    }
 })(window.jQuery, window.Mozilla);

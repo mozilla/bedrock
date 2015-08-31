@@ -44,7 +44,7 @@
 
 {% block content %}
 
-<section id="intro">
+<section id="intro" data-variant="{{ variant }}" data-lang="{{ LANG }}">
   <div class="container">
     <div class="content-primary">
       <h2 class="heading">
@@ -58,7 +58,7 @@
         {{ _('Our most customizable Firefox for Android yet.') }}
       </p>
 
-      <div class="dl-button-wrapper {% if has_widget %}show-widget{% endif %}">
+      <div class="send-to-device-variant dl-button-wrapper {% if has_widget %}show-widget{% endif %}" id="send-to-device-default">
         <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
           {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
         </a>
@@ -67,6 +67,15 @@
         {% if l10n_has_tag('ios_announce', 'firefox/new') %}
           <p class="ios-link">{{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}</p>
         {% endif %}
+      </div>
+
+      {# alternate send-to-device options for ?v=b|c in URL #}
+      <div class="send-to-device-variant" id="send-to-device-embedded-widget"></div>
+
+      <div class="send-to-device-variant" id="send-to-device-google-play">
+        <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
+          {{ high_res_img('firefox/android/test/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '200', 'height': '69'}) }}
+        </a>
       </div>
 
       {# happy little droid #}
@@ -395,10 +404,12 @@
 
         <div id="download-content">
           <h3>{{ _('Choose Firefox') }}</h3>
-          <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="button download click" data-download-version="Firefox for Android" data-alt="{{ _('Get Firefox for Android') }}">
-            {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
-          </a>
-          <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for Android') }}</button>
+          <div id="send-to-device-footer">
+            <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="button download click" data-download-version="Firefox for Android" data-alt="{{ _('Get Firefox for Android') }}">
+              {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
+            </a>
+            <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for Android') }}</button>
+          </div>
           <ul>
             <li>
               <a rel="external" href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported devices') }}</a>

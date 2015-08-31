@@ -1044,6 +1044,7 @@ PIPELINE_JS = {
     'firefox_android': {
         'source_filenames': (
             'js/base/mozilla-accordion.js',
+            'js/base/mozilla-smoothscroll.js',
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',

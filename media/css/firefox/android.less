@@ -583,9 +583,128 @@ html[dir="rtl"] #phone-wrapper figure {
     z-index: 1;
 }
 
-// Send to Device Widget
-.js #send-to-device {
+// for no-js, hide all send to device variants, except...
+.send-to-device-variant {
     display: none;
+}
+
+// ...make sure default is visible
+#send-to-device-default.send-to-device-variant {
+    display: block;
+}
+
+// Send to Device Widget
+.js {
+    #send-to-device {
+        display: none;
+    }
+
+    // make default send to device hidden until we know which variant to show
+    #send-to-device-default.send-to-device-variant {
+        display: none;
+    }
+
+    #send-to-device-embedded-widget #send-to-device {
+        display: block;
+        background: #005189;
+        border-radius: 6px;
+        color: #fff;
+        width: auto;
+        margin-right: 20px;
+
+        // largely appropriated from send-to-device.less
+        h2 {
+            max-width: none;
+            .font-size(24px);
+            padding-bottom: 20px;
+            color: #fff;
+        }
+
+        .form-container {
+            width: @widthMobileLandscape - @gridGutterWidth;
+
+            a,
+            a:active,
+            a:focus,
+            a:hover {
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+
+        footer {
+            padding: 0 (@baseLine / 2);
+            background: #005189;
+            border-radius: 0 0 6px 6px;
+            border-top: none;
+
+            ul {
+                li {
+                    float: none;
+                    width: 100%;
+
+                    &.google-play {
+                        text-align: center;
+                    }
+
+                    a {
+                        display: block;
+                        padding: 0 0 @baseLine;
+                        line-height: 1.5;
+                        color: #fff;
+                        .font-size(14px);
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .form-container {
+            width: auto;
+        }
+
+        #send-to-device-form {
+
+            .input {
+
+                label {
+                    text-align: center;
+                }
+
+                .inline-field {
+                    width: auto;
+
+                    .form-input {
+                        float: none;
+                        width: auto;
+                    }
+
+                    .form-submit {
+                        float: none;
+                        width: auto;
+                    }
+                }
+
+                #id-input {
+                    float: none;
+                    .border-box();
+                    display: block;
+                    width: 100%;
+                }
+
+                button[type="submit"] {
+                    display: block;
+                    float: none;
+                    width: 100%;
+                    margin-top: @baseLine;
+                }
+            }
+
+            .error-list li {
+                width: auto;
+            }
+        }
+    }
 }
 
 #modal #send-to-device {
@@ -1052,6 +1171,10 @@ html[lang="ja"] #privacy p {
     }
 
     .js {
+        #send-to-device-google-play {
+            text-align: center;
+        }
+
         .customize-section .line {
             display: none;
         }
