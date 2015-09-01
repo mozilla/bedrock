@@ -56,12 +56,14 @@
                 });
 
                 break;
-            // track user with FxA account logging in (very rare for firstrun)
+            // track & redirect user with FxA account logging in
             case 'login':
                 window.dataLayer.push({
                     'event': 'firstrun-fxa',
                     'interaction': 'fxa-login'
                 });
+
+                window.location.href = fxaIframeSrc + '/settings';
 
                 break;
             }
