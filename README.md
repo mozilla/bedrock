@@ -1,7 +1,7 @@
 bedrock
 =======
 
-*bedrock* is the code name of the new mozilla.org. It is as shiny,
+*bedrock* is the code name of mozilla.org. It is as shiny,
 awesome, and open sourcy as always. Perhaps even a little more.
 
 [![Build Status](https://travis-ci.org/mozilla/bedrock.svg?branch=master)](https://travis-ci.org/mozilla/bedrock)
