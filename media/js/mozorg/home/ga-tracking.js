@@ -5,73 +5,13 @@
 $(function () {
     'use strict';
 
-    var $largeTile;
-    var $largeTileParent;
-    var $smallTile;
-    var $smallTileParent;
-    var $faces;
-    var $tweets;
     var $mainNav;
-    var promoClass;
-
-    // Set Up data-attr for consumption by GTM
-
-    // promo tiles
-    $largeTile = $('.promo-large-portrait > a.panel-link, .promo-large-landscape > a.panel-link');
-    $largeTileParent = $largeTile.parent();
-    promoClass = $largeTileParent.hasClass('promo-large-portrait') ? 'portrait' : 'landscape';
-    $largeTile.attr({
-        'data-promotion-id': $largeTileParent.prop('id'),
-        'data-promotion-name': $largeTileParent.data('name'),
-        'data-promotion-class': 'promo-large-' + promoClass,
-        'data-promotion-type': 'tile'
-    });
-
-    $smallTile = $('.promo-small-landscape > a.panel-link');
-    $smallTileParent = $smallTile.parent();
-    $smallTile.attr({
-        'data-promotion-id': $smallTileParent.prop('id'),
-        'data-promotion-name': $smallTileParent.data('name'),
-        'data-promotion-class': 'promo-small-landscape',
-        'data-promotion-type': 'tile'
-    });
-
-    $faces = $('.promo-face > a');
-    $faces.attr({
-        'data-promotion-id': $faces.parent().prop('id'),
-        'data-promotion-name': 'Mozillians',
-        'data-promotion-class': 'promo-face',
-        'data-promotion-type': 'tile'
-    });
-
-    $tweets = $('.twt-actions > a');
-    $tweets.attr({
-        'data-promotion-id': $tweets.parent().closest('li').prop('id'),
-        'data-promotion-name': 'Mozilla Tweets ' + $tweets.attr('title'),
-        'data-promotion-class': 'promo-small-landscape',
-        'data-promotion-type': 'tile'
-    });
 
     //generic links
     $mainNav = $('#nav-main-menu li a');
     $mainNav.attr({
         'data-element-location': 'nav click',
         'data-link-type': $mainNav.data('name')
-    });
-
-    $('#upcoming-events a').attr({
-        'data-element-location': 'Upcoming Event Link Clicks',
-        'data-link-type': 'href'
-    });
-
-    $('.contribute-btn').attr({
-        'data-element-location': 'button-click',
-        'data-link-type': 'Get Involved with Mozilla today'
-    });
-
-    $('#secondary-links a').attr({
-        'data-element-location': 'Secondary Link Clicks',
-        'data-link-type': 'href'
     });
 
     // track download firefox promo clicks
