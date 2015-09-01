@@ -64,10 +64,7 @@
             if (pf.indexOf("Mac") !== -1) {
                 return 'oldmac';
             }
-            if (pf === '' &&
-                    /Firefox/.test(ua) &&
-                    /Mobile|Tablet/.test(ua) &&
-                    !(/Android/.test(ua))) {
+            if (pf === '' && /Firefox/.test(ua)) {
                 return 'fxos';
             }
 
