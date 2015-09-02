@@ -11,26 +11,31 @@ var path = '/firefox/partners/';
 var url = config.base() + path;
 
 casper.test.begin('Firefox Partners, Elements: ' + url, 11, function suite(test) {
+
     casper.start(url, function() {
         test.assertHttpStatus(200);
+    });
+
+    casper.waitUntilVisible('#article-wrapper', function() {
 
         test.assertVisible('#partner-menu', 'The partner menu is visible');
         test.assertVisible('#mwc-menu', 'The MWC menu is visible');
-
         test.assertVisible('#devices-menu', 'The devices menu is visible');
+
         var devicesHref = this.getElementAttribute('#menu-devices a', 'href');
         test.assert(devicesHref.indexOf('firefox/os/devices') > -1, 'Link to devices page is as expected');
-
-        test.assertVisible('.partner-logos', 'The partner logos are visible');
-        test.assertVisible('.partner-button', 'The "Be a partner" button is visible');
-
-        test.assertVisible('#screen-overview', 'The overview screen image is visible');
-        test.assertNotVisible('#screen-os', 'The OS screen image is not visible');
+        test.assertExist('.partner-logos', 'The partner logos exist');
+        test.assertExists('.partner-button', 'The "Be a partner" button exists');
 
         var href = this.getElementAttribute('.partner-button a', 'href');
         test.assert(href.indexOf('mobilepartners.mozilla.org') > -1, 'The partner button links to the correct endpoint');
 
         test.assertElementCount('#article-wrapper article', 4, 'There are four content sections');
+    });
+
+    casper.waitUntilVisible('#screen-overview', function() {
+        test.assert(true, 'The overview screen image is visible');
+        test.assertNotVisible('#screen-os', 'The OS screen image is not visible');
     });
 
     casper.run(function() {
@@ -40,7 +45,10 @@ casper.test.begin('Firefox Partners, Elements: ' + url, 11, function suite(test)
 });
 
 casper.test.begin('Firefox Partners, OS Section: ' + url, 4, function suite(test) {
-    casper.start(url, function() {
+
+    casper.start(url);
+
+    casper.waitUntilVisible('#article-wrapper', function() {
         this.click('#menu-os a');
     });
 
@@ -64,7 +72,10 @@ casper.test.begin('Firefox Partners, OS Section: ' + url, 4, function suite(test
 });
 
 casper.test.begin('Firefox Partners, Marketplace Section: ' + url, 8, function suite(test) {
-    casper.start(url, function() {
+
+    casper.start(url);
+
+    casper.waitUntilVisible('#article-wrapper', function() {
         this.click('#menu-marketplace a');
     });
 
@@ -97,7 +108,10 @@ casper.test.begin('Firefox Partners, Marketplace Section: ' + url, 8, function s
 });
 
 casper.test.begin('Firefox Partners, Fx Android Section: ' + url, 4, function suite(test) {
-    casper.start(url, function() {
+
+    casper.start(url);
+
+    casper.waitUntilVisible('#article-wrapper', function() {
         this.click('#menu-android a');
     });
 
@@ -121,7 +135,10 @@ casper.test.begin('Firefox Partners, Fx Android Section: ' + url, 4, function su
 });
 
 casper.test.begin('Firefox Partners, MWC Map Modal: ' + url, 2, function suite(test) {
-    casper.start(url, function() {
+
+    casper.start(url);
+
+    casper.waitUntilVisible('#article-wrapper', function() {
         this.click('#menu-mwc-map a');
     });
 
@@ -141,7 +158,10 @@ casper.test.begin('Firefox Partners, MWC Map Modal: ' + url, 2, function suite(t
 });
 
 casper.test.begin('Firefox Partners, MWC Schedule Modal: ' + url, 2, function suite(test) {
-    casper.start(url, function() {
+
+    casper.start(url);
+
+    casper.waitUntilVisible('#article-wrapper', function() {
         this.click('#menu-mwc-schedule a');
     });
 
