@@ -890,6 +890,40 @@ html[lang|="en"] {
 }
 
 
+/***************************************************************************/
+// Thimble
+.promo-small-landscape.thimble {
+
+    background-color: #2D9961;
+
+    h2 {
+        .at2x('/media/img/home/panel/thimble/mozilla-thimble.png', 69px, 75px);
+        background-repeat: no-repeat;
+        margin: @baseLine 10px;
+        padding: 0 0 0 85px;
+        height: 75px;
+    }
+}
+
+[lang|="en"] {
+    .promo-small-landscape.thimble {
+        h2 {
+            margin: 25px @baseLine;
+            padding: 8px 0 0 85px;
+        }
+    }
+}
+
+.html-rtl {
+    .promo-small-landscape.thimble {
+        h2 {
+            background-position: 100%;
+            padding: 8px 85px 0 0;
+            text-align: right;
+        }
+    }
+}
+
 /****************************************************************************/
 // Gear
 .promo-large-landscape.gear {
