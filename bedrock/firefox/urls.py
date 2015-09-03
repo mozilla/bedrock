@@ -91,6 +91,7 @@ urlpatterns = patterns('',
     page('firefox/os/devices/tv', 'firefox/os/tv.html'),
 
     page('firefox/pocket', 'firefox/pocket.html'),
+    page('firefox/push', 'firefox/push.html'),
 
     page('firefox/independent', 'firefox/independent.html'),
     page('firefox/windows-10/welcome', 'firefox/win10-welcome.html'),
