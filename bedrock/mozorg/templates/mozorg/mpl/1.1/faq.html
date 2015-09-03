@@ -19,7 +19,7 @@
 
     <section>
         <p><small><a href="http://geckozone.org/articles/41">Fran&ccedil;ais</a> (une version plus t&ocirc;t)</small></p>
-        <p><em>This is an outdated FAQ, and is retained only for historical purposes. The FAQ for MPL 2.0 is <a href="{{ url('mozorg.MPL.2.0.FAQ') }}">here</a></em>.</p>
+        <p><em>This is an outdated FAQ, and is retained only for historical purposes. The FAQ for MPL 2.0 is <a href="{{ url('mozorg.mpl.2.0.faq') }}">here</a></em>.</p>
         <p>This is the Mozilla MPL FAQ. It aims to answer the most common questions people have about using and distributing code under the MPL. Note that because much of the Mozilla codebase is MPL/GPL/LGPL tri-licensed, it's also possible to use and distribute some Mozilla products under the LGPL or GPL; in that case, some of these questions would have different answers.</p>
         <p>These explanations are <i>not the license</i>; if in doubt, consult a lawyer. If you see any errors in this FAQ, or have suggestions for further questions, please email <a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a>.</p>
         <dl>
@@ -31,8 +31,8 @@
 
             <dt>I want to distribute (outside my organization) complete and unchanged binary packages provided by Mozilla. What do I have to do?</dt>
             <dd>
-                <p>Nothing. The Mozilla-provided binary packages already meet the requirements of sections <a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.1">3.1</a> to <a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.5">3.5</a>, and include the notices required by section <a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.6">3.6</a>. You may distribute them under the terms of the MPL.</p>
-                <p>If you are offering a warranty, you must make clear that it is offered by you alone [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.5">3.5</a>]. Mozilla offers no warranties on our binaries.</p>
+                <p>Nothing. The Mozilla-provided binary packages already meet the requirements of sections <a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.1">3.1</a> to <a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.5">3.5</a>, and include the notices required by section <a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.6">3.6</a>. You may distribute them under the terms of the MPL.</p>
+                <p>If you are offering a warranty, you must make clear that it is offered by you alone [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.5">3.5</a>]. Mozilla offers no warranties on our binaries.</p>
                 <p>You do not require a <a href="{{ url('foundation.trademarks.index') }}">Mozilla Foundation trademark license</a>.</p>
             </dd>
 
@@ -40,10 +40,10 @@
             <dd>
                 <p>You must</p>
                 <ul>
-                    <li>add a conspicuous notice stating where to find the exact source to the binary you are distributing [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.6">3.6</a>]<br> <em>(Note: if you are compiling a Firefox-like package, this may be already included, e.g. in <tt>about:buildconfig</tt>.)</em></li>
-                    <li>if your documentation has a section dealing with licensing or the recipient's rights to the code, put a copy of the MPL in it. [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.5">3.5</a>]</li>
+                    <li>add a conspicuous notice stating where to find the exact source to the binary you are distributing [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.6">3.6</a>]<br> <em>(Note: if you are compiling a Firefox-like package, this may be already included, e.g. in <tt>about:buildconfig</tt>.)</em></li>
+                    <li>if your documentation has a section dealing with licensing or the recipient's rights to the code, put a copy of the MPL in it. [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.5">3.5</a>]</li>
                 </ul>
-                <p>You may distribute any binaries you create under a license of your choosing, as long as it doesn't interfere with the recipients'right to the source under the MPL [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.6">3.6</a>].</p>
+                <p>You may distribute any binaries you create under a license of your choosing, as long as it doesn't interfere with the recipients'right to the source under the MPL [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.6">3.6</a>].</p>
                 <p>You may require a <a href="{{ url('foundation.trademarks.index') }}">Mozilla Foundation trademark license</a> if you wish to use Mozilla Foundation trademarks (e.g. the Firefox name or logo).</p>
             </dd>
 
@@ -51,24 +51,24 @@
             <dd>
                 <p>You must</p>
                 <ul>
-                    <li>add a conspicuous notice stating where to find the Modifications used to make the binary you are distributing. [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.6">3.6</a>] If you wish, you may point at mozilla.org for the base code and then ship diffs between our version and yours.</li>
-                    <li>if your documentation has a section dealing with licensing or the recipient's rights to the code, put a copy of the MPL in it. <a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.5">3.5</a>]</li>
+                    <li>add a conspicuous notice stating where to find the Modifications used to make the binary you are distributing. [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.6">3.6</a>] If you wish, you may point at mozilla.org for the base code and then ship diffs between our version and yours.</li>
+                    <li>if your documentation has a section dealing with licensing or the recipient's rights to the code, put a copy of the MPL in it. <a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.5">3.5</a>]</li>
                 </ul>
                 <p>In addition, there are several obligations relating to your Modifications. You must</p>
                 <ul>
-                    <li>have the right to distribute your Modifications [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.4">3.4 (c)</a>]</li>
-                    <li>add a correctly-completed MPL header to any new files which are Modifications [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.5">3.5</a>]</li>
-                    <li>make your Modifications available in source code form, under the MPL [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.1">3.1</a>]</li>
-                    <li>make your Modifications available on the same media as the executable version, or on the Net as long as they are available for 12 months [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.2">3.2</a>].</li>
-                    <li>document what your Modifications are [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.6">3.6</a>] (one way to meet this requirement is to ship them as diffs)</li>
-                    <li>include a statement that your code is derived from the particular piece of MPLed code you started with (e.g. Firefox), and a list of the names of the Initial Developers of that code [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-3.3">3.3</a>].</li>
+                    <li>have the right to distribute your Modifications [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.4">3.4 (c)</a>]</li>
+                    <li>add a correctly-completed MPL header to any new files which are Modifications [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.5">3.5</a>]</li>
+                    <li>make your Modifications available in source code form, under the MPL [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.1">3.1</a>]</li>
+                    <li>make your Modifications available on the same media as the executable version, or on the Net as long as they are available for 12 months [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.2">3.2</a>].</li>
+                    <li>document what your Modifications are [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.6">3.6</a>] (one way to meet this requirement is to ship them as diffs)</li>
+                    <li>include a statement that your code is derived from the particular piece of MPLed code you started with (e.g. Firefox), and a list of the names of the Initial Developers of that code [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-3.3">3.3</a>].</li>
                 </ul>
                 <p>You may require a <a href="{{ url('foundation.trademarks.index') }}">Mozilla Foundation trademark license</a> if you wish to use Mozilla Foundation trademarks (e.g. the Firefox name or logo).</p>
             </dd>
 
             <dt>How 'viral' is the MPL? If I use MPLed code in my proprietary application, will I have to give all the source code away?</dt>
             <dd>
-                <p>The MPL has a limited amount of 'copyleft' - more copyleft than the BSD family of licenses, which have no copyleft at all, but less than the LGPL or the GPL. It is based around the definition of a 'Modification' in the license [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-1.9">1.9</a>].</p> 
+                <p>The MPL has a limited amount of 'copyleft' - more copyleft than the BSD family of licenses, which have no copyleft at all, but less than the LGPL or the GPL. It is based around the definition of a 'Modification' in the license [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-1.9">1.9</a>].</p>
                 <p>What is a Modification? Any changes to MPLed files, or new files into which MPLed code has been copied, are Modifications and so fall under the MPL. New files containing only your code are not Modifications, and not covered by the MPL.</p>
                 <p>Files which fall under the MPL because they are or contain Modifications must be made available as detailed in the license (or elsewhere in this FAQ.) Other files may be kept proprietary.</p>
                 <p>One well-known example of this is the Netscape-branded browser. It contains (and Netscape makes source code available for) many files from the Mozilla project, which are under the MPL. But it also contains proprietary code, for example to integrate with the AOL Instant Messenger service.</p>
@@ -80,7 +80,7 @@
             <dt>May I combine MPLed code and GPL-licensed code in the same binary?</dt>
             <dd>No, unless the MPLed code is also available under the GPL - for example using the Mozilla tri-license. This is because the MPL imposes additional restrictions over and above those imposed by the GPL, which makes it incompatible with section 6 of GPL version 2, and the corresponding section in any later versions.</dd>
 
-            <dt>Who has the right to publish new versions of the MPL [<a href="{{ url('mozorg.MPL.1.1.index') }}#section-6.1">6.1</a>]?</dt>
+            <dt>Who has the right to publish new versions of the MPL [<a href="{{ url('mozorg.mpl.1.1.index') }}#section-6.1">6.1</a>]?</dt>
             <dd>The Mozilla Foundation acquired this right from Netscape at the
             time it was founded.</dd>
         </dl>
