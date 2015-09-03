@@ -12,6 +12,8 @@ import views
 import bedrock.releasenotes.views
 from bedrock.releasenotes import version_re
 
+from waffle.decorators import waffle_switch
+
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
@@ -42,7 +44,8 @@ urlpatterns = patterns('',
     page('firefox/interest-dashboard', 'firefox/interest-dashboard.html'),
     page('firefox/android', 'firefox/android/index.html'),
     page('firefox/android/faq', 'firefox/android/faq.html'),
-    page('firefox/ios', 'firefox/ios.html'),
+    page('firefox/ios', 'firefox/ios.html',
+        decorators=waffle_switch('ios-active')),
 
     page('firefox/os/faq', 'firefox/os/faq.html'),
     page('firefox/products', 'firefox/family/index.html'),
