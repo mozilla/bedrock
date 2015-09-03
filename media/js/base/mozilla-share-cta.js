@@ -6,7 +6,7 @@ $(function() {
     'use strict';
 
     var $shares = $('.mozilla-share-cta');
-    var $allLinks = $('.mozilla-share-cta ul');
+    var hasTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints;
     var showTimeout;
 
     $shares.each(function(share) {
@@ -40,25 +40,43 @@ $(function() {
         }, 200);
     }
 
-    $shares.on('mouseenter focusin', function() {
-        var $this = $(this);
-        if (!$this.hasClass('reveal')) {
-            showLinks($this);
-        }
-    });
+    function initHover() {
+        $shares.on('mouseenter focusin', function() {
+            var $this = $(this);
+            if (!$this.hasClass('reveal')) {
+                showLinks($this);
+            }
+        });
 
-    $shares.on('mouseleave', function() {
-        var $this = $(this);
-        if ($this.hasClass('reveal')) {
-            hideLinks($this);
-        }
-    });
+        $shares.on('mouseleave', function() {
+            var $this = $(this);
+            if ($this.hasClass('reveal')) {
+                hideLinks($this);
+            }
+        });
 
-    $shares.on('focusout', function(e) {
-        var $this = $(this);
-        // only toggle state if target is last link in list
-        if ($this.hasClass('reveal') && $(e.target).parent().is('li:last-child')) {
-            hideLinks($this);
-        }
-    });
+        $shares.on('focusout', function(e) {
+            var $this = $(this);
+            // only toggle state if target is last link in list
+            if ($this.hasClass('reveal') && $(e.target).parent().is('li:last-child')) {
+                hideLinks($this);
+            }
+        });
+    }
+
+    function initClick() {
+        $shares.on('click', function() {
+            var $this = $(this);
+            if (!$this.hasClass('reveal')) {
+                showLinks($this);
+            }
+        });
+    }
+
+    if (hasTouch) {
+        initClick();
+    } else {
+        initHover();
+    }
+
 });
