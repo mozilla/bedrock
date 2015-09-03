@@ -1361,7 +1361,8 @@ PIPELINE_JS = {
     'firefox_hello_start': {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
-            'js/firefox/hello/start.js',
+            'js/firefox/hello/hello-ftu.js',
+            'js/firefox/hello/start-ftu.js',
         ),
         'output_filename': 'js/firefox_hello_start-bundle.js',
     },
