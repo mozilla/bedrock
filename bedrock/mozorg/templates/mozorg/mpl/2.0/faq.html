@@ -21,8 +21,8 @@
         <h2 id="about-this-faq">About This FAQ</h2>
         <p>This is the Mozilla Public License (MPL) version 2.0 FAQ. It aims to answer the most common questions people have about using and distributing code under the MPL.</p>
         <p>Please note that, while this FAQ is intended to be accurate and helpful, it <em>is not the license</em>, and may not cover important issues that affect you and your specific situation. As a result, reading the FAQ should not serve as a substitute for reading the license itself, or for seeking legal advice from a lawyer.</p>
-        <p>If you see any errors in this FAQ, or have suggestions for further questions, please email <a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a>.</p> 
-        <p>The MPL version 1.1 FAQ is still available <a href="{{ url('mozorg.MPL.1.1.FAQ') }}">here</a> but should not be used except as a reference for that license.</p>
+        <p>If you see any errors in this FAQ, or have suggestions for further questions, please email <a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a>.</p>
+        <p>The MPL version 1.1 FAQ is still available <a href="{{ url('mozorg.mpl.1.1.faq') }}">here</a> but should not be used except as a reference for that license.</p>
     </section>
 
     <section>
@@ -38,7 +38,7 @@
     <section>
         <h2 id="license-use">Using and Distributing Software Under the License</h2>
         <h3 id="apply">Q4: I want to use the Mozilla Public License for software that I have written. What do I have to do?</h3>
-        <p>To apply the Mozilla Public License to software that you have written, add the header from Exhibit A of the license to each source code file in your project. Sample headers for various commenting styles are available <a href="{{ url('mozorg.MPL.headers.index') }}">here.</a> You may also add additional accurate notices of copyright ownership, such as the name of the copyright holder, but this is not necessary.</p>
+        <p>To apply the Mozilla Public License to software that you have written, add the header from Exhibit A of the license to each source code file in your project. Sample headers for various commenting styles are available <a href="{{ url('mozorg.mpl.headers.index') }}">here.</a> You may also add additional accurate notices of copyright ownership, such as the name of the copyright holder, but this is not necessary.</p>
         <h3 id="use">Q5: I want to use software which is available under the MPL. What do I have to do?</h3>
         <p>Nothing. Like all other free and open source software, software available under the MPL is available for anyone (including individuals and companies) to use for any purpose. The MPL only creates obligations for you if you want to distribute the software outside your organization.</p>
         <h3 id="distribute-within-organization">Q6: I want to distribute software which is available under the MPL, either changed or unchanged, within my organization. What do I have to do?</h3>
@@ -50,7 +50,7 @@
         <p>If you want to add your own terms when you distribute the software, Section 3.2(b) requires that those terms must not restrict a recipient's rights under the MPL, and if you offer a warranty on the software, Section 3.5 requires you to make clear that it is offered by you alone.</p>
         <h3 id="distribute-my-binaries">Q8: I want to distribute (outside my organization) executable programs or libraries that I have compiled from someone else's unchanged MPL-licensed source code, either standalone or part of a larger work. What do I have to do?</h3>
         <p>You must inform the recipients where they can get the source for the MPLed code in the executable program or library you are distributing (i.e., you must comply with Section 3.2). You may distribute any executables you create under a license of your choosing, as long as that license does not interfere with the recipients' rights to the source under the terms of the MPL.</p>
-        <h3 id="distribute-modified-source">Q9: I want to distribute (outside my organization) MPL-licensed source code that I have modified. What do I have to do?</h3> 
+        <h3 id="distribute-modified-source">Q9: I want to distribute (outside my organization) MPL-licensed source code that I have modified. What do I have to do?</h3>
         <p>To see the complete set of requirements, read the license. However, generally:</p>
         <ul>
             <li><p>You must inform the recipients that the source code is made available to them under the terms of the MPL (Section 3.1), including any Modifications (as defined in Section 1.10) that you have created.</p></li>
@@ -87,7 +87,7 @@
             <li><p>You must "<strong>additionally</strong> distribute" under (L)GPL. In other words, you must make the MPL-licensed source code available to your recipients under both MPL and (L)GPL. Someone downstream from your recipients can then take under (L)GPL-only or MPL-only. This is different from a traditional dual-license, which never requires publication under both licenses, and so always gives you the option of releasing incompatibly-licensed code.</p></li>
         </ol>
         <p>No GPL-compatible license can perfectly preserve the original author's ability to reuse downstream derivatives, but the last two restrictions serve to increase the probability that such reuse can occur in the broadest possible set of circumstances.</p>
-        <p>We have written <a href="{{ url('mozorg.MPL.2.0.combining-mpl-and-gpl') }}">a document</a> explaining how to do this in practical terms, i.e. what to do about license headers and so on.</p>
+        <p>We have written <a href="{{ url('mozorg.mpl.2.0.combining-mpl-and-gpl') }}">a document</a> explaining how to do this in practical terms, i.e. what to do about license headers and so on.</p>
 
         <h3 id="license-proliferation">Q15: Does Sec. 3.3's ability to mix with other licenses lead to more license proliferation?</h3>
         <p>Mozilla's experience with MPL 1.1, and the experience of some of our advisors, was that in practice license incompatibility is often resolved by the use of custom additional permissions or dual- and tri- licenses. Each combination of dual or tri-license, or custom additional permissions, further complicates license interaction and proliferation analysis. We feel that Sec. 3.3, by replacing these ad-hoc solutions with a single, standardized solution for the most common situation, should reduce, rather than increase, the practical risk of license proliferation.</p>
@@ -116,10 +116,10 @@
         <h3 id="header-locations">Q22: Does MPL 2.0 require that the MPL 2.0 license notice header be included in every file?</h3>
         <p>The license notice must be in some way "attached" to each file. (Sec. 1.4.) In cases where putting it in the file is impossible or impractical, that requirement can be fulfilled by putting the notice somewhere that a recipient "would be likely to look for such a notice," such as a LICENSE file in the same directory as the file. (Ex. A.) The license notice is as short as possible (3 lines) to make it easy to put in as many different types of files as possible.</p>
         <p>While the license permits putting the header somewhere other than the file itself, individual files often end up being distributed on their own, without the rest of the software they were authored with. As a result, putting the license notice in the file is the surest way to ensure that recipients are always notified.</p>
-        <p>For your convenience, Mozilla has produced <a href="{{ url('mozorg.MPL.headers.index') }}">boilerplate headers</a> formatted with several common 'comment' syntaxes, suitable for copying and pasting.</p>
+        <p>For your convenience, Mozilla has produced <a href="{{ url('mozorg.mpl.headers.index') }}">boilerplate headers</a> formatted with several common 'comment' syntaxes, suitable for copying and pasting.</p>
 
         <h3 id="used">Q23: What does "used" mean in the definition of Contributor Version (Sec. 1.2)?</h3>
-        <p>“Used” in Section 1.2 means an action taken in the process of creating a Contribution or Modification.</p> 
+        <p>“Used” in Section 1.2 means an action taken in the process of creating a Contribution or Modification.</p>
 
         <h3 id="compiling-unmodified">Q24: "Contributor" means one who creates "Covered Software", and "Covered Software" includes "the Executable Form" of MPL-licensed source code. Does this mean that compiling unmodified code to create an executable makes someone a Contributor?</h3>
         <p>No. We intend Contributors to be those who have created an addition or change to the program that adds new expression -- copyrightable material -- to pre-existing code.  Mere compilation is not an act of authorship it does not create such an addition, and so does not make you a Contributor.</p>
