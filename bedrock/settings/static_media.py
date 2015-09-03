@@ -415,6 +415,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_hello-bundle.css',
     },
+    'firefox_ios': {
+        'source_filenames': (
+            'css/base/mozilla-modal.less',
+            'css/base/send-to-device.less',
+            'css/firefox/ios.less',
+        ),
+        'output_filename': 'css/firefox_ios-bundle.css',
+    },
     'firefox_new': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -1367,6 +1375,16 @@ PIPELINE_JS = {
             'js/libs/matchMedia.addListener.js',
         ),
         'output_filename': 'js/firefox_hello_ie9-bundle.js',
+    },
+    'firefox_ios': {
+        'source_filenames': (
+            'js/libs/script.js',
+            'js/base/mozilla-modal.js',
+            'js/base/send-to-device.js',
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/ios.js',
+        ),
+        'output_filename': 'js/firefox_ios-bundle.js',
     },
     'firefox_tour': {
         'source_filenames': (

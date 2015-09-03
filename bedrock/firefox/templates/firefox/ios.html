@@ -1,0 +1,146 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import send_to_device with context %}
+
+{% extends "firefox/base-resp.html" %}
+
+{% add_lang_files "firefox/sendto" %}
+
+{% block page_title_prefix %}{{ _('Firefox for iOS') }} — {% endblock %}
+{% block page_title %}{{ _('Mobile Web browser for your iPhone, iPad and iPod touch') }}{% endblock %}
+{% block page_desc %}{{ _('Add Firefox to your iPhone, iPad and iPod touch.') }}{% endblock %}
+
+{% block body_id %}firefox-ios{% endblock %}
+{% block body_class %}
+  {{ super() }}
+  mozid state-default
+{% endblock %}
+
+{% block optimizely %}
+  {% if waffle.switch('firefox-ios-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_ios' %}
+{% endblock %}
+
+{% block site_header %}
+<div class="header">
+  <div class="container">
+    <div class="fx-logo">
+      <a href="{{ url('firefox.family.index') }}">Firefox</a>
+    </div>
+
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}">Mozilla</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% set has_widget = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{% block content %}
+<section class="section section-intro" id="intro">
+  <div class="container">
+    <p class="beta-flag">
+      <span><strong>{{ _('Preview release') }}</strong></span>
+    </p>
+
+  {% if LANG.startswith('en') %}
+    <h1>Firefox<br> for iOS</h1>
+  {% else %}
+    <h1>{{ _('Firefox for iOS') }}</h1>
+  {% endif %}
+
+    <div class="get-fxios {% if has_widget %}show-widget{% endif %}">
+      <h2>{{ _('Add Firefox to your iPhone, iPad and iPod touch.') }}</h2>
+
+      <p class="appstore-badge">
+        <a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}"><img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}"></a>
+      </p>
+      <p class="send-to-device">
+        <button class="send-to button-flat-green">{{ _('Get it now') }}</button>
+      </p>
+    </div>
+
+    <div class="signup">
+      {% set newsletter_title = _('Sign up below for updates and to be notified when it launches.') %}
+      {% set newsletter_id = 'firefox-ios' %}
+      {% set newsletter_details = _('* You’ll only receive updates and announcements about the iOS version of Firefox.') %}
+      {% set newsletter_thankyou_head = _('Thanks for your interest in Firefox for iOS.') %}
+      {% set newsletter_thankyou_content = _('Don’t forget to check your inbox to confirm your request to get updates.') %}
+      {{ email_newsletter_form(newsletter_id, title=newsletter_title, details=newsletter_details, thankyou_head=newsletter_thankyou_head,thankyou_content=newsletter_thankyou_content) }}
+    </div>
+
+    <p class="android-link">
+      <a href="{{ url('firefox.android.index') }}" class="go">{{ _('Get Firefox for Android') }}</a>
+    </p>
+
+  </div>{#-- /.container --#}
+</section>{#-- /#header --#}
+
+<section class="section section-sync" id="sync">
+  <div class="container">
+
+    <h2>{{ _('Sign in to your Firefox Account to access your browsing info on all your mobile devices.') }}</h2>
+
+    <ul class="sync-features">
+      <li class="sync-history">{{ _('History') }}</li>
+      <li class="sync-passwords">{{ _('Passwords') }}</li>
+      <li class="sync-tabs">{{ _('Open tabs') }}</li>
+    </ul>
+
+    <div class="sync-cta">
+
+      <div class="default">
+        <p><a href="{{ url('firefox.sync') }}" class="button-flat">{{ _('Learn more about Sync') }}</a></p>
+      </div>
+
+      <div class="fx-signed-out">
+        <p><button type="button" class="button-flat sync-button">{{ _('Get started with Sync') }}</button></p>
+        <p>{{ _('Already have an account?') }} <a href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync" class="go">{{ _('Sign in') }}</a></p>
+      </div>
+
+      <div class="fx-signed-in">
+        <h3>{{ _('You’re already signed in!') }}</h3>
+        <p><a href="{{ url('firefox.sync') }}" class="go">{{ _('Learn more about Sync') }}</a></p>
+      </div>
+
+      <div class="fx-ios">
+        <h3>{{ _('Sync your Firefox browsing history on iOS') }}</h3>
+        <p><button type="button" class="button-flat sync-start-ios">{{ _('Get started with Sync') }}</button></p>
+        <p><a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}" class="go">{{ _('Learn more in the App Store') }}</a></p>
+      </div>
+
+    </div>{#-- /.sync-cta --#}
+
+  </div>{#-- /.container --#}
+</section>{#-- /#sync --#}
+
+{% if has_widget %}
+  <div id="send-to-modal-container">
+    {{ send_to_device(platform='ios', title_text=_('Send Firefox to your iOS device')) }}
+  </div>
+{% endif %}
+
+<aside id="sync-instructions">
+  <h4>{{ _('Get started with Sync') }}</h4>
+  <p>{{ _('First tap the <b>tab</b> button. Then tap the %(gear_icon)s icon to start using Sync.') | format(gear_icon=high_res_img('firefox/ios/gear-icon.png', {'alt': '', 'width': '20', 'height': '20'})|safe) }}</p>
+  <p><button type="button" class="btn-dismiss">{{ _('Not now') }}</button></p>
+</aside>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  <!--[if IE 9]>
+    {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
+  {% javascript 'firefox_ios' %}
+{% endblock %}
