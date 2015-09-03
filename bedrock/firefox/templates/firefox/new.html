@@ -39,9 +39,7 @@
 {% endblock %}
 
 {% block js_pretrack %}
-  {% if waffle.switch('firefox-new-ios-redirect') %}
-    {% javascript 'firefox_new_ios_redirect' %}
-  {% endif %}
+  {% javascript 'firefox_new_ios_redirect' %}
 {% endblock %}
 
 {% block optimizely %}
