@@ -3,15 +3,15 @@
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // create namespace
-if (typeof Mozilla == 'undefined') {
+if (typeof Mozilla === 'undefined') {
     var Mozilla = {};
 }
 
-;(function($) {
+;(function() {
     'use strict';
 
     // create namespace
-    if (typeof Mozilla.FxOs == 'undefined') {
+    if (typeof Mozilla.FxOs === 'undefined') {
         Mozilla.FxOs = {};
     }
 
@@ -30,22 +30,22 @@ if (typeof Mozilla == 'undefined') {
         'alcatel_onetouchfire': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire',
-            'countries': ['br', 'cl', 'co', 'de', 'gr', 'hu', 'it', 'me', 'mx', 'pe', 'pl', 'rs', 've']
+            'countries': ['cl', 'co', 'mx', 'rs']
         },
         'alcatel_onetouchfirec': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire C',
-            'countries': ['cl', 'cr', 'es', 'gr', 'me', 'mk', 'mx', 'pe', 'sv', 'uy']
+            'countries': ['cl', 'co', 'gr', 'mx', 'ni', 'pe', 'uy']
         },
         'alcatel_onetouchfirec2g': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire C 2G',
-            'countries': ['in']
+            'countries': []
         },
         'alcatel_onetouchfiree': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire E',
-            'countries': ['cz', 'de', 'hu', 'pl', 'ru', 'za']
+            'countries': ['cz', 'de', 'hu', 'ru']
         },
         'au_fx0': {
             'type': 'smartphone',
@@ -55,7 +55,7 @@ if (typeof Mozilla == 'undefined') {
         'cherrymobile_ace': {
             'type': 'smartphone',
             'display': 'Cherry Mobile Ace',
-            'countries': ['mm', 'ph']
+            'countries': []
         },
         'huawei_y300-2': {
             'type': 'smartphone',
@@ -65,12 +65,12 @@ if (typeof Mozilla == 'undefined') {
         'intex_cloudfx': {
             'type': 'smartphone',
             'display': 'Intex Cloud FX',
-            'countries': ['in']
+            'countries': []
         },
         'lg_fireweb': {
             'type': 'smartphone',
             'display': 'LG Fireweb',
-            'countries': ['br', 'uy']
+            'countries': []
         },
         'orange_klif': {
             'type': 'smartphone',
@@ -80,7 +80,7 @@ if (typeof Mozilla == 'undefined') {
         'spice_fireonemifx1': {
             'type': 'smartphone',
             'display': 'Spice Fire One MI FX1',
-            'countries': ['in']
+            'countries': []
         },
         'spice_fireonemifx2': {
             'type': 'smartphone',
@@ -90,27 +90,27 @@ if (typeof Mozilla == 'undefined') {
         'symphony_gofoxf15': {
             'type': 'smartphone',
             'display': 'Symphony GoFox F15',
-            'countries': ['bd']
+            'countries': []
         },
         'zen_105fire': {
             'type': 'smartphone',
             'display': 'Zen 105 Fire',
-            'countries': ['in']
+            'countries': []
         },
         'zte_open': {
             'type': 'smartphone',
             'display': 'ZTE Open',
-            'countries': ['co', 'es', 'mx', 'pe', 've']
+            'countries': ['mx']
         },
         'zte_openc': {
             'type': 'smartphone',
             'display': 'ZTE Open C',
-            'countries': ['au', 'be', 'ch', 'de', 'fr', 'gb', 'lu', 'ru', 'uy']
+            'countries': ['de', 'fr', 'lu', 'uy']
         },
         'zte_open2': {
             'type': 'smartphone',
             'display': 'ZTE Open II',
-            'countries': ['ar', 'co', 'gt', 'pa', 'pe', 'uy']
+            'countries': ['ar', 'co', 'gt', 'ni', 'pa', 'pe', 'sv', 'uy']
         }
     };
-})(window.jQuery);
+})();
