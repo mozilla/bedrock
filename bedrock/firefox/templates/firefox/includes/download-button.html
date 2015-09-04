@@ -4,7 +4,7 @@
 
 {% macro alt_buttons(builds) %}
   <div class="download download-dumb">
-    <h4>{{ _('Download Firefox') }} — {{ locale_name|safe }}</h4>
+    <p role="heading" class="download-heading">{{ _('Download Firefox') }} — {{ locale_name|safe }}</p>
     <ul>
       {% for plat in builds -%}
         <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
