@@ -58,6 +58,7 @@ OTHER_NEWSLETTERS = [
     'firefox-desktop',
     'mobile',
     'os',
+    'firefox-ios',
     'mozilla-general',
     'firefox-os',
 ]
