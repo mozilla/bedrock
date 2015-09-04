@@ -187,3 +187,6 @@ dj-database-url==0.3.0
 
 # sha256: ufv3R_qOcR0zDy9Da5suz17tnrZ6Y3yoGrzRHCq-3sg
 python-decouple==2.3
+
+# sha256: 9r_SEEjH38lbOWWaPad3ddbbHB96dFgFzMbGE494O20
+django-sslify==0.2.7
