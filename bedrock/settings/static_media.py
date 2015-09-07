@@ -438,7 +438,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/tabzilla/tabzilla-static.less',
-            'css/firefox/simple_footer-resp.less',
+            'css/base/simple_footer-resp.less',
             'css/firefox/new2.less',
         ),
         'output_filename': 'css/firefox_new2-bundle.css',
