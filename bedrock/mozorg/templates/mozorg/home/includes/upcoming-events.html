@@ -12,7 +12,7 @@
 
     <div class="inner-container">
       <div class="featured-event">
-        <a rel="external" href="{{ featured_event.url }}" class="date-large">
+        <a rel="external" href="{{ featured_event.url }}" class="date-large" data-element-location="Upcoming Event Link Clicks" data-link-type="href">
           <time datetime="{{ featured_event.start_time.isoformat() }}">
             <span class="date-month">{{ _(featured_event.month_abbr) }}</span>
             <span class="date-day">{{ featured_event.day_of_month }}</span>
@@ -21,7 +21,7 @@
 
         <div class="event-detail">
           <h3 class="next">{{ _('Next event') }}</h3>
-          <a rel="external" href="{{ featured_event.url }}">
+          <a rel="external" href="{{ featured_event.url }}" data-element-location="Upcoming Event Link Clicks" data-link-type="href">
             <h4>{{ featured_event.title|safe }}</h4>
           </a>
           <time class="event-info" datetime="{{ featured_event.start_time.isoformat() }}">{{ featured_event.start_time|l10n_format_date }}</time>

@@ -72,8 +72,8 @@
   (url('mozorg.contribute.stories'), '11'),
 ]|shuffle -%}
 
-{% macro promo_face(content_id) %}
-<a href="{{ faces[content_id][0] }}">
+{% macro promo_face(content_id, promo_id) %}
+<a href="{{ faces[content_id][0] }}" data-promotion-id="{{ promo_id }}" data-promotion-name="Mozillians" data-promotion-class="promo-face" data-promotion-type="tile">
   <div class="face-outer">
     <div class="face face-{{ faces[content_id][1] }}"></div>
   </div>
@@ -113,9 +113,9 @@
     <div class="promo-grid-inner">
       <ul class="promo-grid {% if tweets %}has-twitter-promo{% endif %}">
       {# L10n: Begin home page promos. Line breaks are for visual formatting only. #}
-        <li id="promo-1" class="item promo-large-portrait firefox-android" tabindex="0" data-name="Put your Firefox on your Android">
+        <li id="promo-1" class="item promo-large-portrait firefox-android" tabindex="0">
           <h2 class="primary go">{{ _('Put your Firefox on your Android') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.android.index') }}">
+          <a class="panel-link" href="{{ url('firefox.android.index') }}" data-promotion-id="promo-1" data-promotion-name="Put your Firefox on your Android" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
             <div class="secondary">
               <h3>{{ _('The features <br>you love. <br>The privacy <br>you trust.') }}</h3>
               <p class="more">{{ _('Learn about <br>Firefox for Android') }}</p>
@@ -123,23 +123,23 @@
           </a>
         </li>
       {% if l10n_has_tag('privacy_day') %}
-        <li id="promo-2" class="item promo-small-landscape advocacy" data-name="Learn about Mozilla Advocacy">
-          <a class="panel-link" href="https://advocacy.mozilla.org">
+        <li id="promo-2" class="item promo-small-landscape advocacy">
+          <a class="panel-link" href="https://advocacy.mozilla.org" data-promotion-id="promo-2" data-promotion-name="Learn about Mozilla Advocacy" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Learn about Mozilla Advocacy') }}</h2>
           </a>
         </li>
       {% else %}
-        <li id="promo-2" class="item promo-small-landscape privacy" data-name="Understand your privacy online">
-          <a class="panel-link" href="{{ url('privacy.privacy-day') }}">
+        <li id="promo-2" class="item promo-small-landscape privacy">
+          <a class="panel-link" href="{{ url('privacy.privacy-day') }}" data-promotion-id="promo-2" data-promotion-name="Understand your privacy online" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Understand your privacy online') }}</h2>
           </a>
         </li>
       {% endif %}
         <li id="promo-3" class="item promo-face">
-          {{ promo_face(1) }}
+          {{ promo_face(1, 'promo-3') }}
         </li>
         <li id="promo-4" class="item promo-face">
-          {{ promo_face(2) }}
+          {{ promo_face(2, 'promo-4') }}
         </li>
         <li id="promo-5" class="item promo-small-landscape firefox-download" tabindex="0">
           <div class="primary">
@@ -152,9 +152,9 @@
           </div>
         </li>
       {% if l10n_has_tag('webmaker_promo_introducing') %}
-        <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0" data-name="Introducing the new Webmaker">
+        <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0">
           <h2 class="primary go">{{ _('Introducing<br> the new Webmaker') }}</h2>
-          <a class="panel-link" rel="external" href="https://webmaker.org/">
+          <a class="panel-link" rel="external" href="https://webmaker.org/" data-promotion-id="promo-6" data-promotion-name="Introducing the new Webmaker" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
             <div class="secondary">
               <h3>{{ _('Discover, create and share original content with the free Webmaker app.') }}</h3>
               <p class="more">{{ _('Learn more') }}</p>
@@ -162,9 +162,9 @@
           </a>
         </li>
       {% elif l10n_has_tag('webmaker_promo_make') %}
-        <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0" data-name="Make the Web you want">
+        <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0">
           <h2 class="primary go">{{ _('Make the Web you want') }}</h2>
-          <a class="panel-link" rel="external" href="https://webmaker.org/">
+          <a class="panel-link" rel="external" href="https://webmaker.org/" data-promotion-id="promo-6" data-promotion-name="Make the Web you want" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
             <div class="secondary">
               <h3>{{ _('Build a Web page or app in minutes<br> — no coding required.') }}</h3>
               <p class="more">{{ _('Become a Webmaker') }}</p>
@@ -172,9 +172,9 @@
           </a>
         </li>
       {% else %}
-        <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0" data-name="Teach the Web">
+        <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0">
           <h2 class="primary go">{{ _('Teach the Web') }}</h2>
-          <a class="panel-link" rel="external" href="https://webmaker.org/">
+          <a class="panel-link" rel="external" href="https://webmaker.org/" data-promotion-id="promo-6" data-promotion-name="Teach the Web" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
             <div class="secondary">
               <h3>{{ _('Let’s build a Web that’s open <br>and made by everyone.') }}</h3>
               <p class="more">{{ _('Become a Webmaker') }}</p>
@@ -183,48 +183,48 @@
         </li>
       {% endif %}
         <li id="promo-7" class="item promo-face">
-          {{ promo_face(3) }}
+          {{ promo_face(3, 'promo-7') }}
         </li>
       {% if l10n_has_tag('webmaker_promo_thimble') %}
-        <li id="promo-8" class="item promo-small-landscape thimble" tabindex="0"  data-name="Try the Thimble code editor">
-          <a class="panel-link" rel="external" href="https://thimble.mozilla.org/">
+        <li id="promo-8" class="item promo-small-landscape thimble" tabindex="0">
+          <a class="panel-link" rel="external" href="https://thimble.mozilla.org/" data-promotion-id="promo-8" data-promotion-name="Try the Thimble code editor" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Try the Thimble code editor') }}</h2>
           </a>
         </li>
       {% elif l10n_has_tag('webmaker_promo_introducing') %}
-        <li id="promo-8" class="item promo-small-landscape webmaker" data-name="Teach the Web">
-          <a class="panel-link" rel="external" href="https://teach.mozilla.org">
+        <li id="promo-8" class="item promo-small-landscape webmaker">
+          <a class="panel-link" rel="external" href="https://teach.mozilla.org" data-promotion-id="promo-8" data-promotion-name="Teach the Web" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Teach<br> the Web') }}</h2>
           </a>
         </li>
       {% else %}
-        <li id="promo-8" class="item promo-small-landscape appmaker" data-name="Build an app in seconds">
-          <a class="panel-link" rel="external" href="https://webmaker.org/appmaker">
+        <li id="promo-8" class="item promo-small-landscape appmaker">
+          <a class="panel-link" rel="external" href="https://webmaker.org/appmaker" data-promotion-id="promo-8" data-promotion-name="Build an app in seconds" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Build an app <br>in seconds') }}</h2>
           </a>
         </li>
       {% endif %}
       {% if l10n_has_tag('gear_store') %}
-        <li id="promo-9" class="item promo-small-landscape gear" data-name="Get gear">
-          <a class="panel-link" href="https://gear.mozilla.org/?utm_source=gear.mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_smallblock">
+        <li id="promo-9" class="item promo-small-landscape gear">
+          <a class="panel-link" href="https://gear.mozilla.org/?utm_source=gear.mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_smallblock" data-promotion-id="promo-9" data-promotion-name="Get gear" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Official Mozilla gear is here') }}</h2>
           </a>
         </li>
       {% else %}
-        <li id="promo-9" class="item promo-small-landscape volunteer" data-name="Volunteer with Mozilla">
-          <a class="panel-link" href="{{ url('mozorg.contribute') }}">
+        <li id="promo-9" class="item promo-small-landscape volunteer">
+          <a class="panel-link" href="{{ url('mozorg.contribute') }}" data-promotion-id="promo-9" data-promotion-name="Volunteer with Mozilla" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Volunteer <br>with Mozilla') }}</h2>
           </a>
         </li>
       {% endif %}
       {% if l10n_has_tag('fx10_independent') %}
-        <li id="promo-10" class="item promo-large-portrait firefox-developer" tabindex="0" data-name="Introducing Firefox Developer Edition">
+        <li id="promo-10" class="item promo-large-portrait firefox-developer" tabindex="0">
           {% if l10n_has_tag('firefox_friends') %}
           <h2 class="primary go">{{ _('Try Firefox Developer Edition') }}</h2>
           {% else %}
           <h2 class="primary go">{{ _('Introducing Firefox Developer Edition') }}</h2>
           {% endif %}
-          <a class="panel-link" href="{{ url('firefox.developer') }}">
+          <a class="panel-link" href="{{ url('firefox.developer') }}" data-promotion-id="promo-10" data-promotion-name="Introducing Firefox Developer Edition" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
             <div class="secondary">
               <h3>{{ _('The only browser made only for developers.') }}</h3>
               <p class="more">{{ _('Get Firefox Developer Edition') }}</p>
@@ -232,9 +232,9 @@
           </a>
         </li>
       {% else %}
-        <li id="promo-10" class="item promo-large-portrait mission" data-name="Discover what drives our mission" tabindex="0">
+        <li id="promo-10" class="item promo-large-portrait mission" tabindex="0">
           <h2 class="primary go">{{ _('Discover <br>what drives our mission') }}</h2>
-          <a class="panel-link" href="{{ url('mozorg.about.manifesto') }}">
+          <a class="panel-link" href="{{ url('mozorg.about.manifesto') }}" data-promotion-id="promo-10" data-promotion-name="Discover what drives our mission" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
             <div class="secondary">
               <h3>{{ _('See the principles <br>that guide everything <br>we do.') }}</h3>
               <p class="more">{{ _('Read the <br>Mozilla Manifesto') }}</p>
@@ -243,9 +243,9 @@
         </li>
       {% endif %}
       {% if l10n_has_tag('mdn_10_years') %}
-        <li id="promo-11" class="item promo-large-landscape mdn-10-years" tabindex="0" data-name="Mozilla Developer Network">
+        <li id="promo-11" class="item promo-large-landscape mdn-10-years" tabindex="0">
           <h2 class="primary go">{{ _('Mozilla Developer Network') }}</h2>
-          <a class="panel-link" href="https://developer.mozilla.org/docs/mdn_at_ten?utm_campaign=mdn10&amp;utm_source=mozilla.org&amp;utm_medium=home-tile">
+          <a class="panel-link" href="https://developer.mozilla.org/docs/mdn_at_ten?utm_campaign=mdn10&amp;utm_source=mozilla.org&amp;utm_medium=home-tile" data-promotion-id="promo-11" data-promotion-name="Mozilla Developer Network" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
             <div class="secondary">
               <h3>{{ _('10 years of documenting your Web.') }}</h3>
               <p class="more">{{ _('Celebrate with us') }}</p>
@@ -253,9 +253,9 @@
           </a>
         </li>
       {% elif l10n_has_tag('firefox_friends') %}
-        <li id="promo-11" class="item promo-large-landscape firefox-friends" tabindex="0" data-name="Introducing Firefox Friends">
+        <li id="promo-11" class="item promo-large-landscape firefox-friends" tabindex="0">
           <h2 class="primary go">{{ _('Introducing <br>Firefox Friends') }}</h2>
-          <a class="panel-link" href="https://friends.mozilla.org">
+          <a class="panel-link" href="https://friends.mozilla.org" data-promotion-id="promo-11" data-promotion-name="Introducing Firefox Friends" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
             <div class="secondary">
               <h3>{{ _('Join. Share. <br>Get rewarded.') }}</h3>
               <p class="more">{{ _('Join Firefox Friends') }}</p>
@@ -263,9 +263,9 @@
           </a>
         </li>
       {% else %}
-        <li id="promo-11" class="item promo-large-landscape support" tabindex="0" data-name="Help Mozilla users">
+        <li id="promo-11" class="item promo-large-landscape support" tabindex="0">
           <h2 class="primary go">{{ _('Help Mozilla users') }}</h2>
-          <a class="panel-link" rel="external" href="https://support.mozilla.org/get-involved">
+          <a class="panel-link" rel="external" href="https://support.mozilla.org/get-involved" data-promotion-id="promo-11" data-promotion-name="Help Mozilla users" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
             <div class="secondary">
               <h3>{{ _('Help millions <br>get the most from their <br>favorite browser.') }}</h3>
               <p class="more">{{ _('Join our support team') }}</p>
@@ -274,16 +274,16 @@
         </li>
       {% endif %}
         <li id="promo-12" class="item promo-face">
-          {{ promo_face(4) }}
+          {{ promo_face(4, 'promo-12') }}
         </li>
         <li id="promo-13" class="item promo-face">
-          {{ promo_face(5) }}
+          {{ promo_face(5, 'promo-13') }}
         </li>
         <li id="promo-14" class="item promo-face">
-          {{ promo_face(6) }}
+          {{ promo_face(6, 'promo-14') }}
         </li>
         <li id="promo-15" class="item promo-face">
-          {{ promo_face(7) }}
+          {{ promo_face(7, 'promo-15') }}
         </li>
         {% if tweets %}
           {% set tweet = tweets[0] %}
@@ -294,9 +294,9 @@
                 <span class="ellipsis" title="{{ tweet.text|safe }}"></span>
               </p>
               <div class="twt-actions">
-                <a href="https://twitter.com/{{ tweet.user.screen_name }}" class="twt-account" title="{{ tweet.user.name }}" data-name="Mozilla Tweets Account"></a>
-                <a href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}" class="twt-reply" title="{{ _('Reply') }}" data-name="Mozilla Tweets Reply">{{ _('Reply') }}</a>
-                <a href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}" class="twt-rt" title="{{ _('Retweet') }}" data-name="Mozilla Tweets Retweet">{{ _('Retweet') }}</a>
+                <a href="https://twitter.com/{{ tweet.user.screen_name }}" class="twt-account" title="{{ tweet.user.name }}" data-name="Mozilla Tweets Account" data-promotion-id="promo-16" data-promotion-name="Mozilla Tweets {{ tweet.user.name }}" data-promotion-class="promo-small-landscape" data-promotion-type="tile"></a>
+                <a href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}" class="twt-reply" title="{{ _('Reply') }}" data-name="Mozilla Tweets Reply" data-promotion-id="promo-16" data-promotion-name"Mozilla Tweets Reply" data-promotion-class="promo-small-landscape" data-promotion-type="tile">{{ _('Reply') }}</a>
+                <a href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}" class="twt-rt" title="{{ _('Retweet') }}" data-name="Mozilla Tweets Retweet" data-promotion-id="promo-16" data-promotion-name="Mozilla Tweets Retweet" data-promotion-class="promo-small-landscape" data-promotion-type="tile">{{ _('Retweet') }}</a>
               </div>
             </div>
           </li>
@@ -343,7 +343,9 @@
         </li>
       </ul>
 
-      <a class="contribute-btn" href="{{ url('mozorg.contribute') }}">{{ _('Get Involved with Mozilla today') }}</a>
+      <a class="contribute-btn" href="{{ url('mozorg.contribute') }}" data-element-location="button-click" data-link-type="Get Involved with Mozilla today">
+        {{ _('Get Involved with Mozilla today') }}
+      </a>
     </div>
   </section>
 
@@ -353,19 +355,19 @@
     <div class="container">
       <ul>
         <li>
-          <a class="add-ons" rel="external" href="https://addons.mozilla.org/">
+          <a class="add-ons" rel="external" href="https://addons.mozilla.org/" data-element-location="Secondary Link Clicks" data-link-type="href">
             <h2>{{ _('Add-ons') }}</h2>
             <p>{{ _('Compare prices, check the weather, listen to music, send a tweet and more right from Firefox.') }}</p>
           </a>
         </li>
         <li>
-          <a class="careers" rel="external" href="https://careers.mozilla.org/">
+          <a class="careers" rel="external" href="https://careers.mozilla.org/" data-element-location="Secondary Link Clicks" data-link-type="href">
             <h2>{{ _('Careers') }}</h2>
             <p>{{ _('Learn about the benefits of working at Mozilla and view open positions around the world.') }}</p>
           </a>
         </li>
         <li>
-          <a class="help" rel="external" href="https://support.mozilla.org/">
+          <a class="help" rel="external" href="https://support.mozilla.org/" data-element-location="Secondary Link Clicks" data-link-type="href">
             <h2>{{ _('Need help?') }}</h2>
             <p>{{ _('Get answers to your questions about Firefox and all Mozilla products from our support team.') }}</p>
           </a>
