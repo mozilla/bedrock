@@ -5,7 +5,7 @@
  * This code is licensed under the Mozilla Public License 1.1.
  *
  * @copyright 2013 Mozilla Foundation
- * @license   http://www.mozilla.org/MPL/MPL-1.1.html Mozilla Public License 1.1
+ * @license   https://www.mozilla.org/MPL/1.1/ Mozilla Public License 1.1
  * @author    Nick Burka <nick@silverorange.com>
  */
 

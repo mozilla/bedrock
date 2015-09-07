@@ -38,7 +38,7 @@
  *   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @copyright 2007-2010 Mozilla Foundation, 2007-2010 silverorange Inc.
- * @license   http://www.mozilla.org/MPL/MPL-1.1.html Mozilla Public License 1.1
+ * @license   https://www.mozilla.org/MPL/1.1/ Mozilla Public License 1.1
  * @author    Michael Gauthier <mike@silverorange.com>
  *
  */
