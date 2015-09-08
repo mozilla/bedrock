@@ -21,7 +21,7 @@ if (typeof window.Mozilla === 'undefined') {
     // Add two-letter country codes (lowercase) to this array to
     // to expand the market. We'll remove this logic for wide release.
     // Note: This is the country code, NOT locale code; they often differ.
-    var marketCountries = ['nz'];
+    var marketCountries = ['nz', 'au', 'at'];
 
     var COUNTRY_CODE = '';
     var marketState = 'Unknown';
