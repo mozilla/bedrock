@@ -5,15 +5,6 @@
 $(function () {
     'use strict';
 
-    var $mainNav;
-
-    //generic links
-    $mainNav = $('#nav-main-menu li a');
-    $mainNav.attr({
-        'data-element-location': 'nav click',
-        'data-link-type': $mainNav.data('name')
-    });
-
     // track download firefox promo clicks
     $('.promo-small-landscape.firefox-download a.download-link').each(function() {
         var $this = $(this);
