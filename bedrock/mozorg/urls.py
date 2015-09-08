@@ -188,7 +188,7 @@ urlpatterns = patterns('',
 
     page('MPL', 'mozorg/mpl/index.html'),
     page('MPL/historical', 'mozorg/mpl/historical.html'),
-    page('MPL/licence-policy', 'mozorg/mpl/licence-policy.html'),
+    page('MPL/license-policy', 'mozorg/mpl/license-policy.html'),
     page('MPL/headers', 'mozorg/mpl/headers/index.html'),
     page('MPL/1.1', 'mozorg/mpl/1.1/index.html'),
     page('MPL/1.1/FAQ', 'mozorg/mpl/1.1/faq.html'),
