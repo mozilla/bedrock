@@ -843,6 +843,7 @@ FIREFOX_OS_COUNTRY_VERSIONS = {
 
 TABLEAU_DB_URL = config('TABLEAU_DB_URL', default=None)
 
+MAXMIND_DB_URL = config('MAXMIND_DB_URL', default=None)
 MAXMIND_DB_PATH = config('MAXMIND_DB_PATH',
                          default=path('..', 'GeoIP2-Country.mmdb'))
 MAXMIND_DEFAULT_COUNTRY = config('MAXMIND_DEFAULT_COUNTRY', default='US')
