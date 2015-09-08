@@ -19,7 +19,7 @@
 <div id="main-content">
   <section class="intro">
     <p>
-      {% trans link='/MPL/2.0/' %}
+      {% trans link=url('mozorg.mpl.2.0.index') %}
       Mozilla software is made available to you under the terms of the
       <a href="{{ link }}">Mozilla Public License 2</a>,
       a free software license, which gives you the right to run the program
@@ -28,7 +28,7 @@
       separate End User License Agreement (EULA).
       {% endtrans %}
     </p>
-    <p><a href="/MPL/2.0/" class="main-license">View the Mozilla Public License 2</a></p>
+    <p><a href="{{ url('mozorg.mpl.2.0.index') }}" class="main-license">View the Mozilla Public License 2</a></p>
   </section>
 
   <section class="archive">

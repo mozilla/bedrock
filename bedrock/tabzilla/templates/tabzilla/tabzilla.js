@@ -60,7 +60,7 @@
  *
  *
  * @copyright 2012-2013 silverorange Inc.
- * @license   http://www.mozilla.org/MPL/MPL-1.1.html Mozilla Public License 1.1
+ * @license   https://www.mozilla.org/MPL/1.1/ Mozilla Public License 1.1
  * @author    Michael Gauthier <mike@silverorange.com>
  * @author    Steven Garrity <steven@silverorange.com>
  * @author    Isac Lagerblad <icaaaq@gmail.com>

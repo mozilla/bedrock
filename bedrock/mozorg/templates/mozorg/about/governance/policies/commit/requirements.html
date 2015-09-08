@@ -42,8 +42,8 @@ the Internet.') }}</p>
 <h2>{{ _('License Terms') }}</h2>
 
 <p>
-{% trans license_policy='https://www.mozilla.org/MPL/license-policy.html',
-         headers='https://www.mozilla.org/MPL/headers/' %}
+{% trans license_policy=url('mozorg.mpl.licence-policy'),
+         headers=url('mozorg.mpl.headers.index') %}
 Code committed by you to a Mozilla Repository, whether written by you or a
 third party, must be governed by the Mozilla Public License 2.0, or another
 license or set of licenses acceptable to the Mozilla Foundation for the Code

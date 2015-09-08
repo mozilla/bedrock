@@ -34,10 +34,10 @@
 <h2>{{ _('Licensing') }}</h2>
 
 <ul>
-  <li><a href="//www.mozilla.org/MPL/">{{ _('Source Code Licensing Terms') }}</a></li>
-  <li><a href="//www.mozilla.org/MPL/license-policy.html">{{ _('Mozilla Foundation License Policy') }}</a></li>
-  <li><a href="//www.mozilla.org/legal/eula/">{{ _('Mozilla Corporation End-User Licensing Agreement') }}</a></li>
-  <li><a href="//www.mozilla.org/legal/eula/">{{ _('Mozilla Foundation End-User Licensing Agreement') }}</a></li>
+  <li><a href="{{ url('mozorg.mpl.index') }}">{{ _('Source Code Licensing Terms') }}</a></li>
+  <li><a href="{{ url('mozorg.mpl.licence-policy') }}">{{ _('Mozilla Foundation License Policy') }}</a></li>
+  <li><a href="{{ url('legal.eula') }}">{{ _('Mozilla Corporation End-User Licensing Agreement') }}</a></li>
+  <li><a href="{{ url('legal.eula') }}">{{ _('Mozilla Foundation End-User Licensing Agreement') }}</a></li>
 </ul>
 
 <h2>{{ _('Privacy') }}</h2>
