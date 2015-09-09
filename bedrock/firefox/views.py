@@ -103,10 +103,14 @@ INSTALLER_CHANNElS = [
 
 SMS_MESSAGES = {
     'android': 'SMS_Android',
+    'android-test-modal': 'android-download-notembed',  # test variant
+    'android-test-embed': 'android-download-embed',  # test variant
 }
 
 EMAIL_MESSAGES = {
     'android': 'download-firefox-android',
+    'android-test-modal': 'get-android-notembed',  # test variant
+    'android-test-embed': 'get-android-embed',  # test variant
     'ios': 'download-firefox-ios',
     'all': 'download-firefox-mobile',
 }
@@ -215,9 +219,19 @@ def send_to_device_ajax(request):
     data_type = 'email' if '@' in phone_or_email else 'number'
     data[data_type] = phone_or_email
     form = SendToDeviceWidgetForm(data)
+
     if form.is_valid():
         phone_or_email = form.cleaned_data.get(data_type)
         platform = form.cleaned_data.get('platform')
+
+        # check for android & valid send to device test value
+        # update email/sms message if conditions match
+        send_to_device_test = request.POST.get('android-send-to-device-test')
+        if (platform == 'android' and send_to_device_test in
+                ['android-test-modal', 'android-test-embed']):
+
+            platform = send_to_device_test
+
         if data_type == 'number':
             if platform in SMS_MESSAGES:
                 try:
@@ -619,3 +633,15 @@ class FeedbackView(TemplateView):
             template = 'firefox/feedback/unhappy.html'
 
         return [template]
+
+
+def android(request):
+    # check for variant in querystring for send-to-device testing
+    variant = request.GET.get('v', '')
+
+    # ensure variant is one of 3 accepted values
+    if (variant not in ['a', 'b', 'c']):
+        variant = ''
+
+    return l10n_utils.render(request, 'firefox/android/index.html',
+        {'variant': variant})
