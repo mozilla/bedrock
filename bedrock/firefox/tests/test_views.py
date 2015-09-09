@@ -152,6 +152,20 @@ class TestSendToDeviceView(TestCase):
         self.mock_send_sms.assert_called_with('15558675309',
                                                 views.SMS_MESSAGES['android-test-embed'])
 
+    # an invalid value for 'android-send-to-device-test' should cause email message
+    # to revert back to specified platform
+    def test_variant_android_invalid_test_value(self):
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': 'dude@example.com',
+            'android-send-to-device-test': 'a-real-reactionary',  # bad value!
+        })
+        ok_(resp_data['success'])
+        self.mock_subscribe.assert_called_with('dude@example.com',
+                                               views.EMAIL_MESSAGES['android'],
+                                               source_url=None,
+                                               lang='en-US')
+
 
 class TestFirefoxNew(TestCase):
     def test_frames_allow(self):

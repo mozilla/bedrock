@@ -224,9 +224,12 @@ def send_to_device_ajax(request):
         phone_or_email = form.cleaned_data.get(data_type)
         platform = form.cleaned_data.get('platform')
 
-        # check for android and send to device test and update message if present
+        # check for android & valid send to device test value
+        # update email/sms message if conditions match
         send_to_device_test = request.POST.get('android-send-to-device-test')
-        if (platform == 'android' and send_to_device_test):
+        if (platform == 'android' and send_to_device_test in
+                ['android-test-modal', 'android-test-embed']):
+
             platform = send_to_device_test
 
         if data_type == 'number':
@@ -671,6 +674,10 @@ class FeedbackView(TemplateView):
 def android(request):
     # check for variant in querystring for send-to-device testing
     variant = request.GET.get('v', '')
+
+    # ensure variant is one of 3 accepted values
+    if (variant not in ['a', 'b', 'c']):
+        variant = ''
 
     return l10n_utils.render(request, 'firefox/android/index.html',
         {'variant': variant})
