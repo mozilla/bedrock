@@ -27,7 +27,7 @@ RUN ./manage.py collectstatic --noinput
 RUN ./manage.py update_product_details
 
 # Cleanup
-RUN apt-get purge -y python-dev build-essential libxml2-dev libxslt1-dev libmemcached-dev git
+RUN apt-get purge -y python-dev build-essential libxml2-dev libxslt1-dev libmemcached-dev
 RUN apt-get autoremove -y
 RUN rm -rf /var/lib/{apt,dpkg,cache,log} /usr/share/doc /usr/share/man /tmp/* /var/cache/* /app/.git
 RUN find /app -name *.pyc -delete
