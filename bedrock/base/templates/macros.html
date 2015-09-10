@@ -637,8 +637,12 @@ set share_urls = {
 </header>{#-- /#fxfamilynav-header --#}
 {%- endmacro %}
 
-{% macro send_to_device(platform, include_title=True, title_text='', include_logo=False) %}
-  {% set ios_link = settings.APPLE_APPSTORE_FIREFOX_LINK %}
+{% macro send_to_device(platform, include_title=True, title_text='', include_logo=False, ios_link='') %}
+  {# If no App Store link is specified, use base with default "ct" param value #}
+  {# See https://bugzilla.mozilla.org/show_bug.cgi?id=1196310#c23 #}
+  {% if ios_link == '' %}
+    {% set ios_link = settings.APPLE_APPSTORE_FIREFOX_LINK + '&ct=mozorg' %}
+  {% endif %}
   {% set android_link = settings.GOOGLE_PLAY_FIREFOX_LINK %}
   <section id="send-to-device" class="{% if include_logo %}logo {% endif %}{% if include_title %}title{% else %}no-title{% endif %}">
     <div class="form-container">

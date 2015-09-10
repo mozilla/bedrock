@@ -61,7 +61,7 @@
       <h2>{{ _('Add Firefox to your iPhone, iPad and iPod touch.') }}</h2>
 
       <p class="appstore-badge">
-        <a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}"><img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}"></a>
+        <a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}&amp;ct=mozorg-ios_page-appstore-button"><img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}"></a>
       </p>
       <p class="send-to-device">
         <button class="send-to button-flat-green">{{ _('Get it now') }}</button>
@@ -124,7 +124,7 @@
 
 {% if has_widget %}
   <div id="send-to-modal-container">
-    {{ send_to_device(platform='ios', title_text=_('Send Firefox to your iOS device')) }}
+    {{ send_to_device(platform='ios', title_text=_('Send Firefox to your iOS device'), ios_link=settings.APPLE_APPSTORE_FIREFOX_LINK + '&ct=mozorg-ios_page-appstore-button_sd') }}
   </div>
 {% endif %}
 

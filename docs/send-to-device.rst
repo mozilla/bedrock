@@ -47,13 +47,17 @@ Usage
 
       {{ send_to_device(title_text='Foo Bar') }}
 
-  If you do not want to show a title, you can pass ``include_title=False`::
+  If you do not want to show a title, you can pass ``include_title=False``::
 
       {{ send_to_device(include_title=False) }}
 
   To add a logo and rounded corners to the widget for display in a modal::
 
       {{ send_to_device(include_logo=True) }}
+
+  If you need a customized App Store URL (e.g. including page-specific parameters), you can pass ``ios_link``::
+
+      {{ send_to_device(ios_link=settings.APPLE_APPSTORE_FIREFOX_LINK + '&ct=mozorg-ios_page-appstore-button') }}
 
 5. Initialize the widget:
 

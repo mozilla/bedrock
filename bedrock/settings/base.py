@@ -712,8 +712,13 @@ GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
                                      'utm_campaign=mozilla-org'))
 
 # Link to Firefox for iOS on the Apple App Store with Google Analytics
-# campaign patameters
-APPLE_APPSTORE_FIREFOX_LINK = ('https://itunes.apple.com/app/id989804926')
+# campaign patameters. Each implementation should add a "ct" parameter
+# for analytics.
+
+# Note: this URL is likely to change for Fx42. See bug comment:
+# https://bugzilla.mozilla.org/show_bug.cgi?id=1196310#c18
+APPLE_APPSTORE_FIREFOX_LINK = ('https://itunes.apple.com/app/apple-store/' +
+                               'id989804926?pt=373246&mt=8')
 
 
 # Locales that should display the 'Send to Device' widget
