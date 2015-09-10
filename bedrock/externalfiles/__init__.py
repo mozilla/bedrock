@@ -2,76 +2,76 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import codecs
 import logging
-from os import mkdir
-from os.path import abspath, basename, dirname, exists, join
-from datetime import datetime
+from os.path import basename
+from time import mktime
+try:
+    from cStringIO import StringIO
+except ImportError:
+    from StringIO import StringIO
 
 from django.conf import settings
-from django.core.cache import get_cache, InvalidCacheBackendError
-from django.utils.functional import cached_property
-from django.utils.http import parse_http_date_safe
+from django.core.cache import get_cache
+from django.utils.http import http_date
 
 import requests
 
+from bedrock.externalfiles.models import ExternalFile as EFModel
+
 
 log = logging.getLogger(__name__)
-FILES_PATH = join(dirname(abspath(__file__)), 'files_cache')
-UPDATED_FILE = '{0}.updated.txt'
 
 
 class ExternalFile(object):
-    cache_key = None
-
     def __init__(self, file_id):
         try:
             fileinfo = settings.EXTERNAL_FILES[file_id]
         except KeyError:
             raise ValueError('No external file with the {0} ID.'.format(file_id))
 
-        try:
-            self._cache = get_cache('externalfiles')
-        except InvalidCacheBackendError:
-            self._cache = get_cache('default')
-
+        self._cache = get_cache('externalfiles')
         self.file_id = file_id
         self.url = fileinfo['url']
         self.name = fileinfo.get('name', basename(self.url))
-        self.updated_name = UPDATED_FILE.format(self.name)
-        self.file_path = join(FILES_PATH, self.name)
-        self.updated_file_path = join(FILES_PATH, self.updated_name)
+        self.cache_key = 'externalfile:{}'.format(self.file_id)
 
-    @cached_property
+    @property
+    def file_object(self):
+        efo = self._cache.get(self.cache_key)
+        if not efo:
+            try:
+                efo = EFModel.objects.get(name=self.file_id)
+            except EFModel.DoesNotExist:
+                pass
+            else:
+                self._cache.set(self.cache_key, efo, 3600)  # 1 hour
+
+        return efo
+
+    @property
     def last_modified(self):
         """
         Return the last-modified header from the most recent names update.
         :return: str timestamp
         """
-        try:
-            with open(self.updated_file_path) as lu_fh:
-                return lu_fh.read().strip()
-        except IOError:
-            return None
-
-    @cached_property
-    def last_modified_datetime(self):
-        """
-        Return the last-modified header from the most recent names update as datetime.
-        :return: datetime (or None on error)
-        """
-        if self.last_modified:
-            date_epoch = parse_http_date_safe(self.last_modified)
-            if date_epoch:
-                return datetime.utcfromtimestamp(date_epoch)
+        fo = self.file_object
+        if fo:
+            return fo.last_modified
 
         return None
+
+    @property
+    def last_modified_http(self):
+        """
+        Return last modified date as a properly formatted string suitable for HTTP headers.
+        """
+        return http_date(mktime(self.last_modified.timetuple()))
 
     def last_modified_callback(self, *args, **kwargs):
         """
         To be used as the argument for the `last_modified` view decorator.
         """
-        return self.last_modified_datetime
+        return self.last_modified
 
     def validate_resp(self, resp):
         """
@@ -102,19 +102,17 @@ class ExternalFile(object):
                                                                                  resp.text))
 
     def read(self):
-        with open(self.file_path, 'rb') as fh:
-            return fh.read()
+        return self.file_object.content.encode('utf-8')
 
     def readlines(self):
-        with open(self.file_path, 'rb') as fh:
-            return fh.readlines()
+        return StringIO(self.read()).readlines()
 
     def update(self, force=False):
         log.info('Updating {0}.'.format(self.name))
         headers = {}
         if not force:
             if self.last_modified:
-                headers['if-modified-since'] = self.last_modified
+                headers['if-modified-since'] = self.last_modified_http
 
         resp = requests.get(self.url, headers=headers, verify=True)
         content = self.validate_resp(resp)
@@ -123,23 +121,15 @@ class ExternalFile(object):
             # up-to-date
             return None
 
-        # make sure cache dir exists
-        if not exists(FILES_PATH):
-            try:
-                mkdir(FILES_PATH, 0777)
-            except OSError:
-                # already exists
-                pass
-
-        with codecs.open(self.file_path, 'wb', 'utf8') as fh:
-            fh.write(content)
-
-        with open(self.updated_file_path, 'wb') as lu_fh:
-            lu_fh.write(resp.headers['last-modified'])
+        fo = self.file_object
+        if fo:
+            fo.content = content
+            fo.save()
+        else:
+            self.file_object = EFModel.objects.create(name=self.file_id, content=content)
 
         log.info('Successfully updated {0}.'.format(self.name))
         return True
 
     def clear_cache(self):
-        if self.cache_key:
-            self._cache.delete(self.cache_key)
+        self._cache.delete(self.cache_key)
