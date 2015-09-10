@@ -11,51 +11,43 @@
 {% endblock %}
 
 {% block article %}
-  <p>{% trans %}
-  Unless otherwise indicated, the text of documents in this collection is available under the Creative
-  Commons Attribution Share-Alike 3.0 Unported license, or any later version.
-  {% endtrans %}</p>
-
-  <p><a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/"><img
-  alt="{{ _('Creative Commons License') }}"
-  src="https://creativecommons.org/images/public/somerights20.gif" /></a></p>
-
-  <p>A <a href="https://creativecommons.org/licenses/by-sa/3.0/">summary</a> of the
-  terms of this license is available, as well as its <a
-  href="https://creativecommons.org/licenses/by-sa/3.0/legalcode">detailed
-  terms</a>.</p>
-
   <p>
-    {% trans
-      styleguide=url('styleguide.home'),
-      mpl2=url('mozorg.mpl.2.0.index')
-    %}
-  Trademark rights in the trademarks, logos, service marks of the Mozilla
-  Foundation, as well as the look and feel of this web site, are not licensed
-  under the terms mentioned above. Details of permitted uses for our
-  trademarks can be found in our
-  <a href="{{ styleguide }}">Style Guide</a>.
-  The logo files containing our trademarks are available under the following
-  copyright licenses: vector logo files under
-  <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY 3.0</a> or
-  later; bitmap logo files under
-  <a href="{{ mpl2 }}">MPL 2</a>.
-  If you have any questions about complying with our licensing terms for this
-  collection, you should email:
-  {% endtrans %}</p>
+  {% trans %}
+    Unless otherwise indicated, the text of documents in this collection is available under the Creative
+    Commons Attribution Share-Alike 3.0 Unported license, or any later version.
+  {% endtrans %}
+  </p>
+  <p>
+    <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">
+      <img alt="{{ _('Creative Commons License') }}"src="https://creativecommons.org/images/public/somerights20.gif" />
+    </a>
+  </p>
+  <p>
+  {% trans
+    license3='https://creativecommons.org/licenses/by-sa/3.0/',
+    legalcode='https://creativecommons.org/licenses/by-sa/3.0/legalcode'
+  %}
+    A <a href="{{ license3 }}">summary</a> of the terms of this license is available, as well as it’s <a href="{{ legalcode }}">detailed terms</a>.
+  {% endtrans %}
+  </p>
+  <p>
+  {% trans policy=url('foundation.trademarks.policy') %}
+    Rights in the trademarks and service marks of Mozilla, as well as the look and feel of this website, are not licensed under the terms mentioned above. However, we support you making full use of your rights under fair use, fair dealing and other exceptions and limitations to trademark, and Mozilla also allows some additional uses under our <a href="{{ policy }}">Trademark Policy</a>. Please see our Trademark Policy for further information.
+  {% endtrans %}
+  </p>
+  <p>{{ _('If you have any questions about complying with our licensing terms for this collection, you should email:') }}</p>
 
   <ul>
-    <li><a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a> for copyright questions; or</li>
-    <li><a href="mailto:trademarks@mozilla.com">trademarks@mozilla.com</a> for Firefox or Thunderbird trademark and logo questions; or</li>
-    <li><a href="mailto:trademarks@mozilla.org">trademarks@mozilla.org</a> for other trademark or logo questions.</li>
+    <li><a href="mailto:trademarks@mozilla.com">trademarks@mozilla.com</a> {{ _('for Firefox or Thunderbird trademark and logo questions; or') }}
+    <li><a href="mailto:trademarks@mozilla.org">trademarks@mozilla.org</a> {{ _('for other trademark or logo questions; or') }} </li>
+    <li><a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a> {{ _('for copyright questions.') }}</li>
   </ul>
 
   <p>
-    {% trans licensing=url('foundation.licensing') %}
-      For more information about these and other licensing policies, please see our
-      <a href="{{ licensing }}">Licensing
-      Policies</a> page.
-    {% endtrans %}
+  {% trans licensing=url('foundation.licensing') %}
+    For more information about these and other licensing policies, please see our
+    <a href="{{ licensing }}">Licensing Policies</a> page.
+  {% endtrans %}
   </p>
 
 {% endblock article %}
