@@ -131,6 +131,28 @@ sizes in either fixed units (``px``, ``pt``, etc) or element-relative units (``e
 See `this post by Jonathan Snook <http://snook.ca/archives/html_and_css/font-size-with-rem>`_
 for more info.
 
+Use the useful RTL-aware mixins for direction-related CSS properties including
+``right``, ``left``, ``float``, ``clear``, ``margin``, ``border``, ``padding``
+and ``text-align``, when applicable. Those can be found in ``sandstone/lib.less``.
+For example::
+
+    .box {
+        .float-left;
+        .margin-right(10px);
+    }
+
+will be converted by LESS as::
+
+    html[dir="ltr"] .box {
+        float: left;
+        margin-right: 10px;
+    }
+
+    html[dir="rtl"] .box {
+        float: right;
+        margin-left: 10px;
+    }
+
 Configuring your code editor
 ----------------------------
 

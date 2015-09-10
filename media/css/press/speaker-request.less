@@ -23,7 +23,7 @@
 
 .sidebar {
     width: 250px;
-    margin-left: 100px;
+    .margin-left(100px);
 }
 
 .container {
@@ -90,14 +90,14 @@ fieldset {
 
 @media only screen and (max-width: @breakDesktop) {
     .main-column {
-        float: none;
+        .float-none;
         width: auto;
     }
 
     .sidebar {
-        float: none;
+        .float-none;
         width: auto;
-        margin: (@baseLine * 2) 0 0;
+        .margin(@baseLine * 2, 0, 0, 0);
     }
 }
 

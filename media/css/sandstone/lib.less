@@ -321,32 +321,143 @@
 }
 
 
+// Mixins for a better RTL support. (Bug 1166055)
+// The '&' symbol changes the selector order, as explained in
+// http://lesscss.org/features/#parent-selectors-feature-changing-selector-order
+
+.right(@val) {
+    html[dir="ltr"] & { right: @val; }
+    html[dir="rtl"] & { left: @val; }
+}
+
+.left(@val) {
+    html[dir="ltr"] & { left: @val; }
+    html[dir="rtl"] & { right: @val; }
+}
+
+.float-right() {
+    html[dir="ltr"] & { float: right; }
+    html[dir="rtl"] & { float: left; }
+}
+
+.float-left() {
+    html[dir="ltr"] & { float: left; }
+    html[dir="rtl"] & { float: right; }
+}
+
+.float-none() {
+    html[dir="ltr"] &,
+    html[dir="rtl"] & { float: none; }
+}
+
+.clear-right() {
+    html[dir="ltr"] & { clear: right; }
+    html[dir="rtl"] & { clear: left; }
+}
+
+.clear-left() {
+    html[dir="ltr"] & { clear: left; }
+    html[dir="rtl"] & { clear: right; }
+}
+
+.clear-none() {
+    html[dir="ltr"] &,
+    html[dir="rtl"] & { clear: none; }
+}
+
+.clear-both() {
+    html[dir="ltr"] &,
+    html[dir="rtl"] & { clear: both; }
+}
+
+.margin(@top, @right, @bottom, @left) {
+    html[dir="ltr"] & { margin: @top @right @bottom @left; }
+    html[dir="rtl"] & { margin: @top @left @bottom @right; }
+}
+
+.margin-right(@val) {
+    html[dir="ltr"] & { margin-right: @val; }
+    html[dir="rtl"] & { margin-left: @val; }
+}
+
+.margin-left(@val) {
+    html[dir="ltr"] & { margin-left: @val; }
+    html[dir="rtl"] & { margin-right: @val; }
+}
+
+.border-width(@top, @right, @bottom, @left) {
+    html[dir="ltr"] & { border-width: @top @right @bottom @left; }
+    html[dir="rtl"] & { border-width: @top @left @bottom @right; }
+}
+
+.border-right(@val) {
+    html[dir="ltr"] & { border-right: @val; }
+    html[dir="rtl"] & { border-left: @val; }
+}
+
+.border-left(@val) {
+    html[dir="ltr"] & { border-left: @val; }
+    html[dir="rtl"] & { border-right: @val; }
+}
+
+.padding(@top, @right, @bottom, @left) {
+    html[dir="ltr"] & { padding: @top @right @bottom @left; }
+    html[dir="rtl"] & { padding: @top @left @bottom @right; }
+}
+
+.padding-right(@val) {
+    html[dir="ltr"] & { padding-right: @val; }
+    html[dir="rtl"] & { padding-left: @val; }
+}
+
+.padding-left(@val) {
+    html[dir="ltr"] & { padding-left: @val; }
+    html[dir="rtl"] & { padding-right: @val; }
+}
+
+.text-align-right() {
+    html[dir="ltr"] & { text-align: right; }
+    html[dir="rtl"] & { text-align: left; }
+}
+
+.text-align-left() {
+    html[dir="ltr"] & { text-align: left; }
+    html[dir="rtl"] & { text-align: right; }
+}
+
+// Flip an element horizontally for RTL locales such as Arabic. Usually applied
+// to :before or :after pseudo-elements with a background-image
+.flip-horizontally() {
+    html[dir="rtl"] & { .transform(scale(-1, 1)); }
+}
+
+
 // Column spans for standard column widths
 .span(@columns) {
-    float: left;
+    .float-left;
     width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
     margin: 0 (@gridGutterWidth / 2);
 }
 
 .span-all() {
-    float: none;
+    .float-none;
     width: auto;
     margin: 0 (@gridGutterWidth / 2);
 }
 
 .offset(@columns) {
-    margin-left: ((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
+    .margin-left(((@gridColumnWidth + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5));
 }
 
 // Column spans for narrow column widths
 .span_narrow(@columns) {
-    float: left;
+    .float-left;
     width: (@gridColumnWidthNarrow * @columns) + (@gridGutterWidth * (@columns - 1));
     margin: 0 (@gridGutterWidth / 2);
 }
 
 .offset_narrow(@columns) {
-    margin-left: ((@gridColumnWidthNarrow + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5);
+    .margin-left(((@gridColumnWidthNarrow + @gridGutterWidth) * @columns) + (@gridGutterWidth * 0.5));
 }
 
 .button-hover-box-shadow(@color: #ffffff) {
@@ -405,12 +516,6 @@
     text-indent: 120%; // extra 20% to account for fancy fonts that may overhang
     white-space: nowrap;
     overflow: hidden;
-}
-
-// Flip an element horizontally for RTL locales such as Arabic. Usually applied
-// to :before or :after pseudo-elements with a background-image
-.flip-horizontally() {
-    .transform(scale(-1, 1));
 }
 
 .trailing-arrow() {

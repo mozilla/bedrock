@@ -899,7 +899,7 @@ nav.menu-bar {
     .field-privacy {
         .font-size(@smallFontSize);
         input {
-            float: left;
+            .float-left;
         }
         .title {
             display: block;
@@ -919,12 +919,6 @@ nav.menu-bar {
 
 .html-rtl {
     .newsletter-form {
-        h3,
-        .form-contents,
-        .form-submit,
-        .field-privacy input {
-            float: right;
-        }
         .field-privacy .title {
             padding: 0 25px 0 0;
         }
@@ -1040,7 +1034,7 @@ nav.menu-bar {
         overflow: hidden;
 
         li {
-            float: left;
+            .float-left;
 
             &.wrap:before {
                 content: "\00A0\00B7\00A0"; /* &nbsp;&middot;&nbsp; */
@@ -1073,12 +1067,6 @@ nav.menu-bar {
                 .visually-hidden(); /* for a11y */
             }
         }
-    }
-}
-
-.html-rtl #colophon {
-    .col, .col-2 ul li {
-        float: right;
     }
 }
 
@@ -1162,7 +1150,7 @@ nav.menu-bar {
         }
 
         .logo {
-            float: left;
+            .float-left;
             margin-bottom: 0;
             width: 120px;
         }
@@ -1173,12 +1161,6 @@ nav.menu-bar {
     }
 
     .html-rtl #colophon {
-        .col-2,
-        .col-3,
-        .logo {
-            float: right;
-        }
-
         .license {
             margin: 0 120px 0 0;
         }
@@ -1353,23 +1335,12 @@ nav.menu-bar {
         .form-contents,
         .form-submit {
             width: auto;
-            float: none;
+            .float-none;
             margin-bottom: 10px;
         }
 
         .form-submit {
             margin-top: @baseLine / 2;
-        }
-    }
-
-    .html-rtl {
-        .footer-newsletter-form,
-        #newsletter-form {
-            h3,
-            .form-contents,
-            .form-submit {
-                float: none;
-            }
         }
     }
 
@@ -1380,13 +1351,9 @@ nav.menu-bar {
 
         .col {
             width: auto;
-            float: none;
+            .float-none;
             margin-bottom: @baseLine / 2;
         }
-    }
-
-    .html-rtl #colophon .col {
-        float: none;
     }
 
     #nav-main {

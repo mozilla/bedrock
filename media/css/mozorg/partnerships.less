@@ -21,15 +21,20 @@
         }
     }
     #main-content {
-        background-image: url(/media/img/mozorg/partnerships/sidebar-bg.png);
-        background-position: 100% 0;
-        background-repeat: repeat-y;
+        html[dir="ltr"] & {
+            background-image: -webkit-linear-gradient(left, #F5F5F5 0%, #F5F5F5 263px, #B4B4B4 269px, #FFF 270px, #FFF 100%);
+            background-image: linear-gradient(to left, #F5F5F5 0%, #F5F5F5 263px, #B4B4B4 272px, #FFF 271px, #FFF 100%);
+        }
+        html[dir="rtl"] & {
+            background-image: -webkit-linear-gradient(right, #F5F5F5 0%, #F5F5F5 263px, #B4B4B4 269px, #FFF 270px, #FFF 100%);
+            background-image: linear-gradient(to right, #F5F5F5 0%, #F5F5F5 263px, #B4B4B4 272px, #FFF 271px, #FFF 100%);
+        }
     }
     #sections {
         .span(9);
         section {
             .clearfix;
-            margin-right: 40px;
+            .margin-right(40px);
             margin-bottom: @baseLine * 1.5;
             position: relative;
             background: url(/media/img/mozorg/partnerships/divider.png) 50% 100% no-repeat;
@@ -177,11 +182,14 @@
             }
         }
         #main-content {
-            background-image: none;
+            html[dir="ltr"] &,
+            html[dir="rtl"] & {
+                background-image: none;
+            }
         }
         #sections {
             width: auto;
-            float: none;
+            .float-none;
             section {
                 margin-right: 0;
                 img.icon {
@@ -192,7 +200,7 @@
                 h3,
                 p {
                     width: auto;
-                    float: none;
+                    .float-none;
                     clear: both;
                 }
             }
@@ -200,7 +208,7 @@
 
         #partner {
             width: auto;
-            float: none;
+            .float-none;
         }
     }
 
