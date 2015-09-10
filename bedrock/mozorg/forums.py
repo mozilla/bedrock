@@ -5,8 +5,6 @@
 import re
 from collections import OrderedDict
 
-from django.utils.functional import cached_property
-
 from bedrock.externalfiles import ExternalFile
 
 
@@ -27,7 +25,7 @@ class ForumsFile(ExternalFile):
 
         return content
 
-    @cached_property
+    @property
     def ordered(self):
         return self._parse(self.readlines())
 

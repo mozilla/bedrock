@@ -5,21 +5,29 @@
 from datetime import datetime
 
 from django.conf import settings
+from django.utils import timezone
 
-from mock import Mock, patch
+from mock import Mock, patch, PropertyMock
+from pytz import utc
 
 from bedrock import externalfiles
+from bedrock.externalfiles.models import ExternalFile as EFModel
 from bedrock.mozorg.tests import TestCase
 import requests
 
 
 class TestExternalFile(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        timezone.activate(utc)
+
     def setUp(self):
         settings.EXTERNAL_FILES['test'] = {
             'url': 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul',
         }
 
     def tearDown(self):
+        externalfiles.ExternalFile('test').clear_cache()
         del settings.EXTERNAL_FILES['test']
 
     def test_file_name(self):
@@ -32,46 +40,34 @@ class TestExternalFile(TestCase):
         settings.EXTERNAL_FILES['test']['name'] = filename
         self.assertEqual(externalfiles.ExternalFile('test').name, filename)
 
-    @patch.object(externalfiles, 'open', create=True)
-    def test_last_modified(self, open_mock):
+    def test_last_modified(self):
         """Should return the modified timestamp."""
-        open_mock.return_value.__enter__.return_value.read.return_value = 'The Dude abides.'
-        self.assertEqual(externalfiles.ExternalFile('test').last_modified, 'The Dude abides.')
+        EFModel.objects.create(name='test', content='test')
+        efo = EFModel.objects.get(name='test')
+        self.assertEqual(externalfiles.ExternalFile('test').last_modified, efo.last_modified)
 
-    @patch.object(externalfiles, 'open', create=True)
-    def test_last_modified_read_error(self, open_mock):
-        """Should return None on file read error."""
-        open_mock.return_value.__enter__.return_value.read.side_effect = IOError
+    def test_last_modified_read_error(self):
+        """Should return None if object not in DB."""
         self.assertIsNone(externalfiles.ExternalFile('test').last_modified)
 
-    @patch.object(externalfiles, 'open', create=True)
-    def test_last_modified_datetime(self, open_mock):
-        """should properly convert stored date stamp to datetime."""
-        read_mock = open_mock.return_value.__enter__.return_value.read
-        read_mock.return_value = 'Tue, 08 Jul 2014 12:00:00 GMT'
-        good_datetime = datetime(year=2014, month=7, day=8, hour=12)
-        self.assertEqual(externalfiles.ExternalFile('test').last_modified_datetime,
-                         good_datetime)
+    @patch.object(externalfiles.ExternalFile, 'last_modified', new_callable=PropertyMock)
+    def test_last_modified_http(self, elm_mock):
+        """should properly convert stored datetime to HTTP value."""
+        good_value = 'Tue, 08 Jul 2014 12:00:00 GMT'
+        good_datetime = datetime(year=2014, month=7, day=8, hour=4)
+        good_datetime = timezone.make_aware(good_datetime, utc)
+        elm_mock.return_value = good_datetime
+        efo = externalfiles.ExternalFile('test')
+        self.assertEqual(efo.last_modified_http, good_value)
 
-    @patch.object(externalfiles, 'open', create=True)
-    def test_last_modified_datetime_error(self, open_mock):
-        """Should return None on error."""
-        open_mock.return_value.__enter__.return_value.read.side_effect = IOError
-        self.assertIsNone(externalfiles.ExternalFile('test').last_modified_datetime)
-
-    @patch.object(externalfiles, 'open', create=True)
-    def test_last_modified_datetime_bad_str(self, open_mock):
-        """Should return None with bad date string."""
-        open_mock.return_value.__enter__.return_value.read.return_value = 'The Dude abides.'
-        self.assertIsNone(externalfiles.ExternalFile('test').last_modified_datetime)
-
+    @patch.object(externalfiles.ExternalFile, 'last_modified_http', new_callable=PropertyMock)
     @patch.object(externalfiles, 'requests')
-    def test_update_adds_headers(self, requests_mock):
+    def test_update_adds_headers(self, requests_mock, elmh_mock):
         """Should add proper modified headers when possible."""
         requests_mock.get.side_effect = requests.RequestException
         ef = externalfiles.ExternalFile('test')
         modified_str = 'Willlllmaaaaaaa!!'
-        ef.last_modified = modified_str
+        elmh_mock.return_value = modified_str
         try:
             ef.update()
         except requests.RequestException:
@@ -80,12 +76,13 @@ class TestExternalFile(TestCase):
                                            headers={'if-modified-since': modified_str},
                                            verify=True)
 
+    @patch.object(externalfiles.ExternalFile, 'last_modified_http', new_callable=PropertyMock)
     @patch.object(externalfiles, 'requests')
-    def test_update_force_not_add_headers(self, requests_mock):
+    def test_update_force_not_add_headers(self, requests_mock, elmh_mock):
         """Should not add proper modified headers when force is True."""
         requests_mock.get.side_effect = requests.RequestException
         ef = externalfiles.ExternalFile('test')
-        ef.last_modified = 'YabbaDabbaDooo!!'
+        elmh_mock.return_value = 'YabbaDabbaDooo!!'
         try:
             ef.update(force=True)
         except requests.RequestException:
