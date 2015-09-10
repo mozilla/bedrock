@@ -41,7 +41,7 @@ class AcceptedLocalesTest(test_utils.TestCase):
         cls.PROD_LANGUAGES = settings.PROD_LANGUAGES
         cls.DEV_LANGUAGES = settings.DEV_LANGUAGES
         settings.PROD_LANGUAGES = ('en-US',)
-        os.rename(cls.locale, cls.locale_bkp)
+        shutil.move(cls.locale, cls.locale_bkp)
         for loc in ('en-US', 'fr', 'templates'):
             os.makedirs(os.path.join(cls.locale, loc, 'LC_MESSAGES'))
         open(os.path.join(cls.locale, 'empty_file'), 'w').close()
@@ -54,7 +54,7 @@ class AcceptedLocalesTest(test_utils.TestCase):
         settings.PROD_LANGUAGES = cls.PROD_LANGUAGES
         settings.DEV_LANGUAGES = cls.DEV_LANGUAGES
         shutil.rmtree(cls.locale)
-        os.rename(cls.locale_bkp, cls.locale)
+        shutil.move(cls.locale_bkp, cls.locale)
 
     def test_build_dev_languages(self):
         """Test that the list of dev locales is built properly.
