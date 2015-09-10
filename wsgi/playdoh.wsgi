@@ -1,6 +1,8 @@
 # flake8: noqa
-
 import os
+
+from decouple import config
+
 
 try:
     import newrelic.agent
@@ -9,7 +11,7 @@ except ImportError:
 
 
 if newrelic:
-    newrelic_ini = os.getenv('NEWRELIC_PYTHON_INI_FILE', False)
+    newrelic_ini = config('NEWRELIC_PYTHON_INI_FILE', default=False)
     if newrelic_ini:
         newrelic.agent.initialize(newrelic_ini)
     else:
