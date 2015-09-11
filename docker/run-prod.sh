@@ -1,6 +1,10 @@
 #!/bin/bash
 
+set -xe
+
 ./docker/run-common.sh
+
+./manage.py get_geoip_db
 
 server=${WSGI_SERVER:-gunicorn}
 if [[ $server == "gunicorn" ]]
