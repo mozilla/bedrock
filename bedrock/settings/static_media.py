@@ -609,6 +609,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_pocket-bundle.css',
     },
+    'firefox_releasenotes_firefox': {
+        'source_filenames': (
+            'css/firefox/releasenotes-firefox.less',
+        ),
+        'output_filename': 'css/firefox_releasenotes_firefox-bundle.css',
+    },
     'firefox_releasenotes': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -1764,6 +1770,14 @@ PIPELINE_JS = {
             'js/firefox/partners/desktop.js',
         ),
         'output_filename': 'js/partners_desktop-bundle.js',
+    },
+    'releasenotes': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/releasenotes.js',
+        ),
+        'output_filename': 'js/releasenotes-bundle.js',
     },
     'thunderbird-all': {
         'source_filenames': (

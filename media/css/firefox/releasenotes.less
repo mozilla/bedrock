@@ -1,203 +1,40 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 @import "../sandstone/lib.less";
-@font-face {
-    font-family: 'Font Awesome';
-    src: url('/media/fonts/fontawesome-webfont.eot?v4.01#iefix') format('embedded-opentype'), url('/media/fonts/fontawesome-webfont.woff?v4.01') format('woff'), url('/media/fonts/fontawesome-webfont.ttf?v4.01') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-#outer-wrapper {
-    background: #fff;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-}
-.blank {
-    #outer-wrapper {
-        background: #FFF;
-        width: 100vw;
-        padding: 0px;
-        margin: 0px;
-    }
-}
-#wrapper {
-    padding: 0px;
-    margin: 0px;
-    width: 100%;
-}
-#tabzilla:before {
-    background-color: #0C99D5;
-}
+
 .space #wrapper {
     background-repeat: no-repeat;
     background-position: 0px 180px;
-    background-color: white;
-    width: 100%;
+    background-image: url('/media/img/firefox/releasenotes/aurora_bg_800.png');
 }
-.wrap_pad {
-    padding-bottom: 30px;
-}
-#main-content {
-    width: 100%;
-    padding: 0px;
-    margin: 0px;
-}
-.release-notes {
-    background-color: white;
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-}
-.tri-column {
-    .span(4);
-}
-.notes-column {
-    width: 100vw;
-    text-align: left;
-    padding: 0px;
-    background-color: white;
-}
-.note_wrapper {
-    width: 75%;
-    float: right;
-}
-.label_wrapper {
-    width: 25%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    text-transform: uppercase;
-}
-.release_blurb_wrapper {
-    width: 100%;
-    float: left;
-    text-align: left;
-    padding-bottom: 10px;
-    padding-top: 5px;
-}
-.release_details {
-    width: 100%;
-    height: 100%;
-    float: left;
-    text-align: center;
-    padding: 10px 10px 10px 0;
-    position: relative;
-}
-.version_wrapper {
-    width: 11%;
-    padding-left: 4%;
-    left: 0;
-    top: 0;
-    float: left;
-    text-align: center;
-    position: relative;
-    padding-top: 10px;
-    display: inline-block;
-}
-.details_wrapper {
-    position: relative;
-    float: left;
-    text-align: center;
-    width: auto;
-    padding-left: 7%;
-    left: 0;
-    top: 0;
-    padding-top: 1.2em;
-    height: 100%;
-    display: inline-block;
-}
-.thank_wrapper {
-    position: relative;
-    float: left;
-    width: 75%;
-    padding-left: 22%;
-    text-align: left;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: block;
-}
-.title_text_wrap {
-    width: 40%;
-    position: relative;
-    word-wrap: break-word;
-}
-.release_details_alt {
-    width: 100%;
-    height: 100%;
-    float: left;
-    text-align: center;
-    padding: 10px 10px 10px 0;
-    position: relative;
-}
-.version_wrapper_alt {
-    height: 100%;
-    width: 11%;
-    padding-left: 4%;
-    float: left;
-    text-align: center;
-    position: relative;
-    padding-top: 10px;
-    display: inline-block;
-}
-.details_wrapper_alt {
-    position: relative;
-    float: left;
-    padding-top: 0em;
-    display: inline-block;
-    padding-left: 7%;
-}
-.title_text_wrapper_alt {
-    width: 100%;
-    position: relative;
-}
-.section-wrapper {
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-}
-.note_wrap {
-    padding-left: 20px;
-}
-#note-media {
-    display: none;
-}
-.gray_note {
-    background-color: rgba(223, 236, 250, 0.41);
-}
-.blue_note {
-    background-color: #FFF;
-}
+
 .notes-head {
     .clearfix;
-    padding: 10px 5% 0;
     margin-bottom: @baseLine * 2;
-    background-color: #F0F0F0;
-    text-align: center;
-    p {} h1 {
-        font-weight: 400;
-        font-size: 250%;
-        padding-bottom: 15px;
-        text-align: center;
+
+    h1,
+    h2,
+    p {
+        .span(7);
     }
-    h3 {
-        font-weight: 900;
-        font-size: 225%;
-    }
+
     h1 {
         margin-bottom: .15em;
     }
+
     h2 {
         .font-size(1.428em);
         letter-spacing: normal;
         margin-bottom: .75em;
     }
+
     p {
         margin-bottom: 1em;
     }
 }
+
 .space .notes-head {
     background-repeat: no-repeat;
     background-position: top left;
@@ -205,185 +42,189 @@
     background-size: 150px auto;
     padding: 10px 0 0 150px;
 }
+
 .blueprint .notes-head {
-    h1, h2, p {
+    h1,
+    h2,
+    p {
         .span(8);
     }
     h1 {
-        margin-top: .25em;
-        padding-top: 20px;
+        margin-bottom: .15em;
     }
     h2 {
-        margin-bottom: 0em;
+        margin-bottom: .75em;
     }
 }
-#new::before {
-    font-family: 'Font Awesome';
-    content: "\00A0\f005\00A0";
-}
-#fixed::before {
-    font-family: 'Font Awesome';
-    content: "\00A0\f00c\00A0";
-}
-#changed::before {
-    font-family: 'Font Awesome';
-    content: "\00A0\f021\00A0";
-}
-#developer::before {
-    font-family: 'Font Awesome';
-    content: "\00A0\f0ad\00A0";
-}
-#html5::before {
-    font-family: 'Font Awesome';
-    content: "\00A0\f121\00A0";
-}
-#resolved::before {
-    font-family: 'Font Awesome';
-    content: "\00A0\f164\00A0";
-}
-#known::before {
-    font-family: 'Font Awesome';
-    content: "\00A0\f05e\00A0";
-}
-.note_label {
-    text-align: center;
-}
-.space_div {
-    padding-bottom: 30px;
-}
-.firstPlatform {
-    padding-left: 40%;
-    padding-right: 5%;
-}
+
 #platform {
+    float: right;
     overflow: hidden;
-    padding-top: 0px;
-    width: 100%;
-    padding-right: 0px;
-    padding-left: 0px;
-    text-align: center;
+
     a {
-        color: #000;
+        color: #fff;
     }
+
     h4 {
-        .font-size(30px);
-        margin: 0;
+        .font-size(15px);
+        margin: 0 0 6px 0;
         padding: 0;
     }
+
     ul {
         margin: 0;
+        padding: 3px;
         float: left;
-        background: #fff;
-        width: 100%;
-        border-radius: 10px;
+        box-shadow: 0 3px 3px rgba(126, 137, 147, .5) inset,
+                    0 1px rgba(185, 197, 204, .5);
+        border-radius: 9px;
+        background: #b1becc;
+        background: rgba(207, 218, 230, .25);
     }
+
     li {
         margin: 0;
+        padding: 0;
         list-style-type: none;
         float: left;
-        width: 90px;
     }
+
+    a {
+        border-bottom: 1px solid rgba(43, 58, 153, .5);
+        box-shadow: 0 -2px rgba(0, 0, 0, .2) inset;
+        #gradient > .vertical-three-colors(#7ca9f4, #4b79c6, 3%, #2e4e99);
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .35);
+    }
+
     span {
-        color: #000;
-        border-radius: 0;
-        border-bottom: 5px solid rgba(0, 150, 221, 0.7);
+        color: #506aa1;
+        border-bottom: 1px solid #22366d;
+        .box-shadow(0 2px 1 px #0b1b41 inset);
+        #gradient > .vertical(#1a2f5a 14%, #254d90 95%);
+        border-radius: 0 6px 6px 0;
+        text-shadow: 0 1px rgba(28, 54, 112, .35);
     }
+
     li:first-child {
         padding-right: 1px;
-        a, span {
-            border-radius: 0;
+
+        a,
+        span {
+            border-radius: 6px 0 0 6px;
         }
     }
+
     a,
     span {
         display: block;
         padding: 12px 16px;
         .open-sans;
-        .font-size(15px);
+        .font-size(@smallFontSize);
         font-weight: 600;
         text-transform: uppercase;
-        border-radius: 0;
+        border-radius: 0 6px 6px 0;
     }
 }
+
 .space #platform {
     ul {
-        padding: 0px;
+        box-shadow: 0 0 10px rgba(72, 23, 95, .35) inset,
+                    0 -1px 0 rgba(134, 80, 168, .5) inset;
     }
+
     a {
         #gradient > .vertical-three-colors(#f2a279, #f28047, 3%, #c63);
     }
+
     span {
         color: #d79676;
         #gradient > .vertical(#7b3816 14%, #ac5022 95%);
     }
+
 }
+
 a.go:after,
 .sidebar a:after {
     content: " »";
     white-space: nowrap;
 }
+
 article {
     .clearfix;
 }
+
 .notes-section {
     .box-shadow(@shadow);
     @shadow: 0 0 0 1px #fff inset;
     background: #fff;
-    padding: 0px;
+    border-bottom: 1px solid #ddd;
+    margin: 0 -@gridGutterWidth @baseLine;
+    padding: @baseLine @gridGutterWidth;
 }
+
 .blueprint .notes-section {
     background: #111;
     background: rgba(9, 68, 121, .1);
     border: 1px solid rgba(25, 93, 153, .5);
     box-shadow: 0 0 10px rgba(9, 68, 121, .36) inset;
 }
+
 .space .notes-section {
     background: #303;
     background: rgba(40, 6, 57, .25);
     border: 1px solid rgba(80, 27, 91, .5);
-    box-shadow: 0 0 10px rgba(72, 23, 95, .36) inset, 0 -1px 0 rgba(134, 80, 168, .5) inset;
+    box-shadow: 0 0 10px rgba(72, 23, 95, .36) inset,
+                0 -1px 0 rgba(134, 80, 168, .5) inset;
 }
+
 .section-items {
     list-style: none;
     margin: 0;
+
     > li {
+        border-top: 1px solid @borderColor;
         margin: 0;
         padding: .714rem 0 .5rem;
         position: relative;
-        padding-bottom: 10px;
-        padding-right: 5px;
     }
+
     h4 {
         .font-size(18px);
         margin: 0 0 .25em;
     }
+
     p {
-        margin: 0;
+        margin: 0 0 .25em;
     }
+
     .note {
         .font-size(@smallFontSize);
         color: @textColorSecondary;
-        margin: 0;
-        padding-right: 0px;
+        margin: 0 0 .25em;
     }
 }
+
 .space .section-items > li {
     border-top-color: #522853;
 }
+
 .blueprint .section-items > li {
     border-top-color: #173e62;
 }
+
 .section-items.tagged {
     > li {
-        padding-left: 0;
+        padding-left: 160px;
+
         &.untagged {
             padding-left: 0;
         }
     }
+
     .tag {
         background: #f3f3f3 url(/media/img/firefox/releasenotes/tags.png) 0 0 no-repeat;
         border-right: 3px solid #ccc;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 -1px 0 rgba(0, 0, 0, 0.05) inset;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(0,0,0,0.05) inset;
         color: @textColorPrimary;
         display: inline-block;
         .font-size(11px);
@@ -397,20 +238,67 @@ article {
         text-transform: uppercase;
         width: 102px;
     }
+
+    .tag-new {
+        background-color: #ffedcf;
+        background-position: 0 -50px;
+        border-color: #f90;
+    }
+
+    .tag-changed {
+        background-color: #e9cfff;
+        background-position: 0 -100px;
+        border-color: #8106e0;
+    }
+
+    .tag-fixed {
+        background-color: #f0ffe1;
+        background-position: 0 -150px;
+        border-color: #5ba622;
+    }
+
+    .tag-html5 {
+        background-color: #f8dfd8;
+        background-position: 0 -200px;
+        border-color: #d85027;
+    }
+
+    .tag-resolved {
+        background-color: #dcf6ff;
+        background-position: 0 -250px;
+        border-color: #038fc0;
+    }
+
+    .tag-unresolved {
+        background-color: #ffc8c8;
+        background-position: 0 -300px;
+        border-color: #c00;
+    }
+
+    .tag-developer {
+        background-color: #e7e7e7;
+        background-position: 0 -350px;
+        border-color: #999;
+    }
 }
+
 .sidebar section {
     border-bottom: 1px dotted darken(@borderColor, 10%);
     margin-bottom: @baseLine;
+
     h3 {
         .font-size(22px);
     }
 }
+
 .space .sidebar section {
     border-bottom-color: #522853;
 }
+
 .blueprint .sidebar section {
     border-bottom-color: #173e62;
 }
+
 #try {
     .box-shadow(@shadow);
     @shadow: 0 0 0 1px #fff inset;
@@ -418,16 +306,19 @@ article {
     border-bottom: 1px solid #ddd;
     margin: 0 -@gridGutterWidth @baseLine;
     padding: @baseLine @gridGutterWidth;
+
     ol {
         list-style: none;
         margin: 0;
         padding: 0;
     }
+
     li {
         .font-size(1.125rem);
         margin: 0;
         padding: .5em 0 .5em 40px;
         position: relative;
+
         &:before {
             display: block;
             width: 1.25em;
@@ -446,6 +337,7 @@ article {
             vertical-align: middle;
             border-radius: 50%;
         }
+
         &.try1:before {
             content: '1';
         }
@@ -460,63 +352,47 @@ article {
         }
     }
 }
+
 .space #try {
     background: #003;
     background: rgba(165, 165, 165, .08);
     border: 1px solid rgba(80, 80, 80, .25);
-    box-shadow: 0 0 10px rgba(100, 100, 100, .36) inset, 0 -1px 0 rgba(153, 153, 153, .25) inset;
+    box-shadow: 0 0 10px rgba(100, 100, 100, .36) inset,
+                0 -1px 0 rgba(153, 153, 153, .25) inset;
+
     li:before {
         background: #c63;
     }
 }
+
 #problems li {
     margin: 0 0 .5em 20px;
 }
+
 #other p + p {
     margin-top: -.5em;
 }
-/* Tablet Layout: 760px */
 
+
+/* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
     .space #wrapper {
         background-size: 650px;
     }
-    .firstPlatform {
-        padding-left: 40%;
-    }
-    .thank_wrapper {
-        width: 100%;
-        position: relative;
-        word-wrap: break-word;
-        float: right;
-        text-align: left;
-        padding-top: 0;
-        padding-bottom: 20px;
-        padding-left: 0px;
-    }
-    .details_wrapper {
-        position: relative;
-        float: left;
-        text-align: left;
-        width: 100%;
-        height: 100%;
-        padding-left: 0px;
-    }
-    .details_wrapper_alt {
-        position: relative;
-        float: left;
-        text-align: left;
-        width: 100%;
-        height: 100%;
-        padding-left: 0px;
-    }
+
     .notes-head {
-        h1, h2, p {
-            width: 100%;
+        h1,
+        h2,
+        p {
+            .span_narrow(7);
         }
     }
+
     .blueprint .notes-head {
-        h1, h2, p {
+        h1,
+        h2,
+        p {
             .span-all();
         }
         h1 {
@@ -526,103 +402,28 @@ article {
             margin-bottom: .75em;
         }
     }
+
     .space .notes-head {
         p {
             .span_narrow(6);
         }
     }
-}
-/* Mobile Layout: 320px */
 
+}
+
+
+/* Mobile Layout: 320px */
 @media only screen and (max-width: @breakTablet) {
+
     .space #wrapper {
-        width: auto;
+        background-size: 320px;
     }
-    .firstPlatform {
-        padding-left: 25%;
-        width: 70vw;
-    }
-    .label_wrapper {
-        width: auto;
-        position: relative;
-        float: left;
-        padding-top: 40px;
-        font-weight: bold;
-        p {
-            text-align: left;
-        }
-    }
-    .note_wrapper {
-        width: 100%;
-        padding-top: 0px;
-        float: left;
-        position: relative;
-    }
-    .note_wrap {
-        float: left;
-        overflow: hidden;
-        padding-left: 5px;
-        width: auto;
-        height: 100%;
-    }
-    .title_text_wrap {
-        width: auto;
-        position: absolute;
-    }
-    .release_details {
-        width: auto;
-        height: 100%;
-        float: left;
-        text-align: left;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 0px;
-        position: relative;
-    }
-    .thank_wrapper {
-        width: auto;
-        padding-left: 0px;
-        height: 100%;
-        padding-bottom: 20px;
-        padding-top: 5px;
-        float: left;
-        text-align: left;
-    }
-    .version_wrapper {
-        width: 33%;
-        height: 100%;
-        float: left;
-        padding-left: 33%;
-        text-align: left;
-        position: relative;
-        padding-top: 10px;
-    }
-    .details_wrapper {
-        width: 100%;
-        height: 100%;
-        padding-left: 0px;
-        float: left;
-        position: relative;
-    }
-    .version_wrapper_alt {
-        width: 33%;
-        height: 100%;
-        float: left;
-        text-align: left;
-        position: relative;
-        padding-top: 10px;
-    }
-    .details_wrapper_alt {
-        position: relative;
-        float: left;
-        text-align: left;
-        width: 100%;
-        height: 100%;
-        padding-left: 0px;
-    }
+
     .notes-head,
     .blueprint .notes-head {
-        h1, h2, p {
+        h1,
+        h2,
+        p {
             .span-all();
         }
         h1 {
@@ -632,782 +433,33 @@ article {
             margin-bottom: .75em;
         }
     }
+
     .space .notes-head {
         background-image: none;
         padding: 0;
     }
+
     #platform {
         float: none;
-        padding-right: 10px;
-        padding-left: 0px;
-        padding-top: 10px;
-        margin: 0em;
+        margin: @baseLine 10px;
     }
-    .section-wrapper {
-        overflow: hidden;
-        position: relative;
-        width: auto;
-    }
-    .section-items {
+
+    .section-items.tagged {
         > li {
-            float: left;
-            overflow: visible;
-            width: 100%;
-            position: relative;
-            padding-left: 0px;
+            padding-left: 0;
+            display: block;
             word-wrap: break-word;
-        }
-    }
-}
-//Relnotes Footer Modifications
-#newsletter-form {
-background-color:#f0f0f0;
-display:none;
-
-}
-
-#colophon {
-    background-color:#f0f0f0;
-    margin:0;
-    padding:10px 0 20px 0;
-    h1 {
-    font-weight:900;
-    }
-    .rel::after {
-    content: " »";
-    }
-    .rel-download {
-    display:block;
-    width:auto;
-    text-indent:30px;
-    }
-    .rel-download::after {
-    content: " »";
-    }
-    width:100%;
-}
-
-#conditional-download {
-    background-color:#f0f0f0;
-    margin:0;
-    display:none;
-}
-
-#relnotes-footer {
-    background-color:#f0f0f0;
-    margin:0;
-}
-
-
-//Stuff for the conditional download button
-.version-message {
-    display: none;
-    padding:0;
-
-    &:before {
-        .inline-block;
-        margin: 0 0 0 0;
-        width: 25px;
-        height: 25px;
-        vertical-align: text-bottom;
-        background: url(/media/img/firefox/new/icon-alert.svg) center center no-repeat;
-        content: '';
-    }
-}
-
-.version-message-secondary {
-    display: block;
-    padding: 0;
-    background: transparent;
-    .font-size(@largeFontSize);
-}
-
-
-.latest-links-wrapper {
-    display: none;
-    padding-top: 13px;
-    text-align: center;
-    ul {
-        margin: 0;
-        li {
-            margin: 0;
-            padding: 3px 0 2px;
-            list-style: none;
-            line-height: 1.2;
-        }
-    }
-}
-
-.download-button-wrapper {
-    margin: 0;
-    width: auto;
-}
-
-#scene1 > .download-other-desktop {
-    position: absolute;
-    bottom: 240px;
-    left: 50%;
-    margin-left: -170px;
-    width: 340px;
-    text-align: center;
-    .font-size(@baseFontSize);
-    color: @textColorLight;
-    z-index: 2;
-}
-
-/* Unsupported platforms */
-html.windows.arm,
-html.oldmac,
-html.oldwin {
-    .download-button .unsupported-download {
-        margin: 32px 0 0;
-        text-align: left;
-    }
-}
-
-/* iOS */
-html.ios {
-    .version-message-container {
-        display: block;
-    }
-
-    #version-message-ios {
-        display: inline;
-
-        &:before {
-            background-image: url(/media/img/firefox/new/icon-mobile.svg);
-        }
-    }
-
-    .desktop.download-button-wrapper {
-        display: none;
-    }
-
-    .ios-links-wrapper {
-        display: block;
-        padding-top: 26px;
-    }
-    .desktop-latest-links-wrapper {
-        display: none;
-    }
-}
-
-/* desktop version (with Firefox) */
-html.firefox-latest {
-    .version-message-container {
-        display: block;
-    }
-
-    #version-message-desktop-latest {
-        display: inline;
-
-        &:before {
-            background-image: url(/media/img/firefox/new/icon-check.svg);
-        }
-    }
-
-    /* hide download button */
-    .desktop.download-button-wrapper {
-        display: none;
-    }
-
-    /* show helpful links */
-    .desktop-latest-links-wrapper {
-        display: block;
-    }
-
-    #theater-firefox,
-    #stage-firefox {
-        height: auto;
-    }
-
-    #scene1 {
-        position: relative;
-        height: auto;
-    }
-
-    #firefox-screenshot,
-    #scene2 {
-        display: none;
-    }
-
-    #newsletter-latest {
-        display: block;
-    }
-
-    small.download-other {
-        display: none;
-    }
-}
-
-// desktop user with version exactly matching latest release version
-#refresh-firefox-wrapper {
-    display: none;
-}
-
-html.show-refresh {
-    #refresh-firefox-wrapper {
-        display: block;
-        margin: (@baseLine * 2) 0 @baseLine;
-
-        p {
-            font-style: normal;
-            margin-bottom: @baseLine / 2;
-        }
-
-        a {
-            color: @textColorTertiary;
-            font-style: normal;
-            .font-size(12px);
-            .trailing-arrow();
-        }
-    }
-
-    #refresh-firefox {
-        display: block;
-        width: 260px;
-        margin: 0 auto;
-        border-radius: 8px;
-        padding: 15px;
-        font-weight: normal;
-        .font-size(22px);
-    }
-
-    #main-feature,
-    .hide-for-refresh {
-        display: none;
-    }
-}
-
-html.firefox-old {
-    .version-message-container {
-        display: block;
-    }
-
-    #version-message-desktop-old {
-        display: inline;
-    }
-}
-
-/* Android version message (with Firefox) */
-html.android {
-    &.firefox-latest {
-        .version-message-container {
-            display: block;
-        }
-
-        #version-message-android-latest {
-            display: inline;
-
-            &:before {
-                background-image: url(/media/img/firefox/new/icon-check.svg);
+            width: auto;
+            span {
+                word-wrap: break-word;
             }
         }
 
-        #version-message-desktop-latest {
-            display: none;
-        }
-
-        /* hide download button */
-       .android.download-button-wrapper {
-            display: none;
-        }
-
-        /* show helpful links */
-        .android-latest-links-wrapper {
+        .tag {
+            position: static;
             display: block;
-            padding-top: 38px;
-        }
-        .desktop-latest-links-wrapper {
-            display: none;
-        }
-    }
-
-    &.firefox-old {
-        .version-message-container {
-            display: block;
-        }
-
-        #version-message-android-old {
-            display: inline;
-        }
-
-        #version-message-desktop-old {
-            display: none;
-        }
-    }
-
-    .download-button-wrapper {
-        display: none;
-        width: 250px;
-        margin: 0 auto;
-        text-align: center;
-
-        &.android {
-            display: block;
-            margin-top: 22px;
-        }
-    }
-}
-
-/* FxOS */
-html.fxos {
-    // hide conditional messaging for firefox users,
-    // they get updates from the OS directly.
-    .version-message-container {
-        display: none;
-    }
-
-    .fxos-latest-links-wrapper {
-        display: block;
-        padding-top: 26px;
-    }
-
-    #firefox-screenshot {
-        display: none;
-    }
-
-    .desktop-latest-links-wrapper {
-        display: none;
-    }
-}
-
-/* Linux on ARM processors */
-.linux.arm {
-    .version-message-container {
-        display: block;
-    }
-
-    #version-message-linux-arm {
-        display: inline;
-    }
-
-    #theater-firefox,
-    #stage-firefox,
-    #scene1 {
-        position: relative;
-        height: auto;
-    }
-
-    #version-message-desktop-latest,
-    #version-message-desktop-old,
-    #features-download {
-        display: none;
-    }
-
-    /* hide the newsletter box while keeping the height of the screenshot */
-    #newsletter-latest {
-        display: block;
-        visibility: hidden;
-    }
-}
-
-#main-feature {
-    margin-top: 14px;
-    padding-bottom: 20px;
-    h1.large {
-        margin: 12px 50px;
-        text-align: center;
-        .font-size(60px);
-        span { white-space: nowrap; }
-    }
-    img { display: none; }
-}
-
-html[lang|="en"] #main-feature h1.large span:first-child {
-    display: inline-block;
-    width: 100%;
-}
-
-.download-button-wrapper.android {
-    display: none;
-}
-
-.ready-for-scene2 {
-    .thankyou {
-        background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
-        padding: 0 0 0 35px;
-        margin: 0 130px 0;
-        color: @buttonGreenDark;
-        font-style: italic;
-        .font-size(18px);
-        .open-sans-light;
-        &:focus {
-            outline: none;
-        }
-    }
-
-    .installation {
-        margin: 12px 10px 0;
-        padding: 0;
-        display: block;
-        list-style-type: none;
-        .clearfix;
-        li {
-            .span(4);
-            *display: inline;
-            overflow: hidden;
-            text-align: left;
-            .font-size(@smallFontSize);
-            color: @textColorTertiary;
-            font-style: italic;
-            .screen {
-                display: block;
-                width: 298px;
-                height: 150px;
-                border: 1px solid #ccc;
-                margin-bottom: 5px;
-                background-size: 100%;
-                background-color: transparent;
-                background-repeat: no-repeat;
-                background-position: 0 0;
-            }
-            &.install2 .screen { background-position: 0 -160px; }
-            &.install3 .screen { background-position: 0 -320px; }
-        }
-    }
-
-}
-
-.osx     .ready-for-scene2 .screen { background-image: url(/media/img/firefox/new/install-mac.jpg); }
-.windows .ready-for-scene2 .screen { background-image: url(/media/img/firefox/new/install-win.jpg); }
-.winIE8  .ready-for-scene2 .screen { background-image: url(/media/img/firefox/new/install-winIE8.jpg); }
-
-.osx     .install-win,
-.linux   .install-win,
-.windows .install-osx,
-.linux   .install-osx,
-.linux   .install1 strong,
-.linux   .installation .install1 .screen,
-.linux   .install2,
-.linux   .install3 {
-    display: none;
-}
-
-.linux .installation .install1 {
-    .span-all();
-    padding: 0;
-    text-align: center;
-}
-
-.theater {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    height: 420px;
-    overflow: hidden;
-
-    /* shorter list in iOS, decrease available space */
-    .ios & {
-        height: 360px;
-    }
-}
-
-.mobile {
-    display: none;
-}
-
-// android view
-.android {
-    .mobile {
-        display: none;
-    }
-    .desktop {
-        display: block;
-    }
-}
-
-.stage {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 800px;
-    .transition(bottom 0.4s ease 0.1s);
-
-    &.scene2 {
-        bottom: -420px;
-        #scene2 { visibility: visible; }
-    }
-}
-
-.stage-no-anim {
-    .transition(none);
-}
-
-.scene {
-    position: absolute;
-    left: 0;
-    height: 420px;
-    width: 100%;
-    .clearfix;
-    overflow: hidden;
-
-    /* shorter list in iOS, decrease available space */
-    .ios & {
-        height: 360px;
-    }
-}
-
-#scene1 {
-    top: 0;
-}
-
-#scene2 {
-    top: -420px;
-    visibility: hidden;
-}
-
-#firefox-screenshot {
-    position: absolute;
-    right: 20px;
-    left: 20px;
-    bottom: 0;
-    text-align: center;
-    .platform-img {
-        vertical-align: bottom;
-    }
-}
-
-.share-wrapper {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.mozilla-share-cta {
-    margin: 0 auto;
-}
-
-/* Newsletter signup shown to up-to-date users */
-#newsletter-latest {
-    display: none;
-    margin: @baseLine * 2 auto @baseLine * 4 auto;
-}
-
-noscript {
-    .button-white, .button-white:link, .button-white:visited {
-        min-width: 0;
-    }
-}
-
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    #wrapper {
-        width: 100%;
-        padding: 0;
-    }
-    .theater, .stage {
-        height: 360px;
-
-        /* shorter list in iOS, decrease available space */
-        .ios & {
-            height: 300px;
-        }
-    }
-
-    #colophon {
-        width:auto;
-        padding:10px 0 20px 0;
-    }
-
-    .js .scene {
-        height: 360px;
-
-        /* shorter list in iOS, decrease available space */
-        .ios& {
-            height: 300px;
-        }
-    }
-
-    #main-feature h1.large {
-        margin: 12px 0;
-        .font-size(55px);
-    }
-
-    #firefox-screenshot {
-        padding: 0;
-    }
-
-    .ready-for-scene2 {
-        .thankyou {
-            margin: 0 40px;
-        }
-        .installation {
-            margin: 12px 20px 0;
-            li {
-                .span_narrow(4);
-                .screen {
-                    width: 218px;
-                    height: 109px;
-                }
-                &.install2 .screen { background-position: 0 -117px; }
-                &.install3 .screen { background-position: 0 -234px; }
-            }
-        }
-    }
-}
-
-/* Mobile layout: 320px */
-@media only screen and (max-width: @breakTablet) {
-    #wrapper {
-        width: 100%;
-        padding: 0;
-    }
-    #colophon {
-        padding: 10px 0 20px 0;
-        .primary {
-            text-align: left;
-            li {
-                display: block;
-                margin-left: 0;
-                a, a:link, a:visited {
-                    display: block;
-                    border-left: none;
-                    border-top: 1px dotted @textColorLight;
-                    padding: 0;
-                }
-                &:first-child a {
-                    border: 0;
-                }
-            }
-        }
-    }
-    #masthead h2 { display: none; }
-    .theater, .stage, .scene {
-        height: 450px;
-    }
-    .stage.scene2 {
-        bottom: -450px;
-    }
-    #scene2 {
-        top: -450px;
-    }
-    .version-message-container {
-        padding: 0 0 0;
-        .font-size(18px);
-    }
-    #main-feature {
-        margin: 0;
-        padding: 0 0;
-        .row {
-            .clearfix;
-            width: 300px;
-            margin: 0 auto;
-        }
-        h1.large {
-            margin: 12px 0;
-            .font-size(36px);
-            letter-spacing: -1px;
-        }
-        img {
-            display: block;
-            margin: 0 auto;
-        }
-    }
-
-    #firefox-screenshot { display: none; }
-
-    #features-download {
-        padding-top: 10px;
-        .download-button {
-            display: block;
-        }
-    }
-
-    .latest-links-wrapper {
-        margin: 0 10px;
-        padding: 0;
-    }
-
-    html.windows.arm,
-    html.oldmac,
-    html.oldwin {
-        .download-button .unsupported-download {
-            text-align: left;
-            max-width: none;
-        }
-    }
-
-    html.android {
-        .mobile {
-            display: none;
-        }
-        .desktop {
-            display: none;
-        }
-
-        .stage,
-        .theater {
-            height: 200px;
-        }
-
-        &.firefox-latest .android-latest-links-wrapper {
-            padding: 0;
-        }
-    }
-
-    html.fxos {
-        .fxos-latest-links-wrapper {
-            padding: 0;
-        }
-    }
-
-    html.ios {
-        .stage,
-        .theater {
-            height: 100px;
-        }
-
-        .ios-links-wrapper {
-            padding: 0;
-        }
-    }
-
-    .download-button-wrapper {
-        text-align: center;
-        .download-button {
-            text-align: center;
-
-            small.download-other {
-                text-align: center;
-                margin-top: 16px;
-            }
-        }
-    }
-
-    .ready-for-scene2 {
-        .thankyou {
-            margin: 10px 0 0 0;
-            .font-size(@baseFontSize);
-            letter-spacing: auto;
-        }
-
-        .installation {
-            width: 300px;
-            margin: 20px 0 0;
-            li {
-                width: auto;
-                margin-bottom: 10px;
-                float: none;
-                font-style: normal;
-                text-align: left;
-                padding: 0;
-            }
-        }
-    }
-    .osx,
-    .windows,
-    .winIE8 {
-        .ready-for-scene2 .installation li .screen { display: none; }
-    }
-
-    .footer-newsletter-form {
-        padding-top: 20px;
-
-        input[type=email],
-        input[type=submit] {
-            .border-box();
-            width: 100%;
+            width: auto;
+            margin: 0 0 .75em;
         }
     }
 }

@@ -11,6 +11,24 @@
     font-style: normal;
 }
 
+.mdn-icon {
+    float: right;
+    margin-top: 20px;
+}
+
+.mdn-icon:before {
+    content: " ";
+    background-image: url('/media/img/firefox/releasenotes/mdn-icon.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    vertical-align: bottom; 
+    margin-right: 5px;
+}
+
+#masthead,
 #wrapper {
     padding: 0;
     width: 100%;
@@ -21,9 +39,39 @@
     width: 100%;
 }
 
+#colophon {
+    background: #565a5c;
+    color: @textColorLight;
+    float: left;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+
+    a,
+    a:link {
+        color: #43c2ff;
+    }
+
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+        color: darken(#43c2ff, 10%);
+    }
+
+    .logo a {
+        .at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
+    }
+}
+
 .container {
     .border-box();
     width: @widthDesktop;
+}
+
+ul.menu {
+    height: 66px;
 }
 
 .release-notes {
@@ -40,6 +88,9 @@
         .open-sans-extrabold();
         .font-size(60px);
         margin: 0;
+    }
+    h4 {
+        .font-size(20px);
     }
     ul {
         margin: 0;
@@ -88,15 +139,15 @@
 }
 
 ul.submenu {
-    display: none;
     background-color: #fff;
-    margin-top: 24px;
+    box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.4);
+    display: none;
+    margin-top: 25px;
+    padding: 5px 10px 15px 10px;
     position: absolute;
-    z-index: 1;
     text-align: left;
-    padding: 5px 10px 10px 10px;
     width: 300px;
-    border: solid 1px #e4e5e5;
+    z-index: 1;
 
     li {
         display: inline;
@@ -105,10 +156,12 @@ ul.submenu {
         text-transform: none;
         margin-left: 0;
         padding: 5px; 
+        background-color: transparent;
     } 
 
     li.title {
         .font-size(10px);
+        color: #333;
         display: block;
         text-transform: uppercase;
         padding: 15px 5px 0 5px;
@@ -143,17 +196,17 @@ ul.submenu:after {
         margin-bottom: 0;
         .container {
             text-align: left;
-            padding: 30px 65px;
+            padding: 45px 65px 30px 65px;
         }
         .version {
             float: left;
-            margin-right: 40px;
             vertical-align: top;
+            width: 25%;
         }
         .description {
             display: inline-block;
             float: right;
-            width: 570px;
+            width: 70%;
         }
     }
 }
@@ -172,8 +225,8 @@ ul.submenu:after {
         border-bottom: solid 1px #eee;
         display: table;
         margin: auto auto;
-        padding: 40px 20px;
-        width: 80%;
+        padding: 30px 65px;
+        width: 100%;
 
         &:last-child {
             border: none;
@@ -183,6 +236,7 @@ ul.submenu:after {
             float: left;
             margin: 10px 0px;
             width: 25%;
+            text-transform: lowercase;
         }
     }
 }
@@ -193,74 +247,112 @@ ul.section-items {
     width: 75%;
 
     li {
-        display: block;
-        margin: 1em 0;
+        display: list-item;
         padding: 15px;
+        margin-left: 5px 0px 0px 30px;
 
         p {
             margin: 0;
             padding: 0;
         }
     }
-
     li:nth-child(odd) {
         background-color: rgba(223, 236, 250, 0.41);
     }
     li:nth-child(even) {
         background-color: #FFF;
     }
+    ul {
+        list-style-type: disc;
+        margin-top: 10px;
+
+        li{
+            padding: 0;
+            list-style-type: circle;
+        }
+        li:nth-child(odd),
+        li:nth-child(even) {
+            background-color: transparent;
+        }
+    }
 }
 
 .notes-footer {
     .container {
-        padding: 30px;
+        padding: 40px;
     }
-    .rel-download {
+    .version-message {
+        margin-bottom: 0px;
+        &:before {
+            .inline-block;
+            margin: 0 4px 0 0;
+            width: 25px;
+            height: 25px;
+            vertical-align: text-bottom;
+            background: url(/media/img/firefox/new/icon-check.svg) center center no-repeat;
+            content: '';
+        }
+    }
+    .all-download {
         float: left;
 
         p {
             margin: 0;
         }
     }
-    .download-button-wrapper {
+    .download-buttons {
         float: right;
     }
 }
 
-footer#colophon {
+.release-footer {
+    background-color: #fff;
     margin: 0;
-    p {
+    padding: 40px 0;
+
+    h2 {
+        .font-size(14px);
+    }
+    p, a {
+        display: block;
+        font-size:(12px);
         margin-bottom: 0;
+    }
+    .col {
+        float: left;
+        margin: 0 10px;
+        width: 300px;
     }
 }
 
+
 #New::before {
-    font-family: 'Font Awesome';
     content: "\00A0\f005\00A0";
+    font-family: 'Font Awesome';
 }
 #Fixed::before {
-    font-family: 'Font Awesome';
     content: "\00A0\f00c\00A0";
+    font-family: 'Font Awesome';
 }
 #Changed::before {
-    font-family: 'Font Awesome';
     content: "\00A0\f021\00A0";
+    font-family: 'Font Awesome';
 }
 #Developer::before {
-    font-family: 'Font Awesome';
     content: "\00A0\f0ad\00A0";
+    font-family: 'Font Awesome';
 }
 #HTML5::before {
-    font-family: 'Font Awesome';
     content: "\00A0\f121\00A0";
+    font-family: 'Font Awesome';
 }
 #Resolved::before {
-    font-family: 'Font Awesome';
     content: "\00A0\f164\00A0";
+    font-family: 'Font Awesome';
 }
 #Known::before {
-    font-family: 'Font Awesome';
     content: "\00A0\f05e\00A0";
+    font-family: 'Font Awesome';
 }
 
 @media only screen and (max-width: @breakDesktop) {
@@ -281,6 +373,20 @@ footer#colophon {
                 margin: auto auto;
                 width: 70%;
             }
+        }
+    }
+    ul.menu {
+        height: auto;
+    }
+    ul.submenu  {
+        background-color: #fff;
+        left: 0;
+        width: 190px;
+
+        li {
+            border: none;
+            background-color: transparent;
+            display: block;
         }
     }
 }
@@ -310,7 +416,7 @@ footer#colophon {
             }
         }
         .latest-release .container {
-            padding: 30px 0px;
+            padding: 90px 0 30px 0;
             .version, 
             .description  {
                 text-align: center;
@@ -328,14 +434,20 @@ footer#colophon {
         }
     }
     .notes-footer {
-        .rel-download,
-        .download-button-wrapper {
+        .container {
+            padding: 40px 0;
+        }
+        .all-download,
+        .download-buttons {
             float: none;
             margin: 0;
             text-align: center;
         }
-        .rel-download {
+        .all-download {
             margin-bottom: 20px;
+            p {
+                margin-bottom: 0;
+            }
         }
     }
     .navigator {
@@ -352,13 +464,16 @@ footer#colophon {
 
         li {
             border: none;
+            background-color: transparent;
+            display: block;
         }
     }
     ul.menu {
         margin: 0;
         text-align: center;
 
-        li {
+        > li {
+            background-color: #E4E5E5;
             border-bottom: solid 1px #fff;
             clear: both;
             display: block;
@@ -370,9 +485,73 @@ footer#colophon {
         li.current {
             background-color: #0096dd;
             color: #fff;
+            > a,
+            > a:visited {
+                color: #fff;
+            }
         }
         li:last-child {
             border-bottom: none;
+        }
+    }
+    .release-footer .col {
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Download Buttons hide/show
+
+.download-buttons > div {
+    display: none;
+}
+.android {
+    &.non-firefox .download-buttons .non-firefox-cta {
+        .desktop-download-button {
+            display: none;
+        }
+        .android-download-button {
+            display: block;
+        }
+    }
+}
+.ios {
+    &.non-firefox .download-buttons .non-firefox-cta {
+        & .desktop-download-button {
+            display: none;
+        }
+        .ios-download-button {
+            display: block;
+        }
+    }
+}
+.firefox-up-to-date {
+    .download-buttons .firefox-latest-cta {
+        display: block;
+    } 
+    .all-download p.message {
+        display: none;
+    }
+}
+.firefox-old {
+    .download-buttons .firefox-old-cta {
+       display: block; 
+    }
+}
+
+.windows,
+.non-firefox {
+    .download-buttons .non-firefox-cta {
+        display: block;
+
+        > div {
+            display: none;
+        }
+        & .desktop-download-button {
+           display: block;  
         }
     }
 }
