@@ -84,6 +84,9 @@ Target types:
 * ``'loop'``
 * ``'forget'``
 * ``'privateWindow'``
+* ``'trackingProtection'`` (Firefox 42 and above)
+* ``'controlCenter-trackingUnblock'`` (Firefox 42 and above)
+* ``'controlCenter-trackingBlock'`` (Firefox 42 and above)
 
 Effect types:
 
@@ -179,7 +182,8 @@ Available targets:
 * ``'appMenu'``
 * ``'bookmarks'``
 * ``'searchEngines'`` (only works for the old Search UI prior to Firefox 34)
-* ``'loop'`` (Firefox 35 and greater)
+* ``'loop'`` (Firefox 35 and above)
+* ``'controlCenter'`` (Firefox 42 and above)
 
 Optional parameters:
 
@@ -569,6 +573,28 @@ To unbind listening for events, you can do:
 
     Only available in Firefox 35 onward.
 
+openPreferences(id);
+^^^^^^^^^^^^^^^^^^^^
+
+Opens the Firefox Preferences tab at a specified section.
+Accepts one of the following options to be passed as an `id`:
+
+* ``'general'``
+* ``'search'``
+* ``'content'``
+* ``'applications'``
+* ``'privacy'``
+* ``'security'``
+* ``'sync'``
+* ``'advanced'``
+
+.. code-block:: javascript
+
+    Mozilla.UITour.openPreferences('privacy');
+
+.. Important::
+
+    Only available in Firefox 42 onward.
 
 .. _Mozilla Central: http://dxr.mozilla.org/mozilla-central/source/browser/components/uitour/UITour-lib.js
 .. _Telemetry: https://wiki.mozilla.org/Telemetry
