@@ -86,6 +86,17 @@
             }
         }
         tbody {
+            tr:target {
+                color: #fff;
+                font-weight: bold;
+                background-color: #6fbe4a;
+            }
+            tr:target a {
+                color: #fff;
+            }
+            tr:target th {
+                padding-left: 10px;
+            }
             th, td {
                 padding: 10px 10px 10px 0;
             }
@@ -247,6 +258,9 @@
         td.download {
             margin-top: -18px;
         }
+        tr:target th + td {
+            padding-left: 10px;
+        }
     }
 
     .pager-tabs-wrapper {
@@ -325,6 +339,9 @@
                 }
                 td {
                     padding: 0 0 5px;
+                }
+                tr:target th + td {
+                    padding-left: 10px;
                 }
             }
         }
