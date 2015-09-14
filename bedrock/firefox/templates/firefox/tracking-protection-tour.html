@@ -1,0 +1,104 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}
+  {{ _('Choose the independent browser') }}
+{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}
+  {{ _('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.') }}
+{% endblock %}
+
+{#- Override <meta property="og:url"> for social share -#}
+{% block page_og_url %}{{ url('firefox') }}{% endblock %}
+
+{% block string_data %}
+data-panel1-title="{{ _('How Tracking Protection works') }}"
+data-panel1-text="{{ _('When the shield is visible, it means Firefox is actively blocking page elements that may track you.') }}"
+data-panel1-step="{{ _('1 of 3') }}"
+data-panel1-button="{{ _('Next') }}"
+
+data-panel3-title="{{ _('Want to make changes?') }}"
+data-panel3-text="{{ _('It’s easy to disable Tracking Protection for the website you’re on by clicking “Disable protection for this session”.') }}"
+data-panel3-text-alt="{{ _('It’s easy to enable Tracking Protection for the website you’re on by clicking “Enable protection”.') }}"
+data-panel3-step="{{ _('3 of 3') }}"
+data-panel3-button="{{ _('Got it!') }}"
+{% endblock %}
+
+{# Google Analytics should never be enabled on this page! #}
+{% block google_analytics %}{% endblock %}
+
+{% block site_css %}
+  {% stylesheet 'tracking-protection-tour' %}
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox Tracking Protection') }}{% endblock %}
+{% block body_id %}tracking-protection-tour{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header>
+    <div class="inner-container">
+      <h1>{{ _('Firefox Tracking Protection') }}</h1>
+      <p class="prefs-link">
+        {{ _('Want to turn off this feature? <a href="%s">Visit Privacy Preferences</a>')|format('https://support.mozilla.org/kb/tracking-protection-pbm') }}
+      </p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="dummy-content">
+      <div class="primary-col">
+        <div class="dubious">
+          <iframe src="https://trackertest.org/" height="100%" width="100%" frameborder="0"></iframe>
+        </div>
+        <article role="presentation"></article>
+      </div>
+      <div class="secondary-col">
+        <aside role="presentation"></aside>
+        <div class="dubious-container">
+          <div class="dubious">
+            <iframe src="https://trackertest.org/" height="100%" width="100%" frameborder="0"></iframe>
+          </div>
+          <section id="info-panel" class="hidden">
+            <header tabindex="-1">
+              <h2>{{ _('Differences to expect') }}</h2>
+              <p>{{ _('Some page areas may be missing because they can allow third-parties to track your browsing behavior.') }}</p>
+              <button class="close-btn" type="button">{{ _('Close') }}</button>
+            </header>
+            <footer>{{ _('2 of 3') }} <button type="button">{{ _('Next') }}</button></footer>
+          </section>
+        </div>
+        <aside role="presentation"></aside>
+      </div>
+    </div>
+
+    <section id="end-state" class="hidden">
+      <img src="{{ static('img/firefox/tracking-protection/shield-tab.svg') }}" width="145" alt="">
+      <h2>{{ _('Thanks for learning about the new Tracking Protection feature in Private Browsing Mode.') }}</h2>
+      <p>{{ _('Learn more about how it works by visiting the <a rel="external" href="%s">FAQ page</a>.')|format('https://support.mozilla.org/kb/tracking-protection-pbm') }}</p>
+      <button id="reload-btn" type="button" class="button-flat">{{ _('Start the tour again') }}</button>
+    </section>
+  </div>
+
+</main>
+{% endblock %}
+
+{% block site_footer %}{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_js %}
+  {% javascript 'tracking-protection-tour' %}
+{% endblock %}
