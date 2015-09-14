@@ -211,7 +211,7 @@ mozilla.community.morocco               The Mozilla community in Morocco. (Moder
 mozilla.community.nepal                 The Mozilla community in Nepal. (Moderated)
 mozilla.community.new-zealand           The Mozilla community in New Zealand.
 mozilla.community.norway                The Mozilla community in Norway. (Moderated)
-mozilla.community-pakistan              The Mozilla community in Pakistan. (Moderated)
+mozilla.community.pakistan              The Mozilla community in Pakistan. (Moderated)
 mozilla.community.philippines           The Mozilla community in the Philippines. (Moderated)
 mozilla.community.portugal              The Mozilla community in Portugal.
 mozilla.community.quebec                The Mozilla community in Quebec, Canada. (Moderated)
