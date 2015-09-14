@@ -78,7 +78,6 @@ Target types:
 * ``'home'``
 * ``'quit'``
 * ``'search'``
-* ``'searchProvider'`` (Firefox 33 and below)
 * ``'searchIcon'`` (Firefox 34 and above)
 * ``'urlbar'``
 * ``'loop'``
@@ -181,7 +180,6 @@ Available targets:
 
 * ``'appMenu'``
 * ``'bookmarks'``
-* ``'searchEngines'`` (only works for the old Search UI prior to Firefox 34)
 * ``'loop'`` (Firefox 35 and above)
 * ``'controlCenter'`` (Firefox 42 and above)
 
