@@ -191,7 +191,7 @@
                       {{ _('Internal memory') }} *
                     </li>
                     <li class="stat-battery">
-                      <strong>{{ _('6.7 h') }}</strong>
+                      <strong>{{ _('Up to 6.7 h') }}</strong>
                       {{ _('Talk time') }}
                     </li>
                   </ul>
@@ -534,7 +534,7 @@
                       {{ _('Internal memory') }} *
                     </li>
                     <li class="stat-battery">
-                      <strong>{{ _('9 h') }}</strong>
+                      <strong>{{ _('Up to 9 h') }}</strong>
                       {{ _('Talk time') }}
                     </li>
                   </ul>
@@ -617,7 +617,7 @@
                         <dd>{{ _('1200 mAh') }}</dd>
 
                         <dt>{{ _('Talk time') }}</dt>
-                        <dd>{{ _('9 h 20 m') }}</dd>
+                        <dd>{{ _('Up to 9 h') }}</dd>
 
                         <dt>{{ _('Standby time') }}</dt>
                         <dd>{{ _('176 h') }}</dd>
@@ -732,7 +732,7 @@
                       {{ _('Internal memory') }} *
                     </li>
                     <li class="stat-battery">
-                      <strong>{{ _('5.3 h') }}</strong>
+                      <strong>{{ _('Up to 5.3 h') }}</strong>
                       {{ _('Talk time') }}
                     </li>
                   </ul>
@@ -873,8 +873,15 @@
                     </li>
                     <li class="stat-storage">
                       <strong>{{ _('256 MB RAM') }}</strong>
+                      {{ _('Internal memory') }} *
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 6.7 h') }}</strong>
+                      {{ _('Talk time') }}
                     </li>
                   </ul>
+
+                  <small>* {{ memory_disclaimer }}</small>
                 </div>
 
                 <div class="feature-group availability">
@@ -935,8 +942,15 @@
                     </li>
                     <li class="stat-storage">
                       <strong>{{ _('512 MB RAM') }}</strong>
+                      {{ _('Internal memory') }} *
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 9 h') }}</strong>
+                      {{ _('Talk time') }}
                     </li>
                   </ul>
+
+                  <small>* {{ memory_disclaimer }}</small>
                 </div>
 
                 <div class="feature-group availability">
@@ -992,6 +1006,9 @@
                       <dl>
                         <dt>{{ _('Capacity') }}</dt>
                         <dd>{{ _('1400 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 9 h') }}</dd>
                       </dl>
                     </td>
                   </tr>
@@ -1077,6 +1094,10 @@
                       <strong>{{ _('2 GB') }}</strong>
                       {{ _('Internal memory') }} *
                     </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 9 h') }}</strong>
+                      {{ _('Talk time') }}
+                    </li>
                   </ul>
 
                   <small>* {{ memory_disclaimer }}</small>
@@ -1144,6 +1165,9 @@
                       <dl>
                         <dt>{{ _('Capacity') }}</dt>
                         <dd>{{ _('1150 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 9 h') }}</dd>
                       </dl>
                     </td>
                   </tr>
@@ -1187,6 +1211,10 @@
                     <li class="stat-storage">
                       <strong>{{ _('4 GB') }}</strong>
                       {{ _('Internal memory') }} *
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 6.7 h') }}</strong>
+                      {{ _('Talk time') }}
                     </li>
                   </ul>
 
@@ -1247,6 +1275,15 @@
                       <small>* {{ memory_disclaimer }}</small>
                     </td>
                   </tr>
+                  <tr>
+                    <th>{{ _('Battery') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 6.7 h') }}</dd>
+                      </dl>
+                    </td>
+                  </tr>
                 </table>
               </div>{#--/.specifications--#}
             </div>{#--/.pager-content--#}
@@ -1287,6 +1324,10 @@
                     <li class="stat-storage">
                       <strong>{{ _('256 MB') }}</strong>
                       {{ _('Internal memory') }} *
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 4 h') }}</strong>
+                      {{ _('Talk time') }}
                     </li>
                   </ul>
 
@@ -1353,6 +1394,9 @@
                       <dl>
                         <dt>{{ _('Capacity') }}</dt>
                         <dd>{{ _('1250 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 4 h') }}</dd>
                       </dl>
                     </td>
                   </tr>
@@ -1444,6 +1488,10 @@
                       <strong>{{ _('256 MB') }}</strong>
                       {{ _('Internal memory') }} *
                     </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 6 h') }}</strong>
+                      {{ _('Talk time') }}
+                    </li>
                   </ul>
 
                   <small>* {{ memory_disclaimer }}</small>
@@ -1507,6 +1555,9 @@
                       <dl>
                         <dt>{{ _('Capacity') }}</dt>
                         <dd>{{ _('1400 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 6 h') }}</dd>
                       </dl>
                     </td>
                   </tr>
@@ -1564,7 +1615,7 @@
                   <ul>
                     <li class="stat-screen">
                       <strong>{{ _('3.5" HVGA') }}</strong>
-                      <br>
+                      {{ _('320 x 480 pixels') }}
                     </li>
                     <li class="stat-camera">
                       <strong>{{ _('3.2 MP') }}</strong>
@@ -1573,6 +1624,10 @@
                     <li class="stat-storage">
                       <strong>{{ _('512 MB') }}</strong>
                       {{ _('Internal memory') }} *
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 4 h') }}</strong>
+                      {{ _('Talk time') }}
                     </li>
                   </ul>
 
@@ -1586,7 +1641,7 @@
                   <tr>
                     <th>{{ _('Screen') }}</th>
                     <td>
-                      {{ _('3.5" TFT HVGA') }}
+                      {{ _('3.5" TFT HVGA 320 x 480 pixels') }}
                     </td>
                   </tr>
                   <tr>
@@ -1613,6 +1668,15 @@
                       </dl>
 
                       <small>* {{ memory_disclaimer }}</small>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>{{ _('Battery') }}</th>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 4 h') }}</dd>
+                      </dl>
                     </td>
                   </tr>
                   <tr>
@@ -1659,7 +1723,7 @@
                   <ul>
                     <li class="stat-screen">
                       <strong>{{ _('3.5" HVGA') }}</strong>
-                      <br>
+                      {{ _('320 x 480 pixels') }}
                     </li>
                     <li class="stat-camera">
                       <strong>{{ _('VGA') }}</strong>
@@ -1670,7 +1734,7 @@
                       {{ _('Internal memory') }} *
                     </li>
                     <li class="stat-battery">
-                      <strong>{{ _('7 h') }}</strong>
+                      <strong>{{ _('Up to 7 h') }}</strong>
                       {{ _('Talk time') }}
                     </li>
                   </ul>
@@ -1692,7 +1756,7 @@
                   <tr>
                     <th>{{ _('Screen') }}</th>
                     <td>
-                      {{ _('3.5" HVGA') }}
+                      {{ _('3.5" HVGA 320 x 480 pixels') }}
                     </td>
                   </tr>
                   <tr>
@@ -1738,7 +1802,7 @@
                         <dd>{{ _('1000 mAh') }}</dd>
 
                         <dt>{{ _('Talk time') }}</dt>
-                        <dd>{{ _('7 h') }}</dd>
+                        <dd>{{ _('Up to 7 h') }}</dd>
 
                         <dt>{{ _('Standby time') }}</dt>
                         <dd>{{ _('160 h') }}</dd>
@@ -1831,7 +1895,7 @@
                   <ul>
                     <li class="stat-screen">
                       <strong>{{ _('3.5" HVGA') }}</strong>
-                      <br>
+                      {{ _('320 x 480 pixels') }}
                     </li>
                     <li class="stat-camera">
                       <strong>{{ _('2.0 MP') }}</strong>
@@ -1840,6 +1904,10 @@
                     <li class="stat-storage">
                       <strong>{{ _('256 MB') }}</strong>
                       {{ _('Internal memory') }} *
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 5 h') }}</strong>
+                      {{ _('Talk time') }}
                     </li>
                   </ul>
 
@@ -1861,7 +1929,7 @@
                   <tr>
                     <th>{{ _('Screen') }}</th>
                     <td>
-                      {{ _('3.5" HVGA Capacitive') }}
+                      {{ _('3.5" HVGA Capacitive 320 x 480 pixels') }}
                     </td>
                   </tr>
                   <tr>
@@ -1895,7 +1963,15 @@
                   </tr>
                   <tr>
                     <th>{{ _('Battery') }}</th>
-                    <td>{{ _('1200 mAh') }}</td>
+                    <td>
+                      <dl>
+                        <dt>{{ _('Capacity') }}</dt>
+                        <dd>{{ _('1200 mAh') }}</dd>
+
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 5 h') }}</dd>
+                      </dl>
+                    </td>
                   </tr>
                   <tr>
                     <th>{{ _('Networks') }}</th>
@@ -1945,6 +2021,7 @@
                   <ul>
                     <li class="stat-screen">
                       <strong>{{ _('3.5" HVGA') }}</strong>
+                      {{ _('320 x 480 pixels') }}
                       <br>
                     </li>
                     <li class="stat-camera">
@@ -1954,6 +2031,10 @@
                     <li class="stat-storage">
                       <strong>{{ _('256 MB') }}</strong>
                       {{ _('Internal memory') }} *
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 4 h') }}</strong>
+                      {{ _('Talk time') }}
                     </li>
                   </ul>
 
@@ -1975,7 +2056,7 @@
                   <tr>
                     <th>{{ _('Screen') }}</th>
                     <td>
-                      {{ _('3.5" HVGA Capacitive') }}
+                      {{ _('3.5" HVGA Capacitive 320 x 480 pixels') }}
                     </td>
                   </tr>
                   <tr>
@@ -2011,6 +2092,9 @@
                     <th>{{ _('Battery') }}</th>
                     <td>
                       <dl>
+                        <dt>{{ _('Talk time') }}</dt>
+                        <dd>{{ _('Up to 4 h') }}</dd>
+
                         <dt>{{ _('Standby time') }}</dt>
                         <dd>{{ _('Up to 280 h') }}</dd>
                       </dl>
@@ -2055,8 +2139,8 @@
                 <div class="feature-group stats">
                   <ul>
                     <li class="stat-screen">
-                      <strong>{{ _('4.7"') }}</strong>
-                      <br>
+                      <strong>{{ _('4.7" HD') }}</strong>
+                      {{ _('720 x 1280 pixels') }}
                     </li>
                     <li class="stat-camera">
                       <strong>{{ _('8.0 MP') }}</strong>
@@ -2065,6 +2149,10 @@
                     <li class="stat-storage">
                       <strong>{{ _('16 GB') }}</strong>
                       {{ _('Internal memory') }} *
+                    </li>
+                    <li class="stat-battery">
+                      <strong>{{ _('Up to 17 h') }}</strong>
+                      {{ _('Talk time') }}
                     </li>
                   </ul>
 
@@ -2092,7 +2180,7 @@
                   <tr>
                     <th>{{ _('Screen') }}</th>
                     <td>
-                      {{ _('4.7"') }}
+                      {{ _('4.7" HD 720 x 1280 pixels') }}
                     </td>
                   </tr>
                   <tr>
@@ -2140,7 +2228,7 @@
                         <dd>{{ _('2370 mAh') }}</dd>
 
                         <dt>{{ _('Talk time') }}</dt>
-                        <dd>{{ _('Up to 16 h') }}</dd>
+                        <dd>{{ _('Up to 17 h') }}</dd>
 
                         <dt>{{ _('Standby time') }}</dt>
                         <dd>{{ _('Up to 720 h (LTE), 820 h (3G)') }}</dd>
@@ -2215,7 +2303,7 @@
                       {{ _('Internal memory') }} *
                     </li>
                     <li class="stat-battery">
-                      <strong>{{ _('7 h') }}</strong>
+                      <strong>{{ _('Up to 7 h') }}</strong>
                       {{ _('Talk time') }}
                     </li>
                   </ul>
@@ -2388,7 +2476,7 @@
                       {{ _('Internal memory') }} *
                     </li>
                     <li class="stat-battery">
-                      <strong>{{ _('6.5 h') }}</strong>
+                      <strong>{{ _('Up to 6.5 h') }}</strong>
                       {{ _('Talk time') }}
                     </li>
                   </ul>
