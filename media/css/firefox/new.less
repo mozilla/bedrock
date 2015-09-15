@@ -31,7 +31,6 @@
 .version-message-container {
     text-align: center;
     .font-size(20px);
-    font-style: italic;
     padding: 0 30px 20px;
     display: none;
 }
@@ -57,6 +56,9 @@
     .font-size(@largeFontSize);
 }
 
+#features-download {
+    margin-bottom: 100px;
+}
 
 .latest-links-wrapper {
     display: none;
@@ -78,7 +80,7 @@
     width: 240px;
 }
 
-#scene1 > .download-other-desktop {
+#download-ready > .download-other-desktop {
     position: absolute;
     bottom: 240px;
     left: 50%;
@@ -122,6 +124,7 @@ html.ios {
         display: block;
         padding-top: 26px;
     }
+
     .desktop-latest-links-wrapper {
         display: none;
     }
@@ -151,18 +154,7 @@ html.firefox-latest {
         display: block;
     }
 
-    #theater-firefox,
-    #stage-firefox {
-        height: auto;
-    }
-
-    #scene1 {
-        position: relative;
-        height: auto;
-    }
-
-    #firefox-screenshot,
-    #scene2 {
+    #firefox-screenshot {
         display: none;
     }
 
@@ -253,6 +245,7 @@ html.android {
             display: block;
             padding-top: 38px;
         }
+
         .desktop-latest-links-wrapper {
             display: none;
         }
@@ -293,29 +286,17 @@ html.fxos {
         display: none;
     }
 
-    #theater-firefox,
-    #stage-firefox {
-        height: auto;
-    }
-
-    #scene1 {
-        position: relative;
-        height: auto;
-    }
-
     .fxos-latest-links-wrapper {
         display: block;
         padding-top: 26px;
     }
 
-    .download-button-wrapper,
-    .desktop-latest-links-wrapper,
     #firefox-screenshot {
         display: none;
     }
 
-    #newsletter-latest {
-        display: block;
+    .desktop-latest-links-wrapper {
+        display: none;
     }
 }
 
@@ -329,125 +310,39 @@ html.fxos {
         display: inline;
     }
 
-    #theater-firefox,
-    #stage-firefox,
-    #scene1 {
-        position: relative;
-        height: auto;
-    }
-
     #version-message-desktop-latest,
     #version-message-desktop-old,
     #features-download {
         display: none;
-    }
-
-    /* hide the newsletter box while keeping the height of the screenshot */
-    #newsletter-latest {
-        display: block;
-        visibility: hidden;
     }
 }
 
 #main-feature {
     margin-top: 14px;
     padding-bottom: 20px;
-    h1.large {
-        margin: 12px 50px;
-        text-align: center;
-        .font-size(60px);
-        span { white-space: nowrap; }
+
+    img {
+        display: none;
     }
-    img { display: none; }
 }
 
-html[lang|="en"] #main-feature h1.large span:first-child {
+#main-headline {
+    margin: 12px 50px;
+    text-align: center;
+    .font-size(60px);
+
+    span {
+        white-space: nowrap;
+    }
+}
+
+html[lang|="en"] #main-headline span:first-child {
     display: inline-block;
     width: 100%;
 }
 
 .download-button-wrapper.android {
     display: none;
-}
-
-.ready-for-scene2 {
-    .thankyou {
-        background: url(/media/img/firefox/new/thankyou-check.png) left top no-repeat;
-        padding: 0 0 0 35px;
-        margin: 0 130px 0;
-        color: @buttonGreenDark;
-        font-style: italic;
-        .font-size(18px);
-        .open-sans-light;
-        &:focus {
-            outline: none;
-        }
-    }
-
-    .installation {
-        margin: 12px 10px 0;
-        padding: 0;
-        display: block;
-        list-style-type: none;
-        .clearfix;
-        li {
-            .span(4);
-            *display: inline;
-            overflow: hidden;
-            text-align: left;
-            .font-size(@smallFontSize);
-            color: @textColorTertiary;
-            font-style: italic;
-            .screen {
-                display: block;
-                width: 298px;
-                height: 150px;
-                border: 1px solid #ccc;
-                margin-bottom: 5px;
-                background-size: 100%;
-                background-color: transparent;
-                background-repeat: no-repeat;
-                background-position: 0 0;
-            }
-            &.install2 .screen { background-position: 0 -160px; }
-            &.install3 .screen { background-position: 0 -320px; }
-        }
-    }
-
-}
-
-.osx     .ready-for-scene2 .screen { background-image: url(/media/img/firefox/new/install-mac.jpg); }
-.windows .ready-for-scene2 .screen { background-image: url(/media/img/firefox/new/install-win.jpg); }
-.winIE8  .ready-for-scene2 .screen { background-image: url(/media/img/firefox/new/install-winIE8.jpg); }
-
-.osx     .install-win,
-.linux   .install-win,
-.windows .install-osx,
-.linux   .install-osx,
-.linux   .install1 strong,
-.linux   .installation .install1 .screen,
-.linux   .install2,
-.linux   .install3 {
-    display: none;
-}
-
-.linux .installation .install1 {
-    .span-all();
-    padding: 0;
-    text-align: center;
-}
-
-.theater {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    height: 420px;
-    overflow: hidden;
-
-    /* shorter list in iOS, decrease available space */
-    .ios & {
-        height: 360px;
-    }
 }
 
 .mobile {
@@ -464,71 +359,34 @@ html[lang|="en"] #main-feature h1.large span:first-child {
     }
 }
 
-.stage {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 800px;
-    .transition(bottom 0.4s ease 0.1s);
-
-    &.scene2 {
-        bottom: -420px;
-        #scene2 { visibility: visible; }
-    }
-}
-
-.stage-no-anim {
-    .transition(none);
-}
-
-.scene {
-    position: absolute;
-    left: 0;
-    height: 420px;
-    width: 100%;
-    .clearfix;
-    overflow: hidden;
-
-    /* shorter list in iOS, decrease available space */
-    .ios & {
-        height: 360px;
-    }
-}
-
-#scene1 {
-    top: 0;
-}
-
-#scene2 {
-    top: -420px;
-    visibility: hidden;
-}
-
 #firefox-screenshot {
-    position: absolute;
-    right: 20px;
-    left: 20px;
-    bottom: 0;
     text-align: center;
+
     .platform-img {
         vertical-align: bottom;
     }
-}
-
-.share-wrapper {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.mozilla-share-cta {
-    margin: 0 auto;
 }
 
 /* Newsletter signup shown to up-to-date users */
 #newsletter-latest {
     display: none;
     margin: @baseLine * 2 auto @baseLine * 4 auto;
+}
+
+#download-started {
+    padding: 20px 190px 100px;
+    .font-size(14px);
+}
+
+#thankyou {
+    background: url(/media/img/firefox/new/icon-check.svg) left top no-repeat;
+    padding-left: 35px;
+    margin: 0 0 40px -35px;
+    color: @buttonGreenDark;
+    .font-size(16px);
+    &:focus {
+        outline: none;
+    }
 }
 
 noscript {
@@ -543,25 +401,8 @@ noscript {
         width: 760px;
         padding: 0;
     }
-    .theater, .stage {
-        height: 360px;
 
-        /* shorter list in iOS, decrease available space */
-        .ios & {
-            height: 300px;
-        }
-    }
-
-    .js .scene {
-        height: 360px;
-
-        /* shorter list in iOS, decrease available space */
-        .ios& {
-            height: 300px;
-        }
-    }
-
-    #main-feature h1.large {
+    #main-headline {
         margin: 12px 0;
         .font-size(55px);
     }
@@ -570,22 +411,8 @@ noscript {
         padding: 0;
     }
 
-    .ready-for-scene2 {
-        .thankyou {
-            margin: 0 40px;
-        }
-        .installation {
-            margin: 12px 20px 0;
-            li {
-                .span_narrow(4);
-                .screen {
-                    width: 218px;
-                    height: 109px;
-                }
-                &.install2 .screen { background-position: 0 -117px; }
-                &.install3 .screen { background-position: 0 -234px; }
-            }
-        }
+    #download-started {
+        padding: 20px 80px 80px;
     }
 }
 
@@ -595,61 +422,65 @@ noscript {
         width: 320px;
         padding: 0;
     }
+
     #colophon {
         .primary {
             text-align: left;
+
             li {
                 display: block;
                 margin-left: 0;
+
                 a, a:link, a:visited {
                     display: block;
                     border-left: none;
                     border-top: 1px dotted @textColorLight;
                     padding: 10px;
                 }
+
                 &:first-child a {
                     border: 0;
                 }
             }
         }
     }
-    #masthead h2 { display: none; }
-    .theater, .stage, .scene {
-        height: 450px;
+
+    #masthead h2 {
+        display: none;
     }
-    .stage.scene2 {
-        bottom: -450px;
-    }
-    #scene2 {
-        top: -450px;
-    }
+
     .version-message-container {
         padding: 0 20px 20px;
         .font-size(18px);
     }
+
     #main-feature {
         margin: 0;
         padding: 0 10px;
+
         .row {
             .clearfix;
             width: 300px;
             margin: 0 auto;
         }
-        h1.large {
-            margin: 12px 0;
-            .font-size(36px);
-            letter-spacing: -1px;
-        }
+
         img {
             display: block;
             margin: 0 auto;
         }
     }
 
+    #main-headline {
+        margin: 12px 0;
+        .font-size(36px);
+        letter-spacing: -1px;
+    }
+
     #firefox-screenshot { display: none; }
 
     #features-download {
         padding-top: 10px;
+
         .download-button {
             display: block;
         }
@@ -673,13 +504,9 @@ noscript {
         .mobile {
             display: none;
         }
+
         .desktop {
             display: none;
-        }
-
-        .stage,
-        .theater {
-            height: 200px;
         }
 
         &.firefox-latest .android-latest-links-wrapper {
@@ -706,6 +533,7 @@ noscript {
 
     .download-button-wrapper {
         text-align: center;
+
         .download-button {
             text-align: center;
 
@@ -716,30 +544,15 @@ noscript {
         }
     }
 
-    .ready-for-scene2 {
-        .thankyou {
-            margin: 10px 0 0 0;
-            .font-size(@baseFontSize);
-            letter-spacing: auto;
-        }
-
-        .installation {
-            width: 300px;
-            margin: 20px 0 0;
-            li {
-                width: auto;
-                margin-bottom: 10px;
-                float: none;
-                font-style: normal;
-                text-align: left;
-                padding: 0;
-            }
-        }
+    #thankyou {
+        margin-bottom: 20px;
+        .font-size(@baseFontSize);
+        letter-spacing: auto;
     }
-    .osx,
-    .windows,
-    .winIE8 {
-        .ready-for-scene2 .installation li .screen { display: none; }
+
+    #download-started {
+        .font-size(12px);
+        padding: 20px 40px 40px;
     }
 
     .footer-newsletter-form {
