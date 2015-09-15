@@ -493,9 +493,17 @@
 /* {{{ Firefox for Android section */
 
 #android {
-    #android-overview .intro .play {
+    #android-overview .intro .play-button {
         display: block;
         margin: 5px 0 5px 20px;
+        float: right;
+        .download-other {
+            clear: both;    
+            display: block;
+            .open-sans();
+            .font-size(11px);
+            text-align: center;
+        }
     }
 
     #android-partner {
@@ -857,15 +865,6 @@
         .font-size(30px);
     }
 
-    #android {
-        #android-overview {
-            .play {
-                float: right;
-                margin: 5px 20px 0px 10px;
-            }
-        }
-     }
-
     #testimonials {
         iframe {
             width: 960px;
@@ -1006,15 +1005,6 @@
         min-height: 320px;
     }
 
-
-    #android {
-        #android-overview {
-            .play {
-                float: right;
-                margin: 5px 20px 0px 10px;
-            }
-        }
-     }
 
     #testimonials {
         iframe {
