@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+{% set_lang_files "mozorg/404" %}
 
 {% extends "base-resp.html" %}
 
-{% block page_title %}404: Page Not Found{% endblock %}
+{% block page_title %}{{ _('404: Page Not Found') }}{% endblock %}
 
 {% block extrahead %}
   {% stylesheet 'page_not_found' %}
