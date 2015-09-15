@@ -98,7 +98,7 @@ urlpatterns = (
     page('firefox/push', 'firefox/push.html'),
 
     page('firefox/independent', 'firefox/independent.html'),
-    page('firefox/windows-10/welcome', 'firefox/win10-welcome.html'),
+    url(r'^firefox/windows-10/welcome/$', views.Win10Welcome.as_view(), name='firefox.win10-welcome'),
 
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),
