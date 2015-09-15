@@ -245,6 +245,56 @@ class TestSMSView(TestCase):
         })
 
 
+class TestWin10WelcomeView(TestCase):
+    def test_get_template_names_default(self):
+        view = views.Win10Welcome()
+        view.request = RequestFactory().get('/')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/win10-welcome.html'])
+
+    def test_get_template_names_variant_1(self):
+        view = views.Win10Welcome()
+        view.request = RequestFactory().get('/?v=1')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/win10_variants/variant-1.html'])
+
+    def test_get_template_names_variant_2(self):
+        view = views.Win10Welcome()
+        view.request = RequestFactory().get('/?v=2')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/win10_variants/variant-2.html'])
+
+    def test_get_template_names_variant_3(self):
+        view = views.Win10Welcome()
+        view.request = RequestFactory().get('/?v=3')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/win10_variants/variant-3.html'])
+
+    def test_get_template_names_variant_4(self):
+        view = views.Win10Welcome()
+        view.request = RequestFactory().get('/?v=4')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/win10_variants/variant-4.html'])
+
+    def test_get_template_names_variant_5(self):
+        view = views.Win10Welcome()
+        view.request = RequestFactory().get('/?v=5')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/win10_variants/variant-5.html'])
+
+    def test_get_template_names_non_en(self):
+        view = views.Win10Welcome()
+        view.request = RequestFactory().get('/?v=1')
+        view.request.locale = 'de'
+        eq_(view.get_template_names(), ['firefox/win10-welcome.html'])
+
+    def test_get_template_names_invalid(self):
+        view = views.Win10Welcome()
+        view.request = RequestFactory().get('/?v=dude')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/win10-welcome.html'])
+
+
 class TestFeedbackView(TestCase):
     def test_get_template_names_default_unhappy(self):
         view = views.FeedbackView()
