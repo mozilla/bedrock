@@ -30,7 +30,37 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[2]).attr('class'), 'os_linux')
         eq_(pq(list[3]).attr('class'), 'os_linux64')
 
-    # TODO: Support Beta and Earlybird
+    def test_beta(self):
+        """Should have 4 links on the Thunderbird Beta download button"""
+        with self.activate('en-US'):
+            rf = RequestFactory()
+            get_request = rf.get('/fake')
+            get_request.locale = 'en-US'
+            doc = pq(render("{{ download_thunderbird('beta') }}",
+                            {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 4)
+        eq_(pq(list[0]).attr('class'), 'os_win')
+        eq_(pq(list[1]).attr('class'), 'os_osx')
+        eq_(pq(list[2]).attr('class'), 'os_linux')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
+
+    def test_earlybird(self):
+        """Should have 4 links on the Earlybird download button"""
+        with self.activate('en-US'):
+            rf = RequestFactory()
+            get_request = rf.get('/fake')
+            get_request.locale = 'en-US'
+            doc = pq(render("{{ download_thunderbird('alpha') }}",
+                            {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 4)
+        eq_(pq(list[0]).attr('class'), 'os_win')
+        eq_(pq(list[1]).attr('class'), 'os_osx')
+        eq_(pq(list[2]).attr('class'), 'os_linux')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
 
 
 class TestThunderbirdURL(TestCase):
@@ -52,20 +82,29 @@ class TestThunderbirdURL(TestCase):
             '/en-US/thunderbird/all/')
         eq_(self._render('all', 'release'),
             '/en-US/thunderbird/all/')
-        # TODO: Support Beta and Earlybird
+        eq_(self._render('all', 'beta'),
+            '/en-US/thunderbird/beta/all/')
+        eq_(self._render('all', 'alpha'),
+            '/en-US/thunderbird/earlybird/all/')
 
     def test_thunderbird_sysreq(self):
         """Should return a reversed path for the Thunderbird sysreq page"""
         eq_(self._render('sysreq'),
-            '/en-US/thunderbird/latest/system-requirements/')
+            '/en-US/thunderbird/system-requirements/')
         eq_(self._render('sysreq', 'release'),
-            '/en-US/thunderbird/latest/system-requirements/')
-        # TODO: Support Beta and Earlybird
+            '/en-US/thunderbird/system-requirements/')
+        eq_(self._render('sysreq', 'beta'),
+            '/en-US/thunderbird/beta/system-requirements/')
+        eq_(self._render('sysreq', 'alpha'),
+            '/en-US/thunderbird/earlybird/system-requirements/')
 
     def test_thunderbird_notes(self):
         """Should return a reversed path for the desktop notes page"""
         eq_(self._render('notes'),
-            '/en-US/thunderbird/latest/releasenotes/')
+            '/en-US/thunderbird/notes/')
         eq_(self._render('notes', 'release'),
-            '/en-US/thunderbird/latest/releasenotes/')
-        # TODO: Support Beta and Earlybird
+            '/en-US/thunderbird/notes/')
+        eq_(self._render('notes', 'beta'),
+            '/en-US/thunderbird/beta/notes/')
+        eq_(self._render('notes', 'alpha'),
+            '/en-US/thunderbird/earlybird/notes/')

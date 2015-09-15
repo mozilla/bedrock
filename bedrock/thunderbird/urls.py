@@ -5,41 +5,19 @@ from django.conf.urls import url
 
 import views
 import bedrock.releasenotes.views
-from bedrock.releasenotes import version_re
 from bedrock.mozorg.util import page
 
 
 latest_re = r'^thunderbird(?:/(?P<version>%s))?/%s/$'
-thunderbird_releasenotes_re = latest_re % (version_re, r'releasenotes')
-sysreq_re = latest_re % (version_re, 'system-requirements')
 channel_re = '(?P<channel>beta|earlybird)'
 
 
 urlpatterns = (
-    url(r'^thunderbird/(?:%s/)?all/$' % channel_re,
-        views.all_downloads, name='thunderbird.all'),
-
-    url('^thunderbird/releases/$', bedrock.releasenotes.views.releases_index,
-        {'product': 'Thunderbird'}, name='thunderbird.releases.index'),
-
-    url(thunderbird_releasenotes_re, bedrock.releasenotes.views.release_notes,
-        {'product': 'Thunderbird'}, name='thunderbird.releasenotes'),
-
-    url(sysreq_re, bedrock.releasenotes.views.system_requirements,
-        {'product': 'Thunderbird'}, name='thunderbird.system_requirements'),
-
-    url('^thunderbird/latest/system-requirements/$',
-        bedrock.releasenotes.views.latest_sysreq,
-        {'product': 'thunderbird', 'channel': 'release'}, name='thunderbird.sysreq'),
-
-    url('^thunderbird/latest/releasenotes/$',
-        bedrock.releasenotes.views.latest_notes,
-        {'product': 'thunderbird'}, name='thunderbird.notes'),
-
     page('thunderbird', 'thunderbird/index.html'),
     page('thunderbird/features', 'thunderbird/features.html'),
     page('thunderbird/email-providers', 'thunderbird/email-providers.html'),
     page('thunderbird/organizations', 'thunderbird/organizations.html'),
+    page('thunderbird/channel', 'thunderbird/channel.html'),
 
     # Start pages by channel
     page('thunderbird/release/start', 'thunderbird/start/release.html'),
@@ -50,4 +28,23 @@ urlpatterns = (
     # What's New pages by channel
     page('thunderbird/earlybird/whatsnew', 'thunderbird/whatsnew/earlybird.html'),
     page('thunderbird/nightly/whatsnew', 'thunderbird/whatsnew/daily.html'),
+
+    # Release-related pages
+    url(r'^thunderbird/(?:%s/)?all/$' % channel_re,
+        views.all_downloads, name='thunderbird.all'),
+    url('^thunderbird/releases/$',
+        bedrock.releasenotes.views.releases_index,
+        {'product': 'Thunderbird'}, name='thunderbird.releases.index'),
+    url('^thunderbird/(?:%s/)?notes/$' % channel_re,
+        bedrock.releasenotes.views.latest_notes,
+        {'product': 'Thunderbird'}, name='thunderbird.notes'),
+    url('^thunderbird/latest/releasenotes/$',
+        bedrock.releasenotes.views.latest_notes,
+        {'product': 'thunderbird', 'channel': 'release'}),
+    url('^thunderbird/(?:%s/)?system-requirements/$' % channel_re,
+        bedrock.releasenotes.views.latest_sysreq,
+        {'product': 'Thunderbird'}, name='thunderbird.sysreq'),
+    url('^thunderbird/latest/system-requirements/$',
+        bedrock.releasenotes.views.latest_sysreq,
+        {'product': 'thunderbird', 'channel': 'release'}),
 )

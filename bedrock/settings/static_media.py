@@ -915,10 +915,17 @@ PIPELINE_CSS = {
     },
     'thunderbird-organizations': {
         'source_filenames': (
-            'css/base/menu.less',
+            'css/base/menu-resp.less',
             'css/firefox/organizations.less',
         ),
         'output_filename': 'css/thunderbird-organizations-bundle.css',
+    },
+    'thunderbird-channel': {
+        'source_filenames': (
+            'css/base/menu-resp.less',
+            'css/thunderbird/channel.less',
+        ),
+        'output_filename': 'css/thunderbird-channel-bundle.css',
     },
     'thunderbird-start': {
         'source_filenames': (
