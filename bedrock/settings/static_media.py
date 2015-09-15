@@ -434,22 +434,11 @@ PIPELINE_CSS = {
     'firefox_new': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/tabzilla/tabzilla-static.less',
-            'css/base/mozilla-share-cta.less',
             'css/base/simple_footer-resp.less',
             'css/firefox/new.less',
         ),
         'output_filename': 'css/firefox_new-bundle.css',
-    },
-    'firefox_new2': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/base/simple_footer-resp.less',
-            'css/firefox/new2.less',
-        ),
-        'output_filename': 'css/firefox_new2-bundle.css',
     },
     'firefox_organizations': {
         'source_filenames': (
@@ -1231,26 +1220,10 @@ PIPELINE_JS = {
             'js/base/global-init.js',
             'js/base/search-params.js',
             'js/newsletter/form.js',
-            'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
-            'js/base/mozilla-share-cta.js',
-            'js/libs/modernizr.custom.csstransitions.js',
             'js/firefox/new.js',
         ),
         'output_filename': 'js/firefox_new-bundle.js',
-    },
-    'firefox_new2': {
-        'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/libs/spin.min.js',
-            'js/base/global.js',
-            'js/base/global-init.js',
-            'js/base/search-params.js',
-            'js/newsletter/form.js',
-            'js/base/mozilla-image-helper.js',
-            'js/firefox/new2.js',
-        ),
-        'output_filename': 'js/firefox_new2-bundle.js',
     },
     'firefox_new_ios_redirect': {
         'source_filenames': (

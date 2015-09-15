@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import share_cta with context %}
-
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
@@ -32,6 +30,7 @@
   <h2>{{ high_res_img('firefox/new/header-firefox.png', {'alt': _('Firefox for desktop'), 'width': '223', 'height': '84'}) }}</h2>
 {% endblock %}
 
+{# all CSS must be in extrahead block for old IE #}
 {% block site_css %}{% endblock %}
 
 {% block extrahead %}
@@ -87,11 +86,12 @@
     <div id="version-message-linux-arm" class="version-message">
       {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
     </div>
-  </div>
+  </div>{#-- /.version-message-container --#}
+
   <div id="main-feature" class="hide-for-refresh">
     <div class="row">
       <img src="{{ static('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
-      <h1 class="large">
+      <h1 class="large" id="main-headline">
       {% if LANG == 'en-US' %}
         {# L10n: Line break below for visual formatting only. #}
         {{ _('When it’s personal,<br>choose Firefox.') }}
@@ -104,118 +104,85 @@
       {% endif %}
       </h1>
     </div>
-  </div>
+  </div>{#-- /#main-feature --#}
 
-  <div class="theater" id="theater-firefox">
-    <div class="stage" id="stage-firefox">
-      <div class="scene" id="scene1">
-        <div class="container" id="features-download">
-          <div class="desktop download-button-wrapper">
-            {{ download_firefox(force_direct=true, simple=true) }}
-          </div>
-          <div class="mobile download-button-wrapper">
-            {{ download_firefox(platform='android') }}
-          </div>
-          <div class="android download-button-wrapper" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
-            {{ download_firefox(platform='android', small=True, icon=False, dom_id='download-button-android') }}
-          </div>
-          <div class="desktop-latest-links-wrapper latest-links-wrapper">
-            <ul>
-              <li class="hide-for-refresh"><a href="{{ url('firefox.desktop.index') }}">{{_('Learn more about Firefox for desktop')}}</a></li>
-              <li><a href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
-              {% if l10n_has_tag('mobile_links') %}
-              <li class="hide-for-refresh"><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
-              <li class="hide-for-refresh"><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
-              {% endif %}
-              <li><a href="{{ url('firefox.all') }}#{{ LANG }}">{{_('Download a fresh copy')}}</a></li>
-            </ul>
-          </div>
-          <div class="android-latest-links-wrapper latest-links-wrapper">
-            <ul>
-              <li><a href="{{ url('firefox.android.index') }}">{{_('Learn more about Firefox for Mobile')}}</a></li>
-            </ul>
-          </div>
-          <div class="fxos-latest-links-wrapper latest-links-wrapper">
-            <ul>
-              <li><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
-              <li><a href="https://support.mozilla.org/products/firefox-os">{{_('Need help?')}}</a></li>
-              <li><a href="https://support.mozilla.org/kb/update-new-version-firefox-os">{{_('Update to stay fast and safe.')}}</a></li>
-              <li><a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
-            </ul>
-          </div>
-          <div class="ios-links-wrapper latest-links-wrapper">
-            <ul>
-              {% if l10n_has_tag('ios_announce') %}
-                <li><a href="{{ url('newsletter.ios') }}">{{_('Learn more about Firefox on iOS')}}</a></li>
-              {% elif l10n_has_tag('mobile_links') %}
-                <li>
-                  <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a>
-                </li>
-                <li>
-                  <a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a>
-                </li>
-                <li>
-                  <a href="https://support.mozilla.org/kb/is-firefox-available-iphone-or-ipad">{{_('Why don’t we offer an iOS version?')}}</a>
-                </li>
-              {% endif %}
-            </ul>
-          </div>
+  <section id="download-interaction">
+    <div id="download-ready" class="download-content">
+      <div class="container" id="features-download">
+        <div class="desktop download-button-wrapper">
+          {{ download_firefox(force_direct=true, simple=true) }}
         </div>
-
-        <div class="desktop" id="firefox-screenshot">
-          {{ platform_img('firefox/new/browser.png', {'alt': _('Firefox screenshot'), 'high-res': True}) }}
+        <div class="mobile download-button-wrapper">
+          {{ download_firefox(platform='android') }}
         </div>
-
-        <div id="newsletter-latest">
-          {{ email_newsletter_form() }}
+        <div class="android download-button-wrapper" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
+          {{ download_firefox(platform='android', small=True, icon=False, dom_id='download-button-android') }}
         </div>
-      </div> <!-- /#scene1 -->
-
-      <div class="scene" id="scene2">
-        <div class="share-wrapper">
-          {% set share_urls = { 'twitter': 'http://mzl.la/MDrrWk', 'googleplus': 'http://mzl.la/MDrrWk', 'facebook': 'http://mzl.la/MDrrWk' } -%}
-          {% set share_text = _('Choose the independent browser') %}
-          {{ share_cta(_('Share'), share_urls, share_text, 'share-firefox-new', 'sky mini') }}
+        <div class="desktop-latest-links-wrapper latest-links-wrapper">
+          <ul>
+            <li class="hide-for-refresh"><a href="{{ url('firefox.desktop.index') }}">{{_('Learn more about Firefox for desktop')}}</a></li>
+            <li><a href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+            {% if l10n_has_tag('mobile_links') %}
+            <li class="hide-for-refresh"><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
+            <li class="hide-for-refresh"><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
+            {% endif %}
+            <li><a href="{{ url('firefox.all') }}#{{ LANG }}">{{_('Download a fresh copy')}}</a></li>
+          </ul>
         </div>
-        <div class="thankyou" tabindex="0">
-          {{_("Thanks for downloading Firefox!")}}
-          {{_("As a non-profit, we’re free to innovate on your behalf without any pressure to compromise. You’re going to love the difference.")}}
+        <div class="android-latest-links-wrapper latest-links-wrapper">
+          <ul>
+            <li><a href="{{ url('firefox.android.index') }}">{{_('Learn more about Firefox for Mobile')}}</a></li>
+          </ul>
         </div>
+        <div class="fxos-latest-links-wrapper latest-links-wrapper">
+          <ul>
+            <li><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
+            <li><a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
+          </ul>
+        </div>
+        <div class="ios-links-wrapper latest-links-wrapper">
+          <ul>
+            {% if l10n_has_tag('ios_announce') %}
+              <li><a href="{{ url('newsletter.ios') }}">{{_('Learn more about Firefox on iOS')}}</a></li>
+            {% elif l10n_has_tag('mobile_links') %}
+              <li>
+                <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a>
+              </li>
+              <li>
+                <a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a>
+              </li>
+              <li>
+                <a href="https://support.mozilla.org/kb/is-firefox-available-iphone-or-ipad">{{_('Why don’t we offer an iOS version?')}}</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
 
-        <ol class="installation">
-          <li class="install1">
-            <span class="screen"></span>
-            <strong>{{_('1')}}.</strong>
-            <span class="install-win">
-              {{_('Start the process by clicking Run.')}}
-            </span>
-            {{_('Your download should begin automatically. If not, <a id="%s" href="">click here</a>. It could take a few minutes, but it’s worth the wait.')|format('direct-download-link')}}
-          </li>
-          <li class="install2">
-            <span class="screen"></span>
-            <strong>{{_('2')}}.</strong>
-            <span class="install-osx">
-              {{_('When prompted, drag the Firefox icon into the image of your Applications folder.')}}
-            </span>
-            <span class="install-win">
-              {{_("Click Run to launch the Mozilla Firefox setup wizard. Then, just follow the steps (we've made the process as painless as possible).")}}
-            </span>
-          </li>
-          <li class="install3">
-            <span class="screen"></span>
-            <strong>{{_('3')}}.</strong>
-            <span class="install-osx">
-              {{_('Drag the Firefox icon from the Applications folder into the dock. Then, just click on Firefox whenever you want to use the web!')}}
-            </span>
-            <span class="install-win">
-              {{_('Now you’re ready to leap boldly into a new era of Web surfing. Double-click on the Firefox icon whenever you want to go online.')}}
-            </span>
-          </li>
-        </ol>
-      </div> <!-- /#scene2 -->
+      <div class="desktop" id="firefox-screenshot">
+        {{ platform_img('firefox/new/browser.png', {'alt': _('Firefox screenshot'), 'high-res': True}) }}
+      </div>
 
-    </div> <!-- /#stage -->
-  </div>
+      <div id="newsletter-latest">
+        {{ email_newsletter_form() }}
+      </div>
+    </div>{#-- /#download-ready --#}
+
+    <div id="download-started" class="download-content hidden">
+      <div id="thankyou" tabindex="0">
+        {{_("Thanks for downloading Firefox!")}}
+        {{_("As a non-profit, we’re free to innovate on your behalf without any pressure to compromise. You’re going to love the difference.")}}
+      </div>
+
+      <p>
+        {{_('Your download should begin automatically. If not, <a id="%s" href="">click here</a>. It could take a few minutes, but it’s worth the wait.')|format('direct-download-link')}}
+      </p>
+
+      <p>
+        <a rel="external" href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a>
+      </p>
+    </div>{#-- /#download-started --#}
+  </section>{#-- /#download-content --#}
 </main>
 
 <div itemscope itemtype="http://schema.org/SoftwareApplication">
