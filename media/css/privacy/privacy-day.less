@@ -269,8 +269,19 @@ html[lang^='en'] #tips-nav-direct li a span:after {
         content: "« ";
         left: -1em;
     }
+    
     &:after {
         content: " »";
+    }
+}
+
+[lang="ro"] .tip aside .quote {
+    &:before{
+        content: "„";
+    }
+    
+    &:after {
+        content: "”";
     }
 }
 
