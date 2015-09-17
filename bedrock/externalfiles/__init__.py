@@ -126,7 +126,7 @@ class ExternalFile(object):
             fo.content = content
             fo.save()
         else:
-            self.file_object = EFModel.objects.create(name=self.file_id, content=content)
+            EFModel.objects.create(name=self.file_id, content=content)
 
         log.info('Successfully updated {0}.'.format(self.name))
         return True
