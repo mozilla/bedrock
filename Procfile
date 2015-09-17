@@ -1,2 +1,2 @@
 web: docker/run-prod.sh
-clock: ./manage.py runscript clock
+clock: venv/bin/python manage.py runscript clock
