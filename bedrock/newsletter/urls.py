@@ -1,7 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from bedrock.mozorg.util import page
 from bedrock.newsletter import views
@@ -11,7 +11,7 @@ from bedrock.newsletter import views
 uuid_regex = r'[0-Fa-f]{8}-[0-Fa-f]{4}-[0-Fa-f]{4}-[0-Fa-f]{4}-[0-Fa-f]{12}'
 
 
-urlpatterns = patterns('',  # noqa
+urlpatterns = (
     # view.existing allows a user who has a link including their token to
     # subscribe, unsubscribe, change their preferences. Each newsletter
     # includes that link for them.

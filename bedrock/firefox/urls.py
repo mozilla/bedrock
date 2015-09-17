@@ -1,7 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from commonware.response.decorators import xframe_allow
 
@@ -26,12 +26,12 @@ android_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/android')
 sysreq_re = latest_re % (version_re, 'system-requirements')
 
 
-urlpatterns = patterns('',
-    redirect(r'^firefox/$', 'firefox.new', name='firefox'),
+urlpatterns = (
+    redirect(r'^firefox/$', 'firefox.new', name='firefox', locale_prefix=False),
     url(r'^firefox/(?:%s/)?all/$' % channel_re,
         views.all_downloads, name='firefox.all'),
     page('firefox/channel', 'firefox/channel.html'),
-    redirect('^firefox/channel/android/$', 'firefox.channel'),
+    redirect('^firefox/channel/android/$', 'firefox.channel', locale_prefix=False),
     page('firefox/personal', 'firefox/personal.html'),
     page('firefox/desktop', 'firefox/desktop/index.html'),
     page('firefox/desktop/fast', 'firefox/desktop/fast.html'),
