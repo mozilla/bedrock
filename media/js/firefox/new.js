@@ -292,14 +292,10 @@
                     }
                 } else {
                     showScene(2);
-                    // For IE < 11 we supress the auto-download since this
+                    // For IE < 9 we supress the auto-download since this
                     // will soon be triggered using a popup on bedrock prior
-                    // to landing on /firefox/download/#download-fx. This
-                    // check reflects the current logic on bedrock and the old
-                    // PHP download pages (which also only check for `MSIE`).
-                    // Once all buttons point to this page on all locales,
-                    // we can switch this check to IE < 9.
-                    if (navigator.appVersion.indexOf('MSIE') !== -1) {
+                    // to landing on /firefox/download/#download-fx.
+                    if (isIELT9) {
                         return;
                     }
 

@@ -11,34 +11,32 @@ describe('global.js', function() {
 
     describe('trigger_ie_download', function () {
 
-        it('should open a popup for IE < 11', function () {
-            // Let's pretend to be IE version 9 just for this individual test
-            var appVersion = '5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)';
+        beforeEach(function() {
+            window.site.platform = 'windows';
+        });
 
-            /* Wrap window.open with a stub function, since all we need
-             * to know is that window.open gets called. We do not need
-             * window.open to execute to satisfy the test. We can also
-             * spy on this stub to see if it gets called successfully. */
+        afterEach(function() {
+            window.site.platform = 'other';
+        });
+
+        it('should open a popup for IE < 9', function () {
+            var userAgent = 'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; GTB7.4; InfoPath.2; SV1; .NET CLR 3.3.69573; WOW64; en-US)';
             window.open = sinon.stub();
-            trigger_ie_download('foo', appVersion);
+            trigger_ie_download('foo', userAgent);
             expect(window.open.called).toBeTruthy();
         });
 
-        it('should not open a popup for IE 11', function () {
-            // Let's pretend to be IE version 11
-            var appVersion = '5.0 (Windows NT 6.3; WOW64; Trident/7.0; .NET4.0E; .NET4.0C; .NET CLR 3.5.30729; .NET CLR 2.0.50727; .NET CLR 3.0.30729; rv:11.0) like Gecko';
-
+        it('should not open a popup for IE 9', function () {
+            var userAgent = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 7.1; Trident/5.0)';
             window.open = sinon.stub();
-            trigger_ie_download('foo', appVersion);
+            trigger_ie_download('foo', userAgent);
             expect(window.open.called).not.toBeTruthy();
         });
 
         it('should not open a popup for other browsers', function () {
-            // Let's pretend to be a non IE browser
-            var appVersion = '5.0 (Macintosh)';
-
+            var userAgent = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36';
             window.open = sinon.stub();
-            trigger_ie_download('foo', appVersion);
+            trigger_ie_download('foo', userAgent);
             expect(window.open.called).not.toBeTruthy();
         });
 
@@ -153,17 +151,13 @@ describe('global.js', function() {
     describe('init_android_download_links', function () {
 
         beforeEach(function () {
-            // Pretend we're on Android
-            window.site = {
-                platform: 'android'
-            };
+            window.site.platform = 'android';
             //create an HTML fixture to test against
             $('<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">foo</a>').appendTo('body');
         });
 
         afterEach(function(){
-            // Tidy up after each test
-            window.site = null;
+            window.site.platform = 'other';
             $('.download-link').remove();
         });
 
