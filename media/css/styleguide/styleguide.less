@@ -254,6 +254,14 @@ body.dark {
         color: #eee;
         text-shadow: 0 1px #333;
     }
+    a {
+        &:link {
+            color: #00C7EF;
+        }
+        &:visited {
+            color: #F4F4F4;
+        }
+    }
     #sidebar {
         h2 a {
             color: @darkThemeText;
@@ -286,16 +294,24 @@ body.dark {
     #subnav {
         #nextprev {
             a {
-                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAYAAAASVl2WAAAAYUlEQVR42mNgwAam3VYE4v9ALIdNUgYqCcFokpIoktNuqyBLiqJJaiNLCqNJGiJL8qNJmqPbi67AApvL0e03wqZIDE2RLuEwmHZbHZsiedwBhVCkAlWgxoATTLvNyEAMAAADk3IISMC5FgAAAABJRU5ErkJggg==);
+                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAMAAAAliK2kAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAQlBMVEUAAAAAx+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8AAAC5xB8hAAAAFHRSTlMAIR4cGSQVKxMxDzc4MhYtJx8mAbj4DgQAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAARUlEQVQI1z3MSxaAIAxD0aCgCH4x+1+raeXQyX2DtoBN4OTOJM0ok1zkKrPcZJEVPXY/sZXD61Rd483t9fSHQGL7Ay/GfOFEA1fWXxq+AAAAAElFTkSuQmCC);
             }
             a.next {
-                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAOCAYAAAD9lDaoAAAAZUlEQVR42mNgAIFptzWB+AcQyzBgBdNu8wPxfyj+DsSSuBQaoCkUxaXQFEnhNyAWxqXQBk0hPy6FTkgKvwIxLzGK+Ei0btptczQFougKjNGCQBxfYOINdSOoAgUGvGDabUYGSgAA+kV06EjWphoAAAAASUVORK5CYII=);
+                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAOCAMAAAAliK2kAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAQlBMVEUAAAAAx+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8Ax+8AAAC5xB8hAAAAFHRSTlMAHiEcJBkrFTETNw84Mi0WJx8mAWJpHNYAAAABYktHRACIBR1IAAAACXBIWXMAAAsSAAALEgHS3X78AAAARElEQVQI11XNRwKAIBADwFVRBAst/38rMeLBXDKHLTZhNgXAIjhqlTbKSzsVpEgdD86Bawzd7MTO3yF20UqFe19Ys3865gQDWAXNNv4AAAAASUVORK5CYII=);
             }
         }
     }
     #colophon {
         background: transparent;
         color: @darkThemeText;
+        a {
+            &:link {
+                color: #00C7EF;
+            }
+            &:visited {
+                color: #F4F4F4;
+            }
+        }
         .footer-logo {
             .offset_guide(1);
         }
