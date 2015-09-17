@@ -35,8 +35,8 @@ ipaddr==2.1.11
 # sha256: Vt7B6U0vrRPZAJoUC4FoCAhqed337fnrSTHIT2WrsSo
 pytz==2014.7
 
-# sha256: RXPZHsnm2Ixr4d_gBOozfUd1TtOSS0wYH3d8YTRlV4s
-chardet==1.0.1
+# sha256: 5T44s6Sv5tETLeYrdACkrDY0Utxd_PjYjo4MzmY8aKo
+chardet==2.3.0
 
 # sha256: ZrvGLZUZ-dUxsfd-aH2fL15SHLkG8f1yMfQDmX4BEMQ
 python-memcached==1.48
