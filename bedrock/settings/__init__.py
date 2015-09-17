@@ -64,6 +64,16 @@ CACHES['product-details'] = {
     }
 }
 
+# cache for externalfiles
+CACHES['externalfiles'] = {
+    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
+    'LOCATION': 'externalfiles',
+    'OPTIONS': {
+        'MAX_ENTRIES': 10,  # currently 2 files
+        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
+    }
+}
+
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL
 STATIC_URL = CDN_BASE_URL + STATIC_URL
 
