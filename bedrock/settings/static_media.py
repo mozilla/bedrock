@@ -190,7 +190,7 @@ PIPELINE_CSS = {
     'firefox_android_all': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
-            'css/firefox/menu-resp.less',
+            'css/base/menu-resp.less',
             'css/firefox/android/all.less',
         ),
         'output_filename': 'css/firefox-android-all.css',
