@@ -780,7 +780,6 @@ PIPELINE_CSS = {
     },
     'styleguide': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/sandstone/fonts.less',
             'css/styleguide/styleguide.less',
             'css/styleguide/websites-sandstone.less',

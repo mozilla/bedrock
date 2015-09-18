@@ -84,20 +84,30 @@
 <header id="masthead">
   <div class="container">
     {% block tabzilla_tab %}
-    <div id="tabzilla">
-      <a href="{{ url('mozorg.home') }}">mozilla</a>
-    </div>
+      <div id="tabzilla">
+        <a href="{{ url('mozorg.home') }}">Mozilla</a>
+      </div>
     {% endblock %}
-    <nav id="nav-main" role="navigation">
-      <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
-      <ul id="nav-main-menu">
-        <li class="first"><a data-link-type="donate" data-element-location="nav click" href="{{ donate_url('mozillaorg_topNAV') }}">{{_('Donate')}}</a></li>
-        <li><a data-link-type="mission" data-element-location="nav click" href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
-        <li><a data-link-type="about" data-element-location="nav click" href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
-        <li><a data-link-type="firefox" data-element-location="nav click" href="{{ url('firefox.family.index') }}">{{_('Firefox')}}</a></li>
-        <li class="last"><a data-link-type="community" data-element-location="nav click" href="{{ url('mozorg.contribute') }}">{{_('Community')}}</a></li>
-      </ul>
-    </nav>
+
+    {% block site_header_nav %}
+      <nav id="nav-main" role="navigation">
+        <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
+        <ul id="nav-main-menu">
+          <li class="first about-item">
+            <a data-link-type="about" data-element-location="nav click" href="{{ url('mozorg.about') }}">{{_('About')}}</a>
+          </li>
+          <li class="contribute-item">
+            <a data-link-type="participate" data-element-location="nav click" href="{{ url('mozorg.contribute') }}">{{_('Participate')}}</a>
+          </li>
+          <li class="products-item">
+            <a data-link-type="firefox" data-element-location="nav click" href="{{ url('firefox.family.index') }}">{{_('Firefox')}}</a>
+          </li>
+          <li class="last donate-item">
+            <a data-link-type="donate" data-element-location="nav click" href="{{ donate_url('mozillaorg_topNAV') }}">{{_('Donate')}}</a>
+          </li>
+        </ul>
+      </nav>
+    {% endblock %}
   </div>
 </header>
 {% endblock %}
