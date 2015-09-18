@@ -97,12 +97,20 @@
 
         {% block site_header_nav %}
         <nav id="nav-main" role="navigation">
-            <ul>
-                <li><a href="{{ url('mozorg.mission') }}">{{_('Mission')}}</a></li>
-                <li><a href="{{ url('mozorg.about') }}">{{_('About')}}</a></li>
-                <li><a href="{{ url('firefox.family.index') }}">{{_('Products')}}</a></li>
-                <li><a href="{{ url('mozorg.contribute') }}">{{_('Get Involved')}}</a></li>
-            </ul>
+          <ul>
+            <li class="first about-item">
+              <a data-link-type="about" data-element-location="nav click" href="{{ url('mozorg.about') }}">{{_('About')}}</a>
+            </li>
+            <li class="contribute-item">
+              <a data-link-type="participate" data-element-location="nav click" href="{{ url('mozorg.contribute') }}">{{_('Participate')}}</a>
+            </li>
+            <li class="products-item">
+              <a data-link-type="firefox" data-element-location="nav click" href="{{ url('firefox.family.index') }}">{{_('Firefox')}}</a>
+            </li>
+            <li class="last donate-item">
+              <a data-link-type="donate" data-element-location="nav click" href="{{ donate_url('mozillaorg_topNAV') }}">{{_('Donate')}}</a>
+            </li>
+          </ul>
         </nav>
         {% endblock %}
 
