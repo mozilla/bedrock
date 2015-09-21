@@ -15,7 +15,7 @@ casper.test.begin('Android, Elements: ' + url, 6, function suite(test) {
     casper.start(url, function() {
         test.assertHttpStatus(200);
         test.assertElementCount('.send-to', 3, '3 modal buttons exist');
-        test.assertElementCount('.dl-button', 3, '3 Google Play Store buttons exist');
+        test.assertElementCount('.dl-button', 5, '5 Google Play Store buttons exist');
         test.assertExists('#customize-accordion', 'Customize accordion exists');
         test.assertElementCount('#privacy ul li > a', 4, 'Privacy links exist');
         test.assertExists('#newsletter-form', 'Newsletter form exists');
