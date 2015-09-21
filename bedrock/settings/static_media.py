@@ -554,6 +554,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_win10_welcome-bundle.css',
     },
+    'firefox_win10_welcome_variants': {
+        'source_filenames': (
+            'css/firefox/win10-welcome.less',
+            'css/firefox/win10-welcome-variants.less',
+        ),
+        'output_filename': 'css/firefox_win10_welcome_variants-bundle.css',
+    },
     'firefox_pocket': {
         'source_filenames': (
             'css/firefox/pocket.less',
