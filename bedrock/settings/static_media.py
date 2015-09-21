@@ -710,7 +710,6 @@ PIPELINE_CSS = {
     },
     'press_speaker_request': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/press/speaker-request.less',
         ),
         'output_filename': 'css/press_speaker_request-bundle.css',
