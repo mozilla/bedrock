@@ -3,7 +3,7 @@
 PIPELINE_CSS = {
     'csrf-failure': {
         'source_filenames': (
-            'css/sandstone/sandstone-rsp.less',
+            'css/sandstone/sandstone-resp.less',
             'css/csrf-failure.less',
         ),
         'output_filename': 'css/csrf-failure-bundle.css',
