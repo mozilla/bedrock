@@ -226,7 +226,7 @@ def JINJA_CONFIG():
             'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
             'lib.l10n_utils.template.lang_blocks',
             'jingo_markdown.extensions.MarkdownExtension',
-            'pipeline.jinja2.ext.PipelineExtension',
+            'pipeline.templatetags.ext.PipelineExtension',
         ],
         # Make None in templates render as ''
         'finalize': lambda x: x if x is not None else '',
