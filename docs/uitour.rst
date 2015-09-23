@@ -266,6 +266,7 @@ Available ``type`` values:
 * ``'availableTargets'``
 * ``'appinfo'``
 * ``'selectedSearchEngine'``
+* ``'search'``
 * ``'loop'``
 
 Other parameters:
@@ -331,6 +332,20 @@ If ``'selectedSearchEngine'`` is queried the object returned gives the currently
 .. Important::
 
     ``selectedSearchEngine`` is only available in Firefox 34 onward.
+
+**search**
+
+This is an alias to ``'selectedSearchEngine'`` that also returns an array of available search engines.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.getConfiguration('search', function (data) {
+        console.log(data); // { searchEngineIdentifier: "google", engines: Array[8] }
+    });
+
+    .. Important::
+
+        ``search`` is only available in Firefox 43 onward.
 
 **loop**
 
