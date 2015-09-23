@@ -8,12 +8,8 @@
 
 set -ex
 
-# Create a temporary virtualenv to install deis client
-TDIR=`mktemp -d`
-virtualenv $TDIR
-. $TDIR/bin/activate
-pip install deis==1.8.0
+# Install Deis client
+curl -sSL http://deis.io/deis-cli/install.sh | sh
 
-
-deis login $DEIS_CONTROLLER  --username $DEIS_USERNAME --password $DEIS_PASSWORD
-deis pull $DOCKER_REPOSITORY:`git rev-parse HEAD` -a $DEIS_APPLICATION
+./deis login $DEIS_CONTROLLER  --username $DEIS_USERNAME --password $DEIS_PASSWORD
+./deis pull $DOCKER_REPOSITORY:`git rev-parse HEAD` -a $DEIS_APPLICATION
