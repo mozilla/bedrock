@@ -1,0 +1,2 @@
+FROM ${FROM_DOCKER_REPOSITORY}:${GIT_COMMIT}
+COPY . /app/locale
