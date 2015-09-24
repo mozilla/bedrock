@@ -4,9 +4,9 @@
 
 // A minimum stylesheet for the Thunderbird start page based on the Sky theme.
 
-// The margin/padding-start/end properties are prefixed and supported only by
-// Gecko and Webkit browsers. Since this stylesheet is for a Thundebird
-// dedicated page, it should be safe to use it here.
+// Several direction-independent margin/padding properties are used to easier
+// support RTL locales. Though the browser support is limited, it should be safe
+// to use them here because this CSS is only for Thundebird dedicated pages.
 
 @import "../sandstone/lib.less";
 
@@ -87,12 +87,12 @@ section h2.iconic:before {
 
 footer a {
     display: inline-block;
-    -moz-padding-start: 25px;
-         padding-start: 25px;
+    -moz-padding-start: 25px; /* Legacy */
+    padding-inline-start: 25px; /* Gecko 41+ */
 
     &:before {
-        -moz-margin-start: -25px;
-             margin-start: -25px;
+        -moz-margin-start: -25px; /* Legacy */
+        margin-inline-start: -25px; /* Gecko 41+ */
     }
 }
 
@@ -100,8 +100,8 @@ footer a,
 section a.iconic {
     &:before {
         display: inline-block;
-        -moz-margin-end: 5px;
-             margin-end: 5px;
+        -moz-margin-end: 5px; /* Legacy */
+        margin-inline-end: 5px; /* Gecko 41+ */
         width: 20px;
         height: 20px;
         background-image: url('/media/img/thunderbird/start/sprite.png');
@@ -135,8 +135,8 @@ section {
 
         &.iconic {
             display: table-cell;
-            -moz-padding-start: 55px;
-                 padding-start: 55px;
+            -moz-padding-start: 55px; /* Legacy */
+            padding-inline-start: 55px; /* Gecko 41+ */
             height: 50px;
             vertical-align: middle;
         }
@@ -330,8 +330,8 @@ footer {
 @media (min-width: 480px) {
     header h1 {
         display: table-cell;
-        -moz-padding-start: 110px;
-             padding-start: 110px;
+        -moz-padding-start: 110px; /* Legacy */
+        padding-inline-start: 110px; /* Gecko 41+ */
         height: 100px;
         vertical-align: middle;
 
