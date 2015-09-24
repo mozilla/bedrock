@@ -23,6 +23,18 @@ class TestBedrockWhiteNoise(TestCase):
             self.assertTrue(static_file.headers['Cache-Control'].endswith(
                 'max-age={}'.format(self.wn.ONE_MONTH)))
 
+    def test_caldata_files(self):
+        with patch.object(self.wn, 'is_immutable_file', return_value=False):
+            static_file = Mock(headers={})
+            self.wn.add_cache_headers(static_file, 'media/caldata/ThaiHolidays.ics')
+            self.assertTrue(static_file.headers['Cache-Control'].endswith(
+                'max-age={}'.format(self.wn.ONE_MONTH)))
+
+            # also at alternate path
+            self.wn.add_cache_headers(static_file, 'project/calendar/caldata/ThaiHolidays.ics')
+            self.assertTrue(static_file.headers['Cache-Control'].endswith(
+                'max-age={}'.format(self.wn.ONE_MONTH)))
+
     def test_immutable_font_files(self):
         with patch.object(self.wn, 'is_immutable_file', return_value=True):
             static_file = Mock(headers={})

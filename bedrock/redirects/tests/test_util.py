@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from urlparse import parse_qs, urlparse
 
 from django.conf.urls import RegexURLPattern
 from django.test import TestCase
@@ -10,7 +11,8 @@ from mock import patch
 from nose.tools import eq_, ok_
 
 from bedrock.redirects.middleware import RedirectsMiddleware
-from bedrock.redirects.util import get_resolver, header_redirector, redirect, ua_redirector
+from bedrock.redirects.util import (get_resolver, header_redirector, is_firefox_redirector,
+                                    no_redirect, redirect, ua_redirector)
 
 
 class TestHeaderRedirector(TestCase):
@@ -32,6 +34,67 @@ class TestHeaderRedirector(TestCase):
                                      case_sensitive=True)
         url = callback(self.rf.get('/take/comfort/', HTTP_USER_AGENT='The Dude Browses'))
         self.assertEqual(url, '/flout/')
+
+
+class TestIsFirefoxRedirector(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_firefox_redirects(self):
+        callback = is_firefox_redirector('/abide/', '/flout/')
+        url = callback(self.rf.get('/take/comfort/', HTTP_USER_AGENT='Mozilla Firefox/42.0'))
+        self.assertEqual(url, '/abide/')
+
+    def test_non_firefox_redirects(self):
+        callback = is_firefox_redirector('/abide/', '/flout/')
+        url = callback(self.rf.get('/take/comfort/',
+                                   HTTP_USER_AGENT='Mozilla Firefox/17.0 Iceweasel/17.0.1'))
+        self.assertEqual(url, '/flout/')
+
+
+class TestNoRedirectUrlPattern(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_no_redirect(self):
+        """Should be able to skip redirects."""
+        resolver = get_resolver([
+            no_redirect(r'^iam/the/walrus/$'),
+            redirect(r'^iam/the/.*/$', '/coo/coo/cachoo/'),
+        ])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/iam/the/walrus/'))
+        self.assertIsNone(resp)
+
+        # including locale
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/pt-BR/iam/the/walrus/'))
+        self.assertIsNone(resp)
+
+        resp = middleware.process_request(self.rf.get('/iam/the/marmot/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/coo/coo/cachoo/')
+
+    def test_match_flags(self):
+        """
+        Should be able to set regex flags for redirect URL.
+        """
+        resolver = get_resolver([
+            redirect(r'^iam/the/walrus/$', '/coo/coo/cachoo/'),
+            no_redirect(r'^iam/the/walrus/$', re_flags='i'),
+        ])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/IAm/The/Walrus/'))
+        self.assertIsNone(resp)
+
+        # also with locale
+        resp = middleware.process_request(self.rf.get('/es-ES/Iam/The/Walrus/'))
+        self.assertIsNone(resp)
+
+        # sanity check
+        resp = middleware.process_request(self.rf.get('/iam/the/walrus/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/coo/coo/cachoo/')
 
 
 class TestRedirectUrlPattern(TestCase):
@@ -76,6 +139,20 @@ class TestRedirectUrlPattern(TestCase):
         response = pattern.callback(request)
         eq_(response.status_code, 301)
         eq_(response['Location'], 'abides?aggression=not_stand')
+
+    def test_merge_query(self):
+        """
+        Should merge query params if requested
+        """
+        pattern = redirect(r'^the/dude$', 'abides',
+                           query={'aggression': 'not_stand'}, merge_query=True)
+        request = self.rf.get('the/dude?hates=the-eagles')
+        response = pattern.callback(request)
+        eq_(response.status_code, 301)
+        url = urlparse(response['location'])
+        query_dict = parse_qs(url.query)
+        self.assertTrue(url.path, 'abides')
+        self.assertEqual(query_dict, {'aggression': ['not_stand'], 'hates': ['the-eagles']})
 
     def test_empty_query(self):
         """
@@ -129,7 +206,22 @@ class TestRedirectUrlPattern(TestCase):
         pattern = redirect(r'^the/dude$', 'yeah.well.you.know.thats')
         request = self.rf.get('the/dude')
         response = pattern.callback(request)
-        mock_reverse.assert_called_with('yeah.well.you.know.thats')
+        mock_reverse.assert_called_with('yeah.well.you.know.thats', args=None, kwargs=None)
+        eq_(response.status_code, 301)
+        eq_(response['Location'], '/just/your/opinion/man')
+
+    @patch('bedrock.redirects.util.reverse')
+    def test_to_view_args_kwargs(self, mock_reverse):
+        """
+        Should call reverse with specified args and/or kwargs.
+        """
+        mock_reverse.return_value = '/just/your/opinion/man'
+        pattern = redirect(r'^the/dude$', 'yeah.well.you.know.thats',
+                           to_args=['dude'], to_kwargs={'tapes': 'credence'})
+        request = self.rf.get('the/dude')
+        response = pattern.callback(request)
+        mock_reverse.assert_called_with('yeah.well.you.know.thats',
+                                        args=['dude'], kwargs={'tapes': 'credence'})
         eq_(response.status_code, 301)
         eq_(response['Location'], '/just/your/opinion/man')
 
@@ -167,10 +259,10 @@ class TestRedirectUrlPattern(TestCase):
 
     def test_locale_value_capture(self):
         """
-        Should get locale value in kwargs.
+        Should prepend locale value automatically.
         """
         resolver = get_resolver([redirect(r'^iam/the/(?P<name>.+)/$',
-                                          '/{locale}donnie/the/{name}/')])
+                                          '/donnie/the/{name}/')])
         middleware = RedirectsMiddleware(resolver)
         resp = middleware.process_request(self.rf.get('/pt-BR/iam/the/walrus/'))
         eq_(resp.status_code, 301)
@@ -181,9 +273,20 @@ class TestRedirectUrlPattern(TestCase):
         Should get locale value in kwargs and not break if no locale in URL.
         """
         resolver = get_resolver([redirect(r'^iam/the/(?P<name>.+)/$',
-                                          '/{locale}donnie/the/{name}/')])
+                                          '/donnie/the/{name}/')])
         middleware = RedirectsMiddleware(resolver)
         resp = middleware.process_request(self.rf.get('/iam/the/walrus/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/donnie/the/walrus/')
+
+    def test_locale_value_capture_ignore_locale(self):
+        """
+        Should be able to ignore the original locale.
+        """
+        resolver = get_resolver([redirect(r'^iam/the/(?P<name>.+)/$',
+                                          '/donnie/the/{name}/', prepend_locale=False)])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/zh-TW/iam/the/walrus/'))
         eq_(resp.status_code, 301)
         eq_(resp['Location'], '/donnie/the/walrus/')
 
@@ -212,3 +315,26 @@ class TestRedirectUrlPattern(TestCase):
         resp = middleware.process_request(self.rf.get('/iam/the/'))
         eq_(resp.status_code, 301)
         eq_(resp['Location'], '/donnie/the/')
+
+    def test_match_flags(self):
+        """
+        Should be able to set regex flags for redirect URL.
+        """
+        resolver = get_resolver([
+            redirect(r'^iam/the/walrus/$', '/coo/coo/cachoo/'),
+            redirect(r'^iam/the/walrus/$', '/dammit/donnie/', re_flags='i'),
+        ])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/IAm/The/Walrus/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/dammit/donnie/')
+
+        # also with locale
+        resp = middleware.process_request(self.rf.get('/es-ES/Iam/The/Walrus/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/es-ES/dammit/donnie/')
+
+        # sanity check
+        resp = middleware.process_request(self.rf.get('/iam/the/walrus/'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'], '/coo/coo/cachoo/')

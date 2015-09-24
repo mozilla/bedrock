@@ -1,3 +1,4 @@
+from urlparse import urlparse, parse_qs
 from braceexpand import braceexpand
 import requests
 
@@ -11,7 +12,7 @@ def get_abs_url(url, base_url):
 
 
 def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=None,
-             resp_headers=None):
+             resp_headers=None, query=None):
     """
     Function for producing a config dict for the redirect test.
 
@@ -33,6 +34,7 @@ def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=N
     :param req_headers: Extra headers to send with the request.
     :param req_kwargs: Extra arguments to pass to requests.get()
     :param resp_headers: Dict of headers expected in the response.
+    :param query: Dict of expected query params in `location` URL.
     :return: dict or list of dicts
     """
     test_data = {
@@ -42,6 +44,7 @@ def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=N
         'req_headers': req_headers,
         'req_kwargs': req_kwargs,
         'resp_headers': resp_headers,
+        'query': query,
     }
     expanded_urls = list(braceexpand(url))
     num_urls = len(expanded_urls)
@@ -64,7 +67,7 @@ def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=N
 
 
 def assert_valid_url(url, location, status_code, req_headers, req_kwargs,
-                     resp_headers, base_url):
+                     resp_headers, base_url, query):
     """
     Define a test of a URL's response.
     :param url: The URL in question (absolute or relative).
@@ -74,6 +77,7 @@ def assert_valid_url(url, location, status_code, req_headers, req_kwargs,
     :param req_kwargs: Extra arguments to pass to requests.get()
     :param resp_headers: Dict of headers expected in the response.
     :param base_url: Base URL for the site to test.
+    :param query: Dict of expected query params in `location` URL.
     """
     kwargs = {'allow_redirects': False}
     if req_headers:
@@ -83,10 +87,19 @@ def assert_valid_url(url, location, status_code, req_headers, req_kwargs,
 
     abs_url = get_abs_url(url, base_url)
     resp = requests.get(abs_url, **kwargs)
+    # so that the value will appear in locals in test output
+    resp_location = resp.headers.get('location')
     assert resp.status_code == status_code
     if location:
-        assert 'location' in resp.headers
-        assert resp.headers['location'] == get_abs_url(location, base_url)
+        if query:
+            # parse the QS from resp location header and compare to query arg
+            # since order doesn't matter.
+            resp_parsed = urlparse(resp_location)
+            assert query == parse_qs(resp_parsed.query)
+            # strip off query for further comparison
+            resp_location = resp_location.split('?')[0]
+
+        assert resp_location == get_abs_url(location, base_url)
 
     if resp_headers:
         for name, value in resp_headers.items():

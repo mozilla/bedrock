@@ -4,6 +4,7 @@
 
 import re
 from urllib import urlencode
+from urlparse import parse_qs
 
 from django.core.urlresolvers import NoReverseMatch, RegexURLResolver, reverse
 from django.conf.urls import url
@@ -49,8 +50,47 @@ def ua_redirector(regex, match_dest, nomatch_dest, case_sensitive=False):
     return header_redirector('user-agent', regex, match_dest, nomatch_dest, case_sensitive)
 
 
+def is_firefox_redirector(fx_dest, nonfx_dext):
+    include_re = re.compile(r'\bFirefox\b', flags=re.I)
+    exclude_re = re.compile(r'\b(Camino|Iceweasel|SeaMonkey)\b', flags=re.I)
+
+    def decider(request, *args, **kwargs):
+        value = request.META.get('HTTP_USER_AGENT', '')
+        if include_re.search(value) and not exclude_re.search(value):
+            return fx_dest
+        else:
+            return nonfx_dext
+
+    return decider
+
+
+def no_redirect(pattern, locale_prefix=True, re_flags=None):
+    """
+    Return a url matcher that will stop the redirect middleware and force
+    Django to continue with regular URL matching. For use when you have a URL pattern
+    you want to serve, and a broad catch-all pattern you want to redirect.
+    :param pattern: regex URL patter that will definitely not redirect.
+    :param locale_prefix: prepend the locale matching pattern.
+    :param re_flags: a string of any of the characters: "iLmsux". Will modify the `pattern` regex
+        based on the documented meaning of the flags (see python re module docs).
+    :return:
+    """
+    if locale_prefix:
+        pattern = pattern.lstrip('^/')
+        pattern = LOCALE_RE + pattern
+
+    if re_flags:
+        pattern = '(?{})'.format(re_flags) + pattern
+
+    def _view(request, *args, **kwargs):
+        return None
+
+    return url(pattern, _view)
+
+
 def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=None,
-             query=None, vary=None, cache_timeout=12, decorators=None):
+             query=None, vary=None, cache_timeout=12, decorators=None, re_flags=None,
+             to_args=None, to_kwargs=None, prepend_locale=True, merge_query=False):
     """
     Return a url matcher suited for urlpatterns.
 
@@ -71,6 +111,14 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
         and `expires` headers.
     decorators: a callable (or list of callables) that will wrap the view used to redirect
         the user. equivalent to adding a decorator to any other view.
+    re_flags: a string of any of the characters: "iLmsux". Will modify the `pattern` regex
+        based on the documented meaning of the flags (see python re module docs).
+    to_args: a tuple or list of args to pass to reverse if `to` is a url name.
+    to_kwargs: a dict of keyword args to pass to reverse if `to` is a url name.
+    prepend_locale: if true the redirect URL will be prepended with the locale from the
+        requested URL.
+    merge_query: merge the requested query params from the `query` arg with any query params
+        from the request.
 
     Usage:
     urlpatterns = [
@@ -89,6 +137,9 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
     if locale_prefix:
         pattern = pattern.lstrip('^/')
         pattern = LOCALE_RE + pattern
+
+    if re_flags:
+        pattern = '(?{})'.format(re_flags) + pattern
 
     view_decorators = []
     if cache_timeout:
@@ -117,17 +168,25 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
             to_value = to
 
         try:
-            redirect_url = reverse(to_value)
+            redirect_url = reverse(to_value, args=to_args, kwargs=to_kwargs)
         except NoReverseMatch:
             # Assume it's a URL
             redirect_url = to_value
+
+        if prepend_locale and redirect_url.startswith('/') and kwargs.get('locale'):
+            redirect_url = '/{locale}' + redirect_url.lstrip('/')
 
         # use info from url captures.
         if args or kwargs:
             redirect_url = redirect_url.format(*args, **kwargs)
 
         if query:
-            querystring = urlencode(query)
+            if merge_query:
+                req_query = parse_qs(request.META.get('QUERY_STRING'))
+                req_query.update(query)
+                querystring = urlencode(req_query, doseq=True)
+            else:
+                querystring = urlencode(query, doseq=True)
         elif query is None:
             querystring = request.META.get('QUERY_STRING')
         else:
