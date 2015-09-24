@@ -290,7 +290,7 @@ def dnt(request):
 def all_downloads(request, channel):
     if channel is None:
         channel = 'release'
-    if channel == 'developer':
+    if channel == 'developer' or channel == 'aurora':
         channel = 'alpha'
     if channel == 'organizations':
         channel = 'esr'

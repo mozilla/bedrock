@@ -4,8 +4,10 @@
 
 from django.conf.urls import url
 
-from util import page
-import views
+from .util import page
+from . import views
+from bedrock.redirects.util import redirect
+
 
 urlpatterns = (
     url('^$', views.home, name='mozorg.home'),
@@ -32,6 +34,9 @@ urlpatterns = (
     page('projects/calendar', 'mozorg/projects/calendar.html'),
     url('^projects/calendar/holidays/$', views.holiday_calendars,
         name='mozorg.projects.holiday_calendars'),
+    # Bug 981063, catch all for old calendar urls.
+    # must be here to avoid overriding the above
+    redirect(r'^projects/calendar/', 'mozorg.projects.calendar', locale_prefix=False),
     page('button', 'mozorg/button.html'),
     page('mission', 'mozorg/mission.html'),
     page('ITU', 'mozorg/itu.html'),

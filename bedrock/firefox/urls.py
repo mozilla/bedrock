@@ -67,6 +67,11 @@ urlpatterns = (
     page('firefox/unsupported/mac', 'firefox/unsupported/mac.html'),
     page('firefox/unsupported/details', 'firefox/unsupported/details.html'),
 
+    # bug 960651
+    # here because it needs to come after the above rule
+    redirect(r'(firefox|mobile)/([^/]+)/details(/|/.+\.html)?$', 'firefox.unsupported.details',
+             locale_prefix=False),
+
     url(r'^firefox/unsupported/win/$', views.windows_billboards),
     url('^firefox/dnt/$', views.dnt, name='firefox.dnt'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
