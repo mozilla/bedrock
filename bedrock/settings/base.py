@@ -681,7 +681,7 @@ HOMEPAGE_TWITTER_ACCOUNTS = {
 }
 
 # Mapbox token for spaces and communities pages
-MAPBOX_TOKEN = config('MAPBOX_TOKEN', default='examples.map-i86nkdio')
+MAPBOX_TOKEN = config('MAPBOX_TOKEN', default='mozilla-webprod.ijaeac5j')
 MAPBOX_ACCESS_TOKEN = config(
     'MAPBOX_ACCESS_TOKEN',
     default='pk.eyJ1IjoibW96aWxsYS13ZWJwcm9kIiwiYSI6Ii0xYVEtTW8ifQ.3ikA2IgKATeXStfC5wKDaQ')
