@@ -51,8 +51,5 @@
 {% endblock %}
 
 {% block js %}
-  {# Share with Firefox; searching with js only makes sense if we're displaying all #}
-  {% if not query %}
-    {% javascript 'firefox_all' %}
-  {% endif %}
+  {% javascript 'thunderbird_all' %}
 {% endblock %}

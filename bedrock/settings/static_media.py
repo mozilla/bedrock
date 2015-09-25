@@ -160,15 +160,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/dnt-bundle.css',
     },
-    'firefox': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/base/menu.less',
-            'css/firefox/template.less',
-            'css/tabzilla/tabzilla-static.less',
-        ),
-        'output_filename': 'css/firefox-bundle.css',
-    },
     'firefox_all': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
@@ -189,7 +180,6 @@ PIPELINE_CSS = {
     },
     'firefox_android_all': {
         'source_filenames': (
-            'css/base/mozilla-share-cta.less',
             'css/base/menu-resp.less',
             'css/firefox/android/all.less',
         ),
@@ -208,16 +198,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_unsupported_systems-bundle.css',
     },
-    'firefox-resp': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
-            'css/tabzilla/tabzilla-static.less',
-        ),
-        'output_filename': 'css/firefox-resp-bundle.css',
-    },
     'firefox_channel': {
         'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/base/menu.less',
             'css/firefox/channel.less',
         ),
         'output_filename': 'css/firefox_channel-bundle.css',
@@ -241,8 +226,6 @@ PIPELINE_CSS = {
     },
     'firefox_desktop_fast': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family-nav.less',
             'css/firefox/desktop/fast.less',
         ),
@@ -250,8 +233,6 @@ PIPELINE_CSS = {
     },
     'firefox_desktop_customize': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family-nav.less',
             'css/firefox/desktop/customize.less',
         ),
@@ -266,8 +247,6 @@ PIPELINE_CSS = {
     },
     'firefox_desktop_trust': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family-nav.less',
             'css/firefox/desktop/trust.less',
         ),
@@ -275,9 +254,7 @@ PIPELINE_CSS = {
     },
     'firefox_sms': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-share-cta.less',
-            'css/firefox/template-resp.less',
             'css/sandstone/video-resp.less',
             'css/firefox/mobile-sms.less',
         ),
@@ -299,8 +276,6 @@ PIPELINE_CSS = {
     },
     'firefox_family': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family/index.less',
         ),
         'output_filename': 'css/firefox-family-bundle.css',
@@ -318,15 +293,6 @@ PIPELINE_CSS = {
             'css/base/mozilla-accordion.less',
         ),
         'output_filename': 'css/firefox_faq-bundle.css',
-    },
-    'firefox_firstrun': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
-            'css/sandstone/video.less',
-            'css/firefox/firstrun.less',
-        ),
-        'output_filename': 'css/firefox_firstrun-bundle.css',
     },
     'firefox_fx36_firstrun': {
         'source_filenames': (
@@ -380,7 +346,6 @@ PIPELINE_CSS = {
     },
     'firefox_feedback': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-share-cta.less',
             'css/firefox/feedback.less',
         ),
@@ -413,8 +378,6 @@ PIPELINE_CSS = {
     },
     'firefox_hello': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/base/svg-animation-check.less',
@@ -482,7 +445,6 @@ PIPELINE_CSS = {
     },
     'firefox_os_mwc_2015_preview': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/base/mozilla-modal.less',
             'css/firefox/family-nav.less',
             'css/firefox/os/mwc-2015-preview.less',
@@ -520,18 +482,13 @@ PIPELINE_CSS = {
     },
     'firefox_whatsnew_37': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/firefox/whatsnew-fx37.less',
         ),
         'output_filename': 'css/firefox_whatsnew_37-bundle.css',
     },
     'firefox_whatsnew_38_video': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/whatsnew_38/common.less',
             'css/firefox/whatsnew_38/whatsnew-video.less',
         ),
@@ -539,10 +496,7 @@ PIPELINE_CSS = {
     },
     'firefox_whatsnew_38_pocket': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/firefox/template-resp.less',
             'css/base/mozilla-modal.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/whatsnew_38/common.less',
             'css/firefox/whatsnew_38/whatsnew-pocket.less',
         ),
@@ -683,8 +637,6 @@ PIPELINE_CSS = {
     },
     'newsletter_ios': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/newsletter/ios.less',
         ),
         'output_filename': 'css/newsletter_ios-bundle.css',
@@ -703,7 +655,6 @@ PIPELINE_CSS = {
     },
     'powered-by': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/mozorg/powered-by.less',
         ),
         'output_filename': 'css/powered-by-bundle.css',
@@ -760,7 +711,6 @@ PIPELINE_CSS = {
     },
     'security': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/security/security.less',
         ),
         'output_filename': 'css/security-bundle.css',
@@ -798,24 +748,22 @@ PIPELINE_CSS = {
     'styleguide-docs-mozilla-accordion': {
         'source_filenames': (
             'css/base/mozilla-accordion.less',
-            'css/sandstone/sandstone-resp.less',
         ),
         'output_filename': 'css/styleguide-docs-mozilla-accordion-bundle.css',
     },
     'styleguide-docs-mozilla-pager': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/styleguide/docs/mozilla-pager.less',
         ),
         'output_filename': 'css/styleguide-docs-mozilla-pager-bundle.css',
     },
     'styleguide-docs-send-to-device': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
             'css/base/send-to-device.less',
         ),
         'output_filename': 'css/styleguide-docs-send-to-device-bundle.css',
     },
+    # no longer used on bedrock. possibly referenced on external sites? should investigate.
     'tabzilla': {
         'source_filenames': (
             'css/tabzilla/tabzilla.less',
@@ -906,8 +854,6 @@ PIPELINE_CSS = {
     },
     'thunderbird-landing': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/base/simple_footer-resp.less',
             'css/thunderbird/landing.less',
         ),
@@ -949,30 +895,21 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/projects-calendar-bundle.js',
     },
+    # Served to most pages.
+    # nav-main-resp.js isn't used on a handful of pages, but caching a single
+    # bundle should offset the extra weight.
     'common': {
         'source_filenames': (
             'js/libs/jquery-1.11.3.min.js',
-            'js/libs/spin.min.js',
+            'js/libs/spin.min.js',  # used by js/newsletter/form.js
             'js/base/global.js',
             'js/base/global-init.js',
             'js/newsletter/form.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
+            'js/base/nav-main-resp.js',
         ),
         'output_filename': 'js/common-bundle.js',
-    },
-    'common-resp': {
-        'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/libs/spin.min.js',
-            'js/base/global.js',
-            'js/base/global-init.js',
-            'js/newsletter/form.js',
-            'js/base/nav-main-resp.js',
-            'js/base/mozilla-input-placeholder.js',
-            'js/base/mozilla-image-helper.js',
-        ),
-        'output_filename': 'js/common-resp-bundle.js',
     },
     'contact-spaces': {
         'source_filenames': (
@@ -1050,19 +987,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_dnt-bundle.js',
     },
-    'firefox': {
-        'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/libs/spin.min.js',
-            'js/base/global.js',
-            'js/base/global-init.js',
-            'js/newsletter/form.js',
-            'js/base/nav-main.js',
-            'js/base/mozilla-input-placeholder.js',
-            'js/base/mozilla-image-helper.js',
-        ),
-        'output_filename': 'js/firefox-bundle.js',
-    },
     'firefox_all': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',
@@ -1085,19 +1009,6 @@ PIPELINE_JS = {
             'js/firefox/android.js',
         ),
         'output_filename': 'js/firefox_android-bundle.js',
-    },
-    'firefox-resp': {
-        'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/libs/spin.min.js',
-            'js/base/global.js',
-            'js/base/global-init.js',
-            'js/newsletter/form.js',
-            'js/base/nav-main-resp.js',
-            'js/base/mozilla-input-placeholder.js',
-            'js/base/mozilla-image-helper.js',
-        ),
-        'output_filename': 'js/firefox-resp-bundle.js',
     },
     'firefox_channel': {
         'source_filenames': (
@@ -1167,13 +1078,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_developer-bundle.js',
     },
-    'firefox_firstrun': {
-        'source_filenames': (
-            'js/base/mozilla-modal.js',
-            'js/firefox/firstrun/firstrun.js',
-        ),
-        'output_filename': 'js/firefox_firstrun-bundle.js',
-    },
     'firefox_fx36_firstrun': {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
@@ -1226,13 +1130,7 @@ PIPELINE_JS = {
     },
     'firefox_new': {
         'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/libs/spin.min.js',
-            'js/base/global.js',
-            'js/base/global-init.js',
             'js/base/search-params.js',
-            'js/newsletter/form.js',
-            'js/base/mozilla-image-helper.js',
             'js/firefox/new.js',
         ),
         'output_filename': 'js/firefox_new-bundle.js',
@@ -1269,12 +1167,6 @@ PIPELINE_JS = {
             'js/firefox/os/firefox-os.js',
         ),
         'output_filename': 'js/firefox_os-bundle.js',
-    },
-    'firefox_os_ie9': {
-        'source_filenames': (
-            'js/libs/matchMedia.addListener.js',
-        ),
-        'output_filename': 'js/firefox_os_ie9-bundle.js',
     },
     'firefox_os_devices': {
         'source_filenames': (
@@ -1448,7 +1340,7 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
             'js/firefox/whatsnew_38/whatsnew-video.js',
         ),
-        'output_filename': 'css/firefox_whatsnew_38_video-bundle.js',
+        'output_filename': 'js/firefox_whatsnew_38_video-bundle.js',
     },
     'firefox_whatsnew_38_pocket': {
         'source_filenames': (
@@ -1457,7 +1349,7 @@ PIPELINE_JS = {
             'js/firefox/whatsnew_38/pocket-uitour.js',
             'js/firefox/whatsnew_38/whatsnew-pocket.js',
         ),
-        'output_filename': 'css/firefox_whatsnew_38_pocket-bundle.js',
+        'output_filename': 'js/firefox_whatsnew_38_pocket-bundle.js',
     },
     'firefox_win10_welcome': {
         'source_filenames': (
@@ -1466,7 +1358,7 @@ PIPELINE_JS = {
             'js/firefox/win10-welcome.js',
             'js/firefox/win10-welcome-init.js',
         ),
-        'output_filename': 'css/firefox_win10_welcome-bundle.js',
+        'output_filename': 'js/firefox_win10_welcome-bundle.js',
     },
     'geolocation': {
         'source_filenames': (
@@ -1503,7 +1395,6 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/libs/jquery.validate.js',
             'js/legal/fraud-report.js',
-            'js/base/mozilla-input-placeholder.js',
         ),
         'output_filename': 'js/legal_fraud_report-bundle.js',
     },
@@ -1514,24 +1405,6 @@ PIPELINE_JS = {
             'js/mozorg/manifesto.js',
         ),
         'output_filename': 'js/manifesto-bundle.js',
-    },
-    'manifesto_ie9': {
-        'source_filenames': (
-            'js/libs/matchMedia.addListener.js',
-        ),
-        'output_filename': 'js/manifesto_ie9-bundle.js',
-    },
-    'mozorg-resp': {
-        'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/libs/spin.min.js',
-            'js/base/global.js',
-            'js/base/global-init.js',
-            'js/newsletter/form.js',
-            'js/base/nav-main-resp.js',
-            'js/base/mozilla-image-helper.js',
-        ),
-        'output_filename': 'js/mozorg-resp-bundle.js',
     },
     'partnerships': {
         'source_filenames': (
@@ -1559,7 +1432,6 @@ PIPELINE_JS = {
             'js/libs/jquery.validate.js',
             'js/libs/modernizr.custom.inputtypes.js',
             'js/press/speaker-request.js',
-            'js/base/mozilla-input-placeholder.js',
         ),
         'output_filename': 'js/press_speaker_request-bundle.js',
     },
@@ -1644,12 +1516,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/mosaic-bundle.js',
     },
-    'annual_2011_ie9': {
-        'source_filenames': (
-            'js/libs/matchMedia.addListener.js',
-        ),
-        'output_filename': 'js/annual_2011_ie9-bundle.js',
-    },
     'annual_2011': {
         'source_filenames': (
             'js/libs/jquery.hoverIntent.minified.js',
@@ -1722,14 +1588,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/partners_desktop-bundle.js',
     },
-    'thunderbird-landing': {
+    'thunderbird_all': {
         'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/base/global.js',
-            'js/base/global-init.js',
-            'js/base/mozilla-image-helper.js',
+            'js/base/mozilla-pager.js',
+            'js/firefox/firefox-language-search.js',
         ),
-        'output_filename': 'js/thunderbird-landing-bundle.js',
+        'output_filename': 'js/thunderbird_all-bundle.js',
     },
     'facebookapps_redirect': {
         'source_filenames': (

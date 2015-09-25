@@ -14,10 +14,6 @@
 
 {% block body_class %}sky{% endblock %}
 
-{% block site_css %}
-  {% stylesheet 'firefox-resp' %}
-{% endblock %}
-
 {% block site_header_nav %}
 <nav id="nav-main" role="navigation">
   <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
@@ -72,8 +68,4 @@
 
 {% block site_header_logo %}
 <h2><a href="{{ url('thunderbird.index') }}">{{ high_res_img('thunderbird/template/logo-wordmark.png', {'alt': 'Thunderbird', 'width': '260', 'height': '72'}) }}</a></h2>
-{% endblock %}
-
-{% block site_js %}
-  {% javascript 'firefox-resp' %}
 {% endblock %}

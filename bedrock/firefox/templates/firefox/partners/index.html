@@ -31,14 +31,10 @@
   </script>
 {% endblock %}
 
-{% block site_js %}
-  {% javascript 'firefox-resp' %}
+{% block js %}
   <!--[if IE 9]>
     {% javascript 'matchmedia_addlistener' %}
   <![endif]-->
-{% endblock %}
-
-{% block js %}
   {% javascript 'partners' %}
 {% endblock %}
 
@@ -459,7 +455,7 @@
         <div class="intro tween">
           {% if l10n_has_tag('mwc_2015') %}
             <h4>{{ _('A superior mobile experience') }}</h4>
-            <div class="play-button"> 
+            <div class="play-button">
               <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ static('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
               <small class="download-other">
                 <a href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
