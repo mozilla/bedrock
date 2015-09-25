@@ -32,7 +32,7 @@ from bedrock.newsletter import utils
 
 log = commonware.log.getLogger('b.newsletter')
 
-LANG_FILES = ['mozorg/contribute']
+LANG_FILES = ['mozorg/newsletters']
 general_error = _lazy(u'We are sorry, but there was a problem '
                       u'with our system. Please try again later!')
 thank_you = _lazy(u'Thanks for updating your email preferences.')

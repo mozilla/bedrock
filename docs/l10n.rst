@@ -161,7 +161,7 @@ know which one to use when translating a particular string?
 * All translations from Python files are put into main.lang. This
   should be a very limited set of strings and most likely should be
   available to all pages.
-* Templates always load in `main.lang`, `download_button.lang`, and `newsletter.lang`
+* Templates always load in `main.lang` and `download_button.lang`.
 * Additionally, each template has its own .lang file, so a template at
   `mozorg/firefox.html` would use the .lang file at
   `<locale>/mozorg/firefox.lang`.
@@ -175,7 +175,7 @@ know which one to use when translating a particular string?
     {% add_lang_files "foo" "bar" %}
 
 That will make the page load `foo.lang` and `bar.lang` in addition to
-`main.lang`, `download_button.lang`, and `newsletter.lang`.
+`main.lang` and `download_button.lang`.
 
 When strings are extracted from a template, that are added to the
 template-specific .lang file. If the template explicitly specifies
@@ -199,8 +199,8 @@ value should be either a string, or a list of strings, similar to the
     sometext = _('Foo about bar.')
 
 This file's strings would be extracted to `foo.lang`, and the lang files
-`foo.lang`, `bar.lang`, `main.lang`, `download_button.lang`, and `newsletter.lang`
-would be searched for matches in that order.
+`foo.lang`, `bar.lang`, `main.lang` and `download_button.lang`would be
+searched for matches in that order.
 
 l10n blocks
 ------------------
