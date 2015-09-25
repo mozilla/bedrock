@@ -81,6 +81,7 @@
 
   <div id="page-content" class="container">
     <ul class="category-tabs" role="navigation" aria-controls="map entry-container">
+      <li data-id="contact"><a href="{{ url('mozorg.contact.contact-landing') }}">{{ _('Contact us') }}</a></li>
       <li data-id="spaces"><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{ _('Spaces') }}</a></li>
       <li data-id="communities"><a href="{{ url('mozorg.contact.communities.communities-landing') }}">{{ _('Communities') }}</a></li>
     </ul>
@@ -457,49 +458,6 @@
     </aside>
 
   </div>{# end page-content #}
-
-  <section class="contacting container">
-    <header>
-      <h3>{{ _('Contacting Mozilla') }}</h3>
-      <p>
-      {% trans link_sumo='https://support.mozilla.org' %}
-        To reach Mozilla anywhere in the world, check out the locations above. For help
-        with any of our products, including Firefox for desktop and Android, Firefox OS
-        and Thunderbird, please <a href="{{ link_sumo }}">visit our support site</a>.
-      {% endtrans %}
-      </p>
-    </header>
-
-    <div class="contact-online">
-      <h4>{{ _('Find us online') }}</h4>
-      <ul>
-        <li><a href="https://facebook.com/mozilla" hreflang="en-US">{{ _('Facebook') }}</a></li>
-        <li><a href="https://twitter.com/mozilla" hreflang="en-US">{{ _('Twitter') }}</a></li>
-        <li><a href="/about/forums/">{{ _('Forums &amp; e-mail lists') }}</a></li>
-        <li><a href="https://wiki.mozilla.org/IRC">{{ _('IRC channels') }}</a></li>
-      </ul>
-    </div>
-
-    <div class="contact-join">
-      <h4>{{ _('Join us') }}</h4>
-      <ul>
-        <li><a href="{{ url('mozorg.contribute') }}">{{ _('Get involved') }}</a></li>
-        <li><a href="https://careers.mozilla.org">{{ _('Career opportunities') }}</a></li>
-        <li><a href="https://mozillians.org">{{ _('Mozillians') }}</a></li>
-      </ul>
-    </div>
-
-    <div class="contact-help">
-      <h4>{{ _('Questions &amp; feedback') }}</h4>
-      <ul>
-        <li><a href="https://support.mozilla.org/">{{ _('Get support') }}</a></li>
-        <li><a href="{{ url('foundation.licensing') }}">{{ _('Browser distribution &amp; licensing') }}</a></li>
-        <li><a href="https://input.mozilla.org/feedback">{{ _('Firefox feedback') }}</a></li>
-        <li><a href="https://support.mozilla.org/kb/websites-look-wrong-or-appear-differently">{{ _('Report a broken site') }}</a></li>
-        <li><a href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ _('How to report software issues') }}</a></li>
-      </ul>
-    </div>
-  </section>
 
   <p class="attribution container">
   {% trans link_mapbox='http://mapbox.com', link_openstreetmap='http://openstreetmap.org/copyright' %}

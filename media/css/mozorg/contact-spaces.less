@@ -146,15 +146,23 @@
     position: relative;
 }
 
-// Tabs to toggle spaces or communities
+// Tabs to toggle contact us, spaces or communities
 .category-tabs {
     .open-sans;
     .font-size(@largeFontSize);
-    left: 22px;
+    left: 18px;
     margin: 0;
     position: absolute;
     text-align: center;
     top: -40px;
+
+    @media only screen and (max-width: @breakTablet) {
+        .font-size(@baseFontSize - 2);
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        left: 15px;
+    }
 
     li {
         .inline-block;
@@ -162,6 +170,23 @@
         position: relative;
         right: 8px;
         width: 218px;
+
+        @media only screen and (max-width: @breakTablet) {
+            width: 145px;
+
+            &.current a {
+                background-position: 100% -60px;
+            }
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            left: 0;
+            width: 95px;
+
+            &:first-child {
+                left: 0;
+            }
+        }
 
         a {
             background: url(/media/img/firefox/pager-tabs.png) 0 0 no-repeat;
@@ -171,16 +196,18 @@
             position: relative;
             z-index: 10;
 
+            @media only screen and (max-width: @breakTablet) {
+                background: #fff none;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+
         }
 
         &.current a {
             background-position: 100% 0;
             color: @textColorSecondary;
             z-index: 20;
-        }
-
-        &:first-child {
-            left: 8px;
         }
     }
 }
@@ -435,6 +462,14 @@
             margin: 0 auto;
         }
     }
+}
+
+/* override float rule for contact us tab */
+.entry.contact-us {
+    float: none;
+    border-top: none;
+    width: 100%;
+    .clearfix();
 }
 
 .entry-space .card {
@@ -740,23 +775,6 @@
 
     #page-content {
         margin-top: 40px;
-    }
-
-    .category-tabs {
-        .font-size(@baseFontSize);
-        left: 0;
-
-        li {
-            width: 145px;
-
-            a {
-                background: url(/media/img/firefox/pager-tabs.png) 0 -60px no-repeat;
-            }
-
-            &.current a {
-                background-position: 100% -60px;
-            }
-        }
     }
 
     .entry {

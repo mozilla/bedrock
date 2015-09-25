@@ -12,18 +12,40 @@ var url = config.base() + path;
 var spacesUrl = url + 'spaces/';
 var communitiesUrl = url + 'communities/';
 
-casper.test.begin('Contact, Spaces elements: ' + spacesUrl, 10, function suite(test) {
+casper.test.begin('Contact, Contact Us elements: ' + url, 12, function suite(test) {
+
+    casper.start(url, function() {
+        test.assertHttpStatus(200);
+        test.assertVisible('#map', 'Map is visible');
+        test.assertElementCount('.category-tabs li a', 3, 'Tab navigation exists');
+        test.assertElementCount('.leaflet-marker-pane img', 12, '12 markers exist');
+        test.assertNotVisible('#nav-spaces', 'Spaces navigation is not visible');
+        test.assertNotVisible('#nav-communities', 'Communities navigation is not visible');
+        test.assertNotVisible('#nav-spaces-select', 'Mobile navigation is not visible');
+        test.assertVisible('#mozorg-newsletter-form', 'Newsletter is visible');
+        test.assertVisible('.contact-online', 'Find us online section is visible');
+        test.assertVisible('.contact-join', 'Join us section is visible');
+        test.assertVisible('.contact-help', 'Questions and feedback section is visible');
+        test.assertExists('.category-tabs > li[data-id="contact"].current', 'Contact us tab is selected');
+    });
+
+    casper.run(function() {
+        test.done();
+        helpers.done();
+    });
+});
+
+casper.test.begin('Contact, Spaces elements: ' + spacesUrl, 9, function suite(test) {
 
     casper.start(spacesUrl, function() {
         test.assertHttpStatus(200);
         test.assertVisible('#map', 'Map is visible');
-        test.assertElementCount('.category-tabs li a', 2, 'Tab navigation exists');
+        test.assertElementCount('.category-tabs li a', 3, 'Tab navigation exists');
         test.assertElementCount('.leaflet-marker-pane img', 12, '12 markers exist');
         test.assertVisible('#nav-spaces', 'Spaces navigation is visible');
         test.assertNotVisible('#nav-communities', 'Communities navigation is not visible');
         test.assertNotVisible('#nav-spaces-select', 'Mobile navigation is not visible');
         test.assertVisible('#mozorg-newsletter-form', 'Newsletter is visible');
-        test.assertVisible('.contacting', 'Contacting Mozilla section is visible');
         test.assertExists('.category-tabs > li[data-id="spaces"].current', 'Spaces tab is selected');
     });
 
@@ -33,18 +55,17 @@ casper.test.begin('Contact, Spaces elements: ' + spacesUrl, 10, function suite(t
     });
 });
 
-casper.test.begin('Contact, Communities elements: ' + communitiesUrl, 10, function suite(test) {
+casper.test.begin('Contact, Communities elements: ' + communitiesUrl, 9, function suite(test) {
 
     casper.start(communitiesUrl, function() {
         test.assertHttpStatus(200);
         test.assertVisible('#map', 'Map is visible');
-        test.assertElementCount('.category-tabs li a', 2, 'Tab navigation exists');
+        test.assertElementCount('.category-tabs li a', 3, 'Tab navigation exists');
         test.assertVisible('#map .legend', 'Communities legend is visible');
         test.assertNotVisible('#nav-spaces', 'Spaces navigation is not visible');
         test.assertVisible('#nav-communities', 'Communities navigation is visible');
         test.assertNotVisible('#nav-spaces-select', 'Mobile navigation is not visible');
         test.assertVisible('#mozorg-newsletter-form', 'Newsletter is visible');
-        test.assertVisible('.contacting', 'Contacting Mozilla section is visible');
         test.assertExists('.category-tabs > li[data-id="communities"].current', 'Communities tab is selected');
     });
 
@@ -99,7 +120,7 @@ casper.test.begin('Contact, Mobile interaction: ' + spacesUrl, 6, function suite
 
     casper.options.viewportSize = config.viewport.mobile;
 
-    casper.start(url, function() {
+    casper.start(spacesUrl, function() {
         test.assertNotVisible('#map', 'Map is not visible on mobile');
         test.assertVisible('#nav-spaces-select', 'Mobile navigation is visible');
         test.assertNotVisible('#nav-spaces', 'Spaces navigation is not visible');
