@@ -1,0 +1,2 @@
+FROM $FROM_DOCKER_REPOSITORY:latest
+COPY . /app/locale
