@@ -21,13 +21,26 @@
 
 {% block string_data %}
 data-panel1-title="{{ _('How Tracking Protection works') }}"
-data-panel1-text="{{ _('When the shield is visible, it means Firefox is actively blocking page elements that may track you.') }}"
+
+{% if l10n_has_tag('tp_tour_firefox_42') %}
+  data-panel1-text="{{ _('When you see the shield, Firefox is blocking some parts of the page that could track your browsing activity.') }}"
+{% else %}
+  data-panel1-text="{{ _('When the shield is visible, it means Firefox is actively blocking page elements that may track you.') }}"
+{% endif %}
+
 data-panel1-step="{{ _('1 of 3') }}"
 data-panel1-button="{{ _('Next') }}"
 
 data-panel3-title="{{ _('Want to make changes?') }}"
-data-panel3-text="{{ _('It’s easy to disable Tracking Protection for the website you’re on by clicking “Disable protection for this session”.') }}"
-data-panel3-text-alt="{{ _('It’s easy to enable Tracking Protection for the website you’re on by clicking “Enable protection”.') }}"
+
+{% if l10n_has_tag('tp_tour_firefox_42') %}
+  data-panel3-text="{{ _('It’s easy to turn off Tracking Protection for the website you’re on by clicking “Disable protection for this session.”') }}"
+  data-panel3-text-alt="{{ _('It’s easy to turn on Tracking Protection for the website you’re on by clicking “Enable protection.”') }}"
+{% else %}
+  data-panel3-text="{{ _('It’s easy to disable Tracking Protection for the website you’re on by clicking “Disable protection for this session”.') }}"
+  data-panel3-text-alt="{{ _('It’s easy to enable Tracking Protection for the website you’re on by clicking “Enable protection”.') }}"
+{% endif %}
+
 data-panel3-step="{{ _('3 of 3') }}"
 data-panel3-button="{{ _('Got it!') }}"
 {% endblock %}
@@ -50,7 +63,11 @@ data-panel3-button="{{ _('Got it!') }}"
 <main role="main">
   <header>
     <div class="inner-container">
-      <h1>{{ _('Firefox Tracking Protection') }}</h1>
+      {% if l10n_has_tag('tp_tour_firefox_42') %}
+        <h1>{{ _('Private Browsing with Tracking Protection') }}</h1>
+      {% else %}
+        <h1>{{ _('Firefox Tracking Protection') }}</h1>
+      {% endif %}
       <p class="prefs-link">
         {{ _('Want to turn off this feature? <a href="%s">Visit Privacy Preferences</a>')|format('https://support.mozilla.org/kb/tracking-protection-pbm') }}
       </p>
@@ -59,6 +76,9 @@ data-panel3-button="{{ _('Got it!') }}"
 
   <div class="container">
     <div id="dummy-content">
+      <noscript>
+        <p>{{ _('Please turn on JavaScript to display this page correctly.') }}</p>
+      </noscript>
       <div class="primary-col">
         <div class="dubious">
           <iframe src="https://trackertest.org/" height="100%" width="100%" frameborder="0"></iframe>
@@ -74,7 +94,11 @@ data-panel3-button="{{ _('Got it!') }}"
           <section id="info-panel" class="hidden">
             <header tabindex="-1">
               <h2>{{ _('Differences to expect') }}</h2>
-              <p>{{ _('Some page areas may be missing because they can allow third-parties to track your browsing behavior.') }}</p>
+              {% if l10n_has_tag('tp_tour_firefox_42') %}
+                <p>{{ _('Some page areas may be missing, because they could allow third parties to track you across different websites.') }}</p>
+              {% else %}
+                <p>{{ _('Some page areas may be missing because they can allow third-parties to track your browsing behavior.') }}</p>
+              {% endif %}
               <button class="close-btn" type="button">{{ _('Close') }}</button>
             </header>
             <footer>{{ _('2 of 3') }} <button type="button">{{ _('Next') }}</button></footer>
@@ -86,9 +110,19 @@ data-panel3-button="{{ _('Got it!') }}"
 
     <section id="end-state" class="hidden">
       <img src="{{ static('img/firefox/tracking-protection/shield-tab.svg') }}" width="145" alt="">
-      <h2>{{ _('Thanks for learning about the new Tracking Protection feature in Private Browsing Mode.') }}</h2>
+      {% if l10n_has_tag('tp_tour_firefox_42') %}
+        <h2>{{ _('Thanks for learning about the new Private Browsing with Tracking Protection.') }}</h2>
+      {% else %}
+        <h2>{{ _('Thanks for learning about the new Tracking Protection feature in Private Browsing Mode.') }}</h2>
+      {% endif %}
       <p>{{ _('Learn more about how it works by visiting the <a rel="external" href="%s">FAQ page</a>.')|format('https://support.mozilla.org/kb/tracking-protection-pbm') }}</p>
-      <button id="reload-btn" type="button" class="button-flat">{{ _('Start the tour again') }}</button>
+      <button id="reload-btn" type="button" class="button-flat">
+        {% if l10n_has_tag('tp_tour_firefox_42') %}
+          {{ _('Restart tour') }}
+        {% else %}
+          {{ _('Start the tour again') }}
+        {% endif %}
+      </button>
     </section>
   </div>
 

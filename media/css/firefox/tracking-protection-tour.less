@@ -9,7 +9,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font: -moz-document;
+    font: message-box;
     font-size: 100%;
 }
 
@@ -138,7 +138,7 @@ main > header {
         .font-size(28px);
         line-height: 1.2;
         margin: @baseLine 0;
-        padding: @baseLine 0 0 100px;
+        padding-left: 100px;
         min-height: 44px;
         background: url(/media/img/firefox/tracking-protection/mask-shield.svg) center left no-repeat;
         .background-size(90px, 44px);
@@ -156,12 +156,11 @@ main > header {
     a:link,
     a:visited {
         color: #fff;
-        text-decoration: none;
     }
 
     a:hover,
     a:focus {
-        text-decoration: underline;
+        color: darken(#fff, 5%);
     }
 }
 
@@ -169,7 +168,8 @@ main > header {
     main > header {
         h1 {
             float: right;
-            padding: @baseLine 100px 0 0;
+            padding-left: 0;
+            padding-right: 100px;
             background-position: center right;
         }
 
@@ -184,11 +184,15 @@ main > header {
     position: relative;
 }
 
+noscript {
+    text-align: center;
+}
+
 #info-panel {
     position: absolute;
     top: 0;
     left: -290px;
-    background: #fafafa;
+    background: linear-gradient(to bottom, #fcfcfc 0%, #f9f9f9 100%);
     border-radius: 3px;
     border: 1px solid #aaa;
     filter: drop-shadow(0 5px 7px rgba(68, 68, 68, 0.7));
@@ -209,18 +213,18 @@ main > header {
     }
 
     h2 {
-        .font-size(@largeFontSize);
+        .font-size(17px);
     }
 
     p {
-        .font-size(@baseFontSize);
+        .font-size(14px);
         line-height: 1.6;
     }
 
     footer {
         .font-size(13px);
         border-top: 1px solid #cbcccc;
-        background-color: #f0f0f0;
+        background-color: #e9e9e9;
         color: rgb(179,177,179);
         padding: @baseLine 30px;
         text-align: right;
@@ -228,20 +232,23 @@ main > header {
         button {
             .font-size(13px);
             background-color: #6cc042;
-            border-radius: 5px;
+            border-radius: 3px;
             border: 1px solid #c0c0c0;
             color: #fff;
-            padding: 5px 2.5em;
+            padding: 4px 30px;
             margin-left: 30px;
-            transition: background-color .1s ease-in-out;
+            transition-property: background-color, border-color;
+            transition-duration: 150ms;
 
             &:hover,
             &:focus {
+                border-color: #5f963d;
                 background-color: #6bac44;
             }
         }
     }
 
+    // https://mxr.mozilla.org/mozilla-central/source/toolkit/themes/windows/global/icons/close@2x.png
     .close-btn {
         position: absolute;
         top: 10px;
@@ -249,31 +256,23 @@ main > header {
         padding: 0;
         margin: 0;
         font-size: 0;
-        width: 12px;
-        height: 12px;
-        line-height: 12px;
-        background: transparent;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        .at2x('/media/img/firefox/tracking-protection/close-win.png', 60px, 20px);
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-color: transparent;
         border: none;
-        color: #c0c0c0;
-        text-align: center;
-        border-radius: 2px;
         -moz-appearence: none;
-
-        &:after {
-            position: absolute;
-            top: -2px;
-            left: 0;
-            width: 12px;
-            height: 12px;
-            .font-size(@largeFontSize);
-            font-weight: bold;
-            content: '×';
-        }
 
         &:hover,
         &:focus {
-            background: #c0c0c0;
-            color: #fff;
+            background-position: -20px 0;
+        }
+
+        &:active {
+            background-position: -40px 0;
         }
     }
 
@@ -289,7 +288,7 @@ main > header {
         top: 20px;
         right: -20px;
         border: 10px solid transparent;
-        border-left-color: #fafafa;
+        border-left-color: #fcfcfc;
         z-index: 2;
     }
 
@@ -300,6 +299,41 @@ main > header {
         border: 11px solid transparent;
         border-left-color: #aaa;
         z-index: 1;
+    }
+}
+
+// https://mxr.mozilla.org/mozilla-central/source/toolkit/themes/osx/global/icons/close@2x.png
+.osx #info-panel .close-btn {
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    .at2x('/media/img/firefox/tracking-protection/close-osx.png', 64px, 16px);
+
+    &:hover,
+    &:focus {
+        background-position: -16px 0;
+    }
+
+    &:active {
+        background-position: -32px 0;
+    }
+}
+
+// https://mxr.mozilla.org/mozilla-central/source/toolkit/themes/linux/global/icons/close.svg?raw=1
+.linux #info-panel .close-btn {
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    background-image: url(/media/img/firefox/tracking-protection/close-linux.svg);
+    background-size: 96px, 16px;
+
+    &:hover,
+    &:focus {
+        background-position: -16px 0;
+    }
+
+    &:active {
+        background-position: -32px 0;
     }
 }
 
