@@ -1,4 +1,6 @@
 import os.path
+import re
+from urlparse import parse_qs
 
 from whitenoise.django import DjangoWhiteNoise
 
@@ -27,3 +29,21 @@ class BedrockWhiteNoise(DjangoWhiteNoise):
         if max_age is not None:
             cache_control = 'public, max-age={}'.format(max_age)
             static_file.headers['Cache-Control'] = cache_control
+
+    def serve(self, static_file, environ, start_response):
+        if static_file.path.endswith('playerWithControls.swf'):
+            forbidden = True
+            qs = environ.get('QUERY_STRING')
+            if qs:
+                params = parse_qs(qs)
+                flv = params.get('flv', [''])[0]
+                if flv.startswith('/'):
+                    forbidden = False
+                elif re.match(r'^https?://videos\.(mozilla\.org|cdn\.mozilla\.net)', flv):
+                    forbidden = False
+
+            if forbidden:
+                start_response('403 Forbidden', [])
+                return []
+
+        return super(BedrockWhiteNoise, self).serve(static_file, environ, start_response)
