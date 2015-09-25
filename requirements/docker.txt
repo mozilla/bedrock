@@ -9,3 +9,7 @@ uwsgi==2.0.11.1
 
 # sha256: JLo_Moq6CNjVBbwqj2ipTr4kqF6Eg2QLZnIhvA79Ox4
 psycopg2==2.5.4
+
+# sha256: QvSTmYsyt2kgwzByXYo3jNKaansazqmAG88MNbvRQY8
+# sha256: yyL3FoLPzSHQy5VId1baaHD3UcyGAUdIB1372oWOiLk
+APScheduler==3.0.3

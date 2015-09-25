@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./manage.py syncdb --noinput
+venv/bin/python manage.py migrate --noinput
