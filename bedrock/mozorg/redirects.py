@@ -228,6 +228,17 @@ redirectpatterns = (
     # Bug 1073269 /dnt/ -> /firefox/dnt/
     redirect(r'^dnt/?$', 'firefox.dnt'),
 
+    # bug 1205632
+    redirect('^js/language(?:/|/index.html)?$',
+             'https://developer.mozilla.org/docs/Web/JavaScript/Language_Resources',
+             locale_prefix=False),
+    redirect('^js/language/js20(/.*)?$', 'http://www.ecmascript-lang.org',
+             locale_prefix=False),
+    redirect('^js/language/es4(/.*)?$', 'http://www.ecmascript-lang.org',
+             locale_prefix=False),
+    redirect('^js/language(?P<path>.*)$',
+             'http://www-archive.mozilla.org/js/language{path}', locale_prefix=False),
+
     # bug 832348 **/index.html -> **/
     redirect('^(.*)/index.html$', '/{}/', locale_prefix=False),
 

@@ -128,6 +128,13 @@ URLS = flatten((
     # bug 1051686
     url_test('/ja/firefox/organizations/', 'http://www.mozilla.jp/business/downloads/'),
 
+    # bug 1205632
+    url_test('/js/language/',
+             'https://developer.mozilla.org/docs/Web/JavaScript/Language_Resources'),
+    url_test('/js/language/js20/', 'http://www.ecmascript-lang.org'),
+    url_test('/js/language/es4/', 'http://www.ecmascript-lang.org'),
+    url_test('/js/language/E262-3-errata.html',
+             'http://www-archive.mozilla.org/js/language/E262-3-errata.html'),
 
     # TODO: Fix these. They're too broken to use at present.
     # bug 1138280
