@@ -34,8 +34,7 @@ firefox-dev                             For development of Firefox, a lightweigh
 mozilla.dev.apps.thunderbird            For development of Thunderbird, an email client built on the Mozilla platform.
 tb-planning                             For development of Thunderbird, an email client built on the Mozilla platform.
 mobile-firefox-dev                      For discussions about the <a href="http://wiki.mozilla.org/Mobile">Mozilla platform on mobile devices</a>, e.g. Firefox for Android.
-mozilla.dev.b2g                         For Boot2Gecko (Firefox OS), Mozilla's effort to build a mobile platform powered by the Open Web. (Moderated)
-mozilla.dev.gaia                        For Gaia, the HTML5 app suite for Firefox OS. (Moderated)
+mozilla.dev.fxos                        For development of all parts of Firefox OS, Mozilla's effort to build a mobile platform powered by the Open Web. (Moderated)
 mozilla.dev.marketplace                 For development of the Mozilla Marketplace and addons.mozilla.org. (Moderated)
 mozilla.dev.webapps                     For development of our Open Web Apps site and ecosystem. (Moderated)
 mozilla.dev.identity                    Identity in the browser (BrowserID/Mozilla Persona)
