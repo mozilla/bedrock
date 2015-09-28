@@ -1,7 +1,7 @@
 db:
   image: postgres:9.4
 web:
-  build: ../
+  image: ${FROM_DOCKER_REPOSITORY}:${GIT_COMMIT}
   ports:
     - "8000:8000"
   links:
