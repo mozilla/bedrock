@@ -31,7 +31,8 @@ from .email_contribute import INTEREST_CHOICES
 FORMATS = (('H', _lazy('HTML')), ('T', _lazy('Text')))
 LANGS_TO_STRIP = ['en-US', 'es']
 PARENTHETIC_RE = re.compile(r' \([^)]+\)$')
-LANG_FILES = ['firefox/partners/index', 'mozorg/contribute', 'mozorg/contribute/index']
+LANG_FILES = ['firefox/partners/index', 'mozorg/contribute',
+              'mozorg/contribute/index', 'mozorg/newsletters']
 
 
 def strip_parenthetical(lang_name):

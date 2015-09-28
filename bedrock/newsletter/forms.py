@@ -20,6 +20,8 @@ from lib.l10n_utils.dotlang import _, _lazy
 
 _newsletters_re = re.compile(r'^[\w,-]+$')
 
+LANG_FILES = ['mozorg/newsletters']
+
 
 def validate_newsletters(newsletters):
     if not newsletters:
