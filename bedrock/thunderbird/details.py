@@ -13,6 +13,7 @@ from product_details import ProductDetails
 # TODO: port this to django-mozilla-product-details
 class ThunderbirdDesktop(ProductDetails):
     download_base_url_direct = 'https://download.mozilla.org/'
+    download_base_url_ftp = 'https://ftp.mozilla.org/pub/mozilla.org/thunderbird/'
 
     platform_labels = OrderedDict([
         ('win', 'Windows'),
@@ -21,10 +22,24 @@ class ThunderbirdDesktop(ProductDetails):
         ('linux64', 'Linux 64-bit'),
     ])
     channel_map = {
+        'alpha': 'LATEST_THUNDERBIRD_ALPHA_VERSION',
+        'beta': 'LATEST_THUNDERBIRD_DEVEL_VERSION',
         'release': 'LATEST_THUNDERBIRD_VERSION',
     }
 
+    file_suffixes = {
+        'win': 'win32.installer.exe',
+        'osx': 'mac.dmg',
+        'linux': 'linux-i686.tar.bz2',
+        'linux64': 'linux-x86_64.tar.bz2',
+    }
+
     def latest_version(self, channel='release'):
+        if not channel:
+            channel = 'release'
+        if channel == 'earlybird':
+            channel = 'alpha'
+
         version = self.channel_map.get(channel, 'LATEST_THUNDERBIRD_VERSION')
         try:
             return self.thunderbird_versions[version]
@@ -53,9 +68,14 @@ class ThunderbirdDesktop(ProductDetails):
                       self.thunderbird_beta_builds)
         version = self.latest_version(channel)
 
+        # FIXME: Use the Release channel version to retrieve the supported
+        # locales until the new Ship It API provides the Beta and Earlybird
+        # build info.
+        _version = self.latest_version('release')
+
         for builds in all_builds:
-            if locale in builds and version in builds[locale]:
-                _builds = builds[locale][version]
+            if locale in builds and _version in builds[locale]:
+                _builds = builds[locale][_version]
                 # Append 64-bit builds
                 if 'Linux' in _builds:
                     _builds['Linux 64-bit'] = _builds['Linux']
@@ -79,8 +99,14 @@ class ThunderbirdDesktop(ProductDetails):
 
         version = version or self.latest_version(channel)
         f_builds = []
+
+        # FIXME: Use the Release channel version to retrieve the supported
+        # locales until the new Ship It API provides the Beta and Earlybird
+        # build info.
+        _version = self.latest_version('release')
+
         for locale, build in builds.iteritems():
-            if locale not in self.languages or not build.get(version):
+            if locale not in self.languages or not build.get(_version):
                 continue
 
             build_info = {
@@ -129,6 +155,13 @@ class ThunderbirdDesktop(ProductDetails):
         """
         _version = version
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
+
+        # Point the FTP server for Earlybird
+        if channel == 'alpha':
+            return '%snightly/latest-earlybird%s/thunderbird-%s.%s.%s' % (
+                self.download_base_url_ftp,
+                '' if locale == 'en-US' else '-l10n',
+                _version, _locale, self.file_suffixes[platform])
 
         # Check if direct download link has been requested
         # (bypassing the transition page)

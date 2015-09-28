@@ -11,7 +11,7 @@
 {% block body_id %}thunderbird-all{% endblock %}
 
 {% block page_desc %}
-  {% if channel == 'beta' %}
+  {% if channel != 'release' %}
     {{ _('Be one of the first to try the newest features in Thunderbird. By giving us your feedback, you’ll help us to refine the features that will be included in the final version.') }}
   {% else %}
     {{ _('Get the award-winning email application from Mozilla. Import your existing mail and enjoy our new features like tabbed email and advanced search.') }}
@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block body_class -%}
-  sky thunderbird-all-{{ channel }} {% if channel == 'alpha' %}blueprint{% endif %}
+  sky thunderbird-all-{{ channel }}
 {% endblock %}
 
 {% block page_css %}
@@ -31,9 +31,10 @@
   <header id="main-feature">
     <h1>{{ self.page_title()  }}</h1>
     <h2>{{ self.page_desc() }}</h2>
-    <p><a class="sysreq" href="{{ thunderbird_url('sysreq', channel) }}">{{ _('Check the system requirements') }}</a><br />
-    <a class="sysreq" href="{{ thunderbird_url('notes', channel) }}">{{ _('Release notes') }}</a>
-    </p>
+    {% if channel != 'alpha' %}{# Earlybird release notes are not available yet #}
+    <p><a class="sysreq" href="{{ thunderbird_url('sysreq', channel) }}">{{ _('Check the system requirements') }}</a><br>
+    <a class="sysreq" href="{{ thunderbird_url('notes', channel) }}">{{ _('Release notes') }}</a></p>
+    {% endif %}
   </header>
 
   {{ build_search_box(query, full_builds, test_builds) }}

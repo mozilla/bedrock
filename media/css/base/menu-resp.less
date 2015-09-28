@@ -14,10 +14,13 @@
         position: relative;
 
         &.hover a {
-            background-image: url(/media/img/sandstone/menu-point.png);
-            background-repeat: no-repeat;
-            background-position: center 2.75em;
             outline: 0;
+
+            &[aria-haspopup="true"] {
+                background-image: url(/media/img/sandstone/menu-point.png);
+                background-repeat: no-repeat;
+                background-position: center 2.75em;
+            }
         }
     }
 
@@ -166,7 +169,7 @@ html[dir="rtl"] #nav-main .submenu {
     #nav-main-menu {
         margin: 15px 0 0 -10px;
 
-        li.hover a {
+        li.hover a[aria-haspopup="true"] {
             background-image: none;
         }
 

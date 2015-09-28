@@ -56,7 +56,9 @@
   </ul>
   <small class="download-other download-other-desktop os_linux os_linux64 os_osx os_win">
     <a href="{{ thunderbird_url('all', channel) }}">{{ _('Systems &amp; Languages') }}</a> |
+    {% if channel != 'alpha' %}{# Earlybird release notes are not available yet #}
     <a href="{{ thunderbird_url('notes', channel) }}">{{ _('What’s New') }}</a> |
+    {% endif %}
     <a href="{{ url('privacy.notices.thunderbird') }}">{{ _('Privacy') }}</a>
   </small>
 </div>

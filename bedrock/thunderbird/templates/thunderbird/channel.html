@@ -1,0 +1,52 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "thunderbird/base-resp.html" %}
+
+{% block page_title %}{{ _('Download Thunderbird Earlybird or Beta &amp; Help Determine the Next Thunderbird') }}{% endblock %}
+{% block page_desc %}{{ _('Download and test Thunderbird future releases. Experience the newest innovations with the Earlybird or Beta builds.') }}{% endblock %}
+
+{% block body_id %}channel{% endblock %}
+
+{% block extrahead %}
+  {% stylesheet 'thunderbird-channel' %}
+{% endblock %}
+
+{% block content %}
+  <header id="main-feature">
+    <h1>{{ _('Welcome to the <strong>Future of Thunderbird</strong>') }}</h1>
+    <h2>{{ _('Download Earlybird or Thunderbird Beta and be one of the first to try the newest features in the next version of Thunderbird! By giving us your feedback, you’ll help make email better for millions of your fellow users.') }}</h2>
+  </header>
+
+  <main role="main">
+    <div class="row">
+      <section id="thunderbird-earlybird">
+        <header>
+          <img src="{{ static('img/thunderbird/channel/earlybird-256.png') }}" alt="">
+          <h2>Earlybird</h2>
+          {# L10n: This description applies to Thunderbird Earlybird #}
+          <ul>
+            <li>{{ _('Experience the newest innovations as they’re developed') }}</li>
+            <li>{{ _('Provide feedback on features and performance to help determine what makes the final release') }}</li>
+          </ul>
+        </header>
+        <div class="download-box">{{ download_thunderbird('alpha', small=True, force_direct=True) }}</div>
+      </section>
+      <section id="thunderbird-beta">
+        <header>
+          <img src="{{ static('img/thunderbird/channel/thunderbird-256.png') }}" alt="">
+          <h2>Beta</h2>
+          {# L10n: This description applies to Thunderbird Beta #}
+          <ul>
+            <li>{{ _('Experience cutting edge features with more stability') }}</li>
+            <li>{{ _('Provide feedback to help refine and polish what will be in the final release') }}</li>
+          </ul>
+        </header>
+        <div class="download-box">{{ download_thunderbird('beta', small=True, force_direct=True) }}</div>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
