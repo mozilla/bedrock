@@ -28,15 +28,15 @@
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-jsonlint": "^1.0.4",
-    "grunt-karma": "^0.11.2",
+    "grunt-karma": "^0.12.1",
     "jasmine-core": "^2.3.4",
-    "karma": "^0.12.37",
+    "karma": "^0.13.10",
+    "karma-coverage": "^0.5.2",
     "karma-firefox-launcher": "^0.1.6",
-    "karma-jasmine": "^0.3.5",
-    "karma-coverage": "^0.3.0",
+    "karma-jasmine": "^0.3.6",
     "load-grunt-tasks": "^1.0.0",
     "phantomjs": "^1.9.15",
     "requirejs": "~2.1.11",
-    "sinon": "^1.15.4"
+    "sinon": "^1.17.1"
   }
 }
