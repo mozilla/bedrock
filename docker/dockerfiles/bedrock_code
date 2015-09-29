@@ -2,7 +2,7 @@ FROM ${FROM_DOCKER_REPOSITORY}:${GIT_COMMIT}
 
 COPY . /app
 
-RUN echo "${DOCKER_IMAGE_TAG}" > static/revision.txt
+RUN echo "${GIT_COMMIT}" > static/revision.txt
 RUN ./manage.py collectstatic --noinput
 RUN ./manage.py update_product_details
 
