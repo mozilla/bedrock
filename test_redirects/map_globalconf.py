@@ -747,4 +747,7 @@ URLS = flatten((
 
     # bug 841846
     url_test('/firefox/nightly/', 'https://nightly.mozilla.org/'),
+
+    # bug 1209720
+    url_test('/thunderbird/releasenotes' '/thunderbird/notes/'),
 ))

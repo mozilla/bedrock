@@ -24,4 +24,6 @@ redirectpatterns = (
     redirect(r'^thunderbird/(?P<version>(?:\d|[12]\d)\.[^/]+)/(?P<page>.*)$',
              'http://website-archive.mozilla.org/www.mozilla.org/thunderbird_releasenotes'
              '/en-US/thunderbird/{version}/{page}'),
+    # bug 1209720
+    redirect(r'^thunderbird/releasenotes/?$', 'thunderbird.latest.notes'),
 )
