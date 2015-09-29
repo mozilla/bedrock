@@ -131,6 +131,9 @@ sizes in either fixed units (``px``, ``pt``, etc) or element-relative units (``e
 See `this post by Jonathan Snook <http://snook.ca/archives/html_and_css/font-size-with-rem>`_
 for more info.
 
+When including CSS blocks, use ``{% block page_css %}`` for page specific inclusion of CSS.
+``{% block site_css %}`` should only be touched in rare cases where base styles need to be overwritten.
+
 Configuring your code editor
 ----------------------------
 
