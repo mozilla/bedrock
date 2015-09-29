@@ -1,0 +1,262 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}Mozilla Security Web and Services Bug Bounty Program Hall of Fame{% endblock %}
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
+    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
+    <a href="{{ url('security.bug-bounty') }}">{{ _('Bug Bounty') }}</a> &gt;
+  </nav>
+{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% stylesheet 'security-bug-bounty-hall-of-fame' %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'accordion' %}
+{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name" class="title-shadow-box">Web And Services Bug Bounty Hall of Fame</h1>
+    </header>
+    <div itemprop="articleBody">
+
+      <p>On behalf of the Mozilla and the millions of people who visit our sites, use Firefox and our other products we would like to thank them for their hard work in helping to make us more secure.</p>
+
+      <p>As of this date, we have paid out almost <b>$1,000,000</b> across all of our bounties. Congratulations to everybody who has participicated!</p>
+
+      <div class="accordion accordion-auto-init zebra">
+
+      <section id="year-2015">
+        <h3 data-accordion-role="tab">{{ _('2015') }}</h3>
+        <div data-accordion-role="tabpanel">
+          <h4>1st Quarter 2015</h4>
+          <ul>
+            <li>gschmitz</li>
+            <li>Muhammad Shahmeer</li>
+            <li>Sergey</li>
+            <li>Tushar Parab</li>
+            <li>Yassine AB</li>
+          </ul>
+         <h4>2st Quarter 2015</h4>
+          <ul>
+            <li>Fernando Munoz</li>
+            <li>Harsha Vardhan</li>
+            <li>Mario Gomes</li>
+            <li>Omer Iqbal</li>
+            <li>Yassine AB</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="year-2014">
+        <h3 data-accordion-role="tab">{{ _('2014') }}</h3>
+        <div data-accordion-role="tabpanel">
+         <h4>4th Quarter 2014</h4>
+          <ul>
+            <li>gschmitz</li>
+            <li>Hamza Bettache</li>
+            <li>Ingo Pan</li>
+            <li>Mazin Ahmed</li>
+            <li>Mohamed A. Baset</li>
+          </ul>
+          <h4>3rd Quarter 2014</h4>
+          <ul>
+            <li>Mario Gomes</li>
+            <li>Netanel Rubin</li>
+            <li>schuenjia</li>
+            <li>Sergey</li>
+            <li>Simon Green</li>
+            <li>sysmox</li>
+          </ul>
+          <h4>2nd Quarter 2014</h4>
+          <ul>
+            <li>Andreas Wagner</li>
+            <li>Antoine Delignat-Lavaud</li>
+            <li>Daniel Tomescu</li>
+            <li>Shahee Mirza</li>
+            <li>Umer Shakil</li>
+          </ul>
+          <h4>1st Quarter 2014</h4>
+          <ul>
+            <li>Dawid Czagan</li>
+            <li>Manish Goregaokar</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="year-2013">
+        <h3 data-accordion-role="tab">{{ _('2013') }}</h3>
+        <div data-accordion-role="tabpanel">
+          <h4>4th Quarter 2013</h4>
+          <ul>
+            <li>Fraph Core</li>
+            <li>Jelmer de Hen</li>
+            <li>Luca De Fulgentis</li>
+            <li>Mario Gomes</li>
+            <li>Mateusz Goik</li>
+            <li>Sergey</li>
+          </ul>
+          <h4>3rd Quarter 2013</h4>
+          <ul>
+            <li>gschmitz</li>
+            <li>James Kettle</li>
+            <li>Jay Turla</li>
+            <li>Malte Batram</li>
+            <li>Mahadev Subedi</li>
+            <li>Mateusz Goik</li>
+            <li>Nikhil Srivastava</li>
+            <li>Riaz</li>
+            <li>Shubham Mittal</li>
+            <li>Simon Green</li>
+          </ul>
+          <h4>2nd Quarter 2013</h4>
+          <ul>
+            <li>coolsiddheshgawade</li>
+            <li>Frans Rosen</li>
+            <li>Gschmitz</li>
+            <li>Jack W</li>
+            <li>James Kettle</li>
+            <li>Karthik Bhargavan</li>
+            <li>Khavish</li>
+            <li>Neal Poole</li>
+            <li>Sergey</li>
+          </ul>
+          <h4>1st Quarter 2013</h4>
+          <ul>
+            <li>Andrea Santese</li>
+            <li>Fredrik N. Almroth</li>
+            <li>Griffin</li>
+            <li>Marius</li>
+            <li>Mateusz Goik</li>
+            <li>Ryan Dewhurst</li>
+            <li>Sergey</li>
+            <li>Simon Rozhkov</li>
+            <li>Simranjeet Singh</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="year-2012">
+        <h3 data-accordion-role="tab">{{ _('2012') }}</h3>
+        <div data-accordion-role="tabpanel">
+        <h4>4th Quarter 2012</h4>
+        <ul>
+          <li>Ajay Singh Negi</li>
+          <li>James Kettle</li>
+          <li>Sergey</li>
+        </ul>
+        <h4>3rd Quarter 2012</h4>
+        <ul>
+          <li>chetan1</li>
+          <li>hristian Matthies</li>
+          <li>Cocking70</li>
+          <li>James Kettle</li>
+          <li>Luca De Fulgentis</li>
+          <li>Mario Gomes</li>
+          <li>Mateusz Goik</li>
+          <li>Michael Blake</li>
+          <li>Sergey</li>
+          <li>Siddhesh Gawde</li>
+          <li>Sony</li>
+        </ul>
+        <h4>2nd Quarter 2012</h4>
+        <ul>
+        <li>Frederic Buclin</li>
+          <li>Kostya Rouderfer</li>
+          <li>James Kettle</li>
+          <li>Mateusz Goik</li>
+          <li>Mario Gomes</li>
+          <li>Martin Obiols</li>
+          <li>Mike</li>
+          <li>Prajal Kulkarni</li>
+          <li>Riyaz Walikar</li>
+          <li>Sony</li>
+          <li>Subodh Iyengar</li>
+        </ul>
+        <h4>1st Quarter 2012</h4>
+        <ul>
+          <li>Andonov</li>
+          <li>Artur Czyz</li>
+          <li>Jack</li>
+          <li>João Lucas Melo Brasio</li>
+          <li>Luca De Fulgentis</li>
+          </li>Mario Gomes</li>
+          <li>Sergey</li>
+          <li>Soroush Dalili</li>
+          <li>Vaibs</li>
+        </ul>
+        </div>
+      </section>
+
+      <section id="year-2011">
+        <h3 data-accordion-role="tab">{{ _('2011') }}</h3>
+        <div data-accordion-role="tabpanel">
+          <h4>4th Quarter 2011</h4>
+          <ul>
+            <li>Ernesto M Hermida</li>
+            <li>James Kettle</li>
+            <li>Mario Gomes</li>
+            <li>Marius</li>
+          </ul>
+          <h4>3rd Quarter 2011</h4>
+          <ul>
+            <li>Luca De Fulgentis</li>
+            <li>Mateusz Goik</li>
+            <li>Mike</li>
+          </ul>
+          <h4>2nd Quarter 2011</h4>
+          <ul>
+            <li>Gianni Gnesa</li>
+            <li>James Kettle</li>
+            <li>Luca De Fulgentis</li>
+            <li>Marius</li>
+            <li>Sergey</li>
+            <li>Simranjeet Singh</li>
+          </ul>
+          <h4>1st Quarter 2011</h4>
+          <ul>
+            <li>0x5042</li>
+            <li>James Kettle</li>
+            <li>Luca De Fulgentis</li>
+            <li>Marius</li>
+            <li>Mike</li>
+            <li>Neal Poole</li>
+            <li>Nikolas Sotiriu</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="year-2010">
+        <h3 data-accordion-role="tab">{{ _('2010') }}</h3>
+        <div data-accordion-role="tabpanel">
+          <h4>4th Quarter 2010</h4>
+          <ul>
+            <li>David</li>
+            <li>Damon Haidary</li>
+            <li>Ervis Tusha</li>
+            <li>Flow</li>
+            <li>Jose A Vasquez</li>
+            <li>Mike</li>
+            <li>Neal Poole</li>
+            <li>Patrick B</li>
+            <li>Ricky Zhou</li>
+            <li>Schuenjia</li>
+            <li>Sean Malone</li>
+            <li>Willem</li>
+          </ul>
+        </div>
+      </section>
+
+      </div>
+
+      <p>If your name is on the list incorrectly or you feel you should be on the list please feel free to mail us at <a href="mailto:security@mozilla.org">security@mozilla.org</a>.</p>
+
+    </div>
+  </article>
+{% endblock %}
