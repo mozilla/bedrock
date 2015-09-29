@@ -16,11 +16,31 @@ redirectpatterns = (
 
     redirect(r'^firefox/aurora/all/?$', 'firefox.all', to_kwargs={'channel': 'developer'}),
 
+    # bug 831810 & 1142583
+    redirect(r'^mwc/?$', 'firefox.partners.index', re_flags='i', query={
+        'utm_campaign': 'mwc-redirect',
+        'utm_medium': 'referral',
+        'utm_source': 'mozilla.org',
+    }),
+
+    # bug 748503
+    redirect(r'^projects/firefox/[^/]+a[0-9]+/(?:firstrun|whatsnew)(?P<p>.*)$',
+             '/firefox/nightly/firstrun{p}'),
+
     # bug 840814
     redirect(r'^projects/firefox'
              r'(?P<version>/(?:\d+\.\d+\.?(?:\d+)?\.?(?:\d+)?(?:[a|b]?)(?:\d*)(?:pre)?(?:\d)?))'
              r'(?P<page>/(?:firstrun|whatsnew))'
              r'(?P<rest>/.*)?$', '/firefox{version}{page}{rest}'),
+
+    # bug 877165
+    redirect(r'^firefox/connect', 'mozorg.home'),
+
+    # bug 657049
+    redirect(r'^firefox/accountmanager/?$', '/persona/'),
+
+    # bug 841846
+    redirect(r'^firefox/nightly/?$', 'https://nightly.mozilla.org/'),
 
     # Bug 1009247, 1101220
     redirect(r'^((firefox|mobile)/)?beta/?$', 'firefox.channel', anchor='beta'),

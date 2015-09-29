@@ -234,7 +234,7 @@ redirectpatterns = (
     redirect(r'^js/language/es4(/.*)?$', 'http://www.ecmascript-lang.org',
              locale_prefix=False),
     redirect(r'^js/language(?P<path>.*)$',
-             'http://www-archive.mozilla.org/js/language{path}', locale_prefix=False),
+             'http://www-archive.mozilla.org/js/language{path}'),
 
     # bug 845988 - remove double slashes in URLs
     # have to specifically match a non-slash on either side of the slashes
@@ -276,7 +276,7 @@ redirectpatterns = (
     # bug 876810
     redirect(r'^hacking/commit-access-policy/?$',
              'mozorg.about.governance.policies.commit.access-policy'),
-    redirect(r'^hacking/committer(/|faq.html)?$', 'mozorg.about.governance.policies.commit'),
+    redirect(r'^hacking/committer(/|/faq.html)?$', 'mozorg.about.governance.policies.commit'),
     redirect(r'^hacking/notification/?$', 'mozorg.about.governance.policies.commit'),
     redirect(r'^hacking/committer/committers-agreement\.(?P<ext>odt|pdf|txt)$',
              'https://static.mozilla.com/foundation/documents/'
@@ -457,7 +457,26 @@ redirectpatterns = (
     # bug 875052
     redirect(r'^about/get-involved', '/contribute/'),
 
+    # bug 878926
+    redirect(r'^firefoxflicks/?(?P<p>.*)$',
+             'https://firefoxflicks.mozilla.org/{locale}{p}'),
+
+    # bug 849426
+    redirect(r'^about/history(\.html)?$', '/about/history/'),
+    redirect(r'^about/bookmarks\.html$', 'https://wiki.mozilla.org/Historical_Documents'),
+    redirect(r'^about/timeline\.html$', 'https://wiki.mozilla.org/Timeline'),
+
+    # bug 1016400
+    redirect(r'^about/careers\.html$', 'https://careers.mozilla.org/'),
+
+    # bug 861243 and bug 869489
+    redirect(r'^about/manifesto\.html$', '/about/manifesto/'),
+    redirect(r'^about/manifesto\.(.*)\.html$', '/{}/about/manifesto/', locale_prefix=False),
+
+    # bug 856077
+    redirect(r'^projects/toolkit/?$', 'https://developer.mozilla.org/docs/Toolkit_API'),
+
     # bug 832348 **/index.html -> **/
     # leave this at the bottom
-    redirect(r'^(.*)/index.html$', '/{}/', locale_prefix=False),
+    redirect(r'^(.*)/index\.html$', '/{}/', locale_prefix=False),
 )

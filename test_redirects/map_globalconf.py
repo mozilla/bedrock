@@ -163,12 +163,12 @@ URLS = flatten((
     url_test('/firefox/aurora/all/', '/firefox/developer/all/'),
     url_test('/projects/firefox/3.6.10/whatsnew/bunny-lebowski/',
              '/firefox/3.6.10/whatsnew/bunny-lebowski/'),
-    url_test('/projects/firefox/4.0a2/firstrun/', '/firefox/4.0a2/firstrun/'),
+    url_test('/projects/firefox/4.0/firstrun/', '/firefox/4.0/firstrun/'),
+    url_test('/projects/firefox/4.0a2/{firstrun,whatsnew}/stuff',
+             '/firefox/nightly/firstrun/stuff'),
 
-    url_test('/beta/', '/firefox/channel/#beta'),
-    url_test('/{firefox,mobile}/beta/', '/firefox/channel/#beta'),
-    url_test('/aurora/', '/firefox/channel/#developer'),
-    url_test('/{firefox,mobile}/aurora/', '/firefox/channel/#developer'),
+    url_test('/{{firefox,mobile}/,}beta/', '/firefox/channel/#beta'),
+    url_test('/{{firefox,mobile}/,}aurora/', '/firefox/channel/#developer'),
 
     url_test('/firefox/unsupported-systems.html', '/firefox/unsupported-systems/'),
     url_test('/download/', '/firefox/new/'),
@@ -259,7 +259,7 @@ URLS = flatten((
     # bug 876810
     url_test('/hacking/commit-access-policy/',
              '/about/governance/policies/commit/access-policy/'),
-    url_test('/hacking/committer{/,faq.html}', '/about/governance/policies/commit/'),
+    url_test('/hacking/committer/{,faq.html}', '/about/governance/policies/commit/'),
     url_test('/hacking/notification/', '/about/governance/policies/commit/'),
     url_test('/hacking/committer/committers-agreement.{odt,pdf,txt}',
              'https://static.mozilla.com/foundation/documents/'
@@ -712,4 +712,39 @@ URLS = flatten((
 
     # bug 878871
     url_test('/firefoxos/is.great/', '/firefox/os/'),
+
+    # bug 831810 & 1142583
+    url_test('/{mwc,MWC}/', '/firefox/partners/', query={
+        'utm_campaign': ['mwc-redirect'],
+        'utm_medium': ['referral'],
+        'utm_source': ['mozilla.org'],
+    }),
+
+    # bug 878926
+    url_test('/{de/,}firefoxflicks/{,stuff}',
+             'https://firefoxflicks.mozilla.org/{de/,}{,stuff}'),
+
+    # bug 849426
+    url_test('/about/history.html', '/about/history/'),
+    url_test('/about/bookmarks.html', 'https://wiki.mozilla.org/Historical_Documents'),
+    url_test('/about/timeline.html', 'https://wiki.mozilla.org/Timeline'),
+
+    # bug 1016400
+    url_test('/about/careers.html', 'https://careers.mozilla.org/'),
+
+    # bug 861243 and bug 869489
+    url_test('/about/manifesto.html', '/about/manifesto/'),
+    url_test('/about/manifesto.{de,pt-BR}.html', '/{de,pt-BR}/about/manifesto/'),
+
+    # bug 856077
+    url_test('/projects/toolkit/', 'https://developer.mozilla.org/docs/Toolkit_API'),
+
+    # bug 877165
+    url_test('/firefox/connect/random/stuff', '/'),
+
+    # bug 657049
+    url_test('/firefox/accountmanager/', '/persona/'),
+
+    # bug 841846
+    url_test('/firefox/nightly/', 'https://nightly.mozilla.org/'),
 ))
