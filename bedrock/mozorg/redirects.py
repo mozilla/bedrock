@@ -11,64 +11,62 @@ def to_uppercase(url):
 
 redirectpatterns = (
     # bug 755826
-    redirect('^zh-CN/?$', 'http://firefox.com.cn/', locale_prefix=False),
+    redirect(r'^zh-CN/?$', 'http://firefox.com.cn/', locale_prefix=False),
 
     # bug 764261, 841393, 996608, 1008162, 1067691, 1113136, 1119022, 1131680, 1115626
-    redirect('^zh-TW/?$', 'http://mozilla.com.tw/', locale_prefix=False),
-    redirect('^zh-TW/mobile/?', 'http://mozilla.com.tw/firefox/mobile/', locale_prefix=False),
-    redirect('^zh-TW/download/?', 'http://mozilla.com.tw/firefox/download/', locale_prefix=False),
+    redirect(r'^zh-TW/?$', 'http://mozilla.com.tw/', locale_prefix=False),
 
     # bug 1013082
-    redirect('^ja/?$', 'http://www.mozilla.jp/', locale_prefix=False),
+    redirect(r'^ja/?$', 'http://www.mozilla.jp/', locale_prefix=False),
 
     # bug 1051686
-    redirect('^ja/firefox/organizations/?$', 'http://www.mozilla.jp/business/downloads/',
+    redirect(r'^ja/firefox/organizations/?$', 'http://www.mozilla.jp/business/downloads/',
              locale_prefix=False),
 
     # bug 874913
-    redirect('products/download.html', 'firefox.new', anchor='download-fx'),
+    redirect(r'products/download.html', 'firefox.new', anchor='download-fx'),
 
     # bug 845580
-    redirect('^home/?$', 'firefox.new'),
+    redirect(r'^home/?$', 'firefox.new'),
 
     # bug 948605
-    redirect('^firefox/xp', 'firefox.new'),
+    redirect(r'^firefox/xp', 'firefox.new'),
 
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
-    redirect('^products/firefox/start/?$', 'http://start.mozilla.org'),
+    redirect(r'^products/firefox/start/?$', 'http://start.mozilla.org'),
 
     # bug 875052
-    redirect('^start/', ua_redirector('seamonkey',
-                                      'http://www.seamonkey-project.org/start/',
-                                      'firefox.new'), vary='User-Agent'),
+    redirect(r'^start/', ua_redirector('seamonkey',
+                                       'http://www.seamonkey-project.org/start/',
+                                       'firefox.new'), vary='User-Agent'),
 
     # bug 856081 redirect /about/drivers https://wiki.mozilla.org/Firefox/Drivers
-    redirect('^about/drivers(\.html|/)?$', 'https://wiki.mozilla.org/Firefox/Drivers'),
+    redirect(r'^about/drivers(\.html|/)?$', 'https://wiki.mozilla.org/Firefox/Drivers'),
 
     # community
     # bug 885797
-    redirect('^community/(directory|wikis|blogs|websites)\.html$',
+    redirect(r'^community/(directory|wikis|blogs|websites)\.html$',
              'https://wiki.mozilla.org/Websites/Directory', locale_prefix=False),
 
     # bug 885856
-    redirect('^projects/index\.(de|fr|hr|sq).html$', '/{}/firefox/products/',
+    redirect(r'^projects/index\.(de|fr|hr|sq).html$', '/{}/firefox/products/',
              locale_prefix=False),
 
     # bug 856075
-    redirect('^projects/technologies\.html$',
+    redirect(r'^projects/technologies\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Using_Mozilla_code_in_other_projects',
              locale_prefix=False),
 
     # bug 787269
-    redirect('^projects/security/components/signed-script(?:s|-example)\.html$',
+    redirect(r'^projects/security/components/signed-script(?:s|-example)\.html$',
              'https://developer.mozilla.org/docs/Bypassing_Security_Restrictions_and_Signing_Code'),
 
     # bug 874526, 877698
-    redirect('^projects/security/components(?P<path>.*)$',
+    redirect(r'^projects/security/components(?P<path>.*)$',
              'http://www-archive.mozilla.org/projects/security/components{path}'),
 
     # bug 876889
-    redirect('^projects/testopia/?',
+    redirect(r'^projects/testopia/?',
              'https://developer.mozilla.org/docs/Mozilla/Bugzilla/Testopia'),
 
     # bug 874525
@@ -76,42 +74,42 @@ redirectpatterns = (
              to_uppercase('https://developer.mozilla.org/docs/{match}SS')),
 
     # bug 866190
-    redirect('^projects/security/pki/python-nss/?$',
+    redirect(r'^projects/security/pki/python-nss/?$',
              'https://developer.mozilla.org/docs/Python_binding_for_NSS'),
 
     # bug 1043035
-    redirect('^projects/security/pki(?:/|/index\.html)?$',
+    redirect(r'^projects/security/pki(?:/|/index\.html)?$',
              'https://developer.mozilla.org/docs/PKI'),
-    redirect('^projects/security/pki/pkcs11',
+    redirect(r'^projects/security/pki/pkcs11',
              'https://developer.mozilla.org/docs/Mozilla/Projects/NSS#PKCS_.2311_information'),
-    redirect('^projects/security/pki/psm',
+    redirect(r'^projects/security/pki/psm',
              'https://developer.mozilla.org/docs/Mozilla/Projects/PSM'),
-    redirect('^projects/security/pki/src',
+    redirect(r'^projects/security/pki/src',
              'https://developer.mozilla.org/docs/Mozilla/Projects/NSS/NSS_Sources_Building_Testing'),
 
     # bug 975476
-    redirect('^projects/security/pki/python-nss/doc/api/current/html(?P<path>.*)$',
+    redirect(r'^projects/security/pki/python-nss/doc/api/current/html(?P<path>.*)$',
              'https://mozilla.github.io/python-nss-docs{path}'),
 
     # bug 780672
-    redirect('^firefox/webhero', 'firefox.new'),
+    redirect(r'^firefox/webhero', 'firefox.new'),
 
     # bug 964107
-    redirect('^firefox/video', 'https://www.youtube.com/firefoxchannel'),
+    redirect(r'^firefox/video', 'https://www.youtube.com/firefoxchannel'),
 
     # bug 948520
-    redirect('^firefox/livebookmarks',
+    redirect(r'^firefox/livebookmarks',
              'https://support.mozilla.org/kb/Live%20Bookmarks'),
 
     # bug 782333
-    redirect('^firefox/backtoschool/?$',
+    redirect(r'^firefox/backtoschool/?$',
              'https://addons.mozilla.org/firefox/collections/mozilla/back-to-school/'),
-    redirect('^firefox/backtoschool/firstrun/?$', 'firefox.firstrun'),
+    redirect(r'^firefox/backtoschool/firstrun/?$', 'firefox.firstrun'),
 
     # bug 824126, 837942
-    redirect('^ports/qtmozilla(?:/|/index.html)?$', 'https://wiki.mozilla.org/Qt'),
-    redirect('^ports/os2/?$', 'https://wiki.mozilla.org/Ports/os2'),
-    redirect('^ports(?P<path>.*)', 'http://www-archive.mozilla.org/ports{path}'),
+    redirect(r'^ports/qtmozilla(?:/|/index.html)?$', 'https://wiki.mozilla.org/Qt'),
+    redirect(r'^ports/os2/?$', 'https://wiki.mozilla.org/Ports/os2'),
+    redirect(r'^ports(?P<path>.*)', 'http://www-archive.mozilla.org/ports{path}'),
 
     redirect(r'^b2g', 'firefox.partners.index'),
 
@@ -126,7 +124,6 @@ redirectpatterns = (
 
     # Bug 763665, 1148127
     redirect(r'^projects/?$', 'firefox.family.index'),
-
 
     # Bug 792185 Brand Toolkit -> Style Guide
     redirect(r'^firefox/brand/?$', 'styleguide.home'),
@@ -229,21 +226,257 @@ redirectpatterns = (
     redirect(r'^dnt/?$', 'firefox.dnt'),
 
     # bug 1205632
-    redirect('^js/language(?:/|/index.html)?$',
+    redirect(r'^js/language(?:/|/index.html)?$',
              'https://developer.mozilla.org/docs/Web/JavaScript/Language_Resources',
              locale_prefix=False),
-    redirect('^js/language/js20(/.*)?$', 'http://www.ecmascript-lang.org',
+    redirect(r'^js/language/js20(/.*)?$', 'http://www.ecmascript-lang.org',
              locale_prefix=False),
-    redirect('^js/language/es4(/.*)?$', 'http://www.ecmascript-lang.org',
+    redirect(r'^js/language/es4(/.*)?$', 'http://www.ecmascript-lang.org',
              locale_prefix=False),
-    redirect('^js/language(?P<path>.*)$',
-             'http://www-archive.mozilla.org/js/language{path}', locale_prefix=False),
-
-    # bug 832348 **/index.html -> **/
-    redirect('^(.*)/index.html$', '/{}/', locale_prefix=False),
+    redirect(r'^js/language(?P<path>.*)$',
+             'http://www-archive.mozilla.org/js/language{path}'),
 
     # bug 845988 - remove double slashes in URLs
     # have to specifically match a non-slash on either side of the slashes
     # to force it to match all repeating slashes in one go.
-    redirect('^(.*[^/])//+([^/].*)$', '/{}/{}', locale_prefix=False),
+    redirect(r'^(.*[^/])//+([^/].*)$', '/{}/{}', locale_prefix=False),
+
+    # bug 927442
+    redirect(r'^firefox/community/?', 'mozorg.contribute'),
+
+    # bug 1138280, bug 1200464
+    redirect(r'^ja/(firefox|thunderbird)/(beta/)?notes/?', 'http://www.mozilla.jp/{0}/{1}notes/',
+             locale_prefix=False),
+    redirect(r'^ja/(firefox|thunderbird)/((?:android/)?[0-9.]+(?:beta)?)/releasenotes/?',
+             'http://www.mozilla.jp/{0}/{1}/releasenotes/', locale_prefix=False),
+
+    # bug 925551
+    redirect(r'^plugincheck/more_info\.html$', 'mozorg.plugincheck'),
+
+    # bug 854561
+    redirect(r'^projects/mozilla-based(\.html|/)?', 'mozorg.projects.mozilla-based'),
+
+    # bug 851727
+    redirect(r'^projects/powered-by(\.html|/)?', 'mozorg.powered-by'),
+
+    # bug 957664
+    redirect(r'^press/awards(?:/|\.html)?$', 'https://blog.mozilla.org/press/awards/'),
+
+    # bug 987059, 1050149, 1072170, 1208358
+    redirect(r'^ja/about/?$', 'http://www.mozilla.jp/about/mozilla/'),
+    redirect(r'^ja/about/japan/?$', 'http://www.mozilla.jp/about/japan/'),
+
+    # bug 1091977
+    redirect(r'^ja/contribute(?:/.*)?$', 'http://www.mozilla.jp/community/',
+             locale_prefix=False),
+
+    # bug 885799, 952429
+    redirect(r'^projects/calendar/holidays\.html$', 'mozorg.projects.holiday_calendars'),
+
+    # bug 876810
+    redirect(r'^hacking/commit-access-policy/?$',
+             'mozorg.about.governance.policies.commit.access-policy'),
+    redirect(r'^hacking/committer(/|/faq.html)?$', 'mozorg.about.governance.policies.commit'),
+    redirect(r'^hacking/notification/?$', 'mozorg.about.governance.policies.commit'),
+    redirect(r'^hacking/committer/committers-agreement\.(?P<ext>odt|pdf|txt)$',
+             'https://static.mozilla.com/foundation/documents/'
+             'commit-access/committers-agreement.{ext}'),
+    redirect(r'^hacking/notification/acceptance-email.txt$',
+             'https://static.mozilla.com/foundation/documents/commit-access/acceptance-email.txt'),
+
+    # bug 1165344
+    redirect(r'^hacking/CVS-Contributor-Form\.(?:pdf|ps)$',
+             'mozorg.about.governance.policies.commit'),
+    redirect(r'^hacking/(?:form|getting-cvs-write-access)\.html$',
+             'mozorg.about.governance.policies.commit'),
+    redirect(r'^hacking/portable-cpp\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/C++_Portability_Guide'),
+    redirect(r'^hacking/rules\.html$', 'https://developer.mozilla.org/docs/mozilla-central'),
+    redirect(r'^hacking/(?P<page>module-ownership|reviewers)\.html$',
+             '/about/governance/policies/{page}/'),
+    redirect(r'^hacking/regression-policy\.html$', 'mozorg.about.governance.policies.regressions'),
+
+    # Bug 1040970
+    redirect(r'^mozillacareers$', 'https://wiki.mozilla.org/People/mozillacareers', query={
+        'utm_medium': 'redirect',
+        'utm_source': 'mozillacareers-vanity',
+    }),
+
+    # Bug 1090468
+    redirect(r'^security/transition\.txt$', '/media/security/transition.txt'),
+
+    # bug 957637
+    redirect(r'^sopa/?',
+             'https://blog.mozilla.org/blog/2012/01/19/firefox-users-engage-congress-sopa-strike-stats/'),
+
+    # bug 924687
+    redirect(r'^opportunities(?:/|/index\.html)?$', 'https://careers.mozilla.org/'),
+
+    # bug 818321
+    redirect(r'^projects/security/tld-idn-policy-list.html$',
+             '/about/governance/policies/security-group/tld-idn/'),
+    redirect(r'^projects/security/membership-policy.html$',
+             '/about/governance/policies/security-group/membership/'),
+    redirect(r'^projects/security/secgrouplist.html$',
+             '/about/governance/policies/security-group/'),
+    redirect(r'^projects/security/security-bugs-policy.html$',
+             '/about/governance/policies/security-group/bugs/'),
+
+    # bug 818316, 1128579
+    redirect(r'^projects/security/certs(?:/(?:index.html)?)?$',
+             '/about/governance/policies/security-group/certs/'),
+    redirect(r'^projects/security/certs/included(?:/(?:index.html)?)?$',
+             'https://wiki.mozilla.org/CA:IncludedCAs'),
+    redirect(r'^projects/security/certs/pending(?:/(?:index.html)?)?$',
+             'https://wiki.mozilla.org/CA:PendingCAs'),
+    redirect(r'^projects/security/certs/policy(?:/(?:index.html)?)?$',
+             '/about/governance/policies/security-group/certs/policy/'),
+    redirect(r'^projects/security/certs/policy/EnforcementPolicy.html$',
+             '/about/governance/policies/security-group/certs/policy/enforcement/'),
+    redirect(r'^projects/security/certs/policy/MaintenancePolicy.html$',
+             '/about/governance/policies/security-group/certs/policy/maintenance/'),
+    redirect(r'^projects/security/certs/policy/InclusionPolicy.html$',
+             '/about/governance/policies/security-group/certs/policy/inclusion/'),
+    redirect(r'^about/governance/policies/security-group/certs/included(?:/(?:index.html)?)?$',
+             'https://wiki.mozilla.org/CA:IncludedCAs'),
+    redirect(r'^about/governance/policies/security-group/certs/pending(?:/(?:index.html)?)?$',
+             'https://wiki.mozilla.org/CA:PendingCAs'),
+
+    # bug 1068931
+    redirect(r'^advocacy/?$', 'https://advocacy.mozilla.org/'),
+
+    # bug 887426
+    redirect(r'^about/policies/?$', '/about/governance/policies/'),
+    redirect(r'^about/policies/participation.html$', '/about/governance/policies/participation/'),
+    redirect(r'^about/policies/policies.html$', '/about/governance/policies/'),
+
+    # bug 882923
+    redirect(r'^opt-out.html$', '/privacy/websites/#user-choices'),
+
+    # bug 878039
+    redirect(r'^access/?$', 'https://developer.mozilla.org/docs/Web/Accessibility'),
+    redirect(r'^access/architecture\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Accessibility_architecture'),
+    redirect(r'^access/at-vendors\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Information_for_Assistive_Technology_Vendors'),
+    redirect(r'^access/authors\.html$',
+             'https://developer.mozilla.org/docs/Web/Accessibility/Information_for_Web_authors'),
+    redirect(r'^access/core-developers\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Accessibility_Information_for_Core_Gecko_Developer'),
+    redirect(r'^access/evaluators\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Information_for_Governments_and_Other_Organization'),
+    redirect(r'^access/event-flow\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Event_Process_Procedure'),
+    redirect(r'^access/external-developers\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Information_for_External_Developers_Dealing_with_A#community'),
+    redirect(r'^access/features\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Accessibility_Features_in_Firefox'),
+    redirect(r'^access/highlevel\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/CSUN_Firefox_Materials'),
+    redirect(r'^access/platform-apis\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Accessibility_API_cross-reference#Accessible_Roles'),
+    redirect(r'^access/plugins-work\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Mozilla_Plugin_Accessibility'),
+    redirect(r'^access/prefs-and-apis\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Embedding_API_for_Accessibility'),
+    redirect(r'^access/resources\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Links_and_Resources'),
+    redirect(r'^access/section508\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Mozilla_s_Section_508_Compliance'),
+    redirect(r'^access/today\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Software_accessibility_today'),
+    redirect(r'^access/toolkit-checklist\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/What_needs_to_be_done_when_building_new_toolkits'),
+    redirect(r'^access/ui-developers\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Accessibility_information_for_UI_designers'),
+    redirect(r'^access/users\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Information_for_users'),
+    redirect(r'^access/w3c-uaag\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/UAAG_evaluation_report'),
+    redirect(r'^access/w4a\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/W4A'),
+    redirect(r'^access/windows/at-apis\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/Gecko_info_for_Windows_accessibility_vendors'),
+    redirect(r'^access/windows/msaa-server\.html$',
+             'https://developer.mozilla.org/docs/Web/Accessibility/Implementing_MSAA_server'),
+    redirect(r'^access/windows/zoomtext\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Accessibility/ZoomText'),
+
+    # bug 1148187
+    redirect(r'^access/(?P<page>.+)$',
+             'http://website-archive.mozilla.org/www.mozilla.org/access/access/{page}'),
+
+    # bug 987852
+    redirect(r'^MPL/0\.95/(.*)$',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/0.95/{}',
+             locale_prefix=False),
+    redirect(r'^MPL/1\.0/(.*)$',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/1.0/{}',
+             locale_prefix=False),
+    redirect(r'^MPL/2\.0/process/(.*)$',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/2.0/process/{}',
+             locale_prefix=False),
+    redirect(r'^MPL/NPL/(.*)$',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/NPL/{}',
+             locale_prefix=False),
+    redirect(r'^MPL/boilerplate-1\.1/(.*)$',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/boilerplate-1.1/{}',
+             locale_prefix=False),
+    redirect(r'^MPL/missing.html$',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/missing.html',
+             locale_prefix=False),
+
+    # Bug 987852 & 1201914
+    redirect(r'^MPL/(?P<page>.+)\.html$', '/MPL/{page}/'),
+    redirect(r'^MPL/2\.0/index\.txt$', '/media/MPL/2.0/index.txt', locale_prefix=False),
+
+    # bug 724682
+    redirect(r'^projects/mathml/demo/texvsmml.html$',
+             'https://developer.mozilla.org/docs/Mozilla_MathML_Project/MathML_Torture_Test'),
+    redirect(r'^projects/mathml/fonts(?:/(?:index.html)?)?$',
+             'https://developer.mozilla.org/Mozilla_MathML_Project/Fonts'),
+    redirect(r'^projects/mathml/screenshots(?:/(?:index.html)?)?$',
+             'https://developer.mozilla.org/Mozilla_MathML_Project/Screenshots'),
+    redirect(r'^projects/mathml(/.*)?$',
+             'https://developer.mozilla.org/en-US/docs/Mozilla/MathML_Project'),
+
+    # bug 961010
+    redirect(r'^mobile/credits/?', '/credits/'),
+
+    # bug 897082
+    redirect(r'^about/mozilla-spaces.*$', '/contact/spaces/'),
+    redirect(r'^about/contact.*$', '/contact/spaces/'),
+    redirect(r'^contribute/local/?$', '/contact/communities/'),
+    redirect(r'^contribute/local/northamerica\.html$', '/contact/communities/north-america/'),
+    redirect(r'^contribute/local/europe\.html$', '/contact/communities/europe/'),
+    redirect(r'^contribute/local/latinamerica\.html$', '/contact/communities/latin-america/'),
+    redirect(r'^contribute/local/africamideast\.html$', '/contact/communities/africa-middle-east/'),
+    redirect(r'^contribute/local/asia\.html$', '/contact/communities/asia-south-pacific/'),
+    redirect(r'^contribute/local/southpole\.html$', '/contact/communities/antarctica/'),
+
+    # bug 875052
+    redirect(r'^about/get-involved', '/contribute/'),
+
+    # bug 878926
+    redirect(r'^firefoxflicks/?(?P<p>.*)$',
+             'https://firefoxflicks.mozilla.org/{locale}{p}'),
+
+    # bug 849426
+    redirect(r'^about/history(\.html)?$', '/about/history/'),
+    redirect(r'^about/bookmarks\.html$', 'https://wiki.mozilla.org/Historical_Documents'),
+    redirect(r'^about/timeline\.html$', 'https://wiki.mozilla.org/Timeline'),
+
+    # bug 1016400
+    redirect(r'^about/careers\.html$', 'https://careers.mozilla.org/'),
+
+    # bug 861243 and bug 869489
+    redirect(r'^about/manifesto\.html$', '/about/manifesto/'),
+    redirect(r'^about/manifesto\.(.*)\.html$', '/{}/about/manifesto/', locale_prefix=False),
+
+    # bug 856077
+    redirect(r'^projects/toolkit/?$', 'https://developer.mozilla.org/docs/Toolkit_API'),
+
+    # bug 832348 **/index.html -> **/
+    # leave this at the bottom
+    redirect(r'^(.*)/index\.html$', '/{}/', locale_prefix=False),
 )
