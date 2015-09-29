@@ -515,6 +515,14 @@ class FirstrunView(LatestFxView):
         return [template]
 
 
+class FirstrunLearnMoreView(LatestFxView):
+    template_name = 'firefox/whatsnew_42/learnmore.html'
+
+
+class WhatsnewTestView(LatestFxView):
+    template_name = 'firefox/whatsnew_42/variant-b.html'
+
+
 class WhatsnewView(LatestFxView):
 
     pocket_locales = ['en-US', 'es-ES', 'ru', 'ja', 'de']
@@ -548,6 +556,8 @@ class WhatsnewView(LatestFxView):
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-whatsnew.html'
+        elif version.startswith('42.'):
+            template = 'firefox/whatsnew_42/variant-a.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
             has_pocket = locale in self.pocket_locales

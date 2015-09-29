@@ -805,11 +805,6 @@ URLS = flatten((
     url_test('/about/legal.html', '/about/legal/'),
     url_test('/about/partnerships.html', '/about/partnerships/'),
 
-    # bug 1215633
-    url_test('/firefox/42.0/firstrun/learnmore',
-             'https://support.mozilla.org/kb/private-browsing-use-firefox-without-history',
-             status_code=302),
-
     # bug 846362
     url_test('/community/{index{.{de,fr},}.html,}', '/contribute/'),
 
