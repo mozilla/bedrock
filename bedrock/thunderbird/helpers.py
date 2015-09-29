@@ -119,4 +119,4 @@ def thunderbird_url(page, channel=None):
     if channel:
         kwargs['channel'] = channel
 
-    return reverse('thunderbird.%s' % page, kwargs=kwargs)
+    return reverse('thunderbird.latest.%s' % page, kwargs=kwargs)

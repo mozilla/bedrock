@@ -295,8 +295,16 @@ class TestNotesRedirects(TestCase):
     @patch('bedrock.releasenotes.views.thunderbird_desktop.latest_version',
            Mock(return_value='22.0'))
     def test_thunderbird_release_version(self):
+        self._test('/thunderbird/notes/',
+                   '/thunderbird/22.0/releasenotes/')
         self._test('/thunderbird/latest/releasenotes/',
                    '/thunderbird/22.0/releasenotes/')
+
+    @patch('bedrock.releasenotes.views.thunderbird_desktop.latest_version',
+           Mock(return_value='41.0b1'))
+    def test_thunderbird_beta_version(self):
+        self._test('/thunderbird/beta/notes/',
+                   '/thunderbird/41.0beta/releasenotes/')
 
 
 class TestSysreqRedirect(TestCase):
@@ -334,5 +342,13 @@ class TestSysreqRedirect(TestCase):
     @patch('bedrock.releasenotes.views.thunderbird_desktop.latest_version',
            Mock(return_value='22.0'))
     def test_thunderbird_release_version(self):
+        self._test('/thunderbird/system-requirements/',
+                   '/thunderbird/22.0/system-requirements/')
         self._test('/thunderbird/latest/system-requirements/',
                    '/thunderbird/22.0/system-requirements/')
+
+    @patch('bedrock.releasenotes.views.thunderbird_desktop.latest_version',
+           Mock(return_value='41.0b1'))
+    def test_thunderbird_beta_version(self):
+        self._test('/thunderbird/beta/system-requirements/',
+                   '/thunderbird/41.0beta/system-requirements/')

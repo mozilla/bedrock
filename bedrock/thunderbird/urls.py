@@ -6,10 +6,13 @@ from django.conf.urls import url
 import views
 import bedrock.releasenotes.views
 from bedrock.mozorg.util import page
+from bedrock.releasenotes import version_re
 
 
 latest_re = r'^thunderbird(?:/(?P<version>%s))?/%s/$'
 channel_re = '(?P<channel>beta|earlybird)'
+notes_re = latest_re % (version_re, r'releasenotes')
+sysreq_re = latest_re % (version_re, 'system-requirements')
 
 
 urlpatterns = (
@@ -30,21 +33,31 @@ urlpatterns = (
     page('thunderbird/nightly/whatsnew', 'thunderbird/whatsnew/daily.html'),
 
     # Release-related pages
+    # FIXME: As you see, the product names are inconsistent due to the current
+    # bedrock.releasenotes implementation. Some view methods are tied to the
+    # product names in Nucleus, which are "Firefox", "Firefox for Android" and
+    # "Thunderbird", so those are not lower-case. We should fix it.
     url(r'^thunderbird/(?:%s/)?all/$' % channel_re,
-        views.all_downloads, name='thunderbird.all'),
+        views.all_downloads, name='thunderbird.latest.all'),
     url('^thunderbird/releases/$',
         bedrock.releasenotes.views.releases_index,
         {'product': 'Thunderbird'}, name='thunderbird.releases.index'),
     url('^thunderbird/(?:%s/)?notes/$' % channel_re,
         bedrock.releasenotes.views.latest_notes,
-        {'product': 'Thunderbird'}, name='thunderbird.notes'),
+        {'product': 'thunderbird'}, name='thunderbird.latest.notes'),
     url('^thunderbird/latest/releasenotes/$',
         bedrock.releasenotes.views.latest_notes,
         {'product': 'thunderbird', 'channel': 'release'}),
+    url(notes_re,
+        bedrock.releasenotes.views.release_notes,
+        {'product': 'Thunderbird'}, name='thunderbird.notes'),
     url('^thunderbird/(?:%s/)?system-requirements/$' % channel_re,
         bedrock.releasenotes.views.latest_sysreq,
-        {'product': 'Thunderbird'}, name='thunderbird.sysreq'),
+        {'product': 'thunderbird'}, name='thunderbird.latest.sysreq'),
     url('^thunderbird/latest/system-requirements/$',
         bedrock.releasenotes.views.latest_sysreq,
         {'product': 'thunderbird', 'channel': 'release'}),
+    url(sysreq_re,
+        bedrock.releasenotes.views.system_requirements,
+        {'product': 'Thunderbird'}, name='thunderbird.sysreq'),
 )
