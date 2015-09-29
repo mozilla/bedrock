@@ -91,6 +91,8 @@ casper.test.begin('Contribute Signup, Areas of interest interaction: ' + url, 9,
 
 casper.test.begin('Contribute Signup, Tooltip: ' + url, 2, function suite(test) {
     casper.start(url, function() {
+        // pseudo elements need to be visible in the viewport for mouse event to fire :/
+        this.scrollTo(0, 500);
         this.mouse.move('a.info');
     });
 
