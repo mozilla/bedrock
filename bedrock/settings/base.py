@@ -851,7 +851,7 @@ MAXMIND_DB_PATH = config('MAXMIND_DB_PATH',
 MAXMIND_DEFAULT_COUNTRY = config('MAXMIND_DEFAULT_COUNTRY', default='US')
 
 ADMINS = MANAGERS = config('ADMINS', cast=json.loads,
-                           default=json.dumps([['admin', 'admin@example.com']]))
+                           default='[]')
 
 GTM_CONTAINER_ID = config('GTM_CONTAINER_ID', default='')
 GMAP_API_KEY = config('GMAP_API_KEY', default='')
