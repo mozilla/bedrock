@@ -102,8 +102,17 @@ redirectpatterns = (
     }),
 
     # Bug 868182, 986174
-    redirect(r'^firefox/mobile/features/?$', 'firefox.android.index'),
-    redirect(r'^firefox/mobile/faq/?$', firefox_mobile_faq, query=False),
+    redirect(r'^(m|(firefox/)?mobile)/features/?$', 'firefox.android.index'),
+    redirect(r'^(m|(firefox/)?mobile)/faq/?$', firefox_mobile_faq, query=False),
+
+    # bug 884933
+    redirect(r'^(m|firefox/mobile)/platforms/?$',
+             'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'),
+
+    redirect(r'^m/?$', 'firefox.new'),
+
+    # Bug 730488 deprecate /firefox/all-older.html
+    redirect(r'^firefox/all-older\.html$', 'firefox.new'),
 
     # bug 1120658
     redirect(r'^seamonkey-transition\.html$',
@@ -146,10 +155,6 @@ redirectpatterns = (
     # bug 675031
     redirect(r'^projects/fennec(?P<page>/.*)?',
              'http://website-archive.mozilla.org/www.mozilla.org/fennec_releasenotes/projects/fennec{page}'),
-
-    # bug 884933
-    redirect(r'^firefox/mobile/platforms(/?)$',
-             'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'),
 
     # bug 876581
     redirect(r'^firefox/phishing-protection(/?)$',
@@ -204,7 +209,7 @@ redirectpatterns = (
              '/{prod}/{vers}/{channel}notes/{page}'),
 
     # bug 767614 superceeded by bug 957711 and 1003718
-    redirect(r'^mobile/?$', 'firefox.partners.index'),
+    redirect(r'^(mobile|fennec)/?$', 'firefox.partners.index'),
 
     # bug 876668
     redirect(r'^mobile/customize(?:/.*)?$', '/firefox/android/'),

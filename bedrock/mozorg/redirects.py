@@ -242,7 +242,7 @@ redirectpatterns = (
     redirect(r'^(.*[^/])//+([^/].*)$', '/{}/{}', locale_prefix=False),
 
     # bug 927442
-    redirect(r'^firefox/community/?', 'mozorg.contribute'),
+    redirect(r'^(firefox/)?community/?', 'mozorg.contribute'),
 
     # bug 1138280, bug 1200464
     redirect(r'^ja/(firefox|thunderbird)/(beta/)?notes/?', 'http://www.mozilla.jp/{0}/{1}notes/',
@@ -450,7 +450,8 @@ redirectpatterns = (
     redirect(r'^contribute/local/northamerica\.html$', '/contact/communities/north-america/'),
     redirect(r'^contribute/local/europe\.html$', '/contact/communities/europe/'),
     redirect(r'^contribute/local/latinamerica\.html$', '/contact/communities/latin-america/'),
-    redirect(r'^contribute/local/africamideast\.html$', '/contact/communities/africa-middle-east/'),
+    redirect(r'^contribute/local/africamideast\.html$',
+             '/contact/communities/africa-middle-east/'),
     redirect(r'^contribute/local/asia\.html$', '/contact/communities/asia-south-pacific/'),
     redirect(r'^contribute/local/southpole\.html$', '/contact/communities/antarctica/'),
 
@@ -475,6 +476,12 @@ redirectpatterns = (
 
     # bug 856077
     redirect(r'^projects/toolkit/?$', 'https://developer.mozilla.org/docs/Toolkit_API'),
+
+    redirect(r'^rhino/download\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Download_Rhino'),
+    redirect(r'^rhino/doc\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Documentation'),
+    redirect(r'^rhino/?', 'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino'),
 
     # bug 832348 **/index.html -> **/
     # leave this at the bottom
