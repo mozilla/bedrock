@@ -25,27 +25,27 @@ casper.test.begin('Styleguide, Elements: ' + url, 2, function suite(test) {
 casper.test.begin('Styleguide, Sidebar interaction: ' + url, 5, function suite(test) {
 
     casper.start(url, function() {
-        this.click('nav > ul > li:nth-child(2) a');
+        this.click('#sidebar nav > ul > li:nth-child(2) a');
     });
 
-    casper.waitUntilVisible('nav > ul > li:nth-child(2) > ul', function() {
+    casper.waitUntilVisible('#sidebar nav > ul > li:nth-child(2) > ul', function() {
         test.assert(true, 'Secondary links revealed');
-        this.click('nav > ul > li:nth-child(2) > ul > li:first-child a');
+        this.click('#sidebar nav > ul > li:nth-child(2) > ul > li:first-child a');
     });
 
-    casper.waitUntilVisible('nav > ul > li:nth-child(2) > ul > li:first-child ul', function() {
+    casper.waitUntilVisible('#sidebar nav > ul > li:nth-child(2) > ul > li:first-child ul', function() {
         test.assert(true, 'Tertiary links revealed');
-        var href = this.getElementAttribute('nav > ul > li:nth-child(2) > ul > li:first-child ul li:first-child a', 'href');
+        var href = this.getElementAttribute('#sidebar nav > ul > li:nth-child(2) > ul > li:first-child ul li:first-child a', 'href');
         test.assert(href.indexOf('/styleguide/identity/mozilla/branding/') !== -1, 'Link correctly points to branding page');
-        this.click('nav > ul > li:nth-child(2) > ul > li:first-child a');
+        this.click('#sidebar nav > ul > li:nth-child(2) > ul > li:first-child a');
     });
 
-    casper.waitWhileVisible('nav > ul > li:nth-child(2) > ul > li:first-child ul', function() {
+    casper.waitWhileVisible('#sidebar nav > ul > li:nth-child(2) > ul > li:first-child ul', function() {
         test.assert(true, 'Tertiary level items hidden');
-        this.click('nav > ul > li:nth-child(2) a');
+        this.click('#sidebar nav > ul > li:nth-child(2) a');
     });
 
-    casper.waitWhileVisible('nav > ul > li:nth-child(2) > ul', function() {
+    casper.waitWhileVisible('#sidebar nav > ul > li:nth-child(2) > ul', function() {
         test.assert(true, 'Secondary level navigation elements hidden');
     });
 
