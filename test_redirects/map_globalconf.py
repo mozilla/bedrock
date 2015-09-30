@@ -146,7 +146,7 @@ URLS = flatten((
     url_test('/ja/about/japan/', 'http://www.mozilla.jp/about/japan/'),
 
     # bug 927442
-    url_test('/firefox/community/', '/contribute/'),
+    url_test('{/firefox,}/community/', '/contribute/'),
 
     # bug 925551
     url_test('/plugincheck/more_info.html', '/plugincheck/'),
@@ -213,8 +213,8 @@ URLS = flatten((
     url_test('/firefox/mobile/faq/?os=firefox-os', '/firefox/os/faq/'),
 
     # Bug 986174
-    url_test('/firefox/mobile/features/', '/firefox/android/'),
-    url_test('/firefox/mobile/faq/', '/firefox/android/faq/'),
+    url_test('/{m,{firefox/,}mobile}/features/', '/firefox/android/'),
+    url_test('/{m,{firefox/,}mobile}/faq/', '/firefox/android/faq/'),
 
 
     # bug 885799, 952429
@@ -491,8 +491,10 @@ URLS = flatten((
     url_test('/opportunities{,/,/index.html}', 'https://careers.mozilla.org/'),
 
     # bug 884933
-    url_test('/firefox/mobile/platforms/',
+    url_test('/{m,firefox/mobile}/platforms/',
              'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'),
+
+    url_test('/m/', '/firefox/new/'),
 
     # bug 876581
     url_test('/firefox/phishing-protection/',
@@ -680,7 +682,7 @@ URLS = flatten((
     # bug 961010
     url_test('/mobile/credits/credits-people-list.html', '/credits/'),
 
-    url_test('/mobile/', '/firefox/partners/'),
+    url_test('/{mobile,fennec}/', '/firefox/partners/'),
 
     # bug 876668
     url_test('/mobile/customize/', '/firefox/android/'),
@@ -750,4 +752,13 @@ URLS = flatten((
 
     # bug 1209720
     url_test('/thunderbird/releasenotes' '/thunderbird/notes/'),
+
+    url_test('/rhino/download.html',
+             'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Download_Rhino'),
+    url_test('/rhino/doc.html',
+             'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Documentation'),
+    url_test('/rhino/random/stuff/', 'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino'),
+
+    # Bug 730488 deprecate /firefox/all-older.html
+    url_test('/firefox/all-older.html', '/firefox/new/'),
 ))
