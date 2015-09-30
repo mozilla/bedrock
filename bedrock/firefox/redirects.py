@@ -106,7 +106,7 @@ redirectpatterns = (
     redirect(r'^(m|(firefox/)?mobile)/faq/?$', firefox_mobile_faq, query=False),
 
     # bug 884933
-    redirect(r'^(m|firefox/mobile)/platforms/?$',
+    redirect(r'^(m|(firefox/)?mobile)/platforms/?$',
              'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'),
 
     redirect(r'^m/?$', 'firefox.new'),

@@ -491,7 +491,7 @@ URLS = flatten((
     url_test('/opportunities{,/,/index.html}', 'https://careers.mozilla.org/'),
 
     # bug 884933
-    url_test('/{m,firefox/mobile}/platforms/',
+    url_test('/{m,{firefox/,}mobile}/platforms/',
              'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'),
 
     url_test('/m/', '/firefox/new/'),
