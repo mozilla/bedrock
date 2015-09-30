@@ -532,7 +532,7 @@ FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
 
 # Prefix for media. No trailing slash.
 # e.g. '//mozorg.cdn.mozilla.net'
-CDN_BASE_URL = ''
+CDN_BASE_URL = config('CDN_BASE_URL', default='')
 
 CSRF_FAILURE_VIEW = 'bedrock.mozorg.views.csrf_failure'
 
