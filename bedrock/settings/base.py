@@ -739,7 +739,8 @@ RNA = {
     'VERIFY_SSL_CERT': config('VERIFY_SSL_CERT', cast=bool, default=False),
 }
 
-MOFO_SECURITY_ADVISORIES_PATH = path('..', 'mofo_security_advisories')
+MOFO_SECURITY_ADVISORIES_PATH = config('MOFO_SECURITY_ADVISORIES_PATH',
+                                       default=path('..', 'mofo_security_advisories'))
 MOFO_SECURITY_ADVISORIES_REPO = 'https://github.com/mozilla/foundation-security-advisories.git'
 
 CORS_URLS = {

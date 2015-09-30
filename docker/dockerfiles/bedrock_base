@@ -22,6 +22,6 @@ RUN ./bin/peep.py install --no-cache-dir -r requirements/prod.txt
 RUN ./bin/peep.py install --no-cache-dir -r requirements/docker.txt
 
 # Cleanup
-RUN apt-get purge -y python-dev build-essential libxml2-dev libxslt1-dev libmemcached-dev git
+RUN apt-get purge -y python-dev build-essential libxml2-dev libxslt1-dev libmemcached-dev
 RUN apt-get autoremove -y
 RUN rm -rf /var/lib/{apt,dpkg,cache,log} /usr/share/doc /usr/share/man /tmp/* /var/cache/*
