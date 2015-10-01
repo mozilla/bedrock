@@ -23,5 +23,10 @@ def next_few_events(count):
 
 
 @jingo.register.function
+def current_and_future_events():
+    return utils.current_and_future_events()
+
+
+@jingo.register.function
 def future_events():
     return utils.future_events()

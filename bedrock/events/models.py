@@ -38,10 +38,13 @@ def utcnow():
 
 class EventQuerySet(QuerySet):
     def future(self):
-        return self.filter(end_time__gt=utcnow()).order_by('start_time')
+        return self.filter(start_time__gt=utcnow()).order_by('start_time')
 
     def past(self):
-        return self.filter(end_time__lt=utcnow()).order_by('end_time')
+        return self.filter(end_time__lte=utcnow()).order_by('end_time')
+
+    def current_and_future(self):
+        return self.filter(end_time__gt=utcnow()).order_by('start_time')
 
 
 class EventManager(models.Manager):
@@ -53,6 +56,9 @@ class EventManager(models.Manager):
 
     def past(self):
         return self.get_queryset().past()
+
+    def current_and_future(self):
+        return self.get_queryset().current_and_future()
 
     def sync_with_ical(self, ical_feed, feed_url):
         """

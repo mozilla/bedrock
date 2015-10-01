@@ -91,7 +91,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for event in future_events() %}
+        {% for event in current_and_future_events() %}
           <tr>
             <td class="event-date"><time datetime="{{ event.start_time.isoformat() }}">{{ event.start_time|l10n_format_date }}</time></td>
             <th class="event-name" scope="row">{% if event.url %}<a href="{{ event.url }}">{% endif %}{{ event.title|safe }}{% if event.url %}</a>{% endif %}</th>
