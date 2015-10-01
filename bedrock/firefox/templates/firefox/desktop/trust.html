@@ -48,25 +48,28 @@
       </p>
 
       <ul class="feature-list">
-        <li id="privacy-dnt">
-          <h3>{{ _('Do Not Track') }}</h3>
+        {% if l10n_has_tag('tracking_protection') and waffle.switch('tracking-protection') %}
+          <li id="privacy-browsing">
+            <h3>{{ _('Private Browsing with<br> Tracking Protection') }}</h3>
 
-          <p>
-            {{ _('A Firefox innovation, Do Not Track lets you indicate a preference about the way your personal info is collected and used online.') }}
-          </p>
+            <p>
+              {{ _('Browse without having your history, searches or cookies saved, and block hidden third parties from following you across the Web.') }}
+            </p>
 
-          <a class="more" href="{{ url('firefox.dnt') }}">{{ _('Learn more about Do Not Track') }}</a>
-        </li>
-        <li id="privacy-browsing">
-          <h3>{{ _('Private browsing') }}</h3>
+            <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info">{{ _('Learn more about Private Browsing') }}</a>
+          </li>
+        {% else %}
+          <li id="privacy-browsing">
+            <h3>{{ _('Private Browsing') }}</h3>
 
-          <p>
-            {{ _('Sometimes it’s nice to go undercover.') }}
-            {{ _('Turn this feature on to protect your browsing history from others.') }}
-          </p>
+            <p>
+              {{ _('Sometimes it’s nice to go undercover.') }}
+              {{ _('Turn this feature on to protect your browsing history from others.') }}
+            </p>
 
-          <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info">{{ _('Learn how to open a private window') }}</a>
-        </li>
+            <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info">{{ _('Learn how to open a private window') }}</a>
+          </li>
+        {% endif %}
         {% if l10n_has_tag('forget_button') %}
         <li id="privacy-forget" class="last">
           <h3>{{ _('Forget Button') }}</h3>
