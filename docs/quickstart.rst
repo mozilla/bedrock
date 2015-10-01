@@ -2,7 +2,7 @@
 .. License, v. 2.0. If a copy of the MPL was not distributed with this
 .. file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-.. _install:
+.. _quickstart:
 
 ==================
 Quickstart
@@ -18,7 +18,7 @@ steps:
 1. Fork `bedrock <https://github.com/mozilla/bedrock/>`_ on github
 2. Sign up or sign in to Cloud9_ with your github account [#]_
 3. Create a new workspace from your fork using the "Clone from URL"
-   option with a URL in the format ``git@github.com:mozilla/bedrock.git`` but 
+   option with a URL in the format ``git@github.com:mozilla/bedrock.git`` but
    with your username instead of ``mozilla``
 4. Once your workspace is ready, click the "Start Editing" button
 5. In the bash shell, run the command ``bin/install-c9``
@@ -36,7 +36,7 @@ public URL similar to ``http://bedrock-c9-username.c9.io``
        in your workspace in real time.
 .. [#] Github account integration is optional; if you do not wish to give cloud9
        access to push to any repo your github account has access, you may wish
-       to use a `deploy key 
+       to use a `deploy key
        <https://developer.github.com/guides/managing-deploy-keys/#deploy-keys>`_
        or a `machine user account
        <https://developer.github.com/guides/managing-deploy-keys/#machine-users>`_.

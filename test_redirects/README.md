@@ -7,7 +7,7 @@ release.
 
 ## Setup
 
-1. Install dependencies: `bin/peep install -r requirements/test_redirects.txt`
+1. Install dependencies: `bin/peep install -r requirements/test.txt`
 
 Note: You'll need to have installed the dev requirements from bedrock as well.
 Also it's a really good idea to do the `peep install` step above in a [virtualenv][].
