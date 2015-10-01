@@ -69,3 +69,9 @@ class ClacksOverheadMiddleware(object):
         if response.status_code == 200:
             response['X-Clacks-Overhead'] = 'GNU Terry Pratchett'
         return response
+
+
+class HostnameMiddleware(object):
+    def process_response(self, request, response):
+        response['X-Backend-Server'] = settings.HOSTNAME
+        return response
