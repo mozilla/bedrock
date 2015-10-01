@@ -761,4 +761,11 @@ URLS = flatten((
 
     # Bug 730488 deprecate /firefox/all-older.html
     url_test('/firefox/all-older.html', '/firefox/new/'),
+
+    # Bug 1209643
+    url_test('/legal/bylaws_amendment_1.html', '/foundation/documents/bylaws-amendment-1/'),
+    url_test('/legal/bylaws_amendment_2.html', '/foundation/documents/bylaws-amendment-2/'),
+    url_test('/legal/articles.html', '/foundation/documents/articles-of-incorporation/'),
+    url_test('/legal/amendment.html', '/foundation/documents/articles-of-incorporation/amendment/'),
+    url_test('/legal/bylaws.html', '/foundation/documents/bylaws/'),
 ))

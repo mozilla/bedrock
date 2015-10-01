@@ -222,6 +222,12 @@ redirectpatterns = (
     redirect(r'^legal/eula/firefox-2/?$', '/about/legal/eula/firefox-2/'),
     redirect(r'^legal/eula/firefox-3/?$', '/about/legal/eula/firefox-3/'),
 
+    # Bug 1209643
+    redirect(r'^legal/bylaws_amendment_(?P<n>[12])(\.html|/)?', '/foundation/documents/bylaws-amendment-{n}/'),
+    redirect(r'^legal/articles(\.html|/)?', 'foundation.documents.articles-of-incorporation'),
+    redirect(r'^legal/amendment(\.html|/)?', 'foundation.documents.articles-of-incorporation-amendment'),
+    redirect(r'^legal/bylaws(\.html|/)?', 'foundation.documents.bylaws'),
+
     # Bug 1073269 /dnt/ -> /firefox/dnt/
     redirect(r'^dnt/?$', 'firefox.dnt'),
 
