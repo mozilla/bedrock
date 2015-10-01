@@ -59,7 +59,7 @@
 
   <h2>{{ _('Documents') }}</h2>
   <ul>
-    <li><a href="/legal/articles.html">{{ _('Articles of  Incorporation') }}</a></li>
-    <li><a href="/legal/bylaws.html">{{ _('Bylaws of the Mozilla Corporation') }}</a></li>
+    <li><a href="{{ url('foundation.documents.articles-of-incorporation') }}">{{ _('Articles of  Incorporation') }}</a></li>
+    <li><a href="{{ url('foundation.documents.bylaws') }}">{{ _('Bylaws of the Mozilla Corporation') }}</a></li>
   </ul>
 {% endblock %}
