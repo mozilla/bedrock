@@ -1,0 +1,136 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import fxfamilynav with context %}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title %}{{ _('Keep your Firefox in sync') }}{% endblock %}
+{% block body_id %}firefox-private-browsing{% endblock %}
+{% block body_class %}{{ super() }} mozid{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_private_browsing' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {{ fxfamilynav('desktop', 'private-browsing') }}
+{% endblock %}
+
+{% block content %}
+
+<main role="main">
+
+  <section class="intro">
+    <div class="container">
+      <div class="header">
+        <h1>
+          {{ _('More protection.') }}
+          <br>
+          {{ _('The most privacy.') }}
+          <br>
+          {{ _('Only from Firefox.') }}
+        </h1>
+        <div class="firefox-latest">
+          <button class="send-to button-flat-dark">{{ _('Try Private Browsing') }}</button>
+        </div>
+        <div class="non-firefox">
+          <h2>{{ _('To give the new Private Browsing a try, download Firefox.') }}</h2>
+        {{ download_firefox(small=True, icon=False) }}
+        </div>
+        <div class="firefox-old">
+          <p>{{ _('Your Firefox is not up to date. Download the latest version to use the new Private Browsing.') }}</p>
+          {{ download_firefox(small=True, icon=False) }}
+        </div>
+      </div>
+      <div class="animation">
+        <img src="{{ static('img/firefox/private-browsing/animation.png') }}">
+      </div>
+    </div>
+  </section>
+
+  <section class="tracking-protection">
+    <div class="container">
+      <h2>{{ _('No other browser gives you so much control over your digital footprint.') }}
+      <br>{{ _('Learn how to use Private Browsing') }}
+      </h2>
+      <div class="private-browsing">
+        <img src="{{ static('img/firefox/private-browsing/mask.png') }}">
+        <h3>{{ _('Private Browsing') }}</h3>
+        <p>{{ _('Firefox won’t save things like your browsing history, searches or cookies, but it will keep new bookmarks and files you download.') }}</p>
+      </div>
+      <div class="with-tracking">
+        <img src="{{ static('img/firefox/private-browsing/mask.png') }}">
+        <h3>{{ _('With Tracking Protection')}}<sup aria-describedby="tracking-protection-caveat">*</sup></h3>
+        <p>{{ _('Minimize the ability of hidden third parties from tracking your browsing activity across many sites.') }}</p>
+      </div>
+      <div class="footer">
+        <strong><a href="#TODO">{{ _('Learn more about Private Browsing') }}</a></strong>
+        <small id="tracking-protection-caveat"><sup aria-hidden="true">*</sup> {{ _('Tracking Protection is only available with Firefox for Android and Desktop') }}</small>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="when-to-use">
+    <div class="container">
+      <h2>{{ _('When to use Private Browsing') }}</h2>
+      <ul>
+        <li>
+          <h3>{{ _('To minimize your digital footprint') }}</h3>
+          <img src="{{ static('img/firefox/private-browsing/mask.png') }}">
+          <p>{{ _('Tracking Protection blocks Internet companies from following you across the Web') }}</p>
+        </li>
+        <li>
+          <h3>{{ _('Online banking from a shared device or computer') }}</h3>
+          <img src="{{ static('img/firefox/private-browsing/mask.png') }}">
+          <p>{{ _('Your username and password won’t be saved') }}</p>
+        </li>
+        <li>
+          <h3>{{ _('To help you plan a surprise, like a birthday or a trip') }}</h3>
+          <img src="{{ static('img/firefox/private-browsing/mask.png') }}">
+          <p>{{ _('No one can see your browsing history') }}</p>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section class="control-center">
+    <div class="container">
+      <img src="{{ static('img/firefox/private-browsing/mask.png') }}">
+      <h2>{{ _('The Control Center has you covered') }}<sup aria-describedby="control-center-caveat">*</sup></h2>
+      <p>
+        {{ _('When you see the shield to the left of the address bar, that means Firefox is protecting you from potential trackers.') }}
+        {{ _('You can disable Tracking Protection for a single site, or turn it off entirely.') }}
+        {{ _('It’s up to you.') }}
+      </p>
+      <div class="footer">
+        <strong><a href="#TODO">{{ _('Learn more about the Control Center') }}</a></strong>
+        <small id="control-center-caveat"><sup aria-hidden="true">*</sup> 
+        {{ _('Control Center is not available on Android devices, but a shield will still be displayed to let you know when you are protected.') }}</small>
+      </div>
+    </div>
+
+    <section class="cta">
+      <div class="container">
+        <h3>{{ _('Try it now to stay in control') }}</h3>
+        <div class="firefox-latest">
+          <button class="send-to button-flat-dark">{{ _('Try Private Browsing') }}</button>
+        </div>
+      </div>
+    </section>
+  </section>
+
+</main>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_private_browsing' %}
+{% endblock %}

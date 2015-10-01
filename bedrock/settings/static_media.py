@@ -502,6 +502,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_push-bundle.css',
     },
+    'firefox_private_browsing': {
+        'source_filenames': (
+            'css/firefox/family-nav.less',
+            'css/firefox/private-browsing.less',
+        ),
+        'output_filename': 'css/firefox_private_browsing-bundle.css',
+    },
     'firefox_releases_index': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -1258,6 +1265,14 @@ PIPELINE_JS = {
             'js/firefox/pocket.js',
         ),
         'output_filename': 'js/firefox_pocket-bundle.js',
+    },
+    'firefox_private_browsing': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+        ),
+        'output_filename': 'js/firefox_private_browsing-bundle.js',
     },
     'firefox_os': {
         'source_filenames': (

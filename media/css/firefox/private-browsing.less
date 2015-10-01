@@ -1,0 +1,245 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+#wrapper {
+    width: 100%;
+    margin-top: -162px; // family nav
+    padding-bottom: 0;
+    border-top: 2px solid #fff;
+}
+
+
+.intro {
+    padding-top: 162px;
+    background: #0c99d5;
+    color: #fff;
+
+    .container {
+        padding-bottom: 60px;
+    }
+
+    .header {
+        width: 50%;
+        float: left;
+        padding-top: 120px;
+
+        h1,
+        h2 {
+            color: #fff;
+            text-shadow: none;
+        }
+
+        h1 {
+            font-size: 65px;
+            margin-bottom: 40px;
+        }
+
+        .firefox-latest {
+        }
+
+        .non-firefox {
+        }
+
+        .firefox-old {
+        }
+
+        .download-button {
+            small.download-other {
+                color: #71C4EA;
+                a:link {
+                    color: #71C4EA;
+                }
+            }
+        }
+    }
+    .animation {
+        width: 50%;
+        float: left;
+    }
+}
+
+.tracking-protection {
+    background: #fff;
+
+    .container {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    } 
+    h2 {
+        font-size: 50px;
+        text-align: center;
+        color: #652562;
+        margin-bottom: 40px;
+    }
+    
+    .private-browsing,
+    .with-tracking {
+        text-align: center;
+        width: 45%; 
+        float: left;
+
+        h3 {
+            color: #652562;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        img {
+            width: 200px; 
+        }
+        p {
+            padding: 0 4em;
+            font-size: 16px;
+        }
+    }
+    .private-browsing {
+        background-image: url('/media/img/firefox/private-browsing/plus.png');
+        background-position: 100% 25%;
+        background-repeat: no-repeat;
+        background-size: 45px;
+        width: 45%;
+        padding-right: 5%;
+    }
+
+    .footer {
+        clear: both;
+        text-align: center;
+
+        small {
+            color: @textColorLight;
+            font-style: italic;
+        }
+        strong, small {
+            display: block;
+            clear: both;
+        }
+
+        a::after {
+            content:" »";
+            white-space: nowrap;
+        }
+    }
+}
+
+.when-to-use {
+    background-color: #bee1f5;
+
+    .container {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    } 
+
+    h2 {
+        font-size: 50px;
+        text-align: center;
+        color: #652562;
+        margin-bottom: 40px;
+    }
+
+    h3 {
+        font-size: 23px;
+        margin-bottom: 40px;
+        color: #652562;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0px;
+
+        li {
+            text-align: center;
+            margin: 0px;
+            float: left;
+            width: 28%;
+            margin-right: 8%;
+            img {
+                width: 130px;
+            }
+            p {
+                margin-top: 30px;
+                font-size: 16px;
+            }
+        }
+
+        li:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.control-center {
+    background-color: #fff;
+    text-align: center;
+
+    h2 {
+        font-size: 50px;
+        color: #652562;
+        margin-bottom: 40px;
+    }
+
+    p {
+        margin-top: 30px;
+        font-size: 16px;
+    }
+
+    .container {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }    
+
+    .footer {
+        clear: both;
+        text-align: center;
+
+        small {
+            color: @textColorLight;
+            font-style: italic;
+        }
+        strong, small {
+            display: block;
+            clear: both;
+        }
+
+        a::after {
+            content:" »";
+            white-space: nowrap;
+        }
+    }
+
+}
+
+.cta {
+    background: #0c99d5;
+    h3 {
+        color: #fff;
+        float: left;
+    }
+
+    .firefox-latest {
+        float: right;
+    }
+}
+
+#colophon {
+    margin-top: 0;
+}
+
+.container {
+    .border-box();
+    width: @widthDesktop;
+    margin: 0 auto;
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobile;
+    }
+
+    @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+}
