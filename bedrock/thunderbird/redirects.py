@@ -26,4 +26,6 @@ redirectpatterns = (
              '/en-US/thunderbird/{version}/{page}'),
     # bug 1209720
     redirect(r'^thunderbird/releasenotes/?$', 'thunderbird.latest.notes'),
+    # bug 1211007
+    redirect(r'^thunderbird/download/?', 'thunderbird.index'),
 )
