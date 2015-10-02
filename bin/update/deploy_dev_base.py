@@ -13,10 +13,9 @@ base_database = database
 @task
 def database(ctx):
     # only ever run this one on demo and dev.
-    management_cmd(ctx, 'bedrock_truncate_database --yes-i-am-sure')
     base_database()
     management_cmd(ctx, 'rnasync')
-    management_cmd(ctx, 'update_security_advisories --force --quiet', use_src_dir=True)
+    management_cmd(ctx, 'update_security_advisories --quiet', use_src_dir=True)
     management_cmd(ctx, 'cron update_ical_feeds')
     management_cmd(ctx, 'cron update_tweets')
     management_cmd(ctx, 'runscript update_firefox_os_feeds')
