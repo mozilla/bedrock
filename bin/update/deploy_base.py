@@ -138,8 +138,8 @@ def update_info(ctx):
         ctx.local("git status")
         ctx.local("git submodule status")
         with ctx.lcd("locale"):
-            ctx.local("git rev-parse HEAD")
-            ctx.local("git status")
+            ctx.local("svn info")
+            ctx.local("svn status")
 
 
 @task
