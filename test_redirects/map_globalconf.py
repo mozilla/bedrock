@@ -768,4 +768,7 @@ URLS = flatten((
     url_test('/legal/articles.html', '/foundation/documents/articles-of-incorporation/'),
     url_test('/legal/amendment.html', '/foundation/documents/articles-of-incorporation/amendment/'),
     url_test('/legal/bylaws.html', '/foundation/documents/bylaws/'),
+
+    # bug 1211007
+    url_test('/thunderbird/download', '/thunderbird/'),
 ))
