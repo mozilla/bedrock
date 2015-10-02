@@ -40,6 +40,10 @@ DATABASES = config(
                            cast=dj_database_url.parse,
                            default='sqlite:///bedrock.db')}))
 
+if DATABASES['default']['ENGINE'].endswith('psycopg2'):
+    # let the DB handle connection killing
+    DATABASES['default']['CONN_MAX_AGE'] = None
+
 SLAVE_DATABASES = config('SLAVE_DATABASES', cast=Csv(), default=',')
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
