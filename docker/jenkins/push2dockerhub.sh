@@ -14,4 +14,6 @@ COMMIT="${ghprbActualCommit:=$GIT_COMMIT}"
 
 # Tag using git hash
 docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:$COMMIT
+
+# Push to docker hub
 docker push $DOCKER_REPOSITORY:$COMMIT
