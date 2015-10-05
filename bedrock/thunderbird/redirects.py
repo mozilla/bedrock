@@ -17,13 +17,14 @@ redirectpatterns = (
     redirect(r'^thunderbird/early_releases/?$', 'thunderbird.channel'),
 
     # bug 1081917, 1029829, 1029838
-    redirect(r'^thunderbird/releases/(?P<page>.+)$',
+    redirect(r'^thunderbird/releases/(?P<version>0\.\d)\.html$',
              'http://website-archive.mozilla.org/www.mozilla.org/thunderbird_releasenotes'
-             '/en-US/thunderbird/releases/{page}'),
+             '/en-US/thunderbird/releases/{version}.html'),
     # should catch everything 1.* to 29.*
-    redirect(r'^thunderbird/(?P<version>(?:\d|[12]\d)\.[^/]+)/(?P<page>.*)$',
+    redirect(r'^thunderbird/(?P<version>(?:\d|[12]\d)\.[^/]+)/'
+             '(?P<page>firstrun|releasenotes|start|system-requirements|whatsnew)/$',
              'http://website-archive.mozilla.org/www.mozilla.org/thunderbird_releasenotes'
-             '/en-US/thunderbird/{version}/{page}'),
+             '/en-US/thunderbird/{version}/{page}/'),
     # bug 1209720
     redirect(r'^thunderbird/releasenotes/?$', 'thunderbird.latest.notes'),
     # bug 1211007
