@@ -1,10 +1,13 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from django.conf import settings
 from django.http import HttpRequest, HttpResponse
+from django.test.utils import override_settings
 
 from bedrock.mozorg.middleware import (ClacksOverheadMiddleware,
-                                       CrossOriginResourceSharingMiddleware)
+                                       CrossOriginResourceSharingMiddleware,
+                                       HostnameMiddleware)
 from bedrock.mozorg.tests import TestCase
 
 
@@ -59,3 +62,21 @@ class TestCrossOriginResourceSharingMiddleware(TestCase):
         with self.settings(CORS_URLS=cors_urls):
             self.middleware.process_response(self.request, self.response)
             self.assertFalse('Access-Control-Allow-Origin' in self.response)
+
+
+class TestHostnameMiddleware(TestCase):
+    @override_settings(HOSTNAME='foobar')
+    def test_base(self):
+        self.middleware = HostnameMiddleware()
+        self.request = HttpRequest()
+        self.response = HttpResponse()
+
+        self.middleware.process_response(self.request, self.response)
+        self.assertEqual(self.response['X-Backend-Server'], 'foobar')
+
+    @override_settings(MIDDLEWARE_CLASSES=(list(settings.MIDDLEWARE_CLASSES) +
+                                           ['bedrock.mozorg.middleware.HostnameMiddleware']),
+                       HOSTNAME='foobar')
+    def test_request(self):
+        response = self.client.get('/en-US/')
+        self.assertEqual(response['X-Backend-Server'], 'foobar')

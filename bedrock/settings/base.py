@@ -4,6 +4,7 @@
 
 import json
 import logging
+import platform
 from os.path import abspath
 
 from django.utils.functional import lazy
@@ -297,7 +298,9 @@ DOMAIN_METHODS = {
     ],
 }
 
-MIDDLEWARE_CLASSES = (
+ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE', default=False, cast=bool)
+
+MIDDLEWARE_CLASSES = [middleware for middleware in (
     'sslify.middleware.SSLifyMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
@@ -306,6 +309,7 @@ MIDDLEWARE_CLASSES = (
     'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
     'commonware.middleware.RobotsTagHeader',
     'bedrock.mozorg.middleware.ClacksOverheadMiddleware',
+    'bedrock.mozorg.middleware.HostnameMiddleware' if ENABLE_HOSTNAME_MIDDLEWARE else False,
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -314,7 +318,7 @@ MIDDLEWARE_CLASSES = (
     'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
     'bedrock.mozorg.middleware.ConditionalAuthMiddleware',
     'bedrock.mozorg.middleware.CrossOriginResourceSharingMiddleware',
-)
+) if middleware]
 
 AUTHENTICATED_URL_PREFIXES = ('/admin/', '/rna/')
 
@@ -871,3 +875,5 @@ SSLIFY_DISABLE = config('DISABLE_SSL', default=True, cast=bool)
 if not SSLIFY_DISABLE:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     USE_X_FORWARDED_HOST = True
+
+HOSTNAME = platform.node()
