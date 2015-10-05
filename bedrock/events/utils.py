@@ -32,6 +32,16 @@ def cache_memoized(obj):
 
 
 @cache_memoized
+def current_and_future_event_count():
+    return Event.objects.current_and_future().count()
+
+
+@cache_memoized
+def current_and_future_events():
+    return list(Event.objects.current_and_future())
+
+
+@cache_memoized
 def future_event_count():
     return Event.objects.future().count()
 
