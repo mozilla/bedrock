@@ -395,6 +395,7 @@ PIPELINE_CSS = {
     },
     'firefox_ios': {
         'source_filenames': (
+            'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/base/send-to-device.less',
             'css/firefox/ios.less',
@@ -1352,9 +1353,22 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
             'js/base/send-to-device.js',
             'js/firefox/australis/australis-uitour.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/ios.js',
         ),
         'output_filename': 'js/firefox_ios-bundle.js',
+    },
+    'firefox_ios_geo': {
+        'source_filenames': (
+            'js/libs/script.js',
+            'js/base/mozilla-modal.js',
+            'js/base/send-to-device.js',
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/ios-geo.js',
+        ),
+        'output_filename': 'js/firefox_ios_geo-bundle.js',
     },
     'firefox_tour': {
         'source_filenames': (
