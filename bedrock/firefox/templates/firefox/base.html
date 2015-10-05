@@ -15,18 +15,10 @@
 {% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
 {% block twitter_id %}firefox{% endblock %}
 
-{% block site_css %}
-  {% stylesheet 'firefox' %}
-{% endblock %}
-
 {% block site_header_nav %}
   {% include 'firefox/includes/top-menu.html' %}
 {% endblock %}
 
 {% block site_header_logo %}
-<h2><a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo.png', {'alt': 'Mozilla Firefox', 'width': '185', 'height': '70'}) }}</a></h2>
-{% endblock %}
-
-{% block site_js %}
-  {% javascript 'firefox' %}
+  <h2><a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo.png', {'alt': 'Mozilla Firefox', 'width': '185', 'height': '70'}) }}</a></h2>
 {% endblock %}

@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros.html" import fxfamilynav with context %}
+
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
@@ -14,14 +16,14 @@
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}{% endblock %}
 
-{% block site_css %}
+{% block page_css %}
   {% stylesheet 'firefox_os_mwc_2015_preview' %}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {% include 'firefox/includes/family-nav.html' %}
+  {{ fxfamilynav('os', '') }}
 {% endblock %}
 
 {% block content %}

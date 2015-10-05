@@ -4,6 +4,13 @@
 
 @import "../sandstone/lib.less";
 
+#main-feature .download-button-small,
+#main-feature .download-button-android-small {
+    position: absolute;
+    top: 0;
+    right: 30px;
+}
+
 #main-feature h1,
 #faq {
     .span(8);
@@ -18,6 +25,16 @@
     #main-feature h1,
     #faq {
         .span-all();
+    }
+
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #main-feature .download-button-small,
+    #main-feature .download-button-android-small {
+        position: static;
     }
 
 }

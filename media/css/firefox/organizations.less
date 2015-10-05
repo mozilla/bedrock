@@ -4,6 +4,10 @@
 
 @import "../sandstone/lib.less";
 
+#masthead h1 {
+    padding: @baseLine 0;
+}
+
 #main-feature {
     h1,
     h4 {
@@ -11,14 +15,22 @@
     }
 }
 
-.stacked h1 span {
-    margin-left: -.1ex; /* Remove a space before "Extended Support Release" */
-}
+.stacked {
+    h1 {
+        .font-size(32px);
+        letter-spacing: -1px;
 
-.stacked p.large {
-    .span-all();
-    .font-size(24px);
-    line-height: 1.3;
+        span {
+            margin-left: -.1ex;
+            display: block;
+        }
+    }
+
+    p.large {
+        .span-all();
+        .font-size(24px);
+        line-height: 1.3;
+    }
 }
 
 #esr-form {

@@ -276,13 +276,9 @@
   </div>
 {% endblock %}
 
-{% block site_js %}
-  {% javascript 'firefox-resp' %}
-{% endblock %}
-
 {% block js %}
 <!--[if IE 9]>
-  {% javascript 'firefox_os_ie9' %}
+  {% javascript 'matchmedia_addlistener' %}
 <![endif]-->
   {% javascript 'firefox_os' %}
 {% endblock  %}
