@@ -7,13 +7,16 @@
 set -xe
 
 # Used to trigger downstream Jenkins jobs
+PARAM_FILE=.parameters
 TRIGGER_FILE=.docker-updated
-rm -rf $TRIGGER_FILE
+FORCE_TIME_TRIGGER_UPDATE=.timetriggerupdate
+rm -rf $TRIGGER_FILE $PARAM_FILE
 
 if [[ $BUILD_CAUSE == "TIMERTRIGGER" ]]
 then
+    echo "PROD_ONLY=true" >> $PARAM_FILE
     SVN_STATUS=`svn status -uq locale | wc -l`
-    if [[ $SVN_STATUS == "0" ]]
+    if [[ ! -e $FORCE_TIME_TRIGGER_UPDATE && $SVN_STATUS == "0" ]]
     then
         # No updates, just exit
         echo "No locale updates"
@@ -21,9 +24,19 @@ then
     else
         # Set GIT_COMMIT to the current deployed to prod commit
         COMMIT_URL=${COMMIT_URL:-https://www.mozilla.org/static/revision.txt}
-        GIT_COMMIT=`curl  $COMMIT_URL 2> /dev/null`
+        GIT_COMMIT=`curl $COMMIT_URL 2> /dev/null`
+        rm -rf $FORCE_TIME_TRIGGER_UPDATE
     fi
+else
+    echo "PROD_ONLY=false" >> $PARAM_FILE
+    SVN_STATUS=`svn status -uq locale | wc -l`
+    if [[ $SVN_STATUS != "0" ]]
+    then
+        touch $FORCE_TIME_TRIGGER_UPDATE
+    fi;
+
 fi
+echo "GIT_COMMIT=$GIT_COMMIT" >> $PARAM_FILE
 
 DOCKER_IMAGE_TAG=${DOCKER_REPOSITORY}:${GIT_COMMIT}
 
