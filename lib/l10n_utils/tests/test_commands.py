@@ -9,7 +9,7 @@ from StringIO import StringIO
 from textwrap import dedent
 
 from django.conf import settings
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 from mock import ANY, MagicMock, Mock, patch
 
@@ -28,7 +28,7 @@ ROOT = path.join(path.dirname(path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (path.join(ROOT, 'templates'),)
 
 METHODS = [
-    ('lib/l10n_utils/tests/test_files/templates/**.html',
+    ('templates/**.html',
      'tower.management.commands.extract.extract_tower_template'),
 ]
 
@@ -38,13 +38,13 @@ TRUE_MOCK = Mock()
 TRUE_MOCK.return_value = True
 
 
+@override_settings(ROOT=ROOT)
 class TestL10nExtract(TestCase):
     def test_extract_from_files(self):
         """
         Should be able to extract strings from a specific file.
         """
-        testfile = ('lib/l10n_utils/tests/test_files/templates/'
-                    'even_more_lang_files.html',)
+        testfile = ('templates/even_more_lang_files.html',)
         with capture_stdio() as out:
             extracted = next(extract_from_files(testfile, method_map=METHODS))
         self.assertTupleEqual(extracted,
@@ -56,7 +56,7 @@ class TestL10nExtract(TestCase):
         """
         Should be able to extract strings from specific files.
         """
-        basedir = 'lib/l10n_utils/tests/test_files/templates/'
+        basedir = 'templates/'
         testfiles = (
             basedir + 'even_more_lang_files.html',
             basedir + 'some_lang_files.html',
@@ -88,8 +88,7 @@ class TestL10nExtract(TestCase):
         """
         If the file path doesn't exist, it should be skipped.
         """
-        testfile = ('lib/l10n_utils/tests/test_files/templates/'
-                    'file_does_not_exist.html',)
+        testfile = ('templates/file_does_not_exist.html',)
         with capture_stdio() as out:
             extracted = next(extract_from_files(testfile, method_map=METHODS),
                              None)
@@ -99,8 +98,7 @@ class TestL10nExtract(TestCase):
     @patch('lib.l10n_utils.management.commands.l10n_extract.extract_from_file')
     def test_extract_from_files_passes_args(self, eff):
         """The correct args should be passed through to extract_from_file"""
-        testfile = ('lib/l10n_utils/tests/test_files/templates/'
-                    'even_more_lang_files.html',)
+        testfile = ('templates/even_more_lang_files.html',)
         testfile_full = path.join(settings.ROOT, testfile[0])
         next(extract_from_files(testfile, method_map=METHODS), None)
         eff.assert_called_once_with(METHODS[0][1], testfile_full,
@@ -111,14 +109,14 @@ class TestL10nExtract(TestCase):
 
     def test_extract_from_files_callback_works(self):
         """extract_from_files should call our callback"""
-        testfile = ('lib/l10n_utils/tests/test_files/templates/'
-                    'even_more_lang_files.html',)
+        testfile = ('templates/even_more_lang_files.html',)
         callback = Mock()
         next(extract_from_files(testfile, callback=callback,
                                 method_map=METHODS), None)
         callback.assert_called_once_with(testfile[0], METHODS[0][1], ANY)
 
 
+@override_settings(ROOT=ROOT)
 class TestL10nCheck(TestCase):
     def _get_block(self, blocks, name):
         """Out of all blocks, grab the one with the specified name."""
@@ -330,6 +328,7 @@ class TestL10nCheck(TestCase):
         self.assertEqual(open_buffer.getvalue(), good_value)
 
 
+@override_settings(ROOT=ROOT)
 class Testl10nMerge(TestCase):
     @patch('lib.l10n_utils.gettext.settings.ROOT', ROOT)
     @patch('lib.l10n_utils.gettext._append_to_lang_file')

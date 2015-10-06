@@ -19,7 +19,6 @@ before_script:
   - python manage.py migrate --noinput
   - python manage.py collectstatic --noinput -v 0
   - travis_retry python manage.py update_product_details
-  - travis_retry svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
   - travis_retry npm install
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
