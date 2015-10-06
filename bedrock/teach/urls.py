@@ -5,20 +5,18 @@
 
 from bedrock.redirects.util import redirect
 from bedrock.mozorg.util import page
-from waffle.decorators import waffle_switch
 
 
 urlpatterns = (
     # There will eventually be a main education landing page
     # but we'll redirect until then.
-    redirect(r'^teach/$', 'teach.smarton.tracking', name='teach'),
+    redirect(r'^teach/$', 'teach.smarton.security', name='teach'),
 
     # There will eventually be a main SmartOn landing page
     # but we'll redirect until then.
-    redirect(r'^teach/smarton$', 'teach.smarton.tracking', name='smarton'),
+    redirect(r'^teach/smarton/$', 'teach.smarton.security', name='teach.smarton'),
 
     # SmartOn
-    page('teach/smarton/tracking', 'teach/smarton/tracking.html',
-        decorators=waffle_switch('tracking-protection')),
-
+    page('teach/smarton/tracking', 'teach/smarton/tracking.html'),
+    page('teach/smarton/security', 'teach/smarton/security.html'),
 )
