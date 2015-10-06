@@ -16,6 +16,9 @@
   <meta itemprop="operatingSystem" content="Mac">
   <meta itemprop="operatingSystem" content="Linux">
   <meta itemprop="operatingSystem" content="Android">
+{% if waffle.switch('firefox-ios-global') %}
+  <meta itemprop="operatingSystem" content="iOS">
+{% endif %}
 </div>
 
 <div itemscope itemtype="http://schema.org/Product">
