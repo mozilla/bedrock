@@ -1610,6 +1610,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/smarton-bundle.js',
     },
+    'smarton-landing': {
+        'source_filenames': (
+            'js/base/mozilla-share-cta.js',
+            'js/libs/snap.svg.min.js',
+            'js/teach/smarton-landing.js',
+        ),
+        'output_filename': 'js/smarton-landing-bundle.js',
+    },
     'styleguide': {
         'source_filenames': (
             'js/styleguide/styleguide.js',
