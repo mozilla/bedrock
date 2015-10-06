@@ -28,6 +28,7 @@ def path(*args):
 
 # Is this a dev instance?
 DEV = config('DEV', cast=bool, default=False)
+PROD = config('PROD', cast=bool, default=False)
 
 DEBUG = TEMPLATE_DEBUG = config('DEBUG', cast=bool, default=False)
 
@@ -110,9 +111,11 @@ LANGUAGE_CODE = 'en-US'
 
 # Tells the product_details module where to find our local JSON files.
 # This ultimately controls how LANGUAGES are constructed.
-PROD_DETAILS_DIR = path('lib', 'product_details_json')
 PROD_DETAILS_CACHE_NAME = 'product-details'
 PROD_DETAILS_CACHE_TIMEOUT = 60 * 15  # 15 min
+default_pdstorage = 'PDDatabaseStorage' if PROD else 'PDFileStorage'
+PROD_DETAILS_STORAGE = config('PROD_DETAILS_STORAGE',
+                              default='product_details.storage.' + default_pdstorage)
 
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',

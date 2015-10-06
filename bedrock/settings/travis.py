@@ -24,3 +24,5 @@ DATABASES = {
 HMAC_KEYS = {
     '2013-01-01': 'prositneujahr',
 }
+
+PROD_DETAILS_STORAGE = 'product_details.storage.PDFileStorage'
