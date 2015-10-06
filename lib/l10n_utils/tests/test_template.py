@@ -4,8 +4,7 @@
 
 import os
 
-from django.conf import settings
-from django.core.urlresolvers import clear_url_caches
+from django.test import override_settings
 
 from jingo import env
 from jinja2 import FileSystemLoader
@@ -38,11 +37,9 @@ class TestL10nBlocks(TestCase):
 
 
 @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
-@patch.object(settings, 'ROOT', ROOT)
+@override_settings(ROOT=ROOT)
 class TestTransBlocks(TestCase):
-    def setUp(self):
-        clear_url_caches()
+    urls = 'lib.l10n_utils.tests.test_files.urls'
 
     def test_trans_block_works(self):
         """ Sanity check to make sure translations work at all. """
@@ -63,11 +60,11 @@ class TestTransBlocks(TestCase):
         self.test_trans_block_works()
 
 
+@patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@override_settings(ROOT=ROOT)
 class TestTemplateLangFiles(TestCase):
-    def setUp(self):
-        clear_url_caches()
+    urls = 'lib.l10n_utils.tests.test_files.urls'
 
-    @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     def test_added_lang_files(self):
         """
         Lang files specified in the template should be added to the defaults.
@@ -79,7 +76,6 @@ class TestTemplateLangFiles(TestCase):
         eq_(request.langfiles, ['dude', 'walter',
                                 'main', 'download_button'])
 
-    @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
     def test_added_lang_files_inheritance(self):
         """
         Lang files specified in the template should be added to the defaults
@@ -96,9 +92,6 @@ class TestTemplateLangFiles(TestCase):
         eq_(request.langfiles, ['donnie', 'smokey', 'jesus', 'dude', 'walter',
                                 'main', 'download_button'])
 
-    @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-    @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
-    @patch.object(settings, 'ROOT', ROOT)
     @patch('lib.l10n_utils.settings.DEV', True)
     @patch('lib.l10n_utils.helpers.translate')
     def test_lang_files_order(self, translate):
@@ -110,9 +103,6 @@ class TestTemplateLangFiles(TestCase):
         translate.assert_called_with(ANY, ['dude', 'walter', 'some_lang_files',
                                            'main', 'download_button'])
 
-    @patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
-    @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
-    @patch.object(settings, 'ROOT', ROOT)
     @patch('lib.l10n_utils.settings.DEV', True)
     @patch('lib.l10n_utils.helpers.translate')
     def test_lang_files_default_order(self, translate):

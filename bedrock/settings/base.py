@@ -138,7 +138,7 @@ def get_dev_languages():
                 if lang.is_dir() and lang.name != 'templates']
     except OSError:
         # no locale dir
-        return []
+        return list(PROD_LANGUAGES)
 
 
 DEV_LANGUAGES = get_dev_languages()
