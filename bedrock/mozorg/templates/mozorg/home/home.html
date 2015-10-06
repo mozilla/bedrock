@@ -240,7 +240,17 @@
           </a>
         </li>
       {% endif %}
-      {% if l10n_has_tag('fx10_independent') %}
+      {% if l10n_has_tag('tracking_protection') and waffle.switch('tracking-protection') %}
+        <li id="promo-10" class="item promo-large-portrait private-browsing" tabindex="0">
+          <h2 class="primary go">{{ _('Introducing the new <br>Private Browsing') }}</h2>
+          <a class="panel-link" href="{{ url('firefox.private-browsing') }}" data-promotion-id="promo-10" data-promotion-name="Introducing the new Private Browsing" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+            <div class="secondary">
+              <h3>{{ _('More protection. <br>The most privacy.') }}</h3>
+              <p class="more">{{ _('Try Private Browsing') }}</p>
+            </div>
+          </a>
+        </li>
+      {% elif l10n_has_tag('fx10_independent') %}
         <li id="promo-10" class="item promo-large-portrait firefox-developer" tabindex="0">
           {% if l10n_has_tag('firefox_friends') %}
           <h2 class="primary go">{{ _('Try Firefox Developer Edition') }}</h2>
