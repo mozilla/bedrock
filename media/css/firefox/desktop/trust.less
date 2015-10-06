@@ -48,24 +48,38 @@
         .font-size(18px);
     }
 
-    .feature-list li {
-        background: url(/media/img/firefox/desktop/trust/sprite-privacy.png) center top no-repeat;
-        padding-top: 180px;
-
-        &#privacy-dnt {
-            background-position: 70px top;
+    .feature-list {
+        h3 {
+            line-height: 1.3;
         }
+        li {
+            float: none;
+            display: inline-block;
+            background: url(/media/img/firefox/desktop/trust/sprite-privacy.png) center top no-repeat;
+            margin-right: @baseLine;
+            padding-top: 180px;
+            vertical-align: top;
 
-        &#privacy-browsing {
-            background-position: -390px top;
-        }
+            @media only screen and (max-width: @breakTablet) {
+                margin-right: 0;
+            }
 
-        &#privacy-lightbeam {
-            background-position: -850px top;
-        }
+            &:last-child {
+                margin-right: 0;
+                margin-left: @baseLine;
+            }
 
-        &#privacy-forget {
-            background-position: -1310px top;
+            &#privacy-browsing {
+                background-position: -390px top;
+            }
+
+            &#privacy-lightbeam {
+                background-position: -850px top;
+            }
+
+            &#privacy-forget {
+                background-position: -1310px top;
+            }
         }
     }
 }
@@ -143,9 +157,6 @@ html[dir="rtl"] {
 
 @media (max-width: @breakDesktop) and (min-width: @breakTablet) {
     #privacy .feature-list li {
-        &#privacy-dnt {
-            background-position: 35px top;
-        }
         &#privacy-browsing {
             background-position: -426px top;
         }
@@ -174,7 +185,7 @@ html[dir="rtl"] {
 @media (max-width: @breakTablet) {
 
     #fxfamilynav-tabzilla:before {
-        background-color: transparent; 
+        background-color: transparent;
     }
 
     // unset nav pointer
@@ -199,9 +210,6 @@ html[dir="rtl"] {
     }
 
     #privacy .feature-list li {
-        &#privacy-dnt {
-            background-position: 140px top;
-        }
         &#privacy-browsing {
             background-position: -320px top;
         }
@@ -210,6 +218,9 @@ html[dir="rtl"] {
         }
         &#privacy-forget {
             background-position: -1240px top;
+        }
+        &:last-child {
+            margin: 0;
         }
     }
 
@@ -248,9 +259,6 @@ html[dir="rtl"] {
     }
 
     #privacy .feature-list li {
-        &#privacy-dnt {
-            background-position: 70px top;
-        }
         &#privacy-browsing {
             background-position: -390px top;
         }
