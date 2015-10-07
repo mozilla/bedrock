@@ -3,11 +3,11 @@ FROM ${FROM_DOCKER_REPOSITORY}:${GIT_COMMIT}
 COPY . /app
 
 RUN echo "${GIT_COMMIT}" > static/revision.txt
-RUN ./manage.py collectstatic --noinput
+RUN ./manage.py collectstatic -l --noinput
 RUN ./manage.py update_product_details
 
 # Cleanup
-RUN ./docker/softlinkstatic.py
+RUN ./docker/bin/softlinkstatic.py
 
 # Change User
 RUN chown webdev.webdev -R .

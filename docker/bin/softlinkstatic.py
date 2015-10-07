@@ -10,8 +10,9 @@ with open(STATIC) as static_fp:
 for orig, hashed in static_files['paths'].items():
     if '?' in orig:
         continue
-    orig_path = os.path.join('./static', orig)
-    hashed_filename = os.path.split(hashed)[1]
+    hashed_path = os.path.join('./static', hashed)
+    orig_filename = os.path.split(orig)[1]
+
     # no exception handling b/c we want to abort on OS errors here
-    os.unlink(orig_path)
-    os.symlink(hashed_filename, orig_path)
+    os.unlink(hashed_path)
+    os.symlink(orig_filename, hashed_path)
