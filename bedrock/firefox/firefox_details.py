@@ -266,7 +266,7 @@ class FirefoxIOS(ProductDetails):
         version = self.channel_map.get(channel, 'version')
         return self.mobile_details[version]
 
-    def get_download_url(self, channel, type=None):
+    def get_download_url(self, channel='release', type=None):
         return self.store_url
 
 

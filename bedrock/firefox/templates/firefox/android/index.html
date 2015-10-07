@@ -67,7 +67,7 @@
         </small>
         <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for Android') }}</button>
 
-        {% if l10n_has_tag('ios_announce', 'firefox/new') %}
+        {% if l10n_has_tag('ios_announce', 'firefox/new') and not waffle.switch('firefox-ios-global') %}
           <p class="ios-link">{{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}</p>
         {% endif %}
       </div>
