@@ -771,4 +771,8 @@ URLS = flatten((
 
     # bug 1211007
     url_test('/thunderbird/download', '/thunderbird/'),
+
+    # bug 1211907
+    url_test('/firefox/independent', '/firefox/new/'),
+    url_test('/firefox/personal', '/firefox/new/'),
 ))

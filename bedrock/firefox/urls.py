@@ -32,7 +32,6 @@ urlpatterns = (
         views.all_downloads, name='firefox.all'),
     page('firefox/channel', 'firefox/channel.html'),
     redirect('^firefox/channel/android/$', 'firefox.channel', locale_prefix=False),
-    page('firefox/personal', 'firefox/personal.html'),
     page('firefox/desktop', 'firefox/desktop/index.html'),
     page('firefox/desktop/fast', 'firefox/desktop/fast.html'),
     page('firefox/desktop/customize', 'firefox/desktop/customize.html'),
@@ -102,7 +101,6 @@ urlpatterns = (
     page('firefox/pocket', 'firefox/pocket.html'),
     page('firefox/push', 'firefox/push.html'),
 
-    page('firefox/independent', 'firefox/independent.html'),
     url(r'^firefox/windows-10/welcome/$', views.Win10Welcome.as_view(), name='firefox.win10-welcome'),
 
     # Release notes

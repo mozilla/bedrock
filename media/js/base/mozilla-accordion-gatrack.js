@@ -2,6 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+ // Create namespace
+ if (typeof Mozilla === 'undefined') {
+     var Mozilla = {};
+ }
+
 // If accordion is present, set up global GA functions
 if (typeof Mozilla.Accordion === 'function') {
     Mozilla.Accordion.GLOBAL_ONEXPAND = function(section) {

@@ -541,20 +541,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_sync_anim-bundle.css',
     },
-    'firefox_independent': {
-        'source_filenames': (
-            'css/base/mozilla-share-cta.less',
-            'css/firefox/independent-splash.less',
-            'css/firefox/independent.less',
-        ),
-        'output_filename': 'css/firefox_independent-bundle.css',
-    },
-    'firefox-personal': {
-        'source_filenames': (
-            'css/firefox/personal.less',
-        ),
-        'output_filename': 'css/firefox-personal-bundle.css',
-    },
     'installer_help': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -1141,14 +1127,6 @@ PIPELINE_JS = {
             'js/firefox/new-ios-redirect.js',
         ),
         'output_filename': 'js/firefox_new_ios_redirect-bundle.js',
-    },
-    'firefox_independent': {
-        'source_filenames': (
-            'js/base/mozilla-share-cta.js',
-            'js/base/firefox-anniversary-video.js',
-            'js/firefox/independent.js',
-        ),
-        'output_filename': 'js/firefox_independent-bundle.js',
     },
     'firefox_pocket': {
         'source_filenames': (
