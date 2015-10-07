@@ -19,7 +19,13 @@ fi
 find . -newerat 20140101 -exec touch -t 201401010000 {} \;
 
 cat docker/dockerfiles/${DOCKERFILE} | envsubst > Dockerfile
-docker build -t $DOCKER_IMAGE_TAG --pull=${UPDATE_DOCKER_IMAGES:-false} . | tee docker-build.log
+
+if [[ $FORCE_REBUILD == "true" ]];
+then
+    NO_CACHE="true"
+fi;
+
+docker build -t $DOCKER_IMAGE_TAG --pull=${UPDATE_DOCKER_IMAGES:-false} --no-cache=${NO_CACHE:-false} . | tee docker-build.log
 
 if [[ $FORCE_REBUILD != "true" ]];
 then
