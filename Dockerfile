@@ -1,7 +1,10 @@
 from mozorg/bedrock_base
 
+RUN apt-get install -y --no-install-recommends npm
+
 COPY . /app
 
+RUN npm install --production
 RUN ./bin/peep.py install --no-cache-dir -r requirements/dev.txt
 RUN ./bin/peep.py install --no-cache-dir -r requirements/prod.txt
 RUN ./bin/peep.py install --no-cache-dir -r requirements/docker.txt

@@ -54,7 +54,21 @@ Sync the database and all of the external data locally. This gets product-detail
 
     $ bin/sync_all
 
-Lastly, you need to have `Node.js <https://nodejs.org/>`_ installed. The node dependencies for running the site are in the repository, but if you'd like to run the JS test suite you'll need everything, which you can get by running `npm install` from the root directory of the project.
+Lastly, you need to have `Node.js <https://nodejs.org/>`_ and
+`NPM <https://docs.npmjs.com/getting-started/installing-node>`_ installed. The node
+dependencies for running the site can be installed with ``npm``::
+
+    $ npm install --production
+
+But if you'd like to run the JS test suite you'll need everything, which you can get by running
+``npm install`` from the root directory of the project.
+
+.. note::
+
+    Bedrock uses `npm-lockdown <https://github.com/mozilla/npm-lockdown>`_ to ensure that Node.js
+    packages that get installed are the exact ones we meant (similar to peep.py for python). Refer
+    to the `lockdown documentation <https://github.com/mozilla/npm-lockdown#adding-new-modules>`_
+    for adding or upgrading Node.js dependencies.
 
 .. _run-python-tests:
 

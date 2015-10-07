@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
+  "scripts": {
+    "preinstall": "lockdown"
+  },
   "dependencies": {
     "cssmin": "0.4.3",
     "less": "2.4.0",
+    "lockdown": "https://github.com/mozilla/npm-lockdown/archive/v0.0.8.tar.gz",
     "uglify-js": "2.4.16"
   },
   "repository": {
