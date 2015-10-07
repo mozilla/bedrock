@@ -44,8 +44,9 @@ class TestDownloadButtons(TestCase):
 
         self.check_desktop_links(links[:4])
 
-        # Check that last link is Android
+        # Check that the rest of the links are Android and iOS
         eq_(pq(links[4]).attr('href'), settings.GOOGLE_PLAY_FIREFOX_LINK)
+        eq_(pq(links[5]).attr('href'), settings.APPLE_APPSTORE_FIREFOX_LINK)
 
     def test_button_force_direct(self):
         """
@@ -217,6 +218,17 @@ class TestDownloadButtons(TestCase):
 
         list = doc('.download-other .arch')
         eq_(list.length, 0)
+
+    def test_ios(self):
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox(platform='ios') }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'os_ios')
 
     def test_check_old_firefox(self):
         """

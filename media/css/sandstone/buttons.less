@@ -528,7 +528,9 @@ html[lang^='en'] {
 }
 
 .download-button-noicon .download-list .os_android,
-.download-button-android.download-button-noicon {
+.download-button-android.download-button-noicon,
+.download-button-noicon .download-list .os_ios,
+.download-button-ios.download-button-noicon {
     .download-link .download-title span {
         padding-top: 7px;
     }
@@ -544,7 +546,9 @@ html[lang^='en'] {
 }
 
 .download-button-small.download-button-noicon .download-list .os_android,
-.download-button-small.download-button-android.download-button-noicon {
+.download-button-small.download-button-android.download-button-noicon,
+.download-button-small.download-button-noicon .download-list .os_ios,
+.download-button-small.download-button-ios.download-button-noicon {
     .download-link .download-title span {
         padding-top: 0;
     }
@@ -616,12 +620,12 @@ html[lang^='en'] {
 .download-button .os_win,
 .download-button .os_osx,
 .download-button .os_android,
+.download-button .os_ios,
 .no-js .download-list,
 .other .download-list {
     display: none !important;
 }
 
-.ios .download-button .ios-download,
 // Uncomment this to enable the win64 download buttons:
 // .win7up.x86.x64 .download-button-aurora .os_win64,
 .linux .download-button .os_linux,
@@ -632,6 +636,7 @@ html[lang^='en'] {
 .download-button-android .os_android,
 .android .download-button-desktop .download-list,
 .android .download-button-desktop small.os_win,
+.download-button-ios .os_ios,
 .no-js .download-button-android .download-list,
 .other .download-button-android .download-list,
 .other .download-button small.os_win {
@@ -646,11 +651,25 @@ html[lang^='en'] {
     max-width: 250px;
 }
 
+// Declaring these funky rules for iOS due to the
+// waffle situation and needing to support both states.
+// This can be cleaned up post-launch (bug 1217929)
+.ios .download-button.ios-active .ios-download {
+    display: none !important;
+}
+
+.ios .download-button .ios-download,
+.ios .download-button.ios-active .os_ios,
+.ios .download-button-desktop.ios-active .download-list {
+    display: block !important;
+}
+
 // Small print
 
 .download-button small.download-other,
 .other .download-button-android small.download-other,
-.android .download-button-desktop small.download-other {
+.android .download-button-desktop small.download-other,
+.ios .download-button-desktop small.download-other {
     .open-sans;
     display: block;
     .font-size(11px);
@@ -666,12 +685,14 @@ html[lang^='en'] {
 
 .no-js .download-button small.download-other,
 .other .download-button small.download-other,
-.android .download-button-desktop small.download-other {
+.android .download-button-desktop small.download-other,
+.ios .download-button-desktop small.download-other {
     text-align: left;
 }
 
 .other .download-button,
-.android .download-button-desktop {
+.android .download-button-desktop,
+.ios .download-button-desktop {
     .unrecognized-download {
         display: block;
     }
@@ -715,7 +736,9 @@ html[lang^='en'] {
 // Mobile download buttons
 
 .download-button .download-list .os_android,
-.download-button-android {
+.download-button .download-list .os_ios,
+.download-button-android,
+.download-button-ios {
     .download-link {
        .download-title {
             padding-top: 0;
@@ -739,7 +762,9 @@ html[lang^='en'] {
 }
 
 .download-button.download-button-small .download-list .os_android,
-.download-button.download-button-small.download-button-android {
+.download-button.download-button-small.download-button-android,
+.download-button.download-button-small .download-list .os_ios,
+.download-button.download-button-small.download-button-ios {
     .download-link {
        .download-title {
             padding-top: 0;
@@ -810,7 +835,9 @@ html[lang="mk"] {
     }
 
     .download-button.download-button-small .download-list .os_android,
-    .download-button.download-button-small.download-button-android {
+    .download-button.download-button-small.download-button-android,
+    .download-button.download-button-small .download-list .os_ios,
+    .download-button.download-button-small.download-button-ios {
         .download-subtitle {
             padding-right: 0;
         }
@@ -843,7 +870,8 @@ html[lang="ms"],
 html[lang="ta"],
 html[lang="te"] {
     .download-button.download-button-beta.download-button-android.download-button-small,
-    .download-button.download-button-small .download-list .os_android {
+    .download-button.download-button-small .download-list .os_android,
+    .download-button.download-button-small .download-list .os_ios {
         .download-subtitle {
             width: auto;
             position: relative;
