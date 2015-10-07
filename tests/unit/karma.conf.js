@@ -12,7 +12,6 @@ module.exports = function(config) {
             'media/js/libs/jquery-1.11.3.min.js',
             'media/js/base/site.js',
             'media/js/base/global.js',
-            'media/js/base/firefox-anniversary-video.js',
             'media/js/base/mozilla-accordion-gatrack.js',
             'media/js/base/mozilla-accordion.js',
             'media/js/base/mozilla-firefox-default.js',

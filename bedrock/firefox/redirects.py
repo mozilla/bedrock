@@ -213,4 +213,8 @@ redirectpatterns = (
 
     # bug 876668
     redirect(r'^mobile/customize(?:/.*)?$', '/firefox/android/'),
+
+    # bug 1211907
+    redirect(r'^firefox/independent/?$', 'firefox.new'),
+    redirect(r'^firefox/personal/?$', 'firefox.new'),
 )
