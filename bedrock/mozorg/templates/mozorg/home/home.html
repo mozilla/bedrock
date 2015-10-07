@@ -253,7 +253,17 @@
           </a>
         </li>
       {% endif %}
-      {% if l10n_has_tag('mdn_10_years') %}
+      {% if LANG == 'en-US' %}
+        <li id="promo-11" class="item promo-large-landscape viewsource" tabindex="0">
+          <h2 class="primary go">{{ _('Build the Web of tomorrow, today') }}</h2>
+          <a class="panel-link" href="https://viewsourceconf.org/" data-promotion-id="promo-11" data-promotion-name="Mozilla Developer Network" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+            <div class="secondary">
+              <h3>{{ _('Join us at View Source<br> to learn and be inspired.') }}</h3>
+              <p class="more">{{ _('Register now') }}</p>
+            </div>
+          </a>
+        </li>
+      {% elif l10n_has_tag('mdn_10_years') %}
         <li id="promo-11" class="item promo-large-landscape mdn-10-years" tabindex="0">
           <h2 class="primary go">{{ _('Mozilla Developer Network') }}</h2>
           <a class="panel-link" href="https://developer.mozilla.org/docs/mdn_at_ten?utm_campaign=mdn10&amp;utm_source=mozilla.org&amp;utm_medium=home-tile" data-promotion-id="promo-11" data-promotion-name="Mozilla Developer Network" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
