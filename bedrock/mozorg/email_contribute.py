@@ -118,6 +118,7 @@ LOCALE_CONTACTS = {
     'nl': ['contribute@mozilla-nl.org'],
     'pl': ['chcepomoc@aviary.pl'],
     'pt-BR': ['envolva-se-mozilla-brasil@googlegroups.com'],
+    'pt-PT': ['contacto@mozilla.pt'],
     'ro': ['contact@mozilla.ro'],
     'ru': ['contribute@mozilla-russia.org'],
     'sl': ['info@mozilla.si'],
