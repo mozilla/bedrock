@@ -492,6 +492,16 @@
             <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %}><div>{{ _('Sync') }}</div></a></li>
           </ul>
         </li>
+      {% if waffle.switch('firefox-ios-global') %}
+        <li{% if activeprimary == 'ios' %} class="active"{% endif %}>
+          <a data-id="ios" href="{{ url('firefox.ios') }}" class="primary-link"><div>{{ _('<span>for</span> iOS') }}</div></a>
+
+          <ul class="subnav" id="ios-subnav">
+            <li><a href="{{ url('firefox.ios') }}"{% if activesub == 'index' %} class="selected"{% endif %}><div>{{ _('Overview') }}</div></a></li>
+            <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %}><div>{{ _('Sync') }}</div></a></li>
+          </ul>
+        </li>
+      {% endif %}
         <li{% if activeprimary == 'os' %} class="active"{% endif %}>
           <a data-id="os" href="{{ url('firefox.os.index') }}" class="primary-link"><div>{{ _('Firefox OS') }}</div></a>
 
@@ -526,6 +536,12 @@
         <li><a rel="external" href="https://addons.mozilla.org/android/" data-ga="android - addons">{{ _('Add-ons') }}</a></li>
         <li><a rel="external" href="https://support.mozilla.org/products/mobile" data-ga="android - support">{{ _('Need help?') }}</a></li>
       </ul>
+
+    {% if waffle.switch('firefox-ios-global') %}
+      <ul class="tertiarynav{% if activeprimary == 'ios' %} active{% endif %}">
+        <li><a rel="external" href="https://support.mozilla.org/products/ios" data-ga="ios - support">{{ _('Need help?') }}</a></li>
+      </ul>
+    {% endif %}
 
       <ul class="tertiarynav{% if activeprimary == 'os' %} active{% endif %}">
         <li><a rel="external" href="https://blog.mozilla.org/blog/category/firefox-os/" data-ga="os - news">{{ _('News') }}</a></li>
