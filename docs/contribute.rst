@@ -127,28 +127,28 @@ Server architecture
 - *URLs:* http://www-demo1.allizom.org/ , http://www-demo2.allizom.org/ and
   http://www-demo3.allizom.org/
 - *PHP SVN branch:* trunk, updated every 10 minutes
-- *Bedrock locale SVN branch:* trunk, updated every 10 minutes
+- *Bedrock locales dev repo:* master, updated via a webhook on pushes
 - *Bedrock Git branch:* any branch we want, manually updated
 
 **Dev**
 
 - *URL:* http://www-dev.allizom.org/
 - *PHP SVN branch:* trunk, updated every 10 minutes
-- *Bedrock locale SVN branch:* trunk, updated every 10 minutes
+- *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
 - *Bedrock Git branch:* master, updated every 10 minutes
 
 **Stage**
 
 - *URL:* http://www.allizom.org/
 - *PHP SVN branch:* tags/stage, updated every 10 minutes
-- *Bedrock locale SVN branch:* trunk, updated every 10 minutes
+- *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
 - *Bedrock Git branch:* master, updated manually
 
 **Production**
 
 - *URL:* http://www.mozilla.org/
 - *PHP SVN branch:* tags/production, updated every 10 minutes
-- *Bedrock locale SVN branch:* trunk, updated every 10 minutes
+- *Bedrock locales production repo:* master branch, updated via a webhook on pushes
 - *Bedrock Git branch:* master, updated manually
 
 We use Chief for the manual deploys. You can check the currently deployed git

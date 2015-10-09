@@ -98,15 +98,15 @@ Build The Environment
         If you didn't, you can load all the submodules with ``git
         submodule update --init --recursive``.
 
-#. **Using SVN Checkout The Locale Repository. (Optional)**
+#. **Using Git Clone The www.mozilla.org l10n Repository. (Optional)**
 
       If you would like to see localized versions of the site you will need to
-      checkout the locale directory to the root of the bedrock directory you just cloned.
+      clone the repository containing our translations in a ``locale`` directory::
 
       Clone the repository locally::
 
       ~$ cd bedrock
-      ~bedrock-legacy/bedrock$ svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
+      ~bedrock-legacy/bedrock$ git clone https://github.com/mozilla-l10n/www.mozilla.org locale
 
       .. note::
 

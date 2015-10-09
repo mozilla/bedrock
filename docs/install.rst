@@ -217,15 +217,10 @@ after it has started.
 Localization
 ------------
 
-If you want to install localizations, just check out the ``locale`` directory::
+If you want to install localizations, clone the repository containing our translations
+in a ``locale`` directory::
 
-    git svn clone https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
-    # or
-    svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
-
-You can use git or svn to checkout the repo. Make sure that it is named ``locale``. If you already have it checked out as ``locales``, just do::
-
-    ln -s locales locale
+    git clone https://github.com/mozilla-l10n/www.mozilla.org locale
 
 You can read more details about how to localize content :ref:`here<l10n>`.
 
@@ -269,7 +264,7 @@ And to list all Waffle switches::
 Notes
 -----
 
-A shortcut for activating virtual envs in zsh is `. venv/bin/activate`. The dot is the same as `source`.
+A shortcut for activating virtual envs in zsh or bash is `. venv/bin/activate`. The dot is the same as `source`.
 
 There's a project called `virtualenvwrapper <http://www.doughellmann.com/docs/virtualenvwrapper/>`_ that provides a better interface for managing/activating virtual envs, so you can use that if you want.
 

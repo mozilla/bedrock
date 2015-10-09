@@ -9,13 +9,11 @@ Localization
 ============
 
 The site is fully localizable. Localization files are not shipped with the code
-distribution, but are available on SVN:
+distribution, but are available in a separate GitHub repository:
 
 .. code-block:: console
 
-    $ git svn clone https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
-    # or
-    $ svn checkout https://svn.mozilla.org/projects/mozilla.com/trunk/locales/ locale
+    $ git clone https://github.com/mozilla-l10n/www.mozilla.org locale
 
 .lang files
 -----------
