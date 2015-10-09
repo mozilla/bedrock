@@ -8,4 +8,5 @@ from . import views
 
 urlpatterns = (
     url('^speakerrequest/$', views.SpeakerRequestView.as_view(), name='press.speaker-request'),
+    url('^press-inquiry/$', views.PressInquiryView.as_view(), name='press.press-inquiry'),
 )

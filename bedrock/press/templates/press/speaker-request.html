@@ -5,7 +5,7 @@
 {% block body_class %}sand{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'press_speaker_request' %}
+  {% stylesheet 'press' %}
 {% endblock %}
 
 {% block content %}
@@ -260,21 +260,8 @@
     {% endif %}
     </div><!--/.main-column-->
 
-    <aside class="sidebar">
-      {#
-        This list should likely be factored out to an include when all press pages
-        have been ported to bedrock.
-      #}
-      <h2>{{ _('Resources') }}</h2>
-      <ul>
-        <li><a href="https://blog.mozilla.org/press/ataglance/">{{ _('Mozilla at a Glance') }}</a></li>
-        <li><a href="https://blog.mozilla.org/press/media-library/">{{ _('Media Library') }}</a></li>
-        <li><a href="https://blog.mozilla.org/press/awards/">{{ _('Awards') }}</a></li>
-        <li><a href="https://blog.mozilla.org/press/kits/">{{ _('Firefox Press Kits') }}</a></li>
-        <li><a href="https://blog.mozilla.org/press/bios/">{{ _('Speaker Bios') }}</a></li>
-        <li><a href="{{ url('press.speaker-request') }}">{{ _('Speaker Request Form') }}</a></li>
-      </ul>
-    </aside>
+    {% include 'press/includes/resources.html' %}
+
   </section><!--/.container-->
 </main>
 

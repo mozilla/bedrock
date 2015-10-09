@@ -1,0 +1,98 @@
+{% extends "base-resp.html" %}
+
+{% block page_title %}{{_('Press Inquiry Form')}}{% endblock %}
+{% block body_class %}sand{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'press' %}
+{% endblock %}
+
+{% block content %}
+
+<main role="main" id="main-content">
+  <header class="main-header">
+    <h1 class="title-shadow-box">{{_('Press Inquiry')}}</h1>
+  </header>
+
+  <section class="container">
+
+    {% if not form_success %}
+      <h2 class="secondary-title">{{ _('Please complete and submit the form below with your press inquiry.') }}</h2>
+    {% endif %}
+
+    <div class="main-column">
+    {% if not form_success %}
+
+      {% if form.errors %}
+        <div class="tooltip">
+          {{ _('An error has occurred with your submission. Please review your information below and try again.') }}
+        </div>
+      {% endif %}
+
+      <form name="mozilla-contact-us" id="press_inquiry" class="press-inquiry" action="{{ url('press.press-inquiry') }}" method="post">
+
+        {{ csrf() }}
+
+        <fieldset>
+          <div class="field required">
+            <label for="id_jobtitle">{{ _('Job Title') }}</label>
+            {% if form.jobtitle.errors %}
+              <p class="error-msg">{{_('Please enter your job title.')}}</p>
+            {% endif %}
+            {{ form.jobtitle }}
+          </div>
+
+          <div class="field required">
+            <label for="id_name">{{ _('Name') }}</label>
+            {% if form.name.errors %}
+              <p class="error-msg">{{_('Please enter your name.')}}</p>
+            {% endif %}
+            {{ form.name }}
+          </div>
+
+          <div class="field required">
+            <label for="id_media_org">{{ _('Media Organization') }}</label>
+            {% if form.media_org.errors %}
+              <p class="error-msg">{{_('Please enter the name of your media organization.')}}</p>
+            {% endif %}
+            {{ form.media_org }}
+          </div>
+
+          <div class="field required">
+            <label for="id_inquiry">{{ _('Inquiry') }}</label>
+            {% if form.inquiry.errors %}
+              <p class="error-msg">{{_('Please enter the subject of your inquiry.')}}</p>
+            {% endif %}
+            {{ form.inquiry }}
+          </div>
+
+          <div class="field required">
+            <label for="id_deadline">{{ _('Deadline') }}</label>
+            {% if form.deadline.errors %}
+              <p class="error-msg">{{_('Please enter your deadline.')}}</p>
+            {% endif %}
+            {{ form.deadline }}
+            <div class="field-note">{{ _('2015-03-14 or March 14, 2015') }}</div>
+          </div>
+
+          {{ form.office_fax }}
+
+        </fieldset>
+
+        <div class="form-submit">
+          <input type="submit" class="button" id="form-submit" value="{{_('Submit')}}">
+        </div>
+      </form>
+    {% else %}
+      <h2>{{ _('Your request has been sent.') }}</h2>
+      <p>{{ _('Thank you for your inquiry.') }}</p>
+    {% endif %}
+    </div>
+
+    {% include 'press/includes/resources.html' %}
+
+  </section>
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
