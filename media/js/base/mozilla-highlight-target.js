@@ -108,28 +108,43 @@ if (typeof Mozilla === 'undefined') {
 
     HighlightTarget.handleCTAClick = function(e) {
         e.preventDefault();
-        HighlightTarget.tryHighlight(e.target.dataset.highlight, e.target.href);
+        HighlightTarget.tryHighlight(e.target, e.target.dataset.highlight, e.target.href);
+    };
+
+    /**
+     * Trigger a custom jQuery event on an element with supplied data object.
+     * @param {target} DOM element.
+     * @param {data} Array of a plain object.
+     */
+    HighlightTarget.fireCustomEvent = function(target, data) {
+        $(target).trigger('highlight-target', data);
     };
 
     /**
      * Check to see if a target is available before highlighting,
      * else fall back to a regular link click.
-     * @param {target} UITour target identifier.
+     * @param {target} DOM element.
+     * @param {target} UITour highlight identifier.
      * @param {href} Fallback link.
      */
-    HighlightTarget.tryHighlight = function(target, href) {
+    HighlightTarget.tryHighlight = function(target, id, href) {
 
-        if (typeof target !== 'string') {
-            throw new Error('tryHighlight: first argument target should be a string');
+        if (typeof target === 'undefined') {
+            throw new Error('tryHighlight: first argument target should be a DOM element');
         }
 
-        if (typeof href === 'undefined') {
-            throw new Error('tryHighlight: second argument href is undefined');
+        if (typeof id !== 'string') {
+            throw new Error('tryHighlight: second argument target should be a string');
         }
 
-        HighlightTarget.isTargetAvailable(target, function(available) {
+        if (typeof href !== 'string') {
+            throw new Error('tryHighlight: third argument href should be a string');
+        }
+
+        HighlightTarget.isTargetAvailable(id, function(available) {
             if (available) {
-                HighlightTarget.showHighlight(target);
+                HighlightTarget.showHighlight(id);
+                HighlightTarget.fireCustomEvent(target, id);
             } else {
                 HighlightTarget.doRedirect(href);
             }
