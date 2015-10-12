@@ -4,21 +4,12 @@
 #
 set -ex
 
-# Create a temporary virtualenv to install docker-compose
-TDIR=`mktemp -d`
-virtualenv $TDIR
-. $TDIR/bin/activate
-pip install docker-compose==1.2.0
+ENV_FILE=`mktemp`
+cat << EOF > $ENV_FILE
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1,
+SECRET_KEY=39114b6a-2858-4caf-8878-482a24ee9542
+ADMINS=["thedude@example.com"]
+EOF
 
-cat docker/docker-compose.yml | envsubst > ./docker-compose.yml
-
-DOCKER_COMPOSE="docker-compose --project-name jenkins${JOB_NAME}${BUILD_NUMBER}"
-# Start the database and give it some time to boot up
-# TODO Uncomment when unit tests can run without locales.
-## $DOCKER_COMPOSE up -d db
-## sleep 10s;
-## $DOCKER_COMPOSE run -T web ./manage.py test
-
-# Cleanup
-$DOCKER_COMPOSE stop
-rm -rf $TDIR
+docker run --env-file $ENV_FILE ${DOCKER_REPOSITORY}:${GIT_COMMIT} ./manage.py test
