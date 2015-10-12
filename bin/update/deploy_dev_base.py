@@ -31,15 +31,8 @@ def update_assets(ctx):
 
 
 @task
-def update_info(ctx):
-    """Add a bunch of info to the deploy log."""
-    # Temporary while dev is using git locales and prod is using svn
+def check_locale(ctx, tag):
+    """Ensure locales are from the git repo."""
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local("date")
-        ctx.local("git branch")
-        ctx.local("git log -3")
-        ctx.local("git status")
-        ctx.local("git submodule status")
-        with ctx.lcd("locale"):
-            ctx.local("git rev-parse HEAD")
-            ctx.local("git status")
+        ctx.local('[ ! -d locale/.git ] && rm -rf locale && '
+                  'git clone https://github.com/mozilla-l10n/www.mozilla.org.git locale')
