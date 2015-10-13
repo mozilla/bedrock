@@ -108,32 +108,44 @@ describe('mozilla-highlight-target.js', function() {
         });
     });
 
+    describe('fireCustomEvent', function() {
+
+        it('should trigger a custom event correctly', function() {
+            var id = 'privateWindow';
+            spyOn($.fn, 'trigger');
+            Mozilla.HighlightTarget.fireCustomEvent('.foo', id);
+            expect($.fn.trigger).toHaveBeenCalledWith('highlight-target', id);
+        });
+    });
+
     describe('tryHighlight', function() {
 
         beforeEach(function() {
             spyOn(Mozilla.HighlightTarget, 'showHighlight');
+            spyOn(Mozilla.HighlightTarget, 'fireCustomEvent');
             spyOn(Mozilla.HighlightTarget, 'doRedirect');
         });
 
-        it('should throw an error if target is not a string', function() {
+        it('should throw an error arguments are not valid', function() {
             spyOn(Mozilla.HighlightTarget, 'isTargetAvailable');
             expect(function() {
-                Mozilla.HighlightTarget.tryHighlight(123, 'https://www.mozilla.org/');
-            }).toThrowError('tryHighlight: first argument target should be a string');
-        });
-
-        it('should throw an error if no href is supplied', function() {
-            spyOn(Mozilla.HighlightTarget, 'isTargetAvailable');
+                Mozilla.HighlightTarget.tryHighlight(undefined, 'foo', 'https://www.mozilla.org/');
+            }).toThrowError('tryHighlight: first argument target should be a DOM element');
             expect(function() {
-                Mozilla.HighlightTarget.tryHighlight('privateWindow');
-            }).toThrowError('tryHighlight: second argument href is undefined');
+                Mozilla.HighlightTarget.tryHighlight({}, undefined, 'https://www.mozilla.org/');
+            }).toThrowError('tryHighlight: second argument target should be a string');
+            expect(function() {
+                Mozilla.HighlightTarget.tryHighlight({}, 'privateWindow', undefined);
+            }).toThrowError('tryHighlight: third argument href should be a string');
         });
 
         it('should show highlight if target is available', function() {
+            var elm = {};
             spyOn(Mozilla.HighlightTarget, 'isTargetAvailable').and.callFake(function(_target, callback) {
                 callback(true);
             });
-            Mozilla.HighlightTarget.tryHighlight('privateWindow', 'https://www.mozilla.org/');
+            Mozilla.HighlightTarget.tryHighlight(elm, 'privateWindow', 'https://www.mozilla.org/');
+            expect(Mozilla.HighlightTarget.fireCustomEvent).toHaveBeenCalledWith(elm, 'privateWindow');
             expect(Mozilla.HighlightTarget.showHighlight).toHaveBeenCalledWith('privateWindow');
         });
 
@@ -141,7 +153,7 @@ describe('mozilla-highlight-target.js', function() {
             spyOn(Mozilla.HighlightTarget, 'isTargetAvailable').and.callFake(function(_target, callback) {
                 callback(false);
             });
-            Mozilla.HighlightTarget.tryHighlight('privateWindow', 'https://www.mozilla.org/');
+            Mozilla.HighlightTarget.tryHighlight({}, 'privateWindow', 'https://www.mozilla.org/');
             expect(Mozilla.HighlightTarget.doRedirect).toHaveBeenCalledWith('https://www.mozilla.org/');
         });
 
