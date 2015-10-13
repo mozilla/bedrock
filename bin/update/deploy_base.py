@@ -91,8 +91,10 @@ def update_code(ctx, tag):
 def check_locale(ctx):
     """Ensure locales are from the git repo."""
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('[ ! -d locale/.git ] && rm -rf locale && '
-                  'git clone https://github.com/mozilla-l10n/bedrock-l10n.git locale')
+        ctx.local('if [ ! -d locale/.git ]; then '
+                  'rm -rf locale && '
+                  'git clone https://github.com/mozilla-l10n/bedrock-l10n.git locale;'
+                  'fi')
 
 
 @task

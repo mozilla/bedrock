@@ -34,5 +34,7 @@ def update_assets(ctx):
 def check_locale(ctx):
     """Ensure locales are from the git repo."""
     with ctx.lcd(settings.SRC_DIR):
-        ctx.local('[ ! -d locale/.git ] && rm -rf locale && '
-                  'git clone https://github.com/mozilla-l10n/www.mozilla.org.git locale')
+        ctx.local('if [ ! -d locale/.git ]; then '
+                  'rm -rf locale && '
+                  'git clone https://github.com/mozilla-l10n/www.mozilla.org.git locale;'
+                  'fi')
