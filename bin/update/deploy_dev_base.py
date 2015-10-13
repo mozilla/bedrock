@@ -31,7 +31,7 @@ def update_assets(ctx):
 
 
 @task
-def check_locale(ctx, tag):
+def check_locale(ctx):
     """Ensure locales are from the git repo."""
     with ctx.lcd(settings.SRC_DIR):
         ctx.local('[ ! -d locale/.git ] && rm -rf locale && '
