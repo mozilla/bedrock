@@ -1,20 +1,14 @@
 #!/bin/bash
 
-UPSTREAM=$(svn info https://svn.mozilla.org/projects/mozilla.com/trunk/locales | grep Revision | cut -f2 -d' ')
 cd /data/bedrock-stage/src/www.allizom.org-django/bedrock
 
 pushd locale > /dev/null
-RUNNING=$(svnversion ./ | tr -d '[A-Z]')
-UPDATED=0
-if [ "$RUNNING" != "$UPSTREAM" ]; then
-    svn -q up
-    UPDATED=1
-fi
+CUR_REV=$(git rev-parse HEAD)
+git pull --ff-only origin master > /dev/null
+NEW_REV=$(git rev-parse HEAD)
 popd > /dev/null
 
-if [ $UPDATED -eq 1 ]; then
+if [ "$NEW_REV" != "$CUR_REV" ]; then
+    echo "Deploying new locales: ${NEW_REV:0:10}"
     /data/bedrock-stage/deploy -q www.allizom.org-django/bedrock/locale
-else
-#    echo "Nothing to deploy."
-    exit 0
 fi

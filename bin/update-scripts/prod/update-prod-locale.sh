@@ -1,15 +1,18 @@
 #!/bin/bash
 
-UPSTREAM=$(svn info https://svn.mozilla.org/projects/mozilla.com/trunk/locales | grep Revision | cut -f2 -d' ')
 cd /data/bedrock/src/www.mozilla.org-django/bedrock
 
 pushd locale > /dev/null
-RUNNING=$(svnversion ./ | tr -d '[A-Z]')
-if [ "$RUNNING" != "$UPSTREAM" ]; then
-    svn -q up
-    echo -e "finished at $(date)" > /data/bedrock/src/www.mozilla.org-django/bedrock/media/locale_finished.txt
-    exit 0
-fi
+CUR_REV=$(git rev-parse HEAD)
+git pull --ff-only origin master > /dev/null
+NEW_REV=$(git rev-parse HEAD)
 popd > /dev/null
 
+if [ "$NEW_REV" != "$CUR_REV" ]; then
+    echo "Deploying new locales: ${NEW_REV:0:10}"
+    echo -e "finished at $(date)" > media/locale_finished.txt
+    exit 0
+fi
+
+# no update
 exit 1

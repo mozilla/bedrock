@@ -28,6 +28,7 @@ CRON_LOG_DIR = '/var/log/bedrock'
 @task
 def pre_update(ctx, ref=settings.UPDATE_REF):
     commands['update_code'](ref)
+    commands['check_locale']()
     commands['update_info']()
 
 
@@ -87,6 +88,14 @@ def update_code(ctx, tag):
 
 
 @task
+def check_locale(ctx, tag):
+    """Ensure locales are from the git repo."""
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local('[ ! -d locale/.git ] && rm -rf locale && '
+                  'git clone https://github.com/mozilla-l10n/bedrock-l10n.git locale')
+
+
+@task
 def update_assets(ctx):
     """Compile/compress static assets and fetch external data."""
     management_cmd(ctx, 'collectstatic --noinput', use_src_dir=True)
@@ -138,8 +147,8 @@ def update_info(ctx):
         ctx.local("git status")
         ctx.local("git submodule status")
         with ctx.lcd("locale"):
-            ctx.local("svn info")
-            ctx.local("svn status")
+            ctx.local("git rev-parse HEAD")
+            ctx.local("git status")
 
 
 @task
