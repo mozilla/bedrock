@@ -1,0 +1,22 @@
+A new press inquiry form has been submitted with the following information:
+
+------------------------------------
+Contact Information
+
++ Job Title
+{{ jobtitle }}
+
++ Name
+{{ name }}
+
++ Media Organization
+{{ media_org }}
+
+------------------------------------
+Inquiry Information
+
++ Inquiry
+{{ inquiry }}
+
++ Deadline
+{{ deadline }}

@@ -15,6 +15,70 @@ from bedrock.mozorg.forms import (DateInput, EmailInput, HoneyPotWidget,
 SPEAKER_REQUEST_FILE_SIZE_LIMIT = 5242880  # 5MB
 
 
+class PressInquiryForm(forms.Form):
+    jobtitle = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+    name = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+    media_org = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+    inquiry = forms.CharField(
+        required=True,
+        widget=forms.Textarea(
+            attrs={
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+    deadline = forms.CharField(
+        required=True,
+        widget=DateInput(
+            attrs={
+                'class': 'required',
+                'required': 'required',
+                'aria-required': 'true'
+            }
+        )
+    )
+
+    # honeypot
+    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
+
+    def clean_office_fax(self):
+        cleaned_data = super(PressInquiryForm, self).clean()
+        honeypot = cleaned_data.pop('office_fax', None)
+
+        if honeypot:
+            raise forms.ValidationError(
+                _('Your submission could not be processed'))
+
+
 class SpeakerRequestForm(forms.Form):
     # event fields
     sr_event_name = forms.CharField(

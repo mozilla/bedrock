@@ -13,8 +13,140 @@ from mock import Mock, patch
 from nose.tools import eq_, ok_
 
 from bedrock.press import forms as press_forms, views as press_views
-from bedrock.press.forms import SpeakerRequestForm
+from bedrock.press.forms import (PressInquiryForm, SpeakerRequestForm)
 from bedrock.mozorg.tests import TestCase
+
+
+class TestPressInquiry(TestCase):
+
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.view = press_views.PressInquiryView.as_view()
+        with self.activate('en-US'):
+            self.url = reverse('press.press-inquiry')
+
+        self.data = {
+            'jobtitle': 'Senior Inquiry Person',
+            'name': 'IceCat FireBadger',
+            'media_org': 'Big Money',
+            'inquiry': 'Want to know private stuff',
+            'deadline': datetime.date.today() + datetime.timedelta(days=1)
+        }
+
+    def tearDown(self):
+        mail.outbox = []
+
+    def test_view_post_valid_data(self):
+        """
+        A valid POST should 302 redirect.
+        """
+        request = self.factory.post(self.url, self.data)
+
+        # make sure CSRF doesn't hold us up
+        request._dont_enforce_csrf_checks = True
+
+        response = self.view(request)
+
+        eq_(response.status_code, 302)
+        eq_(response['Location'], '/en-US/press/press-inquiry/?success=True')
+
+    def test_view_post_missing_data(self):
+        """
+        POST with missing data should return 200 and contain form
+        errors in the template.
+        """
+
+        self.data.update(name='')  # remove required name
+
+        request = self.factory.post(self.url, self.data)
+
+        # make sure CSRF doesn't hold us up
+        request._dont_enforce_csrf_checks = True
+
+        response = self.view(request)
+
+        eq_(response.status_code, 200)
+        self.assertIn('Please enter your name.', response.content)
+
+    def test_view_post_honeypot(self):
+        """
+        POST with honeypot text box filled should return 200 and
+        contain general form error message.
+        """
+
+        self.data['office_fax'] = 'spammer'
+
+        request = self.factory.post(self.url, self.data)
+
+        # make sure CSRF doesn't hold us up
+        request._dont_enforce_csrf_checks = True
+
+        response = self.view(request)
+
+        eq_(response.status_code, 200)
+        self.assertIn('An error has occurred', response.content)
+
+    def test_form_valid_data(self):
+        """
+        Form should be valid.
+        """
+        form = PressInquiryForm(self.data)
+
+        # make sure form is valid
+        ok_(form.is_valid())
+
+    def test_form_missing_data(self):
+        """
+        With incorrect data (missing ame), form should not be valid and should
+        have name in the errors hash.
+        """
+        self.data.update(name='')  # remove required name
+
+        form = PressInquiryForm(self.data)
+
+        # make sure form is invalid
+        ok_(not form.is_valid())
+
+        # make sure name errors are in form
+        self.assertIn('name', form.errors)
+
+    def test_form_honeypot(self):
+        """
+        Form with honeypot text box filled should not be valid.
+        """
+        self.data['office_fax'] = 'spammer'
+
+        form = PressInquiryForm(self.data)
+
+        eq_(False, form.is_valid())
+
+    @patch('bedrock.press.views.jingo.render_to_string',
+           return_value='jingo rendered')
+    @patch('bedrock.press.views.EmailMessage')
+    def test_email(self, mock_email_message, mock_render_to_string):
+        """
+        Make sure email is sent with expected values.
+        """
+        mock_send = mock_email_message.return_value.send
+
+        # create POST request
+        request = self.factory.post(self.url, self.data)
+
+        # make sure CSRF doesn't hold us up
+        request._dont_enforce_csrf_checks = True
+
+        # submit POST request
+        self.view(request)
+
+        # make sure email was sent
+        mock_send.assert_called_once_with()
+
+        # make sure email values are correct
+        mock_email_message.assert_called_once_with(
+            press_views.PRESS_INQUIRY_EMAIL_SUBJECT,
+            'jingo rendered',
+            press_views.PRESS_INQUIRY_EMAIL_FROM,
+            press_views.PRESS_INQUIRY_EMAIL_TO)
 
 
 class TestSpeakerRequest(TestCase):

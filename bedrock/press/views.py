@@ -11,12 +11,50 @@ from django.views.generic.edit import FormView
 
 from bedrock.base.urlresolvers import reverse
 
-from .forms import SpeakerRequestForm
+from .forms import (PressInquiryForm, SpeakerRequestForm)
 from lib import l10n_utils
 
-SPEAKER_REQUEST_EMAIL_FROM = 'Mozilla.com <noreply@mozilla.com>'
+PRESS_INQUIRY_EMAIL_SUBJECT = 'New Press Inquiry'
+PRESS_INQUIRY_EMAIL_TO = ['press@mozilla.com']
+SPEAKER_REQUEST_EMAIL_FROM = PRESS_INQUIRY_EMAIL_FROM = 'Mozilla.com <noreply@mozilla.com>'
 SPEAKER_REQUEST_EMAIL_SUBJECT = 'New speaker request form submission'
 SPEAKER_REQUEST_EMAIL_TO = ['events@mozilla.com']
+
+
+class PressInquiryView(FormView):
+    form_class = PressInquiryForm
+    template_name = 'press/press-inquiry.html'
+
+    @method_decorator(csrf_protect)
+    def dispatch(self, request, *args, **kwargs):
+        return super(PressInquiryView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(PressInquiryView, self).get_context_data(**kwargs)
+        context['form_success'] = 'success' in self.request.GET
+        return context
+
+    def get_success_url(self):
+        return reverse('press.press-inquiry') + '?success=True'
+
+    def form_valid(self, form):
+        self.send_email(form)
+        return super(PressInquiryView, self).form_valid(form)
+
+    def send_email(self, form):
+        subject = PRESS_INQUIRY_EMAIL_SUBJECT
+        sender = PRESS_INQUIRY_EMAIL_FROM
+        to = PRESS_INQUIRY_EMAIL_TO
+        msg = jingo.render_to_string(self.request, 'press/emails/press-inquiry.txt', form.cleaned_data)
+
+        email = EmailMessage(subject, msg, sender, to)
+        email.send()
+
+    def render_to_response(self, context, **response_kwargs):
+        return l10n_utils.render(self.request,
+                                 self.get_template_names(),
+                                 context,
+                                 **response_kwargs)
 
 
 class SpeakerRequestView(FormView):

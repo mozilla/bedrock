@@ -659,11 +659,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/plugincheck-bundle.css',
     },
-    'press_speaker_request': {
+    'press': {
         'source_filenames': (
-            'css/press/speaker-request.less',
+            'css/press/press.less',
         ),
-        'output_filename': 'css/press_speaker_request-bundle.css',
+        'output_filename': 'css/press-bundle.css',
     },
     'privacy': {
         'source_filenames': (
