@@ -225,6 +225,10 @@ redirectpatterns = (
     redirect(r'^legal/amendment(\.html|/)?', 'foundation.documents.articles-of-incorporation-amendment'),
     redirect(r'^legal/bylaws(\.html|/)?', 'foundation.documents.bylaws'),
 
+    # bug 960689, 1013349, 896474
+    redirect(r'^about/legal\.html', 'legal.index'),
+    redirect(r'^about/partnerships\.html', 'mozorg.partnerships'),
+
     # Bug 1073269 /dnt/ -> /firefox/dnt/
     redirect(r'^dnt/?$', 'firefox.dnt'),
 
