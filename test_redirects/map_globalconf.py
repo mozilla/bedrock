@@ -775,4 +775,8 @@ URLS = flatten((
     # bug 1211907
     url_test('/firefox/independent', '/firefox/new/'),
     url_test('/firefox/personal', '/firefox/new/'),
+
+    # bug 960689, 1013349, 896474
+    url_test('/about/legal.html', '/about/legal/'),
+    url_test('/about/partnerships.html', '/about/partnerships/'),
 ))
