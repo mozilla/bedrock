@@ -414,6 +414,10 @@ noscript {
     #download-started {
         padding: 20px 80px 80px;
     }
+
+    #download-ready > .download-other-desktop {
+        bottom: 194px;
+    }
 }
 
 /* Mobile layout: 320px */
@@ -480,6 +484,7 @@ noscript {
 
     #features-download {
         padding-top: 10px;
+        margin-bottom: @baseLine;
 
         .download-button {
             display: block;
@@ -553,6 +558,15 @@ noscript {
     #download-started {
         .font-size(12px);
         padding: 20px 40px 40px;
+    }
+
+    #download-ready > .download-other-desktop {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin-left: 0;
+        width: auto;
+        margin-bottom: @baseLine * 2;
     }
 
     .footer-newsletter-form {
