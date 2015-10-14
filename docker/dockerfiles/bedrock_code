@@ -4,7 +4,6 @@ COPY . /app
 
 RUN echo "${GIT_COMMIT}" > static/revision.txt
 RUN ./manage.py collectstatic -l --noinput
-RUN ./manage.py update_product_details
 
 # Cleanup
 RUN ./docker/bin/softlinkstatic.py
