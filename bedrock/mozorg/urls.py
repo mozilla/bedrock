@@ -65,6 +65,7 @@ urlpatterns = (
     page('about/governance/policies/regressions', 'mozorg/about/governance/policies/regressions.html'),
     page('about/governance/policies/reviewers', 'mozorg/about/governance/policies/reviewers.html'),
 
+    page('contact', 'mozorg/contact/contact-landing.html'),
     page('contact/spaces', 'mozorg/contact/spaces/spaces-landing.html'),
     page('contact/spaces/mountain-view', 'mozorg/contact/spaces/mountain-view.html'),
     page('contact/spaces/auckland', 'mozorg/contact/spaces/auckland.html'),

@@ -213,9 +213,6 @@ redirectpatterns = (
     # latest version's notes
     redirect(r'^firefox/os/notes/?$', '/firefox/os/notes/1.3/'),
 
-    # Bug 896585 - Send /contact/ to the spaces landing
-    redirect(r'^contact/?$', '/contact/spaces/'),
-
     # Bug 997577 - /legal/ -> /about/legal/
     redirect(r'^legal/fraud-report/?$', '/about/legal/fraud-report/'),
     redirect(r'^legal/eula/?$', '/about/legal/eula/'),

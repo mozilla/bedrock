@@ -114,13 +114,13 @@
 
             //set the current tab navigation item
             $('ul.category-tabs li[data-id="' + tab + '"]').addClass('current');
-
-            // set the current list menu navigation item
             $('.nav-category li[data-id="' + id + '"]').addClass('current');
 
-            // hide the community sub menu's
-            $('.accordion .submenu').hide();
-            mozMap.toggleCommunitySubMenu();
+            if (tab === 'communities') {
+                // hide the community sub menu's
+                $('#nav-communities .submenu').hide();
+                mozMap.toggleCommunitySubMenu();
+            }
         },
 
         /*
@@ -156,18 +156,25 @@
                     mozMap.updateCommunityNavItem(state.data.id);
                     mozMap.showCommunityContent(state.url, state.data.id);
 
+                } else if (state.data.tab && state.data.tab === 'contact') {
+                    // Hide spaces and community nav+meta
+                    mozMap.toggleNav('contact');
+                    mozMap.toggleMobileNav('contact');
+                    mozMap.showContactUsContent(state.url, state.data.id);
+
                 } else {
                     // if state.data.tab is undefined we must be on our
                     // first history item when the page loaded
-                    if (current !== initialTabStateId) {
+                    if (initialTabStateId === 'contact') {
                         mozMap.updateTabState(initialTabStateId);
                         mozMap.setMapState();
-                    }
+                        mozMap.showContactUsContent(null, initContentId);
 
-                    if (initialTabStateId === 'spaces') {
+                    } else if (initialTabStateId === 'spaces') {
                         mozMap.toggleNav('spaces');
                         mozMap.updateSpaceNavItem(initContentId);
                         mozMap.showSpace(null, initContentId);
+
                     } else if (initialTabStateId === 'communities') {
                         mozMap.toggleNav('communities');
                         mozMap.updateCommunityNavItem(initContentId);
@@ -311,6 +318,8 @@
                 $('#nav-spaces, #meta-spaces').fadeOut(100, function () {
                     $('#nav-communities, #meta-communities').show();
                 });
+            } else if (tab === 'contact' && wideMode) {
+                $('#nav-spaces, #meta-spaces, #nav-communities, #meta-communities').fadeOut(100);
             }
         },
 
@@ -321,6 +330,8 @@
             } else if (tab === 'communities' && !wideMode) {
                 $('#nav-spaces-select, #meta-spaces').hide();
                 $('#nav-communities-select, #meta-communities').show();
+            } else if (tab === 'contact'&& !wideMode) {
+                $('#nav-communities-select, #meta-communities, #nav-spaces-select, #meta-spaces').hide();
             }
         },
 
@@ -403,8 +414,6 @@
                 } else {
                     $('#nav-spaces-select, #meta-spaces').show();
                 }
-                //show the current space marker
-                mozMap.showSpace();
             } else if (state === 'communities') {
                 initContentId = $('#nav-communities li.current').data('id');
                 // Show community nav+meta
@@ -413,8 +422,8 @@
                 } else {
                     $('#nav-communities-select, #meta-communities').show();
                 }
-                // show the community region
-                mozMap.showCommunityContent();
+            } else if (state === 'contact') {
+                initContentId = $('.category-tabs li.current').data('id');
             }
             //store ref to initial tab state
             initialTabStateId = state;
@@ -458,6 +467,19 @@
                 mozMap.showMapLegend();
                 // reposition labels above community layer
                 mozMap.setLabelLayerIndex(7);
+            } else if (state === 'contact') {
+                //clear commuity layers
+                mozMap.clearCommunityLayers();
+                // unbind click events on community nav
+                mozMap.unbindCommunityNav();
+                // add spaces marker layer.
+                mozMap.addSpacesMarkers();
+                // hide community legend
+                mozMap.hideMapLegend();
+                // reposition markers above the labels
+                mozMap.setLabelLayerIndex(1);
+
+                mozMap.updateTabState('contact');
             }
         },
 
@@ -685,7 +707,7 @@
 
         /*
          * Updates the current active tab and then updates the map state.
-         * Param: @tab tab string identifier (e.g. 'spaces' or 'communities').
+         * Param: @tab tab string identifier (e.g. 'spaces', 'communities' or 'contact').
          */
         updateTabState: function (tab) {
             $('ul.category-tabs li.current').removeClass('current');
@@ -775,6 +797,33 @@
             }
 
             mozMap.highlightLegend(region);
+        },
+
+        /*
+         * Show the contact us page content.
+         * Determined using data-id attribute and .current list item.
+         */
+        showContactUsContent: function(url, cacheId) {
+            var $current = $('.category-tabs li.current');
+            var contentUrl = url || $current.prop('href');
+            var $entryContainer = $('#entry-container');
+
+            $('#nav-spaces, #nav-communities, #meta-spaces, #meta-communities').hide();
+
+            if (contentCache.hasOwnProperty(cacheId)) {
+                // abort any pending xhr if we're loading from cache
+                mozMap.abortRequest();
+                // if the content is already cached display it
+                $entryContainer.html(contentCache[cacheId]);
+                // update the page title
+                mozMap.setPageTitle(cacheId);
+                // this reuses the spaces view
+                mozMap.panToMarker('spaces');
+            } else {
+                $entryContainer.empty();
+                // request content via ajax
+                mozMap.requestContent(contentUrl);
+            }
         },
 
         /*
