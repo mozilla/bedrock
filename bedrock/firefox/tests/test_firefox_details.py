@@ -223,33 +223,33 @@ class TestFirefoxDesktop(TestCase):
         url = builds[0]['platforms']['linux64']['download_url']
         eq_(parse_qsl(urlparse(url).query)[1], ('os', 'linux64'))
 
-    @patch.object(firefox_desktop, '_get_json_data',
+    @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(FIREFOX_ESR='24.2')))
     def test_esr_major_versions(self):
         """ESR versions should be dynamic based on data."""
         eq_(firefox_desktop.esr_major_versions, [24])
 
-    @patch.object(firefox_desktop, '_get_json_data',
+    @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(FIREFOX_ESR='24.6.0',
                                          FIREFOX_ESR_NEXT='31.0.0')))
     def test_esr_major_versions_prev(self):
         """ESR versions should show previous when available."""
         eq_(firefox_desktop.esr_major_versions, [24, 31])
 
-    @patch.object(firefox_desktop, '_get_json_data',
+    @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(LATEST_FIREFOX_VERSION='Phoenix',
                                          FIREFOX_ESR='Albuquerque')))
     def test_esr_major_versions_no_latest(self):
         """ESR versions should not blow up if current version is broken."""
         eq_(firefox_desktop.esr_major_versions, [])
 
-    @patch.object(firefox_desktop, '_get_json_data',
+    @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(LATEST_FIREFOX_VERSION='18.0.1')))
     def test_latest_major_version(self):
         """latest_major_version should return an int of the major version."""
         eq_(firefox_desktop.latest_major_version('release'), 18)
 
-    @patch.object(firefox_desktop, '_get_json_data',
+    @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(LATEST_FIREFOX_VERSION='Phoenix')))
     def test_latest_major_version_no_int(self):
         """latest_major_version should return 0 when no int."""
@@ -293,7 +293,7 @@ class TestFirefoxDesktop(TestCase):
         ok_('product=firefox-beta-stub&' not in url)
 
 
-@patch.object(firefox_android, '_get_json_data',
+@patch.object(firefox_android._storage, 'data',
               Mock(return_value=dict(version='22.0.1', beta_version='23.0')))
 class TestFirefoxAndroid(TestCase):
 

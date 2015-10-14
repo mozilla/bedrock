@@ -136,11 +136,8 @@ https://github.com/mozilla/basket-client/archive/3ed2f4e16052a7a375cc28f2e195c72
 # requests: remotes/origin/HEAD
 # sha256: oACosSbCnC4k0NAis97Nrf1oFBDG5-wWHBypx3T82V8
 https://github.com/kennethreitz/requests/archive/46d646064ca0836a7d7b4d50ea2c762d12ff8ce1.tar.gz#egg=requests
-
-###### FROM PLAYDOH-LIB ######
-
-# sha256: xQv_uYKKkTkVaQShHFCHMtE9v1esJWJevF7ao-0xKEA
-django-mozilla-product-details==0.7.1
+# sha256: WN0CwygZupfEB4uMEziI0w9_vTk3KW_9rVD3n7V9XNs
+django-mozilla-product-details==0.8.1
 
 # django-appconf: develop~28
 # sha256: PoDkmCCdclPizBpPmwLn2oGReakQySddW8Iy3kjmfDM

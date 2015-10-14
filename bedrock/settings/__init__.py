@@ -88,3 +88,5 @@ if len(sys.argv) > 1 and sys.argv[1] == 'test':
     TEMPLATE_DEBUG = True
     # don't cache product-details
     CACHES['product-details']['BACKEND'] = 'django.core.cache.backends.dummy.DummyCache'
+    # use default product-details data
+    PROD_DETAILS_STORAGE = 'product_details.storage.PDFileStorage'
