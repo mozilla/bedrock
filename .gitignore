@@ -35,3 +35,5 @@ bedrock/externalfiles/files_cache
 mofo_security_advisories
 .idea
 .env
+.cache
+tests/functional/results.html

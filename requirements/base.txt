@@ -171,6 +171,9 @@ https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a
 # sha256: 9h4JCadD7tN7Egfjio57Si_gqCGF428r4lLvGz-QF1g
 nose==1.3.6
 
+# sha256: REZqm8tW0uVodQ-RUE0SeMdOq7JZowWwbpdbh7UWNdo
+nose-exclude==0.4.1
+
 # sha256: 7ZCm7YglpRbGU_yQmcBTvjNbZPoASpA6GBt-AUiOxdQ
 # sha256: Js7zxvYt8u7pVaJRld5veTiBMXwPX9GhxvniLzUakxM
 django-nose==1.4
