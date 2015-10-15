@@ -12,7 +12,7 @@ cache:
     - $HOME/.cache/pip
     - node_modules
 before_script:
-  - flake8 bedrock lib
+  - flake8 bedrock lib tests
   - python manage.py runscript check_calendars
   - mysql -e 'create database bedrock_test;'
   - python manage.py version
