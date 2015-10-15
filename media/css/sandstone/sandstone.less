@@ -619,12 +619,13 @@ nav.menu-bar {
 /* }}} */
 /* {{{ Footer Email Form */
 
-.footer-newsletter-form, #newsletter-form {
+.footer-newsletter-form,
+#newsletter-form {
     padding-top: @baseLine;
     padding-bottom: @baseLine;
     margin-bottom: 0;
 
-    h3 {
+    .form-title {
         .span(3);
         margin-left: 0;
     }
@@ -657,7 +658,7 @@ nav.menu-bar {
     }
 
     &.loading {
-        h3,
+        .form-title,
         .form-contents,
         .form-submit {
             .transition(opacity .2s ease-in-out);
@@ -669,7 +670,7 @@ nav.menu-bar {
 .html-rtl {
     .footer-newsletter-form,
     #newsletter-form {
-        h3,
+        .form-title,
         .form-contents,
         .form-submit,
         .field-privacy input {
@@ -684,7 +685,7 @@ nav.menu-bar {
 .newsletter-form.thank {
     display: none;
     overflow: hidden;
-    h3 {
+    .form-title {
         width: auto;
         margin: auto;
         padding: 0;

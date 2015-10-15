@@ -2,12 +2,22 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% macro mozorg_newsletter_form() %}
+{% macro mozorg_newsletter_form(title='', subtitle='') %}
   {# Note: This form differs from the email_newsletter_form() that appears on most pages;
     The global form submits to bedrock, this one submits to sendto.mozilla.org #}
 <aside>
   <form id="mozorg-newsletter-form" class="billboard footer-newsletter-form newsletter-form" method="post" action="https://sendto.mozilla.org/page/s/sign-up-for-mozilla">
-    <h3>{{ _('Get Mozilla updates') }}</h3>
+    <div class="form-title">
+    {%- if title -%}
+      <h3>{{ title }}</h3>
+    {%- else -%}
+      <h3>{{ _('Get Mozilla updates') }}</h3>
+    {%- endif -%}
+
+    {%- if subtitle -%}
+      <h4>{{ subtitle }}</h4>
+    {%- endif -%}
+    </div>
 
     <div class="form-contents">
       <div class="field field-email">
