@@ -654,9 +654,10 @@ class Win10Welcome(l10n_utils.LangFilesMixin, TemplateView):
         variant = self.request.GET.get('v', '')
         template = 'firefox/win10-welcome.html'
 
-        # ensure variant is one of 5 accepted values and locale is en-US only.
-        if (variant in ['1', '2', '3', '4', '5'] and self.request.locale == 'en-US'):
-            template = 'firefox/win10_variants/variant-' + variant + '.html'
+        # ensure variant is one of 4 accepted values and locale is en-US only.
+        # now on round 2 of testing, hence "-2" in template name
+        if (variant in ['1', '2', '3', '4'] and self.request.locale == 'en-US'):
+            template = 'firefox/win10_variants/variant-2-' + variant + '.html'
 
         return [template]
 
