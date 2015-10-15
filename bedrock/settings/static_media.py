@@ -847,6 +847,7 @@ PIPELINE_CSS = {
     },
     'thunderbird-landing': {
         'source_filenames': (
+            'css/base/menu-resp.less',
             'css/base/simple_footer-resp.less',
             'css/thunderbird/landing.less',
         ),
