@@ -226,7 +226,6 @@ mozilla.community.turkey                The Mozilla community in Turkey. (Modera
 mozilla.community.tunisia               The Mozilla community in Tunisia.
 mozilla.community.uganda                The Mozilla community in Uganda. (Moderated)
 mozilla.community.uk                    The Mozilla community in the United Kingdom. (Moderated)
-mozilla.community.usa                   The Mozilla community in the United States of America. (Moderated)
 mozilla.community.vietnam               The Mozilla community in Vietnam. (Moderated)
 
 mozilla.dev.general.zh                  Mozilla project development discussion in Chinese. (Moderated)
