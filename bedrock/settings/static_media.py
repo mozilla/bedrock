@@ -870,6 +870,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/annual_2013-bundle.css',
     },
+    'annual_2014': {
+        'source_filenames': (
+            'css/foundation/annual2013.less',
+            'css/foundation/annual2014.less',
+        ),
+        'output_filename': 'css/annual_2014-bundle.css',
+    },
     'partners': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
@@ -1694,7 +1701,7 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/partners_desktop-bundle.js',
     },
-    'thunderbird_all': {
+    'thunderbird-all': {
         'source_filenames': (
             'js/base/mozilla-pager.js',
             'js/firefox/firefox-language-search.js',
