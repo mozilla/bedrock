@@ -245,6 +245,31 @@ URLS = flatten((
     # bug 1124042
     url_test('/thunderbird/features/email_providers.html', '/thunderbird/email-providers/'),
 
+    # bug 1133266
+    url_test('/thunderbird/legal/privacy/', '/privacy/thunderbird/'),
+    url_test('/thunderbird/about/privacy-policy/', '/privacy/archive/thunderbird/2010-06/'),
+
+    # bug 1196578
+    url_test('/thunderbird/about/legal/eula/', '/about/legal/eula/'),
+    url_test('/thunderbird/about/legal/eula/thunderbird2.html', '/about/legal/eula/thunderbird-2/'),
+    url_test('/thunderbird/about/legal/eula/thunderbird.html', '/about/legal/eula/thunderbird-1.5/'),
+
+    # bug 1204579
+    url_test('/thunderbird/2.0.0.0/eula/', '/about/legal/eula/thunderbird-2/'),
+    url_test('/thunderbird/about/legal/', '/about/legal/terms/mozilla/'),
+    url_test('/thunderbird/download/', '/thunderbird/'),
+    url_test('/thunderbird/about/', 'https://wiki.mozilla.org/Thunderbird'),
+    url_test('/thunderbird/about/mission/', 'https://wiki.mozilla.org/Thunderbird'),
+    url_test('/thunderbird/about/{careers,contact,get-involved}/',
+             'https://wiki.mozilla.org/Thunderbird#Contributing'),
+    url_test('/thunderbird/community/', 'https://wiki.mozilla.org/Thunderbird#Contributing'),
+    url_test('/thunderbird/3.1{a,b,rc}{1,2}/',
+             'http://website-archive.mozilla.org/www.mozilla.org/thunderbird/thunderbird/3.1{a,b,rc}{1,2}/'),
+    url_test('/thunderbird/{6,7,8,9}.0beta/',
+             'http://website-archive.mozilla.org/www.mozilla.org/thunderbird/thunderbird/{6,7,8,9}.0beta/'),
+    url_test('/thunderbird/about/{board,press,staff}/',
+             'http://website-archive.mozilla.org/www.mozilla.org/thunderbird/thunderbird/about/{board,press,staff}/'),
+
     # bug 1121082
     url_test('/hello/', '/firefox/hello/'),
 

@@ -29,4 +29,30 @@ redirectpatterns = (
     redirect(r'^thunderbird/releasenotes/?$', 'thunderbird.latest.notes'),
     # bug 1211007
     redirect(r'^thunderbird/download/?', 'thunderbird.index'),
+
+    # bug 1133266
+    redirect(r'^thunderbird/legal/privacy/?$', 'privacy.notices.thunderbird'),
+    redirect(r'^thunderbird/about/privacy-policy/?$',
+             'privacy.archive.thunderbird-2010-06'),
+
+    # bug 1196578
+    redirect(r'^thunderbird/about/legal/eula/?$', 'legal.eula'),
+    redirect(r'^thunderbird/about/legal/eula/thunderbird2',
+             'legal.eula.thunderbird-2-eula'),
+    redirect(r'^thunderbird/about/legal/eula/thunderbird',
+             'legal.eula.thunderbird-1.5-eula'),
+
+    # bug 1204579
+    redirect(r'^thunderbird/2.0.0.0/eula/?$', 'legal.eula.thunderbird-2-eula'),
+    redirect(r'^thunderbird/about/legal/?$', 'legal.terms.mozilla'),
+    redirect(r'^thunderbird/about(/mission)?/?$',
+             'https://wiki.mozilla.org/Thunderbird'),
+    redirect(r'^thunderbird/(about/(careers|contact|get-involved)|community)/?$',
+             'https://wiki.mozilla.org/Thunderbird#Contributing'),
+    redirect(r'^thunderbird/(?P<version>\d\.\d(?:a|b|rc)\d|[6-9]\.0beta)/?$',
+             'http://website-archive.mozilla.org/www.mozilla.org/thunderbird'
+             '/thunderbird/{version}/'),
+    redirect(r'^thunderbird/about/(?P<page>board|press|staff)/',
+             'http://website-archive.mozilla.org/www.mozilla.org/thunderbird'
+             '/thunderbird/about/{page}/'),
 )
