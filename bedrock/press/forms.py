@@ -36,6 +36,17 @@ class PressInquiryForm(forms.Form):
             }
         )
     )
+    user_email = forms.EmailField(
+        max_length=254,  # max length allowed for emails
+        required=True,
+        widget=EmailInput(
+            attrs={
+                'required': 'required',
+                'class': 'required',
+                'aria-required': 'true',
+            }
+        ),
+    )
     media_org = forms.CharField(
         required=True,
         widget=forms.TextInput(

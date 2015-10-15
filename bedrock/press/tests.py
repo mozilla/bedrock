@@ -28,6 +28,7 @@ class TestPressInquiry(TestCase):
         self.data = {
             'jobtitle': 'Senior Inquiry Person',
             'name': 'IceCat FireBadger',
+            'user_email': 'courage@nowhere.com',
             'media_org': 'Big Money',
             'inquiry': 'Want to know private stuff',
             'deadline': datetime.date.today() + datetime.timedelta(days=1)
@@ -97,18 +98,18 @@ class TestPressInquiry(TestCase):
 
     def test_form_missing_data(self):
         """
-        With incorrect data (missing ame), form should not be valid and should
-        have name in the errors hash.
+        With incorrect data (missing email), form should not be valid and should
+        have user_email in the errors hash.
         """
-        self.data.update(name='')  # remove required name
+        self.data.update(user_email='')  # remove required user_email
 
         form = PressInquiryForm(self.data)
 
         # make sure form is invalid
         ok_(not form.is_valid())
 
-        # make sure name errors are in form
-        self.assertIn('name', form.errors)
+        # make sure user_email errors are in form
+        self.assertIn('user_email', form.errors)
 
     def test_form_honeypot(self):
         """
