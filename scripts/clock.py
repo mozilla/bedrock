@@ -6,7 +6,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 from bedrock.events.cron import cleanup_ical_events, update_ical_feeds
 from bedrock.mozorg.cron import update_tweets
-from scripts import update_firefox_os_feeds, update_tableau_data
+from scripts import update_firefox_os_feeds
 
 
 schedule = BlockingScheduler()
@@ -37,16 +37,6 @@ class scheduled_job(object):
 
     def log(self, message):
         print('Clock job {0}: {1}'.format(self.name, message))
-
-
-@scheduled_job('interval', seconds=5)
-def job_should_pass():
-    print('DO ALL THE THINGS!!!')
-
-
-@scheduled_job('interval', seconds=5)
-def job_raise_exception():
-    raise ValueError("Stuff's broke yo!")
 
 
 @scheduled_job('interval', minutes=30)
@@ -80,13 +70,17 @@ def job_update_firefox_os_feeds():
     update_firefox_os_feeds.run()
 
 
-@scheduled_job('cron', day_of_week='sat', hour=0)
-def job_update_tableau_data():
-    update_tableau_data.run()
-
-
 def run():
-    try:
-        schedule.start()
-    except (KeyboardInterrupt, SystemExit):
-        pass
+    # TODO enable this when we're ready to run a clock process
+    # try:
+    #     schedule.start()
+    # except (KeyboardInterrupt, SystemExit):
+    #     pass
+
+    # For now just run them all and exit
+    for job in schedule.get_jobs():
+        try:
+            job.func()
+        except Exception:
+            # exceptions will be printed
+            pass
