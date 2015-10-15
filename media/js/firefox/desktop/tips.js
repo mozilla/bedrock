@@ -116,9 +116,9 @@
 
             // GA tracking
             window.dataLayer.push({
-                event: 'tips-interaction',
-                interaction: 'tab clicks to',
-                browserAction: $this.attr('href')
+                'event': 'tips-interaction',
+                'interaction': 'tab clicks to',
+                'browserAction': $this.attr('href')
             });
         });
 
@@ -140,9 +140,9 @@
                 // GA tracking
                 var gaAction = (isPrev) ? 'prev link to' : 'next link to';
                 window.dataLayer.push({
-                    event: 'tips-interaction',
-                    interaction: gaAction,
-                    browserAction: '#' + pager.currentPage.id
+                    'event': 'tips-interaction',
+                    'interaction': gaAction,
+                    'browserAction': '#' + pager.currentPage.id
                 });
             }
         });
@@ -168,9 +168,9 @@
             var pos = ($(this).closest('.button-wrapper').prop('id') === 'main-nav-wrapper') ? 'top' : 'bottom';
 
             window.dataLayer.push({
-                event: 'tips-interaction',
-                interaction: 'Social Share',
-                browserAction: 'share drop-down ' + pos
+                'event': 'tips-interaction',
+                'interaction': 'Social Share',
+                'browserAction': 'share drop-down ' + pos
             });
         });
 

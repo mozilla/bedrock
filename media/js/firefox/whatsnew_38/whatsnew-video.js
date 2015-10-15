@@ -18,9 +18,9 @@
                 setTimeout(function() {
                     $video[0].play();
                     // track play event in GTM
+
                     window.dataLayer.push({
-                        'event': 'firstrun-38.0.5-whatsnew-video',
-                        'interaction': 'start',
+                        'event': 'video-play',
                         'videoTitle': 'When its Personal Campaign Video'
                     });
                 }, 500);
@@ -33,12 +33,12 @@
         setTimeout(function() {
             Mozilla.Modal.closeModal();
             // track video end event in GTM
+
             window.dataLayer.push({
-                'event': 'firstrun-38.0.5-whatsnew-video',
-                'interaction': 'finish',
+                'event': 'video-complete',
                 'videoTitle': 'When its Personal Campaign Video'
             });
         }, 1000);
      });
-     
+
  })(window.jQuery, window.Mozilla);

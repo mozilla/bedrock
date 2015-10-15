@@ -31,9 +31,9 @@ $(function() {
         $origin.addClass('modal-origin');
 
         window.dataLayer.push({
-            event: 'manifesto-interaction',
-            browserAction: action,
-            section: section_id.match(/\d+/)[0]
+            'event': 'manifesto-interaction',
+            'browserAction': action,
+            'section': section_id.match(/\d+/)[0]
         });
     };
 
@@ -45,6 +45,7 @@ $(function() {
         $this.attr({
             'tabindex': '0'
         }).on('click', function () {
+
             Mozilla.Modal.createModal(this, $this.clone().removeAttr('id'), {
                 'title': '',
                 'onCreate': function () {
@@ -57,16 +58,30 @@ $(function() {
                         .text(window.trans('principle-nav-prev')).appendTo($nav);
 
                     $nav.on('click', 'button', function () {
-                        nav_modal($(this).hasClass('prev') ? -1 : 1);
-                    });
+                        var $this = $(this);
+                        var $section = $('#modal section');
 
-                    window.dataLayer.push({
-                        event: 'manifesto-interaction',
-                        browserAction: 'modal open',
-                        section: section_id.match(/\d+/)[0]
+                        // Track arrow clicks on Manifesto quote popup
+                        window.dataLayer.push({
+                            'event': 'manifesto-quote-click-arrow',
+                            'direction': ($this.attr('class') === 'prev') ? 'previous' : 'next',
+                            'quote': $section.attr('data-ga-quote'),
+                            'quoteNumber': $section.attr('data-ga-quote-number')
+                        });
+
+                        nav_modal($this.hasClass('prev') ? -1 : 1);
                     });
                 }
             });
+
+            // Track Manifesto quote clicks
+
+            window.dataLayer.push({
+                'event': 'manifesto-quote-click',
+                'quote': $this.attr('data-ga-quote'),
+                'quoteNumber': $this.attr('data-ga-quote-number')
+            });
+
         }).on('keydown', function (event) {
             if (event.keyCode === 13) {
                 $this.trigger('click');
@@ -106,10 +121,10 @@ $(function() {
     // https://dev.twitter.com/docs/intents
     var open_twitter_subwin = function (section, url) {
 
+
         window.dataLayer.push({
-            event: 'manifesto-interaction',
-            browserAction: 'tweet',
-            section: section
+            'event': 'manifesto-quote-share',
+            'quote': $('#modal section').data('ga-quote')
         });
 
         // Check if the official Twitter widget is activated. If so, we don't
@@ -153,9 +168,9 @@ $(function() {
                                            : 'modal link click';
 
             window.dataLayer.push({
-                event: 'manifesto-interaction',
-                browserAction: action,
-                section: section + ': ' + $this.text()
+                'event': 'manifesto-interaction',
+                'browserAction': action,
+                'section': $('#modal section').data('ga-quote')
             });
         }
     });

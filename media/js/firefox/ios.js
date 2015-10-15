@@ -74,9 +74,9 @@ if (typeof window.Mozilla === 'undefined') {
                         // Call GA tracking here to ensure it waits for the
                         // getConfiguration async call
                         window.dataLayer.push({
-                            event: 'ios-page-interactions',
-                            interaction: 'page-load',
-                            loadState: state
+                            'event': 'ios-page-interactions',
+                            'interaction': 'page-load',
+                            'loadState': state
                         });
                     });
                 }
@@ -97,9 +97,9 @@ if (typeof window.Mozilla === 'undefined') {
         // Send page state to GA if it hasn't already been sent
         if (syncCapable === false) {
             window.dataLayer.push({
-                event: 'ios-page-interactions',
-                interaction: 'page-load',
-                loadState: state
+                'event': 'ios-page-interactions',
+                'interaction': 'page-load',
+                'loadState': state
             });
         }
     };

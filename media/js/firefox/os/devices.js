@@ -111,9 +111,8 @@ if (typeof window.Mozilla === 'undefined') {
         selectDevicesAndSetPartnerContent();
 
         window.dataLayer.push({
-            event: 'device-drop-down',
-            countryCode: COUNTRY_CODE,
-            nonInteraction: false
+            'event': 'device-drop-down',
+            'countryCode': COUNTRY_CODE
         });
     });
 
@@ -151,11 +150,10 @@ if (typeof window.Mozilla === 'undefined') {
                     }, 200);
                 });
 
+
                 window.dataLayer.push({
-                    'event': 'device-interaction',
-                    'deviceName': selectedDevice + ' Interactions',
-                    'browserAction': 'Open Features',
-                    deviceSelected: selectedDevice
+                    'event': 'device-click',
+                    'deviceName': selectedDevice
                 });
             }
         } else {
@@ -213,10 +211,11 @@ if (typeof window.Mozilla === 'undefined') {
             $provider = $providerLinks.find('.provider[data-country="' + COUNTRY_CODE + '"]');
 
             if (COUNTRY_CODE !== '' && $provider.length > 0) {
+
                 window.dataLayer.push({
-                    event: 'device-drop-down',
-                    countryCode: COUNTRY_CODE,
-                    nonInteraction: true
+                    'event': 'device-drop-down',
+                    'countryCode': COUNTRY_CODE,
+                    'nonInteraction': true
                 });
                 selectDevicesAndSetPartnerContent();
             }
@@ -262,11 +261,12 @@ if (typeof window.Mozilla === 'undefined') {
     $('.standard-link').attr('data-track', 'true');
 
     // track mozilla pager tab clicks
+
     $('.pager-tabs').on('click', 'a', function() {
         window.dataLayer.push({
-            event: 'device-interaction',
-            deviceName: selectedDevice + ' Interactions',
-            browserAction: $(this).data('label') + ' Tab'
+            'event': 'device-tab-click',
+            'deviceName': selectedDevice,
+            'selectedTab': $(this).data('label')
         });
     });
 })(window.jQuery, window.Mozilla);

@@ -11,19 +11,23 @@
 if (typeof Mozilla.Accordion === 'function') {
     Mozilla.Accordion.GLOBAL_ONEXPAND = function(section) {
         // Google Analytics event tracking
+
         window.dataLayer.push({
-            event: 'accordion-interaction',
-            interaction: 'Expand',
-            section: section.$header.text()
+            'event': 'accordion-interaction',
+            'interaction': 'Expand',
+            'question': section.$header.text(),
+            'questionNumber': section.id.split('-')[1]
         });
     };
 
     Mozilla.Accordion.GLOBAL_ONCOLLAPSE = function(section) {
         // Google Analytics event tracking
+
         window.dataLayer.push({
-            event: 'accordion-interaction',
-            interaction: 'Collapse',
-            section: section.$header.text()
+            'event': 'accordion-interaction',
+            'interaction': 'Collapse',
+            'question': section.$header.text(),
+            'questionNumber': section.id.split('-')[1]
         });
     };
 }

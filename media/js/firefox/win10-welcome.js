@@ -45,6 +45,7 @@ if (typeof Mozilla === 'undefined') {
         $learnMoreLinks.addClass('show');
 
         // Track in GA that the default switch was made
+
         window.dataLayer.push({
             'event': 'windows-10-welcome',
             'interaction': 'default-set',
@@ -71,6 +72,7 @@ if (typeof Mozilla === 'undefined') {
         Win10Welcome.setDefaultCheck();
 
         // Track button click in GA
+
         window.dataLayer.push({
             'event': 'windows-10-welcome',
             'interaction': 'set-default-cta-click',
@@ -92,6 +94,7 @@ if (typeof Mozilla === 'undefined') {
 
     // Track tab visible in GA and unbind events.
     Win10Welcome.trackTabVisibility = function() {
+
         window.dataLayer.push({
             'event': 'windows-10-welcome',
             'interaction': 'tab-visible',
@@ -129,6 +132,7 @@ if (typeof Mozilla === 'undefined') {
             Win10Welcome.checkTabVisibility();
 
             // track initial browser default state on page load.
+
             window.dataLayer.push({
                 'event': 'windows-10-welcome',
                 'interaction': 'default-' + isDefault

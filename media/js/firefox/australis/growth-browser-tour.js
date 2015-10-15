@@ -181,10 +181,11 @@ if (typeof Mozilla == 'undefined') {
 
         this.hideAnnotations();
         if (this.tourHasStarted) {
+
             window.dataLayer.push({
-                event: 'firstrun-tour-interaction',
-                interaction: 'click',
-                browserAction: 'Close tour'
+                'event': 'first-run-tour',
+                'interaction': 'click',
+                'browserAction': 'Close tour'
             });
         }
 

@@ -36,9 +36,9 @@ $(function() {
         var thisTabName = $(this).attr('href');
 
         window.dataLayer.push({
-            event: 'privacy-interactions',
-            browserAction: thisTabName.substr(1),
-            interaction: 'Tab Click'
+            'event': 'privacy-interactions',
+            'browserAction': thisTabName.substr(1),
+            'interaction': 'Tab Click'
         });
     });
 
@@ -62,9 +62,9 @@ $(function() {
         e.preventDefault();
         pager.nextPageWithAnimation();
         window.dataLayer.push({
-            event: 'privacy-interactions',
-            browserAction: pager.currentPage.id,
-            interaction: 'Next'
+            'event': 'privacy-interactions',
+            'browserAction': pager.currentPage.id,
+            'interaction': 'Next'
         });
     });
 
@@ -73,9 +73,9 @@ $(function() {
         e.preventDefault();
         pager.prevPageWithAnimation();
         window.dataLayer.push({
-            event: 'privacy-interactions',
-            browserAction: pager.currentPage.id,
-            interaction: 'Previous'
+            'event': 'privacy-interactions',
+            'browserAction': pager.currentPage.id,
+            'interaction': 'Previous'
         });
     });
 

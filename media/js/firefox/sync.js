@@ -66,8 +66,8 @@
                     // Call GA tracking here to ensure it waits for the
                     // getConfiguration async call
                     window.dataLayer.push({
-                        event: 'page-load',
-                        browser: state
+                        'event': 'page-load',
+                        'browser': state
                     });
                 });
 
@@ -94,8 +94,8 @@
     // getConfiguration callback
     if (syncCapable === false) {
         window.dataLayer.push({
-            event: 'page-load',
-            browser: state
+            'event': 'page-load',
+            'browser': state
         });
     }
 
@@ -126,6 +126,12 @@
     // Firefox Sync sign in flow button
     $('#cta-sync').on('click', function(e) {
         e.preventDefault();
+
+        window.dataLayer.push({
+            'event': 'sync-click',
+            'browser': state
+        });
+
         Mozilla.UITour.showFirefoxAccounts();
     });
 })(window.jQuery, window.Mozilla);

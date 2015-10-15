@@ -60,12 +60,15 @@ function init_android_download_links() {
 }
 
 // language switcher
-
 function init_lang_switcher() {
-    $('#language').change(function() {
+    var $language = $('#language');
+    var previousLanguage = $language.val();
+    $language.change(function() {
+
         window.dataLayer.push({
-            event: 'change-language',
-            languageSelected: $(this).val()
+            'event': 'change-language',
+            'languageSelected': $language.val(),
+            'previousLanguage': previousLanguage
         });
         $('#lang_form').submit();
     });

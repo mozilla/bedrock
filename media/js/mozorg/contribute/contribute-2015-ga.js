@@ -5,6 +5,8 @@
 $(function () {
     'use strict';
 
+    var $inquiryForm = $('#inquiry-form');
+
     // Track clicks in main navigation
     $('#contribute-nav-menu li a').attr('data-element-location', 'nav');
 
@@ -13,7 +15,11 @@ $(function () {
         $('#landing .section').waypoint(function(direction) {
             if (direction === 'down') {
                 var sectionclass = $(this).prop('class');
-                window.dataLayer.push({event: 'scroll-tracking', section: sectionclass});
+
+                window.dataLayer.push({
+                    'event': 'scroll-section',
+                    'section': sectionclass
+                });
             }
         }, { offset: '100%' });
 
@@ -35,9 +41,9 @@ $(function () {
     $('a.video-play').on('click', function() {
         var linktype = $(this).data('linktype');
         window.dataLayer.push({
-            event: 'contribute-landing-interactions',
-            browserAction: 'Video Interactions',
-            location: linktype
+            'event': 'contribute-landing-interactions',
+            'browserAction': 'Video Interactions',
+            'location': linktype
         });
     });
 
@@ -123,27 +129,27 @@ $(function () {
     // Track category clicks on the signup page
     $('.option input').on('change', function() {
         var category = this.value;
-        $('#inquiry-form').attr('data-contribute-category', category);
+        $inquiryForm.attr('data-contribute-category', category);
         window.dataLayer.push({
-            event: 'contribute-signup-interaction',
-            interaction: 'Category',
-            contributeCategory: this.value
+            'event': 'contribute-signup-interaction',
+            'interaction': 'Category',
+            'contributeCategory': category
         });
     });
 
     // Track category area selections
     $('.area select').on('change', function() {
         var area = this.value;
-        $('#inquiry-form').attr('data-contribute-area', area);
+        $inquiryForm.attr('data-contribute-area', area);
         window.dataLayer.push({
-            event: 'contribute-signup-interaction',
-            interaction: 'Area',
-            contributeArea: area
+            'event': 'contribute-signup-interaction',
+            'interaction': 'Area',
+            'contributeArea': area
         });
     });
 
     // Track signup form submissions
-    $('#inquiry-form').on('submit', function(e) {
+    $inquiryForm.on('submit', function(e) {
         e.preventDefault();
         var newsletterstate;
         if ($('#id_newsletter').is(':checked')) {
@@ -154,9 +160,11 @@ $(function () {
 
         $(this).off('submit');
 
+
         window.dataLayer.push({
-            event: 'contribute-submit',
-            newsletterSignup: newsletterstate
+            'event': 'contribute-signup-submit',
+            'contributeArea': $inquiryForm.attr('data-contribute-area'),
+            'countrySelected': $('#id_country option:selected').text()
         });
 
         $(this).submit();

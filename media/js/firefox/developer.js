@@ -40,18 +40,18 @@ function onYouTubeIframeAPIReady() {
                 if (window.site.platform !== 'ios' && window.site.platform !== 'android') {
                     event.target.playVideo();
                 }
+
                 window.dataLayer.push({
-                    'event': 'video-interaction',
-                    'interaction': 'play',
+                    'event': 'video-play',
                     'videoTitle': videoTitle
                 });
             }
 
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.ENDED) {
+
                     window.dataLayer.push({
-                        'event': 'video-interaction',
-                        'interaction': 'finish',
+                        'event': 'video-complete',
                         'videoTitle': videoTitle
                     });
                 }

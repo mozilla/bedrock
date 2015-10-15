@@ -261,6 +261,15 @@
         }
 
         w.ga_track(virtual_page);
+
+        // track tab selection
+        var sectionTab = $(this).data('section').split('-');
+
+        window.dataLayer.push({
+            'event': 'partners-tab-click',
+            'section': sectionTab[0],
+            'selectedTab': sectionTab[1]
+        });
     });
 
     // custom horizontal movement of large background graphics
