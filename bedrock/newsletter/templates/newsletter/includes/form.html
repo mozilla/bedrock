@@ -39,6 +39,9 @@
     {% if include_title %}
       <div class="form-title">
         <h3>{{ title|d(_('Get Firefox news'), true) }}</h3>
+      {% if subtitle %}
+        <h4>{{ subtitle }}</h4>
+      {% endif %}
       </div>
     {% endif %}
 

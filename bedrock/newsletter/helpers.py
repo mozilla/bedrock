@@ -17,10 +17,12 @@ log = logging.getLogger(__name__)
 @jingo.register.function
 @jinja2.contextfunction
 def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
-                          include_country=True, include_language=True,
-                          details=None, use_thankyou=True, thankyou_head=None,
-                          thankyou_content=None, footer=True, process_form=True,
-                          include_title=None, submit_text=None):
+                          subtitle=None, include_country=True,
+                          include_language=True, details=None,
+                          use_thankyou=True, thankyou_head=None,
+                          thankyou_content=None, footer=True,
+                          process_form=True, include_title=None,
+                          submit_text=None):
     request = ctx['request']
     context = ctx.get_all()
 
@@ -35,6 +37,7 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
     context.update(dict(
         id=newsletters,
         title=title,
+        subtitle=subtitle,  # nested in/depends on include_title
         include_country=include_country,
         include_language=include_language,
         details=details,

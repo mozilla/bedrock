@@ -92,18 +92,3 @@ class NewsletterEmbedForm(PageRegion):
     def sign_up_successful(self):
         el = self.selenium.find_element(*self._thank_you_locator)
         return el.is_displayed()
-
-
-class MozillaNewsletterEmbedForm(NewsletterEmbedForm):
-
-    _root_locator = (By.ID, 'mozorg-newsletter-form')
-    _country_locator = (By.ID, 'country')
-    _success_url_slug = 'sign-up-for-mozilla'
-
-    def click_sign_me_up(self):
-        self.find_element(self._submit_button_locator).click()
-        self.wait.until(lambda s: self.sign_up_successful)
-
-    @property
-    def sign_up_successful(self):
-        return self._success_url_slug in self.selenium.current_url
