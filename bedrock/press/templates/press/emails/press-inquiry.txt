@@ -9,6 +9,9 @@ Contact Information
 + Name
 {{ name }}
 
++ Email Address
+{{ user_email }}
+
 + Media Organization
 {{ media_org }}
 
