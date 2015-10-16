@@ -76,7 +76,7 @@
                 .at2x('/media/img/firefox/tracking-protection/sheild-animation/eye-lid-top-right.png', 48px, 48px);
                 opacity: 0;
                 content: '';
-                .animation(blink 8s linear infinite);
+                .animation(blink 7s linear infinite);
             }
 
             // flashing light
@@ -87,7 +87,7 @@
                 width: 8px;
                 height: 8px;
                 border-radius: 100%;
-                background-color: #ff5b94;
+                background-color: #ff397e;
                 opacity: 0;
                 content: '';
                 .animation(recorder 10s linear infinite);
@@ -128,7 +128,7 @@
                 .at2x('/media/img/firefox/tracking-protection/sheild-animation/eye-lid-bottom-right.png', 32px, 32px);
                 opacity: 0;
                 content: '';
-                .animation(blink 7s linear infinite);
+                .animation(blink 6s linear infinite);
             }
 
             // flashing light
@@ -139,7 +139,7 @@
                 width: 4px;
                 height: 4px;
                 border-radius: 100%;
-                background-color: #ff5b94;
+                background-color: #ff397e;
                 opacity: 0;
                 content: '';
                 .animation(recorder 4s linear infinite);
@@ -246,7 +246,7 @@
                 width: 57px;
                 height: 93px;
                 top: 40px;
-                left: 50px;
+                left: 40px;
                 .background-size(57px, 93px);
             }
 
@@ -291,7 +291,7 @@
         background-position: top left;
         background-repeat: no-repeat;
         opacity: 0;
-        z-index: 2;
+        z-index: -1;
 
         &.top-left {
             top: 50px;
@@ -422,10 +422,22 @@
     41% {
         opacity: 1;
     }
-    45% {
+    42% {
         opacity: 1;
     }
-    46% {
+    43% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    76% {
+        opacity: 1;
+    }
+    77% {
+        opacity: 1;
+    }
+    78% {
         opacity: 0;
     }
     100% {
@@ -443,10 +455,22 @@
     41% {
         opacity: 1;
     }
-    45% {
+    42% {
         opacity: 1;
     }
-    46% {
+    43% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    76% {
+        opacity: 1;
+    }
+    77% {
+        opacity: 1;
+    }
+    78% {
         opacity: 0;
     }
     100% {
@@ -461,10 +485,11 @@
     }
     3% {
         opacity: 1;
-        .transform(scale(1.1));
-    }
-    5% {
         .transform(scale(1));
+    }
+    45% {
+        opacity: 0;
+        .transform(scale(1.2));
     }
     100% {
         opacity: 0;
@@ -478,10 +503,11 @@
     }
     3% {
         opacity: 1;
-        .transform(scale(1.1));
-    }
-    5% {
         .transform(scale(1));
+    }
+    45% {
+        opacity: 0;
+        .transform(scale(1.2));
     }
     100% {
         opacity: 0;
