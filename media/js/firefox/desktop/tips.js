@@ -15,8 +15,12 @@
 
     // only show download button for users on desktop platforms, using either a non-Firefox browser
     // or an out of date version of Firefox
-    if ((window.isFirefox() && window.isFirefoxUpToDate()) || $html.hasClass('android') || $html.hasClass('ios') || $html.hasClass('fxos')) {
-        $('#footer').addClass('hide-download');
+    if (window.isFirefox() || $html.hasClass('android') || $html.hasClass('ios') || $html.hasClass('fxos')) {
+        window.getFirefoxDetails(function(data) {
+            if (data.isUpToDate) {
+                $('#footer').addClass('hide-download');
+            }
+        });
     }
 
     // mozilla pager stuff must be in doc ready wrapper

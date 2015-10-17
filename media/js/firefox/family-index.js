@@ -24,11 +24,9 @@
 
     // Check Firefox version
     if (isFirefox()) {
-        if (isFirefoxUpToDate()) {
-            $html.addClass('firefox-latest');
-        } else {
-            $html.addClass('firefox-old');
-        }
+        window.getFirefoxDetails(function(data) {
+            $html.addClass(data.isUpToDate ? 'firefox-latest' : 'firefox-old');
+        });
     }
 
     // add gtm tracking attributes
