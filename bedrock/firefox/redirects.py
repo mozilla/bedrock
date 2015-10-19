@@ -217,4 +217,8 @@ redirectpatterns = (
     # bug 1211907
     redirect(r'^firefox/independent/?$', 'firefox.new'),
     redirect(r'^firefox/personal/?$', 'firefox.new'),
+
+    # bug 1215633
+    redirect(r'^firefox/(?:\d+\.\d+\.?(?:\d+)?\.?(?:\d+)?(?:[a|b]?)(?:\d*)(?:pre)?(?:\d)?)/firstrun/learnmore/?$',
+             'https://support.mozilla.org/kb/private-browsing-use-firefox-without-history', permanent=False),
 )
