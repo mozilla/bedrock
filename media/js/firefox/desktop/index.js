@@ -41,7 +41,11 @@
         });
     }
 
-    if (window.isFirefoxUpToDate()) {
-        $('#overview-intro-up-to-date').addClass('active');
+    if (window.isFirefox()) {
+        window.getFirefoxDetails(function(data) {
+            if (data.isUpToDate) {
+                $('#overview-intro-up-to-date').addClass('active');
+            }
+        });
     }
 })(window.jQuery);

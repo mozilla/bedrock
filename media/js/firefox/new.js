@@ -59,14 +59,11 @@
     };
 
     if (window.isFirefox()) {
-        // data-latest-firefox includes point release information
-        var latestFirefoxVersionFull = $html.attr('data-latest-firefox');
-
-        // get latest full version (no point release info) for initial check
-        var latestFirefoxVersion = parseInt(latestFirefoxVersionFull.split('.')[0], 10);
-
-        if (window.isFirefoxUpToDate(latestFirefoxVersion + '')) {
-            if (window.location.hash !== '#download-fx' && params.get('scene') !== 2) {
+        // Get the accurate Firefox version and channel info using the mozUITour API
+        window.getFirefoxDetails(function(data) {
+            if (!data.isUpToDate) {
+                $html.addClass('firefox-old');
+            } else if (window.location.hash !== '#download-fx' && params.get('scene') !== 2) {
                 // the firefox-latest class prevents the download from triggering
                 // and scene 2 from showing, which we want if the user lands on
                 // /firefox/new/ but if the user visits /firefox/new/?scene=2#download-fx
@@ -75,20 +72,16 @@
                 $html.addClass('firefox-latest');
 
                 // if user is on release channel and has latest version, offer refresh button
-                uiTourGetConfiguration('appinfo', function(config) {
-                    if (config.defaultUpdateChannel === 'release' && config.version === latestFirefoxVersionFull) {
-                        $html.addClass('show-refresh');
+                if (data.channel === 'release') {
+                    $html.addClass('show-refresh');
 
-                        // DOM may not be ready yet, so bind filtered click handler to document
-                        $document.on('click', '#refresh-firefox', function() {
-                            uiTourSendEvent('resetFirefox');
-                        });
-                    }
-                });
+                    // DOM may not be ready yet, so bind filtered click handler to document
+                    $document.on('click', '#refresh-firefox', function() {
+                        uiTourSendEvent('resetFirefox');
+                    });
+                }
             }
-        } else {
-            $html.addClass('firefox-old');
-        }
+        });
     }
 
     // Add GA custom tracking and external link tracking

@@ -162,8 +162,12 @@ $(function() {
     }
 
     // show for outdated Fx versions
-    if (isFirefox() && !isFirefoxUpToDate() && !isFirefoxESR()) {
-        outdatedFx.show();
+    if (isFirefox()) {
+        window.getFirefoxDetails(function(data) {
+            if (!data.isUpToDate && !data.isESR) {
+                outdatedFx.show();
+            }
+        });
     }
 
     // only execute the plugincheck code if this is Firefox

@@ -67,7 +67,6 @@ describe('global.js', function() {
     describe('update_download_text_for_old_fx', function () {
         var windowTransStub;
         var isFirefoxStub;
-        var isFirefoxUpToDateStub;
 
         // append HTML to body for each test
         beforeEach(function () {
@@ -113,13 +112,14 @@ describe('global.js', function() {
 
             // set global functions back to original state
             isFirefoxStub.restore();
-            isFirefoxUpToDateStub.restore();
             windowTransStub.restore();
         });
 
         it('should change the button text when using old fx', function () {
             isFirefoxStub = sinon.stub(window, 'isFirefox').returns(true);
-            isFirefoxUpToDateStub = sinon.stub(window, 'isFirefoxUpToDate').returns(false);
+            spyOn(window, 'getFirefoxDetails').and.callFake(function(callback) {
+                callback({ version: '40.0', channel: 'release', isUpToDate: false, isESR: false });
+            });
 
             update_download_text_for_old_fx();
 
@@ -129,7 +129,6 @@ describe('global.js', function() {
 
         it('should not change the button text when not using fx', function () {
             isFirefoxStub = sinon.stub(window, 'isFirefox').returns(false);
-            isFirefoxUpToDateStub = sinon.stub(window, 'isFirefoxUpToDate').returns(false);
 
             update_download_text_for_old_fx();
 
@@ -139,7 +138,9 @@ describe('global.js', function() {
 
         it('should not change the button text when using up to date fx', function () {
             isFirefoxStub = sinon.stub(window, 'isFirefox').returns(true);
-            isFirefoxUpToDateStub = sinon.stub(window, 'isFirefoxUpToDate').returns(true);
+            spyOn(window, 'getFirefoxDetails').and.callFake(function(callback) {
+                callback({ version: '41.0', channel: 'release', isUpToDate: true, isESR: false });
+            });
 
             update_download_text_for_old_fx();
 
@@ -166,24 +167,6 @@ describe('global.js', function() {
             expect($('.download-link').attr('href')).toEqual('market://details?id=org.mozilla.firefox');
         });
 
-    });
-
-    describe('getFirefoxMasterVersion', function () {
-
-        it('should return the firefox master version number', function () {
-            var result;
-            // Pretend to be Firefox 23
-            var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0';
-            result = getFirefoxMasterVersion(ua);
-            expect(result).toEqual(23);
-        });
-
-        it('should return 0 for non Firefox browsers', function () {
-            var result;
-            var ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36';
-            result = getFirefoxMasterVersion(ua);
-            expect(result).toEqual(0);
-        });
     });
 
     describe('isFirefox', function() {
@@ -292,35 +275,6 @@ describe('global.js', function() {
 
     });
 
-    describe('isFirefoxUpToDate', function () {
-
-        it('should consider up to date if latest version is equal to user version', function() {
-            var result;
-            /* Use a stub to return a pre-programmed value
-             * from getFirefoxMasterVersion */
-            getFirefoxMasterVersion = sinon.stub().returns(21);
-            result = isFirefoxUpToDate('21.0');
-            expect(getFirefoxMasterVersion.called).toBeTruthy();
-            expect(result).toBeTruthy();
-        });
-
-        it('should consider up to date if latest version is less than user version', function() {
-            var result;
-            getFirefoxMasterVersion = sinon.stub().returns(22);
-            result = isFirefoxUpToDate('21.0');
-            expect(getFirefoxMasterVersion.called).toBeTruthy();
-            expect(result).toBeTruthy();
-        });
-
-        it('should not consider up to date if latest version greater than user version', function() {
-            var result;
-            getFirefoxMasterVersion = sinon.stub().returns(20);
-            result = isFirefoxUpToDate('21.0');
-            expect(getFirefoxMasterVersion.called).toBeTruthy();
-            expect(result).not.toBeTruthy();
-        });
-    });
-
     describe('isLikeFirefox', function() {
 
         it('should consider SeaMonkey to be like Firefox', function() {
@@ -377,4 +331,78 @@ describe('global.js', function() {
             expect(result).not.toBeTruthy();
         });
     });
+
+    describe('getFirefoxVersion', function () {
+
+        var fn = getFirefoxVersion;
+
+        it('should return the firefox version number as a string', function () {
+            expect(fn('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0')).toEqual('23.0');
+        });
+
+        it('should return 0 for non Firefox browsers', function () {
+            expect(fn('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36')).toEqual('0');
+        });
+
+    });
+
+    describe('getFirefoxMasterVersion', function () {
+
+        var fn = getFirefoxMasterVersion;
+
+        it('should return the firefox master version number', function () {
+            // Pretend to be Firefox 23
+            expect(fn('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0')).toEqual(23);
+        });
+
+        it('should return 0 for non Firefox browsers', function () {
+            expect(fn('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36')).toEqual(0);
+        });
+
+    });
+
+    describe('isFirefoxUpToDate', function () {
+
+        var fn = isFirefoxUpToDate;
+        var h = document.documentElement;
+
+        beforeEach(function () {
+            h.setAttribute('data-latest-firefox', '46.0.2');
+            h.setAttribute('data-esr-versions', "['38.8.0', '45.1.0']");
+        });
+
+        afterEach(function () {
+            h.removeAttribute('data-latest-firefox');
+            h.removeAttribute('data-esr-versions');
+        });
+
+        it('should consider up to date if latest version is equal to user version', function() {
+            expect(fn(true, false, '46.0.2')).toBeTruthy();
+            expect(fn(true, true, '38.8.0')).toBeTruthy();
+            expect(fn(true, true, '45.1.0')).toBeTruthy();
+        });
+
+        it('should consider up to date if latest version is less than user version', function() {
+            expect(fn(true, false, '46.0.3')).toBeTruthy();
+            expect(fn(true, false, '47.0')).toBeTruthy();
+            expect(fn(true, true, '38.9.0')).toBeTruthy();
+            expect(fn(true, true, '45.2.0')).toBeTruthy();
+        });
+
+        it('should consider up to date if latest version greater than user version but the strict option is false', function() {
+            expect(fn(false, false, '46.0.1')).toBeTruthy();
+            expect(fn(false, false, '46.0')).toBeTruthy();
+            expect(fn(false, true, '38.7.0')).toBeTruthy();
+            expect(fn(false, true, '45.0')).toBeTruthy();
+        });
+
+        it('should not consider up to date if latest version greater than user version and the strict option is true', function() {
+            expect(fn(true, false, '46.0.1')).toBeFalsy();
+            expect(fn(true, false, '45.0')).toBeFalsy();
+            expect(fn(true, false, '38.7.0')).toBeFalsy();
+            expect(fn(true, false, '45.0')).toBeFalsy();
+        });
+
+    });
+
 });

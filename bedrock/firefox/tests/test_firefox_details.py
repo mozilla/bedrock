@@ -225,23 +225,26 @@ class TestFirefoxDesktop(TestCase):
 
     @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(FIREFOX_ESR='24.2')))
-    def test_esr_major_versions(self):
+    def test_esr_versions(self):
         """ESR versions should be dynamic based on data."""
         eq_(firefox_desktop.esr_major_versions, [24])
+        eq_(firefox_desktop.esr_minor_versions, ['24.2'])
 
     @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(FIREFOX_ESR='24.6.0',
                                          FIREFOX_ESR_NEXT='31.0.0')))
-    def test_esr_major_versions_prev(self):
+    def test_esr_versions_prev(self):
         """ESR versions should show previous when available."""
         eq_(firefox_desktop.esr_major_versions, [24, 31])
+        eq_(firefox_desktop.esr_minor_versions, ['24.6.0', '31.0.0'])
 
     @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(LATEST_FIREFOX_VERSION='Phoenix',
                                          FIREFOX_ESR='Albuquerque')))
-    def test_esr_major_versions_no_latest(self):
+    def test_esr_versions_no_latest(self):
         """ESR versions should not blow up if current version is broken."""
         eq_(firefox_desktop.esr_major_versions, [])
+        eq_(firefox_desktop.esr_minor_versions, [])
 
     @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(LATEST_FIREFOX_VERSION='18.0.1')))
