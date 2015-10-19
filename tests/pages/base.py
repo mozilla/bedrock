@@ -30,8 +30,9 @@ class BasePage(Page):
 
         @property
         def language(self):
-            el = self.root.find_element(*self._language_locator)
-            return Select(el).first_selected_option.get_attribute('value')
+            select = self.root.find_element(*self._language_locator)
+            option = select.find_element(By.CSS_SELECTOR, 'option[selected]')
+            return option.get_attribute('value')
 
         @property
         def languages(self):
@@ -41,3 +42,5 @@ class BasePage(Page):
         def select_language(self, value):
             el = self.root.find_element(*self._language_locator)
             Select(el).select_by_value(value)
+            Wait(self.selenium, self.timeout).until(
+                lambda s: value in s.current_url)

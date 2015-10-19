@@ -34,7 +34,7 @@ class NewsletterPage(BasePage):
     @property
     def country(self):
         el = self.selenium.find_element(*self._country_locator)
-        return Select(el).first_selected_option.text
+        return el.find_element(By.CSS_SELECTOR, 'option[selected]').text
 
     def select_country(self, value):
         el = self.selenium.find_element(*self._country_locator)
