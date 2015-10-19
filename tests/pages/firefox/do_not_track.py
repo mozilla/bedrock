@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from .base import FirefoxBasePage
@@ -34,15 +33,20 @@ class FrequentlyAskedQuestion(PageRegion):
 
     def show_answer(self):
         assert not self.is_answer_displayed, 'Answer is already displayed'
-        el = self.root.find_element(*self._answer_locator)
+        answer = self.root.find_element(*self._answer_locator)
         self.root.find_element(*self._question_locator).click()
-        Wait(self.selenium, self.timeout).until(expected.visibility_of(el))
+        answer = self.root.find_element(*self._answer_locator)
+        # Wait for aria-hidden attribute value to determine when animation has finished.
+        Wait(self.selenium, self.timeout).until(
+            lambda m: answer.get_attribute('aria-hidden') == 'false')
 
     def hide_answer(self):
         assert self.is_answer_displayed, 'Answer is already hidden'
-        el = self.root.find_element(*self._answer_locator)
+        answer = self.root.find_element(*self._answer_locator)
         self.root.find_element(*self._question_locator).click()
-        Wait(self.selenium, self.timeout).until(lambda m: not el.is_displayed())
+        # Wait for aria-hidden attribute value to determine when animation has finished.
+        Wait(self.selenium, self.timeout).until(
+            lambda m: answer.get_attribute('aria-hidden') == 'true')
 
     @property
     def is_answer_displayed(self):
