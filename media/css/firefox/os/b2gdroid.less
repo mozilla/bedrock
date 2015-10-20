@@ -1,0 +1,94 @@
+@import "../../sandstone/lib.less";
+@import "../../sandstone/reset.less";
+
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('/media/fonts/FiraSans-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/FiraSans-Regular.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-Regular.woff') format('woff'),
+         url('/media/fonts/FiraSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    .border-box();
+}
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    font: 100%/1.5 'Fira Sans', sans-serif;
+    text-align: center;
+}
+.wrapper:after {
+    display: block;
+    content: '';
+    .at2x('/media/img/firefox/os/b2gdroid/bg-image.png', 360px, 294px);
+    background-size: 360px, 294px;
+    width: 360px;
+    height: 294px;
+
+    @media only screen and (min-width: 361px) {
+        background: none;
+    }
+
+    @media only screen and (max-width: @breakMobile) {
+        .at2x('/media/img/firefox/os/b2gdroid/bg-image.png', 320px, 261px);
+        background-size: 320px, 261px;
+        width: 320px;
+        height: 261px;
+    }
+}
+h1 {
+    font-weight: normal;
+}
+a {
+    &:link {
+        color: #0ac;
+        text-decoration: none;
+    }
+    &:visited {
+        color: #000;
+    }
+    &:hover {
+        color: #008eab;
+    }
+}
+p {
+    margin-bottom: 1rem;
+}
+header,
+main {
+    padding: @baseLine 40px;
+}
+main {
+    text-align: left;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-top: 2px solid #cfd0cf;
+    width: 100%;
+    height:80px;
+
+    button {
+        background-color: #0ac;
+        color: #fff;
+        padding: .7rem 1rem;
+        border: 0;
+        border-radius: 18px;
+        width: 100%;
+        .font-size(1.2rem);
+    }
+    .more:after {
+        position: absolute;
+        right: 30px;
+        display: inline-block;
+        /* right-pointing angle bracket */
+        content: '\0232A';
+        .font-size(1.5rem);
+        font-weight: bold;
+        line-height: .9;
+    }
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ _('Firefox OS B2GDroid') }}</title>
+    {% block page_css %}
+      {% stylesheet 'firefox_os_b2gdroid' %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>{{ _('Welcome') }}</h1>
+      </header>
+      <main rol="main">
+        <p>{{ _('Welcome to B2GDroid, an experiment from Mozilla that lets you experience Firefox OS. B2GDroid is an early preview and we’d love your help to shape the future of the Web.') }}</p>
+        <p>{{ _('To find out how to get involved, visit:') }} <a href="{{ url('mozorg.contribute') }}" rel="external">https://www.mozilla.org/contribute</a></p>
+      </main>
+      <footer>
+        <button class="more">{{ _('Next') }}</button>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -409,6 +409,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_organizations-bundle.css',
     },
+    'firefox_os_b2gdroid': {
+        'source_filenames': (
+            'css/firefox/os/b2gdroid.less',
+        ),
+        'output_filename': 'css/firefox_os_b2gdroid-bundle.css',
+    },
     'firefox_os': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',

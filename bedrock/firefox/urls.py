@@ -102,6 +102,8 @@ urlpatterns = (
     page('firefox/os/devices', 'firefox/os/devices.html'),
     page('firefox/os/devices/tv', 'firefox/os/tv.html'),
 
+    page('firefox/os/b2gdroid', 'firefox/os/b2gdroid.html'),
+
     page('firefox/pocket', 'firefox/pocket.html'),
     page('firefox/push', 'firefox/push.html'),
 
