@@ -5,6 +5,12 @@
 import pytest
 
 
+@pytest.fixture(scope='session')
+def capabilities(capabilities):
+    capabilities.setdefault('tags', []).append('bedrock')
+    return capabilities
+
+
 @pytest.fixture
 def selenium(selenium):
     selenium.set_window_size(1280, 1024)
