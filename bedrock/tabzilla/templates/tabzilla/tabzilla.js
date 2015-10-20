@@ -380,7 +380,7 @@ var Tabzilla = (function (Tabzilla) {
         var offeredLang;
         var availableLangs = {};
         var $links = $('link[hreflang]');
-        var $options = $('#language option');
+        var $options = $('#page-language-select option');
 
         // Make a dictionary from alternate URLs or a language selector. The key
         // is a language, the value is the relevant <link> or <option> element.
