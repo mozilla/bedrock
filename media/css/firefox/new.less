@@ -104,27 +104,19 @@ html.oldwin {
 
 /* iOS */
 html.ios {
-    .version-message-container {
-        display: block;
-    }
+    .download-button-wrapper {
+        display: none;
+        width: 250px;
+        margin: 0 auto;
+        text-align: center;
 
-    #version-message-ios {
-        display: inline;
-
-        &:before {
-            background-image: url(/media/img/firefox/new/icon-mobile.svg);
+        &.ios {
+            display: block;
+            margin-top: 22px;
         }
     }
 
-    .desktop.download-button-wrapper {
-        display: none;
-    }
-
-    .ios-links-wrapper {
-        display: block;
-        padding-top: 26px;
-    }
-
+    .desktop.download-button-wrapper,
     .desktop-latest-links-wrapper {
         display: none;
     }
@@ -341,7 +333,8 @@ html[lang|="en"] #main-headline span:first-child {
     width: 100%;
 }
 
-.download-button-wrapper.android {
+.download-button-wrapper.android,
+.download-button-wrapper.ios {
     display: none;
 }
 
@@ -521,17 +514,6 @@ noscript {
 
     html.fxos {
         .fxos-latest-links-wrapper {
-            padding: 0;
-        }
-    }
-
-    html.ios {
-        .stage,
-        .theater {
-            height: 100px;
-        }
-
-        .ios-links-wrapper {
             padding: 0;
         }
     }

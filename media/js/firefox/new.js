@@ -103,7 +103,7 @@
             state = 'Android, not Firefox';
         }
     } else if (site.platform === 'ios') {
-        state = 'iOS, Firefox not supported';
+        state = 'iOS';
     } else if (site.platform === 'fxos') {
         state = 'FxOS';
     } else {
@@ -124,9 +124,9 @@
     // #download-fx hash is set
     noScene2 = (
         site.platform === 'other' ||    // no download available
-        site.platform === 'ios' ||      // unsupported platform
-        site.platform === 'fxos' ||  // no download available
-        site.platform === 'android'  // download goes to Play Store
+        site.platform === 'fxos' ||     // no download available
+        site.platform === 'android' ||  // download goes to Play Store
+        site.platform === 'ios'         // download goes to App Store
     );
 
     $document.ready(function() {
