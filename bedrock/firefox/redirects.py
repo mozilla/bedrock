@@ -153,7 +153,7 @@ redirectpatterns = (
              query={'id': 'org.mozilla.firefox_beta'}, merge_query=True),
 
     # bug 675031
-    redirect(r'^projects/fennec(?P<page>/.*)?',
+    redirect(r'^projects/fennec(?P<page>/[\/\w\.-]+)?',
              'http://website-archive.mozilla.org/www.mozilla.org/fennec_releasenotes/projects/fennec{page}'),
 
     # bug 876581
@@ -184,7 +184,7 @@ redirectpatterns = (
 
     # bug 858315
     redirect(r'^projects/devpreview/firstrun(?:/(?:index.html)?)?$', '/firefox/firstrun/'),
-    redirect(r'^projects/devpreview/(?P<page>.*)$',
+    redirect(r'^projects/devpreview/(?P<page>[\/\w\.-]+)?$',
              'http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/projects/devpreview/{page}'),
 
     # bug 1001238, 1025056
@@ -204,7 +204,7 @@ redirectpatterns = (
 
     # bug 1041712, 1069335, 1069902
     redirect(r'^(?P<prod>firefox|mobile)/(?P<vers>([0-9]|1[0-9]|2[0-8])\.(\d+(?:beta|a2|\.\d+)?))'
-             r'/(?P<channel>release|aurora)notes/(?P<page>.*)$',
+             r'/(?P<channel>release|aurora)notes/(?P<page>[\/\w\.-]+)?$',
              'http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US'
              '/{prod}/{vers}/{channel}notes/{page}'),
 
