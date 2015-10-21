@@ -124,6 +124,17 @@
     <div class="promo-grid-inner">
       <ul class="promo-grid {% if tweets %}has-twitter-promo{% endif %}">
       {# L10n: Begin home page promos. Line breaks are for visual formatting only. #}
+      {% if l10n_has_tag('ios_promo') and waffle.switch('firefox-ios-global') %}
+        <li id="promo-1" class="item promo-large-portrait firefox-ios" data-name="Firefox is now available for iOS" tabindex="0">
+          <h2 class="primary go">{{ _('Firefox is<br> now available<br> for iOS') }}</h2>
+          <a class="panel-link" href="{{ url('firefox.ios') }}">
+            <div class="secondary">
+              <h3>{{ _('Add it to your iPhone, iPad &amp; iPod touch.') }}</h3>
+              <p class="more">{{ _('Get Firefox for iOS') }}</p>
+            </div>
+          </a>
+        </li>
+      {% else %}
         <li id="promo-1" class="item promo-large-portrait firefox-android" tabindex="0">
           <h2 class="primary go">{{ _('Put your Firefox on your Android') }}</h2>
           <a class="panel-link" href="{{ url('firefox.android.index') }}" data-promotion-id="promo-1" data-promotion-name="Put your Firefox on your Android" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
@@ -133,6 +144,7 @@
             </div>
           </a>
         </li>
+      {% endif %}
       {% if l10n_has_tag('privacy_day') %}
         <li id="promo-2" class="item promo-small-landscape advocacy">
           <a class="panel-link" href="https://advocacy.mozilla.org" data-promotion-id="promo-2" data-promotion-name="Learn about Mozilla Advocacy" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
