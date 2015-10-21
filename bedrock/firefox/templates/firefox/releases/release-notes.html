@@ -127,9 +127,15 @@
           {% if release.product == 'Firefox for Android' %}
           <li class="try3"><a href="https://support.mozilla.org/products/mobile/download-and-install">{{ _('Install') }}</a></li>
           {% else %}
+          {% if release.product == 'Firefox for iOS' %}
+          <li class="try3"><a href="https://support.mozilla.org/products/ios/install-and-update-firefox-ios">{{ _('Install') }}</a></li>
+          {% else %}
           <li class="try3"><a href="https://support.mozilla.org/products/firefox/download-and-install">{{ _('Install') }}</a></li>
           {% endif %}
+          {% endif %}
+          {% if release.product != 'Firefox for iOS' %}
           <li class="try4"><a href="https://addons.mozilla.org/firefox/">{{ _('Customize') }}</a></li>
+          {% endif %}
         </ol>
       </section>
       {% endblock %}
@@ -153,7 +159,9 @@
 
       <section id="other">
         <h3>{{ _('Other Resources') }}</h3>
+        {% if release.product != 'Firefox for iOS' %}
         <p><a href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a></p>
+        {% endif %}
         <p><a href="https://blog.mozilla.com/futurereleases/">{{ _('Future of Firefox Blog') }}</a></p>
       </section>
     </aside>

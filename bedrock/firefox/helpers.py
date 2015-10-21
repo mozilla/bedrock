@@ -7,7 +7,7 @@ import jingo
 import jinja2
 
 from bedrock.firefox.models import FirefoxOSFeedLink
-from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
+from bedrock.firefox.firefox_details import firefox_desktop, firefox_android, firefox_ios
 from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils import get_locale
 
@@ -34,6 +34,16 @@ def android_builds(channel, builds=None):
         builds.append({'os': 'android',
                        'os_pretty': 'Android',
                        'download_link': link})
+
+    return builds
+
+
+def ios_builds(channel, builds=None):
+    builds = builds or []
+    link = firefox_ios.get_download_url(channel)
+    builds.append({'os': 'ios',
+                   'os_pretty': 'iOS',
+                   'download_link': link})
 
     return builds
 
