@@ -2,9 +2,6 @@
 # sha256: ZdKqaLKOfTEjO7K6jrMc2kDkZx-KwtayQeNYyWUqdLk
 apipkg==1.4
 
-# sha256: -WfKOb25jhYpmmnEWpRMXUNFOTYV7WRwux5iyjUGv0E
-braceexpand==0.1.1
-
 # sha256: 9m3Up1GXJaG34UrZrn09-OCbLaiAYjhuCOlByvwO8-Y
 # sha256: 0rkJx5RYMuHBnPrNlueNpova3GVkQM_H3-WbdmdE64w
 execnet==1.4.1
@@ -16,10 +13,6 @@ py==1.4.30
 # sha256: 2i_FcyDdEfYh0WZjTFK5iaoika8SlsMqJ6EXd6pBKLk
 # sha256: hpnSrjQvIR0cxn3QURG5GSVgmu99KUgxWE9zf2Wk9B0
 pytest==2.8.2
-
-# sha256: 0UWsncelV6cZq3l3C-CUEATh4DjhN8NFkZGdnfKnkLE
-# sha256: 12-TTnf6Bz9IzFIZRaSZAKhZ5hD6Ap3YgNHYuZe3fCM
-pytest-django==2.8.0
 
 # sha256: KieLOTNuHzPoNbDJ2WvbzMMjR4LHNi3Lh9mHhnTlmeU
 # sha256: 5j2bkYqs99tlgR6MsCop0xRR65TE4x5eVYKHqkAuC6o

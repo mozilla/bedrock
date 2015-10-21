@@ -1,0 +1,9 @@
+-r dev.txt
+-r test.txt
+
+# sha256: -WfKOb25jhYpmmnEWpRMXUNFOTYV7WRwux5iyjUGv0E
+braceexpand==0.1.1
+
+# sha256: 0UWsncelV6cZq3l3C-CUEATh4DjhN8NFkZGdnfKnkLE
+# sha256: 12-TTnf6Bz9IzFIZRaSZAKhZ5hD6Ap3YgNHYuZe3fCM
+pytest-django==2.8.0

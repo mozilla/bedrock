@@ -1,0 +1,25 @@
+FROM python:2-slim
+
+WORKDIR /app
+
+# Run the tests
+CMD ["/app/bin/run-functional-tests.sh"]
+
+# Defaults
+ENV PYTEST_PROCESSES 5
+ENV MARK_EXPRESSION sanity
+ENV PRIVACY "public restricted"
+ENV TESTS_PATH /app/tests/functional
+ENV RESULTS_PATH /app/results
+ENV PYTHONDONTWRITEBYTECODE=1
+
+COPY ./requirements /app/requirements
+# Pin a known to work with peep pip version.
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+RUN pip install -r requirements/pip.txt
+
+# Install requirements
+COPY ./bin/peep.py /app/bin/peep.py
+RUN ./bin/peep.py install --no-cache-dir -r requirements/test.txt
+
+COPY . /app
