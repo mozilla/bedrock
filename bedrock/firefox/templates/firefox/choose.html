@@ -12,6 +12,13 @@
   {% stylesheet 'firefox_choose' %}
 {% endblock %}
 
+{#- See https://bugzilla.mozilla.org/show_bug.cgi?id=1214822#c6 -#}
+{% block js_pretrack %}
+{% if not waffle.switch('firefox-ios-global') %}
+  {% javascript 'firefox_new_ios_redirect' %}
+{% endif %}
+{% endblock %}
+
 {% block tabzilla_tab %}{% endblock %}
 
 {% block site_header_nav %}{% endblock %}
