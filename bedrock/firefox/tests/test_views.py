@@ -256,31 +256,25 @@ class TestWin10WelcomeView(TestCase):
         view = views.Win10Welcome()
         view.request = RequestFactory().get('/?v=1')
         view.request.locale = 'en-US'
-        eq_(view.get_template_names(), ['firefox/win10_variants/variant-1.html'])
+        eq_(view.get_template_names(), ['firefox/win10_variants/variant-2-1.html'])
 
     def test_get_template_names_variant_2(self):
         view = views.Win10Welcome()
         view.request = RequestFactory().get('/?v=2')
         view.request.locale = 'en-US'
-        eq_(view.get_template_names(), ['firefox/win10_variants/variant-2.html'])
+        eq_(view.get_template_names(), ['firefox/win10_variants/variant-2-2.html'])
 
     def test_get_template_names_variant_3(self):
         view = views.Win10Welcome()
         view.request = RequestFactory().get('/?v=3')
         view.request.locale = 'en-US'
-        eq_(view.get_template_names(), ['firefox/win10_variants/variant-3.html'])
+        eq_(view.get_template_names(), ['firefox/win10_variants/variant-2-3.html'])
 
     def test_get_template_names_variant_4(self):
         view = views.Win10Welcome()
         view.request = RequestFactory().get('/?v=4')
         view.request.locale = 'en-US'
-        eq_(view.get_template_names(), ['firefox/win10_variants/variant-4.html'])
-
-    def test_get_template_names_variant_5(self):
-        view = views.Win10Welcome()
-        view.request = RequestFactory().get('/?v=5')
-        view.request.locale = 'en-US'
-        eq_(view.get_template_names(), ['firefox/win10_variants/variant-5.html'])
+        eq_(view.get_template_names(), ['firefox/win10_variants/variant-2-4.html'])
 
     def test_get_template_names_non_en(self):
         view = views.Win10Welcome()
