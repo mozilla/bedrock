@@ -595,15 +595,6 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/fx40/firstrun.html'])
 
-    @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=False))
-    def test_fx_firstrun_40_0_prelaunch(self, render_mock):
-        """Should use fx38.0.5 firstrun template for 40.0 when switch is False"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, version='40.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/fx38_0_5/firstrun.html'])
-
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
         """Should redirect to https:"""
