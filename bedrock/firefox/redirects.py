@@ -221,4 +221,18 @@ redirectpatterns = (
     # bug 1215633
     redirect(r'^firefox/(?:\d+\.\d+\.?(?:\d+)?\.?(?:\d+)?(?:[a|b]?)(?:\d*)(?:pre)?(?:\d)?)/firstrun/learnmore/?$',
              'https://support.mozilla.org/kb/private-browsing-use-firefox-without-history', permanent=False),
+
+    # bug 845983
+    redirect(r'^metrofirefox(?P<path>/.*)?$', '/firefox{path}'),
+
+    # bug 1003703, 1009630
+    redirect(r'^firefox(?P<vers>/.+)/firstrun/eu/?$', '/firefox{vers}/firstrun/', query={
+        'utm_source': 'direct',
+        'utm_medium': 'none',
+        'utm_campaign': 'redirect',
+        'utm_content': 'eu-firstrun-redirect',
+    }),
+
+    # bug 960543
+    redirect(r'^firefox/(?P<vers>[23])\.0/eula', '/legal/eula/firefox-{vers}/'),
 )
