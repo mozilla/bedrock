@@ -33,7 +33,13 @@
 <section class="page-content">
   <div class="blurb">
     <h2>{{ _('The most private browsing') }}</h2>
-    <p>{{ _('Take control of your web by using Private Browsing with Tracking Protection, only from Firefox.') }}</p>
+    <p>
+      {% if LANG.startswith('en-') %}
+        {{ _('Take control of your Web by using Private Browsing with Tracking Protection, only from Firefox.') }}
+      {% else %}
+        {{ _('Take control of your web by using Private Browsing with Tracking Protection, only from Firefox.') }}
+      {% endif %}
+    </p>
     <!-- update the below url once the product page is in master -->
     <a href="{{ url('firefox.desktop.trust') }}" class="more">{{ _('Learn more about this') }}</a>
   </div>
