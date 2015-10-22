@@ -22,7 +22,6 @@ from bedrock.base.urlresolvers import reverse
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
-import waffle
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.firefox.firefox_details import firefox_desktop
@@ -404,15 +403,12 @@ def show_38_0_5_firstrun_or_whatsnew(version):
 
 
 def show_40_firstrun(version):
-    if (waffle.switch_is_active('fx40-firstrun')):
-        try:
-            version = Version(version)
-        except ValueError:
-            return False
-
-        return version >= Version('40.0')
-    else:
+    try:
+        version = Version(version)
+    except ValueError:
         return False
+
+    return version >= Version('40.0')
 
 
 class LatestFxView(TemplateView):
