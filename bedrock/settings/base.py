@@ -361,6 +361,7 @@ INSTALLED_APPS = (
     'bedrock.foundation',
     'bedrock.gigabit',
     'bedrock.grants',
+    'bedrock.infobar',
     'bedrock.legal',
     'bedrock.mozorg',
     'bedrock.newsletter',
