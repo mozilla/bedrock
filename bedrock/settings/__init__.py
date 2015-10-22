@@ -77,7 +77,7 @@ CACHES['externalfiles'] = {
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL
 STATIC_URL = CDN_BASE_URL + STATIC_URL
 
-if len(sys.argv) > 1 and sys.argv[1] == 'test':
+if (len(sys.argv) > 1 and sys.argv[1] == 'test') or sys.argv[0].endswith('py.test'):
     # Using the CachedStaticFilesStorage for tests breaks all the things.
     STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
     # Turn off less compilation in tests
