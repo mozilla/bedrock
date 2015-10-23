@@ -61,7 +61,7 @@ function init_android_download_links() {
 
 // language switcher
 function init_lang_switcher() {
-    var $language = $('#language');
+    var $language = $('#page-language-select');
     var previousLanguage = $language.val();
     $language.change(function() {
 

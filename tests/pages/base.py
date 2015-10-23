@@ -31,7 +31,7 @@ class BasePage(Page):
     class Footer(PageRegion):
 
         _root_locator = (By.ID, 'colophon')
-        _language_locator = (By.ID, 'language')
+        _language_locator = (By.ID, 'page-language-select')
 
         @property
         def language(self):
