@@ -10,6 +10,7 @@ from cgi import escape
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.utils.encoding import force_text
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST
@@ -22,6 +23,8 @@ from bedrock.base.urlresolvers import reverse
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
+
+import waffle
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.firefox.firefox_details import firefox_desktop
@@ -278,6 +281,14 @@ def windows_billboards(req):
 
 def fx_home_redirect(request):
     return HttpResponseRedirect(reverse('firefox.new'))
+
+
+def choose(request):
+    if waffle.switch_is_active('tracking-protection-redirect'):
+        return l10n_utils.render(request, 'firefox/choose.html')
+    else:
+        query = force_text(request.META.get('QUERY_STRING'), errors='ignore')
+        return HttpResponseRedirect('?'.join([reverse('firefox.new'), query]))
 
 
 def dnt(request):

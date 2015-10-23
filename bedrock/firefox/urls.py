@@ -12,8 +12,6 @@ import views
 import bedrock.releasenotes.views
 from bedrock.releasenotes import version_re
 
-from waffle.decorators import waffle_switch
-
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
@@ -34,8 +32,7 @@ urlpatterns = (
         views.all_downloads, name='firefox.all'),
     page('firefox/channel', 'firefox/channel.html'),
     redirect('^firefox/channel/android/$', 'firefox.channel', locale_prefix=False),
-    page('firefox/choose', 'firefox/choose.html',
-        decorators=waffle_switch('tracking-protection')),
+    url('firefox/choose', views.choose, name='firefox.choose'),
     page('firefox/desktop', 'firefox/desktop/index.html'),
     page('firefox/desktop/fast', 'firefox/desktop/fast.html'),
     page('firefox/desktop/customize', 'firefox/desktop/customize.html'),
