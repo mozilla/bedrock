@@ -28,7 +28,6 @@ def path(*args):
 
 # Is this a dev instance?
 DEV = config('DEV', cast=bool, default=False)
-PROD = config('PROD', cast=bool, default=False)
 
 DEBUG = TEMPLATE_DEBUG = config('DEBUG', cast=bool, default=False)
 
@@ -109,13 +108,18 @@ TOWER_INSTALL_JINJA_TRANSLATIONS = False
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-# Tells the product_details module where to find our local JSON files.
-# This ultimately controls how LANGUAGES are constructed.
+
+def lazy_prod_details_storage():
+    """Needed in case DEBUG is enabled in local.py instead of environment variable"""
+    from django.conf import settings
+    return ('product_details.storage.PDFileStorage' if settings.DEBUG else
+            'product_details.storage.PDDatabaseStorage')
+
+
 PROD_DETAILS_CACHE_NAME = 'product-details'
 PROD_DETAILS_CACHE_TIMEOUT = 60 * 15  # 15 min
-default_pdstorage = 'PDDatabaseStorage' if PROD else 'PDFileStorage'
 PROD_DETAILS_STORAGE = config('PROD_DETAILS_STORAGE',
-                              default='product_details.storage.' + default_pdstorage)
+                              default=lazy(lazy_prod_details_storage, str)())
 
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
