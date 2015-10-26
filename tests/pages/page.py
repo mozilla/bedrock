@@ -2,6 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from selenium.common.exceptions import NoSuchElementException
+
+
 TIMEOUT = 10
 
 
@@ -28,6 +31,12 @@ class Page(object):
 
     def wait_for_page_to_load(self):
         return self
+
+    def is_element_present(self, locator):
+        try:
+            return self.selenium.find_element(*locator)
+        except (NoSuchElementException):
+            return False
 
 
 class PageRegion(object):
