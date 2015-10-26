@@ -895,6 +895,7 @@ PIPELINE_JS = {
     'site': {
         'source_filenames': (
             'js/base/site.js',  # this is automatically included on every page
+            'js/base/dnt-helper.js',
         ),
         'output_filename': 'js/site-bundle.js',
     },
