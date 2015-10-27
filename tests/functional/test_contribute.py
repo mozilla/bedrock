@@ -12,9 +12,9 @@ from ..pages.contribute import ContributePage
 @pytest.mark.nondestructive
 def test_play_video(base_url, selenium):
     page = ContributePage(base_url, selenium).open()
-    page.play_video()
-    assert page.video_modal_is_displayed
-    page.close_video()
+    video = page.play_video()
+    assert video.is_displayed
+    video.close()
 
 
 @pytest.mark.nondestructive

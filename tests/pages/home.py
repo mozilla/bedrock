@@ -33,7 +33,7 @@ class HomePage(BasePage):
 
     @property
     def is_download_button_displayed(self):
-        return self.selenium.find_element(*self._download_button_locator).is_displayed()
+        return self.is_element_displayed(self._download_button_locator)
 
     @property
     def upcoming_events(self):
@@ -48,8 +48,8 @@ class UpcomingEvents(PageRegion):
 
     @property
     def is_next_event_displayed(self):
-        return self.root.find_element(*self._next_event_locator).is_displayed()
+        return self.is_element_displayed(self._next_event_locator)
 
     @property
     def is_events_list_displayed(self):
-        return self.root.find_element(*self._events_list_locator).is_displayed()
+        return self.is_element_displayed(self._events_list_locator)

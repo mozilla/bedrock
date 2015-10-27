@@ -7,7 +7,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from .page import Page, PageRegion
-from .regions import NewsletterEmbedForm, MozillaNewsletterEmbedForm
+from .regions.newsletter import NewsletterEmbedForm, MozillaNewsletterEmbedForm
 
 
 class BasePage(Page):

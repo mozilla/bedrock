@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
-from .page import PageRegion
+from ..page import PageRegion
 
 
 class NewsletterEmbedForm(PageRegion):
@@ -34,7 +34,7 @@ class NewsletterEmbedForm(PageRegion):
 
     @property
     def is_form_detail_displayed(self):
-        return self.root.find_element(*self._form_details_locator).is_displayed()
+        return self.is_element_displayed(self._form_details_locator)
 
     @property
     def email(self):

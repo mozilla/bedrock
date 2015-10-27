@@ -23,7 +23,7 @@ class DoNotTrackPage(FirefoxBasePage):
 
     @property
     def is_do_not_track_status_displayed(self):
-        return self.selenium.find_element(*self._dnt_status).is_displayed()
+        return self.is_element_displayed(self._dnt_status)
 
 
 class FrequentlyAskedQuestion(PageRegion):
@@ -50,4 +50,4 @@ class FrequentlyAskedQuestion(PageRegion):
 
     @property
     def is_answer_displayed(self):
-        return self.root.find_element(*self._answer_locator).is_displayed()
+        return self.is_element_displayed(self._answer_locator)
