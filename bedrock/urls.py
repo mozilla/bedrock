@@ -26,6 +26,7 @@ urlpatterns = (
     url(r'^foundation/', include('bedrock.foundation.urls')),
     url(r'^gigabit/', include('bedrock.gigabit.urls')),
     url(r'^grants/', include('bedrock.grants.urls')),
+    url(r'^infobar/', include('bedrock.infobar.urls')),
     url(r'^about/legal/', include('bedrock.legal.urls')),
     url(r'^persona/', include('bedrock.persona.urls')),
     url(r'^press/', include('bedrock.press.urls')),
