@@ -145,6 +145,40 @@ you can also read the `pytest markers`_ documentation for more options.
         assert not page.text_format_selected
         assert not page.privacy_policy_accepted
 
+Sanity tests
+~~~~~~~~~~~~
+
+Sanity tests are run as part of bedrocks deployment pipeline. These should be considered
+to be critical tests which benefit from being run automatically after every commit to
+master. Only the full suite of functional tests are run after deployment to staging. If
+your test should be marked as a santity test you will need to apply a ``santiy`` marker
+to it.
+
+.. code-block:: python
+
+    import pytest
+
+    @pytest.mark.sanity
+    @pytest.mark.nondestructive
+    def test_newsletter_default_values(base_url, selenium):
+        page = NewsletterPage(base_url, selenium).open()
+        assert '' == page.email
+        assert 'United States' == page.country
+        assert 'English' == page.language
+        assert page.html_format_selected
+        assert not page.text_format_selected
+        assert not page.privacy_policy_accepted
+
+You can run sanity tests only by adding ``-m sanity`` when running the test suite on the
+command line.
+
+.. Note::
+
+  Tests that rely on long-running timeouts, cron jobs, or that test for locale specific
+  interactions should not be marked as a sanity test. We should try and ensure that the
+  suite of sanity tests are quick to run, and they should not have a dependency on
+  checking out and building the full site.
+
 Waits and Expected Conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

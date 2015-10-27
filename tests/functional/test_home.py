@@ -8,6 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from ..pages.home import HomePage
 
 
+@pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_promo_grid_is_displayed(base_url, selenium):
     page = HomePage(base_url, selenium).open()
@@ -32,6 +33,7 @@ def test_tweet_is_not_present(base_url, selenium):
     assert not page.is_tweet_promo_present
 
 
+@pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = HomePage(base_url, selenium).open()
@@ -46,6 +48,7 @@ def test_upcoming_events_are_displayed(base_url, selenium):
     assert events.is_events_list_displayed
 
 
+@pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_mozilla_newsletter_default_values(base_url, selenium):
     page = HomePage(base_url, selenium).open()
