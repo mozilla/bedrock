@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% extends "mozorg/base-resp.html" %}
 
 {% block page_image %}{{ static('img/plugincheck/page-image.png') }}{% endblock %}
 
@@ -277,6 +277,18 @@
     {{ download_firefox(small=True) }}
   </section>
 </div>
+{% endblock %}
+
+{% block email_form %}
+  <!-- for this page we need the form to live inside a container that will be the full widtth
+    of the parent container so, we cannot just inherit from mozorg/responsive -->
+  <section class="newsletter-container">
+    {% if LANG == 'en-US' %}
+      {{ mozorg_newsletter_form() }}
+    {% else %}
+      {{ email_newsletter_form() }}
+    {% endif %}
+  </section>
 {% endblock %}
 
 {% block js %}
