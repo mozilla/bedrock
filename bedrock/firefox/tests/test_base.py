@@ -361,6 +361,18 @@ class TestWhatsNew(TestCase):
 
     # end 38.0.5 whatsnew tests
 
+    # begin 42.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_42_0(self, render_mock):
+        """Should use tracking protection whatsnew template for 42.0"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='42.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew_42/variant-a.html'])
+
+    # end 42.0 whatsnew tests
+
     @override_settings(DEV=True)
     def test_older_whatsnew(self, render_mock):
         """Should show default no tour template for 35 and below"""

@@ -1,0 +1,35 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew_42/base.html" %}
+
+{% add_lang_files "firefox/whatsnew_42" %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_whatsnew_42_b' %}
+{% endblock %}
+
+{% block main_subhead %}
+  <p class="tagline">{{ _('Introducing Private Browsing with Tracking Protection') }}</p>
+{% endblock %}
+
+{% block private_browsing_cta %}
+  <div id="try-private-browsing">
+    <section class="lockup">
+      <h2>{{ _('Give it a try! Click the mask in your toolbar or menu to open a New Private Window.') }}</h2>
+      {# TODO need to update this link to fall back to the Private Browsing product page #}
+      <a class="button-flat-dark" href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/" data-highlight="privateWindow" role="button">{{ _('Try the new Private Browsing') }}</a>
+      <p>{{ _('Can’t find the mask? <a rel="external" href="%s">Learn how to find it</a>.')|format('https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/') }}</p>
+    </section>
+    <div class="critter top-left"></div>
+    <div class="critter arms-top-left"></div>
+    <div class="critter top-right"></div>
+    <div class="critter bottom-right"></div>
+    <div class="critter bottom-left"></div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_whatsnew_42_b' %}
+{% endblock %}

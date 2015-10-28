@@ -502,6 +502,21 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew_38_pocket-bundle.css',
     },
+    'firefox_whatsnew_42_a': {
+        'source_filenames': (
+            'css/firefox/tracking-protection-animation.less',
+            'css/firefox/whatsnew_42/common.less',
+            'css/firefox/whatsnew_42/variant-a.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_42_a-bundle.css',
+    },
+    'firefox_whatsnew_42_b': {
+        'source_filenames': (
+            'css/firefox/whatsnew_42/common.less',
+            'css/firefox/whatsnew_42/variant-b.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_42_b-bundle.css',
+    },
     'firefox_win10_welcome': {
         'source_filenames': (
             'css/firefox/win10-welcome.less',
@@ -1337,6 +1352,30 @@ PIPELINE_JS = {
             'js/firefox/whatsnew_38/whatsnew-pocket.js',
         ),
         'output_filename': 'js/firefox_whatsnew_38_pocket-bundle.js',
+    },
+    'firefox_whatsnew_42_a': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/base/mozilla-highlight-target.js',
+            'js/firefox/whatsnew_42/variant-a.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_42_a-bundle.js',
+    },
+    'firefox_whatsnew_42_b': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/base/mozilla-highlight-target.js',
+            'js/firefox/whatsnew_42/variant-b.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_42_b-bundle.js',
+    },
+    'firefox_firstrun_42_learnmore': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/base/mozilla-highlight-target.js',
+            'js/firefox/whatsnew_42/learnmore.js',
+        ),
+        'output_filename': 'js/firefox_firstrun_42_learnmore-bundle.js',
     },
     'firefox_win10_welcome': {
         'source_filenames': (
