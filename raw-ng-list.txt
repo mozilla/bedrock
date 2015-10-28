@@ -63,8 +63,8 @@ mozilla.dev.i18n                        For discussions about <a href="/projects
 mozilla.dev.js-sourcemap                The JS sourcemap project, which maps obfuscated JS back to the original version for debugging. (Moderated)
 mozilla.dev.l10n                        For <a href="/projects/l10n/mlp.html">localization</a> (L10N) issues. L10N is the process of adapting software to a specific language and culture (see also <a href="#mozilla-i18n">internationalization</a>).
 mozilla.dev.mdc                         Discussion about developer documentation on <a href="http://developer.mozilla.org/">MDN Documentation Center</a> (MDC) (Moderated)
+mozilla.mdn                             High-level planning for the Mozilla Developer Network (MDN). (Moderated)
 mozilla.dev.mdn                         Code development for the Mozilla Developer Network (MDN) website and platform
-mozilla.mdn.drivers                     Release coordination for the Mozilla Developer Network (MDN) platform. (Moderated)
 mozilla.dev.media                       Development of Mozilla's media support (audio and video). (Moderated)
 mozilla.dev.mozdef                      The Mozilla Defense Platform, an open source <a href="http://en.wikipedia.org/wiki/Siem">SIEM</a> project. (Moderated)
 mozilla.dev.mozjpeg                     The Mozilla enhanced version of libjpeg. (Moderated)
