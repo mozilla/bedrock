@@ -401,6 +401,15 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_ios-bundle.css',
     },
+    'firefox_mobile_download': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/base/simple_footer-resp.less',
+            'css/firefox/mobile-download.less',
+        ),
+        'output_filename': 'css/firefox_mobile_download.css',
+    },
     'firefox_new': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
