@@ -924,6 +924,44 @@ html[lang|="en"] {
     }
 }
 
+
+/***************************************************************************/
+// SmartOn Tracking
+.promo-small-landscape.smarton-tracking {
+
+    background-color: #821c76;
+
+    h2 {
+        .at2x('/media/img/home/voices/promos/smarton/smarton-tracking.png', 95px, 95px);
+        background-repeat: no-repeat;
+        background-position: left center;
+        margin: @baseLine 10px 0;
+        padding: 15px 0 @baseLine 110px;
+        min-height: 60px;
+        .font-size(@largeFontSize);
+    }
+}
+
+[lang|="en"] {
+    .promo-small-landscape.smarton-tracking {
+        h2 {
+            .font-size(22px);
+        }
+    }
+}
+
+.html-rtl {
+    .promo-small-landscape.smarton-tracking {
+        h2 {
+            background-position: right center;
+            padding: 15px 110px @baseLine 0;
+            text-align: right;
+        }
+    }
+}
+
+
+
 /****************************************************************************/
 // Gear
 .promo-large-landscape.gear {

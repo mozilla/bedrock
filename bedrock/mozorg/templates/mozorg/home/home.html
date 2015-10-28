@@ -208,7 +208,13 @@
         <li id="promo-7" class="item promo-face">
           {{ promo_face(3, 'promo-7') }}
         </li>
-      {% if l10n_has_tag('webmaker_promo_thimble') %}
+      {% if l10n_has_tag('smarton_promo_tracking') and waffle.switch('tracking-protection') %}
+        <li id="promo-8" class="item promo-small-landscape smarton-tracking" tabindex="0">
+          <a class="panel-link" rel="external" href="{{ url('teach.smarton.tracking') }}" data-promotion-id="promo-8" data-promotion-name="Get smart on Tracking" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
+            <h2>{{ _('Get smart on Tracking') }}</h2>
+          </a>
+        </li>
+      {% elif l10n_has_tag('webmaker_promo_thimble') %}
         <li id="promo-8" class="item promo-small-landscape thimble" tabindex="0">
           <a class="panel-link" rel="external" href="https://thimble.mozilla.org/" data-promotion-id="promo-8" data-promotion-name="Try the Thimble code editor" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Try the Thimble code editor') }}</h2>
