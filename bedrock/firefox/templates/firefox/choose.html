@@ -8,6 +8,12 @@
 {% block page_title %}{{_('Keep your identity yours with the new Firefox') }}{% endblock %}
 {% block page_desc %}{{_('Choose Firefox when you want to browse the Web without the Web browsing you.')}}'{% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-choose-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {% stylesheet 'firefox_choose' %}
 {% endblock %}
