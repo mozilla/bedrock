@@ -18,8 +18,7 @@
   <div id="try-private-browsing">
     <section class="lockup">
       <h2>{{ _('Give it a try! Click the mask in your toolbar or menu to open a New Private Window.') }}</h2>
-      {# TODO need to update this link to fall back to the Private Browsing product page #}
-      <a class="button-flat-dark" href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/" data-highlight="privateWindow" role="button">{{ _('Try the new Private Browsing') }}</a>
+      <a class="button-flat-dark" href="{{ url('firefox.private-browsing') }}" data-highlight="privateWindow" role="button">{{ _('Try the new Private Browsing') }}</a>
       <p>{{ _('Can’t find the mask? <a rel="external" href="%s">Learn how to find it</a>.')|format('https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/') }}</p>
     </section>
     <div class="critter top-left"></div>
