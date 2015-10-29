@@ -1,0 +1,169 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import fxfamilynav with context %}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title %}{{ _('Firefox Web browser — Private Browsing with Tracking Protection — Mozilla') }}{% endblock %}
+{% block page_desc %}{{ _('Get more protection and the most privacy, only from Firefox. No other browser gives you so much control over your digital footprint.')}}{% endblock %}
+{% block body_id %}firefox-private-browsing{% endblock %}
+{% block body_class %}mozid{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_private_browsing' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {{ fxfamilynav('desktop', 'private-browsing') }}
+{% endblock %}
+
+{% block content %}
+
+<main role="main">
+  <section class="intro">
+    <div class="container">
+      <header>
+        <h1>{{ _('More protection. <br>The most privacy. <br>Only from Firefox.') }}</h1>
+        <div class="download-buttons">
+          <div class="firefox-latest-cta">
+            <a href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/" class="button-flat-dark" data-highlight="privateWindow" role="button">{{ _('Try Private Browsing') }}</a>
+          </div>
+          <div class="non-firefox-cta">
+            <p>{{ _('To give the new Private Browsing a try, download Firefox.') }}</p>
+            <div class="desktop-download-button">
+              {{ download_firefox(small=True, icon=False) }}
+            </div>
+            <div class="android-download-button">
+              <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
+                {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
+              </a>
+            </div>
+            <div class="ios-download-button">
+              <a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}&amp;ct=mozorg-ios_page-appstore-button">
+                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
+              </a>
+            </div>
+          </div>
+          <div class="firefox-old-cta">
+            <p>{{ _('Your Firefox is not up to date. Download the latest version to use the new Private Browsing.') }}</p>
+            {{ download_firefox(small=True, icon=False) }}
+          </div>        
+        </div>        
+      </header>
+      <div class="critter-animation">
+          {% include 'firefox/includes/tracking-protection-animation.html' %}
+      </div>
+    </div>
+  </section>
+
+  <section class="tracking-protection" id="tracking-protection">
+    <div class="container">
+      <h2>{{ _('No other browser gives you so much control over your digital footprint.') }}
+      </h2>
+      <div class="blurb private-browsing">
+        <h3>{{ _('Private Browsing') }}</h3>
+        <p>{{ _('Firefox won’t save things like your browsing history, searches or cookies, but it will keep new bookmarks and files you download.') }}</p>
+      </div>
+      <div class="blurb with-tracking">
+        <h3>{{ _('With Tracking Protection')}}</h3>
+        <p>{{ _('Minimize the ability of hidden third parties from tracking your browsing activity across many sites.') }}</p>
+      </div>
+      <p class="footer">
+        <strong>
+          <a class="android-link" href="https://support.mozilla.org/en-US/kb/private-browsing-firefox-android">{{ _('Learn how to use Private Browsing') }}</a>
+          <a class="ios-link" href="https://support.mozilla.org/kb/private-browsing-firefox-ios">{{ _('Learn how to use Private Browsing') }}</a>
+          <a class="desktop-link" href="https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history">{{ _('Learn more about Private Browsing') }}</a>
+        </strong>
+        <small id="tracking-protection-caveat"> {{ _('Tracking Protection is only available with Firefox for Android and Desktop') }}</small>
+      </p>
+
+    </div>
+  </section>
+
+  <section class="when-to-use" id="when-to-use">
+    <div class="container">
+      <h2>{{ _('When to use Private Browsing') }}</h2>
+      <ul>
+        <li>
+          <h3>{{ _('To minimize your digital footprint') }}</h3>
+          <p>{{ _('Tracking Protection blocks Internet companies from following you across the Web') }}</p>
+        </li>
+        <li>
+          <h3>{{ _('Online banking from a shared device or computer') }}</h3>
+          <p>{{ _('Your username and password won’t be saved') }}</p>
+        </li>
+        <li>
+          <h3>{{ _('To help you plan a surprise, like a birthday or a trip') }}</h3>
+          <p>{{ _('No one can see your browsing history') }}</p>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section class="control-center" id="control-center">
+    <div class="container">
+      <h2>{{ _('The Control Center has you covered') }}</h2>
+      <p>
+        {{ _('When you see the shield to the left of the address bar, that means Firefox is protecting you from potential trackers.') }}
+        {{ _('You can disable Tracking Protection for a single site, or turn it off entirely. It’s up to you.') }}
+      </p>
+      <p class="footer">
+        <strong>
+          <a class="android-link" href="https://support.mozilla.org/kb/mixed-content-blocker-firefox-android">{{ _('Learn more about the Control Center') }}</a>
+          <a class="desktop-link" href="https://support.mozilla.org/kb/control-center-site-privacy-and-security-firefox">{{ _('Learn more about the Control Center') }}</a>
+        </strong>
+        <small id="control-center-caveat"> 
+        {{ _('Control Center is not available on Android devices, but a shield will still be displayed to let you know when you are protected.') }}</small>
+      </p>
+    </div>
+  </section>
+
+  <section class="cta" id="cta">
+    <div class="container">
+      <div class="download-buttons">
+        <div class="firefox-latest-cta">
+          <h2>{{ _('Try it now to stay in control') }}</h2>
+          <a href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/" class="button-flat-dark" data-highlight="privateWindow" role="button">{{ _('Try Private Browsing') }}</a>
+        </div>
+        <div class="non-firefox-cta">
+          <h2>{{ _('To give the new Private Browsing a try, download Firefox.') }}</h2>
+          <div class="desktop-download-button">
+            {{ download_firefox(small=True, icon=False) }}
+          </div>
+          <div class="android-download-button">
+            <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
+              {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
+            </a>
+          </div>
+          <div class="ios-download-button">
+            <a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}&amp;ct=mozorg-ios_page-appstore-button">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
+            </a>
+          </div>
+        </div>
+        <div class="firefox-old-cta">
+          <h2>{{ _('Your Firefox is not up to date. Download the latest version to use the new Private Browsing.') }}</h2>
+          {{ download_firefox(small=True, icon=False) }}
+        </div>        
+      </div>        
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  <!--[if IE 9]>
+    {% javascript 'matchmedia_addlistener' %}
+    {% javascript 'firefox_hello_ie9' %}
+  <![endif]-->
+  {% javascript 'firefox_private_browsing' %}
+{% endblock %}

@@ -50,6 +50,7 @@ urlpatterns = (
     page('firefox/ios', 'firefox/ios.html'),
     page('firefox/os/faq', 'firefox/os/faq.html'),
     page('firefox/products', 'firefox/family/index.html'),
+    page('firefox/private-browsing', 'firefox/private-browsing.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
     url('^firefox/sms/$', views.sms_send, name='firefox.sms'),
