@@ -131,12 +131,21 @@
         </a>
       </li>
 
+    {% if l10n_has_tag('tracking_protection') and waffle.switch('tracking-protection') %}
+      <li class="product" id="product-private-browsing">
+        <a href="{{ url('firefox.private-browsing') }}" data-product="Private Browsing">
+          <h2>{{ _('Private Browsing') }}</h2>
+          <p>{{ _('Now with Tracking Protection.') }}</p>
+        </a>
+      </li>
+    {% else %}
       <li class="product" id="product-marketplace">
         <a rel="external" href="https://marketplace.firefox.com/" data-product="Firefox Marketplace">
           <h2>{{ _('Firefox Marketplace') }}</h2>
           <p>{{ _('Discover and download Web apps.') }}</p>
         </a>
       </li>
+    {% endif %}
     </ul>
   </div>{#-- /.content --#}
 </section>{#-- /#products-secondary --#}
