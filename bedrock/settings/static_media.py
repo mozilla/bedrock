@@ -54,6 +54,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/about-forums-bundle.css',
     },
+    'about-patents': {
+        'source_filenames': (
+            'css/mozorg/about-patents.less',
+            'css/base/mozilla-accordion.less',
+        ),
+        'output_filename': 'css/about-patents-bundle.css',
+    },
     'foundation': {
         'source_filenames': (
             'css/foundation/foundation.less',
