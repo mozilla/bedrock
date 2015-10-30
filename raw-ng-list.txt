@@ -21,6 +21,7 @@ mozilla.join                            The Join Mozilla public engagement initi
 mozilla.learning-center                 Resources for Mozillians to learn about Mozilla (Moderated)
 mozilla.legal                           For discussions about the <a href="/MPL/">licensing terms</a> of the Mozilla source code and other legal issues. (Moderated)
 mozilla.marketing                       Our plans for world domination. (Moderated)
+mozilla.moss                            For discussions about <a href="http://wiki.mozilla.org/MOSS">Mozilla Open Source Support</a> (MOSS). (Moderated)
 mozilla.mozillians                      For discussions about how to <a href="http://wiki.mozilla.org/Grow">grow Mozilla</a> and bring in new contributors.
 mozilla.opsec                           General discussions about operations security at Mozilla (Moderated)
 mozilla.privacy                         Forum for discussion of privacy issues and Mozilla's response. (Moderated)
