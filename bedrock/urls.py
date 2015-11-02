@@ -40,6 +40,7 @@ urlpatterns = (
     url(r'', include('bedrock.mozorg.urls')),
     url(r'', include('bedrock.newsletter.urls')),
     url(r'', include('bedrock.research.urls')),
+    url(r'', include('bedrock.teach.urls')),
 
     # L10n example.
     url(r'^l10n_example/',

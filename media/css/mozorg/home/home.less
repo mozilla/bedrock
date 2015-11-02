@@ -685,10 +685,13 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom: none;
     box-shadow: none;
 
-    h3 {
-        display: block;
-        float: none;
+    .form-title {
         width: auto;
+        float: none;
+        margin: 0;
+    }
+
+    h3 {
         padding: (@baseLine * 2) 0;
         color: @textColorSecondary;
         .font-size(46px);
@@ -993,7 +996,7 @@ h1, h2, h3, h4, h5, h6 {
 
     #mozorg-newsletter-form,
     #newsletter-form {
-        h3 {
+        .form-title {
             float: none;
             width: auto;
             padding: (@baseLine * 2) 0;
