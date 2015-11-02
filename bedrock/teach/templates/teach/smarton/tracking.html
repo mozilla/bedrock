@@ -17,11 +17,14 @@
 {% block body_id %}smarton-tracking{% endblock %}
 {% block body_class %}smarton theme-tracking state-default{% endblock %}
 
+{# We use a localized hashtag for Spanish locales #}
+{% set hashtag = ' #SéUnExperto' if LANG.startswith('es-') else ' #SmartOn' %}
+
 {% block smarton_content %}
 <article class="main">
 
   {# Navbar macro. Params: Page title, tweet text, Twitter URL, Facebook URL, Google+ URL #}
-  {{ smarton_navbar(_('Tracking'), _('What you do online is your business, and you can keep it that way. Get smart on tracking.') + ' #SmartOn', 'https://mzl.la/tracking', 'https://www.mozilla.org/teach/smarton/tracking/', 'https://www.mozilla.org/teach/smarton/tracking/') }}
+  {{ smarton_navbar(_('Tracking'), _('What you do online is your business, and you can keep it that way. Get smart on tracking.') + hashtag, 'https://mzl.la/tracking', 'https://www.mozilla.org/teach/smarton/tracking/', 'https://www.mozilla.org/teach/smarton/tracking/') }}
 
   <section id="ask" class="section section-ask">
     <div class="content">
@@ -352,7 +355,6 @@
 
     <section id="chat" class="section section-chat">
     <div class="content">
-
       <h2 class="section-title">{{ _('Share your tracking smarts') }}</h2>
       <p class="section-intro">
         {{ _('Now that you have some tools and the knowledge to protect yourself, spread the word to friends.') }}
@@ -364,7 +366,7 @@
             <p>
               <span class="chat-question">{{ _('What privacy settings do you use in your browser?') }}</span>
               <span class="tweet-this">
-                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('https://mzl.la/tracking'|urlencode, _('What privacy settings do you use in your browser?')|urlencode, ' #SmartOn'|urlencode)|e }}">{{ _('Tweet this') }}</a>
+                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('https://mzl.la/tracking'|urlencode, _('What privacy settings do you use in your browser?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
               </span>
             </p>
             {% include 'teach/smarton/includes/list-number-1.svg' %}
@@ -373,7 +375,7 @@
             <p>
               <span class="chat-question">{{ _('How much are you willing to share about yourself in exchange for personalized content?') }}</span>
               <span class="tweet-this">
-                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('https://mzl.la/tracking'|urlencode, _('How much are you willing to share about yourself in exchange for personalized content?')|urlencode, ' #SmartOn'|urlencode)|e }}">{{ _('Tweet this') }}</a>
+                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('https://mzl.la/tracking'|urlencode, _('How much are you willing to share about yourself in exchange for personalized content?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
               </span>
             </p>
             {% include 'teach/smarton/includes/list-number-2.svg' %}
@@ -382,7 +384,7 @@
             <p>
               <span class="chat-question">{{ _('Have you ever used private browsing?') }}</span>
               <span class="tweet-this">
-                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('https://mzl.la/tracking'|urlencode, _('Have you ever used private browsing?')|urlencode, ' #SmartOn'|urlencode)|e }}">{{ _('Tweet this') }}</a>
+                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('https://mzl.la/tracking'|urlencode, _('Have you ever used private browsing?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
               </span>
             </p>
             {% include 'teach/smarton/includes/list-number-3.svg' %}
@@ -405,4 +407,3 @@
 </article>
 
 {% endblock %}
-
