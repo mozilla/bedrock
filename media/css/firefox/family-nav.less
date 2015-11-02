@@ -281,7 +281,7 @@
                 opacity: 0.8;
                 height: 77px;
                 line-height: 77px;
-                max-width: 125px; // uhhh, seems to work?
+                max-width: 129px;
 
                 &.selected,
                 &:hover {
@@ -425,8 +425,13 @@
 }
 
 // en-* langs only get uppercase subsubnav links
-html[lang^='en'] .fxfamilynav .subsubnav a {
-    text-transform: uppercase;
+html[lang^='en'] .fxfamilynav {
+    .subnav > li > a {
+        max-width: 149px;
+    }
+    .subsubnav a {
+        text-transform: uppercase;
+    }
 }
 
 .fxfamilynav-subnav {
