@@ -208,6 +208,13 @@
         });
     });
 
+    // Open embed in a new tab/window
+    $('a.video-open').on('click', function(e) {
+        e.preventDefault();
+        window.open(this.href);
+    });
+
+/* Hide the embed for now
     // Play videos in a modal
     $('a.video-open').attr('role', 'button').on('click', function(e) {
         e.preventDefault();
@@ -233,6 +240,7 @@
             'video': $this.data('element-id')
         });
     });
+*/
 
     // Track user scrolling through each section down the page
     $('.main .section').each(function() {
