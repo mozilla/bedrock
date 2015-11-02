@@ -276,26 +276,22 @@ function onYouTubeIframeAPIReady() {
 
         skipTour();
 
-        // l10n tag in template toggles showing the reminder
-        if ($main.hasClass('sync-reminder')) {
+        icon = isHighRes ? window.trans('syncIconHighRes') : window.trans('syncIcon');
 
-            icon = isHighRes ? window.trans('syncIconHighRes') : window.trans('syncIcon');
+        options = {
+            closeButtonCallback: hideAnnotation
+        };
 
-            options = {
-                closeButtonCallback: hideAnnotation
-            };
+        showHighlight(TARGET_3);
 
-            showHighlight(TARGET_3);
-
-            Mozilla.UITour.showInfo(
-                TARGET_3,
-                getText('syncReminderTitle'),
-                getText('syncReminderText'),
-                icon,
-                null,
-                options
-            );
-        }
+        Mozilla.UITour.showInfo(
+            TARGET_3,
+            getText('syncReminderTitle'),
+            getText('syncReminderText'),
+            icon,
+            null,
+            options
+        );
     }
 
     // hides the current highlight annotation

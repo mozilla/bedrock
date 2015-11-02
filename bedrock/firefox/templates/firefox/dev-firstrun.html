@@ -19,11 +19,7 @@
 {% block page_og_url %}{{ url('firefox.developer') }}{% endblock %}
 
 {% block page_og_desc %}
-  {% if l10n_has_tag('meta_update_201503') %}
-    {{_('Built for those who build the Web. Introducing the only browser made for developers.')}}
-  {%- else -%}
-    {{ _('Introducing the only browser made for developers like you.') }}
-  {% endif %}
+  {{_('Built for those who build the Web. Introducing the only browser made for developers.')}}
 {% endblock %}
 
 {% block body_id %}firefox-developer-firstrun{% endblock %}
@@ -37,15 +33,9 @@ data-webide-title="{{ _('Try WebIDE') }}"
 data-webide-text="{{ _('Develop, deploy and debug Firefox OS apps directly in your browser or on a Firefox OS device.') }}"
 data-next-sync="{{ _('Next: Sync') }}"
 
-{% if l10n_has_tag('new_doorhanger') %}
-  data-sync-title="{{ _('Important') }}"
-  data-sync-text="{{ _('Sync your new Developer Edition profile to your Firefox Account to access bookmarks, browsing history, passwords and more from your existing Firefox profile.') }}"
-  data-doorhanger-sync="{{ _('Sync now') }}"
-{% else %}
-  data-sync-title="{{ _('Keep your browser in Sync') }}"
-  data-sync-text="{{ _('Sync your Firefox desktop and mobile browsers to get instant access to your bookmarks, open tabs, passwords and more.') }}"
-  data-doorhanger-sync="{{ _('Sync my Firefox') }}"
-{% endif %}
+data-sync-title="{{ _('Important') }}"
+data-sync-text="{{ _('Sync your new Developer Edition profile to your Firefox Account to access bookmarks, browsing history, passwords and more from your existing Firefox profile.') }}"
+data-doorhanger-sync="{{ _('Sync now') }}"
 
 data-doorhanger-close="{{ _('Close') }}"
 data-doorhanger-nothanks="{{ _('No thanks') }}"
@@ -56,10 +46,8 @@ data-devtools-icon-high-res="{{ static('img/firefox/dev-firstrun/devtools-blue-h
 data-sync-icon="{{ static('img/firefox/dev-firstrun/sync-blue.png') }}"
 data-sync-icon-high-res="{{ static('img/firefox/dev-firstrun/sync-blue-high-res.png') }}"
 
-{% if l10n_has_tag('new_doorhanger') %}
-  data-sync-reminder-title="{{ _('Before you go&hellip;') }}"
-  data-sync-reminder-text="{{ _('If you continue without syncing your new Developer Edition profile, you could lose access to important browsing data from your existing Firefox profile.') }} {{ _('To sync now, choose the Sync option from this menu.') }}"
-{% endif %}
+data-sync-reminder-title="{{ _('Before you go&hellip;') }}"
+data-sync-reminder-text="{{ _('If you continue without syncing your new Developer Edition profile, you could lose access to important browsing data from your existing Firefox profile.') }} {{ _('To sync now, choose the Sync option from this menu.') }}"
 
 {% endblock %}
 
@@ -70,14 +58,31 @@ data-sync-icon-high-res="{{ static('img/firefox/dev-firstrun/sync-blue-high-res.
 
 {% block content %}
 
-<main role="main" {% if l10n_has_tag('new_doorhanger') %}class="sync-reminder"{% endif %} >
+<main role="main">
   <section class="intro container">
     <header>
       <h1>{{_('Welcome to <span>Firefox Developer Edition</span>')}}</h1>
       <p>{{_('Get to know the features that make it the most complete browser for building the Web.')}}</p>
     </header>
     <ul class="features">
-    {% if l10n_has_tag('spring_release') %}
+    {% if l10n_has_tag('firefox_dev_fall') and waffle.switch('firefox-dev-fall') %}
+      <li class="feature">
+        <a href="https://hacks.mozilla.org/2015/11/developer-edition-44-creative-tools-and-more" rel="external">
+          {{ high_res_img('firefox/firstrun/dev/creative-tools.png', {'alt': 'Screenshot', 'width': '300', 'height': '160', 'class': 'screenshot'}) }}
+        </a>
+        <h2>{{_('Visual Editing Tools')}}</h2>
+        <p>{{_('Visually edit CSS and HTML animations playing on the page from the Inspector panel. Verify alignment, dimensions and padding of any element using the Ruler and Measurement tools.')}}</p>
+        <a href="https://hacks.mozilla.org/2015/11/developer-edition-44-creative-tools-and-more" rel="external" class="more">{{_('Learn more about Visual Editing Tools')}}</a>
+      </li>
+      <li class="feature">
+        <a href="http://devtoolschallenger.com/" rel="external">
+          {{ high_res_img('firefox/firstrun/dev/devtools-challenger.png', {'alt': 'Screenshot', 'width': '300', 'height': '160', 'class': 'screenshot'}) }}
+        </a>
+        <h2>{{_('DevTools Challenger')}}</h2>
+        <p>{{_('Use Developer Edition’s visual animation and CSS editing tools to explore the depths of the ocean and interact with the strangest of creatures.')}}</p>
+        <a href="http://devtoolschallenger.com/" rel="external" class="more">{{_('Try DevTools Challenger')}}</a>
+      </li>
+    {% else %}
       <li class="feature">
         <a href="https://developer.mozilla.org/docs/Tools/Performance" rel="external">
           <img src="{{ static('img/firefox/firstrun/dev/feature-performancetools.png') }}" alt="{{ _('Screenshot') }}" class="screenshot">
@@ -92,7 +97,6 @@ data-sync-icon-high-res="{{ static('img/firefox/dev-firstrun/sync-blue-high-res.
           <div class="video" data-video-id="eH0R10Ga4Hs"></div>
         </div>
       </li>
-    {% endif %}
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=eQqNfkqIJdw" rel="external" class="video-play">
           <img src="{{ static('img/firefox/firstrun/dev/feature-inspector-large.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
@@ -104,29 +108,16 @@ data-sync-icon-high-res="{{ static('img/firefox/dev-firstrun/sync-blue-high-res.
           <div class="video" data-video-id="eQqNfkqIJdw"></div>
         </div>
       </li>
-    {% if not l10n_has_tag('spring_release') %}
-      <li class="feature">
-        <a href="https://www.youtube.com/watch?v=R_qDaLQ8ghg" rel="external" class="video-play">
-          <img src="{{ static('img/firefox/firstrun/dev/feature-webaudio-large.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
-        </a>
-        <h2>{{_('Web Audio Editor')}}</h2>
-        <p>{{_('Inspect and interact with Web Audio API in real time to ensure that all audio nodes are connected in the way you expect.')}}</p>
-        <a href="https://developer.mozilla.org/docs/Tools/Web_Audio_Editor" rel="external" class="more">{{_('Learn more about Web Audio Editor')}}</a>
-        <div class="responsive-video-container">
-          <div class="video" data-video-id="R_qDaLQ8ghg"></div>
-        </div>
-      </li>
     {% endif %}
     </ul>
-    {% if l10n_has_tag('new_doorhanger') %}
-      <div class="notice">
-        <h4>{{ _('Important: Sync your new profile') }}</h4>
-        <p>
-          {{ _('Developer Edition comes with a new profile so you can run it alongside other versions of Firefox.') }} {{ _('To access your bookmarks, browsing history and more, you need to sync the profile with your existing Firefox Account, or create a new one.') }}
-          <a href="https://support.mozilla.org/kb/recover-lost-bookmarks-firefox-developer-edition" rel="external" class="more">{{ _('Learn more') }}</a>
-        </p>
-      </div>
-    {% endif %}
+
+    <div class="notice">
+      <h4>{{ _('Important: Sync your new profile') }}</h4>
+      <p>
+        {{ _('Developer Edition comes with a new profile so you can run it alongside other versions of Firefox.') }} {{ _('To access your bookmarks, browsing history and more, you need to sync the profile with your existing Firefox Account, or create a new one.') }}
+        <a href="https://support.mozilla.org/kb/recover-lost-bookmarks-firefox-developer-edition" rel="external" class="more">{{ _('Learn more') }}</a>
+      </p>
+    </div>
   </section>
 
   <section class="more-features">
@@ -135,7 +126,6 @@ data-sync-icon-high-res="{{ static('img/firefox/dev-firstrun/sync-blue-high-res.
         <h2>{{_('Features and tools')}}</h2>
       </header>
       <ul class="features">
-      {% if l10n_has_tag('spring_release') %}
         <li class="feature">
           <a href="https://www.youtube.com/watch?v=R_qDaLQ8ghg" rel="external" class="video-play">
             <img src="{{ static('img/firefox/firstrun/dev/feature-webaudio.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
@@ -147,7 +137,33 @@ data-sync-icon-high-res="{{ static('img/firefox/dev-firstrun/sync-blue-high-res.
             <div class="video" data-video-id="R_qDaLQ8ghg"></div>
           </div>
         </li>
-      {% endif %}
+        {% if l10n_has_tag('firefox_dev_fall') and waffle.switch('firefox-dev-fall') %}
+        <li class="feature">
+          <a href="https://developer.mozilla.org/docs/Tools/Performance" rel="external">
+            <img src="{{ static('img/firefox/firstrun/dev/performance-tools.png') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Performance Tools')}}</h2>
+          <p>{{_('Examine your web content’s frame rate, memory consumption and JS profile in a consolidated timeline view to help easily identify and troubleshoot performance bottlenecks.')}}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/Performance" rel="external" class="more">{{_('Learn more about Performance Tools')}}</a>
+          {% if LANG.startswith('en-') %}
+            <br><a href="http://codepen.io/mozhacks/pen/xGgevw?editors=001?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=firefox-developer-game&amp;utm_content=firstrun-dev-tour" rel="external" class="more">{{_('Play the game on Codepen')}}</a>
+          {% endif %}
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="eH0R10Ga4Hs"></div>
+          </div>
+        </li>
+        <li class="feature">
+          <a href="https://www.youtube.com/watch?v=eQqNfkqIJdw" rel="external" class="video-play">
+            <img src="{{ static('img/firefox/firstrun/dev/feature-inspector.png') }}" alt="{{ _('Screenshot') }}" class="screenshot">
+          </a>
+          <h2>{{_('Page Inspector')}}</h2>
+          <p>{{_('Examine the HTML and CSS of any Web page and easily modify the structure and layout of a page.')}}</p>
+          <a href="https://developer.mozilla.org/docs/Tools/Page_Inspector" rel="external" class="more">{{_('Learn more about Page Inspector')}}</a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="eQqNfkqIJdw"></div>
+          </div>
+        </li>
+        {% endif %}
         <li class="feature">
           <a href="https://www.youtube.com/watch?v=iEDk8o9ehlw" rel="external" class="video-play">
             <img src="{{ static('img/firefox/firstrun/dev/feature-console.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">

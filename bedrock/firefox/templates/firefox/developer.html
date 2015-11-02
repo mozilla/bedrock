@@ -9,11 +9,7 @@
 {% block page_image %}{{ static('img/firefox/developer/page-image.png') }}{% endblock %}
 
 {% block page_desc %}
-  {% if l10n_has_tag('spring_release') %}
-    {{_('Built for those who build the Web. The only browser made for developers like you.')}}
-  {%- else -%}
-    {{ _('Introducing the only browser made for developers like you.') }}
-  {% endif %}
+  {{_('Built for those who build the Web. The only browser made for developers like you.')}}
 {% endblock %}
 
 {% block body_id %}firefox-developer{% endblock %}
@@ -34,12 +30,7 @@
 
 {% block site_header_share %}
   {% set share_urls = { 'twitter': 'http://mzl.la/1KJ1Yct', 'googleplus': 'http://mzl.la/1FuzQJk', 'facebook': 'http://mzl.la/1zTb4Aw' } -%}
-  {% if l10n_has_tag('share_cta') -%}
-    {% set share_text = _('Design, build and debug the Web without ever leaving your browser with the new Firefox Developer Edition!') %}
-  {%- else -%}
-    {# If the new copy is not localized yet, just use the same text as the existing preamble #}
-    {% set share_text = _('Introducing the only browser made for developers like you.') %}
-  {% endif -%}
+  {% set share_text = _('Design, build and debug the Web without ever leaving your browser with the new Firefox Developer Edition!') %}
   {{ share_cta(_('Share'), share_urls, share_text, 'spread-firefox-developer', 'sky mini') }}
 {% endblock %}
 
@@ -48,23 +39,19 @@
 <section class="intro container">
 
   <h1>{{ _('Built for those who build the Web') }}</h1>
-  <h2>
-  {% if l10n_has_tag('spring_release') %}
-    {{ _('The only browser made for developers like you.') }}
-  {%- else -%}
-    {{ _('Introducing the only browser made for developers like you.') }}
-  {% endif -%}
-  </h2>
+  <h2>{{ _('The only browser made for developers like you.') }}</h2>
   {{ download_firefox('alpha', icon=False, small=True, simple=True) }}
 
-  {% if l10n_has_tag('new_doorhanger') %}
   <p class="feedback-note">
     {{ _('Firefox Developer Edition automatically sends feedback to Mozilla.') }}
     <a href="{{ url('privacy.notices.firefox') }}#telemetry" class="more">{{ _('Learn more') }}</a>
   </p>
-  {% endif %}
 
-  <img src="{{ static('img/firefox/developer/screenshot.jpg') }}" alt="{{ _('Firefox Developer Edition') }}" class="screenshot" />
+  {% if l10n_has_tag('firefox_dev_fall') and waffle.switch('firefox-dev-fall') %}
+    {{ high_res_img('firefox/developer/challenger-hero.png', {'alt': _('Firefox Developer Edition'), 'width': '832', 'height': 'auto', 'class': 'screenshot'}) }}
+  {% else %}
+    <img src="{{ static('img/firefox/developer/screenshot.jpg') }}" alt="{{ _('Firefox Developer Edition') }}" class="screenshot" />
+  {% endif %}
 
   <ul class="intro-features">
     <li class="intro-feature">
@@ -93,7 +80,28 @@
 <section class="feature-overview">
   <div class="container">
     <ul class="features">
-    {% if l10n_has_tag('spring_release') %}
+    {% if l10n_has_tag('firefox_dev_fall') and waffle.switch('firefox-dev-fall') %}
+      <li class="feature">
+        <a href="https://hacks.mozilla.org/2015/11/developer-edition-44-creative-tools-and-more" rel="external">
+          {{ high_res_img('firefox/developer/creative-tools.png', {'alt': _('Screenshot'), 'width': '218', 'height': '118', 'class': 'screenshot'}) }}
+        </a>
+        <h2>{{ _('Visual Editing Tools') }}</h2>
+        <p>
+          {{ _('Visually edit CSS and HTML animations playing on the page from the Inspector panel. Verify alignment, dimensions and padding of any element using the Ruler and Measurement tools.') }}
+        </p>
+        <a href="https://hacks.mozilla.org/2015/11/developer-edition-44-creative-tools-and-more" class="more" rel="external">{{ _('Learn more about Visual Editing Tools') }}</a>
+      </li>
+      <li class="feature">
+        <a href="http://devtoolschallenger.com/" rel="external">
+          {{ high_res_img('firefox/developer/devtools-challenger.png', {'alt': _('Screenshot'), 'width': '218', 'height': '118', 'class': 'screenshot'}) }}
+        </a>
+        <h2>{{ _('DevTools Challenger') }}</h2>
+        <p>
+          {{ _('Use Developer Edition’s visual animation and CSS editing tools to explore the depths of the ocean and interact with the strangest of creatures.') }}
+        </p>
+        <a href="http://devtoolschallenger.com/" class="more" rel="external">{{ _('Try DevTools Challenger') }}</a>
+      </li>
+    {% endif %}
       <li class="feature">
         <a href="https://developer.mozilla.org/docs/Tools/Performance" rel="external">
           <img src="{{ static('img/firefox/developer/feature-performancetools.png') }}" alt="{{ _('Screenshot') }}" class="screenshot">
@@ -110,7 +118,6 @@
           <div class="video" data-video-id="1R9_WdXwUsE"></div>
         </div>
       </li>
-    {% endif -%}
       <li class="feature">
         <a href="https://www.youtube.com/watch?v=eQqNfkqIJdw" class="video-play" rel="external">
           <img src="{{ static('img/firefox/developer/feature-inspector.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
