@@ -53,15 +53,13 @@
         {{ _('Take control of your web by using Private Browsing with Tracking Protection, only from Firefox.') }}
       {% endif %}
     </p>
-    <!-- update the below url once the product page is in master -->
-    <a href="{{ url('firefox.desktop.trust') }}" class="more">{{ _('Learn more about this') }}</a>
+    <a href="{{ url('teach.smarton.tracking') }}?utm_campaign=fx-fall-15" class="more">{{ _('Learn more about this') }}</a>
   </div>
 
   <div class="blurb">
     <h2 class="data">{{ _('Here for you, not selling your info') }}</h2>
     <p>{{ _('Discover easy tips about how to take back control of your online experience, only from Mozilla.') }}</p>
-    <!-- For python this will be url('teach.smarton.tracking') - Currently not 100% whether smart on will launch on or before the same date as this page so, using the URL below to avoid errors. -->
-    <a href="{{ url('privacy.privacy-day') }}" class="more">{{ _('Get smart on data tracking') }}</a>
+    <a href="{{ url('firefox.private-browsing') }}?utm_campaign=fx-fall-15" class="more">{{ _('Get smart on data tracking') }}</a>
   </div>
 </section>
 {% endblock %}
