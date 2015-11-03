@@ -39,7 +39,7 @@
             </div>
             <div class="android-download-button">
               <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
-                {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
+                {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True}) }}
               </a>
             </div>
             <div class="ios-download-button">
@@ -51,8 +51,8 @@
           <div class="firefox-old-cta">
             <p>{{ _('Your Firefox is not up to date. Download the latest version to use the new Private Browsing.') }}</p>
             {{ download_firefox(small=True, icon=False) }}
-          </div>        
-        </div>        
+          </div>
+        </div>
       </header>
       <div class="critter-animation">
           {% include 'firefox/includes/tracking-protection-animation.html' %}
@@ -117,7 +117,7 @@
           <a class="android-link" href="https://support.mozilla.org/kb/mixed-content-blocker-firefox-android">{{ _('Learn more about the Control Center') }}</a>
           <a class="desktop-link" href="https://support.mozilla.org/kb/control-center-site-privacy-and-security-firefox">{{ _('Learn more about the Control Center') }}</a>
         </strong>
-        <small id="control-center-caveat"> 
+        <small id="control-center-caveat">
         {{ _('Control Center is not available on Android devices, but a shield will still be displayed to let you know when you are protected.') }}</small>
       </p>
     </div>
@@ -137,7 +137,7 @@
           </div>
           <div class="android-download-button">
             <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
-              {{ high_res_img('firefox/android/btn-google-play.png', {'alt': 'Get it on Google Play', 'width': '129', 'height': '45', 'l10n': True}) }}
+              {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True}) }}
             </a>
           </div>
           <div class="ios-download-button">
@@ -149,8 +149,8 @@
         <div class="firefox-old-cta">
           <h2>{{ _('Your Firefox is not up to date. Download the latest version to use the new Private Browsing.') }}</h2>
           {{ download_firefox(small=True, icon=False) }}
-        </div>        
-      </div>        
+        </div>
+      </div>
     </div>
   </section>
 
