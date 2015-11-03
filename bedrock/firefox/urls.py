@@ -34,7 +34,7 @@ urlpatterns = (
         views.all_downloads, name='firefox.all'),
     page('firefox/channel', 'firefox/channel.html'),
     redirect('^firefox/channel/android/$', 'firefox.channel', locale_prefix=False),
-    url('firefox/choose', views.choose, name='firefox.choose'),
+    url(r'^firefox/choose/$', views.choose, name='firefox.choose'),
     page('firefox/desktop', 'firefox/desktop/index.html'),
     page('firefox/desktop/fast', 'firefox/desktop/fast.html'),
     page('firefox/desktop/customize', 'firefox/desktop/customize.html'),
