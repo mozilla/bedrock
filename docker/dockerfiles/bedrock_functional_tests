@@ -1,9 +1,12 @@
-FROM python:2-slim
+FROM debian:jessie
 
 WORKDIR /app
-
 # Run the tests
 CMD ["/app/bin/run-functional-tests.sh"]
+
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends build-essential python python-dev python-pip
 
 # Defaults
 ENV PYTEST_PROCESSES 5
