@@ -368,7 +368,6 @@ INSTALLED_APPS = (
     'bedrock.persona',
     'bedrock.press',
     'bedrock.privacy',
-    'bedrock.redirects',
     'bedrock.research',
     'bedrock.styleguide',
     'bedrock.tabzilla',
@@ -380,6 +379,8 @@ INSTALLED_APPS = (
     'bedrock.releasenotes',
     'bedrock.thunderbird',
     'bedrock.shapeoftheweb',
+    # last so that redirects here will be last
+    'bedrock.redirects',
 
     # libs
     'django_extensions',
