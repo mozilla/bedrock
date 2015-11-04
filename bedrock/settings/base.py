@@ -721,7 +721,8 @@ OPTIMIZELY_PROJECT_ID = None
 #
 # For demo server testing, configure Fx40+ as detailed here:
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1150231#c28
-FXA_IFRAME_SRC = config('FXA_IFRAME_SRC', default='')
+FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
+                        default='https://accounts.firefox.com/')
 
 # Link to Firefox for Android on the Google Play store with Google Analytics
 # campaign parameters
