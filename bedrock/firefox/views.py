@@ -107,14 +107,14 @@ INSTALLER_CHANNElS = [
 SMS_MESSAGES = {
     'ios': 'ff-ios-download',
     'android': 'SMS_Android',
-    'android-test-modal': 'android-download-notembed',  # test variant
-    'android-test-embed': 'android-download-embed',  # test variant
+    # /firefox/android page variant
+    'android-embed': 'android-download-embed',
 }
 
 EMAIL_MESSAGES = {
     'android': 'download-firefox-android',
-    'android-test-modal': 'get-android-notembed',  # test variant
-    'android-test-embed': 'get-android-embed',  # test variant
+    # /firefox/android page variant
+    'android-embed': 'get-android-embed',
     'ios': 'download-firefox-ios',
     'all': 'download-firefox-mobile',
 }
@@ -228,13 +228,13 @@ def send_to_device_ajax(request):
         phone_or_email = form.cleaned_data.get(data_type)
         platform = form.cleaned_data.get('platform')
 
-        # check for android & valid send to device test value
-        # update email/sms message if conditions match
-        send_to_device_test = request.POST.get('android-send-to-device-test')
-        if (platform == 'android' and send_to_device_test in
-                ['android-test-modal', 'android-test-embed']):
+        # check for customized widget and update email/sms
+        # message if conditions match
+        send_to_device_basket_id = request.POST.get('send-to-device-basket-id')
+        if (platform == 'android' and
+                send_to_device_basket_id == 'android-embed'):
 
-            platform = send_to_device_test
+            platform = 'android-embed'
 
         if data_type == 'number':
             if platform in SMS_MESSAGES:
@@ -657,18 +657,6 @@ class FeedbackView(TemplateView):
             template = 'firefox/feedback/unhappy.html'
 
         return [template]
-
-
-def android(request):
-    # check for variant in querystring for send-to-device testing
-    variant = request.GET.get('v', '')
-
-    # ensure variant is one of 3 accepted values
-    if (variant not in ['a', 'b', 'c']):
-        variant = ''
-
-    return l10n_utils.render(request, 'firefox/android/index.html',
-        {'variant': variant})
 
 
 class Win10Welcome(l10n_utils.LangFilesMixin, TemplateView):

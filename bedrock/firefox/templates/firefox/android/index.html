@@ -44,7 +44,7 @@
 
 {% block content %}
 
-<section id="intro" data-variant="{{ variant }}" data-lang="{{ LANG }}">
+<section id="intro" data-has-widget="{{ has_widget }}">
   <div class="container">
     <div class="content-primary">
       <h2 class="heading">
@@ -58,27 +58,19 @@
         {{ _('Our most customizable Firefox for Android yet.') }}
       </p>
 
-      <div class="send-to-device-variant dl-button-wrapper {% if has_widget %}show-widget{% endif %}" id="send-to-device-default">
+      <div class="{% if has_widget %}show-widget{% endif %}">
+        {{ send_to_device(platform='android', include_logo=False) }}
+
         <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
           {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True}) }}
         </a>
         <small class="download-other">
           <a class="dl-button" href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
         </small>
-        <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for Android') }}</button>
 
         {% if l10n_has_tag('ios_announce', 'firefox/new') and not waffle.switch('firefox-ios-global') %}
           <p class="ios-link">{{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}</p>
         {% endif %}
-      </div>
-
-      {# alternate send-to-device options for ?v=b|c in URL #}
-      <div class="send-to-device-variant" id="send-to-device-embedded-widget"></div>
-
-      <div class="send-to-device-variant" id="send-to-device-google-play">
-        <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
-          {{ high_res_img('firefox/android/test/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '200', 'height': '69'}) }}
-        </a>
       </div>
 
       {# happy little droid #}
@@ -390,12 +382,6 @@
     </div>
   </div>{# /.container #}
 </section>
-
-{% if has_widget %}
-  <div id="send-to-modal-container">
-    {{ send_to_device(platform='android', include_logo=True) }}
-  </div>
-{% endif %}
 
 {% endblock %}
 

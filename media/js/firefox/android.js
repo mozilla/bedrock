@@ -23,6 +23,11 @@
         timeout: 2000
     };
 
+    // send to device vars
+    var hasWidget = $('#intro').data('hasWidget') !== 'False';
+    var sendToDeviceWidget;
+    var sendToDeviceWidgetTop;
+
     // move screencast images into the slideshow container
     $screencastImages.append($('#screencast .media-desktop').html());
 
@@ -283,85 +288,21 @@
         'data-download-version': 'href'
     });
 
-    // send-to-device test variations
-    var sendToDeviceWidget;
-    var $sendToDeviceWidgetForm;
-    var $sendToDeviceModal;
-    var $sendToDeviceEmbeddedWidget;
-    var $sendToLinks = $('.send-to');
-
-    // data-* stored in #intro element to determine test configuration
-    // contains two properties: lang (page language) and variant ('a', 'b', 'c', '')
-    var testVars = $('#intro').data();
-
-    var initSendToDeviceForm = function() {
+    if (hasWidget) {
+        sendToDeviceWidgetTop = $('#send-to-device').offset().top;
         sendToDeviceWidget = new Mozilla.SendToDevice();
         sendToDeviceWidget.init();
-    };
 
-    // set up default behavior for send to device widget - opens in modal
-    // used for no variant (no test) and variant "a"
-    var defaultSendToDevice = function() {
-        // add class to display the widget
-        $('#send-to-device-default').removeClass('send-to-device-variant');
+        // add hidden input to update basket id
+        $('#send-to-device-form').append('<input type="hidden" name="send-to-device-basket-id" value="android-embed">');
 
-        // reference modal wrapper for widget
-        $sendToDeviceModal = $('#send-to-modal-container');
-
-        // wire nav/footer links to open modal
-        $sendToLinks.on('click', function(e) {
+        // wire nav/footer links to scroll to widget
+        $('.send-to').on('click', function(e) {
             e.preventDefault();
-            Mozilla.Modal.createModal(this, $sendToDeviceModal);
-        });
-    };
 
-    // only run tests for en-US desktop users
-    if (testVars.lang === 'en-US' && $.inArray(window.site.platform, ['android', 'ios', 'fxos']) === -1) {
-        $sendToDeviceWidgetForm = $('#send-to-device-form');
-
-        // embed send to device widget in intro
-        if (testVars.variant === 'b') {
-            $sendToDeviceEmbeddedWidget = $('#send-to-device-embedded-widget');
-
-            initSendToDeviceForm();
-
-            // send hidden field to instruct view to change basket id
-            $sendToDeviceWidgetForm.append('<input type="hidden" name="android-send-to-device-test" value="android-test-embed">');
-
-            // move send to device widget into #intro
-            $('#send-to-device').removeClass('logo').appendTo($sendToDeviceEmbeddedWidget);
-
-            // show the widget
-            $sendToDeviceEmbeddedWidget.removeClass('send-to-device-variant');
-
-            // update nav & footer buttons to scroll to embedded widget
-            $sendToLinks.on('click', function(e) {
-                e.preventDefault();
-
-                Mozilla.smoothScroll({
-                    top: $sendToDeviceEmbeddedWidget.offset().top - 100
-                });
+            Mozilla.smoothScroll({
+                top: sendToDeviceWidgetTop - 100
             });
-        // no send to device widget, show google play button only
-        } else if (testVars.variant === 'c') {
-            $('#send-to-device-google-play').removeClass('send-to-device-variant');
-
-            // make sure google play button is shown in nav and footer.
-            $('#fxfamilynav-cta-wrapper > div').removeClass('show-widget');
-            $('#download-wrapper').removeClass('show-widget');
-        } else { // variant "a" or ""
-            // default behavior, but change basket ids so we know this is a test variation
-            initSendToDeviceForm();
-            defaultSendToDevice();
-
-            if (testVars.variant === 'a') {
-                // send hidden field to instruct view to change basket id
-                $sendToDeviceWidgetForm.append('<input type="hidden" name="android-send-to-device-test" value="android-test-modal">');
-            }
-        }
-    } else {
-        // default/no-variant behavior - identical to before tests were added
-        initSendToDeviceForm();
-        defaultSendToDevice();
+        });
     }
 })(window.jQuery, window.Mozilla);
