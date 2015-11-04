@@ -337,11 +337,15 @@ def all_downloads(request, channel):
 
 @never_cache
 def firefox_os_geo_redirect(request):
-    country = get_country_from_request(request)
-    version = settings.FIREFOX_OS_COUNTRY_VERSIONS.get(
-        country,
-        settings.FIREFOX_OS_COUNTRY_VERSIONS['default']
-    )
+    locale = l10n_utils.get_locale(request)
+    if locale == 'en-US':
+        version = '2.5'
+    else:
+        country = get_country_from_request(request)
+        version = settings.FIREFOX_OS_COUNTRY_VERSIONS.get(
+            country,
+            settings.FIREFOX_OS_COUNTRY_VERSIONS['default']
+        )
 
     return HttpResponseRedirect(reverse('firefox.os.ver.{0}'.format(version)))
 

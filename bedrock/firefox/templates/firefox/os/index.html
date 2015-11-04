@@ -77,6 +77,7 @@
   <main role="main">
     <section class="fxos-hero-space">
       <div class="content-wrapper">
+      {% block hero_copy %}
         <div class="phone">
           <div class="fxos-cta">
             <h1><img src="{{ static('img/firefox/os-new/fxos-wordmark.svg') }}" width="420" alt="Firefox OS" data-png="{{ static('img/firefox/os-new/fxos-wordmark.png') }}" data-fallback="true"></h1>
@@ -94,11 +95,14 @@
           {% endblock %}
           </div>
         </div>
+      {% endblock %}
       </div>
     </section>
     <section class="fxos-features">
       <div class="content-wrapper">
+        {% block features_headline %}
         <h2>{{_('Smart has never been so simple')}}</h2>
+        {% endblock %}
         {% block features_copy %}
           <ul class="features">
             <li class="scroll">
@@ -192,6 +196,8 @@
       </div>
     </section>
     {% endblock %}
+
+    {% block fxox_marketplace %}
     <section class="fxos-marketplace">
       <div class="content-wrapper">
         {% block marketplace_headline %}
@@ -207,24 +213,39 @@
         <p class="footnote">{{_('* Pre-installed apps may vary by manufacturers and operators.')}}</p>
       </div>
     </section>
+    {% endblock %}
 
-    {% set feed_links = firefox_os_feed_links(LANG) %}
-    {% if feed_links %}
-    <section class="fxos-news">
-      <div class="content-wrapper">
-        <aside>
-          <h2>{{_('In the news')}}</h2>
-          <p><a class="more" href="{{ firefox_os_blog_link(LANG) }}">{{_('See more')}}</a></p>
-        </aside>
-        <ul>
-          {% for link, title in feed_links[:3] %}
-          <li><a href="{{ link }}">{{ title }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-    </section>
-    {% endif %}
+    {% block fxox_hub %}
+    {% endblock %}
 
+    {% block fxox_mdn %}
+    {% endblock %}
+
+    {% block fxox_try %}
+    {% endblock %}
+
+    {% block fxox_news %}
+
+      {% set feed_links = firefox_os_feed_links(LANG) %}
+      {% if feed_links %}
+      <section class="fxos-news">
+        <div class="content-wrapper">
+          <aside>
+            <h2>{{_('In the news')}}</h2>
+            <p><a class="more" href="{{ firefox_os_blog_link(LANG) }}">{{_('See more')}}</a></p>
+          </aside>
+          <ul>
+            {% for link, title in feed_links[:3] %}
+            <li><a href="{{ link }}">{{ title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </section>
+      {% endif %}
+
+    {% endblock %}
+
+    {% block fxox_community %}
     <section class="fxos-community">
       <div class="content-wrapper">
         {{ high_res_img('firefox/os-new/mozilla-groupshot.png', {'alt': '', 'width': '260', 'height': '260'}) }}
@@ -233,6 +254,9 @@
         <p><a class="more" href="{{ url('mozorg.home') }}">{{_('Learn more about Mozilla')}}</a></p>
       </div>
     </section>
+    {% endblock %}
+    
+    {% block fxox_help %}
     <section class="fxos-help">
       <div class="content-wrapper">
         <div class="help">
@@ -259,10 +283,14 @@
         </div>
       </div>
     </section>
+    {% endblock %}
   </main>
   <div id="modal-logo" data-src="{{ static('img/firefox/os/logo/firefox-os-white.png') }}"></div>
 
-  {% include '/firefox/os/_get_device.html' %}
+  {% block fxox_devices %}
+    {% include '/firefox/os/_get_device.html' %}
+  {% endblock %}
+
 
 {% endblock %}
 
@@ -281,4 +309,4 @@
   {% javascript 'matchmedia_addlistener' %}
 <![endif]-->
   {% javascript 'firefox_os' %}
-{% endblock  %}
+{% endblock %}
