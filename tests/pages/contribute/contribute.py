@@ -5,23 +5,18 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
-from .base import BasePage
-from .regions.modal import Modal
+from .base import ContributeBasePage
+from ..regions.modal import Modal
 
 
-class ContributePage(BasePage):
+class ContributePage(ContributeBasePage):
 
     _url = '{base_url}/{locale}/contribute'
 
     _video_play_locator = (By.CSS_SELECTOR, '.video-play')
-    _event_link_locator = (By.CSS_SELECTOR, '.extra-event .event-link')
 
     def play_video(self):
         modal = Modal(self.selenium)
         self.selenium.find_element(*self._video_play_locator).click()
         Wait(self.selenium, self.timeout).until(lambda s: modal.is_displayed)
         return modal
-
-    @property
-    def next_event_is_displayed(self):
-        return self.is_element_displayed(self._event_link_locator)

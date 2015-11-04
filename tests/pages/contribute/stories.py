@@ -1,0 +1,38 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait as Wait
+
+from .base import ContributeBasePage
+
+
+class ContributeStoriesPage(ContributeBasePage):
+
+    # We're specifically testing Shreya's story. Stories all use
+    # a shared template so it's probably overkill to test them all.
+    _url = '{base_url}/{locale}/contribute/stories/shreyas'
+
+    _story_locator = (By.CSS_SELECTOR, '.story-more')
+    _story_toggle_locator = (By.CSS_SELECTOR, '.more-toggle > button')
+
+    def show_story(self):
+        assert not self.is_story_displayed, 'Story is already displayed'
+        self.selenium.find_element(*self._story_toggle_locator).click()
+        story = self.selenium.find_element(*self._story_locator)
+        # Wait for aria-hidden attribute value to determine when animation has finished.
+        Wait(self.selenium, self.timeout).until(
+            lambda m: story.get_attribute('aria-hidden') == 'false')
+
+    def hide_story(self):
+        assert self.is_story_displayed, 'Story is already hidden'
+        self.selenium.find_element(*self._story_toggle_locator).click()
+        story = self.selenium.find_element(*self._story_locator)
+        # Wait for aria-hidden attribute value to determine when animation has finished.
+        Wait(self.selenium, self.timeout).until(
+            lambda m: story.get_attribute('aria-hidden') == 'true')
+
+    @property
+    def is_story_displayed(self):
+        return self.is_element_displayed(self._story_locator)
