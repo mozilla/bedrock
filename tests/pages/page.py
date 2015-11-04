@@ -38,6 +38,12 @@ class Page(object):
         except (NoSuchElementException):
             return False
 
+    def is_element_displayed(self, locator):
+        try:
+            return self.selenium.find_element(*locator).is_displayed()
+        except (NoSuchElementException):
+            return False
+
 
 class PageRegion(object):
 
@@ -46,7 +52,22 @@ class PageRegion(object):
     def __init__(self, selenium, root=None):
         self.selenium = selenium
         self.timeout = TIMEOUT
-        self.root = root
+        self.root_element = root
 
-        if self.root is None and self._root_locator is not None:
-            self.root = self.selenium.find_element(*self._root_locator)
+    @property
+    def root(self):
+        if self.root_element is None and self._root_locator is not None:
+            self.root_element = self.selenium.find_element(*self._root_locator)
+        return self.root_element
+
+    def is_element_present(self, locator):
+        try:
+            return self.root.find_element(*locator)
+        except (NoSuchElementException):
+            return False
+
+    def is_element_displayed(self, locator):
+        try:
+            return self.root.find_element(*locator).is_displayed()
+        except (NoSuchElementException):
+            return False

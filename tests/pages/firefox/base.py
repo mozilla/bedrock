@@ -30,5 +30,4 @@ class FirefoxBasePage(BasePage):
 
         @property
         def is_displayed(self):
-            el = self.root.find_element(*self._nav_menu_locator)
-            return el.is_displayed()
+            return self.is_element_displayed(self._nav_menu_locator)
