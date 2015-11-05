@@ -1,3 +1,4 @@
+#!/bin/bash -xe
 DOCKER_REPOSITORY=${DOCKER_REPOSITORY:-mozorg/mcom-tests}
 
 docker pull ${DOCKER_REPOSITORY}
