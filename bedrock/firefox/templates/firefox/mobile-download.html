@@ -1,0 +1,78 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block page_title %}{{_('Download Firefox for Android and iOS')}}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}
+  {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
+{% endblock %}
+
+{#- This will appear as <meta property="og:image"> which can be used for social share -#}
+{% block page_image %}
+  {{ static('img/firefox/firefox-independent-1200.jpg') }}
+{% endblock %}
+
+{% block body_id %}firefox-mobile-download{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}
+  <h2>{{ high_res_img('firefox/new/header-firefox.png', {'alt': _('Firefox for mobile'), 'width': '223', 'height': '84'}) }}</h2>
+{% endblock %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_mobile_download' %}
+{% endblock %}
+
+{% block content %}
+
+<main role="main">
+  <div id="main-feature">
+    <div class="row">
+      <img src="{{ static('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
+      <h1 class="large" id="main-headline">
+        {{ _('Get Firefox everywhere') }}
+      </h1>
+    </div>
+  </div>{#-- /#main-feature --#}
+
+  <section id="stage">
+    <div id="scene">
+      <div id="thankyou" tabindex="0">
+        {{ _('Add it to your Android and iOS devices.') }}
+      </div>
+
+      <div class="mobile-download-buttons">
+        <ul>
+          <li class="android">
+            <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
+              {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True}) }}
+            </a>
+          </li>
+          <li class="ios">
+            <a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}&amp;ct=mozorg-heartbeat_landing-button">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div id="mobile-device-lineup"></div>
+    </div>
+  </section>
+</main>
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {% include 'firefox/includes/simple_footer.html' %}
+{% endblock %}
+
+{% block js %}{% endblock %}
