@@ -94,6 +94,7 @@ urlpatterns = (
     url('^firefox/$', views.fx_home_redirect, name='firefox'),
 
     url('^firefox/os/$', views.firefox_os_geo_redirect, name='firefox.os.index'),
+    page('firefox/os/2.5', 'firefox/os/ver/2.5.html'),
     page('firefox/os/2.0', 'firefox/os/ver/2.0.html'),
     page('firefox/os/1.4', 'firefox/os/ver/1.4.html'),
     page('firefox/os/1.3t', 'firefox/os/ver/1.3T.html'),
