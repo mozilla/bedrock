@@ -601,8 +601,8 @@ DONATE_LOCALE_LINK = {
         'https://sendto.mozilla.org/page/contribute/Give-Now?source={source}'
     ),
     'en-US': (
-        'https://sendto.mozilla.org/page/contribute/givenow-seq?'
-        'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        'https://donate.mozilla.org/?presets=100,50,25,15'
+        '&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015'
         '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
     ),
     'cs': (
