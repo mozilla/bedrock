@@ -17,6 +17,8 @@ from django.views.decorators.cache import never_cache
 import basket
 import basket.errors
 import commonware.log
+from jinja2 import Markup
+
 import lib.l10n_utils as l10n_utils
 import requests
 from lib.l10n_utils.dotlang import _, _lazy
@@ -324,11 +326,11 @@ def existing(request, token=None):
                 description = _(data['description'])
 
             form_data = {
-                'title': title,
+                'title': Markup(title),
                 'subscribed_radio': newsletter in user['newsletters'],
                 'subscribed_check': newsletter in user['newsletters'],
                 'newsletter': newsletter,
-                'description': description,
+                'description': Markup(description),
                 'english_only': len(langs) == 1 and langs[0].startswith('en'),
             }
             if 'order' in data:
