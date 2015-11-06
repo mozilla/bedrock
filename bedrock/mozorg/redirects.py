@@ -10,8 +10,11 @@ def to_uppercase(url):
 
 
 redirectpatterns = (
-    # bug 755826
-    redirect(r'^zh-CN/?$', 'http://firefox.com.cn/', locale_prefix=False),
+    # bug 755826, 1222348
+    redirect(r'^zh-CN/?$', 'http://www.firefox.com.cn/', locale_prefix=False, query={
+        'utm_medium': 'referral',
+        'utm_source': 'mozilla.org'
+    }),
 
     # bug 764261, 841393, 996608, 1008162, 1067691, 1113136, 1119022, 1131680, 1115626
     redirect(r'^zh-TW/?$', 'http://mozilla.com.tw/', locale_prefix=False),

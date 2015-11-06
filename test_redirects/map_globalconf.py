@@ -28,8 +28,11 @@ URLS = flatten((
     url_test('/en-US/firefox//all/', '/en-US/firefox/all/'),
     url_test('/pt-BR/////thunderbird/', '/pt-BR/thunderbird/'),
 
-    # bug 755826
-    url_test('/zh-CN/', 'http://firefox.com.cn/'),
+    # bug 755826, 1222348
+    url_test('/zh-CN/', 'http://www.firefox.com.cn/', query={
+        'utm_medium': 'referral',
+        'utm_source': 'mozilla.org'
+    }),
 
     # bug 764261, 841393, 996608, 1008162, 1067691, 1113136, 1119022, 1131680, 1115626
     url_test('/zh-TW/', 'http://mozilla.com.tw/'),
