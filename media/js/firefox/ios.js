@@ -30,12 +30,6 @@ if (typeof window.Mozilla === 'undefined') {
     var $instructions = $('#sync-instructions');
     var $fill = $('<div id="modal" role="dialog" tabindex="-1"></div>');
 
-    // Sniff UA for Firefox for iOS
-    var isFirefoxiOS = function(userAgent) {
-        var ua = userAgent || navigator.userAgent;
-        return /FxiOS/.test(ua);
-    };
-
     // initialize state - runs after geolocation has completed
     var initState = function() {
         var state = 'Unknown';
@@ -84,7 +78,7 @@ if (typeof window.Mozilla === 'undefined') {
             }
 
         // Firefox for iOS
-        } else if (isFirefoxiOS()) {
+        } else if (window.isFirefoxiOS()) {
             swapState('state-fx-ios');
             state = 'Firefox iOS: ' + marketState;
 

@@ -270,6 +270,31 @@ describe('global.js', function() {
 
     });
 
+    describe('isFirefoxiOS', function () {
+
+        it('should return false for Firefox on Desktop', function() {
+            expect(isFirefoxiOS('Mozilla/5.0 (Windows NT x.y; rv:10.0) Gecko/20100101 Firefox/10.0')).not.toBeTruthy();
+            expect(isFirefoxiOS('Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:10.0) Gecko/20100101 Firefox/10.0')).not.toBeTruthy();
+            expect(isFirefoxiOS('Mozilla/5.0 (X11; Linux i686; rv:10.0) Gecko/20100101 Firefox/10.0')).not.toBeTruthy();
+        });
+
+        it('should return false for Firefox Android', function() {
+            expect(isFirefoxiOS('Mozilla/5.0 (Android; Mobile; rv:26.0) Gecko/26.0 Firefox/26.0')).not.toBeTruthy();
+        });
+
+        it('should return true for Firefox on iPhone', function() {
+            var ua = 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.1 Mobile/12F69 Safari/600.1.4';
+            var result = isFirefoxiOS(ua);
+            expect(result).toBeTruthy();
+        });
+
+        it('should return true for Firefox on iPad', function() {
+            var ua = 'Mozilla/5.0 (iPad; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4';
+            var result = isFirefoxiOS(ua);
+            expect(result).toBeTruthy();
+        });
+    });
+
     describe('isFirefoxESR', function () {
 
         it('should return true for Firefox ESR', function () {
