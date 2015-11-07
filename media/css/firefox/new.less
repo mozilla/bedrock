@@ -80,7 +80,7 @@
     width: 240px;
 }
 
-#download-ready > .download-other-desktop {
+#scene1-main > .download-other-desktop {
     position: absolute;
     bottom: 240px;
     left: 50%;
@@ -322,9 +322,14 @@ html.fxos {
     margin: 12px 50px;
     text-align: center;
     .font-size(60px);
+    .transition(opacity 0.2s ease);
 
     span {
         white-space: nowrap;
+    }
+
+    &.invisible {
+        opacity: 0;
     }
 }
 
@@ -366,8 +371,9 @@ html[lang|="en"] #main-headline span:first-child {
     margin: @baseLine * 2 auto @baseLine * 4 auto;
 }
 
-#download-started {
-    padding: 20px 190px 100px;
+// scene 2
+#scene2-main {
+    padding: @baseLine 190px (@baseLine * 5);
     .font-size(14px);
 }
 
@@ -381,6 +387,67 @@ html[lang|="en"] #main-headline span:first-child {
         outline: none;
     }
 }
+
+.scene2-mobile-promo {
+    #scene2-main {
+        padding: 0;
+    }
+
+    #thankyou {
+        background: none;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        color: @textColorPrimary;
+        .open-sans-light();
+        .font-size(22px);
+    }
+}
+
+.help {
+    padding: 0 190px;
+    margin-bottom: @baseLine * 2;
+    text-align: center;
+}
+
+.mobile-download-buttons {
+    text-align: center;
+
+    ul {
+        display: block;
+        margin: @baseLine auto (@baseLine * 2);
+        padding: 0;
+        list-style: none;
+        width: 361px;
+        .clearfix();
+    }
+
+    li {
+        display: inline;
+        float: left;
+        margin: 0 @baseLine;
+        height: 45px;
+
+        // ie8 seems to need widths set to display properly
+        &.android {
+            width: 129px;
+        }
+
+        &.ios {
+            width: 152px;
+        }
+    }
+
+    a {
+        display: block;
+    }
+}
+
+#mobile-device-lineup {
+    height: 302px;
+    background: url(/media/img/firefox/new/scene2-mobile-promo-device-lineup.png) center center no-repeat;
+}
+// end scene 2
 
 noscript {
     .button-white, .button-white:link, .button-white:visited {
@@ -404,13 +471,23 @@ noscript {
         padding: 0;
     }
 
-    #download-started {
-        padding: 20px 80px 80px;
-    }
-
-    #download-ready > .download-other-desktop {
+    #scene1-main > .download-other-desktop {
         bottom: 194px;
     }
+
+    // scene 2
+    #scene2-main {
+        padding: @baseLine (@baseLine * 4) (@baseLine * 4);
+    }
+
+    .scene2-mobile-promo #scene2-main {
+        padding: 0;
+    }
+
+    .help {
+        padding: 0 (@baseLine * 5);
+    }
+    // end scene 2
 }
 
 /* Mobile layout: 320px */
@@ -531,18 +608,7 @@ noscript {
         }
     }
 
-    #thankyou {
-        margin-bottom: 20px;
-        .font-size(@baseFontSize);
-        letter-spacing: auto;
-    }
-
-    #download-started {
-        .font-size(12px);
-        padding: 20px 40px 40px;
-    }
-
-    #download-ready > .download-other-desktop {
+    #scene1-main > .download-other-desktop {
         position: relative;
         bottom: auto;
         left: auto;
@@ -550,6 +616,50 @@ noscript {
         width: auto;
         margin-bottom: @baseLine * 2;
     }
+
+    // scene 2
+    #scene2-main {
+        .font-size(12px);
+        padding: @baseLine (@baseLine * 2) @baseLine;
+    }
+
+    #thankyou {
+        margin-bottom: @baseLine;
+        .font-size(@baseFontSize);
+        letter-spacing: auto;
+    }
+
+    .scene2-mobile-promo {
+        #scene2-main {
+            padding: 0;
+        }
+
+        #thankyou {
+            .font-size(18px);
+        }
+    }
+
+    .help {
+        padding: 0;
+        margin-bottom: @baseLine;
+    }
+
+    .mobile-download-buttons {
+        ul {
+            margin-bottom: @baseLine;
+            width: auto;
+        }
+
+        li {
+            float: none;
+            margin: 0 auto (@baseLine / 2);
+        }
+    }
+
+    #mobile-device-lineup {
+        display: none;
+    }
+    // end scene 2
 
     .footer-newsletter-form {
         padding-top: 20px;

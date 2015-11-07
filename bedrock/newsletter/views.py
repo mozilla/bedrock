@@ -17,6 +17,8 @@ from django.views.decorators.cache import never_cache
 import basket
 import basket.errors
 import commonware.log
+from jinja2 import Markup
+
 import lib.l10n_utils as l10n_utils
 import requests
 from lib.l10n_utils.dotlang import _, _lazy
@@ -50,6 +52,149 @@ unknown_address_text = _lazy(
 
 invalid_email_address = _lazy(u'This is not a valid email address. '
                               u'Please check the spelling.')
+
+NEWSLETTER_STRINGS = {
+    u'about-mozilla': {
+        'description': _lazy(u'Bringing you the best new opportunities to help support the open Web.'),
+        'title': _lazy(u'Mozilla Communities')},
+    u'about-standards': {
+        'description': _lazy(u''),
+        'title': _lazy(u'About Standards')},
+    u'addon-dev': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Addon Development')},
+    u'addons': {
+        'description': _lazy(u''),
+        'title': _lazy(u'About Addons')},
+    u'affiliates': {
+        'description': _lazy(u'A monthly newsletter to keep you up to date with the '
+                             u'Firefox Affiliates program.'),
+        'title': _lazy(u'Firefox Affiliates')},
+    u'ambassadors': {
+        'description': _lazy(u'A monthly newsletter on how to get involved with Mozilla on your campus. '),
+        'title': _lazy(u'Firefox Student Ambassadors')},
+    u'app-dev': {
+        'description': _lazy(u'News for developers about Firefox OS, Firefox Marketplace and the '
+                             u'Open Web apps ecosystem.'),
+        'title': _lazy(u'Firefox Apps & Hacks')},
+    u'aurora': {
+        'description': _lazy(u'Aurora'),
+        'title': _lazy(u'Aurora')},
+    u'beta': {
+        'description': _lazy(u'Read about the latest features for Firefox desktop and mobile '
+                             u'before the final release.'),
+        'title': _lazy(u'Beta News')},
+    u'download-firefox-android': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Download Firefox for Android')},
+    u'download-firefox-androidsn': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Get Firefox for Android')},
+    u'download-firefox-androidsnus': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Get Firefox for Android')},
+    u'download-firefox-ios': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Download Firefox for iOS')},
+    u'download-firefox-mobile': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Download Firefox for Mobile')},
+    u'drumbeat': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Drumbeat Newsgroup')},
+    u'firefox-accounts-journey': {
+        'description': _lazy(u'Get the most out of your Firefox Account.'),
+        'title': _lazy(u'Firefox Accounts Tips')},
+    u'firefox-desktop': {
+        'description': _lazy(u'Don\u2019t miss the latest announcements about our desktop browser.'),
+        'title': _lazy(u'Firefox for desktop')},
+    u'firefox-flicks': {
+        'description': _lazy(u'Periodic email updates about our annual international film competition.'),
+        'title': _lazy(u'Firefox Flicks')},
+    u'firefox-ios': {
+        'description': _lazy(u'Be the first to know when Firefox is available for iOS devices.'),
+        'title': _lazy(u'Firefox iOS')},
+    u'firefox-os': {
+        'description': _lazy(u'Don\u2019t miss important news and updates about your Firefox OS device.'),
+        'title': _lazy(u'Firefox OS smartphone owner?')},
+    u'firefox-os-news': {
+        'description': _lazy(u'A monthly newsletter and special announcements on how to get the most '
+                             u'from your Firefox OS device, including the latest features and coolest '
+                             u'Firefox Marketplace apps.'),
+        'title': _lazy(u'Firefox OS + You')},
+    u'firefox-tips': {
+        'description': _lazy(u'Get a weekly tip on how to super-charge your Firefox experience.'),
+        'title': _lazy(u'Firefox Weekly Tips')},
+    u'get-android-embed': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Get Firefox for Android')},
+    u'get-android-notembed': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Get Firefox for Android')},
+    u'get-involved': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Get Involved')},
+    u'join-mozilla': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Join Mozilla')},
+    u'labs': {
+        'description': _lazy(u''),
+        'title': _lazy(u'About Labs')},
+    u'maker-party': {
+        'description': u"Mozilla's largest celebration of making and learning on the web.",
+        'title': _lazy(u'Maker Party')},
+    u'marketplace': {
+        'description': _lazy(u'Discover the latest, coolest HTML5 apps on Firefox OS.'),
+        'title': _lazy(u'Firefox OS')},
+    u'marketplace-android': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Android')},
+    u'marketplace-desktop': {
+        'description': _lazy(u''),
+        'title': _lazy(u'Desktop')},
+    u'mobile': {
+        'description': _lazy(u'Keep up with releases and news about Firefox for Android.'),
+        'title': _lazy(u'Firefox for Android')},
+    u'mozilla-and-you': {
+        'description': _lazy(u'A monthly newsletter and special announcements giving you tips to '
+                             u'improve your experience with Firefox on your desktop and Android device.'),
+        'title': _lazy(u'Firefox + You')},
+    u'mozilla-festival': {
+        'description': u"Special announcements about Mozilla's annual, hands-on festival "
+                       u"dedicated to forging the future of the open Web.",
+        'title': _lazy(u'Mozilla Festival')},
+    u'mozilla-foundation': {
+        'description': _lazy(u'News and special updates about our work to promote openness, innovation '
+                             u'and participation on the Internet, including ways for you to get involved.'),
+        'title': _lazy(u'Mozilla Foundation')},
+    u'mozilla-general': {
+        'description': _lazy(u'Special announcements and messages from the team dedicated to keeping '
+                             u'the Web free and open.'),
+        'title': _lazy(u'Mozilla')},
+    u'mozilla-learning-network': {
+        'description': _lazy(u'Updates from our global community, helping people learn the most '
+                             u'important skills of our age: the ability to read, write and participate '
+                             u'in the digital world.'),
+        'title': _lazy(u'Mozilla Learning Network')},
+    u'mozilla-phone': {
+        'description': _lazy(u'Email updates for vouched Mozillians on mozillians.org.'),
+        'title': _lazy(u'Mozillians')},
+    u'os': {
+        'description': _lazy(u'Firefox OS news, tips, launch information and where to buy.'),
+        'title': _lazy(u'Firefox OS')},
+    u'shape-web': {
+        'description': _lazy(u'News and information related to the health of the web.'),
+        'title': _lazy(u'Shape of the Web')},
+    u'student-reps': {
+        'description': _lazy(u'Former University program from 2008-2011, now retired and relaunched as '
+                             u'the Firefox Student Ambassadors program.'),
+        'title': _lazy(u'Student Reps')},
+    u'webmaker': {
+        'description': _lazy(u'Special announcements helping you get the most out of Webmaker.'),
+        'title': _lazy(u'Webmaker'),
+    },
+}
+
 
 UNSUB_UNSUBSCRIBED_ALL = 1
 UNSUB_REASONS_SUBMITTED = 2
@@ -170,14 +315,22 @@ def existing(request, token=None):
             continue
         if data.get('show', False) or newsletter in user['newsletters']:
             langs = data['languages']
-            form_data = {
+            nstrings = NEWSLETTER_STRINGS.get(newsletter)
+            if nstrings:
+                title = nstrings['title']
+                description = nstrings['description']
+            else:
                 # Firefox Marketplace for Desktop/Android/Firefox OS should be
                 # shorten in the titles
-                'title': _(data['title'].replace('Firefox Marketplace for ', '')),
+                title = _(data['title'].replace('Firefox Marketplace for ', '')),
+                description = _(data['description'])
+
+            form_data = {
+                'title': Markup(title),
                 'subscribed_radio': newsletter in user['newsletters'],
                 'subscribed_check': newsletter in user['newsletters'],
                 'newsletter': newsletter,
-                'description': _(data['description']),
+                'description': Markup(description),
                 'english_only': len(langs) == 1 and langs[0].startswith('en'),
             }
             if 'order' in data:

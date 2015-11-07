@@ -10,8 +10,11 @@ def to_uppercase(url):
 
 
 redirectpatterns = (
-    # bug 755826
-    redirect(r'^zh-CN/?$', 'http://firefox.com.cn/', locale_prefix=False),
+    # bug 755826, 1222348
+    redirect(r'^zh-CN/?$', 'http://www.firefox.com.cn/', locale_prefix=False, query={
+        'utm_medium': 'referral',
+        'utm_source': 'mozilla.org'
+    }),
 
     # bug 764261, 841393, 996608, 1008162, 1067691, 1113136, 1119022, 1131680, 1115626
     redirect(r'^zh-TW/?$', 'http://mozilla.com.tw/', locale_prefix=False),
@@ -489,6 +492,85 @@ redirectpatterns = (
     redirect(r'^rhino/doc\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Documentation'),
     redirect(r'^rhino/?', 'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino'),
+
+    # bug 846362
+    redirect(r'^community/(index(\.(de|fr|hr|sq))?\.html)?$', '/contribute/'),
+
+    # bug 860532 - Reidrects for governance pages
+    redirect(r'^about/governance\.html$', '/about/governance/'),
+    redirect(r'^about/roles\.html$', '/about/governance/roles/'),
+    redirect(r'^about/organizations\.html$', '/about/governance/organizations/'),
+
+    # bug 876233
+    redirect(r'^about/participate/?$', '/contribute/'),
+
+    # bug 790784
+    # NB: The /foundation/privacy-policy.html redirect must appear before the
+    # foundation redirects added with bug 724633. Otherwise, the address will first
+    # be prefixed with a locale, and this redirect will not work.
+    redirect(r'^(about/policies/|foundation/)?privacy-policy(/|\.html)?$', '/privacy/websites/'),
+    redirect(r'^privacy-policy\.pdf$',
+             'https://static.mozilla.com/moco/en-US/pdf/mozilla_privacypolicy.pdf'),
+
+    # bug 724633 - Porting foundation pages
+    # Add redirects for the pdfs that were under /foundation/documents/
+    # that will now be served from static.mozilla.com/foundation/documents/
+    # (The links within the foundation pages have been updated, but there are
+    # probably many links to them from other pages and sites that need to keep
+    # working.)
+    redirect(r'^foundation/documents/(?P<pdf>[^/]+).pdf$',
+             'https://static.mozilla.com/foundation/documents/{pdf}.pdf', re_flags='i'),
+    redirect(r'^foundation/donate_form.pdf$',
+             'https://static.mozilla.com/foundation/documents/donate_form.pdf', re_flags='i'),
+
+    # openwebfund/ and openwebfund/index.html redirect to another site.  Careful because
+    # there are other pages under openwebfund that still need to be served from Bedrock.
+    redirect(r'^foundation/openwebfund/(index\.html)?$',
+             'https://sendto.mozilla.org/page/contribute/join-mozilla?source=owf_redirect',
+             re_flags='i'),
+    redirect(r'^foundation/donate\.html$',
+             'https://sendto.mozilla.org/page/contribute/openwebfund', re_flags='i'),
+
+    # FIXUPs for changing foo/bar.html to foo/bar/
+    # Redirect foundation/foo.html to foundation/foo/, with a redirect for the nice search engines
+    redirect(r'^foundation/(?P<page>about|careers|licensing|moco|mocosc).html$',
+             '/foundation/{page}/', re_flags='i'),
+    # Redirect foundation/anything/foo.html to foundation/anything/foo/,
+    # with a redirect for the nice search engines
+    redirect(r'^foundation/documents/(?P<page>index|mozilla-200.-financial-faq)\.html$',
+             '/foundation/{page}/', re_flags='i'),
+    redirect(r'^foundation/(?P<page>(?:annualreport|documents|feed-icon-guidelines|'
+             r'licensing|openwebfund|trademarks)/.*).html$', '/foundation/{page}/', re_flags='i'),
+
+    # bug 442671
+    redirect(r'^foundation/trademarks/l10n-policy/?$', '/foundation/trademarks/', re_flags='i'),
+
+    # bug 1074354
+    redirect(r'^legal/?$', '/about/legal/'),
+
+    # bug 963816
+    redirect(r'^legal/privacy/?$', '/privacy/'),
+    redirect(r'^legal/privacy/firefox(?:/|\.html)?$', '/privacy/firefox/'),
+    redirect(r'^legal/privacy/oct-2006', '/privacy/archive/firefox/2006-10/'),
+    redirect(r'^legal/privacy/june-2008', '/privacy/archive/firefox/2008-06/'),
+    redirect(r'^legal/privacy/jan-2009', '/privacy/archive/firefox/2009-01/'),
+    redirect(r'^legal/privacy/sept-2009', '/privacy/archive/firefox/2009-09/'),
+    redirect(r'^legal/privacy/jan-2010', '/privacy/archive/firefox/2010-01/'),
+    redirect(r'^legal/privacy/dec-2010', '/privacy/archive/firefox/2010-12/'),
+    redirect(r'^legal/privacy/june-2011', '/privacy/archive/firefox/2011-06/'),
+    redirect(r'^legal/privacy/june-2012', '/privacy/archive/firefox/2012-06/'),
+    redirect(r'^legal/privacy/sept-2012', '/privacy/archive/firefox/2012-09/'),
+    redirect(r'^legal/privacy/dec-2012', '/privacy/archive/firefox/2012-12/'),
+    redirect(r'^legal/privacy/firefox-third-party', '/privacy/archive/firefox/third-party/'),
+    redirect(r'^legal/privacy/notices-firefox', '/legal/firefox/'),
+    redirect(r'^privacy/policies/(?P<page>facebook|firefox-os|websites)/?$', '/privacy/{page}/'),
+
+    # bug 1034859
+    redirect(r'^about/buttons/(?P<file>.*)$', '/media/img/careers/buttons/{file}',
+             prepend_locale=False),
+
+    # bug 1003737
+    redirect(r'^impressum/?$', '/about/legal/impressum/'),
 
     # bug 832348 **/index.html -> **/
     # leave this at the bottom

@@ -40,7 +40,6 @@ def update(ctx):
     # moves files from SRC_DIR to WWW_DIR
     commands['checkin_changes']()
     commands['database']()
-    commands['update_externalfiles']()
     if 'update_cron' in commands:
         commands['update_cron']()
         commands['reload_crond']()
@@ -101,11 +100,6 @@ def check_locale(ctx):
 def update_assets(ctx):
     """Compile/compress static assets and fetch external data."""
     management_cmd(ctx, 'collectstatic --noinput', use_src_dir=True)
-
-
-@task
-def update_externalfiles(ctx):
-    management_cmd(ctx, 'update_externalfiles', use_src_dir=True)
 
 
 @task

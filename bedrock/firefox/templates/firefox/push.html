@@ -22,6 +22,14 @@
 {% endblock %}
 
 {% block dashboard_faq %}
+
+{% if l10n_has_tag('firefox_push_updates') %}
+<p>
+  {{ _('Websites you use with Firefox can send you notifications in the background that
+  can appear on screen or update the web page. You can control how these notifications
+  appear and work.') }}
+</p>
+{% endif %}
 <section id="push-faq" class="accordion accordion-auto-init zebra">
   <h2>{{ _('Frequently asked questions') }}</h2>
   <section>
@@ -85,14 +93,27 @@
         {{ _('To stop a site from sending you push messages:') }}
       </p>
       <ol>
+      {% if l10n_has_tag('firefox_push_updates') %}
+        <li>{{ _('Navigate to <em>Preferences/Options</em>') }}</li>
+        <li>{{ _('Click on <em>Content</em> and under Notifications, select <em>Choose…</em>') }}</li>
+        <li>{{ _('Select the site.') }}</li>
+        <li>{{ _('Select <strong>Remove Site</strong>.') }}</li>
+      {% else %}
         <li>{{ _('In the URL bar, type <em>about:permissions</em>.') }}</li>
         <li>{{ _('Select the site.') }}</li>
         <li>{{ _('Set <em>Receive Push Notifications</em> to <strong>Always Ask</strong>.') }}</li>
+      {% endif %}
       </ol>
     </div>
   </section>
   <section>
-    <h3 data-accordion-role="tab">{{ _('How do I disable Push permanently?') }}</h3>
+    <h3 data-accordion-role="tab">
+      {% if l10n_has_tag('firefox_push_updates') %}
+        {{ _('How do I disable Push?') }}
+      {% else %}
+        {{ _('How do I disable Push permanently?') }}
+      {% endif %}
+    </h3>
     <div data-accordion-role="tabpanel">
       <p>
         {{ _('Push is always opt-in in Firefox.') }}
@@ -100,12 +121,33 @@
         {{ _('If you wish to disable the feature completely, please follow these steps:') }}
       </p>
       <ol>
+      {% if l10n_has_tag('firefox_push_updates') %}
+        <li>{{ _('Navigate to <em>Preferences/Options</em>') }}</li>
+        <li>{{ _('Click on <em>Content</em> and under Notifications, select <em>Choose…</em>') }}</li>
+        <li>{{ _('Select <strong>Remove All Sites</strong>.') }}</li>
+        <li>{{ _('Websites will not be able to send you messages and will need to ask your permission to send them in the future.') }}</li>
+      {% else %}
         <li>{{ _('In the URL bar, type <em>about:permissions</em>.') }}</li>
         <li>{{ _('Select <em>All Sites</em>.') }}</li>
         <li>{{ _('Set the <em>Receive Push Notifications</em> to <strong>Block</strong>. Websites will not be able to send you messages or ask for access to Push.') }}</li>
+      {% endif %}
       </ol>
     </div>
   </section>
+  {% if l10n_has_tag('firefox_push_updates') %}
+  <section>
+    <h3 data-accordion-role="tab">{{ _('What’s New?') }}</h3>
+    <div data-accordion-role="tabpanel">
+      <p>
+        {{ _('Firefox has delivered on-screen notifications to open web pages for the last several releases.') }}
+        {{ _('With Firefox 44, users can receive notifications associated with a web page even if they navigate away from the site or close the tab via a mechanism called Push.') }}
+        {{ _('With Push, sites can update data in the background even without showing you a notification.') }}
+        {{ _('If you already gave permission to a site to send notifications, these sites will also be able to use this Push mechanism.') }}
+        {{ _('If you wish to change notifications preferences, open the Content>Notifications section in Preferences/Options or click the options in one of the notifications you receive.') }}
+      </p>
+    </div>
+  </section>
+  {% endif %}
   <section>
     <h3 data-accordion-role="tab">{{ _('Will this cost me money?') }}</h3>
     <div data-accordion-role="tabpanel">

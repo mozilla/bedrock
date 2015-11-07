@@ -19,8 +19,11 @@ if (typeof Mozilla === 'undefined') {
     var _step1;
     var _step3;
     var _highlightTimeout;
+    var _resizeTimeout;
 
     TPTour.state = 'step1';
+
+    TPTour.highlightSupressed = false;
 
     // Used for unit testing purposes only as "document.hidden" is read only.
     TPTour.documentHidden = null;
@@ -138,6 +141,25 @@ if (typeof Mozilla === 'undefined') {
         $('#info-panel header > button').on('click.tp-tour', TPTour.step4);
         $(document).on('visibilitychange.tp-tour', TPTour.handleVisibilityChange);
         $('#reload-btn').on('click.tp-tour', TPTour.restartTour);
+        $(window).on('resize.tp-tour', TPTour.handleResize);
+    };
+
+    /**
+     * Tempoaray workaround for resizing the window (Bug 1188400)
+     */
+    TPTour.handleResize = function() {
+        clearTimeout(_resizeTimeout);
+        if (TPTour.state === 'step1') {
+            if (!TPTour.highlightSupressed) {
+                Mozilla.UITour.hideInfo();
+                TPTour.highlightSupressed = true;
+            }
+            _resizeTimeout = setTimeout(function() {
+                TPTour.highlightSupressed = false;
+                TPTour.showTourStep();
+            }, 300);
+        }
+
     };
 
     TPTour.handleVisibilityChange = function() {

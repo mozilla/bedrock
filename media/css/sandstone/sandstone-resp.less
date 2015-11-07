@@ -871,7 +871,7 @@ nav.menu-bar {
 .newsletter-form {
     margin-bottom: 0;
 
-    h3 {
+    .form-title {
         .span(4);
     }
 
@@ -908,7 +908,7 @@ nav.menu-bar {
     }
 
     &.loading {
-        h3,
+        .form-title,
         .form-contents,
         .form-submit {
             .transition(opacity .2s ease-in-out);
@@ -919,7 +919,7 @@ nav.menu-bar {
 
 .html-rtl {
     .newsletter-form {
-        h3,
+        .form-title,
         .form-contents,
         .form-submit,
         .field-privacy input {
@@ -934,7 +934,7 @@ nav.menu-bar {
 .newsletter-form.thank {
     display: none;
     overflow: hidden;
-    h3 {
+    .form-title {
         width: auto;
         margin: auto;
         padding: 0;
@@ -1130,8 +1130,9 @@ nav.menu-bar {
         .offset_narrow(1);
     }
 
-    .footer-newsletter-form, #newsletter-form {
-        h3 {
+    .footer-newsletter-form,
+    #newsletter-form {
+        .form-title {
             .span_narrow(4);
             padding-top: 4px;
         }
@@ -1348,8 +1349,9 @@ nav.menu-bar {
         margin: -25px 0 @baseLine;
     }
 
-    .footer-newsletter-form, #newsletter-form {
-        h3,
+    .footer-newsletter-form,
+    #newsletter-form {
+        .form-title,
         .form-contents,
         .form-submit {
             width: auto;
@@ -1365,7 +1367,7 @@ nav.menu-bar {
     .html-rtl {
         .footer-newsletter-form,
         #newsletter-form {
-            h3,
+            .form-title,
             .form-contents,
             .form-submit {
                 float: none;

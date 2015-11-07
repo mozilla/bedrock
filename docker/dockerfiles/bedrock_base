@@ -1,5 +1,8 @@
 FROM debian:jessie
 
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
 WORKDIR /app
 EXPOSE 8000
 CMD ["./docker/run-prod.sh"]
@@ -17,7 +20,6 @@ RUN pip install -r requirements/pip.txt
 
 # Install app
 COPY ./bin/peep.py /app/bin/peep.py
-ENV PYTHONDONTWRITEBYTECODE=1
 RUN ./bin/peep.py install --no-cache-dir -r requirements/dev.txt
 RUN ./bin/peep.py install --no-cache-dir -r requirements/prod.txt
 RUN ./bin/peep.py install --no-cache-dir -r requirements/docker.txt

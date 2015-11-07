@@ -37,7 +37,9 @@
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
     {% if include_title %}
-      <h3>{{ title|d(_('Get Firefox news'), true) }}</h3>
+      <div class="form-title">
+        <h3>{{ title|d(_('Get Firefox news'), true) }}</h3>
+      </div>
     {% endif %}
 
     <div class="form-contents">
@@ -85,8 +87,10 @@
   </form>
   <div id="newsletter-form-thankyou" class="thank billboard newsletter-form hidden">
     {% if thankyou_content %}
+    <div class="form-title">
       <h3>{{ thankyou_head }}</h3>
       <p>{{ thankyou_content }}</p>
+    </div>
     {% else %}
       {{ email_form_thankyou() }}
     {% endif %}
@@ -94,8 +98,10 @@
 {% elif use_thankyou %}
   <div id="newsletter-form" class="thank billboard newsletter-form footer-newsletter-form">
     {% if thankyou_content %}
+    <div class="form-title">
       <h3>{{ thankyou_head }}</h3>
       <p>{{ thankyou_content }}</p>
+    </div>
     {% else %}
       {{ email_form_thankyou() }}
     {% endif %}

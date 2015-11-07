@@ -16,7 +16,7 @@ from forms import FraudReportForm
 
 FRAUD_REPORT_EMAIL_FROM = 'Mozilla.com <noreply@mozilla.com>'
 FRAUD_REPORT_EMAIL_SUBJECT = 'New violating website report'
-FRAUD_REPORT_EMAIL_TO = ['trademarks@mozilla.com', 'mozilla@mofo.com']
+FRAUD_REPORT_EMAIL_TO = ['trademarks@mozilla.com']
 
 
 def submit_form(request, form):

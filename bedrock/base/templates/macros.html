@@ -2,12 +2,22 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% macro mozorg_newsletter_form() %}
+{% macro mozorg_newsletter_form(title='', subtitle='') %}
   {# Note: This form differs from the email_newsletter_form() that appears on most pages;
     The global form submits to bedrock, this one submits to sendto.mozilla.org #}
 <aside>
   <form id="mozorg-newsletter-form" class="billboard footer-newsletter-form newsletter-form" method="post" action="https://sendto.mozilla.org/page/s/sign-up-for-mozilla">
-    <h3>{{ _('Get Mozilla updates') }}</h3>
+    <div class="form-title">
+    {%- if title -%}
+      <h3>{{ title }}</h3>
+    {%- else -%}
+      <h3>{{ _('Get Mozilla updates') }}</h3>
+    {%- endif -%}
+
+    {%- if subtitle -%}
+      <h4>{{ subtitle }}</h4>
+    {%- endif -%}
+    </div>
 
     <div class="form-contents">
       <div class="field field-email">
@@ -469,9 +479,11 @@
           <a data-id="desktop" href="{{ url('firefox.desktop.index') }}" class="primary-link"><div>{{ _('<span>for</span> Desktop') }}</div></a>
 
           <ul class="subnav" id="desktop-subnav">
-            <li{% if activesub in ('index', 'trust', 'customize', 'fast') %} class="hassubsubnav"{% endif %}>
+            {# note: Removing hassubsubnav for now because after localization nav items get pushed to two lines #}
+            <li {# {% if activesub in ('index', 'trust', 'customize', 'fast') %} class="hassubsubnav"{% endif %} #}>
               <a href="{{ url('firefox.desktop.index') }}"{% if activesub == 'index' %} class="selected"{% endif %}><div>{{ _('Overview') }}</div></a>
 
+            {# note: Removing items for now because after localization nav items get pushed to two lines
               {% if activesub in ('index', 'trust', 'customize', 'fast') %}
               <ul class="subsubnav" id="desktop-subsubnav">
                 <li><a href="{{ url('firefox.desktop.trust') }}"{% if activesub == 'trust' %} class="selected"{% endif %}>{{ _('Trusted') }}</a></li>
@@ -479,9 +491,13 @@
                 <li><a href="{{ url('firefox.desktop.fast') }}"{% if activesub == 'fast' %} class="selected"{% endif %}>{{ _('Fast') }}</a></li>
               </ul>
               {% endif %}
+            #} 
             </li>
             <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %}><div>{{ _('Sync') }}</div></a></li>
             <li><a href="{{ url('firefox.hello') }}"{% if activesub == 'hello' %} class="selected"{% endif %}><div>{{ _('Hello') }}</div></a></li>
+            {% if waffle.switch('tracking-protection') %}
+              <li><a href="{{ url('firefox.private-browsing') }}"{% if activesub == 'private-browsing' %} class="selected"{% endif %}><div>{{ _('Private Browsing') }}</div></a></li>
+            {% endif %}
           </ul>
         </li>
         <li{% if activeprimary == 'android' %} class="active"{% endif %}>
@@ -490,6 +506,9 @@
           <ul class="subnav" id="android-subnav">
             <li><a href="{{ url('firefox.android.index') }}"{% if activesub == 'index' %} class="selected"{% endif %}><div>{{ _('Overview') }}</div></a></li>
             <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %}><div>{{ _('Sync') }}</div></a></li>
+            {% if waffle.switch('tracking-protection') %}
+              <li><a href="{{ url('firefox.private-browsing') }}"{% if activesub == 'private-browsing' %} class="selected"{% endif %}><div>{{ _('Private Browsing') }}</div></a></li>
+            {% endif %}
           </ul>
         </li>
       {% if waffle.switch('firefox-ios-global') %}
@@ -499,6 +518,9 @@
           <ul class="subnav" id="ios-subnav">
             <li><a href="{{ url('firefox.ios') }}"{% if activesub == 'index' %} class="selected"{% endif %}><div>{{ _('Overview') }}</div></a></li>
             <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %}><div>{{ _('Sync') }}</div></a></li>
+            {% if waffle.switch('tracking-protection') %}
+              <li><a href="{{ url('firefox.private-browsing') }}"{% if activesub == 'private-browsing' %} class="selected"{% endif %}><div>{{ _('Private Browsing') }}</div></a></li>
+            {% endif %}
           </ul>
         </li>
       {% endif %}

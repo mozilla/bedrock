@@ -28,8 +28,11 @@ URLS = flatten((
     url_test('/en-US/firefox//all/', '/en-US/firefox/all/'),
     url_test('/pt-BR/////thunderbird/', '/pt-BR/thunderbird/'),
 
-    # bug 755826
-    url_test('/zh-CN/', 'http://firefox.com.cn/'),
+    # bug 755826, 1222348
+    url_test('/zh-CN/', 'http://www.firefox.com.cn/', query={
+        'utm_medium': 'referral',
+        'utm_source': 'mozilla.org'
+    }),
 
     # bug 764261, 841393, 996608, 1008162, 1067691, 1113136, 1119022, 1131680, 1115626
     url_test('/zh-TW/', 'http://mozilla.com.tw/'),
@@ -204,9 +207,9 @@ URLS = flatten((
 
     # bug 929775
     url_test('/firefox/update/and/stuff/', '/firefox/new/', query={
-        'utm_source': ['firefox-browser'],
-        'utm_medium': ['firefox-browser'],
-        'utm_campaign': ['firefox-update-redirect'],
+        'utm_source': 'firefox-browser',
+        'utm_medium': 'firefox-browser',
+        'utm_campaign': 'firefox-update-redirect',
     }),
 
     # bug 868182
@@ -305,8 +308,8 @@ URLS = flatten((
 
     # Bug 1040970
     url_test('/mozillacareers', 'https://wiki.mozilla.org/People/mozillacareers', query={
-        'utm_medium': ['redirect'],
-        'utm_source': ['mozillacareers-vanity'],
+        'utm_medium': 'redirect',
+        'utm_source': 'mozillacareers-vanity',
     }),
 
     # Bug 987852 & 1201914
@@ -339,11 +342,11 @@ URLS = flatten((
 
     # bug 868169
     url_test('/mobile/android-download.html?dude=abiding',
-             'https://play.google.com/store/apps/details', query={'id': ['org.mozilla.firefox'],
-                                                                  'dude': ['abiding']}),
+             'https://play.google.com/store/apps/details', query={'id': 'org.mozilla.firefox',
+                                                                  'dude': 'abiding'}),
     url_test('/mobile/android-download-beta.html?walter=raging',
-             'https://play.google.com/store/apps/details', query={'id': ['org.mozilla.firefox_beta'],
-                                                                  'walter': ['raging']}),
+             'https://play.google.com/store/apps/details', query={'id': 'org.mozilla.firefox_beta',
+                                                                  'walter': 'raging'}),
     # bug 877198
     url_test('/press/news.html', 'http://blog.mozilla.org/press/'),
     url_test('/press/mozilla-2003-10-15.html',
@@ -742,9 +745,9 @@ URLS = flatten((
 
     # bug 831810 & 1142583
     url_test('/{mwc,MWC}/', '/firefox/partners/', query={
-        'utm_campaign': ['mwc-redirect'],
-        'utm_medium': ['referral'],
-        'utm_source': ['mozilla.org'],
+        'utm_campaign': 'mwc-redirect',
+        'utm_medium': 'referral',
+        'utm_source': 'mozilla.org',
     }),
 
     # bug 878926
@@ -805,8 +808,94 @@ URLS = flatten((
     url_test('/about/legal.html', '/about/legal/'),
     url_test('/about/partnerships.html', '/about/partnerships/'),
 
-    # bug 1215633
-    url_test('/firefox/42.0/firstrun/learnmore',
-             'https://support.mozilla.org/kb/private-browsing-use-firefox-without-history',
-             status_code=302),
+    # bug 846362
+    url_test('/community/{index{.{de,fr},}.html,}', '/contribute/'),
+
+    # bug 1003703, 1009630
+    url_test('/firefox/42.0/firstrun/eu/', '/firefox/42.0/firstrun/', query={
+        'utm_source': 'direct',
+        'utm_medium': 'none',
+        'utm_campaign': 'redirect',
+        'utm_content': 'eu-firstrun-redirect',
+    }),
+
+    # bug 845983
+    url_test('/metrofirefox/random/stuff/', '/firefox/random/stuff/'),
+
+    # bug 860532 - Reidrects for governance pages
+    url_test('/about/governance.html', '/about/governance/'),
+    url_test('/about/roles.html', '/about/governance/roles/'),
+    url_test('/about/organizations.html', '/about/governance/organizations/'),
+
+    # bug 876233
+    url_test('/about/participate/', '/contribute/'),
+
+    # bug 790784
+    url_test('/{about/policies/,foundation/,}privacy-policy{/,.html,}', '/privacy/websites/'),
+    url_test('/privacy-policy.pdf',
+             'https://static.mozilla.com/moco/en-US/pdf/mozilla_privacypolicy.pdf'),
+
+    # bug 1074354
+    url_test('/legal/', '/about/legal/'),
+
+    # bug 963816
+    url_test('/legal/privacy/', '/privacy/'),
+    url_test('/legal/privacy/firefox{/,.html}', '/privacy/firefox/'),
+    url_test('/legal/privacy/oct-2006', '/privacy/archive/firefox/2006-10/'),
+    url_test('/legal/privacy/june-2008', '/privacy/archive/firefox/2008-06/'),
+    url_test('/legal/privacy/jan-2009', '/privacy/archive/firefox/2009-01/'),
+    url_test('/legal/privacy/sept-2009', '/privacy/archive/firefox/2009-09/'),
+    url_test('/legal/privacy/jan-2010', '/privacy/archive/firefox/2010-01/'),
+    url_test('/legal/privacy/dec-2010', '/privacy/archive/firefox/2010-12/'),
+    url_test('/legal/privacy/june-2011', '/privacy/archive/firefox/2011-06/'),
+    url_test('/legal/privacy/june-2012', '/privacy/archive/firefox/2012-06/'),
+    url_test('/legal/privacy/sept-2012', '/privacy/archive/firefox/2012-09/'),
+    url_test('/legal/privacy/dec-2012', '/privacy/archive/firefox/2012-12/'),
+    url_test('/legal/privacy/firefox-third-party', '/privacy/archive/firefox/third-party/'),
+    url_test('/legal/privacy/notices-firefox', '/legal/firefox/'),
+    url_test('/privacy/policies/{facebook,firefox-os,websites}/',
+             '/privacy/{facebook,firefox-os,websites}/'),
+
+    # bug 1034859
+    url_test('/en-US/about/buttons/dude.jpg', '/media/img/careers/buttons/dude.jpg'),
+
+    # bug 1003737
+    url_test('/de/impressum/', '/de/about/legal/impressum/'),
+
+    # bug 960543
+    url_test('/firefox/{2,3}.0/eula/random/stuff/', '/legal/eula/firefox-{2,3}/'),
+
+    # bug 724633 - Porting foundation pages
+    # Add redirects for the pdfs that were under /foundation/documents/
+    # that will now be served from static.mozilla.com/foundation/documents/
+    # (The links within the foundation pages have been updated, but there are
+    # probably many links to them from other pages and sites that need to keep
+    # working.)
+    url_test('/foundation/documents/random-stuff.pdf',
+             'https://static.mozilla.com/foundation/documents/random-stuff.pdf'),
+    url_test('/foundation/donate_form.pdf',
+             'https://static.mozilla.com/foundation/documents/donate_form.pdf'),
+
+    # openwebfund/ and openwebfund/index.html redirect to another site.  Careful because
+    # there are other pages under openwebfund that still need to be served from Bedrock.
+    url_test('/foundation/openwebfund/',
+             'https://sendto.mozilla.org/page/contribute/join-mozilla?source=owf_redirect'),
+    url_test('/foundation/donate.html',
+             'https://sendto.mozilla.org/page/contribute/openwebfund'),
+
+    # FIXUPs for changing foo/bar.html to foo/bar/
+    # Redirect foundation/foo.html to foundation/foo/, with a redirect for the nice search engines
+    url_test('/foundation/{about,careers,licensing,moco,mocosc}.html',
+             '/foundation/{about,careers,licensing,moco,mocosc}/'),
+    # Redirect foundation/anything/foo.html to foundation/anything/foo/,
+    # with a redirect for the nice search engines
+    url_test('/foundation/{annualreport,documents,feed-icon-guidelines,'
+             'licensing,openwebfund,trademarks}/random-stuff.html',
+             '/foundation/{annualreport,documents,feed-icon-guidelines,'
+             'licensing,openwebfund,trademarks}/random-stuff/'),
+    url_test('/foundation/documents/{index,mozilla-2002-financial-faq}.html',
+             '/foundation/{index,mozilla-2002-financial-faq}/'),
+
+    # bug 442671
+    url_test('/foundation/trademarks/l10n-policy/', '/foundation/trademarks/'),
 ))

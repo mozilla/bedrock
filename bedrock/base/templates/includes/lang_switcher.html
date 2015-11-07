@@ -4,8 +4,8 @@
 
 {% if translations|length > 1 %}
 <form id="lang_form" method="get" action="#">
-  <label for="language">{{ _('Other languages:') }}</label>
-  <select id="language" name="lang" dir="ltr">
+  <label for="page-language-select">{{ _('Other languages:') }}</label>
+  <select id="page-language-select" name="lang" dir="ltr">
     {% for code, label in translations|dictsort -%}
       {# Don't escape the label as it may include entity references
        # like "Português (do&nbsp;Brasil)" (Bug 861149) #}

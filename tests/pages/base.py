@@ -7,6 +7,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from .page import Page, PageRegion
+from .regions.newsletter import NewsletterEmbedForm, MozillaNewsletterEmbedForm
 
 
 class BasePage(Page):
@@ -23,10 +24,18 @@ class BasePage(Page):
     def footer(self):
         return self.Footer(self.selenium)
 
+    @property
+    def newsletter(self):
+        return NewsletterEmbedForm(self.selenium)
+
+    @property
+    def mozilla_newsletter(self):
+        return MozillaNewsletterEmbedForm(self.selenium)
+
     class Footer(PageRegion):
 
         _root_locator = (By.ID, 'colophon')
-        _language_locator = (By.ID, 'language')
+        _language_locator = (By.ID, 'page-language-select')
 
         @property
         def language(self):

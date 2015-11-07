@@ -8,7 +8,7 @@ from urlparse import parse_qs
 
 from django.core.urlresolvers import NoReverseMatch, RegexURLResolver, reverse
 from django.conf.urls import url
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect, HttpResponseGone
 from django.views.decorators.vary import vary_on_headers
 
 import commonware.log
@@ -212,3 +212,12 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
                       'callable items')
 
     return url(pattern, _view, name=name)
+
+
+def gone_view(request, *args, **kwargs):
+    return HttpResponseGone()
+
+
+def gone(pattern):
+    """Return a url matcher suitable for urlpatterns that returns a 410."""
+    return url(pattern, gone_view)

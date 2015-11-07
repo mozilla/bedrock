@@ -10,6 +10,7 @@ from cgi import escape
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.utils.encoding import force_text
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.decorators.http import require_POST
@@ -22,6 +23,7 @@ from bedrock.base.urlresolvers import reverse
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
+
 import waffle
 
 from bedrock.base.geo import get_country_from_request
@@ -281,6 +283,14 @@ def fx_home_redirect(request):
     return HttpResponseRedirect(reverse('firefox.new'))
 
 
+def choose(request):
+    if waffle.switch_is_active('tracking-protection-redirect'):
+        return l10n_utils.render(request, 'firefox/choose.html')
+    else:
+        query = force_text(request.META.get('QUERY_STRING'), errors='ignore')
+        return HttpResponseRedirect('?'.join([reverse('firefox.new'), query]))
+
+
 def dnt(request):
     response = l10n_utils.render(request, 'firefox/dnt.html')
     response['Vary'] = 'DNT'
@@ -404,15 +414,12 @@ def show_38_0_5_firstrun_or_whatsnew(version):
 
 
 def show_40_firstrun(version):
-    if (waffle.switch_is_active('fx40-firstrun')):
-        try:
-            version = Version(version)
-        except ValueError:
-            return False
-
-        return version >= Version('40.0')
-    else:
+    try:
+        version = Version(version)
+    except ValueError:
         return False
+
+    return version >= Version('40.0')
 
 
 class LatestFxView(TemplateView):
@@ -508,6 +515,14 @@ class FirstrunView(LatestFxView):
         return [template]
 
 
+class FirstrunLearnMoreView(LatestFxView):
+    template_name = 'firefox/whatsnew_42/learnmore.html'
+
+
+class WhatsnewTestView(LatestFxView):
+    template_name = 'firefox/whatsnew_42/variant-b.html'
+
+
 class WhatsnewView(LatestFxView):
 
     pocket_locales = ['en-US', 'es-ES', 'ru', 'ja', 'de']
@@ -541,6 +556,8 @@ class WhatsnewView(LatestFxView):
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-whatsnew.html'
+        elif version.startswith('42.'):
+            template = 'firefox/whatsnew_42/variant-a.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
             has_pocket = locale in self.pocket_locales
@@ -654,9 +671,10 @@ class Win10Welcome(l10n_utils.LangFilesMixin, TemplateView):
         variant = self.request.GET.get('v', '')
         template = 'firefox/win10-welcome.html'
 
-        # ensure variant is one of 5 accepted values and locale is en-US only.
-        if (variant in ['1', '2', '3', '4', '5'] and self.request.locale == 'en-US'):
-            template = 'firefox/win10_variants/variant-' + variant + '.html'
+        # ensure variant is one of 4 accepted values and locale is en-US only.
+        # now on round 2 of testing, hence "-2" in template name
+        if (variant in ['1', '2', '3', '4'] and self.request.locale == 'en-US'):
+            template = 'firefox/win10_variants/variant-2-' + variant + '.html'
 
         return [template]
 

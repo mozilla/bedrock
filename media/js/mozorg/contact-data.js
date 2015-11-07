@@ -64,7 +64,7 @@
             },
             geometry: {
                 type: 'Point',
-                coordinates: [116.43405, 39.909901]
+                coordinates: [116.4280, 39.9115]
             }
         }, {
             type: 'Feature',

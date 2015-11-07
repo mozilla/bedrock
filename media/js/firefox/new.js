@@ -19,10 +19,15 @@
     var state; // track page state
     var noScene2; // track possibility of showing scene 2
 
-    var $downloadInteraction = $('#download-interaction'); // wrapper for download ready/started
-    var $downloadReady = $('#download-ready'); // content displayed before download starts
-    var $downloadStarted = $('#download-started'); // content displayed after download starts
+    var $stage = $('#stage'); // wrapper for main content area
+    var $scene1 = $('.scene1'); // content displayed before download starts
+    var $scene2 = $('.scene2'); // content displayed after download starts
     var $directDownloadLink = $('#direct-download-link');
+
+    // determine if scene 2 promo exists
+    var scene2PromoHeadline = $('#strings').data('scene2-promo-headline');
+    var $mainHeadline = $('#main-headline');
+    var originalHeadline = $mainHeadline.html();
 
     var pixelAdded = false;
 
@@ -148,10 +153,20 @@
             return;
         }
 
+        function toggleScene2Promo(show) {
+            var headline = (show) ? scene2PromoHeadline : originalHeadline;
+            $mainHeadline.addClass('invisible');
+
+            // wait for CSS transition to complete, then swap headline & reveal
+            setTimeout(function() {
+                $mainHeadline.html(headline).removeClass('invisible');
+            }, 200);
+        }
+
         function showScene(scene) {
             if (scene === 2) {
-                $downloadReady.stop().fadeOut(150, function() {
-                    $downloadStarted.stop().fadeIn(150);
+                $scene1.stop().fadeOut(150, function() {
+                    $scene2.stop().fadeIn(150);
                 });
 
                 $thankYou.focus();
@@ -162,12 +177,17 @@
                     w10CampaignMeasurement();
                 }
             } else {
-                $downloadStarted.stop().fadeOut(150, function() {
-                    $downloadReady.stop().fadeIn(150);
+                $scene2.stop().fadeOut(150, function() {
+                    $scene1.stop().fadeIn(150);
                 });
             }
 
-            $downloadInteraction.data('scene', scene);
+            // if scene 2 promo exists, show/hide that specific content
+            if (scene2PromoHeadline) {
+                toggleScene2Promo(scene === 2);
+            }
+
+            $stage.data('scene', scene);
         }
 
         // Pixel to be removed on Nov 2nd, 2015 (Bug 1196506)
@@ -207,7 +227,7 @@
             'href', $('.download-list li:visible .download-link').attr('href')
         );
 
-        $downloadInteraction.on('click', '#direct-download-link, .download-link', function(e) {
+        $stage.on('click', '#direct-download-link, .download-link', function(e) {
             e.preventDefault();
 
             var url = $(e.currentTarget).attr('href');
@@ -258,7 +278,7 @@
                 trackAndRedirect(url, virtualUrl);
             }
 
-            if ($downloadInteraction.data('scene') !== 2) {
+            if ($stage.data('scene') !== 2) {
                 if (hashChange) {
                     window.location.hash = '#download-fx';
                 } else {

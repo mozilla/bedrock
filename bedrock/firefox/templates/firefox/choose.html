@@ -8,8 +8,21 @@
 {% block page_title %}{{_('Keep your identity yours with the new Firefox') }}{% endblock %}
 {% block page_desc %}{{_('Choose Firefox when you want to browse the Web without the Web browsing you.')}}'{% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-choose-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {% stylesheet 'firefox_choose' %}
+{% endblock %}
+
+{#- See https://bugzilla.mozilla.org/show_bug.cgi?id=1214822#c6 -#}
+{% block js_pretrack %}
+{% if not waffle.switch('firefox-ios-global') %}
+  {% javascript 'firefox_new_ios_redirect' %}
+{% endif %}
 {% endblock %}
 
 {% block tabzilla_tab %}{% endblock %}
@@ -33,16 +46,20 @@
 <section class="page-content">
   <div class="blurb">
     <h2>{{ _('The most private browsing') }}</h2>
-    <p>{{ _('Take control of your web by using Private Browsing with Tracking Protection, only from Firefox.') }}</p>
-    <!-- update the below url once the product page is in master -->
-    <a href="{{ url('firefox.desktop.trust') }}" class="more">{{ _('Learn more about this') }}</a>
+    <p>
+      {% if LANG.startswith('en-') %}
+        {{ _('Take control of your Web by using Private Browsing with Tracking Protection, only from Firefox.') }}
+      {% else %}
+        {{ _('Take control of your web by using Private Browsing with Tracking Protection, only from Firefox.') }}
+      {% endif %}
+    </p>
+    <a href="{{ url('firefox.private-browsing') }}?c=fx-fall-15" class="more">{{ _('Learn more about this') }}</a>
   </div>
 
   <div class="blurb">
     <h2 class="data">{{ _('Here for you, not selling your info') }}</h2>
     <p>{{ _('Discover easy tips about how to take back control of your online experience, only from Mozilla.') }}</p>
-    <!-- For python this will be url('teach.smarton.tracking') - Currently not 100% whether smart on will launch on or before the same date as this page so, using the URL below to avoid errors. -->
-    <a href="{{ url('privacy.privacy-day') }}" class="more">{{ _('Get smart on data tracking') }}</a>
+    <a href="{{ url('teach.smarton.tracking') }}?c=fx-fall-15" class="more">{{ _('Get smart on data tracking') }}</a>
   </div>
 </section>
 {% endblock %}

@@ -361,16 +361,17 @@ INSTALLED_APPS = (
     'bedrock.foundation',
     'bedrock.gigabit',
     'bedrock.grants',
+    'bedrock.infobar',
     'bedrock.legal',
     'bedrock.mozorg',
     'bedrock.newsletter',
     'bedrock.persona',
     'bedrock.press',
     'bedrock.privacy',
-    'bedrock.redirects',
     'bedrock.research',
     'bedrock.styleguide',
     'bedrock.tabzilla',
+    'bedrock.teach',
     'bedrock.facebookapps',
     'bedrock.externalfiles',
     'bedrock.security',
@@ -378,6 +379,8 @@ INSTALLED_APPS = (
     'bedrock.releasenotes',
     'bedrock.thunderbird',
     'bedrock.shapeoftheweb',
+    # last so that redirects here will be last
+    'bedrock.redirects',
 
     # libs
     'django_extensions',
@@ -598,8 +601,8 @@ DONATE_LOCALE_LINK = {
         'https://sendto.mozilla.org/page/contribute/Give-Now?source={source}'
     ),
     'en-US': (
-        'https://sendto.mozilla.org/page/contribute/givenow-seq?'
-        'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        'https://donate.mozilla.org/?presets=100,50,25,15'
+        '&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015'
         '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
     ),
     'cs': (
@@ -719,10 +722,13 @@ OPTIMIZELY_PROJECT_ID = None
 #
 # For demo server testing, configure Fx40+ as detailed here:
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1150231#c28
-FXA_IFRAME_SRC = config('FXA_IFRAME_SRC', default='')
+FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
+                        default='https://accounts.firefox.com/')
 
 # Link to Firefox for Android on the Google Play store with Google Analytics
-# campaign parameters
+# campaign parameters.
+# To clarify below, 'referrer' key value must be a URL encoded string of utm_*
+# key/values (https://bugzilla.mozilla.org/show_bug.cgi?id=1099429#c0).
 GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
                             'id=org.mozilla.firefox&referrer=' +
                             urlquote('utm_source=mozilla&utm_medium=Referral&'

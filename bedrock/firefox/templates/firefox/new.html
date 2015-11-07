@@ -25,6 +25,8 @@
 
 {% block body_id %}firefox-new{% endblock %}
 
+{% block body_class %}{{ super() }}{% if l10n_has_tag('firefox_new_mobile_promo') and waffle.switch('firefox-ios-global') %} scene2-mobile-promo{% endif %}{% endblock %}
+
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}
   <h2>{{ high_res_img('firefox/new/header-firefox.png', {'alt': _('Firefox for desktop'), 'width': '223', 'height': '84'}) }}</h2>
@@ -46,6 +48,12 @@
 {% block optimizely %}
   {% if waffle.switch('firefox-new-optimizely') %}
      {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block string_data %}
+  {% if l10n_has_tag('firefox_new_mobile_promo') and waffle.switch('firefox-ios-global') %}
+    data-scene2-promo-headline="{{ _('Get Firefox everywhere') }}"
   {% endif %}
 {% endblock %}
 
@@ -99,8 +107,8 @@
     </div>
   </div>{#-- /#main-feature --#}
 
-  <section id="download-interaction">
-    <div id="download-ready" class="download-content">
+  <section id="stage">
+    <div id="scene1-main" class="scene-content scene1">
       <div class="container" id="features-download">
         <div class="desktop download-button-wrapper">
           {{ download_firefox(force_direct=true, simple=true) }}
@@ -123,7 +131,7 @@
             {% if l10n_has_tag('mobile_links') %}
             <li class="hide-for-refresh"><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
             {% if l10n_has_tag('firefox_ios') and waffle.switch('firefox-ios-global') %}
-            <li class="hide-for-refresh"><a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}">{{ _('Add Firefox to your iPhone, iPad and iPod touch') }}</a></li>
+            <li class="hide-for-refresh"><a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}&amp;ct=mozorg-uptodate-appstore-link">{{ _('Add Firefox to your iPhone, iPad and iPod touch') }}</a></li>
             {% endif %}
             <li class="hide-for-refresh"><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
             {% endif %}
@@ -150,9 +158,36 @@
       <div id="newsletter-latest">
         {{ email_newsletter_form() }}
       </div>
-    </div>{#-- /#download-ready --#}
+    </div>{#-- /#scene1-main --#}
 
-    <div id="download-started" class="download-content hidden">
+    <div id="scene2-main" class="scene-content scene2 hidden">
+    {% if l10n_has_tag('firefox_new_mobile_promo') and waffle.switch('firefox-ios-global') %}
+      <p class="help">
+        {{_('Your download should begin automatically. If not, <a id="%s" href="">click here</a>. It could take a few minutes, but it’s worth the wait.')|format('direct-download-link')}}
+        <a rel="external" href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a>
+      </p>
+
+      <div id="thankyou" tabindex="0">
+        {{ _('While it installs, add it to your Android and iOS devices.') }}
+      </div>
+
+      <div class="mobile-download-buttons">
+        <ul>
+          <li class="android">
+            <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
+              {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True}) }}
+            </a>
+          </li>
+          <li class="ios">
+            <a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}&amp;ct=mozorg-scene_2-appstore-button">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div id="mobile-device-lineup"></div>
+    {% else %}
       <div id="thankyou" tabindex="0">
         {{_("Thanks for downloading Firefox!")}}
         {{_("As a non-profit, we’re free to innovate on your behalf without any pressure to compromise. You’re going to love the difference.")}}
@@ -165,8 +200,9 @@
       <p>
         <a rel="external" href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a>
       </p>
-    </div>{#-- /#download-started --#}
-  </section>{#-- /#download-content --#}
+    {% endif %}
+    </div>{#-- /#scene2-main --#}
+  </section>{#-- /#stage --#}
 </main>
 
 {% include 'firefox/includes/schemaorg-app.html' %}
