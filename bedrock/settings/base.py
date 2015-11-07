@@ -726,7 +726,9 @@ FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
                         default='https://accounts.firefox.com/')
 
 # Link to Firefox for Android on the Google Play store with Google Analytics
-# campaign parameters
+# campaign parameters.
+# To clarify below, 'referrer' key value must be a URL encoded string of utm_*
+# key/values (https://bugzilla.mozilla.org/show_bug.cgi?id=1099429#c0).
 GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
                             'id=org.mozilla.firefox&referrer=' +
                             urlquote('utm_source=mozilla&utm_medium=Referral&'
