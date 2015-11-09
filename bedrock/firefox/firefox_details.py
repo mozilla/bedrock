@@ -256,5 +256,11 @@ class FirefoxAndroid(ProductDetails):
         return self.store_url
 
 
+class FirefoxIOS:
+    def get_download_url(self):
+        return settings.APPLE_APPSTORE_FIREFOX_LINK
+
+
 firefox_desktop = FirefoxDesktop()
 firefox_android = FirefoxAndroid()
+firefox_ios = FirefoxIOS()

@@ -18,7 +18,7 @@ from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
+from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid, FirefoxIOS
 from bedrock.firefox.utils import product_details
 from bedrock.mozorg.tests import TestCase
 
@@ -29,6 +29,7 @@ GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
 
 firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
 firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
+firefox_ios = FirefoxIOS()
 
 
 class TestInstallerHelp(TestCase):
