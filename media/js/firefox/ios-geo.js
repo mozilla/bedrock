@@ -17,6 +17,15 @@ if (typeof window.Mozilla === 'undefined') {
     var $widget = $('#send-to-modal-container');
     var sendToDeviceForm = new Mozilla.SendToDevice();
 
+    // Countries in which Firefox for iOS is available.
+    // Add two-letter country codes (lowercase) to this array to
+    // to expand the market. We'll remove this logic for wide release.
+    // Note: This is the country code, NOT locale code; they often differ.
+    var marketCountries = ['nz', 'au', 'at', 'ca'];
+
+    var COUNTRY_CODE = '';
+    var marketState = 'Unknown';
+
     // Sync instructions
     var $instructions = $('#sync-instructions');
     var $fill = $('<div id="modal" role="dialog" tabindex="-1"></div>');
@@ -37,7 +46,7 @@ if (typeof window.Mozilla === 'undefined') {
             // Firefox for Android
             if (window.isFirefoxMobile()) {
                 swapState('state-fx-android');
-                state = 'Firefox Android';
+                state = 'Firefox Android: ' + marketState;
 
             // Firefox for Desktop
             } else {
@@ -54,20 +63,20 @@ if (typeof window.Mozilla === 'undefined') {
                         // Variation #1: Firefox 31+ signed IN to Sync (default)
                         if (config.setup) {
                             swapState('state-fx-signed-in');
-                            state = 'Firefox Desktop: Signed-In';
+                            state = 'Firefox Desktop: Signed-In: ' + marketState;
 
                         // Variation #2: Firefox 31+ signed OUT of Sync
                         } else {
                             swapState('state-fx-signed-out');
-                            state = 'Firefox Desktop: Signed-Out';
+                            state = 'Firefox Desktop: Signed-Out: ' + marketState;
                         }
 
                         // Call GA tracking here to ensure it waits for the
                         // getConfiguration async call
                         window.dataLayer.push({
-                            'event': 'ios-page-interactions',
-                            'interaction': 'page-load',
-                            'loadState': state
+                            event: 'ios-page-interactions',
+                            interaction: 'page-load',
+                            loadState: state
                         });
                     });
                 }
@@ -77,20 +86,20 @@ if (typeof window.Mozilla === 'undefined') {
         // Firefox for iOS
         } else if (isFirefoxiOS()) {
             swapState('state-fx-ios');
-            state = 'Firefox iOS';
+            state = 'Firefox iOS: ' + marketState;
 
         // Not Firefox
         } else {
             swapState('state-not-fx');
-            state = 'Not Firefox';
+            state = 'Not Firefox: ' + marketState;
         }
 
         // Send page state to GA if it hasn't already been sent
         if (syncCapable === false) {
             window.dataLayer.push({
-                'event': 'ios-page-interactions',
-                'interaction': 'page-load',
-                'loadState': state
+                event: 'ios-page-interactions',
+                interaction: 'page-load',
+                loadState: state
             });
         }
     };
@@ -100,8 +109,31 @@ if (typeof window.Mozilla === 'undefined') {
         $body.addClass(stateClass);
     };
 
-    // initialize page state
-    initState();
+    // Get country code via geo-ip lookup
+    var getGeoLocation = function() {
+        // attempt to get country code
+        try {
+            COUNTRY_CODE = geoip_country_code().toLowerCase();
+        } catch (e) {
+            COUNTRY_CODE = '';
+        }
+
+        // if COUNTRY_CODE is one of the marketCountries, update page display
+        if ($.inArray(COUNTRY_CODE, marketCountries) > -1) {
+            $body.addClass('in-market');
+            marketState = 'In Market';
+        } else {
+            marketState = 'Out of Market';
+        }
+
+        // initialize page state now that marketState is determined
+        initState();
+    };
+
+    // load geolocation script
+    $.getScript('https://geo.mozilla.org/country.js', function() {
+        getGeoLocation();
+    });
 
     // initialize send to device form
     sendToDeviceForm.init();
