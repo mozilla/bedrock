@@ -126,6 +126,13 @@ function isFirefoxMobile(userAgent) {
     return /Mobile|Tablet|Fennec/.test(ua);
 }
 
+// iOS does not follow same version numbers as desktop & Android, so may not be safe to
+// simply add this check to isFirefox. Will require further investigation/testing.
+function isFirefoxiOS(userAgent) {
+    var ua = userAgent || navigator.userAgent;
+    return /FxiOS/.test(ua);
+}
+
 // Detect Firefox ESR simply by the *non-ESR* build IDs, as a fallback of the channel detection by
 // the mozUITour API. There would be some false positives if the browser is a pre-release (Nightly,
 // Aurora or Beta), semi-official (e.g. Ubuntu build by Canonical) or unofficial version of Firefox,
