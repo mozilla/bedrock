@@ -190,24 +190,9 @@
             $stage.data('scene', scene);
         }
 
-        // Pixel to be removed on Nov 2nd, 2015 (Bug 1196506)
+        // Pixel to be removed on Jan 16, 2016 (Bug 1222945)
         function w10CampaignMeasurement () {
-            var _dntStatus = navigator.doNotTrack || navigator.msDoNotTrack;
-            var fxMatch = navigator.userAgent.match(/Firefox\/(\d+)/);
-            var ie10Match = navigator.userAgent.match(/MSIE 10/i);
-            var w8Match = navigator.appVersion.match(/Windows NT 6.2/);
-
-            if (fxMatch && Number(fxMatch[1]) < 32) {
-                // Can't say for sure if it is 1 or 0, due to Fx bug 887703
-                _dntStatus = 'Unspecified';
-            } else if (ie10Match && w8Match) {
-                // IE10 on Windows 8 does not Enable based on user intention
-                _dntStatus = 'Unspecified';
-            } else {
-                _dntStatus = { '0': 'Disabled', '1': 'Enabled' }[_dntStatus] || 'Unspecified';
-            }
-
-            if (_dntStatus !== 'Enabled'){
+            if (!window._dntEnabled()){
                 var $body = $('body');
 
                 var $pixel = $('<img />', {
