@@ -256,5 +256,20 @@ class FirefoxAndroid(ProductDetails):
         return self.store_url
 
 
+class FirefoxIOS(ProductDetails):
+    channel_map = {
+        'release': 'version',
+    }
+    store_url = settings.APPLE_APPSTORE_FIREFOX_LINK
+
+    def latest_version(self, channel):
+        version = self.channel_map.get(channel, 'version')
+        return self.mobile_details[version]
+
+    def get_download_url(self, channel, type=None):
+        return self.store_url
+
+
 firefox_desktop = FirefoxDesktop()
 firefox_android = FirefoxAndroid()
+firefox_ios = FirefoxIOS()
