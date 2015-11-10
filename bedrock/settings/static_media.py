@@ -438,6 +438,15 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_os-bundle.css',
     },
+    'firefox_os_2_5': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/family-nav.less',
+            'css/firefox/os/firefox-os-2-5.less',
+        ),
+        'output_filename': 'css/firefox_os_2_5-bundle.css',
+    },
     'firefox_os_ie': {
         'source_filenames': (
             'css/firefox/os/firefox-os-ie.less',
@@ -1222,6 +1231,16 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_os-bundle.js',
     },
+    'firefox_os_2_5': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+            'js/firefox/os/firefox-os-2.5.js',
+        ),
+        'output_filename': 'js/firefox_os_2_5-bundle.js',
+    },
+
     'firefox_os_devices': {
         'source_filenames': (
             'js/libs/jquery.tipsy.js',
