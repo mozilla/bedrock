@@ -5,25 +5,28 @@
 ;(function($) {
     'use strict';
 
-    $('.cta-button').on('click', function(e) {
-        if (!window._dntEnabled()) {
-            e.preventDefault();
-            ftGoalTag14004();
-        }
-    });
+    function trackClick(e) {
+        e.preventDefault();
+        var id = $(e.target).data('id');
+        ftGoalTag14004(id);
+    }
 
-    function ftGoalTag14004(){
+    function ftGoalTag14004(id){
         var ftRand = Math.random() + '';
         var num = ftRand * 1000000000000000000;
         var ftGoalTagPix14004 = new Image();
 
-        ftGoalTagPix14004.src = 'https://servedby.flashtalking.com/spot/2713;14004;1723/?spotName=submit_button&cachebuster=' + num;
+        ftGoalTagPix14004.src = 'https://servedby.flashtalking.com/spot/8/6247;52161;4669/?spotName=' + id + '&cachebuster=' + num;
 
-        setTimeout(ftLoaded14004, 300);
+        setTimeout(ftLoaded14004, 400);
     }
 
-    function ftLoaded14004() { 
+    function ftLoaded14004() {
         window.location.href = 'https://d2yw7jilxa8093.cloudfront.net/B2GDroid-mozilla-central-nightly-latest.apk';
-    } 
+    }
+
+    if (!window._dntEnabled()) {
+        $('.cta-button').on('click', trackClick);
+    }
 
 })(jQuery);
