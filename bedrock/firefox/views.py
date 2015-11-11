@@ -104,6 +104,7 @@ INSTALLER_CHANNElS = [
 ]
 
 SMS_MESSAGES = {
+    'ios': 'ff-ios-download',
     'android': 'SMS_Android',
     'android-test-modal': 'android-download-notembed',  # test variant
     'android-test-embed': 'android-download-embed',  # test variant
