@@ -592,9 +592,9 @@ MOBILIZER_LOCALE_LINK = {
     'cs': 'https://wiki.mozilla.org/Mobilizer/MobilizerCzechRepublic/'
 }
 
-DONATE_SPANISH_LINK = ('https://sendto.mozilla.org/page/contribute/givenow-seq-es?'
-    'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-    '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_ES')
+DONATE_SPANISH_LINK = ('https://donate.mozilla.org/es/?presets=100,50,25,15&amount=50'
+    '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
+    '&utm_medium=referral&utm_content={source}&currency=eur')
 
 DONATE_LOCALE_LINK = {
     'default': (
@@ -616,18 +616,18 @@ DONATE_LOCALE_LINK = {
         '&utm_source={source}&utm_medium=referral&utm_content=PPcurrency_DKK'
     ),
     'de': (
-        'https://sendto.mozilla.org/page/contribute/givenow-seq-de?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_DE'
+        'https://donate.mozilla.org/de/?presets=100,50,25,15&amount=50'
+        '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
+        '&utm_medium=referral&utm_content={source}&currency=eur'
     ),
     'es-AR': DONATE_SPANISH_LINK,
     'es-CL': DONATE_SPANISH_LINK,
     'es-ES': DONATE_SPANISH_LINK,
     'es-MX': DONATE_SPANISH_LINK,
     'fr': (
-        'https://sendto.mozilla.org/page/contribute/givenow-seq-fr?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_FR'
+        'https://donate.mozilla.org/fr/?presets=100,50,25,15&amount=50'
+        '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
+        '&utm_medium=referral&utm_content={source}&currency=eur'
     ),
     'he': (
         'https://sendto.mozilla.org/page/content/paypal-donate-ils/?'
@@ -660,9 +660,9 @@ DONATE_LOCALE_LINK = {
         '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_PLN'
     ),
     'pt-BR': (
-        'https://sendto.mozilla.org/page/contribute/givenow-seq-pt-br?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_PTBR'
+        'https://donate.mozilla.org/pt-BR/?presets=375,187,90,55&amount=187'
+        '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
+        '&utm_medium=referral&utm_content={source}&currency=brl'
     ),
     'ru': (
         'https://sendto.mozilla.org/page/content/paypal-donate-rub/?'
