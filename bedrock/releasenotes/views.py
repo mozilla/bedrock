@@ -13,15 +13,16 @@ from lib import l10n_utils
 from rna.models import Release
 from product_details import product_details
 
-from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
+from bedrock.firefox.firefox_details import firefox_desktop, firefox_android, firefox_ios
 from bedrock.thunderbird.details import thunderbird_desktop
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.helpers.misc import releasenotes_url
-from bedrock.firefox.helpers import android_builds
+from bedrock.firefox.helpers import android_builds, ios_builds
 
 
 SUPPORT_URLS = {
     'Firefox for Android': 'https://support.mozilla.org/products/mobile',
+    'Firefox for iOS': 'https://support.mozilla.org/products/ios',
     'Firefox': 'https://support.mozilla.org/products/firefox',
     'Thunderbird': 'https://support.mozilla.org/products/thunderbird/',
 }
@@ -65,6 +66,8 @@ def get_download_url(release):
         return 'https://www.mozilla.org/thunderbird/'
     elif release.product == 'Firefox for Android':
         return android_builds(release.channel)[0]['download_link']
+    elif release.product == 'Firefox for iOS':
+        return ios_builds(release.channel)[0]['download_link']
     else:
         if release.channel == 'Aurora':
             return reverse('firefox.channel') + '#developer'
@@ -122,6 +125,8 @@ def latest_notes(request, product='firefox', platform=None, channel=None):
         version = thunderbird_desktop.latest_version(channel)
     elif platform == 'android':
         version = firefox_android.latest_version(channel)
+    elif platform == 'ios':
+        version = firefox_ios.latest_version(channel)
     else:
         version = firefox_desktop.latest_version(channel)
 
@@ -150,6 +155,8 @@ def latest_sysreq(request, channel, product):
         version = thunderbird_desktop.latest_version(channel)
     elif product == 'mobile':
         version = firefox_android.latest_version(channel)
+    elif product == 'ios':
+        version = firefox_ios.latest_version(channel)
     else:
         version = firefox_desktop.latest_version(channel)
 

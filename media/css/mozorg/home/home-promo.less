@@ -854,14 +854,6 @@ html[lang|="en"] {
     }
 }
 
-html[lang|="en"] {
-    .promo-large-landscape.webmaker {
-        h3 {
-            padding: (@baseLine * 3) @baseLine 0 @baseLine;
-        }
-    }
-}
-
 .promo-small-landscape.webmaker {
     background: #0ad; // bright blue
 
@@ -870,6 +862,33 @@ html[lang|="en"] {
         min-height: 64px;
         background: url(/media/img/home/voices/promos/webmaker/webmaker-teacher.svg) 15px 35px no-repeat;
         .background-size(95px, 64px);
+    }
+}
+
+.promo-small-landscape.introducing-webmaker {
+    background: #0ad; // bright blue
+
+    h2 {
+        padding: 30px 20px 20px 140px;
+        min-height: 64px;
+        background: url(/media/img/home/voices/promos/webmaker/webmaker-logo.svg) 15px 15px no-repeat;
+        .background-size(100px, 100px);
+        .font-size(18px);
+    }
+}
+
+html[lang|="en"] {
+    .promo-large-landscape.webmaker {
+        h3 {
+            padding: (@baseLine * 3) @baseLine 0 @baseLine;
+        }
+    }
+
+    .promo-small-landscape.introducing-webmaker {
+        h2 {
+            padding-top: 25px;
+            .font-size(20px);
+        }
     }
 }
 
@@ -969,11 +988,15 @@ html[lang|="en"] {
 
     h2 {
         padding: 100px @baseLine 0 @baseLine;
-        margin-top: @baseLine * 2;
+        margin-top: 25px;
         background-image: url(/media/img/home/voices/promos/gear/gear.png);
         background-position: top center;
         background-repeat: no-repeat;
         .background-size(75px, 80px);
+    }
+
+    h3 {
+        padding-top: 70px;
     }
 }
 
@@ -1037,24 +1060,6 @@ html[lang|="en"] {
         h3 {
             padding: (@baseLine * 3) @baseLine 0 @baseLine;
         }
-    }
-}
-
-
-/****************************************************************************/
-// ViewSource Conf
-.promo-large-landscape.viewsource {
-    background-color: #00b085;
-
-    h2 {
-        padding-top: 120px;
-        .at2x('/media/img/home/voices/promos/viewsource/logo.png', 280px, 55px);
-        background-position: center 40px;
-        background-repeat: no-repeat;
-    }
-
-    h3 {
-        padding-top: 60px;
     }
 }
 

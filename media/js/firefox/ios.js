@@ -17,24 +17,9 @@ if (typeof window.Mozilla === 'undefined') {
     var $widget = $('#send-to-modal-container');
     var sendToDeviceForm = new Mozilla.SendToDevice();
 
-    // Countries in which Firefox for iOS is available.
-    // Add two-letter country codes (lowercase) to this array to
-    // to expand the market. We'll remove this logic for wide release.
-    // Note: This is the country code, NOT locale code; they often differ.
-    var marketCountries = ['nz', 'au', 'at', 'ca'];
-
-    var COUNTRY_CODE = '';
-    var marketState = 'Unknown';
-
     // Sync instructions
     var $instructions = $('#sync-instructions');
     var $fill = $('<div id="modal" role="dialog" tabindex="-1"></div>');
-
-    // Sniff UA for Firefox for iOS
-    var isFirefoxiOS = function(userAgent) {
-        var ua = userAgent || navigator.userAgent;
-        return /FxiOS/.test(ua);
-    };
 
     // initialize state - runs after geolocation has completed
     var initState = function() {
@@ -46,7 +31,7 @@ if (typeof window.Mozilla === 'undefined') {
             // Firefox for Android
             if (window.isFirefoxMobile()) {
                 swapState('state-fx-android');
-                state = 'Firefox Android: ' + marketState;
+                state = 'Firefox Android';
 
             // Firefox for Desktop
             } else {
@@ -63,12 +48,12 @@ if (typeof window.Mozilla === 'undefined') {
                         // Variation #1: Firefox 31+ signed IN to Sync (default)
                         if (config.setup) {
                             swapState('state-fx-signed-in');
-                            state = 'Firefox Desktop: Signed-In: ' + marketState;
+                            state = 'Firefox Desktop: Signed-In';
 
                         // Variation #2: Firefox 31+ signed OUT of Sync
                         } else {
                             swapState('state-fx-signed-out');
-                            state = 'Firefox Desktop: Signed-Out: ' + marketState;
+                            state = 'Firefox Desktop: Signed-Out';
                         }
 
                         // Call GA tracking here to ensure it waits for the
@@ -84,14 +69,14 @@ if (typeof window.Mozilla === 'undefined') {
             }
 
         // Firefox for iOS
-        } else if (isFirefoxiOS()) {
+        } else if (window.isFirefoxiOS()) {
             swapState('state-fx-ios');
-            state = 'Firefox iOS: ' + marketState;
+            state = 'Firefox iOS';
 
         // Not Firefox
         } else {
             swapState('state-not-fx');
-            state = 'Not Firefox: ' + marketState;
+            state = 'Not Firefox';
         }
 
         // Send page state to GA if it hasn't already been sent
@@ -109,31 +94,8 @@ if (typeof window.Mozilla === 'undefined') {
         $body.addClass(stateClass);
     };
 
-    // Get country code via geo-ip lookup
-    var getGeoLocation = function() {
-        // attempt to get country code
-        try {
-            COUNTRY_CODE = geoip_country_code().toLowerCase();
-        } catch (e) {
-            COUNTRY_CODE = '';
-        }
-
-        // if COUNTRY_CODE is one of the marketCountries, update page display
-        if ($.inArray(COUNTRY_CODE, marketCountries) > -1) {
-            $body.addClass('in-market');
-            marketState = 'In Market';
-        } else {
-            marketState = 'Out of Market';
-        }
-
-        // initialize page state now that marketState is determined
-        initState();
-    };
-
-    // load geolocation script
-    $.getScript('https://geo.mozilla.org/country.js', function() {
-        getGeoLocation();
-    });
+    // initialize page state
+    initState();
 
     // initialize send to device form
     sendToDeviceForm.init();

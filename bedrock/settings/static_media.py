@@ -395,6 +395,7 @@ PIPELINE_CSS = {
     },
     'firefox_ios': {
         'source_filenames': (
+            'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/base/send-to-device.less',
             'css/firefox/ios.less',
@@ -436,6 +437,15 @@ PIPELINE_CSS = {
             'css/firefox/os/firefox-os.less',
         ),
         'output_filename': 'css/firefox_os-bundle.css',
+    },
+    'firefox_os_2_5': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/family-nav.less',
+            'css/firefox/os/firefox-os-2-5.less',
+        ),
+        'output_filename': 'css/firefox_os_2_5-bundle.css',
     },
     'firefox_os_ie': {
         'source_filenames': (
@@ -1221,6 +1231,16 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_os-bundle.js',
     },
+    'firefox_os_2_5': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+            'js/firefox/os/firefox-os-2.5.js',
+        ),
+        'output_filename': 'js/firefox_os_2_5-bundle.js',
+    },
+
     'firefox_os_devices': {
         'source_filenames': (
             'js/libs/jquery.tipsy.js',
@@ -1352,9 +1372,22 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
             'js/base/send-to-device.js',
             'js/firefox/australis/australis-uitour.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/ios.js',
         ),
         'output_filename': 'js/firefox_ios-bundle.js',
+    },
+    'firefox_ios_geo': {
+        'source_filenames': (
+            'js/libs/script.js',
+            'js/base/mozilla-modal.js',
+            'js/base/send-to-device.js',
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/ios-geo.js',
+        ),
+        'output_filename': 'js/firefox_ios_geo-bundle.js',
     },
     'firefox_tour': {
         'source_filenames': (

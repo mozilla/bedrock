@@ -68,7 +68,7 @@
             $more.slideToggle('fast', function() {
                 if ($more.is(':visible')) {
                     $toggle_button.addClass('open').text(window.trans('less'));
-                    $(this).removeAttr('aria-hidden');
+                    $(this).attr('aria-hidden', 'false');
                     window.dataLayer.push({
                         'event': 'mozillian-stories-interaction',
                         'browserAction': person + ' - more',

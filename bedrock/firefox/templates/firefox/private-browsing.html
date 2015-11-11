@@ -30,7 +30,7 @@
         <h1>{{ _('More protection. <br>The most privacy. <br>Only from Firefox.') }}</h1>
         <div class="download-buttons">
           <div class="firefox-latest-cta">
-            <a href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/" class="button-flat-dark" data-highlight="privateWindow" role="button">{{ _('Try Private Browsing') }}</a>
+            <a class="try-pb-button button-flat-dark" data-highlight="privateWindow" href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/">{{ _('Try Private Browsing') }}</a>
           </div>
           <div class="non-firefox-cta">
             <p>{{ _('To give the new Private Browsing a try, download Firefox.') }}</p>
@@ -128,7 +128,7 @@
       <div class="download-buttons">
         <div class="firefox-latest-cta">
           <h2>{{ _('Try it now to stay in control') }}</h2>
-          <a href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/" class="button-flat-dark" data-highlight="privateWindow" role="button">{{ _('Try Private Browsing') }}</a>
+          <a class="try-pb-button button-flat-dark" data-highlight="privateWindow" href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/">{{ _('Try Private Browsing') }}</a>
         </div>
         <div class="non-firefox-cta">
           <h2>{{ _('To give the new Private Browsing a try, download Firefox.') }}</h2>
@@ -163,7 +163,6 @@
 {% block js %}
   <!--[if IE 9]>
     {% javascript 'matchmedia_addlistener' %}
-    {% javascript 'firefox_hello_ie9' %}
   <![endif]-->
   {% javascript 'firefox_private_browsing' %}
 {% endblock %}
