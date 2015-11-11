@@ -523,10 +523,6 @@ class FirstrunLearnMoreView(LatestFxView):
     template_name = 'firefox/whatsnew_42/learnmore.html'
 
 
-class WhatsnewTestView(LatestFxView):
-    template_name = 'firefox/whatsnew_42/variant-b.html'
-
-
 class WhatsnewView(LatestFxView):
 
     pocket_locales = ['en-US', 'es-ES', 'ru', 'ja', 'de']
