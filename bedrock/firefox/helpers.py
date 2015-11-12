@@ -60,7 +60,7 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
     :param channel: name of channel: 'release', 'beta' or 'alpha'.
     :param small: Display the small button if True.
     :param icon: Display the Fx icon on the button if True.
-    :param platform: Target platform: 'desktop', 'android' or 'all'.
+    :param platform: Target platform: 'desktop', 'android', 'ios', or 'all'.
     :param dom_id: Use this string as the id attr on the element.
     :param locale: The locale of the download. Default to locale of request.
     :param simple: Display button with text only if True. Will not display
@@ -79,6 +79,7 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
     """
     show_desktop = platform in ['all', 'desktop']
     show_android = platform in ['all', 'android']
+    show_ios = platform in ['all', 'ios']
     alt_channel = '' if channel == 'release' else channel
     locale = locale or get_locale(ctx['request'])
     funnelcake_id = ctx.get('funnelcake_id', False)
@@ -135,8 +136,14 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
                            'os_pretty': plat_os_pretty,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
+
     if show_android:
         builds = android_builds(channel, builds)
+
+    if show_ios:
+        builds.append({'os': 'ios',
+                       'os_pretty': 'iOS',
+                       'download_link': firefox_ios.get_download_url()})
 
     # Get the native name for current locale
     langs = firefox_desktop.languages
@@ -145,14 +152,15 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
     data = {
         'locale_name': locale_name,
         'version': version,
-        'product': 'firefox-android' if platform == 'android' else 'firefox',
+        'product': 'firefox-%s' % platform,
         'builds': builds,
         'id': dom_id,
         'small': small,
         'simple': simple,
         'channel': alt_channel,
-        'show_android': show_android,
         'show_desktop': show_desktop,
+        'show_android': show_android,
+        'show_ios': show_ios,
         'icon': icon,
         'check_old_fx': check_old_fx and simple,
     }
