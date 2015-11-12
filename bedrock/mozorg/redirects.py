@@ -27,7 +27,7 @@ redirectpatterns = (
              locale_prefix=False),
 
     # bug 874913
-    redirect(r'products/download.html', 'firefox.new', anchor='download-fx'),
+    redirect(r'products/download.html', 'firefox.new', query=''),
 
     # bug 845580
     redirect(r'^home/?$', 'firefox.new'),
