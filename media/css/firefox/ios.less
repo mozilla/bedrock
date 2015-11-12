@@ -701,16 +701,32 @@ a.go {
     top: -30px;
 }
 
-// Send to Device button shown by default
-.get-fxios .send-to-device,
-.fxfamilynav-cta-wrapper .send-to {
-    display: block;
+.send-to-device {
+    display: none;
 }
 
-// App store badge hidden by default
-.get-fxios .appstore-badge,
-.fxfamilynav-cta-wrapper .dl-button {
-    display: none;
+// Hide app store button for locales that get the send-to-device widget
+.js .show-widget {
+    .dl-button,
+    .appstore-badge {
+        display: none;
+    }
+    .send-to-device,
+    .send-to {
+        display: block;
+    }
+}
+
+// Always show app store buttons for iOS users
+.ios .show-widget {
+    .dl-button,
+    .appstore-badge {
+        display: block;
+    }
+    .send-to-device,
+    .send-to {
+        display: none;
+    }
 }
 
 .fxfamilynav-cta-wrapper .dl-button {
