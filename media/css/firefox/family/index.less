@@ -8,7 +8,7 @@
     color: #fff;
 
     #outer-wrapper {
-        .aurora-bars();
+        .aurora-bars;
         border-top: 2px solid #fff;
     }
 
@@ -26,7 +26,7 @@
 }
 
 .content {
-    .border-box();
+    .border-box;
     width: @widthDesktop;
     margin: 0 auto;
 
@@ -253,8 +253,8 @@ html[dir="rtl"] #header h1 {
 /*--------------------------------------------------------------------------*/
 // Base styles for product groups
 .product-list {
-    .clearfix();
-    .flexbox();
+    .clearfix;
+    .flexbox;
     margin: 0;
     list-style: none;
 
@@ -297,37 +297,20 @@ html[dir="rtl"] #header h1 {
 
 /*--------------------------------------------------------------------------*/
 // Primary tier - Desktop, Android, iOS, Firefox OS
+
+// Without iOS, three products in a row at 1000px
 #products-primary {
     background: #00a7e0;
     border-top: 1px solid rgba(0, 0, 0, .1);
+    clear: both;
 
-    .product {
+    .inner {
         padding: 40px @gridGutterWidth 140px;
+        margin: 0 auto;
+        position: relative;
 
         @media only screen and (min-width: @breakDesktopWide) {
             padding: 50px (@gridGutterWidth * 2) 160px;
-        }
-    }
-
-    &.ios-active {
-        .product-list {
-            flex-wrap: wrap;
-        }
-
-        .product {
-            width: 50%;
-
-            &:before {
-                content: '';
-                display: block;
-                width: 200%;
-                height: 30px;
-                position: absolute;
-                left: 50%;
-                bottom: -15px;
-                margin-left: -100%;
-                #gradient > .radial(center, center, ellipse, farthest-side, rgba(0, 0, 0, .25) 0%, rgba(0, 0, 0, 0) 50%);
-            }
         }
     }
 
@@ -376,7 +359,7 @@ html[dir="rtl"] #header h1 {
     .highlight {
         .at2x('/media/img/firefox/family/index/promo-bg.png', 600px, 450px);
         background-color: #ffcd02;
-        background-position: center top;
+        background-position: left top;
         background-repeat: no-repeat;
         color: #e14164;
 
@@ -390,24 +373,19 @@ html[dir="rtl"] #header h1 {
     }
 }
 
-
 // Firefox for Desktop
-#product-desktop:after {
+#product-desktop .inner:after {
     .fxfamily-sprite(0, 0);
     width: 378px;
     height: 220px;
-    bottom: -90px;
     left: 50%;
+    bottom: -90px;
     margin-left: -189px;
-
-    @media only screen and (min-width: @breakDesktopWide) {
-        bottom: -65px;
-    }
 }
 
 // Firefox for Android
 #product-android {
-    &:after {
+    .inner:after {
         .fxfamily-sprite(0, -644px);
         width: 268px;
         height: 181px;
@@ -416,13 +394,23 @@ html[dir="rtl"] #header h1 {
         margin-left: -134px;
     }
 
-    &.highlight:after {
+    &.highlight .inner:after {
         .fxfamily-sprite(0, -225px);
         width: 470px;
         height: 176px;
-        left: -270px;
-        bottom: -50px;
+        left: -290px;
+        bottom: -40px;
         margin: 0;
+
+        @media only screen and (min-width: @breakDesktopWide) {
+            left: -160px;
+        }
+
+        @media only screen and (max-width: @breakDesktop) {
+            left: 50%;
+            bottom: -40px;
+            margin-left: -235px;
+        }
     }
 
     // Google Play button
@@ -431,88 +419,245 @@ html[dir="rtl"] #header h1 {
         right: 20px;
         bottom: 40px;
         z-index: 5;
+
+        @media only screen and (max-width: @breakDesktop) {
+            position: static;
+            margin: @baseLine auto;
+        }
     }
 
     .download-other {
         clear: both;
         display: block;
         .font-size(11px);
-        .open-sans();
-    }
-
-    @media only screen and (min-width: @breakDesktopWide) {
-        &:after {
-            left: -160px;
-            bottom: -40px;
-        }
-
-        &.highlight:after {
-            left: -160px;
-            bottom: -30px;
-        }
-    }
-
-    @media only screen and (max-width: @breakDesktop) and (min-width: @breakTablet) {
-        &.highlight:after {
-            left: 50%;
-            right: auto;
-            bottom: -55px;
-            margin-left: -235px;
-        }
-
-        .btn-google-play {
-            position: static;
-            margin: 10px auto -10px;
-        }
-    }
-
-    @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-        &.highlight:after {
-            left: 50%;
-            right: auto;
-            bottom: -55px;
-            margin-left: -235px;
-        }
-
-        .btn-google-play {
-            position: static;
-            margin: 10px auto -10px;
-        }
+        .open-sans;
     }
 }
 
 // iOS
 #product-ios {
-    &.highlight:after {
-        .fxfamily-sprite(0, -825px);
-        width: 382px;
-        height: 160px;
-        bottom: -25px;
+    .inner:after {
+        .fxfamily-sprite(-268px, -644px);
+        width: 268px;
+        height: 181px;
         left: 50%;
-        margin-left: -191px;
+        bottom: -35px;
+        margin-left: -134px;
     }
 
-    @media only screen and (min-width: @breakDesktopWide) {
-        &.highlight:after {
-            right: 10px;
-            bottom: -10px;
+    &.highlight .inner:after {
+        .fxfamily-sprite(0, -815px);
+        width: 382px;
+        height: 170px;
+        left: 0;
+        bottom: 0;
+
+        @media only screen and (max-width: @breakTablet) {
+            left: 50%;
+            bottom: -35px;
+            margin-left: -191px;
         }
+    }
+
+    .btn-apple-appstore {
+        margin: @baseLine auto;
     }
 }
 
 // Firefox OS
-#product-fxos:after {
+#product-fxos .inner:after {
     .fxfamily-sprite(0, -405px);
     width: 224px;
-    height: 146px;
-    bottom: -10px;
+    height: 145px;
     left: 50%;
+    bottom: -10px;
     margin-left: -112px;
+}
 
-    @media only screen and (min-width: @breakDesktopWide) {
-        bottom: 0;
+
+/*--------------------------------------------------------------------------*/
+// With iOS, four products stack at 1000px
+// Lots of repetition because of waffle and supporting both layouts.
+// We can clean this up when four products becomes the new normal (Bug 1217929).
+#products-primary.ios-active {
+    .content {
+        width: 100%;
+
+        @media only screen and (min-width: @breakDesktopWide) {
+            width: @widthDesktopWide;
+        }
+    }
+
+    .product-list {
+        display: block;
+
+        @media only screen and (min-width: @breakDesktopWide) {
+            .flexbox;
+        }
+    }
+
+    .product {
+        width: auto;
+        float: none;
+        clear: both;
+        border-bottom: 1px solid lighten(@mozIDBlue, 20%);
+
+        // Four in a row at 1400px
+        @media only screen and (min-width: @breakDesktopWide) {
+            width: 25%;
+            float: left;
+            clear: none;
+            border: 0;
+        }
+    }
+
+    .inner {
+        .border-box;
+        width: @widthTablet;
+        max-width: @widthTablet;
+        min-width: @widthMobile;
+        min-height: 140px;
+        height: 100%;
+        margin: 0 auto;
+        padding: 60px @gridGutterWidth 40px 400px;
+        text-align: left;
+
+        @media only screen and (min-width: @breakDesktopWide) {
+            width: auto;
+            max-width: 100%;
+            min-width: 0;
+            padding: 50px @gridGutterWidth 160px;
+            text-align: center;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            width: auto;
+            padding: 40px @gridGutterWidth 140px;
+            text-align: center;
+        }
     }
 }
+
+.ios-active {
+    #product-desktop .inner:after {
+        left: 20px;
+        bottom: -75px;
+        margin: 0;
+
+        @media only screen and (min-width: @breakDesktopWide) {
+            left: 50%;
+            bottom: -90px;
+            margin-left: -189px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            left: 50%;
+            bottom: -90px;
+            margin-left: -189px;
+        }
+    }
+
+    #product-android {
+        .inner:after {
+            left: 75px;
+            bottom: -45px;
+            margin: 0;
+
+            @media only screen and (min-width: @breakDesktopWide) {
+                left: 50%;
+                bottom: -40px;
+                margin-left: -134px;
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                left: 50%;
+                bottom: -50px;
+                margin-left: -134px;
+            }
+        }
+
+        &.highlight .inner:after {
+            left: -80px;
+            bottom: -30px;
+            margin: 0;
+
+            @media only screen and (max-width: @breakTablet) {
+                left: 50%;
+                bottom: -40px;
+                margin-left: -235px;
+            }
+        }
+    }
+
+    #product-ios {
+        .inner:after {
+            left: 75px;
+            bottom: -45px;
+            margin: 0;
+
+            @media only screen and (min-width: @breakDesktopWide) {
+                left: 50%;
+                bottom: -40px;
+                margin-left: -134px;
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                left: 50%;
+                bottom: -50px;
+                margin-left: -134px;
+            }
+        }
+
+        &.highlight {
+            .inner:after {
+                left: -10px;
+                bottom: 0;
+                margin: 0;
+
+                @media only screen and (min-width: @breakDesktopWide) {
+                    left: -190px;
+                    bottom: -20px;
+                }
+
+                @media only screen and (max-width: @breakTablet) {
+                    left: 50%;
+                    bottom: -50px;
+                    margin-left: -191px;
+                }
+            }
+
+            .btn-apple-appstore {
+                margin-bottom: 0;
+
+                @media only screen and (min-width: @breakDesktopWide) {
+                    position: absolute;
+                    right: 20px;
+                    bottom: 40px;
+                    z-index: 5;
+                }
+            }
+        }
+    }
+
+    #product-fxos .inner:after {
+        left: 100px;
+        bottom: 0;
+        margin: 0;
+
+        @media only screen and (min-width: @breakDesktopWide) {
+            left: 50%;
+            bottom: -5px;
+            margin-left: -112px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            left: 50%;
+            bottom: -20px;
+            margin-left: -112px;
+        }
+    }
+}
+
 
 
 /*--------------------------------------------------------------------------*/
@@ -637,45 +782,7 @@ html[dir='rtl'] {
     }
 }
 
-@media only screen and (min-width: @breakDesktopWide) {
-    #products-secondary .product {
-        padding-left: 160px;
-    }
 
-    #product-hello h2:before {
-        left: 60px;
-    }
-
-    #product-sync h2:before {
-        left: 30px;
-    }
-
-    #product-private-browsing h2:before {
-        left: 10px;
-    }
-
-    html[dir='rtl'] {
-        #products-secondary .product {
-            padding-right: 160px;
-        }
-
-        #product-hello h2:before {
-            left: auto;
-            right: 60px;
-        }
-
-        #product-sync h2:before {
-            left: auto;
-            right: 30px;
-        }
-
-        #product-private-browsing h2:before {
-            left: auto;
-            right: 10px;
-        }
-    }
-
-}
 
 /*--------------------------------------------------------------------------*/
 // Footer
@@ -751,19 +858,6 @@ html[dir='rtl'] {
         }
     }
 
-
-    #products-primary.ios-active {
-        .product-list {
-            flex-wrap: nowrap;
-        }
-
-        .product {
-            width: 25%;
-            border: 0;
-            box-shadow: none;
-        }
-    }
-
     [lang~='en'] #header h1 {
         width: 520px;
         .font-size(60px);
@@ -776,6 +870,44 @@ html[dir='rtl'] {
             margin-left: 15px;
         }
     }
+
+    #products-secondary .product {
+        padding-left: 160px;
+    }
+
+    #product-hello h2:before {
+        left: 60px;
+    }
+
+    #product-sync h2:before {
+        left: 30px;
+    }
+
+    #product-private-browsing h2:before {
+        left: 10px;
+    }
+
+    html[dir='rtl'] {
+        #products-secondary .product {
+            padding-right: 160px;
+        }
+
+        #product-hello h2:before {
+            left: auto;
+            right: 60px;
+        }
+
+        #product-sync h2:before {
+            left: auto;
+            right: 30px;
+        }
+
+        #product-private-browsing h2:before {
+            left: auto;
+            right: 10px;
+        }
+    }
+
 }
 
 
@@ -814,11 +946,9 @@ html[dir='rtl'] {
     }
 
     #products-primary {
-        .content {
-            width: auto;
-        }
-
-        &.ios-active .product {
+        .content,
+        .product,
+        .inner {
             width: auto;
         }
 
@@ -932,8 +1062,9 @@ html[dir='rtl'] {
     .product-list {
         display: block;
 
-        .product {
-            width: 100%;
+        .product,
+        .inner {
+            width: auto;
             float: none;
             min-width: @widthMobile;
         }
