@@ -40,7 +40,7 @@ URLS = flatten((
     url_test('/zh-TW/download/', 'http://mozilla.com.tw/firefox/download/'),
 
     # bug 874913
-    url_test('/en-US/products/download.html', '/en-US/firefox/new/#download-fx'),
+    url_test('/en-US/products/download.html{,?stuff=whatnot}', '/en-US/firefox/new/'),
 
     # bug 845580
     url_test('/en-US/home/', '/en-US/firefox/new/'),
