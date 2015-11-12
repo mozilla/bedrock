@@ -77,6 +77,15 @@ def get_download_url(release):
             return reverse('firefox')
 
 
+def check_url(product, version):
+    if product == 'Firefox for Android':
+        return 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
+    elif product == 'Firefox for iOS':
+        return reverse('firefox.ios.system_requirements', args=[version])
+    else:
+        return reverse('firefox.system_requirements', args=[version])
+
+
 @cache_control_expires(1)
 def release_notes(request, version, product='Firefox'):
     try:
@@ -93,6 +102,7 @@ def release_notes(request, version, product='Firefox'):
             'version': version,
             'download_url': get_download_url(release),
             'support_url': SUPPORT_URLS.get(product, 'https://support.mozilla.org/'),
+            'check_url': check_url(product, version),
             'release': release,
             'equivalent_release_url': equivalent_release_url(release),
             'new_features': new_features,
