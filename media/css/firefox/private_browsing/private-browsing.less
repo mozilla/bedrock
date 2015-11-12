@@ -7,6 +7,7 @@
 /*-------------------------------------------------------------------------*/
 // Common
 
+<<<<<<< HEAD
 html, body{
     max-width: 100%;
 <<<<<<< HEAD
@@ -16,6 +17,8 @@ html, body{
 >>>>>>> origin/bug-1222637-horizontal-scroll-fix-private-browsing
 }
 
+=======
+>>>>>>> parent of 520035e... # This is a combination of 5 commits.
 #wrapper {
     border-top: 2px solid #fff;
     background-color: @mozIDBlue;
@@ -69,7 +72,7 @@ html, body{
 .footer {
     margin: 45px auto 0 auto ;
     text-align: center;
-
+  
     a {
         display: none;
     }
@@ -103,7 +106,7 @@ html, body{
     p {
         color: #fff;
         .font-size(22px);
-    }
+    } 
     .download-button small.download-other {
         color: #bee1f5;
         a {
@@ -113,7 +116,7 @@ html, body{
 }
 
 /*-------------------------------------------------------------------------*/
-// Main Sections
+// Main Sections 
 
 .tracking-protection,
 .when-to-use,
@@ -138,7 +141,7 @@ html, body{
     }
     .critter-animation {
         float: right;
-        margin: 30px -85px 0 0;
+        margin: 30px -85px 0 0; 
     }
 
     #tracking-protection-animation .shield-container {
@@ -146,17 +149,17 @@ html, body{
     }
 
     .ios & .critter-animation {
-        margin: 30px 0 0 0;
+        margin: 30px 0 0 0; 
     }
 }
 
 .tracking-protection {
     background-color: #fff;
-
+  
     h3 {
         .open-sans-extrabold();
         .font-size(30px);
-        margin: 10px auto;
+        margin: 10px auto; 
     }
     .blurb {
         .at2x('/media/img/firefox/private-browsing/sprite-tracking-protection.png', 710px);
@@ -168,7 +171,7 @@ html, body{
         text-align: center;
         vertical-align: top;
         width: 465px;
-    }
+    } 
     .with-tracking {
         background-position: -410px 0;
     }
@@ -207,7 +210,7 @@ html, body{
         margin: 0;
         text-align: center;
         width: 330px;
-
+       
         p {
             .at2x('/media/img/firefox/private-browsing/sprite-features.png', 743px);
             background-repeat: no-repeat;
@@ -277,7 +280,7 @@ html[lang^='es-ES']{
         width: 535px;
     }
     .cta h2 {
-        width: 550px;
+        width: 550px; 
     }
 }
 html.ios[lang^='de'],
@@ -305,7 +308,7 @@ html[lang^='en'] {
             width: 370px;
         }
         .cta h2 {
-            width: 460px;
+            width: 460px; 
         }
     }
     html.ios[lang^='de'],
@@ -317,7 +320,7 @@ html[lang^='en'] {
     }
     html[lang^='pl'] {
          .cta h2 {
-            width: 350px;
+            width: 350px; 
         }
      }
     .button-flat-dark {
@@ -328,7 +331,7 @@ html[lang^='en'] {
 
         h1 {
             .font-size(44px);
-        }
+        } 
         h2 {
             .font-size(38px);
             margin-bottom: 25px;
@@ -342,7 +345,7 @@ html[lang^='en'] {
             width: 370px;
         }
         .critter-animation {
-           margin: 35px -20px 0 0;
+           margin: 35px -20px 0 0; 
         }
 
         .download-buttons p {
@@ -408,7 +411,7 @@ html[lang^='en'] {
             width: 100%;
         }
         .cta h2 {
-            width: 100%;
+            width: 100%; 
         }
     }
     html.ios[lang^='de'],
@@ -433,7 +436,7 @@ html[lang^='en'] {
 
         h1 {
             .font-size(32px);
-        }
+        } 
         h2 {
             .font-size(30px);
         }
@@ -449,9 +452,9 @@ html[lang^='en'] {
     .control-center {
         h2 {
             padding: 0 10px;
-        }
+        } 
         p {
-           padding: 0 10px;
+           padding: 0 10px; 
         }
     }
     .intro {
@@ -469,7 +472,7 @@ html[lang^='en'] {
             text-align: center;
             width: 100%;
         }
-
+       
     }
     .tracking-protection {
         h3 {
@@ -520,7 +523,7 @@ html[lang^='en'] {
         background-position: center 60px;
         .container {
             padding: 60px 10px;
-        }
+        }        
     }
     .cta {
         h2 {
@@ -529,7 +532,7 @@ html[lang^='en'] {
             margin-bottom: @baseLine;
             text-align: center;
         }
-
+       
         .download-buttons {
             text-align: center;
             .button-flat-dark,
@@ -545,7 +548,7 @@ html[lang^='en'] {
 @media only screen and (min-width: @breakMobile) and (max-width: @breakMobileLandscape) {
     .intro {
          #tracking-protection-animation .shield-container {
-            margin: 0 auto;
+            margin: 0 auto; 
         }
     }
     .button-flat-dark {
@@ -554,9 +557,4 @@ html[lang^='en'] {
     .container {
         width: @widthMobile;
     }
-}
-
-html, body{
-    max-width: 100%;
-    overflow-x: hidden;   
 }
