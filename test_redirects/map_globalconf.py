@@ -664,6 +664,11 @@ URLS = flatten((
     url_test('/access/unix.html',
              'http://website-archive.mozilla.org/www.mozilla.org/access/access/unix.html'),
 
+    # bug 1216953
+    url_test('/MPL/MPL-1.0.html',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/1.0/'),
+    url_test('/MPL/MPL-1.1.html', '/MPL/1.1/'),
+
     # bug 987852
     url_test('/MPL/0.95/stuff.html',
              'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/0.95/stuff.html'),
