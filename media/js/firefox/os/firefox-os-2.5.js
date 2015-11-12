@@ -7,16 +7,18 @@
 
     function trackClick(e) {
         e.preventDefault();
-        var id = $(e.target).data('id');
-        ftGoalTag14004(id);
+        var $elm = $(e.target);
+        var id = $elm.data('id');
+        var pixelId = $elm.data('pixel');
+        ftGoalTag14004(id, pixelId);
     }
 
-    function ftGoalTag14004(id){
+    function ftGoalTag14004(id, pixelId){
         var ftRand = Math.random() + '';
         var num = ftRand * 1000000000000000000;
         var ftGoalTagPix14004 = new Image();
 
-        ftGoalTagPix14004.src = 'https://servedby.flashtalking.com/spot/8/6247;52161;4669/?spotName=' + id + '&cachebuster=' + num;
+        ftGoalTagPix14004.src = 'https://servedby.flashtalking.com/spot/8/6247;' + pixelId + ';4669/?spotName=' + id + '&cachebuster=' + num;
 
         setTimeout(ftLoaded14004, 400);
     }
