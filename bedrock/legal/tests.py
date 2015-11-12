@@ -23,7 +23,7 @@ class TestFraudReport(TestCase):
             self.url = reverse('legal.fraud-report')
 
         self.data = {
-            'input_url': 'http://www.test.com',
+            'input_url': 'http://www.test.com/',
             'input_category': 'Charging for software',
             'input_product': 'Firefox',
             'input_specific_product': '',
@@ -169,7 +169,8 @@ class TestFraudReport(TestCase):
 
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
-            legal_views.FRAUD_REPORT_EMAIL_SUBJECT,
+            legal_views.FRAUD_REPORT_EMAIL_SUBJECT % (self.data['input_url'],
+                                                      self.data['input_category']),
             'jingo rendered',
             legal_views.FRAUD_REPORT_EMAIL_FROM,
             legal_views.FRAUD_REPORT_EMAIL_TO)
@@ -206,7 +207,8 @@ class TestFraudReport(TestCase):
 
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
-            legal_views.FRAUD_REPORT_EMAIL_SUBJECT,
+            legal_views.FRAUD_REPORT_EMAIL_SUBJECT % (self.data['input_url'],
+                                                      self.data['input_category']),
             'jingo rendered',
             legal_views.FRAUD_REPORT_EMAIL_FROM,
             legal_views.FRAUD_REPORT_EMAIL_TO)
