@@ -93,16 +93,16 @@
     <div class="row">
       <img src="{{ static('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
       <h1 class="large" id="main-headline">
-      {% if LANG == 'en-US' %}
-        {# L10n: Line break below for visual formatting only. #}
-        {{ _('When it’s personal,<br>choose Firefox.') }}
-      {% elif l10n_has_tag('fx10_independent') %}
-        {{ _('Choose Independent.') }}
-        <br>
-        {{ _('Choose Firefox.') }}
-      {% else %}
-        {{_('Committed to you, your privacy and an open Web')}}
-      {% endif %}
+        {% if l10n_has_tag('tracking_protection') %}
+          {# L10n: Line break below for visual formatting only. #}
+          {{ _('Take Control.<br> Choose Firefox.') }}
+        {% elif l10n_has_tag('fx10_independent') %}
+          {{ _('Choose Independent.') }}
+          <br>
+          {{ _('Choose Firefox.') }}
+        {% else %}
+          {{_('Committed to you, your privacy and an open Web')}}
+        {% endif %}
       </h1>
     </div>
   </div>{#-- /#main-feature --#}
