@@ -4,7 +4,7 @@
 
 import pytest
 
-from ...pages.contribute.stories import ContributeStoriesPage
+from pages.contribute.stories import ContributeStoriesPage
 
 
 @pytest.mark.sanity

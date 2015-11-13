@@ -5,8 +5,8 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
-from .base import FirefoxBasePage
-from ..page import PageRegion
+from pages.page import PageRegion
+from pages.firefox.base import FirefoxBasePage
 
 
 class DoNotTrackPage(FirefoxBasePage):
@@ -19,7 +19,7 @@ class DoNotTrackPage(FirefoxBasePage):
     @property
     def frequently_asked_questions(self):
         return [FrequentlyAskedQuestion(self.selenium, root=el) for el in
-                   self.selenium.find_elements(*self._faqs_locator)]
+                self.selenium.find_elements(*self._faqs_locator)]
 
     @property
     def is_do_not_track_status_displayed(self):
