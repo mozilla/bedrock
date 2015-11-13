@@ -898,4 +898,14 @@ URLS = flatten((
 
     # bug 442671
     url_test('/foundation/trademarks/l10n-policy/', '/foundation/trademarks/'),
+
+    # Bug 1186373
+    url_test('/firefox/hello/npssurvey/',
+             'https://www.surveygizmo.com/s3/2227372/Firefox-Hello-Product-Survey',
+             status_code=302),
+
+    # Bug 1221739
+    url_test('/firefox/hello/feedbacksurvey/',
+             'https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687',
+             status_code=302),
 ))
