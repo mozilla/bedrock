@@ -4,8 +4,8 @@
 
 from selenium.webdriver.common.by import By
 
-from .base import ContributeBasePage
-from ..regions.modal import Modal
+from pages.contribute.base import ContributeBasePage
+from pages.regions.modal import Modal
 
 
 class ContributePage(ContributeBasePage):

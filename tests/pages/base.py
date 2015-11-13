@@ -22,6 +22,10 @@ class BasePage(Page):
         return self
 
     @property
+    def navigation(self):
+        return self.Navigation(self.base_url, self.selenium)
+
+    @property
     def footer(self):
         return self.Footer(self.base_url, self.selenium)
 
@@ -32,6 +36,42 @@ class BasePage(Page):
     @property
     def mozilla_newsletter(self):
         return MozillaNewsletterEmbedForm(self.base_url, self.selenium)
+
+    class Navigation(PageRegion):
+
+        _root_locator = (By.ID, 'nav-main')
+        _toggle_locator = (By.CLASS_NAME, 'toggle')
+        _menu_locator = (By.ID, 'nav-main-menu')
+        _about_locator = (By.CSS_SELECTOR, 'a[data-link-type="about"]')
+        _participate_locator = (By.CSS_SELECTOR, 'a[data-link-type="participate"]')
+        _firefox_locator = (By.CSS_SELECTOR, 'a[data-link-type="firefox"]')
+
+        def show(self):
+            assert not self.is_displayed, 'Menu is already displayed'
+            self.find_element(self._toggle_locator).click()
+            self.wait.until(lambda s: self.is_displayed)
+            return self
+
+        @property
+        def is_displayed(self):
+            toggle = self.find_element(self._toggle_locator)
+            return (self.find_element(self._menu_locator).is_displayed() and
+                toggle.get_attribute('aria-expanded') == 'true')
+
+        def open_about(self):
+            self.find_element(self._about_locator).click()
+            from about import AboutPage
+            return AboutPage(self.base_url, self.selenium).wait_for_page_to_load()
+
+        def open_participate(self):
+            self.find_element(self._participate_locator).click()
+            from contribute.contribute import ContributePage
+            return ContributePage(self.base_url, self.selenium).wait_for_page_to_load()
+
+        def open_firefox(self):
+            self.find_element(self._firefox_locator).click()
+            from firefox.products import ProductsPage
+            return ProductsPage(self.base_url, self.selenium).wait_for_page_to_load()
 
     class Footer(PageRegion):
 

@@ -5,7 +5,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-from .base import ContributeBasePage
+from pages.contribute.base import ContributeBasePage
 
 
 class ContributeSignUpPage(ContributeBasePage):
