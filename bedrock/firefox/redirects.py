@@ -121,6 +121,16 @@ redirectpatterns = (
     # bug 1121082
     redirect(r'^hello/?$', 'firefox.hello'),
 
+    # Bug 1186373
+    redirect(r'^firefox/hello/npssurvey/?$',
+             'https://www.surveygizmo.com/s3/2227372/Firefox-Hello-Product-Survey',
+             permanent=False),
+
+    # Bug 1221739
+    redirect(r'^firefox/hello/feedbacksurvey/?$',
+             'https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687',
+             permanent=False),
+
     # bug 1148127
     redirect(r'^products/?$', 'firefox.family.index'),
 
