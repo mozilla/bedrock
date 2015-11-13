@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
-from ..page import PageRegion
+from pages.page import PageRegion
 
 
 class NewsletterEmbedForm(PageRegion):

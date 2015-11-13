@@ -4,7 +4,7 @@
 
 import pytest
 
-from ...pages.firefox.developer import DeveloperPage
+from pages.firefox.developer import DeveloperPage
 
 
 @pytest.mark.sanity

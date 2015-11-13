@@ -5,9 +5,9 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
-from .base import FirefoxBasePage
-from ..page import PageRegion
-from ..regions.modal import Modal
+from pages.page import PageRegion
+from pages.firefox.base import FirefoxBasePage
+from pages.regions.modal import Modal
 
 
 class DeveloperPage(FirefoxBasePage):
@@ -29,7 +29,7 @@ class DeveloperPage(FirefoxBasePage):
     @property
     def developer_videos(self):
         return [Video(self.selenium, root=el) for el in
-                   self.selenium.find_elements(*self._videos_locator)]
+                self.selenium.find_elements(*self._videos_locator)]
 
 
 class Video(PageRegion):

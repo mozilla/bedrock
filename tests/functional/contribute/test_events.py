@@ -4,7 +4,7 @@
 
 import pytest
 
-from ...pages.contribute.events import ContributeEventsPage
+from pages.contribute.events import ContributeEventsPage
 
 
 @pytest.mark.nondestructive

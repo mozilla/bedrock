@@ -6,8 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
-from .base import BasePage
-from .page import PageRegion
+from base import BasePage
+from page import PageRegion
 
 
 class HomePage(BasePage):

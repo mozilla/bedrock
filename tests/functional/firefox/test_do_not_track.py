@@ -4,7 +4,7 @@
 
 import pytest
 
-from ...pages.firefox.do_not_track import DoNotTrackPage
+from pages.firefox.do_not_track import DoNotTrackPage
 
 
 @pytest.mark.sanity

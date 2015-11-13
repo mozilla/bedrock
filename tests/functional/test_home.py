@@ -5,7 +5,7 @@
 import pytest
 from selenium.common.exceptions import TimeoutException
 
-from ..pages.home import HomePage
+from pages.home import HomePage
 
 
 @pytest.mark.sanity
