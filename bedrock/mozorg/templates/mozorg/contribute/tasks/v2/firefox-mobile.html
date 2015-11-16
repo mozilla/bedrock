@@ -1,0 +1,65 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/tasks/taskview-base.html" %}
+
+{% block page_title %}{{ _('Install Firefox for iOS or Android') }}{% endblock %}
+
+{% block more_tasks %}{{ url('mozorg.contribute.signup') }}?v=2{% endblock %}
+
+{% block taskview_title %}{{ _('Use Firefox on your iOS or Android phone and tablet!') }}{% endblock %}
+{% block taskview_lead %}{{ _('Firefox is the independent mobile browser and by using this you’re supporting Mozilla’s mission and creating a browsing experience that is private and personal.') }}{% endblock %}
+
+{% block task_content %}
+  <ol class="task-steps">
+    <li id="step_one" class="one">
+      <header>
+        <h3>{{ _('Install Firefox for iOS or Android') }}</h3>
+      </header>
+      <div class="step-content">
+        <div class="download-button-wrapper firefox-mobile">
+          <a rel="external"  class="download-link" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" target="_blank">
+            {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True, 'data-action': 'install', 'data-task': 'firefox-mobile', 'data-step': 'one', 'data-complete': 'false', 'data-variation': '2', 'data-mobileversion': 'Android'}) }}
+          </a>
+          <a rel="external" class="download-link" href="{{settings.APPLE_APPSTORE_FIREFOX_LINK}}" target="_blank">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45" data-action="install" data-task="firefox-mobile" data-step="one" data-complete="false" data-variation="2" data-mobileversion="iOS" />
+          </a>
+        </div>
+        {{ high_res_img('contribute/signup/firefox-mobile.png', {'width': '443', 'alt': '', 'class': 'feature-img'}) }}
+      </div>
+    </li>
+    <li id="step_two" class="two">
+      <header>
+        <h3>{{ _('Tell your friends about Firefox on Twitter') }}</h3>
+      </header>
+      <div class="step-content">
+        <form name="tweet" id="signup-tweet" class="tweet-form" action="https://twitter.com/intent/tweet" method="get">
+          <fieldset>
+            <label for="tweet_txt" class="visually-hidden">{{ _('Enter your tweet') }}</label>
+            <textarea name="text" id="tweet_txt" maxlength="140">{{ _('Firefox is available everywhere! Now you can get it for desktop, iOS or Android!') }} https://www.mozilla.org/firefox/products</textarea>
+            <p class="char-counter">{{ _('Number of characters left:') }} <span class="char-count"></span></p>
+            <input type="hidden" id="hashtag" name="hashtags" value="MozParticipate" />
+            <input type="submit" value="{{ _('Share on Twitter') }}" class="button-blue twitter" data-action="tweet" data-task="firefox-mobile" data-step="two" data-complete="true" data-variation="2" />
+          </fieldset>
+        </form>
+      </div>
+    </li>
+  </ol>
+{% endblock %}
+
+{% block thank_you_msg %}
+  {{ _('Thanks for installing Firefox and telling your friends!') }}
+{% endblock %}
+
+{% block try_another %}
+  {{ url('mozorg.contribute.signup') }}?v=2
+{% endblock %}
+
+{% block pick_task_variation %}
+  data-variation="2"
+{% endblock %}
+
+{% block task_variation %}
+  data-variation="2"
+{% endblock %}

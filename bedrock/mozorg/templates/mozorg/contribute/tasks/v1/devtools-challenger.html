@@ -1,0 +1,33 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/tasks/taskview-base.html" %}
+
+{% block page_title %}{{ _('Go to Dev Tools Challenger Page') }}{% endblock %}
+
+{% block taskview_title %}{{ _('Try out our new animation editing tools in Developer Tools Challenger') }}{% endblock %}
+{% block taskview_lead %}{{ _('The more you know about the web, the easier it is to make it your own! Participate in the web by testing your web literacy skills using the new tools in Firefox Developer Edition.') }}{% endblock %}
+
+{% block task_content %}
+  <section class="get-firefox">
+    <p>{{ _('Dev Tools requires Firefox Developer Edition desktop browser. To try this task, download Firefox Developer Edition first.') }}</p>
+    <a href="{{ url('firefox.developer') }}" class="button-blue dev-edition" data-variation="1">Download Firefox Dev Edition</a>
+  </section>
+
+  <ol class="task-steps">
+    <li id="step_one" class="one">
+      <header>
+        <h3>{{ _('Go to Dev Tools Challenger') }}</h3>
+      </header>
+      <div class="step-content">
+        <img src="{{ static('img/contribute/signup/devtools.png') }}" width="620" class="feature-img" alt="" />
+        <a href="http://devtoolschallenger.com/" rel="external" class="button-blue action" data-action="challenger" data-task="devtools" data-step="one" data-complete="true" data-variation="1" target="_blank">{{ _('Learn More') }}</a>
+      </div>
+    </li>
+  </ol>
+{% endblock %}
+
+{% block thank_you_msg %}
+  {{ _('Thanks for taking the challenge!') }}
+{% endblock %}

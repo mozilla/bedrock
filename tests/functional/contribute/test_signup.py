@@ -10,6 +10,7 @@ from pages.contribute.signup import ContributeSignUpPage
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1225170')
 def test_toggle_category_with_areas(base_url, selenium):
     page = ContributeSignUpPage(base_url, selenium).open()
     page.select_coding_category()
@@ -20,12 +21,14 @@ def test_toggle_category_with_areas(base_url, selenium):
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1225170')
 def test_toggle_category_without_areas(base_url, selenium):
     page = ContributeSignUpPage(base_url, selenium).open()
     page.select_helping_category()
     assert not page.is_areas_region_displayed
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1225170')
 def test_successful_sign_up_coding(base_url, selenium):
     page = ContributeSignUpPage(base_url, selenium).open()
     page.select_coding_category()
@@ -53,6 +56,7 @@ def test_successful_sign_up_helping(base_url, selenium):
 
 
 @pytest.mark.nondestructive
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1225170')
 def test_sign_up_fails_when_missing_required_fields(base_url, selenium):
     page = ContributeSignUpPage(base_url, selenium).open()
     with pytest.raises(TimeoutException):

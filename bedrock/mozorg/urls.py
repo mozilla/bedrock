@@ -212,7 +212,14 @@ urlpatterns = (
         name='mozorg.contribute_embed',
         kwargs={'template': 'mozorg/contribute/contribute-embed.html',
                 'return_to_form': False}),
-    url('^contribute/signup/$', views.contribute_signup, name='mozorg.contribute.signup'),
+
+    url('^contribute/signup/$',
+        views.contribute_signup,
+        name='mozorg.contribute.signup'),
+    url('^contribute/task/',
+        views.ContributeTaskView.as_view(),
+        name='mozorg.contribute.taskview'),
+
     url('^contribute/thankyou/$',
         views.ContributeSignupThankyou.as_view(),
         name='mozorg.contribute.thankyou'),

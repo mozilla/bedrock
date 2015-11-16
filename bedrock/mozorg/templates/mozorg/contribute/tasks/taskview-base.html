@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/base-resp.html" %}
+
+{% block body_class %}taskview{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'contribute-taskview' %}
+{% endblock %}
+
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
+
+{% block alt_header %}
+  <h1>{{ _('Mozilla Participation Tasks') }}</h1>
+  <a href="{% block more_tasks %}{{ url('mozorg.contribute.signup') }}?v=1{% endblock %}" class="try-another back" {% block pick_task_variation %}data-variation="1"{% endblock %}>{{ _('I want to pick a different task.' )}}</a>
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header class="task-heading">
+    <h2 class="page-title">{% block taskview_title %}{% endblock %}</h2>
+    <p>{% block taskview_lead %}{% endblock %}</p>
+  </header>
+
+  {% block conditional_content %}{% endblock %}
+
+  {% block task_content %}{% endblock %}
+
+  {% block thank_you %}
+    <section id="thankyou" class="thankyou visibly-hidden" aria-hidden="true">
+      <header>
+        <h3>{% block thank_you_msg %}{% endblock %}</h3>
+      </header>
+      <p><a href="{% block try_another %}{{ url('mozorg.contribute.signup') }}?v=1{% endblock %}" class="try-another" {% block task_variation %}data-variation="1"{% endblock %}>{{ _('Try another task?') }}</a></p>
+    </section>
+  {% endblock %}
+
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+{% block site_footer %}{% endblock %}
+
+{% block js %}
+  {% javascript 'contribute-taskview' %}
+{% endblock %}
