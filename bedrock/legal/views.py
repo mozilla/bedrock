@@ -15,7 +15,7 @@ from forms import FraudReportForm
 
 
 FRAUD_REPORT_EMAIL_FROM = 'Mozilla.com <noreply@mozilla.com>'
-FRAUD_REPORT_EMAIL_SUBJECT = 'New violating website report'
+FRAUD_REPORT_EMAIL_SUBJECT = 'New trademark infringement report: %s; %s'
 FRAUD_REPORT_EMAIL_TO = ['trademarks@mozilla.com']
 
 
@@ -24,15 +24,17 @@ def submit_form(request, form):
 
     if form.is_valid():
         form_error = False
+        data = form.cleaned_data
 
-        subject = FRAUD_REPORT_EMAIL_SUBJECT
+        subject = FRAUD_REPORT_EMAIL_SUBJECT % (data['input_url'],
+                                                data['input_category'])
         sender = FRAUD_REPORT_EMAIL_FROM
         to = FRAUD_REPORT_EMAIL_TO
-        msg = jingo.render_to_string(request, 'legal/emails/fraud-report.txt', form.cleaned_data)
+        msg = jingo.render_to_string(request, 'legal/emails/fraud-report.txt', data)
 
         email = EmailMessage(subject, msg, sender, to)
 
-        attachment = form.cleaned_data['input_attachment']
+        attachment = data['input_attachment']
 
         if attachment:
             email.attach(attachment.name, attachment.read(), attachment.content_type)
