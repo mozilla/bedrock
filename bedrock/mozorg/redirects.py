@@ -431,6 +431,11 @@ redirectpatterns = (
              'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/missing.html',
              locale_prefix=False),
 
+    # Bug 1216953
+    redirect(r'^MPL/MPL-1\.0\.html$',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/1.0/'),
+    redirect(r'^MPL/MPL-1\.1\.html$', '/MPL/1.1/'),
+
     # Bug 987852 & 1201914
     redirect(r'^MPL/(?P<page>.+)\.html$', '/MPL/{page}/'),
     redirect(r'^MPL/2\.0/index\.txt$', '/media/MPL/2.0/index.txt', locale_prefix=False),
