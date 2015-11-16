@@ -4,18 +4,23 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
-from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from pages.base import BasePage
 from pages.page import PageRegion
 
+# this should be enough to scroll elements so they are not beneath the header
+HEADER_OFFSET = -100
+
 
 class FirefoxBasePage(BasePage):
 
-    def open_family_navigation_menu(self):
-        navigation = self.FamilyNavigation(self.selenium)
-        navigation.open_menu()
-        return navigation
+    @property
+    def family_navigation(self):
+        return self.FamilyNavigation(self.base_url, self.selenium)
+
+    def scroll_element_into_view(self, locator):
+        return super(FirefoxBasePage, self).scroll_element_into_view(
+            locator, y=HEADER_OFFSET)
 
     class FamilyNavigation(PageRegion):
 
@@ -24,10 +29,16 @@ class FirefoxBasePage(BasePage):
         _nav_menu_locator = (By.ID, 'fxfamilynav-tertiarynav')
 
         def open_menu(self):
-            self.root.find_element(*self._nav_button_locator).click()
-            Wait(self.selenium, self.timeout).until(
-                expected.visibility_of_element_located(self._nav_menu_locator))
+            self.find_element(self._nav_button_locator).click()
+            self.wait.until(expected.visibility_of_element_located(self._nav_menu_locator))
 
         @property
-        def is_displayed(self):
+        def is_menu_displayed(self):
             return self.is_element_displayed(self._nav_menu_locator)
+
+
+class FirefoxBasePageRegion(PageRegion):
+
+    def scroll_element_into_view(self, locator):
+        return super(FirefoxBasePageRegion, self).scroll_element_into_view(
+            locator, y=HEADER_OFFSET)

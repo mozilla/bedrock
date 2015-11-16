@@ -4,7 +4,6 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from .base import ContributeBasePage
 
@@ -29,12 +28,12 @@ class ContributeSignUpPage(ContributeBasePage):
     _helping_category_locator = (By.CLASS_NAME, 'category-helping')
 
     def select_coding_category(self):
-        self.selenium.find_element(*self._coding_category_locator).click()
-        Wait(self.selenium, self.timeout).until(lambda s: self.is_coding_area_required)
+        self.find_element(self._coding_category_locator).click()
+        self.wait.until(lambda s: self.is_coding_area_required)
         assert self.is_coding_area_displayed
 
     def select_helping_category(self):
-        self.selenium.find_element(*self._helping_category_locator).click()
+        self.find_element(self._helping_category_locator).click()
 
     @property
     def is_coding_area_displayed(self):
@@ -42,11 +41,11 @@ class ContributeSignUpPage(ContributeBasePage):
 
     @property
     def is_coding_area_required(self):
-        el = self.selenium.find_element(*self._coding_area_locator)
+        el = self.find_element(self._coding_area_locator)
         return el.get_attribute('required') == 'true'
 
     def select_coding_area(self, value):
-        el = self.selenium.find_element(*self._coding_area_locator)
+        el = self.find_element(self._coding_area_locator)
         Select(el).select_by_visible_text(value)
 
     @property
@@ -54,30 +53,30 @@ class ContributeSignUpPage(ContributeBasePage):
         return self.is_element_displayed(self._areas_region_locator)
 
     def type_name(self, value):
-        self.selenium.find_element(*self._name_locator).send_keys(value)
+        self.find_element(self._name_locator).send_keys(value)
 
     def type_email(self, value):
-        self.selenium.find_element(*self._email_locator).send_keys(value)
+        self.find_element(self._email_locator).send_keys(value)
 
     def select_country(self, value):
-        el = self.selenium.find_element(*self._country_locator)
+        el = self.find_element(self._country_locator)
         Select(el).select_by_visible_text(value)
 
     def select_html_format(self):
-        self.selenium.find_element(*self._html_format_locator).click()
+        self.find_element(self._html_format_locator).click()
 
     def select_text_format(self):
-        self.selenium.find_element(*self._text_format_locator).click()
+        self.find_element(self._text_format_locator).click()
 
     def accept_privacy_policy(self):
-        el = self.selenium.find_element(*self._privacy_policy_checkbox_locator)
+        el = self.find_element(self._privacy_policy_checkbox_locator)
         assert not el.is_selected(), 'Privacy policy has already been accepted'
         el.click()
         assert el.is_selected(), 'Privacy policy has not been accepted'
 
     def click_start_contributing(self):
-        self.selenium.find_element(*self._submit_button_locator).click()
-        Wait(self.selenium, self.timeout).until(lambda s: self.sign_up_successful)
+        self.find_element(self._submit_button_locator).click()
+        self.wait.until(lambda s: self.sign_up_successful)
 
     @property
     def sign_up_successful(self):

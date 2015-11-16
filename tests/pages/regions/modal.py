@@ -4,7 +4,6 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
-from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from pages.page import PageRegion
 
@@ -16,8 +15,8 @@ class Modal(PageRegion):
 
     def close(self):
         modal = self.selenium.find_element(*self._root_locator)
-        self.root.find_element(*self._close_locator).click()
-        Wait(self.selenium, self.timeout).until(expected.staleness_of(modal))
+        self.find_element(self._close_locator).click()
+        self.wait.until(expected.staleness_of(modal))
 
     @property
     def is_displayed(self):
