@@ -8,7 +8,24 @@ from selenium.common.exceptions import NoSuchElementException
 TIMEOUT = 10
 
 
-class Page(object):
+class ViewPort(object):
+
+    def scroll_into_view(self, target_locator, offset_locator, padding=100):
+        """
+        Scroll an element into view at the top of the viewport offset by the height of
+        another alement, such as a sticky navigation header.
+        :param target_locator: locator of the element to scroll into view.
+        :param offset_locator: locator of the element to offset the scroll height.
+        :param padding: number of extra pixels padding to add to the offset.
+        """
+        target = self.selenium.find_element(*target_locator)
+        offset = self.selenium.find_element(*offset_locator)
+        height = offset.size.get('height') + padding
+        self.selenium.execute_script('arguments[0].scrollIntoView();'
+            'window.scrollBy(0, arguments[1]);', target, -height)
+
+
+class Page(ViewPort):
 
     _url = None
 
@@ -45,7 +62,7 @@ class Page(object):
             return False
 
 
-class PageRegion(object):
+class PageRegion(ViewPort):
 
     _root_locator = None
 

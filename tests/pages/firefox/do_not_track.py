@@ -30,6 +30,7 @@ class FrequentlyAskedQuestion(PageRegion):
 
     _question_locator = (By.CSS_SELECTOR, 'h3[role="tab"]')
     _answer_locator = (By.CSS_SELECTOR, 'div[role="tabpanel"]')
+    _header_locator = (By.ID, 'fxfamilynav-header')
 
     def show_answer(self):
         assert not self.is_answer_displayed, 'Answer is already displayed'
@@ -43,6 +44,8 @@ class FrequentlyAskedQuestion(PageRegion):
     def hide_answer(self):
         assert self.is_answer_displayed, 'Answer is already hidden'
         answer = self.root.find_element(*self._answer_locator)
+        # make sure element is not obscured by the stick navigation before click
+        self.scroll_into_view(self._question_locator, self._header_locator)
         self.root.find_element(*self._question_locator).click()
         # Wait for aria-hidden attribute value to determine when animation has finished.
         Wait(self.selenium, self.timeout).until(

@@ -62,6 +62,7 @@ class DeviceDetail(PageRegion):
     _close_button_locator = (By.CSS_SELECTOR, '.device-detail-close')
     _features_link_locator = (By.CSS_SELECTOR, '.pager-tabs li:first-child > a')
     _spacifications_link_locator = (By.CSS_SELECTOR, '.pager-tabs li:last-child > a')
+    _header_locator = (By.ID, 'fxfamilynav-header')
 
     @property
     def is_displayed(self):
@@ -81,14 +82,20 @@ class DeviceDetail(PageRegion):
 
     def show_specifications(self):
         assert not self.is_specifications_displayed, 'Specifications tab is already displayed'
+        # make sure element is not obscured by the stick navigation before click
+        self.scroll_into_view(self._spacifications_link_locator, self._header_locator)
         self.root.find_element(*self._spacifications_link_locator).click()
         Wait(self.selenium, self.timeout).until(lambda s: self.is_specifications_displayed)
 
     def show_features(self):
         assert not self.is_features_displayed, 'Features tab is already displayed'
+        # make sure element is not obscured by the stick navigation before click
+        self.scroll_into_view(self._features_link_locator, self._header_locator)
         self.root.find_element(*self._features_link_locator).click()
         Wait(self.selenium, self.timeout).until(lambda s: self.is_features_displayed)
 
     def close(self):
+        # make sure element is not obscured by the stick navigation before click
+        self.scroll_into_view(self._close_button_locator, self._header_locator)
         self.root.find_element(*self._close_button_locator).click()
         Wait(self.selenium, self.timeout).until(lambda s: not self.is_displayed)
