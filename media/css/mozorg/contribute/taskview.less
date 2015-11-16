@@ -1,0 +1,208 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+@backgroundColor: #32333a;
+@foregroundColor: #fff;
+@buttonColor: #81d135;
+@linkColor: #09a7c3;
+
+/* override sandstone base styles */
+#outer-wrapper {
+    background: none;
+}
+
+* {
+    .border-box;
+}
+
+html,
+body {
+    background-color: @backgroundColor;
+    color: @foregroundColor;
+}
+
+h1,
+h2,
+h3 {
+    color: @foregroundColor;
+    text-shadow: none;
+}
+
+h1 {
+    margin-bottom: 0;
+    padding-top: @baseLine;
+    .font-size(36px);
+    line-height: .5;
+}
+
+p {
+    .font-size(18px);
+}
+
+a:link,
+a:visited {
+    color: @linkColor;
+}
+
+a.back {
+    display: inline-block;
+    padding: 1rem 0;
+    .font-size(16px);
+    .leading-arrow;
+}
+
+main {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
+
+    .task-heading {
+        margin: (@baseLine * 3) auto (@baseLine * 3);
+        max-width: 90%;
+        text-align: center;
+
+        p {
+            margin: 0 auto;
+            max-width: 80%;
+            .open-sans-light;
+            .font-size(21px);
+            font-style: italic;
+        }
+    }
+
+    .page-title {
+        margin-bottom: @baseLine;
+        .open-sans-light;
+        .font-size(72px);
+    }
+}
+
+.task-steps {
+    margin-top: (@baseLine * 2);
+    list-style: none;
+
+    li {
+        margin: 0;
+
+        &:before {
+            display: inline-block;
+            border: 2px solid @foregroundColor;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            .font-size(24px);
+            font-weight: bold;
+            line-height: 2;
+            text-align: center;
+        }
+    }
+
+    .one:before {
+        content: '1';
+    }
+
+    .one.completed:before {
+        content: '✓';
+        color: @buttonColor;
+        margin-right: 10px;
+        .font-size(48px);
+        line-height: 1;
+        vertical-align: bottom;
+    }
+
+    header {
+        margin-top: -50px;
+        margin-left: 70px;
+    }
+
+    h3 {
+        text-transform: uppercase;
+        .open-sans;
+        font-weight: bold;
+    }
+
+    .step-content {
+        margin-left: 70px;
+    }
+
+    .download-button-wrapper {
+        display: block;
+        margin: (@baseLine * 2) 0;
+        text-align: center;
+    }
+
+    .download-link {
+        display: inline-block;
+        margin: 0 @baseLine;
+    }
+}
+
+video {
+    background-color: #fff;
+    margin-bottom: (@baseLine * 2);
+    margin-left: 0;
+    padding: 10px;
+    width: 600px;
+    height: 338px;
+}
+
+/* Tasks with only a single step */
+.single {
+    .step-content {
+        display: inline-block;
+    }
+    .video {
+        margin: 0 0 @baseLine;
+    }
+}
+
+.thankyou {
+    margin: (@baseLine * 5) 0;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 1s;
+
+    h3 {
+        .font-size(60px);
+    }
+
+    p {
+        margin: 0;
+        .font-size(21px);
+    }
+}
+
+a[role="button"],
+button {
+    display: block;
+    background-color: @buttonColor;
+    margin-top: @baseLine;
+    padding: 1rem;
+    border: 0;
+    width: 100%;
+    .font-size(24px);
+    cursor: pointer;
+}
+
+a[role="button"] {
+    &:link,
+    &:visited {
+        color: #333;
+        text-decoration: none;
+        text-align: center;
+    }
+}
+
+/* download Firefox conditional content */
+.get-firefox {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}

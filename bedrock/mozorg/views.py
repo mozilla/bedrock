@@ -69,7 +69,7 @@ def mozid_data_view(request, source_name):
 
 
 class ContributeSignup(l10n_utils.LangFilesMixin, FormView):
-    template_name = 'mozorg/contribute/signup.html'
+    template_name = 'mozorg/contribute/signup-new.html'
     form_class = ContributeSignupForm
     category = None
 

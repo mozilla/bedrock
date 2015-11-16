@@ -1,0 +1,28 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/tasks/taskview-base.html" %}
+
+{% block page_title %}{{ _('“Foxfooding” means we’re building Firefox OS together!') }}{% endblock %}
+
+{% block taskview_title %}{{ _('“Foxfooding” means we’re building Firefox OS together!') }}{% endblock %}
+{% block taskview_lead %}{{ _('We’re building Firefox OS and need your help. If you’re interested in new skills (or adept at porting), get involved in this ground-up project to eat our own fox food by building mobile Firefox OS together.') }}{% endblock %}
+
+{% block task_content %}
+  <ol class="task-steps single">
+    <li id="step_one" class="one">
+      <header>
+        <h3>{{ _('Join the Participation Hub') }}</h3>
+      </header>
+      <div class="step-content">
+        <img src="http://placehold.it/600x338?text=Placeholder+Image" width="600" height="338" alt="" />
+        <a href="https://firefoxos.mozilla.community/" rel="external" class="build-firefox" role="button" target="_blank">Start “Foxfooding”</a>
+      </div>
+    </li>
+  </ol>
+{% endblock %}
+
+{% block thank_you_msg %}
+  {{ _('Good to have you join!') }}
+{% endblock %}

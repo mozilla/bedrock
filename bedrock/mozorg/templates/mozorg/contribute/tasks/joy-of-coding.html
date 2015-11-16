@@ -1,0 +1,31 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/tasks/taskview-base.html" %}
+
+{% block page_title %}{{ _('Watch: The Joy of Coding') }}{% endblock %}
+
+{% block taskview_title %}{{ _('Watch The Joy of Coding, then discuss it with other Mozillians!') }}{% endblock %}
+{% block taskview_lead %}{{ _('Anyone can contribute to Firefox by finding and fixing errors that people report via Bugzilla. Watch a demonstration of a Firefox engineer live hacking to see what it’s all about!') }}{% endblock %}
+
+{% block task_content %}
+  <ol class="task-steps single">
+    <li id="step_one" class="one">
+      <header>
+        <h3>{{ _('Watch Episode 34') }}</h3>
+        <p>{{ _('<a href="https://twitter.com/mike_conley" rel="external">@mike_conley</a> livehacks on real Firefox bugs while thinking out loud.') }}</p>
+      </header>
+      <div class="step-content">
+        <video preload="none" controls poster="{{ static('/media/img/contribute/signup/joc_poster.png') }}">
+          <source src="{{ static('/media/img/contribute/signup/joyofcoding24.mp4') }}" type="video/mp4" />
+        </video>
+        <button type="button" class="watch-joc">Watch Video</button>
+      </div>
+    </li>
+  </ol>
+{% endblock %}
+
+{% block thank_you_msg %}
+  {{ _('Thanks for watching!') }}
+{% endblock %}

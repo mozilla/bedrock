@@ -1,0 +1,99 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/contribute-base.html" %}
+
+{% add_lang_files "mozorg/contribute/index" %}
+
+{% block body_id %}inquiry{% endblock %}
+
+{% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'contribute-signup' %}
+{% endblock %}
+
+{% block contrib_nav_cta %}{% endblock %}
+{% block contrib_country_form %}{% endblock %}
+
+{% block contrib_title %}
+  <div class="container">
+    <h1 class="page-title">{{ _('Get Involved with Mozilla Today') }}</h1>
+  </div>
+{% endblock %}
+
+
+{% block contrib_content %}
+<article class="container">
+
+  <section>
+    <header>
+      <h2>{{ _('Mozilla Participation Tasks') }}</h2>
+    </header>
+
+    <ul class="simple">
+      <li class="task">
+        <h3>{{ _('Customize Your Desktop Browser') }}</h3>
+        <a href="{{ url('mozorg.contribute.tasks.whimsey') }}" class="do-task more">{{ _('Add to Firefox') }}</a>
+        <div class="tooltip hidden">
+          <p>{{ _('Whimsy is a fun Firefox desktop add-on and experiment with subtle, whimsical things happening in the browser.') }}</p>
+        </div>
+      </li>
+
+      <li class="task">
+        <h3 class="fx-mobile">{{ _('Use Firefox on Your Phone') }}</h3>
+        <a href="{{ url('mozorg.contribute.tasks.firefox-mobile') }}" class="do-task more">{{ _('Download Firefox') }}</a>
+        <div class="tooltip hidden">
+          <p>{{ _('Firefox is the independent, people-first browser with the privacy and features you love, now available on Android and iOS!') }}</p>
+        </div>
+      </li>
+
+      <li class="task">
+        <h3 class="fx-twitter">{{ _('Connect on Twitter') }}</h3>
+        <a href="{{ url('mozorg.contribute.tasks.follow-mozilla') }}" class="do-task more">{{ _('Follow Mozilla') }}</a>
+        <div class="tooltip hidden">
+          <p>{{ _('Stay connected with us for news, announcements and opportunities from the Firefox team feed.') }}</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <header>
+      <h2>{{ _('Mozilla Bigger Participation Tasks') }}</h2>
+    </header>
+    <ul class="challenging">
+      <li class="task">
+        <h3 class="coding">{{ _('Watch Someone Live Hack on Firefox') }}</h3>
+        <a href="{{ url('mozorg.contribute.tasks.joy-of-coding') }}" class="do-task more">{{ _('Watch the video') }}</a>
+        <div class="tooltip hidden">
+          <p>{{ _('Firefox engineer mconley livehacks and crushes bugs where he finds them in this unscripted, uncensored, true-to-life video series.') }}</p>
+        </div>
+      </li>
+
+      <li class="task">
+        <h3 class="fxos">{{ _('Help Build Firefox OS') }}</h3>
+        <a href="{{ url('mozorg.contribute.tasks.build-firefox') }}" class="do-task more">{{ _('Start Foxfooding') }}</a>
+        <div class="tooltip hidden">
+          <p>{{ _('If you’re interested in new skills (or adept at porting), get involved in this ground-up project to eat our own fox food by building mobile Firefox OS together!') }}</p>
+        </div>
+      </li>
+
+      <li class="task">
+        <h3 class="devtools">{{ _('Learn a Bit About Coding') }}</h3>
+        <a href="{{ url('mozorg.contribute.tasks.devtools-challenger') }}" class="do-task more">{{ _('Take the challenge') }}</a>
+        <div class="tooltip hidden">
+          <p>{{ _('Explore the new tools in Firefox Developer Edition that take the pain out of CSS animation.') }}</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+</article>
+{% endblock contrib_content %}
+
+{% block contrib_footer %}{% endblock %}
+
+{% block js %}
+  {% javascript 'contribute-signup' %}
+{% endblock %}

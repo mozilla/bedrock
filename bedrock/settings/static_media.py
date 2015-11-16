@@ -833,6 +833,20 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/contribute-2015-bundle.css',
     },
+    'contribute-signup': {
+        'source_filenames': (
+            'css/base/mozilla-modal.less',
+            'css/mozorg/contribute/contribute-2015.less',
+            'css/mozorg/contribute/signup.less',
+        ),
+        'output_filename': 'css/contribute-signup-bundle.css',
+    },
+    'contribute-taskview': {
+        'source_filenames': (
+            'css/mozorg/contribute/taskview.less',
+        ),
+        'output_filename': 'css/contribute-taskview-bundle.css',
+    },
     'video': {
         'source_filenames': (
             'css/sandstone/video.less',
@@ -1015,6 +1029,19 @@ PIPELINE_JS = {
             'js/base/mozilla-input-placeholder.js',
         ),
         'output_filename': 'js/contribute-studentambassadors-join-bundle.js',
+    },
+    'contribute-taskview': {
+        'source_filenames': (
+            'js/base/global.js',
+            'js/mozorg/contribute/taskview.js',
+        ),
+        'output_filename': 'css/contribute-taskview-bundle.js',
+    },
+    'contribute-signup': {
+        'source_filenames': (
+            'js/mozorg/contribute/signup.js',
+        ),
+        'output_filename': 'css/contribute-signup-bundle.js',
     },
     'existing': {
         'source_filenames': (

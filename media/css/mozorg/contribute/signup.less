@@ -1,0 +1,94 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+.page-head {
+    padding-top: 5.714em;
+}
+
+main {
+    h2 {
+        margin: (@baseLine * 3) 0;
+        text-align: center;
+    }
+}
+
+.simple,
+.challenging {
+    text-align: center;
+    list-style: none;
+    .clearfix;
+}
+
+.task {
+    position: relative;
+    .span(4);
+
+    h3 {
+        .font-size(19px);
+        cursor: pointer;
+    }
+
+    h3:before {
+        display: block;
+        content: '';
+        background: transparent url('/media/img/contribute/signup/tasks-sprite.png') 0 0 no-repeat;
+        margin: 0 auto 20px;
+        width: 210px;
+        height: 210px;
+
+        &.fx-mobile:before {
+            background-position: -316px 0;
+        }
+
+        &.fx-twitter:before {
+            background-position: -641px 0;
+        }
+
+        &.coding:before {
+            background-position: 0 -216px;
+        }
+
+        &.fxos:before {
+            background-position: -316px -220px;
+        }
+
+        &.devtools:before {
+            background-position: -641px -220px;
+        }
+    }
+
+    a:link,
+    a:visited {
+        display: block;
+        margin: 0 auto;
+        padding: 1rem;
+        border: 1px solid #cacaca;
+        border-radius: 8px;
+        width: 80%;
+        .font-size(1rem);
+    }
+}
+
+.tooltip {
+    position: absolute;
+    top: -70px;
+    background-color: #fff;
+    color: #32333a;
+    box-shadow: none;
+    .open-sans-light;
+    .font-size(14px);
+    line-height: 1.3;
+    text-shadow: none;
+
+    &:after {
+        left: 45%;
+        border-color: #fff transparent;
+    }
+}
+
+.hidden {
+    display: none;
+}

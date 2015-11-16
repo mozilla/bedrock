@@ -219,6 +219,14 @@ urlpatterns = (
         kwargs={'template': 'mozorg/contribute/contribute-embed.html',
                 'return_to_form': False}),
     url('^contribute/signup/$', views.contribute_signup, name='mozorg.contribute.signup'),
+
+    page('contribute/task/whimsey', 'mozorg/contribute/tasks/whimsey.html'),
+    page('contribute/task/firefox-mobile', 'mozorg/contribute/tasks/firefox-mobile.html'),
+    page('contribute/task/follow-mozilla', 'mozorg/contribute/tasks/follow-mozilla.html'),
+    page('contribute/task/joy-of-coding', 'mozorg/contribute/tasks/joy-of-coding.html'),
+    page('contribute/task/build-firefox', 'mozorg/contribute/tasks/build-firefox.html'),
+    page('contribute/task/devtools-challenger', 'mozorg/contribute/tasks/devtools-challenger.html'),
+
     url('^contribute/thankyou/$',
         views.ContributeSignupThankyou.as_view(),
         name='mozorg.contribute.thankyou'),
