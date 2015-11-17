@@ -11,8 +11,8 @@ from pages.firefox.do_not_track import DoNotTrackPage
 @pytest.mark.nondestructive
 def test_family_navigation(base_url, selenium):
     page = DoNotTrackPage(base_url, selenium).open()
-    menu = page.open_family_navigation_menu()
-    assert menu.is_displayed
+    page.family_navigation.open_menu()
+    assert page.family_navigation.is_menu_displayed
 
 
 @pytest.mark.sanity

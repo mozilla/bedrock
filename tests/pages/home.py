@@ -4,7 +4,6 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
-from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from base import BasePage
 from page import PageRegion
@@ -19,13 +18,12 @@ class HomePage(BasePage):
 
     @property
     def is_promo_grid_displayed(self):
-        Wait(self.selenium, self.timeout).until(
-            expected.visibility_of_element_located(self._promo_grid_locator))
-        return self.selenium.find_element(*self._promo_grid_locator).is_displayed()
+        self.wait.until(expected.visibility_of_element_located(self._promo_grid_locator))
+        return self.find_element(self._promo_grid_locator).is_displayed()
 
     @property
     def number_of_promos_present(self):
-        return len(self.selenium.find_elements(*self._promo_tile_locator))
+        return len(self.find_elements(self._promo_tile_locator))
 
     @property
     def is_tweet_promo_present(self):
@@ -37,7 +35,7 @@ class HomePage(BasePage):
 
     @property
     def upcoming_events(self):
-        return UpcomingEvents(self.selenium)
+        return UpcomingEvents(self.base_url, self.selenium)
 
 
 class UpcomingEvents(PageRegion):

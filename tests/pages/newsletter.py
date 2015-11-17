@@ -5,7 +5,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from base import BasePage
 
@@ -25,63 +24,58 @@ class NewsletterPage(BasePage):
 
     @property
     def email(self):
-        el = self.selenium.find_element(*self._email_locator)
-        return el.get_attribute('value')
+        return self.find_element(self._email_locator).get_attribute('value')
 
     def type_email(self, value):
-        self.selenium.find_element(*self._email_locator).send_keys(value)
+        self.find_element(self._email_locator).send_keys(value)
 
     @property
     def country(self):
-        el = self.selenium.find_element(*self._country_locator)
+        el = self.find_element(self._country_locator)
         return el.find_element(By.CSS_SELECTOR, 'option[selected]').text
 
     def select_country(self, value):
-        el = self.selenium.find_element(*self._country_locator)
+        el = self.find_element(self._country_locator)
         Select(el).select_by_visible_text(value)
 
     @property
     def language(self):
-        el = self.selenium.find_element(*self._language_locator)
+        el = self.find_element(self._language_locator)
         return Select(el).first_selected_option.text
 
     def select_language(self, value):
-        el = self.selenium.find_element(*self._language_locator)
+        el = self.find_element(self._language_locator)
         Select(el).select_by_visible_text(value)
 
     @property
     def html_format_selected(self):
-        el = self.selenium.find_element(*self._html_format_locator)
-        return el.is_selected()
+        return self.find_element(self._html_format_locator).is_selected()
 
     def select_html_format(self):
-        self.selenium.find_element(*self._html_format_locator).click()
+        self.find_element(self._html_format_locator).click()
 
     @property
     def text_format_selected(self):
-        el = self.selenium.find_element(*self._text_format_locator)
-        return el.is_selected()
+        return self.find_element(self._text_format_locator).is_selected()
 
     def select_text_format(self):
-        self.selenium.find_element(*self._text_format_locator).click()
+        self.find_element(self._text_format_locator).click()
 
     @property
     def privacy_policy_accepted(self):
-        el = self.selenium.find_element(*self._privacy_policy_checkbox_locator)
+        el = self.find_element(self._privacy_policy_checkbox_locator)
         return el.is_selected()
 
     def accept_privacy_policy(self):
-        el = self.selenium.find_element(*self._privacy_policy_checkbox_locator)
+        el = self.find_element(self._privacy_policy_checkbox_locator)
         assert not el.is_selected(), 'Privacy policy has already been accepted'
         el.click()
         assert el.is_selected(), 'Privacy policy has not been accepted'
 
     def click_sign_me_up(self):
-        self.selenium.find_element(*self._submit_button_locator).click()
-        Wait(self.selenium, self.timeout).until(
-            expected.visibility_of_element_located(self._thank_you_locator))
+        self.find_element(self._submit_button_locator).click()
+        self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))
 
     @property
     def sign_up_successful(self):
-        el = self.selenium.find_element(*self._thank_you_locator)
-        return el.is_displayed()
+        return self.is_element_displayed(self._thank_you_locator)

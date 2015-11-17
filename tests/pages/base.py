@@ -4,7 +4,6 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from page import Page, PageRegion
 from regions.newsletter import NewsletterEmbedForm, MozillaNewsletterEmbedForm
@@ -14,23 +13,25 @@ class BasePage(Page):
 
     _url = '{base_url}/{locale}'
 
+    def __init__(self, base_url, selenium, locale='en-US'):
+        super(Page, self).__init__(base_url, selenium, locale=locale)
+
     def wait_for_page_to_load(self):
-        el = self.selenium.find_element(By.TAG_NAME, 'html')
-        Wait(self.selenium, self.timeout).until(
-            lambda s: 'loaded' in el.get_attribute('class'))
+        el = self.find_element((By.TAG_NAME, 'html'))
+        self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
         return self
 
     @property
     def footer(self):
-        return self.Footer(self.selenium)
+        return self.Footer(self.base_url, self.selenium)
 
     @property
     def newsletter(self):
-        return NewsletterEmbedForm(self.selenium)
+        return NewsletterEmbedForm(self.base_url, self.selenium)
 
     @property
     def mozilla_newsletter(self):
-        return MozillaNewsletterEmbedForm(self.selenium)
+        return MozillaNewsletterEmbedForm(self.base_url, self.selenium)
 
     class Footer(PageRegion):
 
@@ -39,17 +40,16 @@ class BasePage(Page):
 
         @property
         def language(self):
-            select = self.root.find_element(*self._language_locator)
+            select = self.find_element(self._language_locator)
             option = select.find_element(By.CSS_SELECTOR, 'option[selected]')
             return option.get_attribute('value')
 
         @property
         def languages(self):
-            el = self.root.find_element(*self._language_locator)
+            el = self.find_element(self._language_locator)
             return [o.get_attribute('value') for o in Select(el).options]
 
         def select_language(self, value):
-            el = self.root.find_element(*self._language_locator)
+            el = self.find_element(self._language_locator)
             Select(el).select_by_value(value)
-            Wait(self.selenium, self.timeout).until(
-                lambda s: value in s.current_url)
+            self.wait.until(lambda s: value in s.current_url)
