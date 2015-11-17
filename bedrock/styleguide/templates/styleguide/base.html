@@ -33,16 +33,19 @@
   <nav>
     <ul>
     {% for item in node_root.children recursive %}
-        <li class="
-        {% if item in node.breadcrumbs %} active path{% endif %}
-        {% if item.children %} has-children{% endif %}
-        ">
-        {% if item.url %}<a href="{{ item.url }}">{% endif %}
+      <li class="{% if item in node.breadcrumbs %}active path{% endif %}{% if item.children %} has-children{% endif %}"
+        {% if item.children %}aria-expanded="{% if item in node.breadcrumbs  %}true{% else %}false{% endif %}"{% endif %}>
+        {% if item.url %}
+          <a {% if item.children %}class="toggle"{% endif %} href="{{ item.url }}">
+        {% endif %}
           {{ item.display_name }}
-          {% if item.url %}</a>{% endif %}
+        {% if item.url %}
+          </a>
+        {% endif %}
         {% if item.children %}
-            <ul>{{ loop(item.children) }}</ul>
-        {% endif %}</li>
+          <ul>{{ loop(item.children) }}</ul>
+        {% endif %}
+      </li>
     {% endfor %}
     </ul>
   </nav>
