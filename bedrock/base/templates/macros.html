@@ -491,7 +491,7 @@
                 <li><a href="{{ url('firefox.desktop.fast') }}"{% if activesub == 'fast' %} class="selected"{% endif %}>{{ _('Fast') }}</a></li>
               </ul>
               {% endif %}
-            #} 
+            #}
             </li>
             <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %}><div>{{ _('Sync') }}</div></a></li>
             <li><a href="{{ url('firefox.hello') }}"{% if activesub == 'hello' %} class="selected"{% endif %}><div>{{ _('Hello') }}</div></a></li>
@@ -534,6 +534,9 @@
             <li><a data-id="os-marketplace" rel="external" href="https://marketplace.firefox.com/"><div>{{ _('Marketplace') }}<i class="icon-external"></i></div></a></li>
           </ul>
         </li>
+        <li{% if activeprimary == 'tools' %} class="active"{% endif %}>
+          <a data-id="tools" href="{{ url('firefox.tools') }}" class="primary-link"><div>{{ _('Tools') }}</div></a>
+        </li>
       </ul>
     </nav>{#-- /#fxfamillynav --#}
 
@@ -570,6 +573,13 @@
         <li><a rel="external" href="https://developer.mozilla.org/Firefox_OS" data-ga="os - developers">{{ _('For developers') }}</a></li>
         <li><a rel="external" href="https://find.firefox.com" data-ga="os - find my device">{{ _('Find My Device') }}</a></li>
         <li><a rel="external" href="https://support.mozilla.org/products/firefox-os" data-ga="os - support">{{ _('Need help?') }}</a></li>
+      </ul>
+
+      <ul class="tertiarynav{% if activeprimary == 'tools' %} active{% endif %}">
+        <li><a rel="external" href="https://blog.mozilla.org/blog/category/firefox-os/" data-ga="os - news">{{ _('Link 1') }}</a></li>
+        <li><a rel="external" href="https://developer.mozilla.org/Firefox_OS" data-ga="os - developers">{{ _('Link 2') }}</a></li>
+        <li><a rel="external" href="https://find.firefox.com" data-ga="os - find my device">{{ _('Link 3') }}</a></li>
+        <li><a rel="external" href="https://support.mozilla.org/products/firefox-os" data-ga="os - support">{{ _('Link 4') }}</a></li>
       </ul>
     </div>{#-- /#fxfamilynav-tertiarynav --#}
 

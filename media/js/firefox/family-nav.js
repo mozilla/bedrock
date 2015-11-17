@@ -85,7 +85,7 @@ if (typeof window.Mozilla === 'undefined') {
             if (mqDesktop) {
                 fxFamillyNavSticky = new Waypoint.Sticky({
                     element: $fxFamilyHeader,
-                    offset: -80
+                    offset: -50
                 });
             }
         };

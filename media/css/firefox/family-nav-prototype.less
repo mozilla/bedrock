@@ -1,0 +1,116 @@
+@import "../sandstone/lib.less";
+
+.fxfamilynav-header {
+    // Safari 5.1+, Chrome 10+
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+        -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
+    // the standard
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3));
+    height: 120px;
+    background-position: 0 0, 0 50px;
+    .background-size(100% 80px, 100% 80px);
+
+    &.stuck {
+        .transform(translateY(-50px));
+
+        .fxfamilynav-logo {
+            .transform(scale(0.46) translateY(10px));
+        }
+
+        .fxfamilynav {
+            @media (max-width: @breakDesktop) {
+                width: 402px;
+            }
+
+            .primarynav {
+                & > li {
+                    display: none;
+
+                    & > a {
+                        color: @mozIDBlue;
+                        border-color: @mozIDBlue;
+                    }
+                }
+
+                li.active {
+                    display: block;
+
+                }
+            }
+        }
+
+        .fxfamilynav-cta-wrapper {
+            @media (max-width: @breakDesktop) {
+                display: block;
+            }
+        }
+    }
+
+    // Mobile
+    @media (max-width: @breakTablet) {
+        position: relative;
+        height: auto;
+        background: #fff;
+    }
+}
+
+.fxfamilynav-logo {
+    margin-left: -10px;
+    .transform(scale(0.7));
+
+    @media (max-width: @breakDesktop) {
+        margin-left: -10px;
+    }
+}
+
+.fxfamilynav {
+    margin-top: 50px;
+    margin-left: -20px;
+    height: 70px;
+    width: 632px;
+
+    .subnav {
+        display: none;
+    }
+
+    .primarynav {
+        li.active .subnav {
+            display: none;
+        }
+
+        .primary-link {
+            opacity: 1;
+        }
+
+        // hide "for" before primary links
+        div span {
+            display: none;
+        }
+    }
+
+    @media (min-width: @breakDesktopWide) {
+        margin-left: 0;
+        width: 950px;
+    }
+
+    @media (max-width: @breakDesktop) {
+        width: 596px;
+    }
+
+    // Mobile
+    @media (max-width: @breakTablet) {
+        height: auto;
+        width: 100%;
+        margin-top: 0;
+        margin-left: 0;
+    }
+}
+
+.fxfamilynav-cta-wrapper {
+    margin-top: 60px;
+}
+
+.fxfamilynav-tertiarynav-trigger {
+    margin-top: 72px;
+}

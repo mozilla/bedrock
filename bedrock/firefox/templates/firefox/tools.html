@@ -1,0 +1,71 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import fxfamilynav with context %}
+
+{% extends "/firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{{_('Firefox')}} — {% endblock %}
+{% block page_title %}{{ _('Tools &amp; Services') }}{% endblock %}
+{% block page_desc %}{{ _('Get the most from Firefox and your time online with Hello, Sync and Private Browsing.') }}{% endblock %}
+{% block body_id %}firefox-tools{% endblock %}
+{% block body_class %}mozid{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_tools' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+{% block site_header_unwrapped %}
+  {{ fxfamilynav('tools', '',) }}
+{% endblock %}
+
+{% block content %}
+
+<main id="main-content">
+  <div id="main-feature">
+    <h1>{{ _('Firefox Tools &amp; Services') }}</h1>
+
+    <p>
+      {{ _('Learn how you can get the most from Firefox and your time online.') }}
+    </p>
+  </div>
+
+  <ul id="fxtool-list">
+    <li class="private-browsing">
+      <h2>{{ _('Private Browsing') }}</h2>
+
+      <p>
+        {{ _('No other browser gives you so much control over your digital footprint.') }}
+      </p>
+
+      <a href="{{ url('firefox.private-browsing') }}">{{ _('Learn more about Private Browsing') }}</a>
+    </li>
+    <li class="sync">
+      <h2>{{ _('Sync') }}</h2>
+
+      <p>
+        {{ _('Sync Firefox wherever you use it to access your bookmarks, passwords, tabs and more from any smartphone, tablet or computer.') }}
+      </p>
+
+      <a href="{{ url('firefox.sync') }}">{{ _('Learn more about Sync') }}</a>
+    </li>
+    <li class="hello">
+      <h2>{{ _('Firefox Hello') }}</h2>
+
+      <p>
+        {{ _('Start free video conversations with anyone, anywhere, right from Firefox.') }}
+      </p>
+
+      <a href="{{ url('firefox.hello') }}">{{ _('Learn more about Hello') }}</a>
+    </li>
+  </ul>
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_tools' %}
+{% endblock %}

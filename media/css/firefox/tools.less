@@ -1,0 +1,155 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+// mixin swiped from /firefox/family/index.less
+.fxfamily-sprite(@posx, @posy) {
+    .at2x('/media/img/firefox/family/index/family-sprite-11-2015.png', 535px, 1117px);
+    background-position: @posx @posy;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    margin: (@baseLine / 2) auto 0;
+    display: block;
+    content: '';
+}
+
+.mozid {
+    #outer-wrapper {
+        .aurora-bars;
+    }
+
+    #wrapper {
+        width: 100%;
+        overflow: hidden;
+        padding: 0;
+    }
+}
+
+#wrapper {
+    margin-top: 50px;
+}
+
+#main-feature {
+    color: #fff;
+
+    h1 {
+        .font-size(4rem);
+        line-height: 1.2;
+        text-shadow: none;
+        color: #fff;
+
+        @media (max-width: @breakDesktop) {
+            .font-size(2.625rem);
+        }
+
+        @media (max-width: @breakTablet) {
+            .font-size(2.25rem);
+        }
+    }
+
+    p {
+        .font-size(1.75rem);
+        line-height: 1.4;
+        .open-sans-light();
+
+        @media (max-width: @breakDesktop) {
+            .font-size(1.125rem);
+        }
+
+        @media (max-width: @breakTablet) {
+            .font-size(1rem);
+        }
+    }
+
+    h1,
+    p {
+        text-align: center;
+        .span-all();
+        margin-bottom: @baseLine / 2;
+    }
+}
+
+#fxtool-list {
+    .clearfix();
+    width: @breakDesktop - (@baseLine * 2);
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+
+    @media (max-width: @breakDesktop) {
+        width: @breakTablet - (@baseLine * 2);
+    }
+
+    @media (max-width: @breakTablet) {
+        width: @breakMobileLandscape - (@baseLine * 2);
+    }
+
+    @media (max-width: @breakMobileLandscape) {
+        width: @breakMobile - @baseLine;
+    }
+
+    li {
+        float: left;
+        width: 400px;
+        padding: @baseLine;
+        margin: 0 (@baseLine) (@baseLine * 2);
+        text-align: center;
+        border-radius: 6px;
+        background: #fff;
+        background: rgba(255, 255, 255, 0.9);
+        min-height: 200px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+
+        &:nth-child(odd) {
+            clear: left;
+        }
+
+        h2:after {
+            content: '';
+        }
+
+        &.sync h2:after {
+            .fxfamily-sprite(-345px, -405px);
+            width: 120px;
+            height: 80px;
+        }
+
+        &.private-browsing h2:after {
+            .fxfamily-sprite(-268px, -555px);
+            width: 130px;
+            height: 70px;
+            padding: 5px 0;
+        }
+
+        &.hello h2:after {
+            .fxfamily-sprite(-380px, -115px);
+            width: 84px;
+            height: 80px;
+        }
+
+        p {
+            min-height: 70px;
+        }
+
+        @media (max-width: @breakDesktop) {
+            width: 280px;
+        }
+
+        @media (max-width: @breakTablet) {
+            width: auto;
+            margin: 0 0 (@baseLine * 2);
+            float: none;
+            min-height: 0;
+
+            p {
+                min-height: auto;
+            }
+        }
+    }
+
+    a {
+        .trailing-arrow();
+    }
+}

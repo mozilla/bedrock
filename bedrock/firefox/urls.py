@@ -109,6 +109,7 @@ urlpatterns = (
 
     page('firefox/pocket', 'firefox/pocket.html'),
     page('firefox/push', 'firefox/push.html'),
+    page('firefox/tools', 'firefox/tools.html'),
 
     url(r'^firefox/windows-10/welcome/$', views.Win10Welcome.as_view(), name='firefox.win10-welcome'),
 

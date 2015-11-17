@@ -506,6 +506,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_releases_index-bundle.css',
     },
+    'firefox_tools': {
+        'source_filenames': (
+            'css/firefox/family-nav.less',
+            'css/firefox/tools.less',
+        ),
+        'output_filename': 'css/firefox_tools-bundle.css',
+    },
     'firefox_tour': {
         'source_filenames': (
             'css/firefox/australis/australis-ui-tour.less',
@@ -1381,6 +1388,14 @@ PIPELINE_JS = {
             'js/firefox/ios-geo.js',
         ),
         'output_filename': 'js/firefox_ios_geo-bundle.js',
+    },
+    'firefox_tools': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+        ),
+        'output_filename': 'js/firefox_tools-bundle.js',
     },
     'firefox_tour': {
         'source_filenames': (
