@@ -20,6 +20,9 @@
 
 {% block site_header %}{% endblock %}
 
+{# We use a localized hashtag for Spanish locales #}
+{% set hashtag = ' #SéUnExperto' if LANG.startswith('es-') else ' #SmartOn' %}
+
 {% block content %}
 
   {% block smarton_header %}
@@ -61,13 +64,13 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  <!--[if !lte IE 8]><!-->
-    {% javascript 'smarton' %}
-  <!--<![endif]-->
-
   <!--[if IE 9]>
     {% javascript 'matchmedia_addlistener' %}
   <![endif]-->
+
+  <!--[if !lte IE 8]><!-->
+    {% javascript 'smarton' %}
+  <!--<![endif]-->
 {% endblock %}
 
 {% macro smarton_navbar(title='', share_text='', twitter_url='', googleplus_url='', facebook_url='' ) -%}
