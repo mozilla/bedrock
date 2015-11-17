@@ -15,7 +15,7 @@
 <article class="main">
 
   {# Navbar macro. Params: Page title, tweet text, Twitter URL, Facebook URL, Google+ URL #}
-  {{ smarton_navbar(_('Cybersecurity'), _('Look both ways, stay updated, and make sure your passwords are as buff as you are. Get smart on cybersecurity.') + hashtag, 'http://mzl.la/security', 'https://www.mozilla.org/teach/smarton/security/', 'https://www.mozilla.org/teach/smarton/security/') }}
+  {{ smarton_navbar(_('Cybersecurity'), _('Look both ways, stay updated, and make sure your passwords are as buff as you are. Get smart on cybersecurity.') + hashtag, 'http://mzl.la/cybersecurity', 'https://www.mozilla.org/teach/smarton/security/', 'https://www.mozilla.org/teach/smarton/security/') }}
 
   <section id="ask" class="section section-ask">
     <div class="content">
@@ -294,7 +294,7 @@
           <p>
             <span class="chat-question">{{ _('How many online passwords do you have?') }}</span>
             <span class="tweet-this">
-              <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('http://mzl.la/security'|urlencode, _('How many online passwords do you have?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
+              <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('http://mzl.la/cybersecurity'|urlencode, _('How many online passwords do you have?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
             </span>
           </p>
           {% include 'teach/smarton/includes/list-number-1.svg' %}
@@ -303,7 +303,7 @@
           <p>
             <span class="chat-question">{{ _('What kind of security tips and tricks do you use online?') }}</span>
             <span class="tweet-this">
-              <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('http://mzl.la/security'|urlencode, _('What kind of security tips and tricks do you use online?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
+              <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('http://mzl.la/cybersecurity'|urlencode, _('What kind of security tips and tricks do you use online?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
             </span>
           </p>
           {% include 'teach/smarton/includes/list-number-2.svg' %}
@@ -312,7 +312,7 @@
           <p>
             <span class="chat-question">{{ _('On a scale from 1 to 10, how safe do you feel online? Is it always clear to you whether or not your activities are secure?') }}</span>
             <span class="tweet-this">
-              <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('http://mzl.la/security'|urlencode, _('On a scale from 1 to 10, how safe do you feel online?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
+              <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('http://mzl.la/cybersecurity'|urlencode, _('On a scale from 1 to 10, how safe do you feel online?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
             </span>
           </p>
           {% include 'teach/smarton/includes/list-number-3.svg' %}
