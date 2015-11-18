@@ -14,8 +14,15 @@
 {% block smarton_content %}
 <article class="main">
 
+  {# see bug 1188591, comment 10 for details regarding the need for the en-* conditional #}
+  {% if LANG.startswith('en-') %}
+    {% set tweet_text = _('Stay updated, and make sure your passwords are as buff as you are. Get smart on cybersecurity.') %}
+  {% else %}
+    {% set tweet_text = _('Look both ways, stay updated, and make sure your passwords are as buff as you are. Get smart on cybersecurity.') %}
+  {% endif %}
+
   {# Navbar macro. Params: Page title, tweet text, Twitter URL, Facebook URL, Google+ URL #}
-  {{ smarton_navbar(_('Cybersecurity'), _('Look both ways, stay updated, and make sure your passwords are as buff as you are. Get smart on cybersecurity.') + hashtag, 'http://mzl.la/cybersecurity', 'https://www.mozilla.org/teach/smarton/security/', 'https://www.mozilla.org/teach/smarton/security/') }}
+  {{ smarton_navbar(_('Cybersecurity'), tweet_text + hashtag, 'http://mzl.la/cybersecurity', 'https://www.mozilla.org/teach/smarton/security/', 'https://www.mozilla.org/teach/smarton/security/') }}
 
   <section id="ask" class="section section-ask">
     <div class="content">
