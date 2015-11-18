@@ -414,11 +414,9 @@ NavMain.openSmallMenu = function()
         return;
     }
 
-    $('#nav-main-menu')
-        .slideDown(150)
-        .removeAttr('aria-hidden');
-
-    NavMain.toggleButton.addClass('open').attr('aria-expanded', true);
+    $('#nav-main-menu').slideDown(150, function() {
+        NavMain.toggleButton.addClass('open').attr('aria-expanded', true);
+    }).removeAttr('aria-hidden');
 
     // add click handler and set submenu class on submenus
     NavMain.mainMenuLinks
@@ -437,11 +435,9 @@ NavMain.closeSmallMenu = function()
         return;
     }
 
-    $('#nav-main-menu, #nav-main-menu .submenu')
-        .slideUp(100)
-        .attr('aria-hidden', 'true');
-
-    NavMain.toggleButton.removeClass('open').attr('aria-expanded', false);
+    $('#nav-main-menu, #nav-main-menu .submenu').slideUp(100, function() {
+        NavMain.toggleButton.removeClass('open').attr('aria-expanded', false);
+    }).attr('aria-hidden', 'true');
 
     // remove submenu click handler and CSS class
     NavMain.mainMenuLinks
