@@ -1,3 +1,6 @@
+user-agent: LinkChecker
+disallow:
+crawl-delay: 1
 user-agent: *
 {% if disallow_all -%}
 disallow: /
