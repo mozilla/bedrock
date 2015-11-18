@@ -311,7 +311,7 @@
     </p>
 
     <ul>
-      {% if l10n_has_tag('tracking_protection') and waffle.switch('tracking-protection') %}
+      {% if l10n_has_tag('tracking_protection') %}
       <li id="private-browsing">
         <h3>{{ _('Private Browsing with<br> Tracking Protection') }}</h3>
 
@@ -319,7 +319,7 @@
           {{ _('Browse without having your history, searches or cookies saved, and block hidden third parties from following you across the Web.') }}
         </p>
 
-        <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info">{{ _('Learn more about Private Browsing') }}</a>
+        <a class="more" href="{{ url('firefox.private-browsing') }}">{{ _('Learn more about Private Browsing') }}</a>
       </li>
       {% else %}
       <li id="private-browsing">
