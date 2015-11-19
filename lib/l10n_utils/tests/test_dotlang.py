@@ -155,7 +155,7 @@ class TestDotlang(TestCase):
         }
         eq_(parsed, expected)
 
-    @override_settings(EMAIL_SUBJECT_PREFIX='[bedrock] ')
+    @override_settings(EMAIL_SUBJECT_PREFIX='[bedrock] ', MANAGERS=('dude@example.com',))
     def test_parse_utf8_error(self):
         path = os.path.join(ROOT, 'test_utf8_error.lang')
         parsed = parse(path)
@@ -184,7 +184,8 @@ class TestDotlang(TestCase):
         eq_(FORMAT_IDENTIFIER_RE.findall('%(foo_bar)s %s'),
             [('%(foo_bar)s', 'foo_bar'), ('%s', '')])
 
-    @override_settings(ROOT=ROOT, EMAIL_SUBJECT_PREFIX='[bedrock] ')
+    @override_settings(ROOT=ROOT, EMAIL_SUBJECT_PREFIX='[bedrock] ',
+                       MANAGERS=('dude@example.com',))
     def test_format_identifier_mismatch(self):
         path = 'format_identifier_mismatch'
         expected = '%(foo)s is the new %s'
