@@ -24,11 +24,11 @@
 
     // Check Firefox version
     if (isFirefox()) {
-        if (isFirefoxUpToDate()) {
-            $html.addClass('firefox-latest');
-        } else {
-            $html.addClass('firefox-old');
-        }
+        window.Mozilla.Client.getFirefoxDetails(function(data) {
+            $html.addClass(data.isUpToDate ? 'firefox-latest' : 'firefox-old');
+        });
+    } else {
+        $html.addClass('nonfx');
     }
 
     // add gtm tracking attributes

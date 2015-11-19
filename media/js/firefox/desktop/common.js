@@ -8,9 +8,7 @@
     var $mastheadDownloadFirefox = $('#masthead-download-firefox');
     var $html = $('html');
 
-    // only show download buttons for users on desktop platforms, using either a non-Firefox browser
-    // or an out of date version of Firefox
-    if ((!w.isFirefox() || !w.isFirefoxUpToDate()) && !$html.hasClass('android') && !$html.hasClass('ios') && !$html.hasClass('fxos')) {
+    function showDownloadButtons() {
         // if not IE, top nav download button can link directly to scene 2 of /firefox/new/
         if (navigator.appVersion.indexOf('MSIE') === -1) {
             $mastheadDownloadFirefox.attr('href', $mastheadDownloadFirefox.attr('href') + '#download-fx');
@@ -38,6 +36,20 @@
 
         // Track Firefox download click in footer
         $('#subscribe-download-wrapper .download-link').attr({'data-interaction': 'download click - bottom', 'data-download-version': downloadVersion});
+    }
+
+    // only show download buttons for users on desktop platforms, using either a non-Firefox browser
+    // or an out of date version of Firefox
+    if (!window.site.platform.match(/^(android|ios|fxos)$/)) {
+        if (w.isFirefox()) {
+            w.Mozilla.Client.getFirefoxDetails(function(data) {
+                if (!data.isUpToDate) {
+                    showDownloadButtons();
+                }
+            });
+        } else {
+            showDownloadButtons();
+        }
     }
 
     $('.ga-section').waypoint(function(dir) {

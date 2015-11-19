@@ -51,10 +51,21 @@ class FirefoxDesktop(ProductDetails):
     @property
     def esr_major_versions(self):
         versions = []
-        for version in ('esr', 'esr_next'):
-            version_int = self.latest_major_version(version)
+        for channel in ('esr', 'esr_next'):
+            version_int = self.latest_major_version(channel)
             if version_int:
                 versions.append(version_int)
+
+        return versions
+
+    @property
+    def esr_minor_versions(self):
+        versions = []
+        for channel in ('esr', 'esr_next'):
+            version = self.latest_version(channel)
+            version_int = self.latest_major_version(channel)
+            if version and version_int:
+                versions.append(str(version).replace('esr', ''))
 
         return versions
 
