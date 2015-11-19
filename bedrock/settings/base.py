@@ -302,7 +302,11 @@ DOMAIN_METHODS = {
     ],
 }
 
-ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE', default=False, cast=bool)
+HOSTNAME = platform.node()
+DEIS_APP = config('DEIS_APP', default=None)
+DEIS_DOMAIN = config('DEIS_DOMAIN', default=None)
+ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
+                                    default=bool(DEIS_APP), cast=bool)
 
 MIDDLEWARE_CLASSES = [middleware for middleware in (
     'sslify.middleware.SSLifyMiddleware',
@@ -891,5 +895,3 @@ if not SSLIFY_DISABLE:
 SSLIFY_DISABLE_FOR_REQUEST = [
     lambda request: request.get_full_path() == '/healthz/'
 ]
-
-HOSTNAME = platform.node()
