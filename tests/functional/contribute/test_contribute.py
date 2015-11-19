@@ -33,6 +33,7 @@ def test_newsletter_default_values(base_url, selenium):
     assert page.newsletter.html_format_selected
     assert not page.newsletter.text_format_selected
     assert not page.newsletter.privacy_policy_accepted
+    assert page.newsletter.is_privacy_policy_link_displayed
 
 
 def test_newsletter_successful_sign_up(base_url, selenium):

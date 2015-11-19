@@ -56,6 +56,7 @@ def test_mozilla_newsletter_default_values(base_url, selenium):
     assert '' == page.mozilla_newsletter.email
     assert 'United States' == page.mozilla_newsletter.country
     assert not page.mozilla_newsletter.privacy_policy_accepted
+    assert page.mozilla_newsletter.is_privacy_policy_link_displayed
 
 
 def test_mozilla_newsletter_successful_sign_up(base_url, selenium):

@@ -18,6 +18,7 @@ class NewsletterEmbedForm(PageRegion):
     _html_format_locator = (By.ID, 'id_fmt_0')
     _text_format_locator = (By.ID, 'id_fmt_1')
     _privacy_policy_checkbox_locator = (By.ID, 'id_privacy')
+    _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] a')
     _submit_button_locator = (By.ID, 'footer_email_submit')
     _thank_you_locator = (By.CSS_SELECTOR, '#newsletter-form-thankyou h3')
 
@@ -78,6 +79,10 @@ class NewsletterEmbedForm(PageRegion):
         assert not el.is_selected(), 'Privacy policy has already been accepted'
         el.click()
         assert el.is_selected(), 'Privacy policy has not been accepted'
+
+    @property
+    def is_privacy_policy_link_displayed(self):
+        return self.is_element_displayed(self._privacy_policy_link_locator)
 
     def click_sign_me_up(self):
         self.find_element(self._submit_button_locator).click()
