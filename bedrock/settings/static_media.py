@@ -767,7 +767,6 @@ PIPELINE_CSS = {
     'smarton': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
-            'css/base/mozilla-modal.less',
             'css/teach/smarton.less',
         ),
         'output_filename': 'css/smarton-bundle.css',
@@ -1550,7 +1549,6 @@ PIPELINE_JS = {
     'smarton': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',
-            'js/base/mozilla-modal.js',
             'js/base/mozilla-smoothscroll.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
