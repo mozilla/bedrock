@@ -28,7 +28,7 @@ script:
 before_install:
   - travis_retry git submodule update --init --recursive
 install:
-  - travis_retry python bin/peep.py install -r requirements/pip.txt --no-use-wheel
+  - travis_retry pip install -r requirements/pip.txt
   - travis_retry python bin/peep.py install -r requirements/dev.txt --no-use-wheel
   - travis_retry python bin/peep.py install -r requirements/prod.txt --no-use-wheel
   - travis_retry python bin/peep.py install -r requirements/test_redirects.txt --no-use-wheel
