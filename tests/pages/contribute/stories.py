@@ -4,7 +4,7 @@
 
 from selenium.webdriver.common.by import By
 
-from .base import ContributeBasePage
+from pages.contribute.base import ContributeBasePage
 
 
 class ContributeStoriesPage(ContributeBasePage):
