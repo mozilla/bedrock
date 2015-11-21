@@ -58,6 +58,8 @@ mozilla.dev.chat                        The real-time chat capabilities in the M
 mozilla.dev.community-tools             The tools Mozilla uses to manage its community. (Moderated)
 mozilla.dev.decentralization            Data decentralization in and for Mozilla services.
 mozilla.dev.embedding                   For <a href="/projects/embedding/">embedding</a> Mozilla components such as Gecko, ender, and JavaScript into software.
+mozilla.dev.flyweb                      <a href="https://wiki.mozilla.org/FlyWeb">FlyWeb is a project which aims to enable websites to discover, connect to, and directly communicate with other nearby web-enabled devices (Moderated)
+mozilla.dev.fxos.sync                   Syncing Firefox OS data (contacts, calendar etc.) with online servers
 mozilla.dev.geolocation                 Development of geolocation services. (Moderated)
 mozilla.dev.i18n                        For discussions about <a href="/projects/intl/">internationalization</a> (I18N) issues. I18N is the infrastructure that allows software to be <a href="#dev-l10n">localized</a>.
 mozilla.dev.js-sourcemap                The JS sourcemap project, which maps obfuscated JS back to the original version for debugging. (Moderated)
