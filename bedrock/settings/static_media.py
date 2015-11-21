@@ -395,11 +395,21 @@ PIPELINE_CSS = {
     },
     'firefox_ios': {
         'source_filenames': (
+            'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/base/send-to-device.less',
             'css/firefox/ios.less',
         ),
         'output_filename': 'css/firefox_ios-bundle.css',
+    },
+    'firefox_mobile_download': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/base/simple_footer-resp.less',
+            'css/firefox/mobile-download.less',
+        ),
+        'output_filename': 'css/firefox_mobile_download.css',
     },
     'firefox_new': {
         'source_filenames': (
@@ -427,6 +437,15 @@ PIPELINE_CSS = {
             'css/firefox/os/firefox-os.less',
         ),
         'output_filename': 'css/firefox_os-bundle.css',
+    },
+    'firefox_os_2_5': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/family-nav.less',
+            'css/firefox/os/firefox-os-2-5.less',
+        ),
+        'output_filename': 'css/firefox_os_2_5-bundle.css',
     },
     'firefox_os_ie': {
         'source_filenames': (
@@ -525,13 +544,6 @@ PIPELINE_CSS = {
             'css/firefox/whatsnew_42/variant-a.less',
         ),
         'output_filename': 'css/firefox_whatsnew_42_a-bundle.css',
-    },
-    'firefox_whatsnew_42_b': {
-        'source_filenames': (
-            'css/firefox/whatsnew_42/common.less',
-            'css/firefox/whatsnew_42/variant-b.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew_42_b-bundle.css',
     },
     'firefox_win10_welcome': {
         'source_filenames': (
@@ -1212,6 +1224,16 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_os-bundle.js',
     },
+    'firefox_os_2_5': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+            'js/firefox/os/firefox-os-2.5.js',
+        ),
+        'output_filename': 'js/firefox_os_2_5-bundle.js',
+    },
+
     'firefox_os_devices': {
         'source_filenames': (
             'js/libs/jquery.tipsy.js',
@@ -1343,9 +1365,22 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
             'js/base/send-to-device.js',
             'js/firefox/australis/australis-uitour.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
             'js/firefox/ios.js',
         ),
         'output_filename': 'js/firefox_ios-bundle.js',
+    },
+    'firefox_ios_geo': {
+        'source_filenames': (
+            'js/libs/script.js',
+            'js/base/mozilla-modal.js',
+            'js/base/send-to-device.js',
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/ios-geo.js',
+        ),
+        'output_filename': 'js/firefox_ios_geo-bundle.js',
     },
     'firefox_tour': {
         'source_filenames': (
@@ -1402,14 +1437,6 @@ PIPELINE_JS = {
             'js/firefox/whatsnew_42/variant-a.js',
         ),
         'output_filename': 'js/firefox_whatsnew_42_a-bundle.js',
-    },
-    'firefox_whatsnew_42_b': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/base/mozilla-highlight-target.js',
-            'js/firefox/whatsnew_42/variant-b.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_42_b-bundle.js',
     },
     'firefox_firstrun_42_learnmore': {
         'source_filenames': (

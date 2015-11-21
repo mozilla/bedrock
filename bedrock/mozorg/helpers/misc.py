@@ -468,6 +468,8 @@ def releasenotes_url(release):
     prefix = 'aurora' if release.channel == 'Aurora' else 'release'
     if release.product == 'Firefox for Android':
         return reverse('firefox.android.releasenotes', args=(release.version, prefix))
+    if release.product == 'Firefox for iOS':
+        return reverse('firefox.ios.releasenotes', args=(release.version, prefix))
     else:
         return reverse('firefox.desktop.releasenotes', args=(release.version, prefix))
 

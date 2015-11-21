@@ -710,17 +710,20 @@ class TestContribute(TestCase):
 
 
 class TestRobots(TestCase):
-    @override_settings(SITE_URL='https://www.mozilla.org')
+    def setUp(self):
+        self.rf = RequestFactory()
+        self.view = views.Robots()
+
     def test_production_disallow_all_is_false(self):
-        self.assertFalse(views.Robots().get_context_data()['disallow_all'])
+        self.view.request = self.rf.get('/', HTTP_HOST='www.mozilla.org')
+        self.assertFalse(self.view.get_context_data()['disallow_all'])
 
-    @override_settings(SITE_URL='http://mozilla.local')
     def test_non_production_disallow_all_is_true(self):
-        self.assertTrue(views.Robots().get_context_data()['disallow_all'])
+        self.view.request = self.rf.get('/', HTTP_HOST='www.allizom.org')
+        self.assertTrue(self.view.get_context_data()['disallow_all'])
 
-    @override_settings(SITE_URL='https://www.mozilla.org')
     def test_robots_no_redirect(self):
-        response = self.client.get('/robots.txt')
+        response = self.client.get('/robots.txt', HTTP_HOST='www.mozilla.org')
         self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context_data['disallow_all'])
         self.assertEqual(response.get('Content-Type'), 'text/plain')

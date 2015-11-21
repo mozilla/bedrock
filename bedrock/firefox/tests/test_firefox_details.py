@@ -11,7 +11,7 @@ from django.test.utils import override_settings
 from mock import patch, Mock
 from nose.tools import eq_, ok_
 
-from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
+from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid, FirefoxIOS
 from bedrock.mozorg.tests import TestCase
 
 
@@ -21,6 +21,7 @@ PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 
 firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
 firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
+firefox_ios = FirefoxIOS(json_dir=PROD_DETAILS_DIR)
 
 
 GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
@@ -304,3 +305,12 @@ class TestFirefoxAndroid(TestCase):
     def test_latest_beta_version(self):
         """latest_version should return the latest beta version."""
         eq_(firefox_android.latest_version('beta'), '23.0')
+
+
+@patch.object(firefox_ios._storage, 'data',
+              Mock(return_value=dict(version='1.1')))
+class TestFirefoxIos(TestCase):
+
+    def test_latest_release_version(self):
+        """latest_version should return the latest release version."""
+        eq_(firefox_ios.latest_version('release'), '1.1')

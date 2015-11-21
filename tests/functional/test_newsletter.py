@@ -5,7 +5,7 @@
 import pytest
 from selenium.common.exceptions import TimeoutException
 
-from ..pages.newsletter import NewsletterPage
+from pages.newsletter import NewsletterPage
 
 
 @pytest.mark.sanity
@@ -18,6 +18,7 @@ def test_default_values(base_url, selenium):
     assert page.html_format_selected
     assert not page.text_format_selected
     assert not page.privacy_policy_accepted
+    assert page.is_privacy_policy_link_displayed
 
 
 def test_successful_sign_up(base_url, selenium):

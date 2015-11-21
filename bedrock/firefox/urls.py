@@ -17,15 +17,16 @@ latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 firstrun_learnmore_re = latest_re % (version_re, 'firstrun/learnmore')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
-whatsnew_b_re = latest_re % (version_re, 'whatsnew/b')
 tour_re = latest_re % (version_re, 'tour')
 hello_start_re = latest_re % (version_re, 'hello/start')
 tracking_protection_re = latest_re % (version_re, 'tracking-protection/start')
-platform_re = '(?P<platform>android)'
+platform_re = '(?P<platform>android|ios)'
 channel_re = '(?P<channel>beta|aurora|developer|organizations)'
 releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
 android_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/android')
+ios_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/ios')
 sysreq_re = latest_re % (version_re, 'system-requirements')
+ios_sysreq_re = sysreq_re.replace('firefox', 'firefox/ios')
 
 
 urlpatterns = (
@@ -48,6 +49,7 @@ urlpatterns = (
     page('firefox/android/all', 'firefox/android/all.html'),
     page('firefox/android/faq', 'firefox/android/faq.html'),
     page('firefox/ios', 'firefox/ios.html'),
+    page('firefox/mobile-download', 'firefox/mobile-download.html'),
     page('firefox/os/faq', 'firefox/os/faq.html'),
     page('firefox/products', 'firefox/family/index.html'),
     page('firefox/private-browsing', 'firefox/private-browsing.html'),
@@ -81,7 +83,6 @@ urlpatterns = (
     url(firstrun_learnmore_re, views.FirstrunLearnMoreView.as_view(),
         name='firefox.firstrun.learnmore'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
-    url(whatsnew_b_re, views.WhatsnewTestView.as_view(), name='firefox.whatsnew.b'),
     url(tour_re, views.TourView.as_view(), name='firefox.tour'),
     url(hello_start_re, views.HelloStartView.as_view(), name='firefox.hello.start'),
     url(r'^firefox/partners/$', views.firefox_partners,
@@ -94,6 +95,7 @@ urlpatterns = (
     url('^firefox/$', views.fx_home_redirect, name='firefox'),
 
     url('^firefox/os/$', views.firefox_os_geo_redirect, name='firefox.os.index'),
+    page('firefox/os/2.5', 'firefox/os/ver/2.5.html'),
     page('firefox/os/2.0', 'firefox/os/ver/2.0.html'),
     page('firefox/os/1.4', 'firefox/os/ver/1.4.html'),
     page('firefox/os/1.3t', 'firefox/os/ver/1.3T.html'),
@@ -121,8 +123,12 @@ urlpatterns = (
     url(releasenotes_re, bedrock.releasenotes.views.release_notes, name='firefox.desktop.releasenotes'),
     url(android_releasenotes_re, bedrock.releasenotes.views.release_notes,
         {'product': 'Firefox for Android'}, name='firefox.android.releasenotes'),
+    url(ios_releasenotes_re, bedrock.releasenotes.views.release_notes,
+        {'product': 'Firefox for iOS'}, name='firefox.ios.releasenotes'),
     url(sysreq_re, bedrock.releasenotes.views.system_requirements,
         name='firefox.system_requirements'),
+    url(ios_sysreq_re, bedrock.releasenotes.views.system_requirements,
+        {'product': 'Firefox for iOS'}, name='firefox.ios.system_requirements'),
     url('^firefox/releases/$', bedrock.releasenotes.views.releases_index,
         {'product': 'Firefox'}, name='firefox.releases.index'),
 

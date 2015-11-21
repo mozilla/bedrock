@@ -302,7 +302,11 @@ DOMAIN_METHODS = {
     ],
 }
 
-ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE', default=False, cast=bool)
+HOSTNAME = platform.node()
+DEIS_APP = config('DEIS_APP', default=None)
+DEIS_DOMAIN = config('DEIS_DOMAIN', default=None)
+ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
+                                    default=bool(DEIS_APP), cast=bool)
 
 MIDDLEWARE_CLASSES = [middleware for middleware in (
     'sslify.middleware.SSLifyMiddleware',
@@ -368,7 +372,6 @@ INSTALLED_APPS = (
     'bedrock.persona',
     'bedrock.press',
     'bedrock.privacy',
-    'bedrock.redirects',
     'bedrock.research',
     'bedrock.styleguide',
     'bedrock.tabzilla',
@@ -380,6 +383,8 @@ INSTALLED_APPS = (
     'bedrock.releasenotes',
     'bedrock.thunderbird',
     'bedrock.shapeoftheweb',
+    # last so that redirects here will be last
+    'bedrock.redirects',
 
     # libs
     'django_extensions',
@@ -591,17 +596,17 @@ MOBILIZER_LOCALE_LINK = {
     'cs': 'https://wiki.mozilla.org/Mobilizer/MobilizerCzechRepublic/'
 }
 
-DONATE_SPANISH_LINK = ('https://sendto.mozilla.org/page/contribute/givenow-seq-es?'
-    'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-    '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_ES')
+DONATE_SPANISH_LINK = ('https://donate.mozilla.org/es/?presets=100,50,25,15&amount=50'
+    '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
+    '&utm_medium=referral&utm_content={source}&currency=eur')
 
 DONATE_LOCALE_LINK = {
     'default': (
         'https://sendto.mozilla.org/page/contribute/Give-Now?source={source}'
     ),
     'en-US': (
-        'https://sendto.mozilla.org/page/contribute/givenow-seq?'
-        'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
+        'https://donate.mozilla.org/?presets=100,50,25,15'
+        '&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015'
         '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
     ),
     'cs': (
@@ -615,18 +620,18 @@ DONATE_LOCALE_LINK = {
         '&utm_source={source}&utm_medium=referral&utm_content=PPcurrency_DKK'
     ),
     'de': (
-        'https://sendto.mozilla.org/page/contribute/givenow-seq-de?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_DE'
+        'https://donate.mozilla.org/de/?presets=100,50,25,15&amount=50'
+        '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
+        '&utm_medium=referral&utm_content={source}&currency=eur'
     ),
     'es-AR': DONATE_SPANISH_LINK,
     'es-CL': DONATE_SPANISH_LINK,
     'es-ES': DONATE_SPANISH_LINK,
     'es-MX': DONATE_SPANISH_LINK,
     'fr': (
-        'https://sendto.mozilla.org/page/contribute/givenow-seq-fr?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_FR'
+        'https://donate.mozilla.org/fr/?presets=100,50,25,15&amount=50'
+        '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
+        '&utm_medium=referral&utm_content={source}&currency=eur'
     ),
     'he': (
         'https://sendto.mozilla.org/page/content/paypal-donate-ils/?'
@@ -659,9 +664,9 @@ DONATE_LOCALE_LINK = {
         '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_PLN'
     ),
     'pt-BR': (
-        'https://sendto.mozilla.org/page/contribute/givenow-seq-pt-br?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_PTBR'
+        'https://donate.mozilla.org/pt-BR/?presets=375,187,90,55&amount=187'
+        '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
+        '&utm_medium=referral&utm_content={source}&currency=brl'
     ),
     'ru': (
         'https://sendto.mozilla.org/page/content/paypal-donate-rub/?'
@@ -721,10 +726,13 @@ OPTIMIZELY_PROJECT_ID = None
 #
 # For demo server testing, configure Fx40+ as detailed here:
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1150231#c28
-FXA_IFRAME_SRC = config('FXA_IFRAME_SRC', default='')
+FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
+                        default='https://accounts.firefox.com/')
 
 # Link to Firefox for Android on the Google Play store with Google Analytics
-# campaign parameters
+# campaign parameters.
+# To clarify below, 'referrer' key value must be a URL encoded string of utm_*
+# key/values (https://bugzilla.mozilla.org/show_bug.cgi?id=1099429#c0).
 GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
                             'id=org.mozilla.firefox&referrer=' +
                             urlquote('utm_source=mozilla&utm_medium=Referral&'
@@ -887,5 +895,3 @@ if not SSLIFY_DISABLE:
 SSLIFY_DISABLE_FOR_REQUEST = [
     lambda request: request.get_full_path() == '/healthz/'
 ]
-
-HOSTNAME = platform.node()

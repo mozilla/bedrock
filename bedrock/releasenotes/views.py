@@ -13,15 +13,16 @@ from lib import l10n_utils
 from rna.models import Release
 from product_details import product_details
 
-from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
+from bedrock.firefox.firefox_details import firefox_desktop, firefox_android, firefox_ios
 from bedrock.thunderbird.details import thunderbird_desktop
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.helpers.misc import releasenotes_url
-from bedrock.firefox.helpers import android_builds
+from bedrock.firefox.helpers import android_builds, ios_builds
 
 
 SUPPORT_URLS = {
     'Firefox for Android': 'https://support.mozilla.org/products/mobile',
+    'Firefox for iOS': 'https://support.mozilla.org/products/ios',
     'Firefox': 'https://support.mozilla.org/products/firefox',
     'Thunderbird': 'https://support.mozilla.org/products/thunderbird/',
 }
@@ -65,6 +66,8 @@ def get_download_url(release):
         return 'https://www.mozilla.org/thunderbird/'
     elif release.product == 'Firefox for Android':
         return android_builds(release.channel)[0]['download_link']
+    elif release.product == 'Firefox for iOS':
+        return ios_builds(release.channel)[0]['download_link']
     else:
         if release.channel == 'Aurora':
             return reverse('firefox.channel') + '#developer'
@@ -72,6 +75,15 @@ def get_download_url(release):
             return reverse('firefox.channel') + '#beta'
         else:
             return reverse('firefox')
+
+
+def check_url(product, version):
+    if product == 'Firefox for Android':
+        return 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
+    elif product == 'Firefox for iOS':
+        return reverse('firefox.ios.system_requirements', args=[version])
+    else:
+        return reverse('firefox.system_requirements', args=[version])
 
 
 @cache_control_expires(1)
@@ -90,6 +102,7 @@ def release_notes(request, version, product='Firefox'):
             'version': version,
             'download_url': get_download_url(release),
             'support_url': SUPPORT_URLS.get(product, 'https://support.mozilla.org/'),
+            'check_url': check_url(product, version),
             'release': release,
             'equivalent_release_url': equivalent_release_url(release),
             'new_features': new_features,
@@ -122,6 +135,8 @@ def latest_notes(request, product='firefox', platform=None, channel=None):
         version = thunderbird_desktop.latest_version(channel)
     elif platform == 'android':
         version = firefox_android.latest_version(channel)
+    elif platform == 'ios':
+        version = firefox_ios.latest_version(channel)
     else:
         version = firefox_desktop.latest_version(channel)
 
@@ -150,6 +165,8 @@ def latest_sysreq(request, channel, product):
         version = thunderbird_desktop.latest_version(channel)
     elif product == 'mobile':
         version = firefox_android.latest_version(channel)
+    elif product == 'ios':
+        version = firefox_ios.latest_version(channel)
     else:
         version = firefox_desktop.latest_version(channel)
 

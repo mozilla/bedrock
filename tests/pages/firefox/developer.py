@@ -3,11 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait as Wait
 
-from .base import FirefoxBasePage
-from ..page import PageRegion
-from ..regions.modal import Modal
+from pages.page import PageRegion
+from pages.firefox.base import FirefoxBasePage
+from pages.regions.modal import Modal
 
 
 class DeveloperPage(FirefoxBasePage):
@@ -28,14 +27,14 @@ class DeveloperPage(FirefoxBasePage):
 
     @property
     def developer_videos(self):
-        return [Video(self.selenium, root=el) for el in
-                   self.selenium.find_elements(*self._videos_locator)]
+        return [Video(self.base_url, self.selenium, root=el) for el in
+                self.find_elements(self._videos_locator)]
 
 
 class Video(PageRegion):
 
     def play(self):
-        modal = Modal(self.selenium)
-        self.root.click()
-        Wait(self.selenium, self.timeout).until(lambda s: modal.is_displayed)
+        modal = Modal(self.base_url, self.selenium)
+        self._root.click()
+        self.wait.until(lambda s: modal.is_displayed)
         return modal

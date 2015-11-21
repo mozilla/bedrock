@@ -368,8 +368,8 @@
   {
     "country":"Slovenia",
     "filename":"SlovenianHolidays.ics",
-    "datespan":"2012-2013",
-    "authors":"Klemen Robnik"
+    "datespan":"2012-2022",
+    "authors":"Klemen Robnik, Peter Klofutar"
   },
   {
     "country":"Slovakia",
@@ -392,7 +392,7 @@
   {
     "country":"Spain",
     "filename":"SpanishHolidays.ics",
-    "datespan":"2007-2015",
+    "datespan":"2007-2016",
     "authors":"Ricardo Palomares"
   },
   {

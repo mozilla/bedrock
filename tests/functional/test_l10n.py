@@ -6,7 +6,7 @@ import random
 
 import pytest
 
-from ..pages.home import HomePage
+from pages.home import HomePage
 
 
 @pytest.mark.nondestructive

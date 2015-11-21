@@ -206,6 +206,14 @@ class TestRNAViews(TestCase):
         link = views.get_download_url(release)
         eq_(link, 'https://www.mozilla.org/thunderbird/')
 
+    def test_check_url(self):
+        eq_(views.check_url('Firefox for Android', '42.0'),
+            'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
+        eq_(views.check_url('Firefox for iOS', '1.1'),
+            '/en-US/firefox/ios/1.1/system-requirements/')
+        eq_(views.check_url('Firefox', '42.0'),
+            '/en-US/firefox/42.0/system-requirements/')
+
 
 class TestReleaseNotesIndex(TestCase):
     @patch('bedrock.releasenotes.views.l10n_utils.render')

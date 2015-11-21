@@ -12,7 +12,7 @@ You can develop and test bedrock without installing anything locally by using
 Cloud9_, which provides a complete development environment via your browser,
 including unlimited free public workspaces [#]_, which is great for open source
 projects. Each workspace includes root_ access to an Ubuntu_ Docker_ container,
-which you can install bedrock and all its depdencies into with the following
+which you can install bedrock and all its dependencies into with the following
 steps:
 
 1. Fork `bedrock <https://github.com/mozilla/bedrock/>`_ on github

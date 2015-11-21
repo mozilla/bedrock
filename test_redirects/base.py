@@ -66,8 +66,8 @@ def url_test(url, location=None, status_code=301, req_headers=None, req_kwargs=N
     return new_urls
 
 
-def assert_valid_url(url, location, status_code, req_headers, req_kwargs,
-                     resp_headers, base_url, query):
+def assert_valid_url(url, location=None, status_code=301, req_headers=None, req_kwargs=None,
+                     resp_headers=None, query=None, base_url=None):
     """
     Define a test of a URL's response.
     :param url: The URL in question (absolute or relative).

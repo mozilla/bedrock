@@ -41,7 +41,7 @@
         .note em { color: ~'@{@{color}}'; }
         .sidebar-chart {
             border-color: ~'@{@{color}-extra-light}';
-            .circles-valueStroke { stroke: ~'@{@{color}-extra-light}'; }
+            .circles-valueStroke { stroke: ~'@{@{color}-light}'; }
             .circles-text { color: ~'@{@{color}}'; }
         }
         .main .section ul > li:before { color: ~'@{@{color}-light}'; }
@@ -264,6 +264,15 @@ a.go {
 
     @media only screen and (max-width: @breakTablet) {
         padding-right: @gridGutterWidth;
+    }
+}
+
+// Hide hero image on smaller viewports
+@media only screen and (max-width: @breakTablet) {
+    .section-ask .content {
+        img {
+            display: none;
+        }
     }
 }
 
@@ -1027,11 +1036,19 @@ a.go {
         padding-left: (@gridColumnWidth * 2) + (@gridGutterWidth * 2);
         min-height: 96px;
 
+        @media only screen and (max-width: @breakTablet) {
+            padding-left: 0;
+        }
+
         .tip-image {
             float: left;
             margin-left: -120px;
             width: 96px;
             height: 96px;
+
+            @media only screen and (max-width: @breakTablet) {
+                display: none;
+            }
         }
     }
 
@@ -1314,6 +1331,19 @@ body.not-firefox .footer-cta {
 
     .page-header.stuck + .section-ask {
         background-position: center top;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Specific styles for the Cybersecurity page
+@media only screen and (max-width: @breakTablet) {
+    #smarton-security {
+        .columns {
+            display: block;
+        }
+        .columns-2 .col {
+            width: 100%;
+        }
     }
 }
 

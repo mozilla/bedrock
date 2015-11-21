@@ -17,9 +17,6 @@
 {% block body_id %}smarton-tracking{% endblock %}
 {% block body_class %}smarton theme-tracking state-default{% endblock %}
 
-{# We use a localized hashtag for Spanish locales #}
-{% set hashtag = ' #SéUnExperto' if LANG.startswith('es-') else ' #SmartOn' %}
-
 {% block smarton_content %}
 <article class="main">
 
@@ -279,7 +276,7 @@
               <div class="col">
                 <h5>{{ _('Desktop') }}</h5>
                 <ul>
-                  <li><a href="https://support.mozilla.org/kb/tracking-protection-firefox">Firefox</a></li>
+                  <li><a href="https://support.mozilla.org/kb/tracking-protection-pbm">Firefox</a></li>
                   <li><a href="https://support.google.com/chrome/answer/95464">Chrome</a></li>
                   <li><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie-9/features/in-private">Internet Explorer</a>/<a href="http://windows.microsoft.com/en-hk/windows-10/browse-inprivate-in-microsoft-edge">Edge</a></li>
                   <li><a href="https://support.apple.com/kb/PH19216">Safari</a></li>

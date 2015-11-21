@@ -28,8 +28,11 @@ URLS = flatten((
     url_test('/en-US/firefox//all/', '/en-US/firefox/all/'),
     url_test('/pt-BR/////thunderbird/', '/pt-BR/thunderbird/'),
 
-    # bug 755826
-    url_test('/zh-CN/', 'http://firefox.com.cn/'),
+    # bug 755826, 1222348
+    url_test('/zh-CN/', 'http://www.firefox.com.cn/', query={
+        'utm_medium': 'referral',
+        'utm_source': 'mozilla.org'
+    }),
 
     # bug 764261, 841393, 996608, 1008162, 1067691, 1113136, 1119022, 1131680, 1115626
     url_test('/zh-TW/', 'http://mozilla.com.tw/'),
@@ -37,7 +40,7 @@ URLS = flatten((
     url_test('/zh-TW/download/', 'http://mozilla.com.tw/firefox/download/'),
 
     # bug 874913
-    url_test('/en-US/products/download.html', '/en-US/firefox/new/#download-fx'),
+    url_test('/en-US/products/download.html{,?stuff=whatnot}', '/en-US/firefox/new/'),
 
     # bug 845580
     url_test('/en-US/home/', '/en-US/firefox/new/'),
@@ -661,6 +664,11 @@ URLS = flatten((
     url_test('/access/unix.html',
              'http://website-archive.mozilla.org/www.mozilla.org/access/access/unix.html'),
 
+    # bug 1216953
+    url_test('/MPL/MPL-1.0.html',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/1.0/'),
+    url_test('/MPL/MPL-1.1.html', '/MPL/1.1/'),
+
     # bug 987852
     url_test('/MPL/0.95/stuff.html',
              'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/0.95/stuff.html'),
@@ -895,4 +903,14 @@ URLS = flatten((
 
     # bug 442671
     url_test('/foundation/trademarks/l10n-policy/', '/foundation/trademarks/'),
+
+    # Bug 1186373
+    url_test('/firefox/hello/npssurvey/',
+             'https://www.surveygizmo.com/s3/2227372/Firefox-Hello-Product-Survey',
+             status_code=302),
+
+    # Bug 1221739
+    url_test('/firefox/hello/feedbacksurvey/',
+             'https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687',
+             status_code=302),
 ))

@@ -313,10 +313,19 @@ class TestFirefoxOSGeoRedirect(TestCase):
         self.geo_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
-    def _request(self, country):
+    def _request(self, country, locale='de'):
         self.geo_mock.return_value = country
         request = RequestFactory().get('/firefox/os/')
+        request.locale = locale
         return views.firefox_os_geo_redirect(request)
+
+    def test_en_US_always_2_dot_5(self):
+        """The en-US locale should always redirect to 2.5"""
+        resp = self._request('AU', locale='en-US')
+        self.assertTrue(resp['Location'].endswith('/firefox/os/2.5/'))
+
+        resp = self._request('IN', locale='en-US')
+        self.assertTrue(resp['Location'].endswith('/firefox/os/2.5/'))
 
     def test_default_version(self):
         """Should redirect to default version if country not in list."""

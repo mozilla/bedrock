@@ -526,15 +526,11 @@ def forums_view(request):
 
 class Robots(TemplateView):
     template_name = 'mozorg/robots.txt'
-
-    def render_to_response(self, context, **response_kwargs):
-        response_kwargs['content_type'] = 'text/plain'
-        return super(Robots, self).render_to_response(
-            context, **response_kwargs)
+    content_type = 'text/plain'
 
     def get_context_data(self, **kwargs):
-        SITE_URL = getattr(settings, 'SITE_URL', '')
-        return {'disallow_all': not SITE_URL.endswith('://www.mozilla.org')}
+        hostname = self.request.get_host()
+        return {'disallow_all': not hostname == 'www.mozilla.org'}
 
 
 def home_tweets(locale):

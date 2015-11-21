@@ -1,0 +1,121 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/os/index.html" %}
+
+{% block body_class %}{{ super() }} v2-5{% endblock %}
+
+{% block extrahead %}
+  {% stylesheet 'firefox_os_2_5' %}
+{% endblock %}
+
+{% block hero_copy %}
+  <div class="hero-content">
+    <h1>{{ _('Experience Firefox OS on your Android device')}}</h1>
+    <p>{{_('Introducing Firefox OS 2.5 Developer Preview, an experimental app that lets you use Firefox OS on your Android device.')}}</p>
+    <div class="primary-cta">
+      <a href="https://d2yw7jilxa8093.cloudfront.net/B2GDroid-mozilla-central-nightly-latest.apk" class="cta-button" data-pixel="52161" data-id="Mozilla_B2G_Activity_Tag_1">{{_('Get the Android App')}}</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    {% block phone_image %}
+      {{ high_res_img('firefox/os-new/phone.png', {'width':'1100', 'alt':''}) }}
+    {% endblock %}
+  </div>
+{% endblock %}
+
+{% block features_headline %}
+  <h2>{{_('The Web is the platform')}}</h2>
+{% endblock %}
+
+{% block features_copy %}
+  <p>{{_('Firefox OS is the first truly open mobile platform built entirely on Web technologies. If you can build for the Web using HTML and CSS, you can build Firefox OS.')}}</p>
+  <ul class="features">
+    <li class="customization">
+      <h3>{{_('The most customization')}}</h3>
+      <p>{{_('Make Firefox OS your own with apps and add-ons from the Firefox Marketplace, and keep all your favorite items front and centre with Pin the Web.')}}</p>
+    </li>
+    <li class="control">
+      <h3>{{_('The most control')}}</h3>
+      <p>{{_('From Do Not Track to Private Browsing with Tracking Protection, Firefox OS is designed keep you in control of your browsing activity.')}}</p>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block fxox_apps %}
+{% endblock %}
+
+{% block fxox_marketplace %}
+{% endblock %}
+
+{% block fxox_hub %}
+  <section class="fxos-hub">
+    <div class="content-wrapper">
+      <div class="hub-container">
+        <h2>{{_('Visit the Participation Hub')}}</h2>
+        <p>{{_('Want to make Firefox OS even better? Get all the resources, tools and documentation you need from the Participation Hub.')}}</p>
+        <p><a class="more" rel="external" href="https://firefoxos.mozilla.community">{{_('Check it out')}}</a></p>
+      </div>
+      <div class="hub-image">
+        {{ high_res_img('firefox/os-new/hub.png', {'width': '241', 'height': '261', 'alt':''}) }}
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block fxox_mdn %}
+  <section class="fxos-mdn">
+    <div class="content-wrapper">
+      <div class="mdn-container">
+        <h2>{{_('Learn more at MDN')}}</h2>
+        <p>{{_('Want to do even more with Firefox OS? Head over to the Mozilla Developer Network to learn more about platform guides, Firefox OS add-ons and more.')}}</p>
+        <p><a class="more" rel="external" href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS">{{_('Visit MDN')}}</a></p>
+      </div>
+      <div class="mdn-image">
+        {{ high_res_img('firefox/os-new/mdn-logo.png', {'width': '301', 'height': '304', 'alt':''}) }}
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block fxox_community %}
+{% endblock %}
+
+{% block fxox_help %}
+{% endblock %}
+
+{% block fxox_try %}
+  <section class="fxos-try">
+    <div class="content-wrapper">
+      <h2>{{_('Ready to try Firefox OS 2.5 Developer Preview on your Android device?')}}</h2>
+      <div class="primary-cta">
+        <a href="https://d2yw7jilxa8093.cloudfront.net/B2GDroid-mozilla-central-nightly-latest.apk" class="cta-button" data-pixel="52162" data-id="Mozilla_B2G_Activity_Tag_2">{{_('Get the Android App')}}</a>
+        <p>{{_('Want the full Firefox OS 2.5 experience?')}} <a href="https://firefoxos.mozilla.community/devices/" class="more" rel="external">{{_('Flash your phone')}}</a></p>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block fxox_news %}
+{% endblock %}
+
+{% block fxox_devices %}
+{% endblock %}
+
+{% block email_form %}
+  <section class="fxos-signup">
+    <div class="content-wrapper">
+      {% set newsletter_title = _('Sign up to get the latest Firefox OS news and more') %}
+      {% set newsletter_submit = _('Sign up now') %}
+      {{ email_newsletter_form(title=newsletter_title, submit_text=newsletter_submit) }}
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+<!--[if IE 9]>
+  {% javascript 'matchmedia_addlistener' %}
+<![endif]-->
+  {% javascript 'firefox_os_2_5' %}
+{% endblock  %}

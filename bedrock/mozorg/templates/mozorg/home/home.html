@@ -103,7 +103,7 @@
             <a data-link-type="firefox" data-element-location="nav click" href="{{ url('firefox.family.index') }}">{{_('Firefox')}}</a>
           </li>
           <li class="last donate-item">
-            <a data-link-type="donate" data-element-location="nav click" href="{{ donate_url('mozillaorg_topNAV') }}">{{_('Donate')}}</a>
+            <a data-link-type="donate" data-element-location="nav click" href="{{ donate_url('header') }}">{{_('Donate')}}</a>
           </li>
         </ul>
       </nav>
@@ -174,7 +174,17 @@
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
-      {% if l10n_has_tag('webmaker_promo_introducing') %}
+      {% if l10n_has_tag('gear_promo_eoy') %}
+        <li id="promo-6" class="item promo-large-landscape gear" tabindex="0">
+          <h2 class="primary go">{{ _('Get the gear, <br>support the mission') }}</h2>
+          <a class="panel-link" rel="external" href="https://gear.mozilla.org?ref=holiday2015&amp;utm_campaign=holiday2015&amp;utm_source=mozilla.org&amp;utm_medium=referral" data-promotion-id="promo-6" data-promotion-name="Get the gear, support the mission" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
+            <div class="secondary">
+              <h3>{{ _('Shop for t-shirts, hoodies, hats<br> and more at Mozilla Gear.') }}</h3>
+              <p class="more">{{ _('Shop now') }}</p>
+            </div>
+          </a>
+        </li>
+      {% elif l10n_has_tag('webmaker_promo_introducing') %}
         <li id="promo-6" class="item promo-large-landscape webmaker" tabindex="0">
           <h2 class="primary go">{{ _('Introducing<br> the new Webmaker') }}</h2>
           <a class="panel-link" rel="external" href="https://webmaker.org/" data-promotion-id="promo-6" data-promotion-name="Introducing the new Webmaker" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
@@ -233,10 +243,10 @@
           </a>
         </li>
       {% endif %}
-      {% if l10n_has_tag('gear_store') %}
-        <li id="promo-9" class="item promo-small-landscape gear">
-          <a class="panel-link" href="https://gear.mozilla.org/?utm_source=gear.mozilla.org&amp;utm_medium=referral&amp;utm_content=mozillaorg_smallblock" data-promotion-id="promo-9" data-promotion-name="Get gear" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
-            <h2>{{ _('Official Mozilla gear is here') }}</h2>
+      {% if l10n_has_tag('webmaker_promo_introducing') %}
+        <li id="promo-9" class="item promo-small-landscape introducing-webmaker">
+          <a class="panel-link" href="https://webmaker.org/" data-promotion-id="promo-9" data-promotion-name="Introducing the new Webmaker" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
+            <h2>{{ _('Introducing<br> the new Webmaker') }}</h2>
           </a>
         </li>
       {% else %}
@@ -281,13 +291,14 @@
           </a>
         </li>
       {% endif %}
+      {# see https://bugzilla.mozilla.org/show_bug.cgi?id=1223622#c26 for details #}
       {% if LANG == 'en-US' %}
-        <li id="promo-11" class="item promo-large-landscape viewsource" tabindex="0">
-          <h2 class="primary go">{{ _('Build the Web of tomorrow, today') }}</h2>
-          <a class="panel-link" href="https://viewsourceconf.org/" data-promotion-id="promo-11" data-promotion-name="Mozilla Developer Network" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+        <li id="promo-11" class="item promo-large-landscape fundraiser" tabindex="0">
+          <h2 class="primary go">{{ _('Donate to Mozilla,<br> the non-profit behind Firefox.') }}</h2>
+          <a class="panel-link" href="{{ donate_url('promotile') }}" data-promotion-id="promo-11" data-promotion-name="End of year fundraising" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
             <div class="secondary">
-              <h3>{{ _('Join us at View Source<br> to learn and be inspired.') }}</h3>
-              <p class="more">{{ _('Register now') }}</p>
+              <h3>{{ _('Our year-end<br> fundraiser ends Dec 31.') }}</h3>
+              <p class="more">{{ _('Donate now') }}</p>
             </div>
           </a>
         </li>

@@ -263,8 +263,140 @@ html[dir="rtl"] {
 #sec-plugin-uptodate {
     display: none;
 }
-.footer-newsletter-form {
-    padding: 40px 20px;
+#mozorg-newsletter-form,
+#newsletter-form {
+    margin: 0 auto;
+    padding: 0 5px (@baseLine * 2);
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+    text-align: center;
+
+    h3 {
+        display: block;
+        float: none;
+        color: @textColorSecondary;
+        margin: 0;
+        padding: (@baseLine * 2) 0;
+        width: auto;
+        .font-size(36px);
+        letter-spacing: -1px;
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(32px);
+        }
+    }
+
+    .form-title {
+        float: none;
+        margin: 0;
+        width: auto;
+    }
+
+    .form-contents {
+        float: none;
+        display: inline-block;
+        margin: 0;
+        width: 45%;
+        text-align: left;
+        vertical-align: top;
+
+        @media only screen and (max-width: @breakTablet) {
+            display: block;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        input[type="email"] {
+            background-color: #fbf9f4;
+            padding: 5px 10px;
+            border: 2px solid #e1ddd3;
+            border-radius: 7px;
+            width: 90%;
+            height: 32px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        ::-webkit-input-placeholder {
+           color: #e1ddd3;
+           .open-sans;
+           font-weight: bold;
+           opacity: 1;
+        }
+
+        ::-moz-placeholder {
+           color: #e1ddd3;
+           .open-sans;
+           font-weight: bold;
+           opacity: 1;
+        }
+
+        :-ms-input-placeholder {
+           color: #e1ddd3;
+           .open-sans;
+           font-weight: bold;
+           opacity: 1;
+        }
+    }
+
+    .form-submit {
+        float: none;
+        display: inline-block;
+        margin: 0;
+        width: 45%;
+        text-align: left;
+
+        @media only screen and (max-width: @breakTablet) {
+            display: block;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            min-height: 45px;
+            background: #0095dd;
+            .font-size(18px);
+            font-weight: normal;
+            text-shadow: none;
+            text-transform: uppercase;
+            text-align: center;
+            box-shadow: none;
+            border-radius: 7px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            &:hover,
+            &:focus {
+                background: lighten(#0095dd, 5%);
+            }
+        }
+    }
+
+    .privacy-check-label .title {
+        padding: 0 20px 0 25px;
+    }
+}
+html[lang="de"] {
+    #mozorg-newsletter-form,
+    #newsletter-form {
+        input[type="submit"] {
+            .font-size(@largeFontSize);
+        }
+    }
+}
+.newsletter-container {
+    background-color: #fff;
+    border-radius: 8px;
+}
+.newsletter-form.thank {
+    width: 90%;
+    margin: 0 auto;
+    padding: @baseLine;
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
 }
 .warning {
     .offset(2);
@@ -417,9 +549,5 @@ html[dir="rtl"] {
         width: auto;
         float: none;
         margin: 0 0 @baseLine;
-    }
-
-    .footer-newsletter-form {
-        padding-bottom: 20px;
     }
 }

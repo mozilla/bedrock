@@ -10,8 +10,11 @@ def to_uppercase(url):
 
 
 redirectpatterns = (
-    # bug 755826
-    redirect(r'^zh-CN/?$', 'http://firefox.com.cn/', locale_prefix=False),
+    # bug 755826, 1222348
+    redirect(r'^zh-CN/?$', 'http://www.firefox.com.cn/', locale_prefix=False, query={
+        'utm_medium': 'referral',
+        'utm_source': 'mozilla.org'
+    }),
 
     # bug 764261, 841393, 996608, 1008162, 1067691, 1113136, 1119022, 1131680, 1115626
     redirect(r'^zh-TW/?$', 'http://mozilla.com.tw/', locale_prefix=False),
@@ -24,7 +27,7 @@ redirectpatterns = (
              locale_prefix=False),
 
     # bug 874913
-    redirect(r'products/download.html', 'firefox.new', anchor='download-fx'),
+    redirect(r'products/download.html', 'firefox.new', query=''),
 
     # bug 845580
     redirect(r'^home/?$', 'firefox.new'),
@@ -149,11 +152,6 @@ redirectpatterns = (
     redirect(r'^firefox/brand/copy/rules/?$',
              'styleguide.communications.copy-rules'),
     redirect(r'^firefox/brand/downloads/?$', 'styleguide.home'),
-
-    # Bug 1186373
-    redirect(r'^firefox/hello/npssurvey/?$',
-             'https://www.surveygizmo.com/s3/2227372/Firefox-Hello-Product-Survey',
-             permanent=False),
 
     # Bug 1071318
     redirect(r'^firefox/mobile/?$', 'firefox.android.index'),
@@ -432,6 +430,11 @@ redirectpatterns = (
     redirect(r'^MPL/missing.html$',
              'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/missing.html',
              locale_prefix=False),
+
+    # Bug 1216953
+    redirect(r'^MPL/MPL-1\.0\.html$',
+             'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/1.0/'),
+    redirect(r'^MPL/MPL-1\.1\.html$', '/MPL/1.1/'),
 
     # Bug 987852 & 1201914
     redirect(r'^MPL/(?P<page>.+)\.html$', '/MPL/{page}/'),
