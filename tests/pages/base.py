@@ -93,4 +93,4 @@ class BasePage(Page):
         def select_language(self, value):
             el = self.find_element(self._language_locator)
             Select(el).select_by_value(value)
-            self.wait.until(lambda s: value in s.current_url)
+            self.wait.until(lambda s: '/{0}/'.format(value) in s.current_url)
