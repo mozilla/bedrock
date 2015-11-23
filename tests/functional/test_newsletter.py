@@ -21,6 +21,8 @@ def test_default_values(base_url, selenium):
     assert page.is_privacy_policy_link_displayed
 
 
+@pytest.mark.skipif('www.allizom.org' in pytest.config.getoption('base_url'),
+    reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1218451')
 def test_successful_sign_up(base_url, selenium):
     page = NewsletterPage(base_url, selenium).open()
     page.type_email('noreply@mozilla.com')
