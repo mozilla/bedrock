@@ -292,7 +292,7 @@
         </li>
       {% endif %}
       {# see https://bugzilla.mozilla.org/show_bug.cgi?id=1223622#c26 for details #}
-      {% if LANG == 'en-US' %}
+      {% if l10n_has_tag('eoy_fundraising_2015') %}
         <li id="promo-11" class="item promo-large-landscape fundraiser" tabindex="0">
           <h2 class="primary go">{{ _('Donate to Mozilla,<br> the non-profit behind Firefox.') }}</h2>
           <a class="panel-link" href="{{ donate_url('promotile') }}" data-promotion-id="promo-11" data-promotion-name="End of year fundraising" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
