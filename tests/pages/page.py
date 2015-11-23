@@ -61,6 +61,7 @@ class Page(WebView):
         return self.base_url
 
     def wait_for_page_to_load(self):
+        self.wait.until(lambda s: self.url in s.current_url)
         return self
 
 
