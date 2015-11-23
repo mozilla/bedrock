@@ -13,8 +13,8 @@ class BasePage(Page):
 
     _url = '{base_url}/{locale}'
 
-    def __init__(self, base_url, selenium, locale='en-US'):
-        super(BasePage, self).__init__(base_url, selenium, locale=locale)
+    def __init__(self, base_url, selenium, locale='en-US', **kwargs):
+        super(BasePage, self).__init__(base_url, selenium, locale=locale, **kwargs)
 
     def wait_for_page_to_load(self):
         super(BasePage, self).wait_for_page_to_load()
