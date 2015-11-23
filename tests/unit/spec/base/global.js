@@ -67,7 +67,6 @@ describe('global.js', function() {
     describe('update_download_text_for_old_fx', function () {
         var windowTransStub;
         var isFirefoxStub;
-        var isFirefoxUpToDateStub;
 
         // append HTML to body for each test
         beforeEach(function () {
@@ -113,13 +112,14 @@ describe('global.js', function() {
 
             // set global functions back to original state
             isFirefoxStub.restore();
-            isFirefoxUpToDateStub.restore();
             windowTransStub.restore();
         });
 
         it('should change the button text when using old fx', function () {
             isFirefoxStub = sinon.stub(window, 'isFirefox').returns(true);
-            isFirefoxUpToDateStub = sinon.stub(window, 'isFirefoxUpToDate').returns(false);
+            spyOn(window.Mozilla.Client, 'getFirefoxDetails').and.callFake(function(callback) {
+                callback({ version: '40.0', channel: 'release', isUpToDate: false, isESR: false });
+            });
 
             update_download_text_for_old_fx();
 
@@ -129,7 +129,6 @@ describe('global.js', function() {
 
         it('should not change the button text when not using fx', function () {
             isFirefoxStub = sinon.stub(window, 'isFirefox').returns(false);
-            isFirefoxUpToDateStub = sinon.stub(window, 'isFirefoxUpToDate').returns(false);
 
             update_download_text_for_old_fx();
 
@@ -139,7 +138,9 @@ describe('global.js', function() {
 
         it('should not change the button text when using up to date fx', function () {
             isFirefoxStub = sinon.stub(window, 'isFirefox').returns(true);
-            isFirefoxUpToDateStub = sinon.stub(window, 'isFirefoxUpToDate').returns(true);
+            spyOn(window.Mozilla.Client, 'getFirefoxDetails').and.callFake(function(callback) {
+                callback({ version: '41.0', channel: 'release', isUpToDate: true, isESR: false });
+            });
 
             update_download_text_for_old_fx();
 
@@ -293,28 +294,6 @@ describe('global.js', function() {
             var result = isFirefoxiOS(ua);
             expect(result).toBeTruthy();
         });
-    });
-
-    describe('isFirefoxESR', function () {
-
-        it('should return true for Firefox ESR', function () {
-            // Firefox 38.0 ESR
-            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150505103531')).toBeTruthy();
-            // Firefox 38.0.1 ESR
-            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150514102509')).toBeTruthy();
-            // Firefox 38.1.0 ESR
-            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150624141534')).toBeTruthy();
-        });
-
-        it('should return false for Firefox non-ESR', function () {
-            // Firefox 38.0 non-ESR
-            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150508094354')).toBeFalsy();
-            // Firefox 38.0.1 non-ESR
-            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150513174244')).toBeFalsy();
-            // Firefox 38.0.5 non-ESR
-            expect(isFirefoxESR('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:38.0) Gecko/20100101 Firefox/38.0', '20150525141253')).toBeFalsy();
-        });
-
     });
 
     describe('isFirefoxUpToDate', function () {

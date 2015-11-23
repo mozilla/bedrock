@@ -957,6 +957,7 @@ PIPELINE_JS = {
             'js/base/global.js',
             'js/base/global-init.js',
             'js/newsletter/form.js',
+            'js/base/mozilla-client.js',
             'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
             'js/base/nav-main-resp.js',

@@ -22,6 +22,11 @@ https://support.mozilla.org and the special about:home page.
 
 The ``Mozilla.UITour`` library is maintained on `Mozilla Central`_.
 
+.. Important::
+
+    The API is supported only on the desktop versions of Firefox. It doesn't
+    work on Firefox for Android and iOS.
+
 Local development
 -----------------
 

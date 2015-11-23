@@ -64,6 +64,7 @@
 /*--------------------------------------------------------------------------*/
 // Conditional download bar
 #conditional-download-bar {
+    display: none;
     background: #fff;
     color: @textColorPrimary;
     min-height: 1.5em;
@@ -118,32 +119,15 @@
     }
 }
 
-#conditional-download-bar #dlbar-nonfx {
-    display: block;
-}
-
-html.firefox-latest #conditional-download-bar  {
-    display: none;
-}
-
-html.firefox-old #conditional-download-bar #dlbar-oldfx-desktop {
-    display: block;
-}
-
-html.ios #conditional-download-bar #dlbar-ios {
-    display: block;
-}
-
+html.nonfx #conditional-download-bar,
+html.nonfx #conditional-download-bar #dlbar-nonfx,
+html.firefox-old #conditional-download-bar,
+html.firefox-old #conditional-download-bar #dlbar-oldfx-desktop,
+html.ios #conditional-download-bar,
+html.ios #conditional-download-bar #dlbar-ios,
+html.android #conditional-download-bar,
 html.android #conditional-download-bar #dlbar-nonfx-android {
     display: block;
-}
-
-html.firefox-old,
-html.android,
-html.ios {
-    #conditional-download-bar #dlbar-nonfx {
-        display: none;
-    }
 }
 
 

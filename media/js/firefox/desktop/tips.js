@@ -15,7 +15,13 @@
 
     // only show download button for users on desktop platforms, using either a non-Firefox browser
     // or an out of date version of Firefox
-    if ((window.isFirefox() && window.isFirefoxUpToDate()) || $html.hasClass('android') || $html.hasClass('ios') || $html.hasClass('fxos')) {
+    if (window.isFirefox()) {
+        window.Mozilla.Client.getFirefoxDetails(function(data) {
+            if (data.isUpToDate) {
+                $('#footer').addClass('hide-download');
+            }
+        });
+    } else if (window.site.platform.match(/^(android|ios|fxos)$/)) {
         $('#footer').addClass('hide-download');
     }
 
