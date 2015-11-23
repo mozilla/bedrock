@@ -124,13 +124,13 @@
     <div class="promo-grid-inner">
       <ul class="promo-grid {% if tweets %}has-twitter-promo{% endif %}">
       {# L10n: Begin home page promos. Line breaks are for visual formatting only. #}
-      {% if l10n_has_tag('ios_promo') and waffle.switch('firefox-ios-global') %}
-        <li id="promo-1" class="item promo-large-portrait firefox-ios" data-name="Firefox is now available for iOS" tabindex="0">
-          <h2 class="primary go">{{ _('Firefox is<br> now available<br> for iOS') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.ios') }}">
+      {% if l10n_has_tag('tracking_protection') %}
+        <li id="promo-1" class="item promo-large-portrait private-browsing" tabindex="0">
+          <h2 class="primary go">{{ _('Introducing the new <br>Private Browsing') }}</h2>
+          <a class="panel-link" href="{{ url('firefox.private-browsing') }}" data-promotion-id="promo-1" data-promotion-name="Introducing the new Private Browsing" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
             <div class="secondary">
-              <h3>{{ _('Add it to your iPhone, iPad &amp; iPod touch.') }}</h3>
-              <p class="more">{{ _('Get Firefox for iOS') }}</p>
+              <h3>{{ _('More protection. <br>The most privacy.') }}</h3>
+              <p class="more">{{ _('Try Private Browsing') }}</p>
             </div>
           </a>
         </li>
@@ -218,7 +218,7 @@
         <li id="promo-7" class="item promo-face">
           {{ promo_face(3, 'promo-7') }}
         </li>
-      {% if l10n_has_tag('smarton_promo_tracking') and waffle.switch('tracking-protection') %}
+      {% if l10n_has_tag('smarton_promo_tracking') %}
         <li id="promo-8" class="item promo-small-landscape smarton-tracking" tabindex="0">
           <a class="panel-link" rel="external" href="{{ url('teach.smarton.tracking') }}" data-promotion-id="promo-8" data-promotion-name="Get smart on Tracking" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Get smart on Tracking') }}</h2>
@@ -256,13 +256,13 @@
           </a>
         </li>
       {% endif %}
-      {% if l10n_has_tag('tracking_protection') and waffle.switch('tracking-protection') %}
-        <li id="promo-10" class="item promo-large-portrait private-browsing" tabindex="0">
-          <h2 class="primary go">{{ _('Introducing the new <br>Private Browsing') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.private-browsing') }}" data-promotion-id="promo-10" data-promotion-name="Introducing the new Private Browsing" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+      {% if l10n_has_tag('ios_promo') %}
+        <li id="promo-10" class="item promo-large-portrait firefox-ios" data-name="Firefox is now available for iOS" tabindex="0">
+          <h2 class="primary go">{{ _('Firefox is<br> now available<br> for iOS') }}</h2>
+          <a class="panel-link" href="{{ url('firefox.ios') }}" data-promotion-id="promo-10" data-promotion-name="Firefox is now available for iOS" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
             <div class="secondary">
-              <h3>{{ _('More protection. <br>The most privacy.') }}</h3>
-              <p class="more">{{ _('Try Private Browsing') }}</p>
+              <h3>{{ _('Add it to your iPhone, iPad &amp; iPod touch.') }}</h3>
+              <p class="more">{{ _('Get Firefox for iOS') }}</p>
             </div>
           </a>
         </li>
