@@ -26,6 +26,8 @@ def test_toggle_category_without_areas(base_url, selenium):
     assert not page.is_areas_region_displayed
 
 
+@pytest.mark.skipif('www.allizom.org' in pytest.config.getoption('base_url'),
+    reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1218451')
 def test_successful_sign_up_coding(base_url, selenium):
     page = ContributeSignUpPage(base_url, selenium).open()
     page.select_coding_category()
@@ -40,6 +42,8 @@ def test_successful_sign_up_coding(base_url, selenium):
 
 
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1221526')
+@pytest.mark.skipif('www.allizom.org' in pytest.config.getoption('base_url'),
+    reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1218451')
 def test_successful_sign_up_helping(base_url, selenium):
     page = ContributeSignUpPage(base_url, selenium).open()
     page.select_helping_category()
