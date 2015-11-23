@@ -7,7 +7,6 @@ import pytest
 from pages.home import HomePage
 
 
-@pytest.mark.skipif(reason='https://webqa-ci.mozilla.com/job/bedrock.dev.win10.ie/92/')
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
     page = HomePage(base_url, selenium).open()
@@ -23,7 +22,6 @@ def test_navigation(base_url, selenium):
     assert firefox_page.url in selenium.current_url
 
 
-@pytest.mark.skipif(reason='https://webqa-ci.mozilla.com/job/bedrock.dev.win10.ie/92/')
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 @pytest.mark.viewport('mobile')
