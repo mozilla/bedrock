@@ -36,6 +36,7 @@ def test_newsletter_default_values(base_url, selenium):
     assert page.newsletter.is_privacy_policy_link_displayed
 
 
+@pytest.mark.flaky(reruns=1)
 def test_newsletter_successful_sign_up(base_url, selenium):
     page = ContributePage(base_url, selenium).open()
     page.newsletter.expand_form()
