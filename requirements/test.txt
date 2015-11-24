@@ -36,3 +36,6 @@ selenium==2.48.0
 # sha256: Q4LXqUTB4rHcF_7j_TV1SV-xAjajtulcxpVdsEmEvDw
 # sha256: 529Ztp_AzN6LlHcoSn-3JqJKIfX6rmqzBZOS6LvYiqc
 pytest-xdist==1.13.1
+
+# sha256: P7fn7BucO9euc0xq5XErmsAjE6NM7SJxcND2OKK4VKI
+pytest-rerunfailures==0.05
