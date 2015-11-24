@@ -7,6 +7,7 @@ import pytest
 from pages.styleguide import StyleGuidePage
 
 
+@pytest.mark.skipif(reason='https://webqa-ci.mozilla.com/job/bedrock.dev.win10.ie/102/')
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_open_close_navigation(base_url, selenium):
