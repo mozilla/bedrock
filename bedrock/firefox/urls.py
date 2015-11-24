@@ -33,6 +33,7 @@ urlpatterns = (
     redirect(r'^firefox/$', 'firefox.new', name='firefox', locale_prefix=False),
     url(r'^firefox/(?:%s/)?all/$' % channel_re,
         views.all_downloads, name='firefox.all'),
+    page('firefox/accounts', 'firefox/accounts.html'),
     page('firefox/channel', 'firefox/channel.html'),
     redirect('^firefox/channel/android/$', 'firefox.channel', locale_prefix=False),
     url(r'^firefox/choose/$', views.choose, name='firefox.choose'),

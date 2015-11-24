@@ -167,6 +167,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/dnt-bundle.css',
     },
+    'firefox_accounts': {
+        'source_filenames': (
+            'css/firefox/sync-animation.less',
+            'css/firefox/accounts.less',
+        ),
+        'output_filename': 'css/firefox_accounts-bundle.css',
+    },
     'firefox_all': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
@@ -1046,6 +1053,14 @@ PIPELINE_JS = {
             'js/firefox/family-nav.js',
         ),
         'output_filename': 'js/firefox_dnt-bundle.js',
+    },
+    'firefox_accounts': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/sync-animation.js',
+            'js/firefox/accounts.js',
+        ),
+        'output_filename': 'js/firefox_accounts-bundle.js',
     },
     'firefox_all': {
         'source_filenames': (
