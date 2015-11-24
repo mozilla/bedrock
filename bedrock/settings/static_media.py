@@ -609,6 +609,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/mozorg/home/home.less',
             'css/mozorg/home/home-promo.less',
+            'css/mozorg/home/takeover.less',
         ),
         'output_filename': 'css/home-bundle.css',
     },
@@ -1476,6 +1477,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/mozorg/home/home.js',
             'js/mozorg/home/ga-tracking.js',
+            'js/mozorg/home/takeover.js',
         ),
         'output_filename': 'js/home-bundle.js',
     },

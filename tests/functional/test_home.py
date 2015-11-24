@@ -48,6 +48,7 @@ def test_upcoming_events_are_displayed(base_url, selenium):
     assert events.is_events_list_displayed
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1214038')
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_mozilla_newsletter_default_values(base_url, selenium):
@@ -59,6 +60,7 @@ def test_mozilla_newsletter_default_values(base_url, selenium):
     assert page.mozilla_newsletter.is_privacy_policy_link_displayed
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1214038')
 def test_mozilla_newsletter_successful_sign_up(base_url, selenium):
     page = HomePage(base_url, selenium).open()
     newsletter = page.mozilla_newsletter
@@ -70,6 +72,7 @@ def test_mozilla_newsletter_successful_sign_up(base_url, selenium):
     assert newsletter.sign_up_successful
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1214038')
 @pytest.mark.nondestructive
 def test_mozilla_newsletter_sign_up_fails_when_missing_required_fields(base_url, selenium):
     page = HomePage(base_url, selenium).open()
