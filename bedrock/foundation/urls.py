@@ -10,7 +10,7 @@ urlpatterns = (
     page('about', 'foundation/about.html'),
 
     # Bug 1224565  /foundation/annualreport/2014/
-    redirect(r'^foundation/annualreport/$',
+    redirect(r'^annualreport/$',
              'foundation.annualreport.2014.index',
              name='foundation.annualreport', locale_prefix=False),
 
