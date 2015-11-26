@@ -58,7 +58,7 @@
     <section id="welcome" class="section">
 
       <figure class="right video">
-        <a class="video-play" href="//videos.cdn.mozilla.net/brand/Mozilla_2011_Story.webm" data-video-source="//videos.cdn.mozilla.net/brand/Mozilla_2011_Story" title="{{ _('Click to play this video') }}">
+        <a class="video-play" href="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story.webm" data-video-source="https://videos.cdn.mozilla.net/brand/Mozilla_2011_Story" title="{{ _('Click to play this video') }}">
           <img src="{{ static('img/foundation/annualreport/2011/vid-welcome.jpg') }}" alt="{{ _('Watch a brief video about Mozilla and our mission') }}" width="380">
         </a>
       </figure>
@@ -158,7 +158,7 @@
 
           <div class="overlay">
             <p>
-            {% trans fxos_url='//www.mozilla.org/firefoxos/' %}
+            {% trans fxos_url=url('firefox.os.index') %}
               Just like we did on the desktop, Mozilla is setting out to
               ensure that the mobile Web is full of freedom, choice and
               opportunity and that it has the ability for users to create
@@ -182,7 +182,7 @@
             </p>
 
             <p>
-            {% trans telefonica_url='//www.telefonica.com' %}
+            {% trans telefonica_url='http://www.telefonica.com' %}
               Firefox OS devices will launch in early 2013 through <a href="{{ telefonica_url }}" rel="external">Telefónica</a>,
               establishing HTML5 as a viable platform for the mobile industry.
               The Web as the platform will free developers to create groundbreaking
@@ -293,7 +293,7 @@
 
           <div class="overlay">
             <p>
-            {% trans webmaker_url='//webmaker.org' %}
+            {% trans webmaker_url='https://webmaker.org' %}
               The unique power of the Web means that anyone can make and build
               with it. Our new educational offering, <a href="{{ webmaker_url }}" rel="external">Mozilla Webmaker</a>,
               will place that power in the hands of millions of new creators everywhere.
@@ -302,8 +302,8 @@
 
             <p>
             {% trans
-                popcorn_url='//mozillapopcorn.org/',
-                thimble_url='//thimble.webmaker.org/' %}
+                popcorn_url='https://popcorn.webmaker.org/',
+                thimble_url='https://thimble.webmaker.org/' %}
               Webmaker tools, projects and events help educators, youth, media-makers
               and everyday consumers around the world move from using the Web to
               making the Web. In 2013, Webmaker will mobilize a global community of
@@ -322,7 +322,7 @@
       <aside class="left video mob-webmakervideo">
         <h3>{{ _('Webmaker: Video') }}</h3>
         <figure class="video">
-          <a class="video-play" href="https://webmaker.org/videos/" data-video-source="//videos.cdn.mozilla.net/serv/webmademovies/webmakers-instructors" title="{{ _('Click to view this video') }}">
+          <a class="video-play" href="https://webmaker.org/videos/" data-video-source="https://videos.cdn.mozilla.net/serv/webmademovies/webmakers-instructors" title="{{ _('Click to view this video') }}">
             <img src="{{ static('img/foundation/annualreport/2011/vid-webmaker.jpg') }}" alt="{{ _('Watch this video about teaching the next generation of Webmakers') }}">
           </a>
         </figure>
@@ -342,12 +342,12 @@
           <div class="overlay">
             <p>
             {% trans
-                cofound_url='//brendaneich.com/2004/06/the-non-world-non-wide-non-web/',
-                whatwg_url='//www.whatwg.org/',
-                html5_url='//dev.w3.org/html5/spec/Overview.html',
-                javascript_url='//ecmascript.org/',
-                dbaron_url='//dbaron.org/',
-                ocallahan_url='//robert.ocallahan.org/' %}
+                cofound_url='https://brendaneich.com/2004/06/the-non-world-non-wide-non-web/',
+                whatwg_url='https://whatwg.org/',
+                html5_url='http://dev.w3.org/html5/spec/Overview.html',
+                javascript_url='http://ecmascript.org/',
+                dbaron_url='http://dbaron.org/',
+                ocallahan_url='http://robert.ocallahan.org/' %}
               Mozilla has always contributed to Web standards, going back
               as far as the start of the project, and we will continue to do
               that moving forward. We <a href="{{ cofound_url }}" rel="external" hreflang="en-US">co-founded</a>
@@ -623,7 +623,7 @@
 
         <aside class="video left">
           <img src="{{ static('img/foundation/annualreport/2011/logo-mozcamp.png') }}" alt="">
-          <a class="video-play" href="//videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam.webm" data-video-source="//videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam" title="{{ _('Click to play this video') }}">
+          <a class="video-play" href="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam.webm" data-video-source="https://videos.cdn.mozilla.net/serv/drafts/MozCamp-Latam" title="{{ _('Click to play this video') }}">
             <img src="{{ static('img/foundation/annualreport/2011/vid-mozcamp.jpg') }}" alt="{{ _('Watch this video showing some of the activities from MozCamp in Latin America') }}">
           </a>
         </aside>
@@ -669,10 +669,10 @@
           <div class="overlay">
             <p>
             {% trans
-                tunisia_url='//mozilla-tunisia.org/',
-                kenya_url='//www.mozilla-kenya.org/',
-                philippines_url='//www.mozillaphilippines.org/',
-                myanmar_url='//mozillamyanmar.org/' %}
+                tunisia_url='http://mozilla-tunisia.org/',
+                kenya_url='http://www.mozilla-kenya.org/',
+                philippines_url='http://www.mozillaphilippines.org/',
+                myanmar_url='http://mozillamyanmar.org/' %}
               Some of the fastest growing and most dynamic communities are some
               of our youngest communities. They can be found in the Middle East,
               Africa and South East Asia and many of their members have been invited
@@ -707,7 +707,7 @@
           <div class="jcarousel-clip">
             <ul id="story-slider">
               <li id="story-chit" class="vcard">
-                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory1.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/chit-poster.jpg') }}">
+                <a class="contributor contrib-play" href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory1.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/chit-poster.jpg') }}">
                   <hgroup>
                     <h4 class="fn">{{ _('Chit Thiri Maung') }}</h4>
                     <h5>
@@ -726,7 +726,7 @@
               </li>
 
               <li id="story-viking" class="vcard">
-                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory2.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/viking-poster.jpg') }}">
+                <a class="contributor contrib-play" href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory2.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/viking-poster.jpg') }}">
                   <hgroup>
                     <h4 class="fn">{{ _('Viking Karwur') }}</h4>
                     <h5>
@@ -746,7 +746,7 @@
               </li>
 
               <li id="story-keng" class="vcard">
-                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory4.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/keng-poster.jpg') }}">
+                <a class="contributor contrib-play" href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory4.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/keng-poster.jpg') }}">
                   <hgroup>
                     <h4 class="fn">{{ _('Patipat “Keng” Susumpow') }}</h4>
                     <h5>
@@ -765,7 +765,7 @@
               </li>
 
               <li id="story-claire" class="vcard">
-                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory5.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/claire-poster.jpg') }}">
+                <a class="contributor contrib-play" href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory5.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/claire-poster.jpg') }}">
                   <hgroup>
                     <h4 class="fn">{{ _('Claire Corgnou') }}</h4>
                     <h5>
@@ -784,7 +784,7 @@
               </li>
 
               <li id="story-haitham" class="vcard">
-                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory6.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/haitham-poster.jpg') }}">
+                <a class="contributor contrib-play" href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory6.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/haitham-poster.jpg') }}">
                   <hgroup>
                     <h4 class="fn">{{ _('Haitham El-Ghareeb') }}</h4>
                     <h5>
@@ -803,7 +803,7 @@
               </li>
 
               <li id="story-ioana" class="vcard">
-                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory7.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/ioana-poster.jpg') }}">
+                <a class="contributor contrib-play" href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory7.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/ioana-poster.jpg') }}">
                   <hgroup>
                     <h4 class="fn">{{ _('Ioana Chiorean') }}</h4>
                     <h5>
@@ -822,7 +822,7 @@
               </li>
 
               <li id="story-brian" class="vcard">
-                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory8.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/brian-poster.jpg') }}">
+                <a class="contributor contrib-play" href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory8.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/brian-poster.jpg') }}">
                   <hgroup>
                     <h4 class="fn">{{ _('Brian King') }}</h4>
                     <h5>
@@ -841,7 +841,7 @@
               </li>
 
               <li id="story-mohomodou" class="vcard">
-                <a class="contributor contrib-play" href="//videos.cdn.mozilla.net/serv/drafts/Contributorstory9.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/mohomodou-poster.jpg') }}">
+                <a class="contributor contrib-play" href="https://videos.cdn.mozilla.net/serv/drafts/Contributorstory9.webm" data-poster="{{ static('img/foundation/annualreport/2011/contributors/mohomodou-poster.jpg') }}">
                   <hgroup>
                     <h4 class="fn">{{ _('Mohomodou Houssouba') }}</h4>
                     <h5>
@@ -909,8 +909,8 @@
       <section class="sus-links">
         <ul>
           <li><a class="sus-faq" href="{{ url('foundation.annualreport.2011faq') }}">{{ _('FAQ') }}</a></li>
-          <li><a class="sus-fin" href="//static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20and%20Subsidiaries%202011%20Audited%20Financial%20Statement.pdf" hreflang="en-US">{{ _('2011 Audited Financial Statement') }} <small>{{ _('Download PDF') }}</small></a></li>
-          <li><a class="sus-990" href="//static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20-%202011%20Public%20Disclosure%20990.pdf" hreflang="en-US">{{ _('2011 Form 990') }} <small>{{ _('Download PDF') }}</small></a></li>
+          <li><a class="sus-fin" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20and%20Subsidiaries%202011%20Audited%20Financial%20Statement.pdf" hreflang="en-US">{{ _('2011 Audited Financial Statement') }} <small>{{ _('Download PDF') }}</small></a></li>
+          <li><a class="sus-990" href="https://static.mozilla.com/moco/en-US/pdf/Mozilla%20Foundation%20-%202011%20Public%20Disclosure%20990.pdf" hreflang="en-US">{{ _('2011 Form 990') }} <small>{{ _('Download PDF') }}</small></a></li>
         </ul>
       </section>
 
