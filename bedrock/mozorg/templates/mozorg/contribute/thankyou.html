@@ -64,8 +64,8 @@
           {% endif %}
           </a>
         </p>
-        
-      {% else %} 
+
+      {% else %}
         <div class="mozillians-profile friends"></div>
         <h2 class="section-title">
           {{ _('In the meantime&hellip;') }}
@@ -97,7 +97,7 @@
           <h3>{{ _('Here are a few other ways you can support Mozilla right now.') }}</h3>
           <ul class="other-actions">
             <li>
-              <a href="https://sendto.mozilla.org/page/contribute/Give-Now?source=mozillaorg&amp;ref=volunteer_getinvolvedpage201410&amp;utm_campaign=volunteer_getinvolvedpage201410&amp;utm_source=mozillaorg&amp;utm_medium=referral" class="other-donate" data-label="Donate to Mozilla">{{ _('Donate to Mozilla') }}</a>
+              <a href="{{ donate_url('contribute') }}" class="other-donate" data-label="Donate to Mozilla">{{ _('Donate to Mozilla') }}</a>
             </li>
             <li>
               <a href="{{ url('firefox') }}" class="other-download" data-label="Download Firefox">{{ _('Download Firefox') }}</a>

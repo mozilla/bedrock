@@ -884,9 +884,9 @@ URLS = flatten((
     # openwebfund/ and openwebfund/index.html redirect to another site.  Careful because
     # there are other pages under openwebfund that still need to be served from Bedrock.
     url_test('/foundation/openwebfund/',
-             'https://sendto.mozilla.org/page/contribute/join-mozilla?source=owf_redirect'),
+             'https://donate.mozilla.org/?source=owf_redirect'),
     url_test('/foundation/donate.html',
-             'https://sendto.mozilla.org/page/contribute/openwebfund'),
+             'https://donate.mozilla.org/?source=donate_redirect'),
 
     # FIXUPs for changing foo/bar.html to foo/bar/
     # Redirect foundation/foo.html to foundation/foo/, with a redirect for the nice search engines

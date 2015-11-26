@@ -596,93 +596,307 @@ MOBILIZER_LOCALE_LINK = {
     'cs': 'https://wiki.mozilla.org/Mobilizer/MobilizerCzechRepublic/'
 }
 
-DONATE_SPANISH_LINK = ('https://donate.mozilla.org/es/?presets=100,50,25,15&amount=50'
-    '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
-    '&utm_medium=referral&utm_content={source}&currency=eur')
+DONATE_LINK = ('https://donate.mozilla.org/{locale}/?presets={presets}'
+    '&amount={default}&ref=EOYFR2015&utm_campaign=EOYFR2015'
+    '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
+    '&currency={currency}')
 
-DONATE_LOCALE_LINK = {
-    'default': (
-        'https://sendto.mozilla.org/page/contribute/Give-Now?source={source}'
-    ),
-    'en-US': (
-        'https://donate.mozilla.org/?presets=100,50,25,15'
-        '&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
-    ),
-    'cs': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-czk/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_CZK'
-    ),
-    'da': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-dkk/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source={source}&utm_medium=referral&utm_content=PPcurrency_DKK'
-    ),
-    'de': (
-        'https://donate.mozilla.org/de/?presets=100,50,25,15&amount=50'
-        '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
-        '&utm_medium=referral&utm_content={source}&currency=eur'
-    ),
-    'es-AR': DONATE_SPANISH_LINK,
-    'es-CL': DONATE_SPANISH_LINK,
-    'es-ES': DONATE_SPANISH_LINK,
-    'es-MX': DONATE_SPANISH_LINK,
-    'fr': (
-        'https://donate.mozilla.org/fr/?presets=100,50,25,15&amount=50'
-        '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
-        '&utm_medium=referral&utm_content={source}&currency=eur'
-    ),
-    'he': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-ils/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_ILS'
-    ),
-    'hu': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-huf/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_HUF'
-    ),
-    'ja': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-jpy/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_JPY'
-    ),
-    'nb-NO': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-nok/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_NOK'
-    ),
-    'nn-NO': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-nok/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_NOK'
-    ),
-    'pl': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-pln/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_PLN'
-    ),
-    'pt-BR': (
-        'https://donate.mozilla.org/pt-BR/?presets=375,187,90,55&amount=187'
-        '&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org'
-        '&utm_medium=referral&utm_content={source}&currency=brl'
-    ),
-    'ru': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-rub/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_RUB'
-    ),
-    'sv-SE': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-sek/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_SEK'
-    ),
-    'th': (
-        'https://sendto.mozilla.org/page/content/paypal-donate-thb/?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=PPcurrency_THB'
-    ),
+DONATE_PARAMS = {
+    'en-US': {
+        'currency': 'usd',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'an': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'as': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'ast': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'brx': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'ca': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'cs': {
+        'currency': 'czk',
+        'presets': '1500,1000,500,190',
+        'default': '1000'
+    },
+    'cy': {
+        'currency': 'gbp',
+        'presets': '150,100,50,25',
+        'default': '100'
+    },
+    'da': {
+        'currency': 'dkk',
+        'presets': '1000,500,250,150',
+        'default': '500'
+    },
+    'de': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'dsb': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'el': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'en-GB': {
+        'currency': 'gbp',
+        'presets': '150,100,50,25',
+        'default': '100'
+    },
+    'es-ES': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'es-MX': {
+        'currency': 'mxn',
+        'presets': '1000,700,500,250',
+        'default': '700'
+    },
+    'eo': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'et': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'eu': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'fa': {
+        'currency': 'irr',
+        'presets': '300000,225000,150000,50000',
+        'default': '225000'
+    },
+    'fi': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'fr': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'fy-NL': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'ga-IE': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'gd': {
+        'currency': 'gbp',
+        'presets': '150,100,50,25',
+        'default': '100'
+    },
+    'gl': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'gu-IN': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'he': {
+        'currency': 'ils',
+        'presets': '500,360,180,120',
+        'default': '360'
+    },
+    'hi-IN': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'hsb': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'hu': {
+        'currency': 'huf',
+        'presets': '5000,3500,2000,1000',
+        'default': '3500'
+    },
+    'id': {
+        'currency': 'idr',
+        'presets': '300000,225000,150000,50000',
+        'default': '225000'
+    },
+    'in': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'it': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'ja': {
+        'currency': 'jpy',
+        'presets': '10000,5000,2500,1000',
+        'default': '5000'
+    },
+    'ja-JP': {
+        'currency': 'jpy',
+        'presets': '10000,5000,2500,1000',
+        'default': '5000'
+    },
+    'ja-JP-mac': {
+        'currency': 'jpy',
+        'presets': '10000,5000,2500,1000',
+        'default': '5000'
+    },
+    'kn': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'lij': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'lt': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'lv': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'ml': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'mr': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'nb-NO': {
+        'currency': 'nok',
+        'presets': '1500,1000,500,250',
+        'default': '1000'
+    },
+    'nn-NO': {
+        'currency': 'nok',
+        'presets': '1500,1000,500,250',
+        'default': '1000'
+    },
+    'nl': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'or': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'pa-IN': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'pl': {
+        'currency': 'pln',
+        'presets': '250,100,60,40',
+        'default': '100'
+    },
+    'pt-BR': {
+        'currency': 'brl',
+        'presets': '300,200,100,50',
+        'default': '200'
+    },
+    'pt-PT': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'ru': {
+        'currency': 'rub',
+        'presets': '1000,500,250,150',
+        'default': '500'
+    },
+    'sat': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'sk': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'sl': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'sv-SE': {
+        'currency': 'sek',
+        'presets': '1000,500,200,100',
+        'default': '500'
+    },
+    'sr': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'ta': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'te': {
+        'currency': 'inr',
+        'presets': '5000,3000,2000,1000',
+        'default': '3000'
+    },
+    'th': {
+        'currency': 'thb',
+        'presets': '3000,2000,1000,500',
+        'default': '2000'
+    },
 }
 
 # Official Firefox Twitter accounts

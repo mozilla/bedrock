@@ -50,7 +50,7 @@
   <ul>
     <li>{% trans people="//www.drumbeat.org/people" %}<a href="{{ people }}">Join</a> Drumbeat{% endtrans %}</li>
     <li>{% trans projects="//www.drumbeat.org/projects" %}Get involved in a <a href="{{ projects }}">project</a>{% endtrans %}</li>
-    <li>{% trans openwebfund="https://sendto.mozilla.org/" %}<a href="{{ openwebfund }}">Donate</a> to the Mozilla Drumbeat Open Web Fund</a>{% endtrans %}</li>
+    <li>{% trans openwebfund=donate_url('openwebfund') %}<a href="{{ openwebfund }}">Donate</a> to the Mozilla Drumbeat Open Web Fund</a>{% endtrans %}</li>
   </ul>
 
 {% endblock article %}
