@@ -15,9 +15,9 @@
     var $phoneScreens = $('#phone-screens');
     var $screencastImages = $('#screencast-images');
     var $slideshows = $('.slideshow');
+    var $pagerButtons = $('.customize-pager');
     var screencastVisible = false;
     var slideshowRunning = false;
-    var customizePagerEnabled = false;
     var cycleOpts = {
         speed: 450,
         timeout: 2000
@@ -182,10 +182,10 @@
         });
 
         // click listener for pager arrows
-        $('.customize-pager').on('click', function() {
+        $pagerButtons.on('click', function() {
             // make sure pager is available (disabled during transitions)
-            if (customizePagerEnabled) {
-                customizePagerEnabled = false;
+            if (!$pagerButtons.prop('disabled')) {
+                $pagerButtons.prop('disabled', true);
                 var $this = $(this);
                 var currentlyExpanded = 0;
                 var nextExpanded;
@@ -210,12 +210,12 @@
 
                 // prevent UI busting from spamming pager arrows
                 setTimeout(function() {
-                    customizePagerEnabled = true;
+                    $pagerButtons.prop('disabled', false);
                 }, 600);
             }
         });
 
-        customizePagerEnabled = true;
+        $pagerButtons.prop('disabled', false);
     };
 
     var initAccordionsMobile = function() {
