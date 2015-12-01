@@ -1,0 +1,43 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ <article id="fundraising_takeover" class="fundraising-takeover hidden">
+   <div class="header-strip">
+     <p class="contained"><a href="{{ url('mozorg.home') }}" id="close_takeover" class="more" role="button">{{ _('Continue to mozilla.org') }}</a></p>
+   </div>
+   <section class="copy contained">
+     <header>
+       <h2>{{ high_res_img('home/takeover/wordmark.png', {'alt': 'Mozilla', 'class': 'moz-logo', 'width': '276', 'height': '93'}) }}</h2>
+       <h2>{{ _('Proudly non-profit. <br>Donate before Dec 31.') }}</h2>
+     </header>
+     <form id="fundraiser-form" method="get" action="https://donate.mozilla.org/{{ LANG }}/">
+       <fieldset class="donate-options">
+         {% for amount in donate_params.preset_list %}
+           <label for="donate{{ amount }}" {% if amount == donate_params.default %}class="selected"{% endif %}>
+             <input type="radio" value="{{ amount }}" id="donate{{ amount }}" name="amount"
+             {% if amount == donate_params.default %}checked="checked"{% endif %} />
+             {# L10n: Inserts a sum in US dollars, e.g. '$100'. Adapt the string in your translation for your locale conventions if needed, ex: %(sum)s US$ #}
+             {{ _('$%(sum)s')|format(sum=amount) }}
+           </label>
+         {% endfor %}
+
+         <label for="donate-custom" class="own-amount">{{ _('Enter your own amount') }}</label>
+         <input type="text" name="amount" id="donate-custom" />
+       </fieldset>
+       <fieldset class="recurring">
+         <label for="monthly">
+           <input type="radio" value="monthly" id="monthly" name="frequency"> {{ _('Monthly') }}
+         </label>
+
+         <label for="onetime">
+           <input type="radio" value="single" id="onetime" name="frequency" checked> {{ _('One-time') }}
+         </label>
+
+         <input type="hidden" name="currency" value="{{ donate_params.currency }}" />
+         <input type="submit" value="{{ _('Donate Now') }}" />
+       </fieldset>
+     </form>
+   </section>
+ </article>
+
+<div class="page-overlay hidden"></div>
