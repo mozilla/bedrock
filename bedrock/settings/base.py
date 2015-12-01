@@ -609,8 +609,8 @@ DONATE_PARAMS = {
     },
     'an': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'as': {
         'currency': 'inr',
@@ -619,8 +619,8 @@ DONATE_PARAMS = {
     },
     'ast': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'brx': {
         'currency': 'inr',
@@ -629,8 +629,8 @@ DONATE_PARAMS = {
     },
     'ca': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'cs': {
         'currency': 'czk',
@@ -649,18 +649,18 @@ DONATE_PARAMS = {
     },
     'de': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'dsb': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'el': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'en-GB': {
         'currency': 'gbp',
@@ -669,8 +669,8 @@ DONATE_PARAMS = {
     },
     'es-ES': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'es-MX': {
         'currency': 'mxn',
@@ -679,38 +679,38 @@ DONATE_PARAMS = {
     },
     'eo': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'et': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'eu': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'fi': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'fr': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'fy-NL': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'ga-IE': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'gd': {
         'currency': 'gbp',
@@ -719,8 +719,8 @@ DONATE_PARAMS = {
     },
     'gl': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'gu-IN': {
         'currency': 'inr',
@@ -739,8 +739,8 @@ DONATE_PARAMS = {
     },
     'hsb': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'hu': {
         'currency': 'huf',
@@ -759,8 +759,8 @@ DONATE_PARAMS = {
     },
     'it': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'ja': {
         'currency': 'jpy',
@@ -784,18 +784,18 @@ DONATE_PARAMS = {
     },
     'lij': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'lt': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'lv': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'ml': {
         'currency': 'inr',
@@ -819,8 +819,8 @@ DONATE_PARAMS = {
     },
     'nl': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'or': {
         'currency': 'inr',
@@ -839,13 +839,13 @@ DONATE_PARAMS = {
     },
     'pt-BR': {
         'currency': 'brl',
-        'presets': '40,24,12,8',
-        'default': '24'
+        'presets': '375,187,90,55',
+        'default': '187'
     },
     'pt-PT': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'ru': {
         'currency': 'rub',
@@ -859,13 +859,13 @@ DONATE_PARAMS = {
     },
     'sk': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'sl': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'sv-SE': {
         'currency': 'sek',
@@ -874,8 +874,8 @@ DONATE_PARAMS = {
     },
     'sr': {
         'currency': 'eur',
-        'presets': '20,10,5,3',
-        'default': '10'
+        'presets': '100,50,25,15',
+        'default': '50'
     },
     'ta': {
         'currency': 'inr',
