@@ -609,293 +609,288 @@ DONATE_PARAMS = {
     },
     'an': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'as': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
-    },
-    'ast': {
-        'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
-    },
-    'brx': {
-        'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
-    },
-    'ca': {
-        'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
-    },
-    'cs': {
-        'currency': 'czk',
-        'presets': '1500,1000,500,190',
-        'default': '1000'
-    },
-    'cy': {
-        'currency': 'gbp',
-        'presets': '150,100,50,25',
-        'default': '100'
-    },
-    'da': {
-        'currency': 'dkk',
         'presets': '1000,500,250,150',
         'default': '500'
     },
+    'ast': {
+        'currency': 'eur',
+        'presets': '20,10,5,3',
+        'default': '10'
+    },
+    'brx': {
+        'currency': 'inr',
+        'presets': '1000,500,250,150',
+        'default': '500'
+    },
+    'ca': {
+        'currency': 'eur',
+        'presets': '20,10,5,3',
+        'default': '10'
+    },
+    'cs': {
+        'currency': 'czk',
+        'presets': '400,200,100,55',
+        'default': '200'
+    },
+    'cy': {
+        'currency': 'gbp',
+        'presets': '20,10,5,3',
+        'default': '10'
+    },
+    'da': {
+        'currency': 'dkk',
+        'presets': '160,80,40,20',
+        'default': '80'
+    },
     'de': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'dsb': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'el': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'en-GB': {
         'currency': 'gbp',
-        'presets': '150,100,50,25',
-        'default': '100'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'es-ES': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'es-MX': {
         'currency': 'mxn',
-        'presets': '1000,700,500,250',
-        'default': '700'
+        'presets': '240,120,60,35',
+        'default': '120'
     },
     'eo': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'et': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'eu': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
-    },
-    'fa': {
-        'currency': 'irr',
-        'presets': '300000,225000,150000,50000',
-        'default': '225000'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'fi': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'fr': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'fy-NL': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'ga-IE': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'gd': {
         'currency': 'gbp',
-        'presets': '150,100,50,25',
-        'default': '100'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'gl': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'gu-IN': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'he': {
         'currency': 'ils',
-        'presets': '500,360,180,120',
-        'default': '360'
+        'presets': '60,30,15,9',
+        'default': '30'
     },
     'hi-IN': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'hsb': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'hu': {
         'currency': 'huf',
-        'presets': '5000,3500,2000,1000',
-        'default': '3500'
+        'presets': '4000,2000,1000,600',
+        'default': '2000'
     },
     'id': {
         'currency': 'idr',
-        'presets': '300000,225000,150000,50000',
-        'default': '225000'
+        'presets': '270000,140000,70000,40000',
+        'default': '140000'
     },
     'in': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'it': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'ja': {
         'currency': 'jpy',
-        'presets': '10000,5000,2500,1000',
-        'default': '5000'
+        'presets': '1600,800,400,250',
+        'default': '800'
     },
     'ja-JP': {
         'currency': 'jpy',
-        'presets': '10000,5000,2500,1000',
-        'default': '5000'
+        'presets': '1600,800,400,250',
+        'default': '800'
     },
     'ja-JP-mac': {
         'currency': 'jpy',
-        'presets': '10000,5000,2500,1000',
-        'default': '5000'
+        'presets': '1600,800,400,250',
+        'default': '800'
     },
     'kn': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'lij': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'lt': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'lv': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'ml': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'mr': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'nb-NO': {
         'currency': 'nok',
-        'presets': '1500,1000,500,250',
-        'default': '1000'
+        'presets': '160,80,40,20',
+        'default': '80'
     },
     'nn-NO': {
         'currency': 'nok',
-        'presets': '1500,1000,500,250',
-        'default': '1000'
+        'presets': '160,80,40,20',
+        'default': '80'
     },
     'nl': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'or': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'pa-IN': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'pl': {
         'currency': 'pln',
-        'presets': '250,100,60,40',
-        'default': '100'
+        'presets': '80,40,20,10',
+        'default': '40'
     },
     'pt-BR': {
         'currency': 'brl',
-        'presets': '300,200,100,50',
-        'default': '200'
+        'presets': '40,24,12,8',
+        'default': '24'
     },
     'pt-PT': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'ru': {
         'currency': 'rub',
-        'presets': '1000,500,250,150',
+        'presets': '1000,500,250,140',
         'default': '500'
     },
     'sat': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'sk': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'sl': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'sv-SE': {
         'currency': 'sek',
-        'presets': '1000,500,200,100',
-        'default': '500'
+        'presets': '160,80,40,20',
+        'default': '80'
     },
     'sr': {
         'currency': 'eur',
-        'presets': '100,50,25,15',
-        'default': '50'
+        'presets': '20,10,5,3',
+        'default': '10'
     },
     'ta': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'te': {
         'currency': 'inr',
-        'presets': '5000,3000,2000,1000',
-        'default': '3000'
+        'presets': '1000,500,250,150',
+        'default': '500'
     },
     'th': {
         'currency': 'thb',
-        'presets': '3000,2000,1000,500',
-        'default': '2000'
+        'presets': '500,250,125,75',
+        'default': '250'
     },
 }
 
