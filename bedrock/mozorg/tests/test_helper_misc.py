@@ -22,17 +22,22 @@ TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                'test_files')
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, 'media', '%s', 'l10n')
 
-TEST_DONATE_LOCALE_LINK = {
-    'default':
-        'https://sendto.mozilla.org/page/contribute/Give-Now?source={source}',
-    'en-US':
-        'https://sendto.mozilla.org/page/contribute/givenow-seq?'
-        'preset=2&source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}',
-    'es-MX':
-        'https://sendto.mozilla.org/page/contribute/givenow-seq-es?'
-        'source={source}&ref=EOYFR2014&utm_campaign=EOYFR2014'
-        '&utm_source=mozilla.org&utm_medium=referral&utm_content=mozillaorg_ES',
+TEST_DONATE_LINK = ('https://donate.mozilla.org/{locale}/?presets={presets}'
+    '&amount={default}&ref=EOYFR2015&utm_campaign=EOYFR2015'
+    '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
+    '&currency={currency}')
+
+TEST_DONATE_PARAMS = {
+    'en-US': {
+        'currency': 'usd',
+        'presets': '100,50,25,15',
+        'default': '50'
+    },
+    'es-MX': {
+        'currency': 'eur',
+        'presets': '100,50,25,15',
+        'default': '15'
+    },
 }
 
 TEST_FIREFOX_TWITTER_ACCOUNTS = {
@@ -370,7 +375,8 @@ class TestPressBlogUrl(TestCase):
         eq_(self._render('oc'), 'https://blog.mozilla.org/press/')
 
 
-@override_settings(DONATE_LOCALE_LINK=TEST_DONATE_LOCALE_LINK)
+@override_settings(DONATE_LINK=TEST_DONATE_LINK,
+    DONATE_PARAMS=TEST_DONATE_PARAMS)
 class TestDonateUrl(TestCase):
     rf = RequestFactory()
 
@@ -383,30 +389,34 @@ class TestDonateUrl(TestCase):
     def test_donate_url_no_locale(self):
         """No locale, fallback to default page"""
         eq_(self._render('', 'mozillaorg_footer'),
-            'https://sendto.mozilla.org/page/contribute/Give-Now?'
-            'source=mozillaorg_default_footer')
+            'https://donate.mozilla.org//?presets=100,50,25,15'
+            '&amp;amount=50&amp;ref=EOYFR2015&amp;utm_campaign=EOYFR2015'
+            '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
+            '&amp;utm_content=mozillaorg_footer&amp;currency=usd')
 
     def test_donate_url_english(self):
         """en-US locale, default page"""
         eq_(self._render('en-US', 'mozillaorg_footer'),
-            'https://sendto.mozilla.org/page/contribute/givenow-seq?'
-            'preset=2&amp;source=mozillaorg_footer&amp;ref=EOYFR2014'
-            '&amp;utm_campaign=EOYFR2014&amp;utm_source=mozilla.org'
-            '&amp;utm_medium=referral&amp;utm_content=mozillaorg_footer')
+            'https://donate.mozilla.org/en-US/?presets=100,50,25,15'
+            '&amp;amount=50&amp;ref=EOYFR2015&amp;utm_campaign=EOYFR2015'
+            '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
+            '&amp;utm_content=mozillaorg_footer&amp;currency=usd')
 
     def test_donate_url_spanish(self):
         """es-MX locale, a localized page"""
         eq_(self._render('es-MX', 'mozillaorg_footer'),
-            'https://sendto.mozilla.org/page/contribute/givenow-seq-es?'
-            'source=mozillaorg_footer&amp;ref=EOYFR2014'
-            '&amp;utm_campaign=EOYFR2014&amp;utm_source=mozilla.org&amp;'
-            'utm_medium=referral&amp;utm_content=mozillaorg_ES')
+            'https://donate.mozilla.org/es-MX/?presets=100,50,25,15'
+            '&amp;amount=15&amp;ref=EOYFR2015&amp;utm_campaign=EOYFR2015'
+            '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
+            '&amp;utm_content=mozillaorg_footer&amp;currency=eur')
 
     def test_donate_url_other_locale(self):
         """No page for locale, fallback to default page"""
         eq_(self._render('pt-PT', 'mozillaorg_footer'),
-            'https://sendto.mozilla.org/page/contribute/Give-Now?'
-            'source=mozillaorg_default_footer')
+            'https://donate.mozilla.org/pt-PT/?presets=100,50,25,15'
+            '&amp;amount=50&amp;ref=EOYFR2015&amp;utm_campaign=EOYFR2015'
+            '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
+            '&amp;utm_content=mozillaorg_footer&amp;currency=usd')
 
 
 @override_settings(FIREFOX_TWITTER_ACCOUNTS=TEST_FIREFOX_TWITTER_ACCOUNTS)

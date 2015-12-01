@@ -15,7 +15,7 @@
 
       <ul>
         <li><a href="https://support.mozilla.org/">{{ _('I’m having problems with using Firefox') }}</a></li>
-        <li><a href="https://sendto.mozilla.org/page/contribute/givenow-seq?preset=2&amp;ref=Donation_Form&amp;utm_campaign=Donation_Form&amp;utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_content=contact_us_page">{{ _('I want to donate to Mozilla') }}</a></li>
+        <li><a href="{{ donate_url('contact_us_page') }}">{{ _('I want to donate to Mozilla') }}</a></li>
         <li><a href="{{ url('foundation.trademarks.policy') }}">{{ _('I have questions about using Mozilla’s trademarks') }}</a></li>
         <li><a href="{{ url('legal.fraud-report') }}">{{ _('I’d like to report misuse of a Mozilla trademark') }}</a></li>
         <li><a href="mailto:research_requests@mozilla.com">{{ _('I need information for an academic paper') }}</a></li>
