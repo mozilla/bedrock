@@ -1,0 +1,11 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/win10-welcome.html" %}
+
+{% block body_id %}win10-welcome-v3-10{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_win10_welcome_variants' %}
+{% endblock %}

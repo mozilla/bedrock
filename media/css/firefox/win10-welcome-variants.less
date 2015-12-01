@@ -1,33 +1,50 @@
 @import '../sandstone/lib.less';
 
-// tagline hidden for 3 of 4 test variants (with js enabled)
-.js #win10-welcome-v2-2 .firefox-not-default .tagline,
-.js #win10-welcome-v2-3 .firefox-not-default .tagline,
-.js #win10-welcome-v2-4 .firefox-not-default .tagline {
-    display: none;
-}
+#win10-welcome-v3-10 .firefox-default-cta {
+    padding-left: 490px;
+    min-height: 315px;
 
-#win10-welcome-v2-4 h1.not-default {
-    display: none;
-}
-
-.js #win10-welcome-v2-4 main {
-    h1 {
-        display: none;
-    }
-
-    &.firefox-not-default h1.not-default {
-        display: block;
-    }
-
-    &.firefox-default h1.default {
-        display: block;
+    &:before {
+        width: 450px;
+        height: 315px;
+        background-image: url('/media/img/firefox/whatsnew_40/win10.animated.gif');
+        .background-size(450px, 315px);
     }
 }
 
 @media only screen and (max-width: @breakDesktop) {
-    .main-header h1 {
-        max-width: 12em;
-        margin: 0 auto 12px;
+    #win10-welcome-v3-10 .firefox-default-cta {
+        padding-left: 417px;
+        min-height: 251px;
+
+        &:before {
+            width: 377px;
+            height: 251px;
+            .background-size(377px, 251px);
+        }
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    #win10-welcome-v3-1 .main-header h1 br {
+        display: none;
+    }
+
+    #win10-welcome-v3-10 .firefox-default-cta {
+        padding-left: 0;
+        padding-top: 279px;
+        min-height: 0;
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+    #win10-welcome-v3-10 .firefox-default-cta {
+        padding-top: 230px;
+
+        &:before {
+            width: 300px;
+            height: 210px;
+            .background-size(300px, 210px);
+        }
     }
 }

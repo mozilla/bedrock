@@ -669,13 +669,13 @@ class Win10Welcome(l10n_utils.LangFilesMixin, TemplateView):
 
     def get_template_names(self):
         # check for variant in querystring for multi-variant testing.
-        variant = self.request.GET.get('v', '')
+        v = self.request.GET.get('v', '')
         template = 'firefox/win10-welcome.html'
 
         # ensure variant is one of 4 accepted values and locale is en-US only.
-        # now on round 2 of testing, hence "-2" in template name
-        if (variant in ['1', '2', '3', '4'] and self.request.locale == 'en-US'):
-            template = 'firefox/win10_variants/variant-2-' + variant + '.html'
+        # now on round 3 of testing, hence "-3" in template name
+        if (v in map(str, range(1, 11)) and self.request.locale == 'en-US'):
+            template = 'firefox/win10_variants/variant-3-' + v + '.html'
 
         return [template]
 
