@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
 from page import Page, PageRegion
-from regions.newsletter import NewsletterEmbedForm, MozillaNewsletterEmbedForm
+from regions.newsletter import NewsletterEmbedForm
 
 
 class BasePage(Page):
@@ -33,10 +33,6 @@ class BasePage(Page):
     @property
     def newsletter(self):
         return NewsletterEmbedForm(self.base_url, self.selenium)
-
-    @property
-    def mozilla_newsletter(self):
-        return MozillaNewsletterEmbedForm(self.base_url, self.selenium)
 
     class Navigation(PageRegion):
 

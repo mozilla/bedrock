@@ -284,7 +284,7 @@
     of the parent container so, we cannot just inherit from mozorg/responsive -->
   <section class="newsletter-container">
     {% if LANG == 'en-US' %}
-      {{ mozorg_newsletter_form() }}
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Get Mozilla updates')) }}
     {% else %}
       {{ email_newsletter_form() }}
     {% endif %}
