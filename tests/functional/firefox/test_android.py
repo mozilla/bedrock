@@ -15,6 +15,7 @@ def test_family_navigation(base_url, selenium):
     assert page.family_navigation.is_menu_displayed
 
 
+@pytest.mark.skipif(reason='https://webqa-ci.mozilla.com/job/bedrock.dev.win10.ie/120/')
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_open_close_accordion(base_url, selenium):
@@ -48,6 +49,7 @@ def test_next_previous_buttons(base_url, selenium):
     assert sections[0].is_displayed
 
 
+@pytest.mark.skipif(reason='https://webqa-ci.mozilla.com/job/bedrock.dev.win10.ie/120/')
 @pytest.mark.nondestructive
 @pytest.mark.viewport('mobile')
 def test_mobile_accordion(base_url, selenium):
