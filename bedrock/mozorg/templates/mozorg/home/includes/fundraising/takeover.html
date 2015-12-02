@@ -35,6 +35,14 @@
 
          <input type="hidden" name="currency" value="{{ donate_params.currency }}" />
          <input type="hidden" name="presets" value="{{ donate_params.presets }}" />
+
+         {# GA params #}
+         <input type="hidden" name="ref" value="EOYFR2015" />
+         <input type="hidden" name="utm_campaign" value="EOYFR2015" />
+         <input type="hidden" name="utm_source" value="mozilla.org" />
+         <input type="hidden" name="utm_medium" value="referral" />
+         <input type="hidden" name="utm_content" value="takeover" />
+
          <input type="submit" value="{{ _('Donate Now') }}" />
        </fieldset>
      </form>
