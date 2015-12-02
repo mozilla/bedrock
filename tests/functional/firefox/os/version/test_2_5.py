@@ -1,0 +1,15 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+import pytest
+
+from pages.firefox.os.version.v2_5 import FirefoxOSPage
+
+
+@pytest.mark.sanity
+@pytest.mark.nondestructive
+def test_download_buttons_are_displayed(base_url, selenium):
+    page = FirefoxOSPage(base_url, selenium).open()
+    assert page.is_primary_download_button_displayed
+    assert page.is_secondary_download_button_displayed
