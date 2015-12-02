@@ -16,7 +16,7 @@ class FirefoxOSPage(FirefoxOSBasePage):
 
     @property
     def app_groups(self):
-        return [AppGroup(self.base_url, self.selenium, root=el) for el in
+        return [AppGroup(self, root=el) for el in
                 self.find_elements(self._app_group_buttons_locator)]
 
 

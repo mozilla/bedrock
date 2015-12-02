@@ -30,7 +30,7 @@ class DevicesPage(FirefoxBasePage):
         return self.find_element(self._get_phone_button_locator).is_enabled()
 
     def get_a_phone(self):
-        modal = Modal(self.base_url, self.selenium)
+        modal = Modal(self)
         self.find_element(self._get_phone_button_locator).click()
         self.wait.until(lambda s: modal.is_displayed)
         return modal
@@ -38,7 +38,7 @@ class DevicesPage(FirefoxBasePage):
     def open_phone_detail(self):
         self.scroll_element_into_view(self._phone_thumbnail_locator).click()
         el = self.find_element(self._phone_detail_locator)
-        detail = DeviceDetail(self.base_url, self.selenium, root=el)
+        detail = DeviceDetail(self, root=el)
         # wait until close button is displayed for detail pane to initialize
         self.wait.until(lambda s: detail.is_close_displayed)
         return detail
@@ -46,7 +46,7 @@ class DevicesPage(FirefoxBasePage):
     def open_tv_detail(self):
         self.scroll_element_into_view(self._tv_thumbnail_locator).click()
         el = self.find_element(self._tv_detail_locator)
-        detail = DeviceDetail(self.base_url, self.selenium, root=el)
+        detail = DeviceDetail(self, root=el)
         self.find_element(self._tv_thumbnail_locator).click()
         # wait until close button is displayed for detail pane to initialize
         self.wait.until(lambda s: detail.is_close_displayed)

@@ -35,7 +35,7 @@ class HomePage(BasePage):
 
     @property
     def upcoming_events(self):
-        return UpcomingEvents(self.base_url, self.selenium)
+        return UpcomingEvents(self)
 
 
 class UpcomingEvents(PageRegion):

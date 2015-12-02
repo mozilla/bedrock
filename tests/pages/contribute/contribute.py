@@ -15,7 +15,7 @@ class ContributePage(ContributeBasePage):
     _video_play_locator = (By.CSS_SELECTOR, '.video-play')
 
     def play_video(self):
-        modal = Modal(self.base_url, self.selenium)
+        modal = Modal(self)
         self.find_element(self._video_play_locator).click()
         self.wait.until(lambda s: modal.is_displayed)
         return modal

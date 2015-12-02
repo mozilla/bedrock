@@ -17,7 +17,7 @@ class AndroidPage(FirefoxBasePage):
 
     @property
     def customize_sections(self):
-        return [CustomizeSection(self.base_url, self.selenium, root=el) for el in
+        return [CustomizeSection(self, root=el) for el in
                 self.find_elements(self._customize_locator)]
 
     @property

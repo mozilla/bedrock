@@ -18,12 +18,12 @@ class TVPage(FirefoxBasePage):
 
     @property
     def screens(self):
-        return [Screens(self.base_url, self.selenium, root=el) for el in
+        return [Screens(self, root=el) for el in
                 self.find_elements(self._screens_locator)]
 
     @property
     def thumbnails(self):
-        return [Thumbnails(self.base_url, self.selenium, root=el) for el in
+        return [Thumbnails(self, root=el) for el in
                 self.find_elements(self._thumbnails_locator)]
 
     def show_next_screen(self):
@@ -34,14 +34,6 @@ class TVPage(FirefoxBasePage):
     def show_previous_screen(self):
         screen = next(s for s in self.screens if s.is_displayed)
         self.find_element(self._previous_button_locator).click()
-        self.wait.until(lambda s: not screen.is_displayed)
-
-    # This method is necessary because the Thumbnails page region
-    # does not have a reference to the page object. Perhaps we can
-    # improve this in the future.
-    def click_thumbnail(self, index):
-        screen = next(s for s in self.screens if s.is_displayed)
-        self.thumbnails[index].click()
         self.wait.until(lambda s: not screen.is_displayed)
 
     @property
@@ -71,5 +63,6 @@ class Thumbnails(FirefoxBasePageRegion):
         return self.find_element(self._link_locator).get_attribute('class') == 'selected'
 
     def click(self):
+        screen = next(s for s in self.page.screens if s.is_displayed)
         self.find_element(self._link_locator).click()
-        self.wait.until(lambda s: self.is_selected)
+        self.wait.until(lambda s: self.is_selected and not screen.is_displayed)
