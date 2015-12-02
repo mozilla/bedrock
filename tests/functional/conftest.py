@@ -15,6 +15,14 @@ def capabilities(capabilities):
     return capabilities
 
 
+@pytest.fixture(autouse=True)
+def filter_capabilities(request, selenium):
+    capabilities = selenium.capabilities
+    firefox = capabilities.get('browserName').lower() == 'firefox'
+    if firefox and 'skip_if_firefox' in request.keywords:
+        pytest.skip('Test must not be run on Firefox')
+
+
 @pytest.fixture
 def selenium(request, selenium):
     viewport = VIEWPORT['desktop']
