@@ -60,7 +60,7 @@ To run the full functional test suite against your local bedrock instance:
 
 .. code-block:: bash
 
-    $ py.test --driver Firefox --html tests/functional/results.html -n auto tests/functional/
+    $ py.test --driver Firefox --html tests/functional/results.html tests/functional/
 
 This will run all test suites found in the ``tests/functional`` directory and
 assumes you have bedrock running at ``localhost`` on port ``8000``. Results will
@@ -69,10 +69,12 @@ according to the number of cores available.
 
 .. Note::
 
-    For the above command to work, Firefox needs to be installed in a
-    predictable location for your operating system. For details on how to
-    specify the location of Firefox, or running the tests against alternative
-    browsers, refer to the `pytest-selenium documentation`_.
+    Tests will run one at a time. This is the safest way to ensure predictable
+    results, due to `bug 1230105 <https://bugzilla.mozilla.org/show_bug.cgi?id=1230105>`_.
+    If you want to run tests in parallel (this should be safe when running
+    against a deployed instance), you can add ``-n auto`` to the command line.
+    Replace ``auto`` with an integer if you want to set the maximum number of
+    concurrent processes.
 
 To run a single test file you must tell py.test to execute a specific file
 e.g. ``tests/functional/test_newsletter.py``:
@@ -87,6 +89,13 @@ You can also easily run the tests against any bedrock environment by specifying 
 .. code-block:: bash
 
     $ py.test --base-url https://www-dev.allizom.org --driver Firefox --html tests/functional/results.html -n auto tests/functional/
+
+.. Note::
+
+    For the above commands to work, Firefox needs to be installed in a
+    predictable location for your operating system. For details on how to
+    specify the location of Firefox, or running the tests against alternative
+    browsers, refer to the `pytest-selenium documentation`_.
 
 For more information on command line options, see the `pytest documentation`_.
 
