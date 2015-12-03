@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "../sandstone/lib.less";
+@import '../sandstone/lib.less';
 
 @font-face {
     font-family: 'Font Awesome';
@@ -11,15 +11,19 @@
     font-style: normal;
 }
 
+#tabzilla:before {
+    background-color: @textColorSecondary;
+}
+
 .mdn-icon {
     float: right;
-    margin-top: 20px;
+    margin-top: @baseLine;
 }
 
 .mdn-icon:before {
-    content: " ";
+    content: ' ';
     background-image: url('/media/img/firefox/releasenotes/mdn-icon.png');
-    background-size: 100%;
+    .background-size(100%);
     background-repeat: no-repeat;
     display: inline-block;
     width: 25px;
@@ -75,23 +79,6 @@ ul.menu {
 }
 
 .release-notes {
-    h1 {
-        .open-sans-light();
-        padding-bottom: 15px;
-        text-align: center;
-    }
-    h2 {
-        .font-size(23px);
-        line-height: 1.2;
-    }
-    h3 {
-        .open-sans-extrabold();
-        .font-size(60px);
-        margin: 0;
-    }
-    h4 {
-        .font-size(20px);
-    }
     ul {
         margin: 0;
         padding: 0;
@@ -109,7 +96,7 @@ ul.menu {
 
     li {
         display: inline-block;
-        padding: 20px 16px;
+        padding: @baseLine 16px;
         text-transform: uppercase;
         position: relative;
         cursor: pointer;
@@ -140,9 +127,9 @@ ul.menu {
 
 ul.submenu {
     background-color: #fff;
-    box-shadow: 0px 1px 1px 0px rgba(50, 50, 50, 0.4);
+    box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.4);
     display: none;
-    margin-top: 25px;
+    margin-top: @baseLine;
     padding: 5px 10px 15px 10px;
     position: absolute;
     text-align: left;
@@ -172,7 +159,7 @@ ul.submenu:after {
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-bottom: 10px solid #fff;
-    content: "";
+    content: '';
     width: 0;
     height: 0;
     left: 20px;
@@ -190,6 +177,23 @@ ul.submenu:after {
             margin: auto;
             width: 580px;
         }
+    }
+    h1 {
+        .open-sans-light();
+        padding-bottom: 15px;
+        text-align: center;
+    }
+    .description h2 {
+        .font-size(23px);
+        line-height: 1.2;
+    }
+    .version h2 {
+        .open-sans-extrabold();
+        .font-size(60px);
+        margin: 0;
+    }
+    h3 {
+        .font-size(20px);
     }
     .latest-release {
         background-color: rgba(246, 247, 249, 0.4);
@@ -224,7 +228,7 @@ ul.submenu:after {
         .border-box();
         border-bottom: solid 1px #eee;
         display: table;
-        margin: auto auto;
+        margin: auto;
         padding: 30px 65px;
         width: 100%;
 
@@ -232,9 +236,9 @@ ul.submenu:after {
             border: none;
         }
 
-        > p {
+        > h4 {
             float: left;
-            margin: 10px 0px;
+            margin: 10px 0;
             width: 25%;
             text-transform: lowercase;
         }
@@ -249,7 +253,7 @@ ul.section-items {
     li {
         display: list-item;
         padding: 15px;
-        margin-left: 5px 0px 0px 30px;
+        margin-left: 5px 0 0 30px;
 
         p {
             margin: 0;
@@ -279,10 +283,10 @@ ul.section-items {
 
 .notes-footer {
     .container {
-        padding: 40px;
+        padding: (@baseLine * 2);
     }
     .version-message {
-        margin-bottom: 0px;
+        margin-bottom: 0;
         &:before {
             .inline-block;
             margin: 0 4px 0 0;
@@ -308,7 +312,7 @@ ul.section-items {
 .release-footer {
     background-color: #fff;
     margin: 0;
-    padding: 40px 0;
+    padding: (@baseLine * 2) 0;
 
     h2 {
         .font-size(14px);
@@ -326,33 +330,41 @@ ul.section-items {
 }
 
 
-#New::before {
-    content: "\00A0\f005\00A0";
+#new h4:before {
+    content: '\00A0\f005\00A0';
     font-family: 'Font Awesome';
+    margin-right: .2em;
 }
-#Fixed::before {
-    content: "\00A0\f00c\00A0";
+#fixed h4:before {
+    content: '\00A0\f00c\00A0';
     font-family: 'Font Awesome';
+    margin-right: .2em;
+
 }
-#Changed::before {
-    content: "\00A0\f021\00A0";
+#changed h4:before {
+    content: '\00A0\f021\00A0';
     font-family: 'Font Awesome';
+    margin-right: .2em;
 }
-#Developer::before {
-    content: "\00A0\f0ad\00A0";
+#developer h4:before {
+    content: '\00A0\f0ad\00A0';
     font-family: 'Font Awesome';
+    margin-right: .2em;
 }
-#HTML5::before {
-    content: "\00A0\f121\00A0";
+#html5 h4:before {
+    content: '\00A0\f121\00A0';
     font-family: 'Font Awesome';
+    margin-right: .2em;
 }
-#Resolved::before {
-    content: "\00A0\f164\00A0";
+#resolved h4:before {
+    content: '\00A0\f164\00A0';
     font-family: 'Font Awesome';
+    margin-right: .2em;
 }
-#Known::before {
-    content: "\00A0\f05e\00A0";
+#known h4:before {
+    content: '\00A0\f05e\00A0';
     font-family: 'Font Awesome';
+    margin-right: .2em;
 }
 
 @media only screen and (max-width: @breakDesktop) {
@@ -410,7 +422,7 @@ ul.section-items {
     }
     .notes-head {
         .intro {
-            margin: 20px 0;
+            margin: @baseLine 0;
             p {
                 width: 100%;
             }
@@ -426,8 +438,8 @@ ul.section-items {
     }
     .notes-section {
         .section-wrapper {
-            padding: 20px 0;
-            > p, ul {
+            padding: @baseLine 0;
+            > h4, ul {
                 float: none;
                 width: 100%;
             }
@@ -435,7 +447,7 @@ ul.section-items {
     }
     .notes-footer {
         .container {
-            padding: 40px 0;
+            padding: (@baseLine * 2) 0;
         }
         .all-download,
         .download-buttons {
@@ -444,7 +456,7 @@ ul.section-items {
             text-align: center;
         }
         .all-download {
-            margin-bottom: 20px;
+            margin-bottom: @baseLine;
             p {
                 margin-bottom: 0;
             }
@@ -553,5 +565,12 @@ ul.section-items {
         & .desktop-download-button {
            display: block;  
         }
+    }
+}
+
+.ios,
+.android {
+    .all-download {
+        display: none;
     }
 }

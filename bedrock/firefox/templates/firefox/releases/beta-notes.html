@@ -4,31 +4,27 @@
 
 {% extends "firefox/releases/release-notes.html" %}
 
-{% block js %}
-   {% javascript 'releasenotes' %}
-{% endblock %}
-
 {% set channel_name = 'Beta' %}
 
 {% block platform_switch %}
-  <div id="nav" class="navigator">
+  <nav id="nav" class="navigator">
     <div class="container">
       <ul class="menu">
-        <li><a href="{{ url('firefox') + 'notes/' }}">{{ _('Desktop') }}</a></li>
-        <li><a href="{{ url('firefox') + 'android/notes/' }}">{{ _('Android') }}</a></li>
+        <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
+        <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
         <li><a href="{{ url('firefox') + 'ios/1.1/releasenotes/' }}">{{ _('iOS') }}</a></li>
         <li class="current submenu-title">
           <a>{{ _('Other Releases') }}</a>
           <ul class="submenu">
             <li class="title">{{ _('Recent Desktop Releases') }}</li>
-            <li><a href="{{ url('firefox') + 'aurora/notes/' }}">{{ _('Latest Developer Edition') }}</a></li>
-            <li><a href="{{ url('firefox') + 'beta/notes/' }}">{{ _('Latest Beta') }}</a></li>
+            <li><a href="{{ url('firefox.notes', channel='developer') }}">{{ _('Latest Developer Edition') }}</a></li>
+            <li><a href="{{ url('firefox.notes', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
             <li class="title">{{ _('Recent Android Releases') }}</a></li>
-            <li><a href="{{ url('firefox') + 'android/beta/notes/' }}">{{ _('Latest Beta') }}</a></li>
-            <li><a href="{{ url('firefox') + 'android/aurora/notes/' }}">{{ _('Latest Aurora') }}</a></li>
+            <li><a href="{{ url('firefox.notes', platform='android', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
+            <li><a href="{{ url('firefox.notes', platform='android', channel='aurora') }}">{{ _('Latest Aurora') }}</a></li>
           </ul>
         </li>
       </ul>
     </div>
-  </div>
+  </nav>
 {% endblock %}

@@ -23,21 +23,13 @@
     if (window.isFirefox() || window.isFirefoxiOS()) {
         // iOS
         if ($html.hasClass('ios')) {
-            // all iOS users have private browsing
             $html.addClass('firefox-up-to-date');
 
         // Android or desktop
         } else {
             // desktop & Android version numbers match
             if (window.getFirefoxMasterVersion() >= 42)  {
-                // try private browsing button is available
                 $html.addClass('firefox-up-to-date');
-
-                if ($html.hasClass('android')) {
-                    // update SUMO link
-                } else {
-                    // initialize UITour
-                }
             } else {
                 $html.addClass('firefox-old');
             }
