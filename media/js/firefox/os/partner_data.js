@@ -107,6 +107,11 @@ if (typeof Mozilla === 'undefined') {
             'display': 'ZTE Open C',
             'countries': ['de', 'fr', 'lu', 'uy']
         },
+        'zte_openc2': {
+            'type': 'smartphone',
+            'display': 'ZTE Open C2',
+            'countries': ['pe']
+        },
         'zte_open2': {
             'type': 'smartphone',
             'display': 'ZTE Open II',
