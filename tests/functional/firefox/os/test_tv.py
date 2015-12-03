@@ -37,11 +37,11 @@ def test_click_thumbnails(base_url, selenium):
     assert screens[0].is_displayed
     assert thumbnails[0].is_selected
     for i in range(1, len(thumbnails)):
-        page.click_thumbnail(i)
+        thumbnails[i].click()
         assert screens[i].is_displayed
         assert thumbnails[i].is_selected
     for i in range(len(thumbnails) - 2, -1, -1):
-        page.click_thumbnail(i)
+        thumbnails[i].click()
         assert screens[i].is_displayed
         assert thumbnails[i].is_selected
     assert screens[0].is_displayed

@@ -69,9 +69,10 @@ class PageRegion(WebView):
 
     _root_locator = None
 
-    def __init__(self, base_url, selenium, root=None, **kwargs):
-        super(PageRegion, self).__init__(base_url, selenium, **kwargs)
+    def __init__(self, page, root=None, **kwargs):
+        super(PageRegion, self).__init__(page.base_url, page.selenium, **kwargs)
         self._root_element = root
+        self.page = page
 
     @property
     def _root(self):

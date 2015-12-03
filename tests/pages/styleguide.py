@@ -16,7 +16,7 @@ class StyleGuidePage(BasePage):
 
     @property
     def menu(self):
-        return [NavigationMenu(self.base_url, self.selenium, root=el) for el in
+        return [NavigationMenu(self, root=el) for el in
                 self.find_elements(self._sidebar_locator)]
 
 
@@ -28,7 +28,7 @@ class NavigationMenu(PageRegion):
 
     @property
     def sub_menu(self):
-        return [NavigationMenu(self.base_url, self.selenium, root=el) for el in
+        return [NavigationMenu(self, root=el) for el in
                 self.find_elements(self._sub_menu_locator)]
 
     def expand(self):

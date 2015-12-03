@@ -16,7 +16,7 @@ class DoNotTrackPage(FirefoxBasePage):
 
     @property
     def frequently_asked_questions(self):
-        return [FrequentlyAskedQuestion(self.base_url, self.selenium, root=el) for el in
+        return [FrequentlyAskedQuestion(self, root=el) for el in
                 self.find_elements(self._faqs_locator)]
 
     @property

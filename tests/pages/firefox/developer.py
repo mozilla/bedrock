@@ -27,14 +27,14 @@ class DeveloperPage(FirefoxBasePage):
 
     @property
     def developer_videos(self):
-        return [Video(self.base_url, self.selenium, root=el) for el in
+        return [Video(self, root=el) for el in
                 self.find_elements(self._videos_locator)]
 
 
 class Video(PageRegion):
 
     def play(self):
-        modal = Modal(self.base_url, self.selenium)
+        modal = Modal(self)
         self._root.click()
         self.wait.until(lambda s: modal.is_displayed)
         return modal

@@ -24,15 +24,15 @@ class BasePage(Page):
 
     @property
     def navigation(self):
-        return self.Navigation(self.base_url, self.selenium)
+        return self.Navigation(self)
 
     @property
     def footer(self):
-        return self.Footer(self.base_url, self.selenium)
+        return self.Footer(self)
 
     @property
     def newsletter(self):
-        return NewsletterEmbedForm(self.base_url, self.selenium)
+        return NewsletterEmbedForm(self)
 
     class Navigation(PageRegion):
 

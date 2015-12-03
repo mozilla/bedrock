@@ -16,7 +16,7 @@ class FirefoxBasePage(BasePage):
 
     @property
     def family_navigation(self):
-        return self.FamilyNavigation(self.base_url, self.selenium)
+        return self.FamilyNavigation(self)
 
     def scroll_element_into_view(self, locator):
         return super(FirefoxBasePage, self).scroll_element_into_view(
