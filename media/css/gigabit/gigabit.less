@@ -4,9 +4,26 @@
 
 @import "../sandstone/lib.less";
 
-.gigabit #outer-wrapper {
+.table-inner-border {
+  border-bottom: 1px dotted #ccc;
+}
+
+section {
+  margin-top: @gridGutterWidth*2;
+  margin-bottom: @gridGutterWidth*2;
+}
+
+.content {
+  padding: @gridGutterWidth;
+}
+
+#outer-wrapper {
   background: url(/media/img/gigabit/gigabit-bg.png) center top no-repeat,
               url(/media/img/sandstone/bg-sand.png) repeat;
+}
+
+main article {
+  .span-all();
 }
 
 #wordmark {
@@ -14,19 +31,84 @@
   margin-bottom: @baseLine;
 }
 
-.gigabit .container {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding-top: @gridGutterWidth;
-  padding-bottom: @gridGutterWidth;
-}
-
 .no-bullet {
   list-style: none;
 }
 
-#apply-button {
-  padding: 15px 80px;
+#gigabit-homepage {
+  .main-wrapper {
+    .clearfix;
+    .span-all();
+  }
+  .main {
+    .span(8);
+    section:first-child {
+      margin-top: 0;
+    }
+  }
+  aside {
+    .span(4);
+    background: #FFF;
+    section {
+      margin: @gridGutterWidth;
+    }
+  }
+}
+
+#apply-page section {
+  .clearfix;
+  h2 {
+    text-align: center;
+    margin-bottom: @gridGutterWidth*2;
+  }
+  table {
+    border-spacing: 0;
+  }
+  th {
+    padding: 5px;
+  }
+  td {
+    padding: 5px;
+  }
+  tbody {
+    tr:not(:last-child) {
+      th,
+      td {
+        .table-inner-border;
+      }
+    }
+  }
+}
+
+#requirements {
+  .span(6);
+}
+
+#key-dates {
+  .span(6);
+  background: #FFF;
+  h3 {
+    text-align: center;
+  }
+  td:first-child {
+    font-weight: bold;
+    width: 130px;
+  }
+}
+
+#types-of-support,
+#how-to-apply {
+  .span-all();
+}
+
+#types-of-support {
+  thead th {
+    background: #FFF;
+    text-align: left;
+  }
+  tbody td:last-child {
+    text-align: center;
+  }
 }
 
 .tnc-link {
@@ -34,25 +116,16 @@
 }
 
 #home-banner {
-  background: url(/media/img/gigabit/banner-bg.jpg) 0 -100px no-repeat;
-  padding: 40px 30px;
-  width: calc( 100% - 10px );
+  background: url(/media/img/gigabit/banner-bg.jpg) #ddd;
+  background-size: cover;
+  padding: 200px 30px 20px 30px;
   color: #fff;
 
   h1 {
     color: #fff;
+    font-size: 25px;
     line-height: 1.1;
-    .span-all();
-    margin-bottom: .25em;
-  }
-
-  .main {
-    .span(7);
-  }
-
-  .aside {
-    .span(4);
-    text-align: center;
+    margin: 0 0 10px 0;
   }
 
   a {
@@ -60,96 +133,16 @@
   }
 }
 
-#important-dates {
-  @shadow: 0 0 0 1px #fff inset;
-  .box-shadow(@shadow);
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  padding-top: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
-  .border-box();
-
-  h4 {
-    margin-bottom: 20px;
-  }
-
-  li {
-    list-style: none;
-    margin-left: 0;
-  }
-}
-
-#get-involved {
-  header{
-    margin-bottom: 40px;
-    padding: 30px 20px;
-    @shadow: 0 0 0 1px #fff inset;
-    .box-shadow(@shadow);
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-
-    p {
-      .font-size(1.428em);
-    }
-  }
-
-  h4 {
-    .font-size(24px);
-  }
-
-  .category {
-    .span(4);
-  }
-}
-
-#bsd-signup {
-  input[type='submit'] {
-    padding: 5px 30px;
-  }
-
-  #email-field {
-    width: 90%;
-  }
-
-  label {
-    display: block;
-    margin: 0 0 .5em;
-  }
-
-  .agree {
-    .font-size(.857em);
-  }
-}
-
-#cta-apply {
-  @shadow: 0 0 0 1px #fff inset;
-  .box-shadow(@shadow);
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  padding: 20px 30px;
-}
-
-#about-gigabit,
-#questions {
-  .main {
-    .span(8);
-  }
-
-  .aside {
-    .span(4);
-  }
-}
-
-#questions .aside ul {
-  list-style-type: none;
-  li {
-    margin-left: 0;
-    margin-bottom: 10px;
+.hive-logos {
+  text-align: center;
+  img {
+    max-width: 150px;
+    margin: 0 20px;
   }
 }
 
 #partners{
+  .span-all();
   background: #fff;
   padding-top: 30px;
   padding-bottom: 15px;
@@ -174,11 +167,15 @@
   }
 }
 
-#terms .container h4:not(:first-of-type){
+#terms-page .container h4:not(:first-of-type){
   margin-top: 50px;
 }
 
-#terms {
+#indemnity {
+  font-weight: bold;
+}
+
+#terms-page {
 
   main header {
     margin-bottom: 40px;
@@ -197,12 +194,12 @@
   }
 
   .section-header {
+    .open-sans;
     .font-size(@baseFontSize);
     font-weight: bold;
     text-decoration: underline;
     display: inline;
     color: #333;
-    .open-sans;
   }
 
   .section-header + p:not(.new-line-opening-p) {
@@ -214,18 +211,6 @@
     margin-top: 1em;
   }
 
-  ol#submission-list {
-    margin-left: 25px;
-  }
-
-  ol.fund-evaluation-list,
-  ol#award-amount-list {
-    list-style-type: none;
-    margin-left: -20px;
-    margin-bottom: 0;
-    counter-reset: item;
-  }
-
   ol.lower-alpha-list {
     list-style-type: none;
     margin-left: -20px;
@@ -233,52 +218,31 @@
     counter-reset: list;
   }
 
-  ol.fund-evaluation-list li:before,
-  ol#award-amount-list li:before {
-    counter-increment: item;
-    content: "(" counter(item) ") ";
-  }
-
   ol.lower-alpha-list li:before {
     counter-increment: list;
     content: "(" counter(list, lower-alpha) ") ";
   }
-
-  ol.fund-evaluation-list li,
-  ol.lower-alpha-list li,
-  ol#fund-reporting-list li,
-  ol#award-amount-list li {
-    margin-bottom: 1em;
-  }
-
 }
 
 
 /* {{{ Tablet  Layout: 768px */
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
-
-  #get-involved .category {
-    .span_narrow(4);
+  #requirements,
+  #key-dates {
+    .span_narrow(6);
   }
 
-  #about-gigabit,
-  #questions {
+  #gigabit-homepage .main-wrapper {
     .main {
       .span_narrow(8);
     }
-
-    .aside {
+    aside {
       .span_narrow(4);
     }
   }
 
-  #home-banner {
-    .main {
-      .span_narrow(7);
-    }
-    .aside {
-      .span_narrow(4);
-    }
+  #get-involved .category {
+    .span_narrow(4);
   }
 
 }
@@ -287,22 +251,79 @@
 /* {{{ Wide Mobile Layout: 480px */
 @media only screen and (max-width: @widthTablet) {
 
-  #about-gigabit .main,
-  #about-gigabit .aside,
-  #questions .main,
-  #questions .aside,
   #partner-logos,
-  #home-banner .main,
-  #home-banner .aside,
   #get-involved .category {
     float: none;
     margin: 0;
     width: auto;
   }
 
-  #home-banner,
-  #cta-apply {
+  #home-banner {
     padding: 20px;
   }
 
+  #gigabit-homepage .main-wrapper .main,
+  #gigabit-homepage .main-wrapper aside,
+  #requirements,
+  #key-dates {
+    .span-all();
+    margin: 0;
+  }
+
+  #gigabit-homepage .main-wrapper aside {
+    float: left;
+    margin-bottom: 40px;
+  }
+
+  #types-of-support {
+    tbody,
+    tr,
+    th,
+    td {
+      display: block;
+    }
+    td[data-header] {
+      display: table-row;
+      div {
+        .table-inner-border;
+        padding-bottom: 5px;
+      }
+    }
+    td[data-header]:before {
+      content: attr(data-header);
+      display: table-cell;
+      width: 100px;
+      padding: 5px;
+      .table-inner-border;
+    }
+    thead {
+      // minimize it instead of completely hiding it 
+      // so screen reader can still be able to pick up the values in thead
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    tbody {
+      tr {
+        margin-top: @gridGutterWidth*2;
+      }
+      th {
+        background: #fff;
+      }
+      th[data-hi]:before {
+        content: attr(data-hi);
+        display: table-cell;
+      }
+      td:last-child {
+        text-align: left;
+      }
+      tr td[data-header]:last-child {
+        &:before,
+        div {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
 }
