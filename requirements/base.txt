@@ -97,9 +97,9 @@ https://github.com/alex/django-filter/archive/e58e15ebf27e90cc0d47b7e58a2181e915
 # sha256: cKBTW8klKgHwYnE6-ABliiHu405UdLKCPqcG7aIiom8
 https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1844bcb43.tar.gz#egg=feedparser
 
-# rna: remotes/origin/rm-authtoken
-# sha256: Gqr31NCxxFle8Y3gEVv9y8jVgpoWDNpARbKLymhcqCo
-https://github.com/mozilla/rna/archive/47771c3aed24ff2c284b7fee83fe7dbc2cbb6b6a.tar.gz#egg=rna
+# rna: master
+# sha256: vuPYbNgKWvSRd4z_zuW8Y-0yrEN7gOo0UjvU4uV0JAg
+https://github.com/mozilla/rna/archive/601ec3dca993b39cb685238e3c2cb5ac86769af2.tar.gz#egg=rna==1.0
 
 # tweepy: remotes/origin/fixes~1
 # sha256: qbdyjZS-66Yk-uS-N4VCoiLPHFz4RbkWupqLP4-eRVk
