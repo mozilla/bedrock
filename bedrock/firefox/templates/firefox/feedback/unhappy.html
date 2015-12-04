@@ -33,6 +33,12 @@
     {% endtrans %}
     </p>
 
+    {% if LANG == 'en-US' and donate_stars_url %}
+      <p class="copy">{{ _('Mozilla, the non-profit behind Firefox, relies on donations. Would you like to make a donation to help us carry out our mission to keep the Web open and free?') }}</p>
+
+      <p class="copy"><a href="{{ donate_stars_url }}" class="button-flat" rel="external">{{ _('Donate Now') }}</a></p>
+    {% endif %}
+
     <ul class="support-links">
       <li><a rel="external" href="https://support.mozilla.org/kb/firefox-crashes-troubleshoot-prevent-and-get-help">{{ _('Firefox keeps crashing') }}</a></li>
       <li><a rel="external" href="https://support.mozilla.org/kb/firefox-slow-how-make-it-faster">{{ _('Firefox is slow') }}</a></li>

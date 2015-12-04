@@ -28,7 +28,14 @@
   <div class="primary">
     <h1 class="headline">{{ _('Thank you for your feedback!') }}</h1>
     <p class="tagline">{{ _('We’re so glad you’re happy with Firefox.') }}</p>
-    <p class="copy">{{ _('Firefox is non-profit, non-corporate, non-compromised. Help protect the largest global public resource we have — the Web — by sharing Firefox with your friends.') }}</p>
+
+    {% if LANG == 'en-US' and donate_stars_url %}
+      <p class="copy">{{ _('Mozilla, the non-profit behind Firefox, relies on donations. Would you like to make a donation to help us carry out our mission to keep the Web open and free?') }}</p>
+
+      <p class="copy"><a href="{{ donate_stars_url }}" class="button-flat" rel="external">{{ _('Donate Now') }}</a></p>
+    {% else %}
+      <p class="copy">{{ _('Firefox is non-profit, non-corporate, non-compromised. Help protect the largest global public resource we have — the Web — by sharing Firefox with your friends.') }}</p>
+    {% endif %}
 
     {% set share_urls = {
       'twitter': 'http://mzl.la/1MZOYmZ',
@@ -72,4 +79,3 @@
 {% endblock %}
 
 {% block email_form %}{% endblock %}
-

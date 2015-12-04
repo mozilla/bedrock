@@ -347,6 +347,28 @@ class TestFeedbackView(TestCase):
         view.request = RequestFactory().get('/?score=1')
         eq_(view.get_template_names(), ['firefox/feedback/unhappy.html'])
 
+    def test_get_context_data_three_stars(self):
+        view = views.FeedbackView()
+        view.request = RequestFactory().get('/?score=3')
+
+        ctx = view.get_context_data()
+        self.assertTrue(ctx['donate_stars_url'].endswith('Heartbeat_3stars'))
+
+    def test_get_context_data_five_stars(self):
+        view = views.FeedbackView()
+        view.request = RequestFactory().get('/?score=5')
+
+        ctx = view.get_context_data()
+        self.assertTrue(ctx['donate_stars_url'].endswith('Heartbeat_5stars'))
+
+    def test_get_context_data_one_star(self):
+        """donate_stars_url should be undefined"""
+        view = views.FeedbackView()
+        view.request = RequestFactory().get('/?score=1')
+
+        ctx = view.get_context_data()
+        self.assertFalse('donate_stars_url' in ctx)
+
 
 @override_settings(FIREFOX_OS_COUNTRY_VERSIONS=FXOS_COUNTRIES)
 class TestFirefoxOSGeoRedirect(TestCase):
