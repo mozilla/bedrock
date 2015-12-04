@@ -6,7 +6,7 @@
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}
-{% if l10n_has_tag('tracking_protection') and waffle.switch('firefox-ios-global') %}
+{% if l10n_has_tag('tracking_protection') %}
   {{ _('Firefox – Desktop browser, Android, iOS, OS, Hello, Sync, Private Browsing') }}
 {% else %}
   {{ _('Firefox — Desktop browser, Android, OS, Hello, Sync, Marketplace') }}
@@ -50,10 +50,8 @@
         <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-product="Firefox for Android">{{ _('Get Firefox for Android') }}</a>
       </div>
       <div class="message" id="dlbar-ios">
-      {% if l10n_has_tag('tracking_protection') and waffle.switch('firefox-ios-global') %}
+      {% if l10n_has_tag('tracking_protection') %}
         <a rel="external" href="{{ firefox_ios_url() }}" data-product="Firefox for iOS">{{ _('Get Firefox for iOS') }}</a>
-      {% elif not waffle.switch('firefox-ios-global') %}
-        {{ _('Firefox is coming soon to iOS! <a href="%s">Sign up to learn more</a>.')|format(url('newsletter.ios')) }}
       {% endif %}
       </div>
 
@@ -87,7 +85,7 @@
   </div>{#-- /.content --#}
 </header>{#-- /#header --#}
 
-<section id="products-primary" {% if l10n_has_tag('tracking_protection') and waffle.switch('firefox-ios-global') %}class="ios-active"{% endif %}>
+<section id="products-primary" {% if l10n_has_tag('tracking_protection') %}class="ios-active"{% endif %}>
   <div class="content">
     <ul class="product-list">
       <li class="product" id="product-desktop">
@@ -100,28 +98,17 @@
         </div>
       </li>
 
-      <li class="product {% if not waffle.switch('firefox-ios-global') %}highlight{% endif %}" id="product-android">
+      <li class="product" id="product-android">
         <div class="inner">
           <a href="{{ url('firefox.android.index') }}" data-product="Firefox for Android">
             {# L10n: span below adds visual style to "for" text #}
             <h2>{{ _('Firefox <span>for</span> Android') }}</h2>
             <p>{{ _('Make it uniquely yours.') }}</p>
           </a>
-
-        {% if not waffle.switch('firefox-ios-global') %}
-          <div class="btn-google-play">
-            <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-product="Firefox for Android, Google Play">
-              {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True}) }}
-            </a>
-            <small class="download-other">
-              <a href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
-            </small>
-          </div>
-        {% endif %}
         </div>
       </li>
 
-    {% if l10n_has_tag('tracking_protection') and waffle.switch('firefox-ios-global') %}
+    {% if l10n_has_tag('tracking_protection') %}
       <li class="product highlight" id="product-ios">
         <div class="inner">
           <a href="{{ url('firefox.ios') }}" data-product="Firefox for iOS">
@@ -170,7 +157,7 @@
         </a>
       </li>
 
-    {% if l10n_has_tag('tracking_protection') and waffle.switch('tracking-protection') %}
+    {% if l10n_has_tag('tracking_protection') %}
       <li class="product" id="product-private-browsing">
         <a href="{{ url('firefox.private-browsing') }}" data-product="Private Browsing">
           <h2>{{ _('Private Browsing') }}</h2>

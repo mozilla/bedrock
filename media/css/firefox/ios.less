@@ -98,65 +98,6 @@ a.go {
         }
     }
 
-    .beta-flag {
-        position: relative;
-        z-index: 1;
-        margin: -2em 0 1em;
-        float: left;
-        clear: both;
-
-        span {
-            display: block;
-            position: relative;
-            background: #f26c24;
-            #gradient > .horizontal(#f26c24, #e55525);
-            padding: .5em 30px;
-            color: #fff;
-            .font-size(12px);
-            text-transform: uppercase;
-
-            &:before {
-                content: '';
-                display: block;
-                position: absolute;
-                top: 8px;
-                bottom: -8px;
-                left: -8px;
-                width: 16px;
-                z-index: -1;
-                background: darken(#e55525, 5%);
-            }
-
-            &:after {
-                content: '';
-                display: block;
-                position: absolute;
-                right: -1.25em;
-                top: 0;
-                bottom: 0;
-                border: 1.25em solid #e55525;
-                border-right-color: transparent;
-            }
-
-            strong:before {
-                content: '';
-                display: block;
-                position: absolute;
-                left: 0;
-                bottom: -8px;
-                border-style: solid;
-                border-width: 8px 0 0 8px;
-                border-color: darken(#e55525, 20%) transparent transparent transparent;
-            }
-        }
-
-        @media only screen and (max-width: @breakTablet) {
-            float: none;
-            text-align: center;
-            margin-top: 0;
-        }
-    }
-
     h1 {
         .font-size(82px);
         clear: both;
@@ -310,24 +251,6 @@ a.go {
         }
     }
 }
-
-// Download CTA and beta flag are hidden
-// unless we know your country is in-market
-.get-fxios,
-.beta-flag {
-    display: none;
-}
-
-.in-market {
-    .get-fxios,
-    .beta-flag {
-        display: block;
-    }
-    .signup {
-        display: none;
-    }
-}
-
 
 // Android users get an Android link.
 // Default to visible for non-JS, just in case.
@@ -517,7 +440,7 @@ a.go {
         }
     }
 
-    &.ios-active li {
+    &.four-up li {
         width: 22%;
 
         @media only screen and (max-width: @breakTablet) {
