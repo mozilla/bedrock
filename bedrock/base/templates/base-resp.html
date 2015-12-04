@@ -7,6 +7,11 @@
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
+    {% javascript 'site' %}
+    {% block newrelic %}
+      {% include 'includes/newrelic.html' %}
+    {% endblock %}
+
 <!--
 {% include "includes/careers-teaser.html" %}
 -->
@@ -69,8 +74,6 @@
     {% block extrahead %}
       {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE7 and lower. #}
     {% endblock %}
-
-    {% javascript 'site' %}
 
     {% block optimizely %}{% endblock %}
 

@@ -1104,3 +1104,6 @@ if not SSLIFY_DISABLE:
 SSLIFY_DISABLE_FOR_REQUEST = [
     lambda request: request.get_full_path() == '/healthz/'
 ]
+
+NEWRELIC_BROWSER_LICENSE_KEY = config('NEWRELIC_BROWSER_LICENSE_KEY', default='')
+NEWRELIC_APP_ID = config('NEWRELIC_APP_ID', default='')
