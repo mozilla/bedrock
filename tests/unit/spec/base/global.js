@@ -149,22 +149,27 @@ describe('global.js', function() {
         });
     });
 
-    describe('init_android_download_links', function () {
+    describe('init_mobile_download_links', function () {
 
-        beforeEach(function () {
-            window.site.platform = 'android';
-            //create an HTML fixture to test against
-            $('<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">foo</a>').appendTo('body');
-        });
+        var $link;
 
         afterEach(function(){
             window.site.platform = 'other';
-            $('.download-link').remove();
+            $link.remove();
         });
 
-        it('should set a URL with the market scheme', function () {
-            init_android_download_links();
-            expect($('.download-link').attr('href')).toEqual('market://details?id=org.mozilla.firefox');
+        it('should set a URL with the market scheme on Android', function () {
+            window.site.platform = 'android';
+            $link = $('<a class="download-link" href="https://play.google.com/store/apps/details?id=org.mozilla.firefox">foo</a>').appendTo('body');
+            init_mobile_download_links();
+            expect($link.attr('href')).toEqual('market://details?id=org.mozilla.firefox');
+        });
+
+        it('should set a URL with the itms-apps scheme on iOS', function () {
+            window.site.platform = 'ios';
+            $link = $('<a class="download-link" href="https://itunes.apple.com/us/app/apple-store/id989804926?mt=8">foo</a>').appendTo('body');
+            init_mobile_download_links();
+            expect($link.attr('href')).toEqual('itms-apps://itunes.apple.com/us/app/apple-store/id989804926?mt=8');
         });
 
     });
