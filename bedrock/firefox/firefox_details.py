@@ -123,9 +123,8 @@ class FirefoxDesktop(ProductDetails):
                 continue
 
             for platform, label in self.platform_labels.iteritems():
-                # Windows 64-bit builds are currently available only on the
-                # Aurora and Beta channel
-                if platform == 'win64' and channel not in ['alpha', 'beta']:
+                # Windows 64-bit builds are not available on the ESR channel yet
+                if platform == 'win64' and channel in ['esr', 'esr_next']:
                     continue
 
                 build_info['platforms'][platform] = {

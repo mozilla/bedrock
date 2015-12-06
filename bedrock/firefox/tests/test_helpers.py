@@ -79,13 +79,13 @@ class TestDownloadButtons(TestCase):
         doc = pq(render("{{ download_firefox() }}",
                         {'request': get_request}))
 
-        # The first 4 links should be for desktop.
+        # The first 5 links should be for desktop.
         links = doc('.download-list a')
-        for link in links[:4]:
+        for link in links[:5]:
             ok_(pq(link).attr('data-direct-link')
                 .startswith('https://download.mozilla.org'))
-        # The fourth link is mobile and should not have the attr
-        ok_(pq(links[4]).attr('data-direct-link') is None)
+        # The fifth link is mobile and should not have the attr
+        ok_(pq(links[5]).attr('data-direct-link') is None)
 
     @override_settings(AURORA_STUB_INSTALLER=True)
     def test_stub_aurora_installer_enabled_locales(self):
@@ -166,11 +166,12 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 4)
+        eq_(list.length, 5)
         eq_(pq(list[0]).attr('class'), 'os_win')
-        eq_(pq(list[1]).attr('class'), 'os_osx')
-        eq_(pq(list[2]).attr('class'), 'os_linux')
-        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
 
     def test_aurora_mobile(self):
         rf = RequestFactory()
