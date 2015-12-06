@@ -14,6 +14,7 @@ import jingo
 import jinja2
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.helpers import static
+from bedrock.firefox.firefox_details import firefox_ios
 
 
 ALL_FX_PLATFORMS = ('windows', 'linux', 'mac', 'android', 'ios')
@@ -460,6 +461,49 @@ def releasenotes_url(release):
         return reverse('firefox.ios.releasenotes', args=(release.version, prefix))
     else:
         return reverse('firefox.desktop.releasenotes', args=(release.version, prefix))
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def firefox_ios_url(ctx, ct_param=None):
+    """
+    Output a link to the Firefox for iOS download page on the Apple App Store
+    taking locales into account.
+
+    Use the locale from the current request. Check if the locale matches one of
+    the Store's supported countries, return the localized page's URL or fall
+    back to the default (English) page if not.
+
+    The optional ct_param is a campaign value for the app analytics.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ firefox_ios_url() }}
+
+    For en-US this would output:
+
+        https://itunes.apple.com/us/app/apple-store/id989804926?pt=373246&amp;mt=8
+
+    For es-ES this would output:
+
+        https://itunes.apple.com/es/app/apple-store/id989804926?pt=373246&amp;mt=8
+
+    For ja this would output:
+
+        https://itunes.apple.com/jp/app/apple-store/id989804926?pt=373246&amp;mt=8
+
+    """
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    link = firefox_ios.get_download_url('release', locale)
+
+    if ct_param:
+        return link + '&ct=' + ct_param
+
+    return link
 
 
 @jingo.register.filter

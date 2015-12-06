@@ -131,7 +131,7 @@
             {% if l10n_has_tag('mobile_links') %}
             <li class="hide-for-refresh"><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
             {% if l10n_has_tag('firefox_ios') and waffle.switch('firefox-ios-global') %}
-            <li class="hide-for-refresh"><a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}&amp;ct=mozorg-uptodate-appstore-link">{{ _('Add Firefox to your iPhone, iPad and iPod touch') }}</a></li>
+            <li class="hide-for-refresh"><a href="{{ firefox_ios_url('mozorg-uptodate-appstore-link') }}">{{ _('Add Firefox to your iPhone, iPad and iPod touch') }}</a></li>
             {% endif %}
             <li class="hide-for-refresh"><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
             {% endif %}
@@ -179,7 +179,7 @@
             </a>
           </li>
           <li class="ios">
-            <a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}&amp;ct=mozorg-scene_2-appstore-button">
+            <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}">
               <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
             </a>
           </li>

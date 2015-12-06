@@ -35,7 +35,7 @@
   {% if waffle.switch('firefox-ios-global') %}
     {% call fxfamilynav('ios', 'index') %}
       <div class="{% if has_widget %}show-widget{% endif %}">
-        <a class="dl-button" rel="external" href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}">
+        <a class="dl-button" rel="external" href="{{ firefox_ios_url() }}">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
         </a>
         <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for iOS') }}</button>
@@ -77,7 +77,7 @@
       <h2>{{ _('Add Firefox to your iPhone, iPad and iPod touch.') }}</h2>
 
       <p class="appstore-badge">
-        <a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}&amp;ct=mozorg-ios_page-appstore-button"><img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}"></a>
+        <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}"><img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}"></a>
       </p>
       <p class="send-to-device">
         <button class="send-to button-flat-green">{{ _('Get it now') }}</button>
@@ -138,7 +138,7 @@
       <div class="fx-ios">
         <h3>{{ _('Sync your Firefox browsing history on iOS') }}</h3>
         <p><button type="button" class="button-flat sync-start-ios">{{ _('Get started with Sync') }}</button></p>
-        <p><a href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}" class="go">{{ _('Learn more in the App Store') }}</a></p>
+        <p><a href="{{ firefox_ios_url() }}" class="go">{{ _('Learn more in the App Store') }}</a></p>
       </div>
 
     </div>{#-- /.sync-cta --#}
@@ -178,7 +178,7 @@
 
 {% if has_widget %}
   <div id="send-to-modal-container">
-    {{ send_to_device(platform='ios', title_text=_('Send Firefox to your iOS device'), ios_link=settings.APPLE_APPSTORE_FIREFOX_LINK + '&amp;ct=mozorg-ios_page-appstore-button_sd') }}
+    {{ send_to_device(platform='ios', title_text=_('Send Firefox to your iOS device'), ios_link=firefox_ios_url('mozorg-ios_page-appstore-button_sd')) }}
   </div>
 {% endif %}
 

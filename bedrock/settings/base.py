@@ -8,7 +8,6 @@ import platform
 from os.path import abspath
 
 from django.utils.functional import lazy
-from django.utils.http import urlquote
 
 import dj_database_url
 from decouple import Csv, config
@@ -938,24 +937,9 @@ OPTIMIZELY_PROJECT_ID = None
 FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
                         default='https://accounts.firefox.com/')
 
-# Link to Firefox for Android on the Google Play store with Google Analytics
-# campaign parameters.
-# To clarify below, 'referrer' key value must be a URL encoded string of utm_*
-# key/values (https://bugzilla.mozilla.org/show_bug.cgi?id=1099429#c0).
-GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
-                            'id=org.mozilla.firefox&referrer=' +
-                            urlquote('utm_source=mozilla&utm_medium=Referral&'
-                                     'utm_campaign=mozilla-org'))
-
-# Link to Firefox for iOS on the Apple App Store with Google Analytics
-# campaign patameters. Each implementation should add a "ct" parameter
-# for analytics.
-
-# Note: this URL is likely to change for Fx42. See bug comment:
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1196310#c18
-APPLE_APPSTORE_FIREFOX_LINK = ('https://itunes.apple.com/app/apple-store/' +
-                               'id989804926?pt=373246&mt=8')
-
+# Google Play and Apple App Store settings
+from .appstores import (GOOGLE_PLAY_FIREFOX_LINK,  # noqa
+                        APPLE_APPSTORE_FIREFOX_LINK, APPLE_APPSTORE_COUNTRY_MAP)
 
 # Locales that should display the 'Send to Device' widget
 SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',

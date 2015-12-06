@@ -51,7 +51,7 @@
       </div>
       <div class="message" id="dlbar-ios">
       {% if l10n_has_tag('tracking_protection') and waffle.switch('firefox-ios-global') %}
-        <a rel="external" href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}" data-product="Firefox for iOS">{{ _('Get Firefox for iOS') }}</a>
+        <a rel="external" href="{{ firefox_ios_url() }}" data-product="Firefox for iOS">{{ _('Get Firefox for iOS') }}</a>
       {% elif not waffle.switch('firefox-ios-global') %}
         {{ _('Firefox is coming soon to iOS! <a href="%s">Sign up to learn more</a>.')|format(url('newsletter.ios')) }}
       {% endif %}
@@ -134,7 +134,7 @@
           {% endif %}
           </a>
 
-          <a rel="external" href="{{ settings.APPLE_APPSTORE_FIREFOX_LINK }}" class="btn-apple-appstore" data-product="Firefox for iOS, App Store">
+          <a rel="external" href="{{ firefox_ios_url() }}" class="btn-apple-appstore" data-product="Firefox for iOS, App Store">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="135" height="40">
           </a>
         </div>

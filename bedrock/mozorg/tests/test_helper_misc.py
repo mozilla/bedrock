@@ -568,3 +568,47 @@ class TestReleaseNotesURL(TestCase):
         eq_(releasenotes_url(release), mock_reverse.return_value)
         mock_reverse.assert_called_with(
             'firefox.desktop.releasenotes', args=('42.0', 'release'))
+
+
+class TestFirefoxIOSURL(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, ct_param=None):
+        req = self.rf.get('/')
+        req.locale = locale
+
+        if ct_param:
+            return render("{{ firefox_ios_url('%s') }}" % ct_param,
+                          {'request': req})
+
+        return render("{{ firefox_ios_url() }}", {'request': req})
+
+    def test_firefox_ios_url_no_locale(self):
+        """No locale, fallback to default URL"""
+        eq_(self._render(''), 'https://itunes.apple.com'
+            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+
+    def test_firefox_ios_url_default(self):
+        """should fallback to default URL"""
+        eq_(self._render('ar'), 'https://itunes.apple.com'
+            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+        eq_(self._render('zu'), 'https://itunes.apple.com'
+            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+
+    def test_firefox_ios_url_localized(self):
+        """should return localized URL"""
+        eq_(self._render('en-US'), 'https://itunes.apple.com/us'
+            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+        eq_(self._render('es-ES'), 'https://itunes.apple.com/es'
+            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+        eq_(self._render('ja'), 'https://itunes.apple.com/jp'
+            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+
+    def test_firefox_ios_url_param(self):
+        """should return default or localized URL with ct param"""
+        eq_(self._render('', 'mozorg'), 'https://itunes.apple.com'
+            '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
+        eq_(self._render('en-US', 'mozorg'), 'https://itunes.apple.com/us'
+            '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
+        eq_(self._render('es-ES', 'mozorg'), 'https://itunes.apple.com/es'
+            '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
