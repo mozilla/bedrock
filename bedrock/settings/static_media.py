@@ -351,6 +351,15 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/nightly_firstrun-bundle.css',
     },
+    'firefox_variants_firstrun': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/australis/fx40/firstrun.less',
+            'css/firefox/firstrun/variants.less',
+        ),
+        'output_filename': 'css/firefox_fx40_firstrun-bundle.css',
+    },
     'firefox_feedback': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
