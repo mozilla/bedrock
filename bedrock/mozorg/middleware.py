@@ -79,3 +79,14 @@ class HostnameMiddleware(object):
     def process_response(self, request, response):
         response['X-Backend-Server'] = self.backend_server
         return response
+
+
+class VaryNoCacheMiddleware(object):
+    @staticmethod
+    def process_response(request, response):
+        if 'vary' in response:
+            del response['vary']
+            del response['expires']
+            response['Cache-Control'] = 'max-age=0'
+
+        return response
