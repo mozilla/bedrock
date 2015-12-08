@@ -935,6 +935,9 @@ OPTIMIZELY_PROJECT_ID = None
 #
 # For demo server testing, configure Fx40+ as detailed here:
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1150231#c28
+#
+# To clear browser cache while testing multiple accounts, append '/clear' to
+# the iframe's source URL, e.g. https://accounts.stage.mozaws.net/clear
 FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
                         default='https://accounts.firefox.com/')
 

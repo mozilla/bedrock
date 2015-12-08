@@ -36,7 +36,11 @@
 {% block site_css %}{% endblock %}
 
 {% block extrahead %}
-  {% stylesheet 'firefox_new' %}
+  {% if variant == '1' %}
+    {% stylesheet 'firefox_new_v1' %}
+  {% else %}
+    {% stylesheet 'firefox_new' %}
+  {% endif %}
 {% endblock %}
 
 {% block js_pretrack %}
@@ -217,4 +221,10 @@
 
 {% block js %}
   {% javascript 'firefox_new' %}
+
+  {% if variant == '1' %}
+    <![if gte IE 9]>
+    {% javascript 'firefox_new_v1' %}
+    <![endif]>
+  {% endif %}
 {% endblock %}
