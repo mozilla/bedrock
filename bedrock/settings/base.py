@@ -307,11 +307,14 @@ DEIS_APP = config('DEIS_APP', default=None)
 DEIS_DOMAIN = config('DEIS_DOMAIN', default=None)
 ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
                                     default=bool(DEIS_APP), cast=bool)
+ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
+                                         default=False, cast=bool)
 
 MIDDLEWARE_CLASSES = [middleware for middleware in (
     'sslify.middleware.SSLifyMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
+    'bedrock.mozorg.middleware.VaryNoCacheMiddleware' if ENABLE_VARY_NOCACHE_MIDDLEWARE else False,
     # must come before LocaleURLMiddleware
     'bedrock.redirects.middleware.RedirectsMiddleware',
     'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
