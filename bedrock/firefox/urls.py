@@ -54,8 +54,6 @@ urlpatterns = (
     page('firefox/private-browsing', 'firefox/private-browsing.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
-    url('^firefox/sms/$', views.sms_send, name='firefox.sms'),
-    page('firefox/sms/sent', 'firefox/android/sms-thankyou.html'),
     page('firefox/sync', 'firefox/sync.html'),
     page('firefox/tiles', 'firefox/tiles.html'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
