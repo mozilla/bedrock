@@ -924,7 +924,7 @@ MAPBOX_ACCESS_TOKEN = config(
 TABZILLA_INFOBAR_OPTIONS = 'update translation'
 
 # Optimize.ly project code
-OPTIMIZELY_PROJECT_ID = None
+OPTIMIZELY_PROJECT_ID = config('OPTIMIZELY_PROJECT_ID', default='')
 
 # Fx Accounts iframe source
 # Prod, stage, dev, & demos have this set in their local.py files.
