@@ -436,6 +436,16 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new-bundle.css',
     },
+    'firefox_new_v1': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/base/simple_footer-resp.less',
+            'css/firefox/new.less',
+            'css/firefox/new-v1.less',
+        ),
+        'output_filename': 'css/firefox_new_v1-bundle.css',
+    },
     'firefox_organizations': {
         'source_filenames': (
             'css/firefox/organizations.less',
@@ -1219,6 +1229,15 @@ PIPELINE_JS = {
             'js/firefox/new.js',
         ),
         'output_filename': 'js/firefox_new-bundle.js',
+    },
+    'firefox_new_v1': {
+        'source_filenames': (
+            'js/libs/fontfaceobserver.js',
+            'js/libs/matchMedia.js',
+            'js/libs/matchMedia.addListener.js',
+            'js/firefox/new-v1.js',
+        ),
+        'output_filename': 'js/firefox_new_v1-bundle.js',
     },
     'firefox_new_ios_redirect': {
         'source_filenames': (

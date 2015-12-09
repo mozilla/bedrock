@@ -3,8 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from django.conf.urls import url
 
-from commonware.response.decorators import xframe_allow
-
 from bedrock.redirects.util import redirect
 from bedrock.mozorg.util import page
 
@@ -61,7 +59,7 @@ urlpatterns = (
     page('firefox/sync', 'firefox/sync.html'),
     page('firefox/tiles', 'firefox/tiles.html'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
-    page('firefox/new', 'firefox/new.html', decorators=xframe_allow),
+    url(r'^firefox/new/$', views.new, name='firefox.new'),
     page('firefox/organizations/faq', 'firefox/organizations/faq.html'),
     page('firefox/organizations', 'firefox/organizations/organizations.html'),
     page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),

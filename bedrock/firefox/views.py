@@ -20,6 +20,7 @@ from django.views.generic.base import TemplateView
 import basket
 from bedrock.base.helpers import static
 from bedrock.base.urlresolvers import reverse
+from commonware.response.decorators import xframe_allow
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
@@ -687,3 +688,18 @@ class Win10Welcome(l10n_utils.LangFilesMixin, TemplateView):
 
 class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
     template_name = 'firefox/tracking-protection-tour.html'
+
+
+@xframe_allow
+def new(request):
+    locale = request.locale
+    variant_locales = ['en-US', 'de']
+
+    # check for variant in querystring
+    variant = request.GET.get('v', '')
+
+    # ensure variant is one of 2 accepted values
+    if (variant not in ['1', '2'] or locale not in variant_locales):
+        variant = ''
+
+    return l10n_utils.render(request, 'firefox/new.html', {'variant': variant})
