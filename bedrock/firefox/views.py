@@ -699,7 +699,7 @@ def new(request):
     variant = request.GET.get('v', '')
 
     # ensure variant is one of 2 accepted values
-    if (variant not in ['1', '2'] or locale not in variant_locales):
+    if (variant not in ['1', '2', '3', '4'] or locale not in variant_locales):
         variant = ''
 
     return l10n_utils.render(request, 'firefox/new.html', {'variant': variant})

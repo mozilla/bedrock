@@ -50,8 +50,10 @@
 {% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('firefox-new-optimizely') %}
-     {% include 'includes/optimizely.html' %}
+  {% if variant != '3' %}
+    {% if waffle.switch('firefox-new-optimizely') %}
+       {% include 'includes/optimizely.html' %}
+    {% endif %}
   {% endif %}
 {% endblock %}
 
