@@ -4,13 +4,13 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2012, Codrops
  * http://www.codrops.com
  */
 
 ;( function( $, window, undefined ) {
-	
+
 	'use strict';
 
 	// http://www.hardcode.nl/subcategory_1/article_317-array-shuffle-function
@@ -71,7 +71,7 @@
 		Modernizr			= window.Modernizr;
 
 	$.GridRotator			= function( options, element ) {
-		
+
 		this.$el	= $( element );
 		if( Modernizr.backgroundsize ) {
 
@@ -82,16 +82,16 @@
 
 				_self._init( options );
 
-			} ).attr( 'src', '/media/img/mosaic/loading.gif' );
+			}).attr('src', $('#mosaic').data('loading'));
 
 		}
-		
+
 	};
 
 	$.GridRotator.defaults	= {
 		// number of rows
 		rows			: 4,
-		// number of columns 
+		// number of columns
 		columns			: 10,
 		w1024			: {
 			rows	: 3,
@@ -121,11 +121,11 @@
 		// prevent user to click the items
 		preventClick	: true,
 		// animation type
-		// showHide || fadeInOut || slideLeft || 
-		// slideRight || slideTop || slideBottom || 
-		// rotateLeft || rotateRight || rotateTop || 
-		// rotateBottom || scale || rotate3d || 
-		// rotateLeftScale || rotateRightScale || 
+		// showHide || fadeInOut || slideLeft ||
+		// slideRight || slideTop || slideBottom ||
+		// rotateLeft || rotateRight || rotateTop ||
+		// rotateBottom || scale || rotate3d ||
+		// rotateLeftScale || rotateRightScale ||
 		// rotateTopScale || rotateBottomScale || random
 		animType		: 'random',
 		// animation speed
@@ -143,7 +143,7 @@
 		_init				: function( options ) {
 
 			var _self			= this;
-			
+
 			// options
 			this.options		= $.extend( true, {}, $.GridRotator.defaults, options );
 
@@ -193,7 +193,7 @@
 					if( loaded === count ) {
 
 						$imgs.remove();
-				 
+
 						_self.$el.removeClass( 'ri-grid-loading' );
 
 			// the items
@@ -216,7 +216,7 @@
 					}
 
 				} ).attr( 'src', src )
-				 
+
 			} );
 
 		},
@@ -230,7 +230,7 @@
 			// reset
 			this.$list.empty();
 			this.$items		= this.$itemsCache.clone().appendTo( this.$list );
-			
+
 			var $outItems	= this.$items.filter( ':gt(' + ( this.showTotal - 1 ) + ')' ),
 				$outAItems	= $outItems.children( 'a' );
 
@@ -264,7 +264,7 @@
 						height	: h
 					} );
 
-					
+
 /*
 					if( gapWidth % 1 !== 0 && j === this.columns - 1 ) {
 
@@ -275,7 +275,7 @@
 
 					}
 */
-					
+
 
 				}
 
@@ -300,7 +300,7 @@
 			// container's width
 			var c_w			= this.$el.width();
 
-			// we will choose the number of rows/columns according to the container's width and the values set on the plugin options 
+			// we will choose the number of rows/columns according to the container's width and the values set on the plugin options
 			switch( true ) {
 
 				case ( c_w < 240 )	: this.rows = this.options.w240.rows; this.columns = this.options.w240.columns; break;
@@ -329,7 +329,7 @@
 					_self._start();
 
 				} );
-				
+
 			} );
 
 		},
@@ -373,92 +373,92 @@
 
 				case 'showHide'	:
 					speed = 0;
-					
+
 					endOutProp.opacity	= 0;
-					
+
 					break;
 				case 'fadeInOut'	:
 					endOutProp.opacity	= 0;
-					
+
 					break;
 				case 'slideLeft'	:
 					startInProp.left 	= $out.width();
-					
+
 					endInProp.left		= 0;
 					endOutProp.left		= -$out.width();
-					
+
 					break;
 				case 'slideRight'	:
 					startInProp.left 	= -$out.width();
-					
+
 					endInProp.left		= 0;
 					endOutProp.left		= $out.width();
-					
+
 					break;
 				case 'slideTop'		:
 					startInProp.top 	= $out.height();
-					
+
 					endInProp.top		= 0;
 					endOutProp.top		= -$out.height();
-					
+
 					break;
 				case 'slideBottom'	:
 					startInProp.top 	= -$out.height();
-					
+
 					endInProp.top		= 0;
 					endOutProp.top		= $out.height();
-					
+
 					break;
 				case 'rotateLeft'	:
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.rotateY		= '90deg';
-					
+
 					endInProp.rotateY		= '0deg';
 					endInProp.delay			= speed;
 					endOutProp.rotateY		= '-90deg';
-					
+
 					break;
 				case 'rotateRight'	:
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.rotateY		= '-90deg';
-					
+
 					endInProp.rotateY		= '0deg';
 					endInProp.delay			= speed;
 					endOutProp.rotateY		= '90deg';
-					
+
 					break;
 				case 'rotateTop'	:
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.rotateX		= '90deg';
-					
+
 					endInProp.rotateX		= '0deg';
 					endInProp.delay			= speed;
 					endOutProp.rotateX		= '-90deg';
-					
+
 					break;
 				case 'rotateBottom'	:
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.rotateX		= '-90deg';
-					
+
 					endInProp.rotateX		= '0deg';
 					endInProp.delay			= speed;
 					endOutProp.rotateX		= '90deg';
-					
+
 					break;
 				case 'scale'		:
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.scale		= '0';
 					startOutProp.scale		= '1';
-					
+
 					endInProp.scale			= '1';
 					endInProp.delay			= speed;
 					endOutProp.scale		= '0';
-					
+
 					break;
 				case 'rotateLeftScale'	:
 					startInProp.scale		= '0.3';
@@ -467,13 +467,13 @@
 					endOutProp.scale		= '0.3';
 
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.rotateY		= '90deg';
-					
+
 					endInProp.rotateY		= '0deg';
 					endInProp.delay			= speed;
 					endOutProp.rotateY		= '-90deg';
-					
+
 					break;
 				case 'rotateRightScale'	:
 					startInProp.scale		= '0.3';
@@ -482,13 +482,13 @@
 					endOutProp.scale		= '0.3';
 
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.rotateY		= '-90deg';
-					
+
 					endInProp.rotateY		= '0deg';
 					endInProp.delay			= speed;
 					endOutProp.rotateY		= '90deg';
-					
+
 					break;
 				case 'rotateTopScale'	:
 					startInProp.scale		= '0.3';
@@ -497,13 +497,13 @@
 					endOutProp.scale		= '0.3';
 
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.rotateX		= '90deg';
-					
+
 					endInProp.rotateX		= '0deg';
 					endInProp.delay			= speed;
 					endOutProp.rotateX		= '-90deg';
-					
+
 					break;
 				case 'rotateBottomScale'	:
 					startInProp.scale		= '0.3';
@@ -512,23 +512,23 @@
 					endOutProp.scale		= '0.3';
 
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.rotateX		= '-90deg';
-					
+
 					endInProp.rotateX		= '0deg';
 					endInProp.delay			= speed;
 					endOutProp.rotateX		= '90deg';
-					
+
 					break;
 				case 'rotate3d'		:
 					speed					= this.options.animSpeed / 2;
-					
+
 					startInProp.rotate3d	= '1, 1, 0, 90deg';
-					
+
 					endInProp.rotate3d		= '1, 1, 0, 0deg';
 					endInProp.delay			= speed;
 					endOutProp.rotate3d		= '1, 1, 0, -90deg';
-					
+
 					break;
 
 			}
@@ -556,27 +556,27 @@
 				var step		= _self.options.step,
 					max			= _self.options.maxStep,
 					min			= 1;
-				
+
 				if( max > _self.showTotal ) {
 
 					max = _self.showTotal;
 
 				}
 
-				var $items	= _self.$items, 
+				var $items	= _self.$items,
 					outs	= [],
 					// number of items to swith at this point of time
 					nmbOut	= ( step === 'random' ) ? Math.floor( Math.random() * max + min ) : Math.min( Math.abs( step ) , max ) ,
 					// array with random indexes. These will be the indexes of the items we will replace
 					randArr	= _self._getRandom( nmbOut, _self.showTotal );
-				
+
 				for( var i = 0; i < nmbOut; ++i ) {
 
 					// element to go out
 					var $out = $items.eq( randArr[ i ] );
 
 					// if element is active, which means it is currently animating,
-					// then we need to get different positions.. 
+					// then we need to get different positions..
 					if( $out.data( 'active' ) ) {
 
 						// one of the items is active, call again..
@@ -607,12 +607,12 @@
 
 					// save element that went out
 					_self.outItems.push( $outA.clone() );
-					
+
 					// prepend in element
 					$inA.css( newElProp ).prependTo( $out );
 
 					var animProp	= _self._getAnimProperties( $inA, $outA );
-					
+
 
 					if( Modernizr.csstransitions ) {
 
@@ -622,7 +622,7 @@
 							$( this ).parent().data( 'active', false ).end().remove();
 
 						} );
-					
+
 					}
 
 					// fallback to jQuery animate
@@ -654,78 +654,78 @@
 				randArray.push( i )
 
 			}
-			
-			return randArray.shuffle().slice(0,cnt); 
+
+			return randArray.shuffle().slice(0,cnt);
 
 		}
 
 	};
-	
+
 	var logError		= function( message ) {
 
 		if ( window.console ) {
 
 			window.console.error( message );
-		
+
 		}
 
 	};
-	
+
 	$.fn.gridrotator	= function( options ) {
-		
+
 		if ( typeof options === 'string' ) {
-			
+
 			var args = Array.prototype.slice.call( arguments, 1 );
-			
+
 			this.each(function() {
-			
+
 				var instance = $.data( this, 'gridrotator' );
-				
+
 				if ( !instance ) {
 
 					logError( "cannot call methods on gridrotator prior to initialization; " +
 					"attempted to call method '" + options + "'" );
 					return;
-				
+
 				}
-				
+
 				if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {
 
 					logError( "no such method '" + options + "' for gridrotator instance" );
 					return;
-				
+
 				}
-				
+
 				instance[ options ].apply( instance, args );
-			
+
 			});
-		
-		} 
+
+		}
 		else {
-		
+
 			this.each(function() {
-				
+
 				var instance = $.data( this, 'gridrotator' );
-				
+
 				if ( instance ) {
 
 					instance._init();
-				
+
 				}
 				else {
 
 					$.data( this, 'gridrotator', new $.GridRotator( options, this ) );
-				
+
 				}
 
 			});
-		
+
 		}
-		
+
 		return this;
-		
+
 	};
-	
+
 } )( jQuery, window );
 
 $(function() {
