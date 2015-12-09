@@ -1,0 +1,123 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../sandstone/lib.less';
+
+html,
+body {
+    height: 100%;
+    background: @mozIDBlue;
+}
+
+main {
+    padding: 0 @baseLine;
+    .clearfix;
+}
+
+h1 {
+    margin-bottom: @baseLine * 3;
+    .font-size(60px);
+    color: #56565a;
+    text-align: center;
+}
+
+#tabzilla:before {
+    background: @mozIDBlue;
+}
+
+#outer-wrapper {
+    min-height: 100%;
+    .aurora-bars(#c1e3f4, #cee8f6);
+    overflow: hidden;
+}
+
+.main-copy {
+    float: left;
+    width: 490px;
+
+    p {
+        .font-size(22px);
+        color: #56565a;
+        line-height: 1.3;
+    }
+}
+
+.sync-anim {
+    margin-bottom: @gridGutterWidth;
+}
+
+#fxa {
+    display: block;
+    float: right;
+    opacity: 0;
+    width: 400px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 6px;
+    border: none;
+    overflow: hidden;
+    .transition(height 0.25s ease);
+
+    &.loaded {
+        opacity: 1;
+    }
+}
+
+// minimal design for optimizely test
+main.minimal {
+    .main-copy {
+        display: none;
+    }
+
+    #fxa {
+        float: none;
+    }
+}
+
+@media only screen and (max-width: @breakDesktop) {
+
+    .main-copy {
+        width: 400px;
+    }
+
+    #fxa {
+        width: 300px;
+        padding: @baseLine 0;
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+
+    h1 {
+        .font-size(40px);
+        margin-bottom: @baseLine;
+    }
+
+    .main-copy {
+        float: none;
+        width: auto;
+        padding: 0 @baseLine;
+
+        p {
+            .font-size(18px);
+            margin-bottom: @baseLine * 2;
+            text-align: center;
+        }
+    }
+
+    #fxa {
+        float: none;
+    }
+
+    .sync-anim {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+
+    main {
+        padding: 0;
+    }
+}
