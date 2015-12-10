@@ -11,7 +11,7 @@ class DoNotTrackPage(FirefoxBasePage):
 
     _url = '{base_url}/{locale}/firefox/dnt'
 
-    _dnt_status = (By.CSS_SELECTOR, '#dnt-status > h5')
+    _dnt_status_locator = (By.CSS_SELECTOR, '#dnt-status > h5')
     _faqs_locator = (By.CSS_SELECTOR, '#faq > section')
 
     @property
@@ -21,7 +21,7 @@ class DoNotTrackPage(FirefoxBasePage):
 
     @property
     def is_do_not_track_status_displayed(self):
-        return self.is_element_displayed(self._dnt_status)
+        return self.is_element_displayed(self._dnt_status_locator)
 
 
 class FrequentlyAskedQuestion(FirefoxBasePageRegion):
