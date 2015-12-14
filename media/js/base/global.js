@@ -52,13 +52,20 @@ function update_download_text_for_old_fx() {
     }
 }
 
-// Replace Google Play links on Android devices to let them open
-// the native Play Store app
-function init_android_download_links() {
+// Replace Google Play and Apple App Store links on Android and iOS devices to
+// let them open the native marketplace app
+function init_mobile_download_links() {
     if (site.platform === 'android') {
         $('a[href^="https://play.google.com/store/apps/"]').each(function() {
             $(this).attr('href', $(this).attr('href')
                 .replace('https://play.google.com/store/apps/', 'market://'));
+        });
+    }
+
+    if (site.platform === 'ios') {
+        $('a[href^="https://itunes.apple.com/"]').each(function() {
+            $(this).attr('href', $(this).attr('href')
+                .replace('https://', 'itms-apps://'));
         });
     }
 }

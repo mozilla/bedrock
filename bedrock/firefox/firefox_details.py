@@ -277,8 +277,13 @@ class FirefoxIOS(ProductDetails):
         version = self.channel_map.get(channel, 'version')
         return self.mobile_details[version]
 
-    def get_download_url(self, channel='release', type=None):
-        return self.store_url
+    def get_download_url(self, channel='release', locale='en-US'):
+        countries = settings.APPLE_APPSTORE_COUNTRY_MAP
+
+        if locale in countries:
+            return self.store_url.format(country=countries[locale])
+
+        return self.store_url.replace('/{country}/', '/')
 
 
 firefox_desktop = FirefoxDesktop()
