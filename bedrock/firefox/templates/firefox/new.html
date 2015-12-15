@@ -36,8 +36,15 @@
 {% block site_css %}{% endblock %}
 
 {% block extrahead %}
+  {# load fonts async #}
   {% if variant == '1' %}
     {% stylesheet 'firefox_new_v1' %}
+  {# custom/minimized sandstone/buttons CSS #}
+  {% elif variant == '2' %}
+    {% stylesheet 'firefox_new_v2' %}
+  {# load fonts async & custom/minimized sandstone/buttons CSS #}
+  {% elif variant == '4' %}
+    {% stylesheet 'firefox_new_v4' %}
   {% else %}
     {% stylesheet 'firefox_new' %}
   {% endif %}
@@ -50,7 +57,8 @@
 {% endblock %}
 
 {% block optimizely %}
-  {% if variant != '3' %}
+  {# do not load optimizely for variants 3 and 4 #}
+  {% if variant not in ['3', '4'] %}
     {% if waffle.switch('firefox-new-optimizely') %}
        {% include 'includes/optimizely.html' %}
     {% endif %}
@@ -224,7 +232,8 @@
 {% block js %}
   {% javascript 'firefox_new' %}
 
-  {% if variant == '1' %}
+  {# loads fonts async for variants 1 and 4 #}
+  {% if variant in ['1', '4'] %}
     <![if gte IE 9]>
     {% javascript 'firefox_new_v1' %}
     <![endif]>
