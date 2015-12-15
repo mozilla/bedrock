@@ -9,8 +9,8 @@ CMD="linkchecker"
 CMD="${CMD} -F html/utf8//results/linkchecker-out.html"
 if [ -n "${THREADS}" ]; then CMD="${CMD} -t ${THREADS}"; fi
 if [ -n "${RECURSION_LEVEL}" ]; then CMD="${CMD} -r ${RECURSION_LEVEL}"; fi
-if [ -n "${VERBOSE}" ]; then CMD="${CMD} -v"; fi
-if [ -n "${CHECK_EXTERNAL}" ]; then CMD="${CMD} --check-extern"; fi
+if [ "${VERBOSE}" = "true" ]; then CMD="${CMD} -v"; fi
+if [ "${CHECK_EXTERNAL}" = "true" ]; then CMD="${CMD} --check-extern"; fi
 
 CMD="${CMD} ${URLS}"
 eval ${CMD}
