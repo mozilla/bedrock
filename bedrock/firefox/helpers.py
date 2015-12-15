@@ -98,9 +98,8 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
 
     if show_desktop:
         for plat_os, plat_os_pretty in firefox_desktop.platform_labels.iteritems():
-            # Windows 64-bit builds are currently available only on the Aurora
-            # and Beta channel
-            if plat_os == 'win64' and channel not in ['alpha', 'beta']:
+            # Windows 64-bit builds are not available on the ESR channel yet
+            if plat_os == 'win64' and channel in ['esr', 'esr_next']:
                 continue
 
             # Fallback to en-US if this plat_os/version isn't available

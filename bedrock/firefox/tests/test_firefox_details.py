@@ -217,6 +217,11 @@ class TestFirefoxDesktop(TestCase):
 
         # Release
         builds = firefox_desktop.get_filtered_full_builds('release')
+        url = builds[0]['platforms']['win64']['download_url']
+        eq_(parse_qsl(urlparse(url).query)[1], ('os', 'win64'))
+
+        # ESR
+        builds = firefox_desktop.get_filtered_full_builds('esr')
         ok_('win64' not in builds[0]['platforms'])
 
     def test_linux64_build(self):
