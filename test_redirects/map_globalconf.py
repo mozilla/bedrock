@@ -913,4 +913,8 @@ URLS = flatten((
     url_test('/firefox/hello/feedbacksurvey/',
              'https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687',
              status_code=302),
+
+    # bug 1224060
+    url_test('/ja/firefox/ios/1.0/{releasenotes,system-requirements}/',
+             'http://www.mozilla.jp/firefox/ios/1.0/{releasenotes,system-requirements}/'),
 ))
