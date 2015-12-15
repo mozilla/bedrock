@@ -812,15 +812,6 @@ class ContributeStudentAmbassadorForm(forms.Form):
         widget=widgets.CheckboxInput(),
         label=_lazy(u'Firefox & You: A monthly newsletter packed with tips to'
                     ' improve your browsing experience'))
-    nl_mobile = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'Firefox for Android: Get the power of Firefox in the'
-                    ' palm of your hand'))
-    nl_firefox_flicks = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'Firefox Flicks'))
     nl_about_mozilla = forms.BooleanField(
         required=False,
         widget=widgets.CheckboxInput(),
@@ -866,8 +857,7 @@ class ContributeStudentAmbassadorForm(forms.Form):
 
     def newsletters(self):
         newsletters = ['ambassadors']
-        for newsletter in ['nl_mozilla_and_you', 'nl_mobile',
-                           'nl_firefox_flicks', 'nl_about_mozilla']:
+        for newsletter in ['nl_mozilla_and_you', 'nl_about_mozilla']:
             if self.cleaned_data.get(newsletter, False):
                 newsletters.append(newsletter[3:].replace('_', '-'))
         return newsletters
