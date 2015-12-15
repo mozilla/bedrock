@@ -1,0 +1,2 @@
+# sha256: 7gqmDeRA_c-Fh93r8faRvHd6MtjU8Rm-7WP0BdxWF20
+linkchecker==9.3
