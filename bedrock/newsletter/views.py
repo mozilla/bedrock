@@ -322,7 +322,7 @@ def existing(request, token=None):
             else:
                 # Firefox Marketplace for Desktop/Android/Firefox OS should be
                 # shorten in the titles
-                title = _(data['title'].replace('Firefox Marketplace for ', '')),
+                title = _(data['title'].replace('Firefox Marketplace for ', ''))
                 description = _(data['description'])
 
             form_data = {
