@@ -44,27 +44,18 @@
 
 {% block content %}
 <main role="main">
-  {% block main_header %}
-    <header class="main-header">
-      <h1>{{ self.page_title() }}</h1>
-      <p class="tagline">
-        {{ _('We’ve designed Firefox to work seamlessly with your Windows 10 update, giving
-        you the same great browsing experience you’ve come to love, with the privacy, speed
-        and choice you’ve come to expect.') }}
-      </p>
-    </header>
-  {% endblock %}
-  {% block default_cta %}
-    <section class="firefox-default-cta hidden">
-      <h2>{{ _('Make Firefox your default in 3 easy steps:') }}</h2>
-      <ol>
-        <li>{{ _('Click the button below') }}</li>
-        <li>{{ _('Scroll down to “Web browser”') }}</li>
-        <li>{{ _('Choose Firefox') }}</li>
-      </ol>
-      <button id="set-default" type="button" class="button-flat-dark">{{ _('Let’s do it') }}</button>
-    </section>
-  {% endblock %}
+  <header class="main-header">
+    <h1>{% block main_headline %}{{ self.page_title() }}{% endblock %}</h1>
+  </header>
+  <section class="firefox-default-cta hidden">
+    <button id="set-default" type="button" class="button-flat-dark">{{ _('Let’s do it') }}</button>
+    <h2>{{ _('Make Firefox your default in 3 easy steps:') }}</h2>
+    <ol>
+      <li>{{ _('Click the button below') }}</li>
+      <li>{{ _('Scroll down to “Web browser”') }}</li>
+      <li>{{ _('Choose Firefox') }}</li>
+    </ol>
+  </section>
   <section class="firefox-learn-links">
     <ul>
       <li><a class="more" href="{{ url('firefox.desktop.trust') }}">
@@ -111,8 +102,6 @@
     </ul>
   </section>
 </main>
-
-
 {% endblock %}
 
 {% block site_footer %}
