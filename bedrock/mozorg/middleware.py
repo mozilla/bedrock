@@ -85,7 +85,7 @@ class VaryNoCacheMiddleware(object):
     @staticmethod
     def process_response(request, response):
         if 'vary' in response:
-            path = request.path_info
+            path = request.path
             if path != '/' and not any(path.startswith(x) for x in
                                        settings.VARY_NOCACHE_EXEMPT_URL_PREFIXES):
                 del response['vary']
