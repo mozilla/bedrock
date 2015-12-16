@@ -307,7 +307,7 @@ DEIS_DOMAIN = config('DEIS_DOMAIN', default=None)
 ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
                                     default=bool(DEIS_APP), cast=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
-                                         default=False, cast=bool)
+                                        default=False, cast=bool)
 
 MIDDLEWARE_CLASSES = [middleware for middleware in (
     'sslify.middleware.SSLifyMiddleware',
@@ -393,6 +393,24 @@ INSTALLED_APPS = (
     'lib.l10n_utils',
     'captcha',
     'rna',
+)
+
+# Must match the list at CloudFlare if the
+# VaryNoCacheMiddleware is enabled. The home
+# page is exempt by default.
+VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
+    '/plugincheck/',
+    '/firefox/',
+    '/contribute/',
+    '/about/',
+    '/contact/',
+    '/thunderbird/',
+    '/newsletter/',
+    '/privacy/',
+    '/foundation/',
+    '/teach/',
+    '/gigabit/',
+    '/lightbeam/',
 )
 
 # Sessions

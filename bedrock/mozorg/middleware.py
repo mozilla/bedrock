@@ -85,8 +85,11 @@ class VaryNoCacheMiddleware(object):
     @staticmethod
     def process_response(request, response):
         if 'vary' in response:
-            del response['vary']
-            del response['expires']
-            response['Cache-Control'] = 'max-age=0'
+            path = request.path_info
+            if path != '/' and not any(path.startswith(x) for x in
+                                       settings.VARY_NOCACHE_EXEMPT_URL_PREFIXES):
+                del response['vary']
+                del response['expires']
+                response['Cache-Control'] = 'max-age=0'
 
         return response
