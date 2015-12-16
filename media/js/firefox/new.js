@@ -128,6 +128,10 @@
     // conditions in which scene2 should not be shown, even when the
     // #download-fx hash is set
     noScene2 = (
+        // no download available
+        (site.platform === 'windows' && $html.hasClass('arm')) ||
+        site.platform === 'oldmac' ||   // no download available
+        site.platform === 'oldwin' ||   // no download available
         site.platform === 'other' ||    // no download available
         site.platform === 'fxos' ||     // no download available
         site.platform === 'android' ||  // download goes to Play Store
