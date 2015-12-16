@@ -42,7 +42,14 @@
 
 // download buttons
 
-#overview-intro-download-wrapper {
+// make text readable for no-JS users
+#overview-intro-download-wrapper .download-dumb .download-heading {
+    color: @textColorPrimary;
+    text-align: center;
+}
+
+// let JS decide if we should show the intro download button
+.js #overview-intro-download-wrapper {
     display: none;
 }
 
