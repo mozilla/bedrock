@@ -113,6 +113,7 @@ LOCALE_CONTACTS = {
     'hsb': ['sorbian-team@sorbzilla.de'],
     'id': ['info@mozilla.web.id'],
     'it': ['collabora@mozillaitalia.org'],
+    'ko': ['mozillakorea@gmail.com'],
     'lt': ['labas@mozilla.lt'],
     'ms': ['community@mozilla.my'],
     'nl': ['contribute@mozilla-nl.org'],
