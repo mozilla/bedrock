@@ -266,14 +266,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_desktop_trust-bundle.css',
     },
-    'firefox_sms': {
-        'source_filenames': (
-            'css/base/mozilla-share-cta.less',
-            'css/sandstone/video-resp.less',
-            'css/firefox/mobile-sms.less',
-        ),
-        'output_filename': 'css/firefox_sms-bundle.css',
-    },
     'firefox-interest-dashboard': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -1476,13 +1468,6 @@ PIPELINE_JS = {
             'js/firefox/australis/no-tour.js',
         ),
         'output_filename': 'js/firefox_tour_none-bundle.js',
-    },
-    'firefox_sms': {
-        'source_filenames': (
-            'js/firefox/sms.js',
-            'js/base/mozilla-share-cta.js',
-        ),
-        'output_filename': 'js/firefox_sms-bundle.js',
     },
     'firefox_whatsnew_fx37': {
         'source_filenames': (

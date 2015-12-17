@@ -41,11 +41,6 @@ class USPhoneNumberField(forms.CharField):
         return value
 
 
-class SMSSendForm(forms.Form):
-    number = USPhoneNumberField()
-    optin = forms.BooleanField(required=False)
-
-
 class SendToDeviceWidgetForm(forms.Form):
     number = USPhoneNumberField(required=False)
     email = forms.EmailField(max_length=100, required=False)
