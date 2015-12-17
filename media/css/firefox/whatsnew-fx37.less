@@ -207,15 +207,6 @@ html[lang|="en"] .toggle ul li {
     .font-size(@largeFontSize);
 }
 
-#send-sms {
-    .inner-wrapper {
-        padding-bottom: (@baseLine * 3);
-    }
-    label {
-        .visually-hidden();
-    }
-}
-
 .newsletter-form {
     border: none;
     padding: 0 0 (@baseLine * 2.5) 0;
@@ -253,65 +244,6 @@ html[lang|="en"] .toggle ul li {
     margin-bottom: @baseLine;
 }
 
-#sms-form {
-    padding-bottom: @baseLine * 2.5;
-
-    .input {
-        float: left;
-        width: 390px;
-        background-image: url(/media/img/firefox/whatsnew-fx37/lock.png);
-        background-position: right 16px;
-        background-repeat: no-repeat;
-    }
-
-    input[type="tel"] {
-        width: 89%;
-    }
-
-    button[type="submit"] {
-        .open-sans;
-        float: right;
-    }
-
-    p {
-        margin: @baseLine 0;
-    }
-}
-
-.sms-form-wrapper {
-    position: relative;
-    .clearfix();
-
-    &.loading {
-        h3, form {
-            .transition(opacity .2s ease-in-out);
-            opacity: 0.2;
-        }
-    }
-}
-
-#sms-spinner {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-#sms-form-thank-you {
-    display: none;
-    overflow: hidden;
-    h3 {
-        width: auto;
-        float: none;
-        .animation(sand-bounce-down 0.7s ease-in 0.2s 1 normal both);
-    }
-    p {
-        .animation(sand-fade-in 0.5s ease-in 0.8s 1 normal both);
-    }
-}
-
 .html-rtl {
     .newsletter-form {
         .field-email {
@@ -321,22 +253,10 @@ html[lang|="en"] .toggle ul li {
             float: left;
         }
     }
-    #sms-form {
-        .input {
-            float: right;
-            background-position: left 16px;
-        }
-        button[type="submit"] {
-            float: left;
-        }
-    }
 }
 
 main[data-active="email-only"] {
     .toggle {
-        display: none;
-    }
-    #send-sms {
         display: none;
     }
 }
@@ -346,21 +266,7 @@ main[data-active="email-only"] {
         #send-email {
             display: block;
         }
-        #send-sms {
-            display: none;
-        }
         .email-tab {
-            .active-tab();
-        }
-    }
-    main[data-active="sms"] {
-        #send-email {
-            display: none;
-        }
-        #send-sms {
-            display: block;
-        }
-        .sms-tab {
             .active-tab();
         }
     }
@@ -422,18 +328,6 @@ main[data-active="email-only"] {
         }
     }
 
-    #sms-form {
-        float: left;
-        width: 460px;
-
-        .input {
-            float: right;
-            margin-bottom: @baseLine;
-            background-position: left 16px;
-            text-align: right;
-        }
-    }
-
     .html-rtl {
         .tab-content {
             h3 {
@@ -445,16 +339,6 @@ main[data-active="email-only"] {
             .form-title,
             .form-contents {
                 float: right;
-            }
-        }
-
-        #sms-form {
-            float: right;
-
-            .input {
-                float: left;
-                background-position: right 16px;
-                text-align: left;
             }
         }
     }
@@ -493,25 +377,6 @@ main[data-active="email-only"] {
         }
     }
 
-    #sms-form {
-        float: none;
-        width: 100%;
-
-        .input {
-            width: 100%;
-            text-align: left;
-            background-position: right 16px;
-        }
-
-        input[type="tel"] {
-            width: 84%;
-        }
-
-        button[type="submit"] {
-            float: none;
-        }
-    }
-
     .tab-content {
         h3 {
             width: auto;
@@ -532,20 +397,6 @@ main[data-active="email-only"] {
         #newsletter-form {
             .form-title,
             .form-contents {
-                float: none;
-            }
-        }
-
-        #sms-form {
-            float: none;
-
-            .input {
-                float: none;
-                background-position: left 16px;
-                text-align: right;
-            }
-
-            button[type="submit"] {
                 float: none;
             }
         }

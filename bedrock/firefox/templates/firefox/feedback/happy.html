@@ -4,7 +4,7 @@
 
 {% extends "firefox/base-resp.html" %}
 
-{% set_lang_files "firefox/feedback" %}
+{% set_lang_files "firefox/feedback" "firefox/sendto" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Firefox Feedback')}}{% endblock %}
@@ -54,9 +54,9 @@
     </aside>
 
     <aside class="action-secondary cta-android">
-      <a data-name="CTA Firefox for Android" href="{{ url('firefox.sms') }}?utm_source=happyheartbeat&amp;utm_medium=heartbeat&amp;utm_content=AndroidCTA&amp;utm_campaign=FirefoxforAndroid">
-        <h2>{{ _('Get Firefox on your Android') }}</h2>
-        <p>{{ _('Send yourself a text to download Firefox for Android, a better mobile browser.') }}</p>
+      <a data-name="CTA Firefox for Android" href="{{ url('firefox.android.index') }}?utm_source=happyheartbeat&amp;utm_medium=heartbeat&amp;utm_content=AndroidCTA&amp;utm_campaign=FirefoxforAndroid">
+        <h2>{{ _('Get Firefox for Android') }}</h2>
+        <p>{{ _('Send Firefox to your smartphone or tablet') }}</p>
       </a>
     </aside>
 
@@ -72,4 +72,3 @@
 {% endblock %}
 
 {% block email_form %}{% endblock %}
-
