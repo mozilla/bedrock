@@ -51,6 +51,7 @@ if (typeof Mozilla === 'undefined') {
             }
         });
 
+        TPTour.replaceURLState('1');
         TPTour.state = 'step1';
     };
 
@@ -58,6 +59,7 @@ if (typeof Mozilla === 'undefined') {
         _$step2Panel.removeClass('hidden');
         _$step2Panel.find('header').focus();
         _$tracker.addClass('fade-out');
+        TPTour.replaceURLState('2');
         TPTour.state = 'step2';
     };
 
@@ -274,16 +276,23 @@ if (typeof Mozilla === 'undefined') {
     };
 
     TPTour.init = function() {
+        var delay = 500;
+        var step = TPTour.getParameterByName('step');
+
         TPTour.getStrings();
         TPTour.bindEvents();
 
         // TODO - Once Bug 988151 is fixed we can poll for target visibility instead of use a timeout.
-        if (TPTour.getParameterByName('step') === '3') {
-            setTimeout(TPTour.step3, 500);
-        } else {
-            setTimeout(TPTour.step1, 500);
+        switch(step) {
+        case '2':
+            setTimeout(TPTour.step2, delay);
+            break;
+        case '3':
+            setTimeout(TPTour.step3, delay);
+            break;
+        default:
+            setTimeout(TPTour.step1, delay);
         }
-
     };
 
     window.Mozilla.TPTour = TPTour;

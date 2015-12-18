@@ -72,6 +72,18 @@ describe('tracking-protection-tour.js', function() {
             expect(Mozilla.TPTour.step1).toHaveBeenCalled();
         });
 
+        it('shoud show the second tour step when needed', function() {
+            spyOn(Mozilla.TPTour, 'getParameterByName').and.callFake(function() {
+                return '2';
+            });
+            spyOn(Mozilla.TPTour, 'step2');
+            Mozilla.TPTour.init();
+            expect(Mozilla.TPTour.getStrings).toHaveBeenCalled();
+            expect(Mozilla.TPTour.bindEvents).toHaveBeenCalled();
+            clock.tick(600);
+            expect(Mozilla.TPTour.step2).toHaveBeenCalled();
+        });
+
         it('shoud show the third tour step when needed', function() {
             spyOn(Mozilla.TPTour, 'getParameterByName').and.callFake(function() {
                 return '3';
