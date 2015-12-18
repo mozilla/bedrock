@@ -27,9 +27,7 @@
 
 <div id="{{ id }}" class="{{ download_class }}{% if waffle.switch('firefox-ios-global') %} ios-active{% endif %}">
   {% if show_desktop %}
-    <noscript>
-      {{ alt_buttons(builds) }}
-    </noscript>
+    {# no JS or unrecognized/unsupported platform #}
     <div class="unrecognized-download">
       {{ alt_buttons(builds) }}
     </div>
