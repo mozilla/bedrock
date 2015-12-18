@@ -51,7 +51,14 @@
   <div class="container">
     <header>
       <h1>{{ _('Almost done!') }}</h1>
-      <h2>{{ _('Sign in to Firefox and you’re good to go.') }}</h2>
+      <h2>
+      {% if l10n_has_tag('firstrun_fx43') %}
+        {{ _('Sign in to Firefox and you’re good to go.') }}
+      {% else %}
+        {# L10n: Line break below for visual formatting only. #}
+        {{ _('Sign in to Firefox and <br>you’re good to go.') }}
+      {% endif %}
+      </h2>
     </header>
 
     <main role="main">
