@@ -82,7 +82,7 @@
 
 				_self._init( options );
 
-			}).attr('src', $('#mosaic').data('loading'));
+			}).attr('src', $('.ri-grid').data('loading'));
 
 		}
 

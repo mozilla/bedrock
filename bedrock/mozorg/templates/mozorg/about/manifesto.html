@@ -310,14 +310,14 @@
           {{ email_newsletter_form() }}
         </section>
       </div>
-      <div id="mosaic-group-1" class="ri-grid">
+      <div id="mosaic-group-1" class="ri-grid" data-loading="{{ static('img/mosaic/loading.gif') }}">
         <ul>
         {% for i in range(1, 40)|list|shuffle %}
           <li><a><img data-src="{{ static('img/mozorg/about/manifesto/mosaic/' ~ '%03d'|format(i) ~ '.jpg') }}" alt=""></a></li>
         {% endfor %}
         </ul>
       </div>
-      <div id="mosaic-group-2" class="ri-grid">
+      <div id="mosaic-group-2" class="ri-grid" data-loading="{{ static('img/mosaic/loading.gif') }}">
         <ul>
         {# The grid needs 36 + extra images to rotate. That's why there are some duplicated images. #}
         {% for i in range(30, 69)|list|shuffle %}
