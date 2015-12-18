@@ -249,7 +249,6 @@ class WebToLeadForm(forms.Form):
         ('Firefox OS', _lazy(u'Firefox OS')),
         ('Persona', _lazy(u'Persona')),
         ('Marketing and Co-promotions', _lazy(u'Marketing and Co-promotions')),
-        ('Promoted Content ("Tiles")', _lazy(u'Promoted Content ("Tiles")')),
         ('Other', _lazy(u'Other')),
     )
 
