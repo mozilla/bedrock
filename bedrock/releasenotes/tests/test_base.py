@@ -209,8 +209,8 @@ class TestRNAViews(TestCase):
     def test_check_url(self):
         eq_(views.check_url('Firefox for Android', '42.0'),
             'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
-        eq_(views.check_url('Firefox for iOS', '1.1'),
-            '/en-US/firefox/ios/1.1/system-requirements/')
+        eq_(views.check_url('Firefox for iOS', '1.2'),
+            '/en-US/firefox/ios/1.2/system-requirements/')
         eq_(views.check_url('Firefox', '42.0'),
             '/en-US/firefox/42.0/system-requirements/')
 

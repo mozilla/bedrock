@@ -316,9 +316,9 @@ class TestFirefoxAndroid(TestCase):
 
 
 @patch.object(firefox_ios._storage, 'data',
-              Mock(return_value=dict(version='1.1')))
+              Mock(return_value=dict(version='1.2')))
 class TestFirefoxIos(TestCase):
 
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
-        eq_(firefox_ios.latest_version('release'), '1.1')
+        eq_(firefox_ios.latest_version('release'), '1.2')

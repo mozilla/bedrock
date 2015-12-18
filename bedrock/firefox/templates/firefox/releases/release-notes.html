@@ -71,11 +71,11 @@
           {% if release.product == 'Firefox' %}
             <li class="current">{{ _('Desktop') }}</li>
             <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
-            <li><a href="{{ url('firefox') + 'ios/1.1/releasenotes' }}">{{ _('iOS') }}</a></li>
+            <li><a href="{{ url('firefox') + 'ios/1.2/releasenotes' }}">{{ _('iOS') }}</a></li>
             {% elif release.product == 'Firefox for Android' %}
             <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
             <li class="current">{{ _('Android') }}</li>
-            <li><a href="{{ url('firefox') + 'ios/1.1/releasenotes' }}">{{ _('iOS') }}</a></li>
+            <li><a href="{{ url('firefox') + 'ios/1.2/releasenotes' }}">{{ _('iOS') }}</a></li>
             {% else %}
             <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
             <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
