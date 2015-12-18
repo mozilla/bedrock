@@ -108,9 +108,10 @@ $(function () {
     // modal is waffled so, first ensure it exists
     if (arrayIndexOfSupported && $takeoverModal.length > 0) {
         try {
-            // only show the takeover modal if the user has not already seen it
-            // during this session.
-            if (sessionStorage.getItem('mozorg.takeover.seen') !== 'true') {
+            // only show the takeover modal if this is not Firefox for iOS and the
+            // user has not already seen it during this session.
+            var takeoverSeen = sessionStorage.getItem('mozorg.takeover.seen');
+            if (!window.isFirefoxiOS() && takeoverSeen !== 'true') {
                 initTakeOver();
             }
         } catch (ex) {}
