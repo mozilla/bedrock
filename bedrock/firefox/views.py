@@ -448,7 +448,6 @@ class FirstrunView(LatestFxView):
 
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
-
         version = self.kwargs.get('version') or ''
 
         # add version to context for use in templates
@@ -458,17 +457,12 @@ class FirstrunView(LatestFxView):
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
-        variant = self.request.GET.get('v', '')
         locale = l10n_utils.get_locale(self.request)
 
-        # variants are access via a URL parameter v with
-        # one of the below values
-        if variant in ['e', 'f', 'g'] and waffle.switch_is_active('firefox-firstrun-optimizely'):
-            template = 'firefox/firstrun/firstrun-{0}.html'.format(variant)
-        elif show_devbrowser_firstrun_or_whatsnew(version):
+        if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
-            template = 'firefox/australis/fx40/firstrun.html'
+            template = 'firefox/firstrun/firstrun.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         elif show_36_firstrun(version):
