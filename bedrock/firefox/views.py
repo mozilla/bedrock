@@ -513,7 +513,7 @@ class WhatsnewView(LatestFxView):
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-whatsnew.html'
-        elif version.startswith('42.'):
+        elif version.startswith('42.') or version.startswith('43.'):
             template = 'firefox/whatsnew_42/variant-a.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
