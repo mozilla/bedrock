@@ -5,6 +5,8 @@
 ;(function($, Hammer) {
     'use strict';
 
+    var client = window.Mozilla.Client;
+
     var $html = $('html');
     var $window = $(window);
     var $tipPrev = $('#tip-prev');
@@ -15,13 +17,13 @@
 
     // only show download button for users on desktop platforms, using either a non-Firefox browser
     // or an out of date version of Firefox
-    if (window.isFirefox()) {
-        window.Mozilla.Client.getFirefoxDetails(function(data) {
+    if (client.isFirefoxDesktop) {
+        client.getFirefoxDetails(function(data) {
             if (data.isUpToDate) {
                 $('#footer').addClass('hide-download');
             }
         });
-    } else if (window.site.platform.match(/^(android|ios|fxos)$/)) {
+    } else if (client.isMobile) {
         $('#footer').addClass('hide-download');
     }
 

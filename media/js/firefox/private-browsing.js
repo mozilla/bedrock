@@ -5,6 +5,8 @@
 ;(function($) {
     'use strict';
 
+    var client = window.Mozilla.Client;
+
     var $html = $('html');
     var $shield = $('#tracking-protection-animation');
     var $tryPBButtons = $('.try-pb-button');
@@ -30,9 +32,9 @@
         });
     }
 
-    if (window.isFirefox() || window.isFirefoxiOS()) {
+    if (client.isFirefox) {
         // iOS
-        if ($html.hasClass('ios')) {
+        if (client.isFirefoxiOS) {
             // all iOS users have private browsing
             $html.addClass('firefox-up-to-date');
 
@@ -41,11 +43,11 @@
         // Android or desktop
         } else {
             // desktop & Android version numbers match
-            if (window.getFirefoxMasterVersion() >= 42)  {
+            if (client.FirefoxMajorVersion >= 42)  {
                 // try private browsing button is available
                 $html.addClass('firefox-up-to-date');
 
-                if ($html.hasClass('android')) {
+                if (client.isFirefoxAndroid) {
                     // update SUMO link
                     $tryPBButtons.attr('href', 'https://support.mozilla.org/kb/private-browsing-firefox-android');
                 } else {

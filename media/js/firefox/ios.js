@@ -23,20 +23,25 @@ if (typeof window.Mozilla === 'undefined') {
 
     // initialize state - runs after geolocation has completed
     var initState = function() {
+        var client = Mozilla.Client;
         var state = 'Unknown';
         var syncCapable = false;
-        var fxMasterVersion = window.getFirefoxMasterVersion();
 
-        if (window.isFirefox()) {
+        if (client.isFirefox) {
             // Firefox for Android
-            if (window.isFirefoxMobile()) {
+            if (client.isFirefoxAndroid) {
                 swapState('state-fx-android');
                 state = 'Firefox Android';
+
+            // Firefox for iOS
+            } else if (client.isFirefoxiOS) {
+                swapState('state-fx-ios');
+                state = 'Firefox iOS';
 
             // Firefox for Desktop
             } else {
 
-                if (fxMasterVersion >= 31) {
+                if (client.FirefoxMajorVersion >= 31) {
 
                     // Set syncCapable so we know not to send tracking info
                     // again later
@@ -67,11 +72,6 @@ if (typeof window.Mozilla === 'undefined') {
                 }
 
             }
-
-        // Firefox for iOS
-        } else if (window.isFirefoxiOS()) {
-            swapState('state-fx-ios');
-            state = 'Firefox iOS';
 
         // Not Firefox
         } else {

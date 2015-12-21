@@ -5,6 +5,7 @@
 (function($) {
     'use strict';
 
+    var client = window.Mozilla.Client;
     var isDesktopViewport = $(window).width() >= 1000;
 
     var $customizeStage = $('#customize .stage');
@@ -41,8 +42,8 @@
         });
     }
 
-    if (window.isFirefox()) {
-        window.Mozilla.Client.getFirefoxDetails(function(data) {
+    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
+        client.getFirefoxDetails(function(data) {
             if (data.isUpToDate) {
                 $('#overview-intro-up-to-date').addClass('active');
             }

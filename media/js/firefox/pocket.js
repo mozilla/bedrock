@@ -8,6 +8,8 @@
     var $window = $(window);
     var $document = $(document);
     var $html = $(document.documentElement);
+
+    var client = Mozilla.Client;
     var supportsPromises = 'Promise' in window;
 
     function closePocketMenu() {
@@ -50,7 +52,7 @@
         });
     }
 
-    if (supportsPromises && window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 38) {
+    if (supportsPromises && client.isFirefoxDesktop && client.FirefoxMajorVersion >= 38) {
         // only bind click event if UITour is working
         Mozilla.UITour.ping(function() {
             $('.try-pocket').on('click.pocket', openPocketMenu);

@@ -34,14 +34,16 @@ function init_download_links() {
 }
 
 function update_download_text_for_old_fx() {
+    var client = window.Mozilla.Client;
+
     // if using Firefox
-    if (isFirefox()) {
+    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
         // look at each button to see if it's set to check for old firefox
         var $buttons = $('.download-button-check-old-fx');
 
         // if the page has download buttons
         if ($buttons.length) {
-            window.Mozilla.Client.getFirefoxDetails(function(data) {
+            client.getFirefoxDetails(function(data) {
                 // if using an out of date firefox
                 if (!data.isUpToDate) {
                     // replace subtitle copy
@@ -83,71 +85,6 @@ function init_lang_switcher() {
         });
         $('#lang_form').submit();
     });
-}
-
-//get Master firefox version
-// TODO: Move this to Mozilla.Client
-function getFirefoxMasterVersion(userAgent) {
-    var version = 0;
-    var ua = userAgent || navigator.userAgent;
-
-    var matches = /Firefox\/([0-9]+).[0-9]+(?:.[0-9]+)?/.exec(
-        ua
-    );
-
-    if (matches !== null && matches.length > 0) {
-        version = parseInt(matches[1], 10);
-    }
-
-    return version;
-}
-
-// Used on the plugincheck page to also support all browsers based on Gecko.
-// TODO: Move this to Mozilla.Client
-function isLikeFirefox(userAgent) {
-    var ua = userAgent || navigator.userAgent;
-    return (/Iceweasel/i).test(ua) || (/IceCat/i).test(ua) ||
-        (/SeaMonkey/i).test(ua) || (/Camino/i).test(ua) ||
-        (/like Firefox/i).test(ua);
-}
-
-// TODO: Move this to Mozilla.Client
-function isFirefox(userAgent) {
-    var ua = userAgent || navigator.userAgent;
-    return (/\sFirefox/).test(ua) && !isLikeFirefox(ua);
-}
-
-// 2015-01-20: Gives no special consideration to ESR builds
-// TODO: Move this to Mozilla.Client
-function isFirefoxUpToDate(latest) {
-    var $html = $(document.documentElement);
-    var fx_version = getFirefoxMasterVersion();
-    var latestFirefoxVersion;
-
-    if (!latest) {
-        latestFirefoxVersion = $html.attr('data-latest-firefox');
-        latestFirefoxVersion = parseInt(latestFirefoxVersion.split('.')[0], 10);
-    } else {
-        latestFirefoxVersion = parseInt(latest.split('.')[0], 10);
-    }
-
-    return (latestFirefoxVersion <= fx_version);
-}
-
-// used in bedrock for desktop specific checks like `isFirefox() && !isFirefoxMobile()`
-// reference https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
-// TODO: Move this to Mozilla.Client
-function isFirefoxMobile(userAgent) {
-    var ua = userAgent || navigator.userAgent;
-    return /Mobile|Tablet|Fennec/.test(ua);
-}
-
-// iOS does not follow same version numbers as desktop & Android, so may not be safe to
-// simply add this check to isFirefox. Will require further investigation/testing.
-// TODO: Move this to Mozilla.Client
-function isFirefoxiOS(userAgent) {
-    var ua = userAgent || navigator.userAgent;
-    return /FxiOS/.test(ua);
 }
 
 // Create text translation function using #strings element.

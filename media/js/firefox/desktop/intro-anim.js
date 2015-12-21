@@ -5,16 +5,7 @@
 (function(Mozilla, $) {
     'use strict';
 
-    function cutsTheMustard() {
-        // Bug (1083079) fixed but effects Firefox 35
-        if (window.isFirefox() && window.getFirefoxMasterVersion() === 35 && $('html').hasClass('osx')) {
-            return false;
-        }
-
-        return Mozilla.SVGAnimCheck();
-    }
-
-    if (!cutsTheMustard()) {
+    if (!Mozilla.SVGAnimCheck()) {
         // use fallback browser image
         $('body').addClass('no-svg-anim');
     } else {

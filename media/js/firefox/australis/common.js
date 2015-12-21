@@ -57,7 +57,7 @@
                     'event': 'first-run-sync'
                 });
 
-                if (window.getFirefoxMasterVersion() >= 31) {
+                if (Mozilla.Client.FirefoxMajorVersion >= 31) {
                     Mozilla.UITour.showFirefoxAccounts();
                 } else {
                     window.open(this.href, '_blank');

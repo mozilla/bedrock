@@ -5,6 +5,7 @@
 ;(function($, Mozilla, Waypoint) {
     'use strict';
 
+    var client = Mozilla.Client;
     var $html = $('html');
     var $nav = $('#nav');
 
@@ -20,15 +21,15 @@
         }
     });
 
-    if (window.isFirefox() || window.isFirefoxiOS()) {
+    if (client.isFirefox) {
         // iOS
-        if ($html.hasClass('ios')) {
+        if (client.isFirefoxiOS) {
             $html.addClass('firefox-up-to-date');
 
         // Android or desktop
         } else {
             // desktop & Android version numbers match
-            if (window.getFirefoxMasterVersion() >= 42)  {
+            if (client.FirefoxMajorVersion >= 42)  {
                 $html.addClass('firefox-up-to-date');
             } else {
                 $html.addClass('firefox-old');

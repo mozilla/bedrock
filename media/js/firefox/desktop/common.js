@@ -5,6 +5,8 @@
 (function(w, $) {
     'use strict';
 
+    var client = w.Mozilla.Client;
+
     var $mastheadDownloadFirefox = $('#masthead-download-firefox');
     var $html = $('html');
 
@@ -40,9 +42,9 @@
 
     // only show download buttons for users on desktop platforms, using either a non-Firefox browser
     // or an out of date version of Firefox
-    if (!window.site.platform.match(/^(android|ios|fxos)$/)) {
-        if (w.isFirefox()) {
-            w.Mozilla.Client.getFirefoxDetails(function(data) {
+    if (client.isDesktop) {
+        if (client.isFirefox) {
+            client.getFirefoxDetails(function(data) {
                 if (!data.isUpToDate) {
                     showDownloadButtons();
                 }

@@ -9,14 +9,411 @@ describe('mozilla-client.js', function() {
 
     'use strict';
 
-    describe('_getFirefoxVersion', function () {
+    // User-agent strings for the most of the following tests
+    var uas = {
+        // Firefox family
+        'firefox': {
+            'windows': 'Mozilla/5.0 (Windows NT x.y; rv:10.0) Gecko/20100101 Firefox/10.0',
+            'osx': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0',
+            'linux': 'Mozilla/5.0 (X11; Linux i686; rv:10.0) Gecko/20100101 Firefox/10.0',
+            'maemo': 'Mozilla/5.0 (Maemo; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.0.1 Fennec/10.0.1',
+            'android': {
+                'mobile': 'Mozilla/5.0 (Android; Mobile; rv:26.0) Gecko/26.0 Firefox/26.0',
+                'tablet': 'Mozilla/5.0 (Android; Tablet; rv:26.0) Gecko/26.0 Firefox/26.0',
+            },
+            'ios': {
+                'mobile': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.1 Mobile/12F69 Safari/600.1.4',
+                'tablet': 'Mozilla/5.0 (iPad; CPU iPhone OS 8_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) FxiOS/1.0 Mobile/12F69 Safari/600.1.4',
+            },
+            'fxos': {
+                'mobile': 'Mozilla/5.0 (Mobile; rv:26.0) Gecko/26.0 Firefox/26.0',
+                'tablet': 'Mozilla/5.0 (Tablet; rv:26.0) Gecko/26.0 Firefox/26.0',
+            },
+        },
+        // Other Gecko browsers
+        'camino': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10.4; en; rv:1.9.2.24) Gecko/20111114 Camino/2.1 (like Firefox/3.6.24)',
+        'caminolikefx': 'Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10.4; en; rv:1.9.2.24) Gecko/20111114 (like Firefox/3.6.24)',
+        'seamonkey': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0 SeaMonkey/2.37a1',
+        'icecat': 'Mozilla/5.0 (X11; Linux x86_64; rv:17.0) Gecko/20121201 icecat/17.0.1',
+        'iceweasel': 'Mozilla/5.0 (X11; Linux x86_64; rv:17.0) Gecko/20121202 Firefox/17.0 Iceweasel/17.0.1',
+        // Non-Gecko browsers
+        'chrome': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36',
+        'safari': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2',
+        'ie': 'Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)',
+    };
 
-        it('should return the firefox version number as a string', function () {
-            expect(window.Mozilla.Client._getFirefoxVersion('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:23.0) Gecko/20100101 Firefox/23.0')).toEqual('23.0');
+    describe('_isFirefox', function() {
+
+        var test = function(ua) {
+            return expect(window.Mozilla.Client._isFirefox(ua));
+        };
+
+        it('should return true for Firefox on desktop', function() {
+            test(uas.firefox.windows).toBeTruthy();
+            test(uas.firefox.osx).toBeTruthy();
+            test(uas.firefox.linux).toBeTruthy();
         });
 
-        it('should return 0 for non Firefox browsers', function () {
-            expect(window.Mozilla.Client._getFirefoxVersion('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36')).toEqual('0');
+        it('should return true for Firefox on Maemo', function() {
+            test(uas.firefox.maemo).toBeTruthy();
+        });
+
+        it('should return true for Firefox on Android', function() {
+            test(uas.firefox.android.mobile).toBeTruthy();
+            test(uas.firefox.android.tablet).toBeTruthy();
+        });
+
+        it('should return true for Firefox on iOS', function() {
+            test(uas.firefox.ios.mobile).toBeTruthy();
+            test(uas.firefox.ios.tablet).toBeTruthy();
+        });
+
+        it('should return true for Firefox OS', function() {
+            test(uas.firefox.fxos.mobile).toBeTruthy();
+            test(uas.firefox.fxos.tablet).toBeTruthy();
+        });
+
+        it('should return false for other Gecko browsers', function() {
+            test(uas.camino).toBeFalsy();
+            test(uas.caminolikefx).toBeFalsy();
+            test(uas.seamonkey).toBeFalsy();
+            test(uas.icecat).toBeFalsy();
+            test(uas.iceweasel).toBeFalsy();
+        });
+
+        it('should return false for non-Gecko browsers', function() {
+            test(uas.chrome).toBeFalsy();
+            test(uas.safari).toBeFalsy();
+            test(uas.ie).toBeFalsy();
+        });
+
+    });
+
+    describe('_isFirefoxDesktop', function () {
+
+        var test = function(ua) {
+            return expect(window.Mozilla.Client._isFirefoxDesktop(ua));
+        };
+
+        it('should return true for Firefox on desktop', function() {
+            test(uas.firefox.windows).toBeTruthy();
+            test(uas.firefox.osx).toBeTruthy();
+            test(uas.firefox.linux).toBeTruthy();
+        });
+
+        it('should return false for Firefox on Maemo', function() {
+            test(uas.firefox.maemo).toBeFalsy();
+        });
+
+        it('should return false for Firefox on Android', function() {
+            test(uas.firefox.android.mobile).toBeFalsy();
+            test(uas.firefox.android.tablet).toBeFalsy();
+        });
+
+        it('should return false for Firefox on iOS', function() {
+            test(uas.firefox.ios.mobile).toBeFalsy();
+            test(uas.firefox.ios.tablet).toBeFalsy();
+        });
+
+        it('should return false for Firefox OS', function() {
+            test(uas.firefox.fxos.mobile).toBeFalsy();
+            test(uas.firefox.fxos.tablet).toBeFalsy();
+        });
+
+        it('should return false for other Gecko browsers', function() {
+            test(uas.camino).toBeFalsy();
+            test(uas.caminolikefx).toBeFalsy();
+            test(uas.seamonkey).toBeFalsy();
+            test(uas.icecat).toBeFalsy();
+            test(uas.iceweasel).toBeFalsy();
+        });
+
+        it('should return false for non-Gecko browsers', function() {
+            test(uas.chrome).toBeFalsy();
+            test(uas.safari).toBeFalsy();
+            test(uas.ie).toBeFalsy();
+        });
+
+    });
+
+    describe('_isFirefoxAndroid', function () {
+
+        var test = function(ua) {
+            return expect(window.Mozilla.Client._isFirefoxAndroid(ua));
+        };
+
+        it('should return false for Firefox on desktop', function() {
+            test(uas.firefox.windows).toBeFalsy();
+            test(uas.firefox.osx).toBeFalsy();
+            test(uas.firefox.linux).toBeFalsy();
+        });
+
+        it('should return false for Firefox on Maemo', function() {
+            test(uas.firefox.maemo).toBeFalsy();
+        });
+
+        it('should return true for Firefox on Android', function() {
+            test(uas.firefox.android.mobile).toBeTruthy();
+            test(uas.firefox.android.tablet).toBeTruthy();
+        });
+
+        it('should return false for Firefox on iOS', function() {
+            test(uas.firefox.ios.mobile).toBeFalsy();
+            test(uas.firefox.ios.tablet).toBeFalsy();
+        });
+
+        it('should return false for Firefox OS', function() {
+            test(uas.firefox.fxos.mobile).toBeFalsy();
+            test(uas.firefox.fxos.tablet).toBeFalsy();
+        });
+
+        it('should return false for other Gecko browsers', function() {
+            test(uas.camino).toBeFalsy();
+            test(uas.caminolikefx).toBeFalsy();
+            test(uas.seamonkey).toBeFalsy();
+            test(uas.icecat).toBeFalsy();
+            test(uas.iceweasel).toBeFalsy();
+        });
+
+        it('should return false for non-Gecko browsers', function() {
+            test(uas.chrome).toBeFalsy();
+            test(uas.safari).toBeFalsy();
+            test(uas.ie).toBeFalsy();
+        });
+
+    });
+
+    describe('_isFirefoxiOS', function () {
+
+        var test = function(ua) {
+            return expect(window.Mozilla.Client._isFirefoxiOS(ua));
+        };
+
+        it('should return false for Firefox on desktop', function() {
+            test(uas.firefox.windows).toBeFalsy();
+            test(uas.firefox.osx).toBeFalsy();
+            test(uas.firefox.linux).toBeFalsy();
+        });
+
+        it('should return false for Firefox on Maemo', function() {
+            test(uas.firefox.maemo).toBeFalsy();
+        });
+
+        it('should return false for Firefox on Android', function() {
+            test(uas.firefox.android.mobile).toBeFalsy();
+            test(uas.firefox.android.tablet).toBeFalsy();
+        });
+
+        it('should return true for Firefox on iOS', function() {
+            test(uas.firefox.ios.mobile).toBeTruthy();
+            test(uas.firefox.ios.tablet).toBeTruthy();
+        });
+
+        it('should return false for Firefox OS', function() {
+            test(uas.firefox.fxos.mobile).toBeFalsy();
+            test(uas.firefox.fxos.tablet).toBeFalsy();
+        });
+
+        it('should return false for other Gecko browsers', function() {
+            test(uas.camino).toBeFalsy();
+            test(uas.caminolikefx).toBeFalsy();
+            test(uas.seamonkey).toBeFalsy();
+            test(uas.icecat).toBeFalsy();
+            test(uas.iceweasel).toBeFalsy();
+        });
+
+        it('should return false for non-Gecko browsers', function() {
+            test(uas.chrome).toBeFalsy();
+            test(uas.safari).toBeFalsy();
+            test(uas.ie).toBeFalsy();
+        });
+
+    });
+
+    describe('_isFirefoxFxOS', function () {
+
+        var test = function(ua, pf) {
+            return expect(window.Mozilla.Client._isFirefoxFxOS(ua, pf));
+        };
+
+        it('should return false for Firefox on desktop', function() {
+            test(uas.firefox.windows, 'Win32').toBeFalsy();
+            test(uas.firefox.osx, 'MacIntel').toBeFalsy();
+            test(uas.firefox.linux, 'Linux i686').toBeFalsy();
+        });
+
+        it('should return false for Firefox on Maemo', function() {
+            test(uas.firefox.maemo, 'Linux armv6l').toBeFalsy();
+        });
+
+        it('should return false for Firefox on Android', function() {
+            test(uas.firefox.android.mobile, 'Android').toBeFalsy();
+            test(uas.firefox.android.tablet, 'Android').toBeFalsy();
+        });
+
+        it('should return false for Firefox on iOS', function() {
+            test(uas.firefox.ios.mobile, 'iPhone').toBeFalsy();
+            test(uas.firefox.ios.tablet, 'iPod').toBeFalsy();
+        });
+
+        it('should return false for Firefox OS', function() {
+            test(uas.firefox.fxos.mobile, '').toBeTruthy();
+            test(uas.firefox.fxos.tablet, '').toBeTruthy();
+        });
+
+        it('should return false for other Gecko browsers', function() {
+            test(uas.camino, 'MacIntel').toBeFalsy();
+            test(uas.caminolikefx, 'MacIntel').toBeFalsy();
+            test(uas.seamonkey, 'Win32').toBeFalsy();
+            test(uas.icecat, 'Linux i686').toBeFalsy();
+            test(uas.iceweasel, 'Linux i686').toBeFalsy();
+        });
+
+        it('should return false for non-Gecko browsers', function() {
+            test(uas.chrome, 'Win32').toBeFalsy();
+            test(uas.safari, 'MacIntel').toBeFalsy();
+            test(uas.ie, 'Win32').toBeFalsy();
+        });
+
+    });
+
+    describe('_isLikeFirefox', function() {
+
+        var test = function(ua) {
+            return expect(window.Mozilla.Client._isLikeFirefox(ua));
+        };
+
+        it('should return false for Firefox on desktop', function() {
+            test(uas.firefox.windows).toBeFalsy();
+            test(uas.firefox.osx).toBeFalsy();
+            test(uas.firefox.linux).toBeFalsy();
+        });
+
+        it('should return false for Firefox on Maemo', function() {
+            test(uas.firefox.maemo).toBeFalsy();
+        });
+
+        it('should return false for Firefox on Android', function() {
+            test(uas.firefox.android.mobile).toBeFalsy();
+            test(uas.firefox.android.tablet).toBeFalsy();
+        });
+
+        it('should return false for Firefox on iOS', function() {
+            test(uas.firefox.ios.mobile).toBeFalsy();
+            test(uas.firefox.ios.tablet).toBeFalsy();
+        });
+
+        it('should return false for Firefox OS', function() {
+            test(uas.firefox.fxos.mobile).toBeFalsy();
+            test(uas.firefox.fxos.tablet).toBeFalsy();
+        });
+
+        it('should return true for other Gecko browsers', function() {
+            test(uas.camino).toBeTruthy();
+            test(uas.caminolikefx).toBeTruthy();
+            test(uas.seamonkey).toBeTruthy();
+            test(uas.icecat).toBeTruthy();
+            test(uas.iceweasel).toBeTruthy();
+        });
+
+        it('should return false for non-Gecko browsers', function() {
+            test(uas.chrome).toBeFalsy();
+            test(uas.safari).toBeFalsy();
+            test(uas.ie).toBeFalsy();
+        });
+
+    });
+
+    describe('_getFirefoxVersion', function () {
+
+        var test = function(ua) {
+            return expect(window.Mozilla.Client._getFirefoxVersion(ua));
+        };
+
+        it('should return a version number for Firefox on desktop', function() {
+            test(uas.firefox.windows).toEqual('10.0');
+            test(uas.firefox.osx).toEqual('23.0');
+            test(uas.firefox.linux).toEqual('10.0');
+        });
+
+        it('should return a version number for Firefox on Maemo', function() {
+            test(uas.firefox.maemo).toEqual('10.0.1');
+        });
+
+        it('should return a version number for Firefox on Android', function() {
+            test(uas.firefox.android.mobile).toEqual('26.0');
+            test(uas.firefox.android.tablet).toEqual('26.0');
+        });
+
+        it('should return 0 for Firefox on iOS', function() {
+            test(uas.firefox.ios.mobile).toEqual('0');
+            test(uas.firefox.ios.tablet).toEqual('0');
+        });
+
+        it('should return a version number for Firefox OS', function() {
+            test(uas.firefox.fxos.mobile).toEqual('26.0');
+            test(uas.firefox.fxos.tablet).toEqual('26.0');
+        });
+
+        it('should return 0 for other Gecko browsers', function() {
+            test(uas.camino).toEqual('0');
+            test(uas.caminolikefx).toEqual('0');
+            test(uas.seamonkey).toEqual('0');
+            test(uas.icecat).toEqual('0');
+            test(uas.iceweasel).toEqual('0');
+        });
+
+        it('should return 0 for non-Gecko browsers', function() {
+            test(uas.chrome).toEqual('0');
+            test(uas.safari).toEqual('0');
+            test(uas.ie).toEqual('0');
+        });
+
+    });
+
+    describe('_getFirefoxMajorVersion', function () {
+
+        var test = function(ua) {
+            return expect(window.Mozilla.Client._getFirefoxMajorVersion(ua));
+        };
+
+        it('should return a version number for Firefox on desktop', function() {
+            test(uas.firefox.windows).toEqual(10);
+            test(uas.firefox.osx).toEqual(23);
+            test(uas.firefox.linux).toEqual(10);
+        });
+
+        it('should return a version number for Firefox on Maemo', function() {
+            test(uas.firefox.maemo).toEqual(10);
+        });
+
+        it('should return a version number for Firefox on Android', function() {
+            test(uas.firefox.android.mobile).toEqual(26);
+            test(uas.firefox.android.tablet).toEqual(26);
+        });
+
+        it('should return 0 for Firefox on iOS', function() {
+            test(uas.firefox.ios.mobile).toEqual(0);
+            test(uas.firefox.ios.tablet).toEqual(0);
+        });
+
+        it('should return a version number for Firefox OS', function() {
+            test(uas.firefox.fxos.mobile).toEqual(26);
+            test(uas.firefox.fxos.tablet).toEqual(26);
+        });
+
+        it('should return 0 for other Gecko browsers', function() {
+            test(uas.camino).toEqual(0);
+            test(uas.caminolikefx).toEqual(0);
+            test(uas.seamonkey).toEqual(0);
+            test(uas.icecat).toEqual(0);
+            test(uas.iceweasel).toEqual(0);
+        });
+
+        it('should return 0 for non-Gecko browsers', function() {
+            test(uas.chrome).toEqual(0);
+            test(uas.safari).toEqual(0);
+            test(uas.ie).toEqual(0);
         });
 
     });
@@ -24,6 +421,10 @@ describe('mozilla-client.js', function() {
     describe('_isFirefoxUpToDate', function () {
 
         var h = document.documentElement;
+
+        var test = function(strict, isESR, userVer) {
+            return expect(window.Mozilla.Client._isFirefoxUpToDate(strict, isESR, userVer));
+        };
 
         beforeEach(function () {
             h.setAttribute('data-latest-firefox', '46.0.2');
@@ -36,37 +437,37 @@ describe('mozilla-client.js', function() {
         });
 
         it('should consider up to date if user version is equal to latest version', function() {
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, false, '46.0.2')).toBeTruthy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, true, '38.8.0')).toBeTruthy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, true, '45.1.0')).toBeTruthy();
+            test(true, false, '46.0.2').toBeTruthy();
+            test(true, true, '38.8.0').toBeTruthy();
+            test(true, true, '45.1.0').toBeTruthy();
         });
 
         it('should consider up to date if user version is greater than latest version', function() {
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, false, '46.0.3')).toBeTruthy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, false, '47.0')).toBeTruthy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, true, '38.9.0')).toBeTruthy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, true, '45.2.0')).toBeTruthy();
+            test(true, false, '46.0.3').toBeTruthy();
+            test(true, false, '47.0').toBeTruthy();
+            test(true, true, '38.9.0').toBeTruthy();
+            test(true, true, '45.2.0').toBeTruthy();
         });
 
         it('should consider up to date if user version is slightly less than latest version but strict option is false', function() {
-            expect(window.Mozilla.Client._isFirefoxUpToDate(false, false, '46.0.1')).toBeTruthy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(false, false, '46.0')).toBeTruthy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(false, true, '38.7.0')).toBeTruthy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(false, true, '45.0')).toBeTruthy();
+            test(false, false, '46.0.1').toBeTruthy();
+            test(false, false, '46.0').toBeTruthy();
+            test(false, true, '38.7.0').toBeTruthy();
+            test(false, true, '45.0').toBeTruthy();
         });
 
         it('should consider outdated if user version is slightly less than latest version and strict option is true', function() {
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, false, '46.0.1')).toBeFalsy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, false, '45.0')).toBeFalsy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, false, '38.7.0')).toBeFalsy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, false, '45.0')).toBeFalsy();
+            test(true, false, '46.0.1').toBeFalsy();
+            test(true, false, '45.0').toBeFalsy();
+            test(true, false, '38.7.0').toBeFalsy();
+            test(true, false, '45.0').toBeFalsy();
         });
 
         it('should consider outdated if user version is much less than latest version, regardless of strict option', function() {
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, false, '40.0.2')).toBeFalsy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(false, false, '40.0.2')).toBeFalsy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(true, true, '31.7.0')).toBeFalsy();
-            expect(window.Mozilla.Client._isFirefoxUpToDate(false, true, '31.7.0')).toBeFalsy();
+            test(true, false, '40.0.2').toBeFalsy();
+            test(false, false, '40.0.2').toBeFalsy();
+            test(true, true, '31.7.0').toBeFalsy();
+            test(false, true, '31.7.0').toBeFalsy();
         });
 
     });
