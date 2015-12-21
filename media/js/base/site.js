@@ -36,6 +36,7 @@
             }
             if (pf.indexOf("Win32") !== -1 ||
                     pf.indexOf("Win64") !== -1) {
+
                 return 'windows';
             }
             if (/android/i.test(ua)) {
@@ -152,6 +153,11 @@
             if (version && parseFloat(version) >= 6.1) {
                 h.className += ' win7up';
             }
+
+            // Check for Windows XP users to alter download button behavior
+            if (/Windows NT 5\.1/i.test(navigator.userAgent)) {
+                h.className += ' winxp';
+            }
         } else {
             h.className = h.className.replace('windows', platform);
 
@@ -181,6 +187,10 @@
         if (archSize === 64) {
             h.className += ' x64';
         }
+
+        // Uncomment to test on non-Windows
+        // TODO: remove
+        //h.className += ' winxp';
 
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/, 'js');

@@ -95,6 +95,9 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
 
     # Gather data about the build for each platform
     builds = []
+    winxp_locale = 'en-US'
+    winxp_download = ''
+    winxp_download_direct = ''
 
     if show_desktop:
         for plat_os, plat_os_pretty in firefox_desktop.platform_labels.iteritems():
@@ -136,6 +139,29 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
 
+        # WinXP hacks
+        winxp_locale = locale if 'Windows' in platforms else 'en-US'
+
+        if (channel == 'release'):
+            winxp_build_url = ('https://download.mozilla.org/?product='
+                  'firefox-43.0.1-SSL&os=win&lang={0}'.format(winxp_locale))
+        elif (channel == 'beta'):
+            winxp_build_url = ('https://download.mozilla.org/?product='
+                'firefox-44.0b1-SSL&os=win&lang={0}'.format(winxp_locale))
+        elif (channel == 'alpha'):
+            # TODO: find URL to specific build
+            winxp_build_url = ('https://download.mozilla.org/?product=firefox-'
+                'aurora-latest-ssl&os=win&lang={0}'.format(winxp_locale))
+
+        # should be direct download (not /firefox/new/?scene=2) for all
+        # non-release channels
+        if (force_direct or channel != 'release'):
+            winxp_download = winxp_build_url
+            winxp_download_direct = False
+        else:
+            winxp_download = firefox_desktop.download_base_url_transition
+            winxp_download_direct = winxp_build_url
+
     if show_android:
         builds = android_builds(channel, builds)
 
@@ -162,6 +188,8 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
         'show_ios': show_ios,
         'icon': icon,
         'check_old_fx': check_old_fx and simple,
+        'winxp_download': winxp_download,
+        'winxp_download_direct': winxp_download_direct,
     }
 
     html = jingo.render_to_string(ctx['request'],
