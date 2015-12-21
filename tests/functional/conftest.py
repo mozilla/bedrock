@@ -21,6 +21,8 @@ def filter_capabilities(request, selenium):
     firefox = capabilities.get('browserName').lower() == 'firefox'
     if firefox and 'skip_if_firefox' in request.keywords:
         pytest.skip('Test must not be run on Firefox')
+    if not firefox and 'skip_if_not_firefox' in request.keywords:
+        pytest.skip('Test must only be run on Firefox')
 
 
 @pytest.fixture
