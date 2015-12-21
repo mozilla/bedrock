@@ -36,4 +36,10 @@ do
     done;
 done;
 
-docker run -v `pwd`/results:/app/results --link bedrock-selenium-hub-${BUILD_NUMBER}:hub --link bedrock-code-${BUILD_NUMBER}:bedrock -e SELENIUM_HOST=hub -e BASE_URL=http://bedrock:8000 bedrock_functional_tests:$GIT_COMMIT
+docker run -v `pwd`/results:/app/results \
+  --link bedrock-selenium-hub-${BUILD_NUMBER}:hub \
+  --link bedrock-code-${BUILD_NUMBER}:bedrock \
+  -e SELENIUM_HOST=hub \
+  -e BASE_URL=http://bedrock:8000 \
+  -e MARK_EXPRESSION=${MARK_EXPRESSION} \
+  bedrock_functional_tests:$GIT_COMMIT
