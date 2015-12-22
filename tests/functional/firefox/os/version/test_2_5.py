@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.os.version.v2_5 import FirefoxOSPage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
     page = FirefoxOSPage(base_url, selenium).open()

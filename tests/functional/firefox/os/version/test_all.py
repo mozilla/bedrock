@@ -9,8 +9,8 @@ from pages.firefox.os.version.all import FirefoxOSBasePage
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('version', [
-    pytest.mark.sanity(('2.5')),
-    pytest.mark.sanity(('2.0')),
+    pytest.mark.smoke(('2.5')),
+    pytest.mark.smoke(('2.0')),
     ('1.4'),
     ('1.3t'),
     ('1.3'),
@@ -30,7 +30,7 @@ def test_news_is_displayed(version, base_url, selenium):
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('version', [
-    pytest.mark.sanity(('2.0')),
+    pytest.mark.smoke(('2.0')),
     ('1.4'),
     ('1.3t'),
     ('1.3'),

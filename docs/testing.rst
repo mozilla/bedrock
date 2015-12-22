@@ -154,20 +154,20 @@ you can also read the `pytest markers`_ documentation for more options.
         assert not page.text_format_selected
         assert not page.privacy_policy_accepted
 
-Sanity tests
-~~~~~~~~~~~~
+Smoke tests
+~~~~~~~~~~~
 
-Sanity tests are run as part of bedrocks deployment pipeline. These should be considered
+Smoke tests are run as part of bedrocks deployment pipeline. These should be considered
 to be critical tests which benefit from being run automatically after every commit to
 master. Only the full suite of functional tests are run after deployment to staging. If
-your test should be marked as a santity test you will need to apply a ``santiy`` marker
+your test should be marked as a smoke test you will need to apply a ``smoke`` marker
 to it.
 
 .. code-block:: python
 
     import pytest
 
-    @pytest.mark.sanity
+    @pytest.mark.smoke
     @pytest.mark.nondestructive
     def test_newsletter_default_values(base_url, selenium):
         page = NewsletterPage(base_url, selenium).open()
@@ -178,15 +178,38 @@ to it.
         assert not page.text_format_selected
         assert not page.privacy_policy_accepted
 
-You can run sanity tests only by adding ``-m sanity`` when running the test suite on the
+You can run smoke tests only by adding ``-m smoke`` when running the test suite on the
 command line.
 
 .. Note::
 
   Tests that rely on long-running timeouts, cron jobs, or that test for locale specific
-  interactions should not be marked as a sanity test. We should try and ensure that the
-  suite of sanity tests are quick to run, and they should not have a dependency on
+  interactions should not be marked as a smoke test. We should try and ensure that the
+  suite of smoke tests are quick to run, and they should not have a dependency on
   checking out and building the full site.
+
+Sanity tests
+~~~~~~~~~~~~
+
+Sanity tests are considered to be our most critical tests that must pass in a wide range
+of web browsers, including old versions of Internet Explorer. Sanity tests are run
+automatically post deployment on a wider range of browsers & platforms than we run the
+full suite against. The number of sanity tests we run should remain small, but cover our
+most critical pages where legacy browser support is important.
+
+.. code-block:: python
+
+    import pytest
+
+    @pytest.mark.sanity
+    @pytest.mark.nondestructive
+    def test_click_download_button(base_url, selenium):
+        page = FirefoxNewPage(base_url, selenium).open()
+        page.download_firefox()
+        assert page.is_thank_you_message_displayed
+
+You can run sanity tests only by adding ``-m sanity`` when running the test suite on the
+command line.
 
 Waits and Expected Conditions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.os.version.v2_0 import FirefoxOSPage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_app_category_selector(base_url, selenium):
     page = FirefoxOSPage(base_url, selenium).open()
