@@ -7,14 +7,14 @@ import pytest
 from pages.mission import MissionPage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_is_mosaic_displayed(base_url, selenium):
     page = MissionPage(base_url, selenium).open()
     assert page.is_mosaic_displayed
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_play_video(base_url, selenium):
     page = MissionPage(base_url, selenium).open()
@@ -23,7 +23,7 @@ def test_play_video(base_url, selenium):
     assert page.is_video_displayed
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_newsletter_default_values(base_url, selenium):
     page = MissionPage(base_url, selenium).open()

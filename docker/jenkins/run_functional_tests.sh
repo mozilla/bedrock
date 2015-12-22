@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Starts Selenium Hub and NUMBER_OF_NODES (default 5) firefox nodes.
-# Waits until at least one node is ready and then runs sanity tests
+# Waits until at least one node is ready and then runs smoke tests
 # only against a local bedrock instance started for this job.
 #
 set -xe

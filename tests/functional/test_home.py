@@ -8,7 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from pages.home import HomePage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_promo_grid_is_displayed(base_url, selenium):
     page = HomePage(base_url, selenium).open()
@@ -33,7 +33,7 @@ def test_tweet_is_not_present(base_url, selenium):
     assert not page.is_tweet_promo_present
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = HomePage(base_url, selenium).open()
@@ -49,7 +49,7 @@ def test_upcoming_events_are_displayed(base_url, selenium):
 
 
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1214038')
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_newsletter_default_values(base_url, selenium):
     page = HomePage(base_url, selenium).open()

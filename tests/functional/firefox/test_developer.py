@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.developer import DeveloperPage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
     page = DeveloperPage(base_url, selenium).open()
@@ -16,7 +16,7 @@ def test_download_buttons_are_displayed(base_url, selenium):
 
 
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1219251')
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_play_video(base_url, selenium):
     page = DeveloperPage(base_url, selenium).open()

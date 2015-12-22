@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.android import AndroidPage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_family_navigation(base_url, selenium):
     page = AndroidPage(base_url, selenium).open()
@@ -16,7 +16,7 @@ def test_family_navigation(base_url, selenium):
 
 
 @pytest.mark.skipif(reason='https://webqa-ci.mozilla.com/job/bedrock.dev.win10.ie/120/')
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_close_accordion(base_url, selenium):
     page = AndroidPage(base_url, selenium).open()

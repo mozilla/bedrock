@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.os.tv import TVPage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_next_previous_buttons(base_url, selenium):
     page = TVPage(base_url, selenium).open()
@@ -28,7 +28,7 @@ def test_next_previous_buttons(base_url, selenium):
     assert thumbnails[0].is_selected
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_click_thumbnails(base_url, selenium):
     page = TVPage(base_url, selenium).open()

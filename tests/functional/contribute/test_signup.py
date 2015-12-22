@@ -8,7 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from pages.contribute.signup import ContributeSignUpPage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_toggle_category_with_areas(base_url, selenium):
     page = ContributeSignUpPage(base_url, selenium).open()
@@ -18,7 +18,7 @@ def test_toggle_category_with_areas(base_url, selenium):
     assert page.is_coding_area_required
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_toggle_category_without_areas(base_url, selenium):
     page = ContributeSignUpPage(base_url, selenium).open()

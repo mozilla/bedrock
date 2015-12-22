@@ -24,7 +24,7 @@ def test_navigation(base_url, selenium):
 
 
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1214038')
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.viewport('mobile')
 def test_mobile_navigation(base_url, selenium):

@@ -10,6 +10,7 @@ from pages.firefox.new import FirefoxNewPage, FirefoxNewThankYouPage
 # We don't currently show the download button for up-to-date Firefox users.
 # TODO explore how could we run this test using a known out-of-date Firefox?
 @pytest.mark.skip_if_firefox
+@pytest.mark.smoke
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_click_download_button(base_url, selenium):
@@ -18,6 +19,7 @@ def test_click_download_button(base_url, selenium):
     assert page.is_thank_you_message_displayed
 
 
+@pytest.mark.smoke
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_directly_load_thank_you(base_url, selenium):

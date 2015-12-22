@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.os.devices import DevicesPage
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_family_navigation(base_url, selenium):
     page = DevicesPage(base_url, selenium).open()
@@ -15,7 +15,7 @@ def test_family_navigation(base_url, selenium):
     assert page.family_navigation.is_menu_displayed
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_close_modal(base_url, selenium):
     page = DevicesPage(base_url, selenium).open()
@@ -25,7 +25,7 @@ def test_open_close_modal(base_url, selenium):
     modal.close()
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_close_phone(base_url, selenium):
     page = DevicesPage(base_url, selenium).open()
@@ -37,7 +37,7 @@ def test_open_close_phone(base_url, selenium):
     assert not phone.is_features_displayed
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_close_tv(base_url, selenium):
     page = DevicesPage(base_url, selenium).open()
@@ -49,7 +49,7 @@ def test_open_close_tv(base_url, selenium):
     assert not tv.is_features_displayed
 
 
-@pytest.mark.sanity
+@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_toggle_detail_tabs(base_url, selenium):
     page = DevicesPage(base_url, selenium).open()
