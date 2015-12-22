@@ -44,7 +44,7 @@ urlpatterns = (
     page('firefox/geolocation', 'firefox/geolocation.html'),
     url(r'^firefox/hello/$', views.hello, name='firefox.hello'),
     page('firefox/interest-dashboard', 'firefox/interest-dashboard.html'),
-    url(r'^firefox/android/$', views.android, name='firefox.android.index'),
+    page('firefox/android', 'firefox/android/index.html'),
     page('firefox/android/all', 'firefox/android/all.html'),
     page('firefox/android/faq', 'firefox/android/faq.html'),
     page('firefox/ios', 'firefox/ios.html'),

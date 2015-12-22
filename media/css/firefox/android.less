@@ -601,28 +601,17 @@ html[dir="rtl"] #phone-wrapper figure {
     z-index: 1;
 }
 
-// for no-js, hide all send to device variants, except...
-.send-to-device-variant {
+// Send to Device Widget
+#send-to-device {
     display: none;
 }
 
-// ...make sure default is visible
-#send-to-device-default.send-to-device-variant {
-    display: block;
+.send-to {
+    display: none;
 }
 
-// Send to Device Widget
-.js {
+.js .show-widget {
     #send-to-device {
-        display: none;
-    }
-
-    // make default send to device hidden until we know which variant to show
-    #send-to-device-default.send-to-device-variant {
-        display: none;
-    }
-
-    #send-to-device-embedded-widget #send-to-device {
         display: block;
         background: #005189;
         border-radius: 6px;
@@ -682,9 +671,7 @@ html[dir="rtl"] #phone-wrapper figure {
         }
 
         #send-to-device-form {
-
             .input {
-
                 label {
                     text-align: center;
                 }
@@ -723,18 +710,8 @@ html[dir="rtl"] #phone-wrapper figure {
             }
         }
     }
-}
 
-#modal #send-to-device {
-    display: block;
-}
-
-.send-to {
-    display: none;
-}
-
-// Hide play store button for locales that get the widget
-.js .show-widget {
+    // Hide play store button for locales that get the widget
     .dl-button {
         display: none;
     }
@@ -745,14 +722,20 @@ html[dir="rtl"] #phone-wrapper figure {
 
 // Android users should only see play store button
 .js.android .show-widget {
+    #send-to-device {
+        display: none;
+    }
+
     .download-other {
         .open-sans-light();
         .font-size(12px);
     }
+
     .dl-button {
         display: block;
         color: #bee1f5;
     }
+
     .send-to {
         display: none;
     }
@@ -1208,6 +1191,10 @@ html[lang="ja"] #privacy p {
     }
 
     .js {
+        .show-widget #send-to-device {
+            margin: 0 auto;
+        }
+
         #send-to-device-google-play {
             text-align: center;
         }
