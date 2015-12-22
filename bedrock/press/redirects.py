@@ -25,7 +25,7 @@ redirectpatterns = (
     redirect(r'^press/mozilla-2004-06-16\.html$',
              'http://blog.mozilla.org/press/2004/06/mozilla-foundation-releases-thunderbird-0-7/'),
     redirect(r'^press/mozilla-2004-06-30\.html$',
-             'http://blog.mozilla.org/press/2013/11/mozilla-foundation-announces-more-open-scriptable-plugins/'),
+             'http://blog.mozilla.org/press/2004/06/mozilla-foundation-announces-more-open-scriptable-plugins/'),
     redirect(r'^press/mozilla-2004-08-02\.html$',
              'http://blog.mozilla.org/press/2004/08/mozilla-foundation-announces-security-bug-bounty-program/'),
     redirect(r'^press/mozilla-2004-08-10\.html$',
@@ -36,7 +36,7 @@ redirectpatterns = (
              'http://blog.mozilla.org/press/2004/09/'
              'mozilla-foundation-announces-first-payments-of-security-bug-bounty-program-further-strengthens-browser-security/'),
     redirect(r'^press/mozilla-2004-09-14-02\.html$',
-             'http://blog.mozilla.org/press/2013/11/'
+             'http://blog.mozilla.org/press/2004/09/'
              'firefox-preview-release-and-thunderbird-0-8-released/'),
     redirect(r'^press/mozilla-2004-09-20\.html$',
              'http://blog.mozilla.org/press/2004/09/'
@@ -168,9 +168,9 @@ redirectpatterns = (
     redirect(r'^press/mozilla-2009-03-31\.html$',
              'https://blog.mozilla.org/press/2009/03/%C2%AD%C2%ADmozilla-adds-style-and-star-power-to-firefox-with-new-personas/'),
     redirect(r'^press/mozilla-2009-06-30-faq\.html$',
-             'http://blog.mozilla.org/press/2009/04/mozilla-advances-the-web-with-firefox-3-5/'),
+             'http://blog.mozilla.org/press/2009/06/mozilla-advances-the-web-with-firefox-3-5/'),
     redirect(r'^press/mozilla-2009-06-30\.html$',
-             'http://blog.mozilla.org/press/2009/04/mozilla-advances-the-web-with-firefox-3-5/'),
+             'http://blog.mozilla.org/press/2009/06/mozilla-advances-the-web-with-firefox-3-5/'),
     redirect(r'^press/mozilla-foundation\.html$',
              'http://blog.mozilla.org/press/2003/07/mozilla-org-announces-launch-of-the-'
              'mozilla-foundation-to-lead-open-source-browser-efforts/'),
