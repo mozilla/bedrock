@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.partners import PartnersPage
 
 
+@pytest.mark.skipif(reason='https://ci.us-west.moz.works/view/Bedrock/job/bedrock_functional_tests/350/')
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_partner_menu(base_url, selenium):
