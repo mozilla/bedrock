@@ -29,10 +29,11 @@
   <header class="smarton-header">
     <div class="content">
       {# L10n: <b> element below is for visual formatting, to distinguish the Smart On name from the rest of the text #}
-      <h1 class="series-title">{{ _('Get <b>Smart On</b> the Web') }}</h1>
+      <h1 class="series-title"><a href="{{ url('teach.smarton.index') }}">{{ _('Get <b>Smart On</b> the Web') }}</a></h1>
       <p class="series-intro">
         {{ _('The SmartOn Series is like your Internet owner’s manual: the place to learn the most useful intel and tips from Mozilla policy peeps and programmers.') }}
       </p>
+      <p class="series-link"><a href="{{ url('teach.smarton.index') }}">{{ _('See all SmartOns') }}</a></p>
 
       <div id="tabzilla">
         <a href="{{ url('mozorg.home') }}">Mozilla</a>
@@ -76,7 +77,7 @@
 {% macro smarton_navbar(title='', share_text='', twitter_url='', googleplus_url='', facebook_url='' ) -%}
 <header class="page-header">
   <div class="content">
-    <div class="series-title">{{ _('SmartOn') }}</div>
+    <div class="series-title"><a href="{{ url('teach.smarton.index') }}">{{ _('SmartOn') }}</a></div>
   {%- if title -%}
     <h1 class="page-title">{{ title }}</h1>
   {%- endif -%}

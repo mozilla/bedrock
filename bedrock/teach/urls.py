@@ -10,13 +10,11 @@ from bedrock.mozorg.util import page
 urlpatterns = (
     # There will eventually be a main education landing page
     # but we'll redirect until then.
-    redirect(r'^teach/$', 'teach.smarton.security', name='teach'),
-
-    # There will eventually be a main SmartOn landing page
-    # but we'll redirect until then.
-    redirect(r'^teach/smarton/$', 'teach.smarton.security', name='teach.smarton'),
+    redirect(r'^teach/$', 'teach.smarton.index', name='teach'),
 
     # SmartOn
+    page('teach/smarton', 'teach/smarton/index.html'),
     page('teach/smarton/tracking', 'teach/smarton/tracking.html'),
     page('teach/smarton/security', 'teach/smarton/security.html'),
+    page('teach/smarton/surveillance', 'teach/smarton/surveillance.html'),
 )

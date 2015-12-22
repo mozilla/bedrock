@@ -26,7 +26,7 @@
   <section id="ask" class="section section-ask">
     <div class="content">
 
-      <span class="smarton-hero">{{ high_res_img('teach/smarton/tracking/tracking-hero.png', {'alt': '', 'width': '380', 'height': '380'}) }}</span>
+      {{ high_res_img('teach/smarton/tracking/tracking-hero.png', {'width': '380', 'height': '380', 'alt': '', 'class': 'smarton-hero'}) }}
 
       <h2 class="section-title">{{ _('Ask yourself') }}</h2>
 
@@ -158,7 +158,7 @@
           <p>{{ _('A lot goes on behind the scenes of the Internet. The more you know, the better you can decide what your information is worth to you.') }}</p>
         </div>
 
-        <span class="topic-image">{{ high_res_img('teach/smarton/tracking/topic-think-deeper.png', {'alt': '', 'width': '300', 'height': '265'}) }}</span>
+        {{ high_res_img('teach/smarton/tracking/topic-think-deeper.png', {'width': '300', 'height': '265', 'alt': '', 'class': 'topic-image'}) }}
 
         <div class="topic-tips">
           <div class="tip">
@@ -187,7 +187,7 @@
           <p>{{ _('It’s easy to overlook the access to personal data that we might offer through online accounts and apps, but most offer settings that give you choice and control.') }}</p>
         </div>
 
-        <span class="topic-image">{{ high_res_img('teach/smarton/tracking/topic-choose-choice.png', {'alt': '', 'width': '300', 'height': '310'}) }}</span>
+        {{ high_res_img('teach/smarton/tracking/topic-choose-choice.png', {'width': '300', 'height': '310', 'alt': '', 'class': 'topic-image'}) }}
 
         <div class="topic-tips">
           <div class="tip">
@@ -231,7 +231,7 @@
             {{ _('Here are a few key ones that you can make use of.') }}</p>
         </div>
 
-        <span class="topic-image">{{ high_res_img('teach/smarton/tracking/topic-browser.png', {'alt': '', 'width': '300', 'height': '260'}) }}</span>
+        {{ high_res_img('teach/smarton/tracking/topic-browser.png', {'width': '300', 'height': '260', 'alt': '', 'class': 'topic-image'}) }}
 
         <div class="topic-tips">
           <div class="tip">
@@ -360,7 +360,7 @@
             <p>
               <span class="chat-question">{{ _('What privacy settings do you use in your browser?') }}</span>
               <span class="tweet-this">
-                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('http://mzl.la/tracking'|urlencode, _('What privacy settings do you use in your browser?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
+                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s%s'|format('http://mzl.la/tracking'|urlencode, _('What privacy settings do you use in your browser?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
               </span>
             </p>
             {% include 'teach/smarton/includes/list-number-1.svg' %}
@@ -369,7 +369,7 @@
             <p>
               <span class="chat-question">{{ _('How much are you willing to share about yourself in exchange for personalized content?') }}</span>
               <span class="tweet-this">
-                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('http://mzl.la/tracking'|urlencode, _('How much are you willing to share about yourself in exchange for personalized content?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
+                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s%s'|format('http://mzl.la/tracking'|urlencode, _('How much are you willing to share about yourself in exchange for personalized content?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
               </span>
             </p>
             {% include 'teach/smarton/includes/list-number-2.svg' %}
@@ -378,7 +378,7 @@
             <p>
               <span class="chat-question">{{ _('Have you ever used private browsing?') }}</span>
               <span class="tweet-this">
-                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&amp;text=%s%s'|format('http://mzl.la/tracking'|urlencode, _('Have you ever used private browsing?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
+                <a class="button-tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s%s'|format('http://mzl.la/tracking'|urlencode, _('Have you ever used private browsing?')|urlencode, hashtag|urlencode)|e }}">{{ _('Tweet this') }}</a>
               </span>
             </p>
             {% include 'teach/smarton/includes/list-number-3.svg' %}

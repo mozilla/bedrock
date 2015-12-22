@@ -10,11 +10,11 @@
 // @Color scheme setup
 
 // Define colors for each theme
-@theme-surveillance: #505fa2;
-@theme-surveillance-dark: darken(@theme-surveillance, 20%);
-@theme-surveillance-light: lighten(@theme-surveillance, 25%);
-@theme-surveillance-extra-light: lighten(@theme-surveillance, 45%);
-@theme-surveillance-ultra-light: #f9faff;
+@theme-surveillance: #1e4387;
+@theme-surveillance-dark: #031d68;
+@theme-surveillance-light: #63b7e3;
+@theme-surveillance-extra-light: #d2effa;
+@theme-surveillance-ultra-light: #fbfcfe;
 
 @theme-security: #1895d8;
 @theme-security-dark: #124797;
@@ -269,10 +269,8 @@ a.go {
 
 // Hide hero image on smaller viewports
 @media only screen and (max-width: @breakTablet) {
-    .section-ask .content {
-        img {
-            display: none;
-        }
+    #ask .smarton-hero {
+        display: none;
     }
 }
 
@@ -325,13 +323,19 @@ a.go {
     }
 
     .series-link {
-        display: none; // hidden until there is a landing page
         .span(3);
         float: right;
         text-align: center;
 
+        @media only screen and (max-width: @breakDesktop) {
+            float: none;
+            width: auto;
+            text-align: left;
+            margin: @baseLine 0;
+        }
+
         a {
-            .trailing-arrow();
+            .trailing-arrow;
             display: inline-block;
             padding: .25em 20px;
             border: 2px solid #fff;
@@ -1253,10 +1257,6 @@ body.not-firefox .footer-cta {
     margin: 0 auto;
     padding: 0 @gridGutterWidth;
 
-    @media screen and (max-width: @breakTablet) {
-        padding: 0;
-    }
-
     .col {
         margin: 0 10px @baseLine;
         .border-box;
@@ -1272,6 +1272,17 @@ body.not-firefox .footer-cta {
 .columns-3 .col { width: 33.3%; }
 .columns-4 .col { width: 25%; }
 .columns-5 .col { width: 20%; }
+
+@media screen and (max-width: @breakTablet) {
+    .columns {
+        display: block;
+        padding: 0;
+
+        .col {
+            width: 100%;
+        }
+    }
+}
 
 
 /* -------------------------------------------------------------------------- */
@@ -1422,88 +1433,406 @@ body.not-firefox .footer-cta {
 
 /* -------------------------------------------------------------------------- */
 // Landing page
+.landing {
+    .smarton-header {
+        background-color: #3a454e;
+        text-align: center;
+
+        .series-intro {
+            float: none;
+            margin: 0 auto @baseLine;
+        }
+
+        .series-link {
+            display: none;
+        }
+    }
+
+    main {
+        background: #ddd;
+
+        &:before {
+            background: inherit;
+            clip-path: url(/media/img/teach/smarton/wobble.svg#wobble);
+            content: '';
+            display: block;
+            height: 10px;
+            width: 100%;
+            position: absolute;
+            top: -10px;
+        }
+    }
+
+    .footer-cta {
+        background-color: #3a454e;
+    }
+}
+
 .smarton-topics {
     .border-box;
-    width: @widthDesktop;
+    width: 600px;
     list-style: none;
-    margin: 2em auto;
-    padding: 0 (@gridColumnWidth * 2);
+    margin: (@baseLine * 2) auto (@baseLine * 3);
     text-align: center;
     .clearfix;
 
-    > li {
-        .span(3);
+    @media only screen and (min-width: @breakDesktop) {
+        width: 900px;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: auto;
+    }
+
+    .topic {
         .border-box;
+        float: left;
+        width: 260px;
+        height: 410px;
+        margin: 0 @gridGutterWidth (@baseLine * 2);
         padding: 20px;
+        position: relative;
+        .transition(background-position .275s ease-in-out);
+
+        &:nth-child(1n+3) {
+            clear: both;
+            float: none;
+            margin: 0 auto;
+
+            @media only screen and (min-width: @breakDesktop) {
+                float: left;
+                clear: none;
+                margin: 0 @gridGutterWidth (@baseLine * 2);
+            }
+        }
 
         &:before {
             content: '';
         }
+
+        &:after {
+            .font-size(40px);
+            text-align: center;
+            color: #ddd;
+            content: '\25be';
+            display: none;
+            height: 1em;
+            width: 100%;
+            position: absolute;
+            bottom: 85px;
+            left: 0;
+            z-index: 3;
+            visibility: visible;
+            opacity: 1;
+            .animation(pulse 1.5s infinite);
+        }
+
+        &.show:after {
+            display: none;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
+            margin: 0 auto 20px;
+        }
     }
 
-    h2, h3, a {
-        color: #fff;
+    .topic-title {
+        .font-size(28px);
+        .transition(margin .25s ease);
+        font-style: italic;
         text-shadow: none;
+        margin: 0 0 25px;
+        position: relative;
+        z-index: 3;
+    }
+
+    .topic-intro {
+        .font-size(14px);
+        color: #888;
+        position: relative;
+        z-index: 3;
+        opacity: 1;
+        display: none;
+        .transition(opacity .25s ease);
+    }
+
+    .inner {
+        .border-box;
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        height: 100%;
+        width: 100%;
+        padding: 140px 20px 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        opacity: 1;
+        @transition: opacity .25s ease, padding-top .25s ease;
+        .transition(@transition);
+    }
+
+    .cta {
+        .trailing-arrow;
+        display: inline-block;
+        padding: .25em 20px;
+        border: 2px solid #fff;
+        border-color: rgba(255, 255, 255, .5);
+        border-radius: 5px;
+        .transition(border-color .2s ease);
+
+        &:hover,
+        &:focus,
+        &:active {
+            border-color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    .shape {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        z-index: 2;
+
+        path {
+            fill: #fff;
+        }
+    }
+
+    &.has-touch .topic {
+        .topic-title {
+            margin: 0;
+        }
+
+        .topic-intro {
+            opacity: 0;
+        }
+
+        .inner {
+            opacity: 1;
+            padding-top: 140px;
+        }
     }
 
     .topic-tracking {
-        background: @theme-tracking;
+        background: url('/media/img/teach/smarton/tracking/tracking-landing.png') center 160px no-repeat,
+                    @theme-tracking url('/media/img/teach/smarton/tracking/tracking-landing-bg.png') center center no-repeat;
+
+        .topic-title {
+            color: @theme-tracking-dark;
+        }
     }
 
     .topic-security {
-        background: @theme-security;
+        background: url('/media/img/teach/smarton/security/security-landing.png') center 196px no-repeat,
+                    @theme-security url('/media/img/teach/smarton/security/security-landing-bg.png') center top no-repeat;
+
+        .topic-title {
+            color: @theme-security-dark;
+        }
     }
 
     .topic-surveillance {
-        background: @theme-surveillance;
+        background: url('/media/img/teach/smarton/surveillance/surveillance-landing.png') center 240px no-repeat,
+                    @theme-surveillance url('/media/img/teach/smarton/surveillance/surveillance-landing-bg.png') center top repeat;
+
+        .topic-title {
+            color: @theme-surveillance-dark;
+        }
     }
 }
 
+.js .smarton-topics:not(.has-touch) {
+    .topic:after {
+        display: block;
+    }
+
+    .topic-title {
+        margin-top: 40px;
+    }
+
+    .topic-intro {
+        display: block;
+    }
+
+    .inner {
+        padding-top: 220px;
+    }
+
+    .topic.show {
+        .topic-title {
+            margin-top: 0;
+        }
+
+        .topic-intro {
+            opacity: 0;
+        }
+
+        .inner {
+            opacity: 1;
+            padding-top: 140px;
+        }
+
+        &:after {
+            opacity: 0;
+        }
+    }
+
+    .topic-tracking {
+        background-position: center 220px, center center;
+
+        &.show {
+            background-position: center 160px, center center;
+        }
+    }
+
+    .topic-security {
+        background-position: center 280px, center top;
+
+        &.show {
+            background-position: center 196px, center top;
+        }
+    }
+
+    .topic-surveillance {
+        background-position: center 315px, center top;
+
+        &.show {
+            background-position: center 240px, center top;
+        }
+    }
+}
+
+@-webkit-keyframes pulse {
+    0%   { color: #ddd; }
+    50%  { color: #eee; }
+    100% { color: #ddd; }
+}
+
+@keyframes pulse {
+    0%   { color: #ddd; }
+    50%  { color: #eee; }
+    100% { color: #ddd; }
+}
+
 .series-description {
-    .border-box;
-    padding: 0 ((@gridColumnWidth * 2) + (@gridGutterWidth));
-    margin: 0 auto (@baseLine * 2);
-    text-align: center;
     .font-size(@largeFontSize);
+    background: #fff;
+    text-align: center;
+
+    &:before {
+        background: inherit;
+        clip-path: url(/media/img/teach/smarton/wobble.svg#wobble);
+        content: '';
+        display: block;
+        height: 10px;
+        width: 100%;
+        position: absolute;
+        top: -10px;
+    }
+
+    .content {
+        max-width: @widthTablet;
+    }
+
+    p {
+        margin: 30px @gridColumnWidth;
+    }
 
     h2 {
         .font-size(36px);
         font-style: italic;
-        font-weight: bold;
+        margin: @baseLine 0;
     }
 
     .smarton-steps {
         list-style: none;
-        width: (@gridColumnWidth * 5) + (@gridGutterWidth * 4);
         margin: @baseLine auto;
-        .font-size(20px);
+        font-weight: bold;
+        color: #3a454e;
+        .font-size(@largeFontSize);
         .flexbox;
 
         li {
             display: inline-block;
             margin: 0 10px;
-            width: 25%;
+            width: 24%;
             position: relative;
 
             &:after {
-                content: '\27A1';
+                content: '';
+                display: block;
+                width: 25px;
+                height: 30px;
+                background: url('/media/img/teach/smarton/step-arrow.svg') 0 0 no-repeat;
                 position: absolute;
-                right: -15px;
-                top: 0;
-                color: @mozIDGrey;
+                right: -25px;
+                top: -3px;
             }
 
             &:last-child:after {
-                content: '';
+                display: none;
             }
         }
     }
+}
 
-    @media only screen and (max-width: @breakTablet) {
-        padding: 0 @gridGutterWidth;
+@media only screen and (max-width: @breakTablet) {
+    .smarton-topics .topic {
+        float: none;
+        margin: 0 auto @baseLine;
+    }
+
+    .series-description {
+        p {
+            margin: 30px 0;
+        }
 
         .smarton-steps {
-            width: auto;
+            display: block;
+            width: 50%;
+
+            li {
+                width: auto;
+                display: block;
+                text-align: left;
+
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.5),
+       screen and (min-resolution: 1.5dppx),
+       screen and (min-resolution: 144dpi) {
+
+    .smarton-topics {
+        .topic-tracking {
+            background-image: url('/media/img/teach/smarton/tracking/tracking-landing-high-res.png'),
+                              url('/media/img/teach/smarton/tracking/tracking-landing-bg-high-res.png');
+            -webkit-background-size: 260px 260px, 500px 368px;
+                    background-size: 260px 260px, 500px 368px;
+        }
+
+        .topic-security {
+            background-image: url('/media/img/teach/smarton/security/security-landing-high-res.png'),
+                              url('/media/img/teach/smarton/security/security-landing-bg-high-res.png');
+            -webkit-background-size: 165px 200px, 260px 410px;
+                    background-size: 165px 200px, 260px 410px;
+        }
+
+        .topic-surveillance {
+            background-image: url('/media/img/teach/smarton/surveillance/surveillance-landing-high-res.png'),
+                              url('/media/img/teach/smarton/surveillance/surveillance-landing-bg-high-res.png');
+            -webkit-background-size: 220px 125px, 152px 177px;
+                    background-size: 220px 125px, 152px 177px;
         }
     }
 }
