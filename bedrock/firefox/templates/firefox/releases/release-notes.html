@@ -68,18 +68,18 @@
       <nav id="nav" class="navigator">
         <div class="container">
           <ul class="menu">
-          {% if release.product == 'Firefox' %}
-            <li class="current">{{ _('Desktop') }}</li>
-            <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
-            <li><a href="{{ url('firefox') + 'ios/1.2/releasenotes' }}">{{ _('iOS') }}</a></li>
-            {% elif release.product == 'Firefox for Android' %}
+          {% if release.product == 'Firefox for Android' %}
             <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
             <li class="current">{{ _('Android') }}</li>
             <li><a href="{{ url('firefox') + 'ios/1.2/releasenotes' }}">{{ _('iOS') }}</a></li>
-            {% else %}
+            {% elif release.product == 'Firefox for iOS' %}
             <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
             <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
             <li class="current">{{ _('iOS') }}</li>
+            {% else %}
+            <li class="current">{{ _('Desktop') }}</li>
+            <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
+            <li><a href="{{ url('firefox') + 'ios/1.2/releasenotes' }}">{{ _('iOS') }}</a></li>
           {% endif %}
             <li class="submenu-title">
               <a>{{ _('Other Releases') }}</a>
@@ -87,7 +87,7 @@
                 <li class="title">{{ _('Recent Desktop Releases') }}</li>
                 <li><a href="{{ url('firefox.notes', channel='developer') }}">{{ _('Latest Developer Edition') }}</a></li>
                 <li><a href="{{ url('firefox.notes', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
-                <li class="title">{{ _('Recent Android Releases') }}</a></li>
+                <li class="title">{{ _('Recent Android Releases') }}</li>
                 <li><a href="{{ url('firefox.notes', platform='android', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
                 <li><a href="{{ url('firefox.notes', platform='android', channel='aurora') }}">{{ _('Latest Aurora') }}</a></li>
               </ul>
@@ -128,7 +128,7 @@
               <ul class="section-items">
               {% endif %}
                 <li id="note-{{ note.id }}">
-                  <p>{{ note.note|markdown|safe }}</p>
+                  {{ note.note|markdown|safe }}
                 </li>
               {% if loop.last %}
               </ul>
@@ -143,7 +143,7 @@
               <ul class="section-items">
               {% endif %}
                 <li id="note-{{ note.id }}">
-                  <p>{{ note.note|markdown|safe }}</p>
+                  {{ note.note|markdown|safe }}
                 </li>
               {% if loop.last %}
               </ul>
@@ -158,7 +158,7 @@
               <ul class="section-items">
               {% endif %}
                 <li id="note-{{ note.id }}">
-                  <p>{{ note.note|markdown|safe }}</p>
+                  {{ note.note|markdown|safe }}
                 </li>
               {% if loop.last %}
               </ul>
@@ -173,7 +173,7 @@
               <ul class="section-items">
               {% endif %}
                 <li id="note-{{ note.id }}">
-                  <p>{{ note.note|markdown|safe }}</p>
+                  {{ note.note|markdown|safe }}
                 </li>
               {% if loop.last %}
               </ul>
@@ -189,7 +189,7 @@
               <ul class="section-items">
               {% endif %}
                 <li id="note-{{ note.id }}">
-                  <p>{{ note.note|markdown|safe }}</p>
+                  {{ note.note|markdown|safe }}
                 </li>
               {% if loop.last %}
               </ul>
@@ -204,7 +204,7 @@
               <ul class="section-items">
               {% endif %}
                 <li id="note-{{ note.id }}">
-                  <p>{{ note.note|markdown|safe }}</p>
+                  {{ note.note|markdown|safe }}
                 </li>
               {% if loop.last %}
               </ul>
@@ -219,7 +219,7 @@
               <ul class="section-items untagged">
               {% endif %}
                 <li id="note-{{ note.id }}">
-                  <p>{{ note.note|markdown|safe }}</p>
+                  {{ note.note|markdown|safe }}
                 </li>
               {% if loop.last %}
               </ul>
@@ -236,7 +236,7 @@
               <ul class="section-items">
               {% endif %}
                 <li id="note-{{ note.id }}">
-                  <p>{{ note.note|markdown|safe }}</p>
+                  {{ note.note|markdown|safe }}
                 </li>
               {% if loop.last %}
               </ul>
