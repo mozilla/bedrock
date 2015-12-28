@@ -119,3 +119,33 @@
     </small>
   {% endif %}
 </div>
+
+{% if show_desktop %}
+  {% set winxp_download_class = 'download-button download-button-winxp' %}
+  {% set winxp_download_class = winxp_download_class ~ ' download-button-' ~ channel if channel else winxp_download_class %}
+  {% set winxp_download_class = winxp_download_class ~ ' download-button-small' if small else winxp_download_class %}
+  {% set winxp_download_class = winxp_download_class ~ ' download-button-noicon' if not icon else winxp_download_class %}
+  {% set winxp_download_class = winxp_download_class ~ ' download-button-simple' if simple else winxp_download_class %}
+
+  <div id="download-fx-winxp" class="{{ winxp_download_class }}">
+    <ul class="download-list">
+      <li class="os_winxp">
+        <a class="download-link"
+           href="{{ winxp_download }}"
+           data-direct-link="{{ winxp_download_direct }}">
+          <span class="download-content">
+          {% if channel == 'beta' %}
+            <strong class="download-title">{{ _('Firefox Beta') }}</strong>
+          {% elif channel == 'alpha' %}
+            <strong class="download-title">{{ _('<span>Firefox</span> Developer Edition') }}</strong>
+          {% else %}
+            <strong class="download-title">{{ _('Firefox') }}</strong>
+          {% endif %}
+            <span class="download-subtitle">{{ _('Free Download') }}</span>
+            <span class="download-lang">{{ locale_name|safe }}</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+{% endif %}
