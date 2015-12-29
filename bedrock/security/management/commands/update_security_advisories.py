@@ -13,11 +13,12 @@ from subprocess import check_call, Popen, PIPE, STDOUT
 from django.conf import settings
 from django.core.cache import cache
 from django.core.management.base import NoArgsCommand, BaseCommand
+from django.db.models import Count
 
 from dateutil.parser import parse as parsedate
 
 from bedrock.security.models import Product, SecurityAdvisory
-from bedrock.security.utils import FILENAME_RE, chdir, parse_md_file
+from bedrock.security.utils import FILENAME_RE, chdir, mfsa_id_from_filename, parse_md_file
 
 
 ADVISORIES_REPO = settings.MOFO_SECURITY_ADVISORIES_REPO
@@ -97,11 +98,7 @@ def get_current_git_hash():
 
 
 def delete_files(filenames):
-    ids = []
-    for filename in filenames:
-        match = re.search('(\d{4}-\d{2,3})\.md$', filename)
-        ids.append(match.group(1))
-
+    ids = get_ids_from_files(filenames)
     SecurityAdvisory.objects.filter(id__in=ids).delete()
 
 
@@ -165,6 +162,29 @@ def clone_repo():
 
 def get_all_md_files():
     return glob.glob(os.path.join(ADVISORIES_PATH, 'announce', '*', '*.md'))
+
+
+def get_ids_from_files(filenames):
+    ids = [mfsa_id_from_filename(fn) for fn in filenames]
+    # filter any Nones
+    return [mfsa_id for mfsa_id in ids if mfsa_id]
+
+
+def get_files_to_delete_from_db(filenames):
+    """Delete any advisories in the DB that have no file in the repo."""
+    file_ids = set(get_ids_from_files(filenames))
+    db_ids = set(SecurityAdvisory.objects.values_list('id', flat=True))
+    to_delete = db_ids - file_ids
+    return ['mfsa{0}.md'.format(fid) for fid in to_delete]
+
+
+def delete_orphaned_products():
+    """Delete any products with no advisories"""
+    products = Product.objects.annotate(num_advisories=Count('advisories'))\
+                              .filter(num_advisories=0)
+    num_products = products.count()
+    products.delete()
+    return num_products
 
 
 class Command(NoArgsCommand):
@@ -239,7 +259,10 @@ class Command(NoArgsCommand):
         if force or cloned:
             printout('Reading all files.')
             modified_files = get_all_md_files()
-            deleted_files = []
+            if clear_db:
+                deleted_files = []
+            else:
+                deleted_files = get_files_to_delete_from_db(modified_files)
         else:
             printout('Updating repository and finding modified files.')
             modified_files, deleted_files = update_repo()
@@ -265,6 +288,9 @@ class Command(NoArgsCommand):
         if deleted_files:
             delete_files(deleted_files)
             printout('Deleted {0} files.'.format(len(deleted_files)))
+            num_products = delete_orphaned_products()
+            if num_products:
+                printout('Deleted {0} orphaned products.'.format(num_products))
 
         if not modified_files and not deleted_files:
             printout('Nothing to update.')

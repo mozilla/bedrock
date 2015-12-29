@@ -6,7 +6,9 @@ from django.conf import settings
 
 from nose.tools import eq_
 
+from bedrock.mozorg.tests import TestCase
 from bedrock.security.management.commands import update_security_advisories
+from bedrock.security.models import Product
 
 
 def test_fix_product_name():
@@ -36,3 +38,43 @@ def test_filter_advisory_names():
         settings.MOFO_SECURITY_ADVISORIES_PATH + '/mfsa2015-02.md',
     ]
     eq_(update_security_advisories.filter_advisory_filenames(filenames), good_filenames)
+
+
+def test_get_ids_from_files():
+    filenames = [
+        'README.md',
+        'LICENSE.txt',
+        'announce/2015/mfsa2015-01.md',
+        'stuff/whatnot.md',
+        'mfsa2015-02.md',
+    ]
+    good_ids = ['2015-01', '2015-02']
+    eq_(update_security_advisories.get_ids_from_files(filenames), good_ids)
+
+
+def make_mfsa(mfsa_id):
+    update_security_advisories.add_or_update_advisory({
+        'mfsa_id': mfsa_id,
+        'title': 'The Dude is insecure',
+        'impact': 'High',
+        'announced': 'December 25, 2015',
+        'fixed_in': ['Firefox 43.0.1'],
+    }, 'The Dude minds, man!')
+
+
+class TestDBActions(TestCase):
+    def test_get_files_to_delete_from_db(self):
+        make_mfsa('2015-100')
+        make_mfsa('2015-101')
+        make_mfsa('2015-102')
+        make_mfsa('2015-103')
+        all_files = ['mfsa2015-100.md', 'mfsa2015-101.md']
+        eq_(update_security_advisories.get_files_to_delete_from_db(all_files),
+            ['mfsa2015-102.md', 'mfsa2015-103.md'])
+
+    def test_delete_orphaned_products(self):
+        make_mfsa('2015-100')
+        Product.objects.create(name='Firefox 43.0.2')
+        Product.objects.create(name='Firefox 43.0.3')
+        eq_(update_security_advisories.delete_orphaned_products(), 2)
+        eq_(Product.objects.get().name, 'Firefox 43.0.1')
