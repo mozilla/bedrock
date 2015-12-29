@@ -14,6 +14,7 @@ class AndroidPage(FirefoxBasePage):
     _customize_locator = (By.CSS_SELECTOR, '#customize-accordion > .customize-section')
     _next_button_locator = (By.ID, 'customize-next')
     _previous_button_locator = (By.ID, 'customize-prev')
+    _play_store_button_locator = (By.CSS_SELECTOR, '#intro .dl-button')
 
     @property
     def customize_sections(self):
@@ -43,6 +44,10 @@ class AndroidPage(FirefoxBasePage):
     @property
     def is_previous_enabled(self):
         return self.find_element(self._previous_button_locator).is_enabled()
+
+    @property
+    def is_play_store_button_displayed(self):
+        return self.is_element_displayed(self._play_store_button_locator)
 
 
 class CustomizeSection(FirefoxBasePageRegion):

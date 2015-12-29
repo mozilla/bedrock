@@ -3,8 +3,33 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+from selenium.common.exceptions import TimeoutException
 
 from pages.firefox.android import AndroidPage
+
+
+@pytest.mark.flaky(reruns=1)
+def test_send_to_device_sucessful_submission(base_url, selenium):
+    page = AndroidPage(base_url, selenium).open()
+    send_to_device = page.send_to_device
+    send_to_device.type_email('noreply@mozilla.com')
+    send_to_device.click_send()
+    assert send_to_device.send_successful
+
+
+@pytest.mark.nondestructive
+def test_send_to_device_fails_when_missing_required_fields(base_url, selenium):
+    page = AndroidPage(base_url, selenium).open()
+    with pytest.raises(TimeoutException):
+        page.send_to_device.click_send()
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_send_to_device_not_supported_locale(base_url, selenium):
+    page = AndroidPage(base_url, selenium, locale='it').open()
+    assert page.is_play_store_button_displayed
+    assert not page.send_to_device.is_displayed
 
 
 @pytest.mark.skipif(reason='https://webqa-ci.mozilla.com/job/bedrock.dev.win10.ie/120/')
