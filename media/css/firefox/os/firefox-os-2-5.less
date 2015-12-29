@@ -35,7 +35,7 @@ section {
     }
 
     p {
-        .font-size(28px);    
+        .font-size(28px);
         .open-sans-light();
         letter-spacing: -1px;
         line-height: 1.2;
@@ -45,7 +45,7 @@ section {
         margin: 0 auto;
         width: 100%;
         max-width: 1100px;
-        padding: 80px 0; 
+        padding: 80px 0;
     }
 }
 
@@ -65,11 +65,11 @@ section {
 .fxos-hub {
     a, h1, h2 {
         color: #fff;
-        text-shadow: none; 
+        text-shadow: none;
     }
 
     a {
-       .font-size(20px); 
+       .font-size(20px);
     }
 }
 
@@ -89,7 +89,7 @@ section {
         .font-size(84px);
         margin: 0 auto @baseLine;
         padding: 0 115px;
-    } 
+    }
     p {
         color: #bee1f5;
         .font-size(36px);
@@ -103,9 +103,49 @@ section {
     }
 }
 
+// page-specific overrides of styles in in-the-news.less
+.fxos-news {
+    .content-wrapper {
+        padding: 0;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        .content-wrapper {
+            width: 100%;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        text-align: center;
+        padding: (@baseLine * 2) 0;
+
+        .content-wrapper {
+            width: @breakMobile;
+        }
+
+        aside {
+            text-align: center;
+
+            p {
+                text-align: center;
+                padding: 0 @baseLine;
+            }
+        }
+
+        ul {
+            padding: 0 @baseLine;
+
+            li {
+                text-align: center;
+            }
+
+        }
+    }
+}
+
 .fxos-features {
     float: left;
-    padding: 0 0 60px 0; 
+    padding: 0 0 60px 0;
     width: 100%;
 
     p {
@@ -116,7 +156,7 @@ section {
     h2 {
         margin-bottom: 40px;
     }
-   
+
     .features {
         list-style-type: none;
         margin: 0 auto;
@@ -188,9 +228,9 @@ section {
     }
     .hub-container {
         float: left;
-        width: 600px; 
+        width: 600px;
         margin-left: 60px;
-    } 
+    }
     .hub-image {
         margin: -30px 60px 0 60px;
     }
@@ -210,8 +250,8 @@ section {
     .mdn-container {
         float: right;
         margin-right: 60px;
-        width: 580px; 
-    } 
+        width: 580px;
+    }
 
     .mdn-image {
         margin: -30px 0 0 60px;
@@ -238,7 +278,7 @@ section {
     }
     h3 {
         color: #56565a;
-        margin-bottom: 30px; 
+        margin-bottom: 30px;
     }
     p {
         letter-spacing: 0;
@@ -247,14 +287,14 @@ section {
         background-color: transparent;
         border: none;
         box-shadow: none;
-        margin: auto; 
+        margin: auto;
         max-width: 680px;
         width: 100%;
         padding: 0 @baseLine;
     }
     .newsletter-form {
         .form-title {
-            float: none; 
+            float: none;
             width: auto;
             text-align: center;
         }
@@ -288,7 +328,7 @@ section {
         color: #fff;
     }
     a:hover, a:focus, a:active, a:visited {
-        color: #005189; 
+        color: #005189;
     }
     .logo {
         width: 93px;
@@ -311,7 +351,7 @@ section {
 }
 
 .fxos-try .cta-button {
-    background-color: #0c99d5; 
+    background-color: #0c99d5;
     color: #fff;
 }
 
@@ -358,7 +398,7 @@ section {
         h1 {
             .font-size(55px);
             padding: 0 100px;
-        } 
+        }
         h2 {
             .font-size(38px);
             margin-bottom: 25px;
@@ -379,12 +419,12 @@ section {
     .fxos-mdn {
         p {
             .font-size(25px);
-            padding: 0 160px; 
+            padding: 0 160px;
         }
     }
 
     .fxos-try p {
-        .font-size(18px); 
+        .font-size(18px);
         letter-spacing: 0px;
     }
 
@@ -407,7 +447,7 @@ section {
     #newsletter-form {
         .form-title {
             clear: both;
-            width: 100%; 
+            width: 100%;
         }
         .form-contents {
             width: 60%;
@@ -427,7 +467,7 @@ section {
         h1 {
             .font-size(28px);
             padding: 0 @baseLine;
-        } 
+        }
         h2 {
             .font-size(26px);
             padding: 0 @baseLine;
@@ -443,7 +483,7 @@ section {
         }
         .hero-content {
             margin-bottom: @baseLine;
-        } 
+        }
         .hero-image {
             position: relative;
             top: 10px;
@@ -472,7 +512,7 @@ section {
 
     .fxos-try {
         p {
-            .font-size(14px); 
+            .font-size(14px);
             padding: 0 @baseLine;
         }
     }
@@ -481,7 +521,7 @@ section {
         .form-contents,
         .form-title {
             clear: both;
-            width: 100%; 
+            width: 100%;
             margin: 0;
         }
         .form-submit {
@@ -496,7 +536,7 @@ section {
     .fxos-signup .newsletter-form {
         p.form-details,
         .button {
-            float: none;   
+            float: none;
             width: 100%;
         }
         &.thank p {

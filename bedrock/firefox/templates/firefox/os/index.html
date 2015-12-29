@@ -98,6 +98,7 @@
       {% endblock %}
       </div>
     </section>
+    {% block callout %}{% endblock %}
     <section class="fxos-features">
       <div class="content-wrapper">
         {% block features_headline %}
@@ -225,24 +226,7 @@
     {% endblock %}
 
     {% block fxox_news %}
-
-      {% set feed_links = firefox_os_feed_links(LANG) %}
-      {% if feed_links %}
-      <section class="fxos-news">
-        <div class="content-wrapper">
-          <aside>
-            <h2>{{_('In the news')}}</h2>
-            <p><a class="more" href="{{ firefox_os_blog_link(LANG) }}">{{_('See more')}}</a></p>
-          </aside>
-          <ul>
-            {% for link, title in feed_links[:3] %}
-            <li><a href="{{ link }}">{{ title }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
-      </section>
-      {% endif %}
-
+      {% include '/firefox/os/_in_the_news.html' %}
     {% endblock %}
 
     {% block fxox_community %}
@@ -255,7 +239,7 @@
       </div>
     </section>
     {% endblock %}
-    
+
     {% block fxox_help %}
     <section class="fxos-help">
       <div class="content-wrapper">
