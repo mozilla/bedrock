@@ -28,7 +28,7 @@
     display: inline-block;
     width: 25px;
     height: 25px;
-    vertical-align: bottom; 
+    vertical-align: bottom;
     margin-right: 5px;
 }
 
@@ -91,24 +91,35 @@ ul.menu {
     background-color: #e4e5e5;
 
     a:hover {
-        text-decoration: none
+        text-decoration: none;
     }
 
     li {
         display: inline-block;
-        padding: @baseLine 16px;
         text-transform: uppercase;
         position: relative;
-        cursor: pointer;
     }
+
+    ul.menu > li > a,
+    li.current {
+        padding: @baseLine 16px;
+        display: inline-block;
+    }
+
 
     li.current {
         border-bottom: 5px solid @mozIDBlue;
     }
 
+    li.submenu-title {
+        cursor: pointer;
+        padding: 0;
+    }
+
     li.submenu-title:hover {
         ul.submenu {
             display: block;
+            cursor: auto;
         }
     }
 
@@ -129,7 +140,7 @@ ul.submenu {
     background-color: #fff;
     box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.4);
     display: none;
-    margin-top: @baseLine;
+    margin-top: 0;
     padding: 5px 10px 15px 10px;
     position: absolute;
     text-align: left;
@@ -142,9 +153,9 @@ ul.submenu {
         text-align: left;
         text-transform: none;
         margin-left: 0;
-        padding: 5px; 
+        padding: 5px;
         background-color: transparent;
-    } 
+    }
 
     li.title {
         .font-size(10px);
@@ -429,8 +440,8 @@ ul.section-items {
         }
         .latest-release .container {
             padding: 90px 0 30px 0;
-            .version, 
-            .description  {
+            .version,
+            .description {
                 text-align: center;
                 width: 100%;
             }
@@ -467,43 +478,49 @@ ul.section-items {
             padding: 0;
             width: 100%;
         }
-    }
-    ul.submenu  {
-        background-color: #fff;
-        left: 25%;
-        margin: 5px 0 0 0;
-        width: 50%;
 
-        li {
-            border: none;
-            background-color: transparent;
-            display: block;
-        }
-    }
-    ul.menu {
-        margin: 0;
-        text-align: center;
+        ul.submenu {
+            background-color: #fff;
+            left: 25%;
+            width: 50%;
 
-        > li {
-            background-color: #E4E5E5;
-            border-bottom: solid 1px #fff;
-            clear: both;
-            display: block;
-            margin: 0;
-            padding: 5px 0;
-            text-transform: uppercase;
-            width: 100%;
-        }
-        li.current {
-            background-color: #0096dd;
-            color: #fff;
-            > a,
-            > a:visited {
-                color: #fff;
+            li {
+                border: none;
+                background-color: transparent;
+                display: block;
             }
         }
-        li:last-child {
-            border-bottom: none;
+        ul.menu {
+            margin: 0;
+            text-align: center;
+
+            > li {
+                background-color: #e4e5e5;
+                border-bottom: solid 1px #fff;
+                clear: both;
+                display: block;
+                margin: 0;
+                padding: 0;
+                text-transform: uppercase;
+                width: 100%;
+                > a {
+                    width: 100%;
+                    padding: 5px 0;
+                }
+            }
+            li.current {
+                background-color: #0096dd;
+                color: #fff;
+                padding: 5px 0;
+                > a,
+                > a:visited {
+                    color: #fff;
+                }
+            }
+            > li:last-child {
+                border-bottom: none;
+                padding: 0;
+            }
         }
     }
     .release-footer .col {
@@ -543,14 +560,14 @@ ul.section-items {
 .firefox-up-to-date {
     .download-buttons .firefox-latest-cta {
         display: block;
-    } 
+    }
     .all-download p.message {
         display: none;
     }
 }
 .firefox-old {
     .download-buttons .firefox-old-cta {
-       display: block; 
+       display: block;
     }
 }
 
@@ -563,7 +580,7 @@ ul.section-items {
             display: none;
         }
         & .desktop-download-button {
-           display: block;  
+           display: block;
         }
     }
 }
