@@ -72,7 +72,7 @@ mozilla.dev.mozdef                      The Mozilla Defense Platform, an open so
 mozilla.dev.mozjpeg                     The Mozilla enhanced version of libjpeg. (Moderated)
 mozilla.dev.pdf-js                      pdf.js, the PDF renderer written in JS. (Moderated)
 mozilla.dev.platform                    For people working on Mozilla-the-platform.
-mozilla.dev.pluotsorbet                 PluotSorbet is a J2ME-compatible virtual machine written in JavaScript.
+mozilla.dev.platform.ux                 For discussions between the UX and Platform teams (Moderated)
 mozilla.dev.power                       Improving our products' power usage. (Moderated)
 mozilla.dev.privacy                     Development of features specifically design to enhance user privacy.
 mozilla.dev.push                        For discussion regarding development of SimplePush, WebPush and other Push-related servers. (Moderated)
