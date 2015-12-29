@@ -44,11 +44,11 @@ mozilla.dev.apps.calendar               For development of the standard-based <a
 mozilla.dev.apps.chatzilla              For development of the Chatzilla IRC chat extension.
 mozilla.dev.apps.dom-inspector          For development of the DOM Inspector, an extension to help web developers peer inside pages.
 mozilla.dev.apps.js-debugger            For discussions about the JavaScript Debugger (<a href="/projects/venkman/">Venkman</a>). Questions about how to use, program, or document the debugger, as well as feature requests are on-topic here.
-mozilla.dev.apps.seamonkey              This forum is for developers working on <a href="/projects/seamonkey/">Seamonkey</a>, the community continuation of the Mozilla software suite.
+mozilla.dev.apps.seamonkey              This forum is for developers working on <a href="http://www.seamonkey-project.org/">Seamonkey</a>, the community continuation of the Mozilla software suite.
 
 :General Development
 
-mozilla.dev.accessibility               For the <a href="/projects/ui/accessibility/">accessibility</a> development effort.
+mozilla.dev.accessibility               For the work to make Mozilla products accessible.
 mozilla.dev.amo                         Development of <a href="https://addons.mozilla.org/">addons.mozilla.org</a>
 mozilla.dev.automation                  For development discussion about test automation. (Moderated)
 mozilla.dev.bluetooth                   Bluetooth-related topics
@@ -63,7 +63,7 @@ mozilla.dev.fxos.sync                   Syncing Firefox OS data (contacts, calen
 mozilla.dev.geolocation                 Development of geolocation services. (Moderated)
 mozilla.dev.i18n                        For discussions about <a href="/projects/intl/">internationalization</a> (I18N) issues. I18N is the infrastructure that allows software to be <a href="#dev-l10n">localized</a>.
 mozilla.dev.js-sourcemap                The JS sourcemap project, which maps obfuscated JS back to the original version for debugging. (Moderated)
-mozilla.dev.l10n                        For <a href="/projects/l10n/mlp.html">localization</a> (L10N) issues. L10N is the process of adapting software to a specific language and culture (see also <a href="#mozilla-i18n">internationalization</a>).
+mozilla.dev.l10n                        For <a href="https://wiki.mozilla.org/L10n:Home_Page">localization</a> (L10N) issues. L10N is the process of adapting software to a specific language and culture (see also <a href="#mozilla-i18n">internationalization</a>).
 mozilla.dev.mdc                         Discussion about developer documentation on <a href="http://developer.mozilla.org/">MDN Documentation Center</a> (MDC) (Moderated)
 mozilla.mdn                             High-level planning for the Mozilla Developer Network (MDN). (Moderated)
 mozilla.dev.mdn                         Code development for the Mozilla Developer Network (MDN) website and platform
@@ -78,7 +78,7 @@ mozilla.dev.privacy                     Development of features specifically des
 mozilla.dev.push                        For discussion regarding development of SimplePush, WebPush and other Push-related servers. (Moderated)
 mozilla.dev.raspberry-pi                Putting Mozilla software, such as Firefox OS, on the <a href="http://www.raspberrypi.org/">Raspberry Pi</a> (Moderated)
 mozilla.dev.rtl                         Right-to-left language support. (Moderated)
-mozilla.dev.security                    <a href="/projects/security/">Security</a> issues such as specific security problems or ideas for making the code as a whole more secure can be discussed here. <a href="#dev-tech-crypto">Cryptography</a>, however, is not within this group's charter. (Moderated)
+mozilla.dev.security                    <a href="/security/">Security</a> issues such as specific security problems or ideas for making the code as a whole more secure can be discussed here. <a href="#dev-tech-crypto">Cryptography</a>, however, is not within this group's charter. (Moderated)
 mozilla.dev.security.policy             Discussion of security-related policies, governance, and related topics; and responsibility for the Mozilla CA certificate policy. (Moderated)
 mozilla.dev.servo                       For development of servo, a parallelized rendering engine. (Moderated)
 mozilla.dev.shumway                     Shumway, an implementation of Flash in JavaScript. (Moderated)
@@ -114,22 +114,22 @@ mozilla.dev.tech.crypto.checkins        Join this list if you'd like to be autom
 css?
 mozilla.dev.tech.electrolysis           For discussions multi-process Firefox. (Moderated)
 mozilla.dev.tech.java                   For discussions about Java: both embedding <abbr title="Java Runtime Environment">JRE</abbr>s in Mozilla and extending Mozilla itself using Java code. Also check out the <a href="#dev-tech-plugins">plug-in forum</a>.
-mozilla.dev.tech.js-engine              For <a href="/js/">JavaScript engines</a>, including <a href="/js/spidermonkey/">Spidermonkey</a> (JavaScript in C) and <a href="/rhino/">Rhino</a> (JavaScript in Java). For scripting support, see the <a href="/js/scripting/">scripting resources</a>.
+mozilla.dev.tech.js-engine              For JavaScript engines, including <a href="https://developer.mozilla.org/docs/Mozilla/Projects/SpiderMonkey">Spidermonkey</a> (JavaScript in C) and <a href="/rhino/">Rhino</a> (JavaScript in Java).
 mozilla.dev.tech.js-engine.internals    The internals of SpiderMonkey, the Mozilla JavaScript engine in C
 mozilla.dev.tech.js-engine.rhino        For discussions about <a href="/rhino/">Rhino</a>. Implementation of JavaScript written entirely in Java. (Moderated)
 mozilla.dev.tech.js-engine.rivertrail   For discussions about the Rivertrail project, is a proposal to bring parallelism into JavaScript in a controlled fashion. (Moderated)
-mozilla.dev.tech.layout                 For discussions about document layout in Mozilla, including <a href="/newlayout/">Gecko</a>. Also check out the <a href="#dev-tech-style">style</a> and <a href="#dev-tech-svg">SVG</a> forums.
-mozilla.dev.tech.ldap                   For discussions about the C SDK, Java SDK, and PerLDAP, which are toolkits for developing <a href="/directory/">LDAP</a> applications.
+mozilla.dev.tech.layout                 For discussions about document layout in Mozilla, including <a href="https://developer.mozilla.org/docs/Mozilla/Gecko">Gecko</a>. Also check out the <a href="#dev-tech-style">style</a> and <a href="#dev-tech-svg">SVG</a> forums.
+mozilla.dev.tech.ldap                   For discussions about the C SDK, Java SDK, and PerLDAP, which are toolkits for developing <a href="https://wiki.mozilla.org/Directory">LDAP</a> applications.
 mozilla.dev.tech.mathml                 For discussions about the <a href="/projects/mathml/">implementation</a> of W3C's <a href="http://www.w3.org/Math/">Mathematical Markup Language</a>.
-mozilla.dev.tech.network                For discussions about the Mozilla Networking Library, a.k.a. <a href="/projects/netlib/">netlib</a>.
-mozilla.dev.tech.nspr                   For discussions about the <a href="/projects/nspr/">portable runtime</a> code used by Mozilla.
-mozilla.dev.tech.plugins                For discussions about <a href="/projects/plugins/">plug-ins</a>. Developers may also check out the <a href="#dev-tech-java">Java</a> and <a href="#dev-tech-nspr" title="Netscape Portable Runtime">NSPR</a> forums.
+mozilla.dev.tech.network                For discussions about the Mozilla Networking Library, a.k.a. <a href="https://developer.mozilla.org/docs/Mozilla/Projects/Necko">Necko</a>.
+mozilla.dev.tech.nspr                   For discussions about the <a href="https://developer.mozilla.org/docs/NSPR">portable runtime</a> code used by Mozilla.
+mozilla.dev.tech.plugins                For discussions about plug-ins.
 mozilla.dev.tech.rdf                    For discussions about the Resource Description Framework (<a href="http://www.w3.org/RDF/FAQ">RDF</a>).
 mozilla.dev.tech.sql                    For discussions about using SQL in Mozilla.
-mozilla.dev.tech.svg                    This is the project forum for implementing Scalable Vector Graphics (<a href="/projects/svg/">SVG</a>) in Mozilla.
+mozilla.dev.tech.svg                    This is the project forum for implementing Scalable Vector Graphics (<a href="https://developer.mozilla.org/docs/Web/SVG">SVG</a>) in Mozilla.
 mozilla.dev.tech.xforms                 For discussion about XForms in Firefox and Mozilla.
 mozilla.dev.tech.xml                    For discussions about using XML in Mozilla.
-mozilla.dev.tech.xpcom                  This forum is for discussions about the Cross-Platform Component Object Model (<a href="/projects/xpcom/">XPCOM</a>) that we are using to purvey and discover interfaces between independently versioned and loaded modules. XPCOM combined with XPIDL also provides <a  href="/scriptable/">scriptability</a>.
+mozilla.dev.tech.xpcom                  This forum is for discussions about the Cross-Platform Component Object Model (<a href="https://developer.mozilla.org/docs/Mozilla/Tech/XPCOM">XPCOM</a>) that we are using to purvey and discover interfaces between independently versioned and loaded modules.
 mozilla.dev.tech.xpinstall              For discussions about <a href="/projects/xpinstall/">installation</a> related technology in Mozilla including packaging and updating.
 mozilla.dev.tech.xslt                   For discussions of use of the <a href="http://www.w3.org/TR/xslt">XSL Transformations</a> language in the Mozilla layout engine.
 mozilla.dev.tech.xul                    For discussion about the XML-based User-interface Language (XUL).
@@ -137,7 +137,7 @@ mozilla.dev.ports.os2                   For discussions about <a href="/ports/os
 
 :Quality Assurance
 
-mozilla.dev.quality                     For <a href="/quality/">QA</a> discussion, including using Bugzilla, Mozilla testing, and bug triaging. Do not report bugs here.
+mozilla.dev.quality                     For <a href="https://quality.mozilla.org/">QA</a> discussion, including using Bugzilla, Mozilla testing, and bug triaging. Do not report bugs here.
 mozilla.qa.b2g                          QA for B2G. (Moderated)
 mozilla.qa.webmaker                     QA for Webmaker projects. (Moderated)
 mozilla.bugmasters                      Our intrepid bug handling team. (Moderated)
