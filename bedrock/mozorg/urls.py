@@ -242,4 +242,14 @@ urlpatterns = (
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url(r'^contributor-data/(?P<source_name>[a-z]{2,20})\.json$', views.mozid_data_view,
         name='mozorg.contributor-data'),
+
+    # namespaces
+    url(r'^2004/em-rdf$', views.namespaces, {'namespace': 'em-rdf'}),
+    url(r'^2005/app-update$', views.namespaces, {'namespace': 'update'}),
+    url(r'^2006/addons-blocklist$', views.namespaces, {'namespace': 'addons-bl'}),
+    url(r'^2006/browser/search/$', views.namespaces, {'namespace': 'mozsearch'}),
+    url(r'^keymaster/gatekeeper/there\.is\.only\.xul$', views.namespaces, {'namespace': 'xul'}),
+    url(r'^microsummaries/0\.1$', views.namespaces, {'namespace': 'microsummaries'}),
+    url(r'^projects/xforms/2005/type$', views.namespaces, {'namespace': 'xforms-type'}),
+    url(r'^xbl$', views.namespaces, {'namespace': 'xbl'}),
 )

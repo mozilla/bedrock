@@ -209,6 +209,12 @@ SUPPORTED_NONLOCALES = [
     'webmaker',
     'contributor-data',
     'healthz',
+    '2004',
+    '2005',
+    '2006',
+    'keymaster',
+    'microsummaries',
+    'xbl',
 ]
 
 ALLOWED_HOSTS = config(
