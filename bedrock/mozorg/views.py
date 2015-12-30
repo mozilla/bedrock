@@ -556,3 +556,54 @@ def home(request):
             'tweets': home_tweets(locale),
             'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(
                 locale, settings.MOBILIZER_LOCALE_LINK['en-US'])})
+
+
+NAMESPACES = {
+    'addons-bl': {
+        'namespace': 'http://www.mozilla.org/2006/addons-blocklist',
+        'standard': 'Add-ons Blocklist',
+        'docs': 'https://wiki.mozilla.org/Extension_Blocklisting:Code_Design',
+    },
+    'em-rdf': {
+        'namespace': 'http://www.mozilla.org/2004/em-rdf',
+        'standard': 'Extension Manifest',
+        'docs': 'https://developer.mozilla.org/en/Install_Manifests',
+    },
+    'microsummaries': {
+        'namespace': 'http://www.mozilla.org/microsummaries/0.1',
+        'standard': 'Microsummaries',
+        'docs': 'https://developer.mozilla.org/en/Microsummary_XML_grammar_reference',
+    },
+    'mozsearch': {
+        'namespace': 'http://www.mozilla.org/2006/browser/search/',
+        'standard': 'MozSearch plugin format',
+        'docs': 'https://developer.mozilla.org/en/Creating_MozSearch_plugins',
+    },
+    'update': {
+        'namespace': 'http://www.mozilla.org/2005/app-update',
+        'standard': 'Software Update Service',
+        'docs': 'https://wiki.mozilla.org/Software_Update:Testing',
+    },
+    'xbl': {
+        'namespace': 'http://www.mozilla.org/xbl',
+        'standard': 'XML Binding Language (XBL)',
+        'docs': 'https://developer.mozilla.org/en/XBL',
+    },
+    'xforms-type': {
+        'namespace': 'http://www.mozilla.org/projects/xforms/2005/type',
+        'standard': 'XForms mozType extension',
+        'docs': 'https://developer.mozilla.org/en/XForms/Custom_Controls',
+    },
+    'xul': {
+        'namespace': 'http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul',
+        'standard': 'XML User Interface Language (XUL)',
+        'docs': 'https://developer.mozilla.org/en/XUL',
+    },
+}
+
+
+def namespaces(request, namespace):
+    context = NAMESPACES[namespace]
+    context['slug'] = namespace
+    template = 'mozorg/namespaces.html'
+    return l10n_utils.render(request, template, context)
