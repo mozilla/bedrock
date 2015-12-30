@@ -21,7 +21,6 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "casperjs": "^1.1.0-beta3",
     "grunt": "~0.4.2",
     "grunt-cli": "~0.1.11",
     "grunt-contrib-clean": "^0.6.0",
@@ -35,7 +34,6 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "^0.3.6",
     "load-grunt-tasks": "^1.0.0",
-    "phantomjs": "^1.9.15",
     "requirejs": "~2.1.11",
     "sinon": "^1.17.1"
   }
