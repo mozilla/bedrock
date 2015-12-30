@@ -606,4 +606,4 @@ def namespaces(request, namespace):
     context = NAMESPACES[namespace]
     context['slug'] = namespace
     template = 'mozorg/namespaces.html'
-    return l10n_utils.render(request, template, context)
+    return django_render(request, template, context)
