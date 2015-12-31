@@ -11,15 +11,52 @@
 
     var stickyNav = new Waypoint.Sticky({
         element: $nav,
-        handler: function(direction){
-            if(direction == 'down'){
+        handler: function(direction) {
+            if (direction === 'down'){
                 $nav.addClass('fixedNav');
             } else{
                 $nav.removeClass('fixedNav');
             }
-
         }
     });
+
+    // navigation drop-down menu
+    function initSubMenu() {
+        var $subMenu = $('.submenu-title');
+        var $subMenuLinks = $subMenu.find('.submenu > li > a');
+        var $subMenuTitle = $subMenu.find('> a');
+
+        $subMenu.on('mouseenter', function() {
+            $subMenu.attr('aria-expanded', true);
+        });
+
+        $subMenu.on('mouseout', function() {
+            $subMenu.attr('aria-expanded', false);
+        });
+
+        $subMenuTitle.on('focus', function() {
+            $subMenu.attr('aria-expanded', true);
+        });
+
+        $subMenuTitle.on('keydown', function(e) {
+            // hide the menu if we're shift-tabbing off the title link.
+            if (e.which === 9 && e.shiftKey) {
+                $subMenu.attr('aria-expanded', false);
+            }
+        });
+
+        $subMenuLinks.on('keydown', function(e) {
+            // only hide the menu if we're on the last link,
+            // and the shift key is not used to reverse tab.
+            if (e.which === 9 && !e.shiftKey && $(e.target).parent().is('li:last-child')) {
+                $subMenu.attr('aria-expanded', false);
+            }
+        });
+
+        $subMenuTitle.on('click', function(e) {
+            e.preventDefault();
+        });
+    }
 
     if (client.isFirefox) {
         // iOS
@@ -35,5 +72,7 @@
     } else {
         $html.addClass('non-firefox');
     }
+
+    initSubMenu();
 
 })(window.jQuery, window.Mozilla, window.Waypoint);

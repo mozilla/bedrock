@@ -116,7 +116,8 @@ ul.menu {
         padding: 0;
     }
 
-    li.submenu-title:hover {
+    li.submenu-title:hover,
+    li.submenu-title[aria-expanded="true"] {
         ul.submenu {
             display: block;
             cursor: auto;
