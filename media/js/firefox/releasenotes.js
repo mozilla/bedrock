@@ -28,12 +28,9 @@
 
         // Android or desktop
         } else {
-            // desktop & Android version numbers match
-            if (client.FirefoxMajorVersion >= 42)  {
-                $html.addClass('firefox-up-to-date');
-            } else {
-                $html.addClass('firefox-old');
-            }
+            client.getFirefoxDetails(function(data) {
+                $html.addClass(data.isUpToDate ? 'firefox-up-to-date' : 'firefox-old');
+            });
         }
     } else {
         $html.addClass('non-firefox');
