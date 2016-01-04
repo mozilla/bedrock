@@ -291,18 +291,7 @@
           </a>
         </li>
       {% endif %}
-      {# see https://bugzilla.mozilla.org/show_bug.cgi?id=1223622#c26 for details #}
-      {% if l10n_has_tag('eoy_fundraising_2015') %}
-        <li id="promo-11" class="item promo-large-landscape fundraiser" tabindex="0">
-          <h2 class="primary go">{{ _('Donate to Mozilla,<br> the non-profit behind Firefox.') }}</h2>
-          <a class="panel-link" href="{{ donate_url('promotile') }}" data-promotion-id="promo-11" data-promotion-name="End of year fundraising" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
-            <div class="secondary">
-              <h3>{{ _('Our year-end<br> fundraiser ends Dec 31.') }}</h3>
-              <p class="more">{{ _('Donate now') }}</p>
-            </div>
-          </a>
-        </li>
-      {% elif l10n_has_tag('mdn_10_years') %}
+      {% if l10n_has_tag('mdn_10_years') %}
         <li id="promo-11" class="item promo-large-landscape mdn-10-years" tabindex="0">
           <h2 class="primary go">{{ _('Mozilla Developer Network') }}</h2>
           <a class="panel-link" href="https://developer.mozilla.org/docs/mdn_at_ten?utm_campaign=mdn10&amp;utm_source=mozilla.org&amp;utm_medium=home-tile" data-promotion-id="promo-11" data-promotion-name="Mozilla Developer Network" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
