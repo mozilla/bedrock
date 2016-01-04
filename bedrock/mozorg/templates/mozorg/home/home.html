@@ -438,10 +438,6 @@
   <button id="scroll-prompt">{{ _('Discover more') }}</button>
 </main>
 
-{% if waffle.switch('fundraiser-home-takeover') and l10n_has_tag('eoy_fundraising_takeover') %}
-  {% include 'mozorg/home/includes/fundraising/takeover.html' %}
-{% endif %}
-
 {% include 'firefox/includes/schemaorg-app.html' %}
 
 {% endblock %}
