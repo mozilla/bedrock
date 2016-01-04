@@ -542,16 +542,9 @@ def home_tweets(locale):
 
 def home(request):
     locale = l10n_utils.get_locale(request)
-    donate_params = settings.DONATE_PARAMS.get(
-        locale, settings.DONATE_PARAMS['en-US'])
-
-    # presets are stored as a string but, for the takeover modal
-    # we need it as a list.
-    donate_params['preset_list'] = donate_params['presets'].split(',')
 
     return l10n_utils.render(
         request, 'mozorg/home/home.html', {
-            'donate_params': donate_params,
             'has_contribute': lang_file_is_active('mozorg/contribute'),
             'tweets': home_tweets(locale),
             'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(
