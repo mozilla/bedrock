@@ -457,7 +457,7 @@
             <div class="play-button">
               <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}"><img src="{{ static('img/firefox/partners/google-play.png') }}" alt="{{ _('Get it on Google Play') }}" class="play" /></a>
               <small class="download-other">
-                <a href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
+                <a href="{{ firefox_url('android', 'all') }}">{{_('Systems &amp; Languages')}}</a>
               </small>
             </div>
             <p>{{ _('With connected features and the latest in security and privacy, our top-rated browser offers an alternative to closed platforms and provides a valuable way to connect with smartphones and tablets users alike.') }}</p>
