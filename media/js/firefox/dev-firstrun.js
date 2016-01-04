@@ -31,6 +31,7 @@ function onYouTubeIframeAPIReady() {
     var highlightTimeout;
     var queryIsLargeScreen = matchMedia('(min-width: 900px)');
     var isHighRes = Mozilla.ImageHelper.isHighDpi();
+    var client = Mozilla.Client;
 
     function onYouTubeIframeAPIReady() {
 
@@ -383,7 +384,7 @@ function onYouTubeIframeAPIReady() {
     }
 
     //Only run the tour if user is on Firefox 35 for desktop.
-    if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 35) {
+    if (client.isFirefoxDesktop && client.FirefoxMajorVersion >= 35) {
 
         // if viewport is wider than 900px show the tour doorhanger
         if(queryIsLargeScreen.matches) {

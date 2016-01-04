@@ -1,10 +1,12 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    var client = Mozilla.Client;
+
     var $document;
 
     // to be safe, make sure user is on desktop firefox version 38 or higher
-    if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 38) {
+    if (client.isFirefoxDesktop && client.FirefoxMajorVersion >= 38) {
         // Query if the UITour API is working before binding click handler.
         // If this fails, CTA falls back to linking to /firefox/sync/.
         Mozilla.UITour.getConfiguration('sync', function() {

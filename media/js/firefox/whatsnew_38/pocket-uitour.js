@@ -5,6 +5,8 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    var client = Mozilla.Client;
+
     var $window = $(window);
     var $document = $(document);
     var supportsPromises = 'Promise' in window;
@@ -49,7 +51,7 @@
         });
     }
 
-    if (supportsPromises && window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 38) {
+    if (supportsPromises && client.isFirefoxDesktop && client.FirefoxMajorVersion >= 38) {
         // only bind click event if UITour is working
         Mozilla.UITour.ping(function() {
             $('.try-pocket').on('click.pocket', openPocketMenu);

@@ -111,7 +111,7 @@
     }
 
     // if user is not on Firefox for Desktop, redirect to the /firefox/sync/ page.
-    if (window.isFirefox() && !window.isFirefoxMobile() && !window.isFirefoxiOS()) {
+    if (window.Mozilla.Client.isFirefoxDesktop) {
         // if uitour callback does not fire in 500ms, load the iframe anyway.
         _uitourTimeout = setTimeout(loadFxAccountsForm, 500);
         // if user is signed into sync, redirect the /firefox/sync/ page,

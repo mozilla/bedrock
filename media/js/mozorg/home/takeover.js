@@ -111,7 +111,7 @@ $(function () {
             // only show the takeover modal if this is not Firefox for iOS and the
             // user has not already seen it during this session.
             var takeoverSeen = sessionStorage.getItem('mozorg.takeover.seen');
-            if (!window.isFirefoxiOS() && takeoverSeen !== 'true') {
+            if (!window.Mozilla.Client.isFirefoxiOS && takeoverSeen !== 'true') {
                 initTakeOver();
             }
         } catch (ex) {}

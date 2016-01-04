@@ -5,8 +5,10 @@
 ;(function(Mozilla) {
     'use strict';
 
+    var client = Mozilla.Client;
+
     // Conditional content for Firefox Desktop 40 and above only.
-    if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 40) {
+    if (client.isFirefoxDesktop && client.FirefoxMajorVersion >= 40) {
         Mozilla.Win10Welcome.initPage();
     } else {
         // We're not concerned about non-Firefox browsers for this page, but we need to

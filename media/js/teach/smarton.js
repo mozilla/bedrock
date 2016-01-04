@@ -8,7 +8,7 @@
     var $document = $(document);
     var $body = $('body');
 
-    if (window.isFirefox()) {
+    if (window.Mozilla.Client.isFirefox) {
         $body.addClass('is-firefox');
     } else {
         $body.addClass('not-firefox');

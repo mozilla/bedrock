@@ -10,11 +10,98 @@ if (typeof Mozilla === 'undefined') {
 (function() {
     'use strict';
 
+    /**
+     * Provide information on the user's browsing environment, including the platform and browser details.
+     *
+     * @namespace
+     * @see {@link https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference}
+     */
     var Client = {};
 
     /**
-     * Get the user's Firefox version number. '0' will be returned on non-Firefox browsers.
+     * Detect whether the user's browser is Firefox on any platform. This includes WebKit-based Firefox for iOS.
      *
+     * @private
+     * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified
+     * @return {Boolean} result
+     */
+    Client._isFirefox = function (ua) {
+        ua = ua || navigator.userAgent;
+
+        return /\s(Firefox|FxiOS)/.test(ua) && !Client._isLikeFirefox(ua);
+    };
+
+    /**
+     * Detect whether the user's browser is Firefox for Windows, OS X or Linux.
+     *
+     * @private
+     * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified
+     * @return {Boolean} result
+     */
+    Client._isFirefoxDesktop = function (ua) {
+        ua = ua || navigator.userAgent;
+
+        return /\sFirefox/.test(ua) && !/Mobile|Tablet|Fennec/.test(ua) && !Client._isLikeFirefox(ua);
+    };
+
+    /**
+     * Detect whether the user's browser is Firefox for Android.
+     *
+     * @private
+     * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified
+     * @return {Boolean} result
+     */
+    Client._isFirefoxAndroid = function (ua) {
+        ua = ua || navigator.userAgent;
+
+        return /\sFirefox/.test(ua) && /Android/.test(ua);
+    };
+
+    /**
+     * Detect whether the user's browser is Firefox for iOS.
+     *
+     * @private
+     * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified
+     * @return {Boolean} result
+     */
+    Client._isFirefoxiOS = function (ua) {
+        ua = ua || navigator.userAgent;
+
+        return /FxiOS/.test(ua);
+    };
+
+    /**
+     * Detect whether the user's browser is the Browser app on Firefox OS.
+     *
+     * @private
+     * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified
+     * @param  {String} pf - browser's platform name, navigator.platform is used if not specified
+     * @return {Boolean} result
+     */
+    Client._isFirefoxFxOS = function (ua, pf) {
+        ua = ua || navigator.userAgent;
+        pf = (pf === '') ? '' : pf || navigator.platform;
+
+        return /Firefox/.test(ua) && pf === '';
+    };
+
+    /**
+     * Detect whether the user's browser is Gecko-based. Used on the plugincheck page to support all Gecko browsers.
+     *
+     * @private
+     * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified
+     * @return {Boolean} result
+     */
+    Client._isLikeFirefox = function (ua) {
+        ua = ua || navigator.userAgent;
+
+        return /Iceweasel|IceCat|SeaMonkey|Camino|like\ Firefox/i.test(ua);
+    };
+
+    /**
+     * Get the user's Firefox version number. '0' will be returned on Firefox for iOS and non-Firefox browsers.
+     *
+     * @private
      * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified
      * @return {String} version number
      */
@@ -23,12 +110,24 @@ if (typeof Mozilla === 'undefined') {
 
         var matches = /Firefox\/(\d+(?:\.\d+){1,2})/.exec(ua);
 
-        return (matches !== null && matches.length > 0) ? matches[1] : '0';
+        return (matches && !Client._isLikeFirefox(ua)) ? matches[1] : '0';
+    };
+
+    /**
+     * Get the user's Firefox major version number. 0 will be returned on Firefox for iOS and non-Firefox browsers.
+     *
+     * @private
+     * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified
+     * @return {Number} major version number in integer
+     */
+    Client._getFirefoxMajorVersion = function (ua) {
+        return parseInt(Client._getFirefoxVersion(ua), 10);
     };
 
     /**
      * Detect whether the user's Firefox is up to date or outdated. This data is mainly used for security notifications.
      *
+     * @private
      * @param  {Boolean} strict - whether the minor and patch-level version numbers should be compared. Default: true
      * @param  {Boolean} isESR - whether the Firefox update channel is ESR. Default: false
      * @param  {String}  userVer - browser's version number
@@ -37,7 +136,7 @@ if (typeof Mozilla === 'undefined') {
     Client._isFirefoxUpToDate = function (strict, isESR, userVer) {
         strict = strict === undefined ? true : strict;
         isESR = isESR === undefined ? false : isESR;
-        userVer = userVer === undefined ? this._getFirefoxVersion() : userVer;
+        userVer = userVer === undefined ? Client._getFirefoxVersion() : userVer;
 
         var $html = $(document.documentElement);
 
@@ -92,8 +191,8 @@ if (typeof Mozilla === 'undefined') {
      */
     Client.getFirefoxDetails = function (callback) {
         // Fire the callback function immediately if cache exists
-        if (this.FirefoxDetails) {
-            callback(this.FirefoxDetails);
+        if (Client.FirefoxDetails) {
+            callback(Client.FirefoxDetails);
 
             return;
         }
@@ -137,11 +236,11 @@ if (typeof Mozilla === 'undefined') {
         };
 
         // Prepare fallback function in case the API doesn't work
-        var userVer = this._getFirefoxVersion();
+        var userVer = Client._getFirefoxVersion();
         var fallback = function () { onRetrieved(false, userVer, 'release'); };
 
         // If Firefox is old or for Android, call the fallback function immediately because the API is not implemented
-        if (parseFloat(userVer) < 35 || window.isFirefoxMobile()) {
+        if (parseFloat(userVer) < 35 || Client._isFirefoxAndroid()) {
             fallback();
 
             return;
@@ -160,6 +259,21 @@ if (typeof Mozilla === 'undefined') {
             }
         }));
     };
+
+    // Append static properties for faster access
+    Client.isFirefox = Client._isFirefox();
+    Client.isFirefoxDesktop = Client._isFirefoxDesktop();
+    Client.isFirefoxAndroid = Client._isFirefoxAndroid();
+    Client.isFirefoxiOS = Client._isFirefoxiOS();
+    Client.isFirefoxFxOS = Client._isFirefoxFxOS();
+    Client.isLikeFirefox = Client._isLikeFirefox();
+    Client.FirefoxVersion = Client._getFirefoxVersion();
+    Client.FirefoxMajorVersion = Client._getFirefoxMajorVersion();
+
+    // Append platform info as well for convenience
+    Client.platform = window.site.platform;
+    Client.isMobile = /^(android|ios|fxos)$/.test(Client.platform);
+    Client.isDesktop = !Client.isMobile;
 
     window.Mozilla.Client = Client;
 

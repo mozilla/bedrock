@@ -15,6 +15,7 @@
     var $videoContainer = $('#video-modal');
     var $video = $('#hello-video');
 
+    var client = Mozilla.Client;
     var supportsHTML5Video = !!document.createElement('video').canPlayType;
     var mqIsWide;
     var tourSource = getParameterByName('utm_source');
@@ -110,17 +111,17 @@
         return results === null ? 'none' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 
-    if (w.isFirefox()) {
+    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
         // if Fx, hide all footer messaging
         // (correct messaging to display determined below)
         $('.dltry-copy').hide();
 
         // mobile Fx shouldn't see dl button, so best fallback is 'Try Hello' link to SUMO
-        if (w.isFirefoxMobile()) {
+        if (client.isFirefoxAndroid) {
             showFxFooterMessaging();
         }
         // Hello exists in desktop version 35 and up
-        else if (w.getFirefoxMasterVersion() >= 35) {
+        else if (client.FirefoxMajorVersion >= 35) {
             showFxFooterMessaging();
 
             if (!'Promise' in window) {

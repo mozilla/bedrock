@@ -21,7 +21,8 @@
     // Variation #1: Firefox 31+ signed-in to Sync
     // Default (do nothing)
 
-    var fxMasterVersion = window.getFirefoxMasterVersion();
+    var client = window.Mozilla.Client;
+    var fxMasterVersion = client.FirefoxMajorVersion;
     var state = 'Unknown';
     var syncCapable = false;
     var body = $('body');
@@ -32,15 +33,15 @@
     };
 
     // Variations 1-5 are Firefox
-    if (window.isFirefox()) {
+    if (client.isFirefox) {
         // Variation #5: Firefox for Android
-        if (window.isFirefoxMobile()) {
+        if (client.isFirefoxAndroid) {
 
             swapState('state-fx-android');
             state = 'Firefox for Android';
 
         // Variation #1-4: Firefox for Desktop
-        } else {
+        } else if (client.isFirefoxDesktop) {
 
             if (fxMasterVersion >= 31) {
 

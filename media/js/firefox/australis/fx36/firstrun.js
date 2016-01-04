@@ -1,6 +1,8 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    var client = Mozilla.Client;
+
     var helloAnimationStage = $('#hello-animation-stage');
 
     //track if this is the first time a user has seen tour
@@ -20,7 +22,7 @@
     }
 
     //Only run the tour if user is on Firefox 29 for desktop.
-    if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 36) {
+    if (client.isFirefoxDesktop && client.FirefoxMajorVersion >= 36) {
 
         // Query if the UITour API is working before we start the tour
         Mozilla.UITour.getConfiguration('sync', function (config) {

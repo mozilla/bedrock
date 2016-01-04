@@ -2,13 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function($, Modernizr, dataLayer, site) {
+;(function($, Modernizr, dataLayer) {
     'use strict';
 
     var $html = $(document.documentElement);
     var $window = $(window);
     var $document = $(document);
-    var isIELT9 = (site.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent));
+
+    var client = window.Mozilla.Client;
+    var isIELT9 = client.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent);
     var pathParts = window.location.pathname.split('/');
     var queryStr = window.location.search ? window.location.search + '&' : '?';
     var params = new window._SearchParams();
@@ -43,34 +45,10 @@
         document.dispatchEvent(event);
     };
 
-    var uiTourGetConfiguration = function(configName, callback) {
-        uiTourSendEvent('getConfiguration', {
-            configuration: configName,
-            callbackID: function() {
-                var id = Math.random().toString(36).replace(/[^a-z]+/g, '');
-
-                function listener(event) {
-                    if (typeof event.detail === 'object' && event.detail.callbackID === id) {
-                        document.removeEventListener('mozUITourResponse', listener);
-                        callback(event.detail.data);
-                    }
-                }
-
-                document.addEventListener('mozUITourResponse', listener);
-
-                return id;
-            }.call()
-        });
-    };
-
-    if (window.isFirefox()) {
-        // data-latest-firefox includes point release information
-        var latestFirefoxVersionFull = $html.attr('data-latest-firefox');
-
-        // get latest full version (no point release info) for initial check
-        var latestFirefoxVersion = parseInt(latestFirefoxVersionFull.split('.')[0], 10);
-
-        if (window.isFirefoxUpToDate(latestFirefoxVersion + '')) {
+    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
+        // Detect whether the Firefox is up-to-date in a non-strict way. The minor version and channel are not
+        // considered. This can/should be strict, once the UX especially for ESR users is decided. (Bug 939470)
+        if (client._isFirefoxUpToDate(false)) {
             if (window.location.hash !== '#download-fx' && params.get('scene') !== 2) {
                 // the firefox-latest class prevents the download from triggering
                 // and scene 2 from showing, which we want if the user lands on
@@ -79,17 +57,19 @@
                 // as non-firefox users and initiate a download
                 $html.addClass('firefox-latest');
 
-                // if user is on release channel and has latest version, offer refresh button
-                uiTourGetConfiguration('appinfo', function(config) {
-                    if (config.defaultUpdateChannel === 'release' && config.version === latestFirefoxVersionFull) {
-                        $html.addClass('show-refresh');
+                // if user is on desktop release channel and has latest version, offer refresh button
+                if (client.isFirefoxDesktop) {
+                    client.getFirefoxDetails(function(data) {
+                        if (data.channel === 'release' && data.isUpToDate) {
+                            $html.addClass('show-refresh');
 
-                        // DOM may not be ready yet, so bind filtered click handler to document
-                        $document.on('click', '#refresh-firefox', function() {
-                            uiTourSendEvent('resetFirefox');
-                        });
-                    }
-                });
+                            // DOM may not be ready yet, so bind filtered click handler to document
+                            $document.on('click', '#refresh-firefox', function() {
+                                uiTourSendEvent('resetFirefox');
+                            });
+                        }
+                    });
+                }
             }
         } else {
             $html.addClass('firefox-old');
@@ -99,7 +79,7 @@
     // Add GA custom tracking and external link tracking
     state = 'Desktop, not Firefox';
 
-    if (site.platform === 'android') {
+    if (client.platform === 'android') {
         if ($html.hasClass('firefox-latest')) {
             state = 'Android, Firefox up-to-date';
         } else if ($html.hasClass('firefox-old')) {
@@ -107,9 +87,9 @@
         } else {
             state = 'Android, not Firefox';
         }
-    } else if (site.platform === 'ios') {
+    } else if (client.platform === 'ios') {
         state = 'iOS';
-    } else if (site.platform === 'fxos') {
+    } else if (client.platform === 'fxos') {
         state = 'FxOS';
     } else {
         if ($html.hasClass('firefox-latest')) {
@@ -129,13 +109,13 @@
     // #download-fx hash is set
     noScene2 = (
         // no download available
-        (site.platform === 'windows' && $html.hasClass('arm')) ||
-        site.platform === 'oldmac' ||   // no download available
-        site.platform === 'oldwin' ||   // no download available
-        site.platform === 'other' ||    // no download available
-        site.platform === 'fxos' ||     // no download available
-        site.platform === 'android' ||  // download goes to Play Store
-        site.platform === 'ios'         // download goes to App Store
+        (client.platform === 'windows' && $html.hasClass('arm')) ||
+        client.platform === 'oldmac' ||   // no download available
+        client.platform === 'oldwin' ||   // no download available
+        client.platform === 'other' ||    // no download available
+        client.platform === 'fxos' ||     // no download available
+        client.platform === 'android' ||  // download goes to Play Store
+        client.platform === 'ios'         // download goes to App Store
     );
 
     $document.ready(function() {
@@ -148,7 +128,7 @@
             $downloadButtonLinks.css('display', 'block').insertBefore('#firefox-screenshot');
         }
 
-        if (site.platform === 'android') {
+        if (client.platform === 'android') {
             $('#download-button-android .download-subtitle').html(
                 $('.android.download-button-wrapper').data('upgradeSubtitle'));
 
@@ -314,4 +294,4 @@
         });
     });
 
-})(window.jQuery, window.Modernizr, window.dataLayer = window.dataLayer || [], window.site);
+})(window.jQuery, window.Modernizr, window.dataLayer = window.dataLayer || []);

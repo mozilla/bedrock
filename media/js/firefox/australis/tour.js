@@ -3,6 +3,7 @@
 
     window.dataLayer = window.dataLayer || [];
 
+    var client = Mozilla.Client;
     var firstTime = 'True';
 
     // GA tracking for Firstrun tests
@@ -16,7 +17,7 @@
     }
 
     //Only run the tour if user is on Firefox 29 for desktop.
-    if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 29) {
+    if (client.isFirefoxDesktop && client.FirefoxMajorVersion >= 29) {
 
         // Query if the UITour API is working before we start the tour
         Mozilla.UITour.getConfiguration('sync', function (config) {
@@ -62,7 +63,7 @@
         } catch (e) {}
 
         // track default search engine for Firefox 34
-        if (window.getFirefoxMasterVersion() >= 34) {
+        if (client.FirefoxMajorVersion >= 34) {
             Mozilla.UITour.getConfiguration('selectedSearchEngine', function (data) {
                 var selectedEngineID = data.searchEngineIdentifier;
 

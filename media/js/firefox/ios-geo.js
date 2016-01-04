@@ -30,28 +30,27 @@ if (typeof window.Mozilla === 'undefined') {
     var $instructions = $('#sync-instructions');
     var $fill = $('<div id="modal" role="dialog" tabindex="-1"></div>');
 
-    // Sniff UA for Firefox for iOS
-    var isFirefoxiOS = function(userAgent) {
-        var ua = userAgent || navigator.userAgent;
-        return /FxiOS/.test(ua);
-    };
-
     // initialize state - runs after geolocation has completed
     var initState = function() {
+        var client = Mozilla.Client;
         var state = 'Unknown';
         var syncCapable = false;
-        var fxMasterVersion = window.getFirefoxMasterVersion();
 
-        if (window.isFirefox()) {
+        if (client.isFirefox) {
             // Firefox for Android
-            if (window.isFirefoxMobile()) {
+            if (client.isFirefoxAndroid) {
                 swapState('state-fx-android');
                 state = 'Firefox Android: ' + marketState;
+
+            // Firefox for iOS
+            } else if (client.isFirefoxiOS) {
+                swapState('state-fx-ios');
+                state = 'Firefox iOS: ' + marketState;
 
             // Firefox for Desktop
             } else {
 
-                if (fxMasterVersion >= 31) {
+                if (client.FirefoxMajorVersion >= 31) {
 
                     // Set syncCapable so we know not to send tracking info
                     // again later
@@ -82,11 +81,6 @@ if (typeof window.Mozilla === 'undefined') {
                 }
 
             }
-
-        // Firefox for iOS
-        } else if (isFirefoxiOS()) {
-            swapState('state-fx-ios');
-            state = 'Firefox iOS: ' + marketState;
 
         // Not Firefox
         } else {

@@ -5,6 +5,8 @@
 ;(function($) {
     'use strict';
 
+    var client = window.Mozilla.Client;
+
     var $html = $(document.documentElement);
     var $downloadbar = $('#conditional-download-bar');
 
@@ -23,8 +25,8 @@
     });
 
     // Check Firefox version
-    if (isFirefox()) {
-        window.Mozilla.Client.getFirefoxDetails(function(data) {
+    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
+        client.getFirefoxDetails(function(data) {
             $html.addClass(data.isUpToDate ? 'firefox-latest' : 'firefox-old');
         });
     } else {

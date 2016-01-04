@@ -5,6 +5,8 @@
 ;(function($, Mozilla) {
     'use strict';
 
+    var client = Mozilla.Client;
+
     var $main = $('main');
 
     // use a slight delay for showing the main page content
@@ -14,7 +16,7 @@
     }, 500);
 
     // FTE will only run on Firefox Desktop 35 and above
-    if (window.isFirefox() && !window.isFirefoxMobile() && window.getFirefoxMasterVersion() >= 35) {
+    if (client.isFirefoxDesktop && client.FirefoxMajorVersion >= 35) {
         Mozilla.HelloFTU.init();
     }
 

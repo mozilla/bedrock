@@ -32,7 +32,7 @@
     $screencastImages.append($('#screencast .media-desktop').html());
 
     // hide download buttons from Android users
-    if (window.isFirefox() && window.site.platform === 'android') {
+    if (Mozilla.Client.isFirefoxAndroid) {
         $('.dl-button-wrapper').hide();
 
         $('#subscribe-wrapper').removeClass('floating');
