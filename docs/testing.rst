@@ -83,6 +83,13 @@ e.g. ``tests/functional/test_newsletter.py``:
 
     $ py.test --driver Firefox --html tests/functional/results.html -n auto tests/functional/test_newsletter.py
 
+To run a single test you can filter using the ``-k`` argument supplied with a keyword
+e.g. ``-k test_successful_sign_up``:
+
+.. code-block:: bash
+
+  $ py.test --driver Firefox --html tests/functional/results.html -n auto tests/functional/test_newsletter.py -k test_successful_sign_up
+
 You can also easily run the tests against any bedrock environment by specifying the
 ``--base-url`` argument. For example, to run all functional tests against dev:
 
