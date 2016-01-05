@@ -116,4 +116,9 @@ URLS = flatten((
              'http://www.seamonkey-project.org/releases/updates/so-good'),
     url_test('/projects/seamonkey/start/', 'http://www.seamonkey-project.org/start/'),
 
+    # bug 1236910
+    url_test('/support/firefox/options', 'https://support.mozilla.org/'),
+
+    # Bug 638948 redirect beta privacy policy link
+    url_test('/firefox/beta/feedbackprivacypolicy/', '/privacy/firefox/'),
 ))

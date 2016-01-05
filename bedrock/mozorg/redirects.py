@@ -572,6 +572,9 @@ redirectpatterns = (
     # bug 1003737
     redirect(r'^impressum/?$', '/about/legal/impressum/'),
 
+    # bug 1236910
+    redirect(r'^support(/.*)?$', 'https://support.mozilla.org/'),
+
     # bug 832348 **/index.html -> **/
     # leave this at the bottom
     redirect(r'^(.*)/index\.html$', '/{}/', locale_prefix=False),

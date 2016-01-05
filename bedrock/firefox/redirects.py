@@ -275,4 +275,7 @@ redirectpatterns = (
     redirect(r'^projects/seamonkey/releases/updates/(?P<x>.*)$',
              'http://www.seamonkey-project.org/releases/updates/{x}'),
     redirect(r'^projects/seamonkey/start/$', 'http://www.seamonkey-project.org/start/'),
+
+    # Bug 638948 redirect beta privacy policy link
+    redirect(r'^firefox/beta/feedbackprivacypolicy/?$', '/privacy/firefox/'),
 )
