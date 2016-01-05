@@ -144,7 +144,7 @@ class PartnersPage(FirefoxBasePage):
             el = self.find_element(self._devices_locator)
             self.MenuItem(self.page, root=el).click()
             from pages.firefox.os.devices import DevicesPage
-            return DevicesPage(self.base_url, self.selenium)
+            return DevicesPage(self.base_url, self.selenium).wait_for_page_to_load()
 
         class MenuItem(FirefoxBasePageRegion):
 
