@@ -22,7 +22,7 @@ def test_family_navigation(version, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('version', [('2.0'), ('1.4'), ('1.3t'), ('1.3'), ('1.1')])
+@pytest.mark.parametrize('version', [('2.5'), ('2.0'), ('1.4'), ('1.3t'), ('1.3'), ('1.1')])
 def test_news_is_displayed(version, base_url, selenium):
     page = FirefoxOSBasePage(base_url, selenium, version=version).open()
     assert page.is_news_displayed
