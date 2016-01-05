@@ -9,14 +9,6 @@ from pages.firefox.do_not_track import DoNotTrackPage
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_family_navigation(base_url, selenium):
-    page = DoNotTrackPage(base_url, selenium).open()
-    page.family_navigation.open_menu()
-    assert page.family_navigation.is_menu_displayed
-
-
-@pytest.mark.smoke
-@pytest.mark.nondestructive
 def test_dnt_status(base_url, selenium):
     page = DoNotTrackPage(base_url, selenium).open()
     assert page.is_do_not_track_status_displayed
