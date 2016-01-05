@@ -114,9 +114,9 @@ class TestLastModified(TestCase):
 
     def test_latest_queryset_product(self):
         """Should advisories for a single product."""
-        advisories_fx = [self.new_advisory(fixed_in=['Firefox 30.0']) for i in range(5)]
+        advisories_fx = [self.new_advisory(fixed_in='Firefox 30.0') for i in range(5)]
         for i in range(5):
-            self.new_advisory(fixed_in=['Thunderbird 30.0'])
+            self.new_advisory(fixed_in='Thunderbird 30.0')
         req = self.rf.get('/')
         req.resolver_match = Mock()
         req.resolver_match.url_name = 'security.product-advisories'
@@ -125,9 +125,9 @@ class TestLastModified(TestCase):
 
     def test_latest_queryset_product_version(self):
         """Should advisories for a single product version."""
-        advisories_30 = [self.new_advisory(fixed_in=['Firefox 30.{0}'.format(i)])
+        advisories_30 = [self.new_advisory(fixed_in='Firefox 30.{0}'.format(i))
                          for i in range(5)]
-        advisories_29 = [self.new_advisory(fixed_in=['Firefox 29.0.{0}'.format(i)])
+        advisories_29 = [self.new_advisory(fixed_in='Firefox 29.0.{0}'.format(i))
                          for i in range(1, 5)]
         # make sure the one with no point version is included
         advisories_29.append(self.new_advisory(fixed_in=['Firefox 29.0']))
