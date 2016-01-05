@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import absolute_import
 
 from .base import flatten, url_test
@@ -918,4 +920,8 @@ URLS = flatten((
     # bug 1224060
     url_test('/ja/firefox/ios/1.0/{releasenotes,system-requirements}/',
              'http://www.mozilla.jp/firefox/ios/1.0/{releasenotes,system-requirements}/'),
+
+    # bug 1236791
+    url_test('/en-US/firefox/new/?product=firefox-{3.6.8,13.0.1}{&os={osx〈=en-US,win},}',
+             '/en-US/firefox/new/'),
 ))
