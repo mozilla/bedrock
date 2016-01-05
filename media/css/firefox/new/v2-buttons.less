@@ -310,6 +310,8 @@
 .android .download-button-desktop .download-list,
 .android .download-button-desktop small.os_win,
 .download-button-ios .os_ios,
+.ios .download-button .ios-download,
+.ios .download-button-desktop .download-list,
 .no-js .download-button-android .download-list,
 .other .download-button-android .download-list,
 .other .download-button small.os_win {
@@ -324,18 +326,6 @@
     max-width: 250px;
 }
 
-// Declaring these funky rules for iOS due to the
-// waffle situation and needing to support both states.
-// This can be cleaned up post-launch (bug 1217929)
-.ios .download-button.ios-active .ios-download {
-    display: none !important;
-}
-
-.ios .download-button .ios-download,
-.ios .download-button.ios-active .os_ios,
-.ios .download-button-desktop.ios-active .download-list {
-    display: block !important;
-}
 
 // Small print
 

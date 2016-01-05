@@ -16,9 +16,6 @@
 {% block body_class %}
   {{ super() }}
   mozid state-default
-  {% if waffle.switch('firefox-ios-global') %}
-  in-market
-  {% endif %}
 {% endblock %}
 
 {% block optimizely %}
@@ -32,7 +29,6 @@
 {% endblock %}
 
 {% block site_header %}
-  {% if waffle.switch('firefox-ios-global') %}
     {% call fxfamilynav('ios', 'index') %}
       <div class="{% if has_widget %}show-widget{% endif %}">
         <a class="dl-button" rel="external" href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}">
@@ -41,19 +37,6 @@
         <button class="send-to button-flat-dark" type="button">{{ _('Get Firefox for iOS') }}</button>
       </div>
     {% endcall %}
-  {% else %}
-    <div class="header">
-      <div class="container">
-        <div class="fx-logo">
-          <a href="{{ url('firefox.family.index') }}">Firefox</a>
-        </div>
-
-        <div id="tabzilla">
-          <a href="{{ url('mozorg.home') }}">Mozilla</a>
-        </div>
-      </div>
-    </div>
-  {% endif %}
 {% endblock %}
 
 {% set has_widget = LANG in settings.SEND_TO_DEVICE_LOCALES %}
@@ -61,12 +44,6 @@
 {% block content %}
 <section class="section section-intro" id="intro">
   <div class="container">
-  {% if not waffle.switch('firefox-ios-global') %}
-    <p class="beta-flag">
-      <span><strong>{{ _('Preview release') }}</strong></span>
-    </p>
-  {% endif %}
-
   {% if LANG.startswith('en') %}
     <h1>Firefox<br> for iOS</h1>
   {% else %}
@@ -84,17 +61,6 @@
       </p>
     </div>
 
-  {% if not waffle.switch('firefox-ios-global') %}
-    <div class="signup">
-      {% set newsletter_title = _('Sign up below for updates and to be notified when it launches.') %}
-      {% set newsletter_id = 'firefox-ios' %}
-      {% set newsletter_details = _('* You’ll only receive updates and announcements about the iOS version of Firefox.') %}
-      {% set newsletter_thankyou_head = _('Thanks for your interest in Firefox for iOS.') %}
-      {% set newsletter_thankyou_content = _('Don’t forget to check your inbox to confirm your request to get updates.') %}
-      {{ email_newsletter_form(newsletter_id, title=newsletter_title, details=newsletter_details, thankyou_head=newsletter_thankyou_head,thankyou_content=newsletter_thankyou_content) }}
-    </div>
-  {% endif %}
-
     <p class="android-link">
       <a href="{{ url('firefox.android.index') }}" class="go">{{ _('Get Firefox for Android') }}</a>
     </p>
@@ -107,11 +73,11 @@
 
     <h2>{{ _('Sign in to your Firefox Account to access your browsing info on all your mobile devices.') }}</h2>
 
-    <ul class="sync-features {% if waffle.switch('firefox-ios-global') %}ios-active{% endif %}">
+    <ul class="sync-features {% if l10n_has_tag('tracking_protection') %}four-up{% endif %}">
       <li class="sync-history">{{ _('History') }}</li>
       <li class="sync-passwords">{{ _('Passwords') }}</li>
       <li class="sync-tabs">{{ _('Open tabs') }}</li>
-    {% if l10n_has_tag('tracking_protection') and waffle.switch('firefox-ios-global') %}
+    {% if l10n_has_tag('tracking_protection') %}
       <li class="sync-bookmarks">{{ _('Bookmarks') }}</li>
       {# Remove Reading List until further notice
       <li class="sync-reading-list">{{ _('Reading List') }}</li>
@@ -146,7 +112,7 @@
   </div>{#-- /.container --#}
 </section>{#-- /#sync --#}
 
-{% if l10n_has_tag('tracking_protection') and waffle.switch('firefox-ios-global') %}
+{% if l10n_has_tag('tracking_protection') %}
 <section class="section section-privacy" id="privacy">
   <div class="container">
     <h2 class="heading">{{ _('Keep your private info private') }}</h2>
@@ -196,9 +162,5 @@
   <!--[if IE 9]>
     {% javascript 'matchmedia_addlistener' %}
   <![endif]-->
-  {% if waffle.switch('firefox-ios-global') %}
-    {% javascript 'firefox_ios' %}
-  {% else %}
-    {% javascript 'firefox_ios_geo' %}
-  {% endif %}
+  {% javascript 'firefox_ios' %}
 {% endblock %}

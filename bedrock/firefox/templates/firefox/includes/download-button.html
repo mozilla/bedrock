@@ -25,7 +25,7 @@
 {% set download_class = download_class ~ ' download-button-simple' if simple else download_class %}
 {% set download_class = download_class ~ ' download-button-check-old-fx' if check_old_fx else download_class %}
 
-<div id="{{ id }}" class="{{ download_class }}{% if waffle.switch('firefox-ios-global') %} ios-active{% endif %}">
+<div id="{{ id }}" class="{{ download_class }}">
   {% if show_desktop %}
     <noscript>
       {{ alt_buttons(builds) }}
@@ -39,15 +39,6 @@
     <p class="linux-arm-download">
       {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
     </p>
-    {% if l10n_has_tag('ios_announce', 'firefox/new') and not waffle.switch('firefox-ios-global') %}
-      <p class="ios-download">
-        {{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}
-      </p>
-    {% elif not waffle.switch('firefox-ios-global') %}
-      <p class="ios-download">
-        {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format( url=firefox_url('desktop', 'sysreq', build)) }}
-      </p>
-    {% endif %}
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}
@@ -105,7 +96,7 @@
       <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
-  {% if show_ios and waffle.switch('firefox-ios-global') %}
+  {% if show_ios %}
     <small class="download-other os_ios">
       <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a> |
       <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>

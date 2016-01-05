@@ -1248,13 +1248,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_v1-bundle.js',
     },
-    'firefox_new_ios_redirect': {
-        'source_filenames': (
-            'js/firefox/new-ios-redirect-helper.js',
-            'js/firefox/new-ios-redirect.js',
-        ),
-        'output_filename': 'js/firefox_new_ios_redirect-bundle.js',
-    },
     'firefox_pocket': {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
@@ -1431,16 +1424,6 @@ PIPELINE_JS = {
             'js/firefox/ios.js',
         ),
         'output_filename': 'js/firefox_ios-bundle.js',
-    },
-    'firefox_ios_geo': {
-        'source_filenames': (
-            'js/libs/script.js',
-            'js/base/mozilla-modal.js',
-            'js/base/send-to-device.js',
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/ios-geo.js',
-        ),
-        'output_filename': 'js/firefox_ios_geo-bundle.js',
     },
     'firefox_tour': {
         'source_filenames': (

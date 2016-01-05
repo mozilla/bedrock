@@ -67,10 +67,6 @@
         <small class="download-other">
           <a class="dl-button" href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
         </small>
-
-        {% if l10n_has_tag('ios_announce', 'firefox/new') and not waffle.switch('firefox-ios-global') %}
-          <p class="ios-link">{{_('Firefox is coming soon to iOS! <a href="{url}">Sign up to learn more</a>.').format(url=url('newsletter.ios'))|safe }}</p>
-        {% endif %}
       </div>
 
       {# happy little droid #}
