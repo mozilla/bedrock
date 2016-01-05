@@ -647,6 +647,10 @@ class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
 
 @xframe_allow
 def new(request):
+    # Remove legacy query parameters (Bug 1236791)
+    if request.GET.get('product', None) or request.GET.get('os', None):
+        return HttpResponsePermanentRedirect(reverse('firefox.new'))
+
     locale = request.locale
     variant_locales = ['en-US', 'de']
 
