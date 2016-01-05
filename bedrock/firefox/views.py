@@ -651,14 +651,4 @@ def new(request):
     if request.GET.get('product', None) or request.GET.get('os', None):
         return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
-    locale = request.locale
-    variant_locales = ['en-US', 'de']
-
-    # check for variant in querystring
-    variant = request.GET.get('v', '')
-
-    # ensure variant is one of 2 accepted values
-    if (variant not in ['1', '2', '3', '4'] or locale not in variant_locales):
-        variant = ''
-
-    return l10n_utils.render(request, 'firefox/new.html', {'variant': variant})
+    return l10n_utils.render(request, 'firefox/new.html')
