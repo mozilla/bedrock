@@ -7,14 +7,6 @@ import pytest
 from pages.firefox.android import AndroidPage
 
 
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_family_navigation(base_url, selenium):
-    page = AndroidPage(base_url, selenium).open()
-    page.family_navigation.open_menu()
-    assert page.family_navigation.is_menu_displayed
-
-
 @pytest.mark.skipif(reason='https://webqa-ci.mozilla.com/job/bedrock.dev.win10.ie/120/')
 @pytest.mark.smoke
 @pytest.mark.nondestructive

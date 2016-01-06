@@ -7,14 +7,6 @@ import pytest
 from pages.firefox.sync import FirefoxSyncPage
 
 
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_family_navigation(base_url, selenium):
-    page = FirefoxSyncPage(base_url, selenium).open()
-    page.family_navigation.open_menu()
-    assert page.family_navigation.is_menu_displayed
-
-
 @pytest.mark.skip_if_firefox
 @pytest.mark.nondestructive
 def test_primary_download_button_displayed(base_url, selenium):
