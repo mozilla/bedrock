@@ -24,7 +24,6 @@ def test_send_to_device_fails_when_missing_required_fields(base_url, selenium):
         page.send_to_device.click_send()
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_send_to_device_not_supported_locale(base_url, selenium):
     page = AndroidPage(base_url, selenium, locale='it').open()
