@@ -129,7 +129,12 @@ def add_or_update_advisory(data, html):
         dateobj = parsedate(datestr).date()
         kwargs['announced'] = dateobj
     prodver_objs = []
-    for productname in data.pop('fixed_in'):
+
+    fixed_in = data.pop('fixed_in')
+    if isinstance(fixed_in, basestring):
+        fixed_in = [fixed_in]
+
+    for productname in fixed_in:
         productname = fix_product_name(productname)
         productobj, created = Product.objects.get_or_create(name=productname)
         prodver_objs.append(productobj)
