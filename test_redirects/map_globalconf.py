@@ -4,7 +4,6 @@ from __future__ import absolute_import
 
 from .base import flatten, url_test
 
-
 URLS = flatten((
     # bug 832348 **/index.html -> **/
     url_test('/any/random/url/with/index.html', '/any/random/url/with/'),
@@ -221,7 +220,6 @@ URLS = flatten((
     url_test('/{m,{firefox/,}mobile}/features/', '/firefox/android/'),
     url_test('/{m,{firefox/,}mobile}/faq/', '/firefox/android/faq/'),
 
-
     # bug 885799, 952429
     url_test('/projects/calendar/holidays.html', '/projects/calendar/holidays/'),
     url_test('/en-US/projects/calendar/random/stuff/', '/projects/calendar/'),
@@ -256,8 +254,10 @@ URLS = flatten((
 
     # bug 1196578
     url_test('/thunderbird/about/legal/eula/', '/about/legal/eula/'),
-    url_test('/thunderbird/about/legal/eula/thunderbird2.html', '/about/legal/eula/thunderbird-2/'),
-    url_test('/thunderbird/about/legal/eula/thunderbird.html', '/about/legal/eula/thunderbird-1.5/'),
+    url_test('/thunderbird/about/legal/eula/thunderbird2.html',
+             '/about/legal/eula/thunderbird-2/'),
+    url_test('/thunderbird/about/legal/eula/thunderbird.html',
+             '/about/legal/eula/thunderbird-1.5/'),
 
     # bug 1204579
     url_test('/thunderbird/2.0.0.0/eula/', '/about/legal/eula/thunderbird-2/'),
@@ -802,7 +802,8 @@ URLS = flatten((
     url_test('/legal/bylaws_amendment_1.html', '/foundation/documents/bylaws-amendment-1/'),
     url_test('/legal/bylaws_amendment_2.html', '/foundation/documents/bylaws-amendment-2/'),
     url_test('/legal/articles.html', '/foundation/documents/articles-of-incorporation/'),
-    url_test('/legal/amendment.html', '/foundation/documents/articles-of-incorporation/amendment/'),
+    url_test('/legal/amendment.html',
+             '/foundation/documents/articles-of-incorporation/amendment/'),
     url_test('/legal/bylaws.html', '/foundation/documents/bylaws/'),
 
     # bug 1211007
@@ -924,4 +925,8 @@ URLS = flatten((
     # bug 1236791
     url_test('/en-US/firefox/new/?product=firefox-{3.6.8,13.0.1}{&os={osx〈=en-US,win},}',
              '/en-US/firefox/new/'),
+
+    # bug 1233015
+    url_test('/en-US/about/partnerships/contentservices/{,user-respect/}',
+             '/en-US/about/partnerships/')
 ))

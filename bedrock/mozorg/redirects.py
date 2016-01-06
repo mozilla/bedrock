@@ -575,6 +575,9 @@ redirectpatterns = (
     # bug 1236910
     redirect(r'^support(/.*)?$', 'https://support.mozilla.org/'),
 
+    # bug 1233015
+    redirect(r'^about/partnerships/contentservices(/.*)?$', 'mozorg.partnerships'),
+
     # bug 832348 **/index.html -> **/
     # leave this at the bottom
     redirect(r'^(.*)/index\.html$', '/{}/', locale_prefix=False),
