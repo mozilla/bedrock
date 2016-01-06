@@ -31,5 +31,6 @@ class ProductsPage(FirefoxBasePage):
             return self.is_element_displayed(self._download_firefox_message_locator)
 
         def close(self):
+            download_bar = self.selenium.find_element(*self._root_locator)
             self.find_element(self._close_button_locator).click()
-            self.wait.until(expected.staleness_of(self._root))
+            self.wait.until(expected.staleness_of(download_bar))
