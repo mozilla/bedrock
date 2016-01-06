@@ -260,4 +260,8 @@ if (typeof Mozilla == 'undefined') {
 		});
 	};
 
+    Mozilla.UITour.closeTab = function() {
+        _sendEvent('closeTab');
+    };
+
 })();

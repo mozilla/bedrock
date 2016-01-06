@@ -72,14 +72,14 @@ if (typeof Mozilla === 'undefined') {
                 style: 'text',
             },
             {
-                callback: TPTour.step4,
+                callback: TPTour.shouldCloseTab,
                 label: _step3.buttonText,
                 style: 'primary',
             },
         ];
 
         var options = {
-            closeButtonCallback: TPTour.step4
+            closeButtonCallback: TPTour.shouldCloseTab
         };
 
         Mozilla.UITour.showMenu('controlCenter', function() {
@@ -96,6 +96,27 @@ if (typeof Mozilla === 'undefined') {
 
         TPTour.replaceURLState('3');
         TPTour.state = 'step3';
+    };
+
+    TPTour.shouldCloseTab = function() {
+        var newTab = TPTour.getParameterByName('newtab');
+
+        if (newTab === 'true') {
+            TPTour.tryCloseTab();
+        } else {
+            TPTour.step4();
+        }
+    };
+
+    /**
+     * Mozilla.UITour.closeTab will only work if there is more than one open tab
+     * in the browser window, so we fall back to showing step 4 of the tour
+     * after a short delay.
+     */
+    TPTour.tryCloseTab = function() {
+        setTimeout(TPTour.step4, 400);
+        TPTour.hidePanels();
+        Mozilla.UITour.closeTab();
     };
 
     TPTour.step4 = function() {
