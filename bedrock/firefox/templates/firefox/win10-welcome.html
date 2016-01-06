@@ -51,7 +51,11 @@
     <button id="set-default" type="button" class="button-flat-dark">{{ _('Let’s do it') }}</button>
     <h2>{{ _('Make Firefox your default in 3 easy steps:') }}</h2>
     <ol>
-      <li>{{ _('Click the button above') }}</li>
+      {% if l10n_has_tag('win10_button_update') %}
+        <li>{{ _('Click the button above') }}</li>
+      {% else %}
+        <li>{{ _('Click the button below') }}</li>
+      {% endif %}
       <li>{{ _('Scroll down to “Web browser”') }}</li>
       <li>{{ _('Choose Firefox') }}</li>
     </ol>
