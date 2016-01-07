@@ -7,7 +7,7 @@ from whitenoise.django import DjangoWhiteNoise
 
 class BedrockWhiteNoise(DjangoWhiteNoise):
     """WhiteNoise class for modifying default cache headers."""
-    ONE_MONTH = 30 * 24 * 60 * 60
+    ONE_WEEK = 7 * 24 * 60 * 60
 
     def __init__(self, application):
         super(BedrockWhiteNoise, self).__init__(application)
@@ -23,7 +23,7 @@ class BedrockWhiteNoise(DjangoWhiteNoise):
             max_age = self.FOREVER
         # files typically accessed not by hashed name
         elif '/fonts/' in url or '/caldata/' in url:
-            max_age = self.ONE_MONTH
+            max_age = self.ONE_WEEK
         else:
             max_age = self.max_age
         if max_age is not None:
