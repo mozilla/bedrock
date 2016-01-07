@@ -922,13 +922,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/partners-ie7-bundle.css',
     },
-    'facebookapps_downloadtab': {
-        'source_filenames': (
-            'css/libs/h5bp_main.css',
-            'css/facebookapps/downloadtab.less',
-        ),
-        'output_filename': 'css/facebookapps_downloadtab-bundle.css',
-    },
     'thunderbird-features': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -1735,25 +1728,6 @@ PIPELINE_JS = {
             'js/firefox/firefox-language-search.js',
         ),
         'output_filename': 'js/thunderbird_all-bundle.js',
-    },
-    'facebookapps_redirect': {
-        'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/facebookapps/redirect.js',
-        ),
-        'output_filename': 'js/facebookapps_redirect-bundle.js',
-    },
-    'facebookapps_downloadtab': {
-        'source_filenames': (
-            'js/facebookapps/downloadtab-init.js',
-            'js/facebookapps/Base.js',
-            'js/facebookapps/Facebook.js',
-            'js/facebookapps/Theater.js',
-            'js/facebookapps/Slider.js',
-            'js/facebookapps/App.js',
-            'js/facebookapps/downloadtab.js',
-        ),
-        'output_filename': 'js/facebookapps_downloadtab-bundle.js',
     },
     'newsletter_form': {
         'source_filenames': (

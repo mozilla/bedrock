@@ -46,10 +46,6 @@ urlpatterns = (
     url(r'^l10n_example/',
         include('bedrock.l10n_example.urls')),
 
-    # Facebook Apps
-    url(r'^facebookapps/',
-        include('bedrock.facebookapps.urls')),
-
     url(r'^healthz/$', 'bedrock.base.views.health_check'),
 
     # Uncomment the admin/doc line below to enable admin documentation:

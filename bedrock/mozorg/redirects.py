@@ -581,4 +581,7 @@ redirectpatterns = (
     # bug 832348 **/index.html -> **/
     # leave this at the bottom
     redirect(r'^(.*)/index\.html$', '/{}/', locale_prefix=False),
+
+    # Bug 1235853
+    redirect(r'^facebookapps(/.*)?$', 'firefox.new'),
 )

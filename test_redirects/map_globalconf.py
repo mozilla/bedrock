@@ -928,5 +928,8 @@ URLS = flatten((
 
     # bug 1233015
     url_test('/en-US/about/partnerships/contentservices/{,user-respect/}',
-             '/en-US/about/partnerships/')
+             '/en-US/about/partnerships/'),
+
+    # bug 1235853
+    url_test('/facebookapps/{,downloadtab/}', '/firefox/new/')
 ))
