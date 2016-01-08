@@ -4,7 +4,7 @@
 
 {% extends "firefox/base.html" %}
 
-{% set_lang_files "firefox/australis/fx36_tour" %}
+{% set_lang_files "firefox/australis/firefox_tour" %}
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
@@ -23,10 +23,6 @@
 
 {% block body_class %}sky{% endblock %}
 
-{% block page_css %}{% endblock %}
-
-{% block string_data %}{% endblock %}
-
 {% block site_header %}
   <header id="masthead">
     <div id="tabzilla">
@@ -41,25 +37,19 @@
 {% block content %}
   <article id="tour-page" data-telemetry="{% block telemetry_id %}{% endblock %}">
     {% block main_heading %}{% endblock %}
-    {% block noscript %}{% endblock %}
-    {% block promo_content %}{% endblock %}
+    <div class="main-container">
+      <section class="sync">
+        <div class="inner-container">
+          {% block sync_content %}{% endblock %}
+        </div>
+      </section>
+    </div>
+    <aside class="separator">
+      {% block aside_content %}{% endblock %}
+    </aside>
   </article>
-  {% block aside_content %}{% endblock %}
-  {% block tour_content %}{% endblock %}
-  {% block tour_mask %}{% endblock %}
 {% endblock %}
 
+{% block site_footer %}{% endblock %}
 {% block email_form %}{% endblock %}
-{% block site_footer %}
-  <footer role="contentinfo">
-    <ul>
-      <li><a href="{{ url('firefox.desktop.index') }}" class="more">{{ _('Firefox Features') }}</a></li>
-      <li><a href="https://support.mozilla.org/products/firefox" class="more">{{ _('Firefox Help') }}</a></li>
-    </ul>
-    <ul>
-      <li><a href="{{ url('legal.index') }}">{{ _('Legal') }}</a></li>
-      <li><a href="{{ url('privacy') }}">{{ _('Privacy') }}</a></li>
-    </ul>
-  </footer>
-{% endblock %}
 {% block js %}{% endblock %}

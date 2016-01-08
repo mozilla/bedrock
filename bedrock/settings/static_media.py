@@ -292,29 +292,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_faq-bundle.css',
     },
-    'firefox_fx36_firstrun': {
-        'source_filenames': (
-            'css/firefox/australis/australis-ui-tour.less',
-            'css/firefox/hello-animation.less',
-            'css/firefox/australis/fx36/common.less',
-        ),
-        'output_filename': 'css/firefox_fx36_firstrun-bundle.css',
-    },
-    'firefox_fx36_whatsnew': {
-        'source_filenames': (
-            'css/firefox/australis/australis-ui-tour.less',
-            'css/firefox/hello-animation.less',
-            'css/firefox/australis/fx36/common.less',
-        ),
-        'output_filename': 'css/firefox_fx36_whatsnew-bundle.css',
-    },
-    'firefox_fx36_whatsnew_no_tour': {
-        'source_filenames': (
-            'css/firefox/hello-animation.less',
-            'css/firefox/australis/fx36/common.less',
-        ),
-        'output_filename': 'css/firefox_fx36_whatsnew_no_tour-bundle.css',
-    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'css/firefox/australis/fx38_0_5/firstrun.less',
@@ -502,17 +479,18 @@ PIPELINE_CSS = {
     'firefox_tour': {
         'source_filenames': (
             'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/hello-animation.less',
+            'css/firefox/australis/fx36/common.less',
+        ),
+        'output_filename': 'css/firefox_tour-bundle.css',
+    },
+    'firefox_tour_none': {
+        'source_filenames': (
             'css/firefox/australis/australis-page-common.less',
             'css/firefox/sync-animation.less',
             'css/firefox/australis/australis-page-stacked.less',
         ),
-        'output_filename': 'css/firefox_tour-bundle.css',
-    },
-    'firefox_whatsnew_37': {
-        'source_filenames': (
-            'css/firefox/whatsnew-fx37.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew_37-bundle.css',
+        'output_filename': 'css/firefox_tour_none-bundle.css',
     },
     'firefox_whatsnew_38_video': {
         'source_filenames': (
@@ -1136,28 +1114,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_developer-bundle.js',
     },
-    'firefox_fx36_firstrun': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/fx36/firstrun.js',
-        ),
-        'output_filename': 'js/firefox_fx36_firstrun-bundle.js',
-    },
-    'firefox_fx36_whatsnew': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/fx36/whatsnew.js',
-        ),
-        'output_filename': 'js/firefox_fx36_whatsnew-bundle.js',
-    },
-    'firefox_fx36_whatsnew_no_tour': {
-        'source_filenames': (
-            'js/firefox/australis/fx36/whatsnew-notour.js',
-        ),
-        'output_filename': 'js/firefox_fx36_whatsnew_no_tour-bundle.js',
-    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
@@ -1315,6 +1271,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_sync-bundle.js',
     },
+    'firefox_tour': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/australis/fx36/tour.js',
+        ),
+        'output_filename': 'js/firefox_tour-bundle.js',
+    },
     'firefox_feedback': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',
@@ -1370,16 +1334,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_ios-bundle.js',
     },
-    'firefox_tour': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/common.js',
-            'js/firefox/australis/tour.js',
-        ),
-        'output_filename': 'js/firefox_tour-bundle.js',
-    },
     'firefox_tour_none': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
@@ -1388,12 +1342,6 @@ PIPELINE_JS = {
             'js/firefox/australis/no-tour.js',
         ),
         'output_filename': 'js/firefox_tour_none-bundle.js',
-    },
-    'firefox_whatsnew_fx37': {
-        'source_filenames': (
-            'js/firefox/whatsnew-fx37.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_fx37-bundle.js',
     },
     'firefox_whatsnew_38_video': {
         'source_filenames': (

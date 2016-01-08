@@ -339,31 +339,13 @@ def show_devbrowser_firstrun_or_whatsnew(version):
     return False
 
 
-def show_search_firstrun(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version('34.0')
-
-
-def show_36_firstrun(version):
+def show_36_tour(version):
     try:
         version = Version(version)
     except ValueError:
         return False
 
     return version >= Version('36.0')
-
-
-def show_36_whatsnew_tour(oldversion):
-    try:
-        oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    return oldversion < Version('36.0')
 
 
 def show_38_0_5_firstrun_or_whatsnew(version):
@@ -373,6 +355,15 @@ def show_38_0_5_firstrun_or_whatsnew(version):
         return False
 
     return version >= Version('38.0.5')
+
+
+def show_42_whatsnew(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('42.0')
 
 
 def show_40_firstrun(version):
@@ -457,7 +448,6 @@ class FirstrunView(LatestFxView):
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
-        locale = l10n_utils.get_locale(self.request)
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-firstrun.html'
@@ -465,12 +455,8 @@ class FirstrunView(LatestFxView):
             template = 'firefox/firstrun/firstrun.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
-        elif show_36_firstrun(version):
-            template = 'firefox/australis/fx36/firstrun-tour.html'
-        elif show_search_firstrun(version) and locale == 'en-US':
-            template = 'firefox/australis/firstrun-34-tour.html'
         else:
-            template = 'firefox/australis/firstrun-tour.html'
+            template = 'firefox/australis/firstrun.html'
 
         # return a list to conform with original intention
         return [template]
@@ -513,8 +499,8 @@ class WhatsnewView(LatestFxView):
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-whatsnew.html'
-        elif version.startswith('42.') or version.startswith('43.'):
-            template = 'firefox/whatsnew_42/variant-a.html'
+        elif show_42_whatsnew(version):
+            template = 'firefox/whatsnew_42/whatsnew.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
             has_pocket = locale in self.pocket_locales
@@ -525,16 +511,9 @@ class WhatsnewView(LatestFxView):
             elif has_pocket:
                 template = 'firefox/whatsnew_38/whatsnew-pocket.html'
             else:
-                template = 'firefox/australis/fx36/whatsnew-no-tour.html'
-        elif version.startswith('37.'):
-            template = 'firefox/whatsnew-fx37.html'
-        elif version.startswith('36.'):
-            if show_36_whatsnew_tour(oldversion):
-                template = 'firefox/australis/fx36/whatsnew-tour.html'
-            else:
-                template = 'firefox/australis/fx36/whatsnew-no-tour.html'
+                template = 'firefox/australis/whatsnew.html'
         else:
-            template = 'firefox/australis/whatsnew-no-tour.html'
+            template = 'firefox/australis/whatsnew.html'
 
         # return a list to conform with original intention
         return [template]
@@ -553,16 +532,13 @@ class TourView(LatestFxView):
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
-        locale = l10n_utils.get_locale(self.request)
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-firstrun.html'
-        elif show_36_firstrun(version):
-            template = 'firefox/australis/fx36/help-menu-36-tour.html'
-        elif show_search_firstrun(version) and locale == 'en-US':
-            template = 'firefox/australis/help-menu-34-tour.html'
+        elif show_36_tour(version):
+            template = 'firefox/australis/fx36/tour.html'
         else:
-            template = 'firefox/australis/help-menu-tour.html'
+            template = 'firefox/australis/firstrun.html'
 
         # return a list to conform with original intention
         return [template]
