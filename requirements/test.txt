@@ -2,6 +2,11 @@
 # sha256: ZdKqaLKOfTEjO7K6jrMc2kDkZx-KwtayQeNYyWUqdLk
 apipkg==1.4
 
+# sha256: gqJTJFrtmHXxQd2Yp0YlcrypPQZM8xF70z3kth7hjmg
+# sha256: LCZCVPbPzmTDvZ1IiFIICTpzuQlWRfYA3gonfOAeoOU
+# sha256: h9QBPQYl1HiaT1a415oE1c5tsRUrtl8dOXRPdwmjZrQ
+beautifulsoup4==4.4.1
+
 # sha256: 9m3Up1GXJaG34UrZrn09-OCbLaiAYjhuCOlByvwO8-Y
 # sha256: 0rkJx5RYMuHBnPrNlueNpova3GVkQM_H3-WbdmdE64w
 execnet==1.4.1

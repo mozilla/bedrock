@@ -46,12 +46,12 @@ following command:
 See the `Jasmine`_ documentation for tips on how to write JS behavioral or unit
 tests. We also use `Sinon`_ for creating test spies, stubs and mocks.
 
-Running Selenium tests
-----------------------
+Running functional tests
+------------------------
 
 .. Note::
 
-  Before running the Selenium tests, please make sure to follow the bedrock
+  Before running the functional tests, please make sure to follow the bedrock
   :ref:`installation docs<install>`, including the database sync that is needed
   to pull in external data such as event/blog feeds etc. These are required for
   some of the tests to pass.
@@ -64,17 +64,21 @@ To run the full functional test suite against your local bedrock instance:
 
 This will run all test suites found in the ``tests/functional`` directory and
 assumes you have bedrock running at ``localhost`` on port ``8000``. Results will
-be reported in ``tests/functional/results.html`` and tests will run in parallel
-according to the number of cores available.
+be reported in ``tests/functional/results.html``.
+
+By default, tests will run one at a time. This is the safest way to ensure
+predictable results, due to
+`bug 1230105 <https://bugzilla.mozilla.org/show_bug.cgi?id=1230105>`_.
+If you want to run tests in parallel (this should be safe when running against
+a deployed instance), you can add ``-n auto`` to the command line. Replace
+``auto`` with an integer if you want to set the maximum number of concurrent
+processes.
 
 .. Note::
 
-    Tests will run one at a time. This is the safest way to ensure predictable
-    results, due to `bug 1230105 <https://bugzilla.mozilla.org/show_bug.cgi?id=1230105>`_.
-    If you want to run tests in parallel (this should be safe when running
-    against a deployed instance), you can add ``-n auto`` to the command line.
-    Replace ``auto`` with an integer if you want to set the maximum number of
-    concurrent processes.
+    There are some functional tests that do not require a browser. These can
+    take a long time to run, especially if they're not running in parallel.
+    To skip these tests, add ``-m 'not headless'`` to your command line.
 
 To run a single test file you must tell py.test to execute a specific file
 e.g. ``tests/functional/test_newsletter.py``:
