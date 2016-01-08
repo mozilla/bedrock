@@ -82,8 +82,8 @@
             <li><a href="{{ url('firefox') + 'ios/1.2/releasenotes' }}">{{ _('iOS') }}</a></li>
           {% endif %}
             <li class="submenu-title">
-              <a>{{ _('Other Releases') }}</a>
-              <ul class="submenu">
+              <a href="#" role="button" aria-controls="nav-submenu" aria-expanded="false">{{ _('Other Releases') }}</a>
+              <ul class="submenu" id="nav-submenu">
                 <li class="title">{{ _('Recent Desktop Releases') }}</li>
                 <li><a href="{{ url('firefox.notes', channel='developer') }}">{{ _('Latest Developer Edition') }}</a></li>
                 <li><a href="{{ url('firefox.notes', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
