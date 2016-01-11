@@ -28,6 +28,7 @@ def pytest_generate_tests(metafunc):
 
 
 @pytest.mark.headless
+@pytest.mark.nondestructive
 def test_localized_download_links(url):
     r = requests.head(url, allow_redirects=True)
     assert requests.codes.ok == r.status_code
