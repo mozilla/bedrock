@@ -6,7 +6,7 @@
 
 {% block page_title %}{{_('Gigabit')}}{% endblock %}
 {% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
-{% block body_id %}apply{% endblock %}
+{% block body_id %}apply-page{% endblock %}
 {% block body_class %}sand gigabit{% endblock %}
 {% block page_image %}{{ static('img/gigabit/gigabit-wordmark.png') }}{% endblock %}
 {% block site_header_logo %}
@@ -33,75 +33,137 @@
   <main role="main">
     <article>
       <h1 class="large center">{{ _('Apply') }}</h1>
-
-      <section id="cta-apply" class="container">
-        <h3><strong>{{ _('Applications are now closed.') }}</strong></h3>
-        <p>{{ _('What’s happening in…') }}</p>
-        <ul class="no-bullet">
-          <li>{% trans url_chat='//wiki.mozilla.org/Webmaker/HiveChattanooga' %}
-              <a href='{{ url_chat }}'>Chattanooga</a>
-              {% endtrans %}
-          </li>
-          <li>{% trans url_kansas='//wiki.mozilla.org/Webmaker/HiveKansasCity' %}
-              <a href='{{ url_kansas }}'>Kansas City</a>
-              {% endtrans %}</li>
-        </ul>
-        <p>
-          {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
-            Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates.
-          {% endtrans %}
-        </p>
-      </section>
-
-      <section id="questions" class="container">
-        <div>
-          <h2>{{ _('Questions?') }}</h2>
-
-          <p>
-          {% trans url_wiki='//wiki.mozilla.org/Gigabit', url_terms=url('gigabit.terms') %}
-            Our <a href="{{ url_wiki }}">wiki</a> is full of helpful information and we encourage you to read the Gigabit Community Fund’s <a href="{{ url_terms }}">Rules, Terms, and Conditions</a>.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans url_email='mailto:gigabit@mozilla.org' %}
-           Feel free to <a href="{{ url_email }}">email us</a> any time. Don't be shy — we're friendly!
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans url_announcement='https://sendto.mozilla.org/page/s/gigabit-updates', url_twitter='https://twitter.com/MozillaGigabit' %}
-           Join our <a href="{{ url_announcement }}">announcement list</a> or follow <a href="{{ url_twitter }}">@MozillaGigabit</a> for updates on the Gigabit Community Fund.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans url_moz_open='//wiki.mozilla.org/Working_open' %}
-            <a href="{{ url_moz_open }}">Mozilla works open</a>. We will make the content of all submissions publicly viewable. Projects that are awarded funding are encouraged to work open. Funded participants will be expected to create a free GitHub repository that, at minimum, documents their submitted proposal. You retain all ownership rights in your submission in the Fund.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans url_local='https://wiki.mozilla.org/Gigabit' %}
-           We encourage you to get involved in your <a href="{{ url_local }}">local Gigabit community</a> — here you’ll find resources to create a strong submission.
-          {% endtrans %}
-          </p>
+      <section>
+        <h2>{{ _('Funding Requirements and Eligibility') }}</h2>
+        <div id="requirements">
+          <div class="content">
+            <p>
+              {{ _('The Gigabit Community Fund supports pilots of gigabit technologies and associated curricula that show the impact of next-generation networks on learning.  ') }}
+            </p>
+            <p>
+              {{ _('All supported projects must:') }}
+            </p>
+            <ol>
+              <li>{{ _('Be piloted in the Chattanooga, TN or Kansas City, MO metropolitan region') }}</li>
+              <li>{{ _('Focus on education or workforce development') }}</li>
+              <li>{{ _('Leverage next-generation technologies like ultra high-speed networking') }}</li>
+            </ol>  
+            <p>
+            {% trans url_terms=url('gigabit.terms') %}
+              Participation is open to companies, academic institutions, and non-profit organizations  Funding will not be granted to unaffiliated individuals acting on their own. Before submitting your application, please review the Gigabit Community Fund’s <a href='{{ url_terms }}'>Terms and Conditions</a>.
+            {% endtrans %}
+            </p>
+          </div>
+        </div>
+        <div id="key-dates">
+          <div class="content">
+            <h3>{{ _('Key Dates') }}</h3>
+            <table>
+              <tbody>
+                <tr>
+                  <td>{{ _('January 11, 2016') }}</td>
+                  <td>{{ _('Application Window Opens for 2016') }}</td>
+                </tr>
+                <tr>
+                  <td>{{ _('February 22, 2016') }}</td>
+                  <td>{{ _('2016: Round 1 Optional Intent to Apply Form Due') }}</td>
+                </tr>
+                <tr>
+                  <td>{{ _('March 18, 2016') }}</td>
+                  <td>{{ _('Round 1 Review Deadline') }}</td>
+                </tr>
+                <tr>
+                  <td>{{ _('May 1 - August 31, 2016') }}</td>
+                  <td>{{ _('Round 1 Pilot Period') }}</td>
+                </tr>
+                <tr>
+                  <td>{{ _('September 15, 2016') }}</td>
+                  <td>{{ _('Round 2 Optional Intent to Apply Form Due') }}</td>
+                </tr>
+                <tr>
+                  <td>{{ _('October 18, 2016') }}</td>
+                  <td>{{ _('Round 2 Review Deadline') }}</td>
+                </tr>
+                <tr>
+                  <td>{{ _('January 1 - April 30, 2017') }}</td>
+                  <td>{{ _('Round 2 Pilot Period') }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
-
-      <aside id="partners" class="container">
-        <ul class="partner-logos center">
-          <li><a href="http://www.nsf.gov/"><img src="{{ static('img/gigabit/logo-nsf.png') }}" alt="NSF"></a></li>
-          <li><a href="http://us-ignite.org/"><img src="{{ static('img/gigabit/logo-ignite.png') }}" alt="US Ignite"></a></li>
-          <li><a href="http://www.geni.net/"><img src="{{ static('img/gigabit/logo-geni.png') }}" alt="GENI"></a></li>
-          <li><a href="http://www.kcdigitaldrive.com/"><img src="{{ static('img/gigabit/logo-kc-digital-drive.png') }}" alt="KC Digital Drive"></a></li>
-          <li><a href="http://www.chattanooga.gov/"><img src="{{ static('img/gigabit/logo-chatt-city-seal.png') }}" alt="Chatt City Seal"></a></li>
-          <li><a href="http://www.hamiltontn.gov/"><img src="{{ static('img/gigabit/logo-hamilton-county-seal.png') }}" alt="Hamilton County Seal"></a></li>
-          <li><a href="http:///www.kcmo.org/CKCMO/index.htm"><img src="{{ static('img/gigabit/logo-kcmo.png') }}" alt="KC MO"></a></li>
-          <li><a href="http://www.wycokck.org/"><img src="{{ static('img/gigabit/logo-kc-unified-gov.png') }}" alt="KC Unified Gov"></a></li>
-        </ul>
-      </aside>
-
+      <section id="types-of-support">
+        <div class="content">
+          <h2>{{ _('Types of Support') }}</h2>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">{{ _('Project Type') }}</th>
+                <th scope="col">{{ _('Description') }}</th>
+                <th scope="col">{{ _('Pilot Requirements') }}</th>
+                <th scope="col">{{ _('Recommended Funding Level') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{{ _('Curriculum Development') }}</th>
+                <td data-header={{ _('Description') }}><div>{{ _('Create and test lesson plans that help make gigabit technologies more accessible to educators and learners.') }}</div></td>
+                <td data-header={{ _('Pilot Requirements') }}><div>{{ _('The curriculum must be piloted in at least one organization in Kansas City or Chattanooga.') }}</div></td>
+                <td data-header={{ _('Recommended Funding Level') }}><div>{{ _('$5,000') }}</div></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Multi-Org') }}</th>
+                <td data-header={{ _('Description') }}><div>{{ _('Pilot gigabit technologies in multiple organizations in a city, strengthening the local gigabit ecosystem.') }}</div></td>
+                <td data-header={{ _('Pilot Requirements') }}><div>{{ _('The project must be piloted in two or more organizations in Kansas City or Chattanooga.') }}</div></td>
+                <td data-header={{ _('Recommended Funding Level') }}><div>{{ _('$15,000') }}</div></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Multi-City') }}</th>
+                <td data-header={{ _('Description') }}><div>{{ _('Pilot gigabit technologies across communities, helping build a national gigabit ecosystem.') }}</div></td>
+                <td data-header={{ _('Pilot Requirements') }}><div>{{ _('The project must be piloted with organizational partners in at least two gigabit cities. Kansas City or Chattanooga must be one of the represented cities.') }}</div></td>
+                <td data-header={{ _('Recommended Funding Level') }}><div>{{ _('$25,000') }}<div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section id="how-to-apply">
+        <div class="content">
+          <h2>{{ _('How to Apply') }}</h2>
+          <p>
+          {% trans url_mailto='mailto:gigabit@mozilla.com', url_twitter='//twitter.com/mozillagigabit', url_hive_kc='http://hivekc.org', url_hive_cha='http://hivecha.org' %}
+            We’re here to help make applying for a Gigabit Community Fund grant as easy as possible! We strongly encourage you to get in touch with us via <a href='{{ url_mailto }}'>email</a> or <a href='{{ url_twitter }}'>Twitter</a> as you prepare your application. Going to a meetup hosted by <a href='{{ url_hive_kc }}'>Hive KC</a> or <a href='{{ url_hive_cha }}'>Hive CHA</a> is another great way to get help on your proposal.
+          {% endtrans %}
+          </p>
+          <p>
+            {{ _('To submit an application for funding, follow these steps:') }}
+          </p>
+          <ol>
+            <li>
+            {% trans url_terms=url('gigabit.terms') %}
+              Review the Gigabit Community Fund’s <a href='{{ url_terms }}'>Terms and Conditions</a>.
+            {% endtrans %}
+            </li>
+            <li>
+            {% trans url_apply_form='//docs.google.com/a/mozillafoundation.org/forms/d/1r4gR7Nq0Rd4XvA0CQCjd86pkWRIXnhQ9BRLTjl0CBQ4/viewform' %}
+              Submit an optional Intent to Apply form. Though not required, this <a href='{{ url_apply_form }}'>Intent to Apply form</a> will help our project staff provide you with valuable proposal feedback ahead of the application deadline.
+            {% endtrans %}
+            </li>
+            <li>
+            {% trans url_handy_template='//docs.google.com/document/d/1XC8SH5Th-8_12kq7L3trtV31fn36HEj7HM7g6zzuM9g/edit' %}
+              Prepare your application using our <a href='{{ url_handy_template }}'>Handy Template</a>.
+            {% endtrans %}
+            </li>
+            <li>
+            {% trans url_startupCompete='//gigabitfund2016.startupcompete.co/' %}
+              Register on our <a href='{{ url_startupCompete }}'>StartupCompete site</a> and submit your application for review.
+            {% endtrans %}
+            </li>
+          </ol>
+        </div>
+      </section>
+      {% include 'gigabit/_partners.html' %}
     </article>
   </main>
 
