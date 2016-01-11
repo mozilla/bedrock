@@ -20,8 +20,8 @@
   {
     "country":"Austria",
     "filename":"AustrianHolidays.ics",
-    "datespan":"2002-2015",
-    "authors":"Patrick Loschmidt"
+    "datespan":"2010-2025",
+    "authors":"boe"
   },
   {
     "country":"Basque",
@@ -119,7 +119,7 @@
     "country":"Czech",
     "filename":"CzechHolidays.ics",
     "datespan":"2007-2020",
-    "authors":"Martin Matula, Matěj Cepl"
+    "authors":"Martin Matula, Matěj Cepl, Peter Habcak"
   },
   {
     "country":"Denmark",
@@ -166,8 +166,8 @@
   {
     "country":"France",
     "filename":"FrenchHolidays.ics",
-    "datespan":"2007-2015",
-    "authors":"Chris Ross"
+    "datespan":"2010-2030",
+    "authors":"danfra"
   },
   {
     "country":"Frisian",
@@ -180,6 +180,12 @@
     "filename":"GermanHolidays.ics",
     "datespan":"2010-2025",
     "authors":"Hagen Halbach"
+  },
+  {
+    "country":"Greece",
+    "filename":"GreeceHolidays.ics",
+    "datespan":"2015-2020",
+    "authors":"Hans Kleiner"
   },
   {
     "country":"Guyana",
@@ -201,8 +207,8 @@
   {
     "country":"Hungary",
     "filename":"HungarianHolidays.ics",
-    "datespan":"2011-2012",
-    "authors":"Kalman Kemenczy"
+    "datespan":"2015-2020",
+    "authors":"spiraldancing"
   },
   {
     "country":"Iceland",
@@ -219,7 +225,7 @@
   {
     "country":"India",
     "filename":"IndiaHolidays.ics",
-    "datespan":"2014",
+    "datespan":"2016",
     "authors":"Seshu Parvataneni"
   },
   {
@@ -259,6 +265,18 @@
     "authors":"Atsushi Sakai"
   },
   {
+    "country":"Kazakhstan (English)",
+    "filename":"KazakhstanHolidaysEnglish.ics",
+    "datespan":"2015-present",
+    "authors":"Yuriy Gural"
+  },
+  {
+    "country":"Kazakhstan (Russian)",
+    "filename":"KazakhstanHolidaysRussian.ics",
+    "datespan":"2015-present",
+    "authors":"Yuriy Gural"
+  },
+  {
     "country":"Kenya",
     "filename":"KenyaHolidays.ics",
     "datespan":"2007-2015",
@@ -275,6 +293,12 @@
     "filename":"LithuanianHolidays.ics",
     "datespan":"2012",
     "authors":"Zai"
+  },
+  {
+    "country": "Liechtenstein",
+    "filename":"LiechtensteinHolidays.ics",
+    "datespan":"2010-2025",
+    "authors":"boe"
   },
   {
     "country":"Luxembourg",
@@ -304,6 +328,13 @@
     "filename":"NewZealandHolidays.ics",
     "datespan":"2010-2013",
     "authors":"Pete Griffin"
+  },
+  {
+    "country":"Nicaragua",
+    "filename":"NicaraguaHolidays.ics",
+    "datespan":"2015-2020",
+    "authors":"phurtado1112"
+
   },
   {
     "country":"Norway",
@@ -356,7 +387,7 @@
   {
     "country":"Romania",
     "filename":"RomaniaHolidays.ics",
-    "datespan":"2014",
+    "datespan":"2016",
     "authors":"Budai E. Bogdan"
   },
   {
@@ -410,8 +441,8 @@
   {
     "country":"Switzerland",
     "filename":"SwissHolidays.ics",
-    "datespan":"2011-2014",
-    "authors":"tb"
+    "datespan":"2010-2025",
+    "authors":"boe"
   },
   {
     "country":"Taiwan",
@@ -424,6 +455,12 @@
     "filename":"ThaiHolidays.ics",
     "datespan":"2012-2014",
     "authors":"Hans Henderson"
+  },
+  {
+    "country":"Trinidad and Tobago",
+    "filename":"TrinidadTobagoHolidays.ics.ics",
+    "datespan":"2015-2025",
+    "authors":"Joe"
   },
   {
     "country":"Turkey",
