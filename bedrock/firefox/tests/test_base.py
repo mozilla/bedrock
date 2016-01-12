@@ -280,43 +280,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.post('/en-US/firefox/whatsnew/')
         self.view(req)
         # would return 405 before calling render otherwise
-        render_mock.assert_called_once_with(req, ['firefox/australis/whatsnew-no-tour.html'], ANY)
-
-    # begin 36.0 hello tour tests
-
-    @override_settings(DEV=True)
-    def test_fx_36_0(self, render_mock):
-        """Should use no tour template for 36.0 with no old version"""
-        req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='36.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/fx36/whatsnew-no-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_36_0_with_oldversion(self, render_mock):
-        """Should use hello whatsnew tour template for 36.0 with old version"""
-        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=35.0')
-        self.view(req, version='36.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/fx36/whatsnew-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_36_0_with_wrong_oldversion(self, render_mock):
-        """Should no tour template for 36.0 with old version that is greater"""
-        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=36.1')
-        self.view(req, version='36.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/fx36/whatsnew-no-tour.html'])
-
-    # end 36.0 hello tour tests
-
-    @override_settings(DEV=True)
-    def test_fx_37_0_whatsnew(self, render_mock):
-        """Should show Android SMS template for 37.0"""
-        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=36.0')
-        self.view(req, version='37.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew-fx37.html'])
+        render_mock.assert_called_once_with(req, ['firefox/australis/whatsnew.html'], ANY)
 
     # begin 38.0.5 whatsnew tests
 
@@ -370,17 +334,17 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='42.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew_42/variant-a.html'])
+        eq_(template, ['firefox/whatsnew_42/whatsnew.html'])
 
     # end 42.0 whatsnew tests
 
     @override_settings(DEV=True)
     def test_older_whatsnew(self, render_mock):
-        """Should show default no tour template for 35 and below"""
+        """Should show default whatsnew template for 38.0 and below"""
         req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=34.0')
-        self.view(req, version='35.0')
+        self.view(req, version='38.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/whatsnew-no-tour.html'])
+        eq_(template, ['firefox/australis/whatsnew.html'])
 
     @override_settings(DEV=True)
     def test_rv_prefix(self, render_mock):
@@ -388,7 +352,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=rv:10.0')
         self.view(req, version='36.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/fx36/whatsnew-tour.html'])
+        eq_(template, ['firefox/australis/whatsnew.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
@@ -426,12 +390,12 @@ class TestTourView(TestCase):
         self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
 
     @override_settings(DEV=True)
-    def test_fx_tour_template(self, render_mock):
-        """Should use firstrun tour template"""
+    def test_fx_old_tour_template(self, render_mock):
+        """Should use old firstrun template"""
         req = self.rf.get('/en-US/firefox/tour/')
         self.view(req, version='29.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/help-menu-tour.html'])
+        eq_(template, ['firefox/australis/firstrun.html'])
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_35_0_a2(self, render_mock):
@@ -442,45 +406,12 @@ class TestTourView(TestCase):
         eq_(template, ['firefox/dev-firstrun.html'])
 
     @override_settings(DEV=True)
-    def test_fx_dev_browser_34_0_a2(self, render_mock):
-        """Should use standard firstrun template for older aurora"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, version='34.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/help-menu-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_search_tour_34_0(self, render_mock):
-        """Should use search tour template for 34.0"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, version='34.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/help-menu-34-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_search_tour_34_0_5(self, render_mock):
-        """Should use search tour template for 34.0.5"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, version='34.0.5')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/help-menu-34-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_search_tour_34_0_locales(self, render_mock):
-        """Should use australis template for 34.0 non en-US locales"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        req.locale = 'de'
-        self.view(req, version='34.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/help-menu-tour.html'])
-
-    @override_settings(DEV=True)
     def test_fx_firstrun_tour_36_0(self, render_mock):
         """Should use fx36 tour template for 36.0"""
         req = self.rf.get('/en-US/firefox/tour/')
         self.view(req, version='36.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/fx36/help-menu-36-tour.html'])
+        eq_(template, ['firefox/australis/fx36/tour.html'])
 
     @override_settings(DEV=False)
     def test_fx_australis_secure_redirect(self, render_mock):
@@ -524,15 +455,15 @@ class TestFirstRun(TestCase):
         self.view(req)
         # would return 405 before calling render otherwise
         render_mock.assert_called_once_with(req,
-            ['firefox/australis/firstrun-tour.html'], ANY)
+            ['firefox/australis/firstrun.html'], ANY)
 
     @override_settings(DEV=True)
     def test_fx_australis_29(self, render_mock):
-        """Should use firstrun tour template"""
+        """Should use old firstrun template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='29.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun-tour.html'])
+        eq_(template, ['firefox/australis/firstrun.html'])
 
     @override_settings(DEV=True)
     def test_fx_dev_browser(self, render_mock):
@@ -544,52 +475,11 @@ class TestFirstRun(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_34_0_a2(self, render_mock):
-        """Should use standard firstrun template for older aurora"""
+        """Should use old firstrun template for older aurora"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='34.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_search_tour_34_0(self, render_mock):
-        """Should use search tour template for 34.0"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, version='34.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun-34-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_search_tour_34_0_5(self, render_mock):
-        """Should use search tour template for 34.0.5"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, version='34.0.5')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun-34-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_search_tour_34_0_locales(self, render_mock):
-        """Should use australis template for 34.0 non en-US locales"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        req.locale = 'de'
-        self.view(req, version='34.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_search_tour_35_0_1(self, render_mock):
-        """Should use search tour template for 35.0.1"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, version='35.0.1')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun-34-tour.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_firstrun_tour_36_0(self, render_mock):
-        """Should use fx36 tour template for 36.0"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, version='36.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/fx36/firstrun-tour.html'])
+        eq_(template, ['firefox/australis/firstrun.html'])
 
     @override_settings(DEV=True)
     def test_fx_firstrun_38_0_5(self, render_mock):
@@ -723,56 +613,6 @@ class FxVersionRedirectsMixin(object):
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
         eq_(response['Vary'], 'User-Agent')
-
-
-class TestWhatsnewRedirect(FxVersionRedirectsMixin, TestCase):
-    def setUp(self):
-        self.user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:29.0) '
-                      'Gecko/20100101 Firefox/29.0')
-
-        self.expected = 'data-has-tour="True"'
-        self.url = reverse('firefox.whatsnew', args=['36.0'])
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='16.0')
-    @patch('bedrock.mozorg.helpers.misc.find_static', return_value=True)
-    def test_whatsnew_tour_oldversion(self, find_static):
-        """Should not show tour if upgrading from 36.0 onwards."""
-        # sanity check that it should show for other values of "oldversion"
-        response = self.client.get(self.url + '?oldversion=28.0', HTTP_USER_AGENT=self.user_agent)
-        self.assertIn(self.expected, response.content)
-
-        response = self.client.get(self.url + '?oldversion=27.0.1', HTTP_USER_AGENT=self.user_agent)
-        self.assertIn(self.expected, response.content)
-
-        response = self.client.get(self.url + '?oldversion=4.0', HTTP_USER_AGENT=self.user_agent)
-        self.assertIn(self.expected, response.content)
-
-        response = self.client.get(self.url + '?oldversion=rv:10.0', HTTP_USER_AGENT=self.user_agent)
-        self.assertIn(self.expected, response.content)
-
-        response = self.client.get(self.url + '?oldversion=33.0', HTTP_USER_AGENT=self.user_agent)
-        self.assertIn(self.expected, response.content)
-
-        response = self.client.get(self.url + '?oldversion=33.0.1', HTTP_USER_AGENT=self.user_agent)
-        self.assertIn(self.expected, response.content)
-
-        response = self.client.get(self.url + '?oldversion=36.1', HTTP_USER_AGENT=self.user_agent)
-        self.assertNotIn(self.expected, response.content)
-
-        response = self.client.get(self.url + '?oldversion=36.1.1', HTTP_USER_AGENT=self.user_agent)
-        self.assertNotIn(self.expected, response.content)
-
-        response = self.client.get(self.url + '?oldversion=36.0', HTTP_USER_AGENT=self.user_agent)
-        self.assertNotIn(self.expected, response.content)
-
-        response = self.client.get(self.url + '?oldversion=37.0', HTTP_USER_AGENT=self.user_agent)
-        self.assertNotIn(self.expected, response.content)
-
-        # if there's no oldversion parameter, show no tour
-        response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
-        self.assertNotIn(self.expected, response.content)
 
 
 class TestHelloStartRedirect(TestCase):
