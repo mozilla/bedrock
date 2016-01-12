@@ -46,6 +46,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/about-forums-bundle.css',
     },
+    'about-lean-data': {
+        'source_filenames': (
+            'css/mozorg/about-lean-data.less',
+        ),
+        'output_filename': 'css/about-lean-data-bundle.css',
+    },
     'about-patents': {
         'source_filenames': (
             'css/mozorg/about-patents.less',
