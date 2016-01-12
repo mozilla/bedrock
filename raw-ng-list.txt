@@ -228,7 +228,6 @@ mozilla.community.senegal               The Mozilla community in Senegal. (Moder
 mozilla.community.sri-lanka             The Mozilla community in Sri Lanka. (Moderated)
 mozilla.community.sweden                The Mozilla community in Sweden. (Moderated)
 mozilla.community.switzerland           The Mozilla community in Switzerland. (Moderated)
-mozilla.community.taiwan                The Mozilla community in Taiwan. (Moderated)
 mozilla.community.toronto               The Mozilla community in Toronto, Canada. (Moderated)
 mozilla.community.turkey                The Mozilla community in Turkey. (Moderated)
 mozilla.community.tunisia               The Mozilla community in Tunisia.
