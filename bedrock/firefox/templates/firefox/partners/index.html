@@ -252,12 +252,11 @@
             {% endif %}
             <div id="os-promos" class="promos">
               <div>
-                {% if l10n_has_tag('mwc_2015') %}
-                  <h4>{{ _('Firefox OS at home') }}</h4>
-                  <a href="{{ url('firefox.os.tv') }}">{{ _('The power of the Web is coming to Panasonic TVs later this year') }}</a>
+                <h4>{{ _('Firefox OS at home') }}</h4>
+                {% if l10n_has_tag('fxostv_update_201601') %}
+                  <a href="https://blog.mozilla.org/blog/2016/01/05/firefox-os-will-power-new-panasonic-uhd-tvs-unveiled-at-ces/">{{ _('Firefox OS will power new Panasonic UHD TVs unveiled at CES') }}</a>
                 {% else %}
-                  <h4>{{ _('Get involved') }}</h4>
-                  <a href="https://mobilepartners.mozilla.org/">{{ _('Contact our business development team to get on board') }}</a>
+                  <a href="{{ url('firefox.os.tv') }}">{{ _('The power of the Web is coming to Panasonic TVs later this year') }}</a>
                 {% endif %}
               </div>
               <div>
