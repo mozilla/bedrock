@@ -272,6 +272,20 @@
     flex: @values;
 }
 
+.align-items(@align: stretch) {
+    -webkit-align-items: @align;
+       -moz-align-items: @align;
+        -ms-align-items: @align;
+            align-items: @align;
+}
+
+.justify-content(@justify: flex-start) {
+    -webkit-justify-content: @justify;
+       -moz-justify-content: @justify;
+        -ms-justify-content: @justify;
+            justify-content: @justify;
+}
+
 // White content box, often used with .title-shadow-box
 // See /about/powered-by for example.
 .callout-content() {
