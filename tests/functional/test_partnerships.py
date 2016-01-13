@@ -8,6 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from pages.partnerships import PartnershipsPage
 
 
+@pytest.mark.flaky(reruns=1)
 def test_request_partnership(base_url, selenium):
     page = PartnershipsPage(base_url, selenium).open()
     page.type_first_name('Automated')
