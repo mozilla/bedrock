@@ -315,8 +315,7 @@ class TestFirefoxAndroid(TestCase):
         eq_(firefox_android.latest_version('beta'), '23.0')
 
 
-@patch.object(firefox_ios._storage, 'data',
-              Mock(return_value=dict(version='1.2')))
+@override_settings(FIREFOX_IOS_RELEASE_VERSION='1.2')
 class TestFirefoxIos(TestCase):
 
     def test_latest_release_version(self):

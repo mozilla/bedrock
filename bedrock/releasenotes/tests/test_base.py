@@ -300,6 +300,12 @@ class TestNotesRedirects(TestCase):
         self._test('/firefox/android/aurora/notes/',
                    '/firefox/android/24.0a2/auroranotes/')
 
+    @patch('bedrock.releasenotes.views.firefox_ios.latest_version',
+           Mock(return_value='1.2'))
+    def test_ios_release_version(self):
+        self._test('/firefox/ios/notes/',
+                   '/firefox/ios/1.2/releasenotes/')
+
     @patch('bedrock.releasenotes.views.thunderbird_desktop.latest_version',
            Mock(return_value='22.0'))
     def test_thunderbird_release_version(self):
