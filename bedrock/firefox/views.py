@@ -8,8 +8,7 @@ import json
 import re
 
 from django.conf import settings
-from django.http import (Http404, HttpResponseRedirect,
-                         HttpResponsePermanentRedirect)
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.utils.encoding import force_text
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -28,7 +27,7 @@ from product_details.version_compare import Version
 import waffle
 
 from bedrock.base.geo import get_country_from_request
-from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
+from bedrock.firefox.firefox_details import firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.util import HttpResponseJSON
@@ -256,43 +255,34 @@ def dnt(request):
     return response
 
 
-def all_downloads(request, platform, channel):
-    if platform is None:
-        platform = 'desktop'
-    if platform == 'desktop':
-        product = firefox_desktop
-    if platform == 'android':
-        product = firefox_android
-
+def all_downloads(request, channel):
     if channel is None:
         channel = 'release'
-    if channel in ['developer', 'aurora']:
+    if channel == 'developer' or channel == 'aurora':
         channel = 'alpha'
     if channel == 'organizations':
         channel = 'esr'
 
-    # Since the regex in urls.py matches various URL patterns, we have to handle
-    # nonexistent pages here as 404 Not Found
-    if platform == 'ios':
-        raise Http404
-    if platform == 'android' and channel in ['alpha', 'esr']:
-        raise Http404
-
-    version = product.latest_version(channel)
+    version = firefox_desktop.latest_version(channel)
     query = request.GET.get('q')
 
-    context = {
-        'platform': platform,
-        'platforms': product.platforms(channel),
-        'full_builds_version': version.split('.', 1)[0],
-        'full_builds': product.get_filtered_full_builds(channel, version, query),
-        'test_builds': product.get_filtered_test_builds(channel, version, query),
-        'query': query,
-        'channel': channel,
-        'channel_label': product.channel_labels.get(channel, 'Firefox'),
+    channel_names = {
+        'release': _('Firefox'),
+        'beta': _('Firefox Beta'),
+        'alpha': _('Developer Edition'),
+        'esr': _('Firefox Extended Support Release'),
     }
 
-    if platform == 'desktop' and channel == 'esr':
+    context = {
+        'full_builds_version': version.split('.', 1)[0],
+        'full_builds': firefox_desktop.get_filtered_full_builds(channel, version, query),
+        'test_builds': firefox_desktop.get_filtered_test_builds(channel, version, query),
+        'query': query,
+        'channel': channel,
+        'channel_name': channel_names[channel]
+    }
+
+    if channel == 'esr':
         next_version = firefox_desktop.latest_version('esr_next')
         if next_version:
             context['full_builds_next_version'] = next_version.split('.', 1)[0]

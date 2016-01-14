@@ -201,12 +201,8 @@ def firefox_url(platform, page, channel=None):
 
     if channel:
         kwargs['channel'] = channel
-    if platform != 'desktop':
+    if page == 'notes' and platform != 'desktop':
         kwargs['platform'] = platform
-
-    # Firefox for Android and iOS have the system requirements page on SUMO
-    if platform in ['android', 'ios'] and page == 'sysreq':
-        return settings.FIREFOX_MOBILE_SYSREQ_URL
 
     return reverse('firefox.%s' % page, kwargs=kwargs)
 

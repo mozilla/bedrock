@@ -65,7 +65,7 @@
           {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True}) }}
         </a>
         <small class="download-other">
-          <a class="dl-button" href="{{ firefox_url('android', 'all') }}">{{_('Systems &amp; Languages')}}</a>
+          <a class="dl-button" href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
         </small>
       </div>
 
@@ -397,10 +397,10 @@
           </div>
           <ul>
             <li>
-              <a rel="external" href="{{ firefox_url('android', 'sysreq') }}">{{ _('Supported devices') }}</a>
+              <a rel="external" href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported devices') }}</a>
             </li>
             <li>
-              <a href="{{ firefox_url('android', 'all') }}">{{_('Systems &amp; Languages')}}</a>
+              <a href="{{ url('firefox.android.all') }}">{{_('Systems &amp; Languages')}}</a>
             </li>
             <li>
               <a href="{{ firefox_url('android', 'notes') }}">{{ _('Release notes') }}</a>
