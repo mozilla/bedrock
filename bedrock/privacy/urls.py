@@ -9,7 +9,6 @@ from bedrock.privacy import views
 
 urlpatterns = (
     url(r'^/$', views.privacy, name='privacy'),
-    page('/tips', 'privacy/privacy-day.html'),
     page('/principles', 'privacy/principles.html'),
     url(r'^/firefox/$', views.firefox_notices, name='privacy.notices.firefox'),
     url(r'^/firefox-os/$', views.firefox_os_notices, name='privacy.notices.firefox-os'),
