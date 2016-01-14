@@ -273,8 +273,8 @@ class FirefoxIOS(ProductDetails):
     store_url = settings.APPLE_APPSTORE_FIREFOX_LINK
 
     def latest_version(self, channel):
-        version = self.channel_map.get(channel, 'version')
-        return self.mobile_details[version]
+        # temporary solution until iOS builds are in ProductDetails
+        return settings.FIREFOX_IOS_RELEASE_VERSION
 
     def get_download_url(self, channel='release', locale='en-US'):
         countries = settings.APPLE_APPSTORE_COUNTRY_MAP
