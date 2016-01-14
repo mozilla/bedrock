@@ -1109,4 +1109,4 @@ NEWRELIC_BROWSER_LICENSE_KEY = config('NEWRELIC_BROWSER_LICENSE_KEY', default=''
 NEWRELIC_APP_ID = config('NEWRELIC_APP_ID', default='')
 
 # temporary home until product details is updated
-FIREFOX_IOS_RELEASE_VERSION = '1.3'
+FIREFOX_IOS_RELEASE_VERSION = '1.4'
