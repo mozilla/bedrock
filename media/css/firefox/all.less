@@ -77,9 +77,6 @@
         thead {
             th {
                 white-space: nowrap;
-                &:not([colspan]) {
-                    width: 15%;
-                }
             }
             th, td {
                 padding: 10px 0;
@@ -113,7 +110,7 @@
             a {
                 display: block;
                 padding: 10px 10px 10px 45px;
-                background: transparent url(/media/img/firefox/all/download-icons.png) left center no-repeat;
+                background: transparent url(/media/img/firefox/all/download-icons-desktop.png) left center no-repeat;
             }
             
             &.win64 a {
@@ -127,6 +124,16 @@
             }
             &.osx a {
                 background-position: -1200px 50%
+            }
+            &[class*="android"] a {
+                .at2x('/media/img/firefox/all/download-icons-android.png', 40px, 120px);
+                background-position: 0 0;
+            }
+            &.android-api-9 a {
+                background-position: 0 -40px;
+            }
+            &.android-x86 a {
+                background-position: 0 -80px;
             }
         }
     }
@@ -187,21 +194,26 @@
 
 /* Desktop */
 @media only screen and (min-width: @breakDesktop) {
-    .firefox-all-release #main-feature h1 {
+    body.desktop.release #main-feature h1 {
         .font-size(64px);
     }
 }
 
 /* Tablet and Mobile */
 @media only screen and (max-width: @breakDesktop) {
-    #main-content table .download a {
-        overflow: hidden;
-        margin: 0 auto;
-        padding: 0;
-        width: 40px;
-        height: 40px;
-        text-indent: 200%;
-        white-space: nowrap;
+    #main-content table {
+        .download a {
+            overflow: hidden;
+            margin: 0 auto;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            text-indent: 200%;
+            white-space: nowrap;
+        }
+        .unavailable {
+            text-align: center;
+        }
     }
 }
 

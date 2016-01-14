@@ -8,7 +8,8 @@ import json
 import re
 
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import (Http404, HttpResponseRedirect,
+                         HttpResponsePermanentRedirect)
 from django.utils.encoding import force_text
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -27,7 +28,7 @@ from product_details.version_compare import Version
 import waffle
 
 from bedrock.base.geo import get_country_from_request
-from bedrock.firefox.firefox_details import firefox_desktop
+from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.util import HttpResponseJSON
@@ -255,34 +256,43 @@ def dnt(request):
     return response
 
 
-def all_downloads(request, channel):
+def all_downloads(request, platform, channel):
+    if platform is None:
+        platform = 'desktop'
+    if platform == 'desktop':
+        product = firefox_desktop
+    if platform == 'android':
+        product = firefox_android
+
     if channel is None:
         channel = 'release'
-    if channel == 'developer' or channel == 'aurora':
+    if channel in ['developer', 'aurora']:
         channel = 'alpha'
     if channel == 'organizations':
         channel = 'esr'
 
-    version = firefox_desktop.latest_version(channel)
+    # Since the regex in urls.py matches various URL patterns, we have to handle
+    # nonexistent pages here as 404 Not Found
+    if platform == 'ios':
+        raise Http404
+    if platform == 'android' and channel in ['alpha', 'esr']:
+        raise Http404
+
+    version = product.latest_version(channel)
     query = request.GET.get('q')
 
-    channel_names = {
-        'release': _('Firefox'),
-        'beta': _('Firefox Beta'),
-        'alpha': _('Developer Edition'),
-        'esr': _('Firefox Extended Support Release'),
-    }
-
     context = {
+        'platform': platform,
+        'platforms': product.platforms(channel),
         'full_builds_version': version.split('.', 1)[0],
-        'full_builds': firefox_desktop.get_filtered_full_builds(channel, version, query),
-        'test_builds': firefox_desktop.get_filtered_test_builds(channel, version, query),
+        'full_builds': product.get_filtered_full_builds(channel, version, query),
+        'test_builds': product.get_filtered_test_builds(channel, version, query),
         'query': query,
         'channel': channel,
-        'channel_name': channel_names[channel]
+        'channel_label': product.channel_labels.get(channel, 'Firefox'),
     }
 
-    if channel == 'esr':
+    if platform == 'desktop' and channel == 'esr':
         next_version = firefox_desktop.latest_version('esr_next')
         if next_version:
             context['full_builds_next_version'] = next_version.split('.', 1)[0]

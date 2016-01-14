@@ -104,16 +104,23 @@ class TestInstallerHelp(TestCase):
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class TestFirefoxAll(TestCase):
-    def setUp(self):
+    def _get_url(self, platform='desktop', channel='release'):
         with self.activate('en-US'):
-            self.url = reverse('firefox.all')
+            kwargs = {}
+
+            if platform != 'desktop':
+                kwargs['platform'] = platform
+            if channel != 'release':
+                kwargs['channel'] = channel
+
+            return reverse('firefox.all', kwargs=kwargs)
 
     def test_no_search_results(self):
         """
         Tables should be gone and not-found message should be shown when there
         are no search results.
         """
-        resp = self.client.get(self.url + '?q=DOES_NOT_EXIST')
+        resp = self.client.get(self._get_url() + '?q=DOES_NOT_EXIST')
         doc = pq(resp.content)
         ok_(not doc('table.build-table'))
         ok_(not doc('.not-found.hide'))
@@ -122,7 +129,7 @@ class TestFirefoxAll(TestCase):
         """
         When not searching all builds should show.
         """
-        resp = self.client.get(self.url)
+        resp = self.client.get(self._get_url())
         doc = pq(resp.content)
         eq_(len(doc('.build-table')), 2)
         eq_(len(doc('.not-found.hide')), 2)
@@ -130,6 +137,7 @@ class TestFirefoxAll(TestCase):
         num_builds = len(firefox_desktop.get_filtered_full_builds('release'))
         num_builds += len(firefox_desktop.get_filtered_test_builds('release'))
         eq_(len(doc('tr[data-search]')), num_builds)
+        eq_(len(doc('tr#en-US a')), 5)
 
     def test_no_locale_details(self):
         """
@@ -141,6 +149,42 @@ class TestFirefoxAll(TestCase):
         ok_('uz' in firefox_desktop.firefox_primary_builds)
         ok_('uz' not in firefox_desktop.languages)
         eq_(len([build for build in builds if build['locale'] == 'uz']), 0)
+
+    def test_desktop_esr(self):
+        """
+        ESR download page should not have Windows 64-bit builds.
+        """
+        resp = self.client.get(self._get_url('desktop', 'organizations'))
+        doc = pq(resp.content)
+        eq_(len(doc('tr#en-US a')), 4)
+        eq_(len(doc('tr#en-US td.win64')), 0)
+
+    def test_android(self):
+        """
+        Android x64 builds are only available in multi and en-US locales.
+        """
+        resp = self.client.get(self._get_url('android'))
+        doc = pq(resp.content)
+        eq_(len(doc('tr#multi a')), 3)
+        eq_(len(doc('tr#multi .android-x86')), 1)
+        eq_(len(doc('tr#en-US a')), 3)
+        eq_(len(doc('tr#en-US .android-x86')), 1)
+        eq_(len(doc('tr#fr a')), 2)
+        eq_(len(doc('tr#fr .android-x86')), 0)
+
+    def test_404(self):
+        """
+        Firefox for iOS and Firefox Aurora for Android don't have the /all/ page.
+        Also, Firefox for Android doesn't have the ESR channel.
+        """
+        resp = self.client.get(self._get_url('ios'))
+        self.assertEqual(resp.status_code, 404)
+
+        resp = self.client.get(self._get_url('android', 'aurora'))
+        self.assertEqual(resp.status_code, 404)
+
+        resp = self.client.get(self._get_url('android', 'organizations'))
+        self.assertEqual(resp.status_code, 404)
 
 
 class TestFirefoxPartners(TestCase):
