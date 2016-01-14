@@ -34,9 +34,9 @@ pytest-variables==1.2
 # sha256: hP6NW_Tc3MSQAkRsR6FG0XrBD6zwDZCGZZBkrEO2wls
 requests==2.8.1
 
-# sha256: 1dynRpVTFdyD7Hiaz_HymLhRdzLPI6JICeTlk565Gdg
-# sha256: MLlzOMDZ8eYOcuzuBXmw8IRdVQJTQsPVzLIk-4oHt4c
-selenium==2.48.0
+# sha256: arzm4V2S-l-1Y0kTJLHgJgwlbgNJD5KGit7iLLmdkXY
+# sha256: uU_EgHl_8w0JujmpO1T17gChJVz-4FpESNMSYTCZP_k
+selenium==2.49.0
 
 # sha256: Q4LXqUTB4rHcF_7j_TV1SV-xAjajtulcxpVdsEmEvDw
 # sha256: 529Ztp_AzN6LlHcoSn-3JqJKIfX6rmqzBZOS6LvYiqc
