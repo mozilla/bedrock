@@ -33,6 +33,7 @@ def test_tweet_is_not_present(base_url, selenium):
     assert not page.is_tweet_promo_present
 
 
+@pytest.mark.sanity
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
