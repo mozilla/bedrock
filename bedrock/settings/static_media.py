@@ -648,12 +648,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mozilla_accordion-bundle.css',
     },
-    'newsletter_ios': {
-        'source_filenames': (
-            'css/newsletter/ios.less',
-        ),
-        'output_filename': 'css/newsletter_ios-bundle.css',
-    },
     'partnerships': {
         'source_filenames': (
             'css/mozorg/partnerships.less',

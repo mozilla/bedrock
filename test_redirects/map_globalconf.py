@@ -592,6 +592,9 @@ URLS = flatten((
     url_test('/newsletter/about_mozilla/', '/contribute/'),
     url_test('/newsletter/new/', '/newsletter/'),
 
+    # bug 1238458
+    url_test('/newsletter/ios/', '/firefox/ios/'),
+
     # bug 818323
     url_test('/projects/security/known-vulnerabilities.html', '/security/known-vulnerabilities/'),
     url_test('/projects/security/older-vulnerabilities.html',
