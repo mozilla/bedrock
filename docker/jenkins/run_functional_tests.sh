@@ -7,6 +7,7 @@
 set -xe
 
 SELENIUM_VERSION=${SELENIUM_VERSION:-2.48.2}
+GIT_COMMIT=${GIT_COMMIT:-$(git rev-parse HEAD)}
 
 cp docker/dockerfiles/bedrock_functional_tests Dockerfile
 docker build -t bedrock_functional_tests:$GIT_COMMIT --pull=true .
