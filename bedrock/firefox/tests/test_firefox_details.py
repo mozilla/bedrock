@@ -315,9 +315,9 @@ class TestFirefoxAndroid(TestCase):
         eq_(firefox_android.latest_version('beta'), '23.0')
 
 
-@override_settings(FIREFOX_IOS_RELEASE_VERSION='1.2')
+@override_settings(FIREFOX_IOS_RELEASE_VERSION='1.4')
 class TestFirefoxIos(TestCase):
 
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
-        eq_(firefox_ios.latest_version('release'), '1.2')
+        eq_(firefox_ios.latest_version('release'), '1.4')
