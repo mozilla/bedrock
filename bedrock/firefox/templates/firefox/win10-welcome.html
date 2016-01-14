@@ -48,13 +48,22 @@
     <h1>{% block main_headline %}{{ self.page_title() }}{% endblock %}</h1>
   </header>
   <section class="firefox-default-cta hidden">
-    <button id="set-default" type="button" class="button-flat-dark">{{ _('Let’s do it') }}</button>
+    {% if l10n_has_tag('win10_button_update') %}
+      <button id="set-default" type="button" class="button-flat-dark">{{ _('Let’s do it') }}</button>
+    {% endif %}
     <h2>{{ _('Make Firefox your default in 3 easy steps:') }}</h2>
     <ol>
-      <li>{{ _('Click the button below') }}</li>
+      {% if l10n_has_tag('win10_button_update') %}
+        <li>{{ _('Click the button above') }}</li>
+      {% else %}
+        <li>{{ _('Click the button below') }}</li>
+      {% endif %}
       <li>{{ _('Scroll down to “Web browser”') }}</li>
       <li>{{ _('Choose Firefox') }}</li>
     </ol>
+    {% if not l10n_has_tag('win10_button_update') %}
+      <button id="set-default" type="button" class="button-flat-dark">{{ _('Let’s do it') }}</button>
+    {% endif %}
   </section>
   <section class="firefox-learn-links">
     <ul>
