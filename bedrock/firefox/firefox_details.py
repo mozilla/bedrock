@@ -5,23 +5,13 @@ from urllib import urlencode
 
 from django.conf import settings
 from product_details import ProductDetails
-from lib.l10n_utils.dotlang import _
 
 
 # TODO: port this to django-mozilla-product-details
-class _ProductDetails(ProductDetails):
-    bouncer_url = 'https://download.mozilla.org/'
-
-    def _matches_query(self, info, query):
-        words = re.split(r',|,?\s+', query.strip().lower())
-        return all((word in info['name_en'].lower() or
-                    word in info['name_native'].lower()) for word in words)
-
-
-class FirefoxDesktop(_ProductDetails):
+class FirefoxDesktop(ProductDetails):
+    download_base_url_direct = 'https://download.mozilla.org/'
     download_base_url_transition = '/firefox/new/?scene=2#download-fx'
 
-    # Human-readable platform names
     platform_labels = OrderedDict([
         ('win', 'Windows'),
         ('win64', 'Windows 64-bit'),
@@ -29,17 +19,7 @@ class FirefoxDesktop(_ProductDetails):
         ('linux', 'Linux'),
         ('linux64', 'Linux 64-bit'),
     ])
-
-    # Human-readable channel names
-    channel_labels = {
-        'alpha': _('Developer Edition'),
-        'beta': _('Firefox Beta'),
-        'esr': _('Firefox Extended Support Release'),
-        'release': _('Firefox'),
-    }
-
-    # Version property names in product-details
-    version_map = {
+    channel_map = {
         'alpha': 'FIREFOX_AURORA',
         'beta': 'LATEST_FIREFOX_DEVEL_VERSION',
         'esr': 'FIREFOX_ESR',
@@ -50,17 +30,8 @@ class FirefoxDesktop(_ProductDetails):
     def __init__(self, **kwargs):
         super(FirefoxDesktop, self).__init__(**kwargs)
 
-    def platforms(self, channel='release'):
-        platforms = self.platform_labels.copy()
-
-        # Windows 64-bit builds are not available on the ESR channel yet
-        if channel in ['esr', 'esr_next']:
-            del platforms['win64']
-
-        return platforms.items()
-
     def latest_version(self, channel='release'):
-        version = self.version_map.get(channel, 'LATEST_FIREFOX_VERSION')
+        version = self.channel_map.get(channel, 'LATEST_FIREFOX_VERSION')
         try:
             return self.firefox_versions[version]
         except KeyError:
@@ -119,12 +90,17 @@ class FirefoxDesktop(_ProductDetails):
                     _builds['Linux 64-bit'] = _builds['Linux']
                 return version, _builds
 
+    def _matches_query(self, info, query):
+        words = re.split(r',|,?\s+', query.strip().lower())
+        return all((word in info['name_en'].lower() or
+                    word in info['name_native'].lower()) for word in words)
+
     def _get_filtered_builds(self, builds, channel, version=None, query=None):
         """
         Get a list of builds, sorted by english locale name, for a specific
         Firefox version.
         :param builds: a build dict from the JSON
-        :param channel: one of self.version_map.keys().
+        :param channel: one of self.channel_map.keys().
         :param version: a firefox version. one of self.latest_versions.
         :param query: a string to match against native or english locale name
         :return: list
@@ -164,7 +140,7 @@ class FirefoxDesktop(_ProductDetails):
     def get_filtered_full_builds(self, channel, version=None, query=None):
         """
         Return filtered builds for the fully translated releases.
-        :param channel: one of self.version_map.keys().
+        :param channel: one of self.channel_map.keys().
         :param version: a firefox version. one of self.latest_version.
         :param query: a string to match against native or english locale name
         :return: list
@@ -175,7 +151,7 @@ class FirefoxDesktop(_ProductDetails):
     def get_filtered_test_builds(self, channel, version=None, query=None):
         """
         Return filtered builds for the translated releases in beta.
-        :param channel: one of self.version_map.keys().
+        :param channel: one of self.channel_map.keys().
         :param version: a firefox version. one of self.latest_version.
         :param query: a string to match against native or english locale name
         :return: list
@@ -188,7 +164,7 @@ class FirefoxDesktop(_ProductDetails):
                          force_funnelcake=False, funnelcake_id=None):
         """
         Get direct download url for the product.
-        :param channel: one of self.version_map.keys().
+        :param channel: one of self.channel_map.keys().
         :param version: a firefox version. one of self.latest_version.
         :param platform: OS. one of self.platform_labels.keys().
         :param locale: e.g. pt-BR. one exception is ja-JP-mac.
@@ -215,7 +191,7 @@ class FirefoxDesktop(_ProductDetails):
             else:
                 product = 'firefox-aurora-latest-l10n'
 
-            return '?'.join([self.bouncer_url,
+            return '?'.join([self.download_base_url_direct,
                              urlencode([
                                  ('product', product),
                                  ('os', platform),
@@ -248,7 +224,7 @@ class FirefoxDesktop(_ProductDetails):
         # (bypassing the transition page)
         if force_direct:
             # build a direct download link
-            return '?'.join([self.bouncer_url,
+            return '?'.join([self.download_base_url_direct,
                              urlencode([
                                  ('product', 'firefox-%s' % _version),
                                  ('os', platform),
@@ -260,41 +236,12 @@ class FirefoxDesktop(_ProductDetails):
             return self.download_base_url_transition
 
 
-class FirefoxAndroid(_ProductDetails):
-    # Architecture names defined in bouncer and these human-readable names
-    platform_labels = OrderedDict([
-        ('android', _('Modern devices\n(Android 4.0+)')),
-        ('android-api-9', _('Legacy devices\n(Android 2.3)')),
-        ('android-x86', _('Intel devices\n(Android 4.0+ x86 CPU)')),
-    ])
-
-    # Human-readable channel names
-    channel_labels = {
-        'alpha': _('Firefox Aurora'),
-        'beta': _('Firefox Beta'),
-        'release': _('Firefox'),
-    }
-
-    # Version property names in product-details
-    version_map = {
+class FirefoxAndroid(ProductDetails):
+    channel_map = {
         'alpha': 'alpha_version',
         'beta': 'beta_version',
         'release': 'version',
     }
-
-    # Build property names in product-details
-    build_map = {
-        'alpha': 'alpha_builds',
-        'beta': 'beta_builds',
-        'release': 'builds',
-    }
-
-    # Product names defined in bouncer
-    product_map = {
-        'beta': 'fennec-beta-latest',
-        'release': 'fennec-latest',
-    }
-
     store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
     aurora_url_base = ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/'
                        'latest-mozilla-aurora-android')
@@ -304,93 +251,9 @@ class FirefoxAndroid(_ProductDetails):
         'x86': aurora_url_base + '-x86/fennec-%s.multi.android-i386.apk',
     }
 
-    def platforms(self, channel='release'):
-        platforms = self.platform_labels.copy()
-
-        # Android Honeycomb (3.x) was supported on Firefox 45 and below
-        if int(self.latest_version(channel).split('.', 1)[0]) < 46:
-            platforms['android'] = _('Modern devices\n(Android 3.0+)')
-
-        return platforms.items()
-
     def latest_version(self, channel):
-        version = self.version_map.get(channel, 'version')
+        version = self.channel_map.get(channel, 'version')
         return self.mobile_details[version]
-
-    def _get_filtered_builds(self, builds, channel, version=None, query=None):
-        """
-        Get a list of builds, sorted by english locale name, for a specific
-        Firefox version.
-        :param builds: a build dict from the JSON
-        :param channel: one of self.version_map.keys().
-        :param version: a firefox version. one of self.latest_versions.
-        :param query: a string to match against native or english locale name
-        :return: list
-        """
-        product = self.product_map.get(channel, 'fennec-latest')
-        locales = [build['locale']['code'] for build in builds]
-        f_builds = []
-
-        # Prepend multi-locale build
-        locales.sort()
-        locales.insert(0, 'multi')
-
-        for locale in locales:
-            if locale == 'multi':
-                name_en = _('Multi-locale')
-                name_native = ''
-            elif locale in self.languages:
-                name_en = self.languages[locale]['English']
-                name_native = self.languages[locale]['native']
-            else:
-                continue
-
-            build_info = {
-                'locale': locale,
-                'name_en': name_en,
-                'name_native': name_native,
-                'platforms': {},
-            }
-
-            # only include builds that match a search query
-            if query is not None and not self._matches_query(build_info, query):
-                continue
-
-            for arch, label in self.platform_labels.iteritems():
-                # x86 builds are not localized yet
-                if arch == 'android-x86' and locale not in ['multi', 'en-US']:
-                    continue
-
-                params = urlencode([
-                    ('product', product),
-                    ('os', arch),
-                    # Order matters, lang must be last for bouncer.
-                    ('lang', locale),
-                ])
-
-                build_info['platforms'][arch] = {
-                    'download_url': '?'.join([self.bouncer_url, params])
-                }
-
-            f_builds.append(build_info)
-
-        return f_builds
-
-    def get_filtered_full_builds(self, channel, version=None, query=None):
-        """
-        Return filtered builds for the fully translated releases.
-        :param channel: one of self.version_map.keys().
-        :param version: a firefox version. one of self.latest_version.
-        :param query: a string to match against native or english locale name
-        :return: list
-        """
-        builds = self.mobile_details[self.build_map.get(channel, 'builds')]
-
-        return self._get_filtered_builds(builds, channel, version, query)
-
-    def get_filtered_test_builds(self, channel, version=None, query=None):
-        # We don't have pre-release builds yet
-        return []
 
     def get_download_url(self, channel, type=None):
         if channel == 'alpha':
@@ -403,8 +266,8 @@ class FirefoxAndroid(_ProductDetails):
         return self.store_url
 
 
-class FirefoxIOS(_ProductDetails):
-    version_map = {
+class FirefoxIOS(ProductDetails):
+    channel_map = {
         'release': 'version',
     }
     store_url = settings.APPLE_APPSTORE_FIREFOX_LINK

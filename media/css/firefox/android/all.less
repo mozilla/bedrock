@@ -1,0 +1,100 @@
+@import '../../sandstone/lib.less';
+
+#main-feature {
+    .span-all();
+    h1 {
+        margin-bottom: @baseLine;
+    }
+    h2 {
+        .font-size(24px);
+        letter-spacing: -0.25px;
+        line-height: 1.4;
+    }
+}
+
+#main-content {
+    .build-table-container {
+        .span-all();
+    }
+    table {
+        width: 100%;
+        thead {
+            th {
+                white-space: nowrap;
+                &:not([colspan]) {
+                    width: 15%;
+                }
+            }
+            th, td {
+                padding: 10px 0;
+            }
+        }
+        tbody {
+            th, td {
+                padding: 10px 0;
+            }
+        }
+        .download {
+            padding: 10px 0;
+            a {
+                display: block;
+                padding: 5px 5px 5px 35px;
+                background: transparent url(/media/img/firefox/android/android-download.png) left center no-repeat;
+                background: url(/media/img/firefox/android/android-download.svg), linear-gradient(transparent, transparent);
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
+
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+
+    #main-feature {
+        h1 {
+            .font-size(48px);
+        }
+    }
+}
+
+/* Wide mobile layout: 480px; */
+@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+    #main-content table tbody {
+        th {
+            width: 50%;
+        }
+        td {
+            border-top: none;
+        }
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #main-feature {
+        h1 {
+            .font-size(36px);
+        }
+        h2 {
+            .font-size(18px);
+            letter-spacing: normal;
+        }
+    }
+
+    #main-content {
+        table {
+            thead {
+                display: none;
+            }
+            td {
+                border-top: none;
+            }
+            tr {
+                overflow: hidden;
+                border-top: 1px solid rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}
