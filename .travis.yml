@@ -40,4 +40,4 @@ notifications:
     on_failure: always
     use_notice: true
 addons:
-  firefox: "35.0"
+  firefox: "latest-esr"
