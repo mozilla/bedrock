@@ -278,4 +278,8 @@ redirectpatterns = (
 
     # Bug 638948 redirect beta privacy policy link
     redirect(r'^firefox/beta/feedbackprivacypolicy/?$', '/privacy/firefox/'),
+
+    # Bug 1238248
+    redirect(r'^firefox/push/?$',
+             'https://support.mozilla.org/kb/push-notifications-firefox'),
 )

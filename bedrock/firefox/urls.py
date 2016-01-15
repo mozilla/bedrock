@@ -105,7 +105,6 @@ urlpatterns = (
     page('firefox/os/devices/tv', 'firefox/os/tv.html'),
 
     page('firefox/pocket', 'firefox/pocket.html'),
-    page('firefox/push', 'firefox/push.html'),
 
     url(r'^firefox/windows-10/welcome/$', views.Win10Welcome.as_view(), name='firefox.win10-welcome'),
 

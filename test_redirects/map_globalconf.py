@@ -934,5 +934,9 @@ URLS = flatten((
              '/en-US/about/partnerships/'),
 
     # bug 1235853
-    url_test('/facebookapps/{,downloadtab/}', '/firefox/new/')
+    url_test('/facebookapps/{,downloadtab/}', '/firefox/new/'),
+
+    # bug 1238248
+    url_test('/firefox/push/',
+             'https://support.mozilla.org/kb/push-notifications-firefox')
 ))
