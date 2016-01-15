@@ -8,12 +8,19 @@ import requests
 
 
 def pytest_generate_tests(metafunc):
+    if 'not headless' in metafunc.config.option.markexpr:
+        return  # test deslected by mark expression
+    base_url = metafunc.config.option.base_url
+    if not base_url:
+        pytest.skip(
+            'This test requires a base URL to be specified on the command '
+            'line or in a configuration file.')
     paths = (
         '/firefox/new/',
         '/thunderbird/')
     argvalues = []
     for path in paths:
-        r = requests.get(metafunc.config.option.base_url + path)
+        r = requests.get(base_url + path)
         soup = BeautifulSoup(r.content, 'html.parser')
         urls = [a['href'] for a in soup.find('ul', class_='download-list').find_all('a')]
         assert len(urls) > 0
