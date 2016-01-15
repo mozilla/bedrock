@@ -38,7 +38,7 @@
   </form>
 {% endmacro %}
 
-{% macro build_table(builds, title, description) %}
+{% macro build_table(platforms, builds, title, description) %}
   <div class="build-table-container">
     {% if builds %}
       <table class="table build-table">
@@ -51,18 +51,14 @@
         <thead>
           <tr>
             <th colspan="2" scope="col">{{ _('Language') }}</th>
-            <th scope="col">{{ _('Windows') }}</th>
-            {% if 'win64' in builds[0].platforms.keys() -%}
-            <th scope="col">{{ _('Windows 64-bit') }}</th>
-            {% endif -%}
-            <th scope="col">{{ _('Mac OS X') }}</th>
-            <th scope="col">{{ _('Linux') }}</th>
-            <th scope="col">{{ _('Linux 64-bit') }}</th>
+            {% for p_name, p_label in platforms %}
+              <th scope="col">{{ p_label|replace('\n', '<br>'|safe) }}</th>
+            {% endfor %}
           </tr>
         </thead>
         <tbody>
           {% for build in builds %}
-            {{ build_row(build) }}
+            {{ build_row(platforms, build) }}
           {% endfor %}
         </tbody>
       </table>
@@ -71,18 +67,13 @@
   </div>
 {% endmacro %}
 
-{% macro build_row(build) %}
+{% macro build_row(platforms, build) %}
   <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }}, {{ build.name_native|lower }}">
     <th scope="row">{{ build.name_en }}</th>
     <td lang="{{ build.locale }}">{{ build.name_native }}</td>
-    {{ build_link(build, 'win', _('Download for Windows')) }}
-    {# Windows 64-bit builds are currently available only on the Firefox Aurora and Beta channels -#}
-    {% if 'win64' in build.platforms.keys() -%}
-    {{ build_link(build, 'win64', _('Download for 64-bit Windows')) }}
-    {% endif -%}
-    {{ build_link(build, 'osx', _('Download for Mac OS X')) }}
-    {{ build_link(build, 'linux', _('Download for Linux')) }}
-    {{ build_link(build, 'linux64', _('Download for 64-bit Linux')) }}
+    {% for p_name, p_label in platforms %}
+      {{ build_link(build, p_name, _('Download for %(platform)s in %(locale)s')|format(platform=p_label|replace('\n', ' '), locale=build.name_en)) }}
+    {% endfor %}
   </tr>
 {% endmacro %}
 

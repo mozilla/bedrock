@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block body_class -%}
-  sky thunderbird-all-{{ channel }}
+  sky {{ platform }} {{ channel }}
 {% endblock %}
 
 {% block page_css %}
@@ -43,7 +43,7 @@
     <section class="pager-content">
       <div class="pager-page" id="builds">
         <div class="localized">
-          {{ build_table(full_builds, _('Fully localized versions')) }}
+          {{ build_table(platforms, full_builds, _('Fully localized versions')) }}
         </div>
       </div> {#-- /builds --#}
     </section>
