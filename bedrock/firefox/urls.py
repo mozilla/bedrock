@@ -82,8 +82,6 @@ urlpatterns = (
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
     url(tour_re, views.TourView.as_view(), name='firefox.tour'),
     url(hello_start_re, views.HelloStartView.as_view(), name='firefox.hello.start'),
-    url(r'^firefox/partners/$', views.firefox_partners,
-        name='firefox.partners.index'),
 
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
         name='firefox.tracking-protection-tour.start'),

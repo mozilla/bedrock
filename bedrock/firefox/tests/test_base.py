@@ -2,15 +2,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-import json
 import os
 import waffle
 
-from django.conf import settings
 from django.http import HttpResponse
-from django.test.client import Client, RequestFactory
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from bedrock.base.helpers import static
 
 from bedrock.base.urlresolvers import reverse
 from mock import ANY, call, Mock, patch
@@ -141,126 +138,6 @@ class TestFirefoxAll(TestCase):
         ok_('uz' in firefox_desktop.firefox_primary_builds)
         ok_('uz' not in firefox_desktop.languages)
         eq_(len([build for build in builds if build['locale'] == 'uz']), 0)
-
-
-class TestFirefoxPartners(TestCase):
-    @patch('bedrock.firefox.views.settings.DEBUG', True)
-    def test_js_bundle_files_debug_true(self):
-        """
-        When DEBUG is on the bundle should return the individual files
-        with the STATIC_URL.
-        """
-        bundle = 'partners_desktop'
-        files = settings.PIPELINE_JS[bundle]['source_filenames']
-        files = [static(f) for f in files]
-        self.assertEqual(files,
-                         json.loads(fx_views.get_js_bundle_files(bundle)))
-
-    @patch('bedrock.firefox.views.settings.DEBUG', False)
-    def test_js_bundle_files_debug_false(self):
-        """
-        When DEBUG is off the bundle should return a single minified filename.
-        """
-        bundle = 'partners_desktop'
-        filename = static('js/%s-bundle.js' % bundle)
-        bundle_file = json.loads(fx_views.get_js_bundle_files(bundle))
-        self.assertEqual(len(bundle_file), 1)
-        self.assertEqual(bundle_file[0], filename)
-
-    @patch('bedrock.mozorg.views.requests.post')
-    def test_sf_form_proxy_error_response(self, post_patch):
-        """An error response from SF should be returned."""
-        new_mock = Mock()
-        new_mock.status_code = 400
-        post_patch.return_value = new_mock
-        with self.activate('en-US'):
-            url = reverse('mozorg.partnerships')
-            resp = self.client.post(url, {
-                'first_name': 'The',
-                'last_name': 'Dude',
-                'company': 'Urban Achievers',
-                'email': 'thedude@mozilla.com',
-            }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(resp.status_code, 400)
-
-        # decode JSON response
-        resp_data = json.loads(resp.content)
-
-        self.assertEqual(resp_data['msg'], 'bad_request')
-        self.assertTrue(post_patch.called)
-
-    @patch('bedrock.mozorg.views.requests.post')
-    def test_sf_form_proxy_invalid_form(self, post_patch):
-        """A form error should result in a 400 response."""
-        with self.activate('en-US'):
-            url = reverse('mozorg.partnerships')
-            resp = self.client.post(url, {
-                'first_name': 'Dude' * 20,
-            }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(resp.status_code, 400)
-
-        resp_data = json.loads(resp.content)
-
-        self.assertEqual(resp_data['msg'], 'Form invalid')
-        self.assertFalse(post_patch.called)
-
-    @patch('bedrock.mozorg.views.requests.post')
-    def test_sf_form_proxy(self, post_patch):
-        new_mock = Mock()
-        new_mock.status_code = 200
-        post_patch.return_value = new_mock
-        with self.activate('en-US'):
-            url = reverse('mozorg.partnerships')
-            resp = self.client.post(url, {
-                'first_name': 'The',
-                'last_name': 'Dude',
-                'title': 'Abider of things',
-                'company': 'Urban Achievers',
-                'email': 'thedude@mozilla.com',
-            }, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-        self.assertEqual(resp.status_code, 200)
-
-        resp_data = json.loads(resp.content)
-
-        self.assertEqual(resp_data['msg'], 'ok')
-        post_patch.assert_called_once_with(ANY, {
-            'first_name': u'The',
-            'last_name': u'Dude',
-            'description': u'',
-            'retURL': 'http://www.mozilla.org/en-US/about/'
-                      'partnerships?success=1',
-            'title': u'Abider of things',
-            'URL': u'',
-            'company': u'Urban Achievers',
-            'oid': '00DU0000000IrgO',
-            'phone': u'',
-            'street': u'',
-            'zip': u'',
-            'city': u'',
-            'state': u'',
-            'country': u'',
-            'mobile': u'',
-            '00NU0000002pDJr': [],  # interest (multi-select)
-            '00NU00000053D4G': u'',  # interested_countries
-            '00NU00000053D4L': u'',  # interested_languages
-            '00NU00000053D4a': u'',  # campaign_type
-            'industry': u'',
-            'email': u'thedude@mozilla.com',
-            'lead_source': 'www.mozilla.org/about/partnerships/',
-        })
-
-    def test_sf_form_csrf_status(self):
-        """Test that CSRF checks return 200 with token and 403 without."""
-        csrf_client = Client(enforce_csrf_checks=True)
-        response = csrf_client.get(reverse('firefox.partners.index'))
-        post_url = reverse('mozorg.partnerships')
-        response = csrf_client.post(post_url, {
-            'first_name': "Partner",
-            'csrfmiddlewaretoken': response.cookies['csrftoken'].value,
-        })
-        self.assertEqual(response.status_code, 200)
-        response = csrf_client.post(post_url, {'first_name': "Partner"})
-        self.assertEqual(response.status_code, 403)
 
 
 none_mock = Mock()

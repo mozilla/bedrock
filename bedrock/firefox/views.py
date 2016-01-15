@@ -4,20 +4,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import json
 import re
 
 from django.conf import settings
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.utils.encoding import force_text
 from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
-from bedrock.base.helpers import static
 from bedrock.base.urlresolvers import reverse
 from commonware.response.decorators import xframe_allow
 from lib import l10n_utils
@@ -29,72 +27,11 @@ import waffle
 from bedrock.base.geo import get_country_from_request
 from bedrock.firefox.firefox_details import firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
-from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.releasenotes import version_re
 
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
-
-LANG_FILES = ['firefox/partners/index']
-
-LOCALE_FXOS_HEADLINES = {
-    'de': {
-        'title': u"Firefox OS ist richtungsweisend für die Zukunft des "
-                 u"mobilen Marktes",
-        'url': 'http://blog.mozilla.org/press-de/2014/02/23/'
-               'firefox-os-ist-richtungsweisend-fur-die-zukunft-des-mobilen-'
-               'marktes',
-    },
-    'en-GB': {
-        'title': u'Firefox OS Unleashes the Future of Mobile',
-        'url': 'http://blog.mozilla.org/press-uk/2014/02/23/'
-               'firefox-os-unleashes-the-future-of-mobile'
-    },
-    'en-US': {
-        'title': _('Firefox OS Unleashes the Future of Mobile'),
-        'url': 'https://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
-    },
-    'es-AR': {
-        'title': u'Firefox OS te desvela el futuro de lo móvil',
-        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
-               'firefox-os-te-desvela-el-futuro-de-lo-movil/',
-    },
-    'es-CL': {
-        'title': u'Firefox OS te desvela el futuro de lo móvil',
-        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
-               'firefox-os-te-desvela-el-futuro-de-lo-movil/',
-    },
-    'es-ES': {
-        'title': u'Firefox OS te desvela el futuro de lo móvil',
-        'url': 'https://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
-    },
-    'es-MX': {
-        'title': u'Firefox OS te desvela el futuro de lo móvil',
-        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
-               'firefox-os-te-desvela-el-futuro-de-lo-movil/',
-    },
-    'fr': {
-        'title': u'Firefox OS chamboule le futur du mobile',
-        'url': 'http://blog.mozilla.org/press-fr/2014/02/23/'
-               'firefox-os-chamboule-le-futur-du-mobile',
-    },
-    'it': {
-        'title': u'Firefox OS svela il futuro del mobile',
-        'url': 'http://blog.mozilla.org/press-it/2014/02/23/'
-               'firefox-os-svela-il-futuro-del-mobile',
-    },
-    'pl': {
-        'title': u'Firefox OS uwalnia przyszłość technologii mobilnej',
-        'url': 'http://blog.mozilla.org/press-pl/2014/02/23/'
-               'firefox-os-uwalnia-przyszlosc-technologii-mobilnej',
-    },
-    'pt-BR': {
-        'title': u'Firefox OS apresenta o futuro dos dispositivos móveis',
-        'url': 'https://blog.mozilla.org/press-br/2014/02/23/'
-               'firefox-os-apresenta-o-futuro-dos-dispositivos-moveis/',
-    },
-}
 
 INSTALLER_CHANNElS = [
     'release',
@@ -127,24 +64,6 @@ LOCALE_SPRING_CAMPAIGN_VIDEOS = {
     'fr': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_french',
     'pt-BR': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_portugeseBrazil',
 }
-
-
-def get_js_bundle_files(bundle):
-    """
-    Return a JSON string of the list of file names for lazy loaded
-    javascript.
-    """
-    bundle = settings.PIPELINE_JS[bundle]
-    if settings.DEBUG:
-        items = bundle['source_filenames']
-    else:
-        items = (bundle['output_filename'],)
-    return json.dumps([static(i) for i in items])
-
-
-JS_COMMON = get_js_bundle_files('partners_common')
-JS_MOBILE = get_js_bundle_files('partners_mobile')
-JS_DESKTOP = get_js_bundle_files('partners_desktop')
 
 
 def installer_help(request):
@@ -306,28 +225,6 @@ def firefox_os_geo_redirect(request):
         )
 
     return HttpResponseRedirect(reverse('firefox.os.ver.{0}'.format(version)))
-
-
-@csrf_protect
-def firefox_partners(request):
-    # If the current locale isn't in our list, return the en-US value
-    press_locale = request.locale if (
-        request.locale in LOCALE_FXOS_HEADLINES) else 'en-US'
-
-    template_vars = {
-        'locale_headline_url': LOCALE_FXOS_HEADLINES[press_locale]['url'],
-        'locale_headline_title': LOCALE_FXOS_HEADLINES[press_locale]['title'],
-        'js_common': JS_COMMON,
-        'js_mobile': JS_MOBILE,
-        'js_desktop': JS_DESKTOP,
-    }
-
-    form_kwargs = {
-        'interest_set': 'fx',
-        'lead_source': 'www.mozilla.org/firefox/partners/'}
-
-    return process_partnership_form(
-        request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
 
 
 def show_devbrowser_firstrun_or_whatsnew(version):
