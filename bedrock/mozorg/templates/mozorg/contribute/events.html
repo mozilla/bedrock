@@ -92,10 +92,10 @@
       </thead>
       <tbody>
         {% for event in current_and_future_events() %}
-          <tr>
-            <td class="event-date"><time datetime="{{ event.start_time.isoformat() }}">{{ event.start_time|l10n_format_date }}</time></td>
-            <th class="event-name" scope="row">{% if event.url %}<a href="{{ event.url }}">{% endif %}{{ event.title|safe }}{% if event.url %}</a>{% endif %}</th>
-            <td>{{ event.location|safe }}</td>
+          <tr itemscope itemtype="http://schema.org/Event">
+            <td class="event-date"><time itemprop="startDate endDate" datetime="{{ event.start_time.isoformat() }}">{{ event.start_time|l10n_format_date }}</time></td>
+            <td itemprop="name" class="event-name" scope="row">{% if event.url %}<a itemprop="url" href="{{ event.url }}">{% endif %}{{ event.title|safe }}{% if event.url %}</a>{% endif %}</td>
+            <td itemprop="location">{{ event.location|safe }}</td>
           </tr>
         {% endfor %}
       </tbody>
