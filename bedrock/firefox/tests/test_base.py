@@ -57,7 +57,7 @@ class TestInstallerHelp(TestCase):
             call('beta', small=ANY, force_direct=True,
                  force_full_installer=True, icon=ANY, locale='fr'),
             call('alpha', small=ANY, force_direct=True,
-                 force_full_installer=True, icon=ANY, locale='fr'),
+                 force_full_installer=True, icon=ANY, locale='fr', platform='desktop'),
         ])
 
     def test_buttons_ignore_non_lang(self):
@@ -72,7 +72,7 @@ class TestInstallerHelp(TestCase):
             call('beta', small=ANY, force_direct=True,
                  force_full_installer=True, icon=ANY, locale=None),
             call('alpha', small=ANY, force_direct=True,
-                 force_full_installer=True, icon=ANY, locale=None),
+                 force_full_installer=True, icon=ANY, locale=None, platform='desktop'),
         ])
 
     def test_invalid_channel_specified(self):
@@ -87,7 +87,7 @@ class TestInstallerHelp(TestCase):
             call('beta', small=ANY, force_direct=True,
                  force_full_installer=True, icon=ANY, locale=None),
             call('alpha', small=ANY, force_direct=True,
-                 force_full_installer=True, icon=ANY, locale=None),
+                 force_full_installer=True, icon=ANY, locale=None, platform='desktop'),
         ])
 
     def test_one_button_when_channel_specified(self):
