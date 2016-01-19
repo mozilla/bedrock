@@ -60,14 +60,6 @@
         </p>
       </div>
 
-      {% if l10n_has_tag('ios_announce') %}
-      <div class="show-ios warning">
-        <p>
-          {{ _('Soon you’ll be able to use Sync on your iOS device') }}
-        </p>
-      </div>
-      {% endif %}
-
       <div class="show-not-fx warning">
         <p>
           {% if l10n_has_tag('firefox_sync_non_fx') %}
@@ -82,13 +74,23 @@
 
       <div class="buttons">
         <div class="show-fx-31-signed-in">
-          <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" class="sync-button green" data-interaction="button click" data-element-action="Sync CTA" id="cta-android">
-            {{ _('Download Firefox for Android') }}
-          </a>
+          <ul class="primary-buttons">
+            <li>
+              <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" class="sync-button green" data-interaction="button click" data-element-action="Sync CTA" id="cta-android">
+                {{ _('Get Firefox for Android') }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" class="sync-button green" data-interaction="button click" data-element-action="Sync CTA" id="cta-ios">
+                {{ _('Get Firefox for iOS') }}
+              </a>
+            </li>
+          </ul>
           <p class="button-footer">
             <a href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync" class="ga-link" data-interaction="outbound link click">
               {{ _('Need help?') }}
             </a>
+          </p>
         </div>
 
         <div class="show-fx-31-signed-out">
@@ -110,7 +112,7 @@
         </div>
 
         <div class="show-not-fx">
-          {{ download_firefox() }}
+          {{ download_firefox(icon=False) }}
         </div>
       </div>
 
@@ -212,9 +214,12 @@
   <div class="inner-wrapper">
     <div class="container">
       <header>
-        <h3>{{ _('Have an <b>Android smartphone</b> or <b>tablet</b>?') }}</h3>
-        <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" class="sync-button green" data-interaction="button click" data-element-action="Sync CTA" id="cta-android-footer">
-          {{ _('DOWNLOAD FIREFOX FOR ANDROID') }}
+        <h3>{{ _('Get Firefox everywhere') }}</h3>
+        <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-interaction="button click" data-element-action="Sync CTA" id="cta-android-footer">
+          {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True}) }}
+        </a>
+        <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button-footer') }}" data-interaction="button click" data-element-action="Sync CTA" id="cta-ios-footer">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
         </a>
       </header>
       <aside>

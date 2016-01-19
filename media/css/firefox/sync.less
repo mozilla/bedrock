@@ -95,10 +95,15 @@
         padding-bottom: @baseLine * 2;
     }
     .buttons {
-        .span(6);
-        .offset(3);
+        .span(8);
+        .offset(2);
         clear: both;
+
         > div {
+            padding: 0 (@baseLine * 5) @baseLine;
+        }
+
+        > div.show-fx-31-signed-in {
             padding: 0 @baseLine @baseLine;
         }
     }
@@ -110,14 +115,13 @@
         margin-bottom: @baseLine;
         p {
             display: inline-block;
-            font-style: italic;
             .font-size(18px);
             padding: 0 35px;
             position: relative;
             &:before {
                 display: block;
                 position: absolute;
-                top: 2px;
+                top: 6px;
                 left: 0;
                 content: " ";
                 height: 24px;
@@ -130,6 +134,18 @@
                 padding: 0; /* remove padding to prevent single word from wrapping */
             }
         }
+    }
+}
+
+.primary-buttons {
+    .flexbox();
+    .justify-content(space-around);
+    list-style-type: none;
+
+    & > li {
+        flex-basis: 46%;
+        margin: 0;
+        text-align: center;
     }
 }
 
@@ -161,18 +177,29 @@
     background: @syncBlue;
     color: #fff;
     .inner-wrapper {
-        .at2x('/media/img/firefox/sync/droid-dude.png', 170px, 200px);
-        background-position: 0 20px;
+        .at2x('/media/img/firefox/sync/device-lineup.png', 240px, 123px);
+        background-position: 0 43px;
         background-repeat: no-repeat;
     }
     header {
         text-align: center;
-        .span(5);
-        .offset(2);
+        float: left;
+        width: 360px;
+        margin-left: 230px;
+
+        h3 {
+            margin: (@baseLine / 2) 0 @baseLine;
+        }
+
+        a:last-child {
+            margin-left: @baseLine / 2;
+        }
     }
     aside {
-        .span(4);
-        .offset(1);
+        float: left;
+        width: 300px;
+        margin-left: 70px;
+
         p {
             font-style: italic;
             border-left: 1px solid rgba(198,218,229,.8);
@@ -267,7 +294,7 @@
 #footer-email-errors li,
 #newsletter-form,
 #newsletter-form-thankyou {
-    width: @widthDesktop;
+    width: (@widthDesktop - (@gridGutterWidth * 2));
     margin-left: auto;
     margin-right: auto;
 }
@@ -339,18 +366,9 @@
     display: block;
 }
 
-// show/hide ios message using html class instead of js state
-.ios .show-not-fx.warning {
-    display: none;
-}
-
-.ios .show-ios.warning {
-    display: block;
-}
-
-// also add a line break in .ios message
-.ios-download {
-    text-align: center;
+.js .show-not-fx .download-button ul {
+    width: 250px;
+    margin: 0 auto;
 }
 
 .state-fx-android {
@@ -434,11 +452,14 @@ html[dir="rtl"] {
     }
 
     .primary {
-        .warning,
-        .buttons {
+        .warning {
             .span_narrow(8);
             .offset_narrow(2);
             text-align: center;
+        }
+
+        .buttons {
+            margin-left: 50px;
         }
     }
 
@@ -473,14 +494,20 @@ html[dir="rtl"] {
     }
 
     .cta {
+        .inner-wrapper {
+            background-image: none;
+        }
+
         header {
-            .span_narrow(6);
+            .span_narrow(8);
             .offset_narrow(2);
-            h3,
-            .sync-button {
-                margin-left: 20px;
+            margin-left: @baseLine / 2;
+
+            h3 {
+                padding: 0 (@baseLine * 2);
             }
         }
+
         aside {
             .span_narrow(4);
             p {
@@ -492,7 +519,7 @@ html[dir="rtl"] {
     #footer-email-errors li,
     #newsletter-form,
     #newsletter-form-thankyou {
-        width: @widthTablet;
+        width: (@widthTablet - (@gridGutterWidth * 2));
     }
 
     #newsletter-form {
@@ -547,12 +574,28 @@ html[dir="rtl"] {
         .warning,
         .buttons {
             .span-all();
+
+            > div {
+                padding-left: @baseLine;
+                padding-right: @baseLine;
+            }
+        }
+        .warning p {
+            .font-size(@largeFontSize);
+            line-height: 1.4;
         }
         .container {
             padding-bottom: 0;
         }
     }
 
+    .primary-buttons {
+        display: block;
+
+        li {
+            margin-bottom: @baseLine;
+        }
+    }
 
     .secondary {
         header {
@@ -589,11 +632,18 @@ html[dir="rtl"] {
     }
 
     .cta {
-        header {
-            display: none;
-        }
         .inner-wrapper {
-            background-image: none;
+            background-position: center (@baseLine * 2);
+        }
+        header {
+            float: none;
+            width: auto;
+            margin: 0 0 @baseLine;
+            padding-top: 150px;
+
+            h3 {
+                .font-size(24px);
+            }
         }
         aside {
             .span-all();
@@ -601,6 +651,7 @@ html[dir="rtl"] {
             p {
                 padding: 0;
                 border: 0;
+                .font-size(18px);
             }
         }
     }
