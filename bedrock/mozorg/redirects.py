@@ -246,6 +246,9 @@ redirectpatterns = (
     # to force it to match all repeating slashes in one go.
     redirect(r'^(.*[^/])//+([^/].*)$', '/{}/{}', locale_prefix=False),
 
+    # bug 1237875
+    redirect(r'^community/forums/?$', 'mozorg.about.forums.forums'),
+
     # bug 927442
     redirect(r'^(firefox/)?community/?', 'mozorg.contribute'),
 
@@ -578,10 +581,10 @@ redirectpatterns = (
     # bug 1233015
     redirect(r'^about/partnerships/contentservices(/.*)?$', 'mozorg.partnerships'),
 
+    # Bug 1235853
+    redirect(r'^facebookapps(/.*)?$', 'firefox.new'),
+
     # bug 832348 **/index.html -> **/
     # leave this at the bottom
     redirect(r'^(.*)/index\.html$', '/{}/', locale_prefix=False),
-
-    # Bug 1235853
-    redirect(r'^facebookapps(/.*)?$', 'firefox.new'),
 )

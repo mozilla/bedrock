@@ -938,5 +938,8 @@ URLS = flatten((
 
     # bug 1238248
     url_test('/firefox/push/',
-             'https://support.mozilla.org/kb/push-notifications-firefox')
+             'https://support.mozilla.org/kb/push-notifications-firefox'),
+
+    # bug 1237875
+    url_test('/community/forums/', '/about/forums/'),
 ))
