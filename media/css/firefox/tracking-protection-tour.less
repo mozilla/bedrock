@@ -124,12 +124,19 @@ main > header {
     .clearfix();
 
     .inner-container {
+        .flexbox();
+        .align-items(center);
+        .justify-content(space-between);
         width: @widthDesktop - (@gridGutterWidth * 2);
         margin: 0 auto;
+        background-image: url(/media/img/firefox/tracking-protection/shield.svg);
+        background-position: center left;
+        background-repeat: no-repeat;
+        .background-size(48px, 48px);
     }
 
     h1 {
-        float: left;
+        position: relative;
         width: 380px;
         color: #fff;
         text-shadow: none;
@@ -138,16 +145,12 @@ main > header {
         .font-size(28px);
         line-height: 1.2;
         margin: @baseLine 0;
-        padding-left: 100px;
-        min-height: 44px;
-        background: url(/media/img/firefox/tracking-protection/mask-shield.svg) center left no-repeat;
-        .background-size(90px, 44px);
+        padding-left: 58px;
     }
 
     p {
-        float: right;
         width: 460px;
-        margin: 45px 0 0;
+        margin: @baseLine 0;
         .font-size(@largeFontSize);
         line-height: 1.2;
         text-align: right;
@@ -166,15 +169,16 @@ main > header {
 
 .html-rtl {
     main > header {
-        h1 {
-            float: right;
-            padding-left: 0;
-            padding-right: 100px;
+        .inner-container {
             background-position: center right;
         }
 
+        h1 {
+            padding-left: 0;
+            padding-right: 58px;
+        }
+
         p {
-            float: left;
             text-align: left;
         }
     }
