@@ -158,7 +158,7 @@ class ThunderbirdDesktop(ProductDetails):
 
         # Point the FTP server for Earlybird
         if channel == 'alpha':
-            return '%snightly/latest-earlybird%s/thunderbird-%s.%s.%s' % (
+            return '%snightly/latest-comm-aurora%s/thunderbird-%s.%s.%s' % (
                 self.download_base_url_ftp,
                 '' if locale == 'en-US' else '-l10n',
                 _version, _locale, self.file_suffixes[platform])
