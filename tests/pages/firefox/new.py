@@ -15,17 +15,11 @@ class FirefoxNewPage(FirefoxBasePage):
     _thank_you_message_locator = (By.ID, 'scene2-main')
 
     @property
-    def _download_button(self):
-        els = [el for el in self.find_elements(self._download_button_locator) if el.is_displayed()]
-        assert len(els) == 1, 'Expected one download button to be displayed'
-        return els[0]
-
-    @property
     def is_download_button_displayed(self):
-        return self._download_button.is_displayed()
+        return self.download_button(self._download_button_locator).is_displayed()
 
     def download_firefox(self):
-        self._download_button.click()
+        self.download_button(self._download_button_locator).click()
         self.wait.until(lambda s: self.is_thank_you_message_displayed)
 
     @property

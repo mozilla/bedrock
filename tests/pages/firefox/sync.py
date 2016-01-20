@@ -11,13 +11,13 @@ class FirefoxSyncPage(FirefoxBasePage):
 
     _url = '{base_url}/{locale}/firefox/sync'
 
-    _primary_download_button_locator = (By.ID, 'download-button-desktop-release')
+    _primary_download_button_locator = (By.CSS_SELECTOR, '#download-button-desktop-release .download-link')
     _play_store_button_locator = (By.ID, 'cta-android-footer')
     _app_store_button_locator = (By.ID, 'cta-ios-footer')
 
     @property
     def is_primary_download_button_displayed(self):
-        return self.is_element_displayed(self._primary_download_button_locator)
+        return self.download_button(self._primary_download_button_locator).is_displayed()
 
     @property
     def is_play_store_button_displayed(self):

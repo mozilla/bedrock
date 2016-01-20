@@ -13,17 +13,17 @@ class DeveloperPage(FirefoxBasePage):
 
     _url = '{base_url}/{locale}/firefox/developer'
 
-    _primary_download_locator = (By.CSS_SELECTOR, '.intro .download-button')
-    _secondary_download_locator = (By.CSS_SELECTOR, '.dev-footer-download .download-button')
+    _primary_download_locator = (By.CSS_SELECTOR, '.intro .download-button .download-link')
+    _secondary_download_locator = (By.CSS_SELECTOR, '.dev-footer-download .download-button .download-link')
     _videos_locator = (By.CSS_SELECTOR, '.features > .feature > .video-play')
 
     @property
     def is_primary_download_button_displayed(self):
-        return self.is_element_displayed(self._primary_download_locator)
+        return self.download_button(self._primary_download_locator).is_displayed()
 
     @property
     def is_secondary_download_button_displayed(self):
-        return self.is_element_displayed(self._secondary_download_locator)
+        return self.download_button(self._secondary_download_locator).is_displayed()
 
     @property
     def developer_videos(self):
