@@ -678,13 +678,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/privacy-bundle.css',
     },
-    'privacy-day': {
-        'source_filenames': (
-            'css/base/mozilla-share-cta.less',
-            'css/privacy/privacy-day.less',
-        ),
-        'output_filename': 'css/privacy-day-bundle.css',
-    },
     'fb_privacy': {
         'source_filenames': (
             'css/privacy/fb-privacy.less',
@@ -1434,16 +1427,6 @@ PIPELINE_JS = {
             'js/privacy/privacy.js',
         ),
         'output_filename': 'js/privacy-bundle.js',
-    },
-    'privacy-day': {
-        'source_filenames': (
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-share-cta.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/privacy/privacy-day.js',
-        ),
-        'output_filename': 'js/privacy-day-bundle.js',
     },
     'smarton': {
         'source_filenames': (

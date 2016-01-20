@@ -176,8 +176,12 @@ redirectpatterns = (
     redirect(r'^m/privacy.html$', 'privacy.notices.firefox'),
 
     # Bug 1109318 /privacy/you -> privacy/tips/
+    # Bug 1238687 /privacy/tips -> teach/smarton/
     redirect(r'^privacy/you/?$',
-             'privacy.privacy-day'),
+             'teach.smarton.index'),
+    redirect(r'^privacy/tips/?$',
+             'teach.smarton.index'),
+
 
     # Bug 821047 /about/mission.html -> /mission/
     redirect(r'^about/mission.html$', '/mission/'),

@@ -942,4 +942,8 @@ URLS = flatten((
 
     # bug 1237875
     url_test('/community/forums/', '/about/forums/'),
+
+    # bug 1238687
+    url_test('/privacy/you/', '/teach/smarton/'),
+    url_test('/privacy/tips/', '/teach/smarton/'),
 ))
