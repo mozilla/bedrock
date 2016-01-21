@@ -22,7 +22,6 @@ def test_play_video(base_url, selenium):
 def test_try_hello_button_is_displayed(base_url, selenium):
     page = HelloPage(base_url, selenium).open()
     assert page.is_try_hello_button_displayed
-    assert not page.is_download_button_displayed
 
 
 @pytest.mark.skip_if_firefox
