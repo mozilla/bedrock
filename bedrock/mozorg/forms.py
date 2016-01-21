@@ -245,7 +245,6 @@ class WebToLeadForm(forms.Form):
         ('Firefox for Android', _lazy(u'Firefox for Android')),
         ('Firefox Marketplace', _lazy(u'Firefox Marketplace')),
         ('Firefox OS', _lazy(u'Firefox OS')),
-        ('Persona', _lazy(u'Persona')),
         ('Marketing and Co-promotions', _lazy(u'Marketing and Co-promotions')),
         ('Other', _lazy(u'Other')),
     )

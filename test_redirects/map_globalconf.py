@@ -783,8 +783,9 @@ URLS = flatten((
     # bug 877165
     url_test('/firefox/connect/random/stuff', '/'),
 
-    # bug 657049
-    url_test('/firefox/accountmanager/', '/persona/'),
+    # bug 657049, 1238851
+    url_test('/firefox/accountmanager/', 'https://developer.mozilla.org/Persona'),
+    url_test('/persona{/{about,developer-faq}/,}', 'https://developer.mozilla.org/Persona'),
 
     # bug 841846
     url_test('/firefox/nightly/', 'https://nightly.mozilla.org/'),

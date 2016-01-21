@@ -36,8 +36,8 @@ redirectpatterns = (
     # bug 877165
     redirect(r'^firefox/connect', 'mozorg.home'),
 
-    # bug 657049
-    redirect(r'^firefox/accountmanager/?$', '/persona/'),
+    # bug 657049, 1238851
+    redirect(r'^firefox/accountmanager/?$', 'https://developer.mozilla.org/Persona'),
 
     # bug 841846
     redirect(r'^firefox/nightly/?$', 'https://nightly.mozilla.org/'),
