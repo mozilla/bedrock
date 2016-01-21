@@ -14,7 +14,7 @@ class HomePage(BasePage):
     _promo_grid_locator = (By.CSS_SELECTOR, '.promo-grid.reveal')
     _promo_tile_locator = (By.CSS_SELECTOR, '.promo-grid > .item')
     _promo_tweet_locator = (By.ID, 'twt-body')
-    _download_button_locator = (By.ID, 'download-button-desktop-release')
+    _download_button_locator = (By.CSS_SELECTOR, '#download-button-desktop-release .download-link')
 
     @property
     def is_promo_grid_displayed(self):
@@ -31,7 +31,7 @@ class HomePage(BasePage):
 
     @property
     def is_download_button_displayed(self):
-        return self.is_element_displayed(self._download_button_locator)
+        return self.download_button(self._download_button_locator).is_displayed()
 
     @property
     def upcoming_events(self):

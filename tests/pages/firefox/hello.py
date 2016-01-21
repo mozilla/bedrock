@@ -14,7 +14,7 @@ class HelloPage(FirefoxBasePage):
 
     _video_locator = (By.ID, 'video-link')
     _try_hello_button_locator = (By.ID, 'try-hello-footer')
-    _download_button_locator = (By.ID, 'download-fx')
+    _download_button_locator = (By.CSS_SELECTOR, '#download-fx .download-link')
 
     @property
     def is_try_hello_button_displayed(self):
@@ -22,7 +22,7 @@ class HelloPage(FirefoxBasePage):
 
     @property
     def is_download_button_displayed(self):
-        return self.is_element_displayed(self._download_button_locator)
+        return self.download_button(self._download_button_locator).is_displayed()
 
     def play_video(self):
         modal = Modal(self)
