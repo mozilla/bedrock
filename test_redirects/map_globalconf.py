@@ -721,7 +721,7 @@ URLS = flatten((
     # bug 961010
     url_test('/mobile/credits/credits-people-list.html', '/credits/'),
 
-    url_test('/{mobile,fennec}/', '/firefox/partners/'),
+    url_test('/{mobile,fennec}/', '/firefox/products/'),
 
     # bug 876668
     url_test('/mobile/customize/', '/firefox/android/'),
@@ -755,7 +755,7 @@ URLS = flatten((
     url_test('/firefoxos/is.great/', '/firefox/os/'),
 
     # bug 831810 & 1142583
-    url_test('/{mwc,MWC}/', '/firefox/partners/', query={
+    url_test('/{mwc,MWC}/', '/firefox/os/devices/', query={
         'utm_campaign': 'mwc-redirect',
         'utm_medium': 'referral',
         'utm_source': 'mozilla.org',
@@ -946,4 +946,8 @@ URLS = flatten((
     # bug 1238687
     url_test('/privacy/you/', '/teach/smarton/'),
     url_test('/privacy/tips/', '/teach/smarton/'),
+
+    # bug 1239960
+    url_test('/firefox/partners/', '/firefox/os/'),
+    url_test('/b2g/', '/firefox/os/'),
 ))

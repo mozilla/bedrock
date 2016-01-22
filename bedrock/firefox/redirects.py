@@ -16,8 +16,8 @@ redirectpatterns = (
 
     redirect(r'^firefox/aurora/all/?$', 'firefox.all', to_kwargs={'channel': 'developer'}),
 
-    # bug 831810 & 1142583
-    redirect(r'^mwc/?$', 'firefox.partners.index', re_flags='i', query={
+    # bug 831810 & 1142583 & 1239960
+    redirect(r'^mwc/?$', 'firefox.os.devices', re_flags='i', query={
         'utm_campaign': 'mwc-redirect',
         'utm_medium': 'referral',
         'utm_source': 'mozilla.org',
@@ -218,8 +218,8 @@ redirectpatterns = (
              'http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US'
              '/{prod}/{vers}/{channel}notes/{page}'),
 
-    # bug 767614 superceeded by bug 957711 and 1003718
-    redirect(r'^(mobile|fennec)/?$', 'firefox.partners.index'),
+    # bug 767614 superceeded by bug 957711 and 1003718 and 1239960
+    redirect(r'^(mobile|fennec)/?$', 'firefox.family.index'),
 
     # bug 876668
     redirect(r'^mobile/customize(?:/.*)?$', '/firefox/android/'),
@@ -282,4 +282,7 @@ redirectpatterns = (
     # Bug 1238248
     redirect(r'^firefox/push/?$',
              'https://support.mozilla.org/kb/push-notifications-firefox'),
+
+    # Bug 1239960
+    redirect(r'^firefox/partners/?$', 'firefox.os.index'),
 )

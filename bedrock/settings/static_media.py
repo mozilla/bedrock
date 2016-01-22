@@ -834,23 +834,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/annual_2014-bundle.css',
     },
-    'partners': {
-        'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/libs/jquery.pageslide.css',
-            'css/firefox/partners.less',
-            'css/firefox/family-nav.less',
-            'css/firefox/mwc-2015-schedule.less',
-            'css/firefox/mwc-2015-map.less',
-        ),
-        'output_filename': 'css/partners-bundle.css',
-    },
-    'partners-ie7': {
-        'source_filenames': (
-            'css/firefox/partners/ie7.less',
-        ),
-        'output_filename': 'css/partners-ie7-bundle.css',
-    },
     'thunderbird-features': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -1546,43 +1529,6 @@ PIPELINE_JS = {
             'js/styleguide/logo-prototype/clock-data.js',
         ),
         'output_filename': 'js/logo-prototype-bundle.js',
-    },
-    'partners': {
-        'source_filenames': (
-            'js/libs/modernizr.custom.shiv-load.js',
-            'js/base/mozilla-input-placeholder.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-modal.js',
-            'js/firefox/partners.js',
-        ),
-        'output_filename': 'js/partners-bundle.js',
-    },
-    'partners_common': {
-        'source_filenames': (
-            'js/libs/enquire.min.js',
-            'js/base/mozilla-form-helper.js',
-            'js/firefox/partners/common.js',
-        ),
-        'output_filename': 'js/partners_common-bundle.js',
-    },
-    'partners_mobile': {
-        'source_filenames': (
-            'js/firefox/partners/mobile.js',
-        ),
-        'output_filename': 'js/partners_mobile-bundle.js',
-    },
-    'partners_desktop': {
-        'source_filenames': (
-            'js/libs/jquery.pageslide.min.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/tweenmax.1.9.7.min.js',
-            'js/libs/jquery.spritely-0.6.7.js',
-            'js/firefox/partners/desktop.js',
-        ),
-        'output_filename': 'js/partners_desktop-bundle.js',
     },
     'releasenotes': {
         'source_filenames': (

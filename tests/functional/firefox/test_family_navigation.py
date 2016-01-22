@@ -26,7 +26,6 @@ from pages.firefox.family_navigation import FirefoxPage
     ('os/1.3t'),
     ('os/1.3'),
     ('os/1.1'),
-    ('partners'),
     ('private-browsing'),
     ('sync'),
     ('tiles')])

@@ -416,7 +416,6 @@
     os
       - index
       - devices
-      - partners
 
     If you need a CTA in the sticky nav, call the macro and include
     the CTA element:
@@ -522,7 +521,6 @@
           <ul class="subnav" id="os-subnav">
             <li><a data-id="os-index" href="{{ url('firefox.os.index') }}"{% if activesub == 'index' %} class="selected"{% endif %}><div>{{ _('Overview') }}</div></a></li>
             <li><a data-id="os-devices" href="{{ url('firefox.os.devices') }}"{% if activesub == 'devices' %} class="selected"{% endif %}><div>{{ _('Devices') }}</div></a></li>
-            <li><a data-id="os-partners" href="{{ url('firefox.partners.index') }}"{% if activesub == 'partners' %} class="selected"{% endif %}><div>{{ _('For partners') }}</div></a></li>
             <li><a data-id="os-marketplace" rel="external" href="https://marketplace.firefox.com/"><div>{{ _('Marketplace') }}<i class="icon-external"></i></div></a></li>
           </ul>
         </li>
