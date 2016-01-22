@@ -9,9 +9,9 @@ from pages.firefox.sync import FirefoxSyncPage
 
 @pytest.mark.skip_if_firefox
 @pytest.mark.nondestructive
-def test_primary_download_button_displayed(base_url, selenium):
+def test_download_button_is_displayed(base_url, selenium):
     page = FirefoxSyncPage(base_url, selenium).open()
-    assert page.is_primary_download_button_displayed
+    assert page.download_button.is_displayed
 
 
 @pytest.mark.smoke

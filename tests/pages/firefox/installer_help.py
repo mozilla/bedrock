@@ -5,24 +5,28 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
+from pages.regions.download_button import DownloadButton
 
 
 class InstallerHelpPage(FirefoxBasePage):
 
     _url = '{base_url}/{locale}/firefox/installer-help'
 
-    _firefox_download_button_locator = (By.CSS_SELECTOR, '#download-button-desktop-release .download-link')
-    _beta_download_button_locator = (By.CSS_SELECTOR, '#download-button-desktop-beta .download-link')
-    _dev_edition_download_button_locator = (By.CSS_SELECTOR, '#download-button-desktop-alpha .download-link')
+    _firefox_download_button_locator = (By.ID, 'download-button-desktop-release')
+    _beta_download_button_locator = (By.ID, 'download-button-desktop-beta')
+    _dev_edition_download_button_locator = (By.ID, 'download-button-desktop-alpha')
 
     @property
-    def is_firefox_download_button_displayed(self):
-        return self.download_button(self._firefox_download_button_locator).is_displayed()
+    def firefox_download_button(self):
+        el = self.find_element(self._firefox_download_button_locator)
+        return DownloadButton(self, root=el)
 
     @property
-    def is_beta_download_button_displayed(self):
-        return self.download_button(self._beta_download_button_locator).is_displayed()
+    def beta_download_button(self):
+        el = self.find_element(self._beta_download_button_locator)
+        return DownloadButton(self, root=el)
 
     @property
-    def is_dev_edition_download_button_displayed(self):
-        return self.download_button(self._dev_edition_download_button_locator).is_displayed()
+    def dev_edition_download_button(self):
+        el = self.find_element(self._dev_edition_download_button_locator)
+        return DownloadButton(self, root=el)

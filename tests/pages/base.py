@@ -34,15 +34,6 @@ class BasePage(Page):
     def newsletter(self):
         return NewsletterEmbedForm(self)
 
-    def download_button(self, locator):
-        """Return the displayed download button link determined by platform.
-
-        Only for use by page objects and not directly from tests.
-        """
-        els = [el for el in self.find_elements(locator) if el.is_displayed()]
-        assert len(els) == 1, 'Expected one download button to be displayed'
-        return els[0]
-
     class Navigation(PageRegion):
 
         _root_locator = (By.ID, 'nav-main')

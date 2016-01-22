@@ -12,8 +12,8 @@ from pages.firefox.developer import DeveloperPage
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
     page = DeveloperPage(base_url, selenium).open()
-    assert page.is_primary_download_button_displayed
-    assert page.is_secondary_download_button_displayed
+    assert page.primary_download_button.is_displayed
+    assert page.secondary_download_button.is_displayed
 
 
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1219251')

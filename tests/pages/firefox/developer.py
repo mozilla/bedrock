@@ -7,23 +7,26 @@ from selenium.webdriver.common.by import By
 from pages.page import PageRegion
 from pages.firefox.base import FirefoxBasePage
 from pages.regions.modal import Modal
+from pages.regions.download_button import DownloadButton
 
 
 class DeveloperPage(FirefoxBasePage):
 
     _url = '{base_url}/{locale}/firefox/developer'
 
-    _primary_download_locator = (By.CSS_SELECTOR, '.intro .download-button .download-link')
-    _secondary_download_locator = (By.CSS_SELECTOR, '.dev-footer-download .download-button .download-link')
+    _primary_download_locator = (By.CSS_SELECTOR, '.intro .download-button')
+    _secondary_download_locator = (By.CSS_SELECTOR, '.dev-footer-download .download-button')
     _videos_locator = (By.CSS_SELECTOR, '.features > .feature > .video-play')
 
     @property
-    def is_primary_download_button_displayed(self):
-        return self.download_button(self._primary_download_locator).is_displayed()
+    def primary_download_button(self):
+        el = self.find_element(self._primary_download_locator)
+        return DownloadButton(self, root=el)
 
     @property
-    def is_secondary_download_button_displayed(self):
-        return self.download_button(self._secondary_download_locator).is_displayed()
+    def secondary_download_button(self):
+        el = self.find_element(self._secondary_download_locator)
+        return DownloadButton(self, root=el)
 
     @property
     def developer_videos(self):

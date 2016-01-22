@@ -5,19 +5,21 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
+from pages.regions.download_button import DownloadButton
 
 
 class FirefoxSyncPage(FirefoxBasePage):
 
     _url = '{base_url}/{locale}/firefox/sync'
 
-    _primary_download_button_locator = (By.CSS_SELECTOR, '#download-button-desktop-release .download-link')
+    _download_button_locator = (By.ID, 'download-button-desktop-release')
     _play_store_button_locator = (By.ID, 'cta-android-footer')
     _app_store_button_locator = (By.ID, 'cta-ios-footer')
 
     @property
-    def is_primary_download_button_displayed(self):
-        return self.download_button(self._primary_download_button_locator).is_displayed()
+    def download_button(self):
+        el = self.find_element(self._download_button_locator)
+        return DownloadButton(self, root=el)
 
     @property
     def is_play_store_button_displayed(self):

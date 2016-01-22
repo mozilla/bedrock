@@ -38,7 +38,7 @@ def test_tweet_is_not_present(base_url, selenium):
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = HomePage(base_url, selenium).open()
-    assert page.is_download_button_displayed
+    assert page.download_button.is_displayed
 
 
 @pytest.mark.nondestructive
