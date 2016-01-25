@@ -5,19 +5,22 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
+from pages.regions.download_button import DownloadButton
 
 
 class ThunderbirdChannelPage(BasePage):
 
     _url = '{base_url}/{locale}/thunderbird/channel'
 
-    _earlybird_download_button_locator = (By.CSS_SELECTOR, '#download-button-desktop-alpha .download-link')
-    _beta_download_button_locator = (By.CSS_SELECTOR, '#download-button-desktop-beta .download-link')
+    _earlybird_download_button_locator = (By.ID, 'download-button-desktop-alpha')
+    _beta_download_button_locator = (By.ID, 'download-button-desktop-beta')
 
     @property
-    def is_beta_download_button_displayed(self):
-        return self.download_button(self._beta_download_button_locator).is_displayed()
+    def beta_download_button(self):
+        el = self.find_element(self._beta_download_button_locator)
+        return DownloadButton(self, root=el)
 
     @property
-    def is_earlybird_download_button_displayed(self):
-        return self.download_button(self._earlybird_download_button_locator).is_displayed()
+    def earlybird_download_button(self):
+        el = self.find_element(self._earlybird_download_button_locator)
+        return DownloadButton(self, root=el)
