@@ -14,20 +14,24 @@
 
 <p>{{_('There are several organizations that support the Mozilla community and ')}}<a href="{{ url('mozorg.about.manifesto') }}">{{_('Mozilla’s principles.</a> They include the non-profit Mozilla Foundation as well as the wholly owned taxable subsidiary, the Mozilla Corporation. Mozilla considers itself a <a href="http://commonspace.wordpress.com/category/hybrid/">hybrid organization</a>, combining non-profit and market strategies to ensure the Internet remains a shared public resource.')}}</p>
 
-<p>{{_('This page provides information about the various organizations and their relationships to each other. If you have any questions about this, please feel free to ')}}<a href="{{ url('mozorg.contact.contact-landing') }}">{{_('contact us</a>.')}}</p>
+<p>{% trans contact_url=url('mozorg.contact.contact-landing') %}
+This page provides information about the various organizations and their relationships to each other. If you have any questions about this, please feel free to <a href="{{ contact_url }}">contact us</a>
+{% endtrans %}</p>
 
 <h2>{{_('Mozilla Foundation')}}</h2>
 
-{% trans foundation_url=url('foundation.index') %}
-<p>The <a href="{{ foundation_url }}">Mozilla Foundation</a> is a California non-profit corporation exempt from Federal income taxation under IRC 501(c)(3). The Foundation supports the existing Mozilla community and oversees Mozilla’s governance structure. It also actively seeks out new ways for people around the world to recognize and steward the Internet as a critical public resource.</p>
-{% endtrans %}
+<p>{% trans foundation_url=url('foundation.index') %}
+The <a href="{{ foundation_url }}">Mozilla Foundation</a> is a California non-profit corporation exempt from Federal income taxation under IRC 501(c)(3). The Foundation supports the existing Mozilla community and oversees Mozilla’s governance structure. It also actively seeks out new ways for people around the world to recognize and steward the Internet as a critical public resource.
+{% endtrans %}</p>
 
-<p>{{_('<a href="http://www.mozilla-japan.org/">Mozilla Japan</a> is a separate non-profit organization that promotes Mozillas products and mission in Japan and is affiliated with the Mozilla Foundation.')}}</p>
+<p>{{_('<a href="https://www.mozilla.jp/">Mozilla Japan</a> is a separate non-profit organization that promotes Mozillas products and mission in Japan and is affiliated with the Mozilla Foundation.')}}</p>
 
 <h2>{{_('Mozilla Corporation')}}</h2>
-{% trans foundation_moco=url('foundation.moco'), firefox_url=url('firefox') %}
-<p>The <a href="{{ foundation_moco }}">Mozilla Corporation</a>, a wholly owned subsidiary of the Mozilla Foundation, works with the community to develop software that advances Mozilla’s principles. This includes the <a href="{{ firefox_url }}">Firefox</a> browser, which is well recognized as a market leader in security, privacy and language localization. These features make the Internet safer and more accessible.</p>
-{% endtrans %}
+
+<p>{% trans foundation_moco=url('foundation.moco'), firefox_url=url('firefox') %}
+The <a href="{{ foundation_moco }}">Mozilla Corporation</a>, a wholly owned subsidiary of the Mozilla Foundation, works with the community to develop software that advances Mozilla’s principles. This includes the <a href="{{ firefox_url }}">Firefox</a> browser, which is well recognized as a market leader in security, privacy and language localization. These features make the Internet safer and more accessible.
+{% endtrans %}</p>
+
 <p>{{_('<a href="//firefox.com.cn/">Mozilla Online</a> is a separate organization that operates in China and is a wholly owned subsidiary of the Mozilla Corporation.')}}</p>
 
 <h2>{{_('Community Member Organizations')}}</h2>
