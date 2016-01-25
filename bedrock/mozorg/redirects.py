@@ -205,10 +205,9 @@ redirectpatterns = (
     # /about/mozilla-based/
     redirect(r'^projects/mozilla-based/?$', '/about/mozilla-based/'),
 
-    # Bug 867773 - Redirect the Persona "Developer FAQ" link
-    # to MDN
-    redirect(r'^persona/developer-faq/?$',
-             'https://developer.mozilla.org/persona'),
+    # Bug 867773, 1238851 - Redirect the Persona URLs to MDN
+    redirect(r'^persona(?:/(?:about|developer-faq))?/?$',
+             'https://developer.mozilla.org/Persona'),
 
     # Bug 981176 - For now we'll hard-code a redirect to 1.3
     # In the future this should automatically go to the
