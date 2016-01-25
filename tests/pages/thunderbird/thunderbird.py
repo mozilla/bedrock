@@ -5,14 +5,16 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
+from pages.regions.download_button import DownloadButton
 
 
 class ThunderbirdPage(BasePage):
 
     _url = '{base_url}/{locale}/thunderbird'
 
-    _download_button_locator = (By.CSS_SELECTOR, '#download-button-desktop-release .download-link')
+    _download_button_locator = (By.ID, 'download-button-desktop-release')
 
     @property
-    def is_download_button_displayed(self):
-        return self.download_button(self._download_button_locator).is_displayed()
+    def download_button(self):
+        el = self.find_element(self._download_button_locator)
+        return DownloadButton(self, root=el)

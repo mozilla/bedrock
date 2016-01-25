@@ -12,4 +12,4 @@ from pages.thunderbird.thunderbird import ThunderbirdPage
 @pytest.mark.nondestructive
 def test_is_download_button_displayed(base_url, selenium):
     page = ThunderbirdPage(base_url, selenium).open()
-    assert page.is_download_button_displayed
+    assert page.download_button.is_displayed
