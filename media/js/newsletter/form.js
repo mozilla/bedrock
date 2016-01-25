@@ -68,33 +68,6 @@ $(function () {
     }
 
     /*
-     * Mozorg newsletter submit does not use ajax as it goes to sendto.mozilla.org
-     */
-    $('#mozorg-newsletter-form').on('submit', function (e) {
-        var $self = $(this);
-        var newsletter;
-
-        // If the browser has native validation, we know the input is valid
-        // because this submit handler won't even be invoked until the input
-        // validates.
-        if (('checkValidity' in $self) || validateForm($self)) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            $self.off('submit');
-            newsletter = getNewsletterName($self);
-
-            if (newsletter !== '') {
-                window.dataLayer.push({
-                    'event': 'newsletter-signup-success',
-                    'newsletter': newsletter
-                });
-            }
-
-            $self.submit();
-        }
-    });
-
-    /*
      * Standard newsletter form uses ajax submission
      */
     $('#newsletter-form').on('submit', function (e) {
