@@ -12,10 +12,7 @@ def pytest_generate_tests(metafunc):
         '/firefox/all/',
         '/firefox/beta/all/',
         '/firefox/developer/all/',
-        '/firefox/organizations/all/',
-        '/thunderbird/all/',
-        '/thunderbird/beta/all/',
-        '/thunderbird/earlybird/all/')
+        '/firefox/organizations/all/')
     argvalues = []
     for path in paths:
         r = requests.get(metafunc.config.option.base_url + path)
