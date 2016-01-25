@@ -12,6 +12,6 @@ from pages.firefox.installer_help import InstallerHelpPage
 @pytest.mark.nondestructive
 def test_download_buttons_displayed(base_url, selenium):
     page = InstallerHelpPage(base_url, selenium).open()
-    assert page.is_firefox_download_button_displayed
-    assert page.is_beta_download_button_displayed
-    assert page.is_dev_edition_download_button_displayed
+    assert page.firefox_download_button.is_displayed
+    assert page.beta_download_button.is_displayed
+    assert page.dev_edition_download_button.is_displayed

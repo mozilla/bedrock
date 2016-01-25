@@ -5,21 +5,23 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
+from pages.regions.download_button import DownloadButton
 
 
 class FirefoxNewPage(FirefoxBasePage):
 
     _url = '{base_url}/{locale}/firefox/new/'
 
-    _download_button_locator = (By.CSS_SELECTOR, '#features-download .download-button .download-link')
+    _download_button_locator = (By.ID, 'download-button-desktop-release')
     _thank_you_message_locator = (By.ID, 'scene2-main')
 
     @property
-    def is_download_button_displayed(self):
-        return self.download_button(self._download_button_locator).is_displayed()
+    def download_button(self):
+        el = self.find_element(self._download_button_locator)
+        return DownloadButton(self, root=el)
 
     def download_firefox(self):
-        self.download_button(self._download_button_locator).click()
+        self.download_button.click()
         self.wait.until(lambda s: self.is_thank_you_message_displayed)
 
     @property

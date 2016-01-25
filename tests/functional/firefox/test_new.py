@@ -16,7 +16,7 @@ from pages.firefox.new import FirefoxNewPage, FirefoxNewThankYouPage
 @pytest.mark.nondestructive
 def test_download_button_displayed(base_url, selenium):
     page = FirefoxNewPage(base_url, selenium).open()
-    assert page.is_download_button_displayed
+    assert page.download_button.is_displayed
 
 
 # skip tests that trigger download bar in IE due to https://github.com/SeleniumHQ/selenium/issues/448
