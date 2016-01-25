@@ -85,10 +85,10 @@
           {% endif -%}
         {% endfor -%}
       {% endif -%}
-      <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a>
+      <a href="{{ firefox_url('android', 'sysreq') }}">{{ _('Supported Devices') }}</a>
       {%- if channel == 'alpha' %}<br>{% else %} |{% endif %}
       {% if channel != 'alpha' %}
-      <a href="{{ url('firefox.android.all') }}">{{ _('Systems &amp; Languages') }}</a><br>
+      <a href="{{ firefox_url('android', 'all', channel) }}">{{ _('Systems &amp; Languages') }}</a><br>
       {% endif %}
       <a href="{{ firefox_url('android', 'notes', channel) }}">{{ _('What’s New') }}</a> |
       <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>
@@ -96,7 +96,7 @@
   {% endif %}
   {% if show_ios %}
     <small class="download-other os_ios">
-      <a href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{ _('Supported Devices') }}</a> |
+      <a href="{{ firefox_url('ios', 'sysreq') }}">{{ _('Supported Devices') }}</a> |
       <a href="{{ url('privacy.notices.firefox') }}">{{ _('Privacy') }}</a>
     </small>
   {% endif %}
