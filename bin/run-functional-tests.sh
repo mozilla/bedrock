@@ -8,7 +8,6 @@ set -xe
 # Defaults
 : ${PYTEST_PROCESSES:="1"}
 : ${BASE_URL:="https://www-dev.allizom.org"}
-: ${DRIVER:="Remote"}
 : ${SELENIUM_HOST:="localhost"}
 : ${SELENIUM_PORT:="4444"}
 : ${BROWSER_NAME:="firefox"}
@@ -17,11 +16,13 @@ set -xe
 
 # Common arguments
 CMD="py.test"
+CMD="${CMD} -r a"
+CMD="${CMD} --verbose"
 CMD="${CMD} -n ${PYTEST_PROCESSES}"
 CMD="${CMD} --base-url ${BASE_URL}"
-CMD="${CMD} --driver ${DRIVER}"
 CMD="${CMD} --html ${RESULTS_PATH}/index.html"
 CMD="${CMD} --junitxml ${RESULTS_PATH}/junit.xml"
+if [ -n "${DRIVER}" ]; then CMD="${CMD} --driver ${DRIVER}"; fi
 
 # Remote arguments
 if [ "${DRIVER}" = "Remote" ]; then
