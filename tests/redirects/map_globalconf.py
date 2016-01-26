@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+# flake8: noqa
 
 from __future__ import absolute_import
+import re
+
+import requests
 
 from .base import flatten, url_test
 
@@ -224,8 +228,8 @@ URLS = flatten((
     url_test('/projects/calendar/holidays.html', '/projects/calendar/holidays/'),
     url_test('/en-US/projects/calendar/random/stuff/', '/projects/calendar/'),
     # redirects don't catch real urls
-    url_test('/en-US/projects/calendar/', status_code=200),
-    url_test('/en-US/projects/calendar/holidays/', status_code=200),
+    url_test('/en-US/projects/calendar/', status_code=requests.codes.ok),
+    url_test('/en-US/projects/calendar/holidays/', status_code=requests.codes.ok),
 
     # bug 1124038
     url_test('/thunderbird/organizations/{all-esr.html,faq/}', '/thunderbird/organizations/'),
@@ -797,7 +801,7 @@ URLS = flatten((
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Download_Rhino'),
     url_test('/rhino/doc.html',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Documentation'),
-    url_test('/rhino/random/stuff/', 'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino'),
+    url_test('/rhino/{,random/stuff}', 'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino'),
 
     # Bug 730488 deprecate /firefox/all-older.html
     url_test('/firefox/all-older.html', '/firefox/new/'),
@@ -915,12 +919,12 @@ URLS = flatten((
     # Bug 1186373
     url_test('/firefox/hello/npssurvey/',
              'https://www.surveygizmo.com/s3/2227372/Firefox-Hello-Product-Survey',
-             status_code=302),
+             status_code=requests.codes.found),
 
     # Bug 1221739
     url_test('/firefox/hello/feedbacksurvey/',
              'https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687',
-             status_code=302),
+             status_code=requests.codes.found),
 
     # bug 1224060
     url_test('/ja/firefox/ios/1.0/{releasenotes,system-requirements}/',
@@ -951,4 +955,25 @@ URLS = flatten((
     # bug 1239960
     url_test('/firefox/partners/', '/firefox/os/'),
     url_test('/b2g/', '/firefox/os/'),
+
+    # from mcom-tests
+    url_test('/firefox/', '/en-US/firefox/'),
+    url_test('/en-US/firefox/', '/firefox/new/'),
+    url_test('/firefox/new/', '/en-US/firefox/new/'),
+    url_test('/firefox/mobile/', '/firefox/android/'),
+    url_test('/mobile/37.0{,beta,a2}/releasenotes', '/firefox/android/37.0{,beta,a2}/releasenotes/'),
+    url_test('/projects/firefox/3.6.13/whatsnew/', '/firefox/3.6.13/whatsnew/'),
+    url_test('/en-US/firefox/3.6.13/{firstrun,whatsnew}/', '/en-US/firefox/new/'),
+    url_test('/apps/', 'https://marketplace.firefox.com/'),
+    url_test('/dnt/', '/firefox/dnt/'),
+    url_test('/metrofirefox/', '/firefox/'),
+    url_test('/en-US/firefox/android/{,beta/}notes/',
+             re.compile(r'/en-US/firefox/android/[\\d\\.]+{,beta}/releasenotes/'),
+             status_code=requests.codes.found),
+    url_test('/en-US/firefox/android/aurora/notes/',
+             re.compile(r'/en-US/firefox/android/[\d\.a-zA-Z]+/auroranotes/'),
+             status_code=requests.codes.found),
+    url_test('/en-US/firefox/notes/',
+             re.compile(r'/en-US/firefox/[\d\.]+/releasenotes/'),
+             status_code=requests.codes.found),
 ))

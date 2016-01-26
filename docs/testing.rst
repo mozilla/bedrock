@@ -60,11 +60,17 @@ To run the full functional test suite against your local bedrock instance:
 
 .. code-block:: bash
 
-    $ py.test --driver Firefox --html tests/functional/results.html tests/functional/
+    $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/
 
 This will run all test suites found in the ``tests/functional`` directory and
 assumes you have bedrock running at ``localhost`` on port ``8000``. Results will
 be reported in ``tests/functional/results.html``.
+
+.. Note::
+
+    If you omit the ``--base-url`` command line option then a local instance of
+    bedrock will be started, however the tests are not currently able to run
+    against bedrock in this way.
 
 By default, tests will run one at a time. This is the safest way to ensure
 predictable results, due to
@@ -85,14 +91,14 @@ e.g. ``tests/functional/test_newsletter.py``:
 
 .. code-block:: bash
 
-    $ py.test --driver Firefox --html tests/functional/results.html -n auto tests/functional/test_newsletter.py
+    $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html -n auto tests/functional/test_newsletter.py
 
 To run a single test you can filter using the ``-k`` argument supplied with a keyword
 e.g. ``-k test_successful_sign_up``:
 
 .. code-block:: bash
 
-  $ py.test --driver Firefox --html tests/functional/results.html -n auto tests/functional/test_newsletter.py -k test_successful_sign_up
+  $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html -n auto tests/functional/test_newsletter.py -k test_successful_sign_up
 
 You can also easily run the tests against any bedrock environment by specifying the
 ``--base-url`` argument. For example, to run all functional tests against dev:

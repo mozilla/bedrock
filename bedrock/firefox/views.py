@@ -334,15 +334,6 @@ class LatestFxView(TemplateView):
 
 class FirstrunView(LatestFxView):
 
-    def get(self, request, *args, **kwargs):
-        if not settings.DEV and not request.is_secure():
-            uri = 'https://{host}{path}'.format(
-                host=request.get_host(),
-                path=request.get_full_path(),
-            )
-            return HttpResponsePermanentRedirect(uri)
-        return super(FirstrunView, self).get(request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
         version = self.kwargs.get('version') or ''
@@ -375,15 +366,6 @@ class FirstrunLearnMoreView(LatestFxView):
 class WhatsnewView(LatestFxView):
 
     pocket_locales = ['en-US', 'es-ES', 'ru', 'ja', 'de']
-
-    def get(self, request, *args, **kwargs):
-        if not settings.DEV and not request.is_secure():
-            uri = 'https://{host}{path}'.format(
-                host=request.get_host(),
-                path=request.get_full_path(),
-            )
-            return HttpResponsePermanentRedirect(uri)
-        return super(WhatsnewView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
@@ -426,15 +408,6 @@ class WhatsnewView(LatestFxView):
 
 
 class TourView(LatestFxView):
-
-    def get(self, request, *args, **kwargs):
-        if not settings.DEV and not request.is_secure():
-            uri = 'https://{host}{path}'.format(
-                host=request.get_host(),
-                path=request.get_full_path(),
-            )
-            return HttpResponsePermanentRedirect(uri)
-        return super(TourView, self).get(request, *args, **kwargs)
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
