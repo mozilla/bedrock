@@ -409,15 +409,6 @@ class WhatsnewView(LatestFxView):
 
 class TourView(LatestFxView):
 
-    def get(self, request, *args, **kwargs):
-        if not settings.DEV and not request.is_secure():
-            uri = 'https://{host}{path}'.format(
-                host=request.get_host(),
-                path=request.get_full_path(),
-            )
-            return HttpResponsePermanentRedirect(uri)
-        return super(TourView, self).get(request, *args, **kwargs)
-
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
 
