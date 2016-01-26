@@ -5,6 +5,7 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage, FirefoxBasePageRegion
+from pages.regions.send_to_device import SendToDevice
 
 
 class AndroidPage(FirefoxBasePage):
@@ -15,6 +16,10 @@ class AndroidPage(FirefoxBasePage):
     _next_button_locator = (By.ID, 'customize-next')
     _previous_button_locator = (By.ID, 'customize-prev')
     _play_store_button_locator = (By.CSS_SELECTOR, '#intro .dl-button')
+
+    @property
+    def send_to_device(self):
+        return SendToDevice(self)
 
     @property
     def customize_sections(self):
