@@ -6,7 +6,7 @@ CMD ["/app/bin/run-functional-tests.sh"]
 
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends build-essential python python-dev python-pip
+    apt-get install -y --no-install-recommends build-essential python python-dev python-pip libxml2-dev libxslt1.1 libxslt1-dev zlib1g-dev
 
 # Defaults
 ENV PYTEST_PROCESSES 5
