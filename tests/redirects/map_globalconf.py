@@ -194,7 +194,7 @@ URLS = flatten((
     # bug 860865, 1101220
     url_test('/firefox/all-{beta,rc}{/,.html}', '/firefox/beta/all/'),
     url_test('/firefox/all-aurora{/,.html}', '/firefox/developer/all/'),
-    url_test('/firefox/aurora/{all,notes,system-requirements}/'
+    url_test('/firefox/aurora/{all,notes,system-requirements}/',
              '/firefox/developer/{all,notes,system-requirements}/'),
     url_test('/firefox/organizations/all.html', '/firefox/organizations/all/'),
 
@@ -988,4 +988,8 @@ URLS = flatten((
     # Bug 1239863
     url_test('/firefox/os/faq/',
              'https://support.mozilla.org/products/firefox-os'),
+
+    url_test('/firefox/brand/', '/styleguide/'),
+    url_test('/firefox/channel/android/', '/en-US/firefox/channel/android/'),
+    url_test('/en-US/firefox/channel/android/', '/firefox/channel/'),
 ))

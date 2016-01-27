@@ -18,7 +18,8 @@ def get_abs_url(url, base_url):
 
 
 def url_test(url, location=None, status_code=requests.codes.moved_permanently,
-             req_headers=None, req_kwargs=None, resp_headers=None, query=None):
+             req_headers=None, req_kwargs=None, resp_headers=None, query=None,
+             allow_redirects=False, final_status_code=requests.codes.ok):
     """
     Function for producing a config dict for the redirect test.
 
@@ -46,6 +47,8 @@ def url_test(url, location=None, status_code=requests.codes.moved_permanently,
     :param req_kwargs: Extra arguments to pass to requests.get()
     :param resp_headers: Dict of headers expected in the response.
     :param query: Dict of expected query params in `location` URL.
+    :param allow_redirects: Boolean indicating whether redirects should be followed.
+    :param final_status_code: Expected status code after following any redirects.
     :return: dict or list of dicts
     """
     test_data = {
@@ -56,6 +59,8 @@ def url_test(url, location=None, status_code=requests.codes.moved_permanently,
         'req_kwargs': req_kwargs,
         'resp_headers': resp_headers,
         'query': query,
+        'allow_redirects': allow_redirects,
+        'final_status_code': final_status_code,
     }
     expanded_urls = list(braceexpand(url))
     num_urls = len(expanded_urls)
@@ -90,7 +95,8 @@ def url_test(url, location=None, status_code=requests.codes.moved_permanently,
 
 def assert_valid_url(url, location=None, status_code=requests.codes.moved_permanently,
                      req_headers=None, req_kwargs=None, resp_headers=None,
-                     query=None, base_url=None):
+                     query=None, base_url=None, allow_redirects=False,
+                     final_status_code=requests.codes.ok):
     """
     Define a test of a URL's response.
     :param url: The URL in question (absolute or relative).
@@ -101,8 +107,10 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
     :param resp_headers: Dict of headers expected in the response.
     :param base_url: Base URL for the site to test.
     :param query: Dict of expected query params in `location` URL.
+    :param allow_redirects: Boolean indicating whether redirects should be followed.
+    :param final_status_code: Expected status code after following any redirects.
     """
-    kwargs = {'allow_redirects': False}
+    kwargs = {'allow_redirects': allow_redirects}
     if req_headers:
         kwargs['headers'] = req_headers
     if req_kwargs:
@@ -112,8 +120,11 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
     resp = requests.get(abs_url, **kwargs)
     # so that the value will appear in locals in test output
     resp_location = resp.headers.get('location')
-    assert resp.status_code == status_code
-    if location:
+    if allow_redirects:
+        assert resp.status_code == final_status_code
+    else:
+        assert resp.status_code == status_code
+    if location and not allow_redirects:
         if query:
             # all query values must be lists
             for k, v in query.items():
@@ -133,7 +144,7 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
         except AttributeError:
             assert abs_location == resp_location
 
-    if resp_headers:
+    if resp_headers and not allow_redirects:
         for name, value in resp_headers.items():
             print name, value
             assert name in resp.headers
