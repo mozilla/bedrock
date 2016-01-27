@@ -285,4 +285,8 @@ redirectpatterns = (
 
     # Bug 1239960
     redirect(r'^firefox/partners/?$', 'firefox.os.index'),
+
+    # Bug 1243060
+    redirect(r'^firefox/tiles/?$',
+             'https://support.mozilla.org/kb/about-tiles-new-tab'),
 )

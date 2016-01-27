@@ -171,7 +171,7 @@ Running the tests
 
 .. code-block:: bash
 
-    $ py.test tests/redirect/
+    $ py.test tests/redirects/
 
 This will start a local instance of bedrock, run the tests, and then stop the
 instance. If you wish to run the tests against another instance of the site
@@ -179,7 +179,7 @@ instance. If you wish to run the tests against another instance of the site
 
 .. code-block:: bash
 
-    $ py.test --base-url https://www.mozilla.org tests/redirect/
+    $ py.test --base-url https://www.mozilla.org tests/redirects/
 
 By default, tests will run one at a time. If you intend to run the suite
 against a remote instance of the site (e.g. production) it will run a lot

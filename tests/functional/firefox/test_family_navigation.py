@@ -27,8 +27,7 @@ from pages.firefox.family_navigation import FirefoxPage
     ('os/1.3'),
     ('os/1.1'),
     ('private-browsing'),
-    ('sync'),
-    ('tiles')])
+    ('sync')])
 def test_family_navigation_menu(slug, base_url, selenium):
     page = FirefoxPage(base_url, selenium, slug=slug).open()
     page.family_navigation.open_menu()

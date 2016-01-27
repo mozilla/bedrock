@@ -54,7 +54,6 @@ urlpatterns = (
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
     page('firefox/sync', 'firefox/sync.html'),
-    page('firefox/tiles', 'firefox/tiles.html'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
     url(r'^firefox/new/$', views.new, name='firefox.new'),
     page('firefox/organizations/faq', 'firefox/organizations/faq.html'),
