@@ -9,16 +9,17 @@ from pages.firefox.sync import FirefoxSyncPage
 
 @pytest.mark.skip_if_firefox
 @pytest.mark.nondestructive
-def test_primary_download_button_displayed(base_url, selenium):
+def test_download_button_is_displayed(base_url, selenium):
     page = FirefoxSyncPage(base_url, selenium).open()
-    assert page.is_primary_download_button_displayed
+    assert page.download_button.is_displayed
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_android_download_button_displayed(base_url, selenium):
+def test_app_store_buttons_displayed(base_url, selenium):
     page = FirefoxSyncPage(base_url, selenium).open()
-    assert page.is_android_download_button_displayed
+    assert page.is_play_store_button_displayed
+    assert page.is_app_store_button_displayed
 
 
 @pytest.mark.smoke

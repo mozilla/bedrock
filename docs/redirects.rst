@@ -143,3 +143,46 @@ of the header:
                  header_redirector('cookie', 'been-here', '/firefox/', '/firefox/new/'),
                  vary='cookie'),
     ]
+
+
+Testing redirects
+-----------------
+
+A suite of tests exists for redirects, which is intended as a reference of the
+redirects we expect to work on www.mozilla.org. This will become a base for
+implementing these redirects in the bedrock app and allow us to test them
+before release.
+
+Installation
+~~~~~~~~~~~~
+
+First follow the :ref:`installation instructions for bedrock<install>`, which
+will guide you through installing pip and setting up a virtual environment for
+the tests. The additional requirements can then be installed by using the
+following commands:
+
+.. code-block:: bash
+
+    $ source venv/bin/activate
+    $ bin/peep.py install -r requirements/test.txt
+
+Running the tests
+~~~~~~~~~~~~~~~~~
+
+.. code-block:: bash
+
+    $ py.test tests/redirect/
+
+This will start a local instance of bedrock, run the tests, and then stop the
+instance. If you wish to run the tests against another instance of the site
+(e.g. www.mozilla.org) you can set the ``--base-url`` command line option:
+
+.. code-block:: bash
+
+    $ py.test --base-url https://www.mozilla.org tests/redirect/
+
+By default, tests will run one at a time. If you intend to run the suite
+against a remote instance of the site (e.g. production) it will run a lot
+quicker by running the tests in parallel. To do this, you can add ``-n auto``
+to the command line. Replace ``auto`` with an integer if you want to set the
+maximum number of concurrent processes.

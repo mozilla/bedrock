@@ -10,6 +10,15 @@ from pages.firefox.new import FirefoxNewPage, FirefoxNewThankYouPage
 # We don't currently show the download button for up-to-date Firefox users.
 # TODO explore how could we run this test using a known out-of-date Firefox?
 
+@pytest.mark.skip_if_firefox
+@pytest.mark.smoke
+@pytest.mark.sanity
+@pytest.mark.nondestructive
+def test_download_button_displayed(base_url, selenium):
+    page = FirefoxNewPage(base_url, selenium).open()
+    assert page.download_button.is_displayed
+
+
 # skip tests that trigger download bar in IE due to https://github.com/SeleniumHQ/selenium/issues/448
 @pytest.mark.skip_if_firefox
 @pytest.mark.skip_if_internet_explorer

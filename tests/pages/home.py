@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as expected
 
 from base import BasePage
 from page import PageRegion
+from pages.regions.download_button import DownloadButton
 
 
 class HomePage(BasePage):
@@ -15,6 +16,11 @@ class HomePage(BasePage):
     _promo_tile_locator = (By.CSS_SELECTOR, '.promo-grid > .item')
     _promo_tweet_locator = (By.ID, 'twt-body')
     _download_button_locator = (By.ID, 'download-button-desktop-release')
+
+    @property
+    def download_button(self):
+        el = self.find_element(self._download_button_locator)
+        return DownloadButton(self, root=el)
 
     @property
     def is_promo_grid_displayed(self):
@@ -28,10 +34,6 @@ class HomePage(BasePage):
     @property
     def is_tweet_promo_present(self):
         return self.is_element_present(self._promo_tweet_locator)
-
-    @property
-    def is_download_button_displayed(self):
-        return self.is_element_displayed(self._download_button_locator)
 
     @property
     def upcoming_events(self):

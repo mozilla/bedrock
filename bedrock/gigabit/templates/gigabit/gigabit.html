@@ -6,7 +6,7 @@
 
 {% block page_title %}{{_('Gigabit')}}{% endblock %}
 {% block page_desc %}{{_('Gigabit - Description.')}}{% endblock %}
-{% block body_id %}gigabit{% endblock %}
+{% block body_id %}gigabit-homepage{% endblock %}
 {% block body_class %}sand gigabit{% endblock %}
 {% block page_image %}{{ static('img/gigabit/gigabit-wordmarklarge.png') }}{% endblock %}
 {% block site_header_logo %}
@@ -34,149 +34,113 @@
   <main role="main">
     <article>
       <header class="center">
-        <h1 class="large">{{ _('Gigabit Community Fund') }}</h1>
-        <h2>{{ _('Learn on tomorrow’s networks') }}</h2>
+        <h1 class="large">{{ _('Mozilla Gigabit Community Fund') }}</h1>
+        <h2>{{ _('Learn on Tomorrow’s Networks') }}</h2>
       </header>
 
-      <section id="home-banner" class="container">
-        {# L10n: presentational break can be repositioned or omitted as needed for text flow #}
-        <h1>{{ _('A Community <br>Building the Future') }}</h1>
-        <div class="main">
-          <p>
-            {{ _('We support innovators connecting local service organizations in Kansas City and Chattanooga with advanced networking and communication technologies.') }}
-          </p>
-        </div>
+      <section id="home-banner">
+        <h1>{{ _('Activating a National Gigabit Innovation Ecosystem') }}</h1>
+        <p>
+          {{ _('A partnership with the National Science Foundation and US Ignite, the Mozilla Gigabit Community Fund moves next-generation technology out of labs and into classrooms in Gigabit cities across the United States.') }}
+        </p>
       </section>
-
-      <section id="about-gigabit" class="container">
+      <div class="main-wrapper">
         <div class="main">
-          <h2>{{ _('What is the Gigabit Community Fund?') }}</h2>
-          <p>
-            {{ _('Mozilla’s  Gigabit Community Fund provides grants and resources for innovators exploring the use of next-generation gigabit technologies in Kansas City and Chattanooga.') }}
-          </p>
-          <p>
-            {% trans url_nsf='//www.nsf.gov/', url_us_ignite='//us-ignite.org/', url_google_fibre='//fiber.google.com/about/', url_epb='//www.epb.net/' %}
-              Working in partnership with the <a href='{{ url_nsf }}'>National Science Foundation</a> and <a href='{{ url_us_ignite }}'>US Ignite</a>, the Gigabit Community Fund seeks to advance the development, experimentation and implementation of learning and workforce opportunities enhanced by new, super powerful Internet technologies like <a href='{{ url_google_fibre }}'>Google Fiber</a> and <a href='{{ url_epb }}'>EPB</a>.
-            {% endtrans %}
-          </p>
-          <p>
-            {{ _('The $300,000 fund will support projects in Kansas City and Chattanooga. As the leading gigabit economies in the US, these communities are becoming ‘living labs’ for experimentation and development of public benefit uses  for these technologies.') }}
-          </p>
-          <p>
-            {{ _('The Fund will invest in projects that are both deployable in the near term, and replicable by individuals and organizations that share goals in  digital learning and making. This “community of practice” includes educators, technologists and community catalysts.') }}
-          </p>
-          <p>
-            {{ _('To receive funding, projects must integrate with a local organization’s service offerings in either Kansas City or Chattanooga. They need to have a measurable impact on constituents in these areas, and must demonstrate how emerging gigabit technologies are relevant in people’s everyday lives.') }}
-          </p>
-          <p>
-            {{ _('The Gigabit Community Fund will support two 12-week pilot periods in both Kansas City and Chattanooga. In each pilot period, up to 10 projects will be awarded between $5,000 and $30,000.') }}
-          </p>
-          <p>
-            {% trans url_wiki='//wiki.mozilla.org/Gigabit' %}
-              Learn more about Mozilla's Gigabit Community Fund on our <a href='{{ url_wiki }}'>wiki</a>.
-            {% endtrans %}
-          </p>
-        </div>
-
-        <aside id="important-dates" class="aside">
-          <h4 class="center">{{ _('What’s happening in…') }}</h4>
-          <ul class="no-bullet">
-            <li>
-              {% trans url_chat='//wiki.mozilla.org/Webmaker/HiveChattanooga' %}
-              <a href='{{ url_chat }}'>Chattanooga</a>
-              {% endtrans %}
-            </li>
-            <li>
-              {% trans url_kansas='//wiki.mozilla.org/Webmaker/HiveKansasCity' %}
-              <a href='{{ url_kansas }}'>Kansas City</a>
-              {% endtrans %}
-            </li>
-          </ul>
-          <p>
-          {% trans url_announcement='//sendto.mozilla.org/page/s/gigabit-updates', url_twitter='//twitter.com/MozillaGigabit' %}
-            Join our <a href='{{ url_announcement }}'>announcement list</a> or follow <a href='{{ url_twitter }}'>@MozillaGigabit</a> for updates.
-          {% endtrans %}
-          </p>
-        </aside>
-      </section>
-
-      <section id="get-involved" class="container">
-        <header class="center">
-          <h1>{{ _('Get Involved') }}</h1>
-          <p>{{ _('Join our community to learn more or contribute your ideas. Everyone is welcome: educators, technologists, catalysts… whatever you consider yourself! The more diversity the better.') }}</p>
-        </header>
-
-        <div class="category">
-          <h4>{{ _("Connect with the community") }}</h4>
-          <p>
-            {% trans url_kansas='//www.google.com/calendar/embed?src=shj2d4103tbgg0duo9jl051rt4@group.calendar.google.com&ctz=America/Los_Angeles', url_chatt='//www.google.com/calendar/embed?src=f4r4mio8er2j2iha55anc5e63o@group.calendar.google.com&ctz=America/Los_Angeles' %}
-              Attend an event in <a href='{{ url_kansas }}'>Kansas City</a> or <a href='{{ url_chatt }}'>Chattanooga</a>. Check out a friendly meet-up, code sprint, hack jam or Hive Pop-Up in your city.
-            {% endtrans %}
-          </p>
-          <p>
-            {% trans url_monthly_call='//wiki.mozilla.org/Gigabit' %}
-              Dial in to our <a href='{{ url_monthly_call }}'>monthly community call</a>. We meet each week for an hour-long discussion to share ideas, ask questions and find answers.
-            {% endtrans %}
-          </p>
-        </div>
-
-        <div class="category">
-          <h4>{{ _("Get social") }}</h4>
-          <p>
-            {% trans url_blog='//blog.mozilla.org/blog/2014/02/06/mozilla-gigabit-community-fund-supporting-local-innovation-in-chattanooga-and-kansas-city/' %}
-              Read the official announcement on <a href='{{ url_blog }}'>the Mozilla blog</a>.
-            {% endtrans %}
-          </p>
-          <p>
-            {% trans url_twitter='//twitter.com/MozillaGigabit' %}
-              Find us on Twitter <a href='{{ url_twitter }}'>@MozillaGigabit</a>.
-            {% endtrans %}
-          </p>
-          <p>
-            {% trans url_comm_mailing='//minigroup.com/groups/19015' %}
-              Sign up for our <a href='{{ url_comm_mailing }}'>community email list</a>.
-            {% endtrans %}
-          </p>
-        </div>
-
-        <div class="category">
-          <h4>{{ _("Get announcements") }}</h4>
-          <p>
-            {% trans url_email_us='mailto:gigabit@mozilla.org' %}
-              <a href='{{ url_email_us }}'>Email us</a>. We are friendly and would love to hear from you.
-            {% endtrans %}
-          </p>
-
-          <form id="bsd-signup" method="POST" action="//sendto.mozilla.org/page/s/gigabit-updates" name="signup">
+          <section id="about-gigabit">
+            <h2>{{ _('What is the Gigabit Community Fund?') }}</h2>
             <p>
-              <label for="email-field">{{ _('Receive email updates from Mozilla about the Gigabit Community Fund.') }}</label>
-              {# L10n: "you@example.com" is used as a placeholder in a form. The domain should remain "example.com" but translators can change the username to suit. #}
-              <input id="email-field" type="email" name="email" placeholder="{{ _('you@example.com') }}">
-              <label class="agree" for="pp-agree">
-                <input id="pp-agree" type="checkbox" value="1" name="custom-2480">
-                {% trans url_pp='//www.mozilla.org/privacy/policies/websites/' %}
-                  I’m okay with you handling this info as you explain in your <a href="{{ url_pp }}" target="_blank" title="Read Mozilla websites privacy policy (opens new window)">privacy policy</a>.
-                {% endtrans %}
-              </label>
-              <input type="submit" value="{{ _('Sign Me Up') }}" class="button">
+            {% trans url_nsf='http://www.nsf.gov/', url_us_ignite='https://www.us-ignite.org/', url_hive_cha='http://hivecha.org/', url_hive_kc='http://hivekc.org/' %}
+              Since 2011, Mozilla has partnered with the <a href='{{ url_nsf }}'>National Science Foundation</a> and <a href='{{ url_us_ignite }}'>US Ignite</a> to demonstrate the value of gigabit networks for learning and to help seed demand for further high-speed network investment. In early 2014, the <a href='{{ url_hive_cha }}'>Hive Chattanooga</a> and <a href='{{ url_hive_kc }}'>Hive Kansas City</a> Learning Communities were launched to activate these leading gigabit cities as living laboratories for gigabit innovation. The Mozilla Gigabit Community Fund provides catalytic funding in these Hive communities to support the piloting of gigabit technologies and associated curricula. Intentionally designed to erase boundaries between educators and technologists, between organizations, and between gigabit cities, Gigabit Community Fund projects show the impact of next-generation networks on learning and engage new leaders as co-creators and beta-testers of gigabit-enabled educational technologies.
+            {% endtrans %}
             </p>
-          </form>
+            <p>
+              {% trans url_hive_kc='http://hivekc.org/portfolio/', url_hive_cha='http://hivecha.org/portfolio/' %}
+              In 2014, the Gigabit Community Fund supported the development of 17 engaging projects in <a href='{{ url_hive_kc }}'>Kansas City</a> and <a href='{{ url_hive_cha }}'>Chattanooga</a>. Building on this success, the National Science Foundation announced in September 2015 a three-year continuation of its partnership with Mozilla to sustain the work in Chattanooga and Kansas City and to expand to three additional gigabit cities by 2018.
+              {% endtrans %}
+            </p>
+          </section>
+          <section>
+            <h2>{{ _('The Gigabit Advantage for Learning') }}</h2>
+            <p>
+            {% trans %}
+              High-speed networks enable students, teachers, and learners of all ages to engage and explore on the Web without ever having to worry about buffering delays, shaky video connections, or download wait times. When bandwidth is abundant, learners can connect across the boundaries of classrooms, organizations, cities, and states in real-time, creating new opportunities to read, write, and participate online.
+            {% endtrans %}
+            </p>
+            <p>
+            {% trans %}
+              Gigabit Community Fund projects explore these new ways of reading, writing, and participating on a lightning-fast Web. Pilots supported by the Fund show current and future gigabit cities how high-speed networks can be leveraged to make learning immediate, equitable, and immersive:
+            {% endtrans %}
+            </p>
+            <ul>
+              <li>
+              {% trans url_viditor='http://hivecha.org/portfolio/viditor/', url_watchdogs='http://hivecha.org/portfolio/wireless-earth-watchdogs/' %}
+                <strong>Immediate: </strong>Next-generation networks make learning immediate &mdash; just ask any student who&rsquo;s built a video with <a href='{{ url_viditor }}'>Viditor</a> or any teacher who worked with a student across town via video through <a href='{{ url_watchdogs }}'>Wireless Earth Watchdogs</a>. Gig speeds mean that students don&rsquo;t have to wait for a video download or for their projects to compile losing valuable classroom minutes. They don&rsquo;t experience weird lurches in video calls or buffering times on media-rich websites. This advantage may seem minor, but its impacts on engagement are huge. When videos load instantly, there&rsquo;s no time to become distracted with another tab or another student. When there&rsquo;s no lag on video calls, distance learning feels like in-person learning.
+              {% endtrans %}
+              </li>
+              <li>
+              {% trans url_viditor='http://hivecha.org/portfolio/viditor/', url_adagio='http://hivecha.org/portfolio/adagio/' %}
+                <strong>Equitable: </strong>High-speed networks level the technological playing field for students. Gig speeds mean that schools don&rsquo;t need the latest and greatest hardware to be on the cutting edge of technology. High-speed networks allow data to stream without delay or lag to the cloud, where hardware-intensive processes can take place. This means that students working on old laptops or outmoded tablets can &mdash; without a great processor or expensive software &mdash; edit videos thanks to <a href='{{ url_viditor }}'>Viditor</a> or mix music with <a href='{{ url_adagio }}'>Adagio</a>.
+              {% endtrans %}
+              </li>
+              <li>
+              {% trans url_blog_post='https://blog.mozilla.org/gigabit/ten-projects-receive-165400-from-mozilla-gigabit-community-fund' %}
+                <strong>Immersive</strong>: Gigabit speeds and new technologies in virtual and augmented reality combine to create opportunities for learners to explore new worlds without ever leaving the classroom. Youth at the library in Kansas City can visit new parts of their own community and build fanciful urban landscapes in their own backyard <a href='{{ url_blog_post }}'>using Oculus Rift with Minecraft</a>. More exciting still, these same students can build entirely new cityscapes in real-time alongside youth hundreds of miles away at the Chattanooga Public Library using these same technologies. With an ever-increasing number of consumer VR headsets available and growing public interest in the VR space, gigabit cities are an ideal testbed in which to explore how bandwidth-intensive VR and AR environments can be leveraged for learning.
+              {% endtrans %}
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h2>{{ _('Explore Gigabit Hive Communities') }}</h2>
+            <p>
+              {% trans %}
+              The Mozilla Gigabit Community Fund currently supports pilot projects involving organizations in Kansas City and Chattanooga. In each of these leading gigabit cities, a vibrant Hive Learning Community comprised of educators, technologists, entrepreneurs and web literacy leaders of all stripes helps to activate, grow, and scale the pilots supported by the Gigabit Community Fund.
+              {% endtrans %}
+            </p>
+            <p>
+              {% trans url_hive_cha='http://hivecha.org/', url_hive_kc='http://hivekc.org/' %}
+              To learn more, get involved with Hive, or explore each city&rsquo;s diverse portfolio of Gigabit Community Fund projects, please visit the websites of <a href='{{ url_hive_cha }}'>Hive CHA</a> and <a href='{{ url_hive_kc }}'>Hive KC</a>.
+              {% endtrans %}
+            </p>
+            <div class="hive-logos">
+              <a href="http://hivekc.org/"><img src="{{ static('img/gigabit/Hive-Kansas-City.png') }}" alt="Hive Kansas City"></a>
+              <a href="http://hivecha.org/"><img src="{{ static('img/gigabit/Hive-Chattanooga.png') }}" alt="Hive Chattanooga"></a>
+            </div>
+          </section>
+          <section>
+            <h2>{{ _('Expanding the Gigabit Community Fund') }}</h2>
+            <p>
+              {% trans %}
+              Cities across the United States are investing in high-speed networks that have the potential to change the way individuals connect and create on the Web. Mozilla works to ensure that the Web remains a global public resource that is open and accessible to everyone. As the national gigabit innovation ecosystem grows, increasing participation in next-gen innovation through projects like the Gigabit Community Fund fuels Mozilla&rsquo;s mission of supporting an Internet where all people are empowered, safe, and independent.
+              {% endtrans %}
+            </p>
+            <p>
+              {% trans %}
+              In partnership with the National Science Foundation and US Ignite, we&rsquo;re expanding the Gigabit Community Fund to three additional gigabit cities by 2018. Interested in adding your community to list of communities being considered as part of this expansion? <a href="https://docs.google.com/forms/d/1DgjPFsydrQR2H_CdNrUEqOmbrWHASFZelV7WqQsGkRg/viewform">Please fill out this interest form</a>.
+              {% endtrans %}
+            </p>
+          </section>
         </div>
-      </section>
-
-      <aside id="partners" class="container">
-        <ul class="partner-logos center">
-          <li><a href="http://www.nsf.gov/"><img src="{{ static('img/gigabit/logo-nsf.png') }}" alt="NSF"></a></li>
-          <li><a href="http://us-ignite.org/"><img src="{{ static('img/gigabit/logo-ignite.png') }}" alt="US Ignite"></a></li>
-          <li><a href="http://www.geni.net/"><img src="{{ static('img/gigabit/logo-geni.png') }}" alt="GENI"></a></li>
-          <li><a href="http://www.kcdigitaldrive.com/"><img src="{{ static('img/gigabit/logo-kc-digital-drive.png') }}" alt="KC Digital Drive"></a></li>
-          <li><a href="http://www.chattanooga.gov/"><img src="{{ static('img/gigabit/logo-chatt-city-seal.png') }}" alt="Chatt City Seal"></a></li>
-          <li><a href="http://www.hamiltontn.gov/"><img src="{{ static('img/gigabit/logo-hamilton-county-seal.png') }}" alt="Hamilton County Seal"></a></li>
-          <li><a href="http:///www.kcmo.org/CKCMO/index.htm"><img src="{{ static('img/gigabit/logo-kcmo.png') }}" alt="KC MO"></a></li>
-          <li><a href="http://www.wycokck.org/"><img src="{{ static('img/gigabit/logo-kc-unified-gov.png') }}" alt="KC Unified Gov"></a></li>
-        </ul>
-      </aside>
-
+        <aside>
+          <section>
+            <h2>{{ _('Gigabit in the News') }}</h2>
+            <ul>
+              <li><a href="http://www.timesfreepress.com/news/business/aroundregion/story/2015/sep/17/chattanoogget-another-150000-grant-money-proj/325546/">Times Free Press</a></li>
+              <li><a href="http://www.bizjournals.com/kansascity/news/2015/09/17/mozilla-foundation-nsf-grant-gigabit-cities.html">Kansas City Business Journal</a></li>
+              <li><a href="http://www.kansascity.com/news/business/technology/article35575440.html">The Kansas City Star</a></li>
+              <li><a href="http://www.zdnet.com/article/white-house-grants-mozilla-3-2-million-to-expand-gigabit-cities/">ZDNet</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>{{ _('Get in Touch') }}</h2>
+            <p>
+              {% trans %}
+              Find us on <a href="http://twitter.com/mozillagigabit">Twitter</a> or send us an <a href="mailto:gigabit@mozilla.com">email</a>.
+              {% endtrans %}
+            </p>
+          </section>
+        </aside>
+      </div>
+      {% include 'gigabit/_partners.html' %}
     </article>
   </main>
 

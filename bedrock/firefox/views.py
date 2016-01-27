@@ -4,97 +4,34 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import json
 import re
 
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.http import (Http404, HttpResponseRedirect,
+                         HttpResponsePermanentRedirect)
 from django.utils.encoding import force_text
 from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
-from bedrock.base.helpers import static
 from bedrock.base.urlresolvers import reverse
 from commonware.response.decorators import xframe_allow
 from lib import l10n_utils
-from lib.l10n_utils.dotlang import _
 from product_details.version_compare import Version
 
 import waffle
 
 from bedrock.base.geo import get_country_from_request
-from bedrock.firefox.firefox_details import firefox_desktop
+from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
-from bedrock.mozorg.views import process_partnership_form
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.releasenotes import version_re
 
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
-
-LANG_FILES = ['firefox/partners/index']
-
-LOCALE_FXOS_HEADLINES = {
-    'de': {
-        'title': u"Firefox OS ist richtungsweisend für die Zukunft des "
-                 u"mobilen Marktes",
-        'url': 'http://blog.mozilla.org/press-de/2014/02/23/'
-               'firefox-os-ist-richtungsweisend-fur-die-zukunft-des-mobilen-'
-               'marktes',
-    },
-    'en-GB': {
-        'title': u'Firefox OS Unleashes the Future of Mobile',
-        'url': 'http://blog.mozilla.org/press-uk/2014/02/23/'
-               'firefox-os-unleashes-the-future-of-mobile'
-    },
-    'en-US': {
-        'title': _('Firefox OS Unleashes the Future of Mobile'),
-        'url': 'https://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
-    },
-    'es-AR': {
-        'title': u'Firefox OS te desvela el futuro de lo móvil',
-        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
-               'firefox-os-te-desvela-el-futuro-de-lo-movil/',
-    },
-    'es-CL': {
-        'title': u'Firefox OS te desvela el futuro de lo móvil',
-        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
-               'firefox-os-te-desvela-el-futuro-de-lo-movil/',
-    },
-    'es-ES': {
-        'title': u'Firefox OS te desvela el futuro de lo móvil',
-        'url': 'https://blog.mozilla.org/press/2014/02/firefox-os-future-2/',
-    },
-    'es-MX': {
-        'title': u'Firefox OS te desvela el futuro de lo móvil',
-        'url': 'http://blog.mozilla.org/press-latam/2014/02/23/'
-               'firefox-os-te-desvela-el-futuro-de-lo-movil/',
-    },
-    'fr': {
-        'title': u'Firefox OS chamboule le futur du mobile',
-        'url': 'http://blog.mozilla.org/press-fr/2014/02/23/'
-               'firefox-os-chamboule-le-futur-du-mobile',
-    },
-    'it': {
-        'title': u'Firefox OS svela il futuro del mobile',
-        'url': 'http://blog.mozilla.org/press-it/2014/02/23/'
-               'firefox-os-svela-il-futuro-del-mobile',
-    },
-    'pl': {
-        'title': u'Firefox OS uwalnia przyszłość technologii mobilnej',
-        'url': 'http://blog.mozilla.org/press-pl/2014/02/23/'
-               'firefox-os-uwalnia-przyszlosc-technologii-mobilnej',
-    },
-    'pt-BR': {
-        'title': u'Firefox OS apresenta o futuro dos dispositivos móveis',
-        'url': 'https://blog.mozilla.org/press-br/2014/02/23/'
-               'firefox-os-apresenta-o-futuro-dos-dispositivos-moveis/',
-    },
-}
 
 INSTALLER_CHANNElS = [
     'release',
@@ -127,24 +64,6 @@ LOCALE_SPRING_CAMPAIGN_VIDEOS = {
     'fr': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_french',
     'pt-BR': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_portugeseBrazil',
 }
-
-
-def get_js_bundle_files(bundle):
-    """
-    Return a JSON string of the list of file names for lazy loaded
-    javascript.
-    """
-    bundle = settings.PIPELINE_JS[bundle]
-    if settings.DEBUG:
-        items = bundle['source_filenames']
-    else:
-        items = (bundle['output_filename'],)
-    return json.dumps([static(i) for i in items])
-
-
-JS_COMMON = get_js_bundle_files('partners_common')
-JS_MOBILE = get_js_bundle_files('partners_mobile')
-JS_DESKTOP = get_js_bundle_files('partners_desktop')
 
 
 def installer_help(request):
@@ -255,34 +174,43 @@ def dnt(request):
     return response
 
 
-def all_downloads(request, channel):
+def all_downloads(request, platform, channel):
+    if platform is None:
+        platform = 'desktop'
+    if platform == 'desktop':
+        product = firefox_desktop
+    if platform == 'android':
+        product = firefox_android
+
     if channel is None:
         channel = 'release'
-    if channel == 'developer' or channel == 'aurora':
+    if channel in ['developer', 'aurora']:
         channel = 'alpha'
     if channel == 'organizations':
         channel = 'esr'
 
-    version = firefox_desktop.latest_version(channel)
+    # Since the regex in urls.py matches various URL patterns, we have to handle
+    # nonexistent pages here as 404 Not Found
+    if platform == 'ios':
+        raise Http404
+    if platform == 'android' and channel in ['alpha', 'esr']:
+        raise Http404
+
+    version = product.latest_version(channel)
     query = request.GET.get('q')
 
-    channel_names = {
-        'release': _('Firefox'),
-        'beta': _('Firefox Beta'),
-        'alpha': _('Developer Edition'),
-        'esr': _('Firefox Extended Support Release'),
-    }
-
     context = {
+        'platform': platform,
+        'platforms': product.platforms(channel),
         'full_builds_version': version.split('.', 1)[0],
-        'full_builds': firefox_desktop.get_filtered_full_builds(channel, version, query),
-        'test_builds': firefox_desktop.get_filtered_test_builds(channel, version, query),
+        'full_builds': product.get_filtered_full_builds(channel, version, query),
+        'test_builds': product.get_filtered_test_builds(channel, version, query),
         'query': query,
         'channel': channel,
-        'channel_name': channel_names[channel]
+        'channel_label': product.channel_labels.get(channel, 'Firefox'),
     }
 
-    if channel == 'esr':
+    if platform == 'desktop' and channel == 'esr':
         next_version = firefox_desktop.latest_version('esr_next')
         if next_version:
             context['full_builds_next_version'] = next_version.split('.', 1)[0]
@@ -308,28 +236,6 @@ def firefox_os_geo_redirect(request):
     return HttpResponseRedirect(reverse('firefox.os.ver.{0}'.format(version)))
 
 
-@csrf_protect
-def firefox_partners(request):
-    # If the current locale isn't in our list, return the en-US value
-    press_locale = request.locale if (
-        request.locale in LOCALE_FXOS_HEADLINES) else 'en-US'
-
-    template_vars = {
-        'locale_headline_url': LOCALE_FXOS_HEADLINES[press_locale]['url'],
-        'locale_headline_title': LOCALE_FXOS_HEADLINES[press_locale]['title'],
-        'js_common': JS_COMMON,
-        'js_mobile': JS_MOBILE,
-        'js_desktop': JS_DESKTOP,
-    }
-
-    form_kwargs = {
-        'interest_set': 'fx',
-        'lead_source': 'www.mozilla.org/firefox/partners/'}
-
-    return process_partnership_form(
-        request, 'firefox/partners/index.html', 'firefox.partners.index', template_vars, form_kwargs)
-
-
 def show_devbrowser_firstrun_or_whatsnew(version):
     match = re.match(r'\d{1,2}', version)
     if match:
@@ -339,31 +245,13 @@ def show_devbrowser_firstrun_or_whatsnew(version):
     return False
 
 
-def show_search_firstrun(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version('34.0')
-
-
-def show_36_firstrun(version):
+def show_36_tour(version):
     try:
         version = Version(version)
     except ValueError:
         return False
 
     return version >= Version('36.0')
-
-
-def show_36_whatsnew_tour(oldversion):
-    try:
-        oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    return oldversion < Version('36.0')
 
 
 def show_38_0_5_firstrun_or_whatsnew(version):
@@ -373,6 +261,15 @@ def show_38_0_5_firstrun_or_whatsnew(version):
         return False
 
     return version >= Version('38.0.5')
+
+
+def show_42_whatsnew(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('42.0')
 
 
 def show_40_firstrun(version):
@@ -437,15 +334,6 @@ class LatestFxView(TemplateView):
 
 class FirstrunView(LatestFxView):
 
-    def get(self, request, *args, **kwargs):
-        if not settings.DEV and not request.is_secure():
-            uri = 'https://{host}{path}'.format(
-                host=request.get_host(),
-                path=request.get_full_path(),
-            )
-            return HttpResponsePermanentRedirect(uri)
-        return super(FirstrunView, self).get(request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
         version = self.kwargs.get('version') or ''
@@ -457,7 +345,6 @@ class FirstrunView(LatestFxView):
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
-        locale = l10n_utils.get_locale(self.request)
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-firstrun.html'
@@ -465,12 +352,8 @@ class FirstrunView(LatestFxView):
             template = 'firefox/firstrun/firstrun.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
-        elif show_36_firstrun(version):
-            template = 'firefox/australis/fx36/firstrun-tour.html'
-        elif show_search_firstrun(version) and locale == 'en-US':
-            template = 'firefox/australis/firstrun-34-tour.html'
         else:
-            template = 'firefox/australis/firstrun-tour.html'
+            template = 'firefox/australis/firstrun.html'
 
         # return a list to conform with original intention
         return [template]
@@ -483,15 +366,6 @@ class FirstrunLearnMoreView(LatestFxView):
 class WhatsnewView(LatestFxView):
 
     pocket_locales = ['en-US', 'es-ES', 'ru', 'ja', 'de']
-
-    def get(self, request, *args, **kwargs):
-        if not settings.DEV and not request.is_secure():
-            uri = 'https://{host}{path}'.format(
-                host=request.get_host(),
-                path=request.get_full_path(),
-            )
-            return HttpResponsePermanentRedirect(uri)
-        return super(WhatsnewView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
@@ -513,8 +387,8 @@ class WhatsnewView(LatestFxView):
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-whatsnew.html'
-        elif version.startswith('42.') or version.startswith('43.'):
-            template = 'firefox/whatsnew_42/variant-a.html'
+        elif show_42_whatsnew(version):
+            template = 'firefox/whatsnew_42/whatsnew.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
             has_pocket = locale in self.pocket_locales
@@ -525,16 +399,9 @@ class WhatsnewView(LatestFxView):
             elif has_pocket:
                 template = 'firefox/whatsnew_38/whatsnew-pocket.html'
             else:
-                template = 'firefox/australis/fx36/whatsnew-no-tour.html'
-        elif version.startswith('37.'):
-            template = 'firefox/whatsnew-fx37.html'
-        elif version.startswith('36.'):
-            if show_36_whatsnew_tour(oldversion):
-                template = 'firefox/australis/fx36/whatsnew-tour.html'
-            else:
-                template = 'firefox/australis/fx36/whatsnew-no-tour.html'
+                template = 'firefox/australis/whatsnew.html'
         else:
-            template = 'firefox/australis/whatsnew-no-tour.html'
+            template = 'firefox/australis/whatsnew.html'
 
         # return a list to conform with original intention
         return [template]
@@ -542,27 +409,15 @@ class WhatsnewView(LatestFxView):
 
 class TourView(LatestFxView):
 
-    def get(self, request, *args, **kwargs):
-        if not settings.DEV and not request.is_secure():
-            uri = 'https://{host}{path}'.format(
-                host=request.get_host(),
-                path=request.get_full_path(),
-            )
-            return HttpResponsePermanentRedirect(uri)
-        return super(TourView, self).get(request, *args, **kwargs)
-
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
-        locale = l10n_utils.get_locale(self.request)
 
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-firstrun.html'
-        elif show_36_firstrun(version):
-            template = 'firefox/australis/fx36/help-menu-36-tour.html'
-        elif show_search_firstrun(version) and locale == 'en-US':
-            template = 'firefox/australis/help-menu-34-tour.html'
+        elif show_36_tour(version):
+            template = 'firefox/australis/fx36/tour.html'
         else:
-            template = 'firefox/australis/help-menu-tour.html'
+            template = 'firefox/australis/firstrun.html'
 
         # return a list to conform with original intention
         return [template]

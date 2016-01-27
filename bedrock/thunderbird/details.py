@@ -8,6 +8,7 @@ from operator import itemgetter
 from urllib import urlencode
 
 from product_details import ProductDetails
+from lib.l10n_utils.dotlang import _
 
 
 # TODO: port this to django-mozilla-product-details
@@ -15,18 +16,29 @@ class ThunderbirdDesktop(ProductDetails):
     download_base_url_direct = 'https://download.mozilla.org/'
     download_base_url_ftp = 'https://ftp.mozilla.org/pub/mozilla.org/thunderbird/'
 
+    # Human-readable platform names
     platform_labels = OrderedDict([
         ('win', 'Windows'),
         ('osx', 'OS X'),
         ('linux', 'Linux'),
         ('linux64', 'Linux 64-bit'),
     ])
-    channel_map = {
+
+    # Human-readable channel names
+    channel_labels = {
+        'release': _('Thunderbird'),
+        'beta': _('Thunderbird Beta'),
+        'alpha': _('Earlybird'),
+    }
+
+    # Version property names in product-details
+    version_map = {
         'alpha': 'LATEST_THUNDERBIRD_ALPHA_VERSION',
         'beta': 'LATEST_THUNDERBIRD_DEVEL_VERSION',
         'release': 'LATEST_THUNDERBIRD_VERSION',
     }
 
+    # Binary file suffixes on FTP
     file_suffixes = {
         'win': 'win32.installer.exe',
         'osx': 'mac.dmg',
@@ -34,13 +46,16 @@ class ThunderbirdDesktop(ProductDetails):
         'linux64': 'linux-x86_64.tar.bz2',
     }
 
+    def platforms(self, channel='release'):
+        return self.platform_labels.items()
+
     def latest_version(self, channel='release'):
         if not channel:
             channel = 'release'
         if channel == 'earlybird':
             channel = 'alpha'
 
-        version = self.channel_map.get(channel, 'LATEST_THUNDERBIRD_VERSION')
+        version = self.version_map.get(channel, 'LATEST_THUNDERBIRD_VERSION')
         try:
             return self.thunderbird_versions[version]
         except KeyError:
@@ -158,7 +173,7 @@ class ThunderbirdDesktop(ProductDetails):
 
         # Point the FTP server for Earlybird
         if channel == 'alpha':
-            return '%snightly/latest-earlybird%s/thunderbird-%s.%s.%s' % (
+            return '%snightly/latest-comm-aurora%s/thunderbird-%s.%s.%s' % (
                 self.download_base_url_ftp,
                 '' if locale == 'en-US' else '-l10n',
                 _version, _locale, self.file_suffixes[platform])

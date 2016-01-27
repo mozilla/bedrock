@@ -32,7 +32,6 @@ urlpatterns = (
     # Bug 981063, catch all for old calendar urls.
     # must be here to avoid overriding the above
     redirect(r'^projects/calendar/', 'mozorg.projects.calendar', locale_prefix=False),
-    page('button', 'mozorg/button.html'),
     page('mission', 'mozorg/mission.html'),
     page('ITU', 'mozorg/itu.html'),
     page('about/powered-by', 'mozorg/powered-by.html'),

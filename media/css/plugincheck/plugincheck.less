@@ -263,7 +263,7 @@ html[dir="rtl"] {
 #sec-plugin-uptodate {
     display: none;
 }
-#mozorg-newsletter-form,
+
 #newsletter-form {
     margin: 0 auto;
     padding: 0 5px (@baseLine * 2);
@@ -378,13 +378,8 @@ html[dir="rtl"] {
         padding: 0 20px 0 25px;
     }
 }
-html[lang="de"] {
-    #mozorg-newsletter-form,
-    #newsletter-form {
-        input[type="submit"] {
-            .font-size(@largeFontSize);
-        }
-    }
+html[lang="de"] #newsletter-form input[type="submit"] {
+    .font-size(@largeFontSize);
 }
 .newsletter-container {
     background-color: #fff;

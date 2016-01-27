@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
 from pages.regions.modal import Modal
+from pages.regions.download_button import DownloadButton
 
 
 class HelloPage(FirefoxBasePage):
@@ -17,12 +18,17 @@ class HelloPage(FirefoxBasePage):
     _download_button_locator = (By.ID, 'download-fx')
 
     @property
+    def download_button(self):
+        el = self.find_element(self._download_button_locator)
+        return DownloadButton(self, root=el)
+
+    @property
     def is_try_hello_button_displayed(self):
         return self.is_element_displayed(self._try_hello_button_locator)
 
     @property
     def is_download_button_displayed(self):
-        return self.is_element_displayed(self._download_button_locator)
+        return self.download_button(self._download_button_locator).is_displayed()
 
     def play_video(self):
         modal = Modal(self)

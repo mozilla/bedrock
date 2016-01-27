@@ -384,7 +384,6 @@ INSTALLED_APPS = (
     'bedrock.styleguide',
     'bedrock.tabzilla',
     'bedrock.teach',
-    'bedrock.facebookapps',
     'bedrock.externalfiles',
     'bedrock.security',
     'bedrock.events',
@@ -546,10 +545,6 @@ EXTERNAL_FILES = {
     },
 }
 
-FACEBOOK_LOCALES = ['en-US', 'es-ES', 'pt-BR', 'id', 'de']
-FACEBOOK_PAGE_NAMESPACE = 'DUMMY_PAGE_NAMESPACE'
-FACEBOOK_APP_ID = 'DUMMY_APP_ID'
-
 # Facebook Like button supported locales
 # https://www.facebook.com/translations/FacebookLocales.xml
 FACEBOOK_LIKE_LOCALES = ['af_ZA', 'ar_AR', 'az_AZ', 'be_BY', 'bg_BG',
@@ -568,15 +563,6 @@ FACEBOOK_LIKE_LOCALES = ['af_ZA', 'ar_AR', 'az_AZ', 'be_BY', 'bg_BG',
                          'sv_SE', 'sw_KE', 'ta_IN', 'te_IN', 'th_TH',
                          'tl_PH', 'tr_TR', 'uk_UA', 'vi_VN', 'zh_CN',
                          'zh_HK', 'zh_TW']
-
-
-# FACEBOOK_TAB_URL is lazily evaluated because it depends on the namespace
-# and app ID settings in local settings.
-def facebook_tab_url_lazy():
-    from django.conf import settings
-    return '//www.facebook.com/{page}/app_{id}'.format(
-        page=settings.FACEBOOK_PAGE_NAMESPACE, id=settings.FACEBOOK_APP_ID)
-FACEBOOK_TAB_URL = lazy(facebook_tab_url_lazy, str)()
 
 # Prefix for media. No trailing slash.
 # e.g. '//mozorg.cdn.mozilla.net'
@@ -1121,3 +1107,8 @@ SSLIFY_DISABLE_FOR_REQUEST = [
 
 NEWRELIC_BROWSER_LICENSE_KEY = config('NEWRELIC_BROWSER_LICENSE_KEY', default='')
 NEWRELIC_APP_ID = config('NEWRELIC_APP_ID', default='')
+
+# temporary home until product details is updated
+FIREFOX_IOS_RELEASE_VERSION = '1.4'
+
+FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'

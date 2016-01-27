@@ -10,12 +10,12 @@ from django.utils.encoding import smart_text
 
 from lib.l10n_utils.dotlang import _lazy as _
 
-LANG_FILES = ['firefox/whatsnew-fx37']
-
 
 class USPhoneNumberField(forms.CharField):
-    """
-    A form field that validates input as a U.S. phone number.
+    """A form field that validates input as a U.S. phone number.
+
+    Note: The default 'invalid' error message serves as a placeholder and is not
+    currently in use or localized.
     """
     default_error_messages = {
         'invalid': _("Sorry. This number isn't valid. Please enter a U.S. phone "

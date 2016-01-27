@@ -114,7 +114,7 @@ redirectpatterns = (
     redirect(r'^ports/os2/?$', 'https://wiki.mozilla.org/Ports/os2'),
     redirect(r'^ports(?P<path>.*)', 'http://www-archive.mozilla.org/ports{path}'),
 
-    redirect(r'^b2g', 'firefox.partners.index'),
+    redirect(r'^b2g', 'firefox.os.index'),
 
     # Bug 781914
     redirect(r'^contribute/areas.html$', 'mozorg.contribute'),
@@ -176,8 +176,12 @@ redirectpatterns = (
     redirect(r'^m/privacy.html$', 'privacy.notices.firefox'),
 
     # Bug 1109318 /privacy/you -> privacy/tips/
+    # Bug 1238687 /privacy/tips -> teach/smarton/
     redirect(r'^privacy/you/?$',
-             'privacy.privacy-day'),
+             'teach.smarton.index'),
+    redirect(r'^privacy/tips/?$',
+             'teach.smarton.index'),
+
 
     # Bug 821047 /about/mission.html -> /mission/
     redirect(r'^about/mission.html$', '/mission/'),
@@ -201,10 +205,9 @@ redirectpatterns = (
     # /about/mozilla-based/
     redirect(r'^projects/mozilla-based/?$', '/about/mozilla-based/'),
 
-    # Bug 867773 - Redirect the Persona "Developer FAQ" link
-    # to MDN
-    redirect(r'^persona/developer-faq/?$',
-             'https://developer.mozilla.org/persona'),
+    # Bug 867773, 1238851 - Redirect the Persona URLs to MDN
+    redirect(r'^persona(?:/(?:about|developer-faq))?/?$',
+             'https://developer.mozilla.org/Persona'),
 
     # Bug 981176 - For now we'll hard-code a redirect to 1.3
     # In the future this should automatically go to the
@@ -245,6 +248,9 @@ redirectpatterns = (
     # have to specifically match a non-slash on either side of the slashes
     # to force it to match all repeating slashes in one go.
     redirect(r'^(.*[^/])//+([^/].*)$', '/{}/{}', locale_prefix=False),
+
+    # bug 1237875
+    redirect(r'^community/forums/?$', 'mozorg.about.forums.forums'),
 
     # bug 927442
     redirect(r'^(firefox/)?community/?', 'mozorg.contribute'),
@@ -577,6 +583,9 @@ redirectpatterns = (
 
     # bug 1233015
     redirect(r'^about/partnerships/contentservices(/.*)?$', 'mozorg.partnerships'),
+
+    # Bug 1235853
+    redirect(r'^facebookapps(/.*)?$', 'firefox.new'),
 
     # bug 832348 **/index.html -> **/
     # leave this at the bottom

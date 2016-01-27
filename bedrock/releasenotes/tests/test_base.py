@@ -209,8 +209,8 @@ class TestRNAViews(TestCase):
     def test_check_url(self):
         eq_(views.check_url('Firefox for Android', '42.0'),
             'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
-        eq_(views.check_url('Firefox for iOS', '1.2'),
-            '/en-US/firefox/ios/1.2/system-requirements/')
+        eq_(views.check_url('Firefox for iOS', '1.4'),
+            '/en-US/firefox/ios/1.4/system-requirements/')
         eq_(views.check_url('Firefox', '42.0'),
             '/en-US/firefox/42.0/system-requirements/')
 
@@ -299,6 +299,12 @@ class TestNotesRedirects(TestCase):
     def test_android_aurora_version(self):
         self._test('/firefox/android/aurora/notes/',
                    '/firefox/android/24.0a2/auroranotes/')
+
+    @patch('bedrock.releasenotes.views.firefox_ios.latest_version',
+           Mock(return_value='1.4'))
+    def test_ios_release_version(self):
+        self._test('/firefox/ios/notes/',
+                   '/firefox/ios/1.4/releasenotes/')
 
     @patch('bedrock.releasenotes.views.thunderbird_desktop.latest_version',
            Mock(return_value='22.0'))

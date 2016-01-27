@@ -27,7 +27,13 @@
 
 <div class="main-feature">
   <h1>{{_('Firefox OS comes to TVs')}}</h1>
-  <h2>{{ _('We’re bringing the power of the Web to Panasonic televisions later this year.') }}</h2>
+  <h2>
+    {%- if l10n_has_tag('fxostv_update_201601') -%}
+      {{ _('We’re bringing the power of the Web to Panasonic televisions again in 2016.') }}
+    {%- else -%}
+      {{ _('We’re bringing the power of the Web to Panasonic televisions later this year.') }}
+    {%- endif -%}
+  </h2>
 </div>
 
 <div id="main-content">

@@ -29,7 +29,7 @@ ios_sysreq_re = sysreq_re.replace('firefox', 'firefox/ios')
 
 urlpatterns = (
     redirect(r'^firefox/$', 'firefox.new', name='firefox', locale_prefix=False),
-    url(r'^firefox/(?:%s/)?all/$' % channel_re,
+    url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
         views.all_downloads, name='firefox.all'),
     page('firefox/accounts', 'firefox/accounts.html'),
     page('firefox/channel', 'firefox/channel.html'),
@@ -45,7 +45,6 @@ urlpatterns = (
     url(r'^firefox/hello/$', views.hello, name='firefox.hello'),
     page('firefox/interest-dashboard', 'firefox/interest-dashboard.html'),
     page('firefox/android', 'firefox/android/index.html'),
-    page('firefox/android/all', 'firefox/android/all.html'),
     page('firefox/android/faq', 'firefox/android/faq.html'),
     page('firefox/ios', 'firefox/ios.html'),
     page('firefox/mobile-download', 'firefox/mobile-download.html'),
@@ -82,8 +81,6 @@ urlpatterns = (
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
     url(tour_re, views.TourView.as_view(), name='firefox.tour'),
     url(hello_start_re, views.HelloStartView.as_view(), name='firefox.hello.start'),
-    url(r'^firefox/partners/$', views.firefox_partners,
-        name='firefox.partners.index'),
 
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
         name='firefox.tracking-protection-tour.start'),
@@ -105,7 +102,6 @@ urlpatterns = (
     page('firefox/os/devices/tv', 'firefox/os/tv.html'),
 
     page('firefox/pocket', 'firefox/pocket.html'),
-    page('firefox/push', 'firefox/push.html'),
 
     url(r'^firefox/windows-10/welcome/$', views.Win10Welcome.as_view(), name='firefox.win10-welcome'),
 

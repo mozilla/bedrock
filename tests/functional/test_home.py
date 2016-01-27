@@ -33,11 +33,12 @@ def test_tweet_is_not_present(base_url, selenium):
     assert not page.is_tweet_promo_present
 
 
+@pytest.mark.sanity
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = HomePage(base_url, selenium).open()
-    assert page.is_download_button_displayed
+    assert page.download_button.is_displayed
 
 
 @pytest.mark.nondestructive
@@ -59,7 +60,7 @@ def test_newsletter_default_values(base_url, selenium):
     assert page.newsletter.is_privacy_policy_link_displayed
 
 
-@pytest.mark.flaky(reruns=1)
+@pytest.mark.flaky(reruns=1, reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1218451')
 def test_newsletter_successful_sign_up(base_url, selenium):
     page = HomePage(base_url, selenium).open()
     newsletter = page.newsletter

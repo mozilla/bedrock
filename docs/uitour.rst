@@ -638,6 +638,21 @@ Accepts one of the following options to be passed as an `id`:
 
     Only available in Firefox 42 onward.
 
+closeTab();
+^^^^^^^^^^^
+
+Closes the current tab.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.closeTab();
+
+.. Important::
+
+    This function will do nothing when called from the last browser window when it contains
+    only one tab. You may need to provide a work around for this edge case in your code.
+    This function is also only available in Firefox 46 onward.
+
 .. _Mozilla Central: http://dxr.mozilla.org/mozilla-central/source/browser/components/uitour/UITour-lib.js
 .. _Telemetry: https://wiki.mozilla.org/Telemetry
 .. _FHR: https://support.mozilla.org/en-US/kb/firefox-health-report-understand-your-browser-perf

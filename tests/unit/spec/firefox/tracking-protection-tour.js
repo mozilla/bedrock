@@ -22,6 +22,7 @@ describe('tracking-protection-tour.js', function() {
         Mozilla.UITour.showMenu = sinon.stub();
         Mozilla.UITour.hideMenu = sinon.stub();
         Mozilla.UITour.openPreferences = sinon.stub();
+        Mozilla.UITour.closeTab = sinon.stub();
 
         spyOn(Mozilla.UITour, 'showMenu').and.callFake(function(target, callback) {
             callback();
@@ -171,10 +172,10 @@ describe('tracking-protection-tour.js', function() {
                 'Step 3 title', 'Step 3 text', undefined,
                 [
                     { label: '3/3', style: 'text' },
-                    { callback: Mozilla.TPTour.step4, label: 'Got it!', style: 'primary' }
+                    { callback: Mozilla.TPTour.shouldCloseTab, label: 'Got it!', style: 'primary' }
                 ],
                 {
-                    closeButtonCallback: Mozilla.TPTour.step4
+                    closeButtonCallback: Mozilla.TPTour.shouldCloseTab
                 }
             );
 
@@ -198,15 +199,53 @@ describe('tracking-protection-tour.js', function() {
                 'Step 3 title', 'Step 3 alt text', undefined,
                 [
                     { label: '3/3', style: 'text' },
-                    { callback: Mozilla.TPTour.step4, label: 'Got it!', style: 'primary' }
+                    { callback: Mozilla.TPTour.shouldCloseTab, label: 'Got it!', style: 'primary' }
                 ],
                 {
-                    closeButtonCallback: Mozilla.TPTour.step4
+                    closeButtonCallback: Mozilla.TPTour.shouldCloseTab
                 }
             );
 
             expect(Mozilla.TPTour.replaceURLState).toHaveBeenCalledWith('3');
             expect(Mozilla.TPTour.state).toEqual('step3');
+        });
+    });
+
+    describe('shouldCloseTab', function() {
+
+        beforeEach(function() {
+            spyOn(Mozilla.TPTour, 'tryCloseTab');
+            spyOn(Mozilla.TPTour, 'step4');
+        });
+
+        it('should try and close the tour if in a new tab', function() {
+            spyOn(Mozilla.TPTour, 'getParameterByName').and.callFake(function() {
+                return 'true';
+            });
+            Mozilla.TPTour.shouldCloseTab();
+            expect(Mozilla.TPTour.tryCloseTab).toHaveBeenCalled();
+        });
+
+        it('should show step 4 if tour is not in a new tab', function() {
+            spyOn(Mozilla.TPTour, 'getParameterByName').and.callFake(function() {
+                return 'none';
+            });
+            Mozilla.TPTour.shouldCloseTab();
+            expect(Mozilla.TPTour.step4).toHaveBeenCalled();
+        });
+    });
+
+    describe('tryCloseTab', function() {
+
+        it('should try and close the tab as expected', function() {
+            spyOn(Mozilla.TPTour, 'step4');
+            spyOn(Mozilla.TPTour, 'hidePanels');
+            spyOn(Mozilla.UITour, 'closeTab');
+            Mozilla.TPTour.tryCloseTab();
+            expect(Mozilla.TPTour.hidePanels).toHaveBeenCalled();
+            expect(Mozilla.UITour.closeTab).toHaveBeenCalled();
+            clock.tick(500);
+            expect(Mozilla.TPTour.step4).toHaveBeenCalled();
         });
     });
 

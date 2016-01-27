@@ -6,11 +6,10 @@ CMD ["/app/bin/run-functional-tests.sh"]
 
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends build-essential python python-dev python-pip
+    apt-get install -y --no-install-recommends build-essential python python-dev python-pip libxml2-dev libxslt1.1 libxslt1-dev zlib1g-dev
 
 # Defaults
 ENV PYTEST_PROCESSES 5
-ENV MARK_EXPRESSION smoke
 ENV PRIVACY "public restricted"
 ENV TESTS_PATH /app/tests/functional
 ENV RESULTS_PATH /app/results

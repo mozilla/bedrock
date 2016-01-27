@@ -292,29 +292,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_faq-bundle.css',
     },
-    'firefox_fx36_firstrun': {
-        'source_filenames': (
-            'css/firefox/australis/australis-ui-tour.less',
-            'css/firefox/hello-animation.less',
-            'css/firefox/australis/fx36/common.less',
-        ),
-        'output_filename': 'css/firefox_fx36_firstrun-bundle.css',
-    },
-    'firefox_fx36_whatsnew': {
-        'source_filenames': (
-            'css/firefox/australis/australis-ui-tour.less',
-            'css/firefox/hello-animation.less',
-            'css/firefox/australis/fx36/common.less',
-        ),
-        'output_filename': 'css/firefox_fx36_whatsnew-bundle.css',
-    },
-    'firefox_fx36_whatsnew_no_tour': {
-        'source_filenames': (
-            'css/firefox/hello-animation.less',
-            'css/firefox/australis/fx36/common.less',
-        ),
-        'output_filename': 'css/firefox_fx36_whatsnew_no_tour-bundle.css',
-    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'css/firefox/australis/fx38_0_5/firstrun.less',
@@ -476,13 +453,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_os_tv-bundle.css',
     },
-    'firefox_push': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/push.less',
-        ),
-        'output_filename': 'css/firefox_push-bundle.css',
-    },
     'firefox_private_browsing': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -502,17 +472,18 @@ PIPELINE_CSS = {
     'firefox_tour': {
         'source_filenames': (
             'css/firefox/australis/australis-ui-tour.less',
+            'css/firefox/hello-animation.less',
+            'css/firefox/australis/fx36/common.less',
+        ),
+        'output_filename': 'css/firefox_tour-bundle.css',
+    },
+    'firefox_tour_none': {
+        'source_filenames': (
             'css/firefox/australis/australis-page-common.less',
             'css/firefox/sync-animation.less',
             'css/firefox/australis/australis-page-stacked.less',
         ),
-        'output_filename': 'css/firefox_tour-bundle.css',
-    },
-    'firefox_whatsnew_37': {
-        'source_filenames': (
-            'css/firefox/whatsnew-fx37.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew_37-bundle.css',
+        'output_filename': 'css/firefox_tour_none-bundle.css',
     },
     'firefox_whatsnew_38_video': {
         'source_filenames': (
@@ -670,12 +641,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mozilla_accordion-bundle.css',
     },
-    'newsletter_ios': {
-        'source_filenames': (
-            'css/newsletter/ios.less',
-        ),
-        'output_filename': 'css/newsletter_ios-bundle.css',
-    },
     'partnerships': {
         'source_filenames': (
             'css/mozorg/partnerships.less',
@@ -712,13 +677,6 @@ PIPELINE_CSS = {
             'css/privacy/privacy.less',
         ),
         'output_filename': 'css/privacy-bundle.css',
-    },
-    'privacy-day': {
-        'source_filenames': (
-            'css/base/mozilla-share-cta.less',
-            'css/privacy/privacy-day.less',
-        ),
-        'output_filename': 'css/privacy-day-bundle.css',
     },
     'fb_privacy': {
         'source_filenames': (
@@ -875,30 +833,6 @@ PIPELINE_CSS = {
             'css/foundation/annual2014.less',
         ),
         'output_filename': 'css/annual_2014-bundle.css',
-    },
-    'partners': {
-        'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/libs/jquery.pageslide.css',
-            'css/firefox/partners.less',
-            'css/firefox/family-nav.less',
-            'css/firefox/mwc-2015-schedule.less',
-            'css/firefox/mwc-2015-map.less',
-        ),
-        'output_filename': 'css/partners-bundle.css',
-    },
-    'partners-ie7': {
-        'source_filenames': (
-            'css/firefox/partners/ie7.less',
-        ),
-        'output_filename': 'css/partners-ie7-bundle.css',
-    },
-    'facebookapps_downloadtab': {
-        'source_filenames': (
-            'css/libs/h5bp_main.css',
-            'css/facebookapps/downloadtab.less',
-        ),
-        'output_filename': 'css/facebookapps_downloadtab-bundle.css',
     },
     'thunderbird-features': {
         'source_filenames': (
@@ -1136,28 +1070,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_developer-bundle.js',
     },
-    'firefox_fx36_firstrun': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/fx36/firstrun.js',
-        ),
-        'output_filename': 'js/firefox_fx36_firstrun-bundle.js',
-    },
-    'firefox_fx36_whatsnew': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/fx36/whatsnew.js',
-        ),
-        'output_filename': 'js/firefox_fx36_whatsnew-bundle.js',
-    },
-    'firefox_fx36_whatsnew_no_tour': {
-        'source_filenames': (
-            'js/firefox/australis/fx36/whatsnew-notour.js',
-        ),
-        'output_filename': 'js/firefox_fx36_whatsnew_no_tour-bundle.js',
-    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
@@ -1263,16 +1175,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_os_tv-bundle.js',
     },
-    'firefox_push': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/base/mozilla-accordion.js',
-            'js/base/mozilla-accordion-gatrack.js',
-        ),
-        'output_filename': 'js/firefox_push-bundle.js',
-    },
     'firefox_interest_dashboard': {
         'source_filenames': (
             'js/base/mozilla-accordion.js',
@@ -1314,6 +1216,14 @@ PIPELINE_JS = {
             'js/firefox/sync.js',
         ),
         'output_filename': 'js/firefox_sync-bundle.js',
+    },
+    'firefox_tour': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/australis/browser-tour.js',
+            'js/firefox/australis/fx36/tour.js',
+        ),
+        'output_filename': 'js/firefox_tour-bundle.js',
     },
     'firefox_feedback': {
         'source_filenames': (
@@ -1370,16 +1280,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_ios-bundle.js',
     },
-    'firefox_tour': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/firefox/australis/australis-uitour.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/common.js',
-            'js/firefox/australis/tour.js',
-        ),
-        'output_filename': 'js/firefox_tour-bundle.js',
-    },
     'firefox_tour_none': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
@@ -1388,12 +1288,6 @@ PIPELINE_JS = {
             'js/firefox/australis/no-tour.js',
         ),
         'output_filename': 'js/firefox_tour_none-bundle.js',
-    },
-    'firefox_whatsnew_fx37': {
-        'source_filenames': (
-            'js/firefox/whatsnew-fx37.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_fx37-bundle.js',
     },
     'firefox_whatsnew_38_video': {
         'source_filenames': (
@@ -1517,16 +1411,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/privacy-bundle.js',
     },
-    'privacy-day': {
-        'source_filenames': (
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-share-cta.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/privacy/privacy-day.js',
-        ),
-        'output_filename': 'js/privacy-day-bundle.js',
-    },
     'smarton': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',
@@ -1646,43 +1530,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/logo-prototype-bundle.js',
     },
-    'partners': {
-        'source_filenames': (
-            'js/libs/modernizr.custom.shiv-load.js',
-            'js/base/mozilla-input-placeholder.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-modal.js',
-            'js/firefox/partners.js',
-        ),
-        'output_filename': 'js/partners-bundle.js',
-    },
-    'partners_common': {
-        'source_filenames': (
-            'js/libs/enquire.min.js',
-            'js/base/mozilla-form-helper.js',
-            'js/firefox/partners/common.js',
-        ),
-        'output_filename': 'js/partners_common-bundle.js',
-    },
-    'partners_mobile': {
-        'source_filenames': (
-            'js/firefox/partners/mobile.js',
-        ),
-        'output_filename': 'js/partners_mobile-bundle.js',
-    },
-    'partners_desktop': {
-        'source_filenames': (
-            'js/libs/jquery.pageslide.min.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/tweenmax.1.9.7.min.js',
-            'js/libs/jquery.spritely-0.6.7.js',
-            'js/firefox/partners/desktop.js',
-        ),
-        'output_filename': 'js/partners_desktop-bundle.js',
-    },
     'releasenotes': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
@@ -1697,25 +1544,6 @@ PIPELINE_JS = {
             'js/firefox/firefox-language-search.js',
         ),
         'output_filename': 'js/thunderbird_all-bundle.js',
-    },
-    'facebookapps_redirect': {
-        'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/facebookapps/redirect.js',
-        ),
-        'output_filename': 'js/facebookapps_redirect-bundle.js',
-    },
-    'facebookapps_downloadtab': {
-        'source_filenames': (
-            'js/facebookapps/downloadtab-init.js',
-            'js/facebookapps/Base.js',
-            'js/facebookapps/Facebook.js',
-            'js/facebookapps/Theater.js',
-            'js/facebookapps/Slider.js',
-            'js/facebookapps/App.js',
-            'js/facebookapps/downloadtab.js',
-        ),
-        'output_filename': 'js/facebookapps_downloadtab-bundle.js',
     },
     'newsletter_form': {
         'source_filenames': (

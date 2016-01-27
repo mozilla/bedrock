@@ -574,8 +574,9 @@ html[lang|="en"] {
             &.download-other-desktop {
                 display: block !important;
 
-                /* unless we're in iOS */
-                .ios & {
+                /* unless we're in iOS or Android */
+                .ios &,
+                .android & {
                     display: none !important;
                 }
             }
@@ -652,6 +653,12 @@ html[lang|="en"] {
             }
         }
     }
+}
+
+// Show appropriate other links for the OS
+.android .promo-small-landscape.firefox-download .download-other.os_android,
+.ios .promo-small-landscape.firefox-download .download-other.os_ios {
+    display: block !important;
 }
 
 .html-rtl {
