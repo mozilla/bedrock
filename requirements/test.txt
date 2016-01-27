@@ -4,11 +4,6 @@
 # sha256: ZdKqaLKOfTEjO7K6jrMc2kDkZx-KwtayQeNYyWUqdLk
 apipkg==1.4
 
-# sha256: gqJTJFrtmHXxQd2Yp0YlcrypPQZM8xF70z3kth7hjmg
-# sha256: LCZCVPbPzmTDvZ1IiFIICTpzuQlWRfYA3gonfOAeoOU
-# sha256: h9QBPQYl1HiaT1a415oE1c5tsRUrtl8dOXRPdwmjZrQ
-beautifulsoup4==4.4.1
-
 # sha256: -WfKOb25jhYpmmnEWpRMXUNFOTYV7WRwux5iyjUGv0E
 braceexpand==0.1.1
 
@@ -38,10 +33,6 @@ pytest-selenium==1.1
 
 # sha256: LNxLgU182xSv9s3gFouz7i__TyhDn4DmecDJjCdIgBI
 pytest-variables==1.2
-
-# sha256: ifGx8l3Ne2j1FOjTQaWy60ZvlgrnVoIuqrSAo8GoHCg
-# sha256: hP6NW_Tc3MSQAkRsR6FG0XrBD6zwDZCGZZBkrEO2wls
-requests==2.8.1
 
 # sha256: mOu_nFRQbX43QvBHYsrUOmaoesX_BeGOtUiL6dJ0_BM
 # sha256: O7IwsN40riapOxqE5ZIs3cdh9sYB_dcBFhaIRlTk2rE
