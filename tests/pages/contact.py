@@ -71,6 +71,11 @@ class SpacesPage(ContactPage):
         return [self.Space(self, root=el) for el in
             self.find_elements(self._spaces_locator)]
 
+    def wait_for_page_to_load(self):
+        super(ContactPage, self).wait_for_page_to_load()
+        self.wait.until(lambda s: self.displayed_map_pins == len(self.spaces))
+        return self
+
     class Space(PageRegion):
 
         _link_locator = (By.TAG_NAME, 'a')
@@ -86,7 +91,8 @@ class SpacesPage(ContactPage):
 
         def click(self):
             self.find_element(self._link_locator).click()
-            self.wait.until(lambda s: self.is_displayed)
+            self.wait.until(lambda s: self.is_displayed and
+                            self.page.displayed_map_pins == 1)
 
 
 class CommunitiesPage(ContactPage):
@@ -105,6 +111,15 @@ class CommunitiesPage(ContactPage):
     def regions(self):
         return [self.Region(self, root=el) for el in
             self.find_elements(self._regions_locator)]
+
+    @property
+    def is_communities_legend_displayed(self):
+        return self.is_element_displayed(self._keys_locator)
+
+    def wait_for_page_to_load(self):
+        super(ContactPage, self).wait_for_page_to_load()
+        self.wait.until(lambda s: self.is_communities_legend_displayed)
+        return self
 
     class Key(PageRegion):
 
