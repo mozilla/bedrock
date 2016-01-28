@@ -2,25 +2,31 @@
     'use strict';
 
     var $fxaFrame = $('#fxa');
-    var fxaIframeSrc = $('#intro').data('fxa-iframe-src');
+    var fxaIframeHost = $('#intro').data('fxa-iframe-host');
     var fxaFrameTarget = ($fxaFrame.length) ? $('#fxa')[0].contentWindow : null;
+    var fxaIframeSrc = $fxaFrame.data('src');
     var resizeTimer;
     var fxaHandshake = false;
 
     // remove trailing slash from iframe src (if present)
-    fxaIframeSrc = (fxaIframeSrc[fxaIframeSrc.length - 1] === '/') ? fxaIframeSrc.substr(0, fxaIframeSrc.length - 1) : fxaIframeSrc;
+    fxaIframeHost = (fxaIframeHost[fxaIframeHost.length - 1] === '/') ? fxaIframeHost.substr(0, fxaIframeHost.length - 1) : fxaIframeHost;
+
+    // check user's Fx version to determine FxA iframe experience
+    if (Mozilla.Client.FirefoxMajorVersion >= 46) {
+        fxaIframeSrc = fxaIframeSrc.replace('context=iframe', 'context=fx_firstrun_v2');
+    }
 
     // set up communication with FxA iframe
     window.addEventListener('message', function (e) {
         var data;
         // make sure origin is as expected
-        if (e.origin === fxaIframeSrc) {
+        if (e.origin === fxaIframeHost) {
             data = JSON.parse(e.data);
 
             switch (data.command) {
             // tell iframe we are expecting it
             case 'ping':
-                fxaFrameTarget.postMessage(e.data, fxaIframeSrc);
+                fxaFrameTarget.postMessage(e.data, fxaIframeHost);
                 fxaHandshake = true;
                 break;
             // just GA tracking when iframe loads
@@ -63,7 +69,7 @@
                     'interaction': 'fxa-login'
                 });
 
-                window.location.href = fxaIframeSrc + '/settings';
+                window.location.href = fxaIframeHost + '/settings';
 
                 break;
             }
@@ -71,7 +77,7 @@
     }, true);
 
     // load FxA iframe only after postMessage communication is configured
-    $fxaFrame.attr('src', $fxaFrame.data('src'));
+    $fxaFrame.attr('src', fxaIframeSrc);
 
     // set a timeout to show FxA (error page, most likely) should the ping event
     // above fail for some reason

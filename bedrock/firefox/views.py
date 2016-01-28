@@ -336,10 +336,9 @@ class FirstrunView(LatestFxView):
 
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
-        version = self.kwargs.get('version') or ''
 
         # add version to context for use in templates
-        ctx['version'] = version
+        ctx['version'] = self.kwargs.get('version') or ''
 
         return ctx
 
