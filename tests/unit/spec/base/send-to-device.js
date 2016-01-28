@@ -10,12 +10,11 @@ describe('send-to-device.js', function() {
     'use strict';
 
     var form;
-    var spinnerStub;
 
     beforeEach(function () {
 
         var formMarkup = [
-            '<section id="send-to-device">' +
+            '<section id="send-to-device" data-key="foo">' +
                 '<div class="form-container">' +
                     '<form id="send-to-device-form">' +
                         '<ul class="error-list hidden"></ul>' +
@@ -39,25 +38,20 @@ describe('send-to-device.js', function() {
         window.Spinner = sinon.stub();
         window.Spinner.prototype.spin = sinon.stub();
 
-        spyOn($, 'getScript').and.callFake(function (req) {
-            var d = $.Deferred();
-            d.resolve('foo', 'success');
-            return d.promise();
-        });
-
         form = new Mozilla.SendToDevice();
     });
 
     afterEach(function () {
         form.unbindEvents();
         $('#send-to-device').remove();
+        Mozilla.SendToDevice.COUNTRY_CODE = '';
     });
 
     describe('instantiation', function() {
 
         it('should create a new instance of SendToDevice', function() {
-            spyOn(form, 'checkLocation').and.callThrough();
-            spyOn(form, 'bindEvents').and.callThrough();
+            spyOn(form, 'checkLocation');
+            spyOn(form, 'bindEvents');
             form.init();
             expect(form instanceof Mozilla.SendToDevice).toBeTruthy();
             expect(form.checkLocation).toHaveBeenCalled();
@@ -67,38 +61,54 @@ describe('send-to-device.js', function() {
 
     describe('checkLocation', function() {
 
-        it('should load GeoDude to update the messaging', function() {
+        it('should call MSL to update the messaging', function() {
+            spyOn($, 'get').and.callFake(function () {
+                var d = $.Deferred();
+                var data = {
+                    country_code: 'us'
+                };
+                d.resolve(data, 'success');
+                return d.promise();
+            });
             spyOn(form, 'updateMessaging').and.callThrough();
             form.init();
-            expect($.getScript).toHaveBeenCalledWith('https://geo.mozilla.org/country.js');
+            expect($.get).toHaveBeenCalledWith('https://location.services.mozilla.com/v1/country?key=foo');
             expect(form.updateMessaging).toHaveBeenCalled();
-        });
-    });
-
-    describe('updateMessaging', function() {
-
-        it('should call showSMS if users is inside the US', function() {
-            window.geoip_country_code = sinon.stub().returns('us');
-            spyOn(form, 'showSMS').and.callThrough();
-            form.init();
-            expect(form.showSMS).toHaveBeenCalled();
-        });
-
-        it('should not call showSMS if users is outside the US', function() {
-            window.geoip_country_code = sinon.stub().returns('gb');
-            spyOn(form, 'showSMS').and.callThrough();
-            form.init();
-            expect(form.showSMS).not.toHaveBeenCalled();
+            expect(Mozilla.SendToDevice.COUNTRY_CODE).toEqual('us');
         });
     });
 
     describe('showSMS', function() {
 
-        it('should show SMS messaging', function() {
-            window.geoip_country_code = sinon.stub().returns('us');
+        it('should call showSMS if users is inside the US', function() {
+            spyOn($, 'get').and.callFake(function () {
+                var d = $.Deferred();
+                var data = {
+                    country_code: 'us'
+                };
+                d.resolve(data);
+                return d.promise();
+            });
+
             spyOn(form, 'showSMS').and.callThrough();
             form.init();
+            expect(form.showSMS).toHaveBeenCalled();
             expect($('#send-to-device-form').hasClass('us')).toBeTruthy();
+        });
+
+        it('should not call showSMS if users is outside the US', function() {
+            spyOn($, 'get').and.callFake(function () {
+                var d = $.Deferred();
+                var data = {
+                    country_code: 'gb'
+                };
+                d.resolve(data);
+                return d.promise();
+            });
+
+            spyOn(form, 'showSMS').and.callThrough();
+            form.init();
+            expect(form.showSMS).not.toHaveBeenCalled();
         });
     });
 
@@ -121,9 +131,20 @@ describe('send-to-device.js', function() {
 
     describe('onFormSubmit', function() {
 
+        beforeEach(function() {
+            spyOn($, 'get').and.callFake(function () {
+                var d = $.Deferred();
+                var data = {
+                    country_code: 'us'
+                };
+                d.resolve(data);
+                return d.promise();
+            });
+        });
+
         it('should handle success', function() {
 
-            spyOn($, 'post').and.callFake(function (req) {
+            spyOn($, 'post').and.callFake(function () {
                 var d = $.Deferred();
                 var data = {
                     'success': 'success'
@@ -142,7 +163,7 @@ describe('send-to-device.js', function() {
 
         it('should handle error', function() {
 
-            spyOn($, 'post').and.callFake(function (req) {
+            spyOn($, 'post').and.callFake(function () {
                 var d = $.Deferred();
                 var data = {
                     'errors': 'Please enter an email address.'
@@ -161,7 +182,7 @@ describe('send-to-device.js', function() {
 
         it('should handle failure', function() {
 
-            spyOn($, 'post').and.callFake(function (req) {
+            spyOn($, 'post').and.callFake(function () {
                 var d = $.Deferred();
                 var error = 'An error occurred in our system. Please try again later.';
                 d.reject(error);
