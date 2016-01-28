@@ -19,7 +19,9 @@ def pytest_generate_tests(metafunc):
         '/firefox/all/',
         '/firefox/beta/all/',
         '/firefox/developer/all/',
-        '/firefox/organizations/all/')
+        '/firefox/organizations/all/',
+        '/firefox/android/all/',
+        '/firefox/android/beta/all/')
     argvalues = []
     for path in paths:
         r = requests.get(base_url + path)
