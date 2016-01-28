@@ -174,7 +174,17 @@
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
-      {% if l10n_has_tag('gear_promo_eoy') %}
+      {% if LANG.startswith('en') and waffle.switch('privacy-day-2016') %}
+        <li id="promo-6" class="item promo-large-landscape privacy-day" tabindex="0">
+          <h2 class="primary go">Update Your Software <br>on Data Privacy Day</h2>
+          <a class="panel-link" rel="external" href="https://petitions.mozilla.org/stay-secure" data-promotion-id="promo-6" data-promotion-name="Update Your Software on Data Privacy Day" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
+            <div class="secondary">
+              <h3>The Web will thank you.</h3>
+              <p class="more">Update now</p>
+            </div>
+          </a>
+        </li>
+      {% elif l10n_has_tag('gear_promo_eoy') %}
         <li id="promo-6" class="item promo-large-landscape gear" tabindex="0">
           <h2 class="primary go">{{ _('Get the gear, <br>support the mission') }}</h2>
           <a class="panel-link" rel="external" href="https://gear.mozilla.org?ref=holiday2015&amp;utm_campaign=holiday2015&amp;utm_source=mozilla.org&amp;utm_medium=referral" data-promotion-id="promo-6" data-promotion-name="Get the gear, support the mission" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
