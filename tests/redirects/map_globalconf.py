@@ -825,6 +825,9 @@ URLS = flatten((
     url_test('/about/legal.html', '/about/legal/'),
     url_test('/about/partnerships.html', '/about/partnerships/'),
 
+    # bug 1243240
+    url_test('/about/legal/report-abuse/', '/about/legal/report-infringement/'),
+
     # bug 846362
     url_test('/community/{index{.{de,fr},}.html,}', '/contribute/'),
 

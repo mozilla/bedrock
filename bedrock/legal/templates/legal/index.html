@@ -59,7 +59,13 @@
   </section>
   <section>
     <h3>{{ _('Takedown requests') }}</h3>
-    <p><a href="{{ url('legal.report-abuse') }}">{{ _('Report abuse of your copyrights and trademarks.') }}</a></p>
+    <p><a href="{{ url('legal.report-infringement') }}">
+      {%- if l10n_has_tag('legal_update_201601') -%}
+        {{ _('Report infringement of your copyrights or trademarks.') }}
+      {%- else -%}
+        {{ _('Report abuse of your copyrights and trademarks.') }}
+      {%- endif -%}
+    </a></p>
     {% if LANG == 'de' %}
     <p><a href="{{ url('legal.impressum') }}">{{ _('Impressum') }}</a></p>
     {% endif %}
