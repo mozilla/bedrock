@@ -418,7 +418,7 @@ html[lang|="en"] #main-headline span:first-child {
         margin: @baseLine auto (@baseLine * 2);
         padding: 0;
         list-style: none;
-        width: 361px;
+        width: 384px;
         .clearfix();
     }
 
@@ -426,16 +426,8 @@ html[lang|="en"] #main-headline span:first-child {
         display: inline;
         float: left;
         margin: 0 @baseLine;
+        width: 152px;
         height: 45px;
-
-        // ie8 seems to need widths set to display properly
-        &.android {
-            width: 129px;
-        }
-
-        &.ios {
-            width: 152px;
-        }
     }
 
     a {
