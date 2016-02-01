@@ -39,3 +39,7 @@ This software is licensed under the [MPL/GPL/LGPL tri-license][MPL]. For more
 information, read the file ``LICENSE``.
 
 [MPL]: https://www.mozilla.org/MPL/
+
+![](http://i.imgur.com/ElotJSI.jpg)
+
+credit [@designerham](https://github.com/designerham)
