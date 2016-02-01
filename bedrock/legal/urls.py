@@ -39,8 +39,8 @@ urlpatterns = (
     url(r'^acceptable-use/$', LegalDocView.as_view(template_name='legal/terms/acceptable-use.html', legal_doc_name='acceptable_use_policy'),
         name='legal.terms.acceptable-use'),
 
-    url(r'^report-abuse/$', LegalDocView.as_view(template_name='legal/report-abuse.html', legal_doc_name='report_abuse'),
-        name='legal.report-abuse'),
+    url(r'^report-infringement/$', LegalDocView.as_view(template_name='legal/report-infringement.html', legal_doc_name='report_infringement'),
+        name='legal.report-infringement'),
 
     url('^fraud-report/$', views.fraud_report, name='legal.fraud-report'),
 
