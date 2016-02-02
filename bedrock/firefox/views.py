@@ -443,7 +443,10 @@ def hello(request):
         'zh-TW': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_chinese'
     }
 
-    return l10n_utils.render(request, 'firefox/hello/index.html',
+    if (waffle.switch_is_active('firefox-hello-2016')):
+        return l10n_utils.render(request, 'firefox/hello/index-2016.html')
+    else:
+        return l10n_utils.render(request, 'firefox/hello/index.html',
         {'video_url': videos.get(request.locale, videos.get('en-US'))})
 
 
