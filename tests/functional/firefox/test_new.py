@@ -22,6 +22,7 @@ def test_download_button_displayed(base_url, selenium):
 # skip tests that trigger download bar in IE due to https://github.com/SeleniumHQ/selenium/issues/448
 @pytest.mark.skip_if_firefox
 @pytest.mark.skip_if_internet_explorer
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1245148')
 @pytest.mark.smoke
 @pytest.mark.sanity
 @pytest.mark.nondestructive
@@ -33,6 +34,7 @@ def test_click_download_button(base_url, selenium):
 
 # skip tests that trigger download bar in IE due to https://github.com/SeleniumHQ/selenium/issues/448
 @pytest.mark.skip_if_internet_explorer
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1245148')
 @pytest.mark.smoke
 @pytest.mark.sanity
 @pytest.mark.nondestructive

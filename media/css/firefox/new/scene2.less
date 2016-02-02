@@ -1,0 +1,112 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+// keep the button technically visible to grab correct download link for
+// backup download link
+#download-button-wrapper-desktop {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    margin: 0 auto;
+
+    #primary-download-button {
+        margin: 1px 0 0 1px;
+    }
+}
+
+
+#thankyou {
+    background: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    color: @textColorPrimary;
+    .open-sans-light();
+    .font-size(22px);
+}
+
+.help {
+    padding: 0 190px;
+    margin-bottom: @baseLine * 2;
+    text-align: center;
+}
+
+.mobile-download-buttons {
+    text-align: center;
+
+    ul {
+        display: block;
+        margin: @baseLine auto (@baseLine * 2);
+        padding: 0;
+        list-style: none;
+        width: 361px;
+        .clearfix();
+    }
+
+    li {
+        display: inline;
+        float: left;
+        margin: 0 @baseLine;
+        height: 45px;
+
+        // ie8 seems to need widths set to display properly
+        &.android {
+            width: 129px;
+        }
+
+        &.ios {
+            width: 152px;
+        }
+    }
+
+    a {
+        display: block;
+    }
+}
+
+#mobile-device-lineup {
+    height: 302px;
+    background: url(/media/img/firefox/new/scene2-mobile-promo-device-lineup.png) center center no-repeat;
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    .help {
+        padding: 0 (@baseLine * 5);
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+    #thankyou {
+        margin-bottom: @baseLine;
+        .font-size(18px);
+        letter-spacing: auto;
+    }
+
+    .help {
+        padding: 0;
+        margin-bottom: @baseLine;
+        .font-size(@smallFontSize);
+    }
+
+    .mobile-download-buttons {
+        ul {
+            margin-bottom: @baseLine;
+            width: auto;
+        }
+
+        li {
+            float: none;
+            margin: 0 auto (@baseLine / 2);
+        }
+    }
+
+    #mobile-device-lineup {
+        display: none;
+    }
+}

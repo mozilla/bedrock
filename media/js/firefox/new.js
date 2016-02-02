@@ -158,7 +158,7 @@
                 // Added measurements fire only when the download is fired
                 if (!pixelAdded) {
                     pixelAdded = true;
-                    w10CampaignMeasurement();
+                    campaignMeasurement();
                 }
             } else {
                 $scene2.stop().fadeOut(150, function() {
@@ -174,8 +174,8 @@
             $stage.data('scene', scene);
         }
 
-        // Pixel to be removed on Jan 16, 2016 (Bug 1222945)
-        function w10CampaignMeasurement () {
+        // pixel remains in perpetuity (https://bugzilla.mozilla.org/show_bug.cgi?id=1222945#c2)
+        function campaignMeasurement () {
             if (!window._dntEnabled()){
                 var $body = $('body');
 
