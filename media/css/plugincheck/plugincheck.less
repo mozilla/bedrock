@@ -54,6 +54,7 @@ html[dir="rtl"] {
     table {
         width: 100%;
         caption {
+            margin-bottom: @baseLine;
             .font-size(24px);
         }
         thead th {
@@ -93,6 +94,7 @@ html[dir="rtl"] {
     }
     .shadow-separator {
         background: white url(/media/img/plugincheck/separators/section_shadow.png) center 10px no-repeat;
+        background-size: 100% auto;
         padding: 45px 0 15px 0;
     }
     .icon {
@@ -266,7 +268,7 @@ html[dir="rtl"] {
 
 #newsletter-form {
     margin: 0 auto;
-    padding: 0 5px (@baseLine * 2);
+    padding: 0 5px 30px;
     background: transparent;
     border-bottom: none;
     box-shadow: none;
@@ -277,7 +279,7 @@ html[dir="rtl"] {
         float: none;
         color: @textColorSecondary;
         margin: 0;
-        padding: (@baseLine * 2) 0;
+        padding: 30px 0 10px;
         width: auto;
         .font-size(36px);
         letter-spacing: -1px;
@@ -285,6 +287,10 @@ html[dir="rtl"] {
         @media only screen and (max-width: @breakTablet) {
             .font-size(32px);
         }
+    }
+
+    h4 {
+        margin-bottom: @baseLine;
     }
 
     .form-title {
@@ -381,10 +387,215 @@ html[dir="rtl"] {
 html[lang="de"] #newsletter-form input[type="submit"] {
     .font-size(@largeFontSize);
 }
-.newsletter-container {
+.newsletter-container,
+.newsletter-container-variant {
     background-color: #fff;
     border-radius: 8px;
 }
+
+.plugincheck-variant {
+
+    #main-feature .preamble {
+        max-width: 590px;
+        line-height: 1.2;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        .large {
+            .font-size(3.5rem);
+        }
+
+        #main-feature .preamble {
+            max-width: 500px;
+            .font-size(1.2rem);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        .large {
+            .font-size(3rem);
+        }
+
+        #main-feature {
+            padding-bottom: @baseLine;
+        }
+
+        img[data-high-res] {
+            display: block;
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .large {
+            .font-size(2.2rem);
+        }
+    }
+
+    .firefox-logo {
+        float: left;
+        margin-right: 30px;
+        width: 145px;
+
+        @media only screen and (max-width: @breakDesktop) {
+            width: 115px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
+            display: block;
+            margin: 0 auto;
+            width: 95px;
+        }
+    }
+
+    #main-feature {
+        margin-top: @baseLine * 2;
+        padding-bottom: @baseLine * 2;
+
+        @media only screen and (max-width: @breakTablet) {
+            margin: -20px 0 0;
+            text-align: center;
+        }
+    }
+}
+
+.newsletter-container-variant {
+    background-color: #00a5e1;
+    color: #fff;
+    margin-bottom: 30px;
+    padding: @baseLine * 2;
+    border-radius: 0;
+
+    &:before {
+        display: inline-block;
+        content: '';
+        .at2x('/media/img/plugincheck/newsletter.png', 149px, 149px);
+        background-repeat: no-repeat;
+        padding: 10px;
+        width: 149px;
+        height: 149px;
+
+        @media only screen and (max-width: @breakDesktop) {
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            display: none;
+        }
+    }
+
+    header,
+    #newsletter-form {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 0;
+        width: 350px;
+        vertical-align: top;
+
+        @media only screen and (max-width: @breakDesktop) {
+            display: block;
+            margin: 0 auto;
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            width: 240px;
+        }
+    }
+
+    #newsletter-form {
+        .form-contents,
+        .form-submit {
+            display: block;
+            width: 100%;
+        }
+
+        a {
+            color: #fff;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: #fff;
+            }
+        }
+
+        input[type="email"] {
+            width: 94%;
+            border-radius: 3px;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                width: 90%;
+            }
+        }
+
+        input[type="submit"] {
+            background-color: transparent;
+            border: 2px solid #fff;
+            border-radius: 3px;
+
+            &:hover,
+            &:focus {
+                background-color: transparent;
+            }
+        }
+    }
+
+    h3,
+    h4 {
+        color: #fff;
+        text-shadow: none;
+
+        @media only screen and (max-width: @breakDesktop) {
+            text-align: center;
+        }
+    }
+
+    h3 {
+        .font-size(3.5rem);
+        line-height: .7;
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(2.5rem);
+        }
+
+        .firefox {
+            font-weight: bold;
+        }
+    }
+
+    h4 {
+        .font-size(2rem);
+        line-height: 1.2;
+        letter-spacing: normal;
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(1.5rem);
+        }
+    }
+
+    .form-title {
+        .visually-hidden;
+    }
+
+    .thank {
+        text-align: center;
+
+        h3 {
+            .font-size(3rem);
+            line-height: 1.1;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                .font-size(2rem);
+            }
+
+            @media only screen and (max-width: 360px) {
+                .font-size(1.5rem);
+            }
+        }
+    }
+}
+
 .newsletter-form.thank {
     width: 90%;
     margin: 0 auto;
@@ -418,16 +629,22 @@ html[lang="de"] #newsletter-form input[type="submit"] {
 // Styles to show information for nonFx users
 .non-fx {
     main,
-    .pluginfaq-container {
+    .pluginfaq-container,
+    .plugin-status-container,
+    .newsletter-container-variant {
         display: none;
     }
+
     .not-supported {
         display: block;
-        #main-feature {
-            padding-bottom: 28px;
+        background-color: #fff;
+        padding: @baseLine 0 10px 0;
+
+        header {
+            text-align: center;
         }
+
         section {
-            background-color: #fff;
             margin-bottom: @baseLine;
             padding: @baseLine;
             text-align: center;
@@ -465,6 +682,10 @@ html[lang="de"] #newsletter-form input[type="submit"] {
     @media (max-width: @breakDesktop) {
         width: auto;
     }
+}
+
+#masthead .mozilla-share-cta {
+    z-index: 2;
 }
 
 /* Tablet Layout: 760px */

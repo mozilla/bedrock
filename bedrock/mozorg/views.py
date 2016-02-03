@@ -411,6 +411,12 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
     """
     Renders the plugncheck template.
     """
+
+    variant = request.GET.get('v', '')
+
+    if variant in ['b', 'c', 'd']:
+        template = 'mozorg/plugincheck-{0}.html'.format(variant)
+
     return l10n_utils.render(request, template)
 
 

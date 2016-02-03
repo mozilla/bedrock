@@ -48,6 +48,22 @@ $(function() {
         return 'https://duckduckgo.com/?q=' + encodeURI(window.trans('ddgSearchq') + ' ' + pluginName);
     };
 
+    /**
+     * Handles click events triggered from various plugin status buttons. Once the
+     * click event is received, it sends the relevant data about the interaction to GA.
+     */
+    function handleButtonInteractions() {
+        $pluginsContainer.on('click', 'a.button', function(event) {
+
+            window.dataLayer.push({
+              'event': 'plugincheck-interactions',
+              'interaction': 'button click',
+              'plugin-action': event.target.dataset['status'],
+              'plugin-name': event.target.dataset['name']
+            });
+        });
+    }
+
     function showPlugin(data) {
         var vulnerablePluginsSection = $('#sec-plugin-vulnerable'),
             vulnerablePluginsBody = $('#plugin-vulnerable'),
@@ -117,7 +133,8 @@ $(function() {
                     'plugin_version': plugin.version,
                     'button_update': window.trans('button_update'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': plugin.url
+                    'url': plugin.url,
+                    'status': plugin.status
                 };
 
             } else if(plugin.status === 'outdated') {
@@ -129,7 +146,8 @@ $(function() {
                     'plugin_version': plugin.version,
                     'button_update': window.trans('button_update'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': plugin.url
+                    'url': plugin.url,
+                    'status': plugin.status
                 };
             } else if(plugin.status === 'latest' || plugin.status === 'newer') {
                 currentPlugin.upToDatePlugins = {
@@ -140,7 +158,8 @@ $(function() {
                     'plugin_version': plugin.version,
                     'button_uptodate': window.trans('button_uptodate'),
                     'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': plugin.url
+                    'url': plugin.url,
+                    'status': plugin.status
                 };
             } else if(plugin.status === 'unknown') {
                 currentPlugin.unknownPlugins = {
@@ -150,7 +169,8 @@ $(function() {
                     'plugin_status': window.trans('unknown'),
                     'plugin_version': plugin.version,
                     'button_research': window.trans('button_research'),
-                    'url': unknownPluginUrl(plugin.name)
+                    'url': unknownPluginUrl(plugin.name),
+                    'status': plugin.status
                 };
             }
 
@@ -185,6 +205,7 @@ $(function() {
                 if (response.length > 0) {
                     $pluginsContainer.removeClass('hidden');
                     displayPlugins(response);
+                    handleButtonInteractions();
                 } else {
                     $noPluginsContainer.removeClass('hidden');
                 }
