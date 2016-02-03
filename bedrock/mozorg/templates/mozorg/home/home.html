@@ -211,6 +211,17 @@
           </a>
         </li>
       {% endif %}
+      {% if LANG.startswith('en') %}
+        <li id="promo-11" class="item promo-large-landscape food-water-shelter" tabindex="0">
+          <h2 class="primary go">Food. Water. Shelter. Internet.</h2>
+          <a class="panel-link" href="https://blog.mozilla.org/blog/2016/02/08/the-internet-is-a-global-public-resource/" data-promotion-id="promo-11" data-promotion-name="Food. Water. Shelter. Internet." data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+            <div class="secondary">
+              <h3>Protecting our newest global resource.</h3>
+              <p class="more">Learn more</p>
+            </div>
+          </a>
+        </li>
+      {% else %}
         <li id="promo-11" class="item promo-large-landscape mdn-10-years" tabindex="0">
           <h2 class="primary go">{{ _('Mozilla Developer Network') }}</h2>
           <a class="panel-link" href="https://developer.mozilla.org/docs/mdn_at_ten?utm_campaign=mdn10&amp;utm_source=mozilla.org&amp;utm_medium=home-tile" data-promotion-id="promo-11" data-promotion-name="Mozilla Developer Network" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
@@ -220,6 +231,7 @@
             </div>
           </a>
         </li>
+      {% endif %}
         <li id="promo-12" class="item promo-face">
           {{ promo_face(4, 'promo-12') }}
         </li>
