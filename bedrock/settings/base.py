@@ -936,20 +936,6 @@ TABZILLA_INFOBAR_OPTIONS = 'update translation'
 OPTIMIZELY_PROJECT_ID = config('OPTIMIZELY_PROJECT_ID', default='')
 
 # Fx Accounts iframe source
-# Prod, stage, dev, & demos have this set in their local.py files.
-#
-# For local testing:
-#   - Point FXA_IFRAME_SRC to stomlinson's instance in your own local.py:
-#     FXA_IFRAME_SRC = 'https://stomlinson.dev.lcip.org/'
-#   - Run local server on 127.0.0.1:8111
-#   - Configure Fx40+ as detailed here:
-#     https://bugzilla.mozilla.org/show_bug.cgi?id=1150231#c4
-#
-# For demo server testing, configure Fx40+ as detailed here:
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1150231#c28
-#
-# To clear browser cache while testing multiple accounts, append '/clear' to
-# the iframe's source URL, e.g. https://accounts.stage.mozaws.net/clear
 FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
                         default='https://accounts.firefox.com/')
 

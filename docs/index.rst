@@ -37,3 +37,4 @@ Contents
    tabzilla
    uitour
    send-to-device
+   firefox-accounts
