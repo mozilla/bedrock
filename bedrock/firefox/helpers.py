@@ -16,7 +16,7 @@ def android_builds(channel, builds=None):
     builds = builds or []
     variations = OrderedDict([
         ('api-9', 'Gingerbread'),
-        ('api-11', 'Honeycomb+ ARMv7+'),
+        ('api-15', 'Ice Cream Sandwich+'),
         ('x86', 'x86'),
     ])
 

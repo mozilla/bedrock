@@ -296,11 +296,11 @@ class FirefoxAndroid(_ProductDetails):
     }
 
     store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
-    aurora_url_base = ('https://ftp.mozilla.org/pub/mozilla.org/mobile/nightly/'
+    aurora_url_base = ('https://archive.mozilla.org/pub/mobile/nightly/'
                        'latest-mozilla-aurora-android')
     aurora_urls = {
         'api-9': aurora_url_base + '-api-9/fennec-%s.multi.android-arm.apk',
-        'api-11': aurora_url_base + '-api-11/fennec-%s.multi.android-arm.apk',
+        'api-15': aurora_url_base + '-api-15/fennec-%s.multi.android-arm.apk',
         'x86': aurora_url_base + '-x86/fennec-%s.multi.android-i386.apk',
     }
 

@@ -184,13 +184,13 @@ class TestDownloadButtons(TestCase):
         list = doc('.download-list li')
         eq_(list.length, 3)
         eq_(pq(list[0]).attr('class'), 'os_android armv7up api-9')
-        eq_(pq(list[1]).attr('class'), 'os_android armv7up api-11')
+        eq_(pq(list[1]).attr('class'), 'os_android armv7up api-15')
         eq_(pq(list[2]).attr('class'), 'os_android x86')
 
         list = doc('.download-other .arch')
         eq_(list.length, 3)
         eq_(pq(list[0]).attr('class'), 'arch armv7up api-9')
-        eq_(pq(list[1]).attr('class'), 'arch armv7up api-11')
+        eq_(pq(list[1]).attr('class'), 'arch armv7up api-15')
         eq_(pq(list[2]).attr('class'), 'arch x86')
 
     def test_beta_mobile(self):
