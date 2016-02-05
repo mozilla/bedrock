@@ -66,7 +66,7 @@ Demo Server Testing
     user_pref("identity.fxaccounts.remote.signup.uri", "https://accounts.stage.mozaws.net/signup?service=sync&context=fx_desktop_v1");
     user_pref("identity.fxaccounts.settings.uri", "https://accounts.stage.mozaws.net/settings");
     user_pref("identity.fxaccounts.remote.webchannel.uri", "https://accounts.stage.mozaws.net/");
-    user_pref("services.sync.tokenServerURI", "https://accounts.stage.mozaws.net/syncserver/token/1.0/sync/1.5");
+    user_pref("services.sync.tokenServerURI", "https://token.stage.mozaws.net/1.0/sync/1.5");
 
     user_pref("general.warnOnAboutConfig", false);
     user_pref("devtools.chrome.enabled", true);
