@@ -60,7 +60,7 @@ Demo Server Testing
 .. code-block:: javascript
 
     user_pref("services.sync.log.appender.file.logOnSuccess", true);
-    user_pref("identity.fxaccounts.auth.uri", "https://accounts.stage.mozaws.net/auth/v1");
+    user_pref("identity.fxaccounts.auth.uri", "https://api-accounts.stage.mozaws.net/v1");
     user_pref("identity.fxaccounts.remote.force_auth.uri", "https://accounts.stage.mozaws.net/force_auth?service=sync&context=fx_desktop_v1");
     user_pref("identity.fxaccounts.remote.signin.uri", "https://accounts.stage.mozaws.net/signin?service=sync&context=fx_desktop_v1");
     user_pref("identity.fxaccounts.remote.signup.uri", "https://accounts.stage.mozaws.net/signup?service=sync&context=fx_desktop_v1");
