@@ -610,10 +610,7 @@ var Tabzilla = (function (Tabzilla) {
         // Careers teaser in error console.
         $(window).load(function() {
             try {
-                // Try to only show on stage and production environments.
-                if (Tabzilla.shouldShowEasterEgg()) {
-                    console.log("{% filter js_escape|safe %}{% include "includes/careers-teaser.html" %}{% include "includes/tabzilla-console-footer.html" %}{% endfilter %}");
-                }
+                console.log("{% filter js_escape|safe %}{% include "includes/tabzilla-console-footer.html" %}{% endfilter %}");
             } catch(e) {}
         });
     };
