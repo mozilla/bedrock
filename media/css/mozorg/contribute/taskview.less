@@ -1,0 +1,437 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+@backgroundColor: #32333a;
+@foregroundColor: #fff;
+@darkForeground: #333;
+@buttonColor: #0C99D5;
+@linkColor: #09a7c3;
+
+/* override sandstone base styles */
+#outer-wrapper {
+    background: none;
+}
+
+#wrapper {
+    width: 1000px;
+    padding-bottom: 0;
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: 100%;
+    }
+}
+
+#masthead {
+    width: 100%;
+}
+
+* {
+    .border-box;
+}
+
+html,
+body {
+    background-color: @backgroundColor;
+    color: @foregroundColor;
+}
+
+h1,
+h2,
+h3 {
+    color: @foregroundColor;
+    text-shadow: none;
+}
+
+h1 {
+    margin-bottom: 0;
+    padding-top: @baseLine;
+    .font-size(36px);
+}
+
+p {
+    .font-size(21px);
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .font-size(19px);
+    }
+}
+
+a:link,
+a:visited {
+    color: @linkColor;
+}
+
+a.back {
+    display: inline-block;
+    padding: 5px 0;
+    .font-size(16px);
+    .leading-arrow;
+}
+
+main {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    padding-left: @gridGutterWidth;
+    padding-right: @gridGutterWidth;
+    width: 960px;
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: 100%;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .task-heading {
+        margin: (@baseLine * 3) auto;
+        width: 100%;
+        text-align: center;
+
+        @media only screen and (max-width: @breakTablet) {
+            margin: 10px auto;
+        }
+
+        p {
+            margin: 0 auto;
+            max-width: 80%;
+            .open-sans-light;
+            .font-size(21px);
+            font-style: italic;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                .font-size(18px);
+                width: 90%;
+                max-width: inherit;
+            }
+        }
+    }
+
+    .page-title {
+        margin: 0 auto @baseLine;
+        max-width: 580px;
+        .open-sans-light;
+        .font-size(48px);
+        line-height: 1.3;
+
+        @media only screen and (max-width: @breakTablet) {
+            max-width: 500px;
+            .font-size(40px);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(32px);
+        }
+    }
+}
+
+.task-steps {
+    margin: (@baseLine * 2) auto 0;
+    list-style: none;
+    max-width: 860px;
+
+    @media only screen and (max-width: @breakDesktop) {
+        max-width: 720px;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        max-width: 600px;
+    }
+
+    li {
+        margin: 0 0 (@baseLine * 2);
+        width: 80%;
+
+        &:before {
+            display: inline-block;
+            border: 2px solid @foregroundColor;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            .font-size(24px);
+            font-weight: bold;
+            line-height: 2;
+            text-align: center;
+
+            @media only screen and (max-width: @breakTablet) {
+                width: 30px;
+                height: 30px;
+                .font-size(18px);
+                line-height: 1.6;
+            }
+        }
+    }
+
+    header {
+        margin-top: -50px;
+        margin-left: 70px;
+        width: 100%;
+
+        @media only screen and (max-width: @breakTablet) {
+            margin-top: -32px;
+            margin-left: 45px;
+        }
+    }
+
+    h3 {
+        .open-sans;
+        .font-size(32px);
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 1.3;
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(24px);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(19px);
+        }
+    }
+
+    .step-content {
+        display: inline-block;;
+        margin-left: 70px;
+        width: 100%;
+
+        @media only screen and (max-width: @breakTablet) {
+            margin-left: 45px;
+        }
+    }
+
+    .one:before {
+        content: '1';
+    }
+
+    .two:before {
+        content: '2';
+    }
+
+    .one.completed:before,
+    .two.completed:before {
+        background: transparent url('/media/img/contribute/signup/complete-icon.svg') -30px -27px no-repeat;
+        background-size: 110px 110px;
+        content: '';
+        margin-right: 10px;
+        border: none;
+        width: 60px;
+        height: 63px;
+        .font-size(48px);
+        line-height: 1;
+        vertical-align: bottom;
+    }
+
+    .feature-img {
+        margin: 0 0 @baseLine;
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            display: none;
+        }
+    }
+
+    .download-button-wrapper {
+        display: block;
+        margin: @baseLine 0 0;
+        text-align: center;
+
+        &.firefox-mobile {
+            text-align: left;
+        }
+    }
+
+    .download-link {
+        display: inline-block;
+        margin: 0 @baseLine;
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            margin-bottom: @baseLine;
+            margin-left: 0;
+        }
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+
+video {
+    background-color: #fff;
+    margin-bottom: (@baseLine * 2);
+    margin-left: 0;
+    padding: 10px;
+    width: 100%;
+}
+
+.thankyou {
+    margin: (@baseLine * 5) 0;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 1s;
+
+    h3 {
+        .font-size(60px);
+    }
+
+    p {
+        margin: 0;
+        .font-size(21px);
+    }
+}
+
+/* sandstone override to hide feature-img */
+@media only screen and (max-width: @breakMobileLandscape) {
+    .js img.feature-img[data-high-res] {
+        display: none;
+    }
+}
+
+a.taskview-button,
+button {
+    display: block;
+    background-color: @buttonColor;
+    margin-top: @baseLine;
+    padding: 1rem;
+    border: 0;
+    border-radius: 8px;
+    width: 100%;
+    .font-size(24px);
+    text-align: center;
+    cursor: pointer;
+}
+
+a.taskview-button {
+    &:link,
+    &:visited {
+        color: #32333a;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+a[role="button"] {
+    &:link,
+    &:visited {
+        color: @darkForeground;
+        text-decoration: none;
+        text-align: center;
+    }
+}
+
+/* Tweet form view */
+.tweet-form {
+    width: 100%;
+
+    fieldset {
+        border: none;
+    }
+
+    legend {
+        .font-size(2rem);
+    }
+
+    textarea {
+        margin-bottom: @baseLine;
+        padding: 10px;
+        .font-size(16px);
+        width: 100%;
+        height: 100px;
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            height: 130px;
+        }
+    }
+    .char-counter {
+        .font-size(16px);
+    }
+}
+
+/* button styles */
+.button-blue {
+    display: block;
+    background-color: #0C99D5;
+    color: #fff;
+    margin-top: @baseLine;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    width: auto;
+    max-width: 300px;
+    .font-size(14px);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease 0s;
+
+    @media only screen and (max-width: 360px) {
+        .font-size(12px);
+    }
+
+    &:link,
+    &:visited {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: #2165A9;
+    }
+
+    /* additional specific styles for buttons that send a user
+       to Twitter */
+    &.twitter {
+        .at2x('/media/img/contribute/signup/twitter.png', 30px, 30px);
+        background-repeat: no-repeat;
+        background-position: 10px 10px;
+        padding-left: 40px;
+    }
+
+    /* watch video play button on joy of coding task */
+    &.watch {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    /* styles for the link on the build firefox os task views */
+    &.foxfooding {
+        margin-top: -45px;
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            margin-top: inherit;
+        }
+    }
+
+    /* we need to center the download button for dev edition */
+    &.dev-edition {
+        margin: 0 auto;
+    }
+}
+
+/* download Firefox conditional content */
+.get-firefox {
+    margin: 30px auto;
+    width: 400px;
+    max-width: 400px;
+    text-align: center;
+
+    p {
+        .font-size(16px);
+    }
+}
+
+.visibly-hidden {
+    .visually-hidden;
+    opacity: 0;
+}
+
+.hidden {
+    display: none;
+}

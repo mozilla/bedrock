@@ -234,12 +234,55 @@ class ContributeIndex(l10n_utils.LangFilesMixin, TemplateView):
     template_name = 'mozorg/contribute/index.html'
 
 
+class ContributeSignupNew(TemplateView):
+
+    variant = None
+
+    def get_template_names(self):
+        template = 'mozorg/contribute/signup-new.html'
+
+        if self.variant == '2':
+            template = 'mozorg/contribute/signup-alternate.html'
+
+        return [template]
+
+
+class ContributeTaskView(TemplateView):
+
+    tasks = [
+        'build-firefox',
+        'devtools-challenger',
+        'firefox-mobile',
+        'follow-mozilla',
+        'joy-of-coding',
+        'whimsy',
+    ]
+
+    def get_template_names(self):
+        variant = self.request.GET.get('v', '1')
+        task = filter(None, self.request.path.split('/'))[-1]
+
+        if variant in ['1', '2'] and task in self.tasks:
+            template = 'mozorg/contribute/tasks/v{0}/{1}.html'.format(variant, task)
+        else:
+            raise Http404
+
+        return [template]
+
+
 def contribute_signup(request):
-    use_new_form = lang_file_has_tag('mozorg/contribute/index',
-                                     l10n_utils.get_locale(request),
-                                     '2015_signup_form')
-    view_class = ContributeSignup if use_new_form else ContributeSignupOldForm
-    return view_class.as_view()(request)
+    # for the new signup landing pages, a variant will be specified
+    # using the URL parameter v
+    variant = request.GET.get('v', '')
+
+    if variant in ['1', '2']:
+        return ContributeSignupNew.as_view(variant=variant)(request)
+    else:
+        use_new_form = lang_file_has_tag('mozorg/contribute/index',
+                                         l10n_utils.get_locale(request),
+                                         '2015_signup_form')
+        view_class = ContributeSignup if use_new_form else ContributeSignupOldForm
+        return view_class.as_view()(request)
 
 
 @csrf_exempt

@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/tasks/taskview-base.html" %}
+
+{% block page_title %}{{ _('Install Whimsy') }}{% endblock %}
+
+{% block taskview_title %}{{ _('Install Whimsy, try it out and tell us what you think!') }}{% endblock %}
+{% block taskview_lead %}{{ _('Your desktop browser should be yours to customize, not just use. Make your browser your own by adding a fun new add-on - Whimsy!') }}{% endblock %}
+
+{% block conditional_content %}
+<section class="get-firefox hidden">
+  <p>{{ _('Whimsy requires Firefox desktop browser. To try this task, download Firefox first.') }}</p>
+  {{ download_firefox(small=True) }}
+</section>
+{% endblock %}
+
+{% block task_content %}
+  <ol class="task-steps">
+    <li id="step_one" class="one">
+      <header>
+        <h3>{{ _('Install Whimsy') }}</h3>
+        <p>{{ _('Whimsy is an add-on to help make your Firefox more enjoyable, like replacing the tiles on your new tab page with animated gifs!') }}</p>
+      </header>
+      <div class="step-content">
+        <img src="{{ static('img/contribute/signup/whimsy.png') }}" width="620" class="feature-img" alt="" />
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/whimsycorn/" rel="external" class="button-blue action" data-action="install" data-task="whimsy" data-step="one" data-complete="true" data-variation="1" target="_blank">{{ _('Install Whimsy') }}</a>
+      </div>
+    </li>
+  </ol>
+{% endblock %}
+
+{% block thank_you_msg %}
+  {{ _('Success!') }}
+{% endblock %}

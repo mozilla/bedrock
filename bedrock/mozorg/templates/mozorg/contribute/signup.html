@@ -11,8 +11,8 @@
 {% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
 
 {% block optimizely %}
-  {% if LANG == 'en-US' and waffle.switch('contribute-signup-optimizely') %}
-    <script src="//cdn.optimizely.com/js/246059135.js"></script>
+  {% if waffle.switch('contribute-signup-optimizely') %}
+    {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}
 

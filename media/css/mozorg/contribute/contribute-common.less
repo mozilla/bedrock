@@ -1,0 +1,225 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+// A mixin for sections with dark backgrounds
+.section-dark() {
+    color: #fff;
+
+    .section-title {
+        color: #fff;
+        text-shadow: none;
+    }
+
+    a {
+        color: #fff;
+    }
+}
+
+// Some common classes/mixins
+.button-flat {
+    .open-sans;
+    background-color: @linkBlue;
+    color: #fff;
+    display: inline-block;
+    border: 0;
+    border-radius: .5em;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    .transition(all .15s ease-in-out);
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: #fff;
+        background-color: lighten(@linkBlue, 5%);
+        text-decoration: none;
+    }
+}
+
+/*-------------------------------------------------------------------------*/
+// Override sandstone base layout so we can have full-width blocks.
+#wrapper {
+    width: 100%;
+    padding: 0;
+}
+
+#masthead,
+.container {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    .clearfix();
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+
+    @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+        width: @widthMobileLandscape - (@gridGutterWidth * 2);
+    }
+}
+
+// @Navigation
+.contribute-masthead {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background: @mozillaRed;
+    padding: 40px 0 10px;
+    width: 100%;
+    min-height: 40px;
+    border-bottom: 1px solid darken(@mozillaRed, 5%);
+    .section-dark;
+    .clearfix;
+
+    @media only screen and (max-width: @breakTablet) {
+        min-height: 0;
+    }
+}
+
+.contribute-nav {
+    .span(10);
+
+    @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+        .span_narrow(10);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: auto;
+        float: none;
+        position: absolute;
+        left: -10px;
+        top: 0;
+
+        #contribute-nav-menu {
+            display: none;
+            width: 160px;
+            background: @mozillaRed;
+            padding: 0 5px 5px;
+            border-radius: 6px;
+            left: 0;
+
+            li {
+                width: auto;
+                margin: 5px 0 0;
+                float: none;
+                display: block;
+            }
+
+            .nav-cta {
+                padding-bottom: 8px;
+            }
+        }
+    }
+
+    .toggle {
+        display: none;
+
+        @media only screen and (max-width: @breakTablet) {
+            position: absolute;
+            left: 0;
+            top: -30px;
+            display: block;
+            width: 32px;
+            height: 32px;
+            text-indent: 50px;
+            overflow: hidden;
+            cursor: pointer;
+            margin: 0;
+
+            &:after {
+                position: absolute;
+                top: 4px;
+                left: 0;
+                content: '';
+                background: transparent url('/media/img/contribute/signup/burger.svg') 0 0 no-repeat;
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+
+    li {
+        .span(2);
+        display: block;
+        font-weight: bold;
+        line-height: 1.1;
+        list-style: none;
+        min-height: 40px;
+        position: relative;
+        text-align: center;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .1);
+        text-transform: uppercase;
+        vertical-align: bottom;
+
+        @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+            .span_narrow(2);
+        }
+    }
+
+    a {
+        border-radius: 3px;
+        .border-box;
+        color: #e29fa0;
+        display: block;
+        padding: 10px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        .transition(all .15s ease-in-out);
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: lighten(@mozillaRed, 10%);
+            background-color: rgba(255, 255, 255, .1);
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    .nav-cta {
+        .span(3);
+
+        @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+            .span_narrow(3);
+        }
+
+        a {
+            .button-flat;
+            border-radius: 6px;
+            margin-top: 10px;
+            background-color: darken(@mozillaRed, 10%);
+            bottom: 10px;
+            left: 10px;
+            width: auto;
+        }
+    }
+}
+
+[dir='rtl'] {
+    .contribute-nav {
+        float: right;
+
+        li {
+            float: right;
+        }
+
+        .nav-cta {
+            float: right;
+            left: auto;
+            right: 10px;
+        }
+    }
+}

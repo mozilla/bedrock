@@ -1,0 +1,28 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/tasks/taskview-base.html" %}
+
+{% block page_title %}{{ _('Follow @MozParticipate Twitter Account') }}{% endblock %}
+
+{% block taskview_title %}{{ _('Follow @MozParticipate and see how others are contributing!') }}{% endblock %}
+{% block taskview_lead %}{{ _('There are so many ways to get involved with Mozilla and support the browser. Follow us and learn how you can pitch in!') }}{% endblock %}
+
+{% block task_content %}
+  <ol class="task-steps">
+    <li id="step_one" class="one">
+      <header>
+        <h3>{{ _('Follow @MozParticipate') }}</h3>
+      </header>
+      <div class="step-content">
+        <img src="{{ static('img/contribute/signup/mozparticipate.png') }}" width="620" class="feature-img" alt="" />
+        <a href="https://twitter.com/intent/follow/?screen_name=mozparticipate" rel="external" class="follow-mozilla button-blue twitter" data-action="follow" data-task="follow-mozilla" data-step="one" data-complete="true" data-variation="1">{{ _('Follow @MozParticipate') }}</a>
+      </div>
+    </li>
+  </ol>
+{% endblock %}
+
+{% block thank_you_msg %}
+  {{ _('Thanks for following!') }}
+{% endblock %}
