@@ -979,4 +979,8 @@ URLS = flatten((
     url_test('/en-US/firefox/notes/',
              re.compile(r'/en-US/firefox/[\d\.]+/releasenotes/'),
              status_code=requests.codes.found),
+
+    # Bug 1243060
+    url_test('/firefox/tiles/',
+             'https://support.mozilla.org/kb/about-tiles-new-tab'),
 ))

@@ -271,13 +271,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-interest-dashboard-bundle.css',
     },
-    'firefox-tiles': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/tiles.less',
-        ),
-        'output_filename': 'css/firefox-tiles-bundle.css',
-    },
     'firefox_family': {
         'source_filenames': (
             'css/firefox/family/index.less',
@@ -1216,14 +1209,6 @@ PIPELINE_JS = {
             'js/firefox/family-nav.js',
         ),
         'output_filename': 'js/firefox_interest_dashboard-bundle.js',
-    },
-    'firefox_tiles': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-        ),
-        'output_filename': 'js/firefox_tiles-bundle.js',
     },
     'firefox_family_index': {
         'source_filenames': (
