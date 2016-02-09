@@ -31,7 +31,7 @@
 {#- Override the infobar options not to run the version check Bug 1111656 -#}
 {% block tabzilla_infobar %}translation{% endblock %}
 
-{% block body_class %}sky{% endblock %}
+{% block body_class %}sky plugincheck-variant{% endblock %}
 
 {% block optimizely %}
   {% if waffle.switch('plugincheck-optimizely') %}
@@ -75,6 +75,8 @@
   data-media-url="{{ static('') }}"
 {% endblock %}
 
+{% block site_header_logo %}{% endblock %}
+
 {% block site_header_share %}
   {% set share_urls = { 'twitter': 'http://mzl.la/17aqnLZ', 'googleplus': 'http://mzl.la/1FuAhTS', 'facebook': 'http://mzl.la/1z4Noqm' } -%}
   {% if l10n_has_tag('plugincheck_nosupport') -%}
@@ -89,9 +91,22 @@
 {% block content %}
 <main role="main">
   <header id="main-feature">
-      <h1 class="large">{{_('Check Your Plugins')}}</h1>
+      <a href="{{ url('firefox') }}">{{ high_res_img('plugincheck/firefox-logo.png', {'alt': 'Mozilla Firefox', 'width': '145', 'class': 'firefox-logo'}) }}</a>
+      <h2 class="large">{{_('Check Your Plugins')}}</h2>
       <p class="preamble">{{_('Keeping your plugins up to date helps Firefox run safely and smoothly.')}}</p>
   </header>
+
+  <section class="newsletter-container-variant">
+    {% if LANG == 'en-US' %}
+      <header>
+        <h3>{{ _('<span class="firefox">Firefox</span> + You') }}</h3>
+        <h4>{{ _('Get Firefox tips, tricks, news and more') }}</h4>
+      </header>
+      {{ email_newsletter_form() }}
+    {% else %}
+      {{ email_newsletter_form() }}
+    {% endif %}
+  </section>
 
   <section class="plugin-status-container billboard">
       <div class="version-message-container">
@@ -278,17 +293,7 @@
 </div>
 {% endblock %}
 
-{% block email_form %}
-  <!-- for this page we need the form to live inside a container that will be the full widtth
-    of the parent container so, we cannot just inherit from mozorg/responsive -->
-  <section class="newsletter-container">
-    {% if LANG == 'en-US' %}
-      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Get Mozilla updates')) }}
-    {% else %}
-      {{ email_newsletter_form() }}
-    {% endif %}
-  </section>
-{% endblock %}
+{% block email_form %}{% endblock %}
 
 {% block js %}
   {% javascript 'plugincheck' %}
