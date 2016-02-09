@@ -203,40 +203,69 @@
     }
 
     /**
+     * Called by joyOfCoding, monitors video playback and marks the video step
+     * as watched once we reach the 40sec mark.
+     * @param {object} $video - The video element as a jQuery object.
+     */
+    function markAsWatched($video) {
+        var videoElement = $video[0];
+
+        // a user can click play again after having watched the video the
+        // first time. Clicking on pause, for example, will also trigger the
+        // click event so, we need to ensure we only run the below on the
+        // first interaction.
+        if ($video.data('watched') !== true) {
+            $video.on('timeupdate.taskview', function(event) {
+                // user needs to watch at least 40 seconds before we mark
+                // this step as complete.
+                if (videoElement.currentTime >= 40) {
+                    completeStep($video);
+                    // once the step has been completed,
+                    // remove the event listener.
+                    $video.off('timeupdate.taskview');
+                    $video.data('watched', true);
+                    trackInteraction('completed joy of coding', $video.data('variation'));
+                }
+            });
+        }
+    }
+
+    /**
      * Handles completion of Joy of Coding interaction steps.
      */
     function joyOfCoding(event) {
         var $this = $(event.target);
 
-        if ($this.data('action') === 'play') {
-            var $jocVideo = $('#joc');
-            var videoElement = $jocVideo[0];
+        // to avoid sending multiple pings to GA as a user pauses and plays the video,
+        // we check whether the data-ga attribute exists. If it does, there is nothing
+        // to do here, so just return.
+        if ($this.data('ga')) {
+            return;
+        }
 
-            // if the user clicked the "Watch Video" button, the video will
-            // still be in the paused state. We need to manually play the video.
-            if (videoElement.paused) {
-                videoElement.play();
-                trackInteraction('play joy of coding', $this.data('variation'));
-            }
+        var $jocVideo = $('#joc');
+        var videoElement = $jocVideo[0];
+        var $playButton = $('.watch');
 
-            // a user can click play again after having watched the video the
-            // first time. Clicking on pause, for example, will also trigger the
-            // click event so, we need to ensure we only run the below on the
-            // first interaction.
-            if ($jocVideo.data('watched') !== true) {
-                $jocVideo.on('timeupdate.taskview', function(event) {
-                    // user needs to watch at least 40 seconds before we mark
-                    // this step as complete.
-                    if (videoElement.currentTime >= 40) {
-                        completeStep($this);
-                        // once the step has been completed,
-                        // remove the event listener.
-                        $jocVideo.off('timeupdate.taskview');
-                        $jocVideo.data('watched', true);
-                        trackInteraction('completed joy of coding', $this.data('variation'));
-                    }
-                });
-            }
+        // If the interaction happened on the video element itself, simply track
+        // the event and call markAsWatched. Let the video element do it's thing.
+        if ($this[0].id === 'joc' && $this[0].paused) {
+            // we need to set the ga data attribute on both the video element
+            // and the button, because we do not know where the next interaction
+            // will be triggered from.
+            $this.attr('data-ga', true);
+            $playButton.attr('data-ga', true);
+
+            trackInteraction('play joy of coding', $this.data('variation'));
+            markAsWatched($this);
+        } else  if ($this.data('action') === 'play' && videoElement.paused) {
+            videoElement.play();
+
+            $this.attr('data-ga', true);
+            $jocVideo.attr('data-ga', true);
+
+            trackInteraction('play joy of coding', $this.data('variation'));
+            markAsWatched($jocVideo);
         } else if ($this.data('action') === 'discuss') {
             handleVisibilityChange($this);
             trackInteraction('joy of coding exit link', $this.data('variation'));
