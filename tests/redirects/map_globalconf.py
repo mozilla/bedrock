@@ -980,6 +980,9 @@ URLS = flatten((
     url_test('/en-US/firefox/notes/',
              re.compile(r'/en-US/firefox/[\d\.]+/releasenotes/'),
              status_code=requests.codes.found),
+    url_test('/firefox/brand/', '/styleguide/'),
+    url_test('/firefox/channel/android/', '/en-US/firefox/channel/android/'),
+    url_test('/en-US/firefox/channel/android/', '/firefox/channel/'),
 
     # Bug 1243060
     url_test('/firefox/tiles/',
