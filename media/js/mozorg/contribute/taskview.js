@@ -154,6 +154,8 @@
 
             window.open(tweet, 'twitter', 'width=550,height=480,scrollbars');
 
+            // only v2 tasks has Tweet forms.
+            trackInteraction('share on twitter', '2');
             handleFocusChange($submitButton);
         });
     }
