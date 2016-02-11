@@ -118,6 +118,17 @@
     <div class="promo-grid-inner">
       <ul class="promo-grid {% if tweets %}has-twitter-promo{% endif %}">
       {# L10n: Begin home page promos. Line breaks are for visual formatting only. #}
+      {% if LANG.startswith('en') %}
+        <li id="promo-1" class="item promo-large-portrait firefox-accounts" tabindex="0">
+          <h2 class="primary go">{{ _('All your devices. <br>One Firefox.') }}</h2>
+          <a class="panel-link" href="{{ url('firefox.accounts') }}" data-promotion-id="promo-1" data-promotion-name="All your devices. One Firefox." data-promotion-class="promo-large-portrait" data-promotion-type="tile" data-accounts-url="{{ url('firefox.accounts') }}">
+            <div class="secondary">
+              <h3>{{ _('Sync Firefox <br>wherever <br>you use it.') }}</h3>
+              <p class="more">{{ _('Create an account') }}</p>
+            </div>
+          </a>
+        </li>
+      {% else %}
         <li id="promo-1" class="item promo-large-portrait private-browsing" tabindex="0">
           <h2 class="primary go">{{ _('Introducing the new <br>Private Browsing') }}</h2>
           <a class="panel-link" href="{{ url('firefox.private-browsing') }}" data-promotion-id="promo-1" data-promotion-name="Introducing the new Private Browsing" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
@@ -127,6 +138,7 @@
             </div>
           </a>
         </li>
+      {% endif %}
         <li id="promo-2" class="item promo-small-landscape advocacy">
           <a class="panel-link" href="https://advocacy.mozilla.org" data-promotion-id="promo-2" data-promotion-name="Learn about Mozilla Advocacy" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
             <h2>{{ _('Learn about Mozilla Advocacy') }}</h2>
@@ -177,10 +189,10 @@
             <h2>{{ _('Get smart on Tracking') }}</h2>
           </a>
         </li>
-      {% if l10n_has_tag('webmaker_promo_introducing') %}
-        <li id="promo-9" class="item promo-small-landscape introducing-webmaker">
-          <a class="panel-link" href="https://webmaker.org/" data-promotion-id="promo-9" data-promotion-name="Introducing the new Webmaker" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
-            <h2>{{ _('Introducing<br> the new Webmaker') }}</h2>
+      {% if l10n_has_tag('teach_the_web_promo') %}
+        <li id="promo-9" class="item promo-small-landscape webmaker" data-promotion-id="promo-9" data-promotion-name="Teach the Web" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
+          <a class="panel-link" rel="external" href="https://teach.mozilla.org">
+            <h2>{{ _('Teach<br> the Web') }}</h2>
           </a>
         </li>
       {% else %}

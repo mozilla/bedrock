@@ -792,27 +792,17 @@ html[lang|="en"] {
 
 /****************************************************************************/
 // Webmaker
-
-.promo-small-landscape.introducing-webmaker {
+.promo-small-landscape.webmaker {
     background: #0ad; // bright blue
 
     h2 {
-        padding: 30px 20px 20px 140px;
+        padding: 30px 20px 10px 140px;
         min-height: 64px;
-        background: url(/media/img/home/voices/promos/webmaker/webmaker-logo.svg) 15px 15px no-repeat;
-        .background-size(100px, 100px);
-        .font-size(18px);
+        background: url(/media/img/home/voices/promos/webmaker/webmaker-teacher.svg) 15px 35px no-repeat;
+        .background-size(95px, 64px);
     }
 }
 
-html[lang|="en"] {
-    .promo-small-landscape.introducing-webmaker {
-        h2 {
-            padding-top: 25px;
-            .font-size(20px);
-        }
-    }
-}
 
 
 /****************************************************************************/
@@ -1007,6 +997,23 @@ html[lang|="en"] {
     h2 {
         padding-top: 155px;
         background: url(/media/img/home/voices/promos/private-browsing/private-browsing.svg) center 45px no-repeat;
+    }
+
+    h3 {
+        margin-top: @baseLine * 2;
+    }
+}
+
+
+/****************************************************************************/
+// Firefox Accounts
+.promo-large-portrait.firefox-accounts {
+    background: #5f6065; // dark gray
+
+    h2 {
+        padding-top: 175px;
+        background: url(/media/img/home/voices/promos/accounts/firefox-sync.svg) center 25px no-repeat;
+        .background-size(125px, 125px);
     }
 
     h3 {
