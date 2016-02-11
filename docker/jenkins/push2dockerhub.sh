@@ -16,4 +16,12 @@ COMMIT="${ghprbActualCommit:=$GIT_COMMIT}"
 docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:$COMMIT
 
 # Push to docker hub
-docker push $DOCKER_REPOSITORY:$COMMIT
+docker push -f $DOCKER_REPOSITORY:$COMMIT
+
+GIT_TAG="$(git describe --tags --exact-match $GIT_COMMIT 2> /dev/null)"
+if [[ ! -z $GIT_TAG ]]; then
+    docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:$GIT_TAG
+    docker push -f $DOCKER_REPOSITORY:$GIT_TAG
+    docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:latest
+    docker push -f $DOCKER_REPOSITORY:latest
+fi;
