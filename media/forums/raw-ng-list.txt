@@ -303,7 +303,6 @@ mozilla.support.bugzilla                Support for the Bugzilla web-based bug-t
 mozilla.support.calendar                Support for the Calendar and Lightning projects. (Moderated)
 mozilla.support.webtools                Support for webtools other than Bugzilla (e.g. Bonsai, Tinderbox, MXR)
 mozilla.support.instantbird             Support for Instantbird, the instant messenger built on Mozilla technologies. (Moderated)
-mozilla.support.other                   Support for other products or projects without a specific group. (Moderated)
 
 :Testing
 
