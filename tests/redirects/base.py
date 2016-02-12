@@ -59,7 +59,7 @@ def url_test(url, location=None, status_code=requests.codes.moved_permanently,
         'req_kwargs': req_kwargs,
         'resp_headers': resp_headers,
         'query': query,
-        'allow_redirects': follow_redirects,
+        'follow_redirects': follow_redirects,
         'final_status_code': final_status_code,
     }
     expanded_urls = list(braceexpand(url))

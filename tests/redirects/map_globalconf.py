@@ -991,8 +991,4 @@ URLS = flatten((
     # Bug 1239863
     url_test('/firefox/os/faq/',
              'https://support.mozilla.org/products/firefox-os'),
-
-    url_test('/firefox/brand/', '/styleguide/'),
-    url_test('/firefox/channel/android/', '/en-US/firefox/channel/android/'),
-    url_test('/en-US/firefox/channel/android/', '/firefox/channel/'),
 ))

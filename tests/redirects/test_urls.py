@@ -15,7 +15,7 @@ from .map_external import URLS as EXTERNAL_URLS
 @pytest.mark.parametrize('url', EXTERNAL_URLS, ids=itemgetter('url'))
 def test_external_url(url):
     del url['location']
-    url['allow_redirects'] = True
+    url['follow_redirects'] = True
     assert_valid_url(**url)
 
 
@@ -84,4 +84,4 @@ def test_x_robots_tag(base_url):
     '/thunderbird/releases/'
 ])
 def test_url(url, base_url):
-    assert_valid_url(url, base_url=base_url, allow_redirects=True)
+    assert_valid_url(url, base_url=base_url, follow_redirects=True)
