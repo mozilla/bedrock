@@ -6,17 +6,23 @@
     'use strict';
 
     var $fxaFrame = $('#fxa');
-    var fxaIframeSrc = $('main').data('fxa-iframe-src');
+    var fxaIframeHost = $('main').data('fxa-iframe-host');
+    var fxaIframeSrc = $fxaFrame.data('src');
     var _resizeTimer;
     var _uitourTimeout;
     var _fxaHandshake = false;
 
     // remove trailing slash from iframe src (if present)
-    fxaIframeSrc = (fxaIframeSrc[fxaIframeSrc.length - 1] === '/') ? fxaIframeSrc.substr(0, fxaIframeSrc.length - 1) : fxaIframeSrc;
+    fxaIframeHost = (fxaIframeHost[fxaIframeHost.length - 1] === '/') ? fxaIframeHost.substr(0, fxaIframeHost.length - 1) : fxaIframeHost;
+
+    // check user's Fx version to determine FxA iframe experience
+    if (Mozilla.Client.FirefoxMajorVersion >= 46) {
+        fxaIframeSrc = fxaIframeSrc.replace('context=iframe', 'context=fx_firstrun_v2');
+    }
 
     function onFormPing(data) {
         var fxaFrameTarget = $fxaFrame[0].contentWindow;
-        fxaFrameTarget.postMessage(data, fxaIframeSrc);
+        fxaFrameTarget.postMessage(data, fxaIframeHost);
         _fxaHandshake = true;
     }
 
@@ -34,7 +40,7 @@
     }
 
     function redirectToAccountSettings() {
-        window.location.href = fxaIframeSrc + '/settings';
+        window.location.href = fxaIframeHost + '/settings';
     }
 
     function redirectToSyncPage() {
@@ -57,7 +63,7 @@
     // set up communication with FxA iframe
     function onMessageReceived(e) {
         // make sure origin is as expected
-        if (e.origin !== fxaIframeSrc) {
+        if (e.origin !== fxaIframeHost) {
             return;
         }
 
@@ -96,7 +102,7 @@
         window.addEventListener('message', onMessageReceived, true);
 
         // load FxA iframe only after postMessage communication is configured
-        $fxaFrame.attr('src', $fxaFrame.data('src'));
+        $fxaFrame.attr('src', fxaIframeSrc);
 
         // set a timeout to show FxA (error page, most likely) should the ping event
         // above fail for some reason
