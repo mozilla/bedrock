@@ -385,7 +385,6 @@ INSTALLED_APPS = (
     'bedrock.styleguide',
     'bedrock.tabzilla',
     'bedrock.teach',
-    'bedrock.externalfiles',
     'bedrock.security',
     'bedrock.events',
     'bedrock.releasenotes',
@@ -531,20 +530,6 @@ STUB_INSTALLER_LOCALES = {
 
 # Google Analytics
 GA_ACCOUNT_CODE = ''
-
-# Files from The Web[tm]
-EXTERNAL_FILES = {
-    'credits': {
-        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/credits/names.csv',
-        'type': 'bedrock.mozorg.credits.CreditsFile',
-        'name': 'credits.csv',
-    },
-    'forums': {
-        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/about/forums/raw-ng-list.txt',
-        'type': 'bedrock.mozorg.forums.ForumsFile',
-        'name': 'forums.txt',
-    },
-}
 
 # Facebook Like button supported locales
 # https://www.facebook.com/translations/FacebookLocales.xml
