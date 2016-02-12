@@ -12,7 +12,7 @@ from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect, Http404
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.views.decorators.http import last_modified, require_safe
+from django.views.decorators.http import require_safe
 from django.views.generic import FormView, TemplateView
 from django.shortcuts import redirect, render as django_render
 
@@ -36,8 +36,8 @@ from bedrock.mozorg.util import hide_contrib_form, HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 
 
-credits_file = CreditsFile('credits')
-forums_file = ForumsFile('forums')
+credits_file = CreditsFile()
+forums_file = ForumsFile()
 
 
 def csrf_failure(request, reason=''):
@@ -467,8 +467,7 @@ def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'
     return l10n_utils.render(request, template, data)
 
 
-@cache_control_expires(2)
-@last_modified(credits_file.last_modified_callback)
+@cache_control_expires(12)
 @require_safe
 def credits_view(request):
     """Display the names of our contributors."""
@@ -477,8 +476,7 @@ def credits_view(request):
     return django_render(request, 'mozorg/credits.html', ctx)
 
 
-@cache_control_expires(2)
-@last_modified(forums_file.last_modified_callback)
+@cache_control_expires(12)
 @require_safe
 def forums_view(request):
     """Display our mailing lists and newsgroups."""

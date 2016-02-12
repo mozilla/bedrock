@@ -2,13 +2,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import os
 import re
+import codecs
 from collections import OrderedDict
 
-from bedrock.externalfiles import ExternalFile
+from django.conf import settings
 
 
-class ForumsFile(ExternalFile):
+class ForumsFile(object):
+    source_path = os.path.join(settings.MEDIA_ROOT, 'forums', 'raw-ng-list.txt')
     forum_line_re = re.compile(r'^((?:mozilla\.)?[a-z0-9\-\.]+)\s+(.*)$')
     title_line_re = re.compile(r'^:(.*)$')
 
@@ -23,7 +26,18 @@ class ForumsFile(ExternalFile):
         if not len(forums.keys()) > 10:
             raise ValueError('Forums file truncated or corrupted.')
 
+        return lines
+
+    def read(self):
+        try:
+            content = codecs.open(self.source_path, 'r', 'utf-8').read()
+        except Exception:
+            raise ValueError('Error opening forums file.')
+
         return content
+
+    def readlines(self):
+        return self.validate_content(self.read())
 
     @property
     def ordered(self):

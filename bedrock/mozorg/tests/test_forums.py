@@ -34,7 +34,7 @@ FORUMS_GOOD_DICT['Applications and Projects'] = [
 
 class TestForums(TestCase):
     def setUp(self):
-        self.forums_file = forums.ForumsFile('forums')
+        self.forums_file = forums.ForumsFile()
 
     def test_forums_ordered(self):
         """Should give an ordered dict of forums from file."""

@@ -2,15 +2,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import os
 import csv
+import codecs
 from collections import OrderedDict
 from operator import itemgetter
 
+from django.conf import settings
 
-from bedrock.externalfiles import ExternalFile
 
+class CreditsFile(object):
+    source_path = os.path.join(settings.MEDIA_ROOT, 'credits', 'names.csv')
 
-class CreditsFile(ExternalFile):
     def validate_content(self, content):
         rows = list(csv.reader(content.strip().encode('utf8').split('\n')))
         if len(rows) < 2200:  # it's 2273 as of now
@@ -19,7 +22,18 @@ class CreditsFile(ExternalFile):
         if len(rows[0]) != 2 or len(rows[-1]) != 2:
             raise ValueError('CSV Content corrupted.')
 
+        return rows
+
+    def read(self):
+        try:
+            content = codecs.open(self.source_path, 'r', 'utf-8').read()
+        except Exception:
+            raise ValueError('Error opening credits file.')
+
         return content
+
+    def readlines(self):
+        return self.validate_content(self.read())
 
     @property
     def ordered(self):
@@ -48,11 +62,12 @@ class CreditsFile(ExternalFile):
         :return: list of lists
         """
         names = []
-        for row in csv.reader(self.readlines()):
-            if len(row) == 1:
-                name = sortkey = row[0]
-            elif len(row) == 2:
-                name, sortkey = row
+        for row in self.readlines():
+            cols = row.split(',')
+            if len(cols) == 1:
+                name = sortkey = cols[0]
+            elif len(cols) == 2:
+                name, sortkey = cols
             else:
                 continue
 
