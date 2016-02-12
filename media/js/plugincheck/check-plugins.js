@@ -178,6 +178,36 @@ $(function() {
         }
     }
 
+    /**
+     * Counts the total number of plugins per category i.e vulnerable, outdated,
+     * combines latest and newer as up to date, and lastly unknown.
+     * @param {array} plugins - The array of plugins returned from the plugin service.
+     * @returns pluginTotals - Object containing the totals for the various types of plugins.
+     */
+    function pluginCounter(plugins) {
+        var pluginTotals = {
+            vulnerableCount: 0,
+            outdatedCount: 0,
+            upToDateCount: 0,
+            unknownCount: 0
+        };
+
+        // loop through all plugins and total up the plugin counts per category.
+        for (var i = 0, l = plugins.length; i < l; i++) {
+            if (plugins[i].status === 'vulnerable') {
+                pluginTotals.vulnerableCount += 1;
+            } else if (plugins[i].status === 'outdated') {
+                pluginTotals.outdatedCount += 1;
+            } else if (plugins[i].status === 'latest' || plugins[i] === 'newer') {
+                pluginTotals.upToDateCount += 1;
+            } else if (plugins[i].status === 'unknown') {
+                pluginTotals.unknownCount += 1;
+            }
+        }
+
+        return pluginTotals;
+    }
+
     // show main download button to non Fx traffic
     if(!client.isFirefox && !client.isLikeFirefox) {
         wrapper.addClass('non-fx');
@@ -203,7 +233,21 @@ $(function() {
                 $loader.addClass('hidden');
 
                 if (response.length > 0) {
+                    var pluginTotals = pluginCounter(response);
+
+                    // ping GA with plugin totals
+                    window.dataLayer.push({
+                        'event': 'plugincheck-load',
+                        'interaction': 'page load',
+                        'total-plugins': response.length,
+                        'plugin-vulnerable-count': pluginTotals.vulnerableCount,
+                        'plugin-outdated-count': pluginTotals.outdatedCount,
+                        'plugin-up-to-date-count': pluginTotals.upToDateCount,
+                        'plugin-unknown-count': pluginTotals.unknownCount,
+                    });
+
                     $pluginsContainer.removeClass('hidden');
+
                     displayPlugins(response);
                     handleButtonInteractions();
                 } else {
