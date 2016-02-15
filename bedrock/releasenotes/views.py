@@ -88,6 +88,9 @@ def check_url(product, version):
 
 @cache_control_expires(1)
 def release_notes(request, version, product='Firefox'):
+    if not version:
+        raise Http404
+
     try:
         release = get_release_or_404(version, product)
     except Http404:
