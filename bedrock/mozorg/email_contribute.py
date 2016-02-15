@@ -107,6 +107,7 @@ LOCALE_CONTACTS = {
     'es-CL': ['participa@mozilla-hispano.org'],
     'es-ES': ['participa@mozilla-hispano.org'],
     'es-MX': ['participa@mozilla-hispano.org'],
+    'fa': ['mozilla.persian@gmail.com'],
     'fr': ['contact@mozfr.org'],
     'fy-NL': ['fryskefirefox@gmail.com'],
     'hr': ['contribute@mozilla-hr.org'],
