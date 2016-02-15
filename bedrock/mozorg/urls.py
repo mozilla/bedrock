@@ -187,8 +187,6 @@ urlpatterns = (
     page('contribute/stories/shreyas', 'mozorg/contribute/story-shreyas.html'),
     page('contribute/stories/michael', 'mozorg/contribute/story-michael.html'),
 
-    page('contribute/supersecret-testpage', 'mozorg/contribute/whimsy-test.html'),
-
     page('MPL', 'mozorg/mpl/index.html'),
     page('MPL/historical', 'mozorg/mpl/historical.html'),
     page('MPL/license-policy', 'mozorg/mpl/license-policy.html'),
