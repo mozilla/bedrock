@@ -1,45 +1,44 @@
-{% extends "base-resp.html" %}
+{% extends "legal/docs-base.html" %}
 
-{% block page_title %}{{_('Mozilla Foundation End-User Licensing Agreements')}}{% endblock %}
-{% block body_id %}legal_eula_index-page{% endblock %}
-{% block body_class %}sand{% endblock %}
+{% block page_title %}Impressum{% endblock %}
 
-{% block breadcrumbs %}{% endblock %}
-
-{% block extrahead %}
-  {% stylesheet 'legal-impressum' %}
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <div itemprop="articleBody" class="article-body">
+      <h1>Impressum</h1>
+      <section itemscope itemtype="http://schema.org/Organization" class="org">
+        <h2>Dienstanbieter:</h2>
+        <p>
+          <span itemprop="legalName">Mozilla Corporation</span> (Gesellschaft mit beschränkter Haftung nach US-amerikanischem Recht) Corporate Number 2759208
+        </p>
+    
+        <h2>Sitz der Gesellschaft:</h2>
+        <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+          <span itemprop="streetAddress">331 E. Evelyn Avenue</span>
+          <span itemprop="addressLocality">Mountain View</span>, 
+          <abbr itemprop="addressRegion" title="California">CA</abbr>
+          <span itemprop="postalCode">94041</span>
+          <span itemprop="addressCountry">USA</span>
+        </p>
+    
+        <h2>Vertretungberechtigter Vorstand:</h2>
+        <p itemscope itemtype="http://schema.org/Person">
+          <span itemprop="name">Denelle Dixon-Thayer</a>, 
+          <span itemprop="jobTitle">Senior Vice President and General Counsel<span>
+        </p>
+        <p class="contact" itemscope itemtype="http://schema.org/ContactPoint">
+          <span itemprop="email">Email: <a href="mailto:legal-notices@mozilla.com">legal-notices@mozilla.com</a></span>
+          <span itmeprop="telephone">Telefon: +(650) 903-0800</span>
+          <span itemprop="faxNumber">Telefax: +(650) 903-0875</span>
+        </p>
+      </section>
+    </div>
+  </article>
 {% endblock %}
 
-{% block content %}
-<div id="main-content">
-  <h1>Impressum</h1>
-  <section itemscope itemtype="http://schema.org/Organization" class="org">
-    <h2>Dienstanbieter:</h2>
-    <p>
-      <span itemprop="legalName">Mozilla Corporation</span> (Gesellschaft mit beschränkter Haftung nach US-amerikanischem Recht) Corporate Number 2759208
-    </p>
-
-    <h2>Sitz der Gesellschaften:</h2>
-    <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-      <span itemprop="streetAddress">331 E. Evelyn Avenue</span>
-      <span itemprop="addressLocality">Mountain View</span>, 
-      <abbr itemprop="addressRegion" title="California">CA</abbr>
-      <span itemprop="postalCode">94041</span>
-      <span itemprop="addressCountry">USA</span>
-    </p>
-
-    <h2>Vertretungberechtigter Vorstand:</h2>
-    <p itemscope itemtype="http://schema.org/Person">
-      <span itemprop="name">Denelle Dixon-Thayer</a>, 
-      <span itemprop="jobTitle">Senior Vice President and General Counsel<span>
-    </p>
-    <p class="contact" itemscope itemtype="http://schema.org/ContactPoint">
-      <span itemprop="email">Email: <a href="mailto:legal-notices@mozilla.com">legal-notices@mozilla.com</a></span>
-      <span itmeprop="telephone">Telefon: +(650) 903-0800</span>
-      <span itemprop="faxNumber">Telefax: +(650) 903-0875</span>
-    </p>
+{% block side_extra %}
+  <section>
+    <p>Beratung zu unserer Software finden Sie auf unserer Support-Website unter <a href="https://support.mozilla.org/de/">https://support.mozilla.org/de/</a>.</p>
+    <p>Haben Sie Feedback zu Mozilla Software? Wir freuen uns, von Ihnen zu hören, unter <a href="https://input.mozilla.org/de/feedback">https://input.mozilla.org/de/feedback</a>.</p>
   </section>
-</div>
 {% endblock %}
-
-{% block email_form %}{% endblock %}

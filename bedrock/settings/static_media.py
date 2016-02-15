@@ -628,12 +628,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/legal-eula-bundle.css',
     },
-    'legal-impressum': {
-        'source_filenames': (
-            'css/legal/impressum.less',
-        ),
-        'output_filename': 'css/legal-impressum-bundle.css',
-    },
     'legal_fraud_report': {
         'source_filenames': (
             'css/legal/fraud-report.less',
