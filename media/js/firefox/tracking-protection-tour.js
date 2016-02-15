@@ -42,7 +42,7 @@ if (typeof Mozilla === 'undefined') {
         ];
 
         var options = {
-            closeButtonCallback: TPTour.step4
+            closeButtonCallback: TPTour.shouldCloseTab
         };
 
         Mozilla.UITour.getConfiguration('availableTargets', function(config) {
@@ -161,7 +161,7 @@ if (typeof Mozilla === 'undefined') {
     TPTour.bindEvents = function() {
         $('.prefs-link > a').on('click.tp-tour', TPTour.handlePrefsLinkClick);
         $('#info-panel footer > button').on('click.tp-tour', TPTour.step3);
-        $('#info-panel header > button').on('click.tp-tour', TPTour.step4);
+        $('#info-panel header > button').on('click.tp-tour', TPTour.shouldCloseTab);
         $(document).on('visibilitychange.tp-tour', TPTour.handleVisibilityChange);
         $('#reload-btn').on('click.tp-tour', TPTour.restartTour);
         $(window).on('resize.tp-tour', TPTour.handleResize);

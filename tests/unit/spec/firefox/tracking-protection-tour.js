@@ -121,7 +121,7 @@ describe('tracking-protection-tour.js', function() {
                     { callback: Mozilla.TPTour.step2, label: 'Next', style: 'primary' }
                 ],
                 {
-                    closeButtonCallback: Mozilla.TPTour.step4
+                    closeButtonCallback: Mozilla.TPTour.shouldCloseTab
                 }
             );
 
@@ -297,7 +297,7 @@ describe('tracking-protection-tour.js', function() {
             Mozilla.TPTour.bindEvents();
             expect($.fn.on).toHaveBeenCalledWith('click.tp-tour', Mozilla.TPTour.handlePrefsLinkClick);
             expect($.fn.on).toHaveBeenCalledWith('click.tp-tour', Mozilla.TPTour.step3);
-            expect($.fn.on).toHaveBeenCalledWith('click.tp-tour', Mozilla.TPTour.step4);
+            expect($.fn.on).toHaveBeenCalledWith('click.tp-tour', Mozilla.TPTour.shouldCloseTab);
             expect($.fn.on).toHaveBeenCalledWith('visibilitychange.tp-tour', Mozilla.TPTour.handleVisibilityChange);
             expect($.fn.on).toHaveBeenCalledWith('resize.tp-tour', Mozilla.TPTour.handleResize);
             expect($.fn.on).toHaveBeenCalledWith('click.tp-tour', Mozilla.TPTour.restartTour);
