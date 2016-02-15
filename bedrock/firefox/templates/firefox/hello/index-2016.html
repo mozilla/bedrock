@@ -118,7 +118,12 @@
   </section>
   <aside id="need-help">
     <div class="container">
-      <p>{{ _('Need help with Hello? <a href="%s">Visit Mozilla support</a>.')|format('https://support.mozilla.org/products/firefox/chat-and-share/firefox-hello-webrtc') }}</p>
+      {% set support_url = 'https://support.mozilla.org/products/firefox/chat-and-share/firefox-hello-webrtc' %}
+      {% if LANG.startswith('en-') %}
+        <p>Need help with Hello? <a rel="external" href="{{ support_url }}">Visit Mozilla Support</a></p>
+      {% else %}
+        <p>{{ _('Need help with Hello? <a href="%s">Visit Mozilla support</a>.')|format(support_url) }}</p>
+      {% endif %}
     </div>
   </aside>
 {% endblock %}
