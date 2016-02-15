@@ -13,3 +13,9 @@ def test_download_buttons_are_displayed(base_url, selenium):
     page = FirefoxOSPage(base_url, selenium).open()
     assert page.is_primary_download_button_displayed
     assert page.is_secondary_download_button_displayed
+
+
+@pytest.mark.nondestructive
+def test_news_is_displayed(base_url, selenium):
+    page = FirefoxOSPage(base_url, selenium).open()
+    assert page.is_news_displayed

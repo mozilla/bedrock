@@ -1026,45 +1026,6 @@ FIREFOX_OS_FEEDS = (
 )
 FIREFOX_OS_FEED_LOCALES = [feed[0] for feed in FIREFOX_OS_FEEDS]
 
-# Bug 1133146
-FIREFOX_OS_COUNTRY_VERSIONS = {
-    'default': '2.0',
-    'AR': '1.3',
-    'AU': '1.3',
-    'BE': '1.3',
-    'BD': '1.4',
-    'BR': '1.1',
-    'CH': '1.3',
-    'CL': '1.3',
-    'CO': '1.3',
-    'CR': '1.3',
-    'CZ': '1.3',
-    'DE': '1.3',
-    'ES': '1.3',
-    'FR': '1.3',
-    'GB': '1.3',
-    'GR': '1.3',
-    'GT': '1.3',
-    'HU': '1.3',
-    'IN': '1.3T',
-    'IT': '1.1',
-    'LU': '1.3',
-    'ME': '1.3',
-    'MK': '1.3',
-    'MM': '1.3T',
-    'MX': '1.3',
-    'NI': '1.3',
-    'PA': '1.3',
-    'PE': '1.3',
-    'PH': '1.3T',
-    'PL': '1.3',
-    'RS': '1.3',
-    'RU': '1.3',
-    'SV': '1.3',
-    'UY': '1.3',
-    'VE': '1.3',
-}
-
 TABLEAU_DB_URL = config('TABLEAU_DB_URL', default=None)
 
 MAXMIND_DB_URL = config('MAXMIND_DB_URL', default=None)
@@ -1099,3 +1060,5 @@ NEWRELIC_APP_ID = config('NEWRELIC_APP_ID', default='')
 FIREFOX_IOS_RELEASE_VERSION = '2.0'
 
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
+
+B2G_DROID_URL = 'https://d2yw7jilxa8093.cloudfront.net/B2GDroid-mozilla-central-nightly-latest.apk'

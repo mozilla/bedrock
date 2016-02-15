@@ -4,15 +4,16 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.os.version.all import FirefoxOSBasePage
+from pages.firefox.base import FirefoxBasePage
 
 
-class FirefoxOSPage(FirefoxOSBasePage):
+class FirefoxOSPage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/os/2.5'
+    _url = '{base_url}/{locale}/firefox/os'
 
     _primary_download_locator = (By.CSS_SELECTOR, '.hero-content .cta-button')
     _secondary_download_locator = (By.CSS_SELECTOR, '.fxos-try .cta-button')
+    _news_links_locator = (By.CSS_SELECTOR, '.fxos-news ul > li > a')
 
     @property
     def is_primary_download_button_displayed(self):
@@ -21,3 +22,7 @@ class FirefoxOSPage(FirefoxOSBasePage):
     @property
     def is_secondary_download_button_displayed(self):
         return self.is_element_displayed(self._secondary_download_locator)
+
+    @property
+    def is_news_displayed(self):
+        return self.is_element_displayed(self._news_links_locator)

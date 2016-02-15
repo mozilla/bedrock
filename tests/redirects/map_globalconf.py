@@ -989,6 +989,12 @@ URLS = flatten((
              'https://support.mozilla.org/kb/about-tiles-new-tab'),
 
     # Bug 1239863
+    url_test('/firefox/os/2.5/', '/firefox/os/'),
+    url_test('/firefox/os/2.0/', '/firefox/os/'),
+    url_test('/firefox/os/1.3t/', '/firefox/os/'),
+    url_test('/firefox/os/1.3/', '/firefox/os/'),
+    url_test('/firefox/os/1.4/', '/firefox/os/'),
+    url_test('/firefox/os/1.1/', '/firefox/os/'),
     url_test('/firefox/os/faq/',
              'https://support.mozilla.org/products/firefox-os'),
 ))
