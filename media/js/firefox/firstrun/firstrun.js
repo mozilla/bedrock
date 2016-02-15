@@ -48,6 +48,15 @@
                 break;
             // track when user signs up successfully (but hasn't yet verified email)
             case 'signup_must_verify':
+                // if emailOptIn property is present, send value to GA
+                if (data.data.hasOwnProperty('emailOptIn')) {
+                    window.dataLayer.push({
+                        'event': 'firstrun-fxa',
+                        'interaction': 'email opt-in',
+                        'label': data.data.emailOptIn
+                    });
+                }
+
                 window.dataLayer.push({
                     'event': 'firstrun-fxa',
                     'interaction': 'fxa-signup'

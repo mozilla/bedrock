@@ -53,11 +53,19 @@
         $fxaFrame.css('height', formHeight + 'px').addClass('loaded');
     }
 
-    function sendGAEvent(type) {
-        window.dataLayer.push({
+    function sendGAEvent(type, label) {
+        // we'll always have a type
+        var data = {
             'event': 'mau2account',
             'interaction': type
-        });
+        };
+
+        // label may or may not be provided
+        if (label !== undefined) {
+            data.label = label;
+        }
+
+        window.dataLayer.push(data);
     }
 
     // set up communication with FxA iframe
@@ -84,6 +92,11 @@
             break;
         // track when user signs up successfully (but hasn't yet verified email)
         case 'signup_must_verify':
+            // if emailOptIn property is present, send value to GA
+            if (data.data.hasOwnProperty('emailOptIn')) {
+                sendGAEvent('email opt-in', data.data.emailOptIn);
+            }
+
             sendGAEvent('success');
             break;
         // track when user returns to page after verifying email (may never happen)
