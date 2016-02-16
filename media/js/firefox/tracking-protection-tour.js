@@ -84,8 +84,19 @@ if (typeof Mozilla === 'undefined') {
 
         Mozilla.UITour.showMenu('controlCenter', function() {
             Mozilla.UITour.getConfiguration('availableTargets', function(config) {
+                var newTab;
+                var panelText;
+
                 if (config.targets.indexOf('controlCenter-trackingUnblock') !== -1) {
-                    Mozilla.UITour.showInfo('controlCenter-trackingUnblock', _step3.titleText, _step3.panelText, undefined, buttons, options);
+
+                    newTab = TPTour.getParameterByName('newtab');
+                    panelText = _step3.panelText;
+
+                    if (newTab === 'true') {
+                        panelText = _step3.panelTextNewTab;
+                    }
+
+                    Mozilla.UITour.showInfo('controlCenter-trackingUnblock', _step3.titleText, panelText, undefined, buttons, options);
                     // fade out content if user has landed on step 3 after page reload.
                     _$tracker.addClass('fade-out');
                 } else if (config.targets.indexOf('controlCenter-trackingBlock') !== -1) {
@@ -221,6 +232,7 @@ if (typeof Mozilla === 'undefined') {
         return {
             titleText: TPTour._getText('panel3Title'),
             panelText: TPTour._getText('panel3Text'),
+            panelTextNewTab: TPTour._getText('panel3TextNewTab'),
             panelTextAlt: TPTour._getText('panel3TextAlt'),
             stepText: TPTour._getText('panel3Step'),
             buttonText: TPTour._getText('panel3Button')

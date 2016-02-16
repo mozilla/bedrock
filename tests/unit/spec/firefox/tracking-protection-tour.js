@@ -41,6 +41,7 @@ describe('tracking-protection-tour.js', function() {
             return {
                 titleText: 'Step 3 title',
                 panelText: 'Step 3 text',
+                panelTextNewTab: 'Step 3 new tab text',
                 panelTextAlt: 'Step 3 alt text',
                 stepText: '3/3',
                 buttonText: 'Got it!'
@@ -154,33 +155,63 @@ describe('tracking-protection-tour.js', function() {
 
         beforeEach(function() {
             Mozilla.TPTour.getStrings();
-        });
-
-        it('shoud open "controlCenter" and highlight "trackingUnblock" if target is available', function() {
-            spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
-                callback({
-                    targets: ['controlCenter-trackingUnblock']
-                });
-            });
             spyOn(Mozilla.UITour, 'showInfo');
             spyOn(Mozilla.TPTour, 'replaceURLState');
-            Mozilla.TPTour.step3();
-            expect(Mozilla.UITour.showMenu).toHaveBeenCalledWith('controlCenter', jasmine.any(Function));
-            expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
+        });
 
-            expect(Mozilla.UITour.showInfo).toHaveBeenCalledWith('controlCenter-trackingUnblock',
-                'Step 3 title', 'Step 3 text', undefined,
-                [
-                    { label: '3/3', style: 'text' },
-                    { callback: Mozilla.TPTour.shouldCloseTab, label: 'Got it!', style: 'primary' }
-                ],
-                {
-                    closeButtonCallback: Mozilla.TPTour.shouldCloseTab
-                }
-            );
+        describe('shoud open "controlCenter" and highlight "trackingUnblock" if target is available', function() {
 
-            expect(Mozilla.TPTour.replaceURLState).toHaveBeenCalledWith('3');
-            expect(Mozilla.TPTour.state).toEqual('step3');
+            beforeEach(function() {            
+                spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
+                    callback({
+                        targets: ['controlCenter-trackingUnblock']
+                    });
+                });
+            });
+
+            it('should show the correct string for private window', function() {
+                spyOn(Mozilla.TPTour, 'getParameterByName').and.callFake(function() {
+                    return 'none';
+                });
+
+                Mozilla.TPTour.step3();
+
+                expect(Mozilla.UITour.showInfo).toHaveBeenCalledWith('controlCenter-trackingUnblock',
+                    'Step 3 title', 'Step 3 text', undefined,
+                    [
+                        { label: '3/3', style: 'text' },
+                        { callback: Mozilla.TPTour.shouldCloseTab, label: 'Got it!', style: 'primary' }
+                    ],
+                    {
+                        closeButtonCallback: Mozilla.TPTour.shouldCloseTab
+                    }
+                );
+
+                expect(Mozilla.TPTour.replaceURLState).toHaveBeenCalledWith('3');
+                expect(Mozilla.TPTour.state).toEqual('step3');
+            });
+
+            it('should show the correct string for non-private window', function() {
+                spyOn(Mozilla.TPTour, 'getParameterByName').and.callFake(function() {
+                    return 'true';
+                });
+
+                Mozilla.TPTour.step3();
+
+                expect(Mozilla.UITour.showInfo).toHaveBeenCalledWith('controlCenter-trackingUnblock',
+                    'Step 3 title', 'Step 3 new tab text', undefined,
+                    [
+                        { label: '3/3', style: 'text' },
+                        { callback: Mozilla.TPTour.shouldCloseTab, label: 'Got it!', style: 'primary' }
+                    ],
+                    {
+                        closeButtonCallback: Mozilla.TPTour.shouldCloseTab
+                    }
+                );
+
+                expect(Mozilla.TPTour.replaceURLState).toHaveBeenCalledWith('3');
+                expect(Mozilla.TPTour.state).toEqual('step3');
+            });
         });
 
         it('shoud open "controlCenter" and highlight "trackingBlock" if target is available', function() {
@@ -189,11 +220,12 @@ describe('tracking-protection-tour.js', function() {
                     targets: ['controlCenter-trackingBlock']
                 });
             });
-            spyOn(Mozilla.UITour, 'showInfo');
-            spyOn(Mozilla.TPTour, 'replaceURLState');
+
+            spyOn(Mozilla.TPTour, 'getParameterByName').and.callFake(function() {
+                return 'none';
+            });
+
             Mozilla.TPTour.step3();
-            expect(Mozilla.UITour.showMenu).toHaveBeenCalledWith('controlCenter', jasmine.any(Function));
-            expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('availableTargets', jasmine.any(Function));
 
             expect(Mozilla.UITour.showInfo).toHaveBeenCalledWith('controlCenter-trackingBlock',
                 'Step 3 title', 'Step 3 alt text', undefined,
