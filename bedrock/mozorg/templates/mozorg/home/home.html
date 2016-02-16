@@ -160,13 +160,13 @@
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
-      {% if l10n_has_tag('gear_promo_eoy') %}
-        <li id="promo-6" class="item promo-large-landscape gear" tabindex="0">
-          <h2 class="primary go">{{ _('Get the gear, <br>support the mission') }}</h2>
-          <a class="panel-link" rel="external" href="https://gear.mozilla.org?ref=holiday2015&amp;utm_campaign=holiday2015&amp;utm_source=mozilla.org&amp;utm_medium=referral" data-promotion-id="promo-6" data-promotion-name="Get the gear, support the mission" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
+      {% if LANG.startswith('en-') %}
+        <li id="promo-6" class="item promo-large-landscape encryption" tabindex="0">
+          <h2 class="primary go">{{ _('Encryption helps <br>protect your privacy') }}</h2>
+          <a class="panel-link" rel="external" href="https://advocacy.mozilla.org/encrypt/?ref=2016_Encryption&amp;utm_campaign=2016_Encryption&amp;utm_source=mozilla.org&amp;utm_medium=referral" data-promotion-id="promo-6" data-promotion-name="Encryption helps protect your privacy" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
             <div class="secondary">
-              <h3>{{ _('Shop for t-shirts, hoodies, hats<br> and more at Mozilla Gear.') }}</h3>
-              <p class="more">{{ _('Shop now') }}</p>
+              <h3>{{ _('See how it works <br>and why it’s worth protecting.') }}</h3>
+              <p class="more">{{ _('Learn more') }}</p>
             </div>
           </a>
         </li>

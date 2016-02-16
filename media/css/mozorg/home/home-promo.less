@@ -857,43 +857,28 @@ html[lang|="en"] {
 }
 
 
-
 /****************************************************************************/
-// Gear
-.promo-large-landscape.gear {
-    background: #6FBE4A; // green
+// Encryption
+.promo-large-landscape.encryption {
+    background: #6fbe4a; // green
 
     h2 {
         padding: 100px @baseLine 0 @baseLine;
         margin-top: 25px;
-        background-image: url(/media/img/home/voices/promos/gear/gear.png);
+        background-image: url(/media/img/home/voices/promos/encryption/encryption.svg);
         background-position: top center;
         background-repeat: no-repeat;
-        .background-size(75px, 80px);
+        .background-size(110px, 77px);
+
+        @media only screen and (min-width: @widthSquareGrid_4) and (max-width: (@widthSquareGrid_6 - 1)) {
+            br {
+                display: none;
+            }
+        }
     }
 
     h3 {
         padding-top: 70px;
-    }
-}
-
-.promo-small-landscape.gear {
-    background-color: #95368c; // purple
-
-    h2 {
-        padding: @baseLine @baseLine @baseLine 120px;
-        min-height: 80px;
-        background-image: url(/media/img/home/voices/promos/gear/gear.png);
-        background-position: 15px 25px;
-        background-repeat: no-repeat;
-        .background-size(75px, 80px);
-        .font-size(16px);
-    }
-}
-
-[lang|='en'] {
-    .promo-small-landscape.gear h2 {
-        .font-size(22px);
     }
 }
 
