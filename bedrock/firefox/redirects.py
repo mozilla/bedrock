@@ -4,7 +4,7 @@ from bedrock.redirects.util import redirect, is_firefox_redirector, no_redirect
 def firefox_mobile_faq(request, *args, **kwargs):
     qs = request.META.get('QUERY_STRING', '')
     if 'os=firefox-os' in qs:
-        return 'firefox.os.faq'
+        return 'https://support.mozilla.org/products/firefox-os'
 
     return 'firefox.android.faq'
 
@@ -289,4 +289,9 @@ redirectpatterns = (
     # Bug 1243060
     redirect(r'^firefox/tiles/?$',
              'https://support.mozilla.org/kb/about-tiles-new-tab'),
+
+    # Bug 1239863
+    redirect(r'^firefox/os/faq/?$',
+             'https://support.mozilla.org/products/firefox-os'),
+
 )

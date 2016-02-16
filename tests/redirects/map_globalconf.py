@@ -218,7 +218,8 @@ URLS = flatten((
     }),
 
     # bug 868182
-    url_test('/firefox/mobile/faq/?os=firefox-os', '/firefox/os/faq/'),
+    url_test('/firefox/mobile/faq/?os=firefox-os',
+             'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 986174
     url_test('/{m,{firefox/,}mobile}/features/', '/firefox/android/'),
@@ -983,4 +984,8 @@ URLS = flatten((
     # Bug 1243060
     url_test('/firefox/tiles/',
              'https://support.mozilla.org/kb/about-tiles-new-tab'),
+
+    # Bug 1239863
+    url_test('/firefox/os/faq/',
+             'https://support.mozilla.org/products/firefox-os'),
 ))
