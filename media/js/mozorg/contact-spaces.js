@@ -406,8 +406,16 @@
         setInitialContentState: function () {
             // store initial content data id on page load
             var state = mozMap.getMapState();
+
             if (state === 'spaces') {
                 initContentId = $('#nav-spaces li.current').data('id');
+
+                // if we land directly on a specific space, like Mountain View,
+                // pan the marker to that space.
+                if (initContentId) {
+                    mozMap.panToMarker(initContentId);
+                }
+
                 // Show spaces nav+meta
                 if (wideMode) {
                     $('#nav-spaces, #meta-spaces').show();
@@ -416,6 +424,10 @@
                 }
             } else if (state === 'communities') {
                 initContentId = $('#nav-communities li.current').data('id');
+
+                var region = initContentId ? initContentId : 'communities';
+                mozMap.showCommunityRegion(region);
+
                 // Show community nav+meta
                 if (wideMode) {
                     $('#nav-communities, #meta-communities').show();
@@ -472,14 +484,14 @@
                 mozMap.clearCommunityLayers();
                 // unbind click events on community nav
                 mozMap.unbindCommunityNav();
+                // unbind click events on spaces nav
+                mozMap.unbindSpacesNav();
                 // add spaces marker layer.
                 mozMap.addSpacesMarkers();
                 // hide community legend
                 mozMap.hideMapLegend();
                 // reposition markers above the labels
                 mozMap.setLabelLayerIndex(1);
-
-                mozMap.updateTabState('contact');
             }
         },
 
@@ -554,7 +566,7 @@
          */
         panToMarker: function (id) {
             // if we're on the landing page zoom out to show all markers.
-            if (id === 'spaces') {
+            if (id === 'spaces' || id === 'contact') {
                 map.setView([28, 0], 2);
                 return;
             }
@@ -818,7 +830,7 @@
                 // update the page title
                 mozMap.setPageTitle(cacheId);
                 // this reuses the spaces view
-                mozMap.panToMarker('spaces');
+                mozMap.panToMarker('contact');
             } else {
                 $entryContainer.empty();
                 // request content via ajax
