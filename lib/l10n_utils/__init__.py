@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
+from os.path import splitext
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -91,13 +92,21 @@ def render(request, template, context=None, **kwargs):
 
             return response
 
-        localized_tmpl = '%s/templates/%s' % (request.locale, template)
+        # Render try #1: Look for l10n template in locale/{{ LANG }}/templates/
+        l10n_tmpl = '%s/templates/%s' % (request.locale, template)
         try:
-            return django_render(request, localized_tmpl, context, **kwargs)
+            return django_render(request, l10n_tmpl, context, **kwargs)
         except TemplateDoesNotExist:
-            # If not found, just go on and try rendering the parent template.
             pass
 
+        # Render try #2: Look for locale-specific template in app/templates/
+        locale_tmpl = '.{}'.format(request.locale).join(splitext(template))
+        try:
+            return django_render(request, locale_tmpl, context, **kwargs)
+        except TemplateDoesNotExist:
+            pass
+
+    # Render try #3: Render originally requested/default template
     return django_render(request, template, context, **kwargs)
 
 

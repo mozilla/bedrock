@@ -4,7 +4,8 @@
 
 import os
 
-from django.test import override_settings
+from django.template import TemplateDoesNotExist
+from django.test import RequestFactory, override_settings
 
 from jingo import env
 from jinja2 import FileSystemLoader
@@ -125,3 +126,53 @@ class TestNoLocale(TestCase):
         # Note: no .locale on request
         # Should not cause an exception
         render(request, '500.html')
+
+
+@patch('lib.l10n_utils.template_is_active', Mock(return_value=True))
+@patch('lib.l10n_utils.django_render')
+class TestLocaleTemplates(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_enUS_render(self, django_render):
+        """
+        en-US requests do not look for localized templates and should render the
+        originally requested template.
+        """
+        request = self.rf.get('/')
+        request.locale = 'en-US'
+        render(request, 'firefox/new.html')
+        django_render.assert_called_with(request, 'firefox/new.html', ANY)
+
+    def test_default_render(self, django_render):
+        """
+        Non en-US requests without l10n or locale template should render the
+        originally requested template.
+        """
+        django_render.side_effect = [TemplateDoesNotExist, TemplateDoesNotExist,
+                                     True]
+        request = self.rf.get('/')
+        request.locale = 'de'
+        render(request, 'firefox/new.html')
+        django_render.assert_called_with(request, 'firefox/new.html', ANY)
+
+    def test_bedrock_locale_render(self, django_render):
+        """
+        Non en-US requests with a locale-specific template should render the
+        locale-specific template.
+        """
+        django_render.side_effect = [TemplateDoesNotExist, True]
+        request = self.rf.get('/')
+        request.locale = 'es-ES'
+        render(request, 'firefox/new.html')
+        django_render.assert_called_with(request, 'firefox/new.es-ES.html', ANY)
+
+    def test_l10n_render(self, django_render):
+        """
+        Non en-US requests with an l10n template should render the l10n
+        template.
+        """
+        request = self.rf.get('/')
+        request.locale = 'es-ES'
+        render(request, 'firefox/new.html')
+        django_render.assert_called_with(request, 'es-ES/templates/firefox/new.html', ANY)
