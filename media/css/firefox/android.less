@@ -645,13 +645,23 @@ html[dir="rtl"] #phone-wrapper figure {
             border-radius: 0 0 6px 6px;
             border-top: none;
 
-            ul {
+            ul.android {
+                text-align: center;
+
                 li {
-                    float: none;
-                    width: 100%;
+
+                    &.android-all,
+                    &.google-play {
+                        display: inline-block;
+                        width: auto;
+                    }
 
                     &.google-play {
-                        text-align: center;
+                        margin-left: @baseLine;
+
+                        @media only screen and (max-width: @breakMobileLandscape) {
+                            margin-left: 0;
+                        }
                     }
 
                     a {

@@ -367,6 +367,11 @@
     </div>
     <footer>
       <ul class="{{ platform }}">
+        {% if platform == 'android' %}
+          <li class="android-all">
+            <a href="{{ firefox_url('android', 'all') }}">{{_('Systems &amp; Languages')}}</a>
+          </li>
+        {% endif %}
         <li class="app-store">
           <a class="more" href="{{ ios_link }}">{{ _('Go to the App Store')}}</a>
         </li>
