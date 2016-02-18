@@ -125,15 +125,7 @@
   <div id="modal-logo" data-src="{{ static('img/firefox/os/logo/firefox-os-white.png') }}"></div>
 {% endblock %}
 
-{% block email_form %}
-<section class="fxos-signup">
-  <div class="content-wrapper">
-    {% set newsletter_title = _('Sign up to get the latest Firefox OS news and more') %}
-    {% set newsletter_submit = _('Sign up now') %}
-    {{ email_newsletter_form(title=newsletter_title, submit_text=newsletter_submit) }}
-  </div>
-</section>
-{% endblock %}
+{% block email_form %}{% endblock %}
 
 {% block js %}
 <!--[if IE 9]>
