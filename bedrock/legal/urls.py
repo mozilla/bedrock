@@ -17,8 +17,6 @@ urlpatterns = (
     page('eula/firefox-3', 'legal/eula/firefox-3-eula.html'),
     page('eula/thunderbird-1.5', 'legal/eula/thunderbird-1.5-eula.html'),
     page('eula/thunderbird-2', 'legal/eula/thunderbird-2-eula.html'),
-    page('impressum', 'legal/impressum.html'),
-
     page('firefox', 'legal/firefox.html'),
 
     url(r'^terms/mozilla/$', LegalDocView.as_view(template_name='legal/terms/mozilla.html', legal_doc_name='Websites_ToU'),
@@ -43,5 +41,6 @@ urlpatterns = (
         name='legal.report-infringement'),
 
     url('^fraud-report/$', views.fraud_report, name='legal.fraud-report'),
+    url('^impressum/$', views.impressum, name='legal.impressum'),
 
 )
