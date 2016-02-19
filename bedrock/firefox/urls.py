@@ -52,7 +52,7 @@ urlpatterns = (
     page('firefox/private-browsing', 'firefox/private-browsing.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
-    page('firefox/sync', 'firefox/sync.html'),
+    url(r'^firefox/sync/$', views.sync, name='firefox.sync'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
     url(r'^firefox/new/$', views.new, name='firefox.new'),
     page('firefox/organizations/faq', 'firefox/organizations/faq.html'),

@@ -1028,6 +1028,7 @@ PIPELINE_JS = {
     },
     'firefox_accounts': {
         'source_filenames': (
+            'js/base/search-params.js',
             'js/firefox/australis/australis-uitour.js',
             'js/firefox/sync-animation.js',
             'js/firefox/accounts.js',
