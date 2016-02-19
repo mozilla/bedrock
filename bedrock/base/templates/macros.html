@@ -234,7 +234,8 @@
             <li><a href="{{ url('firefox.private-browsing') }}"{% if activesub == 'private-browsing' %} class="selected"{% endif %}><div>{{ _('Private Browsing') }}</div></a></li>
           </ul>
         </li>
-        <li{% if activeprimary == 'os' %} class="active"{% endif %}>
+        {% if activeprimary == 'os' %}
+        <li class="active">
           <a data-id="os" href="{{ url('firefox.os.index') }}" class="primary-link" data-link-type="nav" data-link-name="Firefox OS"><div>{{ _('Firefox OS') }}</div></a>
 
           <ul class="subnav" id="os-subnav">
@@ -243,6 +244,7 @@
             <li><a data-id="os-marketplace" rel="external" href="https://marketplace.firefox.com/"><div>{{ _('Marketplace') }}<i class="icon-external"></i></div></a></li>
           </ul>
         </li>
+        {% endif %}
       </ul>
     </nav>{#-- /#fxfamillynav --#}
 
