@@ -610,7 +610,7 @@ def newsletter_subscribe(request):
             if 'email' in form.errors:
                 errors.append(_('Please enter a valid email address'))
             if 'privacy' in form.errors:
-                errors.append(_('You must agree to the privacy policy'))
+                errors.append(_('You must agree to the privacy notice'))
             for fieldname in ('fmt', 'lang', 'country'):
                 if fieldname in form.errors:
                     errors.extend(form.errors[fieldname])
