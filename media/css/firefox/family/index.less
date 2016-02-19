@@ -280,22 +280,18 @@ html[dir="rtl"] #header h1 {
 
 
 /*--------------------------------------------------------------------------*/
-// Primary tier - Desktop, Android, iOS, Firefox OS
+// Primary tier - Desktop, iOS, Android
 
-// Without iOS, three products in a row at 1000px
 #products-primary {
     background: #00a7e0;
     border-top: 1px solid rgba(0, 0, 0, .1);
     clear: both;
 
     .inner {
-        padding: 40px @gridGutterWidth 140px;
+        padding: 40px @gridGutterWidth 120px;
         margin: 0 auto;
         position: relative;
-
-        @media only screen and (min-width: @breakDesktopWide) {
-            padding: 50px (@gridGutterWidth * 2) 160px;
-        }
+        min-height: 120px;
     }
 
     li {
@@ -365,6 +361,17 @@ html[dir="rtl"] #header h1 {
     left: 50%;
     bottom: -90px;
     margin-left: -189px;
+
+    @media only screen and (max-width: @breakDesktop) {
+        left: 20px;
+        margin-left: 0;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        left: 50%;
+        bottom: -90px;
+        margin-left: -189px;
+    }
 }
 
 // Firefox for Android
@@ -376,24 +383,17 @@ html[dir="rtl"] #header h1 {
         left: 50%;
         bottom: -50px;
         margin-left: -134px;
-    }
-
-    &.highlight .inner:after {
-        .fxfamily-sprite(0, -225px);
-        width: 470px;
-        height: 176px;
-        left: -290px;
-        bottom: -40px;
-        margin: 0;
-
-        @media only screen and (min-width: @breakDesktopWide) {
-            left: -160px;
-        }
 
         @media only screen and (max-width: @breakDesktop) {
+            left: 75px;
+            bottom: -45px;
+            margin-left: 0;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
             left: 50%;
-            bottom: -40px;
-            margin-left: -235px;
+            bottom: -50px;
+            margin-left: -134px;
         }
     }
 
@@ -433,211 +433,35 @@ html[dir="rtl"] #header h1 {
         .fxfamily-sprite(0, -815px);
         width: 382px;
         height: 170px;
-        left: 0;
-        bottom: 0;
+        left: 30px;
+        bottom: -40px;
+
+        @media only screen and (max-width: @breakDesktopWide) {
+            left: -80px;
+            bottom: -20px;
+        }
+
+        @media only screen and (max-width: @breakDesktop) {
+            left: 0;
+            bottom: 0;
+            margin-left: 0;
+        }
 
         @media only screen and (max-width: @breakTablet) {
             left: 50%;
-            bottom: -35px;
+            bottom: -50px;
             margin-left: -191px;
         }
     }
 
     .btn-apple-appstore {
-        margin: @baseLine auto;
-    }
-}
+        margin-bottom: 0;
 
-// Firefox OS
-#product-fxos .inner:after {
-    .fxfamily-sprite(0, -405px);
-    width: 224px;
-    height: 145px;
-    left: 50%;
-    bottom: -10px;
-    margin-left: -112px;
-}
-
-
-/*--------------------------------------------------------------------------*/
-// With iOS, four products stack at 1000px
-// Lots of repetition because of waffle and supporting both layouts.
-// We can clean this up when four products becomes the new normal (Bug 1217929).
-#products-primary.ios-active {
-    .content {
-        width: 100%;
-
-        @media only screen and (min-width: @breakDesktopWide) {
-            width: @widthDesktopWide;
-        }
-    }
-
-    .product-list {
-        display: block;
-
-        @media only screen and (min-width: @breakDesktopWide) {
-            .flexbox;
-        }
-    }
-
-    .product {
-        width: auto;
-        float: none;
-        clear: both;
-        border-bottom: 1px solid lighten(@mozIDBlue, 20%);
-
-        // Four in a row at 1400px
-        @media only screen and (min-width: @breakDesktopWide) {
-            width: 25%;
-            float: left;
-            clear: none;
-            border: 0;
-        }
-    }
-
-    .inner {
-        .border-box;
-        width: @widthTablet;
-        max-width: @widthTablet;
-        min-width: @widthMobile;
-        min-height: 140px;
-        height: 100%;
-        margin: 0 auto;
-        padding: 60px @gridGutterWidth 40px 400px;
-        text-align: left;
-
-        @media only screen and (min-width: @breakDesktopWide) {
-            width: auto;
-            max-width: 100%;
-            min-width: 0;
-            padding: 50px @gridGutterWidth 160px;
-            text-align: center;
-        }
-
-        @media only screen and (max-width: @breakTablet) {
-            width: auto;
-            padding: 40px @gridGutterWidth 140px;
-            text-align: center;
-        }
-    }
-}
-
-.ios-active {
-    #product-desktop .inner:after {
-        left: 20px;
-        bottom: -75px;
-        margin: 0;
-
-        @media only screen and (min-width: @breakDesktopWide) {
-            left: 50%;
-            bottom: -90px;
-            margin-left: -189px;
-        }
-
-        @media only screen and (max-width: @breakTablet) {
-            left: 50%;
-            bottom: -90px;
-            margin-left: -189px;
-        }
-    }
-
-    #product-android {
-        .inner:after {
-            left: 75px;
-            bottom: -45px;
-            margin: 0;
-
-            @media only screen and (min-width: @breakDesktopWide) {
-                left: 50%;
-                bottom: -40px;
-                margin-left: -134px;
-            }
-
-            @media only screen and (max-width: @breakTablet) {
-                left: 50%;
-                bottom: -50px;
-                margin-left: -134px;
-            }
-        }
-
-        &.highlight .inner:after {
-            left: -80px;
-            bottom: -30px;
-            margin: 0;
-
-            @media only screen and (max-width: @breakTablet) {
-                left: 50%;
-                bottom: -40px;
-                margin-left: -235px;
-            }
-        }
-    }
-
-    #product-ios {
-        .inner:after {
-            left: 75px;
-            bottom: -45px;
-            margin: 0;
-
-            @media only screen and (min-width: @breakDesktopWide) {
-                left: 50%;
-                bottom: -40px;
-                margin-left: -134px;
-            }
-
-            @media only screen and (max-width: @breakTablet) {
-                left: 50%;
-                bottom: -50px;
-                margin-left: -134px;
-            }
-        }
-
-        &.highlight {
-            .inner:after {
-                left: -10px;
-                bottom: 0;
-                margin: 0;
-
-                @media only screen and (min-width: @breakDesktopWide) {
-                    left: -190px;
-                    bottom: -20px;
-                }
-
-                @media only screen and (max-width: @breakTablet) {
-                    left: 50%;
-                    bottom: -50px;
-                    margin-left: -191px;
-                }
-            }
-
-            .btn-apple-appstore {
-                margin-bottom: 0;
-
-                @media only screen and (min-width: @breakDesktopWide) {
-                    position: absolute;
-                    right: 20px;
-                    bottom: 40px;
-                    z-index: 5;
-                }
-            }
-        }
-    }
-
-    #product-fxos .inner:after {
-        left: 100px;
-        bottom: 0;
-        margin: 0;
-
-        @media only screen and (min-width: @breakDesktopWide) {
-            left: 50%;
-            bottom: -5px;
-            margin-left: -112px;
-        }
-
-        @media only screen and (max-width: @breakTablet) {
-            left: 50%;
-            bottom: -20px;
-            margin-left: -112px;
+        @media only screen and (min-width: @breakDesktop) {
+            position: absolute;
+            right: 20px;
+            bottom: 40px;
+            z-index: 5;
         }
     }
 }
@@ -707,11 +531,6 @@ html[dir='rtl'] {
         right: 10px;
     }
 
-    #product-marketplace h2:before {
-        left: auto;
-        right: 30px;
-    }
-
     #product-private-browsing h2:before {
         left: auto;
         right: 10px;
@@ -725,28 +544,6 @@ html[dir='rtl'] {
     height: 80px;
     top: 32px;
     left: 10px;
-}
-
-// Marketplace
-#product-marketplace {
-    h2:before {
-        .fxfamily-sprite(0, -555px);
-        width: 87px;
-        height: 83px;
-        top: 35px;
-        left: 30px;
-    }
-
-    // New window icon
-    h2:after {
-        content: '';
-        .fxfamily-sprite(-344px, -515px);
-        width: 14px;
-        height: 14px;
-        display: inline-block;
-        position: static;
-        margin: 0 8px;
-    }
 }
 
 // Private Browsing
@@ -931,9 +728,15 @@ html[dir='rtl'] {
 
     #products-primary {
         .content,
-        .product,
-        .inner {
+        .product {
             width: auto;
+        }
+
+        .inner {
+            .border-box;
+            width: @widthTablet;
+            padding: 60px @gridGutterWidth 40px 400px;
+            text-align: left;
         }
 
         .highlight {
@@ -966,11 +769,6 @@ html[dir='rtl'] {
     #product-sync h2:before {
         top: @baseLine + 4;
         margin-left: -60px;
-    }
-
-    #product-marketplace h2:before {
-        top: @baseLine;
-        margin-left: -43px;
     }
 
     #product-private-browsing h2:before {
@@ -1059,12 +857,17 @@ html[dir='rtl'] {
             width: auto;
         }
 
-        &.ios-active .product {
+        .product {
             width: auto;
         }
 
         .highlight {
             background-position: left top;
+        }
+
+        .inner {
+            .border-box;
+            padding: 40px 0 140px;
         }
     }
 
@@ -1098,14 +901,6 @@ html[dir='rtl'] {
         left: 15px;
     }
 
-    #product-marketplace h2:before {
-        width: 68px;
-        height: 68px;
-        background-position: 0 -417px;
-        top: @baseLine - 5;
-        left: 30px;
-    }
-
     #product-private-browsing h2:before {
         width: 98px;
         height: 54px;
@@ -1119,8 +914,7 @@ html[dir='rtl'] {
             padding: @baseLine 120px @baseLine @gridGutterWidth;
         }
 
-        #product-hello h2:before,
-        #product-marketplace h2:before {
+        #product-hello h2:before {
             left: auto;
             right: 30px;
         }
