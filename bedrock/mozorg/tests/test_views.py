@@ -17,7 +17,6 @@ from django.test.utils import override_settings
 from captcha.fields import ReCaptchaField
 from bedrock.base.urlresolvers import reverse
 from jinja2.exceptions import TemplateNotFound
-from requests.exceptions import Timeout
 from mock import ANY, Mock, patch
 from nose.tools import assert_false, eq_, ok_
 
@@ -426,49 +425,38 @@ class TestContributeOldPage(TestCase):
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
-    @patch('bedrock.mozorg.email_contribute.requests.post')
-    def test_webmaker_mentor_signup(self, mock_post, mock_subscribe):
+    def test_webmaker_mentor_signup(self, mock_subscribe):
         """Test Webmaker Mentor signup form for education functional area"""
         self.data.update(interest='education', newsletter=True)
         self.client.post(self.url_en, self.data)
 
-        assert_false(mock_subscribe.called)
-        payload = {'email': self.contact, 'custom-1788': '1'}
-        mock_post.assert_called_with('https://sendto.mozilla.org/page/s/mentor-signup',
-                                     data=payload, timeout=2)
+        mock_subscribe.assert_called_with(self.contact, 'mozilla-learning-network', source_url=ANY)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
-    @patch('bedrock.mozorg.email_contribute.requests.post')
-    def test_webmaker_mentor_signup_newsletter_fail(self, mock_post, mock_subscribe):
+    def test_webmaker_mentor_signup_newsletter_fail(self, mock_subscribe):
         """Test Webmaker Mentor signup form when newsletter is not selected"""
         self.data.update(interest='education', newsletter=False)
         self.client.post(self.url_en, self.data)
 
         assert_false(mock_subscribe.called)
-        assert_false(mock_post.called)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
-    @patch('bedrock.mozorg.email_contribute.requests.post')
-    def test_webmaker_mentor_signup_functional_area_fail(self, mock_post, mock_subscribe):
+    def test_webmaker_mentor_signup_functional_area_fail(self, mock_subscribe):
         """Test Webmaker Mentor signup form when functional area is not education"""
         self.data.update(interest='coding', newsletter=True)
         self.client.post(self.url_en, self.data)
 
         mock_subscribe.assert_called_with(self.contact, 'about-mozilla', source_url=ANY)
-        assert_false(mock_post.called)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
-    @patch('bedrock.mozorg.email_contribute.requests.post')
-    def test_webmaker_mentor_signup_timeout_fail(self, mock_post, mock_subscribe):
+    def test_webmaker_mentor_signup_timeout_fail(self, mock_subscribe):
         """Test Webmaker Mentor signup form when request times out"""
-        mock_post.side_effect = Timeout('Timeout')
         self.data.update(interest='education', newsletter=True)
         res = self.client.post(self.url_en, self.data)
 
-        assert_false(mock_subscribe.called)
         eq_(res.status_code, 200)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
@@ -583,49 +571,38 @@ class TestContribute(TestCase):
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
-    @patch('bedrock.mozorg.email_contribute.requests.post')
-    def test_webmaker_mentor_signup(self, mock_post, mock_subscribe):
+    def test_webmaker_mentor_signup(self, mock_subscribe):
         """Test Webmaker Mentor signup form for education functional area"""
         self.data.update(interest='education', newsletter=True)
         self.client.post(self.url_en, self.data)
 
-        assert_false(mock_subscribe.called)
-        payload = {'email': self.contact, 'custom-1788': '1'}
-        mock_post.assert_called_with('https://sendto.mozilla.org/page/s/mentor-signup',
-                                     data=payload, timeout=2)
+        mock_subscribe.assert_called_with(self.contact, 'mozilla-learning-network', source_url=ANY)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
-    @patch('bedrock.mozorg.email_contribute.requests.post')
-    def test_webmaker_mentor_signup_newsletter_fail(self, mock_post, mock_subscribe):
+    def test_webmaker_mentor_signup_newsletter_fail(self, mock_subscribe):
         """Test Webmaker Mentor signup form when newsletter is not selected"""
         self.data.update(interest='education', newsletter=False)
         self.client.post(self.url_en, self.data)
 
         assert_false(mock_subscribe.called)
-        assert_false(mock_post.called)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
-    @patch('bedrock.mozorg.email_contribute.requests.post')
-    def test_webmaker_mentor_signup_functional_area_fail(self, mock_post, mock_subscribe):
+    def test_webmaker_mentor_signup_functional_area_fail(self, mock_subscribe):
         """Test Webmaker Mentor signup form when functional area is not education"""
         self.data.update(interest='coding', newsletter=True)
         self.client.post(self.url_en, self.data)
 
         mock_subscribe.assert_called_with(self.contact, 'about-mozilla', source_url=ANY)
-        assert_false(mock_post.called)
 
     @patch.object(ReCaptchaField, 'clean', Mock())
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
-    @patch('bedrock.mozorg.email_contribute.requests.post')
-    def test_webmaker_mentor_signup_timeout_fail(self, mock_post, mock_subscribe):
+    def test_webmaker_mentor_signup_timeout_fail(self, mock_subscribe):
         """Test Webmaker Mentor signup form when request times out"""
-        mock_post.side_effect = Timeout('Timeout')
         self.data.update(interest='education', newsletter=True)
         res = self.client.post(self.url_en, self.data)
 
-        assert_false(mock_subscribe.called)
         eq_(res.status_code, 302)  # redirect to thankyou page
 
     @patch.object(ReCaptchaField, 'clean', Mock())
