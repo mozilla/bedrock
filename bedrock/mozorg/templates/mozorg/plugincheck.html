@@ -75,6 +75,8 @@
   data-media-url="{{ static('') }}"
 {% endblock %}
 
+{% block infobar_bars %}translate{% endblock %}
+
 {% block site_header_share %}
   {% set share_urls = { 'twitter': 'http://mzl.la/17aqnLZ', 'googleplus': 'http://mzl.la/1FuAhTS', 'facebook': 'http://mzl.la/1z4Noqm' } -%}
   {% if l10n_has_tag('plugincheck_nosupport') -%}

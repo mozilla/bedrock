@@ -90,6 +90,17 @@
       data-global-previous="{{ _('Previous') }}"
       data-global-update-firefox="{{ _('Update your Firefox') }}"
       {% block string_data %}{% endblock %}></div>
+
+      {% block infobar %}
+        <div id="mozilla-infobar" class="mozilla-infobar hidden" role="dialog" aria-hidden="true" data-infobar="{% block infobar_bars %}update translate{% endblock %}">
+          <p></p>
+          <ul>
+            <li><a href="https://support.mozilla.org/kb/update-firefox-latest-version" class="btn-accept button-flat-green"></a></li>
+            <li><button class="btn-cancel" type="button"></button></li>
+          </ul>
+        </div>
+      {% endblock %}
+
     <div id="outer-wrapper">
     <div id="wrapper">
 
