@@ -1096,6 +1096,6 @@ NEWRELIC_BROWSER_LICENSE_KEY = config('NEWRELIC_BROWSER_LICENSE_KEY', default=''
 NEWRELIC_APP_ID = config('NEWRELIC_APP_ID', default='')
 
 # temporary home until product details is updated
-FIREFOX_IOS_RELEASE_VERSION = '1.4'
+FIREFOX_IOS_RELEASE_VERSION = '2.0'
 
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
