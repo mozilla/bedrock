@@ -233,6 +233,14 @@ $(function() {
                 $loader.addClass('hidden');
 
                 if (response.length > 0) {
+
+                    // filter out any undefined entries in the array that could be
+                    // caused by data problems on the database side.
+                    // https://bugzilla.mozilla.org/show_bug.cgi?id=1249892
+                    response = response.filter(function(index) {
+                        return typeof index !== 'undefined';
+                    });
+
                     var pluginTotals = pluginCounter(response);
 
                     // ping GA with plugin totals
