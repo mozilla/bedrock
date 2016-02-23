@@ -111,11 +111,10 @@
         var match = false;
         config.pageLang = pageLang || config.pageLang;
 
-        $.each(acceptLangs, function(index, userLang) {
-            if (config.pageLang === userLang || config.pageLang === userLang.split('-')[0]) {
-                match = true;
-            }
-        });
+        // use the first item in the array to determine the match
+        if (config.pageLang === acceptLangs[0] || config.pageLang === acceptLangs[0].split('-')[0]) {
+            match = true;
+        }
 
         return match;
     };
@@ -143,16 +142,13 @@
             return false;
         }
 
-        // Compare the user's accept languages against available
+        // Compare the first entry in the user's accept languages against available
         // languages to find the best language
-        $.each(acceptLangs, function(index, userLang) {
+        shortUserLang = acceptLangs[0].split('-')[0];
 
-            shortUserLang = userLang.split('-')[0];
-
-            if (userLang in config.availableLangs || shortUserLang in config.availableLangs) {
-                offeredLang = userLang;
-            }
-        });
+        if (acceptLangs[0] in config.availableLangs || shortUserLang in config.availableLangs) {
+            offeredLang = acceptLangs[0];
+        }
 
         // If there is no offered language return false, else true
         return !offeredLang ? false : offeredLang;
