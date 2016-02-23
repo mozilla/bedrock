@@ -118,7 +118,7 @@
     <div class="promo-grid-inner">
       <ul class="promo-grid {% if tweets %}has-twitter-promo{% endif %}">
       {# L10n: Begin home page promos. Line breaks are for visual formatting only. #}
-      {% if LANG.startswith('en') %}
+      {% if l10n_has_tag('firefox_accounts_promo') %}
         <li id="promo-1" class="item promo-large-portrait firefox-accounts" tabindex="0">
           <h2 class="primary go">{{ _('All your devices. <br>One Firefox.') }}</h2>
           <a class="panel-link" href="{{ url('firefox.accounts') }}" data-promotion-id="promo-1" data-promotion-name="All your devices. One Firefox." data-promotion-class="promo-large-portrait" data-promotion-type="tile" data-accounts-url="{{ url('firefox.accounts') }}">

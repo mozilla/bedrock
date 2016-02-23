@@ -13,8 +13,9 @@
     var fxaIframeHost = $('main').data('fxa-iframe-host');
     var fxaIframeSrc = $fxaFrame.data('src');
     var _resizeTimer;
-    var _uitourTimeout;
     var _fxaHandshake = false;
+    var client = Mozilla.Client;
+    var $main = $('main');
 
     // remove trailing slash from iframe src (if present)
     fxaIframeHost = (fxaIframeHost[fxaIframeHost.length - 1] === '/') ? fxaIframeHost.substr(0, fxaIframeHost.length - 1) : fxaIframeHost;
@@ -28,7 +29,9 @@
     try {
         fxaEmail = sessionStorage.getItem('fxa-email');
         sessionStorage.removeItem('fxa-email');
-    } catch(ex) {}
+    } catch(ex) {
+        // empty
+    }
 
     // if email address provided, send to FxA frame
     if (fxaEmail && /(.+)@(.+)\.(.+){2,}/.test(fxaEmail)) {
@@ -58,11 +61,6 @@
         window.location.href = fxaIframeHost + '/settings';
     }
 
-    function redirectToSyncPage() {
-        sendGAEvent('invalid');
-        window.location.href = window.location.protocol + '//' + window.location.host + '/firefox/sync/';
-    }
-
     function showFxAccountsForm(height) {
         var formHeight = height !== undefined ? height : 450;
         $fxaFrame.css('height', formHeight + 'px').addClass('loaded');
@@ -71,7 +69,7 @@
     function sendGAEvent(type, extra) {
         // we'll always have a type
         var data = {
-            'event': 'mau2account',
+            'event': 'accounts',
             'interaction': type
         };
 
@@ -143,27 +141,82 @@
                 showFxAccountsForm();
             }
         }, 2500);
-
-        //
-        setTimeout(Mozilla.syncAnimation, 1000);
     }
 
-    // if user is not on Firefox for Desktop, redirect to the /firefox/sync/ page.
-    if (window.Mozilla.Client.isFirefoxDesktop) {
-        // if uitour callback does not fire in 500ms, load the iframe anyway.
-        _uitourTimeout = setTimeout(loadFxAccountsForm, 500);
-        // if user is signed into sync, redirect the /firefox/sync/ page,
-        // else load the FxA iframe.
+    function showFxAForm() {
+        loadFxAccountsForm();
+
+        // UITour is used only to show conditional messaging.
         Mozilla.UITour.getConfiguration('sync', function (config) {
-            clearTimeout(_uitourTimeout);
             if (config.setup) {
-                redirectToSyncPage();
+                // Show signed-in messaging if user is already using Sync
+                $('.signed-in').show();
             } else {
-                loadFxAccountsForm();
+                // Show sign-up steps if user is not already using Sync
+                $('.sign-up-instructions').show();
             }
         });
-    } else {
-        redirectToSyncPage();
     }
+
+    // Show FxA form for up to date Firefox desktop users.
+    function showUpToDateFirefox() {
+        $main.addClass('state-firefox-up-to-date');
+        showFxAForm();
+    }
+
+    // Firefox iOS users get SUMO link
+    function showFirefoxiOS() {
+        $main.addClass('state-firefox-ios');
+        sendGAEvent('firefox-ios');
+    }
+
+    // Firefox Android users get SUMO link
+    function showFirefoxAndroid() {
+        $main.addClass('state-firefox-android');
+        sendGAEvent('firefox-android');
+    }
+
+    // Non-Firefox mobile users see app store badges
+    function showMobileNonFirefox() {
+        $main.addClass('state-mobile');
+        sendGAEvent('mobile-non-firefox');
+    }
+
+    // Other Non-Firefox browsers get regular download button
+    function showNonFirefox() {
+        $main.addClass('state-non-firefox');
+        sendGAEvent('non-firefox');
+    }
+
+    // Old Firefox browsers get regular download button
+    function showOldFirefox() {
+        $main.addClass('state-old-firefox');
+        sendGAEvent('old-firefox');
+    }
+
+    function init() {
+        if (client.isFirefoxDesktop) {
+            // FxA iFrame supported on Firefox 39 and greater
+            if (client.FirefoxMajorVersion >= 39) {
+                showUpToDateFirefox();
+            } else {
+                showOldFirefox();
+            }
+        } else {
+            if (client.isFirefoxiOS) {
+                showFirefoxiOS();
+            } else if (client.isFirefoxAndroid) {
+                showFirefoxAndroid();
+            } else if (client.isMobile) {
+                showMobileNonFirefox();
+            } else {
+                showNonFirefox();
+            }
+        }
+    }
+
+    init();
+
+    setTimeout(Mozilla.syncAnimation, 1000);
 
 })(window.Mozilla, window.jQuery);
