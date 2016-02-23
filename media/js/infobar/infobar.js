@@ -15,7 +15,7 @@
         opened: false,
         json: {},
         pageLang: '',
-        // list of available languags from either a list of hreflang links
+        // list of available languages from either a list of hreflang links
         // or options from a select element. Populated by @getAvailableLangs
         availableLangs: {},
         // Array of one or more user languages as exposed by the user agent
@@ -53,7 +53,7 @@
      */
     InfoBar.prototype.getLanguageBidi = function(lang) {
         // Languages using BiDi (right-to-left) layout
-        var LANGUAGES_BIDI = ['he', 'ar', 'fa', 'ur'];
+        var LANGUAGES_BIDI = ['ar', 'fa', 'he', 'ur'];
 
         if (!lang) {
             return false;
@@ -74,7 +74,7 @@
     };
 
     /**
-     * Gets and sets the list of available languags from either a list of hreflang links
+     * Gets and sets the list of available languages from either a list of hreflang links
      * or options from a select element. If neither is found, it simply returns false.
      */
     InfoBar.prototype.getAvailableLangs = function() {
@@ -101,7 +101,7 @@
     };
 
     /**
-     * Determines whether the users accept language(s) match the current
+     * Determines whether the user's accept language list matches the current
      * page language.
      * @param {array} acceptLangs - Array of user accept languages
      * @param {string} [pageLang] - The current page language
@@ -155,13 +155,13 @@
     };
 
     /**
-     * Get's the list of the user's acceptLanguages as appropriate for the
+     * Gets the list of the user's acceptLanguages as appropriate for the
      * current browser.
      * @param {array} userLangs - Array of user accept languages
      */
     InfoBar.prototype.getAcceptLangs = function(userLangs) {
         var userAcceptLangs;
-        userLangs = userLangs || navigator.languages || navigator.language || navigator.browserLanguage;
+        userLangs = userLangs || navigator.languages || navigator.browserLanguage;
 
         // Note that navigator.language doesn't always work because it's just
         // the application's locale on some browsers. navigator.languages has
@@ -175,7 +175,7 @@
             userAcceptLangs = $.map(userLangs, function (lang) {
                 return InfoBar.prototype.normalize(lang);
             });
-        } else if (navigator.language || navigator.browserLanguage) {
+        } else if (navigator.browserLanguage) {
             // the above properties only return one item but we need
             // this as an array in the getOfferedLang function.
             userAcceptLangs = [userLangs];
@@ -353,7 +353,7 @@
     };
 
     /**
-     * Rturns true if this is a version of Firefox mobile excluding Firefox for iOS
+     * Returns true if this is a version of Firefox mobile excluding Firefox for iOS
      */
     InfoBar.prototype.isFirefoxMobile = function(userAgent) {
         var ua = userAgent || navigator.userAgent;
