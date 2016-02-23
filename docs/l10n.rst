@@ -416,3 +416,56 @@ Sans'`` to specify the default font family in CSS. This mixin has both *Open
 Sans* and *X-LocaleSpecific* so locale-specific fonts, if defined, will be
 applied to localized pages. The variant mixins, ``.open-sans-light`` and
 ``.open-sans-extrabold``, are also available.
+
+Staging Copy Changes
+--------------------
+
+The need will often arise to push a copy change to production before the new
+copy has been translated for all locales. To prevent locales not yet translated
+from displaying English text, you can use the ``l10n_has_tag`` template
+function. For example, if the string "Firefox features" needs to be changed to
+"Firefox benefits":
+
+.. code-block:: jinja
+
+    {% if l10n_has_tag('firefox_products_headline_spring_2016') %}
+      <h1>{{ _('Firefox features') }}</h1>
+    {% else %}
+      <h1>{{ _('Firefox benefits') }}</h1>
+    {% endif %}
+
+This function will check the .lang file(s) of the current page for the tag
+``firefox_products_headline_spring_2016``. If it exists, the translation for
+"Firefox features" will be displayed. If not, the pre-existing translation for
+"Firefox benefits" will be displayed.
+
+When using ``l10n_has_tag``, be sure to coordinate with the localization team to
+decide on a good tag name.
+
+Locale-specific Templates
+-------------------------
+
+While the ``l10n_has_tag`` template function is great in small doses, it doesn't
+scale particularly well. A template filled with conditional copy can be
+difficult to comprehend, particularly when the conditional copy has associated
+CSS and/or JavaScript.
+
+In instances where a large amount of a template's copy needs to be changed, or
+when a template has messaging targeting one particular locale, creating a
+locale-specific template may be a good choice.
+
+Locale-specific templates function simply by naming convention. For example, to
+create a version of ``/firefox/new.html`` specifically for the ``de`` locale,
+you would create a new template named ``/firefox/new.de.html``. This template
+can either extend ``/firefox/new.html`` and override only certain blocks, or be
+entirely unique.
+
+When a request is made for a particular page, bedrock's rendering function
+automatically checks for a locale-specific template, and, if one exists, will
+render it instead of the originally specified (locale-agnostic) template.
+
+.. IMPORTANT::
+
+    Note that the presence of an L10n template (e.g.
+    ``locale/de/templates/firefox/new.html``) will take precedence over
+    a locale-specific template in bedrock.
