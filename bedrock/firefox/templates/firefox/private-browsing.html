@@ -16,6 +16,12 @@
   {% stylesheet 'firefox_private_browsing' %}
 {% endblock %}
 
+{% block optimizely %}
+  {% if waffle.switch('firefox-private-browsing-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
@@ -123,6 +129,19 @@
       </p>
     </div>
   </section>
+
+  {% block email_form_test %}
+    {% if LANG.startswith('en-') %}
+    <aside id="newsletter-subscribe" class="light ga-section" data-ga-label="Get privacy tips and more in our monthly Firefox newsletter.">
+      <div class="content container">
+        <header>
+          <h3 class="compact">{{ _('Get privacy tips and more in our monthly Firefox newsletter.') }}</h3>
+        </header>
+        {{ email_newsletter_form(title=' ') }}
+      </div>
+    </aside>
+    {% endif %}
+  {% endblock %}
 
   <section class="cta" id="cta">
     <div class="container">

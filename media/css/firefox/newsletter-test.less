@@ -1,0 +1,181 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../sandstone/lib.less';
+
+// Newsletter signup testing - bug 1249042
+#subscribe-download-wrapper.has-variant .variant {
+    display: none;
+}
+
+#subscribe-download-wrapper.has-variant.active,
+#newsletter-subscribe {
+    background: @mozIDBlue;
+    color: #fff;
+    padding: 0;
+
+    .content {
+        padding: (@baseLine * 2) 0;
+        text-align: left;
+    }
+
+    header {
+        .at2x('/media/img/firefox/newsletter.png', 149px, 149px);
+        .span(4);
+        background-position: left top;
+        background-repeat: no-repeat;
+        min-height: 120px;
+        padding: 30px 0 20px 180px;
+
+        h3 {
+            .font-size(40px);
+            margin: 0;
+            text-shadow: none;
+
+            &.compact {
+                .font-size(32px);
+            }
+        }
+
+        @media (max-width: @breakDesktop) {
+            .background-size(120px, 120px);
+            .span_narrow(4);
+            background-position: left 10px;
+            padding-left: 140px;
+
+            h3 {
+                .font-size(36px);
+
+                &.compact {
+                    .font-size(24px);
+                }
+            }
+        }
+
+        @media (max-width: @breakTablet) {
+            .background-size(100px, 100px);
+            .span-all;
+            background-position: center top;
+            padding-left: 0;
+            padding-top: 120px;
+            text-align: center;
+            min-height: 0;
+
+            h3 {
+                .font-size(32px);
+
+                &.compact {
+                    .font-size(20px);
+                }
+            }
+        }
+    }
+
+
+    .newsletter-form {
+        .box-shadow(none);
+        .span(5);
+        background: transparent none;
+        border: 0;
+        padding: (@baseLine * 2) 0 0;
+
+        .form-title {
+            display: none;
+        }
+
+        .form-submit,
+        .form-contents {
+            .span-all;
+        }
+
+        @media (max-width: @breakDesktop) {
+            .span_narrow(5);
+        }
+
+        @media (max-width: @breakTablet) {
+            .span-all;
+        }
+    }
+
+    .field-format label {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    input[type='email'] {
+        .border-box;
+        .border-radius(4px);
+        .box-shadow(none);
+        .font-size(@largeFontSize);
+        border: 0;
+        padding: .75em 20px;
+        width: 100%;
+    }
+
+    select {
+        .font-size(@baseFontSize);
+        font-family: inherit;
+    }
+
+    .button {
+        .border-box;
+        .border-radius(5px);
+        .box-shadow(none);
+        .font-size(@largeFontSize);
+        .transition(background-color .15s ease);
+        background: transparent;
+        border: 2px solid #fff;
+        padding: .75em 20px;
+        text-shadow: none;
+        text-transform: uppercase;
+        width: 100%;
+
+        &:hover,
+        &:focus {
+            background: #33aae4;
+            background: rgba(255, 255, 255, .1);
+        }
+    }
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    #footer-email-errors {
+        .span(5);
+    }
+
+    #newsletter-form-thankyou {
+        color: #fff;
+
+        h3 {
+            color: #fff;
+        }
+    }
+}
+
+#newsletter-subscribe.light {
+    background: #81bae5;
+    color: #08578e;
+
+    h3,
+    a {
+        color: #08578e;
+    }
+
+    .button {
+        color: #08578e;
+        border-color: #08578e;
+    }
+
+    #newsletter-form-thankyou {
+        color: #08578e;
+
+        h3 {
+            color: #08578e;
+            text-shadow: none;
+        }
+    }
+}

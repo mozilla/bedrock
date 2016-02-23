@@ -3,11 +3,12 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../../sandstone/lib.less";
+@import "../newsletter-test.less";
 
 /*-------------------------------------------------------------------------*/
 // Common
 
-html, body{
+html, body {
     max-width: 100%;
     overflow-x: hidden;
 }
@@ -260,6 +261,37 @@ html, body{
         .ios-download-button a {
             float: right;
         }
+    }
+}
+
+#newsletter-subscribe.light {
+    background: #bee1f5;
+    color: #005189;
+
+    a {
+        color: #005189;
+    }
+
+    p {
+        color: inherit;
+    }
+
+    h3 {
+        text-align: left;
+        color: #005189;
+
+        @media (max-width: @breakTablet) {
+            text-align: center;
+        }
+    }
+
+    label {
+        .font-size(@baseFontSize);
+    }
+
+    .button {
+        border-color: #005189;
+        color: #005189;
     }
 }
 
