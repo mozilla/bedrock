@@ -556,7 +556,10 @@ html[lang^='en'] {
 
         section {
             float: right;
-            padding-right: @baseLine * 2;
+            padding: 315px (@baseLine * 2) 0 0;
+            .at2x('/media/img/firefox/hello/2016/quick.png', 440px, 275px);
+            background-position: top left;
+            background-repeat: no-repeat;
         }
     }
     .sharing {
@@ -564,21 +567,33 @@ html[lang^='en'] {
 
         section {
             float: left;
-            padding-left: @baseLine * 2;
+            padding: 315px 0 0 (@baseLine * 2);
+            .at2x('/media/img/firefox/hello/2016/sharing.png', 440px, 275px);
+            background-position: (@gridGutterWidth * 2) 0;
+            background-repeat: no-repeat;
         }
     }
 
     .quick section,
     .sharing section {
+        @media only screen and (max-width: @breakDesktop) {
+            .background-size(320px, 200px);
+            padding-top: 240px;
+        }
+
         @media only screen and (max-width: @breakTablet) {
             width: @widthMobileLandscape - @gridGutterWidth;
             float: none;
             margin: 0 auto;
-            padding: 0;
+            .background-size(420px, 263px);
+            background-position: top left;
+            padding: 303px 0 0 0;
         }
 
         @media only screen and (max-width: @breakMobileLandscape) {
             width: @widthMobile - @gridGutterWidth;
+            .background-size(300px, 188px);
+            padding: 228px 0 0 0;
         }
     }
 
@@ -611,6 +626,7 @@ html[lang^='en'] {
                 float: left;
                 padding-right: 0;
                 padding-left: @baseLine * 2;
+                background-position: (@gridGutterWidth * 2) 0;
             }
         }
         .sharing {
@@ -619,14 +635,25 @@ html[lang^='en'] {
                 float: right;
                 padding-left: 0;
                 padding-right: @baseLine * 2;
+                background-position: top left;
             }
         }
 
         .quick section,
         .sharing section {
+
+            @media only screen and (max-width: @breakDesktop) {
+                padding-top: 240px;
+            }
+
             @media only screen and (max-width: @breakTablet) {
                 float: none;
-                padding: 0;
+                padding: 303px 0 0 0;
+                background-position: top left;
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                padding: 228px 0 0 0;
             }
         }
     }
