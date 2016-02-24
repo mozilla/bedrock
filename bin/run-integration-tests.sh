@@ -11,7 +11,7 @@ set -xe
 : ${SELENIUM_HOST:="localhost"}
 : ${SELENIUM_PORT:="4444"}
 : ${BROWSER_NAME:="firefox"}
-: ${TESTS_PATH:="tests/functional"}
+: ${TESTS_PATH:="tests"}
 : ${RESULTS_PATH:="${TESTS_PATH}/results"}
 
 # Common arguments
