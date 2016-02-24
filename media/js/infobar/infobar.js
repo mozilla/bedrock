@@ -187,25 +187,17 @@
      */
     InfoBar.prototype.getAcceptLangs = function(userLangs) {
         var userAcceptLangs;
-        userLangs = userLangs || navigator.languages || navigator.browserLanguage;
-
         // Note that navigator.language doesn't always work because it's just
         // the application's locale on some browsers. navigator.languages has
         // not been widely implemented yet, but the new property provides an
         // array of the user's accept languages that we'd like to see.
         // navigator.languages are only supported from Firefox/Chrome 32 and
-        // not at all by IE, Safari, Opera. navigator.language is not supported
-        // by IE so, we need to fallback to navigator.browserLanguage
-        if (navigator.languages) {
-            // Normalize all language strings for easier comparison.
-            userAcceptLangs = $.map(userLangs, function (lang) {
-                return InfoBar.prototype.normalize(lang);
-            });
-        } else if (navigator.browserLanguage) {
-            // the above properties only return one item but we need
-            // this as an array in the getOfferedLang function.
-            userAcceptLangs = [userLangs];
-        }
+        // not at all by IE, Safari, Opera.
+        userLangs = userLangs || navigator.languages;
+
+        userAcceptLangs = $.map(userLangs, function (lang) {
+            return InfoBar.prototype.normalize(lang);
+        });
 
         return userAcceptLangs;
     };
@@ -330,10 +322,10 @@
         }
 
         if (config.opened) {
-            config.bar.toggleClass('hidden');
+            config.bar.toggleClass('infobar-hidden');
             config.bar.attr('aria-hidden', true);
         } else {
-            config.bar.toggleClass('hidden');
+            config.bar.toggleClass('infobar-hidden');
             config.bar.attr('aria-hidden', false);
         }
 
@@ -494,14 +486,18 @@
 
     // expose InfoBar to the global scope
     window.InfoBar = InfoBar;
+    // get the user's acceptLanguages
+    config.acceptLangs = InfoBar.prototype.getAcceptLangs();
 
-    if (config.$infoBar.length === 0) {
-        // No $infoBar element exists, return false;
+    //getAcceptLangs uses navigator.languages which is currently only supported by
+    // Firefox and Chrome. For the translation bar, we need this property so, if the
+    // above returned undefined, no need to proceed any further.
+    // Note: As the Update Bar only targets Firefox desktop, this check will not affect
+    // it's functionality, so this is safe.
+    if (config.$infoBar.length === 0 || typeof config.acceptLangs === 'undefined') {
         return false;
     }
 
-    // get the user's acceptLanguages
-    config.acceptLangs = InfoBar.prototype.getAcceptLangs();
     // get the current page's language
     config.pageLang = InfoBar.prototype.normalize(document.documentElement.lang);
     // $infoBar exists, call setup
