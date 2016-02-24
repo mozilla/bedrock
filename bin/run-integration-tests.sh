@@ -20,7 +20,8 @@ CMD="${CMD} -r a"
 CMD="${CMD} --verbose"
 CMD="${CMD} -n ${PYTEST_PROCESSES}"
 CMD="${CMD} --base-url ${BASE_URL}"
-CMD="${CMD} --html ${RESULTS_PATH}/index.html"
+# Disable HTML report due to https://github.com/pytest-dev/pytest/issues/1351
+# CMD="${CMD} --html ${RESULTS_PATH}/index.html"
 CMD="${CMD} --junitxml ${RESULTS_PATH}/junit.xml"
 if [ -n "${DRIVER}" ]; then CMD="${CMD} --driver ${DRIVER}"; fi
 
