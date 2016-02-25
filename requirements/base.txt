@@ -190,3 +190,6 @@ python-decouple==2.3
 
 # sha256: 9r_SEEjH38lbOWWaPad3ddbbHB96dFgFzMbGE494O20
 django-sslify==0.2.7
+
+# sha256: 0yV2uq13_dnmhZvpfCtqPBem9IQ2Q4nbcx8Gl7ehlmE
+django-csp==2.0.3

@@ -315,6 +315,8 @@ ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
                                     default=bool(DEIS_APP), cast=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
                                         default=False, cast=bool)
+ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE',
+                               default=False, cast=bool)
 
 MIDDLEWARE_CLASSES = [middleware for middleware in (
     'sslify.middleware.SSLifyMiddleware',
@@ -325,6 +327,7 @@ MIDDLEWARE_CLASSES = [middleware for middleware in (
     'bedrock.redirects.middleware.RedirectsMiddleware',
     'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
     'commonware.middleware.RobotsTagHeader',
+    'csp.middleware.CSPMiddleware' if ENABLE_CSP_MIDDLEWARE else False,
     'bedrock.mozorg.middleware.ClacksOverheadMiddleware',
     'bedrock.mozorg.middleware.HostnameMiddleware' if ENABLE_HOSTNAME_MIDDLEWARE else False,
     'django.middleware.common.CommonMiddleware',
@@ -1099,3 +1102,37 @@ NEWRELIC_APP_ID = config('NEWRELIC_APP_ID', default='')
 FIREFOX_IOS_RELEASE_VERSION = '2.0'
 
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
+
+# Django-CSP
+CSP_DEFAULT_SRC = (
+    "'self'",
+)
+CSP_FONT_SRC = (
+    "'self'",
+    'http://*.mozilla.net',
+    'https://*.mozilla.net',
+    'http://*.mozilla.org',
+    'https://*.mozilla.org',
+)
+CSP_IMG_SRC = (
+    "'self'",
+    'http://*.mozilla.net',
+    'https://*.mozilla.net',
+    'http://*.mozilla.org',
+    'https://*.mozilla.org',
+)
+CSP_SCRIPT_SRC = (
+    "'self'",
+    'http://*.mozilla.org',
+    'https://*.mozilla.org',
+    'http://*.mozilla.net',
+    'https://*.mozilla.net',
+)
+CSP_STYLE_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    'http://*.mozilla.org',
+    'https://*.mozilla.org',
+    'http://*.mozilla.net',
+    'https://*.mozilla.net',
+)
