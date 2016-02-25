@@ -38,9 +38,7 @@
             if (sessionStorage.getItem(this.prefName) === 'true') {
                 this.disabled = true;
             }
-        } catch (ex) {
-            console.log('Error thrown while getting disabled state from sessionStorage: ', ex);
-        }
+        } catch (ex) {}
 
         // If there is already another $infoBar, don't show this
         if (config.$infoBar.filter(':visible').length) {
@@ -229,9 +227,7 @@
 
         try {
             config.json = JSON.parse(sessionStorage.getItem('infobar.json'));
-        } catch (ex) {
-            console.log('Error thrown while getting json from sessionStorage: ', ex);
-        }
+        } catch (ex) {}
 
         // check if the JSON exists in sessionStorage
         if (!config.json) {
@@ -248,17 +244,11 @@
                      // during this user session.
                      try {
                          sessionStorage.setItem('infobar.json', JSON.stringify(data));
-                     } catch(ex) {
-                         console.log('Error while storing JSON in sessionStorage: ', ex);
-                     }
+                     } catch(ex) {}
 
                      config.json = data;
                      InfoBar.prototype.call();
                  }
-             }).fail(function(jqXHR, textStatus, errorThrown) {
-                 console.log('Error thrown while loading JSON:');
-                 console.log('textStatus: ', textStatus);
-                 console.log('errorThrown: ', errorThrown);
              });
         } else {
             // the JSON has already been loaded earlier in this session.
@@ -277,9 +267,7 @@
     InfoBar.prototype.setDisabledStatus = function(prefName) {
         try {
             sessionStorage.setItem(prefName, 'true');
-        } catch (ex) {
-            console.log('oncancel: Error while setting didabled status of InfoBar in sessionStorage');
-        }
+        } catch (ex) {}
     };
 
     /**
