@@ -43,7 +43,10 @@
       <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
         <a class="download-link"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
-           data-direct-link="{{ plat.download_link_direct }}"{% endif %}>
+           data-direct-link="{{ plat.download_link_direct }}"{% endif %}
+           {% if plat.os == 'android' %}data-link-type="download" data-download-os="Android"
+           {% elif plat.os == 'ios' %}data-link-type="download" data-download-os="iOS"
+           {% else %}data-link-type="download" data-download-os="Desktop"{% endif %}>
           <span class="download-content">
             {% if plat.os == 'android' %}
               {% if channel == 'beta' %}

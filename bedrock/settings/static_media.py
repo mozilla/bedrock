@@ -1414,7 +1414,6 @@ PIPELINE_JS = {
     'home': {
         'source_filenames': (
             'js/mozorg/home/home.js',
-            'js/mozorg/home/ga-tracking.js',
         ),
         'output_filename': 'js/home-bundle.js',
     },
