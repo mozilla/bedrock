@@ -41,7 +41,7 @@
         } catch (ex) {}
 
         // If there is already another $infoBar, don't show this
-        if (config.$infoBar.filter(':visible').length) {
+        if (!this.disabled && config.$infoBar.filter(':visible').length) {
             this.disabled = true;
         }
     };
@@ -118,6 +118,7 @@
 
             if (config.pageLang === value || config.pageLang === langCode) {
                 match = true;
+                return false;
             }
         });
 
@@ -158,7 +159,7 @@
 
             if (indexMatch || langCodeMatch) {
                 offeredLang = acceptLangs[index];
-                return;
+                return false;
             }
         });
 
@@ -171,7 +172,7 @@
 
                 if (indexMatch || langCodeMatch) {
                     offeredLang = index;
-                    return;
+                    return false;
                 }
             });
         }
