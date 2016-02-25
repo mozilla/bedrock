@@ -33,11 +33,4 @@
         $html.addClass('nonfx');
     }
 
-    // add gtm tracking attributes
-    $('.product-list a').attr('data-interaction', 'click');
-
-    // add gtm tracking attributes
-    $('#conditional-download-bar a').attr('data-interaction', 'Firefox downloads');
-
-
 })(window.jQuery);

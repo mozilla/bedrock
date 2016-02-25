@@ -39,19 +39,19 @@
       <div class="message" id="dlbar-oldfx-desktop">
         {{ _('You’re using an older version of Firefox for desktop.') }}
         {{ _('Update today to stay fast and safe.') }}
-        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2" data-product="Firefox for Desktop, outdated Firefox">{{ _('Download') }}</a>
+        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2" data-link-type="download" data-download-os="Desktop">{{ _('Download') }}</a>
       </div>
       <div class="message" id="dlbar-nonfx">
         {{ _('Choose Independent.') }}
         {{ _('Choose Firefox.') }}
-        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2" data-product="Firefox for Desktop, other browser">{{ _('Download') }}</a>
+        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2" data-link-type="download" data-download-os="Desktop">{{ _('Download') }}</a>
       </div>
       <div class="message" id="dlbar-nonfx-android">
-        <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-product="Firefox for Android">{{ _('Get Firefox for Android') }}</a>
+        <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">{{ _('Get Firefox for Android') }}</a>
       </div>
       <div class="message" id="dlbar-ios">
       {% if l10n_has_tag('tracking_protection') %}
-        <a rel="external" href="{{ firefox_ios_url() }}" data-product="Firefox for iOS">{{ _('Get Firefox for iOS') }}</a>
+        <a rel="external" href="{{ firefox_ios_url() }}" data-link-type="download" data-download-os="iOS">{{ _('Get Firefox for iOS') }}</a>
       {% endif %}
       </div>
 
@@ -90,7 +90,7 @@
     <ul class="product-list">
       <li class="product" id="product-desktop">
         <div class="inner">
-          <a href="{{ url('firefox.desktop.index') }}" data-product="Firefox for Desktop">
+          <a href="{{ url('firefox.desktop.index') }}" data-link-type="button" data-link-name="Firefox for Desktop">
             {# L10n: <span> tag below adds visual style to "for" text #}
             <h2>{{ _('Firefox <span>for</span> desktop') }}</h2>
             <p>{{ _('Trusted. Flexible. Fast.') }}</p>
@@ -100,7 +100,7 @@
 
       <li class="product highlight" id="product-ios">
         <div class="inner">
-          <a href="{{ url('firefox.ios') }}" data-product="Firefox for iOS">
+          <a href="{{ url('firefox.ios') }}" data-link-type="button" data-link-name="Firefox for iOS">
             {# L10n: <span> tag below adds visual style to "for" text #}
             <h2>{{ _('Firefox <span>for</span> iOS') }}</h2>
           {% if l10n_has_tag('ios_product_tagline') %}
@@ -110,7 +110,7 @@
           {% endif %}
           </a>
 
-          <a rel="external" href="{{ firefox_ios_url('mozorg-products_page-appstore-button') }}" class="btn-apple-appstore" data-product="Firefox for iOS, App Store">
+          <a rel="external" href="{{ firefox_ios_url('mozorg-products_page-appstore-button') }}" class="btn-apple-appstore" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="135" height="40">
           </a>
         </div>
@@ -118,7 +118,7 @@
 
       <li class="product" id="product-android">
         <div class="inner">
-          <a href="{{ url('firefox.android.index') }}" data-product="Firefox for Android">
+          <a href="{{ url('firefox.android.index') }}" data-link-type="button" data-link-name="Firefox for Android">
             {# L10n: span below adds visual style to "for" text #}
             <h2>{{ _('Firefox <span>for</span> Android') }}</h2>
             <p>{{ _('Make it uniquely yours.') }}</p>
@@ -134,21 +134,21 @@
   <div class="content">
     <ul class="product-list">
       <li class="product" id="product-hello">
-        <a href="{{ url('firefox.hello') }}" data-product="Firefox Hello">
+        <a href="{{ url('firefox.hello') }}" data-link-type="button" data-link-name="Firefox Hello">
           <h2>{{ _('Firefox Hello') }}</h2>
           <p>{{ _('Free, easy video conversations.') }}</p>
         </a>
       </li>
 
       <li class="product" id="product-sync">
-        <a href="{{ url('firefox.sync') }}" data-product="Firefox Sync">
+        <a href="{{ url('firefox.sync') }}" data-link-type="button" data-link-name="Sync">
           <h2>{{ _('Sync') }}</h2>
           <p>{{ _('Connect Firefox wherever you use it.') }}</p>
         </a>
       </li>
 
       <li class="product" id="product-private-browsing">
-        <a href="{{ url('firefox.private-browsing') }}" data-product="Private Browsing">
+        <a href="{{ url('firefox.private-browsing') }}" data-link-type="button" data-link-name="Private Browsing">
           <h2>{{ _('Private Browsing') }}</h2>
           <p>{{ _('Now with Tracking Protection.') }}</p>
         </a>
@@ -175,17 +175,17 @@
 {% block site_footer %}
 <footer id="footer">
   <div class="content">
-    <a class="mozlogo" href="{{ url('mozorg.home') }}">Mozilla</a>
+    <a class="mozlogo" href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">Mozilla</a>
 
     <ul>
       <li>
-        <a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a>
+        <a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy Policy">{{ _('Privacy Policy') }}</a>
       </li>
       <li>
-        <a href="{{ url('privacy.notices.websites') }}#cookies">{{ _('Cookies') }}</a>
+        <a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a>
       </li>
       <li>
-        <a href="{{ url('legal.index') }}">{{ _('Legal Notices') }}</a>
+        <a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal Notices">{{ _('Legal Notices') }}</a>
       </li>
     </ul>
   </div>
