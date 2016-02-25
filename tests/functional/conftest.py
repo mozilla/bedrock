@@ -10,9 +10,9 @@ VIEWPORT = {
 
 
 @pytest.fixture(scope='session')
-def session_capabilities(session_capabilities):
-    session_capabilities.setdefault('tags', []).append('bedrock')
-    return session_capabilities
+def capabilities(capabilities):
+    capabilities.setdefault('tags', []).append('bedrock')
+    return capabilities
 
 
 @pytest.fixture
