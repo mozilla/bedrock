@@ -80,16 +80,6 @@
         'state': state
     });
 
-    // point desktop download links to new version of scene 2
-    // TODO: refactor into firefox_details.py if/when this change is live
-    // for all users
-    $('.download-link').each(function(i, link) {
-        if (link.href.indexOf('scene=2#download-fx') > -1) {
-            // drop URL hash & specify version 2
-            link.href = link.href.replace('scene=2#download-fx', 'scene=2&v=2');
-        }
-    });
-
     // if android, update text on dl button
     if (client.platform === 'android') {
         $('#download-button-mobile .download-subtitle').html(

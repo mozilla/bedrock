@@ -385,15 +385,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_mobile_download.css',
     },
-    'firefox_new': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/base/simple_footer-resp.less',
-            'css/firefox/new.less',
-        ),
-        'output_filename': 'css/firefox_new-bundle.css',
-    },
     # favor cache for scene 2 speed over 1 less HTTP request for scene 1
     'firefox_new_common': {
         'source_filenames': (
@@ -1153,13 +1144,6 @@ PIPELINE_JS = {
             'js/firefox/dev-whatsnew.js',
         ),
         'output_filename': 'js/firefox_developer_whatsnew-bundle.js',
-    },
-    'firefox_new': {
-        'source_filenames': (
-            'js/base/search-params.js',
-            'js/firefox/new.js',
-        ),
-        'output_filename': 'js/firefox_new-bundle.js',
     },
     'firefox_new_scene1': {
         'source_filenames': (

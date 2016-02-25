@@ -508,16 +508,12 @@ def new(request):
     if request.GET.get('product', None) or request.GET.get('os', None):
         return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
-    template = 'firefox/new.html'
     scene = request.GET.get('scene', None)
-    version = request.GET.get('v', None)
 
-    # separate scenes version of /new
-    if version == '2':
-        if scene == '2':
-            template = 'firefox/new/scene2.html'
-        # if no/incorrect scene specified, show scene 1
-        else:
-            template = 'firefox/new/scene1.html'
+    if scene == '2':
+        template = 'firefox/new/scene2.html'
+    # if no/incorrect scene specified, show scene 1
+    else:
+        template = 'firefox/new/scene1.html'
 
     return l10n_utils.render(request, template)

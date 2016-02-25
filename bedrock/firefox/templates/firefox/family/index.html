@@ -39,12 +39,12 @@
       <div class="message" id="dlbar-oldfx-desktop">
         {{ _('You’re using an older version of Firefox for desktop.') }}
         {{ _('Update today to stay fast and safe.') }}
-        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2#download-fx" data-product="Firefox for Desktop, outdated Firefox">{{ _('Download') }}</a>
+        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2" data-product="Firefox for Desktop, outdated Firefox">{{ _('Download') }}</a>
       </div>
       <div class="message" id="dlbar-nonfx">
         {{ _('Choose Independent.') }}
         {{ _('Choose Firefox.') }}
-        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2#download-fx" data-product="Firefox for Desktop, other browser">{{ _('Download') }}</a>
+        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2" data-product="Firefox for Desktop, other browser">{{ _('Download') }}</a>
       </div>
       <div class="message" id="dlbar-nonfx-android">
         <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-product="Firefox for Android">{{ _('Get Firefox for Android') }}</a>
