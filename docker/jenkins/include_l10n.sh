@@ -29,7 +29,7 @@ touch $TRIGGER_FILE
 
 if [[ ! -e locale ]];
 then
-    git clone https://github.com/mozilla-l10n/bedrock-l10n locale
+    git clone --depth 1 https://github.com/mozilla-l10n/bedrock-l10n locale
 fi;
 
 pushd locale
