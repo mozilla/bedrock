@@ -136,7 +136,7 @@
         var langCode = '';
         var indexMatch = false;
         var langCodeMatch = false;
-        var offeredLang;
+        var offeredLang = false;
 
         config.pageLang = pageLang || config.pageLang;
         config.availableLangs = InfoBar.prototype.getAvailableLangs();
@@ -160,6 +160,7 @@
 
             if (indexMatch || langCodeMatch) {
                 offeredLang = acceptLangs[index];
+                return;
             }
         });
 
@@ -172,12 +173,12 @@
 
                 if (indexMatch || langCodeMatch) {
                     offeredLang = index;
+                    return;
                 }
             });
         }
 
-        // If there is no offered language return false, else true
-        return !offeredLang ? false : offeredLang;
+        return offeredLang;
     };
 
     /**
@@ -392,7 +393,7 @@
      */
     InfoBar.update = function(latestVersion, userAgent, buildID) {
 
-        var ua = userAgent || config.userAgent
+        var ua = userAgent || config.userAgent;
 
         latestVersion = parseInt(latestVersion || config.json.latestfx, 10);
         buildID = buildID || navigator.buildID;
@@ -407,7 +408,7 @@
         var userVersion;
 
         if (isFirefox) {
-            userVersion = parseInt(ua.match(/Firefox\/(\d+)/)[1], 10);;
+            userVersion = parseInt(ua.match(/Firefox\/(\d+)/)[1], 10);
             isNewer = userVersion > latestVersion;
         }
 
