@@ -199,7 +199,6 @@ SUPPORTED_NONLOCALES = [
     # from redirects.urls
     'media',
     'static',
-    'admin',
     'certs',
     'contribute.json',
     'credits',
@@ -265,7 +264,6 @@ STATICFILES_DIRS = (
 )
 
 JINGO_EXCLUDE_APPS = (
-    'admin',
     'registration',
     'rest_framework',
     'rna',
@@ -328,22 +326,17 @@ MIDDLEWARE_CLASSES = [middleware for middleware in (
     'bedrock.mozorg.middleware.ClacksOverheadMiddleware',
     'bedrock.mozorg.middleware.HostnameMiddleware' if ENABLE_HOSTNAME_MIDDLEWARE else False,
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
     'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
-    'bedrock.mozorg.middleware.ConditionalAuthMiddleware',
     'bedrock.mozorg.middleware.CrossOriginResourceSharingMiddleware',
 ) if middleware]
-
-AUTHENTICATED_URL_PREFIXES = ('/admin/', '/rna/')
 
 INSTALLED_APPS = (
     'cronjobs',  # for ./manage.py cron * cmd line tasks
 
     # Django contrib apps
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
