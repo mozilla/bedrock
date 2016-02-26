@@ -372,7 +372,7 @@ class FxVersionRedirectsMixin(object):
     def assert_ua_redirects_to(self, ua, url_name, status_code=301):
         response = self.client.get(self.url, HTTP_USER_AGENT=ua)
         eq_(response.status_code, status_code)
-        eq_(response['Vary'], 'User-Agent')
+        eq_(response['Cache-Control'], 'max-age=0')
         eq_(response['Location'],
             'http://testserver%s' % reverse(url_name))
 
@@ -380,7 +380,7 @@ class FxVersionRedirectsMixin(object):
         query = '?ref=getfirefox'
         response = self.client.get(self.url + query, HTTP_USER_AGENT=ua)
         eq_(response.status_code, status_code)
-        eq_(response['Vary'], 'User-Agent')
+        eq_(response['Cache-Control'], 'max-age=0')
         eq_(response['Location'],
             'http://testserver%s' % reverse(url_name) + query)
 
@@ -469,7 +469,7 @@ class TestHelloStartRedirect(TestCase):
         self.url = reverse('firefox.hello.start', args=['35.0'])
         response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
         eq_(response.status_code, 301)
-        eq_(response.get('Vary'), 'User-Agent')
+        eq_(response['Cache-Control'], 'max-age=0')
         eq_('http://testserver%s' % reverse('firefox.hello'),
             response.get('Location'))
 
@@ -478,4 +478,4 @@ class TestHelloStartRedirect(TestCase):
 
         response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
         eq_(response.status_code, 200)
-        eq_(response.get('Vary'), 'User-Agent')
+        eq_(response['Cache-Control'], 'max-age=0')

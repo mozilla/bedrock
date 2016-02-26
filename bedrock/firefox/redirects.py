@@ -152,7 +152,7 @@ redirectpatterns = (
     # Bug 979527
     redirect(r'^firefox/central/?$', is_firefox_redirector(
         'https://support.mozilla.org/kb/get-started-firefox-overview-main-features',
-        'firefox.new'), vary='user-agent'),
+        'firefox.new'), cache_timeout=0),
 
     # bug 868169
     redirect(r'^mobile/android-download\.html$',

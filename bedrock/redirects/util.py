@@ -142,7 +142,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
         pattern = '(?{})'.format(re_flags) + pattern
 
     view_decorators = []
-    if cache_timeout:
+    if cache_timeout is not None:
         view_decorators.append(cache_control_expires(cache_timeout))
 
     if vary:
