@@ -408,9 +408,12 @@
           </ul>
         </div>{#-- /#download-content --#}
       </div>{#-- /#download-wrapper --#}
+
+    {% block subscribe_wrapper %}
       <div id="subscribe-wrapper" class="floating">
         {{ email_newsletter_form(title=_('Get Firefox news')) }}
       </div>
+    {% endblock %}
     </div>
   </div>
 {% endblock %}

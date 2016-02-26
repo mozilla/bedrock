@@ -159,6 +159,19 @@
 </section>{#-- /#products-secondary --#}
 {% endblock %}
 
+{% block email_form %}
+  {% if LANG.startswith('en-') %}
+  <aside id="newsletter-subscribe" class="ga-section" data-ga-label="All things Firefox. Sent right to your inbox.">
+    <div class="content container">
+      <header>
+        <h3>{{ _('All things Firefox.<br> Sent right to your inbox.') }}</h3>
+      </header>
+      {{ email_newsletter_form(title=' ') }}
+    </div>
+  </aside>
+  {% endif %}
+{% endblock %}
+
 {% block site_footer %}
 <footer id="footer">
   <div class="content">
@@ -178,8 +191,6 @@
   </div>
 </footer>
 {% endblock %}
-
-{% block email_form %}{% endblock %}
 
 {% block js %}
   {% javascript 'firefox_family_index' %}

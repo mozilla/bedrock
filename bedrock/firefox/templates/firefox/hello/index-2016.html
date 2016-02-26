@@ -116,6 +116,20 @@
       </div>
     </div>
   </section>
+
+  {% block email_form_test %}
+    {% if LANG.startswith('en-') %}
+    <aside id="newsletter-subscribe" class="ga-section" data-ga-label="Discover more ways to stay connected with Firefox.">
+      <div class="content container">
+        <header>
+          <h3 class="compact">{{ _('Discover more ways to stay connected<br> with Firefox.') }}</h3>
+        </header>
+        {{ email_newsletter_form(title=' ') }}
+      </div>
+    </aside>
+    {% endif %}
+  {% endblock %}
+
   <aside id="need-help">
     <div class="container">
       {% set support_url = 'https://support.mozilla.org/products/firefox/chat-and-share/firefox-hello-webrtc' %}

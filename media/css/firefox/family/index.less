@@ -3,6 +3,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../../sandstone/lib.less";
+@import '../newsletter-test.less';
 
 .mozid {
     color: #fff;
@@ -47,6 +48,11 @@
     }
 }
 
+@media only screen and (min-width: @breakDesktopWide) {
+    #newsletter-subscribe .content {
+        width: @widthDesktop;
+    }
+}
 
 // Handy sprite mixin
 .fxfamily-sprite(@posx, @posy) {
@@ -473,6 +479,7 @@ html[dir="rtl"] #header h1 {
 #products-secondary {
     background: #efefef;
     border-top: 1px solid rgba(0, 0, 0, .1);
+    padding: 30px 0;
 
     .product {
         padding: 50px 20px 50px 140px;

@@ -443,7 +443,13 @@ def hello(request):
     }
 
     if (waffle.switch_is_active('firefox-hello-2016')):
-        return l10n_utils.render(request, 'firefox/hello/index-2016.html')
+        variant = request.GET.get('v', '')
+        if variant in ['b']:
+            template = 'firefox/hello/index-2016-{0}.html'.format(variant)
+        else:
+            template = 'firefox/hello/index-2016.html'
+
+        return l10n_utils.render(request, template)
     else:
         return l10n_utils.render(request, 'firefox/hello/index.html',
         {'video_url': videos.get(request.locale, videos.get('en-US'))})
@@ -519,5 +525,70 @@ def new(request):
         # if no/incorrect scene specified, show scene 1
         else:
             template = 'firefox/new/scene1.html'
+
+    return l10n_utils.render(request, template)
+
+
+def products_newsletter_test(request, template='firefox/family/index.html'):
+    """
+    Renders the products page template.
+    """
+
+    variant = request.GET.get('v', '')
+
+    if variant in ['b']:
+        template = 'firefox/family/index-{0}.html'.format(variant)
+
+    return l10n_utils.render(request, template)
+
+
+def desktop_newsletter_test(request, template='firefox/desktop/index.html'):
+    """
+    Renders the desktop main page template.
+    """
+
+    variant = request.GET.get('v', '')
+
+    if variant in ['b']:
+        template = 'firefox/desktop/index-{0}.html'.format(variant)
+
+    return l10n_utils.render(request, template)
+
+
+def android_newsletter_test(request, template='firefox/android/index.html'):
+    """
+    Renders the android page template.
+    """
+
+    variant = request.GET.get('v', '')
+
+    if variant in ['b']:
+        template = 'firefox/android/index-{0}.html'.format(variant)
+
+    return l10n_utils.render(request, template)
+
+
+def ios_newsletter_test(request, template='firefox/ios.html'):
+    """
+    Renders the ios page template.
+    """
+
+    variant = request.GET.get('v', '')
+
+    if variant in ['b']:
+        template = 'firefox/ios-{0}.html'.format(variant)
+
+    return l10n_utils.render(request, template)
+
+
+def privatebrowsing_newsletter_test(request, template='firefox/private-browsing.html'):
+    """
+    Renders the private browsing page template.
+    """
+
+    variant = request.GET.get('v', '')
+
+    if variant in ['b']:
+        template = 'firefox/private-browsing-{0}.html'.format(variant)
 
     return l10n_utils.render(request, template)
