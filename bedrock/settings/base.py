@@ -312,7 +312,7 @@ DEIS_DOMAIN = config('DEIS_DOMAIN', default=None)
 ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
                                     default=bool(DEIS_APP), cast=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
-                                        default=False, cast=bool)
+                                        default=True, cast=bool)
 
 MIDDLEWARE_CLASSES = [middleware for middleware in (
     'sslify.middleware.SSLifyMiddleware',

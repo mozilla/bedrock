@@ -56,9 +56,9 @@ URLS = flatten((
 
     url_test('/start/the-sm-one', 'http://www.seamonkey-project.org/start/',
              req_headers={'User-Agent': 'mozilla seamonkey'},
-             resp_headers={'vary': 'user-agent'}),
+             resp_headers={'Cache-Control': 'max-age=0'}),
     url_test('/start/any-random-thing', '/firefox/new/',
-             resp_headers={'vary': 'user-agent'}),
+             resp_headers={'Cache-Control': 'max-age=0'}),
 
     # bug 856081 redirect /about/drivers https://wiki.mozilla.org/Firefox/Drivers
     url_test('/about/drivers{/,.html}', 'https://wiki.mozilla.org/Firefox/Drivers'),
@@ -341,12 +341,12 @@ URLS = flatten((
     url_test('/firefox/central/', '/firefox/new/',
              req_headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:17.0) '
                                         'Gecko/20121202 Firefox/17.0 Iceweasel/17.0.1'},
-             resp_headers={'vary': 'user-agent'}),
+             resp_headers={'Cache-Control': 'max-age=0'}),
     url_test('/firefox/central/',
              'https://support.mozilla.org/kb/get-started-firefox-overview-main-features',
              req_headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:42.0) '
                                         'Gecko/20100101 Firefox/42.0'},
-             resp_headers={'vary': 'user-agent'}),
+             resp_headers={'Cache-Control': 'max-age=0'}),
 
     # bug 868169
     url_test('/mobile/android-download.html?dude=abiding',
