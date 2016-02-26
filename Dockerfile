@@ -1,5 +1,13 @@
 from mozorg/bedrock_base
 
+COPY ./requirements /app/requirements
+
+# Install app
+COPY ./bin/peep.py /app/bin/peep.py
+RUN ./bin/peep.py install --no-cache-dir -r requirements/dev.txt
+RUN ./bin/peep.py install --no-cache-dir -r requirements/prod.txt
+RUN ./bin/peep.py install --no-cache-dir -r requirements/docker.txt
+
 COPY . /app
 
 RUN ./manage.py collectstatic -l --noinput
