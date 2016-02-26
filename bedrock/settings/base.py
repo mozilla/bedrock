@@ -1123,10 +1123,13 @@ CSP_IMG_SRC = (
 )
 CSP_SCRIPT_SRC = (
     "'self'",
+    "'unsafe-inline'",
     'http://*.mozilla.org',
     'https://*.mozilla.org',
     'http://*.mozilla.net',
     'https://*.mozilla.net',
+    'http://cdn.optimizely.com',
+    'https://cdn.optimizely.com',
 )
 CSP_STYLE_SRC = (
     "'self'",
