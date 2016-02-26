@@ -4,13 +4,11 @@
 
 from django.conf import settings
 from django.conf.urls import handler404, include, url
-from django.contrib import admin
 
 from bedrock.base.monkeypatches import patch
 
 
 patch()
-admin.autodiscover()
 
 # The default django 500 handler doesn't run the ContextProcessors, which breaks
 # the base template page. So we replace it with one that does!
@@ -18,8 +16,6 @@ handler500 = 'lib.bedrock_util.server_error_view'
 
 
 urlpatterns = (
-    # authenticated urls
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^rna/', include('rna.urls')),
     # Main pages
     url(r'^lightbeam/', include('bedrock.lightbeam.urls')),
