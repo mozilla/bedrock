@@ -40,6 +40,7 @@ module.exports = function(config) {
             'media/js/plugincheck/lib/utils.js',
             'media/js/plugincheck/lib/version-compare.js',
             'media/js/plugincheck/lib/plugincheck.js',
+            'media/js/infobar/infobar.js',
             'media/js/base/send-to-device.js',
             'tests/unit/spec/base/site.js',
             'tests/unit/spec/base/global.js',
@@ -61,6 +62,7 @@ module.exports = function(config) {
             'tests/unit/spec/plugincheck/lib/utils.js',
             'tests/unit/spec/plugincheck/lib/version-compare.js',
             'tests/unit/spec/plugincheck/lib/plugincheck.js',
+            'tests/unit/spec/infobar/infobar.js',
             'tests/unit/spec/base/send-to-device.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',

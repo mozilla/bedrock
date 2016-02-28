@@ -100,6 +100,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/tabzilla/tabzilla-static.less',
+            'css/infobar/infobar.less',
         ),
         'output_filename': 'css/responsive-bundle.css',
     },
@@ -141,6 +142,7 @@ PIPELINE_CSS = {
     'contribute-friends': {
         'source_filenames': (
             'css/mozorg/contribute/friends.less',
+            'css/infobar/infobar.less',
         ),
         'output_filename': 'css/contribute-friends-bundle.css',
     },
@@ -301,6 +303,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/firefox/dev-firstrun.less',
+            'css/infobar/infobar.less',
         ),
         'output_filename': 'css/firefox_developer_firstrun-bundle.css',
     },
@@ -442,6 +445,7 @@ PIPELINE_CSS = {
             'css/firefox/family-nav.less',
             'css/firefox/os/in-the-news.less',
             'css/firefox/os/firefox-os-2-5.less',
+            'css/infobar/infobar.less',
         ),
         'output_filename': 'css/firefox_os_2_5-bundle.css',
     },
@@ -510,6 +514,7 @@ PIPELINE_CSS = {
             'css/firefox/australis/australis-page-common.less',
             'css/firefox/sync-animation.less',
             'css/firefox/australis/australis-page-stacked.less',
+            'css/infobar/infobar.less',
         ),
         'output_filename': 'css/firefox_tour_none-bundle.css',
     },
@@ -778,6 +783,7 @@ PIPELINE_CSS = {
             'css/styleguide/identity-webmaker.less',
             'css/styleguide/communications.less',
             'css/styleguide/products-firefox-os.less',
+            'css/infobar/infobar.less',
         ),
         'output_filename': 'css/styleguide-bundle.css',
     },
@@ -816,6 +822,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/mozorg/contribute/contribute-2015.less',
+            'css/infobar/infobar.less',
         ),
         'output_filename': 'css/contribute-2015-bundle.css',
     },
@@ -938,6 +945,7 @@ PIPELINE_JS = {
             'js/libs/spin.min.js',  # used by js/newsletter/form.js
             'js/base/global.js',
             'js/base/global-init.js',
+            'js/infobar/infobar.js',
             'js/newsletter/form.js',
             'js/base/mozilla-client.js',
             'js/base/mozilla-input-placeholder.js',
@@ -980,6 +988,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/libs/jquery-1.11.3.min.js',
             'js/mozorg/contribute/friends.js',
+            'js/infobar/infobar.js',
         ),
         'output_filename': 'js/contribute-friends-bundle.js'
     },
@@ -1517,6 +1526,7 @@ PIPELINE_JS = {
     'styleguide': {
         'source_filenames': (
             'js/styleguide/styleguide.js',
+            'js/infobar/infobar.js',
         ),
         'output_filename': 'js/styleguide-bundle.js',
     },
@@ -1560,6 +1570,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/mozorg/contribute/contribute-2015-ga.js',
             'js/mozorg/contribute/contribute-2015.js',
+            'js/infobar/infobar.js',
         ),
         'output_filename': 'js/contribute-2015-bundle.js',
     },
