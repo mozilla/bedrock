@@ -472,19 +472,17 @@ class TestHighResImg(TestCase):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
         expected = (
-            u'<img class="js " src="" data-processed="false" data-src="/media/img/test.png" '
-            u'data-high-res="true" data-high-res-src="/media/img/test-high-res.png">'
-            u'<noscript><img class="" src="/media/img/test.png"></noscript>')
+            u'<img class="" src="/media/img/test.png" '
+            u'srcset="/media/img/test-high-res.png 1.5x">')
         self.assertEqual(markup, expected)
 
     def test_high_res_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         markup = self._render('test.png', {'data-test-attr': 'test', 'class': 'logo'})
         expected = (
-            u'<img class="js logo" src="" data-processed="false" data-src="/media/img/test.png" '
-            u'data-high-res="true" data-high-res-src="/media/img/test-high-res.png" '
-            u'data-test-attr="test"><noscript>'
-            u'<img class="logo" src="/media/img/test.png" data-test-attr="test"></noscript>')
+            u'<img class="logo" src="/media/img/test.png" '
+            u'srcset="/media/img/test-high-res.png 1.5x" '
+            u'data-test-attr="test">')
         self.assertEqual(markup, expected)
 
     def test_high_res_img_with_l10n(self):
@@ -493,9 +491,8 @@ class TestHighResImg(TestCase):
         l10n_hr_url = convert_to_high_res(l10n_url)
         markup = self._render('test.png', {'l10n': True})
         expected = (
-            u'<img class="js " src="" data-processed="false" data-src="' + l10n_url + '" '
-            u'data-high-res="true" data-high-res-src="' + l10n_hr_url + '">'
-            u'<noscript><img class="" src="' + l10n_url + '"></noscript>')
+            u'<img class="" src="' + l10n_url + '" '
+            u'srcset="' + l10n_hr_url + ' 1.5x">')
         self.assertEqual(markup, expected)
 
     def test_high_res_img_with_l10n_and_optional_attributes(self):
@@ -504,10 +501,8 @@ class TestHighResImg(TestCase):
         l10n_hr_url = convert_to_high_res(l10n_url)
         markup = self._render('test.png', {'l10n': True, 'data-test-attr': 'test'})
         expected = (
-            u'<img class="js " src="" data-processed="false" data-src="' + l10n_url + '" '
-            u'data-high-res="true" data-high-res-src="' + l10n_hr_url + '" data-test-attr="test">'
-            u'<noscript><img class="" src="' + l10n_url + '" data-test-attr="test">'
-            u'</noscript>')
+            u'<img class="" src="' + l10n_url + '" '
+            u'srcset="' + l10n_hr_url + ' 1.5x" data-test-attr="test">')
         self.assertEqual(markup, expected)
 
 
