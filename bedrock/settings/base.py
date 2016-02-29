@@ -1055,3 +1055,5 @@ FIREFOX_IOS_RELEASE_VERSION = '2.0'
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
 
 B2G_DROID_URL = 'https://d2yw7jilxa8093.cloudfront.net/B2GDroid-mozilla-central-nightly-latest.apk'
+
+MOZILLA_LOCATION_SERVICES_KEY = 'ec4d0c4b-b9ac-4d72-9197-289160930e14'

@@ -60,22 +60,20 @@ if (typeof Mozilla === 'undefined') {
 
     /**
      * Checks to see if the visitor is located in the US
-     * using GeoDude https://github.com/mozilla/geodude
+     * using MLS https://location.services.mozilla.com/api
      */
     SendToDevice.prototype.checkLocation = function() {
         var self = this;
-        // should geo.mozilla.org be slow to load for some reason,
+        var key = this.$widget.data('key');
+
+        // should location.services.mozilla.com be slow to load,
         // just show the email messaging after 5 seconds waiting.
         this.formTimeout = setTimeout(self.updateMessaging, 5000);
 
-        $.getScript('https://geo.mozilla.org/country.js')
-            .done(function(script, textStatus) {
-                if (textStatus === 'success') {
-                    try {
-                        SendToDevice.COUNTRY_CODE = geoip_country_code().toLowerCase();
-                    } catch (e) {
-                        SendToDevice.COUNTRY_CODE = '';
-                    }
+        $.get('https://location.services.mozilla.com/v1/country?key=' + key)
+            .done(function(data) {
+                if (data && data.country_code) {
+                    SendToDevice.COUNTRY_CODE = data.country_code.toLowerCase();
                 }
                 self.updateMessaging();
             })
