@@ -479,3 +479,27 @@ class TestHelloStartRedirect(TestCase):
         response = self.client.get(self.url, HTTP_USER_AGENT=self.user_agent)
         eq_(response.status_code, 200)
         eq_(response['Cache-Control'], 'max-age=0')
+
+
+@patch.object(fx_views.HelloStartView, 'redirect_to', none_mock)
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestHelloStartView(TestCase):
+    def setUp(self):
+        self.view = fx_views.HelloStartView.as_view()
+        self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
+
+    @override_settings(DEV=True)
+    def test_old_hello_start_template(self, render_mock):
+        """Should use old Hello FTU template for Firefox 44"""
+        req = self.rf.get('/en-US/firefox/hello/start/')
+        self.view(req, version='44.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/hello/start.html'])
+
+    @override_settings(DEV=True)
+    def test_45_hello_start_template(self, render_mock):
+        """Should use new Hello FTU template for Firefox 45"""
+        req = self.rf.get('/en-US/firefox/hello/start/')
+        self.view(req, version='45.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/hello/start-45.html'])

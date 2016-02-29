@@ -350,6 +350,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_hello_start-bundle.css',
     },
+    'firefox_hello_start_45': {
+        'source_filenames': (
+            'css/firefox/hello/start-45.less',
+        ),
+        'output_filename': 'css/firefox_hello_start_45-bundle.css',
+    },
     'firefox_hello': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -1253,13 +1259,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_hello_start-bundle.js',
     },
-    'firefox_hello_start_minimal': {
+    'firefox_hello_start_45': {
         'source_filenames': (
+            'js/base/search-params.js',
             'js/firefox/australis/australis-uitour.js',
-            'js/firefox/hello/hello-ftu-minimal.js',
-            'js/firefox/hello/start-minimal.js',
+            'js/firefox/hello/start-45.js',
         ),
-        'output_filename': 'js/firefox_hello_start_minimal-bundle.js',
+        'output_filename': 'js/firefox_hello_start_45-bundle.js',
     },
     'firefox_hello': {
         'source_filenames': (
