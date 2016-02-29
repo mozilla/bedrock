@@ -6,11 +6,9 @@
 
 import re
 
-from django.conf import settings
 from django.http import (Http404, HttpResponseRedirect,
                          HttpResponsePermanentRedirect)
 from django.utils.encoding import force_text
-from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.views.decorators.vary import vary_on_headers
@@ -24,7 +22,6 @@ from product_details.version_compare import Version
 
 import waffle
 
-from bedrock.base.geo import get_country_from_request
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
@@ -219,21 +216,6 @@ def all_downloads(request, platform, channel):
             context['test_builds_next'] = firefox_desktop.get_filtered_test_builds('esr_next',
                                                                                    next_version, query)
     return l10n_utils.render(request, 'firefox/all.html', context)
-
-
-@never_cache
-def firefox_os_geo_redirect(request):
-    locale = l10n_utils.get_locale(request)
-    if locale == 'en-US':
-        version = '2.5'
-    else:
-        country = get_country_from_request(request)
-        version = settings.FIREFOX_OS_COUNTRY_VERSIONS.get(
-            country,
-            settings.FIREFOX_OS_COUNTRY_VERSIONS['default']
-        )
-
-    return HttpResponseRedirect(reverse('firefox.os.ver.{0}'.format(version)))
 
 
 def show_devbrowser_firstrun_or_whatsnew(version):

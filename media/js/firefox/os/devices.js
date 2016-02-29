@@ -197,31 +197,6 @@ if (typeof window.Mozilla === 'undefined') {
     }
     */
 
-    // only if coming from /firefox/os/, detect country
-    if (/firefox\/os\/$/.test(document.referrer)) {
-        $.getScript('//geo.mozilla.org/country.js', function() {
-            var $provider;
-
-            try {
-                COUNTRY_CODE = geoip_country_code().toLowerCase();
-            } catch (e) {
-                COUNTRY_CODE = '';
-            }
-
-            $provider = $providerLinks.find('.provider[data-country="' + COUNTRY_CODE + '"]');
-
-            if (COUNTRY_CODE !== '' && $provider.length > 0) {
-
-                window.dataLayer.push({
-                    'event': 'device-drop-down',
-                    'countryCode': COUNTRY_CODE,
-                    'nonInteraction': true
-                });
-                selectDevicesAndSetPartnerContent();
-            }
-        });
-    }
-
     // hide/disable pagers in mobile view
     if (typeof matchMedia !== 'undefined') {
         var queryIsMobile = matchMedia('(max-width: 480px)');

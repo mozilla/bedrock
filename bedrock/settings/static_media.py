@@ -413,19 +413,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_organizations-bundle.css',
     },
-    'firefox_os': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/base/mozilla-modal.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/libs/jquery.pageslide.css',
-            'css/firefox/family-nav.less',
-            'css/firefox/os/get_device.less',
-            'css/firefox/os/in-the-news.less',
-            'css/firefox/os/firefox-os.less',
-        ),
-        'output_filename': 'css/firefox_os-bundle.css',
-    },
     'firefox_os_2_5': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -435,12 +422,6 @@ PIPELINE_CSS = {
             'css/firefox/os/firefox-os-2-5.less',
         ),
         'output_filename': 'css/firefox_os_2_5-bundle.css',
-    },
-    'firefox_os_ie': {
-        'source_filenames': (
-            'css/firefox/os/firefox-os-ie.less',
-        ),
-        'output_filename': 'css/firefox_os_ie-bundle.css',
     },
     'firefox_os_devices': {
         'source_filenames': (
@@ -1175,17 +1156,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_private_browsing-bundle.js',
     },
-    'firefox_os': {
-        'source_filenames': (
-            'js/base/mozilla-modal.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/libs/script.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/os/firefox-os.js',
-        ),
-        'output_filename': 'js/firefox_os-bundle.js',
-    },
     'firefox_os_2_5': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
@@ -1195,7 +1165,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_os_2_5-bundle.js',
     },
-
     'firefox_os_devices': {
         'source_filenames': (
             'js/libs/jquery.tipsy.js',

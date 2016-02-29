@@ -5,7 +5,6 @@
 import json
 
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
 
 from bedrock.base.urlresolvers import reverse
 from mock import patch
@@ -13,15 +12,6 @@ from nose.tools import eq_, ok_
 
 from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
-
-
-FXOS_COUNTRIES = {
-    'default': '2.0',
-    'AU': '1.3',
-    'IN': '1.3T',
-    'BR': '1.1',
-    'BD': '1.4',
-}
 
 
 class TestSendToDeviceView(TestCase):
@@ -281,47 +271,3 @@ class TestFeedbackView(TestCase):
 
         ctx = view.get_context_data()
         self.assertFalse('donate_stars_url' in ctx)
-
-
-@override_settings(FIREFOX_OS_COUNTRY_VERSIONS=FXOS_COUNTRIES)
-class TestFirefoxOSGeoRedirect(TestCase):
-    def setUp(self):
-        patcher = patch('bedrock.firefox.views.get_country_from_request')
-        self.geo_mock = patcher.start()
-        self.addCleanup(patcher.stop)
-
-    def _request(self, country, locale='de'):
-        self.geo_mock.return_value = country
-        request = RequestFactory().get('/firefox/os/')
-        request.locale = locale
-        return views.firefox_os_geo_redirect(request)
-
-    def test_en_US_always_2_dot_5(self):
-        """The en-US locale should always redirect to 2.5"""
-        resp = self._request('AU', locale='en-US')
-        self.assertTrue(resp['Location'].endswith('/firefox/os/2.5/'))
-
-        resp = self._request('IN', locale='en-US')
-        self.assertTrue(resp['Location'].endswith('/firefox/os/2.5/'))
-
-    def test_default_version(self):
-        """Should redirect to default version if country not in list."""
-        resp = self._request('US')
-        self.assertTrue(resp['Location'].endswith('/firefox/os/2.0/'))
-
-        resp = self._request('XX')
-        self.assertTrue(resp['Location'].endswith('/firefox/os/2.0/'))
-
-    def test_country_specific_versions(self):
-        """Should redirect to country appropriate version."""
-        resp = self._request('AU')
-        self.assertTrue(resp['Location'].endswith('/firefox/os/1.3/'))
-
-        resp = self._request('IN')
-        self.assertTrue(resp['Location'].endswith('/firefox/os/1.3t/'))
-
-        resp = self._request('BR')
-        self.assertTrue(resp['Location'].endswith('/firefox/os/1.1/'))
-
-        resp = self._request('BD')
-        self.assertTrue(resp['Location'].endswith('/firefox/os/1.4/'))

@@ -6,60 +6,38 @@
 
 {% extends "firefox/base-resp.html" %}
 
-{% add_lang_files "firefox/os/devices" "firefox/os/index-new" %}
-
 {% block page_title_prefix %}{% endblock %}
 {% block page_image %}{{ static('img/firefox/os/page-image.png') }}{% endblock %}
 
 {% block page_title %}
-  {% if l10n_has_tag('new_fxos_title_updated') %}
-    {{_('Firefox OS — Just what you need — Great smartphone features, apps and more')}}
-  {% else %}
-    {{_('Firefox OS — The Adaptive Phone — Great Smartphone Features, Apps and More')}}
-  {% endif %}
+  {{_('Firefox OS — Just what you need — Great smartphone features, apps and more')}}
 {% endblock %}
 
 {% block page_desc %}
-  {% if l10n_has_tag('new_fxos_title_updated') %}
-    {{_('Firefox OS is designed to give you just what you need, just when you need it. It comes with apps for all you do and you can download more of your favorites from the Firefox Marketplace. Smart has never been so simple.')}}
-  {% else %}
-    {{_('Firefox OS smartphones give you great adaptive features and apps that let you live every moment to its fullest and build a brighter future for the Web.')}}
-  {% endif %}
+  {{_('Firefox OS is designed to give you just what you need, just when you need it. It comes with apps for all you do and you can download more of your favorites from the Firefox Marketplace. Smart has never been so simple.')}}
 {% endblock %}
 
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
 {% block page_og_title %}
-  {% if l10n_has_tag('new_fxos_title') %}
-    {{_('Firefox OS')}}
-  {% else %}
-    {{_('Firefox OS — The Adaptive Phone — Great Smartphone Features, Apps and More')}}
-  {% endif %}
+  {{_('Firefox OS')}}
 {% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}
-  {% if l10n_has_tag('new_fxos_title') %}
-    {{_('Designed to give you just what you need in a smartphone, with apps for all you do and more. Smart has never been so simple.')}}
-  {% else %}
-    {{_('Firefox OS smartphones give you great adaptive features and apps that let you live every moment to its fullest and build a brighter future for the Web.')}}
-  {% endif %}
+  {{_('Designed to give you just what you need in a smartphone, with apps for all you do and more. Smart has never been so simple.')}}
 {% endblock %}
 
 {#- Override <meta property="og:url"> for social share -#}
 {% block page_og_url %}{{ url('firefox.os.index') }}{% endblock %}
 
 {% block body_id %}firefox-os{% endblock %}
-{% block body_class %}firefox-os{% endblock %}
+{% block body_class %}firefox-os v2-5{% endblock %}
 
 {# Do not load CSS bundle specified in base template (duplicate CSS). #}
 {% block site_css %}{% endblock %}
 
 {% block extrahead %}
-  {{ super() }}
-  {% stylesheet 'firefox_os' %}
-<!--[if lt IE 9]>
-  {% stylesheet 'firefox_os_ie' %}
-<![endif]-->
+  {% stylesheet 'firefox_os_2_5' %}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -77,220 +55,81 @@
   <main role="main">
     <section class="fxos-hero-space">
       <div class="content-wrapper">
-      {% block hero_copy %}
-        <div class="phone">
-          <div class="fxos-cta">
-            <h1><img src="{{ static('img/firefox/os-new/fxos-wordmark.svg') }}" width="420" alt="Firefox OS" data-png="{{ static('img/firefox/os-new/fxos-wordmark.png') }}" data-fallback="true"></h1>
-            <p class="tagline">{{_('Designed to give you just what you need, just when you need it.')}}</p>
-
-            <div class="primary-cta-signup signup hidden">
-              <a href="#email-form-wrapper" class="cta-button get-newsletter newsletter-signup-toggle" role="button" aria-haspopup="true">{{_('Sign me up')}}</a>
-              <p class="signup-txt">{{_('Sign up for our monthly newsletter and get the latest on Firefox OS')}}</p>
-            </div>
-            <a href="#get-device" class="primary-cta-phone cta-button get-phone hidden" role="button" aria-haspopup="true">{{_('Get a phone')}}</a>
-          </div>
-          <div class="phone-container">
-          {% block phone_image %}
-            {{ high_res_img('firefox/os-new/homescreen/homescreen-2-0.png', {'l10n': True, 'alt': '', 'width': '495'}) }}
-          {% endblock %}
+        <div class="hero-content">
+          <h1>{{ _('Experience Firefox OS on your Android device')}}</h1>
+          <p>{{_('Introducing Firefox OS 2.5 Developer Preview, an experimental app that lets you use Firefox OS on your Android device.')}}</p>
+          <div class="primary-cta">
+            <a href="{{ settings.B2G_DROID_URL }}" class="cta-button" data-pixel="52161" data-id="Mozilla_B2G_Activity_Tag_1">{{_('Get the Android App')}}</a>
           </div>
         </div>
-      {% endblock %}
+        <div class="hero-image">
+          {% block phone_image %}
+            {{ high_res_img('firefox/os-new/phone.png', {'width':'1100', 'alt':''}) }}
+          {% endblock %}
+        </div>
       </div>
     </section>
-    {% block callout %}{% endblock %}
+
+    {% include '/firefox/os/_in_the_news.html' %}
+
     <section class="fxos-features">
       <div class="content-wrapper">
-        {% block features_headline %}
-        <h2>{{_('Smart has never been so simple')}}</h2>
-        {% endblock %}
-        {% block features_copy %}
-          <ul class="features">
-            <li class="scroll">
-              <h3>{{_('Scroll for what you need')}}</h3>
-              <p>{{_('Say goodbye to multiple home screens. Everything you need is right there in one clean, continuous scroll. What could be easier?')}}</p>
-            </li>
-            <li class="search">
-              <h3>{{_('Search in a snap')}}</h3>
-              <p>{{_('Search the Web and the Firefox Marketplace, or visit a website directly —  all from the search bar at the top of your home screen.')}}</p>
-            </li>
-            <li class="swipe">
-              {# l10n this &nbsp; is a dirty hack to differentiate an equivalent matching string #}
-              <h3>{{_('Swipe&nbsp;between apps')}}</h3>
-              <p>{{_('Access your recently used apps in a flash. Just swipe from the edge of the screen to cycle through all of your open apps.')}}</p>
-            </li>
-          </ul>
-        {% endblock %}
-      </div>
-    </section>
-    {% block fxox_apps %}
-    <section class="fxos-apps">
-      <div class="content-wrapper">
-        <h2>{{_('Apps for all you do')}}</h2>
-        <ul class="app-group-selector">
-          <li><a href="#" id="connected" data-category="connected" role="button">{{_('Stay connected')}}</a></li>
-          <li><a href="#" id="entertained" data-category="entertained" role="button">{{_('Stay entertained')}}</a></li>
-          <li><a href="#" id="organized" data-category="organized" role="button">{{_('Stay organized')}}</a></li>
-        </ul>
-        <ul class="apps">
-          <li class="connected entertained">
-            {{ high_res_img('firefox/os-new/icons/browser.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Browser')}}</span>
+        <h2>{{_('The Web is the platform')}}</h2>
+        <p>{{_('Firefox OS is the first truly open mobile platform built entirely on Web technologies. If you can build for the Web using HTML and CSS, you can build Firefox OS.')}}</p>
+        <ul class="features">
+          <li class="customization">
+            <h3>{{_('The most customization')}}</h3>
+            <p>{{_('Make Firefox OS your own with apps and add-ons from the Firefox Marketplace, and keep all your favorite items front and centre with Pin the Web.')}}</p>
           </li>
-          <li class="organized">
-            {{ high_res_img('firefox/os-new/icons/calendar.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Calendar')}}</span>
-          </li>
-          <li class="entertained">
-            {{ high_res_img('firefox/os-new/icons/camera.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Camera')}}</span>
-          </li>
-          <li class="organized">
-            {{ high_res_img('firefox/os-new/icons/clock.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Clock')}}</span>
-          </li>
-          <li class="connected organized">
-            {{ high_res_img('firefox/os-new/icons/contacts.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Contacts')}}</span>
-          </li>
-          <li class="connected">
-            {{ high_res_img('firefox/os-new/icons/email.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('E-Mail')}}</span>
-          </li>
-          <li class="entertained">
-            {{ high_res_img('firefox/os-new/icons/fmradio.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('FM Radio')}}</span>
-          </li>
-          <li class="entertained organized">
-            {{ high_res_img('firefox/os-new/icons/gallery.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Gallery')}}</span>
-          </li>
-          <li class="connected entertained organized">
-            {{ high_res_img('firefox/os-new/icons/marketplace.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Marketplace')}}</span>
-          </li>
-          <li class="connected">
-            {{ high_res_img('firefox/os-new/icons/sms.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Messages')}}</span>
-          </li>
-          <li class="entertained">
-            {{ high_res_img('firefox/os-new/icons/music.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Music')}}</span>
-          </li>
-          <li class="connected">
-            {{ high_res_img('firefox/os-new/icons/dialer.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Phone')}}</span>
-          </li>
-          <li class="organized">
-            {{ high_res_img('firefox/os-new/icons/settings.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Settings')}}</span>
-          </li>
-          <li class="organized">
-            {{ high_res_img('firefox/os-new/icons/usage.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Usage')}}</span>
-          </li>
-          <li class="entertained">
-            {{ high_res_img('firefox/os-new/icons/video.png', {'alt': '', 'width': '142', 'height': '142'}) }}
-            <span>{{_('Video')}}</span>
+          <li class="control">
+            <h3>{{_('The most control')}}</h3>
+            <p>{{_('From Do Not Track to Private Browsing with Tracking Protection, Firefox OS is designed keep you in control of your browsing activity.')}}</p>
           </li>
         </ul>
       </div>
     </section>
-    {% endblock %}
-
-    {% block fxox_marketplace %}
-    <section class="fxos-marketplace">
+    <section class="fxos-hub">
       <div class="content-wrapper">
-        {% block marketplace_headline %}
-          <h2>{{_('Add more from the Firefox Marketplace')}}</h2>
-        {% endblock %}
-        <p>{{_('Get all the most popular games and social networking apps right here.')}}</p>
-        <ul class="apps-marketplace">
-          <li class="facebook">Facebook</li>
-          <li class="youtube">YouTube</li>
-          <li class="line">Line</li>
-        </ul>
-        <a href="https://marketplace.firefox.com/" class="cta-button marketplace" rel="external">{{_('Go to the Marketplace')}}</a>
-        <p class="footnote">{{_('* Pre-installed apps may vary by manufacturers and operators.')}}</p>
-      </div>
-    </section>
-    {% endblock %}
-
-    {% block fxox_hub %}
-    {% endblock %}
-
-    {% block fxox_mdn %}
-    {% endblock %}
-
-    {% block fxox_try %}
-    {% endblock %}
-
-    {% block fxox_news %}
-      {% include '/firefox/os/_in_the_news.html' %}
-    {% endblock %}
-
-    {% block fxox_community %}
-    <section class="fxos-community">
-      <div class="content-wrapper">
-        {{ high_res_img('firefox/os-new/mozilla-groupshot.png', {'alt': '', 'width': '260', 'height': '260'}) }}
-        <h2>{{_('Powered by the Mozilla community')}}</h2>
-        <p>{{_('Mozilla is a non-profit organization fueled by a passionate global community. Together, we’re able to create and innovate with local interests in mind, while making the Web better and more accessible for everyone everywhere.')}}</p>
-        <p><a class="more" href="{{ url('mozorg.home') }}">{{_('Learn more about Mozilla')}}</a></p>
-      </div>
-    </section>
-    {% endblock %}
-
-    {% block fxox_help %}
-    <section class="fxos-help">
-      <div class="content-wrapper">
-        <div class="help">
-          <h3>{{_('Need Help?')}}</h3>
-          <ul>
-            <li><a class="more" href="https://support.mozilla.org/products/firefox-os" rel="external">{{_('Firefox OS Support')}}</a></li>
-            <li><a class="more" href="https://find.firefox.com/" rel="external">{{_('Find My Device')}}</a></li>
-          </ul>
+        <div class="hub-container">
+          <h2>{{_('Visit the Participation Hub')}}</h2>
+          <p>{{_('Want to make Firefox OS even better? Get all the resources, tools and documentation you need from the Participation Hub.')}}</p>
+          <p><a class="more" rel="external" href="https://firefoxos.mozilla.community">{{_('Check it out')}}</a></p>
         </div>
-        <div class="help">
-          <h3>{{_('For Developers')}}</h3>
-          <ul>
-            <li><a class="more" href="https://developer.mozilla.org" rel="external">{{_('Mozilla Developer Network')}}</a></li>
-            <li><a class="more" href="https://webmaker.org/appmaker" rel="external">{{_('Mozilla Appmaker')}}</a></li>
-            <li><a class="more" href="{{ url('firefox.os.devices') }}">{{_('Firefox OS devices')}}</a></li>
-            <li><a class="more" href="{{ url('firefox.os.tv') }}">{{_('Other Firefox OS versions')}}</a></li>
-          </ul>
-        </div>
-        <div class="help">
-          <h3>{{_('For Partners')}}</h3>
-          <ul>
-            <li><a class="more" href="https://mobilepartners.mozilla.org/" rel="external">{{_('Partnership opportunities')}}</a></li>
-          </ul>
+        <div class="hub-image">
+          {{ high_res_img('firefox/os-new/hub.png', {'width': '241', 'height': '261', 'alt':''}) }}
         </div>
       </div>
     </section>
-    {% endblock %}
+    <section class="fxos-mdn">
+      <div class="content-wrapper">
+        <div class="mdn-container">
+          <h2>{{_('Learn more at MDN')}}</h2>
+          <p>{{_('Want to do even more with Firefox OS? Head over to the Mozilla Developer Network to learn more about platform guides, Firefox OS add-ons and more.')}}</p>
+          <p><a class="more" rel="external" href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS">{{_('Visit MDN')}}</a></p>
+        </div>
+        <div class="mdn-image">
+          {{ high_res_img('firefox/os-new/mdn-logo.png', {'width': '301', 'height': '304', 'alt':''}) }}
+        </div>
+      </div>
+    </section>
+    <section class="fxos-try">
+      <div class="content-wrapper">
+        <h2>{{_('Ready to try Firefox OS 2.5 Developer Preview on your Android device?')}}</h2>
+        <div class="primary-cta">
+          <a href="{{ settings.B2G_DROID_URL }}" class="cta-button" data-pixel="52162" data-id="Mozilla_B2G_Activity_Tag_2">{{_('Get the Android App')}}</a>
+          <p>{{_('Want the full Firefox OS 2.5 experience?')}} <a href="https://firefoxos.mozilla.community/devices/" class="more" rel="external">{{_('Flash your phone')}}</a></p>
+        </div>
+      </div>
+    </section>
   </main>
   <div id="modal-logo" data-src="{{ static('img/firefox/os/logo/firefox-os-white.png') }}"></div>
-
-  {% block fxox_devices %}
-    {% include '/firefox/os/_get_device.html' %}
-  {% endblock %}
-
-
 {% endblock %}
 
-{% block email_form %}
-  <div id="email-form-wrapper">
-    <div id="email-form-content" class="modal-content">
-      <div class="content">
-        {{ email_newsletter_form('mozilla-and-you,os', _('Sign up for our monthly newsletter')) }}
-      </div>
-    </div>
-  </div>
-{% endblock %}
+{% block email_form %}{% endblock %}
 
 {% block js %}
 <!--[if IE 9]>
   {% javascript 'matchmedia_addlistener' %}
 <![endif]-->
-  {% javascript 'firefox_os' %}
+  {% javascript 'firefox_os_2_5' %}
 {% endblock %}
