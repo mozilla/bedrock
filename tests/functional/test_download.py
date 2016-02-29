@@ -16,7 +16,7 @@ def pytest_generate_tests(metafunc):
             'This test requires a base URL to be specified on the command '
             'line or in a configuration file.')
     paths = (
-        '/firefox/new/',
+        '/firefox/new/?scene=2',
         '/thunderbird/')
     argvalues = []
     for path in paths:
