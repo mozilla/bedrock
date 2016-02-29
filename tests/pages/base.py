@@ -39,9 +39,9 @@ class BasePage(Page):
         _root_locator = (By.ID, 'nav-main')
         _toggle_locator = (By.CLASS_NAME, 'toggle')
         _menu_locator = (By.ID, 'nav-main-menu')
-        _about_locator = (By.CSS_SELECTOR, 'a[data-link-type="about"]')
-        _participate_locator = (By.CSS_SELECTOR, 'a[data-link-type="participate"]')
-        _firefox_locator = (By.CSS_SELECTOR, 'a[data-link-type="firefox"]')
+        _about_locator = (By.CSS_SELECTOR, 'a[data-link-name="About"]')
+        _participate_locator = (By.CSS_SELECTOR, 'a[data-link-name="Participate"]')
+        _firefox_locator = (By.CSS_SELECTOR, 'a[data-link-name="Firefox"]')
 
         def show(self):
             assert not self.is_displayed, 'Menu is already displayed'
