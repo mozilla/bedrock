@@ -42,3 +42,40 @@ _SearchParams.prototype.toString = function () {
         return [encodeURIComponent(key), encodeURIComponent(value)].join('=');
     }).join('&');
 };
+
+_SearchParams.prototype.utmParams = function() {
+    var utms = {};
+
+    $.each(this.params, function (key, val) {
+        if (key.indexOf('utm_') === 0) {
+            utms[key] = val;
+        }
+    });
+
+    return utms;
+};
+
+_SearchParams.prototype.utmParamsFxA = function(pathname) {
+    pathname = pathname || window.location.pathname || '';
+
+    var utms = this.utmParams();
+
+    // set to default value if not specified in URL
+    if (!utms.utm_campaign) {
+        // utm_* values will be encoded on the product side, so no need to
+        // pre-emptively encode here
+        utms.utm_campaign = 'page referral - not part of a campaign';
+    }
+
+    // remove locale from pathname and store result in utm_content
+    // e.g. https://www.mozilla.org/it/firefox/sync/?foo=bar should
+    // have utm_content value of /firefox/sync/.
+    var matches = pathname.match(/\/[\w-]+(\/.*)$/);
+
+    if (matches && matches.length > 1) {
+        // no need to encode - will be done on product side
+        utms.utm_content = matches[1];
+    }
+
+    return utms;
+};

@@ -42,6 +42,29 @@ describe('search-params.js', function() {
             expect(params.toString()).toEqual('scene=3&source=getfirefox');
         });
 
+        it('should return an object of utm_ values', function () {
+            var sp = new _SearchParams('utm_dude=lebowski&utm_sport=bowling&source=getfirefox');
+            var utms = sp.utmParams();
+            var keys = Object.keys(utms);
+            expect(keys).toEqual(['utm_dude', 'utm_sport']);
+            expect(utms.utm_dude).toEqual('lebowski');
+            expect(utms.utm_sport).toEqual('bowling');
+        });
+
+        it('should return an object of utm_ values with defaults for FxA', function () {
+            var sp = new _SearchParams('utm_dude=lebowski&utm_sport=bowling&source=getfirefox');
+            var utms = sp.utmParamsFxA('/es-ES/firefox/sync/');
+            expect(utms.utm_dude).toEqual('lebowski');
+            expect(utms.utm_campaign).toEqual('page referral - not part of a campaign');
+            expect(utms.utm_content).toEqual('/firefox/sync/');
+        });
+
+        it('should not override utm_campaign when set in URL', function () {
+            var sp = new _SearchParams('utm_dude=lebowski&utm_campaign=bowling&source=getfirefox');
+            var utms = sp.utmParamsFxA();
+            expect(utms.utm_campaign).toEqual('bowling');
+        });
+
     });
 
 });

@@ -1228,6 +1228,7 @@ PIPELINE_JS = {
     },
     'firefox_sync': {
         'source_filenames': (
+            'js/base/search-params.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/firefox/family-nav.js',
@@ -1302,6 +1303,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/libs/script.js',
             'js/base/mozilla-modal.js',
+            'js/base/search-params.js',
             'js/base/send-to-device.js',
             'js/firefox/australis/australis-uitour.js',
             'js/libs/jquery.waypoints.min.js',
