@@ -117,24 +117,10 @@ html[dir="rtl"] {
     .clearfix;
 }
 
-#masthead-download-firefox {
-    display: none;
-    float: right;
-    margin-top: 10px;
-    font-weight: normal;
-    .font-size(@largeFontSize);
-    padding: 8px 30px;
-    border-radius: .4em;
-}
-
 html[dir="rtl"] {
     #site-header-logo {
         float: right;
         margin: 0 0 0 100px;
-    }
-
-    #masthead-download-firefox {
-        float: left;
     }
 }
 
@@ -772,10 +758,6 @@ html[dir="rtl"] {
         }
     }
 
-    #masthead-download-firefox {
-        padding: 8px 20px;
-    }
-
     .container {
         width: @breakTablet - (@baseLine * 2);
     }
@@ -884,7 +866,7 @@ html[dir="rtl"] {
         margin: 0;
     }
 
-    #masthead-download-firefox, #download-wrapper {
+    #download-wrapper {
         // js displays the buttons for non fx browsers, so this needs to be
         // important to override the generated inline style
         display: none !important;

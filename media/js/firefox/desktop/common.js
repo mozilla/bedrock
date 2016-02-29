@@ -6,16 +6,9 @@
     'use strict';
 
     var client = w.Mozilla.Client;
-
-    var $mastheadDownloadFirefox = $('#masthead-download-firefox');
     var $html = $('html');
 
     function showDownloadButtons() {
-        // if not IE, top nav download button can link directly to scene 2 of /firefox/new/
-        if (navigator.appVersion.indexOf('MSIE') === -1) {
-            $mastheadDownloadFirefox.attr('href', $mastheadDownloadFirefox.attr('href') + '#download-fx');
-        }
-
         var downloadVersion = 'Firefox for Desktop';
         // hide the footer download button and extend email form to full width
         $('#download-wrapper').show();
@@ -26,9 +19,6 @@
 
         // show download button in sticky nav on overview page
         $('#sticky-download-desktop').fadeIn('fast');
-
-        // show the top nav download button and set up GA tracking
-        $mastheadDownloadFirefox.attr({'data-interaction': 'download click - nav', 'data-download-version': downloadVersion}).fadeIn('fast');
 
         // Track clicks on Nav CTA
         $('#sticky-download-desktop .download-link').attr('data-interaction', 'download click - nav');
