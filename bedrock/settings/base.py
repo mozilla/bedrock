@@ -1021,11 +1021,6 @@ FIREFOX_OS_FEED_LOCALES = [feed[0] for feed in FIREFOX_OS_FEEDS]
 
 TABLEAU_DB_URL = config('TABLEAU_DB_URL', default=None)
 
-MAXMIND_DB_URL = config('MAXMIND_DB_URL', default=None)
-MAXMIND_DB_PATH = config('MAXMIND_DB_PATH',
-                         default=path('..', 'GeoIP2-Country.mmdb'))
-MAXMIND_DEFAULT_COUNTRY = config('MAXMIND_DEFAULT_COUNTRY', default='US')
-
 ADMINS = MANAGERS = config('ADMINS', cast=json.loads,
                            default='[]')
 

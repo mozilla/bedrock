@@ -6,9 +6,6 @@
 # sha256: -ZiCO3pvAOX4Qh6wYjVcTVCsfkq4XWU4Kn5WiV9CBS0
 MySQL-python==1.2.3c1
 
-# sha256: z7Y2FZPiv53Fe_051X6y8U4-RhzuMzrC_-2w-HP3l80
-maxminddb==1.1.1
-
 # sha256: _d1HqNBI4MX0Lu5RGoqvNYkcmW1slZVTx77Is6x0s8s
 newrelic==2.50.0.39
 
