@@ -299,4 +299,7 @@ redirectpatterns = (
     redirect(r'^firefox/os/2\.5/?$', 'firefox.os.index'),
     redirect(r'^firefox/os/faq/?$',
              'https://support.mozilla.org/products/firefox-os'),
+
+    # Bug 1252332
+    redirect(r'^sync/?$', 'firefox.sync'),
 )
