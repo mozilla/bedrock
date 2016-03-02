@@ -1,0 +1,42 @@
+machine:
+  python:
+    version: 2.7.10
+  node:
+    version: 0.12.0
+  environment:
+    PIP_DISABLE_PIP_VERSION_CHECK: true
+    NOSE_WITH_XUNIT: true
+    NOSE_XUNIT_FILE: "$CIRCLE_TEST_REPORTS/django/nosetests.xml"
+    DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+    LOG_LEVEL: 40
+    ADMINS: '["thedude@example.com"]'
+    HMAC_KEYS: '{"2013-01-01": "prositneujahr"}'
+
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init --recursive
+
+dependencies:
+  cache_directories:
+    - node_modules
+  override:
+    - npm install
+    - pip install -r requirements/pip.txt
+    - python bin/peep.py install -r requirements/dev.txt --no-use-wheel
+    - python bin/peep.py install -r requirements/prod.txt --no-use-wheel
+    - python bin/peep.py install -r requirements/docker.txt --no-use-wheel
+    - python bin/peep.py install -r requirements/test.txt --no-use-wheel
+
+test:
+  pre:
+    - flake8 bedrock lib tests
+    - python manage.py runscript check_calendars
+    - python manage.py version
+    - python manage.py migrate --noinput
+    - python manage.py collectstatic --noinput -v 0
+    - mkdir -p "$CIRCLE_TEST_REPORTS/django"
+  override:
+    - grunt test
+    - python manage.py test
+    - py.test --junitxml="$CIRCLE_TEST_REPORTS/redirects.xml" -r a -m smoke tests/redirects
