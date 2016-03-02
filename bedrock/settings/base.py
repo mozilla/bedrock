@@ -942,9 +942,6 @@ SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
                           'es-AR', 'es-CL', 'es-ES', 'es-MX',
                           'fr', 'hu', 'id', 'pl', 'pt-BR', 'ru']
 
-# Use bedrock Gruntfile.js for live reload
-USE_GRUNT_LIVERELOAD = config('USE_GRUNT_LIVERELOAD', cast=bool, default=False)
-
 # Publishing system config
 RNA = {
     'BASE_URL': config('RNA_BASE_URL', default='https://nucleus.mozilla.org/rna/'),
