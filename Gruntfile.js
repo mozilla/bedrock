@@ -12,11 +12,12 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        jshint: {
+        eslint: {
             options: {
-                jshintrc: true
+                configFile: './.eslintrc.js',
+                cache: true
             },
-            development: ['media/js/**/*.js']
+            target: ['media/js/**/*.js', '!media/js/libs/*.js']
         },
         jsonlint: {
             all : {
@@ -27,17 +28,9 @@ module.exports = function (grunt) {
             }
         },
         watch: {
-            options: {
-                port: 35729,
-                livereload: true,
-                nospawn: true
-            },
             scripts: {
-                files: ['media/js/**/*.js'],
-                tasks: ['jshint']
-            },
-            html: {
-                files: ['bedrock/**/*.html']
+                files: ['media/js/**/*.js', '!media/js/libs/*.js'],
+                tasks: ['eslint']
             },
             json: {
                 files: ['*.json'],
@@ -54,7 +47,6 @@ module.exports = function (grunt) {
 
     // Update the config to only build the changed files.
     grunt.event.on('watch', function (action, filepath) {
-        grunt.config(['jshint', 'development'], [filepath]);
         grunt.config(['jsonlint', 'all'], [filepath]);
     });
 
