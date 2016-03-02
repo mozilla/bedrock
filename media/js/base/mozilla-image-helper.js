@@ -25,6 +25,8 @@ if (typeof Mozilla == 'undefined') {
  */
 Mozilla.ImageHelper = function() {};
 
+Mozilla.ImageHelper.is_high_dpi = null;
+
 // }}}
 
 // Platform Images
@@ -66,6 +68,23 @@ Mozilla.ImageHelper.initPlatformImages = function() {
 
         $img.addClass(site.platform);
     });
+};
+
+// }}}
+// {{{ isHighDpi()
+
+Mozilla.ImageHelper.isHighDpi = function() {
+    if (Mozilla.ImageHelper.is_high_dpi === null) {
+        var media_query = '(-webkit-min-device-pixel-ratio: 1.5),' +
+                          '(-o-min-device-pixel-ratio: 3/2),' +
+                          '(min--moz-device-pixel-ratio: 1.5),' +
+                          '(min-resolution: 1.5dppx)';
+
+        Mozilla.ImageHelper.is_high_dpi = (window.devicePixelRatio > 1 ||
+               (window.matchMedia && window.matchMedia(media_query).matches));
+    }
+
+    return Mozilla.ImageHelper.is_high_dpi;
 };
 
 // }}}
