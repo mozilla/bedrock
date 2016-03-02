@@ -570,3 +570,13 @@ def privatebrowsing_newsletter_test(request, template='firefox/private-browsing.
         template = 'firefox/private-browsing-{0}.html'.format(variant)
 
     return l10n_utils.render(request, template)
+
+
+def sync(request):
+    locale = l10n_utils.get_locale(request)
+    version = request.GET.get('v', None)
+
+    if (locale != 'en-US' or version not in ['2', '3']):
+        version = None
+
+    return l10n_utils.render(request, 'firefox/sync.html', {'version': version})

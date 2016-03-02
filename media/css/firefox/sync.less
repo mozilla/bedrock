@@ -48,6 +48,8 @@
     .font-size(@largeFontSize);
     text-transform: uppercase;
     .transition();
+    width: 60%;
+    margin: 0 auto;
     &:focus,
     &:active,
     &:hover {
@@ -67,7 +69,6 @@
 }
 
 .sky button.sync-button {
-    width: 100%;
     border: none;
     cursor: pointer;
 }
@@ -95,16 +96,24 @@
         padding-bottom: @baseLine * 2;
     }
     .buttons {
-        .span(8);
-        .offset(2);
+        .span(10);
+        .offset(1);
+        float: none;
         clear: both;
 
         > div {
             padding: 0 (@baseLine * 5) @baseLine;
         }
 
-        > div.show-fx-31-signed-in {
+        > div.show-fx-31-signed-in,
+        > div.show-fx-31-signed-out {
             padding: 0 @baseLine @baseLine;
+        }
+
+        > .show-fx-31-signed-in p {
+            .font-size(18px);
+            .open-sans-light();
+            text-align: center;
         }
     }
     .warning {
@@ -139,13 +148,47 @@
 
 .primary-buttons {
     .flexbox();
-    .justify-content(space-around);
+    .justify-content(center);
     list-style-type: none;
 
     & > li {
-        flex-basis: 46%;
         margin: 0;
+        padding: 0 @baseLine;
         text-align: center;
+    }
+}
+
+#fxa-email-form {
+    .flexbox();
+    .justify-content(center);
+    .flex-wrap(wrap);
+
+    label {
+        display: block;
+        flex-basis: 100%;
+        margin-bottom: @baseLine;
+        text-align: center;
+        .font-size(18px);
+        .open-sans-light();
+    }
+
+    .fxa-email {
+        display: none;
+
+        &.active {
+            display: block
+        }
+    }
+
+    button,
+    input {
+        .flex(1);
+        margin: 0 (@baseLine / 2);
+    }
+
+    input {
+        .border-box();
+        padding: 15px 10px;
     }
 }
 
@@ -460,6 +503,7 @@ html[dir="rtl"] {
 
         .buttons {
             margin-left: 50px;
+            .span(9);
         }
     }
 
@@ -570,6 +614,10 @@ html[dir="rtl"] {
         margin: 0 auto @baseLine auto;
     }
 
+    .sky .sync-button {
+        width: 100%;
+    }
+
     .primary {
         .warning,
         .buttons {
@@ -593,6 +641,21 @@ html[dir="rtl"] {
         display: block;
 
         li {
+            margin-bottom: @baseLine;
+        }
+    }
+
+    #fxa-email-form {
+        display: block;
+
+        button,
+        input {
+            margin: 0;
+        }
+
+        input {
+            display: block;
+            width: 100%;
             margin-bottom: @baseLine;
         }
     }

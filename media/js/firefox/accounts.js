@@ -5,6 +5,10 @@
 ;(function(Mozilla, $) {
     'use strict';
 
+    var params = new window._SearchParams();
+    var testVariation = params.get('v') || false;
+    var fxaEmail;
+
     var $fxaFrame = $('#fxa');
     var fxaIframeHost = $('main').data('fxa-iframe-host');
     var fxaIframeSrc = $fxaFrame.data('src');
@@ -18,6 +22,17 @@
     // check user's Fx version to determine FxA iframe experience
     if (Mozilla.Client.FirefoxMajorVersion >= 46) {
         fxaIframeSrc = fxaIframeSrc.replace('context=iframe', 'context=fx_firstrun_v2');
+    }
+
+    // check for fxaEmail in sessionStorage or URL params
+    try {
+        fxaEmail = sessionStorage.getItem('fxa-email');
+        sessionStorage.removeItem('fxa-email');
+    } catch(ex) {}
+
+    // if email address provided, send to FxA frame
+    if (fxaEmail && /(.+)@(.+)\.(.+){2,}/.test(fxaEmail)) {
+        fxaIframeSrc += '&email=' + encodeURIComponent(fxaEmail);
     }
 
     function onFormPing(data) {
@@ -53,16 +68,16 @@
         $fxaFrame.css('height', formHeight + 'px').addClass('loaded');
     }
 
-    function sendGAEvent(type, label) {
+    function sendGAEvent(type, extra) {
         // we'll always have a type
         var data = {
             'event': 'mau2account',
             'interaction': type
         };
 
-        // label may or may not be provided
-        if (label !== undefined) {
-            data.label = label;
+        // merge additional properties if available
+        if (extra) {
+            $.extend(data, extra);
         }
 
         window.dataLayer.push(data);
@@ -94,10 +109,14 @@
         case 'signup_must_verify':
             // if emailOptIn property is present, send value to GA
             if (data.data.hasOwnProperty('emailOptIn')) {
-                sendGAEvent('email opt-in', data.data.emailOptIn);
+                sendGAEvent('email opt-in', { 'label': data.data.emailOptIn });
             }
 
-            sendGAEvent('success');
+            if (testVariation) {
+                sendGAEvent('success', { 'test-variation': testVariation });
+            } else {
+                sendGAEvent('success');
+            }
             break;
         // track when user returns to page after verifying email (may never happen)
         case 'verification_complete':
