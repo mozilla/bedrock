@@ -231,15 +231,11 @@ def high_res_img(ctx, url, optional_attributes=None):
         class_name = ''
         attrs = ''
 
-    # Don't download any image until the javascript sets it based on
-    # data-src so we can do high-dpi detection. If no js, show the
-    # normal-res version.
-    markup = ('<img class="js {class_name}" src="" data-processed="false" '
-              'data-src="{url}" data-high-res="true" '
-              'data-high-res-src="{url_high_res}"{attrs}><noscript>'
-              '<img class="{class_name}" src="{url}"{attrs}>'
-              '</noscript>').format(url=url, url_high_res=url_high_res,
-                                    attrs=attrs, class_name=class_name)
+    # Use native srcset attribute for high res images
+    markup = ('<img class="{class_name}" src="{url}" '
+              'srcset="{url_high_res} 1.5x"'
+              '{attrs}>').format(url=url, url_high_res=url_high_res,
+                                 attrs=attrs, class_name=class_name)
 
     return jinja2.Markup(markup)
 
