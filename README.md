@@ -4,8 +4,7 @@ bedrock
 *bedrock* is the code name of mozilla.org. It is as shiny,
 awesome, and open sourcy as always. Perhaps even a little more.
 
-[![Build Status](https://travis-ci.org/mozilla/bedrock.svg?branch=master)](https://travis-ci.org/mozilla/bedrock)
-[![Coverage Status](https://img.shields.io/coveralls/mozilla/bedrock.svg)](https://coveralls.io/r/mozilla/bedrock)
+[![Circle CI](https://circleci.com/gh/mozilla/bedrock.svg?style=svg)](https://circleci.com/gh/mozilla/bedrock)
 
 Docs
 ----

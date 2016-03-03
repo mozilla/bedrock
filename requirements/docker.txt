@@ -1,11 +1,11 @@
 # Python requirements needed in docker images
 
+# sha256: JLo_Moq6CNjVBbwqj2ipTr4kqF6Eg2QLZnIhvA79Ox4
+psycopg2==2.5.4
+
 # sha256: pRec3pItK04EXuWxHocyPud9NjrkApT8glLyXWoOrwY
 # sha256: i8g1CCiCrZoBLNeQxGABHk2WvzUS2YoE09q75FOToIk
 gunicorn==19.3.0
 
 # sha256: dafTE4z6nNgadgwvikPz2Alh7cjk8nBD3BQSIGySYoc
 uwsgi==2.0.11.1
-
-# sha256: JLo_Moq6CNjVBbwqj2ipTr4kqF6Eg2QLZnIhvA79Ox4
-psycopg2==2.5.4
