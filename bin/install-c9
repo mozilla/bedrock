@@ -4,10 +4,10 @@ git submodule update --init --recursive
 sudo apt-get update
 sudo apt-get install -y libmysqlclient-dev libxml2-dev libxslt1-dev python-dev
 # keep pip updated
-sudo python bin/peep.py install -r requirements/pip.txt --no-use-wheel
-sudo python bin/peep.py install -r requirements/dev.txt --no-use-wheel
+sudo python bin/pipstrap.py
+sudo pip install -r requirements/dev.txt
 # mysql in the prod requirements
-sudo python bin/peep.py install -r requirements/prod.txt --no-use-wheel
+sudo pip install -r requirements/prod.txt
 sudo pip install ipython # highly recommended, but not required so not in requirements/dev.txt
 # default npm install -g destination in c9 is in /home/ubuntu/.nvm/v0.10.28/
 npm install -g less

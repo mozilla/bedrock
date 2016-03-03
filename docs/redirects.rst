@@ -165,7 +165,7 @@ following commands:
 .. code-block:: bash
 
     $ source venv/bin/activate
-    $ bin/peep.py install -r requirements/test.txt
+    $ pip install -r requirements/test.txt
 
 Running the tests
 ~~~~~~~~~~~~~~~~~

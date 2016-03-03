@@ -1,3 +1,0 @@
-# sha256: pn5Uqg8mttYszsXMZzXv8gXdD-0HX1asPTER6R5EZ_w
-# sha256: ifO2JtIl4I5_INhQRK-kD2EusyhEhBaYE9wtBjHypVY
-pip==6.1.1

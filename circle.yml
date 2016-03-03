@@ -34,11 +34,11 @@ dependencies:
     - "~/docker"
   override:
     - npm install
-    - pip install -r requirements/pip.txt
-    - python bin/peep.py install -r requirements/dev.txt --no-use-wheel
-    - python bin/peep.py install -r requirements/prod.txt --no-use-wheel
-    - python bin/peep.py install -r requirements/docker.txt --no-use-wheel
-    - python bin/peep.py install -r requirements/test.txt --no-use-wheel
+    - bin/pipstrap.py
+    - pip install -r requirements/dev.txt
+    - pip install -r requirements/prod.txt
+    - pip install -r requirements/docker.txt
+    - pip install -r requirements/test.txt
     - bin/circleci-demo-sync.sh
 
 test:
