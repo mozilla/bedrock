@@ -27,12 +27,17 @@ def internet_explorer(selenium):
 
 @pytest.fixture(autouse=True)
 def filter_capabilities(request):
+    marker = None
     if request.node.get_marker('skip_if_firefox') and request.getfuncargvalue('firefox'):
-        pytest.skip('Test must not be run on Firefox')
+        marker = request.node.get_marker('skip_if_firefox')
     if request.node.get_marker('skip_if_not_firefox') and not request.getfuncargvalue('firefox'):
-        pytest.skip('Test must only be run on Firefox')
+        marker = request.node.get_marker('skip_if_not_firefox')
     if request.node.get_marker('skip_if_internet_explorer') and request.getfuncargvalue('internet_explorer'):
-        pytest.skip('Test must not be run on Internet Explorer')
+        marker = request.node.get_marker('skip_if_internet_explorer')
+
+    if marker:
+        reason = marker.kwargs.get('reason') or marker.name
+        pytest.skip(reason)
 
 
 @pytest.fixture

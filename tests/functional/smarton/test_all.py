@@ -7,7 +7,7 @@ import pytest
 from pages.smarton.base import SmartOnBasePage
 
 
-@pytest.mark.skip_if_firefox
+@pytest.mark.skip_if_firefox(reason='Download button is not shown to Firefox browsers.')
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('slug', [
     pytest.mark.smoke(('tracking')),
@@ -18,7 +18,7 @@ def test_download_button_displayed(slug, base_url, selenium):
     assert page.download_button.is_displayed
 
 
-@pytest.mark.skip_if_not_firefox
+@pytest.mark.skip_if_not_firefox(reason='Newsletter is only shown to Firefox browsers.')
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('slug', [
     pytest.mark.smoke(('tracking')),

@@ -8,12 +8,11 @@ from pages.firefox.base import FirefoxBasePage
 from pages.regions.download_button import DownloadButton
 
 
-class FirefoxNewPage(FirefoxBasePage):
+class DownloadPage(FirefoxBasePage):
 
     _url = '{base_url}/{locale}/firefox/new/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
-    _thank_you_message_locator = (By.ID, 'scene2-main')
 
     @property
     def download_button(self):
@@ -22,18 +21,5 @@ class FirefoxNewPage(FirefoxBasePage):
 
     def download_firefox(self):
         self.download_button.click()
-        self.wait.until(lambda s: self.is_thank_you_message_displayed)
-
-    @property
-    def is_thank_you_message_displayed(self):
-        return self.is_element_displayed(self._thank_you_message_locator)
-
-
-class FirefoxNewThankYouPage(FirefoxNewPage):
-
-    _url = '{base_url}/{locale}/firefox/new/?scene=2#download-fx'
-
-    def wait_for_page_to_load(self):
-        super(FirefoxNewPage, self).wait_for_page_to_load()
-        self.wait.until(lambda s: self.is_thank_you_message_displayed)
-        return self
+        from pages.firefox.new.thank_you import ThankYouPage
+        return ThankYouPage(self.base_url, self.selenium).wait_for_page_to_load()

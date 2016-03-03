@@ -7,7 +7,7 @@ import pytest
 from pages.firefox.sync import FirefoxSyncPage
 
 
-@pytest.mark.skip_if_firefox
+@pytest.mark.skip_if_firefox(reason='Download button is not shown for Firefox browsers.')
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = FirefoxSyncPage(base_url, selenium).open()
