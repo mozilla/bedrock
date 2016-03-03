@@ -454,6 +454,7 @@ class TestContributeOldPage(TestCase):
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
     def test_webmaker_mentor_signup_timeout_fail(self, mock_subscribe):
         """Test Webmaker Mentor signup form when request times out"""
+        mock_subscribe.side_effect = basket.BasketException
         self.data.update(interest='education', newsletter=True)
         res = self.client.post(self.url_en, self.data)
 
@@ -600,6 +601,7 @@ class TestContribute(TestCase):
     @patch('bedrock.mozorg.email_contribute.basket.subscribe')
     def test_webmaker_mentor_signup_timeout_fail(self, mock_subscribe):
         """Test Webmaker Mentor signup form when request times out"""
+        mock_subscribe.side_effect = basket.BasketException
         self.data.update(interest='education', newsletter=True)
         res = self.client.post(self.url_en, self.data)
 

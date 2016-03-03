@@ -143,17 +143,15 @@ def handle_form(request, form):
 
         if data.get('newsletter', False):
             if data.get('interest', False) == 'education':
-                try:
-                    basket.subscribe(data['email'], 'mozilla-learning-network',
-                                     source_url=request.build_absolute_uri())
-                except basket.BasketException:
-                    pass
+                newsletter = 'mozilla-learning-network'
             else:
-                try:
-                    basket.subscribe(data['email'], 'about-mozilla',
-                                     source_url=request.build_absolute_uri())
-                except basket.BasketException:
-                    pass
+                newsletter = 'about-mozilla'
+
+            try:
+                basket.subscribe(data['email'], newsletter,
+                                 source_url=request.build_absolute_uri())
+            except basket.BasketException:
+                pass
 
         return True
     return False
