@@ -1,3 +1,5 @@
+/* exported versionCompare */
+
 /**
 * Compares two software version numbers (e.g. "1.7.1" or "1.2b").
 *

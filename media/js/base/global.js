@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/* exported trigger_ie_download, init_download_links, update_download_text_for_old_fx,
+   init_mobile_download_links, init_lang_switcher */
 
 // download buttons
 
