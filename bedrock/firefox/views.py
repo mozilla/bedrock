@@ -263,6 +263,15 @@ def show_40_firstrun(version):
     return version >= Version('40.0')
 
 
+def show_old_hello_ftu(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version < Version('45.0')
+
+
 class LatestFxView(TemplateView):
 
     """
@@ -439,7 +448,16 @@ def hello(request):
 
 class HelloStartView(LatestFxView):
     non_fx_redirect = 'firefox.hello'
-    template_name = 'firefox/hello/start.html'
+
+    def get_template_names(self):
+        version = self.kwargs.get('version') or ''
+
+        if (show_old_hello_ftu(version)):
+            template = 'firefox/hello/start.html'
+        else:
+            template = 'firefox/hello/start-45.html'
+
+        return [template]
 
 
 class FeedbackView(TemplateView):
