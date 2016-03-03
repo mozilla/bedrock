@@ -270,24 +270,6 @@
         }
     }
 
-    // track link on the primary CTA
-    $('#intro .dl-button').attr({
-        'data-interaction': 'download click',
-        'data-download-version': 'Firefox for Android'
-    });
-
-    // track link on the secondary CTA
-    $('#subscribe-download-wrapper .dl-button').attr({
-        'data-interaction': 'button download click',
-        'data-download-version': 'Firefox for Android'
-    });
-
-    // track links except the accordion
-    $('#privacy, #sync, #subscribe-download-wrapper ul').attr({
-        'data-interaction': 'link click',
-        'data-download-version': 'href'
-    });
-
     if (hasWidget) {
         sendToDeviceWidgetTop = $('#send-to-device').offset().top;
         sendToDeviceWidget = new Mozilla.SendToDevice();
