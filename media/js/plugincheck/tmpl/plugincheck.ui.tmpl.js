@@ -1,3 +1,6 @@
+/* exported vulnerablePluginsTmpl, outdatedPluginsTmpl, unknownPluginsTmpl,
+   upToDatePluginsTmpl */
+
 var vulnerablePluginsTmpl = '{{#vulnerablePlugins}} <tr><th scope="row">' +
                         '<img class="icon" width="60" height="60" src="{{icon}}" alt="" />' +
                         '{{plugin_name}}' +

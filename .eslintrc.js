@@ -23,5 +23,9 @@ module.exports = {
             2,
             "always"
         ]
+    },
+    "globals": {
+        "Mozilla": true,
+        "site": true
     }
 };

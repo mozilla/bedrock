@@ -1,3 +1,6 @@
+/* global PluginCheck, Mustache, vulnerablePluginsTmpl, outdatedPluginsTmpl,
+   unknownPluginsTmpl, upToDatePluginsTmpl */
+
 $(function() {
     'use strict';
 
