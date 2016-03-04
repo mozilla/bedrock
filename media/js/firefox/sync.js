@@ -21,6 +21,7 @@
     // Variation #1: Firefox 31+ signed-in to Sync
     // Default (do nothing)
 
+    var params = new window._SearchParams();
     var client = window.Mozilla.Client;
     var fxMasterVersion = client.FirefoxMajorVersion;
     var state = 'Unknown';
@@ -141,7 +142,7 @@
             'browser': state
         });
 
-        Mozilla.UITour.showFirefoxAccounts();
+        Mozilla.UITour.showFirefoxAccounts(params.utmParamsFxA());
     });
 
     // v2/3 variations only for Fx 31+ signed out of sync

@@ -10,6 +10,7 @@ if (typeof window.Mozilla === 'undefined') {
 ;(function($, Mozilla) {
     'use strict';
 
+    var params = new window._SearchParams();
     var $html = $('html');
     var $body = $('body');
 
@@ -109,7 +110,7 @@ if (typeof window.Mozilla === 'undefined') {
     // Firefox Sync sign in flow button
     $('.sync-button').on('click', function(e) {
         e.preventDefault();
-        Mozilla.UITour.showFirefoxAccounts();
+        Mozilla.UITour.showFirefoxAccounts(params.utmParamsFxA());
     });
 
     // Show Sync instructions in a modal doorhanger

@@ -428,18 +428,43 @@ Passing ``defaultBrowser`` will set Firefox as the default web browser.
 
     ``setConfiguration('defaultBrowser')`` is only available in Firefox 40 onward.
 
-showFirefoxAccounts();
+showFirefoxAccounts(extraURLCampaignParams);
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Allows a web page to navigate directly to ``about:accounts?action=signup``
+Allows a web page to navigate directly to
+``about:accounts?action=signup&entrypoint=uitour``. In Firefox 47 and beyond,
+optionally accepts an object of ``utm_*`` key/values, which will be encoded and
+appended to the ``about:accounts`` querystring.
+
+.. Important::
+
+    All keys in ``extraURLCampaignParams`` must begin with ``utm_``. If an
+    invalid key is present, the call to ``showFirefoxAccounts`` will fail.
 
 .. code-block:: javascript
 
+    // no extra utm_ campaign params. will open
+    // about:accounts?action=signup&entrypoint=uitour
     Mozilla.UITour.showFirefoxAccounts();
+
+    // with extra utm_ campaign params. will open
+    // about:accounts?action=signup&entrypoint=uitour&utm_foo=bar&utm_bar=baz
+    Mozilla.UITour.showFirefoxAccounts({
+        'utm_foo': 'bar',
+        'utm_bar': 'baz'
+    });
 
 .. Important::
 
     ``showFirefoxAccounts()`` is only available in Firefox 31 onward.
+    ``extraURLCampaignParams`` parameter only functional in Firefox 47 onward.
+
+.. note::
+
+    A convenience method named ``utmParamsFxA`` exists in
+    ``js/base/search-params.js`` that pulls all ``utm_`` params from the current
+    page's URL and places them in an object (along with pre-defined defaults)
+    ready to pass to ``showFirefoxAccounts``.
 
 resetFirefox();
 ^^^^^^^^^^^^^^^
