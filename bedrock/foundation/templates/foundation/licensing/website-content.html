@@ -38,9 +38,9 @@
   <p>{{ _('If you have any questions about complying with our licensing terms for this collection, you should email:') }}</p>
 
   <ul>
-    <li><a href="mailto:trademarks@mozilla.com">trademarks@mozilla.com</a> {{ _('for Firefox or Thunderbird trademark and logo questions; or') }}
-    <li><a href="mailto:trademarks@mozilla.org">trademarks@mozilla.org</a> {{ _('for other trademark or logo questions; or') }} </li>
-    <li><a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a> {{ _('for copyright questions.') }}</li>
+    <li>{{ _('<a href="mailto:%(email)s">%(email)s</a> for general trademark questions; or'|format(email='trademarks@mozilla.com')) }}
+    <li>{{ _('<a href="mailto:%(email)s">%(email)s</a> for permission to use Mozilla’s trademarks or logos; or'|format(email='trademark-permissions@mozilla.com')) }} </li>
+    <li>{{ _('<a href="mailto:%(email)s">%(email)s</a> for copyright questions.'|format(email='licensing@mozilla.org')) }}</li>
   </ul>
 
   <p>
