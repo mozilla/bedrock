@@ -1,0 +1,8 @@
+LOGLEVEL=info
+ENABLE_CSP_MIDDLEWARE=True
+DEBUG=False
+DATABASE_URL=sqlite:///bedrock.db
+DEV=True
+DISABLE_SSL=False
+SECRET_KEY=itsasekrit
+ALLOWED_HOSTS=*
