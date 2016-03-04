@@ -7,8 +7,7 @@ import pytest
 from pages.firefox.win10_welcome import Win10WelcomePage
 
 
-# Skip this test in Firefox as what gets shown has a dependency on UITour API.
-@pytest.mark.skip_if_firefox
+@pytest.mark.skip_if_firefox(reason='Firefox content is dependent on UITour API.')
 @pytest.mark.nondestructive
 def test_first_run(base_url, selenium):
     page = Win10WelcomePage(base_url, selenium).open()
