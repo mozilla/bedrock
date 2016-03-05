@@ -91,3 +91,16 @@ def impressum(request):
                                reverse('legal.impressum')), permanent=True)
 
     return l10n_utils.render(request, 'legal/impressum.html', {'localized': True})
+
+
+def legal_newsletter_test(request, template='legal/index.html'):
+    """
+    Renders the legal index page template.
+    """
+
+    variant = request.GET.get('v', '')
+
+    if variant == 'b':
+        template = 'legal/index-b.html'
+
+    return l10n_utils.render(request, template)

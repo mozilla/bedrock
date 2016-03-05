@@ -1,0 +1,203 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../sandstone/lib.less';
+
+// Newsletter signup testing - bug 1253413
+#newsletter-subscribe {
+    background: @mozillaRed;
+    color: #fff;
+    padding: 0;
+    margin: (@baseLine * 2) 0 -(@baseLine * 3);
+
+    .billboard {
+        background: transparent;
+        border: 0;
+        padding: 0;
+        .box-shadow(none);
+    }
+
+    h3,
+    h4 {
+        color: #fff;
+        text-shadow: none;
+    }
+
+    .container {
+        width: @widthDesktop;
+        margin: 0 auto;
+        padding: (@baseLine * 2) 0;
+
+        @media (max-width: @breakDesktop) {
+            width: @widthTablet;
+        }
+
+        @media (max-width: @breakTablet) {
+            width: @widthMobile;
+        }
+    }
+
+    .form-title {
+        .span(4);
+        background: url(/media/img/newsletter/mozorg-newsletter.svg) left top no-repeat;
+        .background-size(150px, 150px);
+        margin-left: -((@gridColumnWidth * 7) + (@gridGutterWidth * 6));
+        margin-top: -20px;
+        min-height: 120px;
+        padding: 10px 0 20px 180px;
+        text-align: left;
+        text-shadow: none;
+
+        h3 {
+            .font-size(40px);
+            margin: 0 0 .2em;
+        }
+
+        h4 {
+            .font-size(24px);
+            line-height: 1.1;
+        }
+
+        @media (max-width: @breakDesktop) {
+            .background-size(120px, 120px);
+            .span_narrow(4);
+            background-position: left 10px;
+            padding-left: 140px;
+            margin-left: -((@gridColumnWidthNarrow * 7) + (@gridGutterWidth * 6));
+            margin-top: -10px;
+
+            h3 {
+                .font-size(32px);
+            }
+
+            h4 {
+                .font-size(20px);
+            }
+        }
+
+        @media (max-width: @breakTablet) {
+            .background-size(100px, 100px);
+            .span-all;
+            background-position: center top;
+            margin-top: 0;
+            min-height: 0;
+            padding-left: 0;
+            padding-top: 120px;
+            text-align: center;
+
+            h3 {
+                .font-size(32px);
+            }
+        }
+    }
+
+    .newsletter-form {
+        .span(5);
+        .offset(7);
+        padding-top: 20px;
+
+        .form-submit,
+        .form-contents {
+            .span-all;
+        }
+
+        @media (max-width: @breakDesktop) {
+            .span_narrow(5);
+            .offset_narrow(7);
+        }
+
+        @media (max-width: @breakTablet) {
+            .span-all;
+        }
+    }
+
+    .field-format label {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    input[type='email'] {
+        .border-box;
+        .border-radius(4px);
+        .box-shadow(none);
+        .font-size(@largeFontSize);
+        border: 0;
+        padding: .75em 20px;
+        width: 100%;
+        height: auto;
+        background: #fff;
+    }
+
+    select {
+        .font-size(@baseFontSize);
+        font-family: inherit;
+    }
+
+    .button {
+        .border-box;
+        .border-radius(5px);
+        .box-shadow(none);
+        .font-size(@largeFontSize);
+        .transition(background-color .15s ease);
+        background: transparent;
+        border: 2px solid #fff;
+        padding: .75em 20px;
+        text-shadow: none;
+        text-transform: uppercase;
+        width: 100%;
+
+        &:hover,
+        &:focus {
+            background: #33aae4;
+            background: rgba(255, 255, 255, .1);
+        }
+    }
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    #footer-email-errors {
+        .span-all;
+    }
+
+    #newsletter-form-thankyou {
+        color: #fff;
+
+        h3 {
+            color: #fff;
+        }
+    }
+}
+
+#home {
+    #newsletter-subscribe {
+        margin-bottom: 0;
+
+        h3 {
+            padding: 0;
+            text-align: left;
+
+            @media (max-width: @breakTablet) {
+                text-align: center;
+            }
+        }
+
+        ::-webkit-input-placeholder {
+           color: #ccc;
+           font-weight: normal;
+        }
+
+        ::-moz-placeholder {
+           color: #ccc;
+           font-weight: normal;
+        }
+
+        :-ms-input-placeholder {
+           color: #ccc;
+           font-weight: normal;
+        }
+    }
+}
