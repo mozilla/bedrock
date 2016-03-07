@@ -1,9 +1,12 @@
 machine:
+  services:
+    - docker
   python:
     version: 2.7.10
   node:
     version: 0.12.0
   environment:
+    # Django
     PIP_DISABLE_PIP_VERSION_CHECK: true
     NOSE_WITH_XUNIT: true
     NOSE_XUNIT_FILE: "$CIRCLE_TEST_REPORTS/django/nosetests.xml"
@@ -11,6 +14,14 @@ machine:
     LOG_LEVEL: 40
     ADMINS: '["thedude@example.com"]'
     HMAC_KEYS: '{"2013-01-01": "prositneujahr"}'
+    # Deis
+    DEIS_CONTROLLER: https://deis.us-west.moz.works
+    DEIS_USERNAME: circleci
+    # Docker
+    DOCKER_REPOSITORY: mozorg/bedrock
+    DOCKER_IMAGE_TAG: "$DOCKER_REPOSITORY:demo-$CIRCLE_SHA1"
+    DOCKER_EMAIL: foo@example.com
+    DOCKER_USERNAME: moztravis
 
 checkout:
   post:
@@ -20,6 +31,7 @@ checkout:
 dependencies:
   cache_directories:
     - node_modules
+    - "~/docker"
   override:
     - npm install
     - pip install -r requirements/pip.txt
@@ -27,6 +39,7 @@ dependencies:
     - python bin/peep.py install -r requirements/prod.txt --no-use-wheel
     - python bin/peep.py install -r requirements/docker.txt --no-use-wheel
     - python bin/peep.py install -r requirements/test.txt --no-use-wheel
+    - bin/circleci-demo-sync.sh
 
 test:
   pre:
@@ -40,3 +53,10 @@ test:
     - grunt test
     - python manage.py test
     - py.test --junitxml="$CIRCLE_TEST_REPORTS/redirects.xml" -r a -m smoke tests/redirects
+
+deployment:
+  demo:
+    branch: /demo__.+/
+    owner: mozilla
+    commands:
+      - bin/circleci-demo-deploy.sh
