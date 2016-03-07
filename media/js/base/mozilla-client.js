@@ -246,8 +246,8 @@ if (typeof Mozilla === 'undefined') {
             return;
         }
 
-        // Fire the fallback function in .2 seconds
-        var timer = window.setTimeout(fallback, 200);
+        // Fire the fallback function in .3 seconds
+        var timer = window.setTimeout(fallback, 300);
 
         // Trigger the API
         document.addEventListener('mozUITourResponse', listener);
