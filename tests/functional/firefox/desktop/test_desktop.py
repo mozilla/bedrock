@@ -12,4 +12,5 @@ from pages.firefox.desktop.desktop import DesktopPage
 @pytest.mark.nondestructive
 def test_primary_download_button_displayed(base_url, selenium):
     page = DesktopPage(base_url, selenium).open()
+    page.wait_for_download_button_to_display()
     assert page.primary_download_button.is_displayed

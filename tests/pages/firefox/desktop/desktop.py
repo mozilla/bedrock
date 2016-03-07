@@ -20,7 +20,9 @@ class DesktopPage(FirefoxDesktopBasePage):
         el = self.find_element(self._primary_download_locator)
         return DownloadButton(self, root=el)
 
+    def wait_for_download_button_to_display(self):
+        self.wait.until(lambda s: self.primary_download_button.is_displayed)
+
     def wait_for_page_to_load(self):
         super(FirefoxDesktopBasePage, self).wait_for_page_to_load()
-        self.wait.until(lambda s: self.primary_download_button.is_displayed)
         return self
