@@ -15,13 +15,3 @@ def test_search_language(base_url, selenium):
     page.search_for(language)
     for build in page.displayed_builds:
         assert language in build.language.lower()
-
-
-@pytest.mark.nondestructive
-def test_newsletter_default_values(base_url, selenium):
-    page = FirefoxAllPage(base_url, selenium).open()
-    page.newsletter.expand_form()
-    assert '' == page.newsletter.email
-    assert 'United States' == page.newsletter.country
-    assert not page.newsletter.privacy_policy_accepted
-    assert page.newsletter.is_privacy_policy_link_displayed

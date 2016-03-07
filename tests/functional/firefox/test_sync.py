@@ -20,14 +20,3 @@ def test_app_store_buttons_displayed(base_url, selenium):
     page = FirefoxSyncPage(base_url, selenium).open()
     assert page.is_play_store_button_displayed
     assert page.is_app_store_button_displayed
-
-
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_newsletter_default_values(base_url, selenium):
-    page = FirefoxSyncPage(base_url, selenium).open()
-    page.newsletter.expand_form()
-    assert '' == page.newsletter.email
-    assert 'United States' == page.newsletter.country
-    assert not page.newsletter.privacy_policy_accepted
-    assert page.newsletter.is_privacy_policy_link_displayed

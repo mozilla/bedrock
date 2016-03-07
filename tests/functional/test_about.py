@@ -21,14 +21,3 @@ def test_play_video(base_url, selenium):
     page.play_video()
     assert not page.is_video_overlay_displayed
     assert page.is_video_displayed
-
-
-@pytest.mark.smoke
-@pytest.mark.nondestructive
-def test_newsletter_default_values(base_url, selenium):
-    page = AboutPage(base_url, selenium).open()
-    page.newsletter.expand_form()
-    assert '' == page.newsletter.email
-    assert 'United States' == page.newsletter.country
-    assert not page.newsletter.privacy_policy_accepted
-    assert page.newsletter.is_privacy_policy_link_displayed
