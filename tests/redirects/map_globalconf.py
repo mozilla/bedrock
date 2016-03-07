@@ -1001,4 +1001,7 @@ URLS = flatten((
     url_test('/firefox/os/1.1/', '/firefox/os/'),
     url_test('/firefox/os/faq/',
              'https://support.mozilla.org/products/firefox-os'),
+
+    # Bug 1252332
+    url_test('/sync/', '/firefox/sync/'),
 ))
