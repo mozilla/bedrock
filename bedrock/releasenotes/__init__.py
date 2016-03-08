@@ -10,4 +10,5 @@ version_re = (r"\d+"              # major (x in x.y)
               "(?:a|b(?:eta)?)?"  # alpha/beta
               "(?:\d*)"           # alpha/beta version
               "(?:pre)?"          # pre release
-              "(?:\d)?")          # pre release version
+              "(?:\d)?"           # pre release version
+              "(?:esr)?")         # extended support release

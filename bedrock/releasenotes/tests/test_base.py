@@ -50,7 +50,7 @@ class TestRNAViews(TestCase):
             get_object_or_404.return_value)
         get_object_or_404.assert_called_with(
             Release, Q.return_value, version='version')
-        Q.assert_called_with(product='product')
+        Q.assert_called_once_with(product='product')
 
     @patch('bedrock.releasenotes.views.get_object_or_404')
     @patch('bedrock.releasenotes.views.Q')
@@ -59,7 +59,14 @@ class TestRNAViews(TestCase):
             get_object_or_404.return_value)
         Q.assert_any_call(product='Firefox')
         Q.assert_any_call(product='Firefox Extended Support Release')
-        Q.__or__.assert_called()
+
+    @patch('bedrock.releasenotes.views.get_object_or_404')
+    @patch('bedrock.releasenotes.views.Q')
+    def test_get_release_or_404_endswith_esr(self, Q, get_object_or_404):
+        eq_(views.get_release_or_404('45.0esr', 'Firefox'),
+            get_object_or_404.return_value)
+        Q.assert_any_call(product='Firefox')
+        Q.assert_any_call(product='Firefox Extended Support Release')
 
     @override_settings(DEV=False)
     @patch('bedrock.releasenotes.views.release_notes_template')
