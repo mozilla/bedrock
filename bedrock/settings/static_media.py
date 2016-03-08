@@ -359,19 +359,9 @@ PIPELINE_CSS = {
     'firefox_hello': {
         'source_filenames': (
             'css/firefox/family-nav.less',
-            'css/base/mozilla-modal.less',
-            'css/base/svg-animation-check.less',
-            'css/base/mozilla-share-cta.less',
             'css/firefox/hello/index.less',
         ),
         'output_filename': 'css/firefox_hello-bundle.css',
-    },
-    'firefox_hello_2016': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/hello/index-2016.less',
-        ),
-        'output_filename': 'css/firefox_hello_2016-bundle.css',
     },
     'firefox_ios': {
         'source_filenames': (
@@ -1271,33 +1261,13 @@ PIPELINE_JS = {
     'firefox_hello': {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
-            'js/base/mozilla-modal.js',
-            'js/base/svg-animation-check.js',
-            'js/base/mozilla-share-cta.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/hello/index.js',
-        ),
-        'output_filename': 'js/firefox_hello-bundle.js',
-    },
-    'firefox_hello_2016': {
-        'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/firefox/family-nav.js',
             'js/base/mozilla-svg-image-fallback.js',
-            'js/firefox/hello/index-2016.js',
+            'js/firefox/hello/index.js',
         ),
-        'output_filename': 'js/firefox_hello_2016-bundle.js',
-    },
-    'firefox_hello_ie9': {
-        'source_filenames': (
-            'js/libs/matchMedia.js',
-            'js/libs/matchMedia.addListener.js',
-        ),
-        'output_filename': 'js/firefox_hello_ie9-bundle.js',
+        'output_filename': 'js/firefox_hello-bundle.js',
     },
     'firefox_ios': {
         'source_filenames': (

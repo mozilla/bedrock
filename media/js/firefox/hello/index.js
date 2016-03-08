@@ -2,251 +2,130 @@
 * License, v. 2.0. If a copy of the MPL was not distributed with this
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function(Mozilla, w, $) {
+/* globals Promise */
+
+;(function(Mozilla, window, $) {
     'use strict';
 
-    w.dataLayer = w.dataLayer || [];
-
-    var $w = $(w);
+    var $window = $(window);
     var $document = $(document);
-    var $introImage = $('#intro-image');
-    var $animationStage = $('#animation-stage');
-    var $videoLink = $('#video-link');
-    var $videoContainer = $('#video-modal');
-    var $video = $('#hello-video');
-
     var client = Mozilla.Client;
-    var supportsHTML5Video = !!document.createElement('video').canPlayType;
-    var mqIsWide;
-    var tourSource = getParameterByName('utm_source');
+    var $outerWrapper = $('#outer-wrapper');
+    var $tryHelloButton = $('.try-hello-button');
 
-    // delay checking window size to account for fennec bug
-    // https://bugzilla.mozilla.org/show_bug.cgi?id=1071620
-    $w.on('load', function() {
-        if ($w.width() >= 740) {
-            if (Mozilla.SVGAnimCheck()) {
-                $animationStage.addClass('animate wide');
-            } else {
-                $('body').addClass('no-animation');
-            }
-        } else {
-            if (Mozilla.SVGAnimCheck.supportsCSSAnimations()) {
-                $animationStage.addClass('animate mini');
-            } else {
-                $('body').addClass('no-animation');
-            }
-        }
-    });
-
-    // resizing the browser with animation just displays the intro image
-    if (typeof matchMedia !== 'undefined') {
-        mqIsWide = matchMedia('(min-width: 760px)');
-
-        mqIsWide.addListener(function() {
-            if ($animationStage.hasClass('animate')) {
-                $animationStage.remove(); // why not?
-                $introImage.css('display', 'block');
-            }
-        });
-    }
-
-    // listen for events in/on Hello menu
-    var bindHelloObserver = function() {
-        Mozilla.UITour.observe(function(e) {
-            switch (e) {
-                case 'Loop:ChatWindowOpened':
-                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'StartConversation-NoTour'});
-                    break;
-                case 'Loop:RoomURLCopied':
-                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'URLCopied-NoTour'});
-                    break;
-                case 'Loop:RoomURLEmailed':
-                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'URLEmailed-NoTour'});
-                    break;
-            }
-        });
-    };
-
-    var handleVisibilityChange = function() {
-        if (document.hidden) {
-            // hide Hello menu & stop observer when changing tabs or minimizing window
-            Mozilla.UITour.observe(null);
-        } else {
-            // listen for Hello menu/chat window events
-            bindHelloObserver();
-        }
-    };
-
-    var showFxFooterMessaging = function() {
-        // show Fx with Hello footer messaging
-        $('#ctacopy-hellofx').show();
-
-        // hide footer download button
-        $('#download-fx').hide();
-
-        // show footer try button
-        $('#try-hello-footer').addClass('active');
-    };
-
-    var addLinkEvent = function (linkSelector, eventName) {
-        $(linkSelector).on('click', function(e) {
-            var newTab = (this.target === '_blank' || e.metaKey || e.ctrlKey);
-            var href = this.href;
-            if (newTab) {
-                w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': eventName});
-            } else {
-                e.preventDefault();
-                w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': eventName}, function() {
-                    w.location = href;
-                });
-            }
-        });
-    };
-
-    // get query string parameters
-    function getParameterByName (name) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
-        results = regex.exec(location.search);
-        return results === null ? 'none' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    }
-
-    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
-        // if Fx, hide all footer messaging
-        // (correct messaging to display determined below)
-        $('.dltry-copy').hide();
-
-        // mobile Fx shouldn't see dl button, so best fallback is 'Try Hello' link to SUMO
-        if (client.isFirefoxAndroid) {
-            showFxFooterMessaging();
-        }
-        // Hello exists in desktop version 35 and up
-        else if (client.FirefoxMajorVersion >= 35) {
-            showFxFooterMessaging();
-
-            if (!'Promise' in window) {
-                return;
-            }
-
-            Promise.all([
-                // check for the browser channel info
-                new Promise(function(resolve) {
-                    Mozilla.UITour.getConfiguration('appinfo', function(config) {
-                        resolve(config.defaultUpdateChannel);
-                    });
-                }),
-                // see if Hello is an available target in toolbar/overflow/customize menu
-                new Promise(function(resolve) {
-                    Mozilla.UITour.getConfiguration('availableTargets', function(config) {
-                        resolve(config.targets);
-                    });
-                }),
-            ]).then(function(results) {
-                var channel = results[0];
-                var targets = results[1];
-
-                // Because Hello is disabled on Firefox 38 ESR, we encourage ESR
-                // users to download non-ESR Firefox to try Hello
-                if (channel === 'esr') {
-                    // Change the copy
-                    $('#ctacopy-hellofx').hide();
-                    $('#ctacopy-esrfx').show();
-
-                    // Instead of the "Try Hellow now" button, show the download
-                    // button and change the label to "Try it now"
-                    $('#try-hello-footer').removeClass('active');
-                    $('#download-fx').show();
-                    $('.download-subtitle').text(window.trans('try-now'));
-
-                    addLinkEvent('.download-link', 'ClickDownload');
-
-                    return;
-                }
-
-                // 'loop' is the snazzy internal code name for Hello
-                if (targets && targets.indexOf('loop') > -1) {
-                    // show the intro try hello button
-                    $('#try-hello-intro').addClass('active');
-
-                    // activate sticky nav button
-                    $('#try-hello-nav').addClass('active');
-
-                    // convert the footer try hello link to a button
-                    $('#try-hello-footer').attr('role', 'button');
-
-                    // clicking either 'try Hello' button (intro/footer) will open the Hello menu
-                    $('.try-hello').on('click', function(e) {
-                        e.preventDefault();
-
-                        // (bug 1115227, bug 1130194) pass source to FTU; limit to set values.
-                        if (tourSource === 'twitter' || tourSource === 'facebook' || tourSource === 'wiki' || tourSource === 'email') {
-                            Mozilla.UITour.registerPageID('hello-tour_OpenPanel_' + tourSource);
-                        }
-
-                        // show Hello menu when icon in toolbar, customize menu, or overflow
-                        Mozilla.UITour.showMenu('loop', function() {
-                            // clicking Hello icon in toolbar does not close the menu
-                            // (bug 1113896), so allow closing by clicking anywhere on page
-                            $document.one('click', function() {
-                                Mozilla.UITour.hideMenu('loop');
-                            });
-
-                            w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'Open'});
-
-                            // hide the hello panel when browser resizes due to
-                            // https://bugzilla.mozilla.org/show_bug.cgi?id=1091785
-                            $w.one('resize', function() {
-                                Mozilla.UITour.hideMenu('loop');
-                            });
-                        });
-                    });
-
-                    // listen for events within Hello menu/chat window
-                    bindHelloObserver();
-
-                    // enable/disable listeners when document visibility changes
-                    $document.on('visibilitychange', handleVisibilityChange);
-
-                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'EligibleView'});
+    function shouldOpenHelloMenu() {
+        // check for the browser channel info
+        var appInfo = new Promise(function(resolve, reject) {
+            Mozilla.UITour.getConfiguration('appinfo', function(config) {
+                if (config && config.defaultUpdateChannel) {
+                    resolve(config.defaultUpdateChannel);
                 } else {
-                    // if Hello is not in toolbar/menu, change footer button to link
-                    // to a SUMO article and do some GA tracking
-                    addLinkEvent('#try-hello-footer', 'IneligibleClick');
-
-                    w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'IneligibleView'});
+                    reject('UITour: defaultUpdateChannel property not found.');
                 }
             });
-        } else {
-            // if Fx is version 34 or lower (no Hello support) display update messaging in footer
-            $('#ctacopy-oldfx').show();
+        });
 
-            addLinkEvent('.download-link', 'ClickUpgrade');
-        }
-    } else {
-        // for non-Fx users, show get Fx feature & remove node to maintain nth-child margin rules
-        // (we wont need this node/copy for non-Fx users)
-        $('#feature-account').remove();
-        $('#feature-getfx').css('display', 'inline-table');
+        // see if Hello is an available target in toolbar/overflow/customize menu
+        var availableTargets = new Promise(function(resolve, reject) {
+            Mozilla.UITour.getConfiguration('availableTargets', function(config) {
+                if (config && config.targets) {
+                    resolve(config.targets);
+                } else {
+                    reject('UITour: targets property not found.');
+                }
+            });
+        });
 
-        addLinkEvent('.download-link', 'ClickDownload');
+        return new Promise(function(resolve, reject) {
+            Promise.all([appInfo, availableTargets]).then(function(results) {
+                var channel = results[0];
+                var targets = results[1];
+                resolve(channel !== 'esr' && targets && targets.indexOf('loop') > -1);
+            }, function(reason) {
+                reject(reason);
+            });
+        });
     }
 
-    $videoLink.on('click', function(e) {
-        e.preventDefault();
+    function openHelloMenu() {
+        Mozilla.UITour.showMenu('loop', function() {
+            $document.one('click.hello', closeHelloMenu);
+            $window.one('resize.hello', closeHelloMenu);
+            $document.on('visibilitychange.hello', handleVisibilityChange);
 
-        Mozilla.Modal.createModal(this, $videoContainer, {
-            title: 'Hello',
-            onCreate: function() {
-                if (supportsHTML5Video) {
-                    setTimeout(function() {
-                        $video[0].play();
-                    }, 500);
-                }
-            }
+            window.dataLayer.push({
+                'event': 'hello-interactions',
+                'category': '/hello interactions',
+                'location': 'productPage',
+                'browserAction': 'Open'
+            });
         });
-    });
+    }
 
-    $video.on('play', function() {
-        w.dataLayer.push({'event': 'hello-interactions', 'category': '/hello interactions', 'location': 'productPage', 'browserAction': 'PlayVideo'});
-    });
+    function closeHelloMenu() {
+        Mozilla.UITour.hideMenu('loop');
+        $document.off('click.hello');
+        $document.off('visibilitychange.hello');
+        $window.off('resize.hello');
+    }
+
+    function handleVisibilityChange() {
+        if (document.hidden) {
+            closeHelloMenu();
+        }
+    }
+
+    function trackEligibleView() {
+        shouldOpenHelloMenu().then(function(result) {
+            var view = result ? 'EligibleView' : 'IneligibleView';
+            window.dataLayer.push({
+                'event': 'hello-interactions',
+                'category': '/hello interactions',
+                'location': 'productPage',
+                'browserAction': view
+            });
+        });
+    }
+
+    function handleHelloButtonClick(e) {
+        e.preventDefault();
+        shouldOpenHelloMenu().then(function(result) {
+            if (result) {
+                openHelloMenu();
+            } else {
+                window.location = e.target.href;
+            }
+        }, function() {
+            // if promise rejected then simply go to SUMO.
+            window.location = e.target.href;
+        });
+    }
+
+    function initHelloPage() {
+
+        if (client.isFirefoxDesktop) {
+            // The new Firefox Hello is available to Firefox 45 users and upward.
+            if (client.FirefoxMajorVersion >= 45) {
+                $outerWrapper.addClass('firefox-up-to-date');
+                // ping UITour to make sure it's working before binding
+                // click handlers.
+                Mozilla.UITour.ping(function() {
+                    $tryHelloButton.on('click', handleHelloButtonClick);
+                    trackEligibleView();
+                });
+            } else {
+                $outerWrapper.addClass('firefox-out-of-date');
+            }
+        } else if (client.isMobile) {
+            $outerWrapper.addClass('mobile-device');
+        } else {
+            $outerWrapper.addClass('non-firefox');
+        }
+
+        // show fallback Hello wordmark for older browsers
+        Mozilla.SVGImage.fallback();
+    }
+
+    initHelloPage();
+
 })(window.Mozilla, window, window.jQuery);
