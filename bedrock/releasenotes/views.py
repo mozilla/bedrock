@@ -50,7 +50,8 @@ def equivalent_release_url(release):
 
 
 def get_release_or_404(version, product):
-    if product == 'Firefox' and len(version.split('.')) == 3:
+    if product == 'Firefox' and (version.endswith('esr') or
+                                 len(version.split('.')) == 3):
         product_query = Q(product='Firefox') | Q(
             product='Firefox Extended Support Release')
     else:
