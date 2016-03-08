@@ -14,55 +14,95 @@
   {% stylesheet 'contribute-friends' %}
 {% endblock %}
 
-{% block js %}
-{% endblock %}
-
 {% block contrib_page_title %}{{ _('Join Firefox Friends today!') }}{% endblock %}
 
 {% block alt_header %}
-<img src="{{ static('img/contribute/friends/firefox-friends-logo.svg') }}" width="186" class="ff-logo" data-png="{{ static('img/contribute/friends/firefox-friends-logo.png') }}" data-fallback="true" alt="{{_('Firefox Friends logo')}}" />
+<img src="{{ static('img/contribute/friends/firefox-friends-logo.svg') }}" width="186" class="ff-logo" data-png="{{ static('img/contribute/friends/firefox-friends-logo.png') }}" data-fallback="true" alt="{{ _('Firefox Friends logo') }}" />
 <div class="ff-header-content">
-  <h1>{{_('Join Firefox Friends today!')}}</h1>
-  <p>{{_('Step to the frontline to help us tell the world how awesome Firefox is and about all the important work Mozilla does every day.')}}</p>
-  <a href="https://friends.mozilla.org" id="ff-join" class="ff-join-now" rel="external">{{_('Join now')}}</a>
+  <h1>{{ _('Sign up. Read up. Pass it on.') }}</h1>
+  <p>{{ _('Sign up for the Firefox Friends newsletter and help us spread the word about all that Mozilla does — from defending a free and open Internet around the globe to constantly striving to make Firefox the best browser on the planet.') }}</p>
+  <p>
+    {{ _('Get involved today.') }}
+    {{ _('Sign up for the Firefox Friends newsletter.') }}
+  </p>
+  <button type="button" id="ff-show-signup-form" class="ff-join-now">{{ _('Sign Me Up') }}</button>
 </div>
 {% endblock %}
 
 {% block contrib_head %}{% endblock contrib_head %}
 
 {% block contrib_content %}
+<section class="ff-signup" id="ff-signup">
+  <div id="footer-email-errors" class="hidden newsletter-form-extra">
+    <ul class="errorlist"></ul>
+  </div>
+
+  <div class="ff-signup-wrapper">
+    <form id="newsletter-form" class="newsletter-form footer-newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post">
+      {{ newsletter_form.newsletters|safe }}
+      <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+      <div id="form-details" class="fields-with-labels">
+        <div class="field field-email">
+          <label for="id_email">{{ _('Email') }}</label>
+          {{ newsletter_form.email|safe }}
+        </div>
+        <div class="field field-first-name">
+          <label for="id_first_name">{{ _('First Name') }}</label>
+          {{ newsletter_form.first_name|safe }}
+        </div>
+        <div class="field field-last-name">
+          <label for="id_last_name">{{ _('Last Name') }}</label>
+          {{ newsletter_form.last_name|safe }}
+        </div>
+      </div>
+      <div class="fields-no-labels">
+        <div class="field field-country">{{ newsletter_form.country|safe }}</div>
+        <div class="field field-format">{{ newsletter_form.fmt|safe }}</div>
+        <div class="field field-privacy">{{ newsletter_form.privacy|safe }}</div>
+        <input id="footer_email_submit" name="test-submit" type="submit" value="{{ _('Sign Me Up') }}" class="ff-join-now">
+        <p><small>{{ _('We will only send you Mozilla-related information.') }}</small></p>
+      </div>
+      <div id="newsletter-spinner" class="hidden"></div>
+    </form>
+  </div>{# /-- .ff-signup-wrapper #}
+
+  <div id="newsletter-form-thankyou" class="thank newsletter-form newsletter-form-extra">
+    <h3>{{ _('Thanks! Please check your inbox to confirm your subscription to the Firefox Friends newsletter.') }}</h3>
+
+    {# below matches text found in newsletter/includes/macros/email_form_thankyou() #}
+    <p>
+    {% trans %}
+      You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
+      If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.
+    {% endtrans %}
+    </p>
+  </div>
+</section>
 <section class="ff-body-content">
-  <h2>{{_('How it works')}}</h2>
+  <h2>{{ _('Why sign up?') }}</h2>
 
-  <div class="how">
-    <h3 class="connected">{{_('Get connected')}}</h3>
-    <p>{{_('Sign up using your Twitter, Facebook or LinkedIn profile, or simply enter your email.')}}</p>
-  </div>
+  <div class="how-wrapper">
+    <div class="how">
+      <h3 class="connected">{{ _('Be the first to know') }}</h3>
+      <p>{{ _('Get the scoop on the latest Firefox and Mozilla news.') }}</p>
+    </div>
 
-  <div class="how">
-    <h3 class="sharing">{{_('Start sharing')}}</h3>
-    <p>{{_('Browse through our news feeds for topics that interest you, or submit your own content.')}}</p>
-  </div>
+    <div class="how">
+      <h3 class="sharing">{{ _('Have your say') }}</h3>
+      <p>{{ _('Give us your feedback and help make an impact!') }}</p>
+    </div>
 
-  <div class="how">
-    <h3 class="rewarded">{{_('Get rewarded')}}</h3>
-    <p>{{_('Track your impact and share often for opportunities to be recognized and rewarded.')}}</p>
+    <div class="how">
+      <h3 class="rewarded">{{ _('Get Firefox exclusives') }}</h3>
+      <p>{{ _('The more engaged you are, the greater your chances.') }}</p>
+    </div>
   </div>
 </section>
-
-{% if LANG.startswith('en') %}
-<hr />
-
-<section class="ff-video">
-  <h2>{{_('Watch the video')}}</h2>
-  <iframe src="https://www.youtube.com/embed/ZKcv8HHyyy8" frameborder="0" allowfullscreen></iframe>
-</section>
-{% endif %}
 
 {% endblock contrib_content %}
 
 {% block contrib_footer %}{% endblock contrib_footer %}
 
-{% block site_js %}
+{% block js %}
   {% javascript 'contribute-friends' %}
 {% endblock %}

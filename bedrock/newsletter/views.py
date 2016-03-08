@@ -593,7 +593,9 @@ def newsletter_subscribe(request):
             # add optional data
             kwargs.update(dict((k, data[k]) for k in ['country',
                                                       'lang',
-                                                      'source_url']
+                                                      'source_url',
+                                                      'first_name',
+                                                      'last_name', ]
                                if data[k]))
             try:
                 basket.subscribe(data['email'], data['newsletters'],

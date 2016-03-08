@@ -182,7 +182,7 @@ urlpatterns = (
     page('contact/communities/zimbabwe', 'mozorg/contact/communities/zimbabwe.html'),
 
     page('contribute/events', 'mozorg/contribute/events.html'),
-    page('contribute/friends', 'mozorg/contribute/friends.html'),
+    url('^contribute/friends/$', views.contribute_friends, name='mozorg.contribute.friends'),
     page('contribute/stories', 'mozorg/contribute/stories.html'),
     page('contribute/stories/ruben', 'mozorg/contribute/story-ruben.html'),
     page('contribute/stories/faye', 'mozorg/contribute/story-faye.html'),

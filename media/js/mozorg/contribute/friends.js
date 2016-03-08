@@ -1,13 +1,31 @@
-$(function() {
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-    function supportsSVG() {
-        return document.implementation.hasFeature('http://www.w3.org/TR/SVG11/feature#Image', '1.1');
-    }
+(function($, Mozilla) {
+    'use strict';
 
-    // fallback to .png for browsers that don't support .svg as an image.
-    if (!supportsSVG()) {
-        $('img[src*="svg"][data-fallback="true"]').attr('src', function() {
-            return $(this).attr('data-png');
+    var $ffShowSignupForm = $('#ff-show-signup-form');
+    var $ffSignupArea = $('#ff-signup');
+
+    $ffShowSignupForm.on('click', function() {
+        $ffShowSignupForm.addClass('invisible').off('click');
+
+        // slide the form container down
+        $ffSignupArea.slideDown('normal', function() {
+            $('#id_email').focus();
+
+            // scroll to top of revealed form
+            Mozilla.smoothScroll({
+                top: $ffSignupArea.offset().top - 60
+            });
         });
-    }
-});
+
+        window.dataLayer.push({
+            'event': 'firefox-sync-interaction',
+            'interaction': 'display signup form'
+        });
+    });
+
+    Mozilla.SVGImage.fallback();
+})(window.jQuery, window.Mozilla);

@@ -4,16 +4,30 @@
 
 @import "../../sandstone/lib.less";
 
+// button used in both header and sign up form
+.ff-join-now {
+    .font-size(20px);
+    background-color: #f26c24;
+    border: 0;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    padding: 10px 30px;
+    width: 280px;
+}
+
 .firefox-friends {
     #wrapper {
         padding-bottom: 0;
         width: 100%;
     }
+
     #masthead {
+        .border-box();
         background: #373737 url(/media/img/contribute/friends/hero-image-home.jpg) 50% 0 no-repeat;
         padding: 0 180px;
         width: 100%;
-        .border-box();
 
         @media only screen and (max-width: 1100px) {
             padding: 0 100px;
@@ -28,188 +42,372 @@
             padding: 0 20px;
         }
     }
+
     #colophon {
         margin-top: 0;
     }
+
     h1,
     h2,
     h3 {
         color: #fff;
         font-weight: 700;
     }
-    h2 {
-        .font-size(2.5rem);
-    }
-    h3 {
-        .font-size(1.2rem);
-        text-transform: uppercase;
 
-        @media only screen and (max-width: 790px) {
-            .font-size(1rem);
-            line-height: 1.5;
-        }
+    h2 {
+        .font-size(40px);
     }
+
     .ff-logo {
         padding-top: 25px;
     }
+
     .ff-header-content {
         color: #fff;
         margin: 0 auto;
-        padding: 95px 0 160px 0;
-        width: 100%;
+        padding: 55px 0 80px 0;
         text-align: center;
+        width: 100%;
 
         @media only screen and (max-width: @breakMobileLandscape) {
             padding-bottom: 80px;
         }
 
         h1 {
-            .font-size(4rem);
+            .font-size(64px);
+            margin-bottom: @baseLine * 2;
             text-shadow: 1px 1px 2px #333;
 
             @media only screen and (max-width: 790px) {
-                .font-size(3rem);
+                .font-size(48px);
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                .font-size(40px)
             }
         }
         p {
-            margin: 0 auto;
-            max-width: 610px;
-            .font-size(1.4rem);
+            .font-size(22px);
+            margin: @baseLine auto 0;
+            max-width: 700px;
             text-shadow: 1px 1px 2px #333;
 
             @media only screen and (max-width: 790px) {
+                .font-size(18px);
                 max-width: 500px;
-                .font-size(1.2rem);
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                .font-size(@largeFontSize);
+            }
+        }
+
+        .ff-join-now {
+            margin: 70px auto 0 auto;
+            .transition(opacity 0.3s ease-in 0.1s);
+
+            &.invisible {
+                cursor: default;
+                opacity: 0;
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                margin-top: 35px;
             }
         }
     }
-    .ff-join-now {
-        display: block;
-        background-color: #f26c24;
-        color: #fff;
-        margin: 70px auto 0 auto;
-        padding: 10px 30px;
-        border: 0;
-        border-radius: 6px;
-        width: 200px;
-        .font-size(1.2rem);
 
-        @media only screen and (max-width: @breakMobileLandscape) {
-            margin-top: 35px;
-        }
-
-        &:hover {
-            text-decoration: none;
-        }
-    }
     main {
         background-color: #06a6e0;
     }
+
     .ff-body-content {
         color: #fff;
         margin: 0 auto;
-        padding: 75px 180px;
+        max-width: 1000px;
+        padding: 75px 0;
         text-align: center;
-        max-width: 1400px;
-
-        @media only screen and (max-width: 1100px) {
-            padding: 75px 100px;
-        }
-
-        @media only screen and (max-width: 790px) {
-            padding: 75px 20px;
-        }
 
         h2 {
             margin-bottom: 50px;
+            text-shadow: none;
 
             @media only screen and (max-width: @breakMobileLandscape) {
                 margin-bottom: 40px;
             }
         }
-        .how {
-            display: inline-block;
-            padding-left: 5%;
-            width: 27%;
-            vertical-align: top;
+
+        h3 {
+            .font-size(20px);
+            text-shadow: none;
+            text-transform: uppercase;
+
+            @media only screen and (max-width: 790px) {
+                .font-size(@largeFontSize);
+                line-height: 1.5;
+            }
+        }
+
+        .how-wrapper {
+            .flexbox();
+            .justify-content(space-around);
 
             @media only screen and (max-width: @breakTablet) {
-                padding-left: 3%;
-                width: 30%;
-            }
-
-            @media only screen and (max-width: 640px) {
                 display: block;
-                padding-left: 0;
-                width: 100%;
+            }
+        }
+
+        .how {
+            .flex(0 0 180px);
+            margin: 0 (@baseLine / 2);
+            vertical-align: top;
+
+            // blue circle behind icons
+            &:before {
+                background: #80daf2;
+                border-radius: 50%;
+                content: '';
+                display: block;
+                height: 180px;
+                margin: 0 auto;
+                width: 180px;
             }
 
             h3:before {
-                display: block;
-                background: transparent url(/media/img/contribute/friends/icon-sprite.png) 50% 0 no-repeat;
-                margin-top: @baseLine;
-                height: 175px;
+                .at2x('/media/img/contribute/friends/icon-sprite.png', 180px, 720px);
+                background-position: 50% 0;
+                background-repeat: no-repeat;
                 content: '';
-            }
-            h3.sharing:before {
-                background-position: 50% -240px;
-            }
-            h3.rewarded:before {
-                background-position: 50% -470px;
+                display: block;
+                height: 180px;
+                margin: -180px 0 @baseLine;
             }
 
-            &:first-of-type {
-                padding-left: 0;
+            h3.sharing:before {
+                background-position: 50% -279px;
             }
+
+            h3.rewarded:before {
+                background-position: 50% -568px;
+            }
+
             p {
                 margin: 0 auto;
                 max-width: 200px;
+            }
 
-                @media only screen and (max-width: 640px) {
-                    max-width: 240px;
-                }
+            @media only screen and (max-width: @breakTablet) {
+                margin-bottom: @baseLine * 2;
             }
         }
     }
+
     hr {
-        margin: 25px auto 55px;
         border: 1px solid #fff;
+        margin: 25px auto 55px;
         width: 20%;
     }
-    .ff-video {
+}
+
+// hide header button if no JS
+#ff-show-signup-form {
+    display: none;
+}
+
+#ff-signup {
+    background: #00539f;
+    padding: (@baseLine * 2) 0;
+    position: relative;
+}
+
+.ff-signup-wrapper {
+    left: 50%;
+    margin-left: -290px;
+    position: relative;
+    width: 430px;
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    small {
+        color: #fff;
+    }
+
+    .newsletter-form {
+        color: #fff;
         margin: 0 auto;
-        padding-bottom: 75px;
-        text-align: center;
-        max-width: 1400px;
 
-        h2 {
-            margin-bottom: 60px;
-        }
-        iframe {
-            width: 750px;
-            height: 424px;
-
-            @media only screen and (max-width: 1100px) {
-                width: 550px;
-                height: 311px;
-            }
-
-            @media only screen and (max-width: 790px) {
-                width: 400px;
-                height: 226px;
-            }
+        // override default styling on email & country fields
+        input[type="email"] {
+            width: auto;
 
             @media only screen and (max-width: @breakMobileLandscape) {
-                width: 310px;
-                height: 175px;
+                width: 280px;
             }
+        }
+
+        select {
+            max-width: none;
+            padding: 4px 0;
+            width: 280px;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                width: 300px;
+            }
+        }
+    }
+
+    // email, first name, last name
+    .fields-with-labels {
+        // wraps each label/input
+        .field {
+            .align-items(flex-start);
+            .flexbox();
+        }
+
+        label {
+            .flex(0 0 130px);
+        }
+
+        input {
+            .flex(0 0 260px);
+            border: none;
+            border-radius: 4px;
+            margin-left: @baseLine;
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .field {
+                display: block;
+            }
+
+            input {
+                display: block;
+                margin-left: 0;
+                width: 280px;
+            }
+        }
+    }
+
+    // country select, format, privacy checkbox
+    .fields-no-labels {
+        padding-left: 150px;
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            padding-left: 0;
+        }
+    }
+
+    label {
+        color: #fff;
+    }
+
+    .ff-join-now {
+        margin: (@baseLine * 2) 0 (@baseLine / 2);
+    }
+
+    // do away with offset layout and just center form
+    @media only screen and (max-width: @breakTablet) {
+        left: 0;
+        margin: 0 auto;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: 300px;
+    }
+}
+
+// errors and thank you message
+.newsletter-form-extra {
+    color: #fff;
+    margin: 0 auto @baseLine;
+    text-align: center;
+    width: 700px;
+
+    h3 {
+        .font-size(30px);
+        font-weight: normal;
+        line-height: 1.2;
+        text-shadow: none;
+    }
+
+    p {
+        .font-size(@largeFontSize);
+        .open-sans-light();
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding: 0 @baseLine;
+        width: auto;
+
+        h3 {
+            .font-size(22px);
+        }
+
+        p {
+            .font-size(@baseFontSize);
         }
     }
 }
-/* Tweaks for RTL locales */
+
+// JS default states
+.js {
+    // override hiding of form details
+    #form-details {
+        display: block;
+    }
+
+    // show header button
+    #ff-show-signup-form {
+        display: block;
+    }
+
+    // hide signup area
+    #ff-signup {
+        display: none;
+    }
+}
+
+// upcase labels for en-* locales
+html[lang^="en"] .fields-with-labels label {
+    text-transform: uppercase;
+}
+
+// tweaks for RTL locales
 html[dir="rtl"] {
     .how {
-        padding-right: 7%;
         padding-left: 0;
+        padding-right: 7%;
+    }
+
+    .ff-signup-wrapper {
+        left: auto;
+        margin-right: -290px;
+        right: 50%;
+
+        .fields-with-labels input {
+            margin-left: 0;
+            margin-right: @baseLine;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                margin-right: 0;
+            }
+        }
+
+        .fields-no-labels {
+            padding-left: 0;
+            padding-right: 150px;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                padding-right: 0;
+            }
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            margin: 0 auto;
+            right: 0;
+        }
     }
 }

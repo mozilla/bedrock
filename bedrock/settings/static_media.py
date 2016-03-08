@@ -982,7 +982,8 @@ PIPELINE_JS = {
     },
     'contribute-friends': {
         'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
+            'js/base/mozilla-smoothscroll.js',
+            'js/base/mozilla-svg-image-fallback.js',
             'js/mozorg/contribute/friends.js',
         ),
         'output_filename': 'js/contribute-friends-bundle.js'
