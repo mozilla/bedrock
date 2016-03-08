@@ -144,6 +144,7 @@ of the header:
                  vary='cookie'),
     ]
 
+.. _testing-redirects:
 
 Testing redirects
 -----------------

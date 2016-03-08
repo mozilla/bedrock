@@ -56,6 +56,8 @@ Sync the database and all of the external data locally. This gets product-detail
 
 Lastly, you need to have `Node.js <https://nodejs.org/>`_ installed. The node dependencies for running the site are in the repository, but if you'd like to run the JS test suite you'll need everything, which you can get by running `npm install` from the root directory of the project.
 
+.. _run-python-tests:
+
 Run the tests
 -------------
 
@@ -267,4 +269,3 @@ Notes
 A shortcut for activating virtual envs in zsh or bash is `. venv/bin/activate`. The dot is the same as `source`.
 
 There's a project called `virtualenvwrapper <http://www.doughellmann.com/docs/virtualenvwrapper/>`_ that provides a better interface for managing/activating virtual envs, so you can use that if you want.
-
