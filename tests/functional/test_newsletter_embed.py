@@ -13,6 +13,7 @@ from pages.firefox.all import FirefoxAllPage
 from pages.firefox.desktop.desktop import DesktopPage
 from pages.firefox.desktop.customize import CustomizePage
 from pages.firefox.desktop.all import FirefoxDesktopBasePage
+from pages.firefox.hello import HelloPage
 from pages.firefox.sync import FirefoxSyncPage
 from pages.plugincheck import PluginCheckPage
 from pages.smarton.landing import SmartOnLandingPage
@@ -31,6 +32,7 @@ from pages.smarton.base import SmartOnBasePage
     (FirefoxDesktopBasePage, {'slug': 'fast'}),
     (FirefoxDesktopBasePage, {'slug': 'trust'}),
     (FirefoxSyncPage, None),
+    (HelloPage, None),
     pytest.mark.skip_if_not_firefox((PluginCheckPage, None),
         reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1245208'),
     (SmartOnLandingPage, None),
