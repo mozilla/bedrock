@@ -95,10 +95,11 @@ def check_locale(ctx):
                   'git clone https://github.com/mozilla-l10n/bedrock-l10n.git locale;'
                   'fi')
 
-
 @task
 def update_assets(ctx):
     """Compile/compress static assets and fetch external data."""
+    with ctx.lcd(settings.SRC_DIR):
+        ctx.local('npm install --production')
     management_cmd(ctx, 'collectstatic --noinput', use_src_dir=True)
 
 

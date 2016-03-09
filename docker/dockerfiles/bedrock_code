@@ -3,10 +3,14 @@ FROM ${FROM_DOCKER_REPOSITORY}:${GIT_COMMIT}
 COPY . /app
 
 RUN echo "${GIT_COMMIT}" > static/revision.txt
+RUN npm install --production
 RUN ./manage.py collectstatic -l --noinput
 
 # Cleanup
+RUN rm -rf node_modules
 RUN ./docker/bin/softlinkstatic.py
+RUN apt-get purge -y nodejs npm
+RUN apt-get autoremove -y
 
 # Change User
 RUN chown webdev.webdev -R .
