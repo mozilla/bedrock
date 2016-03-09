@@ -15,8 +15,6 @@
     var initialTabStateId = null;
     var contentCache = []; // page content cache
     var titleCache = []; // page title cache
-    var topPane = null;
-    var topLayer = null;
 
     // Community Layers
     var northAmerica;
@@ -52,46 +50,34 @@
             // init screen resize handler
             mozMap.initResizeHandler();
             //initialize map and center.
-            map = L.mapbox.map('map').setView([28, 0], 2);
-            // load mozilla custom map tiles
-            // touch devices can struggle with retina tiles (bug 1139938)
-            var mapLayer = L.mapbox.tileLayer(mapId,{
-                detectRetina: !hasTouch
-            });
-            // when ready, set the map and page default states
-            mapLayer.on('ready', function () {
-                // add tile layer to the map
-                mapLayer.addTo(map);
-                // disable map zoom on scroll.
-                map.scrollWheelZoom.disable();
-                // create spaces markers.
-                mozMap.initSpacesMarkers();
-                // create community layers.
-                mozMap.initCommunityLayers();
-                // set the map state (i.e. spaces or communities)
-                mozMap.setMapState();
-                // store reference to the initial map content
-                mozMap.setInitialContentState();
-                // bind events on tab navigation.
-                mozMap.bindTabNavigation();
-                // init history.js.
-                mozMap.bindHistory();
-                // split the label layer for more control.
-                mozMap.splitLabelLayer();
-                // disable dragging for touch devices.
-                if (hasTouch) {
-                    // disable drag and zoom handlers.
-                    map.dragging.disable();
-                    map.touchZoom.disable();
-                    map.doubleClickZoom.disable();
-                    // disable tap handler, if present.
-                    if (map.tap) {
-                        map.tap.disable();
-                    }
+            map = L.mapbox.map('map', mapId).setView([28, 0], 2);
+            // disable map zoom on scroll.
+            map.scrollWheelZoom.disable();
+            // create spaces markers.
+            mozMap.initSpacesMarkers();
+            // create community layers.
+            mozMap.initCommunityLayers();
+            // set the map state (i.e. spaces or communities)
+            mozMap.setMapState();
+            // store reference to the initial map content
+            mozMap.setInitialContentState();
+            // bind events on tab navigation.
+            mozMap.bindTabNavigation();
+            // init history.js.
+            mozMap.bindHistory();
+            // disable dragging for touch devices.
+            if (hasTouch) {
+                // disable drag and zoom handlers.
+                map.dragging.disable();
+                map.touchZoom.disable();
+                map.doubleClickZoom.disable();
+                // disable tap handler, if present.
+                if (map.tap) {
+                    map.tap.disable();
                 }
+            }
 
-                mozMap.checkForHash();
-            });
+            mozMap.checkForHash();
 
             // init photo galleries using event delegation
             $('#page-content').magnificPopup({
@@ -101,7 +87,7 @@
             });
 
             // init HTML5 video poster helper
-            var video = new Mozilla.videoPosterHelper('#page-content');
+            var video = new Mozilla.VideoPosterHelper('#page-content');
             video.init();
         },
 
@@ -468,8 +454,6 @@
                 mozMap.bindSpacesNav();
                 // hide community legend
                 mozMap.hideMapLegend();
-                // reposition markers above the labels
-                mozMap.setLabelLayerIndex(1);
             } else if (state === 'communities') {
                 // remove spaces markers
                 mozMap.removeSpacesMarkers();
@@ -479,8 +463,6 @@
                 mozMap.bindCommunityNav();
                 // hide community legend
                 mozMap.showMapLegend();
-                // reposition labels above community layer
-                mozMap.setLabelLayerIndex(7);
             } else if (state === 'contact') {
                 //clear commuity layers
                 mozMap.clearCommunityLayers();
@@ -492,8 +474,6 @@
                 mozMap.addSpacesMarkers();
                 // hide community legend
                 mozMap.hideMapLegend();
-                // reposition markers above the labels
-                mozMap.setLabelLayerIndex(1);
             }
         },
 
@@ -945,7 +925,7 @@
                 style: mozMap.styleLayer('white', '#f79937', 0.1, 'none', 2)
             });
             balkans = L.geoJson(window.mozBalkans, {
-                style: mozMap.styleLayer('white', "#7022a8", 0.1, 'none', 2)
+                style: mozMap.styleLayer('white', '#7022a8', 0.1, 'none', 2)
             });
 
             // create an empty layer group and add it to the map
@@ -1013,46 +993,6 @@
                 id: itemId,
                 tab: tabId
             }, document.title, this.href);
-        },
-
-        /*
-         * Split label layer on the map so we can set it's z-index dynamically
-         * (thanks to to Alex Barth @ MapBox)
-         */
-        splitLabelLayer: function () {
-            var hasTouch = L.Browser.touch || L.Browser.msTouch;
-
-            topPane = map._createPane('leaflet-top-pane', map.getPanes().mapPane);
-            // this custom map layer only contains country names, no map!
-            // touch devices can struggle with retina tiles (bug 1139938)
-            topLayer = L.mapbox.tileLayer('mozilla-webprod.ijaelnfn', {
-                detectRetina: !hasTouch
-            });
-            topLayer.on('ready', function() {
-                var state = mozMap.getMapState();
-
-                //add the split layers
-                topLayer.addTo(map);
-                topPane.appendChild(topLayer.getContainer());
-
-                //set the initial z-index state for label layer
-                if (state === 'spaces') {
-                    topLayer.setZIndex(1);
-                } else if (state === 'communities') {
-                    topLayer.setZIndex(7);
-                }
-            });
-        },
-
-        /*
-         * Sets the z-index of the label layer so we can position country
-         * names above community layers or under markers
-         */
-        setLabelLayerIndex: function (zIndex) {
-            var i = parseInt(zIndex, 10);
-            if (topLayer) {
-                topLayer.setZIndex(i);
-            }
         },
 
         /*

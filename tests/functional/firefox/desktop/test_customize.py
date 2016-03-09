@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.desktop.customize import CustomizePage
 
 
-@pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_customizer_click_nav_links(base_url, selenium):
     page = CustomizePage(base_url, selenium).open()
