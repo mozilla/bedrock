@@ -528,12 +528,12 @@ GA_ACCOUNT_CODE = ''
 # Files from The Web[tm]
 EXTERNAL_FILES = {
     'credits': {
-        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/credits/names.csv',
+        'url': 'https://raw.githubusercontent.com/mozilla/community-data/master/credits/names.csv',
         'type': 'bedrock.mozorg.credits.CreditsFile',
         'name': 'credits.csv',
     },
     'forums': {
-        'url': 'https://svn.mozilla.org/projects/mozilla.org/trunk/about/forums/raw-ng-list.txt',
+        'url': 'https://raw.githubusercontent.com/mozilla/community-data/master/forums/raw-ng-list.txt',
         'type': 'bedrock.mozorg.forums.ForumsFile',
         'name': 'forums.txt',
     },
