@@ -28,11 +28,12 @@ Contents
    php
    l10n
    coding
-   testing
-   javascript-libs
    contribute
-   grunt
+   pipeline
+   testing
    redirects
+   javascript-libs
+   grunt
    newsletters
    tabzilla
    uitour

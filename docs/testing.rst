@@ -171,13 +171,15 @@ you can also read the `pytest markers`_ documentation for more options.
         assert not page.text_format_selected
         assert not page.privacy_policy_accepted
 
+.. _smoke-functional-tests:
+
 Smoke tests
 ~~~~~~~~~~~
 
-Smoke tests are run as part of bedrocks deployment pipeline. These should be considered
-to be critical tests which benefit from being run automatically after every commit to
-master. Only the full suite of functional tests are run after deployment to staging. If
-your test should be marked as a smoke test you will need to apply a ``smoke`` marker
+Smoke tests are run on every commit to master as part of bedrocks deployment pipeline.
+These should be considered as critical baseline functional tests. (Note: we only run the
+full suite of cross-browser functional tests on tagged commits. See :ref:`tagged-commit`).
+If your test should be considered a smoke test you will need to apply a ``smoke`` marker
 to it.
 
 .. code-block:: python
@@ -212,7 +214,8 @@ Sanity tests are considered to be our most critical tests that must pass in a wi
 of web browsers, including old versions of Internet Explorer. Sanity tests are run
 automatically post deployment on a wider range of browsers & platforms than we run the
 full suite against. The number of sanity tests we run should remain small, but cover our
-most critical pages where legacy browser support is important.
+most critical pages where legacy browser support is important. Sanity tests are typically
+run after a tagged commit to master (see :ref:`tagged-commit`).
 
 .. code-block:: python
 
@@ -276,6 +279,19 @@ Guidelines for writing functional tests
 
 See also the `Web QA style guide`_ for Python based testing.
 
+Link Checks
+-----------
+
+A full link checker is run over the production environments, which uses a tool named
+`LinkChecker`_ to crawl the entire website and reports any broken or malformed links both
+internally and externally. These jobs are run once a day in the `Jenkins instance`_ and
+are named with the ``bedrock_linkchecker_`` prefix.
+
+In addition, there are targeted functional tests for the `download`_ and `localized
+download`_ pages. These tests do not use the LinkChecker tool, and are run as part of
+the pipeline, which ensures that any broken download links are noticed much earlier,
+and also do not depend on a crawler to find them.
+
 .. _Jasmine: https://jasmine.github.io/1.3/introduction.html
 .. _Karma: https://karma-runner.github.io/
 .. _Sinon: http://sinonjs.org/
@@ -290,3 +306,7 @@ See also the `Web QA style guide`_ for Python based testing.
 .. _waits: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.wait.html
 .. _expected conditions: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.expected_conditions.html
 .. _Web QA style guide: https://wiki.mozilla.org/QA/Execution/Web_Testing/Docs/Automation/StyleGuide
+.. _LinkChecker: http://wummel.github.io/linkchecker/
+.. _Jenkins instance: https://ci.us-west.moz.works/
+.. _download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download.py
+.. _localized download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download_l10n.py
