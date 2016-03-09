@@ -8,6 +8,7 @@ from pages.firefox.hello import HelloPage
 
 
 @pytest.mark.smoke
+@pytest.mark.skipif(reason='Skipped until Firefox 45 is available on Sauce Labs')
 @pytest.mark.skip_if_not_firefox(reason='Hello button is shown only to Firefox browsers.')
 @pytest.mark.nondestructive
 def test_try_hello_button_is_displayed(base_url, selenium):
