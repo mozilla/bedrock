@@ -302,4 +302,7 @@ redirectpatterns = (
 
     # Bug 1252332
     redirect(r'^sync/?$', 'firefox.sync'),
+
+    # Bug 424204
+    redirect(r'^firefox/help/?$', 'https://support.mozilla.com/{locale}kb/'),
 )
