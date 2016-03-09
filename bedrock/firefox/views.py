@@ -414,36 +414,13 @@ class TourView(LatestFxView):
 
 
 def hello(request):
-    videos = {
-        'ar': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_arabic',
-        'de': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_german',
-        'en-US': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_english',
-        'es-AR': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_spanish',
-        'es-CL': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_spanish',
-        'es-ES': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_spanish',
-        'es-MX': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_spanish',
-        'fr': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_french',
-        'id': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_indonesian',
-        'it': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_italian',
-        'ja': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_japanese',
-        'pl': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_polish',
-        'pt-BR': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_portugese',
-        'ru': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_russian',
-        'tr': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_turkish',
-        'zh-TW': 'https://videos.cdn.mozilla.net/uploads/FirefoxHello/firefoxhello_intro_chinese'
-    }
-
-    if (waffle.switch_is_active('firefox-hello-2016')):
-        variant = request.GET.get('v', '')
-        if variant in ['b']:
-            template = 'firefox/hello/index-2016-{0}.html'.format(variant)
-        else:
-            template = 'firefox/hello/index-2016.html'
-
-        return l10n_utils.render(request, template)
+    variant = request.GET.get('v', '')
+    if variant in ['b']:
+        template = 'firefox/hello/index-2016-{0}.html'.format(variant)
     else:
-        return l10n_utils.render(request, 'firefox/hello/index.html',
-        {'video_url': videos.get(request.locale, videos.get('en-US'))})
+        template = 'firefox/hello/index-2016.html'
+
+    return l10n_utils.render(request, template)
 
 
 class HelloStartView(LatestFxView):
