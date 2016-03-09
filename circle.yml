@@ -34,7 +34,7 @@ dependencies:
     - "~/docker"
   override:
     - npm install
-    - bin/pipstrap.py
+    - bin/upgrade-pip.sh
     - pip install -r requirements/dev.txt
     - pip install -r requirements/prod.txt
     - pip install -r requirements/docker.txt
