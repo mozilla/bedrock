@@ -121,4 +121,7 @@ URLS = flatten((
 
     # Bug 638948 redirect beta privacy policy link
     url_test('/firefox/beta/feedbackprivacypolicy/', '/privacy/firefox/'),
+
+    # Bug 424204
+    url_test('/{de,fr}/firefox/help/', 'https://support.mozilla.com/{de,fr}/kb/'),
 ))
