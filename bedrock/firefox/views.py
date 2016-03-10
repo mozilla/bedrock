@@ -416,9 +416,9 @@ class TourView(LatestFxView):
 def hello(request):
     variant = request.GET.get('v', '')
     if variant in ['b']:
-        template = 'firefox/hello/index-2016-{0}.html'.format(variant)
+        template = 'firefox/hello/index-{0}.html'.format(variant)
     else:
-        template = 'firefox/hello/index-2016.html'
+        template = 'firefox/hello/index.html'
 
     return l10n_utils.render(request, template)
 
