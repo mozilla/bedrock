@@ -1,0 +1,17 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "legal/index.html" %}
+
+{% block body_class %}sand newsletter-variant{% endblock %}
+
+{% block email_form %}
+  {% if LANG.startswith('en-') %}
+  <aside id="newsletter-subscribe" data-ga-label="Love the Web? Get the Mozilla newsletter and help us keep it open and free.">
+    <div class="container">
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.')) }}
+    </div>
+  </aside>
+  {% endif %}
+{% endblock %}

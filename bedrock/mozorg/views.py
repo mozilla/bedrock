@@ -420,6 +420,19 @@ def plugincheck(request, template='mozorg/plugincheck.html'):
     return l10n_utils.render(request, template)
 
 
+def about_newsletter_test(request, template='mozorg/about.html'):
+    """
+    Renders the private browsing page template.
+    """
+
+    variant = request.GET.get('v', '')
+
+    if variant == 'b':
+        template = 'mozorg/about-b.html'
+
+    return l10n_utils.render(request, template)
+
+
 @xframe_allow
 def contribute_studentambassadors_landing(request):
     tweets = TwitterCache.objects.get_tweets_for('mozstudents')
@@ -502,11 +515,16 @@ def home_tweets(locale):
     return []
 
 
-def home(request):
+def home(request, template='mozorg/home/home.html'):
     locale = l10n_utils.get_locale(request)
 
+    variant = request.GET.get('v', '')
+
+    if variant == 'b':
+        template = 'mozorg/home/home-b.html'
+
     return l10n_utils.render(
-        request, 'mozorg/home/home.html', {
+        request, template, {
             'has_contribute': lang_file_is_active('mozorg/contribute'),
             'tweets': home_tweets(locale),
             'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(

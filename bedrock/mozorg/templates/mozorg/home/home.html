@@ -347,15 +347,17 @@
     </div>
   </section>
 
-  <section class="module" id="newsletter-signup">
+{% block newsletter_test %}
+  <section class="module" id="newsletter-signup" data-ga-label="Get Mozilla updates">
     <div class="container">
-      {% if LANG == 'en-US' %}
+      {% if LANG.startswith('en-') %}
         {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Get Mozilla updates')) }}
       {% else %}
         {{ email_newsletter_form() }}
       {% endif %}
     </div>
   </section>
+{% endblock %}
 
   <button id="scroll-prompt">{{ _('Discover more') }}</button>
 </main>
