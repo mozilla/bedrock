@@ -1,9 +1,9 @@
 #!/bin/bash
 set -e
 
-echo "Logging into the Docker Hub"
-docker login -e "$DOCKER_EMAIL" -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-echo "Pushing ${DOCKER_IMAGE_TAG} to Docker hub"
+echo "Logging into quay.io"
+docker login -e "$QUAY_EMAIL" -u "$QUAY_USERNAME" -p "$QUAY_PASSWORD" quay.io
+echo "Pushing ${DOCKER_IMAGE_TAG} to quay.io"
 docker push ${DOCKER_IMAGE_TAG}
 
 # Install deis client
