@@ -39,7 +39,7 @@
       <p>{{ _('You don’t have to start over. Access your history, bookmarks and more.')}}</p>
     </header>
     <div class="sync-cta">
-      <a href="{{ url('firefox.sync') }}" class="button">{{ _('Get started with Sync') }}</a>
+      <a href="{{ url('firefox.sync') }}" class="button" data-link-type="button" data-link-name="Get started with Sync">{{ _('Get started with Sync') }}</a>
     </div>
   </div>
   <div class="sync-anim-wrapper">
@@ -54,12 +54,12 @@
 {% block site_footer %}
   <footer role="contentinfo">
     <ul>
-      <li><a href="{{ url('firefox.desktop.index') }}" class="more">{{ _('Firefox Features') }}</a></li>
-      <li><a href="https://support.mozilla.org/products/firefox" class="more">{{ _('Firefox Help') }}</a></li>
+      <li><a href="{{ url('firefox.desktop.index') }}" class="more" data-link-type="footer" data-link-name="Firefox Features">{{ _('Firefox Features') }}</a></li>
+      <li><a href="https://support.mozilla.org/products/firefox" class="more" data-link-type="footer" data-link-name="Firefox Help">{{ _('Firefox Help') }}</a></li>
     </ul>
     <ul>
-      <li><a href="{{ url('legal.index') }}">{{ _('Legal') }}</a></li>
-      <li><a href="{{ url('privacy') }}">{{ _('Privacy') }}</a></li>
+      <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
+      <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
     </ul>
   </footer>
 {% endblock %}

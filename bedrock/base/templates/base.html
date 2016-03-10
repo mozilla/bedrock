@@ -106,16 +106,16 @@
         <nav id="nav-main" role="navigation">
           <ul>
             <li class="first about-item">
-              <a data-link-type="about" data-element-location="nav click" href="{{ url('mozorg.about') }}">{{_('About')}}</a>
+              <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{_('About')}}</a>
             </li>
             <li class="contribute-item">
-              <a data-link-type="participate" data-element-location="nav click" href="{{ url('mozorg.contribute') }}">{{_('Participate')}}</a>
+              <a href="{{ url('mozorg.contribute') }}" data-link-type="nav" data-link-name="Participate">{{_('Participate')}}</a>
             </li>
             <li class="products-item">
-              <a data-link-type="firefox" data-element-location="nav click" href="{{ url('firefox.family.index') }}">{{_('Firefox')}}</a>
+              <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{_('Firefox')}}</a>
             </li>
             <li class="last donate-item">
-              <a data-link-type="donate" data-element-location="nav click" href="{{ donate_url('header') }}">{{_('Donate')}}</a>
+              <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{_('Donate')}}</a>
             </li>
           </ul>
         </nav>
