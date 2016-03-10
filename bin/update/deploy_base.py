@@ -9,12 +9,14 @@ import re
 import time
 import urllib
 import urllib2
+from os.path import dirname
 
 from commander.deploy import commands, task, hostgroups
 
 import commander_settings as settings
 
 PYTHON = settings.PYTHON_PATH
+VENV_BIN = dirname(PYTHON)
 NEW_RELIC_API_KEY = getattr(settings, 'NEW_RELIC_API_KEY', None)
 NEW_RELIC_APP_ID = getattr(settings, 'NEW_RELIC_APP_ID', None)
 NEW_RELIC_URL = 'https://rpm.newrelic.com/deployments.xml'
@@ -34,7 +36,7 @@ def pre_update(ctx, ref=settings.UPDATE_REF):
 
 @task
 def update(ctx):
-    commands['peep_install']()
+    commands['pip_install']()
     commands['update_revision_file']()
     commands['update_assets']()
     # moves files from SRC_DIR to WWW_DIR
@@ -61,10 +63,9 @@ def management_cmd(ctx, cmd, use_src_dir=False):
         ctx.local('LANG=en_US.UTF-8 {0} manage.py {1}'.format(PYTHON, cmd))
 
 
-def peep_install_cmd(req_file):
+def pip_install_cmd(req_file):
     """Return the command for installing a requirements file."""
-    return ('{0} bin/peep.py install -r requirements/{1}.txt '
-            '--no-use-wheel'.format(PYTHON, req_file))
+    return '{0}/pip install -r requirements/{1}.txt'.format(VENV_BIN, req_file)
 
 
 @task
@@ -149,13 +150,13 @@ def update_info(ctx):
 
 
 @task
-def peep_install(ctx):
-    """Install things using peep."""
+def pip_install(ctx):
+    """Install things using pip."""
     with ctx.lcd(settings.SRC_DIR):
         # keep pip updated and do it separately
         # so that the subsequent call uses the new one
-        ctx.local(peep_install_cmd('pip'))
-        ctx.local(peep_install_cmd('prod'))
+        ctx.local('source {0}/activate && bin/pipstrap.py'.format(VENV_BIN))
+        ctx.local(pip_install_cmd('prod'))
         # update any newly installed libs to be relocatable
         # this call is idempotent
         ctx.local('virtualenv-2.7 --relocatable ../venv')

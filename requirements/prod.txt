@@ -1,17 +1,14 @@
--r compiled.txt
 -r base.txt
+-r compiled.txt
 
-# sha256: H6pJd-mFBzHot_ih1YuGJzk6N0RUN4jsQ3-0XgbP5AE
-# sha256: dEkWl77Zj4ypFAGCfEmCLh6yugJzdZpNCzghcv02ejg
-# sha256: -ZiCO3pvAOX4Qh6wYjVcTVCsfkq4XWU4Kn5WiV9CBS0
-MySQL-python==1.2.3c1
-
-# sha256: _d1HqNBI4MX0Lu5RGoqvNYkcmW1slZVTx77Is6x0s8s
-newrelic==2.50.0.39
-
-# sha256: VZxCRyjkBCDajJmLE8PE8IYbR1JpoKh2-xcY__J20QY
-# sha256: YhN9U7WsovukJHRLobsw6SoRXZqGgcvmpkEdskGx0a0
-django-pylibmc==0.6.0
-
-# sha256: MOGaBuZQ_eMfQKYtsKPaN6HK2WFuHP0EuOJI-0vV9KE
-pylibmc==1.4.2
+MySQL-python==1.2.3c1 \
+    --hash=sha256:1faa4977e9850731e8b7f8a1d58b8627393a3744543788ec437fb45e06cfe401 \
+    --hash=sha256:74491697bed98f8ca91401827c49822e1eb2ba0273759a4d0b382172fd367a38 \
+    --hash=sha256:f998823b7a6f00e5f8421eb062355c4d50ac7e4ab85d65382a7e56895f42052d
+newrelic==2.50.0.39 \
+    --hash=sha256:fddd47a8d048e0c5f42eee511a8aaf35891c996d6c959553c7bec8b3ac74b3cb
+django-pylibmc==0.6.0 \
+    --hash=sha256:559c424728e40420da8c998b13c3c4f0861b475269a0a876fb1718fff276d106 \
+    --hash=sha256:62137d53b5aca2fba424744ba1bb30e92a115d9a8681cbe6a6411db241b1d1ad
+pylibmc==1.4.2 \
+    --hash=sha256:30e19a06e650fde31f40a62db0a3da37a1cad9616e1cfd04b8e248fb4bd5f4a1

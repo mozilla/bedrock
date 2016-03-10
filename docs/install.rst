@@ -25,20 +25,13 @@ You need to create a virtual environment for Python libraries. Skip the first in
     $ pip install virtualenv                       # installs virtualenv, skip if already have it
     $ virtualenv -p python2.7 venv                 # create a virtual env in the folder `venv`
     $ source venv/bin/activate                     # activate the virtual env
-    $ bin/peep.py install -r requirements/dev.txt  # installs dependencies
-
-.. note::
-
-    The final command above (``peep.py``) may fail if you have the wrong version of ``pip``. To correct this run the following command::
-
-        $ pip install -r requirements/pip.txt
-
-    This will ensure you have the right ``pip`` version and that the ``peep.py`` tool will work correctly.
+    $ bin/pipstrap.py                              # securely upgrade pip
+    $ pip install -r requirements/dev.txt          # installs dependencies
 
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
 
     $ export ARCHFLAGS="-arch i386 -arch x86_64"
-    $ bin/peep.py install -r requirements/dev.txt
+    $ pip install -r requirements/dev.txt
 
 If you are on Linux, you will need at least the following packages or their equivalent for your distro:
 

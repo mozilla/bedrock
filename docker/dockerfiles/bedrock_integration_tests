@@ -15,13 +15,13 @@ ENV TESTS_PATH /app/tests
 ENV RESULTS_PATH /app/results
 ENV PYTHONDONTWRITEBYTECODE=1
 
+COPY ./bin/pipstrap.py /app/bin/pipstrap.py
+RUN ./bin/pipstrap.py
+
 COPY ./requirements /app/requirements
-# Pin a known to work with peep pip version.
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
-RUN pip install -r requirements/pip.txt
 
 # Install requirements
-COPY ./bin/peep.py /app/bin/peep.py
-RUN ./bin/peep.py install --no-cache-dir -r requirements/test.txt
+RUN pip install --no-cache-dir -r requirements/test.txt
 
 COPY . /app

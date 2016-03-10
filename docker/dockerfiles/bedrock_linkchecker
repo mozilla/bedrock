@@ -12,8 +12,8 @@ WORKDIR /home/linkchecker/app
 
 RUN mkdir /results && chown -R linkchecker:linkchecker /results
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
-RUN pip install -r requirements/pip.txt
-RUN ./bin/peep.py install --no-cache-dir -r requirements/linkchecker.txt
+RUN ./bin/pipstrap.py
+RUN pip install --no-cache-dir -r requirements/linkchecker.txt
 
 USER linkchecker
 ENV HOME /home/linkchecker

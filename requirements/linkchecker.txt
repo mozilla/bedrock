@@ -1,2 +1,2 @@
-# sha256: 7gqmDeRA_c-Fh93r8faRvHd6MtjU8Rm-7WP0BdxWF20
-linkchecker==9.3
+linkchecker==9.3 \
+    --hash=sha256:ee0aa60de440fdcf8587ddebf1f691bc777a32d8d4f119beed63f405dc56176d

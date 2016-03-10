@@ -13,16 +13,15 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends python2.7 libpython2.7 gettext build-essential libmysqlclient-dev libxml2-dev libxslt1.1 libxslt1-dev python-dev python-pip libmemcached-dev nodejs npm git postgresql-client libpq-dev
 RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
+COPY ./bin/pipstrap.py /app/bin/pipstrap.py
+RUN ./bin/pipstrap.py
 
 COPY ./requirements /app/requirements
-# Pin a known to work with peep pip version.
-RUN pip install -r requirements/pip.txt
 
 # Install app
-COPY ./bin/peep.py /app/bin/peep.py
-RUN ./bin/peep.py install --no-cache-dir -r requirements/dev.txt
-RUN ./bin/peep.py install --no-cache-dir -r requirements/prod.txt
-RUN ./bin/peep.py install --no-cache-dir -r requirements/docker.txt
+RUN pip install --no-cache-dir -r requirements/dev.txt
+RUN pip install --no-cache-dir -r requirements/prod.txt
+RUN pip install --no-cache-dir -r requirements/docker.txt
 
 # Cleanup
 RUN apt-get purge -y python-dev build-essential libxml2-dev libxslt1-dev libmemcached-dev
