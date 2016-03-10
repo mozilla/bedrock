@@ -429,7 +429,7 @@ Passing ``defaultBrowser`` will set Firefox as the default web browser.
     ``setConfiguration('defaultBrowser')`` is only available in Firefox 40 onward.
 
 showFirefoxAccounts(extraURLCampaignParams);
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Allows a web page to navigate directly to
 ``about:accounts?action=signup&entrypoint=uitour``. In Firefox 47 and beyond,

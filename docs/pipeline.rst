@@ -110,7 +110,8 @@ Test runs can be added by creating new `properties files`_ with the parameters o
 test run. For example, if you wanted to run tests in Firefox on both Windows 10 and
 OS X, you could create the following files
 
-``win10-firefox.properties``:
+win10-firefox.properties
+........................
 
 .. code-block:: none
 
@@ -119,7 +120,8 @@ OS X, you could create the following files
     PLATFORM=Windows 10
     MARK_EXPRESSION=not headless
 
-``osx-firefox.properties``:
+osx-firefox.properties
+......................
 
 .. code-block:: none
 
