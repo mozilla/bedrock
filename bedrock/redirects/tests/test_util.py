@@ -240,12 +240,12 @@ class TestRedirectUrlPattern(TestCase):
         """
         Should add vary header based on argument.
         """
-        pattern = redirect(r'^the/dude$', 'abides', vary='User-Agent')
+        pattern = redirect(r'^the/dude$', 'abides', vary='Accept-Language')
         request = self.rf.get('the/dude')
         response = pattern.callback(request)
         eq_(response.status_code, 301)
         eq_(response['Location'], 'abides')
-        eq_(response['Vary'], 'User-Agent')
+        eq_(response['Vary'], 'Accept-Language')
 
     def test_value_capture_and_substitution(self):
         """

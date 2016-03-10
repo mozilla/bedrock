@@ -9,9 +9,9 @@ import re
 from django.http import (Http404, HttpResponseRedirect,
                          HttpResponsePermanentRedirect)
 from django.utils.encoding import force_text
+from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-from django.views.decorators.vary import vary_on_headers
 from django.views.generic.base import TemplateView
 
 import basket
@@ -284,7 +284,7 @@ class LatestFxView(TemplateView):
     """
     non_fx_redirect = 'firefox.new'
 
-    @vary_on_headers('User-Agent')
+    @cache_control(max_age=0)
     def dispatch(self, *args, **kwargs):
         return super(LatestFxView, self).dispatch(*args, **kwargs)
 

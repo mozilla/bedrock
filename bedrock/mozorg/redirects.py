@@ -41,7 +41,7 @@ redirectpatterns = (
     # bug 875052
     redirect(r'^start/', ua_redirector('seamonkey',
                                        'http://www.seamonkey-project.org/start/',
-                                       'firefox.new'), vary='User-Agent'),
+                                       'firefox.new'), cache_timeout=0),
 
     # bug 856081 redirect /about/drivers https://wiki.mozilla.org/Firefox/Drivers
     redirect(r'^about/drivers(\.html|/)?$', 'https://wiki.mozilla.org/Firefox/Drivers'),

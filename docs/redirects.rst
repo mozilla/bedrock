@@ -114,7 +114,7 @@ to send the user. For example:
     redirectpatterns = [
         redirect(r'^rubble/barny/$',
                  ua_redirector('firefox(os)?', '/firefox/', '/not-firefox/'),
-                 vary='user-agent'),
+                 cache_timeout=0),
     ]
 
 You simply pass it a regex to match, the destination url (substitutions from the original URL do
@@ -123,8 +123,9 @@ not case sensitive unless you add the optional ``case_sensitive=True`` argument.
 
 .. note::
 
-    Be sure to include the header against which you're matching in the ``vary`` argument so that
-    you won't be bitten by any caching proxies sending all users one way or the other.
+    Be sure to include the ``cache_timeout=0`` so that you won't be bitten by any caching proxies
+    sending all users one way or the other. Do not set the ``Vary: User-Agent`` header; this will
+    not work in production.
 
 header_redirector
 ~~~~~~~~~~~~~~~~~

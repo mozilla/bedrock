@@ -405,7 +405,7 @@ class FxVersionRedirectsMixin(object):
                       'Gecko/20100101 Firefox/13.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
-        eq_(response['Vary'], 'User-Agent')
+        eq_(response['Cache-Control'], 'max-age=0')
 
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
@@ -422,7 +422,7 @@ class FxVersionRedirectsMixin(object):
                       'Gecko/20100101 Firefox/24.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
-        eq_(response['Vary'], 'User-Agent')
+        eq_(response['Cache-Control'], 'max-age=0')
 
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
@@ -437,7 +437,7 @@ class FxVersionRedirectsMixin(object):
                       'Gecko/20100101 Firefox/16.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
-        eq_(response['Vary'], 'User-Agent')
+        eq_(response['Cache-Control'], 'max-age=0')
 
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
@@ -452,7 +452,7 @@ class FxVersionRedirectsMixin(object):
                       'Gecko/20100101 Firefox/18.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
-        eq_(response['Vary'], 'User-Agent')
+        eq_(response['Cache-Control'], 'max-age=0')
 
 
 class TestHelloStartRedirect(TestCase):
