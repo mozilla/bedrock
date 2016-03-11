@@ -305,4 +305,6 @@ redirectpatterns = (
 
     # Bug 424204
     redirect(r'^firefox/help/?$', 'https://support.mozilla.com/{locale}kb/'),
+
+    redirect(r'^fxandroid/?$', 'firefox.android.index')
 )
