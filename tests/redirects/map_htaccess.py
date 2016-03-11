@@ -124,4 +124,8 @@ URLS = flatten((
 
     # Bug 424204
     url_test('/{de,fr}/firefox/help/', 'https://support.mozilla.com/{de,fr}/kb/'),
+
+    # Bug 1255882
+    url_test('/some/url///', '/some/url/'),
+    url_test('/de/firefox/about/', '/de/about/')
 ))
