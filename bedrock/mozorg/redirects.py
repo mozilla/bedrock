@@ -590,6 +590,17 @@ redirectpatterns = (
     # Bug 1255882
     redirect(r'^firefox/about/?$', 'mozorg.about'),
 
+    # bug 453506, 1255882
+    redirect(r'^editor/editor-embedding\.html$',
+             'https://developer.mozilla.org/docs/Gecko/Embedding_Mozilla/Embedding_the_editor'),
+    redirect(r'^editor/midasdemo/securityprefs\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Projects/Midas/Security_preferences'),
+    redirect(r'^editor/(?P<page>.*)$', 'http://www-archive.mozilla.org/editor/{page}'),
+
+    # bug 726217, 1255882
+    redirect(r'^projects/bonecho/anti-phishing/?$',
+             'https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work'),
+
     # bug 832348 **/index.html -> **/
     # leave this at the bottom
     redirect(r'^(.*)/index\.html$', '/{}/', locale_prefix=False),
