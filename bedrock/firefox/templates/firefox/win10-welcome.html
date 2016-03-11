@@ -37,7 +37,7 @@
 {% block site_header %}
 <header id="masthead">
   <div id="tabzilla">
-    <a href="{{ url('mozorg.home') }}">Mozilla</a>
+    <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
   </div>
 </header>
 {% endblock %}
@@ -49,7 +49,7 @@
   </header>
   <section class="firefox-default-cta hidden">
     {% if l10n_has_tag('win10_button_update') %}
-      <button id="set-default" type="button" class="button-flat-dark">{{ _('Let’s do it') }}</button>
+      <button id="set-default" type="button" class="button-flat-dark" data-button-name="Let's do it">{{ _('Let’s do it') }}</button>
     {% endif %}
     <h2>{{ _('Make Firefox your default in 3 easy steps:') }}</h2>
     <ol>
@@ -67,7 +67,7 @@
   </section>
   <section class="firefox-learn-links">
     <ul>
-      <li><a class="more" href="{{ url('firefox.desktop.trust') }}">
+      <li><a class="more" href="{{ url('firefox.desktop.trust') }}" data-link-type="button" data-link-name="Privacy">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 140 140" width="140" height="140">
           <path fill="none" d="M0 0h140v140H0z"/>
           <path class="circle" fill="#CCE2F4" d="M70 .5C31.6.5.5 31.6.5 70s31.1 69.5 69.5 69.5 69.5-31.1 69.5-69.5S108.4.5 70 .5z"/>
@@ -82,7 +82,7 @@
         </svg>
         {{ _('Privacy') }}
       </a></li>
-      <li><a class="more" href="{{ url('firefox.desktop.fast') }}">
+      <li><a class="more" href="{{ url('firefox.desktop.fast') }}" data-link-type="button" data-link-name="Speed">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="140" height="140">
           <path fill="none" d="M0 0h140v140H0z"/>
           <path class="circle" fill="#CCE2F4" d="M70 .5C31.6.5.5 31.6.5 70s31.1 69.5 69.5 69.5 69.5-31.1 69.5-69.5S108.4.5 70 .5z"/>
@@ -94,7 +94,7 @@
         </svg>
         {{ _('Speed') }}
       </a></li>
-      <li><a class="more" href="{{ url('firefox.desktop.customize') }}">
+      <li><a class="more" href="{{ url('firefox.desktop.customize') }}" data-link-type="button" data-link-name="Choice">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" width="140" height="140">
           <path fill="none" d="M0 0h140v140H0z"/>
           <path class="circle" fill="#CCE2F4" d="M70 .5C31.6.5.5 31.6.5 70s31.1 69.5 69.5 69.5 69.5-31.1 69.5-69.5S108.4.5 70 .5z"/>
@@ -115,10 +115,10 @@
 
 {% block site_footer %}
   <footer role="contentinfo">
-    <a class="logo" href="{{ url('mozorg.home') }}">Mozilla</a>
+    <a class="logo" href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">Mozilla</a>
     <ul>
       <li>
-        <a href="{{ url('privacy') }}#cookies">
+        <a href="{{ url('privacy') }}#cookies" data-link-type="footer" data-link-name="Privacy">
           {# We're using "Privacy Policy" in the footer for non-en locales to give
              localizers the opportunity to provide an alternative translation for
              "Privacy" in the main content. #}
@@ -129,8 +129,8 @@
           {% endif %}
         </a>
       </li>
-      <li><a href="{{ url('privacy.notices.websites') }}#cookies">{{ _('Cookies') }}</a></li>
-      <li><a href="{{ url('legal.index') }}">{{ _('Legal') }}</a></li>
+      <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
+      <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
     </ul>
   </footer>
 {% endblock %}
