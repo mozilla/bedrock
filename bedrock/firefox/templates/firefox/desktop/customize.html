@@ -117,7 +117,7 @@
 
       <ul class="feature-list" id="customizer-list" role="tablist">
         <li>
-          <a class="show-customizer selected" data-interaction="themes" data-element-action="Icon" id="customize-themes" href="#themes">
+          <a class="show-customizer selected" data-link-type="button" data-link-name="Themes" id="customize-themes" href="#themes">
             <div class="stage">
               <div class="circle-mask"></div>
               <div id="brush"></div>
@@ -129,7 +129,7 @@
           </a>
         </li>
         <li>
-          <a class="show-customizer" data-interaction="add-ons" data-element-action="Icon" id="customize-addons" href="#add-ons">
+          <a class="show-customizer" data-link-type="button" data-link-name="Add-ons" id="customize-addons" href="#add-ons">
             <div class="stage">
               <div class="circle-mask"></div>
               <div id="puzzle-pieces">
@@ -141,7 +141,7 @@
           </a>
         </li>
         <li class="last">
-          <a class="show-customizer" data-interaction="awesome-bar" data-element-action="Icon" id="customize-awesomebar" href="#awesome-bar">
+          <a class="show-customizer" data-link-type="button" data-link-name="Awesome Bar" id="customize-awesomebar" href="#awesome-bar">
             <div class="stage">
               <div class="circle-mask"></div>
               <div id="awesomebar-on" class="awesomebar-icon"></div>
@@ -246,7 +246,7 @@
 
       {% include 'firefox/includes/sync-animation.html' %}
 
-      <a class="button" id="sync-button" data-interaction="button click" data-element-action="Sync CTA" href="http://www.mozilla.org/mobile/sync/"><span></span>{{ _('Learn more about Sync') }}</a>
+      <a class="button" id="sync-button" href="http://www.mozilla.org/mobile/sync/" data-link-type="button" data-link-name="Learn more about Sync"><span></span>{{ _('Learn more about Sync') }}</a>
       <br>
       <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get help with Sync') }}</a>
     </div>
