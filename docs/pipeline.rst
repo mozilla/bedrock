@@ -57,6 +57,16 @@ pushed to production and the same tests are then run against production. As with
 pushes, this is all handled by the pipeline, and is subject to change according to the
 `per-tag properties file`_ in the repository.
 
+** Push to master cheat sheet **
+
+#. Check out the ``master`` branch
+#. Make sure the ``master`` branch is up to date with ``mozilla/bedrock master``
+#. Check that staging deployment is green:
+    #. View `deployment pipeline <https://ci.us-west.moz.works/view/Bedrock%20Pipeline/?fullscreen=true>`_
+    #. If any staging tests fail above, check retries, e.g. `bedrock_test_stage_eu_west`_
+#. Add a tag for the deployment by running ``bin/tag-release.sh``
+#. Push tags to trigger prod push (``git push --tags``)
+
 Pipeline integration
 --------------------
 
