@@ -51,11 +51,11 @@ If necessary, please write bug reports in your native language rather than using
       <h3>What is the step-by-step exploit process?</h3>
       <p>Please describe the multi-step process required, step by step, in the right order. If there are multiple parties involved, please describe them all clearly. For example:</p>
       <ol>
-      <li>Visit the url https://xyz.firefox.com/somepage/form?name=value&name2=value2</li>
+      <li>Visit the url https://xyz.firefox.com/somepage/form?name=value&amp;name2=value2</li>
       <li>Login</li>
       <li>Click the “Frobozz” button</li>
       <li>Place order for “Anti-Grue Cream” to shipping location “small mailbox,” continue navigation to the Shipping Address page.</li>
-      <li>Add the following payload "><img src=x onerror=alert(document.domain);// > into the “City” field, then click     Submit.</li> 
+      <li>Add the following payload "&gt;&lt;img src=x onerror=alert(document.domain);// &gt; into the “City” field, then click Submit.</li> 
       <li>The XSS payload ends up in the POST parameter name d oddly_angled_room</li>
       <li>Visitors to the page /puzzles are affected by stored XSS</li>
       </ol>
@@ -67,7 +67,7 @@ If necessary, please write bug reports in your native language rather than using
 
     <b>XSS reporting tips</b>
     
-    <li></li>For a reflected XSS vulnerability, the affected URL with a working payload is usually sufficient. Please use alert(document.domain) and not alert(1) in your POC.</li> 
+    <li>For a reflected XSS vulnerability, the affected URL with a working payload is usually sufficient. Please use alert(document.domain) and not alert(1) in your POC.</li> 
     <li>For any XSS vulnerability, please make sure to write down the attack scenario, which is different than the step-by-step exploit process. Where would the attacker have to be positioned in order to get the victim to trigger the exploit? What action would the victim need to follow? What would be the impact?</i>
     <li>Self-XSS, where the attacker tricks users into copying and pasting malicious script content or other content into their browser, is not eligible for the Bug Bounty program.</li>
 
