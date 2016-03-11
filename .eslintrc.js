@@ -22,7 +22,26 @@ module.exports = {
         "semi": [
             2,
             "always"
-        ]
+        ],
+        "curly": [
+            2,
+            "all"
+        ],
+        "camelcase": [
+            2,
+            {
+                "properties": "always"
+            }
+        ],
+        "eqeqeq": [
+            2,
+            "smart"
+        ],
+        "one-var-declaration-per-line": [
+            2,
+            "always"
+        ],
+        "new-cap": 2
     },
     "globals": {
         "Mozilla": true,
