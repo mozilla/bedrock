@@ -220,7 +220,7 @@ class FirefoxDesktop(_ProductDetails):
                                  ('product', product),
                                  ('os', platform),
                                  # Order matters, lang must be last for bouncer.
-                                 ('lang', locale),
+                                 ('lang', _locale),
                              ])])
 
         # stub installer exceptions
