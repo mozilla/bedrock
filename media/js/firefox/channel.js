@@ -5,7 +5,9 @@
 $(document).ready(function() {
     var $logo = $('#masthead h2 img');
     var logoOriginalSrc = $logo.attr('src');
-    var isHighDpi = Mozilla.ImageHelper.isHighDpi();
+    var logoOriginalSrcSet = $logo.attr('srcset');
+    var logoInverseSrc = $logo.attr('data-inverse-src');
+    var logoInverseSrcSet = $logo.attr('data-inverse-srcset');
 
     var pager = Mozilla.Pager.pagers[0];
     var selected_href = false;
@@ -17,10 +19,10 @@ $(document).ready(function() {
     pager.$container.bind('changePage', function(e, tab) {
         if (pager.currentPage.id == 'developer') {
             $('body').removeClass('sky').addClass('blueprint');
-            $logo.attr('src', isHighDpi ? $logo.attr('data-inverse-high-res-src') : $logo.attr('data-inverse-src'));
+            $logo.attr({ 'src': logoInverseSrc, 'srcset': logoInverseSrcSet });
         } else {
             $('body').removeClass('blueprint').addClass('sky');
-            $logo.attr('src', logoOriginalSrc);
+            $logo.attr({ 'src': logoOriginalSrc, 'srcset': logoOriginalSrcSet });
         }
 
         $('.pager-tabs a').unbind('click.outgoing');
@@ -42,10 +44,10 @@ $(document).ready(function() {
     // init
     if (pager.currentPage.id == 'developer') {
         $('body').removeClass('sky').addClass('blueprint');
-        $logo.attr('src', isHighDpi ? $logo.attr('data-inverse-high-res-src') : $logo.attr('data-inverse-src'));
+        $logo.attr({ 'src': logoInverseSrc, 'srcset': logoInverseSrcSet });
     } else {
         $('body').removeClass('blueprint').addClass('sky');
-        $logo.attr('src', logoOriginalSrc);
+        $logo.attr({ 'src': logoOriginalSrc, 'srcset': logoOriginalSrcSet });
     }
 
     $('.pager-tabs a.selected').bind('click.outgoing', function() {
