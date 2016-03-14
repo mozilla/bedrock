@@ -127,5 +127,16 @@ URLS = flatten((
 
     # Bug 1255882
     url_test('/some/url///', '/some/url/'),
-    url_test('/de/firefox/about/', '/de/about/')
+    url_test('/de/firefox/about/', '/de/about/'),
+
+    # bug 453506, 1255882
+    url_test('/editor/editor-embedding.html',
+             'https://developer.mozilla.org/docs/Gecko/Embedding_Mozilla/Embedding_the_editor'),
+    url_test('/editor/midasdemo/securityprefs.html',
+             'https://developer.mozilla.org/docs/Mozilla/Projects/Midas/Security_preferences'),
+    url_test('/editor/random/page.html', 'http://www-archive.mozilla.org/editor/random/page.html'),
+
+    # bug 726217, 1255882
+    url_test('/projects/bonecho/anti-phishing/',
+             'https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work'),
 ))
