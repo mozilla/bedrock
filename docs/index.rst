@@ -22,10 +22,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   quickstart
    install
-   vagrant
-   php
    l10n
    coding
    contribute
