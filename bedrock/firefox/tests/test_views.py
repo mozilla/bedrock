@@ -135,8 +135,9 @@ class TestSendToDeviceView(TestCase):
                                                lang='en-US')
 
 
+@patch('bedrock.firefox.views.l10n_utils.render')
 class TestFirefoxNew(TestCase):
-    def test_frames_allow(self):
+    def test_frames_allow(self, render_mock):
         """
         Bedrock pages get the 'x-frame-options: DENY' header by default.
         The firefox/new page needs to be framable for things like stumbleupon.
@@ -146,6 +147,102 @@ class TestFirefoxNew(TestCase):
             resp = self.client.get(reverse('firefox.new'))
 
         ok_('x-frame-options' not in resp)
+
+    def test_scene_1_default_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+
+    def test_scene_2_default_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+
+    def test_scene_1_variant_1a_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=1a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene1/variant-1a.html')
+
+    def test_scene_1_variant_2a_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=2a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene1/variant-2a.html')
+
+    def test_scene_1_variant_3a_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=3a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene1/variant-3a.html')
+
+    def test_scene_1_variant_4a_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=4a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene1/variant-4a.html')
+
+    def test_scene_1_variant_1b_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=1b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene1/variant-1b.html')
+
+    def test_scene_1_variant_2b_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=2b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene1/variant-2b.html')
+
+    def test_scene_1_variant_3b_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=3b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene1/variant-3b.html')
+
+    def test_scene_1_variant_4b_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=4b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene1/variant-4b.html')
+
+    def test_scene_2_variant_a_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene2/variant-a.html')
+
+    def test_scene_2_variant_b_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&v=b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req,
+            'firefox/new/variants/scene2/variant-b.html')
+
+    def test_scene_1_variant_non_en_us_template(self, render_mock):
+        """Non en-US locales should still see default template"""
+        req = RequestFactory().get('/firefox/new/?v=1a')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+
+    def test_scene_2_variant_non_en_us_template(self, render_mock):
+        """Non en-US locales should still see default template"""
+        req = RequestFactory().get('/firefox/new/?scene=2&v=a')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
 
 class TestWin10WelcomeView(TestCase):

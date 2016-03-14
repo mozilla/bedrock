@@ -1,0 +1,75 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../../sandstone/lib.less";
+
+.event-horizon {
+    .clearfix;
+    background-color: #0150ab;
+    background: linear-gradient(to bottom, rgb(30, 68, 136) 0%, rgb(25, 70, 141) 11%, rgb(0, 77, 164) 39%, rgb(0, 86, 185, 1) 60%, rgb(9, 90, 193) 65%, rgb(27, 98, 206) 73%, rgb(87, 117, 238) 92%, rgb(107, 124, 249) 100%);
+}
+
+// If browser supports CSS blend modes, add grit texture over CSS gradient & apply color-dodge.
+@supports (background-blend-mode: color-dodge) {
+    .event-horizon {
+        background: url('/media/img/firefox/new/redesign/grit.png') top left repeat,
+                    linear-gradient(to bottom, rgb(30, 68, 136) 0%, rgb(25, 70, 141) 11%, rgb(0, 77, 164) 39%, rgb(0, 86, 185, 1) 60%, rgb(9, 90, 193) 65%, rgb(27, 98, 206) 73%, rgb(87, 117, 238) 92%, rgb(107, 124, 249) 100%);
+        background-blend-mode: color-dodge;
+    }
+}
+
+.rocket {
+    position: absolute;
+    top: -190px;
+    right: 20px;
+    width: 160px;
+    height: 195px;
+    .at2x('/media/img/firefox/new/redesign/rocket.png', 160px, 195px);
+
+    &:before {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background: #fff;
+        content: '';
+        .animation(twinkle 3s ease-in-out 0s infinite alternate-reverse);
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        right: 0;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        display: none;
+    }
+}
+
+.browser-container {
+    position: relative;
+    margin-top: 60px;
+}
+
+.browser-chrome {
+    width: 100%;
+    height: 127px;
+    .at2x('/media/img/firefox/new/redesign/browser-chrome.png', 935px, 127px);
+    background-position: top center;
+    background-repeat: no-repeat;
+
+    @media only screen and (max-width: @breakDesktop) {
+        height: 98px;
+        .background-size(@widthTablet - (@gridGutterWidth * 2), auto);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        display: none;
+    }
+}

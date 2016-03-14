@@ -1,0 +1,203 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../../sandstone/lib.less";
+
+.event-horizon {
+    .clearfix;
+    background-color: #0150ab;
+    background: linear-gradient(to bottom, rgb(30, 68, 136) 0%, rgb(19, 71, 146) 22%, rgb(2, 76, 161) 44%, rgb(0, 85, 184) 73%, rgb(4, 89, 190) 78%, rgb(17, 94, 199) 86%, rgb(51, 105, 219) 100%);
+}
+
+.mission-control {
+    position: relative;
+    width: 100%;
+    padding-top: 129px;
+    background: #11336B;
+
+    .sky-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1400px;
+        height: 129px;
+        margin-left: -700px;
+        background-color: #0150ab;
+        background: linear-gradient(to bottom, #346adc, #6a7cf8);
+    }
+
+    .crater {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1400px;
+        height: 129px;
+        margin-left: -700px;
+        background: url('/media/img/firefox/new/redesign/ground-level.png') top center no-repeat;
+    }
+
+    .launch-area {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .mountains {
+        width: 100%;
+        height: 100%;
+        background: url('/media/img/firefox/new/redesign/mountains.png') top center no-repeat
+    }
+
+    .ground {
+        width: 100%;
+        height: 120px;
+        background: #11336B;
+    }
+}
+
+// If browser supports CSS blend modes, add grit texture over CSS gradient & apply color-dodge.
+@supports (background-blend-mode: color-dodge) {
+    .event-horizon {
+        background: url('/media/img/firefox/new/redesign/grit.png') top left repeat,
+                    linear-gradient(to bottom, rgb(30, 68, 136) 0%, rgb(19, 71, 146) 22%, rgb(2, 76, 161) 44%, rgb(0, 85, 184) 73%, rgb(4, 89, 190) 78%, rgb(17, 94, 199) 86%, rgb(51, 105, 219) 100%);
+        background-blend-mode: color-dodge;
+    }
+
+    .mission-control .sky-line {
+        background: url('/media/img/firefox/new/redesign/grit.png') top left repeat,
+                    linear-gradient(to bottom, #346adc, #6a7cf8);
+        background-blend-mode: color-dodge;
+    }
+}
+
+.foxes {
+    position: absolute;
+    top: -160px;
+    right: 90px;
+    width: 183px;
+    height: 157px;
+    .at2x('/media/img/firefox/new/redesign/take-off-sprite.png', 193px, 226px);
+    background-repeat: no-repeat;
+    background-position: top left;
+
+    &:before {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background: #fff;
+        content: '';
+        .animation(twinkle 3s ease-in-out 0s infinite alternate-reverse);
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        right: -30px;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        top: -130px;
+        right: 50%;
+        margin-right: -91px;
+    }
+}
+
+main {
+    .main-content {
+        margin-top: @baseLine * 4;
+    }
+
+    h1 {
+        position: relative;
+
+        &:before {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            width: 109px;
+            height: 60px;
+            margin-left: -54px;
+            content: '';
+            .at2x('/media/img/firefox/new/redesign/take-off-sprite.png', 193px, 226px);
+            background-repeat: no-repeat;
+            background-position: -10px -157px;
+        }
+    }
+}
+
+.help {
+    margin-top: @baseLine * 2;
+    .open-sans-light;
+    .font-size(20px);
+}
+
+// keep the button technically visible to grab correct download link for
+// backup download link
+#download-button-wrapper-desktop {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    margin: 0 auto;
+
+    #primary-download-button {
+        margin: 1px 0 0 1px;
+    }
+}
+
+#direct-download-link {
+    color: @textColorSpaceYellow;
+}
+
+#mobile-download {
+    margin-top: @baseLine * 2;
+    .clearfix;
+
+    h2 {
+        .font-size(25px);
+        margin-bottom: @baseLine * 2;
+    }
+
+    ul {
+        display: block;
+        margin: @baseLine auto (@baseLine * 2);
+        padding: 0;
+        list-style: none;
+        width: 384px;
+        .clearfix();
+    }
+
+    li {
+        display: inline;
+        float: left;
+        margin: 0 @baseLine;
+        width: 152px;
+        height: 45px;
+    }
+
+    a {
+        display: block;
+        margin-bottom: @baseLine;
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #mobile-download {
+        ul {
+            margin-bottom: @baseLine;
+            width: auto;
+        }
+
+        li {
+            float: none;
+            margin: 0 auto (@baseLine / 2);
+        }
+    }
+}

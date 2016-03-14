@@ -403,6 +403,35 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_scene2-bundle.css',
     },
+    'firefox_new_redesign_common': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/base/simple_footer-resp.less',
+            'css/firefox/new/redesign/common.less',
+        ),
+        'output_filename': 'css/firefox_new_redesign_common-bundle.css',
+    },
+    'firefox_new_redesign_scene1_crater': {
+        'source_filenames': (
+            'css/firefox/new/redesign/scene1-common.less',
+            'css/firefox/new/redesign/scene1-crater.less',
+        ),
+        'output_filename': 'css/firefox_new_redesign_scene1_crater-bundle.css',
+    },
+    'firefox_new_redesign_scene1_browser': {
+        'source_filenames': (
+            'css/firefox/new/redesign/scene1-common.less',
+            'css/firefox/new/redesign/scene1-browser.less',
+        ),
+        'output_filename': 'css/firefox_new_redesign_scene1_browser-bundle.css',
+    },
+    'firefox_new_redesign_scene2': {
+        'source_filenames': (
+            'css/firefox/new/redesign/scene2-common.less',
+        ),
+        'output_filename': 'css/firefox_new_scene2_redesign-bundle.css',
+    },
     'firefox_organizations': {
         'source_filenames': (
             'css/firefox/organizations.less',
@@ -1134,6 +1163,20 @@ PIPELINE_JS = {
             'js/firefox/new/scene2.js',
         ),
         'output_filename': 'js/firefox_new_scene2-bundle.js',
+    },
+    'firefox_new_redesign_scene1_a': {
+        'source_filenames': (
+            'js/firefox/new/redesign/scene1-common.js',
+            'js/firefox/new/redesign/set-scene2-a.js',
+        ),
+        'output_filename': 'js/firefox_new_redesign_scene1_a-bundle.js',
+    },
+    'firefox_new_redesign_scene1_b': {
+        'source_filenames': (
+            'js/firefox/new/redesign/scene1-common.js',
+            'js/firefox/new/redesign/set-scene2-b.js',
+        ),
+        'output_filename': 'js/firefox_new_redesign_scene1_b-bundle.js',
     },
     'firefox_pocket': {
         'source_filenames': (
