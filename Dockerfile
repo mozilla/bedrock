@@ -5,7 +5,6 @@ RUN apt-get install -y --no-install-recommends npm
 COPY . /app
 
 RUN npm install --production
-RUN ./bin/pipstrap.py
 RUN pip install --no-cache-dir -r requirements/dev.txt
 RUN pip install --no-cache-dir -r requirements/prod.txt
 RUN pip install --no-cache-dir -r requirements/docker.txt
