@@ -139,4 +139,7 @@ URLS = flatten((
     # bug 726217, 1255882
     url_test('/projects/bonecho/anti-phishing/',
              'https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work'),
+
+    # Bug 453876, 840416
+    url_test('/add-ons/kodakcd', 'https://addons.mozilla.org/en-US/firefox/addon/4441'),
 ))

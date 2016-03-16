@@ -601,6 +601,10 @@ redirectpatterns = (
     redirect(r'^projects/bonecho/anti-phishing/?$',
              'https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work'),
 
+    # Bug 453876, 840416
+    redirect(r'^add-ons/kodak', 'https://addons.mozilla.org/en-US/firefox/addon/4441'),
+
+
     # bug 832348 **/index.html -> **/
     # leave this at the bottom
     redirect(r'^(.*)/index\.html$', '/{}/', locale_prefix=False),
