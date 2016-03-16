@@ -39,7 +39,7 @@
 {% block site_header %}
 <header id="masthead">
   <div id="tabzilla">
-    <a href="{{ url('mozorg.home') }}">Mozilla</a>
+    <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
   </div>
   {% block up_to_date_message %}
     <h2>{{ _('Congrats. You’re up to date!') }}</h2>
@@ -59,11 +59,11 @@
 
 {% block site_footer %}
   <footer role="contentinfo">
-    <a class="logo" href="{{ url('mozorg.home') }}">Mozilla</a>
+    <a class="logo" href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">Mozilla</a>
     <ul>
-      <li><a href="{{ url('privacy') }}">{{ _('Privacy Policy') }}</a></li>
-      <li><a href="{{ url('privacy.notices.websites') }}#cookies">{{ _('Cookies') }}</a></li>
-      <li><a href="{{ url('legal.index') }}">{{ _('Legal Notices') }}</a></li>
+      <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
+      <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal Notices') }}</a></li>
     </ul>
   </footer>
 {% endblock %}
