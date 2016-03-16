@@ -8,6 +8,7 @@
     <header>
       <h1 itemprop="name" class="title-shadow-box">Web and Services Bug Bounty Program</h1>
     </header>
+
     <div itemprop="articleBody">
       <h2>Introduction</h2>
 
@@ -15,36 +16,92 @@
 
       <h2>General Bounty Guidelines</h2>
 
-      <p>Mozilla will pay a bounty for certain website and service security bugs,  as detailed below.  All security bugs must follow the following general criteria to be eligible:</p>
+      <p>Mozilla will pay a bounty for certain website and service security bugs, as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
+
       <ul>
         <li>Security bug must be original and previously unreported.</li>
-
         <li>Security bug must be a remote exploit, compromise user data, allow access to Mozilla infrastructure or resources, or easily manipulate a user.</li>
-
         <li>Submitter must not be the author of the buggy code nor otherwise involved in its contribution to the Mozilla project (such as by providing check-in reviews).</li>
-
         <li>Employees of the Mozilla Foundation and its subsidiaries are ineligible.</li>
       </ul>
+
       <p>If two or more people report the bug together, or working independently at approximately the same time, the reward will be divided between them.</p>
+
+      <h2>How To Submit Bugs</h2>
+
+      <p>The sooner we can reproduce and fix the bug, the sooner we can validate it, fix it, and send your reward.</p>
+
+      <p>We prefer to receive bug reports in English. If English is not your native language and you are not fluent, Mozilla has employees and volunteers from all over the world who can help. If necessary, please write bug reports in your native language rather than using automated translation software. Automated translation software tends to mangle technical descriptions in indecipherable way.</p>
+
+      <p>There are three main things you can provide which will help us to evaluate your submission quickly and pay a bounty sooner:</p>
+
+      <ol>
+        <li>What is the attack scenario?</li>
+        <li>What is the step-by-step exploit process?</li>
+        <li>What is the security impact?</li>
+      </ol>
+
+      <h3>What is the attack scenario?</h3>
+
+      <p>For the attack scenario, please describe how an attacker would use the bug you are submitting, any necessary conditions for it to work, and what the attacker would gain through successful attack. Please answer the following questions to the best of your ability:</p>
+
+      <ol>
+        <li>What is the necessary position of the attacker? (Example: Logged in to x website, unauthenticated, etc.)</li>
+        <li>Are there any other assumptions that must be made about the victim? (Example: only affects specific web browser versions, requires that the user can be tricked into clicking on a link, etc. </li>
+        <li>How might a malicious actor use this attack? (Example: Steal victim’s cookies, redirect to malicious website, read files on server outside web root, remote OS command injection, XSS users, etc.)</li>
+      </ol>
+
+      <h3>What is the step-by-step exploit process?</h3>
+
+      <p>Please describe the multi-step process required, step by step, in the right order. If there are multiple parties involved, please describe them all clearly. For example:</p>
+
+      <blockquote>
+        <ol>
+          <li>Visit the url https://xyz.firefox.com/somepage/form?name=value&amp;name2=value2</li>
+          <li>Log in</li>
+          <li>Click the “Frobozz” button</li>
+          <li>Place order for “Anti-Grue Cream” to shipping location “small mailbox,” continue navigation to the Shipping Address page.</li>
+          <li>Add the following payload <code>"&gt;&lt;img src=x onerror=alert(document.domain);// &gt;</code> into the “City” field, then click Submit.</li>
+          <li>The XSS payload ends up in the POST parameter name d oddly_angled_room</li>
+          <li>Visitors to the page /puzzles are affected by stored XSS</li>
+        </ol>
+      </blockquote>
+
+      <p>Include the HTTP request(s) including any necessary header values and POST parameters with your bug submission.</p>
+
+      <p>Please avoid videos. They take time to create and much more time for us to interpret.</p>
+
+      <p>Repeat the attack using only your own description in order to prevent errors and omissions, update documentation.</p>
+
+      <h3>XSS reporting tips</h3>
+
+      <ul>
+        <li>For a reflected XSS vulnerability, the affected URL with a working payload is usually sufficient. Please use <code>alert(document.domain)</code> and not <code>alert(1)</code> in your POC.</li>
+        <li>For any XSS vulnerability, please make sure to write down the attack scenario, which is different than the step-by-step exploit process. Where would the attacker have to be positioned in order to get the victim to trigger the exploit? What action would the victim need to follow? What would be the impact?</li>
+        <li>Self-XSS, where the attacker tricks users into copying and pasting malicious script content or other content into their browser, is not eligible for the Bug Bounty program.</li>
+      </ul>
 
       <h2>Reward Guidelines</h2>
 
-      <p>Mozilla will pay a bounty for website and service  security bugs as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
+      <p>Mozilla will pay a bounty for website and service security bugs as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
+
       <ul>
-        <li>Eligible security bugs may be present in any of eligible sites or services as outlined <a href="{{ url('security.bug-bounty.faq-webapp') }}">here</a></li>
-        <li>The security rating given by the Bounty Committee for a bug must be "sec-critical", "sec-high" or "sec-moderate" in order for it to be eligible for a bounty. (See <a href="https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings">Web App Ratings</a> for details of the rating qualifications.)</li>
+        <li>Eligible security bugs may be present in any of eligible sites or services as outlined in the <a href="{{ url('security.bug-bounty.faq-webapp') }}">Web Application Security Bounty FAQ</a>.</li>
+        <li>The security rating given by the Bounty Committee for a bug must be “sec-critical”, “sec-high” or “sec-moderate” in order for it to be eligible for a bounty. (See <a href="https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings">Web App Ratings</a> for details of the rating qualifications.)</li>
         <li>All bounties paid will be at the discretion of the Mozilla Bounty Committee, which will evaluate the severity of reported issues with the help of engineers who work on the affected code. Security researchers are invited to participate in the assignment of ratings, but final decisions on the rating are at the discretion of the Bounty Committee.</li>
       </ul>
-    <h2>Rewards Amounts</h2>
 
-    <p>Vulnerabilities found in Mozilla Web applications and services are eligible for bounties between $500 (USD) and $4000 (USD), for extraordinary or critical vulnerabilities in valid web applications or Mozilla services.  Rewards for some critical sites can be even higher (e.g. FxAccounts, FindMyDevice, Update Services, Bugzilla)</p>
-    <p>Bounties will be awarded for sec-critical,  sec-high, or sec-moderate rated security bugs that meet the following criteria:</p>
-    <ul>
-      <li>Security bug is present in the web properties outlined in the Web Application Security Bounty FAQ <a href="{{ url('security.bug-bounty.faq-webapp') }}">here.</a></li>
+      <h2>Rewards Amounts</h2>
 
-      <li>Security bug is on the list of sites which part of the bounty. See the eligible bugs section of the Web Application Security Bounty FAQ <a href="{{ url('security.bug-bounty.faq-webapp') }}">here</a> for the list of sites which is included under the bounty.</li>
-      <li>More information about this program can be found <a href="{{ url('security.bug-bounty.faq-webapp') }}">here</a> in the Web Application Security Bounty FAQ.</li>
-    </ul>
-  </div>
-</article>
+      <p>Vulnerabilities found in Mozilla Web applications and services are eligible for bounties between $500 (USD) and $4000 (USD), for extraordinary or critical vulnerabilities in valid web applications or Mozilla services. Rewards for some critical sites can be even higher (e.g. FxAccounts, FindMyDevice, Update Services, Bugzilla)</p>
+
+      <p>Bounties will be awarded for sec-critical, sec-high, or sec-moderate rated security bugs that meet the following criteria:</p>
+
+      <ul>
+        <li>Security bug is present in the web properties outlined in the <a href="{{ url('security.bug-bounty.faq-webapp') }}">Web Application Security Bounty FAQ</a>.</li>
+        <li>Security bug is on the list of sites which part of the bounty. See the eligible bugs section of the <a href="{{ url('security.bug-bounty.faq-webapp') }}">Web Application Security Bounty FAQ</a> for the list of sites which are included under the bounty.</li>
+        <li>More information about this program can be found in the <a href="{{ url('security.bug-bounty.faq-webapp') }}">Web Application Security Bounty FAQ</a>.</li>
+      </ul>
+    </div>
+  </article>
 {% endblock %}
