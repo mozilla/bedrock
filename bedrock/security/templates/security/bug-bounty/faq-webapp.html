@@ -81,19 +81,14 @@
             encourage people to examine typical areas for vulnerabilities such as
             authentication and session management. Since our code is opensource, you are
             encourage to run on the software on your own server instance or just look
-            at the source code for potential issues.
-            (See the list below for the domains and applications which are in scope.)</p>
+            at the source code for potential issues.</p>
+            <p>On Mozilla's Wiki, you can find information about some of our <a href="https://wiki.mozilla.org/Security/TestingToolchains/">security testing toolchains. </a>
+            <p></p>See the list below for the domains and applications which are in scope.</p>
         </dd>
         <dt class="question" id="bounty-amount">Is the amount of the bounty
           different for web applications vulnerabilities?</dt>
         <dd class="answer">
-          <p>In the past we have not formally paid the bug bounty on web vulnerabilities
-            but we have paid the bounty for critical and extraordinary web application
-            vulnerabilities.
-            We are now going to include high severity web applications vulnerabilities.
-            So we are giving a range starting at $500 (US) for high severity and, in some
-            cases,
-            may pay up to $3000 (US) for extraordinary or critical vulnerabilities.
+          <p>Payments vary according to the severity of the issue, with the range starting at $500 (US) for moderate severity and up to $3000 (US) for High or Critical vulnerabilities.
           </p>
         </dd>
         <dt class="question" id="severity-ratings">Is there a list of severity
@@ -126,15 +121,16 @@
             <li>addons.mozilla.org</li>
             <li>services.addons.mozilla.org</li>
             <li>versioncheck.addons.mozilla.org</li>
-            <li>pfs.mozilla.org</li>
             <li>download.mozilla.org</li>
           </ul>
   
+          <p>Additionally, Mozilla services that handle reasonably sensitive user data such as Sync and Hello are in scope for the bug bounty program.</p>
           <p>The Mozilla Developer Network (developer.mozilla.org) has been removed from this
             list due to site vandalism by researchers looking for security issues. It will be
             added back at a later date when a test server is deployed to avoid negative impacts
             on our primary reference site.</p>
-  
+            <p>Only Mozilla websites and services are in scope, not email phishing attacks against employees, our offices, etc. Additionally, flaws relying on out-of-date browsers, plugins, or add-ons, which require extremely unlikely/unusual user interaction, and banner and version information are generally not eligible. </p>
+
         </dd>
         <br>
         <dt class="question" id="sites-not-listed">What about sites which are not
@@ -154,14 +150,18 @@
           <p>While there are many types of web vulnerabilities, the list below directly
             affects our users and our infrastructure. These are just a few examples.</p>
           <ul>
-            <li>Cross-Site Scripting (XSS)</li>
-            <li>Cross-Site Request Forgery (CSRF)</li>
-            <li>Injection / RFI/LFI</li>
+            <li>Cross-site request forgery</li>
+            <li>Mixed-content scripts</li>
+            <li>Authentication or authorization flaws</li>
+            <li>Server-side code execution bugs</li>
+            <li>Cross-site scripting bugs (XSS) other than self-XSS</li>
+            <li>Any type of injection issue</li>
+            <li>Remote File Include (RFI)</li>
+            <li>Local File Include (LFI)</li>
           </ul>
           <p>The
             <a href="https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings">
-              Web Application Severity Ratings</a> is consider to be the master list
-            for what will be part of the bug bounty. </p>
+              Web Application Severity Ratings</a> explains how Mozilla measures website and service security risk. Medium, High, and Critical issues reported are eligible for bounties when confirmed.</p>
         </dd>
         <dt class="question" id="dos-bugs">Why won't you provide a reward
           for denial of service bugs?</dt>
@@ -179,21 +179,14 @@
         <dt class="question" id="what-next">Once I have found a
           vulnerability, what next?</dt>
         <dd class="answer">
-          <p>Please <a href="https://bugzilla.mozilla.org/enter_bug.cgi">
-            file a bug</a> describing the security bug. The security check-box
-            should also be checked when filing the bug. Further details on the security
-            check-box can be found
-            <a
-              href=https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings#
-              Security_Group_Settings>here.</a>
+          <p>Please <a href="https://bugzilla.mozilla.org/form.web.bounty">
+            file a bug</a>.
+            When filing, please verify that you have followed the guidance on how to write your report in order to assure it is evaluated as quickly as possible. 
+            Repeat the attack using only your own description in order to prevent errors and omissions, then update your documentation to be submitted.</p>
+            <p><b>Please do not ever submit website vulnerabilities via email.<b>
+. 
           </p>
-  
-          <p>We also ask that you notify the <a
-            href="mailto:security@mozilla.org?subject=Web%20Security%20Bug%20Bounty:&lt;
-  DESCRIPTION&gt;">
-            Mozilla Security Group</a> by email and include the bug number and a brief
-            summary.
-          </p>
+
         </dd>
         <dt class="question" id="nondisclosure">If I report the bug
           directly to you, do I have to keep the bug confidential and not publish
@@ -209,7 +202,7 @@
             of time to give us a chance to fix the bug before the bug is made
             public, with an option for the bug reporter (or others) to open the bug
             to public view earlier whenever circumstances warrant it (e.g., if you feel your
-            bug report is being completely ignored).However, in the interest of
+            bug report is being completely ignored). However, in the interest of
             protecting our users, we would appreciate a reasonable amount of
             time to address the issue before the information is publicly disclosed.</p>
         </dd>
