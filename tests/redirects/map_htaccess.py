@@ -142,4 +142,9 @@ URLS = flatten((
 
     # Bug 453876, 840416
     url_test('/add-ons/kodakcd', 'https://addons.mozilla.org/en-US/firefox/addon/4441'),
+
+    # Bug 1255882
+    url_test('/firefox/personal.html', '/firefox/new/'),
+    url_test('/firefox/upgrade.html', '/firefox/new/'),
+    url_test('/firefox/ie.html', '/firefox/new/'),
 ))
