@@ -306,5 +306,10 @@ redirectpatterns = (
     # Bug 424204
     redirect(r'^firefox/help/?$', 'https://support.mozilla.com/{locale}kb/'),
 
-    redirect(r'^fxandroid/?$', 'firefox.android.index')
+    redirect(r'^fxandroid/?$', 'firefox.android.index'),
+
+    # Bug 1255882
+    redirect(r'^firefox/personal', 'firefox.new'),
+    redirect(r'^firefox/upgrade', 'firefox.new'),
+    redirect(r'^firefox/ie', 'firefox.new'),
 )
