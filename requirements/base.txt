@@ -64,8 +64,8 @@ https://github.com/alex/django-filter/archive/e58e15ebf27e90cc0d47b7e58a2181e915
     --hash=sha256:185c89fc9b656c010659452785e9e87749cf4b17544979d38514dd531f631bab
 https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1844bcb43.tar.gz#egg=feedparser \
     --hash=sha256:70a0535bc9252a01f062713af800658a21eee34e5474b2823ea706eda222a26f
-https://github.com/mozilla/rna/archive/833c5ad432925913c54be1c8954b2620e82b386a.tar.gz#egg=rna==1.0 \
-    --hash=sha256:822d4a2862ff17aaeb441294b427d186c0109f957abd1688dffc64e2c452f58a
+https://github.com/mozilla/rna/archive/fdcee9e4ba4f860483eaf9476be02d05b7a81f6e.tar.gz#egg=rna==1.1 \
+    --hash=sha256:c666c6879c28a4d91c94ee88ab557dbd44f48656185fea0f3e88a04d687df55f
 https://github.com/tweepy/tweepy/archive/3941489457db86710b770bc120409d6947904afa.tar.gz#egg=tweepy \
     --hash=sha256:a9b7728d94beeba624fae4be378542a222cf1c5cf845b916ba9a8b3f8f9e4559
 https://github.com/waylan/Python-Markdown/archive/d7fa7931bec55eec5498cd79882b770d1110b9b7.tar.gz#egg=Markdown \
