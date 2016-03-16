@@ -27,6 +27,51 @@
       </ul>
       <p>If two or more people report the bug together, or working independently at approximately the same time, the reward will be divided between them.</p>
 
+      <h2>How To Submit Bugs</h2>
+    
+      <p></p>The sooner we can reproduce and fix the bug, the sooner we can validate it, fix it, and send your reward.</p> 
+
+      <p>We prefer to receive bug reports in English. If English is not your native language and you are not fluent,  Mozilla has employees and volunteers from all over the world who can help. 
+If necessary, please write bug reports in your native language rather than using automated translation software. Automated translation software tends to mangle technical descriptions in indecipherable way.</p>
+
+      <p>There are three main things you can provide which will help us to evaluate your submission quickly and pay a bounty sooner:</p>
+      <ol>
+      <li>What is the attack scenario?</li>
+      <li>What is the step-by-step exploit process?</li>
+      <li>What is the security impact?</li>
+      </ol>
+      
+    <h3>What is the attack scenario?</h3>
+    
+    <p>For the attack scenario, please describe how an attacker would use the bug you are submitting, any necessary conditions for it to work, and what the attacker would gain through successful attack. Please answer the following questions to the best of your ability:</p>
+        <li>What is the necessary position of the attacker? (Example: Logged in to x website, unauthenticated, etc.)</li>
+        <li>Are there any other assumptions that must be made about the victim?  (Example: only affects specific web browser versions, requires that the user can be tricked into clicking on a link, etc. </li>
+        <li>How might a malicious actor use this attack? (Example: Steal victim’s cookies, redirect to malicious website, read files on server outside web root, remote OS command injection, XSS users, etc.)</li>
+
+      <h3>What is the step-by-step exploit process?</h3>
+      <p>Please describe the multi-step process required, step by step, in the right order. If there are multiple parties involved, please describe them all clearly. For example:</p>
+      <ol>
+      <li>Visit the url https://xyz.firefox.com/somepage/form?name=value&amp;name2=value2</li>
+      <li>Login</li>
+      <li>Click the “Frobozz” button</li>
+      <li>Place order for “Anti-Grue Cream” to shipping location “small mailbox,” continue navigation to the Shipping Address page.</li>
+      <li>Add the following payload "&gt;&lt;img src=x onerror=alert(document.domain);// &gt; into the “City” field, then click Submit.</li> 
+      <li>The XSS payload ends up in the POST parameter name d oddly_angled_room</li>
+      <li>Visitors to the page /puzzles are affected by stored XSS</li>
+      </ol>
+    <p>Include the HTTP request(s) including any necessary header values and POST parameters with your bug submission.</p>
+
+    <p>Please avoid videos. They take time to create and much more time for us to interpret. </p>
+
+    <p>Repeat the attack using only your own description in order to prevent errors and omissions, update documentation</p>
+
+    <b>XSS reporting tips</b>
+    
+    <li>For a reflected XSS vulnerability, the affected URL with a working payload is usually sufficient. Please use alert(document.domain) and not alert(1) in your POC.</li> 
+    <li>For any XSS vulnerability, please make sure to write down the attack scenario, which is different than the step-by-step exploit process. Where would the attacker have to be positioned in order to get the victim to trigger the exploit? What action would the victim need to follow? What would be the impact?</i>
+    <li>Self-XSS, where the attacker tricks users into copying and pasting malicious script content or other content into their browser, is not eligible for the Bug Bounty program.</li>
+
+
       <h2>Reward Guidelines</h2>
 
       <p>Mozilla will pay a bounty for website and service  security bugs as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
