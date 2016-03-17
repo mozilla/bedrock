@@ -3,9 +3,12 @@ set -ex
 
 [[ "$CIRCLE_BRANCH" != demo__* ]] && exit 0
 
+DEBUG=False
+DEV=True
 DATABASE_URL=sqlite:///bedrock.db
 DOCKER_CACHE_PATH=~/docker
 MOFO_SECURITY_ADVISORIES_PATH=$DOCKER_CACHE_PATH/security_advisories
+PROD_DETAILS_STORAGE=product_details.storage.PDDatabaseStorage
 
 mkdir -p $DOCKER_CACHE_PATH
 

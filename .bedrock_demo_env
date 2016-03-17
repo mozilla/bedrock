@@ -6,3 +6,4 @@ DEV=True
 DISABLE_SSL=False
 SECRET_KEY=itsasekrit
 ALLOWED_HOSTS=*
+PROD_DETAILS_STORAGE=product_details.storage.PDDatabaseStorage
