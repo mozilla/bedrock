@@ -334,58 +334,6 @@
     }
 }
 
-#footer-email-errors li,
-#newsletter-form,
-#newsletter-form-thankyou {
-    width: (@widthDesktop - (@gridGutterWidth * 2));
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#newsletter-form,
-#newsletter-form-thankyou {
-    background: none;
-    border: none;
-    box-shadow: none;
-    clear: both;
-}
-
-#newsletter-form {
-    .form-title {
-        .span(4);
-        .offset(2);
-    }
-    .form-contents {
-        .span(4);
-    }
-    .form-submit {
-        .span(4);
-        .offset(6);
-        input {
-            text-transform: uppercase;
-            display: block;
-            width: 100%;
-            text-shadow: none;
-            font-weight: normal;
-            box-shadow: none;
-            .border-box();
-            border-radius: .25em;
-            &:extend(.sky .sync-button);
-            margin: 0;
-            &:hover,
-            &:focus,
-            &:active {
-                box-shadow: none;
-            }
-        }
-    }
-    input[type="email"] {
-        padding: 15px 10px;
-        width: 100%;
-        .border-box();
-    }
-}
-
 // Hide elements marked for specific variations by default
 .show-fx-31-signed-in,
 .show-fx-31-signed-out,
@@ -560,26 +508,6 @@ html[dir="rtl"] {
         }
     }
 
-    #footer-email-errors li,
-    #newsletter-form,
-    #newsletter-form-thankyou {
-        width: (@widthTablet - (@gridGutterWidth * 2));
-    }
-
-    #newsletter-form {
-        .form-title {
-            .span_narrow(4);
-            .offset_narrow(1);
-        }
-        .form-contents {
-            .span_narrow(5);
-        }
-        .form-submit {
-            .span_narrow(5);
-            .offset_narrow(5);
-        }
-    }
-
 }
 
 /* Mobile layout: 480px */
@@ -719,26 +647,6 @@ html[dir="rtl"] {
         }
     }
 
-    #footer-email-errors li,
-    #newsletter-form,
-    #newsletter-form-thankyou {
-        width: @widthMobileLandscape;
-    }
-
-    #newsletter-form {
-        .form-title,
-        .form-contents,
-        .form-submit {
-            .span-all();
-        }
-        h3 {
-            margin-bottom: 12px;
-        }
-        .form-submit {
-            padding-bottom: @baseLine;
-        }
-    }
-
 }
 
 /* Mobile layout: 320px */
@@ -766,12 +674,6 @@ html[dir="rtl"] {
 
     .intro {
         width: @widthMobile - (@gridGutterWidth * 2);
-    }
-
-    #footer-email-errors li,
-    #newsletter-form,
-    #newsletter-form-thankyou {
-        width: @widthMobile - @gridGutterWidth;
     }
 
 }

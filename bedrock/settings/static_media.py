@@ -176,6 +176,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
             'css/base/menu-resp.less',
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/all.less',
         ),
         'output_filename': 'css/firefox_all-bundle.css',
@@ -273,6 +274,7 @@ PIPELINE_CSS = {
     },
     'firefox_family': {
         'source_filenames': (
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/family/index.less',
         ),
         'output_filename': 'css/firefox-family-bundle.css',
@@ -359,6 +361,7 @@ PIPELINE_CSS = {
     'firefox_hello': {
         'source_filenames': (
             'css/firefox/family-nav.less',
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/hello/index.less',
         ),
         'output_filename': 'css/firefox_hello-bundle.css',
@@ -368,6 +371,7 @@ PIPELINE_CSS = {
             'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
             'css/base/send-to-device.less',
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/ios.less',
         ),
         'output_filename': 'css/firefox_ios-bundle.css',
@@ -453,6 +457,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/firefox/family-nav.less',
             'css/firefox/tracking-protection-animation.less',
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/private_browsing/private-browsing-conditionals.less',
             'css/firefox/private_browsing/private-browsing.less',
         ),
@@ -520,6 +525,7 @@ PIPELINE_CSS = {
     },
     'firefox_pocket': {
         'source_filenames': (
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/pocket.less',
         ),
         'output_filename': 'css/firefox_pocket-bundle.css',
@@ -540,6 +546,7 @@ PIPELINE_CSS = {
     'firefox_sync': {
         'source_filenames': (
             'css/firefox/family-nav.less',
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/sync.less',
         ),
         'output_filename': 'css/firefox_sync-bundle.css',

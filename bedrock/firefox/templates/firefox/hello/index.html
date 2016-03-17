@@ -117,14 +117,11 @@
     </div>
   </section>
 
-  {% block email_form_test %}
+  {% block newsletter_subscribe %}
     {% if LANG.startswith('en-') %}
-    <aside id="newsletter-subscribe" class="ga-section" data-ga-label="Discover more ways to stay connected with Firefox.">
-      <div class="content container">
-        <header>
-          <h3 class="compact">{{ _('Discover more ways to stay connected<br> with Firefox.') }}</h3>
-        </header>
-        {{ email_newsletter_form(title=' ') }}
+    <aside id="newsletter-subscribe" class="compact ga-section" data-ga-label="Discover more ways to stay connected with Firefox.">
+      <div class="container">
+        {{ email_newsletter_form(title=_('Discover more ways to stay connected<br> with Firefox.')) }}
       </div>
     </aside>
     {% endif %}

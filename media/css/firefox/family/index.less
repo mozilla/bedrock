@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../../sandstone/lib.less";
-@import '../newsletter-test.less';
 
 .mozid {
     color: #fff;
@@ -32,7 +31,7 @@
     margin: 0 auto;
 
     @media only screen and (min-width: @breakDesktopWide) {
-        width: @widthDesktopWide;
+        width: @widthDesktopWide - (@gridGutterWidth * 2);
     }
 
     @media only screen and (max-width: @breakDesktop) {
@@ -51,6 +50,7 @@
 @media only screen and (min-width: @breakDesktopWide) {
     #newsletter-subscribe .content {
         width: @widthDesktop;
+        padding: (@baseLine * 2) 0;
     }
 }
 

@@ -46,7 +46,6 @@
         client.getFirefoxDetails(function(data) {
             if (data.isUpToDate) {
                 $('#overview-intro-up-to-date').addClass('active');
-                $('#subscribe-download-wrapper.variant').addClass('active');
             }
         });
     }
