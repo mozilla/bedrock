@@ -1,0 +1,20 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/private-browsing.html" %}
+
+{% add_lang_files "firefox/private-browsing" %}
+
+  {% block email_form_test %}
+    {% if LANG.startswith('en-') %}
+    <aside id="newsletter-subscribe" class="light ga-section" data-ga-label="Keep up with all things Firefox.">
+      <div class="content container">
+        <header>
+          <h3>{{ _('Keep up with all things Firefox.') }}</h3>
+        </header>
+        {{ email_newsletter_form(title=' ', button_class='dark') }}
+      </div>
+    </aside>
+    {% endif %}
+  {% endblock %}

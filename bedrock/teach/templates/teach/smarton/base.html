@@ -47,9 +47,9 @@
   <div class="footer-cta" id="footer-cta">
     <div id="smarton-foot-newsletter" class="foot-newsletter content" data-footer-name="Newsletter signup">
       {% if LANG.startswith('en') %}
-        {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Stay in control'), subtitle=_('Get tips and more from Mozilla')) }}
+        {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Stay in control'), subtitle=_('Get tips and more from Mozilla'), button_class='white') }}
       {% else %}
-        {{ email_newsletter_form() }}
+        {{ email_newsletter_form(button_class='white') }}
       {% endif %}
     </div>
 

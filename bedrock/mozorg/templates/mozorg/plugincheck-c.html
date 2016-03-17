@@ -192,9 +192,9 @@
       <h3>{{ _('<span class="firefox">Firefox</span> + You') }}</h3>
       <h4>{{ _('Get Firefox tips, tricks, news and more') }}</h4>
     </header>
-    {{ email_newsletter_form() }}
+    {{ email_newsletter_form(button_class='white') }}
   {% else %}
-    {{ email_newsletter_form() }}
+    {{ email_newsletter_form(button_class='white') }}
   {% endif %}
 </section>
 

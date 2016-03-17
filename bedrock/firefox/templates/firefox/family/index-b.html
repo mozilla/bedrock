@@ -1,0 +1,20 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/family/index.html" %}
+
+{% set_lang_files "firefox/family/index" %}
+
+{% block email_form %}
+  {% if LANG.startswith('en-') %}
+  <aside id="newsletter-subscribe" class="ga-section" data-ga-label="Keep up with all things Firefox.">
+    <div class="content container">
+      <header>
+        <h3>{{ _('Keep up with all things Firefox.') }}</h3>
+      </header>
+      {{ email_newsletter_form(title=' ', button_class='white') }}
+    </div>
+  </aside>
+  {% endif %}
+{% endblock %}

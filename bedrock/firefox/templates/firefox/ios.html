@@ -155,10 +155,11 @@
     <div class="container">
       {% if LANG.startswith('en-') %}
         {# L10n: Line break for visual formatting. #}
-        {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.')) }}
+        {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='dark') }}
       {% else %}
-        {{ email_newsletter_form(title=_('Get Firefox news')) }}
-      {% endif %}    </div>
+        {{ email_newsletter_form(title=_('Get Firefox news'), button_class='dark') }}
+      {% endif %}
+    </div>
   </aside>
 {% endblock %}
 

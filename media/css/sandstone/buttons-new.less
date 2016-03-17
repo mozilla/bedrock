@@ -1,0 +1,55 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+input[type="submit"].button-newsletter,
+.button-newsletter {
+
+    background: none;
+    color: #0095dd;
+    border: 2px solid #0095dd;
+    border-radius: 4px;
+    width: 100%;
+    min-height: 45px;
+    .font-size(18px);
+    font-weight: normal;
+    text-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        color: #00afe5;
+        border-color: #00afe5;
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+
+    &.dark {
+        color: #00539F;
+        border-color: #00539F;
+
+        &:hover,
+        &:focus {
+            color: #0095DD;
+            border-color: #0095DD;
+        }
+    }
+
+    &.white {
+        color: #fff;
+        border-color: #fff;
+
+        &:hover,
+        &:focus {
+            color: #f4f4f4;
+            border-color: #f4f4f4;
+        }
+    }
+}
