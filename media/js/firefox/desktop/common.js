@@ -19,15 +19,6 @@
 
         // show download button in sticky nav on overview page
         $('#sticky-download-desktop').fadeIn('fast');
-
-        // Track clicks on Nav CTA
-        $('#sticky-download-desktop .download-link').attr('data-interaction', 'download click - nav');
-
-        // Track Firefox download click in overview intro section
-        $('#firefox-desktop #intro .download-link').attr({'data-interaction': 'download click - primary', 'data-download-version': downloadVersion});
-
-        // Track Firefox download click in footer
-        $('#subscribe-download-wrapper .download-link').attr({'data-interaction': 'download click - bottom', 'data-download-version': downloadVersion});
     }
 
     // only show download buttons for users on desktop platforms, using either a non-Firefox browser
