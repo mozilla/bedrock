@@ -60,3 +60,8 @@ deployment:
     owner: mozilla
     commands:
       - bin/circleci-demo-deploy.sh
+  jenkins:
+    branch: master
+    owner: mozilla
+    commands:
+      - bin/circleci-trigger-jenkins.sh
