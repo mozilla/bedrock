@@ -22,7 +22,7 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
                           use_thankyou=True, thankyou_head=None,
                           thankyou_content=None, footer=True,
                           process_form=True, include_title=None,
-                          submit_text=None):
+                          submit_text=None, button_class='default'):
     request = ctx['request']
     context = ctx.get_all()
 
@@ -48,6 +48,7 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
         include_title=include_title if include_title is not None else footer,
         form=form,
         submit_text=submit_text,
+        button_class=button_class,
         success=success,
     ))
 

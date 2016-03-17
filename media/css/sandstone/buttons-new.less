@@ -1,0 +1,59 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+input[type="submit"].button-newsletter,
+.button-newsletter {
+
+    background: none;
+    border-radius: 4px;
+    width: 100%;
+    min-height: 45px;
+    .font-size(18px);
+    font-weight: normal;
+    text-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+
+    &.default {
+        color: #0095dd;
+        border: 2px solid #0095dd;
+
+        &:hover {
+            border-color: #00afe5
+        }
+    }
+
+    &.dark {
+        border: 2px solid #333;
+
+        &:hover {
+            border: 2px solid #999;
+        }
+    }
+
+    &.white {
+        color: #fff;
+        border: 2px solid #fff;
+
+        &:hover {
+            border: 2px solid #f4f4f4;
+        }
+
+        &:active {
+            position: relative;
+            top: 1px;
+        }
+    }
+
+    /* for newsletter signup submit buttons inside the billboard container.
+       This might have other use cases so, leaving it as a specific style rule for now
+     */
+    &.thin {
+        min-height: 25px;
+    }
+
+}

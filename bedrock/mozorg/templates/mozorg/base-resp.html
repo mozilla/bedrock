@@ -8,8 +8,8 @@
 
 {% block email_form %}
   {% if LANG == 'en-US' %}
-    {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Get Mozilla updates')) }}
+    {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Get Mozilla updates'), button_class='default thin') }}
   {% else %}
-    {{ email_newsletter_form() }}
+    {{ email_newsletter_form(button_class='default thin') }}
   {% endif %}
 {% endblock %}

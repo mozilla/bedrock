@@ -265,6 +265,8 @@
 
 {% endblock %}
 
+{% block email_form %}{{ email_newsletter_form(button_class='default') }}{% endblock %}
+
 {% block js %}
   <!--[if IE 9]>
     {% javascript 'matchmedia_addlistener' %}
