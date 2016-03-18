@@ -2,6 +2,7 @@ from __future__ import print_function
 import datetime
 import os
 import sys
+from subprocess import check_call
 
 from django.core.management import call_command
 from django.conf import settings
@@ -80,7 +81,9 @@ def job_update_security_advisories():
 
 @scheduled_job('interval', minutes=5)
 def job_rnasync():
-    call_command('rnasync')
+    # running in a subprocess as rnasync was not designed for long-running process
+    check_call('python {} rnasync'.format(os.path.join(settings.ROOT, 'manage.py')),
+               shell=True)
 
 
 @scheduled_job('interval', hours=6)
