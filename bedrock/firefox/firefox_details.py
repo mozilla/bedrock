@@ -5,7 +5,7 @@ from urllib import urlencode
 
 from django.conf import settings
 from product_details import ProductDetails
-from lib.l10n_utils.dotlang import _
+from lib.l10n_utils.dotlang import _lazy as _
 
 
 # TODO: port this to django-mozilla-product-details
