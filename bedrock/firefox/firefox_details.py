@@ -53,10 +53,6 @@ class FirefoxDesktop(_ProductDetails):
     def platforms(self, channel='release'):
         platforms = self.platform_labels.copy()
 
-        # Windows 64-bit builds are not available on the ESR channel yet
-        if channel in ['esr', 'esr_next']:
-            del platforms['win64']
-
         return platforms.items()
 
     def latest_version(self, channel='release'):
@@ -147,8 +143,9 @@ class FirefoxDesktop(_ProductDetails):
                 continue
 
             for platform, label in self.platform_labels.iteritems():
-                # Windows 64-bit builds are not available on the ESR channel yet
-                if platform == 'win64' and channel in ['esr', 'esr_next']:
+                # Windows 64-bit builds are not available in Firefox 38 ESR
+                # TODO: Remove this exception once 38 ESR reaches EOL on 2016-06-07
+                if platform == 'win64' and channel == 'esr':
                     continue
 
                 build_info['platforms'][platform] = {

@@ -98,8 +98,9 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
 
     if show_desktop:
         for plat_os, plat_os_pretty in firefox_desktop.platform_labels.iteritems():
-            # Windows 64-bit builds are not available on the ESR channel yet
-            if plat_os == 'win64' and channel in ['esr', 'esr_next']:
+            # Windows 64-bit builds are not available in Firefox 38 ESR
+            # TODO: Remove this exception once 38 ESR reaches EOL on 2016-06-07
+            if plat_os == 'win64' and channel == 'esr':
                 continue
 
             # Fallback to en-US if this plat_os/version isn't available
