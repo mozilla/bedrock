@@ -33,10 +33,10 @@
       <p class="series-intro">
         {{ _('The SmartOn Series is like your Internet owner’s manual: the place to learn the most useful intel and tips from Mozilla policy peeps and programmers.') }}
       </p>
-      <p class="series-link"><a href="{{ url('teach.smarton.index') }}">{{ _('See all SmartOns') }}</a></p>
+      <p class="series-link"><a href="{{ url('teach.smarton.index') }}" data-link-type="nav" data-link-name="See all SmartOns">{{ _('See all SmartOns') }}</a></p>
 
       <div id="tabzilla">
-        <a href="{{ url('mozorg.home') }}">Mozilla</a>
+        <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
       </div>
     </div>
   </header>
@@ -89,10 +89,10 @@
     <nav class="nav-steps">
       {# L10n: <b> elements below are for visual formatting, to distinguish the numeral from the text label #}
       <ol>
-        <li id="nav-step-ask"><a href="#ask">{{ _('<b>1.</b> Ask') }}</a></li>
-        <li id="nav-step-know"><a href="#know">{{ _('<b>2.</b> Know') }}</a></li>
-        <li id="nav-step-do"><a href="#do">{{ _('<b>3.</b> Do') }}</a></li>
-        <li id="nav-step-chat"><a href="#chat">{{ _('<b>4.</b> Chat') }}</a></li>
+        <li id="nav-step-ask"><a href="#ask" data-link-type="nav" data-link-name="Ask">{{ _('<b>1.</b> Ask') }}</a></li>
+        <li id="nav-step-know"><a href="#know" data-link-type="nav" data-link-name="Know">{{ _('<b>2.</b> Know') }}</a></li>
+        <li id="nav-step-do"><a href="#do" data-link-type="nav" data-link-name="Do">{{ _('<b>3.</b> Do') }}</a></li>
+        <li id="nav-step-chat"><a href="#chat" data-link-type="nav" data-link-name="Chat">{{ _('<b>4.</b> Chat') }}</a></li>
       </ol>
     </nav>
 
