@@ -350,7 +350,25 @@ class FirstrunView(LatestFxView):
 
 
 class FirstrunLearnMoreView(LatestFxView):
-    template_name = 'firefox/whatsnew_42/learnmore.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(FirstrunLearnMoreView, self).get_context_data(**kwargs)
+
+        # add funnelcake version to context for use in templates
+        ctx['f'] = self.request.GET.get('f', '')
+
+        return ctx
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+        funnelcake = self.request.GET.get('f', '')
+
+        if locale == 'en-US' and funnelcake in ['64', '65']:
+            template = 'firefox/firstrun/learnmore/yahoo-search.html'
+        else:
+            template = 'firefox/firstrun/learnmore/learnmore.html'
+
+        return [template]
 
 
 class WhatsnewView(LatestFxView):

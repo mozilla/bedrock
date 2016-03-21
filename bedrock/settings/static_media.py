@@ -320,6 +320,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun-bundle.css',
     },
+    'firefox_firstrun_learnmore_yahoo_search': {
+        'source_filenames': (
+            'css/firefox/firstrun/learnmore/yahoo-search.less',
+        ),
+        'output_filename': 'css/firefox_firstrun_learnmore_yahoo_search-bundle.css',
+    },
     'firefox_feedback': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
@@ -1370,9 +1376,16 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/firefox/australis/australis-uitour.js',
             'js/base/mozilla-highlight-target.js',
-            'js/firefox/whatsnew_42/learnmore.js',
+            'js/firefox/firstrun/learnmore/learnmore.js',
         ),
         'output_filename': 'js/firefox_firstrun_42_learnmore-bundle.js',
+    },
+    'firefox_firstrun_learnmore_yahoo_search': {
+        'source_filenames': (
+            'js/firefox/australis/australis-uitour.js',
+            'js/firefox/firstrun/learnmore/yahoo-search.js',
+        ),
+        'output_filename': 'js/firefox_firstrun_learnmore_yahoo_search-bundle.js',
     },
     'firefox_win10_welcome': {
         'source_filenames': (

@@ -366,6 +366,47 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/firstrun/firstrun.html'])
 
 
+@patch.object(fx_views.FirstrunLearnMoreView, 'redirect_to', none_mock)
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestFirstRunLearnMore(TestCase):
+    def setUp(self):
+        self.view = fx_views.FirstrunLearnMoreView.as_view()
+        self.rf = RequestFactory()
+
+    @override_settings(DEV=True)
+    def test_default_template(self, render_mock):
+        """Should use default learnmore template"""
+        req = self.rf.get('/firefox/firstrun/learnmore')
+        self.view(req, version='45.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/learnmore/learnmore.html'])
+
+    @override_settings(DEV=True)
+    def test_yahoo_funnelcake_64_template(self, render_mock):
+        """Should use yahoo search template for f=64"""
+        req = self.rf.get('/firefox/firstrun/learnmore?f=64')
+        self.view(req, version='45.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/learnmore/yahoo-search.html'])
+
+    @override_settings(DEV=True)
+    def test_yahoo_funnelcake_65_template(self, render_mock):
+        """Should use yahoo search template for f=65"""
+        req = self.rf.get('/firefox/firstrun/learnmore?f=65')
+        self.view(req, version='45.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/learnmore/yahoo-search.html'])
+
+    @override_settings(DEV=True)
+    def test_yahoo_funnelcake_other_locales_template(self, render_mock):
+        """Should use default learnmore template for non en-US locales"""
+        req = self.rf.get('/firefox/firstrun/learnmore?f=64')
+        req.locale = 'de'
+        self.view(req, version='45.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/learnmore/learnmore.html'])
+
+
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class FxVersionRedirectsMixin(object):
     @override_settings(DEV=True)  # avoid https redirects
