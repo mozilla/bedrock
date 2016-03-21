@@ -35,9 +35,6 @@ redirectpatterns = (
     # bug 948605
     redirect(r'^firefox/xp', 'firefox.new'),
 
-    # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
-    redirect(r'^products/firefox/start/?$', 'http://start.mozilla.org'),
-
     # bug 875052
     redirect(r'^start/', ua_redirector('seamonkey',
                                        'http://www.seamonkey-project.org/start/',
@@ -596,10 +593,6 @@ redirectpatterns = (
     redirect(r'^editor/midasdemo/securityprefs\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Midas/Security_preferences'),
     redirect(r'^editor/(?P<page>.*)$', 'http://www-archive.mozilla.org/editor/{page}'),
-
-    # bug 726217, 1255882
-    redirect(r'^projects/bonecho/anti-phishing/?$',
-             'https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work'),
 
     # Bug 453876, 840416
     redirect(r'^add-ons/kodak', 'https://addons.mozilla.org/en-US/firefox/addon/4441'),

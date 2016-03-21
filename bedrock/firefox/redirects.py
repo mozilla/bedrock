@@ -50,7 +50,8 @@ redirectpatterns = (
     redirect(r'^firefox/unsupported-systems\.html$', 'firefox.unsupported-systems'),
 
     # bug 736934, 860865, 1101220, 1153351
-    redirect(r'^mobile/(?P<channel>(?:beta|aurora)/)?notes/?$', '/firefox/android/{channel}notes/'),
+    redirect(r'^mobile/(?P<channel>(?:beta|aurora)/)?notes/?$',
+             '/firefox/android/{channel}notes/'),
     redirect(r'^firefox/(?P<channel>(?:beta|aurora|organizations)/)?system-requirements(\.html)?$',
              '/firefox/{channel}system-requirements/'),
 
@@ -92,7 +93,7 @@ redirectpatterns = (
     redirect(r'^firefox/toolkit/download-to-your-devices', 'firefox.new'),
 
     # bug 1014823
-    redirect(r'^firefox/releases/whatsnew/?$', 'firefox.whatsnew'),
+    redirect(r'^(products/)?firefox/releases/whatsnew/?$', 'firefox.whatsnew'),
 
     # bug 929775
     redirect(r'^firefox/update', 'firefox.new', query={
@@ -135,7 +136,7 @@ redirectpatterns = (
     redirect(r'^products/?$', 'firefox.family.index'),
 
     # Bug 1110927
-    redirect(r'^firefox/start/central\.html$', 'firefox.new'),
+    redirect(r'^(products/)?firefox/start/central\.html$', 'firefox.new'),
     redirect(r'^firefox/sync/firstrun\.html$', 'firefox.sync'),
     redirect(r'^firefox/panorama/?$', 'https://support.mozilla.org/kb/tab-groups-organize-tabs'),
 
@@ -143,14 +144,14 @@ redirectpatterns = (
     redirect(r'^firefox/fx/?$', 'firefox.new'),
 
     # Bug 979670, 979531, 1003727, 979664, 979654, 979660
-    redirect(r'^firefox/features/?$', 'firefox.desktop.index'),
+    redirect(r'^firefox/(.+/)?features/?$', 'firefox.desktop.index'),
     redirect(r'^firefox/customize/?$', 'firefox.desktop.customize'),
     redirect(r'^firefox/(?:performance|happy|speed|memory)/?$', 'firefox.desktop.fast'),
     redirect(r'^firefox/security/?$', 'firefox.desktop.trust'),
     redirect(r'^firefox/technology/?$', 'https://developer.mozilla.org/docs/Tools'),
 
     # Bug 979527
-    redirect(r'^firefox/central/?$', is_firefox_redirector(
+    redirect(r'^(products/)?firefox/central(/|\.html)$', is_firefox_redirector(
         'https://support.mozilla.org/kb/get-started-firefox-overview-main-features',
         'firefox.new'), cache_timeout=0),
 
@@ -243,8 +244,9 @@ redirectpatterns = (
     redirect(r'^firefox/(?P<vers>[23])\.0/eula', '/legal/eula/firefox-{vers}/'),
 
     # bug 1224060
-    redirect(r'^ja/firefox/ios/(?P<vers>[0-9]+(\.[0-9]+)*)/(?P<file>releasenotes|system-requirements)',
-             'http://www.mozilla.jp/firefox/ios/{vers}/{file}/', locale_prefix=False),
+    redirect(
+        r'^ja/firefox/ios/(?P<vers>[0-9]+(\.[0-9]+)*)/(?P<file>releasenotes|system-requirements)',
+        'http://www.mozilla.jp/firefox/ios/{vers}/{file}/', locale_prefix=False),
 
     # bug 1150713
     redirect(r'^firefox/sms(?:/.*)?$', '/firefox/products/'),
@@ -312,4 +314,58 @@ redirectpatterns = (
     redirect(r'^firefox/personal', 'firefox.new'),
     redirect(r'^firefox/upgrade', 'firefox.new'),
     redirect(r'^firefox/ie', 'firefox.new'),
+
+    # Bug 1255882
+    redirect(r'^projects/bonecho/anti-phishing/?$',
+             'https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work'),
+    redirect(r'^projects/bonecho(/.*)?$', '/firefox/channel/'),
+    redirect(r'^projects/bonsai(/.*)?$', 'https://wiki.mozilla.org/Bonsai'),
+    redirect(r'^projects/camino(/.*)?$', 'http://caminobrowser.org/'),
+    redirect(r'^projects/cck(/.*)?$', 'https://wiki.mozilla.org/CCK'),
+    redirect(r'^projects/chimera(/.*)?$', 'http://caminobrowser.org/'),
+    redirect(r'^projects/deerpark(/.*)?$', '/firefox/channel/'),
+    redirect(r'^projects/embedding(/.*)?$',
+             'https://developer.mozilla.org/en/Embedding_Mozilla'),
+    redirect(r'^projects/granparadiso(/.*)?$', '/firefox/channel/'),
+    redirect(r'^projects/inspector(/.*)?$',
+             'https://developer.mozilla.org/En/DOM_Inspector'),
+    redirect(r'^projects/javaconnect(/.*)?$',
+             'http://developer.mozilla.org/en/JavaXPCOM'),
+    redirect(r'^projects/marketing(/.*)?$',
+             'http://contribute.mozilla.org/Marketing'),
+    redirect(r'^projects/minefield(/.*)?$',
+             'http://www.mozilla.org/projects/firefox/prerelease.html'),
+    redirect(r'^projects/minimo(/.*)?$', 'https://wiki.mozilla.org/Mobile'),
+    redirect(r'^projects/namoroka(/.*)?$', '/firefox/channel/'),
+    redirect(r'^projects/nspr(?:/.*)?$', 'https://developer.mozilla.org/docs/NSPR'),
+    redirect(r'^projects/netlib(/.*)?$', 'https://developer.mozilla.org/en/Necko'),
+    redirect(r'^projects/plugins(/.*)?$',
+             'https://developer.mozilla.org/En/Plugins'),
+    redirect(r'^projects/rt-messaging(/.*)?$', 'http://chatzilla.hacksrus.com/'),
+    redirect(r'^projects/shiretoko(/.*)?$', '/firefox/channel/'),
+    redirect(r'^projects/string(/.*)?$',
+             'https://developer.mozilla.org/en/XPCOM_string_guide'),
+    redirect(r'^projects/tech-evangelism(/.*)?$',
+             'https://wiki.mozilla.org/Evangelism'),
+    redirect(r'^projects/venkman(/.*)?$',
+             'https://developer.mozilla.org/en/Venkman'),
+    redirect(r'^projects/webservices/examples/babelfish-wsdl(/.*)?$',
+             'http://developer.mozilla.org/En/XML_Web_Services'),
+    redirect(r'^projects/xbl(/.*)?$', 'https://developer.mozilla.org/en/XBL'),
+    redirect(r'^projects/xforms(/.*)?$', 'https://developer.mozilla.org/en/XForms'),
+    redirect(r'^projects/xpcom(/.*)?$', 'https://developer.mozilla.org/en/XPCOM'),
+    redirect(r'^projects/xpinstall(/.*)?$',
+             'https://developer.mozilla.org/en/XPInstall'),
+    redirect(r'^projects/xslt(/.*)?$', 'https://developer.mozilla.org/en/XSLT'),
+    redirect(r'^projects/xul(/.*)?$', 'https://developer.mozilla.org/En/XUL'),
+    redirect(r'^quality/help(/.*)?$', 'http://quality.mozilla.org/get-involved'),
+    redirect(r'^quality(/.*)?$', 'http://quality.mozilla.org/'),
+
+    # Bug 654614 /blocklist -> addons.m.o/blocked
+    redirect(r'^blocklist(/.*)?$', 'https://addons.mozilla.org/blocked/'),
+
+
+    # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
+    redirect(r'^products/firefox/start/?$', 'http://start.mozilla.org'),
+    redirect(r'^products/firefox(?P<page>/.*)$', '/firefox{page}'),
 )
