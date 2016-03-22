@@ -208,7 +208,7 @@ URLS = flatten((
     url_test('/ja/contribute/random/stuff/', 'http://www.mozilla.jp/community/'),
 
     # bug 1014823
-    url_test('/pt-BR/firefox/releases/whatsnew/', '/pt-BR/firefox/whatsnew/'),
+    url_test('/pt-BR/{products/,}firefox/releases/whatsnew/', '/pt-BR/firefox/whatsnew/'),
 
     # bug 929775
     url_test('/firefox/update/and/stuff/', '/firefox/new/', query={
@@ -330,7 +330,7 @@ URLS = flatten((
     url_test('/firefox/fx/', '/firefox/new/'),
 
     # Bug 979670, 979531, 1003727, 979664, 979654, 979660, 1150713
-    url_test('/firefox/features/', '/firefox/desktop/'),
+    url_test('/firefox/{,4.0/}features/', '/firefox/desktop/'),
     url_test('/firefox/customize/', '/firefox/desktop/customize/'),
     url_test('/firefox/{performance,happy,speed,memory}/', '/firefox/desktop/fast/'),
     url_test('/firefox/security/', '/firefox/desktop/trust/'),
@@ -338,11 +338,11 @@ URLS = flatten((
     url_test('/firefox/sms/{,sent}', '/firefox/products/'),
 
     # Bug 979527
-    url_test('/firefox/central/', '/firefox/new/',
+    url_test('{/products,}/firefox/central{/,.html}', '/firefox/new/',
              req_headers={'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:17.0) '
                                         'Gecko/20121202 Firefox/17.0 Iceweasel/17.0.1'},
              resp_headers={'Cache-Control': 'max-age=0'}),
-    url_test('/firefox/central/',
+    url_test('{/products,}/firefox/central{/,.html}',
              'https://support.mozilla.org/kb/get-started-firefox-overview-main-features',
              req_headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:42.0) '
                                         'Gecko/20100101 Firefox/42.0'},
@@ -1004,4 +1004,53 @@ URLS = flatten((
 
     # Bug 1252332
     url_test('/sync/', '/firefox/sync/'),
+
+    url_test('/projects/bonecho/', '/firefox/channel/'),
+    url_test('/projects/bonsai/', 'https://wiki.mozilla.org/Bonsai'),
+    url_test('/projects/camino/{,homepage.html}', 'http://caminobrowser.org/'),
+    url_test('/projects/cck/', 'https://wiki.mozilla.org/CCK'),
+    url_test('/projects/chimera/', 'http://caminobrowser.org/'),
+    url_test('/projects/deerpark/', '/firefox/channel/'),
+    url_test('/projects/embedding/',
+             'https://developer.mozilla.org/en/Embedding_Mozilla'),
+    url_test('/projects/granparadiso/', '/firefox/channel/'),
+    url_test('/projects/inspector/',
+             'https://developer.mozilla.org/En/DOM_Inspector'),
+    url_test('/projects/javaconnect/',
+             'http://developer.mozilla.org/en/JavaXPCOM'),
+    url_test('/projects/marketing/',
+             'http://contribute.mozilla.org/Marketing'),
+    url_test('/projects/minefield/',
+             'http://www.mozilla.org/projects/firefox/prerelease.html'),
+    url_test('/projects/minimo/', 'https://wiki.mozilla.org/Mobile'),
+    url_test('/projects/namoroka/', '/firefox/channel/'),
+    url_test('/projects/nspr/', 'https://developer.mozilla.org/docs/NSPR'),
+    url_test('/projects/netlib/', 'https://developer.mozilla.org/en/Necko'),
+    url_test('/projects/plugins/',
+             'https://developer.mozilla.org/En/Plugins'),
+    url_test('/projects/rt-messaging/', 'http://chatzilla.hacksrus.com/'),
+    url_test('/projects/rt-messaging/chatzilla/',
+             'http://chatzilla.hacksrus.com/'),
+    url_test('/projects/shiretoko/', '/firefox/channel/'),
+    url_test('/projects/string/',
+             'https://developer.mozilla.org/en/XPCOM_string_guide'),
+    url_test('/projects/tech-evangelism/',
+             'https://wiki.mozilla.org/Evangelism'),
+    url_test('/projects/venkman/',
+             'https://developer.mozilla.org/en/Venkman'),
+    url_test('/projects/webservices/examples/babelfish-wsdl/',
+             'http://developer.mozilla.org/En/XML_Web_Services'),
+    url_test('/projects/xbl/', 'https://developer.mozilla.org/en/XBL'),
+    url_test('/projects/xforms/', 'https://developer.mozilla.org/en/XForms'),
+    url_test('/projects/xpcom/', 'https://developer.mozilla.org/en/XPCOM'),
+    url_test('/projects/xpinstall/',
+             'https://developer.mozilla.org/en/XPInstall'),
+    url_test('/projects/xslt/', 'https://developer.mozilla.org/en/XSLT'),
+    url_test('/projects/xul/', 'https://developer.mozilla.org/En/XUL'),
+    url_test('/quality/', 'http://quality.mozilla.org/'),
+    url_test('/quality/help/', 'http://quality.mozilla.org/get-involved'),
+
+    # Bug 654614 /blocklist -> addons.m.o/blocked
+    url_test('/blocklist/', 'https://addons.mozilla.org/blocked/'),
+    url_test('/products/firefox/{,stuff/}', '/firefox/{,stuff/}'),
 ))
