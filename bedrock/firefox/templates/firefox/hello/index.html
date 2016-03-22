@@ -28,7 +28,7 @@
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {% call fxfamilynav('desktop', 'hello') %}
+  {% call fxfamilynav('features') %}
     <a class="try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Hello now') }}</a>
     <a class="nav-download-button button-flat-dark" href="{{ url('firefox.new') }}">{{ _('Download now') }}</a>
   {% endcall %}

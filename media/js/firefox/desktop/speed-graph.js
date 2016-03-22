@@ -12,7 +12,7 @@
             $speedGraph.addClass('animate');
             this.destroy(); // execute waypoint once
         }, {
-            offset: 100
+            offset: 200
         });
     } else {
         setTimeout(function() {

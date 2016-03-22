@@ -41,6 +41,7 @@ urlpatterns = (
     page('firefox/desktop/tips', 'firefox/desktop/tips.html'),
     page('firefox/desktop/trust', 'firefox/desktop/trust.html'),
     page('firefox/developer', 'firefox/developer.html'),
+    page('firefox/features', 'firefox/features.html'),
     page('firefox/geolocation', 'firefox/geolocation.html'),
     url(r'^firefox/hello/$', views.hello, name='firefox.hello'),
     page('firefox/interest-dashboard', 'firefox/interest-dashboard.html'),

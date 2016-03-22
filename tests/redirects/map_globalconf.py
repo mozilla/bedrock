@@ -329,8 +329,7 @@ URLS = flatten((
     # Bug 920212
     url_test('/firefox/fx/', '/firefox/new/'),
 
-    # Bug 979670, 979531, 1003727, 979664, 979654, 979660, 1150713
-    url_test('/firefox/{,4.0/}features/', '/firefox/desktop/'),
+    # Bug 979531, 1003727, 979664, 979654, 979660, 1150713
     url_test('/firefox/customize/', '/firefox/desktop/customize/'),
     url_test('/firefox/{performance,happy,speed,memory}/', '/firefox/desktop/fast/'),
     url_test('/firefox/security/', '/firefox/desktop/trust/'),

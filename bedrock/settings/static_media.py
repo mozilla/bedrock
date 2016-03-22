@@ -265,6 +265,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_desktop_trust-bundle.css',
     },
+    'firefox_features': {
+        'source_filenames': (
+            'css/firefox/family-nav.less',
+            'css/firefox/features.less',
+        ),
+        'output_filename': 'css/firefox_features-bundle.css',
+    },
     'firefox-interest-dashboard': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -1142,6 +1149,14 @@ PIPELINE_JS = {
             'js/base/mozilla-share-cta.js',
         ),
         'output_filename': 'js/firefox_developer-bundle.js',
+    },
+    'firefox_features': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/family-nav.js',
+        ),
+        'output_filename': 'js/firefox_features-bundle.js',
     },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (

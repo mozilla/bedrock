@@ -22,14 +22,14 @@ if (typeof window.Mozilla === 'undefined') {
         // entire fx family nav wrapper
         var $fxFamilyHeader = $('#fxfamilynav-header');
 
-        // little ... button that triggers tertiary display
-        var $tertiaryNavTrigger = $('#fxfamilynav-tertiarynav-trigger');
+        // little ... button that triggers adjunct nav display
+        var $adjunctNavTrigger = $('#fxfamilynav-adjunctnav-trigger');
 
-        // wrappers for tertiary nav
-        var $tertiaryNavContainer = $('#fxfamilynav-tertiarynav');
+        // wrappers for adjunct nav
+        var $adjunctNavContainer = $('#fxfamilynav-adjunctnav');
 
-        // all ul.tertiarynav elements
-        var $tertiaryNavs = $fxFamilyHeader.find('.tertiarynav');
+        // all ul.adjunctnav elements
+        var $adjunctNavs = $fxFamilyHeader.find('.adjunctnav');
 
         // initialize the thing
         var _initMq = function() {
@@ -48,33 +48,33 @@ if (typeof window.Mozilla === 'undefined') {
 
         // wire up all desktop interactions
         var _enableDesktop = function() {
-            // toggle tertiary nav visibility
-            $tertiaryNavTrigger.on('click', function() {
-                $tertiaryNavTrigger.toggleClass('active');
-                $tertiaryNavContainer.toggleClass('active');
+            // toggle adjunct nav visibility
+            $adjunctNavTrigger.on('click', function() {
+                $adjunctNavTrigger.toggleClass('active');
+                $adjunctNavContainer.toggleClass('active');
 
                 // track when opening menu
 
-                if ($tertiaryNavTrigger.hasClass('active')) {
+                if ($adjunctNavTrigger.hasClass('active')) {
                     window.dataLayer.push({
                         'event': 'open-side-menu'
                     });
                 }
             }).addClass('visible');
 
-            // hide/show tertiary nav
-            $tertiaryNavContainer.on('mouseover', function() {
-                $tertiaryNavContainer.addClass('active');
-                $tertiaryNavTrigger.addClass('active');
+            // hide/show adjunct nav
+            $adjunctNavContainer.on('mouseover', function() {
+                $adjunctNavContainer.addClass('active');
+                $adjunctNavTrigger.addClass('active');
             }).on('mouseout', function() {
-                $tertiaryNavContainer.removeClass('active');
-                $tertiaryNavTrigger.removeClass('active');
+                $adjunctNavContainer.removeClass('active');
+                $adjunctNavTrigger.removeClass('active');
             });
 
-            // make sure tertiary nav is hidden if mouse leaves nav area
+            // make sure adjunct nav is hidden if mouse leaves nav area
             $fxFamilyHeader.on('mouseleave', function() {
-                $tertiaryNavContainer.removeClass('active');
-                $tertiaryNavTrigger.removeClass('active');
+                $adjunctNavContainer.removeClass('active');
+                $adjunctNavTrigger.removeClass('active');
             });
 
             // ensure only browsers that support CSS transforms
@@ -83,17 +83,17 @@ if (typeof window.Mozilla === 'undefined') {
             if (mqDesktop) {
                 fxFamillyNavSticky = new Waypoint.Sticky({
                     element: $fxFamilyHeader,
-                    offset: -80
+                    offset: -50
                 });
             }
         };
 
         // remove all desktop interactions (mobile clean-up)
         var _disableDesktop = function() {
-            $tertiaryNavContainer.removeClass('active');
+            $adjunctNavContainer.removeClass('active');
 
-            $tertiaryNavTrigger.off();
-            $tertiaryNavContainer.off();
+            $adjunctNavTrigger.off();
+            $adjunctNavContainer.off();
             $fxFamilyHeader.off();
 
             if (mqDesktop) {
@@ -103,8 +103,8 @@ if (typeof window.Mozilla === 'undefined') {
 
         // public initialization point
         var _init = function() {
-            // all external tertiary nav links open in new tab
-            $tertiaryNavs.find('a[rel="external"]').attr('target', '_blank');
+            // all external adjunct nav links open in new tab
+            $adjunctNavs.find('a[rel="external"]').attr('target', '_blank');
 
             // initialize matchMedia
             if (mqDesktop) {
