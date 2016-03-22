@@ -115,6 +115,14 @@
   </main>
 {% endblock %}
 
+{% block email_form %}
+  <aside id="newsletter-subscribe" class="ga-section" data-ga-label="Keep up with all things Firefox.">
+    <div class="content container">
+      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.')) }}
+    </div>
+  </aside>
+{% endblock %}
+
 {% block js %}
   {# searching with js only makes sense if we're displaying all #}
   {% if not query %}

@@ -411,7 +411,12 @@
 
     {% block subscribe_wrapper %}
       <div id="subscribe-wrapper" class="floating">
+      {% if LANG.startswith('en-') %}
+        {# L10n: Line break for visual formatting. #}
+        {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.')) }}
+      {% else %}
         {{ email_newsletter_form(title=_('Get Firefox news')) }}
+      {% endif %}
       </div>
     {% endblock %}
     </div>

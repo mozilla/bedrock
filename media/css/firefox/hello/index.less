@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../../sandstone/lib.less";
-@import "../newsletter-test.less";
 
 /*! updated 2016-03-02 */
 
@@ -817,10 +816,6 @@ html[lang^='en'] {
     }
 }
 
-#newsletter-subscribe header h3 {
-    line-height: 1.2;
-}
-
 #need-help {
     color: #000;
     background: #fff;
@@ -860,4 +855,8 @@ html[lang^='en'] {
 
 #colophon {
     margin: 0;
+}
+
+#newsletter-subscribe.compact .form-title h3 {
+    .font-size(32px);
 }

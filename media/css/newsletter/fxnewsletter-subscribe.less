@@ -4,38 +4,34 @@
 
 @import '../sandstone/lib.less';
 
-// Newsletter signup testing - bug 1249042
-#subscribe-download-wrapper.has-variant .variant {
-    display: none;
-}
-
-#subscribe-download-wrapper.has-variant.active,
 #newsletter-subscribe {
     background: @mozIDBlue;
     color: #fff;
     padding: 0;
+    .clearfix();
 
-    .content {
-        padding: (@baseLine * 2) 0;
-        text-align: left;
+    .container {
+        padding-top: @baseLine * 2;
+        padding-bottom: @baseLine * 2;
+        .clearfix();
     }
 
-    header {
+    .form-title {
         .at2x('/media/img/firefox/newsletter.png', 149px, 149px);
         .span(4);
         background-position: left top;
         background-repeat: no-repeat;
         min-height: 120px;
         padding: 30px 0 20px 180px;
+        margin-left: -((@gridColumnWidth * 7) + (@gridGutterWidth * 6));
+        margin-top: -30px;
+        text-shadow: none;
 
         h3 {
             .font-size(40px);
-            margin: 0;
+            line-height: 1.2;
             text-shadow: none;
-
-            &.compact {
-                .font-size(32px);
-            }
+            color: #fff;
         }
 
         @media (max-width: @breakDesktop) {
@@ -43,13 +39,11 @@
             .span_narrow(4);
             background-position: left 10px;
             padding-left: 140px;
+            margin-left: -((@gridColumnWidthNarrow * 7) + (@gridGutterWidth * 6));
+            margin-top: -30px;
 
             h3 {
-                .font-size(36px);
-
-                &.compact {
-                    .font-size(24px);
-                }
+                .font-size(32px);
             }
         }
 
@@ -61,28 +55,16 @@
             padding-top: 120px;
             text-align: center;
             min-height: 0;
-
-            h3 {
-                .font-size(32px);
-
-                &.compact {
-                    .font-size(20px);
-                }
-            }
         }
     }
 
-
     .newsletter-form {
-        .box-shadow(none);
         .span(5);
+        .offset(7);
+        padding: 30px 0 0;
         background: transparent none;
         border: 0;
-        padding: (@baseLine * 2) 0 0;
-
-        .form-title {
-            display: none;
-        }
+        box-shadow: none;
 
         .form-submit,
         .form-contents {
@@ -91,6 +73,7 @@
 
         @media (max-width: @breakDesktop) {
             .span_narrow(5);
+            .offset_narrow(7);
         }
 
         @media (max-width: @breakTablet) {
@@ -144,7 +127,7 @@
     }
 
     #footer-email-errors {
-        .span(5);
+        .span-all;
     }
 
     #newsletter-form-thankyou {
@@ -154,28 +137,34 @@
             color: #fff;
         }
     }
-}
 
-#newsletter-subscribe.light {
-    background: #81bae5;
-    color: #08578e;
-
-    h3,
-    a {
-        color: #08578e;
-    }
-
-    .button {
-        color: #08578e;
-        border-color: #08578e;
-    }
-
-    #newsletter-form-thankyou {
+    &.light {
+        background: #81bae5;
         color: #08578e;
 
-        h3 {
+        h3,
+        a {
             color: #08578e;
-            text-shadow: none;
+        }
+
+        .button {
+            color: #08578e;
+            border-color: #08578e;
+
+            &:hover,
+            &:focus {
+                background: #aed6f4;
+                background: rgba(255, 255, 255, .1);
+            }
+        }
+
+        #newsletter-form-thankyou {
+            color: #08578e;
+
+            h3 {
+                color: #08578e;
+                text-shadow: none;
+            }
         }
     }
 }

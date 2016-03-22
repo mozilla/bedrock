@@ -415,8 +415,8 @@ class TourView(LatestFxView):
 
 def hello(request):
     variant = request.GET.get('v', '')
-    if variant in ['b']:
-        template = 'firefox/hello/index-{0}.html'.format(variant)
+    if variant == 'b':
+        template = 'firefox/hello/index-b.html'
     else:
         template = 'firefox/hello/index.html'
 
@@ -498,71 +498,6 @@ def new(request):
     # if no/incorrect scene specified, show scene 1
     else:
         template = 'firefox/new/scene1.html'
-
-    return l10n_utils.render(request, template)
-
-
-def products_newsletter_test(request, template='firefox/family/index.html'):
-    """
-    Renders the products page template.
-    """
-
-    variant = request.GET.get('v', '')
-
-    if variant in ['b']:
-        template = 'firefox/family/index-{0}.html'.format(variant)
-
-    return l10n_utils.render(request, template)
-
-
-def desktop_newsletter_test(request, template='firefox/desktop/index.html'):
-    """
-    Renders the desktop main page template.
-    """
-
-    variant = request.GET.get('v', '')
-
-    if variant in ['b']:
-        template = 'firefox/desktop/index-{0}.html'.format(variant)
-
-    return l10n_utils.render(request, template)
-
-
-def android_newsletter_test(request, template='firefox/android/index.html'):
-    """
-    Renders the android page template.
-    """
-
-    variant = request.GET.get('v', '')
-
-    if variant in ['b']:
-        template = 'firefox/android/index-{0}.html'.format(variant)
-
-    return l10n_utils.render(request, template)
-
-
-def ios_newsletter_test(request, template='firefox/ios.html'):
-    """
-    Renders the ios page template.
-    """
-
-    variant = request.GET.get('v', '')
-
-    if variant in ['b']:
-        template = 'firefox/ios-{0}.html'.format(variant)
-
-    return l10n_utils.render(request, template)
-
-
-def privatebrowsing_newsletter_test(request, template='firefox/private-browsing.html'):
-    """
-    Renders the private browsing page template.
-    """
-
-    variant = request.GET.get('v', '')
-
-    if variant in ['b']:
-        template = 'firefox/private-browsing-{0}.html'.format(variant)
 
     return l10n_utils.render(request, template)
 

@@ -6,15 +6,15 @@
 
 {% set_lang_files "firefox/hello-2016" %}
 
-{% block email_form_test %}
-  {% if LANG.startswith('en-') %}
+{% block newsletter_subscribe %}
   <aside id="newsletter-subscribe" class="ga-section" data-ga-label="Keep up with all things Firefox.">
-    <div class="content container">
-      <header>
-        <h3>{{ _('Keep up with all things Firefox.') }}</h3>
-      </header>
-      {{ email_newsletter_form(title=' ') }}
+    <div class="container">
+      {% if LANG.startswith('en-') %}
+        {# L10n: Line break for visual formatting. #}
+        {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.')) }}
+      {% else %}
+        {{ email_newsletter_form(title=_('Get Firefox news')) }}
+      {% endif %}
     </div>
   </aside>
-  {% endif %}
 {% endblock %}

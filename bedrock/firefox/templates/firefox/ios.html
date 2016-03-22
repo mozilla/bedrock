@@ -18,12 +18,6 @@
   mozid state-default
 {% endblock %}
 
-{% block optimizely %}
-  {% if waffle.switch('firefox-ios-optimizely') %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {% stylesheet 'firefox_ios' %}
 {% endblock %}
@@ -157,16 +151,15 @@
 {% endblock %}
 
 {% block email_form %}
-  {% if LANG.startswith('en-') %}
   <aside id="newsletter-subscribe" class="light ga-section" data-ga-label="Keep up with all things Firefox.">
-    <div class="content container">
-      <header>
-        <h3>{{ _('Keep up with all things Firefox.') }}</h3>
-      </header>
-      {{ email_newsletter_form(title=' ') }}
-    </div>
+    <div class="container">
+      {% if LANG.startswith('en-') %}
+        {# L10n: Line break for visual formatting. #}
+        {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.')) }}
+      {% else %}
+        {{ email_newsletter_form(title=_('Get Firefox news')) }}
+      {% endif %}    </div>
   </aside>
-  {% endif %}
 {% endblock %}
 
 {% block js %}
