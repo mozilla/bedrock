@@ -1,2 +1,2 @@
 web: ./docker/run-prod.sh
-clock: ./manage.py runscript cron
+clock: ./bin/cron.py

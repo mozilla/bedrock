@@ -1,21 +1,29 @@
-from __future__ import print_function
+#!/usr/bin/env python
+
+from __future__ import print_function, unicode_literals
+
 import datetime
 import os
 import sys
 from subprocess import check_call
 
-from django.core.management import call_command
-from django.conf import settings
-
 import requests
 from apscheduler.schedulers.blocking import BlockingScheduler
-
-from bedrock.events.cron import cleanup_ical_events, update_ical_feeds
-from bedrock.mozorg.cron import update_tweets
-from scripts import update_firefox_os_feeds
+from decouple import config
+from pathlib import Path
 
 
 schedule = BlockingScheduler()
+DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
+
+# ROOT path of the project. A pathlib.Path object.
+ROOT_PATH = Path(__file__).resolve().parents[1]
+ROOT = str(ROOT_PATH)
+MANAGE = str(ROOT_PATH / 'manage.py')
+
+
+def call_command(command):
+    check_call('python {0} {1}'.format(MANAGE, command), shell=True)
 
 
 class scheduled_job(object):
@@ -54,10 +62,10 @@ def ping_dms(function):
 
     def _ping():
         function()
-        if settings.DEAD_MANS_SNITCH_URL:
+        if DEAD_MANS_SNITCH_URL:
             utcnow = datetime.datetime.utcnow()
             payload = {'m': 'Run {} on {}'.format(function.__name__, utcnow.isoformat())}
-            requests.get(settings.DEAD_MANS_SNITCH_URL, params=payload)
+            requests.get(DEAD_MANS_SNITCH_URL, params=payload)
 
     _ping.__name__ = function.__name__
     return _ping
@@ -82,27 +90,26 @@ def job_update_security_advisories():
 @scheduled_job('interval', minutes=5)
 def job_rnasync():
     # running in a subprocess as rnasync was not designed for long-running process
-    check_call('python {} rnasync'.format(os.path.join(settings.ROOT, 'manage.py')),
-               shell=True)
+    call_command('rnasync')
 
 
 @scheduled_job('interval', hours=6)
 def job_update_tweets():
-    update_tweets()
+    call_command('cron update_tweets')
 
 
 @scheduled_job('interval', hours=1)
 def job_ical_feeds():
-    update_ical_feeds()
-    cleanup_ical_events()
+    call_command('cron update_ical_feeds')
+    call_command('cron cleanup_ical_events')
 
 
 @scheduled_job('interval', hours=1)
 def job_update_firefox_os_feeds():
-    update_firefox_os_feeds.run()
+    call_command('runscript update_firefox_os_feeds')
 
 
-def run():
+if __name__ == '__main__':
     try:
         schedule.start()
     except (KeyboardInterrupt, SystemExit):
