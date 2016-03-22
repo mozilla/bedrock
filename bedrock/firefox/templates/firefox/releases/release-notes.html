@@ -4,6 +4,16 @@
 
 {% extends "firefox/base-resp.html" %}
 
+{% block gtm_page_id %}
+    {% if release.product == 'Firefox for Android' %}
+        data-gtm-page-id="/firefox/android/releasenotes/"
+    {% elif release.product == 'Firefox for iOS' %}
+        data-gtm-page-id="/firefox/ios/releasenotes/"
+    {% else %}
+        data-gtm-page-id="/firefox/releasenotes/"
+    {% endif %}
+{% endblock %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('{product} — {channel} Notes ({version})')|f(product=release.product, channel=channel_name, version=release.version) }}{% endblock %}
 

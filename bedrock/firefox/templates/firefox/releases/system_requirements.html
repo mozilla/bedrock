@@ -4,6 +4,8 @@
 
 {% extends "firefox/base-resp.html" %}
 
+{% block gtm_page_id %}data-gtm-page-id="/firefox/system-requirements/"{% endblock %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Firefox — {version} System Requirements')|f(version=version) }}{% endblock %}
 

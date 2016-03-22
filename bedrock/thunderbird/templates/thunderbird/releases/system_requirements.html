@@ -4,6 +4,8 @@
 
 {% extends "thunderbird/base-resp.html" %}
 
+{% block gtm_page_id %}data-gtm-page-id="/thunderbird/system-requirements/"{% endblock %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Thunderbird — {version} System Requirements')|f(version=version) }}{% endblock %}
 

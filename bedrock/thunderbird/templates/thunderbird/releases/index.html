@@ -4,6 +4,8 @@
 
 {% extends "thunderbird/base-resp.html" %}
 
+{% block gtm_page_id %}data-gtm-page-id="/thunderbird/releases/"{% endblock %}
+
 {% block page_title %}{{ _('Mozilla Thunderbird Release Notes') }}{% endblock %}
 {% block page_desc %}{{ _('Release notes for each version of Thunderbird.') }}{% endblock %}
 {% block body_id %}thunderbird-releases-index{% endblock %}

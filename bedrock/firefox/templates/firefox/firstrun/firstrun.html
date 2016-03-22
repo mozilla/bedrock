@@ -6,6 +6,14 @@
 
 {% extends "firefox/base.html" %}
 
+{% block gtm_page_id %}
+  {% if 'secondrun' in request.path %}
+    data-gtm-page-id="/firefox/secondrun/"
+  {% else %}
+    data-gtm-page-id="/firefox/firstrun/"
+  {% endif %}
+{% endblock %}
+
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}

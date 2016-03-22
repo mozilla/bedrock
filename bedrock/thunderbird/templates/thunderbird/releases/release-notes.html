@@ -4,6 +4,8 @@
 
 {% extends "thunderbird/base-resp.html" %}
 
+{% block gtm_page_id %}data-gtm-page-id="/thunderbird/releasenotes/"{% endblock %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('Thunderbird — {channel} Notes ({version})')|f(channel=channel_name, version=release.version) }}{% endblock %}
 
