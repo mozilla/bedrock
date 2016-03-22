@@ -60,7 +60,7 @@
 
   <section id="stage">
     <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
-      {{ download_firefox(force_direct=true, simple=true, dom_id='primary-download-button') }}
+      {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
     </div>
 
     <p class="help">
@@ -98,7 +98,9 @@
 {% block email_form %}{% endblock %}
 
 {% block site_footer %}
-  {% include 'firefox/includes/simple_footer.html' %}
+  {% with fx_footer_links=True %}
+    {% include 'firefox/includes/simple_footer.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block js %}

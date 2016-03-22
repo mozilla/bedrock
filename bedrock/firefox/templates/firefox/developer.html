@@ -40,7 +40,7 @@
 
   <h1>{{ _('Built for those who build the Web') }}</h1>
   <h2>{{ _('The only browser made for developers like you.') }}</h2>
-  {{ download_firefox('alpha', platform='desktop', icon=False, small=True, simple=True) }}
+  {{ download_firefox('alpha', platform='desktop') }}
 
   <p class="feedback-note">
     {{ _('Firefox Developer Edition automatically sends feedback to Mozilla.') }}
@@ -217,16 +217,22 @@
   <div class="container">
     <div class="dev-footer-download">
       <h3>{{ _('Choose Firefox') }}</h3>
-      {{ download_firefox('alpha', platform='desktop', icon=False, small=True, simple=True) }}
+      {{ download_firefox('alpha', platform='desktop') }}
     </div>
     {# See Bug 1095176 #}
     {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form('app-dev', 'Firefox Apps & Hacks', button_class='white') }}
+      {{ email_newsletter_form('app-dev', 'Firefox Apps & Hacks', button_class='light') }}
     {% elif LANG.startswith('es-') %}
-      {{ email_newsletter_form('app-dev', 'Firefox Apps y Hacks', button_class='white') }}
+      {{ email_newsletter_form('app-dev', 'Firefox Apps y Hacks', button_class='light') }}
     {% else %}
       {{ super() }}
     {% endif %}
   </div>
 </section>
+{% endblock %}
+
+{% block site_footer %}
+  {% with fx_footer_links=True, current_channel='alpha', current_platform='desktop' %}
+    {% include 'includes/site-footer.html' %}
+  {% endwith %}
 {% endblock %}

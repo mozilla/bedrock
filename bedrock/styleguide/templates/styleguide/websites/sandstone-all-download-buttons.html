@@ -36,28 +36,28 @@
       <tr>
         <th>Compact + icon</th>
         <td>
-          {{ download_firefox(small=True) }}
+          {{ download_firefox() }}
         </td>
         <td>
-          {{ download_firefox(channel='beta', small=True) }}
+          {{ download_firefox(channel='beta') }}
         </td>
       </tr>
       <tr>
         <th>Full-size + no icon</th>
         <td>
-          {{ download_firefox(icon=False) }}
+          {{ download_firefox() }}
         </td>
         <td>
-          {{ download_firefox(channel='beta', icon=False) }}
+          {{ download_firefox(channel='beta') }}
         </td>
       </tr>
       <tr>
         <th>Compact + no icon</th>
         <td>
-          {{ download_firefox(small=True, icon=False) }}
+          {{ download_firefox() }}
         </td>
         <td>
-          {{ download_firefox(small=True, icon=False, channel='beta') }}
+          {{ download_firefox(channel='beta') }}
         </td>
       </tr>
     </tbody>
@@ -81,28 +81,28 @@
       <tr>
         <th>Compact + icon</th>
         <td>
-          {{ download_firefox(platform='android', small=True) }}
+          {{ download_firefox(platform='android') }}
         </td>
         <td>
-          {{ download_firefox(platform='android', small=True, channel='beta') }}
+          {{ download_firefox(platform='android', channel='beta') }}
         </td>
       </tr>
       <tr>
         <th>Full-size + no icon</th>
         <td>
-          {{ download_firefox(platform='android', icon=False) }}
+          {{ download_firefox(platform='android') }}
         </td>
         <td>
-          {{ download_firefox(platform='android', icon=False, channel='beta') }}
+          {{ download_firefox(platform='android', channel='beta') }}
         </td>
       </tr>
       <tr>
         <th>Compact + no icon</th>
         <td>
-          {{ download_firefox(platform='android', small=True, icon=False) }}
+          {{ download_firefox(platform='android') }}
         </td>
         <td>
-          {{ download_firefox(platform='android', small=True, icon=False, channel='beta') }}
+          {{ download_firefox(platform='android', channel='beta') }}
         </td>
       </tr>
     </tbody>

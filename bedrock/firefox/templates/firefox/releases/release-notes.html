@@ -261,7 +261,7 @@
           </div>
           <div class="non-firefox-cta">
             <div class="desktop-download-button">
-              {{ download_firefox(small=True, icon=False) }}
+              {{ download_firefox() }}
             </div>
             <div class="android-download-button">
               <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
@@ -275,7 +275,7 @@
             </div>
           </div>
           <div class="firefox-old-cta">
-            {{ download_firefox(small=True, icon=False) }}
+            {{ download_firefox() }}
           </div>
         </div>
       </div>
@@ -310,9 +310,18 @@
 </footer>
 {% endblock %}
 
+<p>Some info: {{ release }}</p>
+
 {% endblock %}
 
 {% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {{ release.channel }}
+  {% with fx_footer_links=True %}
+    {% include 'includes/site-footer.html' %}
+  {% endwith %}
+{% endblock %}
 
 {% block js %}
   {% javascript 'releasenotes' %}

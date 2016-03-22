@@ -31,12 +31,12 @@
         <h1>{{ _('More protection. <br>The most privacy. <br>Only from Firefox.') }}</h1>
         <div class="download-buttons">
           <div class="firefox-latest-cta">
-            <a class="try-pb-button button-flat-dark" data-highlight="privateWindow" href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/">{{ _('Try Private Browsing') }}</a>
+            <a class="try-pb-button button dark" data-highlight="privateWindow" href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/">{{ _('Try Private Browsing') }}</a>
           </div>
           <div class="non-firefox-cta">
             <p>{{ _('To give the new Private Browsing a try, download Firefox.') }}</p>
             <div class="desktop-download-button">
-              {{ download_firefox(small=True, icon=False) }}
+              {{ download_firefox() }}
             </div>
             <div class="android-download-button">
               <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
@@ -51,7 +51,7 @@
           </div>
           <div class="firefox-old-cta">
             <p>{{ _('Your Firefox is not up to date. Download the latest version to use the new Private Browsing.') }}</p>
-            {{ download_firefox(small=True, icon=False) }}
+            {{ download_firefox() }}
           </div>
         </div>
       </header>
@@ -138,12 +138,12 @@
       <div class="download-buttons">
         <div class="firefox-latest-cta">
           <h2>{{ _('Try it now to stay in control') }}</h2>
-          <a class="try-pb-button button-flat-dark" data-highlight="privateWindow" href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/">{{ _('Try Private Browsing') }}</a>
+          <a class="try-pb-button button dark" data-highlight="privateWindow" href="https://support.mozilla.org/kb/private-browsing-use-firefox-without-history/">{{ _('Try Private Browsing') }}</a>
         </div>
         <div class="non-firefox-cta">
           <h2>{{ _('To give the new Private Browsing a try, download Firefox.') }}</h2>
           <div class="desktop-download-button">
-            {{ download_firefox(small=True, icon=False) }}
+            {{ download_firefox() }}
           </div>
           <div class="android-download-button">
             <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
@@ -158,7 +158,7 @@
         </div>
         <div class="firefox-old-cta">
           <h2>{{ _('Your Firefox is not up to date. Download the latest version to use the new Private Browsing.') }}</h2>
-          {{ download_firefox(small=True, icon=False) }}
+          {{ download_firefox() }}
         </div>
       </div>
     </div>

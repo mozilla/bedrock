@@ -41,11 +41,13 @@
 }
 
 // download buttons
-
-// make text readable for no-JS users
-#overview-intro-download-wrapper .download-dumb .download-heading {
-    color: @textColorPrimary;
-    text-align: center;
+#overview-intro-download-wrapper {
+    .fx-privacy-link {
+        a:link,
+        a:visited {
+            color: #333;
+        }
+    }
 }
 
 // let JS decide if we should show the intro download button

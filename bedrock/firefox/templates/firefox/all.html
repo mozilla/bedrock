@@ -118,9 +118,15 @@
 {% block email_form %}
   <aside id="newsletter-subscribe" class="ga-section" data-ga-label="Keep up with all things Firefox.">
     <div class="content container">
-      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='white') }}
+      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='light') }}
     </div>
   </aside>
+{% endblock %}
+
+{% block site_footer %}
+  {% with fx_footer_links=True, current_platform=platform %}
+    {% include 'includes/site-footer.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block js %}

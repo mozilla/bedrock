@@ -56,22 +56,52 @@ def ios_builds(channel, builds=None):
 
 @jingo.register.function
 @jinja2.contextfunction
-def download_firefox(ctx, channel='release', small=False, icon=True,
-                     platform='all', dom_id=None, locale=None, simple=False,
-                     force_direct=False, force_full_installer=False,
-                     force_funnelcake=False, check_old_fx=False):
+def firefox_footer_links(ctx, channel='release', platform='all'):
+    """ Outputs Firefox footer links
+    :param ctx: context from calling template.
+    :param channel: name of channel: 'release', 'beta' or 'alpha'.
+    :param platform: Target platform: 'desktop', 'android', or 'ios'.
+    :return: The footer links html.
+    """
+
+    show_desktop = platform in ['all', 'desktop']
+    show_android = platform in ['all', 'android']
+    show_ios = platform in ['all', 'ios']
+    alt_channel = '' if channel == 'release' else channel
+
+    # Gather data about the build for each platform
+    builds = []
+
+    if show_android:
+        builds = android_builds(channel, builds)
+
+    data = {
+        'show_desktop': show_desktop,
+        'show_android': show_android,
+        'show_ios': show_ios,
+        'channel': alt_channel,
+        'builds': builds,
+    }
+
+    html = jingo.render_to_string(ctx['request'],
+                                  'firefox/includes/firefox-footer-links.html',
+                                  data)
+    return jinja2.Markup(html)
+
+
+@jingo.register.function
+@jinja2.contextfunction
+def download_firefox(ctx, channel='release', platform='all',
+                     dom_id=None, locale=None, force_direct=False,
+                     force_full_installer=False, force_funnelcake=False,
+                     check_old_fx=False, alt_copy=None, button_color='green'):
     """ Output a "download firefox" button.
 
     :param ctx: context from calling template.
     :param channel: name of channel: 'release', 'beta' or 'alpha'.
-    :param small: Display the small button if True.
-    :param icon: Display the Fx icon on the button if True.
     :param platform: Target platform: 'desktop', 'android', 'ios', or 'all'.
     :param dom_id: Use this string as the id attr on the element.
     :param locale: The locale of the download. Default to locale of request.
-    :param simple: Display button with text only if True. Will not display
-            icon or privacy/what's new/systems & languages links. Can be used
-            in conjunction with 'small'.
     :param force_direct: Force the download URL to be direct.
     :param force_full_installer: Force the installer download to not be
             the stub installer (for aurora).
@@ -79,9 +109,8 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
             'latest', which bouncer will translate to the funnelcake build.
     :param check_old_fx: Checks to see if the user is on an old version of
             Firefox and, if true, changes the button text from 'Free Download'
-            to 'Update your Firefox'. Must be used in conjunction with
-            'simple' param being true.
-    :return: The button html.
+            to 'Update your Firefox'.
+    :param alt_copy: Specifies alternate copy to use for download buttons.
     """
     show_desktop = platform in ['all', 'desktop']
     show_android = platform in ['all', 'android']
@@ -161,14 +190,13 @@ def download_firefox(ctx, channel='release', small=False, icon=True,
         'product': 'firefox-%s' % platform,
         'builds': builds,
         'id': dom_id,
-        'small': small,
-        'simple': simple,
         'channel': alt_channel,
         'show_desktop': show_desktop,
         'show_android': show_android,
         'show_ios': show_ios,
-        'icon': icon,
-        'check_old_fx': check_old_fx and simple,
+        'check_old_fx': check_old_fx,
+        'alt_copy': alt_copy,
+        'button_color': button_color,
     }
 
     html = jingo.render_to_string(ctx['request'],
