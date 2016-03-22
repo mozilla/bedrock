@@ -184,7 +184,7 @@ class ThunderbirdDesktop(ProductDetails):
             # build a direct download link
             return '?'.join([self.download_base_url_direct,
                              urlencode([
-                                 ('product', 'thunderbird-%s' % _version),
+                                 ('product', 'thunderbird-%s-SSL' % _version),
                                  ('os', platform),
                                  # Order matters, lang must be last for bouncer.
                                  ('lang', _locale),
