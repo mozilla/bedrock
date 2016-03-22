@@ -7,3 +7,4 @@ DISABLE_SSL=False
 SECRET_KEY=itsasekrit
 ALLOWED_HOSTS=*
 PROD_DETAILS_STORAGE=product_details.storage.PDDatabaseStorage
+GTM_CONTAINER_ID=GTM-MW3R8V
