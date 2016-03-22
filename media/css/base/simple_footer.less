@@ -5,7 +5,7 @@
     margin-top: 0;
     text-align: center;
     padding-top: 20px;
-    .primary, .secondary {
+    .primary, .secondary, .fx-footer-links {
         margin-bottom: 10px;
         li {
             display: inline;
@@ -17,7 +17,8 @@
         }
     }
 
-    .primary li {
+    .primary li,
+    .fx-footer-links li {
         a, a:link, a:visited {
             text-transform: uppercase;
             .font-size(@baseFontSize);
@@ -27,6 +28,16 @@
             }
             span {
                 color: @textColorSecondary;
+            }
+        }
+    }
+
+    .fx-footer-links li {
+        a, a:link, a:visited {
+            color: @textColorSecondary;
+
+            &:after {
+                color: @linkSkyBlue;
             }
         }
     }

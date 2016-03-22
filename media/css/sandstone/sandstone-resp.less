@@ -1,7 +1,6 @@
 @import "lib.less";
 @import "reset.less";
 @import "fonts.less";
-@import "buttons.less";
 @import "buttons-new.less";
 @import "animations.less";
 
@@ -895,6 +894,7 @@ nav.menu-bar {
 
     input[type=email] {
         width: 80%;
+        height: @baseLine;
         padding: 15px 10px;
     }
 
@@ -1040,6 +1040,12 @@ nav.menu-bar {
 
     .col-2 ul {
         overflow: hidden;
+
+        &.fx-footer-links {
+            li {
+                float: none;
+            }
+        }
 
         li {
             float: left;

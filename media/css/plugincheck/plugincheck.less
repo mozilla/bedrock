@@ -164,82 +164,7 @@ html[dir="rtl"] {
     margin: 30px 0 40px 0;
     padding: 8px 25px 8px 25px;
 }
-/* Button overrides and styling */
-.button,
-.button:link,
-.button:visited {
-    width: 145px;
-    .font-size(1rem);
-    text-align: left;
-}
-.button {
-    &:before {
-        display: inline-block;
-        background: transparent url(/media/img/plugincheck/icons-sprite.png) 0 0 no-repeat;
-        background-size: 36px;
-        color: #fff;
-        content: '';
-        padding: 12px 0 6px 41px;
-        height: 20px;
-        vertical-align: middle;
-    }
-}
-.outdated,
-.button-negative {
-    &:before {
-        background-position: 0 -35px;
-    }
-}
-.research {
-    &:before {
-        background-position: 0 -71px;
-    }
-}
-.button.outdated {
-    background-color: #FFBE57;
-    background-image: linear-gradient(#FFBE57, #DB8700);
-}
-.button.outdated:hover,
-.button.outdated:link:hover,
-.button.outdated:link:focus,
-.button.outdated:visited:hover,
-.button.outdated:visited:focus,
-.button.outdated:focus {
-    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2),
-                0px -1px 0px 0px rgba(0, 0, 0, 0.3) inset,
-                0px 12px 24px 2px #FFBE57 inset;
-}
-.safe,
-.safe:link,
-.safe:visited {
-    background-image: linear-gradient(rgb(129, 188, 46), rgb(101, 147, 36));
-}
-.safe:hover,
-.safe:link:hover,
-.safe:link:focus,
-.safe:visited:hover,
-.safe:visited:focus,
-.safe:focus {
-    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.2),
-                0px -1px 0px 0px rgba(0, 0, 0, 0.3) inset,
-                0px 12px 24px 2px rgb(131, 200, 34) inset;
-}
-.research,
-.research:link,
-.research:visited {
-    background-color: #0095dd;
-    background-image: linear-gradient(#77bef5, #0095dd);
-}
-.research:hover,
-.research:link:hover,
-.research:link:focus,
-.research:visited:hover,
-.research:visited:focus,
-.research:focus {
-    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1),
-                0 -2px 0 0 rgba(0, 0, 0, 0.2) inset,
-                0 12px 24px 2px #77bef5 inset;
-}
+
 // Mozilla Support Badge
 .moz-support {
     clear: both;
@@ -264,6 +189,13 @@ html[dir="rtl"] {
 #sec-plugin-unknown,
 #sec-plugin-uptodate {
     display: none;
+}
+
+.fx-privacy-link {
+    a:link,
+    a:visited {
+        color: #333;
+    }
 }
 
 #newsletter-form {

@@ -59,10 +59,10 @@
       {# L10n: This description applies to Firefox Beta #}
       <h3>{{_('The latest features in a more stable environment')}}</h3>
       <div class="download-box" id="beta-desktop">
-        {{ download_firefox('beta', icon=False, platform='desktop', small=True, force_direct=True) }}
+        {{ download_firefox('beta', platform='desktop', force_direct=True) }}
       </div>
       <div class="download-box android" id="beta-android">
-        {{ download_firefox('beta', icon=False, platform='android', small=True) }}
+        {{ download_firefox('beta', platform='android') }}
       </div>
       {% if l10n_has_tag('telemetry_notice') %}
         <p class="warning">
@@ -83,10 +83,10 @@
       {# L10n: This description applies to Firefox on the Release channel #}
       <h3>{{_('Tried, tested and used by millions around the world')}}</h3>
       <div class="download-box" id="firefox-desktop">
-        {{ download_firefox(icon=False, platform='desktop', small=True, force_direct=True) }}
+        {{ download_firefox(platform='desktop', force_direct=True) }}
       </div>
       <div class="download-box android" id="firefox-android">
-        {{ download_firefox(icon=False, platform='android', small=True) }}
+        {{ download_firefox(platform='android') }}
       </div>
       <p class="more"><a href="{{ url('firefox') }}">{{_('Learn more about Firefox')}}</a></p>
     </div>
@@ -100,10 +100,10 @@
         <h3>{{_('The newest innovations in an experimental environment')}}</h3>
       {% endif %}
       <div class="download-box" id="aurora-desktop">
-        {{ download_firefox('alpha', icon=False, platform='desktop', small=True) }}
+        {{ download_firefox('alpha', platform='desktop') }}
       </div>
       <div class="download-box android" id="aurora-android">
-        {{ download_firefox('alpha', icon=False, platform='android', small=True) }}
+        {{ download_firefox('alpha', platform='android') }}
       </div>
       <p class="warning">
         {% if l10n_has_tag('channel_dev_edition') %}

@@ -100,7 +100,7 @@
       <div class="version-message-container">
         <h2>{{_('Looks like you’re using an older version of Firefox.')}}</h2>
         <div class="desktop download-button-wrapper">
-          {{ download_firefox(simple=true, check_old_fx=true) }}
+          {{ download_firefox(check_old_fx=true) }}
         </div>
       </div>
 
@@ -288,7 +288,7 @@
     {% if l10n_has_tag('plugincheck_nosupport') %}
       <p>{{_('Currently the plugin check service is only available to Firefox users.')}}</p>
     {% endif %}
-    {{ download_firefox(small=True) }}
+    {{ download_firefox() }}
   </section>
 </div>
 {% endblock %}
