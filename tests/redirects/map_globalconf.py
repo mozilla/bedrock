@@ -1053,4 +1053,7 @@ URLS = flatten((
     # Bug 654614 /blocklist -> addons.m.o/blocked
     url_test('/blocklist/', 'https://addons.mozilla.org/blocked/'),
     url_test('/products/firefox/{,stuff/}', '/firefox/{,stuff/}'),
+
+    # Bug 1255785
+    url_test('/styleguide/identity/mozilla/logo-prototype/', '/styleguide/'),
 ))

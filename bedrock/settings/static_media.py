@@ -1540,18 +1540,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/annual_2013-bundle.js',
     },
-    'logo-prototype': {
-        'source_filenames': (
-            'js/styleguide/logo-prototype/vendor/raf.polyfill.js',
-            'js/styleguide/logo-prototype/vendor/tween.js',
-            'js/styleguide/logo-prototype/vendor/lodash.compat.min.js',
-            'js/styleguide/logo-prototype/vendor/perlin.js',
-            'js/styleguide/logo-prototype/vendor/dat.gui.js',
-            'js/libs/jquery-1.11.3.min.js',
-            'js/styleguide/logo-prototype/clock-data.js',
-        ),
-        'output_filename': 'js/logo-prototype-bundle.js',
-    },
     'releasenotes': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
