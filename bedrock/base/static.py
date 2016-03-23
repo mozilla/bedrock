@@ -17,8 +17,6 @@ class BedrockWhiteNoise(DjangoWhiteNoise):
         static_root = self.get_static_root_and_prefix()[0]
         self.add_files(os.path.join(static_root, 'caldata'),
                        prefix='projects/calendar/caldata/')
-        self.add_files(os.path.join(static_root, 'certs'),
-                       prefix='certs/')
 
     def add_cache_headers(self, static_file, url):
         if self.is_immutable_file(static_file, url):

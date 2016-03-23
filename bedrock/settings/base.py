@@ -200,6 +200,7 @@ SUPPORTED_NONLOCALES = [
     'media',
     'static',
     'certs',
+    'images',
     'contribute.json',
     'credits',
     'gameon',
