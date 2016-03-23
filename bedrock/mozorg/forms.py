@@ -58,13 +58,13 @@ class PrivacyWidget(widgets.CheckboxInput):
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
 
         policy_txt = _(u'I’m okay with Mozilla handling my info as explained '
-                       u'in <a href="%s">this Privacy Policy</a>')
+                       u'in <a href="%s">this Privacy Notice</a>')
         return mark_safe(
             '<label for="%s" class="privacy-check-label">'
             '%s '
             '<span class="title">%s</span></label>'
             % (attrs['id'], input_txt,
-               policy_txt % reverse('privacy'))
+               policy_txt % reverse('privacy.notices.websites'))
         )
 
 
