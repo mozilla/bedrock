@@ -16,6 +16,7 @@ urlpatterns = (
     page('about/leadership', 'mozorg/about/leadership.html'),
     page('about/patents', 'mozorg/about/patents.html'),
     page('about/patents/license', 'mozorg/about/patents/license.html'),
+    page('about/patents/license/1.0', 'mozorg/about/patents/license-1.0.html'),
     page('about/patents/guide', 'mozorg/about/patents/guide.html'),
     url(r'^about/$', views.about_newsletter_test,
         name='mozorg.about'),
