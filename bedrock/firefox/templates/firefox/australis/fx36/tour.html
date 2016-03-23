@@ -55,7 +55,7 @@ data-step4="{{ _('4/4') }}"
 {% block site_header %}
   <header id="masthead">
     <div id="tabzilla">
-      <a href="{{ url('mozorg.home') }}">Mozilla</a>
+      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
     </div>
     {% block site_header_nav %}{% endblock %}
     {% block site_header_logo %}{% endblock %}
@@ -81,7 +81,7 @@ data-step4="{{ _('4/4') }}"
       <div class="promo-copy">
         <h2>{{ _('Get to know Hello') }}</h2>
         <p>{{ _('Firefox Hello is the easiest way to connect with friends and family for free over video.') }}</p>
-        <a id="learn-more" href="{{ url('firefox.hello') }}" class="button-flat">{{ _('Learn more') }}</a>
+        <a id="learn-more" href="{{ url('firefox.hello') }}" class="button-flat" data-link-type="button" data-link-name="Learn more">{{ _('Learn more') }}</a>
         <p id="powered-by">{{ _('Powered by %s')|format(high_res_img('firefox/hello/tef-logo.png', {'alt': 'Telefonica', 'width': '106', 'height': '29'})) }}</p>
       </div>
       <div class="promo-media">
@@ -94,13 +94,13 @@ data-step4="{{ _('4/4') }}"
 
   <div id="ui-tour" tabindex="-1" aria-expanded="false">
     <div class="cta">
-      <button type="button" aria-controls="ui-tour">{{ _('Start browsing') }}</button>
+      <button type="button" aria-controls="ui-tour" data-button-name="Start browsing">{{ _('Start browsing') }}</button>
     </div>
     <div class="tour-tip"></div>
     <div class="ui-tour-controls">
-      <button type="button" class="step prev" aria-controls="tour-steps tour-progress">{{ _('Previous') }}</button>
-      <button type="button" class="step next" aria-controls="tour-steps tour-progress">{{ _('Next') }}</button>
-      <button type="button" class="close" aria-controls="tour-steps tour-progress">{{ _('Close') }}</button>
+      <button type="button" class="step prev" aria-controls="tour-steps tour-progress" data-button-name="Previous">{{ _('Previous') }}</button>
+      <button type="button" class="step next" aria-controls="tour-steps tour-progress" data-button-name="Next">{{ _('Next') }}</button>
+      <button type="button" class="close" aria-controls="tour-steps tour-progress" data-button-name="Close">{{ _('Close') }}</button>
     </div>
     <div class="tour-background">
       <div class="tour-inner">
@@ -121,7 +121,7 @@ data-step4="{{ _('4/4') }}"
               <ul>
                 <li>{{ _('The features you use most, all in one place') }}</li>
                 <li>{{ _('Grouped together for quick, easy access') }}</li>
-                <li><a href="#" role="button" class="more">{{ _('Connect with anyone over video right from Firefox') }}</a></li>
+                <li><a href="#" role="button" class="more" data-link-type="button" data-link-name="Connect with anyone over video">{{ _('Connect with anyone over video right from Firefox') }}</a></li>
               </ul>
             </div>
             {{ high_res_img('firefox/australis/diag-menu-bar.jpg', {'alt': _('The features you use most, all in one place'), 'width': '300', 'height': '188'}) }}
@@ -134,7 +134,7 @@ data-step4="{{ _('4/4') }}"
               <ul>
                 <li>{{ _('Connect over video with anyone, anywhere') }}</li>
                 <li>{{ _('It’s free! No account, sign-in or downloads required') }}</li>
-                <li><a href="#" role="button" class="more">{{ _('Choose how you want to search') }}</a></li>
+                <li><a href="#" role="button" class="more" data-link-type="button" data-link-name="Choose how you want to search">{{ _('Choose how you want to search') }}</a></li>
               </ul>
             </div>
             {{ high_res_img('firefox/australis/hello-1.png', {'alt': _('Connect with anyone over video right from Firefox'), 'width': '240', 'height': '178', 'id': 'hello-img-1'}) }}
@@ -148,7 +148,7 @@ data-step4="{{ _('4/4') }}"
               <ul>
                 <li>{{ _('Search suggestions appear as you type') }}</li>
                 <li>{{ _('Choose the right site for every search') }}</li>
-                <li><a href="#" role="button" class="more">{{ _('Use the star to create bookmarks') }}</a></li>
+                <li><a href="#" role="button" class="more" data-link-type="button" data-link-name="Use the star to create bookmarks">{{ _('Use the star to create bookmarks') }}</a></li>
               </ul>
             </div>
             {{ high_res_img('firefox/australis/diag-search.jpg', {'alt': _('Search suggestions appear as you type'), 'width': '300', 'height': '188'}) }}
@@ -188,12 +188,12 @@ data-step4="{{ _('4/4') }}"
 {% block site_footer %}
   <footer role="contentinfo">
     <ul>
-      <li><a href="{{ url('firefox.desktop.index') }}" class="more">{{ _('Firefox Features') }}</a></li>
-      <li><a href="https://support.mozilla.org/products/firefox" class="more">{{ _('Firefox Help') }}</a></li>
+      <li><a href="{{ url('firefox.desktop.index') }}" class="more" data-link-type="footer" data-link-name="Firefox Features">{{ _('Firefox Features') }}</a></li>
+      <li><a href="https://support.mozilla.org/products/firefox" class="more" data-link-type="footer" data-link-name="Firefox Help">{{ _('Firefox Help') }}</a></li>
     </ul>
     <ul>
-      <li><a href="{{ url('legal.index') }}">{{ _('Legal') }}</a></li>
-      <li><a href="{{ url('privacy') }}">{{ _('Privacy') }}</a></li>
+      <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
+      <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
     </ul>
   </footer>
 {% endblock %}
