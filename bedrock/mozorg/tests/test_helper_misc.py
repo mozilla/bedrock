@@ -14,7 +14,7 @@ from pyquery import PyQuery as pq
 from rna.models import Release
 
 from bedrock.mozorg.helpers.misc import (convert_to_high_res, releasenotes_url,
-                                         absolute_url)
+                                         absolute_url, switch)
 from bedrock.mozorg.tests import TestCase
 
 
@@ -57,6 +57,12 @@ def test_convert_to_high_res():
     eq_(convert_to_high_res('/media/img/the.dude.png'), '/media/img/the.dude-high-res.png')
     eq_(convert_to_high_res('/media/thats-a-bummer-man.jpg'),
         '/media/thats-a-bummer-man-high-res.jpg')
+
+
+@patch('bedrock.mozorg.helpers.misc.config')
+def test_switch_helper(config_mock):
+    switch('dude-and-walter')
+    config_mock.assert_called_with('SWITCH_DUDE_AND_WALTER', default=settings.DEV, cast=bool)
 
 
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
