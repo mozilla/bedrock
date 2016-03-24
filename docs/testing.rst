@@ -91,21 +91,21 @@ e.g. ``tests/functional/test_newsletter.py``:
 
 .. code-block:: bash
 
-    $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html -n auto tests/functional/test_newsletter.py
+    $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/test_newsletter.py
 
 To run a single test you can filter using the ``-k`` argument supplied with a keyword
 e.g. ``-k test_successful_sign_up``:
 
 .. code-block:: bash
 
-  $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html -n auto tests/functional/test_newsletter.py -k test_successful_sign_up
+  $ py.test --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/test_newsletter.py -k test_successful_sign_up
 
 You can also easily run the tests against any bedrock environment by specifying the
 ``--base-url`` argument. For example, to run all functional tests against dev:
 
 .. code-block:: bash
 
-    $ py.test --base-url https://www-dev.allizom.org --driver Firefox --html tests/functional/results.html -n auto tests/functional/
+    $ py.test --base-url https://www-dev.allizom.org --driver Firefox --html tests/functional/results.html tests/functional/
 
 .. Note::
 
@@ -115,6 +115,23 @@ You can also easily run the tests against any bedrock environment by specifying 
     browsers, refer to the `pytest-selenium documentation`_.
 
 For more information on command line options, see the `pytest documentation`_.
+
+Running tests in Sauce Labs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also run tests in Sauce Labs directly from the command line. This can be useful
+if you want to run tests against Internet Explorer when you're on Mac OSX, for instance.
+
+#. Sign up for an account at https://saucelabs.com/opensauce/.
+#. Log in and obtain your Remote Access Key from user settings.
+#. Run a test specifying ``SauceLabs`` as your driver, and pass your credentials.
+
+For example, to run the home page tests using Internet Explorer via Sauce Labs:
+
+.. code-block:: bash
+
+    $ SAUCELABS_USERNAME=thedude SAUCELABS_API_KEY=123456789 py.test --base-url https://www-dev.allizom.org --driver SauceLabs --capability browserName 'internet explorer' -n auto --html tests/functional/results.html tests/functional/test_home.py
+
 
 Writing Selenium tests
 ----------------------
