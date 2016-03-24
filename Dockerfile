@@ -18,7 +18,7 @@ RUN ./manage.py collectstatic -l --noinput
 RUN ./docker/bin/softlinkstatic.py
 
 # Shallow clone l10n repo into locale
-RUN bash -c "if [[ ! -e locale ]]; then git clone --depth 1 https://github.com/mozilla-l10n/bedrock-l10n locale; fi"
+RUN bash -c "if [[ ! -e locale ]]; then git clone --depth 1 https://github.com/mozilla-l10n/www.mozilla.org locale; fi"
 
 # Change User
 # No USER directive since supervisor is set to run processes as webdev
