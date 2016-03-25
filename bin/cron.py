@@ -113,7 +113,7 @@ def update_firefox_os_feeds():
 if DEV:
     @scheduled_job('interval', minutes=10)
     def update_locales():
-        check_call('bin/update-locales.sh', shell=True)
+        call_command('l10n_update')
 
 
 if __name__ == '__main__':

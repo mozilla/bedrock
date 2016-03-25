@@ -9,11 +9,16 @@ Localization
 ============
 
 The site is fully localizable. Localization files are not shipped with the code
-distribution, but are available in a separate GitHub repository:
+distribution, but are available in a separate GitHub repository. The proper repo
+can be cloned and kept up-to-date using the ``l10n_update`` management command:
 
 .. code-block:: console
 
-    $ git clone https://github.com/mozilla-l10n/www.mozilla.org locale
+    $ ./manage.py l10n_update
+
+If you don't already have a ``locale`` directory it will clone the git repo containing
+the translation files (either the dev or prod files depending on your ``DEV`` setting),
+and if you do it will update those files to the latest versions.
 
 .lang files
 -----------

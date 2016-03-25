@@ -8,15 +8,26 @@ export DOCKER_CACHE_PATH=~/docker
 mkdir -p $DOCKER_CACHE_PATH
 
 if [[ -f $DOCKER_CACHE_PATH/bedrock.db ]]; then
-  cp $DOCKER_CACHE_PATH/bedrock.db ./
+  mv $DOCKER_CACHE_PATH/bedrock.db ./
+fi
+
+LOCALES_TAR_FILE="$DOCKER_CACHE_PATH/locales.tgz"
+if [[ -f "$LOCALES_TAR_FILE" ]]; then
+  tar xzf "$LOCALES_TAR_FILE"
+  rm -f "$LOCALES_TAR_FILE"
+fi
+
+MFSA_TAR_FILE="$DOCKER_CACHE_PATH/mfsa_repo.tgz"
+if [[ -f "$MFSA_TAR_FILE" ]]; then
+  tar xzf "$MFSA_TAR_FILE"
+  rm -f "$MFSA_TAR_FILE"
 fi
 
 # use settings in manage.py runs
 cp .bedrock_demo_env .env
 
-echo "MOFO_SECURITY_ADVISORIES_PATH=$DOCKER_CACHE_PATH/security_advisories" >> .env
-
 ./manage.py migrate --noinput
+./manage.py l10n_update
 ./manage.py rnasync
 ./manage.py cron update_ical_feeds
 ./manage.py cron cleanup_ical_events
@@ -26,7 +37,9 @@ echo "MOFO_SECURITY_ADVISORIES_PATH=$DOCKER_CACHE_PATH/security_advisories" >> .
 ./manage.py update_security_advisories
 ./manage.py runscript update_firefox_os_feeds
 
-cp -f bedrock.db $DOCKER_CACHE_PATH/
+cp bedrock.db $DOCKER_CACHE_PATH/
+tar czf "$LOCALES_TAR_FILE" locale
+tar czf "$MFSA_TAR_FILE" mofo_security_advisories
 # don't include in built container
 rm -f .env
 
