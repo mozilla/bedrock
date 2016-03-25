@@ -15,6 +15,7 @@ from pathlib import Path
 
 schedule = BlockingScheduler()
 DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
+DEV = config('DEV', cast=bool, default=False)
 
 # ROOT path of the project. A pathlib.Path object.
 ROOT_PATH = Path(__file__).resolve().parents[1]
@@ -73,40 +74,46 @@ def ping_dms(function):
 
 @scheduled_job('interval', minutes=30)
 @ping_dms
-def job_update_product_details():
+def update_product_details():
     call_command('update_product_details')
 
 
 @scheduled_job('interval', minutes=30)
-def job_update_externalfiles():
+def update_externalfiles():
     call_command('update_externalfiles')
 
 
 @scheduled_job('interval', minutes=30)
-def job_update_security_advisories():
+def update_security_advisories():
     call_command('update_security_advisories')
 
 
 @scheduled_job('interval', minutes=5)
-def job_rnasync():
+def rnasync():
     # running in a subprocess as rnasync was not designed for long-running process
     call_command('rnasync')
 
 
 @scheduled_job('interval', hours=6)
-def job_update_tweets():
+def update_tweets():
     call_command('cron update_tweets')
 
 
 @scheduled_job('interval', hours=1)
-def job_ical_feeds():
+def ical_feeds():
     call_command('cron update_ical_feeds')
     call_command('cron cleanup_ical_events')
 
 
 @scheduled_job('interval', hours=1)
-def job_update_firefox_os_feeds():
+def update_firefox_os_feeds():
     call_command('runscript update_firefox_os_feeds')
+
+
+if DEV:
+    @scheduled_job('interval', minutes=10)
+    def update_locales():
+        check_call('bin/update-locales.sh', shell=True)
 
 
 if __name__ == '__main__':
