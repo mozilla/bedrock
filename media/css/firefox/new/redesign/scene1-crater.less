@@ -1,0 +1,101 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../../sandstone/lib.less";
+
+.event-horizon {
+    .clearfix;
+    background-color: #0150ab;
+    background: linear-gradient(to bottom, rgb(30, 68, 136) 0%, rgb(19, 71, 146) 22%, rgb(2, 76, 161) 44%, rgb(0, 85, 184) 73%, rgb(4, 89, 190) 78%, rgb(17, 94, 199) 86%, rgb(51, 105, 219) 100%);
+}
+
+.mission-control {
+    position: relative;
+    width: 100%;
+    padding-top: 129px;
+    background: #11336B;
+
+    .sky-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1400px;
+        height: 129px;
+        margin-left: -700px;
+        background-color: #0150ab;
+        background: linear-gradient(to bottom, #346adc, #6a7cf8);
+    }
+
+    .crater {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1400px;
+        height: 129px;
+        margin-left: -700px;
+        background: url('/media/img/firefox/new/redesign/ground-level.png') top center no-repeat;
+    }
+
+    .launch-area {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .ground {
+        width: 100%;
+        height: 120px;
+        background: #11336B;
+    }
+}
+
+// If browser supports CSS blend modes, add grit texture over CSS gradient & apply color-dodge.
+@supports (background-blend-mode: color-dodge) {
+    .event-horizon {
+        background: url('/media/img/firefox/new/redesign/grit.png') top left repeat,
+                    linear-gradient(to bottom, rgb(30, 68, 136) 0%, rgb(19, 71, 146) 22%, rgb(2, 76, 161) 44%, rgb(0, 85, 184) 73%, rgb(4, 89, 190) 78%, rgb(17, 94, 199) 86%, rgb(51, 105, 219) 100%);
+        background-blend-mode: color-dodge;
+    }
+
+    .mission-control .sky-line {
+        background: url('/media/img/firefox/new/redesign/grit.png') top left repeat,
+                    linear-gradient(to bottom, #346adc, #6a7cf8);
+        background-blend-mode: color-dodge;
+    }
+}
+
+.rocket {
+    position: absolute;
+    top: -227px;
+    right: 60px;
+    width: 160px;
+    height: 195px;
+    .at2x('/media/img/firefox/new/redesign/rocket.png', 160px, 195px);
+
+    &:before {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background: #fff;
+        content: '';
+        .animation(twinkle 3s ease-in-out 0s infinite alternate-reverse);
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        right: -60px;
+        
+        &:before {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        top: -122px;
+        right: 50%;
+        margin-right: -80px;
+        height: 120px;
+    }
+}

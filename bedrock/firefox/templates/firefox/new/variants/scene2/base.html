@@ -1,0 +1,126 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new" %}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+{% block page_title %}{{_('Free Web Browser')}}{% endblock %}
+{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox today!')}}{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}
+  {{_('Choose the independent browser')}}
+{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}
+  {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
+{% endblock %}
+
+{#- This will appear as <meta property="og:image"> which can be used for social share -#}
+{% block page_image %}
+  {{ static('img/firefox/firefox-independent-1200.jpg') }}
+{% endblock %}
+
+{% block body_id %}firefox-new-scene2-redesign{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{# all CSS must be in extrahead block for old IE #}
+{% block site_css %}{% endblock %}
+
+{% block extrahead %}
+  {% stylesheet 'firefox_new_redesign_common' %}
+  {% stylesheet 'firefox_new_redesign_scene2' %}
+{% endblock %}
+
+{% block optimizely %}
+  {% if waffle.switch('firefox-new-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<main role="main" id="stage">
+  <div class="event-horizon">
+    <div class="stars">
+      <div class="inner-container">
+        <header id="masthead">
+          <div id="tabzilla">
+            <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+          </div>
+          <h2>{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</h2>
+        </header>
+        <div class="main-content">
+          <h1>{{ _('Thanks for joining the mission.') }}</h1>
+
+          <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
+            {{ download_firefox(force_direct=true, simple=true, dom_id='primary-download-button') }}
+          </div>
+
+          <p class="help">
+            {{_('Your Firefox should begin downloading automatically. If not, <a id="%s" href="">click here</a>.')|format('direct-download-link')}}
+          </p>
+
+          <aside id="mobile-download">
+            <h2>{{ _('Get Firefox everywhere. Add it now to your Android and iOS devices.') }}</h3>
+            <ul>
+              <li class="android">
+                <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}">
+                  {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
+                </a>
+              </li>
+              <li class="ios">
+                <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}">
+                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mission-control">
+    {% block skyline %}{% endblock %}
+    {% block benefits %}
+      <section id="benefits">
+        <ul class="container">
+          <li>
+            <h2 class="performance">{{_('Performance') }}</h2>
+            <p>{{_('Get where you need to go, quickly and reliably, with our best Firefox yet.') }}</p>
+            <a href="{{ url('firefox.desktop.fast') }}" class="more">{{_('Learn more') }}</a>
+          </li>
+          <li>
+            <h2 class="privacy">{{_('Privacy') }}</h2>
+            <p>{{_('With the most built-in privacy features, Firefox keeps you in control of your life online.') }}</p>
+            <a href="{{ url('firefox.private-browsing') }}" class="more">{{_('Learn more') }}</a>
+          </li>
+          <li>
+            <h2 class="good">{{_('Public Good') }}</h2>
+            <p>{{_('Firefox is made by Mozilla, the proudly non-profit defender of the free and open Internet.') }}</p>
+            <a href="{{ url('mozorg.about.manifesto') }}" class="more">{{_('Learn more') }}</a>
+          </li>
+        </ul>
+      </section>
+    {% endblock %}
+  </div>
+</main>
+
+{% include 'firefox/includes/schemaorg-app.html' %}
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {% include 'firefox/includes/simple_footer.html' %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_new_scene2' %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new" %}
+
+{% extends "firefox/new/variants/scene1/base.html" %}
+
+{% block extrahead %}
+  {% stylesheet 'firefox_new_redesign_common' %}
+  {% stylesheet 'firefox_new_redesign_scene1_browser' %}
+{% endblock %}
+
+{% block body_id %}firefox-new-redesign-scene1-4a{% endblock %}
+
+{% block browser %}
+  <div class="browser-container">
+    <div class="rocket"></div>
+    <div class="browser-chrome"></div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_new_redesign_scene1_a' %}
+{% endblock %}

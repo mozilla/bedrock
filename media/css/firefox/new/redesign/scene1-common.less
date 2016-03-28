@@ -1,0 +1,379 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../../sandstone/lib.less";
+
+// general version message styling
+.version-message-container {
+    text-align: center;
+    .font-size(20px);
+    padding: 0 30px 20px;
+    display: none;
+}
+
+.version-message {
+    display: none;
+    color: #fff;
+
+    &:before {
+        .inline-block;
+        margin: 0 4px 0 0;
+        width: 25px;
+        height: 25px;
+        vertical-align: text-bottom;
+        background: url('/media/img/firefox/new/icon-alert.svg') center center no-repeat;
+        content: '';
+    }
+}
+
+.version-message-secondary {
+    display: block;
+    padding: 0;
+    background: transparent;
+    .font-size(@largeFontSize);
+}
+
+.latest-links-wrapper {
+    display: none;
+    padding-top: 13px;
+    text-align: center;
+    ul {
+        margin: 0;
+        li {
+            margin: 0;
+            padding: 3px 0 2px;
+            list-style: none;
+            line-height: 1.2;
+        }
+    }
+}
+
+#download-buttons {
+    .download-link {
+        background: #6fbe4a;
+        box-shadow: none;
+        text-shadow: none;
+        .transition(background .1s ease-in-out);
+
+        .download-subtitle {
+            text-shadow: none;
+        }
+
+        &:hover,
+        &:focus {
+            background: darken(#6fbe4a, 3%);
+        }
+    }
+
+    .download-dumb {
+        text-align: center;
+
+        .download-heading {
+            color: #fff;
+        }
+    }
+
+    /**
+     * I'm not proud of this but it avoids needing JS. These small
+     * links will be relocated from download buttons to the page
+     * footer longer term, once a new design is finalized.
+     */
+    .download-button .download-other {
+        display: none !important;
+    }
+
+    .download-button .unsupported-download a {
+        color: @textColorSpaceYellow;
+    }
+}
+
+// up to date firefox
+html.firefox-latest {
+    .version-message-container {
+        display: block;
+    }
+
+    #version-message-desktop-latest {
+        display: inline;
+
+        &:before {
+            background-image: url('/media/img/firefox/new/icon-check.svg');
+        }
+    }
+
+    /* show helpful links */
+    .desktop-latest-links-wrapper {
+        display: block;
+    }
+
+    /* hide download button */
+    #download-buttons {
+        display: none;
+    }
+
+    #firefox-screenshot {
+        display: none;
+    }
+
+    small.download-other {
+        display: none;
+    }
+}
+
+// out of date firefox
+html.firefox-old {
+    .version-message-container {
+        display: block;
+    }
+
+    #version-message-desktop-old {
+        display: inline;
+    }
+}
+
+// android for firefox
+html.android {
+    &.firefox-latest {
+        .version-message-container {
+            display: block;
+        }
+
+        #version-message-android-latest {
+            display: inline;
+
+            &:before {
+                background-image: url('/media/img/firefox/new/icon-check.svg');
+            }
+        }
+
+        #version-message-desktop-latest {
+            display: none;
+        }
+
+        #download-button-wrapper-desktop,
+        #download-button-wrapper-mobile {
+            display: none;
+        }
+
+        /* show helpful links */
+        .android-latest-links-wrapper {
+            display: block;
+            padding-top: 38px;
+        }
+
+        .desktop-latest-links-wrapper {
+            display: none;
+        }
+    }
+
+    &.firefox-old {
+        .version-message-container {
+            display: block;
+        }
+
+        #version-message-android-old {
+            display: inline;
+        }
+
+        #version-message-desktop-old {
+            display: none;
+        }
+    }
+}
+
+// linux users with ARM processors
+html.linux.arm {
+    .version-message-container {
+        display: block;
+    }
+
+    #version-message-linux-arm {
+        display: inline;
+
+        a {
+            color: @textColorSpaceYellow;
+        }
+    }
+
+    #version-message-desktop-latest,
+    #version-message-desktop-old {
+        display: none;
+    }
+}
+
+// firefox os
+html.fxos {
+    // hide conditional messaging for firefox users,
+    // they get updates from the OS directly.
+    .version-message-container {
+        display: none;
+    }
+
+    .fxos-latest-links-wrapper {
+        display: block;
+        padding-top: 26px;
+    }
+
+    #download-buttons {
+        display: none;
+    }
+}
+
+html.android,
+html.ios {
+    #download-button-wrapper-desktop {
+        display: none;
+    }
+
+    #download-button-wrapper-mobile {
+        display: block;
+    }
+
+    .desktop-latest-links-wrapper {
+        display: none;
+    }
+}
+
+// desktop user with version exactly matching latest release version
+#refresh-firefox-wrapper {
+    display: none;
+}
+
+html.show-refresh {
+    #refresh-firefox-wrapper {
+        display: block;
+        margin: (@baseLine * 2) 0 @baseLine;
+
+        p {
+            font-style: normal;
+            margin-bottom: @baseLine / 2;
+        }
+
+        a {
+            color: #fff;
+            font-style: normal;
+            .font-size(@baseFontSize);
+            .trailing-arrow();
+        }
+    }
+
+    #refresh-firefox {
+        display: block;
+        width: 260px;
+        margin: 0 auto;
+        padding: 15px;
+        font-weight: normal;
+        .font-size(22px);
+    }
+
+    #main-feature,
+    .hide-for-refresh {
+        display: none;
+    }
+}
+
+/* FxOS */
+html.fxos {
+    #download-buttons {
+        display: none;
+    }
+}
+
+.linux.arm #download-buttons {
+    display: none;
+}
+
+#download-button-wrapper-mobile {
+    display: none;
+}
+
+.download-button .unrecognized-download .download-dumb {
+    .download-heading {
+        color: @textColorPrimary;
+    }
+
+    .button-green, .button-green:link, .button-green:visited {
+        min-width: 0;
+    }
+}
+
+/* Tablet Layout: 760px */
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    #download-buttons .download-other-desktop {
+        bottom: 194px;
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #masthead h2 > img {
+        display: none;
+    }
+
+    .version-message-container {
+        padding: 0 20px 20px;
+        .font-size(18px);
+    }
+
+    main h1 {
+        background: url('/media/img/firefox/new/firefox-logo.png') top center no-repeat;
+        padding-top: 125px;
+    }
+
+    #download-buttons {
+        padding-top: 10px;
+        margin-bottom: @baseLine;
+
+        .download-button {
+            display: block;
+        }
+    }
+
+    .latest-links-wrapper {
+        margin: 0 10px;
+        padding: 0;
+    }
+
+    html.windows.arm,
+    html.oldmac,
+    html.oldwin {
+        .download-button .unsupported-download {
+            max-width: none;
+        }
+    }
+
+    html.android {
+        .mobile {
+            display: none;
+        }
+
+        .desktop {
+            display: none;
+        }
+
+        &.firefox-latest .android-latest-links-wrapper {
+            padding: 0;
+        }
+    }
+
+    html.fxos {
+        .fxos-latest-links-wrapper {
+            padding: 0;
+        }
+    }
+
+    .download-button-wrapper {
+        text-align: center;
+
+        .download-button {
+            text-align: center;
+
+            small.download-other {
+                text-align: center;
+                margin-top: 16px;
+            }
+        }
+    }
+}

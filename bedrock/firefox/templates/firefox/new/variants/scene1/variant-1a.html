@@ -1,0 +1,29 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new" %}
+
+{% extends "firefox/new/variants/scene1/base.html" %}
+
+{% block extrahead %}
+  {% stylesheet 'firefox_new_redesign_common' %}
+  {% stylesheet 'firefox_new_redesign_scene1_crater' %}
+{% endblock %}
+
+{% block body_id %}firefox-new-redesign-scene1-1a{% endblock %}
+
+{% block benefits %}{% endblock %}
+
+{% block skyline %}
+  <div class="sky-line"></div>
+  <div class="launch-area">
+    <div class="rocket"></div>
+  </div>
+  <div class="crater"></div>
+  <div class="ground"></div>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_new_redesign_scene1_a' %}
+{% endblock %}

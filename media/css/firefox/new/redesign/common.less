@@ -1,0 +1,256 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../../sandstone/lib.less";
+
+#outer-wrapper {
+    overflow: hidden;
+}
+
+#wrapper {
+    width: 100%;
+    padding-bottom: 0;
+}
+
+.stars {
+    position: relative;
+    background: url('/media/img/firefox/new/redesign/stars.png') center 80px no-repeat;
+
+    @media only screen and (max-width: @breakTablet) {
+        background: none;
+    }
+}
+
+.inner-container,
+.launch-area,
+#benefits ul {
+    width: @widthDesktop - (@baseLine * 2);
+    margin: 0 auto;
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+}
+
+.inner-container {
+    position: relative;
+
+    // stars
+    &:before,
+    &:after {
+        position: absolute;
+        border-radius: 100%;
+        background: #fff;
+        content: '';
+    }
+
+    &:before {
+        top: 330px;
+        left: 120px;
+        width: 4px;
+        height: 4px;
+        .animation(twinkle 4s ease-in-out 0s infinite alternate-reverse);
+    }
+
+    &:after {
+        top: 300px;
+        right: 200px;
+        width: 2px;
+        height: 2px;;
+        .animation(twinkle 3s ease-in-out .5s infinite alternate-reverse);
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+}
+
+#masthead {
+    position: relative;
+
+    &:before {
+        position: absolute;
+        bottom: 0;
+        left: 200px;
+        width: 3px;
+        height: 3px;
+        border-radius: 100%;
+        background: #fff;
+        content: '';
+        .animation(twinkle 4s ease-in-out 1s infinite alternate-reverse);
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        &:before {
+            display: none;
+        }
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.large {
+    color: #fff;
+    text-shadow: none;
+}
+
+main {
+    .main-content {
+        text-align: center;
+        margin-top: @baseLine * 2;
+    }
+
+    a:link,
+    a:visited {
+        color: #fff;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+
+    h1 {
+        .font-size(60px);
+        line-height: 1.2;
+
+        @media only screen and (max-width: @breakDesktop) {
+            .font-size(55px);
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(36px);
+        }
+    }
+
+    p {
+        color: #fff;
+    }
+
+    .privacy-notice {
+        display: inline-block;
+        margin-top: @baseLine;
+        .font-size(@largeFontSize);
+        font-style: italic;
+    }
+}
+
+#benefits {
+    padding: (@baseLine * 3) 0;
+    .clearfix;
+    background: #11336b;
+
+    ul {
+        position: relative;
+        list-style-type: none;
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+
+        li {
+            float: left;
+            margin: 0;
+            padding: 0;
+            width: 33.3%;
+
+            @media only screen and (max-width: @breakTablet) {
+                float: none;
+                width: auto;
+                margin-bottom: @baseLine * 2;
+            }
+        }
+    }
+
+    h2 {
+        position: relative;
+        padding-top: 73px;
+        font-weight: bold;
+        .font-size(22px);
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 49px;
+            content: '';
+            background-image: url('/media/img/firefox/new/redesign/benefits-sprite.png');
+            background-repeat: no-repeat;
+        }
+
+        &.performance:before {
+            background-position: center -59px;
+        }
+
+        &.privacy:before {
+            background-position: center -118px;
+        }
+
+        &.good:before {
+            background-position: center top;
+        }
+    }
+
+    p {
+        .font-size(18px);
+        padding: 0 @baseLine;
+    }
+
+    a {
+        .font-size(18px);
+        color: @textColorSpaceYellow;
+    }
+}
+
+@-webkit-keyframes twinkle {
+    0% {
+        opacity: 0.9;
+    }
+    30% {
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    70% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0.9;
+    }
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.9;
+    }
+    30% {
+        opacity: 0.9;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    70% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0.9;
+    }
+}

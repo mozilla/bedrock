@@ -1,0 +1,13 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new" %}
+
+{% extends "firefox/new/variants/scene1/variant-3a.html" %}
+
+{% block body_id %}firefox-new-redesign-scene1-3b{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_new_redesign_scene1_b' %}
+{% endblock %}

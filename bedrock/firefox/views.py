@@ -491,13 +491,24 @@ def new(request):
     if request.GET.get('product', None) or request.GET.get('os', None):
         return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
+    locale = l10n_utils.get_locale(request)
+    variant = request.GET.get('v', '')
     scene = request.GET.get('scene', None)
 
+    scene_1_variants = ['1a', '2a', '3a', '4a', '1b', '2b', '3b', '4b']
+    scene_2_variants = ['a', 'b']
+
     if scene == '2':
-        template = 'firefox/new/scene2.html'
+        if locale == 'en-US' and variant in scene_2_variants:
+            template = 'firefox/new/variants/scene2/variant-{0}.html'.format(variant)
+        else:
+            template = 'firefox/new/scene2.html'
     # if no/incorrect scene specified, show scene 1
     else:
-        template = 'firefox/new/scene1.html'
+        if locale == 'en-US' and variant in scene_1_variants:
+            template = 'firefox/new/variants/scene1/variant-{0}.html'.format(variant)
+        else:
+            template = 'firefox/new/scene1.html'
 
     return l10n_utils.render(request, template)
 

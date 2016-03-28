@@ -1,0 +1,157 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new" %}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+{% block page_title %}{{_('Free Web Browser')}}{% endblock %}
+{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox today!')}}{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}
+  {{_('Choose the independent browser')}}
+{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}
+  {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
+{% endblock %}
+
+{#- This will appear as <meta property="og:image"> which can be used for social share -#}
+{% block page_image %}
+  {{ static('img/firefox/firefox-independent-1200.jpg') }}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{# all CSS must be in extrahead block for old IE #}
+{% block site_css %}{% endblock %}
+
+{% block extrahead %}{% endblock %}
+
+{% block optimizely %}
+  {% if waffle.switch('firefox-new-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="event-horizon">
+    <div class="stars">
+      <div class="inner-container">
+        <header id="masthead">
+          <div id="tabzilla">
+            <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+          </div>
+          <h2>{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</h2>
+        </header>
+        <div class="main-content">
+          <div class="version-message-container">
+            <div id="version-message-android-latest" class="version-message">
+              {{_('Congrats! You’re using the latest version of Firefox.')}}
+            </div>
+            <div id="version-message-android-old" class="version-message">
+              {{_('Looks like you’re using an older version of Firefox. Update on Google Play.')}}
+            </div>
+            <div id="version-message-desktop-latest" class="version-message">
+              {{_('Congrats! You’re using the latest version of Firefox.')}}
+              <div id="refresh-firefox-wrapper">
+                <p>{{ _('Give Firefox a tune up') }}</p>
+                <button type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" class="button-flat">{{ _('Refresh Firefox') }}</button>
+                <a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link" rel="external">{{ _('Learn more') }}</a>
+              </div>
+            </div>
+            <div id="version-message-desktop-old" class="version-message">
+              {{_('Looks like you’re using an older version of Firefox.')}}
+              <div class="version-message-secondary">
+                <a href="https://support.mozilla.org/kb/update-firefox-latest-version">{{_('Update to stay fast and safe.')}}</a>
+              </div>
+            </div>
+            <div id="version-message-linux-arm" class="version-message">
+              {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
+            </div>
+          </div>{#-- /.version-message-container --#}
+
+          <div id="main-feature" class="hide-for-refresh">
+            <h1>{{ _('Go beyond the others. <br>Choose Firefox.') }}</h1>
+          </div>{#-- /#main-feature --#}
+
+          <div class="desktop-latest-links-wrapper latest-links-wrapper">
+            <ul>
+              <li class="hide-for-refresh"><a href="{{ url('firefox.desktop.index') }}">{{_('Learn more about Firefox for desktop')}}</a></li>
+              <li><a href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+              <li class="hide-for-refresh"><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}">{{_('Get Firefox on your Android device')}}</a></li>
+              <li class="hide-for-refresh"><a href="{{ firefox_ios_url('mozorg-uptodate-appstore-link') }}">{{ _('Add Firefox to your iPhone, iPad and iPod touch') }}</a></li>
+              <li class="hide-for-refresh"><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
+              <li><a href="{{ firefox_url('desktop', 'all') }}#{{ LANG }}">{{_('Download a fresh copy')}}</a></li>
+            </ul>
+          </div>
+          <div class="android-latest-links-wrapper latest-links-wrapper">
+            <ul>
+              <li><a href="{{ url('firefox.android.index') }}">{{_('Learn more about Firefox for Mobile')}}</a></li>
+            </ul>
+          </div>
+          <div class="fxos-latest-links-wrapper latest-links-wrapper">
+            <ul>
+              <li><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
+              <li><a href="{{ url('firefox.family.index') }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
+            </ul>
+          </div>
+
+          <section id="download-buttons">
+            {# handles desktop users (windows, os x, linux) #}
+            <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
+              {{ download_firefox(simple=true) }}
+            </div>
+
+            {# handles Android and iOS users #}
+            <div class="mobile download-button-wrapper" id="download-button-wrapper-mobile" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
+              {{ download_firefox(small=True, icon=False, dom_id='download-button-mobile') }}
+            </div>
+
+            <a href="{{ url('privacy.notices.firefox') }}" class="privacy-notice">{{_('Firefox Browser Privacy Notice') }}</a>
+          </section>{#-- /#download-buttons --#}
+          {% block browser %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mission-control">
+    {% block skyline %}{% endblock %}
+    {% block benefits %}
+      <section id="benefits">
+        <ul>
+          <li>
+            <h2 class="performance">{{_('Performance') }}</h2>
+            <p>{{_('Get where you need to go, quickly and reliably, with our best Firefox yet.') }}</p>
+          </li>
+          <li>
+            <h2 class="privacy">{{_('Privacy') }}</h2>
+            <p>{{_('With the most built-in privacy features, Firefox keeps you in control of your life online.') }}</p>
+          </li>
+          <li>
+            <h2 class="good">{{_('Public Good') }}</h2>
+            <p>{{_('Firefox is made by Mozilla, the proudly non-profit defender of the free and open Internet.') }}</p>
+          </li>
+        </ul>
+      </section>
+    {% endblock %}
+  </div>
+</main>
+
+{% include 'firefox/includes/schemaorg-app.html' %}
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {% include 'firefox/includes/simple_footer.html' %}
+{% endblock %}
+
+{% block js %}{% endblock %}
