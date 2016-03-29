@@ -1,0 +1,245 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../../sandstone/lib.less";
+
+html,
+body {
+    height: 100%;
+    background: @mozIDBlue;
+}
+
+#tabzilla:before {
+    background: @mozIDBlue;
+}
+
+#outer-wrapper {
+    min-height: 100%;
+    .aurora-bars();
+    overflow: hidden;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #fff;
+        text-shadow: none;
+    }
+}
+
+#masthead h2 {
+    float: left;
+}
+
+main {
+    text-align: center;
+
+    h1 {
+        .font-size(48px);
+        margin-bottom: @baseLine;
+    }
+
+    p {
+        color: #fff;
+        .font-size(22px);
+        max-width: 30em;
+        margin: @baseLine auto;
+    }
+
+    .cta {
+        min-height: 65px;
+        margin-bottom: @baseLine * 2;
+    }
+
+    .button-flat-dark {
+        margin: 0;
+        .font-size(25px);
+        transition: background-color .1s ease-in-out;
+    }
+
+    .pointer {
+        margin: 0 auto;
+        padding-top: 20px;
+        color: #005189;
+        .font-size(25px);
+        .at2x('/media/img/firefox/firstrun/learnmore/yahoo/pointer.png', 17px 17px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: 17px 17px;
+        .animation(sand-fade-in 0.3s ease-in 0s 1 normal both);
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        h1 {
+            .font-size(44px);
+        }
+
+        .pointer {
+            background: none;
+            padding-top: 0;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        h1 {
+            .font-size(40px);
+        }
+
+        p {
+            .font-size(20px);
+        }
+
+        .button-flat-dark {
+            .font-size(22px);
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        h1 {
+            .font-size(36px);
+        }
+
+        p {
+            .font-size(18px);
+        }
+
+        .button-flat-dark {
+            .font-size(20px);
+        }
+    }
+}
+
+html[lang^="en"] main .button-flat-dark {
+    text-transform: none;
+}
+
+.ravioli {
+    position: relative;
+    max-width: 809px;
+    margin: 0 auto;
+
+    &:after {
+        position: absolute;
+        top: 165px;
+        left: 0;
+        width: 809px;
+        height: 139px;
+        content: '';
+        .at2x('/media/img/firefox/firstrun/learnmore/yahoo/ravioli.png', 809px 139px);
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-size: 809px 139px;
+    }
+
+    figcaption {
+        color: #fff;
+
+        a {
+            color: @textColorSpaceYellow;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        &:after {
+            top: 150px;
+            width: 720px;
+            height: 124px;
+            background-size: 720px 124px;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        &:after {
+            top: 85px;
+            width: 420px;
+            height: 72px;
+            background-size: 420px 72px;
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        &:after {
+            top: 60px;
+            width: 300px;
+            height: 52px;
+            background-size: 300px 52px;
+        }
+    }
+
+    &.animate:after {
+        animation: scale-up-down 1s ease-in-out 0s 1;
+    }
+}
+
+@keyframes scale-up-down {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+footer[role="contentinfo"] {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin: (@baseLine * 6) auto (@baseLine * 2);
+
+    ul {
+        display: inline-block;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: inline;
+            margin: 0;
+            padding: 0;
+            color: #bee1f5;
+            .font-size(13px);
+
+            &:after {
+                content: '•';
+                margin: 0 10px;
+            }
+
+            &:last-child:after {
+                content: '';
+                margin: 0;
+            }
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: #bee1f5;
+        .transition(color .1s ease-in-out);
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #fff;
+    }
+
+    .logo {
+        display: inline-block;
+        width: 93px;
+        height: 24px;
+        margin-right: @gridGutterWidth;
+        .at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
+        .image-replaced();
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape - @gridGutterWidth;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @widthMobile - @gridGutterWidth;
+    }
+}
