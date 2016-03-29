@@ -254,7 +254,13 @@ class FirefoxDesktop(_ProductDetails):
                              ])])
         else:
             # build a link to the transition page
-            return self.download_base_url_transition
+
+            if funnelcake_id:
+                # include funnelcake in scene 2 URL
+                return '&f='.join([self.download_base_url_transition,
+                                   funnelcake_id])
+            else:
+                return self.download_base_url_transition
 
 
 class FirefoxAndroid(_ProductDetails):
