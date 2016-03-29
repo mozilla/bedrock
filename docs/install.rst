@@ -112,10 +112,9 @@ If you get the error "NoneType is not iterable", you didn't check out the latest
 Localization
 ------------
 
-If you want to install localizations, clone the repository containing our translations
-in a ``locale`` directory::
+If you want to install localizations, run the following command::
 
-    git clone https://github.com/mozilla-l10n/www.mozilla.org locale
+    $ ./manage.py l10n_update
 
 You can read more details about how to localize content :ref:`here<l10n>`.
 

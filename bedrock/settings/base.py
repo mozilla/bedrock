@@ -132,6 +132,9 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
                   'uz', 'vi', 'wo', 'xh', 'yo', 'zh-CN', 'zh-TW', 'zu')
 
 LOCALES_PATH = ROOT_PATH / 'locale'
+default_locales_repo = 'www.mozilla.org' if DEV else 'bedrock-l10n'
+default_locales_repo = 'https://github.com/mozilla-l10n/{}'.format(default_locales_repo)
+LOCALES_REPO = config('LOCALES_REPO', default=default_locales_repo)
 
 
 def get_dev_languages():
@@ -952,7 +955,7 @@ RNA = {
 }
 
 MOFO_SECURITY_ADVISORIES_PATH = config('MOFO_SECURITY_ADVISORIES_PATH',
-                                       default=path('..', 'mofo_security_advisories'))
+                                       default=path('mofo_security_advisories'))
 MOFO_SECURITY_ADVISORIES_REPO = 'https://github.com/mozilla/foundation-security-advisories.git'
 
 CORS_URLS = {
