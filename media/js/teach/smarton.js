@@ -3,8 +3,9 @@
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* global Waypoint, Circles */
+/* eslint no-unused-vars: [2, { "varsIgnorePattern": "[wW]aypoint" }] */
 
-;(function($) {
+(function($) {
     'use strict';
 
     var $document = $(document);
@@ -57,7 +58,7 @@
     var $pageHeader = $('.page-header');
 
     if (($pageHeader.length > 0) && wideMode) {
-        var stickyHeader = new Waypoint.Sticky({
+        var stickyHeaderWaypoint = new Waypoint.Sticky({
             element: $pageHeader,
             offset: -16
         });
@@ -70,7 +71,7 @@
 
     if (($pageFooter.length > 0) && tallMode) {
         // Stick the footer when we're near the end of the page
-        var stickyFooter = new Waypoint({
+        var stickyFooterWaypoint = new Waypoint({
             element: $doSection,
             offset: '-80%',
             handler: function(direction) {
@@ -88,7 +89,7 @@
         });
 
         // Unstick the footer when we reach the bottom
-        var unstickyFooter = new Waypoint({
+        var unstickyFooterWaypoint = new Waypoint({
             element: $('#colophon'),
             offset: '100%',
             handler: function(direction) {
@@ -178,19 +179,19 @@
     // Requires /libs/circles.min.js - http://lugolabs.com/circles
     function drawCircle(circleId, circleVal) {
         Circles.create({
-          id:                  circleId,
-          value:               circleVal,
-          radius:              70,
-          maxValue:            100,
-          width:               12,
-          text:                function(value) {return value + '%';},
-          duration:            850,
-          wrpClass:            'circles-wrap',
-          textClass:           'circles-text',
-          valueStrokeClass:    'circles-valueStroke',
-          maxValueStrokeClass: 'circles-maxValueStroke',
-          styleWrapper:        false,
-          styleText:           false,
+            id:                 circleId,
+            value:               circleVal,
+            radius:              70,
+            maxValue:            100,
+            width:               12,
+            text:                function(value) {return value + '%';},
+            duration:            850,
+            wrpClass:            'circles-wrap',
+            textClass:           'circles-text',
+            valueStrokeClass:    'circles-valueStroke',
+            maxValueStrokeClass: 'circles-maxValueStroke',
+            styleWrapper:        false,
+            styleText:           false
         });
     }
 
@@ -199,7 +200,7 @@
         var stage = $(this).children('.chart-stage');
         var circleId = stage.attr('id');
         var circleVal = stage.data('chart-value');
-        var chart = new Waypoint({
+        var chartWaypoint = new Waypoint({
             element: stage,
             handler: function(direction) {
                 if (direction === 'down') {
