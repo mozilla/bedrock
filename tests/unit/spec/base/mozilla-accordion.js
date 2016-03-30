@@ -194,30 +194,30 @@ describe('mozilla-accordion.js', function () {
         it('should execute global expand and collapse callbacks', function() {
             var expandReturn, collapseReturn;
 
-            Mozilla.Accordion.GLOBAL_ONEXPAND = function(section) {
+            Mozilla.Accordion.globalOnExpand = function(section) {
                 expandReturn = section.title;
             };
 
-            Mozilla.Accordion.GLOBAL_ONCOLLAPSE = function(section) {
+            Mozilla.Accordion.globalOnCollapse = function(section) {
                 collapseReturn = section.title;
             };
 
-            spyOn(Mozilla.Accordion, 'GLOBAL_ONEXPAND').and.callThrough();
-            spyOn(Mozilla.Accordion, 'GLOBAL_ONCOLLAPSE').and.callThrough();
+            spyOn(Mozilla.Accordion, 'globalOnExpand').and.callThrough();
+            spyOn(Mozilla.Accordion, 'globalOnCollapse').and.callThrough();
 
             var accordion = new Mozilla.Accordion($('#accordion1'));
             var $secondHeading = accordion.sections[1].$header;
 
             $secondHeading.trigger('click');
-            expect(Mozilla.Accordion.GLOBAL_ONEXPAND).toHaveBeenCalled();
+            expect(Mozilla.Accordion.globalOnExpand).toHaveBeenCalled();
             expect(expandReturn).toEqual(accordion.sections[1].title);
 
             $secondHeading.trigger('click');
-            expect(Mozilla.Accordion.GLOBAL_ONCOLLAPSE).toHaveBeenCalled();
+            expect(Mozilla.Accordion.globalOnCollapse).toHaveBeenCalled();
             expect(collapseReturn).toEqual(accordion.sections[1].title);
 
-            Mozilla.Accordion.GLOBAL_ONEXPAND = null;
-            Mozilla.Accordion.GLOBAL_ONCOLLAPSE = null;
+            Mozilla.Accordion.globalOnExpand = null;
+            Mozilla.Accordion.globalOnCollapse = null;
         });
     });
 });

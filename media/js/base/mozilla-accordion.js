@@ -155,36 +155,36 @@ Mozilla.Accordion = function Accordion($accordion, options) {
             var len = sections.length;
 
             switch (event.which) {
-                case 13: // Space
-                case 32: // Enter or Return
-                    // Expand or close the section
-                    section.toggle(true, true);
-                    event.preventDefault();
-                    break;
+            case 13: // Space
+            case 32: // Enter or Return
+                // Expand or close the section
+                section.toggle(true, true);
+                event.preventDefault();
+                break;
 
-                case 33: // Page Up
-                case 36: // Home
-                    // Find the first section in the accordion
-                    next = sections[0];
-                    break;
+            case 33: // Page Up
+            case 36: // Home
+                // Find the first section in the accordion
+                next = sections[0];
+                break;
 
-                case 34: // Page Down
-                case 35: // End
-                    // Find the last section in the accordion
-                    next = sections[len - 1];
-                    break;
+            case 34: // Page Down
+            case 35: // End
+                // Find the last section in the accordion
+                next = sections[len - 1];
+                break;
 
-                case 37: // Left Arrow
-                case 38: // Up Arrow
-                    // Find the previous or last section in the accordion
-                    next = sections[(index === 0) ? len - 1 : index - 1];
-                    break;
+            case 37: // Left Arrow
+            case 38: // Up Arrow
+                // Find the previous or last section in the accordion
+                next = sections[(index === 0) ? len - 1 : index - 1];
+                break;
 
-                case 39: // Right Arrow
-                case 40: // Down Arrow
-                    // Find the next or first section in the accordion
-                    next = sections[(index === len - 1) ? 0 : index + 1];
-                    break;
+            case 39: // Right Arrow
+            case 40: // Down Arrow
+                // Find the next or first section in the accordion
+                next = sections[(index === len - 1) ? 0 : index + 1];
+                break;
             }
 
             if (next) {
@@ -233,8 +233,8 @@ Mozilla.Accordion = function Accordion($accordion, options) {
             }
 
             // If global expand listener is defined, call it.
-            if (typeof Mozilla.Accordion.GLOBAL_ONEXPAND === 'function') {
-                Mozilla.Accordion.GLOBAL_ONEXPAND(this);
+            if (typeof Mozilla.Accordion.globalOnExpand === 'function') {
+                Mozilla.Accordion.globalOnExpand(this);
             }
 
             // Fire a custom event on the panel
@@ -268,8 +268,8 @@ Mozilla.Accordion = function Accordion($accordion, options) {
             }
 
             // If global collapse listener is defined, call it.
-            if (typeof Mozilla.Accordion.GLOBAL_ONCOLLAPSE === 'function') {
-                Mozilla.Accordion.GLOBAL_ONCOLLAPSE(this);
+            if (typeof Mozilla.Accordion.globalOnCollapse === 'function') {
+                Mozilla.Accordion.globalOnCollapse(this);
             }
 
             // Fire a custom event on the panel
@@ -310,8 +310,8 @@ Mozilla.Accordion.currentAccordionId  = 1;
 Mozilla.Accordion.currentSectionId = 1;
 Mozilla.Accordion.accordions = [];
 
-Mozilla.Accordion.GLOBAL_ONCOLLAPSE = null;
-Mozilla.Accordion.GLOBAL_ONEXPAND = null;
+Mozilla.Accordion.globalOnCollapse = null;
+Mozilla.Accordion.globalOnExpand = null;
 Mozilla.Accordion.EVENT_NAMESPACE = 'mozaccordion'; // targeted event (un)binding
 
 // {{{ createAccordions()
@@ -434,7 +434,8 @@ Mozilla.Accordion.updateBeforeUnloadListener = function() {
 Mozilla.Accordion.destroyAccordions = function() {
     'use strict';
 
-    var accordionIds = [], i;
+    var accordionIds = [];
+    var i;
 
     for (i = 0; i < Mozilla.Accordion.accordions.length; i++) {
         accordionIds.push(Mozilla.Accordion.accordions[i].id);

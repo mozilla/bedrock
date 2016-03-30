@@ -182,10 +182,10 @@ Global Settings
 
 You can configure some appearance and behavior of the library by supplying custom values for the following. Custom values should generally be set prior to ``$(document).ready()``.
 
-``Mozilla.Accordion.GLOBAL_ONEXPAND``
+``Mozilla.Accordion.globalOnExpand``
     A callback function to be fired every time any section in any pager is expanded. Will be passed the expanding ``Section`` object as an argument.
 
-``Mozilla.Accordion.GLOBAL_ONCOLLAPSE``
+``Mozilla.Accordion.globalOnCollapse``
     A callback function to be fired every time any section in any pager is collapsed. Will be passed the collapsing ``Section`` object as an argument.
 
 Styling
