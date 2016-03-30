@@ -365,6 +365,32 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun.html'])
 
+    # for space-themed FxA test (bug 1259552)
+    @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    def test_fx_firstrun_40_0_space_variant(self, render_mock):
+        """
+        Should use space-themed fx40.0 firstrun template for 40.0 with
+        ?v=1 query param
+        """
+        req = self.rf.get('/en-US/firefox/firstrun/?v=1')
+        self.view(req, version='40.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/onboarding/firstrun-fxa.html'])
+
+    @override_settings(DEV=True)
+    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    def test_fx_firstrun_40_0_space_variant_non_enUS(self, render_mock):
+        """
+        Should use fx40.0 firstrun template for non en-US 40.0 with
+        ?v=1 query param
+        """
+        req = self.rf.get('/firefox/firstrun/?v=1')
+        req.locale = 'de'
+        self.view(req, version='40.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/firstrun.html'])
+
 
 @patch.object(fx_views.FirstrunLearnMoreView, 'redirect_to', none_mock)
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
