@@ -4,7 +4,7 @@
 
 /* global mina, Snap */
 
-;(function($) {
+(function($) {
     'use strict';
 
     var hasTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints || navigator.maxTouchPoints;
@@ -18,9 +18,9 @@
             var shape = new Snap('#' + $this.attr('id') + ' svg.shape');
             var path = shape.select('path');
             var pathConfig = {
-                    from : $this.data('path-hide'),
-                    to : $this.data('path-show')
-                };
+                from : $this.data('path-hide'),
+                to : $this.data('path-show')
+            };
 
             // Set the shape to the hidden state (it defaults to off state if JS fails)
             path.attr('d', pathConfig.from);
