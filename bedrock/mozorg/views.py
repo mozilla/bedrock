@@ -250,7 +250,6 @@ class ContributeSignupNew(TemplateView):
 class ContributeTaskView(TemplateView):
 
     tasks = [
-        'build-firefox',
         'devtools-challenger',
         'firefox-mobile',
         'follow-mozilla',
