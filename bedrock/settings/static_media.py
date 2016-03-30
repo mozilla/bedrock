@@ -950,7 +950,6 @@ PIPELINE_JS = {
             'js/base/global-init.js',
             'js/newsletter/form.js',
             'js/base/mozilla-client.js',
-            'js/base/mozilla-input-placeholder.js',
             'js/base/mozilla-image-helper.js',
             'js/base/nav-main-resp.js',
         ),
@@ -982,7 +981,6 @@ PIPELINE_JS = {
     'contribute-form': {
         'source_filenames': (
             'js/mozorg/contribute/contribute-form.js',
-            'js/base/mozilla-input-placeholder.js',
         ),
         'output_filename': 'js/contribute-form-bundle.js',
     },
@@ -996,7 +994,6 @@ PIPELINE_JS = {
     'contribute-studentambassadors-join': {
         'source_filenames': (
             'js/mozorg/contribute/contribute-studentambassadors-join.js',
-            'js/base/mozilla-input-placeholder.js',
         ),
         'output_filename': 'js/contribute-studentambassadors-join-bundle.js',
     },
@@ -1446,7 +1443,6 @@ PIPELINE_JS = {
             'js/libs/jquery.validate.js',
             'js/base/mozilla-form-helper.js',
             'js/mozorg/partnerships.js',
-            'js/base/mozilla-input-placeholder.js',
         ),
         'output_filename': 'js/partnerships-bundle.js',
     },

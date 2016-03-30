@@ -20,7 +20,6 @@ module.exports = function(config) {
             'media/js/base/mozilla-form-helper.js',
             'media/js/base/mozilla-highlight-target.js',
             'media/js/base/mozilla-image-helper.js',
-            'media/js/base/mozilla-input-placeholder.js',
             'media/js/base/mozilla-modal.js',
             'media/js/base/mozilla-pager.js',
             'media/js/base/mozilla-share-cta.js',
