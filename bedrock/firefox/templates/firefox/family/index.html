@@ -130,7 +130,11 @@
       <li class="product" id="product-hello">
         <a href="{{ url('firefox.hello') }}" data-link-type="button" data-link-name="Firefox Hello">
           <h2>{{ _('Firefox Hello') }}</h2>
-          <p>{{ _('Free, easy video conversations.') }}</p>
+          {% if l10n_has_tag('hello-copy-update') %}
+            <p>{{ _('Browse the Web with friends.') }}</p>
+          {% else %}
+            <p>{{ _('Free, easy video conversations.') }}</p>
+          {% endif %}
         </a>
       </li>
 
