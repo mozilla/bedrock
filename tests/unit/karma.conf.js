@@ -24,7 +24,6 @@ module.exports = function(config) {
             'media/js/base/mozilla-pager.js',
             'media/js/base/mozilla-share-cta.js',
             'media/js/base/mozilla-video-poster.js',
-            'media/js/base/mozilla-video-tools.js',
             'media/js/base/nav-main-resp.js',
             'media/js/base/nav-main.js',
             'media/js/base/mozilla-smoothscroll.js',

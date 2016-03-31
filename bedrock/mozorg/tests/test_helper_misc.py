@@ -247,26 +247,6 @@ class TestVideoTag(TestCase):
         for i, ext in enumerate(('webm', 'ogv')):
             ok_(doc('video source:eq(%s)' % i).attr('src').endswith(ext))
 
-    def test_flash_fallback(self):
-        # Fallback by default for Mozilla-esque videos
-        videos = [self.moz_video % ext for ext in ('ogv', 'mp4', 'webm')]
-        doc = pq(render("{{ video%s }}" % str(tuple(videos))))
-
-        eq_(doc('video object').length, 1)
-        eq_(doc('object').attr('data'), doc('object param[name=movie]').val())
-
-        # No fallback without mp4 file
-        videos = [self.moz_video % ext for ext in ('ogv', 'webm')]
-        doc = pq(render("{{ video%s }}" % str(tuple(videos))))
-
-        eq_(doc('video object').length, 0)
-
-        # No fallback without Mozilla CDN prefix
-        videos = [self.nomoz_video % ext for ext in ('ogv', 'mp4', 'webm')]
-        doc = pq(render("{{ video%s }}" % str(tuple(videos))))
-
-        eq_(doc('video object').length, 0)
-
 
 @override_settings(STATIC_URL='/media/')
 @patch('bedrock.mozorg.helpers.misc.find_static', return_value=True)

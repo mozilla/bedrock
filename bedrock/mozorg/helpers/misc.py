@@ -291,14 +291,6 @@ def video(*args, **kwargs):
         'id': 'htmlPlayer'
     }
 
-    # Flash fallback, if mp4 file on Mozilla Videos CDN.
-    data['flash_fallback'] = False
-    if 'mp4' in videos:
-        mp4_url = urlparse.urlparse(videos['mp4'])
-        if mp4_url.netloc.lower() in ('videos.mozilla.org',
-                                      'videos.cdn.mozilla.net'):
-            data['flash_fallback'] = mp4_url.path
-
     data.update(**kwargs)
     data.update(filetypes=filetypes, mime=mime, videos=videos)
 
