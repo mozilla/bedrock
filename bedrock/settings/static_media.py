@@ -117,7 +117,7 @@ PIPELINE_CSS = {
     },
     'contact-spaces': {
         'source_filenames': (
-            'css/libs/mapbox-2.1.5.css',
+            'css/libs/mapbox-2.3.0.css',
             'css/libs/magnific-popup.css',
             'css/base/mozilla-video-poster.less',
             'css/mozorg/contact-spaces.less',
@@ -338,7 +338,7 @@ PIPELINE_CSS = {
             'css/base/menu-resp.less',
             'css/base/mozilla-accordion.less',
             'css/base/mozilla-modal.less',
-            'css/libs/mapbox-2.1.5.css',
+            'css/libs/mapbox-2.3.0.css',
             'css/firefox/geolocation.less'
         ),
         'output_filename': 'css/firefox_geolocation-bundle.css',
@@ -957,7 +957,7 @@ PIPELINE_JS = {
     },
     'contact-spaces': {
         'source_filenames': (
-            'js/libs/mapbox-2.1.5.js',
+            'js/libs/mapbox-2.3.0.js',
             'js/libs/jquery.history.js',
             'js/mozorg/contact-data.js',
             'js/libs/jquery.magnific-popup.min.js',
@@ -1395,7 +1395,7 @@ PIPELINE_JS = {
     },
     'geolocation': {
         'source_filenames': (
-            'js/libs/mapbox-2.1.5.js',
+            'js/libs/mapbox-2.3.0.js',
             'js/base/mozilla-accordion.js',
             'js/base/mozilla-accordion-gatrack.js',
             'js/firefox/geolocation-demo.js',

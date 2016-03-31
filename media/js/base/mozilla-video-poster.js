@@ -22,7 +22,7 @@ if (typeof Mozilla === 'undefined') {
  * HTML5 Video poster image helper.
  * @param selector (string) container for one or more video elements
  */
-Mozilla.videoPosterHelper = function (selector) {
+Mozilla.VideoPosterHelper = function (selector) {
     'use strict';
 
     this.$container = $(selector);
@@ -32,19 +32,19 @@ Mozilla.videoPosterHelper = function (selector) {
  * If browser supports HTML5 Video show the poster button and bind events.
  * Else fallback content will be displayed natively by the browser.
  */
-Mozilla.videoPosterHelper.prototype.init = function () {
+Mozilla.VideoPosterHelper.prototype.init = function () {
     'use strict';
 
     if (this.$container.length && this.supportsVideo()) {
         this.showPoster();
         this.bindEvents();
     }
-}
+};
 
 /*
  * Check for HTML5 Video playback support
  */
-Mozilla.videoPosterHelper.prototype.supportsVideo = function () {
+Mozilla.VideoPosterHelper.prototype.supportsVideo = function () {
     'use strict';
 
     return typeof HTMLMediaElement !== 'undefined';
@@ -53,7 +53,7 @@ Mozilla.videoPosterHelper.prototype.supportsVideo = function () {
 /*
  * Add CSS class to container to display .moz-video-button.
  */
-Mozilla.videoPosterHelper.prototype.showPoster = function () {
+Mozilla.VideoPosterHelper.prototype.showPoster = function () {
     'use strict';
 
     this.$container.addClass('supports-video');
@@ -62,7 +62,7 @@ Mozilla.videoPosterHelper.prototype.showPoster = function () {
 /*
  * Bind click event to container and delegate events to .moz-video-button
  */
-Mozilla.videoPosterHelper.prototype.bindEvents = function () {
+Mozilla.VideoPosterHelper.prototype.bindEvents = function () {
     'use strict';
 
     this.$container.on('click.moz-video', '.moz-video-button', function () {
@@ -77,7 +77,7 @@ Mozilla.videoPosterHelper.prototype.bindEvents = function () {
 /*
  * Unbind events and hide overlay button
  */
-Mozilla.videoPosterHelper.prototype.destroy = function () {
+Mozilla.VideoPosterHelper.prototype.destroy = function () {
     'use strict';
 
     this.$container.off('click.moz-video');
