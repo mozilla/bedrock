@@ -5,10 +5,20 @@ from operator import itemgetter
 import pytest
 
 from .base import assert_valid_url
+from .map_301 import URLS as REDIRECT_URLS
 from .map_htaccess import URLS as HTA_URLS
 from .map_globalconf import URLS as GLOBAL_URLS
 from .map_external import URLS as EXTERNAL_URLS
 from .map_locales import URLS as LOCALE_URLS
+
+
+@pytest.mark.smoke
+@pytest.mark.headless
+@pytest.mark.nondestructive
+@pytest.mark.parametrize('url', REDIRECT_URLS, ids=itemgetter('url'))
+def test_301_url(url, base_url):
+    url['base_url'] = base_url
+    assert_valid_url(**url)
 
 
 @pytest.mark.smoke

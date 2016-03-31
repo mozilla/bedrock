@@ -62,6 +62,8 @@ redirectpatterns = (
              'https://developer.mozilla.org/docs/Bypassing_Security_Restrictions_and_Signing_Code'),
 
     # bug 874526, 877698
+    redirect(r'^projects/security/components/same-origin\.html$',
+             'https://developer.mozilla.org/docs/Web/Security/Same-origin_policy'),
     redirect(r'^projects/security/components(?P<path>.*)$',
              'http://www-archive.mozilla.org/projects/security/components{path}'),
 
@@ -411,6 +413,7 @@ redirectpatterns = (
              'https://developer.mozilla.org/docs/Web/Accessibility/Implementing_MSAA_server'),
     redirect(r'^access/windows/zoomtext\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Accessibility/ZoomText'),
+    redirect('^access/donate(\.html|/)?$', 'https://donate.mozilla.org/'),
 
     # bug 1148187
     redirect(r'^access/(?P<page>.+)$',
@@ -446,12 +449,16 @@ redirectpatterns = (
     redirect(r'^MPL/2\.0/index\.txt$', '/media/MPL/2.0/index.txt', locale_prefix=False),
 
     # bug 724682
-    redirect(r'^projects/mathml/demo/texvsmml.html$',
+    redirect(r'^projects/mathml/demo/texvsmml\.html$',
              'https://developer.mozilla.org/docs/Mozilla_MathML_Project/MathML_Torture_Test'),
     redirect(r'^projects/mathml/fonts(?:/(?:index.html)?)?$',
              'https://developer.mozilla.org/Mozilla_MathML_Project/Fonts'),
     redirect(r'^projects/mathml/screenshots(?:/(?:index.html)?)?$',
              'https://developer.mozilla.org/Mozilla_MathML_Project/Screenshots'),
+    redirect(r'^projects/mathml/authoring\.html$',
+             'https://developer.mozilla.org/en/Mozilla_MathML_Project/Authoring'),
+    redirect(r'^projects/mathml/update\.html$',
+             'https://developer.mozilla.org/en/Mozilla_MathML_Project/Status'),
     redirect(r'^projects/mathml(/.*)?$',
              'https://developer.mozilla.org/en-US/docs/Mozilla/MathML_Project'),
 
@@ -469,6 +476,8 @@ redirectpatterns = (
              '/contact/communities/africa-middle-east/'),
     redirect(r'^contribute/local/asia\.html$', '/contact/communities/asia-south-pacific/'),
     redirect(r'^contribute/local/southpole\.html$', '/contact/communities/antarctica/'),
+
+    redirect('^contribute/buttons/', 'https://affiliates.mozilla.org/'),
 
     # bug 875052
     redirect(r'^about/get-involved', '/contribute/'),
@@ -496,6 +505,8 @@ redirectpatterns = (
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Download_Rhino'),
     redirect(r'^rhino/doc\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Documentation'),
+    redirect('^rhino/shell\.html$',
+             'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Shell'),
     redirect(r'^rhino/?', 'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino'),
 
     # bug 846362
@@ -605,10 +616,5 @@ redirectpatterns = (
     redirect(r'^about/patents/license/?$', 'mozorg.about.policy.patents.license'),
     redirect(r'^about/patents/license/1.0/?$', 'mozorg.about.policy.patents.license-1.0'),
 
-    # bug 832348 **/index.html -> **/
-    # leave this at the bottom
-    redirect(r'^(.*)/index\.html$', '/{}/', locale_prefix=False),
-    # Bug 1255882
-    # multiple trailing slashes
-    redirect(r'^(.*[^/])//+$', '/{}/', locale_prefix=False),
+    redirect(r'^projects/marketing(/.*)?$', 'https://wiki.mozilla.org/MarketingGuide'),
 )
