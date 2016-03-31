@@ -11,6 +11,8 @@ echo "Installing Deis client"
 curl -sSL http://deis.io/deis-cli/install.sh | sh
 
 DEIS_APP_NAME="bedrock-demo-${CIRCLE_BRANCH#demo__}"
+# convert underscores to dashes. Deis does _not_ like underscores.
+DEIS_APP_NAME=$( echo "$DEIS_APP_NAME" | tr "_" "-" )
 echo "Logging into the Deis Controller at $DEIS_CONTROLLER"
 ./deis login "$DEIS_CONTROLLER" --username "$DEIS_USERNAME" --password "$DEIS_PASSWORD"
 echo "Creating the demo app $DEIS_APP_NAME"
