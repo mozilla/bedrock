@@ -19,7 +19,7 @@
       </header>
       <div class="step-content">
         <div class="download-button-wrapper firefox-mobile">
-          <a rel="external"  class="download-link" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" target="_blank">
+          <a rel="external"  class="download-link" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" target="_blank" data-link-type="download" data-download-os="Android">
             {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '129', 'height': '45', 'l10n': True, 'data-action': 'install', 'data-task': 'firefox-mobile', 'data-step': 'one', 'data-complete': 'false', 'data-variation': '2', 'data-mobileversion': 'Android'}) }}
           </a>
           <a rel="external" class="download-link" href="{{settings.APPLE_APPSTORE_FIREFOX_LINK}}" target="_blank">

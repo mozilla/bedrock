@@ -39,12 +39,12 @@
               {{ download_firefox(small=True, icon=False) }}
             </div>
             <div class="android-download-button">
-              <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
+              <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
                 {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
               </a>
             </div>
             <div class="ios-download-button">
-              <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}">
+              <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
                 <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
               </a>
             </div>
@@ -150,12 +150,12 @@
             {{ download_firefox(small=True, icon=False) }}
           </div>
           <div class="android-download-button">
-            <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-button-type="download" data-interaction="download click" data-download-version="Firefox for Android">
+            <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
               {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
             </a>
           </div>
           <div class="ios-download-button">
-            <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}">
+            <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
               <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
             </a>
           </div>
