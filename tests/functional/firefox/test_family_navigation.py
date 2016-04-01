@@ -27,9 +27,7 @@ def test_family_navigation_active_nav(slug, base_url, selenium):
     ('desktop/trust'),
     ('dnt'),
     ('interest-dashboard'),
-    pytest.mark.smoke(('ios')),
-    pytest.mark.smoke(('os/devices')),
-    pytest.mark.smoke(('os'))])
+    pytest.mark.smoke(('ios'))])
 def test_family_navigation_adjunct_menu(slug, base_url, selenium):
     page = FirefoxPage(base_url, selenium, slug=slug).open()
     page.family_navigation.open_adjunct_menu()

@@ -466,7 +466,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/tabzilla/tabzilla-static.less',
-            'css/firefox/family-nav.less',
+            'css/firefox/fxos-nav.less',
             'css/firefox/os/in-the-news.less',
             'css/firefox/os/firefox-os-2-5.less',
         ),
@@ -475,7 +475,7 @@ PIPELINE_CSS = {
     'firefox_os_devices': {
         'source_filenames': (
             'css/libs/tipsy.css',
-            'css/firefox/family-nav.less',
+            'css/firefox/fxos-nav.less',
             'css/base/mozilla-modal.less',
             'css/firefox/os/get_device.less',
             'css/firefox/os/devices.less',
@@ -498,6 +498,7 @@ PIPELINE_CSS = {
     },
     'firefox_os_tv': {
         'source_filenames': (
+            'css/firefox/fxos-nav.less',
             'css/firefox/os/tv.less',
         ),
         'output_filename': 'css/firefox_os_tv-bundle.css',
@@ -1215,7 +1216,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
+            'js/firefox/fxos-nav.js',
             'js/firefox/os/firefox-os-2.5.js',
         ),
         'output_filename': 'js/firefox_os_2_5-bundle.js',
@@ -1228,7 +1229,7 @@ PIPELINE_JS = {
             'js/base/mozilla-pager.js',
             'js/base/mozilla-modal.js',
             'js/base/mozilla-smoothscroll.js',
-            'js/firefox/family-nav.js',
+            'js/firefox/fxos-nav.js',
             'js/firefox/os/partner_data.js',
             'js/firefox/os/devices.js',
         ),
@@ -1247,6 +1248,9 @@ PIPELINE_JS = {
     },
     'firefox_os_tv': {
         'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/firefox/fxos-nav.js',
             'js/base/mozilla-pager.js',
         ),
         'output_filename': 'js/firefox_os_tv-bundle.js',

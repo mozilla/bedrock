@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% from "macros.html" import fxfamilynav with context %}
+{% from "macros.html" import fxosnav with context %}
 
 {% extends "firefox/base-resp.html" %}
 
@@ -28,7 +28,7 @@
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {% call fxfamilynav('os') %}
+  {% call fxosnav('devices') %}
     <button type="button" id="purchase-device-sticky" class="purchase-button arrow-link button" disabled>{{ _('Get a phone') }}</button>
   {% endcall %}
 {% endblock %}
