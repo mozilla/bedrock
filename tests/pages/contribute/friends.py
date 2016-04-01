@@ -3,6 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as expected
+from selenium.webdriver.support.select import Select
 
 from pages.contribute.base import ContributeBasePage
 
@@ -11,9 +13,29 @@ class ContributeFriendsPage(ContributeBasePage):
 
     _url = '{base_url}/{locale}/contribute/friends'
 
-    _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] a')
+    _email_locator = (By.ID, 'id_email')
+    _country_locator = (By.ID, 'id_country')
+    _html_format_locator = (By.ID, 'id_fmt_0')
+    _privacy_policy_checkbox_locator = (By.ID, 'id_privacy')
+    _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] span a')
     _show_signup_form_button_locator = (By.ID, 'ff-show-signup-form')
     _signup_form_locator = (By.ID, 'newsletter-form')
+    _submit_button_locator = (By.ID, 'footer_email_submit')
+    _text_format_locator = (By.ID, 'id_fmt_1')
+    _thank_you_locator = (By.CSS_SELECTOR, '#newsletter-form-thankyou h3')
+
+    @property
+    def email(self):
+        return self.find_element(self._email_locator).get_attribute('value')
+
+    @property
+    def country(self):
+        el = self.find_element(self._country_locator)
+        return el.find_element(By.CSS_SELECTOR, 'option[selected]').text
+
+    @property
+    def html_format_selected(self):
+        return self.find_element(self._html_format_locator).is_selected()
 
     @property
     def is_signup_form_displayed(self):
@@ -23,7 +45,40 @@ class ContributeFriendsPage(ContributeBasePage):
     def is_privacy_policy_link_displayed(self):
         return self.is_element_displayed(self._privacy_policy_link_locator)
 
+    @property
+    def privacy_policy_accepted(self):
+        el = self.find_element(self._privacy_policy_checkbox_locator)
+        return el.is_selected()
+
+    @property
+    def sign_up_successful(self):
+        return self.is_element_displayed(self._thank_you_locator)
+
+    @property
+    def text_format_selected(self):
+        return self.find_element(self._text_format_locator).is_selected()
+
+    def accept_privacy_policy(self):
+        el = self.find_element(self._privacy_policy_checkbox_locator)
+        assert not el.is_selected(), 'Privacy policy has already been accepted'
+        el.click()
+        assert el.is_selected(), 'Privacy policy has not been accepted'
+
     def click_show_signup_form(self):
         assert not self.is_signup_form_displayed, 'Form is already displayed'
         self.find_element(self._show_signup_form_button_locator).click()
         self.wait.until(lambda s: self.is_privacy_policy_link_displayed)
+
+    def click_sign_me_up(self):
+        self.find_element(self._submit_button_locator).click()
+        self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))
+
+    def select_country(self, value):
+        el = self.find_element(self._country_locator)
+        Select(el).select_by_visible_text(value)
+
+    def select_text_format(self):
+        self.find_element(self._text_format_locator).click()
+
+    def type_email(self, value):
+        self.find_element(self._email_locator).send_keys(value)
