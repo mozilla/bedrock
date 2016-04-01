@@ -173,6 +173,8 @@ class TestNewsletterFooterForm(TestCase):
         data = {
             'email': 'foo@example.com',
             'lang': 'fr',
+            'first_name': 'Walter',
+            'last_name': 'Sobchak',
             'privacy': True,
             'fmt': 'H',
             'newsletters': self.newsletter_name,

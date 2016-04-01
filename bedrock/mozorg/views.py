@@ -580,3 +580,11 @@ def namespaces(request, namespace):
     context['slug'] = namespace
     template = 'mozorg/namespaces.html'
     return django_render(request, template, context)
+
+
+def contribute_friends(request):
+    newsletter_form = NewsletterFooterForm('firefox-friends', l10n_utils.get_locale(request))
+
+    return l10n_utils.render(request,
+                             'mozorg/contribute/friends.html',
+                             {'newsletter_form': newsletter_form})

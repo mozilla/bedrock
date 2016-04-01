@@ -223,6 +223,10 @@ class NewsletterFooterForm(forms.Form):
     on a dedicated page.
     """
     email = forms.EmailField(widget=EmailInput(attrs={'required': 'required'}))
+    # first/last_name not yet included in email_newsletter_form helper
+    # currently used on /contribute/friends/ (custom markup)
+    first_name = forms.CharField(widget=forms.TextInput, required=False)
+    last_name = forms.CharField(widget=forms.TextInput, required=False)
     fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
                             choices=FORMATS,
                             initial='H')
