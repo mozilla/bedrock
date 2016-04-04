@@ -232,9 +232,9 @@
     </div>
     {# See Bug 1095176 #}
     {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form('app-dev', 'Firefox Apps & Hacks') }}
+      {{ email_newsletter_form('app-dev', 'Firefox Apps & Hacks', button_class='white') }}
     {% elif LANG.startswith('es-') %}
-      {{ email_newsletter_form('app-dev', 'Firefox Apps y Hacks') }}
+      {{ email_newsletter_form('app-dev', 'Firefox Apps y Hacks', button_class='white') }}
     {% else %}
       {{ super() }}
     {% endif %}

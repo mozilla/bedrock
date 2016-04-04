@@ -149,6 +149,31 @@ include_language=[True|False] and/or include_country=[True|False].
 You can also use the same form outside a page footer by passing ``footer=False``
 to the macro.
 
+You can also specify one of three color variants for the "Sign Up Now" button. The options are:
+
+* default - Which sets the border and font color to a light blue [#00afe5]
+* dark - Which sets the border and font color to the dark Firefox blue [00539F]
+* white - Which sets the border and font color to white [#fff]
+
+This is done in a template as follows:
+
+.. code-block:: jinja
+
+    # default
+    {% block email_form %}
+        {{ email_newsletter_form() }}
+    {% endblock %}
+
+    # dark
+    {% block email_form %}
+        {{ email_newsletter_form(button_class='dark') }}
+    {% endblock %}
+
+    # white
+    {% block email_form %}
+        {{ email_newsletter_form(button_class='white') }}
+    {% endblock %}
+
 Creating a signup page
 ----------------------
 
@@ -180,4 +205,3 @@ Then add a url to ``newsletter/urls.py``:
 
     # "about:mobile"
     page('newsletter/about_mobile', 'newsletter/mobile.html'),
-

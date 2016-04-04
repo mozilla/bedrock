@@ -351,9 +351,9 @@
   <section class="module" id="newsletter-signup" data-ga-label="Get Mozilla updates">
     <div class="container">
       {% if LANG.startswith('en-') %}
-        {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Get Mozilla updates')) }}
+        {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Get Mozilla updates'), button_class='dark') }}
       {% else %}
-        {{ email_newsletter_form() }}
+        {{ email_newsletter_form(button_class='dark') }}
       {% endif %}
     </div>
   </section>
