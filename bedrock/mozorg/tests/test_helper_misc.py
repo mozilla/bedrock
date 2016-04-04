@@ -202,9 +202,15 @@ class TestL10nCSS(TestCase):
 
 
 class TestVideoTag(TestCase):
+    rf = RequestFactory()
     # Video stubs
     moz_video = 'http://videos.mozilla.org/serv/flux/example.%s'
     nomoz_video = 'http://example.org/example.%s'
+
+    def _render(self, template):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render(template, {'request': req})
 
     def test_empty(self):
         # No video, no output.
@@ -213,7 +219,7 @@ class TestVideoTag(TestCase):
     def test_video(self):
         # A few common variations
         videos = [self.nomoz_video % ext for ext in ('ogv', 'mp4', 'webm')]
-        doc = pq(render("{{ video%s }}" % str(tuple(videos))))
+        doc = pq(self._render("{{ video%s }}" % str(tuple(videos))))
 
         # Tags generated?
         eq_(doc('video').length, 1)
@@ -225,7 +231,7 @@ class TestVideoTag(TestCase):
 
     def test_prefix(self):
         # Prefix should be applied to all videos.
-        doc = pq(render("{{ video('meh.mp4', 'meh.ogv', "
+        doc = pq(self._render("{{ video('meh.mp4', 'meh.ogv', "
                         "prefix='http://example.com/blah/') }}"))
         expected = ('http://example.com/blah/meh.ogv',
                     'http://example.com/blah/meh.mp4')
@@ -240,7 +246,7 @@ class TestVideoTag(TestCase):
         videos = [self.nomoz_video % ext for ext in
                   ('ogv', 'exe', 'webm', 'txt')]
         videos.append('http://example.net/noextension')
-        doc = pq(render("{{ video%s }}" % (str(tuple(videos)))))
+        doc = pq(self._render("{{ video%s }}" % (str(tuple(videos)))))
 
         eq_(doc('video source').length, 2)
 

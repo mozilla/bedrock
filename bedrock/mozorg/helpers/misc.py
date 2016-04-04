@@ -241,7 +241,8 @@ def high_res_img(ctx, url, optional_attributes=None):
 
 
 @jingo.register.function
-def video(*args, **kwargs):
+@jinja2.contextfunction
+def video(ctx, *args, **kwargs):
     """
     HTML5 Video tag helper.
 
@@ -294,8 +295,8 @@ def video(*args, **kwargs):
     data.update(**kwargs)
     data.update(filetypes=filetypes, mime=mime, videos=videos)
 
-    return jinja2.Markup(jingo.env.get_template(
-        'mozorg/videotag.html').render(data))
+    return jinja2.Markup(jingo.render_to_string(
+        ctx['request'], 'mozorg/videotag.html', data))
 
 
 @jingo.register.function
