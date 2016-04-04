@@ -7,19 +7,12 @@
 
     var $document = $(document);
     var $taskSteps = $('.task-steps');
-    var $stepOne = $('#step_one');
     var $thankYou = $('#thankyou');
     var $getFirefox = $('.get-firefox');
     var $actionButton = $('.action');
-    var $downloadButton = $('.download-link');
-
-    var $followButton = $('.follow-mozilla');
-    var intentURL = $followButton.attr('href');
-
     var $signupTweetForm = $('#signup-tweet');
     var $downloadDevTools = $('.dev-edition');
     var $tryAnotherTask = $('.try-another');
-
     var visibilityChange = getVisibilityStateEventKeyword();
 
     // some tasks, like installing Whimsy, required the user to be using Firefox
@@ -217,7 +210,7 @@
         // click event so, we need to ensure we only run the below on the
         // first interaction.
         if ($video.data('watched') !== true) {
-            $video.on('timeupdate.taskview', function(event) {
+            $video.on('timeupdate.taskview', function() {
                 // user needs to watch at least 40 seconds before we mark
                 // this step as complete.
                 if (videoElement.currentTime >= 40) {
@@ -317,7 +310,7 @@
     }
 
     // send GA events for clicks on the back and try another task links
-    $tryAnotherTask.on('click', function(event) {
+    $tryAnotherTask.on('click', function() {
         var $this = $(this);
         trackInteraction($this.text(), $this.data('variation'));
     });

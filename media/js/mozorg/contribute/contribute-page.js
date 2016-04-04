@@ -13,11 +13,11 @@ $(document).ready(function() {
         return vars;
     }
 
-    function validate_domain(url, trusted_domains) {
+    function validateDomain(url, trustedDomains) {
         // Function to validate that callback url points
         // to a trusted domain.
-        for (var domain in trusted_domains) {
-            var regex = new RegExp(trusted_domains[domain]);
+        for (var domain in trustedDomains) {
+            var regex = new RegExp(trustedDomains[domain]);
             if (regex.test(url)) {
                 return true;
             }
@@ -28,7 +28,7 @@ $(document).ready(function() {
     var $opportunities = $('#opportunities');
     function scrollTo($el) {
         var top = $el.offset().top;
-        $("html:not(:animated),body:not(:animated)").animate(
+        $('html:not(:animated),body:not(:animated)').animate(
             { scrollTop: top - 20 },
             100
         );
@@ -65,18 +65,20 @@ $(document).ready(function() {
 
         e.preventDefault();
 
-        callback_url = getUrlVars()['callbackurl'];
+        var callbackUrl = getUrlVars()['callbackurl'];
 
-        trusted_domains = ['^https://reps.mozilla.org/',
-                           '^https://reps.allizom.org/',
-                           '^https://reps-dev.allizom.org/',
-                           '^http://127.0.0.1:8000/'];
+        var trustedDomains = [
+            '^https://reps.mozilla.org/',
+            '^https://reps.allizom.org/',
+            '^https://reps-dev.allizom.org/',
+            '^http://127.0.0.1:8000/'
+        ];
 
-        if (callback_url && validate_domain(callback_url, trusted_domains)) {
+        if (callbackUrl && validateDomain(callbackUrl, trustedDomains)) {
             $('#form-content').hide();
             $('#submit-wait').show();
 
-            $.post(callback_url).complete(function() {
+            $.post(callbackUrl).complete(function() {
                 $('#help-form').submit();
             });
         }

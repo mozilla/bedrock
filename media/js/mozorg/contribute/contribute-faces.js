@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function($) {
+(function($) {
     'use strict';
 
     var $facesVid = $('#faces-video');
@@ -27,8 +27,8 @@
     var captionTime = 2500;
 
     // Start the video after the page loads
-    var captionTimer = setTimeout(function() {
-        if (!!document.createElement('video').canPlayType) {
+    setTimeout(function() {
+        if (document.createElement('video').canPlayType) {
             $caption.fadeOut(350, function() {
                 $facesVid[0].play();
                 $('#video-stage button').show();
@@ -52,7 +52,7 @@
     function videoSequence() {
         if ($facesVid[0].currentTime >= videoTime) {
             showCaption();
-            captionTimer = setTimeout(hideCaption, captionTime);
+            setTimeout(hideCaption, captionTime);
         }
     }
 

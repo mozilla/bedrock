@@ -56,15 +56,8 @@ $(function () {
     // Track signup form submissions
     $inquiryForm.on('submit', function(e) {
         e.preventDefault();
-        var newsletterstate;
-        if ($('#id_newsletter').is(':checked')) {
-            newsletterstate = 'True';
-        } else {
-            newsletterstate = 'False';
-        }
 
         $(this).off('submit');
-
 
         window.dataLayer.push({
             'event': 'contribute-signup-submit',
