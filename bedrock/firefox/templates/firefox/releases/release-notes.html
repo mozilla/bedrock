@@ -56,9 +56,9 @@
             if release.product == 'Firefox for Android'
             else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
             bugzilla='https://bugzilla.mozilla.org/',
-            bug_search_url=release.get_bug_search_url()
+            sys_req='../../' + release.version + '/system-requirements/'
             %}
-              Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="{{ feedback }}">feedback</a>. You can also <a href="{{ bugzilla }}"> file a bug in Bugzilla </a> or see the <a href="{{ bug_search_url }}">complete list of changes</a> in this release.
+              Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="{{ feedback }}">feedback</a>. You can also <a href="{{ bugzilla }}"> file a bug in Bugzilla </a> or see the <a href="{{ sys_req }}">system requirements</a> of this release.
             {% endtrans %}
           </p>
         </div>
@@ -300,6 +300,7 @@
     </div>
     <div class="col">
       <h2>{{ _('Other Resources') }}</h2>
+      <a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a>
       <a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a>
       <a rel="external"  href="{{ release.get_bug_search_url() }}">{{ _('Complete list of changes for this release') }}</a>
       <a rel="external" href="https://blog.mozilla.org/press/kits/">{{ _('Press Kit') }}</a>

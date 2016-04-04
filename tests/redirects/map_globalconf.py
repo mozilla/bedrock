@@ -604,10 +604,6 @@ URLS = flatten((
     url_test('/projects/security/older-vulnerabilities.html',
              '/security/known-vulnerabilities/older-vulnerabilities/'),
 
-    # bug 1017564
-    url_test('/mobile/RANDOM-STUFF/system-requirements/',
-             'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'),
-
     # bug 1041712, 1069335, 1069902
     url_test('/{firefox,mobile}/{2,19,27}.0{a2,beta,.2}/{release,aurora}notes/{,stuff}',
              'http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US'
