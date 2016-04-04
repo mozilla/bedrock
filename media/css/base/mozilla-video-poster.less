@@ -8,13 +8,28 @@
     display: none;
 }
 
-.js {
-    .moz-video-container {
-        position: relative;
+.moz-video-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 25px;
+
+    &:after {
+        position: absolute;
+        left: 0;
+        bottom: -15px;
         width: 100%;
-        video {
-            z-index: 0;
-        }
+        height: 15px;
+        content: '';
+        background-image: url('/media/img/sandstone/video/shadow.png');
+        background-repeat: no-repeat;
+        background-position: 50% 100%;
+        .background-size(100% 15px);
+    }
+}
+
+.js {
+    .moz-video-container video {
+        z-index: 0;
     }
 
     .moz-video-button {

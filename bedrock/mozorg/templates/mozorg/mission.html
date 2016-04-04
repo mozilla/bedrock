@@ -21,8 +21,7 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'video' %}
-  {% javascript 'mosaic' %}
+  {% javascript 'mosaic_video' %}
 {% endblock %}
 
 {% block optimizely %}
@@ -52,7 +51,8 @@
   </div>
 
   <div class="video">
-    <div id="welcome-video" class="mozilla-video-control mozilla-video-shadow">
+    <div class="moz-video-container">
+      <button class="moz-video-button" type="button" aria-controls="htmlPlayer">{{ _('Play video') }}</button>
       {{ video('Mozilla_2011_Story.webm',
                'Mozilla_2011_Story.ogv',
                'Mozilla_2011_Story.mp4',

@@ -202,9 +202,15 @@ class TestL10nCSS(TestCase):
 
 
 class TestVideoTag(TestCase):
+    rf = RequestFactory()
     # Video stubs
     moz_video = 'http://videos.mozilla.org/serv/flux/example.%s'
     nomoz_video = 'http://example.org/example.%s'
+
+    def _render(self, template):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render(template, {'request': req})
 
     def test_empty(self):
         # No video, no output.
@@ -213,7 +219,7 @@ class TestVideoTag(TestCase):
     def test_video(self):
         # A few common variations
         videos = [self.nomoz_video % ext for ext in ('ogv', 'mp4', 'webm')]
-        doc = pq(render("{{ video%s }}" % str(tuple(videos))))
+        doc = pq(self._render("{{ video%s }}" % str(tuple(videos))))
 
         # Tags generated?
         eq_(doc('video').length, 1)
@@ -225,7 +231,7 @@ class TestVideoTag(TestCase):
 
     def test_prefix(self):
         # Prefix should be applied to all videos.
-        doc = pq(render("{{ video('meh.mp4', 'meh.ogv', "
+        doc = pq(self._render("{{ video('meh.mp4', 'meh.ogv', "
                         "prefix='http://example.com/blah/') }}"))
         expected = ('http://example.com/blah/meh.ogv',
                     'http://example.com/blah/meh.mp4')
@@ -240,32 +246,12 @@ class TestVideoTag(TestCase):
         videos = [self.nomoz_video % ext for ext in
                   ('ogv', 'exe', 'webm', 'txt')]
         videos.append('http://example.net/noextension')
-        doc = pq(render("{{ video%s }}" % (str(tuple(videos)))))
+        doc = pq(self._render("{{ video%s }}" % (str(tuple(videos)))))
 
         eq_(doc('video source').length, 2)
 
         for i, ext in enumerate(('webm', 'ogv')):
             ok_(doc('video source:eq(%s)' % i).attr('src').endswith(ext))
-
-    def test_flash_fallback(self):
-        # Fallback by default for Mozilla-esque videos
-        videos = [self.moz_video % ext for ext in ('ogv', 'mp4', 'webm')]
-        doc = pq(render("{{ video%s }}" % str(tuple(videos))))
-
-        eq_(doc('video object').length, 1)
-        eq_(doc('object').attr('data'), doc('object param[name=movie]').val())
-
-        # No fallback without mp4 file
-        videos = [self.moz_video % ext for ext in ('ogv', 'webm')]
-        doc = pq(render("{{ video%s }}" % str(tuple(videos))))
-
-        eq_(doc('video object').length, 0)
-
-        # No fallback without Mozilla CDN prefix
-        videos = [self.nomoz_video % ext for ext in ('ogv', 'mp4', 'webm')]
-        doc = pq(render("{{ video%s }}" % str(tuple(videos))))
-
-        eq_(doc('video object').length, 0)
 
 
 @override_settings(STATIC_URL='/media/')

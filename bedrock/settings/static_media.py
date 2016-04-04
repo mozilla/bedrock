@@ -10,7 +10,7 @@ PIPELINE_CSS = {
     },
     'about': {
         'source_filenames': (
-            'css/sandstone/video-resp.less',
+            'css/base/mozilla-video-poster.less',
             'css/mozorg/about-base.less',
             'css/mozorg/mosaic.less',
         ),
@@ -134,7 +134,6 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/mozorg/contribute/contribute-form.less',
             'css/mozorg/contribute/contribute-old.less',
-            'css/sandstone/video-resp.less',
         ),
         'output_filename': 'css/contribute-old-bundle.css',
     },
@@ -663,7 +662,7 @@ PIPELINE_CSS = {
     },
     'mission': {
         'source_filenames': (
-            'css/sandstone/video-resp.less',
+            'css/base/mozilla-video-poster.less',
             'css/mozorg/mosaic.less',
             'css/mozorg/mission.less',
         ),
@@ -849,18 +848,6 @@ PIPELINE_CSS = {
             'css/mozorg/contribute/taskview.less',
         ),
         'output_filename': 'css/contribute-taskview-bundle.css',
-    },
-    'video': {
-        'source_filenames': (
-            'css/sandstone/video.less',
-        ),
-        'output_filename': 'css/video-bundle.css',
-    },
-    'video-resp': {
-        'source_filenames': (
-            'css/sandstone/video-resp.less',
-        ),
-        'output_filename': 'css/video-resp-bundle.css',
     },
     'page_not_found': {
         'source_filenames': (
@@ -1447,6 +1434,16 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/manifesto-bundle.js',
     },
+    'mosaic_video': {
+        'source_filenames': (
+            'js/base/mozilla-video-poster.js',
+            'js/libs/modernizr.custom.26887.js',
+            'js/libs/jquery.transit.min.js',
+            'js/libs/jquery.gridrotator.js',
+            'js/mozorg/about-video.js',
+        ),
+        'output_filename': 'js/mosaic_video-bundle.js',
+    },
     'partnerships': {
         'source_filenames': (
             'js/libs/jquery.validate.js',
@@ -1548,12 +1545,6 @@ PIPELINE_JS = {
             'js/firefox/tracking-protection-tour-init.js',
         ),
         'output_filename': 'js/tracking-protection-tour-bundle.js',
-    },
-    'video': {
-        'source_filenames': (
-            'js/base/mozilla-video-tools.js',
-        ),
-        'output_filename': 'js/video-bundle.js',
     },
     'contribute-2015': {
         'source_filenames': (
