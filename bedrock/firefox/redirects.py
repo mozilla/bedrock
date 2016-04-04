@@ -246,7 +246,7 @@ redirectpatterns = (
     # bug 1224060
     redirect(
         r'^ja/firefox/ios/(?P<vers>[0-9]+(\.[0-9]+)*)/(?P<file>releasenotes|system-requirements)',
-        'http://www.mozilla.jp/firefox/ios/{vers}/{file}/', locale_prefix=False),
+        'https://www.mozilla.jp/firefox/ios/{vers}/{file}/', locale_prefix=False),
 
     # bug 1150713
     redirect(r'^firefox/sms(?:/.*)?$', '/firefox/products/'),

@@ -20,10 +20,10 @@ redirectpatterns = (
     redirect(r'^zh-TW/?$', 'http://mozilla.com.tw/', locale_prefix=False),
 
     # bug 1013082
-    redirect(r'^ja/?$', 'http://www.mozilla.jp/', locale_prefix=False),
+    redirect(r'^ja/?$', 'https://www.mozilla.jp/', locale_prefix=False),
 
     # bug 1051686
-    redirect(r'^ja/firefox/organizations/?$', 'http://www.mozilla.jp/business/downloads/',
+    redirect(r'^ja/firefox/organizations/?$', 'https://www.mozilla.jp/business/',
              locale_prefix=False),
 
     # bug 874913
@@ -253,10 +253,10 @@ redirectpatterns = (
     redirect(r'^(firefox/)?community/?', 'mozorg.contribute'),
 
     # bug 1138280, bug 1200464
-    redirect(r'^ja/(firefox|thunderbird)/(beta/)?notes/?', 'http://www.mozilla.jp/{0}/{1}notes/',
+    redirect(r'^ja/(firefox|thunderbird)/(beta/)?notes/?', 'https://www.mozilla.jp/{0}/{1}notes/',
              locale_prefix=False),
     redirect(r'^ja/(firefox|thunderbird)/((?:android/)?[0-9.]+(?:beta)?)/releasenotes/?',
-             'http://www.mozilla.jp/{0}/{1}/releasenotes/', locale_prefix=False),
+             'https://www.mozilla.jp/{0}/{1}/releasenotes/', locale_prefix=False),
 
     # bug 925551
     redirect(r'^plugincheck/more_info\.html$', 'mozorg.plugincheck'),
@@ -271,11 +271,11 @@ redirectpatterns = (
     redirect(r'^press/awards(?:/|\.html)?$', 'https://blog.mozilla.org/press/awards/'),
 
     # bug 987059, 1050149, 1072170, 1208358
-    redirect(r'^ja/about/?$', 'http://www.mozilla.jp/about/mozilla/'),
-    redirect(r'^ja/about/japan/?$', 'http://www.mozilla.jp/about/japan/'),
+    redirect(r'^ja/about/?$', 'https://www.mozilla.jp/about/mozilla/'),
+    redirect(r'^ja/about/japan/?$', 'https://www.mozilla.jp/about/japan/'),
 
     # bug 1091977
-    redirect(r'^ja/contribute(?:/.*)?$', 'http://www.mozilla.jp/community/',
+    redirect(r'^ja/contribute(?:/.*)?$', 'https://www.mozilla.jp/community/',
              locale_prefix=False),
 
     # bug 885799, 952429
