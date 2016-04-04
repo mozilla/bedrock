@@ -109,30 +109,6 @@
         });
     }
 
-    // Setup GA tracking for Firefox download button
-    $('#cta-firefox, .download-button .download-link').attr({
-        'data-interaction': 'download click',
-        'data-download-version': 'Firefox'
-    });
-
-    // Setup GA tracking for Firefox update button
-    $('#cta-update').attr({
-        'data-interaction': 'update click',
-        'data-download-version': 'Firefox'
-    });
-
-    // Setup GA tracking for Firefox for primary Android download button
-    $('#cta-android').attr({
-        'data-interaction': 'top',
-        'data-download-version': 'Firefox for Android'
-    });
-
-    // Setup GA tracking for Firefox for Android footer download button
-    $('#cta-android-footer').attr({
-        'data-interaction': 'bottom',
-        'data-download-version': 'Firefox for Android'
-    });
-
     // Firefox Sync sign in flow button
     $('#cta-sync').on('click', function(e) {
         e.preventDefault();

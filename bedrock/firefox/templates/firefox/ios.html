@@ -25,7 +25,7 @@
 {% block site_header %}
     {% call fxfamilynav('ios', 'index') %}
       <div class="{% if has_widget %}show-widget{% endif %}">
-        <a class="dl-button" rel="external" href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}">
+        <a class="dl-button" rel="external" href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
         </a>
         <button class="send-to button-flat-dark" type="button" data-button-name="Get Firefox for iOS">{{ _('Get Firefox for iOS') }}</button>
