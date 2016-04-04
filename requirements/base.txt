@@ -81,8 +81,6 @@ https://github.com/mozilla/django-dnt/archive/269289b1ccd5e31b313ba669f59d4cab3b
     --hash=sha256:27f6d6ebafc106446b885fb79da65eac66bc739c2ef7b5ff0b97234ea7030e33
 https://github.com/timmyomahony/django-pagedown/archive/78556863faa5654f749c5562b390317c6cad10b3.tar.gz#egg=django-pagedown \
     --hash=sha256:3e7bfaf54a560889838104c100d8b37930306243d8913942c4675cfcc54bccc7
-https://github.com/mozilla/basket-client/archive/3ed2f4e16052a7a375cc28f2e195c7270dfc25c3.tar.gz#egg=basket-client \
-    --hash=sha256:2f910cc47f984fcd4c8b184f093b1ed113284810bbc136b3fdc9791a0feeda56
 https://github.com/kennethreitz/requests/archive/46d646064ca0836a7d7b4d50ea2c762d12ff8ce1.tar.gz#egg=requests \
     --hash=sha256:a000a8b126c29c2e24d0d022b3decdadfd681410c6e7ec161c1ca9c774fcd95f
 django-mozilla-product-details==0.8.1 \
@@ -120,3 +118,6 @@ django-sslify==0.2.7 \
     --hash=sha256:f6bfd21048c7dfc95b39659a3da77775d6db1c1f7a745805ccc6c6138f783b6d
 South==1.0.2 \
     --hash=sha256:d360bd31898f9df59f6faa786551065bba45b35e7ee3c39b381b4fbfef7392f4
+basket-client==0.3.12 \
+    --hash=sha256:d7aa5e6208eeeabb8f1387a7cbb2d0f2b35dfa889c1f034c86a88b4968db3bfe \
+    --hash=sha256:2dd953cd03b3068d0e596aa32224488c486b1170e46387c5bc14f20737d6a2d8
