@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    var $status_obj = $('#id_status');
-    var $grad_year_obj = $('#id_grad_year');
-    var $major_obj = $('#id_major');
-    var $major_free_text_obj = $('#id_major_free_text');
+    var $statusObj = $('#id_status');
+    var $gradYearObj = $('#id_grad_year');
+    var $majorObj = $('#id_major');
+    var $majorFreeTextObj = $('#id_major_free_text');
 
-    function toggle_field(field, cmp, value) {
+    function toggleField(field, cmp, value) {
         if (cmp.value === value) {
             field.parent().slideDown();
             field.attr('required', 'required');
@@ -15,10 +15,10 @@ $(document).ready(function(){
             field.removeAttr('required');
         }
     }
-    $status_obj.on('change', function() {
-        toggle_field($grad_year_obj, this, 'student');
+    $statusObj.on('change', function() {
+        toggleField($gradYearObj, this, 'student');
     });
-    $major_obj.on('change', function() {
-        toggle_field($major_free_text_obj, this, 'other');
+    $majorObj.on('change', function() {
+        toggleField($majorFreeTextObj, this, 'other');
     });
 });
