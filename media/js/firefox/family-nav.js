@@ -57,9 +57,7 @@ if (typeof window.Mozilla === 'undefined') {
 
                 if ($tertiaryNavTrigger.hasClass('active')) {
                     window.dataLayer.push({
-                        'event': 'family-nav-interaction',
-                        'location': 'Side Menu',
-                        'browserAction': 'Open Menu'
+                        'event': 'open-side-menu'
                     });
                 }
             }).addClass('visible');
@@ -121,13 +119,6 @@ if (typeof window.Mozilla === 'undefined') {
                 }
             }
         };
-
-        $tertiaryNavs.on('click', 'a', function() {
-            window.dataLayer.push({
-                'event': 'family-nav-interaction',
-                'browserAction': $(this).attr('data-ga')
-            });
-        });
 
         // public interface
         return {
