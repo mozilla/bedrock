@@ -339,7 +339,14 @@ class FirstrunView(LatestFxView):
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
-            template = 'firefox/firstrun/firstrun.html'
+            v = self.request.GET.get('v', None)
+            locale = l10n_utils.get_locale(self.request)
+
+            if (v == '1' and locale == 'en-US'):
+                # space themed variant
+                template = 'firefox/onboarding/firstrun-fxa.html'
+            else:
+                template = 'firefox/firstrun/firstrun.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         else:

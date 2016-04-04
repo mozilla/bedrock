@@ -326,6 +326,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun_learnmore_yahoo_search-bundle.css',
     },
+    'firefox_onboarding_firstrun_fxa': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/onboarding/firstrun-fxa.less',
+        ),
+        'output_filename': 'css/firefox_onboarding_firstrun_fxa-bundle.css',
+    },
     'firefox_feedback': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',

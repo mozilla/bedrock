@@ -1,0 +1,362 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+.buildstar(@size, @left, @top, @speed, @delay) {
+    .animation(twinkle @speed ease-in-out @delay infinite alternate-reverse);
+    background: #fff;
+    border-radius: 50%;
+    height: @size;
+    left: @left;
+    opacity: 0;
+    position: absolute;
+    top: @top;
+    width: @size;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+html {
+    background: url('/media/img/firefox/onboarding/grit.png') top left repeat,
+                linear-gradient(to bottom,
+                    rgb(30, 68, 136) 0%,
+                    rgb(25, 70, 141) 11%,
+                    rgb(0, 77, 164) 39%,
+                    rgb(0, 86, 185, 1) 60%,
+                    rgb(9, 90, 193) 65%,
+                    rgb(27, 98, 206) 73%,
+                    rgb(87, 117, 238) 92%,
+                    rgb(107, 124, 249) 100%);
+    background-blend-mode: color-dodge;
+}
+
+body,
+#outer-wrapper {
+    background: none;
+}
+
+#galaxy {
+    background: url('/media/img/firefox/onboarding/stars.png') center 80px no-repeat;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    @media only screen and (max-width: @breakTablet) {
+        background: none;
+    }
+}
+
+#comet1 {
+    .animation(streak1 1s ease-in-out 0.5s 1 normal);
+    left: 50px;
+    top: 300px;
+    transform: rotate(-20deg);
+    width: 30px;
+}
+
+#comet2 {
+    .animation(streak2 0.7s ease-in-out 3s 1 normal);
+    right: 250px;
+    top: 200px;
+    transform: rotate(15deg);
+    width: 20px;
+}
+
+.comet {
+    background: #fff;
+    height: 1px;
+    opacity: 0;
+    position: absolute;
+}
+
+.comet,
+.star {
+    display: block;
+
+    @media only screen and (max-width: @breakTablet) {
+        display: none;
+    }
+}
+
+#star1 {
+    .buildstar(4px, 20%, 330px, 2s, 0.5s);
+}
+
+#star2 {
+    .buildstar(2px, 60%, 146px, 2.5s, 0.2s);
+}
+
+#star3 {
+    .buildstar(5px, 80%, 486px, 3s, 0.1s);
+}
+
+#star4 {
+    .buildstar(6px, 15%, 50px, 2.8s, 0s);
+}
+
+#star5 {
+    .buildstar(7px, 90%, 400px, 2.4s, 0.3s);
+}
+
+#star6 {
+    .buildstar(3px, 77%, 580px, 1.8s, 0.4s);
+}
+
+#star7 {
+    .buildstar(3px, 30%, 430px, 3.1s, 0.8s);
+}
+
+@keyframes streak1 {
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(-20deg) scale(0.9) translate(650px, -60px);
+    }
+}
+
+@keyframes streak2 {
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(15deg) scale(0.9) translate(-450px, -40px);
+    }
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        transform: scale(0.8) translate(-1px, -1px);
+        opacity: 1;
+    }
+    40% {
+        transform: scale(0.7);
+        opacity: 0.7;
+    }
+    60% {
+        transform: scale(0.9);
+        opacity: 0.85;
+    }
+    80% {
+        transform: scale(0.7) translate(1px, 1px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+#intro {
+    color: #fff;
+    padding-bottom: (@baseLine * 3);
+    position: relative;
+    text-align: center;
+
+    .container {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+header {
+    h1 {
+        .font-size(80px);
+        margin-bottom: 0;
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(48px);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(32px);
+        }
+
+        &:before {
+            .at2x('/media/img/firefox/australis/fx38.0.5/firefox-logo.png', 80px, 84px);
+            .background-size(80px 84px);
+            content: '';
+            display: inline-block;
+            height: 84px;
+            margin-right: 30px;
+            vertical-align: sub;
+            width: 80px;
+
+            @media only screen and (max-width: @breakTablet) {
+                .background-size(60px 64px);
+                height: 64px;
+                margin-right: 20px;
+                width: 60px;
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                .background-size(50px 54px);
+                height: 54px;
+                margin-right: 15px;
+                width: 50px;
+            }
+        }
+    }
+
+    h2 {
+        .font-size(40px);
+        margin-bottom: @baseLine * 2;
+        margin-top: @baseLine / 2;
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(24px);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(20px);
+            padding: 0 @baseLine;
+        }
+    }
+}
+
+main p {
+    .font-size(18px);
+    .open-sans-light();
+    margin: @baseLine auto 0;
+    width: 600px;
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .font-size(@baseFontSize);
+    }
+}
+
+#fxa {
+    .transition(height 0.25s ease);
+    border: none;
+    display: block;
+    height: 300px;
+    opacity: 0;
+    overflow: hidden;
+    width: 400px;
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: 300px;
+    }
+
+    &.visible {
+        opacity: 1;
+    }
+}
+
+.fxaccounts {
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 0 auto;
+    width: 400px;
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding: @baseLine 0;
+        width: 300px;
+    }
+}
+
+footer {
+    padding-bottom: @baseLine * 2;
+    text-align: center;
+
+    .container {
+        padding: 0 @gridGutterWidth;
+        width: (@widthDesktop - (@gridGutterWidth * 2));
+    }
+
+    .mozlogo {
+        .at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
+        .image-replaced();
+        display: inline-block;
+        height: 24px;
+        width: 93px;
+    }
+
+    ul {
+        .font-size(@smallFontSize);
+        display: inline-block;
+        list-style: none;
+        margin: 9px 0 0 30px;
+
+        li {
+            display: inline;
+            margin: 0 (@baseLine / 2);
+
+            &:after {
+                color: #fff;
+                content: '•';
+                margin: 0 -10px 0 10px;
+            }
+
+            &:last-child:after {
+                content: '';
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakDesktop) {
+    #outer-wrapper {
+        min-width: auto;
+    }
+
+    #masthead {
+        width: 100%;
+    }
+
+    main p {
+        width: 80%;
+    }
+
+    .mozID {
+        #wrapper,
+        footer {
+            .container {
+                margin: 0 auto;
+                width: @breakTablet - (@gridGutterWidth * 2);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    .mozID {
+        #wrapper,
+        footer {
+            .container {
+                width: @breakMobileLandscape - (@gridGutterWidth * 2);
+            }
+        }
+    }
+
+    .mozID footer ul {
+        display: block;
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+    .mozID {
+        #wrapper,
+        footer {
+            .container {
+                margin: 0 auto;
+                padding: 0 (@gridGutterWidth / 2);
+                width: @breakMobile - @gridGutterWidth;
+            }
+        }
+    }
+}

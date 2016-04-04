@@ -21,7 +21,7 @@
 {#- Override <meta property="og:url"> for social share -#}
 {% block page_og_url %}{{ url('firefox') }}{% endblock %}
 
-{% block body_class %}mozID variant-g{% endblock %}
+{% block body_class %}mozID{% endblock %}
 
 {% block site_css %}
   {% stylesheet 'firefox_firstrun' %}
@@ -48,6 +48,8 @@
 
 {% block content %}
 <section id="intro" data-fxa-iframe-host="{{ settings.FXA_IFRAME_SRC }}">
+  {# Below block added for space theme test - bug 1259552 #}
+  {% block variant_content %}{% endblock %}
   <div class="container">
     <header>
       <h1>{{ _('Almost done!') }}</h1>
