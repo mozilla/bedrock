@@ -25,7 +25,7 @@ if (typeof Mozilla == 'undefined') {
  */
 Mozilla.ImageHelper = function() {};
 
-Mozilla.ImageHelper.is_high_dpi = null;
+Mozilla.ImageHelper._isHighDpi = null;
 
 // }}}
 
@@ -35,36 +35,36 @@ Mozilla.ImageHelper.is_high_dpi = null;
 Mozilla.ImageHelper.initPlatformImages = function() {
     $('.platform-img').each(function() {
         var $img = $(this);
-        var data_attribute = 'src-';
-        var is_high_res = $img.data('high-res');
-        var new_src;
+        var dataAttribute = 'src-';
+        var isHighRes = $img.data('high-res');
+        var newSrc;
 
-        if (site.platform == 'oldwin') {
-            data_attribute += 'windows';
+        if (site.platform === 'oldwin') {
+            dataAttribute += 'windows';
         }
         else if (site.platform === 'osx' || site.platform === 'oldmac') {
-            data_attribute += 'mac';
+            dataAttribute += 'mac';
         }
         else {
-            data_attribute += site.platform;
+            dataAttribute += site.platform;
         }
 
-        new_src = $img.data(data_attribute);
+        newSrc = $img.data(dataAttribute);
 
-        if (!new_src) {
+        if (!newSrc) {
             // fall back to windows
-            data_attribute = 'src-windows';
-            new_src = $img.data(data_attribute);
+            dataAttribute = 'src-windows';
+            newSrc = $img.data(dataAttribute);
         }
 
         // if high res requested and path provided, set srcset attribute
         // needs to be set prior to src to avoid downloading standard res image
         // on high-res screens
-        if (is_high_res && $img.data(data_attribute + '-high-res')) {
-            $img.attr('srcset', $img.data(data_attribute + '-high-res') + ' 1.5x');
+        if (isHighRes && $img.data(dataAttribute + '-high-res')) {
+            $img.attr('srcset', $img.data(dataAttribute + '-high-res') + ' 1.5x');
         }
 
-        this.src = new_src;
+        this.src = newSrc;
 
         $img.addClass(site.platform);
     });
@@ -74,17 +74,17 @@ Mozilla.ImageHelper.initPlatformImages = function() {
 // {{{ isHighDpi()
 
 Mozilla.ImageHelper.isHighDpi = function() {
-    if (Mozilla.ImageHelper.is_high_dpi === null) {
-        var media_query = '(-webkit-min-device-pixel-ratio: 1.5),' +
+    if (Mozilla.ImageHelper._isHighDpi === null) {
+        var mediaQuery = '(-webkit-min-device-pixel-ratio: 1.5),' +
                           '(-o-min-device-pixel-ratio: 3/2),' +
                           '(min--moz-device-pixel-ratio: 1.5),' +
                           '(min-resolution: 1.5dppx)';
 
-        Mozilla.ImageHelper.is_high_dpi = (window.devicePixelRatio > 1 ||
-               (window.matchMedia && window.matchMedia(media_query).matches));
+        Mozilla.ImageHelper._isHighDpi = (window.devicePixelRatio > 1 ||
+               (window.matchMedia && window.matchMedia(mediaQuery).matches));
     }
 
-    return Mozilla.ImageHelper.is_high_dpi;
+    return Mozilla.ImageHelper._isHighDpi;
 };
 
 // }}}

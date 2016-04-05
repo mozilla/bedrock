@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn, jasmine */
+/* global describe, beforeEach, afterEach, it, expect */
 
 describe('new-ios-redirect-helper.js', function() {
     'use strict';

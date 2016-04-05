@@ -3,7 +3,8 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* global describe, beforeEach, afterEach, it, expect */
+/* eslint no-unused-vars: [2, { "varsIgnorePattern": "pager" }] */
 
 describe('mozilla-pager.js', function () {
 

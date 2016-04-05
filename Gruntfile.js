@@ -17,7 +17,7 @@ module.exports = function (grunt) {
                 configFile: './.eslintrc.js',
                 cache: true
             },
-            target: ['media/js/**/*.js', '!media/js/libs/*.js']
+            target: ['media/js/**/*.js', '!media/js/libs/*.js', 'tests/unit/spec/*.js']
         },
         jsonlint: {
             all : {

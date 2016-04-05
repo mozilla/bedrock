@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* global describe, beforeEach, afterEach, it, expect, Utils */
 
 describe('utils.js', function() {
 
@@ -48,5 +48,5 @@ describe('utils.js', function() {
     it('should return false for non match', function() {
         var match = Utils.isMatch('7.6.9.1', knownVersions);
         expect(match).toBe(false);
-    })
+    });
 });

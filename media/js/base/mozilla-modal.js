@@ -7,7 +7,6 @@ Mozilla.Modal = (function(w, $) {
     'use strict';
 
     var open = false;
-    var $modal = null;
     var $body = $('body');
     var $html = $('html');
     var options = {};
@@ -122,7 +121,6 @@ Mozilla.Modal = (function(w, $) {
         $('.modal-origin').focus().removeClass('modal-origin');
 
         open = false;
-        $modal = null;
 
         // unbind document listeners
         $d.off('.' + evtNamespace);

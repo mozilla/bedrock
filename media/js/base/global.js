@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/* exported trigger_ie_download, init_download_links, update_download_text_for_old_fx,
-   init_mobile_download_links, init_lang_switcher */
+/* exported triggerIEDownload, initDownloadLinks, updateDownloadTextForOldFx,
+   initMobileDownloadLinks, initLangSwitcher */
 
 // download buttons
 
@@ -13,7 +13,7 @@
  * @param {link} direct link to download URL
  * @param {userAgent} optional UA string for testing purposes.
  */
-function trigger_ie_download(link, userAgent) {
+function triggerIEDownload(link, userAgent) {
     'use strict';
     var ua = userAgent !== undefined ? userAgent : navigator.userAgent;
     // Only open if we got a link and this is IE < 9.
@@ -25,17 +25,17 @@ function trigger_ie_download(link, userAgent) {
 
 // attach an event to all the download buttons to trigger the special
 // ie functionality if on ie
-function init_download_links() {
+function initDownloadLinks() {
     $('.download-link').each(function() {
         var $el = $(this);
         $el.click(function() {
-            trigger_ie_download($el.data('direct-link'));
+            triggerIEDownload($el.data('direct-link'));
         });
     });
     $('.download-list').attr('role', 'presentation');
 }
 
-function update_download_text_for_old_fx() {
+function updateDownloadTextForOldFx() {
     var client = window.Mozilla.Client;
 
     // if using Firefox
@@ -58,7 +58,7 @@ function update_download_text_for_old_fx() {
 
 // Replace Google Play and Apple App Store links on Android and iOS devices to
 // let them open the native marketplace app
-function init_mobile_download_links() {
+function initMobileDownloadLinks() {
     if (site.platform === 'android') {
         $('a[href^="https://play.google.com/store/apps/"]').each(function() {
             $(this).attr('href', $(this).attr('href')
@@ -75,7 +75,7 @@ function init_mobile_download_links() {
 }
 
 // language switcher
-function init_lang_switcher() {
+function initLangSwitcher() {
     var $language = $('#page-language-select');
     var previousLanguage = $language.val();
     $language.change(function() {

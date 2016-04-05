@@ -3,7 +3,8 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* global describe, beforeEach, afterEach, it, expect */
+/* eslint no-unused-vars: [2, { "varsIgnorePattern": "accordion" }] */
 
 describe('mozilla-accordion.js', function () {
 
@@ -13,36 +14,35 @@ describe('mozilla-accordion.js', function () {
         // turn off animation effects so we can test post expand/collapse states
         jQuery.fx.off = true;
 
-        var accordionMarkup = [
-            '<div id="accordion1" class="accordion">',
-                '<section>',
-                    '<h2 data-accordion-role="tab">Section 1</h2>',
-                    '<div data-accordion-role="tabpanel"><p>Section 1 contents.</p></div>',
-                '</section>',
-                '<section>',
-                    '<h2 data-accordion-role="tab">Section 2</h2>',
-                    '<div data-accordion-role="tabpanel"><p>Section 2 contents.</p></div>',
-                '</section>',
-                '<section>',
-                    '<h2 data-accordion-role="tab">Section 3</h2>',
-                    '<div data-accordion-role="tabpanel"><p>Section 3 contents.</p></div>',
-                '</section>',
-            '</div>',
-            '<div id="accordion2" class="accordion">',
-                '<section>',
-                    '<h2 data-accordion-role="tab">Section 1</h2>',
-                    '<div data-accordion-role="tabpanel"><p>Section 1 contents.</p></div>',
-                '</section>',
-                '<section>',
-                    '<h2 data-accordion-role="tab">Section 2</h2>',
-                    '<div data-accordion-role="tabpanel"><p>Section 2 contents.</p></div>',
-                '</section>',
-                '<section>',
-                    '<h2 data-accordion-role="tab">Section 3</h2>',
-                    '<div data-accordion-role="tabpanel"><p>Section 3 contents.</p></div>',
-                '</section>',
-            '</div>'
-        ].join();
+        var accordionMarkup =
+            '<div id="accordion1" class="accordion">' +
+                '<section>' +
+                    '<h2 data-accordion-role="tab">Section 1</h2>' +
+                    '<div data-accordion-role="tabpanel"><p>Section 1 contents.</p></div>' +
+                '</section>' +
+                '<section>' +
+                    '<h2 data-accordion-role="tab">Section 2</h2>' +
+                    '<div data-accordion-role="tabpanel"><p>Section 2 contents.</p></div>' +
+                '</section>' +
+                '<section>' +
+                    '<h2 data-accordion-role="tab">Section 3</h2>' +
+                    '<div data-accordion-role="tabpanel"><p>Section 3 contents.</p></div>' +
+                '</section>' +
+            '</div>' +
+            '<div id="accordion2" class="accordion">' +
+                '<section>' +
+                    '<h2 data-accordion-role="tab">Section 1</h2>' +
+                    '<div data-accordion-role="tabpanel"><p>Section 1 contents.</p></div>' +
+                '</section>' +
+                '<section>' +
+                    '<h2 data-accordion-role="tab">Section 2</h2>' +
+                    '<div data-accordion-role="tabpanel"><p>Section 2 contents.</p></div>' +
+                '</section>' +
+                '<section>' +
+                    '<h2 data-accordion-role="tab">Section 3</h2>' +
+                    '<div data-accordion-role="tabpanel"><p>Section 3 contents.</p></div>' +
+                '</section>' +
+            '</div>';
 
         $(accordionMarkup).appendTo('body');
     });
@@ -143,7 +143,8 @@ describe('mozilla-accordion.js', function () {
 
     describe('Mozilla.Accordion expand/collapse', function () {
 
-        var expandReturn, collapseReturn;
+        var expandReturn;
+        var collapseReturn;
         var accordionOptions = {
             onExpand: function(section) {
                 expandReturn = section.title;
@@ -192,7 +193,8 @@ describe('mozilla-accordion.js', function () {
         });
 
         it('should execute global expand and collapse callbacks', function() {
-            var expandReturn, collapseReturn;
+            var expandReturn;
+            var collapseReturn;
 
             Mozilla.Accordion.globalOnExpand = function(section) {
                 expandReturn = section.title;

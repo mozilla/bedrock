@@ -60,6 +60,8 @@ _SearchParams.prototype.utmParamsFxA = function(pathname) {
 
     var utms = this.utmParams();
 
+    /* eslint-disable camelcase */
+
     // set to default value if not specified in URL
     if (!utms.utm_campaign) {
         // utm_* values will be encoded on the product side, so no need to
@@ -76,6 +78,8 @@ _SearchParams.prototype.utmParamsFxA = function(pathname) {
         // no need to encode - will be done on product side
         utms.utm_content = matches[1];
     }
+
+    /* eslint-enable camelcase */
 
     return utms;
 };

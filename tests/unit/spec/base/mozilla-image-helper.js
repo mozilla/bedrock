@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* global describe, beforeEach, afterEach, it, expect */
 
 describe('mozilla-image-helper.js', function() {
 
@@ -11,7 +11,6 @@ describe('mozilla-image-helper.js', function() {
 
     describe('Mozilla.ImageHelper.initPlatformImages', function() {
 
-        var stub;
         var $img;
 
         beforeEach(function () {
@@ -94,7 +93,6 @@ describe('mozilla-image-helper.js', function() {
 
     describe('High Resolution Platform Images', function () {
 
-        var stub;
         var $img;
 
         beforeEach(function () {
