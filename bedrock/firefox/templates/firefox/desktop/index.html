@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block site_header_unwrapped %}
-  {% call fxfamilynav('desktop', 'index', 'dark') %}
+  {% call fxfamilynav('desktop', 'dark') %}
     {{ download_firefox(simple=True, small=True, dom_id="sticky-download-desktop") }}
   {% endcall %}
 {% endblock %}

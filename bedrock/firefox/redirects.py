@@ -143,8 +143,7 @@ redirectpatterns = (
     # Bug 920212
     redirect(r'^firefox/fx/?$', 'firefox.new'),
 
-    # Bug 979670, 979531, 1003727, 979664, 979654, 979660
-    redirect(r'^firefox/(.+/)?features/?$', 'firefox.desktop.index'),
+    # Bug 979531, 1003727, 979664, 979654, 979660
     redirect(r'^firefox/customize/?$', 'firefox.desktop.customize'),
     redirect(r'^firefox/(?:performance|happy|speed|memory)/?$', 'firefox.desktop.fast'),
     redirect(r'^firefox/security/?$', 'firefox.desktop.trust'),

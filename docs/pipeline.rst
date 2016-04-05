@@ -57,7 +57,7 @@ pushed to production and the same tests are then run against production. As with
 pushes, this is all handled by the pipeline, and is subject to change according to the
 `per-tag properties file`_ in the repository.
 
-** Push to master cheat sheet **
+**Push to master cheat sheet**
 
 #. Check out the ``master`` branch
 #. Make sure the ``master`` branch is up to date with ``mozilla/bedrock master``

@@ -25,16 +25,21 @@ class FirefoxBasePage(BasePage):
     class FamilyNavigation(PageRegion):
 
         _root_locator = (By.ID, 'fxfamilynav-header')
-        _nav_button_locator = (By.ID, 'fxfamilynav-tertiarynav-trigger')
-        _nav_menu_locator = (By.ID, 'fxfamilynav-tertiarynav')
+        _active_primary_nav_locator = (By.CSS_SELECTOR, '#fxfamilynav-primary li.active a')
+        _adjunct_nav_button_locator = (By.ID, 'fxfamilynav-adjunctnav-trigger')
+        _adjunct_nav_menu_locator = (By.ID, 'fxfamilynav-adjunctnav')
 
-        def open_menu(self):
-            self.find_element(self._nav_button_locator).click()
-            self.wait.until(expected.visibility_of_element_located(self._nav_menu_locator))
+        def open_adjunct_menu(self):
+            self.find_element(self._adjunct_nav_button_locator).click()
+            self.wait.until(expected.visibility_of_element_located(self._adjunct_nav_menu_locator))
 
         @property
-        def is_menu_displayed(self):
-            return self.is_element_displayed(self._nav_menu_locator)
+        def is_adjunct_menu_displayed(self):
+            return self.is_element_displayed(self._adjunct_nav_menu_locator)
+
+        @property
+        def active_primary_nav_id(self):
+            return self.find_element(self._active_primary_nav_locator).get_attribute('data-id')
 
 
 class FirefoxBasePageRegion(PageRegion):

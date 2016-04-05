@@ -97,7 +97,7 @@
 </aside>
 {%- endmacro %}
 
-{% macro fxfamilynav(activeprimary, activesub, navclass) %}
+{% macro fxfamilynav(activenav, navclass) %}
 {#
 1. Add to page:
   a. Include this macro:
@@ -108,39 +108,31 @@
     {% block site_header %}{% endblock %}
 
   c. Add site_header_unwrapped block, including this macro and specifying the
-    active primary and sub nav items:
+    active nav item:
 
     {% block site_header_unwrapped %}
-      {{ fxfamilynav('android', 'index') }}
+      {{ fxfamilynav('android') }}
     {% endblock %}
 
     If you need the dark text version (like for /firefox/desktop), pass
     in the 'dark' argument:
 
     {% block site_header_unwrapped %}
-      {{ fxfamilynav('desktop', 'index', dark') }}
+      {{ fxfamilynav('desktop', 'dark') }}
     {% endblock %}
 
-    Available primary/sub nav ID values:
+    Available nav ID values:
 
-    desktop
-      - index
-      - trust
-      - customize
-      - fast
-      - sync
-      - hello
-    android
-      - index
-    os
-      - index
-      - devices
+    - desktop
+    - android
+    - ios
+    - features
 
     If you need a CTA in the sticky nav, call the macro and include
     the CTA element:
 
     {% block site_header_unwrapped %}
-      {% call fxfamilynav('desktop', 'index') %}
+      {% call fxfamilynav('desktop') %}
         <a href="{{ url('firefox.new') }}">Download Firefox</a>
       {% endcall %}
     {% endblock %}
@@ -167,11 +159,11 @@
 
   ## Notes on CTA:
 
-  CTA in sticky nav max dimensions are 160px w x 50px h. Anything over will be cut off.
-  Conform or feel the wrath of chopped off edges.
+  CTA in sticky nav max dimensions are 160px w x 60px h. Anything over will be
+  cut off. Conform or feel the wrath of chopped off edges.
 
-  CTA is hidden in sticky nav at tablet (760px) breakpoint - just not enough
-  room (this may change in the future).
+  CTA is hidden in sticky nav at tablet (760px) breakpoint (not enough
+  real-estate).
 
   CTA is purposefully hidden for mobile.
 
@@ -189,71 +181,30 @@
 
 <header id="fxfamilynav-header" class="fxfamilynav-header{% if (navclass) %} {{ navclass }}{% endif %}">
   <div class="container">
-    <a href="{{ url('firefox.family.index') }}"><i class="fxfamilynav-logo">{{ _('Firefox') }}</i></a>
+    <a href="{{ url('firefox.family.index') }}" class="fxfamilynav-logo">{{ _('Firefox') }}</a>
     <nav id="fxfamilynav" class="fxfamilynav" role="navigation">
-      <ul id="fxfamilynav-primary" class="primarynav">
-        {# L10n: The <span> elements below are for visual formatting #}
-        <li{% if activeprimary == 'desktop' %} class="active"{% endif %}>
-          <a data-id="desktop" href="{{ url('firefox.desktop.index') }}" class="primary-link" data-link-type="nav" data-link-name="for Desktop"><div>{{ _('<span>for</span> Desktop') }}</div></a>
-
-          <ul class="subnav" id="desktop-subnav">
-            {# note: Removing hassubsubnav for now because after localization nav items get pushed to two lines #}
-            <li {# {% if activesub in ('index', 'trust', 'customize', 'fast') %} class="hassubsubnav"{% endif %} #}>
-              <a href="{{ url('firefox.desktop.index') }}"{% if activesub == 'index' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for Desktop: Overview"><div>{{ _('Overview') }}</div></a>
-
-            {# note: Removing items for now because after localization nav items get pushed to two lines
-              {% if activesub in ('index', 'trust', 'customize', 'fast') %}
-              <ul class="subsubnav" id="desktop-subsubnav">
-                <li><a href="{{ url('firefox.desktop.trust') }}"{% if activesub == 'trust' %} class="selected"{% endif %}>{{ _('Trusted') }}</a></li>
-                <li><a href="{{ url('firefox.desktop.customize') }}"{% if activesub == 'customize' %} class="selected"{% endif %}>{{ _('Flexible') }}</a></li>
-                <li><a href="{{ url('firefox.desktop.fast') }}"{% if activesub == 'fast' %} class="selected"{% endif %}>{{ _('Fast') }}</a></li>
-              </ul>
-              {% endif %}
-            #}
-            </li>
-            <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for Desktop: Sync"><div>{{ _('Sync') }}</div></a></li>
-            <li><a href="{{ url('firefox.hello') }}"{% if activesub == 'hello' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for Desktop: Hello"><div>{{ _('Hello') }}</div></a></li>
-            <li><a href="{{ url('firefox.private-browsing') }}"{% if activesub == 'private-browsing' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for Desktop: Private Browsing"><div>{{ _('Private Browsing') }}</div></a></li>
-          </ul>
+      <ul id="fxfamilynav-primary" class="primary-nav">
+        <li{% if activenav == 'desktop' %} class="active"{% endif %}>
+          <a data-id="desktop" href="{{ url('firefox.desktop.index') }}" class="primary-link" data-link-type="nav" data-link-name="for Desktop"><div>{{ _('Desktop') }}</div></a>
         </li>
-        <li{% if activeprimary == 'android' %} class="active"{% endif %}>
-          <a data-id="android" href="{{ url('firefox.android.index') }}" class="primary-link" data-link-type="nav" data-link-name="for Android"><div>{{ _('<span>for</span> Android') }}</div></a>
-
-          <ul class="subnav" id="android-subnav">
-            <li><a href="{{ url('firefox.android.index') }}"{% if activesub == 'index' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for Android: Overview"><div>{{ _('Overview') }}</div></a></li>
-            <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for Android: Sync"><div>{{ _('Sync') }}</div></a></li>
-            <li><a href="{{ url('firefox.private-browsing') }}"{% if activesub == 'private-browsing' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for Android: Private Browsing"><div>{{ _('Private Browsing') }}</div></a></li>
-          </ul>
+        <li{% if activenav == 'android' %} class="active"{% endif %}>
+          <a data-id="android" href="{{ url('firefox.android.index') }}" class="primary-link" data-link-type="nav" data-link-name="for Android"><div>{{ _('Android') }}</div></a>
         </li>
-        <li{% if activeprimary == 'ios' %} class="active"{% endif %}>
-          <a data-id="ios" href="{{ url('firefox.ios') }}" class="primary-link" data-link-type="nav" data-link-name="for iOS"><div>{{ _('<span>for</span> iOS') }}</div></a>
-
-          <ul class="subnav" id="ios-subnav">
-            <li><a href="{{ url('firefox.ios') }}"{% if activesub == 'index' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for iOS: Overview"><div>{{ _('Overview') }}</div></a></li>
-            <li><a href="{{ url('firefox.sync') }}"{% if activesub == 'sync' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for iOS: Sync"><div>{{ _('Sync') }}</div></a></li>
-            <li><a href="{{ url('firefox.private-browsing') }}"{% if activesub == 'private-browsing' %} class="selected"{% endif %} data-link-type="nav" data-link-name="for iOS: Private Browsing"><div>{{ _('Private Browsing') }}</div></a></li>
-          </ul>
+        <li{% if activenav == 'ios' %} class="active"{% endif %}>
+          <a data-id="ios" href="{{ url('firefox.ios') }}" class="primary-link" data-link-type="nav" data-link-name="for iOS"><div>{{ _('iOS') }}</div></a>
         </li>
-        {% if activeprimary == 'os' %}
-        <li class="active">
-          <a data-id="os" href="{{ url('firefox.os.index') }}" class="primary-link" data-link-type="nav" data-link-name="Firefox OS"><div>{{ _('Firefox OS') }}</div></a>
-
-          <ul class="subnav" id="os-subnav">
-            <li><a data-id="os-index" href="{{ url('firefox.os.index') }}"{% if activesub == 'index' %} class="selected"{% endif %}><div>{{ _('Overview') }}</div></a></li>
-            <li><a data-id="os-devices" href="{{ url('firefox.os.devices') }}"{% if activesub == 'devices' %} class="selected"{% endif %}><div>{{ _('Devices') }}</div></a></li>
-            <li><a data-id="os-marketplace" rel="external" href="https://marketplace.firefox.com/"><div>{{ _('Marketplace') }}<i class="icon-external"></i></div></a></li>
-          </ul>
+        <li class="related{% if activenav == 'features' %} active{% endif %}">
+          <a data-id="features" href="{{ url('firefox.features') }}" class="primary-link" data-link-type="nav" data-link-name="Features"><div>{{ _('Features') }}</div></a>
         </li>
-        {% endif %}
       </ul>
     </nav>{#-- /#fxfamillynav --#}
 
-    <div id="fxfamilynav-tertiarynav" class="fxfamilynav-tertiarynav">
+    <div id="fxfamilynav-adjunctnav" class="fxfamilynav-adjunctnav">
       {# the triangle needs a border, so :before content doesn't cut it #}
       <div class="triangle"></div>
       <div class="triangle-border"></div>
 
-      <ul class="tertiarynav{% if activeprimary == 'desktop' %} active{% endif %}">
+      <ul class="adjunctnav{% if activenav == 'desktop' %} active{% endif %}">
         <li><a href="{{ url('firefox.dnt') }}" data-link-type="nav" data-link-name="Side Menu: Do Not Track">{{ _('Do Not Track') }}</a></li>
         <li><a href="{{ url('firefox.interest-dashboard') }}" data-link-type="nav" data-link-name="Side Menu: Interest Dashboard">{{ _('Interest Dashboard') }}</a></li>
         <li><a href="{{ url('firefox.developer') }}" data-link-type="nav" data-link-name="Side Menu: Developer Edition">{{ _('Developer Edition') }}</a></li>
@@ -262,29 +213,24 @@
         <li><a rel="external" href="https://support.mozilla.org/products/firefox" data-link-type="nav" data-link-name="Side Menu: Need help?">{{ _('Need help?') }}</a></li>
       </ul>
 
-      <ul class="tertiarynav{% if activeprimary == 'android' %} active{% endif %}">
+      <ul class="adjunctnav{% if activenav == 'android' %} active{% endif %}">
         <li><a href="{{ url('firefox.dnt') }}" data-link-type="nav" data-link-name="Side Menu: Do Not Track">{{ _('Do Not Track') }}</a></li>
         <li><a rel="external" href="https://www.youtube.com/watch?v=Ewk0YtFTBec&amp;list=PLA8ABF6B7A66A0C5E&amp;index=15" data-link-type="nav" data-link-name="Side Menu: Private Browsing">{{ _('Private Browsing') }}</a></li>
         <li><a rel="external" href="https://addons.mozilla.org/android/" data-link-type="nav" data-link-name="Side Menu: Android Add-ons">{{ _('Add-ons') }}</a></li>
         <li><a rel="external" href="https://support.mozilla.org/products/mobile" data-link-type="nav" data-link-name="Side Menu: Need help?">{{ _('Need help?') }}</a></li>
       </ul>
 
-      <ul class="tertiarynav{% if activeprimary == 'ios' %} active{% endif %}">
+      <ul class="adjunctnav{% if activenav == 'ios' %} active{% endif %}">
         <li><a rel="external" href="https://support.mozilla.org/products/ios" data-link-type="nav" data-link-name="Side Menu: Need help?">{{ _('Need help?') }}</a></li>
       </ul>
-
-      <ul class="tertiarynav{% if activeprimary == 'os' %} active{% endif %}">
-        <li><a rel="external" href="https://blog.mozilla.org/blog/category/firefox-os/" data-link-type="nav" data-link-name="Side Menu: News">{{ _('News') }}</a></li>
-        <li><a rel="external" href="https://developer.mozilla.org/Firefox_OS" data-link-type="nav" data-link-name="Side Menu: For developers">{{ _('For developers') }}</a></li>
-        <li><a rel="external" href="https://find.firefox.com" data-link-type="nav" data-link-name="Side Menu: Find My Device">{{ _('Find My Device') }}</a></li>
-        <li><a rel="external" href="https://support.mozilla.org/products/firefox-os" data-link-type="nav" data-link-name="Side Menu: Need help?">{{ _('Need help?') }}</a></li>
-      </ul>
-    </div>{#-- /#fxfamilynav-tertiarynav --#}
+    </div>{#-- /#fxfamilynav-adjunctnav --#}
 
     {# Page will dictate CTA (button, usually) to be placed in this wrapper #}
     <div id="fxfamilynav-cta-wrapper" class="fxfamilynav-cta-wrapper">{% if caller %}{{ caller() }}{% endif %}</div>
 
-    <button type="button" id="fxfamilynav-tertiarynav-trigger" class="fxfamilynav-tertiarynav-trigger" aria-controls="fxfamilynav-tertiarynav">
+    {# Features nav item does not (yet?) have an adjunct nav #}
+    {% if activenav != 'features' %}
+    <button type="button" id="fxfamilynav-adjunctnav-trigger" class="fxfamilynav-adjunctnav-trigger" aria-controls="fxfamilynav-adjunctnav">
       <span>{{ _('Menu') }}</span>
       <div class="trigger-dots">
         <div class="trigger-dot"></div>
@@ -292,6 +238,7 @@
         <div class="trigger-dot"></div>
       </div>
     </button>
+    {% endif %}
 
     <div id="tabzilla">
       <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>

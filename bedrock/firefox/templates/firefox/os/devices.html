@@ -28,7 +28,7 @@
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {% call fxfamilynav('os', 'devices') %}
+  {% call fxfamilynav('os') %}
     <button type="button" id="purchase-device-sticky" class="purchase-button arrow-link button" disabled>{{ _('Get a phone') }}</button>
   {% endcall %}
 {% endblock %}
