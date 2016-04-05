@@ -59,10 +59,10 @@ $(function() {
         $pluginsContainer.on('click', 'a.button', function(event) {
 
             window.dataLayer.push({
-              'event': 'plugincheck-interactions',
-              'interaction': 'button click',
-              'plugin-action': event.target.dataset['status'],
-              'plugin-name': event.target.dataset['name']
+                'event': 'plugincheck-interactions',
+                'interaction': 'button click',
+                'plugin-action': event.target.dataset['status'],
+                'plugin-name': event.target.dataset['name']
             });
         });
     }
@@ -254,7 +254,7 @@ $(function() {
                         'plugin-vulnerable-count': pluginTotals.vulnerableCount,
                         'plugin-outdated-count': pluginTotals.outdatedCount,
                         'plugin-up-to-date-count': pluginTotals.upToDateCount,
-                        'plugin-unknown-count': pluginTotals.unknownCount,
+                        'plugin-unknown-count': pluginTotals.unknownCount
                     });
 
                     $pluginsContainer.removeClass('hidden');

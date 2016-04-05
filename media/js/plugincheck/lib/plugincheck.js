@@ -55,7 +55,7 @@
          * plugins, the vulnerability_description and vulnerability_url fields are
          * also set.
          */
-         setPluginStatus: function(plugin, installedVersion, knownVersions) {
+        setPluginStatus: function(plugin, installedVersion, knownVersions) {
             var knownAbsLatest;
 
             // sort versions from low to high
@@ -136,10 +136,9 @@
         populatePluginObject: function(pluginInfo, currentPlugin) {
             var installedVersion = currentPlugin.version;
 
-            if (currentPlugin.name.indexOf('Java') > -1 &&
-                'undefined' !== navigator.mimeTypes['application/x-java-applet']) {
-                    // we need todo some extra work to get a decent version number
-                    installedVersion = setJavaVersion();
+            if (currentPlugin.name.indexOf('Java') > -1 && 'undefined' !== navigator.mimeTypes['application/x-java-applet']) {
+                // we need todo some extra work to get a decent version number
+                installedVersion = setJavaVersion();
             }
 
             var plugin = {};
@@ -273,9 +272,11 @@
                 callback(pluginList);
 
             }).fail(function(xhr, status, error) {
+                /* eslint-disable no-console */
                 console.log('xhr', xhr);
                 console.log('status', status);
                 console.log('error', error);
+                /* eslint-enable no-console */
             });
         }
     };
