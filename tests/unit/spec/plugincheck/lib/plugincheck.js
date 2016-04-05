@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* global describe, beforeEach, afterEach, it, expect, PluginCheck */
 
 describe('plugincheck.js', function() {
 
@@ -20,6 +20,7 @@ describe('plugincheck.js', function() {
 
     // set some variable values used by the below tests.
     beforeEach(function () {
+        /* eslint-disable camelcase */
         plugins = {
             adobe_flash_player: {
                 description: '',
@@ -45,7 +46,7 @@ describe('plugincheck.js', function() {
                                 },
                                 status: 'latest',
                                 version: '17.0.0.134'
-                            },
+                            }
                         ],
                         vulnerable: [
                             {
@@ -170,6 +171,7 @@ describe('plugincheck.js', function() {
                 }
             }
         };
+        /* eslint-enable camelcase */
 
         flashNewer = {
             description: 'Shockwave Flash 18.0 r0',
@@ -233,9 +235,8 @@ describe('plugincheck.js', function() {
     });
 
     it('should set plugin status to vulnerable, as there are no latest releases', function() {
-        var plugin = {};
         var installedVersion = '0.0.0';
-        var plugin = PluginCheck.setPluginStatus(plugin, installedVersion, noLatestRelease);
+        var plugin = PluginCheck.setPluginStatus({}, installedVersion, noLatestRelease);
         // as there are no latest releases, this plugin should be marked as vulnerable, even
         // if the installed version does not match any of the versions in the vulnerable array.
         expect(plugin.status).toBe('vulnerable');
@@ -243,9 +244,8 @@ describe('plugincheck.js', function() {
     });
 
     it('should set plugin status to latest, as installedVersion matches an entry in the latest array', function() {
-        var plugin = {};
         var installedVersion = '13.0.0.214';
-        var plugin = PluginCheck.setPluginStatus(plugin, installedVersion, lastestRelease);
+        var plugin = PluginCheck.setPluginStatus({}, installedVersion, lastestRelease);
         expect(plugin.status).toBe('latest');
         expect(plugin.vulnerability_description).toBe(undefined);
     });

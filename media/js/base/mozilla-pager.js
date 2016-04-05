@@ -312,7 +312,8 @@ Mozilla.Pager.findPagerById = function(pagerId) {
 Mozilla.Pager.destroyPagers = function() {
     'use strict';
 
-    var pagerIds = [], i;
+    var pagerIds = [];
+    var i;
 
     for (i = 0; i < Mozilla.Pager.pagers.length; i++) {
         pagerIds.push(Mozilla.Pager.pagers[i].id);
@@ -478,14 +479,17 @@ Mozilla.Pager.prototype.getPseudoRandomPage = function() {
 Mozilla.Pager.prototype.setStateFromPath = function(path, animate, focus) {
     'use strict';
 
-    var base = path, pos = base.indexOf('/');
+    var base = path;
+    var pos = base.indexOf('/');
 
     if (pos !== -1) {
         base = base.substr(0, pos);
         path = path.substr(pos + 1);
     }
 
-    var baseParts = base.split('+'), updateSelf, page;
+    var baseParts = base.split('+');
+    var updateSelf;
+    var page;
 
     for (var i = 0; i < baseParts.length; i++) {
         base = baseParts[i];

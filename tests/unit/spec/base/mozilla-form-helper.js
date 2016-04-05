@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* global describe, beforeEach, afterEach, it, expect */
 
 describe('mozilla-form-helper.js', function() {
 
@@ -11,7 +11,7 @@ describe('mozilla-form-helper.js', function() {
 
     describe('Mozilla.FormHelper.displayErrors', function() {
         // form html
-        var form_html = '<form id="testForm">' +
+        var formHtml = '<form id="testForm">' +
             '<div class="field"><label for="email">Email</label><input type="email" required="required" name="email" id="email"></div>' +
             '<div class="field"><label for="name">Name</label><input type="text" required="required" name="name" id="name"></div>' +
             '<div class="field"><label for="phone">Phone</label><input type="tel" name="phone" id="phone"></div>' +
@@ -23,13 +23,13 @@ describe('mozilla-form-helper.js', function() {
             'name': 'Name is required'
         };
 
-        var email_errors = {
+        var emailErrors = {
             'email': 'Email is required'
         };
 
         beforeEach(function () {
             //create an HTML fixture to test against
-            $('<div id="testDisplayFormErrors">' + form_html + '</div>').appendTo('body');
+            $('<div id="testDisplayFormErrors">' + formHtml + '</div>').appendTo('body');
         });
 
         afterEach(function(){
@@ -39,13 +39,13 @@ describe('mozilla-form-helper.js', function() {
 
         it('should display error for name and email', function() {
             Mozilla.FormHelper.displayErrors(errors);
-            var error_count = $('label[for="email"]').prev('.errorlist').length;
-            error_count += $('label[for="name"]').prev('.errorlist').length;
-            expect(error_count).toBe(2);
+            var errorCount = $('label[for="email"]').prev('.errorlist').length;
+            errorCount += $('label[for="name"]').prev('.errorlist').length;
+            expect(errorCount).toBe(2);
         });
 
         it('should display error for email only', function() {
-            Mozilla.FormHelper.displayErrors(email_errors);
+            Mozilla.FormHelper.displayErrors(emailErrors);
             expect($('.errorlist').length).toBe(1);
         });
 
@@ -53,14 +53,14 @@ describe('mozilla-form-helper.js', function() {
             // adds two error messages
             Mozilla.FormHelper.displayErrors(errors);
             // mimic re-submission of form with only email error
-            Mozilla.FormHelper.displayErrors(email_errors);
+            Mozilla.FormHelper.displayErrors(emailErrors);
             expect($('.errorlist').length).toBe(1);
         });
 
         describe('form in modal with duplicate field ids', function() {
             beforeEach(function() {
                 // add form again to DOM - mimic modal that duplicates markup
-                $('<div id="testModal">' + form_html + '</div>').appendTo($('#testDisplayFormErrors'));
+                $('<div id="testModal">' + formHtml + '</div>').appendTo($('#testDisplayFormErrors'));
             });
 
             afterEach(function() {

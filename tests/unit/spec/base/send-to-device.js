@@ -4,6 +4,8 @@
  */
 
 /* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* eslint camelcase: [2, {properties: "never"}] */
+/* eslint new-cap: ["error", {"capIsNewExceptions": ["Deferred"]}] */
 
 describe('send-to-device.js', function() {
 

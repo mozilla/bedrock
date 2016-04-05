@@ -62,7 +62,7 @@ describe('win10-welcome.js', function() {
             expect(Mozilla.Win10Welcome.clearDefaultCheck).toHaveBeenCalled();
             expect(window.dataLayer.push).toHaveBeenCalledWith({
                 'event': 'windows-10-welcome',
-                'interaction': 'default-set',
+                'interaction': 'default-set'
             });
         });
     });
@@ -102,7 +102,7 @@ describe('win10-welcome.js', function() {
             expect(Mozilla.FirefoxDefault.setDefaultBrowser).toHaveBeenCalled();
             expect(window.dataLayer.push).toHaveBeenCalledWith({
                 'event': 'windows-10-welcome',
-                'interaction': 'set-default-cta-click',
+                'interaction': 'set-default-cta-click'
             });
         });
     });
@@ -114,7 +114,7 @@ describe('win10-welcome.js', function() {
             Mozilla.Win10Welcome.trackTabVisibility();
             expect(window.dataLayer.push).toHaveBeenCalledWith({
                 'event': 'windows-10-welcome',
-                'interaction': 'tab-visible',
+                'interaction': 'tab-visible'
             });
         });
     });

@@ -4,6 +4,7 @@
  */
 
 /* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* eslint new-cap: ["error", {"capIsNewExceptions": ["Event"]}] */
 
 describe('browser-tour.js', function() {
 
@@ -24,73 +25,72 @@ describe('browser-tour.js', function() {
         jQuery.fx.off = true;
 
         // example tour template markup
-        var tourMarkup = [
-          '<div id="ui-tour" tabindex="-1" aria-expanded="false">',
-            '<div class="cta">',
-              '<button type="button" aria-controls="ui-tour">Start browsing</button>',
-            '</div>',
-            '<div class="tour-tip"></div>',
-            '<div class="ui-tour-controls">',
-              '<button class="step prev" aria-controls="tour-steps tour-progress">Previous</button>',
-              '<button class="step next" aria-controls="tour-steps tour-progress">Next</button>',
-              '<button class="close" aria-controls="tour-steps tour-progress">Close</button>',
-            '</div>',
-            '<div class="tour-background">',
-              '<div class="tour-inner">',
-                '<div id="tour-progress" class="progress-step">',
-                  '<div class="logo"></div>',
-                  '<span class="step"></span>',
-                  '<div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">',
-                    '<span class="indicator"></span>',
-                  '</div>',
-                '</div>',
-                '<ul id="tour-steps" class="ui-tour-list">',
-                  '<li class="tour-step current app-menu visible" data-step="1" data-tip-next="Next">',
-                    '<div class="tour-item">',
-                      '<h2 class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">',
-                        'Title text',
-                      '</h2>',
-                      '<ul class="tour-menu step-target" data-target="appMenu">',
-                        '<li><a href="#" role="button" class="more">Link text</a></li>',
-                      '</ul>',
-                    '</div>',
-                  '</li>',
-                  '<li class="tour-step" data-step="2" data-tip-prev="Previous" data-tip-next="Next">',
-                    '<div class="tour-item">',
-                      '<h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">',
-                        'Title text',
-                      '</h2>',
-                      '<ul>',
-                        '<li><a href="#" role="button" class="more">Link text</a></li>',
-                      '</ul>',
-                    '</div>',
-                  '</li>',
-                  '<li class="tour-step" data-step="3" data-tip-prev="Previous">',
-                    '<div class="tour-item">',
-                      '<h2 class="tour-show-hello-panel step-target">',
-                        'Title text',
-                      '</h2>',
-                      '<ul>',
-                        '<li><a href="#" role="button" class="more">Link text</a></li>',
-                      '</ul>',
-                    '</div>',
-                  '</li>',
-                '</ul>',
-                '<div class="compact-title"></div>',
-                '<div class="tour-init" data-target="appMenu" data-icon="logo.png" data-icon-high-res="logo-high-res.png"></div>',
-              '</div>',
-            '</div>',
-          '</div>',
-          '<div id="ui-tour-mask" tabindex="-1">',
-            '<div class="mask-inner">',
-              '<div class="logo"></div>',
-              '<div class="stage">',
-                '<h1>Mask title</h1>',
-                '<p>Mask sub heading</p>',
-              '</div>',
-            '</div>',
-          '</div>',
-        ].join();
+        var tourMarkup =
+            '<div id="ui-tour" tabindex="-1" aria-expanded="false">' +
+                '<div class="cta">' +
+                    '<button type="button" aria-controls="ui-tour">Start browsing</button>' +
+                '</div>' +
+                '<div class="tour-tip"></div>' +
+                '<div class="ui-tour-controls">' +
+                    '<button class="step prev" aria-controls="tour-steps tour-progress">Previous</button>' +
+                    '<button class="step next" aria-controls="tour-steps tour-progress">Next</button>' +
+                    '<button class="close" aria-controls="tour-steps tour-progress">Close</button>' +
+                '</div>' +
+                '<div class="tour-background">' +
+                    '<div class="tour-inner">' +
+                        '<div id="tour-progress" class="progress-step">' +
+                            '<div class="logo"></div>' +
+                            '<span class="step"></span>' +
+                            '<div class="progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="4">' +
+                                '<span class="indicator"></span>' +
+                            '</div>' +
+                        '</div>' +
+                        '<ul id="tour-steps" class="ui-tour-list">' +
+                            '<li class="tour-step current app-menu visible" data-step="1" data-tip-next="Next">' +
+                                '<div class="tour-item">' +
+                                    '<h2 class="tour-highlight step-target" data-target="appMenu" data-effect="wobble">' +
+                                        'Title text' +
+                                    '</h2>' +
+                                    '<ul class="tour-menu step-target" data-target="appMenu">' +
+                                        '<li><a href="#" role="button" class="more">Link text</a></li>' +
+                                    '</ul>' +
+                                '</div>' +
+                            '</li>' +
+                            '<li class="tour-step" data-step="2" data-tip-prev="Previous" data-tip-next="Next">' +
+                                '<div class="tour-item">' +
+                                    '<h2 class="tour-highlight step-target" data-target="customize" data-effect="wobble">' +
+                                        'Title text' +
+                                    '</h2>' +
+                                    '<ul>' +
+                                        '<li><a href="#" role="button" class="more">Link text</a></li>' +
+                                    '</ul>' +
+                                '</div>' +
+                            '</li>' +
+                            '<li class="tour-step" data-step="3" data-tip-prev="Previous">' +
+                                '<div class="tour-item">' +
+                                    '<h2 class="tour-show-hello-panel step-target">' +
+                                        'Title text' +
+                                    '</h2>' +
+                                '<ul>' +
+                                    '<li><a href="#" role="button" class="more">Link text</a></li>' +
+                                '</ul>' +
+                                '</div>' +
+                            '</li>' +
+                        '</ul>' +
+                        '<div class="compact-title"></div>' +
+                        '<div class="tour-init" data-target="appMenu" data-icon="logo.png" data-icon-high-res="logo-high-res.png"></div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+            '<div id="ui-tour-mask" tabindex="-1">' +
+                '<div class="mask-inner">' +
+                    '<div class="logo"></div>' +
+                    '<div class="stage">' +
+                        '<h1>Mask title</h1>' +
+                        '<p>Mask sub heading</p>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
 
         $(tourMarkup).appendTo('body');
 

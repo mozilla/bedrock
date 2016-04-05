@@ -34,8 +34,8 @@
                  */
                 return 'oldwin';
             }
-            if (pf.indexOf("Win32") !== -1 ||
-                    pf.indexOf("Win64") !== -1) {
+            if (pf.indexOf('Win32') !== -1 ||
+                    pf.indexOf('Win64') !== -1) {
                 return 'windows';
             }
             if (/android/i.test(ua)) {
@@ -44,7 +44,7 @@
             if (/linux/i.test(pf) || /linux/i.test(ua)) {
                 return 'linux';
             }
-            if (pf.indexOf("MacPPC") !== -1) {
+            if (pf.indexOf('MacPPC') !== -1) {
                 return 'oldmac';
             }
             if (/Mac OS X 10.[0-5]\D/.test(ua)) {
@@ -55,13 +55,13 @@
                     pf.indexOf('iPod') !== -1 ) {
                 return 'ios';
             }
-            if (ua.indexOf("Mac OS X") !== -1) {
+            if (ua.indexOf('Mac OS X') !== -1) {
                 return 'osx';
             }
-            if (ua.indexOf("MSIE 5.2") !== -1) {
+            if (ua.indexOf('MSIE 5.2') !== -1) {
                 return 'oldmac';
             }
-            if (pf.indexOf("Mac") !== -1) {
+            if (pf.indexOf('Mac') !== -1) {
                 return 'oldmac';
             }
             if (pf === '' && /Firefox/.test(ua)) {
@@ -120,7 +120,7 @@
             return 'x86';
         },
 
-         getArchSize: function (ua, pf) {
+        getArchSize: function (ua, pf) {
             pf = (pf === '') ? '' : pf || navigator.platform;
             ua = ua || navigator.userAgent;
 

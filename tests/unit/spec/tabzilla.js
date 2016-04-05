@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn, Tabzilla */
 
 describe('tabzilla.js', function() {
 
@@ -142,7 +142,7 @@ describe('tabzilla.js', function() {
         testTransbar();
     });
 
-    describe("infobar.update", function () {
+    describe('infobar.update', function () {
 
         var setup = function (ua, buildID) {
             // Test a case where the latest version is a non-dot release
@@ -158,7 +158,7 @@ describe('tabzilla.js', function() {
             $('#tabzilla-infobar').remove();
 
             return result1 && result2;
-        }
+        };
 
         it('should return false if the user agent is not Firefox', function () {
             expect(setup('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)')).toBeFalsy();
