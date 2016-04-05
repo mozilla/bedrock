@@ -27,14 +27,14 @@
                 data: $sfForm.serialize(),
                 type: $sfForm.attr('method'),
                 dataType: 'json',
-                success: function(data, status, xhr) {
+                success: function() {
                     $('#partner-form').fadeOut('fast', function() {
                         $('#partner-form-success').css('visibility', 'visible').fadeIn('fast', function() {
                             scrollup();
                         });
                     });
                 },
-                error: function(xhr, status, error) {
+                error: function(xhr) {
                     // grab json string from server and convert to JSON obj
                     var json = $.parseJSON(xhr.responseText);
                     Mozilla.FormHelper.displayErrors(json.errors);

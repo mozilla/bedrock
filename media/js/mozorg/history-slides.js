@@ -2,15 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function(w, $) {
-    "use strict";
+(function(w, $) {
+    'use strict';
 
     // default user action to auto
     var action = 'auto';
     var $window = $(window);
     var $body = $('body');
     var $slideshow = $('#slideshow');
-    var wideMode = false;
     var hasMediaQueries = (typeof matchMedia !== 'undefined');
 
     // declare slideshow options
@@ -26,8 +25,8 @@
         reverseAnimationsWhenNavigatingBackwards: true,
         preventDelayWhenReversingAnimations: true,
         swipeEvents: {
-            left: "next",
-            right: "prev",
+            left: 'next',
+            right: 'prev',
             up: false,
             down: false
         }
@@ -47,19 +46,16 @@
             this.resizeTimeout = setTimeout(checkWidth, 200);
         });
     } else {
-        wideMode = true;
         $body.addClass('wide');
         $slideshow.addClass('on');
     }
 
     function checkWidth() {
         if (window.matchMedia('screen and (min-width: 1000px)').matches) {
-            wideMode = true;
             $body.addClass('wide');
             $slideshow.addClass('on');
             slideshow.startAutoPlay();
         } else {
-            wideMode = false;
             $body.removeClass('wide');
             $slideshow.removeClass('on');
             slideshow.stopAutoPlay();

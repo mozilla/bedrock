@@ -2,32 +2,33 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/*global $:true, isDoNotTrackEnabled:true */
 $(function() {
-    "use strict";
+    'use strict';
 
-    // Detects whether do not track is enabled and takes one of two possible actions:
-    // 1. If an element with the id #dnt-enabled exists it will
-    // 1.1 if positive, set the element text to the positive message text below
-    // 1.2 if negative, set the element text to the negative message text and, change
-    //     the class of the element to button insensitive instead of the default of button
-    // 2. If an element with the id #dnt-enabled does not exist, the function will simply
-    //    either return true or false.
+    /**
+     * Detects whether do not track is enabled and takes one of two possible actions:
+     * 1. If an element with the id #dnt-enabled exists it will
+     * 1.1 if positive, set the element text to the positive message text below
+     * 1.2 if negative, set the element text to the negative message text and, change
+     *     the class of the element to button insensitive instead of the default of button
+     * 2. If an element with the id #dnt-enabled does not exist, the function will simply
+     *    either return true or false.
+     */
     function setDoNotTrackStatus() {
-        var enabled = window.navigator.doNotTrack === "yes",
-        dntEnabledButton = document.getElementById("dnt-enabled"),
-        msgText = enabled ? document.createTextNode("Do Not Track Is On »") : document.createTextNode("Do Not Track Is Off »");
+        var enabled = window.navigator.doNotTrack === 'yes';
+        var dntEnabledButton = document.getElementById('dnt-enabled');
+        var msgText = enabled ? document.createTextNode('Do Not Track Is On »') : document.createTextNode('Do Not Track Is Off »');
 
-        if(enabled) {
-            if(dntEnabledButton) {
+        if (enabled) {
+            if (dntEnabledButton) {
                 dntEnabledButton.appendChild(msgText);
             } else {
                 return true;
             }
         } else {
-            if(dntEnabledButton) {
+            if (dntEnabledButton) {
                 dntEnabledButton.appendChild(msgText);
-                dntEnabledButton.setAttribute("class", "button insensitive");
+                dntEnabledButton.setAttribute('class', 'button insensitive');
             } else {
                 return false;
             }
@@ -36,24 +37,24 @@ $(function() {
 
     setDoNotTrackStatus();
 
-    var panel_open_text = window.trans('tabpanel-open-text');
-    var panel_close_text = window.trans('tabpanel-close-text');
+    var panelOpenText = window.trans('tabpanel-open-text');
+    var panelCloseText = window.trans('tabpanel-close-text');
 
     // Accordion widgets in the highlight box
     $('#main-content .accordion').each(function(accordionIndex) {
         $(this).attr({
-          'role': 'tablist',
-          'aria-multiselectable': 'true'
+            'role': 'tablist',
+            'aria-multiselectable': 'true'
         }).find('[role="tab"]').each(function(tabIndex) {
             var expanded = false;
             var id = this.id || $(this).parent().attr('id')
                              || 'accordion-' + accordionIndex + '-tab-' + tabIndex;
             var $tab = $(this);
             var $panel = $('#' + $(this).attr('aria-controls'));
-            var $anchor = $('<a href="#" role="button">' + panel_open_text + '</a>');
+            var $anchor = $('<a href="#" role="button">' + panelOpenText + '</a>');
 
             if (!$panel.length) {
-              $panel = $tab.next('[role="tabpanel"]').attr('id', id + '-tabpanel');
+                $panel = $tab.next('[role="tabpanel"]').attr('id', id + '-tabpanel');
             }
 
             // Still cannot find the tabpanel, stop adding tweaks
@@ -63,14 +64,14 @@ $(function() {
             }
 
             $tab.attr({
-              'tabindex': '-1',
-              'aria-controls': id + '-tabpanel',
-              'aria-expaned': 'false'
+                'tabindex': '-1',
+                'aria-controls': id + '-tabpanel',
+                'aria-expaned': 'false'
             });
 
             $panel.attr({
-              'tabindex': '-1',
-              'aria-hidden': 'true'
+                'tabindex': '-1',
+                'aria-hidden': 'true'
             });
 
             $tab.on('click', function (event) {
@@ -78,7 +79,7 @@ $(function() {
                 expanded = !expanded;
                 $tab.attr('aria-expaned', expanded);
                 $panel.attr('aria-hidden', !expanded);
-                $anchor.text((expanded) ? panel_close_text : panel_open_text);
+                $anchor.text((expanded) ? panelCloseText : panelOpenText);
             });
 
             $anchor.on('click', function (event) {
@@ -89,7 +90,7 @@ $(function() {
 
     // Support location hashes, including the following Firefox in-product
     // links: #health-report, #telemetry and #crash-reporter
-    $(window).on('load hashchange', function (event) {
+    $(window).on('load hashchange', function () {
         if (location.hash && $(location.hash).length) {
             var $tabpanel = $(location.hash).parents('[role="tabpanel"]');
 

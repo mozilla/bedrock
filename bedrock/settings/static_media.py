@@ -1013,12 +1013,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'css/contribute-signup-bundle.js',
     },
-    'existing': {
-        'source_filenames': (
-            'js/newsletter/existing.js',
-        ),
-        'output_filename': 'js/existing-bundle.js',
-    },
     'accordion': {
         'source_filenames': (
             'js/base/mozilla-accordion.js',

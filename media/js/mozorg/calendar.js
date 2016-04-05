@@ -4,6 +4,7 @@
 
 $(function() {
     'use strict';
+    
     var versionBox = document.getElementById('version-box');
     var downloadBox = document.getElementById('download-link');
     var lang = document.getElementById('lightning').getAttribute('data-lang');
@@ -18,11 +19,11 @@ $(function() {
 
             var downloadLink = downloadBox.getAttribute('href');
             if (window.site.platform === 'windows') {
-                downloadLink = $(xml).find("install[os='WINNT']").text();
+                downloadLink = $(xml).find('install[os="WINNT"]').text();
             } else if (window.site.platform === 'osx') {
-                downloadLink = $(xml).find("install[os='Darwin']").text();
+                downloadLink = $(xml).find('install[os="Darwin"]').text();
             } else if (window.site.platform === 'linux') {
-                downloadLink = $(xml).find("install[os='Linux']").text();
+                downloadLink = $(xml).find('install[os="Linux"]').text();
             }
             downloadBox.setAttribute('href', downloadLink);
         }

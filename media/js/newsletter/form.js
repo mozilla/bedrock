@@ -35,25 +35,6 @@ $(function () {
     initFooterEmailForm();
 
     /*
-     * Reallly primative validation e.g a@a matches built-in validation in Firefox
-     * @param string email
-     */
-    function validateEmail (email) {
-        var emailPattern = /\S+@\S+/;
-        return emailPattern.test(email);
-    }
-
-    /*
-     * Validate required form fields are met
-     * @param jQuery form object
-     */
-    function validateForm ($form) {
-        var email = $form.find('#id_email').val();
-        var $privacy = $form.find('#id_privacy');
-        return validateEmail(email) && $privacy.is(':checked');
-    }
-
-    /*
      * Get the newsletter name for tracking in GA
      * @param jQuery form object
      */
@@ -64,7 +45,7 @@ $(function () {
         // from that. If not, assume we've got one of the forms that subscribes
         // to the foundation newsletter.
         if ($input.length === 0) {
-            return "Registered for Firefox Updates";
+            return 'Registered for Firefox Updates';
         }
         return $input.val();
     }
@@ -100,7 +81,7 @@ $(function () {
 
         // have to collect data before disabling inputs
         var formData = $self.serialize();
-        disable_form();
+        disableForm();
 
         $.ajax($self.attr('action'), {
             'method': 'post',
@@ -117,10 +98,10 @@ $(function () {
                 $thanks.css('min-height', formHeight);
                 $self.hide();
 
-                // enable_form to cancel interval and enable form elements.
+                // enableForm to cancel interval and enable form elements.
                 // if page is refreshed and form elements are disabled,
                 // they will be disabled after refresh.
-                enable_form();
+                enableForm();
 
                 // show the thank you message
                 $thanks.show();
@@ -138,23 +119,23 @@ $(function () {
                     $errorlist.append('<li>' + data.errors[i] + '</li>');
                 }
                 $errors.show();
-                enable_form();
+                enableForm();
             }
         }).fail(function () {
             // shouldn't need l10n. This should almost never happen.
             $errorlist.append('<li>An unknown error occurred. Please try again later</li>');
             $errors.show();
-            enable_form();
+            enableForm();
         });
 
-        function disable_form() {
+        function disableForm() {
             $self.addClass('loading');
             $self.find('input,select').prop('disabled', true);
             $submitbutton.addClass('insensitive');
             spinner.spin($spinnerTarget.show()[0]);
         }
 
-        function enable_form() {
+        function enableForm() {
             $self.removeClass('loading');
             $self.find('input,select').prop('disabled', false);
             $submitbutton.removeClass('insensitive');
