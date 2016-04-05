@@ -79,3 +79,10 @@
 {# Don't display an email signup form in the footer of this page, #}
 {# it would be redundant. #}
 {% block email_form %}{% endblock %}
+
+{# Don't display the footer if there is a token present. bug 1247446 #}
+{% block site_footer %}
+  {% if not token %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
