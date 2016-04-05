@@ -1,0 +1,17 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@groundColor: #11336B;
+
+.buildstar(@size, @left, @top, @speed, @delay) {
+    .animation(twinkle @speed ease-in-out @delay 12 alternate-reverse);
+    background: #fff;
+    border-radius: 50%;
+    height: @size;
+    left: @left;
+    opacity: 0;
+    position: absolute;
+    top: @top;
+    width: @size;
+}

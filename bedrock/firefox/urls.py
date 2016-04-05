@@ -14,6 +14,7 @@ from bedrock.releasenotes import version_re
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 firstrun_learnmore_re = latest_re % (version_re, 'firstrun/learnmore')
+secondrun_re = latest_re % (version_re, 'secondrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 tour_re = latest_re % (version_re, 'tour')
 hello_start_re = latest_re % (version_re, 'hello/start')
@@ -76,6 +77,7 @@ urlpatterns = (
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(firstrun_learnmore_re, views.FirstrunLearnMoreView.as_view(),
         name='firefox.firstrun.learnmore'),
+    url(secondrun_re, views.SecondrunView.as_view(), name='firefox.secondrun'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
     url(tour_re, views.TourView.as_view(), name='firefox.tour'),
     url(hello_start_re, views.HelloStartView.as_view(), name='firefox.hello.start'),
