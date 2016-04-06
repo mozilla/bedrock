@@ -8,13 +8,13 @@ from selenium.common.exceptions import TimeoutException
 from pages.firefox.ios import IOSPage
 
 
-@pytest.mark.flaky(reruns=1, reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1218451')
+@pytest.mark.nondestructive
 def test_send_to_device_sucessful_submission(base_url, selenium):
     page = IOSPage(base_url, selenium).open()
     page.click_get_it_now()
     send_to_device = page.send_to_device
     assert page.send_to_device.is_displayed
-    send_to_device.type_email('noreply@mozilla.com')
+    send_to_device.type_email('success@example.com')
     send_to_device.click_send()
     assert send_to_device.send_successful
 

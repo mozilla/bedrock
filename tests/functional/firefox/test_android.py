@@ -8,11 +8,11 @@ from selenium.common.exceptions import TimeoutException
 from pages.firefox.android import AndroidPage
 
 
-@pytest.mark.flaky(reruns=1, reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1218451')
+@pytest.mark.nondestructive
 def test_send_to_device_sucessful_submission(base_url, selenium):
     page = AndroidPage(base_url, selenium).open()
     send_to_device = page.send_to_device
-    send_to_device.type_email('noreply@mozilla.com')
+    send_to_device.type_email('success@example.com')
     send_to_device.click_send()
     assert send_to_device.send_successful
 

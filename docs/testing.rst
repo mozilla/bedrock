@@ -296,6 +296,21 @@ Guidelines for writing functional tests
 
 See also the `Web QA style guide`_ for Python based testing.
 
+Testing Basket email forms
+--------------------------
+
+When writing functional tests for front-end email newsletter forms that submit to
+`Basket`_, we have some special case email addresses that can be used just for testing:
+
+#. Any newsletter subscription request using the email address "success@example.com"
+   will always return success from the basket client.
+#. Any newsletter subscription request using the email address "failure@example.com"
+   will always raise an exception from the basket client.
+
+Using the above email addresses enables newsletter form testing without actually hitting
+the Basket instance, which reduces automated newsletter spam and improves test
+reliability due to any potential network flakiness.
+
 Link Checks
 -----------
 
@@ -327,3 +342,4 @@ and also do not depend on a crawler to find them.
 .. _Jenkins instance: https://ci.us-west.moz.works/
 .. _download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download.py
 .. _localized download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download_l10n.py
+.. _Basket: https://github.com/mozilla/basket
