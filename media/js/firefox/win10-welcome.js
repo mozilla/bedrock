@@ -48,7 +48,7 @@ if (typeof Mozilla === 'undefined') {
 
         window.dataLayer.push({
             'event': 'windows-10-welcome',
-            'interaction': 'default-set',
+            'interaction': 'default-set'
         });
     };
 
@@ -75,7 +75,7 @@ if (typeof Mozilla === 'undefined') {
 
         window.dataLayer.push({
             'event': 'windows-10-welcome',
-            'interaction': 'set-default-cta-click',
+            'interaction': 'set-default-cta-click'
         });
     };
 
@@ -97,7 +97,7 @@ if (typeof Mozilla === 'undefined') {
 
         window.dataLayer.push({
             'event': 'windows-10-welcome',
-            'interaction': 'tab-visible',
+            'interaction': 'tab-visible'
         });
     };
 

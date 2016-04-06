@@ -4,7 +4,7 @@
 
  /* globals Promise */
 
-;(function($, Mozilla) {
+(function($, Mozilla) {
     'use strict';
 
     var $window = $(window);

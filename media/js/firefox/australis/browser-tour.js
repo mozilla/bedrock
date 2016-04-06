@@ -7,7 +7,7 @@ if (typeof Mozilla == 'undefined') {
     var Mozilla = {};
 }
 
-;(function($, Mozilla) {
+(function($, Mozilla) {
     'use strict';
 
     function BrowserTour (options) {
@@ -88,7 +88,6 @@ if (typeof Mozilla == 'undefined') {
     BrowserTour.prototype.init = function () {
         var that = this;
         var $p = this.$maskInner.find('p');
-        var $main = this.$maskInner.find('.main');
         var words = $p.text().split(' ');
         var delay = $('body').hasClass('html-ltr') ? 100 : 0;
         var $tempEl = $('<div>');

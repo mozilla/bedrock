@@ -7,7 +7,7 @@ if (typeof Mozilla == 'undefined') {
     var Mozilla = {};
 }
 
-;(function($) {
+(function() {
     'use strict';
 
     // create namespace
@@ -43,10 +43,12 @@ if (typeof Mozilla == 'undefined') {
         var id = _generateCallbackID();
 
         function listener(event) {
-            if (typeof event.detail != 'object')
+            if (typeof event.detail != 'object') {
                 return;
-            if (event.detail.callbackID != id)
+            }
+            if (event.detail.callbackID !== id) {
                 return;
+            }
 
             document.removeEventListener('mozUITourResponse', listener);
             callback(event.detail.data);
@@ -88,11 +90,14 @@ if (typeof Mozilla == 'undefined') {
             }
         }
 
-        var closeButtonCallbackID, targetCallbackID;
-        if (options && options.closeButtonCallback)
+        var closeButtonCallbackID;
+        var targetCallbackID;
+        if (options && options.closeButtonCallback) {
             closeButtonCallbackID = _waitForCallback(options.closeButtonCallback);
-        if (options && options.targetCallback)
+        }
+        if (options && options.targetCallback) {
             targetCallbackID = _waitForCallback(options.targetCallback);
+        }
 
         _sendEvent('showInfo', {
             target: target,

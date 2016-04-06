@@ -1,4 +1,4 @@
-;(function($, Mozilla) {
+(function($, Mozilla) {
     'use strict';
 
     var client = Mozilla.Client;

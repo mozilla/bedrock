@@ -1,4 +1,8 @@
-;(function($, Mozilla) {
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+(function($, Mozilla) {
     'use strict';
 
     var pageId = $('body').prop('id');
@@ -42,7 +46,7 @@
     }
 
     // link directly to Firefox Accounts when clicking the Sync CTA button
-    Mozilla.UITour.getConfiguration('sync', function (config) {
+    Mozilla.UITour.getConfiguration('sync', function () {
         $('.sync-cta .button').each(function() {
             $(this).attr({
                 'data-page-name': pageId,

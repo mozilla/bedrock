@@ -446,7 +446,9 @@ if (typeof Mozilla === 'undefined') {
         });
         try {
             localStorage.removeItem('hello_ftu_tour_source');
-        } catch (ex) { }
+        } catch (ex) {
+            //empty block
+        }
     };
 
     HelloFTU.getTourSourceFromStorage = function() {
@@ -463,7 +465,9 @@ if (typeof Mozilla === 'undefined') {
     HelloFTU.setTourSourceToStorage = function(tourSource) {
         try {
             localStorage.setItem('hello_ftu_tour_source', tourSource);
-        } catch (ex) { }
+        } catch (ex) {
+            // empty block
+        }
     };
 
     window.Mozilla.HelloFTU = HelloFTU;
