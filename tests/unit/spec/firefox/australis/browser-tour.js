@@ -4,7 +4,7 @@
  */
 
 /* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
-/* eslint new-cap: ["error", {"capIsNewExceptions": ["Event"]}] */
+/* eslint new-cap: [2, {"capIsNewExceptions": ["Event"]}] */
 
 describe('browser-tour.js', function() {
 
