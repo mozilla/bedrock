@@ -8,12 +8,13 @@ from selenium.common.exceptions import TimeoutException
 from pages.partnerships import PartnershipsPage
 
 
+@pytest.mark.nondestructive
 def test_request_partnership(base_url, selenium):
     page = PartnershipsPage(base_url, selenium).open()
     page.type_first_name('Automated')
     page.type_last_name('Test')
     page.type_company('Mozilla')
-    page.type_email('noreply@mozilla.com')
+    page.type_email('success@example.com')
     page.submit_request()
     assert page.request_successful
 

@@ -52,12 +52,12 @@ def test_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
     assert page.newsletter.is_privacy_policy_link_displayed
 
 
-@pytest.mark.flaky(reruns=1, reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1218451')
+@pytest.mark.nondestructive
 @pytest.mark.parametrize('page_class', [HomePage, ContributePage])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(base_url, selenium).open()
     page.newsletter.expand_form()
-    page.newsletter.type_email('noreply@mozilla.com')
+    page.newsletter.type_email('success@example.com')
     page.newsletter.select_country('United Kingdom')
     page.newsletter.select_text_format()
     page.newsletter.accept_privacy_policy()
