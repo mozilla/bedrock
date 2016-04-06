@@ -29,6 +29,14 @@
   {% endif %}
 {% endblock %}
 
+{% block page_title_full %}
+  {% if f == '65' %}
+    {{ _('Try Yahoo Search') }}
+  {% else %}
+    {{ _('Search and see, with Yahoo Search.') }}
+  {% endif %}
+{% endblock %}
+
 {% block body_class %}{% endblock %}
 
 {% block site_header %}
