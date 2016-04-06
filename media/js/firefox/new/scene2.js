@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function($, dataLayer) {
+(function($, dataLayer) {
     'use strict';
 
     var isIELT9 = window.Mozilla.Client.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent);
@@ -50,7 +50,7 @@
         // An iframe cannot be used here to trigger the download because
         // it will be blocked by Chrome if the download link redirects
         // to a HTTP URI and we are on HTTPS.
-        window.dataLayer.push({
+        dataLayer.push({
             'event': 'virtual-pageview',
             'virtualUrl': virtualUrl
         });

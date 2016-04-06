@@ -3,13 +3,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* global YT */
+/* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
 // YouTube API hook has to be in global scope
 function onYouTubeIframeAPIReady() {
     Mozilla.firstRunOnYouTubeIframeAPIReady();
 }
 
-;(function($) {
+(function($) {
     'use strict';
 
     var tag = document.createElement('script');
@@ -50,7 +51,7 @@ function onYouTubeIframeAPIReady() {
             }
 
             function onPlayerStateChange(event) {
-                if (event.data == YT.PlayerState.ENDED) {
+                if (event.data === YT.PlayerState.ENDED) {
 
                     window.dataLayer.push({
                         'event': 'video-complete',
@@ -61,8 +62,7 @@ function onYouTubeIframeAPIReady() {
 
             var player;
 
-            Mozilla.Modal.createModal(this,
-                $videoContainer, {
+            Mozilla.Modal.createModal(this, $videoContainer, {
                 title: videoTitle,
                 onCreate: function() {
                     player = new YT.Player($video.get(0), {
@@ -80,7 +80,6 @@ function onYouTubeIframeAPIReady() {
                 }
             });
         });
-
     }
 
     Mozilla.firstRunOnYouTubeIframeAPIReady = onYouTubeIframeAPIReady;

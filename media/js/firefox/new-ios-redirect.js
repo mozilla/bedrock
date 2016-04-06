@@ -13,7 +13,9 @@ if (typeof window.Mozilla === 'undefined') {
     if (site.platform === 'ios') {
         var referrer = window.document.referrer;
         var qs = '';
-        var isSearchEngine, medium, source;
+        var isSearchEngine;
+        var medium;
+        var source;
 
         // make sure a referrer exists
         if (referrer) {

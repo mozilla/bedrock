@@ -2,7 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function($, dataLayer) {
+(function($, dataLayer) {
     'use strict';
 
     var $html = $(document.documentElement);
@@ -75,7 +75,7 @@
     }
 
     //GA Custom Dimension in Pageview
-    window.dataLayer.push({
+    dataLayer.push({
         'event': 'set-state',
         'state': state
     });

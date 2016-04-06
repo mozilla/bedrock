@@ -49,7 +49,7 @@ $(document).ready(function() {
             }).addTo(map);
         },
 
-        handleError: function(error) {
+        handleError: function() {
             $('#locateButton').siblings('img').hide();
             $('#geodemo-error').show();
         },
@@ -61,8 +61,9 @@ $(document).ready(function() {
         }
     };
 
-    if (!navigator.geolocation) return true; // Fx 3.5+ only
-    var that = this;
+    if (!navigator.geolocation) {
+        return true; // Fx 3.5+ only
+    }
 
     $('#try-geolocation').show();
 

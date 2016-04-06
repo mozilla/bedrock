@@ -9,7 +9,6 @@
     var $document = $(document);
     var client = window.Mozilla.Client;
     var state; // track page state
-    var $downloadSmallLinks = $('#download-buttons .download-other');
 
     var uiTourSendEvent = function(action, data) {
         var event = new CustomEvent('mozUITour', {

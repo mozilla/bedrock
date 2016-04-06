@@ -6,10 +6,8 @@
     'use strict';
 
     var client = w.Mozilla.Client;
-    var $html = $('html');
 
     function showDownloadButtons() {
-        var downloadVersion = 'Firefox for Desktop';
         // hide the footer download button and extend email form to full width
         $('#download-wrapper').show();
         $('#subscribe-wrapper').addClass('columned');

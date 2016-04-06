@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-;(function($, Mozilla) {
+(function($, Mozilla) {
     'use strict';
 
     window.dataLayer = window.dataLayer || [];

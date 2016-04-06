@@ -2,8 +2,9 @@
 * License, v. 2.0. If a copy of the MPL was not distributed with this
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function($) {
+(function($) {
     'use strict';
+
     $('.modal-link').attr('data-track', 'true').on('click', function(e) {
         e.preventDefault();
 
@@ -11,15 +12,15 @@
 
         var $content = $(href);
 
-        var create_callback;
+        var createCallback;
 
         if (typeof(window.scrollMwcMap) === 'function') {
-          create_callback = ($content.attr('id') === 'map') ? window.scrollMwcMap : null;
+            createCallback = ($content.attr('id') === 'map') ? window.scrollMwcMap : null;
         }
 
         Mozilla.Modal.createModal(this, $content, {
             title: $content.find('.modal-content-header:first').text(),
-            onCreate: create_callback
+            onCreate: createCallback
         });
     });
 

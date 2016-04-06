@@ -16,18 +16,18 @@ if (typeof Mozilla == 'undefined') {
  *
  * Required less file: 'css/base/svg-animation-check.less'
  */
-Mozilla.SVGAnimCheck = function() {
-    if (!Mozilla.SVGAnimCheck.supportsInlineSVG() || !Mozilla.SVGAnimCheck.supportsCSSAnimations()) {
+Mozilla.svgAnimCheck = function() {
+    if (!Mozilla.svgAnimCheck.supportsInlineSVG() || !Mozilla.svgAnimCheck.supportsCSSAnimations()) {
         return false;
     } else {
-        return Mozilla.SVGAnimCheck.supportsCSSAnimatedPaths();
+        return Mozilla.svgAnimCheck.supportsCSSAnimatedPaths();
     }
 };
 
 /**
  * Detect CSS animation support (only checks for webkit and unprefixed)
  */
-Mozilla.SVGAnimCheck.supportsCSSAnimations = function() {
+Mozilla.svgAnimCheck.supportsCSSAnimations = function() {
     var div = document.createElement('div');
 
     // note we're only checking for Webkit vendor prefix as all other browsers
@@ -42,7 +42,7 @@ Mozilla.SVGAnimCheck.supportsCSSAnimations = function() {
 /**
  * Detect support for inline SVG elements.
  */
-Mozilla.SVGAnimCheck.supportsInlineSVG = function() {
+Mozilla.svgAnimCheck.supportsInlineSVG = function() {
     var div = document.createElement('div');
     div.innerHTML = '<svg/>';
     return (div.firstChild && div.firstChild.namespaceURI) === 'http://www.w3.org/2000/svg';
@@ -51,7 +51,7 @@ Mozilla.SVGAnimCheck.supportsInlineSVG = function() {
 /**
  * Try to animate stroke-dashoffset using CSS and then get the computed value to see if it has changed.
  */
-Mozilla.SVGAnimCheck.supportsCSSAnimatedPaths = function() {
+Mozilla.svgAnimCheck.supportsCSSAnimatedPaths = function() {
     var div = document.createElement('div');
     var circle;
     var offset;

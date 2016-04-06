@@ -1,3 +1,9 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* eslint no-unused-vars: [2, { "varsIgnorePattern": "buildsPager" }] */
+
 (function($){
     'use strict';
 
@@ -8,7 +14,7 @@
         buildsPager = new Mozilla.Pager($('#main-content'));
     }
 
-    $(function(){
+    $(function (){
         var $form = $('#language-search');
         var $input = $('#language-search-q');
         var $tables = $('table.build-table');
@@ -20,10 +26,10 @@
             e.preventDefault();
 
             var historyEnabled = typeof history.replaceState === 'function' && e.originalEvent;
-            var search_q = $.trim($input.val());  // trim whitespace
+            var searchQ = $.trim($input.val());  // trim whitespace
 
-            if (!search_q) {
-                show_all();
+            if (!searchQ) {
+                showAll();
 
                 // Replace the browser history to clear the search query
                 if (historyEnabled) {
@@ -35,12 +41,12 @@
 
             $tables.each(function(){
                 var $table = $(this);
-                var $table_content = $table.find('thead, tbody');
+                var $tableContent = $table.find('thead, tbody');
                 var $container = $table.closest('div');
-                var $not_found = $container.find('.not-found');
-                var $all_rows = $table.find('tr[data-search]');
-                var $matches = $all_rows.filter(function(){
-                    var words = search_q.toLowerCase().split(/,|,?\s+/);
+                var $notFound = $container.find('.not-found');
+                var $allRows = $table.find('tr[data-search]');
+                var $matches = $allRows.filter(function(){
+                    var words = searchQ.toLowerCase().split(/,|,?\s+/);
                     var data = $(this).data('search');
                     var count = 0;
                     // Array.every is not supported by older IEs. Go traditional.
@@ -53,21 +59,21 @@
                 });
 
                 if ($matches.length) {
-                    $all_rows.not($matches).hide();
+                    $allRows.not($matches).hide();
                     $matches.show();
-                    $table_content.show();
-                    $not_found.hide();
+                    $tableContent.show();
+                    $notFound.hide();
                 }
                 else {
-                    $table_content.hide();
-                    $not_found.show();
+                    $tableContent.hide();
+                    $notFound.show();
                 }
             });
 
             // Replace the browser history to save the search query
             if (historyEnabled) {
-                history.replaceState({ query: search_q }, document.title,
-                                     '?q=' + encodeURI(search_q));
+                history.replaceState({ query: searchQ }, document.title,
+                                     '?q=' + encodeURI(searchQ));
             }
         }
 
@@ -78,7 +84,7 @@
             $form.trigger('submit');
         });
 
-        function show_all(){
+        function showAll(){
             $tables.find('thead, tbody').show();
             $('tr[data-search]').show();
             $('.not-found').hide();
