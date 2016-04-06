@@ -2,12 +2,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function($, Hammer) {
+(function($, Hammer) {
     'use strict';
 
     var client = window.Mozilla.Client;
-
-    var $html = $('html');
     var $window = $(window);
     var $tipPrev = $('#tip-prev');
     var $tipNext = $('#tip-next');

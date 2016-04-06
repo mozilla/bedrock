@@ -5,7 +5,7 @@
 (function(Mozilla, $) {
     'use strict';
 
-    if (!Mozilla.SVGAnimCheck()) {
+    if (!Mozilla.svgAnimCheck()) {
         // use fallback browser image
         $('body').addClass('no-svg-anim');
     } else {

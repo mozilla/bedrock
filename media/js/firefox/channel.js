@@ -3,21 +3,16 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 $(document).ready(function() {
+
     var $logo = $('#masthead h2 img');
     var logoOriginalSrc = $logo.attr('src');
     var logoOriginalSrcSet = $logo.attr('srcset');
     var logoInverseSrc = $logo.attr('data-inverse-src');
     var logoInverseSrcSet = $logo.attr('data-inverse-srcset');
-
     var pager = Mozilla.Pager.pagers[0];
-    var selected_href = false;
 
-    function redirect(a) {
-        var href = a.href;
-    }
-
-    pager.$container.bind('changePage', function(e, tab) {
-        if (pager.currentPage.id == 'developer') {
+    pager.$container.bind('changePage', function() {
+        if (pager.currentPage.id === 'developer') {
             $('body').removeClass('sky').addClass('blueprint');
             $logo.attr({ 'src': logoInverseSrc, 'srcset': logoInverseSrcSet });
         } else {
@@ -26,9 +21,6 @@ $(document).ready(function() {
         }
 
         $('.pager-tabs a').unbind('click.outgoing');
-        $('.pager-tabs a.selected').bind('click.outgoing', function() {
-            redirect(this);
-        });
     });
 
     $('#carousel-left').click(function(e) {
@@ -42,17 +34,13 @@ $(document).ready(function() {
     });
 
     // init
-    if (pager.currentPage.id == 'developer') {
+    if (pager.currentPage.id === 'developer') {
         $('body').removeClass('sky').addClass('blueprint');
         $logo.attr({ 'src': logoInverseSrc, 'srcset': logoInverseSrcSet });
     } else {
         $('body').removeClass('blueprint').addClass('sky');
         $logo.attr({ 'src': logoOriginalSrc, 'srcset': logoOriginalSrcSet });
     }
-
-    $('.pager-tabs a.selected').bind('click.outgoing', function() {
-        redirect(this);
-    });
 
     if (location.hash === '#aurora') {
         location.hash = '#developer';

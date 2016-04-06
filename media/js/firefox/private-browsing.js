@@ -4,7 +4,7 @@
 
 /* global Waypoint */
 
-;(function($) {
+(function($) {
     'use strict';
 
     var client = window.Mozilla.Client;

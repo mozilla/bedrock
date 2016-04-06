@@ -4,7 +4,7 @@
 
 var Mozilla = window.Mozilla || {};
 
-;(function($) {
+(function($) {
     'use strict';
 
     Mozilla.syncAnimation = function() {

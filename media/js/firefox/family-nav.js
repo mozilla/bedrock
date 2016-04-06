@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-;(function(Mozilla, $, Waypoint) {
+(function(Mozilla, $, Waypoint) {
     'use strict';
 
     Mozilla.FxFamilyNav = (function() {
