@@ -31,14 +31,14 @@ if (typeof Mozilla === 'undefined') {
     TPTour.step1 = function() {
         var buttons = [
             {
-              label: _step1.stepText,
-              style: 'text',
+                label: _step1.stepText,
+                style: 'text'
             },
             {
-              callback: TPTour.step2,
-              label: _step1.buttonText,
-              style: 'primary',
-            },
+                callback: TPTour.step2,
+                label: _step1.buttonText,
+                style: 'primary'
+            }
         ];
 
         var options = {
@@ -69,13 +69,13 @@ if (typeof Mozilla === 'undefined') {
         var buttons = [
             {
                 label: _step3.stepText,
-                style: 'text',
+                style: 'text'
             },
             {
                 callback: TPTour.shouldCloseTab,
                 label: _step3.buttonText,
-                style: 'primary',
-            },
+                style: 'primary'
+            }
         ];
 
         var options = {

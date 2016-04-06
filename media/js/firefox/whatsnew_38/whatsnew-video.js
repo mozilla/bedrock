@@ -2,7 +2,7 @@
 * License, v. 2.0. If a copy of the MPL was not distributed with this
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-;(function($, Mozilla) {
+(function($, Mozilla) {
     'use strict';
 
     var $videoContent = $('#video-content');
@@ -39,6 +39,6 @@
                 'videoTitle': 'When its Personal Campaign Video'
             });
         }, 1000);
-     });
+    });
 
- })(window.jQuery, window.Mozilla);
+})(window.jQuery, window.Mozilla);

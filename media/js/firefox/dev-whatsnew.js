@@ -3,6 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* global YT */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
 // YouTube API hook has to be in global scope
 
@@ -16,7 +17,7 @@ function onYouTubeIframeAPIReady() {
     Mozilla.firstRunOnYouTubeIframeAPIReady();
 }
 
-;(function($, Mozilla) {
+(function($, Mozilla) {
     'use strict';
 
     var tag = document.createElement('script');

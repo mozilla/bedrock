@@ -1033,7 +1033,7 @@ PIPELINE_JS = {
     'firefox_accounts': {
         'source_filenames': (
             'js/base/search-params.js',
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/sync-animation.js',
             'js/firefox/accounts.js',
         ),
@@ -1141,7 +1141,7 @@ PIPELINE_JS = {
     },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/australis/fx38_0_5/firstrun.js',
         ),
         'output_filename': 'js/firefox_fx38_0_5_firstrun-bundle.js',
@@ -1154,7 +1154,7 @@ PIPELINE_JS = {
     },
     'firefox_developer_firstrun': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/base/mozilla-modal.js',
             'js/firefox/dev-firstrun.js',
         ),
@@ -1195,14 +1195,14 @@ PIPELINE_JS = {
     },
     'firefox_pocket': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/pocket.js',
         ),
         'output_filename': 'js/firefox_pocket-bundle.js',
     },
     'firefox_private_browsing': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/base/mozilla-highlight-target.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
@@ -1281,14 +1281,14 @@ PIPELINE_JS = {
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/firefox/family-nav.js',
             'js/firefox/sync-animation.js',
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/sync.js',
         ),
         'output_filename': 'js/firefox_sync-bundle.js',
     },
     'firefox_tour': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/australis/browser-tour.js',
             'js/firefox/australis/fx36/tour.js',
         ),
@@ -1302,7 +1302,7 @@ PIPELINE_JS = {
     },
     'firefox_hello_start': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/hello/hello-ftu.js',
             'js/firefox/hello/start-ftu.js',
         ),
@@ -1311,14 +1311,14 @@ PIPELINE_JS = {
     'firefox_hello_start_45': {
         'source_filenames': (
             'js/base/search-params.js',
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/hello/start-45.js',
         ),
         'output_filename': 'js/firefox_hello_start_45-bundle.js',
     },
     'firefox_hello': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/firefox/family-nav.js',
@@ -1333,7 +1333,7 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
             'js/base/search-params.js',
             'js/base/send-to-device.js',
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/firefox/family-nav.js',
@@ -1344,7 +1344,7 @@ PIPELINE_JS = {
     'firefox_tour_none': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/australis/common.js',
             'js/firefox/australis/no-tour.js',
         ),
@@ -1360,7 +1360,7 @@ PIPELINE_JS = {
     'firefox_whatsnew_38_pocket': {
         'source_filenames': (
             'js/base/mozilla-modal.js',
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/whatsnew_38/pocket-uitour.js',
             'js/firefox/whatsnew_38/whatsnew-pocket.js',
         ),
@@ -1368,7 +1368,7 @@ PIPELINE_JS = {
     },
     'firefox_whatsnew_42_a': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/base/mozilla-highlight-target.js',
             'js/firefox/whatsnew_42/variant-a.js',
         ),
@@ -1376,7 +1376,7 @@ PIPELINE_JS = {
     },
     'firefox_firstrun_42_learnmore': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/base/mozilla-highlight-target.js',
             'js/firefox/firstrun/learnmore/learnmore.js',
         ),
@@ -1384,14 +1384,14 @@ PIPELINE_JS = {
     },
     'firefox_firstrun_learnmore_yahoo_search': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/firstrun/learnmore/yahoo-search.js',
         ),
         'output_filename': 'js/firefox_firstrun_learnmore_yahoo_search-bundle.js',
     },
     'firefox_win10_welcome': {
         'source_filenames': (
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/base/mozilla-firefox-default.js',
             'js/firefox/win10-welcome.js',
             'js/firefox/win10-welcome-init.js',
@@ -1549,7 +1549,7 @@ PIPELINE_JS = {
     'tracking-protection-tour': {
         'source_filenames': (
             'js/libs/jquery-1.11.3.min.js',
-            'js/firefox/australis/australis-uitour.js',
+            'js/base/uitour-lib.js',
             'js/firefox/tracking-protection-tour.js',
             'js/firefox/tracking-protection-tour-init.js',
         ),
