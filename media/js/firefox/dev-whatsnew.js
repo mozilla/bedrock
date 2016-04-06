@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* global YT */
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
+/* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
 // YouTube API hook has to be in global scope
 
