@@ -8,9 +8,9 @@ $(function() {
     var ltr = document.dir === 'ltr';
 
     // Set up the modal navigation
-    var nav_modal = function (direction) {
+    var navModal = function (direction) {
         var $origin = $('.modal-origin').removeClass('modal-origin');
-        var section_id = $origin.attr('id');
+        var sectionId = $origin.attr('id');
         var action;
 
         if (direction === 1) {
@@ -23,8 +23,8 @@ $(function() {
                                             : $origin.siblings(':last');
         }
 
-        $('#modal').attr('aria-labelledby', section_id).focus();
-        $('#modal .inner').attr('id', section_id + '-overlay');
+        $('#modal').attr('aria-labelledby', sectionId).focus();
+        $('#modal .inner').attr('id', sectionId + '-overlay');
         $('#modal .overlay-contents').replaceWith($origin.clone()
             .attr('tabindex', '0').addClass('overlay-contents'));
 
@@ -33,14 +33,14 @@ $(function() {
         window.dataLayer.push({
             'event': 'manifesto-interaction',
             'browserAction': action,
-            'section': section_id.match(/\d+/)[0]
+            'section': sectionId.match(/\d+/)[0]
         });
     };
 
     // Set up the modal
     $('[id^="principle-"]').each(function () {
         var $this = $(this);
-        var section_id = $this.attr('id');
+        var sectionId = $this.attr('id');
 
         $this.attr({
             'tabindex': '0'
@@ -49,7 +49,7 @@ $(function() {
             Mozilla.Modal.createModal(this, $this.clone().removeAttr('id'), {
                 'title': '',
                 'onCreate': function () {
-                    var $inner = $('#modal .inner').attr('id', section_id + '-overlay');
+                    $('#modal .inner').attr('id', sectionId + '-overlay');
                     var $nav = $('<nav role="presentation"></nav>').insertBefore('#modal-close');
 
                     $('<button class="next" aria-controls="modal"></button>')
@@ -69,7 +69,7 @@ $(function() {
                             'quoteNumber': $section.attr('data-ga-quote-number')
                         });
 
-                        nav_modal($this.hasClass('prev') ? -1 : 1);
+                        navModal($this.hasClass('prev') ? -1 : 1);
                     });
                 }
             });
@@ -97,29 +97,29 @@ $(function() {
         var direction = 0;
 
         switch (event.keyCode) {
-            case 37: // Left arrow
-                direction = ltr ? -1 : 1;
-                break;
-            case 38: // Up arrow
-                direction = -1;
-                break;
-            case 39: // Right arrow
-                direction = ltr ? 1 : -1;
-                break;
-            case 40: // Down arrow
-                direction = 1;
-                break;
+        case 37: // Left arrow
+            direction = ltr ? -1 : 1;
+            break;
+        case 38: // Up arrow
+            direction = -1;
+            break;
+        case 39: // Right arrow
+            direction = ltr ? 1 : -1;
+            break;
+        case 40: // Down arrow
+            direction = 1;
+            break;
         }
 
         if (direction) {
             event.preventDefault();
-            nav_modal(direction);
+            navModal(direction);
         }
     });
 
     // Open Twitter in a sub window
     // https://dev.twitter.com/docs/intents
-    var open_twitter_subwin = function (section, url) {
+    var openTwitterSubwin = function (section, url) {
 
 
         window.dataLayer.push({
@@ -160,7 +160,7 @@ $(function() {
         if ($this.hasClass('tweet')) {
             // Open Twitter in a sub window
             event.preventDefault();
-            open_twitter_subwin(section, href);
+            openTwitterSubwin(section, href);
         } else {
             // Open the link in a new tab
             $this.attr('target', '_blank');
@@ -175,11 +175,11 @@ $(function() {
         }
     });
 
-    var tell_link = $('#sec-tell .share .tweet');
+    var tellLink = $('#sec-tell .share .tweet');
 
     // Update the tweet link when the custom text is modifled
     $('#sec-tell textarea').on('input', function () {
-        tell_link.attr('href', tell_link.attr('href')
+        tellLink.attr('href', tellLink.attr('href')
             .replace(/&text=.*/, '&text=' + encodeURIComponent($(this).val())));
     });
 
@@ -194,6 +194,7 @@ $(function() {
             });
         }
     });
+
     $('#main-content a').on('click', function (event) {
         var $this = $(this);
         var href = $this.attr('href');
@@ -202,7 +203,7 @@ $(function() {
 
         if ($this.hasClass('tweet')) {
             // Open Twitter in a sub window
-            open_twitter_subwin('custom', href);
+            openTwitterSubwin('custom', href);
         } else if (!$this.hasClass('share-button')) {
             // Open the link in the current tab
             location.href = href;
@@ -210,11 +211,11 @@ $(function() {
         }
     });
 
-    var grid_loaded = false;
+    var gridLoaded = false;
 
     // Show the background picture grid
-    var show_grid = function (mql) {
-        if (!mql.matches || grid_loaded) {
+    var showGrid = function (mql) {
+        if (!mql.matches || gridLoaded) {
             return;
         }
 
@@ -235,16 +236,16 @@ $(function() {
             }
         }).addClass('loaded');
 
-        grid_loaded = true;
+        gridLoaded = true;
     };
 
     // Hide the grid on mobile to reduce the bandwidth
     if (window.matchMedia) {
         var mql = window.matchMedia('(min-width: 761px)');
 
-        mql.addListener(show_grid);
-        show_grid(mql);
+        mql.addListener(showGrid);
+        showGrid(mql);
     } else if ($(window).width() >= 761) {
-        show_grid({ matches: true });
+        showGrid({ matches: true });
     }
 });
