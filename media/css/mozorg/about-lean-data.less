@@ -30,6 +30,7 @@ main {
     margin: 0 auto;
     padding: 0px 30px;
     width: 1000px;
+    text-align: center;
 
     @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
         width: 780px;
@@ -47,6 +48,7 @@ main {
     .title-shadow-box {
         width: 360px;
         min-height: 80px;
+        text-align: left;
 
         @media only screen and (max-width: @breakTablet) {
             .font-size(2rem);
@@ -75,42 +77,15 @@ main {
     }
 }
 
-.github-button {
-    display: block;
-    background-color: #0C99D5;
-    color: #fff;
-    margin: 0 auto;
-    padding: 10px 4px;
-    border: none;
-    border-radius: 6px;
-    width: 250px;
-    .font-size(0.875rem);
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: center;
-    transition: background-color 0.3s ease 0s;
-
-    &:link,
-    &:visited {
-        color: #fff;
-        text-decoration: none;
-    }
-
-    &:hover,
-    &:focus {
-        background-color: #2165A9;
-    }
-
-    &:before {
-        display: inline-block;
-        content: '';
-        .at2x('/media/img/mozorg/about/lean-data/github-icon.png', 40px, 40px);
-        background-repeat: no-repeat;
-        margin-right: 10px;
-        width: 40px;
-        height: 40px;
-        vertical-align: middle;
-    }
+a.github-button:before {
+    display: inline-block;
+    content: '';
+    .at2x('/media/img/mozorg/about/lean-data/github-icon.png', 40px, 40px);
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
 }
 
 .box-container {

@@ -67,10 +67,6 @@ section {
         color: #fff;
         text-shadow: none;
     }
-
-    a {
-       .font-size(20px);
-    }
 }
 
 .fxos-hero-space {
@@ -286,10 +282,21 @@ section {
     }
 }
 
+a.feature-button:link,
+a.feature-button:visited {
+    padding-left: 55px;
+}
+
+.fxos-try {
+    a.feature-button {
+        margin-bottom: (@baseLine / 2);
+    }
+}
+
 .cta-button:before {
     position: absolute;
-    top: 15px;
-    left: 22px;
+    top: 13px;
+    left: 15px;
     width: 30px;
     height: 30px;
     content: '';
@@ -298,13 +305,7 @@ section {
     background-repeat: no-repeat;
 }
 
-.fxos-try .cta-button {
-    background-color: #0c99d5;
-    color: #fff;
-}
-
-.newsletter-form .button,
-.cta-button {
+.newsletter-form .button {
     position: relative;
     display: inline-block;
     background-color: #005189;

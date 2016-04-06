@@ -37,69 +37,14 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.try-hello-button,
-.try-hello-button:link,
-.try-hello-button:visited {
-    .inline-block;
+a.try-hello-button,
+a.try-hello-button:link,
+a.try-hello-button:visited {
     padding: 12px (@baseLine * 2) 12px 85px;
     margin-bottom: @baseLine;
-    .open-sans-light;
-    .font-size(30px);
-    color: #fff;
-    text-align: center;
     .at2x('/media/img/firefox/hello/hello-smiley.png', 40px, 38px);
     background-position: 32px center;
     background-repeat: no-repeat;
-    background-color: #005189;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    .transition(background-color .1s ease-in-out);
-
-    @media only screen and (max-width: @breakDesktop) {
-        .font-size(26px);
-    }
-
-    @media only screen and (max-width: @breakTablet) {
-        .font-size(24px);
-    }
-
-    @media only screen and (max-width: @breakMobileLandscape) {
-        .font-size(20px);
-    }
-
-    &:hover,
-    &:focus {
-        text-decoration: none;
-        background-color: lighten(#005189, 3%);
-        color: #fff;
-    }
-}
-
-#fxfamilynav-header {
-    .try-hello-button,
-    .nav-download-button {
-        .open-sans;
-        .font-size(@smallFontSize);
-        padding: 12px (@baseLine / 2);
-        background: #005189;
-        margin-bottom: 0;
-        text-transform: none;
-
-        &:hover,
-        &:focus {
-            background: lighten(#005189, 3%);
-        }
-    }
-}
-
-html[lang^='en'] {
-    #fxfamilynav-header {
-        .try-hello-button,
-        .nav-download-button {
-            text-transform: uppercase;
-        }
-    }
 }
 
 /**
@@ -119,7 +64,7 @@ html[lang^='en'] {
 
     .fx-up-to-date,
     .fx-out-of-date,
-    .try-hello-button,
+    a.try-hello-button,
     .mobile {
         display: none;
     }
@@ -156,7 +101,7 @@ html[lang^='en'] {
     .mobile,
     .download-button,
     .hello-wordmark,
-    .nav-download-button,
+    a.nav-download-button,
     #conditional-download-bar {
         display: none;
     }
@@ -164,7 +109,7 @@ html[lang^='en'] {
 
 .firefox-out-of-date {
     .fx-out-of-date,
-    .nav-download-button,
+    a.nav-download-button,
     #conditional-download-bar {
         display: block;
     }
@@ -177,7 +122,7 @@ html[lang^='en'] {
     .fx-up-to-date,
     .non-fx,
     .mobile,
-    .try-hello-button {
+    a.try-hello-button {
         display: none;
     }
 }
@@ -197,7 +142,7 @@ html[lang^='en'] {
     .fx-up-to-date,
     .fx-out-of-date,
     .mobile,
-    .try-hello-button {
+    a.try-hello-button {
         display: none;
     }
 }
@@ -207,8 +152,8 @@ html[lang^='en'] {
     .fx-out-of-date,
     .non-fx,
     .download-button,
-    .nav-download-button,
-    .try-hello-button {
+    a.nav-download-button,
+    a.try-hello-button {
         display: none;
     }
 

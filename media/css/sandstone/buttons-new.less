@@ -4,19 +4,27 @@
 
 @import "../sandstone/lib.less";
 
-@default: #0095dd;
-@defaultHover: #00afe5;
-@dark: #00539F;
-@darkHover: #0095DD;
-@white: #fff;
-@whiteHover: #f4f4f4;
+@light: #fff;
+@lightHover: #f4f4f4;
+
+@mozGreen: #4caf50;
+@mozGreenHover: #66bb6a;
+@mozGreenBorder: #4aa84a;
+
+@mozBlue: #0095dd;
+@mozBlueHover: #33aae4;
+@mozBlueBorder: #0092cc;
+
+@mozDark: #00539F;
+@mozDarkHover: #0060a8;
+@mozDarkBorder: #005493;
 
 input[type="submit"].button-newsletter,
 .button-newsletter {
 
     background: none;
-    color: @default;
-    border: 2px solid @default;
+    color: @mozBlue;
+    border: 2px solid @mozBlue;
     border-radius: 4px;
     width: 100%;
     min-height: 45px;
@@ -29,8 +37,8 @@ input[type="submit"].button-newsletter,
 
     &:hover,
     &:focus {
-        color: @defaultHover;
-        border-color: @defaultHover;
+        color: @mozBlueHover;
+        border-color: @mozBlueHover;
     }
 
     &:active {
@@ -39,24 +47,90 @@ input[type="submit"].button-newsletter,
     }
 
     &.dark {
-        color: @dark;
-        border-color: @dark;
+        color: @mozDark;
+        border-color: @mozDark;
 
         &:hover,
         &:focus {
-            color: @darkHover;
-            border-color: @darkHover;
+            color: @mozDarkHover;
+            border-color: @mozDarkHover;
         }
     }
 
     &.white {
-        color: @white;
-        border-color: @white;
+        color: @light;
+        border-color: @light;
 
         &:hover,
         &:focus {
-            color: @whiteHover;
-            border-color: @whiteHover;
+            color: @lightHover;
+            border-color: @lightHover;
         }
+    }
+}
+
+.opaque-button {
+    position: relative;
+    .inline-block;
+    padding: (@baseLine / 2) 36px;
+    border: 2px solid @light;
+    border-radius: 4px;
+    .font-size(24px);
+    text-align: center;
+    cursor: pointer;
+    .transition(background-color 250ms linear 0s);
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+.feature-button,
+a.feature-button:link,
+a.feature-button:visited {
+    .opaque-button;
+    background-color: @mozBlue;
+    color: @light;
+    border: 2px solid @mozBlueBorder;
+
+    @media only screen and (max-width: @breakDesktop) {
+        .font-size(21px);
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .font-size(18px);
+    }
+
+    &:hover,
+    &:focus {
+        background-color: @mozBlueHover;
+        color: @light;
+    }
+
+    &.dark {
+        background-color: @mozDark;
+        color: @light;
+        border: 2px solid @mozDarkBorder;
+
+        &:hover,
+        &:focus {
+            background-color: @mozDarkHover;
+        }
+    }
+}
+
+#fxfamilynav-header {
+    .feature-button,
+    a.feature-button {
+        padding: 12px (@baseLine / 2);
+        background-image: none;
+        margin-bottom: 0;
+        .font-size(14px);
     }
 }
