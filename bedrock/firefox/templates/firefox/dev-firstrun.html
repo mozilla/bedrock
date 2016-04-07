@@ -28,9 +28,6 @@
 {% block string_data %}
 data-devtools-title="{{ _('Developer Tools') }}"
 data-devtools-text="{{ _('The most complete browser made just for developers, Firefox Developer Edition has every dev tool you’ll need built right in.') }}"
-data-next-webide="{{ _('Next: WebIDE') }}"
-data-webide-title="{{ _('Try WebIDE') }}"
-data-webide-text="{{ _('Develop, deploy and debug Firefox OS apps directly in your browser or on a Firefox OS device.') }}"
 data-next-sync="{{ _('Next: Sync') }}"
 
 data-sync-title="{{ _('Important') }}"
@@ -39,8 +36,6 @@ data-doorhanger-sync="{{ _('Sync now') }}"
 
 data-doorhanger-close="{{ _('Close') }}"
 data-doorhanger-nothanks="{{ _('No thanks') }}"
-data-webide-icon="{{ static('img/firefox/dev-firstrun/webide-blue.png') }}"
-data-webide-icon-high-res="{{ static('img/firefox/dev-firstrun/webide-blue-high-res.png') }}"
 data-devtools-icon="{{ static('img/firefox/dev-firstrun/devtools-blue.png') }}"
 data-devtools-icon-high-res="{{ static('img/firefox/dev-firstrun/devtools-blue-high-res.png') }}"
 data-sync-icon="{{ static('img/firefox/dev-firstrun/sync-blue.png') }}"
@@ -217,17 +212,6 @@ data-sync-reminder-text="{{ _('If you continue without syncing your new Develope
           <a href="https://developer.mozilla.org/docs/Tools/Responsive_Design_View" class="more" rel="external">{{ _('Learn more about Responsive Design View') }}</a>
           <div class="responsive-video-container">
             <div class="video" data-video-id="iJ4C7VnIMC8"></div>
-          </div>
-        </li>
-        <li class="feature">
-          <a href="https://www.youtube.com/watch?v=1R9_WdXwUsE" class="video-play" rel="external">
-            <img src="{{ static('img/firefox/developer/feature-webide.jpg') }}" alt="{{ _('Screenshot') }}" class="screenshot">
-          </a>
-          <h2>{{_('WebIDE')}}</h2>
-          <p>{{_('Develop, deploy and debug Firefox OS apps directly in your browser, or on a Firefox OS device, with this tool that replaces App Manager.')}}</p>
-          <a href="https://developer.mozilla.org/docs/Tools/WebIDE" class="more" rel="external">{{_('Learn more about WebIDE')}}</a>
-          <div class="responsive-video-container">
-            <div class="video" data-video-id="1R9_WdXwUsE"></div>
           </div>
         </li>
         <li class="feature">

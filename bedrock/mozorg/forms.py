@@ -130,7 +130,6 @@ class ContributeSignupForm(forms.Form):
     coding_choices = (
         empty_choice,
         ('coding-firefox', _lazy('Firefox')),
-        ('coding-firefoxos', _lazy('Firefox OS')),
         ('coding-websites', _lazy('Websites')),
         ('coding-addons', _lazy('Firefox add-ons')),
         ('coding-marketplace', _lazy('HTML5 apps')),
@@ -139,7 +138,7 @@ class ContributeSignupForm(forms.Form):
     )
     testing_choices = (
         empty_choice,
-        ('testing-firefox', _lazy('Firefox and Firefox OS')),
+        ('testing-firefox', _lazy('Firefox')),
         ('testing-addons', _lazy('Firefox add-ons')),
         ('testing-marketplace', _lazy('HTML5 apps')),
         ('testing-websites', _lazy('Websites')),
@@ -244,7 +243,6 @@ class WebToLeadForm(forms.Form):
         ('Firefox for Desktop', _lazy(u'Firefox for Desktop')),
         ('Firefox for Android', _lazy(u'Firefox for Android')),
         ('Firefox Marketplace', _lazy(u'Firefox Marketplace')),
-        ('Firefox OS', _lazy(u'Firefox OS')),
         ('Marketing and Co-promotions', _lazy(u'Marketing and Co-promotions')),
         ('Other', _lazy(u'Other')),
     )
@@ -252,7 +250,6 @@ class WebToLeadForm(forms.Form):
     interests_fx = (
         ('Firefox for Android', _lazy(u'Firefox for Android')),
         ('Firefox Marketplace', _lazy(u'Firefox Marketplace')),
-        ('Firefox OS', _lazy(u'Firefox OS')),
         ('Other', _lazy(u'Other')),
     )
 

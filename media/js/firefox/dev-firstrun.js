@@ -25,8 +25,7 @@ function onYouTubeIframeAPIReady() {
     var $window = $(window);
     var $document = $(document);
     var TARGET_1 = 'devtools';
-    var TARGET_2 = 'webide';
-    var TARGET_3 = 'appMenu';
+    var TARGET_3 = 'appMenu'; // TARGET_2 was WebIDE, since removed, so we're skipping a number here rather than renaming everything.
     var TARGET_4 = 'accountStatus';
     var current = TARGET_1;
     var tourSkipped = false;
@@ -103,7 +102,6 @@ function onYouTubeIframeAPIReady() {
         var icon = isHighRes ? window.trans('devtoolsIconHighRes') : window.trans('devtoolsIcon');
         var buttons = [];
         var options = {};
-        var nextTarget = TARGET_2;
 
         Mozilla.UITour.getConfiguration('availableTargets', function(config) {
 
@@ -111,9 +109,8 @@ function onYouTubeIframeAPIReady() {
                 return;
             }
 
-            var nextAvailable = $.inArray(nextTarget, config.targets) !== -1;
-            var nextLabel = nextAvailable ? 'nextWebide' : 'nextSync';
-            var nextStep = nextAvailable ? nextWebIDEButton : nextSyncButton;
+            var nextLabel = 'nextSync';
+            var nextStep = nextSyncButton;
 
             buttons = [
                 {
@@ -155,71 +152,13 @@ function onYouTubeIframeAPIReady() {
         window.dataLayer.push({'event': 'dev-firstrun-tour', 'interaction': 'Developer Tools doorhanger - button click', 'browserAction': 'Close Tour'});
     }
 
-    // show webIDE doorhanger and track button click
-    function nextWebIDEButton() {
-        showWebIDEDoorhanger();
-        window.dataLayer.push({'event': 'dev-firstrun-tour', 'interaction': 'Developer Tools doorhanger - button click', 'browserAction': 'Next:WebIDE'});
-    }
 
-    // shows the WebIDE doorhanger step
-    function showWebIDEDoorhanger() {
-        var icon = isHighRes ? window.trans('webideIconHighRes') : window.trans('webideIcon');
-        var buttons = [];
-        var options = {};
-
-        Mozilla.UITour.getConfiguration('availableTargets', function(config) {
-
-            if (!config.targets || $.inArray(TARGET_2, config.targets) === -1) {
-                return;
-            }
-
-            buttons = [
-                {
-                    label: getText('doorhangerClose'),
-                    style: 'link',
-                    callback: webIDEDoorhangerClose
-                },
-                {
-                    label: getText('nextSync'),
-                    style: 'primary',
-                    callback: nextSyncButton
-                }
-            ];
-
-            options = {
-                closeButtonCallback: webIDEDoorhangerClose
-            };
-
-            Mozilla.UITour.hideInfo();
-            showHighlight(TARGET_2);
-
-            setTimeout(function() {
-                Mozilla.UITour.showInfo(
-                    TARGET_2,
-                    getText('webideTitle'),
-                    getText('webideText'),
-                    icon,
-                    buttons,
-                    options
-                );
-            }, 10);
-
-            current = TARGET_2;
-        });
-    }
-
-    function webIDEDoorhangerClose() {
-        showReminderDoorhanger();
-
-        window.dataLayer.push({'event': 'dev-firstrun-tour', 'interaction': 'Try WebIDE doorhanger - link click', 'browserAction': 'Close Tour'});
-    }
-
-    // show webIDE doorhanger and track button click
+    // show Sync doorhanger and track button click
     function nextSyncButton() {
         showSyncDoorhanger();
-
-        window.dataLayer.push({'event': 'dev-firstrun-tour', 'interaction': 'Try WebIDE doorhanger - button click', 'browserAction': 'Next:Sync'});
+        window.dataLayer.push({'event': 'dev-firstrun-tour', 'interaction': 'Developer Tools doorhanger - button click', 'browserAction': 'Next:Sync'});
     }
+
 
     // shows the Sync doorhanger step
     function showSyncDoorhanger() {
@@ -323,19 +262,10 @@ function onYouTubeIframeAPIReady() {
             if (config.targets) {
 
                 var showStep1 = $.inArray(TARGET_1, config.targets) !== -1;
-                var showStep2 = $.inArray(TARGET_2, config.targets) !== -1;
 
                 if (current === TARGET_1) {
                     if (showStep1) {
                         showDevToolsDoorhanger();
-                    } else if (showStep2) {
-                        showWebIDEDoorhanger();
-                    } else {
-                        showSyncDoorhanger();
-                    }
-                } else if (current === TARGET_2) {
-                    if (showStep2) {
-                        showWebIDEDoorhanger();
                     } else {
                         showSyncDoorhanger();
                     }
