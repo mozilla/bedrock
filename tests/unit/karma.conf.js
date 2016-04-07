@@ -66,14 +66,14 @@ module.exports = function(config) {
                 included: true
             },
             {
-                pattern: 'tests/img/*',
+                pattern: 'tests/unit/img/*',
                 included: false,
                 served: true
             }
         ],
 
         proxies: {
-            '/img/': '/base/tests/img/'
+            '/img/': '/base/tests/unit/img/'
         },
 
         // list of files to exclude
