@@ -1058,4 +1058,7 @@ URLS = flatten((
 
     # Bug 784411
     url_test('/about/mission/', '/mission/'),
+
+    # Bug 1260423
+    url_test('/firefox/choose', '/firefox/new/'),
 ))
