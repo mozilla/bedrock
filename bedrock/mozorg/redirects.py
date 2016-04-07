@@ -179,9 +179,11 @@ redirectpatterns = (
     redirect(r'^privacy/tips/?$',
              'teach.smarton.index'),
 
-
     # Bug 821047 /about/mission.html -> /mission/
     redirect(r'^about/mission.html$', '/mission/'),
+
+    # Bug 784411 /about/mission/ -> /mission/
+    redirect(r'^about/mission/?$', '/mission/'),
 
     # Bug 1171763 - delete researchers and projects and redirect
     redirect(r'^research/.+', '/research/'),

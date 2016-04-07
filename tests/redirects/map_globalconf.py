@@ -1055,4 +1055,7 @@ URLS = flatten((
 
     # Bug 1255785
     url_test('/styleguide/identity/mozilla/logo-prototype/', '/styleguide/'),
+
+    # Bug 784411
+    url_test('/about/mission/', '/mission/'),
 ))
