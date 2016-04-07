@@ -124,30 +124,41 @@ Server architecture
 -------------------
 **Demos**
 
-- *URLs:* http://www-demo1.allizom.org/ , http://www-demo2.allizom.org/ and
-  http://www-demo3.allizom.org/
-- *PHP SVN branch:* trunk, updated every 10 minutes
+- *URLs:*
+
+  - http://www-demo1.allizom.org/
+  - http://www-demo2.allizom.org/
+  - http://www-demo3.allizom.org/
+  - http://www-demo4.allizom.org/
+  - http://www-demo5.allizom.org/
 - *Bedrock locales dev repo:* master, updated via a webhook on pushes
+- *Bedrock Git branch:* any branch we want, manually updated
+
+**On-demand demos**
+
+- *URLs:* Demo instances can also be spun up on-demand by pushing a branch to the mozilla
+  bedrock repo that matches a specific naming convention (the branch name must contain
+  ``__demo``). `CircleCI`_ will then automate spinning up a demo instance based on that
+  branch. For example, pushing a branch named ``myfeature__demo`` would create a demo
+  instance with the following URL: ``https://bedrock-demo-myfeature.us-west.moz.works/``
+- *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
 - *Bedrock Git branch:* any branch we want, manually updated
 
 **Dev**
 
 - *URL:* http://www-dev.allizom.org/
-- *PHP SVN branch:* trunk, updated every 10 minutes
 - *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
 - *Bedrock Git branch:* master, updated every 10 minutes
 
 **Stage**
 
 - *URL:* http://www.allizom.org/
-- *PHP SVN branch:* tags/stage, updated every 10 minutes
 - *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
 - *Bedrock Git branch:* master, updated manually
 
 **Production**
 
 - *URL:* http://www.mozilla.org/
-- *PHP SVN branch:* tags/production, updated every 10 minutes
 - *Bedrock locales production repo:* master branch, updated via a webhook on pushes
 - *Bedrock Git branch:* master, updated manually
 
@@ -161,9 +172,8 @@ Pushing to production
 ---------------------
 We're doing pushes as soon as new work is ready to go out.
 
-After doing a push, the "pusher" needs to update the bugs that have been pushed
-with a quick message stating that the code was deployed. Chief will send on
-#www a URL with all commits that have been deployed.
+After doing a push, those who are responsible for implementing changes need to update
+the bugs that have been pushed with a quick message stating that the code was deployed.
 
 If you'd like to see the commits that will be deployed before the push run the
 following command:
@@ -175,7 +185,10 @@ following command:
 This will discover the currently deployed git hash, and open a compare URL at github
 to the latest master. Look at ``open-compare.py -h`` for more options.
 
+We automate pushing to production via tagged commits (see :ref:`tagged-commit`)
+
 .. _Git book: http://git-scm.com/book
 .. _how to write good git commit messages: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
 .. _IT documentation: https://mana.mozilla.org/wiki/pages/viewpage.action?pageId=1802733
 .. _IT bug: https://bugzilla.mozilla.org/enter_bug.cgi?product=mozilla.org&format=itrequest
+.. _CircleCI: https://circleci.com/
