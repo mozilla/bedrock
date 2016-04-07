@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import fxosnav with context %}
+
 {% extends "/firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{{ _('Firefox OS — ') }}{% endblock %}
@@ -11,16 +13,14 @@
 {% block body_id %}firefox-os-tv{% endblock %}
 {% block body_class %}firefox-os-tv blueprint{% endblock %}
 
-
 {% block page_css %}
   {% stylesheet 'firefox_os_tv' %}
 {% endblock %}
 
-{% block site_header_nav %}{% endblock %}
+{% block site_header %}{% endblock %}
 
-{% block site_header_logo %}
-  <h2><a href="{{ url('firefox.os.index') }}">
-  {{ high_res_img('firefox/os/devices/tv/logo.png', {'alt': 'Firefox OS', 'width': '221', 'height': '67'}) }}</a></h2>
+{% block site_header_unwrapped %}
+  {{ fxosnav('tv') }}
 {% endblock %}
 
 {% block content %}

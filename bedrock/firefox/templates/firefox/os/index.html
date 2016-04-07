@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxfamilynav with context %}
+{% from "macros.html" import fxosnav with context %}
 
 {% extends "firefox/base-resp.html" %}
 
@@ -43,7 +43,7 @@
 {% block site_header %}{% endblock %}
 
 {% block site_header_unwrapped %}
-  {% call fxfamilynav('os', 'index') %}
+  {% call fxosnav('fxos') %}
     <div id="cta-sticky">
       <a href="#email-form-wrapper" class="primary-cta-signup cta-button-small newsletter-signup-toggle hidden" role="button" aria-haspopup="true">{% if LANG.startswith('en-') %}{{ _('Sign Up Now') }}{% else %}{{ _('Sign me up') }}{% endif %}</a>
       <a href="#get-device" class="primary-cta-phone cta-button-small hidden" role="button" aria-haspopup="true">{{_('Get a phone')}}</a>

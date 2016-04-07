@@ -5,8 +5,8 @@
 @import "../sandstone/lib.less";
 
 // mixin for sprite images
-.fxfamilynav-sprite(@top) {
-    background-image: url(/media/img/firefox/family/nav-sprite.png);
+.fxosnav-sprite(@top) {
+    background-image: url(/media/img/firefox/os/nav-sprite.png);
     background-position: 0 @top;
 
     @media (-webkit-min-device-pixel-ratio: 1.5),
@@ -14,13 +14,13 @@
        (                min-resolution: 144dpi) {
 
         .background-size(98px 115px);
-        background-image: url(/media/img/firefox/family/nav-sprite-high-res.png);
+        background-image: url(/media/img/firefox/os/nav-sprite-high-res.png);
     }
 }
 
 // big left hand logo
-.fxfamilynav-logo {
-    .fxfamilynav-sprite(0);
+.fxosnav-logo {
+    .fxosnav-sprite(0);
     .image-replaced();
     .transform(translateY(30px));
     .transition(transform 0.3s ease);
@@ -55,8 +55,8 @@
     }
 }
 
-// <header> containing all family nav stuff: logo, tabzilla link, & <nav>
-.fxfamilynav-header {
+// <header> containing all fxos nav stuff: logo, tabzilla link, & <nav>
+.fxosnav-header {
     .background-size(100% 80px, 100% 80px);
     .clearfix();
     .transition(background 0.2s ease);
@@ -121,8 +121,8 @@
     }
 }
 
-// <nav> element containing primary & sub navs
-.fxfamilynav {
+// <nav> element
+.fxosnav {
     display: block;
     float: left;
     height: 70px;
@@ -151,9 +151,6 @@
         display: block;
         height: 67px;
         line-height: 67px;
-        // allows for very long "Desktop" & "Features" translations
-        // "iOS" and "Android" are not localized
-        // will need testing if/when strings in nav change
         max-width: 200px;
         opacity: 0.7;
         padding: 0 5px;
@@ -291,7 +288,7 @@
     }
 }
 
-.fxfamilynav-adjunctnav {
+.fxosnav-adjunctnav {
     background: #fff;
     border: 1px solid #d1d2d3;
     box-shadow: 0 1px 2px rgba(86, 86, 90, 0.5);
@@ -341,7 +338,7 @@
 
             &[rel="external"]:after {
                 // gray external link arrow
-                .fxfamilynav-sprite(-102px);
+                .fxosnav-sprite(-102px);
                 .transition(all 0.2s ease);
                 content: '';
                 display: inline-block;
@@ -373,7 +370,7 @@
     }
 }
 
-.fxfamilynav-cta-wrapper {
+.fxosnav-cta-wrapper {
     .transition(all 0.2s ease);
     float: left;
     height: 60px;
@@ -397,7 +394,7 @@
 // vertically center CTA (when visible)
 @media (min-width: @breakDesktop) {
     @supports (display: flex) {
-        .fxfamilynav-cta-wrapper {
+        .fxosnav-cta-wrapper {
             align-items: center;
             display: flex;
             justify-content: center;
@@ -408,7 +405,7 @@
 
 
 // icon triggering show/hide of adjunct nav
-.fxfamilynav-adjunctnav-trigger {
+.fxosnav-adjunctnav-trigger {
     .clearfix();
     .transition(all 0.2s ease);
     background: transparent;
@@ -477,13 +474,13 @@
 // State styles - sticky nav and dark text version
 
 // broken out for readability
-.fxfamilynav-header {
+.fxosnav-header {
     &.dark {
         #tabzilla:before {
             background-color: @mozIDBlue;
         }
 
-        .fxfamilynav .primary-nav li.related:before {
+        .fxosnav .primary-nav li.related:before {
             border-color: @mozIDBlue;
         }
 
@@ -498,7 +495,7 @@
             }
         }
 
-        .fxfamilynav-adjunctnav-trigger {
+        .fxosnav-adjunctnav-trigger {
             .trigger-dot {
                 background: @mozIDBlue;
             }
@@ -539,7 +536,7 @@
         position: fixed;
         z-index: 200; // seems to be enough :/
 
-        .fxfamilynav .primary-nav li {
+        .fxosnav .primary-nav li {
             a {
                 color: @mozIDBlue;
             }
@@ -553,11 +550,11 @@
             }
         }
 
-        .fxfamilynav-logo {
+        .fxosnav-logo {
             .transform(scale(0.65) translateY(55px));
         }
 
-        .fxfamilynav-adjunctnav-trigger {
+        .fxosnav-adjunctnav-trigger {
             .trigger-dot {
                 background: @mozIDBlue;
             }
@@ -570,7 +567,7 @@
             }
         }
 
-        .fxfamilynav-cta-wrapper {
+        .fxosnav-cta-wrapper {
             opacity: 1;
             visibility: visible;
         }
