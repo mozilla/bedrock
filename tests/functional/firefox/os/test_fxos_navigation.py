@@ -4,7 +4,7 @@
 
 import pytest
 
-from pages.firefox.fxos_navigation import FirefoxPage
+from pages.firefox.family_navigation import FirefoxPage
 
 
 @pytest.mark.nondestructive
