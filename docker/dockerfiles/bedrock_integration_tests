@@ -18,10 +18,10 @@ ENV PYTHONDONTWRITEBYTECODE=1
 COPY ./bin/pipstrap.py /app/bin/pipstrap.py
 RUN ./bin/pipstrap.py
 
-COPY ./requirements /app/requirements
+COPY ./requirements/integration-tests.txt /app/requirements/
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 
 # Install requirements
-RUN pip install --no-cache-dir -r requirements/test.txt
+RUN pip install --no-cache-dir -r requirements/integration-tests.txt
 
 COPY . /app
