@@ -22,6 +22,8 @@ machine:
     QUAY_USERNAME: mozmar+circleci
     DOCKER_REPOSITORY: quay.io/mozmar/bedrock
     DOCKER_IMAGE_TAG: "$DOCKER_REPOSITORY:$CIRCLE_BRANCH"
+    BASE_DOCKER_REPOSITORY: quay.io/mozmar/bedrock_base
+    BASE_DOCKER_IMAGE_TAG: "$BASE_DOCKER_REPOSITORY:$CIRCLE_BRANCH"
 
 checkout:
   post:
@@ -34,6 +36,8 @@ dependencies:
     - "~/docker"
   override:
     - npm install
+    - sudo apt-get update
+    - sudo apt-get install -y libmemcached-dev
     - bin/upgrade-pip.sh
     - pip install -r requirements/dev.txt
     - pip install -r requirements/prod.txt
