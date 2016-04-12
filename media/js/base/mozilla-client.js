@@ -205,10 +205,10 @@ if (typeof Mozilla === 'undefined') {
             }
 
             window.clearTimeout(timer);
-            onRetrieved(true, event.detail.data.version, event.detail.data.defaultUpdateChannel);
+            onRetrieved(true, event.detail.data.version, event.detail.data.defaultUpdateChannel, event.detail.data.distribution);
         };
 
-        var onRetrieved = function (accurate, version, channel) {
+        var onRetrieved = function (accurate, version, channel, distribution) {
             document.removeEventListener('mozUITourResponse', listener);
 
             var isESR = channel === 'esr';
@@ -217,6 +217,7 @@ if (typeof Mozilla === 'undefined') {
                 'accurate': accurate,
                 'version': version,
                 'channel': channel,
+                'distribution': distribution,
                 'isUpToDate': isUpToDate,
                 'isESR': isESR
             };
@@ -226,7 +227,7 @@ if (typeof Mozilla === 'undefined') {
 
         // Prepare fallback function in case the API doesn't work
         var userVer = Client._getFirefoxVersion();
-        var fallback = function () { onRetrieved(false, userVer, 'release'); };
+        var fallback = function () { onRetrieved(false, userVer, 'release', undefined); };
 
         // If Firefox is old or for Android, call the fallback function immediately because the API is not implemented
         if (parseFloat(userVer) < 35 || Client._isFirefoxAndroid()) {

@@ -496,6 +496,7 @@ describe('mozilla-client.js', function() {
                 'accurate': false, // Because the mozUITour API doesn't get called in tests, this won't be true
                 'version': '46.0.2',
                 'channel': 'release',
+                'distribution': undefined,
                 'isUpToDate': true,
                 'isESR': false
             };

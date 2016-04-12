@@ -27,9 +27,12 @@
     }
 
     function loadFxAccountsForm() {
-        Mozilla.FxaIframe.init({
-            gaEventName: 'accounts',
-            userEmail: fxaEmail
+        client.getFirefoxDetails(function(data) {
+            Mozilla.FxaIframe.init({
+                distribution: data.distribution,
+                gaEventName: 'accounts',
+                userEmail: fxaEmail
+            });
         });
     }
 

@@ -95,7 +95,7 @@ To embed the Firefox Accounts iframe on a page:
 #. Add the following attributes and values to any element on the page (the
    parent element of the ``<iframe>`` is a good option):
 
-    ``id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}"``
+    ``id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}"``
 #. Add the ``<iframe>`` to the page with the following attributes and values:
     ``<iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?utm_campaign=fxa-embedded-form&amp;utm_content=fx-{{ version }}&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>``
 

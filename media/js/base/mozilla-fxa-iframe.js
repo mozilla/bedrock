@@ -22,11 +22,18 @@ Mozilla.FxaIframe = (function() {
     // host domain for FxA
     var _host;
 
+    // alternative host domain for FxA within partner distribution
+    var _distHost;
+
     // reference to <iframe> element containing FxA
     var _$iframe;
 
     // stores full URL to FxA to be used for <iframe> src attribute
     var _src;
+
+    var _removeTrailingSlash = function(host) {
+        return (host[host.length - 1] === '/') ? host.substr(0, host.length - 1) : host;
+    };
 
     var _init = function(userConfig) {
         // store user supplied config
@@ -45,7 +52,7 @@ Mozilla.FxaIframe = (function() {
         }
 
         // make sure _host URL doesn't have a trailing slash
-        _host = (_host[_host.length - 1] === '/') ? _host.substr(0, _host.length - 1) : _host;
+        _host = _removeTrailingSlash(_host);
 
         // check user's Fx version to determine FxA iframe experience
         if (Mozilla.Client.FirefoxMajorVersion >= 46) {
@@ -54,6 +61,15 @@ Mozilla.FxaIframe = (function() {
 
         // initialize GA event name
         _gaEventName = _config.gaEventName || 'fxa';
+
+        if (_config.distribution && _config.distribution !== 'default') {
+            _distHost = $('#fxa-iframe-config').data(_config.distribution.toLowerCase() + 'Host');
+            if (_distHost) {
+                _distHost = _removeTrailingSlash(_distHost);
+                _src = _src.replace(_host, _distHost);
+                _host = _distHost;
+            }
+        }
 
         // call iframe to life by setting src attribute
         _$iframe.attr('src', _src);
