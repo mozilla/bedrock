@@ -30,7 +30,7 @@
 {% block site_header_unwrapped %}
   {% call fxfamilynav('features') %}
     <a class="try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Hello now') }}</a>
-    <a class="nav-download-button button-flat-dark" href="{{ url('firefox.new') }}">{{ _('Download now') }}</a>
+    <a class="nav-download-button button-flat-dark" href="{{ url('firefox.new') }}" data-link-type="button" data-link-name="Download now">{{ _('Download now') }}</a>
   {% endcall %}
 {% endblock %}
 

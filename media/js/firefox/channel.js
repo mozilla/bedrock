@@ -10,6 +10,7 @@ $(document).ready(function() {
     var logoInverseSrc = $logo.attr('data-inverse-src');
     var logoInverseSrcSet = $logo.attr('data-inverse-srcset');
     var pager = Mozilla.Pager.pagers[0];
+    var dataLayer = window.dataLayer || [];
 
     pager.$container.bind('changePage', function() {
         if (pager.currentPage.id === 'developer') {
@@ -26,11 +27,23 @@ $(document).ready(function() {
     $('#carousel-left').click(function(e) {
         e.preventDefault();
         pager.prevPageWithAnimation();
+
+        dataLayer.push({
+            'event': 'channel-carousel-interaction',
+            'direction': 'left',
+            'nextPage': pager.currentPage.id
+        });
     });
 
     $('#carousel-right').click(function(e) {
         e.preventDefault();
         pager.nextPageWithAnimation();
+
+        dataLayer.push({
+            'event': 'channel-carousel-interaction',
+            'direction': 'right',
+            'nextPage': pager.currentPage.id
+        });
     });
 
     // init

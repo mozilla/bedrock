@@ -67,7 +67,7 @@
 ]|shuffle -%}
 
 {% macro promo_face(content_id, promo_id) %}
-<a href="{{ faces[content_id][0] }}" data-promotion-id="{{ promo_id }}" data-promotion-name="Mozillians" data-promotion-class="promo-face" data-promotion-type="tile">
+<a href="{{ faces[content_id][0] }}" data-link-type="tile" data-link-name="Mozillians">
   <div class="face-outer">
     <div class="face face-{{ faces[content_id][1] }}"></div>
   </div>
@@ -121,7 +121,7 @@
       {% if l10n_has_tag('firefox_accounts_promo') %}
         <li id="promo-1" class="item promo-large-portrait firefox-accounts" tabindex="0">
           <h2 class="primary go">{{ _('All your devices. <br>One Firefox.') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.accounts') }}" data-promotion-id="promo-1" data-promotion-name="All your devices. One Firefox." data-promotion-class="promo-large-portrait" data-promotion-type="tile" data-accounts-url="{{ url('firefox.accounts') }}">
+          <a class="panel-link" href="{{ url('firefox.accounts') }}" data-link-type="tile" data-link-name="All your devices. One Firefox." data-accounts-url="{{ url('firefox.accounts') }}">
             <div class="secondary">
               <h3>{{ _('Sync Firefox <br>wherever <br>you use it.') }}</h3>
               <p class="more">{{ _('Create an account') }}</p>
@@ -131,7 +131,7 @@
       {% else %}
         <li id="promo-1" class="item promo-large-portrait private-browsing" tabindex="0">
           <h2 class="primary go">{{ _('Introducing the new <br>Private Browsing') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.private-browsing') }}" data-promotion-id="promo-1" data-promotion-name="Introducing the new Private Browsing" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+          <a class="panel-link" href="{{ url('firefox.private-browsing') }}" data-link-type="tile" data-link-name="Introducing the new Private Browsing">
             <div class="secondary">
               <h3>{{ _('More protection. <br>The most privacy.') }}</h3>
               <p class="more">{{ _('Try Private Browsing') }}</p>
@@ -140,7 +140,7 @@
         </li>
       {% endif %}
         <li id="promo-2" class="item promo-small-landscape advocacy">
-          <a class="panel-link" href="https://advocacy.mozilla.org" data-promotion-id="promo-2" data-promotion-name="Learn about Mozilla Advocacy" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
+          <a class="panel-link" href="https://advocacy.mozilla.org" data-link-type="tile" data-link-name="Learn about Mozilla Advocacy">
             <h2>{{ _('Learn about Mozilla Advocacy') }}</h2>
           </a>
         </li>
@@ -163,7 +163,7 @@
       {% if LANG.startswith('en-') %}
         <li id="promo-6" class="item promo-large-landscape encryption" tabindex="0">
           <h2 class="primary go">{{ _('Encryption helps <br>protect your privacy') }}</h2>
-          <a class="panel-link" rel="external" href="https://advocacy.mozilla.org/encrypt/?ref=2016_Encryption&amp;utm_campaign=2016_Encryption&amp;utm_source=mozilla.org&amp;utm_medium=referral" data-promotion-id="promo-6" data-promotion-name="Encryption helps protect your privacy" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
+          <a class="panel-link" rel="external" href="https://advocacy.mozilla.org/encrypt/?ref=2016_Encryption&amp;utm_campaign=2016_Encryption&amp;utm_source=mozilla.org&amp;utm_medium=referral" data-link-type="tile" data-link-name="Encryption helps protect your privacy">
             <div class="secondary">
               <h3>{{ _('See how it works <br>and why it’s worth protecting.') }}</h3>
               <p class="more">{{ _('Learn more') }}</p>
@@ -173,7 +173,7 @@
       {% else %}
         <li id="promo-6" class="item promo-large-landscape support" tabindex="0">
           <h2 class="primary go">{{ _('Help Mozilla users') }}</h2>
-          <a class="panel-link" rel="external" href="https://support.mozilla.org/get-involved" data-promotion-id="promo-6" data-promotion-name="Help Mozilla users" data-promotion-class="promo-large-landscape" data-promotion-type="tile">
+          <a class="panel-link" rel="external" href="https://support.mozilla.org/get-involved" data-link-type="tile" data-link-name="Help Mozilla users">
             <div class="secondary">
               <h3>{{ _('Help millions <br>get the most from their <br>favorite browser.') }}</h3>
               <p class="more">{{ _('Join our support team') }}</p>
@@ -185,19 +185,19 @@
           {{ promo_face(3, 'promo-7') }}
         </li>
         <li id="promo-8" class="item promo-small-landscape smarton-tracking" tabindex="0">
-          <a class="panel-link" rel="external" href="{{ url('teach.smarton.tracking') }}" data-promotion-id="promo-8" data-promotion-name="Get smart on Tracking" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
+          <a class="panel-link" rel="external" href="{{ url('teach.smarton.tracking') }}" data-link-type="tile" data-link-name="Get smart on Tracking">
             <h2>{{ _('Get smart on Tracking') }}</h2>
           </a>
         </li>
       {% if l10n_has_tag('teach_the_web_promo') %}
-        <li id="promo-9" class="item promo-small-landscape webmaker" data-promotion-id="promo-9" data-promotion-name="Teach the Web" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
-          <a class="panel-link" rel="external" href="https://teach.mozilla.org">
+        <li id="promo-9" class="item promo-small-landscape webmaker">
+          <a class="panel-link" rel="external" href="https://teach.mozilla.org" data-link-type="tile" data-link-name="Teach the Web">
             <h2>{{ _('Teach<br> the Web') }}</h2>
           </a>
         </li>
       {% else %}
         <li id="promo-9" class="item promo-small-landscape volunteer">
-          <a class="panel-link" href="{{ url('mozorg.contribute') }}" data-promotion-id="promo-9" data-promotion-name="Volunteer with Mozilla" data-promotion-class="promo-small-landscape" data-promotion-type="tile">
+          <a class="panel-link" href="{{ url('mozorg.contribute') }}" data-link-type="tile" data-link-name="Volunteer with Mozilla">
             <h2>{{ _('Volunteer <br>with Mozilla') }}</h2>
           </a>
         </li>
@@ -205,7 +205,7 @@
       {% if l10n_has_tag('ios_promo') %}
         <li id="promo-10" class="item promo-large-portrait firefox-ios" tabindex="0">
           <h2 class="primary go">{{ _('Firefox is<br> now available<br> for iOS') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.ios') }}" data-promotion-id="promo-10" data-promotion-name="Firefox is now available for iOS" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+          <a class="panel-link" href="{{ url('firefox.ios') }}" data-link-type="tile" data-link-name="Firefox is now available for iOS">
             <div class="secondary">
               <h3>{{ _('Add it to your iPhone, iPad &amp; iPod touch.') }}</h3>
               <p class="more">{{ _('Get Firefox for iOS') }}</p>
@@ -215,7 +215,7 @@
       {% else %}
         <li id="promo-10" class="item promo-large-portrait firefox-developer" tabindex="0">
           <h2 class="primary go">{{ _('Try Firefox Developer Edition') }}</h2>
-          <a class="panel-link" href="{{ url('firefox.developer') }}" data-promotion-id="promo-10" data-promotion-name="Introducing Firefox Developer Edition" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+          <a class="panel-link" href="{{ url('firefox.developer') }}" data-link-type="tile" data-link-name="Introducing Firefox Developer Edition">
             <div class="secondary">
               <h3>{{ _('The only browser made only for developers.') }}</h3>
               <p class="more">{{ _('Get Firefox Developer Edition') }}</p>
@@ -226,7 +226,7 @@
       {% if LANG.startswith('en') %}
         <li id="promo-11" class="item promo-large-landscape food-water-shelter" tabindex="0">
           <h2 class="primary go">Food. Water. Shelter. Internet.</h2>
-          <a class="panel-link" href="https://blog.mozilla.org/blog/2016/02/08/the-internet-is-a-global-public-resource/" data-promotion-id="promo-11" data-promotion-name="Food. Water. Shelter. Internet." data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+          <a class="panel-link" href="https://blog.mozilla.org/blog/2016/02/08/the-internet-is-a-global-public-resource/" data-link-type="tile" data-link-name="Food. Water. Shelter. Internet.">
             <div class="secondary">
               <h3>Protecting our newest global resource.</h3>
               <p class="more">Learn more</p>
@@ -236,7 +236,7 @@
       {% else %}
         <li id="promo-11" class="item promo-large-landscape mdn-10-years" tabindex="0">
           <h2 class="primary go">{{ _('Mozilla Developer Network') }}</h2>
-          <a class="panel-link" href="https://developer.mozilla.org/docs/mdn_at_ten?utm_campaign=mdn10&amp;utm_source=mozilla.org&amp;utm_medium=home-tile" data-promotion-id="promo-11" data-promotion-name="Mozilla Developer Network" data-promotion-class="promo-large-portrait" data-promotion-type="tile">
+          <a class="panel-link" href="https://developer.mozilla.org/docs/mdn_at_ten?utm_campaign=mdn10&amp;utm_source=mozilla.org&amp;utm_medium=home-tile" data-link-type="tile" data-link-name="Mozilla Developer Network">
             <div class="secondary">
               <h3>{{ _('10 years of documenting your Web.') }}</h3>
               <p class="more">{{ _('Celebrate with us') }}</p>
@@ -265,9 +265,9 @@
                 <span class="ellipsis" title="{{ tweet.text|safe }}"></span>
               </p>
               <div class="twt-actions">
-                <a href="https://twitter.com/{{ tweet.user.screen_name }}" class="twt-account" title="{{ tweet.user.name }}" data-name="Mozilla Tweets Account" data-promotion-id="promo-16" data-promotion-name="Mozilla Tweets {{ tweet.user.name }}" data-promotion-class="promo-small-landscape" data-promotion-type="tile"></a>
-                <a href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}" class="twt-reply" title="{{ _('Reply') }}" data-name="Mozilla Tweets Reply" data-promotion-id="promo-16" data-promotion-name"Mozilla Tweets Reply" data-promotion-class="promo-small-landscape" data-promotion-type="tile">{{ _('Reply') }}</a>
-                <a href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}" class="twt-rt" title="{{ _('Retweet') }}" data-name="Mozilla Tweets Retweet" data-promotion-id="promo-16" data-promotion-name="Mozilla Tweets Retweet" data-promotion-class="promo-small-landscape" data-promotion-type="tile">{{ _('Retweet') }}</a>
+                <a href="https://twitter.com/{{ tweet.user.screen_name }}" class="twt-account" title="{{ tweet.user.name }}" data-link-type="tile" data-link-name="Mozilla Tweets Account"></a>
+                <a href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}" class="twt-reply" title="{{ _('Reply') }}" data-link-type="tile" data-link-name="Mozilla Tweets Reply">{{ _('Reply') }}</a>
+                <a href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}" class="twt-rt" title="{{ _('Retweet') }}" data-link-type="tile" data-link-name="Mozilla Tweets Retweet">{{ _('Retweet') }}</a>
               </div>
             </div>
           </li>
