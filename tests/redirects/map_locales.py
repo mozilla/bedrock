@@ -20,7 +20,9 @@ LOCALE_VARIANTS = {
     'fr': ['fr-FR'],
     'ja': ['ja-JP-mac'],
     'pt-BR': ['pt'],
-    'ta': ['ta-LK']}
+    'ta': ['ta-LK'],
+    'zh-TW': ['zh-Hant', 'zh-Hant-TW'],  # Bug 1263193
+}
 
 _urls = []
 for locale in LOCALES:
