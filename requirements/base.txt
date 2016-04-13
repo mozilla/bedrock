@@ -83,8 +83,8 @@ https://github.com/timmyomahony/django-pagedown/archive/78556863faa5654f749c5562
     --hash=sha256:3e7bfaf54a560889838104c100d8b37930306243d8913942c4675cfcc54bccc7
 https://github.com/kennethreitz/requests/archive/46d646064ca0836a7d7b4d50ea2c762d12ff8ce1.tar.gz#egg=requests \
     --hash=sha256:a000a8b126c29c2e24d0d022b3decdadfd681410c6e7ec161c1ca9c774fcd95f
-django-mozilla-product-details==0.8.1 \
-    --hash=sha256:58dd02c32819ba97c4078b8c133888d30f7fbd3937296ffdad50f79fb57d5cdb
+https://github.com/mozilla/django-product-details/archive/django-1.7-backport.tar.gz#egg=django-mozilla-product-details==0.11.1.2 \
+    --hash=sha256:edfd1febb62c786e50c5a8ad141b80b02021dfcc7c8d34101ef56078fbabb8c2
 https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79e0f1b222c.tar.gz#egg=django-appconf \
     --hash=sha256:3e80e498209d7253e2cc1a4f9b02e7da819179a910c9275d5bc232de48e67c33
 https://github.com/jbalogh/django-multidb-router/archive/4f78662026b21cfff1ecfddc487fa0f0c31a0215.tar.gz#egg=django-multidb-router \
