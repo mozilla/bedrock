@@ -83,8 +83,7 @@
           </thead>
           <tbody>
           {% for formpart in formset %}  {# each newsletter is a formset #}
-            {% if formpart.initial['newsletter'] not in settings.OTHER_NEWSLETTERS and
-                  formpart.initial['newsletter'] not in settings.MARKETPLACE_NEWSLETTERS %}
+            {% if formpart.initial['newsletter'] not in settings.OTHER_NEWSLETTERS %}
             <tr class="subscription">
               <th>
                 <h4 class="title">
@@ -126,7 +125,6 @@
           </tr>
           </thead>
           <tbody>
-          {% set marketplace_first = True %}
           {% for formpart in formset %}  {# each newsletter is a formset #}
             {% if formpart.initial['newsletter'] in settings.OTHER_NEWSLETTERS %}
             <tr class="subscription">
@@ -141,22 +139,6 @@
                 <p class="description">
                   {{ formpart.initial['description'] }}
                 </p>
-              </th>
-              {{ formpart.subscribed_check }}
-            </tr>
-            {% endif %}
-            {% if formpart.initial['newsletter'] in settings.MARKETPLACE_NEWSLETTERS %}
-            <tr class="subscription">
-              {% if marketplace_first %}
-              <th rowspan="3">
-                <h4 class="title">{{ _('Firefox Marketplace') }}</h4>
-                <p class="description">{{ _('Know when the coolest apps hit the Marketplace for your platform:') }}</p>
-              </th>
-              {% set marketplace_first = False %}
-              {% endif %}
-              <th class="subcategory">
-                {{ formpart.initial['title'] }}
-                {{ formpart.newsletter }}
               </th>
               {{ formpart.subscribed_check }}
             </tr>
