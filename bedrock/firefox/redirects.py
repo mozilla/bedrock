@@ -367,4 +367,7 @@ redirectpatterns = (
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
     redirect(r'^products/firefox/start/?$', 'http://start.mozilla.org'),
     redirect(r'^products/firefox(?P<page>/.*)$', '/firefox{page}'),
+
+    # bug 1260423
+    redirect(r'^firefox/choose/?$', 'firefox.new'),
 )

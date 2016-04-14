@@ -8,7 +8,6 @@ import re
 
 from django.http import (Http404, HttpResponseRedirect,
                          HttpResponsePermanentRedirect)
-from django.utils.encoding import force_text
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -19,8 +18,6 @@ from bedrock.base.urlresolvers import reverse
 from commonware.response.decorators import xframe_allow
 from lib import l10n_utils
 from product_details.version_compare import Version
-
-import waffle
 
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
@@ -155,14 +152,6 @@ def windows_billboards(req):
 
 def fx_home_redirect(request):
     return HttpResponseRedirect(reverse('firefox.new'))
-
-
-def choose(request):
-    if waffle.switch_is_active('tracking-protection-redirect'):
-        return l10n_utils.render(request, 'firefox/choose.html')
-    else:
-        query = force_text(request.META.get('QUERY_STRING'), errors='ignore')
-        return HttpResponseRedirect('?'.join([reverse('firefox.new'), query]))
 
 
 def dnt(request):

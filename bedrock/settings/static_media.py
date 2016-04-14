@@ -607,13 +607,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_sync_anim-bundle.css',
     },
-    'firefox_choose': {
-        'source_filenames': (
-            'css/base/simple_footer-resp.less',
-            'css/firefox/choose.less',
-        ),
-        'output_filename': 'css/firefox_choose-bundle.css',
-    },
     'installer_help': {
         'source_filenames': (
             'css/base/menu-resp.less',
