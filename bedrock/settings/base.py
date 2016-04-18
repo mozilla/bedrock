@@ -159,6 +159,8 @@ CANONICAL_LOCALES = {
     'no': 'nb-NO',
     'pt': 'pt-BR',
     'sv': 'sv-SE',
+    'zh-hant': 'zh-TW',  # Bug 1263193
+    'zh-hant-tw': 'zh-TW',  # Bug 1263193
 }
 
 # Unlocalized pages are usually redirected to the English (en-US) equivalent,
