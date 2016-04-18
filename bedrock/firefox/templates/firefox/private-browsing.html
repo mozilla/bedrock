@@ -127,12 +127,8 @@
 {% block newsletter_subscribe %}
   <aside id="newsletter-subscribe" class="light ga-section" data-ga-label="Keep up with all things Firefox.">
     <div class="container">
-      {% if LANG.startswith('en-') %}
-        {# L10n: Line break for visual formatting. #}
-        {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='dark') }}
-      {% else %}
-        {{ email_newsletter_form(title=_('Get Firefox news'), button_class='dark') }}
-      {% endif %}
+      {# L10n: Line break for visual formatting. #}
+      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='dark') }}
     </div>
   </aside>
 {% endblock %}
