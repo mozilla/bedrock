@@ -62,9 +62,3 @@ OTHER_NEWSLETTERS = [
     'mozilla-general',
     'firefox-os',
 ]
-
-MARKETPLACE_NEWSLETTERS = [
-    'marketplace-desktop',
-    'marketplace-android',
-    'marketplace',
-]
