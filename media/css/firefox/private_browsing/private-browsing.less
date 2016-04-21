@@ -88,13 +88,6 @@ html, body {
     }
 }
 
-.button-flat-dark {
-    .open-sans-light;
-    .font-size(24px);
-    padding: 12px @baseLine;
-    .transition(background-color 250ms linear 0s);
-}
-
 .download-buttons  {
     p {
         color: #fff;
@@ -250,11 +243,11 @@ html, body {
         float: left;
         width: 100%;
 
-        .button-flat-dark {
+        .feature-button {
             max-width: 340px;
         }
 
-        .button-flat-dark,
+        .feature-button,
         .dl-button,
         .desktop-download-button,
         .ios-download-button a {
@@ -319,12 +312,6 @@ html.ios[lang^='es-ES']{
         width: 465px;
     }
 }
-html[lang^='en'] {
-    .button-flat-dark {
-        text-transform: none;
-        margin-bottom: 0;
-    }
-}
 
 @media only screen and (max-width: @breakDesktop) {
     html[lang^='de'],
@@ -352,9 +339,6 @@ html[lang^='en'] {
             width: 350px;
         }
      }
-    .button-flat-dark {
-        .font-size(20px);
-    }
     .container {
         width: @widthTablet;
 
@@ -362,7 +346,7 @@ html[lang^='en'] {
             .font-size(44px);
         }
         h2 {
-            .font-size(38px);
+            .font-size(36px);
             margin-bottom: 25px;
         }
         h3 {
@@ -423,7 +407,7 @@ html[lang^='en'] {
             padding-top: 75px;
             padding-bottom: 75px;
         }
-        .download-buttons .button-flat-dark {
+        .download-buttons .feature-button {
             max-width: 220px;
         }
         h2 {
@@ -454,12 +438,9 @@ html[lang^='en'] {
         }
     }
     html[lang^='pl']{
-        .button-flat-dark {
+        .feature-button {
             .font-size(16px);
         }
-    }
-    .button-flat-dark {
-        .font-size(18px);
     }
     .container {
         width: @widthMobile;
@@ -567,13 +548,13 @@ html[lang^='en'] {
 
         .download-buttons {
             text-align: center;
-            .button-flat-dark,
+            .feature-button,
             .android-download-button a,
             .desktop-download-button,
             .ios-download-button a {
                 float: none;
             }
-            .button-flat-dark {
+            .feature-button {
                 max-width: 100%;
             }
         }
@@ -585,9 +566,6 @@ html[lang^='en'] {
          #tracking-protection-animation .shield-container {
             margin: 0 auto;
         }
-    }
-    .button-flat-dark {
-        .font-size(@largeFontSize);
     }
     .container {
         width: @widthMobile;

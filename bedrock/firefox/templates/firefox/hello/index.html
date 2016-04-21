@@ -29,8 +29,14 @@
 
 {% block site_header_unwrapped %}
   {% call fxfamilynav('features') %}
-    <a class="try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Hello now') }}</a>
-    <a class="nav-download-button button-flat-dark" href="{{ url('firefox.new') }}">{{ _('Download now') }}</a>
+    <a class="feature-button dark try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">
+      {% if l10n_has_tag('new_cta_style') %}
+        {{ _('Try It Now') }}
+      {% else %}
+        {{ _('Try Hello now') }}
+      {% endif %}
+    </a>
+    <a class="nav-download-button feature-button dark" href="{{ url('firefox.new') }}">{{ _('Download now') }}</a>
   {% endcall %}
 {% endblock %}
 
@@ -44,7 +50,7 @@
           <h1>{{ _('Plan. Shop. Decide. Together.') }}</h1>
         {% endif %}
         <p class="tagline fx-up-to-date">{{ _('Instantly browse any Web page with a friend.') }}</p>
-        <a class="try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Firefox Hello') }}</a>
+        <a class="feature-button dark try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Firefox Hello') }}</a>
         <img src="{{ static('img/firefox/hello/firefox-hello-logo-white.svg') }}" class="hello-wordmark" alt="Firefox Hello" width="380" data-fallback="true" data-png="{{ static('img/firefox/hello/firefox-hello-logo-white.png') }}">
       </header>
     </div>
@@ -103,7 +109,7 @@
     <div class="container">
       <div class="fx-up-to-date">
         <h2>{{ _('Share this page with a friend.') }}</h2>
-        <a class="try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Hello now') }}</a>
+        <a class="feature-button dark try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Firefox Hello') }}</a>
       </div>
       <h2 class="fx-out-of-date">{{ _('Get the latest version of Firefox to start browsing Web pages with your friends.') }}</h2>
       <h2 class="non-fx">{{ _('Get Firefox to start browsing Web pages with your friends.') }}</h2>
