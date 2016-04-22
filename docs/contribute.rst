@@ -138,11 +138,17 @@ Server architecture
 
 - *URLs:* Demo instances can also be spun up on-demand by pushing a branch to the mozilla
   bedrock repo that matches a specific naming convention (the branch name must contain
-  ``__demo``). `CircleCI`_ will then automate spinning up a demo instance based on that
-  branch. For example, pushing a branch named ``myfeature__demo`` would create a demo
-  instance with the following URL: ``https://bedrock-demo-myfeature.us-west.moz.works/``
+  ``demo__``). `CircleCI`_ will then automate spinning up a demo instance based on that
+  branch. For example, pushing a branch named ``demo__feature`` would create a demo
+  instance with the following URL: ``https://bedrock-demo-feature.us-west.moz.works/``
 - *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
 - *Bedrock Git branch:* any branch we want, manually updated
+
+.. Note::
+
+    Deployed demo instances are not yet automatically cleaned up when branches are deleted,
+    so to avoid lots of instances piling up it is currently recommended to try and limit
+    a single demo instance per developer, reusing a branch such as `demo__<your_username>`.
 
 **Dev**
 
