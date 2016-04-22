@@ -23,6 +23,10 @@ def pytest_generate_tests(metafunc):
         r = requests.get(base_url + path)
         soup = BeautifulSoup(r.content, 'html.parser')
         urls = [a['href'] for a in soup.find('ul', class_='download-list').find_all('a')]
+        # Bug 1266682 remove links to Play Store to avoid rate limiting in automation.
+        for url in urls:
+            if 'play.google.com' in url:
+                urls.remove(url)
         assert len(urls) > 0
         argvalues.extend(urls)
     metafunc.parametrize('url', argvalues)
