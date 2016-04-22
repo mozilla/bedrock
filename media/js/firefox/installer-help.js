@@ -11,9 +11,7 @@
         $('aside.survey').show();
         $('#launch-survey').on('click', function(e) {
             e.preventDefault();
-            Mozilla.Modal.createModal(this, $surveyContent, {
-                allowScroll: false
-            });
+            Mozilla.Modal.createModal(this, $surveyContent);
         });
     }
 

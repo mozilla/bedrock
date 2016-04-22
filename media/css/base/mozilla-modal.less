@@ -4,10 +4,6 @@
 
 @import "../sandstone/lib.less";
 
-html.noscroll body {
-    overflow: hidden;
-}
-
 #modal {
     background: #000;
     background: rgba(0, 0, 0, 0.85);
@@ -131,18 +127,6 @@ html[dir="rtl"] {
 }
 
 @media only screen and (max-width: @breakTablet) {
-    html.noscroll {
-        overflow: hidden;
-        height: 100%;
-        body {
-            height: 100%;
-            overflow: hidden;
-        }
-        #modal {
-            position: absolute;
-        }
-    }
-
     #modal .window {
         margin: 0 auto;
 

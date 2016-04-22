@@ -121,7 +121,6 @@ if (typeof window.Mozilla === 'undefined') {
         e.preventDefault();
 
         Mozilla.Modal.createModal(this, $('#get-device'), {
-            allowScroll: false,
             title: '<img src="/media/img/firefox/os/logo/firefox-os-white.png" alt="mozilla" />'
         });
     });
