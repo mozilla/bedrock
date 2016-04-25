@@ -20,7 +20,8 @@ pyflakes==0.8.1 \
     --hash=sha256:ac4571695c10ce1536bcdba1a294b9f2d3e6cc9d0ea171b67d50a0864ce3e042 \
     --hash=sha256:3fa80a10b36d51686bf7744f5dc99622cd5c98ce8ed64022e629868aafc17769
 mock==1.0.1 \
-    --hash=sha256:b839dd2d9c117c701430c149956918a423a9863b48b09c90e30a6013e7d2f44f
+    --hash=sha256:b839dd2d9c117c701430c149956918a423a9863b48b09c90e30a6013e7d2f44f \
+    --hash=sha256:8f83080daa249d036cbccfb8ae5cc6ff007b88d6d937521371afabe7b19badbc
 https://github.com/jbalogh/test-utils/archive/e42e031d31ea63d593e47d564545149a0f30b95f.tar.gz#egg=test-utils \
     --hash=sha256:89f0058a6c7ed72e6ac299b2b8347acddfd5cccd60dd8fd30a4a031df091cb9b
 pyquery==1.0 \
