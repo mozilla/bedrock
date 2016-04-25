@@ -54,7 +54,7 @@ dependencies for running the site can be installed with ``npm``::
     $ npm install --production
 
 But if you'd like to run the JS test suite you'll need everything, which you can get by running
-``npm install`` from the root directory of the project.
+``npm install`` from the root directory of the project. You may also need to install the `Gulp <http://gulpjs.com/>`_ cli globally.
 
 .. note::
 
