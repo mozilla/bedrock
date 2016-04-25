@@ -133,8 +133,8 @@
           <section>
             <h2>{{ _('Get in Touch') }}</h2>
             <p>
-              {% trans %}
-              Find us on <a href="http://twitter.com/mozillagigabit">Twitter</a> or send us an <a href="mailto:gigabit@mozilla.com">email</a>.
+              {% trans url_mailto='mailto:gigabit@mozilla.com', url_twitter='https://twitter.com/MozGig' %}
+              Find us on <a href='{{ url_twitter }}'>Twitter</a> or send us an <a href='{{ url_mailto }}'>email</a>.
               {% endtrans %}
             </p>
           </section>
