@@ -30,7 +30,6 @@ Contents
    testing
    redirects
    javascript-libs
-   grunt
    newsletters
    tabzilla
    uitour
