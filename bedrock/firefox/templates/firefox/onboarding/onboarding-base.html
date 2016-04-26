@@ -1,0 +1,87 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}
+  {{_('Choose the independent browser')}}
+{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}
+  {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
+{% endblock %}
+
+{#- Override <meta property="og:url"> for social share -#}
+{% block page_og_url %}{{ url('firefox') }}{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block optimizely %}
+  {% if waffle.switch('firefox-onboarding-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<div id="galaxy">
+  <div id="stars">
+    <div class="star" id="star1"></div>
+    <div class="star" id="star2"></div>
+    <div class="star" id="star3"></div>
+    <div class="star" id="star4"></div>
+    <div class="star" id="star5"></div>
+    <div class="star" id="star6"></div>
+    <div class="star" id="star7"></div>
+  </div>
+
+  <header id="masthead" class="container">
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <header>
+      <h1>{% block title %}{% endblock %}</h1>
+      {% block subtitle %}{% endblock %}
+    </header>
+
+    {% block onboarding_content %}{% endblock %}
+  </main>
+
+  <div id="ground-level"{% if 'secondrun' in request.path %} class="secondrun"{% endif %}>
+    <div id="hills"></div>
+
+    <div id="ground">
+      <div class="ground-solid"></div>
+      <div id="ground-passthrough"></div>
+      <div class="ground-solid"></div>
+    </div>
+
+    <div id="foxes"></div>
+    <div id="crater"></div>
+  </div>
+</div> {#-- /#galaxy --#}
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+<footer id="footer">
+  <div class="container">
+    <a class="mozlogo" href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">Mozilla</a>
+    <ul>
+      <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
+      <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal Notices') }}</a></li>
+    </ul>
+  </div>
+</footer>
+{% endblock %}

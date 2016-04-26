@@ -340,6 +340,22 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_onboarding_firstrun_fxa-bundle.css',
     },
+    'firefox_onboarding_user_actions': {
+        'source_filenames': (
+            'css/base/simple_footer-resp.less',
+            'css/firefox/onboarding/onboarding-common.less',
+            'css/firefox/onboarding/user-actions.less',
+        ),
+        'output_filename': 'css/firefox_onboarding_user_actions-bundle.css',
+    },
+    'firefox_onboarding_fxa_complex': {
+        'source_filenames': (
+            'css/base/simple_footer-resp.less',
+            'css/firefox/onboarding/onboarding-common.less',
+            'css/firefox/onboarding/fxa-complex.less',
+        ),
+        'output_filename': 'css/firefox_onboarding_fxa_complex-bundle.css',
+    },
     'firefox_feedback': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
@@ -1186,6 +1202,20 @@ PIPELINE_JS = {
             'js/firefox/new/redesign/set-scene2-b.js',
         ),
         'output_filename': 'js/firefox_new_redesign_scene1_b-bundle.js',
+    },
+    'firefox_onboarding_user_actions': {
+        'source_filenames': (
+            'js/base/uitour-lib.js',
+            'js/base/mozilla-highlight-target.js',
+            'js/firefox/onboarding/user-actions.js',
+        ),
+        'output_filename': 'js/firefox_onboarding_user_actions-bundle.js',
+    },
+    'firefox_onboarding_fxa_complex': {
+        'source_filenames': (
+            'js/firefox/onboarding/fxa-complex.js',
+        ),
+        'output_filename': 'js/firefox_onboarding_fxa_complex-bundle.js',
     },
     'firefox_pocket': {
         'source_filenames': (

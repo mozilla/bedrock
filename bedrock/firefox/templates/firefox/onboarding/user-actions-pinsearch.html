@@ -1,0 +1,48 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/onboarding/onboarding-base.html" %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_onboarding_user_actions' %}
+{% endblock %}
+
+{% block title %}
+  {{ _('Ready, set, Firefox!') }}
+{% endblock %}
+
+{% block onboarding_content %}
+  <ul id="user-actions">
+    <li class="user-action pinit">
+      <h3>{{ _('Keep Firefox close') }}</h3>
+
+      {# Default instructions - non-OS X #}
+      <ul class="instructions pinit-other">
+        <li>{{ _('Right-click the Firefox icon below') }}</li>
+        <li>{{ _('Click the pin to keep it there') }}</li>
+      </ul>
+
+      {# OS X specific instructions #}
+      <ul class="instructions pinit-mac">
+        <li>{{ _('Click and hold the Firefox icon below') }}</li>
+        <li>{{ _('Drag it to where you want to keep it') }}</li>
+      </ul>
+    </li>
+    <li class="user-action search">
+      <h3>{{ _('Find things faster') }}</h3>
+
+      <ul class="instructions">
+        <li>{{ _('See search suggestions as you type') }}</li>
+        <li>{{ _('Choose the right site every time') }}</li>
+      </ul>
+
+      <button type="button" class="link trailing-arrow hidden" id="search-now">{{ _('Search now') }}</button>
+      <p id="search-pointer" class="hidden"><em>{{ _('Your search is ready!') }}</em></p>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_onboarding_user_actions' %}
+{% endblock %}

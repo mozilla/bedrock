@@ -1,0 +1,342 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+@import "onboarding-lib.less";
+
+@keyframes twinkle {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        transform: scale(0.8) translate(-1px, -1px);
+        opacity: 1;
+    }
+    40% {
+        transform: scale(0.7);
+        opacity: 0.7;
+    }
+    60% {
+        transform: scale(0.9);
+        opacity: 0.85;
+    }
+    80% {
+        transform: scale(0.7) translate(1px, 1px);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+html,
+body {
+    background: @groundColor;
+    color: #fff;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: #fff;
+    text-shadow: none;
+}
+
+a,
+a:active,
+a:focus,
+a:hover,
+a:visited,
+.link {
+    background: none;
+    border: none;
+    color: #f5c825;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.trailing-arrow {
+    .trailing-arrow();
+}
+
+#wrapper {
+    padding-bottom: 0;
+    width: 100%;
+}
+
+#galaxy {
+    background: url('/media/img/firefox/onboarding/grit.png') top left repeat,
+                linear-gradient(to bottom,
+                    rgb(30, 68, 136) 0%,
+                    rgb(25, 70, 141) 11%,
+                    rgb(0, 77, 164) 39%,
+                    rgb(0, 86, 185, 1) 60%,
+                    rgb(9, 90, 193) 65%,
+                    rgb(27, 98, 206) 73%,
+                    rgb(87, 117, 238) 92%,
+                    rgb(107, 124, 249) 100%);
+    background-blend-mode: color-dodge;
+}
+
+#stars {
+    background: url('/media/img/firefox/onboarding/stars.png') center 80px no-repeat;
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    @media only screen and (max-width: @breakTablet) {
+        display: none;
+    }
+}
+
+.star {
+    display: block;
+}
+
+#star1 {
+    .buildstar(4px, 56%, 198px, 2s, 0.5s);
+}
+
+#star2 {
+    .buildstar(2px, 60%, 146px, 2.5s, 0.2s);
+}
+
+#star3 {
+    .buildstar(5px, 80%, 208px, 3s, 0.1s);
+}
+
+#star4 {
+    .buildstar(4px, 15%, 126px, 2.8s, 0s);
+}
+
+#star5 {
+    .buildstar(3px, 45%, 400px, 2.4s, 0.3s);
+}
+
+#star6 {
+    .buildstar(3px, 77%, 580px, 1.8s, 0.4s);
+}
+
+#star7 {
+    .buildstar(3px, 228px, 357px, 3.1s, 0.8s);
+}
+
+.container {
+    width: @breakDesktop - (@gridGutterWidth * 2);
+    z-index: 2;
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @breakTablet - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @breakMobileLandscape - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @breakMobile - @gridGutterWidth;
+    }
+}
+
+h1 {
+    .font-size(60px);
+    margin-bottom: @baseLine * 2.5;
+    text-align: center;
+
+    &:before {
+        .at2x('/media/img/firefox/australis/fx38.0.5/firefox-logo.png', 80px, 84px);
+        .background-size(80px 84px);
+        content: '';
+        display: block;
+        height: 84px;
+        width: 80px;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        .font-size(44px);
+
+        &:before {
+            margin: 0 auto (@baseLine / 2);
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .font-size(34px);
+    }
+}
+
+// contains hill city, crater, and celebratory foxes
+#ground-level {
+    background: transparent;
+    height: 530px;
+    margin-top: -80px; // bring city/hills a little higher on page
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    // hill city in the distance
+    #hills {
+        background: url('/media/img/firefox/onboarding/city-hills.png') top center no-repeat;
+        height: 530px;
+        left: 50%;
+        margin-left: -960px;
+        position: absolute;
+        top: 0;
+        width: 1920px;
+        z-index: 1;
+    }
+
+    // wrapper for 3 ground elements - solid color stretchy sides and
+    // transparent, fixed width center (which will be masked by crater)
+    #ground {
+        bottom: 0;
+        display: flex;
+        height: 146px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 2;
+    }
+
+    // solid purple, stretches to fill extra space on right/left of crater
+    .ground-solid {
+        background: @groundColor;
+        flex: 1;
+    }
+
+    // transparent to allow gradient underneath to show through
+    // crater image sits above this area
+    #ground-passthrough {
+        background: transparent;
+        flex: 0 0 1400px;
+        height: 146px;
+        width: 1400px;
+    }
+
+    // foxes sit on top of #ground
+    #foxes {
+        background: url('/media/img/firefox/onboarding/celebratory-foxes.png') top center no-repeat;
+        bottom: 15px;
+        height: 319px;
+        left: 50%;
+        margin-left: -596px;
+        position: absolute;
+        width: 1193px;
+        z-index: 3;
+    }
+
+    // crater sits on top of foxes and masks #ground-passthrough
+    #crater {
+        background: url('/media/img/firefox/onboarding/crater.png') top center no-repeat;
+        bottom: 0;
+        height: 146px;
+        left: 50%;
+        margin-left: -700px;
+        position: absolute;
+        width: 1400px;
+        z-index: 4;
+    }
+
+    // hide all the fancy ground images for skinny screens
+    @media only screen and (max-width: @breakTablet) {
+        display: none;
+    }
+}
+
+// for secondrun pages, hide celebrating foxes
+#ground-level.secondrun {
+    margin-top: -200px;
+
+    #foxes {
+        display: none;
+    }
+}
+
+#footer {
+    background: @groundColor;
+    color: #fff;
+    padding: @baseLine 0;
+
+    .container {
+        align-items: flex-end;
+        display: flex;
+        justify-content: center;
+        padding: @baseLine 0;
+
+        // undo inherited clearfix
+        &:after {
+            content: '';
+            display: none;
+        }
+    }
+
+    .mozlogo {
+        .at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
+        .image-replaced();
+        flex: 0 0 93px;
+        display: inline-block;
+        height: 24px;
+        margin-right: @gridGutterWidth;
+        width: 93px;
+    }
+
+    ul {
+        .font-size(@smallFontSize);
+        display: flex;
+        flex: 0;
+        list-style: none;
+        margin: 0;
+
+        li {
+            flex: 0 0 auto;
+            margin: 0 10px;
+
+            &:after {
+                color: #fff;
+                content: '•';
+                margin: 0 -10px 0 10px;
+            }
+
+            &:last-child:after {
+                content: '';
+            }
+
+            a {
+                white-space: nowrap;
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding: 0;
+
+        .container {
+            display: block;
+            text-align: center;
+        }
+
+        .mozlogo {
+            margin: 0 0 @baseLine / 2;
+        }
+
+        ul {
+            display: block;
+
+            li:after {
+                content: '';
+            }
+        }
+    }
+}
