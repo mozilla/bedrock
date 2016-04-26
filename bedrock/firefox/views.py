@@ -22,6 +22,7 @@ from product_details.version_compare import Version
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
+from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
 
 
@@ -574,3 +575,12 @@ def sync(request):
         version = None
 
     return l10n_utils.render(request, 'firefox/sync.html', {'version': version})
+
+
+def ios_testflight(request):
+    # no country field, so no need to send locale
+    newsletter_form = NewsletterFooterForm('ios-beta-test-flight', '')
+
+    return l10n_utils.render(request,
+                             'firefox/testflight.html',
+                             {'newsletter_form': newsletter_form})

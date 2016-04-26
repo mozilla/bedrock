@@ -61,6 +61,13 @@ $(function () {
         var $errorlist = $errors.find('ul.errorlist');
         var $submitbutton = $('#footer_email_submit');
         var $spinnerTarget = $('#newsletter-spinner');
+        var spinnerColor = '#000'; // default to black
+
+        // look for custom spinner color
+        if ($self.data('spinner-color')) {
+            spinnerColor = $self.data('spinner-color');
+        }
+
         var spinner = new Spinner({
             lines: 12, // The number of lines to draw
             length: 4, // The length of each line
@@ -69,7 +76,7 @@ $(function () {
             corners: 0, // Corner roundness (0..1)
             rotate: 0, // The rotation offset
             direction: 1, // 1: clockwise, -1: counterclockwise
-            color: '#000', // #rgb or #rrggbb or array of colors
+            color: spinnerColor, // #rgb or #rrggbb or array of colors
             speed: 1, // Rounds per second
             trail: 60, // Afterglow percentage
             shadow: false, // Whether to render a shadow

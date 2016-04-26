@@ -48,6 +48,7 @@ urlpatterns = (
     page('firefox/android', 'firefox/android/index.html'),
     page('firefox/android/faq', 'firefox/android/faq.html'),
     page('firefox/ios', 'firefox/ios.html'),
+    url(r'^firefox/ios/testflight', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile-download', 'firefox/mobile-download.html'),
     page('firefox/products', 'firefox/family/index.html'),
     page('firefox/private-browsing', 'firefox/private-browsing.html'),
