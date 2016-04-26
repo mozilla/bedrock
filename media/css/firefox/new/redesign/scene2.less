@@ -55,21 +55,6 @@
     }
 }
 
-// If browser supports CSS blend modes, add grit texture over CSS gradient & apply color-dodge.
-@supports (background-blend-mode: color-dodge) {
-    .event-horizon {
-        background: url('/media/img/firefox/new/redesign/grit.png') top left repeat,
-                    linear-gradient(to bottom, rgb(30, 68, 136) 0%, rgb(19, 71, 146) 22%, rgb(2, 76, 161) 44%, rgb(0, 85, 184) 73%, rgb(4, 89, 190) 78%, rgb(17, 94, 199) 86%, rgb(51, 105, 219) 100%);
-        background-blend-mode: color-dodge;
-    }
-
-    .mission-control .sky-line {
-        background: url('/media/img/firefox/new/redesign/grit.png') top left repeat,
-                    linear-gradient(to bottom, #346adc, #6a7cf8);
-        background-blend-mode: color-dodge;
-    }
-}
-
 .foxes {
     position: absolute;
     top: -160px;

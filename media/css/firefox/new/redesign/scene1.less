@@ -22,7 +22,7 @@
         width: 25px;
         height: 25px;
         vertical-align: text-bottom;
-        background: url('/media/img/firefox/new/icon-alert.svg') center center no-repeat;
+        background: url('/media/img/firefox/new/icon-alert-orange.svg') center center no-repeat;
         content: '';
     }
 }
@@ -119,6 +119,14 @@ html.firefox-latest {
     small.download-other {
         display: none;
     }
+
+    #subscribe {
+        display: block;
+    }
+
+    #benefits {
+        display: none;
+    }
 }
 
 // out of date firefox
@@ -129,6 +137,10 @@ html.firefox-old {
 
     #version-message-desktop-old {
         display: inline;
+
+        a {
+            color: @textColorSpaceYellow;
+        }
     }
 }
 
@@ -375,5 +387,305 @@ html.fxos {
                 margin-top: 16px;
             }
         }
+    }
+}
+
+.event-horizon {
+    .clearfix;
+    background-color: #0150ab;
+    background: linear-gradient(to bottom, rgb(30, 68, 136) 0%, rgb(19, 71, 146) 22%, rgb(2, 76, 161) 44%, rgb(0, 85, 184) 73%, rgb(4, 89, 190) 78%, rgb(17, 94, 199) 86%, rgb(51, 105, 219) 100%);
+}
+
+.mission-control {
+    position: relative;
+    width: 100%;
+    padding-top: 129px;
+    background: #11336B;
+
+    .sky-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1400px;
+        height: 129px;
+        margin-left: -700px;
+        background-color: #0150ab;
+        background: linear-gradient(to bottom, #346adc, #6a7cf8);
+    }
+
+    .crater {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1400px;
+        height: 129px;
+        margin-left: -700px;
+        background: url('/media/img/firefox/new/redesign/ground-level.png') top center no-repeat;
+    }
+
+    .launch-area {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .ground {
+        width: 100%;
+        height: 120px;
+        background: #11336B;
+    }
+}
+
+.rocket {
+    position: absolute;
+    top: -227px;
+    right: 60px;
+    width: 160px;
+    height: 195px;
+    .at2x('/media/img/firefox/new/redesign/rocket.png', 160px, 195px);
+
+    &:before {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background: #fff;
+        content: '';
+        .animation(twinkle 3s ease-in-out 0s infinite alternate-reverse);
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        right: -60px;
+
+        &:before {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        top: -122px;
+        right: 50%;
+        margin-right: -80px;
+        height: 120px;
+    }
+}
+
+#benefits {
+    padding: (@baseLine * 3) 0;
+    .clearfix;
+    background: #11336b;
+
+    ul {
+        position: relative;
+        list-style-type: none;
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+
+        li {
+            float: left;
+            margin: 0;
+            padding: 0;
+            width: 33.3%;
+
+            @media only screen and (max-width: @breakTablet) {
+                float: none;
+                width: auto;
+                margin-bottom: @baseLine * 2;
+            }
+        }
+    }
+
+    h2 {
+        position: relative;
+        padding-top: 73px;
+        .open-sans();
+        .font-size(22px);
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 49px;
+            content: '';
+            background-image: url('/media/img/firefox/new/redesign/benefits-sprite.png');
+            background-repeat: no-repeat;
+        }
+
+        &.performance:before {
+            background-position: center -59px;
+        }
+
+        &.privacy:before {
+            background-position: center -118px;
+        }
+
+        &.good:before {
+            background-position: center top;
+        }
+    }
+
+    p {
+        .font-size(18px);
+        padding: 0 @baseLine;
+    }
+
+    a {
+        .font-size(18px);
+        color: @textColorSpaceYellow;
+    }
+}
+
+#subscribe {
+    background: #11336b;
+    padding: (@baseLine * 3) 0;
+    display: none;
+
+    .subscribe-container {
+        position: relative;
+        .clearfix;
+    }
+
+    .form-title {
+        .at2x('/media/img/firefox/newsletter.png', 149px, 149px);
+        .span(4);
+        background-position: left top;
+        background-repeat: no-repeat;
+        min-height: 120px;
+        padding: 30px 0 20px 180px;
+        margin-left: -((@gridColumnWidth * 7) + (@gridGutterWidth * 6));
+        margin-top: -30px;
+        text-shadow: none;
+
+        h3 {
+            .font-size(40px);
+            line-height: 1.2;
+            text-shadow: none;
+            color: #fff;
+        }
+
+        @media (max-width: @breakDesktop) {
+            .background-size(120px, 120px);
+            .span_narrow(4);
+            background-position: left 10px;
+            padding-left: 140px;
+            margin-left: -((@gridColumnWidthNarrow * 7) + (@gridGutterWidth * 6));
+            margin-top: -30px;
+
+            h3 {
+                .font-size(32px);
+            }
+        }
+
+        @media (max-width: @breakTablet) {
+            .background-size(100px, 100px);
+            .span-all;
+            background-position: center top;
+            padding-left: 0;
+            padding-top: 120px;
+            text-align: center;
+            min-height: 0;
+        }
+    }
+
+    .newsletter-form {
+        .span(5);
+        .offset(7);
+        padding: 30px 0 0;
+        background: transparent none;
+        border: 0;
+        box-shadow: none;
+
+        .form-submit,
+        .form-contents {
+            .span-all;
+        }
+
+        @media (max-width: @breakDesktop) {
+            .span_narrow(5);
+            .offset_narrow(7);
+        }
+
+        @media (max-width: @breakTablet) {
+            .span-all;
+        }
+    }
+
+    label {
+        color: #fff;
+    }
+
+    .field-format label {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    input[type='email'] {
+        .border-box;
+        .border-radius(4px);
+        .box-shadow(none);
+        .font-size(@largeFontSize);
+        border: 0;
+        padding: .75em 20px;
+        width: 100%;
+    }
+
+    select {
+        .font-size(@baseFontSize);
+        font-family: inherit;
+    }
+
+    .button {
+        .border-box;
+        .border-radius(5px);
+        .box-shadow(none);
+        .font-size(@largeFontSize);
+        .transition(background-color .15s ease);
+        background: transparent;
+        border: 2px solid #fff;
+        padding: .75em 20px;
+        text-shadow: none;
+        text-transform: uppercase;
+        width: 100%;
+
+        &:hover,
+        &:focus {
+            background: #33aae4;
+            background: rgba(255, 255, 255, .1);
+        }
+    }
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    #footer-email-errors {
+        .span-all;
+        margin-bottom: @baseLine;
+    }
+
+    #newsletter-form-thankyou {
+        margin: 0;
+        text-align: center;
+        .span-all;
+
+        h3,
+        p {
+            color: #fff;
+            max-width: 35em;
+            margin: @baseLine auto;
+        }
+
+        p {
+            .font-size(@largeFontSize);
+        }
+    }
+
+    // override JS applied styles so the spinner is visible on dark background.
+    #newsletter-spinner > .spinner > div > div {
+        background: #fff !important;
     }
 }
