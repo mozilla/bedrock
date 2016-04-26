@@ -61,6 +61,9 @@ urlpatterns = (
     page('about/governance/policies/regressions', 'mozorg/about/governance/policies/regressions.html'),
     page('about/governance/policies/reviewers', 'mozorg/about/governance/policies/reviewers.html'),
 
+    page('about/policy/transparency', 'mozorg/about/policy/transparency/index.html'),
+    page('about/policy/transparency/jan-dec-2015', 'mozorg/about/policy/transparency/jan-dec-2015.html'),
+
     page('contact', 'mozorg/contact/contact-landing.html'),
     page('contact/spaces', 'mozorg/contact/spaces/spaces-landing.html'),
     page('contact/spaces/mountain-view', 'mozorg/contact/spaces/mountain-view.html'),
