@@ -200,6 +200,9 @@ redirectpatterns = (
     # bug 1001238, 1025056
     no_redirect(r'^firefox/(24\.[5678]\.\d|28\.0)/releasenotes/?$'),
 
+    # bug 1235082
+    no_redirect(r'^firefox/23\.0(\.1)?/releasenotes/?$'),
+
     # bug 947890, 1069902
     redirect(r'^firefox/releases/(?P<v>[01]\.(?:.*))$',
              'http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/firefox/releases/{v}'),
