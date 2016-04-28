@@ -21,7 +21,13 @@ def android_builds(channel, builds=None):
     ])
 
     if channel == 'alpha':
+        version = int(firefox_android.latest_version('alpha').split('.', 1)[0])
+
         for type, arch_pretty in variations.iteritems():
+            # Android Gingerbread (2.3) is no longer supported as of Firefox 48
+            if version >= 48 and type == 'api-9':
+                continue
+
             link = firefox_android.get_download_url('alpha', type)
             builds.append({'os': 'android',
                            'os_pretty': 'Android',

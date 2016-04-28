@@ -3,13 +3,14 @@ from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from mock import patch
+from mock import patch, Mock
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 
 from product_details import product_details
 from bedrock.mozorg.tests import TestCase
 from bedrock.firefox import helpers
+from bedrock.firefox.firefox_details import firefox_android
 
 
 def render(s, context=None):
@@ -174,7 +175,30 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[3]).attr('class'), 'os_linux')
         eq_(pq(list[4]).attr('class'), 'os_linux64')
 
-    def test_aurora_mobile(self):
+    @patch.object(firefox_android._storage, 'data',
+                  Mock(return_value=dict(alpha_version='48.0a2')))
+    def test_latest_aurora_android(self):
+        """Android Gingerbread (2.3) is no longer supported as of Firefox 48"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox('alpha', platform='android') }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 2)
+        eq_(pq(list[0]).attr('class'), 'os_android armv7up api-15')
+        eq_(pq(list[1]).attr('class'), 'os_android x86')
+
+        list = doc('.download-other .arch')
+        eq_(list.length, 2)
+        eq_(pq(list[0]).attr('class'), 'arch armv7up api-15')
+        eq_(pq(list[1]).attr('class'), 'arch x86')
+
+    @patch.object(firefox_android._storage, 'data',
+                  Mock(return_value=dict(alpha_version='47.0a2')))
+    def test_legacy_aurora_android(self):
+        """Android Gingerbread (2.3) is supported as of Firefox 47"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'en-US'
