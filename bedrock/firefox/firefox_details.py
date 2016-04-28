@@ -309,9 +309,16 @@ class FirefoxAndroid(_ProductDetails):
 
     def platforms(self, channel='release'):
         platforms = self.platform_labels.copy()
+        major_version = int(self.latest_version(channel).split('.', 1)[0])
+
+        # Android Gingerbread (2.3) is no longer supported as of Firefox 48
+        if major_version >= 48:
+            platforms['android'] = _('ARM devices\n(Android 4.0.3+)')
+            platforms['android-x86'] = _('Intel devices\n(Android 4.0.3+ x86 CPU)')
+            del platforms['android-api-9']
 
         # Android Honeycomb (3.x) was supported on Firefox 45 and below
-        if int(self.latest_version(channel).split('.', 1)[0]) < 46:
+        if major_version <= 45:
             platforms['android'] = _('Modern devices\n(Android 3.0+)')
 
         return platforms.items()
