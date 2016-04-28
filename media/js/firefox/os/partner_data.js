@@ -30,7 +30,7 @@ if (typeof Mozilla === 'undefined') {
         'alcatel_onetouchfire': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire',
-            'countries': ['cl', 'co', 'mx', 'rs']
+            'countries': ['cl', 'co', 'mx']
         },
         'alcatel_onetouchfirec': {
             'type': 'smartphone',
@@ -45,7 +45,7 @@ if (typeof Mozilla === 'undefined') {
         'alcatel_onetouchfiree': {
             'type': 'smartphone',
             'display': 'Alcatel One Touch Fire E',
-            'countries': ['cz', 'de', 'hu', 'ru']
+            'countries': ['cz', 'ru']
         },
         'au_fx0': {
             'type': 'smartphone',
@@ -105,7 +105,7 @@ if (typeof Mozilla === 'undefined') {
         'zte_openc': {
             'type': 'smartphone',
             'display': 'ZTE Open C',
-            'countries': ['de', 'fr', 'lu', 'uy']
+            'countries': ['de', 'lu', 'uy']
         },
         'zte_openc2': {
             'type': 'smartphone',
