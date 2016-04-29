@@ -94,7 +94,7 @@ def firefox_footer_links(ctx, channel='release', platform='all'):
 def download_firefox(ctx, channel='release', platform='all',
                      dom_id=None, locale=None, force_direct=False,
                      force_full_installer=False, force_funnelcake=False,
-                     check_old_fx=False, alt_copy=None, button_color='green'):
+                     alt_copy=None, button_color='green'):
     """ Output a "download firefox" button.
 
     :param ctx: context from calling template.
@@ -107,10 +107,8 @@ def download_firefox(ctx, channel='release', platform='all',
             the stub installer (for aurora).
     :param force_funnelcake: Force the download version for en-US Windows to be
             'latest', which bouncer will translate to the funnelcake build.
-    :param check_old_fx: Checks to see if the user is on an old version of
-            Firefox and, if true, changes the button text from 'Free Download'
-            to 'Update your Firefox'.
     :param alt_copy: Specifies alternate copy to use for download buttons.
+    :param button_color: color of download button. Default to 'green'.
     """
     show_desktop = platform in ['all', 'desktop']
     show_android = platform in ['all', 'android']
@@ -194,7 +192,6 @@ def download_firefox(ctx, channel='release', platform='all',
         'show_desktop': show_desktop,
         'show_android': show_android,
         'show_ios': show_ios,
-        'check_old_fx': check_old_fx,
         'alt_copy': alt_copy,
         'button_color': button_color,
     }

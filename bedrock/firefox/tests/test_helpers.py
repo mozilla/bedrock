@@ -190,11 +190,6 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[0]).attr('class'), 'os_android armv7up api-15')
         eq_(pq(list[1]).attr('class'), 'os_android x86')
 
-        list = doc('.download-other .arch')
-        eq_(list.length, 2)
-        eq_(pq(list[0]).attr('class'), 'arch armv7up api-15')
-        eq_(pq(list[1]).attr('class'), 'arch x86')
-
     @patch.object(firefox_android._storage, 'data',
                   Mock(return_value=dict(alpha_version='47.0a2')))
     def test_legacy_aurora_android(self):
@@ -249,24 +244,6 @@ class TestDownloadButtons(TestCase):
         list = doc('.download-list li')
         eq_(list.length, 1)
         eq_(pq(list[0]).attr('class'), 'os_ios')
-
-    def test_check_old_firefox(self):
-        """
-        Should apply check_old_fx class if check_old_fx=True
-        """
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
-
-        doc = pq(render("{{ download_firefox(check_old_fx=True) }}",
-                        {'request': get_request}))
-
-        dlbuttons = doc('.download-button')
-        eq_(dlbuttons.length, 1)
-
-        # 'download-button-check-old-fx' class should be present
-        dlbtn = pq(dlbuttons[0])
-        self.assertTrue(dlbtn('.download-button-check-old-fx'))
 
 
 class TestFirefoxURL(TestCase):
@@ -407,3 +384,138 @@ class FirefoxOSBlogLinkTest(TestCase):
         Should return None as the locale will not be found
         """
         eq_(helpers.firefox_os_blog_link('esmx'), None)
+
+
+class TestFirefoxFooterLinks(TestCase):
+    def test_show_all_links(self):
+        """Should show all links by default"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ firefox_footer_links() }}",
+                        {'request': get_request}))
+
+        list = doc('.fx-footer-links')
+        eq_(list.length, 3)
+        eq_(pq(list[0]).attr('class'), 'fx-footer-links os_android')
+        eq_(pq(list[1]).attr('class'), 'fx-footer-links os_ios')
+        eq_(pq(list[2]).attr('class'), 'fx-footer-links os_desktop os_other')
+
+    def test_ios_links(self):
+        """Should show iOS links only"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ firefox_footer_links(platform='ios') }}",
+                        {'request': get_request}))
+
+        list = doc('.fx-footer-links')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'fx-footer-links os_ios')
+
+        links = doc('.fx-footer-links a')
+        eq_(links.length, 2)
+        eq_(pq(links[0]).attr('href'), 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
+        eq_(pq(links[1]).attr('href'), '/en-US/firefox/ios/notes/')
+
+    def test_android_links(self):
+        """Should show Android links only"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ firefox_footer_links(platform='android') }}",
+                        {'request': get_request}))
+
+        list = doc('.fx-footer-links')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'fx-footer-links os_android')
+
+        links = doc('.fx-footer-links a')
+        eq_(links.length, 3)
+        eq_(pq(links[0]).attr('href'), 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
+        eq_(pq(links[1]).attr('href'), '/en-US/firefox/android/all/')
+        eq_(pq(links[2]).attr('href'), '/en-US/firefox/android/notes/')
+
+    def test_android_beta_links(self):
+        """Should show Android Beta links only"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ firefox_footer_links(platform='android', channel='beta') }}",
+                        {'request': get_request}))
+
+        list = doc('.fx-footer-links')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'fx-footer-links os_android')
+
+        links = doc('.fx-footer-links a')
+        eq_(links.length, 3)
+        eq_(pq(links[0]).attr('href'), 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
+        eq_(pq(links[1]).attr('href'), '/en-US/firefox/android/beta/all/')
+        eq_(pq(links[2]).attr('href'), '/en-US/firefox/android/beta/notes/')
+
+    def test_android_aurora_links(self):
+        """Should show Android Aurora links only"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ firefox_footer_links(platform='android', channel='alpha') }}",
+                        {'request': get_request}))
+
+        list = doc('.fx-footer-links')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'fx-footer-links os_android')
+
+        # Note: not testing Android Aurora links as additional build links are
+        # dynamically included from product details.
+
+    def test_desktop_links(self):
+        """Should show Desktop links only"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ firefox_footer_links(platform='desktop') }}",
+                        {'request': get_request}))
+
+        list = doc('.fx-footer-links')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'fx-footer-links os_desktop os_other')
+
+        links = doc('.fx-footer-links a')
+        eq_(links.length, 2)
+        eq_(pq(links[0]).attr('href'), '/en-US/firefox/all/')
+        eq_(pq(links[1]).attr('href'), '/en-US/firefox/notes/')
+
+    def test_desktop_beta_links(self):
+        """Should show Desktop Betalinks only"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ firefox_footer_links(channel='beta', platform='desktop') }}",
+                        {'request': get_request}))
+
+        list = doc('.fx-footer-links')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'fx-footer-links os_desktop os_other')
+
+        links = doc('.fx-footer-links a')
+        eq_(links.length, 2)
+        eq_(pq(links[0]).attr('href'), '/en-US/firefox/beta/all/')
+        eq_(pq(links[1]).attr('href'), '/en-US/firefox/beta/notes/')
+
+    def test_desktop_developer_links(self):
+        """Should show Desktop Developer links only"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ firefox_footer_links(channel='alpha', platform='desktop') }}",
+                        {'request': get_request}))
+
+        list = doc('.fx-footer-links')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'fx-footer-links os_desktop os_other')
+
+        links = doc('.fx-footer-links a')
+        eq_(links.length, 2)
+        eq_(pq(links[0]).attr('href'), '/en-US/firefox/developer/all/')
+        eq_(pq(links[1]).attr('href'), '/en-US/firefox/developer/notes/')

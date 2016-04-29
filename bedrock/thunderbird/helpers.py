@@ -12,21 +12,18 @@ from lib.l10n_utils import get_locale
 
 @jingo.register.function
 @jinja2.contextfunction
-def download_thunderbird(ctx, channel='release', small=False,
-                         dom_id=None, locale=None, simple=False,
-                         force_direct=False):
+def download_thunderbird(ctx, channel='release', dom_id=None,
+                         locale=None, force_direct=False,
+                         alt_copy=None, button_color='green'):
     """ Output a "Download Thunderbird" button.
 
     :param ctx: context from calling template.
     :param channel: name of channel: 'release', 'beta' or 'alpha'.
-    :param small: Display the small button if True.
     :param dom_id: Use this string as the id attr on the element.
     :param locale: The locale of the download. Default to locale of request.
-    :param simple: Display button with text only if True. Will not display
-            icon or privacy/what's new/systems & languages links. Can be used
-            in conjunction with 'small'. Those links can still be displayed by
-            overriding CSS.
     :param force_direct: Force the download URL to be direct.
+    :param alt_copy: Specifies alternate copy to use for download buttons.
+    :param button_color: color of download button. Default to 'green'.
     :return: The button html.
     """
     alt_channel = '' if channel == 'release' else channel
@@ -82,9 +79,9 @@ def download_thunderbird(ctx, channel='release', small=False,
         'product': 'thunderbird',
         'builds': builds,
         'id': dom_id,
-        'small': small,
-        'simple': simple,
         'channel': alt_channel,
+        'alt_copy': alt_copy,
+        'button_color': button_color,
     }
 
     html = jingo.render_to_string(ctx['request'],

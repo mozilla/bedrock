@@ -116,6 +116,11 @@
           {% endtrans %}
         {% endif %}
       </p>
+      {% if l10n_has_tag('channel_aurora_android') %}
+        <p class="info">
+          <a rel="external" href="https://support.mozilla.org/kb/will-firefox-work-my-mobile-device">{{_('Will Firefox work on my mobile device?')}}</a>
+        </p>
+      {% endif %}
     </div>
 
   </div>

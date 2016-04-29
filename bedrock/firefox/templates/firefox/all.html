@@ -124,7 +124,7 @@
 {% endblock %}
 
 {% block site_footer %}
-  {% with fx_footer_links=True, current_platform=platform %}
+  {% with fx_footer_links=True, current_platform=platform, current_channel=channel %}
     {% include 'includes/site-footer.html' %}
   {% endwith %}
 {% endblock %}

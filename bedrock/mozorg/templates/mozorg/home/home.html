@@ -156,8 +156,9 @@
             <img width="176" height="184" src="{{ static('img/home/voices/promos/download-firefox/firefox-logo.png') }}" alt="">
           </div>
           <div class="secondary">
-            {{ download_firefox(alt_copy=_('Free Download'),button_color='transparent-light',dom_id='promo-download-fx-button') }}
+            {{ download_firefox(alt_copy=_('Free Download'), button_color='transparent-light', dom_id='promo-download-fx-button') }}
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
+            <a class="unrecognized-short-link" href="{{ url('firefox.new') }}">{{_('Download Firefox')}}</a>
           </div>
         </li>
       {% if LANG.startswith('en-') %}
@@ -350,9 +351,9 @@
   <section class="module" id="newsletter-subscribe">
     <div class="container">
     {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='white') }}
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='light') }}
     {% else %}
-      {{ email_newsletter_form(button_class='white') }}
+      {{ email_newsletter_form(button_class='light') }}
     {% endif %}
     </div>
   </section>

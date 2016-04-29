@@ -286,58 +286,23 @@ section {
     }
 }
 
-.cta-button:before {
-    position: absolute;
-    top: 15px;
-    left: 22px;
-    width: 30px;
-    height: 30px;
-    content: '';
-    .at2x('/media/img/firefox/os-new/android-icon.png', 30px, 30px);
-    background-position: 0 0;
-    background-repeat: no-repeat;
-}
+.cta-button.button.green {
+    padding-left: 66px;
+    margin-bottom: @baseLine;
 
-.fxos-try .cta-button {
-    background-color: #0c99d5;
-    color: #fff;
-}
-
-.newsletter-form .button,
-.cta-button {
-    position: relative;
-    display: inline-block;
-    background-color: #005189;
-    margin: 0 auto 30px;
-    border: 0;
-    box-shadow: none;
-    border-radius: 6px;
-    color: #fff;
-    font-size: 1.4em;
-    padding: 15px 30px 15px 60px;
-    .transition(background-color .1s ease-in-out);
-
-    @media only screen and (max-width: 1600px) {
-        margin-bottom: 50px;
-    }
-
-    @media only screen and (max-width: 1366px) {
-        margin-bottom: 30px;
-    }
-
-    @media only screen and (max-width: 1024px) {
-        margin-bottom: @baseLine;
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-        background-color: #005da5;
-        color: #fff;
-        text-decoration: none;
+    &:before {
+        position: absolute;
+        top: 50%;
+        left: 26px;
+        width: 30px;
+        height: 30px;
+        margin-top: -15px;
+        content: '';
+        .at2x('/media/img/firefox/os-new/android-icon.png', 30px, 30px);
+        background-position: 0 0;
+        background-repeat: no-repeat;
     }
 }
-
 
 @media only screen and (max-width: @breakDesktop) {
     section .content-wrapper {

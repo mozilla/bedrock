@@ -49,10 +49,14 @@ main {
         margin-bottom: @baseLine * 2;
     }
 
-    .button-flat-dark {
+    .button.dark {
         margin: 0;
         .font-size(25px);
         transition: background-color .1s ease-in-out;
+
+        &.hidden {
+            display: none;
+        }
     }
 
     .pointer {
@@ -87,7 +91,7 @@ main {
             .font-size(20px);
         }
 
-        .button-flat-dark {
+        .button.dark {
             .font-size(22px);
         }
     }
@@ -101,14 +105,10 @@ main {
             .font-size(18px);
         }
 
-        .button-flat-dark {
+        .button.dark {
             .font-size(20px);
         }
     }
-}
-
-html[lang^="en"] main .button-flat-dark {
-    text-transform: none;
 }
 
 .ravioli {

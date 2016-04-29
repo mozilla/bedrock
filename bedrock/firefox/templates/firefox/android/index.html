@@ -37,7 +37,7 @@
       <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
         {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
       </a>
-      {{ download_firefox(platform='android',button_color='dark',alt_copy=_('Download') if LANG.startswith('en-') else _('Download now')) }}
+      <button id="send-to-button-header" class="send-to button dark" type="button" data-button-name="Get Firefox for Android">{{ _('Get Firefox for Android') }}</button>
     </div>
   {% endcall %}
 {% endblock %}
@@ -64,9 +64,6 @@
         <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
           {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
         </a>
-        <small class="download-other">
-          <a class="dl-button" href="{{ firefox_url('android', 'all') }}">{{_('Systems &amp; Languages')}}</a>
-        </small>
       </div>
 
       {# happy little droid #}
@@ -393,7 +390,7 @@
             <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android" data-alt="{{ _('Get Firefox for Android') }}">
               {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
             </a>
-            {{ download_firefox(platform='android',button_color='dark') }}
+            <button id="send-to-button-footer" class="send-to button dark" type="button" data-button-name="Get Firefox for Android">{{ _('Get Firefox for Android') }}</button>
           </div>
         </div>{#-- /#download-content --#}
       </div>{#-- /#download-wrapper --#}

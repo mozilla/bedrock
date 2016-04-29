@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/* exported triggerIEDownload, initDownloadLinks, updateDownloadTextForOldFx,
-   initMobileDownloadLinks, initLangSwitcher */
+/* exported triggerIEDownload, initDownloadLinks, initMobileDownloadLinks,
+   initLangSwitcher */
 
 // download buttons
 
@@ -33,27 +33,6 @@ function initDownloadLinks() {
         });
     });
     $('.download-list').attr('role', 'presentation');
-}
-
-function updateDownloadTextForOldFx() {
-    var client = window.Mozilla.Client;
-
-    // if using Firefox
-    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
-        // look at each button to see if it's set to check for old firefox
-        var $buttons = $('.download-button-check-old-fx');
-
-        // if the page has download buttons
-        if ($buttons.length) {
-            client.getFirefoxDetails(function(data) {
-                // if using an out of date firefox
-                if (!data.isUpToDate) {
-                    // replace subtitle copy
-                    $buttons.find('.download-subtitle').text(window.trans('global-update-firefox'));
-                }
-            });
-        }
-    }
 }
 
 // Replace Google Play and Apple App Store links on Android and iOS devices to

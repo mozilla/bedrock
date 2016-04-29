@@ -350,6 +350,15 @@ img {
             top: 0;
         }
     }
+
+    /* ensure link text is white for buttons in IE6 */
+    .button,
+    button.button,
+    .blueprint .button,
+    a.button:link,
+    a.button:visited {
+        color: @light;
+    }
 }
 
 .space {
@@ -386,6 +395,15 @@ img {
                 color: @textColorSecondary;
             }
         }
+    }
+
+    /* ensure link text is white for buttons in IE6 */
+    .button,
+    button.button,
+    .blueprint .button,
+    a.button:link,
+    a.button:visited {
+        color: @light;
     }
 }
 

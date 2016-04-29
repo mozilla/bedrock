@@ -88,6 +88,8 @@ all_children = [
 
 if settings.DEV:
     all_children.extend((
+        PageNode('All Buttons', path='all-download-buttons',
+                 template='styleguide/websites/sandstone-all-download-buttons.html'),
         PageNode('Docs', path='docs', children=(
             PageNode('Mozilla Pager JS', path='mozilla-pager',
                     template='styleguide/docs/mozilla-pager.html'),

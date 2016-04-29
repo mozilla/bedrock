@@ -48,7 +48,7 @@
       <p class="main-cta" id="cta-learn"><a href="https://support.mozilla.org/kb/where-pocket-button-firefox" class="button dark">{{ _('Learn more') }}</a></p>
 
       {# Old Firefox or Not Firefox #}
-      <p class="main-cta" id="cta-download"><a href="{{ url('firefox.new') }}?scene=2" class="button green">{{ _('Download Firefox') }}</a></p>
+      <div class="main-cta" id="cta-download">{{ download_firefox() }}</div>
 
     </div>
   </section>

@@ -7,7 +7,7 @@
     <p role="heading" class="download-heading">{{ _('Download Firefox') }} — {{ locale_name|safe }}</p>
     <ul>
       {% for plat in builds -%}
-        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="download-link button green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
       {%- endfor %}
     </ul>
   </div>
@@ -20,8 +20,6 @@
 {% set download_class = download_class ~ ' download-button-desktop' if not (show_android or show_ios) else download_class %}
 {% set download_class = download_class ~ ' download-button-ios' if not (show_desktop or show_android) else download_class %}
 
-{% set download_class = download_class ~ ' download-button-check-old-fx' if check_old_fx else download_class %}
-
 <div id="{{ id }}" class="{{ download_class }}">
   {# no JS #}
   <div class="nojs-download">
@@ -30,7 +28,7 @@
   {% if show_desktop %}
     {# unrecognized/unsupported platform #}
     <div class="unrecognized-download">
-      {{ _("Your system may not meet the requirements for Firefox, but you can try one of these versions:") }}
+      <p>{{ _('Your system may not meet the requirements for Firefox, but you can try one of these versions:') }}</p>
       {{ alt_buttons(builds) }}
     </div>
     <p class="unsupported-download">
@@ -49,30 +47,31 @@
            {% if plat.os == 'android' %}data-link-type="download" data-download-os="Android"
            {% elif plat.os == 'ios' %}data-link-type="download" data-download-os="iOS"
            {% else %}data-link-type="download" data-download-os="Desktop"{% endif %}>
-
-           {% if alt_copy %}
-             <strong class="download-title">{{ alt_copy }}</strong>
-           {% else %}
-             {% if plat.os == 'android' %}
-               {% if channel == 'beta' %}
-                 <strong class="download-title">{{ _('<span>Firefox Beta</span> for Android') }}</strong>
-               {% elif channel == 'alpha' %}
-                 <strong class="download-title">{{ _('<span>Firefox Aurora</span> for Android') }} {{ plat.arch_pretty }}</strong>
-               {% else %}
-                 <strong class="download-title">{{ _('<span>Firefox</span> for Android') }}</strong>
-               {% endif %}
-             {% elif plat.os == 'ios' %}
-               <strong class="download-title">{{ _('<span>Firefox</span> for iOS') }}</strong>
-             {% else %}
-               {% if channel == 'beta' %}
-                 <strong class="download-title">{{ _('Firefox Beta') }}</strong>
-               {% elif channel == 'alpha' %}
-                 <strong class="download-title">{{ _('<span>Firefox</span> Developer Edition') }}</strong>
-               {% else %}
-                 <strong class="download-title">{{ _('Download Firefox') }}</strong>
-               {% endif %}
-             {% endif %}
-          {% endif %}
+          <strong class="download-title">
+            {% if alt_copy %}
+              {{ alt_copy }}
+            {% else %}
+              {% if plat.os == 'android' %}
+                {% if channel == 'beta' %}
+                  {{ _('<span>Firefox Beta</span> for Android') }}
+                {% elif channel == 'alpha' %}
+                  {{ _('<span>Firefox Aurora</span> for Android') }}
+                {% else %}
+                  {{ _('<span>Firefox</span> for Android') }}
+                {% endif %}
+              {% elif plat.os == 'ios' %}
+                {{ _('<span>Firefox</span> for iOS') }}
+              {% else %}
+                {% if channel == 'beta' %}
+                  {{ _('Firefox Beta') }}
+                {% elif channel == 'alpha' %}
+                  {{ _('<span>Firefox</span> Developer Edition') }}
+                {% else %}
+                  {{ _('Download Firefox') }}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+          </strong>
         </a>
       </li>
     {% endfor %}
