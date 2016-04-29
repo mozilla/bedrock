@@ -1055,6 +1055,10 @@ URLS = flatten((
 
     # Bug 1255785
     url_test('/styleguide/identity/mozilla/logo-prototype/', '/styleguide/'),
+    # Bug 1268847
+    url_test('/styleguide/websites/sandstone/buttons/', '/styleguide/websites/sandstone/'),
+    url_test('/styleguide/websites/sandstone/forms/', '/styleguide/websites/sandstone/'),
+    url_test('/styleguide/websites/sandstone/tabzilla/', '/styleguide/websites/sandstone/'),
 
     # Bug 784411
     url_test('/about/mission/', '/mission/'),
