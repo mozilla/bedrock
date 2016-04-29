@@ -17,12 +17,9 @@
     </header>
 
     <div itemprop="articleBody">
-      <p>This FAQ attempts to answer various questions about how the
-        Mozilla security bounty program relates to Web Applications.
-        This FAQ covers web applications and if you are reporting an issue
-        unrelated to a web application security vulnerability,
-        (e.g. a security issue in the Firefox browser), please see the original:
-        <a href="{{ url('security.bug-bounty.faq') }}">Security Bug Bounty Program FAQ.</a>
+      <p>This FAQ covers websites and services. If you are reporting on a client software issue
+        (e.g. a security issue in the Firefox browser), please see the 
+        <a href="{{ url('security.bug-bounty.faq') }}">Client Security Bug Bounty Program FAQ.</a>
         For more about the background of the bug bounty program see the
         <a href="{{ url('security.bug-bounty') }}">official guidelines</a>
         governing the program.</p>
@@ -71,8 +68,7 @@
           websites and services to communicate and coordinate activity.
           Our goal is to make our products and services more secure.
           Mozilla community members submitted bugs before we had an official bounty program 
-          to reward researchers.
-          The bounty program is designed to incentivize bug reporting towards the websites, 
+          to reward researchers. The bounty program is designed to incentivize bug reporting towards the websites, 
           services, and types of bugs we'd like community members to focus on.</p>
         </dd>
 
@@ -84,7 +80,7 @@
             We ask that people don’t use automatic tools against our web services
             as it is important to maintain our services and availability. We do
             encourage people to examine typical areas for vulnerabilities such as
-            authentication and session management. Since our code is opensource, you are
+            authentication and session management. Since our code is open source, you are
             encourage to run on the software on your own server instance or just look
             at the source code for potential issues.</p>
             <p>On Mozilla’s Wiki, you can find information about some of our
@@ -116,11 +112,8 @@
         <dt class="question" id="eligible-bugs">Which domains and web applications
           will be considered to be part of the bug bounty?</dt>
         <dd class="answer">
-          <p>Below is the list of domains under scope for Mozilla’s web application
-            security
-            bug bounty. While this list doesn’t include all the Mozilla web properties,
-            we do plan on adding to this list as we introduce our web security process to
-            other sites not included in this list.</p>
+          <p>Below is the list of domains eligible for Mozilla’s website and services 
+            security bug bounty. Please check it regularly, it changes over time</p>
 
           <pre>
             Mozilla and Firefox websites
@@ -224,7 +217,7 @@
             added back at a later date when a test server is deployed to avoid negative impacts
             on our primary reference site.</p>
 
-          <p>Only Mozilla websites and services are in scope, not email phishing attacks
+          <p>Only Mozilla websites and services are in scope, not denial of service attacks, email phishing attacks
             against employees, our offices, etc. Additionally, flaws relying on out-of-date
             browsers, plugins, or add-ons, which require extremely unlikely/unusual user
             interaction, and banner and version information are generally not eligible.</p>
@@ -234,13 +227,16 @@
           listed?</dt>
         <dd class="answer">
           <p>If you find an issue with a site which is not “officially” part under the
-            web application bug bounty, we would still like to know. If the bug is
+            website and services bug bounty program, we would still like to know. If the bug is
             extraordinary, we might still consider the bug to be nominated for a bounty. In
             the past we have paid for interesting bugs which are outside of normal
-            policy. It's hard to define 'extraordinary,' because they're extraordinary.
+            policy, but it's the rare exception and not the rule. It's hard to define 'extraordinary,' 
+            since by definition there are no common examples.
             If you are searching security issues for the joy of it or to help the Mozilla project,
-            we would appreciate reports on non-eligible sites If you are looking for bug bounties,
-            ignore "extraordinary" and focus on the sites listed as eligible.</p>
+            we would appreciate reports on non-eligible sites.
+            If you are looking for bug bounties, focus on the sites listed as eligible, don't hunt for 
+            "extraordinary" bugs on sites not listed in thie FAQ. 
+            .</p>
         </dd>
 
         <dt class="question" id="issues">What types of issues will be considered
