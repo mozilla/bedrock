@@ -1038,7 +1038,6 @@ STATSD_PREFIX = config('STATSD_PREFIX', default='bedrock')
 SSLIFY_DISABLE = config('DISABLE_SSL', default=True, cast=bool)
 if not SSLIFY_DISABLE:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    USE_X_FORWARDED_HOST = True
 SSLIFY_DISABLE_FOR_REQUEST = [
     lambda request: request.get_full_path() == '/healthz/'
 ]
