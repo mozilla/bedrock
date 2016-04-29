@@ -118,7 +118,9 @@
 {% block email_form %}{% endblock %}
 
 {% block site_footer %}
-  {% include 'firefox/includes/simple_footer.html' %}
+  {% with fx_footer_links=True %}
+    {% include 'firefox/includes/simple_footer.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block js %}

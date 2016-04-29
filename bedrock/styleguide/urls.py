@@ -51,12 +51,9 @@ all_children = [
     PageNode('Websites', path='websites', children=(
         PageNode('Sandstone', path='sandstone', children=(
             PageNode('Overview', template='styleguide/websites/sandstone-intro.html'),
-            PageNode('Buttons', path='buttons', template='styleguide/websites/sandstone-buttons.html'),
             PageNode('Colors', path='colors', template='styleguide/websites/sandstone-colors.html'),
-            PageNode('Forms', path='forms', template='styleguide/websites/sandstone-forms.html'),
             PageNode('Grids', path='grids', template='styleguide/websites/sandstone-grids.html'),
             PageNode('Tables & Lists', path='tables', template='styleguide/websites/sandstone-tables.html'),
-            PageNode('Tabzilla', path='tabzilla', template='styleguide/websites/sandstone-tabzilla.html'),
             PageNode('Typefaces', path='typefaces', template='styleguide/websites/sandstone-typefaces.html'),
             PageNode('Examples', path='examples', template='styleguide/websites/sandstone-examples.html'),
         )),
@@ -91,8 +88,6 @@ all_children = [
 
 if settings.DEV:
     all_children.extend((
-        PageNode('All Buttons', path='all-download-buttons',
-                 template='styleguide/websites/sandstone-all-download-buttons.html'),
         PageNode('Docs', path='docs', children=(
             PageNode('Mozilla Pager JS', path='mozilla-pager',
                     template='styleguide/docs/mozilla-pager.html'),

@@ -162,52 +162,9 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 
-    .download-button-simple {
+    .download-button {
         float: right;
         margin: (@baseLine * 1.5) 0 @baseLine 0;
-
-        .unsupported-download,
-        .download-other,
-        .download-other a {
-            color: #fff;
-        }
-
-        .download-subtitle {
-            text-shadow: none;
-            text-transform: uppercase;
-            .font-size(18px);
-        }
-
-        .unsupported-download {
-            a:link,
-            a:visited {
-                color: #43c2ff;
-            }
-
-            a:hover,
-            a:active,
-            a:focus {
-                color: lighten(#43c2ff, 10%);
-            }
-        }
-
-        .os_android .download-subtitle,
-        .os_ios .download-subtitle {
-            .font-size(@largeFontSize);
-            margin-right: 0px;
-            text-align: center;
-        }
-
-        .download-link {
-            background: #689f2a;
-            filter: none;
-            box-shadow: none;
-
-            &:hover,
-            &:focus {
-                background: lighten(#689f2a, 3%);
-            }
-        }
     }
 }
 
@@ -707,7 +664,7 @@ h1, h2, h3, h4, h5, h6 {
         margin: 0;
 
         input[type="email"] {
-            height: 32px;
+            height: 40px;
             padding: 5px 10px;
             background: #fbf9f4;
             border: 2px solid #e1ddd3;

@@ -156,7 +156,7 @@
             <img width="176" height="184" src="{{ static('img/home/voices/promos/download-firefox/firefox-logo.png') }}" alt="">
           </div>
           <div class="secondary">
-            {{ download_firefox(simple=true, dom_id='promo-download-fx-button') }}
+            {{ download_firefox(alt_copy=_('Free Download'),button_color='transparent-light',dom_id='promo-download-fx-button') }}
             <a class="fxos-link" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more') }}</a>
           </div>
         </li>
@@ -287,7 +287,7 @@
           <h4>{{_('Committed to <strong>you, your privacy</strong> and an <strong>open Web</strong>')}}</h4>
         </a>
       </header>
-      {{ download_firefox(simple=true) }}
+      {{ download_firefox(alt_copy=_('Free Download')) }}
     </div>
   </section>
 

@@ -11,6 +11,25 @@
 .download-button-wrapper {
     margin: 10px auto 20px auto;
     width: 240px;
+
+    .fx-privacy-link {
+        a:link,
+        a:visited {
+            color: #333;
+        }
+    }
+}
+
+.other,
+.no-js {
+    .download-button-wrapper {
+        width: 600px;
+        text-align: center;
+
+        @media only screen and (max-width: @breakTablet) {
+            width: auto;
+        }
+    }
 }
 
 // styles the links pulled from underneath the desktop download button

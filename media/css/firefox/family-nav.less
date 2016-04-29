@@ -128,7 +128,7 @@
     height: 70px;
     margin-top: 50px;
     position: relative;
-    width: 632px;
+    width: 610px;
 
     // <ul> containing nav items
     .primary-nav {
@@ -245,7 +245,7 @@
 
     // Desktop Wide
     @media (min-width: @breakDesktopWide) {
-        width: 940px;
+        width: 920px;
     }
 
     // Tablet
@@ -378,10 +378,10 @@
     float: left;
     height: 60px;
     margin: 50px (@baseLine * 1.5) 0 4px;
+    width: 180px;
     opacity: 0;
     overflow: hidden;
     visibility: hidden;
-    width: 160px;
 
     // Desktop wide
     @media (min-width: @breakDesktopWide) {
@@ -390,6 +390,10 @@
 
     // Tablet and mobile
     @media (max-width: @breakDesktop) {
+        display: none;
+    }
+
+    small.fx-privacy-link {
         display: none;
     }
 }
