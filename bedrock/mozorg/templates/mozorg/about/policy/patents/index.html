@@ -21,10 +21,10 @@
   <h1 class="title-shadow-box">{{ _('Open Innovation and Software Patents') }}</h1>
   <nav id="patent-nav">
     <ul>
-      <li><a href="{{ url('mozorg.about.patents.license') }}">{{ _('Mozilla Open Software Patent License (MOSPL)') }}</a></li>
-      <li><a href="{{ url('mozorg.about.patents.guide') }}">{{ _('Open Software Patent License Guide') }}</a></li>
+      <li><a href="{{ url('mozorg.about.policy.patents.license') }}">{{ _('Mozilla Open Software Patent License (MOSPL)') }}</a></li>
+      <li><a href="{{ url('mozorg.about.policy.patents.guide') }}">{{ _('Open Software Patent License Guide') }}</a></li>
     </ul>
-  </nav> 
+  </nav>
   <section>
     <h2>{{ _('The patent system is challenging for software development, and this is especially true for open source software.') }}</h2>
     <p>{{ _('While some patent owners use their patents defensively, many others use them offensively to prevent others from developing innovative and competitive software. Both the costs of fighting a patent infringement lawsuit and the potential damages involved can be large, making even the threat of patent infringement enough to prevent new innovations. Open source projects are particularly vulnerable because they tend to be smaller entities without money to defend infringement suits, let alone create a defensive patent portfolio.') }}</p>
@@ -47,7 +47,7 @@
     <p>{{ _('As part of the Initiative, we plan on selectively applying for patents to protect free and open source software development. As we obtain these patents, we will immediately license them out under a royalty-free license to all comers. Each entity that receives the license must also, in turn, allow open source software projects to freely innovate without fear from patents.') }}
     </p>
     <p>
-    {% trans license=url('mozorg.about.patents.license') %}
+    {% trans license=url('mozorg.about.policy.patents.license') %}
       This means that effective immediately, for every patent Mozilla acquires, Mozilla will immediately offer everyone a royalty-free non-exclusive license to all of Mozilla’s patents under the <a href="{{ license }}">Mozilla Open Software Patent License (MOSPL)</a>. The MOSPL grants you a license to make, use, or distribute any software that would be covered by one of our patents, so long as (i) you don’t offensively sue, threaten, or accuse anyone’s <a href="{{ license }}#software">Software</a> of infringing your patents (using your portfolio to defend yourself against a prior-filed patent lawsuit is OK) and (ii) you agree to grant (upon request) your own royalty-free license under any patents you own to all open-source software projects that agrees or has agreed to be bound by the MOSPL. Read all the terms of the full license.
     {% endtrans %}
     </p>
@@ -56,7 +56,7 @@
   <section>
     <h2>{{ _('How you can get involved') }}</h2>
     <p>{{ _('Getting involved is simple, and there are many ways to do it. Much like the power of open source, the power of an open source patent license comes from networks of people who believe in its mission. The more entities that license their software patents to include and encourage open innovation (rather than reserve all rights to exclude) the healthier the open source ecosystem gets. Whether you use the MOSPL or another inclusive license, you’re helping solve the patent problem for open innovators. As such, we’ve created an Open Software Patent License Guide to help highlight considerations if you are thinking about licensing options that encourage innovation, rather than discourage it.') }}</p>
-    <p><a href="{{ url('mozorg.about.patents.guide') }}">{{ _('Open Software Patent License Guide') }}</a></p>
+    <p><a href="{{ url('mozorg.about.policy.patents.guide') }}">{{ _('Open Software Patent License Guide') }}</a></p>
 
     <h2>{{ _('FAQ') }}</h2>
     <div id="faq" class="accordion accordion-auto-init zebra">
@@ -81,7 +81,7 @@
       <section>
         <h2 data-accordion-role="tab">{{_('How does this project address the software patent quality issues?') }}</h2>
         <div data-accordion-role="tabpanel">
-        {% trans guide=url('mozorg.about.patents.guide') %}
+        {% trans guide=url('mozorg.about.policy.patents.guide') %}
           <p>The more innovations in open source projects are patented, the easier it will be for patent examiners to identify them as prior art for future applications. This will lead to higher quality software patents. We do not predict that Mozilla’s own patents and defensive publications will, by themselves, be enough to substantially increase the quality of every type of issued patent. However, we hope that the example this project sets along with the <a href="{{ guide }}">Open Software Patent Licensing Guide</a> we’ve provided will encourage others to consider openly licensing their portfolio and applying for patents on their open source innovations to help increase software patent quality. Mozilla has also begun to advocate publicly for patent law reform that would further advance software patent quality: <a rel="external" target='_blank' href="https://blog.mozilla.org/netpolicy/files/2015/05/Mozilla-USPTO-Filing-May-2015-5-6.pdf">https://blog.mozilla.org/netpolicy/files/2015/05/Mozilla-USPTO-Filing-May-2015-5-6.pdf</a>.</p>
         {% endtrans %}
         </div>
@@ -90,7 +90,7 @@
         <h2 data-accordion-role="tab">{{_('Why aren’t the License on Transfer (LOT) or the Innovator’s Patent Agreement (IPA) on your list of potential open patent licenses?') }}</h2>
         <div data-accordion-role="tabpanel">
           <p>{{_('The Innovator’s Patent Agreement is a well considered initiative targeted to address the problem of patent lawsuits that do not have the permission of the original inventor. While this can work to help individual inventors within a company ensure their work won’t be used in unintended ways, it doesn’t explicitly ensure openness or inclusivity for communities or ecosystems in the same way that MOSPL or the other licenses do.') }}</p>
-          <p>{{_('License on Transfer is also an impactful initiative that addresses the narrower problem of patent trolls buying up patents and then shaking down entire industries. While these suits pose an obvious threat to innovation in general, LOT does not provide any direct assurances or commitments to open source innovation.') }}</p> 
+          <p>{{_('License on Transfer is also an impactful initiative that addresses the narrower problem of patent trolls buying up patents and then shaking down entire industries. While these suits pose an obvious threat to innovation in general, LOT does not provide any direct assurances or commitments to open source innovation.') }}</p>
         </div>
       </section>
     </div>
