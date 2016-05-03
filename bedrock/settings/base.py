@@ -320,8 +320,15 @@ ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
                                         default=True, cast=bool)
 
+SSLIFY_DISABLE = config('SSLIFY_DISABLE', default=False, cast=bool)
+if not SSLIFY_DISABLE:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SSLIFY_DISABLE_FOR_REQUEST = [
+    lambda request: request.get_full_path() == '/healthz/'
+]
+
 MIDDLEWARE_CLASSES = [middleware for middleware in (
-    'sslify.middleware.SSLifyMiddleware',
+    'sslify.middleware.SSLifyMiddleware' if not SSLIFY_DISABLE else False,
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'bedrock.mozorg.middleware.VaryNoCacheMiddleware' if ENABLE_VARY_NOCACHE_MIDDLEWARE else False,
@@ -1034,13 +1041,6 @@ STATSD_CLIENT = config('STATSD_CLIENT', default='django_statsd.clients.normal')
 STATSD_HOST = config('STATSD_HOST', default='127.0.0.1')
 STATSD_PORT = config('STATSD_PORT', cast=int, default=8125)
 STATSD_PREFIX = config('STATSD_PREFIX', default='bedrock')
-
-SSLIFY_DISABLE = config('DISABLE_SSL', default=True, cast=bool)
-if not SSLIFY_DISABLE:
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SSLIFY_DISABLE_FOR_REQUEST = [
-    lambda request: request.get_full_path() == '/healthz/'
-]
 
 NEWRELIC_BROWSER_LICENSE_KEY = config('NEWRELIC_BROWSER_LICENSE_KEY', default='')
 NEWRELIC_APP_ID = config('NEWRELIC_APP_ID', default='')
