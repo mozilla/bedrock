@@ -4,41 +4,15 @@
 
 {% add_lang_files "firefox/new" %}
 
-{% extends "firefox/base-resp.html" %}
-
-{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
-{% block page_title %}{{_('Free Web Browser')}}{% endblock %}
-{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox today!')}}{% endblock %}
-
-{#- This will appear as <meta property="og:title"> which can be used for social share -#}
-{% block page_og_title %}
-  {{_('Choose the independent browser')}}
-{% endblock %}
-
-{#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}
-  {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
-{% endblock %}
-
-{#- This will appear as <meta property="og:image"> which can be used for social share -#}
-{% block page_image %}
-  {{ static('img/firefox/firefox-independent-1200.jpg') }}
-{% endblock %}
-
-{% block body_class %}{% endblock %}
-
-{% block site_header %}{% endblock %}
+{% extends "firefox/new/redesign/base.html" %}
 
 {# all CSS must be in extrahead block for old IE #}
-{% block site_css %}{% endblock %}
-
-{% block extrahead %}{% endblock %}
-
-{% block optimizely %}
-  {% if waffle.switch('firefox-new-optimizely') %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
+{% block extrahead %}
+  {% stylesheet 'firefox_new_redesign_common' %}
+  {% stylesheet 'firefox_new_redesign_scene1' %}
 {% endblock %}
+
+{% block body_id %}firefox-new-scene1{% endblock %}
 
 {% block content %}
 <main role="main">
@@ -88,7 +62,6 @@
               <li><a href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
               <li class="hide-for-refresh"><a href="{{settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">{{_('Get Firefox on your Android device')}}</a></li>
               <li class="hide-for-refresh"><a href="{{ firefox_ios_url('mozorg-uptodate-appstore-link') }}" data-link-type="download" data-download-os="iOS">{{ _('Add Firefox to your iPhone, iPad and iPod touch') }}</a></li>
-              <li class="hide-for-refresh"><a href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
               <li><a href="{{ firefox_url('desktop', 'all') }}#{{ LANG }}">{{_('Download a fresh copy')}}</a></li>
             </ul>
           </div>
@@ -123,35 +96,38 @@
     </div>
   </div>
   <div class="mission-control">
-    {% block skyline %}{% endblock %}
-    {% block benefits %}
-      <section id="benefits">
-        <ul>
-          <li>
-            <h2 class="performance">{{_('Performance') }}</h2>
-            <p>{{_('Get where you need to go, quickly and reliably, with our best Firefox yet.') }}</p>
-          </li>
-          <li>
-            <h2 class="privacy">{{_('Privacy') }}</h2>
-            <p>{{_('With the most built-in privacy features, Firefox keeps you in control of your life online.') }}</p>
-          </li>
-          <li>
-            <h2 class="good">{{_('Public Good') }}</h2>
-            <p>{{_('Firefox is made by Mozilla, the proudly non-profit defender of the free and open Internet.') }}</p>
-          </li>
-        </ul>
-      </section>
-    {% endblock %}
+    <div class="sky-line"></div>
+    <div class="launch-area">
+      <div class="rocket"></div>
+    </div>
+    <div class="crater"></div>
+    <section id="benefits">
+      <ul>
+        <li>
+          <h2 class="performance">{{_('Performance') }}</h2>
+          <p>{{_('Get where you need to go, quickly and reliably, with our best Firefox yet.') }}</p>
+        </li>
+        <li>
+          <h2 class="privacy">{{_('Privacy') }}</h2>
+          <p>{{_('With the most built-in privacy features, Firefox keeps you in control of your life online.') }}</p>
+        </li>
+        <li>
+          <h2 class="good">{{_('Public Good') }}</h2>
+          <p>{{_('Firefox is made by Mozilla, the proudly non-profit defender of the free and open Internet.') }}</p>
+        </li>
+      </ul>
+    </section>
   </div>
+  <aside id="subscribe">
+    <div class="subscribe-container">
+      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='white') }}
+    </div>
+  </aside>
 </main>
 
 {% include 'firefox/includes/schemaorg-app.html' %}
 {% endblock %}
 
-{% block email_form %}{% endblock %}
-
-{% block site_footer %}
-  {% include 'firefox/includes/simple_footer.html' %}
+{% block js %}
+  {% javascript 'firefox_new_redesign_scene1' %}
 {% endblock %}
-
-{% block js %}{% endblock %}

@@ -452,25 +452,17 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_redesign_common-bundle.css',
     },
-    'firefox_new_redesign_scene1_crater': {
+    'firefox_new_redesign_scene1': {
         'source_filenames': (
-            'css/firefox/new/redesign/scene1-common.less',
-            'css/firefox/new/redesign/scene1-crater.less',
+            'css/firefox/new/redesign/scene1.less',
         ),
-        'output_filename': 'css/firefox_new_redesign_scene1_crater-bundle.css',
-    },
-    'firefox_new_redesign_scene1_browser': {
-        'source_filenames': (
-            'css/firefox/new/redesign/scene1-common.less',
-            'css/firefox/new/redesign/scene1-browser.less',
-        ),
-        'output_filename': 'css/firefox_new_redesign_scene1_browser-bundle.css',
+        'output_filename': 'css/firefox_new_redesign_scene1-bundle.css',
     },
     'firefox_new_redesign_scene2': {
         'source_filenames': (
-            'css/firefox/new/redesign/scene2-common.less',
+            'css/firefox/new/redesign/scene2.less',
         ),
-        'output_filename': 'css/firefox_new_scene2_redesign-bundle.css',
+        'output_filename': 'css/firefox_new_redesign_scene2-bundle.css',
     },
     'firefox_organizations': {
         'source_filenames': (
@@ -1189,19 +1181,11 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene2-bundle.js',
     },
-    'firefox_new_redesign_scene1_a': {
+    'firefox_new_redesign_scene1': {
         'source_filenames': (
-            'js/firefox/new/redesign/scene1-common.js',
-            'js/firefox/new/redesign/set-scene2-a.js',
+            'js/firefox/new/redesign/scene1.js',
         ),
-        'output_filename': 'js/firefox_new_redesign_scene1_a-bundle.js',
-    },
-    'firefox_new_redesign_scene1_b': {
-        'source_filenames': (
-            'js/firefox/new/redesign/scene1-common.js',
-            'js/firefox/new/redesign/set-scene2-b.js',
-        ),
-        'output_filename': 'js/firefox_new_redesign_scene1_b-bundle.js',
+        'output_filename': 'js/firefox_new_redesign_scene1-bundle.js',
     },
     'firefox_onboarding_user_actions': {
         'source_filenames': (
