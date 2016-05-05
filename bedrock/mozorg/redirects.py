@@ -599,6 +599,11 @@ redirectpatterns = (
     # Bug 453876, 840416
     redirect(r'^add-ons/kodak', 'https://addons.mozilla.org/en-US/firefox/addon/4441'),
 
+    # bug 1267736
+    redirect(r'^about/patents/?$', 'mozorg.about.policy.patents.index'),
+    redirect(r'^about/patents/guide/?$', 'mozorg.about.policy.patents.guide'),
+    redirect(r'^about/patents/license/?$', 'mozorg.about.policy.patents.license'),
+    redirect(r'^about/patents/license/1.0/?$', 'mozorg.about.policy.patents.license-1.0'),
 
     # bug 832348 **/index.html -> **/
     # leave this at the bottom
