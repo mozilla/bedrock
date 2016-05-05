@@ -11,7 +11,7 @@ var eslint = require('gulp-eslint');
 var lintPaths = [
     'media/js/**/*.js',
     '!media/js/libs/*.js',
-    'tests/unit/spec/*.js',
+    'tests/unit/spec/**/*.js',
     'gulpfile.js'
 ];
 
