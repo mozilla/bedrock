@@ -406,19 +406,6 @@ def partnerships(request):
     return process_partnership_form(request, 'mozorg/partnerships.html', 'mozorg.partnerships')
 
 
-def plugincheck(request, template='mozorg/plugincheck.html'):
-    """
-    Renders the plugncheck template.
-    """
-
-    variant = request.GET.get('v', '')
-
-    if variant in ['b', 'c', 'd']:
-        template = 'mozorg/plugincheck-{0}.html'.format(variant)
-
-    return l10n_utils.render(request, template)
-
-
 def about_newsletter_test(request, template='mozorg/about.html'):
     """
     Renders the private browsing page template.

@@ -4,7 +4,15 @@
 @import "../sandstone/lib.less";
 
 #main-feature {
-    padding-bottom: 68px;
+    margin-top: @baseLine * 2;
+    padding-bottom: @baseLine * 2;
+
+    @media only screen and (max-width: @breakTablet) {
+        margin: -20px 0 0;
+        padding-bottom: @baseLine;
+        text-align: center;
+    }
+
     &> .download-button {
         display: none;
         position: absolute;
@@ -15,22 +23,55 @@
         }
     }
     .preamble {
-        .font-size(24px);
-        letter-spacing: -0.25px;
         margin-bottom: 0;
+        max-width: 700px;
         .open-sans-light;
+        .font-size(24px);
         font-weight: normal;
-        margin-bottom:0;
-        line-height: 100%;
+        line-height: 1.2;
+        letter-spacing: -0.25px;
         text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.75);
         color: rgb(72, 72, 72);
-    }
-}
 
-html[dir="rtl"] {
-    #main-feature > .download-button {
-        right: auto;
-        left: 0;
+        @media only screen and (max-width: @breakDesktop) {
+            max-width: 500px;
+            .font-size(1.2rem);
+        }
+    }
+
+    .firefox-logo {
+        float: left;
+        margin-right: 30px;
+        width: 145px;
+
+        @media only screen and (max-width: @breakDesktop) {
+            width: 115px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
+            display: block;
+            margin: 0 auto;
+            width: 95px;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        .large {
+            .font-size(3.5rem);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        .large {
+            .font-size(3rem);
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .large {
+            .font-size(2.2rem);
+        }
     }
 }
 
@@ -74,70 +115,87 @@ html[dir="rtl"] {
         }
     }
 }
+
 .version-message-container {
     display: none;
+
     h2 {
         .font-size(24px);
         letter-spacing: 0;
     }
+
     .download-button-wrapper {
         margin: 1rem 0 40px 0;
     }
+
     .download-button-small.download-link {
         margin-left: 30px;
     }
 }
+
 .plugin-status-container {
     h3 {
         .font-size(48px);
         letter-spacing: -2px;
     }
+
     .shadow-separator {
         background: white url(/media/img/plugincheck/separators/section_shadow.png) center 10px no-repeat;
         background-size: 100% auto;
         padding: 45px 0 15px 0;
     }
+
     .icon {
         float: left;
         margin: -3px 5px 0 0;
     }
+
     small {
         display: block;
         .font-size(@smallFontSize);
         line-height: 1.5;
     }
+
     .plugin-status-detail {
         width: 60%;
     }
+
     .plugin-status-status {
         width: 20%;
     }
+
     .plugin-status-action {
         width:20%;
     }
+
     .vulnerability-link-txt {
         display: block;
         padding: 10px 0;
     }
 }
+
 .status-unknown {
     .plugin-status-detail {
         width: 80%;
     }
 }
+
 .pluginfaq-container {
     span.menu:before {
         content:'\2630 ';
     }
+
     span.menurev:after {
         content:' \2630';
     }
 }
+
 .container-column {
     width: (@gridColumnWidth * 6) + (@gridGutterWidth * 5);
     margin: 0 (@gridGutterWidth/2) @baseLine;
     float: left;
 }
+
 .container-wide {
     width: (@gridColumnWidth * 10) + (@gridGutterWidth * 9);
     margin: 0 auto @baseLine;
@@ -154,6 +212,7 @@ html[dir="rtl"] {
       margin-right: auto;
     }
 }
+
 .code-snippet {
     width: 90%;
     margin: 0 0 @baseLine;
@@ -164,6 +223,7 @@ html[dir="rtl"] {
     margin: 30px 0 40px 0;
     padding: 8px 25px 8px 25px;
 }
+
 /* Button overrides and styling */
 .button,
 .button:link,
@@ -172,6 +232,7 @@ html[dir="rtl"] {
     .font-size(1rem);
     text-align: left;
 }
+
 .button {
     &:before {
         display: inline-block;
@@ -184,21 +245,25 @@ html[dir="rtl"] {
         vertical-align: middle;
     }
 }
+
 .outdated,
 .button-negative {
     &:before {
         background-position: 0 -35px;
     }
 }
+
 .research {
     &:before {
         background-position: 0 -71px;
     }
 }
+
 .button.outdated {
     background-color: #FFBE57;
     background-image: linear-gradient(#FFBE57, #DB8700);
 }
+
 .button.outdated:hover,
 .button.outdated:link:hover,
 .button.outdated:link:focus,
@@ -209,11 +274,13 @@ html[dir="rtl"] {
                 0px -1px 0px 0px rgba(0, 0, 0, 0.3) inset,
                 0px 12px 24px 2px #FFBE57 inset;
 }
+
 .safe,
 .safe:link,
 .safe:visited {
     background-image: linear-gradient(rgb(129, 188, 46), rgb(101, 147, 36));
 }
+
 .safe:hover,
 .safe:link:hover,
 .safe:link:focus,
@@ -224,12 +291,14 @@ html[dir="rtl"] {
                 0px -1px 0px 0px rgba(0, 0, 0, 0.3) inset,
                 0px 12px 24px 2px rgb(131, 200, 34) inset;
 }
+
 .research,
 .research:link,
 .research:visited {
     background-color: #0095dd;
     background-image: linear-gradient(#77bef5, #0095dd);
 }
+
 .research:hover,
 .research:link:hover,
 .research:link:focus,
@@ -240,6 +309,68 @@ html[dir="rtl"] {
                 0 -2px 0 0 rgba(0, 0, 0, 0.2) inset,
                 0 12px 24px 2px #77bef5 inset;
 }
+
+// newsletter section styles
+.newsletter-container {
+    margin-bottom: 30px;
+
+    #newsletter-subscribe {
+        .form-title {
+            padding-top: (@baseLine / 2);
+
+            @media only screen and (max-width: @breakDesktop) {
+                padding-top: 30px;
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                padding-top: 120px;
+            }
+
+            h3 {
+                margin-bottom: 0;
+                .font-size(52px);
+
+                @media only screen and (max-width: @breakDesktop) {
+                    .font-size(38px);
+                }
+
+                span {
+                    font-weight: bold;
+                }
+            }
+        }
+
+        h4 {
+            color: #fff;
+            .font-size(32px);
+            line-height: 1.2;
+            text-shadow: none;
+
+            @media only screen and (max-width: @breakDesktop) {
+                .font-size(24px);
+            }
+        }
+
+        // overrides styles from fxnewsletter-subscribe.less
+        #newsletter-form-thankyou {
+            float: none;
+            margin: 0 auto;
+            margin-left: auto;
+            width: 50%;
+            text-align: center;
+
+            @media only screen and (max-width: @breakTablet) {
+                width: 90%;
+            }
+
+            h3 {
+                .font-size(32px);
+                text-shadow: none;
+            }
+        }
+    }
+}
+
 // Mozilla Support Badge
 .moz-support {
     clear: both;
@@ -257,6 +388,7 @@ html[dir="rtl"] {
         padding: 10px 40px 10px 15px;
     }
 }
+
 #old_browser,
 #modern_browsers,
 #sec-plugin-vulnerable,
@@ -266,313 +398,6 @@ html[dir="rtl"] {
     display: none;
 }
 
-#newsletter-form {
-    margin: 0 auto;
-    padding: 0 5px 30px;
-    background: transparent;
-    border-bottom: none;
-    box-shadow: none;
-    text-align: center;
-
-    h3 {
-        display: block;
-        float: none;
-        color: @textColorSecondary;
-        margin: 0;
-        padding: 30px 0 10px;
-        width: auto;
-        .font-size(36px);
-        letter-spacing: -1px;
-
-        @media only screen and (max-width: @breakTablet) {
-            .font-size(32px);
-        }
-    }
-
-    h4 {
-        margin-bottom: @baseLine;
-    }
-
-    .form-title {
-        float: none;
-        margin: 0;
-        width: auto;
-    }
-
-    .form-contents {
-        float: none;
-        display: inline-block;
-        margin: 0;
-        width: 45%;
-        text-align: left;
-        vertical-align: top;
-
-        @media only screen and (max-width: @breakTablet) {
-            display: block;
-            margin: 0 auto;
-            width: 90%;
-        }
-
-        input[type="email"] {
-            background-color: #fbf9f4;
-            padding: 5px 10px;
-            border: 2px solid #e1ddd3;
-            border-radius: 7px;
-            width: 90%;
-            height: 32px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-        }
-
-        ::-webkit-input-placeholder {
-           color: #e1ddd3;
-           .open-sans;
-           font-weight: bold;
-           opacity: 1;
-        }
-
-        ::-moz-placeholder {
-           color: #e1ddd3;
-           .open-sans;
-           font-weight: bold;
-           opacity: 1;
-        }
-
-        :-ms-input-placeholder {
-           color: #e1ddd3;
-           .open-sans;
-           font-weight: bold;
-           opacity: 1;
-        }
-    }
-
-    .form-submit {
-        float: none;
-        display: inline-block;
-        margin: 0;
-        width: 45%;
-        text-align: left;
-
-        @media only screen and (max-width: @breakTablet) {
-            display: block;
-            margin: 0 auto;
-            width: 90%;
-        }
-    }
-
-    .privacy-check-label .title {
-        padding: 0 20px 0 25px;
-    }
-}
-html[lang="de"] #newsletter-form input[type="submit"] {
-    .font-size(@largeFontSize);
-}
-.newsletter-container,
-.newsletter-container-variant {
-    background-color: #fff;
-    border-radius: 8px;
-}
-
-.plugincheck-variant {
-
-    #main-feature .preamble {
-        max-width: 590px;
-        line-height: 1.2;
-    }
-
-    @media only screen and (max-width: @breakDesktop) {
-        .large {
-            .font-size(3.5rem);
-        }
-
-        #main-feature .preamble {
-            max-width: 500px;
-            .font-size(1.2rem);
-        }
-    }
-
-    @media only screen and (max-width: @breakTablet) {
-        .large {
-            .font-size(3rem);
-        }
-
-        #main-feature {
-            padding-bottom: @baseLine;
-        }
-
-        img[data-high-res] {
-            display: block;
-        }
-    }
-
-    @media only screen and (max-width: @breakMobileLandscape) {
-        .large {
-            .font-size(2.2rem);
-        }
-    }
-
-    .firefox-logo {
-        float: left;
-        margin-right: 30px;
-        width: 145px;
-
-        @media only screen and (max-width: @breakDesktop) {
-            width: 115px;
-        }
-
-        @media only screen and (max-width: @breakTablet) {
-            float: none;
-            display: block;
-            margin: 0 auto;
-            width: 95px;
-        }
-    }
-
-    #main-feature {
-        margin-top: @baseLine * 2;
-        padding-bottom: @baseLine * 2;
-
-        @media only screen and (max-width: @breakTablet) {
-            margin: -20px 0 0;
-            text-align: center;
-        }
-    }
-}
-
-.newsletter-container-variant {
-    background-color: #00a5e1;
-    color: #fff;
-    margin-bottom: 30px;
-    padding: @baseLine * 2;
-    border-radius: 0;
-
-    &:before {
-        display: inline-block;
-        content: '';
-        .at2x('/media/img/plugincheck/newsletter.png', 149px, 149px);
-        background-repeat: no-repeat;
-        padding: 10px;
-        width: 149px;
-        height: 149px;
-
-        @media only screen and (max-width: @breakDesktop) {
-            display: block;
-            margin: 0 auto;
-        }
-
-        @media only screen and (max-width: @breakTablet) {
-            display: none;
-        }
-    }
-
-    header,
-    #newsletter-form {
-        display: inline-block;
-        margin-top: 18px;
-        padding: 0;
-        width: 350px;
-        vertical-align: top;
-
-        @media only screen and (max-width: @breakDesktop) {
-            display: block;
-            margin: 0 auto;
-        }
-
-        @media only screen and (max-width: @breakMobileLandscape) {
-            width: 240px;
-        }
-    }
-
-    #newsletter-form {
-        .form-contents,
-        .form-submit {
-            display: block;
-            width: 100%;
-        }
-
-        a {
-            color: #fff;
-
-            &:hover,
-            &:focus,
-            &:active {
-                color: #fff;
-            }
-        }
-
-        input[type="email"] {
-            width: 94%;
-            border-radius: 3px;
-
-            @media only screen and (max-width: @breakMobileLandscape) {
-                width: 90%;
-            }
-        }
-    }
-
-    h3,
-    h4 {
-        color: #fff;
-        text-shadow: none;
-
-        @media only screen and (max-width: @breakDesktop) {
-            text-align: center;
-        }
-    }
-
-    h3 {
-        .font-size(3.5rem);
-        line-height: .7;
-
-        @media only screen and (max-width: @breakMobileLandscape) {
-            .font-size(2.5rem);
-        }
-
-        .firefox {
-            font-weight: bold;
-        }
-    }
-
-    h4 {
-        .font-size(2rem);
-        line-height: 1.2;
-        letter-spacing: normal;
-
-        @media only screen and (max-width: @breakMobileLandscape) {
-            .font-size(1.5rem);
-        }
-    }
-
-    .form-title {
-        .visually-hidden;
-    }
-
-    .thank {
-        text-align: center;
-
-        h3 {
-            .font-size(3rem);
-            line-height: 1.1;
-
-            @media only screen and (max-width: @breakMobileLandscape) {
-                .font-size(2rem);
-            }
-
-            @media only screen and (max-width: 360px) {
-                .font-size(1.5rem);
-            }
-        }
-    }
-}
-
-.newsletter-form.thank {
-    width: 90%;
-    margin: 0 auto;
-    padding: @baseLine;
-    background: transparent;
-    border-bottom: none;
-    box-shadow: none;
-}
 .warning {
     .offset(2);
     clear: both;
@@ -583,24 +408,26 @@ html[lang="de"] #newsletter-form input[type="submit"] {
     text-align: center;
     .font-size(18px);
 }
+
 .plugincheck-loader {
     background: #fff url('/media/img/plugincheck/loader.gif') 0 0 no-repeat;
     margin: 16px auto;
     width: 64px;
     height: 64px;
 }
+
 // assume Fx users by default and hide nonFx user info.
 // assume js is enabled
 .not-supported,
 .enable-js {
     display: none;
 }
+
 // Styles to show information for nonFx users
 .non-fx {
     main,
     .pluginfaq-container,
-    .plugin-status-container,
-    .newsletter-container-variant {
+    .plugin-status-container {
         display: none;
     }
 
@@ -620,6 +447,7 @@ html[lang="de"] #newsletter-form input[type="submit"] {
         }
     }
 }
+
 // no-js styles
 .no-js {
     .enable-js {
@@ -657,12 +485,40 @@ html[lang="de"] #newsletter-form input[type="submit"] {
     z-index: 2;
 }
 
+html[lang="de"] {
+    #main-feature {
+        h2.large {
+            .font-size(62px);
+
+            @media only screen and (max-width: @breakDesktop) {
+                .font-size(42px);
+            }
+        }
+    }
+
+    h3 {
+        line-height: 1;
+    }
+
+    #newsletter-form input[type="submit"] {
+        .font-size(@largeFontSize);
+    }
+}
+
+html[dir="rtl"] {
+    #main-feature > .download-button {
+        right: auto;
+        left: 0;
+    }
+}
+
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     #main-feature > .download-button {
         position: relative;
         margin-top: 20px;
     }
+
     .moz-support {
         width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 9);
     }
@@ -670,6 +526,7 @@ html[lang="de"] #newsletter-form input[type="submit"] {
     .container-column {
         width: (@gridColumnWidthNarrow * 6) + (@gridGutterWidth * 5);
     }
+
     .container-wide {
         width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 9);
     }
