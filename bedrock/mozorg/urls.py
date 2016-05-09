@@ -11,11 +11,10 @@ from bedrock.redirects.util import redirect
 
 urlpatterns = (
     url('^$', views.home, name='mozorg.home'),
+    page('about', 'mozorg/about.html'),
     page('about/manifesto', 'mozorg/about/manifesto.html'),
     page('about/manifesto/details', 'mozorg/about/manifesto-details.html'),
     page('about/leadership', 'mozorg/about/leadership.html'),
-    url(r'^about/$', views.about_newsletter_test,
-        name='mozorg.about'),
     page('about/policy/lean-data', 'mozorg/about/policy/lean-data.html'),
     page('about/policy/patents', 'mozorg/about/policy/patents/index.html'),
     page('about/policy/patents/license', 'mozorg/about/policy/patents/license.html'),

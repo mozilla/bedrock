@@ -391,19 +391,6 @@ def partnerships(request):
     return process_partnership_form(request, 'mozorg/partnerships.html', 'mozorg.partnerships')
 
 
-def about_newsletter_test(request, template='mozorg/about.html'):
-    """
-    Renders the private browsing page template.
-    """
-
-    variant = request.GET.get('v', '')
-
-    if variant == 'b':
-        template = 'mozorg/about-b.html'
-
-    return l10n_utils.render(request, template)
-
-
 @xframe_allow
 def contribute_studentambassadors_landing(request):
     tweets = TwitterCache.objects.get_tweets_for('mozstudents')
@@ -488,11 +475,6 @@ def home_tweets(locale):
 
 def home(request, template='mozorg/home/home.html'):
     locale = l10n_utils.get_locale(request)
-
-    variant = request.GET.get('v', '')
-
-    if variant == 'b':
-        template = 'mozorg/home/home-b.html'
 
     return l10n_utils.render(
         request, template, {
