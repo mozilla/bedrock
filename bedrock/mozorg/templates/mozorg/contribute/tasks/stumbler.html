@@ -1,0 +1,33 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/tasks/taskview-base.html" %}
+
+{% add_lang_files "mozorg/contribute/signup" %}
+
+{% block page_title %}{{ _('Install Mozilla Stumbler for Android') }}{% endblock %}
+
+{% block taskview_title %}{{ _('Map the wireless networks in your neighborhood.') }}{% endblock %}
+{% block taskview_lead %}{{ _('Mozilla Stumbler is an open-source wireless network scanner which collects GPS, cellular and wireless network metadata for our crowd-sourced location database.') }}{% endblock %}
+
+{% block task_content %}
+  <ol class="task-steps">
+    <li>
+      <header id="step_one" class="one">
+        <h3>{{ _('Install Mozilla Stumbler') }}</h3>
+        <p>{{ _('<a href="%s" target="_blank">Learn more about Mozilla Location Services</a> and discover more ways to get involved.')|format('https://location.services.mozilla.com/') }}</p>
+      </header>
+      <div class="step-content">
+        {{ high_res_img('contribute/signup/stumbler.png', {'alt': '', 'width': '620', 'class': 'feature-img'}) }}
+        <a rel="external" class="stumbler-button" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" target="_blank" data-action="install" data-task="stumbler" data-step="one" data-complete="true">
+          {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
+        </a>
+      </div>
+    </li>
+  </ol>
+{% endblock %}
+
+{% block thank_you_msg %}
+  {{ _('Thank you for installing Mozilla Stumbler') }}
+{% endblock %}

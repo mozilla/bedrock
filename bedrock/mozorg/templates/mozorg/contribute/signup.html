@@ -4,11 +4,13 @@
 
 {% extends "mozorg/contribute/contribute-base.html" %}
 
-{% add_lang_files "mozorg/contribute/index" %}
-
 {% block body_id %}inquiry{% endblock %}
 
 {% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'contribute-signup' %}
+{% endblock %}
 
 {% block optimizely %}
   {% if waffle.switch('contribute-signup-optimizely') %}
@@ -21,216 +23,128 @@
 
 {% block contrib_title %}
   <div class="container">
-    <h1 class="page-title">{{ _('To get started, tell us what interests you.') }}</h1>
-    <p class="section-tagline">{{ _('Choose one for now. You can always contribute to other areas later.') }}</p>
+    <h1 class="page-title">{{ _('Get Involved with Mozilla Today') }}</h1>
   </div>
 {% endblock %}
 
+
 {% block contrib_content %}
-  <section class="section inquiry">
-    <div class="container">
-      {% if is_old_form %}
-        {% include "mozorg/contribute/contribute-form.html" %}
-      {% else %}
-      <form class="inquiry-form" id="inquiry-form" method="post" action="{{ url('mozorg.contribute.signup') }}">
-      <fieldset class="categories">
-        <ul class="option-list">
-          {% for category in form.category %}
-            <li class="option">
-              <label class="category category-{{ category.choice_value }}">
-                {{ category.tag() }}
-                <span class="label-text">{{ category.choice_label }}</span>
-                <a class="info" href="#info-{{ category.choice_value }}">{{ category_info[category.choice_value] }}</a>
-              </label>
-            </li>
-          {% endfor %}
-        </ul>
+<article>
+  <section>
+    <header>
+      <h2>{{ _('Try something simple') }}</h2>
+    </header>
 
-        {% if form.errors %}
-          {{ form.non_field_errors()|safe }}
-          <ul class="errorlist">
-            {% if form.category.errors %}
-              <li>{{_('Please select an area of interest.')}}</li>
-            {% endif %}
-          </ul>
-        {% endif %}
+    <ul class="simple">
+      <li class="task">
+        <a href="{{ url('mozorg.contribute.taskview') }}follow-mozilla/" data-task="Connect with Mozilla on Twitter">
+          <h3>
+            <span class="outline-button more">{{ _('Connect with Mozilla on Twitter') }}</span>
+          </h3>
+        </a>
 
-      </fieldset>
-
-      <fieldset class="areas">
-        <h2 class="section-title">{{ _('What particular area?') }}</h2>
-
-        <div class="area" id="area-coding">
-          <p>
-            <label for="select-area-coding">{{ _('What would you like to code?') }}</label>
-            <span class="select">
-              {{ form.area_coding }}
-            </span>
-          </p>
-          {{ form.area_coding.errors }}
+        <button type="button" class="tooltip-trigger">
+          <span>{{ _('more info') }}</span>
+          {% include 'mozorg/contribute/includes/info-icon.svg' %}
+        </button>
+        <div class="tooltip hidden">
+          <p>{{ _('Stay connected with the @StartMozilla team for news, announcements and opportunities.') }}</p>
         </div>
+      </li>
 
-        <div class="area" id="area-testing">
-          <p>
-            <label for="select-area-testing">{{ _('What would you like to test?') }}</label>
-            <span class="select">
-              {{ form.area_testing }}
-            </span>
-          </p>
-          {{ form.area_testing.errors }}
+      <li class="task">
+        <a href="{{ url('mozorg.contribute.taskview') }}firefox-mobile/" data-task="Get Firefox on Your Phone">
+          <h3 class="fx-mobile">
+            <span class="outline-button more">{{ _('Use Firefox on your phone') }}</span>
+          </h3>
+        </a>
+
+        <button type="button" class="tooltip-trigger">
+          <span>{{ _('more info') }}</span>
+          {% include 'mozorg/contribute/includes/info-icon.svg' %}
+        </button>
+        <div class="tooltip hidden" aria-hidden="true">
+          <p>{{ _('Get the features you love and the privacy you trust on your iPhone, iPad and Android device.') }}</p>
         </div>
+      </li>
 
-        <div class="area" id="area-translating">
-          <p>
-            <label for="select-area-translating">{{ _('What would you like to translate?') }}</label>
-            <span class="select">
-              {{ form.area_translating }}
-            </span>
-          </p>
-          {{ form.area_translating.errors }}
+      <li class="task">
+        <a href="{{ url('mozorg.contribute.taskview') }}encryption/" data-task="encryption">
+          <h3 class="encryption">
+            <span class="outline-button more">{{ _('Discover why we can’t live without encryption') }}</span>
+          </h3>
+        </a>
+
+        <button type="button" class="tooltip-trigger">
+          <span>{{ _('more info') }}</span>
+          {% include 'mozorg/contribute/includes/info-icon.svg' %}
+        </button>
+        <div class="tooltip hidden" aria-hidden="true">
+          <p>{{ _('Find out more about how encryption works, why it’s essential and what you can do to help protect it.') }}</p>
         </div>
+      </li>
+    </ul>
+  </section>
 
-        <div class="area" id="area-writing">
-          <p>
-            <label for="select-area-writing">{{ _('What would you like to write?') }}</label>
-            <span class="select">
-              {{ form.area_writing }}
-            </span>
-          </p>
-          {{ form.area_writing.errors }}
+  <section class="tasks-challenging">
+    <header>
+      <h2>{{ _('Try something more challenging') }}</h2>
+    </header>
+    <ul class="challenging">
+      <li class="task">
+        <a href="{{ url('mozorg.contribute.taskview') }}joy-of-coding/" data-task="Joy of Coding">
+          <h3 class="coding">
+            <span class="outline-button more">{{ _('Watch someone live hack on Firefox') }}</span>
+          </h3>
+        </a>
+
+        <button type="button" class="tooltip-trigger">
+          <span>{{ _('more info') }}</span>
+          {% include 'mozorg/contribute/includes/info-icon.svg' %}
+        </button>
+        <div class="tooltip hidden" aria-hidden="true">
+          <p>{{ _('Firefox engineer Mike Conley livehacks and crushes bugs where he finds them in this unscripted, uncensored, true-to-life video series.') }}</p>
         </div>
+      </li>
 
-        <div class="area" id="area-teaching">
-          <p>
-            <label for="select-area-teaching">{{ _('What would you like to teach?') }}</label>
-            <span class="select">
-              {{ form.area_teaching }}
-            </span>
-          </p>
-          {{ form.area_teaching.errors }}
+      <li class="task">
+        <a href="{{ url('mozorg.contribute.taskview') }}devtools-challenger/" data-task="Learn about Coding">
+          <h3 class="devtools">
+            <span class="outline-button more">{{ _('Learn a bit about coding') }}</span>
+          </h3>
+        </a>
+
+        <button type="button" class="tooltip-trigger">
+          <span>{{ _('more info') }}</span>
+          {% include 'mozorg/contribute/includes/info-icon.svg' %}
+        </button>
+        <div class="tooltip hidden" aria-hidden="true">
+          <p>{{ _('Explore the new Firefox Developer Edition tools that take the pain out of CSS animation.') }}</p>
         </div>
-      </fieldset>
+      </li>
 
-      <fieldset class="personal">
-        <h2 class="section-title">{{ _('Now tell us a little about yourself:') }}</h2>
-        <ul>
-          <li>
-            <label for="id_name">{{ _('Name') }}</label>
-            {{ form.name }}
-            {{ form.name.errors }}
-          </li>
-          <li>
-            <label for="id_email">{{ _('Email address') }}</label>
-            {{ form.email }}
-            {% if form.email.errors %}
-              <ul class="errorlist">
-                <li>{{_('Please enter a valid email address.')}}</li>
-              </ul>
-             {% endif %}
-          </li>
-          <li>
-            <label for="id_country">{{ _('Country') }}</label>
-            <span class="select">
-              {{ form.country }}
-            </span>
-            {{ form.country.errors }}
-          </li>
-          <li class="form-message">
-            <label for="person-message">{{ _('Why do you want to be a Mozilla volunteer?') }} <i>{{ _('(Optional)') }}</i></label>
-            <textarea id="person-message" cols="60" rows="4" name="message"></textarea>
-          </li>
-          <li class="form-format">
-            <span class="label">
-              {{ _('Format') }}
-            </span>
-            {% for radio in form.format %}
-              <label class="inline">{{ radio.tag() }} {{ radio.choice_label }}</label>
-            {% endfor %}
-            {{ form.format.errors }}
-          </li>
-          <li class="form-agree">
-            {{ form.privacy }}
-            {% if form.privacy.errors %}
-              <ul class="errorlist">
-                <li>{{_('You must agree to the privacy policy.')}}</li>
-              </ul>
-            {% endif %}
-          </li>
-        </ul>
-      </fieldset>
+      <li class="task">
+        <a href="{{ url('mozorg.contribute.taskview') }}stumbler/" data-task="Get Mozilla Stumbler">
+          <h3 class="stumbler">
+            <span class="outline-button more">{{ _('Start using the Mozilla Stumbler app') }}</span>
+          </h3>
+        </a>
 
-      <fieldset class="submit">
-        <p class="form-newsletter">
-          <label class="inline" for="id_newsletter">
-            {{ form.newsletter }}
-            {{ form.newsletter.errors }}
-            {{ _('Sign up now for community updates') }}
-            {% if not LANG.startswith('en') %}{{ _('(English)') }}{% endif %}
-          </label>
-        </p>
-
-        <button type="submit">{{ _('Start contributing') }}</button>
-      </fieldset>
-    </form>
-
-    <aside class="category-info">
-      <h2>{{ _('Where would you like to get started?') }}</h2>
-
-      <div class="info-content" id="info-coding">
-        <h3>{{ _('Coding') }}</h3>
-        <p>{{ _('Contribute code to a whole range of Mozilla products, including Firefox.') }}</p>
-      </div>
-
-      <div class="info-content" id="info-testing">
-        <h3>{{ _('Testing') }}</h3>
-        <p>{{ _('Help make the Mozilla products you use — and love — even better.') }}</p>
-      </div>
-
-      <div class="info-content" id="info-writing">
-        <h3>{{ _('Writing') }}</h3>
-        <p>{{ _('Lend your voice to Mozilla — from blogging and social media to providing technical documents for users and developers.') }}</p>
-      </div>
-
-      <div class="info-content" id="info-teaching">
-        <h3>{{ _('Teaching') }}</h3>
-        <p>{{ _('Share your skills with a community that’s eager to learn. Take advantage of our free tools, teaching resources and events.') }}</p>
-      </div>
-
-      <div class="info-content" id="info-helping">
-        <h3>{{ _('Helping') }}</h3>
-        <p>{{ _('Provide support to users who need it and help everyone get the most out of their Mozilla products.') }}</p>
-      </div>
-
-      <div class="info-content" id="info-translating">
-        <h3>{{ _('Translating') }}</h3>
-        <p>{{ _('Help make Mozilla stuff available in other languages. Translate everything from newsletters and websites to copy for Firefox.') }}</p>
-      </div>
-
-      <div class="info-content" id="info-activism">
-        <h3>{{ _('Activism') }}</h3>
-        <p>{{ _('Get involved with our opportunities to support freedom, security and privacy on the open Web.') }}</p>
-      </div>
-
-      <div class="info-content" id="info-dontknow">
-        <h3>{{ _('I don’t know') }}</h3>
-        <p>{{ _('Not sure how you want to help? No problem. We can find the appropriate contribution activity for you.') }}</p>
-      </div>
-    </aside>
-    {% endif %}
-
-  </div>
-</section>
-
-<section class="section next-steps">
-  <div class="container">
-    <ol class="steps">
-      <li class="step1">{{ _('Choose what interests you and tell us how you’d like to help') }}</li>
-      <li class="step2">{{ _('Stand by for an email that will connect you to the Mozilla community') }}</li>
-      <li class="step3">{{ _('Create your Mozillians account and share your contributions with the world') }}</li>
-    </ol>
-  </div>
-</section>
-
+        <button type="button" class="tooltip-trigger">
+          <span>{{ _('more info') }}</span>
+          {% include 'mozorg/contribute/includes/info-icon.svg' %}
+        </button>
+        <div class="tooltip hidden" aria-hidden="true">
+          <p>{{ _('Mozilla Stumbler is an open-source wireless network scanner which collects GPS, cellular and wireless network metadata for our crowd-sourced location database.') }}</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+</article>
 {% endblock contrib_content %}
 
 {% block contrib_footer %}{% endblock %}
+
+{% block js %}
+  {% javascript 'contribute-signup' %}
+{% endblock %}

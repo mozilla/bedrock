@@ -8,19 +8,13 @@
     var $document = $(document);
     var $taskSteps = $('.task-steps');
     var $thankYou = $('#thankyou');
-    var $getFirefox = $('.get-firefox');
-    var $actionButton = $('.action');
-    var $signupTweetForm = $('#signup-tweet');
     var $downloadDevTools = $('.dev-edition');
     var $tryAnotherTask = $('.try-another');
+    var $findCommunity = $('#communities');
+    var $getInvolved = $('#get-involved');
     var visibilityChange = getVisibilityStateEventKeyword();
-
-    // some tasks, like installing Whimsy, required the user to be using Firefox
-    if ($getFirefox.length > -1 && !Mozilla.Client.isFirefox) {
-        $getFirefox.toggleClass('hidden');
-        // hide any action buttons that forms part of the task.
-        $actionButton.addClass('hidden');
-    }
+    // should the thank you message be scrolled into view
+    var scrollIntoView = true;
 
     /**
      * Determines the visibilitychange event name based on the current browser
@@ -70,8 +64,11 @@
     function taskComplete() {
         $thankYou.removeClass('visibly-hidden');
         $thankYou.attr('aria-hidden', 'false');
-        $thankYou[0].scrollIntoView();
-        $thankYou.focus();
+
+        if (scrollIntoView) {
+            $thankYou[0].scrollIntoView();
+            $thankYou.focus();
+        }
     }
 
     /**
@@ -108,65 +105,12 @@
     /**
      * Sends data to GA about the interaction steps a user has taken.
      * @param {string} interaction - The kind of interaction
-     * @param {int} variation - Whether it is a v1 or v2 task.
      */
-    function trackInteraction(interaction, variation) {
+    function trackInteraction(interaction) {
         window.dataLayer.push({
             event: 'get-involved-task-interaction',
-            interaction: interaction,
-            variation: variation
+            interaction: interaction
         });
-    }
-
-    /**
-     * Initializes the tweet form, set's up the character counter and binds
-     * the submit event handler.
-     */
-    function initTweetForm() {
-        var $tweetField = $('#tweet_txt');
-        var $charCount = $('.char-count');
-        var maxLength = 140;
-        var tweetLength = $tweetField.val().length;
-
-        // get and show the initial number of characters
-        $charCount.text(maxLength - tweetLength);
-
-        $tweetField.on('keyup', function() {
-            tweetLength = $tweetField.val().length;
-            $charCount.text(maxLength - tweetLength);
-        });
-
-        $signupTweetForm.on('submit', function(event) {
-            event.preventDefault();
-
-            var $submitButton = $('input[type="submit"]');
-            var tweetIntentURL = $signupTweetForm.attr('action');
-            var tweetContent = $tweetField.val();
-            var hashTag = $('#hashtag').attr('value');
-            var tweet = encodeURI(tweetIntentURL + '?text=' + tweetContent + '&hashtags=' + hashTag);
-
-            window.open(tweet, 'twitter', 'width=550,height=480,scrollbars');
-
-            // only v2 tasks has Tweet forms.
-            trackInteraction('share on twitter', '2');
-            handleFocusChange($submitButton);
-        });
-    }
-
-    /**
-     * Handles completion of Whimsy interaction steps.
-     */
-    function whimsy(event) {
-
-        var $this = $(event.target);
-
-        if ($this.data('action') === 'install') {
-            handleVisibilityChange($this);
-            trackInteraction('install whimsy', $this.data('variation'));
-        } else if ($this.data('action') === 'rate') {
-            handleVisibilityChange($this);
-            trackInteraction('AMO exit link', $this.data('variation'));
-        }
     }
 
     /**
@@ -181,20 +125,41 @@
     }
 
     /**
+     * Completes the tweet or follow Twitter actions for the follow Mozilla task.
+     * @param {string} intentURL - The URL to point the new window to
+     * @param {object} $eventTarget - The current event target
+     * @param {string} interaction - String to pass to GA
+     */
+    function completeTwitterAction(intentURL, $eventTarget, interaction) {
+        window.open(intentURL, 'twitter', 'width=550,height=480,scrollbars');
+        handleFocusChange($eventTarget);
+        trackInteraction(interaction);
+    }
+
+    /**
      * Handles completion of Follow Mozilla interaction steps.
      */
     function followMozilla(event) {
         var $this = $(event.target);
-        var intentURL = $this.attr('href');
-        var screenName;
+        var intentURL = 'https://twitter.com/intent/';
+        var interactionMsg = '';
+        var taskAction = $this.data('action');
+        var tweetTxt = '';
 
-        if ($this.data('action') === 'follow') {
-            event.preventDefault();
-            screenName = intentURL.substr(intentURL.indexOf('=') + 1);
-            window.open(intentURL, 'twitter', 'width=550,height=480,scrollbars');
-            handleFocusChange($this);
-            trackInteraction('follow ' + screenName, $this.data('variation'));
+        event.preventDefault();
+
+        if (taskAction === 'tweet') {
+            tweetTxt = $('#tweet_txt').text();
+            intentURL += 'tweet?text=' + tweetTxt + '&hashtags=QA1';
+            interactionMsg = 'tweeted to @startmozilla';
         }
+
+        if (taskAction === 'follow') {
+            intentURL += 'follow/?screen_name=startmozilla';
+            interactionMsg = 'followed @startmozilla';
+        }
+
+        completeTwitterAction(intentURL, $this, interactionMsg);
     }
 
     /**
@@ -204,6 +169,7 @@
      */
     function markAsWatched($video) {
         var videoElement = $video[0];
+        scrollIntoView = false;
 
         // a user can click play again after having watched the video the
         // first time. Clicking on pause, for example, will also trigger the
@@ -219,10 +185,20 @@
                     // remove the event listener.
                     $video.off('timeupdate.taskview');
                     $video.data('watched', true);
-                    trackInteraction('completed joy of coding', $video.data('variation'));
+                    trackInteraction('completed joy of coding');
                 }
             });
         }
+    }
+
+    /**
+     * Handles completion of simple anchor click interaction events.
+     * @param {object} event - The event that was triggered
+     * @param {string} interaction - The interaction string to send to GA
+     */
+    function simpleLinkActionHandler(event, interaction) {
+        handleVisibilityChange($(event.target));
+        trackInteraction(interaction);
     }
 
     /**
@@ -251,68 +227,40 @@
             $this.attr('data-ga', true);
             $playButton.attr('data-ga', true);
 
-            trackInteraction('play joy of coding', $this.data('variation'));
+            trackInteraction('play joy of coding');
             markAsWatched($this);
-        } else  if ($this.data('action') === 'play' && videoElement.paused) {
+        } else if ($this.data('action') === 'play' && videoElement.paused) {
             videoElement.play();
 
             $this.attr('data-ga', true);
             $jocVideo.attr('data-ga', true);
 
-            trackInteraction('play joy of coding', $this.data('variation'));
+            trackInteraction('play joy of coding');
             markAsWatched($jocVideo);
-        } else if ($this.data('action') === 'discuss') {
-            handleVisibilityChange($this);
-            trackInteraction('joy of coding exit link', $this.data('variation'));
-        }
-    }
-
-    /**
-     * Handles completion of FoxFooding interaction steps.
-     */
-    function startFoxFooding(event) {
-        var $this = $(event.target);
-        var intentURL = $this.attr('href');
-
-        if ($this.data('action') === 'join') {
-            handleVisibilityChange($this);
-            trackInteraction('foxfooding exit link', $this.data('variation'));
-        } else if ($this.data('action') === 'follow') {
-            event.preventDefault();
-            window.open(intentURL, 'twitter', 'width=550,height=480,scrollbars');
-            handleFocusChange($this);
-            trackInteraction('Follow foxfooding on Twiiter', $this.data('variation'));
-        }
-    }
-
-    /**
-     * Handles completion of DevTools interaction steps.
-     */
-    function learnDevTools(event) {
-        var $this = $(event.target);
-
-        if ($this.data('action') === 'challenger') {
-            handleVisibilityChange($this);
-            trackInteraction('devtools challenger exit link', $this.data('variation'));
         }
     }
 
     // send GA events for clicks on the dev edition download button
     if ($downloadDevTools.length > 0) {
         $downloadDevTools.on('click', function() {
-            trackInteraction('download firefox dev edition', $downloadDevTools.data('variation'));
+            trackInteraction('download firefox dev edition');
         });
-    }
-
-    // only bind the handler when the form exists
-    if ($signupTweetForm.length > 0) {
-        initTweetForm();
     }
 
     // send GA events for clicks on the back and try another task links
     $tryAnotherTask.on('click', function() {
         var $this = $(this);
-        trackInteraction($this.text(), $this.data('variation'));
+        trackInteraction($this.text());
+    });
+
+    // send GA event for clicks on the Find your local community link
+    $findCommunity.on('click', function() {
+        trackInteraction('Find your local community exit link');
+    });
+
+    // send GA event for clicks on the get involved links
+    $getInvolved.on('click', function() {
+        trackInteraction('Get involved exit link clicked');
     });
 
     $taskSteps.on('click', function(event) {
@@ -320,18 +268,28 @@
         var $target = $(event.target);
         var currentTask = $target.data('task');
 
-        if (currentTask === 'whimsy') {
-            whimsy(event);
-        } else if (currentTask === 'firefox-mobile') {
-            installFirefox(event);
-        } else if (currentTask === 'follow-mozilla') {
+        switch(currentTask) {
+        case 'follow-mozilla':
             followMozilla(event);
-        } else if (currentTask === 'joyofcoding') {
+            break;
+        case 'firefox-mobile':
+            installFirefox(event);
+            break;
+        case 'encryption':
+            simpleLinkActionHandler(event, 'Take the pledge');
+            break;
+        case 'joyofcoding':
             joyOfCoding(event);
-        } else if (currentTask === 'foxfooding') {
-            startFoxFooding(event);
-        } else if (currentTask === 'devtools') {
-            learnDevTools(event);
+            break;
+        case 'devtools':
+            simpleLinkActionHandler(event, event.target.dataset.action + ' exit link');
+            break;
+        case 'stumbler':
+            simpleLinkActionHandler(event, 'Install stumbler exit link');
+            break;
+        default:
+            // if no task matched, do nothing
+            return true;
         }
     });
 })();

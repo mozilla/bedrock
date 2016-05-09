@@ -181,14 +181,6 @@ urlpatterns = (
     page('contact/communities/uganda', 'mozorg/contact/communities/uganda.html'),
     page('contact/communities/zimbabwe', 'mozorg/contact/communities/zimbabwe.html'),
 
-    page('contribute/events', 'mozorg/contribute/events.html'),
-    url('^contribute/friends/$', views.contribute_friends, name='mozorg.contribute.friends'),
-    page('contribute/stories', 'mozorg/contribute/stories.html'),
-    page('contribute/stories/ruben', 'mozorg/contribute/story-ruben.html'),
-    page('contribute/stories/faye', 'mozorg/contribute/story-faye.html'),
-    page('contribute/stories/shreyas', 'mozorg/contribute/story-shreyas.html'),
-    page('contribute/stories/michael', 'mozorg/contribute/story-michael.html'),
-
     page('MPL', 'mozorg/mpl/index.html'),
     page('MPL/historical', 'mozorg/mpl/historical.html'),
     page('MPL/license-policy', 'mozorg/mpl/license-policy.html'),
@@ -203,6 +195,15 @@ urlpatterns = (
     page('MPL/2.0/differences', 'mozorg/mpl/2.0/differences.html'),
     page('MPL/2.0/permissive-code-into-mpl', 'mozorg/mpl/2.0/permissive-code-into-mpl.html'),
 
+
+    page('contribute/events', 'mozorg/contribute/events.html'),
+    url('^contribute/friends/$', views.contribute_friends, name='mozorg.contribute.friends'),
+    page('contribute/stories', 'mozorg/contribute/stories.html'),
+    page('contribute/stories/ruben', 'mozorg/contribute/story-ruben.html'),
+    page('contribute/stories/faye', 'mozorg/contribute/story-faye.html'),
+    page('contribute/stories/shreyas', 'mozorg/contribute/story-shreyas.html'),
+    page('contribute/stories/michael', 'mozorg/contribute/story-michael.html'),
+
     url('^contribute/$', views.contribute_index, name='mozorg.contribute'),
     url('^contribute/event/$', views.contribute,
         kwargs={'template': 'mozorg/contribute/index.html',
@@ -213,9 +214,7 @@ urlpatterns = (
         kwargs={'template': 'mozorg/contribute/contribute-embed.html',
                 'return_to_form': False}),
 
-    url('^contribute/signup/$',
-        views.contribute_signup,
-        name='mozorg.contribute.signup'),
+    page('contribute/signup', 'mozorg/contribute/signup.html'),
     url('^contribute/task/',
         views.ContributeTaskView.as_view(),
         name='mozorg.contribute.taskview'),

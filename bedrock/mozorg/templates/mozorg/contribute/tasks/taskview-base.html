@@ -15,7 +15,7 @@
 
 {% block alt_header %}
   <h1>{{ _('Mozilla Participation Tasks') }}</h1>
-  <a href="{% block more_tasks %}{{ url('mozorg.contribute.signup') }}?v=1{% endblock %}" class="try-another back" {% block pick_task_variation %}data-variation="1"{% endblock %}>{{ _('I want to pick a different task.' )}}</a>
+  <a href="{{ url('mozorg.contribute.signup') }}" class="try-another back">{{ _('I want to pick a different task.' )}}</a>
 {% endblock %}
 
 {% block content %}
@@ -34,7 +34,7 @@
       <header>
         <h3>{% block thank_you_msg %}{% endblock %}</h3>
       </header>
-      <p><a href="{% block try_another %}{{ url('mozorg.contribute.signup') }}?v=1{% endblock %}" class="try-another" {% block task_variation %}data-variation="1"{% endblock %}>{{ _('Try another task?') }}</a></p>
+      <p><a href="{{ url('mozorg.contribute.signup') }}" class="try-another">{{ _('Try another task?') }}</a></p>
     </section>
   {% endblock %}
 
@@ -42,6 +42,20 @@
 {% endblock %}
 
 {% block email_form %}{% endblock %}
+
+{% block email_form_unwrapped %}
+  <section class="newsletter-module">
+    <div class="container">
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Keep in touch with Mozilla. Sign up for our newsletter.'), button_class='dark') }}
+    </div>
+  </section>
+
+  <ul class="notices">
+    <li><a href="{{ url('mozorg.contact.communities.communities-landing') }}" id="communities" target="_blank">{{ _('Find your local Mozilla community.') }}</a></li>
+    <li>{{ _('The Mozilla newsletter is currently available in English only.') }}</li>
+  </ul>
+{% endblock %}
+
 {% block site_footer %}{% endblock %}
 
 {% block js %}

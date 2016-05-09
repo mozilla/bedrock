@@ -1,0 +1,31 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/contribute/tasks/taskview-base.html" %}
+
+{% add_lang_files "mozorg/contribute/signup" %}
+
+{% block page_title %}{{ _('Learn About Encryption') }}{% endblock %}
+
+{% block taskview_title %}{{ _('Sign the pledge and stand up for strong encryption.') }}{% endblock %}
+{% block taskview_lead %}{{ _('Encryption is how we keep our personal information safe and private. Please join us in the fight to protect it.') }}{% endblock %}
+
+{% block task_content %}
+<ol class="task-steps">
+  <li>
+    <header id="step_one" class="one">
+      <h3>{{ _('Take the pledge') }}</h3>
+    </header>
+    <div class="step-content">
+      {{ high_res_img('contribute/signup/encryption.png', {'alt': '', 'width': '620', 'class': 'feature-img'}) }}
+      <a href="https://advocacy.mozilla.org/encrypt/signup" class="button-blue" data-action="sign" data-task="encryption" data-step="one" data-complete="true" target="_blank">{{ _('Take the pledge') }}</a>
+      <p>{{ _('<a href="%s" rel="external" target="_blank">Learn more about encryption</a>, why it’s essential and why we need to protect it.')|format('https://advocacy.mozilla.org/encrypt/social/1') }}</p>
+    </div>
+  </li>
+</ol>
+{% endblock %}
+
+{% block thank_you_msg %}
+  {{ _('Thank you for taking the pledge') }}
+{% endblock %}
