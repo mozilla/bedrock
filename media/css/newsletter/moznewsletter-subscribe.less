@@ -134,7 +134,7 @@
         font-family: inherit;
     }
 
-    .button {
+    .button-newsletter {
         .border-box;
         .border-radius(5px);
         .box-shadow(none);
@@ -142,6 +142,7 @@
         .transition(background-color .15s ease);
         background: transparent;
         border: 2px solid #fff;
+        color: #fff;
         padding: .75em 20px;
         text-shadow: none;
         text-transform: uppercase;
@@ -161,9 +162,15 @@
 
     #footer-email-errors {
         .span-all;
+
+        .errorlist {
+            background: #fff;
+            color: #af3232;
+        }
     }
 
     #newsletter-form-thankyou {
+        .span-all;
         color: #fff;
 
         h3 {

@@ -347,17 +347,15 @@
     </div>
   </section>
 
-{% block newsletter_test %}
-  <section class="module" id="newsletter-signup" data-ga-label="Get Mozilla updates">
+  <section class="module" id="newsletter-subscribe">
     <div class="container">
-      {% if LANG.startswith('en-') %}
-        {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Get Mozilla updates'), button_class='dark') }}
-      {% else %}
-        {{ email_newsletter_form(button_class='dark') }}
-      {% endif %}
+    {% if LANG.startswith('en-') %}
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='white') }}
+    {% else %}
+      {{ email_newsletter_form(button_class='white') }}
+    {% endif %}
     </div>
   </section>
-{% endblock %}
 
   <button id="scroll-prompt">{{ _('Discover more') }}</button>
 </main>

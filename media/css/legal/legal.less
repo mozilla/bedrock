@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../sandstone/lib.less";
-@import "../mozorg/newsletter-test.less";
 
 #tabzilla:before {
     background-color: @textColorSecondary;
@@ -13,23 +12,25 @@
     overflow: hidden; /* Fix the layout on IE */
 }
 
-.newsletter-variant {
-    #wrapper {
-        width: 100%;
+#wrapper {
+    width: 100%;
+}
+
+#masthead,
+#main-feature,
+#main-content {
+    width: @widthDesktop;
+
+    @media (max-width: @breakDesktop) {
+        width: @widthTablet;
     }
 
-    #masthead,
-    #main-feature,
-    #main-content {
-        width: @widthDesktop;
+    @media (max-width: @breakTablet) {
+        width: @widthMobile;
+    }
 
-        @media (max-width: @breakDesktop) {
-            width: @widthTablet;
-        }
-
-        @media (max-width: @breakTablet) {
-            width: @widthMobile;
-        }
+    @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+        width: @breakMobileLandscape;
     }
 }
 
@@ -366,14 +367,4 @@ html[dir="rtl"] {
         margin: 15px -15px;
     }
 
-}
-
-@media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-    #wrapper {
-        width: @breakMobileLandscape - @gridGutterWidth;
-    }
-
-    #masthead {
-        width: @breakMobileLandscape - (@gridGutterWidth * 3);
-    }
 }

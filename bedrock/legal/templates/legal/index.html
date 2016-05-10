@@ -10,12 +10,6 @@
 
 {% block body_id %}legal-landing{% endblock %}
 
-{% block optimizely %}
-  {% if waffle.switch('legal-index-optimizely') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block main_feature %}
   <h1 id="main-feature" class="center large">{{ self.page_title() }}</h1>
 {% endblock %}
@@ -76,13 +70,16 @@
     <p><a href="{{ url('legal.impressum') }}">{{ _('Impressum') }}</a></p>
     {% endif %}
   </section>
-
 {% endblock %}
 
 {% block email_form %}
-  {% if LANG.startswith('en-') %}
-  <aside id="newsletter-signup" data-ga-label="Get Mozilla updates">
-    {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Get Mozilla updates')) }}
+  <aside id="newsletter-subscribe">
+    <div class="content container">
+    {% if LANG.startswith('en-') %}
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='white') }}
+    {% else %}
+      {{ email_newsletter_form(button_class='white') }}
+    {% endif %}
+    </div>
   </aside>
-  {% endif %}
 {% endblock %}

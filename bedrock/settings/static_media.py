@@ -13,6 +13,7 @@ PIPELINE_CSS = {
             'css/base/mozilla-video-poster.less',
             'css/mozorg/about-base.less',
             'css/mozorg/mosaic.less',
+            'css/newsletter/moznewsletter-subscribe.less',
         ),
         'output_filename': 'css/about-bundle.css',
     },
@@ -633,6 +634,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/mozorg/home/home.less',
             'css/mozorg/home/home-promo.less',
+            'css/newsletter/moznewsletter-subscribe.less',
         ),
         'output_filename': 'css/home-bundle.css',
     },
@@ -645,6 +647,7 @@ PIPELINE_CSS = {
     'legal': {
         'source_filenames': (
             'css/legal/legal.less',
+            'css/newsletter/moznewsletter-subscribe.less',
         ),
         'output_filename': 'css/legal-bundle.css',
     },

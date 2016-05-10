@@ -10,8 +10,7 @@ from bedrock.legal import views
 from bedrock.legal_docs.views import LegalDocView
 
 urlpatterns = (
-    url(r'^$', views.legal_newsletter_test,
-        name='legal.index'),
+    page('', 'legal/index.html'),
 
     page('eula', 'legal/eula.html'),
     page('eula/firefox-2', 'legal/eula/firefox-2-eula.html'),

@@ -124,5 +124,16 @@
   </ul>
 
 </article>
+{% endblock %}
 
+{% block email_form %}
+  <aside id="newsletter-subscribe">
+    <div class="content container">
+    {% if LANG.startswith('en-') %}
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='white') }}
+    {% else %}
+      {{ email_newsletter_form(button_class='white') }}
+    {% endif %}
+    </div>
+  </aside>
 {% endblock %}
