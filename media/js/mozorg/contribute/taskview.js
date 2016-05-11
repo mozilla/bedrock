@@ -22,20 +22,17 @@
      * https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API
      */
     function getVisibilityStateEventKeyword() {
-        // for browser that support the event unprefixed
+        var evtName = undefined;
+
         if (typeof document.hidden !== 'undefined') {
-            return 'visibilitychange';
+            // for browser that support the event unprefixed
+            evtName = 'visibilitychange';
+        } else if (typeof document.webkitHidden !== 'undefined') {
+            // for Chrome 13 and lower
+            evtName = 'webkitvisibilitychange';
         }
 
-        // for Chrome 13 and lower
-        if (typeof document.webkitHidden !== 'undefined') {
-            return 'webkitvisibilitychange';
-        }
-
-        // for older versions of IE
-        if (typeof document.msHidden !== 'undefined') {
-            return 'msvisibilitychange';
-        }
+        return evtName;
     }
 
     /**
@@ -76,20 +73,23 @@
      * proceeds to complete the relevant task step.
      */
     function handleVisibilityChange($step) {
-        // to be sure we do not queue a bunch of visibilityChange events,
-        // because the browser did not fire the event, and thus `.off`
-        // was never called, we first ensue no events are currently bound,
-        // before binding a new one.
-        $document.off(visibilityChange + '.taskview');
+        // if browser supports visibility change, update UI
+        if (visibilityChange) {
+            // to be sure we do not queue a bunch of visibilityChange events,
+            // because the browser did not fire the event, and thus `.off`
+            // was never called, we first ensue no events are currently bound,
+            // before binding a new one.
+            $document.off(visibilityChange + '.taskview');
 
-        $document.on(visibilityChange + '.taskview', function() {
-            // we wait until our current tab is visible before
-            // showing the thank you message.
-            if (document.visibilityState === 'visible') {
-                completeStep($step);
-                $document.off(visibilityChange + '.taskview');
-            }
-        });
+            $document.on(visibilityChange + '.taskview', function() {
+                // we wait until our current tab is visible before
+                // showing the thank you message.
+                if (document.visibilityState === 'visible') {
+                    completeStep($step);
+                    $document.off(visibilityChange + '.taskview');
+                }
+            });
+        }
     }
 
     /**
@@ -263,10 +263,9 @@
         trackInteraction('Get involved exit link clicked');
     });
 
-    $taskSteps.on('click', function(event) {
-
-        var $target = $(event.target);
-        var currentTask = $target.data('task');
+    // handle clicks only on child elements with a data-task attribute
+    $taskSteps.on('click', '*[data-task]', function(event) {
+        var currentTask = $(this).data('task');
 
         switch(currentTask) {
         case 'follow-mozilla':
@@ -282,14 +281,14 @@
             joyOfCoding(event);
             break;
         case 'devtools':
-            simpleLinkActionHandler(event, event.target.dataset.action + ' exit link');
+            simpleLinkActionHandler(event, 'challenger exit link');
             break;
         case 'stumbler':
             simpleLinkActionHandler(event, 'Install stumbler exit link');
             break;
         default:
             // if no task matched, do nothing
-            return true;
+            break;
         }
     });
 })();
