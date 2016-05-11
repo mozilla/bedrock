@@ -17,12 +17,9 @@
     </header>
 
     <div itemprop="articleBody">
-      <p>This FAQ attempts to answer various questions about how the
-        Mozilla security bounty program relates to Web Applications.
-        This FAQ covers web applications and if you are reporting an issue
-        unrelated to a web application security vulnerability,
-        (e.g. a security issue in the Firefox browser), please see the original:
-        <a href="{{ url('security.bug-bounty.faq') }}">Security Bug Bounty Program FAQ.</a>
+      <p>This FAQ covers websites and services. If you are reporting on a client software issue
+        (e.g. a security issue in the Firefox browser), please see the 
+        <a href="{{ url('security.bug-bounty.faq') }}">Client Security Bug Bounty Program FAQ.</a>
         For more about the background of the bug bounty program see the
         <a href="{{ url('security.bug-bounty') }}">official guidelines</a>
         governing the program.</p>
@@ -67,12 +64,12 @@
         <dt class="question" id="why">Why do we include web applications
           as part of our security Bug Bounty Program?</dt>
         <dd class="answer">
-          <p>Many people are not aware that we have paid the bounty in the past on
-            web application security vulnerabilities which impact client security.
-            We are, however, expanding the bounty beyond web vulnerabilities which
-            just affect the client. We also feel we should have a more formal
-            structure around our web properties when it comes to paying a bounty
-            because our goal is to make our products and services more secure.</p>
+          <p>Mozilla client software relies on web services, and Mozilla's community uses 
+          websites and services to communicate and coordinate activity.
+          Our goal is to make our products and services more secure.
+          Mozilla community members submitted bugs before we had an official bounty program 
+          to reward researchers. The bounty program is designed to incentivize bug reporting towards the websites, 
+          services, and types of bugs we'd like community members to focus on.</p>
         </dd>
 
         <dt class="question" id="howto">How can I find potential vulnerabilities
@@ -83,7 +80,7 @@
             We ask that people don’t use automatic tools against our web services
             as it is important to maintain our services and availability. We do
             encourage people to examine typical areas for vulnerabilities such as
-            authentication and session management. Since our code is opensource, you are
+            authentication and session management. Since our code is open source, you are
             encourage to run on the software on your own server instance or just look
             at the source code for potential issues.</p>
             <p>On Mozilla’s Wiki, you can find information about some of our
@@ -105,6 +102,8 @@
           <p>Yes, here it is:
             <a href="https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings">
               Web Application Severity Ratings</a></p>
+              The bounty committee's reward is based on the security and privacy 
+              impact of the bug and ultimately the importance of the website or service. 
         </dd>
       </dl>
 
@@ -113,34 +112,113 @@
         <dt class="question" id="eligible-bugs">Which domains and web applications
           will be considered to be part of the bug bounty?</dt>
         <dd class="answer">
-          <p>Below is the list of domains under scope for Mozilla’s web application
-            security
-            bug bounty. While this list doesn’t include all the Mozilla web properties,
-            we do plan on adding to this list as we introduce our web security process to
-            other sites not included in this list.</p>
+          <p>Below is the list of domains eligible for Mozilla’s website and services 
+            security bug bounty. Please check it regularly, it changes over time</p>
 
-          <ul>
-            <li>bugzilla.mozilla.org</li>
-            <li>*.services.mozilla.com</li>
-            <li>aus*.mozilla.org</li>
-            <li>www.mozilla.com/org</li>
-            <li>www.firefox.com</li>
-            <li>www.getfirefox.com</li>
-            <li>addons.mozilla.org</li>
-            <li>services.addons.mozilla.org</li>
-            <li>versioncheck.addons.mozilla.org</li>
-            <li>download.mozilla.org</li>
-          </ul>
+          <pre>
+            Mozilla and Firefox websites
+            www.mozilla.com
+            www.mozilla.org
+            www.firefox.com
+            www.getfirefox.com
+            
+            AMO - Mozilla Addons
+            addons.mozilla.org
+            blocklist.addons.mozilla.org
+            services.addons.mozilla.org
+            static.addons.mozilla.net
+            versioncheck-bg.addons.mozilla.org
+            versioncheck.addons.mozilla.org
+            
+            Application Update Servers (AUS/Balrog)
+            aus2.mozilla.org
+            aus3.mozilla.org
+            aus4.mozilla.org
+            aus5.mozilla.org
+            
+            Bugzilla
+            bugzilla.mozilla.org (Do not create bugs or comment on existing bugs while testing)
+            
+            Crash report (socorro)
+            crash-stats.mozilla.com
+            
+            Firefox Accounts
+            accounts.firefox.com
+            api.accounts.firefox.com
+            oauth.accounts.firefox.com
+            profile.accounts.firefox.com
+            verifier.accounts.firefox.com
+            
+            Hello
+            hello.firefox.com
+            loop.services.mozilla.com
+            msisdn.services.mozilla.com
+            
+            Input
+            input.mozilla.org
+            
+            Locations
+            location.services.mozilla.com
+            
+            Marketplace
+            marketplace.firefox.com
+            receiptcheck.marketplace.firefox.com
+            static.marketplace.firefox.com
+            
+            Mercurial
+            hg.mozilla.org
+            
+            Metrics
+            metrics.services.mozilla.com
+            
+            MozTrap
+            moztrap.mozilla.org
+            
+            Phonebook
+            phonebook.mozilla.org
+            
+            Product Delivery
+            download.mozilla.org
+            download-installer.cdn.mozilla.net
+            
+            Push
+            push.services.mozilla.com
+            push1.push.hello.firefox.com
+            updates.push.services.mozilla.com
+            
+            SSO
+            sso.mozilla.com (*not* mozilla.okta.com)
+            ldap.mozilla.org
+            
+            SUMO
+            support.mozilla.org
+            
+            Sync
+            token.services.mozilla.com
+            sync-264-us-west-2.sync.services.mozilla.com
+            
+            Teach
+            teach.mozilla.org
+            
+            Tiles
+            tiles.cdn.mozilla.net
+            tiles.services.mozilla.com
+            
+            TLS Observatory
+            tls-observatory.services.mozilla.com
+            
+            Tracking Protection
+            shavar.services.mozilla.com
+            tracking.services.mozilla.com
+          </pre>
 
-          <p>Additionally, Mozilla services that handle reasonably sensitive user data
-            such as Sync and Hello are in scope for the bug bounty program.</p>
-
-          <p>The Mozilla Developer Network (developer.mozilla.org) has been removed from this
-            list due to site vandalism by researchers looking for security issues. It will be
+          <p>The Mozilla Developer Network (developer.mozilla.org) and wiki.mozilla.org have  been removed from this
+            list due to site vandalism by researchers looking for security issues. They will be
             added back at a later date when a test server is deployed to avoid negative impacts
             on our primary reference site.</p>
 
-          <p>Only Mozilla websites and services are in scope, not email phishing attacks
+          <p>Only Mozilla websites and services are in scope. Issue categories explicitly excluded 
+            from eligibility include not denial of service attacks, email phishing attacks
             against employees, our offices, etc. Additionally, flaws relying on out-of-date
             browsers, plugins, or add-ons, which require extremely unlikely/unusual user
             interaction, and banner and version information are generally not eligible.</p>
@@ -150,10 +228,16 @@
           listed?</dt>
         <dd class="answer">
           <p>If you find an issue with a site which is not “officially” part under the
-            web application bug bounty, we would still like to know. If the bug is
+            website and services bug bounty program, we would still like to know. If the bug is
             extraordinary, we might still consider the bug to be nominated for a bounty. In
             the past we have paid for interesting bugs which are outside of normal
-            policy.</p>
+            policy, but it's the rare exception and not the rule. It's hard to define 'extraordinary,' 
+            since by definition there are no common examples.
+            If you are searching security issues for the joy of it or to help the Mozilla project,
+            we would appreciate reports on non-eligible sites.
+            If you are looking for bug bounties, focus on the sites listed as eligible, don't hunt for 
+            "extraordinary" bugs on sites not listed in thie FAQ. 
+            .</p>
         </dd>
 
         <dt class="question" id="issues">What types of issues will be considered
@@ -183,7 +267,7 @@
           <p>Because DoS bugs are generally less serious than other web application
             security bugs and in many cases a DoS doesn’t need to involve a technical
             vulnerability within a web application. We have decided to concentrate our
-            limited resources on rewarding people who find what we consider to be more
+            resources on rewarding people who find what we consider to be more
             serious security problems.</p>
         </dd>
       </dl>
@@ -193,8 +277,8 @@
         <dt class="question" id="what-next">Once I have found a
           vulnerability, what next?</dt>
         <dd class="answer">
-          <p>Please <a href="https://bugzilla.mozilla.org/form.web.bounty">
-            file a bug</a>.
+          <strong><p>Follow the <a href="https://www.mozilla.org/en-US/security/web-bug-bounty/">guide on submitting a web or service security bug</a> and then <a href="https://bugzilla.mozilla.org/form.web.bounty">
+            file a bug</a>.</strong>
             When filing, please verify that you have followed the guidance on how to
             write your report in order to assure it is evaluated as quickly as possible.
             Repeat the attack using only your own description in order to prevent
@@ -206,7 +290,7 @@
           directly to you, do I have to keep the bug confidential and not publish
           information about it in order to receive a reward?</dt>
         <dd class="answer">
-          <p>No. Were rewarding you for finding a bug, not trying to buy
+          <p>No. We're rewarding you for finding a bug, not trying to buy
             your silence. However if you report the bug through the standard
             Mozilla process and haven’t already published information about it then
             we do ask that you follow the guidelines set forth in the official
