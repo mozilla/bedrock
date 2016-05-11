@@ -324,6 +324,7 @@ MIDDLEWARE_CLASSES = [middleware for middleware in (
     'sslify.middleware.SSLifyMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'bedrock.mozorg.middleware.VaryNoCacheMiddleware' if ENABLE_VARY_NOCACHE_MIDDLEWARE else False,
     # must come before LocaleURLMiddleware
     'bedrock.redirects.middleware.RedirectsMiddleware',
@@ -336,7 +337,6 @@ MIDDLEWARE_CLASSES = [middleware for middleware in (
     'bedrock.mozorg.middleware.CacheMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
     'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
-    'bedrock.mozorg.middleware.CrossOriginResourceSharingMiddleware',
 ) if middleware]
 
 INSTALLED_APPS = (
@@ -959,9 +959,8 @@ MOFO_SECURITY_ADVISORIES_PATH = config('MOFO_SECURITY_ADVISORIES_PATH',
                                        default=path('mofo_security_advisories'))
 MOFO_SECURITY_ADVISORIES_REPO = 'https://github.com/mozilla/foundation-security-advisories.git'
 
-CORS_URLS = {
-    r'^/([a-zA-Z-]+/)?shapeoftheweb': '*',
-}
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/([a-zA-Z-]+/)?(shapeoftheweb|newsletter)/'
 
 LOGGING = {
     'root': {
