@@ -87,20 +87,16 @@
         padding: 0 (@gridGutterWidth * 3) 0 @gridGutterWidth;
     }
 
-    .btn-download {
-        .font-size(@smallFontSize);
-        padding: .5em 30px;
-        margin: 5px 10px 0;
-        background-color: #6fbe4a;
-
-        &:hover,
-        &:focus,
-        &:active {
-            background-color: lighten(#6fbe4a, 5%);
+    .download-button {
+        vertical-align: baseline;
+        
+        .fx-privacy-link {
+            display: none;
         }
 
         @media only screen and (max-width: @breakTablet) {
             display: block;
+            margin-top: @baseLine;
         }
     }
 

@@ -4,8 +4,7 @@
  */
 
 /* global describe, beforeEach, afterEach, it, expect, sinon, spyOn,
-   triggerIEDownload, initDownloadLinks, updateDownloadTextForOldFx,
-   initMobileDownloadLinks */
+   triggerIEDownload, initDownloadLinks, initMobileDownloadLinks */
 
 describe('global.js', function() {
 
@@ -64,91 +63,6 @@ describe('global.js', function() {
             expect(triggerIEDownload.called).toBeTruthy();
         });
 
-    });
-
-    describe('updateDownloadTextForOldFx', function () {
-        var windowTransStub;
-        var isFirefoxStub;
-
-        // append HTML to body for each test
-        beforeEach(function () {
-            // Download button that is not set to check for old fx.
-            // Button subtitle text should never change.
-            var html1 = ['<div id="download-button1" class="download-button download-button-simple">',
-                '<ul class="download-list" role="presentation">',
-                '<li class="os_win">',
-                '<a class="download-link" href="/firefox/new/?scene=2#download-fx">',
-                '<span class="download-content">',
-                    '<strong class="download-title">Firefox</strong>',
-                    '<span class="download-subtitle">Free Download</span>',
-                '</span>',
-                '</a>',
-                '</li>',
-                '</ul>',
-                '</div>'].join('\n');
-
-            // Download button that is set to check for old fx.
-            // Button subtitle text should change only when
-            // isFirefox() == true and isFirefoxUpToDate() == true.
-            var html2 = ['<div id="download-button2" class="download-button download-button-simple download-button-check-old-fx">',
-                '<ul class="download-list" role="presentation">',
-                '<li class="os_win">',
-                '<a class="download-link" href="/firefox/new/?scene=2#download-fx">',
-                '<span class="download-content">',
-                    '<strong class="download-title">Firefox</strong>',
-                    '<span class="download-subtitle">Free Download</span>',
-                '</span>',
-                '</a>',
-                '</li>',
-                '</ul>',
-                '</div>'].join('\n');
-
-            $(html1).appendTo('body');
-            $(html2).appendTo('body');
-
-            windowTransStub = sinon.stub(window, 'trans').returns('Update your Firefox');
-        });
-
-        afterEach(function () {
-            $('.download-button').remove();
-
-            // set global functions back to original state
-            isFirefoxStub.restore();
-            windowTransStub.restore();
-        });
-
-        it('should change the button text when using old fx', function () {
-            isFirefoxStub = sinon.stub(window.Mozilla.Client, '_isFirefox').returns(true);
-            spyOn(window.Mozilla.Client, 'getFirefoxDetails').and.callFake(function(callback) {
-                callback({ version: '40.0', channel: 'release', isUpToDate: false, isESR: false });
-            });
-
-            updateDownloadTextForOldFx();
-
-            expect($('#download-button1').find('.download-subtitle').text()).toEqual('Free Download');
-            expect($('#download-button2').find('.download-subtitle').text()).toEqual('Update your Firefox');
-        });
-
-        it('should not change the button text when not using fx', function () {
-            isFirefoxStub = sinon.stub(window.Mozilla.Client, '_isFirefox').returns(false);
-
-            updateDownloadTextForOldFx();
-
-            expect($('#download-button1').find('.download-subtitle').text()).toEqual('Free Download');
-            expect($('#download-button2').find('.download-subtitle').text()).toEqual('Free Download');
-        });
-
-        it('should not change the button text when using up to date fx', function () {
-            isFirefoxStub = sinon.stub(window.Mozilla.Client, '_isFirefox').returns(true);
-            spyOn(window.Mozilla.Client, 'getFirefoxDetails').and.callFake(function(callback) {
-                callback({ version: '41.0', channel: 'release', isUpToDate: true, isESR: false });
-            });
-
-            updateDownloadTextForOldFx();
-
-            expect($('#download-button1').find('.download-subtitle').text()).toEqual('Free Download');
-            expect($('#download-button2').find('.download-subtitle').text()).toEqual('Free Download');
-        });
     });
 
     describe('initMobileDownloadLinks', function () {

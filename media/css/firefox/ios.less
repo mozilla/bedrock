@@ -142,7 +142,7 @@ a.go {
             margin: 0;
         }
 
-        .button-flat-green {
+        .send-to {
             .font-size(28px);
             text-transform: none;
             min-width: 50%;
@@ -331,9 +331,9 @@ a.go {
         }
     }
 
-    .sync-cta .button-flat {
+    .sync-cta .button {
         .font-size(20px);
-        text-transform: none;
+        margin-bottom: @baseLine;
     }
 
     p {
@@ -625,7 +625,7 @@ a.go {
 }
 
 .send-to-device,
-.send-to {
+.send-to.button.green {
     display: none;
 }
 
@@ -636,7 +636,7 @@ a.go {
         display: none;
     }
     .send-to-device,
-    .send-to {
+    .send-to.button.green  {
         display: inline;
     }
 }
@@ -648,7 +648,7 @@ a.go {
         display: block;
     }
     .send-to-device,
-    .send-to {
+    .send-to.button.green  {
         display: none;
     }
 }

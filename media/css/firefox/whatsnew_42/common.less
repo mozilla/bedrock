@@ -37,11 +37,8 @@ body {
     display: none;
 }
 
-.button-flat-dark {
-    .open-sans-light;
+.button.dark {
     .font-size(24px);
-    padding: 12px @baseLine;
-    .transition(background-color 250ms linear 0s);
 
     @media only screen and (max-width: @breakDesktop) {
         .font-size(20px);
@@ -53,12 +50,6 @@ body {
 
     @media only screen and (max-width: @breakMobileLandscape) {
         .font-size(@largeFontSize);
-    }
-}
-
-html[lang^='en'] {
-    .button-flat-dark {
-        text-transform: none;
     }
 }
 

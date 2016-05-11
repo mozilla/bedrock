@@ -106,7 +106,7 @@
 
         <div class="show-fx-31-signed-out">
         {% if not version %}
-          <button class="sync-button" data-interaction="button click" data-element-action="Sync CTA"  id="cta-sync">
+          <button class="button" data-interaction="button click" data-element-action="Sync CTA"  id="cta-sync">
             {{ _('Get started with Sync') }}
           </button>
         {% else %}
@@ -120,7 +120,7 @@
             {% endif %}
             </label>
             <input type="email" id="fxa-email" class="fxa-email" placeholder="{{ _('YOUR EMAIL HERE') }}">
-            <button type="submit" class="sync-button" data-interaction="button click" data-element-action="Sync CTA" id="cta-sync-variation">
+            <button type="submit" class="button" data-interaction="button click" data-element-action="Sync CTA" id="cta-sync-variation">
             {% if version == '2' %}
               {{ _('Get started with Sync') }}
             {% elif version == '3' %}
@@ -132,19 +132,13 @@
         </div>
 
         <div class="show-fx-29-30">
-          <a href="https://support.mozilla.org/kb/update-firefox-latest-version" class="sync-button" data-interaction="button click" data-element-action="Sync CTA" id="cta-update">
+          <a href="https://support.mozilla.org/kb/update-firefox-latest-version" class="button" data-interaction="button click" data-element-action="Sync CTA" id="cta-update">
             {{ _('Update your Firefox') }}
           </a>
         </div>
 
-        <div class="show-fx-28-older">
-          <a href="{{ url('firefox.new') }}?scene=2" class="sync-button green" data-interaction="button click" data-element-action="Sync CTA" id="cta-firefox">
-            {{ _('Download Firefox') }}
-          </a>
-        </div>
-
-        <div class="show-not-fx">
-          {{ download_firefox(icon=False) }}
+        <div class="show-not-fx show-fx-28-older">
+          {{ download_firefox() }}
         </div>
       </div>
 

@@ -171,7 +171,7 @@ This is done in a template as follows:
 
     # white
     {% block email_form %}
-        {{ email_newsletter_form(button_class='white') }}
+        {{ email_newsletter_form(button_class='light') }}
     {% endblock %}
 
 Creating a signup page

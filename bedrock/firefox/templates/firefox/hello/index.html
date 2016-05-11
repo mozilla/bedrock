@@ -29,8 +29,8 @@
 
 {% block site_header_unwrapped %}
   {% call fxfamilynav('features') %}
-    <a class="try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Hello now') }}</a>
-    <a class="nav-download-button button-flat-dark" href="{{ url('firefox.new') }}" data-link-type="button" data-link-name="Download now">{{ _('Download now') }}</a>
+    <a class="try-hello-button button dark" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try It Now') }}</a>
+    {{ download_firefox(alt_copy=_('Download Now')) }}
   {% endcall %}
 {% endblock %}
 
@@ -44,7 +44,7 @@
           <h1>{{ _('Plan. Shop. Decide. Together.') }}</h1>
         {% endif %}
         <p class="tagline fx-up-to-date">{{ _('Instantly browse any Web page with a friend.') }}</p>
-        <a class="try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Firefox Hello') }}</a>
+        <a class="try-hello-button button dark" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try It Now') }}</a>
         <img src="{{ static('img/firefox/hello/firefox-hello-logo-white.svg') }}" class="hello-wordmark" alt="Firefox Hello" width="380" data-fallback="true" data-png="{{ static('img/firefox/hello/firefox-hello-logo-white.png') }}">
       </header>
     </div>
@@ -53,7 +53,7 @@
     <div class="container">
       <h2 class="fx-out-of-date">{{ _('Get the latest version of Firefox to start browsing Web pages with your friends.') }}</h2>
       <h2 class="non-fx">{{ _('Get Firefox to start browsing Web pages with your friends.') }}</h2>
-      {{ download_firefox(small=True, icon=False, platform='desktop', force_direct=true, dom_id='download-fx-primary') }}
+      {{ download_firefox(platform='desktop', force_direct=true, dom_id='download-fx-primary') }}
       <div class="mobile">
         <h2>{{ _('Use Firefox on your desktop or laptop to start browsing the Web with your friends.') }} <a class="more" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more')}}</a></h2>
         <a href="{{ url('firefox.desktop.index') }}">
@@ -103,11 +103,11 @@
     <div class="container">
       <div class="fx-up-to-date">
         <h2>{{ _('Share this page with a friend.') }}</h2>
-        <a class="try-hello-button" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try Hello now') }}</a>
+        <a class="try-hello-button button dark" href="https://support.mozilla.org/kb/where-firefox-hello-button">{{ _('Try It Now') }}</a>
       </div>
       <h2 class="fx-out-of-date">{{ _('Get the latest version of Firefox to start browsing Web pages with your friends.') }}</h2>
       <h2 class="non-fx">{{ _('Get Firefox to start browsing Web pages with your friends.') }}</h2>
-      {{ download_firefox(small=True, icon=False, platform='desktop', force_direct=true, dom_id='download-fx-secondary') }}
+      {{ download_firefox(platform='desktop', force_direct=true, dom_id='download-fx-secondary') }}
       <div class="mobile">
         <h2>{{ _('Use Firefox on your desktop or laptop to start browsing the Web with your friends.') }} <a class="more" href="{{ url('firefox.desktop.index') }}">{{ _('Learn more')}}</a></h2>
         <a href="{{ url('firefox.desktop.index') }}">
@@ -121,7 +121,7 @@
     {% if LANG.startswith('en-') %}
     <aside id="newsletter-subscribe" class="compact ga-section" data-ga-label="Discover more ways to stay connected with Firefox.">
       <div class="container">
-        {{ email_newsletter_form(title=_('Discover more ways to stay connected<br> with Firefox.'), button_class='white') }}
+        {{ email_newsletter_form(title=_('Discover more ways to stay connected<br> with Firefox.'), button_class='light') }}
       </div>
     </aside>
     {% endif %}

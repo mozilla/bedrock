@@ -37,7 +37,7 @@
               {{_('Congrats! You’re using the latest version of Firefox.')}}
               <div id="refresh-firefox-wrapper">
                 <p>{{ _('Give Firefox a tune up') }}</p>
-                <button type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" class="button-flat">{{ _('Refresh Firefox') }}</button>
+                <button type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" class="button">{{ _('Refresh Firefox') }}</button>
                 <a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link" rel="external">{{ _('Learn more') }}</a>
               </div>
             </div>
@@ -80,15 +80,13 @@
           <section id="download-buttons">
             {# handles desktop users (windows, os x, linux) #}
             <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
-              {{ download_firefox(simple=true) }}
+              {{ download_firefox(alt_copy=_('Free Download')) }}
             </div>
 
             {# handles Android and iOS users #}
             <div class="mobile download-button-wrapper" id="download-button-wrapper-mobile" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
-              {{ download_firefox(small=True, icon=False, dom_id='download-button-mobile') }}
+              {{ download_firefox(dom_id='download-button-mobile') }}
             </div>
-
-            <a href="{{ url('privacy.notices.firefox') }}" class="privacy-notice">{{_('Firefox Browser Privacy Notice') }}</a>
           </section>{#-- /#download-buttons --#}
           {% block browser %}{% endblock %}
         </div>
@@ -118,9 +116,9 @@
       </ul>
     </section>
   </div>
-  <aside id="subscribe">
-    <div class="subscribe-container">
-      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='white') }}
+  <aside id="newsletter-subscribe">
+    <div class="container">
+      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='light') }}
     </div>
   </aside>
 </main>

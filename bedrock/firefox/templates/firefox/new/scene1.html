@@ -114,12 +114,12 @@
   <section id="download-buttons">
     {# handles desktop users (windows, os x, linux) #}
     <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
-      {{ download_firefox(simple=true) }}
+      {{ download_firefox(alt_copy=_('Free Download')) }}
     </div>
 
     {# handles Android and iOS users #}
     <div class="mobile download-button-wrapper" id="download-button-wrapper-mobile" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
-      {{ download_firefox(small=True, icon=False, dom_id='download-button-mobile') }}
+      {{ download_firefox(dom_id='download-button-mobile') }}
     </div>
   </section>{#-- /#download-buttons --#}
 
@@ -138,7 +138,9 @@
 {% block email_form %}{% endblock %}
 
 {% block site_footer %}
-  {% include 'firefox/includes/simple_footer.html' %}
+  {% with fx_footer_links=True %}
+    {% include 'firefox/includes/simple_footer.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block js %}

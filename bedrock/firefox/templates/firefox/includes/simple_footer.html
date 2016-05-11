@@ -8,6 +8,11 @@
       <li><a href="https://support.mozilla.org/"><span>{{_('Support')}}</span></a></li>
       <li><a href="{{ url('mozorg.about') }}"><span>{{_('About')}}</span></a></li>
     </ul>
+
+    {% if fx_footer_links %}
+      {{ firefox_footer_links() }}
+    {% endif %}
+
     <ul class="secondary footer-lang">
       <li>{% include 'includes/lang_switcher.html' %}</li>
     </ul>

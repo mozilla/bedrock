@@ -261,7 +261,7 @@
           </div>
           <div class="non-firefox-cta">
             <div class="desktop-download-button">
-              {{ download_firefox(small=True, icon=False) }}
+              {{ download_firefox() }}
             </div>
             <div class="android-download-button">
               <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
@@ -275,7 +275,7 @@
             </div>
           </div>
           <div class="firefox-old-cta">
-            {{ download_firefox(small=True, icon=False) }}
+            {{ download_firefox() }}
           </div>
         </div>
       </div>
@@ -313,6 +313,38 @@
 {% endblock %}
 
 {% block email_form %}{% endblock %}
+
+{% block site_footer %}
+
+  {# Default to Firefox desktop release channel #}
+  {% set platform = 'desktop' %}
+  {% set channel = 'release' %}
+
+  {% if release.product == 'Firefox' %}
+    {% if release.channel == 'Beta' %}
+      {% set channel = 'beta' %}
+    {# Developer Edition still uses legacy channel names #}
+    {% elif release.channel == 'Aurora' %}
+      {% set channel = 'alpha' %}
+    {% endif %}
+  {% elif release.product == 'Firefox for Android' %}
+    {% set platform = 'android' %}
+    {% if release.channel == 'Beta' %}
+      {% set channel = 'beta' %}
+    {% elif release.channel == 'Aurora' %}
+      {% set channel = 'alpha' %}
+    {% endif %}
+  {% elif release.product == 'Firefox for iOS' %}
+    {% set platform = 'ios' %}
+  {% elif release.product == 'Firefox Extended Support Release' %}
+    {% set channel = 'organizations' %}
+  {% endif %}
+
+  {% with fx_footer_links=True, current_platform=platform, current_channel=channel %}
+    {% include 'includes/site-footer.html' %}
+  {% endwith %}
+
+{% endblock %}
 
 {% block js %}
   {% javascript 'releasenotes' %}

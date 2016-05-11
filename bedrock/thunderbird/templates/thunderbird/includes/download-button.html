@@ -7,7 +7,7 @@
     <h4>{{ _('Download Thunderbird') }} — {{ locale_name|safe }}</h4>
     <ul>
       {% for plat in builds -%}
-        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="button-green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="download-link button green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
       {%- endfor %}
     </ul>
   </div>
@@ -15,14 +15,12 @@
 
 {% set download_class = 'download-button' %}
 {% set download_class = download_class ~ ' download-button-' ~ channel if channel else download_class %}
-{% set download_class = download_class ~ ' download-button-small' if small else download_class %}
-{% set download_class = download_class ~ ' download-button-noicon' if not icon else download_class %}
-{% set download_class = download_class ~ ' download-button-simple' if simple else download_class %}
 
 <div id="{{ id }}" class="{{ download_class }}">
-  <noscript>
+  {# no JS #}
+  <div class="nojs-download">
     {{ alt_buttons(builds) }}
-  </noscript>
+  </div>
   <div class="unrecognized-download">
     {{ alt_buttons(builds) }}
   </div>
@@ -35,21 +33,22 @@
   <ul class="download-list">
     {% for plat in builds %}
       <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
-        <a class="download-link"
+        <a class="download-link button {{button_color}}"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ plat.download_link_direct }}"{% endif %}>
-          <span class="download-content">
-            {% if channel == 'beta' %}
-              <strong class="download-title">{{ _('Thunderbird Beta') }}</strong>
-            {% elif channel == 'alpha' %}
-              <strong class="download-title">{{ _('<span>Thunderbird</span> Earlybird') }}</strong>
+          <strong class="download-title">
+            {% if alt_copy %}
+              {{ alt_copy }}
             {% else %}
-              <strong class="download-title">{{ _('Thunderbird') }}</strong>
+              {% if channel == 'beta' %}
+                {{ _('Thunderbird Beta') }}
+              {% elif channel == 'alpha' %}
+                {{ _('<span>Thunderbird</span> Earlybird') }}
+              {% else %}
+                {{ _('Download Thunderbird') }}
+              {% endif %}
             {% endif %}
-            <span class="download-subtitle">{{ _('Free Download') }}</span>
-            <span class="download-lang">{{ locale_name|safe }}</span>
-            <span class="download-platform">{{ plat.os_pretty }}</span>
-          </span>
+          </strong>
         </a>
       </li>
     {% endfor %}

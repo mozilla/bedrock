@@ -13,6 +13,18 @@
     width: 240px;
 }
 
+.other,
+.no-js {
+    .download-button-wrapper {
+        width: 600px;
+        text-align: center;
+
+        @media only screen and (max-width: @breakTablet) {
+            width: auto;
+        }
+    }
+}
+
 // styles the links pulled from underneath the desktop download button
 // (systems & languages, what's new, privacy) and appended to the end of
 // #download-buttons element

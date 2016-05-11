@@ -37,24 +37,16 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.try-hello-button,
-.try-hello-button:link,
-.try-hello-button:visited {
+a.try-hello-button,
+a.try-hello-button:link,
+a.try-hello-button:visited {
     .inline-block;
-    padding: 12px (@baseLine * 2) 12px 85px;
+    padding-left: 75px;
     margin-bottom: @baseLine;
-    .open-sans-light;
-    .font-size(30px);
-    color: #fff;
-    text-align: center;
     .at2x('/media/img/firefox/hello/hello-smiley.png', 40px, 38px);
-    background-position: 32px center;
+    background-position: 22px center;
     background-repeat: no-repeat;
-    background-color: #005189;
-    border-radius: 6px;
-    border: none;
     cursor: pointer;
-    .transition(background-color .1s ease-in-out);
 
     @media only screen and (max-width: @breakDesktop) {
         .font-size(26px);
@@ -67,38 +59,13 @@ h1, h2, h3, h4, h5, h6 {
     @media only screen and (max-width: @breakMobileLandscape) {
         .font-size(20px);
     }
-
-    &:hover,
-    &:focus {
-        text-decoration: none;
-        background-color: lighten(#005189, 3%);
-        color: #fff;
-    }
 }
 
 #fxfamilynav-header {
-    .try-hello-button,
-    .nav-download-button {
-        .open-sans;
-        .font-size(@smallFontSize);
-        padding: 12px (@baseLine / 2);
-        background: #005189;
+    a.try-hello-button {
+        background-image: none;
         margin-bottom: 0;
-        text-transform: none;
-
-        &:hover,
-        &:focus {
-            background: lighten(#005189, 3%);
-        }
-    }
-}
-
-html[lang^='en'] {
-    #fxfamilynav-header {
-        .try-hello-button,
-        .nav-download-button {
-            text-transform: uppercase;
-        }
+        padding: 5px 18px;
     }
 }
 
@@ -119,7 +86,7 @@ html[lang^='en'] {
 
     .fx-up-to-date,
     .fx-out-of-date,
-    .try-hello-button,
+    a.try-hello-button,
     .mobile {
         display: none;
     }
@@ -137,7 +104,7 @@ html[lang^='en'] {
     .download-button,
     .hello-wordmark,
     .nav-download-button,
-    .try-hello-button {
+    a.try-hello-button {
         display: none;
     }
 }
@@ -147,7 +114,7 @@ html[lang^='en'] {
         display: block;
     }
 
-    .try-hello-button {
+    a.try-hello-button {
         display: inline-block;
     }
 
@@ -177,7 +144,7 @@ html[lang^='en'] {
     .fx-up-to-date,
     .non-fx,
     .mobile,
-    .try-hello-button {
+    a.try-hello-button {
         display: none;
     }
 }
@@ -197,7 +164,7 @@ html[lang^='en'] {
     .fx-up-to-date,
     .fx-out-of-date,
     .mobile,
-    .try-hello-button {
+    a.try-hello-button {
         display: none;
     }
 }
@@ -208,7 +175,7 @@ html[lang^='en'] {
     .non-fx,
     .download-button,
     .nav-download-button,
-    .try-hello-button {
+    a.try-hello-button {
         display: none;
     }
 
@@ -243,6 +210,9 @@ html[lang^='en'] {
             color: #fff;
             text-decoration: underline;
         }
+    }
+    .download-heading {
+        color: #fff;
     }
 }
 
@@ -321,7 +291,7 @@ html[lang^='en'] {
         }
     }
 
-    .try-hello-button {
+    a.try-hello-button {
         margin-top: @baseLine;
     }
 
@@ -737,7 +707,7 @@ html[lang^='en'] {
         position: relative;
         .clearfix;
 
-        .try-hello-button {
+        a.try-hello-button {
             .border-box();
             float: right;
             max-width: 50%;
@@ -748,7 +718,7 @@ html[lang^='en'] {
         @media only screen and (max-width: @breakTablet) {
             text-align: center;
 
-            .try-hello-button {
+            a.try-hello-button {
                 float: none;
                 max-width: none;
                 margin: @baseLine auto;
@@ -798,7 +768,7 @@ html[lang^='en'] {
         }
 
         .fx-up-to-date {
-            .try-hello-button {
+            a.try-hello-button {
                 float: left;
 
                 @media only screen and (max-width: @breakTablet) {

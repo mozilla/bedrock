@@ -2,7 +2,6 @@
 @import "reset.less";
 @import "fonts.less";
 @import "buttons.less";
-@import "buttons-new.less";
 @import "animations.less";
 
 /* {{{ Basic Colors, Text, Links */
@@ -1040,6 +1039,12 @@ nav.menu-bar {
 
     .col-2 ul {
         overflow: hidden;
+
+        &.fx-footer-links {
+            li {
+                float: none;
+            }
+        }
 
         li {
             float: left;

@@ -7,42 +7,6 @@
 // Some common classes/mixins
 @buttonGreen: #14c329;
 
-.button-flat {
-    .open-sans;
-    background: @buttonGreen;
-    color: #fff;
-    display: inline-block;
-    border: 0;
-    border-radius: .5em;
-    padding: @baseLine/2 @baseLine;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: none;
-    .transition(all .15s ease-in-out);
-
-    &:hover,
-    &:focus,
-    &:active {
-        color: #fff;
-        background-color: lighten(@buttonGreen, 5%);
-        text-decoration: none;
-    }
-}
-
-.button-hollow {
-    .button-flat;
-    background-color: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-
-    &:hover,
-    &:focus,
-    &:active {
-        background: none;
-        border-color: @linkBlue;
-    }
-}
-
 #wrapper {
     width: 100%;
     padding-bottom: 0;
@@ -77,16 +41,6 @@
         margin: @baseLine*2 auto @baseLine*3;
         border-radius: 4px;
         box-shadow: 0 4px 10px #000;
-    }
-}
-
-.download-button {
-    .download-link {
-        .button-flat;
-        line-height: inherit;
-    }
-    small.download-other.download-other-desktop {
-        display: block !important;
     }
 }
 
@@ -232,7 +186,7 @@
 .dev-footer-download {
     .span(6);
     min-height: 145px;
-    padding: @baseLine*2 0;
+    padding: (@baseLine * 2) 0;
     .at2x('/media/img/firefox/developer/footer-logo.png', 145px, 145px);
     background-repeat: no-repeat;
     background-position: 0 @baseLine*2;
@@ -241,7 +195,15 @@
         margin-left: 160px;
         .download-link {
             display: block;
-            padding: 0;
+            padding: 10px 30px;
+        }
+    }
+    .fx-privacy-link {
+        a:link,
+        a:visited,
+        a:hover,
+        a:focus {
+            color: #fff;
         }
     }
 }
@@ -257,13 +219,6 @@
         color: #fff;
         margin-bottom: @baseLine;
     }
-    .button {
-        .button-hollow;
-        display: block;
-        width: 100%;
-        .border-box();
-        text-transform: uppercase;
-    }
     .form-title,
     .form-submit,
     .form-contents {
@@ -278,6 +233,7 @@
         border: 0;
         padding: 15px 10px;
         width: 100%;
+        height: 50px;
         .border-box();
     }
 }

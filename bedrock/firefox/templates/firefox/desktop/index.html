@@ -27,7 +27,7 @@
 
 {% block site_header_unwrapped %}
   {% call fxfamilynav('desktop', 'dark') %}
-    {{ download_firefox(simple=True, small=True, dom_id="sticky-download-desktop") }}
+    {{ download_firefox(dom_id="sticky-download-desktop", alt_copy=_('Download')) }}
   {% endcall %}
 {% endblock %}
 
@@ -46,7 +46,7 @@
         </h1>
 
         <div id="overview-intro-download-wrapper">
-          {{ download_firefox(small=True, icon=False, dom_id="intro_download_desktop") }}
+          {{ download_firefox(dom_id="intro_download_desktop") }}
         </div>
       {% if l10n_has_tag('firefox_updated') %}
         <div id="overview-intro-up-to-date">
@@ -160,6 +160,12 @@
     </div><!--/.container-->
   </section>
 </main>
+{% endblock %}
+
+{% block site_footer %}
+  {% with fx_footer_links=True, current_platform='desktop' %}
+    {% include 'includes/site-footer.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block js %}

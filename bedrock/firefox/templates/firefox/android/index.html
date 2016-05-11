@@ -37,7 +37,7 @@
       <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
         {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
       </a>
-      <button class="send-to button-flat-dark" type="button" data-button-name="Get Firefox for Android">{{ _('Get Firefox for Android') }}</button>
+      <button id="send-to-button-header" class="send-to button dark" type="button" data-button-name="Get Firefox for Android">{{ _('Get Firefox for Android') }}</button>
     </div>
   {% endcall %}
 {% endblock %}
@@ -64,9 +64,6 @@
         <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
           {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
         </a>
-        <small class="download-other">
-          <a class="dl-button" href="{{ firefox_url('android', 'all') }}">{{_('Systems &amp; Languages')}}</a>
-        </small>
       </div>
 
       {# happy little droid #}
@@ -393,30 +390,25 @@
             <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android" data-alt="{{ _('Get Firefox for Android') }}">
               {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
             </a>
-            <button class="send-to button-flat-dark" type="button" data-button-name="Get Firefox for Android">{{ _('Get Firefox for Android') }}</button>
+            <button id="send-to-button-footer" class="send-to button dark" type="button" data-button-name="Get Firefox for Android">{{ _('Get Firefox for Android') }}</button>
           </div>
-          <ul>
-            <li>
-              <a rel="external" href="{{ firefox_url('android', 'sysreq') }}">{{ _('Supported devices') }}</a>
-            </li>
-            <li>
-              <a href="{{ firefox_url('android', 'all') }}">{{_('Systems &amp; Languages')}}</a>
-            </li>
-            <li>
-              <a href="{{ firefox_url('android', 'notes') }}">{{ _('Release notes') }}</a>
-            </li>
-          </ul>
         </div>{#-- /#download-content --#}
       </div>{#-- /#download-wrapper --#}
 
     {% block subscribe_wrapper %}
       <div id="subscribe-wrapper" class="floating">
         {# L10n: Line break for visual formatting. #}
-        {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='white') }}
+        {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='light') }}
       </div>
     {% endblock %}
     </div>
   </div>
+{% endblock %}
+
+{% block site_footer %}
+  {% with fx_footer_links=True, current_platform='android' %}
+    {% include 'includes/site-footer.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block js %}

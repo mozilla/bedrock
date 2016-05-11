@@ -555,19 +555,11 @@ html[lang|="en"] {
 
         .download-other {
             margin-top: 11px;
-            .font-size(10px);
+            .font-size(14px);
             text-align: center;
-            color: #4c781c;
 
             a:link,
             a:visited {
-                color: #4c781c;
-                .transition(color .1s ease-in-out);
-            }
-
-            a:active,
-            a:hover,
-            a:focus {
                 color: #fff;
             }
 
@@ -602,34 +594,47 @@ html[lang|="en"] {
         .download-dumb {
             .download-heading {
                 text-align: center;
+                margin-bottom: 10px;
             }
             ul {
-                margin-top: 10px;
+                margin: 0 0 10px;
                 text-align: center;
+
+                li {
+                    margin: 0;
+                }
             }
-            .button-green {
+            .download-link {
                 font-weight: normal;
                 background: none;
                 box-shadow: none;
+                border: none;
                 padding: 0;
                 margin: 0 .5em;
                 min-width: 0;
                 text-align: left;
                 color: #4c781c;
                 text-shadow: none;
-
-                &:link,
-                &:visited {
-                    color: #4c781c;
-                    .transition(color .1s ease-in-out);
-                }
-
-                &:hover,
-                &:focus {
-                    text-decoration: underline;
-                    color: #fff;
-                }
             }
+        }
+
+        .download-dumb .download-link,
+        .fx-privacy-link > a {
+            &:link,
+            &:visited {
+                color: #4c781c;
+                .transition(color .1s ease-in-out);
+            }
+
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+                color: #4c781c;
+            }
+        }
+
+        .fx-privacy-link {
+            font-size: @baseFontSize;
         }
 
         .fxos-link {
@@ -652,13 +657,42 @@ html[lang|="en"] {
                 text-decoration: none;
             }
         }
+        .unrecognized-download > p {
+            color: #4c781c;
+            margin-bottom: @baseLine / 2;
+        }
+
+        .unrecognized-short-link {
+            display: none;
+
+            &:link,
+            &:visited {
+                color: #fff;
+            }
+
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+            }
+        }
     }
 }
 
-// Show appropriate other links for the OS
-.android .promo-small-landscape.firefox-download .download-other.os_android,
-.ios .promo-small-landscape.firefox-download .download-other.os_ios {
-    display: block !important;
+// Download Firefox promo is way too small to display the unrecognized message and the
+// list of links, so to save space we just show a single link to /firefox/new/.
+.other .promo-small-landscape.firefox-download {
+
+    .download-button .unrecognized-download .download-dumb {
+        display: none;
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+
+    .unrecognized-short-link {
+        display: block;
+    }
 }
 
 .html-rtl {

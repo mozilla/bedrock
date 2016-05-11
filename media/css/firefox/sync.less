@@ -38,41 +38,6 @@
     position: relative;
 }
 
-.sky .sync-button {
-    display: block;
-    padding: 15px;
-    text-align: center;
-    border-radius: 6px;
-    background: @syncBlue;
-    color: #fff;
-    .font-size(@largeFontSize);
-    text-transform: uppercase;
-    .transition();
-    width: 60%;
-    margin: 0 auto;
-    &:focus,
-    &:active,
-    &:hover {
-        color: #fff;
-        background: darken(@syncBlue, 5%);
-        text-decoration: none;
-        .transition(all linear .1s);
-    }
-    &.green {
-        background: @syncGreen;
-        &:focus,
-        &:active,
-        &:hover {
-            background: darken(@syncGreen, 5%);
-        }
-    }
-}
-
-.sky button.sync-button {
-    border: none;
-    cursor: pointer;
-}
-
 .button-footer {
     margin: @baseLine 0 0 0;
     text-align: center;
@@ -81,10 +46,14 @@
     }
 }
 
-.buttons .download-button {
-    display: block;
-    width: 300px;
-    margin: auto;
+.buttons {
+    text-align: center;
+
+    .download-button,
+    .button {
+        display: block;
+        margin: auto;
+    }
 }
 
 .state-fx-android .primary .inner-wrapper {
@@ -265,9 +234,6 @@
     h3 {
         text-shadow: 0 1px rgba(0,0,0,0.1);
     }
-    .sync-button {
-        margin-top: @baseLine;
-    }
 }
 
 .features {
@@ -359,7 +325,7 @@
 
 .js .show-not-fx .download-button ul {
     width: 250px;
-    margin: 0 auto;
+    margin: 0 auto 10px;
 }
 
 .state-fx-android {
@@ -546,10 +512,6 @@ html[dir="rtl"] {
     .sync-anim {
         float: none;
         margin: 0 auto @baseLine auto;
-    }
-
-    .sky .sync-button {
-        width: 100%;
     }
 
     .primary {

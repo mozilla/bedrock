@@ -23,7 +23,7 @@
   img {
     display: block;
     margin: @baseLine auto;
-  }      
+  }
 }
 
 #ambassadors-form {
@@ -50,11 +50,6 @@
     margin-top: @baseLine;
   }
 
-  .form-submit {
-    .span(2);
-    margin: 0;
-  }
-
   .errorlist {
     padding-bottom: @baseLine / 2;
   }
@@ -65,11 +60,6 @@
 
   input[type=text] {
     width: 85%;
-  }
-
-  input[type=submit] {
-    width: (@gridColumnWidth * 2) + (@gridGutterWidth);
-    max-width: 100%;
   }
 
   .country select {
@@ -90,6 +80,10 @@
       left: -24px;
     }
   }
+
+  .form-submit {
+      float: left;
+  }
 }
 
 #ambassadors-form.has-errors {
@@ -105,7 +99,7 @@ span.required {
   color: #c00;
 }
 
-.field-privacy span:after, 
+.field-privacy span:after,
 .privacy-check-label span:after {
   content: " *";
   color: #c00;
@@ -115,7 +109,7 @@ span.required {
   #main-feature {
     h1, h2 {
       width: 100%;
-    }     
+    }
   }
 }
 
@@ -140,10 +134,6 @@ span.required {
       float: none;
       margin: 0 (@gridGutterWidth / 2);
     }
-
-    .form-submit {
-      float: left;
-    }
   }
 }
 
@@ -154,10 +144,6 @@ span.required {
       width: auto;
       float: none;
       margin: 0 (@gridGutterWidth / 2);
-    }
-
-    .form-submit {
-      float: left;
     }
   }
 }

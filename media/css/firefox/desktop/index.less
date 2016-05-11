@@ -41,11 +41,13 @@
 }
 
 // download buttons
-
-// make text readable for no-JS users
-#overview-intro-download-wrapper .download-dumb .download-heading {
-    color: @textColorPrimary;
-    text-align: center;
+#overview-intro-download-wrapper {
+    .fx-privacy-link {
+        a:link,
+        a:visited {
+            color: @linkBlue
+        }
+    }
 }
 
 // let JS decide if we should show the intro download button
@@ -55,14 +57,6 @@
 
 #sticky-download-desktop {
     display: none;
-
-    .download-link {
-        width: 160px;
-
-        .download-content {
-            padding: 4px 10px;
-        }
-    }
 }
 
 // up to date message

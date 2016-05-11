@@ -28,17 +28,17 @@
 {% block body_class %}mozid{% endblock %}
 
 {% block site_header %}
-  <div id="conditional-download-bar">
+  <div id="conditional-download-bar" class="infobar">
     <div class="content">
       <div class="message" id="dlbar-oldfx-desktop">
         {{ _('You’re using an older version of Firefox for desktop.') }}
         {{ _('Update today to stay fast and safe.') }}
-        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2" data-link-type="download" data-download-os="Desktop">{{ _('Download') }}</a>
+        {{ download_firefox(alt_copy=_('Download'), dom_id='download-button-old-fx') }}
       </div>
       <div class="message" id="dlbar-nonfx">
         {{ _('Choose Independent.') }}
         {{ _('Choose Firefox.') }}
-        <a class="button-flat btn-download" href="{{ url('firefox.new') }}?scene=2" data-link-type="download" data-download-os="Desktop">{{ _('Download') }}</a>
+        {{ download_firefox(alt_copy=_('Download'), dom_id='download-button-non-fx') }}
       </div>
       <div class="message" id="dlbar-nonfx-android">
         <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">{{ _('Get Firefox for Android') }}</a>
@@ -49,7 +49,7 @@
       {% endif %}
       </div>
 
-      <button type="button" class="btn-close button-flat" title="{{ _('Close') }}">{{ _('Close') }}</button>
+      <button type="button" class="btn-close button" title="{{ _('Close') }}">{{ _('Close') }}</button>
     </div>{#-- /.content --#}
   </div>{#-- /#conditional-download-bar --#}
   <header id="masthead">
@@ -161,7 +161,7 @@
   <aside id="newsletter-subscribe" class="ga-section" data-ga-label="Keep up with all things Firefox.">
     <div class="content container">
       {# L10n: Line break for visual formatting. #}
-      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='white') }}
+      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='light') }}
     </div>
   </aside>
 {% endblock %}

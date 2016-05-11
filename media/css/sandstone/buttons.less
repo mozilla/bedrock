@@ -2,612 +2,300 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import './lib.less';
+@import "../sandstone/lib.less";
 
-// General buttons
+@light: #fff;
+@lightHover: #f4f4f4;
 
-@buttonFlatBlue: #00a0dc;
-@buttonFlatDarkBlue: #005189;
-@buttonFlatGreen: #6fbe4a;
+@mozGreen: #4caf50;
+@mozGreenHover: #66bb6a;
+@mozGreenBorder: #4aa84a;
 
-.button-flat,
-.button-flat:link,
-.button-flat:visited {
-    .inline-block();
-    .border-radius(6px);
-    .transition();
-    .open-sans();
-    text-align: center;
-    padding: 12px (@baseLine * 2);
-    margin-bottom: @baseLine;
-    background: @buttonFlatBlue;
-    color: #fff !important;
-    .font-size(@baseFontSize);
-    border: none;
-    cursor: pointer;
+@mozBlue: #0095dd;
+@mozBlueHover: #33aae4;
+@mozBlueBorder: #0092cc;
 
-    &:hover,
-    &:focus {
-        text-decoration: none;
-        background: lighten(@buttonFlatBlue, 3%);
-        color: #fff;
-    }
-}
+@mozDark: #00539F;
+@mozDarkHover: #0060a8;
+@mozDarkBorder: #005493;
 
-.button-flat-dark {
-    .button-flat;
-    background: @buttonFlatDarkBlue;
+@mozRed: #C13832;
+@mozRedHover: #EA3B28;
+@mozRedBorder: #C13832;
 
-    &:hover,
-    &:focus {
-        background: lighten(@buttonFlatDarkBlue, 3%);
-    }
-}
+@mozOrange: #db8700;
+@mozOrangeHover: #ffbe57;
+@mozOrangeBorder: #db8700;
 
-.button-flat-green {
-    .button-flat;
-    background: @buttonFlatGreen;
-
-    &:hover,
-    &:focus {
-        background: lighten(@buttonFlatGreen, 3%);
-    }
-}
-
-.button-flat-inverted {
-    .button-flat;
-    background: rgba(255, 255, 255, 0.4);
-    color: @buttonFlatBlue;
-    border: 2px solid @buttonFlatBlue;
-
-    &:hover,
-    &:focus {
-        background: rgba(255, 255, 255, 1);
-    }
-}
-
-html[lang^='en'] {
-    .button-flat,
-    .button-flat-dark,
-    .button-flat-green,
-    .button-flat-inverted {
-        text-transform: uppercase;
-    }
-}
-
-.button,
-.button:link,
-.button:visited {
+/* the basis for all buttons on bedrock */
+.base-button {
+    position: relative;
     .inline-block;
-    .border-radius;
-    box-shadow: @buttonShadow;
-    background-color: @buttonBlue;
-    #gradient > .vertical(@buttonBlue, @buttonBlueDark);
-    color: @buttonTextColor;
+    background: none;
+    padding: (@baseLine / 2) 36px;
+    border-radius: 4px;
+    .font-size(20px);
     text-align: center;
-    .font-size(@baseFontSize);
-    font-weight: bold;
-    padding: (@baseLine / 4) (@baseLine / 2);
-    line-height: 1.1;
-    text-decoration: none;
-    min-width: 80px;
-    border: 0;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-    .open-sans;
-    .transition();
-
-    &:hover,
-    &.hover,
-    &:focus,
-    &.focus {
-        .box-shadow(@buttonShadowHover);
-        color: @buttonTextColor;
-        text-decoration: none;
-        .transition();
-    }
-
-    &:focus,
-    &.focus {
-        outline-color: @textColorSecondary;
-        .box-shadow(@buttonShadowFocus);
-    }
-
-    &:active,
-    &.active {
-        .box-shadow(@buttonShadowActive);
-        color: @buttonTextColor;
-        text-decoration: none;
-        .transition();
-    }
-
-    &.insensitive,
-    &.insensitive:hover,
-    &.insensitive:focus {
-        background-color: #9ca3aa;
-        #gradient > .vertical(#bfc7cd, #9ca3aa);
-        .box-shadow(@buttonShadow);
-        color: #eee;
-    }
-}
-
-.button-green,
-.button-green:link,
-.button-green:visited {
-    .button;
-    background-color: @buttonGreen;
-    #gradient > .vertical(@buttonGreen, @buttonGreenDark);
-
-    &:hover {
-        .button-hover-box-shadow(@buttonGreen);
-    }
-
-    &:focus {
-        .button-focus-box-shadow(@buttonGreen);
-    }
-}
-
-.button-negative,
-.button-negative:link,
-.button-negative:visited {
-    .button;
-    background-color: #a91300;
-    #gradient > .vertical(#da5132, #a91300);
-
-    &:hover {
-        .button-hover-box-shadow(#da5132);
-    }
-
-    &:focus {
-        .button-focus-box-shadow(#da5132);
-    }
-}
-
-.button-white,
-.button-white:link,
-.button-white:visited {
-    .button;
-    border: 1px solid #d0d0d0;
-    background: #fff;
-    padding: (@baseLine / 5) @baseFontSize * 0.75;
-    color: @textColorSecondary;
-    .font-size(@baseFontSize * 0.75);
-    font-weight: normal;
-    text-shadow: none;
-    @shadow: 0 0 12px rgba(230,230,230,0.2) inset, 0 -2px #e8e8e8 inset;
-    .box-shadow(@shadow);
-    .border-radius(6px);
-    filter: ~"progid:DXImageTransform.Microsoft.gradient(enabled=false)";
-
-    &:hover,
-    &:focus {
-        color: @textColorSecondary;
-        .box-shadow(@shadow);
-    }
-}
-
-.button-white.selected {
-    background: #d7d5d5;
-    border-color: #bcb9b9;
-    text-shadow: 0 1px #fff;
-    @shadow: 0 1px 1px rgba(255,255,255,0.75), 0 1px 3px rgba(0,0,0,0.1) inset;
-    .box-shadow(@shadow);
-}
-
-.button,
-.button-white {
     cursor: pointer;
-    small {
-        display: block;
+    text-shadow: none;
+    .transition(background-color .1s ease-in-out);
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .font-size(18px);
     }
 
-}
+    &:active {
+        position: relative;
+        top: 1px;
+    }
 
-.button.arrow span,
-.button-blue.arrow span,
-.button-white.arrow span {
-  display: block;
-  margin-right: -12px;
-  padding: 0 30px 0 0;
-  background: url(/media/img/sandstone/buttons/arrow-go-r.png) right center no-repeat;
-}
-
-.button-sand,
-.button-sand:link,
-.button-sand:visited {
-    .button;
-    #gradient > .vertical(rgba(255,255,255,0.1), rgba(0,0,0,0.1));
-    background-color: transparent;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.4) rgba(0,0,0,0.1);
-    @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
-              1px  0   0 0 rgba(255,255,255,0.5) inset,
-             -1px  0   0 0 rgba(255,255,255,0.5) inset,
-              0   -2px 0 0 rgba(0,0,0,0.1)       inset;
-    .box-shadow(@shadow);
-    color: @linkBlue;
-    text-shadow: none;
     &:hover,
     &:focus {
-        .button-hover-box-shadow();
-        color: @linkBlueHover;
+        text-decoration: none;
     }
 }
 
-.button-list {
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-    // Font size set to 0 on UL and reset to body size on the LI tags
-    // This avoids putting a horizontal space between inline-block links
-    .font-size(0);
-    li {
-        .font-size(@baseFontSize);
-        margin: 0;
-        padding: 0;
-        list-style-style: none;
-        .inline-block;
-        .button-sand {
-            border-radius: 0;
-            border-left-width: 0;
-            @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
-                     -1px  0   0 0 rgba(255,255,255,0.5) inset,
-                      0   -2px 0 0 rgba(0,0,0,0.1)       inset;
-            .box-shadow(@shadow);
-            min-width: 0;
-        }
-        &:first-child {
-            .button-sand {
-                border-top-left-radius: 0.25em;
-                border-bottom-left-radius: 0.25em;
-                border-left-width: 1px;
-                @shadow:  0    1px 0 0 rgba(255,255,255,0.5) inset,
-                          1px  0   0 0 rgba(255,255,255,0.5) inset,
-                         -1px  0   0 0 rgba(255,255,255,0.5) inset,
-                          0   -2px 0 0 rgba(0,0,0,0.1)       inset;
-                .box-shadow(@shadow);
-                &:hover,
-                &:focus {
-                    .button-hover-box-shadow();
-                }
-            }
-        }
-        &:last-child {
-            .button-sand {
-                border-top-right-radius: 0.25em;
-                border-bottom-right-radius: 0.25em;
-            }
-        }
-    }
-}
+/* buttons used for forms or where a button element makes semantic sense */
+input[type="submit"].form-button,
+button.form-button {
+    .base-button;
+    color: @mozBlue;
+    border: 2px solid @mozBlue;
+    width: 100%;
 
-.dark {
-    .button-sand,
-    .button-sand:link,
-    .button-sand:visited {
-        @shadow:  0    1px 0 0 rgba(255,255,255,0.2) inset,
-                  1px  0   0 0 rgba(255,255,255,0.2) inset,
-                 -1px  0   0 0 rgba(255,255,255,0.2) inset,
-                  0   -2px 0 0 rgba(0,0,0,0.1)       inset;
-        .box-shadow(@shadow);
+    &:hover,
+    &:focus {
+        color: @mozBlueHover;
+        border-color: @mozBlueHover;
+    }
+
+    &.dark {
+        color: @mozDark;
+        border-color: @mozDark;
+
         &:hover,
         &:focus {
-            .button-hover-box-shadow(rgba(255,255,255,0.2));
-            color: @linkBlue;
+            color: @mozDarkHover;
+            border-color: @mozDarkHover;
         }
     }
-    .button-list {
-        li {
-            .button-sand {
-                @shadow:  0    1px 0 0 rgba(255,255,255,0.2) inset,
-                         -1px  0   0 0 rgba(255,255,255,0.2) inset,
-                          0   -2px 0 0 rgba(0,0,0,0.1)       inset;
-                .box-shadow(@shadow);
-            }
-            &:first-child {
-                .button-sand {
-                    @shadow:  0    1px 0 0 rgba(255,255,255,0.2) inset,
-                              1px  0   0 0 rgba(255,255,255,0.2) inset,
-                             -1px  0   0 0 rgba(255,255,255,0.2) inset,
-                              0   -2px 0 0 rgba(0,0,0,0.1)       inset;
-                    .box-shadow(@shadow);
-                    &:hover,
-                    &:focus {
-                        .button-hover-box-shadow(rgba(255,255,255,0.2));
-                        color: @linkBlue;
-                    }
-                }
-            }
+
+    &.light {
+        color: @light;
+        border-color: @light;
+
+        &:hover,
+        &:focus {
+            color: @lightHover;
+            border-color: @lightHover;
+        }
+    }
+
+    &.general {
+        .font-size(@largeFontSize);
+    }
+}
+
+/* All buttons not in a form context such as CTA and download buttons */
+.button,
+button.button,
+.blueprint .button,
+a.button:link,
+a.button:visited {
+    .base-button;
+    background-color: @mozBlue;
+    color: @light;
+    border: 2px solid @mozBlueBorder;
+
+    &:hover,
+    &:focus {
+        background-color: @mozBlueHover;
+        color: @light;
+    }
+
+    &.dark {
+        background-color: @mozDark;
+        color: @light;
+        border-color: @mozDarkBorder;
+
+        &:hover,
+        &:focus {
+            background-color: @mozDarkHover;
+        }
+    }
+
+    &.green {
+        background-color: @mozGreen;
+        color: @light;
+        border: 2px solid @mozGreenBorder;
+
+        &:hover,
+        &:focus {
+            background-color: @mozGreenHover;
+        }
+    }
+
+    &.red {
+        background-color: @mozRed;
+        color: @light;
+        border: 2px solid @mozRedBorder;
+
+        &:hover,
+        &:focus {
+            background-color: @mozRedHover;
+        }
+    }
+
+    &.orange {
+        background-color: @mozOrange;
+        color: @light;
+        border: 2px solid @mozOrangeBorder;
+
+        &:hover,
+        &:focus {
+            background-color: @mozOrangeHover;
+        }
+    }
+
+    &.transparent-light {
+        background-color: transparent;
+        color: @light;
+        border: 2px solid @light;
+
+        &:hover,
+        &:focus {
+            border-color: @lightHover;
         }
     }
 }
 
+/* privacy policy link that accompany most download buttons */
+.fx-privacy-link {
+    display: block;
+    .font-size(@largeFontSize);
+    text-align: center;
+    text-shadow: none;
 
+    a:link,
+    a:visited {
+        color: @light;
+    }
 
-// Product download buttons
+    a:hover,
+    a:focus {
+        text-decoration: underline;
+    }
+}
 
-.download-button .ios-download,
-.download-button .linux-arm-download,
-.download-button .unrecognized-download,
-.download-button .unsupported-download {
-    display: none;
+.sand .fx-privacy-link {
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+}
+
+.sky .fx-privacy-link {
+    a:link,
+    a:visited {
+        color: @linkSkyBlue;
+    }
+}
+
+.space .fx-privacy-link {
+    a:link,
+    a:visited {
+        color: @linkSpacePurple;
+    }
+}
+
+.blueprint .fx-privacy-link {
+    a:link,
+    a:visited {
+        color: @linkSpaceBlue;
+    }
+}
+
+/* fxfamilynav overrides */
+.fxfamilynav-cta-wrapper {
+    .button,
+    a.button:link,
+    a.button:visited {
+        padding: 10px 18px;
+        .font-size(@baseFontSize);
+    }
+}
+
+/* download button and related containers specific */
+ul.download-list {
+    list-style-type: none;
+    margin-bottom: 10px;
+
+    li {
+        margin-left: 0;
+    }
+
+    strong {
+        font-weight: normal;
+    }
+}
+
+.infobar {
+    a.button {
+        margin-left: @baseLine;
+        padding: 5px 18px;
+        .font-size(@largeFontSize);
+    }
+}
+
+.download-dumb {
+    ul {
+        list-style: none;
+
+        li {
+            display: inline-block;
+            margin: @baseLine 0 0;
+
+            .button {
+                padding: 6px;
+                margin-left: 3px;
+                .font-size(14px);
+            }
+        }
+    }
 }
 
 .download-button {
-    .inline-block;
+    display: inline-block;
     vertical-align: top;
-    ul {
-        margin: 0;
-        li {
-            list-style-type: none;
-            margin: 0;
-        }
+}
+
+.download-other {
+    color: @textColorLight;
+    .font-size(11px);
+
+    a:link,
+    a:visited {
+        color: #999;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #999;
+        text-decoration: underline;
     }
 }
 
-.download-button .download-link {
-    .button-green;
-    cursor: pointer;
-    padding: 0;
-    margin-left: 54px;
-    width: 220px;
-    /* for IE6 */
-    _margin-left: 0;
-    _width: 294px;
-    text-align: left;
-    font-weight: normal;
-    line-height: @baseLine;
-    .font-size(@largeFontSize);
-    .border-radius(6px);
-    .download-content {
-        display: block;
-        position: relative;
-        color: #b8e779;
-        margin-left: -54px;
-        _margin-left:0;
-        background: url(/media/img/sandstone/buttons/firefox-large.png) 0 0 no-repeat;
-        _background-color: @buttonGreenDark;
-        min-height: 82px;
-        margin-bottom: -12px;
-        _margin-bottom: 0;
-        padding: 10px 12px 16px 119px;
-    }
-    .download-title,
-    .download-title span {
-        display: block;
-        color: #fff;
-        .font-size(30px);
-        font-weight: normal;
-        letter-spacing: -0.02em;
-        padding-top: 8px;
-        margin-bottom: 10px;
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    }
-    .download-title span {
-        padding-top: 0;
-        margin-bottom: 5px;
-    }
-    .download-subtitle {
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    }
-    .download-lang {
-        display: block;
-        color: #346012;
-        padding-top: 2px;
-        .font-size(11px);
-        line-height: 100%;
-        text-shadow: 0 1px rgba(255,255,255,0.2);
-    }
-    .download-platform {
-        display: none;
-    }
+/* Product download buttons */
+.download-button .ios-download,
+.download-button .linux-arm-download,
+.download-button .unrecognized-download,
+.download-button .unsupported-download,
+.download-button .nojs-download {
+    display: none;
 }
 
-.download-button-small .download-link {
-    margin-left: 44px;
-    width: 230px;
-    /* for IE6 */
-    _margin-left: 0;
-    _width: 274px;
-    .download-content {
-        margin-left: -34px;
-        _margin-left:0;
-        margin-top: -2px;
-        margin-bottom: -7px;
-        background-image: url(/media/img/sandstone/buttons/firefox-small.png);
-        min-height: 45px;
-        padding: 10px 20px 10px 73px;
-        overflow: visible;
-        .font-size(@smallFontSize);
-        .border-radius(6px);
-    }
-    .download-title {
-        .font-size(22px);
-        padding-top: 0;
-        margin-bottom: 0;
-    }
-    .download-lang {
-        position: absolute;
-        top: 20px;
-        right: 10px;
-        text-align: right;
-        width: 100px;
-    }
-}
-
-.download-button-beta.download-button-small .download-link .download-lang,
-.download-button-alpha.download-button-small .download-link .download-lang {
-    top: 33px;
-}
-
-.download-button-beta,
-.download-button-alpha {
-    .download-link .download-title,
-    .download-link .download-title span {
-        .font-size(24px);
-    }
-}
-
-.download-button-beta.download-button-small,
-.download-button-alpha.download-button-small {
-    .download-link .download-title,
-    .download-link .download-title span {
-        .font-size(20px);
-    }
-}
-
-.download-button-alpha.download-button-small {
-    .download-link {
-        .download-title {
-            .font-size(13px);
-            font-style: italic;
-            span {
-                .font-size(18px);
-                font-style: normal;
-                margin-bottom: 0;
-                letter-spacing: normal;
-            }
-        }
-        .download-subtitle {
-            display: none;
-        }
-        .download-lang {
-            top: 50%;
-            margin-top: -1em;
-        }
-    }
-}
-
-.download-button-alpha.download-button-simple {
-    .download-link .download-subtitle {
-        // Don't hide the subtitle for Aurora if simple=True
-        display: block;
-    }
-}
-
-.download-button.download-button-beta.download-button-small .download-list .os_android,
-.download-button.download-button-alpha.download-button-small .download-list .os_android,
-.download-button.download-button-android.download-button-alpha.download-button-small,
-.download-button.download-button-android.download-button-beta.download-button-small {
-    .download-link .download-title span {
-        .font-size(18px);
-        letter-spacing: -0.01em;
-    }
-}
-
-.download-button-large.beta .download-link .download-content {
-  background-image: url(/media/img/sandstone/buttons/beta-large.png);
-}
-
-.download-button-small.beta .download-link .download-content {
-  background-image: url(/media/img/sandstone/buttons/beta-small.png);
-}
-
-.download-button-large.alpha .download-link .download-content {
-  background-image: url(/media/img/sandstone/buttons/aurora-large.png);
-}
-
-.download-button-small.alpha .download-link .download-content {
-  background-image: url(/media/img/sandstone/buttons/aurora-small.png);
-}
-
-.download-button.download-button-noicon {
-    .download-link {
-        width: 250px;
-        margin-left: auto;
-        .download-content {
-            margin-left: auto;
-            padding-left: 55px;
-            background-image: url(/media/img/sandstone/buttons/download-arrow.png);
-            background-position: 15px 30px;
-        }
-        .download-subtitle {
-            margin-right: auto;
-        }
-    }
-}
-
-.download-button-noicon .download-list .os_android,
-.download-button-android.download-button-noicon,
-.download-button-noicon .download-list .os_ios,
-.download-button-ios.download-button-noicon {
-    .download-link .download-title span {
-        padding-top: 7px;
-    }
-}
-
-.download-button-small.download-button-noicon {
-    .download-link {
-        .download-content {
-            background-image: url(/media/img/sandstone/buttons/download-arrow-small.png);
-            background-position: 15px 18px;
-        }
-    }
-}
-
-.download-button-small.download-button-noicon .download-list .os_android,
-.download-button-small.download-button-android.download-button-noicon,
-.download-button-small.download-button-noicon .download-list .os_ios,
-.download-button-small.download-button-ios.download-button-noicon {
-    .download-link .download-title span {
-        padding-top: 0;
-    }
-}
-
-
-// Simple style (no icon, no links, only subtitle ("Free download") visible)
-
-.download-button.download-button-simple {
-    .download-link {
-        margin-left: 0;
-        width: 240px;
-
-        .download-content {
-            background-image: none;
-            padding: @baseLine (@baseLine * 2);
-            margin-left: 0;
-            margin-bottom: 0;
-            min-height: 0;
-            color: #fff;
-            text-align: center;
-        }
-
-        .download-title, .download-lang {
-            display: none;
-        }
-
-        .download-subtitle {
-            .font-size(20px);
-        }
-    }
-
-    small.download-other {
-        display: none !important;
-    }
-
-    &.download-button-small {
-        .download-link {
-            width: 210px;
-
-            .download-content {
-                padding: (@baseLine / 2) @baseLine;
-            }
-
-            .download-subtitle {
-                .font-size(@largeFontSize);
-            }
-        }
-    }
-}
-
-// reduces right/left padding from 40px to 20px so 'Update your Firefox'
-// string fits on one line (for en-US, at least)
-.download-button.download-button-check-old-fx .download-link .download-content {
-    padding: @baseLine;
-}
-
-// OS detection
-
+/* OS detection */
 .download-button .os_win64,
 .download-button .os_linux,
 .download-button .os_linux64,
@@ -640,7 +328,6 @@ html[lang^='en'] {
 .ios .download-button .os_ios,
 .ios .download-button .ios-download,
 .ios .download-button-desktop .download-list,
-.no-js .download-button-android .download-list,
 .other .download-button-android .download-list,
 .other .download-button small.os_win {
     display: block !important;
@@ -654,135 +341,29 @@ html[lang^='en'] {
     max-width: 250px;
 }
 
-
-// Small print
-
-.download-button small.download-other,
-.other .download-button-android small.download-other,
-.android .download-button-desktop small.download-other,
-.ios .download-button-desktop small.download-other {
-    .open-sans;
-    display: block;
-    .font-size(11px);
-    text-align: center;
-    margin-top: 6px;
-    color: @textColorLight;
-
-    a:link,
-    a:visited {
-        color: #999;
-    }
+// Hide the privacy link if platform is unsupported.
+.windows.arm .download-button .fx-privacy-link,
+.linux.arm .download-button .fx-privacy-link,
+.oldwin .download-button .fx-privacy-link,
+.oldmac .download-button .fx-privacy-link {
+    display: none;
 }
 
-.no-js .download-button small.download-other,
-.other .download-button small.download-other,
-.android .download-button-desktop small.download-other,
-.ios .download-button-desktop small.download-other {
-    text-align: left;
-}
-
-.other .download-button,
 .android .download-button-desktop,
 .ios .download-button-desktop,
 .no-js .download-button {
+    .nojs-download {
+        display: block;
+    }
+}
+
+.other .download-button {
     .unrecognized-download {
         display: block;
     }
 }
 
-.download-button .download-dumb {
-    text-align: left;
-    .download-heading {
-        color: #fff;
-        margin: 0 0 6px 0;
-        .open-sans-light();
-        .font-size(18px);
-        font-weight: 300;
-        letter-spacing: -0.035em;
-        text-shadow: none;
-    }
-    ul li {
-        display: inline;
-    }
-
-    small {
-        .font-size(11px);
-        letter-spacing: normal;
-    }
-    .button-green {
-        padding-left: 6px;
-        padding-right: 6px;
-        margin-left: 3px;
-        margin-bottom: 3px;
-    }
-
-}
-
-// ios tweaks
-
-.ios-download a:before {
-    content: '\A';
-    white-space: pre;
-}
-
-// Mobile download buttons
-
-.download-button .download-list .os_android,
-.download-button .download-list .os_ios,
-.download-button-android,
-.download-button-ios {
-    .download-link {
-       .download-title {
-            padding-top: 0;
-            margin-bottom: 5px;
-            .font-size(@largeFontSize);
-            color: #346012;
-            text-shadow: 0 1px rgba(255, 255, 255, 0.2);
-        }
-        .download-subtitle {
-            display: block;
-            position: static;
-            text-align: left;
-            margin-right: 40px;
-            color: #fff;
-            .font-size(11px);
-            line-height: 1.2;
-            letter-spacing: normal;
-            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-        }
-    }
-}
-
-.download-button.download-button-small .download-list .os_android,
-.download-button.download-button-small.download-button-android,
-.download-button.download-button-small .download-list .os_ios,
-.download-button.download-button-small.download-button-ios {
-    .download-link {
-       .download-title {
-            padding-top: 0;
-            margin-bottom: 5px;
-            .font-size(13px);
-            color: #346012;
-            text-shadow: 0 1px rgba(255, 255, 255, 0.2);
-            letter-spacing: normal;
-            span {
-                .font-size(22px);
-                margin-bottom: 0;
-            }
-        }
-        .download-subtitle {
-            position: absolute;
-            top: 15px;
-            right: 10px;
-            text-align: right;
-            width: 85px;
-            margin-right: 0;
-        }
-    }
-}
-
-// Android architecture detection
-
+/* Android architecture detection */
 .download-button .download-list .os_android.api-9,
 .download-button .download-list .os_android.x86,
 .download-button .download-other.os_android .api-15,
@@ -803,75 +384,9 @@ html[lang^='en'] {
     display: inline !important;
 }
 
-/* {{{ l10n tweaks */
-
-html[lang="es-AR"],
-html[lang="es-CL"],
-html[lang="es-ES"],
-html[lang="es-MX"],
-html[lang="pt-BR"],
-html[lang="pt-PT"] {
-    .download-button-alpha.download-button-small .download-link .download-lang,
-    .download-button-beta.download-button-small .download-link .download-lang {
-        top: 30px;
-    }
-}
-
-html[lang="gd"],
-html[lang="mk"] {
-    .download-button-alpha.download-button-small .download-link,
-    .download-button-beta.download-button-small .download-link {
-        .download-subtitle {
-            padding-right: 50px;
-        }
-    }
-
-    .download-button.download-button-small .download-list .os_android,
-    .download-button.download-button-small.download-button-android,
-    .download-button.download-button-small .download-list .os_ios,
-    .download-button.download-button-small.download-button-ios {
-        .download-subtitle {
-            padding-right: 0;
-        }
-    }
-}
-
+/* l10n download button tweaks */
 html[lang="ml"] {
-    .download-button .download-link {
-        .download-title,
-        .download-title span {
-            .font-size(26px);
-            line-height: 1.2em;
-        }
+    .button {
+        padding: 10px 16px;
     }
 }
-
-html[lang="my"],
-html[lang="te"] {
-    .download-button .download-link {
-        .download-title,
-        .download-title span {
-            line-height: 1.4em;
-        }
-    }
-}
-
-html[lang="as"],
-html[lang="ml"],
-html[lang="ms"],
-html[lang="ta"],
-html[lang="te"] {
-    .download-button.download-button-beta.download-button-android.download-button-small,
-    .download-button.download-button-small .download-list .os_android,
-    .download-button.download-button-small .download-list .os_ios {
-        .download-subtitle {
-            width: auto;
-            position: relative;
-            top: 0;
-            left: 0;
-            text-align: left;
-        }
-    }
-}
-
-/* }}} */

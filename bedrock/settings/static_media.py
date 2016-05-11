@@ -428,6 +428,7 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone-resp.less',
             'css/tabzilla/tabzilla-static.less',
             'css/base/simple_footer-resp.less',
+            'css/base/platform-footer-links.less',
             'css/firefox/new/common.less',
         ),
         'output_filename': 'css/firefox_new_common-bundle.css',
@@ -449,12 +450,14 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone-resp.less',
             'css/tabzilla/tabzilla-static.less',
             'css/base/simple_footer-resp.less',
+            'css/base/platform-footer-links.less',
             'css/firefox/new/redesign/common.less',
         ),
         'output_filename': 'css/firefox_new_redesign_common-bundle.css',
     },
     'firefox_new_redesign_scene1': {
         'source_filenames': (
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/new/redesign/scene1.less',
         ),
         'output_filename': 'css/firefox_new_redesign_scene1-bundle.css',
