@@ -22,7 +22,7 @@
 {% block site_header_nav %}{% endblock %}
 
 {% block content %}
-<main role="main" data-fxa-iframe-host="{{ settings.FXA_IFRAME_SRC }}">
+<main role="main">
   <h1>{{_('Sign up, sign in, stay in sync.')}}</h1>
   <div class="main-copy">
     {% include 'firefox/includes/sync-animation.html' %}
@@ -34,7 +34,7 @@
     </ol>
     <p class="signed-in">{{_('You’re signed in and ready to start using Sync.')}}</p>
   </div>
-  <aside>
+  <aside id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}">
     <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=accounts-page&amp;utm_content=fx-{{ version }}&amp;entrypoint=accounts-page&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
     <div class="mobile">
       <a class="button dark firefox-ios more" rel="external" href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS">{{_('Set up Sync for iOS')}}</a>

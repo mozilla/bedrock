@@ -47,7 +47,7 @@
 {% endblock %}
 
 {% block content %}
-<section id="intro" data-fxa-iframe-host="{{ settings.FXA_IFRAME_SRC }}">
+<section id="intro">
   {# Below block added for space theme test - bug 1259552 #}
   {% block variant_content %}{% endblock %}
   <div class="container">
@@ -57,7 +57,7 @@
     </header>
 
     <main role="main">
-      <div class="fxaccounts">
+      <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}">
         <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=firstrun&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrun&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
       </div>
 

@@ -167,6 +167,7 @@ PIPELINE_CSS = {
     },
     'firefox_accounts': {
         'source_filenames': (
+            'css/base/mozilla-fxa-iframe.less',
             'css/firefox/sync-animation.less',
             'css/firefox/accounts.less',
         ),
@@ -322,6 +323,7 @@ PIPELINE_CSS = {
     'firefox_firstrun': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
+            'css/base/mozilla-fxa-iframe.less',
             'css/tabzilla/tabzilla-static.less',
             'css/firefox/firstrun/firstrun.less',
         ),
@@ -351,6 +353,7 @@ PIPELINE_CSS = {
     },
     'firefox_onboarding_fxa_complex': {
         'source_filenames': (
+            'css/base/mozilla-fxa-iframe.less',
             'css/base/simple_footer-resp.less',
             'css/firefox/onboarding/onboarding-common.less',
             'css/firefox/onboarding/fxa-complex.less',
@@ -1033,7 +1036,7 @@ PIPELINE_JS = {
     },
     'firefox_accounts': {
         'source_filenames': (
-            'js/base/search-params.js',
+            'js/base/mozilla-fxa-iframe.js',
             'js/base/uitour-lib.js',
             'js/firefox/sync-animation.js',
             'js/firefox/accounts.js',
@@ -1149,6 +1152,7 @@ PIPELINE_JS = {
     },
     'firefox_firstrun': {
         'source_filenames': (
+            'js/base/mozilla-fxa-iframe.js',
             'js/firefox/firstrun/firstrun.js',
         ),
         'output_filename': 'js/firefox_firstrun-bundle.js',
@@ -1193,12 +1197,6 @@ PIPELINE_JS = {
             'js/firefox/onboarding/user-actions.js',
         ),
         'output_filename': 'js/firefox_onboarding_user_actions-bundle.js',
-    },
-    'firefox_onboarding_fxa_complex': {
-        'source_filenames': (
-            'js/firefox/onboarding/fxa-complex.js',
-        ),
-        'output_filename': 'js/firefox_onboarding_fxa_complex-bundle.js',
     },
     'firefox_pocket': {
         'source_filenames': (
