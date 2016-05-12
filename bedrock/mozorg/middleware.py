@@ -4,7 +4,6 @@
 
 import datetime
 from email.utils import formatdate
-import re
 import time
 
 from django.conf import settings
@@ -38,20 +37,6 @@ class MozorgRequestTimingMiddleware(GraphiteRequestTimingMiddleware):
         else:
             f = super(MozorgRequestTimingMiddleware, self)
             f.process_view(request, view, view_args, view_kwargs)
-
-
-class CrossOriginResourceSharingMiddleware(object):
-
-    def process_response(self, request, response):
-        """
-        If the URL pattern for the request matches one of those
-        in the CORS_URLS setting, apply the matching
-        Access-Control-Allow-Origin header to the response.
-        """
-        for pattern, origin in settings.CORS_URLS.items():
-            if re.search(pattern, request.path):
-                response['Access-Control-Allow-Origin'] = origin
-        return response
 
 
 class ClacksOverheadMiddleware(object):
