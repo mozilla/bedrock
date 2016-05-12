@@ -14,9 +14,9 @@ rm -rf $TRIGGER_FILE $PARAM_FILE
 
 if [[ $BUILD_CAUSE == "REMOTECAUSE" ]]
 then
-    # Set GIT_COMMIT to the current deployed to prod commit
-    COMMIT_URL=${COMMIT_URL:-https://www.mozilla.org/static/revision.txt}
-    GIT_COMMIT=`curl $COMMIT_URL 2> /dev/null`
+    LATEST_TAG=$(git describe --abbrev=0 --tags)
+    # parent (~0) of latest tag is the commit that was tagged
+    GIT_COMMIT=$(git rev-parse ${LATEST_TAG}~0)
 fi
 echo "GIT_COMMIT=$GIT_COMMIT" >> $PARAM_FILE
 
