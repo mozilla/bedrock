@@ -11,31 +11,26 @@
 {% block body_class %}{{ super() }} contribute{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'contribute-2015' %}
+  {% stylesheet 'contribute-base' %}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'contribute-2015' %}
+  {% javascript 'contribute-base' %}
 {% endblock %}
 
-{% if l10n_has_tag('active', 'mozorg/contribute/index') %}
-  {% block site_header_nav %}{% endblock %}
-  {% block site_header_logo %}{% endblock %}
-{% endif %}
+{% block site_header_nav %}{% endblock %}
+{% block site_header_logo %}{% endblock %}
 
 {% block content %}
 <main role="main">
-
-{% if l10n_has_tag('active', 'mozorg/contribute/index') %}
 {% block contrib_head %}
   <header class="page-head">
     <div class="contribute-masthead">
-
       <div class="container">
         <nav class="contribute-nav">
           <span class="toggle" role="button" aria-controls="contribute-nav-menu" tabindex="0">{{ _('Menu') }}</span>
           <ul id="contribute-nav-menu">
-            <li class="nav-landing"><a href="{{ url('mozorg.contribute') }}" data-link-type="nav" data-link-name="Why volunteer">
+            <li class="nav-landing"><a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-name="Why volunteer">
               {# L10n: this br is for formatting, omit or reposition as needed #}
               {{ _('Why<br> volunteer') }}
             </a></li>
@@ -52,36 +47,6 @@
             {% endblock contrib_nav_cta %}
           </ul>
         </nav>
-
-        {% block contrib_country_form %}
-{# No country switching for now...
-        <form class="country-form" action="#">
-          <p>
-            <label for="country">{{ _('Your country') }}</label>
-            <span class="select">
-              <select id="country" name="country">
-                # L10n: This is a hint used as a placeholder in a country selection dropdown menu. It should be short. #
-                <option value="" disabled selected>{{ _('I live in&hellip;') }}</option>
-                <option value="al">Albania</option>
-                <option value="br">Brazil</option>
-                <option value="cz">Czech Republic</option>
-                <option value="dk">Denmark</option>
-                <option value="ec">Ecuador</option>
-                <option value="fi">Finland</option>
-                <option value="ga">Guatamala</option>
-                <option value="hu">Hungary</option>
-                <option value="id">Indonesia</option>
-                <option value="jp">Japan</option>
-                <option value="kl">Kuala Lumpur</option>
-                <option value="etc">and so on</option>
-              </select>
-            </span>
-            # L10n: This is a label for a form submit button. #
-            <button type="submit">{{ _('Go') }}</button>
-          </p>
-        </form>
-#}
-        {% endblock contrib_country_form %}
       </div>
     </div>
 
@@ -103,11 +68,9 @@
     {% endblock contrib_title %}
   </header>
   {% endblock contrib_head %}
-{% endif %}
 
   {% block contrib_content %}{% endblock contrib_content %}
 
-{% if l10n_has_tag('active', 'mozorg/contribute/index') %}
   {% block contrib_footer %}
   <section class="section contrib-extra">
     <div class="container">
@@ -153,8 +116,6 @@
     </div>
   </section>
   {% endblock contrib_footer %}
-{% endif %}
-
 </main>
 {% endblock content %}
 

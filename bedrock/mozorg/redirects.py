@@ -116,7 +116,7 @@ redirectpatterns = (
     redirect(r'^b2g', 'firefox.os.index'),
 
     # Bug 781914
-    redirect(r'^contribute/areas.html$', 'mozorg.contribute'),
+    redirect(r'^contribute/areas.html$', 'mozorg.contribute.index'),
     redirect(r'^contribute/universityambassadors',
              'mozorg.contribute.studentambassadors.landing'),
 
@@ -254,7 +254,7 @@ redirectpatterns = (
     redirect(r'^community/forums/?$', 'mozorg.about.forums.forums'),
 
     # bug 927442
-    redirect(r'^(firefox/)?community/?', 'mozorg.contribute'),
+    redirect(r'^(firefox/)?community/?', 'mozorg.contribute.index'),
 
     # bug 1138280, bug 1200464
     redirect(r'^ja/(firefox|thunderbird)/(beta/)?notes/?', 'https://www.mozilla.jp/{0}/{1}notes/',

@@ -9,6 +9,7 @@
 {% block page_title %}{{_('Get Involved: Volunteer Opportunities at Mozilla')}}{% endblock %}
 
 {% block page_css %}
+  {{ super() }}
   {% stylesheet 'contribute-signup' %}
 {% endblock %}
 
@@ -146,5 +147,6 @@
 {% block contrib_footer %}{% endblock %}
 
 {% block js %}
+  {{ super() }}
   {% javascript 'contribute-signup' %}
 {% endblock %}

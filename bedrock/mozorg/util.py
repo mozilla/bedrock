@@ -14,7 +14,6 @@ from django.views.decorators.csrf import csrf_exempt
 import tweepy
 import commonware.log
 from lib import l10n_utils
-from lib.l10n_utils.dotlang import lang_file_has_tag
 
 try:
     import newrelic.agent
@@ -98,20 +97,6 @@ def page(name, tmpl, decorators=None, url_name=None, **kwargs):
                               'callable items')
 
     return url(pattern, _view, name=url_name)
-
-
-def hide_contrib_form(lang):
-    """
-    If the lang file for a locale exists and has the correct comment returns
-    True, and False otherwise.
-    :param lang: the language code
-    :return: bool
-    """
-    # en-US has every tag, thus we special case the negative
-    if lang == settings.LANGUAGE_CODE:
-        return False
-
-    return lang_file_has_tag("mozorg/contribute", lang, "hide_form")
 
 
 def get_fb_like_locale(request_locale):
