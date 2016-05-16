@@ -29,12 +29,12 @@ ios_sysreq_re = sysreq_re.replace('firefox', 'firefox/ios')
 
 
 urlpatterns = (
-    redirect(r'^firefox/$', 'firefox.new', name='firefox', locale_prefix=False),
+    redirect(r'^firefox/$', 'firefox.new', name='firefox'),
     url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
         views.all_downloads, name='firefox.all'),
     page('firefox/accounts', 'firefox/accounts.html'),
     page('firefox/channel', 'firefox/channel.html'),
-    redirect('^firefox/channel/android/$', 'firefox.channel', locale_prefix=False),
+    redirect('^firefox/channel/android/$', 'firefox.channel'),
     page('firefox/desktop', 'firefox/desktop/index.html'),
     page('firefox/desktop/fast', 'firefox/desktop/fast.html'),
     page('firefox/desktop/customize', 'firefox/desktop/customize.html'),
