@@ -63,6 +63,10 @@ a.back {
     .leading-arrow;
 }
 
+.taskview .fx-privacy-link a {
+    color: @linkColor;
+}
+
 main {
     position: relative;
     display: block;
@@ -375,9 +379,8 @@ a[role="button"] {
     border-radius: 6px;
     width: auto;
     max-width: 300px;
-    .font-size(14px);
+    .font-size(@largeFontSize);
     font-weight: bold;
-    text-transform: uppercase;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease 0s;
@@ -410,11 +413,6 @@ a[role="button"] {
     &.watch {
         margin-bottom: @baseLine * 2;
         width: 100%;
-    }
-
-    /* we need to center the download button for dev edition */
-    &.dev-edition {
-        margin: 0 auto;
     }
 }
 

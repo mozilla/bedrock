@@ -14,7 +14,7 @@
 {% block task_content %}
   <section class="get-firefox">
     <p>{{ _('Dev Tools requires Firefox Developer Edition desktop browser. To try this task, download Firefox Developer Edition first.') }}</p>
-    <a href="{{ url('firefox.developer') }}" class="button-blue dev-edition">{{ _('Download Firefox Dev Edition') }}</a>
+    {{ download_firefox('alpha', platform='desktop', alt_copy=_('Download Firefox Dev Edition')) }}
   </section>
 
   <ol class="task-steps">

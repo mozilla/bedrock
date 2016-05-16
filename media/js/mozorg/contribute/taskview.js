@@ -8,7 +8,6 @@
     var $document = $(document);
     var $taskSteps = $('.task-steps');
     var $thankYou = $('#thankyou');
-    var $downloadDevTools = $('.dev-edition');
     var $tryAnotherTask = $('.try-another');
     var $findCommunity = $('#communities');
     var $getInvolved = $('#get-involved');
@@ -238,13 +237,6 @@
             trackInteraction('play joy of coding');
             markAsWatched($jocVideo);
         }
-    }
-
-    // send GA events for clicks on the dev edition download button
-    if ($downloadDevTools.length > 0) {
-        $downloadDevTools.on('click', function() {
-            trackInteraction('download firefox dev edition');
-        });
     }
 
     // send GA events for clicks on the back and try another task links
