@@ -94,10 +94,8 @@
     float: left;
     width: 136px;
     height: 142px;
-    padding-left: 136px;
     margin: 0 @baseLine 0 0;
     overflow: hidden;
-    background: url(/media/img/firefox/desktop/tips/firefox-logo.png) left top no-repeat;
 }
 
 #page-content {
@@ -450,11 +448,6 @@ html[dir='rtl'] {
         #tips-nav-direct li a {
             background-image: url(/media/img/firefox/desktop/tips/sprite-tabs-high-res.png);
             background-size: 180px 84px;
-        }
-
-        #page-header-logo {
-            background-image: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png);
-            background-size: 136px 142px;
         }
 }
 
@@ -832,12 +825,6 @@ html[dir='rtl'] {
        only screen and (max-width: @breakTablet) and (                min-resolution: 1.5dppx),
        only screen and (max-width: @breakTablet) and (                min-resolution: 144dpi) {
 
-    #page-header-logo {
-        padding-left: 136px;
-        background: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png) left top no-repeat;
-        background-size: 136px 142px;
-    }
-
     .js #tips-nav-prev-next button {
         background-image: url(/media/img/firefox/desktop/tips/sprite-arrows-high-res.png);
         background-size: 120px 60px;
@@ -886,7 +873,7 @@ html[dir='rtl'] {
         top: auto;
         bottom: -228px;
         margin-left: -150px;
-        background: url(/media/img/firefox/desktop/tips/firefox-logo-high-res.png) left top no-repeat;
+        background: url(/media/img/firefox/common/firefox-logo-high-res.png) left top no-repeat;
         background-size: 300px 312px;
         .animation(phoenix 2s ease 1.3s 1 normal forwards);
     }

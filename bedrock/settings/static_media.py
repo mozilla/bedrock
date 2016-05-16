@@ -413,6 +413,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_ios-bundle.css',
     },
+    'firefox_ios_testflight': {
+        'source_filenames': (
+            'css/firefox/testflight.less',
+        ),
+        'output_filename': 'css/firefox-ios-testflight_bundle.css',
+    },
     'firefox_mobile_download': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
