@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
-from os.path import splitext
 import random
 import urlparse
 from os import path
+from os.path import splitext
 
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
@@ -12,6 +12,8 @@ from django.template.defaultfilters import slugify as django_slugify
 import bleach
 import jingo
 import jinja2
+from decouple import config
+
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.helpers import static
 from bedrock.firefox.firefox_details import firefox_ios
@@ -34,6 +36,25 @@ def add_string_to_image_url(url, addition):
 def convert_to_high_res(url):
     """Convert a file name to the high-resolution version."""
     return add_string_to_image_url(url, 'high-res')
+
+
+@jingo.register.function
+def switch(name):
+    """A template helper that replaces waffle
+
+    * All calls default to True when DEV setting is True.
+    * If the env var is explicitly false it will be false even when DEV = True.
+    * Otherwise the call is False by default and True is a specific env var exists and is truthy.
+
+    For example:
+
+        {% if switch('dude-and-walter') %}
+
+    would check for an environment variable called `SWITCH_DUDE_AND_WALTER`. The string from the
+    `switch()` call is converted to uppercase and dashes replaced with underscores.
+    """
+    env_name = 'SWITCH_' + name.upper().replace('-', '_')
+    return config(env_name, default=settings.DEV, cast=bool)
 
 
 @jingo.register.function
