@@ -859,6 +859,7 @@ PIPELINE_CSS = {
     },
     'contribute-taskview': {
         'source_filenames': (
+            'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/contribute/taskview.less',
         ),
         'output_filename': 'css/contribute-taskview-bundle.css',

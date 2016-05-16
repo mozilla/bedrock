@@ -51,14 +51,6 @@ h1 {
     .font-size(36px);
 }
 
-p {
-    .font-size(21px);
-
-    @media only screen and (max-width: @breakMobileLandscape) {
-        .font-size(19px);
-    }
-}
-
 a:link,
 a:visited {
     color: @linkColor;
@@ -86,6 +78,14 @@ main {
     @media only screen and (max-width: @breakMobileLandscape) {
         padding-left: 10px;
         padding-right: 10px;
+    }
+
+    p {
+        .font-size(21px);
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(19px);
+        }
     }
 
     .task-heading {
@@ -444,50 +444,6 @@ a[role="button"] {
 
 .hidden {
     display: none;
-}
-
-/* newsletter module styles */
-.newsletter-module {
-    background: #fff;
-    color: @textColorPrimary;
-    margin-top: @baseLine * 4;
-
-    .container {
-        margin: 0 auto;
-        padding: (@baseLine * 2) 0 @baseLine;
-        width: @widthDesktop;
-    }
-
-    .billboard {
-        padding-bottom: 0;
-        border: 0;
-    }
-
-    .form-title {
-        .span(6);
-        min-height: 200px;
-
-        &:before {
-            float: left;
-            content: '';
-            background: @mozillaRed url(/media/img/newsletter/mozorg-newsletter.svg) 23px 23px no-repeat;
-            .background-size(105px, 105px);
-            margin-top: -20px;
-            margin-right: @baseLine;
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-        }
-    }
-
-    .form-contents,
-    .form-submit {
-        .span(6);
-    }
-
-    input[type="email"] {
-        width: 100%;
-    }
 }
 
 .notices {
