@@ -6,7 +6,6 @@
     'use strict';
 
     var $html = $(document.documentElement);
-    var $document = $(document);
     var client = window.Mozilla.Client;
     var state; // track page state
 
@@ -26,21 +25,16 @@
         // Detect whether the Firefox is up-to-date in a non-strict way. The minor version and channel are not
         // considered. This can/should be strict, once the UX especially for ESR users is decided. (Bug 939470)
         if (client._isFirefoxUpToDate(false)) {
-            // the firefox-latest class prevents the download from triggering
-            // and scene 2 from showing, which we want if the user lands on
-            // /firefox/new/ but if the user visits /firefox/new/?scene=2#download-fx
-            // (from a download button) then we want them to see the same scene 2
-            // as non-firefox users and initiate a download
+            // the firefox-latest class prevents the download button from displaying
             $html.addClass('firefox-latest');
-
             // if user is on desktop release channel and has latest version, offer refresh button
             if (client.isFirefoxDesktop) {
                 client.getFirefoxDetails(function(data) {
-                    if (data.channel === 'release' && data.isUpToDate) {
+                    // data.accurate will only be true if UITour API is working.
+                    if (data.channel === 'release' && data.isUpToDate && data.accurate) {
                         $html.addClass('show-refresh');
-
-                        // DOM may not be ready yet, so bind filtered click handler to document
-                        $document.on('click', '#refresh-firefox', function() {
+                        
+                        $('#refresh-firefox').on('click', function() {
                             uiTourSendEvent('resetFirefox');
                         });
                     }
@@ -80,17 +74,4 @@
         'state': state
     });
 
-    // if android, update text on dl button
-    if (client.platform === 'android') {
-        $('#download-button-mobile .download-subtitle').html(
-            $('#download-button-wrapper-mobile').data('upgradeSubtitle'));
-
-        return;
-    }
-
-    // if desktop download available, re-locate dl button links
-    if ($('#download-button-wrapper-desktop').is(':visible')) {
-        var $downloadButtonLinks = $('#download-button-wrapper-desktop .download-other-desktop').detach();
-        $downloadButtonLinks.css('display', 'block').appendTo('#download-buttons');
-    }
 })(window.jQuery, window.dataLayer = window.dataLayer || []);

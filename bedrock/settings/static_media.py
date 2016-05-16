@@ -1180,12 +1180,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene2-bundle.js',
     },
-    'firefox_new_redesign_scene1': {
-        'source_filenames': (
-            'js/firefox/new/redesign/scene1.js',
-        ),
-        'output_filename': 'js/firefox_new_redesign_scene1-bundle.js',
-    },
     'firefox_onboarding_user_actions': {
         'source_filenames': (
             'js/base/uitour-lib.js',
