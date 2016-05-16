@@ -5,7 +5,7 @@
 import pytest
 
 from selenium.common.exceptions import TimeoutException
-from pages.firefox.ios_testflight import iOSTestFlightPage
+from pages.firefox.ios_flight import iOSTestFlightPage
 
 
 @pytest.mark.smoke
