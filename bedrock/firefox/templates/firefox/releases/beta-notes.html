@@ -4,6 +4,14 @@
 
 {% extends "firefox/releases/release-notes.html" %}
 
+{% block gtm_page_id %}
+    {% if release.product == 'Firefox for Android' %}
+        data-gtm-page-id="/firefox/android/beta/releasenotes/"
+    {% else %}
+        data-gtm-page-id="/firefox/beta/releasenotes/"
+    {% endif %}
+{% endblock %}
+
 {% set channel_name = 'Beta' %}
 
 {% block platform_switch %}

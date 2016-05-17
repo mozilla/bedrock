@@ -6,6 +6,8 @@
 
 {% extends "/firefox/base-resp.html" %}
 
+{% block gtm_page_id %}data-gtm-page-id="/firefox/dev-firstrun/"{% endblock %}
+
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block page_css %}

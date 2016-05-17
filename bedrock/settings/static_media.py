@@ -961,6 +961,8 @@ PIPELINE_JS = {
             'js/base/mozilla-client.js',
             'js/base/mozilla-image-helper.js',
             'js/base/nav-main-resp.js',
+            'js/base/core-datalayer.js',
+            'js/base/core-datalayer-init.js',
         ),
         'output_filename': 'js/common-bundle.js',
     },

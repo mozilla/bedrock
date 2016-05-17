@@ -5,6 +5,8 @@
 
 {% extends "base-resp.html" %}
 
+{% block gtm_page_id %}data-gtm-page-id="404"{% endblock %}
+
 {% block page_title %}{{ _('404: Page Not Found') }}{% endblock %}
 
 {% block extrahead %}

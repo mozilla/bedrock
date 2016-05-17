@@ -39,6 +39,7 @@ module.exports = function(config) {
             'media/js/plugincheck/lib/version-compare.js',
             'media/js/plugincheck/lib/plugincheck.js',
             'media/js/base/send-to-device.js',
+            'media/js/base/core-datalayer.js',
             'tests/unit/spec/base/site.js',
             'tests/unit/spec/base/global.js',
             'tests/unit/spec/base/dnt-helper.js',
@@ -60,6 +61,7 @@ module.exports = function(config) {
             'tests/unit/spec/plugincheck/lib/version-compare.js',
             'tests/unit/spec/plugincheck/lib/plugincheck.js',
             'tests/unit/spec/base/send-to-device.js',
+            'tests/unit/spec/base/core-datalayer.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
                 watched: false,
