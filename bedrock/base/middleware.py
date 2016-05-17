@@ -4,12 +4,12 @@ Taken from zamboni.amo.middleware.
 This is django-localeurl, but with mozilla style capital letters in
 the locale codes.
 """
-
+import base64
 import urllib
 from warnings import warn
 
 from django.conf import settings
-from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponsePermanentRedirect, HttpResponse
 from django.utils.encoding import smart_str, force_text
 
 import tower
@@ -75,3 +75,28 @@ class LocaleURLMiddleware(object):
         request.path_info = '/' + prefixer.shortened_path
         request.locale = prefixer.locale
         tower.activate(prefixer.locale)
+
+
+class BasicAuthMiddleware(object):
+    """
+    Middleware to protect the entire site with a single basic-auth username and password.
+    Set the BASIC_AUTH_CREDS environment variable to enable.
+    """
+    def process_request(self, request):
+        required_auth = settings.BASIC_AUTH_CREDS
+        if required_auth:
+            if 'HTTP_AUTHORIZATION' in request.META:
+                auth = request.META['HTTP_AUTHORIZATION'].split()
+                if len(auth) == 2:
+                    if auth[0].lower() == "basic":
+                        provided_auth = base64.b64decode(auth[1])
+                        if provided_auth == required_auth:
+                            # we're good. continue on.
+                            return None
+
+            response = HttpResponse(status=401,
+                                    content='<h1>Unauthorized. '
+                                            'This site is in private demo mode.</h1>')
+            realm = settings.DEIS_APP or 'bedrock-demo'
+            response['WWW-Authenticate'] = 'Basic realm="{}"'.format(realm)
+            return response

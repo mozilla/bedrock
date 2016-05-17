@@ -319,6 +319,9 @@ ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
                                     default=bool(DEIS_APP), cast=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
                                         default=True, cast=bool)
+# set this to enable basic auth for the entire site
+# e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
+BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default=None)
 
 MIDDLEWARE_CLASSES = [middleware for middleware in (
     'sslify.middleware.SSLifyMiddleware',
@@ -326,6 +329,7 @@ MIDDLEWARE_CLASSES = [middleware for middleware in (
     'django_statsd.middleware.GraphiteMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'bedrock.mozorg.middleware.VaryNoCacheMiddleware' if ENABLE_VARY_NOCACHE_MIDDLEWARE else False,
+    'bedrock.base.middleware.BasicAuthMiddleware' if BASIC_AUTH_CREDS else False,
     # must come before LocaleURLMiddleware
     'bedrock.redirects.middleware.RedirectsMiddleware',
     'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
