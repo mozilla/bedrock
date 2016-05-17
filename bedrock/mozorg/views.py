@@ -247,7 +247,7 @@ class ContributeSignupNew(TemplateView):
         return [template]
 
 
-class ContributeTaskView(TemplateView):
+class ContributeTaskView(l10n_utils.LangFilesMixin, TemplateView):
 
     tasks = [
         'devtools-challenger',
