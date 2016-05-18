@@ -4,9 +4,13 @@
 
 @import "../../sandstone/lib.less";
 
+#download-button-wrapper-desktop {
+    text-align: center;
+}
+
 // keep the button technically visible to grab correct download link for
 // backup download link
-#download-button-wrapper-desktop {
+.js #download-button-wrapper-desktop {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -30,6 +34,11 @@
 }
 
 .help {
+    display: none;
+}
+
+.js .help {
+    display: block;
     padding: 0 190px;
     margin-bottom: @baseLine * 2;
     text-align: center;
