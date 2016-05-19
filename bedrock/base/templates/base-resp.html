@@ -54,25 +54,23 @@
     <!--[if lte IE 8]>
       {# Only needed for IE before v9 #}
       <script src="{{ static('js/libs/html5shiv.js') }}"></script>
-    <![endif]-->
 
-    <!--[if lte IE 7]>
-      {# Basic styles, only for IE7 and lower #}
+      {# Basic styles, only for IE8 and lower #}
       {% stylesheet 'oldIE' %}
     <![endif]-->
 
-    <!--[if !lte IE 7]><!-->
-    {# Global styles, hidden from IE7 and lower #}
+    <!--[if !lte IE 8]><!-->
+    {# Global styles, hidden from IE8 and lower #}
     {% block site_css %}
       {% stylesheet 'responsive' %}
     {% endblock %}
 
-    {# Page-specific styles, hidden from IE7 and lower #}
+    {# Page-specific styles, hidden from IE8 and lower #}
     {% block page_css %}{% endblock %}
     <!--<![endif]-->
 
     {% block extrahead %}
-      {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE7 and lower. #}
+      {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE8 and lower. #}
     {% endblock %}
 
     {% block optimizely %}{% endblock %}

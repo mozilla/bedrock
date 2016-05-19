@@ -12,7 +12,7 @@
 {% block site_header_logo %}
 {% endblock %}
 
-{% block extrahead %}
+{% block page_css %}
   {% stylesheet 'gigabit' %}
 {% endblock %}
 
@@ -47,7 +47,7 @@
               <li>{{ _('Be piloted in the Chattanooga, TN or Kansas City, MO metropolitan region') }}</li>
               <li>{{ _('Focus on education or workforce development') }}</li>
               <li>{{ _('Leverage next-generation technologies like ultra high-speed networking') }}</li>
-            </ol>  
+            </ol>
             <p>
             {% trans url_terms=url('gigabit.terms') %}
               Participation is open to companies, academic institutions, and non-profit organizations  Funding will not be granted to unaffiliated individuals acting on their own. Before submitting your application, please review the Gigabit Community Fund’s <a href='{{ url_terms }}'>Terms and Conditions</a>.

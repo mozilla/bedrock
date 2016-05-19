@@ -8,16 +8,8 @@
 {% block body_id %}mission{% endblock %}
 {% block body_class %}sand{% endblock %}
 
-
-{% block extrahead %}
+{% block page_css %}
   {% stylesheet 'mission' %}
-  {# The mosaic won't be loaded on IE8 and below. Adjust the margin of elements to keep the layout #}
-  <!--[if lte IE 8]>
-  <style type="text/css">
-    .js #main-content { margin-top: 100px; }
-    .js #main-content .title-shadow-box { margin-top: -60px; }
-  </style>
-  <![endif]-->
 {% endblock %}
 
 {% block js %}
@@ -31,7 +23,7 @@
 {% endblock %}
 
 {% block mosaic %}
-{% include "mozorg/mosaic-grid.html" %}
+  {% include "mozorg/mosaic-grid.html" %}
 {% endblock %}
 
 {% block content %}

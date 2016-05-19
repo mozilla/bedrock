@@ -10,7 +10,7 @@
   </nav>
 {% endblock %}
 
-{% block extrahead %} 
+{% block page_css %}
   {{ super() }}
   {% stylesheet 'security-bug-bounty-hall-of-fame' %}
 {% endblock %}
@@ -31,7 +31,7 @@
       <p>As of this date, we have paid out almost <b>$1,000,000</b> across all of our bounties. Congratulations to everybody who has participated!</p>
 
       <div class="accordion accordion-auto-init zebra">
-        
+
       <section id="year-2016">
         <h3 data-accordion-role="tab">{{ _('2016') }}</h3>
         <div data-accordion-role="tabpanel">

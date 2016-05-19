@@ -7,7 +7,7 @@
 {% block page_title %}{{ _('Mozilla Commit Access Policy') }}{% endblock %}
 {% block body_id %}commit-access-policy{% endblock %}
 
-{% block extrahead %}
+{% block page_css %}
   {{ super() }}
   {% stylesheet 'commit-access-policy' %}
 {% endblock %}

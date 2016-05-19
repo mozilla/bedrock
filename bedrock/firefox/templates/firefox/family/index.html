@@ -18,13 +18,6 @@
   {% stylesheet 'firefox_family' %}
 {% endblock %}
 
-{% block extrahead %}
-  {{ super() }}
-<!--[if lt IE 8]>
-  {% stylesheet 'firefox_family_ie' %}
-<![endif]-->
-{% endblock %}
-
 {% block body_class %}mozid{% endblock %}
 
 {% block site_header %}
