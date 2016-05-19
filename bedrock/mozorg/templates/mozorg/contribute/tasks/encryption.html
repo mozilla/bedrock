@@ -15,7 +15,11 @@
 <ol class="task-steps">
   <li>
     <header id="step_one" class="one">
-      <h3>{{ _('Take the pledge') }}</h3>
+      {% if l10n_has_tag('contribute-tasks-0516') %}
+        <h3>{{ _('Become an encryption champion') }}</h3>
+      {% else %}
+        <h3>{{ _('Take the pledge') }}</h3>
+      {% endif %}
     </header>
     <div class="step-content">
       {{ high_res_img('contribute/signup/encryption.png', {'alt': '', 'width': '620', 'class': 'feature-img'}) }}

@@ -258,7 +258,7 @@ main {
 
     .stumbler-button {
         display: block;
-        margin: @baseLine auto 10px;
+        margin: (@baseLine * 2) 0 @baseLine;
         width: 200px;
     }
 
@@ -303,6 +303,18 @@ video {
 
     h3 {
         .font-size(60px);
+
+        @media only screen and (max-width: @breakDesktop) {
+            .font-size(54px);
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(48px);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(40px);
+        }
     }
 
     p {
@@ -396,7 +408,7 @@ a[role="button"] {
 
     /* watch video play button on joy of coding task */
     &.watch {
-        margin: 0 auto;
+        margin-bottom: @baseLine * 2;
         width: 100%;
     }
 
@@ -409,12 +421,19 @@ a[role="button"] {
 /* download Firefox conditional content */
 .get-firefox {
     margin: 30px auto;
-    width: 400px;
-    max-width: 400px;
+    width: 480px;
     text-align: center;
 
     p {
         .font-size(16px);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: 400px;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: auto;
     }
 }
 

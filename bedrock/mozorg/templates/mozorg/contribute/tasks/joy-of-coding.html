@@ -23,6 +23,11 @@
           <source src="https://videos.cdn.mozilla.net/uploads/Videos%20creative/joc-video.mp4" type="video/mp4" />
         </video>
         <button type="button" class="button-blue watch" data-action="play" data-task="joyofcoding" data-step="one" data-complete="true">{{ _('Watch the video') }}</button>
+        {% if l10n_has_tag('contribute-tasks-0516') %}
+          <p><a class="more" rel="external" href="https://air.mozilla.org/channels/livehacking/">
+            {{ _('View more <em>Joy of Coding</em> videos on Air Mozilla') }}
+          </a></p>
+        {% endif %}
         <h4>{{ _('Get involved') }}</h4>
         {{ _('<a href="%s" id="get-involved" target="_blank">Join the Coding Community</a> and start collaborating with other Mozillians around the world.')|format('https://wiki.mozilla.org/Contribute/Coding') }}
       </div>
@@ -31,5 +36,9 @@
 {% endblock %}
 
 {% block thank_you_msg %}
-  {{ _('Thanks for getting involved') }}
+  {% if l10n_has_tag('contribute-tasks-0516') %}
+    {{ _('Thanks for watching') }}
+  {% else %}
+    {{ _('Thanks for getting involved') }}
+  {% endif %}
 {% endblock %}
