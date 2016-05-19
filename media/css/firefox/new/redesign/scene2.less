@@ -116,6 +116,11 @@ main {
 }
 
 .help {
+    display: none;
+}
+
+.js .help {
+    display: block;
     margin-top: @baseLine * 2;
     .open-sans-light;
     .font-size(20px);
@@ -123,7 +128,7 @@ main {
 
 // keep the button technically visible to grab correct download link for
 // backup download link
-#download-button-wrapper-desktop {
+.js #download-button-wrapper-desktop {
     position: absolute;
     width: 1px;
     height: 1px;

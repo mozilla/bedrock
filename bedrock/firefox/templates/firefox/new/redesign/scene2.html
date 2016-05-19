@@ -32,7 +32,11 @@
           </div>
 
           <p class="help">
-            {{_('Your Firefox should begin downloading automatically. If not, <a id="%s" href="">click here</a>.')|format('direct-download-link')}}
+            {# fallback_url is replaced by the platform download link via JS, but if
+               something fails the user should still get a link to a working download path. #}
+            {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
+              Your Firefox should begin downloading automatically. If not, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
+            {% endtrans %}
           </p>
 
           <aside id="mobile-download">

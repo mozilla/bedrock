@@ -7,6 +7,7 @@
 
     var isIELT9 = window.Mozilla.Client.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent);
     var $directDownloadLink = $('#direct-download-link');
+    var $platformLink = $('#download-button-wrapper-desktop .download-list li:visible .download-link');
     var $stage = $('#stage');
 
     // build virtualUrl for GA
@@ -32,12 +33,12 @@
         }
     }
 
-    // Pull download link from the download button and add to the
-    // 'click here' link.
-    // TODO: Remove and generate link in bedrock.
-    $directDownloadLink.attr(
-        'href', $('#download-button-wrapper-desktop .download-list li:visible .download-link').attr('href')
-    );
+    if ($platformLink.length) {
+        // Pull download link from the download button and add to the
+        // 'click here' link.
+        // TODO: Remove and generate link in bedrock.
+        $directDownloadLink.attr('href', $platformLink.attr('href'));
+    }
 
     // #direct-download-link = "click here" text on page
     // .download-link = any links in download button (which are effectively
@@ -61,8 +62,9 @@
     addPixel();
 
     // if user is not on an IE that blocks JS triggered downloads, start the
-    // platform-detected download after window (read: images) have loaded
-    if (!isIELT9) {
+    // platform-detected download after window (read: images) have loaded.
+    // only auto-start the download if a visible platform link is detected.
+    if (!isIELT9 && $platformLink.length) {
         $(window).on('load', function() {
             $directDownloadLink.trigger('click');
         });
