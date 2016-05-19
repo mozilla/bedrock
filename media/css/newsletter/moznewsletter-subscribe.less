@@ -4,7 +4,7 @@
 
 @import '../sandstone/lib.less';
 
-// Newsletter signup testing - bug 1253413
+// Redesigned Mozilla newsletter form - bug 126396
 #newsletter-subscribe {
     background: @mozillaRed;
     color: #fff;
@@ -162,6 +162,7 @@
 
     #footer-email-errors {
         .span-all;
+        margin-bottom: @baseLine;
 
         .errorlist {
             background: #fff;
@@ -176,6 +177,10 @@
         h3 {
             color: #fff;
         }
+    }
+
+    @media (max-width: @breakTablet) {
+        margin-bottom: 0;
     }
 }
 
@@ -206,5 +211,73 @@
            color: #ccc;
            font-weight: normal;
         }
+    }
+}
+
+/*
+ * A 'light' Mozilla newsletter theme style.
+ * Features a white background, dark text and a red, circular graphic.
+ * Currently in use on /contribute task pages.
+ */
+#newsletter-subscribe.light {
+    background: #fff;
+    color: @textColorPrimary;
+    margin-bottom: 0;
+
+    h3,
+    h4 {
+        color: @textColorPrimary;
+    }
+
+    .form-title {
+        position: relative;
+        background: none;
+        width: 500px;
+        padding-left: 170px;
+
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            background: @mozillaRed url('/media/img/newsletter/mozorg-newsletter.svg') 23px 23px no-repeat;
+            .background-size(105px, 105px);
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+        }
+
+        @media (max-width: @breakDesktop) {
+            width: 380px;
+        }
+
+        @media (max-width: @breakTablet) {
+            width: auto;
+            padding-left: 0;
+            padding-top: 170px;
+
+            &:before {
+                left: 50%;
+                margin-left: -75px;
+            }
+
+        }
+    }
+
+    input[type="email"] {
+        border: 1px solid #b2b2b2;
+    }
+
+    #newsletter-form-thankyou {
+        color: @textColorPrimary;
+
+        h3 {
+            color: @textColorPrimary;
+        }
+    }
+
+    #footer-email-errors .errorlist {
+        background: #af3232;
+        color: #fff;
     }
 }
