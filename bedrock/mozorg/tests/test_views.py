@@ -297,6 +297,7 @@ class TestStudentAmbassadorsJoin(TestCase):
                 'privacy': 'True'}
         request_data = {'FIRST_NAME': data['first_name'],
                         'LAST_NAME': data['last_name'],
+                        'EMAIL_ADDRESS': data['email'],
                         'STUDENTS_CURRENT_STATUS': data['status'],
                         'STUDENTS_SCHOOL': data['school'],
                         'STUDENTS_GRAD_YEAR': data['grad_year'],
@@ -314,6 +315,33 @@ class TestStudentAmbassadorsJoin(TestCase):
                                         'custom_update_student_ambassadors',
                                         token='token-example',
                                         data=request_data)
+
+    @patch.object(ReCaptchaField, 'clean', Mock())
+    @patch('bedrock.mozorg.forms.request')
+    @patch('bedrock.mozorg.forms.basket.subscribe')
+    def test_subscribe_no_token(self, mock_subscribe, mock_request):
+        mock_subscribe.return_value = {'status': 'ok'}
+        data = {'email': u'dude@example.com',
+                'country': 'gr',
+                'fmt': 'H',
+                'first_name': 'foo',
+                'last_name': 'bar',
+                'status': 'teacher',
+                'school': 'TuC',
+                'city': 'Chania',
+                'age_confirmation': 'on',
+                'grad_year': '',
+                'nl_about_mozilla': 'on',
+                'major': '',
+                'major_free_text': '',
+                'privacy': 'True'}
+        with self.activate('en-US'):
+            self.client.post(reverse('mozorg.contribute.studentambassadors.join'), data)
+        mock_subscribe.assert_called_with(
+            data['email'], ['ambassadors', 'about-mozilla'], format=u'H',
+            country=u'gr', source_url=u'', sync='Y',
+            welcome_message='Student_Ambassadors_Welcome')
+        self.assertFalse(mock_request.called)
 
 
 class TestContributeStudentAmbassadorsLanding(TestCase):
