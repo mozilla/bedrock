@@ -637,16 +637,18 @@ class ContributeStudentAmbassadorForm(forms.Form):
                                   welcome_message='Student_Ambassadors_Welcome',
                                   source_url=data['source_url'], sync='Y')
 
-        data = {
-            'FIRST_NAME': data['first_name'],
-            'LAST_NAME': data['last_name'],
-            'STUDENTS_CURRENT_STATUS': data['status'],
-            'STUDENTS_SCHOOL': data['school'],
-            'STUDENTS_GRAD_YEAR': data['grad_year'],
-            'STUDENTS_MAJOR': data['major'],
-            'COUNTRY_': data['country'],
-            'STUDENTS_CITY': data['city'],
-            'STUDENTS_ALLOW_SHARE': data['share_information'],
-        }
-        request('post', 'custom_update_student_ambassadors',
-                token=result['token'], data=data)
+        if result.get('token'):
+            data = {
+                'EMAIL_ADDRESS': data['email'],
+                'FIRST_NAME': data['first_name'],
+                'LAST_NAME': data['last_name'],
+                'STUDENTS_CURRENT_STATUS': data['status'],
+                'STUDENTS_SCHOOL': data['school'],
+                'STUDENTS_GRAD_YEAR': data['grad_year'],
+                'STUDENTS_MAJOR': data['major'],
+                'COUNTRY_': data['country'],
+                'STUDENTS_CITY': data['city'],
+                'STUDENTS_ALLOW_SHARE': data['share_information'],
+            }
+            request('post', 'custom_update_student_ambassadors',
+                    token=result['token'], data=data)
