@@ -476,6 +476,11 @@ def home_tweets(locale):
 def home(request, template='mozorg/home/home.html'):
     locale = l10n_utils.get_locale(request)
 
+    variant = request.GET.get('v', '')
+
+    if variant == 'a':
+        template = 'mozorg/home/home-a.html'
+
     return l10n_utils.render(
         request, template, {
             'has_contribute': lang_file_is_active('mozorg/contribute'),

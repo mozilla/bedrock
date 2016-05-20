@@ -1,0 +1,52 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+// Set new HTML5 elements to block or inline-block for older browsers
+article, aside, details, figcaption, figure, footer, header,
+hgroup, main, nav, section, summary {
+    display: block;
+}
+
+audio, video, canvas {
+    display: inline-block;
+}
+
+html, body, form, fieldset, legend,
+h1, h2, h3, h4, h5, h6, hr,
+p, pre, blockquote, figure, figcaption,
+table, ul, ol, li, dl, dt, dd {
+    margin: 0;
+    padding: 0;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+}
+
+blockquote, q {
+    quotes: '' '';
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, iframe, a img {
+    border: 0;
+}
+
+input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+}
+
+img, video, object, embed {
+    -ms-interpolation-mode: bicubic;
+    height: auto;
+    max-width: 100%;
+}

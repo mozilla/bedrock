@@ -32,7 +32,7 @@
   {% endif %}
 
   <form class="billboard newsletter-form{% if footer %} footer-newsletter-form{% endif %}{% if form.errors %} has-errors{% endif %}"
-        id="newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post">
+        id="newsletter-form" action="{{ url('newsletter.subscribe') }}" method="post"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
     {{ form.newsletters|safe }}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 

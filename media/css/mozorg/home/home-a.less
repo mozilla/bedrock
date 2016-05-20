@@ -1,0 +1,1130 @@
+@import '../../pebbles/lib.less';
+
+// Variables and Mixins
+
+@color-mozred-bright: saturate(lighten(@color-mozred, 5%), 10%);
+
+.invert-text() {
+    color: #fff;
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active,
+    a:focus {
+        color: #fff;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+}
+
+
+// General styles
+html {
+    background: #666;
+}
+
+body {
+    border-top: 0;
+}
+
+.section-lead,
+.section-body {
+    padding: 20px;
+}
+
+.section-lead h2 {
+    .font-size(36px);
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+}
+
+.section-lead {
+    .font-size(20px);
+}
+
+.section-body {
+    .font-size(20px);
+
+    h3 {
+        .font-size(32px);
+        font-weight: normal;
+    }
+}
+
+.section-cta {
+    .font-size(26px);
+    font-weight: bold;
+    margin: 20px auto;
+    text-align: center;
+
+    a {
+        .trailing-arrow;
+        text-decoration: none;
+        position: relative;
+
+        &:after {
+            .transition(right 150ms ease);
+            display: inline-block;
+            position: relative;
+            right: 0;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+
+            &:after {
+                right: -4px;
+            }
+        }
+    }
+}
+
+// Header
+.masthead {
+    .invert-text;
+    background: @color-mozred;
+
+    .content {
+        padding: 61px 20px 0;
+    }
+
+    .masthead-logo {
+        background: @color-mozred-bright;
+        height: 30px;
+        left: 0;
+        margin: 0;
+        padding: 15px 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+
+        img {
+            height: 30px;
+            margin-left: 60px;
+        }
+    }
+}
+
+// Global main nav
+.masthead-nav-main {
+    .fira-sans-light;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    .toggle {
+        background: @color-mozred url('/media/img/home/new/icon-menu.svg') center center no-repeat;
+        .background-size(24px auto);
+        cursor: pointer;
+        display: block;
+        height: 60px;
+        overflow: hidden;
+        position: relative;
+        text-indent: -999em;
+        width: 60px;
+    }
+
+    a {
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+#nav-main-menu {
+    background: #fff;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, .2);
+    left: -300px;
+    overflow: visible;
+    position: absolute;
+    top: 60px;
+    width: 200px;
+    z-index: 99;
+
+    li {
+        border-bottom: 1px solid #ccc;
+
+        &:last-child {
+            border: 0;
+        }
+    }
+
+    a {
+        background: #fff;
+        color: @color-text-primary;
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        -webkit-transition: background-color 150ms ease, border-width 150ms ease, color 150ms ease, padding 150ms ease;
+                transition: background-color 150ms ease, border-width 150ms ease, color 150ms ease, padding 150ms ease;
+
+        &:hover,
+        &:focus {
+            background-color: #f5f5f5;
+            border-right: 6px solid @color-mozred;
+            color: @color-mozred;
+            text-decoration: underline;
+        }
+    }
+}
+
+.masthead-nav-main:hover #nav-main-menu,
+.masthead-nav-main .toggle:focus + #nav-main-menu {
+    left: auto;
+}
+
+.js #nav-main-menu {
+    left: auto;
+    display: none;
+}
+
+@media @mq-tablet and (min-height: 600px) {
+    .masthead-nav-main {
+        position: static;
+
+        .toggle {
+            display: none;
+        }
+    }
+
+    #nav-main-menu,
+    .js #nav-main-menu {
+        .clearfix;
+        .font-size(14px);
+        background: transparent;
+        box-shadow: none;
+        display: block;
+        margin: 0 20px;
+        padding: 25px 0 15px;
+        position: static;
+        width: auto;
+
+        li {
+            .border-box;
+            border: 0;
+            float: left;
+            padding: 0 5px;
+            text-align: center;
+            width: 33.33%;
+        }
+
+        a,
+        a:hover,
+        a:focus {
+            background: transparent;
+            border: 0;
+            color: #fff;
+            padding: 0;
+        }
+    }
+}
+
+
+// Page nav
+.masthead-nav-page {
+    .fira-sans-light;
+    background: @color-mozred;
+    margin: 0 -20px;
+    text-align: center;
+    line-height: 1.1;
+
+    // nav lists should be flexy
+    ul {
+        .flexbox;
+    }
+
+    // nav list items should stretch/collapse to fill space, and should be
+    // flexy to allow child <a> to properly stretch
+    li {
+        .flex(1);
+        .flexbox;
+    }
+
+    // nav list item <a> should be flexy to allow child <span> to be full height
+    a {
+        .border-box;
+        .align-items(center);
+        .flex(1 1 100%);
+        .flexbox;
+        padding: 10px;
+        margin: 0;
+        text-decoration: none;
+        vertical-align: middle;
+        -webkit-transition: background-color 150ms ease, border-width 150ms ease, color 150ms ease, padding 150ms ease;
+                transition: background-color 150ms ease, border-width 150ms ease, color 150ms ease, padding 150ms ease;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+
+        // needed for flexbox vertical & horizontal centering
+        span {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .primary {
+        li {
+            padding: 1px;
+        }
+
+        a {
+            background-color: @color-mozred-bright;
+
+            &:hover,
+            &:focus {
+                background-color: @color-mozred;
+            }
+        }
+    }
+
+    .secondary {
+        margin: 0;
+        text-transform: uppercase;
+
+        #nav-secondary-donate a {
+            background: #e88008;
+
+            &:hover,
+            &:focus {
+                background: #dc6708;
+            }
+        }
+
+        #nav-secondary-firefox {
+            .download-button {
+                .flex(1); // make sure all buttons therein are full width
+                display: block;
+            }
+
+            .download-list {
+                margin: 0;
+                width: 100%;
+            }
+
+            .button {
+                background: #6fbe4a;
+                border-radius: 0;
+                border: 0;
+                display: block;
+                font-size: inherit;
+                padding: 20px 10px;
+
+                &:hover,
+                &:focus {
+                    background: darken(#6fbe4a, 5%);
+                    text-decoration: underline;
+                }
+            }
+
+            .fx-privacy-link {
+                display: none;
+            }
+
+            .download-dumb li {
+                display: block;
+                margin: 5px;
+            }
+        }
+    }
+}
+
+@media @mq-tablet and (min-height: 600px) {
+    .masthead {
+        width: 240px;
+        height: 100%;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 99;
+
+        .content {
+            width: auto;
+            min-width: 0;
+            padding: 0;
+        }
+
+        .masthead-logo {
+            position: static;
+            margin: 0;
+            width: auto;
+            padding: 20px;
+
+            img {
+                margin: 0;
+            }
+        }
+    }
+
+    .masthead-nav-page {
+        margin: 0;
+        padding: 0;
+        background: #fff;
+
+        .primary {
+            .font-size(20px);
+            display: block;
+            margin: 0;
+            text-align: left;
+            width: 100%;
+
+            li {
+                width: 100%;
+                float: none;
+                padding: 0;
+                display: table;
+                border-bottom: 2px solid #ccc;
+
+                &:last-child {
+                    border: 0;
+                }
+            }
+
+            a {
+                background-color: #fff;
+                color: @color-text-primary;
+                display: table-cell;
+                margin: 0;
+                padding: 20px 20px 20px 65px;
+                position: relative;
+                vertical-align: middle;
+                width: 100%;
+                border-right: 0;
+
+                &:hover,
+                &:focus {
+                    background-color: #f5f5f5;
+                    border-right: 6px solid @color-mozred;
+                    color: @color-mozred;
+                    padding-right: 15px;
+                }
+
+                &:before {
+                    content: '';
+                    display: block;
+                    width: 32px;
+                    height: 32px;
+                    position: absolute;
+                    left: 20px;
+                    top: 50%;
+                    margin-top: -16px;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: fill;
+                }
+            }
+
+            #nav-primary-action a:before {
+                background-image: url('/media/img/home/new/icon-action.svg');
+            }
+
+            #nav-primary-innovation a:before {
+                background-image: url('/media/img/home/new/icon-innovation.svg');
+            }
+
+            #nav-primary-firefox a:before {
+                background-image: url('/media/img/home/new/icon-firefox.svg');
+            }
+
+            .current a {
+                background-color: #f5f5f5;
+                border-right: 6px solid @color-mozred;
+                color: @color-mozred;
+                padding-right: 15px;
+
+                &:hover,
+                &:focus {
+                    background-color: #fff;
+                }
+            }
+        }
+
+        .secondary {
+            background: @color-mozred;
+
+            a {
+                margin: 0;
+            }
+        }
+    }
+
+    .main {
+        margin-left: 240px;
+    }
+
+    .content {
+        width: @width-phone-wide;
+    }
+}
+
+@media @mq-tablet and (min-height: 700px) {
+    .masthead .masthead-logo {
+        padding: 40px 20px;
+        height: auto;
+
+        img {
+            width: 160px;
+            height: auto;
+        }
+    }
+
+    .masthead-nav-page .primary a {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+
+@media @mq-desktop and (min-height: 600px) {
+    .masthead {
+        width: 360px;
+    }
+
+    .main {
+        margin-left: 360px;
+
+        .content {
+            width: 600px;
+        }
+    }
+
+    .masthead-nav-page .primary {
+        .font-size(26px);
+
+        a {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 75px;
+
+            &:before {
+                width: 42px;
+                height: 42px;
+                margin-top: -21px;
+            }
+        }
+    }
+}
+
+@media @mq-desktop and (min-height: 700px) {
+    .masthead-nav-page .primary a {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .main .content {
+        padding: 40px 20px;
+    }
+}
+
+@media @mq-desktop-wide {
+    .main .content {
+        width: @width-tablet;
+    }
+}
+
+
+// Intro
+.section-intro {
+    .invert-text;
+    background: #00a7de;
+    position: relative;
+
+    .content {
+        padding: 20px;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        z-index: 2;
+        background: rgba(0, 20, 40, .5);
+    }
+
+    .intro-tagline {
+        .border-box;
+        .font-size(32px);
+        font-style: italic;
+        line-height: 1.25;
+        margin: 0 auto;
+        padding: 100px 20px;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(0, 0, 0, .01),
+                     0 0 5px rgba(0, 0, 0, .025),
+                     0 1px 1px rgba(0, 0, 0, .5);
+
+        @media @mq-tablet {
+            .font-size(36px);
+            width: @width-phone-wide;
+        }
+
+        @media @mq-tablet and (min-height: 600px) {
+            padding: 140px 20px;
+        }
+
+        @media @mq-desktop {
+            .font-size(42px);
+            width: 600px;
+        }
+
+        @media @mq-desktop and (min-height: 600px) {
+            padding: 180px 20px;
+        }
+
+        @media @mq-desktop-wide {
+            .font-size(52px);
+            width: @width-tablet;
+        }
+
+        @media @mq-desktop-wide and (min-height: 600px) {
+            padding: 220px 20px;
+        }
+    }
+
+    #home-slideshow {
+        height: 100%;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .slide {
+        .background-size(cover);
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: none;
+        height: 100%;
+        width: 100%;
+    }
+
+    #slide-two {
+        display: block;
+        background-image: url('/media/img/home/new/intro/intro-learning-600.jpg');
+    }
+
+    @media @mq-tablet {
+        .slide {
+            display: block;
+        }
+
+        #slide-one {
+            background-image: url('/media/img/home/new/intro/intro-mitchell-1000.jpg');
+        }
+
+        #slide-two {
+            background-image: url('/media/img/home/new/intro/intro-learning-1000.jpg');
+        }
+
+        #slide-three {
+            background-image: url('/media/img/home/new/intro/intro-advocacy-1000.jpg');
+        }
+    }
+
+    @media @mq-desktop-wide {
+        #slide-one {
+            background-image: url('/media/img/home/new/intro/intro-mitchell-2000.jpg');
+        }
+
+        #slide-two {
+            background-image: url('/media/img/home/new/intro/intro-learning-2000.jpg');
+        }
+
+        #slide-three {
+            background-image: url('/media/img/home/new/intro/intro-advocacy-2000.jpg');
+        }
+    }
+}
+
+
+// Mozilla in action
+.section-action {
+    .invert-text;
+    background: #00b086;
+}
+
+#encryption-video {
+    width: 100%;
+    height: auto;
+}
+
+.moz-video-container {
+    margin-bottom: 0;
+
+    &:after {
+        content: none;
+    }
+}
+
+.js .moz-video-button:after {
+    background: url('/media/img/home/new/video-play.svg');
+    opacity: 0.8;
+}
+
+
+// Web Innovations
+.section-innovation {
+    .invert-text;
+    background: saturate(darken(#24caff, 10%), 15%);
+}
+
+#aframe-wrapper {
+    background: #24caff url('/media/img/home/new/a-frame/aframe.png') center center no-repeat;
+    background-size: 533px 300px;
+    height: 300px;
+    position: relative;
+    width: 100%;
+
+    @media only @mq-tablet {
+        background-size: 889px 500px;
+        height: 500px;
+    }
+
+    @media only @mq-phone-wide {
+        background-size: 676px 380px;
+        height: 380px;
+    }
+}
+
+#aframe-iframe-shield {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+#aframe-iframe {
+    .transition(opacity 250ms ease-out);
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    &.loaded {
+        opacity: 1;
+    }
+}
+
+
+// Firefox
+.section-firefox {
+    .invert-text;
+    overflow: hidden;
+
+    h2 {
+        .at2x('/media/img/firefox/common/firefox-logo.png', 80px, 83px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        margin-top: 40px;
+        padding-top: 93px;
+        text-align: center;
+        width: 180px;
+
+        @media only @mq-tablet {
+            background-size: 120px 125px;
+            padding-top: 135px;
+            width: 250px;
+        }
+    }
+}
+
+// Note that assets in /new/redesign below may need to be moved under /home if
+// /new page gets updated while this prototype lives.
+.event-horizon {
+    background-color: #0150ab;
+    background: url('/media/img/firefox/new/redesign/stars.png') center 80px no-repeat,
+        linear-gradient(to bottom, rgb(30, 68, 136) 0%, rgb(19, 71, 146) 22%, rgb(2, 76, 161) 44%, rgb(0, 85, 184) 73%, rgb(4, 89, 190) 78%, rgb(17, 94, 199) 86%, rgb(51, 105, 219) 100%);
+    background-size: 500px 146px, 100% 100%;
+    min-height: 250px;
+
+    @media only @mq-tablet {
+        background-size: 800px 235px, 100% 100%;
+        min-height: 350px;
+    }
+}
+
+.mission-control {
+    position: relative;
+    width: 100%;
+    padding-top: 76px;
+    background: #11336B;
+
+    .sky-line {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 500px;
+        height: 46px;
+        margin-left: -250px;
+        background-color: #0150ab;
+        background: linear-gradient(to bottom, #346adc, #6a7cf8);
+
+        @media only @mq-tablet {
+            height: 70px;
+            margin-left: -380px;
+            width: 760px;
+        }
+    }
+
+    .crater {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 46px;
+        width: 500px;
+        margin-left: -250px;
+        background: url('/media/img/firefox/new/redesign/ground-level.png') top center no-repeat;
+        background-size: 500px 46px;
+
+        @media only @mq-tablet {
+            background-size: 760px 70px;
+            height: 70px;
+            margin-left: -380px;
+            width: 760px;
+        }
+    }
+
+    .launch-area {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .ground {
+        width: 100%;
+        height: 120px;
+        background: #11336B;
+    }
+
+    .section-body,
+    .content {
+        padding-top: 0;
+    }
+
+    @media only @mq-tablet {
+        .section-body,
+        .content {
+            padding-top: 20px;
+        }
+    }
+}
+
+.rocket {
+    .at2x('/media/img/firefox/new/redesign/rocket.png', 160px, 195px);
+    height: 195px;
+    margin-right: -146px;
+    position: absolute;
+    right: 50%;
+    top: -221px;
+    width: 160px;
+
+    @media only @mq-tablet {
+        margin-right: -192px;
+        top: -203px;
+    }
+}
+
+
+// Externals (Add-ons, careers, support)
+.section-externals {
+    background: #f5f5f5;
+    text-align: center;
+
+    ul {
+        position: relative;
+        width: 100%;
+        padding: 60px 0 40px;
+        .clearfix;
+
+        li {
+            max-width: @width-phone-wide;
+            margin: 0 auto 30px;
+
+            @media @mq-desktop {
+                float: left;
+                width: 33.3%;
+                margin: 0;
+            }
+        }
+    }
+
+    h3 {
+        .font-size(18px);
+        color: @color-text-secondary;
+        padding-top: 100px;
+        position: relative;
+
+        &:before {
+            .background-size(fill);
+            background-position: center center;
+            background-repeat: no-repeat;
+            content: '';
+            height: 84px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        @media @mq-tablet {
+            .font-size(20px);
+        }
+    }
+
+    a {
+        display: block;
+        padding: 0 20px;
+        text-align: center;
+        text-decoration: none;
+
+        &.add-ons h3:before {
+            background-image: url('/media/img/home/new/icon-addons.svg');
+        }
+        &.careers h3:before {
+            background-image: url('/media/img/home/new/icon-careers.svg');
+        }
+        &.help h3:before {
+            background-image: url('/media/img/home/new/icon-help.svg');
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+
+            h3 {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    p {
+        .font-size(16px);
+        color: @color-text-secondary;
+    }
+}
+
+
+// Newsletter
+#newsletter-subscribe.section-newsletter {
+    margin: 0;
+    background: @color-mozred-bright;
+
+    .newsletter-form,
+    .form-title,
+    .form-contents {
+        .clearfix;
+        float: none;
+        margin: 0 auto;
+    }
+
+    .form-title {
+        .background-size(100px, 100px);
+        background-position: center top;
+        margin-top: 0;
+        min-height: 0;
+        padding-left: 0;
+        padding-top: 120px;
+        text-align: center;
+
+        h3 {
+            .font-size(32px);
+            font-style: italic;
+            text-align: center;
+        }
+
+        h4 {
+            .font-size(18px);
+            font-weight: normal;
+            line-height: 1.5;
+        }
+    }
+
+    .form-contents {
+        .field {
+            margin: 0 0 1em;
+        }
+    }
+
+    .errorlist {
+        padding: 10px;
+    }
+
+    #newsletter-form-thankyou {
+        padding: 0;
+    }
+}
+
+.js #form-details {
+    .hidden;
+}
+
+@media @mq-desktop-wide {
+    #newsletter-subscribe.section-newsletter {
+        .newsletter-form {
+            padding-left: 380px;
+            width: 310px;
+
+            .form-title {
+                .background-size(120px 120px);
+                .border-box;
+                background-position: left top;
+                float: left;
+                margin-left: -380px;
+                padding: 10px 0 0 140px;
+                width: 350px;
+
+                h3,
+                h4 {
+                    text-align: left;
+                }
+            }
+
+            .form-contents,
+            .form-submit {
+                .border-box;
+                float: left;
+                margin: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+// Footer
+.section-footer {
+    .fira-sans-light;
+    .font-size(14px);
+    .invert-text;
+    background: #666;
+    padding: 20px 0;
+
+    a,
+    a:link {
+        color: #23c7db;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: darken(#23c7db, 10%);
+    }
+
+    a:hover,
+    a:focus {
+        color: #23c7db;
+        text-decoration: underline;
+    }
+
+    .logo a {
+        .at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
+        .image-replaced();
+        display: inline-block;
+        height: 24px;
+        width: 93px;
+    }
+
+    p,
+    ul {
+        margin-bottom: 15px;
+        line-height: 1.5;
+    }
+
+    ul {
+        overflow: hidden;
+
+        &.fx-footer-links li {
+            float: none;
+        }
+
+        li {
+            float: left;
+
+            &.wrap:before {
+                content: "\00A0\00B7\00A0"; /* &nbsp;&middot;&nbsp; */
+            }
+
+            &.clear {
+                clear: both;
+            }
+        }
+    }
+
+    .links-social li {
+        float: none;
+
+        ul {
+            display: inline;
+            margin: 0;
+        }
+
+        li {
+            display: inline;
+
+            &:before {
+                content: "\00B7\00A0"; /* &middot;&nbsp; */
+            }
+
+            &:first-child:before {
+                content: "";
+            }
+
+            span {
+                .visually-hidden(); /* for a11y */
+            }
+        }
+    }
+
+    @media @mq-tablet and (min-height: 600px) {
+        margin-left: 240px;
+
+        .content {
+            .clearfix;
+            margin: 0 auto;
+            padding-left: 30px;
+            padding-right: 30px;
+            width: 460px;
+        }
+    }
+
+    @media @mq-desktop and (min-height: 600px) {
+        margin-left: 360px;
+
+        .footer-column {
+            // mimics .span mixin, but must be activated at @mq-desktop
+            // instead of @mq-tablet
+            .border-box;
+            float: left;
+            padding: 0 (@gutter-width / 2);
+            width: @column-width * 4;
+        }
+
+        .content {
+            width: 650px;
+        }
+    }
+
+    @media @mq-desktop-wide {
+        .content {
+            width: 800px;
+        }
+    }
+}
