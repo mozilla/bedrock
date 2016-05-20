@@ -22,6 +22,8 @@ GIT_TAG="$(git describe --tags --exact-match $GIT_COMMIT 2> /dev/null || true)"
 if [[ ! -z $GIT_TAG ]]; then
     docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:$GIT_TAG
     docker push $DOCKER_REPOSITORY:$GIT_TAG
+fi;
+if [[ ! -z $GIT_TAG || ! -z "$TAG_LATEST" ]]; then
     docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:latest
     docker push $DOCKER_REPOSITORY:latest
 fi;
