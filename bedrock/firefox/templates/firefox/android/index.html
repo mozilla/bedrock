@@ -59,7 +59,7 @@
       </p>
 
       <div class="{% if has_widget %}show-widget{% endif %}">
-        {{ send_to_device(platform='android', include_logo=False) }}
+        {{ send_to_device(platform='android', include_logo=False, spinner_color='#fff') }}
 
         <a class="dl-button" rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
           {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}

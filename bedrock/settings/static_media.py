@@ -185,7 +185,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
-            'css/base/send-to-device.less',
+            'css/base/send-to-device-micro.less',
             'css/base/mozilla-accordion.less',
             'css/firefox/android.less',
         ),
@@ -407,7 +407,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/firefox/family-nav.less',
             'css/base/mozilla-modal.less',
-            'css/base/send-to-device.less',
+            'css/base/send-to-device-micro.less',
             'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/ios.less',
         ),
@@ -1342,7 +1342,7 @@ PIPELINE_JS = {
     },
     'firefox_ios': {
         'source_filenames': (
-            'js/libs/script.js',
+            'js/base/mozilla-smoothscroll.js',
             'js/base/mozilla-modal.js',
             'js/base/search-params.js',
             'js/base/send-to-device.js',

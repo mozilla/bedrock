@@ -113,28 +113,28 @@ a.go {
         }
     }
 
-    h2 {
-        .font-size(40px);
-        color: #bee1f5;
-        line-height: 1.2;
-        margin: 0 0 1em;
-
-        @media only screen and (max-width: @breakDesktop) {
-            .font-size(32px);
-        }
-
-        @media only screen and (max-width: @breakTablet) {
-            .font-size(22px);
-            text-align: center;
-        }
-    }
-
     a:link,
     a:visited {
         color: #fff;
     }
 
     .get-fxios {
+        & > h2 {
+            .font-size(40px);
+            color: #bee1f5;
+            line-height: 1.2;
+            margin: 0 0 1em;
+
+            @media only screen and (max-width: @breakDesktop) {
+                .font-size(32px);
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                .font-size(22px);
+                text-align: center;
+            }
+        }
+
         p {
             margin: 0;
         }
@@ -596,32 +596,7 @@ a.go {
 
 
 // Send to Device Widget
-#send-to-device {
-    display: none;
-    border-radius: 6px;
-    margin-top: 15px;
-
-    .form-container {
-        padding-top: 130px;
-        background-position: center 25px;
-        background-repeat: no-repeat;
-        .at2x('/media/img/firefox/ios/send-to-device.png', 201px, 90px);
-    }
-
-    footer {
-        border-radius: 0 0 6px 6px;
-    }
-}
-
-#modal #send-to-device {
-    display: block;
-}
-
-#modal .window .inner #modal-close {
-    top: -30px;
-}
-
-.send-to-device,
+#send-to-device,
 .send-to.button.green {
     display: none;
 }
@@ -632,9 +607,11 @@ a.go {
     .appstore-badge {
         display: none;
     }
-    .send-to-device,
     .send-to.button.green  {
         display: inline;
+    }
+    #send-to-device {
+        display: block;
     }
 }
 

@@ -593,119 +593,14 @@ html[dir="rtl"] #phone-wrapper figure {
 .js .show-widget {
     #send-to-device {
         display: block;
-        background: #005189;
-        border-radius: 6px;
-        color: #fff;
-        width: auto;
-        margin-right: @gridGutterWidth;
-
-        // largely appropriated from send-to-device.less
-        h2 {
-            max-width: none;
-            .font-size(24px);
-            padding-bottom: @baseLine;
-            color: #fff;
-        }
-
-        .form-container {
-            width: @widthMobileLandscape - @gridGutterWidth;
-
-            a,
-            a:active,
-            a:focus,
-            a:hover {
-                color: #fff;
-                text-decoration: underline;
-            }
-        }
-
-        footer {
-            padding: 0 (@baseLine / 2);
-            background: #005189;
-            border-radius: 0 0 6px 6px;
-            border-top: none;
-
-            ul.android {
-                text-align: center;
-
-                li {
-
-                    &.android-all,
-                    &.google-play {
-                        display: inline-block;
-                        width: auto;
-                    }
-
-                    &.google-play {
-                        margin-left: @baseLine;
-
-                        @media only screen and (max-width: @breakMobileLandscape) {
-                            margin-left: 0;
-                        }
-                    }
-
-                    a {
-                        display: block;
-                        padding: 0 0 @baseLine;
-                        line-height: 1.5;
-                        color: #fff;
-                        .font-size(14px);
-                        text-decoration: underline;
-                    }
-                }
-            }
-        }
-
-        .form-container {
-            width: auto;
-        }
-
-        #send-to-device-form {
-            .input {
-                label {
-                    text-align: center;
-                }
-
-                .inline-field {
-                    width: auto;
-
-                    .form-input {
-                        float: none;
-                        width: auto;
-                    }
-
-                    .form-submit {
-                        float: none;
-                        width: auto;
-                    }
-                }
-
-                #id-input {
-                    float: none;
-                    .border-box();
-                    display: block;
-                    width: 100%;
-                }
-
-                button[type="submit"] {
-                    display: block;
-                    float: none;
-                    width: 100%;
-                    margin-top: @baseLine;
-                }
-            }
-
-            .error-list li {
-                width: auto;
-            }
-        }
+        margin-right: @baseLine;
     }
 
     // Hide play store button for locales that get the widget
     .dl-button {
         display: none;
     }
-    
+
     #send-to-button-header,
     #send-to-button-footer {
         display: block;
