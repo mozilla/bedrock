@@ -7,7 +7,7 @@
 
 describe('core-datalayer.js', function() {
 
-    describe('PageId', function(){
+    describe('getPageId', function(){
         var html = document.documentElement;
 
         afterEach(function() {
@@ -25,6 +25,61 @@ describe('core-datalayer.js', function() {
         });
     });
 
+    describe('updateDataLayerPush', function() {
+        var linkElement;
+
+        beforeEach(function() {
+            var link = '<a id="link" href="https://www.mozilla.org/en-US/firefox/new/">';
+            $(link).appendTo('body');
+            linkElement = $('#link')[0];
+
+            window.dataLayer = [];
+            Mozilla.Analytics.updateDataLayerPush();
+        });
+
+        afterEach(function() {
+            $('body').remove('#link');
+            delete window.dataLayer;
+        });
+
+        it('will add newClickHref property to link click object when pushed to the dataLayer', function() {
+            window.dataLayer.push({
+                'event': 'gtm.linkClick',
+                'gtm.element': linkElement
+            });
+
+            expect(window.dataLayer[0].newClickHref).toBeDefined();
+        });
+
+        it('will not add newClickHref property to object pushed to dataLayer if not a link click object', function() {
+            window.dataLayer.push({
+                'event': 'gtm.click',
+                'gtm.element': linkElement
+            });
+
+            expect(window.dataLayer[0].newClickHref).toBeUndefined();
+        });
+
+        it('will keep host in newClickHref when clicked link\'s href host value is different thatn the page\'s', function() {
+            window.dataLayer.push({
+                'event': 'gtm.linkClick',
+                'gtm.element': linkElement
+            });
+
+            expect(window.dataLayer[0].newClickHref).toEqual('https://www.mozilla.org/en-US/firefox/new/');
+        });
+
+        it('will remove host  and locale in newClickHref when clicked link\'s href value matches the page\'s', function() {
+            linkElement.host = document.location.host;
+
+            window.dataLayer.push({
+                'event': 'gtm.linkClick',
+                'gtm.element': linkElement
+            });
+
+            expect(window.dataLayer[0].newClickHref).toEqual('/firefox/new/');
+        });
+    });
 });
 
 

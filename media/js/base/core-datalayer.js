@@ -25,6 +25,37 @@ if (typeof Mozilla == 'undefined') {
         return pageId ? pageId : pathName.replace(/\/[^\/]*/, '');
     };
 
+    /** Monkey patch for dataLayer.push
+    *   Adds href stripped of locale to link click objects when pushed to the dataLayer,
+    *   also removes protocol and host if same as parent page from href.
+    */
+    Analytics.updateDataLayerPush = function() {
+        var dataLayer = window.dataLayer = window.dataLayer || [];
+
+        dataLayer.defaultPush = dataLayer.push;
+        dataLayer.push = function() {
+            for (var i = 0; i < arguments.length; i++) {
+                if (arguments[i].event === 'gtm.linkClick') {
+                    var element = arguments[i]['gtm.element'];
+                    var href = element.href;
+
+                    if (element.hostname === document.location.hostname) {
+                        var path = href.split(element.host)[1];
+                        var locale = path.split('/')[1];
+
+                        arguments[i].newClickHref = path.replace('/' + locale, '');
+                    } else {
+                        arguments[i].newClickHref = href;
+                    }
+
+                    dataLayer.defaultPush(arguments[i]);
+                } else {
+                    dataLayer.defaultPush(arguments[i]);
+                }
+            }
+        };
+    };
+
     Mozilla.Analytics = Analytics;
 
 })();

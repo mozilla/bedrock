@@ -11,5 +11,7 @@ $(function() {
             'event': 'core-datalayer-loaded',
             'pageId': Mozilla.Analytics.getPageId()
         });
+
+        Mozilla.Analytics.updateDataLayerPush();
     }
 });
