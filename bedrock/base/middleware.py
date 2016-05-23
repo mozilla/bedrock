@@ -9,6 +9,7 @@ import urllib
 from warnings import warn
 
 from django.conf import settings
+from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponsePermanentRedirect, HttpResponse
 from django.utils.encoding import smart_str, force_text
 
@@ -82,6 +83,10 @@ class BasicAuthMiddleware(object):
     Middleware to protect the entire site with a single basic-auth username and password.
     Set the BASIC_AUTH_CREDS environment variable to enable.
     """
+    def __init__(self):
+        if not settings.BASIC_AUTH_CREDS:
+            raise MiddlewareNotUsed
+
     def process_request(self, request):
         required_auth = settings.BASIC_AUTH_CREDS
         if required_auth:
