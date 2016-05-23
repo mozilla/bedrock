@@ -61,7 +61,12 @@
   <div class="container">
     <header>
       <h1>{{ _('Almost done!') }}</h1>
-      <h2>{{ _('Sign in to Firefox and you’re good to go.') }}</h2>
+    {% if l10n_has_tag('firstrun_subhead_201605') %}
+      {# L10n: line break below is for visual formatting only #}
+      <h2>{{ _('Get your passwords, bookmarks<br> and history on the go.') }}</h2>
+    {% else %}
+      <h2 class="larger">{{ _('Sign in to Firefox and you’re good to go.') }}</h2>
+    {% endif %}
     </header>
 
     <main role="main">

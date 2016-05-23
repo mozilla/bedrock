@@ -58,7 +58,21 @@ header {
     }
 
     h2 {
+        .font-size(28px);
+        line-height: 1.1;
         margin-bottom: (@baseLine * 2);
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(24px);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(18px);
+        }
+    }
+
+    // old subhead - should be removed when L10n coverage for firstrun_subhead_201605 is complete
+    h2.larger {
         .font-size(2.5rem);
 
         @media only screen and (max-width: @breakTablet) {
@@ -68,6 +82,15 @@ header {
         @media only screen and (max-width: @breakMobileLandscape) {
             .font-size(1.3rem);
         }
+    }
+}
+
+// control subhead line break for en-* languages only
+html[lang^='en'] header h2 br {
+    display: none;
+
+    @media only screen and (max-width: @breakTablet) {
+        display: block;
     }
 }
 
