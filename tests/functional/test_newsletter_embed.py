@@ -8,6 +8,12 @@ from selenium.common.exceptions import TimeoutException
 from pages.home import HomePage
 from pages.about import AboutPage
 from pages.contribute.contribute import ContributePage
+from pages.contribute.task.twitter import TwitterTaskPage
+from pages.contribute.task.mobile import MobileTaskPage
+from pages.contribute.task.encryption import EncryptionTaskPage
+from pages.contribute.task.joy_of_coding import JoyOfCodingTaskPage
+from pages.contribute.task.dev_tools_challenger import DevToolsChallengerTaskPage
+from pages.contribute.task.stumbler import StumblerTaskPage
 from pages.mission import MissionPage
 from pages.firefox.all import FirefoxAllPage
 from pages.firefox.desktop.desktop import DesktopPage
@@ -25,6 +31,12 @@ from pages.smarton.base import SmartOnBasePage
     pytest.mark.smoke((HomePage, None)),
     (AboutPage, None),
     pytest.mark.smoke((ContributePage, None)),
+    (TwitterTaskPage, None),
+    (MobileTaskPage, None),
+    (EncryptionTaskPage, None),
+    (JoyOfCodingTaskPage, None),
+    (DevToolsChallengerTaskPage, None),
+    (StumblerTaskPage, None),
     (MissionPage, None),
     (FirefoxAllPage, None),
     pytest.mark.smoke((DesktopPage, None)),
