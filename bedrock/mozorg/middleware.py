@@ -7,6 +7,7 @@ from email.utils import formatdate
 import time
 
 from django.conf import settings
+from django.core.exceptions import MiddlewareNotUsed
 
 from django_statsd.middleware import GraphiteRequestTimingMiddleware
 
@@ -50,6 +51,9 @@ class ClacksOverheadMiddleware(object):
 
 class HostnameMiddleware(object):
     def __init__(self):
+        if not settings.ENABLE_HOSTNAME_MIDDLEWARE:
+            raise MiddlewareNotUsed
+
         values = [getattr(settings, x) for x in ['HOSTNAME', 'DEIS_APP', 'DEIS_DOMAIN']]
         self.backend_server = '.'.join(x for x in values if x)
 
@@ -59,6 +63,10 @@ class HostnameMiddleware(object):
 
 
 class VaryNoCacheMiddleware(object):
+    def __init__(self):
+        if not settings.ENABLE_VARY_NOCACHE_MIDDLEWARE:
+            raise MiddlewareNotUsed
+
     @staticmethod
     def process_response(request, response):
         if 'vary' in response:

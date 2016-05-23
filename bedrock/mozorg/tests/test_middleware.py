@@ -30,6 +30,7 @@ class TestClacksOverheadMiddleware(TestCase):
         self.assertNotIn('X-Clacks-Overhead', self.response)
 
 
+@override_settings(ENABLE_HOSTNAME_MIDDLEWARE=True)
 class TestHostnameMiddleware(TestCase):
     @override_settings(HOSTNAME='foobar', DEIS_APP='bedrock-dev', DEIS_DOMAIN='example.com')
     def test_base(self):
