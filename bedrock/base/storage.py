@@ -4,10 +4,12 @@
 
 # This is here so that we can mix storages as we need.
 
+from django.conf import settings
 from django.contrib.staticfiles.storage import ManifestStaticFilesStorage
 
 from pipeline.storage import PipelineMixin
 
 
 class ManifestPipelineStorage(PipelineMixin, ManifestStaticFilesStorage):
-    pass
+    # turn off bundling in debug mode
+    packing = not settings.DEBUG
