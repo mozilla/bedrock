@@ -9,7 +9,7 @@ from pages.firefox.desktop.customize import CustomizePage
 
 @pytest.mark.nondestructive
 def test_customizer_click_nav_links(base_url, selenium):
-    page = CustomizePage(base_url, selenium).open()
+    page = CustomizePage(selenium, base_url).open()
     links = page.customize_links
     sections = page.customize_sections
     assert sections[0].is_displayed
@@ -22,7 +22,7 @@ def test_customizer_click_nav_links(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_customizer_click_next(base_url, selenium):
-    page = CustomizePage(base_url, selenium).open()
+    page = CustomizePage(selenium, base_url).open()
     sections = page.customize_sections
     assert sections[0].is_displayed
     for i in range(len(sections)):
@@ -33,7 +33,7 @@ def test_customizer_click_next(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_theme_buttons(base_url, selenium):
-    page = CustomizePage(base_url, selenium).open()
+    page = CustomizePage(selenium, base_url).open()
     themes = page.themes
     assert themes[-1].is_selected
     assert themes[-1].is_image_displayed
@@ -45,5 +45,5 @@ def test_theme_buttons(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_sync_button_displayed(base_url, selenium):
-    page = CustomizePage(base_url, selenium).open()
+    page = CustomizePage(selenium, base_url).open()
     assert page.is_sync_button_displayed

@@ -11,7 +11,7 @@ from pages.newsletter import NewsletterPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_default_values(base_url, selenium):
-    page = NewsletterPage(base_url, selenium).open()
+    page = NewsletterPage(selenium, base_url).open()
     assert '' == page.email
     assert 'United States' == page.country
     assert 'English' == page.language
@@ -23,7 +23,7 @@ def test_default_values(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_successful_sign_up(base_url, selenium):
-    page = NewsletterPage(base_url, selenium).open()
+    page = NewsletterPage(selenium, base_url).open()
     page.type_email('success@example.com')
     page.select_country('United Kingdom')
     page.select_language('Polski')
@@ -35,6 +35,6 @@ def test_successful_sign_up(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_sign_up_fails_when_missing_required_fields(base_url, selenium):
-    page = NewsletterPage(base_url, selenium).open()
+    page = NewsletterPage(selenium, base_url).open()
     with pytest.raises(TimeoutException):
         page.click_sign_me_up()

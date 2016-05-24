@@ -9,14 +9,14 @@ from pages.smarton.landing import SmartOnLandingPage
 
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
-    page = SmartOnLandingPage(base_url, selenium).open()
+    page = SmartOnLandingPage(selenium, base_url).open()
     tracking_page = page.open_tracking()
-    assert tracking_page.url in selenium.current_url
+    assert tracking_page.seed_url in selenium.current_url
 
     page.open()
     security_page = page.open_security()
-    assert security_page.url in selenium.current_url
+    assert security_page.seed_url in selenium.current_url
 
     page.open()
     surveillance_page = page.open_surveillance()
-    assert surveillance_page.url in selenium.current_url
+    assert surveillance_page.seed_url in selenium.current_url

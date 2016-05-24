@@ -10,12 +10,12 @@ from pages.regions.modal import Modal
 
 class ContributePage(ContributeBasePage):
 
-    _url = '{base_url}/{locale}/contribute'
+    URL_TEMPLATE = '/{locale}/contribute'
 
     _video_play_locator = (By.CSS_SELECTOR, '.video-play')
 
     def play_video(self):
         modal = Modal(self)
-        self.find_element(self._video_play_locator).click()
+        self.find_element(*self._video_play_locator).click()
         self.wait.until(lambda s: modal.is_displayed)
         return modal

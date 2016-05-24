@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class InstallerHelpPage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/installer-help'
+    URL_TEMPLATE = '/{locale}/firefox/installer-help'
 
     _firefox_download_button_locator = (By.ID, 'download-button-desktop-release')
     _beta_download_button_locator = (By.ID, 'download-button-desktop-beta')
@@ -18,15 +18,15 @@ class InstallerHelpPage(FirefoxBasePage):
 
     @property
     def firefox_download_button(self):
-        el = self.find_element(self._firefox_download_button_locator)
+        el = self.find_element(*self._firefox_download_button_locator)
         return DownloadButton(self, root=el)
 
     @property
     def beta_download_button(self):
-        el = self.find_element(self._beta_download_button_locator)
+        el = self.find_element(*self._beta_download_button_locator)
         return DownloadButton(self, root=el)
 
     @property
     def dev_edition_download_button(self):
-        el = self.find_element(self._dev_edition_download_button_locator)
+        el = self.find_element(*self._dev_edition_download_button_locator)
         return DownloadButton(self, root=el)

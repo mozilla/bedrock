@@ -10,7 +10,7 @@ from pages.firefox.os.tv import TVPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_next_previous_buttons(base_url, selenium):
-    page = TVPage(base_url, selenium).open()
+    page = TVPage(selenium, base_url).open()
     assert not page.is_previous_enabled
     screens = page.screens
     thumbnails = page.thumbnails
@@ -31,7 +31,7 @@ def test_next_previous_buttons(base_url, selenium):
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_click_thumbnails(base_url, selenium):
-    page = TVPage(base_url, selenium).open()
+    page = TVPage(selenium, base_url).open()
     screens = page.screens
     thumbnails = page.thumbnails
     assert screens[0].is_displayed

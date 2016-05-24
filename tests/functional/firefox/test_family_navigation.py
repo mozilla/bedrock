@@ -14,7 +14,7 @@ from pages.firefox.family_navigation import FirefoxPage
     pytest.mark.smoke(('ios')),
     pytest.mark.smoke(('features'))])
 def test_family_navigation_active_nav(slug, base_url, selenium):
-    page = FirefoxPage(base_url, selenium, slug=slug).open()
+    page = FirefoxPage(selenium, base_url, slug=slug).open()
     assert page.family_navigation.active_primary_nav_id == slug
 
 
@@ -29,6 +29,6 @@ def test_family_navigation_active_nav(slug, base_url, selenium):
     ('interest-dashboard'),
     pytest.mark.smoke(('ios'))])
 def test_family_navigation_adjunct_menu(slug, base_url, selenium):
-    page = FirefoxPage(base_url, selenium, slug=slug).open()
+    page = FirefoxPage(selenium, base_url, slug=slug).open()
     page.family_navigation.open_adjunct_menu()
     assert page.family_navigation.is_adjunct_menu_displayed

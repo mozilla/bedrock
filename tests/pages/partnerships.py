@@ -4,12 +4,12 @@
 
 from selenium.webdriver.common.by import By
 
-from base import BasePage
+from pages.base import BasePage
 
 
 class PartnershipsPage(BasePage):
 
-    _url = '{base_url}/{locale}/about/partnerships'
+    URL_TEMPLATE = '/{locale}/about/partnerships'
 
     _first_name_locator = (By.ID, 'first_name')
     _last_name_locator = (By.ID, 'last_name')
@@ -19,21 +19,21 @@ class PartnershipsPage(BasePage):
     _thank_you_locator = (By.ID, 'partner-form-success')
 
     def type_first_name(self, value):
-        self.find_element(self._first_name_locator).send_keys(value)
+        self.find_element(*self._first_name_locator).send_keys(value)
 
     def type_last_name(self, value):
-        self.find_element(self._last_name_locator).send_keys(value)
+        self.find_element(*self._last_name_locator).send_keys(value)
 
     def type_company(self, value):
-        self.find_element(self._company_locator).send_keys(value)
+        self.find_element(*self._company_locator).send_keys(value)
 
     def type_email(self, value):
-        self.find_element(self._email_locator).send_keys(value)
+        self.find_element(*self._email_locator).send_keys(value)
 
     def submit_request(self):
-        self.find_element(self._submit_request_locator).click()
+        self.find_element(*self._submit_request_locator).click()
         self.wait.until(lambda s: self.request_successful)
 
     @property
     def request_successful(self):
-        return self.is_element_displayed(self._thank_you_locator)
+        return self.is_element_displayed(*self._thank_you_locator)

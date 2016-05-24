@@ -10,7 +10,7 @@ from pages.firefox.products import ProductsPage
 @pytest.mark.skip_if_firefox(reason='Download bar is not shown for up-to-date Firefox browsers.')
 @pytest.mark.nondestructive
 def test_download_bar_displayed(base_url, selenium):
-    page = ProductsPage(base_url, selenium).open()
+    page = ProductsPage(selenium, base_url).open()
     download_bar = page.download_bar
     assert download_bar.is_download_firefox_message_displayed
     download_bar.close()

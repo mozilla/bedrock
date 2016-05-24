@@ -15,5 +15,5 @@ from pages.firefox.desktop.all import FirefoxDesktopBasePage
     ('fast'),
     ('trust')])
 def test_download_button_is_displayed(slug, base_url, selenium):
-    page = FirefoxDesktopBasePage(base_url, selenium, slug=slug).open()
+    page = FirefoxDesktopBasePage(selenium, base_url, slug=slug).open()
     assert page.download_button.is_displayed

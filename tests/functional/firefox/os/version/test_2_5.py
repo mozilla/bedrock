@@ -10,6 +10,6 @@ from pages.firefox.os.os import FirefoxOSPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
-    page = FirefoxOSPage(base_url, selenium).open()
+    page = FirefoxOSPage(selenium, base_url).open()
     assert page.is_primary_download_button_displayed
     assert page.is_secondary_download_button_displayed

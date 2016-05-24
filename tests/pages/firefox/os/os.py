@@ -9,7 +9,7 @@ from pages.firefox.base import FirefoxBasePage
 
 class FirefoxOSPage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/os'
+    URL_TEMPLATE = '/{locale}/firefox/os'
 
     _primary_download_locator = (By.CSS_SELECTOR, '.hero-content .cta-button')
     _secondary_download_locator = (By.CSS_SELECTOR, '.fxos-try .cta-button')
@@ -17,12 +17,12 @@ class FirefoxOSPage(FirefoxBasePage):
 
     @property
     def is_primary_download_button_displayed(self):
-        return self.is_element_displayed(self._primary_download_locator)
+        return self.is_element_displayed(*self._primary_download_locator)
 
     @property
     def is_secondary_download_button_displayed(self):
-        return self.is_element_displayed(self._secondary_download_locator)
+        return self.is_element_displayed(*self._secondary_download_locator)
 
     @property
     def is_news_displayed(self):
-        return self.is_element_displayed(self._news_links_locator)
+        return self.is_element_displayed(*self._news_links_locator)

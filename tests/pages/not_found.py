@@ -4,17 +4,17 @@
 
 from selenium.webdriver.common.by import By
 
-from base import BasePage
+from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
 
 
 class NotFoundPage(BasePage):
 
-    _url = '{base_url}/{locale}/404'
+    URL_TEMPLATE = '/{locale}/404'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
 
     @property
     def download_button(self):
-        el = self.find_element(self._download_button_locator)
+        el = self.find_element(*self._download_button_locator)
         return DownloadButton(self, root=el)

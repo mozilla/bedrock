@@ -11,7 +11,7 @@ from pages.contribute.friends import ContributeFriendsPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_signup_default_values(base_url, selenium):
-    page = ContributeFriendsPage(base_url, selenium).open()
+    page = ContributeFriendsPage(selenium, base_url).open()
     page.click_show_signup_form()
     assert page.is_signup_form_displayed
     assert '' == page.email
@@ -24,7 +24,7 @@ def test_signup_default_values(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_successful_sign_up(base_url, selenium):
-    page = ContributeFriendsPage(base_url, selenium).open()
+    page = ContributeFriendsPage(selenium, base_url).open()
     page.click_show_signup_form()
     page.type_email('success@example.com')
     page.select_country('Germany')
@@ -36,7 +36,7 @@ def test_successful_sign_up(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_sign_up_fails_when_missing_required_fields(base_url, selenium):
-    page = ContributeFriendsPage(base_url, selenium).open()
+    page = ContributeFriendsPage(selenium, base_url).open()
     page.click_show_signup_form()
     with pytest.raises(TimeoutException):
         page.click_sign_me_up()

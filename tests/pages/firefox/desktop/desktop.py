@@ -10,14 +10,14 @@ from pages.regions.download_button import DownloadButton
 
 class DesktopPage(FirefoxDesktopBasePage):
 
-    _url = '{base_url}/{locale}/firefox/desktop'
+    URL_TEMPLATE = '/{locale}/firefox/desktop'
 
     _primary_download_locator = (By.CSS_SELECTOR, '#overview-intro-download-wrapper .download-button')
     _secondary_download_locator = (By.CSS_SELECTOR, '#subscribe-download-wrapper .download-button')
 
     @property
     def primary_download_button(self):
-        el = self.find_element(self._primary_download_locator)
+        el = self.find_element(*self._primary_download_locator)
         return DownloadButton(self, root=el)
 
     def wait_for_download_button_to_display(self):

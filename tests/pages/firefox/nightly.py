@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class FirstRunPage(BasePage):
 
-    _url = '{base_url}/{locale}/firefox/nightly/firstrun'
+    URL_TEMPLATE = '/{locale}/firefox/nightly/firstrun'
 
     _start_testing_locator = (By.CSS_SELECTOR, '#nightly-box .test .button')
     _start_coding_locator = (By.CSS_SELECTOR, '#nightly-box .code .button')
@@ -17,12 +17,12 @@ class FirstRunPage(BasePage):
 
     @property
     def is_start_testing_displayed(self):
-        return self.is_element_displayed(self._start_testing_locator)
+        return self.is_element_displayed(*self._start_testing_locator)
 
     @property
     def is_start_coding_displayed(self):
-        return self.is_element_displayed(self._start_coding_locator)
+        return self.is_element_displayed(*self._start_coding_locator)
 
     @property
     def is_start_localizing_displayed(self):
-        return self.is_element_displayed(self._start_localizing_locator)
+        return self.is_element_displayed(*self._start_localizing_locator)

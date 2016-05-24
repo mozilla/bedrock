@@ -4,13 +4,13 @@
 
 from selenium.webdriver.common.by import By
 
+from pages.firefox.base import FirefoxBaseRegion
 from pages.firefox.desktop.all import FirefoxDesktopBasePage
-from pages.firefox.base import FirefoxBasePageRegion
 
 
 class CustomizePage(FirefoxDesktopBasePage):
 
-    _url = '{base_url}/{locale}/firefox/desktop/customize'
+    URL_TEMPLATE = '/{locale}/firefox/desktop/customize'
 
     _customize_link_locator = (By.CSS_SELECTOR, '#customizer-list > li')
     _customize_section_locator = (By.CSS_SELECTOR, '#customizers-wrapper > section')
@@ -19,69 +19,69 @@ class CustomizePage(FirefoxDesktopBasePage):
 
     @property
     def is_sync_button_displayed(self):
-        return self.is_element_displayed(self._sync_button_locator)
+        return self.is_element_displayed(*self._sync_button_locator)
 
     @property
     def customize_links(self):
         return [CustomizeLink(self, root=el) for el in
-                self.find_elements(self._customize_link_locator)]
+                self.find_elements(*self._customize_link_locator)]
 
     @property
     def customize_sections(self):
         return [CustomizeSection(self, root=el) for el in
-                self.find_elements(self._customize_section_locator)]
+                self.find_elements(*self._customize_section_locator)]
 
     @property
     def themes(self):
         return [Theme(self, root=el) for el in
-                self.find_elements(self._theme_button_locator)]
+                self.find_elements(*self._theme_button_locator)]
 
 
-class CustomizeLink(FirefoxBasePageRegion):
+class CustomizeLink(FirefoxBaseRegion):
 
     _customize_link_locator = (By.CLASS_NAME, 'show-customizer')
 
     def click(self):
         section = next(s for s in self.page.customize_sections if s.is_displayed)
-        self.scroll_element_into_view(self._customize_link_locator).click()
+        self.scroll_element_into_view(*self._customize_link_locator).click()
         self.wait.until(lambda s: not section.is_displayed)
 
     @property
     def is_selected(self):
         return 'selected' in self.find_element(
-            self._customize_link_locator).get_attribute('class')
+            *self._customize_link_locator).get_attribute('class')
 
 
-class CustomizeSection(FirefoxBasePageRegion):
+class CustomizeSection(FirefoxBaseRegion):
 
     _next_link_locator = (By.CLASS_NAME, 'next')
 
     def click_next(self):
-        self.scroll_element_into_view(self._next_link_locator).click()
+        self.scroll_element_into_view(*self._next_link_locator).click()
         self.wait.until(lambda s: not self.is_displayed)
 
     @property
     def is_displayed(self):
-        return self._root.is_displayed()
+        return self.root.is_displayed()
 
 
-class Theme(FirefoxBasePageRegion):
+class Theme(FirefoxBaseRegion):
 
     _theme_thumbs_locator = (By.ID, 'themes-thumbs')
     _theme_demo_image_locator = (By.ID, 'theme-demo')
 
     @property
     def is_image_displayed(self):
-        theme = self._root.get_attribute('id')
-        image = self.page.find_element(self._theme_demo_image_locator)
+        theme = self.root.get_attribute('id')
+        image = self.page.find_element(*self._theme_demo_image_locator)
         return (theme in image.get_attribute('src') and
-                self.page.is_element_displayed(self._theme_demo_image_locator))
+                self.page.is_element_displayed(*self._theme_demo_image_locator))
 
     @property
     def is_selected(self):
-        return 'selected' in self._root.get_attribute('class')
+        return 'selected' in self.root.get_attribute('class')
 
     def click_button(self):
-        self.page.scroll_element_into_view(self._theme_thumbs_locator)
-        self._root.click()
+        self.page.scroll_element_into_view(*self._theme_thumbs_locator)
+        self.root.click()
         self.wait.until(lambda s: self.is_image_displayed)

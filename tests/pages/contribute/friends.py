@@ -11,7 +11,7 @@ from pages.contribute.base import ContributeBasePage
 
 class ContributeFriendsPage(ContributeBasePage):
 
-    _url = '{base_url}/{locale}/contribute/friends'
+    URL_TEMPLATE = '/{locale}/contribute/friends'
 
     _email_locator = (By.ID, 'id_email')
     _country_locator = (By.ID, 'id_country')
@@ -26,59 +26,59 @@ class ContributeFriendsPage(ContributeBasePage):
 
     @property
     def email(self):
-        return self.find_element(self._email_locator).get_attribute('value')
+        return self.find_element(*self._email_locator).get_attribute('value')
 
     @property
     def country(self):
-        el = self.find_element(self._country_locator)
+        el = self.find_element(*self._country_locator)
         return el.find_element(By.CSS_SELECTOR, 'option[selected]').text
 
     @property
     def html_format_selected(self):
-        return self.find_element(self._html_format_locator).is_selected()
+        return self.find_element(*self._html_format_locator).is_selected()
 
     @property
     def is_signup_form_displayed(self):
-        return self.is_element_displayed(self._signup_form_locator)
+        return self.is_element_displayed(*self._signup_form_locator)
 
     @property
     def is_privacy_policy_link_displayed(self):
-        return self.is_element_displayed(self._privacy_policy_link_locator)
+        return self.is_element_displayed(*self._privacy_policy_link_locator)
 
     @property
     def privacy_policy_accepted(self):
-        el = self.find_element(self._privacy_policy_checkbox_locator)
+        el = self.find_element(*self._privacy_policy_checkbox_locator)
         return el.is_selected()
 
     @property
     def sign_up_successful(self):
-        return self.is_element_displayed(self._thank_you_locator)
+        return self.is_element_displayed(*self._thank_you_locator)
 
     @property
     def text_format_selected(self):
-        return self.find_element(self._text_format_locator).is_selected()
+        return self.find_element(*self._text_format_locator).is_selected()
 
     def accept_privacy_policy(self):
-        el = self.find_element(self._privacy_policy_checkbox_locator)
+        el = self.find_element(*self._privacy_policy_checkbox_locator)
         assert not el.is_selected(), 'Privacy policy has already been accepted'
         el.click()
         assert el.is_selected(), 'Privacy policy has not been accepted'
 
     def click_show_signup_form(self):
         assert not self.is_signup_form_displayed, 'Form is already displayed'
-        self.find_element(self._show_signup_form_button_locator).click()
+        self.find_element(*self._show_signup_form_button_locator).click()
         self.wait.until(lambda s: self.is_privacy_policy_link_displayed)
 
     def click_sign_me_up(self):
-        self.find_element(self._submit_button_locator).click()
+        self.find_element(*self._submit_button_locator).click()
         self.wait.until(expected.visibility_of_element_located(self._thank_you_locator))
 
     def select_country(self, value):
-        el = self.find_element(self._country_locator)
+        el = self.find_element(*self._country_locator)
         Select(el).select_by_visible_text(value)
 
     def select_text_format(self):
-        self.find_element(self._text_format_locator).click()
+        self.find_element(*self._text_format_locator).click()
 
     def type_email(self, value):
-        self.find_element(self._email_locator).send_keys(value)
+        self.find_element(*self._email_locator).send_keys(value)

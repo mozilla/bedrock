@@ -9,11 +9,11 @@ from pages.contribute.events import ContributeEventsPage
 
 @pytest.mark.nondestructive
 def test_events_table_is_displayed(base_url, selenium):
-    page = ContributeEventsPage(base_url, selenium).open()
+    page = ContributeEventsPage(selenium, base_url).open()
     assert page.events_table_is_displayed
 
 
 @pytest.mark.nondestructive
 def test_next_event_is_displayed(base_url, selenium):
-    page = ContributeEventsPage(base_url, selenium).open()
+    page = ContributeEventsPage(selenium, base_url).open()
     assert page.next_event_is_displayed

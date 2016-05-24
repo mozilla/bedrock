@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class HelloPage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/hello'
+    URL_TEMPLATE = '/{locale}/firefox/hello'
 
     _try_hello_header_locator = (By.CSS_SELECTOR, '#try-hello .try-hello-button')
     _try_hello_footer_locator = (By.CSS_SELECTOR, '#share-hello .try-hello-button')
@@ -19,18 +19,18 @@ class HelloPage(FirefoxBasePage):
 
     @property
     def is_try_hello_header_button_displayed(self):
-        return self.is_element_displayed(self._try_hello_header_locator)
+        return self.is_element_displayed(*self._try_hello_header_locator)
 
     @property
     def is_try_hello_footer_button_displayed(self):
-        return self.is_element_displayed(self._try_hello_footer_locator)
+        return self.is_element_displayed(*self._try_hello_footer_locator)
 
     @property
     def primary_download_button(self):
-        el = self.find_element(self._primary_download_locator)
+        el = self.find_element(*self._primary_download_locator)
         return DownloadButton(self, root=el)
 
     @property
     def secondary_download_button(self):
-        el = self.find_element(self._secondary_download_locator)
+        el = self.find_element(*self._secondary_download_locator)
         return DownloadButton(self, root=el)

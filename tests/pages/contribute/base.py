@@ -13,4 +13,4 @@ class ContributeBasePage(BasePage):
 
     @property
     def next_event_is_displayed(self):
-        return self.is_element_displayed(self._next_event_link_locator)
+        return self.is_element_displayed(*self._next_event_link_locator)

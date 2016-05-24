@@ -10,5 +10,5 @@ from pages.not_found import NotFoundPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_is_download_button_displayed(base_url, selenium):
-    page = NotFoundPage(base_url, selenium).open()
+    page = NotFoundPage(selenium, base_url).open()
     assert page.download_button.is_displayed
