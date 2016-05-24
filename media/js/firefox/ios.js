@@ -14,9 +14,8 @@ if (typeof window.Mozilla === 'undefined') {
     var $html = $('html');
     var $body = $('body');
 
-    // send-to-device form
-    var $widget = $('#send-to-modal-container');
-    var sendToDeviceForm = new Mozilla.SendToDevice();
+    // does page locale have send to device?
+    var hasWidget = $('#intro .get-fxios').hasClass('show-widget');
 
     // Sync instructions
     var $instructions = $('#sync-instructions');
@@ -95,17 +94,33 @@ if (typeof window.Mozilla === 'undefined') {
         $body.addClass(stateClass);
     };
 
+    function initSendToDeviceForm() {
+        // only initialize send to device if locale has the widget
+        if (!hasWidget) {
+            return;
+        }
+
+        var sendToDeviceForm = new Mozilla.SendToDevice();
+        var sendToDeviceWidgetTop = $('#send-to-device').offset().top;
+
+        // initialize send to device form
+        sendToDeviceForm.init();
+
+        // scroll to send to device form when header button is clicked
+        $('.send-to').on('click', function(e) {
+            e.preventDefault();
+
+            Mozilla.smoothScroll({
+                top: sendToDeviceWidgetTop - 100
+            });
+        });
+    }
+
     // initialize page state
     initState();
 
     // initialize send to device form
-    sendToDeviceForm.init();
-
-    // open send to device form in modal
-    $('.send-to').on('click', function(e) {
-        e.preventDefault();
-        Mozilla.Modal.createModal(this, $widget);
-    });
+    initSendToDeviceForm();
 
     // Firefox Sync sign in flow button
     $('.sync-button').on('click', function(e) {

@@ -57,7 +57,7 @@ Usage
 
   If you need a customized App Store URL (e.g. including page-specific parameters), you can pass ``ios_link``::
 
-      {{ send_to_device(ios_link=settings.APPLE_APPSTORE_FIREFOX_LINK + '&ct=mozorg-ios_page-appstore-button') }}
+      {{ send_to_device(ios_link=firefox_ios_url('mozorg-ios_page-appstore-button_sd') }}
 
 5. Initialize the widget:
 
@@ -70,3 +70,13 @@ Example
 -------
 
 You can view a simple example by navigating to ``/styleguide/docs/send-to-device/`` in your local development environment (not available in production).
+
+Micro embedded form
+-------------------
+
+A micro embedded version of the send to device form is also available when targeting a
+single platform (e.g. ``platform='android'`` or ``platform='ios'``).
+
+The styles can be applied by using the following LESS file (instead of the regular stylesheet):
+
+  - ``'css/base/send-to-device-micro.less'``

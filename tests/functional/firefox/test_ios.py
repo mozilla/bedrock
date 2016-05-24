@@ -11,9 +11,7 @@ from pages.firefox.ios import IOSPage
 @pytest.mark.nondestructive
 def test_send_to_device_sucessful_submission(base_url, selenium):
     page = IOSPage(base_url, selenium).open()
-    page.click_get_it_now()
     send_to_device = page.send_to_device
-    assert page.send_to_device.is_displayed
     send_to_device.type_email('success@example.com')
     send_to_device.click_send()
     assert send_to_device.send_successful
@@ -23,7 +21,6 @@ def test_send_to_device_sucessful_submission(base_url, selenium):
 def test_send_to_device_fails_when_missing_required_fields(base_url, selenium):
     page = IOSPage(base_url, selenium).open()
     with pytest.raises(TimeoutException):
-        page.click_get_it_now()
         page.send_to_device.click_send()
 
 
@@ -31,4 +28,4 @@ def test_send_to_device_fails_when_missing_required_fields(base_url, selenium):
 def test_send_to_device_not_supported_locale(base_url, selenium):
     page = IOSPage(base_url, selenium, locale='it').open()
     assert page.is_app_store_button_displayed
-    assert not page.is_get_it_now_button_displayed
+    assert not page.send_to_device.is_displayed

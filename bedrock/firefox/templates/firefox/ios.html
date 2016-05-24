@@ -50,9 +50,8 @@
       <p class="appstore-badge">
         <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS"><img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}"></a>
       </p>
-      <p class="send-to-device">
-        <button class="send-to button green" data-button-name="Get it now">{{ _('Get it now') }}</button>
-      </p>
+
+      {{ send_to_device(platform='ios', title_text=_('Send Firefox to your iOS device'), ios_link=firefox_ios_url('mozorg-ios_page-appstore-button_sd'), spinner_color='#fff') }}
     </div>
 
     <p class="android-link">
@@ -134,12 +133,6 @@
     </ul>
   </div>{# /.container #}
 </section>
-{% endif %}
-
-{% if has_widget %}
-  <div id="send-to-modal-container">
-    {{ send_to_device(platform='ios', title_text=_('Send Firefox to your iOS device'), ios_link=firefox_ios_url('mozorg-ios_page-appstore-button_sd')) }}
-  </div>
 {% endif %}
 
 <aside id="sync-instructions">

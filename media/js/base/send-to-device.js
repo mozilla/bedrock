@@ -28,6 +28,7 @@ if (typeof Mozilla === 'undefined') {
         this.$footerLinks = this.$widget.find('footer > ul');
         this.$sendAnotherLink = this.$form.find('.send-another');
         this.$formHeading = this.$widget.find('.form-heading');
+        this.spinnerColor = this.$widget.data('spinnerColor') || '#000';
 
         this.spinner = new Spinner({
             lines: 12, // The number of lines to draw
@@ -37,7 +38,7 @@ if (typeof Mozilla === 'undefined') {
             corners: 0, // Corner roundness (0..1)
             rotate: 0, // The rotation offset
             direction: 1, // 1: clockwise, -1: counterclockwise
-            color: '#000', // #rgb or #rrggbb or array of colors
+            color: this.spinnerColor, // #rgb or #rrggbb or array of colors
             speed: 1, // Rounds per second
             trail: 60, // Afterglow percentage
             shadow: false, // Whether to render a shadow
