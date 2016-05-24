@@ -53,6 +53,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/about-lean-data-bundle.css',
     },
+    'about-transparency': {
+        'source_filenames': (
+            'css/base/mozilla-accordion.less',
+            'css/mozorg/about-transparency.less',
+        ),
+        'output_filename': 'css/about-transparency-bundle.css',
+    },
     'about-patents': {
         'source_filenames': (
             'css/mozorg/about-patents.less',
@@ -1029,6 +1036,14 @@ PIPELINE_JS = {
             'js/base/mozilla-accordion-gatrack.js',
         ),
         'output_filename': 'js/accordion-bundle.js',
+    },
+    'about-transparency': {
+        'source_filenames': (
+            'js/base/mozilla-accordion.js',
+            'js/base/mozilla-accordion-gatrack.js',
+            'js/mozorg/about-transparency.js',
+        ),
+        'output_filename': 'js/about-transparency-bundle.js',
     },
     'dnt': {
         'source_filenames': (
