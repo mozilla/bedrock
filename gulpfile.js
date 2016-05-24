@@ -2,12 +2,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/* global __dirname, require */
+/* global __dirname, require, process */
 
 var gulp = require('gulp');
 var karma = require('karma');
 var eslint = require('gulp-eslint');
 var watch = require('gulp-watch');
+var spawn = require('child_process').spawn;
 
 var lintPaths = [
     'media/js/**/*.js',
@@ -15,6 +16,14 @@ var lintPaths = [
     'tests/unit/spec/**/*.js',
     'gulpfile.js'
 ];
+
+gulp.task('serve:backend', function () {
+    process.env.PYTHONUNBUFFERED = 1;
+    process.env.PYTHONDONTWRITEBITECODE = 1;
+    spawn('python', ['manage.py', 'runserver'], {
+        stdio: 'inherit'
+    });
+});
 
 gulp.task('media:watch', function () {
     return gulp.src('./media/**/*')
@@ -39,6 +48,7 @@ gulp.task('js:lint', function() {
 });
 
 gulp.task('default', function() {
+    gulp.start('serve:backend');
     gulp.start('media:watch');
     gulp.watch(lintPaths, ['js:lint']);
 });
