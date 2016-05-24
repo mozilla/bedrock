@@ -5,26 +5,15 @@
 (function($, Mozilla) {
     'use strict';
 
-    var $ffShowSignupForm = $('#ff-show-signup-form');
-    var $ffSignupArea = $('#ff-signup');
+    var $newsletters = $('#id_newsletters');
+    var $chkFxAndYou = $('#id_fx-and-you');
 
-    $ffShowSignupForm.on('click', function() {
-        $ffShowSignupForm.addClass('invisible').off('click');
-
-        // slide the form container down
-        $ffSignupArea.slideDown('normal', function() {
-            $('#id_email').focus();
-
-            // scroll to top of revealed form
-            Mozilla.smoothScroll({
-                top: $ffSignupArea.offset().top - 60
-            });
-        });
-
-        window.dataLayer.push({
-            'event': 'firefox-sync-interaction',
-            'interaction': 'display signup form'
-        });
+    $chkFxAndYou.on('change', function() {
+        if ($chkFxAndYou.prop('checked')) {
+            $newsletters.val($newsletters.val() + ',mozilla-and-you');
+        } else {
+            $newsletters.val($newsletters.val().replace(',mozilla-and-you', ''));
+        }
     });
 
     Mozilla.SVGImage.fallback();

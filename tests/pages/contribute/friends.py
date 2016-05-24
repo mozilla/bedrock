@@ -14,11 +14,12 @@ class ContributeFriendsPage(ContributeBasePage):
     URL_TEMPLATE = '/{locale}/contribute/friends'
 
     _email_locator = (By.ID, 'id_email')
+    _fx_and_you_locator = (By.ID, 'id_fx-and-you')
     _country_locator = (By.ID, 'id_country')
     _html_format_locator = (By.ID, 'id_fmt_0')
+    _newsletters_locator = (By.ID, 'id_newsletters')
     _privacy_policy_checkbox_locator = (By.ID, 'id_privacy')
     _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] span a')
-    _show_signup_form_button_locator = (By.ID, 'ff-show-signup-form')
     _signup_form_locator = (By.ID, 'newsletter-form')
     _submit_button_locator = (By.ID, 'footer_email_submit')
     _text_format_locator = (By.ID, 'id_fmt_1')
@@ -46,6 +47,10 @@ class ContributeFriendsPage(ContributeBasePage):
         return self.is_element_displayed(*self._privacy_policy_link_locator)
 
     @property
+    def newsletters(self):
+        return self.find_element(*self._newsletters_locator).get_attribute('value')
+
+    @property
     def privacy_policy_accepted(self):
         el = self.find_element(*self._privacy_policy_checkbox_locator)
         return el.is_selected()
@@ -58,16 +63,17 @@ class ContributeFriendsPage(ContributeBasePage):
     def text_format_selected(self):
         return self.find_element(*self._text_format_locator).is_selected()
 
+    def accept_fx_and_you(self):
+        el = self.find_element(*self._fx_and_you_locator)
+        assert not el.is_selected(), 'Firefox and you has already been accepted'
+        el.click()
+        assert el.is_selected(), 'Firefox and you has not been accepted'
+
     def accept_privacy_policy(self):
         el = self.find_element(*self._privacy_policy_checkbox_locator)
         assert not el.is_selected(), 'Privacy policy has already been accepted'
         el.click()
         assert el.is_selected(), 'Privacy policy has not been accepted'
-
-    def click_show_signup_form(self):
-        assert not self.is_signup_form_displayed, 'Form is already displayed'
-        self.find_element(*self._show_signup_form_button_locator).click()
-        self.wait.until(lambda s: self.is_privacy_policy_link_displayed)
 
     def click_sign_me_up(self):
         self.find_element(*self._submit_button_locator).click()

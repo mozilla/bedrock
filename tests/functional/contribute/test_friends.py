@@ -12,8 +12,6 @@ from pages.contribute.friends import ContributeFriendsPage
 @pytest.mark.nondestructive
 def test_signup_default_values(base_url, selenium):
     page = ContributeFriendsPage(selenium, base_url).open()
-    page.click_show_signup_form()
-    assert page.is_signup_form_displayed
     assert '' == page.email
     assert 'United States' == page.country
     assert page.html_format_selected
@@ -22,10 +20,18 @@ def test_signup_default_values(base_url, selenium):
     assert page.is_privacy_policy_link_displayed
 
 
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_click_fx_and_you(base_url, selenium):
+    page = ContributeFriendsPage(selenium, base_url).open()
+    assert page.newsletters == 'firefox-friends'
+    page.accept_fx_and_you()
+    assert page.newsletters == 'firefox-friends,mozilla-and-you'
+
+
 @pytest.mark.nondestructive
 def test_successful_sign_up(base_url, selenium):
     page = ContributeFriendsPage(selenium, base_url).open()
-    page.click_show_signup_form()
     page.type_email('success@example.com')
     page.select_country('Germany')
     page.select_text_format()
@@ -37,6 +43,5 @@ def test_successful_sign_up(base_url, selenium):
 @pytest.mark.nondestructive
 def test_sign_up_fails_when_missing_required_fields(base_url, selenium):
     page = ContributeFriendsPage(selenium, base_url).open()
-    page.click_show_signup_form()
     with pytest.raises(TimeoutException):
         page.click_sign_me_up()

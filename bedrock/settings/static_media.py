@@ -1005,7 +1005,6 @@ PIPELINE_JS = {
     },
     'contribute-friends': {
         'source_filenames': (
-            'js/base/mozilla-smoothscroll.js',
             'js/base/mozilla-svg-image-fallback.js',
             'js/mozorg/contribute/friends.js',
         ),
