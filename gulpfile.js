@@ -7,6 +7,7 @@
 var gulp = require('gulp');
 var karma = require('karma');
 var eslint = require('gulp-eslint');
+var watch = require('gulp-watch');
 
 var lintPaths = [
     'media/js/**/*.js',
@@ -15,16 +16,29 @@ var lintPaths = [
     'gulpfile.js'
 ];
 
-gulp.task('test', function(done) {
+gulp.task('media:watch', function () {
+    return gulp.src('./media/**/*')
+        .pipe(watch('./media/**/*', {
+            'verbose': true
+        }))
+        .pipe(gulp.dest('./static'));
+});
+
+gulp.task('js:test', function(done) {
     new karma.Server({
         configFile: __dirname + '/tests/unit/karma.conf.js',
         singleRun: true
     }, done).start();
 });
 
-gulp.task('lint', function() {
+gulp.task('js:lint', function() {
     return gulp.src(lintPaths)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
+});
+
+gulp.task('default', function() {
+    gulp.start('media:watch');
+    gulp.watch(lintPaths, ['js:lint']);
 });
