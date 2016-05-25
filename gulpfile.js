@@ -18,9 +18,10 @@ var lintPaths = [
 ];
 
 gulp.task('serve:backend', function () {
+    var devServerPort = process.env.PORT || 8000;
     process.env.PYTHONUNBUFFERED = 1;
     process.env.PYTHONDONTWRITEBITECODE = 1;
-    spawn('python', ['manage.py', 'runserver'], {
+    spawn('python', ['manage.py', 'runserver', '0.0.0.0:' + devServerPort], {
         stdio: 'inherit'
     });
 });
