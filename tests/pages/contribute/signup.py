@@ -10,7 +10,7 @@ from pages.contribute.base import ContributeBasePage
 
 class ContributeSignUpPage(ContributeBasePage):
 
-    _url = '{base_url}/{locale}/contribute/signup'
+    URL_TEMPLATE = '/{locale}/contribute/signup'
 
     _name_locator = (By.ID, 'id_name')
     _email_locator = (By.ID, 'id_email')
@@ -28,54 +28,54 @@ class ContributeSignUpPage(ContributeBasePage):
     _helping_category_locator = (By.CLASS_NAME, 'category-helping')
 
     def select_coding_category(self):
-        self.find_element(self._coding_category_locator).click()
+        self.find_element(*self._coding_category_locator).click()
         self.wait.until(lambda s: self.is_coding_area_required)
         assert self.is_coding_area_displayed
 
     def select_helping_category(self):
-        self.find_element(self._helping_category_locator).click()
+        self.find_element(*self._helping_category_locator).click()
 
     @property
     def is_coding_area_displayed(self):
-        return self.is_element_displayed(self._coding_area_locator)
+        return self.is_element_displayed(*self._coding_area_locator)
 
     @property
     def is_coding_area_required(self):
-        el = self.find_element(self._coding_area_locator)
+        el = self.find_element(*self._coding_area_locator)
         return el.get_attribute('required') == 'true'
 
     def select_coding_area(self, value):
-        el = self.find_element(self._coding_area_locator)
+        el = self.find_element(*self._coding_area_locator)
         Select(el).select_by_visible_text(value)
 
     @property
     def is_areas_region_displayed(self):
-        return self.is_element_displayed(self._areas_region_locator)
+        return self.is_element_displayed(*self._areas_region_locator)
 
     def type_name(self, value):
-        self.find_element(self._name_locator).send_keys(value)
+        self.find_element(*self._name_locator).send_keys(value)
 
     def type_email(self, value):
-        self.find_element(self._email_locator).send_keys(value)
+        self.find_element(*self._email_locator).send_keys(value)
 
     def select_country(self, value):
-        el = self.find_element(self._country_locator)
+        el = self.find_element(*self._country_locator)
         Select(el).select_by_visible_text(value)
 
     def select_html_format(self):
-        self.find_element(self._html_format_locator).click()
+        self.find_element(*self._html_format_locator).click()
 
     def select_text_format(self):
-        self.find_element(self._text_format_locator).click()
+        self.find_element(*self._text_format_locator).click()
 
     def accept_privacy_policy(self):
-        el = self.find_element(self._privacy_policy_checkbox_locator)
+        el = self.find_element(*self._privacy_policy_checkbox_locator)
         assert not el.is_selected(), 'Privacy policy has already been accepted'
         el.click()
         assert el.is_selected(), 'Privacy policy has not been accepted'
 
     def click_start_contributing(self):
-        self.find_element(self._submit_button_locator).click()
+        self.find_element(*self._submit_button_locator).click()
         self.wait.until(lambda s: self.sign_up_successful)
 
     @property

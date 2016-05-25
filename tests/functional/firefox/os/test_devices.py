@@ -10,7 +10,7 @@ from pages.firefox.os.devices import DevicesPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_close_modal(base_url, selenium):
-    page = DevicesPage(base_url, selenium).open()
+    page = DevicesPage(selenium, base_url).open()
     page.select_location('Germany')
     modal = page.get_a_phone()
     assert modal.is_displayed
@@ -20,7 +20,7 @@ def test_open_close_modal(base_url, selenium):
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_close_phone(base_url, selenium):
-    page = DevicesPage(base_url, selenium).open()
+    page = DevicesPage(selenium, base_url).open()
     phone = page.open_phone_detail()
     assert phone.is_displayed
     assert phone.is_features_displayed
@@ -32,7 +32,7 @@ def test_open_close_phone(base_url, selenium):
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_close_tv(base_url, selenium):
-    page = DevicesPage(base_url, selenium).open()
+    page = DevicesPage(selenium, base_url).open()
     tv = page.open_tv_detail()
     assert tv.is_displayed
     assert tv.is_features_displayed
@@ -44,7 +44,7 @@ def test_open_close_tv(base_url, selenium):
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_toggle_detail_tabs(base_url, selenium):
-    page = DevicesPage(base_url, selenium).open()
+    page = DevicesPage(selenium, base_url).open()
     phone = page.open_phone_detail()
     assert not phone.is_specifications_displayed
     phone.show_specifications()

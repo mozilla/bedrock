@@ -4,15 +4,15 @@
 
 from selenium.webdriver.common.by import By
 
-from base import BasePage
+from pages.base import BasePage
 
 
 class PluginCheckPage(BasePage):
 
-    _url = '{base_url}/{locale}/plugincheck'
+    URL_TEMPLATE = '/{locale}/plugincheck'
 
     _not_supported_message_locator = (By.CLASS_NAME, 'not-supported')
 
     @property
     def is_not_supported_message_displayed(self):
-        return self.is_element_displayed(self._not_supported_message_locator)
+        return self.is_element_displayed(*self._not_supported_message_locator)

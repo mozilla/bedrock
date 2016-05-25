@@ -4,12 +4,12 @@
 
 from selenium.webdriver.common.by import By
 
-from base import BasePage
+from pages.base import BasePage
 
 
 class HistoryPage(BasePage):
 
-    _url = '{base_url}/{locale}/about/history'
+    URL_TEMPLATE = '/{locale}/about/history'
 
     _slideshow_locator = (By.CSS_SELECTOR, '#slideshow')
     _previous_button_locator = (By.CSS_SELECTOR, '.slide-control > .prev')
@@ -17,12 +17,12 @@ class HistoryPage(BasePage):
 
     @property
     def is_slideshow_displayed(self):
-        return 'on' in self.find_element(self._slideshow_locator).get_attribute('class')
+        return 'on' in self.find_element(*self._slideshow_locator).get_attribute('class')
 
     @property
     def is_previous_button_displayed(self):
-        return self.is_element_displayed(self._previous_button_locator)
+        return self.is_element_displayed(*self._previous_button_locator)
 
     @property
     def is_next_button_displayed(self):
-        return self.is_element_displayed(self._next_button_locator)
+        return self.is_element_displayed(*self._next_button_locator)

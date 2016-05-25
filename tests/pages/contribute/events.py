@@ -9,10 +9,10 @@ from pages.contribute.base import ContributeBasePage
 
 class ContributeEventsPage(ContributeBasePage):
 
-    _url = '{base_url}/{locale}/contribute/events'
+    URL_TEMPLATE = '/{locale}/contribute/events'
 
     _events_table_locator = (By.CSS_SELECTOR, '.events-table > tbody > tr')
 
     @property
     def events_table_is_displayed(self):
-        return self.is_element_displayed(self._events_table_locator)
+        return self.is_element_displayed(*self._events_table_locator)

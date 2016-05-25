@@ -10,7 +10,7 @@ from pages.firefox.all import FirefoxAllPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_search_language(base_url, selenium):
-    page = FirefoxAllPage(base_url, selenium).open()
+    page = FirefoxAllPage(selenium, base_url).open()
     language = 'english'
     page.search_for(language)
     for build in page.displayed_builds:

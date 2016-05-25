@@ -11,7 +11,7 @@ from pages.home import HomePage
 
 @pytest.mark.nondestructive
 def test_change_language(base_url, selenium):
-    page = HomePage(base_url, selenium).open()
+    page = HomePage(selenium, base_url).open()
     initial = page.footer.language
     # avoid selecting the same language or locales that have homepage redirects
     excluded = [initial, 'ja', 'ja-JP-mac', 'zh-TW', 'zh-CN']

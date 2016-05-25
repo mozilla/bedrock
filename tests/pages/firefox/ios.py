@@ -10,7 +10,7 @@ from pages.regions.send_to_device import SendToDevice
 
 class IOSPage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/ios'
+    URL_TEMPLATE = '/{locale}/firefox/ios'
 
     _app_store_button_locator = (By.CSS_SELECTOR, '#intro .appstore-badge')
 
@@ -20,4 +20,4 @@ class IOSPage(FirefoxBasePage):
 
     @property
     def is_app_store_button_displayed(self):
-        return self.is_element_displayed(self._app_store_button_locator)
+        return self.is_element_displayed(*self._app_store_button_locator)

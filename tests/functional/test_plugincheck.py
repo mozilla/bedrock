@@ -10,5 +10,5 @@ from pages.plugincheck import PluginCheckPage
 @pytest.mark.skip_if_firefox(reason='Not supported message is shown only to non-Firefox browsers.')
 @pytest.mark.nondestructive
 def test_not_supported_message(base_url, selenium):
-    page = PluginCheckPage(base_url, selenium).open()
+    page = PluginCheckPage(selenium, base_url).open()
     assert page.is_not_supported_message_displayed

@@ -11,7 +11,7 @@ from pages.styleguide import StyleGuidePage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_close_navigation(base_url, selenium):
-    page = StyleGuidePage(base_url, selenium).open()
+    page = StyleGuidePage(selenium, base_url).open()
     identity = page.menu[0]
     identity.expand()
     assert identity.is_displayed

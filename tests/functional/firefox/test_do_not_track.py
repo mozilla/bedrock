@@ -10,14 +10,14 @@ from pages.firefox.do_not_track import DoNotTrackPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_dnt_status(base_url, selenium):
-    page = DoNotTrackPage(base_url, selenium).open()
+    page = DoNotTrackPage(selenium, base_url).open()
     assert page.is_do_not_track_status_displayed
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_and_close_faq_panel(base_url, selenium):
-    page = DoNotTrackPage(base_url, selenium).open()
+    page = DoNotTrackPage(selenium, base_url).open()
     question = page.frequently_asked_questions[0]
     question.show_answer()
     assert question.is_answer_displayed

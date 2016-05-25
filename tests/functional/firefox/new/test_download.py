@@ -12,7 +12,7 @@ from pages.firefox.new.download import DownloadPage
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_button_displayed(base_url, selenium):
-    page = DownloadPage(base_url, selenium).open()
+    page = DownloadPage(selenium, base_url).open()
     assert page.download_button.is_displayed
 
 
@@ -22,6 +22,6 @@ def test_download_button_displayed(base_url, selenium):
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_click_download_button(base_url, selenium):
-    page = DownloadPage(base_url, selenium).open()
+    page = DownloadPage(selenium, base_url).open()
     thank_you_page = page.download_firefox()
-    assert thank_you_page.url in selenium.current_url
+    assert thank_you_page.seed_url in selenium.current_url

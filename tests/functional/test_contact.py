@@ -10,7 +10,7 @@ from pages.contact import ContactPage, SpacesPage, CommunitiesPage
 @pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_tab_navigation(base_url, selenium):
-    page = ContactPage(base_url, selenium).open()
+    page = ContactPage(selenium, base_url).open()
     assert page.contact_tab.is_selected
     assert not page.spaces_tab.is_selected
     assert not page.communities_tab.is_selected
@@ -19,25 +19,25 @@ def test_tab_navigation(base_url, selenium):
     assert not spaces_page.contact_tab.is_selected
     assert spaces_page.spaces_tab.is_selected
     assert not spaces_page.communities_tab.is_selected
-    assert spaces_page.url in selenium.current_url
+    assert spaces_page.seed_url in selenium.current_url
 
     communities_page = spaces_page.click_communities_tab()
     assert not communities_page.contact_tab.is_selected
     assert not communities_page.spaces_tab.is_selected
     assert communities_page.communities_tab.is_selected
-    assert communities_page.url in selenium.current_url
+    assert communities_page.seed_url in selenium.current_url
 
     contact_page = communities_page.click_contact_tab()
     assert contact_page.contact_tab.is_selected
     assert not contact_page.spaces_tab.is_selected
     assert not contact_page.communities_tab.is_selected
-    assert contact_page.url in selenium.current_url
+    assert contact_page.seed_url in selenium.current_url
 
 
 @pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_spaces_list(base_url, selenium):
-    page = SpacesPage(base_url, selenium).open()
+    page = SpacesPage(selenium, base_url).open()
     assert page.displayed_map_pins == len(page.spaces)
     for space in page.spaces:
         space.click()
@@ -49,7 +49,7 @@ def test_spaces_list(base_url, selenium):
 @pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_communities_region_list(base_url, selenium):
-    page = CommunitiesPage(base_url, selenium).open()
+    page = CommunitiesPage(selenium, base_url).open()
     for region in page.regions:
         region.click()
         assert region.is_selected
@@ -61,7 +61,7 @@ def test_communities_region_list(base_url, selenium):
 @pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_communities_region_legend(base_url, selenium):
-    page = CommunitiesPage(base_url, selenium).open()
+    page = CommunitiesPage(selenium, base_url).open()
     for key in page.keys:
         key.click()
         assert key.is_selected
@@ -73,7 +73,7 @@ def test_communities_region_legend(base_url, selenium):
 @pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_communities_region_menus(base_url, selenium):
-    page = CommunitiesPage(base_url, selenium).open()
+    page = CommunitiesPage(selenium, base_url).open()
     north_america = page.regions[0]
     assert not north_america.is_menu_open
     north_america.click()

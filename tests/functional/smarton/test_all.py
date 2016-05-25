@@ -14,5 +14,5 @@ from pages.smarton.base import SmartOnBasePage
     ('security'),
     ('surveillance')])
 def test_download_button_displayed(slug, base_url, selenium):
-    page = SmartOnBasePage(base_url, selenium, slug=slug).open()
+    page = SmartOnBasePage(selenium, base_url, slug=slug).open()
     assert page.download_button.is_displayed

@@ -4,12 +4,12 @@
 
 from selenium.webdriver.common.by import By
 
-from base import BasePage
+from pages.base import BasePage
 
 
 class AboutPage(BasePage):
 
-    _url = '{base_url}/{locale}/about'
+    URL_TEMPLATE = '/{locale}/about'
 
     _mosaic_locator = (By.ID, 'mosaic')
     _video_overlay_locator = (By.CSS_SELECTOR, '.moz-video-container .moz-video-button')
@@ -17,17 +17,17 @@ class AboutPage(BasePage):
 
     @property
     def is_mosaic_displayed(self):
-        return self.is_element_displayed(self._mosaic_locator)
+        return self.is_element_displayed(*self._mosaic_locator)
 
     @property
     def is_video_overlay_displayed(self):
-        return self.is_element_displayed(self._video_overlay_locator)
+        return self.is_element_displayed(*self._video_overlay_locator)
 
     @property
     def is_video_displayed(self):
-        return self.is_element_displayed(self._video_locator)
+        return self.is_element_displayed(*self._video_locator)
 
     def play_video(self):
         assert self.is_video_overlay_displayed, 'Video is already displayed'
-        self.find_element(self._video_overlay_locator).click()
+        self.find_element(*self._video_overlay_locator).click()
         self.wait.until(lambda s: not self.is_video_overlay_displayed)

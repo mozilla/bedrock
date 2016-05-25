@@ -10,16 +10,16 @@ from pages.regions.download_button import DownloadButton
 
 class DownloadPage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/new/'
+    URL_TEMPLATE = '/{locale}/firefox/new/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
 
     @property
     def download_button(self):
-        el = self.find_element(self._download_button_locator)
+        el = self.find_element(*self._download_button_locator)
         return DownloadButton(self, root=el)
 
     def download_firefox(self):
         self.download_button.click()
         from pages.firefox.new.thank_you import ThankYouPage
-        return ThankYouPage(self.base_url, self.selenium).wait_for_page_to_load()
+        return ThankYouPage(self.selenium, self.base_url).wait_for_page_to_load()

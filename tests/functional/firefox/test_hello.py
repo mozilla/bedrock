@@ -12,7 +12,7 @@ from pages.firefox.hello import HelloPage
 @pytest.mark.skip_if_not_firefox(reason='Hello button is shown only to Firefox browsers.')
 @pytest.mark.nondestructive
 def test_try_hello_button_is_displayed(base_url, selenium):
-    page = HelloPage(base_url, selenium).open()
+    page = HelloPage(selenium, base_url).open()
     assert page.is_try_hello_header_button_displayed
     assert page.is_try_hello_footer_button_displayed
 
@@ -21,6 +21,6 @@ def test_try_hello_button_is_displayed(base_url, selenium):
 @pytest.mark.skip_if_firefox(reason='Download button is not shown for Firefox browsers.')
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
-    page = HelloPage(base_url, selenium).open()
+    page = HelloPage(selenium, base_url).open()
     assert page.primary_download_button.is_displayed
     assert page.secondary_download_button.is_displayed

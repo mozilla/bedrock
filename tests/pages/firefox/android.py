@@ -4,13 +4,13 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage, FirefoxBasePageRegion
+from pages.firefox.base import FirefoxBasePage, FirefoxBaseRegion
 from pages.regions.send_to_device import SendToDevice
 
 
 class AndroidPage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/android'
+    URL_TEMPLATE = '/{locale}/firefox/android'
 
     _customize_locator = (By.CSS_SELECTOR, '#customize-accordion > .customize-section')
     _next_button_locator = (By.ID, 'customize-next')
@@ -24,7 +24,7 @@ class AndroidPage(FirefoxBasePage):
     @property
     def customize_sections(self):
         return [CustomizeSection(self, root=el) for el in
-                self.find_elements(self._customize_locator)]
+                self.find_elements(*self._customize_locator)]
 
     @property
     def current_customize_section(self):
@@ -32,49 +32,49 @@ class AndroidPage(FirefoxBasePage):
 
     def show_next_customize_section(self):
         section = self.current_customize_section
-        self.scroll_element_into_view(self._next_button_locator).click()
+        self.scroll_element_into_view(*self._next_button_locator).click()
         self.wait.until(lambda s:
             self.is_next_enabled and self.is_previous_enabled and not section.is_displayed)
 
     def show_previous_customize_section(self):
         section = self.current_customize_section
-        self.scroll_element_into_view(self._previous_button_locator).click()
+        self.scroll_element_into_view(*self._previous_button_locator).click()
         self.wait.until(lambda s:
             self.is_next_enabled and self.is_previous_enabled and not section.is_displayed)
 
     @property
     def is_next_enabled(self):
-        return self.find_element(self._next_button_locator).is_enabled()
+        return self.find_element(*self._next_button_locator).is_enabled()
 
     @property
     def is_previous_enabled(self):
-        return self.find_element(self._previous_button_locator).is_enabled()
+        return self.find_element(*self._previous_button_locator).is_enabled()
 
     @property
     def is_play_store_button_displayed(self):
-        return self.is_element_displayed(self._play_store_button_locator)
+        return self.is_element_displayed(*self._play_store_button_locator)
 
 
-class CustomizeSection(FirefoxBasePageRegion):
+class CustomizeSection(FirefoxBaseRegion):
 
     _heading_locator = (By.CSS_SELECTOR, 'h3[role="tab"]')
     _detail_locator = (By.CSS_SELECTOR, 'div[role="tabpanel"]')
 
     def show_detail(self):
         assert not self.is_displayed, 'Detail is already displayed'
-        self.scroll_element_into_view(self._heading_locator).click()
-        detail = self.find_element(self._detail_locator)
+        self.scroll_element_into_view(*self._heading_locator).click()
+        detail = self.find_element(*self._detail_locator)
         # Wait for aria-hidden attribute value to determine when animation has finished.
         self.wait.until(lambda m: detail.get_attribute('aria-hidden') == 'false')
 
     def hide_detail(self):
         assert self.is_displayed, 'Detail is already hidden'
-        self.scroll_element_into_view(self._heading_locator).click()
-        self.find_element(self._heading_locator).click()
-        detail = self.find_element(self._detail_locator)
+        self.scroll_element_into_view(*self._heading_locator).click()
+        self.find_element(*self._heading_locator).click()
+        detail = self.find_element(*self._detail_locator)
         # Wait for aria-hidden attribute value to determine when animation has finished.
         self.wait.until(lambda m: detail.get_attribute('aria-hidden') == 'true')
 
     @property
     def is_displayed(self):
-        return self.is_element_displayed(self._detail_locator)
+        return self.is_element_displayed(*self._detail_locator)

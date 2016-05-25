@@ -10,7 +10,7 @@ from pages.contribute.stories import ContributeStoriesPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_show_hide_story(base_url, selenium):
-    page = ContributeStoriesPage(base_url, selenium).open()
+    page = ContributeStoriesPage(selenium, base_url).open()
     page.show_story()
     assert page.is_story_displayed
     page.hide_story()
@@ -19,5 +19,5 @@ def test_show_hide_story(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_next_event_is_displayed(base_url, selenium):
-    page = ContributeStoriesPage(base_url, selenium).open()
+    page = ContributeStoriesPage(selenium, base_url).open()
     assert page.next_event_is_displayed

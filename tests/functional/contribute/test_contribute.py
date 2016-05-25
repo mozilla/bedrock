@@ -10,7 +10,7 @@ from pages.contribute.contribute import ContributePage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_play_video(base_url, selenium):
-    page = ContributePage(base_url, selenium).open()
+    page = ContributePage(selenium, base_url).open()
     video = page.play_video()
     assert video.is_displayed
     video.close()
@@ -18,5 +18,5 @@ def test_play_video(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_next_event_is_displayed(base_url, selenium):
-    page = ContributePage(base_url, selenium).open()
+    page = ContributePage(selenium, base_url).open()
     assert page.next_event_is_displayed

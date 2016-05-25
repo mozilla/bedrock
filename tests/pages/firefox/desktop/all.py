@@ -10,11 +10,11 @@ from pages.regions.download_button import DownloadButton
 
 class FirefoxDesktopBasePage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/desktop/{slug}'
+    URL_TEMPLATE = '/{locale}/firefox/desktop/{slug}'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
 
     @property
     def download_button(self):
-        el = self.find_element(self._download_button_locator)
+        el = self.find_element(*self._download_button_locator)
         return DownloadButton(self, root=el)

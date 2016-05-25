@@ -10,14 +10,14 @@ from pages.mission import MissionPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_is_mosaic_displayed(base_url, selenium):
-    page = MissionPage(base_url, selenium).open()
+    page = MissionPage(selenium, base_url).open()
     assert page.is_mosaic_displayed
 
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_play_video(base_url, selenium):
-    page = MissionPage(base_url, selenium).open()
+    page = MissionPage(selenium, base_url).open()
     page.play_video()
     assert not page.is_video_overlay_displayed
     assert page.is_video_displayed

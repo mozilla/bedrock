@@ -10,7 +10,7 @@ from pages.firefox.nightly import FirstRunPage
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_first_run(base_url, selenium):
-    page = FirstRunPage(base_url, selenium).open()
+    page = FirstRunPage(selenium, base_url).open()
     assert page.is_start_testing_displayed
     assert page.is_start_coding_displayed
     assert page.is_start_localizing_displayed

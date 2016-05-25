@@ -4,13 +4,13 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage, FirefoxBasePageRegion
+from pages.firefox.base import FirefoxBasePage, FirefoxBaseRegion
 from pages.regions.download_button import DownloadButton
 
 
 class ChannelPage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/channel/{hash}'
+    URL_TEMPLATE = '/{locale}/firefox/channel/{hash}'
 
     _desktop_release_download_locator = (By.ID, 'download-button-desktop-release')
     _android_release_download_locator = (By.ID, 'download-button-android-release')
@@ -25,52 +25,52 @@ class ChannelPage(FirefoxBasePage):
     @property
     def _channels(self):
         return [Channel(self, root=el) for el in
-                self.find_elements(self._channels_locator)]
+                self.find_elements(*self._channels_locator)]
 
     @property
     def desktop_release_download_button(self):
-        el = self.find_element(self._desktop_release_download_locator)
+        el = self.find_element(*self._desktop_release_download_locator)
         return DownloadButton(self, root=el)
 
     @property
     def android_release_download_button(self):
-        el = self.find_element(self._android_release_download_locator)
+        el = self.find_element(*self._android_release_download_locator)
         return DownloadButton(self, root=el)
 
     @property
     def desktop_beta_download_button(self):
-        el = self.find_element(self._desktop_beta_download_locator)
+        el = self.find_element(*self._desktop_beta_download_locator)
         return DownloadButton(self, root=el)
 
     @property
     def android_beta_download_button(self):
-        el = self.find_element(self._android_beta_download_locator)
+        el = self.find_element(*self._android_beta_download_locator)
         return DownloadButton(self, root=el)
 
     @property
     def desktop_developer_download_button(self):
-        el = self.find_element(self._desktop_developer_download_locator)
+        el = self.find_element(*self._desktop_developer_download_locator)
         return DownloadButton(self, root=el)
 
     @property
     def android_aurora_download_button(self):
-        el = self.find_element(self._android_aurora_download_locator)
+        el = self.find_element(*self._android_aurora_download_locator)
         return DownloadButton(self, root=el)
 
     def click_next(self):
         channel = next(c for c in self._channels if c.is_selected)
-        self.find_element(self._right_carousel_button_locator).click()
+        self.find_element(*self._right_carousel_button_locator).click()
         self.wait.until(lambda s: not channel.is_selected)
 
     def click_previous(self):
         channel = next(c for c in self._channels if c.is_selected)
-        self.find_element(self._left_carousel_button_locator).click()
+        self.find_element(*self._left_carousel_button_locator).click()
         self.wait.until(lambda s: not channel.is_selected)
 
 
-class Channel(FirefoxBasePageRegion):
+class Channel(FirefoxBaseRegion):
 
     @property
     def is_selected(self):
-        return (self._root.get_attribute('aria-hidden') == 'false' and
-                self._root.is_displayed())
+        return (self.root.get_attribute('aria-hidden') == 'false' and
+                self.root.is_displayed())

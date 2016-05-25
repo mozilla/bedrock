@@ -44,7 +44,7 @@ from pages.smarton.base import SmartOnBasePage
         reason='Newsletter is only shown to Firefox browsers.')])
 def test_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
     url_kwargs = url_kwargs or {}
-    page = page_class(base_url, selenium, **url_kwargs).open()
+    page = page_class(selenium, base_url, **url_kwargs).open()
     page.newsletter.expand_form()
     assert '' == page.newsletter.email
     assert 'United States' == page.newsletter.country
@@ -55,7 +55,7 @@ def test_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('page_class', [HomePage, ContributePage])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
-    page = page_class(base_url, selenium).open()
+    page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
     page.newsletter.type_email('success@example.com')
     page.newsletter.select_country('United Kingdom')
@@ -68,7 +68,7 @@ def test_newsletter_successful_sign_up(page_class, base_url, selenium):
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('page_class', [HomePage, ContributePage])
 def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
-    page = page_class(base_url, selenium).open()
+    page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
     with pytest.raises(TimeoutException):
         page.newsletter.click_sign_me_up()

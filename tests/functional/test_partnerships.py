@@ -10,7 +10,7 @@ from pages.partnerships import PartnershipsPage
 
 @pytest.mark.nondestructive
 def test_request_partnership(base_url, selenium):
-    page = PartnershipsPage(base_url, selenium).open()
+    page = PartnershipsPage(selenium, base_url).open()
     page.type_first_name('Automated')
     page.type_last_name('Test')
     page.type_company('Mozilla')
@@ -21,6 +21,6 @@ def test_request_partnership(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_request_fails_when_missing_required_fields(base_url, selenium):
-    page = PartnershipsPage(base_url, selenium).open()
+    page = PartnershipsPage(selenium, base_url).open()
     with pytest.raises(TimeoutException):
         page.submit_request()

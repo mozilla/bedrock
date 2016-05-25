@@ -12,7 +12,7 @@ from pages.contribute.signup import ContributeSignUpPage
 @pytest.mark.nondestructive
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1225170')
 def test_toggle_category_with_areas(base_url, selenium):
-    page = ContributeSignUpPage(base_url, selenium).open()
+    page = ContributeSignUpPage(selenium, base_url).open()
     page.select_coding_category()
     assert page.is_areas_region_displayed
     assert page.is_coding_area_displayed
@@ -23,14 +23,14 @@ def test_toggle_category_with_areas(base_url, selenium):
 @pytest.mark.nondestructive
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1225170')
 def test_toggle_category_without_areas(base_url, selenium):
-    page = ContributeSignUpPage(base_url, selenium).open()
+    page = ContributeSignUpPage(selenium, base_url).open()
     page.select_helping_category()
     assert not page.is_areas_region_displayed
 
 
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1225170')
 def test_successful_sign_up_coding(base_url, selenium):
-    page = ContributeSignUpPage(base_url, selenium).open()
+    page = ContributeSignUpPage(selenium, base_url).open()
     page.select_coding_category()
     page.select_coding_area('Firefox')
     page.type_name('Automated test')
@@ -44,7 +44,7 @@ def test_successful_sign_up_coding(base_url, selenium):
 
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1221526')
 def test_successful_sign_up_helping(base_url, selenium):
-    page = ContributeSignUpPage(base_url, selenium).open()
+    page = ContributeSignUpPage(selenium, base_url).open()
     page.select_helping_category()
     page.type_name('Automated test')
     page.type_email('success@example.com')
@@ -58,6 +58,6 @@ def test_successful_sign_up_helping(base_url, selenium):
 @pytest.mark.nondestructive
 @pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1225170')
 def test_sign_up_fails_when_missing_required_fields(base_url, selenium):
-    page = ContributeSignUpPage(base_url, selenium).open()
+    page = ContributeSignUpPage(selenium, base_url).open()
     with pytest.raises(TimeoutException):
         page.click_start_contributing()

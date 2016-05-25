@@ -9,15 +9,15 @@ from pages.firefox.base import FirefoxBasePage
 
 class ThankYouPage(FirefoxBasePage):
 
-    _url = '{base_url}/{locale}/firefox/new/?scene=2'
+    URL_TEMPLATE = '/{locale}/firefox/new/?scene=2'
 
     _direct_download_link_locator = (By.ID, 'direct-download-link')
 
     @property
     def is_direct_download_link_displayed(self):
-        return self.is_element_displayed(self._direct_download_link_locator)
+        return self.is_element_displayed(*self._direct_download_link_locator)
 
     @property
     def is_direct_download_link_valid(self):
         return 'https://download.mozilla.org' in self.find_element(
-            self._direct_download_link_locator).get_attribute('href')
+            *self._direct_download_link_locator).get_attribute('href')
