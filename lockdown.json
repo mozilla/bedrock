@@ -107,6 +107,7 @@
     "1.0.2": "31ab1ac8b129363463e35b3ebb69f4dfcfba7947"
   },
   "balanced-match": {
+    "0.2.0": "38f6730c03aab6d5edbb52bd934885e756d71674",
     "0.3.0": "a91cdd1ebef1a86659e70ff4def01625fc2d6756"
   },
   "base64-arraybuffer": {
@@ -151,11 +152,15 @@
     "2.10.1": "39c8918ceff5799f83f9492a848f625add0c766f"
   },
   "brace-expansion": {
+    "1.1.1": "da5fb78aef4c44c9e4acf525064fb3208ebab045",
     "1.1.3": "46bff50115d47fc9ab89854abb87d98078a10991"
   },
   "braces": {
     "0.1.5": "c085711085291d8b75fdd74eab0f8597280711e6",
     "1.8.4": "75e2d6456d48b06dbb5205ed63442a3bfc5eefce"
+  },
+  "buffer-shims": {
+    "1.0.0": "9978ce317388c649ad8793028c3477ef044a8b51"
   },
   "bufferstreams": {
     "1.1.0": "073cd120308c0678ee7d7c48b69e06eb4538ade0"
@@ -193,7 +198,8 @@
     "1.1.3": "a8115c55e4a702fe4d150abd3872822a7e09fc98"
   },
   "chokidar": {
-    "1.4.3": "5fe733a4d9acaea51b26454b7e59559163d0dbb2"
+    "1.4.3": "5fe733a4d9acaea51b26454b7e59559163d0dbb2",
+    "1.5.1": "43115fcf2d8fb74f06b630aeeccd06715a146dd1"
   },
   "cli-cursor": {
     "1.0.2": "64da3f7d56a54412e59794bd62dc35295e8f2987"
@@ -240,7 +246,7 @@
     "1.5.1": "f3b80acf9e1f48e3875c0688b41b6c31602eea1c"
   },
   "config-chain": {
-    "1.1.10": "7fc383de0fcc84d711cb465bd176579cad612346"
+    "1.1.9": "39ac7d4dca84faad926124c54cff25a53aa8bf6e"
   },
   "connect": {
     "3.4.1": "a21361d3f4099ef761cda6dc4a973bb1ebb0a34d"
@@ -496,7 +502,8 @@
     "1.1.1": "5ed3ccd636551097383465d996199100e86161e9"
   },
   "fsevents": {
-    "1.0.11": "303d4051e411a95a7ad187e6f8ccffe936ca78ac"
+    "1.0.11": "303d4051e411a95a7ad187e6f8ccffe936ca78ac",
+    "1.0.12": "7929e211c0b31f37f2f0fc346f315e403d7ed33b"
   },
   "fstream": {
     "1.0.8": "7e8d7a73abb3647ef36e4b8a15ca801dba03d038"
@@ -565,7 +572,9 @@
   "graceful-fs": {
     "1.2.3": "15a4806a57547cb2d2dbf27f42e89a8c3451b364",
     "3.0.8": "ce813e725fa82f7e6147d51c9a5ca68270551c22",
-    "4.1.3": "92033ce11113c41e2628d61fdfa40bc10dc0155c"
+    "4.1.2": "fe2239b7574972e67e41f808823f9bfa4a991e37",
+    "4.1.3": "92033ce11113c41e2628d61fdfa40bc10dc0155c",
+    "4.1.4": "ef089d2880f033b011823ce5c8fae798da775dbd"
   },
   "graceful-readlink": {
     "1.0.1": "4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
@@ -578,6 +587,9 @@
   },
   "gulp-util": {
     "3.0.7": "78925c4b8f8b49005ac01a011c557e6218941cbb"
+  },
+  "gulp-watch": {
+    "4.3.6": "9990f27815ec5885271771324b7d29accec7134a"
   },
   "gulplog": {
     "1.0.0": "e28c4d45d05ecbbed818363ce8f9c5926229ffe5"
@@ -758,7 +770,7 @@
     "2.4.1": "6f83ab3a0f16951722ce07d206c773d57cc838be"
   },
   "jju": {
-    "1.3.0": "dadd9ef01924bc728b03f2f7979bdbd62f7a2aaa"
+    "1.2.1": "edf6ec20d5d668c80c2c00cea63f8a9422a4b528"
   },
   "jodid25519": {
     "1.0.2": "06d4912255093419477d425633606e0e90782967"
@@ -958,7 +970,8 @@
     "0.0.5": "8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
   },
   "nan": {
-    "2.2.1": "d68693f6b34bb41d66bc68b3a4f9defc79d7149b"
+    "2.2.1": "d68693f6b34bb41d66bc68b3a4f9defc79d7149b",
+    "2.3.3": "64dd83c9704a83648b6c72b401f6384bd94ef16f"
   },
   "negotiator": {
     "0.4.9": "92e46b6db53c7e421ed64a2bc94f08be7630df3f"
@@ -967,6 +980,7 @@
     "1.4.7": "6da5a17668c4b3dd59623bda11cf7fa4c1f60a6f"
   },
   "nopt": {
+    "3.0.4": "dd63bc9c72a6e4e85b85cdc0ca314598facede5e",
     "3.0.6": "c6465dbf08abcd4db359317f79ac68a646b28ff9"
   },
   "normalize-package-data": {
@@ -1005,6 +1019,7 @@
     "2.3.0": "20f1336481b083cd75337992a16971aa2d906947"
   },
   "once": {
+    "1.3.2": "d8feeca93b039ec1dcdee7741c92bdac5e28081b",
     "1.3.3": "b2e261557ce4c314ec8304f3fa82663e4297ca20"
   },
   "onetime": {
@@ -1088,7 +1103,8 @@
     "0.1.6": "55c6a976d0f9bafb9924851350fe47b9b5fbb7c1"
   },
   "process-nextick-args": {
-    "1.0.6": "0f96b001cea90b12592ce566edb97ec11e69bd05"
+    "1.0.6": "0f96b001cea90b12592ce566edb97ec11e69bd05",
+    "1.0.7": "150e20b756590ad3f91093f25a4f2ad8bff30ba3"
   },
   "progress": {
     "1.1.8": "e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
@@ -1137,7 +1153,8 @@
     "1.0.34": "125820e34bc842d2f2aaafafe4c2916ee32c157c",
     "1.1.14": "7cf4c54ef648e3813084c636dd2079e166c081d9",
     "2.0.6": "8f90341e68a53ccc928788dacfcd11b36eb9b78e",
-    "2.1.0": "36f42ea0424eb29a985e4a81d31be2f96e1f2f80"
+    "2.1.0": "36f42ea0424eb29a985e4a81d31be2f96e1f2f80",
+    "2.1.4": "70b9791c6fcb8480db44bd155a0f6bb58f172468"
   },
   "readdir-scoped-modules": {
     "1.0.2": "9fafa37d286be5d92cbaebdee030dc9b5f406747"
@@ -1300,6 +1317,9 @@
     "1.0.0": "85b8862f3844b5a6d5ec8467a93598173a36f794",
     "2.0.0": "6219a85616520491f35788bdbf1447a99c7e6b0e"
   },
+  "strip-bom-stream": {
+    "1.0.0": "e7144398577d51a6bed0fa1994fa05f43fd988ee"
+  },
   "strip-indent": {
     "1.0.1": "0c7962a6adefa7bbd4ac366460a638552ae1a0a2"
   },
@@ -1406,7 +1426,7 @@
     "1.0.2": "450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   },
   "util-extend": {
-    "1.0.3": "a7c216d267545169637b3b6edc6ca9119e2ff93f"
+    "1.0.1": "bb703b79480293ddcdcfb3c6a9fea20f483415bc"
   },
   "utils-merge": {
     "1.0.0": "0294fb922bb9375153541c4f7096231f287c8af8"
@@ -1422,7 +1442,11 @@
   },
   "vinyl": {
     "0.4.6": "2f356c87a550a255461f36bbeb2a5ba8bf784847",
-    "0.5.3": "b0455b38fc5e0cf30d4325132e461970c2091cde"
+    "0.5.3": "b0455b38fc5e0cf30d4325132e461970c2091cde",
+    "1.1.1": "7940887eef09381eb3626ac4c0f9ab53d4b7e450"
+  },
+  "vinyl-file": {
+    "1.3.0": "aa05634d3a867ba91447bedbb34afcb26f44f6e7"
   },
   "vinyl-fs": {
     "0.3.14": "9a6851ce1cac1c1cea5fe86c0931d620c2cfa9e6"

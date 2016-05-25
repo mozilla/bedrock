@@ -51,10 +51,9 @@ Lastly, you need to have `Node.js <https://nodejs.org/>`_ and
 `NPM <https://docs.npmjs.com/getting-started/installing-node>`_ installed. The node
 dependencies for running the site can be installed with ``npm``::
 
-    $ npm install --production
+    $ npm install
 
-But if you'd like to run the JS test suite you'll need everything, which you can get by running
-``npm install`` from the root directory of the project. You may also need to install the `Gulp <http://gulpjs.com/>`_ cli globally.
+You may also need to install the `Gulp <http://gulpjs.com/>`_ cli globally.
 
 .. note::
 
@@ -108,6 +107,10 @@ If you are not inside a virtualenv, you can activate it by doing::
     $ source venv/bin/activate
 
 If you get the error "NoneType is not iterable", you didn't check out the latest product-details. See the above section for that.
+
+Finally run the default Gulp task, which watches for changes to static assets in local dev mode.
+
+    $ gulp
 
 Localization
 ------------

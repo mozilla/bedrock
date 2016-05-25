@@ -246,7 +246,7 @@ def JINJA_CONFIG():
             'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
             'lib.l10n_utils.template.lang_blocks',
             'jingo_markdown.extensions.MarkdownExtension',
-            'pipeline.templatetags.ext.PipelineExtension',
+            'pipeline.jinja2.PipelineExtension',
         ],
         # Make None in templates render as ''
         'finalize': lambda x: x if x is not None else '',
@@ -258,7 +258,8 @@ MEDIA_URL = config('MEDIA_URL', default='/user-media/')
 MEDIA_ROOT = config('MEDIA_ROOT', default=path('media'))
 STATIC_URL = config('STATIC_URL', default='/media/')
 STATIC_ROOT = config('STATIC_ROOT', default=path('static'))
-STATICFILES_STORAGE = 'bedrock.base.storage.ManifestPipelineStorage'
+STATICFILES_STORAGE = ('pipeline.storage.NonPackagingPipelineStorage' if DEBUG else
+                       'bedrock.base.storage.ManifestPipelineStorage')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -276,19 +277,25 @@ JINGO_EXCLUDE_APPS = (
     'waffle',
 )
 
-PIPELINE_DISABLE_WRAPPER = True
-PIPELINE_COMPILERS = (
-    'pipeline.compilers.less.LessCompiler',
-)
-PIPELINE_LESS_BINARY = config('PIPELINE_LESS_BINARY',
-                              default=path('node_modules', 'less', 'bin', 'lessc'))
-PIPELINE_LESS_ARGUMENTS = config('PIPELINE_LESS_ARGUMENTS', default='-s')
-PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.uglifyjs.UglifyJSCompressor'
-PIPELINE_UGLIFYJS_BINARY = config('PIPELINE_UGLIFYJS_BINARY',
-                                  default=path('node_modules', 'uglify-js', 'bin', 'uglifyjs'))
-PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
-PIPELINE_CSSMIN_BINARY = config('PIPELINE_CSSMIN_BINARY',
-                                default=path('node_modules', 'cssmin', 'bin', 'cssmin'))
+PIPELINE = {
+    'STYLESHEETS': PIPELINE_CSS,
+    'JAVASCRIPT': PIPELINE_JS,
+    'DISABLE_WRAPPER': True,
+    'COMPILERS': (
+        'pipeline.compilers.less.LessCompiler',
+    ),
+    'LESS_BINARY': config('PIPELINE_LESS_BINARY',
+                          default=path('node_modules', 'less', 'bin', 'lessc')),
+    'LESS_ARGUMENTS': config('PIPELINE_LESS_ARGUMENTS', default='-s'),
+    'JS_COMPRESSOR': 'pipeline.compressors.uglifyjs.UglifyJSCompressor',
+    'UGLIFYJS_BINARY': config('PIPELINE_UGLIFYJS_BINARY',
+                              default=path('node_modules', 'uglify-js', 'bin', 'uglifyjs')),
+    'CSS_COMPRESSOR': 'pipeline.compressors.cssmin.CSSMinCompressor',
+    'CSSMIN_BINARY': config('PIPELINE_CSSMIN_BINARY',
+                            default=path('node_modules', 'cssmin', 'bin', 'cssmin')),
+    'PIPELINE_ENABLED': config('PIPELINE_ENABLED', not DEBUG, cast=bool),
+    'PIPELINE_COLLECTOR_ENABLED': config('PIPELINE_COLLECTOR_ENABLED', not DEBUG, cast=bool),
+}
 
 WHITENOISE_ROOT = config('WHITENOISE_ROOT', default=path('root_files'))
 WHITENOISE_MAX_AGE = 6 * 60 * 60  # 6 hours

@@ -34,10 +34,8 @@ chkcrontab==1.6 \
     --hash=sha256:10fd86e7e3d3d0339e0e93e0876a8702eac82649ec3b4abe4d350dc08c389a0e
 translate-toolkit==1.8.0 \
     --hash=sha256:b146d8cdc287db07f6ef4491766d841a931b1b267040fef81eb559a475fe3db9
-hashin==0.3 \
-    --hash=sha256:e86f8b9104df83bda4cf8d000bf21b7fde1ebf3962e67b03fea4c102970d2f95 \
-    --hash=sha256:8015468f50b97cfd4fc8d81fdd99966f1959d8990cee27e24aa79976a2f4ebc1 \
-    --hash=sha256:f8c666b790da4327622ac492fdbcf6caa1b46a0d85fae90eada5213372fafe97
+hashin==0.5.0 \
+    --hash=sha256:dba65a41e812748a5f8b44e0e77d622dce2d2d5811259f18a0d35e7d1aaca258
 argparse==1.4.0 \
     --hash=sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314 \
     --hash=sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4
