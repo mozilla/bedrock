@@ -22,6 +22,19 @@
     float: right;
 }
 
+.fx-privacy-link {
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: @linkBlueHover;
+    }
+}
+
 /* {{{ Tablet  Layout: 768px */
 
 @media only screen and (min-width: @widthTablet) and (max-width: @widthDesktop) {
@@ -37,7 +50,7 @@
     #error-content {
         .span-all();
     }
-    #download {
+    .download-button {
         .span-all();
     }
 }
