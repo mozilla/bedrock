@@ -100,17 +100,13 @@ Make it run
 To make the server run, make sure you are inside a virtualenv, and then
 run the server::
 
-    $ ./manage.py runserver
+    $ gulp
 
 If you are not inside a virtualenv, you can activate it by doing::
 
     $ source venv/bin/activate
 
 If you get the error "NoneType is not iterable", you didn't check out the latest product-details. See the above section for that.
-
-Finally run the default Gulp task, which watches for changes to static assets in local dev mode.
-
-    $ gulp
 
 Localization
 ------------
