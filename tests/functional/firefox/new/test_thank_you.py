@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.new.thank_you import ThankYouPage
 
 
+@pytest.mark.skipif(reason='https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/6087/')
 @pytest.mark.skip_if_internet_explorer(reason='https://github.com/SeleniumHQ/selenium/issues/448')
 @pytest.mark.smoke
 @pytest.mark.sanity
