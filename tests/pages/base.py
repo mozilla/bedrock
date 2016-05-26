@@ -17,9 +17,9 @@ class BasePage(Page):
         super(BasePage, self).__init__(selenium, base_url, locale=locale, **url_kwargs)
 
     def wait_for_page_to_load(self):
-        super(BasePage, self).wait_for_page_to_load()
-        self.wait.until(lambda s: self.is_element_present(
-            By.CSS_SELECTOR, 'html.loaded'))
+        self.wait.until(lambda s: self.seed_url in s.current_url)
+        el = self.find_element(By.TAG_NAME, 'html')
+        self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
         return self
 
     @property
