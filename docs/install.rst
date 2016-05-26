@@ -108,6 +108,16 @@ If you are not inside a virtualenv, you can activate it by doing::
 
 If you get the error "NoneType is not iterable", you didn't check out the latest product-details. See the above section for that.
 
+If you have problems with gulp, or you for some reason don't want to use it you can set::
+
+    PIPELINE_COLLECTOR_ENABLED=True
+
+in your ``.env`` file or otherwise set it in your environment. Then you can run::
+
+    $ ./manage.py runserver
+
+and it will collect media for you as you make changes. The reason that this is not the preferred method is that it is much slower than using gulp.
+
 Localization
 ------------
 
