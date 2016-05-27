@@ -498,9 +498,6 @@ class WebToLeadForm(forms.Form):
     )
     # honeypot
     office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
-    # uncomment below to debug salesforce
-    # debug = forms.IntegerField(required=False)
-    # debugEmail = forms.EmailField(required=False)
 
     def __init__(self, *args, **kwargs):
         interest_set = kwargs.pop('interest_set', 'standard')

@@ -544,12 +544,8 @@ class TestRobots(TestCase):
 
 
 class TestProcessPartnershipForm(TestCase):
-    def setUp(self):
-        patcher = patch('bedrock.mozorg.views.requests.post')
-        self.addCleanup(patcher.stop)
-        self.requests_mock = patcher.start()
-        self.requests_mock.return_value.status_code = 200
 
+    def setUp(self):
         self.factory = RequestFactory()
         self.template = 'mozorg/partnerships.html'
         self.view = 'mozorg.partnerships'
@@ -612,12 +608,17 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn('text/html', response._headers['content-type'][1])
 
-    def test_post_ajax(self):
+    @patch('bedrock.mozorg.views.jingo.render_to_string',
+           return_value='jingo rendered')
+    @patch('bedrock.mozorg.views.EmailMessage')
+    def test_post_ajax(self, mock_email_message, mock_render_to_string):
         """
         POSTing with AJAX should return success/error JSON.
         """
 
         with self.activate('en-US'):
+            mock_send = mock_email_message.return_value.send
+
             # test AJAX POST with valid form data
             request = self.factory.post(self.url, self.post_data,
                                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -628,11 +629,19 @@ class TestProcessPartnershipForm(TestCase):
             # decode JSON response
             resp_data = json.loads(response.content)
 
-            self.assertEqual(resp_data['msg'], 'ok')
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
-            ok_(self.requests_mock.called)
+
+            # make sure email was sent
+            mock_send.assert_called_once_with()
+
+            # make sure email values are correct
+            mock_email_message.assert_called_once_with(
+                views.PARTNERSHIPS_EMAIL_SUBJECT,
+                'jingo rendered',
+                views.PARTNERSHIPS_EMAIL_FROM,
+                views.PARTNERSHIPS_EMAIL_TO)
 
             # test AJAX POST with invalid form data
             request = self.factory.post(self.url, self.invalid_post_data,
@@ -650,11 +659,16 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
 
-    def test_post_ajax_honeypot(self):
+    @patch('bedrock.mozorg.views.jingo.render_to_string',
+           return_value='jingo rendered')
+    @patch('bedrock.mozorg.views.EmailMessage')
+    def test_post_ajax_honeypot(self, mock_email_message, mock_render_to_string):
         """
         POSTing with AJAX and honeypot should return success JSON.
         """
         with self.activate('en-US'):
+            mock_send = mock_email_message.return_value.send
+
             self.post_data['office_fax'] = 'what is this?'
             request = self.factory.post(self.url, self.post_data,
                                         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
@@ -669,7 +683,7 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
-            ok_(not self.requests_mock.called)
+            ok_(not mock_send.called)
 
     def test_post_ajax_error_xss(self):
         """
@@ -697,7 +711,10 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
 
-    def test_lead_source(self):
+    @patch('bedrock.mozorg.views.jingo.render_to_string',
+           return_value='jingo rendered')
+    @patch('bedrock.mozorg.views.EmailMessage')
+    def test_lead_source(self, mock_email_message, mock_render_to_string):
         """
         A POST request should include the 'lead_source' field in that call. The
         value will be defaulted to 'www.mozilla.org/about/partnerships/' if it's
@@ -708,11 +725,12 @@ class TestProcessPartnershipForm(TestCase):
             request = self.factory.post(self.url, self.post_data)
             views.process_partnership_form(request, self.template,
                                            self.view, {}, form_kwargs)
-            return self.requests_mock.call_args[0][1]['lead_source']
 
-        eq_(_req(None), 'www.mozilla.org/about/partnerships/')
-        eq_(_req({'lead_source': 'www.mozilla.org/firefox/partners/'}),
-            'www.mozilla.org/firefox/partners/')
+            return str(mock_render_to_string.call_args[0][2])
+
+        self.assertTrue('www.mozilla.org/about/partnerships/' in _req(None))
+        self.assertTrue('www.mozilla.org/firefox/partners/' in
+                        _req({'lead_source': 'www.mozilla.org/firefox/partners/'}))
 
 
 class TestMozIDDataView(TestCase):
