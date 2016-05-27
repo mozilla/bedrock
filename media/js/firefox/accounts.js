@@ -5,25 +5,9 @@
 (function(Mozilla, $) {
     'use strict';
 
-    var params = new window._SearchParams();
-    var testVariation = params.get('v') || false;
     var fxaEmail;
-
-    var $fxaFrame = $('#fxa');
-    var fxaIframeHost = $('main').data('fxa-iframe-host');
-    var fxaIframeSrc = $fxaFrame.data('src');
-    var _resizeTimer;
-    var _fxaHandshake = false;
     var client = Mozilla.Client;
     var $main = $('main');
-
-    // remove trailing slash from iframe src (if present)
-    fxaIframeHost = (fxaIframeHost[fxaIframeHost.length - 1] === '/') ? fxaIframeHost.substr(0, fxaIframeHost.length - 1) : fxaIframeHost;
-
-    // check user's Fx version to determine FxA iframe experience
-    if (Mozilla.Client.FirefoxMajorVersion >= 46) {
-        fxaIframeSrc = fxaIframeSrc.replace('context=iframe', 'context=fx_firstrun_v2');
-    }
 
     // check for fxaEmail in sessionStorage or URL params
     try {
@@ -33,114 +17,20 @@
         // empty
     }
 
-    // if email address provided, send to FxA frame
-    if (fxaEmail && /(.+)@(.+)\.(.+){2,}/.test(fxaEmail)) {
-        fxaIframeSrc += '&email=' + encodeURIComponent(fxaEmail);
-    }
-
-    function onFormPing(data) {
-        var fxaFrameTarget = $fxaFrame[0].contentWindow;
-        fxaFrameTarget.postMessage(data, fxaIframeHost);
-        _fxaHandshake = true;
-    }
-
-    function onFormResize(height) {
-        clearTimeout(_resizeTimer);
-        // sometimes resizes come in bunches - only want to react to the last of a set
-        _resizeTimer = setTimeout(function() {
-            showFxAccountsForm(height);
-        }, 300);
-    }
-
-    function onFormLogin() {
-        sendGAEvent('sign-in');
-        redirectToAccountSettings();
-    }
-
-    function redirectToAccountSettings() {
-        window.location.href = fxaIframeHost + '/settings';
-    }
-
-    function showFxAccountsForm(height) {
-        var formHeight = height !== undefined ? height : 450;
-        $fxaFrame.css('height', formHeight + 'px').addClass('loaded');
-    }
-
-    function sendGAEvent(type, extra) {
-        // we'll always have a type
+    function sendGAEvent(type) {
         var data = {
             'event': 'accounts',
             'interaction': type
         };
 
-        // merge additional properties if available
-        if (extra) {
-            $.extend(data, extra);
-        }
-
         window.dataLayer.push(data);
     }
 
-    // set up communication with FxA iframe
-    function onMessageReceived(e) {
-        // make sure origin is as expected
-        if (e.origin !== fxaIframeHost) {
-            return;
-        }
-
-        var data = JSON.parse(e.data);
-
-        switch (data.command) {
-        // tell iframe we are expecting it
-        case 'ping':
-            onFormPing(e.data);
-            break;
-        // just GA tracking when iframe loads
-        case 'loaded':
-            sendGAEvent('impression');
-            break;
-        // resize container when iframe resizes for nicer UI
-        case 'resize':
-            onFormResize(data.data.height);
-            break;
-        // track when user signs up successfully (but hasn't yet verified email)
-        case 'signup_must_verify':
-            // if emailOptIn property is present, send value to GA
-            if (data.data.hasOwnProperty('emailOptIn')) {
-                sendGAEvent('email opt-in', { 'label': data.data.emailOptIn });
-            }
-
-            if (testVariation) {
-                sendGAEvent('success', { 'test-variation': testVariation });
-            } else {
-                sendGAEvent('success');
-            }
-            break;
-        // track when user returns to page after verifying email (may never happen)
-        case 'verification_complete':
-            sendGAEvent('verified');
-            break;
-        // track & redirect user with FxA account logging in
-        case 'login':
-            onFormLogin();
-            break;
-        }
-    }
-
     function loadFxAccountsForm() {
-        // bind postMessage event listener
-        window.addEventListener('message', onMessageReceived, true);
-
-        // load FxA iframe only after postMessage communication is configured
-        $fxaFrame.attr('src', fxaIframeSrc);
-
-        // set a timeout to show FxA (error page, most likely) should the ping event
-        // above fail for some reason
-        setTimeout(function() {
-            if (!_fxaHandshake) {
-                showFxAccountsForm();
-            }
-        }, 2500);
+        Mozilla.FxaIframe.init({
+            gaEventName: 'accounts',
+            userEmail: fxaEmail
+        });
     }
 
     function showFxAForm() {
