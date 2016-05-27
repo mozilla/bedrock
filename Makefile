@@ -23,6 +23,7 @@ DOCKER_RUN_ARGS ?= --env-file ${ENV_FILE} ${MOUNT_APP_DIR} -w /app
 CONTAINER_ID ?= $(shell docker ps | grep ${DEV_IMAGE} | head -n 1 | awk '{print $$1}')
 CODE_CONTAINER_ID ?= $(shell docker ps | grep ${CODE_IMAGE} | head -n 1 | awk '{print $$1}')
 DEIS_APPLICATION ?= bedrock-demo-jgmize
+BASE_URL ?= https://www.mozilla.org
 
 env:
 	@if [[ ! -e ${ENV_FILE} ]]; then \
@@ -31,6 +32,14 @@ env:
 
 gulp: env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} gulp
+
+unit:
+	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} ./manage.py test
+
+headless:
+	docker run ${DOCKER_RUN_ARGS} -e BASE_URL=${BASE_URL} ${DEV_IMAGE} py.test -m headless
+
+test: unit headless
 
 devserver: env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} ./manage.py runserver 0.0.0.0\:${PORT}
