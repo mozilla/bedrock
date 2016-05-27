@@ -12,4 +12,6 @@ $(function() {
             'pageId': Mozilla.Analytics.getPageId()
         });
     }
+
+    Mozilla.Analytics.updateDataLayerPush();
 });
