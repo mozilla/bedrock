@@ -20,14 +20,21 @@ ENV_FILE ?= .env
 PORT ?= 8000
 PORT_ARGS ?= -p "${PORT}:${PORT}"
 DOCKER_RUN_ARGS ?= --env-file ${ENV_FILE} ${MOUNT_APP_DIR} -w /app
-CONTAINER_ID ?= $(shell docker ps | grep ${DEV_IMAGE} | head -n 1 | awk '{print $$1}')
-CODE_CONTAINER_ID ?= $(shell docker ps | grep ${CODE_IMAGE} | head -n 1 | awk '{print $$1}')
+CONTAINER_ID ?= $(shell docker ps --format='{{.ID}}' -f ancestor=${DEV_IMAGE} | head -n 1)
 DEIS_APPLICATION ?= bedrock-demo-jgmize
 BASE_URL ?= https://www.mozilla.org
 
 env:
 	@if [[ ! -e ${ENV_FILE} ]]; then \
 		sed -e s/DISABLE_SSL=False/DISABLE_SSL=True/ .bedrock_demo_env > ${ENV_FILE}; \
+	fi
+
+
+help:
+	@if [[ $(which rst2ansi) ]]; then \
+		rst2ansi docs/make-commands.rst; \
+	else \
+		cat docs/make-commands.rst; \
 	fi
 
 gulp: env
