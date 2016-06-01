@@ -1,0 +1,148 @@
+{% from "macros.html" import share_cta with context %}
+{% set_lang_files "main" %}
+<!doctype html>
+{# Note the "windows" class, without javascript platform-specific
+     assets default to windows #}
+<html class="windows x86 no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% block gtm_page_id %}{% endblock %}>
+  <head>
+    <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
+
+    {% javascript 'site' %}
+    {% block newrelic %}
+      {% include 'includes/newrelic.html' %}
+    {% endblock %}
+
+<!--
+{% include "includes/careers-teaser.html" %}
+-->
+
+    {% block ga_experiments %}{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block extra_meta %}{% endblock %}
+
+    {% block shared_meta %}
+    {#- Please sync this block with the base.html template.
+        Because of blocks, we cannot use an include here. -#}
+    <title>{% filter striptags|e %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
+    <meta name="description" content="{% filter striptags|e %}{% block page_desc %}{% endblock %}{% endfilter %}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ _('Mozilla') }}">
+    <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
+    <meta property="og:url" content="{% filter trim|absolute_url %}{% block page_og_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}{% endfilter %}">
+    <meta property="og:image" content="{% filter trim|absolute_url %}{% block page_image %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endblock %}{% endfilter %}">
+    <meta property="og:title" content="{% filter striptags|e %}{% block page_og_title %}{{ self.page_title_full() }}{% endblock %}{% endfilter %}">
+    <meta property="og:description" content="{% filter striptags|e %}{% block page_og_desc %}{{ self.page_desc() }}{% endblock %}{% endfilter %}">
+    <meta property="fb:page_id" content="{% block facebook_id %}262134952380{# facebook.com/mozilla #}{% endblock %}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@{% block twitter_id %}mozilla{% endblock %}">
+    <meta name="twitter:domain" content="mozilla.org">
+    <meta name="twitter:app:name:googleplay" content="{% block android_app_name %}{{ _('Firefox') }}{% endblock %}">
+    <meta name="twitter:app:id:googleplay" content="{% block android_app_id %}org.mozilla.firefox{% endblock %}">
+    <meta name="twitter:app:name:iphone" content="{% block iphone_app_name %}{{ _('Firefox') }}{% endblock %}">
+    <meta name="twitter:app:id:iphone" content="{% block iphone_app_id %}989804926{% endblock %}">
+    <meta name="twitter:app:name:ipad" content="{% block ipad_app_name %}{{ _('Firefox') }}{% endblock %}">
+    <meta name="twitter:app:id:ipad" content="{% block ipad_app_id %}989804926{% endblock %}">
+    <link rel="author" type="text/plain" href="/humans.txt">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{% block page_ios_icon %}{{ static('img/favicon/apple-touch-icon-180x180.png') }}{% endblock %}">
+    <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicon/favicon-196x196.png') }}{% endblock %}">
+    <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicon.ico') }}{% endblock %}">
+    {% block canonical_urls %}{% include 'includes/canonical-url.html' %}{% endblock %}
+    {% endblock shared_meta %}
+
+    {{ l10n_css() }}
+
+    <!--[if lte IE 8]>
+      {# Only needed for IE before v9 #}
+      <script src="{{ static('js/libs/html5shiv.js') }}"></script>
+
+      {# Basic styles, only for IE8 and lower #}
+      {% stylesheet 'oldIE-pebbles' %}
+    <![endif]-->
+
+    <!--[if !lte IE 8]><!-->
+    {# Global styles, hidden from IE8 and lower #}
+    {% block site_css %}
+      {% stylesheet 'pebbles' %}
+    {% endblock %}
+
+    {# Page-specific styles, hidden from IE8 and lower #}
+    {% block page_css %}{% endblock %}
+    <!--<![endif]-->
+
+    {% block extrahead %}
+      {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE7 and lower. #}
+    {% endblock %}
+
+    {% block optimizely %}{% endblock %}
+
+    {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
+    {% block google_analytics %}
+      {% include 'includes/google-analytics.html' %}
+    {% endblock %}
+  </head>
+
+  <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
+    <div id="strings"
+      data-global-close="{{ _('Close') }}"
+      data-global-next="{{ _('Next') }}"
+      data-global-previous="{{ _('Previous') }}"
+      data-global-update-firefox="{{ _('Update your Firefox') }}"
+      {% block string_data %}{% endblock %}></div>
+
+  {% block site_header %}
+    <header class="section masthead" id="masthead">
+      <div class="content">
+
+      {% block tabzilla_tab %}
+        <div id="tabzilla">
+          <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+        </div>
+      {% endblock %}
+
+      {% block site_header_nav %}
+        <nav class="masthead-nav-main" id="nav-main">
+          <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
+          <ul id="nav-main-menu">
+            <li class="first about-item">
+              <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{_('About')}}</a>
+            </li>
+            <li class="contribute-item">
+              <a href="{{ url('mozorg.contribute') }}" data-link-type="nav" data-link-name="Participate">{{_('Participate')}}</a>
+            </li>
+            <li class="products-item">
+              <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{_('Firefox')}}</a>
+            </li>
+            <li class="last donate-item">
+              <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{_('Donate')}}</a>
+            </li>
+          </ul>
+        </nav>
+      {% endblock %}
+
+      {% block site_header_logo %}
+        <h2 class="masthead-logo"><a href="{{ url('mozorg.home') }}">{{ high_res_img('sandstone/header-mozilla-stone.png', {'alt': 'Mozilla', 'width': '170', 'height': '45'}) }}</a></h2>
+      {% endblock %}
+
+      </div>
+    </header>
+  {% endblock %}
+
+  {% block content %}{% endblock %}
+
+  {% block site_footer %}
+    {% include 'includes/site-footer.html' %}
+  {% endblock %}
+
+  <!--[if IE 9]>
+    {% javascript 'matchmedia' %}
+  <![endif]-->
+
+    {% block site_js %}
+      {% javascript 'common' %}
+    {% endblock %}
+    {% block js %}{% endblock %}
+    {% if settings.DEV %}
+      <script src="https://pontoon.mozilla.org/pontoon.js"></script>
+    {% endif %}
+  </body>
+</html>

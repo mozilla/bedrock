@@ -111,11 +111,24 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/responsive-bundle.css',
     },
+    'pebbles': {
+        'source_filenames': (
+            'css/pebbles/base.less',
+            'css/tabzilla/tabzilla-static.less',
+        ),
+        'output_filename': 'css/pebbles-bundle.css',
+    },
     'oldIE': {
         'source_filenames': (
             'css/sandstone/oldIE.less',
         ),
         'output_filename': 'css/oldIE-bundle.css',
+    },
+    'oldIE-pebbles': {
+        'source_filenames': (
+            'css/pebbles/oldIE.less',
+        ),
+        'output_filename': 'css/oldIE-pebbles-bundle.css',
     },
     'newsletter': {
         'source_filenames': (
@@ -662,6 +675,21 @@ PIPELINE_CSS = {
             'css/mozorg/home/home-ie8.less',
         ),
         'output_filename': 'css/home-ie8-bundle.css',
+    },
+    'home-a': {
+        'source_filenames': (
+            'css/base/mozilla-video-poster.less',
+            'css/mozorg/home/home-a.less',
+            'css/newsletter/moznewsletter-subscribe.less',
+        ),
+        'output_filename': 'css/home-a-bundle.css',
+    },
+    # temporary bundle for survey on ?v=a homepage
+    'home-survey': {
+        'source_filenames': (
+            'css/mozorg/home/survey.less',
+        ),
+        'output_filename': 'css/home-survey-bundle.css',
     },
     'legal': {
         'source_filenames': (
@@ -1439,6 +1467,23 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/home-bundle.js',
     },
+    'home-a': {
+        'source_filenames': (
+            'js/libs/jquery.cycle2.min.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/base/mozilla-smoothscroll.js',
+            'js/base/mozilla-video-poster.js',
+            'js/mozorg/home/home-a.js',
+        ),
+        'output_filename': 'js/home_a-bundle.js',
+    },
+    # temporary bundle for survey on ?v=a homepage
+    'home-survey': {
+        'source_filenames': (
+            'js/mozorg/home/survey.js',
+        ),
+        'output_filename': 'js/home-survey-bundle.js',
+    },
     'history-slides': {
         'source_filenames': (
             'js/libs/jquery.sequence.js',
@@ -1635,6 +1680,13 @@ PIPELINE_JS = {
             'js/newsletter/form.js',
         ),
         'output_filename': 'js/newsletter_form-bundle.js',
+    },
+    'matchmedia': {
+        'source_filenames': (
+            'js/libs/matchMedia.js',
+            'js/libs/matchMedia.addListener.js',
+        ),
+        'output_filename': 'js/matchmedia-bundle.js',
     },
     'matchmedia_addlistener': {
         'source_filenames': (
