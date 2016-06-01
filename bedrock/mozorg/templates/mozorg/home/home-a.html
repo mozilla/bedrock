@@ -71,13 +71,13 @@
 
   <nav class="masthead-nav-page" id="nav-page">
     <ul id="nav-page-primary" class="primary">
-      <li id="nav-primary-action"><a href="#action"><span>{{ _('Mozilla In Action') }}</span></a></li>
-      <li id="nav-primary-innovation"><a href="#innovation"><span>{{ _('Web Innovations') }}</span></a></li>
-      <li id="nav-primary-firefox"><a href="#firefox"><span>{{ _('Firefox') }}</span></a></li>
+      <li id="nav-primary-action"><a href="#action" data-link-type="nav" data-link-name="Mozilla in Action"><span>{{ _('Mozilla In Action') }}</span></a></li>
+      <li id="nav-primary-innovation"><a href="#innovation" data-link-type="nav" data-link-name="Web Innovation"><span>{{ _('Web Innovations') }}</span></a></li>
+      <li id="nav-primary-firefox"><a href="#firefox" data-link-type="nav" data-link-name="Firefox"><span>{{ _('Firefox') }}</span></a></li>
     </ul>
 
     <ul id="nav-page-secondary" class="secondary">
-      <li id="nav-secondary-donate"><a href="{{ donate_url('home_test_a') }}"><span>{{ _('Donate') }}</span></a></li>
+      <li id="nav-secondary-donate"><a href="{{ donate_url('home_test_a') }}" data-link-type="nav" data-link-name="Donate"><span>{{ _('Donate') }}</span></a></li>
       <li id="nav-secondary-firefox">
         {{ download_firefox(alt_copy=_('Download Firefox'), button_color='transparent', dom_id='nav-download-firefox') }}
       </li>
