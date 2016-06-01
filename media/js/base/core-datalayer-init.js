@@ -4,14 +4,32 @@
 
 // init core dataLayer object and push into dataLayer
 $(function() {
-    if (Mozilla && Mozilla.Analytics) {
-        var dataLayer = window.dataLayer = window.dataLayer || [];
+    var analytics = Mozilla.Analytics;
+    var client = Mozilla.Client;
+    var dataLayer = window.dataLayer;
 
-        dataLayer.push({
+    function sendCoreDataLayer() {
+        var dataLayerCore = {
             'event': 'core-datalayer-loaded',
-            'pageId': Mozilla.Analytics.getPageId()
-        });
+            'pageId': analytics.getPageId(),
+            'pageHasDownload': analytics.pageHasDownload(),
+            'pageHasVideo': analytics.pageHasVideo(),
+            'pageVersion': analytics.getPageVersion(),
+            // white listed for www.mozill.org, will always return false on other domains
+            'testPilotUser': 'testpilotAddon' in navigator ? 'true' : 'false'
+        };
+
+        dataLayer.push(dataLayerCore);
     }
 
-    Mozilla.Analytics.updateDataLayerPush();
+    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
+        client.getFirefoxDetails(function(details) {
+            dataLayer.push(details);
+            sendCoreDataLayer();
+        });
+    } else {
+        sendCoreDataLayer();
+    }
+
+    analytics.updateDataLayerPush();
 });

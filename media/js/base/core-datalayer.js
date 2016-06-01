@@ -25,6 +25,33 @@ if (typeof Mozilla == 'undefined') {
         return pageId ? pageId : pathName.replace(/\/[^\/]*/, '');
     };
 
+    /** Returns whether page has download button.
+    * @param {String} path - URL path name fallback if page ID does not exist.
+    * @return {String} string.
+    */
+    Analytics.pageHasDownload = function() {
+        return $('[data-download-os]').length ? 'true' : 'false';
+    };
+
+    /** Returns whether page has video.
+    * @param {String} path - URL path name fallback if page ID does not exist.
+    * @return {String} string.
+    */
+    Analytics.pageHasVideo = function() {
+        return ($('video').length || $('iframe[src^="https://www.youtube"]').length) ? 'true' : 'false';
+    };
+
+    /** Returns page version.
+    * @param {String} path - URL path name fallback if page ID does not exist.
+    * @return {String} version number from URL.
+    */
+    Analytics.getPageVersion = function(path) {
+        var pathName = path ? path : document.location.pathname;
+        var versionResults = /firefox\/(\d+(?:\.\d+)?\.\da?\d?)/.exec(pathName);
+
+        return versionResults ? versionResults[1] : null;
+    };
+
     /** Monkey patch for dataLayer.push
     *   Adds href stripped of locale to link click objects when pushed to the dataLayer,
     *   also removes protocol and host if same as parent page from href.
