@@ -359,6 +359,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/tabzilla/tabzilla-static.less',
+            'css/base/mozilla-fxa-iframe.less',
             'css/firefox/onboarding/firstrun-fxa.less',
         ),
         'output_filename': 'css/firefox_onboarding_firstrun_fxa-bundle.css',
