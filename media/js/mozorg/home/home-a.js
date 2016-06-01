@@ -8,10 +8,11 @@
     var $navPage = $('#nav-page');
 
     // waypoints
-    var introWaypoint;
     var actionWaypoint;
     var innovationWaypoint;
     var firefoxWaypoint;
+    var suppressScrollTracking = false;
+    var clickTargetSection;
 
     // intro slideshow
     var $slideshow = $('#home-slideshow');
@@ -97,40 +98,63 @@
 
     function enableWaypoints() {
         // fire the waypoints for each section, passing classes for the current and previous sections
-        introWaypoint = new Waypoint({
-            element: '#intro',
-            handler: navState('intro', 'intro'),
-            offset: 10
-        });
-
         actionWaypoint = new Waypoint({
             element: '#action',
             handler: navState('action', 'intro'),
-            offset: 10
+            offset: '30%'
         });
 
         innovationWaypoint = new Waypoint({
             element: '#innovation',
             handler: navState('innovation', 'action'),
-            offset: 10
+            offset: '30%'
         });
 
         firefoxWaypoint = new Waypoint({
             element: '#firefox',
             handler: navState('firefox', 'innovation'),
-            offset: 10
+            offset: '30%'
         });
     }
 
     // Change the navbar current item to match the section waypoint
     function navState(current, previous) {
         return function(direction) {
-            $navPage.find('#nav-page-primary li').removeClass();
+            var $navPrimary;
+            var gtmSection;
 
-            if (direction === 'down') {
-                $('#nav-primary-' + current).addClass('current');
-            } else {
-                $('#nav-primary-' + previous).addClass('current');
+            // if user clicks a primary nav item, only perform logic below if
+            // the clicked nav item matches the item currently being scrolled
+            // into view. this prevents scroll tracking on items in-between the
+            // currently visible item and the destination item.
+            if (!suppressScrollTracking || (clickTargetSection === current || clickTargetSection === previous)) {
+                // un-highlight all nav items
+                $navPage.find('#nav-page-primary li').removeClass();
+
+                // determine which nav item we will act upon based on scroll
+                // direction
+                if (direction === 'down') {
+                    $navPrimary = $('#nav-primary-' + current);
+                } else {
+                    $navPrimary = $('#nav-primary-' + previous);
+                }
+
+                // will be undefined when scrolling up to #intro
+                gtmSection = $navPrimary.find('a').data('link-name');
+
+                if (gtmSection) {
+                    // highlight the appropriate nav item
+                    $navPrimary.addClass('current');
+
+                    // track scrolling to sections
+                    window.dataLayer.push({
+                        'event': 'scroll-section',
+                        'section': gtmSection
+                    });
+                }
+
+                suppressScrollTracking = false;
+                clickTargetSection = undefined;
             }
         };
     }
@@ -143,8 +167,12 @@
 
         $this.blur();
         // Extract the target element's ID from the link's href.
-        var elem = $this.attr('href').replace(/.*?(#.*)/g, '$1');
-        var offset = $(elem).offset().top;
+        var $elem = $($this.attr('href').replace(/.*?(#.*)/g, '$1'));
+        var offset = $elem.offset().top;
+
+        // don't track scrolling to in-between sections
+        suppressScrollTracking = true;
+        clickTargetSection = $elem.prop('id');
 
         Mozilla.smoothScroll({
             top: offset
@@ -165,7 +193,6 @@
             } else {
                 $slideshow.cycle('destroy');
 
-                introWaypoint.destroy();
                 actionWaypoint.destroy();
                 innovationWaypoint.destroy();
                 firefoxWaypoint.destroy();
