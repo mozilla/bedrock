@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import jingo
 import json
 import re
 from cgi import escape
@@ -9,6 +10,7 @@ from cgi import escape
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
 from django.core.context_processors import csrf
+from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect, Http404
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -18,7 +20,6 @@ from django.shortcuts import redirect, render as django_render
 
 import basket
 from bedrock.base.helpers import static
-import requests
 from lib import l10n_utils
 from commonware.decorators import xframe_allow
 from bedrock.base.urlresolvers import reverse
@@ -38,6 +39,10 @@ from bedrock.newsletter.forms import NewsletterFooterForm
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
+
+PARTNERSHIPS_EMAIL_SUBJECT = 'New Partnership Inquiry'
+PARTNERSHIPS_EMAIL_TO = ['partnerships@mozilla.com']
+PARTNERSHIPS_EMAIL_FROM = 'Mozilla.com <noreply@mozilla.com>'
 
 
 def csrf_failure(request, reason=''):
@@ -335,26 +340,19 @@ def process_partnership_form(request, template, success_url_name, template_vars=
                 msg = 'ok'
                 stat = 200
             else:
-                # rename custom Salesforce fields to their real GUID name
-                data['00NU0000002pDJr'] = data.pop('interest')
-                data['00NU00000053D4G'] = data.pop('interested_countries')
-                data['00NU00000053D4L'] = data.pop('interested_languages')
-                data['00NU00000053D4a'] = data.pop('campaign_type')
-                data['oid'] = '00DU0000000IrgO'
                 data['lead_source'] = form_kwargs.get('lead_source',
                                                       'www.mozilla.org/about/partnerships/')
-                # As we're doing the Salesforce POST in the background here,
-                # `retURL` is never visited/seen by the user. I believe it
-                # is required by Salesforce though, so it should hang around
-                # as a placeholder (with a valid URL, just in case).
-                data['retURL'] = ('http://www.mozilla.org/en-US/about/'
-                                  'partnerships?success=1')
 
-                r = requests.post('https://www.salesforce.com/servlet/'
-                                  'servlet.WebToLead?encoding=UTF-8', data)
-                msg = requests.status_codes._codes.get(r.status_code, ['error'])[0]
-                stat = r.status_code
+                subject = PARTNERSHIPS_EMAIL_SUBJECT
+                sender = PARTNERSHIPS_EMAIL_FROM
+                to = PARTNERSHIPS_EMAIL_TO
+                body = jingo.render_to_string(request, 'mozorg/emails/partnerships.txt', data)
 
+                email = EmailMessage(subject, body, sender, to)
+                email.send()
+
+                msg = 'ok'
+                stat = 200
                 success = True
 
         if request.is_ajax():
