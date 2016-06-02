@@ -64,7 +64,10 @@ def get_release_or_404(version, product):
 
 def get_download_url(release):
     if release.product == 'Thunderbird':
-        return 'https://www.mozilla.org/thunderbird/'
+        if release.channel == 'Beta':
+            return reverse('thunderbird.channel')
+        else:
+            return reverse('thunderbird.index')
     elif release.product == 'Firefox for Android':
         return android_builds(release.channel)[0]['download_link']
     elif release.product == 'Firefox for iOS':

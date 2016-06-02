@@ -211,7 +211,12 @@ class TestRNAViews(TestCase):
     def test_get_download_url_thunderbird(self):
         release = Mock(product='Thunderbird')
         link = views.get_download_url(release)
-        eq_(link, 'https://www.mozilla.org/thunderbird/')
+        eq_(link, '/en-US/thunderbird/')
+
+    def test_get_download_url_thunderbird_beta(self):
+        release = Mock(product='Thunderbird', channel='Beta')
+        link = views.get_download_url(release)
+        eq_(link, '/en-US/thunderbird/channel/')
 
     def test_check_url(self):
         eq_(views.check_url('Firefox for Android', '42.0'),
