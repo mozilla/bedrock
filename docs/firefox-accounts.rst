@@ -18,9 +18,9 @@ a non-production environment requires some additional Firefox profile configurat
 Local Development
 -----------------
 
-#. Set ``FXA_IFRAME_SRC`` in your ``local.py`` to point to the FXA development server:
+#. Set ``FXA_IFRAME_SRC`` in your ``.env`` file to point to the FXA development server:
 
-    ``FXA_IFRAME_SRC = 'https://stomlinson.dev.lcip.org/'``
+    ``FXA_IFRAME_SRC=https://stomlinson.dev.lcip.org/``
 
 #. Set your local development server to run on ``127.0.0.1:8111``.
 #. Quit Firefox.

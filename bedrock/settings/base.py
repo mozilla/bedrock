@@ -506,6 +506,7 @@ RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY', default='')
 RECAPTCHA_USE_SSL = config('RECAPTCHA_USE_SSL', cast=bool, default=True)
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = config('NOSE_ARGS', default='', cast=Csv())
 
 # Use a message storage mechanism that doesn't need a database.
 # This can be changed to use session once we do add a database.

@@ -37,9 +37,9 @@ If you are on Linux, you will need at least the following packages or their equi
 
     python-dev libxslt-dev
 
-Now configure the application to run locally by creating your local settings file::
+Now configure the application to run locally by creating your local settings environment file::
 
-    $ cp bedrock/settings/local.py-dist bedrock/settings/local.py
+    $ cp .env-dist .env
 
 You shouldn't need to customize anything in there yet.
 
@@ -81,18 +81,12 @@ activated, so running the tests is as simple as::
 
 .. note::
 
-    If your local tests run fine, but when you submit a pull-request our Jenkins
-    (continuous integration service) instance tells you the tests failed, it could
-    be due to the difference in settings between what you have in ``settings/local.py``
-    and what Jenkins uses: ``settings/jenkins.py``. You can run tests as close to Jenkins
-    as possible by doing the following::
-
-        $ JENKINS_HOME=1 ./manage.py test
-
-    This tells Bedrock to use the jenkins settings. This will require you to have a local
-    MySQL database server running and configured correctly, but may help you debug. Alternately
-    you can move your ``settings/local.py`` to a backup, copy ``settings/jenkins.py`` to
-    ``settings/local.py`` and tweak the DB settings yourself to make it work.
+    If your local tests run fine, but when you submit a pull-request the tests fail in
+    `CircleCI <https://circleci.com/gh/mozilla/bedrock>`_, it could be due to the
+    difference in settings between what you have in ``.env``
+    and what CircleCI uses: ``.bedrock_demo_env``. You can run tests as close to Circle
+    as possible by moving your ``.env`` file to another name (e.g. ``.env-backup``), then
+    copying ``.bedrock_demo_env`` to ``.env``, and running tests again.
 
 Make it run
 -----------
@@ -107,6 +101,16 @@ If you are not inside a virtualenv, you can activate it by doing::
     $ source venv/bin/activate
 
 If you get the error "NoneType is not iterable", you didn't check out the latest product-details. See the above section for that.
+
+If you have problems with gulp, or you for some reason don't want to use it you can set::
+
+    PIPELINE_COLLECTOR_ENABLED=True
+
+in your ``.env`` file or otherwise set it in your environment. Then you can run::
+
+    $ ./manage.py runserver
+
+and it will collect media for you as you make changes. The reason that this is not the preferred method is that it is much slower than using gulp.
 
 Localization
 ------------
@@ -137,10 +141,10 @@ To work with/test these Waffle/Optimizely switches locally, you must add the swi
 
     ./manage.py switch firefox-new-optimizely on --create
 
-You then must set an Optimizely project code in ``settings/local.py``::
+You then must set an Optimizely project code in ``.env``::
 
     # Optimize.ly project code
-    OPTIMIZELY_PROJECT_ID = 12345
+    OPTIMIZELY_PROJECT_ID=12345
 
 .. note::
 
