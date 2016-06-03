@@ -476,8 +476,8 @@ def home(request, template='mozorg/home/home.html'):
 
     variant = request.GET.get('v', '')
 
-    if variant == 'a':
-        template = 'mozorg/home/home-a.html'
+    if variant in ['a', 'b']:
+        template = 'mozorg/home/home-{0}.html'.format(variant)
 
     return l10n_utils.render(
         request, template, {

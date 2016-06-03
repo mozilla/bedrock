@@ -687,11 +687,20 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-video-poster.less',
             'css/mozorg/home/home-a.less',
+            'css/mozorg/home/prototypes/footer.less',
             'css/newsletter/moznewsletter-subscribe.less',
         ),
         'output_filename': 'css/home-a-bundle.css',
     },
-    # temporary bundle for survey on ?v=a homepage
+    'home-b': {
+        'source_filenames': (
+            'css/newsletter/moznewsletter-subscribe.less',
+            'css/mozorg/home/prototypes/footer.less',
+            'css/mozorg/home/home-b.less',
+        ),
+        'output_filename': 'css/home-b-bundle.css',
+    },
+    # temporary bundle for survey on ?v=a|b homepages
     'home-survey': {
         'source_filenames': (
             'css/mozorg/home/survey.less',
@@ -1474,6 +1483,12 @@ PIPELINE_JS = {
             'js/mozorg/home/home-a.js',
         ),
         'output_filename': 'js/home_a-bundle.js',
+    },
+    'home-b': {
+        'source_filenames': (
+            'js/mozorg/home/home-b.js',
+        ),
+        'output_filename': 'js/home_b-bundle.js',
     },
     # temporary bundle for survey on ?v=a homepage
     'home-survey': {
