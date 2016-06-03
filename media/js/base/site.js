@@ -155,6 +155,13 @@
         } else {
             h.className = h.className.replace('windows', platform);
 
+            // Firefox 49 has dropped the support for OS X 10.6-10.8. Add a class name to show an unsupported platform
+            // message to people using those older versions. Once Firefox 49 hits the Release channel, update the
+            // "oldmac" platform detection above and remove this.
+            if (platform === 'osx' && version && version.match(/^10\.[678]$/)) {
+                h.className += ' pre-mavericks';
+            }
+
             // Add class to support downloading Firefox Aurora for Android Gingerbread
             if (platform === 'android' && version && parseFloat(version) === 2.3) {
                 h.className += ' gingerbread';

@@ -182,6 +182,9 @@ def download_firefox(ctx, channel='release', platform='all',
     langs = firefox_desktop.languages
     locale_name = langs[locale]['native'] if locale in langs else locale
 
+    # Firefox 49+ requires OS X 10.9 Mavericks and later
+    mavericks_required = show_desktop and int(version.split('.', 1)[0]) >= 49
+
     data = {
         'locale_name': locale_name,
         'version': version,
@@ -194,6 +197,7 @@ def download_firefox(ctx, channel='release', platform='all',
         'show_ios': show_ios,
         'alt_copy': alt_copy,
         'button_color': button_color,
+        'mavericks_required': mavericks_required,
     }
 
     html = jingo.render_to_string(ctx['request'],
