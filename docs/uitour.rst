@@ -333,7 +333,7 @@ If ``'appinfo'`` is queried the object returned gives information on the users c
 .. code-block:: javascript
 
     Mozilla.UITour.getConfiguration('appinfo', function (config) {
-        console.dir(config); //{defaultBrowser: true, defaultUpdateChannel: "nightly", version: "42.0a1"}
+        console.dir(config); //{defaultUpdateChannel: "aurora", version: "48.0a2", distribution: "default", defaultBrowser: true}
     });
 
 The ``defaultUpdateChannel`` key has many possible values, the most important being:
@@ -344,9 +344,11 @@ The ``defaultUpdateChannel`` key has many possible values, the most important be
 * ``'nightly'``
 * ``'default'`` (self-build or automated testing builds)
 
+The ``distribution`` key holds the value for the Firefox distributionId property. This value will be ``default`` in most cases but can differ for repack or funnelcake builds.
+
 .. Important::
 
-    ``appinfo`` is only available in Firefox 35 onward, and ``defaultBrowser`` will only be returned on Firefox 40 or later.
+    ``appinfo`` is only available in Firefox 35 onward. The ``defaultBrowser`` property will only be returned on Firefox 40 or later. The ``distribution`` property will only be returned on Firefox 48 or later.
 
 **selectedSearchEngine**
 
