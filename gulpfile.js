@@ -26,6 +26,12 @@ gulp.task('serve:backend', function () {
     });
 });
 
+gulp.task('docker:devserver', function () {
+    spawn('make', ['devserver'], {
+        stdio: 'inherit'
+    });
+});
+
 gulp.task('media:watch', function () {
     return gulp.src('./media/**/*')
         .pipe(watch('./media/**/*', {
@@ -50,6 +56,12 @@ gulp.task('js:lint', function() {
 
 gulp.task('default', function() {
     gulp.start('serve:backend');
+    gulp.start('media:watch');
+    gulp.watch(lintPaths, ['js:lint']);
+});
+
+gulp.task('docker', function() {
+    gulp.start('docker:devserver');
     gulp.start('media:watch');
     gulp.watch(lintPaths, ['js:lint']);
 });
