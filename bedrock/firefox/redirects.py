@@ -498,4 +498,7 @@ redirectpatterns = (
 
     # bug 1260423
     redirect(r'^firefox/choose/?$', 'firefox.new'),
+
+    # bug 1273837
+    redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/hello/start/?$', 'firefox.hello'),
 )

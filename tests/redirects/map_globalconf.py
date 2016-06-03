@@ -1064,4 +1064,9 @@ URLS = flatten((
 
     # Bug 1260423
     url_test('/firefox/choose', '/firefox/new/'),
+
+    # Bug 1273837
+    url_test('/firefox/{46.0,46.0.1,46.0a1,46.0a2}/hello/start', '/firefox/hello/'),
+    url_test('/firefox/hello/start', '/firefox/hello/'),
+
 ))
