@@ -23,7 +23,6 @@ DOCKER_RUN_ARGS ?= --env-file ${ENV_FILE} ${MOUNT_APP_DIR} -w /app
 CONTAINER_ID ?= $(shell docker ps --format='{{.ID}}' -f ancestor=${DEV_IMAGE} | head -n 1)
 DEIS_APPLICATION ?= bedrock-demo-jgmize
 BASE_URL ?= https://www.mozilla.org
-STATIC_PATH ?= $(shell sed -e s/media/static/ <<< ${MEDIA_PATH})
 
 env:
 	@if [[ ! -e ${ENV_FILE} ]]; then \
@@ -40,6 +39,9 @@ help:
 
 gulp: env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} gulp
+
+js-lint: env
+	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} gulp js\:lint
 
 unit:
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} ./manage.py test
@@ -118,8 +120,13 @@ push-euw:
 	DEIS_PROFILE=euw
 	deis pull ${DEIS_APPLICATION}:${GIT_COMMIT} -a ${DEIS_APPLICATION}
 
-media-static:
-	cp ${MEDIA_PATH} ${STATIC_PATH}
+media-change:
+	@if [ -n "${MEDIA_PATH}" ]; then \
+		cp ${MEDIA_PATH} $(subst /media/,/static/,${MEDIA_PATH}); \
+		if [ -n "$(filter %.js,${MEDIA_PATH})" ]; then \
+			make js-lint; \
+		fi \
+	fi
 
 fswatch-media:
-	fswatch -0 media | xargs -0 -n 1 -I {} make media-static MEDIA_PATH={}
+	fswatch -0 media | xargs -0 -n 1 -I {} make media-change MEDIA_PATH={}
