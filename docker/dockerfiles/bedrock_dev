@@ -7,7 +7,9 @@ EXPOSE 8000
 CMD ["./docker/run-dev.sh"]
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends python2.7 libpython2.7 gettext build-essential libxml2-dev libxslt1.1 libxslt1-dev python-dev python-pip python-setuptools nodejs npm git postgresql-client libpq-dev
+    apt-get install -y --no-install-recommends python2.7 libpython2.7 build-essential \
+    python-dev python-pip python-setuptools \
+    gettext libxml2-dev libxslt1.1 libxslt1-dev libpq-dev nodejs npm git
 RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
 ENV NODE_PATH=/node_modules
