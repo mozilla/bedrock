@@ -148,6 +148,18 @@ class TestFirefoxNew(TestCase):
 
         ok_('x-frame-options' not in resp)
 
+    def test_scene_1_horizon_template_en_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/horizon/scene1.html')
+
+    def test_scene_2_horizon_template_en_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/horizon/scene2.html')
+
     def test_scene_1_template_en_us(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'

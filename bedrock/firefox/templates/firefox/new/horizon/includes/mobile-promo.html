@@ -1,0 +1,15 @@
+<aside id="mobile-download">
+  <h2>{{ _('Get Firefox for Android and iOS.') }}</h2>
+  <ul>
+    <li class="android">
+      <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
+        {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
+      </a>
+    </li>
+    <li class="ios">
+      <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+        <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+      </a>
+    </li>
+  </ul>
+</aside>

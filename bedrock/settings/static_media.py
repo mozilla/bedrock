@@ -480,6 +480,29 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_redesign_scene2-bundle.css',
     },
+    'firefox_new_horizon_common': {
+        'source_filenames': (
+            'css/sandstone/sandstone-resp.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/base/simple_footer-resp.less',
+            'css/base/platform-footer-links.less',
+            'css/firefox/new/horizon/common.less',
+        ),
+        'output_filename': 'css/firefox_new_horizon_common-bundle.css',
+    },
+    'firefox_new_horizon_scene1': {
+        'source_filenames': (
+            'css/newsletter/fxnewsletter-subscribe.less',
+            'css/firefox/new/horizon/scene1.less',
+        ),
+        'output_filename': 'css/firefox_new_horizon_scene1-bundle.css',
+    },
+    'firefox_new_horizon_scene2': {
+        'source_filenames': (
+            'css/firefox/new/horizon/scene2.less',
+        ),
+        'output_filename': 'css/firefox_new_horizon_scene2-bundle.css',
+    },
     'firefox_organizations': {
         'source_filenames': (
             'css/firefox/organizations.less',
@@ -1203,6 +1226,13 @@ PIPELINE_JS = {
             'js/firefox/new/scene1.js',
         ),
         'output_filename': 'js/firefox_new_scene1-bundle.js',
+    },
+    'firefox_new_horizon_scene1': {
+        'source_filenames': (
+            'js/firefox/new/scene1.js',
+            'js/firefox/new/set-scene.js',
+        ),
+        'output_filename': 'js/firefox_new_horizon_scene1-bundle.js',
     },
     'firefox_new_scene2': {
         'source_filenames': (
