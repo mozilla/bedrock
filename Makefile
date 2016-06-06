@@ -31,7 +31,7 @@ env:
 
 
 help:
-	@if [[ $(which rst2ansi) ]]; then \
+	@if [[ -n "$(which rst2ansi)" ]]; then \
 		rst2ansi docs/make-commands.rst; \
 	else \
 		cat docs/make-commands.rst; \
@@ -129,4 +129,10 @@ media-change:
 	fi
 
 fswatch-media:
+	@if [ -z "$(which fswatch)" ]; then \
+		if [ -z "$(which brew)" ]; then \
+			/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; \
+		fi; \
+		brew install fswatch; \
+	fi; \
 	fswatch -0 media | xargs -0 -n 1 -I {} make media-change MEDIA_PATH={}
