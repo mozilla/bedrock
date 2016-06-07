@@ -34,7 +34,6 @@ describe('core-datalayer.js', function() {
             linkElement = $('#link')[0];
 
             window.dataLayer = [];
-            Mozilla.Analytics.updateDataLayerPush();
         });
 
         afterEach(function() {
@@ -43,6 +42,8 @@ describe('core-datalayer.js', function() {
         });
 
         it('will add newClickHref property to link click object when pushed to the dataLayer', function() {
+            Mozilla.Analytics.updateDataLayerPush('www.allizom.org');
+
             window.dataLayer.push({
                 'event': 'gtm.linkClick',
                 'gtm.element': linkElement
@@ -52,6 +53,8 @@ describe('core-datalayer.js', function() {
         });
 
         it('will not add newClickHref property to object pushed to dataLayer if not a link click object', function() {
+            Mozilla.Analytics.updateDataLayerPush('www.allizom.org');
+
             window.dataLayer.push({
                 'event': 'gtm.click',
                 'gtm.element': linkElement
@@ -61,6 +64,8 @@ describe('core-datalayer.js', function() {
         });
 
         it('will keep host in newClickHref when clicked link\'s href host value is different thatn the page\'s', function() {
+            Mozilla.Analytics.updateDataLayerPush('www.allizom.org');
+
             window.dataLayer.push({
                 'event': 'gtm.linkClick',
                 'gtm.element': linkElement
@@ -69,8 +74,37 @@ describe('core-datalayer.js', function() {
             expect(window.dataLayer[0].newClickHref).toEqual('https://www.mozilla.org/en-US/firefox/new/');
         });
 
-        it('will remove host  and locale in newClickHref when clicked link\'s href value matches the page\'s', function() {
-            linkElement.host = document.location.host;
+        it('will remove host and locale in newClickHref when clicked link\'s href value matches the page\'s', function() {
+            Mozilla.Analytics.updateDataLayerPush('www.mozilla.org');
+
+            // Bug 1278426
+            linkElement.href = 'https://www.mozilla.org:443/en-US/firefox/new/';
+
+            window.dataLayer.push({
+                'event': 'gtm.linkClick',
+                'gtm.element': linkElement
+            });
+
+            expect(window.dataLayer[0].newClickHref).toEqual('/firefox/new/');
+        });
+
+        it('will remove host and non-en-US locale', function() {
+            Mozilla.Analytics.updateDataLayerPush('www.mozilla.org');
+
+            linkElement.href = 'https://www.mozilla.org:443/de/firefox/new/';
+
+            window.dataLayer.push({
+                'event': 'gtm.linkClick',
+                'gtm.element': linkElement
+            });
+
+            expect(window.dataLayer[0].newClickHref).toEqual('/firefox/new/');
+        });
+
+        it('will not remove locale if absent from the URL', function() {
+            Mozilla.Analytics.updateDataLayerPush('www.mozilla.org');
+
+            linkElement.href = 'https://www.mozilla.org/firefox/new/';
 
             window.dataLayer.push({
                 'event': 'gtm.linkClick',
@@ -81,5 +115,3 @@ describe('core-datalayer.js', function() {
         });
     });
 });
-
-
