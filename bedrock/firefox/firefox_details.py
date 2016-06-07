@@ -143,11 +143,6 @@ class FirefoxDesktop(_ProductDetails):
                 continue
 
             for platform, label in self.platform_labels.iteritems():
-                # Windows 64-bit builds are not available in Firefox 38 ESR
-                # TODO: Remove this exception once 38 ESR reaches EOL on 2016-06-07
-                if platform == 'win64' and channel == 'esr':
-                    continue
-
                 build_info['platforms'][platform] = {
                     'download_url': self.get_download_url(channel, version,
                                                           platform, locale,
