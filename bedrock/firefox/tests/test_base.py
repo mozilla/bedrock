@@ -141,15 +141,6 @@ class TestFirefoxAll(TestCase):
         ok_('uz' not in firefox_desktop.languages)
         eq_(len([build for build in builds if build['locale'] == 'uz']), 0)
 
-    def test_desktop_esr(self):
-        """
-        ESR download page should not have Windows 64-bit builds.
-        """
-        resp = self.client.get(self._get_url('desktop', 'organizations'))
-        doc = pq(resp.content)
-        eq_(len(doc('tr#en-US a')), 4)
-        eq_(len(doc('tr#en-US td.win64')), 0)
-
     def test_android(self):
         """
         Android x64 builds are only available in multi and en-US locales.
