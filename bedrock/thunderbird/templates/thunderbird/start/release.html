@@ -11,6 +11,7 @@
       <header>
         <h1>{{ self.title() }}</h1>
       </header>
+      {% if l10n_has_tag('thunderbird_startpage_donate_2016_06') %}
       <div>
         <section>
           <h2>{{ _('Why do we need donations') }}</h2>
@@ -46,6 +47,18 @@
              </p>
         </section>
       </div>
+      {% else %}
+      <div>
+        <section>
+          <h2>{{ _('Contribute to Thunderbird') }}</h2>
+          <p>{{ _('To ensure that Thunderbird continues to improve, as it has for the last ten years, active contributors <a href="%s">recently organized</a> to focus on the future.')|format('https://blog.mozilla.org/thunderbird/2014/11/thunderbird-reorganizes-at-2014-toronto-summit/') }}
+             {{ _('Now is a great time for you to <a href="%s">get involved</a>.')|format('https://wiki.mozilla.org/Thunderbird#Contributing') }}
+             {{ _('Please help us assist users of Thunderbird, and improve the Thunderbird product and eco-system.') }}</p>
+          <p>{{ _('We look forward to <a href="%s">hearing from you</a>.')|format('https://wiki.mozilla.org/Thunderbird#Contributing') }}</p>
+          <p><a class="more" href="https://wiki.mozilla.org/Thunderbird">{{ _('Learn more') }}</a></p>
+        </section>
+      </div>
+      {% endif %}
       <div>
         <section class="help">
           <h2 class="iconic">{{ _('Need Support?') }}</h2>
@@ -59,7 +72,9 @@
           <ul>
             <li><a href="{{ url('thunderbird.features') }}">{{ _('Features') }}</a></li>
             <li><a href="https://blog.mozilla.org/thunderbird/">{{ _('Visit our blog') }}</a></li>
+            {% if l10n_has_tag('thunderbird_startpage_donate_2016_06') %}
             <li><a href="https://donate.mozilla.org/thunderbird/about/">{{ _('Donate') }}</a></li>
+            {% endif %}
             <li><a href="https://wiki.mozilla.org/Thunderbird#Contributing">{{ _('Contribute') }}</a></li>
             <li><a href="https://support.mozilla.org/products/thunderbird/how">{{ _('Tips') }}</a></li>
             <li><a href="https://addons.mozilla.org/thunderbird/">{{ _('Add-ons') }}</a></li>
