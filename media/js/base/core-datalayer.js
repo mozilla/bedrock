@@ -29,8 +29,9 @@ if (typeof Mozilla == 'undefined') {
     *   Adds href stripped of locale to link click objects when pushed to the dataLayer,
     *   also removes protocol and host if same as parent page from href.
     */
-    Analytics.updateDataLayerPush = function() {
+    Analytics.updateDataLayerPush = function(host) {
         var dataLayer = window.dataLayer = window.dataLayer || [];
+        var hostname = host || document.location.hostname;
 
         dataLayer.defaultPush = dataLayer.push;
         dataLayer.push = function() {
@@ -39,11 +40,13 @@ if (typeof Mozilla == 'undefined') {
                     var element = arguments[i]['gtm.element'];
                     var href = element.href;
 
-                    if (element.hostname === document.location.hostname) {
-                        var path = href.split(element.host)[1];
-                        var locale = path.split('/')[1];
+                    if (element.hostname === hostname) {
+                        // remove host and locale from internal links
+                        var path = href.replace(/^(?:https?\:\/\/)(?:[^\/])*/, '');
+                        var locale = path.match(/^(\/\w{2}\-\w{2}\/|\/\w{2,3}\/)/);
 
-                        arguments[i].newClickHref = path.replace('/' + locale, '');
+                        path = locale ? path.replace(locale[0], '/') : path;
+                        arguments[i].newClickHref = path;
                     } else {
                         arguments[i].newClickHref = href;
                     }
@@ -59,4 +62,3 @@ if (typeof Mozilla == 'undefined') {
     Mozilla.Analytics = Analytics;
 
 })();
-
