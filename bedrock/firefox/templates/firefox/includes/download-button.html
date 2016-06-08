@@ -19,7 +19,6 @@
 {% set download_class = download_class ~ ' download-button-android' if not (show_desktop or show_ios) else download_class %}
 {% set download_class = download_class ~ ' download-button-desktop' if not (show_android or show_ios) else download_class %}
 {% set download_class = download_class ~ ' download-button-ios' if not (show_desktop or show_android) else download_class %}
-{% set download_class = download_class ~ ' mavericks-required' if mavericks_required else download_class %}
 
 <div id="{{ id }}" class="{{ download_class }}">
   {# no JS #}
@@ -34,9 +33,6 @@
     </div>
     <p class="unsupported-download">
       {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format(url=firefox_url('desktop', 'sysreq', channel)) }}
-    </p>
-    <p class="unsupported-download-osx">
-      {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format(url='https://support.mozilla.org/kb/firefox-osx') }}
     </p>
     <p class="linux-arm-download">
       {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
