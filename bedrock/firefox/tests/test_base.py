@@ -350,11 +350,11 @@ class TestFirstRun(TestCase):
     @override_settings(DEV=True)
     @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
     def test_fx_firstrun_40_0(self, render_mock):
-        """Should use fx40.0 firstrun template for 40.0"""
+        """Should use horizon firstrun template for 40.0"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='40.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun.html'])
+        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 
     # for onboarding first/second run tests (bug 1259608)
     @override_settings(DEV=True)
@@ -412,31 +412,31 @@ class TestFirstRun(TestCase):
     @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
     def test_fx_firstrun_40_0_invalid_variation(self, render_mock):
         """
-        Should use non-space FxA template if an invalid variation is specified.
+        Should use horizon firstrun template if an invalid variation is specified.
         """
         req = self.rf.get('/en-US/firefox/firstrun/?v=8')
         self.view(req, version='46.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun.html'])
+        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 
     @override_settings(DEV=True)
     @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
     def test_fx_firstrun_40_0_space_variant_non_enUS(self, render_mock):
         """
-        Should use fx40.0 firstrun template for non en-US 40.0+ with
+        Should use horizon firstrun template for non en-US 40.0+ with
         ?v=[1,2,3,4,5,6] query param
         """
         req = self.rf.get('/firefox/firstrun/?v=2')
         req.locale = 'de'
         self.view(req, version='46.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun.html'])
+        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 
         req = self.rf.get('/firefox/firstrun/?v=5')
         req.locale = 'de'
         self.view(req, version='46.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun.html'])
+        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 
 
 @patch.object(fx_views.SecondrunView, 'redirect_to', none_mock)
