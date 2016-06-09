@@ -13,11 +13,9 @@
   state-default
 {% endblock %}
 
-{% block extrahead %}
+{% block page_css %}
   {% stylesheet 'firefox_sync' %}
-  <!--[if gt IE 9]><!-->
-    {% stylesheet 'firefox_sync_anim' %}
-  <!--<![endif]-->
+  {% stylesheet 'firefox_sync_anim' %}
 {% endblock %}
 
 {% block site_header %}{% endblock %}

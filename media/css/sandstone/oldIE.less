@@ -91,6 +91,7 @@ body {
 #colophon,
 .billboard,
 .container {
+    .clearfix();
     display: block;
     margin: 0 auto;
     padding-left: @gridGutterWidth;
@@ -184,9 +185,12 @@ h1, h2, h3, h4, h5, h6, legend, .huge, .large {
 
 .large,
 .large h1 {
+    line-height: 1;
+}
+
+.large h1 {
     .font-size(4.5em);
     letter-spacing: -3px;
-    line-height: 1;
 }
 
 h1,
@@ -549,6 +553,11 @@ img {
     }
 }
 
+
+// give accordion tabs a little help
+.accordion [data-accordion-role='tab'] {
+    cursor: pointer;
+}
 
 
 // Our standard footer email form

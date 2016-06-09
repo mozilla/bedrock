@@ -307,12 +307,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-family-bundle.css',
     },
-    'firefox_family_ie': {
-        'source_filenames': (
-            'css/firefox/family/index-ie.less',
-        ),
-        'output_filename': 'css/firefox-family-ie-bundle.css',
-    },
     'firefox_faq': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -506,8 +500,6 @@ PIPELINE_CSS = {
     },
     'firefox_os_2_5': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
             'css/firefox/fxos-nav.less',
             'css/firefox/os/in-the-news.less',
             'css/firefox/os/firefox-os-2-5.less',
@@ -523,12 +515,6 @@ PIPELINE_CSS = {
             'css/firefox/os/devices.less',
         ),
         'output_filename': 'css/firefox_os_devices-bundle.css',
-    },
-    'firefox_os_devices_ie': {
-        'source_filenames': (
-            'css/firefox/os/devices-ie.less',
-        ),
-        'output_filename': 'css/firefox_os_devices_ie-bundle.css',
     },
     'firefox_os_mwc_2015_preview': {
         'source_filenames': (

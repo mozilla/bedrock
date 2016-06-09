@@ -16,11 +16,8 @@
 {% block site_header_nav %}{% endblock %}
 {% block site_header_logo %}{% endblock %}
 
-{% block extrahead %}
+{% block page_css %}
   {% stylesheet 'firefox_os_devices' %}
-  <!--[if lt IE 9]>
-  {% stylesheet 'firefox_os_devices_ie' %}
-  <![endif]-->
 {% endblock %}
 
 {% set memory_disclaimer = _('Available storage for user content varies depending on the version and is subject to change based on phone software updates and apps usage.') %}
