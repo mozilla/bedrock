@@ -146,6 +146,9 @@
                     // highlight the appropriate nav item
                     $navPrimary.addClass('current');
 
+                    // remove ' anchor' text from data-link-name for scrolling event
+                    gtmSection = gtmSection.replace(/ anchor/, '');
+
                     // track scrolling to sections
                     window.dataLayer.push({
                         'event': 'scroll-section',
