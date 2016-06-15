@@ -1,6 +1,7 @@
 #TODO: switch to 'git rev-parse --short HEAD'
 GIT_COMMIT ?= $(shell git rev-parse HEAD)
 VERSION ?= $(shell git describe --tags --exact-match 2>/dev/null || echo ${GIT_COMMIT})
+DEV_VERSION ?= latest
 REGISTRY ?=
 IMAGE_PREFIX ?= mozorg
 BASE_IMAGE_NAME ?= bedrock_base
@@ -8,7 +9,7 @@ DEV_IMAGE_NAME ?= bedrock_dev
 CODE_IMAGE_NAME ?= bedrock_code
 L10N_IMAGE_NAME ?= bedrock_l10n
 BASE_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${BASE_IMAGE_NAME}\:${VERSION}
-DEV_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${DEV_IMAGE_NAME}\:${VERSION}
+DEV_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${DEV_IMAGE_NAME}\:${DEV_VERSION}
 CODE_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${CODE_IMAGE_NAME}\:${VERSION}
 L10N_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${L10N_IMAGE_NAME}\:${VERSION}
 PWD ?= $(shell pwd)
@@ -53,6 +54,9 @@ test: unit headless
 
 devserver: env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} ./manage.py runserver 0.0.0.0\:${PORT}
+
+pull-dev:
+	docker pull ${DEV_IMAGE}
 
 codeserver: env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${CODE_IMAGE} ./manage.py runserver 0.0.0.0\:${PORT}
@@ -128,11 +132,13 @@ media-change:
 		fi \
 	fi
 
-fswatch-media:
+brew-fswatch:
 	@if [ -z "$(which fswatch)" ]; then \
 		if [ -z "$(which brew)" ]; then \
 			/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"; \
 		fi; \
 		brew install fswatch; \
-	fi; \
+	fi
+
+fswatch-media:
 	fswatch -0 media | xargs -0 -n 1 -I {} make media-change MEDIA_PATH={}
