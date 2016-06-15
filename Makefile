@@ -58,6 +58,9 @@ devserver: env
 pull-dev:
 	docker pull ${DEV_IMAGE}
 
+push-dev-dockerhub:
+	docker push ${DEV_IMAGE}
+
 codeserver: env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${CODE_IMAGE} ./manage.py runserver 0.0.0.0\:${PORT}
 
