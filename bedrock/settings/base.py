@@ -957,7 +957,7 @@ from .appstores import (GOOGLE_PLAY_FIREFOX_LINK,  # noqa
 # Locales that should display the 'Send to Device' widget
 SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
                           'es-AR', 'es-CL', 'es-ES', 'es-MX',
-                          'fr', 'hu', 'id', 'pl', 'pt-BR', 'ru']
+                          'fr', 'id', 'pl', 'pt-BR', 'ru']
 
 # Publishing system config
 RNA = {
