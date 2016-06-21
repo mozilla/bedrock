@@ -6,12 +6,11 @@
 $(function() {
     var analytics = Mozilla.Analytics;
     var client = Mozilla.Client;
-    var dataLayer = window.dataLayer;
+    var dataLayer = window.dataLayer = window.dataLayer || [];
 
     function sendCoreDataLayer() {
         var dataLayerCore = {
             'event': 'core-datalayer-loaded',
-            'pageId': analytics.getPageId(),
             'pageHasDownload': analytics.pageHasDownload(),
             'pageHasVideo': analytics.pageHasVideo(),
             'pageVersion': analytics.getPageVersion(),
