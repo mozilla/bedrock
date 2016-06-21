@@ -6,6 +6,7 @@ import os
 from urlparse import parse_qsl, urlparse
 
 from django.conf import settings
+from django.core.cache import get_cache
 from django.test.utils import override_settings
 
 from mock import patch, Mock
@@ -73,6 +74,11 @@ class TestLatestBuilds(TestCase):
 
 
 class TestFirefoxDesktop(TestCase):
+    pd_cache = get_cache('product-details')
+
+    def setUp(self):
+        self.pd_cache.clear()
+
     def test_get_download_url(self):
         url = firefox_desktop.get_download_url('release', '17.0.1', 'osx', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),

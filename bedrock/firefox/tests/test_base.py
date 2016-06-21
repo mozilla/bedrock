@@ -5,6 +5,7 @@
 import os
 import waffle
 
+from django.core.cache import get_cache
 from django.http import HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -95,6 +96,11 @@ class TestInstallerHelp(TestCase):
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class TestFirefoxAll(TestCase):
+    pd_cache = get_cache('product-details')
+
+    def setUp(self):
+        self.pd_cache.clear()
+
     def _get_url(self, platform='desktop', channel='release'):
         with self.activate('en-US'):
             kwargs = {}
