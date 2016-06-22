@@ -78,11 +78,10 @@ if (len(sys.argv) > 1 and sys.argv[1] == 'test') or sys.argv[0].endswith('py.tes
     STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
     # Turn off less compilation in tests
     PIPELINE['PIPELINE_ENABLED'] = True
+    PIPELINE['PIPELINE_COLLECTOR_ENABLED'] = False
     # TEMPLATE_DEBUG has to be True for jingo to call the template_rendered
     # signal which Django's test client uses to save away the contexts for your
     # test to look at later.
     TEMPLATE_DEBUG = True
-    # don't cache product-details
-    CACHES['product-details']['BACKEND'] = 'django.core.cache.backends.dummy.DummyCache'
     # use default product-details data
     PROD_DETAILS_STORAGE = 'product_details.storage.PDFileStorage'
