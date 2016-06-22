@@ -481,20 +481,6 @@ def hello(request):
     return l10n_utils.render(request, template)
 
 
-class HelloStartView(LatestFxView):
-    non_fx_redirect = 'firefox.hello'
-
-    def get_template_names(self):
-        version = self.kwargs.get('version') or ''
-
-        if (show_old_hello_ftu(version)):
-            template = 'firefox/hello/start.html'
-        else:
-            template = 'firefox/hello/start-45.html'
-
-        return [template]
-
-
 class FeedbackView(TemplateView):
 
     donate_url = ('https://donate.mozilla.org/'
