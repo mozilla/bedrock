@@ -145,11 +145,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/contact-spaces-bundle.css',
     },
-    'contact-spaces-ie7': {
+    'contact-spaces-oldie': {
         'source_filenames': (
-            'css/mozorg/contact-spaces-ie7.less',
+            'css/mozorg/contact-spaces-oldie.less',
         ),
-        'output_filename': 'css/contact-spaces-ie7-bundle.css',
+        'output_filename': 'css/contact-spaces-oldie-bundle.css',
     },
     'contribute-old': {
         'source_filenames': (
@@ -991,11 +991,11 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/contact-spaces-bundle.js',
     },
-    'contact-spaces-ie7': {
+    'contact-spaces-oldie': {
         'source_filenames': (
-            'js/mozorg/contact-spaces-ie7.js',
+            'js/mozorg/contact-spaces-oldie.js',
         ),
-        'output_filename': 'js/contact-spaces-ie7-bundle.js',
+        'output_filename': 'js/contact-spaces-oldie-bundle.js',
     },
     'contribute-faces': {
         'source_filenames': (

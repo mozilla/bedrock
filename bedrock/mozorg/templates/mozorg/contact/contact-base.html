@@ -10,17 +10,17 @@
 
 {% block extrahead %}
   {% stylesheet 'contact-spaces' %}
-  <!--[if lte IE 7]>
-    {% stylesheet 'contact-spaces-ie7' %}
+  <!--[if lte IE 8]>
+    {% stylesheet 'contact-spaces-oldie' %}
   <![endif]-->
 {% endblock %}
 
 {% block js %}
-  <!--[if gte IE 8]><!-->
+  <!--[if gte IE 9]><!-->
     {% javascript 'contact-spaces' %}
   <!--<![endif]-->
-  <!--[if lte IE 7]>
-    {% javascript 'contact-spaces-ie7' %}
+  <!--[if lte IE 8]>
+    {% javascript 'contact-spaces-oldie' %}
   <![endif]-->
 {% endblock %}
 
