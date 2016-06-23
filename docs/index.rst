@@ -35,3 +35,4 @@ Contents
    uitour
    send-to-device
    firefox-accounts
+   analytics
