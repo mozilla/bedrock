@@ -537,16 +537,23 @@ def new(request):
 
     locale = l10n_utils.get_locale(request)
     scene = request.GET.get('scene', None)
+    v = request.GET.get('v', '')
 
     if scene == '2':
         if locale == 'en-US':
-            template = 'firefox/new/redesign/scene2.html'
+            if v == '1':
+                template = 'firefox/new/horizon/scene2.html'
+            else:
+                template = 'firefox/new/redesign/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     # if no/incorrect scene specified, show scene 1
     else:
         if locale == 'en-US':
-            template = 'firefox/new/redesign/scene1.html'
+            if v == '1':
+                template = 'firefox/new/horizon/scene1.html'
+            else:
+                template = 'firefox/new/redesign/scene1.html'
         else:
             template = 'firefox/new/scene1.html'
 
