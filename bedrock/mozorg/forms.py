@@ -605,8 +605,11 @@ class ContributeStudentAmbassadorForm(forms.Form):
         return self.cleaned_data.get('grad_year', '')
 
     def clean_major(self):
-        return self.cleaned_data.get('major_free_field',
-                                     self.cleaned_data['major'])
+        major_free_text = self.cleaned_data.get('major_free_text', '').strip()
+        if major_free_text:
+            return major_free_text
+
+        return self.cleaned_data['major']
 
     def clean_share_information(self):
         if self.cleaned_data.get('share_information', False):
