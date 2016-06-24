@@ -346,7 +346,7 @@ class FirstrunView(LatestFxView):
                 elif (v == '6'):
                     template = 'firefox/onboarding/fxa-complex.html'
             else:
-                template = 'firefox/firstrun/firstrun.html'
+                template = 'firefox/firstrun/firstrun-horizon.html'
         elif show_38_0_5_firstrun_or_whatsnew(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         else:

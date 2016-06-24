@@ -343,6 +343,15 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun-bundle.css',
     },
+    'firefox_firstrun_horizon': {
+        'source_filenames': (
+            'css/sandstone/sandstone.less',
+            'css/base/mozilla-fxa-iframe.less',
+            'css/tabzilla/tabzilla-static.less',
+            'css/firefox/firstrun/firstrun-horizon.less',
+        ),
+        'output_filename': 'css/firefox_firstrun-horizon-bundle.css',
+    },
     'firefox_firstrun_learnmore_yahoo_search': {
         'source_filenames': (
             'css/firefox/firstrun/learnmore/yahoo-search.less',
