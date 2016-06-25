@@ -24,7 +24,8 @@
       {% endif %}
     </header>
     <div itemprop="articleBody">
-      {{ doc.select('body > section > section')|htmlattr(class='highlight accordion')|join|safe }}
+      {{ doc.select('body > section > section:nth-of-type(1)')|htmlattr(class='highlight accordion')|join|safe }}
+      {{ doc.select('body > section > section:nth-of-type(1) ~ *')|join|safe }}
     </div>
   </article>
 {% endblock %}
