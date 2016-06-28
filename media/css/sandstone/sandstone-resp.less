@@ -366,12 +366,18 @@ input[type=time] {
     border-width: 1px;
     @shadow: 0 1px rgba(255,255,255,0.5);
     .font-size(@smallFontSize);
-    font-family: inherit;
     padding: (@baseLine / 5)  (@baseLine / 2);
     .border-radius(3px);
     .box-shadow(@shadow);
     .transition(all linear .1s);
     line-height: 1.1;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit; // must inherit or falls back to UA stylesheet/system font
 }
 
 textarea { height: auto; }
