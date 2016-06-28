@@ -537,6 +537,13 @@ def new(request):
         return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
     scene = request.GET.get('scene', None)
+    context = {
+        'version': 'none',
+    }
+
+    # animation triggered for ?v=1 via data attribute in template
+    if request.GET.get('v', '') == '1':
+        context['version'] = '1'
 
     if scene == '2':
         if lang_file_is_active('firefox/new/horizon', l10n_utils.get_locale(request)):
@@ -550,7 +557,7 @@ def new(request):
         else:
             template = 'firefox/new/scene1.html'
 
-    return l10n_utils.render(request, template)
+    return l10n_utils.render(request, template, context)
 
 
 def sync(request):
