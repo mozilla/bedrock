@@ -11,7 +11,7 @@ class PluginCheckPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/plugincheck'
 
-    _not_supported_message_locator = (By.CLASS_NAME, 'not-supported')
+    _not_supported_message_locator = (By.ID, 'not-supported-container')
 
     @property
     def is_not_supported_message_displayed(self):
