@@ -333,6 +333,13 @@ input[type=tel] {
     .transition(all linear .1s);
 }
 
+button,
+input,
+select,
+textarea {
+    font-family: inherit; // must inherit or falls back to UA stylesheet/system font
+}
+
 textarea { height: auto; }
 
 textarea:focus,
