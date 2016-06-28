@@ -25,6 +25,66 @@ describe('core-datalayer.js', function() {
         });
     });
 
+    describe('pageHasDownload', function() {
+
+        afterEach(function() {
+            $('.download').remove();
+        });
+
+        it('will return "true" when download button is present on page.', function() {
+            var downloadMarkup = '<a class="download" href="#" data-link-type="download" data-download-os="Desktop">';
+
+            $(downloadMarkup).appendTo('body');
+            expect(Mozilla.Analytics.pageHasDownload()).toBe('true');
+        });
+
+        it('will return "false" when download button is not present on page.', function() {
+            expect(Mozilla.Analytics.pageHasDownload()).toBe('false');
+        });
+    });
+
+    describe('pageHasVideo', function() {
+
+        afterEach(function() {
+            $('#htmlPlayer').remove();
+            $('#iframePlayer').remove();
+        });
+
+        it('will return "true" when HTML5 video is present on page.', function() {
+            var videoMarkup = '<video id="htmlPlayer"></video>';
+
+            $(videoMarkup).appendTo('body');
+            expect(Mozilla.Analytics.pageHasVideo()).toBe('true');
+        });
+
+        it('will return "true" when YouTube iframe video is present on page.', function() {
+            var videoMarkup = '<iframe id="iframePlayer" src="https://www.youtube-nocookie.com/embed/NqxUdc0P6YE?rel=0"></iframe>';
+
+            $(videoMarkup).appendTo('body');
+            expect(Mozilla.Analytics.pageHasVideo()).toBe('true');
+        });
+
+        it('will return "false" when download button is not present on page.', function() {
+            expect(Mozilla.Analytics.pageHasVideo()).toBe('false');
+        });
+    });
+
+    describe('getPageVersion', function() {
+        it('will return the Firefox version number form the URL if present', function() {
+            expect(Mozilla.Analytics.getPageVersion('https://www.mozilla.org/en-US/firefox/107.0.11/firstrun/')).toBe('107.0.11');
+            expect(Mozilla.Analytics.getPageVersion('https://www.mozilla.org/en-US/firefox/46.0.1/firstrun/learnmore/')).toBe('46.0.1');
+            expect(Mozilla.Analytics.getPageVersion('https://www.mozilla.org/en-US/firefox/11.0/whatsnew/')).toBe('11.0');
+            expect(Mozilla.Analytics.getPageVersion('https://www.mozilla.org/en-US/firefox/46.0.1a2/firstrun/')).toBe('46.0.1a2');
+            expect(Mozilla.Analytics.getPageVersion('https://www.mozilla.org/en-US/firefox/46.0a1/whatsnew/')).toBe('46.0a1');
+        });
+
+        it('will return null if no version number present in URL', function() {
+            expect(Mozilla.Analytics.getPageVersion('https://www.mozilla.org/en-US/')).toBeNull();
+            expect(Mozilla.Analytics.getPageVersion('https://www.mozilla.org/en-US/firefox/new')).toBeNull();
+            expect(Mozilla.Analytics.getPageVersion('https://www.mozilla.org/en-US/firefox/whatsnew')).toBeNull();
+        });
+    });
+
     describe('updateDataLayerPush', function() {
         var linkElement;
 

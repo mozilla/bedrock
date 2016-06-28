@@ -72,6 +72,7 @@ Mozilla.FxaIframe = (function() {
     };
 
     var _sendGAEvent = function(type, extra) {
+        var dataLayer = window.dataLayer || [];
         var data = {
             'event': _gaEventName, // user-configurable, defaults to 'fxa'
             'interaction': type
@@ -82,7 +83,7 @@ Mozilla.FxaIframe = (function() {
             $.extend(data, extra);
         }
 
-        window.dataLayer.push(data);
+        dataLayer.push(data);
     };
 
     var _userCallback = function(callbackName, data) {

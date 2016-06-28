@@ -222,17 +222,6 @@ if (typeof Mozilla === 'undefined') {
             };
 
             callback(details);
-
-            // Log the info with GA. Remove this once we have sufficient data
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'firefox-details-retrieved',
-                'accurate': accurate,
-                'version': version,
-                'channel': channel,
-                'isUpToDate': isUpToDate,
-                'isESR': isESR
-            });
         };
 
         // Prepare fallback function in case the API doesn't work
@@ -246,8 +235,8 @@ if (typeof Mozilla === 'undefined') {
             return;
         }
 
-        // Fire the fallback function in .3 seconds
-        var timer = window.setTimeout(fallback, 300);
+        // Fire the fallback function in .4 seconds
+        var timer = window.setTimeout(fallback, 400);
 
         // Trigger the API
         document.addEventListener('mozUITourResponse', listener);
