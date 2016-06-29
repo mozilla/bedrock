@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/new" %}
+{% add_lang_files "firefox/new/horizon" %}
 
 {% extends "firefox/new/horizon/base.html" %}
 
@@ -33,7 +33,7 @@
                 {{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-latest-version-firefox-android')}}
               </p>
               <p id="version-message-desktop-latest" class="version-message">
-                {{_('You’re browsing freely with the latest version of Firefox.')}}
+                {{_('Congrats! You’re using the latest version of Firefox.')}}
               </p>
               <p id="version-message-desktop-old" class="version-message">
                 {{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-firefox-latest-version') }}
@@ -43,7 +43,7 @@
           <div class="main-content">
             <h1 class="hide-for-refresh">{{ _('Browse Freely') }}</h1>
             <div id="refresh-firefox-wrapper">
-              <p>{{ _('Give Firefox a tune up') }}</p>
+              <h2>{{ _('Give Firefox a tune up') }}</h2>
               <button type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" class="button">{{ _('Refresh Firefox') }}</button>
               <a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link" rel="external">{{ _('Learn more') }}</a>
             </div>
@@ -118,5 +118,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_new_horizon_scene1' %}
+  {% javascript 'firefox_new_scene1' %}
 {% endblock %}

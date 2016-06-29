@@ -304,6 +304,24 @@ html.show-refresh {
         display: block;
         margin: (@baseLine * 2) 0 @baseLine;
 
+        h2 {
+            .font-size(60px);
+            line-height: 1.2;
+            margin-bottom: @baseLine;
+
+            @media only screen and (max-width: @breakDesktop) {
+                .font-size(55px);
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                .font-size(36px);
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                .font-size(30px);
+            }
+        }
+
         p {
             .font-size(@largeFontSize);
             font-style: normal;
