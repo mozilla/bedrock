@@ -10,10 +10,11 @@ describe('mozilla-fxa-iframe.js', function() {
     'use strict';
 
     var fxaHost = 'http://localhost:9876';
+    var partnerAFxaHost = 'http://127.0.0.1:9876';
 
     beforeEach(function () {
         var fxaMarkup = [
-            '<section id="fxa-iframe-config" data-host="' + fxaHost + '">' +
+            '<section id="fxa-iframe-config" data-host="' + fxaHost + '" data-partnera-host="' + partnerAFxaHost + '">' +
                 '<iframe id="fxa" data-src="' + fxaHost + '?utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=firstrun&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrun&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>' +
             '</section>'
         ].join();
@@ -73,6 +74,26 @@ describe('mozilla-fxa-iframe.js', function() {
             });
 
             expect($('#fxa').attr('src')).not.toContain('&email=');
+        });
+
+        it('should use specified fxa host for certain distributions', function () {
+            var distribution = 'PartnerA';
+
+            Mozilla.FxaIframe.init({
+                distribution: distribution
+            });
+
+            expect($('#fxa').attr('src')).toContain(partnerAFxaHost);
+        });
+
+        it('should use default fxa host for other distributions', function () {
+            var distribution = 'PartnerB';
+
+            Mozilla.FxaIframe.init({
+                distribution: distribution
+            });
+
+            expect($('#fxa').attr('src')).toContain(fxaHost);
         });
     });
 

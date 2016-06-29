@@ -950,6 +950,10 @@ OPTIMIZELY_PROJECT_ID = config('OPTIMIZELY_PROJECT_ID', default='')
 FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
                         default='https://accounts.firefox.com/')
 
+# Bug 1264843: embed FxA server in China within Fx China repack
+FXA_IFRAME_SRC_MOZILLAONLINE = config('FXA_IFRAME_SRC_MOZILLAONLINE',
+                                      default='https://accounts.firefox.com.cn/')
+
 # Google Play and Apple App Store settings
 from .appstores import (GOOGLE_PLAY_FIREFOX_LINK,  # noqa
                         APPLE_APPSTORE_FIREFOX_LINK, APPLE_APPSTORE_COUNTRY_MAP)

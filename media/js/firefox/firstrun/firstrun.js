@@ -5,7 +5,10 @@
 (function(Mozilla) {
     'use strict';
 
-    Mozilla.FxaIframe.init({
-        gaEventName: 'firstrun-fxa'
+    Mozilla.Client.getFirefoxDetails(function(data) {
+        Mozilla.FxaIframe.init({
+            distribution: data.distribution,
+            gaEventName: 'firstrun-fxa'
+        });
     });
 })(window.Mozilla);
