@@ -1,0 +1,111 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import (reference) '../lib.less';
+
+#colophon {
+    .font-size(14px);
+    background: #fff;
+    color: @color-text-tertiary;
+    line-height: 1.3;
+    margin: 1em 0 0;
+    padding: 40px 0;
+    width: 100%;
+
+    .logo {
+        .font-size(1rem);
+        margin-bottom: 1em;
+
+        a {
+            .at2x('/media/img/sandstone/footer-mozilla.png', 93px, 24px);
+            .image-replaced();
+            display: inline-block;
+            height: 24px;
+            width: 93px;
+        }
+    }
+
+    li {
+        margin: 0;
+        list-style-type: none;
+    }
+
+    .row {
+        .clearfix;
+        margin: 0 auto;
+        width: @width-phone;
+
+        @media @mq-phone-wide {
+            width: @width-phone-wide;
+        }
+
+        @media @mq-tablet {
+            width: @width-tablet;
+        }
+
+        @media @mq-desktop {
+            width: @width-desktop;
+        }
+
+        @media @mq-desktop-wide {
+            width: @width-desktop-wide;
+        }
+    }
+
+    @media @mq-tablet {
+        .col {
+            .span(4);
+        }
+    }
+
+    .col-2 ul {
+        overflow: hidden;
+
+        &.fx-footer-links {
+            li {
+                float: none;
+            }
+        }
+
+        li {
+            float: left;
+
+            &.wrap:before {
+                content: '\00A0\00B7\00A0'; // &nbsp;&middot;&nbsp;
+            }
+
+            &.clear {
+                clear: both;
+            }
+        }
+    }
+
+    .links-social li {
+        ul {
+            display: inline;
+            margin: 0;
+        }
+
+        li {
+            display: inline;
+
+            &:before {
+                content: '\00B7\00A0'; // &middot;&nbsp;
+            }
+
+            &:first-child:before {
+                content: '';
+            }
+        }
+    }
+}
+
+@media @mq-tablet {
+    [dir='rtl'] #colophon {
+        .col,
+        .col-2 ul li {
+            float: right;
+        }
+    }
+}

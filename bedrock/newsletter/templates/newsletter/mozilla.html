@@ -1,0 +1,40 @@
+{% extends 'base-new.html' %}
+
+{% set_lang_files "mozorg/newsletters" %}
+
+{% block page_title %}{{ _('Sign up. Read up. Make a difference.') }}{% endblock page_title %}
+
+{% block body_class %}newsletter-mozilla{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'newsletter-mozilla' %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'newsletter-mozilla' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main>
+  <header class="section section-intro" id="intro">
+    <div class="content">
+      <div id="tabzilla">
+        <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+      </div>
+      {# L10n: line break for visual formatting #}
+      <h1 class="page-title">{{ _('Sign up. Read up.<br> Make a difference.') }}</h1>
+    </div>
+  </header>
+
+  <section class="section section-subscribe" id="subscribe">
+    <div class="content">
+      <h2 class="section-title">{{ _('Get the Mozilla newsletter to stay informed about issues challenging the health of the Internet and to discover how you can get involved.') }}</h2>
+
+      {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832') }}
+
+    </div>
+  </section>
+</main>
+{% endblock %}
