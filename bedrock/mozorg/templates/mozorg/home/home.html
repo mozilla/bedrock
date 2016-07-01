@@ -46,6 +46,10 @@
     {% javascript 'matchmedia_addlistener' %}
   <![endif]-->
   {% javascript 'home' %}
+
+  {% if LANG == 'en-US' %}
+    {% include 'mozorg/home/includes/survey.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block string_data %}

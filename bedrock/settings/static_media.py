@@ -1478,9 +1478,17 @@ PIPELINE_JS = {
     # temporary bundle for survey on ?v=a homepage
     'home-survey': {
         'source_filenames': (
+            'js/mozorg/home/survey-generator.js',
             'js/mozorg/home/survey.js',
         ),
         'output_filename': 'js/home-survey-bundle.js',
+    },
+    'home-survey-a': {
+        'source_filenames': (
+            'js/mozorg/home/survey-generator.js',
+            'js/mozorg/home/survey-a.js',
+        ),
+        'output_filename': 'js/home-survey-bundle-a.js',
     },
     'history-slides': {
         'source_filenames': (

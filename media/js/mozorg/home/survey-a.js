@@ -11,8 +11,9 @@ if (typeof Mozilla === 'undefined') {
     'use strict';
 
     new Mozilla.Survey({
-        copyIntro: 'Hello! Would you be willing to take a minute to answer 2 questions for Mozilla?',
+        copyIntro: 'Hello! Would you be willing to take a minute to answer a few questions for Mozilla?',
         copyLink: 'Sure. I\'ll help.',
-        surveyURL: 'https://www.surveygizmo.com/s3/2890025/Help-us-by-sharing-your-feedback-about-Mozilla'
+        surveyURL: 'https://www.surveygizmo.com/s3/2841272/Brand-Perception-Survey-2016-Homepage-Prototype-A-bottom',
+        container: '#footer'
     });
 })(window.Mozilla);
