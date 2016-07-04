@@ -13,89 +13,124 @@
 {% endblock %}
 
 {% block article %}
+  <h2>{{ _('We Are Mozilla') }}</h2>
   <p>
-    {% trans %}
-      The nonprofit Mozilla Foundation is the organizational home of the
-      Mozilla Project, a global community and public interest initiative
-      that believes the Web should be open and accessible to all. To
-      protect the Web as a public resource and empower its users, we
-      create open source products, teach 21st-century skills and spur
-      grassroots advocacy campaigns. All this is made possible by
-      full-time staff and thousands of volunteers around the world.
-    {% endtrans %}
+  {% trans url_manifesto=url('mozorg.about.manifesto') %}
+    The nonprofit Mozilla Foundation believes the internet must always remain a global public resource that is open and accessible to all. Our work is guided by the <a href="{{ url_manifesto }}">Mozilla Manifesto</a>.
+  {% endtrans %}
   </p>
 
   <p>
-    {% trans firefox=url('firefox.new') %}
-      To keep the Web accessible, we build products that create
-      opportunity and inspire further innovation. Many of Mozilla’s
-      products are developed by the Mozilla Corporation, a wholly-owned
-      subsidiary of the Mozilla Foundation. The Mozilla Corporation
-      functions as a self-sustaining social enterprise — money earned
-      through its products is reinvested into the organization. Products
-      include our flagship <a href="{{ firefox }}">Firefox browser</a> and
-      other open source tools. The Mozilla Corporation also partners with
-      like-minded allies to bring an open source ethos to industries and
-      technologies like online video, telecommunications and virtual reality.
-    {% endtrans %}
+  {% trans %}
+    The direct work of the Mozilla Foundation focuses on making the health of the internet a mainstream issue. We do this by connecting open internet leaders with each other and by mobilizing grassroots activities around the world.
+  {% endtrans %}
   </p>
 
   <p>
-    {% trans
-      hive="https://hivelearningnetworks.org/",
-      clubs="https://teach.mozilla.org/clubs/",
-      parties="https://teach.mozilla.org/events/",
-      thimble="https://thimble.mozilla.org/",
-      webmaker="http://mzl.la/webmaker",
-      open_news="https://opennews.org/",
-      open_web="https://advocacy.mozilla.org/open-web-fellows/",
-      science="https://www.mozillascience.org/",
-      festival="http://festival.mozilla.org"
-    %}
-      Mozilla is also committed to empowering individuals online and
-      unlocking opportunity through education. We believe in the importance
-      of universal web literacy: creating a world where everyone can read,
-      write and participate online. Most of our web literacy work is carried
-      out by the Foundation and the Mozilla community directly. Our
-      <a href="{{ hive }}">Hive Learning Networks</a> are robust educational
-      communities in cities around the world, and
-      <a href="{{ clubs }}">Mozilla Clubs</a> and
-      <a href="{{ parties }}">Maker Parties</a> teach web literacy through
-      hands-on and peer-to-peer learning. Our educational tools like the
-      <a href="{{ thimble }}">Thimble code editor</a> and
-      <a href="{{ webmaker}}">Webmaker for Android</a> transform individuals
-      from Web consumers into Web creators. And our leadership pipelines —
-      the <a href="{{ open_news }}">OpenNews</a>,
-      <a href="{{open_web}}">Open Web</a> and
-      <a href="{{ science }}">Mozilla Science</a> fellowship programs, and
-      the <a href="{{ festival }}">annual Mozilla Festival</a> — cultivate
-      bright minds and bring the values of the open Web into the sectors of
-      journalism, public policy and science. As a nonprofit, much of
-      Mozilla’s work in the education space is made possible through your
-      donations and the efforts of volunteers.
-    {% endtrans %}
+  {% trans %}
+      The Foundation is also the sole shareholder in the Mozilla Corporation, the maker of Firefox and other open source tools. Mozilla Corporation functions as a self-sustaining social enterprise – money earned through its products is reinvested into the organization.
+  {% endtrans %}
+  </p>
+
+  <h2>{{ _('Foundation Programs') }}</h2>
+  <p>
+  {% trans %}
+      Working with people and communities all across Mozilla, the Foundation team is focused on fueling the open internet movement. Our programs are focused in three areas:
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('1. Shape the agenda.') }}</h3>
+  <p>
+  {% trans %}
+    To unlock the next wave of openness and opportunity on the internet, we need citizens of the web to understand and be ready to address the biggest challenges that face the internet today.
+  {% endtrans %}
   </p>
 
   <p>
-    {% trans advocacy="https://advocacy.mozilla.org/" %}
-      Mozilla also carries out <a href="{{ advocacy }}">advocacy work</a>.
-      We defend the Web against companies and governments that seek to
-      wrest control away from the public. Our advocacy work addresses
-      issues like net neutrality, privacy and mass surveillance, and often
-      requires effort from all corners of the Mozilla Project. Our grassroots
-      campaigns stretch from the U.S. to India to Germany and beyond, but
-      share a common goal: ensuring the Web remains free and open.
-    {% endtrans %}
+  {% trans %}
+    Mozilla has identified five key issues that are critical at this moment in time:
+  {% endtrans %}
+  </p>
+
+  <ul>
+    <li>{{ _('Privacy and Security') }}</li>
+    <li>{{ _('Open Innovation') }}</li>
+    <li>{{ _('Decentralization') }}</li>
+    <li>{{ _('Web Literacy') }}</li>
+    <li>{{ _('Digital Inclusion') }}</li>
+  </ul>
+
+  <p>
+  {% trans url_open_internet_video='https://www.youtube.com/watch?v=WnMmq2vKDYs' %}
+    Example: <a href="{{ url_open_internet_video }}" class="go">Listen to Mozilla Foundation Executive Director Mark Surman discuss the need for a renaissance in the open internet movement</a>
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('2. Connect leaders.') }}</h3>
+  <p>
+  {% trans %}
+    As the internet becomes more embedded in our daily lives, we need a generation of leaders who will build the values of the open internet into all aspects of human society. Our nascent Mozilla Leadership Network finds, connects and provides learning opportunities for leaders like these. It includes a diverse collection of leaders in fields like science, public policy, education and technology.
+  {% endtrans %}
   </p>
 
   <p>
-    {% trans
-      donate=donate_url('foundation'),
-      contribute=url('mozorg.contribute')
-    %}
-      You can join us and help protect the Web as a global public resource.
-      To get started, <a href="{{ donate }}">make a donation</a> or
-      <a href="{{ contribute }}">become involved with our community</a>.
-    {% endtrans %}
+  {% trans url_mozilla_science='https://science.mozilla.org/' %}
+    Example: <a href="{{ url_mozilla_science }}" class="go">Learn about Mozilla Science, a community of researchers, developers and librarians making scientific research open and accessible</a>
+  {% endtrans %}
   </p>
+
+  <h3>{{ _('3. Rally citizens.') }}</h3>
+  <p>
+  {% trans %}
+    Mozilla works with allies to cultivate a global force of tens of millions of people prepared to support the rights of citizens of the web. From advocacy campaigns to grassroots mobilizing, we’re raising awareness and building a community of activists around the world. If we’re successful, internet users will have the knowledge they need to make better choices online everyday. And, in turn, governments and companies will react with better laws and better products.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans url_mozilla_advocacy='https://advocacy.mozilla.org/encrypt/' %}
+    Example: <a href="{{ url_mozilla_advocacy }}" class="go">Explore Mozilla’s public education encryption campaign, which engaged millions of everyday internet users</a>
+  {% endtrans %}
+  </p>
+
+
+  <p class="note">
+  {% trans url_2020_plan='https://wiki.mozilla.org/MoFo_2020' %}
+    <em>For a copy of the Mozilla Foundation's 2020 strategic program plan, <a href="{{ url_2020_plan }}">please click here</a>.</em>
+  {% endtrans %}
+  </p>
+
+  <h2>{{ _('Products and Technology') }}</h2>
+
+  <p>
+  {% trans %}
+    Mozilla Corporation, a wholly owned subsidiary of the Foundation, makes consumer internet products that advance the same values outlined in the Mozilla Manifesto.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Firefox, our flagship product, gives increased choice, privacy and security to 100s of millions of people around the world. Product exploration initiatives like our ‘connected devices’ program aim to bring more mainstream products with Mozilla values into the world.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Technology initiatives like Rust and Mozilla’s online game centre aim to spread new thinking about open technology across the whole of the internet industry.
+  {% endtrans %}
+  </p>
+
+  <h2>{{ _('Mozilla Community') }}</h2>
+  <p>
+  {% trans url_learning='https://learning.mozilla.org/', url_mdn = 'https://developer.mozilla.org/' %}
+    The real power behind Mozilla is a global community of 10,000s of volunteers, allies and partners. Members of the Mozilla community participate by doing everything from contributing code to Firefox and <a href="{{ url_learning }}">teaching digital literacy</a> to translating our software, organizing advocacy campaigns and writing the world's most referenced <a href="{{ url_mdn }}">web developer site</a>.
+  {% endtrans %}
+  </p>
+
+  <h2>{{ _('Get Involved') }}</h2>
+  <p>
+  {% trans url_community='https://www.mozilla.org/contribute/', url_donation='https://donate.mozilla.org/en-US/?presets=100,50,25,15&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org&utm_medium=referral&utm_content=foundation&currency=usd' %}
+    Join us and help protect the internet as a global public resource. To get started, <a href="{{ url_community }}">join our community</a> or <a href="{{ url_donation }}">make a donation</a>.
+  {% endtrans %}
+  </p>
+
 {% endblock %}
