@@ -56,6 +56,23 @@ img {
   height: auto;
 }
 
+ol {
+  ul {
+    list-style-type: disc;
+  }
+}
+
+ul + p {
+  margin-top: @baseLine;
+}
+
+.example-link {
+  &:after {
+    content: "»";
+    margin-left: .3em;
+  }
+}
+
 #video-description,
 .video-description {
   margin: 1em @gridGutterWidth 1.5em;
