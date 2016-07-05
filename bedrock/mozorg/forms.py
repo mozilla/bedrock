@@ -17,7 +17,6 @@ from django.utils.safestring import mark_safe
 from localflavor.us.us_states import STATE_CHOICES
 
 import basket
-from basket.base import request
 
 from lib.l10n_utils.dotlang import _
 from lib.l10n_utils.dotlang import _lazy
@@ -604,13 +603,6 @@ class ContributeStudentAmbassadorForm(forms.Form):
     def clean_grad_year(self):
         return self.cleaned_data.get('grad_year', '')
 
-    def clean_major(self):
-        major_free_text = self.cleaned_data.get('major_free_text', '').strip()
-        if major_free_text:
-            return major_free_text
-
-        return self.cleaned_data['major']
-
     def clean_share_information(self):
         if self.cleaned_data.get('share_information', False):
             return 'Y'
@@ -632,23 +624,18 @@ class ContributeStudentAmbassadorForm(forms.Form):
 
     def save(self):
         data = self.cleaned_data
-        result = basket.subscribe(data['email'], self.newsletters(),
-                                  format=data['fmt'], country=data['country'],
-                                  welcome_message='Student_Ambassadors_Welcome',
-                                  source_url=data['source_url'], sync='Y')
-
-        if result.get('token'):
-            data = {
-                'EMAIL_ADDRESS': data['email'],
-                'FIRST_NAME': data['first_name'],
-                'LAST_NAME': data['last_name'],
-                'STUDENTS_CURRENT_STATUS': data['status'],
-                'STUDENTS_SCHOOL': data['school'],
-                'STUDENTS_GRAD_YEAR': data['grad_year'],
-                'STUDENTS_MAJOR': data['major'],
-                'COUNTRY_': data['country'],
-                'STUDENTS_CITY': data['city'],
-                'STUDENTS_ALLOW_SHARE': data['share_information'],
-            }
-            request('post', 'custom_update_student_ambassadors',
-                    token=result['token'], data=data)
+        basket.subscribe(
+            data['email'],
+            self.newsletters(),
+            format=data['fmt'],
+            country=data['country'],
+            source_url=data['source_url'],
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            fsa_current_status=data['status'],
+            fsa_school=data['school'],
+            fsa_grad_year=data['grad_year'],
+            fsa_major=data['major_free_text'] or data['major'],
+            fsa_city=data['city'],
+            fsa_allow_share=data['share_information'],
+        )

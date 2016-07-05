@@ -275,73 +275,81 @@ class TestViews(TestCase):
 
 class TestStudentAmbassadorsJoin(TestCase):
     @patch.object(ReCaptchaField, 'clean', Mock())
-    @patch('bedrock.mozorg.forms.request')
     @patch('bedrock.mozorg.forms.basket.subscribe')
-    def test_subscribe(self, mock_subscribe, mock_request):
-        mock_subscribe.return_value = {'token': 'token-example',
-                                       'status': 'ok',
-                                       'created': 'True'}
-        data = {'email': u'dude@example.com',
-                'country': 'gr',
-                'fmt': 'H',
-                'first_name': 'foo',
-                'last_name': 'bar',
-                'status': 'teacher',
-                'school': 'TuC',
-                'city': 'Chania',
-                'age_confirmation': 'on',
-                'grad_year': '',
-                'nl_about_mozilla': 'on',
-                'major': '',
-                'major_free_text': '',
-                'privacy': 'True'}
-        request_data = {'FIRST_NAME': data['first_name'],
-                        'LAST_NAME': data['last_name'],
-                        'EMAIL_ADDRESS': data['email'],
-                        'STUDENTS_CURRENT_STATUS': data['status'],
-                        'STUDENTS_SCHOOL': data['school'],
-                        'STUDENTS_GRAD_YEAR': data['grad_year'],
-                        'STUDENTS_MAJOR': data['major'],
-                        'COUNTRY_': data['country'],
-                        'STUDENTS_CITY': data['city'],
-                        'STUDENTS_ALLOW_SHARE': 'N'}
+    def test_subscribe(self, mock_subscribe):
+        mock_subscribe.return_value = {'status': 'ok'}
+        data = {
+            'email': u'dude@example.com',
+            'country': 'gr',
+            'fmt': 'H',
+            'first_name': 'foo',
+            'last_name': 'bar',
+            'status': 'teacher',
+            'school': 'TuC',
+            'city': 'Chania',
+            'age_confirmation': 'on',
+            'grad_year': '',
+            'nl_about_mozilla': 'on',
+            'major': 'science',
+            'major_free_text': '',
+            'privacy': 'True'
+        }
         with self.activate('en-US'):
             self.client.post(reverse('mozorg.contribute.studentambassadors.join'), data)
         mock_subscribe.assert_called_with(
-            data['email'], ['ambassadors', 'about-mozilla'], format=u'H',
-            country=u'gr', source_url=u'', sync='Y',
-            welcome_message='Student_Ambassadors_Welcome')
-        mock_request.assert_called_with('post',
-                                        'custom_update_student_ambassadors',
-                                        token='token-example',
-                                        data=request_data)
+            data['email'],
+            ['ambassadors', 'about-mozilla'],
+            format=u'H',
+            country=u'gr',
+            source_url=u'',
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            fsa_current_status=data['status'],
+            fsa_school=data['school'],
+            fsa_grad_year=data['grad_year'],
+            fsa_major=data['major'],
+            fsa_city=data['city'],
+            fsa_allow_share=u'N',
+        )
 
     @patch.object(ReCaptchaField, 'clean', Mock())
-    @patch('bedrock.mozorg.forms.request')
     @patch('bedrock.mozorg.forms.basket.subscribe')
-    def test_subscribe_no_token(self, mock_subscribe, mock_request):
+    def test_subscribe_major_free_text(self, mock_subscribe):
+        """Should use the major_free_text field for major if provided"""
         mock_subscribe.return_value = {'status': 'ok'}
-        data = {'email': u'dude@example.com',
-                'country': 'gr',
-                'fmt': 'H',
-                'first_name': 'foo',
-                'last_name': 'bar',
-                'status': 'teacher',
-                'school': 'TuC',
-                'city': 'Chania',
-                'age_confirmation': 'on',
-                'grad_year': '',
-                'nl_about_mozilla': 'on',
-                'major': '',
-                'major_free_text': '',
-                'privacy': 'True'}
+        data = {
+            'email': u'dude@example.com',
+            'country': 'gr',
+            'fmt': 'H',
+            'first_name': 'foo',
+            'last_name': 'bar',
+            'status': 'teacher',
+            'school': 'TuC',
+            'city': 'Chania',
+            'age_confirmation': 'on',
+            'grad_year': '',
+            'nl_about_mozilla': 'on',
+            'major': 'other',
+            'major_free_text': 'Physical Education',
+            'privacy': 'True'
+        }
         with self.activate('en-US'):
             self.client.post(reverse('mozorg.contribute.studentambassadors.join'), data)
         mock_subscribe.assert_called_with(
-            data['email'], ['ambassadors', 'about-mozilla'], format=u'H',
-            country=u'gr', source_url=u'', sync='Y',
-            welcome_message='Student_Ambassadors_Welcome')
-        self.assertFalse(mock_request.called)
+            data['email'],
+            ['ambassadors', 'about-mozilla'],
+            format=u'H',
+            country=u'gr',
+            source_url=u'',
+            first_name=data['first_name'],
+            last_name=data['last_name'],
+            fsa_current_status=data['status'],
+            fsa_school=data['school'],
+            fsa_grad_year=data['grad_year'],
+            fsa_major=data['major_free_text'],
+            fsa_city=data['city'],
+            fsa_allow_share=u'N',
+        )
 
 
 class TestContributeStudentAmbassadorsLanding(TestCase):
