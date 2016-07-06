@@ -8,9 +8,10 @@
     var $navPage = $('#nav-page');
 
     // waypoints
-    var actionWaypoint;
+    var peopleWaypoint;
     var innovationWaypoint;
     var firefoxWaypoint;
+    var surveyWaypoint;
     var suppressScrollTracking = false;
     var clickTargetSection;
 
@@ -19,7 +20,7 @@
     var mqIsTablet;
 
     // encryption video
-    var encryptionVideoContainer = new Mozilla.VideoPosterHelper('#action');
+    var encryptionVideoContainer = new Mozilla.VideoPosterHelper('#people');
     var $video = $('#encryption-video');
 
     // innovation section - aframe 3d demo
@@ -98,15 +99,15 @@
 
     function enableWaypoints() {
         // fire the waypoints for each section, passing classes for the current and previous sections
-        actionWaypoint = new Waypoint({
-            element: '#action',
-            handler: navState('action', 'intro'),
+        peopleWaypoint = new Waypoint({
+            element: '#people',
+            handler: navState('people', 'intro'),
             offset: '30%'
         });
 
         innovationWaypoint = new Waypoint({
             element: '#innovation',
-            handler: navState('innovation', 'action'),
+            handler: navState('innovation', 'people'),
             offset: '30%'
         });
 
@@ -114,6 +115,25 @@
             element: '#firefox',
             handler: navState('firefox', 'innovation'),
             offset: '30%'
+        });
+
+        surveyWaypoint = new Waypoint({
+            element: '#firefox',
+            handler: function(direction) {
+                var $surveyMsg = $('#survey-message');
+                if ($surveyMsg.length) {
+                    if (direction === 'down') {
+                        // slide up when scrolling down
+                        $surveyMsg.addClass('stuck').css({ bottom: '-90px' }).animate({ bottom: '0' }, 500);
+                    } else if (direction === 'up') {
+                        // slide down when scrolling up, then unstick
+                        $surveyMsg.animate({ bottom: '-90px' }, 500, function() {
+                            $surveyMsg.removeClass('stuck');
+                        });
+                    }
+                }
+            },
+            offset: '60%'
         });
     }
 
@@ -196,9 +216,10 @@
             } else {
                 $slideshow.cycle('destroy');
 
-                actionWaypoint.destroy();
+                peopleWaypoint.destroy();
                 innovationWaypoint.destroy();
                 firefoxWaypoint.destroy();
+                surveyWaypoint.destroy();
             }
         });
     // if browser doesn't support matchMedia, assume it's a wide enough screen
@@ -206,4 +227,5 @@
     } else {
         startSlideshow();
     }
+
 })(window.jQuery, window.Waypoint);
