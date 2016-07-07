@@ -320,7 +320,8 @@ def contribute_embed(request, template, return_to_form):
     return contribute(request, template, return_to_form)
 
 
-def process_partnership_form(request, template, success_url_name, template_vars=None, form_kwargs=None):
+def process_partnership_form(request, template, success_url_name,
+                             template_vars=None, form_kwargs=None):
     template_vars = template_vars or {}
     form_kwargs = form_kwargs or {}
 
@@ -340,16 +341,18 @@ def process_partnership_form(request, template, success_url_name, template_vars=
                 msg = 'ok'
                 stat = 200
             else:
-                data['lead_source'] = form_kwargs.get('lead_source',
-                                                      'www.mozilla.org/about/partnerships/')
+                # form testing address
+                if not data['email'] == 'success@example.com':
+                    data['lead_source'] = form_kwargs.get('lead_source',
+                                                          'www.mozilla.org/about/partnerships/')
 
-                subject = PARTNERSHIPS_EMAIL_SUBJECT
-                sender = PARTNERSHIPS_EMAIL_FROM
-                to = PARTNERSHIPS_EMAIL_TO
-                body = jingo.render_to_string(request, 'mozorg/emails/partnerships.txt', data)
+                    subject = PARTNERSHIPS_EMAIL_SUBJECT
+                    sender = PARTNERSHIPS_EMAIL_FROM
+                    to = PARTNERSHIPS_EMAIL_TO
+                    body = jingo.render_to_string(request, 'mozorg/emails/partnerships.txt', data)
 
-                email = EmailMessage(subject, body, sender, to)
-                email.send()
+                    email = EmailMessage(subject, body, sender, to)
+                    email.send()
 
                 msg = 'ok'
                 stat = 200
