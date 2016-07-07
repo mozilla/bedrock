@@ -15,8 +15,8 @@
         <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
         {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
         {% trans %}
-          <span itemprop="streetAddress" class="street-address">101 St Martin‘s Lane, 3rd Floor</span><br>
-          <span itemprop="addressLocality" class="locality">London</span> <span itemprop="postalCode" class="postal-code">WC2N 4AZ</span><br>
+          <span itemprop="streetAddress" class="street-address">Metal Box Factory <br>Suite 441, 4th floor <br>30 Great Guildford Street</span><br>
+          <span itemprop="addressLocality" class="locality">London</span> <span itemprop="postalCode" class="postal-code">SE1 0HS</span><br>
           <abbr itemprop="addressCountry" class="country-name" title="United Kingdom">UK</abbr>
         {% endtrans %}
         </p>
@@ -28,7 +28,7 @@
         </ul>
 
         <figure class="feature-img">
-          <img src="//api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(-0.1271,51.5103)/-0.1271,51.5103,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
+          <img src="//api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ 'mozorg.cdn.mozilla.net/media/img/contact/moz-map-pin.png'|urlencode }}(-0.0972,51.5053)/-0.0972,51.5053,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
         </figure>
       </div>
 
