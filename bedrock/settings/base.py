@@ -582,7 +582,15 @@ CDN_BASE_URL = config('CDN_BASE_URL', default='')
 
 CSRF_FAILURE_VIEW = 'bedrock.mozorg.views.csrf_failure'
 
-from .newsletters import DEFAULT_NEWSLETTERS, OTHER_NEWSLETTERS  # noqa
+# Used on the newsletter preference center, included in the "interests" section.
+OTHER_NEWSLETTERS = [
+    'firefox-desktop',
+    'mobile',
+    'os',
+    'firefox-ios',
+    'mozilla-general',
+    'firefox-os',
+]
 
 # Regional press blogs map to locales
 PRESS_BLOG_ROOT = 'https://blog.mozilla.org/'

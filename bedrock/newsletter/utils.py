@@ -1,15 +1,17 @@
-from hashlib import md5
+import json
 
-from django.conf import settings
 from django.core.cache import cache
 
 import basket
 import commonware.log
+from pathlib import Path
 
 log = commonware.log.getLogger('b.newsletter')
 
 NEWSLETTERS_CACHE_KEY = "newsletter-data"
 NEWSLETTERS_CACHE_TIMEOUT = 3600  # 1 hour
+NEWSLETTERS_LOCAL_DATA = None
+BASKET_DATA_PATH = Path(__file__).with_name('basket_data.json')
 
 
 def get_newsletters():
@@ -18,7 +20,7 @@ def get_newsletters():
     Values are dictionaries with the remaining newsletter information.
 
     If we cannot get through to basket, return a default set of newsletters
-    from settings.DEFAULT_NEWSLETTERS
+    from basket_data.json.
     """
 
     # Get the newsletter data from basket - it's a dictionary of dictionaries
@@ -29,7 +31,7 @@ def get_newsletters():
             data = basket.get_newsletters()
         except basket.BasketException:
             log.exception("Error getting newsletters from basket")
-            return settings.DEFAULT_NEWSLETTERS
+            return get_local_basket_newsletters_data()
         # Cache for an hour - newsletters very rarely change
         cache.set(NEWSLETTERS_CACHE_KEY, data, NEWSLETTERS_CACHE_TIMEOUT)
     return data
@@ -45,23 +47,17 @@ def get_languages_for_newsletters(newsletters=None):
     even if the newsletter languages list does.  E.g. this returns 'pt',
     not 'pt-Br'
     """
-    cache_key = 'newsletter:languages:' + md5(repr(newsletters)).hexdigest()
+    all_newsletters = get_newsletters()
+    if newsletters is None:
+        newsletters = all_newsletters.values()
+    else:
+        if isinstance(newsletters, basestring):
+            newsletters = [nl.strip() for nl in newsletters.split(',')]
+        newsletters = [all_newsletters.get(nl, {}) for nl in newsletters]
 
-    langs = cache.get(cache_key)
-    if langs is None:
-        all_newsletters = get_newsletters()
-        if newsletters is None:
-            newsletters = all_newsletters.values()
-        else:
-            if isinstance(newsletters, basestring):
-                newsletters = [nl.strip() for nl in newsletters.split(',')]
-            newsletters = [all_newsletters.get(nl, {}) for nl in newsletters]
-
-        langs = set()
-        for newsletter in newsletters:
-            langs.update(lang[:2].lower() for lang in newsletter.get('languages', []))
-
-        cache.set(cache_key, langs, NEWSLETTERS_CACHE_TIMEOUT)
+    langs = set()
+    for newsletter in newsletters:
+        langs.update(lang[:2].lower() for lang in newsletter.get('languages', []))
 
     return langs
 
@@ -76,3 +72,22 @@ def custom_unsub_reason(token, reason):
         'reason': reason,
     }
     return basket.request('post', 'custom_unsub_reason', data=data)
+
+
+def get_local_basket_newsletters_data():
+    """
+    Load newsletter data from a file previously saved from basket
+
+    To update the data run the following:
+
+        $ curl https://basket.mozilla.org/news/newsletters/ > bedrock/newsletter/basket_data.json
+
+    :return: dict newsletter data
+    """
+    global NEWSLETTERS_LOCAL_DATA
+    if NEWSLETTERS_LOCAL_DATA is None:
+        with BASKET_DATA_PATH.open() as fd:
+            data = json.load(fd)
+            NEWSLETTERS_LOCAL_DATA = data['newsletters']
+
+    return NEWSLETTERS_LOCAL_DATA

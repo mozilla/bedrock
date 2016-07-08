@@ -4,6 +4,7 @@
 
 import json
 
+from django.test import override_settings
 from django.test.client import RequestFactory
 
 from bedrock.base.urlresolvers import reverse
@@ -135,6 +136,7 @@ class TestSendToDeviceView(TestCase):
                                                lang='en-US')
 
 
+@override_settings(DEV=False)
 @patch('bedrock.firefox.views.l10n_utils.render')
 class TestFirefoxNew(TestCase):
     def test_frames_allow(self, render_mock):
