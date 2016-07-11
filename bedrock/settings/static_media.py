@@ -749,6 +749,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/plugincheck-bundle.css',
     },
+    'plugincheck-redesign': {
+        'source_filenames': (
+            'css/base/mozilla-accordion.less',
+            'css/plugincheck/plugincheck-redesign.less',
+            'css/newsletter/fxnewsletter-subscribe.less',
+        ),
+        'output_filename': 'css/plugincheck-redesign-bundle.css',
+    },
     'press': {
         'source_filenames': (
             'css/press/press.less',
@@ -1519,6 +1527,19 @@ PIPELINE_JS = {
             'js/plugincheck/check-plugins.js',
         ),
         'output_filename': 'js/plugincheck-bundle.js',
+    },
+    'plugincheck-redesign': {
+        'source_filenames': (
+            'js/libs/mustache.js',
+            'js/base/mozilla-accordion.js',
+            'js/base/mozilla-accordion-gatrack.js',
+            'js/plugincheck/tmpl/plugincheck-redesign.ui.tmpl.js',
+            'js/plugincheck/lib/utils.js',
+            'js/plugincheck/lib/version-compare.js',
+            'js/plugincheck/lib/plugincheck.js',
+            'js/plugincheck/check-plugins-redesign.js',
+        ),
+        'output_filename': 'js/plugincheck-redesign-bundle.js',
     },
     'press_speaker_request': {
         'source_filenames': (

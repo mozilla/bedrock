@@ -547,3 +547,12 @@ def contribute_friends(request):
     return l10n_utils.render(request,
                              'mozorg/contribute/friends.html',
                              {'newsletter_form': newsletter_form})
+
+
+def plugincheck(request):
+    template = 'mozorg/plugincheck.html'
+    if lang_file_is_active('mozorg/plugincheck-redesign',
+                           l10n_utils.get_locale(request)):
+        template = 'mozorg/plugincheck-redesign.html'
+
+    return l10n_utils.render(request, template)
