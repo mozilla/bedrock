@@ -262,4 +262,7 @@
 
 {% block js %}
   {% javascript 'home-b' %}
+
+  {# survey is en-US only - enforced via optimizely audience segmentation #}
+  {% include 'mozorg/home/includes/survey-b.html' %}
 {% endblock %}
