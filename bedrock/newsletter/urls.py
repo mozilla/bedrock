@@ -4,6 +4,7 @@
 from django.conf.urls import url
 
 from bedrock.newsletter import views
+from bedrock.mozorg.util import page
 
 # A UUID looks like: f81d4fae-7dec-11d0-a765-00a0c91e6bf6
 # Here's a regex to match a UUID:
@@ -46,4 +47,6 @@ urlpatterns = (
     url('^newsletter/$',
         views.newsletter_subscribe,
         name='newsletter.subscribe'),
+
+    page('newsletter/mozilla', 'newsletter/mozilla.html'),
 )

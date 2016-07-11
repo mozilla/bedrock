@@ -63,6 +63,28 @@ ol.prose {
 }
 
 
+// Links
+a {
+    color: @color-link;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:visited:hover,
+    &:visited:focus,
+    &:visited:active {
+        color: darken(@color-link, 10%);
+        text-decoration: underline;
+    }
+
+    &:visited {
+        color: lighten(desaturate(@color-link, 50%), 20%);
+    }
+}
+
+
+// Standard content blocks
 .section,
 .content {
     .clearfix;
