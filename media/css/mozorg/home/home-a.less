@@ -1,27 +1,5 @@
 @import '../../pebbles/lib.less';
-
-// Variables and Mixins
-
-@color-mozred-bright: saturate(lighten(@color-mozred, 5%), 10%);
-
-.invert-text() {
-    color: #fff;
-
-    a:link,
-    a:visited,
-    a:hover,
-    a:active,
-    a:focus {
-        color: #fff;
-    }
-
-    a:hover,
-    a:active,
-    a:focus {
-        text-decoration: underline;
-    }
-}
-
+@import 'prototypes/lib.less';
 
 // General styles
 html {
@@ -1017,113 +995,18 @@ body {
     }
 }
 
-
-// Footer
+// customizations on prototypes/footer.less
 .section-footer {
-    .fira-sans-light;
-    .font-size(14px);
-    .invert-text;
-    background: #666;
-    padding: 20px 0;
-
-    a,
-    a:link {
-        color: #23c7db;
-        text-decoration: none;
-    }
-
-    a:visited {
-        color: darken(#23c7db, 10%);
-    }
-
-    a:hover,
-    a:focus {
-        color: #23c7db;
-        text-decoration: underline;
-    }
-
-    .logo a {
-        .at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
-        .image-replaced();
-        display: inline-block;
-        height: 24px;
-        width: 93px;
-    }
-
-    p,
-    ul {
-        margin-bottom: 15px;
-        line-height: 1.5;
-    }
-
-    ul {
-        overflow: hidden;
-
-        &.fx-footer-links li {
-            float: none;
-        }
-
-        li {
-            float: left;
-
-            &.wrap:before {
-                content: "\00A0\00B7\00A0"; /* &nbsp;&middot;&nbsp; */
-            }
-
-            &.clear {
-                clear: both;
-            }
-        }
-    }
-
-    .links-social li {
-        float: none;
-
-        ul {
-            display: inline;
-            margin: 0;
-        }
-
-        li {
-            display: inline;
-
-            &:before {
-                content: "\00B7\00A0"; /* &middot;&nbsp; */
-            }
-
-            &:first-child:before {
-                content: "";
-            }
-
-            span {
-                .visually-hidden(); /* for a11y */
-            }
-        }
-    }
-
     @media @mq-tablet and (min-height: 600px) {
         margin-left: 240px;
 
         .content {
-            .clearfix;
-            margin: 0 auto;
-            padding-left: 30px;
-            padding-right: 30px;
             width: 460px;
         }
     }
 
     @media @mq-desktop and (min-height: 600px) {
         margin-left: 360px;
-
-        .footer-column {
-            // mimics .span mixin, but must be activated at @mq-desktop
-            // instead of @mq-tablet
-            .border-box;
-            float: left;
-            padding: 0 (@gutter-width / 2);
-            width: @column-width * 4;
-        }
 
         .content {
             width: 650px;
