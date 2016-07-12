@@ -14,6 +14,10 @@ GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
                             urlquote('utm_source=mozilla&utm_medium=Referral&'
                                      'utm_campaign=mozilla-org'))
 
+# Bug 1264843: link to China build of Fx4A, for display within Fx China repack
+GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE = GOOGLE_PLAY_FIREFOX_LINK.replace(
+    'org.mozilla.firefox', 'cn.mozilla.firefox')
+
 # Link to Firefox for iOS on the Apple App Store with Google Analytics campaign
 # patameters. Each implementation should add a "ct" parameter for analytics.
 # Note: this URL is likely to change for Fx42. See bug comment:

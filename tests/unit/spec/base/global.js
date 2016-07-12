@@ -4,7 +4,8 @@
  */
 
 /* global describe, beforeEach, afterEach, it, expect, sinon, spyOn,
-   triggerIEDownload, initDownloadLinks, initMobileDownloadLinks */
+   triggerIEDownload, initDownloadLinks, initMobileDownloadLinks,
+   maybeSwitchToDistDownloadLinks */
 
 describe('global.js', function() {
 
@@ -90,4 +91,38 @@ describe('global.js', function() {
 
     });
 
+    describe('maybeSwitchToDistDownloadLinks', function() {
+
+        var $link;
+        var defaultHref = 'https://test.example.com/?id=org.mozilla.firefox';
+        var partnerAHref = defaultHref.replace('org.mozilla.firefox',
+                                               'com.partnera.firefox');
+
+        beforeEach(function () {
+            $link = $([
+                '<a href="' + defaultHref +
+                '" data-partnera-link="' + partnerAHref +
+                '">download</a>'
+            ].join()).appendTo('body');
+        });
+
+        afterEach(function() {
+            $link.remove();
+        });
+
+        it('should use specified download link for certain distributions', function () {
+            maybeSwitchToDistDownloadLinks({
+                distribution: 'PartnerA'
+            });
+            expect($link.attr('href')).toEqual(partnerAHref);
+        });
+
+        it('should use default download link for other distributions', function () {
+            maybeSwitchToDistDownloadLinks({
+                distribution: 'PartnerB'
+            });
+            expect($link.attr('href')).toEqual(defaultHref);
+        });
+
+    });
 });
