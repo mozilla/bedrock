@@ -1471,6 +1471,7 @@ PIPELINE_JS = {
     },
     'home-b': {
         'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
             'js/mozorg/home/home-b.js',
         ),
         'output_filename': 'js/home_b-bundle.js',
@@ -1489,6 +1490,13 @@ PIPELINE_JS = {
             'js/mozorg/home/survey-a.js',
         ),
         'output_filename': 'js/home-survey-bundle-a.js',
+    },
+    'home-survey-b': {
+        'source_filenames': (
+            'js/mozorg/home/survey-generator.js',
+            'js/mozorg/home/survey-b.js',
+        ),
+        'output_filename': 'js/home-survey-bundle-b.js',
     },
     'history-slides': {
         'source_filenames': (
