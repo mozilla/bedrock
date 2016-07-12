@@ -13,6 +13,14 @@
     var $who = $('#who');
     var $innovate = $('#innovate');
 
+    function trackCollapseExpand(name, action) {
+        window.dataLayer.push({
+            'event': 'widget-action',
+            'widget-name': name,
+            'widget-action': action
+        });
+    }
+
     // hide download button for up-to-date fx desktop/android users
     if ((mozClient.isFirefoxDesktop || mozClient.isFirefoxAndroid) && mozClient._isFirefoxUpToDate(false)) {
         $('#nav-download-firefox').css('display', 'none');
@@ -27,10 +35,14 @@
     $toggleWho.on('click', function() {
         $whoInnovateWrapper.toggleClass('open-who');
         $who.toggleClass('open');
+
+        trackCollapseExpand('Our Impact', $who.hasClass('open') ? 'Expose' : 'Close');
     });
 
     $toggleInnovate.on('click', function() {
         $whoInnovateWrapper.toggleClass('open-innovate');
         $innovate.toggleClass('open');
+
+        trackCollapseExpand('Our Innovations', $innovate.hasClass('open') ? 'Expose' : 'Close');
     });
 })(window.jQuery);
