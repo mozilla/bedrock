@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxfamilynav with context %}
+{% from "macros.html" import fxfamilynav, google_play_button with context %}
 
 {% extends "/firefox/base-resp.html" %}
 
@@ -85,9 +85,7 @@
         {% endif %}
           <ul class="primary-buttons">
             <li>
-              <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android" id="cta-android">
-                {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
-              </a>
+              {{ google_play_button(id='cta-android') }}
             </li>
             <li>
               <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS" id="cta-ios">
@@ -239,9 +237,7 @@
     <div class="container">
       <header>
         <h3>{{ _('Get Firefox everywhere') }}</h3>
-        <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android" id="cta-android-footer">
-          {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
-        </a>
+        {{ google_play_button(id='cta-android-footer') }}
         <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button-footer') }}" data-link-type="download" data-download-os="iOS" id="cta-ios-footer">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
         </a>

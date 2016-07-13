@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import google_play_button with context %}
+
 {% extends "base-new.html" %}
 
 {% add_lang_files "mozorg/home/index" %}
@@ -177,9 +179,7 @@
         <div id="fxmobile-download-buttons">
           <ul>
             <li class="android">
-              <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
-                {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
-              </a>
+              {{ google_play_button() }}
             </li>
             <li class="ios">
               <a href="{{ firefox_ios_url('mozorg-homepage_prototype_b-button') }}" data-link-type="download" data-download-os="iOS">
