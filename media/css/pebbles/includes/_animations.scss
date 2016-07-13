@@ -2,32 +2,28 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+
 @-webkit-keyframes pebbles-bounce-down {
     0%, 60%, 75%, 90%, 100% {
         -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+                transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
     }
     0% {
         opacity: 0;
-        -webkit-transform: translate3d(0, -500px, 0);
-        transform: translate3d(0, -500px, 0);
+        @include transform(translate3d(0, -500px, 0));
     }
     60% {
         opacity: 1;
-        -webkit-transform: translate3d(0, 25px, 0);
-        transform: translate3d(0, 25px, 0);
+        @include transform(translate3d(0, 25px, 0));
     }
     75% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        @include transform(translate3d(0, 0, 0));
     }
     90% {
-        -webkit-transform: translate3d(0, 5px, 0);
-        transform: translate3d(0, 5px, 0);
+        @include transform(translate3d(0, 5px, 0));
     }
     100% {
-        -webkit-transform: none;
-        transform: none;
+        @include transform(none);
     }
 }
 

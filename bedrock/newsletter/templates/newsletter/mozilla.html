@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends 'base-new.html' %}
+{% extends 'base-pebbles.html' %}
 
 {% set_lang_files "mozorg/newsletters" %}
 
@@ -36,7 +36,7 @@
     <div class="content">
       <h2 class="section-title">{{ _('Get the Mozilla newsletter to stay informed about issues challenging the health of the Internet and to discover how you can get involved.') }}</h2>
 
-      {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832') }}
+      {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832', button_class='red') }}
 
     </div>
   </section>

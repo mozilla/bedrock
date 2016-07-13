@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends 'base-new.html' %}
+{% extends 'base-pebbles.html' %}
 
 {% set_lang_files "mozorg/newsletters" %}
 
@@ -36,7 +36,7 @@
         <h1 class="page-title">{{ _('Put more fox in your inbox.') }}</h1>
         <h2 class="section-title">{{ _('See where the Web can take you with monthly Firefox tips, tricks and Internet intel.') }}</h2>
       </header>
-      {{ email_newsletter_form(include_title=False, spinner_color='#3a304b') }}
+      {{ email_newsletter_form(include_title=False, spinner_color='#3a304b', button_class='hollow') }}
     </div>
   </section>
 </main>

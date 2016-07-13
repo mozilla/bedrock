@@ -2,8 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import (reference) '../lib.less';
-@import '../includes/animations.less';
+@import '../includes/lib';
+@import '../includes/animations';
 
 
 html.noscroll {
@@ -22,7 +22,7 @@ html.noscroll {
 
 
 #modal {
-    .animation(sand-fade-in 300ms ease-in 0ms 1 normal both);
+    @include animation(pebbles-fade-in 300ms ease-in 0ms 1 normal both);
     background: #000;
     background: rgba(0, 0, 0, .85);
     bottom: 0;
@@ -43,16 +43,16 @@ html.noscroll {
             position: relative;
             background: #fff;
             padding: 20px;
-            .clearfix;
+            @include clearfix;
 
             &> header {
-                .font-size(48px);
+                @include font-size(48px);
                 color: #fff;
                 display: block;
                 height: auto;
                 line-height: 1.3;
                 padding: 0 60px 0 20px;
-                background: @color-mozred;
+                background: $color-mozred;
                 margin: -20px -20px 20px;
             }
 
@@ -69,11 +69,9 @@ html.noscroll {
                 }
 
                 .button {
-                    .image-replaced;
-                        filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-                    -ms-filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+                    @include image-replaced;
                     background: transparent url('/media/img/mozid/modal-close.svg') center center no-repeat;
-                    .background-size(22px, 22px);
+                    @include background-size(22px, 22px);
                     border-radius: 50%;
                     border: 2px solid #fff;
                     height: 42px;
@@ -83,7 +81,7 @@ html.noscroll {
 
                     &:hover,
                     &:focus {
-                        .transform(scale(1.1));
+                        @include transform(scale(1.1));
                         box-shadow: none;
                     }
                 }
@@ -111,18 +109,18 @@ html[dir="rtl"] {
     }
 }
 
-@media @mq-desktop {
+@media #{$mq-desktop} {
     #modal .inner {
         margin: 20px auto 60px;
 
         .footer {
-            .clearfix();
+            @include clearfix;
             padding-left: 30px;
             padding-right: 30px;
 
             div {
                 padding: 0;
-                .span(4);
+                @include span(4);
 
                 &:first-child {
                     margin-left: 0;

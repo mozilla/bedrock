@@ -1,0 +1,58 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/media/fonts/opensans-regular.woff2') format('woff2'),
+         url('/media/fonts/opensans-regular.woff') format('woff'),
+         url('/media/fonts/opensans-regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-style: normal;
+    src: url('/media/fonts/opensans-bold.woff2') format('woff2'),
+         url('/media/fonts/opensans-bold.woff') format('woff'),
+         url('/media/fonts/opensans-bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: normal;
+    font-style: italic;
+    src: url('/media/fonts/opensans-italic.woff2') format('woff2'),
+         url('/media/fonts/opensans-italic.woff') format('woff'),
+         url('/media/fonts/opensans-italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans Light';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/media/fonts/opensans-light.woff2') format('woff2'),
+         url('/media/fonts/opensans-light.woff') format('woff'),
+         url('/media/fonts/opensans-light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans Light';
+    font-weight: bold;
+    font-style: normal;
+    src: url('/media/fonts/opensans-semibold.woff2') format('woff2'),
+         url('/media/fonts/opensans-semibold.woff') format('woff'),
+         url('/media/fonts/opensans-semibold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans Light';
+    font-weight: normal;
+    font-style: italic;
+    src: url('/media/fonts/opensans-lightitalic.woff2') format('woff2'),
+         url('/media/fonts/opensans-lightitalic.woff') format('woff'),
+         url('/media/fonts/opensans-lightitalic.ttf') format('truetype');
+}

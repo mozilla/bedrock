@@ -1,0 +1,25 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+// Convert pixel units to rems, assuming a 16px base size
+// Usage: remify(24px)
+@function remify($pixels) {
+    $rems: $pixels / 16px;
+    @return #{$rems}rem;
+}
+
+
+// Replace `$search` with `$replace` in `$string`
+// @author Hugo Giraudel
+// Usage: str-replace($string, ' ', '-')
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}

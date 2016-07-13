@@ -1,0 +1,42 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../includes/lib';
+
+
+h1, h2, h3, h4, h5, h6, legend {
+    font-weight: bold;
+    line-height: 1.1;
+    margin: 0 0 .25em;
+}
+
+// Type scale defined in includes/mixins/_typography.scss
+h1 {
+    @include font-size-level1;
+}
+
+h2 {
+    @include font-size-level2;
+}
+
+h3 {
+    @include font-size-level3;
+}
+
+h4 {
+    @include font-size-level4;
+}
+
+h5, h6 {
+    @include font-size(16px);
+}
+
+p,
+ul,
+ol,
+dl,
+table {
+    margin-bottom: 1.25em;
+}
+

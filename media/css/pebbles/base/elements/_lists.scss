@@ -1,0 +1,61 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../includes/lib';
+
+
+// We most frequently use lists for semantic structure and don't actually
+// want to display them as lists. It's simpler to reset lists globally
+// and only display them as lists in text when needed with the .prose class.
+ul, ol {
+    list-style: none;
+}
+
+ul.prose {
+    list-style: disc;
+    margin-left: 30px;
+
+    ul {
+        list-style: circle;
+        margin-left: 20px;
+        margin-bottom: 0;
+    }
+
+    ol {
+        list-style: decimal;
+        margin-left: 20px;
+        margin-bottom: 0;
+    }
+}
+
+ol.prose {
+    list-style: decimal;
+    margin-left: 30px;
+
+    ol {
+        list-style: lower-alpha;
+        margin-left: 20px;
+        margin-bottom: 0;
+    }
+
+    ul {
+        list-style: disc;
+        margin-left: 20px;
+        margin-bottom: 0;
+    }
+}
+
+[dir='rtl'] {
+    ul.prose,
+    ol.prose {
+        margin-left: 0;
+        margin-right: 30px;
+
+        ul,
+        ol {
+            margin-left: 0;
+            margin-right: 20px;
+        }
+    }
+}

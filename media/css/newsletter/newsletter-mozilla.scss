@@ -2,25 +2,23 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import (reference) '../pebbles/lib.less';
-@import '../pebbles/components/footer.less';
-@import '../pebbles/elements/forms.less';
+@import '../pebbles/includes/lib';
 
 .content {
-    .clearfix;
+    @include clearfix;
 
-    @media @mq-tablet {
-        width: @width-tablet;
+    @media #{$mq-tablet} {
+        width: $width-tablet;
     }
 
-    @media @mq-desktop {
-        width: @width-desktop;
+    @media #{$mq-desktop} {
+        width: $width-desktop;
     }
 }
 
 .section-intro {
     background: #373737 url('/media/img/newsletter/intro-mozsummit-600.jpg') center center no-repeat;
-    .background-size(cover);
+    @include background-size(cover);
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     color: #fff;
     text-align: center;
@@ -29,19 +27,19 @@
         width: 100%;
         padding: 60px 0 40px;
         background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%);
-        .transition(padding 200ms ease);
+        @include transition(padding 200ms ease);
 
-        @media @mq-tablet and (min-height: 600px) {
+        @media #{$mq-tablet} and #{$mq-tall} {
             padding: 100px 0;
         }
 
-        @media @mq-tablet and (min-height: 800px) {
+        @media #{$mq-tablet} and (min-height: 800px) {
             padding: 150px 0;
         }
     }
 
     .page-title {
-        .font-size(32px);
+        @include font-size(32px);
         margin: 0;
         text-shadow: 0 0 10px rgba(0, 0, 0, .01),
                      0 0 5px rgba(0, 0, 0, .025),
@@ -54,23 +52,23 @@
         right: 20px;
     }
 
-    @media @mq-tablet {
+    @media #{$mq-tablet} {
         background-image: url('/media/img/newsletter/intro-mozsummit-1000.jpg');
 
         .page-title {
-            .font-size(48px);
+            @include font-size(48px);
         }
     }
 
-    @media @mq-desktop {
+    @media #{$mq-desktop} {
         background-image: url('/media/img/newsletter/intro-mozsummit-2000.jpg');
 
         .page-title {
-            .font-size(72px);
+            @include font-size(72px);
         }
     }
 
-    @media @mq-desktop-wide {
+    @media #{$mq-desktop-wide} {
         background-image: url('/media/img/newsletter/intro-mozsummit-3000.jpg');
     }
 }
@@ -79,33 +77,33 @@
     background: #fff;
 
     .content {
-        max-width: @width-tablet;
+        max-width: $width-tablet;
         padding: 40px 20px;
     }
 
     h2 {
-        .font-size(18px);
-        color: @color-mozred;
+        @include font-size(18px);
+        color: $color-mozred;
         font-weight: normal;
         line-height: 1.3;
         margin: 0 auto 20px;
         text-align: center;
 
-        @media @mq-phone-wide {
-            .font-size(24px);
+        @media #{$mq-phone-wide} {
+            @include font-size(24px);
         }
 
-        @media screen and (min-height: 600px) {
+        @media screen and #{$mq-tall} {
             margin: 20px auto 40px;
         }
     }
 
     .errorlist {
-        .border-box;
+        @include border-box;
         background: #fff6dc;
         border-radius: 4px;
         margin: 0 auto 20px;
-        max-width: @width-phone;
+        max-width: $width-phone;
         padding: 20px;
     }
 }
@@ -115,26 +113,26 @@
     border: 0;
     box-shadow: none;
     margin: 0 auto;
-    max-width: @width-phone;
+    max-width: $width-phone;
     padding: 0;
 
     input[type='text'],
     input[type='email'],
     select {
-        .border-box;
-        .font-size(16px);
+        @include border-box;
+        @include font-size(16px);
         padding: .75em 20px;
         width: 100%;
     }
 
     input[type='text'],
     input[type='email'] {
-        border: 2px solid @color-mozred;
+        border: 2px solid $color-mozred;
         margin-bottom: 2px;
 
         &:hover,
         &:focus {
-            border-color: lighten(@color-mozred, 5%);
+            border-color: lighten($color-mozred, 5%);
         }
     }
 
@@ -147,7 +145,7 @@
     }
 
     .privacy-check-label {
-        .font-size(14px);
+        @include font-size(14px);
         display: block;
         padding-left: 30px;
         position: relative;
@@ -164,18 +162,7 @@
         text-align: center;
 
         small {
-            .font-size(12px);
-        }
-    }
-
-    .form-button {
-        color: #fff;
-        border: 0;
-        background: @color-mozred;
-
-        &:hover,
-        &:focus {
-            background: lighten(@color-mozred, 5%);
+            @include font-size(12px);
         }
     }
 }
@@ -185,13 +172,13 @@
     border: 0;
     box-shadow: none;
     margin: 0 auto;
-    max-width: @width-phone;
+    max-width: $width-phone;
     padding: 20px 0;
     text-align: center;
 
     h3 {
-        .font-size(24px);
-        color: @color-mozred;
+        @include font-size(24px);
+        color: $color-mozred;
         margin: 0 0 20px;
     }
 }
@@ -201,26 +188,25 @@
     display: block;
 }
 
+
 #colophon {
-    background: @color-mozgray;
-    color: #fff;
+    background: #d1d2d3;
+    color: #56565a;
+    margin: 0;
 
     a {
-        color: lighten(@color-link, 30%);
+        color: $color-link-blue;
 
         &:hover,
         &:focus,
         &:active,
-        &:visited:hover,
-        &:visited:focus,
-        &:visited:active {
-            color: lighten(@color-link, 20%);
-            text-decoration: underline;
-        }
-
         &:visited {
-            color: lighten(desaturate(@color-link, 50%), 20%);
+            color: darken($color-link-blue, 8%);
         }
+    }
+
+    .logo a {
+        @include at2x('/media/img/sandstone/footer-mozilla-dark.png', 93px, 24px);
     }
 }
 

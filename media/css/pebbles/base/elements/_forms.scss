@@ -2,7 +2,20 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import (reference) '../lib.less';
+@import '../../includes/lib';
+
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit; // must inherit or falls back to UA stylesheet/system font
+}
+
+textarea {
+    height: auto;
+    max-width: 100%;
+}
 
 textarea,
 input[type=email],
@@ -14,23 +27,15 @@ input[type=text],
 input[type=number],
 input[type=date],
 input[type=time] {
-    .transition(all 100ms linear);
+    @include border-box;
+    @include transition(all 100ms linear);
     background: #fff;
-    border: 1px solid #b2b2b2;
     border-radius: .3em;
-    box-shadow: 0 1px rgba(255, 255, 255, .5);
-    line-height: 1.1;
-    padding: .1em 10px;
+    border: 1px solid #b2b2b2;
+    display: inline-block;
+    line-height: 1.25;
+    padding: .25em 10px;
 }
-
-button,
-input,
-select,
-textarea {
-    font-family: inherit; // must inherit or falls back to UA stylesheet/system font
-}
-
-textarea { height: auto; }
 
 textarea:focus,
 input[type=email]:focus,
@@ -39,7 +44,7 @@ input[type=search]:focus,
 input[type=text]:focus,
 input[type=tel]:focus,
 input.focus {
-    .transition(all 100ms linear);
+    @include transition(all 100ms linear);
     border-color: #42a4e0;
     box-shadow: 0 0 0 2px rgba(73, 173, 227, .4);
 }
@@ -55,7 +60,7 @@ input[type=search]:-moz-ui-invalid:not(output),
 input[type=text]:-moz-ui-invalid:not(output),
 input[type=tel]:-moz-ui-invalid:not(output),
 input.invalid {
-    .transition(all 100ms linear);
+    @include transition(all 100ms linear);
     border-color: #a91300;
     box-shadow: 0 0 0 2px rgba(255, 80, 80, .4);
 }

@@ -1,0 +1,59 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+// A helper mixin for applying high-resolution background images (based on http://www.retinajs.com)
+// File-names should follow:
+//  example.png
+//  example-high-res.png
+// Usage:
+//  @include at2x('/media/img/foo.png', 100px, 100px);
+
+@mixin at2x($path, $w: auto, $h: auto) {
+    $hr-suffix: '-high-res';
+
+    // Set a counter and get the length of the image path.
+    $position: -1;
+    $strpath: '#{$path}';
+    $length: str-length($strpath);
+
+    // Loop through the image path and find the position of
+    // the dot to determine the file extension.
+    // Subtract from string length to make an end point that
+    // is always lower than the start point s the loop always
+    // increments (10 is an arbitrary number).
+    @for $i from $length through $length - 10 {
+      @if $position == -1 {
+          $char : str-slice($strpath, $i, $i);
+            @if str-index($char, '.') == 1 {
+                $position: $i;
+            }
+        }
+    }
+
+   // If we were able to figure out where the extension is,
+   // slice the path into a base and an extension. Use that to
+   // produce urls for different density environments.
+    @if $position != -1 {
+        $base: str-slice($strpath, 1, $position - 1);
+        $ext: str-slice($strpath, $position + 1, $length);
+        $at2x_path: '#{$base}#{$hr-suffix}.#{$ext}';
+
+        // Regular image for most screens.
+        background-image: url('#{$path}');
+        background-size: $w $h;
+
+        // High-res image for high-res screens.
+        @media #{$mq-high-res} {
+            background-image: url('#{$at2x_path}');
+            background-size: $w $h;
+        }
+    }
+
+    // If anything went wrong above, just pass the original path right through
+    @else {
+        background-image: url('#{$path}');
+        background-size: $w $h;
+    }
+}

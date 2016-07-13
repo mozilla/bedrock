@@ -71,8 +71,17 @@
     </div>
 
     <div class="form-submit">
-      <input type="submit" id="footer_email_submit"
-             value="{% if submit_text %}{{ submit_text }}{% else %}{% if LANG.startswith('en-') %}{{ _('Sign Up Now') }}{% else %}{{ _('Sign me up') }}{% endif %}{% endif %}" class="form-button {{ button_class }}">
+      <button type="submit" id="footer_email_submit" class="form-button {{ button_class }}">
+        {% if submit_text %}
+          {{ submit_text }}
+        {% else %}
+          {% if LANG.startswith('en-') %}
+            {{ _('Sign Up Now') }}
+          {% else %}
+            {{ _('Sign me up') }}
+          {% endif %}
+        {% endif %}
+      </button>
 
       {% if details %}
         <p class="form-details">

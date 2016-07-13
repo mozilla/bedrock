@@ -2,10 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import (reference) '../pebbles/lib.less';
-@import '../pebbles/components/masthead.less';
-@import '../pebbles/components/footer.less';
-@import '../pebbles/components/modal.less';
+@import '../pebbles/components/modal';
 
 
 @font-face {
@@ -19,14 +16,10 @@
 
 
 #masthead {
-    background: @color-mozred;
+    background: $color-mozred;
     color: #fff;
 
-    .toggle {
-        background-image: url('/media/img/pebbles/icon-menu-light.svg');
-    }
-
-    @media @mq-tablet {
+    @media #{$mq-tablet} {
         a {
             color: #fff;
         }
@@ -42,12 +35,12 @@
     overflow: hidden;
     position: relative;
 
-    @media @mq-tablet {
+    @media #{$mq-tablet} {
         display: block;
         height: 300px;
     }
 
-    @media @mq-desktop {
+    @media #{$mq-desktop} {
         height: 500px;
     }
 }
@@ -62,7 +55,7 @@
     position: absolute;
 
     span {
-        .background-size(230px, 230px);
+        @include background-size(230px, 230px);
         background-color: #e8ebd3;
         background-position: center center;
         background-repeat: no-repeat;
@@ -85,14 +78,14 @@
 .foreground {
     display: none;
 
-    @media @mq-tablet {
+    @media #{$mq-tablet} {
         display: block;
         height: 300px;
         left: 50%;
-        margin-left: -(@width-tablet / 2);
+        margin-left: -($width-tablet / 2);
         position: absolute;
         top: 0;
-        width: @width-tablet;
+        width: $width-tablet;
         z-index: 10;
 
         .snap {
@@ -100,28 +93,28 @@
         }
 
         .shot-one { // MSurman
+            @include transform(rotate(-3deg));
             left: -12px;
             top: 6px;
-            transform: rotate(-3deg);
         }
 
         .shot-two { // Mitchell
+            @include transform(rotate(5deg));
             left: 225px;
             top: -3px;
-            transform: rotate(5deg);
         }
 
         .shot-three { // CBeard
+            @include transform(rotate(-6deg));
             left: 485px;
             top: 9px;
-            transform: rotate(-6deg);
         }
     }
 
-    @media @mq-desktop {
+    @media #{$mq-desktop} {
         height: 500px;
-        margin-left: -(@width-desktop / 2);
-        width: @width-desktop;
+        margin-left: -($width-desktop / 2);
+        width: $width-desktop;
 
         .shot-one {
             left: 120px;
@@ -139,9 +132,9 @@
         }
     }
 
-    @media @mq-desktop-wide {
-        margin-left: -(@width-desktop-wide / 2);
-        width: @width-desktop-wide;
+    @media #{$mq-desktop-wide} {
+        margin-left: -($width-desktop-wide / 2);
+        width: $width-desktop-wide;
 
         .shot-one {
             left: 320px;
@@ -164,9 +157,9 @@
 // Simulate a developing Polaroid
 @supports (animation-name: develop) and (filter: invert(40%)) {
     .foreground .snap img {
-        opacity: .1;
-        .animation(develop 2500ms ease-in forwards);
+        animation: develop 2500ms ease-in forwards;
         filter: invert(40%) sepia(80%);
+        opacity: .1;
     }
 
     .foreground .shot-one img {
@@ -180,30 +173,30 @@
     .foreground .shot-three img {
         animation-delay: 3200ms;
     }
-
-    @keyframes develop {
-        0%   { filter: invert(40%) sepia(100%); opacity: .1; }
-        25%  { filter: invert(20%) sepia(90%); opacity: .25; }
-        50%  { filter: invert(10%) sepia(80%); opacity: .5; }
-        75%  { filter: invert(0) sepia(60%); opacity: .75; }
-        85%  { filter: invert(0) sepia(40%); opacity: .85; }
-        100% { filter: invert(0) sepia(0); opacity: 1; }
-    }
-
 }
+
+@keyframes develop {
+    0%   { filter: invert(40%) sepia(100%); opacity: .1; }
+    25%  { filter: invert(20%) sepia(90%);  opacity: .25; }
+    50%  { filter: invert(10%) sepia(80%);  opacity: .5; }
+    75%  { filter: invert(0) sepia(60%);    opacity: .75; }
+    85%  { filter: invert(0) sepia(40%);    opacity: .85; }
+    100% { filter: invert(0) sepia(0);      opacity: 1; }
+}
+
 
 
 // Background layer of snapshots
 .background {
     display: none; // hidden on small screens
 
-    @media @mq-desktop {
+    @media #{$mq-desktop} {
         display: block;
         height: 500px;
         left: 50%;
-        margin-left: -(@width-desktop / 2);
+        margin-left: -($width-desktop / 2);
         position: absolute;
-        width: @width-desktop;
+        width: $width-desktop;
         z-index: 1;
 
         .shot-four { // Jascha
@@ -307,9 +300,9 @@
         }
     }
 
-    @media @mq-desktop-wide {
-        margin-left: -(@width-desktop-wide / 2);
-        width: @width-desktop-wide;
+    @media #{$mq-desktop-wide} {
+        margin-left: -($width-desktop-wide / 2);
+        width: $width-desktop-wide;
 
         .shot-four {
             left: 105px;
@@ -354,7 +347,7 @@
         }
     }
 
-    @media @mq-highres {
+    @media #{$mq-high-res} {
         .shot-four span {
             background-image: url('/media/img/mozorg/about/leadership/header/snap-jkaykaswolff-high-res.jpg');
         }
@@ -402,7 +395,7 @@
 
 // Page header/intro, separate from the photo header above
 .page-header {
-    background: @color-mozgray;
+    background: $color-mozgray;
     color: #fff;
     padding: 20px 0;
 }
@@ -413,21 +406,25 @@
     background: #eee;
     margin: 20px auto -20px;
 
+    ul {
+        margin: 0;
+    }
+
     li {
-        border-bottom: 2px solid @color-mozgray;
+        border-bottom: 2px solid $color-mozgray;
 
         &:last-child {
             border: 0;
         }
     }
 
-    @media @mq-tablet {
+    @media #{$mq-tablet} {
         float: left;
 
         li {
             display: inline-block;
             border-bottom: 0;
-            border-right: 2px solid @color-mozgray;
+            border-right: 2px solid $color-mozgray;
         }
     }
 
@@ -435,12 +432,12 @@
         display: block;
         padding: .5em 20px;
         text-decoration: none;
-        color: @color-text-primary;
+        color: $color-text-primary;
 
         &:hover,
         &:focus {
             text-decoration: underline;
-            color: @color-link;
+            color: $color-link;
         }
     }
 }
@@ -448,46 +445,46 @@
 
 // Headings
 .page-title {
-    .font-size(38px);
+    @include font-size(38px);
 
-    @media @mq-tablet {
-        .font-size(50px);
+    @media #{$mq-tablet} {
+        @include font-size(50px);
     }
 }
 
 .section-title {
-    .font-size(28px);
+    @include font-size(28px);
     margin: .5em 0;
 
-    @media @mq-tablet {
-        .font-size(38px);
+    @media #{$mq-tablet} {
+        @include font-size(38px);
     }
 }
 
 .section-intro {
-    .clearfix;
+    @include clearfix;
     margin: 0 0 2em;
 }
 
 .group-title {
-    .font-size(22px);
+    @include font-size(22px);
     margin: 0 0 1em;
     padding-top: .75em;
-    border-top: 1px solid @color-mozred;
+    border-top: 1px solid $color-mozred;
 
     a {
         text-decoration: none;
-        color: @color-text-secondary;
+        color: $color-text-secondary;
 
         &:hover,
         &:focus {
             text-decoration: underline;
-            color: @color-link;
+            color: $color-link;
         }
     }
 
-    @media @mq-tablet {
-        .font-size(28px);
+    @media #{$mq-tablet} {
+        @include font-size(28px);
     }
 }
 
@@ -505,14 +502,14 @@
 
 // Headshot galleries
 .gallery {
-    .clearfix;
+    @include clearfix;
     margin: 0 auto;
 
-    @media @mq-phone-wide {
-        width: @width-phone-wide;
+    @media #{$mq-phone-wide} {
+        width: $width-phone-wide;
     }
 
-    @media @mq-tablet {
+    @media #{$mq-tablet} {
         margin: 0 -10px;
         width: auto;
     }
@@ -530,11 +527,10 @@
         background: #fff;
         margin: 0 -20px 10px;
         box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
-        color: @color-text-primary;
+        color: $color-text-primary;
         text-decoration: none;
         text-align: center;
-        @transition: transform 200ms ease, box-shadow 200ms ease;
-        .transition(@transition);
+        @include transition(transform 200ms ease, box-shadow 200ms ease);
     }
 
     &:focus {
@@ -543,7 +539,7 @@
 
     .fn {
         font-weight: bold;
-        .font-size(15px);
+        @include font-size(15px);
     }
 
     .photo {
@@ -558,15 +554,16 @@
     .note,
     .elsewhere,
     .download {
-        .font-size(12px);
+        @include font-size(12px);
     }
 
     .title {
         font-weight: bold;
+        margin-bottom: 0;
     }
 
     .note {
-        color: @color-mozred;
+        color: $color-mozred;
     }
 
     .elsewhere,
@@ -578,7 +575,7 @@
             position: relative;
 
             &:before {
-                color: @color-link;
+                color: $color-link;
                 font: 105% 'FA-Icons-Contact';
                 position: absolute;
                 left: 0;
@@ -601,23 +598,23 @@
     .elsewhere,
     .person-bio,
     .download {
-        .hidden;
+        @include hidden;
     }
 
     a {
-        color: @color-text-primary;
+        color: $color-text-primary;
         text-decoration: none;
 
         &:hover .fn,
         &:focus .fn,
         &:active .fn {
-            color: @color-link;
+            color: $color-link;
             text-decoration: underline;
         }
     }
 
     &.has-bio .since {
-        .hidden;
+        @include hidden;
     }
 
     &.has-bio:hover,
@@ -630,16 +627,16 @@
         }
 
         .photo {
-            outline: 2px solid fadeout(@color-link, 50%);
+            outline: 2px solid transparentize($color-link, .5);
         }
 
         .fn {
-            color: @color-link;
+            color: $color-link;
             text-decoration: underline;
         }
     }
 
-    @media @mq-phone-wide {
+    @media #{$mq-phone-wide} {
         float: left;
         margin: 0 10px 20px;
 
@@ -648,7 +645,7 @@
         }
     }
 
-    @media @mq-tablet {
+    @media #{$mq-tablet} {
         &:nth-child(odd) {
             clear: none;
         }
@@ -658,7 +655,7 @@
         }
     }
 
-    @media @mq-desktop {
+    @media #{$mq-desktop} {
         &:nth-child(odd),
         &:nth-child(3n+1) {
             clear: none;
@@ -669,7 +666,7 @@
         }
     }
 
-    @media @mq-desktop-wide {
+    @media #{$mq-desktop-wide} {
         &:nth-child(odd),
         &:nth-child(3n+1),
         &:nth-child(4n+1) {
@@ -730,12 +727,12 @@
     }
 
     .fn {
-        .font-size(24px);
+        @include font-size(24px);
         text-align: left;
     }
 
     .title {
-        .font-size(16px);
+        @include font-size(16px);
     }
 
     .person-bio {
@@ -747,7 +744,7 @@
     }
 
     a {
-        color: @color-link;
+        color: $color-link;
         text-decoration: underline;
     }
 }
@@ -755,8 +752,8 @@
 #modal {
     .window {
         margin: 0 auto;
-        max-width: @width-desktop;
-        min-width: @width-phone - 60px;
+        max-width: $width-desktop;
+        min-width: $width-phone - 60px;
         padding: 20px 40px;
 
         .inner > header {
@@ -764,12 +761,12 @@
             padding: 10px 40px 10px 20px;
 
             h1 {
-                .font-size(20px);
+                @include font-size(20px);
                 line-height: 1.3;
                 margin: 0;
 
-                @media @mq-tablet {
-                    .font-size(32px);
+                @media #{$mq-tablet} {
+                    @include font-size(32px);
                 }
             }
         }
@@ -796,17 +793,17 @@
         }
 
         a {
-            color: @color-link;
+            color: $color-link;
 
             &:hover,
             &:focus,
             &:active {
-                color: darken(@color-link, 10%);
+                color: darken($color-link, 10%);
                 text-decoration: underline;
             }
         }
 
-        @media @mq-tablet {
+        @media #{$mq-tablet} {
             padding: 0 20px;
         }
     }
@@ -823,12 +820,12 @@
             margin: 0 auto 20px;
             width: 160px;
 
-            @media @mq-phone-wide {
+            @media #{$mq-phone-wide} {
                 float: right;
                 margin: 0 0 2em 40px;
             }
 
-            @media @mq-tablet {
+            @media #{$mq-tablet} {
                 float: right;
                 height: 250px;
                 margin: 0 0 2em 40px;
@@ -846,12 +843,12 @@
     }
 
     .title {
-        .font-size(18px);
+        @include font-size(18px);
         font-weight: bold;
     }
 
     .note {
-        color: @color-mozred;
+        color: $color-mozred;
     }
 
     .callout {
@@ -872,8 +869,8 @@
 
     .next,
     .prev {
-        .image-replaced;
-        .transition(background-position 150ms ease);
+        @include image-replaced;
+        @include transition(background-position 150ms ease);
         border: 0;
         cursor: pointer;
         display: block;
@@ -881,7 +878,9 @@
         position: absolute;
         top: 250px;
         width: 30px;
-        -moz-appearance: none;
+        -webkit-appearance: none;
+           -moz-appearance: none;
+                appearance: none;
 
         &:hover,
         &:focus {
