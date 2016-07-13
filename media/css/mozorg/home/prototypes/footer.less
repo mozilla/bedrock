@@ -2,8 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../../pebbles/lib.less';
-@import 'lib.less';
+@import (reference) '../../../pebbles/includes/lib.less';
+@import (reference) 'lib.less';
 
 .section-footer {
     .fira-sans-light;
@@ -82,7 +82,7 @@
             }
 
             span {
-                .visually-hidden(); /* for a11y */
+                .a11y-hidden(); /* for a11y */
             }
         }
     }

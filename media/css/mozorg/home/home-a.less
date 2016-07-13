@@ -1,5 +1,11 @@
-@import '../../pebbles/lib.less';
-@import 'prototypes/lib.less';
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import (reference) '../../pebbles/includes/lib.less';
+@import (reference) 'prototypes/lib.less';
+
+@import '../../sandstone/buttons.less';
 
 // General styles
 html {
@@ -96,6 +102,7 @@ body {
 .masthead-nav-main {
     .fira-sans-light;
     position: absolute;
+    float: none;
     top: 0;
     left: 0;
     z-index: 99;

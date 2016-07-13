@@ -113,8 +113,7 @@ PIPELINE_CSS = {
     },
     'pebbles': {
         'source_filenames': (
-            'css/pebbles/base.less',
-            'css/tabzilla/tabzilla-static.less',
+            'css/pebbles/global.less',
         ),
         'output_filename': 'css/pebbles-bundle.css',
     },
@@ -126,7 +125,7 @@ PIPELINE_CSS = {
     },
     'oldIE-pebbles': {
         'source_filenames': (
-            'css/pebbles/oldIE.less',
+            'css/pebbles/base/oldIE.less',
         ),
         'output_filename': 'css/oldIE-pebbles-bundle.css',
     },
