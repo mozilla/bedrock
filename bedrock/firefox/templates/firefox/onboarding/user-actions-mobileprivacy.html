@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros.html" import google_play_button with context %}
+
 {% extends "firefox/onboarding/onboarding-base.html" %}
 
 {% block page_css %}
@@ -23,9 +25,7 @@
 
       <ul id="mobile-dl-buttons">
         <li>
-          <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
-            {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
-          </a>
+          {{ google_play_button() }}
         </li>
         <li>
           <a rel="external" href="{{ firefox_ios_url('mozorg-fx-onboarding-mobileprivacy') }}" data-link-type="download" data-download-os="iOS">

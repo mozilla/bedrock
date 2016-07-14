@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import google_play_button with context %}
+
 {% extends "firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{{_('Get a Firefox Account')}}{% endblock %}
@@ -42,9 +44,7 @@
       <a class="button dark firefox-android more" rel="external" href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android">{{_('Set up Sync on your <br>Android device')}}</a>
       <div class="non-firefox">
         <p>{{_('Download Firefox to start using Sync.')}}</p>
-        <a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
-          {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
-        </a>
+        {{ google_play_button() }}
         <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
         </a>

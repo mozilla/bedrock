@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import google_play_button with context %}
+
 {% extends "mozorg/contribute/tasks/taskview-base.html" %}
 
 {% add_lang_files "mozorg/contribute/signup" %}
@@ -20,9 +22,11 @@
       <div class="step-content">
         <div class="download-button-wrapper firefox-mobile">
           {{ high_res_img('contribute/signup/firefox-mobile.png', {'width': '443', 'alt': '', 'class': 'feature-img'}) }}
-          <a rel="external" class="download-link" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" target="_blank" data-link-type="download" data-download-os="Android">
-            {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True, 'data-action': 'install', 'data-task': 'firefox-mobile', 'data-step': 'one', 'data-complete': 'true', 'data-mobileversion': 'Android'}) }}
-          </a>
+          {{ google_play_button(anchor_attributes={
+            'target': '_blank'
+          }, class_name='download-link', extra_img_attributes={
+            'data-action': 'install', 'data-task': 'firefox-mobile', 'data-step': 'one', 'data-complete': 'true', 'data-mobileversion': 'Android'
+          }) }}
           <a rel="external" class="download-link" href="{{ firefox_ios_url('mozorg-contribute_page-appstore-button') }}" target="_blank" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45" data-action="install" data-task="firefox-mobile" data-step="one" data-complete="true" data-mobileversion="iOS">
           </a>

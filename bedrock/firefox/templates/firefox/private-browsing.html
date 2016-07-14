@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxfamilynav with context %}
+{% from "macros.html" import fxfamilynav, google_play_button with context %}
 
 {% extends "firefox/base-resp.html" %}
 
@@ -39,9 +39,7 @@
               {{ download_firefox() }}
             </div>
             <div class="android-download-button">
-              <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
-                {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
-              </a>
+              {{ google_play_button() }}
             </div>
             <div class="ios-download-button">
               <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
@@ -146,9 +144,7 @@
             {{ download_firefox() }}
           </div>
           <div class="android-download-button">
-            <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">
-              {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
-            </a>
+            {{ google_play_button() }}
           </div>
           <div class="ios-download-button">
             <a href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">

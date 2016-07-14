@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* exported triggerIEDownload, initDownloadLinks, initMobileDownloadLinks,
-   initLangSwitcher */
+   maybeSwitchToDistDownloadLinks, initLangSwitcher */
 
 // download buttons
 
@@ -51,6 +51,18 @@ function initMobileDownloadLinks() {
                 .replace('https://', 'itms-apps://'));
         });
     }
+}
+
+// Bug 1264843: link to China build of Fx4A, for display within Fx China repack
+function maybeSwitchToDistDownloadLinks(client) {
+    if (!client.distribution || client.distribution === 'default') {
+        return;
+    }
+
+    var distribution = client.distribution.toLowerCase();
+    $('a[data-' + distribution + '-link]').each(function() {
+        $(this).attr('href', $(this).data(distribution + 'Link'));
+    });
 }
 
 // language switcher
