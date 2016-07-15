@@ -28,7 +28,7 @@
     <article>
       <header class="center">
         <h2>{{ _('Mozilla Gigabit Community Fund') }}</h2>
-        <h3>{{ _('Rules, Terms and Conditions') }}</h3>
+        <h3>{{ _('Terms and Conditions') }}</h3>
       </header>
 
       <section class="terms-section">
@@ -46,7 +46,7 @@
         <h4 class="section-header">Submission Period:</h4>
         <p>
         {% trans %}
-          The Gigabit Community Fund 2016 Request for Proposals (“RFP”) opens on January 11, 2016, at 12:00:01 AM U.S. Pacific Time (“PT”).  All proposals for projects must be received by Friday, March 18, 2016, at 11:59:59 PM PT to be considered in the first round of the Fund (“Round 1 Pilot Period”). Submissions to be considered for the second round of the Fund (“Round 2 Pilot Period”) are due Tuesday, October 18, 2016, at 11:59:59 PM PT. Late submissions may be considered at Sponsor’s discretion.
+          The Gigabit Community Fund 2016 Request for Proposals (“RFP”) opens on January 11, 2016, at 12:00:01 AM U.S. Pacific Time (“PT”). All proposals for projects must be received by Friday, March 18, 2016, at 11:59:59 PM PT to be considered in the first round of the Fund (“Round 1 Pilot Period”). Submissions to be considered for the second round of the Fund (“Round 2 Pilot Period”) are due Tuesday, October 18, 2016, at 11:59:59 PM PT. Late submissions may be considered at Sponsor’s discretion.
         {% endtrans %}
         </p>
       </section>
@@ -55,7 +55,7 @@
         <h4 class="section-header">Who Can Participate:</h4>
         <p>
         {% trans %}
-          Participation is open to companies, academic institutions, and non-profit organizations (each an “Applicant”). References in this document to “you” shall refer to Applicant. Funding will not be granted to unaffiliated individuals acting on their own. Each Applicant must include at least one affiliated organization located in the Chattanooga, TN, or Kansas City, MO, metropolitan region. Employees of Mozilla, NSF, and their respective subsidiaries, affiliates, agents and their immediate families and people living in their households may not participate. Fund evaluators review Submissions. Fund evaluators shall not evaluate or review any Submission to which they have a direct connection, whether through employ, affiliation, partnership or other contractual obligation or relational context that creates the consensus amongst the Fund evaluators of a conflict of interest. Sponsor, at its sole discretion, shall determine eligibility of any individual or entity, and may disqualify any Applicant or individual participant at any time for any reason.
+          Participation is open to companies, academic institutions, and non-profit organizations (each an “Applicant”). References in this document to “you” shall refer to Applicant. Funding will not be granted to unaffiliated individuals acting on their own. Each Applicant must include at least one affiliated organization located in the Austin, TX, Chattanooga, TN, or Kansas City, MO, metropolitan region. Employees of Mozilla, NSF, and their respective subsidiaries, affiliates, agents and their immediate families and people living in their households may not participate. Fund evaluators review Submissions. Fund evaluators shall not evaluate or review any Submission to which they have a direct connection, whether through employ, affiliation, partnership or other contractual obligation or relational context that creates the consensus amongst the Fund evaluators of a conflict of interest. Sponsor, at its sole discretion, shall determine eligibility of any individual or entity, and may disqualify any Applicant or individual participant at any time for any reason.
         {% endtrans %}
         </p>
         <p>
@@ -79,7 +79,7 @@
         </p>
         <p>
         {% trans %}
-          No more than three Submissions are permitted from each Applicant. Any subsequent Submissions from the same Applicant or Lead Contact or email address will not be considered. In the event of a dispute over the identity of a Lead Contact, he/she will be deemed to be the account holder of the email account associated with that person during the registration and submission process on the Fund website. In the event two or more Submissions describe substantially similar projects, the evaluator’s determination of the qualitatively superior proposal will determine which Submission is considered.
+          No more than three Submissions are permitted from each Applicant. Any subsequent Submissions from the same Applicant will not be considered. In the event of a dispute over the identity of an Applicant, he/she will be deemed to be the account holder of the email account associated with that person during the registration and submission process on the Fund website. In the event two or more Submissions describe substantially similar projects, the evaluator’s determination of the qualitatively superior proposal will determine which Submission is considered.
         {% endtrans %}
         </p>
         <p>
@@ -98,47 +98,26 @@
         </p>
         <ol>
           <li>{{ _('Applicant Information') }}</li>
-          <li>{{ _('Project Title') }}</li>
-          <li>{{ _('Project Summary') }}</li>
-          <li>{{ _('Collaborators') }}</li>
-          <li>{{ _('Project Overview') }}</li>
-          <li>{{ _('Area of Impact') }}</li>
-          <li>{{ _('Pilot') }}</li>
-          <li>{{ _('Gigabit Advantage') }}</li>
-          <li>{{ _('Learning Outcomes') }}</li>
-          <li>{{ _('Key Metrics and Evaluation') }}</li>
-          <li>{{ _('Open Work Summary') }}</li>
-          <li>{{ _('Project Scalability and Sustainability') }}</li>
-          <li>{{ _('Risks, Challenges, and Help') }}</li>
-          <li>{{ _('Project Timeline') }}</li>
-          <li>{{ _('Requested Funding Amount') }}</li>
-          <li>{{ _('Project Budget') }}</li>
-          <li>{{ _('Optional: Other supporting materials or resources which may help the evaluators understand your Fund proposal (pitch video, GitHub repository URL, images, wireframes, prototypes, YouTube videos, slide decks, etc.). Limit 5 links.') }}</li>
-        </ol>
-        <p>
-        {% trans %}
-          Projects focused on curriculum development (“Curriculum Development Projects”) must also also complete the following mandatory sections for the Submission:
-        {% endtrans %}
-        </p>
-        <ol>
-          <li>{{ _('Grade Level') }}</li>
-          <li>{{ _('Professional Development') }}</li>
-        </ol>
-        <p>
-        {% trans %}
-          Projects focused on piloting in multiple organizations in either Kansas City or Chattanooga (“Multi-Org Projects”) must also also complete the following mandatory sections for the Submission:
-        {% endtrans %}
-        </p>
-        <ol>
-          <li>{{ _('Local Gigabit Ecosystem') }}</li>
-        </ol>
-        <p>
-        {% trans %}
-          Projects focused on piloting projects across cities (“Multi-City Projects”) must also complete the following mandatory sections for the Submission:
-        {% endtrans %}
-        </p>
-        <ol>
-          <li>{{ _('National Gigabit Ecosystem') }}</li>
+          <li>{{ _('Project Information') }}
+          <ol>
+            <li>{{ _('Project Title') }}</li>
+            <li>{{ _('Project Summary') }}</li>
+            <li>{{ _('Collaborators') }}</li>
+            <li>{{ _('Project Overview') }}</li>
+            <li>{{ _('Gigabit Connection') }}</li>
+            <li>{{ _('Gigabit Advantage') }}</li>
+            <li>{{ _('Learning Outcomes') }}</li>
+            <li>{{ _('Project Outcomes') }}</li>
+            <li>{{ _('Previous Work with Mozilla') }}</li>
+            <li>{{ _('Open Work Summary') }}</li>
+            <li>{{ _('Project Scalability') }}</li>
+            <li>{{ _('Project Sustainability') }}</li>
+            <li>{{ _('Challenges') }}</li>
+            <li>{{ _('Project Timeline') }}</li>
+            <li>{{ _('Requested Funding Amount') }}</li>
+            <li>{{ _('Project Budget') }}</li>
+          </ol>
+          <li>{{ _('Optional Supporting Materials') }}</li>
         </ol>
         <p>
         {% trans %}
@@ -166,11 +145,11 @@
         </p>
         <ol>
           <li>
-            {{ _('Will the project be piloted in the Chattanooga, TN, or Kansas City, MO, metropolitan region;') }}
+            {{ _('Will the project be piloted in the Austin, TX, Chattanooga, TN, or Kansas City, MO, metropolitan region;') }}
              <ol class="lower-alpha-list">
-              <li>{{ _('For Curriculum Development Projects, the pilot must take place in at least one organization in Chattanooga or Kansas City.') }}</li>
-              <li>{{ _('For Multi-Org Projects, the pilot must take place in at least two organizations in Chattanooga or Kansas City.') }}</li>
-              <li>{{ _('For Multi-City Projects, the pilot must take place in two or more cities, with Chattanooga or Kansas City being one of the represented communities.') }}</li>
+              <li>{{ _('For Curriculum Development Projects, the pilot must take place in at least one organization in Austin, Chattanooga or Kansas City.') }}</li>
+              <li>{{ _('For Multi-Org Projects, the pilot must take place in at least two organizations in Austin, Chattanooga or Kansas City.') }}</li>
+              <li>{{ _('For Multi-City Projects, the pilot must take place in two or more cities, with Austin, Chattanooga or Kansas City being one of the represented communities. The lead applicant organization must be based in the Chattanooga, Kansas City, or Austin metropolitan area.') }}</li>
             </ol>
           </li>
           <li>{{ _('Does the project focus on education or workforce development; and') }}</li>
@@ -185,7 +164,7 @@
         <ol>
           <li>
           {% trans %}
-            <strong>Project Feasibility:</strong> Can the outlined project be completed in pilot period given the project timeline and the background of the involved team members? Does the project team possess the necessary experience to work with the target audience? Are the project’s goals and outcomes attainable and measurable? Will the project team be able to achieve these results?
+            <strong>Project Feasibility:</strong> Can the outlined project be completed in the pilot period given the project timeline and the background of the involved team members? Does the project team possess the necessary experience to work with the target audience? Are the project’s goals and outcomes attainable and measurable? Will the project team be able to achieve these results? Does the project location have gigabit internet?
           {% endtrans %}
           </li>
           <li>
@@ -195,12 +174,12 @@
           </li>
           <li>
           {% trans %}
-            <strong>Innovation:</strong> To what degree does this project represent an innovative approach to using next-generation technology  to impact education or workforce development?
+            <strong>Innovation:</strong> To what degree does this project represent an innovative approach to using next-generation technology to impact education or workforce development? Does it employ technologies that can be deployed in the near term?
           {% endtrans %}
           </li>
           <li>
             {% trans %}
-            <strong>Budget & Finances:</strong> Is the amount requested appropriate for the scope and scale of the project?
+            <strong>Budget & Finances:</strong> Is the amount requested appropriate for the scope and scale of the project? Can the pilot be sustained beyond the pilot period?
             {% endtrans %}
           </li>
         </ol>
@@ -218,12 +197,12 @@
           </li>
           <li>
             {% trans %}
-            <strong>Impact on Community:</strong> Is the potential public benefit articulated in a clear, compelling way?
+            <strong>Impact on Community:</strong> Is the potential public benefit articulated in a clear, compelling way? Does the proposed project bring new viewpoints and voices into the conversation about gigabit innovation?  Does it help to build a more inclusive and robust national gigabit innovation ecosystem?
             {% endtrans %}
           </li>
           <li>
             {% trans %}
-            <strong>Working in the Open & Remixability:</strong> How do collaborators plan to work in the open throughout the various project phases? To what extent will this project be remixable for others to use? How will this project live on?
+            <strong>Spread and Scale:</strong> How do collaborators plan to work in the open throughout the various project phases? To what extent will this project be remixable for others to use? How easily can the work be spread and scaled to other organizations and to other communities?
             {% endtrans %}
           </li>
         </ol>
@@ -242,12 +221,10 @@
         {% endtrans %}
         </p>
         <ol>
-          <li>{{_('Keep a project blog, reporting at minimum once per month on project progress, challenges, impacts, and milestones.')}}</li>
-          <li>{{_('Create, log, and share in collaboration with the Mozilla team a project assessment plan that includes measurable impact metrics.')}}</li>
-          <li>{{_('Create, document, and share in collaboration with the Mozilla team pilot curricula and lesson plans.')}}</li>
+          <li>{{_('Respond to biweekly project update requests from program staff.')}}</li>
           <li>{{_('Meet regularly with the Mozilla team to share project updates and progress.')}}</li>
+          <li>{{_('Submit a final report at the conclusion of the pilot period. ')}}</li>
           <li>{{_('Participate in project events, calls, and meetups as available.')}}</li>
-          <li>{{_('Submit a final report at the completion of the pilot period. ')}}</li>
         </ol>
       </section>
       <!-- section divider ===  -->
