@@ -603,6 +603,10 @@ a.go {
 
 // Hide app store button for locales that get the send-to-device widget
 .js .show-widget {
+    #send-to-device-wrapper {
+        display: block;
+    }
+
     .dl-button,
     .appstore-badge {
         display: none;
@@ -643,7 +647,6 @@ a.go {
 
 // Sync instructions for iOS users
 #sync-instructions {
-    display: none;
     width: 220px;
     padding: 15px;
     background: #fff;

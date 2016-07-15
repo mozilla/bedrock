@@ -31,7 +31,7 @@ urlpatterns = (
     url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
         views.all_downloads, name='firefox.all'),
     page('firefox/accounts', 'firefox/accounts.html'),
-    page('firefox/channel', 'firefox/channel.html'),
+    page('firefox/channel', 'firefox/channel.html', OLDIEJS=True),
     redirect('^firefox/channel/android/$', 'firefox.channel', locale_prefix=False),
     page('firefox/desktop', 'firefox/desktop/index.html'),
     page('firefox/desktop/fast', 'firefox/desktop/fast.html'),

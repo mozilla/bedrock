@@ -963,7 +963,7 @@ PIPELINE_JS = {
     # bundle should offset the extra weight.
     'common': {
         'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
+            'js/libs/jquery-1.11.3.min.js', # can now upgrade to jQuery 3?
             'js/libs/spin.min.js',  # used by js/newsletter/form.js
             'js/base/global.js',
             'js/base/global-init.js',
@@ -975,6 +975,18 @@ PIPELINE_JS = {
             'js/base/core-datalayer-init.js',
         ),
         'output_filename': 'js/common-bundle.js',
+    },
+    'common-oldie': {
+        'source_filenames': (
+            'js/libs/jquery-1.11.3.min.js', # upgrade to jQuery 1.12?
+            # will need to make sure scripts below are compatible with jQuery 1.12 & 3?
+            'js/base/global.js',
+            'js/base/global-init.js',
+            'js/base/mozilla-client.js',
+            'js/base/core-datalayer.js',
+            'js/base/core-datalayer-init.js',
+        ),
+        'output_filename': 'js/common-oldie-bundle.js',
     },
     'contact-spaces': {
         'source_filenames': (
