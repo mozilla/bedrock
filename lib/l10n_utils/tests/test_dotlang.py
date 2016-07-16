@@ -19,12 +19,12 @@ from mock import patch
 from nose.tools import assert_not_equal, eq_, ok_
 from product_details import product_details
 from pyquery import PyQuery as pq
-from tower import extract_tower_python
 
 from bedrock.mozorg.tests import TestCase
 from lib.l10n_utils import render
 from lib.l10n_utils.dotlang import (_, _lazy, FORMAT_IDENTIFIER_RE, lang_file_has_tag,
                                     lang_file_is_active, parse, translate)
+from lib.l10n_utils.extract import extract_python
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -231,7 +231,7 @@ class TestDotlang(TestCase):
 
         # extraction
         with open(os.path.join(ROOT, 'extract_me.py')) as pyfile:
-            vals = extract_tower_python(pyfile, ['_'], [], {}).next()
+            vals = extract_python(pyfile, ['_'], [], {}).next()
         eq_(vals[2], clean_string)
 
         # translation

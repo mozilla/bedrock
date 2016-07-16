@@ -58,13 +58,10 @@ NEWSLETTER_STRINGS = {
         'description': _lazy(u'Bringing you the best new opportunities to help support the open Web.'),
         'title': _lazy(u'Mozilla Communities')},
     u'about-standards': {
-        'description': _lazy(u''),
         'title': _lazy(u'About Standards')},
     u'addon-dev': {
-        'description': _lazy(u''),
         'title': _lazy(u'Addon Development')},
     u'addons': {
-        'description': _lazy(u''),
         'title': _lazy(u'About Addons')},
     u'affiliates': {
         'description': _lazy(u'A monthly newsletter to keep you up to date with the '
@@ -85,22 +82,16 @@ NEWSLETTER_STRINGS = {
                              u'before the final release.'),
         'title': _lazy(u'Beta News')},
     u'download-firefox-android': {
-        'description': _lazy(u''),
         'title': _lazy(u'Download Firefox for Android')},
     u'download-firefox-androidsn': {
-        'description': _lazy(u''),
         'title': _lazy(u'Get Firefox for Android')},
     u'download-firefox-androidsnus': {
-        'description': _lazy(u''),
         'title': _lazy(u'Get Firefox for Android')},
     u'download-firefox-ios': {
-        'description': _lazy(u''),
         'title': _lazy(u'Download Firefox for iOS')},
     u'download-firefox-mobile': {
-        'description': _lazy(u''),
         'title': _lazy(u'Download Firefox for Mobile')},
     u'drumbeat': {
-        'description': _lazy(u''),
         'title': _lazy(u'Drumbeat Newsgroup')},
     u'firefox-accounts-journey': {
         'description': _lazy(u'Get the most out of your Firefox Account.'),
@@ -126,19 +117,14 @@ NEWSLETTER_STRINGS = {
         'description': _lazy(u'Get a weekly tip on how to super-charge your Firefox experience.'),
         'title': _lazy(u'Firefox Weekly Tips')},
     u'get-android-embed': {
-        'description': _lazy(u''),
         'title': _lazy(u'Get Firefox for Android')},
     u'get-android-notembed': {
-        'description': _lazy(u''),
         'title': _lazy(u'Get Firefox for Android')},
     u'get-involved': {
-        'description': _lazy(u''),
         'title': _lazy(u'Get Involved')},
     u'join-mozilla': {
-        'description': _lazy(u''),
         'title': _lazy(u'Join Mozilla')},
     u'labs': {
-        'description': _lazy(u''),
         'title': _lazy(u'About Labs')},
     u'maker-party': {
         'description': u"Mozilla's largest celebration of making and learning on the web.",
@@ -147,10 +133,8 @@ NEWSLETTER_STRINGS = {
         'description': _lazy(u'Discover the latest, coolest HTML5 apps on Firefox OS.'),
         'title': _lazy(u'Firefox OS')},
     u'marketplace-android': {
-        'description': _lazy(u''),
         'title': _lazy(u'Android')},
     u'marketplace-desktop': {
-        'description': _lazy(u''),
         'title': _lazy(u'Desktop')},
     u'mobile': {
         'description': _lazy(u'Keep up with releases and news about Firefox for Android.'),
@@ -318,7 +302,7 @@ def existing(request, token=None):
             nstrings = NEWSLETTER_STRINGS.get(newsletter)
             if nstrings:
                 title = nstrings['title']
-                description = nstrings['description']
+                description = nstrings.get('description', u'')
             else:
                 # Firefox Marketplace for Desktop/Android/Firefox OS should be
                 # shorten in the titles

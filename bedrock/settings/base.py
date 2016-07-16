@@ -97,13 +97,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Gettext text domain
-TEXT_DOMAIN = 'messages'
-STANDALONE_DOMAINS = [TEXT_DOMAIN, 'javascript']
-TOWER_KEYWORDS = {'_lazy': None}
-TOWER_ADD_HEADERS = True
-TOWER_INSTALL_JINJA_TRANSLATIONS = False
-
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
@@ -237,22 +230,17 @@ TEMPLATE_DIRS = (
     path('locale'),
 )
 
-
-# has to stay a callable because tower expects that.
-def JINJA_CONFIG():
-    return {
-        'extensions': [
-            'lib.l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
-            'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
-            'lib.l10n_utils.template.lang_blocks',
-            'jingo_markdown.extensions.MarkdownExtension',
-            'pipeline.jinja2.PipelineExtension',
-        ],
-        # Make None in templates render as ''
-        'finalize': lambda x: x if x is not None else '',
-        'auto_reload': True,
-    }
-
+JINJA_CONFIG = {
+    'extensions': [
+        'lib.l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
+        'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
+        'lib.l10n_utils.template.lang_blocks',
+        'jingo_markdown.extensions.MarkdownExtension',
+        'pipeline.jinja2.PipelineExtension',
+    ],
+    # Make None in templates render as ''
+    'finalize': lambda x: x if x is not None else '',
+}
 
 MEDIA_URL = config('MEDIA_URL', default='/user-media/')
 MEDIA_ROOT = config('MEDIA_ROOT', default=path('media'))
@@ -302,21 +290,23 @@ WHITENOISE_MAX_AGE = 6 * 60 * 60  # 6 hours
 
 PROJECT_MODULE = 'bedrock'
 
-ROOT_URLCONF = '%s.urls' % PROJECT_MODULE
+ROOT_URLCONF = 'bedrock.urls'
 
 # Tells the extract script what files to look for L10n in and what function
-# handles the extraction. The Tower library expects this.
-DOMAIN_METHODS = {
-    'messages': [
-        ('%s/**.py' % PROJECT_MODULE,
-            'tower.extract_tower_python'),
-        ('%s/**/templates/**.html' % PROJECT_MODULE,
-            'tower.extract_tower_template'),
-        ('%s/**/templates/**.js' % PROJECT_MODULE,
-            'tower.extract_tower_template'),
-        ('%s/**/templates/**.jsonp' % PROJECT_MODULE,
-            'tower.extract_tower_template'),
-    ],
+# handles the extraction.
+PUENTE = {
+    'BASE_DIR': ROOT,
+    'PROJECT': 'Bedrock',
+    'MSGID_BUGS_ADDRESS': 'https://bugzilla.mozilla.org/enter_bug.cgi?'
+                          'product=www.mozilla.org&component=L10N',
+    'DOMAIN_METHODS': {
+        'django': [
+            ('bedrock/**.py', 'lib.l10n_utils.extract.extract_python'),
+            ('bedrock/**/templates/**.html', 'lib.l10n_utils.extract.extract_jinja2'),
+            ('bedrock/**/templates/**.js', 'lib.l10n_utils.extract.extract_jinja2'),
+            ('bedrock/**/templates/**.jsonp', 'lib.l10n_utils.extract.extract_jinja2'),
+        ],
+    }
 }
 
 HOSTNAME = platform.node()
@@ -347,7 +337,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
-    'lib.l10n_utils.middleware.FixLangFileTranslationsMiddleware',
 ]
 
 INSTALLED_APPS = (
@@ -364,7 +353,7 @@ INSTALLED_APPS = (
     'django_nose',
 
     # L10n
-    'tower',  # for ./manage.py extract
+    'puente',  # for ./manage.py extract
     'product_details',
 
     # third-party apps

@@ -9,15 +9,18 @@ from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
+from babel.messages.catalog import Catalog
 from babel.messages.extract import extract_from_file
+from babel.messages.pofile import write_po
 from babel.util import pathmatch
-from tower.management.commands import extract
+from puente.commands import generate_options_map
+from puente.settings import get_setting
 
 from lib.l10n_utils.gettext import pot_to_langfiles
 
 
-DOMAIN = 'messages'
-METHODS = settings.DOMAIN_METHODS[DOMAIN]
+DOMAIN = 'django'
+METHODS = settings.PUENTE['DOMAIN_METHODS'][DOMAIN]
 
 
 def gettext_extract():
@@ -31,9 +34,9 @@ def extract_callback(filename, method, options):
 
 def extract_from_files(filenames,
                        method_map=METHODS,
-                       options_map=extract.OPTIONS_MAP,
-                       keywords=extract.TOWER_KEYWORDS,
-                       comment_tags=extract.COMMENT_TAGS,
+                       options_map=generate_options_map(),
+                       keywords=get_setting('KEYWORDS'),
+                       comment_tags=get_setting('COMMENT_TAGS'),
                        callback=extract_callback,
                        strip_comment_tags=False):
     """Extract messages from any source files found in the given iterable.
@@ -121,13 +124,13 @@ def extract_from_files(filenames,
                         options = odict
                 if callback:
                     callback(filename, method, options)
-                for lineno, message, comments in\
+                for lineno, message, comments, context in\
                     extract_from_file(method, filepath,
                                       keywords=keywords,
                                       comment_tags=comment_tags,
                                       options=options,
                                       strip_comment_tags=strip_comment_tags):
-                    yield filename, lineno, message, comments
+                    yield filename, lineno, message, comments, context
                 break
         if not matched:
             print '! %s does not match any domain methods!' % filename
@@ -142,17 +145,29 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if args:
-            # mimics tower.management.commands.extract for a list of files
+            # mimics puente.management.commands.extract for a list of files
             outputdir = os.path.join(settings.ROOT, 'locale', 'templates',
                                      'LC_MESSAGES')
             if not os.path.isdir(outputdir):
                 os.makedirs(outputdir)
-            extracted = extract_from_files(args)
-            catalog = extract.create_pofile_from_babel(extracted)
-            catalog.savefile(os.path.join(outputdir, '%s.pot' % DOMAIN))
+
+            catalog = Catalog(
+                header_comment='',
+                project=get_setting('PROJECT'),
+                version=get_setting('VERSION'),
+                msgid_bugs_address=get_setting('MSGID_BUGS_ADDRESS'),
+                charset='utf-8',
+            )
+
+            for filename, lineno, msg, cmts, ctxt in extract_from_files(args):
+                catalog.add(msg, None, [(filename, lineno)], auto_comments=cmts,
+                            context=ctxt)
+
+            with open(os.path.join(outputdir, '%s.pot' % DOMAIN), 'wb') as fp:
+                write_po(fp, catalog, width=80)
         else:
-            # This is basically a wrapper around the tower extract
+            # This is basically a wrapper around the puente extract
             # command, we might want to do some things around this in the
             # future
             gettext_extract()
-        pot_to_langfiles()
+        pot_to_langfiles(DOMAIN)

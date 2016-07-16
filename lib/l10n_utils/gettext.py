@@ -49,6 +49,9 @@ def parse_po(path):
 
         for line in lines:
             line = line.strip()
+            if not line:
+                continue
+
             if line.startswith('#:'):
                 matches = REGEX_URL.match(line)
                 if matches:
@@ -70,9 +73,9 @@ def parse_po(path):
     return msgs
 
 
-def po_msgs():
+def po_msgs(domain):
     return parse_po(join(settings.ROOT, 'locale', 'templates', 'LC_MESSAGES',
-                         'messages.pot'))
+                         '{}.pot'.format(domain)))
 
 
 def translated_strings(file_):
@@ -277,11 +280,11 @@ def langfiles_for_path(path):
     return lang_files
 
 
-def pot_to_langfiles():
+def pot_to_langfiles(domain='django'):
     """Update the lang files in /locale/templates with extracted
     strings."""
 
-    all_msgs = po_msgs()
+    all_msgs = po_msgs(domain)
     root = 'templates'
 
     # Start off with some global lang files so that strings don't

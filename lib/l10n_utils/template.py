@@ -3,12 +3,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from jinja2.ext import Extension, InternationalizationExtension, nodes
-from tower import strip_whitespace
+
+from lib.l10n_utils.utils import strip_whitespace
 
 
 class I18nExtension(InternationalizationExtension):
     """
-    Use this instead of `tower.template.i18n` because the override of `_`
+    Use this instead of `puente.ext.PuenteI18nExtension` because the override of `_`
     global was throwing errors.
     """
     def _parse_block(self, parser, allow_pluralize):

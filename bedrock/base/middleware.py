@@ -11,9 +11,8 @@ from warnings import warn
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponsePermanentRedirect, HttpResponse
+from django.utils import translation
 from django.utils.encoding import smart_str, force_text
-
-import tower
 
 from . import urlresolvers
 from .helpers import urlparams
@@ -75,7 +74,7 @@ class LocaleURLMiddleware(object):
 
         request.path_info = '/' + prefixer.shortened_path
         request.locale = prefixer.locale
-        tower.activate(prefixer.locale)
+        translation.activate(prefixer.locale or settings.LANGUAGE_CODE)
 
 
 class BasicAuthMiddleware(object):

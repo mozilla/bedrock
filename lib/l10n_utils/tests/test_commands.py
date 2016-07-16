@@ -33,7 +33,7 @@ TEMPLATE_DIRS = (path.join(ROOT, 'templates'),)
 
 METHODS = [
     ('templates/**.html',
-     'tower.management.commands.extract.extract_tower_template'),
+     'lib.l10n_utils.extract.extract_jinja2'),
 ]
 
 # doing this to keep @patch from passing a new mock
@@ -104,7 +104,7 @@ class TestL10nExtract(TestCase):
         with capture_stdio() as out:
             extracted = next(extract_from_files(testfile, method_map=METHODS))
         self.assertTupleEqual(extracted,
-                              (testfile[0], 9, 'Mark it 8 Dude.', []))
+                              (testfile[0], 9, 'Mark it 8 Dude.', [], None))
         # test default callback
         self.assertEqual(out[0], '  %s' % testfile)
 
@@ -118,9 +118,9 @@ class TestL10nExtract(TestCase):
             basedir + 'some_lang_files.html',
         )
         good_extracts = (
-            (testfiles[0], 9, 'Mark it 8 Dude.', []),
+            (testfiles[0], 9, 'Mark it 8 Dude.', [], None),
             (testfiles[1], 10, 'Is this your homework Larry?',
-             [u'Said angrily, loudly, and repeatedly.']),
+             [u'Said angrily, loudly, and repeatedly.'], None),
         )
         with capture_stdio() as out:
             for i, extracted in enumerate(

@@ -20,13 +20,10 @@ from django.conf import settings
 from django.core.cache import get_cache
 from django.utils import translation
 from django.utils.functional import lazy
-
 from jinja2 import Markup
-from tower import tweak_message
 from product_details import product_details
 
-from lib.l10n_utils.utils import ContainsEverything
-
+from lib.l10n_utils.utils import ContainsEverything, strip_whitespace
 
 ALL_THE_THINGS = ContainsEverything()
 FORMAT_IDENTIFIER_RE = re.compile(r"""(%
@@ -108,7 +105,7 @@ def translate(text, files):
     if lang == settings.LANGUAGE_CODE:
         return Markup(text)
 
-    tweaked_text = tweak_message(text)
+    tweaked_text = strip_whitespace(text)
 
     for file_ in files:
         key = "dotlang-%s-%s" % (lang, file_)
