@@ -150,7 +150,7 @@
       The logic mess below will be simplified when all pages are refactored
       to behave well in old IE without page-specific JS.
     #}
-    {% if OLDIEJS != True %}
+    {% if force_modern_js != True %}
       {#
         Unless specifically requested by current page, hide first-class
         & page-specific JS from IE 8 and below.
@@ -161,7 +161,7 @@
       {% javascript 'common' %}
     {% endblock %}
     {% block js %}{% endblock %}
-    {% if OLDIEJS != True %}
+    {% if force_modern_js != True %}
       <!--<![endif]-->
 
       {#

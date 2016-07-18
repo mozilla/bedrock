@@ -262,7 +262,7 @@ def home(request, template='mozorg/home/home.html'):
 
     return l10n_utils.render(
         request, template, {
-            'OLDIEJS': True,
+            'force_modern_js': True,
             'has_contribute': lang_file_is_active('mozorg/contribute'),
             'tweets': home_tweets(locale),
             'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(

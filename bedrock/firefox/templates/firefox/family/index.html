@@ -25,7 +25,7 @@
 {% block site_header %}
   <div id="conditional-download-bar" class="infobar">
     <div class="content">
-      <div class="message" id="dlbar-oldfx-desktop">
+      <div class="hidden message" id="dlbar-oldfx-desktop">
         {{ _('You’re using an older version of Firefox for desktop.') }}
         {{ _('Update today to stay fast and safe.') }}
         {{ download_firefox(alt_copy=_('Download'), dom_id='download-button-old-fx') }}
@@ -35,16 +35,16 @@
         {{ _('Choose Firefox.') }}
         {{ download_firefox(alt_copy=_('Download'), dom_id='download-button-non-fx') }}
       </div>
-      <div class="message" id="dlbar-nonfx-android">
+      <div class="hidden message" id="dlbar-nonfx-android">
         <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">{{ _('Get Firefox for Android') }}</a>
       </div>
-      <div class="message" id="dlbar-ios">
+      <div class="hidden message" id="dlbar-ios">
       {% if l10n_has_tag('tracking_protection') %}
         <a rel="external" href="{{ firefox_ios_url() }}" data-link-type="download" data-download-os="iOS">{{ _('Get Firefox for iOS') }}</a>
       {% endif %}
       </div>
 
-      <button type="button" class="btn-close button" title="{{ _('Close') }}">{{ _('Close') }}</button>
+      <button type="button" class="btn-close button hidden" title="{{ _('Close') }}">{{ _('Close') }}</button>
     </div>{#-- /.content --#}
   </div>{#-- /#conditional-download-bar --#}
   <header id="masthead">
