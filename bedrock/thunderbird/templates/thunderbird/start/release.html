@@ -14,12 +14,12 @@
       {% if l10n_has_tag('thunderbird_startpage_donate_2016_06') %}
       <div>
         <section>
-          <h2>{{ _('Why do we need donations') }}</h2>
+          <h2>{{ _('Why we need donations') }}</h2>
           <p>
-           {{ _('You might already know that Thunderbird improvements are no longer payed for by Mozilla. Fortunately there is an active community keeping it running and developing it further. But to survive long term the project needs funding.') }}
+           {{ _('You might already know that Thunderbird improvements are no longer paid for by Mozilla. Fortunately there is an active community keeping it running and developing it further. But to survive long term, the project needs funding.') }}
           </p>
           <p>
-           {{ _('Thunderbird is currently transitioning to an independent organization. Being independent we can shape our own fate, but there is significant infrastructure that must be maintained to deliver the application to our tens of millions of users. For Thunderbird to survive and continue to evolve, we need your support, and ask for your donation today. All the money donated will go directly to funding Thunderbird development and infrastructure.') }}
+           {{ _('Thunderbird is currently transitioning to an independent organization. Being independent, we can shape our own fate, but there is significant infrastructure that must be maintained to deliver the application to our tens of millions of users. For Thunderbird to survive and continue to evolve, we need your support and ask for your donation today. All the money donated will go directly to funding Thunderbird development and infrastructure.') }}
           </p>
         </section>
       </div>
@@ -33,7 +33,7 @@
             <strong>
               {{ _('If you like Thunderbird, please consider a donation!') }}
             </strong>
-            {{ _('By donating you will help us to continue delivering an ad-free top-notch email client.') }}
+            {{ _('By donating, you will help us to continue delivering an ad-free top-notch email client.') }}
               <a class="more" href="https://donate.mozilla.org/thunderbird/">{{ _('Make a donation') }}</a>
           </p>
         </section>
@@ -62,9 +62,15 @@
       <div>
         <section class="help">
           <h2 class="iconic">{{ _('Need Support?') }}</h2>
+          {% if l10n_has_tag('thunderbird_startpage_donate_2016_06') %}
+          {# L10n: If your locale has a dedicated Thunderbird support forum, you can localize the URL to point there. -#}
+          <p>{{ _('Most Thunderbird support questions are answered in the <a href="%s">Knowledge Base</a>.')|format('https://support.mozilla.org/products/thunderbird') }}
+             {{ _('If you can’t find an answer, <a href="%s">ask your question in our support forum</a>.')|format(_('https://support.mozilla.org/questions/new/thunderbird')) }}</p>
+          {% else %}
           {# L10n: If your locale has a dedicated Thunderbird support forum, you can localize the URL to point there. -#}
           <p>{{ _('Most Thunderbird support questions are answered on the <a href="%s">Knowledge Base</a>.')|format('https://support.mozilla.org/products/thunderbird') }}
              {{ _('If you can’t find an answer, <a href="%s">ask your question on our support forum</a>.')|format(_('https://support.mozilla.org/questions/new/thunderbird')) }}</p>
+          {% endif %}
         </section>
       </div>
       <footer>
