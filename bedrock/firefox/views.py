@@ -51,16 +51,6 @@ EMAIL_MESSAGES = {
     'all': 'download-firefox-mobile',
 }
 
-LOCALE_SPRING_CAMPAIGN_VIDEOS = {
-    'en-US': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_english',
-    'en-GB': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_englishUK',
-    'de': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_german',
-    'es-ES': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_spanish',
-    'es-MX': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_spanishMX',
-    'fr': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_french',
-    'pt-BR': 'https://videos.cdn.mozilla.net/uploads/marketing/SpringCampaign2015/Firefox_Welcome_portugeseBrazil',
-}
-
 # available variations for onboarding first & second run tests - Q2 2016
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1259608
 ONBOARDING_VARIATIONS = ['1', '2', '3', '4', '5', '6']
@@ -231,7 +221,7 @@ def show_36_tour(version):
     return version >= Version('36.0')
 
 
-def show_38_0_5_firstrun_or_whatsnew(version):
+def show_38_0_5_firstrun(version):
     try:
         version = Version(version)
     except ValueError:
@@ -256,15 +246,6 @@ def show_40_firstrun(version):
         return False
 
     return version >= Version('40.0')
-
-
-def show_old_hello_ftu(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version < Version('45.0')
 
 
 class LatestFxView(TemplateView):
@@ -348,7 +329,7 @@ class FirstrunView(LatestFxView):
                     template = 'firefox/onboarding/fxa-complex.html'
             else:
                 template = 'firefox/firstrun/firstrun-horizon.html'
-        elif show_38_0_5_firstrun_or_whatsnew(version):
+        elif show_38_0_5_firstrun(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         else:
             template = 'firefox/australis/firstrun.html'
@@ -414,20 +395,7 @@ class FirstrunLearnMoreView(LatestFxView):
 
 class WhatsnewView(LatestFxView):
 
-    pocket_locales = ['en-US', 'es-ES', 'ru', 'ja', 'de']
-
-    def get_context_data(self, **kwargs):
-        ctx = super(WhatsnewView, self).get_context_data(**kwargs)
-        locale = l10n_utils.get_locale(self.request)
-        video_url = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
-
-        if video_url:
-            ctx['video_url'] = video_url
-
-        return ctx
-
     def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
@@ -438,17 +406,6 @@ class WhatsnewView(LatestFxView):
             template = 'firefox/dev-whatsnew.html'
         elif show_42_whatsnew(version):
             template = 'firefox/whatsnew_42/whatsnew.html'
-        elif show_38_0_5_firstrun_or_whatsnew(version):
-            has_video = LOCALE_SPRING_CAMPAIGN_VIDEOS.get(locale, False)
-            has_pocket = locale in self.pocket_locales
-            if has_pocket and has_video:
-                template = 'firefox/whatsnew_38/whatsnew-pocket-video.html'
-            elif has_video:
-                template = 'firefox/whatsnew_38/whatsnew-video.html'
-            elif has_pocket:
-                template = 'firefox/whatsnew_38/whatsnew-pocket.html'
-            else:
-                template = 'firefox/australis/whatsnew.html'
         else:
             template = 'firefox/australis/whatsnew.html'
 
