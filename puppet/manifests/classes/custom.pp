@@ -1,6 +1,0 @@
-# Custom installs.
-
-class custom {
-
-}
-
