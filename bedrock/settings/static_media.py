@@ -567,22 +567,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_tour_none-bundle.css',
     },
-    'firefox_whatsnew_38_video': {
-        'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/firefox/whatsnew_38/common.less',
-            'css/firefox/whatsnew_38/whatsnew-video.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew_38_video-bundle.css',
-    },
-    'firefox_whatsnew_38_pocket': {
-        'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/firefox/whatsnew_38/common.less',
-            'css/firefox/whatsnew_38/whatsnew-pocket.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew_38_pocket-bundle.css',
-    },
     'firefox_whatsnew_42_a': {
         'source_filenames': (
             'css/firefox/tracking-protection-animation.less',
@@ -603,13 +587,6 @@ PIPELINE_CSS = {
             'css/firefox/win10-welcome-variants.less',
         ),
         'output_filename': 'css/firefox_win10_welcome_variants-bundle.css',
-    },
-    'firefox_pocket': {
-        'source_filenames': (
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/pocket.less',
-        ),
-        'output_filename': 'css/firefox_pocket-bundle.css',
     },
     'firefox_releasenotes_firefox': {
         'source_filenames': (
@@ -1251,13 +1228,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_onboarding_user_actions-bundle.js',
     },
-    'firefox_pocket': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/firefox/pocket.js',
-        ),
-        'output_filename': 'js/firefox_pocket-bundle.js',
-    },
     'firefox_private_browsing': {
         'source_filenames': (
             'js/base/uitour-lib.js',
@@ -1394,22 +1364,6 @@ PIPELINE_JS = {
             'js/firefox/australis/no-tour.js',
         ),
         'output_filename': 'js/firefox_tour_none-bundle.js',
-    },
-    'firefox_whatsnew_38_video': {
-        'source_filenames': (
-            'js/base/mozilla-modal.js',
-            'js/firefox/whatsnew_38/whatsnew-video.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_38_video-bundle.js',
-    },
-    'firefox_whatsnew_38_pocket': {
-        'source_filenames': (
-            'js/base/mozilla-modal.js',
-            'js/base/uitour-lib.js',
-            'js/firefox/whatsnew_38/pocket-uitour.js',
-            'js/firefox/whatsnew_38/whatsnew-pocket.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_38_pocket-bundle.js',
     },
     'firefox_whatsnew_42_a': {
         'source_filenames': (

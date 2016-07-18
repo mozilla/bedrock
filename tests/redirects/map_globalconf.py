@@ -1069,4 +1069,7 @@ URLS = flatten((
     url_test('/firefox/{46.0,46.0.1,46.0a1,46.0a2}/hello/start', '/firefox/hello/'),
     url_test('/firefox/hello/start', '/firefox/hello/'),
 
+    # Bug 1283397
+    url_test('/firefox/pocket', 'https://getpocket.com/firefox/'),
+
 ))
