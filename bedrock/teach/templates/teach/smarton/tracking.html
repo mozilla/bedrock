@@ -9,7 +9,7 @@
 {% block page_image %}{{ static('img/teach/smarton/tracking/tracking-hero-white.jpg') }}{% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('smarton-tracking-optimizely') %}
+  {% if switch('smarton-tracking-optimizely') %}
      {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}

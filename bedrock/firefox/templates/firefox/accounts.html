@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('firefox-accounts') %}
+  {% if switch('firefox-accounts') %}
      {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}

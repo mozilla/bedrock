@@ -266,13 +266,13 @@ JINGO_EXCLUDE_APPS = (
     'registration',
     'rest_framework',
     'rna',
-    'waffle',
 )
 
 PIPELINE = {
     'STYLESHEETS': PIPELINE_CSS,
     'JAVASCRIPT': PIPELINE_JS,
     'DISABLE_WRAPPER': True,
+    'SHOW_ERRORS_INLINE': False,
     'COMPILERS': (
         'pipeline.compilers.less.LessCompiler',
     ),
@@ -365,7 +365,6 @@ INSTALLED_APPS = (
     'django_statsd',
     'pagedown',
     'rest_framework',
-    'waffle',
     'pipeline',
     'localflavor',
 

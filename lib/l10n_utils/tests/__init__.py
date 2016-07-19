@@ -5,7 +5,7 @@ from cStringIO import StringIO
 from tempfile import TemporaryFile
 from textwrap import dedent
 
-from jingo import env
+from jingo import get_env
 from jinja2 import FileSystemLoader
 from mock import patch
 from django.test import TestCase
@@ -40,7 +40,7 @@ class TempFileMixin(object):
         return tempf
 
 
-@patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
 @override_settings(ROOT=ROOT)
 @override_settings(DEV=False)
 class TestRender(TestCase):

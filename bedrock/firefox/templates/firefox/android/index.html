@@ -15,7 +15,7 @@
 {% block body_class %}firefox-android{% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('firefox-android-optimizely') %}
+  {% if switch('firefox-android-optimizely') %}
     {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}

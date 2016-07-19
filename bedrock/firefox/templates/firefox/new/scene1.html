@@ -41,7 +41,7 @@
 {% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('firefox-new-optimizely') %}
+  {% if switch('firefox-new-optimizely') %}
     {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}
