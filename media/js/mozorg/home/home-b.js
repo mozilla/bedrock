@@ -7,38 +7,47 @@
 
     var mozClient = window.Mozilla.Client;
 
-    var surveyWaypoint;
+    var impactInnovationWaypoint;
+    var firefoxWaypoint;
+
     var $surveyMsg;
 
-    var $toggleInnovate = $('.toggle-innovate');
-    var $toggleWho = $('.toggle-who');
-    var $whoInnovateWrapper = $('#who-innovate-wrapper');
-    var $who = $('#who');
-    var $innovate = $('#innovate');
+    function handleWaypoint(target, callback) {
+        return function(direction) {
+            window.dataLayer.push({
+                'event': 'scroll-section',
+                'section': target
+            });
 
-    function trackCollapseExpand(name, action) {
-        window.dataLayer.push({
-            'event': 'widget-action',
-            'widget-name': name,
-            'widget-action': action
-        });
+            if (typeof callback === 'function') {
+                callback(direction);
+            }
+        };
+    }
+
+    function toggleSurvey(direction) {
+        if (direction === 'down') {
+            // slide up when scrolling down
+            $surveyMsg.addClass('stuck').css({ bottom: '-90px' }).animate({ bottom: '0' }, 500);
+        } else if (direction === 'up') {
+            // slide down when scrolling up, then unstick
+            $surveyMsg.animate({ bottom: '-90px' }, 500, function() {
+                $surveyMsg.removeClass('stuck');
+            });
+        }
     }
 
     function enableWaypoints() {
-        surveyWaypoint = new Waypoint({
+        impactInnovationWaypoint = new Waypoint({
+            element: '#who-innovate-wrapper',
+            handler: handleWaypoint('impact-innovation'),
+            offset: '40%'
+        });
+
+        firefoxWaypoint = new Waypoint({
             element: '#firefox',
-            handler: function(direction) {
-                if (direction === 'down') {
-                    // slide up when scrolling down
-                    $surveyMsg.addClass('stuck').css({ bottom: '-90px' }).animate({ bottom: '0' }, 500);
-                } else if (direction === 'up') {
-                    // slide down when scrolling up, then unstick
-                    $surveyMsg.animate({ bottom: '-90px' }, 500, function() {
-                        $surveyMsg.removeClass('stuck');
-                    });
-                }
-            },
-            offset: '60%'
+            handler: handleWaypoint('firefox', toggleSurvey),
+            offset: '40%'
         });
     }
 
@@ -52,20 +61,6 @@
         $('#fxmobile-download-buttons').addClass('visible');
         $('#fx-download-link').addClass('hidden');
     }
-
-    $toggleWho.on('click', function() {
-        $whoInnovateWrapper.toggleClass('open-who');
-        $who.toggleClass('open');
-
-        trackCollapseExpand('Our Impact', $who.hasClass('open') ? 'Expose' : 'Close');
-    });
-
-    $toggleInnovate.on('click', function() {
-        $whoInnovateWrapper.toggleClass('open-innovate');
-        $innovate.toggleClass('open');
-
-        trackCollapseExpand('Our Innovations', $innovate.hasClass('open') ? 'Expose' : 'Close');
-    });
 
     // set up waypoints if survey is present & media queries supported
     // must be in doc.ready as #survey-message is added in another script
@@ -88,7 +83,8 @@
                 if (mq.matches) {
                     enableWaypoints();
                 } else {
-                    surveyWaypoint.destroy();
+                    impactInnovationWaypoint.destroy();
+                    firefoxWaypoint.destroy();
 
                     // reset survey positioning
                     $surveyMsg.css('bottom', '-90px').removeClass('stuck');
