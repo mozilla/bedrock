@@ -189,7 +189,9 @@
             h.className += ' x64';
         }
 
-        // Add class to reflect javascript availability for CSS
-        h.className = h.className.replace(/\bno-js\b/, 'js');
+        // Add class to reflect javascript availability for CSS (for IE 9 and above)
+        if (!(platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent))) {
+            h.className = h.className.replace(/\bno-js\b/, 'js');
+        }
     })();
 })();
