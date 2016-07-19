@@ -1430,14 +1430,7 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/home_b-bundle.js',
     },
-    # temporary bundle for survey on ?v=a homepage
-    'home-survey': {
-        'source_filenames': (
-            'js/mozorg/home/survey-generator.js',
-            'js/mozorg/home/survey.js',
-        ),
-        'output_filename': 'js/home-survey-bundle.js',
-    },
+    # temporary bundles for surveys on homepage prototypes
     'home-survey-a': {
         'source_filenames': (
             'js/mozorg/home/survey-generator.js',
