@@ -24,7 +24,7 @@
 {% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('plugincheck-optimizely') %}
+  {% if switch('plugincheck-optimizely') %}
      {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}

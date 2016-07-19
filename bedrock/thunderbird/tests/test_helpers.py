@@ -8,7 +8,7 @@ from bedrock.mozorg.tests import TestCase
 
 
 def render(s, context=None):
-    t = jingo.env.from_string(s)
+    t = jingo.get_env().from_string(s)
     return t.render(context or {})
 
 

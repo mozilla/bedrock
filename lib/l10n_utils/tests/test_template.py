@@ -7,7 +7,7 @@ import os
 from django.template import TemplateDoesNotExist
 from django.test import RequestFactory, override_settings
 
-from jingo import env
+from jingo import get_env
 from jinja2 import FileSystemLoader
 from jinja2.nodes import Block
 from mock import patch, ANY, Mock
@@ -29,7 +29,7 @@ class TestL10nBlocks(TestCase):
         Parsing an l10n block with locales info should put that info
         on the node.
         """
-        tree = env.parse("""{% l10n dude locales=ru,es-ES,fr 20121212 %}
+        tree = get_env().parse("""{% l10n dude locales=ru,es-ES,fr 20121212 %}
                               This stuff is totally translated.
                             {% endl10n %}""")
         l10n_block = tree.find(Block)
@@ -37,7 +37,7 @@ class TestL10nBlocks(TestCase):
         self.assertEqual(l10n_block.version, 20121212)
 
 
-@patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
 @override_settings(ROOT=ROOT)
 class TestTransBlocks(TestCase):
     urls = 'lib.l10n_utils.tests.test_files.urls'
@@ -61,7 +61,7 @@ class TestTransBlocks(TestCase):
         self.test_trans_block_works()
 
 
-@patch.object(env, 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
 @override_settings(ROOT=ROOT)
 class TestTemplateLangFiles(TestCase):
     urls = 'lib.l10n_utils.tests.test_files.urls'
@@ -70,7 +70,7 @@ class TestTemplateLangFiles(TestCase):
         """
         Lang files specified in the template should be added to the defaults.
         """
-        template = env.get_template('some_lang_files.html')
+        template = get_env().get_template('some_lang_files.html')
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
         template.render({'request': request})
@@ -86,7 +86,7 @@ class TestTemplateLangFiles(TestCase):
         # TODO fix this. it is broken. hence the skip.
         #      does not pick up the files from the parent.
         #      captured in bug 797984.
-        template = env.get_template('even_more_lang_files.html')
+        template = get_env().get_template('even_more_lang_files.html')
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
         template.render(request=request)
@@ -128,6 +128,7 @@ class TestNoLocale(TestCase):
         render(request, '500.html')
 
 
+@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
 @patch('lib.l10n_utils.template_is_active', Mock(return_value=True))
 @patch('lib.l10n_utils.django_render')
 class TestLocaleTemplates(TestCase):

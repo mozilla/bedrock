@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('firefox-firstrun-learnmore-optimizely') %}
+  {% if switch('firefox-firstrun-learnmore-optimizely') %}
     {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}

@@ -121,25 +121,27 @@ If you want to install localizations, run the following command::
 
 You can read more details about how to localize content :ref:`here<l10n>`.
 
-Waffle
-------
+Feature Flipping
+----------------
 
-`Waffle
-<http://waffle.readthedocs.org/en/latest/index.html>`_ is used to configure behavior and/or features of select pages on bedrock.
+Environment variables are used to configure behavior and/or features of select pages on bedrock
+via a template helper function called ``switch()``. It will take whatever name you pass to it
+(must be only numbers, letters, and dashes), convert it to uppercase, convert dashes to underscores,
+and lookup that name in the environment. For example: ``switch('the-dude')`` would look for the
+environment variable ``SWITCH_THE_DUDE``. If the value of that variable is any of "on", "true", "1", or
+"yes", then it will be considered "on", otherwise it will be "off". If the environment variable ``DEV``
+is set to one of those "true" values, then all switches will be considered "on" unless they are
+explicitly "off" in the environment.
 
-Currently, Waffle switches are used to enable/disable Optimizely on the following URLs (Waffle switch names follow in parentheses):
+Currently, these switches are used to enable/disable Optimizely on many pages of the site. We only add
+the Optimizely JavaScript snippet to a page when there is an active test to minimize the security risk
+of the service. We maintain a `page on the Mozilla wiki detailing our use of Optimizely
+<https://wiki.mozilla.org/Mozilla.org/Optimizely>`_ and these switches.
 
-* ``/`` (``mozorg-home-optimizely``)
-* ``/firefox/desktop/`` (``firefox-desktop-optimizely``)
-* ``/firefox/firstrun/`` (``firefox-firstrun-optimizely``)
-* ``/firefox/installer-help/`` (``firefox-installer-help-optimizely``)
-* ``/firefox/new/`` (``firefox-new-optimizely``)
-* ``/firefox/whatsnew/`` (``firefox-whatsnew-optimizely``)
-* ``/plugincheck/`` (``plugincheck-optimizely``)
+To work with/test these Optimizely switches locally, you must add the switches to your local environment. For example::
 
-To work with/test these Waffle/Optimizely switches locally, you must add the switches to your local database. For example::
-
-    ./manage.py switch firefox-new-optimizely on --create
+    # to switch on firefox-new-optimizely you'd add the following to your ``.env`` file
+    SWITCH_FIREFOX_NEW_OPTIMIZELY=True
 
 You then must set an Optimizely project code in ``.env``::
 
@@ -148,15 +150,8 @@ You then must set an Optimizely project code in ``.env``::
 
 .. note::
 
-    You are not required to set up Waffle & Optimizely as detailed above. If not configured, Waffle will treat the switches as set to ``off``.
-
-For quick reference, to toggle a Waffle switch::
-
-    ./manage.py switch firefox-desktop-optimizely off
-
-And to list all Waffle switches::
-
-    ./manage.py switch -l
+    You are not required to set up Optimizely as detailed above. If not configured,
+    bedrock will treat the switches as set to ``off``.
 
 Notes
 -----

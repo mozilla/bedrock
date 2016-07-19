@@ -47,7 +47,7 @@
     <a href="{{ url('privacy.notices.firefox') }}#telemetry" class="more">{{ _('Learn more') }}</a>
   </p>
 
-  {% if l10n_has_tag('firefox_dev_fall') and waffle.switch('firefox-dev-fall') %}
+  {% if l10n_has_tag('firefox_dev_fall') and switch('firefox-dev-fall') %}
     {{ high_res_img('firefox/developer/challenger-hero.png', {'alt': _('Firefox Developer Edition'), 'width': '832', 'height': 'auto', 'class': 'screenshot'}) }}
   {% else %}
     <img src="{{ static('img/firefox/developer/screenshot.jpg') }}" alt="{{ _('Firefox Developer Edition') }}" class="screenshot" />
@@ -80,7 +80,7 @@
 <section class="feature-overview">
   <div class="container">
     <ul class="features">
-    {% if l10n_has_tag('firefox_dev_fall') and waffle.switch('firefox-dev-fall') %}
+    {% if l10n_has_tag('firefox_dev_fall') and switch('firefox-dev-fall') %}
       <li class="feature">
         <a href="https://hacks.mozilla.org/2015/11/developer-edition-44-creative-tools-and-more" rel="external">
           {{ high_res_img('firefox/developer/creative-tools.png', {'alt': _('Screenshot'), 'width': '218', 'height': '118', 'class': 'screenshot'}) }}

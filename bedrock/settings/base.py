@@ -232,8 +232,12 @@ TEMPLATE_DIRS = (
 
 JINJA_CONFIG = {
     'extensions': [
-        'lib.l10n_utils.template.i18n', 'jinja2.ext.do', 'jinja2.ext.with_',
-        'jinja2.ext.loopcontrols', 'lib.l10n_utils.template.l10n_blocks',
+        'jingo.ext.JingoExtension',
+        'lib.l10n_utils.template.i18n',
+        'jinja2.ext.do',
+        'jinja2.ext.with_',
+        'jinja2.ext.loopcontrols',
+        'lib.l10n_utils.template.l10n_blocks',
         'lib.l10n_utils.template.lang_blocks',
         'jingo_markdown.extensions.MarkdownExtension',
         'pipeline.jinja2.PipelineExtension',
@@ -262,13 +266,13 @@ JINGO_EXCLUDE_APPS = (
     'registration',
     'rest_framework',
     'rna',
-    'waffle',
 )
 
 PIPELINE = {
     'STYLESHEETS': PIPELINE_CSS,
     'JAVASCRIPT': PIPELINE_JS,
     'DISABLE_WRAPPER': True,
+    'SHOW_ERRORS_INLINE': False,
     'COMPILERS': (
         'pipeline.compilers.less.LessCompiler',
     ),
@@ -358,11 +362,9 @@ INSTALLED_APPS = (
 
     # third-party apps
     'jingo_markdown',
-    # 'jingo_minify',
     'django_statsd',
     'pagedown',
     'rest_framework',
-    'waffle',
     'pipeline',
     'localflavor',
 
@@ -451,7 +453,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'bedrock.mozorg.context_processors.funnelcake_param',
     'bedrock.mozorg.context_processors.facebook_locale',
     'bedrock.firefox.context_processors.latest_firefox_versions',
-    'jingo_minify.helpers.build_ids',
 )
 
 FEEDS = {

@@ -33,7 +33,7 @@
 {% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('mozorg-home-optimizely') %}
+  {% if switch('mozorg-home-optimizely') %}
     {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}

@@ -41,7 +41,7 @@
       <p>{{_('Get to know the features that make it the most complete browser for building the Web.')}}</p>
     </header>
     <ul class="features">
-    {% if l10n_has_tag('firefox_dev_fall') and waffle.switch('firefox-dev-fall') %}
+    {% if l10n_has_tag('firefox_dev_fall') and switch('firefox-dev-fall') %}
       <li class="feature">
         <a href="https://hacks.mozilla.org/2015/11/developer-edition-44-creative-tools-and-more" rel="external">
           {{ high_res_img('firefox/firstrun/dev/creative-tools.png', {'alt': 'Screenshot', 'width': '300', 'height': '160', 'class': 'screenshot'}) }}

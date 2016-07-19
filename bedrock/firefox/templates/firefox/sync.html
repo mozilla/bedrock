@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('firefox-sync') %}
+  {% if switch('firefox-sync') %}
     {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}

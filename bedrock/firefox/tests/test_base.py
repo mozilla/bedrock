@@ -3,7 +3,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import os
-import waffle
 
 from django.core.cache import get_cache
 from django.http import HttpResponse
@@ -33,7 +32,7 @@ firefox_ios = FirefoxIOS(json_dir=PROD_DETAILS_DIR)
 class TestInstallerHelp(TestCase):
     def setUp(self):
         self.button_mock = Mock()
-        self.patcher = patch.dict('jingo.env.globals',
+        self.patcher = patch.dict('jingo._env.globals',
                                   download_firefox=self.button_mock)
         self.patcher.start()
         self.view_name = 'firefox.installer-help'
@@ -312,7 +311,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/australis/fx38_0_5/firstrun.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0(self, render_mock):
         """Should use horizon firstrun template for 40.0"""
         req = self.rf.get('/en-US/firefox/firstrun/')
@@ -322,7 +321,7 @@ class TestFirstRun(TestCase):
 
     # for onboarding first/second run tests (bug 1259608)
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_space_variant(self, render_mock):
         """
         Should use space-themed fx40.0 firstrun template for 40.0+ with v=2 or
@@ -339,7 +338,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/onboarding/fxa-simple.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_mobile_private_browsing(self, render_mock):
         """
         Should use mobile download/private browsing template for 40.0+ with
@@ -351,7 +350,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/onboarding/user-actions-mobileprivacy.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_pin_search(self, render_mock):
         """
         Should use pin it/try search template for 40.0+ with v=5 query param
@@ -362,7 +361,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/onboarding/user-actions-pinsearch.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_fxa_complex(self, render_mock):
         """
         Should use complex/3-step FxA template for 40.0+ with v=6 query param
@@ -373,7 +372,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/onboarding/fxa-complex.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_invalid_variation(self, render_mock):
         """
         Should use horizon firstrun template if an invalid variation is specified.
@@ -384,7 +383,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_space_variant_non_enUS(self, render_mock):
         """
         Should use horizon firstrun template for non en-US 40.0+ with
@@ -412,7 +411,7 @@ class TestSecondRun(TestCase):
 
     # for onboarding first/second run tests (bug 1259608)
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_secondrun_40_0_invalid_variation(self, render_mock):
         """
         Should use non-space FxA template if an invalid variation is specified.
@@ -428,7 +427,7 @@ class TestSecondRun(TestCase):
         eq_(template, ['firefox/firstrun/firstrun.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_secondrun_40_0_mobile_private_browsing(self, render_mock):
         """
         Should use mobile download/private browsing template for 40.0+ with
@@ -440,7 +439,7 @@ class TestSecondRun(TestCase):
         eq_(template, ['firefox/onboarding/user-actions-mobileprivacy.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_secondrun_40_0_pin_search(self, render_mock):
         """
         Should use pin it/try search template for 40.0+ with v=3 or v=6
@@ -457,7 +456,7 @@ class TestSecondRun(TestCase):
         eq_(template, ['firefox/onboarding/user-actions-pinsearch.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_secondrun_40_0_space_variant(self, render_mock):
         """
         Should use space-themed fx40.0 secondrun template for 40.0+ with v=4
@@ -469,7 +468,7 @@ class TestSecondRun(TestCase):
         eq_(template, ['firefox/onboarding/fxa-simple.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_secondrun_40_0_fxa_complex(self, render_mock):
         """
         Should use complex/3-step FxA template for 40.0+ with v=5 query param
@@ -480,7 +479,7 @@ class TestSecondRun(TestCase):
         eq_(template, ['firefox/onboarding/fxa-complex.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_secondrun_40_0_no_version(self, render_mock):
         """
         Should use old australis firstrun template if version not specified
@@ -491,7 +490,7 @@ class TestSecondRun(TestCase):
         eq_(template, ['firefox/australis/firstrun.html'])
 
     @override_settings(DEV=True)
-    @patch.object(waffle, 'switch_is_active', Mock(return_value=True))
+    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
     def test_fx_secondrun_40_0_non_enUS(self, render_mock):
         """
         Should use fx40.0 firstrun template for non en-US 40.0+ with

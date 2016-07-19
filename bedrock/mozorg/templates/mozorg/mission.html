@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('mozorg-mission-optimizely') %}
+  {% if switch('mozorg-mission-optimizely') %}
      {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}

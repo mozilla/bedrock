@@ -17,7 +17,7 @@
     <div id="main-feature">
       <h1>{{ _('Manage your Email Preferences') }}</h1>
 
-    {% if waffle.switch('newsletter-maintenance-mode') %}
+    {% if switch('newsletter-maintenance-mode') %}
       <p class="billboard">
         {{ _('This page is in maintenance mode and is temporarily unavailable.') }}<br>
         {{ _('To update your email preferences, please check back in a little while. Thanks!') }}
@@ -32,7 +32,7 @@
     </div>
   {% endblock %}
 
-  {% if formset and not waffle.switch('newsletter-maintenance-mode') %}
+  {% if formset and not switch('newsletter-maintenance-mode') %}
     <form method="post" action="{{ secure_url() }}" id="existing-newsletter-form" class="container billboard"
         data-initial-newsletters='{{ newsletters_subscribed }}'>
       {{ formset.management_form }}

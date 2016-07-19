@@ -30,7 +30,7 @@
 {% block body_class %}{% endblock %}
 
 {% block optimizely %}
-  {% if waffle.switch('firefox-onboarding-optimizely') %}
+  {% if switch('firefox-onboarding-optimizely') %}
     {% include 'includes/optimizely.html' %}
   {% endif %}
 {% endblock %}
