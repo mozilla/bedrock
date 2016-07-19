@@ -5,10 +5,9 @@
 from contextlib import contextmanager
 
 from django.test import TestCase
-from django.utils.translation import get_language
+from django.utils.translation import activate, get_language
 
 import test_utils
-from tower import activate
 from bedrock.base.urlresolvers import (get_url_prefix, Prefixer, set_url_prefix)
 
 

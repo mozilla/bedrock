@@ -34,8 +34,6 @@ beautifulsoup4==4.3.2 \
     --hash=sha256:a2b29bd048ca2fe54a046b29770964738872a9747003a371344a93eedf7ad58e
 certifi==0.0.8 \
     --hash=sha256:46ecf5f7526a08cc1f8bc8232adf0cffce046f46ceff95539daec42ebc4849ef
-Babel==0.9.6 \
-    --hash=sha256:4a3a085ecf1fcd2736573538ffa114f1f4331b3bbbdd69381e6e172c49c9750f
 django-recaptcha==1.0.3 \
     --hash=sha256:bbb7365a42f95e32942e6a24657e7a760c9be660ef641daccec9fa8336faea69
 django-picklefield==0.3.1 \
@@ -95,8 +93,6 @@ https://github.com/jsocol/commonware/archive/b5544185b2d24adc1eb512735990752400c
     --hash=sha256:93d8231145d43ca02e1ec3cee355333afa8e72adb9cf815767e17595749774d4
 https://github.com/jbalogh/jingo/archive/v0.7.1.tar.gz#egg=jingo==0.7.1 \
     --hash=sha256:45419c6461ae8dad516e1736641c1d82fe1696f69fe8bd3a265acfd9c475ba6c
-https://github.com/clouserw/tower/archive/e2ac254f7dac887952441592f7772af7bb25cc7b.tar.gz#egg=tower \
-    --hash=sha256:08a16827a22ce0a2031d00b0740f33c6be46f3594427aff3ed15e551ba712499
 https://github.com/jsocol/django-cronjobs/archive/cfda8176c5c3a50d1b58fcf57e87e23c467789bd.tar.gz#egg=django-cronjobs \
     --hash=sha256:9556a8db9bb65e3f7ca1f6474193ccfecccd2daab1856963cbbba044db78fee8
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets \
@@ -125,3 +121,9 @@ basket-client==0.3.12 \
     --hash=sha256:2dd953cd03b3068d0e596aa32224488c486b1170e46387c5bc14f20737d6a2d8
 django-cors-headers==1.1.0 \
     --hash=sha256:fcd96e2be47c8eef34c650e007a6d546e19e7ee61041b89edbbbbe7619aa3987
+puente==0.4.1 \
+    --hash=sha256:bc5ee85521127577d23430832e2f827686efdb7ce95b232f54fbeb5b9166397c \
+    --hash=sha256:84f769c0ea607829c77bd8b3d6d6fbc16589cd7a5d4e5023f717cd3d5de54473
+babel==2.3.4 \
+    --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975 \
+    --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875

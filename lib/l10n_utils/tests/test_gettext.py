@@ -88,7 +88,7 @@ class TestPOFiles(TestCase):
     @override_settings(ROOT=ROOT)
     def test_parse_po(self):
         """Should return correct messages"""
-        msgs = po_msgs()
+        msgs = po_msgs('messages')
         expected = {
             u'templates/some_lang_files.html': self.good_messages,
             u'templates/firefox/fx.html': [[None, u'Find out if your device '
@@ -110,7 +110,7 @@ class TestPOFiles(TestCase):
         # This should exclude the supported device message from the pot file.
         langfiles_mock.return_value = ['some_lang_files',
                                        'firefox/fx']
-        pot_to_langfiles()
+        pot_to_langfiles('messages')
         append_mock.assert_called_with(ANY, self.good_messages)
 
     @patch('os.path.exists', TRUE_MOCK)
