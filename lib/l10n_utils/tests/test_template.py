@@ -128,6 +128,7 @@ class TestNoLocale(TestCase):
         render(request, '500.html')
 
 
+@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
 @patch('lib.l10n_utils.template_is_active', Mock(return_value=True))
 @patch('lib.l10n_utils.django_render')
 class TestLocaleTemplates(TestCase):

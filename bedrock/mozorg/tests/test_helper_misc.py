@@ -49,7 +49,7 @@ TEST_FIREFOX_TWITTER_ACCOUNTS = {
 
 # Where should this function go?
 def render(s, context=None):
-    t = jingo.env.from_string(s)
+    t = jingo.get_env().from_string(s)
     return t.render(context or {})
 
 

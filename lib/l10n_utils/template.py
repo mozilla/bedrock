@@ -93,7 +93,7 @@ class LoadLangExtension(Extension):
     into a call to a helper method because it needs to context to load
     in the correct locale. As a result, this must be within a block."""
 
-    tags = set(['set_lang_files', 'add_lang_files'])
+    tags = {'set_lang_files', 'add_lang_files'}
 
     def parse(self, parser):
         # Skip over the block name
@@ -114,8 +114,7 @@ class LoadLangExtension(Extension):
         if name == 'add_lang_files':
             # If we are adding files, we need to keep the parent
             # template's list of lang files as well
-            content_nodes.insert(0, [nodes.Call(nodes.Name('super', 'load'),
-                                                [], [], None, None)])
+            content_nodes.insert(0, nodes.Call(nodes.Name('super', 'load'), [], [], None, None))
 
         # Since we are a block, we must emit a block too, so make a
         # random one that contains a call to the load function

@@ -33,7 +33,7 @@ firefox_ios = FirefoxIOS(json_dir=PROD_DETAILS_DIR)
 class TestInstallerHelp(TestCase):
     def setUp(self):
         self.button_mock = Mock()
-        self.patcher = patch.dict('jingo.env.globals',
+        self.patcher = patch.dict('jingo._env.globals',
                                   download_firefox=self.button_mock)
         self.patcher.start()
         self.view_name = 'firefox.installer-help'

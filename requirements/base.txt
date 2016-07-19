@@ -44,8 +44,6 @@ python-dateutil==2.4.2 \
 six==1.9.0 \
     --hash=sha256:418a93c397a7edab23e5588dbc067ac74a723edb3d541bd4936f79476e7645da \
     --hash=sha256:e24052411fc4fbd1f672635537c3fc2330d9481b18c0317695b46259512c91d5
-jingo-minify==0.5 \
-    --hash=sha256:cc3c3fdea03081316eafef660968e981e0418b6d2a9606a0a3fe8503634386c8
 cef==0.5 \
     --hash=sha256:2d1cb558391673df5109a3fe5e84fde6160edc8b241b3eb19ab3d3abe9b8df31
 django-session-csrf==0.5 \
@@ -93,6 +91,9 @@ https://github.com/jsocol/commonware/archive/b5544185b2d24adc1eb512735990752400c
     --hash=sha256:93d8231145d43ca02e1ec3cee355333afa8e72adb9cf815767e17595749774d4
 https://github.com/jbalogh/jingo/archive/v0.7.1.tar.gz#egg=jingo==0.7.1 \
     --hash=sha256:45419c6461ae8dad516e1736641c1d82fe1696f69fe8bd3a265acfd9c475ba6c
+jingo==0.9.0 \
+    --hash=sha256:12a983286519303c6afd3da6f0a7e1859e69effb5fe46109424cdfca382bea56 \
+    --hash=sha256:37de5435622d05763bc55d1a3d0a7edcf998ece9e6048bb470db431d1aa83c3a
 https://github.com/jsocol/django-cronjobs/archive/cfda8176c5c3a50d1b58fcf57e87e23c467789bd.tar.gz#egg=django-cronjobs \
     --hash=sha256:9556a8db9bb65e3f7ca1f6474193ccfecccd2daab1856963cbbba044db78fee8
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets \

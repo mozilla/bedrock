@@ -4,7 +4,7 @@ import jingo
 
 
 def render(s, context={}):
-    t = jingo.env.from_string(s)
+    t = jingo.get_env().from_string(s)
     return t.render(context)
 
 

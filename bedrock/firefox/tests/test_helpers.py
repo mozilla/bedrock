@@ -14,7 +14,7 @@ from bedrock.firefox.firefox_details import firefox_android
 
 
 def render(s, context=None):
-    t = jingo.env.from_string(s)
+    t = jingo.get_env().from_string(s)
     return t.render(context or {})
 
 

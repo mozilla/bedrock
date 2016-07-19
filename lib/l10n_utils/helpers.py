@@ -63,7 +63,7 @@ def lang_files(ctx, *files):
 
 # backward compatible for imports
 _ = gettext
-jingo.env.install_gettext_callables(gettext, gettext)
+jingo.get_env().install_gettext_callables(gettext, gettext)
 
 
 @jingo.register.filter
