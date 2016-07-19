@@ -160,26 +160,7 @@
 {% endblock %}
 
 {% block site_footer %}
-<footer id="footer">
-  <div class="content">
-    <a class="mozlogo" href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">Mozilla</a>
-
-    <ul>
-      <li>
-        {% include 'includes/lang_switcher.html' %}
-      </li>
-      <li>
-        <a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy Policy">{{ _('Privacy Policy') }}</a>
-      </li>
-      <li>
-        <a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a>
-      </li>
-      <li>
-        <a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal Notices">{{ _('Legal Notices') }}</a>
-      </li>
-    </ul>
-  </div>
-</footer>
+  {% include 'firefox/includes/simple_footer.html' %}
 {% endblock %}
 
 {% block js %}

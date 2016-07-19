@@ -567,61 +567,6 @@ html[dir='rtl'] {
 }
 
 
-
-/*--------------------------------------------------------------------------*/
-// Footer
-#footer {
-    background: #fff;
-    border-top: 1px solid rgba(0, 0, 0, .1);
-
-    .content {
-        padding: (@baseLine * 2) 0 (@baseLine * 3);
-    }
-
-    .mozlogo {
-        .image-replaced();
-        .fxfamily-sprite(-344px, -484px);
-        display: inline-block;
-        margin: 0 auto @baseLine;
-        width: 94px;
-        height: 25px;
-        float: left;
-        position: static;
-    }
-
-    ul {
-        float: right;
-        margin: 0;
-        list-style: none;
-        .font-size(@smallFontSize);
-
-        li {
-            display: inline;
-            margin: 0 10px;
-
-            &:after {
-                content: '•';
-                color: @textColorPrimary;
-                margin: 0 -10px 0 10px;
-            }
-
-            &:last-child:after {
-                content: '';
-            }
-        }
-    }
-
-    form {
-        display: inline-block;
-
-        label {
-            color: @textColorTertiary;
-        }
-    }
-}
-
-
-
 /*--------------------------------------------------------------------------*/
 // Wide desktop layout, 1400px
 @media only screen and (min-width: @breakDesktopWide) {
@@ -936,29 +881,4 @@ html[dir='rtl'] {
             right: 15px;
         }
     }
-
-    #footer {
-        .content {
-            padding: @baseLine 0;
-            text-align: center;
-        }
-
-        .mozlogo {
-            float: none;
-        }
-
-        ul {
-            float: none;
-
-            li {
-                display: block;
-                margin: 0 0 .25em;
-
-                &:after {
-                    content: '';
-                }
-            }
-        }
-    }
-
 }

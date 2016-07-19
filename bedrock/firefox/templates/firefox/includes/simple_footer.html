@@ -1,25 +1,16 @@
 <footer id="colophon">
-  <div class="row">
-    <ul class="primary">
-      <li><a href="https://support.mozilla.org/kb/get-started-firefox-overview-main-features" data-interaction="click"><span>{{_('Tour')}}</span></a></li>
-      <li><a href="{{ url('firefox.desktop.index') }}"><span>{{_('Features')}}</span></a></li>
-      <li><a href="{{ url('firefox.family.index') }}"><span>{{_('Mobile')}}</span></a></li>
-      <li><a href="https://addons.mozilla.org"><span>{{_('Add-ons')}}</span></a></li>
-      <li><a href="https://support.mozilla.org/"><span>{{_('Support')}}</span></a></li>
-      <li><a href="{{ url('mozorg.about') }}"><span>{{_('About')}}</span></a></li>
+  <div class="content">
+    <a class="mozlogo" href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">Mozilla</a>
+
+    <ul>
+      <li>{% include 'includes/lang_switcher.html' %}</li>
+      <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy Policy">{{ _('Privacy Policy') }}</a></li>
+      <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
+      <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal Notices">{{ _('Legal Notices') }}</a></li>
     </ul>
 
     {% if fx_footer_links %}
       {{ firefox_footer_links() }}
     {% endif %}
-
-    <ul class="secondary footer-lang">
-      <li>{% include 'includes/lang_switcher.html' %}</li>
-    </ul>
-    <ul class="secondary">
-      <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{_('Privacy')}}</a></li>
-      <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
-      <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{_('Legal')}}</a></li>
-    </ul>
   </div>
 </footer>
