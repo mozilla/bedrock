@@ -1,7 +1,8 @@
 # from bedrock.base
 
 from django.conf import settings
-from django.utils import translation
+
+from lib.l10n_utils import translation
 
 
 def i18n(request):

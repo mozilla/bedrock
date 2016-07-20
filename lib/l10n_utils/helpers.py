@@ -9,9 +9,9 @@ from babel.dates import format_date
 from babel.numbers import format_number
 
 from django.conf import settings
-from django.utils.translation import get_language
 
 from dotlang import translate, lang_file_has_tag
+from lib.l10n_utils.translation import get_language
 from gettext import template_has_tag
 
 

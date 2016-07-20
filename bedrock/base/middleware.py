@@ -11,11 +11,11 @@ from warnings import warn
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponsePermanentRedirect, HttpResponse
-from django.utils import translation
 from django.utils.encoding import smart_str, force_text
 
 from . import urlresolvers
 from .helpers import urlparams
+from lib.l10n_utils import translation
 
 
 class LocaleURLMiddleware(object):
