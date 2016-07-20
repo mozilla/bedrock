@@ -98,6 +98,8 @@ if settings.DEV:
             PageNode('Send to Device widget', path='send-to-device',
                     template='styleguide/docs/send-to-device.html'),
         )),
+        PageNode('Pebbles', path='pebbles',
+                 template='styleguide/websites/pebbles.html'),
     ))
 
 urlpatterns = PageRoot('Home', children=tuple(all_children)).as_urlpatterns()

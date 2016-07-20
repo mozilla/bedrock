@@ -1,0 +1,49 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import (reference) '../includes/lib.less';
+
+
+#masthead .content {
+    padding-top: 0;
+}
+
+.masthead-logo {
+    .font-size(1rem);
+    margin: 0;
+    padding: 30px 0 20px;
+}
+
+// TODO: Styling for mobile menu
+.masthead-nav-main {
+    .font-size(14px);
+    text-transform: uppercase;
+}
+
+.html-rtl .masthead-nav-main {
+    float: left;
+}
+
+@media @mq-tablet {
+    .masthead-nav-main {
+        float: right;
+        margin: 0 20px;
+
+        li {
+            display: inline-block;
+            margin: 0;
+
+            a,
+            b {
+                display: inline-block;
+                font-weight: normal;
+                padding: 10px;
+            }
+        }
+
+        .toggle {
+            .hidden;
+        }
+    }
+}

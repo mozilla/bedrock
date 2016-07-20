@@ -2,7 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import (reference) '../lib.less';
+@import (reference) '../includes/lib.less';
+
 
 #colophon {
     .font-size(14px);
@@ -32,15 +33,14 @@
     }
 
     .row {
+        .border-box;
         .clearfix;
         margin: 0 auto;
-        width: @width-phone;
-
-        @media @mq-phone-wide {
-            width: @width-phone-wide;
-        }
+        padding: 0 20px;
+        min-width: @width-phone;
 
         @media @mq-tablet {
+            padding: 0 10px;
             width: @width-tablet;
         }
 
