@@ -298,22 +298,71 @@ a.try-hello-button:visited {
     .hello-wordmark {
         margin-top: @baseLine * 2;
     }
-}
 
-.html-rtl {
-    #try-hello header {
-        padding-right: 0;
-        padding-left: 471px;
-        background-position: top left;
+    .notification {
+        .font-size(20px);
+        margin-left: 30px;
+        position: relative;
 
-        @media only screen and (max-width: @breakDesktop) {
-            padding-right: 0;
-            padding-left: 358px;
+        a:link,
+        a:visited {
+            color: @textColorSpaceYellow;
+        }
+
+        &:before {
+            background: url('/media/img/firefox/common/icon-alert.svg') center center no-repeat;
+            content: '';
+            height: 25px;
+            left: -30px;
+            margin: 0 4px 0 0;
+            position: absolute;
+            top: 4px;
+            width: 25px;
         }
 
         @media only screen and (max-width: @breakTablet) {
-            padding-left: 0;
+            margin-left: 0;
+
+            &:before {
+                .inline-block;
+                position: static;
+                vertical-align: text-bottom;
+            }
+        }
+    }
+}
+
+.html-rtl {
+    #try-hello {
+        header {
             padding-right: 0;
+            padding-left: 471px;
+            background-position: top left;
+
+            @media only screen and (max-width: @breakDesktop) {
+                padding-right: 0;
+                padding-left: 358px;
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        .notification {
+            margin-left: 0;
+            margin-right: 30px;
+
+            &:before {
+                left: auto;
+                right: -30px;
+                margin: 0 0 0 4px;
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                margin-right: 0;
+            }
         }
     }
 }
