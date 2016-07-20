@@ -18,11 +18,11 @@ from functools import partial
 
 from django.conf import settings
 from django.core.cache import get_cache
-from django.utils import translation
 from django.utils.functional import lazy
 from jinja2 import Markup
 from product_details import product_details
 
+from lib.l10n_utils import translation
 from lib.l10n_utils.utils import ContainsEverything, strip_whitespace
 
 ALL_THE_THINGS = ContainsEverything()

@@ -5,10 +5,10 @@
 from contextlib import contextmanager
 
 from django.test import TestCase
-from django.utils.translation import activate, get_language
 
 import test_utils
 from bedrock.base.urlresolvers import (get_url_prefix, Prefixer, set_url_prefix)
+from lib.l10n_utils import translation
 
 
 class TestCase(TestCase):
@@ -21,10 +21,10 @@ class TestCase(TestCase):
     def activate(self, locale):
         """Context manager that temporarily activates a locale."""
         old_prefix = get_url_prefix()
-        old_locale = get_language()
+        old_locale = translation.get_language()
         rf = test_utils.RequestFactory()
         set_url_prefix(Prefixer(rf.get('/%s/' % (locale,))))
-        activate(locale)
+        translation.activate(locale)
         yield
         set_url_prefix(old_prefix)
-        activate(old_locale)
+        translation.activate(old_locale)
