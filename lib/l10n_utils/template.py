@@ -1,9 +1,9 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
 from jinja2.ext import Extension, InternationalizationExtension, nodes
 
+from lib.l10n_utils.templatetags.helpers import gettext
 from lib.l10n_utils.utils import strip_whitespace
 
 
@@ -130,3 +130,8 @@ class LoadLangExtension(Extension):
 l10n_blocks = L10nBlockExtension
 lang_blocks = LoadLangExtension
 i18n = I18nExtension
+
+# TODO: make an ngettext compatible function.
+# The pluaralize clause of a trans block won't work untill we do.
+# Need this so that installing translations will work in Jinja.
+ngettext = gettext

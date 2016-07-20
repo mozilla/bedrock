@@ -14,7 +14,7 @@ from django.http import HttpResponsePermanentRedirect, HttpResponse
 from django.utils.encoding import smart_str, force_text
 
 from . import urlresolvers
-from .helpers import urlparams
+from .templatetags.helpers import urlparams
 from lib.l10n_utils import translation
 
 

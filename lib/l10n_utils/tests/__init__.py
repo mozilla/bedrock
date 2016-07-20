@@ -5,18 +5,19 @@ from cStringIO import StringIO
 from tempfile import TemporaryFile
 from textwrap import dedent
 
-from jingo import get_env
-from jinja2 import FileSystemLoader
-from mock import patch
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+
+from django_jinja.backend import Jinja2
+from mock import patch
 
 from lib import l10n_utils
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
+jinja_env = Jinja2.get_default()
 
 
 @contextmanager
@@ -40,7 +41,7 @@ class TempFileMixin(object):
         return tempf
 
 
-@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(jinja_env.env.loader, 'searchpath', TEMPLATE_DIRS)
 @override_settings(ROOT=ROOT)
 @override_settings(DEV=False)
 class TestRender(TestCase):

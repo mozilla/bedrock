@@ -2,15 +2,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import jingo
 import jinja2
+from django.template.loader import render_to_string
+from django_jinja import library
 
 from bedrock.thunderbird.details import thunderbird_desktop
 from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils import get_locale
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def download_thunderbird(ctx, channel='release', dom_id=None,
                          locale=None, force_direct=False,
@@ -84,13 +85,12 @@ def download_thunderbird(ctx, channel='release', dom_id=None,
         'button_color': button_color,
     }
 
-    html = jingo.render_to_string(ctx['request'],
-                                  'thunderbird/includes/download-button.html',
-                                  data)
+    html = render_to_string('thunderbird/includes/download-button.html', data,
+                            request=ctx['request'])
     return jinja2.Markup(html)
 
 
-@jingo.register.function
+@library.global_function
 def thunderbird_url(page, channel=None):
     """
     Return a product-related URL like /thunderbird/all/ or /thunderbird/beta/notes/.

@@ -23,12 +23,6 @@ else:
     MIDDLEWARE_CLASSES += ('commonware.middleware.FrameOptionsHeader',)
 
 
-# Any databases configured other than "default" should be
-# read-only slaves, which our default router
-# should use with this setting.
-if 'manage.py' not in sys.argv:
-    SLAVE_DATABASES = [db for db in DATABASES if db != 'default']
-
 if CACHES['default']['BACKEND'] == 'django_pylibmc.memcached.PyLibMCCache':
     CACHES['default']['BINARY'] = True
     CACHES['default']['OPTIONS'] = {  # Maps to pylibmc "behaviors"
@@ -76,9 +70,9 @@ if (len(sys.argv) > 1 and sys.argv[1] == 'test') or sys.argv[0].endswith('py.tes
     # Turn off less compilation in tests
     PIPELINE['PIPELINE_ENABLED'] = True
     PIPELINE['PIPELINE_COLLECTOR_ENABLED'] = False
-    # TEMPLATE_DEBUG has to be True for jingo to call the template_rendered
+    # TEMPLATE_DEBUG has to be True for Jinja to call the template_rendered
     # signal which Django's test client uses to save away the contexts for your
     # test to look at later.
-    TEMPLATE_DEBUG = True
+    TEMPLATES[0]['OPTIONS']['debug'] = True
     # use default product-details data
     PROD_DETAILS_STORAGE = 'product_details.storage.PDFileStorage'

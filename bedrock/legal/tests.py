@@ -149,7 +149,7 @@ class TestFraudReport(TestCase):
         # make sure attachment errors are in form
         self.assertIn('input_attachment', form.errors)
 
-    @patch('bedrock.legal.views.jingo.render_to_string', return_value='jingo rendered')
+    @patch('bedrock.legal.views.render_to_string', return_value='rendered')
     @patch('bedrock.legal.views.EmailMessage')
     def test_email(self, mock_email_message, mock_render_to_string):
         """
@@ -171,11 +171,11 @@ class TestFraudReport(TestCase):
         mock_email_message.assert_called_once_with(
             legal_views.FRAUD_REPORT_EMAIL_SUBJECT % (self.data['input_url'],
                                                       self.data['input_category']),
-            'jingo rendered',
+            'rendered',
             legal_views.FRAUD_REPORT_EMAIL_FROM,
             legal_views.FRAUD_REPORT_EMAIL_TO)
 
-    @patch('bedrock.legal.views.jingo.render_to_string', return_value='jingo rendered')
+    @patch('bedrock.legal.views.render_to_string', return_value='rendered')
     @patch('bedrock.legal.views.EmailMessage')
     def test_email_with_attachement(self, mock_email_message, mock_render_to_string):
         """
@@ -209,7 +209,7 @@ class TestFraudReport(TestCase):
         mock_email_message.assert_called_once_with(
             legal_views.FRAUD_REPORT_EMAIL_SUBJECT % (self.data['input_url'],
                                                       self.data['input_category']),
-            'jingo rendered',
+            'rendered',
             legal_views.FRAUD_REPORT_EMAIL_FROM,
             legal_views.FRAUD_REPORT_EMAIL_TO)
 

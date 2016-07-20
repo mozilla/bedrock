@@ -1,20 +1,22 @@
-import jingo
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+from django_jinja.backend import Jinja2
 from mock import patch, Mock
 from nose.tools import assert_false, eq_, ok_
 from pyquery import PyQuery as pq
 
 from product_details import product_details
 from bedrock.mozorg.tests import TestCase
-from bedrock.firefox import helpers
+from bedrock.firefox.templatetags import helpers
 from bedrock.firefox.firefox_details import firefox_android
+
+jinja_env = Jinja2.get_default()
 
 
 def render(s, context=None):
-    t = jingo.get_env().from_string(s)
+    t = jinja_env.from_string(s)
     return t.render(context or {})
 
 
@@ -181,7 +183,6 @@ class TestDownloadButtons(TestCase):
         """Android Gingerbread (2.3) is no longer supported as of Firefox 48"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ download_firefox('alpha', platform='android') }}",
                         {'request': get_request}))
 
@@ -196,7 +197,6 @@ class TestDownloadButtons(TestCase):
         """Android Gingerbread (2.3) is supported as of Firefox 47"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ download_firefox('alpha', platform='android') }}",
                         {'request': get_request}))
 
@@ -209,7 +209,6 @@ class TestDownloadButtons(TestCase):
     def test_beta_mobile(self):
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ download_firefox('beta', platform='android') }}",
                         {'request': get_request}))
 
@@ -223,7 +222,6 @@ class TestDownloadButtons(TestCase):
     def test_firefox_mobile(self):
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ download_firefox(platform='android') }}",
                         {'request': get_request}))
 
@@ -237,7 +235,6 @@ class TestDownloadButtons(TestCase):
     def test_ios(self):
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ download_firefox(platform='ios') }}",
                         {'request': get_request}))
 
@@ -251,7 +248,6 @@ class TestFirefoxURL(TestCase):
 
     def _render(self, platform, page, channel=None):
         req = self.rf.get('/')
-        req.locale = 'en-US'
         if channel:
             tmpl = "{{ firefox_url('%s', '%s', '%s') }}" % (platform, page, channel)
         else:
@@ -260,64 +256,49 @@ class TestFirefoxURL(TestCase):
 
     def test_firefox_all(self):
         """Should return a reversed path for the Firefox download page"""
-        eq_(self._render('desktop', 'all'),
-            '/en-US/firefox/all/')
-        eq_(self._render('desktop', 'all', 'release'),
-            '/en-US/firefox/all/')
-        eq_(self._render('desktop', 'all', 'beta'),
-            '/en-US/firefox/beta/all/')
-        eq_(self._render('desktop', 'all', 'alpha'),
-            '/en-US/firefox/developer/all/')
-        eq_(self._render('desktop', 'all', 'esr'),
-            '/en-US/firefox/organizations/all/')
-        eq_(self._render('desktop', 'all', 'organizations'),
-            '/en-US/firefox/organizations/all/')
+        ok_(self._render('desktop', 'all').endswith('/firefox/all/'))
+        ok_(self._render('desktop', 'all', 'release').endswith('/firefox/all/'))
+        ok_(self._render('desktop', 'all', 'beta').endswith('/firefox/beta/all/'))
+        ok_(self._render('desktop', 'all', 'alpha').endswith('/firefox/developer/all/'))
+        ok_(self._render('desktop', 'all', 'esr').endswith('/firefox/organizations/all/'))
+        ok_(self._render('desktop', 'all',
+                         'organizations').endswith('/firefox/organizations/all/'))
 
     def test_firefox_sysreq(self):
         """Should return a reversed path for the Firefox sysreq page"""
-        eq_(self._render('desktop', 'sysreq'),
-            '/en-US/firefox/system-requirements/')
-        eq_(self._render('desktop', 'sysreq', 'release'),
-            '/en-US/firefox/system-requirements/')
-        eq_(self._render('desktop', 'sysreq', 'beta'),
-            '/en-US/firefox/beta/system-requirements/')
-        eq_(self._render('desktop', 'sysreq', 'alpha'),
-            '/en-US/firefox/developer/system-requirements/')
-        eq_(self._render('desktop', 'sysreq', 'esr'),
-            '/en-US/firefox/organizations/system-requirements/')
-        eq_(self._render('desktop', 'sysreq', 'organizations'),
-            '/en-US/firefox/organizations/system-requirements/')
+        ok_(self._render('desktop', 'sysreq').endswith('/firefox/system-requirements/'))
+        ok_(self._render('desktop', 'sysreq',
+                         'release').endswith('/firefox/system-requirements/'))
+        ok_(self._render('desktop', 'sysreq',
+                         'beta').endswith('/firefox/beta/system-requirements/'))
+        ok_(self._render('desktop', 'sysreq',
+                         'alpha').endswith('/firefox/developer/system-requirements/'))
+        ok_(self._render('desktop', 'sysreq',
+                         'esr').endswith('/firefox/organizations/system-requirements/'))
+        ok_(self._render('desktop', 'sysreq',
+                         'organizations').endswith('/firefox/organizations/system-requirements/'))
 
     def test_desktop_notes(self):
         """Should return a reversed path for the desktop notes page"""
-        eq_(self._render('desktop', 'notes'),
-            '/en-US/firefox/notes/')
-        eq_(self._render('desktop', 'notes', 'release'),
-            '/en-US/firefox/notes/')
-        eq_(self._render('desktop', 'notes', 'beta'),
-            '/en-US/firefox/beta/notes/')
-        eq_(self._render('desktop', 'notes', 'alpha'),
-            '/en-US/firefox/developer/notes/')
-        eq_(self._render('desktop', 'notes', 'esr'),
-            '/en-US/firefox/organizations/notes/')
-        eq_(self._render('desktop', 'notes', 'organizations'),
-            '/en-US/firefox/organizations/notes/')
+        ok_(self._render('desktop', 'notes').endswith('/firefox/notes/'))
+        ok_(self._render('desktop', 'notes', 'release').endswith('/firefox/notes/'))
+        ok_(self._render('desktop', 'notes', 'beta').endswith('/firefox/beta/notes/'))
+        ok_(self._render('desktop', 'notes', 'alpha').endswith('/firefox/developer/notes/'))
+        ok_(self._render('desktop', 'notes', 'esr').endswith('/firefox/organizations/notes/'))
+        ok_(self._render('desktop', 'notes',
+                         'organizations').endswith('/firefox/organizations/notes/'))
 
     def test_android_notes(self):
         """Should return a reversed path for the Android notes page"""
-        eq_(self._render('android', 'notes'),
-            '/en-US/firefox/android/notes/')
-        eq_(self._render('android', 'notes', 'release'),
-            '/en-US/firefox/android/notes/')
-        eq_(self._render('android', 'notes', 'beta'),
-            '/en-US/firefox/android/beta/notes/')
-        eq_(self._render('android', 'notes', 'alpha'),
-            '/en-US/firefox/android/aurora/notes/')
+        ok_(self._render('android', 'notes').endswith('/firefox/android/notes/'))
+        ok_(self._render('android', 'notes', 'release').endswith('/firefox/android/notes/'))
+        ok_(self._render('android', 'notes', 'beta').endswith('/firefox/android/beta/notes/'))
+        ok_(self._render('android', 'notes', 'alpha').endswith('/firefox/android/aurora/notes/'))
 
 
 @override_settings(FIREFOX_OS_FEED_LOCALES=['xx'])
-@patch('bedrock.firefox.helpers.cache')
-@patch('bedrock.firefox.helpers.FirefoxOSFeedLink')
+@patch('bedrock.firefox.templatetags.helpers.cache')
+@patch('bedrock.firefox.templatetags.helpers.FirefoxOSFeedLink')
 class FirefoxOSFeedLinksTest(TestCase):
     def test_no_feed_for_locale(self, FirefoxOSFeedLink, cache):
         """
@@ -391,7 +372,6 @@ class TestFirefoxFooterLinks(TestCase):
         """Should show all links by default"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ firefox_footer_links() }}",
                         {'request': get_request}))
 
@@ -405,7 +385,6 @@ class TestFirefoxFooterLinks(TestCase):
         """Should show iOS links only"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ firefox_footer_links(platform='ios') }}",
                         {'request': get_request}))
 
@@ -415,14 +394,14 @@ class TestFirefoxFooterLinks(TestCase):
 
         links = doc('.fx-footer-links a')
         eq_(links.length, 2)
-        eq_(pq(links[0]).attr('href'), 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
-        eq_(pq(links[1]).attr('href'), '/en-US/firefox/ios/notes/')
+        eq_(pq(links[0]).attr('href'),
+            'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
+        ok_(pq(links[1]).attr('href').endswith('/firefox/ios/notes/'))
 
     def test_android_links(self):
         """Should show Android links only"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ firefox_footer_links(platform='android') }}",
                         {'request': get_request}))
 
@@ -432,15 +411,15 @@ class TestFirefoxFooterLinks(TestCase):
 
         links = doc('.fx-footer-links a')
         eq_(links.length, 3)
-        eq_(pq(links[0]).attr('href'), 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
-        eq_(pq(links[1]).attr('href'), '/en-US/firefox/android/all/')
-        eq_(pq(links[2]).attr('href'), '/en-US/firefox/android/notes/')
+        eq_(pq(links[0]).attr('href'),
+            'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
+        ok_(pq(links[1]).attr('href').endswith('/firefox/android/all/'))
+        ok_(pq(links[2]).attr('href').endswith('/firefox/android/notes/'))
 
     def test_android_beta_links(self):
         """Should show Android Beta links only"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ firefox_footer_links(platform='android', channel='beta') }}",
                         {'request': get_request}))
 
@@ -450,15 +429,15 @@ class TestFirefoxFooterLinks(TestCase):
 
         links = doc('.fx-footer-links a')
         eq_(links.length, 3)
-        eq_(pq(links[0]).attr('href'), 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
-        eq_(pq(links[1]).attr('href'), '/en-US/firefox/android/beta/all/')
-        eq_(pq(links[2]).attr('href'), '/en-US/firefox/android/beta/notes/')
+        eq_(pq(links[0]).attr('href'),
+            'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
+        ok_(pq(links[1]).attr('href').endswith('/firefox/android/beta/all/'))
+        ok_(pq(links[2]).attr('href').endswith('/firefox/android/beta/notes/'))
 
     def test_android_aurora_links(self):
         """Should show Android Aurora links only"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ firefox_footer_links(platform='android', channel='alpha') }}",
                         {'request': get_request}))
 
@@ -473,7 +452,6 @@ class TestFirefoxFooterLinks(TestCase):
         """Should show Desktop links only"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ firefox_footer_links(platform='desktop') }}",
                         {'request': get_request}))
 
@@ -483,14 +461,13 @@ class TestFirefoxFooterLinks(TestCase):
 
         links = doc('.fx-footer-links a')
         eq_(links.length, 2)
-        eq_(pq(links[0]).attr('href'), '/en-US/firefox/all/')
-        eq_(pq(links[1]).attr('href'), '/en-US/firefox/notes/')
+        ok_(pq(links[0]).attr('href').endswith('/firefox/all/'))
+        ok_(pq(links[1]).attr('href').endswith('/firefox/notes/'))
 
     def test_desktop_beta_links(self):
         """Should show Desktop Betalinks only"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ firefox_footer_links(channel='beta', platform='desktop') }}",
                         {'request': get_request}))
 
@@ -500,14 +477,13 @@ class TestFirefoxFooterLinks(TestCase):
 
         links = doc('.fx-footer-links a')
         eq_(links.length, 2)
-        eq_(pq(links[0]).attr('href'), '/en-US/firefox/beta/all/')
-        eq_(pq(links[1]).attr('href'), '/en-US/firefox/beta/notes/')
+        ok_(pq(links[0]).attr('href').endswith('/firefox/beta/all/'))
+        ok_(pq(links[1]).attr('href').endswith('/firefox/beta/notes/'))
 
     def test_desktop_developer_links(self):
         """Should show Desktop Developer links only"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        get_request.locale = 'en-US'
         doc = pq(render("{{ firefox_footer_links(channel='alpha', platform='desktop') }}",
                         {'request': get_request}))
 
@@ -517,5 +493,5 @@ class TestFirefoxFooterLinks(TestCase):
 
         links = doc('.fx-footer-links a')
         eq_(links.length, 2)
-        eq_(pq(links[0]).attr('href'), '/en-US/firefox/developer/all/')
-        eq_(pq(links[1]).attr('href'), '/en-US/firefox/developer/notes/')
+        ok_(pq(links[0]).attr('href').endswith('/firefox/developer/all/'))
+        ok_(pq(links[1]).attr('href').endswith('/firefox/developer/notes/'))

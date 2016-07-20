@@ -11,6 +11,7 @@ from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
 import markdown as md
+from mdx_outline import OutlineExtension
 
 from bedrock.settings import path as base_path
 from lib import l10n_utils
@@ -44,7 +45,8 @@ def load_legal_doc(doc_name, locale):
     try:
         # Parse the Markdown file
         md.markdownFromFile(input=source_file, output=output,
-                            extensions=['attr_list', 'headerid', 'outline(wrapper_cls=)'])
+                            extensions=['attr_list', 'headerid',
+                                        OutlineExtension((('wrapper_cls', None),))])
         content = output.getvalue().decode('utf8')
     except IOError:
         content = None

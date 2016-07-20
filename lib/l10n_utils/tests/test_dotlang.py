@@ -4,8 +4,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import os
-
 from django.conf import settings
 from django.core import mail
 from django.core.cache import cache
@@ -13,10 +11,10 @@ from django.core.urlresolvers import clear_url_caches
 from django.http import HttpRequest
 from django.test.utils import override_settings
 
-from jingo import get_env
-from jinja2 import FileSystemLoader
+from django_jinja.backend import Jinja2
 from mock import patch
 from nose.tools import assert_not_equal, eq_, ok_
+from pathlib import Path
 from product_details import product_details
 from pyquery import PyQuery as pq
 
@@ -27,13 +25,15 @@ from lib.l10n_utils.dotlang import (_, _lazy, FORMAT_IDENTIFIER_RE, lang_file_ha
 from lib.l10n_utils.extract import extract_python
 
 
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 LANG_FILES = 'test_file'
-TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
+ROOT_PATH = Path(__file__).with_name('test_files')
+ROOT = str(ROOT_PATH)
+TEMPLATE_DIRS = [str(ROOT_PATH.joinpath('templates'))]
+jinja_env = Jinja2.get_default().env
 
 
 @override_settings(DEV=False, LANGUAGE_CODE='en-US')
-@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
 @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
 @patch.object(settings, 'ROOT', ROOT)
 class TestLangFilesActivation(TestCase):
@@ -110,7 +110,7 @@ class TestDotlang(TestCase):
         clear_url_caches()
 
     def test_parse(self):
-        path = os.path.join(ROOT, 'test.lang')
+        path = str(ROOT_PATH.joinpath('test.lang'))
         parsed = parse(path)
         expected = {
             u'Hooray! Your Firefox is up to date.':
@@ -122,7 +122,7 @@ class TestDotlang(TestCase):
         eq_(parsed, expected)
 
     def test_parse_not_skip_untranslated(self):
-        path = os.path.join(ROOT, 'test.lang')
+        path = str(ROOT_PATH.joinpath('test.lang'))
         parsed = parse(path, skip_untranslated=False)
         expected = {
             u'Hooray! Your Firefox is up to date.':
@@ -138,7 +138,7 @@ class TestDotlang(TestCase):
         eq_(parsed, expected)
 
     def test_parse_with_comments(self):
-        path = os.path.join(ROOT, 'test.lang')
+        path = str(ROOT_PATH.joinpath('test.lang'))
         parsed = parse(path, extract_comments=True)
 
         expected = {
@@ -157,7 +157,7 @@ class TestDotlang(TestCase):
 
     @override_settings(EMAIL_SUBJECT_PREFIX='[bedrock] ', MANAGERS=('dude@example.com',))
     def test_parse_utf8_error(self):
-        path = os.path.join(ROOT, 'test_utf8_error.lang')
+        path = str(ROOT_PATH.joinpath('test_utf8_error.lang'))
         parsed = parse(path)
         eq_(len(mail.outbox), 1)
         eq_(mail.outbox[0].subject, '[bedrock] %s is corrupted' % path)
@@ -170,7 +170,7 @@ class TestDotlang(TestCase):
 
     def test_parse_ingnores_untranslated(self):
         """parse should skip strings that aren't translated."""
-        path = os.path.join(ROOT, 'locale/de/main.lang')
+        path = str(ROOT_PATH.joinpath('locale/de/main.lang'))
         parsed = parse(path)
         expected = {
             u'The State of Mozilla': u'Awesome Baby! YEEEAAHHHH!!'
@@ -210,7 +210,7 @@ class TestDotlang(TestCase):
         assert_not_equal(expected, result)
         eq_(len(mail.outbox), 0)
 
-    @patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
+    @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
     @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
     @patch.object(settings, 'ROOT', ROOT)
     def test_lang_files_queried_in_order(self):
@@ -230,7 +230,8 @@ class TestDotlang(TestCase):
         trans_string = u'This is the translation.'
 
         # extraction
-        with open(os.path.join(ROOT, 'extract_me.py')) as pyfile:
+        pypath = ROOT_PATH.joinpath('extract_me.py')
+        with open(str(pypath)) as pyfile:
             vals = extract_python(pyfile, ['_'], [], {}).next()
         eq_(vals[2], clean_string)
 
@@ -393,7 +394,7 @@ class TestDotlang(TestCase):
         self.assertEqual(cache_mock.get.call_count, 0)
 
 
-@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
 @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
 @patch.object(settings, 'ROOT', ROOT)
 class TestTranslationList(TestCase):

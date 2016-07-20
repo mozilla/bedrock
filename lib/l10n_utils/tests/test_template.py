@@ -2,25 +2,25 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import os
-
 from django.template import TemplateDoesNotExist
 from django.test import RequestFactory, override_settings
 
-from jingo import get_env
-from jinja2 import FileSystemLoader
+from django_jinja.backend import Jinja2
 from jinja2.nodes import Block
 from mock import patch, ANY, Mock
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_, ok_
+from pathlib import Path
 from pyquery import PyQuery as pq
 
 from lib.l10n_utils import render
 from bedrock.mozorg.tests import TestCase
 
 
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
-TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'),)
+ROOT_PATH = Path(__file__).with_name('test_files')
+ROOT = str(ROOT_PATH)
+TEMPLATE_DIRS = [str(ROOT_PATH.joinpath('templates'))]
+jinja_env = Jinja2.get_default().env
 
 
 class TestL10nBlocks(TestCase):
@@ -29,15 +29,15 @@ class TestL10nBlocks(TestCase):
         Parsing an l10n block with locales info should put that info
         on the node.
         """
-        tree = get_env().parse("""{% l10n dude locales=ru,es-ES,fr 20121212 %}
-                              This stuff is totally translated.
-                            {% endl10n %}""")
+        tree = jinja_env.parse("""{% l10n dude locales=ru,es-ES,fr 20121212 %}
+                                    This stuff is totally translated.
+                                  {% endl10n %}""")
         l10n_block = tree.find(Block)
         self.assertEqual(l10n_block.locales, ['ru', 'es-ES', 'fr'])
         self.assertEqual(l10n_block.version, 20121212)
 
 
-@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
 @override_settings(ROOT=ROOT)
 class TestTransBlocks(TestCase):
     urls = 'lib.l10n_utils.tests.test_files.urls'
@@ -61,7 +61,7 @@ class TestTransBlocks(TestCase):
         self.test_trans_block_works()
 
 
-@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
 @override_settings(ROOT=ROOT)
 class TestTemplateLangFiles(TestCase):
     urls = 'lib.l10n_utils.tests.test_files.urls'
@@ -70,7 +70,7 @@ class TestTemplateLangFiles(TestCase):
         """
         Lang files specified in the template should be added to the defaults.
         """
-        template = get_env().get_template('some_lang_files.html')
+        template = jinja_env.get_template('some_lang_files.html')
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
         template.render({'request': request})
@@ -86,7 +86,7 @@ class TestTemplateLangFiles(TestCase):
         # TODO fix this. it is broken. hence the skip.
         #      does not pick up the files from the parent.
         #      captured in bug 797984.
-        template = get_env().get_template('even_more_lang_files.html')
+        template = jinja_env.get_template('even_more_lang_files.html')
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
         template.render(request=request)
@@ -94,7 +94,7 @@ class TestTemplateLangFiles(TestCase):
                                 'main', 'download_button'])
 
     @patch('lib.l10n_utils.settings.DEV', True)
-    @patch('lib.l10n_utils.helpers.translate')
+    @patch('lib.l10n_utils.templatetags.helpers.translate')
     def test_lang_files_order(self, translate):
         """
         Lang files should be queried in order they appear in the file,
@@ -105,7 +105,7 @@ class TestTemplateLangFiles(TestCase):
                                            'main', 'download_button'])
 
     @patch('lib.l10n_utils.settings.DEV', True)
-    @patch('lib.l10n_utils.helpers.translate')
+    @patch('lib.l10n_utils.templatetags.helpers.translate')
     def test_lang_files_default_order(self, translate):
         """
         The template-specific lang file should come before the defaults.
@@ -128,7 +128,7 @@ class TestNoLocale(TestCase):
         render(request, '500.html')
 
 
-@patch.object(get_env(), 'loader', FileSystemLoader(TEMPLATE_DIRS))
+@patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
 @patch('lib.l10n_utils.template_is_active', Mock(return_value=True))
 @patch('lib.l10n_utils.django_render')
 class TestLocaleTemplates(TestCase):

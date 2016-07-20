@@ -19,7 +19,7 @@ def template_last_modified(template):
     def inner_last_modified(request):
         locale = l10n_utils.get_locale(request)
 
-        tmpl_file = loader.get_template(template).filename
+        tmpl_file = loader.get_template(template).template.filename
         template_time = os.path.getmtime(tmpl_file)
 
         try:

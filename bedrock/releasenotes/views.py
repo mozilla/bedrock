@@ -16,8 +16,8 @@ from product_details import product_details
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android, firefox_ios
 from bedrock.thunderbird.details import thunderbird_desktop
 from bedrock.mozorg.decorators import cache_control_expires
-from bedrock.mozorg.helpers.misc import releasenotes_url
-from bedrock.firefox.helpers import android_builds, ios_builds
+from bedrock.mozorg.templatetags.misc import releasenotes_url
+from bedrock.firefox.templatetags.helpers import android_builds, ios_builds
 
 
 SUPPORT_URLS = {

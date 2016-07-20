@@ -1,6 +1,6 @@
+from django.template.loader import render_to_string
 from django.test import TestCase, RequestFactory
 
-import jingo
 import jinja2
 from nose.tools import eq_
 
@@ -12,12 +12,13 @@ class TestContext(TestCase):
     def setUp(self):
         translation.activate('en-US')
         self.factory = RequestFactory()
+        translation.activate('en-US')
 
     def render(self, content, request=None):
         if not request:
             request = self.factory.get('/')
         tpl = jinja2.Template(content)
-        return jingo.render_to_string(request, tpl)
+        return render_to_string(tpl, request=request)
 
     def test_request(self):
         eq_(self.render('{{ request.path }}'), '/')
