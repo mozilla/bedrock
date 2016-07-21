@@ -98,7 +98,7 @@
             },
             geometry: {
                 type: 'Point',
-                coordinates: [-0.0972, 51.5053]
+                coordinates: [-0.0971, 51.5047]
             }
         }, {
             type: 'Feature',
