@@ -980,9 +980,6 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/libs/jquery-1.11.3.min.js',  # upgrade to jQuery 1.12?
             # will need to make sure scripts below are compatible with jQuery 1.12 & 3?
-            'js/base/global.js',
-            'js/base/global-init.js',
-            'js/base/mozilla-client.js',
             'js/base/core-datalayer.js',
             'js/base/core-datalayer-init.js',
         ),
