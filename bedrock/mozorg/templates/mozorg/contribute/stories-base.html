@@ -46,3 +46,7 @@
   </section>
 {% endblock contrib_content %}
 
+{% block js %}
+  {{ super() }}
+  {% javascript 'contribute-stories' %}
+{% endblock %}

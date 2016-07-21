@@ -1,4 +1,0 @@
-Email: {{ email }}
-Area of Interest: {{ interest }}
-Language: {{ request.locale }}
-Comment: {{ comments|bleach_tags|safe }}

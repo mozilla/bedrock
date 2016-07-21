@@ -8,11 +8,6 @@
     {{ _('Volunteer Opportunities at Mozilla') }}
 {% endblock %}
 
-{% block js %}
-  {% javascript 'contribute-2015-landing' %}
-  {% javascript 'contribute-2015' %}
-{% endblock %}
-
 {% block body_id %}landing{% endblock %}
 
 {% block contrib_nav_cta %}{% endblock %}
@@ -154,3 +149,8 @@
   </section>
 
 {% endblock contrib_content %}
+
+{% block js %}
+  {% javascript 'contribute-base' %}
+  {% javascript 'contribute-landing' %}
+{% endblock %}

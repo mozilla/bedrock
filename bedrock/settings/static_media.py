@@ -157,32 +157,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/contact-spaces-oldie-bundle.css',
     },
-    'contribute-old': {
-        'source_filenames': (
-            'css/mozorg/contribute/contribute-form.less',
-            'css/mozorg/contribute/contribute-old.less',
-        ),
-        'output_filename': 'css/contribute-old-bundle.css',
-    },
-    'contribute-friends': {
-        'source_filenames': (
-            'css/mozorg/contribute/friends.less',
-        ),
-        'output_filename': 'css/contribute-friends-bundle.css',
-    },
-    'contribute-studentambassadors-landing': {
-        'source_filenames': (
-            'css/base/social-widgets.less',
-            'css/mozorg/contribute/studentambassadors/landing.less',
-        ),
-        'output_filename': 'css/contribute-studentambassadors-landing-bundle.css',
-    },
-    'contribute-studentambassadors-join': {
-        'source_filenames': (
-            'css/mozorg/contribute/studentambassadors/join.less',
-        ),
-        'output_filename': 'css/contribute-studentambassadors-join-bundle.css',
-    },
     'dnt': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -865,16 +839,21 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/tracking-protection-tour-bundle.css',
     },
-    'contribute-2015': {
+    'contribute-base': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
-            'css/mozorg/contribute/contribute-2015.less',
+            'css/mozorg/contribute/contribute-base.less',
         ),
-        'output_filename': 'css/contribute-2015-bundle.css',
+        'output_filename': 'css/contribute-base-bundle.css',
+    },
+    'contribute-embed': {
+        'source_filenames': (
+            'css/mozorg/contribute/contribute-embed.less',
+        ),
+        'output_filename': 'css/contribute-embed-bundle.css',
     },
     'contribute-signup': {
         'source_filenames': (
-            'css/mozorg/contribute/contribute-common.less',
             'css/mozorg/contribute/signup.less',
         ),
         'output_filename': 'css/contribute-signup-bundle.css',
@@ -885,6 +864,25 @@ PIPELINE_CSS = {
             'css/mozorg/contribute/taskview.less',
         ),
         'output_filename': 'css/contribute-taskview-bundle.css',
+    },
+    'contribute-friends': {
+        'source_filenames': (
+            'css/mozorg/contribute/friends.less',
+        ),
+        'output_filename': 'css/contribute-friends-bundle.css',
+    },
+    'contribute-studentambassadors-landing': {
+        'source_filenames': (
+            'css/base/social-widgets.less',
+            'css/mozorg/contribute/studentambassadors/landing.less',
+        ),
+        'output_filename': 'css/contribute-studentambassadors-landing-bundle.css',
+    },
+    'contribute-studentambassadors-join': {
+        'source_filenames': (
+            'css/mozorg/contribute/studentambassadors/join.less',
+        ),
+        'output_filename': 'css/contribute-studentambassadors-join-bundle.css',
     },
     'page_not_found': {
         'source_filenames': (
@@ -1007,17 +1005,11 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/contact-spaces-oldie-bundle.js',
     },
-    'contribute-faces': {
+    'contribute-base': {
         'source_filenames': (
-            'js/mozorg/contribute/contribute-faces.js',
+            'js/mozorg/contribute/contribute-nav.js',
         ),
-        'output_filename': 'js/contribute-faces-bundle.js',
-    },
-    'contribute-form': {
-        'source_filenames': (
-            'js/mozorg/contribute/contribute-form.js',
-        ),
-        'output_filename': 'js/contribute-form-bundle.js',
+        'output_filename': 'js/contribute-base.js',
     },
     'contribute-friends': {
         'source_filenames': (
@@ -1025,6 +1017,27 @@ PIPELINE_JS = {
             'js/mozorg/contribute/friends.js',
         ),
         'output_filename': 'js/contribute-friends-bundle.js'
+    },
+    'contribute-landing': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.cycle2.min.js',
+            'js/base/mozilla-modal.js',
+            'js/mozorg/contribute/contribute-landing.js',
+        ),
+        'output_filename': 'js/contribute-landing-bundle.js',
+    },
+    'contribute-signup': {
+        'source_filenames': (
+            'js/mozorg/contribute/signup.js',
+        ),
+        'output_filename': 'css/contribute-signup-bundle.js',
+    },
+    'contribute-stories': {
+        'source_filenames': (
+            'js/mozorg/contribute/contribute-stories.js',
+        ),
+        'output_filename': 'js/contribute-stories.js',
     },
     'contribute-studentambassadors-join': {
         'source_filenames': (
@@ -1037,13 +1050,6 @@ PIPELINE_JS = {
             'js/mozorg/contribute/taskview.js',
         ),
         'output_filename': 'css/contribute-taskview-bundle.js',
-    },
-    'contribute-signup': {
-        'source_filenames': (
-            'js/mozorg/contribute/contribute-2015.js',
-            'js/mozorg/contribute/signup.js',
-        ),
-        'output_filename': 'css/contribute-signup-bundle.js',
     },
     'accordion': {
         'source_filenames': (
@@ -1591,21 +1597,6 @@ PIPELINE_JS = {
             'js/firefox/tracking-protection-tour-init.js',
         ),
         'output_filename': 'js/tracking-protection-tour-bundle.js',
-    },
-    'contribute-2015': {
-        'source_filenames': (
-            'js/mozorg/contribute/contribute-2015-ga.js',
-            'js/mozorg/contribute/contribute-2015.js',
-        ),
-        'output_filename': 'js/contribute-2015-bundle.js',
-    },
-    'contribute-2015-landing': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.cycle2.min.js',
-            'js/base/mozilla-modal.js',
-        ),
-        'output_filename': 'js/contribute-2015-landing-bundle.js',
     },
     'mosaic': {
         'source_filenames': (

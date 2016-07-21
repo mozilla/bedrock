@@ -13,7 +13,7 @@ from mock import ANY, patch
 from nose.tools import ok_, eq_
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.util import hide_contrib_form, get_fb_like_locale, get_tweets, page
+from bedrock.mozorg.util import get_fb_like_locale, get_tweets, page
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -39,23 +39,6 @@ class TestTwitterAPI(TestCase):
                                                                   include_rts=False,
                                                                   exclude_replies=True,
                                                                   count=100)
-
-
-@override_settings(ROOT=ROOT, DEV=False)
-class TestHideContribForm(TestCase):
-    def test_lang_file_is_hiding(self):
-        """
-        `hide_contrib_form` should return true if lang file has the
-        comment (## hide_form ##), and false otherwise.
-        """
-        # 'de' lang file has 'active' and 'hide_form' comments
-        ok_(hide_contrib_form('de'))
-        # 'fr' lang file has 'active' comment
-        ok_(not hide_contrib_form('fr'))
-        # 'pt-BR' lang file has hide_form' comment
-        ok_(hide_contrib_form('pt-BR'))
-        # 'sl' lang file has no comments
-        ok_(not hide_contrib_form('sl'))
 
 
 class TestGetFacebookLikeLocale(TestCase):

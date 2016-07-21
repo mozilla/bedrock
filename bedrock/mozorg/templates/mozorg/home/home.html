@@ -93,7 +93,7 @@
             <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{_('About')}}</a>
           </li>
           <li class="contribute-item">
-            <a href="{{ url('mozorg.contribute') }}" data-link-type="nav" data-link-name="Participate">{{_('Participate')}}</a>
+            <a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-name="Participate">{{_('Participate')}}</a>
           </li>
           <li class="products-item">
             <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{_('Firefox')}}</a>
@@ -200,7 +200,7 @@
         </li>
       {% else %}
         <li id="promo-9" class="item promo-small-landscape volunteer">
-          <a class="panel-link" href="{{ url('mozorg.contribute') }}" data-link-type="tile" data-link-name="Volunteer with Mozilla">
+          <a class="panel-link" href="{{ url('mozorg.contribute.index') }}" data-link-type="tile" data-link-name="Volunteer with Mozilla">
             <h2>{{ _('Volunteer <br>with Mozilla') }}</h2>
           </a>
         </li>
@@ -317,7 +317,7 @@
         </li>
       </ul>
 
-      <a class="contribute-btn" href="{{ url('mozorg.contribute') }}" data-link-type="button" data-link-name="Get Involved with Mozilla today">
+      <a class="contribute-btn" href="{{ url('mozorg.contribute.index') }}" data-link-type="button" data-link-name="Get Involved with Mozilla today">
         {{ _('Get Involved with Mozilla today') }}
       </a>
     </div>
