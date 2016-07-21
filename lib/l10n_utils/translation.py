@@ -10,12 +10,23 @@ _active = local()
 
 
 def activate(language):
-    # coppied from Django
+    """
+    Installs the given language as the language for the current thread.
+    """
     _active.value = language
 
 
+def deactivate():
+    """
+    Uninstalls the currently active language so that further _ calls
+    will resolve against the default language, again.
+    """
+    if hasattr(_active, "value"):
+        del _active.value
+
+
 def get_language():
-    # coppied from Django
+    """Returns the currently selected language."""
     l = getattr(_active, "value", None)
     if l is None:
         return settings.LANGUAGE_CODE
@@ -30,6 +41,5 @@ def get_language_bidi():
     * False = left-to-right layout
     * True = right-to-left layout
     """
-    # coppied from Django
     base_lang = get_language().split('-')[0]
     return base_lang in settings.LANGUAGES_BIDI
