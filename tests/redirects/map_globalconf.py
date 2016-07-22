@@ -1072,4 +1072,5 @@ URLS = flatten((
     # Bug 1283397
     url_test('/firefox/pocket', 'https://getpocket.com/firefox/'),
 
+    url_test('/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun', '/firefox/mobile-download/'),
 ))
