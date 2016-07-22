@@ -23,6 +23,7 @@ COPY ./requirements /app/requirements
 RUN pip install --no-cache-dir -r requirements/dev.txt
 RUN pip install --no-cache-dir -r requirements/prod.txt
 RUN pip install --no-cache-dir -r requirements/docker.txt
+RUN pip install --no-cache-dir -r requirements/test.txt
 
 # Cleanup
 RUN apt-get purge -y python-dev build-essential libxml2-dev libxslt1-dev
