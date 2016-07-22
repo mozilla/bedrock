@@ -59,7 +59,7 @@ flake8 bedrock lib
 
 echo "Starting tests..."
 export FORCE_DB=1
-coverage run manage.py test --noinput
+coverage run py.test lib bedrock
 coverage xml $(find bedrock lib -name '*.py')
 
 echo "FIN"

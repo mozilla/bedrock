@@ -4,14 +4,13 @@
 
 from contextlib import contextmanager
 
-from django.test import TestCase
+from django.test import RequestFactory, TestCase as DjTestCase
 
-import test_utils
 from bedrock.base.urlresolvers import (get_url_prefix, Prefixer, set_url_prefix)
 from lib.l10n_utils import translation
 
 
-class TestCase(TestCase):
+class TestCase(DjTestCase):
     """Base class for Bedrock test cases."""
     def shortDescription(self):
         # Stop nose using the test docstring and instead the test method name.
@@ -22,7 +21,7 @@ class TestCase(TestCase):
         """Context manager that temporarily activates a locale."""
         old_prefix = get_url_prefix()
         old_locale = translation.get_language()
-        rf = test_utils.RequestFactory()
+        rf = RequestFactory()
         set_url_prefix(Prefixer(rf.get('/%s/' % (locale,))))
         translation.activate(locale)
         yield

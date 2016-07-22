@@ -97,11 +97,6 @@ https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a
 nose==1.3.6 \
     --hash=sha256:4772ab5189229392d16c70ba7b8bb66b5d3c18076694c55347afb98c950b283c \
     --hash=sha256:f61e0909a743eed37b1207e38a8e7b4a2fe0a82185e36f2be252ef1b3f901758
-nose-exclude==0.4.1 \
-    --hash=sha256:44466a9bcb56d2e568750f91504d1278c74eabb259a305b06e975b87b51635da
-django-nose==1.4 \
-    --hash=sha256:ed90a6ed8825a516c653fc9099c053be335b64fa004a903a181b7e01488ec5d4 \
-    --hash=sha256:26cef3c6f62df2eee955a25195de6f793881317c0f5fd1a1c6f9e22f351a9313
 pathlib==1.0.1 \
     --hash=sha256:6940718dfc3eff4258203ad5021090933e5c04707d5ca8cc9e73c94a7894ea9f
 dj-database-url==0.3.0 \
