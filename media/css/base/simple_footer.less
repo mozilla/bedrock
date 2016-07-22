@@ -1,82 +1,155 @@
 @import "../sandstone/lib.less";
 
 #colophon {
-    z-index: 1;
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, .1);
     margin-top: 0;
-    text-align: center;
-    padding-top: 20px;
-    .primary, .secondary, .fx-footer-links {
-        margin-bottom: 10px;
+    z-index: 1;
+
+    .content {
+        .clearfix;
+        margin: 0 auto;
+        width: @widthDesktop - (@baseLine * 2);
+
+        @media only screen and (max-width: @breakDesktop) {
+            width: @widthTablet - @gridGutterWidth;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            width: @widthMobileLandscape;
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            width: @widthMobile - @gridGutterWidth;
+        }
+    }
+
+    .mozlogo {
+        .at2x('/media/img/sandstone/footer-mozilla.png', 93px, 24px);
+        .image-replaced();
+        .inline-block;
+        background-repeat: no-repeat;
+        float: left;
+        height: 25px;
+        margin: 0 auto;
+        position: static;
+        width: 94px;
+    }
+
+    ul {
+        .font-size(@smallFontSize);
+        float: right;
+        list-style: none;
+        margin: 0;
+        text-align: right;
+
         li {
+            clear: right;
             display: inline;
-            margin-left: 20px;
-            a, a:link, a:visited {
-                display: inline-block;
-                padding: 2px 12px;
-            }
-        }
-    }
-
-    .primary li,
-    .fx-footer-links li {
-        a, a:link, a:visited {
-            text-transform: uppercase;
-            .font-size(@baseFontSize);
-            color: @linkSkyBlue;
-            &:after {
-                content: " \00BB";
-            }
-            span {
-                color: @textColorSecondary;
-            }
-        }
-    }
-
-    .fx-footer-links li {
-        a, a:link, a:visited {
-            color: @textColorSecondary;
+            margin: 0 10px;
 
             &:after {
-                color: @linkSkyBlue;
+                color: @textColorPrimary;
+                content: '•';
+                margin: 0 -10px 0 10px;
+            }
+
+            &:last-child {
+                margin: 0 0 0 10px;
+
+                &:after {
+                    content: '';
+                }
+            }
+
+            a {
+                .inline-block;
             }
         }
     }
 
-    .secondary {
-        li {
-            margin-left: 0;
-            border: dotted @textColorLight;
-            border-width: 0 0 0 1px;
-            a, a:link, a:visited {
-                .font-size(@smallFontSize);
-                color: @textColorLight;
-            }
-            &:first-child {
-                border-width: 0;
-            }
-        }
+    .fx-footer-links {
+        clear: both;
+        margin-top: @baseLine / 2;
     }
 
-    .footer-lang {
-        float: none;
-        margin-top: @baseLine * 1.5;
-        width: auto;
+    form {
+        .inline-block;
+
         label {
-            color: @textColorLight;
-        }
-        select {
-            margin: 0 .5em;
+            color: @textColorTertiary;
         }
     }
 }
 
-/* RTL support */
 html[dir="rtl"] #colophon {
-    .secondary li:not(:first-child) {
-        border-width: 0 1px 0 0;
+    .mozlogo {
+        float: right;
+    }
+    
+    ul {
+        float: left;
+
+        li {
+            &:after {
+                margin: 0 10px 0 -10px;
+            }
+
+            &:last-child {
+                margin: 0 10px 0 0;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    #colophon .mozlogo {
+        margin-bottom: @baseLine;
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    #colophon {
+        .content {
+            text-align: center;
+        }
+
+        .mozlogo {
+            float: none;
+            margin-bottom: @baseLine / 2;
+        }
+
+        ul {
+            float: none;
+            text-align: center;
+
+            li {
+                display: block;
+                margin: 0 0 .25em;
+
+                &:after {
+                    content: '';
+                }
+
+                &:last-child {
+                    margin: 0 0 .25em;
+                }
+            }
+        }
+
+        .fx-footer-links {
+            margin-top: 0;
+        }
+
+        form {
+            margin-bottom: @baseLine / 2;
+        }
     }
 
-    .footer-lang {
-        float: none;
+    html[dir="rtl"] #colophon {
+        .mozlogo,
+        ul {
+            float: none;
+        }
     }
 }
