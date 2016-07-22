@@ -1,16 +1,16 @@
+from django.test import TestCase, RequestFactory
+
 import jingo
 import jinja2
 from nose.tools import eq_
-from django.test import TestCase, RequestFactory
 
-from mock import patch
-
-from bedrock.base import context_processors
+from lib.l10n_utils import translation
 
 
 class TestContext(TestCase):
 
     def setUp(self):
+        translation.activate('en-US')
         self.factory = RequestFactory()
 
     def render(self, content, request=None):
@@ -28,9 +28,7 @@ class TestContext(TestCase):
     def test_languages(self):
         eq_(self.render("{{ LANGUAGES['en-us'] }}"), 'English (US)')
 
-    @patch.object(context_processors, 'translation')
-    def test_lang_setting(self, translation):
-        translation.get_language.return_value = 'en-US'
+    def test_lang_setting(self):
         eq_(self.render("{{ LANG }}"), 'en-US')
 
     def test_lang_dir(self):

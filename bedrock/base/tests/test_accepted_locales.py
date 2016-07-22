@@ -2,12 +2,12 @@ import os
 import shutil
 
 from django.conf import settings
-import test_utils
+from django.test import TestCase
 
 from bedrock.settings.base import get_dev_languages, path
 
 
-class AcceptedLocalesTest(test_utils.TestCase):
+class AcceptedLocalesTest(TestCase):
     """Test lazy evaluation of locale related settings.
 
     Verify that some localization-related settings are lazily evaluated based

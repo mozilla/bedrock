@@ -22,8 +22,6 @@ pyflakes==0.8.1 \
 mock==2.0.0 \
     --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
     --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
-https://github.com/jbalogh/test-utils/archive/e42e031d31ea63d593e47d564545149a0f30b95f.tar.gz#egg=test-utils \
-    --hash=sha256:89f0058a6c7ed72e6ac299b2b8347acddfd5cccd60dd8fd30a4a031df091cb9b
 pyquery==1.0 \
     --hash=sha256:fb2345065647211507d23355b1026d995ded40e088d86fcae262562921d80408
 factory-boy==2.2.1 \

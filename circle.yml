@@ -57,7 +57,7 @@ test:
     - mkdir -p "$CIRCLE_TEST_REPORTS/django"
   override:
     - gulp js:test
-    - python manage.py test
+    - py.test lib bedrock
     - py.test --junitxml="$CIRCLE_TEST_REPORTS/redirects.xml" -r a -m smoke tests/redirects
 
 deployment:

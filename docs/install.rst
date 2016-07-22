@@ -77,7 +77,7 @@ This will be important during development so that you can easily know when
 you've broken something with a change. You should still have your virtualenv
 activated, so running the tests is as simple as::
 
-    $ ./manage.py test
+    $ py.test lib bedrock
 
 .. note::
 
