@@ -11,7 +11,6 @@ from StringIO import StringIO
 from textwrap import dedent
 
 from django.conf import settings
-from django.core.management import CommandError
 from django.test import TestCase, override_settings
 
 from mock import ANY, MagicMock, Mock, patch, call
@@ -52,7 +51,7 @@ class TestL10nUpdate(TestCase):
         self.cmd.locales_path = Mock()
         self.cmd.locales_path.is_dir.return_value = False
         self.cmd.handle()
-        git_mock.assert_called_once_with('clone', '--origin', 'l10n-dev',
+        git_mock.assert_called_once_with('clone', '--origin', 'l10n-dev', '--depth', '1',
                                          self.cmd.locales_repo, self.cmd.locales_path_str)
 
     @override_settings(DEV=True)
@@ -86,12 +85,17 @@ class TestL10nUpdate(TestCase):
         ])
 
     @override_settings(DEV=True)
-    def test_error_if_locales_not_repo(self, git_mock):
+    @patch.object(l10n_update, 'rmtree')
+    def test_error_if_locales_not_repo(self, rmtree_mock, git_mock):
         self.cmd.locales_path = Mock()
         self.cmd.locales_path.is_dir.return_value = True
         self.cmd.locales_path.joinpath.return_value.is_dir.return_value = False
-        with self.assertRaises(CommandError):
-            self.cmd.handle()
+        self.cmd.clone_repo = Mock()
+        self.cmd.update_repo = Mock()
+        self.cmd.handle()
+        rmtree_mock.assert_called_with(self.cmd.locales_path_str, ignore_errors=True)
+        self.cmd.clone_repo.assert_called()
+        self.cmd.update_repo.assert_not_called()
 
 
 @override_settings(ROOT=ROOT)
