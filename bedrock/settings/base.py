@@ -60,9 +60,6 @@ CACHES = config(
 PYLIBMC_MIN_COMPRESS_LEN = 150 * 1024
 PYLIBMC_COMPRESS_LEVEL = 1  # zlib.Z_BEST_SPEED
 
-# Site ID is used by Django's Sites framework.
-SITE_ID = 1
-
 # Logging
 LOG_LEVEL = config('LOG_LEVEL', cast=int, default=logging.INFO)
 HAS_SYSLOG = True
@@ -96,6 +93,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# just here so Django doesn't complain
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html

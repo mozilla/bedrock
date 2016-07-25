@@ -23,7 +23,7 @@ class TestContext(TestCase):
         eq_(self.render('{{ request.path }}'), '/')
 
     def test_settings(self):
-        eq_(self.render('{{ settings.SITE_ID }}'), '1')
+        eq_(self.render('{{ settings.LANGUAGE_CODE }}'), 'en-US')
 
     def test_languages(self):
         eq_(self.render("{{ LANGUAGES['en-us'] }}"), 'English (US)')
