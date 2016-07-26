@@ -315,59 +315,13 @@ class FirstrunView(LatestFxView):
         if show_devbrowser_firstrun_or_whatsnew(version):
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
-            v = self.request.GET.get('v', None)
-            locale = l10n_utils.get_locale(self.request)
-
-            if (locale == 'en-US' and v in ONBOARDING_VARIATIONS):
-                if (v in ['1', '2', '3']):
-                    template = 'firefox/onboarding/fxa-simple.html'
-                elif (v == '4'):
-                    template = 'firefox/onboarding/user-actions-mobileprivacy.html'
-                elif (v == '5'):
-                    template = 'firefox/onboarding/user-actions-pinsearch.html'
-                elif (v == '6'):
-                    template = 'firefox/onboarding/fxa-complex.html'
-            else:
-                template = 'firefox/firstrun/firstrun-horizon.html'
+            template = 'firefox/firstrun/firstrun-horizon.html'
         elif show_38_0_5_firstrun(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         else:
             template = 'firefox/australis/firstrun.html'
 
         # return a list to conform with original intention
-        return [template]
-
-
-class SecondrunView(LatestFxView):
-
-    def get_template_names(self):
-        version = self.kwargs.get('version') or None
-        locale = l10n_utils.get_locale(self.request)
-        v = self.request.GET.get('v', None)
-
-        if (version):
-            if (locale == 'en-US' and v in ONBOARDING_VARIATIONS):
-                if (v == '1'):
-                    # we have no '1' variation for secondrun, so just serve
-                    # non-space-themed simple FxA template on the off-chance someone
-                    # plays around with the URL
-                    template = 'firefox/firstrun/firstrun.html'
-                if (v == '2'):
-                    template = 'firefox/onboarding/user-actions-mobileprivacy.html'
-                elif (v in ['3', '6']):
-                    template = 'firefox/onboarding/user-actions-pinsearch.html'
-                elif (v == '4'):
-                    template = 'firefox/onboarding/fxa-simple.html'
-                elif (v == '5'):
-                    template = 'firefox/onboarding/fxa-complex.html'
-            else:
-                # should never hit secondrun without a 'v' query param, but if so,
-                # default to standard, non-space firstrun
-                template = 'firefox/firstrun/firstrun.html'
-        # if version missing from URL, give user old-timey australis fallback
-        else:
-            template = 'firefox/australis/firstrun.html'
-
         return [template]
 
 

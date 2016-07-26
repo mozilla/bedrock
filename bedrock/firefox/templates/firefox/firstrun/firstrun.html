@@ -7,11 +7,7 @@
 {% extends "firefox/base.html" %}
 
 {% block gtm_page_id %}
-  {% if 'secondrun' in request.path %}
-    data-gtm-page-id="/firefox/secondrun/"
-  {% else %}
-    data-gtm-page-id="/firefox/firstrun/"
-  {% endif %}
+  data-gtm-page-id="/firefox/firstrun/"
 {% endblock %}
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
