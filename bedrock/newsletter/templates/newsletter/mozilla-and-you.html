@@ -18,6 +18,6 @@
 {% endblock %}
 
 {% block success_confirm %}
-  <p>{% trans %}Thanks! Please check your inbox to confirm your subscription.{% endtrans %}</p>
-  <p>{% trans %}You'll receive an email from mozilla@e.mozilla.org to confirm your subscription. If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.{% endtrans %}</p>
+  <h3>{{ _('Thanks!') }}</h3>
+  {{ super() }}
 {% endblock success_confirm %}

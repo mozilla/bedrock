@@ -94,13 +94,14 @@
   </div>{# /-- .ff-signup-wrapper #}
 
   <div id="newsletter-form-thankyou" class="thank newsletter-form newsletter-form-extra">
-    <h3>{{ _('Thanks! Please check your inbox to confirm your subscription to the Firefox Friends newsletter.') }}</h3>
+    <h3>{{ _('Thanks!') }}</h3>
 
     {# below matches text found in newsletter/includes/macros/email_form_thankyou() #}
     <p>
     {% trans %}
-      You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
-      If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.
+      If you haven’t previously confirmed a subscription to a Mozilla-related
+      newsletter you may have to do so. Please check your inbox or your spam filter
+      for an email from us.
     {% endtrans %}
     </p>
   </div>
