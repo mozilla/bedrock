@@ -9,8 +9,8 @@
 {% extends "firefox/new/base.html" %}
 
 {% block experiments %}
-  {% if switch('experiment-firefox-new-all-links') and LANG == 'en-US' %}
-    {% javascript 'experiment-firefox-new-scene1-all-links' %}
+  {% if switch('experiment-firefox-new-oldie-nojs') %}
+    {% javascript 'experiment_firefox_new_oldie_nojs' %}
   {% endif %}
 {% endblock %}
 
@@ -18,9 +18,6 @@
 {% block extrahead %}
   {% stylesheet 'firefox_new_common' %}
   {% stylesheet 'firefox_new_scene1' %}
-  {% if version in ['1', '2'] %}
-    {% stylesheet 'firefox_new_scene1_variations' %}
-  {% endif %}
 {% endblock %}
 
 {% block body_id %}firefox-new-scene1{% endblock %}
@@ -127,42 +124,9 @@
   </div>
 </main>
 
-{% if version == '2' %}
-  <div id="fx-modal-wrapper">
-    <div id="fx-modal">
-      <div id="fx-modal-content">
-        <section id="fx-modal-primary-ctas" class="fx-modal-section">
-          <h4>Firefox for other platforms</h4>
-
-          <ul id="fx-modal-direct-downloads"></ul>
-
-          <ul id="fx-modal-mobile-downloads">
-            <li class="android">
-              {{ google_play_button() }}
-            </li>
-            <li class="ios">
-              <a href="{{ firefox_ios_url('mozorg-fxnew_page_scene1_modal-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-              </a>
-            </li>
-          </ul>
-        </section>{#-- /#fx-modal-primary-ctas --#}
-
-        <section id="fx-modal-secondary-cta" class="fx-modal-section">
-          <h3>Download Firefox <span id="fx-modal-user-platform"></span></h3>
-          {{ download_firefox(alt_copy=_('Free Download'), dom_id="fx-modal-download") }}
-        </section>{#-- /#fx-modal-secondary-cta --#}
-      </div>{#-- /#fx-modal-content --#}
-    </div>{#-- /#fx-modal --#}
-  </div>{#-- /#fx-modal-wrapper -_#}
-{% endif %}
-
 {% include 'firefox/includes/schemaorg-app.html' %}
 {% endblock %}
 
 {% block js %}
   {% javascript 'firefox_new_scene1' %}
-  {% if version in ['1', '2'] %}
-    {% javascript 'firefox_new_scene1_variations' %}
-  {% endif %}
 {% endblock %}

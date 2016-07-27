@@ -8,7 +8,7 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 
 from bedrock.base.urlresolvers import reverse
-from mock import ANY, patch
+from mock import patch
 from nose.tools import eq_, ok_
 
 from bedrock.firefox import views
@@ -172,32 +172,20 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
 
     def test_scene_2_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
-    # /all tests (bug 1295181)
-    def test_all_variation_1(self, render_mock):
+    # IE 8 no JS test (bug 1288517)
+    def test_ie8_variation(self, render_mock):
         req = RequestFactory().get('/firefox/new/?v=1')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', {'version': '1'})
-
-    def test_all_variation_2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=2')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', {'version': '2'})
-
-    def test_all_variation_invalid(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=3')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', {'version': None})
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1-ie8.html')
 
 
 class TestWin10WelcomeView(TestCase):
