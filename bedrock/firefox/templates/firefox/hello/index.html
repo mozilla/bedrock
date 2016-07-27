@@ -38,6 +38,12 @@
   <div id="try-hello">
     <div class="container">
       <header role="banner">
+        {% if switch('firefox-hello-eol-notification') %}
+          <p class="notification">
+            {{ _('Heads up! Firefox Hello will be removed from Firefox soon.') }}
+            <a rel="external" class="more" href="https://support.mozilla.org/kb/hello-status">{{ _('Learn more') }}</a>
+          </p>
+        {% endif %}
         {% if LANG.startswith('en-') %}
           <h1>Plan. Shop. Decide. <strong>Together.</strong></h1>
         {% else %}
