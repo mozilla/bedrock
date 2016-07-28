@@ -3,16 +3,166 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
+from urllib import unquote_plus
+from urlparse import parse_qs
 
 from django.test import override_settings
 from django.test.client import RequestFactory
 
 from bedrock.base.urlresolvers import reverse
-from mock import patch
+from mock import patch, Mock
 from nose.tools import eq_, ok_
 
 from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
+
+
+@override_settings(STUB_ATTRIBUTION_HMAC_KEY='achievers',
+                   STUB_ATTRIBUTION_RATE=1)
+@patch.object(views, 'time', Mock(return_value=12345.678))
+class TestStubAttributionCode(TestCase):
+    def _get_request(self, params):
+        rf = RequestFactory()
+        return rf.get('/', params,
+                      HTTP_X_REQUESTED_WITH='XMLHttpRequest',
+                      HTTP_ACCEPT='application/json')
+
+    def test_not_ajax_request(self):
+        req = RequestFactory().get('/', {'source': 'malibu'})
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 400)
+        assert 'cache-control' not in resp
+        data = json.loads(resp.content)
+        self.assertEqual(data['error'], 'Resource only available via XHR')
+
+    def test_no_valid_param_names(self):
+        req = self._get_request({'dude': 'abides'})
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 400)
+        assert resp['cache-control'] == 'max-age=31536000'
+        data = json.loads(resp.content)
+        self.assertEqual(data['error'], 'no params')
+
+    def test_no_valid_param_data(self):
+        params = {'utm_source': 'br@ndt', 'utm_medium': 'ae<t>her'}
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 400)
+        assert resp['cache-control'] == 'max-age=31536000'
+        data = json.loads(resp.content)
+        self.assertEqual(data['error'], 'no params')
+
+    def test_some_valid_param_data(self):
+        params = {'utm_source': 'brandt', 'utm_content': 'ae<t>her'}
+        final_params = {
+            'source': 'brandt',
+            'medium': '(direct)',
+            'campaign': '(not set)',
+            'content': '(not set)',
+            'timestamp': '12345',
+        }
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 200)
+        assert resp['cache-control'] == 'max-age=31536000'
+        data = json.loads(resp.content)
+        # will it blend?
+        attrs = parse_qs(unquote_plus(data['attribution_code']))
+        # parse_qs returns a dict with lists for values
+        attrs = {k: v[0] for k, v in attrs.items()}
+        self.assertDictEqual(attrs, final_params)
+        self.assertEqual(data['attribution_sig'],
+                         'f9335b128511aed0109ecf21bb364d7637feca0b1ffcebbf7490e4966f71eca0')
+
+    def test_returns_valid_data(self):
+        params = {'utm_source': 'brandt', 'utm_medium': 'aether'}
+        final_params = {
+            'source': 'brandt',
+            'medium': 'aether',
+            'campaign': '(not set)',
+            'content': '(not set)',
+            'timestamp': '12345',
+        }
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 200)
+        assert resp['cache-control'] == 'max-age=31536000'
+        data = json.loads(resp.content)
+        # will it blend?
+        attrs = parse_qs(unquote_plus(data['attribution_code']))
+        # parse_qs returns a dict with lists for values
+        attrs = {k: v[0] for k, v in attrs.items()}
+        self.assertDictEqual(attrs, final_params)
+        self.assertEqual(data['attribution_sig'],
+                         '59c7743ece9b60b4fd1e9816c85deb22b3550d86ef3b0cf1592e835f58ff2d96')
+
+    def test_handles_referrer(self):
+        params = {'utm_source': 'brandt', 'referrer': 'https://duckduckgo.com/privacy'}
+        final_params = {
+            'source': 'brandt',
+            'medium': '(direct)',
+            'campaign': '(not set)',
+            'content': '(not set)',
+            'timestamp': '12345',
+        }
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 200)
+        assert resp['cache-control'] == 'max-age=31536000'
+        data = json.loads(resp.content)
+        # will it blend?
+        attrs = parse_qs(unquote_plus(data['attribution_code']))
+        # parse_qs returns a dict with lists for values
+        attrs = {k: v[0] for k, v in attrs.items()}
+        self.assertDictEqual(attrs, final_params)
+        self.assertEqual(data['attribution_sig'],
+                         'f9335b128511aed0109ecf21bb364d7637feca0b1ffcebbf7490e4966f71eca0')
+
+    def test_handles_referrer_no_source(self):
+        params = {'referrer': 'https://example.com:5000/searchin', 'utm_medium': 'aether'}
+        final_params = {
+            'source': 'example.com:5000',
+            'medium': 'referral',
+            'campaign': '(not set)',
+            'content': '(not set)',
+            'timestamp': '12345',
+        }
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 200)
+        assert resp['cache-control'] == 'max-age=31536000'
+        data = json.loads(resp.content)
+        # will it blend?
+        attrs = parse_qs(unquote_plus(data['attribution_code']))
+        # parse_qs returns a dict with lists for values
+        attrs = {k: v[0] for k, v in attrs.items()}
+        self.assertDictEqual(attrs, final_params)
+        self.assertEqual(data['attribution_sig'],
+                         '18e26666e63a0742926cf9e9e62154085cc12c5058831b2d3196c298d87c7e52')
+
+    @override_settings(STUB_ATTRIBUTION_RATE=0.2)
+    def test_rate_limit(self):
+        params = {'utm_source': 'brandt', 'utm_medium': 'aether'}
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 200)
+        assert resp['cache-control'] == 'max-age=31536000'
+
+    @override_settings(STUB_ATTRIBUTION_RATE=0)
+    def test_rate_limit_disabled(self):
+        params = {'utm_source': 'brandt', 'utm_medium': 'aether'}
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 429)
+        assert resp['cache-control'] == 'max-age=600'
+
+    @override_settings(STUB_ATTRIBUTION_HMAC_KEY='')
+    def test_no_hmac_key_set(self):
+        params = {'utm_source': 'brandt', 'utm_medium': 'aether'}
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 403)
+        assert resp['cache-control'] == 'max-age=600'
 
 
 class TestSendToDeviceView(TestCase):

@@ -3,22 +3,29 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
+import hashlib
+import hmac
 import re
+from collections import OrderedDict
+from time import time
+from urllib import quote_plus
+from urlparse import urlparse
 
+from django.conf import settings
 from django.http import (Http404, HttpResponseRedirect,
                          HttpResponsePermanentRedirect)
+from django.utils.cache import patch_response_headers
 from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import TemplateView
 
 import basket
-from bedrock.base.urlresolvers import reverse
 from commonware.response.decorators import xframe_allow
-from lib import l10n_utils
 from product_details.version_compare import Version
 
+from lib import l10n_utils
+from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
@@ -68,6 +75,15 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     }
 }
 
+STUB_VALUE_NAMES = [
+    # name, default value
+    ('utm_source', '(not set)'),
+    ('utm_medium', '(direct)'),
+    ('utm_campaign', '(not set)'),
+    ('utm_content', '(not set)'),
+]
+STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%()_]+$', flags=re.IGNORECASE)
+
 
 def installer_help(request):
     installer_lang = request.GET.get('installer_lang', None)
@@ -84,6 +100,63 @@ def installer_help(request):
         context['installer_channel'] = installer_channel
 
     return l10n_utils.render(request, 'firefox/installer-help.html', context)
+
+
+@require_GET
+def stub_attribution_code(request):
+    """Return a JSON response containing the HMAC signed stub attribution value"""
+    if not request.is_ajax():
+        return HttpResponseJSON({'error': 'Resource only available via XHR'}, status=400)
+
+    response = None
+    rate = settings.STUB_ATTRIBUTION_RATE
+    key = settings.STUB_ATTRIBUTION_HMAC_KEY
+    if not rate:
+        # return as though it was rate limited, since it was
+        response = HttpResponseJSON({'error': 'rate limited'}, status=429)
+    elif not key:
+        response = HttpResponseJSON({'error': 'service not configured'}, status=403)
+
+    if response:
+        patch_response_headers(response, 600)  # 10 min
+        return response
+
+    data = request.GET
+    codes = OrderedDict()
+    has_value = False
+    for name, default_value in STUB_VALUE_NAMES:
+        val = data.get(name, '')
+        # remove utm_
+        name = name[4:]
+        if val and STUB_VALUE_RE.match(val):
+            codes[name] = val
+            has_value = True
+        else:
+            codes[name] = default_value
+
+    if codes['source'] == '(not set)' and 'referrer' in data:
+        try:
+            codes['source'] = urlparse(data['referrer']).netloc
+            codes['medium'] = 'referral'
+            has_value = True
+        except Exception:
+            # any problems and we should just ignore it
+            pass
+
+    if has_value:
+        codes['timestamp'] = str(int(time()))
+        code = '&'.join('='.join(attr) for attr in codes.items())
+        code = quote_plus(code)
+        sig = hmac.new(key, code, hashlib.sha256).hexdigest()
+        response = HttpResponseJSON({
+            'attribution_code': code,
+            'attribution_sig': sig,
+        })
+    else:
+        response = HttpResponseJSON({'error': 'no params'}, status=400)
+
+    patch_response_headers(response, 31536000)  # 1 year
+    return response
 
 
 @require_POST
