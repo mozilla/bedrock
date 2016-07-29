@@ -19,17 +19,11 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'mosaic_video' %}
-{% endblock %}
-
-{% block mosaic %}
-{% include "mozorg/mosaic-grid.html" %}
+  {% javascript 'about_video' %}
 {% endblock %}
 
 {% block content %}
-
 <article id="main-content">
-
   <h1 class="title-shadow-box">{{ _('Get to know Mozilla') }}</h1>
 
   <div class="content-wrapper">
@@ -125,9 +119,9 @@
   <aside id="newsletter-subscribe">
     <div class="content container">
     {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='light') }}
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), subtitle=_('Get the Mozilla newsletter and help us keep the Web free and open.'), button_class='red') }}
     {% else %}
-      {{ email_newsletter_form(button_class='light') }}
+      {{ email_newsletter_form(button_class='red') }}
     {% endif %}
     </div>
   </aside>
