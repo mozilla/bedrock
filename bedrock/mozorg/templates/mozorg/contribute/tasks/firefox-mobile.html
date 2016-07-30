@@ -27,7 +27,7 @@
           }, class_name='download-link', extra_img_attributes={
             'data-action': 'install', 'data-task': 'firefox-mobile', 'data-step': 'one', 'data-complete': 'true', 'data-mobileversion': 'Android'
           }) }}
-          <a rel="external" class="download-link" href="{{ firefox_ios_url('mozorg-contribute_page-appstore-button') }}" target="_blank" data-link-type="download" data-download-os="iOS">
+          <a class="download-link" href="{{ firefox_ios_url('mozorg-contribute_page-appstore-button') }}" target="_blank" rel="external noopener noreferrer" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45" data-action="install" data-task="firefox-mobile" data-step="one" data-complete="true" data-mobileversion="iOS">
           </a>
         </div>
