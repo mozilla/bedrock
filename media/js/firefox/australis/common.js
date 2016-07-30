@@ -76,16 +76,6 @@
             'data-page-name': pageId,
             'data-interaction': 'button click',
             'data-element-location': 'Get Started with Sync'
-        }).on('click', function(e) {
-            e.preventDefault();
-
-            // Track sync button clicks
-
-            window.dataLayer.push({
-                'event': 'first-run-sync'
-            });
-
-            window.open(this.href, '_blank');
         });
     });
 

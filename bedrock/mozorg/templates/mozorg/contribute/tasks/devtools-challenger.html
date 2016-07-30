@@ -24,7 +24,7 @@
       </header>
       <div class="step-content">
         <img src="{{ static('img/contribute/signup/devtools.png') }}" width="620" class="feature-img" alt="" />
-        <a href="http://devtoolschallenger.com/" rel="external" class="button-blue action" data-action="challenger" data-task="devtools" data-step="one" data-complete="true" target="_blank">
+        <a href="http://devtoolschallenger.com/" class="button-blue action" data-action="challenger" data-task="devtools" data-step="one" data-complete="true" target="_blank" rel="external noopener noreferrer">
           {% if l10n_has_tag('contribute-tasks-0516') %}
             {{ _('Visit Dev Tools Challenger') }}
           {% else %}
@@ -32,7 +32,12 @@
           {% endif %}
         </a>
         <h4>{{ _('Get involved') }}</h4>
-        {{ _('<a href="%s" id="get-involved" target="_blank">Join the Webdev Contribute Group</a>  and start collaborating with other Mozillians around the world.')|format('https://wiki.mozilla.org/Contribute/Webdev') }}
+          {% set url = 'https://wiki.mozilla.org/Contribute/Webdev' %}
+          {% if l10n_has_tag('target-links-noopener') %}
+            {{ _('<a href="%s" id="get-involved">Join the Webdev Contribute Group</a> and start collaborating with other Mozillians around the world.')|format(url) }}
+          {% else %}
+            {{ _('<a href="%s" id="get-involved" target="_blank">Join the Webdev Contribute Group</a>  and start collaborating with other Mozillians around the world.')|format(url) }}
+          {% endif %}
       </div>
     </li>
   </ol>
