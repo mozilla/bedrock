@@ -1,5 +1,4 @@
-#TODO: switch to 'git rev-parse --short HEAD'
-GIT_COMMIT ?= $(shell git rev-parse HEAD)
+GIT_COMMIT ?= $(shell git rev-parse --short HEAD)
 VERSION ?= $(shell git describe --tags --exact-match 2>/dev/null || echo ${GIT_COMMIT})
 DEV_VERSION ?= latest
 REGISTRY ?=
