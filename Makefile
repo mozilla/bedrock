@@ -25,13 +25,13 @@ DEIS_APPLICATION ?= bedrock-demo-jgmize
 BASE_URL ?= https://www.mozilla.org
 
 env:
-	@if [[ ! -e ${ENV_FILE} ]]; then \
+	@if [ ! -e ${ENV_FILE} ]; then \
 		sed -e s/DISABLE_SSL=False/DISABLE_SSL=True/ .bedrock_demo_env > ${ENV_FILE}; \
 	fi
 
 
 help:
-	@if [[ -n "$(which rst2ansi)" ]]; then \
+	@if [ -n "$(which rst2ansi)" ]; then \
 		rst2ansi docs/make-commands.rst; \
 	else \
 		cat docs/make-commands.rst; \
