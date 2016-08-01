@@ -43,8 +43,8 @@ gulp: env
 js-lint: env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} gulp js\:lint
 
-unit:
-	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} ./manage.py test
+unit: env
+	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} py.test lib bedrock
 
 headless:
 	docker run ${DOCKER_RUN_ARGS} -e BASE_URL=${BASE_URL} ${DEV_IMAGE} py.test -m headless
