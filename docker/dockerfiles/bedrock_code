@@ -3,9 +3,7 @@ FROM ${FROM_DOCKER_REPOSITORY}:${GIT_COMMIT}
 COPY . /app
 
 RUN echo "${GIT_COMMIT}" > static/revision.txt
-
-# --unsafe-perm required for lockdown to function
-RUN npm install --production --unsafe-perm
+RUN npm install --production
 RUN ./manage.py collectstatic -l --noinput
 
 # Cleanup
