@@ -9,8 +9,8 @@ awesome, and open sourcy as always. Perhaps even a little more.
 Docs
 ----
 
-Bedrock is a [Django][django] project. Check out the [django docs][dj-docs]
-for general technical documentation. In addition, there are project-specific
+Bedrock is a [Django][django] project. Check out the [django docs][dj-docs] for
+general technical documentation. In addition, there are project-specific
 [bedrock docs][br-docs].
 
 [django]: https://www.djangoproject.com/
