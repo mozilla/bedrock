@@ -18,8 +18,8 @@ DEPLOY_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/bedrock:${TAG_PREFIX}${BEDROCK_COMMIT
 DEV_DOCKERFILE ?= docker/dockerfiles/bedrock_dev
 BASE_DOCKERFILE ?= docker/dockerfiles/bedrock_base
 DEPLOY_DOCKERFILE ?= docker/dockerfiles/bedrock_deploy-${BEDROCK_COMMIT}
-DOCKERFILE ?= ${DEV_DOCKERFILE}
-IMAGE ?= ${DEV_IMAGE}
+DOCKERFILE ?= ${BASE_DOCKERFILE}
+IMAGE ?= ${BASE_IMAGE}
 PWD ?= $(shell pwd)
 GIT_DIR ?= ${PWD}/.git
 DB ?= ${PWD}/bedrock.db
@@ -109,9 +109,6 @@ build-base:
 	fi
 
 build-dev:
-	make build-squash DOCKERFILE=${DEV_DOCKERFILE} IMAGE=${DEV_IMAGE}
-
-build-dev-nosquash:
 	docker build -f ${DEV_DOCKERFILE} -t ${DEV_IMAGE} .
 
 locale:
