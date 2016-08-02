@@ -1,4 +1,4 @@
-GIT_COMMIT ?= $(shell git rev-parse --short HEAD)
+BEDROCK_COMMIT ?= $(shell git rev-parse --short HEAD)
 DEV_VERSION ?= latest
 REGISTRY ?=
 EUW_REGISTRY ?= localhost:5000
@@ -11,21 +11,21 @@ L10N_DEV ?=
 L10N_DEV_REPO ?= "https://github.com/mozilla-l10n/www.mozilla.org"
 L10N_COMMIT ?= $(shell cd locale && git rev-parse --short HEAD)
 DEV_IMAGE ?= "${REGISTRY}${IMAGE_PREFIX}/${DEV_IMAGE_NAME}:${DEV_VERSION}"
-DEPLOY_IMAGE ?= "${REGISTRY}${IMAGE_PREFIX}/bedrock:${TAG_PREFIX}${GIT_COMMIT}-${L10N_COMMIT}"
+DEPLOY_IMAGE ?= "${REGISTRY}${IMAGE_PREFIX}/bedrock:${TAG_PREFIX}${BEDROCK_COMMIT}-${L10N_COMMIT}"
 PWD ?= $(shell pwd)
 GIT_DIR ?= ${PWD}/.git
 DB ?= ${PWD}/bedrock.db
-MOUNT_GIT_DB ?= -v ${DB}\:/app/bedrock.db -v ${GIT_DIR}\:/app/.git
-MOUNT_APP_DIR ?= -v ${PWD}\:/app 
+MOUNT_GIT_DB ?= -v "${DB}:/app/bedrock.db" -v "${GIT_DIR}:/app/.git"
+MOUNT_APP_DIR ?= -v "${PWD}:/app" 
 ENV_FILE ?= .env
 PORT ?= 8000
 PORT_ARGS ?= -p "${PORT}:${PORT}"
-UID_ARGS ?= -u $(shell id -u)\:$(shell id -g)
+UID_ARGS ?= -u "$(shell id -u):$(shell id -g)"
 DOCKER_RUN_ARGS ?= --env-file ${ENV_FILE} ${MOUNT_APP_DIR} -w /app ${UID_ARGS}
 CONTAINER_ID ?= $(shell docker ps --format='{{.ID}}' -f ancestor=${DEV_IMAGE} | head -n 1)
 DEIS_APPLICATION ?= bedrock-demo-jgmize
-DEIS_PULL ?= "${DEIS_APPLICATION}:${TAG_PREFIX}${GIT_COMMIT}-${L10N_COMMIT}"
-BASE_URL ?= https://www.mozilla.org
+DEIS_PULL ?= "${DEIS_APPLICATION}:${TAG_PREFIX}${BEDROCK_COMMIT}-${L10N_COMMIT}"
+BASE_URL ?= "https://www.mozilla.org"
 
 .env:
 	sed -e s/DISABLE_SSL=False/DISABLE_SSL=True/ .bedrock_demo_env > .env
