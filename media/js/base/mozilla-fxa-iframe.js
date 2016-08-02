@@ -59,6 +59,9 @@ Mozilla.FxaIframe = (function() {
             _src = _src.replace('context=iframe', 'context=fx_firstrun_v2');
         }
 
+        // add origin (protocol + hostname + (optional) port) for embed authorization
+        _src += '&origin=' + encodeURIComponent(window.location.origin);
+
         // initialize GA event name
         _gaEventName = _config.gaEventName || 'fxa';
 
