@@ -1,16 +1,17 @@
 GIT_COMMIT ?= $(shell git rev-parse --short HEAD)
-VERSION ?= $(shell git describe --tags --exact-match 2>/dev/null || echo ${GIT_COMMIT})
 DEV_VERSION ?= latest
 REGISTRY ?=
+EUW_REGISTRY ?= localhost:5000
+USW_REGISTRY ?= localhost:5001
+TAG_PREFIX ?=
 IMAGE_PREFIX ?= mozorg
-BASE_IMAGE_NAME ?= bedrock_base
 DEV_IMAGE_NAME ?= bedrock_dev
-CODE_IMAGE_NAME ?= bedrock_code
-L10N_IMAGE_NAME ?= bedrock_l10n
-BASE_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${BASE_IMAGE_NAME}\:${VERSION}
-DEV_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${DEV_IMAGE_NAME}\:${DEV_VERSION}
-CODE_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${CODE_IMAGE_NAME}\:${VERSION}
-L10N_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${L10N_IMAGE_NAME}\:${VERSION}
+L10N_REPO ?= "https://github.com/mozilla-l10n/bedrock-l10n"
+L10N_DEV ?=
+L10N_DEV_REPO ?= "https://github.com/mozilla-l10n/www.mozilla.org"
+L10N_COMMIT ?= $(shell cd locale && git rev-parse --short HEAD)
+DEV_IMAGE ?= "${REGISTRY}${IMAGE_PREFIX}/${DEV_IMAGE_NAME}:${DEV_VERSION}"
+DEPLOY_IMAGE ?= "${REGISTRY}${IMAGE_PREFIX}/bedrock:${TAG_PREFIX}${GIT_COMMIT}-${L10N_COMMIT}"
 PWD ?= $(shell pwd)
 GIT_DIR ?= ${PWD}/.git
 DB ?= ${PWD}/bedrock.db
@@ -22,12 +23,11 @@ PORT_ARGS ?= -p "${PORT}:${PORT}"
 DOCKER_RUN_ARGS ?= --env-file ${ENV_FILE} ${MOUNT_APP_DIR} -w /app
 CONTAINER_ID ?= $(shell docker ps --format='{{.ID}}' -f ancestor=${DEV_IMAGE} | head -n 1)
 DEIS_APPLICATION ?= bedrock-demo-jgmize
+DEIS_PULL ?= "${DEIS_APPLICATION}:${TAG_PREFIX}${GIT_COMMIT}-${L10N_COMMIT}"
 BASE_URL ?= https://www.mozilla.org
 
-env:
-	@if [ ! -e ${ENV_FILE} ]; then \
-		sed -e s/DISABLE_SSL=False/DISABLE_SSL=True/ .bedrock_demo_env > ${ENV_FILE}; \
-	fi
+.env:
+	sed -e s/DISABLE_SSL=False/DISABLE_SSL=True/ .bedrock_demo_env > .env
 
 
 help:
@@ -37,13 +37,13 @@ help:
 		cat docs/make-commands.rst; \
 	fi
 
-gulp: env
+gulp: .env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} gulp
 
-js-lint: env
+js-lint: .env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} gulp js\:lint
 
-unit: env
+unit: .env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} py.test lib bedrock
 
 headless:
@@ -51,7 +51,7 @@ headless:
 
 test: unit headless
 
-devserver: env
+devserver: .env
 	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${DEV_IMAGE} ./manage.py runserver 0.0.0.0\:${PORT}
 
 pull-dev:
@@ -60,71 +60,60 @@ pull-dev:
 push-dev-dockerhub:
 	docker push ${DEV_IMAGE}
 
-codeserver: env
-	docker run ${DOCKER_RUN_ARGS} ${PORT_ARGS} ${CODE_IMAGE} ./manage.py runserver 0.0.0.0\:${PORT}
-
 stop:
 	docker ps --format={{.ID}} | xargs docker stop
 
-shell_plus: env
-	@if [[ -n "${CONTAINER_ID}" ]]; then \
+shell_plus: .env
+	@if [ -n "${CONTAINER_ID}" ]; then \
 		docker exec -it ${CONTAINER_ID} ./manage.py shell_plus; \
 	else \
 		docker run -it ${DOCKER_RUN_ARGS} ${DEV_IMAGE} ./manage.py shell_plus; \
 	fi
 
-collectstatic: env
-	@if [[ -n "${CONTAINER_ID}" ]]; then \
-		docker exec -it ${CONTAINER_ID} ./manage.py collectstatic; \
+collectstatic: .env
+	@if [ -n "${CONTAINER_ID}" ]; then \
+		docker exec -it ${CONTAINER_ID} bash -c "./manage.py collectstatic --noinput && ./bin/softlinkstatic.py"; \
 	else \
-		docker run -it ${DOCKER_RUN_ARGS} ${DEV_IMAGE} ./manage.py collectstatic --noinput; \
+		docker run -it ${DOCKER_RUN_ARGS} ${DEV_IMAGE} bash -c "./manage.py collectstatic --noinput && ./bin/softlinkstatic.py"; \
 	fi
 
-bash: env
-	@if [[ -n "${CONTAINER_ID}" ]]; then \
+bash: .env
+	@if [ -n "${CONTAINER_ID}" ]; then \
 		docker exec -it ${CONTAINER_ID} bash; \
 	else \
 		docker run -it ${DOCKER_RUN_ARGS} ${DEV_IMAGE} bash; \
 	fi
 
-build-base:
-	docker build -f docker/dockerfiles/bedrock_base -t ${BASE_IMAGE} .
-
-build-squash-base:
-	docker build -f docker/dockerfiles/bedrock_base -t ${BASE_IMAGE}-tmp .
-	docker save ${BASE_IMAGE}-tmp | sudo docker-squash -t ${BASE_IMAGE}-squashed | docker load
-	docker tag ${BASE_IMAGE}-squashed ${BASE_IMAGE}
+#build-squash-base:
+#	docker build -f docker/dockerfiles/bedrock_base -t ${BASE_IMAGE}-tmp .
+#	docker save ${BASE_IMAGE}-tmp | sudo docker-squash -t ${BASE_IMAGE}-squashed | docker load
+#	docker tag ${BASE_IMAGE}-squashed ${BASE_IMAGE}
 
 build-dev:
 	docker build -f docker/dockerfiles/bedrock_dev -t ${DEV_IMAGE} .
 
-build-code:
-	DOCKERFILE=Dockerfile-code-${VERSION}
-	FROM_DOCKER_REPOSITORY=mozorg/bedrock_base
-	envsubst < docker/dockerfiles/bedrock_code > ${DOCKERFILE}
-	docker build -f ${DOCKERFILE} -t ${CODE_IMAGE} .
-	rm ${DOCKERFILE}
+locale:
+	if [ -n "${L10N_DEV}" ]; then \
+		git clone --depth 1 ${L10N_DEV_REPO} locale; \
+	else \
+		git clone --depth 1 ${L10N_REPO} locale; \
+	fi
 
-build-l10n:
-	export DOCKER_REPOSITORY=mozorg/bedrock_l10n
-	export FROM_DOCKER_REPOSITORY=mozorg/bedrock_code
-	./docker/jenkins/include_l10n.sh
+update-locale: locale
+	bash -c "cd locale && git fetch origin && git checkout -f origin/master"
+
+build-deploy:
+#depends on collectstatic
+#depends on update-locale running *before* DEPLOY_IMAGE is defined
+	docker build -f docker/dockerfiles/bedrock_deploy -t ${DEPLOY_IMAGE} .
 
 push-usw:
-	export FROM_DOCKER_REPOSITORY=mozorg/bedrock_l10n
-	export PRIVATE_REGISTRIES=localhost:5001
-	export DEIS_APPS=${DEIS_APPLICATION}
-	./docker/jenkins/push2privateregistries.sh
-	DEIS_PROFILE=usw
-	deis pull ${DEIS_APPLICATION}:${GIT_COMMIT} -a ${DEIS_APPLICATION}
+	docker tag -f ${DEPLOY_IMAGE} ${USW_REGISTRY}/${DEIS_PULL}
+	DEIS_PROFILE=usw deis pull ${USW_REGISTRY}/${DEIS_PULL} -a ${DEIS_APPLICATION}
 
 push-euw:
-	export FROM_DOCKER_REPOSITORY=mozorg/bedrock_l10n
-	export PRIVATE_REGISTRIES=localhost:5000
-	export DEIS_APPS=${DEIS_APPLICATION}
-	./docker/jenkins/push2privateregistries.sh
-	DEIS_PROFILE=euw
-	deis pull ${DEIS_APPLICATION}:${GIT_COMMIT} -a ${DEIS_APPLICATION}
+	docker tag -f ${DEPLOY_IMAGE} ${EUW_REGISTRY}/${DEIS_PULL}
+	DEIS_PROFILE=euw deis pull ${EUW_REGISTRY}/${DEIS_PULL} -a ${DEIS_APPLICATION}
 
 media-change:
 	@if [ -n "${MEDIA_PATH}" ]; then \
