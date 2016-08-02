@@ -28,7 +28,7 @@ DEIS_PULL ?= "${DEIS_APPLICATION}:${TAG_PREFIX}${BEDROCK_COMMIT}-${L10N_COMMIT}"
 BASE_URL ?= "https://www.mozilla.org"
 
 .env:
-	sed -e s/DISABLE_SSL=False/DISABLE_SSL=True/ .bedrock_demo_env > .env
+	sed -e s/DISABLE_SSL=False/DISABLE_SSL=True/ .bedrock_demo_env | egrep -v "^DEV=" > .env
 
 
 help:
@@ -111,12 +111,12 @@ build-deploy:
 push-usw:
 	docker tag -f ${DEPLOY_IMAGE} ${USW_REGISTRY}/${DEIS_PULL}
 	docker push ${USW_REGISTRY}/${DEIS_PULL}
-	DEIS_PROFILE=usw deis pull ${USW_REGISTRY}/${DEIS_PULL} -a ${DEIS_APPLICATION}
+	DEIS_PROFILE=usw deis pull ${DEIS_PULL} -a ${DEIS_APPLICATION}
 
 push-euw:
 	docker tag -f ${DEPLOY_IMAGE} ${EUW_REGISTRY}/${DEIS_PULL}
 	docker push ${EUW_REGISTRY}/${DEIS_PULL}
-	DEIS_PROFILE=euw deis pull ${EUW_REGISTRY}/${DEIS_PULL} -a ${DEIS_APPLICATION}
+	DEIS_PROFILE=euw deis pull ${DEIS_PULL} -a ${DEIS_APPLICATION}
 
 media-change:
 	@if [ -n "${MEDIA_PATH}" ]; then \
