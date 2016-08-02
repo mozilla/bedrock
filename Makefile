@@ -1,5 +1,6 @@
 BEDROCK_COMMIT ?= $(shell git rev-parse --short HEAD)
 LATEST_TAG=$(shell git describe --abbrev=0 --tags)
+LATEST_TAGGED_COMMIT=$(shell git rev-parse --short ${LATEST_TAG}~0)
 DEV_VERSION ?= latest
 REGISTRY ?=
 EUW_REGISTRY ?= localhost:5000
@@ -14,7 +15,11 @@ L10N_COMMIT ?= $(shell cd locale && git rev-parse --short HEAD)
 DEV_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/${DEV_IMAGE_NAME}:${DEV_VERSION}
 BASE_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/bedrock_base:${TAG_PREFIX}${BEDROCK_COMMIT}
 DEPLOY_IMAGE ?= ${REGISTRY}${IMAGE_PREFIX}/bedrock:${TAG_PREFIX}${BEDROCK_COMMIT}-${L10N_COMMIT}
+DEV_DOCKERFILE ?= docker/dockerfiles/bedrock_dev
+BASE_DOCKERFILE ?= docker/dockerfiles/bedrock_base
 DEPLOY_DOCKERFILE ?= docker/dockerfiles/bedrock_deploy-${BEDROCK_COMMIT}
+DOCKERFILE ?= ${DEV_DOCKERFILE}
+IMAGE ?= ${DEV_IMAGE}
 PWD ?= $(shell pwd)
 GIT_DIR ?= ${PWD}/.git
 DB ?= ${PWD}/bedrock.db
@@ -29,6 +34,7 @@ CONTAINER_ID ?= $(shell docker ps --format='{{.ID}}' -f ancestor=${DEV_IMAGE} | 
 DEIS_APPLICATION ?= bedrock-demo-jgmize
 DEIS_PULL ?= "${DEIS_APPLICATION}:${TAG_PREFIX}${BEDROCK_COMMIT}-${L10N_COMMIT}"
 BASE_URL ?= "https://www.mozilla.org"
+COLLECTSTATIC ?= "./manage.py collectstatic -l -v 0 --noinput && ./bin/softlinkstatic.py"
 
 .env:
 	sed -e s/DISABLE_SSL=False/DISABLE_SSL=True/ .bedrock_demo_env | egrep -v "^DEV=" > .env
@@ -76,9 +82,9 @@ shell_plus: .env
 
 collectstatic: .env
 	@if [ -n "${CONTAINER_ID}" ]; then \
-		docker exec ${CONTAINER_ID} bash -c "./manage.py collectstatic -l -v 0 --noinput && ./bin/softlinkstatic.py"; \
+		docker exec ${CONTAINER_ID} bash -c ${COLLECTSTATIC}; \
 	else \
-		docker run ${DOCKER_RUN_ARGS} ${DEV_IMAGE} bash -c "./manage.py collectstatic -l -v 0 --noinput && ./bin/softlinkstatic.py"; \
+		docker run ${DOCKER_RUN_ARGS} ${DEV_IMAGE} bash -c ${COLLECTSTATIC}; \
 	fi
 
 bash: .env
@@ -88,22 +94,25 @@ bash: .env
 		docker run -it ${DOCKER_RUN_ARGS} ${DEV_IMAGE} bash; \
 	fi
 
-.build-squash-base:
-	docker build -f docker/dockerfiles/bedrock_base -t ${BASE_IMAGE}-tmp . | tee docker-build.log
+build-squash:
+	docker build -f ${DOCKERFILE} -t ${IMAGE}-tmp . | tee docker-build.log
 	if [ -n "$(shell tail -n 3 docker-build.log | grep 'Using cache')" ]; then \
-		docker tag -f $(shell tail -n 1 docker-build.log | awk '{ print $$(NF) }') ${BASE_IMAGE}-squashed; \
+		docker tag -f $(shell tail -n 1 docker-build.log | awk '{ print $$(NF) }') ${IMAGE}-squashed; \
 	else \
-		docker save ${BASE_IMAGE}-tmp | sudo docker-squash -t ${BASE_IMAGE}-squashed | docker load; \
+		docker save ${IMAGE}-tmp | sudo docker-squash -t ${IMAGE}-squashed | docker load; \
 	fi
-	docker tag ${BASE_IMAGE}-squashed ${BASE_IMAGE}
+	docker tag ${IMAGE}-squashed ${IMAGE}
 
-build-squash-base:
+build-base:
 	if [ -z "$(shell docker images -q ${BASE_IMAGE})" ]; then \
-		make .build-squash-base; \
+		make build-squash IMAGE=${BASE_IMAGE} DOCKERFILE=${BASE_DOCKERFILE}; \
 	fi
 
 build-dev:
-	docker build -f docker/dockerfiles/bedrock_dev -t ${DEV_IMAGE} .
+	make build-squash DOCKERFILE=${DEV_DOCKERFILE} IMAGE=${DEV_IMAGE}
+
+build-dev-nosquash:
+	docker build -f ${DEV_DOCKERFILE} -t ${DEV_IMAGE} .
 
 locale:
 	if [ -n "${L10N_DEV}" ]; then \
@@ -115,21 +124,11 @@ locale:
 update-locale: locale
 	bash -c "cd locale && git fetch origin && git checkout -f origin/master"
 
-.build-deploy:
+build-deploy: build-base collectstatic update-locale
 	docker run ${MOUNT_APP_DIR} -e BASE_IMAGE=${BASE_IMAGE} ${DEV_IMAGE} bash -c \
-	"envsubst < docker/dockerfiles/bedrock_deploy" > ${DEPLOY_DOCKERFILE}
-	docker build -f ${DEPLOY_DOCKERFILE} -t ${DEPLOY_IMAGE}-tmp . | tee docker-build.log
-	if [ -n "$(shell tail -n 3 docker-build.log | grep 'Using cache')" ]; then \
-		docker tag -f $(shell tail -n 1 docker-build.log | awk '{ print $$(NF) }') ${DEPLOY_IMAGE}-squashed; \
-	else \
-		docker save ${DEPLOY_IMAGE}-tmp | sudo docker-squash -t ${DEPLOY_IMAGE}-squashed | docker load; \
-	fi
-	docker tag ${DEPLOY_IMAGE}-squashed ${DEPLOY_IMAGE}
-	rm ${DEPLOY_DOCKERFILE}
-
-build-deploy: build-squash-base collectstatic update-locale
-	make .build-deploy
-#trigger a new make process to pick up any new L10N_COMMIT from update-locale
+	"envsubst < docker/dockerfiles/bedrock_deploy" > ${DEPLOY_DOCKERFILE}-${BEDROCK_COMMIT}
+	make build-squash DOCKERFILE=${DEPLOY_DOCKERFILE}-${BEDROCK_COMMIT} IMAGE=${DEPLOY_IMAGE}
+	rm ${DEPLOY_DOCKERFILE}-${BEDROCK_COMMIT}
 
 push-usw:
 	docker tag -f ${DEPLOY_IMAGE} ${USW_REGISTRY}/${DEIS_PULL}
@@ -165,3 +164,6 @@ webhook-dispatch:
 	@echo l10n commit ${L10N_COMMIT}
 	@echo latest tag ${LATEST_TAG}
 	@echo branch ${GIT_BRANCH}
+	rm -f .new_tag
+	rm -f .new_commit_master
+
