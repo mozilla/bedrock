@@ -13,11 +13,14 @@ RUN apt-get update && \
     gettext libxml2-dev libxslt1.1 libxslt1-dev libpq-dev
 
 WORKDIR /app
-COPY . /app/
-RUN echo "${GIT_COMMIT}" > static/revision.txt
 
+COPY ./requirements /app/requirements
 RUN pip install --no-cache-dir -r requirements/prod.txt
 RUN pip install --no-cache-dir -r requirements/docker.txt
+#requirements copied ahead of rest of app are a cache optimization
+
+COPY . /app/
+RUN echo "${GIT_COMMIT}" > static/revision.txt
 
 RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
 RUN chown webdev.webdev -R .
