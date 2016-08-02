@@ -91,9 +91,10 @@ bash: .env
 .build-squash-base:
 	docker build -f docker/dockerfiles/bedrock_base -t ${BASE_IMAGE}-tmp . | tee docker-build.log
 	if [ -n "$(shell tail -n 3 docker-build.log | grep 'Using cache')" ]; then \
-		docker tag -f $(shell tail -n 1 docker-build.log | awk '{ print $$(NF) }')-squashed ${BASE_IMAGE}; \
+		docker tag -f $(shell tail -n 1 docker-build.log | awk '{ print $$(NF) }') ${BASE_IMAGE}-squashed; \
+	else \
+		docker save ${BASE_IMAGE}-tmp | sudo docker-squash -t ${BASE_IMAGE}-squashed | docker load; \
 	fi
-	docker save ${BASE_IMAGE}-tmp | sudo docker-squash -t ${BASE_IMAGE}-squashed | docker load
 	docker tag ${BASE_IMAGE}-squashed ${BASE_IMAGE}
 
 build-squash-base:
