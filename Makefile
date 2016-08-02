@@ -75,9 +75,9 @@ shell_plus: .env
 
 collectstatic: .env
 	@if [ -n "${CONTAINER_ID}" ]; then \
-		docker exec ${CONTAINER_ID} bash -c "./manage.py collectstatic --noinput && ./bin/softlinkstatic.py"; \
+		docker exec ${CONTAINER_ID} bash -c "./manage.py collectstatic -l -v 0 --noinput && ./bin/softlinkstatic.py"; \
 	else \
-		docker run ${DOCKER_RUN_ARGS} ${DEV_IMAGE} bash -c "./manage.py collectstatic --noinput && ./bin/softlinkstatic.py"; \
+		docker run ${DOCKER_RUN_ARGS} ${DEV_IMAGE} bash -c "./manage.py collectstatic -l -v 0 --noinput && ./bin/softlinkstatic.py"; \
 	fi
 
 bash: .env
@@ -115,8 +115,8 @@ update-locale: locale
 
 .build-deploy:
 	docker run ${MOUNT_APP_DIR} -e BASE_IMAGE=${BASE_IMAGE} ${DEV_IMAGE} bash -c \
-	"envsubst < docker/dockerfiles/bedrock_deploy > docker/dockerfiles/bedrock_deploy-${BEDROCK_COMMIT}"
-	docker build -f docker/dockerfiles/bedrock_deploy-${BEDROCK_COMMIT} -t ${DEPLOY_IMAGE} .
+	"envsubst < docker/dockerfiles/bedrock_deploy" > /tmp/bedrock_deploy-${BEDROCK_COMMIT}
+	docker build -f /tmp/bedrock_deploy-${BEDROCK_COMMIT} -t ${DEPLOY_IMAGE} .
 
 build-deploy: build-squash-base collectstatic update-locale
 	make .build-deploy
