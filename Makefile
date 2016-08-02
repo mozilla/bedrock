@@ -14,6 +14,7 @@ L10N_COMMIT ?= $(shell cd locale && git rev-parse --short HEAD)
 DEV_IMAGE ?= "${REGISTRY}${IMAGE_PREFIX}/${DEV_IMAGE_NAME}:${DEV_VERSION}"
 BASE_IMAGE ?= "${REGISTRY}${IMAGE_PREFIX}/bedrock_base:${TAG_PREFIX}${BEDROCK_COMMIT}"
 DEPLOY_IMAGE ?= "${REGISTRY}${IMAGE_PREFIX}/bedrock:${TAG_PREFIX}${BEDROCK_COMMIT}-${L10N_COMMIT}"
+DEPLOY_DOCKERFILE ?= docker/dockerfiles/bedrock_deploy-${BEDROCK_COMMIT}
 PWD ?= $(shell pwd)
 GIT_DIR ?= ${PWD}/.git
 DB ?= ${PWD}/bedrock.db
@@ -90,7 +91,7 @@ bash: .env
 .build-squash-base:
 	docker build -f docker/dockerfiles/bedrock_base -t ${BASE_IMAGE}-tmp . | tee docker-build.log
 	if [ -n "$(shell tail -n 3 docker-build.log | grep 'Using cache')" ]; then \
-		docker tag -f $(shell tail -n 1 docker-build.log | awk '{ print $(NF) }')-squashed ${BASE_IMAGE}; \
+		docker tag -f $(shell tail -n 1 docker-build.log | awk '{ print $$(NF) }')-squashed ${BASE_IMAGE}; \
 	fi
 	docker save ${BASE_IMAGE}-tmp | sudo docker-squash -t ${BASE_IMAGE}-squashed | docker load
 	docker tag ${BASE_IMAGE}-squashed ${BASE_IMAGE}
@@ -115,8 +116,9 @@ update-locale: locale
 
 .build-deploy:
 	docker run ${MOUNT_APP_DIR} -e BASE_IMAGE=${BASE_IMAGE} ${DEV_IMAGE} bash -c \
-	"envsubst < docker/dockerfiles/bedrock_deploy" > /tmp/bedrock_deploy-${BEDROCK_COMMIT}
-	docker build -f /tmp/bedrock_deploy-${BEDROCK_COMMIT} -t ${DEPLOY_IMAGE} .
+	"envsubst < docker/dockerfiles/bedrock_deploy" > ${DEPLOY_DOCKERFILE}
+	docker build -f ${DEPLOY_DOCKERFILE} -t ${DEPLOY_IMAGE} .
+	rm ${DEPLOY_DOCKERFILE}
 
 build-deploy: build-squash-base collectstatic update-locale
 	make .build-deploy
