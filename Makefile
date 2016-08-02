@@ -109,10 +109,12 @@ build-deploy:
 
 push-usw:
 	docker tag -f ${DEPLOY_IMAGE} ${USW_REGISTRY}/${DEIS_PULL}
+	docker push ${USW_REGISTRY}/${DEIS_PULL}
 	DEIS_PROFILE=usw deis pull ${USW_REGISTRY}/${DEIS_PULL} -a ${DEIS_APPLICATION}
 
 push-euw:
 	docker tag -f ${DEPLOY_IMAGE} ${EUW_REGISTRY}/${DEIS_PULL}
+	docker push ${EUW_REGISTRY}/${DEIS_PULL}
 	DEIS_PROFILE=euw deis pull ${EUW_REGISTRY}/${DEIS_PULL} -a ${DEIS_APPLICATION}
 
 media-change:
