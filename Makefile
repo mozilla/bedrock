@@ -118,7 +118,13 @@ update-locale: locale
 .build-deploy:
 	docker run ${MOUNT_APP_DIR} -e BASE_IMAGE=${BASE_IMAGE} ${DEV_IMAGE} bash -c \
 	"envsubst < docker/dockerfiles/bedrock_deploy" > ${DEPLOY_DOCKERFILE}
-	docker build -f ${DEPLOY_DOCKERFILE} -t ${DEPLOY_IMAGE} .
+	docker build -f ${DEPLOY_DOCKERFILE} -t ${DEPLOY_IMAGE}-tmp . | tee docker-build.log
+	if [ -n "$(shell tail -n 3 docker-build.log | grep 'Using cache')" ]; then \
+		docker tag -f $(shell tail -n 1 docker-build.log | awk '{ print $$(NF) }') ${DEPLOY_IMAGE}-squashed; \
+	else \
+		docker save ${DEPLOY_IMAGE}-tmp | sudo docker-squash -t ${DEPLOY_IMAGE}-squashed | docker load; \
+	fi
+	docker tag ${DEPLOY_IMAGE}-squashed ${DEPLOY_IMAGE}
 	rm ${DEPLOY_DOCKERFILE}
 
 build-deploy: build-squash-base collectstatic update-locale
