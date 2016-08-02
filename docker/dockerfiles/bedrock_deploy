@@ -16,8 +16,8 @@ WORKDIR /app
 COPY . /app/
 RUN echo "${GIT_COMMIT}" > static/revision.txt
 
-RUN pip install --no-cache-dir -r requirements/docker.txt
 RUN pip install --no-cache-dir -r requirements/prod.txt
+RUN pip install --no-cache-dir -r requirements/docker.txt
 
 RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
 RUN chown webdev.webdev -R .
