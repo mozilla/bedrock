@@ -1,0 +1,121 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import (reference) '../lib.less';
+
+
+#masthead .content {
+    padding-top: 0;
+}
+
+.masthead-logo {
+    .font-size(16px);
+    margin: 0;
+    padding: 30px 0 20px;
+}
+
+.masthead-nav-main {
+    .font-size(14px);
+    text-transform: uppercase;
+
+    a {
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline;
+        }
+    }
+
+    .toggle {
+        background: transparent url('/media/img/pebbles/icon-menu-dark.svg') center center no-repeat;
+        display: block;
+        height: 40px;
+        overflow: hidden;
+        position: relative;
+        text-indent: 120%;
+        top: 10px;
+        width: 40px;
+    }
+
+    .nav-main-menu {
+        background: #fff;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, .25);
+        left: -100em;
+        position: absolute;
+        top: 50px;
+        width: 160px;
+        z-index: 90;
+
+        li {
+            border-bottom: 1px solid #eee;
+
+            &:last-child {
+                border: 0;
+            }
+        }
+
+        a {
+            color: @color-link;
+            display: block;
+            padding: .25em 10px;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: darken(@color-link, 10%);
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.masthead-nav-main:hover .nav-main-menu,
+.nav-main-menu:target {
+    left: 20px;
+}
+
+.js .masthead-nav-main .nav-main-menu {
+    left: 20px;
+    display: none;
+}
+
+@media @mq-tablet {
+    .masthead-nav-main {
+        float: right;
+        margin: 0 160px 0 20px;
+
+        .nav-main-menu {
+            width: auto;
+            position: static;
+            background: transparent;
+            box-shadow: none;
+
+            li {
+                display: inline;
+                border: 0;
+            }
+
+            a {
+                display: inline-block;
+                padding: 10px;
+            }
+        }
+
+        .toggle {
+            .hidden;
+        }
+
+    }
+
+    .js .masthead-nav-main .nav-main-menu {
+        display: block;
+    }
+
+    [dir='rtl'] .masthead-nav-main {
+        float: left;
+        margin: 0 20px 0 160px;
+    }
+}
