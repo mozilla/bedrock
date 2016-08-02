@@ -72,9 +72,9 @@ shell_plus: .env
 
 collectstatic: .env
 	@if [ -n "${CONTAINER_ID}" ]; then \
-		docker exec -it ${CONTAINER_ID} bash -c "./manage.py collectstatic --noinput && ./bin/softlinkstatic.py"; \
+		docker exec ${CONTAINER_ID} bash -c "./manage.py collectstatic --noinput && ./bin/softlinkstatic.py"; \
 	else \
-		docker run -it ${DOCKER_RUN_ARGS} ${DEV_IMAGE} bash -c "./manage.py collectstatic --noinput && ./bin/softlinkstatic.py"; \
+		docker run ${DOCKER_RUN_ARGS} ${DEV_IMAGE} bash -c "./manage.py collectstatic --noinput && ./bin/softlinkstatic.py"; \
 	fi
 
 bash: .env
