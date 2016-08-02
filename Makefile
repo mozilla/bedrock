@@ -20,7 +20,8 @@ MOUNT_APP_DIR ?= -v ${PWD}\:/app
 ENV_FILE ?= .env
 PORT ?= 8000
 PORT_ARGS ?= -p "${PORT}:${PORT}"
-DOCKER_RUN_ARGS ?= --env-file ${ENV_FILE} ${MOUNT_APP_DIR} -w /app
+UID_ARGS ?= -u $(shell id -u)\:$(shell id -g)
+DOCKER_RUN_ARGS ?= --env-file ${ENV_FILE} ${MOUNT_APP_DIR} -w /app ${UID_ARGS}
 CONTAINER_ID ?= $(shell docker ps --format='{{.ID}}' -f ancestor=${DEV_IMAGE} | head -n 1)
 DEIS_APPLICATION ?= bedrock-demo-jgmize
 DEIS_PULL ?= "${DEIS_APPLICATION}:${TAG_PREFIX}${GIT_COMMIT}-${L10N_COMMIT}"
