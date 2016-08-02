@@ -103,7 +103,7 @@ LANGUAGE_CODE = 'en-US'
 
 # Use Ship It as the source for product_details
 PROD_DETAILS_URL = config('PROD_DETAILS_URL',
-                          default='https://product-details.mozilla.org/1.0/')
+                          default='https://svn.mozilla.org/libs/product-details/json/')
 
 # Tells the product_details module where to find our local JSON files.
 # This ultimately controls how LANGUAGES are constructed.
