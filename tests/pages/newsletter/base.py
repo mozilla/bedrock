@@ -9,7 +9,7 @@ from selenium.webdriver.support.select import Select
 from pages.base import BasePage
 
 
-class NewsletterPage(BasePage):
+class NewsletterBasePage(BasePage):
 
     URL_TEMPLATE = '/{locale}/newsletter'
 

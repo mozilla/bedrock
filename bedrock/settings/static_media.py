@@ -141,6 +141,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/newsletter-mozilla-bundle.css',
     },
+    'newsletter-firefox': {
+        'source_filenames': (
+            'css/newsletter/newsletter-firefox.less',
+        ),
+        'output_filename': 'css/newsletter-firefox-bundle.css',
+    },
     'contact-spaces': {
         'source_filenames': (
             'css/libs/mapbox-2.3.0.css',
@@ -1489,6 +1495,12 @@ PIPELINE_JS = {
             'js/newsletter/mozilla.js',
         ),
         'output_filename': 'js/newsletter-mozilla.js',
+    },
+    'newsletter-firefox': {
+        'source_filenames': (
+            'js/newsletter/firefox.js',
+        ),
+        'output_filename': 'js/newsletter-firefox.js',
     },
     'partnerships': {
         'source_filenames': (
