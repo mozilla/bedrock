@@ -1,6 +1,8 @@
+SHELL := /bin/bash
 BEDROCK_COMMIT ?= $(shell git rev-parse --short HEAD)
-LATEST_TAG=$(shell git describe --abbrev=0 --tags)
-LATEST_TAGGED_COMMIT=$(shell git rev-parse --short ${LATEST_TAG}~0)
+BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
+LATEST_TAG ?= $(shell git describe --abbrev=0 --tags)
+LATEST_TAGGED_COMMIT ?= $(shell git rev-parse --short ${LATEST_TAG}~0)
 DEV_VERSION ?= latest
 REGISTRY ?=
 EUW_REGISTRY ?= localhost:5000
@@ -156,11 +158,18 @@ brew-fswatch:
 fswatch-media:
 	fswatch -0 media | xargs -0 -n 1 -I {} make media-change MEDIA_PATH={}
 
-webhook-dispatch:
-	@echo bedrock commit ${BEDROCK_COMMIT}
-	@echo l10n commit ${L10N_COMMIT}
-	@echo latest tag ${LATEST_TAG}
-	@echo branch ${GIT_BRANCH}
-	rm -f .new_tag
-	rm -f .new_commit_master
+.check-branch-commit:
+	rm -f .new_commit_*
+	if [[ ! -e .latest_commit_${BRANCH} || "$(shell cat .latest_commit_${BRANCH})" != "${BEDROCK_COMMIT}" ]]; then \
+			echo ${BEDROCK_COMMIT} > .new_commit_${BRANCH}; \
+	fi
+	echo ${BEDROCK_COMMIT} > .latest_commit_${BRANCH}
 
+.check-tag:
+	rm -f .new_tag
+	if [[ ! -e .latest_tag || "$(shell cat .latest_tag)" != "${LATEST_TAG}" ]]; then \
+			echo ${LATEST_TAG} > .new_tag; \
+	fi
+	echo ${LATEST_TAG} > .latest_tag
+
+webhook-dispatch: .check-branch-commit .check-tag
