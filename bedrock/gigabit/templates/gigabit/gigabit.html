@@ -49,13 +49,13 @@
           <section id="about-gigabit">
             <h2>{{ _('What is the Gigabit Community Fund?') }}</h2>
             <p>
-            {% trans url_nsf='http://www.nsf.gov/', url_us_ignite='https://www.us-ignite.org/', url_hive_cha='http://hivecha.org/', url_hive_kc='http://hivekc.org/' %}
-              Since 2011, Mozilla has partnered with the <a href='{{ url_nsf }}'>National Science Foundation</a> and <a href='{{ url_us_ignite }}'>US Ignite</a> to demonstrate the value of gigabit networks for learning and to help seed demand for further high-speed network investment. In early 2014, the <a href='{{ url_hive_cha }}'>Hive Chattanooga</a> and <a href='{{ url_hive_kc }}'>Hive Kansas City</a> Learning Communities were launched to activate these leading gigabit cities as living laboratories for gigabit innovation. The Mozilla Gigabit Community Fund provides catalytic funding in these Hive communities to support the piloting of gigabit technologies and associated curricula. Intentionally designed to erase boundaries between educators and technologists, between organizations, and between gigabit cities, Gigabit Community Fund projects show the impact of next-generation networks on learning and engage new leaders as co-creators and beta-testers of gigabit-enabled educational technologies.
+            {% trans url_nsf='https://www.nsf.gov/', url_us_ignite='https://www.us-ignite.org/' %}
+              Since 2011, Mozilla has partnered with the <a href='{{ url_nsf }}'>National Science Foundation</a> and <a href='{{ url_us_ignite }}'>US Ignite</a> to demonstrate the value of gigabit networks for learning and to help seed demand for further high-speed network investment. In early 2014, the Hive Chattanooga and Hive Kansas City Learning Communities were launched to activate these leading gigabit cities as living laboratories for gigabit innovation. The Mozilla Gigabit Community Fund provides catalytic funding in these Hive communities to support the piloting of gigabit technologies and associated curricula. Intentionally designed to erase boundaries between educators and technologists, between organizations, and between gigabit cities, Gigabit Community Fund projects show the impact of next-generation networks on learning and engage new leaders as co-creators and beta-testers of gigabit-enabled educational technologies.
             {% endtrans %}
             </p>
             <p>
               {% trans url_hive_kc='http://hivekc.org/portfolio/', url_hive_cha='http://hivecha.org/portfolio/' %}
-              In 2014, the Gigabit Community Fund supported the development of 17 engaging projects in <a href='{{ url_hive_kc }}'>Kansas City</a> and <a href='{{ url_hive_cha }}'>Chattanooga</a>. Building on this success, the National Science Foundation announced in September 2015 a three-year continuation of its partnership with Mozilla to sustain the work in Chattanooga and Kansas City and to expand to three additional gigabit cities by 2018.
+              In 2014, the Gigabit Community Fund supported the development of 17 engaging projects in <a href='{{ url_hive_kc }}'>Kansas City</a> and <a href='{{ url_hive_cha }}'>Chattanooga</a>. Building on this success, the National Science Foundation announced in September 2015 a three-year continuation of its partnership with Mozilla to sustain the work in Chattanooga and Kansas City and to expand to three additional gigabit cities by 2018. Hive Austin was launched in mid-2016 and two additional cities will be announced in 2017.
               {% endtrans %}
             </p>
           </section>
@@ -93,7 +93,7 @@
             <h2>{{ _('Explore Gigabit Hive Communities') }}</h2>
             <p>
               {% trans %}
-              The Mozilla Gigabit Community Fund currently supports pilot projects involving organizations in Kansas City and Chattanooga. In each of these leading gigabit cities, a vibrant Hive Learning Community comprised of educators, technologists, entrepreneurs and web literacy leaders of all stripes helps to activate, grow, and scale the pilots supported by the Gigabit Community Fund.
+              The Mozilla Gigabit Community Fund currently supports pilot projects involving organizations in Austin, Kansas City and Chattanooga. In each of these leading gigabit cities, a vibrant Hive Learning Community comprised of educators, technologists, entrepreneurs and web literacy leaders of all stripes helps to activate, grow, and scale the pilots supported by the Gigabit Community Fund.
               {% endtrans %}
             </p>
             <p>
@@ -102,8 +102,9 @@
               {% endtrans %}
             </p>
             <div class="hive-logos">
-              <a href="http://hivekc.org/"><img src="{{ static('img/gigabit/Hive-Kansas-City.png') }}" alt="Hive Kansas City"></a>
-              <a href="http://hivecha.org/"><img src="{{ static('img/gigabit/Hive-Chattanooga.png') }}" alt="Hive Chattanooga"></a>
+              <a href="https://twitter.com/hiveatx"><img src="{{ static('img/gigabit/Hive-Austin.png') }}" alt="Hive Austin"></a>
+              <a href="https://twitter.com/hivekc"><img src="{{ static('img/gigabit/Hive-Kansas-City.png') }}" alt="Hive Kansas City"></a>
+              <a href="https://twitter.com/hive_cha"><img src="{{ static('img/gigabit/Hive-Chattanooga.png') }}" alt="Hive Chattanooga"></a>
             </div>
           </section>
           <section>
@@ -114,8 +115,8 @@
               {% endtrans %}
             </p>
             <p>
-              {% trans %}
-              In partnership with the National Science Foundation and US Ignite, we&rsquo;re expanding the Gigabit Community Fund to three additional gigabit cities by 2018. Interested in adding your community to list of communities being considered as part of this expansion? <a href="https://docs.google.com/forms/d/1DgjPFsydrQR2H_CdNrUEqOmbrWHASFZelV7WqQsGkRg/viewform">Please fill out this interest form</a>.
+              {% trans considered_communities='https://docs.google.com/forms/d/1DgjPFsydrQR2H_CdNrUEqOmbrWHASFZelV7WqQsGkRg/viewform' %}
+              In partnership with the National Science Foundation and US Ignite, we&rsquo;re expanding the Gigabit Community Fund to two additional gigabit cities by 2018. Interested in adding your community to list of communities being considered as part of this expansion? <a href='{{ considered_communities }}'>Please fill out this interest form</a>.
               {% endtrans %}
             </p>
           </section>
