@@ -1,7 +1,5 @@
 SHELL := /bin/bash
 BEDROCK_COMMIT ?= $(shell git rev-parse --short HEAD)
-BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD)
-LATEST_TAG ?= $(shell git describe --abbrev=0 --tags)
 LATEST_TAGGED_COMMIT ?= $(shell git rev-parse --short ${LATEST_TAG}~0)
 DEV_VERSION ?= latest
 REGISTRY ?=
@@ -160,16 +158,18 @@ fswatch-media:
 
 .check-branch-commit:
 	rm -f .new_commit_*
-	if [[ ! -e .latest_commit_${BRANCH} || "$(shell cat .latest_commit_${BRANCH})" != "${BEDROCK_COMMIT}" ]]; then \
-			echo ${BEDROCK_COMMIT} > .new_commit_${BRANCH}; \
-	fi
-	echo ${BEDROCK_COMMIT} > .latest_commit_${BRANCH}
+	BRANCH=$${GIT_BRANCH#origin/} echo $${BRANCH}; \
+	if [[ ! -e .latest_commit_$${BRANCH} || "$(shell cat .latest_commit_$${BRANCH})" != "${BEDROCK_COMMIT}" ]]; then \
+			echo ${BEDROCK_COMMIT} > .new_commit_$${BRANCH}; \
+	fi; \
+	echo ${BEDROCK_COMMIT} > .latest_commit_$${BRANCH}
 
 .check-tag:
 	rm -f .new_tag
-	if [[ ! -e .latest_tag || "$(shell cat .latest_tag)" != "${LATEST_TAG}" ]]; then \
-			echo ${LATEST_TAG} > .new_tag; \
-	fi
-	echo ${LATEST_TAG} > .latest_tag
+	LATEST_TAG=$(shell git describe --abbrev=0 --tags) \
+	if [[ ! -e .latest_tag || "$(shell cat .latest_tag)" != "$${LATEST_TAG}" ]]; then \
+			echo $${LATEST_TAG} > .new_tag; \
+	fi; \
+	echo $${LATEST_TAG} > .latest_tag
 
 webhook-dispatch: .check-branch-commit .check-tag
