@@ -1,4 +1,4 @@
-SHELL := /bin/bash
+SHELL := /bin/bash --init-file make_functions.sh -i
 BEDROCK_COMMIT ?= $(shell git rev-parse --short HEAD)
 LATEST_TAGGED_COMMIT ?= $(shell git rev-parse --short ${LATEST_TAG}~0)
 DEV_VERSION ?= latest
@@ -24,15 +24,15 @@ PWD ?= $(shell pwd)
 GIT_DIR ?= ${PWD}/.git
 DB ?= ${PWD}/bedrock.db
 MOUNT_GIT_DB ?= -v "${DB}:/app/bedrock.db" -v "${GIT_DIR}:/app/.git"
-MOUNT_APP_DIR ?= -v "${PWD}:/app" 
+MOUNT_APP_DIR ?= -v "${PWD}:/app"
 ENV_FILE ?= .env
 PORT ?= 8000
 PORT_ARGS ?= -p "${PORT}:${PORT}"
 UID_ARGS ?= -u "$(shell id -u):$(shell id -g)"
 DOCKER_RUN_ARGS ?= --env-file ${ENV_FILE} ${MOUNT_APP_DIR} -w /app ${UID_ARGS}
 CONTAINER_ID ?= $(shell docker ps --format='{{.ID}}' -f ancestor=${DEV_IMAGE} | head -n 1)
-DEIS_APPLICATION ?= bedrock-demo-jgmize
-DEIS_PULL ?= "${DEIS_APPLICATION}:${TAG_PREFIX}${BEDROCK_COMMIT}-${L10N_COMMIT}"
+DEIS_APP_NAME ?= bedrock-demo-jgmize
+DEIS_PULL ?= "${DEIS_APP_NAME}:${TAG_PREFIX}${BEDROCK_COMMIT}-${L10N_COMMIT}"
 BASE_URL ?= "https://www.mozilla.org"
 COLLECTSTATIC ?= "./manage.py collectstatic -l -v 0 --noinput && ./bin/softlinkstatic.py"
 
@@ -127,15 +127,20 @@ build-deploy: build-base collectstatic update-locale
 	make build-squash DOCKERFILE=${DEPLOY_DOCKERFILE}-${BEDROCK_COMMIT} IMAGE=${DEPLOY_IMAGE}
 	rm ${DEPLOY_DOCKERFILE}-${BEDROCK_COMMIT}
 
+build-deploy-demo:
+	make build-deploy TAG_PREFIX=demo-
+	create-deis-app
+	make push-usw TAG_PREFIX=demo-
+
 push-usw:
 	docker tag -f ${DEPLOY_IMAGE} ${USW_REGISTRY}/${DEIS_PULL}
 	docker push ${USW_REGISTRY}/${DEIS_PULL}
-	DEIS_PROFILE=usw deis pull ${DEIS_PULL} -a ${DEIS_APPLICATION}
+	DEIS_PROFILE=usw deis pull ${DEIS_PULL} -a ${DEIS_APP_NAME}
 
 push-euw:
 	docker tag -f ${DEPLOY_IMAGE} ${EUW_REGISTRY}/${DEIS_PULL}
 	docker push ${EUW_REGISTRY}/${DEIS_PULL}
-	DEIS_PROFILE=euw deis pull ${DEIS_PULL} -a ${DEIS_APPLICATION}
+	DEIS_PROFILE=euw deis pull ${DEIS_PULL} -a ${DEIS_APP_NAME}
 
 media-change:
 	@if [ -n "${MEDIA_PATH}" ]; then \
@@ -156,20 +161,6 @@ brew-fswatch:
 fswatch-media:
 	fswatch -0 media | xargs -0 -n 1 -I {} make media-change MEDIA_PATH={}
 
-.check-branch-commit:
-	rm -f .new_commit_*
-	BRANCH=$${GIT_BRANCH#origin/} echo $${BRANCH}; \
-	if [[ ! -e .latest_commit_$${BRANCH} || "$(shell cat .latest_commit_$${BRANCH})" != "${BEDROCK_COMMIT}" ]]; then \
-			echo ${BEDROCK_COMMIT} > .new_commit_$${BRANCH}; \
-	fi; \
-	echo ${BEDROCK_COMMIT} > .latest_commit_$${BRANCH}
-
-.check-tag:
-	rm -f .new_tag
-	LATEST_TAG=$(shell git describe --abbrev=0 --tags) \
-	if [[ ! -e .latest_tag || "$(shell cat .latest_tag)" != "$${LATEST_TAG}" ]]; then \
-			echo $${LATEST_TAG} > .new_tag; \
-	fi; \
-	echo $${LATEST_TAG} > .latest_tag
-
-webhook-dispatch: .check-branch-commit .check-tag
+webhook-dispatch:
+	GIT_BRANCH=${GIT_BRANCH} check-branch-commit
+	check-tag
