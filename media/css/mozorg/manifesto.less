@@ -468,9 +468,19 @@
     height: 3060px;
 
     ul li {
+        float: left;
+        list-style: none;
+        position: relative;
         margin: 0 20px 20px 0;
         width: 140px !important; /* Override the setting by Grid Rorator */
         height: 140px !important; /* Override the setting by Grid Rorator */
+
+        a {
+            display: block;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
     }
 
     &.loaded {
