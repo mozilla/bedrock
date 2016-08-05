@@ -120,17 +120,6 @@
 <section id="products-secondary">
   <div class="content">
     <ul class="product-list">
-      <li class="product" id="product-hello">
-        <a href="{{ url('firefox.hello') }}" data-link-type="button" data-link-name="Firefox Hello">
-          <h2>{{ _('Firefox Hello') }}</h2>
-          {% if l10n_has_tag('hello_copy_update') %}
-            <p>{{ _('Browse the Web with friends.') }}</p>
-          {% else %}
-            <p>{{ _('Free, easy video conversations.') }}</p>
-          {% endif %}
-        </a>
-      </li>
-
       <li class="product" id="product-sync">
         <a href="{{ url('firefox.sync') }}" data-link-type="button" data-link-name="Sync">
           <h2>{{ _('Sync') }}</h2>
