@@ -163,7 +163,11 @@ $(function() {
             openTwitterSubwin(section, href);
         } else {
             // Open the link in a new tab
-            $this.attr('target', '_blank');
+            $this.attr(
+                'target', '_blank',
+                rel: 'noopener noreferrer'
+            );
+
             action = href.match(/youtube/) ? 'modal video link click'
                                            : 'modal link click';
 

@@ -103,9 +103,6 @@ if (typeof window.Mozilla === 'undefined') {
 
         // public initialization point
         var _init = function() {
-            // all external adjunct nav links open in new tab
-            $adjunctNavs.find('a[rel="external"]').attr('target', '_blank');
-
             // initialize matchMedia
             if (mqDesktop) {
                 _initMq();

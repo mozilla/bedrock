@@ -24,7 +24,14 @@
     <div class="step-content">
       {{ high_res_img('contribute/signup/encryption.png', {'alt': '', 'width': '620', 'class': 'feature-img'}) }}
       <a href="https://advocacy.mozilla.org/encrypt/signup" class="button-blue" data-action="sign" data-task="encryption" data-step="one" data-complete="true" target="_blank" rel="noopener noreferrer">{{ _('Take the pledge') }}</a>
-      <p>{{ _('<a href="%s" rel="external" target="_blank" rel="noopener noreferrer">Learn more about encryption</a>, why it’s essential and why we need to protect it.')|format('https://advocacy.mozilla.org/encrypt/social/1') }}</p>
+      <p>
+        {% set url = 'https://advocacy.mozilla.org/encrypt/social/1' %}
+        {% if l10n_has_tag('target-links-noopener') %}
+          {{ _('<a href="%s" target="_blank" rel="external noopener noreferrer">Learn more about encryption</a>, why it’s essential and why we need to protect it.')|format(url) }}
+        {% else %}
+          {{ _('<a href="%s" rel="external" target="_blank">Learn more about encryption</a>, why it’s essential and why we need to protect it.')|format(url) }}
+        {% endif %}
+      </p>
     </div>
   </li>
 </ol>

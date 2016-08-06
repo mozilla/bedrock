@@ -10,9 +10,6 @@
     var $html = $(document.documentElement);
     var $downloadbar = $('#conditional-download-bar');
 
-    // Open external links in new window/tab
-    $('.product a[rel="external"]').attr('target', '_blank');
-
     // Dismiss the conditional download bar
     $downloadbar.on('click', '.btn-close', function() {
         $downloadbar.animate({
