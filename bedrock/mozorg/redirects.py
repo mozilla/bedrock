@@ -617,4 +617,7 @@ redirectpatterns = (
     redirect(r'^about/patents/license/1.0/?$', 'mozorg.about.policy.patents.license-1.0'),
 
     redirect(r'^projects/marketing(/.*)?$', 'https://wiki.mozilla.org/MarketingGuide'),
+
+    # bug 1288647
+    redirect(r'^hacking/?$', 'https://developer.mozilla.org/docs/Mozilla/Developer_guide/Introduction'),
 )

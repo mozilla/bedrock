@@ -94,6 +94,17 @@ button.form-button {
     &.general {
         .font-size(@largeFontSize);
     }
+
+    &.red {
+        background-color: @mozRed;
+        color: @light;
+        border: 2px solid @mozRedBorder;
+
+        &:hover,
+        &:focus {
+            background-color: @mozRedHover;
+        }
+    }
 }
 
 /* All buttons not in a form context such as CTA and download buttons */

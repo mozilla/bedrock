@@ -11,9 +11,8 @@ PIPELINE_CSS = {
     'about': {
         'source_filenames': (
             'css/base/mozilla-video-poster.less',
-            'css/mozorg/about-base.less',
-            'css/mozorg/mosaic.less',
             'css/newsletter/moznewsletter-subscribe.less',
+            'css/mozorg/about-base.less',
         ),
         'output_filename': 'css/about-bundle.css',
     },
@@ -141,6 +140,12 @@ PIPELINE_CSS = {
             'css/newsletter/newsletter-mozilla.less',
         ),
         'output_filename': 'css/newsletter-mozilla-bundle.css',
+    },
+    'newsletter-firefox': {
+        'source_filenames': (
+            'css/newsletter/newsletter-firefox.less',
+        ),
+        'output_filename': 'css/newsletter-firefox-bundle.css',
     },
     'contact-spaces': {
         'source_filenames': (
@@ -671,7 +676,6 @@ PIPELINE_CSS = {
     'mission': {
         'source_filenames': (
             'css/base/mozilla-video-poster.less',
-            'css/mozorg/mosaic.less',
             'css/mozorg/mission.less',
         ),
         'output_filename': 'css/mission-bundle.css',
@@ -1479,21 +1483,24 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/manifesto-bundle.js',
     },
-    'mosaic_video': {
+    'about_video': {
         'source_filenames': (
             'js/base/mozilla-video-poster.js',
-            'js/libs/modernizr.custom.26887.js',
-            'js/libs/jquery.transit.min.js',
-            'js/libs/jquery.gridrotator.js',
             'js/mozorg/about-video.js',
         ),
-        'output_filename': 'js/mosaic_video-bundle.js',
+        'output_filename': 'js/about_video-bundle.js',
     },
     'newsletter-mozilla': {
         'source_filenames': (
             'js/newsletter/mozilla.js',
         ),
         'output_filename': 'js/newsletter-mozilla.js',
+    },
+    'newsletter-firefox': {
+        'source_filenames': (
+            'js/newsletter/firefox.js',
+        ),
+        'output_filename': 'js/newsletter-firefox.js',
     },
     'partnerships': {
         'source_filenames': (

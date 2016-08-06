@@ -13,7 +13,11 @@
   <h1 class="title-shadow-box">{{ _('Leadership') }}</h1>
 
   <p>
-  {{ _('Our leadership team is made up of both paid staff and volunteers with expertise building products and empowering communities.') }}
+  {% if l10n_has_tag('leadership_copy_update') %}  
+    {{ _('Our leadership team is made up of both paid staff and volunteers with expertise building products and empowering communities.') }}
+  {% else %}
+    {{ _('Our leadership team is made up of both paid staff and volunteers who represent a breadth of experience and expertise in building products that people love and empowering communities to make a significant impact on the project and in the world.')}}
+  {% endif %}
   {{ _('While these teams have different day-to-day responsibilities and areas of focus, they are all guided by our non-profit, open-source, community-based mission, identity and values.') }}
   </p>
 

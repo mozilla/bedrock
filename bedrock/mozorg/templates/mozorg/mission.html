@@ -13,17 +13,13 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'mosaic_video' %}
+  {% javascript 'about_video' %}
 {% endblock %}
 
 {% block optimizely %}
   {% if switch('mozorg-mission-optimizely') %}
      {% include 'includes/optimizely.html' %}
   {% endif %}
-{% endblock %}
-
-{% block mosaic %}
-  {% include "mozorg/mosaic-grid.html" %}
 {% endblock %}
 
 {% block content %}

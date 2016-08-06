@@ -30,17 +30,16 @@
 }
 
 #main-content {
+    .box-shadow(0 0 0 1px #fff inset);
+    .clearfix;
     .open-sans;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
     display: block;
     margin: 100px auto @baseLine;
     padding-left: @gridGutterWidth;
     padding-right: @gridGutterWidth;
     position: relative;
-    .clearfix;
-    @shadow: 0 0 0 1px #fff inset;
-    .box-shadow(@shadow);
-    background: #fff;
-    border-bottom: 1px solid #ddd;
 
     .title-shadow-box {
         margin-right: 490px;
@@ -76,21 +75,24 @@
     .video {
         .span(6);
         float: right;
-        margin-top: -35px;
         margin-bottom: @baseLine;
+
         .moz-video-container video {
             width: 100%;
             height: auto;
             margin:0 auto;
         }
+
         p {
             margin: 10px 10px @baseLine;
             .font-size(.857em);
             font-style: italic;
         }
+
         .placeholder-img {
             margin-bottom: @baseLine;
         }
+
         .moz-video-button {
             background-image: url('/media/img/mozorg/about/poster-i-am.jpg');
         }
@@ -146,6 +148,69 @@ html[dir="rtl"] {
         float: right;
     }
 }
+
+// Newsletter form
+#newsletter-subscribe {
+    background: transparent none;
+    color: @textColorPrimary;
+    margin-top: 0;
+
+    .form-title {
+        background: transparent none;
+        position: relative;
+        text-align: center;
+
+        h3 {
+            .font-size(28px);
+            color: @mozillaRed;
+            font-weight: bold;
+            line-height: 1.25;
+        }
+
+        h4 {
+            .font-size(18px);
+            .open-sans;
+            color: @textColorSecondary;
+            line-height: 1.25;
+        }
+
+        &:before {
+            background: @mozillaRed url('/media/img/newsletter/mozorg-newsletter.svg') center center no-repeat;
+            .background-size(100px, 100px);
+            border-radius: 100%;
+            content: '';
+            display: block;
+            height: 150px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 150px;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+
+    a:hover,
+    a:focus {
+        color: @linkBlueHover;
+    }
+
+    input[type='email'] {
+        border: 1px solid @borderColor;
+    }
+
+    #newsletter-form-thankyou {
+        color: @textColorPrimary;
+
+        h3 {
+            color: @textColorPrimary;
+        }
+    }
+}
+
 
 // Leadership
 .about-leadership .main-column h2 {
@@ -294,6 +359,22 @@ html[dir="rtl"] {
 
     }
 
+    #newsletter-subscribe .form-title {
+        h3 {
+            .font-size(24px);
+        }
+
+        h4 {
+            .font-size(16px);
+        }
+
+        &:before {
+            width: 120px;
+            height: 120px;
+            .background-size(80px, 80px);
+        }
+    }
+
     html[dir="rtl"] {
         #main-content .title-shadow-box {
             margin-right: 0;
@@ -364,6 +445,16 @@ html[dir="rtl"] {
             }
         }
 
+    }
+
+    #newsletter-subscribe .form-title {
+        padding-top: 150px;
+
+        &:before {
+            left: 50%;
+            top: -20px;
+            margin-left: -75px;
+        }
     }
 
     html[dir="rtl"] {

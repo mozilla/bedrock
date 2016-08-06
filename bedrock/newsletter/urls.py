@@ -48,5 +48,7 @@ urlpatterns = (
         views.newsletter_subscribe,
         name='newsletter.subscribe'),
 
+    # Branded signup pages for individual newsletters
     page('newsletter/mozilla', 'newsletter/mozilla.html'),
+    page('newsletter/firefox', 'newsletter/firefox.html'),
 )

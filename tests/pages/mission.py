@@ -11,13 +11,8 @@ class MissionPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/mission'
 
-    _mosaic_locator = (By.ID, 'mosaic')
     _video_overlay_locator = (By.CSS_SELECTOR, '.moz-video-container > .moz-video-button')
     _video_locator = (By.CSS_SELECTOR, '.moz-video-container > video')
-
-    @property
-    def is_mosaic_displayed(self):
-        return self.is_element_displayed(*self._mosaic_locator)
 
     @property
     def is_video_overlay_displayed(self):

@@ -1073,4 +1073,7 @@ URLS = flatten((
     url_test('/firefox/pocket', 'https://getpocket.com/firefox/'),
 
     url_test('/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun', '/firefox/mobile-download/'),
+
+    # bug 1288647
+    url_test('/hacking', 'https://developer.mozilla.org/docs/Mozilla/Developer_guide/Introduction'),
 ))

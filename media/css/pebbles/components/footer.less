@@ -8,10 +8,20 @@
     .font-size(14px);
     background: #fff;
     color: @color-text-tertiary;
-    line-height: 1.3;
+    line-height: 1.5;
     margin: 1em 0 0;
     padding: 40px 0;
     width: 100%;
+
+    a {
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline;
+        }
+    }
 
     .logo {
         .font-size(1rem);
@@ -53,9 +63,14 @@
         }
     }
 
+    .col {
+        margin-bottom: 20px;
+    }
+
     @media @mq-tablet {
         .col {
             .span(4);
+            margin-bottom: 0;
         }
     }
 
@@ -98,6 +113,10 @@
                 content: '';
             }
         }
+    }
+
+    .lang-switcher {
+        margin-top: 20px;
     }
 }
 

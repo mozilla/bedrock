@@ -44,13 +44,13 @@
               {{ _('All supported projects must:') }}
             </p>
             <ol>
-              <li>{{ _('Be piloted in the Chattanooga, TN or Kansas City, MO metropolitan region') }}</li>
+              <li>{{ _('Be piloted in the metropolitan region of Austin, Chattanooga, or Kansas City') }}</li>
               <li>{{ _('Focus on education or workforce development') }}</li>
               <li>{{ _('Leverage next-generation technologies like ultra high-speed networking') }}</li>
             </ol>
             <p>
             {% trans url_terms=url('gigabit.terms') %}
-              Participation is open to companies, academic institutions, and non-profit organizations  Funding will not be granted to unaffiliated individuals acting on their own. Before submitting your application, please review the Gigabit Community Fund’s <a href='{{ url_terms }}'>Terms and Conditions</a>.
+              Participation is open to companies, academic institutions, and non-profit organizations. Funding will not be granted to unaffiliated individuals acting on their own. Before submitting your application, please review the Gigabit Community Fund’s <a href='{{ url_terms }}'>Terms and Conditions</a>.
             {% endtrans %}
             </p>
           </div>
@@ -60,18 +60,6 @@
             <h3>{{ _('Key Dates') }}</h3>
             <table>
               <tbody>
-                <tr>
-                  <td>{{ _('January 11, 2016') }}</td>
-                  <td>{{ _('Application Window Opens for 2016') }}</td>
-                </tr>
-                <tr>
-                  <td>{{ _('February 22, 2016') }}</td>
-                  <td>{{ _('2016: Round 1 Optional Intent to Apply Form Due') }}</td>
-                </tr>
-                <tr>
-                  <td>{{ _('March 18, 2016') }}</td>
-                  <td>{{ _('Round 1 Review Deadline') }}</td>
-                </tr>
                 <tr>
                   <td>{{ _('May 16, 2016 - September 4, 2016') }}</td>
                   <td>{{ _('Round 1 Pilot Period') }}</td>
@@ -85,7 +73,7 @@
                   <td>{{ _('Round 2 Review Deadline') }}</td>
                 </tr>
                 <tr>
-                  <td>{{ _('January 2, 2017 - April 24, 2017') }}</td>
+                  <td>{{ _('January 16, 2017 - May 5, 2017') }}</td>
                   <td>{{ _('Round 2 Pilot Period') }}</td>
                 </tr>
               </tbody>
@@ -109,19 +97,19 @@
               <tr>
                 <th scope="row">{{ _('Curriculum Development') }}</th>
                 <td data-header={{ _('Description') }}><div>{{ _('Create and test lesson plans that help make gigabit technologies more accessible to educators and learners.') }}</div></td>
-                <td data-header={{ _('Pilot Requirements') }}><div>{{ _('The curriculum must be piloted in at least one organization in Kansas City or Chattanooga.') }}</div></td>
+                <td data-header={{ _('Pilot Requirements') }}><div>{{ _('The curriculum must be piloted in at least one organization in Austin, Kansas City, or Chattanooga.') }}</div></td>
                 <td data-header={{ _('Recommended Funding Level') }}><div>{{ _('$5,000') }}</div></td>
               </tr>
               <tr>
                 <th scope="row">{{ _('Multi-Org') }}</th>
                 <td data-header={{ _('Description') }}><div>{{ _('Pilot gigabit technologies in multiple organizations in a city, strengthening the local gigabit ecosystem.') }}</div></td>
-                <td data-header={{ _('Pilot Requirements') }}><div>{{ _('The project must be piloted in two or more organizations in Kansas City or Chattanooga.') }}</div></td>
+                <td data-header={{ _('Pilot Requirements') }}><div>{{ _('The project must be piloted in two or more organizations in Austin, Kansas City, or Chattanooga.') }}</div></td>
                 <td data-header={{ _('Recommended Funding Level') }}><div>{{ _('$15,000') }}</div></td>
               </tr>
               <tr>
                 <th scope="row">{{ _('Multi-City') }}</th>
                 <td data-header={{ _('Description') }}><div>{{ _('Pilot gigabit technologies across communities, helping build a national gigabit ecosystem.') }}</div></td>
-                <td data-header={{ _('Pilot Requirements') }}><div>{{ _('The project must be piloted with organizational partners in at least two gigabit cities. Kansas City or Chattanooga must be one of the represented cities.') }}</div></td>
+                <td data-header={{ _('Pilot Requirements') }}><div>{{ _('The project must be piloted with organizations in at least two gigabit cities. The lead organization must be in Austin, Kansas City, or Chattanooga.') }}</div></td>
                 <td data-header={{ _('Recommended Funding Level') }}><div>{{ _('$25,000') }}<div></td>
               </tr>
             </tbody>
@@ -132,8 +120,8 @@
         <div class="content">
           <h2>{{ _('How to Apply') }}</h2>
           <p>
-          {% trans url_mailto='mailto:gigabit@mozilla.com', url_twitter='https://twitter.com/MozGig', url_hive_kc='http://hivekc.org', url_hive_cha='http://hivecha.org' %}
-            We’re here to help make applying for a Gigabit Community Fund grant as easy as possible! We strongly encourage you to get in touch with us via <a href='{{ url_mailto }}'>email</a> or <a href='{{ url_twitter }}'>Twitter</a> as you prepare your application. Going to a meetup hosted by <a href='{{ url_hive_kc }}'>Hive KC</a> or <a href='{{ url_hive_cha }}'>Hive CHA</a> is another great way to get help on your proposal.
+          {% trans url_mailto='mailto:gigabit@mozilla.com', url_twitter='https://twitter.com/MozGig', url_hive_kc='https://twitter.com/hivekc', url_hive_cha='https://twitter.com/hive_cha', url_hive_atx='https://twitter.com/hiveatx' %}
+            We’re here to help make applying for a Gigabit Community Fund grant as easy as possible! We strongly encourage you to get in touch with us via <a href='{{ url_mailto }}'>email</a> or <a href='{{ url_twitter }}'>Twitter</a> as you prepare your application. Going to a meetup hosted by <a href='{{ url_hive_atx }}'>Hive ATX</a>, <a href='{{ url_hive_kc }}'>Hive KC</a> or <a href='{{ url_hive_cha }}'>Hive CHA</a> is another great way to get help on your proposal.
           {% endtrans %}
           </p>
           <p>
@@ -151,9 +139,14 @@
             {% endtrans %}
             </li>
             <li>
-            {% trans url_handy_template='https://drive.google.com/file/d/0B9NqWPTRsfNXNjlKT0tMVlcySlhfZmVlQTBINXVrN0FSVlI0/view' %}
-              Prepare your application using our <a href='{{ url_handy_template }}'>Handy Template</a>.
+            {% trans url_gigabit_application_form='https://drive.google.com/file/d/0B9NqWPTRsfNXNjlKT0tMVlcySlhfZmVlQTBINXVrN0FSVlI0/view' %}
+              Prepare your application using our <a href='{{ url_gigabit_application_form }}'>application form</a>.
             {% endtrans %}
+            </li>
+            <li>
+              {% trans url_gigabit_sample_1='https://drive.google.com/file/d/0B1Tu07mQk89LRmpfWXlHNmhmQk0/view?usp=sharing', url_gigabit_sample_2='https://drive.google.com/file/d/0B1Tu07mQk89LMGtaY3RYUHRxTWs/view?usp=sharing' %}
+               Check out some sample applications that have received funding, <a href='{{ url_gigabit_sample_1 }}'>here</a> and <a href='{{ url_gigabit_sample_2 }}'>here</a>. <br /> <em>(Please note that proposal format and questions have been updated.)</em>
+              {% endtrans %}
             </li>
             <li>
             {% trans url_startupCompete='//gigabitfund2016.startupcompete.co/' %}
