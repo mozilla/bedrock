@@ -248,7 +248,7 @@ html[dir="rtl"] #header h1 {
         .border-box();
         float: left;
         margin: 0;
-        width: 33.3%;
+        width: 50%;
         overflow: hidden;
         position: relative;
     }
@@ -471,15 +471,20 @@ html[dir="rtl"] #header h1 {
 
 
 /*--------------------------------------------------------------------------*/
-// Secondary tier - Hello, Sync, Private Browsing
+// Secondary tier - Sync and Private Browsing
 #products-secondary {
     background: #efefef;
     border-top: 1px solid rgba(0, 0, 0, .1);
     padding: 30px 0;
 
+    .product-list {
+        width: @widthDesktop;
+        margin: 0 auto;
+    }
+
     .product {
-        padding: 50px 20px 50px 140px;
-        min-height: 50px;
+        padding: 100px 20px 20px;
+        text-align: center;
     }
 
     h2 {
@@ -514,56 +519,24 @@ html[dir="rtl"] #header h1 {
     }
 }
 
-// Hello
-#product-hello h2:before {
-    .fxfamily-sprite(-380px, -115px);
-    width: 84px;
-    height: 80px;
-    top: 40px;
-    left: 40px;
-}
-
-html[dir='rtl'] {
-    #product-hello h2:before {
-        left: auto;
-        right: 40px;
-    }
-
-    #product-sync h2:before {
-        left: auto;
-        right: 10px;
-    }
-
-    #product-private-browsing h2:before {
-        left: auto;
-        right: 10px;
-    }
-}
-
 // Sync
 #product-sync h2:before {
     .fxfamily-sprite(-345px, -405px);
     width: 120px;
     height: 80px;
-    top: 32px;
-    left: 10px;
+    top: 0;
+    left: 50%;
+    margin-left: -60px;
 }
 
 // Private Browsing
-#product-private-browsing {
-    h2:before {
-        .fxfamily-sprite(-268px, -555px);
-        width: 130px;
-        height: 70px;
-        top: 40px;
-        left: 0;
-    }
-}
-
-html[dir='rtl'] {
-    #products-secondary .product {
-        padding: 50px 140px 50px 20px;
-    }
+#product-private-browsing h2:before {
+    .fxfamily-sprite(-268px, -555px);
+    width: 130px;
+    height: 70px;
+    top: 10px;
+    left: 50%;
+    margin-left: -65px;
 }
 
 
@@ -607,44 +580,6 @@ html[dir='rtl'] {
             margin-left: 15px;
         }
     }
-
-    #products-secondary .product {
-        padding-left: 160px;
-    }
-
-    #product-hello h2:before {
-        left: 60px;
-    }
-
-    #product-sync h2:before {
-        left: 30px;
-    }
-
-    #product-private-browsing h2:before {
-        left: 10px;
-    }
-
-    html[dir='rtl'] {
-        #products-secondary .product {
-            padding-right: 160px;
-        }
-
-        #product-hello h2:before {
-            left: auto;
-            right: 60px;
-        }
-
-        #product-sync h2:before {
-            left: auto;
-            right: 30px;
-        }
-
-        #product-private-browsing h2:before {
-            left: auto;
-            right: 10px;
-        }
-    }
-
 }
 
 
@@ -701,50 +636,19 @@ html[dir='rtl'] {
     }
 
     #products-secondary {
+        .product-list {
+            width: auto;
+        }
+
         .product {
-            width: 33.3%;
+            width: 50%;
             float: left;
-            text-align: center;
-            padding: 120px @gridGutterWidth @baseLine;
         }
 
         h2 {
             .font-size(20px);
-
-            &:before {
-                left: 50%;
-            }
         }
     }
-
-    #product-hello h2:before {
-        top: @baseLine + 14;
-        margin-left: -41px;
-    }
-
-    #product-sync h2:before {
-        top: @baseLine + 4;
-        margin-left: -60px;
-    }
-
-    #product-private-browsing h2:before {
-        top: 35px;
-        margin-left: -65px;
-    }
-
-    html[dir='rtl'] {
-        #products-secondary {
-            .product {
-                padding: 120px @gridGutterWidth @baseLine;
-            }
-
-            h2:before {
-                left: 50%;
-                right: auto;
-            }
-        }
-    }
-
 }
 
 
@@ -830,9 +734,12 @@ html[dir='rtl'] {
     #products-secondary {
         padding: @baseLine 0;
 
+        .product-list {
+            width: auto;
+        }
+
         .product {
-            padding: @baseLine @gridGutterWidth @baseLine 120px;
-            min-height: 50px;
+            padding: 80px 0 20px;
         }
 
         // Shrink icons by 25%
@@ -841,44 +748,17 @@ html[dir='rtl'] {
         }
     }
 
-    #product-hello h2:before {
-        width: 63px;
-        height: 60px;
-        background-position: -286px -87px;
-        top: @baseLine - 5;
-        left: 30px;
-    }
-
     #product-sync h2:before {
         width: 90px;
         height: 60px;
         background-position: -258px -303px;
-        top: @baseLine - 5;
-        left: 15px;
+        margin-left: -45px;
     }
 
     #product-private-browsing h2:before {
         width: 98px;
         height: 54px;
         background-position: -(268px * .75) -(555px * .75);
-        top: @baseLine;
-        left: 8px;
-    }
-
-    html[dir='rtl'] {
-        #products-secondary .product {
-            padding: @baseLine 120px @baseLine @gridGutterWidth;
-        }
-
-        #product-hello h2:before {
-            left: auto;
-            right: 30px;
-        }
-
-        #product-sync h2:before,
-        #product-private-browsing h2:before {
-            left: auto;
-            right: 15px;
-        }
+        margin-left: -49px;
     }
 }
