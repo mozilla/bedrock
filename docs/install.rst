@@ -26,7 +26,7 @@ You need to create a virtual environment for Python libraries. Skip the first in
     $ virtualenv -p python2.7 venv                 # create a virtual env in the folder `venv`
     $ source venv/bin/activate                     # activate the virtual env
     $ bin/pipstrap.py                              # securely upgrade pip
-    $ pip install -r requirements/dev.txt          # installs dependencies
+    $ pip install -r requirements/test.txt         # installs dependencies
 
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
 

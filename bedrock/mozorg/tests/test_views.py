@@ -48,6 +48,49 @@ class TestHome(TestCase):
         ctx = resp_mock.call_args[0][2]
         self.assertEqual(ctx['mobilizer_link'], 'His Dudeness')
 
+    # testing en-US home page variants
+    def test_en_us(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US.html', ANY)
+
+    def test_en_us_vA(self, render_mock):
+        req = RequestFactory().get('/?v=a')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US-a.html', ANY)
+
+    def test_en_us_vB(self, render_mock):
+        req = RequestFactory().get('/?v=b')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US-b.html', ANY)
+
+    def test_en_us_vC(self, render_mock):
+        req = RequestFactory().get('/?v=c')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US-c.html', ANY)
+
+    def test_non_en_us(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'es-ES'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home.html', ANY)
+
+    def test_en_us_invalid_variant(self, render_mock):
+        req = RequestFactory().get('/?v=d')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US.html', ANY)
+
 
 class TestViews(TestCase):
     def test_hacks_newsletter_frames_allow(self):

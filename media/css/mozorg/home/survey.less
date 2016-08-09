@@ -24,25 +24,13 @@
         padding: 2px 5px;
     }
 
-    @media only @mq-tablet {
-        display: block;
-    }
-}
-
-.home-variant #survey-message {
     &.stuck {
         position: fixed;
         bottom: 0;
         z-index: 90;
     }
-}
 
-.home-variant-a #survey-message {
-    @media only @mq-tablet and (min-height: 500px) {
-        padding-left: 260px;
-    }
-
-    @media only @mq-desktop and (min-height: 500px) {
-        padding-left: 380px;
+    @media only @mq-tablet {
+        display: block;
     }
 }

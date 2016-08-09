@@ -12,6 +12,9 @@
 
     var $surveyMsg;
 
+    // variant a and c only
+    var $slideshow = $('#home-slideshow');
+
     function handleWaypoint(target, callback) {
         return function(direction) {
             window.dataLayer.push({
@@ -23,6 +26,20 @@
                 callback(direction);
             }
         };
+    }
+
+    // Intro slideshow
+    function startSlideshow() {
+        if ($slideshow.length) {
+            $slideshow.cycle({
+                fx: 'fade',
+                log: false,
+                slides: '> .slide',
+                speed: 1000,
+                startingSlide: 1, // start on group photo
+                timeout: 5000
+            });
+        }
     }
 
     function toggleSurvey(direction) {
@@ -74,15 +91,21 @@
 
         $surveyMsg = $('#survey-message');
 
-        if ($surveyMsg.length && mqIsTablet) {
+        if (mqIsTablet) {
             if (mqIsTablet.matches) {
                 enableWaypoints();
+                startSlideshow();
             }
 
             mqIsTablet.addListener(function(mq) {
                 if (mq.matches) {
                     enableWaypoints();
+                    startSlideshow();
                 } else {
+                    if ($slideshow.length) {
+                        $slideshow.cycle('destroy');
+                    }
+
                     impactInnovationWaypoint.destroy();
                     firefoxWaypoint.destroy();
 
@@ -90,6 +113,10 @@
                     $surveyMsg.css('bottom', '-90px').removeClass('stuck');
                 }
             });
+        // if browser doesn't support matchMedia, assume it's a wide enough
+        // screen and start slideshow
+        } else {
+            startSlideshow();
         }
     });
 })(window.jQuery, window.Waypoint);

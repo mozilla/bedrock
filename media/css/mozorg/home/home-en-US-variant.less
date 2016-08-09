@@ -1,0 +1,184 @@
+@import '../../pebbles/lib.less';
+
+// variants a & c
+#intro {
+    background: #00a7de;
+    color: #fff;
+    position: relative;
+
+    h2,
+    h3 {
+        .border-box;
+        .fira-sans;
+        color: white;
+        margin: 0 auto;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(0, 0, 0, .01),
+                     0 0 5px rgba(0, 0, 0, .025),
+                     0 1px 1px rgba(0, 0, 0, .5);
+    }
+
+    .content {
+        background: rgba(0, 20, 40, .5);
+        display: block;
+        height: 100%;
+        padding: 20px;
+        position: relative;
+        width: 100%;
+        z-index: 2;
+    }
+
+    h2 {
+        .font-size(32px);
+        font-style: italic;
+        line-height: 1.3;
+        padding: 100px 20px;
+
+        @media @mq-tablet {
+            .font-size(48px);
+            width: 560px;
+        }
+
+        @media @mq-tablet and (min-height: 600px) {
+            padding: 140px 20px;
+        }
+
+        @media @mq-desktop {
+            .font-size(56px);
+            width: 640px;
+        }
+
+        @media @mq-desktop and (min-height: 600px) {
+            padding: 160px 20px;
+        }
+
+        @media @mq-desktop-wide {
+            .font-size(64px);
+            width: @width-tablet;
+        }
+
+        @media @mq-desktop-wide and (min-height: 600px) {
+            padding: 180px 20px;
+        }
+    }
+
+    h3 {
+        .font-size(20px);
+        line-height: 1.3;
+        padding: 0 20px;
+
+        @media @mq-tablet {
+            .font-size(22px);
+            width: @width-phone-wide;
+        }
+
+        @media @mq-desktop {
+            .font-size(26px);
+            width: 600px;
+        }
+
+        @media @mq-desktop-wide {
+            .font-size(30px);
+            padding-bottom: 20px;
+            width: @width-tablet;
+        }
+    }
+
+    #home-slideshow {
+        height: 100%;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .slide {
+        .background-size(cover);
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: none;
+        height: 100%;
+        width: 100%;
+    }
+
+    #slide-two {
+        display: block;
+        background-image: url('/media/img/home/new/intro/intro-learning-600.jpg');
+    }
+
+    @media @mq-tablet {
+        .slide {
+            display: block;
+        }
+
+        #slide-one {
+            background-image: url('/media/img/home/new/intro/intro-mitchell-1000.jpg');
+        }
+
+        #slide-two {
+            background-image: url('/media/img/home/new/intro/intro-learning-1000.jpg');
+        }
+
+        #slide-three {
+            background-image: url('/media/img/home/new/intro/intro-advocacy-1000.jpg');
+        }
+
+        #slide-four {
+            background-image: url('/media/img/home/new/intro/intro-vr-1000.jpg');
+        }
+    }
+
+    @media @mq-desktop-wide {
+        #slide-one {
+            background-image: url('/media/img/home/new/intro/intro-mitchell-2000.jpg');
+        }
+
+        #slide-two {
+            background-image: url('/media/img/home/new/intro/intro-learning-2000.jpg');
+        }
+
+        #slide-three {
+            background-image: url('/media/img/home/new/intro/intro-advocacy-2000.jpg');
+        }
+
+        #slide-four {
+            background-image: url('/media/img/home/new/intro/intro-vr-2000.jpg');
+        }
+    }
+}
+
+// adjust headline spacing for ?v=a (has main and sub headline)
+.home-en-US-a #intro h2 {
+    padding-bottom: 70px;
+    padding-top: 70px;
+
+    @media @mq-tablet and (min-height: 600px) {
+        padding: 110px 20px;
+    }
+    @media @mq-desktop and (min-height: 600px) {
+        padding: 130px 20px;
+    }
+    @media @mq-desktop-wide and (min-height: 600px) {
+        padding: 150px 20px;
+    }
+}
+
+#who {
+    .section-headline {
+        color: #d93a33;
+    }
+
+    .section-content:before {
+        .at2x('/media/img/home/new/b/speaker.png', 200px, 200px);
+    }
+}
+
+#innovate .section-content {
+    background: #d93a33;
+
+    &:before {
+        .at2x('/media/img/home/new/b/vr.png', 200px, 200px);
+    }
+}

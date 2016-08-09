@@ -1,0 +1,39 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/home/home-en-US.html" %}
+
+{% block body_class %}home-variant home-en-US-a{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'home-en-US-variant' %}
+{% endblock %}
+
+{% block intro %}
+  <div id="home-slideshow">
+    <div class="slide" id="slide-one"></div>
+    <div class="slide" id="slide-two"></div>
+    <div class="slide" id="slide-three"></div>
+    <div class="slide" id="slide-four"></div>
+  </div>
+  <div class="content">
+    <h2>
+      {# L10n: line break below for visual formatting only #}
+      {{ _('Internet for people, <br>not profit.') }}
+    </h2>
+    <h3>
+    {% trans %}
+      Hi. We’re Mozilla, the proudly non-profit champions of the Internet,
+      helping to keep it healthy, open and accessible to all.
+    {% endtrans %}
+    </h3>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'home-en-US' %}
+
+  {% include 'mozorg/home/includes/survey-a.html' %}
+{% endblock %}
