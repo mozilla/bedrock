@@ -108,9 +108,9 @@ babel==2.3.4 \
     --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875
 https://github.com/pmclanahan/django-synctool/archive/5f7cf9bad741e60bd9df32aa90e71425d98e437c.tar.gz#egg=django-synctool==1.1.1 \
     --hash=sha256:2dd290c5339769e3c40d644b5248236bec7c558eaccb922badd7c39c5fd5e095
-django-mozilla-rna==2.0 \
-    --hash=sha256:208b554849b5b66522121cd54d0aabf67e8b339e668d22d3c63cc1d368f7ec04 \
-    --hash=sha256:1125dd039075095807fee87201744e8feb0e762974de0b66885c10067c654e58
+django-mozilla-rna==2.0.2 \
+    --hash=sha256:da0e199ef08b3ed7200232b2724cee82812d70edfcea63202c48408e3241eb4f \
+    --hash=sha256:c75c905a0cfe744af143d7e7007ed5376ed0f27bf0db00b790dd9421eae027a0
 django-jinja==2.1.3 \
     --hash=sha256:64446ae1de3593136042147cb16ba9a3aa4449370d9c26c1ec9b7553b2d1c809
 django-jinja-markdown==1.0 \
