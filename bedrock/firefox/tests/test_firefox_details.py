@@ -6,7 +6,7 @@ import os
 from urlparse import parse_qsl, urlparse
 
 from django.conf import settings
-from django.core.cache import get_cache
+from django.core.cache import caches
 from django.test.utils import override_settings
 
 from mock import patch, Mock
@@ -74,7 +74,7 @@ class TestLatestBuilds(TestCase):
 
 
 class TestFirefoxDesktop(TestCase):
-    pd_cache = get_cache('product-details')
+    pd_cache = caches['product-details']
 
     def setUp(self):
         self.pd_cache.clear()

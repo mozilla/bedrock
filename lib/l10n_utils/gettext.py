@@ -13,7 +13,7 @@ from os.path import join
 from tokenize import generate_tokens, NAME, NEWLINE, OP, untokenize
 
 from django.conf import settings
-from django.core.cache import get_cache
+from django.core.cache import caches
 from django.template.loader import get_template
 from jinja2 import Environment
 
@@ -24,7 +24,7 @@ from lib.l10n_utils.utils import ContainsEverything
 
 ALL_THE_THINGS = ContainsEverything()
 REGEX_URL = re.compile(r'.* (\S+/\S+\.[^:]+).*')
-cache = get_cache('l10n')
+cache = caches['l10n']
 
 
 def parse_po(path):
@@ -181,7 +181,7 @@ def parse_template(path):
 def _get_template_tag_set(lang, path):
     lang_files = [get_lang_path(path)]
     template = get_template(path)
-    lang_files.extend(parse_template(template.filename))
+    lang_files.extend(parse_template(template.template.filename))
     tag_set = set()
     for lf in lang_files:
         tag_set |= lang_file_tag_set(lf, lang)
@@ -245,7 +245,7 @@ def translations_for_template(template_name):
     """
     lang_files = [get_lang_path(template_name)]
     template = get_template(template_name)
-    lang_files.extend(parse_template(template.filename))
+    lang_files.extend(parse_template(template.template.filename))
     active_translations = {}
     for lf in lang_files:
         active_translations.update(get_translations_for_langfile(lf))

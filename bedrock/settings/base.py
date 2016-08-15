@@ -29,7 +29,7 @@ def path(*args):
 DEV = config('DEV', cast=bool, default=False)
 PROD = config('PROD', cast=bool, default=False)
 
-DEBUG = TEMPLATE_DEBUG = config('DEBUG', cast=bool, default=False)
+DEBUG = config('DEBUG', cast=bool, default=False)
 
 # Production uses MySQL, but Sqlite should be sufficient for local development.
 # Our CI server tests against MySQL.
@@ -44,9 +44,6 @@ DATABASES = config(
 if DATABASES['default']['ENGINE'].endswith('psycopg2'):
     # let the DB handle connection killing
     DATABASES['default']['CONN_MAX_AGE'] = None
-
-SLAVE_DATABASES = config('SLAVE_DATABASES', cast=Csv(), default=',')
-DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
 CACHES = config(
     'CACHES',
@@ -230,26 +227,6 @@ CANONICAL_URL = 'https://www.mozilla.org'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = config('SECRET_KEY', default='ssssshhhhh')
 
-TEMPLATE_DIRS = (
-    path('locale'),
-)
-
-JINJA_CONFIG = {
-    'extensions': [
-        'jingo.ext.JingoExtension',
-        'lib.l10n_utils.template.i18n',
-        'jinja2.ext.do',
-        'jinja2.ext.with_',
-        'jinja2.ext.loopcontrols',
-        'lib.l10n_utils.template.l10n_blocks',
-        'lib.l10n_utils.template.lang_blocks',
-        'jingo_markdown.extensions.MarkdownExtension',
-        'pipeline.jinja2.PipelineExtension',
-    ],
-    # Make None in templates render as ''
-    'finalize': lambda x: x if x is not None else '',
-}
-
 MEDIA_URL = config('MEDIA_URL', default='/user-media/')
 MEDIA_ROOT = config('MEDIA_ROOT', default=path('media'))
 STATIC_URL = config('STATIC_URL', default='/media/')
@@ -264,12 +241,6 @@ STATICFILES_FINDERS = (
 )
 STATICFILES_DIRS = (
     path('media'),
-)
-
-JINGO_EXCLUDE_APPS = (
-    'registration',
-    'rest_framework',
-    'rna',
 )
 
 PIPELINE = {
@@ -364,12 +335,13 @@ INSTALLED_APPS = (
     'product_details',
 
     # third-party apps
-    'jingo_markdown',
+    'django_jinja_markdown',
     'django_statsd',
     'pagedown',
     'rest_framework',
     'pipeline',
     'localflavor',
+    'django_jinja',
 
     # Local apps
     'bedrock.base',
@@ -434,36 +406,57 @@ LOCALE_PATHS = (
     str(LOCALES_PATH),
 )
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'jingo.Loader',
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.csrf',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.media',
-    'django.core.context_processors.request',
-    'django.contrib.messages.context_processors.messages',
-    'bedrock.base.context_processors.i18n',
-    'bedrock.base.context_processors.globals',
-    'bedrock.mozorg.context_processors.canonical_path',
-    'bedrock.mozorg.context_processors.contrib_numbers',
-    'bedrock.mozorg.context_processors.current_year',
-    'bedrock.mozorg.context_processors.funnelcake_param',
-    'bedrock.mozorg.context_processors.facebook_locale',
-    'bedrock.firefox.context_processors.latest_firefox_versions',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django_jinja.backend.Jinja2',
+        'DIRS': LOCALE_PATHS,
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'match_extension': None,
+            'undefined': 'jinja2.Undefined',
+            'finalize': lambda x: x if x is not None else '',
+            'translation_engine': 'lib.l10n_utils.template',
+            'newstyle_gettext': False,
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.media',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+                'bedrock.base.context_processors.i18n',
+                'bedrock.base.context_processors.globals',
+                'bedrock.mozorg.context_processors.canonical_path',
+                'bedrock.mozorg.context_processors.contrib_numbers',
+                'bedrock.mozorg.context_processors.current_year',
+                'bedrock.mozorg.context_processors.funnelcake_param',
+                'bedrock.mozorg.context_processors.facebook_locale',
+                'bedrock.firefox.context_processors.latest_firefox_versions',
+            ],
+            'extensions': [
+                'jinja2.ext.do',
+                'jinja2.ext.with_',
+                'jinja2.ext.loopcontrols',
+                'jinja2.ext.autoescape',
+                'django_jinja.builtins.extensions.CsrfExtension',
+                'django_jinja.builtins.extensions.StaticFilesExtension',
+                'django_jinja.builtins.extensions.DjangoFiltersExtension',
+                'lib.l10n_utils.template.i18n',
+                'lib.l10n_utils.template.l10n_blocks',
+                'lib.l10n_utils.template.lang_blocks',
+                'django_jinja_markdown.extensions.MarkdownExtension',
+                'pipeline.jinja2.PipelineExtension',
+            ],
+        }
+    },
+]
 
 FEEDS = {
     'mozilla': 'https://blog.mozilla.org/feed/'
 }
 EVENTS_ICAL_FEEDS = (
     'https://reps.mozilla.org/events/period/future/ical/',
-    'https://www.google.com/calendar/ical/mozilla.com_l9g7ie050ngr3g4qv6bgiinoig%40group.calendar.google.com/public/basic.ics',
+    'https://www.google.com/calendar/ical/mozilla.com_l9g7ie050ngr3g4qv6bgiinoig'
+    '%40group.calendar.google.com/public/basic.ics',
 )
 
 # Twitter accounts to retrieve tweets with the API
@@ -569,8 +562,6 @@ FACEBOOK_LIKE_LOCALES = ['af_ZA', 'ar_AR', 'az_AZ', 'be_BY', 'bg_BG',
 # Prefix for media. No trailing slash.
 # e.g. '//mozorg.cdn.mozilla.net'
 CDN_BASE_URL = config('CDN_BASE_URL', default='')
-
-CSRF_FAILURE_VIEW = 'bedrock.mozorg.views.csrf_failure'
 
 # Used on the newsletter preference center, included in the "interests" section.
 OTHER_NEWSLETTERS = [
@@ -962,13 +953,8 @@ SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
                           'es-AR', 'es-CL', 'es-ES', 'es-MX',
                           'fr', 'id', 'pl', 'pt-BR', 'ru']
 
-# Publishing system config
-RNA = {
-    'BASE_URL': config('RNA_BASE_URL', default='https://nucleus.mozilla.org/rna/'),
-
-    # default False as temporary workaround for bug 973499
-    'VERIFY_SSL_CERT': config('VERIFY_SSL_CERT', cast=bool, default=False),
-}
+RNA_SYNC_URL = config('RNA_SYNC_URL',
+                      default='https://nucleus.mozilla.org/rna/sync/')
 
 MOFO_SECURITY_ADVISORIES_PATH = config('MOFO_SECURITY_ADVISORIES_PATH',
                                        default=path('mofo_security_advisories'))

@@ -266,7 +266,7 @@ class LatestFxView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         # required for newsletter form post that is handled in
-        # newsletter/helpers.py
+        # newsletter/templatetags/helpers.py
         return self.get(request, *args, **kwargs)
 
     def redirect_to(self):

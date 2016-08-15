@@ -6,11 +6,12 @@ from __future__ import unicode_literals
 from datetime import datetime
 import urllib
 
-import jingo
+from django_jinja import library
+
 from lib.l10n_utils.dotlang import _
 
 
-@jingo.register.function
+@library.global_function
 def format_tweet_body(tweet):
     """
     Return a tweet in an HTML format.
@@ -55,7 +56,7 @@ def format_tweet_body(tweet):
     return text
 
 
-@jingo.register.function
+@library.global_function
 def format_tweet_timestamp(tweet):
     """
     Return an HTML time element filled with a tweet timestamp.

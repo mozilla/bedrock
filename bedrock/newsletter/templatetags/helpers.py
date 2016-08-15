@@ -4,8 +4,9 @@
 
 import logging
 
-import jingo
 import jinja2
+from django.template.loader import render_to_string
+from django_jinja import library
 
 from lib.l10n_utils import get_locale
 from bedrock.newsletter.forms import NewsletterFooterForm
@@ -14,7 +15,7 @@ from bedrock.newsletter.forms import NewsletterFooterForm
 log = logging.getLogger(__name__)
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
                           subtitle=None, include_country=True,
@@ -54,5 +55,5 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
         success=success,
     ))
 
-    html = jingo.render_to_string(request, 'newsletter/includes/form.html', context)
+    html = render_to_string('newsletter/includes/form.html', context, request=request)
     return jinja2.Markup(html)

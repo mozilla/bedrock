@@ -2,17 +2,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import jingo
 import jinja2
 from babel.core import Locale, UnknownLocaleError
 from babel.dates import format_date
 from babel.numbers import format_number
+from django_jinja import library
 
 from django.conf import settings
 
-from dotlang import translate, lang_file_has_tag
+from lib.l10n_utils.dotlang import lang_file_has_tag, translate
+from lib.l10n_utils.gettext import template_has_tag
 from lib.l10n_utils.translation import get_language
-from gettext import template_has_tag
 
 
 babel_format_locale_map = {
@@ -51,7 +51,7 @@ def gettext(ctx, text):
     return translate(text, ctx['request'].langfiles)
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def lang_files(ctx, *files):
     """Add more lang files to the translation object"""
@@ -63,16 +63,15 @@ def lang_files(ctx, *files):
 
 # backward compatible for imports
 _ = gettext
-jingo.get_env().install_gettext_callables(gettext, gettext)
 
 
-@jingo.register.filter
+@library.filter
 def js_escape(string):
     import json
     return json.dumps(string)[1:-1].replace('&nbsp;', '\\u00A0')
 
 
-@jingo.register.function
+@library.global_function
 @jinja2.contextfunction
 def l10n_has_tag(ctx, tag, langfile=None):
     """Return boolean whether the given template's lang files have the given tag."""
@@ -99,7 +98,7 @@ def current_locale():
     return get_locale(get_language())
 
 
-@jingo.register.filter
+@library.filter
 @jinja2.contextfilter
 def l10n_format_date(ctx, date, format='long'):
     """
@@ -110,7 +109,7 @@ def l10n_format_date(ctx, date, format='long'):
     return format_date(date, locale=lang, format=format)
 
 
-@jingo.register.filter
+@library.filter
 @jinja2.contextfilter
 def l10n_format_number(ctx, number):
     """

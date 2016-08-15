@@ -11,7 +11,7 @@ except ImportError:
     from StringIO import StringIO
 
 from django.conf import settings
-from django.core.cache import get_cache
+from django.core.cache import caches
 from django.utils.http import http_date
 
 import requests
@@ -29,7 +29,7 @@ class ExternalFile(object):
         except KeyError:
             raise ValueError('No external file with the {0} ID.'.format(file_id))
 
-        self._cache = get_cache('externalfiles')
+        self._cache = caches['externalfiles']
         self.file_id = file_id
         self.url = fileinfo['url']
         self.name = fileinfo.get('name', basename(self.url))

@@ -277,8 +277,8 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn('text/html', response._headers['content-type'][1])
 
-    @patch('bedrock.mozorg.views.jingo.render_to_string',
-           return_value='jingo rendered')
+    @patch('bedrock.mozorg.views.render_to_string',
+           return_value='rendered')
     @patch('bedrock.mozorg.views.EmailMessage')
     def test_post_ajax(self, mock_email_message, mock_render_to_string):
         """
@@ -308,7 +308,7 @@ class TestProcessPartnershipForm(TestCase):
             # make sure email values are correct
             mock_email_message.assert_called_once_with(
                 views.PARTNERSHIPS_EMAIL_SUBJECT,
-                'jingo rendered',
+                'rendered',
                 views.PARTNERSHIPS_EMAIL_FROM,
                 views.PARTNERSHIPS_EMAIL_TO)
 
@@ -328,8 +328,8 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
 
-    @patch('bedrock.mozorg.views.jingo.render_to_string',
-           return_value='jingo rendered')
+    @patch('bedrock.mozorg.views.render_to_string',
+           return_value='rendered')
     @patch('bedrock.mozorg.views.EmailMessage')
     def test_post_ajax_honeypot(self, mock_email_message, mock_render_to_string):
         """
@@ -380,8 +380,8 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
 
-    @patch('bedrock.mozorg.views.jingo.render_to_string',
-           return_value='jingo rendered')
+    @patch('bedrock.mozorg.views.render_to_string',
+           return_value='rendered')
     @patch('bedrock.mozorg.views.EmailMessage')
     def test_lead_source(self, mock_email_message, mock_render_to_string):
         """
@@ -395,7 +395,7 @@ class TestProcessPartnershipForm(TestCase):
             views.process_partnership_form(request, self.template,
                                            self.view, {}, form_kwargs)
 
-            return str(mock_render_to_string.call_args[0][2])
+            return str(mock_render_to_string.call_args[0][1])
 
         self.assertTrue('www.mozilla.org/about/partnerships/' in _req(None))
         self.assertTrue('www.mozilla.org/firefox/partners/' in

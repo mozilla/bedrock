@@ -1,20 +1,22 @@
+# coding: utf-8
+
 import os.path
 
-from mock import patch
-
+from datetime import datetime
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from bedrock.base.helpers import static
 
-import jingo
-from bedrock.base.urlresolvers import reverse
+from django_jinja.backend import Jinja2
+from jinja2 import Markup
+from mock import patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 from rna.models import Release
 
-from bedrock.mozorg.helpers.misc import (convert_to_high_res, releasenotes_url,
-                                         absolute_url, switch)
+from bedrock.base.templatetags.helpers import static
+from bedrock.base.urlresolvers import reverse
+from bedrock.mozorg.templatetags import misc
 from bedrock.mozorg.tests import TestCase
 
 
@@ -23,9 +25,9 @@ TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, 'media', '%s', 'l10n')
 
 TEST_DONATE_LINK = ('https://donate.mozilla.org/{locale}/?presets={presets}'
-    '&amount={default}&ref=EOYFR2015&utm_campaign=EOYFR2015'
-    '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
-    '&currency={currency}')
+                    '&amount={default}&ref=EOYFR2015&utm_campaign=EOYFR2015'
+                    '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
+                    '&currency={currency}')
 
 TEST_DONATE_PARAMS = {
     'en-US': {
@@ -45,23 +47,24 @@ TEST_FIREFOX_TWITTER_ACCOUNTS = {
     'es-ES': 'https://twitter.com/firefox_es',
     'pt-BR': 'https://twitter.com/firefoxbrasil',
 }
+jinja_env = Jinja2.get_default()
 
 
 # Where should this function go?
 def render(s, context=None):
-    t = jingo.get_env().from_string(s)
+    t = jinja_env.from_string(s)
     return t.render(context or {})
 
 
 def test_convert_to_high_res():
-    eq_(convert_to_high_res('/media/img/the.dude.png'), '/media/img/the.dude-high-res.png')
-    eq_(convert_to_high_res('/media/thats-a-bummer-man.jpg'),
+    eq_(misc.convert_to_high_res('/media/img/the.dude.png'), '/media/img/the.dude-high-res.png')
+    eq_(misc.convert_to_high_res('/media/thats-a-bummer-man.jpg'),
         '/media/thats-a-bummer-man-high-res.jpg')
 
 
-@patch('bedrock.mozorg.helpers.misc.config')
+@patch('bedrock.mozorg.templatetags.misc.config')
 def test_switch_helper(config_mock):
-    switch('dude-and-walter')
+    misc.switch('dude-and-walter')
     config_mock.assert_called_with('SWITCH_DUDE_AND_WALTER', default=settings.DEV, cast=bool)
 
 
@@ -96,7 +99,7 @@ class TestSecureURL(TestCase):
         self._test('', 'https://' + self.host + self.test_path, True)
 
 
-@patch('bedrock.mozorg.helpers.misc._l10n_media_exists')
+@patch('bedrock.mozorg.templatetags.misc._l10n_media_exists')
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
 class TestImgL10n(TestCase):
     rf = RequestFactory()
@@ -162,7 +165,7 @@ class TestImgL10n(TestCase):
 
 
 @override_settings(DEBUG=False)
-@patch('bedrock.mozorg.helpers.misc._l10n_media_exists')
+@patch('bedrock.mozorg.templatetags.misc._l10n_media_exists')
 class TestL10nCSS(TestCase):
     rf = RequestFactory()
     static_url_dev = '/static/'
@@ -261,7 +264,7 @@ class TestVideoTag(TestCase):
 
 
 @override_settings(STATIC_URL='/media/')
-@patch('bedrock.mozorg.helpers.misc.find_static', return_value=True)
+@patch('bedrock.mozorg.templatetags.misc.find_static', return_value=True)
 class TestPlatformImg(TestCase):
     rf = RequestFactory()
 
@@ -321,9 +324,9 @@ class TestPlatformImg(TestCase):
         attributes
         """
         l10n_url_win = self._render_l10n('test-windows.png')
-        l10n_hr_url_win = convert_to_high_res(l10n_url_win)
+        l10n_hr_url_win = misc.convert_to_high_res(l10n_url_win)
         l10n_url_mac = self._render_l10n('test-mac.png')
-        l10n_hr_url_mac = convert_to_high_res(l10n_url_mac)
+        l10n_hr_url_mac = misc.convert_to_high_res(l10n_url_mac)
         markup = self._render('test.png', {'l10n': True, 'high-res': True})
         self.assertIn(u'data-src-windows-high-res="' + l10n_hr_url_win + '"', markup)
         self.assertIn(u'data-src-mac-high-res="' + l10n_hr_url_mac + '"', markup)
@@ -480,7 +483,7 @@ class TestHighResImg(TestCase):
     def test_high_res_img_with_l10n(self):
         """Should return expected markup with l10n image path"""
         l10n_url = self._render_l10n('test.png')
-        l10n_hr_url = convert_to_high_res(l10n_url)
+        l10n_hr_url = misc.convert_to_high_res(l10n_url)
         markup = self._render('test.png', {'l10n': True})
         expected = (
             u'<img class="" src="' + l10n_url + '" '
@@ -490,7 +493,7 @@ class TestHighResImg(TestCase):
     def test_high_res_img_with_l10n_and_optional_attributes(self):
         """Should return expected markup with l10n image path"""
         l10n_url = self._render_l10n('test.png')
-        l10n_hr_url = convert_to_high_res(l10n_url)
+        l10n_hr_url = misc.convert_to_high_res(l10n_url)
         markup = self._render('test.png', {'l10n': True, 'data-test-attr': 'test'})
         expected = (
             u'<img class="" src="' + l10n_url + '" '
@@ -529,30 +532,30 @@ class TestAbsoluteURLFilter(TestCase):
     def test_urls(self):
         """Should return a fully qualified URL including a protocol"""
         expected = 'https://www.mozilla.org/en-US/firefox/new/'
-        eq_(absolute_url('/en-US/firefox/new/'), expected)
-        eq_(absolute_url('//www.mozilla.org/en-US/firefox/new/'), expected)
-        eq_(absolute_url('https://www.mozilla.org/en-US/firefox/new/'), expected)
+        eq_(misc.absolute_url('/en-US/firefox/new/'), expected)
+        eq_(misc.absolute_url('//www.mozilla.org/en-US/firefox/new/'), expected)
+        eq_(misc.absolute_url('https://www.mozilla.org/en-US/firefox/new/'), expected)
 
 
 class TestReleaseNotesURL(TestCase):
-    @patch('bedrock.mozorg.helpers.misc.reverse')
+    @patch('bedrock.mozorg.templatetags.misc.reverse')
     def test_aurora_android_releasenotes_url(self, mock_reverse):
         """
         Should return the results of reverse with the correct args
         """
         release = Release(
             channel='Aurora', version='42.0a2', product='Firefox for Android')
-        eq_(releasenotes_url(release), mock_reverse.return_value)
+        eq_(misc.releasenotes_url(release), mock_reverse.return_value)
         mock_reverse.assert_called_with(
             'firefox.android.releasenotes', args=('42.0a2', 'aurora'))
 
-    @patch('bedrock.mozorg.helpers.misc.reverse')
+    @patch('bedrock.mozorg.templatetags.misc.reverse')
     def test_desktop_releasenotes_url(self, mock_reverse):
         """
         Should return the results of reverse with the correct args
         """
         release = Release(version='42.0', product='Firefox')
-        eq_(releasenotes_url(release), mock_reverse.return_value)
+        eq_(misc.releasenotes_url(release), mock_reverse.return_value)
         mock_reverse.assert_called_with(
             'firefox.desktop.releasenotes', args=('42.0', 'release'))
 
@@ -599,3 +602,74 @@ class TestFirefoxIOSURL(TestCase):
             '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
         eq_(self._render('es-ES', 'mozorg'), 'https://itunes.apple.com/es'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
+
+
+# from jingo
+
+def test_f():
+    s = render('{{ "{0} : {z}"|f("a", z="b") }}')
+    eq_(s, 'a : b')
+
+
+def test_f_unicode():
+    s = render('{{ "foo {0}"|f(bar) }}', {'bar': u'bar\xe9'})
+    eq_(s, u'foo bar\xe9')
+    s = render('{{ t|f(bar) }}', {'t': u'\xe9 {0}', 'bar': 'baz'})
+    eq_(s, u'\xe9 baz')
+
+
+def test_f_markup():
+    format_string = 'Hello <b>{0}</b>'
+    format_markup = Markup(format_string)
+    val_string = '<em>Steve</em>'
+    val_markup = Markup(val_string)
+    template = '{{ fmt|f(val) }}'
+    expect = 'Hello &lt;b&gt;&lt;em&gt;Steve&lt;/em&gt;&lt;/b&gt;'
+
+    combinations = (
+        (format_string, val_string),
+        (format_string, val_markup),
+        (format_markup, val_string),
+        (format_markup, val_markup),
+    )
+
+    def _check(f, v):
+        s = render(template, {'fmt': f, 'val': v})
+        eq_(expect, s)
+
+    for f, v in combinations:
+        yield _check, f, v
+
+
+def test_datetime():
+    time = datetime(2009, 12, 25, 10, 11, 12)
+    s = render('{{ d|datetime }}', {'d': time})
+    eq_(s, 'December 25, 2009')
+
+    s = render('{{ d|datetime("%Y-%m-%d %H:%M:%S") }}', {'d': time})
+    eq_(s, '2009-12-25 10:11:12')
+
+    s = render('{{ None|datetime }}')
+    eq_(s, '')
+
+
+def test_datetime_unicode():
+    fmt = u"%Y 年 %m 月 %e 日"
+    misc.datetime(datetime.now(), fmt)
+
+
+def test_ifeq():
+    eq_context = {'a': 1, 'b': 1}
+    neq_context = {'a': 1, 'b': 2}
+
+    s = render('{{ a|ifeq(b, "<b>something</b>") }}', eq_context)
+    eq_(s, '<b>something</b>')
+
+    s = render('{{ a|ifeq(b, "<b>something</b>") }}', neq_context)
+    eq_(s, '')
+
+
+def test_csrf():
+    s = render('{{ csrf() }}', {'csrf_token': 'fffuuu'})
+    csrf = "<input type='hidden' name='csrfmiddlewaretoken' value='fffuuu' />"
+    assert csrf in s

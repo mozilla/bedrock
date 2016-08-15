@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import jingo
 import json
 from cgi import escape
 
@@ -16,9 +15,10 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import last_modified, require_safe
 from django.views.generic import TemplateView
 from django.shortcuts import redirect, render as django_render
+from django.template.loader import render_to_string
 
 import basket
-from bedrock.base.helpers import static
+from bedrock.base.templatetags.helpers import static
 from lib import l10n_utils
 from commonware.decorators import xframe_allow
 from bedrock.base.urlresolvers import reverse
@@ -125,7 +125,8 @@ def process_partnership_form(request, template, success_url_name,
                     subject = PARTNERSHIPS_EMAIL_SUBJECT
                     sender = PARTNERSHIPS_EMAIL_FROM
                     to = PARTNERSHIPS_EMAIL_TO
-                    body = jingo.render_to_string(request, 'mozorg/emails/partnerships.txt', data)
+                    body = render_to_string('mozorg/emails/partnerships.txt', data,
+                                            request=request)
 
                     email = EmailMessage(subject, body, sender, to)
                     email.send()

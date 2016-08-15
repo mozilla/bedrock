@@ -121,8 +121,8 @@ class TestPressInquiry(TestCase):
 
         eq_(False, form.is_valid())
 
-    @patch('bedrock.press.views.jingo.render_to_string',
-           return_value='jingo rendered')
+    @patch('bedrock.press.views.render_to_string',
+           return_value='rendered')
     @patch('bedrock.press.views.EmailMessage')
     def test_email(self, mock_email_message, mock_render_to_string):
         """
@@ -145,7 +145,7 @@ class TestPressInquiry(TestCase):
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
             press_views.PRESS_INQUIRY_EMAIL_SUBJECT,
-            'jingo rendered',
+            'rendered',
             press_views.PRESS_INQUIRY_EMAIL_FROM,
             press_views.PRESS_INQUIRY_EMAIL_TO)
 
@@ -288,8 +288,8 @@ class TestSpeakerRequest(TestCase):
         # make sure attachment errors are in form
         self.assertIn('sr_attachment', form.errors)
 
-    @patch('bedrock.press.views.jingo.render_to_string',
-           return_value='jingo rendered')
+    @patch('bedrock.press.views.render_to_string',
+           return_value='rendered')
     @patch('bedrock.press.views.EmailMessage')
     def test_email(self, mock_email_message, mock_render_to_string):
         """
@@ -312,12 +312,12 @@ class TestSpeakerRequest(TestCase):
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
             press_views.SPEAKER_REQUEST_EMAIL_SUBJECT,
-            'jingo rendered',
+            'rendered',
             press_views.SPEAKER_REQUEST_EMAIL_FROM,
             press_views.SPEAKER_REQUEST_EMAIL_TO)
 
-    @patch('bedrock.press.views.jingo.render_to_string',
-           return_value='jingo rendered')
+    @patch('bedrock.press.views.render_to_string',
+           return_value='rendered')
     @patch('bedrock.press.views.EmailMessage')
     def test_email_with_attachement(
             self, mock_email_message, mock_render_to_string):
@@ -357,7 +357,7 @@ class TestSpeakerRequest(TestCase):
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
             press_views.SPEAKER_REQUEST_EMAIL_SUBJECT,
-            'jingo rendered',
+            'rendered',
             press_views.SPEAKER_REQUEST_EMAIL_FROM,
             press_views.SPEAKER_REQUEST_EMAIL_TO)
 

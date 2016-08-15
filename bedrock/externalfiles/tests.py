@@ -19,6 +19,7 @@ import requests
 class TestExternalFile(TestCase):
     @classmethod
     def setUpClass(cls):
+        super(TestExternalFile, cls).setUpClass()
         timezone.activate(utc)
 
     def setUp(self):

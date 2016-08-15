@@ -2,9 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import jingo
-
 from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic.edit import FormView
@@ -45,7 +44,8 @@ class PressInquiryView(FormView):
         subject = PRESS_INQUIRY_EMAIL_SUBJECT
         sender = PRESS_INQUIRY_EMAIL_FROM
         to = PRESS_INQUIRY_EMAIL_TO
-        msg = jingo.render_to_string(self.request, 'press/emails/press-inquiry.txt', form.cleaned_data)
+        msg = render_to_string('press/emails/press-inquiry.txt', form.cleaned_data,
+                               request=self.request)
 
         email = EmailMessage(subject, msg, sender, to)
         email.send()
@@ -86,7 +86,8 @@ class SpeakerRequestView(FormView):
         subject = SPEAKER_REQUEST_EMAIL_SUBJECT
         sender = SPEAKER_REQUEST_EMAIL_FROM
         to = SPEAKER_REQUEST_EMAIL_TO
-        msg = jingo.render_to_string(self.request, 'press/emails/speaker-request.txt', form.cleaned_data)
+        msg = render_to_string('press/emails/speaker-request.txt', form.cleaned_data,
+                               request=self.request)
 
         email = EmailMessage(subject, msg, sender, to)
 

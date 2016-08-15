@@ -8,7 +8,7 @@ from mock import patch
 from nose.tools import eq_
 
 from bedrock.mozorg.tests import TestCase
-from lib.l10n_utils import helpers
+from lib.l10n_utils.templatetags import helpers
 
 
 def test_get_locale():
@@ -41,7 +41,7 @@ class TestL10nHasTag(TestCase):
 
 
 class TestCurrentLocale(TestCase):
-    @patch('lib.l10n_utils.helpers.Locale')
+    @patch('lib.l10n_utils.templatetags.helpers.Locale')
     def test_unknown_locale(self, Locale):
         """
         If Locale.parse raises an UnknownLocaleError, return the en-US
@@ -51,7 +51,7 @@ class TestCurrentLocale(TestCase):
         eq_(helpers.current_locale(), Locale.return_value)
         Locale.assert_called_with('en', 'US')
 
-    @patch('lib.l10n_utils.helpers.Locale')
+    @patch('lib.l10n_utils.templatetags.helpers.Locale')
     def test_value_error(self, Locale):
         """
         If Locale.parse raises a ValueError, return the en-US locale
@@ -61,15 +61,15 @@ class TestCurrentLocale(TestCase):
         eq_(helpers.current_locale(), Locale.return_value)
         Locale.assert_called_with('en', 'US')
 
-    @patch('lib.l10n_utils.helpers.get_language')
-    @patch('lib.l10n_utils.helpers.Locale')
+    @patch('lib.l10n_utils.templatetags.helpers.get_language')
+    @patch('lib.l10n_utils.templatetags.helpers.Locale')
     def test_success(self, Locale, get_language):
         eq_(helpers.current_locale(), Locale.parse.return_value)
         Locale.parse.assert_called_with(get_language.return_value, sep='-')
 
 
 class TestL10nFormat(TestCase):
-    @patch('lib.l10n_utils.helpers.format_date')
+    @patch('lib.l10n_utils.templatetags.helpers.format_date')
     def test_format_date(self, format_date):
         ctx = {'LANG': 'de'}
         locale = Locale('de')
@@ -78,7 +78,7 @@ class TestL10nFormat(TestCase):
         format_date.assert_called_with(
             'somedate', locale=locale, format='long')
 
-    @patch('lib.l10n_utils.helpers.format_date')
+    @patch('lib.l10n_utils.templatetags.helpers.format_date')
     def test_format_date_hyphenated_locale(self, format_date):
         ctx = {'LANG': 'en-US'}
         locale = Locale('en', 'US')
@@ -87,7 +87,7 @@ class TestL10nFormat(TestCase):
         format_date.assert_called_with(
             'somedate', locale=locale, format='long')
 
-    @patch('lib.l10n_utils.helpers.format_number')
+    @patch('lib.l10n_utils.templatetags.helpers.format_number')
     def test_format_number(self, format_number):
         ctx = {'LANG': 'de'}
         locale = Locale('de')
@@ -96,7 +96,7 @@ class TestL10nFormat(TestCase):
         format_number.assert_called_with(
             10000, locale=locale)
 
-    @patch('lib.l10n_utils.helpers.format_number')
+    @patch('lib.l10n_utils.templatetags.helpers.format_number')
     def test_format_number_hyphenated_locale(self, format_number):
         ctx = {'LANG': 'pt-BR'}
         locale = Locale('pt', 'BR')
