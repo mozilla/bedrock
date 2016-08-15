@@ -73,8 +73,6 @@ https://github.com/mozilla/django-dnt/archive/269289b1ccd5e31b313ba669f59d4cab3b
     --hash=sha256:27f6d6ebafc106446b885fb79da65eac66bc739c2ef7b5ff0b97234ea7030e33
 https://github.com/timmyomahony/django-pagedown/archive/78556863faa5654f749c5562b390317c6cad10b3.tar.gz#egg=django-pagedown \
     --hash=sha256:3e7bfaf54a560889838104c100d8b37930306243d8913942c4675cfcc54bccc7
-https://github.com/kennethreitz/requests/archive/46d646064ca0836a7d7b4d50ea2c762d12ff8ce1.tar.gz#egg=requests \
-    --hash=sha256:a000a8b126c29c2e24d0d022b3decdadfd681410c6e7ec161c1ca9c774fcd95f
 https://github.com/mozilla/django-product-details/archive/27a500d1248c8107168910345755215ae971b016.tar.gz#egg=django-mozilla-product-details==0.12 \
     --hash=sha256:9bb8daedc91b7b386f4e42601ab17c752a647e45fe8b1396e0151db06ad5d990
 https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79e0f1b222c.tar.gz#egg=django-appconf \
@@ -108,8 +106,8 @@ puente==0.4.1 \
 babel==2.3.4 \
     --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975 \
     --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875
-https://github.com/pmclanahan/django-synctool/archive/fix-dumpdata.tar.gz#egg=django-synctool==1.1.0 \
-    --hash=sha256:cdb85d2932a9923206db9ef7172220bebf573fdf74ceaacfe2ea9c4957de778c
+https://github.com/pmclanahan/django-synctool/archive/5f7cf9bad741e60bd9df32aa90e71425d98e437c.tar.gz#egg=django-synctool==1.1.1 \
+    --hash=sha256:2dd290c5339769e3c40d644b5248236bec7c558eaccb922badd7c39c5fd5e095
 django-mozilla-rna==2.0 \
     --hash=sha256:208b554849b5b66522121cd54d0aabf67e8b339e668d22d3c63cc1d368f7ec04 \
     --hash=sha256:1125dd039075095807fee87201744e8feb0e762974de0b66885c10067c654e58
@@ -121,3 +119,6 @@ django-jinja-markdown==1.0 \
 Markdown==2.6.6 \
     --hash=sha256:9a292bb40d6d29abac8024887bcfc1159d7a32dc1d6f1f6e8d6d8e293666c504 \
     --hash=sha256:022239550fb4a84bcc3b3b42dff9a41efc56d773ef17c4f28016dd8f265c82d0
+requests==2.11.0 \
+    --hash=sha256:8b9b147f3dff1fc4055ff794ff931f735ed25e87efe667ed7c845a4bafae9b73 \
+    --hash=sha256:b2ff053e93ef11ea08b0e596a1618487c4e4c5f1006d7a1706e3671c57dea385
