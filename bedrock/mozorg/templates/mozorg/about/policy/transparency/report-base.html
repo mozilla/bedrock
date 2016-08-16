@@ -33,17 +33,12 @@
   {% block report_body %}{% endblock %}
   </div>
 
+  {% block report_nav %}
   <aside class="section nav-block">
-    <nav class="content nav-report two-up">
-      <ul>
-        <li><a href="{{ url('mozorg.about.policy.transparency.index') }}#faq">{{ _('FAQ') }}</a></li>
-        <li><a href="{{ url('mozorg.about.policy.transparency.index') }}#definitions">{{ _('Definitions') }}</a></li>
-      </ul>
-    </nav>
-
-    {# Uncomment the below include once we have more than one report. #}
-    {# include 'mozorg/about/policy/transparency/includes/past-reports.html' #}
+    {% include 'mozorg/about/policy/transparency/includes/reports-nav.html' %}
+    {% include 'mozorg/about/policy/transparency/includes/past-reports.html' %}
   </aside>
+  {% endblock %}
 
   </main>
 {% endblock %}

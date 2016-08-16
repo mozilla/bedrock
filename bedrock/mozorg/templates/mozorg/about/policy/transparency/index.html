@@ -49,12 +49,11 @@
           <li><a href="#faq">{{ _('FAQ') }}</a></li>
           <li><a href="#definitions">{{ _('Definitions') }}</a></li>
           {# This link should point to the latest report. Past reports are added to 'includes/past-reports.html' #}
-          <li><a href="{{ url('mozorg.about.policy.transparency.jan-dec-2015') }}">{{ _('2015 Report') }}</a></li>
+          <li><a href="{{ url('mozorg.about.policy.transparency.jan-jun-2016') }}">{{ _('January–June 2016 Report') }}</a></li>
         </ul>
       </nav>
 
-      {# Uncomment the below include once we have more than one report. #}
-      {# include 'mozorg/about/policy/transparency/includes/past-reports.html' #}
+      {% include 'mozorg/about/policy/transparency/includes/past-reports.html' %}
     </aside>
 
     <section class="section section-extra section-faq" id="faq">
@@ -177,9 +176,9 @@
         <h2 class="section-title">{{ _('Definitions') }}</h2>
 
         <dl class="simple">
-          <dt id="dfn-emergency-request">{{ _('Emergency Request') }}</dt>
+          <dt id="dfn-counter-notice">{{ _('Counter Notice') }}</dt>
           <dd>
-            <p>{{ _('A request from a government agency seeking information on an expedited basis in connection with an emergency, typically involving death or serious injury.') }}</p>
+            <p>{{ _('Documentation that meets the counter notification requirements <a href="%s">set forth here</a> in response to a <a href="%s">Takedown Notice</a>.')|format(url('legal.report-infringement'), url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice') }}</p>
           </dd>
 
           <dt id="dfn-court-order">{{ _('Court Order') }}</dt>
@@ -187,14 +186,14 @@
             <p>{{ _('An order issued by a judge or magistrate compelling a company to engage or refrain from certain action.') }}</p>
           </dd>
 
-          <dt id="dfn-counter-notice">{{ _('Counter Notice') }}</dt>
-          <dd>
-            <p>{{ _('Documentation that meets the counter notification requirements <a href="%s">set forth here</a> in response to a <a href="%s">Takedown Notice</a>.')|format(url('legal.report-infringement'), url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice') }}</p>
-          </dd>
-
           <dt id="dfn-threat-indicator">{{ _('Cybersecurity Threat Indicator') }}</dt>
           <dd>
             <p>{{ _('Pieces of information about a threat to a computer network or system, such as a vulnerability, piece of malicious code, or the IP address of an attacker. This definition is based on the Cybersecurity Information Sharing Act of 2015 (CISA); the full definition is at <a href="%s">6 U.S.C. § 1501(6)</a>.')|format('http://uscode.house.gov/view.xhtml?req=%28title:6%20section:1501%20edition:prelim%29%20OR%20%28granuleid:USC-prelim-title6-section1501%29&f=treesort&edition=prelim&num=0&jumpTo=true') }}</p>
+          </dd>
+
+          <dt id="dfn-emergency-request">{{ _('Emergency Request') }}</dt>
+          <dd>
+            <p>{{ _('A request from a government agency seeking information on an expedited basis in connection with an emergency, typically involving death or serious injury.') }}</p>
           </dd>
 
           <dt id="dfn-legal-process">{{ _('Legal Process') }}</dt>
