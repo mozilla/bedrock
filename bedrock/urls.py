@@ -8,7 +8,7 @@ from django.conf.urls import handler404, include, url
 
 # The default django 500 handler doesn't run the ContextProcessors, which breaks
 # the base template page. So we replace it with one that does!
-handler500 = 'lib.bedrock_util.server_error_view'
+handler500 = 'bedrock.base.views.server_error_view'
 
 
 urlpatterns = (
