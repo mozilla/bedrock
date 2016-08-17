@@ -76,3 +76,8 @@ if (len(sys.argv) > 1 and sys.argv[1] == 'test') or sys.argv[0].endswith('py.tes
     TEMPLATES[0]['OPTIONS']['debug'] = True
     # use default product-details data
     PROD_DETAILS_STORAGE = 'product_details.storage.PDFileStorage'
+
+    if not DATABASES['default']:
+        # tests do not like empty default db
+        DATABASES['default'] = DATABASES['bedrock']
+        DATABASE_ROUTERS = []

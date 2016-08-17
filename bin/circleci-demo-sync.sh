@@ -26,7 +26,7 @@ fi
 # use settings in manage.py runs
 cp .bedrock_demo_env .env
 
-./manage.py migrate --noinput
+./manage.py migrate --noinput --database bedrock
 ./manage.py l10n_update
 ./manage.py rnasync
 ./manage.py cron update_ical_feeds

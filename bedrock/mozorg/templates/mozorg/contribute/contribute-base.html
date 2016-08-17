@@ -58,8 +58,10 @@
       <ul class="head-stats">
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
         <li class="stat-worldwide"><strong>{{ num_mozillians|l10n_format_number }}</strong> {{ _('active Mozillians worldwide') }}</li>
+        {% if events_count() %}
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. #}
         <li class="stat-events"><strong>{{ events_count()|l10n_format_number }}</strong> {{ _('upcoming events around the globe') }}</li>
+        {% endif %}
         {# L10n: This label accompanies a numeric count. The number appears first so phrase translations accordingly. The phrase "and counting" means there are always more being added; not sure how that idiom might translate so do your best :) #}
         <li class="stat-local"><strong>{{ num_languages|l10n_format_number }}</strong> {{ _('languages and counting, on every continent') }}</li>
       </ul>

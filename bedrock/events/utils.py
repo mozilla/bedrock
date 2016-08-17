@@ -2,6 +2,7 @@ from functools import wraps
 
 from django.conf import settings
 from django.core.cache import cache
+from django.db import DatabaseError
 
 from bedrock.events.models import Event
 
@@ -33,27 +34,42 @@ def cache_memoized(obj):
 
 @cache_memoized
 def current_and_future_event_count():
-    return Event.objects.current_and_future().count()
+    try:
+        return Event.objects.current_and_future().count()
+    except DatabaseError:
+        return 0
 
 
 @cache_memoized
 def current_and_future_events():
-    return list(Event.objects.current_and_future())
+    try:
+        return list(Event.objects.current_and_future())
+    except DatabaseError:
+        return []
 
 
 @cache_memoized
 def future_event_count():
-    return Event.objects.future().count()
+    try:
+        return Event.objects.future().count()
+    except DatabaseError:
+        return 0
 
 
 @cache_memoized
 def future_events():
-    return list(Event.objects.future())
+    try:
+        return list(Event.objects.future())
+    except DatabaseError:
+        return []
 
 
 @cache_memoized
 def next_few_events(count):
-    return list(Event.objects.future()[:count])
+    try:
+        return list(Event.objects.future()[:count])
+    except DatabaseError:
+        return []
 
 
 def next_event():
