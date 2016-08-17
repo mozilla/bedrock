@@ -15,7 +15,13 @@
     </p>
     <ul>
       {% for plat in builds -%}
-        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="download-link button green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}"
+               class="download-link button green"
+               data-link-type="download"
+               {% if plat.os == 'android' %}data-download-os="Android"
+               {% elif plat.os == 'ios' %}data-download-os="iOS"
+               {% else %}data-download-os="Desktop"{% endif %}>{{ plat.os_arch_pretty or plat.os_pretty }}</a>
+        </li>
       {%- endfor %}
     </ul>
   </div>
@@ -56,9 +62,10 @@
         <a class="download-link button {{button_color}}"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ plat.download_link_direct }}"{% endif %}
-           {% if plat.os == 'android' %}data-link-type="download" data-download-os="Android"
-           {% elif plat.os == 'ios' %}data-link-type="download" data-download-os="iOS"
-           {% else %}data-link-type="download" data-download-os="Desktop"{% endif %}>
+           data-link-type="download"
+           {% if plat.os == 'android' %}data-download-os="Android"
+           {% elif plat.os == 'ios' %}data-download-os="iOS"
+           {% else %}data-download-os="Desktop"{% endif %}>
           <strong class="download-title">
             {% if alt_copy %}
               {{ alt_copy }}
