@@ -341,9 +341,14 @@ class TestFirefoxAndroid(TestCase):
         eq_(platforms, ['android', 'android-api-9', 'android-x86'])
 
 
-@override_settings(FIREFOX_IOS_RELEASE_VERSION='1.4')
+@patch.object(firefox_ios._storage, 'data',
+              Mock(return_value=dict(ios_version='5.0', ios_beta_version='6.0')))
 class TestFirefoxIos(TestCase):
 
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
-        eq_(firefox_ios.latest_version('release'), '1.4')
+        eq_(firefox_ios.latest_version('release'), '5.0')
+
+    def test_latest_beta_version(self):
+        """latest_version should return the latest beta version."""
+        eq_(firefox_ios.latest_version('beta'), '6.0')
