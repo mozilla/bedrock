@@ -32,7 +32,7 @@ cp .bedrock_demo_env .env
 ./manage.py cron update_ical_feeds
 ./manage.py cron cleanup_ical_events
 ./manage.py cron update_tweets
-./manage.py update_product_details
+./manage.py update_product_details --database bedrock
 ./manage.py update_externalfiles
 ./manage.py update_security_advisories
 ./manage.py runscript update_firefox_os_feeds

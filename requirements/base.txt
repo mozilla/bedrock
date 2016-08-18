@@ -73,8 +73,6 @@ https://github.com/mozilla/django-dnt/archive/269289b1ccd5e31b313ba669f59d4cab3b
     --hash=sha256:27f6d6ebafc106446b885fb79da65eac66bc739c2ef7b5ff0b97234ea7030e33
 https://github.com/timmyomahony/django-pagedown/archive/78556863faa5654f749c5562b390317c6cad10b3.tar.gz#egg=django-pagedown \
     --hash=sha256:3e7bfaf54a560889838104c100d8b37930306243d8913942c4675cfcc54bccc7
-https://github.com/mozilla/django-product-details/archive/27a500d1248c8107168910345755215ae971b016.tar.gz#egg=django-mozilla-product-details==0.12 \
-    --hash=sha256:9bb8daedc91b7b386f4e42601ab17c752a647e45fe8b1396e0151db06ad5d990
 https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79e0f1b222c.tar.gz#egg=django-appconf \
     --hash=sha256:3e80e498209d7253e2cc1a4f9b02e7da819179a910c9275d5bc232de48e67c33
 https://github.com/jsocol/commonware/archive/b5544185b2d24adc1eb512735990752400ce9cbd.tar.gz#egg=commonware \
@@ -122,3 +120,6 @@ Markdown==2.6.6 \
 requests==2.11.0 \
     --hash=sha256:8b9b147f3dff1fc4055ff794ff931f735ed25e87efe667ed7c845a4bafae9b73 \
     --hash=sha256:b2ff053e93ef11ea08b0e596a1618487c4e4c5f1006d7a1706e3671c57dea385
+django-mozilla-product-details==0.12.1 \
+    --hash=sha256:a31a51102e8c2f047f8aa62b8bdc552f7a31d9c69f2cb16393225c3ee0db72b5 \
+    --hash=sha256:25ac11bd4544fef3236f32439f6b1de3bcf931f8b34c7786ab40f0ec85626eeb

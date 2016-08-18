@@ -75,7 +75,7 @@ def ping_dms(function):
 @scheduled_job('interval', minutes=30)
 @ping_dms
 def update_product_details():
-    call_command('update_product_details')
+    call_command('update_product_details --database bedrock')
 
 
 @scheduled_job('interval', minutes=30)
