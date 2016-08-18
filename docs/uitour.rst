@@ -285,6 +285,7 @@ Available ``type`` values:
 * ``'selectedSearchEngine'``
 * ``'search'``
 * ``'loop'``
+* ``'canReset'``
 
 Other parameters:
 
@@ -380,6 +381,20 @@ If ``'loop'`` is queried the object returns the boolean value for the ``'loop.ge
 
     ``loop`` is only available in Firefox 36 onward.
 
+**canReset**
+
+If ``'canReset'`` is queried the callback returns a boolean value to indicate if a user can refresh their Firefox profile via ``resetFirefox()``
+
+.. code-block:: javascript
+
+    Mozilla.UITour.getConfiguration('canReset', function (canReset) {
+        console.log(canReset); // true
+    });
+
+.. Important::
+
+    ``canReset`` is only available in Firefox 48 onward.
+
 setConfiguration(name, value);
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -467,7 +482,9 @@ Opens the Firefox reset panel, allowing users to choose to reomve add-ons and cu
 
 .. Important::
 
-    ``showFirefoxAccounts()`` is only available in Firefox 35 onward.
+    ``resetFirefox()`` should be called only in Firefox 48 onwards, and only after
+    first calling ``getConfiguration('canReset')`` to determine if the user profile
+    is eligible.
 
 addNavBarWidget(target, callback);
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
