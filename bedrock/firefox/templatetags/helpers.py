@@ -2,6 +2,7 @@ from collections import OrderedDict
 
 from django.core.cache import cache
 from django.conf import settings
+from django.db.utils import DatabaseError
 
 import jinja2
 from django.template.loader import render_to_string
@@ -249,9 +250,12 @@ def firefox_os_feed_links(locale, force_cache_refresh=False):
             links = cache.get(cache_key)
             if links:
                 return links
-        links = list(
-            FirefoxOSFeedLink.objects.filter(locale=locale).order_by(
-                '-id').values_list('link', 'title')[:10])
+        try:
+            links = list(
+                FirefoxOSFeedLink.objects.filter(locale=locale).order_by(
+                    '-id').values_list('link', 'title')[:10])
+        except DatabaseError:
+            links = []
         cache.set(cache_key, links)
         return links
     elif '-' in locale:
