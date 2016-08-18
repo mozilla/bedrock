@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import google_play_button with context %}
+
 {% extends "base-new.html" %}
 
 {% add_lang_files "mozorg/home/index" %}
@@ -18,8 +20,8 @@
   {{ _('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource, open and accessible to all.') }}
 {% endblock %}
 
-{% block body_id %}home-a{% endblock %}
-{% block body_class %}home-variant home-variant-a{% endblock %}
+{% block body_id %}home-en-US{% endblock %}
+{% block body_class %}home-en-US{% endblock %}
 
 {% block extra_meta %}
 <!-- validates bing webmaster tools -->
@@ -29,7 +31,7 @@
 {% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'home-a' %}
+  {% stylesheet 'home-en-US' %}
 {% endblock %}
 
 {% block optimizely %}
@@ -41,10 +43,10 @@
 {% block site_header %}
 <header class="section masthead" id="masthead">
   <div class="content">
-
-  {% block tabzilla_tab %}{% endblock %}
-
-  {% block site_header_nav %}
+    <h1 class="masthead-logo">
+      <img src="{{ static('img/home/new/mozilla-wordmark.svg') }}" alt="Mozilla">
+    </h1>
+    {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='nav-download-firefox') }}
     <nav class="masthead-nav-main" id="nav-main">
       <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
       <ul id="nav-main-menu">
@@ -57,122 +59,125 @@
         <li class="products-item">
           <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
         </li>
+        <li class="donate-item">
+          <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{ _('Donate') }}</a>
+        </li>
       </ul>
     </nav>
-  {% endblock %}
-
-  {% block site_header_logo %}
-    <h1 class="masthead-logo">
-      <a href="#intro">
-        <img src="{{ static('img/home/new/mozilla-wordmark.svg') }}" alt="Mozilla">
-      </a>
-    </h1>
-  {% endblock %}
-
-  <nav class="masthead-nav-page" id="nav-page">
-    <ul id="nav-page-primary" class="primary">
-      <li id="nav-primary-people"><a href="#people" data-link-type="nav" data-link-name="Powered by People"><span>{{ _('Powered by People') }}</span></a></li>
-      <li id="nav-primary-innovation"><a href="#innovation" data-link-type="nav" data-link-name="Web Innovation"><span>{{ _('Web Innovations') }}</span></a></li>
-      <li id="nav-primary-firefox"><a href="#firefox" data-link-type="nav" data-link-name="Firefox anchor"><span>{{ _('Firefox') }}</span></a></li>
-    </ul>
-
-    <ul id="nav-page-secondary" class="secondary">
-      <li id="nav-secondary-donate"><a href="{{ donate_url('home_test_a') }}" data-link-type="nav" data-link-name="Donate"><span>{{ _('Donate') }}</span></a></li>
-      <li id="nav-secondary-firefox">
-        {{ download_firefox(alt_copy=_('Download Firefox'), button_color='transparent', dom_id='nav-download-firefox') }}
-      </li>
-    </ul>
-  </nav>
-
   </div>
 </header>
 {% endblock %}
 
 {% block content %}
-<main role="main" class="main">
-  <section class="section section-intro" id="intro">
-    <div id="home-slideshow">
-      <div class="slide" id="slide-one"></div>
-      <div class="slide" id="slide-two"></div>
-      <div class="slide" id="slide-three"></div>
-      <div class="slide" id="slide-four"></div>
-    </div>
+<main role="main" class="main wrapper">
+  <section class="section section-intro intro-control" id="intro">
+  {% block intro %}
     <div class="content">
-      <h2 class="intro-tagline">
-        {{ _('We are a non-profit with one mission: defend the freedom of the internet for all') }}
+      <h2>
+        <span>
+        {% block intro_title %}
+          {# L10n: line break below for visual formatting only #}
+          {{ _('Internet for people, <br>not profit.') }}
+        {% endblock %}
+        </span>
       </h2>
+      <h3>
+      {% block intro_copy %}
+        {% trans %}
+          Hi. We’re Mozilla, the proudly non-profit champions of the Internet,
+          helping to keep it healthy, open and accessible to all.
+        {% endtrans %}
+      {% endblock %}
+      </h3>
     </div>
+  {% endblock %}
   </section>
 
-  <section class="section section-people" id="people">
-    <div class="section-lead">
-      <div class="content">
-        <h2>{{ _('A network, hard at work') }}</h2>
-        <p>{{ _('At Mozilla, we bring together educators, builders, advocates and experts who work fearlessly to protect our individual freedoms on the internet.') }}</p>
-      </div>
-    </div>
-
-    <div id="encryption-video-container" class="moz-video-container">
-      <button class="moz-video-button" type="button" aria-controls="encryption-video">{{ _('Play video') }}</button>
-      {{ video('Mozilla_Encrypt_Beat2_landingpage.webm',
-               'Mozilla_Encrypt_Beat2_landingpage.mp4',
-               prefix='https://d24kjznqej0s8a.cloudfront.net/2016/encryption_campaign/',
-               poster=static('img/home/new/encryption/encryption-video-poster.jpg'),
-               preload='metadata',
-               id='encryption-video') }}
-    </div>
-
-    <div class="section-body">
-      <div class="content">
-        <h3>{{ _('Why we fight for Encryption') }}</h3>
-        <p>{{ _('Privacy online is an essential part of life. As we take action to protect the tool that protects our personal information, we encourage you to stand up for encryption, too.') }}</p>
-        <p class="section-cta">
-          <a href="https://advocacy.mozilla.org/encrypt/">{{ _('Join in') }}</a>
+  <section class="section" id="who-innovate-wrapper">
+    <section class="section-wrapper" id="who">
+      <div class="section-content">
+        <h2 class="section-headline">
+          {% block people_title %}
+            {{ _('Our impact') }}
+          {% endblock %}
+        </h2>
+        <p>
+        {% block people_copy %}
+          {% trans %}
+            Working at the grassroots and policy levels, we teach web literacy,
+            provide tools and advocate on behalf of every individual who values
+            an internet built on fairness, inclusion and respect.
+          {% endtrans %}
+        {% endblock %}
         </p>
+
+        <ul class="icon-links">
+          <li id="encryption"><a rel="external" href="https://advocacy.mozilla.org/encrypt/">{{ _('Stand Up For Encryption') }}</a></li>
+          <li id="teachtheweb"><a rel="external" href="https://learning.mozilla.org/">{{ _('Teach The Web') }}</a></li>
+          <li id="leandata"><a href="{{ url('mozorg.about.policy.lean-data') }}">{{ _('Try the Lean Data Toolkit') }}</a></li>
+        </ul>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section section-innovation" id="innovation">
-    <div class="section-lead">
-      <div class="content">
-        <h2>{{ _('The power of the web') }}</h2>
-        <p>{{ _('We proudly use the web as a platform to create open technologies that assist developers and help people do more on the internet in faster and safer ways.') }}</p>
+    <section class="section-wrapper" id="innovate">
+      <div class="section-content">
+        <h2 class="section-headline">
+          {% block innovation_title %}
+            {{ _('Our innovations') }}
+          {% endblock %}
+        </h2>
+        <p>
+        {% block innovation_copy %}
+          {% trans %}
+            Using the web as the platform, we build open, innovative
+            technologies that allow developers to work free of closed, corporate
+            ecosystems and create faster, safer web experiences for us all.
+          {% endtrans %}
+        {% endblock %}
+        </p>
+
+        <ul class="icon-links">
+          <li id="gaming"><a rel="external" href="https://games.mozilla.org/">{{ _('Gaming on the Web') }}</a></li>
+          <li id="vr"><a rel="external" href="https://aframe.io/">{{ _('Virtual Reality Platform') }}</a></li>
+          <li id="servo"><a rel="external" href="https://servo.org/">{{ _('Servo') }}</a></li>
+          <li id="rust"><a rel="external" href="https://www.rust-lang.org/">{{ _('Rust') }}</a></li>
+        </ul>
       </div>
-    </div>
+    </section>
+  </section>{#-- /#who-innovate-wrapper --#}
 
-    <div id="aframe-wrapper"></div>
-
-    <div class="section-body">
-      <div class="content">
-        <h3>{{ _('Introducing A-Frame') }}</h3>
-        <p>{{ _('Check out this ground-breaking, open-source framework for easily creating web-based virtual reality experiences.') }}</p>
-        <p class="section-cta"><a href="https://aframe.io/">{{ _('Learn more') }}</a></p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-firefox" id="firefox">
-    <div class="event-horizon">
-      <div class="section-lead">
+  <section class="section" id="firefox">
+    <div class="horizon">
+      <div class="stars">
         <div class="content">
-          <h2>{{ _('Browse freely') }}</h2>
+          <h2>{{ _('Browse freely.') }}</h2>
+        </div>
+      </div> {# --/.stars --#}
+    </div> {# --/.horizon --#}
+
+    <div class="foreground">
+      {% include 'firefox/new/horizon/includes/horizon.html' %}
+      <div class="content">
+        <p>
+          {{ _('Discover unlimited potential, endless possibility and a wide open Web.') }}
+        </p>
+
+        <a id="fx-download-link" href="{{ url('firefox.new') }}">{{ _('Get Firefox today') }}</a>
+
+        <div id="fxmobile-download-buttons">
+          <ul>
+            <li class="android">
+              {{ google_play_button() }}
+            </li>
+            <li class="ios">
+              <a href="{{ firefox_ios_url('mozorg-homepage_prototype_b-button') }}" data-link-type="download" data-download-os="iOS">
+                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-    <div class="mission-control">
-      <div class="sky-line"></div>
-      <div class="launch-area">
-        <div class="rocket"></div>
-      </div>
-      <div class="crater"></div>
-      <div class="section-body">
-        <div class="content">
-          <p>{{ _('Discover unlimited potential, endless possibility and a wide open Web.') }}</p>
-          <p class="section-cta"><a href="{{ url('firefox.family.index') }}">{{ _('Get Firefox today') }}</a></p>
-        </div>
-      </div>
-    </div>{#--/.mission-control --#}
+    </div> {# --/.foreground --#}
   </section>
 
   <section class="section section-externals" id="externals">
@@ -212,7 +217,7 @@
 {% endblock %}
 
 {% block site_footer %}
-<footer class="section section-footer" id="footer">
+<footer class="wrapper section-footer" id="footer">
   <nav class="content">
     <div class="footer-column">
       <h1 class="logo"><a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">Mozilla</a></h1>
@@ -267,9 +272,7 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'home-a' %}
+  {% javascript 'home-en-US' %}
 
-  {% if LANG == 'en-US' %}
-    {% include 'mozorg/home/includes/survey-a.html' %}
-  {% endif %}
+  {% include 'mozorg/home/includes/survey.html' %}
 {% endblock %}

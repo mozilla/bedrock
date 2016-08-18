@@ -35,12 +35,6 @@
   <![endif]-->
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('mozorg-home-optimizely') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block js %}
   <!--[if IE 9]>
     {% javascript 'matchmedia_addlistener' %}
