@@ -154,11 +154,11 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(self._get_url('android'))
         doc = pq(resp.content)
-        eq_(len(doc('tr#multi a')), 3)
+        eq_(len(doc('tr#multi a')), 2)
         eq_(len(doc('tr#multi .android-x86')), 1)
-        eq_(len(doc('tr#en-US a')), 3)
+        eq_(len(doc('tr#en-US a')), 2)
         eq_(len(doc('tr#en-US .android-x86')), 1)
-        eq_(len(doc('tr#fr a')), 2)
+        eq_(len(doc('tr#fr a')), 1)
         eq_(len(doc('tr#fr .android-x86')), 0)
 
     def test_404(self):
