@@ -154,38 +154,27 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req,
-            'firefox/new/horizon/scene1.html', {'version': 'none'})
-
-    def test_scene_1_animated_template(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=1')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req,
-            'firefox/new/horizon/scene1.html', {'version': '1'})
+        render_mock.assert_called_once_with(req, 'firefox/new/horizon/scene1.html')
 
     def test_scene_2_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req,
-            'firefox/new/horizon/scene2.html', {'version': 'none'})
+        render_mock.assert_called_once_with(req, 'firefox/new/horizon/scene2.html')
 
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_scene_1_old_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req,
-            'firefox/new/scene1.html', {'version': 'none'})
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
 
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_scene_2_old_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req,
-            'firefox/new/scene2.html', {'version': 'none'})
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
 
 class TestWin10WelcomeView(TestCase):
