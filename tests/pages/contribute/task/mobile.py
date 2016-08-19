@@ -9,7 +9,7 @@ from pages.contribute.base import ContributeBasePage
 
 class MobileTaskPage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/task/firefox-mobile'
+    URL_TEMPLATE = '/{locale}/contribute/task/firefox-mobile/'
 
     _android_download_button_locator = (By.CSS_SELECTOR, '.step-content a[data-download-os="Android"]')
     _ios_download_button_locator = (By.CSS_SELECTOR, '.step-content a[data-download-os="iOS"]')

@@ -10,7 +10,7 @@ from pages.regions.modal import Modal
 
 class ContributePage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute'
+    URL_TEMPLATE = '/{locale}/contribute/'
 
     _video_play_locator = (By.CSS_SELECTOR, '.video-play')
 

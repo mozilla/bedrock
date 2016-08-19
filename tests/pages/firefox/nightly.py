@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class FirstRunPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/nightly/firstrun'
+    URL_TEMPLATE = '/{locale}/firefox/nightly/firstrun/'
 
     _start_testing_locator = (By.CSS_SELECTOR, '#nightly-box .test .button')
     _start_coding_locator = (By.CSS_SELECTOR, '#nightly-box .code .button')

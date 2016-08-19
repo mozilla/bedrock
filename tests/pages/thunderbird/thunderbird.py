@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class ThunderbirdPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/thunderbird'
+    URL_TEMPLATE = '/{locale}/thunderbird/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
 

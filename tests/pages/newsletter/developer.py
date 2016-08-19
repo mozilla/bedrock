@@ -7,4 +7,4 @@ from pages.newsletter.base import NewsletterBasePage
 
 class DeveloperNewsletterPage(NewsletterBasePage):
 
-    URL_TEMPLATE = '/{locale}/newsletter/developer'
+    URL_TEMPLATE = '/{locale}/newsletter/developer/'

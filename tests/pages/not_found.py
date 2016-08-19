@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class NotFoundPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/404'
+    URL_TEMPLATE = '/{locale}/404/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
 

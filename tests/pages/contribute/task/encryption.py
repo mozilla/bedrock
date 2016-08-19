@@ -9,7 +9,7 @@ from pages.contribute.base import ContributeBasePage
 
 class EncryptionTaskPage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/task/encryption'
+    URL_TEMPLATE = '/{locale}/contribute/task/encryption/'
 
     _take_the_pledge_button_locator = (By.CSS_SELECTOR, 'a[data-task="encryption"]')
 

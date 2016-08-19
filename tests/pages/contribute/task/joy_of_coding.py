@@ -9,7 +9,7 @@ from pages.contribute.base import ContributeBasePage
 
 class JoyOfCodingTaskPage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/task/joy-of-coding'
+    URL_TEMPLATE = '/{locale}/contribute/task/joy-of-coding/'
 
     _video_locator = (By.ID, 'joc')
     _watch_the_video_button_locator = (By.CSS_SELECTOR, 'button[data-task="joyofcoding"]')

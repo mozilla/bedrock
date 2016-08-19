@@ -29,4 +29,4 @@ class SendToDevice(FirefoxBaseRegion):
 
     @property
     def is_displayed(self):
-        return self.is_element_displayed(*self._root_locator)
+        return self.page.is_element_displayed(*self._root_locator)

@@ -11,7 +11,7 @@ from regions.newsletter import NewsletterEmbedForm
 
 class BasePage(Page):
 
-    URL_TEMPLATE = '/{locale}'
+    URL_TEMPLATE = '/{locale}/'
 
     def __init__(self, selenium, base_url, locale='en-US', **url_kwargs):
         super(BasePage, self).__init__(selenium, base_url, locale=locale, **url_kwargs)

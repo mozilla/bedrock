@@ -41,6 +41,7 @@ supervisord.log
 .env
 .cache
 tests/functional/results.html
+tests/functional/driver.log
 tests/functional/assets
 .eslintcache
 .docker-build*

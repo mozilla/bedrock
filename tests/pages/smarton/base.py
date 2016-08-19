@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class SmartOnBasePage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/teach/smarton/{slug}'
+    URL_TEMPLATE = '/{locale}/teach/smarton/{slug}/'
 
     _download_button_locator = (By.ID, 'smarton-foot-download')
 

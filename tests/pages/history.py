@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class HistoryPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/about/history'
+    URL_TEMPLATE = '/{locale}/about/history/'
 
     _slideshow_locator = (By.CSS_SELECTOR, '#slideshow')
     _previous_button_locator = (By.CSS_SELECTOR, '.slide-control > .prev')

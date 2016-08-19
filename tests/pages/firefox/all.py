@@ -9,7 +9,7 @@ from pages.firefox.base import FirefoxBasePage, FirefoxBaseRegion
 
 class FirefoxAllPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/all'
+    URL_TEMPLATE = '/{locale}/firefox/all/'
 
     _search_input_locator = (By.ID, 'language-search-q')
     _submit_button_locator = (By.CSS_SELECTOR, '#language-search button')

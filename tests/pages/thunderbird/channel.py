@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class ThunderbirdChannelPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/thunderbird/channel'
+    URL_TEMPLATE = '/{locale}/thunderbird/channel/'
 
     _beta_download_button_locator = (By.ID, 'download-button-desktop-beta')
 

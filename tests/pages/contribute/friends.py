@@ -11,7 +11,7 @@ from pages.contribute.base import ContributeBasePage
 
 class ContributeFriendsPage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/friends'
+    URL_TEMPLATE = '/{locale}/contribute/friends/'
 
     _email_locator = (By.ID, 'id_email')
     _fx_and_you_locator = (By.ID, 'id_fx-and-you')

@@ -54,7 +54,10 @@ Running functional tests
   Before running the functional tests, please make sure to follow the bedrock
   :ref:`installation docs<install>`, including the database sync that is needed
   to pull in external data such as event/blog feeds etc. These are required for
-  some of the tests to pass.
+  some of the tests to pass. To run the tests using Firefox, you must also first
+  download `geckodriver`_ and make it available in your `system path`_. You can
+  alternatively specify the path to geckodriver using the command line (see the
+  `pytest-selenium documentation`_ for more information).
 
 To run the full functional test suite against your local bedrock instance:
 
@@ -343,3 +346,5 @@ and also do not depend on a crawler to find them.
 .. _download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download.py
 .. _localized download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download_l10n.py
 .. _Basket: https://github.com/mozilla/basket
+.. _geckodriver: https://github.com/mozilla/geckodriver/releases/latest
+.. _system path: https://developer.mozilla.org/docs/Mozilla/QA/Marionette/WebDriver#Add_executable_to_system_path

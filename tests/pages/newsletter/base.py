@@ -11,7 +11,7 @@ from pages.base import BasePage
 
 class NewsletterBasePage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/newsletter'
+    URL_TEMPLATE = '/{locale}/newsletter/'
 
     _email_locator = (By.ID, 'id_email')
     _country_locator = (By.ID, 'id_country')
