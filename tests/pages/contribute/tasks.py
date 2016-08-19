@@ -9,7 +9,7 @@ from pages.contribute.base import ContributeBasePage
 
 class ContributeSignUpPage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/signup'
+    URL_TEMPLATE = '/{locale}/contribute/signup/'
 
     _twitter_task_locator = (By.CSS_SELECTOR, 'a[data-task="Connect with Mozilla on Twitter"]')
     _mobile_task_locator = (By.CSS_SELECTOR, 'a[data-task="Get Firefox on Your Phone"]')

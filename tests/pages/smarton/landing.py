@@ -9,7 +9,7 @@ from pages.smarton.base import SmartOnBasePage
 
 class SmartOnLandingPage(SmartOnBasePage):
 
-    URL_TEMPLATE = '/{locale}/teach/smarton'
+    URL_TEMPLATE = '/{locale}/teach/smarton/'
 
     _topic_tracking_locator = (By.CSS_SELECTOR, '#topic-tracking > a')
     _topic_security_locator = (By.CSS_SELECTOR, '#topic-security > a')

@@ -7,4 +7,4 @@ from pages.firefox.base import FirefoxBasePage
 
 class FirefoxPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/{slug}'
+    URL_TEMPLATE = '/{locale}/firefox/{slug}/'

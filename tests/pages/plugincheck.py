@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class PluginCheckPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/plugincheck'
+    URL_TEMPLATE = '/{locale}/plugincheck/'
 
     _not_supported_message_locator = (By.ID, 'not-supported-container')
 

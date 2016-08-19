@@ -7,7 +7,6 @@ import pytest
 from pages.contact import ContactPage, SpacesPage, CommunitiesPage
 
 
-@pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_tab_navigation(base_url, selenium):
     page = ContactPage(selenium, base_url).open()
@@ -34,7 +33,6 @@ def test_tab_navigation(base_url, selenium):
     assert contact_page.seed_url in selenium.current_url
 
 
-@pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_spaces_list(base_url, selenium):
     page = SpacesPage(selenium, base_url).open()
@@ -46,7 +44,6 @@ def test_spaces_list(base_url, selenium):
         assert 1 == page.displayed_map_pins
 
 
-@pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_communities_region_list(base_url, selenium):
     page = CommunitiesPage(selenium, base_url).open()
@@ -58,7 +55,6 @@ def test_communities_region_list(base_url, selenium):
         assert key.is_selected
 
 
-@pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_communities_region_legend(base_url, selenium):
     page = CommunitiesPage(selenium, base_url).open()
@@ -70,7 +66,6 @@ def test_communities_region_legend(base_url, selenium):
         assert region.is_displayed
 
 
-@pytest.mark.flaky(reruns=1)
 @pytest.mark.nondestructive
 def test_communities_region_menus(base_url, selenium):
     page = CommunitiesPage(selenium, base_url).open()

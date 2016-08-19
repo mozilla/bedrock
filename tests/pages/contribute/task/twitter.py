@@ -9,7 +9,7 @@ from pages.contribute.base import ContributeBasePage
 
 class TwitterTaskPage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/task/follow-mozilla'
+    URL_TEMPLATE = '/{locale}/contribute/task/follow-mozilla/'
 
     _share_button_locator = (By.CSS_SELECTOR, 'a[data-action="tweet"]')
     _follow_button_locator = (By.CSS_SELECTOR, 'a[data-action="follow"]')

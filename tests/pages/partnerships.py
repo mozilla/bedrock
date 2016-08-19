@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class PartnershipsPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/about/partnerships'
+    URL_TEMPLATE = '/{locale}/about/partnerships/'
 
     _first_name_locator = (By.ID, 'first_name')
     _last_name_locator = (By.ID, 'last_name')

@@ -10,7 +10,7 @@ from pages.firefox.base import FirefoxBasePage
 
 class iOSTestFlightPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/ios/testflight'
+    URL_TEMPLATE = '/{locale}/firefox/ios/testflight/'
 
     _email_locator = (By.ID, 'id_email')
     _html_format_locator = (By.ID, 'id_fmt_0')

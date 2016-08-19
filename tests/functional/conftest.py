@@ -9,9 +9,27 @@ VIEWPORT = {
     'mobile': {'width': 320, 'height': 480}}
 
 
+@pytest.fixture
+def capabilities(request, capabilities):
+    driver = request.config.getoption('driver')
+    if capabilities.get('browserName', driver).lower() == 'firefox':
+        capabilities['marionette'] = True
+    return capabilities
+
+
+@pytest.fixture
+def driver_log():
+    return 'tests/functional/driver.log'
+
+
 @pytest.fixture(scope='session')
-def session_capabilities(session_capabilities):
-    session_capabilities.setdefault('tags', []).append('bedrock')
+def session_capabilities(pytestconfig, session_capabilities):
+    if pytestconfig.getoption('driver') == 'SauceLabs':
+        session_capabilities.setdefault('tags', []).append('bedrock')
+
+        # Avoid default SauceLabs proxy for IE8.
+        session_capabilities['avoidProxy'] = True
+
     return session_capabilities
 
 

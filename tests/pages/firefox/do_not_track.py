@@ -9,7 +9,7 @@ from pages.firefox.base import FirefoxBasePage, FirefoxBaseRegion
 
 class DoNotTrackPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/dnt'
+    URL_TEMPLATE = '/{locale}/firefox/dnt/'
 
     _dnt_status_locator = (By.CSS_SELECTOR, '#dnt-status > h5')
     _faqs_locator = (By.CSS_SELECTOR, '#faq > section')

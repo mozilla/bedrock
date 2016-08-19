@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class DevToolsChallengerTaskPage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/task/devtools-challenger'
+    URL_TEMPLATE = '/{locale}/contribute/task/devtools-challenger/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-alpha')
     _visit_dev_tools_challenger_locator = (By.CSS_SELECTOR, 'a[data-task="devtools"]')

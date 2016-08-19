@@ -10,7 +10,7 @@ from pages.base import BasePage
 
 class StyleGuidePage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/styleguide'
+    URL_TEMPLATE = '/{locale}/styleguide/'
 
     _sidebar_locator = (By.CSS_SELECTOR, '#sidebar nav > ul > .has-children')
 

@@ -9,7 +9,7 @@ from pages.contribute.base import ContributeBasePage
 
 class ContributeEventsPage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/events'
+    URL_TEMPLATE = '/{locale}/contribute/events/'
 
     _events_table_locator = (By.CSS_SELECTOR, '.events-table > tbody > tr')
 

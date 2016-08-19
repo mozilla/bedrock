@@ -9,7 +9,7 @@ from pages.base import BasePage
 
 class AboutPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/about'
+    URL_TEMPLATE = '/{locale}/about/'
 
     _video_overlay_locator = (By.CSS_SELECTOR, '.moz-video-container .moz-video-button')
     _video_locator = (By.CSS_SELECTOR, '.moz-video-container video')

@@ -1,5 +1,6 @@
 environment:
-  SELENIUM_VERSION: 2.52.0
+  SELENIUM_VERSION: 3.5.0
+  DOCKER_SELENIUM_VERSION: 3.5.3-astatine
 
 regions:
   usw:

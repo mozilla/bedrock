@@ -10,7 +10,7 @@ from pages.regions.modal import Modal
 
 class LeadershipPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/about/leadership'
+    URL_TEMPLATE = '/{locale}/about/leadership/'
 
     _corporation_bios_locator = (By.CSS_SELECTOR, '.gallery.mgmt-corp .vcard.has-bio')
     _foundation_bios_locator = (By.CSS_SELECTOR, '.gallery.mgmt-foundation .vcard.has-bio')

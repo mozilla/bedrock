@@ -23,7 +23,7 @@ class NewsletterEmbedForm(Region):
 
     def expand_form(self):
         # scroll newsletter into view before expanding the form
-        self.scroll_element_into_view(*self._root_locator)
+        self.page.scroll_element_into_view(*self._root_locator)
         assert not self.is_form_detail_displayed, 'Form detail is already displayed'
         # Click the submit button to expand the form when not visible.
         # Ideally here we would focus on the email field, but Selenium has issues

@@ -9,7 +9,7 @@ from pages.contribute.base import ContributeBasePage
 
 class StumblerTaskPage(ContributeBasePage):
 
-    URL_TEMPLATE = '/{locale}/contribute/task/stumbler'
+    URL_TEMPLATE = '/{locale}/contribute/task/stumbler/'
 
     _stumbler_button_locator = (By.CLASS_NAME, 'stumbler-button')
 
