@@ -4,9 +4,23 @@
 
 {% extends "firefox/base-resp.html" %}
 
-{% block page_title_prefix %}{{ _('Firefox for iOS') }} — {% endblock %}
+{% block page_title_prefix %}
+  {% if l10n_has_tag('testflight_seo_update_082016') %}
+    {{ _('Firefox for iOS Beta') }} —
+  {% else %}
+    {{ _('Firefox for iOS') }} —
+  {% endif %}
+{% endblock %}
+
 {% block page_title %}{{ _('TestFlight') }}{% endblock %}
-{% block page_desc %}{{ _('Sign up to test pre-release versions of Firefox for iOS via Apple’s TestFlight Beta program and help make our mobile browser for iPhone, iPad and iPod touch even better.') }}{% endblock %}
+
+{% block page_desc %}
+  {% if l10n_has_tag('testflight_seo_update_082016') %}
+    {{ _('Sign up to test pre-release beta versions of Firefox for iOS via Apple’s TestFlight program and help make our mobile browser for iPhone, iPad and iPod touch even better.') }}
+  {% else %}
+    {{ _('Sign up to test pre-release versions of Firefox for iOS via Apple’s TestFlight Beta program and help make our mobile browser for iPhone, iPad and iPod touch even better.') }}
+  {% endif %}
+{% endblock %}
 
 {% block body_id %}firefox-ios-testflight{% endblock %}
 {% block body_class %}{% endblock %}
