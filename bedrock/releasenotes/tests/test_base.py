@@ -1,7 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from django.core.cache import get_cache
+from django.core.cache import caches
 from django.http import Http404
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -229,7 +229,7 @@ class TestRNAViews(TestCase):
 
 
 class TestReleaseNotesIndex(TestCase):
-    pd_cache = get_cache('product-details')
+    pd_cache = caches['product-details']
 
     def setUp(self):
         self.pd_cache.clear()

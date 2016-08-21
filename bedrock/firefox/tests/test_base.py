@@ -4,16 +4,17 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import os
 
-from django.core.cache import get_cache
+from django.core.cache import caches
 from django.http import HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from bedrock.base.urlresolvers import reverse
+from django_jinja.backend import Jinja2
 from mock import ANY, call, Mock, patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
+from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
 from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid, FirefoxIOS
 from bedrock.firefox.utils import product_details
@@ -23,6 +24,7 @@ from bedrock.mozorg.tests import TestCase
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
+jinja_env = Jinja2.get_default().env
 
 firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
 firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
@@ -32,7 +34,7 @@ firefox_ios = FirefoxIOS(json_dir=PROD_DETAILS_DIR)
 class TestInstallerHelp(TestCase):
     def setUp(self):
         self.button_mock = Mock()
-        self.patcher = patch.dict('jingo._env.globals',
+        self.patcher = patch.dict(jinja_env.globals,
                                   download_firefox=self.button_mock)
         self.patcher.start()
         self.view_name = 'firefox.installer-help'
@@ -95,7 +97,7 @@ class TestInstallerHelp(TestCase):
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class TestFirefoxAll(TestCase):
-    pd_cache = get_cache('product-details')
+    pd_cache = caches['product-details']
 
     def setUp(self):
         self.pd_cache.clear()
@@ -152,11 +154,11 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(self._get_url('android'))
         doc = pq(resp.content)
-        eq_(len(doc('tr#multi a')), 3)
+        eq_(len(doc('tr#multi a')), 2)
         eq_(len(doc('tr#multi .android-x86')), 1)
-        eq_(len(doc('tr#en-US a')), 3)
+        eq_(len(doc('tr#en-US a')), 2)
         eq_(len(doc('tr#en-US .android-x86')), 1)
-        eq_(len(doc('tr#fr a')), 2)
+        eq_(len(doc('tr#fr a')), 1)
         eq_(len(doc('tr#fr .android-x86')), 0)
 
     def test_404(self):
@@ -311,7 +313,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/australis/fx38_0_5/firstrun.html'])
 
     @override_settings(DEV=True)
-    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
+    @patch('bedrock.mozorg.templatetags.misc.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0(self, render_mock):
         """Should use horizon firstrun template for 40.0"""
         req = self.rf.get('/en-US/firefox/firstrun/')
@@ -320,7 +322,18 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 
     @override_settings(DEV=True)
-    @patch('bedrock.mozorg.helpers.misc.switch', Mock(return_value=True))
+    @patch('bedrock.mozorg.templatetags.misc.switch', Mock(return_value=True))
+    def test_fx_firstrun_40_0_invalid_variation(self, render_mock):
+        """
+        Should use horizon firstrun template if an invalid variation is specified.
+        """
+        req = self.rf.get('/en-US/firefox/firstrun/?v=8')
+        self.view(req, version='46.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
+
+    @override_settings(DEV=True)
+    @patch('bedrock.mozorg.templatetags.misc.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_space_variant_non_enUS(self, render_mock):
         """
         Should use horizon firstrun template for non en-US 40.0+ with

@@ -48,6 +48,49 @@ class TestHome(TestCase):
         ctx = resp_mock.call_args[0][2]
         self.assertEqual(ctx['mobilizer_link'], 'His Dudeness')
 
+    # testing en-US home page variants
+    def test_en_us(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US.html', ANY)
+
+    def test_en_us_vA(self, render_mock):
+        req = RequestFactory().get('/?v=a')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US-a.html', ANY)
+
+    def test_en_us_vB(self, render_mock):
+        req = RequestFactory().get('/?v=b')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US-b.html', ANY)
+
+    def test_en_us_vC(self, render_mock):
+        req = RequestFactory().get('/?v=c')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US-c.html', ANY)
+
+    def test_non_en_us(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'es-ES'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home.html', ANY)
+
+    def test_en_us_invalid_variant(self, render_mock):
+        req = RequestFactory().get('/?v=d')
+        req.locale = 'en-US'
+        views.home(req)
+        render_mock.assert_called_once_with(req,
+            'mozorg/home/home-en-US.html', ANY)
+
 
 class TestViews(TestCase):
     def test_hacks_newsletter_frames_allow(self):
@@ -277,8 +320,8 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertIn('text/html', response._headers['content-type'][1])
 
-    @patch('bedrock.mozorg.views.jingo.render_to_string',
-           return_value='jingo rendered')
+    @patch('bedrock.mozorg.views.render_to_string',
+           return_value='rendered')
     @patch('bedrock.mozorg.views.EmailMessage')
     def test_post_ajax(self, mock_email_message, mock_render_to_string):
         """
@@ -308,7 +351,7 @@ class TestProcessPartnershipForm(TestCase):
             # make sure email values are correct
             mock_email_message.assert_called_once_with(
                 views.PARTNERSHIPS_EMAIL_SUBJECT,
-                'jingo rendered',
+                'rendered',
                 views.PARTNERSHIPS_EMAIL_FROM,
                 views.PARTNERSHIPS_EMAIL_TO)
 
@@ -328,8 +371,8 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
 
-    @patch('bedrock.mozorg.views.jingo.render_to_string',
-           return_value='jingo rendered')
+    @patch('bedrock.mozorg.views.render_to_string',
+           return_value='rendered')
     @patch('bedrock.mozorg.views.EmailMessage')
     def test_post_ajax_honeypot(self, mock_email_message, mock_render_to_string):
         """
@@ -380,8 +423,8 @@ class TestProcessPartnershipForm(TestCase):
             self.assertEqual(response._headers['content-type'][1],
                              'application/json')
 
-    @patch('bedrock.mozorg.views.jingo.render_to_string',
-           return_value='jingo rendered')
+    @patch('bedrock.mozorg.views.render_to_string',
+           return_value='rendered')
     @patch('bedrock.mozorg.views.EmailMessage')
     def test_lead_source(self, mock_email_message, mock_render_to_string):
         """
@@ -395,7 +438,7 @@ class TestProcessPartnershipForm(TestCase):
             views.process_partnership_form(request, self.template,
                                            self.view, {}, form_kwargs)
 
-            return str(mock_render_to_string.call_args[0][2])
+            return str(mock_render_to_string.call_args[0][1])
 
         self.assertTrue('www.mozilla.org/about/partnerships/' in _req(None))
         self.assertTrue('www.mozilla.org/firefox/partners/' in

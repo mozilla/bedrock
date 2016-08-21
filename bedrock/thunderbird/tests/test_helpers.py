@@ -1,14 +1,17 @@
-import jingo
 from django.test.client import RequestFactory
 
+from django_jinja.backend import Jinja2
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
 
 
+jinja_env = Jinja2.get_default()
+
+
 def render(s, context=None):
-    t = jingo.get_env().from_string(s)
+    t = jinja_env.from_string(s)
     return t.render(context or {})
 
 

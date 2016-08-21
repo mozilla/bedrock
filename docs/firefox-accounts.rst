@@ -22,7 +22,7 @@ Local Development
 
     ``FXA_IFRAME_SRC=https://stomlinson.dev.lcip.org/``
 
-#. Set your local development server to run on ``127.0.0.1:8111``.
+#. Set your local development server to run on ``127.0.0.1:8111``, e.g. ``PORT=8111 gulp``.
 #. Quit Firefox.
 #. Create a new profile for testing called ``FxA Test Local`` by following the
    `instructions here`_.

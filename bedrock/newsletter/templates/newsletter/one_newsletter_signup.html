@@ -34,12 +34,18 @@
     {% else %}
       {# User has been subscribed #}
       <div id="email-form" class="thank billboard">
-        <h3>{{ _('Thanks for Subscribing!') }}</h3>
-        {# user will have to confirm before starting subscription #}
-        {% block success_confirm %}
-          <p>{% trans %}Thanks! Please check your inbox to confirm your subscription.{% endtrans %}</p>
-          <p>{% trans %}You'll receive an email from mozilla@e.mozilla.org to confirm your subscription. If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.{% endtrans %}</p>
-        {% endblock success_confirm %}
+        <h3>{{ _('Thanks!') }}</h3>
+
+      {# user may have to confirm before starting subscription #}
+      {% block success_confirm %}
+        <p>
+        {% trans %}
+          If you haven’t previously confirmed a subscription to a Mozilla-related
+          newsletter you may have to do so. Please check your inbox or your spam filter
+          for an email from us.
+        {% endtrans %}
+        </p>
+      {% endblock success_confirm %}
       </div>
     {% endif %}
   </div><!-- doc -->

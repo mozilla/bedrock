@@ -5,11 +5,12 @@
 {% set_lang_files "mozorg/newsletters" %}
 
 {% macro email_form_thankyou() %}
-  <h3>{{ _('Thanks! Please check your inbox to confirm your subscription.') }}</h3>
+  <h3>{{ _('Thanks!') }}</h3>
   <p>
-    {% trans %}
-      You'll receive an email from mozilla@e.mozilla.org to confirm your subscription.
-      If you don't see it, check your spam filter. You must confirm your subscription to receive our newsletter.
-    {% endtrans %}
+  {% trans %}
+    If you haven’t previously confirmed a subscription to a Mozilla-related
+    newsletter you may have to do so. Please check your inbox or your spam filter
+    for an email from us.
+  {% endtrans %}
   </p>
 {% endmacro %}

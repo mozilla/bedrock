@@ -134,8 +134,6 @@
           	<li>addons.mozilla.org</li>
           	<li>blocklist.addons.mozilla.org</li>
           	<li>builder.addons.mozilla.org</li>
-          	<li>controller-review.apk.firefox.com</li>
-          	<li>controller.apk.firefox.com</li>
           	<li>services.addons.mozilla.org</li>
           	<li>static.addons.mozilla.net</li>
           	<li>versioncheck-bg.addons.mozilla.org</li>
@@ -288,10 +286,12 @@
             <li>Authentication or authorization flaws</li>
             <li>Server-side code execution bugs</li>
             <li>Cross-site scripting bugs (XSS) other than self-XSS</li>
-            <li>Any type of injection issue</li>
             <li>Remote File Include (RFI)</li>
             <li>Local File Include (LFI)</li>
+            <li>Injection issues and logic bugs with a demonstrated Medium to higher security impact. Example: A bug that leaks user email addresses intended to remain private qualifies. Being able to change an inconsequential piece of data associated with a user where there is no other demonstrated security issue and/or zero to low impact does not.</li>
           </ul>
+          <p>We generally consider HTML and text injection to be low-risk and thus not bounty-eligible.</p>
+          <p>Redirect issues are generally ineligible unless they can be used as part of a more significant attack such as CRLF injection or XSS.</p>
           <p>The <a href="https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings">
               Web Application Severity Ratings</a> explains how Mozilla measures website and
               service security risk. Medium, High, and Critical issues reported are eligible
@@ -322,6 +322,9 @@
             Repeat the attack using only your own description in order to prevent
             errors and omissions, then update your documentation to be submitted.
             <strong>Please do not ever submit website vulnerabilities via email.</strong>
+            <i>Bounty award amount is dependent on following the bug submission instructions. 
+            To summarize: Write step-by-step instructions, follow them again yourself with zero-knowledge
+            to verify completeness, and describe the impact of the attack. Please do not send links to videos.</i>
           </p>
         </dd>
 

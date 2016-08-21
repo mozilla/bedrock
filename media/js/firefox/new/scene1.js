@@ -21,6 +21,35 @@
         document.dispatchEvent(event);
     };
 
+    var uiTourWaitForCallback = function(callback) {
+        var id = Math.random().toString(36).replace(/[^a-z]+/g, '');
+
+        function listener(event) {
+            if (typeof event.detail != 'object') {
+                return;
+            }
+            if (event.detail.callbackID !== id) {
+                return;
+            }
+
+            document.removeEventListener('mozUITourResponse', listener);
+            callback(event.detail.data);
+        }
+        document.addEventListener('mozUITourResponse', listener);
+
+        return id;
+    };
+
+    var showRefreshButton = function(canReset) {
+        if (canReset) {
+            $html.addClass('show-refresh');
+
+            $('#refresh-firefox').on('click', function() {
+                uiTourSendEvent('resetFirefox');
+            });
+        }
+    };
+
     if (client.isFirefoxDesktop ||client.isFirefoxAndroid) {
         // Detect whether the Firefox is up-to-date in a non-strict way. The minor version and channel are not
         // considered. This can/should be strict, once the UX especially for ESR users is decided. (Bug 939470)
@@ -32,11 +61,19 @@
                 client.getFirefoxDetails(function(data) {
                     // data.accurate will only be true if UITour API is working.
                     if (data.channel === 'release' && data.isUpToDate && data.accurate) {
-                        $html.addClass('show-refresh');
-                        
-                        $('#refresh-firefox').on('click', function() {
-                            uiTourSendEvent('resetFirefox');
+                        // Bug 1274207 only show reset button if user profile supports it.
+                        uiTourSendEvent('getConfiguration', {
+                            callbackID: uiTourWaitForCallback(showRefreshButton),
+                            configuration: 'canReset'
                         });
+
+                        // show survey to up-to-date Firefox users (bug 1290996).
+                        var $survey = $('#survey-message');
+
+                        $survey.addClass('show');
+                        setTimeout(function() {
+                            $survey.addClass('animate');
+                        }, 500);
                     }
                 });
             }

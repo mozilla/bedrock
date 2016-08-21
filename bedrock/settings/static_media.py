@@ -621,24 +621,21 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/home-ie8-bundle.css',
     },
-    'home-a': {
-        'source_filenames': (
-            'css/base/mozilla-video-poster.less',
-            'css/mozorg/home/home-a.less',
-            'css/mozorg/home/prototypes/footer.less',
-            'css/newsletter/moznewsletter-subscribe.less',
-        ),
-        'output_filename': 'css/home-a-bundle.css',
-    },
-    'home-b': {
+    'home-en-US': {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/prototypes/footer.less',
-            'css/mozorg/home/home-b.less',
+            'css/mozorg/home/home-en-US.less',
         ),
-        'output_filename': 'css/home-b-bundle.css',
+        'output_filename': 'css/home-en-US-bundle.css',
     },
-    # temporary bundle for survey on ?v=a|b homepages
+    'home-en-US-variant': {
+        'source_filenames': (
+            'css/mozorg/home/home-en-US-variant.less',
+        ),
+        'output_filename': 'css/home-en-US-variant-bundle.css',
+    },
+    # temporary bundle for home survey
     'home-survey': {
         'source_filenames': (
             'css/mozorg/home/survey.less',
@@ -1422,37 +1419,42 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/home-bundle.js',
     },
-    'home-a': {
+    'home-en-US': {
         'source_filenames': (
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.waypoints.min.js',
-            'js/base/mozilla-smoothscroll.js',
-            'js/base/mozilla-video-poster.js',
-            'js/mozorg/home/home-a.js',
+            'js/mozorg/home/home-en-US.js',
         ),
-        'output_filename': 'js/home_a-bundle.js',
-    },
-    'home-b': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/mozorg/home/home-b.js',
-        ),
-        'output_filename': 'js/home_b-bundle.js',
+        'output_filename': 'js/home-en-US-bundle.js',
     },
     # temporary bundles for surveys on homepage prototypes
+    'home-survey': {
+        'source_filenames': (
+            'js/mozorg/home/survey-generator.js',
+            'js/mozorg/home/survey.js',
+        ),
+        'output_filename': 'js/home-survey-bundle.js',
+    },
     'home-survey-a': {
         'source_filenames': (
             'js/mozorg/home/survey-generator.js',
             'js/mozorg/home/survey-a.js',
         ),
-        'output_filename': 'js/home-survey-bundle-a.js',
+        'output_filename': 'js/home-survey-a-bundle.js',
     },
     'home-survey-b': {
         'source_filenames': (
             'js/mozorg/home/survey-generator.js',
             'js/mozorg/home/survey-b.js',
         ),
-        'output_filename': 'js/home-survey-bundle-b.js',
+        'output_filename': 'js/home-survey-b-bundle.js',
+    },
+    'home-survey-c': {
+        'source_filenames': (
+            'js/mozorg/home/survey-generator.js',
+            'js/mozorg/home/survey-c.js',
+        ),
+        'output_filename': 'js/home-survey-c-bundle.js',
     },
     'history-slides': {
         'source_filenames': (

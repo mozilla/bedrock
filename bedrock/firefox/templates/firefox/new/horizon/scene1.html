@@ -15,7 +15,7 @@
 {% block body_id %}firefox-new-scene1{% endblock %}
 
 {% block content %}
-<main role="main" data-version="{{ version }}">
+<main role="main">
   <div class="main-container">
     <div class="horizon">
       <div class="stars">
@@ -112,6 +112,12 @@
       </div>
     </aside>
   </div>
+  {% if LANG.startswith('en-') %}
+    <div id="survey-message">
+      <span class="survey-invite">Hello! Would you be willing to take a minute to answer a few questions?</span>
+      <a class="survey-button" href="https://www.surveygizmo.com/s3/2970207/Up-to-date-refresh-download-survey">Sure. I’ll help.</a>
+    </div>
+  {% endif %}
 </main>
 
 {% include 'firefox/includes/schemaorg-app.html' %}

@@ -3,8 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
+
+from django.template.loader import render_to_string
+
 from lib import l10n_utils
-import jingo
 
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
@@ -31,7 +33,7 @@ def submit_form(request, form):
                                                 data['input_category'])
         sender = FRAUD_REPORT_EMAIL_FROM
         to = FRAUD_REPORT_EMAIL_TO
-        msg = jingo.render_to_string(request, 'legal/emails/fraud-report.txt', data)
+        msg = render_to_string('legal/emails/fraud-report.txt', data, request=request)
 
         email = EmailMessage(subject, msg, sender, to)
 

@@ -1,0 +1,906 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/lib.less';
+@import 'prototypes/lib';
+@import "../../firefox/horizon-lib.less";
+
+@font-face {
+    font-family: 'Architects Daughter';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/media/fonts/architectsdaughter.eot');
+    src: url('/media/fonts/architectsdaughter.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/architectsdaughter.woff2') format('woff2'),
+         url('/media/fonts/architectsdaughter.woff') format('woff'),
+         url('/media/fonts/architectsdaughter.ttf') format('truetype');
+}
+
+// will likely need to adjust based on design/content
+// may need to adjust between tablet/desktop breakpoints as well
+@sliderHeight: 522px;
+
+@fontHeader: #2762A9;
+@fontDark: #56565A;
+
+@handwritten-font-family: 'Architects Daughter', X-LocaleSpecific, sans-serif;
+
+// mixin for icon links in who/innovate sections
+.icon-link(@height, @bgOffset) {
+    &:before {
+        background-position: 0 @bgOffset;
+        height: @height;
+        top: 0;
+    }
+}
+
+body {
+    border-top: 0;
+}
+
+// Header
+.masthead {
+    .invert-text;
+    background: @color-mozred;
+
+    .content {
+        padding: 51px 20px 0;
+    }
+
+    .masthead-logo {
+        background: @color-mozred-bright;
+        height: 30px;
+        left: 0;
+        margin: 0;
+        padding: 10px 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+
+        img {
+            height: 30px;
+        }
+    }
+}
+
+// Global main nav
+.masthead-nav-main {
+    .fira-sans-light;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 99;
+
+    .toggle {
+        background: @color-mozred url('/media/img/home/new/icon-menu.svg') center center no-repeat;
+        .background-size(22px auto);
+        cursor: pointer;
+        display: block;
+        height: 51px;
+        overflow: hidden;
+        position: relative;
+        text-indent: -999em;
+        width: 51px;
+    }
+
+    a {
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+#nav-main-menu {
+    background: #fff;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, .2);
+    left: -300px;
+    overflow: visible;
+    position: absolute;
+    top: 50px;
+    width: 200px;
+    z-index: 99;
+
+    li {
+        border-bottom: 1px solid #ccc;
+
+        &:last-child {
+            border: 0;
+        }
+    }
+
+    a {
+        background: #fff;
+        color: @color-text-primary;
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        -webkit-transition: background-color 150ms ease, border-width 150ms ease, color 150ms ease, padding 150ms ease;
+                transition: background-color 150ms ease, border-width 150ms ease, color 150ms ease, padding 150ms ease;
+
+        &:hover,
+        &:focus {
+            background-color: #f5f5f5;
+            border-right: 6px solid @color-mozred;
+            color: @color-mozred;
+            text-decoration: underline;
+        }
+    }
+}
+
+.masthead-nav-main:hover #nav-main-menu,
+.masthead-nav-main .toggle:focus + #nav-main-menu {
+    left: auto;
+}
+
+.js #nav-main-menu {
+    left: auto;
+    display: none;
+}
+
+#nav-download-firefox {
+    display: none;
+}
+
+@media @mq-tablet {
+    .masthead {
+        background: @color-mozred-bright;
+        padding: 0;
+
+        .content {
+            padding-top: 0;
+        }
+
+        .masthead-logo {
+            float: left;
+            position: relative;
+            width: 115px;
+        }
+    }
+
+    .masthead-nav-main {
+        float: right;
+        position: relative;
+
+        .toggle {
+            display: none;
+        }
+    }
+
+    #nav-main-menu,
+    .js #nav-main-menu {
+        .clearfix;
+        .font-size(14px);
+        background: transparent;
+        box-shadow: none;
+        display: block;
+        margin: 0 0 0 20px;
+        padding: 15px 0;
+        position: static;
+        width: 340px;
+
+        li {
+            .border-box;
+            border: 0;
+            border-right: 1px solid #fff;
+            float: left;
+            padding: 0 10px;
+            text-align: center;
+
+            &:last-child {
+                border-right: 0;
+                padding-right: 0;
+            }
+        }
+
+        a,
+        a:hover,
+        a:focus {
+            background: transparent;
+            border: 0;
+            color: #fff;
+            padding: 0;
+            text-transform: uppercase;
+        }
+    }
+
+    #nav-download-firefox {
+        display: inline-block;
+        float: right;
+
+        ul.download-list {
+            margin-bottom: 0;
+        }
+
+        .button {
+            .font-size(14px);
+            border-radius: 0;
+            padding: 13px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .fx-privacy-link {
+            display: none;
+        }
+    }
+}
+
+@media @mq-desktop {
+    #nav-main-menu,
+    .js #nav-main-menu {
+        margin-right: 20px;
+        width: 380px;
+
+        li {
+            padding: 0 20px;
+        }
+    }
+}
+
+// flexbox layout for savvy browsers to push nav items to the right
+@supports (display: flex) {
+    @media @mq-tablet {
+        #nav-main-menu,
+        .js #nav-main-menu {
+            .flexbox;
+            .justify-content(flex-end);
+            margin-left: 0;
+            margin-right: 20px;
+        }
+    }
+}
+
+main {
+    overflow: hidden;
+}
+
+.content {
+    margin: 0 auto;
+
+    @media @mq-tablet {
+        overflow: hidden;
+        width: @width-tablet;
+    }
+
+    @media @mq-desktop {
+        width: @width-desktop;
+    }
+
+    @media @mq-desktop-wide {
+        width: @width-desktop-wide;
+    }
+}
+
+// *** INTRO *** //
+.home-en-US #intro {
+    background: url('/media/img/home/new/b/graph-paper-tile.png') top left repeat;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.95) 100%),
+                radial-gradient(ellipse at center, rgba(255,255,255,0) 0%, rgba(40,100,168,0.25) 100%),
+                url('/media/img/home/new/b/sketchy-heart-blue.png'),
+                url('/media/img/home/new/b/graph-paper-tile.png');
+    background-position: center center,
+                         center center,
+                         center center,
+                         top left;
+    background-repeat: no-repeat,
+                       no-repeat,
+                       no-repeat,
+                       repeat;
+    background-size: 100% 100%,
+                     100% 100%,
+                     405px 350px,
+                     80px 80px;
+    min-height: 300px;
+    text-align: center;
+
+    h2,
+    h3 {
+        color: @fontHeader;
+        font-family: @handwritten-font-family;
+        text-shadow: none;
+    }
+
+    h2 {
+        .font-size(24px);
+        line-height: 1.3;
+        padding: 40px 0 0;
+        text-transform: uppercase;
+    }
+
+    h3 {
+        .font-size(16px);
+        font-weight: 100;
+        line-height: 1.6;
+    }
+
+    @media @mq-phone-wide {
+        h2 {
+            .font-size(28px);
+        }
+    }
+
+    @media @mq-tablet {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.95) 100%),
+                    radial-gradient(ellipse at center, rgba(255,255,255,0) 0%, rgba(40,100,168,0.25) 100%),
+                    url('/media/img/home/new/b/sketchy-heart-blue.png'),
+                    url('/media/img/home/new/b/graph-paper-tile.png');
+        background-position: center center,
+                             center center,
+                             center center,
+                             top left;
+        background-repeat: no-repeat,
+                           no-repeat,
+                           no-repeat,
+                           repeat;
+        background-size: 100% 100%,
+                         100% 100%,
+                         555px 480px,
+                         90px 90px;
+        min-height: 450px;
+
+        h2 {
+            .font-size(42px);
+        }
+
+        h3 {
+            .font-size(24px);
+            line-height: 1.8;
+        }
+    }
+
+    @media @mq-desktop {
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.95) 100%),
+                    radial-gradient(ellipse at center, rgba(255,255,255,0) 0%, rgba(40,100,168,0.25) 100%),
+                    url('/media/img/home/new/b/sketchy-heart-blue.png'),
+                    url('/media/img/home/new/b/sketchy-gear-blue.png'),
+                    url('/media/img/home/new/b/sketchy-cloud-blue.png'),
+                    url('/media/img/home/new/b/graph-paper-tile.png');
+        background-position: center center,
+                             center center,
+                             center center,
+                             right -200px bottom -200px,
+                             -250px center,
+                             left top;
+        background-repeat: no-repeat,
+                           no-repeat,
+                           no-repeat,
+                           no-repeat,
+                           no-repeat,
+                           repeat;
+        background-size: 100% 100%,
+                         100% 100%,
+                         695px 600px,
+                         519px 544px,
+                         488px 263px,
+                         100px 100px;
+        min-height: 576px;
+
+        h2 {
+            .font-size(56px);
+        }
+
+        h3 {
+            .font-size(30px);
+        }
+    }
+}
+
+// flexbox layout for savvy browsers
+@supports (display: flex) {
+    .home-en-US #intro .content {
+        .flexbox;
+        .flex-direction(column);
+        height: 300px;
+        padding-bottom: 0;
+        padding-top: 0;
+
+        h2 {
+            .flexbox;
+            .flex-direction(column);
+            .flex(1);
+            .justify-content(center);
+        }
+
+        h3 {
+            padding-bottom: 50px;
+        }
+
+        @media @mq-tablet {
+            height: 450px;
+        }
+
+        @media @mq-desktop {
+            height: 576px;
+        }
+
+        @media @mq-desktop-wide {
+            width: @width-desktop;
+        }
+    }
+}
+
+// ** ---------------------- **//
+
+// *** IMPACT/INNOVATE *** //
+
+// icon links
+.icon-links {
+    margin: 20px 0;
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    @media @mq-tablet {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        width: 60%;
+
+        li {
+            margin-bottom: 22px;
+            min-height: 40px;
+            padding: 0 0 0 54px;
+            position: relative;
+
+            a {
+                .font-size(18px);
+
+                &:before {
+                    background: url('/media/img/home/new/b/svg-sprite.svg');
+                    content: '';
+                    display: block;
+                    float: left;
+                    left: 0;
+                    position: absolute;
+                    width: 40px;
+                }
+            }
+        }
+    }
+
+    @media @mq-desktop {
+        li a {
+            .font-size(20px);
+        }
+    }
+}
+
+// set icons for each link
+#encryption a {
+    .icon-link(43px, 0);
+}
+
+#teachtheweb a {
+    .icon-link(32px, -43px);
+}
+
+#leandata a {
+    .icon-link(34px, -75px);
+}
+
+#gaming a {
+    .icon-link(34px, -109px);
+}
+
+#vr a {
+    .icon-link(23px, -143px);
+}
+
+#servo a {
+    .icon-link(30px, -166px);
+}
+
+#rust a {
+    .icon-link(33px, -196px);
+}
+
+.section-content {
+    padding: 10px 20px 20px;
+    text-align: center;
+
+    &:before {
+        content: '';
+        display: block;
+        height: 250px;
+        margin-bottom: 20px;
+        background-repeat: no-repeat;
+    }
+
+    p {
+        padding-bottom: 20px;
+    }
+
+    @media @mq-tablet {
+        p {
+            .font-size(18px);
+        }
+    }
+
+    @media @mq-desktop {
+        p {
+            .font-size(20px);
+        }
+    }
+}
+
+.section-headline {
+    margin-bottom: 20px;
+}
+
+#who .section-content {
+    background: #fff;
+    color: @fontDark;
+
+    &:before {
+        .at2x('/media/img/home/new/b/sketchy-m.png', 200px, 200px);
+        background-position: center;
+    }
+
+    a {
+        color: #00A7E0;
+    }
+}
+
+#innovate .section-content {
+    background: #008B89;
+    color: #fff;
+
+    &:before {
+        .at2x('/media/img/home/new/b/a-frame.png', 200px, 200px);
+        background-position: center;
+    }
+
+    a {
+        color: #fff;
+    }
+}
+
+// float layout for wider viewports
+@media @mq-tablet {
+    #who-innovate-wrapper {
+        .clearfix;
+    }
+
+    #who {
+        float: left;
+        width: 50%;
+    }
+
+    #innovate {
+        float: right;
+        width: 50%;
+    }
+}
+
+// ** ---------------------- **//
+
+// ** FIREFOX ** //
+#firefox {
+    background: #2d253a;
+    color: #fff;
+    text-align: center;
+
+    h2 {
+        .font-size(24px);
+        padding-top: 40px;
+
+        &:before {
+            .at2x('/media/img/firefox/common/firefox-logo.png');
+            .background-size(100%);
+            background-repeat: no-repeat;
+            content: '';
+            display: block;
+            height: 84px;
+            margin: 0 auto 10px;
+            width: 80px;
+        }
+
+        @media @mq-phone-wide {
+            .font-size(36px);
+
+            &:before {
+                height: 142px;
+                width: 136px;
+            }
+        }
+
+        @media @mq-highres {
+            &:before {
+                .background-size(100%);
+            }
+        }
+    }
+
+    .horizon {
+        .horizon-gradient;
+
+        .content {
+            padding-bottom: 270px;
+        }
+    }
+
+    .stars {
+        background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat;
+    }
+
+    .foreground .content {
+        padding-bottom: 60px;
+
+        p {
+            margin-bottom: 40px;
+        }
+
+        a,
+        a:hover {
+            color: #fff;
+        }
+
+        @media @mq-tablet {
+            .font-size(24px);
+        }
+    }
+
+    .forest-container {
+        height: 483px;
+        margin-top: -254px;
+        position: relative;
+    }
+
+    .mountains-container {
+        height: 483px;
+        left: 50%;
+        // offset assets to get the fox in the viewport
+        margin-left: -1046px;
+        position: absolute;
+        top: 0;
+        width: 1770px;
+
+        .layer {
+            left: 0;
+            position: absolute;
+            width: 1770px;
+        }
+
+        @media @mq-tablet {
+            // re-center assets
+            margin-left: -885px;
+        }
+    }
+
+    .sun {
+        height: 318px;
+        left: 50%;
+        margin-left: -161px;
+        position: absolute;
+        top: 30px;
+        width: 322px;
+    }
+
+    .mountains {
+        height: 482px;
+        top: 0;
+    }
+
+    .foreground-shape {
+        .at2x('/media/img/firefox/horizon/foreground.png', 1770px, 254px);
+        background-position: top left;
+        background-repeat: no-repeat;
+        bottom: 0;
+        height: 254px;
+    }
+
+    .trees-left {
+        bottom: 70px;
+        height: 602px;
+        left: -375px;
+        position: absolute;
+        width: 909px;
+    }
+
+    .trees-right {
+        bottom: 120px;
+        height: 550px;
+        position: absolute;
+        right: -420px;
+        width: 922px;
+    }
+
+    .fox {
+        bottom: 39px;
+        height: 254px;
+        position: absolute;
+        right: 140px;
+        width: 522px;
+    }
+
+    #fxmobile-download-buttons {
+        // hide by default - show with JS based on platform
+        display: none;
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        &.visible {
+            display: block;
+        }
+    }
+}
+
+
+// Externals (Add-ons, careers, support)
+.section-externals {
+    background: #f5f5f5;
+    text-align: center;
+
+    ul {
+        position: relative;
+        padding: 60px 0 40px;
+        .clearfix;
+
+        li {
+            max-width: @width-phone-wide;
+            margin: 0 auto 30px;
+
+            @media @mq-tablet {
+                float: left;
+                width: 33.3%;
+                margin: 0;
+            }
+        }
+    }
+
+    h3 {
+        .font-size(18px);
+        color: @color-text-secondary;
+        padding-top: 100px;
+        position: relative;
+
+        &:before {
+            .background-size(fill);
+            background-position: center center;
+            background-repeat: no-repeat;
+            content: '';
+            height: 84px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        @media @mq-tablet {
+            .font-size(20px);
+        }
+    }
+
+    a {
+        display: block;
+        padding: 0 20px;
+        text-align: center;
+        text-decoration: none;
+
+        &.add-ons h3:before {
+            background-image: url('/media/img/home/new/icon-addons.svg');
+        }
+        &.careers h3:before {
+            background-image: url('/media/img/home/new/icon-careers.svg');
+        }
+        &.help h3:before {
+            background-image: url('/media/img/home/new/icon-help.svg');
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+
+            h3 {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    p {
+        .font-size(16px);
+        color: @color-text-secondary;
+    }
+}
+
+
+// Newsletter
+#newsletter-subscribe.section-newsletter {
+    margin: 0;
+    background: @color-mozred-bright;
+
+    .newsletter-form,
+    .form-title,
+    .form-contents {
+        .clearfix;
+        float: none;
+        margin: 0 auto;
+    }
+
+    .form-title {
+        .background-size(100px, 100px);
+        background-position: center top;
+        margin-top: 0;
+        min-height: 0;
+        padding-left: 0;
+        padding-top: 120px;
+        text-align: center;
+
+        h3 {
+            .font-size(32px);
+            font-style: italic;
+            text-align: center;
+        }
+
+        h4 {
+            .font-size(18px);
+            font-weight: normal;
+            line-height: 1.5;
+        }
+    }
+
+    .form-contents {
+        .field {
+            margin: 0 0 1em;
+        }
+    }
+
+    .errorlist {
+        padding: 10px;
+    }
+
+    #newsletter-form-thankyou {
+        padding: 0;
+    }
+}
+
+.js #form-details {
+    .hidden;
+}
+
+@media @mq-tablet {
+    #newsletter-subscribe.section-newsletter {
+        .newsletter-form {
+            padding-left: 380px;
+            width: 310px;
+
+            .form-title {
+                .background-size(120px 120px);
+                .border-box;
+                background-position: left top;
+                float: left;
+                margin-left: -380px;
+                padding: 10px 0 0 140px;
+                width: 350px;
+
+                h3,
+                h4 {
+                    text-align: left;
+                }
+            }
+
+            .form-contents,
+            .form-submit {
+                .border-box;
+                float: left;
+                margin: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media @mq-desktop-wide {
+    .section-footer .content {
+        width: @width-desktop;
+    }
+}

@@ -1,13 +1,11 @@
-Django==1.7.11 \
-    --hash=sha256:100164556897c1219f33706e63a656b8848d33d09b0161e2deefcc50978cf62d \
-    --hash=sha256:2039144fce8f1b603d03fa5a5643578df1ad007c4ed41a617f02a3943f7059a1
+Django==1.8.14 \
+    --hash=sha256:1716747f7e0fbee6e2c1c0bcdb74307139d441a79eb4dcc97d206c615e1ded15 \
+    --hash=sha256:5282c48b90fbb29507299f592215378e849a2808f485e4144626e66715d5464d
 django-pipeline==1.6.8 \
     --hash=sha256:a6a9ce2003ae10e729768b6d79a4b3db330d876b86225eb7743b6f5696bafa59 \
     --hash=sha256:b7cdc2efe27e478ddd38e878dd7b5e5ac121c2898fd85accf3187e19137fe6b7
 icalendar==3.8.3 \
     --hash=sha256:41949b09031611799136e019168b84eb5ed899c8e4e692117d2d38504659fd16
-jingo-markdown==1.3 \
-    --hash=sha256:c6ea3bc5ce86f319cd38ff170bedaf580bd1b4755c0ea1074cc4b00b2054bb5b
 django-statsd-mozilla==0.3.14 \
     --hash=sha256:616f9345c41343ce7763700546a3be9c63c8f8a40aa1b52503a2d64c8bf1deeb
 statsd==3.1 \
@@ -52,20 +50,18 @@ whitenoise==1.0.6 \
 django-localflavor==1.1 \
     --hash=sha256:3b5503b512248af661cf91e4f402327619ffc3bc5b3b0ea774a969ed3bf84594 \
     --hash=sha256:afd6627cd0fd396824e44a5e4f7bfe9c8d7a45d9bf09b4db2c0683d92681ba93
-https://github.com/tomchristie/django-rest-framework/archive/6e92e415aa7dd6871ef7d6500a85cacebde8dca2.tar.gz#egg=djangorestframework \
-    --hash=sha256:81f99fb7d5c9ef1752633932bc2baa60666b6b7fb84838354b3a6c172e523095
+djangorestframework==3.3.2 \
+    --hash=sha256:5634b1ff56581bf0fe4075e86227fc9693c1ca031c7213c9ae942c445c24817b \
+    --hash=sha256:4962418a57804f8323282728a4f9b9496e78caec1adda352170697752eff01bf
+django-filter==0.11.0 \
+    --hash=sha256:7d17547b65216cc5c6fbc04aee55088ccd5917c0775304d96f7017c26c789cd7 \
+    --hash=sha256:00cc47935afbbd83260fdd283b0aa790e658d2a71922049f6e467dca8a124537
 https://github.com/html5lib/html5lib-python/archive/3b3c1031b3dadf5369af83253fff2a2e6aa42dfd.tar.gz#egg=html5lib \
     --hash=sha256:3346704459d10b377e8b65c2d1dc5199d1d7879881c674abd2cf2f06fb62782f
-https://github.com/alex/django-filter/archive/e58e15ebf27e90cc0d47b7e58a2181e9150c49ab.tar.gz#egg=django-filter \
-    --hash=sha256:185c89fc9b656c010659452785e9e87749cf4b17544979d38514dd531f631bab
 https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1844bcb43.tar.gz#egg=feedparser \
     --hash=sha256:70a0535bc9252a01f062713af800658a21eee34e5474b2823ea706eda222a26f
-https://github.com/mozilla/rna/archive/833c5ad432925913c54be1c8954b2620e82b386a.tar.gz#egg=rna==1.0 \
-    --hash=sha256:822d4a2862ff17aaeb441294b427d186c0109f957abd1688dffc64e2c452f58a
 https://github.com/tweepy/tweepy/archive/3941489457db86710b770bc120409d6947904afa.tar.gz#egg=tweepy \
     --hash=sha256:a9b7728d94beeba624fae4be378542a222cf1c5cf845b916ba9a8b3f8f9e4559
-https://github.com/waylan/Python-Markdown/archive/d7fa7931bec55eec5498cd79882b770d1110b9b7.tar.gz#egg=Markdown \
-    --hash=sha256:376041672881b01619deafa172960b4e0471213cae007fbd403f0848b5073d75
 django-extensions==1.5.3 \
     --hash=sha256:ca464577ddbc295ea5a93219adde7723e2e734f44a9c8cb928b75c6140d61519 \
     --hash=sha256:b88d4773697a16a0a2a9ba6fcb082c6c51ec9543ca0f634541680fec4a6867b1
@@ -77,19 +73,10 @@ https://github.com/mozilla/django-dnt/archive/269289b1ccd5e31b313ba669f59d4cab3b
     --hash=sha256:27f6d6ebafc106446b885fb79da65eac66bc739c2ef7b5ff0b97234ea7030e33
 https://github.com/timmyomahony/django-pagedown/archive/78556863faa5654f749c5562b390317c6cad10b3.tar.gz#egg=django-pagedown \
     --hash=sha256:3e7bfaf54a560889838104c100d8b37930306243d8913942c4675cfcc54bccc7
-https://github.com/kennethreitz/requests/archive/46d646064ca0836a7d7b4d50ea2c762d12ff8ce1.tar.gz#egg=requests \
-    --hash=sha256:a000a8b126c29c2e24d0d022b3decdadfd681410c6e7ec161c1ca9c774fcd95f
-https://github.com/mozilla/django-product-details/archive/27a500d1248c8107168910345755215ae971b016.tar.gz#egg=django-mozilla-product-details==0.12 \
-    --hash=sha256:9bb8daedc91b7b386f4e42601ab17c752a647e45fe8b1396e0151db06ad5d990
 https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79e0f1b222c.tar.gz#egg=django-appconf \
     --hash=sha256:3e80e498209d7253e2cc1a4f9b02e7da819179a910c9275d5bc232de48e67c33
-https://github.com/jbalogh/django-multidb-router/archive/4f78662026b21cfff1ecfddc487fa0f0c31a0215.tar.gz#egg=django-multidb-router \
-    --hash=sha256:2341380d51a01c9e8335988a68f1a2675b39f50006ee2442f463ffb130c6fd58
 https://github.com/jsocol/commonware/archive/b5544185b2d24adc1eb512735990752400ce9cbd.tar.gz#egg=commonware \
     --hash=sha256:93d8231145d43ca02e1ec3cee355333afa8e72adb9cf815767e17595749774d4
-jingo==0.9.0 \
-    --hash=sha256:12a983286519303c6afd3da6f0a7e1859e69effb5fe46109424cdfca382bea56 \
-    --hash=sha256:37de5435622d05763bc55d1a3d0a7edcf998ece9e6048bb470db431d1aa83c3a
 https://github.com/jsocol/django-cronjobs/archive/cfda8176c5c3a50d1b58fcf57e87e23c467789bd.tar.gz#egg=django-cronjobs \
     --hash=sha256:9556a8db9bb65e3f7ca1f6474193ccfecccd2daab1856963cbbba044db78fee8
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets \
@@ -106,8 +93,6 @@ python-decouple==2.3 \
     --hash=sha256:b9fbf747fa8e711d330f2f436b9b2ecf5eed9eb67a637ca81abcd11c2abedec8
 django-sslify==0.2.7 \
     --hash=sha256:f6bfd21048c7dfc95b39659a3da77775d6db1c1f7a745805ccc6c6138f783b6d
-South==1.0.2 \
-    --hash=sha256:d360bd31898f9df59f6faa786551065bba45b35e7ee3c39b381b4fbfef7392f4
 basket-client==0.3.12 \
     --hash=sha256:d7aa5e6208eeeabb8f1387a7cbb2d0f2b35dfa889c1f034c86a88b4968db3bfe \
     --hash=sha256:2dd953cd03b3068d0e596aa32224488c486b1170e46387c5bc14f20737d6a2d8
@@ -119,3 +104,22 @@ puente==0.4.1 \
 babel==2.3.4 \
     --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975 \
     --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875
+https://github.com/pmclanahan/django-synctool/archive/5f7cf9bad741e60bd9df32aa90e71425d98e437c.tar.gz#egg=django-synctool==1.1.1 \
+    --hash=sha256:2dd290c5339769e3c40d644b5248236bec7c558eaccb922badd7c39c5fd5e095
+django-mozilla-rna==2.0.2 \
+    --hash=sha256:da0e199ef08b3ed7200232b2724cee82812d70edfcea63202c48408e3241eb4f \
+    --hash=sha256:c75c905a0cfe744af143d7e7007ed5376ed0f27bf0db00b790dd9421eae027a0
+django-jinja==2.1.3 \
+    --hash=sha256:64446ae1de3593136042147cb16ba9a3aa4449370d9c26c1ec9b7553b2d1c809
+django-jinja-markdown==1.0 \
+    --hash=sha256:b6ad614bc761b01f073833d4367547990e9c9898152e9b4b4b43b0ef7b9b95bc \
+    --hash=sha256:31a49dcfdbff597caba5de093b5ec7f7320170e08fc0b1ef638c99caedd6c5f3
+Markdown==2.6.6 \
+    --hash=sha256:9a292bb40d6d29abac8024887bcfc1159d7a32dc1d6f1f6e8d6d8e293666c504 \
+    --hash=sha256:022239550fb4a84bcc3b3b42dff9a41efc56d773ef17c4f28016dd8f265c82d0
+requests==2.11.0 \
+    --hash=sha256:8b9b147f3dff1fc4055ff794ff931f735ed25e87efe667ed7c845a4bafae9b73 \
+    --hash=sha256:b2ff053e93ef11ea08b0e596a1618487c4e4c5f1006d7a1706e3671c57dea385
+django-mozilla-product-details==0.12.1 \
+    --hash=sha256:a31a51102e8c2f047f8aa62b8bdc552f7a31d9c69f2cb16393225c3ee0db72b5 \
+    --hash=sha256:25ac11bd4544fef3236f32439f6b1de3bcf931f8b34c7786ab40f0ec85626eeb

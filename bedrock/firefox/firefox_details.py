@@ -409,14 +409,16 @@ class FirefoxAndroid(_ProductDetails):
 
 
 class FirefoxIOS(_ProductDetails):
+    # Version property names in product-details
     version_map = {
-        'release': 'version',
+        'beta': 'ios_beta_version',
+        'release': 'ios_version',
     }
     store_url = settings.APPLE_APPSTORE_FIREFOX_LINK
 
     def latest_version(self, channel):
-        # temporary solution until iOS builds are in ProductDetails
-        return settings.FIREFOX_IOS_RELEASE_VERSION
+        version = self.version_map.get(channel, 'ios_version')
+        return self.mobile_details[version]
 
     def get_download_url(self, channel='release', locale='en-US'):
         countries = settings.APPLE_APPSTORE_COUNTRY_MAP

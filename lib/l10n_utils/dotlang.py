@@ -17,7 +17,7 @@ import re
 from functools import partial
 
 from django.conf import settings
-from django.core.cache import get_cache
+from django.core.cache import caches
 from django.utils.functional import lazy
 from jinja2 import Markup
 from product_details import product_details
@@ -30,7 +30,7 @@ FORMAT_IDENTIFIER_RE = re.compile(r"""(%
                                       (?:\((\w+)\))? # Mapping key
                                       s)""", re.VERBOSE)
 TAG_REGEX = re.compile(r"^## ([\w-]+) ##")
-cache = get_cache('l10n')
+cache = caches['l10n']
 
 
 def parse(path, skip_untranslated=True, extract_comments=False):
@@ -153,7 +153,7 @@ def _get_extra_lang_files():
     return [lf for lf in new_lang_files if lf not in settings.DOTLANG_FILES]
 
 
-def _(text, *args, **kwargs):
+def gettext(text, *args, **kwargs):
     """
     Translate a piece of text from the global files. If `LANG_FILES` is defined
     in the module from which this function is called, those files (or file)
@@ -183,14 +183,19 @@ def _(text, *args, **kwargs):
     return text
 
 
-_lazy_proxy = lazy(_, unicode)
+_lazy_proxy = lazy(gettext, unicode)
 
 
-def _lazy(*args, **kwargs):
+def gettext_lazy(*args, **kwargs):
     lang_files = _get_extra_lang_files()
     if lang_files:
         return partial(_lazy_proxy, lang_files=lang_files)(*args, **kwargs)
     return _lazy_proxy(*args, **kwargs)
+
+
+# backward compat
+_ = gettext
+_lazy = gettext_lazy
 
 
 def get_lang_path(path):

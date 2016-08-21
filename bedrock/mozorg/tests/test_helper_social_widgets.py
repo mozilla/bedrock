@@ -12,7 +12,7 @@ from django.test.client import RequestFactory
 import tweepy
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.helpers.social_widgets import *  # noqa
+from bedrock.mozorg.templatetags.social_widgets import *  # noqa
 
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),

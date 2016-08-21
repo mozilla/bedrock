@@ -1,20 +1,15 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-import os
+
 import sys
 
 from .base import *  # noqa
 
-if os.getenv('JENKINS_HOME', False):
-    from .jenkins import *  # noqa
-else:
-    if os.getenv('C9_USER'):
-        from .c9 import *  # noqa
-    try:
-        from .local import *  # noqa
-    except ImportError as exc:
-        'local.py is supported, but no longer necessary'
+try:
+    from .local import *  # noqa
+except ImportError as exc:
+    'local.py is supported, but no longer necessary'
 
 
 if DEV:
@@ -22,12 +17,6 @@ if DEV:
 else:
     MIDDLEWARE_CLASSES += ('commonware.middleware.FrameOptionsHeader',)
 
-
-# Any databases configured other than "default" should be
-# read-only slaves, which our default router
-# should use with this setting.
-if 'manage.py' not in sys.argv:
-    SLAVE_DATABASES = [db for db in DATABASES if db != 'default']
 
 if CACHES['default']['BACKEND'] == 'django_pylibmc.memcached.PyLibMCCache':
     CACHES['default']['BINARY'] = True
@@ -76,9 +65,15 @@ if (len(sys.argv) > 1 and sys.argv[1] == 'test') or sys.argv[0].endswith('py.tes
     # Turn off less compilation in tests
     PIPELINE['PIPELINE_ENABLED'] = True
     PIPELINE['PIPELINE_COLLECTOR_ENABLED'] = False
-    # TEMPLATE_DEBUG has to be True for jingo to call the template_rendered
+    # TEMPLATE_DEBUG has to be True for Jinja to call the template_rendered
     # signal which Django's test client uses to save away the contexts for your
     # test to look at later.
-    TEMPLATE_DEBUG = True
+    TEMPLATES[0]['OPTIONS']['debug'] = True
     # use default product-details data
     PROD_DETAILS_STORAGE = 'product_details.storage.PDFileStorage'
+
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:'
+    }
+    DATABASE_ROUTERS = []

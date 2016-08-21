@@ -35,12 +35,6 @@
   <![endif]-->
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('mozorg-home-optimizely') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block js %}
   <!--[if IE 9]>
     {% javascript 'matchmedia_addlistener' %}
@@ -303,12 +297,14 @@
           {# L10n: Line break below is for visual formatting only. #}
           <span>{{ _('active Mozillians <br>worldwide') }}</span>
         </li>
+        {% if events_count() %}
         <li>
           <span class="stat organizations">{{ events_count()|l10n_format_number }}</span>
           {# L10n: This label is preceeded by a numeric count before the translation. #}
           {# L10n: Line break below is for visual formatting only. #}
           <span>{{ _('upcoming events <br>around the globe') }}</span>
         </li>
+        {% endif %}
         <li>
           <span class="stat countries">{{ num_languages|l10n_format_number }}</span>
           {# L10n: This label is preceeded by a numeric count before the translation. #}

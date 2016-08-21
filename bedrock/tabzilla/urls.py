@@ -8,7 +8,7 @@ from django.conf.urls import url
 from pipeline.collector import default_collector
 from pipeline.packager import Packager
 
-from bedrock.base.helpers import static
+from bedrock.base.templatetags.helpers import static
 from bedrock.redirects.util import redirect
 
 import views
