@@ -27,7 +27,7 @@
 
 {% if show_desktop %}
   <ul class="fx-footer-links os_desktop os_other">
-    <li><a href="{{ firefox_url('desktop', 'all', channel) }}">{{ _('Firefox for Other Platforms & Languages') }}</a></li>
+    <li><a id="fx-footer-links-desktop-all" href="{{ firefox_url('desktop', 'all', channel) }}">{{ _('Firefox for Other Platforms & Languages') }}</a></li>
     <li><a href="{{ firefox_url('desktop', 'notes', channel) }}">{{ _('Release Notes') }}</a></li>
   </ul>
 {% endif %}
