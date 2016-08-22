@@ -1046,9 +1046,6 @@ SSLIFY_DISABLE_FOR_REQUEST = [
     lambda request: request.get_full_path() == '/healthz/'
 ]
 
-NEWRELIC_BROWSER_LICENSE_KEY = config('NEWRELIC_BROWSER_LICENSE_KEY', default='')
-NEWRELIC_APP_ID = config('NEWRELIC_APP_ID', default='')
-
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
 
 B2G_DROID_URL = 'https://d2yw7jilxa8093.cloudfront.net/B2GDroid-mozilla-central-nightly-latest.apk'
