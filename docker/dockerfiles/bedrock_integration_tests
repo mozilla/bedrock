@@ -8,7 +8,7 @@ CMD ["/app/bin/run-integration-tests.sh"]
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
                     build-essential python python-dev python-pip python-setuptools \
-                    libxml2-dev libxslt1.1 libxslt1-dev zlib1g-dev
+                    python-pip libxml2-dev libxslt1.1 libxslt1-dev zlib1g-dev
 
 # Defaults
 ENV PYTEST_PROCESSES 5

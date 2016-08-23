@@ -13,7 +13,7 @@ RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
                     gettext build-essential python python-dev python-setuptools \
-                    libxml2-dev libxslt1.1 libxslt1-dev \
+                    python-pip libxml2-dev libxslt1.1 libxslt1-dev \
                     nodejs-legacy npm git libpq-dev
 
 COPY ./requirements /app/requirements
