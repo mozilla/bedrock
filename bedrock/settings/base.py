@@ -304,7 +304,7 @@ ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
 BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default=None)
 
 MIDDLEWARE_CLASSES = [
-    'sslify.middleware.SSLifyMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -405,6 +405,19 @@ VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
 SESSION_COOKIE_HTTPONLY = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+# legacy setting. backward compat.
+DISABLE_SSL = config('DISABLE_SSL', default=True, cast=bool)
+# SecurityMiddleware settings
+SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default='0', cast=int)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=False, cast=bool)
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=not DISABLE_SSL, cast=bool)
+SECURE_REDIRECT_EXEMPT = [
+    r'^healthz/$',
+]
+if SECURE_SSL_REDIRECT:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 LOCALE_PATHS = (
     str(LOCALES_PATH),
@@ -1038,16 +1051,6 @@ STATSD_CLIENT = config('STATSD_CLIENT', default='django_statsd.clients.normal')
 STATSD_HOST = config('STATSD_HOST', default='127.0.0.1')
 STATSD_PORT = config('STATSD_PORT', cast=int, default=8125)
 STATSD_PREFIX = config('STATSD_PREFIX', default='bedrock')
-
-SSLIFY_DISABLE = config('DISABLE_SSL', default=True, cast=bool)
-if not SSLIFY_DISABLE:
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SSLIFY_DISABLE_FOR_REQUEST = [
-    lambda request: request.get_full_path() == '/healthz/'
-]
-
-NEWRELIC_BROWSER_LICENSE_KEY = config('NEWRELIC_BROWSER_LICENSE_KEY', default='')
-NEWRELIC_APP_ID = config('NEWRELIC_APP_ID', default='')
 
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
 
