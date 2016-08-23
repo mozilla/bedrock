@@ -2,44 +2,72 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "../sandstone/sandstone-resp.less";
+@import "../sandstone/lib.less";
 
 #tabzilla:before {
-  background-color: @textColorSecondary;
+    background-color: @textColorSecondary;
 }
 
 #wrapper {
-  width: 100%;
+    width: 100%;
 }
 
 #masthead,
-#main-content,
-.billboard {
-  width: @widthDesktop - (@gridGutterWidth * 2);
-  margin-left: auto;
-  margin-right: auto;
+.billboard,
+.content {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#main-content {
-  .callout-content;
-  position: relative;
-  margin: 100px auto @baseLine;
-  .open-sans;
+.page-header {
+    background: url('/media/img/newsletter/intro-mozsummit-2000.jpg') center bottom no-repeat;
+    .background-size(cover);
+    padding-top: 300px;
 
-  .main {
-    .span(6);
-    float: left;
-    clear: left;
-    margin-bottom: @baseLine;
-  }
+    @media only screen and (min-width: @breakDesktopWide) {
+        background-image: url('/media/img/newsletter/intro-mozsummit-3000.jpg');
+    }
 
-  .lede {
-    .open-sans-light;
-    .font-size(28px);
-    line-height: 1.3;
-    letter-spacing: -.5px;
-    margin-top: -.25em;
-  }
+    h1 {
+        background: @mozillaRed;
+        color: #fff;
+        margin-bottom: 0;
+        padding: .35em 0;
+        text-shadow: none;
+    }
+
+    .content {
+        .border-box;
+        display: block;
+        padding: 0 10px;
+    }
+}
+
+.content-main {
+    .box-shadow(0 0 0 1px #fff inset);
+    .clearfix;
+    .open-sans;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    display: block;
+    padding: 40px @gridGutterWidth;
+    position: relative;
+
+    .main {
+        .span(6);
+        float: left;
+        clear: left;
+        margin-bottom: @baseLine;
+    }
+
+    .lede {
+        .open-sans-light;
+        .font-size(28px);
+        line-height: 1.3;
+        letter-spacing: -.01em;
+        margin-top: -.25em;
+    }
 
 }
 // Adjust main style for RTL
@@ -51,104 +79,190 @@ html[dir="rtl"] #main-content {
 }
 
 .video {
-  .span(6);
-  float: right;
-  margin-top: -50px;
-  margin-bottom: @baseLine;
-  .moz-video-container video {
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-  }
-  .moz-video-button {
-    background-image: url('/media/img/mission/poster-mission.jpg');
-  }
-  .caption {
-    margin: 10px 10px @baseLine;
-    .font-size(.857em);
-    font-style: italic;
-  }
+    .span(6);
+    float: right;
+    margin-bottom: @baseLine;
+
+    .moz-video-container video {
+        height: auto;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .moz-video-button {
+        background-image: url('/media/img/mission/poster-mission.jpg');
+    }
+
+    .caption {
+        .font-size(.857em);
+        font-style: italic;
+        margin: 10px 10px @baseLine;
+    }
 }
 
 ul.links {
-  list-style: none;
-  clear: both;
-  margin: @baseLine 0;
-  li {
-    .span(3);
-    list-style-type: none;
-    padding-top: 25px;
-    background: url(/media/img/mission/thin-stripe.png) center top repeat-x;
-  }
+    list-style: none;
+    clear: both;
+    margin: @baseLine 0;
 
-  h4 {
-    margin-bottom: @baseLine / 6;
-    a:after {
-      content: " »";
-      .open-sans-light;
+    li {
+        .span(3);
+        list-style-type: none;
+        padding-top: 25px;
+        background: url(/media/img/mission/thin-stripe.png) center top repeat-x;
     }
-  }
 
-  p {
-    .font-size(.857em);
-    margin-bottom: @baseLine / 2;
-  }
+    h4 {
+        margin-bottom: @baseLine / 6;
+
+        a {
+            .trailing-arrow;
+        }
+    }
+
+    p {
+        .font-size(.857em);
+        margin-bottom: @baseLine / 2;
+    }
+}
+
+// Newsletter form
+#newsletter-subscribe {
+    background: transparent none;
+    color: @textColorPrimary;
+    margin-top: 0;
+
+    .form-title {
+        background: transparent none;
+        position: relative;
+        text-align: center;
+
+        h3 {
+            .font-size(28px);
+            color: @mozillaRed;
+            font-weight: bold;
+            line-height: 1.25;
+        }
+
+        h4 {
+            .font-size(18px);
+            .open-sans;
+            color: @textColorSecondary;
+            line-height: 1.25;
+        }
+
+        &:before {
+            background: @mozillaRed url('/media/img/newsletter/mozorg-newsletter.svg') center center no-repeat;
+            .background-size(100px, 100px);
+            border-radius: 100%;
+            content: '';
+            display: block;
+            height: 150px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 150px;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+
+    a:hover,
+    a:focus {
+        color: @linkBlueHover;
+    }
+
+    input[type='email'] {
+        border: 1px solid @borderColor;
+    }
+
+    #newsletter-form-thankyou {
+        color: @textColorPrimary;
+
+        h3 {
+            color: @textColorPrimary;
+        }
+    }
 }
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-  #masthead,
-  #main-content,
-  .billboard {
-    width: @widthTablet - (@gridGutterWidth * 2);
-  }
+    #masthead,
+    .content,
+    .billboard {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
 
-  #main-content .main,
-  #main-content .video {
-    .span_narrow(6);
-  }
+    .content-main .main,
+    .content-main .video {
+        .span_narrow(6);
+    }
 
-  ul.links li {
-    .span_narrow(3);
-  }
+    ul.links li {
+        .span_narrow(3);
+    }
+
+    #newsletter-subscribe .form-title {
+        h3 {
+            .font-size(24px);
+        }
+
+        h4 {
+            .font-size(16px);
+        }
+
+        &:before {
+            width: 120px;
+            height: 120px;
+            .background-size(80px, 80px);
+        }
+    }
 }
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
-  #masthead,
-  #main-content,
-  .billboard {
-    width: @widthMobile - (@gridGutterWidth * 2);
-  }
-
-  .billboard {
-    padding-left: @gridGutterWidth;
-    padding-right: @gridGutterWidth;
-  }
-
-  #main-content .video {
-    margin-top: 0;
-  }
-
-  #main-content {
-    .lede {
-      .font-size(20px);
+    #masthead,
+    .content,
+    .billboard {
+        width: @widthMobile - (@gridGutterWidth * 2);
     }
 
-    .main,
-    .video,
-    ul.links li {
-      width: auto;
-      float: none;
+    .billboard {
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
     }
-  }
+
+    .page-header {
+        padding-top: 150px;
+        background-image: url('/media/img/newsletter/intro-mozsummit-600.jpg');
+    }
+
+    .content-main {
+        .lede {
+            .font-size(20px);
+        }
+
+        .main,
+        .video,
+        ul.links li {
+            width: auto;
+            float: none;
+        }
+    }
 }
 
 /* Wide mobile layout: 480px; */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-  #masthead,
-  #main-content,
-  .billboard {
-    width: @widthMobileLandscape - @gridGutterWidth;
-  }
+    #masthead,
+    .content,
+    .billboard {
+        width: @widthMobileLandscape - @gridGutterWidth;
+    }
+
+    .page-header {
+        background-image: url('/media/img/newsletter/intro-mozsummit-1000.jpg');
+    }
 }
