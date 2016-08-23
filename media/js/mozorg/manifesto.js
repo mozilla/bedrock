@@ -164,7 +164,7 @@ $(function() {
         } else {
             // Open the link in a new tab
             $this.attr({
-                'target', '_blank',
+                'target': '_blank',
                 rel: 'noopener noreferrer'
             });
 
