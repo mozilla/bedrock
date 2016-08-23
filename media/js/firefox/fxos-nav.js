@@ -28,9 +28,6 @@ if (typeof window.Mozilla === 'undefined') {
         // wrappers for adjunct nav
         var $adjunctNavContainer = $('#fxosnav-adjunctnav');
 
-        // all ul.adjunctnav elements
-        var $adjunctNavs = $fxOsHeader.find('.adjunctnav');
-
         // initialize the thing
         var _initMq = function() {
             mqDesktop.addListener(function(mq) {
