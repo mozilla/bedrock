@@ -524,8 +524,8 @@ class TestNewsletterSubscribe(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
 
-    def ajax_request(self, data):
-        return self.request(data, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    def ajax_request(self, data, **kwargs):
+        return self.request(data, HTTP_X_REQUESTED_WITH='XMLHttpRequest', **kwargs)
 
     def request(self, data=None, **kwargs):
         if data:
@@ -571,6 +571,39 @@ class TestNewsletterSubscribe(TestCase):
         self.assertIn('NEFARIOUSNESS', resp_data['errors'][0])
         self.assertIn('&lt;svg', resp_data['errors'][0])
         self.assertFalse(basket_mock.called)
+
+    @patch('bedrock.newsletter.views.basket')
+    def test_no_source_url_use_referrer(self, basket_mock):
+        """Should set source_url to referrer if not sent"""
+        data = {
+            'newsletters': 'flintstones',
+            'email': 'fred@example.com',
+            'fmt': 'H',
+            'privacy': True,
+        }
+        source_url = 'https://example.com/bambam'
+        resp = self.ajax_request(data, HTTP_REFERER=source_url)
+        resp_data = json.loads(resp.content)
+        self.assertDictEqual(resp_data, {'success': True})
+        basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
+                                                 format='H', source_url=source_url)
+
+    @patch('bedrock.newsletter.views.basket')
+    def test_use_source_url_with_referer(self, basket_mock):
+        """Should use source_url even if there's a good referrer"""
+        source_url = 'https://example.com/bambam'
+        data = {
+            'newsletters': 'flintstones',
+            'email': 'fred@example.com',
+            'fmt': 'H',
+            'privacy': True,
+            'source_url': source_url
+        }
+        resp = self.ajax_request(data, HTTP_REFERER=source_url + '_WILMA')
+        resp_data = json.loads(resp.content)
+        self.assertDictEqual(resp_data, {'success': True})
+        basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
+                                                 format='H', source_url=source_url)
 
     @patch('bedrock.newsletter.views.basket')
     def test_returns_ajax_success(self, basket_mock):

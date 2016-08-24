@@ -581,6 +581,12 @@ def newsletter_subscribe(request):
                                                       'first_name',
                                                       'last_name', ]
                                if data[k]))
+
+            # NOTE this is not a typo; Referrer is misspelled in the HTTP spec
+            # https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.36
+            if not kwargs.get('source_url') and request.META.get('HTTP_REFERER'):
+                kwargs['source_url'] = request.META['HTTP_REFERER']
+
             try:
                 basket.subscribe(data['email'], data['newsletters'],
                                  **kwargs)
