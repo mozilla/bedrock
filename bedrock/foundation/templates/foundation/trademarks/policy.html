@@ -57,15 +57,15 @@
 
       <ul>
         <li>
-          {% trans guidelines="http://www-archive.mozilla.org/foundation/identity-guidelines/" %}
+          {% trans guidelines=url('styleguide.home')|absolute_url %}
             Visual Guidelines: <a href="{{ guidelines }}">{{ guidelines }}</a>.
           {% endtrans %}
           <ul>
-            <li>{% trans logo="https://blog.mozilla.org/press/media-library/" %}
+            <li>{% trans logo=url('styleguide.identity.firefox-branding')|absolute_url %}
                 Firefox Logos: <a href="{{ logo }}">{{ logo }}</a> or{% endtrans %}</li>
 
-            <li>{% trans  guidelines="http://www-archive.mozilla.org/foundation/identity-guidelines/"%}
-                Mozilla Logos: <a href="{{ guidelines }}">{{ guidelines }}</a>{% endtrans %}</li>
+            <li>{% trans logo=url('styleguide.identity.mozilla-branding')|absolute_url %}
+                Mozilla Logos: <a href="{{ logo }}">{{ logo }}</a>{% endtrans %}</li>
           </ul>
         </li>
       </ul>
@@ -76,10 +76,10 @@
 
   <h3>{{ _('Unaltered Binaries') }}</h3>
 
-  <p>{% trans com="https://www.mozilla.com", org="/" %}
-      You may distribute unchanged official binaries (i.e., the installer file available for download for each platform (code + config) and not the program executable) downloaded from <a href="{{ com }}">www.mozilla.com</a> or <a href="{{ org }}">www.mozilla.org</a> to anyone in any way, subject to governing law, without receiving any further permission from Mozilla.  If you want to distribute the unchanged official binaries using the Mozilla Marks, you may do so, without receiving any further permission from Mozilla, as long as you comply with this Trademark Policy and you distribute them without charge. However, you must not remove or change any part of the official binary, including the Mozilla Marks. On your website or in other materials, you may truthfully state that the software you are providing is an unmodified version of a Mozilla application, keeping in mind the overall guidelines for the use of Mozilla Marks in printed materials, detailed above. We suggest that, if you choose to provide visitors to your website the opportunity to download Mozilla product, you do so by means of a link to our site, to help ensure faster, more reliable downloads. (See the section on Linking, below.){% endtrans %}</p>
+  <p>{% trans org=url('mozorg.home') %}
+      You may distribute unchanged official binaries (i.e., the installer file available for download for each platform (code + config) and not the program executable) downloaded from <a href="{{ org }}">www.mozilla.org</a> to anyone in any way, subject to governing law, without receiving any further permission from Mozilla.  If you want to distribute the unchanged official binaries using the Mozilla Marks, you may do so, without receiving any further permission from Mozilla, as long as you comply with this Trademark Policy and you distribute them without charge. However, you must not remove or change any part of the official binary, including the Mozilla Marks. On your website or in other materials, you may truthfully state that the software you are providing is an unmodified version of a Mozilla application, keeping in mind the overall guidelines for the use of Mozilla Marks in printed materials, detailed above. We suggest that, if you choose to provide visitors to your website the opportunity to download Mozilla product, you do so by means of a link to our site, to help ensure faster, more reliable downloads. (See the section on Linking, below.){% endtrans %}</p>
 
-  <p>{% trans mpl='/MPL/' %}
+  <p>{% trans mpl=url('mozorg.mpl.index') %}
       If you choose to distribute Mozilla binaries yourself, you should make the latest stable version available (of course, you probably want to do so as well).  If you compile Mozilla unmodified source code (including code and config files in the installer) and do not charge for it, you do not need additional permission from Mozilla to use the relevant Mozilla Mark(s) for your compiled version.  So that users get the latest code and security releases, we encourage you to always distribute the most current official release.  The notification requirements of the <a href="{{ mpl }}">Mozilla Public License</a> have been met for our binaries, so although it's a good idea to do so, you are not required to ship the source code along with the binaries.{% endtrans %}</p>
 
   <p>{% trans %}In addition, if you are distributing Mozilla binaries yourself, and wish to use the Mozilla Mark(s), you may not (a) disable, modify or otherwise interfere with any installation mechanism contained in a Mozilla product; (b) use any such installation mechanism to install any plug-ins, themes, extensions, software, or items other than the Mozilla product; or (c) use or provide any program, mechanism or process (other than an installation mechanism contained in the Mozilla product) to install such product.  Any use of a meta-installer would require our prior written permission.{% endtrans %}</p>
@@ -91,15 +91,15 @@
   <p>{% trans poweredby=url('foundation.trademarks.poweredby.faq') %}
       If you're taking full advantage of the open-source nature of Mozilla's products and making significant functional changes, you may not redistribute the fruits of your labor under any Mozilla trademark, without Mozilla's prior written consent.  For example, if the product you've modified is Firefox, you may not use Mozilla or Firefox, in whole or in part, in its name.  Also, it would be inappropriate for you to say "based on Mozilla Firefox". Instead, in the interest of complete accuracy, you could describe your executables as "based on Mozilla technology", or "incorporating Mozilla source code." In addition, you may want to read the discussion on the "<a href="{{ poweredby }}">Powered by Mozilla</a>" logo.{% endtrans %}</p>
 
-  <p>{% trans %}In addition, if you compile a modified version, as discussed above, with branding enabled (the default in our source code is branding disabled), you will require Mozilla's prior written permission.  If it's not the unmodified installer package from www.mozilla.com, and you want to use our trademark(s), our review and approval of your modifications is required.  You also must change the name of the executable so as to reduce the chance that a user of the modified software will be misled into believing it to be a native Mozilla product.{% endtrans %}</p>
+  <p>{% trans %}In addition, if you compile a modified version, as discussed above, with branding enabled (the default in our source code is branding disabled), you will require Mozilla's prior written permission.  If it's not the unmodified installer package from www.mozilla.org, and you want to use our trademark(s), our review and approval of your modifications is required.  You also must change the name of the executable so as to reduce the chance that a user of the modified software will be misled into believing it to be a native Mozilla product.{% endtrans %}</p>
 
   <p>{% trans trademarks="mailto:trademarks@mozilla.com" %}
       Again, any modification to the Mozilla product, including adding to, modifying in any way, or deleting content from the files included with an installer, file location changes, added code, modification of any source files including additions and deletions, etc., will require our permission if you want to use the Mozilla Marks.  If you have any doubt, just ask us at <a href="{{ trademarks }}">trademarks@mozilla.com</a>.{% endtrans %}</p>
 
   <h3>{{ _('Extensions, Themes and Plugins') }}</h3>
 
-  <p>{% trans partnerships=url('mozorg.partnerships') %}
-      At the same time as we seek community involvement in the development of the Mozilla  products, we want to protect the reputation of these products as high-quality and lightweight, with simple, usable interfaces. If you want to ship extensions, themes or plug-ins installed by default or as part of the same installation process as the Mozilla products (as opposed to, say, linked as XPIs from the default start page), and you plan on distributing them under any Mozilla Marks, you must first seek approval from us. What we find acceptable will depend on the effect of the extensions, themes and plug-ins on the Mozilla product. To give examples, changing the theme of one product to another, equally high-quality and aesthetically pleasing theme would be considered.  A combination of ten different extensions with three toolbars and seven context menu items probably wouldn't be.  See our <a href="{{ partnerships }}">Partners page</a> to find out more about contacting us to discuss your proposed changes.{% endtrans %}</p>
+  <p>{% trans partnerships=url('mozorg.partnerships-distribution') %}
+      At the same time as we seek community involvement in the development of the Mozilla  products, we want to protect the reputation of these products as high-quality and lightweight, with simple, usable interfaces. If you want to ship extensions, themes or plug-ins installed by default or as part of the same installation process as the Mozilla products (as opposed to, say, linked as XPIs from the default start page), and you plan on distributing them under any Mozilla Marks, you must first seek approval from us. What we find acceptable will depend on the effect of the extensions, themes and plug-ins on the Mozilla product. To give examples, changing the theme of one product to another, equally high-quality and aesthetically pleasing theme would be considered.  A combination of ten different extensions with three toolbars and seven context menu items probably wouldn't be.  See our <a href="{{ partnerships }}">Mozilla Desktop Distribution page</a> to find out more about contacting us to discuss your proposed changes.{% endtrans %}</p>
 
   <h3>{{ _('Related Software') }}</h3>
 
@@ -122,16 +122,13 @@
 
   <p>{% trans %}When it comes to the Mozilla Marks, there are some cool things you can do and some cool things you can't do - at least not without asking Mozilla.{% endtrans %}</p>
 
-  <p>{% trans store="http://store.mozilla.org", comm="http://communitystore.mozilla.org/" %}
-    You may make t-shirts, desktop wallpaper, or baseball caps with Mozilla Marks on them, though only for yourself and your friends (meaning people from whom you don't receive anything of value in return).  You can't put the Mozilla Mark(s) on anything that you produce commercially (whether or not you make a profit) -- at least not without receiving Mozilla's written permission.  Mozilla contracts with third party vendors that provide Mozilla products for sale. These vendors own and operate the <a href="{{ store }}">Mozilla Store</a> and the <a href="{{ comm }}">Mozilla Community Store</a>.  The Mozilla Store offers T-shirts, CDs and other merchandise branded with Mozilla product logos.  The Mozilla Community Store offers items that are designed by a member of the worldwide Mozilla community.{% endtrans %}</p>
+  <p>{% trans %}
+    You may make t-shirts, desktop wallpaper, or baseball caps with Mozilla Marks on them, though only for yourself and your friends (meaning people from whom you don't receive anything of value in return).  You can't put the Mozilla Mark(s) on anything that you produce commercially (whether or not you make a profit) -- at least not without receiving Mozilla's written permission.{% endtrans %}</p>
 
   <p>{% trans %}There is one additional broad category of things you can't do with Mozilla's Marks.{% endtrans %}</p>
   <ul>
   <li>{% trans %}Produce modified versions of them. A modified mark also would raise the possibility of consumer confusion, thus violating Mozilla's trademark rights (remember the overarching requirement that any use of a Mozilla Mark be non-confusing?).{% endtrans %}</li>
   </ul>
-
-  <p>{% trans com="mailto:trademarks@mozilla.com", org="mailto:trademarks@mozilla.org" %}
-    <span style="text-decoration: underline;">High Resolution Copies</span>.  We are in the process of working out the best way to allow access to the vector files for the Mozilla Marks, which may require additional terms.  In the meantime, if you need to use a high-resolution copy of Mozilla Marks please contact the <a href="{{ com }}">Mozilla Corporation</a> for Firefox and Thunderbird trademarks, or the <a href="{{ org }}">Mozilla Foundation</a> for other trademarks and we will try to accommodate your request.{% endtrans %}</p>
 
   <h2>{{ _('Things You Can Do&mdash;Summary') }}</h2>
 
@@ -140,8 +137,8 @@
   <ul>
   <li>{% trans %}use the Mozilla Marks in marketing, and other publicity materials related to Mozilla or the relevant Mozilla product;{% endtrans %}</li>
 
-  <li>{% trans com="//www.mozilla.com", org="/" %}
-      distribute unchanged Mozilla product(s) (code + config) for each platform downloaded from <a href="{{ com }}">www.mozilla.com</a> or <a href="{{ org }}">www.mozilla.org</a> as long as you distribute them without charge;{% endtrans %}</li>
+  <li>{% trans org=url('mozorg.home') %}
+      distribute unchanged Mozilla product(s) (code + config) for each platform downloaded from <a href="{{ org }}">www.mozilla.org</a> as long as you distribute them without charge;{% endtrans %}</li>
 
   <li>{% trans %}describe your executables as "based on Mozilla technology", or "incorporating Mozilla source code;"{% endtrans %}</li>
 
