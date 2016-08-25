@@ -12,7 +12,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-video-poster.less',
             'css/newsletter/moznewsletter-subscribe.less',
-            'css/mozorg/about-base.less',
+            'css/mozorg/about.less',
         ),
         'output_filename': 'css/about-bundle.css',
     },
@@ -665,7 +665,6 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/base/mozilla-share-cta.less',
-            'css/mozorg/mosaic.less',
             'css/mozorg/manifesto.less',
         ),
         'output_filename': 'css/manifesto-bundle.css',
@@ -673,6 +672,7 @@ PIPELINE_CSS = {
     'mission': {
         'source_filenames': (
             'css/base/mozilla-video-poster.less',
+            'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/mission.less',
         ),
         'output_filename': 'css/mission-bundle.css',

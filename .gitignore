@@ -35,4 +35,5 @@ mofo_security_advisories
 .env
 .cache
 tests/functional/results.html
+tests/functional/assets/style.css
 .eslintcache
