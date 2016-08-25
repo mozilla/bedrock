@@ -27,7 +27,7 @@
       <p>
         {% set url = 'https://advocacy.mozilla.org/encrypt/social/1' %}
         {% if l10n_has_tag('target-links-noopener') %}
-          {{ _('<a href="%s" target="_blank" rel="external noopener noreferrer">Learn more about encryption</a>, why it’s essential and why we need to protect it.')|format(url) }}
+          {{ _('<a href="%s">Learn more about encryption</a>, why it’s essential and why we need to protect it.')|format(url) }}
         {% else %}
           {{ _('<a href="%s" rel="external" target="_blank">Learn more about encryption</a>, why it’s essential and why we need to protect it.')|format(url) }}
         {% endif %}
