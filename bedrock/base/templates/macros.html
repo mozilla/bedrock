@@ -380,7 +380,7 @@
 {% macro google_play_button(alt_href='', anchor_attributes={}, class_name='', extra_img_attributes={}, id='') -%}
 {% set optional_img_attributes = {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True} %}
 {% do optional_img_attributes.update(extra_img_attributes) %}
-<a{% if class_name %} class="{{ class_name }}"{% endif %}{% if id %} id="{{ id }}"{% endif %} rel="external" href="{{ alt_href|default(settings.GOOGLE_PLAY_FIREFOX_LINK, True) }}"{% if not alt_href %} data-link-type="download" data-download-os="Android" data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}"{% endif %}{% for attr, val in anchor_attributes.items() %} {{ attr }}="{{ val }}"{% endfor %}>
+<a{% if class_name %} class="{{ class_name }}"{% endif %}{% if id %} id="{{ id }}"{% endif %} rel="external noopener noreferrer" href="{{ alt_href|default(settings.GOOGLE_PLAY_FIREFOX_LINK, True) }}"{% if not alt_href %} data-link-type="download" data-download-os="Android" data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}"{% endif %}{% for attr, val in anchor_attributes.items() %} {{ attr }}="{{ val }}"{% endfor %}>
   {{ high_res_img('firefox/android/btn-google-play.png', optional_img_attributes) }}
 </a>
 {%- endmacro %}

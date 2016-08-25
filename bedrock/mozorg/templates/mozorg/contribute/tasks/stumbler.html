@@ -26,7 +26,14 @@
         }, class_name='stumbler-button', extra_img_attributes={
           'data-action': 'install', 'data-task': 'stumbler', 'data-step': 'one', 'data-complete': 'true'
         }) }}
-        <p>{{ _('<a href="%s" target="_blank">Learn more about Mozilla Location Services</a> and discover more ways to get involved.')|format('https://location.services.mozilla.com/') }}</p>
+        <p>
+          {% set url = 'https://location.services.mozilla.com/' %}
+          {% if l10n_has_tag('target-links-noopener') %}
+            {{ _('<a href="%s">Learn more about Mozilla Location Services</a> and discover more ways to get involved.')|format(url) }}
+          {% else %}
+            {{ _('<a href="%s" target="_blank">Learn more about Mozilla Location Services</a> and discover more ways to get involved.')|format(url) }}
+          {% endif %}
+        </p>
       </div>
     </li>
   </ol>

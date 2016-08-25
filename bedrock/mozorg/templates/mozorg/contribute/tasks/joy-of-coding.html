@@ -29,7 +29,12 @@
           </a></p>
         {% endif %}
         <h4>{{ _('Get involved') }}</h4>
-        {{ _('<a href="%s" id="get-involved" target="_blank">Join the Coding Community</a> and start collaborating with other Mozillians around the world.')|format('https://wiki.mozilla.org/Contribute/Coding') }}
+        {% set url = 'https://wiki.mozilla.org/Contribute/Coding' %}
+        {% if l10n_has_tag('target-links-noopener') %}
+          {{ _('<a href="%s" id="get-involved">Join the Coding Community</a> and start collaborating with other Mozillians around the world.')|format(url) }}
+        {% else %}
+          {{ _('<a href="%s" id="get-involved" target="_blank">Join the Coding Community</a> and start collaborating with other Mozillians around the world.')|format(url) }}
+        {% endif %}
       </div>
     </li>
   </ol>

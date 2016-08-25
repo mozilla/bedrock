@@ -28,9 +28,6 @@ if (typeof window.Mozilla === 'undefined') {
         // wrappers for adjunct nav
         var $adjunctNavContainer = $('#fxfamilynav-adjunctnav');
 
-        // all ul.adjunctnav elements
-        var $adjunctNavs = $fxFamilyHeader.find('.adjunctnav');
-
         // initialize the thing
         var _initMq = function() {
             mqDesktop.addListener(function(mq) {
@@ -103,9 +100,6 @@ if (typeof window.Mozilla === 'undefined') {
 
         // public initialization point
         var _init = function() {
-            // all external adjunct nav links open in new tab
-            $adjunctNavs.find('a[rel="external"]').attr('target', '_blank');
-
             // initialize matchMedia
             if (mqDesktop) {
                 _initMq();
