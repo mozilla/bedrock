@@ -67,6 +67,23 @@ describe('core-datalayer.js', function() {
         });
     });
 
+    describe('getLatestFxVersion', function() {
+
+        afterEach(function() {
+            $('html').removeData('latest-firefox');
+        });
+
+        it('will return the Firefox version from the data-latest-firefox attribute from the html element if present', function() {
+            $('html').data('latest-firefox', '48.0');
+
+            expect(Mozilla.Analytics.getLatestFxVersion()).toBe('48.0');
+        });
+
+        it('will return undefined if no data-latest-firefox attribute is present on the html element', function() {
+            expect(Mozilla.Analytics.getLatestFxVersion()).toBeUndefined();
+        });
+    });
+
     describe('updateDataLayerPush', function() {
         var linkElement;
 

@@ -28,7 +28,7 @@
       <a class="dl-button" rel="external" href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
         <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
       </a>
-      <button class="send-to button green" type="button" data-button-name="Get Firefox for iOS">{{ _('Get Firefox for iOS') }}</button>
+      <button class="send-to button green" type="button" data-button-name="Get Firefox for iOS" data-cta-position="Nav">{{ _('Get Firefox for iOS') }}</button>
     </div>
   {% endcall %}
 {% endblock %}
@@ -81,22 +81,22 @@
     <div class="sync-cta">
 
       <div class="default">
-        <p><a href="{{ url('firefox.sync') }}" class="button" data-link-type="button" data-link-name="Learn more about Sync">{{ _('Learn more about Sync') }}</a></p>
+        <p><a href="{{ url('firefox.sync') }}" class="button" data-link-type="button" data-link-name="Learn more about Sync" data-cta-position="Secondary">{{ _('Learn more about Sync') }}</a></p>
       </div>
 
       <div class="fx-signed-out">
-        <p><button type="button" class="button sync-button" data-button-name="Get started with Sync">{{ _('Get started with Sync') }}</button></p>
+        <p><button type="button" class="button sync-button" data-button-name="Get started with Sync" data-cta-position="Secondary">{{ _('Get started with Sync') }}</button></p>
         <p>{{ _('Already have an account?') }} <a href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync" class="go">{{ _('Sign in') }}</a></p>
       </div>
 
       <div class="fx-signed-in">
         <h3>{{ _('You’re already signed in!') }}</h3>
-        <p><a href="{{ url('firefox.sync') }}" class="go" data-link-type="button" data-link-name="Learn more about Sync">{{ _('Learn more about Sync') }}</a></p>
+        <p><a href="{{ url('firefox.sync') }}" class="go" data-link-type="button" data-link-name="Learn more about Sync" data-cta-position="Secondary">{{ _('Learn more about Sync') }}</a></p>
       </div>
 
       <div class="fx-ios">
         <h3>{{ _('Sync your Firefox browsing history on iOS') }}</h3>
-        <p><button type="button" class="button sync-start-ios" data-button-name="Get started with Sync">{{ _('Get started with Sync') }}</button></p>
+        <p><button type="button" class="button sync-start-ios" data-button-name="Get started with Sync" data-cta-position="Secondary">{{ _('Get started with Sync') }}</button></p>
         <p><a href="{{ firefox_ios_url() }}" class="go">{{ _('Learn more in the App Store') }}</a></p>
       </div>
 

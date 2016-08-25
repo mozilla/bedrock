@@ -84,10 +84,14 @@
 #}
 {% macro build_link(build, platform, tooltip) %}
   {% if build.platforms[platform] %}
-    <td class="download {{ platform }}"><a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}"
-    {% if platform == 'android' %}data-link-type="download" data-download-os="Android"
-    {% elif platform == 'ios' %}data-link-type="download" data-download-os="iOS"
-    {% else %}data-link-type="download" data-download-os="Desktop"{% endif %}>{{ _('Download') }}</a></td>
+    <td class="download {{ platform }}">
+        <a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}"
+           data-download-version="{{ platform }}" data-download-language="{{ build.name_en|lower}}" data-link-type="download"
+           {% if platform == 'android' %} data-download-os="Android"
+           {% elif platform == 'ios' %} data-download-os="iOS"
+           {% else %} data-download-os="Desktop"{% endif %}>{{ _('Download') }}
+        </a>
+    </td>
   {% else %}
     <td class="unavailable">{{ _('Not Yet Available') }}</td>
   {% endif %}

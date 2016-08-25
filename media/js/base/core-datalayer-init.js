@@ -15,7 +15,8 @@ $(function() {
             'pageHasVideo': analytics.pageHasVideo(),
             'pageVersion': analytics.getPageVersion(),
             // white listed for www.mozill.org, will always return false on other domains
-            'testPilotUser': 'testpilotAddon' in navigator ? 'true' : 'false'
+            'testPilotUser': 'testpilotAddon' in navigator ? 'true' : 'false',
+            'releaseWindowVersion': analytics.getLatestFxVersion()
         };
 
         dataLayer.push(dataLayerCore);

@@ -102,7 +102,7 @@
 
         <div class="show-fx-31-signed-out">
         {% if not version %}
-          <button class="button" data-interaction="button click" data-element-action="Sync CTA"  id="cta-sync">
+          <button class="button" data-button-name="Get started with Sync" data-cta-position="Primary" id="cta-sync">
             {{ _('Get started with Sync') }}
           </button>
         {% else %}
@@ -116,7 +116,7 @@
             {% endif %}
             </label>
             <input type="email" id="fxa-email" class="fxa-email" placeholder="{{ _('YOUR EMAIL HERE') }}">
-            <button type="submit" class="button" data-interaction="button click" data-element-action="Sync CTA" id="cta-sync-variation">
+            <button type="submit" class="button" data-button-name="Get started with Sync" data-cta-position="Primary" id="cta-sync-variation">
             {% if version == '2' %}
               {{ _('Get started with Sync') }}
             {% elif version == '3' %}
