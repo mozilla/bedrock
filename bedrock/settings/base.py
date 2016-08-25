@@ -346,6 +346,7 @@ INSTALLED_APPS = (
     'pipeline',
     'localflavor',
     'django_jinja',
+    'raven.contrib.django.raven_compat',
 
     # Local apps
     'bedrock.base',
@@ -1059,3 +1060,8 @@ B2G_DROID_URL = 'https://d2yw7jilxa8093.cloudfront.net/B2GDroid-mozilla-central-
 MOZILLA_LOCATION_SERVICES_KEY = 'ec4d0c4b-b9ac-4d72-9197-289160930e14'
 
 DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default=None)
+
+RAVEN_CONFIG = {
+    'dsn': config('SENTRY_DSN', None),
+    'release': config('GIT_SHA', None),
+}

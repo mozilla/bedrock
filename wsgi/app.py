@@ -22,9 +22,11 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bedrock.settings')
 # must be imported after env var is set above.
 from django.core.wsgi import get_wsgi_application
 from bedrock.base.static import BedrockWhiteNoise
+from raven.contrib.django.raven_compat.middleware.wsgi import Sentry
 
 application = get_wsgi_application()
 application = BedrockWhiteNoise(application)
+application = Sentry(application)
 
 if newrelic:
     application = newrelic.agent.wsgi_application()(application)
