@@ -284,7 +284,6 @@ Available ``type`` values:
 * ``'appinfo'``
 * ``'selectedSearchEngine'``
 * ``'search'``
-* ``'loop'``
 * ``'canReset'``
 
 Other parameters:
@@ -367,20 +366,6 @@ This is an alias to ``'selectedSearchEngine'`` that also returns an array of ava
 
         ``search`` is only available in Firefox 43 onward.
 
-**loop**
-
-If ``'loop'`` is queried the object returns the boolean value for the ``'loop.gettingStarted.seen'`` preference.
-
-.. code-block:: javascript
-
-    Mozilla.UITour.getConfiguration('loop', function (data) {
-        console.log(data.gettingStartedSeen); // true
-    });
-
-.. Important::
-
-    ``loop`` is only available in Firefox 36 onward.
-
 **canReset**
 
 If ``'canReset'`` is queried the callback returns a boolean value to indicate if a user can refresh their Firefox profile via ``resetFirefox()``
@@ -402,24 +387,9 @@ Sets a specific browser preference using a given key value pair.
 
 Available key names:
 
-* ``'Loop:ResumeTourOnFirstJoin'``
 * ``'defaultBrowser'``
 
 Specific use cases:
-
-**Loop:ResumeTourOnFirstJoin**
-
-Setting the value for ``'Loop:ResumeTourOnFirstJoin'`` will enable Firefox to resume the FTE tour when the user joins their first conversation.
-
-.. code-block:: javascript
-
-    Mozilla.UITour.setConfiguration('Loop:ResumeTourOnFirstJoin', true);
-
-Note: Don't try setting this value to ``false``. The current Hello code in Firefox handles when ``false`` should be set, and will actually set this value to ``true`` regardless whenever it is called. This will likely lead to unexpected results.
-
-.. Important::
-
-    ``setConfiguration('Loop:ResumeTourOnFirstJoin', ...)`` is only available in Firefox 35 onward.
 
 **defaultBrowser**
 
@@ -600,48 +570,6 @@ Pings Firefox to register that the page is using UiTour API.
     Mozilla.UITour.ping(function() {
         console.log('UiTour is working!');
     });
-
-.. Important::
-
-    Only available in Firefox 35 onward.
-
-observe(listener, callback);
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Register to listen for Firefox Hello events.
-
-* ``listener`` event handler for receiving Hello events
-* ``callback`` function to execute when event listener has been registered correctly
-
-.. code-block:: javascript
-
-    Mozilla.UITour.observe(function(event, data) {
-        console.log(event);
-        console.log(data);
-    }, function () {
-        console.log('event listener registered successfully');
-    });
-
-Event types:
-
-* ``'Loop:ChatWindowOpened'`` - User opens the chat window.
-* ``'Loop:ChatWindowClosed'`` - User closes the chat window.
-* ``'Loop:ChatWindowShown'`` - User expands the chat window (also fires when chat window is opened).
-* ``'Loop:ChatWindowHidden'`` - User hides the chat window.
-* ``'Loop:ChatWindowDetached'`` - User detaches the chat window.
-* ``'Loop:IncomingConversation'`` - User has an incoming conversation. Event will have data boolean value ``conversationOpen`` set to ``true`` or ``false`` depending on if the chat window is open or not.
-* ``'Loop:RoomURLCopied'`` - User clicks the copy button to share a chat URL.
-* ``'Loop:RoomURLEmailed'`` - User clicks the email button to share a chat URL.
-* ``'Loop:RoomURLShared'`` - User clicks the share button to share a chat URL.
-* ``'Loop:PanelTabChanged'`` - User clicks on the Contacts or Room tab in the panel. The data object passed with the event will be a string with a value of either ``rooms`` or ``contacts``, depending on which tab the user clicked.
-
-Note: UiTour can only create a single listener that is responsible for handling all event types. It is not currently possible to listen for only specific event types.
-
-To unbind listening for events, you can do:
-
-.. code-block:: javascript
-
-    Mozilla.UITour.observe(null);
 
 .. Important::
 
