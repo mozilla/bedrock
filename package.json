@@ -7,10 +7,9 @@
     "preinstall": "lockdown"
   },
   "dependencies": {
-    "cssmin": "0.4.3",
-    "less": "2.4.0",
+    "less": "2.7.1",
     "lockdown": "https://github.com/mozilla/npm-lockdown/archive/v0.0.8.tar.gz",
-    "uglify-js": "2.4.16"
+    "yuglify": "0.1.4"
   },
   "repository": {
     "type": "git",

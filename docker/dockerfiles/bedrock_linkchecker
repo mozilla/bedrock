@@ -1,6 +1,7 @@
-FROM debian:jessie
+FROM quay.io/mozmar/base
 
-RUN apt-get update && apt-get install -y --no-install-recommends build-essential python python-dev python-pip
+RUN apt-get update && apt-get install -y --no-install-recommends \
+                                      build-essential python python-dev python-pip python-setuptools
 
 RUN useradd -ms /bin/bash linkchecker
 COPY ./requirements /home/linkchecker/app/requirements
@@ -12,7 +13,6 @@ WORKDIR /home/linkchecker/app
 
 RUN mkdir /results && chown -R linkchecker:linkchecker /results
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
-RUN ./bin/pipstrap.py
 RUN pip install --no-cache-dir -r requirements/linkchecker.txt
 
 USER linkchecker

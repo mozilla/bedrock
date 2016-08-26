@@ -1,0 +1,7 @@
+FROM ${BASE_IMAGE}
+
+COPY . /app/
+RUN echo "${GIT_COMMIT}" > static/revision.txt
+
+RUN chown webdev.webdev -R .
+USER webdev

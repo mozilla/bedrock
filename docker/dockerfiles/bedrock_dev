@@ -1,0 +1,28 @@
+FROM quay.io/mozmar/base
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
+EXPOSE 8000
+CMD ["./docker/run-prod.sh"]
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python2.7 libpython2.7 build-essential \
+    python-dev python-pip python-setuptools \
+    gettext libxml2-dev libxslt1.1 libxslt1-dev libpq-dev nodejs npm git
+RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+
+ENV NODE_PATH=/node_modules
+ENV PIPELINE_LESS_BINARY=/node_modules/.bin/lessc
+ENV PIPELINE_YUGLIFY_BINARY=/node_modules/.bin/yuglify
+COPY package.json /
+RUN npm install
+RUN cd /node_modules/.bin; for bin in *; do ln -s /node_modules/.bin/$bin /usr/local/bin/$bin; done; cd -
+
+WORKDIR /app
+
+COPY ./requirements /app/requirements
+
+# Install app
+RUN pip install --no-cache-dir -r requirements/test.txt
+RUN pip install --no-cache-dir -r requirements/docker.txt
