@@ -232,38 +232,6 @@ class TestWhatsNew(TestCase):
         eq_(template, ['firefox/australis/whatsnew.html'])
 
 
-@patch.object(fx_views.TourView, 'redirect_to', none_mock)
-@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
-class TestTourView(TestCase):
-    def setUp(self):
-        self.view = fx_views.TourView.as_view()
-        self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
-
-    @override_settings(DEV=True)
-    def test_fx_old_tour_template(self, render_mock):
-        """Should use old firstrun template"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, version='29.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_35_0_a2(self, render_mock):
-        """Should use dev browser firstrun template"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, version='35.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_firstrun_tour_36_0(self, render_mock):
-        """Should use fx36 tour template for 36.0"""
-        req = self.rf.get('/en-US/firefox/tour/')
-        self.view(req, version='36.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/fx36/tour.html'])
-
-
 @patch.object(fx_views.FirstrunView, 'redirect_to', none_mock)
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):

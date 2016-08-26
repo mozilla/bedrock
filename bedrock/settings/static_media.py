@@ -505,14 +505,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_releases_index-bundle.css',
     },
-    'firefox_tour': {
-        'source_filenames': (
-            'css/firefox/australis/australis-ui-tour.less',
-            'css/firefox/hello-animation.less',
-            'css/firefox/australis/fx36/common.less',
-        ),
-        'output_filename': 'css/firefox_tour-bundle.css',
-    },
     'firefox_tour_none': {
         'source_filenames': (
             'css/firefox/australis/australis-page-common.less',
@@ -1290,14 +1282,6 @@ PIPELINE_JS = {
             'js/firefox/sync.js',
         ),
         'output_filename': 'js/firefox_sync-bundle.js',
-    },
-    'firefox_tour': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/firefox/australis/browser-tour.js',
-            'js/firefox/australis/fx36/tour.js',
-        ),
-        'output_filename': 'js/firefox_tour-bundle.js',
     },
     'firefox_feedback': {
         'source_filenames': (

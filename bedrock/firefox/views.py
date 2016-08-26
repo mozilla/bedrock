@@ -208,15 +208,6 @@ def show_devbrowser_firstrun_or_whatsnew(version):
     return False
 
 
-def show_36_tour(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version('36.0')
-
-
 def show_38_0_5_firstrun(version):
     try:
         version = Version(version)
@@ -358,22 +349,6 @@ class WhatsnewView(LatestFxView):
             template = 'firefox/whatsnew_42/whatsnew.html'
         else:
             template = 'firefox/australis/whatsnew.html'
-
-        # return a list to conform with original intention
-        return [template]
-
-
-class TourView(LatestFxView):
-
-    def get_template_names(self):
-        version = self.kwargs.get('version') or ''
-
-        if show_devbrowser_firstrun_or_whatsnew(version):
-            template = 'firefox/dev-firstrun.html'
-        elif show_36_tour(version):
-            template = 'firefox/australis/fx36/tour.html'
-        else:
-            template = 'firefox/australis/firstrun.html'
 
         # return a list to conform with original intention
         return [template]

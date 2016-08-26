@@ -15,7 +15,6 @@ latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 firstrun_learnmore_re = latest_re % (version_re, 'firstrun/learnmore')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
-tour_re = latest_re % (version_re, 'tour')
 tracking_protection_re = latest_re % (version_re, 'tracking-protection/start')
 platform_re = '(?P<platform>android|ios)'
 channel_re = '(?P<channel>beta|aurora|developer|organizations)'
@@ -77,7 +76,6 @@ urlpatterns = (
     url(firstrun_learnmore_re, views.FirstrunLearnMoreView.as_view(),
         name='firefox.firstrun.learnmore'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
-    url(tour_re, views.TourView.as_view(), name='firefox.tour'),
 
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
         name='firefox.tracking-protection-tour.start'),
