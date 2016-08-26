@@ -51,10 +51,6 @@ EMAIL_MESSAGES = {
     'all': 'download-firefox-mobile',
 }
 
-# available variations for onboarding first & second run tests - Q2 2016
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1259608
-ONBOARDING_VARIATIONS = ['1', '2', '3', '4', '5', '6']
-
 
 def installer_help(request):
     installer_lang = request.GET.get('installer_lang', None)
