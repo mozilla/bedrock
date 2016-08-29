@@ -254,7 +254,11 @@ PIPELINE = {
     'SHOW_ERRORS_INLINE': False,
     'COMPILERS': (
         'pipeline.compilers.less.LessCompiler',
+        'pipeline.compilers.sass.SASSCompiler',
     ),
+    'SASS_BINARY': config('PIPELINE_SASS_BINARY',
+                          default=path('node_modules', '.bin', 'node-sass')),
+    'SASS_ARGUMENTS': config('PIPELINE_SASS_ARGUMENTS', default=''),
     'LESS_BINARY': config('PIPELINE_LESS_BINARY',
                           default=path('node_modules', 'less', 'bin', 'lessc')),
     'LESS_ARGUMENTS': config('PIPELINE_LESS_ARGUMENTS', default='-s'),
