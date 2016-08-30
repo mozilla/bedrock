@@ -31,6 +31,7 @@ test-results.xml
 tests/unit/coverage
 bedrock/externalfiles/files_cache
 mofo_security_advisories
+product_details_json
 .idea
 .env
 .cache

@@ -113,6 +113,8 @@ PROD_DETAILS_CACHE_TIMEOUT = 60 * 15  # 15 min
 default_pdstorage = 'PDDatabaseStorage' if PROD else 'PDFileStorage'
 PROD_DETAILS_STORAGE = config('PROD_DETAILS_STORAGE',
                               default='product_details.storage.' + default_pdstorage)
+# path to update p-d data for testing before loading into DB
+PROD_DETAILS_TEST_DIR = config('PROD_DETAILS_TEST_DIR', default=path('product_details_json'))
 
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
