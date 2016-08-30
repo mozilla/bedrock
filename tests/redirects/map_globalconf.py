@@ -1079,4 +1079,10 @@ URLS = flatten((
 
     url_test('/careers', 'https://careers.mozilla.org/'),
     url_test('/join', 'https://donate.mozilla.org/'),
+
+    # Bug 1293539
+    url_test('/firefox/{48.0,48.0.1,49.0a1,49.0a2}/tour',
+             'https://support.mozilla.org/kb/get-started-firefox-overview-main-features'),
+    url_test('/firefox/tour',
+             'https://support.mozilla.org/kb/get-started-firefox-overview-main-features'),
 ))
