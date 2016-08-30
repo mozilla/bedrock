@@ -354,16 +354,6 @@ class WhatsnewView(LatestFxView):
         return [template]
 
 
-def hello(request):
-    variant = request.GET.get('v', '')
-    if variant == 'b':
-        template = 'firefox/hello/index-b.html'
-    else:
-        template = 'firefox/hello/index.html'
-
-    return l10n_utils.render(request, template)
-
-
 class FeedbackView(TemplateView):
 
     donate_url = ('https://donate.mozilla.org/'

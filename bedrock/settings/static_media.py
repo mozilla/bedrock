@@ -370,14 +370,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_developer-bundle.css',
     },
-    'firefox_hello': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/hello/index.less',
-        ),
-        'output_filename': 'css/firefox_hello-bundle.css',
-    },
     'firefox_ios': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -1288,17 +1280,6 @@ PIPELINE_JS = {
             'js/base/mozilla-share-cta.js',
         ),
         'output_filename': 'js/firefox_feedback-bundle.js',
-    },
-    'firefox_hello': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/base/mozilla-svg-image-fallback.js',
-            'js/firefox/hello/index.js',
-        ),
-        'output_filename': 'js/firefox_hello-bundle.js',
     },
     'firefox_ios': {
         'source_filenames': (
