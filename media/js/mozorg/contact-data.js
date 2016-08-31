@@ -103,6 +103,23 @@
         }, {
             type: 'Feature',
             properties: {
+                id: 'new-york',
+                'marker-color': markerColor,
+                'marker-size': markerSize,
+                'icon': {
+                  'iconUrl': markerIcon,
+                  'iconSize': iconSize,
+                  'iconAnchor': iconAnchor,
+                  'popupAnchor': popupAnchor
+                }
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-73.985879,40.740161]
+            }
+        },  {
+            type: 'Feature',
+            properties: {
                 id: 'paris',
                 'marker-color': markerColor,
                 'marker-size': markerSize,
