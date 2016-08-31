@@ -22,6 +22,7 @@ releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
 android_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/android')
 ios_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/ios')
 sysreq_re = latest_re % (version_re, 'system-requirements')
+android_sysreq_re = sysreq_re.replace('firefox', 'firefox/android')
 ios_sysreq_re = sysreq_re.replace('firefox', 'firefox/ios')
 
 
@@ -103,6 +104,8 @@ urlpatterns = (
     url(releasenotes_re, bedrock.releasenotes.views.release_notes, name='firefox.desktop.releasenotes'),
     url(android_releasenotes_re, bedrock.releasenotes.views.release_notes,
         {'product': 'Firefox for Android'}, name='firefox.android.releasenotes'),
+    url(android_sysreq_re, bedrock.releasenotes.views.system_requirements,
+        {'product': 'Firefox for Android'}, name='firefox.android.system_requirements'),
     url(ios_releasenotes_re, bedrock.releasenotes.views.release_notes,
         {'product': 'Firefox for iOS'}, name='firefox.ios.releasenotes'),
     url(sysreq_re, bedrock.releasenotes.views.system_requirements,

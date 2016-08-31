@@ -220,12 +220,12 @@ class TestRNAViews(TestCase):
         eq_(link, '/en-US/thunderbird/channel/')
 
     def test_check_url(self):
-        eq_(views.check_url('Firefox for Android', '42.0'),
-            'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
         eq_(views.check_url('Firefox for iOS', '1.4'),
             '/en-US/firefox/ios/1.4/system-requirements/')
         eq_(views.check_url('Firefox', '42.0'),
             '/en-US/firefox/42.0/system-requirements/')
+        eq_(views.check_url('Firefox for Android', '45.0'),
+            '/en-US/firefox/android/45.0/system-requirements/')
 
 
 class TestReleaseNotesIndex(TestCase):

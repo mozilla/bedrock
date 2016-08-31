@@ -83,7 +83,7 @@ def get_download_url(release):
 
 def check_url(product, version):
     if product == 'Firefox for Android':
-        return settings.FIREFOX_MOBILE_SYSREQ_URL
+        return reverse('firefox.android.system_requirements', args=[version])
     elif product == 'Firefox for iOS':
         return reverse('firefox.ios.system_requirements', args=[version])
     else:

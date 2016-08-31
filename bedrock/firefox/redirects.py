@@ -188,10 +188,6 @@ redirectpatterns = (
     redirect(r'^firefox/vpat(?:\.html)?',
              'http://website-archive.mozilla.org/www.mozilla.org/firefox_vpat/firefox-vpat-3.html'),
 
-    # bug 1017564
-    redirect(r'^mobile/.+/system-requirements/?$',
-             'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'),
-
     # bug 858315
     redirect(r'^projects/devpreview/firstrun(?:/(?:index.html)?)?$', '/firefox/firstrun/'),
     redirect(r'^projects/devpreview/(?P<page>[\/\w\.-]+)?$',
