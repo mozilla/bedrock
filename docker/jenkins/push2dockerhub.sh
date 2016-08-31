@@ -20,8 +20,17 @@ docker push $DOCKER_REPOSITORY:$COMMIT
 
 GIT_TAG="$(git describe --tags --exact-match $GIT_COMMIT 2> /dev/null || true)"
 if [[ ! -z $GIT_TAG ]]; then
+    # tag and push docker image with git tag
     docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:$GIT_TAG
     docker push $DOCKER_REPOSITORY:$GIT_TAG
+
+    # tag and push docker image with "latest"
     docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:latest
     docker push $DOCKER_REPOSITORY:latest
+
+    # tag and push base image with latest
+    BASE_IMAGE="$(docker run mozorg/bedrock bash -c "head -n 1 Dockerfile" | sed "s/FROM //")"
+    BASE_REPO="$(cut -d : -f 1 <<< $BASE_IMAGE)"
+    docker tag -f $BASE_IMAGE $BASE_REPO:latest
+    docker push $BASE_REPO:latest
 fi;
