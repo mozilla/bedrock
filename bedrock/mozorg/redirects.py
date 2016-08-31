@@ -621,6 +621,6 @@ redirectpatterns = (
     # bug 1288647
     redirect(r'^hacking/?$', 'https://developer.mozilla.org/docs/Mozilla/Developer_guide/Introduction'),
 
-    redirect(r'^careers/?$', 'https://careers.mozilla.org/'),
+    redirect(r'^(careers|jobs)/?$', 'https://careers.mozilla.org/'),
     redirect(r'^join/?$', 'https://donate.mozilla.org/'),
 )
