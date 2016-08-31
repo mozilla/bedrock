@@ -35,5 +35,6 @@ git checkout -f origin/master
 popd
 
 cat docker/dockerfiles/bedrock_l10n | envsubst > ./locale/Dockerfile
+echo ".git" > ./locale/.dockerignore
 
 docker build -f locale/Dockerfile -t $DOCKER_IMAGE_TAG locale
