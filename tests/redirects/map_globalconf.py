@@ -1077,7 +1077,7 @@ URLS = flatten((
     # bug 1288647
     url_test('/hacking', 'https://developer.mozilla.org/docs/Mozilla/Developer_guide/Introduction'),
 
-    url_test('/careers', 'https://careers.mozilla.org/'),
+    url_test('/{careers,jobs}', 'https://careers.mozilla.org/'),
     url_test('/join', 'https://donate.mozilla.org/'),
 
     # Bug 1293539
