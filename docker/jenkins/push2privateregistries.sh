@@ -7,15 +7,12 @@
 #
 set -ex
 
-# If pull request use $ghprbActualCommit otherwise use $GIT_COMMIT
-COMMIT="${ghprbActualCommit:=$GIT_COMMIT}"
-
 # Push to private registry
 for PRIVATE_REGISTRY in ${PRIVATE_REGISTRIES//,/ };
 do
     for DEIS_APP in ${DEIS_APPS//,/ };
     do
-        docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $PRIVATE_REGISTRY/$DEIS_APP:$COMMIT
-        docker push $PRIVATE_REGISTRY/$DEIS_APP:$COMMIT
+        docker tag -f $FROM_DOCKER_REPOSITORY:${GIT_COMMIT} $PRIVATE_REGISTRY/$DEIS_APP:${GIT_COMMIT}
+        docker push $PRIVATE_REGISTRY/$DEIS_APP:${GIT_COMMIT}
     done
 done

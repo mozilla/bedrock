@@ -9,19 +9,16 @@ set -ex
 
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e $DOCKER_USERNAME@example.com
 
-# If pull request use $ghprbActualCommit otherwise use $GIT_COMMIT
-COMMIT="${ghprbActualCommit:=$GIT_COMMIT}"
-
 # Tag using git hash
-docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:$COMMIT
+docker tag -f $FROM_DOCKER_REPOSITORY:${GIT_COMMIT} $DOCKER_REPOSITORY:${GIT_COMMIT}
 
 # Push to docker hub
-docker push $DOCKER_REPOSITORY:$COMMIT
+docker push $DOCKER_REPOSITORY:${GIT_COMMIT}
 
 GIT_TAG="$(git describe --tags --exact-match $GIT_COMMIT 2> /dev/null || true)"
 if [[ ! -z $GIT_TAG ]]; then
-    docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:$GIT_TAG
+    docker tag -f $FROM_DOCKER_REPOSITORY:${GIT_COMMIT} $DOCKER_REPOSITORY:$GIT_TAG
     docker push $DOCKER_REPOSITORY:$GIT_TAG
-    docker tag -f $FROM_DOCKER_REPOSITORY:$COMMIT $DOCKER_REPOSITORY:latest
+    docker tag -f $FROM_DOCKER_REPOSITORY:${GIT_COMMIT} $DOCKER_REPOSITORY:latest
     docker push $DOCKER_REPOSITORY:latest
 fi;
