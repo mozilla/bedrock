@@ -4,10 +4,10 @@
 
 {% extends "mozorg/about/policy/transparency/report-base.html" %}
 
-{% block page_title %}{{ _('Transparency Report - 2015') }}{% endblock %}
+{% block page_title %}{{ _('Transparency Report - January–June, 2016') }}{% endblock %}
 
 {% block report_title %}
-  <h1>{{ _('Transparency Report') }} <span>{{ _('Reporting Period: January 1, 2015 to December 31, 2015') }}</span></h1>
+  <h1>{{ _('Transparency Report') }} <span>{{ _('Reporting Period: January 1, 2016 to June 30, 2016') }}</span></h1>
 {% endblock %}
 
 {% block report_body %}
@@ -119,7 +119,7 @@
 
     <div class="content" data-accordion-role="tabpanel">
       <h3>{{ _('Copyright') }}</h3>
-      <p>{{ _('In the Reporting Period, we received 29 Copyright Takedown Notices and 2 Counter Notices.') }}</p>
+      <p>{{ _('In the Reporting Period, we received 4 Copyright Takedown Notices and 0 Counter Notices.') }}</p>
 
       <table class="table">
         <thead>
@@ -135,25 +135,20 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row">{{ _('Firefox Add-ons (Themes)') }}</th>
-            <td>24</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <th scope="row">{{ _('Firefox Marketplace (Apps)') }}</th>
+            <th scope="row">{{ _('Firefox Add-ons') }}</th>
             <td>4</td>
             <td>0</td>
           </tr>
           <tr>
-            <th scope="row">{{ _('Mozilla Developer Network') }}</th>
-            <td>1</td>
+            <th scope="row">{{ _('Firefox Marketplace (Apps)') }}</th>
+            <td>0</td>
             <td>0</td>
           </tr>
         </tbody>
       </table>
 
       <h3>{{ _('Trademark') }}</h3>
-      <p>{{ _('In the Reporting Period, we received 10 Trademark Takedown Notices and 0 Counter Notices.') }}</p>
+      <p>{{ _('In the Reporting Period, we received 4 Trademark Takedown Notices and 0 Counter Notices') }}</p>
 
       <table class="table">
         <thead>
@@ -169,13 +164,13 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row">{{ _('Firefox Add-ons (Extensions)') }}</th>
-            <td>8</td>
+            <th scope="row">{{ _('Firefox Add-ons') }}</th>
+            <td>3</td>
             <td>0</td>
           </tr>
           <tr>
             <th scope="row">{{ _('Firefox Marketplace (Apps)') }}</th>
-            <td>2</td>
+            <td>1</td>
             <td>0</td>
           </tr>
         </tbody>
@@ -190,59 +185,70 @@
     <div class="content" data-accordion-role="tabpanel">
       <h3>{{ _('Legislative Reform') }}</h3>
       <p>
-      {% trans
-          link_reform='https://blog.mozilla.org/netpolicy/2015/04/14/stop-mass-surveillance-under-the-patriot-act/',
-          link_london='https://blog.mozilla.org/netpolicy/2015/12/04/uk-ip-bill-is-a-threat-to-privacy-security-and-trust-online/',
-          link_berlin='https://blog.mozilla.org/netpolicy/2015/10/15/data-retention-in-deutschland/',
-          link_paris='https://blog.mozilla.org/netpolicy/2015/05/12/french-national-assembly-advances-dangerous-mass-surveillance-law/',
-          link_ottawa='https://blog.mozilla.org/netpolicy/2015/03/25/information-sharing-debates-continuing-in-problematic-directions/'
-      %}
-        In the Reporting Period, we mobilized for <a href="{{ link_reform }}">surveillance reform in the US</a> and pushed back against overbroad intelligence laws from <a href="{{ link_london }}">London</a> to <a href="{{ link_berlin }}">Berlin</a> to <a href="{{ link_paris }}">Paris</a> to <a href="{{ link_ottawa }}">Ottawa</a>.
+      {% trans %}
+        In the Reporting Period, we advocated for stronger encryption, privacy, and security practices.
       {% endtrans %}
+
       {% trans
-          link_cisa='https://blog.mozilla.org/netpolicy/2015/03/02/mozilla-statement-on-cisa/',
-          link_delphi='https://blog.mozilla.org/netpolicy/2015/07/28/experts-develop-cybersecurity-recommendations/'
-      %}
-        We were also active in the realm of cybersecurity, <a href="{{ link_cisa }}">speaking out early against overbroad portions of the Cybersecurity Information Sharing Act</a> (CISA), and convening more than 30 leading cybersecurity experts from a wide variety ofbackgrounds to identify pro­defense <a href="{{ link_delphi }}">Cybersecurity Delphi Project</a>.
+          link_encryption='https://mzl.la/encrypt',
+          link_principles='https://surveillance.mozilla.org',
+          link_disclosure='https://blog.mozilla.org/blog/2016/05/11/advanced-disclosure-needed-to-keep-users-secure/',
+          link_brief='https://blog.mozilla.org/blog/2016/03/03/standing-up-with-apple-to-fight-for-everyones-security/',
+          link_letter='http://www.digital4th.org/wp-content/uploads/2016/05/ECPA-Provider-Emergency-Letter.pdf' %}
+        We ran a large scale <a href="{{ link_encryption }}">education campaign on encryption</a>, proposed <a href="{{ link_principles }}">Surveillance Principles</a> for government adoption, spoke out on the importance of <a href="{{ link_disclosure }}">disclosing security vulnerabilities</a> to affected companies in judicial proceedings, and joined with other tech companies to <a href="{{ link_brief }}">file a brief</a> arguing against backdoors in the Apple and FBI dispute and a <a href="{{ link_letter }}">letter to the U.S. Senate Judiciary Committee</a> opposing legislation that would compel companies to disclose the content of user communications without judicial oversight.
       {% endtrans %}
       </p>
 
-      <h3>{{ _('Sharing of Cybersecurity Threat Indicators') }}</h3>
+      <p>
+      {% trans link_us1='https://blog.mozilla.org/netpolicy/2016/03/07/challenges-to-openness-under-u-s-copyright-law/',
+          link_us2='https://blog.mozilla.org/netpolicy/2016/04/05/reining-in-abuses-of-the-dmca-notice-system/',
+          link_eu1='https://blog.mozilla.org/netpolicy/files/2016/05/Mozilla-IPRED-filing-April-2016.pdf',
+          link_eu2='https://blog.mozilla.org/netpolicy/2016/05/02/this-is-what-a-rightsholder-looks-like-in-2016/',
+          link_fcc='https://blog.mozilla.org/netpolicy/files/2016/05/Comments-on-NPRM-for-Broadband-Privacy.pdf'
+           %}
+        In the realm of copyright, we filed comment on two U.S. Copyright Office consultations (<a href="{{ link_us1 }}">here</a> and <a href="{{ link_us2 }}">here</a>) and spoke out about the European Commission’s proposed overhaul of the EU’s copyright laws (<a href="{{ link_eu1 }}">here</a> and <a href="{{ link_eu2 }}">here</a>). We also commented on the U.S. Federal Communications Commission <a href="{{ link_fcc }}">recently proposed framework for broadband privacy</a>.
+      {% endtrans %}
 
+      {% trans
+          link_fund='https://blog.mozilla.org/blog/2016/06/09/help-make-open-source-secure/',
+          link_leandata=url('mozorg.about.policy.lean-data') %}
+         In addition, we launched the <a href="{{ link_fund }}">Secure Open Source Fund</a> to promote security auditing and patching of widely used open source technologies and our <a href="{{ link_leandata }}">Lean Data Initiative</a> to encourage companies to be responsible in their use and stewardship of data.
+      {% endtrans %}
+      </p>
+
+      <h3>{{ _('Threat Indicators &amp; Data Disclosures') }}</h3>
       <table class="table">
-        <tr>
-          <th scope="row">
-            <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-threat-indicator' }}">{{ _('Cybersecurity Threat Indicator') }}</a>
-          </th>
-          <td>1</td>
-        </tr>
+        <thead>
+          <tr>
+            <th scope="col">{{ _('Type of Disclosure') }}</th>
+            <th scope="col">{{ _('Number of Disclosures') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-threat-indicator' }}">{{ _('Cybersecurity Threat Indicator') }}</a></th>
+            <td>0</td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Other <a href="%s">Specific User</a> Data Disclosure')|format(url('mozorg.about.policy.transparency.index') + '#dfn-specific-user') }}</th>
+            <td>0</td>
+          </tr>
+        </tbody>
       </table>
 
-      <p>
-        {{ _('The Cybersecurity Information Sharing Act of 2015 (CISA) provided a framework for companies to voluntarily share cybersecurity threat indicators with each other, as well as with the government, to prevent cyber attacks.') }}
-        {{ _('We believe this type of sharing is appropriate under some circumstances and encourage companies to be transparent with their users when this occurs.') }}
-      </p>
-
-      <p>
-        {{ _('In the Reporting Period, Bugzilla experienced a security incident, which we reported about on Mozilla’s <a href="%s">security blog</a>.')|format('https://blog.mozilla.org/security/2015/09/04/improving-security-for-bugzilla/') }}
-        {{ _('As permitted by law, we voluntarily shared IP addresses associated with the security incident with the Federal Bureau of Investigation (FBI).') }}
-        {{ _('Although this occurred prior to the passage of CISA, the IP addresses are examples of cybersecurity threat indicators and relevant for purposes of transparency reporting.') }}
-      </p>
-
-      <h3>{{ _('<a href="%s">Specific User</a> Data Disclosures')|format(url('mozorg.about.policy.transparency.index') + '#dfn-specific-user') }}</h3>
-
-      <table class="table">
-        <tr>
-          <th scope="row">{{ _('CyberTipline disclosure') }}</th>
-          <td>1</td>
-        </tr>
-      </table>
-
-      <p>
-        {{ _('Information about possible child sexual exploitation can be voluntarily reported by anyone to the National Center for Missing &amp; Exploited Children’s (NCMEC) <a href="%s">CyberTipline</a>.')|format('http://www.missingkids.org/cybertipline') }}
-        {{ _('We take this issue seriously.') }}
-        {{ _('In the Reporting Period, Mozilla disclosed Specific User data to the NCMEC in connection with a Theme that was submitted (but not published) to Firefox Add­ons (“AMO”) and implicated child sexual exploitation.') }}
-      </p>
     </div>
   </section>
+{% endblock %}
+
+{% block report_nav %}
+  <aside class="section nav-block">
+    <nav class="content nav-report two-up">
+      <ul>
+        <li><a href="{{ url('mozorg.about.policy.transparency.index') + '#faq' }}">{{ _('FAQ') }}</a></li>
+        <li><a href="{{ url('mozorg.about.policy.transparency.index') + '#definitions' }}">{{ _('Definitions') }}</a></li>
+      </ul>
+    </nav>
+
+    {% include 'mozorg/about/policy/transparency/includes/past-reports.html' %}
+  </aside>
 {% endblock %}
