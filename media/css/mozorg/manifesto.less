@@ -460,40 +460,25 @@
     }
 }
 
-.ri-grid {
-    display: none;
+.mosaic-column {
+    display: block;
     position: absolute;
     top: 0;
-    width: 320px;
-    height: 3060px;
-
-    ul li {
-        float: left;
-        list-style: none;
-        position: relative;
-        margin: 0 20px 20px 0;
-        width: 140px !important; /* Override the setting by Grid Rorator */
-        height: 140px !important; /* Override the setting by Grid Rorator */
-
-        a {
-            display: block;
-            height: 100%;
-            position: absolute;
-            width: 100%;
-        }
-    }
-
-    &.loaded {
-        display: block;
-    }
+    width: 300px;
+    height: 100%;
 }
 
-#mosaic-group-1 {
+
+#mosaic-column-1 {
     left: -50px;
+    background: url('/media/img/mozorg/about/manifesto/bg-faces-2.png') 0 0 no-repeat,
+                url('/media/img/mozorg/about/manifesto/bg-faces-1.png') 0 1440px no-repeat;
 }
 
-#mosaic-group-2 {
-    right: -70px;
+#mosaic-column-2 {
+    right: -50px;
+    background: url('/media/img/mozorg/about/manifesto/bg-faces-1.png') 0 0 no-repeat,
+                url('/media/img/mozorg/about/manifesto/bg-faces-2.png') 0 1440px no-repeat;
 }
 
 #modal {
@@ -872,12 +857,12 @@ html[dir="rtl"] {
 /* Tablet */
 
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    #mosaic-group-1 {
+    #mosaic-column-1 {
         left: -190px;
     }
 
-    #mosaic-group-2 {
-        right: -210px;
+    #mosaic-column-2 {
+        right: -190px;
     }
 
     html.js {
@@ -912,8 +897,7 @@ html[dir="rtl"] {
         }
     }
 
-    .ri-grid,
-    .ri-grid.loaded {
+    .mosaic-column {
         display: none;
     }
 

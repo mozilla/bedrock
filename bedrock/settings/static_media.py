@@ -1558,14 +1558,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/tracking-protection-tour-bundle.js',
     },
-    'mosaic': {
-        'source_filenames': (
-            'js/libs/modernizr.custom.26887.js',
-            'js/libs/jquery.transit.min.js',
-            'js/libs/jquery.gridrotator.js',
-        ),
-        'output_filename': 'js/mosaic-bundle.js',
-    },
     'annual_2011': {
         'source_filenames': (
             'js/libs/jquery.hoverIntent.minified.js',
