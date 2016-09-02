@@ -49,6 +49,8 @@ if (typeof Mozilla === 'undefined') {
     // static value for user country code
     SendToDevice.COUNTRY_CODE = '';
 
+    SendToDevice.prototype.geoCallback;
+
     /**
      * Initialise the form messaging and bind events.
      */
@@ -81,6 +83,10 @@ if (typeof Mozilla === 'undefined') {
             .fail(function() {
                 // something went wrong, show only the email messaging.
                 self.updateMessaging();
+            }).always(function() {
+                if (typeof self.geoCallback === 'function') {
+                    self.geoCallback(SendToDevice.COUNTRY_CODE);
+                }
             });
     };
 

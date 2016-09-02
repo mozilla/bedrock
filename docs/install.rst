@@ -31,7 +31,7 @@ You need to create a virtual environment for Python libraries. Skip the first in
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
 
     $ export ARCHFLAGS="-arch i386 -arch x86_64"
-    $ pip install -r requirements/dev.txt
+    $ pip install -r requirements/test.txt
 
 If you are on Linux, you will need at least the following packages or their equivalent for your distro:
 
@@ -78,6 +78,10 @@ you've broken something with a change. You should still have your virtualenv
 activated, so running the tests is as simple as::
 
     $ py.test lib bedrock
+
+To test a single app, specify the app by name in the command above. e.g.::
+
+    $ py.test lib bedrock/firefox
 
 .. note::
 

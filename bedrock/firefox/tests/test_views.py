@@ -46,7 +46,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '5558675309',
         })
         ok_(resp_data['success'])
-        self.mock_send_sms.assert_called_with('15558675309', views.SMS_MESSAGES['android'])
+        self.mock_send_sms.assert_called_with('15558675309', views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'])
 
     def test_send_android_sms_basket_error(self):
         self.mock_send_sms.side_effect = views.basket.BasketException
@@ -74,9 +74,9 @@ class TestSendToDeviceView(TestCase):
         })
         ok_(resp_data['success'])
         self.mock_subscribe.assert_called_with('dude@example.com',
-                                               views.EMAIL_MESSAGES['android'],
-                                               source_url='https://nihilism.info',
-                                               lang='en-US')
+                                                views.SEND_TO_DEVICE_MESSAGE_SETS['default']['email']['android'],
+                                                source_url='https://nihilism.info',
+                                                lang='en-US')
 
     def test_send_android_email_basket_error(self):
         self.mock_subscribe.side_effect = views.basket.BasketException
@@ -98,42 +98,60 @@ class TestSendToDeviceView(TestCase):
         ok_('email' in resp_data['errors'])
         ok_(not self.mock_subscribe.called)
 
-    # /firefox/android/ embedded widget (bug 1221328)
-    def test_variant_android_embedded_email(self):
+    # an invalid value for 'message-set' should revert to 'default' message set
+    def test_invalid_message_set(self):
         resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': 'dude@example.com',
-            'send-to-device-basket-id': 'android-embed',
-        })
-        ok_(resp_data['success'])
-        self.mock_subscribe.assert_called_with('dude@example.com',
-                                                views.EMAIL_MESSAGES['android-embed'],
-                                                source_url=None,
-                                                lang='en-US')
-
-    def test_variant_android_embedded_sms(self):
-        resp_data = self._request({
-            'platform': 'android',
+            'platform': 'ios',
             'phone-or-email': '5558675309',
-            'send-to-device-basket-id': 'android-embed',
+            'message-set': 'the-dude-is-not-in',
         })
         ok_(resp_data['success'])
         self.mock_send_sms.assert_called_with('15558675309',
-                                                views.SMS_MESSAGES['android-embed'])
+                                               views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['ios'])
 
-    # an invalid value for 'android-send-to-device-test' should cause email message
-    # to revert back to specified platform
-    def test_variant_android_invalid_test_value(self):
+    # /firefox/android/ embedded widget (bug 1221328)
+    def test_android_embedded_email(self):
         resp_data = self._request({
             'platform': 'android',
             'phone-or-email': 'dude@example.com',
-            'send-to-device-basket-id': 'a-real-reactionary',  # bad value!
+            'message-set': 'fx-android',
         })
         ok_(resp_data['success'])
         self.mock_subscribe.assert_called_with('dude@example.com',
-                                               views.EMAIL_MESSAGES['android'],
-                                               source_url=None,
-                                               lang='en-US')
+                                                views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['email']['android'],
+                                                source_url=None,
+                                                lang='en-US')
+
+    def test_android_embedded_sms(self):
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': '5558675309',
+            'message-set': 'fx-android',
+        })
+        ok_(resp_data['success'])
+        self.mock_send_sms.assert_called_with('15558675309',
+                                               views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['sms']['android'])
+
+    # /firefox/mobile-download/desktop
+    def test_fx_mobile_download_desktop_email(self):
+        resp_data = self._request({
+            'phone-or-email': 'dude@example.com',
+            'message-set': 'fx-mobile-download-desktop',
+        })
+        ok_(resp_data['success'])
+        self.mock_subscribe.assert_called_with('dude@example.com',
+                                                views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['email']['all'],
+                                                source_url=None,
+                                                lang='en-US')
+
+    def test_fx_mobile_download_desktop_sms(self):
+        resp_data = self._request({
+            'phone-or-email': '5558675309',
+            'message-set': 'fx-mobile-download-desktop',
+        })
+        ok_(resp_data['success'])
+        self.mock_send_sms.assert_called_with('15558675309',
+                                               views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['sms']['all'])
 
 
 @override_settings(DEV=False)

@@ -48,4 +48,4 @@ class SendToDeviceWidgetForm(forms.Form):
         ('ios', 'ios'),
         ('android', 'android'),
         ('all', 'all'),
-    ))
+    ), required=False)

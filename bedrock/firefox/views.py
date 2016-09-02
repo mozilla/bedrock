@@ -36,19 +36,37 @@ INSTALLER_CHANNElS = [
     # 'nightly',  # soon
 ]
 
-SMS_MESSAGES = {
-    'ios': 'ff-ios-download',
-    'android': 'SMS_Android',
-    # /firefox/android page variant
-    'android-embed': 'android-download-embed',
-}
-
-EMAIL_MESSAGES = {
-    'android': 'download-firefox-android',
-    # /firefox/android page variant
-    'android-embed': 'get-android-embed',
-    'ios': 'download-firefox-ios',
-    'all': 'download-firefox-mobile',
+SEND_TO_DEVICE_MESSAGE_SETS = {
+    'default': {
+        'sms': {
+            'ios': 'ff-ios-download',
+            'android': 'SMS_Android',
+        },
+        'email': {
+            'android': 'download-firefox-android',
+            'ios': 'download-firefox-ios',
+            'all': 'download-firefox-mobile',
+        }
+    },
+    'fx-android': {
+        'sms': {
+            'ios': 'ff-ios-download',
+            'android': 'android-download-embed',
+        },
+        'email': {
+            'android': 'get-android-embed',
+            'ios': 'download-firefox-ios',
+            'all': 'download-firefox-mobile',
+        }
+    },
+    'fx-mobile-download-desktop': {
+        'sms': {
+            'all': 'mobile-heartbeat',
+        },
+        'email': {
+            'all': 'download-firefox-mobile',
+        }
+    }
 }
 
 
@@ -74,50 +92,61 @@ def installer_help(request):
 def send_to_device_ajax(request):
     locale = l10n_utils.get_locale(request)
     phone_or_email = request.POST.get('phone-or-email')
+
+    # ensure a value was entered in phone or email field
     if not phone_or_email:
         return HttpResponseJSON({'success': False, 'errors': ['phone-or-email']})
 
+    # pull message set from POST (not part of form, so wont be in cleaned_data)
+    message_set = request.POST.get('message-set', 'default')
+
+    # begin collecting data to pass to form constructor
     data = {
         'platform': request.POST.get('platform'),
     }
 
+    # determine if email or phone number was submitted
     data_type = 'email' if '@' in phone_or_email else 'number'
+
+    # populate data type in form data dict
     data[data_type] = phone_or_email
+
+    # instantiate the form with processed POST data
     form = SendToDeviceWidgetForm(data)
 
     if form.is_valid():
         phone_or_email = form.cleaned_data.get(data_type)
         platform = form.cleaned_data.get('platform')
 
-        # check for customized widget and update email/sms
-        # message if conditions match
-        send_to_device_basket_id = request.POST.get('send-to-device-basket-id')
-        if (platform == 'android' and
-                send_to_device_basket_id == 'android-embed'):
+        # if no platform specified, default to 'all'
+        if not platform:
+            platform = 'all'
 
-            platform = 'android-embed'
+        # ensure we have a valid message set. if not, fall back to default
+        if message_set not in SEND_TO_DEVICE_MESSAGE_SETS:
+            MESSAGES = SEND_TO_DEVICE_MESSAGE_SETS['default']
+        else:
+            MESSAGES = SEND_TO_DEVICE_MESSAGE_SETS[message_set]
 
         if data_type == 'number':
-            if platform in SMS_MESSAGES:
+            if platform in MESSAGES['sms']:
                 try:
-                    basket.send_sms(phone_or_email, SMS_MESSAGES[platform])
+                    basket.send_sms(phone_or_email, MESSAGES['sms'][platform])
                 except basket.BasketException:
                     return HttpResponseJSON({'success': False, 'errors': ['system']},
                                             status=400)
             else:
-                # TODO define all platforms in SMS_MESSAGES
                 return HttpResponseJSON({'success': False, 'errors': ['platform']})
         else:  # email
-            if platform in EMAIL_MESSAGES:
+            if platform in MESSAGES['email']:
                 try:
-                    basket.subscribe(phone_or_email, EMAIL_MESSAGES[platform],
+                    basket.subscribe(phone_or_email, MESSAGES['email'][platform],
                                      source_url=request.POST.get('source-url'),
                                      lang=locale)
                 except basket.BasketException:
                     return HttpResponseJSON({'success': False, 'errors': ['system']},
                                             status=400)
             else:
-                # TODO define all platforms in EMAIL_MESSAGES
                 return HttpResponseJSON({'success': False, 'errors': ['platform']})
 
         resp_data = {'success': True}

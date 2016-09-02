@@ -80,6 +80,38 @@ describe('send-to-device.js', function() {
         });
     });
 
+    describe('executeGeoCallback', function() {
+
+        it('should execute the geoCallback function when provided', function() {
+            spyOn($, 'get').and.callFake(function () {
+                var d = $.Deferred();
+                var data = {
+                    country_code: 'fr'
+                };
+                d.resolve(data, 'success');
+                return d.promise();
+            });
+
+            form.geoCallback = sinon.stub();
+            spyOn(form, 'geoCallback').and.callThrough();
+            form.init();
+            expect(form.geoCallback).toHaveBeenCalledWith('fr');
+        });
+
+        it('should execute the geoCallback function when geo lookup fails', function() {
+            spyOn($, 'get').and.callFake(function () {
+                var d = $.Deferred();
+                d.reject('error');
+                return d.promise();
+            });
+
+            form.geoCallback = sinon.stub();
+            spyOn(form, 'geoCallback').and.callThrough();
+            form.init();
+            expect(form.geoCallback).toHaveBeenCalledWith('');
+        });
+    });
+
     describe('showSMS', function() {
 
         it('should call showSMS if users is inside the US', function() {
