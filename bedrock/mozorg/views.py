@@ -254,14 +254,11 @@ def home_tweets(locale):
 def home(request, template='mozorg/home/home.html'):
     locale = l10n_utils.get_locale(request)
 
-    # en-US gets new template (or variation)
+    # en-US gets new template
+    # not using locale-specific templates naming scheme yet as page/test results
+    # are still in flux
     if locale == 'en-US':
         template = 'mozorg/home/home-en-US.html'
-
-        variant = request.GET.get('v', '')
-
-        if variant in ['a', 'b', 'c']:
-            template = 'mozorg/home/home-en-US-{0}.html'.format(variant)
 
     return l10n_utils.render(
         request, template, {
