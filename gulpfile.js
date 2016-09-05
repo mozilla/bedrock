@@ -4,29 +4,29 @@
 
 /* global __dirname, require, process */
 
-var gulp = require('gulp');
-var karma = require('karma');
-var eslint = require('gulp-eslint');
-var watch = require('gulp-watch');
-var spawn = require('child_process').spawn;
+const gulp = require('gulp');
+const karma = require('karma');
+const eslint = require('gulp-eslint');
+const watch = require('gulp-watch');
+const spawn = require('child_process').spawn;
 
-var lintPaths = [
+const lintPaths = [
     'media/js/**/*.js',
     '!media/js/libs/*.js',
     'tests/unit/spec/**/*.js',
     'gulpfile.js'
 ];
 
-gulp.task('serve:backend', function () {
-    var devServerPort = process.env.PORT || 8000;
+gulp.task('serve:backend', () => {
+    const devServerPort = process.env.PORT || 8000;
     process.env.PYTHONUNBUFFERED = 1;
     process.env.PYTHONDONTWRITEBITECODE = 1;
-    spawn('python', ['manage.py', 'runserver', '0.0.0.0:' + devServerPort], {
+    spawn('python', ['manage.py', 'runserver', `0.0.0.0:${devServerPort}`], {
         stdio: 'inherit'
     });
 });
 
-gulp.task('media:watch', function () {
+gulp.task('media:watch', () => {
     return gulp.src('./media/**/*')
         .pipe(watch('./media/**/*', {
             'verbose': true
@@ -34,21 +34,21 @@ gulp.task('media:watch', function () {
         .pipe(gulp.dest('./static'));
 });
 
-gulp.task('js:test', function(done) {
+gulp.task('js:test', done => {
     new karma.Server({
-        configFile: __dirname + '/tests/unit/karma.conf.js',
+        configFile: `${__dirname}/tests/unit/karma.conf.js`,
         singleRun: true
     }, done).start();
 });
 
-gulp.task('js:lint', function() {
+gulp.task('js:lint', () => {
     return gulp.src(lintPaths)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('default', function() {
+gulp.task('default', () => {
     gulp.start('serve:backend');
     gulp.start('media:watch');
     gulp.watch(lintPaths, ['js:lint']);
