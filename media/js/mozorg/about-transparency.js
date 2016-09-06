@@ -6,26 +6,52 @@
     'use strict';
 
     var reportSections = $('#report-sections');
+    var $faq = $('#faq .accordion-auto-init');
+    var _retries = 0;
 
-    if (reportSections.length) {
-        if (typeof matchMedia !== 'undefined') {
-
-            var queryWide = matchMedia('(min-width: 760px)');
-
-            if (queryWide.matches) {
-                Mozilla.Accordion.destroyAccordionById('report-sections');
-            } else {
-                new Mozilla.Accordion(reportSections);
-            }
-
-            queryWide.addListener(function(mq) {
-                if (mq.matches) {
-                    Mozilla.Accordion.destroyAccordionById('report-sections');
-                } else {
-                    new Mozilla.Accordion(reportSections);
-                }
-            });
+    function initReportSections(matches) {
+        if (matches) {
+            Mozilla.Accordion.destroyAccordionById('report-sections');
+        } else {
+            new Mozilla.Accordion(reportSections);
         }
+    }
+
+    if (reportSections.length && typeof matchMedia !== 'undefined') {
+        var queryWide = matchMedia('(min-width: 760px)');
+        initReportSections(queryWide.matches);
+
+        queryWide.addListener(function(mq) {
+            initReportSections(mq.matches);
+        });
+    }
+
+    function scrollToAnchor() {
+        var hash = window.location.hash.replace('#', '');
+
+        if (hash) {
+            var element = document.getElementById(hash);
+
+            if (element && typeof element.scrollIntoView === 'function') {
+                element.scrollIntoView(true);
+            }
+        }
+    }
+
+    function checkForAccordionInit() {
+        var delay = 300;
+
+        if ($faq.hasClass('accordion-initialized')) {
+            setTimeout(scrollToAnchor, delay);
+        } else if (_retries < 3) {
+            _retries += 1;
+            setTimeout(checkForAccordionInit, delay);
+        }
+    }
+
+    // Bug 1299943 scroll hash/element into view after faq accordion has initialized.
+    if ($faq.length) {
+        checkForAccordionInit();
     }
 
 })(window.jQuery, window.Mozilla);
