@@ -81,9 +81,22 @@ def get_download_url(release):
             return reverse('firefox')
 
 
+def show_android_sys_req(version):
+    match = re.match(r'\d{1,2}', version)
+    if match:
+        num_version = int(match.group(0))
+        return num_version >= 46
+
+    return False
+
+
 def check_url(product, version):
     if product == 'Firefox for Android':
-        return settings.FIREFOX_MOBILE_SYSREQ_URL
+        # System requirement pages for Android releases exist from 46.0 and upward.
+        if show_android_sys_req(version):
+            return reverse('firefox.android.system_requirements', args=[version])
+        else:
+            return settings.FIREFOX_MOBILE_SYSREQ_URL
     elif product == 'Firefox for iOS':
         return reverse('firefox.ios.system_requirements', args=[version])
     else:

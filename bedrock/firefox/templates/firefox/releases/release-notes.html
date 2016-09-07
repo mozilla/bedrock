@@ -67,10 +67,9 @@
             feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
             if release.product == 'Firefox for Android'
             else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
-            bugzilla='https://bugzilla.mozilla.org/',
-            bug_search_url=release.get_bug_search_url()
+            bugzilla='https://bugzilla.mozilla.org/'
             %}
-              Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="{{ feedback }}">feedback</a>. You can also <a href="{{ bugzilla }}"> file a bug in Bugzilla </a> or see the <a href="{{ bug_search_url }}">complete list of changes</a> in this release.
+              Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="{{ feedback }}">feedback</a>. You can also <a href="{{ bugzilla }}">file a bug in Bugzilla</a> or see the <a href="{{ check_url }}">system requirements</a> of this release.
             {% endtrans %}
           </p>
         </div>
