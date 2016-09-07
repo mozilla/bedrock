@@ -214,42 +214,4 @@ $(function() {
 
         }
     });
-
-    var gridLoaded = false;
-
-    // Show the background picture grid
-    var showGrid = function (mql) {
-        if (!mql.matches || gridLoaded) {
-            return;
-        }
-
-        $('.ri-grid img').each(function () {
-            $(this).attr('src', $(this).data('src'));
-        });
-
-        $('.ri-grid').gridrotator({
-            rows: 18,
-            columns: 2,
-            animType: 'fadeInOut',
-            animSpeed: 1000,
-            interval: 1000,
-            step: 1,
-            w480: {
-                rows: 18,
-                columns: 2
-            }
-        }).addClass('loaded');
-
-        gridLoaded = true;
-    };
-
-    // Hide the grid on mobile to reduce the bandwidth
-    if (window.matchMedia) {
-        var mql = window.matchMedia('(min-width: 761px)');
-
-        mql.addListener(showGrid);
-        showGrid(mql);
-    } else if ($(window).width() >= 761) {
-        showGrid({ matches: true });
-    }
 });
