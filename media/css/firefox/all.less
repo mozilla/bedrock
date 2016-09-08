@@ -1,5 +1,44 @@
 @import "../sandstone/lib.less";
 
+body.nightly {
+    color: #FFF;
+    background: #000;
+    #outer-wrapper {
+        background: #000;
+        background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat,
+                    linear-gradient(to bottom, #000, #002048 1000px, #000 2000px);
+    }
+    a {
+        color: #EB9500;
+        &:hover,
+        &:focus,
+        &:active {
+            color: lighten(#EB9500, 10%);
+        }
+    }
+    h1, h2, h3 {
+        color: #61CCFF;
+        text-shadow: none;
+    }
+    #main-feature h2 {
+        color: #FFF;
+    }
+    #masthead nav li {
+        a,
+        a:link,
+        a:visited {
+            color: #FFF;
+        }
+        li {
+            a,
+            a:link,
+            a:visited {
+                color: @textColorSecondary;
+            }
+        }
+    }
+}
+
 .build-table-container {
     .hide {
         display: none;
@@ -17,11 +56,17 @@
         line-height: 1.4;
         .span-all();
     }
-    p {
+    ul, p {
         .span-all();
         margin-top: @baseLine;
-
-        a.sysreq:after {
+    }
+    p.warning {
+        font-size: @largeFontSize;
+    }
+    li {
+        margin: 0;
+        list-style-type: none;
+        a:after {
             content: "\00A0\00BB";
         }
     }

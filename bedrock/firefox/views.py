@@ -171,7 +171,7 @@ def all_downloads(request, platform, channel):
     # nonexistent pages here as 404 Not Found
     if platform == 'ios':
         raise Http404
-    if platform == 'android' and channel in ['alpha', 'esr']:
+    if platform == 'android' and channel in ['alpha', 'nightly', 'esr']:
         raise Http404
 
     version = product.latest_version(channel)
