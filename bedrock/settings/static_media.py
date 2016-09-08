@@ -320,6 +320,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/nightly_firstrun-bundle.css',
     },
+    'nightly_whatsnew': {
+        'source_filenames': (
+            'css/firefox/nightly_whatsnew.less',
+        ),
+        'output_filename': 'css/nightly_whatsnew-bundle.css',
+    },
     'firefox_firstrun': {
         'source_filenames': (
             'css/sandstone/sandstone.less',

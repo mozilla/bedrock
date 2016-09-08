@@ -199,13 +199,17 @@ def all_downloads(request, platform, channel):
     return l10n_utils.render(request, 'firefox/all.html', context)
 
 
-def show_devbrowser_firstrun_or_whatsnew(version):
+def detect_channel(version):
     match = re.match(r'\d{1,2}', version)
     if match:
         num_version = int(match.group(0))
-        return num_version >= 35 and version.endswith('a2')
+        if num_version >= 35:
+            if version.endswith('a1'):
+                return 'nightly'
+            if version.endswith('a2'):
+                return 'alpha'
 
-    return False
+    return 'unknown'
 
 
 def show_38_0_5_firstrun(version):
@@ -299,7 +303,7 @@ class FirstrunView(LatestFxView):
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
 
-        if show_devbrowser_firstrun_or_whatsnew(version):
+        if detect_channel(version) == 'alpha':
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
             template = 'firefox/firstrun/firstrun-horizon.html'
@@ -336,6 +340,17 @@ class FirstrunLearnMoreView(LatestFxView):
 
 class WhatsnewView(LatestFxView):
 
+    def get_context_data(self, **kwargs):
+        ctx = super(WhatsnewView, self).get_context_data(**kwargs)
+
+        # add version to context for use in templates
+        version = self.kwargs.get('version') or ''
+        match = re.match(r'\d{1,2}', version)
+        ctx['version'] = version
+        ctx['num_version'] = int(match.group(0)) if match else ''
+
+        return ctx
+
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
@@ -343,8 +358,11 @@ class WhatsnewView(LatestFxView):
         if oldversion.startswith('rv:'):
             oldversion = oldversion[3:]
 
-        if show_devbrowser_firstrun_or_whatsnew(version):
+        channel = detect_channel(version)
+        if channel == 'alpha':
             template = 'firefox/dev-whatsnew.html'
+        elif channel == 'nightly':
+            template = 'firefox/nightly_whatsnew.html'
         elif show_42_whatsnew(version):
             template = 'firefox/whatsnew_42/whatsnew.html'
         else:
