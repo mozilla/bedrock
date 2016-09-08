@@ -24,8 +24,11 @@ redirectpatterns = (
     }),
 
     # bug 748503
-    redirect(r'^projects/firefox/[^/]+a[0-9]+/(?:firstrun|whatsnew)(?P<p>.*)$',
+    redirect(r'^projects/firefox/[^/]+a[0-9]+/firstrun(?P<p>.*)$',
              '/firefox/nightly/firstrun{p}'),
+
+    # bug 1275483
+    redirect(r'^firefox/nightly/whatsnew/?', 'firefox.nightly_firstrun'),
 
     # bug 840814
     redirect(r'^projects/firefox'

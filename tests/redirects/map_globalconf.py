@@ -172,8 +172,11 @@ URLS = flatten((
     url_test('/projects/firefox/3.6.10/whatsnew/bunny-lebowski/',
              '/firefox/3.6.10/whatsnew/bunny-lebowski/'),
     url_test('/projects/firefox/4.0/firstrun/', '/firefox/4.0/firstrun/'),
-    url_test('/projects/firefox/4.0a2/{firstrun,whatsnew}/stuff',
+    url_test('/projects/firefox/4.0a2/firstrun/stuff',
              '/firefox/nightly/firstrun/stuff'),
+
+    # bug 1275483
+    url_test('/firefox/nightly/whatsnew/', '/firefox/nightly/firstrun/'),
 
     url_test('/{{firefox,mobile}/,}beta/', '/firefox/channel/#beta'),
     url_test('/{{firefox,mobile}/,}aurora/', '/firefox/channel/#developer'),
