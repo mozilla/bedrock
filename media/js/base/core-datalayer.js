@@ -40,6 +40,13 @@ if (typeof Mozilla.Analytics == 'undefined') {
         return versionResults ? versionResults[1] : null;
     };
 
+    /** Returns latest Fx version.
+    * @return {String} latest Fx version.
+    */
+    analytics.getLatestFxVersion = function() {
+        return $('html').data('latest-firefox');
+    };
+
     /** Monkey patch for dataLayer.push
     *   Adds href stripped of locale to link click objects when pushed to the dataLayer,
     *   also removes protocol and host if same as parent page from href.

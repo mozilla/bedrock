@@ -35,7 +35,7 @@
   {% call fxfamilynav('android') %}
     <div class="{% if has_widget %}show-widget{% endif %}">
       {{ google_play_button(class_name='dl-button') }}
-      <button id="send-to-button-header" class="send-to button dark" type="button" data-button-name="Get Firefox for Android">{{ _('Get Firefox for Android') }}</button>
+      <button id="send-to-button-header" class="send-to button dark" type="button" data-button-name="Get Firefox for Android" data-cta-position="Nav">{{ _('Get Firefox for Android') }}</button>
     </div>
   {% endcall %}
 {% endblock %}
@@ -384,7 +384,7 @@
           <h3>{{ _('Choose Firefox') }}</h3>
           <div id="send-to-device-footer">
             {{ google_play_button(anchor_attributes={'data-alt': _('Get Firefox for Android')}, class_name='dl-button') }}
-            <button id="send-to-button-footer" class="send-to button dark" type="button" data-button-name="Get Firefox for Android">{{ _('Get Firefox for Android') }}</button>
+            <button id="send-to-button-footer" class="send-to button dark" type="button" data-button-name="Get Firefox for Android" data-cta-position="Secondary">{{ _('Get Firefox for Android') }}</button>
           </div>
         </div>{#-- /#download-content --#}
       </div>{#-- /#download-wrapper --#}
