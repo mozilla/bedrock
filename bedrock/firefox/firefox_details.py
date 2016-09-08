@@ -20,6 +20,8 @@ class _ProductDetails(ProductDetails):
 
 class FirefoxDesktop(_ProductDetails):
     download_base_url_transition = '/firefox/new/?scene=2'
+    nightly_url_base = ('https://archive.mozilla.org/pub/firefox/nightly/'
+                        'latest-mozilla-central')
 
     # Human-readable platform names
     platform_labels = OrderedDict([
@@ -30,8 +32,18 @@ class FirefoxDesktop(_ProductDetails):
         ('linux64', 'Linux 64-bit'),
     ])
 
+    # Firefox Nightly file name suffixes
+    platform_file_suffixes = {
+        'win': 'win32.installer.exe',
+        'win64': 'win64.installer.exe',
+        'osx': 'mac.dmg',
+        'linux': 'linux-i686.tar.bz2',
+        'linux64': 'linux-x86_64.tar.bz2',
+    }
+
     # Human-readable channel names
     channel_labels = {
+        'nightly': _('Firefox Nightly'),
         'alpha': _('Developer Edition'),
         'beta': _('Firefox Beta'),
         'esr': _('Firefox Extended Support Release'),
@@ -40,6 +52,7 @@ class FirefoxDesktop(_ProductDetails):
 
     # Version property names in product-details
     version_map = {
+        'nightly': 'FIREFOX_NIGHTLY',
         'alpha': 'FIREFOX_AURORA',
         'beta': 'LATEST_FIREFOX_DEVEL_VERSION',
         'esr': 'FIREFOX_ESR',
@@ -214,6 +227,14 @@ class FirefoxDesktop(_ProductDetails):
                                  # Order matters, lang must be last for bouncer.
                                  ('lang', _locale),
                              ])])
+
+        # Use direct archive links for Nightly
+        if channel == 'nightly':
+            _dir = self.nightly_url_base + ('' if locale == 'en-US' else '-l10n')
+            _suffix = self.platform_file_suffixes.get(platform)
+
+            return '{dir}/firefox-{version}.{locale}.{suffix}'.format(
+                dir=_dir, version=_version, locale=_locale, suffix=_suffix)
 
         # stub installer exceptions
         # TODO: NUKE FROM ORBIT!
