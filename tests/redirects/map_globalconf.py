@@ -1085,4 +1085,7 @@ URLS = flatten((
              'https://support.mozilla.org/kb/get-started-firefox-overview-main-features'),
     url_test('/firefox/tour',
              'https://support.mozilla.org/kb/get-started-firefox-overview-main-features'),
+
+    # Bug 1262593
+    url_test('/unix/remote.html', 'http://www-archive.mozilla.org/unix/remote.html'),
 ))

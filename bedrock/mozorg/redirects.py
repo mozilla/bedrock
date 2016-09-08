@@ -623,4 +623,7 @@ redirectpatterns = (
 
     redirect(r'^(careers|jobs)/?$', 'https://careers.mozilla.org/'),
     redirect(r'^join/?$', 'https://donate.mozilla.org/'),
+
+    # Bug 1262593
+    redirect(r'^unix/remote\.html$', 'http://www-archive.mozilla.org/unix/remote.html'),
 )
