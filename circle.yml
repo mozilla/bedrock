@@ -4,7 +4,7 @@ machine:
   python:
     version: 2.7.10
   node:
-    version: 0.12.0
+    version: 4.2.6
   environment:
     # Django
     PIP_DISABLE_PIP_VERSION_CHECK: true
