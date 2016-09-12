@@ -1,0 +1,346 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+@import "horizon-lib.less";
+
+// slightly customized copy pasta from /firefox/new/horizon/common.less
+.horizon {
+    .horizon-gradient;
+}
+
+.stars {
+    background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat;
+}
+
+.forest-container {
+    height: 483px;
+    margin-top: -254px;
+    position: relative;
+}
+
+.mountains-container {
+    height: 483px;
+    left: 50%;
+    margin-left: -885px;
+    position: absolute;
+    top: 0;
+    width: 1770px;
+
+    .layer {
+        left: 0;
+        position: absolute;
+        width: 1770px;
+    }
+}
+
+.sun {
+    height: 318px;
+    left: 50%;
+    margin-left: -161px;
+    position: absolute;
+    top: 30px;
+    width: 322px;
+}
+
+.mountains {
+    height: 482px;
+    top: 0;
+}
+
+.foreground-shape {
+    .at2x('/media/img/firefox/horizon/foreground.png', 1770px, 254px);
+    background-position: top left;
+    background-repeat: no-repeat;
+    bottom: 0;
+    height: 254px;
+}
+
+.trees-left {
+    bottom: 70px;
+    height: 602px;
+    left: -375px;
+    position: absolute;
+    width: 909px;
+}
+
+.trees-right {
+    bottom: 120px;
+    height: 550px;
+    position: absolute;
+    right: -420px;
+    width: 922px;
+}
+
+.fox {
+    bottom: 39px;
+    height: 254px;
+    position: absolute;
+    right: 140px;
+    width: 522px;
+}
+
+#outer-wrapper {
+    background: @horizonColorForeground;
+    overflow: hidden;
+}
+
+#wrapper {
+    padding-bottom: 0;
+    width: 100%;
+}
+
+#masthead {
+    padding: 0;
+
+    h2 {
+        float: left;
+
+        img {
+            height: 114px;
+            max-width: none;
+            width: 110px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
+            padding-top: 20px * 3;
+            text-align: center;
+        }
+    }
+}
+
+#tabzilla {
+    float: none;
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
+.inner-container {
+    margin: 0 auto;
+    padding-bottom: 270px;
+    width: @widthDesktop - (@gridGutterWidth * 2);
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+}
+
+h1,
+h2 {
+    text-shadow: none;
+}
+
+main {
+    .main-content {
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    h1 {
+        .open-sans-light;
+        .font-size(44px);
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 20px;
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(30px);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            .font-size(26px);
+
+            br {
+                display: none;
+            }
+        }
+    }
+}
+// end copy pasta
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+
+    @media only screen and (max-width: @breakTablet) {
+        width: 440px;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: 280px;
+    }
+}
+
+// page-specific send to device styles
+#send-to-device {
+    background: #fff;
+    border-radius: 6px;
+
+    a {
+        text-decoration: underline;
+    }
+
+    h2 {
+        .font-size(20px);
+        .open-sans;
+        color: #4a4a4a;
+        letter-spacing: 0;
+        padding-bottom: 10px;
+        padding-top: 80px;
+
+        &:before {
+            .at2x('/media/img/send-to-device/device-icon-green.png', 72px, 72px);
+            content: '';
+            height: 72px;
+            left: 50%;
+            margin-left: -36px;
+            margin-top: 30px;
+            position: absolute;
+            top: 0;
+            width: 72px;
+        }
+    }
+
+    .form-container {
+        padding-bottom: 1px;
+        margin-bottom: 40px;
+        width: 100%;
+    }
+
+    .input {
+        .inline-field {
+            width: 100%;
+
+            .form-input {
+                float: none;
+                width: auto;
+            }
+
+            .form-submit {
+                float: none;
+                width: 100%;
+            }
+        }
+
+        .legal {
+            .font-size(14px);
+            .open-sans-italic;
+            color: #9b9b9b;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                .font-size(12px);
+            }
+        }
+
+        #id-input {
+            width: 418px;
+
+            @media only screen and (max-width: @breakTablet) {
+                width: 378px;
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                width: 260px;
+            }
+        }
+
+        button[type='submit'] {
+            border: 1px solid rgba(30,110,161,0.60);
+            margin-top: 20px;
+            width: 438px;
+
+            @media only screen and (max-width: @breakTablet) {
+                width: 378px;
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                width: 260px;
+            }
+        }
+
+        label {
+            .font-size(18px);
+            color: #4a4a4a;
+            text-align: center;
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                .font-size(14px);
+            }
+        }
+    }
+
+    // hide App/Play store links in widget in favor of custom badges
+    footer {
+        display: none;
+    }
+}
+
+#send-to-device-form {
+    padding: 0 30px;
+
+    .error-list li {
+        margin: 0 0 20px;
+        width: auto;
+    }
+
+    .thank-you {
+        a {
+            font-style: italic;
+        }
+
+        p {
+            .font-size(20px);
+            color: #4a4a4a;
+            padding-top: 0;
+
+            &:before {
+                content: '';
+                display: none;
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding: 0 10px;
+
+        .thank-you p {
+            .font-size(16px);
+        }
+    }
+}
+
+#mobile-download-buttons {
+    margin: 100px auto 0;
+    text-align: center;
+
+    li {
+        .border-box;
+        display: inline-block;
+        list-style: none;
+        margin: 0;
+        text-align: center;
+        width: 49%;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        margin-top: 60px;
+
+        li {
+            display: block;
+            margin-bottom: 10px;
+            width: auto;
+        }
+    }
+}

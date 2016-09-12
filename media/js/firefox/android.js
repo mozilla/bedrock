@@ -275,9 +275,6 @@
         sendToDeviceWidget = new Mozilla.SendToDevice();
         sendToDeviceWidget.init();
 
-        // add hidden input to update basket id
-        $('#send-to-device-form').append('<input type="hidden" name="send-to-device-basket-id" value="android-embed">');
-
         // wire nav/footer links to scroll to widget
         $('.send-to').on('click', function(e) {
             e.preventDefault();

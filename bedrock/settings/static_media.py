@@ -409,6 +409,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_mobile_download.css',
     },
+    'firefox_mobile_download_desktop': {
+        'source_filenames': (
+            'css/base/simple_footer.less',
+            'css/base/send-to-device.less',
+            'css/firefox/mobile-download-desktop.less',
+        ),
+        'output_filename': 'css/firefox_mobile_download_desktop_bundle.css',
+    },
     # favor cache for scene 2 speed over 1 less HTTP request for scene 1
     'firefox_new_common': {
         'source_filenames': (
@@ -1319,6 +1327,13 @@ PIPELINE_JS = {
             'js/firefox/ios.js',
         ),
         'output_filename': 'js/firefox_ios-bundle.js',
+    },
+    'firefox_mobile_download_desktop': {
+        'source_filenames': (
+            'js/base/send-to-device.js',
+            'js/firefox/mobile-download-desktop.js',
+        ),
+        'output_filename': 'js/firefox_mobile_download_desktop-bundle.js',
     },
     'firefox_tour_none': {
         'source_filenames': (

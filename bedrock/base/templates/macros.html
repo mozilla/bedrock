@@ -385,7 +385,7 @@
 </a>
 {%- endmacro %}
 
-{% macro send_to_device(platform, include_title=True, title_text='', include_logo=False, ios_link='', spinner_color='') %}
+{% macro send_to_device(platform, include_title=True, title_text='', include_logo=False, ios_link='', spinner_color='', message_set='default') %}
   {# If no App Store link is specified, use base with default "ct" param value #}
   {# See https://bugzilla.mozilla.org/show_bug.cgi?id=1196310#c23 #}
   {% if ios_link == '' %}
@@ -427,6 +427,7 @@
               <input type="hidden" id="id-platform" name="platform" value="{{ platform }}">
             {% endif %}
             <input type="hidden" name="source-url" value="{{ secure_url() }}">
+            <input type="hidden" name="message-set" value="{{ message_set }}">
           </div>
           <div class="inline-field">
             <label id="form-input-label" for="id-input" data-alt="{{ _('Enter your email or 10-digit phone number') }}">{{ _('Enter your email') }}</label>

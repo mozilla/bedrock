@@ -57,7 +57,7 @@
       </p>
 
       <div class="{% if has_widget %}show-widget{% endif %}">
-        {{ send_to_device(platform='android', include_logo=False, spinner_color='#fff') }}
+        {{ send_to_device(platform='android', include_logo=False, spinner_color='#fff', message_set='fx-android') }}
 
         {{ google_play_button(class_name='dl-button') }}
       </div>

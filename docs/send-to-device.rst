@@ -66,6 +66,21 @@ Usage
     var form = new Mozilla.SendToDevice();
     form.init();
 
+Geolocation Callback
+--------------------
+
+You can piggy-back on the widget's geolocation call by providing a callback function to be executed when the lookup has completed::
+
+  var form = new Mozilla.SendToDevice();
+  form.geoCallback = function(countryCode) {
+    console.log(countryCode);
+  }
+  form.init();
+
+The callback function will be passed a single argument - the country code returned from the geolocation lookup.
+
+If the geolocation lookup fails, the country code passed to the callback function will be an empty string.
+
 Example
 -------
 

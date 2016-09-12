@@ -1,0 +1,34 @@
+(function($) {
+    'use strict';
+
+    var appStoreURLs = {
+        'gb': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fgb%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'au': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fau%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'fr': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_fr&fallback=https%3A%2F%2Fitunes.apple.com%2Ffr%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'it': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_it&fallback=https%3A%2F%2Fitunes.apple.com%2Fit%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'de': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'ru': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fru%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'br': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fbr%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'pl': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fpl%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'es': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fes%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'cn': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fcn%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'in': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fin%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'mx': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fmx%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'id': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fid%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8',
+        'jp': 'https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=iOS_App_Store&creative=badge_de&fallback=https%3A%2F%2Fitunes.apple.com%2Fjp%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8'
+    };
+
+    var form = new Mozilla.SendToDevice();
+
+    form.geoCallback = function(countryCode) {
+        // only take action on non-us country codes
+        if (countryCode && countryCode !== 'us') {
+            // make sure the user's countryCode is in our list
+            if (appStoreURLs.hasOwnProperty(countryCode)) {
+                $('#appStoreLink').attr('href', appStoreURLs[countryCode]);
+            }
+        }
+    };
+
+    form.init();
+})(window.jQuery);
