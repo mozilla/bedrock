@@ -6,11 +6,7 @@
     'use strict';
 
     var mozClient = window.Mozilla.Client;
-
     var impactInnovationWaypoint;
-    var firefoxWaypoint;
-
-    var $surveyMsg;
 
     // variant a and c only
     var $slideshow = $('#home-slideshow');
@@ -42,28 +38,10 @@
         }
     }
 
-    function toggleSurvey(direction) {
-        if (direction === 'down') {
-            // slide up when scrolling down
-            $surveyMsg.addClass('stuck').css({ bottom: '-90px' }).animate({ bottom: '0' }, 500);
-        } else if (direction === 'up') {
-            // slide down when scrolling up, then unstick
-            $surveyMsg.animate({ bottom: '-90px' }, 500, function() {
-                $surveyMsg.removeClass('stuck');
-            });
-        }
-    }
-
     function enableWaypoints() {
         impactInnovationWaypoint = new Waypoint({
             element: '#who-innovate-wrapper',
             handler: handleWaypoint('impact-innovation'),
-            offset: '40%'
-        });
-
-        firefoxWaypoint = new Waypoint({
-            element: '#firefox',
-            handler: handleWaypoint('firefox', toggleSurvey),
             offset: '40%'
         });
     }
@@ -79,8 +57,6 @@
         $('#fx-download-link').addClass('hidden');
     }
 
-    // set up waypoints if survey is present & media queries supported
-    // must be in doc.ready as #survey-message is added in another script
     $(function() {
         var mqIsTablet;
 
@@ -88,8 +64,6 @@
         if ('matchMedia' in window) {
             mqIsTablet = matchMedia('(min-width: 760px)');
         }
-
-        $surveyMsg = $('#survey-message');
 
         if (mqIsTablet) {
             if (mqIsTablet.matches) {
@@ -107,10 +81,6 @@
                     }
 
                     impactInnovationWaypoint.destroy();
-                    firefoxWaypoint.destroy();
-
-                    // reset survey positioning
-                    $surveyMsg.css('bottom', '-90px').removeClass('stuck');
                 }
             });
         // if browser doesn't support matchMedia, assume it's a wide enough
