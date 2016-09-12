@@ -11,7 +11,6 @@
     var peopleWaypoint;
     var innovationWaypoint;
     var firefoxWaypoint;
-    var surveyWaypoint;
     var suppressScrollTracking = false;
     var clickTargetSection;
 
@@ -116,25 +115,6 @@
             handler: navState('firefox', 'innovation'),
             offset: '30%'
         });
-
-        surveyWaypoint = new Waypoint({
-            element: '#firefox',
-            handler: function(direction) {
-                var $surveyMsg = $('#survey-message');
-                if ($surveyMsg.length) {
-                    if (direction === 'down') {
-                        // slide up when scrolling down
-                        $surveyMsg.addClass('stuck').css({ bottom: '-90px' }).animate({ bottom: '0' }, 500);
-                    } else if (direction === 'up') {
-                        // slide down when scrolling up, then unstick
-                        $surveyMsg.animate({ bottom: '-90px' }, 500, function() {
-                            $surveyMsg.removeClass('stuck');
-                        });
-                    }
-                }
-            },
-            offset: '60%'
-        });
     }
 
     // Change the navbar current item to match the section waypoint
@@ -219,7 +199,6 @@
                 peopleWaypoint.destroy();
                 innovationWaypoint.destroy();
                 firefoxWaypoint.destroy();
-                surveyWaypoint.destroy();
             }
         });
     // if browser doesn't support matchMedia, assume it's a wide enough screen

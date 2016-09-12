@@ -617,13 +617,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/home-en-US-variant-bundle.css',
     },
-    # temporary bundle for home survey
-    'home-survey': {
-        'source_filenames': (
-            'css/mozorg/home/survey.less',
-        ),
-        'output_filename': 'css/home-survey-bundle.css',
-    },
     'legal': {
         'source_filenames': (
             'css/legal/legal.less',
@@ -1399,35 +1392,6 @@ PIPELINE_JS = {
             'js/mozorg/home/home-en-US.js',
         ),
         'output_filename': 'js/home-en-US-bundle.js',
-    },
-    # temporary bundles for surveys on homepage prototypes
-    'home-survey': {
-        'source_filenames': (
-            'js/mozorg/home/survey-generator.js',
-            'js/mozorg/home/survey.js',
-        ),
-        'output_filename': 'js/home-survey-bundle.js',
-    },
-    'home-survey-a': {
-        'source_filenames': (
-            'js/mozorg/home/survey-generator.js',
-            'js/mozorg/home/survey-a.js',
-        ),
-        'output_filename': 'js/home-survey-a-bundle.js',
-    },
-    'home-survey-b': {
-        'source_filenames': (
-            'js/mozorg/home/survey-generator.js',
-            'js/mozorg/home/survey-b.js',
-        ),
-        'output_filename': 'js/home-survey-b-bundle.js',
-    },
-    'home-survey-c': {
-        'source_filenames': (
-            'js/mozorg/home/survey-generator.js',
-            'js/mozorg/home/survey-c.js',
-        ),
-        'output_filename': 'js/home-survey-c-bundle.js',
     },
     'history-slides': {
         'source_filenames': (
