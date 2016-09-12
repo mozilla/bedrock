@@ -11,14 +11,6 @@
   {%- endif -%}
 {% endblock %}
 
-{% block page_favicon %}
-  {%- if channel == 'nightly' -%}
-    {{ static('img/firefox/favicon-nightly.png') }}
-  {%- else -%}
-    {{ super() }}
-  {%- endif -%}
-{% endblock %}
-
 {% block twitter_id %}
   {%- if channel == 'nightly' -%}
     FirefoxNightly
@@ -26,8 +18,6 @@
     {{ super() }}
   {%- endif -%}
 {% endblock %}
-
-{% block body_id %}firefox-all{% endblock %}
 
 {% block page_desc %}
   {%- if channel == 'beta' -%}
@@ -43,14 +33,37 @@
   {%- endif -%}
 {% endblock %}
 
+{% block page_favicon %}
+  {%- if channel == 'alpha' -%}
+    {{ static('img/firefox/developer/favicon.png') }}
+  {%- elif channel == 'nightly' -%}
+    {{ static('img/firefox/nightly/favicon.png') }}
+  {%- else -%}
+    {{ super() }}
+  {%- endif -%}
+{% endblock %}
+
+{% block page_favicon_large %}
+  {%- if channel == 'alpha' -%}
+    {{ static('img/firefox/developer/favicon-196.png') }}
+  {%- elif channel == 'nightly' -%}
+    {{ static('img/firefox/nightly/favicon-196.png') }}
+  {%- else -%}
+    {{ super() }}
+  {%- endif -%}
+{% endblock %}
+
 {% block page_image %}
-  {%- if channel == 'aurora' -%}
+  {%- if channel == 'alpha' -%}
     {{ static('img/firefox/developer/page-image.png') }}
+  {%- elif channel == 'nightly' -%}
+    {{ static('img/firefox/nightly/page-image.png') }}
   {%- else -%}
     {{ static('img/firefox/all/page-image.png') }}
   {%- endif -%}
 {% endblock %}
 
+{% block body_id %}firefox-all{% endblock %}
 {% block body_class -%}
   sky {{ platform }} {{ channel }} {% if channel == 'alpha' %}blueprint{% endif %}
 {% endblock %}
