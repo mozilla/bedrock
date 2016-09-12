@@ -66,10 +66,9 @@
             $html.addClass('firefox-up-to-date');
 
         // Android or desktop
+        // bug 1301721 only use major Firefox version until 49.0 is released
         } else {
-            client.getFirefoxDetails(function(data) {
-                $html.addClass(data.isUpToDate ? 'firefox-up-to-date' : 'firefox-old');
-            });
+            $html.addClass(client._isFirefoxUpToDate(false) ? 'firefox-up-to-date' : 'firefox-old');
         }
     } else {
         $html.addClass('non-firefox');

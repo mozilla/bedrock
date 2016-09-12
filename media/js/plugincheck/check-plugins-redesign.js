@@ -284,9 +284,10 @@ $(function() {
     }
 
     // show for outdated Fx versions
+    // bug 1301721 only use major Firefox version until 49.0 is released
     if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
         client.getFirefoxDetails(function(data) {
-            if (!data.isUpToDate && !data.isESR) {
+            if (!client._isFirefoxUpToDate(false) && !data.isESR) {
                 wrapper.addClass('firefox-out-of-date');
                 $outOfDateContainer.removeClass('hidden');
             }

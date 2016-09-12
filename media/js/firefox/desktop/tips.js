@@ -14,13 +14,12 @@
     var $tipsNavDots = $('#tips-nav-dots');
 
     // only show download button for users on desktop platforms, using either a non-Firefox browser
-    // or an out of date version of Firefox
+    // or an out of date version of Firefox.
+    // bug 1301721 only use major Firefox version until 49.0 is released
     if (client.isFirefoxDesktop) {
-        client.getFirefoxDetails(function(data) {
-            if (data.isUpToDate) {
-                $('#footer').addClass('hide-download');
-            }
-        });
+        if (client._isFirefoxUpToDate(false)) {
+            $('#footer').addClass('hide-download');
+        }
     } else if (client.isMobile) {
         $('#footer').addClass('hide-download');
     }
