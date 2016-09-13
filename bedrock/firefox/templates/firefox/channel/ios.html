@@ -1,0 +1,35 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/channel/base.html" %}
+
+{% add_lang_files "firefox/channel/index" %}
+
+{% block page_desc %}{{_('Test beta versions of Firefox for iOS via Apple’s TestFlight program and help make our mobile browser for iPhone, iPad and iPod touch even better.')}}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ self.page_desc() }}{% endblock %}
+
+{% block body_id %}platform-ios{% endblock %}
+
+{% block channels %}
+<section id="testflight" class="channel">
+  <div class="container">
+    <header>
+      <h2>{{_('TestFlight')}}</h2>
+      <p>{{_('Test beta versions of Firefox for iOS via Apple’s TestFlight program.')}}</p>
+    </header>
+    <a href="{{ url('firefox.ios.testflight') }}" class="button testflight-cta">{{_('Sign up now')}}</a>
+  </div>
+  <footer>
+    <div class="container">
+      <ul>
+        <li><a href="{{ url('firefox.ios') }}">{{_('Learn more')}}</a></li>
+      </ul>
+    </div>
+  </footer>
+</section>
+{% endblock %}
+
+{% block test_pilot %}{% endblock %}

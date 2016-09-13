@@ -46,9 +46,11 @@ redirectpatterns = (
     redirect(r'^firefox/nightly/?$', 'firefox.all', to_kwargs={'channel': 'nightly'},
              permanent=False),
 
-    # Bug 1009247, 1101220
-    redirect(r'^((firefox|mobile)/)?beta/?$', 'firefox.channel', anchor='beta'),
-    redirect(r'^((firefox|mobile)/)?aurora/?$', 'firefox.channel', anchor='developer'),
+    # Bug 1009247, 1101220, 1299947
+    redirect(r'^(firefox)?/beta/?$', 'firefox.channel.desktop', anchor='beta'),
+    redirect(r'^(firefox)?/aurora/?$', 'firefox.channel.desktop', anchor='developer'),
+    redirect(r'^mobile/beta/?$', 'firefox.channel.android', anchor='beta'),
+    redirect(r'^mobile/aurora/?$', 'firefox.channel.android', anchor='aurora'),
 
     # bug 988044
     redirect(r'^firefox/unsupported-systems\.html$', 'firefox.unsupported-systems'),
@@ -409,32 +411,32 @@ redirectpatterns = (
     # Bug 1255882
     redirect(r'^projects/bonecho/anti-phishing/?$',
              'https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work'),
-    redirect(r'^projects/bonecho(/.*)?$', 'firefox.channel'),
+    redirect(r'^projects/bonecho(/.*)?$', 'firefox.channel.desktop'),
     redirect(r'^projects/bonsai(/.*)?$', 'https://wiki.mozilla.org/Bonsai'),
     redirect(r'^projects/camino(/.*)?$', 'http://caminobrowser.org/'),
     redirect(r'^projects/cck(/.*)?$', 'https://wiki.mozilla.org/CCK'),
     redirect(r'^projects/chimera(/.*)?$', 'http://caminobrowser.org/'),
-    redirect(r'^projects/deerpark(/.*)?$', 'firefox.channel'),
+    redirect(r'^projects/deerpark(/.*)?$', 'firefox.channel.desktop'),
     redirect(r'^projects/embedding/faq\.html$',
              'https://developer.mozilla.org/docs/Gecko/Embedding_Mozilla/FAQ/How_do_I...'),
     redirect(r'^projects/embedding(/.*)?$',
              'https://developer.mozilla.org/docs/Gecko/Embedding_Mozilla'),
-    redirect(r'^projects/granparadiso(/.*)?$', 'firefox.channel'),
+    redirect(r'^projects/granparadiso(/.*)?$', 'firefox.channel.desktop'),
     redirect(r'^projects/inspector/faq\.html$',
              'https://developer.mozilla.org/docs/Tools/Add-ons/DOM_Inspector/DOM_Inspector_FAQ'),
     redirect(r'^projects/inspector(/.*)?$',
              'https://developer.mozilla.org/docs/Tools/Add-ons/DOM_Inspector'),
     redirect(r'^projects/javaconnect(/.*)?$',
              'http://developer.mozilla.org/en/JavaXPCOM'),
-    redirect(r'^projects/minefield(/.*)?$', 'firefox.channel'),
+    redirect(r'^projects/minefield(/.*)?$', 'firefox.channel.desktop'),
     redirect(r'^projects/minimo(/.*)?$', 'https://wiki.mozilla.org/Mobile'),
-    redirect(r'^projects/namoroka(/.*)?$', 'firefox.channel'),
+    redirect(r'^projects/namoroka(/.*)?$', 'firefox.channel.desktop'),
     redirect(r'^projects/nspr(?:/.*)?$', 'https://developer.mozilla.org/docs/NSPR'),
     redirect(r'^projects/netlib(/.*)?$',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Necko'),
     redirect(r'^projects/plugins(/.*)?$', 'https://developer.mozilla.org/Add-ons/Plugins'),
     redirect(r'^projects/rt-messaging(/.*)?$', 'http://chatzilla.hacksrus.com/'),
-    redirect(r'^projects/shiretoko(/.*)?$', 'firefox.channel'),
+    redirect(r'^projects/shiretoko(/.*)?$', 'firefox.channel.desktop'),
     redirect(r'^projects/string(/.*)?$',
              'https://developer.mozilla.org/en/XPCOM_string_guide'),
     redirect(r'^projects/tech-evangelism(/.*)?$',
@@ -515,4 +517,7 @@ redirectpatterns = (
     redirect(r'^hello/?$', 'https://support.mozilla.org/kb/hello-status'),
     redirect(r'^firefox/hello/?$', 'https://support.mozilla.org/kb/hello-status'),
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/hello/start/?$', 'https://support.mozilla.org/kb/hello-status'),
+
+    # bug 1299947
+    redirect('^firefox/channel/?$', 'firefox.channel.desktop'),
 )

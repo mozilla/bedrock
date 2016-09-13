@@ -1,0 +1,82 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/channel/base.html" %}
+
+{% add_lang_files "firefox/channel/index" %}
+
+{% block page_desc %}{{_('Download and test the latest Firefox for Android features with Aurora, Beta and Nightly builds.')}}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ self.page_desc() }}{% endblock %}
+
+{% block body_id %}platform-android{% endblock %}
+
+{% block channels %}
+<section id="beta" class="channel">
+  <div class="container">
+    <header>
+      <h2>{{_('Beta')}}</h2>
+      <p>{{_('Try the latest Android features, before they get released to the rest of the world.')}}</p>
+    </header>
+    {{ download_firefox('beta', platform='android', force_direct=True, alt_copy=_('Download'), dom_id="android-beta-download") }}
+    <p class="notice">
+      {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
+      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+    </p>
+    <p class="notice">
+      {% trans feedback='https://input.mozilla.com/feedback' %}
+      <a rel="external" href="{{ feedback }}">Give us feedback</a> to help us put the final tweaks on performance and functionality in a stable environment.
+      {% endtrans %}
+    </p>
+  </div>
+  <footer>
+    <div class="container">
+      <ul>
+        <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{_('Release Notes')}}</a></li>
+        <li><a href="{{ firefox_url('android', 'all', 'beta') }}">{{_('All Languages and Builds')}}</a></li>
+      </ul>
+    </div>
+  </footer>
+</section>
+
+<section id="aurora" class="channel">
+  <div class="container">
+    <header>
+      <h2>{{_('Aurora')}}</h2>
+      <p>{{_('Help determine what features will go into the next Firefox for Android.')}}</p>
+    </header>
+    {{ download_firefox('alpha', platform='android', force_direct=True, alt_copy=_('Download'), dom_id="android-aurora-download") }}
+    <p class="notice">
+      {{_('Firefox Aurora automatically sends feedback to Mozilla.')}}
+      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+    </p>
+  </div>
+  <footer>
+    <div class="container">
+      <ul>
+        <li><a href="{{ firefox_url('android', 'notes', 'aurora') }}">{{_('Release Notes')}}</a></li>
+      </ul>
+    </div>
+  </footer>
+</section>
+
+{# Nighly download links for Android are not yet available Bug 1241114
+<section id="nightly" class="channel">
+  <div class="container">
+    <header>
+      <h2>{{_('Nightly')}}</h2>
+      <p>{{_('Check out new Android features in their earliest stages. Enjoy at your own risk.')}}</p>
+    </header>
+    {{ download_firefox('nightly', platform='android', force_direct=True, alt_copy=_('Download'), dom_id="android-nightly-download") }}
+    <p class="notice">
+      {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
+      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+    </p>
+  </div>
+</section>
+#}
+{% endblock %}
+
+{% block test_pilot %}{% endblock %}

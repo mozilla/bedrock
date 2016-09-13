@@ -1,0 +1,98 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% add_lang_files "firefox/channel/index" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Download and test future releases of Firefox for desktop, Android and iOS.') }}{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}{{ self.page_title() }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_channel' %}
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block site_header %}
+<header id="masthead">
+  <div class="container">
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+    </div>
+    <nav id="nav-main">
+      <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
+      <ul id="nav-main-menu">
+        <li class="first products-item">
+          <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
+        </li>
+        <li class="add-on-item">
+          <a rel="external" href="https://addons.mozilla.org/" data-link-type="nav" data-link-name="Add-ons">{{ _('Add-ons') }}</a>
+        </li>
+        <li class="support-item">
+          <a rel="external" href="https://support.mozilla.org/" data-link-type="nav" data-link-name="Support">{{ _('Support') }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header class="main-header">
+    <div class="container">
+      <h1>
+        {# L10n: this is the main page heading  #}
+        {{ _('Take a browse on the wild side.') }}
+        {# L10n: here is an alternative page heading should the main heading not translate easily: "Take the future for a test run." #}
+      </h1>
+      <h2>
+        {{ _('Be among the first to explore future releases of Firefox for desktop, Android and iOS.') }}
+      </h2>
+    </div>
+    <nav class="platform-nav" role="navigation">
+      <div class="container">
+        <ul>
+          <li class="nav-desktop"><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-name="Desktop">{{ _('Desktop') }}</a></li>
+          <li class="nav-android"><a href="{{ url('firefox.channel.android') }}" data-link-type="nav" data-link-name="Android">{{ _('Android') }}</a></li>
+          <li class="nav-ios"><a href="{{ url('firefox.channel.ios') }}" data-link-type="nav" data-link-name="iOS">{{ _('iOS') }}</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  {% block channels %}{% endblock %}
+  <div id="help-out">
+    <div class="container">
+      <section class="bugzilla">
+        <h3>{{ _('See something that isn’t working? Let us know.') }}</h3>
+        <ul>
+          <li><a rel="external" class="more" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ _('File a bug now') }}</a></li>
+          <li><a rel="external" class="more" href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ _('Tips for filing a bug') }}</a>
+        </ul>
+      </section>
+      {% block test_pilot %}
+      <section class="test-pilot">
+        <h3>{{ _('Take our latest experimental features for a spin and shape the future of Firefox.') }}</h3>
+        <ul>
+          <li><a rel="external" class="more" href="https://testpilot.firefox.com/">{{ _('Learn more about Test Pilot') }}</a></li>
+        </ul>
+      </section>
+      {% endblock %}
+    </div>
+  </div>
+  <aside id="newsletter-subscribe">
+    <div class="container">
+      {{ email_newsletter_form(title=_('<span>Firefox</span> + You'), subtitle=_('Get Firefox tips, tricks, news and more'), button_class='light') }}
+    </div>
+  </aside>
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}{% endblock %}

@@ -205,15 +205,16 @@
       <div class="triangle-border"></div>
 
       <ul class="adjunctnav{% if activenav == 'desktop' %} active{% endif %}">
+        <li><a href="{{ url('firefox.channel.desktop') }}" data-link-type="nav" data-link-name="Side Menu: Pre-release downloads">{{ _('Pre-release downloads') }}</a>
         <li><a href="{{ url('firefox.dnt') }}" data-link-type="nav" data-link-name="Side Menu: Do Not Track">{{ _('Do Not Track') }}</a></li>
         <li><a href="{{ url('firefox.interest-dashboard') }}" data-link-type="nav" data-link-name="Side Menu: Interest Dashboard">{{ _('Interest Dashboard') }}</a></li>
-        <li><a href="{{ url('firefox.developer') }}" data-link-type="nav" data-link-name="Side Menu: Developer Edition">{{ _('Developer Edition') }}</a></li>
         <li><a rel="external" href="https://support.mozilla.org/kb/private-browsing-browse-web-without-saving-info" data-link-type="nav" data-link-name="Side Menu: Private Browsing">{{ _('Private Browsing') }}</a></li>
         <li><a rel="external" href="https://addons.mozilla.org" data-link-type="nav" data-link-name="Side Menu: Add-ons">{{ _('Add-ons') }}</a></li>
         <li><a rel="external" href="https://support.mozilla.org/products/firefox" data-link-type="nav" data-link-name="Side Menu: Need help?">{{ _('Need help?') }}</a></li>
       </ul>
 
       <ul class="adjunctnav{% if activenav == 'android' %} active{% endif %}">
+        <li><a href="{{ url('firefox.channel.android') }}" data-link-type="nav" data-link-name="Side Menu: Pre-release downloads">{{ _('Pre-release downloads') }}</a>
         <li><a href="{{ url('firefox.dnt') }}" data-link-type="nav" data-link-name="Side Menu: Do Not Track">{{ _('Do Not Track') }}</a></li>
         <li><a rel="external" href="https://www.youtube.com/watch?v=Ewk0YtFTBec&amp;list=PLA8ABF6B7A66A0C5E&amp;index=15" data-link-type="nav" data-link-name="Side Menu: Private Browsing">{{ _('Private Browsing') }}</a></li>
         <li><a rel="external" href="https://addons.mozilla.org/android/" data-link-type="nav" data-link-name="Side Menu: Android Add-ons">{{ _('Add-ons') }}</a></li>
@@ -221,6 +222,7 @@
       </ul>
 
       <ul class="adjunctnav{% if activenav == 'ios' %} active{% endif %}">
+        <li><a href="{{ url('firefox.channel.ios') }}" data-link-type="nav" data-link-name="Side Menu: Pre-release downloads">{{ _('Pre-release downloads') }}</a>
         <li><a rel="external" href="https://support.mozilla.org/products/ios" data-link-type="nav" data-link-name="Side Menu: Need help?">{{ _('Need help?') }}</a></li>
       </ul>
     </div>{#-- /#fxfamilynav-adjunctnav --#}
