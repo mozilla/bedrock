@@ -6,7 +6,9 @@
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}
-{% if l10n_has_tag('tracking_protection') %}
+{% if l10n_has_tag('fx49_remove_hello') %}
+  {{ _('Firefox – Desktop browser, Android, iOS, Sync, Private Browsing') }}
+{% elif l10n_has_tag('tracking_protection') %}
   {{ _('Firefox – Desktop browser, Android, iOS, OS, Hello, Sync, Private Browsing') }}
 {% else %}
   {{ _('Firefox — Desktop browser, Android, OS, Hello, Sync, Marketplace') }}

@@ -8,7 +8,13 @@
 
 {% block page_title_prefix %}{{_('Firefox')}} — {% endblock %}
 {% block page_title %}{{ _('Features') }}{% endblock %}
-{% block page_desc %}{{ _('Get the most from Firefox and your time online with Hello, Sync and Private Browsing.') }}{% endblock %}
+{% block page_desc %}
+{% if l10n_has_tag('fx49_remove_hello') %}
+  {{ _('Get the most from Firefox and your time online with Sync and Private Browsing.') }}
+{% else %}
+  {{ _('Get the most from Firefox and your time online with Hello, Sync and Private Browsing.') }}
+{% endif %}
+{% endblock %}
 {% block body_id %}firefox-features{% endblock %}
 {% block body_class %}mozid{% endblock %}
 
