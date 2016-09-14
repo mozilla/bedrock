@@ -19,6 +19,7 @@ def pytest_generate_tests(metafunc):
         '/firefox/all/',
         '/firefox/beta/all/',
         '/firefox/developer/all/',
+        '/firefox/nightly/all/',
         '/firefox/organizations/all/',
         '/firefox/android/all/',
         '/firefox/android/beta/all/')
