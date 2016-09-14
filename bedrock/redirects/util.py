@@ -9,6 +9,8 @@ from urlparse import parse_qs
 from django.core.urlresolvers import NoReverseMatch, RegexURLResolver, reverse
 from django.conf.urls import url
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect, HttpResponseGone
+from django.utils.encoding import force_text
+from django.utils.html import strip_tags
 from django.views.decorators.vary import vary_on_headers
 
 import commonware.log
@@ -178,7 +180,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
 
         # use info from url captures.
         if args or kwargs:
-            redirect_url = redirect_url.format(*args, **kwargs)
+            redirect_url = strip_tags(force_text(redirect_url).format(*args, **kwargs))
 
         if query:
             if merge_query:

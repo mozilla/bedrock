@@ -338,3 +338,22 @@ class TestRedirectUrlPattern(TestCase):
         resp = middleware.process_request(self.rf.get('/iam/the/walrus/'))
         eq_(resp.status_code, 301)
         eq_(resp['Location'], '/coo/coo/cachoo/')
+
+    def test_non_ascii_strip_tags(self):
+        """
+        Should deal with non-ascii characters when there's a substitution as well as strip tags.
+
+        This is from errors that happened in prod. The following URL caused a 500:
+
+        https://www.mozilla.org/editor/midasdemo/securityprefs.html%3C/span%3E%3C/a%3E%C2%A0
+
+        https://sentry.prod.mozaws.net/marketing/bedrock-prod-eu-west/issues/349078/
+        """
+        resolver = get_resolver([redirect(r'^editor/(?P<page>.*)$',
+                                          'http://www-archive.mozilla.org/editor/{page}')])
+        middleware = RedirectsMiddleware(resolver)
+        resp = middleware.process_request(self.rf.get('/editor/midasdemo/securityprefs.html'
+                                                      '%3C/span%3E%3C/a%3E%C2%A0'))
+        eq_(resp.status_code, 301)
+        eq_(resp['Location'],
+            'http://www-archive.mozilla.org/editor/midasdemo/securityprefs.html%C2%A0')
