@@ -14,17 +14,19 @@
      */
     function setJavaVersion() {
         var type;
-        var installedVersion;
+        var installedVersion = '0.0.0'; // fallback is better than throwing an error
         var mimes = navigator.mimeTypes['application/x-java-applet'].enabledPlugin;
 
-        for (var mime in mimes) {
-            if(mimes.hasOwnProperty(mime) && mime.indexOf('jpi-version') > -1) {
-                type = mime;
-                // + 3 to strip of the leading 1. in java versions
-                installedVersion = type.substring(type.indexOf('=') + 3)
-                    .replace('_', '.');
-            }
+        var mime = Object.keys(mimes).filter(function(key) {
+            return mimes[key].type.indexOf('jpi-version') > -1;
+        });
+
+        if (mime.length > 0) {
+            type = mimes[mime[0]].type;
+            // + 3 to strip of the leading 1. in java versions
+            installedVersion = type.substring(type.indexOf('=') + 3).replace('_', '.');
         }
+
         return installedVersion;
     }
 
