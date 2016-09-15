@@ -3,9 +3,17 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from textwrap import dedent
 from cStringIO import StringIO
+
+import yaml
+from mock import patch, call
 from nose.tools import eq_
 
-from bedrock.security.utils import mfsa_id_from_filename, parse_md_front_matter
+from bedrock.security.utils import (
+    generate_yml_advisories_html,
+    mfsa_id_from_filename,
+    parse_bug_url,
+    parse_md_front_matter,
+)
 
 
 def test_parse_front_matter():
@@ -47,8 +55,80 @@ def test_parse_front_matter_only():
 
 
 def test_mfsa_id_from_filename():
-    eq_(mfsa_id_from_filename('announce/2014/mfsa2014-01.md'),
-        '2014-01')
-    eq_(mfsa_id_from_filename('announce/2014/mfsa2014-101.md'),
-        '2014-101')
+    eq_(mfsa_id_from_filename('announce/2014/mfsa2014-01.md'), '2014-01')
+    eq_(mfsa_id_from_filename('announce/2014/mfsa2014-101.md'), '2014-101')
+    eq_(mfsa_id_from_filename('announce/2016/mfsa2016-42.yml'), '2016-42')
     assert mfsa_id_from_filename('dude.txt') is None
+
+
+def test_parse_bug_url():
+    assert parse_bug_url('8675309') == 'https://bugzilla.mozilla.org/show_bug.cgi?id=8675309'
+    assert parse_bug_url('1234,5678, 9012') == 'https://bugzilla.mozilla.org/buglist.cgi?' \
+                                               'bug_id=1234%2C5678%2C9012'
+    assert parse_bug_url('http://example.com/1234') == 'http://example.com/1234'
+
+
+@patch('bedrock.security.utils.render_to_string')
+def test_generate_yml_advisories_html(rts_mock):
+    rts_mock.return_value = 'html'
+    data = yaml.safe_load(YML_ADVISORY)
+    generate_yml_advisories_html(data['advisories'])
+    rts_mock.assert_has_calls([
+        call('security/partials/cve.html', {
+            'id': 'CVE-2016-2827',
+            'impact': 'Low',
+            'impact_class': 'low',
+            'title': 'A sample title for a CVE here',
+            'reporter': 'Reporty McReporterface',
+            'description': 'Short description <strong>with HTML</strong> and multiple lines!\n\n'
+                           'Can also have full breaks and ***markdown***!\n',
+            'bugs': [
+                {'url': 'https://bugzilla.mozilla.org/show_bug.cgi?id=1289085',
+                 'desc': 'stuff about the bugs'},
+                {'url': 'https://bugzilla.mozilla.org/buglist.cgi?bug_id=1289085%2C1289087',
+                 'desc': 'other stuff about the bugs'},
+            ]
+        }),
+        call('security/partials/cve.html', {
+            'id': 'CVE-2016-5270',
+            'impact': 'High',
+            'impact_class': 'high',
+            'title': 'Another sampile title, this time with more length!',
+            'reporter': 'A Nameless Evilcorp Employee',
+            'description': 'Another short description',
+            'bugs': [
+                {'url': 'https://example.com/warning.html',
+                 'desc': 'A different site that is totally not bugzilla'},
+            ]
+        }),
+    ])
+
+
+YML_ADVISORY = StringIO(dedent("""\
+    announced: September 13, 2016
+    fixed_in:
+      - Firefox 49
+    title: Security vulnerabilities fixed in Firefox 49
+    advisories:
+      CVE-2016-2827:
+        title: A sample title for a CVE here
+        impact: Low
+        reporter: Reporty McReporterface
+        description: |
+          Short description <strong>with HTML</strong> and multiple lines!
+
+          Can also have full breaks and ***markdown***!
+        bugs:
+          - url: 1289085
+            desc: stuff about the bugs
+          - url: 1289085, 1289087
+            desc: other stuff about the bugs
+      CVE-2016-5270:
+        title: Another sampile title, this time with more length!
+        impact: High
+        reporter: A Nameless Evilcorp Employee
+        description: Another short description
+        bugs:
+          - url: https://example.com/warning.html
+            desc: A different site that is totally not bugzilla
+    """))

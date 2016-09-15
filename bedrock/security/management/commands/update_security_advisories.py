@@ -16,11 +16,18 @@ from django.db.models import Count
 from dateutil.parser import parse as parsedate
 
 from bedrock.security.models import Product, SecurityAdvisory
-from bedrock.security.utils import FILENAME_RE, mfsa_id_from_filename, parse_md_file
 from bedrock.utils.git import GitRepo
+from bedrock.security.utils import (
+    FILENAME_RE,
+    mfsa_id_from_filename,
+    parse_md_file,
+    parse_yml_file,
+)
+
 
 ADVISORIES_REPO = settings.MOFO_SECURITY_ADVISORIES_REPO
 ADVISORIES_PATH = settings.MOFO_SECURITY_ADVISORIES_PATH
+ADVISORIES_BRANCH = settings.MOFO_SECURITY_ADVISORIES_BRANCH
 
 SM_RE = re.compile('seamonkey', flags=re.IGNORECASE)
 FNULL = open(os.devnull, 'w')
@@ -59,8 +66,8 @@ def add_or_update_advisory(data, html):
     kwargs = {
         'id': mfsa_id,
         'title': data.pop('title'),
-        'impact': data.pop('impact'),
-        'reporter': data.pop('reporter', None),
+        'impact': data.pop('impact', None) or '',
+        'reporter': data.pop('reporter', None) or '',
         'year': year,
         'order': order,
         'html': html,
@@ -101,11 +108,18 @@ def update_db_from_file(filename):
     :param filename: path to markdown file.
     :return: SecurityAdvisory instance
     """
-    return add_or_update_advisory(*parse_md_file(filename))
+    if filename.endswith('.md'):
+        parser = parse_md_file
+    elif filename.endswith('.yml'):
+        parser = parse_yml_file
+    else:
+        raise RuntimeError('Unknown file type %s' % filename)
+
+    return add_or_update_advisory(*parser(filename))
 
 
-def get_all_md_files():
-    return glob.glob(os.path.join(ADVISORIES_PATH, 'announce', '*', '*.md'))
+def get_all_mfsa_files():
+    return glob.glob(os.path.join(ADVISORIES_PATH, 'announce', '*', 'mfsa*.*'))
 
 
 def get_ids_from_files(filenames):
@@ -181,7 +195,7 @@ class Command(NoArgsCommand):
         if no_git or clear_db:
             force = True
         cloned = False
-        repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO)
+        repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO, branch_name=ADVISORIES_BRANCH)
         modified_files = deleted_files = []
 
         def printout(msg, ending=None):
@@ -204,7 +218,7 @@ class Command(NoArgsCommand):
 
         if force or cloned:
             printout('Reading all files.')
-            modified_files = get_all_md_files()
+            modified_files = get_all_mfsa_files()
             if clear_db:
                 deleted_files = []
             else:

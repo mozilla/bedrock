@@ -96,7 +96,7 @@ class GitRepo(object):
 
         self.path.mkdir(parents=True, exist_ok=True)
         self.git('clone', '--origin', self.remote_name, '--depth', '1',
-                 self.remote_url, '.')
+                 '--branch', self.branch_name, self.remote_url, '.')
 
     def pull(self):
         """Update the repo to the latest of the remote and branch

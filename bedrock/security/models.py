@@ -67,8 +67,8 @@ class Product(models.Model):
 class SecurityAdvisory(models.Model):
     id = models.CharField(max_length=8, primary_key=True, db_index=True)
     title = models.CharField(max_length=200)
-    impact = models.CharField(max_length=100)
-    reporter = models.CharField(max_length=100, null=True)
+    impact = models.CharField(max_length=100, blank=True)
+    reporter = models.CharField(max_length=100, blank=True)
     announced = models.DateField(null=True)
     year = models.SmallIntegerField()
     order = models.SmallIntegerField()
@@ -89,7 +89,10 @@ class SecurityAdvisory(models.Model):
 
     @property
     def impact_class(self):
-        return self.impact.lower().split(None, 1)[0]
+        if self.impact:
+            return self.impact.lower().split(None, 1)[0]
+        else:
+            return 'none'
 
     @property
     def products(self):
