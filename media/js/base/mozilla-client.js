@@ -125,6 +125,52 @@ if (typeof Mozilla === 'undefined') {
     };
 
     /**
+     * Determine if user version is up to date with latest version from product details.
+     *
+     * @private
+     * @param  {Boolean} strict - if false compare the major version number only.
+     * @param  {Array} userVerArr - the user version number.
+     * @param  {Array} latestVerArr - the latest version number from product details.
+     * @return {Boolean} true if user version number is equal to or greater than product details version.
+     */
+    Client._compareVersion = function (strict, userVerArr, latestVerArr) {
+        var currentUserNumber = 0;
+        var currentLatestNumber = 0;
+        var isUpToDate = false;
+
+        // Make sure both latest and user array lengths match.
+        while (latestVerArr.length < userVerArr.length) {
+            latestVerArr.push('0');
+        }
+        while (userVerArr.length < latestVerArr.length) {
+            userVerArr.push('0');
+        }
+
+        // Only check the major version in non-strict comparison mode.
+        if (!strict) {
+            latestVerArr.length = 1;
+        }
+
+        // Step through the array from product details and compare to the user array.
+        for (var j = 0; j < latestVerArr.length; j++) {
+            currentUserNumber = Number(userVerArr[j]);
+            currentLatestNumber = Number(latestVerArr[j]);
+
+            if (currentUserNumber < currentLatestNumber) {
+                isUpToDate = false;
+                break;
+            } else if (currentUserNumber > currentLatestNumber) {
+                isUpToDate = true;
+                break;
+            } else {
+                isUpToDate = true;
+            }
+        }
+
+        return isUpToDate;
+    };
+
+    /**
      * Detect whether the user's Firefox is up to date or outdated. This data is mainly used for security notifications.
      *
      * @private
@@ -148,30 +194,14 @@ if (typeof Mozilla === 'undefined') {
         var userVerArr = userVer.match(/^(\d+(?:\.\d+){1,2})/)[1].split('.');
         var isUpToDate = false;
 
-        // Compare the newer version first
+        // Sort product details version so we compare the newer version first
         versions.sort(function(a, b) { return parseFloat(a) < parseFloat(b); });
 
-        // Only check the major version in non-strict comparison mode
-        if (!strict) {
-            userVerArr.length = 1;
-        }
-
+        // Compare each latest version in product details to the user version.
         for (var i = 0; i < versions.length; i++) {
             var latestVerArr = versions[i].split('.');
 
-            // Only check the major version in non-strict comparison mode
-            if (!strict) {
-                latestVerArr.length = 1;
-            }
-
-            for (var j = 0; j < userVerArr.length; j++) {
-                if (Number(userVerArr[j]) < Number(latestVerArr[j] || 0)) {
-                    isUpToDate = false;
-                    break;
-                } else {
-                    isUpToDate = true;
-                }
-            }
+            isUpToDate = Client._compareVersion(strict, userVerArr, latestVerArr);
 
             if (isUpToDate) {
                 break;

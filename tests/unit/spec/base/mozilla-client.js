@@ -458,7 +458,7 @@ describe('mozilla-client.js', function() {
 
         it('should consider outdated if user version is slightly less than latest version and strict option is true', function() {
             test(true, false, '46.0.1').toBeFalsy();
-            test(true, false, '45.0').toBeFalsy();
+            test(true, false, '46.0').toBeFalsy();
             test(true, false, '38.7.0').toBeFalsy();
             test(true, false, '45.0').toBeFalsy();
         });

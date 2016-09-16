@@ -42,11 +42,8 @@
         });
     }
 
-    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
-        client.getFirefoxDetails(function(data) {
-            if (data.isUpToDate) {
-                $('#overview-intro-up-to-date').addClass('active');
-            }
-        });
+    // bug 1301721 only use major Firefox version until 49.0 is released
+    if ((client.isFirefoxDesktop || client.isFirefoxAndroid) && client._isFirefoxUpToDate(false)) {
+        $('#overview-intro-up-to-date').addClass('active');
     }
 })(window.jQuery);

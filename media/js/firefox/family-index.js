@@ -22,10 +22,9 @@
     });
 
     // Check Firefox version
+    // bug 1301721 only use major Firefox version until 49.0 is released
     if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
-        client.getFirefoxDetails(function(data) {
-            $html.addClass(data.isUpToDate ? 'firefox-latest' : 'firefox-old');
-        });
+        $html.addClass(client._isFirefoxUpToDate(false) ? 'firefox-latest' : 'firefox-old');
     } else {
         $html.addClass('nonfx');
     }

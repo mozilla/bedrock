@@ -60,7 +60,7 @@
             if (client.isFirefoxDesktop) {
                 client.getFirefoxDetails(function(data) {
                     // data.accurate will only be true if UITour API is working.
-                    if (data.channel === 'release' && data.isUpToDate && data.accurate) {
+                    if (data.channel === 'release' && data.accurate) {
                         // Bug 1274207 only show reset button if user profile supports it.
                         uiTourSendEvent('getConfiguration', {
                             callbackID: uiTourWaitForCallback(showRefreshButton),
