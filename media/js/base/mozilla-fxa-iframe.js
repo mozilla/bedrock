@@ -121,10 +121,6 @@ Mozilla.FxaIframe = (function() {
         var data = JSON.parse(e.data);
 
         switch (data.command) {
-        // iframe is pinging host page
-        case 'ping':
-            _onPing(data);
-            break;
         // iframe has loaded successfully
         case 'loaded':
             _onLoaded(data);
@@ -148,22 +144,8 @@ Mozilla.FxaIframe = (function() {
         }
     };
 
-    var _onPing = function(data) {
-        // tell iframe we are expecting it
-        if (_config.testing !== true) { // allow unit test to bypass auth
-            var fxaFrameTarget = _$iframe[0].contentWindow;
-            // data must be back in string format for postMessage
-            fxaFrameTarget.postMessage(JSON.stringify(data), _host);
-        }
-
-        // remember iframe has loaded
-        _handshake = true;
-
-        _userCallback('onPing', data);
-    };
-
     var _onLoaded = function(data) {
-        // remember iframe has loaded (new auth flow doesn't fire 'ping')
+        // remember iframe has loaded
         _handshake = true;
 
         _sendGAEvent('fxa-loaded');
@@ -206,7 +188,6 @@ Mozilla.FxaIframe = (function() {
         // userConfig: optional object containing any of the following:
         //     gaEventName: string name of GA event (generally customized per
         //         page - defaults to 'fxa')
-        //     onPing: function called after iframe 'ping' postMessage
         //     onLoaded: function called after iframe 'loaded' postMessage
         //     onResize: function called after iframe 'resize' postMessage
         //     onSignupMustVerify: function called after iframe

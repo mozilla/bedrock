@@ -100,35 +100,12 @@ describe('mozilla-fxa-iframe.js', function() {
     describe('Mozilla.FxaIframe postMessage handling', function() {
         var config;
 
-        it('should execute callback for ping postMessage', function(done) {
-            var messageData = {
-                command: 'ping'
-            };
-
-            config = {
-                testing: true,
-                onPing: function(data) {
-                    var command = data.command;
-                    expect(config.onPing).toHaveBeenCalled();
-                    expect(command).toEqual('ping');
-                    done();
-                }
-            };
-
-            spyOn(config, 'onPing').and.callThrough();
-
-            Mozilla.FxaIframe.init(config);
-
-            window.postMessage(JSON.stringify(messageData), '*');
-        });
-
         it('should execute callback for loaded postMessage', function(done) {
             var messageData = {
                 command: 'loaded'
             };
 
             config = {
-                testing: true,
                 onLoaded: function(data) {
                     var command = data.command;
                     expect(config.onLoaded).toHaveBeenCalled();
@@ -153,7 +130,6 @@ describe('mozilla-fxa-iframe.js', function() {
             };
 
             config = {
-                testing: true,
                 onResize: function(data) {
                     var command = data.command;
                     expect(config.onResize).toHaveBeenCalled();
@@ -177,7 +153,6 @@ describe('mozilla-fxa-iframe.js', function() {
             };
 
             config = {
-                testing: true,
                 onSignupMustVerify: function(data) {
                     var command = data.command;
                     expect(config.onSignupMustVerify).toHaveBeenCalled();
@@ -199,7 +174,6 @@ describe('mozilla-fxa-iframe.js', function() {
             };
 
             config = {
-                testing: true,
                 onVerificationComplete: function(data) {
                     var command = data.command;
                     expect(config.onVerificationComplete).toHaveBeenCalled();
