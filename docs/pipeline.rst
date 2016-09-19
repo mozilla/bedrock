@@ -142,6 +142,11 @@ osx-firefox.properties
 
 You can use `Sauce Labs platform configurator`_ to help with the parameter values.
 
+If you have an account on our Jenkins server, you can build the `bedrock_integration_tests_runner`_
+job and pass in the ``BASE_URL`` and other parameters of your choosing. This is also useful for
+testing against deployed demo environments. For a good baseline, use the values from ``win10-firefox.properties``_
+above.
+
 Investigating failures
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -218,3 +223,4 @@ A `bug for the IRC plugin`_ has been raised.
 .. _Sauce Labs platform configurator: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/
 .. _enhancement request: https://issues.jenkins-ci.org/browse/JENKINS-26210
 .. _bug for the IRC plugin: https://issues.jenkins-ci.org/browse/JENKINS-28175
+.. _bedrock_integration_tests_runner: https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/build?delay=0sec
