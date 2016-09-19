@@ -231,6 +231,37 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/australis/whatsnew.html'])
 
+    # begin zh-TW 49.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_zh_TW_fx_49_0(self, render_mock):
+        """Should use custom zh-TW template for zh-TW on 49.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'zh-TW'
+        self.view(req, version='49.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew-zh-TW-49.html'])
+
+    @override_settings(DEV=True)
+    def test_zh_TW_fx_not_49_0(self, render_mock):
+        """Should use tracking protection whatsnew template for zh-TW not on 49.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'zh-TW'
+        self.view(req, version='49.0.1')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew_42/whatsnew.html'])
+
+    @override_settings(DEV=True)
+    def test_not_zh_TW_fx_49_0(self, render_mock):
+        """Should use tracking protection whatsnew template for non-zh-TW on 49.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='49.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew_42/whatsnew.html'])
+
+    # end 42.0 whatsnew tests
+
 
 @patch.object(fx_views.FirstrunView, 'redirect_to', none_mock)
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())

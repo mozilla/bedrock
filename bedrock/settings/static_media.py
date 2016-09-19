@@ -534,6 +534,15 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew_42_a-bundle.css',
     },
+    'firefox_whatsnew_49_tw_hk': {
+        'source_filenames': (
+            'css/firefox/tracking-protection-animation.less',
+            'css/firefox/whatsnew_42/common.less',
+            'css/firefox/whatsnew_42/variant-a.less',
+            'css/firefox/whatsnew-tw-hk-49.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_49_tw_hk-bundle.css',
+    },
     'firefox_win10_welcome': {
         'source_filenames': (
             'css/firefox/win10-welcome.less',
@@ -1339,6 +1348,15 @@ PIPELINE_JS = {
             'js/firefox/whatsnew_42/variant-a.js',
         ),
         'output_filename': 'js/firefox_whatsnew_42_a-bundle.js',
+    },
+    'firefox_whatsnew_49_tw_hk': {
+        'source_filenames': (
+            'js/base/uitour-lib.js',
+            'js/base/mozilla-highlight-target.js',
+            'js/firefox/whatsnew-tw-hk-49.js',
+            'js/firefox/whatsnew-tw-hk-49-init.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_49_tw_hk-bundle.js',
     },
     'firefox_firstrun_42_learnmore': {
         'source_filenames': (

@@ -259,6 +259,15 @@ def show_42_whatsnew(version):
     return version >= Version('42.0')
 
 
+def show_49_0_whatsnew(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version == Version('49.0')
+
+
 def show_40_firstrun(version):
     try:
         version = Version(version)
@@ -381,6 +390,8 @@ class WhatsnewView(LatestFxView):
         return ctx
 
     def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
         # old versions of Firefox sent a prefixed version
@@ -392,6 +403,9 @@ class WhatsnewView(LatestFxView):
             template = 'firefox/dev-whatsnew.html'
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
+        # zh-TW on 49.0 gets a special template
+        elif locale == 'zh-TW' and show_49_0_whatsnew(version):
+            template = 'firefox/whatsnew-zh-TW-49.html'
         elif show_42_whatsnew(version):
             template = 'firefox/whatsnew_42/whatsnew.html'
         else:
