@@ -18,20 +18,6 @@
     var virtualUrl = ('/' + locale + '/products/download.html' +
                        queryStr + 'referrer=' + referrer);
 
-    // pixel remains in perpetuity (https://bugzilla.mozilla.org/show_bug.cgi?id=1222945#c2)
-    function addPixel() {
-        if (!window._dntEnabled()) {
-            var $body = $('body');
-
-            var $pixel = $('<img />', {
-                width: '1',
-                height: '1',
-                src: 'https://servedby.flashtalking.com/spot/8/6247;40428;4669/?spotName=Mozilla_Download_Conversion'
-            });
-
-            $body.append($pixel);
-        }
-    }
 
     if ($platformLink.length) {
         // Pull download link from the download button and add to the
@@ -58,8 +44,6 @@
 
         window.location.href = url;
     });
-
-    addPixel();
 
     // if user is not on an IE that blocks JS triggered downloads, start the
     // platform-detected download after window (read: images) have loaded.

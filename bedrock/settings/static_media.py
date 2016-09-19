@@ -1232,7 +1232,6 @@ PIPELINE_JS = {
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/firefox/fxos-nav.js',
-            'js/firefox/os/firefox-os-2.5.js',
         ),
         'output_filename': 'js/firefox_os_2_5-bundle.js',
     },
