@@ -221,6 +221,7 @@ SUPPORTED_NONLOCALES = [
     'keymaster',
     'microsummaries',
     'xbl',
+    'csp-violation-capture',
 ]
 
 ALLOWED_HOSTS = config(
@@ -325,6 +326,10 @@ MIDDLEWARE_CLASSES = [
     'bedrock.mozorg.middleware.CacheMiddleware',
     'dnt.middleware.DoNotTrackMiddleware',
 ]
+
+ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default=False, cast=bool)
+if ENABLE_CSP_MIDDLEWARE:
+    MIDDLEWARE_CLASSES.append('csp.middleware.CSPMiddleware')
 
 INSTALLED_APPS = (
     'cronjobs',  # for ./manage.py cron * cmd line tasks
@@ -1069,3 +1074,66 @@ RAVEN_CONFIG = {
     'dsn': config('SENTRY_DSN', None),
     'release': config('GIT_SHA', None),
 }
+
+# Django-CSP
+CSP_DEFAULT_SRC = (
+    "'self'",
+    '*.mozilla.net',
+    '*.mozilla.org',
+    '*.mozilla.com',
+)
+CSP_IMG_SRC = CSP_DEFAULT_SRC + (
+    'data:',
+    '*.optimizely.com',
+    'www.googletagmanager.com',
+    'www.google-analytics.com',
+    '*.tiles.mapbox.com',
+    'api.mapbox.com',
+    'creativecommons.org',
+)
+CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
+    # TODO fix things so that we don't need this
+    "'unsafe-inline'",
+    # TODO snap.svg.js passes a string to Function() which is
+    # blocked without unsafe-eval. Find a way to remove that.
+    "'unsafe-eval'",
+    '*.optimizely.com',
+    'optimizely.s3.amazonaws.com',
+    'www.googletagmanager.com',
+    'www.google-analytics.com',
+    'www.youtube.com',
+    's.ytimg.com',
+)
+CSP_STYLE_SRC = CSP_DEFAULT_SRC + (
+    # TODO fix things so that we don't need this
+    "'unsafe-inline'",
+)
+CSP_CHILD_SRC = (
+    '*.optimizely.com',
+    'www.googletagmanager.com',
+    'www.google-analytics.com',
+    'www.youtube-nocookie.com',
+    'trackertest.org',  # mozilla service for tracker detection
+    'www.surveygizmo.com',
+    'accounts.firefox.com',
+    'accounts.firefox.com.cn',
+    'www.youtube.com',
+)
+CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
+    '*.optimizely.com',
+    'www.googletagmanager.com',
+    'www.google-analytics.com',
+    '*.tiles.mapbox.com',
+    'api.mapbox.com',
+)
+CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default=False, cast=bool)
+CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default=True, cast=bool)
+if CSP_REPORT_ENABLE:
+    CSP_REPORT_URI = config('CSP_REPORT_URI', default='/csp-violation-capture')
+
+CSP_EXTRA_FRAME_SRC = config('CSP_EXTRA_FRAME_SRC', default='', cast=Csv())
+if CSP_EXTRA_FRAME_SRC:
+    CSP_CHILD_SRC += tuple(CSP_EXTRA_FRAME_SRC)
+
+# support older browsers (mainly Safari)
+CSP_FRAME_SRC = CSP_CHILD_SRC

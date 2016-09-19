@@ -1,5 +1,6 @@
 LOGLEVEL=info
 ENABLE_CSP_MIDDLEWARE=True
+CSP_EXTRA_FRAME_SRC=*.mozaws.net
 DEBUG=False
 DATABASE_URL=sqlite:///bedrock.db
 DEV=True

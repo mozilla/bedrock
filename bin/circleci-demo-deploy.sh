@@ -21,6 +21,9 @@ if ./deis apps:create "$DEIS_APP_NAME" --no-remote; then
   ./deis perms:create "$CIRCLE_USERNAME" -a "$DEIS_APP_NAME" || true
   echo "Configuring the new demo app"
   ./deis config:push -a "$DEIS_APP_NAME" -p .bedrock_demo_env
+  if [[ -n "$SENTRY_DEMO_DSN" ]]; then
+    ./deis config:set -a "$DEIS_APP_NAME" "SENTRY_DSN=$SENTRY_DEMO_DSN"
+  fi
 fi
 echo "Pulling $DOCKER_IMAGE_TAG into Deis app $DEIS_APP_NAME"
 ./deis pull "$DOCKER_IMAGE_TAG" -a "$DEIS_APP_NAME"
