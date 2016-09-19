@@ -1,0 +1,963 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+body {
+    color: #56565A;
+}
+
+#outer-wrapper {
+    background: #fff;
+    border-top: none;
+}
+
+#wrapper {
+    padding: 0;
+    width: 100%;
+}
+
+.container {
+    width: @widthDesktop - (@baseLine * 2);
+    padding: 0;
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+}
+
+main {
+    h1, h2, h3, h4, h5, h6 {
+        color: #56565a;
+        text-shadow: none;
+    }
+
+    p {
+        color: #56565a;
+    }
+}
+
+#masthead {
+    background: #c33b32;
+    color: #fff;
+    padding: 0;
+    width: 100%;
+
+    .container {
+        position: relative;
+    }
+
+    .masthead-logo {
+        float: left;
+        font-size: 100%;
+        height: 30px;
+        margin: 0;
+        padding: 10px 0;
+        position: relative;
+        text-align: center;
+
+        img {
+            height: 30px;
+        }
+    }
+
+    nav {
+        margin: 0;
+    }
+
+    nav > ul > li {
+        border-right: 1px solid #fff;
+        float: left;
+        padding: 15px 10px;
+
+        a:link,
+        a:visited,
+        a:hover,
+        a:active,
+        a:focus {
+            padding: 0 12px;
+            color: #fff;
+        }
+
+        &:last-child {
+            border-right: 0;
+            padding-right: 8px;
+        }
+    }
+
+    .download-button {
+        float: right;
+
+        .download-list {
+            margin-bottom: 0;
+        }
+
+        .download-link {
+            .font-size(@baseFontSize);
+            border-radius: 0;
+            border: none;
+            padding: 15px 20px;
+            text-transform: uppercase;
+        }
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        nav > ul > li {
+            padding: 15px 0;
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+
+        .download-button .download-link {
+            padding: 15px 12px;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding: 0 0 10px;
+
+        nav > ul > li {
+            padding: 0;
+
+            a:link,
+            a:visited {
+                .font-size(@baseFontSize);
+                color: @textColorSecondary;
+            }
+        }
+
+        .masthead-logo {
+            float: none;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 10px 0 0;
+        }
+
+        .download-button {
+            display: none;
+        }
+    }
+}
+
+.main-heading-container {
+    .background-size(cover);
+    background-color: #ffdbc9;
+    background-image: url('/media/img/mozorg/technology/vr-header.svg');
+    background-position: top center;
+    background-repeat: no-repeat;
+    min-height: 435px;
+    padding: 120px 0 80px 0;
+    position: relative;
+    margin-bottom: @baseLine * 2;
+
+    .main-heading {
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, .75);
+        padding: 60px;
+        text-align: center;
+
+        // Chrome
+        -webkit-clip-path: polygon(0 10%, 90% 0, 100% 94%, 10% 100%);
+        // Firefox
+        clip-path: url('/media/img/mozorg/technology/shapes.svg#skewed');
+        // Safari
+        clip-path: polygon(0 10%, 90% 0, 100% 94%, 10% 100%);
+    }
+
+    h1 {
+        .font-size(42px);
+        color: #2e3a59;
+        font-weight: bold;
+    }
+
+    p {
+        .font-size(24px);
+        color: #2e3a59;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        h1 {
+            .font-size(38px);
+        }
+
+        p {
+            .font-size(20px);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding: 60px 0 20px 0;
+
+        .main-heading {
+            padding: 40px;
+        }
+
+        h1 {
+            .font-size(32px);
+        }
+
+        p {
+            .font-size(18px);
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding: 60px 0 0;
+
+        .main-heading {
+            padding: 40px 40px 30px;
+        }
+
+        h1 {
+            .font-size(28px);
+        }
+
+        p {
+            .font-size(@largeFontSize);
+        }
+    }
+}
+
+@supports (transform: skewY(-2deg)) {
+    .main-heading-container {
+        margin-bottom: 0;
+
+        &:after {
+            .transform-origin(100%);
+            .transform(skewY(-2deg));
+            background: #fff;
+            bottom: 0;
+            content: '';
+            display: block;
+            height: 70px;
+            left: 0;
+            position: absolute;
+            right: 0;
+            width: 100%;
+        }
+    }
+}
+
+#technologies > section {
+    position: relative;
+    text-align: center;
+
+    .container {
+        position: relative;
+        min-height: 450px;
+    }
+
+    .inner-container {
+        width: 440px;
+        padding-bottom: @baseLine * 3;
+    }
+
+    &.odd .inner-container {
+        float: right;
+    }
+
+    &.even .inner-container {
+        float: left;
+    }
+
+    h2 {
+        .font-size(36px);
+        font-weight: bold;
+        line-height: 1.2;
+        text-align: left;
+    }
+
+    p {
+        .font-size(24px);
+        text-align: left;
+    }
+
+    .button {
+        .font-size(26px);
+        margin-top: @baseLine;
+    }
+
+    footer {
+        background: #f0f0f2;
+        display: none;
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                .font-size(18px);
+                .inline-block;
+                margin: 0;
+                padding: @baseLine 0;
+
+                &:after {
+                    color: #56565a;
+                    content: '|';
+                    margin: 0 10px;
+                }
+
+                &:last-child:after {
+                    content: none;
+                }
+            }
+        }
+
+
+        a:link,
+        a:visited {
+            color: @linkBlue;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: @linkBlueHover;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        .container {
+            min-height: 0;
+        }
+
+        .inner-container {
+            width: 320px;
+        }
+
+        h2 {
+            .font-size(32px);
+        }
+
+        p {
+            .font-size(20px);
+        }
+
+        .button {
+            .font-size(22px);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        .inner-container {
+            width: auto;
+        }
+
+        &.odd .inner-container,
+        &.even .inner-container {
+            float: none;
+        }
+
+        h2 {
+            .font-size(26px);
+            text-align: center;
+        }
+
+        p {
+            .font-size(18px);
+            text-align: center;
+        }
+
+        .button {
+            .font-size(20px);
+        }
+
+        footer ul {
+            padding-bottom: @baseLine;
+
+            li {
+                .font-size(@largeFontSize);
+                display: block;
+                padding: @baseLine 0 0;
+
+                &:after {
+                    content: none;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+
+        h2 {
+            .font-size(22px);
+        }
+    }
+}
+
+.developer #technologies > section {
+
+    footer {
+        display: block;
+    }
+}
+
+#vr {
+    .container {
+        background-image: url('/media/img/mozorg/technology/a-frame.svg');
+        background-position: top left;
+        background-repeat: no-repeat;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        .container {
+            .background-size(360px 327px);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        .container {
+            .background-size(260px 236px);
+            background-position: top center;
+            padding-top: 256px;
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+
+        .container {
+            .background-size(220px 200px);
+            padding-top: 220px;
+        }
+    }
+}
+
+#gaming {
+    background-color: #d6f1f5;
+    z-index: 0;
+
+    .inner-container {
+        padding-top: @baseLine * 2;
+    }
+
+    &:after {
+        .at2x('/media/img/mozorg/technology/gaming.png', 512px, 512px);
+        .background-size(contain);
+        background-color: #a3f3fe;
+        background-position: top right;
+        background-repeat: no-repeat;
+        content: '';
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        z-index: -1;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding-top: 256px;
+
+        &:after {
+            .background-size(256px 256px);
+            background-position: bottom center;
+            height: 256px;
+            width: 100%;
+        }
+    }
+}
+
+#iot {
+    z-index: 0;
+
+    .inner-container {
+        padding-top: @baseLine * 2;
+    }
+
+    &:before {
+        .at2x('/media/img/mozorg/technology/iot.png', 650px, 512px);
+        background-position: top -6px right @gridGutterWidth;
+        background-repeat: no-repeat;
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 50%;
+        z-index: -1;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding-top: 316px;
+
+        &:before {
+            .background-size(350px 276px);
+            background-position: top 20px left;
+            height: 296px;
+            width: 350px;
+            left: 50%;
+            margin-left: -200px;
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding-top: 276px;
+
+        &:before {
+            .background-size(300px 236px);
+            height: 256px;
+            width: 300px;
+            margin-left: -172px;
+        }
+    }
+}
+
+#context-graph {
+    background-color: #f9ddc7;
+    z-index: 0;
+
+    .inner-container {
+        padding: @baseLine * 2 0;
+    }
+
+    &:after {
+        background-image: url('/media/img/mozorg/technology/context-graph.svg');
+        background-color: #fa7100;
+        background-position: top (@baseLine * 2) left (@baseLine * 4);
+        background-repeat: no-repeat;
+        content: '';
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        z-index: -1;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding-top: 298px;
+
+        .inner-container {
+            padding-bottom: 0;
+        }
+
+        &:after {
+            .background-size(320px 258px);
+            background-position: top 20px center;
+            height: 298px;
+            width: 100%;
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        padding-top: 265px;
+
+        &:after {
+            .background-size(280px 225px);
+            height: 265px;
+        }
+    }
+}
+
+#rust {
+
+    .inner-container {
+        padding-top: @baseLine * 2;
+    }
+
+    .container {
+        .background-size(348px 348px);
+        background-image: url('/media/img/mozorg/technology/rust.svg');
+        background-position: top 40px left 45px;
+        background-repeat: no-repeat;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        .container {
+            .background-size(320px 320px);
+            background-position: top 40px left;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        .container {
+            .background-size(280px 280px);
+            background-position: top 40px center;
+            padding-top: 280px;
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+
+        .container {
+            .background-size(200px 200px);
+            padding-top: 200px;
+        }
+    }
+}
+
+#newsletter-subscribe {
+    margin: 0;
+
+    h3 {
+        .font-size(36px);
+        font-weight: bold;
+    }
+}
+
+#developer-resources {
+
+    header {
+        margin: (@baseLine * 2) 0;
+
+        h2 {
+            .font-size(42px);
+            font-weight: bold;
+        }
+
+        p {
+            .font-size(24px);
+        }
+    }
+
+    .container > ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        position: relative;
+
+        &> li {
+            display: inline-block;
+            margin: 0 0 (@baseLine * 2);
+            padding: 0;
+            vertical-align: top;
+            width: 440px;
+
+            &:nth-child(odd) {
+                margin-right: 60px;
+            }
+
+            h3 {
+                .font-size(36px);
+                font-weight: bold;
+                padding-right: @baseLine;
+
+                abbr[title] {
+                    border: none;
+                    text-decoration: none;
+                }
+            }
+
+            p {
+                .font-size(24px);
+                line-height: 1.5;
+            }
+
+            a {
+                .font-size(24px);
+            }
+
+            li {
+                display: block;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                width: auto;
+            }
+        }
+    }
+
+    .dev-links {
+        background-position: top 8px left;
+        background-repeat: no-repeat;
+        min-height: 100px;
+
+        &.mdn {
+            background-image: url('/media/img/mozorg/technology/icons-dev/mdn.svg');
+            padding-left: 115px;
+        }
+
+        &.vr {
+            background-image: url('/media/img/mozorg/technology/icons-dev/vr.svg');
+            padding-left: 104px;
+        }
+
+        &.iot {
+            background-image: url('/media/img/mozorg/technology/icons-dev/iot.svg');
+            padding-left: 116px;
+        }
+
+        &.rust {
+            background-image: url('/media/img/mozorg/technology/icons-dev/rust.svg');
+            padding-left: 106px;
+        }
+
+        &.servo {
+            background-image: url('/media/img/mozorg/technology/icons-dev/servo.svg');
+            padding-left: 97px;
+        }
+
+        &.encrypt {
+            background-image: url('/media/img/mozorg/technology/icons-dev/encrypt.svg');
+            padding-left: 83px;
+        }
+
+        &.gaming {
+            background-image: url('/media/img/mozorg/technology/icons-dev/gaming.svg');
+            padding-left: 94px;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        header {
+            h2 {
+                .font-size(38px);
+            }
+
+            p {
+                .font-size(20px);
+            }
+        }
+
+        .container > ul > li {
+            width: 340px;
+
+            &:nth-child(odd) {
+                margin-right: 20px;
+            }
+
+            h3 {
+                .font-size(32px);
+            }
+
+            p, a {
+                .font-size(20px);
+            }
+        }
+
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        header {
+            h2 {
+                .font-size(34px);
+            }
+
+            p {
+                .font-size(18px);
+            }
+        }
+
+        .container > ul > li {
+            width: 100%;
+
+            &:nth-child(odd) {
+                margin-right: 0;
+            }
+
+            h3 {
+                .font-size(28px);
+            }
+
+            p, a {
+                .font-size(18px);
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+
+        header {
+            h2 {
+                .font-size(30px);
+            }
+
+            p {
+                .font-size(@largeFontSize);
+            }
+        }
+
+        .container > ul > li {
+            h3 {
+                .font-size(24px);
+            }
+
+            p, a {
+                .font-size(@largeFontSize);
+            }
+        }
+    }
+}
+
+#blogs {
+    background: #f2f2f2;
+    padding-top: @baseLine * 3;
+
+    header {
+        margin-bottom: @baseLine * 2;
+
+        h2 {
+            .font-size(48px);
+            font-weight: bold;
+        }
+
+        p {
+            .font-size(24px);
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    article {
+        position: relative;
+        padding-bottom: @baseLine * 2;
+
+        h3 {
+            .font-size(32px);
+            font-weight: bold;
+
+            a:link,
+            a:visited {
+                color: #c33b32;
+            }
+        }
+
+        p {
+            .font-size(18px);
+        }
+
+        .meta {
+            .font-size(24px);
+        }
+
+        time {
+            .font-size(18px);
+            display: block;
+            margin-bottom: @baseLine;
+        }
+
+        .continue {
+            .font-size(18px);
+            bottom: @baseLine;
+            color: #c33b32;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        header {
+
+            h2 {
+                .font-size(44px);
+            }
+
+            p {
+                .font-size(20px);
+            }
+        }
+
+        article {
+
+            h3 {
+                .font-size(28px);
+            }
+
+            p,
+            time,
+            .continue {
+                .font-size(@largeFontSize);
+            }
+
+            .meta {
+                .font-size(20px);
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        header {
+
+            h2 {
+                .font-size(40px);
+            }
+
+            p {
+                .font-size(18px);
+            }
+        }
+
+        article {
+            margin-bottom: @baseLine;
+
+            h3 {
+                .font-size(24px);
+            }
+
+            .meta {
+                .font-size(18px);
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+
+        header {
+
+            h2 {
+                .font-size(36px);
+            }
+
+            p {
+                .font-size(@largeFontSize);
+            }
+        }
+
+        article {
+
+            h3 {
+                .font-size(20px);
+            }
+
+            .meta {
+                .font-size(@largeFontSize);
+            }
+
+            .continue {
+                right: auto;
+                left: 0;
+            }
+        }
+    }
+}

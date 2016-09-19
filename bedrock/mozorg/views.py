@@ -333,3 +333,14 @@ def plugincheck(request):
         template = 'mozorg/plugincheck-redesign.html'
 
     return l10n_utils.render(request, template)
+
+
+def technology(request):
+    template = 'mozorg/technology/index.html'
+
+    version = request.GET.get('v', None)
+
+    if version == 'b':
+        template = 'mozorg/technology/developer.html'
+
+    return l10n_utils.render(request, template)

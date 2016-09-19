@@ -28,6 +28,7 @@ urlpatterns = (
     page('about/history', 'mozorg/about/history.html'),
     page('about/history/details', 'mozorg/about/history-details.html'),
     page('about/mozilla-based', 'mozorg/projects/mozilla-based.html'),
+    url('^about/technology/$', views.technology, name='mozorg.technology'),
     page('projects/calendar', 'mozorg/projects/calendar.html'),
     url('^projects/calendar/holidays/$', views.holiday_calendars,
         name='mozorg.projects.holiday_calendars'),
