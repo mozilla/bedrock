@@ -1,0 +1,902 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import (reference) '../pebbles/lib.less';
+@import '../pebbles/components/masthead.less';
+@import '../pebbles/components/footer.less';
+@import '../pebbles/components/modal.less';
+
+
+@font-face {
+    font-family: 'FA-Icons-Contact';
+    src: url('/media/fonts/icons-contact.eot?#iefix') format('embedded-opentype'),
+         url('/media/fonts/icons-contact.woff') format('woff'),
+         url('/media/fonts/icons-contact.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+#masthead {
+    background: @color-mozred;
+    color: #fff;
+
+    .toggle {
+        background-image: url('/media/img/pebbles/icon-menu-light.svg');
+    }
+
+    @media @mq-tablet {
+        a {
+            color: #fff;
+        }
+    }
+}
+
+
+// Header
+.snapshot-header {
+    display: none;
+    background: #e9dbac url('/media/img/sandstone/grain.png');
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    @media @mq-tablet {
+        display: block;
+        height: 300px;
+    }
+
+    @media @mq-desktop {
+        height: 500px;
+    }
+}
+
+
+// Snapshots, pseudo-Polaroid
+.snap {
+    display: inline-block;
+    background: #fff;
+    padding: 20px 20px 50px 20px;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, .2);
+    position: absolute;
+
+    span {
+        .background-size(230px, 230px);
+        background-color: #e8ebd3;
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: block;
+        height: 230px;
+        outline: 1px solid rgba(0, 0, 0, .2);
+        width: 230px;
+    }
+
+    img {
+        display: block;
+        height: 230px;
+        margin: 0;
+        width: 230px;
+    }
+}
+
+
+// Foreground layer, the three main snapshots
+.foreground {
+    display: none;
+
+    @media @mq-tablet {
+        display: block;
+        height: 300px;
+        left: 50%;
+        margin-left: -(@width-tablet / 2);
+        position: absolute;
+        top: 0;
+        width: @width-tablet;
+        z-index: 10;
+
+        .snap {
+            position: absolute;
+        }
+
+        .shot-one { // MSurman
+            left: -12px;
+            top: 6px;
+            transform: rotate(-3deg);
+        }
+
+        .shot-two { // Mitchell
+            left: 225px;
+            top: -3px;
+            transform: rotate(5deg);
+        }
+
+        .shot-three { // CBeard
+            left: 485px;
+            top: 9px;
+            transform: rotate(-6deg);
+        }
+    }
+
+    @media @mq-desktop {
+        height: 500px;
+        margin-left: -(@width-desktop / 2);
+        width: @width-desktop;
+
+        .shot-one {
+            left: 120px;
+            top: 96px;
+        }
+
+        .shot-two {
+            left: 375px;
+            top: 103px;
+        }
+
+        .shot-three {
+            left: 635px;
+            top: 90px;
+        }
+    }
+
+    @media @mq-desktop-wide {
+        margin-left: -(@width-desktop-wide / 2);
+        width: @width-desktop-wide;
+
+        .shot-one {
+            left: 320px;
+            top: 96px;
+        }
+
+        .shot-two {
+            left: 575px;
+            top: 103px;
+        }
+
+        .shot-three {
+            left: 835px;
+            top: 90px;
+        }
+    }
+}
+
+
+// Simulate a developing Polaroid
+@supports (animation-name: develop) and (filter: invert(40%)) {
+    .foreground .snap img {
+        opacity: .1;
+        .animation(develop 2500ms ease-in forwards);
+        filter: invert(40%) sepia(80%);
+    }
+
+    .foreground .shot-one img {
+        animation-delay: 2600ms;
+    }
+
+    .foreground .shot-two img {
+        animation-delay: 1800ms;
+    }
+
+    .foreground .shot-three img {
+        animation-delay: 3200ms;
+    }
+
+    @keyframes develop {
+        0%   { filter: invert(40%) sepia(100%); opacity: .1; }
+        25%  { filter: invert(20%) sepia(90%); opacity: .25; }
+        50%  { filter: invert(10%) sepia(80%); opacity: .5; }
+        75%  { filter: invert(0) sepia(60%); opacity: .75; }
+        85%  { filter: invert(0) sepia(40%); opacity: .85; }
+        100% { filter: invert(0) sepia(0); opacity: 1; }
+    }
+
+}
+
+
+// Background layer of snapshots
+.background {
+    display: none; // hidden on small screens
+
+    @media @mq-desktop {
+        display: block;
+        height: 500px;
+        left: 50%;
+        margin-left: -(@width-desktop / 2);
+        position: absolute;
+        width: @width-desktop;
+        z-index: 1;
+
+        .shot-four { // Jascha
+            left: -95px;
+            top: 205px;
+            transform: rotate(-23deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-jkaykaswolff.jpg');
+            }
+        }
+
+        .shot-five { // Nick
+            bottom: -140px;
+            left: -90px;
+            transform: rotate(15deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-nnguyen.jpg');
+            }
+        }
+
+        .shot-six { // MEM
+            left: 165px;
+            top: -50px;
+            transform: rotate(23deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-mmuckerman.jpg');
+            }
+        }
+
+        .shot-seven { // MMayo
+            right: -95px;
+            top: -55px;
+            transform: rotate(17deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-mmayo.jpg');
+            }
+        }
+
+        .shot-eight { // DBryant, Ari, CLawrence
+            right: 255px;
+            top: -70px;
+            transform: rotate(-11deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-dbryant-ajaaksi-clawrence.jpg');
+            }
+        }
+
+        .shot-nine { // EKR
+            bottom: -88px;
+            right: -136px;
+            transform: rotate(31deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-ekr.jpg');
+            }
+        }
+
+        .shot-ten { // Katharina
+            bottom: -118px;
+            right: 55px;
+            transform: rotate(-30deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-kborchert.jpg');
+            }
+        }
+
+        .shot-eleven { // Susan
+            bottom: -135px;
+            left: 240px;
+            transform: rotate(40deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-schen.jpg');
+            }
+        }
+
+        .shot-twelve { // Allison and Slater
+            left: -170px;
+            top: -56px;
+            transform: rotate(-45deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-abanks-dslater.jpg');
+            }
+        }
+
+        .shot-thirteen { // Mozillians
+            bottom: -35px;
+            left: -425px;
+            transform: rotate(39deg);
+
+            span {
+                background-image: url('/media/img/mozorg/about/leadership/header/snap-community.jpg');
+            }
+        }
+    }
+
+    @media @mq-desktop-wide {
+        margin-left: -(@width-desktop-wide / 2);
+        width: @width-desktop-wide;
+
+        .shot-four {
+            left: 105px;
+            top: 105px;
+        }
+
+        .shot-five {
+            left: 40px;
+        }
+
+        .shot-six {
+            left: 365px;
+        }
+
+        .shot-seven {
+            right: -35px;
+            top: -45px;
+        }
+
+        .shot-eight {
+            right: 255px;
+        }
+
+        .shot-nine {
+            right: -66px;
+        }
+
+        .shot-ten {
+            right: 255px;
+        }
+
+        .shot-eleven {
+            left: 440px;
+        }
+
+        .shot-twelve {
+            left: -72px;
+        }
+
+        .shot-thirteen {
+            left: -325px;
+        }
+    }
+
+    @media @mq-highres {
+        .shot-four span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-jkaykaswolff-high-res.jpg');
+        }
+
+        .shot-five span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-nnguyen-high-res.jpg');
+        }
+
+        .shot-six span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-mmuckerman-high-res.jpg');
+        }
+
+        .shot-seven span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-mmayo-high-res.jpg');
+        }
+
+        .shot-eight span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-dbryant-ajaaksi-clawrence-high-res.jpg');
+        }
+
+        .shot-nine span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-ekr-high-res.jpg');
+        }
+
+        .shot-ten span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-kborchert-high-res.jpg');
+        }
+
+        .shot-eleven span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-schen-high-res.jpg');
+        }
+
+        .shot-twelve span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-abanks-dslater-high-res.jpg');
+        }
+
+        .shot-thirteen span {
+            background-image: url('/media/img/mozorg/about/leadership/header/snap-community-high-res.jpg');
+        }
+
+    }
+
+}
+
+
+// Page header/intro, separate from the photo header above
+.page-header {
+    background: @color-mozgray;
+    color: #fff;
+    padding: 20px 0;
+}
+
+
+// Navigation
+#page-nav {
+    background: #eee;
+    margin: 20px auto -20px;
+
+    li {
+        border-bottom: 2px solid @color-mozgray;
+
+        &:last-child {
+            border: 0;
+        }
+    }
+
+    @media @mq-tablet {
+        float: left;
+
+        li {
+            display: inline-block;
+            border-bottom: 0;
+            border-right: 2px solid @color-mozgray;
+        }
+    }
+
+    a {
+        display: block;
+        padding: .5em 20px;
+        text-decoration: none;
+        color: @color-text-primary;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+            color: @color-link;
+        }
+    }
+}
+
+
+// Headings
+.page-title {
+    .font-size(38px);
+
+    @media @mq-tablet {
+        .font-size(50px);
+    }
+}
+
+.section-title {
+    .font-size(28px);
+    margin: .5em 0;
+
+    @media @mq-tablet {
+        .font-size(38px);
+    }
+}
+
+.section-intro {
+    .clearfix;
+    margin: 0 0 2em;
+}
+
+.group-title {
+    .font-size(22px);
+    margin: 0 0 1em;
+    padding-top: .75em;
+    border-top: 1px solid @color-mozred;
+
+    a {
+        text-decoration: none;
+        color: @color-text-secondary;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+            color: @color-link;
+        }
+    }
+
+    @media @mq-tablet {
+        .font-size(28px);
+    }
+}
+
+
+// Page sections for each major group (may contain sub-groups)
+.section-group {
+    background: #ddd;
+    border-bottom: 1px solid #ccc;
+
+    &:nth-child(odd) {
+        background: #eee;
+    }
+}
+
+
+// Headshot galleries
+.gallery {
+    .clearfix;
+    margin: 0 auto;
+
+    @media @mq-phone-wide {
+        width: @width-phone-wide;
+    }
+
+    @media @mq-tablet {
+        margin: 0 -10px;
+        width: auto;
+    }
+}
+
+.vcard {
+    width: 160px;
+    padding: 0 20px .25em;
+    margin: 0 auto 20px;
+    position: relative;
+
+    .headshot {
+        display: block;
+        padding: 20px 20px 10px;
+        background: #fff;
+        margin: 0 -20px 10px;
+        box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
+        color: @color-text-primary;
+        text-decoration: none;
+        text-align: center;
+        @transition: transform 200ms ease, box-shadow 200ms ease;
+        .transition(@transition);
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    .fn {
+        font-weight: bold;
+        .font-size(15px);
+    }
+
+    .photo {
+        margin: 0 0 5px;
+        width: 160px;
+        height: 160px;
+        outline: 1px solid rgba(0, 0, 0, .05);
+    }
+
+    .title,
+    .since,
+    .note,
+    .elsewhere,
+    .download {
+        .font-size(12px);
+    }
+
+    .title {
+        font-weight: bold;
+    }
+
+    .note {
+        color: @color-mozred;
+    }
+
+    .elsewhere,
+    .download {
+        margin-top: 1em;
+
+        a {
+            padding-left: 20px;
+            position: relative;
+
+            &:before {
+                color: @color-link;
+                font: 105% 'FA-Icons-Contact';
+                position: absolute;
+                left: 0;
+                top: .125em;
+            }
+        }
+
+        a.website:before { content: '\e803'; } /* '' */
+        a.twitter:before { content: '\e804'; } /* '' */
+        a.book:before { content: '\e80e'; } /* '' */
+        a.file:before { content: '\e810'; } /* '' */
+    }
+
+    .callout {
+        padding: 20px 20px 5px;
+        background: #efefef;
+        font-style: italic;
+    }
+
+    .elsewhere,
+    .person-bio,
+    .download {
+        .hidden;
+    }
+
+    a {
+        color: @color-text-primary;
+        text-decoration: none;
+
+        &:hover .fn,
+        &:focus .fn,
+        &:active .fn {
+            color: @color-link;
+            text-decoration: underline;
+        }
+    }
+
+    &.has-bio .since {
+        .hidden;
+    }
+
+    &.has-bio:hover,
+    &.has-bio:focus {
+        cursor: pointer;
+
+        .headshot {
+            transform: translate(0, -3px);
+            box-shadow: 2px 6px 5px rgba(0, 0, 0, .1);
+        }
+
+        .photo {
+            outline: 2px solid fadeout(@color-link, 50%);
+        }
+
+        .fn {
+            color: @color-link;
+            text-decoration: underline;
+        }
+    }
+
+    @media @mq-phone-wide {
+        float: left;
+        margin: 0 10px 20px;
+
+        &:nth-child(odd) {
+            clear: left;
+        }
+    }
+
+    @media @mq-tablet {
+        &:nth-child(odd) {
+            clear: none;
+        }
+
+        &:nth-child(3n+1) {
+            clear: left;
+        }
+    }
+
+    @media @mq-desktop {
+        &:nth-child(odd),
+        &:nth-child(3n+1) {
+            clear: none;
+        }
+
+        &:nth-child(4n+1) {
+            clear: left;
+        }
+    }
+
+    @media @mq-desktop-wide {
+        &:nth-child(odd),
+        &:nth-child(3n+1),
+        &:nth-child(4n+1) {
+            clear: none;
+        }
+
+        &:nth-child(6n+1) {
+            clear: left;
+        }
+    }
+}
+
+
+// Show the bios when JS fails.
+// Not every person has a bio, so these get some special treatment.
+.no-js .vcard.has-bio {
+    border-bottom: 1px solid #ccc;
+    cursor: auto;
+    float: none;
+    margin: 0 0 40px;
+    padding: 0 10px 40px;
+    width: auto;
+
+    .elsewhere,
+    .person-bio,
+    .download {
+        display: block;
+    }
+
+    .headshot {
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        cursor: auto;
+    }
+
+    &:hover .headshot {
+        box-shadow: none;
+        transform: none;
+
+        .photo {
+            outline: 0;
+        }
+
+        .fn {
+            color: inherit;
+        }
+    }
+
+    .photo {
+        background: #fff;
+        box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
+        float: right;
+        margin: 0 0 30px 30px;
+        padding: 10px;
+        outline: 0;
+    }
+
+    .fn {
+        .font-size(24px);
+        text-align: left;
+    }
+
+    .title {
+        .font-size(16px);
+    }
+
+    .person-bio {
+        margin: 1em 0;
+
+        p {
+            margin: 0 0 1em;
+        }
+    }
+
+    a {
+        color: @color-link;
+        text-decoration: underline;
+    }
+}
+
+#modal {
+    .window {
+        margin: 0 auto;
+        max-width: @width-desktop;
+        min-width: @width-phone - 60px;
+        padding: 20px 40px;
+
+        .inner > header {
+            min-height: 40px;
+            padding: 10px 40px 10px 20px;
+
+            h1 {
+                .font-size(20px);
+                line-height: 1.3;
+                margin: 0;
+
+                @media @mq-tablet {
+                    .font-size(32px);
+                }
+            }
+        }
+    }
+
+    .vcard {
+        cursor: auto;
+        float: none;
+        min-height: 250px;
+        padding: 0;
+        width: auto;
+
+        &:hover,
+        &:focus {
+            cursor: auto;
+
+            .headshot {
+                transform: none;
+
+                .photo {
+                    outline: 1px solid rgba(0, 0, 0, .05);
+                }
+            }
+        }
+
+        a {
+            color: @color-link;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: darken(@color-link, 10%);
+                text-decoration: underline;
+            }
+        }
+
+        @media @mq-tablet {
+            padding: 0 20px;
+        }
+    }
+
+    .headshot {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+
+        .photo {
+            box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
+            float: none;
+            height: 160px;
+            margin: 0 auto 20px;
+            width: 160px;
+
+            @media @mq-phone-wide {
+                float: right;
+                margin: 0 0 2em 40px;
+            }
+
+            @media @mq-tablet {
+                float: right;
+                height: 250px;
+                margin: 0 0 2em 40px;
+                width: 250px;
+            }
+        }
+
+        .fn {
+            display: none;
+        }
+    }
+
+    .person-info {
+        margin: 0 0 2em;
+    }
+
+    .title {
+        .font-size(18px);
+        font-weight: bold;
+    }
+
+    .note {
+        color: @color-mozred;
+    }
+
+    .callout {
+        padding: 20px 20px 5px;
+        background: #efefef;
+        font-style: italic;
+    }
+
+    .elsewhere,
+    .download,
+    .person-bio {
+        display: block;
+    }
+
+    .person-bio p {
+        margin: 0 0 1em;
+    }
+
+    .next,
+    .prev {
+        .image-replaced;
+        .transition(background-position 150ms ease);
+        border: 0;
+        cursor: pointer;
+        display: block;
+        height: 40px;
+        position: absolute;
+        top: 250px;
+        width: 30px;
+        -moz-appearance: none;
+
+        &:hover,
+        &:focus {
+            background-position: center center;
+        }
+    }
+
+    .next {
+        right: -40px;
+        background: transparent url('/media/img/mozid/modal-right.svg') left center no-repeat;
+    }
+
+    .prev {
+        left: -40px;
+        background: transparent url('/media/img/mozid/modal-left.svg') right center no-repeat;
+    }
+
+}

@@ -22,6 +22,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/about-base-bundle.css',
     },
+    'about-leadership': {
+        'source_filenames': (
+            'css/newsletter/moznewsletter-subscribe.less',
+            'css/mozorg/leadership.less',
+        ),
+        'output_filename': 'css/about-leadership-bundle.css',
+    },
     'credits-faq': {
         'source_filenames': (
             'css/mozorg/credits-faq.less',
@@ -1040,6 +1047,13 @@ PIPELINE_JS = {
             'js/mozorg/about-transparency.js',
         ),
         'output_filename': 'js/about-transparency-bundle.js',
+    },
+    'about-leadership': {
+        'source_filenames': (
+            'js/base/mozilla-modal.js',
+            'js/mozorg/about-leadership.js',
+        ),
+        'output_filename': 'js/about-leadership-bundle.js',
     },
     'dnt': {
         'source_filenames': (
