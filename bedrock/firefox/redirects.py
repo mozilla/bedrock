@@ -122,9 +122,6 @@ redirectpatterns = (
     redirect(r'^seamonkey-transition\.html$',
              'http://www-archive.mozilla.org/seamonkey-transition.html'),
 
-    # bug 1121082
-    redirect(r'^hello/?$', 'firefox.hello'),
-
     # Bug 1186373
     redirect(r'^firefox/hello/npssurvey/?$',
              'https://www.surveygizmo.com/s3/2227372/Firefox-Hello-Product-Survey',
@@ -502,9 +499,6 @@ redirectpatterns = (
     # bug 1260423
     redirect(r'^firefox/choose/?$', 'firefox.new'),
 
-    # bug 1273837
-    redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/hello/start/?$', 'firefox.hello'),
-
     # bug 1283397
     redirect(r'^firefox/pocket/?$', 'https://getpocket.com/firefox/'),
 
@@ -515,4 +509,9 @@ redirectpatterns = (
     # bug 1293539
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/tour/?$',
              'https://support.mozilla.org/kb/get-started-firefox-overview-main-features'),
+
+    # bug 1295332
+    redirect(r'^hello/?$', 'https://support.mozilla.org/kb/hello-status'),
+    redirect(r'^firefox/hello/?$', 'https://support.mozilla.org/kb/hello-status'),
+    redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/hello/start/?$', 'https://support.mozilla.org/kb/hello-status'),
 )

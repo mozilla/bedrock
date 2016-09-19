@@ -283,8 +283,10 @@ URLS = flatten((
     url_test('/thunderbird/about/{board,press,staff}/',
              'http://website-archive.mozilla.org/www.mozilla.org/thunderbird/thunderbird/about/{board,press,staff}/'),
 
-    # bug 1121082
-    url_test('/hello/', '/firefox/hello/'),
+    # bug 1295332
+    url_test('/hello/', 'https://support.mozilla.org/kb/hello-status'),
+    url_test('/firefox/hello/start', 'https://support.mozilla.org/kb/hello-status'),
+    url_test('/firefox/{46.0,46.0.1,46.0a1,46.0a2}/hello/start', 'https://support.mozilla.org/kb/hello-status'),
 
     # bug 1148127
     url_test('/products/', '/firefox/products/'),
@@ -1067,10 +1069,6 @@ URLS = flatten((
 
     # Bug 1260423
     url_test('/firefox/choose', '/firefox/new/'),
-
-    # Bug 1273837
-    url_test('/firefox/{46.0,46.0.1,46.0a1,46.0a2}/hello/start', '/firefox/hello/'),
-    url_test('/firefox/hello/start', '/firefox/hello/'),
 
     # Bug 1283397
     url_test('/firefox/pocket', 'https://getpocket.com/firefox/'),
