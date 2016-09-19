@@ -327,7 +327,7 @@ MIDDLEWARE_CLASSES = [
     'dnt.middleware.DoNotTrackMiddleware',
 ]
 
-ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default=False, cast=bool)
+ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default=True, cast=bool)
 if ENABLE_CSP_MIDDLEWARE:
     MIDDLEWARE_CLASSES.append('csp.middleware.CSPMiddleware')
 
@@ -1127,7 +1127,7 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
     'api.mapbox.com',
 )
 CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default=False, cast=bool)
-CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default=True, cast=bool)
+CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default=False, cast=bool)
 if CSP_REPORT_ENABLE:
     CSP_REPORT_URI = config('CSP_REPORT_URI', default='/csp-violation-capture')
 
