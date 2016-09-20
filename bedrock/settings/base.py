@@ -421,7 +421,8 @@ DISABLE_SSL = config('DISABLE_SSL', default=True, cast=bool)
 # SecurityMiddleware settings
 SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default='0', cast=int)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=False, cast=bool)
+SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=True, cast=bool)
+SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
 SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=not DISABLE_SSL, cast=bool)
 SECURE_REDIRECT_EXEMPT = [
     r'^healthz/$',
