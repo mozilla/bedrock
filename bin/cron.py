@@ -89,6 +89,7 @@ def update_security_advisories():
 
 
 @scheduled_job('interval', minutes=5)
+@ping_dms
 def rnasync():
     # running in a subprocess as rnasync was not designed for long-running process
     call_command('rnasync')
