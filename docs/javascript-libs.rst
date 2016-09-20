@@ -8,7 +8,17 @@
 JavaScript Libraries
 ====================
 
-.. _with mozillapager:
+Mozilla Pager
+-------------
 
-- :ref:`mozilla-pager.js<mozillapager>`
-- :ref:`mozilla-accordion.js<mozillaaccordion>`
+:ref:`mozilla-pager.js<mozillapager>`
+
+Mozilla Accordion
+-----------------
+
+:ref:`mozilla-accordion.js<mozillaaccordion>`
+
+Mozilla Traffic Cop
+-------------------
+
+:ref:`mozilla-traffic-cop.js<mozillatrafficcop>`
