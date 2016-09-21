@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 from django.core.cache import cache
 from django.conf import settings
 from django.db.utils import DatabaseError
@@ -16,32 +14,10 @@ from lib.l10n_utils import get_locale
 
 def android_builds(channel, builds=None):
     builds = builds or []
-    variations = OrderedDict([
-        ('api-9', 'Gingerbread'),
-        ('api-15', 'Ice Cream Sandwich+'),
-        ('x86', 'x86'),
-    ])
-
-    if channel == 'alpha':
-        version = int(firefox_android.latest_version('alpha').split('.', 1)[0])
-
-        for type, arch_pretty in variations.iteritems():
-            # Android Gingerbread (2.3) is no longer supported as of Firefox 48
-            if version >= 48 and type == 'api-9':
-                continue
-
-            link = firefox_android.get_download_url('alpha', type)
-            builds.append({'os': 'android',
-                           'os_pretty': 'Android',
-                           'os_arch_pretty': 'Android %s' % arch_pretty,
-                           'arch': 'x86' if type == 'x86' else 'armv7up %s' % type,
-                           'arch_pretty': arch_pretty,
-                           'download_link': link})
-    else:
-        link = firefox_android.get_download_url(channel)
-        builds.append({'os': 'android',
-                       'os_pretty': 'Android',
-                       'download_link': link})
+    link = firefox_android.get_download_url(channel)
+    builds.append({'os': 'android',
+                   'os_pretty': 'Android',
+                   'download_link': link})
 
     return builds
 
