@@ -339,12 +339,18 @@ class FirstrunView(LatestFxView):
         return ctx
 
     def get_template_names(self):
+        funnelcake = self.request.GET.get('f', '')
+        locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
 
         if detect_channel(version) == 'alpha':
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
-            template = 'firefox/firstrun/firstrun-horizon.html'
+            if locale == 'en-US' and funnelcake == '89':
+                # ravioli/katie couric promo
+                template = 'firefox/firstrun/ravioli.html'
+            else:
+                template = 'firefox/firstrun/firstrun-horizon.html'
         elif show_38_0_5_firstrun(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         else:

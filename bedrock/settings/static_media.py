@@ -357,6 +357,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun_learnmore_yahoo_search-bundle.css',
     },
+    'firefox_firstrun_ravioli': {
+        'source_filenames': (
+            'css/firefox/firstrun/ravioli.less',
+        ),
+        'output_filename': 'css/firefox_firstrun_ravioli-bundle.css',
+    },
     'firefox_feedback': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
