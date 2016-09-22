@@ -1,8 +1,12 @@
+from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save
 from django.db.utils import DatabaseError
 from django.dispatch import receiver
+from django.utils.html import strip_tags
+
+from jinja2 import Markup
 
 from picklefield import PickledObjectField
 from django_extensions.db.fields import ModificationDateTimeField
@@ -89,3 +93,34 @@ class ContributorActivity(models.Model):
         unique_together = ('date', 'source_name', 'team_name')
         get_latest_by = 'date'
         ordering = ['-date']
+
+
+class BlogArticle(models.Model):
+    blog_slug = models.CharField(max_length=30)
+    blog_name = models.CharField(max_length=50)
+    published = models.DateTimeField()
+    updated = models.DateTimeField()
+    title = models.CharField(max_length=255)
+    summary = models.TextField()
+    link = models.URLField()
+
+    class Meta:
+        get_latest_by = 'published'
+        ordering = ['-published']
+
+    def __unicode__(self):
+        return '%s: %s' % (self.blog_name, self.title)
+
+    def get_absolute_url(self):
+        return self.link
+
+    def htmlify(self):
+        summary = strip_tags(self.summary).strip()
+        if summary.lower().endswith('continue reading'):
+            summary = summary[:-16]
+
+        return Markup(summary)
+
+    @property
+    def blog_link(self):
+        return settings.BLOG_FEEDS[self.blog_slug]['url']

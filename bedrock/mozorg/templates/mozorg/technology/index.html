@@ -224,6 +224,7 @@
   </section>
   {% endblock %}
 
+  {% if articles %}
   <section id="blogs">
     <div class="container">
       <header>
@@ -231,25 +232,20 @@
         <p>{{ _('Read the latest from Mozilla’s technology blogs.') }}</p>
       </header>
       <ul>
-        <li>
-          <article>
-            <h3><a rel="external" href="#">The Project SensorWeb Poster Experiment</a></h3>
-            <p class="meta">Connected Devices <time datetime="2016-08-26">August 26, 2016</time></p>
-            <p>The Project SensorWeb team is on a mission help people leverage the Web to bring open transparency to the physical world around us. Open data, Open platform, Open web...</p>
-            <a rel="external" class="continue" href="#">{{ _('Continue reading') }}</a>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3><a rel="external" href="#">View Source Conference Berlin 2016</a></h3>
-            <p class="meta">Hacks <time datetime="2016-08-26">August 26, 2016</time></p>
-            <p>View Source is an intimate, single-track conference for web developers, now in its second year. View Source 2016 takes place in Berlin, Germany, September 12-14, beginning with Ignite lightning...</p>
-            <a rel="external" class="continue" href="#">{{ _('Continue reading') }}</a>
-          </article>
-        </li>
+        {% for article in articles %}
+          <li>
+            <article>
+              <h3><a rel="external" href="{{ article.link }}">{{ article.title }}</a></h3>
+              <p class="meta"><a href="{{ article.blog_link }}">{{ article.blog_name }}</a> <time datetime="{{ article.published }}">{{ article.published|l10n_format_date }}</time></p>
+              <p>{{ article.htmlify() }}</p>
+              <a rel="external" class="continue" href="{{ article.link }}">{{ _('Continue reading') }}</a>
+            </article>
+          </li>
+        {% endfor %}
       </ul>
     </div>
   </section>
+  {% endif %}
 
 </main>
 {% endblock %}
