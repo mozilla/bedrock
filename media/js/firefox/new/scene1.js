@@ -66,14 +66,6 @@
                             callbackID: uiTourWaitForCallback(showRefreshButton),
                             configuration: 'canReset'
                         });
-
-                        // show survey to up-to-date Firefox users (bug 1290996).
-                        var $survey = $('#survey-message');
-
-                        $survey.addClass('show');
-                        setTimeout(function() {
-                            $survey.addClass('animate');
-                        }, 500);
                     }
                 });
             }
