@@ -1,0 +1,87 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "foundation/base-resp.html" %}
+
+{% block page_title %}{{ _('Mozilla\'s Key Internet Issues') }}{% endblock %}
+
+{% set body_id = "issues" %}
+
+{% block article_title %}
+  {{ _('Mozilla\'s Issues Platform') }}
+{% endblock %}
+
+{% block article_subtitle %}
+  {{ _('Shaping the Agenda') }}
+{% endblock %}
+
+{% block article %}
+  <p>
+    {% trans %}
+      Mozilla has identified five issues that we believe must be tackled in the current era, to build the open internet we want:
+    {% endtrans %}
+  </p>
+
+  <table class="mobile-list-table">
+    <thead>
+      <tr>
+        <td>{{_('Issue')}}</td>
+        <td>{{_('Mozilla\'s Goal')}}</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{_('Online Privacy & Security')}}</td>
+        <td>
+          {% trans %}
+            People understand and can meaningfully control how their data is collected and used online, and trust that it’s safe. In parallel, companies and governments work to protect our data and enhance our ownership over our digital identities.
+          {% endtrans %}
+        </td>
+      </tr>
+      <tr>
+        <td>{{_('Open Innovation')}}</td>
+        <td>
+          {% trans %}
+            Open is the default: open source and open standards continue to be at the heart of the Internet, and influence organizations and industries products, policies and practices. As a result, entrepreneurs and everyday Internet users can create, innovate and compete online without asking permission.
+          {% endtrans %}
+        </td>
+      </tr>
+      <tr>
+        <td>{{_('Decentralization')}}</td>
+        <td>
+          {% trans %}
+            The technologies and platforms people use every day are interoperable and based on open standards. People expect and demand systems that allow seamless flow and transfer of information and content.
+          {% endtrans %}
+        </td>
+      </tr>
+      <tr>
+        <td>{{_('Web Literacy')}}</td>
+        <td>
+          {% trans %}
+            People have the skills to read, write and participate in the digital world. Together, these informed digital citizens move beyond just consuming content, to creating, shaping and defending the web.
+          {% endtrans %}
+        </td>
+      </tr>
+      <tr>
+        <td>{{_('Digital Inclusion')}}</td>
+        <td>
+          {% trans %}
+            People everywhere can access and have the opportunity to participate in building the entire Internet. Subsequently, everyone on the Internet has the opportunity to access and shape our digital world. The Internet reflects the diversity of the people who use it.
+          {% endtrans %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    {% trans %}
+      Mozilla and our allies will bring these issues front-and-center by being an increasingly visible public voice, weaving these issues throughout our leadership and advocacy work, and building technologies that take a stance.
+    {% endtrans %}
+  </p>
+
+   <p>
+    <a href="https://mzl.la/foundation-strategy" class="read-strategy">{{ _('Read the Mozilla Foundation’s 2016-2018 Strategy') }}</a>
+  </p>
+
+{% endblock %}
