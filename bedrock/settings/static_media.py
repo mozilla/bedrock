@@ -75,6 +75,7 @@ PIPELINE_CSS = {
     },
     'foundation': {
         'source_filenames': (
+            'css/newsletter/moznewsletter-subscribe.less',
             'css/foundation/foundation.less',
         ),
         'output_filename': 'css/foundation-bundle.css',

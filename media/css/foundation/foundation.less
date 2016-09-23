@@ -2,258 +2,345 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+// Copied and pasted from about.less September 23, 2016, then fine tuned
+
 @import "../sandstone/lib.less";
 
 #tabzilla:before {
-  background-color: @textColorSecondary;
+    background-color: @textColorSecondary;
 }
 
-.page-title {
-  margin: 0 @gridGutterWidth/2 .5em;
-  h2 {
-    margin-bottom: 1em;
-  }
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-#main-content {
-  div.img-right,
-  div.img-center,
-  div.img-left {
-    font-style: italic;
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 10px;
-    background: #fff;
-    -moz-box-shadow: 0 2px rgba(0, 0, 0, 0.05), 0 -2px rgba(0, 0, 0, 0.05) inset;
-    -webkit-box-shadow: 0 2px rgba(0, 0, 0, 0.05), 0 -2px rgba(0, 0, 0, 0.05) inset;
-    box-shadow: 0 2px rgba(0, 0, 0, 0.05), 0 -2px rgba(0, 0, 0, 0.05) inset;
-    p {
-      margin: 0;
-    }
-  }
-  div.img-right {
-    float: right;
-    margin-left: 15px;
-  }
-  div.img-left {
-    float: left;
-    margin-right: 15px;
-  }
-  div.img-center {
-    clear: both;
-    margin: 0 auto 1.5em;
-  }
-}
-
-video,
-object,
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-a.go {
-  .trailing-arrow;
-}
-
-#video-description,
-.video-description {
-  margin: 1em @gridGutterWidth 1.5em;
-  h3 {
-    .font-size(20px);
-    letter-spacing: normal;
-  }
-  h4 {
-    .font-size(@largeFontSize);
-    letter-spacing: normal;
-  }
-  .download {
-    margin: 0 0 .5em;
-    .font-size(@smallFontSize);
-  }
-}
-
-.timestamp {
-  .font-size(20px);
-  letter-spacing: normal;
-}
-
-.nav-paging {
-  clear: both;
-  list-style: none;
-  .font-size(@largeFontSize);
-  font-style: italic;
-  margin: 15px 0;
-  padding: 0;
-  overflow: hidden;
-  li {
-    margin: 0;
-  }
-}
-
-.nav-paging .prev {
-  float: left;
-  width: 45%;
-  text-align: left;
-}
-
-.nav-paging .prev a:before {
-  .font-size(24px);
-  content: "\00AB\00A0";
-}
-
-.nav-paging .next {
-  float: right;
-  width: 45%;
-  text-align: right;
-}
-
-.nav-paging .next a:after {
-  .font-size(24px);
-  content: "\00A0\00BB";
-}
-
-.return-to-top {
-  .font-size(@smallFontSize);
-}
-
-.trademarks {
-  table#logos {
+#wrapper {
     width: 100%;
-    margin-bottom: 3em;
-    td, th {
-      padding: 15px;
-      border-bottom: 1px solid @borderColor;
-    }
-    td {
-      width: 120px;
-      text-align: center;
-      span {
-          .font-size(1.2rem);
-      }
-    }
-    th {
-      text-align: left;
-      font-weight: normal;
-    }
-  }
 }
 
-/* Q and A (FAQ) */
-.qandaset .question {
-  .font-size(large);
-  font-weight: bold;
+.read-strategy {
+    display: block;
+    background: #f5f5f5;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    .trailing-arrow;
 }
 
-.qandaset .answer {
-  margin-top: 1em;
+#masthead,
+.billboard,
+.content {
+    width: @widthDesktop - (@gridGutterWidth * 2);
+    margin-left: auto;
+    margin-right: auto;
 }
+
+.page-header {
+    background: url('/media/img/foundation/banner/foundation_hero-image-small.jpg') center bottom no-repeat;
+    .background-size(cover);
+    padding-top: 300px;
+
+    @media only screen and (min-width: @breakDesktop) {
+        background-image: url('/media/img/foundation/banner/foundation_hero-image-large.jpg');
+    }
+
+    @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+        background-image: url('/media/img/foundation/banner/foundation_hero-image-medium.jpg');
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding-top: 150px;
+        background-image: url('/media/img/foundation/banner/foundation_hero-image-small.jpg');
+    }
+
+    @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+        background-image: url('/media/img/foundation/banner/foundation_hero-image-medium.jpg');
+    }
+
+    h1 {
+        background: @mozillaRed;
+        color: #fff;
+        margin-bottom: 0;
+        padding: .35em 0;
+        text-shadow: none;
+    }
+
+    .content {
+        .border-box;
+        display: block;
+        padding: 0 10px;
+    }
+}
+
+.content-main {
+    .box-shadow(0 0 0 1px #fff inset);
+    .clearfix;
+    .open-sans;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    display: block;
+    padding: 40px @gridGutterWidth;
+    position: relative;
+
+    .main-column {
+        .span(8);
+    }
+
+    .sidebar {
+        .offset(1);
+    }
+
+    li + li {
+        margin-top: 1em;
+    }
+
+    .sidebar li {
+        padding: 0.5em 0;
+    }
+
+    li > ul {
+        margin-bottom: @baseLine;
+        margin-top: 1em;
+    }
+
+}
+
+.section-header {
+    .open-sans-light;
+    h2 {
+        .font-size(40px);
+    }
+    p{
+        .font-size(26px);
+        line-height: 1.2;
+    }
+    h2:empty, p:empty {
+        display: none;
+    }
+    h2:not(:empty) + p:not(:empty){
+        padding-bottom: 1em;
+        background: url(/media/img/mission/thin-stripe.png) center bottom repeat-x
+    }
+}
+
+.programs {
+    display: flex;
+    flex-wrap: wrap;
+}
+.program-column {
+    .border-box;
+    padding: 0.5em;
+    flex-basis: 33%;
+    flex-grow: 1;
+    min-width: 14em;
+    li + li{
+        margin-top: 0;
+    }
+    h4 {
+        .font-size(22px);
+        background: url(/media/img/mission/thin-stripe.png) center top repeat-x;
+        padding-top: 1em;
+        .trailing-arrow;
+    }
+}
+
+.issues-list {
+    dt {
+        .font-size(16px);
+        font-weight: bold;
+        margin-bottom: 0.25em;
+    }
+    dd {
+        margin-bottom: 1em;
+    }
+    margin-bottom: 2.5em;
+}
+
+
+html[dir="rtl"] {
+    .content-main .intro {
+        float: right;
+    }
+}
+
+// Newsletter form
+#newsletter-subscribe {
+    background: transparent none;
+    color: @textColorPrimary;
+    margin-top: 0;
+
+    .form-title {
+        background: transparent none;
+        position: relative;
+        text-align: center;
+
+        h3 {
+            .font-size(28px);
+            color: @mozillaRed;
+            font-weight: bold;
+            line-height: 1.25;
+        }
+
+        h4 {
+            .font-size(18px);
+            .open-sans;
+            color: @textColorSecondary;
+            line-height: 1.25;
+        }
+
+        &:before {
+            background: @mozillaRed url('/media/img/newsletter/mozorg-newsletter.svg') center center no-repeat;
+            .background-size(100px, 100px);
+            border-radius: 100%;
+            content: '';
+            display: block;
+            height: 150px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 150px;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+
+    a:hover,
+    a:focus {
+        color: @linkBlueHover;
+    }
+
+    input[type='email'] {
+        border: 1px solid @borderColor;
+    }
+
+    #newsletter-form-thankyou {
+        color: @textColorPrimary;
+
+        h3 {
+            color: @textColorPrimary;
+        }
+    }
+}
+
+
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
 
-  #masthead,
-  #main-content,
-  .billboard {
-    width: @widthTablet - (@gridGutterWidth * 2);
-  }
-
-  #main-content {
-    .intro {
-      .span_narrow(4);
-      .font-size(22px);
+    #masthead,
+    .content,
+    .billboard {
+        width: @widthTablet - (@gridGutterWidth * 2);
     }
 
-    ul.links {
-      .span_narrow(4);
-      h4 {
-        .font-size(20px);
-      }
+    .page-header {
+        background-image: url('/media/img/foundation/banner/foundation_hero-image-medium.jpg');
     }
 
-  }
+    .content-main {
+        .main-column {
+            .span_narrow(8);
+        }
 
+        .sidebar {
+            .offset_narrow(1);
+        }
+
+        .video {
+            .span_narrow(6);
+            margin-bottom: @baseLine;
+        }
+
+        .intro {
+            .span_narrow(6);
+            .font-size(22px);
+        }
+
+    }
+
+    #newsletter-subscribe .form-title {
+        h3 {
+            .font-size(24px);
+        }
+
+        h4 {
+            .font-size(16px);
+        }
+
+        &:before {
+            width: 120px;
+            height: 120px;
+            .background-size(80px, 80px);
+        }
+    }
 }
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
 
-  #masthead,
-  #main-content,
-  .billboard {
-    width: @widthMobile - (@gridGutterWidth * 2);
-  }
-
-  .billboard {
-    padding-left: @gridGutterWidth;
-    padding-right: @gridGutterWidth;
-  }
-
-  #main-content {
-    margin-bottom: @baseLine;
-
-    .title-banner {
-      width: 240px;
-      .font-size(28px);
-      letter-spacing: -.5px;
-      margin: -25px 0 @baseLine;
+    #masthead,
+    .content,
+    .billboard {
+        width: 96%;
+        padding-left: 2%;
+        padding-right: 2%;
     }
 
-    .title-banner:after {
-      display: none;
+    .billboard {
+        padding-left: @gridGutterWidth;
+        padding-right: @gridGutterWidth;
     }
 
-    .intro {
-      width: auto;
-      .font-size(1em);
-      margin-bottom: @baseLine;
+    .content-main {
+        margin-bottom: @baseLine;
+
+        .main-column,
+        .sidebar {
+            .span-all();
+        }
+
+        .video {
+            width: 100%;
+            margin: 0;
+        }
+
+        .intro {
+            width: auto;
+            .font-size(16px);
+            margin-bottom: @baseLine;
+        }
+
     }
 
-    ul.links {
-      width: auto;
-      margin-bottom: 0;
-      li {
-        min-height: 0;
-      }
-    }
+    #newsletter-subscribe .form-title {
+        padding-top: 150px;
 
-  }
+        &:before {
+            left: 50%;
+            top: -20px;
+            margin-left: -75px;
+        }
+    }
 
 }
 
 /* Wide mobile layout: 480px; */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
 
-  #masthead,
-  #main-content,
-  .billboard {
-    width: @widthMobileLandscape - @gridGutterWidth;
-  }
-
-  #main-content {
-    .title-banner {
-      width: 380px;
-      margin: -25px 0 40px;
+    #masthead,
+    .content,
+    .billboard {
+        width: @widthMobileLandscape - @gridGutterWidth;
     }
 
-    .title-banner:after {
-      display: block;
+    .content-main {
+        .video {
+            width: 100%;
+            margin: 0;
+        }
+
+        .intro {
+            width: auto;
+        }
+
     }
-
-    .intro {
-      .span_narrow(3);
-    }
-
-    ul.links {
-      .span_narrow(4);
-      float: right;
-      clear: right;
-    }
-
-  }
-
 }
