@@ -58,6 +58,8 @@ django-filter==0.11.0 \
     --hash=sha256:00cc47935afbbd83260fdd283b0aa790e658d2a71922049f6e467dca8a124537
 https://github.com/html5lib/html5lib-python/archive/3b3c1031b3dadf5369af83253fff2a2e6aa42dfd.tar.gz#egg=html5lib \
     --hash=sha256:3346704459d10b377e8b65c2d1dc5199d1d7879881c674abd2cf2f06fb62782f
+https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1844bcb43.tar.gz#egg=feedparser \
+    --hash=sha256:70a0535bc9252a01f062713af800658a21eee34e5474b2823ea706eda222a26f
 https://github.com/tweepy/tweepy/archive/3941489457db86710b770bc120409d6947904afa.tar.gz#egg=tweepy \
     --hash=sha256:a9b7728d94beeba624fae4be378542a222cf1c5cf845b916ba9a8b3f8f9e4559
 django-extensions==1.5.3 \
@@ -128,7 +130,3 @@ contextlib2==0.5.4 \
 django_csp==3.0 \
     --hash=sha256:e6e627955651235852508f98238f3f04c7ab9a77b625a6bd101cd0cf1a1e3419 \
     --hash=sha256:e44479be426ffd5371b7522f43f8c32f8597a5003c236f31bb98ff4497a20a21
-feedparser==5.2.1 \
-    --hash=sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02 \
-    --hash=sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9 \
-    --hash=sha256:cd2485472e41471632ed3029d44033ee420ad0b57111db95c240c9160a85831c
