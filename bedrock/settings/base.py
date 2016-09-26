@@ -1102,6 +1102,7 @@ CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
     'optimizely.s3.amazonaws.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
+    'tagmanager.google.com',
     'www.youtube.com',
     's.ytimg.com',
 )
