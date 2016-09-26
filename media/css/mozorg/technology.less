@@ -19,8 +19,8 @@ body {
 }
 
 .container {
-    width: @widthDesktop - (@baseLine * 2);
     padding: 0;
+    width: @widthDesktop - (@baseLine * 2);
 
     @media only screen and (max-width: @breakDesktop) {
         width: @widthTablet - (@gridGutterWidth * 2);
@@ -45,6 +45,9 @@ main {
         color: #56565a;
     }
 }
+
+/*--------------------------------------------------------------------------*/
+// Page masthead
 
 #masthead {
     background: #d93a33;
@@ -72,9 +75,6 @@ main {
 
     nav {
         margin: 0;
-    }
-
-    nav {
         padding: 15px 0;
 
         ul > li {
@@ -84,8 +84,8 @@ main {
             a:link,
             a:visited {
                 border-left: 1px solid #fff;
-                padding: 0 12px;
                 color: #fff;
+                padding: 0 12px;
             }
 
             &.first > a {
@@ -139,13 +139,21 @@ main {
             }
         }
 
+        #nav-main-menu {
+            margin: 20px 0 0;
+
+            &:before {
+                left: 12px;
+            }
+        }
+
         .masthead-logo {
             float: none;
             left: 0;
+            padding: 10px 0 0;
             position: absolute;
             top: 0;
             width: 100%;
-            padding: 10px 0 0;
         }
 
         .download-button {
@@ -158,8 +166,8 @@ main {
     .toggle {
         background: #c13832 url('/media/img/mozorg/template/icon-menu.svg') center center no-repeat;
         .background-size(22px auto);
-        top: 0;
         height: 51px;
+        top: 0;
         width: 51px;
 
         &.open {
@@ -168,23 +176,26 @@ main {
     }
 }
 
+/*--------------------------------------------------------------------------*/
+// Main page header
+
 .main-heading-container {
     .background-size(cover);
     background-color: #ffdbc9;
     background-image: url('/media/img/mozorg/technology/vr-header.svg');
     background-position: top center;
     background-repeat: no-repeat;
+    margin-bottom: @baseLine * 2;
     min-height: 435px;
     padding: 120px 0 80px 0;
     position: relative;
-    margin-bottom: @baseLine * 2;
 
     .main-heading {
         background-color: #fff;
         background-color: rgba(255, 255, 255, .75);
+        margin-bottom: 80px;
         padding: 60px;
         text-align: center;
-
         // Chrome
         -webkit-clip-path: polygon(0 10%, 90% 0, 100% 94%, 10% 100%);
         // Firefox
@@ -268,18 +279,21 @@ main {
     }
 }
 
+/*--------------------------------------------------------------------------*/
+// Technologies section
+
 #technologies > section {
     position: relative;
     text-align: center;
 
     .container {
-        position: relative;
         min-height: 450px;
+        position: relative;
     }
 
     .inner-container {
-        width: 440px;
         padding-bottom: @baseLine * 3;
+        width: 440px;
     }
 
     &.odd .inner-container {
@@ -308,42 +322,41 @@ main {
     }
 
     footer {
-        background: #f0f0f2;
+        .clearfix;
         display: none;
 
         ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
+            position: relative;
 
             li {
                 .font-size(18px);
-                .inline-block;
                 margin: 0;
                 padding: @baseLine 0;
+                width: 50%;
 
-                &:after {
-                    color: #56565a;
-                    content: '|';
-                    margin: 0 10px;
+                &:first-child {
+                    float: left;
+                    text-align: right;
+
+                    a {
+                        border-right: 1px solid #fff;
+                    }
                 }
 
-                &:last-child:after {
-                    content: none;
+                &:last-child {
+                    float: right;
+                    text-align: left;
                 }
             }
         }
 
-
         a:link,
         a:visited {
-            color: @linkBlue;
-        }
-
-        a:hover,
-        a:active,
-        a:focus {
-            color: @linkBlueHover;
+            color: #fff;
+            padding: 0 15px;
         }
     }
 
@@ -395,18 +408,25 @@ main {
             .font-size(20px);
         }
 
-        footer ul {
-            padding-bottom: @baseLine;
+        footer ul li {
+            .font-size(@largeFontSize);
+            display: block;
+            padding: @baseLine 0;
+            width: 100%;
 
-            li {
-                .font-size(@largeFontSize);
-                display: block;
-                padding: @baseLine 0 0;
+            &:first-child {
+                float: none;
+                text-align: center;
+                border-bottom: 1px solid #fff;
 
-                &:after {
-                    content: none;
-                    margin: 0;
+                a {
+                    border-right: none;
                 }
+            }
+
+            &:last-child {
+                float: none;
+                text-align: center;
             }
         }
     }
@@ -431,6 +451,11 @@ main {
         background-image: url('/media/img/mozorg/technology/a-frame.svg');
         background-position: top left;
         background-repeat: no-repeat;
+    }
+
+    footer {
+        background: #00a199;
+        border-bottom: 2px solid #006c66;
     }
 
     @media only screen and (max-width: @breakDesktop) {
@@ -466,6 +491,11 @@ main {
         padding-top: @baseLine * 2;
     }
 
+    footer {
+        background: #00b4cc;
+        border-bottom: 2px solid #008799;
+    }
+
     &:after {
         background-image: url('/media/img/mozorg/technology/gaming-yeti.svg'),
                           url('/media/img/mozorg/technology/gaming-background.svg');
@@ -491,7 +521,7 @@ main {
     }
 
     @media only screen and (max-width: @breakTablet) {
-        padding-top: 256px;
+        padding-top: 236px;
 
         &:after {
             background-position: bottom -60px right -30px, bottom right;
@@ -528,9 +558,14 @@ main {
         padding-top: @baseLine * 2;
     }
 
+    footer {
+        background: #005189;
+        border-bottom: 2px solid #1f366c;
+    }
+
     &:before {
-        .at2x('/media/img/mozorg/technology/iot.png', 650px, 512px);
-        background-position: top -6px right @gridGutterWidth;
+        background-image: url('/media/img/mozorg/technology/iot.svg');
+        background-position: top right -40px;
         background-repeat: no-repeat;
         content: '';
         height: 100%;
@@ -542,26 +577,26 @@ main {
     }
 
     @media only screen and (max-width: @breakTablet) {
-        padding-top: 316px;
+        padding-top: 256px;
 
         &:before {
             .background-size(350px 276px);
-            background-position: top 20px left;
-            height: 296px;
-            width: 350px;
+            background-position: top left;
+            height: 276px;
             left: 50%;
-            margin-left: -200px;
+            margin-left: -175px;
+            width: 350px;
         }
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        padding-top: 276px;
+        padding-top: 216px;
 
         &:before {
             .background-size(300px 236px);
-            height: 256px;
+            height: 236px;
+            margin-left: -150px;
             width: 300px;
-            margin-left: -172px;
         }
     }
 }
@@ -574,9 +609,14 @@ main {
         padding: @baseLine * 2 0;
     }
 
+    footer {
+        background: #ff8e33;
+        border-bottom: 2px solid #fa7100;
+    }
+
     &:after {
-        background-image: url('/media/img/mozorg/technology/context-graph.svg');
         background-color: #fa7100;
+        background-image: url('/media/img/mozorg/technology/context-graph.svg');
         background-position: top (@baseLine * 2) left (@baseLine * 4);
         background-repeat: no-repeat;
         content: '';
@@ -596,26 +636,26 @@ main {
     }
 
     @media only screen and (max-width: @breakTablet) {
-        padding-top: 298px;
+        padding-top: 245px;
 
         .inner-container {
             padding-bottom: 0;
         }
 
         &:after {
-            .background-size(320px 258px);
+            .background-size(280px 225px);
             background-position: top 20px center;
-            height: 298px;
+            height: 265px;
             width: 100%;
         }
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        padding-top: 265px;
+        padding-top: 213px;
 
         &:after {
-            .background-size(280px 225px);
-            height: 265px;
+            .background-size(240px 193px);
+            height: 233px;
         }
     }
 }
@@ -624,6 +664,11 @@ main {
 
     .inner-container {
         padding-top: @baseLine * 2;
+    }
+
+    footer {
+        background: #86170f;
+        border-bottom: 2px solid #640e08;
     }
 
     .container {
@@ -644,9 +689,9 @@ main {
     @media only screen and (max-width: @breakTablet) {
 
         .container {
-            .background-size(280px 280px);
-            background-position: top 40px center;
-            padding-top: 280px;
+            .background-size(240px 240px);
+            background-position: top 20px center;
+            padding-top: 240px;
         }
     }
 
@@ -659,6 +704,9 @@ main {
     }
 }
 
+/*--------------------------------------------------------------------------*/
+// Newsletter
+
 #newsletter-subscribe {
     margin: 0;
 
@@ -667,6 +715,9 @@ main {
         font-weight: bold;
     }
 }
+
+/*--------------------------------------------------------------------------*/
+// Developer resources
 
 #developer-resources {
 
@@ -731,43 +782,60 @@ main {
     }
 
     .dev-links {
-        background-position: top 8px left;
-        background-repeat: no-repeat;
+        position: relative;
         min-height: 100px;
+        padding-left: 94px;
+        margin-bottom: @baseLine;
 
-        &.mdn {
-            background-image: url('/media/img/mozorg/technology/icons-dev/mdn.svg');
-            padding-left: 115px;
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            background-image: url('/media/img/mozorg/technology/dev-icon-sprite.svg');
+            background-repeat: no-repeat;
         }
 
-        &.vr {
-            background-image: url('/media/img/mozorg/technology/icons-dev/vr.svg');
-            padding-left: 104px;
+        &.mdn:before {
+            width: 74px;
+            height: 58px;
+            background-position: 0 0;
         }
 
-        &.iot {
-            background-image: url('/media/img/mozorg/technology/icons-dev/iot.svg');
-            padding-left: 116px;
+        &.vr:before {
+            width: 72px;
+            height: 74px;
+            background-position: 0 -58px;
         }
 
-        &.rust {
-            background-image: url('/media/img/mozorg/technology/icons-dev/rust.svg');
-            padding-left: 106px;
+        &.iot:before {
+            width: 74px;
+            height: 66px;
+            background-position: 0 -132px;
         }
 
-        &.servo {
-            background-image: url('/media/img/mozorg/technology/icons-dev/servo.svg');
-            padding-left: 97px;
+        &.rust:before {
+            width: 74px;
+            height: 74px;
+            background-position: 0 -198px;
         }
 
-        &.encrypt {
-            background-image: url('/media/img/mozorg/technology/icons-dev/encrypt.svg');
-            padding-left: 83px;
+        &.servo:before {
+            width: 74px;
+            height: 69px;
+            background-position: 0 -272px;
         }
 
-        &.gaming {
-            background-image: url('/media/img/mozorg/technology/icons-dev/gaming.svg');
-            padding-left: 94px;
+        &.encrypt:before {
+            width: 54px;
+            height: 74px;
+            background-position: 0 -341px;
+        }
+
+        &.gaming:before {
+            width: 74px;
+            height: 66px;
+            background-position: 0 -415px;
         }
     }
 
@@ -827,6 +895,10 @@ main {
             p, a {
                 .font-size(18px);
             }
+
+            li {
+                text-align: left;
+            }
         }
     }
 
@@ -853,6 +925,9 @@ main {
         }
     }
 }
+
+/*--------------------------------------------------------------------------*/
+// Blogs feed
 
 #blogs {
     background: #f2f2f2;
@@ -1009,8 +1084,8 @@ main {
             }
 
             .continue {
-                right: auto;
                 left: 0;
+                right: auto;
             }
         }
     }
