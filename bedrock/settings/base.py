@@ -117,19 +117,19 @@ PROD_DETAILS_STORAGE = config('PROD_DETAILS_STORAGE',
 PROD_DETAILS_TEST_DIR = config('PROD_DETAILS_TEST_DIR', default=path('product_details_json'))
 
 # Accepted locales
-PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'be', 'bg',
-                  'bn-BD', 'bn-IN', 'br', 'brx', 'bs', 'ca', 'cak', 'cs',
-                  'cy', 'da', 'de', 'dsb', 'ee', 'el', 'en-GB', 'en-US',
+PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'bg',
+                  'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cak', 'cs',
+                  'cy', 'da', 'de', 'dsb', 'el', 'en-GB', 'en-US',
                   'en-ZA', 'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
                   'eu', 'fa', 'ff', 'fi', 'fr', 'fy-NL', 'ga-IE', 'gd',
-                  'gl', 'gn', 'gu-IN', 'ha', 'he', 'hi-IN', 'hr', 'hsb',
-                  'hu', 'hy-AM', 'id', 'ig', 'is', 'it', 'ja', 'ja-JP-mac',
-                  'ka', 'kab', 'kk', 'km', 'kn', 'ko', 'lij', 'ln', 'lt',
+                  'gl', 'gn', 'gu-IN', 'he', 'hi-IN', 'hr', 'hsb',
+                  'hu', 'hy-AM', 'id', 'is', 'it', 'ja', 'ja-JP-mac',
+                  'ka', 'kab', 'kk', 'km', 'kn', 'ko', 'lij', 'lt',
                   'ltg', 'lv', 'mai', 'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO',
                   'nl', 'nn-NO', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
-                  'rm', 'ro', 'ru', 'sat', 'si', 'sk', 'sl', 'son', 'sq',
-                  'sr', 'sv-SE', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'ur',
-                  'uz', 'vi', 'wo', 'xh', 'yo', 'zh-CN', 'zh-TW', 'zu')
+                  'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq',
+                  'sr', 'sv-SE', 'ta', 'te', 'th', 'tr', 'uk', 'ur',
+                  'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
 
 LOCALES_PATH = ROOT_PATH / 'locale'
 default_locales_repo = 'www.mozilla.org' if DEV else 'bedrock-l10n'
