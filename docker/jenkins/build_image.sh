@@ -36,5 +36,5 @@ then
     fi
 fi
 
-docker save ${TMP_DOCKER_TAG} | sudo docker-squash -t ${TAG}-squashed | docker load
+docker-squash -t ${TAG}-squashed ${TMP_DOCKER_TAG}
 docker tag ${TAG}-squashed ${DOCKER_IMAGE_TAG}
