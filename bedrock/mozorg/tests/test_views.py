@@ -48,20 +48,21 @@ class TestHome(TestCase):
         ctx = resp_mock.call_args[0][2]
         self.assertEqual(ctx['mobilizer_link'], 'His Dudeness')
 
-    # testing en-US home page
+    # testing home page
     def test_en_us(self, render_mock):
         req = RequestFactory().get('/')
         req.locale = 'en-US'
         views.home(req)
         render_mock.assert_called_once_with(req,
-            'mozorg/home/home-en-US.html', ANY)
+            'mozorg/home/home.html', ANY)
 
-    def test_non_en_us(self, render_mock):
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_old_home_template(self, render_mock):
         req = RequestFactory().get('/')
         req.locale = 'es-ES'
         views.home(req)
         render_mock.assert_called_once_with(req,
-            'mozorg/home/home.html', ANY)
+            'mozorg/home/home-voices.html', ANY)
 
 
 class TestViews(TestCase):
