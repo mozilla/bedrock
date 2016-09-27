@@ -31,7 +31,7 @@ then
     if tail -n 3 docker-build.log | grep "Using cache";
     then
         echo "Docker image already squashed, skip squashing";
-        docker tag -f ${TAG}-squashed $DOCKER_IMAGE_TAG
+        docker tag ${TAG}-squashed $DOCKER_IMAGE_TAG
         exit 0;
     fi
 fi
