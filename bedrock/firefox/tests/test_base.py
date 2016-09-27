@@ -353,8 +353,8 @@ class TestFirstRun(TestCase):
     # ravioli funnelcake tests
     @override_settings(DEV=True)
     def test_ravioli_funnelcake(self, render_mock):
-        """Should use ravioli template for f=89"""
-        req = self.rf.get('/firefox/firstrun/?f=89')
+        """Should use ravioli template for f=90"""
+        req = self.rf.get('/firefox/firstrun/?f=90')
         self.view(req, version='49.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/ravioli.html'])
@@ -362,7 +362,7 @@ class TestFirstRun(TestCase):
     @override_settings(DEV=True)
     def test_ravioli_other_funnelcake(self, render_mock):
         """Should use firstrun horizon template for non-ravioli funnelcakes"""
-        req = self.rf.get('/firefox/firstrun/?f=88')
+        req = self.rf.get('/firefox/firstrun/?f=89')
         self.view(req, version='49.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
@@ -370,7 +370,7 @@ class TestFirstRun(TestCase):
     @override_settings(DEV=True)
     def test_ravioli_other_locales(self, render_mock):
         """Should use firstrun horizon template for non en-US locales"""
-        req = self.rf.get('/firefox/firstrun/?f=89')
+        req = self.rf.get('/firefox/firstrun/?f=90')
         req.locale = 'de'
         self.view(req, version='49.0')
         template = render_mock.call_args[0][1]
