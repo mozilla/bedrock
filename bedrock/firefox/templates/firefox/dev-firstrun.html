@@ -17,6 +17,8 @@
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Welcome to Firefox Developer Edition')}}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/developer/favicon.png') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/developer/favicon-196.png') }}{% endblock %}
 {% block page_image %}{{ static('img/firefox/developer/page-image.png') }}{% endblock %}
 {% block page_og_url %}{{ url('firefox.developer') }}{% endblock %}
 
