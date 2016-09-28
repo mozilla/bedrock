@@ -1,0 +1,47 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/home/home.html" %}
+
+{% block body_class %}lang-{{ LANG }} variant-a{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'home-variant' %}
+{% endblock %}
+
+{% block site_header %}
+  {{ super() }}
+  {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
+{% endblock %}
+
+{% block people_links %}
+  <ul id="icon-links-who" class="icon-links">
+    <li id="encryption">
+      <a rel="external" href="https://advocacy.mozilla.org/encrypt/"><svg class="icon"><use xlink:href="#icon-encryption"></use></svg>{{ _('Stand Up For Encryption') }}</a>
+    </li>
+    <li id="teachtheweb">
+      <a rel="external" href="https://learning.mozilla.org/"><svg class="icon"><use xlink:href="#icon-teachtheweb"></use></svg>{{ _('Teach The Web') }}</a>
+    </li>
+    <li id="leandata">
+      <a href="{{ url('mozorg.about.policy.lean-data') }}"><svg class="icon"><use xlink:href="#icon-leandata"></use></svg>{{ _('Try the Lean Data Toolkit') }}</a>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block innovation_links %}
+  <ul id="icon-links-innovate" class="icon-links">
+    <li id="gaming">
+      <a rel="external" href="https://games.mozilla.org/"><svg class="icon"><use xlink:href="#icon-gaming"></use></svg>{{ _('Gaming on the Web') }}</a>
+    </li>
+    <li id="vr">
+      <a rel="external" href="https://aframe.io/"><svg class="icon"><use xlink:href="#icon-vr"></use></svg>{{ _('Virtual Reality Platform') }}</a>
+    </li>
+    <li id="servo">
+      <a rel="external" href="https://servo.org/"><svg class="icon"><use xlink:href="#icon-servo"></use></svg>{{ _('Servo') }}</a>
+    </li>
+    <li id="rust">
+      <a rel="external" href="https://www.rust-lang.org/"><svg class="icon"><use xlink:href="#icon-rust"></use></svg>{{ _('Rust') }}</a>
+    </li>
+  </ul>
+{% endblock %}

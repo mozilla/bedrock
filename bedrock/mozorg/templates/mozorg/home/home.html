@@ -39,6 +39,12 @@
   {% endif %}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-home-links') %}
+     {% javascript 'experiment-home-links' %}
+  {% endif %}
+{% endblock %}
+
 {% block site_header %}
 <header class="section masthead" id="masthead">
   <div class="content">
@@ -116,11 +122,13 @@
         {% endblock %}
         </p>
 
-        <ul class="icon-links">
+        {% block people_links %}
+        <ul id="icon-links-who" class="icon-links">
           <li id="encryption"><a rel="external" href="https://advocacy.mozilla.org/encrypt/">{{ _('Stand Up For Encryption') }}</a></li>
           <li id="teachtheweb"><a rel="external" href="https://learning.mozilla.org/">{{ _('Teach The Web') }}</a></li>
           <li id="leandata"><a href="{{ url('mozorg.about.policy.lean-data') }}">{{ _('Try the Lean Data Toolkit') }}</a></li>
         </ul>
+        {% endblock %}
       </div>
     </section>
 
@@ -141,12 +149,14 @@
         {% endblock %}
         </p>
 
-        <ul class="icon-links">
+        {% block innovation_links %}
+        <ul id="icon-links-innovate" class="icon-links">
           <li id="gaming"><a rel="external" href="https://games.mozilla.org/">{{ _('Gaming on the Web') }}</a></li>
           <li id="vr"><a rel="external" href="https://aframe.io/">{{ _('Virtual Reality Platform') }}</a></li>
           <li id="servo"><a rel="external" href="https://servo.org/">{{ _('Servo') }}</a></li>
           <li id="rust"><a rel="external" href="https://www.rust-lang.org/">{{ _('Rust') }}</a></li>
         </ul>
+        {% endblock %}
       </div>
     </section>
   </section>{#-- /#who-innovate-wrapper --#}
