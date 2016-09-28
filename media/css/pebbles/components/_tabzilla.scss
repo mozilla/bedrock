@@ -1,0 +1,34 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../includes/lib';
+
+
+#tabzilla {
+    position: relative;
+    float: right;
+
+    a {
+        @include at2x('/media/img/tabzilla/tabzilla-static.png', 147px, 37px);
+        @include image-replaced;
+        background-repeat: no-repeat;
+        display: block;
+        height: 37px;
+        position: relative;
+        width: 147px;
+        z-index: 2;
+    }
+
+    &:before {
+        background-color: transparent;
+        content: '';
+        display: block;
+        height: 26px;
+        left: 28px;
+        position: absolute;
+        top: 0;
+        width: 88px;
+        z-index: 1;
+    }
+}

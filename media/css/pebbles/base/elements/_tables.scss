@@ -1,0 +1,44 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../includes/lib';
+
+
+// We so rarely use tables that it's best not to give them any
+// base styling and instead use a modifier class for those few
+// times we need to display tabular data.
+.data-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    caption {
+        text-align: left;
+        padding-bottom: 1px; /* fix to get it to look nice in many browsers */
+        margin-bottom: -1px;
+        width: 100%;
+    }
+
+    th,
+    td {
+        border-top: 1px solid rgba(0, 0, 0, .2);
+        padding: .5em 10px;
+        text-align: left;
+    }
+
+    thead th,
+    thead td {
+        border-top: 0;
+        padding-top: 0;
+    }
+}
+
+[dir='rtl'] {
+    .data-table {
+        caption,
+        th,
+        td {
+            text-align: right;
+        }
+    }
+}

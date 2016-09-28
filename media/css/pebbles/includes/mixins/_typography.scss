@@ -1,0 +1,82 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+// Font families
+@mixin fira-sans {
+    font-family: $font-fira-sans;
+}
+
+@mixin fira-sans-light {
+    font-family: 'Fira Sans Light', X-LocaleSpecific-Light, $font-fira-sans;
+    font-weight: normal;
+}
+
+
+// A mixin to output font-size in rems with a px fallback for old browsers.
+// Declare sizes in pixels for ease and clarity, the mixin does the math.
+// Requires: remify(), pixify() - defined in includes/functions.scss.
+// Usage:
+//  .foo { @include font-size(24px); }
+
+@mixin font-size($size) {
+    // When unit is pixels, pass it through and convert to rem
+    @if (unit($size) == 'px') {
+        font-size: $size;
+        font-size: remify($size);
+    }
+
+    // When unit is not pixels, show an error
+    @else {
+        @error 'This mixin only accepts sizes in pixels. You declared `font-size(#{$size})`.';
+    }
+}
+
+
+// Consistent font sizes for headings and titles.
+// Don't misuse these mixins; they're for headings! Use the regular font-size mixin for other elements.
+// Type scale based on a 1.333 ratio (Perfect Fourth) with 16px base, rounded to whole pixels for simplicity.
+// See: http://www.modularscale.com/?16&px&1.333&web&text
+// Usage:
+//  .foo { @include font-size-level1; }
+
+@mixin font-size-huge { // For especially huge titles
+    @include font-size(50px);
+
+    @media #{$mq-tablet} {
+        @include font-size(90px);
+    }
+}
+
+@mixin font-size-level1 {
+    @include font-size(38px);
+
+    @media #{$mq-tablet} {
+        @include font-size(50px);
+    }
+}
+
+@mixin font-size-level2 {
+    @include font-size(28px);
+
+    @media #{$mq-tablet} {
+        @include font-size(38px);
+    }
+}
+
+@mixin font-size-level3 {
+    @include font-size(21px);
+
+    @media #{$mq-tablet} {
+        @include font-size(28px);
+    }
+}
+
+@mixin font-size-level4 {
+    @include font-size(16px);
+
+    @media #{$mq-tablet} {
+        @include font-size(21px);
+    }
+}

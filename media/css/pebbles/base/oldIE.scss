@@ -1,0 +1,94 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+// This style sheet is served exclusively to Internet Explorer 8 and older.
+// Old versions get this minimal style while IE9 and up recieve more advanced styling.
+
+@import
+    '../includes/lib',
+    'elements',
+    '../components/buttons';
+
+
+// @Fonts
+// oldIE only supports EOT so we needn't include TTF or Woff.
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/media/fonts/FiraSans-Regular.eot?#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: normal;
+    font-weight: bold;
+    src: url('/media/fonts/FiraSans-Bold.eot?#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: italic;
+    font-weight: normal;
+    src: url('/media/fonts/FiraSans-Italic.eot?#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family: 'Fira Sans';
+    font-style: italic;
+    font-weight: bold;
+    src: url('/media/fonts/FiraSans-BoldItalic.eot?#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family: 'Fira Sans Light';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/media/fonts/FiraSans-Light.eot?#iefix') format('embedded-opentype');
+}
+
+@font-face {
+    font-family: 'Fira Sans Light';
+    font-style: italic;
+    font-weight: bold;
+    src: url('/media/fonts/FiraSans-LightItalic.eot?#iefix') format('embedded-opentype');
+}
+
+
+// An arbitrary container for translatable strings to use in scripts
+#strings {
+    display: none;
+}
+
+body {
+    margin: 20px 30px;
+}
+
+.center {
+    text-align: center;
+}
+
+img {
+    -ms-interpolation-mode: bicubic;
+}
+
+label {
+    display: block;
+}
+
+.masthead .toggle {
+    display: none; /* oldIE never gets a mobile menu. */
+}
+
+#colophon .logo {
+    font-size: 100%;
+}
+
+.visually-hidden {
+    @include visually-hidden;
+}
+
+.hidden {
+    @include hidden;
+}

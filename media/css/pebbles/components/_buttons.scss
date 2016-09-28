@@ -1,0 +1,128 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import
+    '../includes/lib',
+    'base-button';
+
+
+// Standard solid buttons, especially those not in a form context such as CTA and download buttons
+.button,
+button.button,
+a.button:link,
+a.button:visited {
+    @include base-button;
+    background-color: $color-mozblue;
+    border-color: darken($color-mozblue, 3%);
+    color: $color-button-light;
+
+    &:hover,
+    &:focus {
+        background-color: saturate(lighten($color-mozblue, 5%), 10%);
+    }
+
+    &.dark {
+        background-color: $color-button-dark;
+        border-color: darken($color-button-dark, 3%);
+        color: $color-button-light;
+
+        &:hover,
+        &:focus {
+            background-color: saturate(lighten($color-button-dark, 5%), 10%);
+        }
+    }
+
+    &.green {
+        background-color: $color-button-green;
+        border-color: darken($color-button-green, 3%);
+        color: $color-button-light;
+
+        &:hover,
+        &:focus {
+            background-color: saturate(lighten($color-button-green, 5%), 10%);
+        }
+    }
+
+    &.red {
+        background-color: $color-mozred;
+        border-color: darken($color-mozred, 3%);
+        color: $color-button-light;
+
+        &:hover {
+            background-color: saturate(lighten($color-mozred, 5%), 10%);
+        }
+    }
+
+    &.orange {
+        background-color: $color-button-orange;
+        border-color: darken($color-button-orange, 3%);
+        color: $color-button-light;
+
+        &:hover,
+        &:focus {
+            background-color: saturate(lighten($color-button-orange, 5%), 10%);
+        }
+    }
+}
+
+// Hollow buttons, especially when used in forms
+.button.hollow,
+button.button.hollow,
+a.button.hollow:link,
+a.button.hollow:visited,
+button.form-button,
+input[type="submit"].form-button,
+input[type='button'].form-button  {
+    @include base-button;
+    background-color: transparent;
+    border-color: $color-mozblue;
+    color: $color-mozblue;
+
+    &:hover,
+    &:focus {
+        background-color: transparentize($color-mozblue, .95);
+        border-color: saturate(lighten($color-mozblue, 5%), 10%);
+        color: saturate(lighten($color-mozblue, 5%), 10%);
+    }
+
+    &.light {
+        color: $color-button-light;
+        border-color: $color-button-light;
+
+        &:hover,
+        &:focus {
+            background-color: transparentize($color-button-light, .95);
+            border-color: darken($color-button-light, 5%);
+            color: darken($color-button-light, 5%);
+        }
+    }
+
+    &.dark {
+        color: $color-button-dark;
+        border-color: $color-button-dark;
+
+        &:hover,
+        &:focus {
+            background-color: transparentize($color-button-dark, .95);
+            border-color: saturate(lighten($color-button-dark, 5%), 10%);
+            color: saturate(lighten($color-button-dark, 5%), 10%);
+        }
+    }
+
+    &.red {
+        color: $color-mozred;
+        border-color: $color-mozred;
+
+        &:hover,
+        &:focus {
+            background-color: transparentize($color-mozred, .95);
+            border-color: saturate(lighten($color-mozred, 5%), 10%);
+            color: saturate(lighten($color-mozred, 5%), 10%);
+        }
+    }
+}
+
+#newsletter-form .form-button {
+    width: 100%;
+}

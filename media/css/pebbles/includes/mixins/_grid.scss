@@ -1,0 +1,16 @@
+// Column spans for standard column widths
+// Usage:
+//  .foo { @include span(4); }
+
+@mixin span($columns) {
+    @include border-box;
+    float: left;
+    width: $column-width * $columns;
+    padding-left: $gutter-width / 2;
+    padding-right: $gutter-width / 2;
+}
+
+@mixin span-all {
+    float: none;
+    width: auto;
+}

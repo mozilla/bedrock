@@ -2,60 +2,58 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import (reference) '../pebbles/lib.less';
-@import '../pebbles/components/footer.less';
-@import '../pebbles/elements/forms.less';
+@import '../pebbles/includes/lib';
 
-@color-fox-purple: #3a304b;
-@color-link-blue: #00a7e0;
+
+$color-fox-purple: #3a304b;
 
 .content {
-    .clearfix;
+    @include clearfix;
 
-    @media @mq-tablet {
-        width: @width-tablet;
+    @media #{$mq-tablet} {
+        width: $width-tablet;
     }
 
-    @media @mq-desktop {
-        width: @width-desktop;
+    @media #{$mq-desktop} {
+        width: $width-desktop;
     }
 }
 
 .section-intro {
-    background-color: @color-fox-purple;
+    background-color: $color-fox-purple;
 
     .content {
-        .background-size(141px 157px, 153px 115px;);
+        @include background-size(141px 157px, 153px 115px);
         background-image: url('/media/img/newsletter/firefox/mailbox.svg'),
                           url('/media/img/newsletter/firefox/fox-tail.svg');
         background-position: bottom -40px left 10px, bottom -45px right -10px;
         background-repeat: no-repeat, no-repeat;
         height: 167px;
-        width: @width-phone;
+        width: $width-phone;
 
-        @media @mq-phone-wide {
-            .background-size(215px 239px, 230px 173px;);
+        @media #{$mq-phone-wide} {
+            @include background-size(215px 239px, 230px 173px);
             background-position: bottom -60px left, bottom -65px right;
             height: 229px;
-            width: @width-phone-wide;
+            width: $width-phone-wide;
         }
 
-        @media @mq-tablet {
-            .background-size(300px 333px, 320px 241px;);
+        @media #{$mq-tablet} {
+            @include background-size(300px 333px, 320px 241px);
             background-position: bottom -90px left 40px, bottom -90px right 40px;
             height: 290px;
-            width: @width-tablet;
+            width: $width-tablet;
         }
 
-        @media @mq-desktop {
-            .background-size(381px 423px, 428px 322px;);
+        @media #{$mq-desktop} {
+            @include background-size(381px 423px, 428px 322px);
             background-position: bottom -100px left 60px, bottom -120px right 60px;
             height: 370px;
-            width: @width-desktop;
+            width: $width-desktop;
         }
 
-        @media @mq-desktop and (max-height: 600px) {
-            .background-size(300px 333px, 320px 241px;);
+        @media #{$mq-desktop} and #{$mq-short} {
+            @include background-size(300px 333px, 320px 241px);
             background-position: bottom -90px left 160px, bottom -90px right 140px;
             height: 290px;
         }
@@ -73,14 +71,14 @@
     padding: 20px 0;
 
     h1 {
-        .font-size(32px);
-        color: @color-fox-purple;
+        @include font-size(32px);
+        color: $color-fox-purple;
         text-align: center;
     }
 
     h2 {
-        .font-size(18px);
-        color: @color-fox-purple;
+        @include font-size(18px);
+        color: $color-fox-purple;
         font-weight: normal;
         line-height: 1.3;
         margin: 20px auto 40px;
@@ -89,29 +87,29 @@
     }
 
     .errorlist {
-        .border-box;
+        @include border-box;
         background: #fff6dc;
         border-radius: 4px;
         margin: 0 auto 20px;
-        max-width: @width-phone;
+        max-width: $width-phone;
         padding: 20px;
     }
 
-    @media @mq-tablet {
+    @media #{$mq-tablet} {
         h1 {
-            .font-size(48px);
+            @include font-size(48px);
         }
         h2 {
-            .font-size(20px);
+            @include font-size(20px);
         }
     }
 
-    @media @mq-desktop {
+    @media #{$mq-desktop} {
         h1 {
-            .font-size(72px);
+            @include font-size(72px);
         }
         h2 {
-            .font-size(24px);
+            @include font-size(24px);
             max-width: none;
         }
     }
@@ -122,26 +120,26 @@
     border: 0;
     box-shadow: none;
     margin: 0 auto;
-    max-width: @width-phone;
+    max-width: $width-phone;
     padding: 0;
 
     input[type='text'],
     input[type='email'],
     select {
-        .border-box;
-        .font-size(16px);
+        @include border-box;
+        @include font-size(16px);
         padding: .75em 20px;
         width: 100%;
     }
 
     input[type='text'],
     input[type='email'] {
-        border: 2px solid #00a7e0;
+        border: 2px solid $color-mozblue;
         margin-bottom: 2px;
 
         &:hover,
         &:focus {
-            border-color: lighten(#00a7e0, 5%);
+            border-color: saturate(lighten($color-mozblue, 5%), 10%);
         }
     }
 
@@ -154,7 +152,7 @@
     }
 
     .privacy-check-label {
-        .font-size(14px);
+        @include font-size(14px);
         display: block;
         padding-left: 30px;
         position: relative;
@@ -171,17 +169,7 @@
         text-align: center;
 
         small {
-            .font-size(12px);
-        }
-    }
-
-    .form-button {
-        background: #00a7e0;
-        color: #fff;
-
-        &:hover,
-        &:focus {
-            background: lighten(#00a7e0, 5%);
+            @include font-size(12px);
         }
     }
 }
@@ -194,31 +182,33 @@
     text-align: center;
 
     h3 {
-        .font-size(32px);
-        color: @color-fox-purple;
+        @include font-size(32px);
+        color: $color-fox-purple;
         margin-bottom: 20px;
     }
 
     p {
-        .font-size(18px);
-        color: @color-fox-purple;
+        @include font-size(18px);
+        color: $color-fox-purple;
     }
 
-    @media @mq-tablet {
+    @media #{$mq-tablet} {
         h3 {
-            .font-size(42px);
+            @include font-size(42px);
         }
+
         p {
-            .font-size(22px);
+            @include font-size(22px);
         }
     }
 
-    @media @mq-desktop {
+    @media #{$mq-desktop} {
         h3 {
-            .font-size(48px);
+            @include font-size(48px);
         }
+
         p {
-            .font-size(28px);
+            @include font-size(28px);
         }
     }
 }
@@ -234,17 +224,17 @@
     margin: 0;
 
     a {
-        color: @color-link-blue;
+        color: $color-link-blue;
 
         &:hover,
         &:focus,
         &:active,
         &:visited {
-            color: darken(@color-link-blue, 8%);
+            color: darken($color-link-blue, 8%);
         }
     }
 
     .logo a {
-        .at2x('/media/img/sandstone/footer-mozilla-dark.png', 93px, 24px);
+        @include at2x('/media/img/sandstone/footer-mozilla-dark.png', 93px, 24px);
     }
 }

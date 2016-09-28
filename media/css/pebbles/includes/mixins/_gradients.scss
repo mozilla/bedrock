@@ -1,0 +1,54 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+// Horizontal gradient, from left to right.
+// Creates two color stops, start and end, by specifying a color and position for each color stop.
+@mixin gradient-horizontal($start-color: #555, $start-percent: 0%, $end-color: #333, $end-percent: 100%) {
+  background-image: -webkit-linear-gradient(left, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
+  background-image:         linear-gradient(to right, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+}
+
+// Vertical gradient, from top to bottom.
+// Creates two color stops, start and end, by specifying a color and position for each color stop.
+@mixin gradient-vertical($start-color: #555, $start-percent: 0%, $end-color: #333, $end-percent: 100%) {
+  background-image: -webkit-linear-gradient(top, $start-color $start-percent, $end-color $end-percent);  // Safari 5.1-6, Chrome 10+
+  background-image:         linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+}
+
+// Directional gradient, at any angle
+// Creates two color stops, start and end, by specifying a color and position for each color stop.
+@mixin gradient-directional($deg: 45deg, $start-color: #555, $start-percent: 0%, $end-color: #333, $end-percent: 100%) {
+  background-image: -webkit-linear-gradient($deg, $start-color $start-percent, $end-color $end-percent); // Safari 5.1-6, Chrome 10+
+  background-image:         linear-gradient($deg, $start-color $start-percent, $end-color $end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+}
+
+// Three color horizontal gradient
+// Creates one color stop for the middle color.
+@mixin gradient-horizontal-three-colors($start-color: #999, $mid-color: #555, $color-stop: 50%, $end-color: #333) {
+  background-image: -webkit-linear-gradient(left, $start-color, $mid-color $color-stop, $end-color);
+  background-image:         linear-gradient(to right, $start-color, $mid-color $color-stop, $end-color);
+  background-repeat: no-repeat;
+}
+
+// Three color vertical gradient
+// Creates one color stop for the middle color.
+@mixin gradient-vertical-three-colors($start-color: #999, $mid-color: #555, $color-stop: 50%, $end-color: #333) {
+  background-image: -webkit-linear-gradient($start-color, $mid-color $color-stop, $end-color);
+  background-image:         linear-gradient($start-color, $mid-color $color-stop, $end-color);
+  background-repeat: no-repeat;
+}
+
+// Round radial gradient, from the center out
+@mixin gradient-radial($inner-color: #555, $outer-color: #333) {
+  background-image: -webkit-radial-gradient(circle, $inner-color, $outer-color);
+  background-image:         radial-gradient(circle, $inner-color, $outer-color);
+  background-repeat: no-repeat;
+}
+
+// Alternating stripes of equal width, at any angle
+@mixin gradient-stripes($angle: 45deg, $color-one: #555, $color-two: #333, $stripe-width: 10px) {
+  background-image: -webkit-repeating-linear-gradient($angle, $color-one, $color-one $stripe-width, $color-two $stripe-width, $color-two $stripe-width * 2);
+  background-image:         repeating-linear-gradient($angle, $color-one, $color-one $stripe-width, $color-two $stripe-width, $color-two $stripe-width * 2);
+}
