@@ -119,6 +119,22 @@ class TestExistingNewsletterView(TestCase):
         super(TestExistingNewsletterView, self).setUp()
 
     @patch('bedrock.newsletter.utils.get_newsletters')
+    def test_will_show_confirm_copy(self, get_newsletters, mock_basket_request):
+        # After successful confirm, ensure proper context var is set to display
+        # confirmation-specific copy.
+        get_newsletters.return_value = newsletters
+        url = "%s?confirm=1" % reverse('newsletter.existing.token', args=(self.token,))
+        # noinspection PyUnresolvedReferences
+        with patch.multiple('basket',
+                            user=DEFAULT) as basket_patches:
+            with patch('lib.l10n_utils.render') as render:
+                basket_patches['user'].return_value = self.user
+                render.return_value = HttpResponse('')
+                self.client.get(url)
+        request, template_name, context = render.call_args[0]
+        self.assertEqual(context['did_confirm'], '1')
+
+    @patch('bedrock.newsletter.utils.get_newsletters')
     def test_get_token(self, get_newsletters, mock_basket_request):
         # If user gets page with valid token in their URL, they
         # see their data, and no privacy checkbox is presented
@@ -435,15 +451,9 @@ class TestConfirmView(TestCase):
         """Confirm works with a valid token"""
         with patch('basket.confirm') as confirm:
             confirm.return_value = {'status': 'ok'}
-            with patch('lib.l10n_utils.render') as mock_render:
-                mock_render.return_value = HttpResponse('')
-                rsp = self.client.get(self.url, follow=True)
-            self.assertEqual(200, rsp.status_code)
-            confirm.assert_called_with(self.token)
-            context = mock_render.call_args[0][2]
-            self.assertTrue(context['success'])
-            self.assertFalse(context['generic_error'])
-            self.assertFalse(context['token_error'])
+            rsp = self.client.get(self.url)
+            self.assertEqual(302, rsp.status_code)
+            self.assertTrue(rsp['Location'].endswith("%s?confirm=1" % reverse('newsletter.existing.token', kwargs={'token': self.token})))
 
     def test_basket_down(self):
         """If basket is down, we report the appropriate error"""
