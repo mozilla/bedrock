@@ -4,6 +4,7 @@ CSP_EXTRA_FRAME_SRC=*.mozaws.net
 DEBUG=False
 DATABASE_URL=sqlite:///bedrock.db
 DEV=True
+DB_CRON=True
 DISABLE_SSL=False
 SECRET_KEY=itsasekrit
 ALLOWED_HOSTS=*
