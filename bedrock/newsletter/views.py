@@ -219,12 +219,38 @@ def confirm(request, token):
             # but just in case:
             generic_error = True
 
-    return l10n_utils.render(
-        request,
-        'newsletter/confirm.html',
-        {'success': success,
-         'generic_error': generic_error,
-         'token_error': token_error})
+    context = {
+        'success': success,
+        'generic_error': generic_error,
+        'token_error': token_error,
+    }
+
+    user = False
+
+    if (success):
+        try:
+            user = basket.user(token)
+        except basket.BasketNetworkException:
+            # Something wrong with basket backend, no point in continuing,
+            # we'd probably fail to subscribe them anyway.
+            log.exception("Basket timeout")
+            messages.add_message(request, messages.ERROR, general_error)
+        except basket.BasketException as e:
+            log.exception("FAILED to get user from token (%s)", e.desc)
+
+    # If user was found, get preferences form data for template
+    if (user != False):
+        locale = getattr(request, 'locale', 'en-US')
+        prefData = get_pref_form_data(user, locale)
+
+        context['form'] = prefData['form']
+        context['formset'] = prefData['formset']
+        context['newsletter_languages'] = prefData['newsletter_languages']
+        context['newsletters_subscribed'] = prefData['already_subscribed']
+        context['email'] = user['email']
+        context['user_token'] = token
+
+    return l10n_utils.render(request, 'newsletter/confirm.html', context)
 
 
 @never_cache
@@ -286,48 +312,14 @@ def existing(request, token=None):
         # Redirect to the recovery page
         return redirect(reverse('newsletter.recovery'))
 
-    # Get the newsletter data - it's a dictionary of dictionaries
-    newsletter_data = utils.get_newsletters()
+    # Get data required to display the newsletter management form
+    preferencesData = get_pref_form_data(user, locale)
 
-    # Figure out which newsletters to display, and whether to show them
-    # as already subscribed.
-    initial = []
-    for newsletter, data in newsletter_data.iteritems():
-        # Only show a newsletter if it has ['active'] == True and
-        # ['show'] == True or the user is already subscribed
-        if not data.get('active', False):
-            continue
-        if data.get('show', False) or newsletter in user['newsletters']:
-            langs = data['languages']
-            nstrings = NEWSLETTER_STRINGS.get(newsletter)
-            if nstrings:
-                title = nstrings['title']
-                description = nstrings.get('description', u'')
-            else:
-                # Firefox Marketplace for Desktop/Android/Firefox OS should be
-                # shorten in the titles
-                title = _(data['title'].replace('Firefox Marketplace for ', ''))
-                description = _(data['description'])
-
-            form_data = {
-                'title': Markup(title),
-                'subscribed_radio': newsletter in user['newsletters'],
-                'subscribed_check': newsletter in user['newsletters'],
-                'newsletter': newsletter,
-                'description': Markup(description),
-                'english_only': len(langs) == 1 and langs[0].startswith('en'),
-            }
-            if 'order' in data:
-                form_data['order'] = data['order']
-            initial.append(form_data)
-
-    # Sort by 'order' field if we were given it; otherwise, by title
-    if initial:
-        keyfield = 'order' if 'order' in initial[0] else 'title'
-        initial.sort(key=itemgetter(keyfield))
-
-    NewsletterFormSet = formset_factory(NewsletterForm, extra=0,
-                                        max_num=len(initial))
+    initial = preferencesData['initial']
+    newsletter_data = preferencesData['newsletter_data']
+    NewsletterFormSet = preferencesData['NewsletterFormSet']
+    newsletter_languages = preferencesData['newsletter_languages']
+    already_subscribed = preferencesData['already_subscribed']
 
     if request.method == 'POST':
         form_kwargs = {}
@@ -413,23 +405,8 @@ def existing(request, token=None):
 
         # FALL THROUGH so page displays errors
     else:
-        form = ManageSubscriptionsForm(
-            locale, initial=user
-        )
-        formset = NewsletterFormSet(initial=initial)
-
-    # For the template, we want a dictionary whose keys are language codes
-    # and each value is the list of newsletter keys that are available in
-    # that language code.
-    newsletter_languages = defaultdict(list)
-    for newsletter, data in newsletter_data.iteritems():
-        for lang in data['languages']:
-            newsletter_languages[lang].append(newsletter)
-    newsletter_languages = mark_safe(json.dumps(newsletter_languages))
-
-    # We also want a list of the newsletters the user is already subscribed
-    # to
-    already_subscribed = mark_safe(json.dumps(user['newsletters']))
+        form = preferencesData['form']
+        formset = preferencesData['formset']
 
     context = {
         'form': form,
@@ -441,6 +418,76 @@ def existing(request, token=None):
     return l10n_utils.render(request,
                              'newsletter/existing.html',
                              context)
+
+
+def get_pref_form_data(user, locale):
+    # Get the newsletter data - it's a dictionary of dictionaries
+    newsletter_data = utils.get_newsletters()
+
+    # Figure out which newsletters to display, and whether to show them
+    # as already subscribed.
+    initial = []
+    for newsletter, data in newsletter_data.iteritems():
+        # Only show a newsletter if it has ['active'] == True and
+        # ['show'] == True or the user is already subscribed
+        if not data.get('active', False):
+            continue
+        if data.get('show', False) or newsletter in user['newsletters']:
+            langs = data['languages']
+            nstrings = NEWSLETTER_STRINGS.get(newsletter)
+            if nstrings:
+                title = nstrings['title']
+                description = nstrings.get('description', u'')
+            else:
+                # Firefox Marketplace for Desktop/Android/Firefox OS should be
+                # shorten in the titles
+                title = _(data['title'].replace('Firefox Marketplace for ', ''))
+                description = _(data['description'])
+
+            form_data = {
+                'title': Markup(title),
+                'subscribed_radio': newsletter in user['newsletters'],
+                'subscribed_check': newsletter in user['newsletters'],
+                'newsletter': newsletter,
+                'description': Markup(description),
+                'english_only': len(langs) == 1 and langs[0].startswith('en'),
+            }
+            if 'order' in data:
+                form_data['order'] = data['order']
+            initial.append(form_data)
+
+    # Sort by 'order' field if we were given it; otherwise, by title
+    if initial:
+        keyfield = 'order' if 'order' in initial[0] else 'title'
+        initial.sort(key=itemgetter(keyfield))
+
+    NewsletterFormSet = formset_factory(NewsletterForm, extra=0,
+                                        max_num=len(initial))
+
+    # For the template, we want a dictionary whose keys are language codes
+    # and each value is the list of newsletter keys that are available in
+    # that language code.
+    newsletter_languages = defaultdict(list)
+    for newsletter, data in newsletter_data.iteritems():
+        for lang in data['languages']:
+            newsletter_languages[lang].append(newsletter)
+    newsletter_languages = mark_safe(json.dumps(newsletter_languages))
+
+    # We also want a list of the newsletters the user is already subscribed to
+    already_subscribed = mark_safe(json.dumps(user['newsletters']))
+
+    form = ManageSubscriptionsForm(locale, initial=user)
+    formset = NewsletterFormSet(initial=initial)
+
+    return {
+        'initial': initial,
+        'newsletter_data': newsletter_data,
+        'NewsletterFormSet': NewsletterFormSet,
+        'newsletter_languages': newsletter_languages,
+        'already_subscribed': already_subscribed,
+        'form': form,
+        'formset': formset,
+    }
 
 
 # Possible reasons for unsubscribing
