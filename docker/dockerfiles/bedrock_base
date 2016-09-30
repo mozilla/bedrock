@@ -6,7 +6,7 @@ ENV LANG=C.UTF-8
 
 WORKDIR /app
 EXPOSE 8000
-CMD ["./docker/run-prod.sh"]
+CMD ["./docker/run.sh"]
 
 RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
 
