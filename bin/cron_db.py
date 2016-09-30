@@ -4,7 +4,7 @@ from __future__ import print_function, unicode_literals
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-from bedrock.scheduler_utils import call_command, scheduled_job, ping_dms
+from scheduler_utils import call_command, scheduled_job, ping_dms
 
 
 schedule = BlockingScheduler()
