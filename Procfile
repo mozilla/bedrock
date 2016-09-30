@@ -1,2 +1,3 @@
 web: ./docker/run-prod.sh
-clock: ./bin/cron.py
+clock: ./bin/cron_db.py
+dev: ./docker/run-supervisor.sh

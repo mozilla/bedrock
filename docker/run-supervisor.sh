@@ -7,8 +7,10 @@ enable_proc() {
 }
 
 DEV=$(echo "$DEV" | tr '[:upper:]' '[:lower:]')
+DB_CRON=$(echo "$DB_CRON" | tr '[:upper:]' '[:lower:]')
 
 enable_proc bedrock
-[[ "$DEV" == "true" ]] && enable_proc cron || true
+[[ "$DEV" == "true" ]] && enable_proc cron_l10n || true
+[[ "$DB_CRON" == "true" ]] && enable_proc cron_db || true
 
 exec supervisord -c etc/supervisord.conf
