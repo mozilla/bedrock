@@ -472,7 +472,7 @@ main {
         padding-top: 40px;
 
         &:before {
-            @include at2x('/media/img/firefox/common/firefox-logo.png');
+            @include at2x('/media/img/firefox/template/logo-large.png');
             @include background-size(100%);
             background-repeat: no-repeat;
             content: '';
