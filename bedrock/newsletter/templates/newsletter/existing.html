@@ -15,20 +15,39 @@
 
   {% block main_feature %}
     <div id="main-feature">
+    {% if did_confirm %}
+      <h1>{{ _('Thanks for Subscribing!') }}</h1>
+
+      {% if l10n_has_tag('newsletter_confirm_2016') %}
+        <p>
+          {{ _('You’re awesome!') }}
+          {{ _('And we’re not just saying that because you trusted us with your email address.') }}
+          {{ _('Please be sure to add mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.') }}
+        </p>
+
+        <p>
+          {{ _('Mozilla touches on a variety of important issues.') }}
+          {{ _('Open your inbox (and your heart) even more — take a look at other topics we cover.') }}
+        </p>
+      {% else %}
+        <p>{{ _('Your newsletter subscription has been confirmed.') }}</p>
+        <p>{{ _('Please be sure to add our sending address: mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.') }}</p>
+      {% endif %}
+    {% else %}
       <h1>{{ _('Manage your Email Preferences') }}</h1>
 
-    {% if switch('newsletter-maintenance-mode') %}
-      <p class="billboard">
-        {{ _('This page is in maintenance mode and is temporarily unavailable.') }}<br>
-        {{ _('To update your email preferences, please check back in a little while. Thanks!') }}
-      </p>
-    {% else %}
-      <p>
-        {{ _('We love sharing updates about all the awesome things happening at Mozilla.') }}<br>
-        {{ _('Set your preferences below to make sure you always receive the news you want.') }}
-      </p>
+      {% if switch('newsletter-maintenance-mode') %}
+        <p class="billboard">
+          {{ _('This page is in maintenance mode and is temporarily unavailable.') }}<br>
+          {{ _('To update your email preferences, please check back in a little while. Thanks!') }}
+        </p>
+      {% else %}
+        <p>
+          {{ _('We love sharing updates about all the awesome things happening at Mozilla.') }}<br>
+          {{ _('Set your preferences below to make sure you always receive the news you want.') }}
+        </p>
+      {% endif %}
     {% endif %}
-
     </div>
   {% endblock %}
 

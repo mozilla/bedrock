@@ -10,6 +10,7 @@ from operator import itemgetter
 
 from django.contrib import messages
 from django.forms.formsets import formset_factory
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.utils.safestring import mark_safe
 from django.views.decorators.cache import never_cache
@@ -200,7 +201,7 @@ def confirm(request, token):
     """
     Confirm subscriptions.
     """
-    success = generic_error = token_error = False
+    success = generic_error = token_error = rate_limit_error = False
 
     try:
         result = basket.confirm(token)
@@ -208,6 +209,8 @@ def confirm(request, token):
         log.exception("Exception confirming token %s" % token)
         if e.code == basket.errors.BASKET_UNKNOWN_TOKEN:
             token_error = True
+        elif e.code == basket.errors.BASKET_USAGE_ERROR:
+            rate_limit_error = True
         else:
             # Any other exception
             generic_error = True
@@ -219,12 +222,17 @@ def confirm(request, token):
             # but just in case:
             generic_error = True
 
-    return l10n_utils.render(
-        request,
-        'newsletter/confirm.html',
-        {'success': success,
-         'generic_error': generic_error,
-         'token_error': token_error})
+    # Assume rate limit error means user already confirmed and clicked confirm
+    # link twice in quick succession
+    if success or rate_limit_error:
+        return HttpResponseRedirect("%s?confirm=1" % reverse('newsletter.existing.token', kwargs={'token': token}))
+    else:
+        return l10n_utils.render(
+            request,
+            'newsletter/confirm.html',
+            {'success': success,
+             'generic_error': generic_error,
+             'token_error': token_error})
 
 
 @never_cache
@@ -427,17 +435,18 @@ def existing(request, token=None):
             newsletter_languages[lang].append(newsletter)
     newsletter_languages = mark_safe(json.dumps(newsletter_languages))
 
-    # We also want a list of the newsletters the user is already subscribed
-    # to
+    # We also want a list of the newsletters the user is already subscribed to
     already_subscribed = mark_safe(json.dumps(user['newsletters']))
 
     context = {
+        'did_confirm': request.GET.get('confirm', None) == '1',
         'form': form,
         'formset': formset,
         'newsletter_languages': newsletter_languages,
         'newsletters_subscribed': already_subscribed,
         'email': user['email'],
     }
+
     return l10n_utils.render(request,
                              'newsletter/existing.html',
                              context)
