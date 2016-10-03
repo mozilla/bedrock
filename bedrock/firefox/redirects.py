@@ -42,8 +42,9 @@ redirectpatterns = (
     # bug 657049, 1238851
     redirect(r'^firefox/accountmanager/?$', 'https://developer.mozilla.org/Persona'),
 
-    # bug 841846
-    redirect(r'^firefox/nightly/?$', 'https://nightly.mozilla.org/'),
+    # bug 1307091
+    redirect(r'^firefox/nightly/?$', 'firefox.all', to_kwargs={'channel': 'nightly'},
+             permanent=False),
 
     # Bug 1009247, 1101220
     redirect(r'^((firefox|mobile)/)?beta/?$', 'firefox.channel', anchor='beta'),
