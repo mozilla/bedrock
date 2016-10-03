@@ -132,7 +132,7 @@ class TestExistingNewsletterView(TestCase):
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
-        self.assertEqual(context['did_confirm'], '1')
+        self.assertEqual(context['did_confirm'], True)
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_get_token(self, get_newsletters, mock_basket_request):

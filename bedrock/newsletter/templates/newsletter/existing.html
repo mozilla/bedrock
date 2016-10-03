@@ -15,7 +15,7 @@
 
   {% block main_feature %}
     <div id="main-feature">
-    {% if did_confirm == '1' %}
+    {% if did_confirm %}
       <h1>{{ _('Thanks for Subscribing!') }}</h1>
 
       {% if l10n_has_tag('newsletter_confirm_2016') %}
