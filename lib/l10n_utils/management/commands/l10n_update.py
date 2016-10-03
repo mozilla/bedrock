@@ -4,11 +4,11 @@
 from __future__ import print_function, unicode_literals
 
 import os
+from shutil import rmtree
 from subprocess import check_output, STDOUT
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.conf import settings
-
 
 GIT = getattr(settings, 'GIT_BIN', 'git')
 
@@ -26,7 +26,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if self.locales_path.is_dir():
-            self.update_repo()
+            if not self.locales_path.joinpath('.git').is_dir():
+                rmtree(self.locales_path_str, ignore_errors=True)
+                self.clone_repo()
+            else:
+                self.update_repo()
         else:
             self.clone_repo()
 
@@ -46,8 +50,6 @@ class Command(BaseCommand):
         git('remote', 'add', self.remote_name, self.locales_repo)
 
     def update_repo(self):
-        if not self.locales_path.joinpath('.git').is_dir():
-            raise CommandError('locale directory is not a git repo. delete it and try again.')
         os.chdir(self.locales_path_str)
         if not self.has_remote():
             self.add_remote()
@@ -56,4 +58,5 @@ class Command(BaseCommand):
         git('checkout', '-f', self.branch_name)
 
     def clone_repo(self):
-        git('clone', '--origin', self.remote_name, self.locales_repo, self.locales_path_str)
+        git('clone', '--origin', self.remote_name, '--depth', '1',
+            self.locales_repo, self.locales_path_str)
