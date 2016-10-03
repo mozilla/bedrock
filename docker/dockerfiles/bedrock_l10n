@@ -1,2 +1,5 @@
 FROM ${FROM_DOCKER_REPOSITORY}:${GIT_COMMIT}
 COPY . /app/locale
+USER root
+RUN chown -R webdev.webdev /app/locale
+USER webdev
