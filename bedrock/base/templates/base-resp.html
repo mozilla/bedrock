@@ -8,12 +8,12 @@
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
     {% javascript 'site' %}
+    {% block experiments %}{% endblock %}
 
 <!--
 {% include "includes/careers-teaser.html" %}
 -->
 
-    {% block ga_experiments %}{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block extra_meta %}{% endblock %}
 
