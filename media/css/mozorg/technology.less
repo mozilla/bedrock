@@ -872,6 +872,8 @@ main {
     @media only screen and (max-width: @breakTablet) {
 
         header {
+            text-align: center;
+
             h2 {
                 .font-size(34px);
             }
@@ -882,6 +884,7 @@ main {
         }
 
         .container > ul > li {
+            text-align: center;
             width: 100%;
 
             &:nth-child(odd) {
@@ -890,14 +893,80 @@ main {
 
             h3 {
                 .font-size(28px);
+                padding-right: 0;
             }
 
             p, a {
                 .font-size(18px);
             }
 
-            li {
-                text-align: left;
+            ul {
+                margin-bottom: 0;
+            }
+        }
+
+        .dev-links {
+            padding: 0;
+            min-height: 0;
+
+            &:before {
+                left: 50%;
+            }
+
+            &.mdn {
+                padding-top: 68px;
+
+                &:before {
+                    margin-left: -37px;
+                }
+            }
+
+            &.vr {
+                padding-top: 84px;
+
+                &:before {
+                    margin-left: -36px;
+                }
+            }
+
+            &.iot {
+                padding-top: 76px;
+
+                &:before {
+                    margin-left: -37px;
+                }
+            }
+
+            &.rust {
+                padding-top: 84px;
+
+                &:before {
+                    margin-left: -37px;
+                }
+            }
+
+            &.servo {
+                padding-top: 79px;
+
+                &:before {
+                    margin-left: -37px;
+                }
+            }
+
+            &.encrypt {
+                padding-top: 84px;
+
+                &:before {
+                    margin-left: -27px;
+                }
+            }
+
+            &.gaming {
+                padding-top: 76px;
+
+                &:before {
+                    margin-left: -37px;
+                }
             }
         }
     }

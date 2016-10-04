@@ -122,5 +122,10 @@ class BlogArticle(models.Model):
         return Markup(summary)
 
     @property
+    def blog_title(self):
+        title = strip_tags(self.title).strip()
+        return Markup(title).unescape()
+
+    @property
     def blog_link(self):
         return settings.BLOG_FEEDS[self.blog_slug]['url']
