@@ -29,9 +29,9 @@ class TestUpdateBlogFeeds(TestCase):
         call_command('update_blog_feeds', articles=4)
         self.assertEqual(BlogArticle.objects.count(), 4)
 
-    @patch('bedrock.mozorg.management.commands.update_blog_feeds.BlogArticle')
-    def test_error_loading_feed(self, mock_model):
-        mock_model.objects.create.side_effect = [IntegrityError] + [None] * 4
+    @patch('bedrock.mozorg.management.commands.update_blog_feeds.BlogArticle.objects')
+    def test_error_loading_feed(self, mock_manager):
+        mock_manager.create.side_effect = [IntegrityError] + [None] * 4
         call_command('update_blog_feeds', articles=4)
         # 5 calls since first fails and we want 4 articles
-        self.assertEqual(mock_model.objects.create.call_count, 5)
+        self.assertEqual(mock_manager.create.call_count, 5)
