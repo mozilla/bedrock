@@ -343,6 +343,10 @@ def technology(request):
     if version == 'b':
         template = 'mozorg/technology/developer.html'
 
-    articles = BlogArticle.objects.filter(blog_slug__in=['hacks', 'cd', 'futurereleases'])[:4]
+    try:
+        articles = BlogArticle.objects.filter(
+            blog_slug__in=['hacks', 'cd', 'futurereleases'])[:4]
+    except:
+        articles = None
 
     return l10n_utils.render(request, template, {'articles': articles})
