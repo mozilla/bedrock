@@ -814,6 +814,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/tabzilla-min.css',
     },
+    'technology': {
+        'source_filenames': (
+            'css/newsletter/moznewsletter-subscribe.less',
+            'css/mozorg/technology.less',
+        ),
+        'output_filename': 'css/technology-bundle.css',
+    },
     'tracking-protection-tour': {
         'source_filenames': (
             'css/firefox/tracking-protection-tour.less',

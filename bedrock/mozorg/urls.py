@@ -224,6 +224,7 @@ urlpatterns = (
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url(r'^contributor-data/(?P<source_name>[a-z]{2,20})\.json$', views.mozid_data_view,
         name='mozorg.contributor-data'),
+    url('^technology/$', views.technology, name='mozorg.technology'),
 
     # namespaces
     url(r'^2004/em-rdf$', views.namespaces, {'namespace': 'em-rdf'}),

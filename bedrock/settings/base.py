@@ -478,9 +478,23 @@ TEMPLATES = [
     },
 ]
 
-FEEDS = {
-    'mozilla': 'https://blog.mozilla.org/feed/'
+# unless an entry has a "feed_url" entry, the feed URL will be
+# the "url" entry + "/feed/atom/", which works for our WP blogs.
+BLOG_FEEDS = {
+    'hacks': {
+        'url': 'https://hacks.mozilla.org/',
+        'name': 'Hacks',
+    },
+    'cd': {
+        'url': 'https://connected.mozilla.org/',
+        'name': 'Connected Devices',
+    },
+    'futurereleases': {
+        'url': 'https://blog.mozilla.org/futurereleases/',
+        'name': 'Future Releases',
+    },
 }
+
 EVENTS_ICAL_FEEDS = (
     'https://reps.mozilla.org/events/period/future/ical/',
     'https://www.google.com/calendar/ical/mozilla.com_l9g7ie050ngr3g4qv6bgiinoig'

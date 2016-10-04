@@ -28,7 +28,7 @@ from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (WebToLeadForm, ContributeStudentAmbassadorForm)
 from bedrock.mozorg.forums import ForumsFile
-from bedrock.mozorg.models import ContributorActivity, TwitterCache
+from bedrock.mozorg.models import ContributorActivity, TwitterCache, BlogArticle
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 
@@ -333,3 +333,16 @@ def plugincheck(request):
         template = 'mozorg/plugincheck-redesign.html'
 
     return l10n_utils.render(request, template)
+
+
+def technology(request):
+    template = 'mozorg/technology/index.html'
+
+    version = request.GET.get('v', None)
+
+    if version == 'b':
+        template = 'mozorg/technology/developer.html'
+
+    articles = BlogArticle.objects.filter(blog_slug__in=['hacks', 'cd', 'futurereleases'])[:4]
+
+    return l10n_utils.render(request, template, {'articles': articles})
