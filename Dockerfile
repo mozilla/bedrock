@@ -8,7 +8,6 @@ COPY ./requirements/ ./requirements/
 RUN pip install --no-cache-dir -r requirements/dev.txt
 RUN pip install --no-cache-dir -r requirements/prod.txt
 RUN pip install --no-cache-dir -r requirements/docker.txt
-RUN pip install --no-cache-dir -r requirements/docker-dev.txt
 
 COPY . ./
 
