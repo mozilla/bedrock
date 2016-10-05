@@ -377,6 +377,8 @@ main {
 }
 
 .section-content {
+    @include border-box;
+    min-width: $width-phone;
     padding: 10px 20px 20px;
     text-align: center;
 

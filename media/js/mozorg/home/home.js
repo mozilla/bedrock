@@ -7,8 +7,6 @@
 
     var mozClient = window.Mozilla.Client;
     var impactInnovationWaypoint;
-
-    // variant a and c only
     var $slideshow = $('#home-slideshow');
 
     function handleWaypoint(target, callback) {
@@ -21,6 +19,11 @@
             if (typeof callback === 'function') {
                 callback(direction);
             }
+
+            if (($('body#home').hasClass('variant-b')) && (direction === 'down')) {
+                linksFadeIn();
+            }
+
         };
     }
 
@@ -55,6 +58,22 @@
     if (mozClient.isMobile && !mozClient.isFirefox) {
         $('#fxmobile-download-buttons').addClass('visible');
         $('#fx-download-link').addClass('hidden');
+    }
+
+    // Fade the links in one by one
+    // Requires some duplication so both sets synchronize (needs to be two arrays)
+    function linksFadeIn() {
+        var delay = 200;
+        $('#icon-links-who > li').each(function(i) {
+            setTimeout(function() {
+                $(this).addClass('visible');
+            }.bind(this), delay * i);
+        });
+        $('#icon-links-innovate > li').each(function(i) {
+            setTimeout(function() {
+                $(this).addClass('visible');
+            }.bind(this), delay * i);
+        });
     }
 
     $(function() {
