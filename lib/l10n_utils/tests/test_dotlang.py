@@ -14,7 +14,7 @@ from django.test.utils import override_settings
 from django_jinja.backend import Jinja2
 from mock import patch
 from nose.tools import assert_not_equal, eq_, ok_
-from pathlib import Path
+from pathlib2 import Path
 from product_details import product_details
 from pyquery import PyQuery as pq
 

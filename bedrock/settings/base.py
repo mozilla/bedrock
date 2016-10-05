@@ -11,7 +11,7 @@ from django.utils.functional import lazy
 
 import dj_database_url
 from decouple import Csv, config
-from pathlib import Path
+from pathlib2 import Path
 
 from .static_media import PIPELINE_CSS, PIPELINE_JS  # noqa
 

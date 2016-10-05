@@ -9,7 +9,7 @@ from django.test.utils import override_settings
 from bedrock.base.urlresolvers import reverse
 from mock import patch, Mock
 from nose.tools import eq_
-from pathlib import Path
+from pathlib2 import Path
 from pyquery import PyQuery as pq
 from rna.models import Release
 

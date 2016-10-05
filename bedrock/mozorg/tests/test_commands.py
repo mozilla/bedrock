@@ -7,7 +7,7 @@ from django.db import IntegrityError
 from django.test import override_settings
 
 from mock import patch
-from pathlib import Path
+from pathlib2 import Path
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.mozorg.models import BlogArticle
