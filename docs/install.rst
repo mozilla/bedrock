@@ -145,7 +145,7 @@ of the service. We maintain a `page on the Mozilla wiki detailing our use of Opt
 To work with/test these Optimizely switches locally, you must add the switches to your local environment. For example::
 
     # to switch on firefox-new-optimizely you'd add the following to your ``.env`` file
-    SWITCH_FIREFOX_NEW_OPTIMIZELY=True
+    SWITCH_FIREFOX_NEW_OPTIMIZELY=on
 
 You then must set an Optimizely project code in ``.env``::
 
@@ -156,6 +156,16 @@ You then must set an Optimizely project code in ``.env``::
 
     You are not required to set up Optimizely as detailed above. If not configured,
     bedrock will treat the switches as set to ``off``.
+
+To do the equivalent in one of the bedrock apps deployed with `Deis <http://deis.io/>`_, use `deis config <http://docs.deis.io/en/latest/using_deis/config-application/`_. To continue the example above with a Deis app named ``bedrock-demo-switch``::
+
+    deis config:set SWITCH_FIREFOX_NEW_OPTIMIZELY=on -a bedrock-demo-switch
+
+.. note::
+
+    We have multiple Deis clusters with independent configurations, and recommend using the `DEIS_PROFILE <http://docs.deis.io/en/latest/using_deis/install-client/#multiple-profile-support>`_ environment variable to switch between clusters.
+
+
 
 Notes
 -----
