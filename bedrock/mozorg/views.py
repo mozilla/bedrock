@@ -39,6 +39,7 @@ forums_file = ForumsFile('forums')
 PARTNERSHIPS_EMAIL_SUBJECT = 'New Partnership Inquiry'
 PARTNERSHIPS_EMAIL_TO = ['partnerships@mozilla.com']
 PARTNERSHIPS_EMAIL_FROM = 'Mozilla.com <noreply@mozilla.com>'
+TECH_BLOG_SLUGS = ['hacks', 'cd', 'futurereleases']
 
 
 def csrf_failure(request, reason=''):
@@ -344,9 +345,8 @@ def technology(request):
         template = 'mozorg/technology/developer.html'
 
     try:
-        articles = BlogArticle.objects.filter(
-            blog_slug__in=['hacks', 'cd', 'futurereleases'])[:4]
-    except:
+        articles = list(BlogArticle.objects.filter(blog_slug__in=TECH_BLOG_SLUGS)[:4])
+    except Exception:
         articles = None
 
     return l10n_utils.render(request, template, {'articles': articles})
