@@ -1551,6 +1551,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/styleguide-docs-send-to-device-bundle.js',
     },
+    'experiment-technology-page': {
+        'source_filenames': (
+            'js/base/mozilla-cookie-helper.js',
+            'js/base/mozilla-traffic-cop.js',
+            'js/mozorg/experiment-technology-page.js',
+        ),
+        'output_filename': 'js/experiment-technology-page-bundle.js',
+    },
     'tracking-protection-tour': {
         'source_filenames': (
             'js/libs/jquery-1.11.3.min.js',

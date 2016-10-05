@@ -19,9 +19,9 @@
   {% stylesheet 'technology' %}
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('mozorg-technology-optimizely') %}
-      {% include 'includes/optimizely.html' %}
+{% block experiments %}
+  {% if switch('experiment-technology-page') %}
+     {% javascript 'experiment-technology-page' %}
   {% endif %}
 {% endblock %}
 
@@ -29,7 +29,9 @@
 <header id="masthead">
   <div class="container">
     <h1 class="masthead-logo">
-      <img src="{{ static('img/mozorg/template/mozilla-wordmark.svg') }}" alt="Mozilla">
+      <a href="{{ url('mozorg.home') }}">
+        <img src="{{ static('img/mozorg/template/mozilla-wordmark.svg') }}" alt="Mozilla">
+      </a>
     </h1>
     {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='nav-download-firefox') }}
     <nav id="nav-main">
