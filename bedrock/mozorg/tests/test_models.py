@@ -4,7 +4,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.core.cache import cache
-from django.core.management import call_command
 from django.db.utils import DatabaseError
 from django.db.models.signals import post_save
 from django.test import override_settings
@@ -31,7 +30,7 @@ class TestBlogArticle(TestCase):
     @classmethod
     def setUpClass(cls):
         super(TestBlogArticle, cls).setUpClass()
-        call_command('update_blog_feeds', articles=4)
+        BlogArticle.update_feeds(num_articles=4)
 
     def test_htmlify(self):
         a = BlogArticle.objects.first()
@@ -45,6 +44,22 @@ class TestBlogArticle(TestCase):
     def test_blog_link(self):
         a = BlogArticle.objects.first()
         self.assertEqual(a.blog_link, TEST_BLOG_FEEDS['hacks']['url'])
+
+    def test_parse_feed(self):
+        feed = BlogArticle.parse_feed('dude', {
+            'feed_url': str(HACKS_FILE),
+            'name': 'The Dude Feeds',
+        })
+        self.assertEqual(feed.mozorg_feed_id, 'dude')
+        self.assertEqual(feed.mozorg_feed_name, 'The Dude Feeds')
+
+    @patch('bedrock.mozorg.models.parse')
+    def test_parse_feed_no_feed_url(self, parse_mock):
+        BlogArticle.parse_feed('dude', {
+            'url': 'https://example.com',
+            'name': 'The Dude Feeds',
+        })
+        parse_mock.assert_called_with('https://example.com/feed/atom/')
 
 
 @patch.object(TwitterCache.objects, 'get')
