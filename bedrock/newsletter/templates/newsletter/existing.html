@@ -139,7 +139,7 @@
         </div>
       </div><!-- close #default-newsletters -->
 
-      <div class="field" id="other-newsletters">
+      <div class="field{% if did_confirm %} hidden{% endif %}" id="other-newsletters">
         <h3>{{ _('Getting too much email from us?') }}</h3>
         <p>
           {{ _('Not interested in our newsletters, but like those special announcements? No problem.') }}
@@ -179,7 +179,7 @@
         </div>
       </div><!-- close #other-newsletters -->
 
-      <div class="field" id="remove-all-section">
+      <div class="field{% if did_confirm %} hidden{% endif %}" id="remove-all-section">
         {{ form['remove_all'] }}
         {{ form.remove_all.label_tag(_('Remove me from all Mozilla emails')) }}
       </div>
