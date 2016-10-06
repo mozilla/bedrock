@@ -7,7 +7,6 @@ import pytest
 from pages.home import HomePage
 
 
-@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1275626')
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
     page = HomePage(selenium, base_url).open()
@@ -15,15 +14,14 @@ def test_navigation(base_url, selenium):
     assert about_page.seed_url in selenium.current_url
 
     page.open()
-    participate_page = page.navigation.open_participate()
-    assert participate_page.seed_url in selenium.current_url
+    technology_page = page.navigation.open_technology()
+    assert technology_page.seed_url in selenium.current_url
 
     page.open()
     firefox_page = page.navigation.open_firefox()
     assert firefox_page.seed_url in selenium.current_url
 
 
-@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1275626')
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.viewport('mobile')
@@ -34,8 +32,8 @@ def test_mobile_navigation(base_url, selenium):
     assert about_page.seed_url in selenium.current_url
 
     page.open().navigation.show()
-    participate_page = page.navigation.open_participate()
-    assert participate_page.seed_url in selenium.current_url
+    technology_page = page.navigation.open_technology()
+    assert technology_page.seed_url in selenium.current_url
 
     page.open().navigation.show()
     firefox_page = page.navigation.open_firefox()

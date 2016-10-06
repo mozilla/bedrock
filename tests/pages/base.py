@@ -40,7 +40,7 @@ class BasePage(Page):
         _toggle_locator = (By.CLASS_NAME, 'toggle')
         _menu_locator = (By.ID, 'nav-main-menu')
         _about_locator = (By.CSS_SELECTOR, 'a[data-link-name="About"]')
-        _participate_locator = (By.CSS_SELECTOR, 'a[data-link-name="Participate"]')
+        _technology_locator = (By.CSS_SELECTOR, 'a[data-link-name="Web Innovations"]')
         _firefox_locator = (By.CSS_SELECTOR, 'a[data-link-name="Firefox"]')
 
         def show(self):
@@ -60,10 +60,10 @@ class BasePage(Page):
             from about import AboutPage
             return AboutPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
-        def open_participate(self):
-            self.find_element(*self._participate_locator).click()
-            from contribute.contribute import ContributePage
-            return ContributePage(self.selenium, self.page.base_url).wait_for_page_to_load()
+        def open_technology(self):
+            self.find_element(*self._technology_locator).click()
+            from technology import TechnologyPage
+            return TechnologyPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
         def open_firefox(self):
             self.find_element(*self._firefox_locator).click()

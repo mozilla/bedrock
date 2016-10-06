@@ -9,7 +9,6 @@ import pytest
 from pages.home import HomePage
 
 
-@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1275626')
 @pytest.mark.nondestructive
 def test_change_language(base_url, selenium):
     page = HomePage(selenium, base_url).open()
