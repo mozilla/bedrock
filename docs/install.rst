@@ -157,7 +157,7 @@ You then must set an Optimizely project code in ``.env``::
     You are not required to set up Optimizely as detailed above. If not configured,
     bedrock will treat the switches as set to ``off``.
 
-To do the equivalent in one of the bedrock apps deployed with `Deis <http://deis.io/>`_, use `deis config <http://docs.deis.io/en/latest/using_deis/config-application/`_. To continue the example above with a Deis app named ``bedrock-demo-switch``::
+To do the equivalent in one of the bedrock apps deployed with `Deis <http://deis.io/>`_, use `deis config <http://docs.deis.io/en/latest/using_deis/config-application/>`_. To continue the example above with a Deis app named ``bedrock-demo-switch``::
 
     deis config:set SWITCH_FIREFOX_NEW_OPTIMIZELY=on -a bedrock-demo-switch
 
