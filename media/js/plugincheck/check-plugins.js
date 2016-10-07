@@ -1,17 +1,43 @@
-/* global PluginCheck, Mustache, vulnerablePluginsTmpl, outdatedPluginsTmpl,
-   unknownPluginsTmpl, upToDatePluginsTmpl */
+/* global PluginCheck, Mustache, featuredPluginsTmpl, otherPluginsTmpl, unknownPluginsTmpl */
 
 $(function() {
     'use strict';
 
     var client = window.Mozilla.Client;
-
-    var outdatedFx = $('.version-message-container');
     var wrapper = $('#wrapper');
-    var $loader = $('.plugincheck-loader');
-    var $pluginsContainer = $('#plugins');
-    var $noPluginsContainer = $('#no-plugins');
 
+    // Plugin containers
+    var $loader = $('.plugincheck-loader');
+    var $pluginsStatusContainer = $('#plugins-status-container');
+    var $pluginsContainer = $('#plugins-container');
+    var $outOfDateContainer = $('#out-of-date-container');
+    var $notSupportedContainer = $('#not-supported-container');
+    var $noPluginsContainer = $('#no-plugins-container');
+
+    // Plugin tables
+    var $featuredPluginsSection = $('#sec-plugin-featured');
+    var $featuredPluginsBody = $('#plugin-featured');
+    var $outdatedPluginsSection = $('#sec-plugin-outdated');
+    var $outdatedPluginsBody = $('#plugin-outdated');
+    var $unknownPluginsSection = $('#sec-plugin-unknown');
+    var $unknownPluginsBody = $('#plugin-unknown');
+    var $upToDatePluginsSection = $('#sec-plugin-uptodate');
+    var $upToDatePluginsBody = $('#plugin-uptodate');
+
+    // Plugin button text and status strings
+    var _updateNowButtonText = window.trans('buttonUpdateNow');
+    var _learnMoreButtonText = window.trans('buttonLearnMore');
+    var _iconAltText = window.trans('iconAltTxt');
+    var _pluginStatusUpToDate = window.trans('upToDate');
+    var _pluginStatusVulnerable = window.trans('vulnerable');
+    var _pluginStatusOutdated = window.trans('outdated');
+    var _pluginStatusUnknown = window.trans('unknown');
+
+    // Total number of vulnerable plugins that are *not* featured plugins.
+    var _otherPluginVulnerableCount = 0;
+
+    // Plugin icons
+    var mediaURL = window.trans('mediaUrl') + 'img/plugincheck/app-icons/';
     var readerRegEx = /Adobe \b(Reader|Acrobat)\b.*/;
     var iconFor = function (pluginName) {
         if (pluginName.indexOf('Flash') >= 0) {
@@ -46,18 +72,13 @@ $(function() {
             return 'default.png';
         }
     };
-    var mediaURL = window.trans('media-url') + 'img/plugincheck/app-icons/';
-    var unknownPluginUrl = function (pluginName) {
-        return 'https://duckduckgo.com/?q=' + encodeURI(window.trans('ddgSearchq') + ' ' + pluginName);
-    };
 
     /**
      * Handles click events triggered from various plugin status buttons. Once the
      * click event is received, it sends the relevant data about the interaction to GA.
      */
     function handleButtonInteractions() {
-        $pluginsContainer.on('click', 'a.button', function(event) {
-
+        $pluginsContainer.on('click', 'a.action-link', function(event) {
             window.dataLayer.push({
                 'event': 'plugincheck-interactions',
                 'interaction': 'button click',
@@ -67,117 +88,162 @@ $(function() {
         });
     }
 
-    function showPlugin(data) {
-        var vulnerablePluginsSection = $('#sec-plugin-vulnerable'),
-            vulnerablePluginsBody = $('#plugin-vulnerable'),
-            vulnerablePluginsHtml = '',
-            outdatedPluginsSection = $('#sec-plugin-outdated'),
-            outdatedPluginsBody = $('#plugin-outdated'),
-            outdatedPluginsHtml = '',
-            unknownPluginsSection = $('#sec-plugin-unknown'),
-            unknownPluginsBody = $('#plugin-unknown'),
-            unknownPluginsHtml = '',
-            upToDatePluginsSection = $('#sec-plugin-uptodate'),
-            upToDatePluginsBody = $('#plugin-uptodate'),
-            upToDatePluginsHtml = '';
+    /**
+     * Renders a plugin object using associated template for each status.
+     * @param {object} plugin - Plugin object to render.
+     */
+    function showPlugin(plugin) {
+        var pluginHtml = '';
 
-        // If the latest response from the service was a vulnerable plugin,
-        // pass the object here.
-        if(data.vulnerablePlugins) {
-            vulnerablePluginsHtml = Mustache.to_html(vulnerablePluginsTmpl, data);
-            vulnerablePluginsBody.append(vulnerablePluginsHtml);
-
-            vulnerablePluginsSection.show();
+        // Response was a featured plugin.
+        if (plugin.featured) {
+            pluginHtml = Mustache.to_html(featuredPluginsTmpl, plugin);
+            $featuredPluginsBody.append(pluginHtml);
+            $featuredPluginsSection.show();
+            return;
         }
 
-        // If the latest response from the service was a outdated plugin,
-        // pass the object here.
-        if(data.outdatedPlugins) {
-            outdatedPluginsHtml = Mustache.to_html(outdatedPluginsTmpl, data);
-            outdatedPluginsBody.append(outdatedPluginsHtml);
+        // Response was a vulnerable or outdated plugin.
+        if (plugin.outdated) {
+            pluginHtml = Mustache.to_html(otherPluginsTmpl, plugin);
+            $outdatedPluginsBody.append(pluginHtml);
+            $outdatedPluginsSection.show();
 
-            outdatedPluginsSection.show();
-
+            // If the plugin is vulnerable keep a count for
+            // displaying the "All Plugins" heading status.
+            if (plugin.status === 'vulnerable') {
+                _otherPluginVulnerableCount += 1;
+            }
+            return;
         }
 
-        // If the latest response from the service was an unknown plugin,
-        // pass the object here.
-        if(data.unknownPlugins) {
-            unknownPluginsHtml = Mustache.to_html(unknownPluginsTmpl, data);
-            unknownPluginsBody.append(unknownPluginsHtml);
-
-            unknownPluginsSection.show();
+        // Response was an unknown plugin.
+        if (plugin.status === 'unknown') {
+            pluginHtml = Mustache.to_html(unknownPluginsTmpl, plugin);
+            $unknownPluginsBody.append(pluginHtml);
+            $unknownPluginsSection.show();
+            return;
         }
 
-        // If the latest response from the service was an up to date plugin,
-        // pass the object here.
-        if(data.upToDatePlugins) {
-            upToDatePluginsHtml = Mustache.to_html(upToDatePluginsTmpl, data);
-            upToDatePluginsBody.append(upToDatePluginsHtml);
-
-            upToDatePluginsSection.show();
+        // Response was an up to date plugin.
+        if (plugin.status === 'latest' || plugin.status === 'newer') {
+            pluginHtml = Mustache.to_html(otherPluginsTmpl, plugin);
+            $upToDatePluginsBody.append(pluginHtml);
+            $upToDatePluginsSection.show();
         }
     }
 
+    /**
+     * Gets the localized text for plugin action button.
+     * @param {string} status - Status of the plugin.
+     * @returns {string} - Localized button text dependent on status.
+     */
+    function getPluginButtonText(status) {
+        if (status === 'vulnerable' || status === 'outdated') {
+            return _updateNowButtonText;
+        } else {
+            return _learnMoreButtonText;
+        }
+    }
+
+    /**
+     * Gets the localized text for plugin status.
+     * @param {string} status - Status of the plugin.
+     * @returns {string} - Localized text for plugin status.
+     */
+    function getPluginStatusText(status) {
+        var text;
+
+        switch(status) {
+        case 'latest':
+        case 'newer':
+            text = _pluginStatusUpToDate;
+            break;
+        case 'vulnerable':
+            text = _pluginStatusVulnerable;
+            break;
+        case 'outdated':
+            text = _pluginStatusOutdated;
+            break;
+        default:
+            text = _pluginStatusUnknown;
+            break;
+        }
+        return text;
+    }
+
+    /**
+     * Gets the associated URL for a plugin.
+     * @param {object} plugin - The plugin object for the URL needed.
+     * @returns {string} - URL for plugin dependent on status.
+     */
+    function getPluginUrl(plugin) {
+        if (plugin.status === 'unknown') {
+            return 'https://duckduckgo.com/?q=' + plugin.name;
+        } else {
+            return plugin.url;
+        }
+    }
+
+    /**
+     * Determines if the plugin is either Flash or Silverlight.
+     * @param {string} pluginName - Plugin name.
+     * @returns {boolean}
+     */
+    function isFeaturedPlugin(pluginName) {
+        return pluginName.indexOf('Flash') >= 0 || pluginName.indexOf('Silverlight') >= 0;
+    }
+
+    /**
+     * Determines if the plugin is either out of date or vulnerable.
+     * @param {string} status - Plugin status.
+     * @returns {boolean}
+     */
+    function isOutdatedPlugin(status) {
+        return status === 'vulnerable' || status === 'outdated';
+    }
+
+    /**
+     * Processes the list of plugin data to prepare for template rendering.
+     * @param {array} pluginList - Listy of plugins
+     */
     function displayPlugins(pluginList) {
+        pluginList.forEach(function(plugin) {
+            var currentPlugin = {
+                'icon': mediaURL + iconFor(plugin.name),
+                'plugin_name': plugin.name,
+                'plugin_detail': plugin.description,
+                'plugin_status': getPluginStatusText(plugin.status),
+                'plugin_version': plugin.version,
+                'button_txt': getPluginButtonText(plugin.status),
+                'img_alt_txt': _iconAltText,
+                'url': getPluginUrl(plugin),
+                'status': plugin.status,
+                'featured': isFeaturedPlugin(plugin.name),
+                'outdated': isOutdatedPlugin(plugin.status)
+            };
 
-        for (var i = 0, l = pluginList.length; i < l; i++) {
-            var currentPlugin = {};
-            var plugin = pluginList[i];
-
-            if(plugin.status === 'vulnerable') {
-                currentPlugin.vulnerablePlugins = {
-                    'icon': mediaURL + iconFor(plugin.name),
-                    'plugin_name': plugin.name,
-                    'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('vulnerable'),
-                    'vulnerability_url': plugin.vulnerability_url,
-                    'vulnerability_link_txt': window.trans('vulnerableLinkTxt'),
-                    'plugin_version': plugin.version,
-                    'button_update': window.trans('button_update'),
-                    'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': plugin.url,
-                    'status': plugin.status
-                };
-
-            } else if(plugin.status === 'outdated') {
-                currentPlugin.outdatedPlugins = {
-                    'icon': mediaURL + iconFor(plugin.name),
-                    'plugin_name': plugin.name,
-                    'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('outdated'),
-                    'plugin_version': plugin.version,
-                    'button_update': window.trans('button_update'),
-                    'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': plugin.url,
-                    'status': plugin.status
-                };
-            } else if(plugin.status === 'latest' || plugin.status === 'newer') {
-                currentPlugin.upToDatePlugins = {
-                    'icon': mediaURL + iconFor(plugin.name),
-                    'plugin_name': plugin.name,
-                    'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('button_uptodate'),
-                    'plugin_version': plugin.version,
-                    'button_uptodate': window.trans('button_uptodate'),
-                    'img_alt_txt': window.trans('icon_alt_txt'),
-                    'url': plugin.url,
-                    'status': plugin.status
-                };
-            } else if(plugin.status === 'unknown') {
-                currentPlugin.unknownPlugins = {
-                    'icon': mediaURL + iconFor(plugin.name),
-                    'plugin_name': plugin.name,
-                    'plugin_detail': plugin.description,
-                    'plugin_status': window.trans('unknown'),
-                    'plugin_version': plugin.version,
-                    'button_research': window.trans('button_research'),
-                    'url': unknownPluginUrl(plugin.name),
-                    'status': plugin.status
-                };
+            if (plugin.status === 'vulnerable' && plugin.vulnerability_url) {
+                currentPlugin['vulnerability_url'] = plugin.vulnerability_url;
+                currentPlugin['vulnerability_link_txt'] = _learnMoreButtonText;
             }
 
             showPlugin(currentPlugin);
+        });
+    }
+
+    /**
+     * Displays a count of vulnerable plugins contained in the "All Plugins"
+     * expandable heading, if any exist.
+     */
+    function displayPluginVulnerableStatus() {
+        var $vulnerableWarning;
+        var count;
+        if (_otherPluginVulnerableCount > 0) {
+            count = '(' + _otherPluginVulnerableCount + ')';
+            $vulnerableWarning = $('#vulnerable-warning');
+            $vulnerableWarning.find('.count').text(count);
+            $vulnerableWarning.removeClass('hidden');
         }
     }
 
@@ -196,24 +262,25 @@ $(function() {
         };
 
         // loop through all plugins and total up the plugin counts per category.
-        for (var i = 0, l = plugins.length; i < l; i++) {
-            if (plugins[i].status === 'vulnerable') {
+        plugins.forEach(function(plugin) {
+            if (plugin.status === 'vulnerable') {
                 pluginTotals.vulnerableCount += 1;
-            } else if (plugins[i].status === 'outdated') {
+            } else if (plugin.status === 'outdated') {
                 pluginTotals.outdatedCount += 1;
-            } else if (plugins[i].status === 'latest' || plugins[i] === 'newer') {
+            } else if (plugin.status === 'latest' || plugin === 'newer') {
                 pluginTotals.upToDateCount += 1;
-            } else if (plugins[i].status === 'unknown') {
+            } else if (plugin.status === 'unknown') {
                 pluginTotals.unknownCount += 1;
             }
-        }
+        });
 
         return pluginTotals;
     }
 
     // show main download button to non Fx traffic
-    if(!client.isFirefox && !client.isLikeFirefox) {
-        wrapper.addClass('non-fx');
+    if(!client.isFirefox && !client.isLikeFirefox || client.isFirefoxiOS) {
+        $pluginsStatusContainer.addClass('hidden');
+        $notSupportedContainer.removeClass('hidden');
     }
 
     // show for outdated Fx versions
@@ -221,7 +288,8 @@ $(function() {
     if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
         client.getFirefoxDetails(function(data) {
             if (!client._isFirefoxUpToDate(false) && !data.isESR) {
-                outdatedFx.show();
+                wrapper.addClass('firefox-out-of-date');
+                $outOfDateContainer.removeClass('hidden');
             }
         });
     }
@@ -237,7 +305,6 @@ $(function() {
                 $loader.addClass('hidden');
 
                 if (response.length > 0) {
-
                     // filter out any undefined entries in the array that could be
                     // caused by data problems on the database side.
                     // https://bugzilla.mozilla.org/show_bug.cgi?id=1249892
@@ -258,10 +325,15 @@ $(function() {
                         'plugin-unknown-count': pluginTotals.unknownCount
                     });
 
+                    displayPlugins(response);
+                    displayPluginVulnerableStatus();
+                    handleButtonInteractions();
                     $pluginsContainer.removeClass('hidden');
 
-                    displayPlugins(response);
-                    handleButtonInteractions();
+                    // expand the plugins section if the user has no featured plugins.
+                    if ($('#sec-plugin-featured:visible').length === 0) {
+                        $('#all-plugins-heading[aria-expanded="false"]').click();
+                    }
                 } else {
                     $noPluginsContainer.removeClass('hidden');
                 }
