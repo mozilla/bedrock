@@ -3,84 +3,78 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../../sandstone/lib.less";
-
-#download-buttons {
-    margin-bottom: 100px;
-}
-
-.download-button-wrapper {
-    margin: 10px auto 20px auto;
-    width: 240px;
-}
-
-.other,
-.no-js {
-    .download-button-wrapper {
-        width: 600px;
-        text-align: center;
-
-        @media only screen and (max-width: @breakTablet) {
-            width: auto;
-        }
-    }
-}
-
-// styles the links pulled from underneath the desktop download button
-// (systems & languages, what's new, privacy) and appended to the end of
-// #download-buttons element
-#download-buttons .download-other-desktop {
-    position: absolute;
-    bottom: 240px;
-    left: 50%;
-    margin-left: -170px;
-    width: 340px;
-    text-align: center;
-    .font-size(@baseFontSize);
-    color: @textColorLight;
-    z-index: 2;
-}
+@import "../horizon-lib.less";
 
 // general version message styling
 .version-message-container {
-    text-align: center;
-    .font-size(20px);
-    padding: 0 30px 20px;
     display: none;
-}
+    float: right;
+    padding-top: @baseLine * 3;
+    text-align: right;
+    width: 600px;
 
-.version-message {
-    display: none;
+    @media only screen and (max-width: @breakDesktop) {
+        width: 400px;
+    }
 
-    &:before {
-        .inline-block;
-        margin: 0 4px 0 0;
-        width: 25px;
-        height: 25px;
-        vertical-align: text-bottom;
-        background: url(/media/img/firefox/new/icon-alert.svg) center center no-repeat;
-        content: '';
+    @media only screen and (max-width: @breakTablet) {
+        .font-size(18px);
+        padding-top: @baseLine * 2;
+        text-align: center;
+        width: 100%;
     }
 }
 
-.version-message-secondary {
-    display: block;
-    padding: 0;
-    background: transparent;
-    .font-size(@largeFontSize);
+.version-message {
+    .font-size(18px);
+    color: #fff;
+    display: none;
+    margin: 0;
+
+    &:before {
+        .inline-block;
+        background: url('/media/img/firefox/template/icon-alert.svg') center center no-repeat;
+        content: '';
+        height: 25px;
+        margin: 0 4px 0 0;
+        vertical-align: text-bottom;
+        width: 25px;
+    }
+
+    a:link,
+    a:visited {
+        color: @textColorSpaceYellow;
+    }
 }
 
 .latest-links-wrapper {
     display: none;
-    padding-top: 13px;
     text-align: center;
+
     ul {
         margin: 0;
+
         li {
+            .font-size(@largeFontSize);
+            line-height: 1.2;
+            list-style: none;
             margin: 0;
             padding: 3px 0 2px;
-            list-style: none;
-            line-height: 1.2;
         }
+    }
+}
+
+#download-buttons {
+    .download-dumb {
+        text-align: center;
+
+        .download-heading {
+            color: #fff;
+        }
+    }
+
+    .download-button .unsupported-download a {
+        color: @textColorSpaceYellow;
     }
 }
 
@@ -94,29 +88,19 @@ html.firefox-latest {
         display: inline;
 
         &:before {
-            background-image: url(/media/img/firefox/new/icon-check.svg);
+            background-image: url('/media/img/firefox/template/icon-check.svg');
         }
     }
 
-    /* show helpful links */
-    .desktop-latest-links-wrapper {
+    /* show helpful links and newsletter */
+    .desktop-latest-links-wrapper,
+    #newsletter-subscribe {
         display: block;
     }
 
-    /* hide download button */
-    #download-button-wrapper-desktop {
-        display: none;
-    }
-
-    #firefox-screenshot {
-        display: none;
-    }
-
-    #newsletter-latest {
-        display: block;
-    }
-
-    small.download-other {
+    /* hide download button and benefits */
+    #benefits,
+    #download-buttons {
         display: none;
     }
 }
@@ -143,16 +127,14 @@ html.android {
             display: inline;
 
             &:before {
-                background-image: url(/media/img/firefox/new/icon-check.svg);
+                background-image: url('/media/img/firefox/template/icon-check.svg');
             }
         }
 
-        #version-message-desktop-latest {
-            display: none;
-        }
-
+        #version-message-desktop-latest,
         #download-button-wrapper-desktop,
-        #download-button-wrapper-mobile {
+        #download-button-wrapper-mobile,
+        .desktop-latest-links-wrapper {
             display: none;
         }
 
@@ -160,10 +142,6 @@ html.android {
         .android-latest-links-wrapper {
             display: block;
             padding-top: 38px;
-        }
-
-        .desktop-latest-links-wrapper {
-            display: none;
         }
     }
 
@@ -200,8 +178,8 @@ html.linux.arm {
 
 // firefox os
 html.fxos {
-    // hide conditional messaging for firefox users,
-    // they get updates from the OS directly.
+    // hide conditional messaging and download buttons
+    #download-buttons,
     .version-message-container {
         display: none;
     }
@@ -210,35 +188,17 @@ html.fxos {
         display: block;
         padding-top: 26px;
     }
-
-    .desktop-latest-links-wrapper {
-        display: none;
-    }
-}
-
-/* Unsupported platforms */
-html.windows.arm,
-html.oldmac,
-html.oldwin {
-    .download-button .unsupported-download {
-        margin: 32px 0 0;
-        text-align: center;
-    }
 }
 
 html.android,
 html.ios {
-    #download-button-wrapper-desktop {
+    #download-button-wrapper-desktop,
+    .desktop-latest-links-wrapper {
         display: none;
     }
 
     #download-button-wrapper-mobile {
         display: block;
-        margin-top: 22px;
-    }
-
-    .desktop-latest-links-wrapper {
-        display: none;
     }
 }
 
@@ -252,42 +212,48 @@ html.show-refresh {
         display: block;
         margin: (@baseLine * 2) 0 @baseLine;
 
+        h2 {
+            .font-size(60px);
+            line-height: 1.2;
+            margin-bottom: @baseLine;
+
+            @media only screen and (max-width: @breakDesktop) {
+                .font-size(55px);
+            }
+
+            @media only screen and (max-width: @breakTablet) {
+                .font-size(36px);
+            }
+
+            @media only screen and (max-width: @breakMobileLandscape) {
+                .font-size(30px);
+            }
+        }
+
         p {
+            .font-size(@largeFontSize);
             font-style: normal;
             margin-bottom: @baseLine / 2;
         }
 
         a {
-            color: @textColorTertiary;
-            font-style: normal;
-            .font-size(12px);
+            .font-size(@largeFontSize);
             .trailing-arrow();
+            color: #fff;
+            font-style: normal;
         }
     }
 
     #refresh-firefox {
-        display: block;
-        width: 260px;
-        margin: 0 auto;
-        border-radius: 8px;
-        padding: 15px;
-        font-weight: normal;
         .font-size(22px);
+        display: block;
+        font-weight: normal;
+        margin: 0 auto (@baseLine / 2);
+        padding: 15px;
+        width: 260px;
     }
 
-    #main-feature,
     .hide-for-refresh {
-        display: none;
-    }
-}
-
-/* FxOS */
-html.fxos {
-    #firefox-screenshot {
-        display: none;
-    }
-
-    .download-button-wrapper {
         display: none;
     }
 }
@@ -298,20 +264,6 @@ html.fxos {
 
 #download-button-wrapper-mobile {
     display: none;
-}
-
-#firefox-screenshot {
-    text-align: center;
-
-    .platform-img {
-        vertical-align: bottom;
-    }
-}
-
-/* Newsletter signup shown to up-to-date users */
-#newsletter-latest {
-    display: none;
-    margin: @baseLine * 2 auto @baseLine * 4 auto;
 }
 
 .download-button .unrecognized-download .download-dumb {
@@ -326,10 +278,6 @@ html.fxos {
 
 /* Tablet Layout: 760px */
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    #firefox-screenshot {
-        padding: 0;
-    }
-
     #download-buttons .download-other-desktop {
         bottom: 194px;
     }
@@ -337,16 +285,19 @@ html.fxos {
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
-    .version-message-container {
-        padding: 0 20px 20px;
-        .font-size(18px);
+
+    #masthead h2 > img {
+        display: none;
     }
 
-    #firefox-screenshot { display: none; }
+    main h1 {
+        background: url('/media/img/firefox/new/firefox-logo.png') top center no-repeat;
+        padding-top: 125px;
+    }
 
     #download-buttons {
-        padding-top: 10px;
         margin-bottom: @baseLine;
+        padding-top: 10px;
 
         .download-button {
             display: block;
@@ -367,10 +318,7 @@ html.fxos {
     }
 
     html.android {
-        .mobile {
-            display: none;
-        }
-
+        .mobile,
         .desktop {
             display: none;
         }
@@ -391,29 +339,127 @@ html.fxos {
 
         .download-button {
             text-align: center;
+        }
+    }
+}
 
-            small.download-other {
-                text-align: center;
-                margin-top: 16px;
+#benefits {
+    .clearfix;
+    background: @horizonColorForeground;
+    margin-top: -70px;
+    padding: 0 0 (@baseLine * 3);
+
+    ul {
+        list-style-type: none;
+        margin: 0 auto;
+        padding: 0;
+        position: relative;
+        text-align: center;
+
+        li {
+            float: left;
+            margin: 0;
+            padding: 0;
+            width: 33.3%;
+
+            @media only screen and (max-width: @breakTablet) {
+                float: none;
+                margin-bottom: @baseLine * 2;
+                width: auto;
             }
         }
     }
 
-    #download-buttons .download-other-desktop {
+    h2 {
+        .font-size(22px);
+        .open-sans();
+        padding-top: 73px;
         position: relative;
-        bottom: auto;
-        left: auto;
-        width: auto;
-        margin: (@baseLine * 2) 0;
-    }
 
-    .footer-newsletter-form {
-        padding-top: 20px;
-
-        input[type=email],
-        input[type=submit] {
-            .border-box();
+        &:before {
+            .at2x('/media/img/firefox/new/benefits-sprite.png', 54px, 147px);
+            background-repeat: no-repeat;
+            content: '';
+            left: 0;
+            position: absolute;
+            top: 0;
             width: 100%;
         }
+
+        &.performance:before {
+            background-position: center top;
+            height: 47px;
+        }
+
+        &.privacy:before {
+            background-position: center -47px;
+            height: 50px;
+        }
+
+        &.good:before {
+            background-position: center -98px;
+            height: 49px;
+        }
+    }
+
+    p {
+        .font-size(18px);
+        padding: 0 @baseLine;
+    }
+
+    a {
+        .font-size(18px);
+        color: @textColorSpaceYellow;
+    }
+}
+
+#newsletter-subscribe {
+    background: @horizonColorForeground;
+    display: none;
+    margin-top: -50px;
+
+    .container {
+        .clearfix;
+        padding-top: 0;
+        position: relative;
+    }
+
+    .form-title {
+        .at2x('/media/img/firefox/new/mailbox.png', 130px, 90px);
+        .background-size(130px, 90px);
+        background-position: left 30px;
+
+        @media only screen and (max-width: @breakDesktop) {
+            .background-size(130px, 90px);
+            padding-left: 150px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            .background-size(130px, 90px);
+            background-position: center top;
+            padding-left: 0;
+        }
+    }
+
+    #newsletter-form-thankyou {
+        .span-all;
+        margin: 0;
+        text-align: center;
+
+        h3,
+        p {
+            color: #fff;
+            margin: @baseLine auto;
+            max-width: 35em;
+        }
+
+        p {
+            .font-size(@largeFontSize);
+        }
+    }
+
+    // override JS applied styles so the spinner is visible on dark background.
+    #newsletter-spinner > .spinner > div > div {
+        background: #fff !important;
     }
 }

@@ -2,105 +2,52 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import google_play_button with context %}
+{% add_lang_files "firefox/new/horizon" %}
 
-{% add_lang_files "firefox/new" %}
-
-{% extends "firefox/base-resp.html" %}
-
-{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
-{% block page_title %}{{_('Free Web Browser')}}{% endblock %}
-{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox today!')}}{% endblock %}
-
-{#- This will appear as <meta property="og:title"> which can be used for social share -#}
-{% block page_og_title %}
-  {{_('Choose the independent browser')}}
-{% endblock %}
-
-{#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}
-  {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
-{% endblock %}
-
-{#- This will appear as <meta property="og:image"> which can be used for social share -#}
-{% block page_image %}
-  {{ static('img/firefox/firefox-independent-1200.jpg') }}
-{% endblock %}
-
-{% block body_id %}firefox-new-scene2{% endblock %}
-
-{% block site_header_nav %}{% endblock %}
-{% block site_header_logo %}
-  <h2>{{ high_res_img('firefox/new/header-firefox.png', {'alt': _('Firefox for desktop'), 'width': '223', 'height': '84'}) }}</h2>
-{% endblock %}
-
-{# all CSS must be in extrahead block for old IE #}
-{% block site_css %}{% endblock %}
+{% extends "firefox/new/base.html" %}
 
 {% block extrahead %}
   {% stylesheet 'firefox_new_common' %}
   {% stylesheet 'firefox_new_scene2' %}
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('firefox-new-optimizely') %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
+{% block body_id %}firefox-new-scene2{% endblock %}
 
 {% block content %}
+<main role="main" id="stage">
+  <div class="horizon">
+    <div class="stars">
+      <div class="inner-container">
+        <header id="masthead">
+          <div id="tabzilla">
+            <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+          </div>
+          <h2>{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</h2>
+        </header>
+        <div class="main-content">
+          <h1>{{ _('Enjoy online freedom.') }}</h1>
 
-<main role="main">
-  <div id="main-feature">
-    <div class="row">
-      <img src="{{ static('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
-      <h1 class="large" id="main-headline">
-        {{ _('Get Firefox everywhere') }}
-      </h1>
+          <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
+            {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
+          </div>
+
+          <p class="help">
+            {# fallback_url is replaced by the platform download link via JS, but if
+               something fails the user should still get a link to a working download path. #}
+            {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
+              Thanks for choosing Firefox. Your download should begin automatically. If not, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
+            {% endtrans %}
+          </p>
+          {% include 'firefox/new/includes/mobile-promo.html' %}
+        </div>
+      </div>{#-- /.inner-container --#}
     </div>
-  </div>{#-- /#main-feature --#}
-
-  <section id="stage">
-    <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
-      {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
-    </div>
-
-    <p class="help">
-      {{_('Your download should begin automatically. If not, <a id="%s" href="">click here</a>. It could take a few minutes, but it’s worth the wait.')|format('direct-download-link')}}
-      <a rel="external" href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a>
-    </p>
-
-    <div id="thankyou">
-      {{ _('While it installs, add it to your Android and iOS devices.') }}
-    </div>
-
-    <div class="mobile-download-buttons">
-      <ul>
-        <li class="android">
-          {{ google_play_button() }}
-        </li>
-        <li class="ios">
-          <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <div id="mobile-device-lineup"></div>
-  </section>{#-- /#stage --#}
+  </div>
+  {% include 'firefox/includes/horizon.html' %}
 </main>
 
 {% include 'firefox/includes/schemaorg-app.html' %}
 
-{% endblock %}
-
-{% block email_form %}{% endblock %}
-
-{% block site_footer %}
-  {% with fx_footer_links=True %}
-    {% include 'firefox/includes/simple_footer.html' %}
-  {% endwith %}
 {% endblock %}
 
 {% block js %}

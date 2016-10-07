@@ -3,111 +3,33 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../../sandstone/lib.less";
-
-#download-button-wrapper-desktop {
-    text-align: center;
-}
-
-// keep the button technically visible to grab correct download link for
-// backup download link
-.js #download-button-wrapper-desktop {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    margin: 0 auto;
-
-    #primary-download-button {
-        margin: 1px 0 0 1px;
-    }
-}
-
-
-#thankyou {
-    background: none;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    color: @textColorPrimary;
-    .open-sans-light();
-    .font-size(22px);
-}
+@import "../horizon-lib.less";
 
 .help {
     display: none;
 }
 
 .js .help {
+    .font-size(20px);
+    .open-sans-light;
     display: block;
-    max-width: 40em;
-    margin: 0 auto (@baseLine * 2);
-    text-align: center;
+    margin-top: @baseLine * 2;
 }
 
-.mobile-download-buttons {
-    text-align: center;
+// keep the button technically visible to grab correct download link for
+// backup download link
+.js #download-button-wrapper-desktop {
+    height: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
 
-    ul {
-        display: block;
-        margin: @baseLine auto (@baseLine * 2);
-        padding: 0;
-        list-style: none;
-        width: 384px;
-        .clearfix();
-    }
-
-    li {
-        display: inline;
-        float: left;
-        margin: 0 @baseLine;
-        width: 152px;
-        height: 45px;
-    }
-
-    a {
-        display: block;
+    #primary-download-button {
+        margin: 1px 0 0 1px;
     }
 }
 
-#mobile-device-lineup {
-    height: 302px;
-    background: url(/media/img/firefox/new/scene2-mobile-promo-device-lineup.png) center center no-repeat;
-}
-
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    .help {
-        padding: 0 (@baseLine * 5);
-    }
-}
-
-/* Mobile layout: 320px */
-@media only screen and (max-width: @breakTablet) {
-    #thankyou {
-        margin-bottom: @baseLine;
-        .font-size(18px);
-        letter-spacing: auto;
-    }
-
-    .help {
-        padding: 0;
-        margin-bottom: @baseLine;
-        .font-size(@smallFontSize);
-    }
-
-    .mobile-download-buttons {
-        ul {
-            margin-bottom: @baseLine;
-            width: auto;
-        }
-
-        li {
-            float: none;
-            margin: 0 auto (@baseLine / 2);
-        }
-    }
-
-    #mobile-device-lineup {
-        display: none;
-    }
+#direct-download-link {
+    color: @textColorSpaceYellow;
 }

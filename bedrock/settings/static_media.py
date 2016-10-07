@@ -434,6 +434,7 @@ PIPELINE_CSS = {
     },
     'firefox_new_scene1': {
         'source_filenames': (
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/new/scene1.less',
         ),
         'output_filename': 'css/firefox_new_scene1-bundle.css',
@@ -443,29 +444,6 @@ PIPELINE_CSS = {
             'css/firefox/new/scene2.less',
         ),
         'output_filename': 'css/firefox_new_scene2-bundle.css',
-    },
-    'firefox_new_horizon_common': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/base/simple_footer.less',
-            'css/base/platform-footer-links.less',
-            'css/firefox/new/horizon/common.less',
-        ),
-        'output_filename': 'css/firefox_new_horizon_common-bundle.css',
-    },
-    'firefox_new_horizon_scene1': {
-        'source_filenames': (
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/new/horizon/scene1.less',
-        ),
-        'output_filename': 'css/firefox_new_horizon_scene1-bundle.css',
-    },
-    'firefox_new_horizon_scene2': {
-        'source_filenames': (
-            'css/firefox/new/horizon/scene2.less',
-        ),
-        'output_filename': 'css/firefox_new_horizon_scene2-bundle.css',
     },
     'firefox_organizations': {
         'source_filenames': (
