@@ -526,22 +526,29 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_tour_none-bundle.css',
     },
-    'firefox_whatsnew_42_a': {
+    'firefox_whatsnew_42': {
         'source_filenames': (
             'css/firefox/tracking-protection-animation.less',
-            'css/firefox/whatsnew_42/common.less',
-            'css/firefox/whatsnew_42/variant-a.less',
+            'css/firefox/whatsnew/whatsnew-42.less',
         ),
-        'output_filename': 'css/firefox_whatsnew_42_a-bundle.css',
+        'output_filename': 'css/firefox_whatsnew_42-bundle.css',
     },
-    'firefox_whatsnew_49_tw_hk': {
+    'firefox_whatsnew_zh_tw_49': {
         'source_filenames': (
             'css/firefox/tracking-protection-animation.less',
-            'css/firefox/whatsnew_42/common.less',
-            'css/firefox/whatsnew_42/variant-a.less',
-            'css/firefox/whatsnew-tw-hk-49.less',
+            'css/firefox/whatsnew/whatsnew-42.less',
+            'css/firefox/whatsnew/whatsnew-zh-tw-49.less',
         ),
-        'output_filename': 'css/firefox_whatsnew_49_tw_hk-bundle.css',
+        'output_filename': 'css/firefox_whatsnew_zh_tw_49-bundle.css',
+    },
+    'firefox_whatsnew_50': {
+        'source_filenames': (
+            'css/base/simple_footer.less',
+            'css/base/send-to-device.less',
+            'css/firefox/mobile-download-desktop.less',
+            'css/firefox/whatsnew/whatsnew-50.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_50-bundle.css',
     },
     'firefox_win10_welcome': {
         'source_filenames': (
@@ -1386,22 +1393,22 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_tour_none-bundle.js',
     },
-    'firefox_whatsnew_42_a': {
+    'firefox_whatsnew_42': {
         'source_filenames': (
             'js/base/uitour-lib.js',
             'js/base/mozilla-highlight-target.js',
-            'js/firefox/whatsnew_42/variant-a.js',
+            'js/firefox/whatsnew/whatsnew-42.js',
         ),
-        'output_filename': 'js/firefox_whatsnew_42_a-bundle.js',
+        'output_filename': 'js/firefox_whatsnew_42-bundle.js',
     },
-    'firefox_whatsnew_49_tw_hk': {
+    'firefox_whatsnew_zh_tw_49': {
         'source_filenames': (
             'js/base/uitour-lib.js',
             'js/base/mozilla-highlight-target.js',
-            'js/firefox/whatsnew-tw-hk-49.js',
-            'js/firefox/whatsnew-tw-hk-49-init.js',
+            'js/firefox/whatsnew/whatsnew-zh-tw-49.js',
+            'js/firefox/whatsnew/whatsnew-zh-tw-49-init.js',
         ),
-        'output_filename': 'js/firefox_whatsnew_49_tw_hk-bundle.js',
+        'output_filename': 'js/firefox_whatsnew_zh_tw_49-bundle.js',
     },
     'firefox_firstrun_42_learnmore': {
         'source_filenames': (

@@ -96,6 +96,7 @@
 
     h2 {
         float: left;
+        padding-bottom: 0;
 
         img {
             height: 114px;
@@ -105,6 +106,7 @@
 
         @media only screen and (max-width: @breakTablet) {
             float: none;
+            padding-bottom: 20px;
             padding-top: 20px * 3;
             text-align: center;
         }
@@ -136,23 +138,19 @@
     }
 }
 
-h1,
-h2 {
-    text-shadow: none;
-}
-
 main {
     .main-content {
-        margin-top: 40px;
         text-align: center;
     }
 
     h1 {
-        .open-sans-light;
         .font-size(44px);
+        .open-sans-light;
         color: #fff;
         line-height: 1.2;
-        margin-bottom: 20px;
+        margin: 0 auto 20px;
+        max-width: 640px;
+        text-shadow: none;
 
         @media only screen and (max-width: @breakTablet) {
             .font-size(30px);
@@ -160,12 +158,10 @@ main {
 
         @media only screen and (max-width: @breakMobileLandscape) {
             .font-size(26px);
-
-            br {
-                display: none;
-            }
         }
     }
+
+
 }
 // end copy pasta
 
@@ -187,6 +183,8 @@ main {
 #send-to-device {
     background: #fff;
     border-radius: 6px;
+    display: none; // hide from no-JS users
+    margin-bottom: 60px;
 
     a {
         text-decoration: underline;
@@ -285,6 +283,14 @@ main {
     footer {
         display: none;
     }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        margin-bottom: 40px;
+    }
+}
+
+.js #send-to-device {
+    display: block;
 }
 
 #send-to-device-form {
@@ -322,7 +328,8 @@ main {
 }
 
 #mobile-download-buttons {
-    margin: 100px auto 0;
+    margin: 0 auto;
+    padding-top: 40px;
     text-align: center;
 
     li {
@@ -335,7 +342,7 @@ main {
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        margin-top: 60px;
+        padding-top: 20px;
 
         li {
             display: block;

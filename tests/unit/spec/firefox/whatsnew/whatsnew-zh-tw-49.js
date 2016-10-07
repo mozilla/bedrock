@@ -5,7 +5,7 @@
 
 /* global describe, beforeEach, afterEach, it, expect, sinon, spyOn, done */
 
-describe('whatsnew/tw-hk.js', function() {
+describe('whatsnew/whatsnew-zh-tw-49.js', function() {
     'use strict';
 
     var searchEngineMap = {

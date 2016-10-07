@@ -211,7 +211,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='42.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew_42/whatsnew.html'])
+        eq_(template, ['firefox/whatsnew/whatsnew-42.html'])
 
     # end 42.0 whatsnew tests
 
@@ -240,7 +240,7 @@ class TestWhatsNew(TestCase):
         req.locale = 'zh-TW'
         self.view(req, version='49.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew-zh-TW-49.html'])
+        eq_(template, ['firefox/whatsnew/whatsnew-zh-tw-49.html'])
 
     @override_settings(DEV=True)
     def test_zh_TW_fx_not_49_0(self, render_mock):
@@ -249,7 +249,7 @@ class TestWhatsNew(TestCase):
         req.locale = 'zh-TW'
         self.view(req, version='49.0.1')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew_42/whatsnew.html'])
+        eq_(template, ['firefox/whatsnew/whatsnew-42.html'])
 
     @override_settings(DEV=True)
     def test_not_zh_TW_fx_49_0(self, render_mock):
@@ -258,9 +258,21 @@ class TestWhatsNew(TestCase):
         req.locale = 'es-ES'
         self.view(req, version='49.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew_42/whatsnew.html'])
+        eq_(template, ['firefox/whatsnew/whatsnew-42.html'])
 
-    # end 42.0 whatsnew tests
+    # end zh-TW 49.0 whatsnew tests
+
+    # begin 50.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_50_0(self, render_mock):
+        """Should use mobile download desktop template for 50.0"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='50.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-50.html'])
+
+    # end 50.0 whatsnew tests
 
 
 @patch.object(fx_views.FirstrunView, 'redirect_to', none_mock)

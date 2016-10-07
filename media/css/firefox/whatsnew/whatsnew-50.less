@@ -1,0 +1,45 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/lib.less";
+
+
+main {
+    h2,
+    h4 {
+        .open-sans-light;
+        color: #fff;
+        text-shadow: none;
+    }
+
+    h2 {
+        margin-bottom: 40px;
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(24px);
+        }
+    }
+
+    .up-to-date {
+        position: relative;
+
+        span:before {
+            background-image: url(/media/img/firefox/template/icon-check.svg);
+            background-repeat: no-repeat;
+            content: '';
+            display: inline-block;
+            height: 24px;
+            padding-right: 10px;
+            position: relative;
+            top: 3px;
+            width: 24px;
+         }
+    }
+}
+
+@media only screen and (max-width: @breakMobileLandscape) {
+    main h1 br {
+        display: none;
+    }
+}

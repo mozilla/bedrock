@@ -2,12 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/whatsnew_42/base.html" %}
+{% extends "firefox/whatsnew/whatsnew-base-42.html" %}
 
 {% add_lang_files "firefox/whatsnew_42" %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_whatsnew_49_tw_hk' %}
+  {% stylesheet 'firefox_whatsnew_zh_tw_49' %}
 {% endblock %}
 
 {% block body_class %}firefox-up-to-date{% endblock %}
@@ -46,5 +46,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_whatsnew_49_tw_hk' %}
+  {% javascript 'firefox_whatsnew_zh_tw_49' %}
 {% endblock %}

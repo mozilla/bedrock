@@ -2,12 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{#
-This page was originally planned for release on 9/12/16, but was pushed back due
-to reasons. Expectation is for this page to be released around the time of
-Firefox 50 (11/8/2016).
-#}
-
 {% from "macros.html" import google_play_button, send_to_device with context %}
 
 {% add_lang_files "firefox/sendto" %}
@@ -29,12 +23,37 @@ Firefox 50 (11/8/2016).
 {% endblock %}
 
 {% block body_id %}firefox-mobile-download{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block optimizely %}
+  {% if switch('firefox-mobile-download-desktop-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
 
 {% block site_header %}{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'firefox_mobile_download_desktop' %}
 {% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{#
+Set defaults for /firefox/mobile-download/desktop. Overridden for
+/firefox/50.0/whatsnew/.
+#}
+{% if not send_to_device_message_set %}
+  {% set send_to_device_message_set = 'fx-mobile-download-desktop' %}
+{% endif %}
+
+{% if not app_store_url %}
+  {% set app_store_url = 'https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=iOS_App_Store&amp;creative=badge_en&amp;fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8' %}
+{% endif %}
+
+{% if not play_store_url %}
+  {% set play_store_url = 'https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=Google_Play_Store&amp;creative=badge_en' %}
+{% endif %}
 
 {% block content %}
 <main role="main">
@@ -49,24 +68,35 @@ Firefox 50 (11/8/2016).
             <h2>{{ high_res_img('firefox/template/logo-large.png', {'alt': 'Firefox', 'width': '136', 'height': '142'}) }}</h2>
           </header>
           <div class="main-content">
+          {% block headline %}
             <h1>
-            {% if LANG.startswith('en-') %}
-              {# Custom headline for en-* users #}
-              Send Firefox to your phone and<br> set your mobile browsing free
+            {# If user is in a locale with translated basket messages... #}
+            {% if show_send_to_device %}
+              {# Custom headlines for en-* users #}
+              {% if LANG.startswith('en-') %}
+                Send Firefox to your phone and set your mobile browsing free
+              {# Headline for non en-* users in locales with translated basket messages #}
+              {% else %}
+                {{ _('Send Firefox to your smartphone or tablet') }}
+              {% endif %}
             {% else %}
-              {# Pre-localized headline for all other users (taken from send to device widget) #}
-              {{ _('Send Firefox to your smartphone or tablet') }}
+              {# Generic, pre-localized headline #}
+              {{ _('Download Firefox') }}
             {% endif %}
             </h1>
+          {% endblock %}
             <div class="content">
-              {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop') }}
+            {# Hide the widget if user is not in a supported basket locale #}
+            {% if show_send_to_device %}
+              {{ send_to_device(include_title=False, message_set=send_to_device_message_set) }}
+            {% endif %}
 
               <ul id="mobile-download-buttons">
                 <li class="android">
-                  {{ google_play_button(alt_href='https://app.adjust.com/2uo1qc?campaign=Heartbeat&adgroup=Google_Play_Store&creative=badge') }}
+                  {{ google_play_button(alt_href=play_store_url, anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'id': 'playStoreLink'}) }}
                 </li>
                 <li class="ios">
-                  <a id="appStoreLink" href="https://app.adjust.com/2uo1qc?campaign=Heartbeat&amp;adgroup=iOS_App_Store&amp;creative=badge&amp;fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8" data-link-type="download" data-download-os="iOS">
+                  <a id="appStoreLink" href="{{ app_store_url }}" data-link-type="download" data-download-os="iOS">
                     <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
                   </a>
                 </li>
