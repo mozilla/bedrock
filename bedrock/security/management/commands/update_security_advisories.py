@@ -2,13 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import errno
 import glob
 import os
 import re
 import sys
 from optparse import make_option
-from subprocess import check_call, Popen, PIPE, STDOUT
 
 from django.conf import settings
 from django.core.cache import cache
@@ -18,16 +16,11 @@ from django.db.models import Count
 from dateutil.parser import parse as parsedate
 
 from bedrock.security.models import Product, SecurityAdvisory
-from bedrock.security.utils import FILENAME_RE, chdir, mfsa_id_from_filename, parse_md_file
-
+from bedrock.security.utils import FILENAME_RE, mfsa_id_from_filename, parse_md_file
+from bedrock.utils.git import GitRepo
 
 ADVISORIES_REPO = settings.MOFO_SECURITY_ADVISORIES_REPO
 ADVISORIES_PATH = settings.MOFO_SECURITY_ADVISORIES_PATH
-
-GIT = getattr(settings, 'GIT_BIN', 'git')
-GIT_CLONE = (GIT, 'clone', ADVISORIES_REPO, ADVISORIES_PATH)
-GIT_PULL = (GIT, 'pull', '--ff-only', 'origin', 'master')
-GIT_GET_HASH = (GIT, 'rev-parse', 'HEAD')
 
 SM_RE = re.compile('seamonkey', flags=re.IGNORECASE)
 FNULL = open(os.devnull, 'w')
@@ -43,58 +36,9 @@ def fix_product_name(name):
     return name
 
 
-def mkdir_p(path):
-    """Mimic mkdir -p from *nix."""
-    try:
-        os.makedirs(path)
-    except OSError as exc:
-        if exc.errno == errno.EEXIST and os.path.isdir(path):
-            pass
-        else:
-            raise
-
-
 def filter_advisory_filenames(filenames):
     return [os.path.join(ADVISORIES_PATH, fn) for fn in filenames
             if FILENAME_RE.search(fn)]
-
-
-@chdir(ADVISORIES_PATH)
-def git_pull():
-    old_hash = get_current_git_hash()
-    check_call(GIT_PULL, stdout=FNULL, stderr=STDOUT)
-    new_hash = get_current_git_hash()
-    return old_hash, new_hash
-
-
-@chdir(ADVISORIES_PATH)
-def git_diff(old_hash, new_hash):
-    if old_hash != new_hash:
-        proc = Popen((GIT, 'diff', '--name-only', old_hash, new_hash), stdout=PIPE)
-        git_out = proc.communicate()[0].split()
-        return filter_advisory_filenames(git_out)
-
-    return []
-
-
-@chdir(ADVISORIES_PATH)
-def update_repo():
-    modified_files = []
-    deleted_files = []
-    mod_files = git_diff(*git_pull())
-    for mf in mod_files:
-        if os.path.exists(mf):
-            modified_files.append(mf)
-        else:
-            deleted_files.append(mf)
-
-    return modified_files, deleted_files
-
-
-@chdir(ADVISORIES_PATH)
-def get_current_git_hash():
-    p = Popen(GIT_GET_HASH, stdout=PIPE)
-    return p.communicate()[0].strip()
 
 
 def delete_files(filenames):
@@ -158,11 +102,6 @@ def update_db_from_file(filename):
     :return: SecurityAdvisory instance
     """
     return add_or_update_advisory(*parse_md_file(filename))
-
-
-def clone_repo():
-    mkdir_p(ADVISORIES_PATH)
-    check_call(GIT_CLONE, stdout=FNULL, stderr=STDOUT)
 
 
 def get_all_md_files():
@@ -242,6 +181,8 @@ class Command(NoArgsCommand):
         if no_git or clear_db:
             force = True
         cloned = False
+        repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO)
+        modified_files = deleted_files = []
 
         def printout(msg, ending=None):
             if not quiet:
@@ -253,13 +194,13 @@ class Command(NoArgsCommand):
             Product.objects.all().delete()
 
         if not no_git:
-            if not os.path.exists(ADVISORIES_PATH):
-                printout('Cloning repository.')
-                clone_repo()
+            printout('Updating repository.')
+            modified_files, deleted_files = repo.update()
+            if modified_files is None:
                 cloned = True
-            elif force:
-                printout('Updating repository.')
-                git_pull()
+            else:
+                modified_files = filter_advisory_filenames(modified_files)
+                deleted_files = filter_advisory_filenames(deleted_files)
 
         if force or cloned:
             printout('Reading all files.')
@@ -268,14 +209,12 @@ class Command(NoArgsCommand):
                 deleted_files = []
             else:
                 deleted_files = get_files_to_delete_from_db(modified_files)
-        else:
-            printout('Updating repository and finding modified files.')
-            modified_files, deleted_files = update_repo()
 
         errors = []
         updates = 0
         if modified_files:
             for mf in modified_files:
+                mf = os.path.join(ADVISORIES_PATH, mf)
                 try:
                     update_db_from_file(mf)
                 except Exception as e:

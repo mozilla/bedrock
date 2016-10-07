@@ -109,3 +109,98 @@ def test_git_update(rmtree_mock):
         assert git_mock['pull'].called
         assert git_mock['diff'].called
         assert val == git_mock['diff'].return_value
+
+
+def test_git_diff():
+    g = git.GitRepo('.', 'https://example.com')
+    with patch.object(g, 'git') as git_mock:
+        git_mock.return_value = GIT_DIFF_TEST_DATA
+        modified, deleted = g.diff('abcd', 'ef12')
+        git_mock.assert_called_with('diff', '--name-status', 'abcd', 'ef12')
+
+    assert modified == {
+        'media/css/mozorg/home/home.scss',
+        'lib/l10n_utils/tests/test_template.py',
+        'docs/mozilla-traffic-cop.rst',
+        'lib/l10n_utils/management/commands/l10n_update.py',
+        'media/css/mozorg/home/home-variant.scss',
+        'media/css/pebbles/base/_elements.scss',
+        'media/css/newsletter/newsletter-mozilla.scss',
+        'media/css/pebbles/components/_buttons-download.scss',
+        'media/css/mozorg/technology.less',
+        'lib/l10n_utils/tests/test_commands.py',
+        'media/css/pebbles/base/elements/_document.scss',
+        'media/css/pebbles/base/elements/_typography.scss',
+        'media/css/pebbles/base/elements/_links.scss',
+        'lib/l10n_utils/tests/test_dotlang.py',
+        'docs/javascript-libs.rst',
+        'docker/run.sh',
+        'media/css/pebbles/components/_masthead.scss',
+        'media/css/pebbles/components/_footer.scss',
+        'media/css/pebbles/components/_modal.scss',
+        'media/css/pebbles/base/oldIE.scss',
+        'etc/supervisor_available/cron_db.conf',
+        'media/css/mozorg/leadership.scss',
+        'media/css/pebbles/components/_buttons.scss',
+        'media/css/pebbles/base/elements/_lists.scss',
+        'etc/supervisor_available/cron_l10n.conf',
+        'media/css/pebbles/base/elements/_reset.scss',
+        'media/css/pebbles/base/elements/_tables.scss',
+        'media/css/pebbles/components/_sections.scss',
+        'media/css/firefox/firstrun/ravioli.less',
+        'media/css/pebbles/elements/forms.less',
+        'media/css/pebbles/base/elements/_forms.scss',
+        'media/css/pebbles/components/_base-button.scss',
+        'media/css/newsletter/newsletter-firefox.scss',
+    }
+    assert deleted == {
+        'media/css/mozorg/leadership.less',
+        'media/css/pebbles/base.less',
+        'media/css/pebbles/reset.less',
+        'media/css/newsletter/newsletter-mozilla.less',
+        'media/css/pebbles/components/footer.less',
+        'media/css/pebbles/components/modal.less',
+        'media/css/mozorg/home/home.less',
+        'etc/supervisor_available/cron.conf',
+        'media/css/newsletter/newsletter-firefox.less',
+        'media/css/pebbles/oldIE.less',
+    }
+
+
+# real output from git against the bedrock repo
+GIT_DIFF_TEST_DATA = """\
+A       docker/run.sh
+M       docs/javascript-libs.rst
+A       docs/mozilla-traffic-cop.rst
+R072    etc/supervisor_available/cron.conf      etc/supervisor_available/cron_db.conf
+A       etc/supervisor_available/cron_l10n.conf
+M       lib/l10n_utils/management/commands/l10n_update.py
+M       lib/l10n_utils/tests/test_commands.py
+M       lib/l10n_utils/tests/test_dotlang.py
+M       lib/l10n_utils/tests/test_template.py
+A       media/css/firefox/firstrun/ravioli.less
+A       media/css/mozorg/home/home-variant.scss
+R059    media/css/mozorg/home/home.less media/css/mozorg/home/home.scss
+R081    media/css/mozorg/leadership.less        media/css/mozorg/leadership.scss
+A       media/css/mozorg/technology.less
+R059    media/css/newsletter/newsletter-firefox.less    media/css/newsletter/newsletter-firefox.scss
+R063    media/css/newsletter/newsletter-mozilla.less    media/css/newsletter/newsletter-mozilla.scss
+D       media/css/pebbles/base.less
+A       media/css/pebbles/base/_elements.scss
+A       media/css/pebbles/base/elements/_document.scss
+C080    media/css/pebbles/elements/forms.less   media/css/pebbles/base/elements/_forms.scss
+A       media/css/pebbles/base/elements/_links.scss
+A       media/css/pebbles/base/elements/_lists.scss
+R100    media/css/pebbles/reset.less    media/css/pebbles/base/elements/_reset.scss
+A       media/css/pebbles/base/elements/_tables.scss
+A       media/css/pebbles/base/elements/_typography.scss
+R064    media/css/pebbles/oldIE.less    media/css/pebbles/base/oldIE.scss
+A       media/css/pebbles/components/_base-button.scss
+A       media/css/pebbles/components/_buttons-download.scss
+A       media/css/pebbles/components/_buttons.scss
+R067    media/css/pebbles/components/footer.less        media/css/pebbles/components/_footer.scss
+A       media/css/pebbles/components/_masthead.scss
+R080    media/css/pebbles/components/modal.less media/css/pebbles/components/_modal.scss
+A       media/css/pebbles/components/_sections.scss
+D       media/css/pebbles/base.less
+"""
