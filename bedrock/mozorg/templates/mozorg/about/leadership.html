@@ -66,8 +66,8 @@
 
     <h3 class="group-title" id="mgmt-corp"><a href="{{ url('foundation.moco') }}">{{ _('Mozilla Corporation') }}</a></h3>
 
-    <div class="gallery">
-      <article id="mitchell-baker" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+    <div class="gallery mgmt-corp">
+      <article id="mitchell-baker" data-id="mitchell-baker" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/mitchell-baker.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Mitchell Baker</h4></figcaption>
@@ -122,7 +122,7 @@
         </div>
       </article>
 
-      <article id="chris-beard" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="chris-beard" data-id="chris-beard" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/chris-beard.jpg') }}">
           <figcaption><h4 class="fn" itemprop="name">Chris Beard</h4></figcaption>
@@ -180,7 +180,7 @@
         </div>
       </article>
 
-      <article id="katharina-borchert" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="katharina-borchert" data-id="katharina-borchert" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/katharina-borchert.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Katharina Borchert</h4></figcaption>
@@ -220,7 +220,7 @@
         </div>
       </article>
 
-      <article id="jim-cook" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="jim-cook" data-id="jim-cook" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/jim-cook.jpg') }}">
           <figcaption><h4 class="fn" itemprop="name">Jim Cook</h4></figcaption>
@@ -266,7 +266,7 @@
         </div>
       </article>
 
-      <article id="denelle-dixon-thayer" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="denelle-dixon-thayer" data-id="denelle-dixon-thayer" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/denelle-dixon-thayer.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Denelle Dixon-Thayer</h4></figcaption>
@@ -333,7 +333,7 @@
         </div>
       </article>
 
-      <article id="ari-jaaksi" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="ari-jaaksi" data-id="ari-jaaksi" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/ari-jaaksi.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <h4 class="fn" itemprop="name">Ari Jaaksi</h4>
@@ -373,7 +373,7 @@
         </div>
       </article>
 
-      <article id="jascha-kaykas-wolff" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="jascha-kaykas-wolff" data-id="jascha-kaykas-wolff" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/jascha-kaykas-wolff.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Jascha Kaykas-Wolff</h4></figcaption>
@@ -425,7 +425,7 @@
         </div>
       </article>
 
-      <article id="mark-mayo" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="mark-mayo" data-id="mark-mayo" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/mark-mayo.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Mark Mayo</h4></figcaption>
@@ -459,7 +459,7 @@
         </div>
       </article>
 
-      <article id="david-slater" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="david-slater" data-id="david-slater" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/david-slater.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">David Slater</h4></figcaption>
@@ -499,7 +499,7 @@
         </div>
       </article>
 
-      <article id="sean-white" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="sean-white" data-id="sean-white" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/sean-white.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Sean White</h4></figcaption>
@@ -545,7 +545,7 @@
         </div>
       </article>
 
-      <article id="allison-banks" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="allison-banks" data-id="allison-banks" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/allison-banks.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Allison Banks</h4></figcaption>
@@ -584,7 +584,7 @@
         </div>
       </article>
 
-      <article id="david-bryant" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="david-bryant" data-id="david-bryant" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/david-bryant.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">David Bryant</h4></figcaption>
@@ -629,7 +629,7 @@
         </div>
       </article>
 
-      <article id="susan-chen" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="susan-chen" data-id="susan-chen" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/susan-chen.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Susan Chen</h4></figcaption>
@@ -673,7 +673,7 @@
         </div>
       </article>
 
-      <article id="mary-ellen-muckerman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="mary-ellen-muckerman" data-id="mary-ellen-muckerman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/mary-ellen-muckerman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Mary Ellen Muckerman</h4></figcaption>
@@ -711,7 +711,7 @@
         </div>
       </article>
 
-      <article id="nick-nguyen" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="nick-nguyen" data-id="nick-nguyen" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/nick-nguyen.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Nick Nguyen</h4></figcaption>
@@ -745,7 +745,7 @@
         </div>
       </article>
 
-      <article id="eric-rescorla" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="eric-rescorla" data-id="eric-rescorla" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/eric-rescorla.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Eric Rescorla</h4></figcaption>
@@ -789,7 +789,7 @@
         </div>
       </article>
 
-      <article id="alex-salkever" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="alex-salkever" data-id="alex-salkever" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/alex-salkever.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Alex Salkever</h4></figcaption>
@@ -834,7 +834,7 @@
         </div>
       </article>
 
-      <article id="sylvie-veilleux" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="sylvie-veilleux" data-id="sylvie-veilleux" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/sylvie-veilleux.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Sylvie Veilleux</h4></figcaption>
@@ -869,8 +869,8 @@
 
     <h3 class="group-title" id="mgmt-foundation"><a href="{{ url('foundation.index') }}">{{ _('Mozilla Foundation') }}</a></h3>
 
-    <div class="gallery">
-      <article id="mark-surman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+    <div class="gallery mgmt-foundation">
+      <article id="mark-surman" data-id="mark-surman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/mark-surman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Mark Surman</h4></figcaption>
@@ -929,7 +929,7 @@
         </div>
       </article>
 
-      <article id="chris-lawrence" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="chris-lawrence" data-id="chris-lawrence" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/chris-lawrence.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Chris Lawrence</h4></figcaption>
@@ -972,7 +972,7 @@
         </div>
       </article>
 
-      <article id="angela-plohman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+      <article id="angela-plohman" data-id="angela-plohman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/angela-plohman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Angela Plohman</h4></figcaption>
