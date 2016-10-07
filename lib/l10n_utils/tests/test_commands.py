@@ -13,7 +13,7 @@ from textwrap import dedent
 from django.conf import settings
 from django.test import TestCase, override_settings
 
-from mock import ANY, MagicMock, Mock, patch, call
+from mock import ANY, MagicMock, Mock, patch
 
 from lib.l10n_utils.gettext import _append_to_lang_file, merge_lang_files
 from lib.l10n_utils.management.commands.l10n_check import (
@@ -23,7 +23,6 @@ from lib.l10n_utils.management.commands.l10n_check import (
     update_templates,
 )
 from lib.l10n_utils.management.commands.l10n_extract import extract_from_files
-from lib.l10n_utils.management.commands import l10n_update
 from lib.l10n_utils.tests import capture_stdio
 
 
@@ -39,63 +38,6 @@ METHODS = [
 # we don't need to the decorated method.
 TRUE_MOCK = Mock()
 TRUE_MOCK.return_value = True
-
-
-@patch.object(l10n_update, 'git')
-class TestL10nUpdate(TestCase):
-    def setUp(self):
-        self.cmd = l10n_update.Command()
-
-    @override_settings(DEV=True)
-    def test_clone_if_no_locales(self, git_mock):
-        self.cmd.locales_path = Mock()
-        self.cmd.locales_path.is_dir.return_value = False
-        self.cmd.handle()
-        git_mock.assert_called_once_with('clone', '--origin', 'l10n-dev', '--depth', '1',
-                                         self.cmd.locales_repo, self.cmd.locales_path_str)
-
-    @override_settings(DEV=True)
-    @patch.object(l10n_update.os, 'chdir', Mock())
-    def test_update_if_locales(self, git_mock):
-        self.cmd.locales_path = Mock()
-        self.cmd.locales_path.is_dir.return_value = True
-        self.cmd.locales_path.joinpath.return_value.is_dir.return_value = True
-        git_mock.return_value = 'l10n-dev'
-        self.cmd.handle()
-        git_mock.assert_has_calls([
-            call('remote'),
-            call('fetch', 'l10n-dev'),
-            call('checkout', '-f', 'l10n-dev/master'),
-        ])
-
-    @override_settings(DEV=False)
-    @patch.object(l10n_update.os, 'chdir', Mock())
-    def test_update_adds_remote_if_absent(self, git_mock):
-        # should be prod remote
-        self.cmd.locales_path = Mock()
-        self.cmd.locales_path.is_dir.return_value = True
-        self.cmd.locales_path.joinpath.return_value.is_dir.return_value = True
-        git_mock.return_value = 'not the remote'
-        self.cmd.handle()
-        git_mock.assert_has_calls([
-            call('remote'),
-            call('remote', 'add', 'l10n-prod', self.cmd.locales_repo),
-            call('fetch', 'l10n-prod'),
-            call('checkout', '-f', 'l10n-prod/master'),
-        ])
-
-    @override_settings(DEV=True)
-    @patch.object(l10n_update, 'rmtree')
-    def test_error_if_locales_not_repo(self, rmtree_mock, git_mock):
-        self.cmd.locales_path = Mock()
-        self.cmd.locales_path.is_dir.return_value = True
-        self.cmd.locales_path.joinpath.return_value.is_dir.return_value = False
-        self.cmd.clone_repo = Mock()
-        self.cmd.update_repo = Mock()
-        self.cmd.handle()
-        rmtree_mock.assert_called_with(self.cmd.locales_path_str, ignore_errors=True)
-        self.cmd.clone_repo.assert_called()
-        self.cmd.update_repo.assert_not_called()
 
 
 @override_settings(ROOT=ROOT)
