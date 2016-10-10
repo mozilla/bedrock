@@ -8,6 +8,9 @@ from bedrock.redirects.util import redirect
 urlpatterns = (
     page('', 'foundation/index.html'),
     page('about', 'foundation/about.html'),
+    page('issues', 'foundation/issues.html'),
+    page('advocacy', 'foundation/advocacy.html'),
+    page('leadership-network', 'foundation/leadership-network.html'),
 
     # Bug 1224565  /foundation/annualreport/2014/
     redirect(r'^annualreport/$',
