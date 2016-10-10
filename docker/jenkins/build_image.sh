@@ -28,7 +28,7 @@ TAG=`tail -n 1 docker-build.log | awk '{ print $(NF) }'`
 
 if [[ $FORCE_REBUILD != "true" ]];
 then
-    if tail -n 3 docker-build.log | grep "Using cache";
+    if [[ $(tail -n 3 docker-build.log | grep "Using cache") && $(docker images | grep "${TAG}-squashed") ]];
     then
         echo "Docker image already squashed, skip squashing";
         docker tag ${TAG}-squashed $DOCKER_IMAGE_TAG
