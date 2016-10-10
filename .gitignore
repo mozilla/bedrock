@@ -7,6 +7,7 @@ settings/local.py
 .jshintrc
 pip-log.txt
 docs/_gh-pages
+docs/_build
 build.py
 build
 .DS_Store
@@ -32,9 +33,11 @@ tests/unit/coverage
 bedrock/externalfiles/files_cache
 mofo_security_advisories
 product_details_json
+supervisord.log
 .idea
 .env
 .cache
 tests/functional/results.html
 tests/functional/assets/style.css
 .eslintcache
+.docker-build*

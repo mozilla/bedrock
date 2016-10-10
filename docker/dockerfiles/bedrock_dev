@@ -1,0 +1,12 @@
+FROM bedrock_base
+
+ENV PATH=/node_modules/.bin:$PATH
+ENV PIPELINE_LESS_BINARY=lessc
+ENV PIPELINE_SASS_BINARY=node-sass
+ENV PIPELINE_YUGLIFY_BINARY=yuglify
+
+COPY ./node_modules /
+COPY package.json /
+COPY lockdown.json /
+# --unsafe-perm required for lockdown to function
+RUN cd / && npm install --production --unsafe-perm

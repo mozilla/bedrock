@@ -11,8 +11,9 @@ RUN ./manage.py collectstatic -l --noinput
 # Cleanup
 RUN rm -rf node_modules
 RUN ./docker/bin/softlinkstatic.py
-RUN apt-get purge -y nodejs npm
+RUN apt-get purge -y nodejs npm python-dev build-essential libxml2-dev libxslt1-dev
 RUN apt-get autoremove -y
+RUN rm -rf /var/lib/{apt,dpkg,cache,log} /usr/share/doc /usr/share/man /tmp/* /var/cache/*
 
 # Change User
 RUN chown webdev.webdev -R .

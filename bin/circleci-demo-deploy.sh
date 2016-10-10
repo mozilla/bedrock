@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+docker tag bedrock_dev_final "$DOCKER_IMAGE_TAG"
+
 echo "Logging into quay.io"
 docker login -e "$QUAY_EMAIL" -u "$QUAY_USERNAME" -p "$QUAY_PASSWORD" quay.io
 echo "Pushing ${DOCKER_IMAGE_TAG} to quay.io"
@@ -20,7 +22,7 @@ if ./deis apps:create "$DEIS_APP_NAME" --no-remote; then
   echo "Giving github user $CIRCLE_USERNAME perms for the app"
   ./deis perms:create "$CIRCLE_USERNAME" -a "$DEIS_APP_NAME" || true
   echo "Configuring the new demo app"
-  ./deis config:push -a "$DEIS_APP_NAME" -p .bedrock_demo_env
+  ./deis config:push -a "$DEIS_APP_NAME" -p docker/demo.env
   if [[ -n "$SENTRY_DEMO_DSN" ]]; then
     ./deis config:set -a "$DEIS_APP_NAME" "SENTRY_DSN=$SENTRY_DEMO_DSN"
   fi
