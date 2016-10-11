@@ -47,8 +47,8 @@ redirectpatterns = (
              permanent=False),
 
     # Bug 1009247, 1101220, 1299947
-    redirect(r'^(firefox)?/beta/?$', 'firefox.channel.desktop', anchor='beta'),
-    redirect(r'^(firefox)?/aurora/?$', 'firefox.channel.desktop', anchor='developer'),
+    redirect(r'^(firefox/)?beta/?$', 'firefox.channel.desktop', anchor='beta'),
+    redirect(r'^(firefox/)?aurora/?$', 'firefox.channel.desktop', anchor='developer'),
     redirect(r'^mobile/beta/?$', 'firefox.channel.android', anchor='beta'),
     redirect(r'^mobile/aurora/?$', 'firefox.channel.android', anchor='aurora'),
 
