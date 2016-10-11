@@ -178,8 +178,11 @@ URLS = flatten((
     # bug 1275483
     url_test('/firefox/nightly/whatsnew/', '/firefox/nightly/firstrun/'),
 
-    url_test('/{{firefox,mobile}/,}beta/', '/firefox/channel/#beta'),
-    url_test('/{{firefox,mobile}/,}aurora/', '/firefox/channel/#developer'),
+    # bug 1299947
+    url_test('/{firefox,}/beta/', '/firefox/channel/desktop/#beta'),
+    url_test('/{firefox,}/aurora/', '/firefox/channel/desktop/#developer'),
+    url_test('/mobile/beta/', '/firefox/channel/android/#beta'),
+    url_test('/mobile/aurora/', '/firefox/channel/android/#aurora'),
 
     url_test('/firefox/unsupported-systems.html', '/firefox/unsupported-systems/'),
     url_test('/download/', '/firefox/new/'),
@@ -991,8 +994,6 @@ URLS = flatten((
              re.compile(r'/en-US/firefox/[\d\.]+/releasenotes/'),
              status_code=requests.codes.found),
     url_test('/firefox/brand/', '/styleguide/'),
-    url_test('/firefox/channel/android/', '/en-US/firefox/channel/android/'),
-    url_test('/en-US/firefox/channel/android/', '/firefox/channel/'),
 
     # Bug 1243060
     url_test('/firefox/tiles/',
@@ -1011,22 +1012,22 @@ URLS = flatten((
     # Bug 1252332
     url_test('/sync/', '/firefox/sync/'),
 
-    url_test('/projects/bonecho/', '/firefox/channel/'),
+    url_test('/projects/bonecho/', '/firefox/channel/desktop/'),
     url_test('/projects/bonsai/', 'https://wiki.mozilla.org/Bonsai'),
     url_test('/projects/camino/{,homepage.html}', 'http://caminobrowser.org/'),
     url_test('/projects/cck/', 'https://wiki.mozilla.org/CCK'),
     url_test('/projects/chimera/', 'http://caminobrowser.org/'),
-    url_test('/projects/deerpark/', '/firefox/channel/'),
-    url_test('/projects/granparadiso/', '/firefox/channel/'),
+    url_test('/projects/deerpark/', '/firefox/channel/desktop/'),
+    url_test('/projects/granparadiso/', '/firefox/channel/desktop/'),
     url_test('/projects/inspector/',
              'https://developer.mozilla.org/docs/Tools/Add-ons/DOM_Inspector'),
     url_test('/projects/javaconnect/',
              'http://developer.mozilla.org/en/JavaXPCOM'),
     url_test('/projects/marketing/',
              'https://wiki.mozilla.org/MarketingGuide'),
-    url_test('/projects/minefield/', '/firefox/channel/'),
+    url_test('/projects/minefield/', '/firefox/channel/desktop/'),
     url_test('/projects/minimo/', 'https://wiki.mozilla.org/Mobile'),
-    url_test('/projects/namoroka/', '/firefox/channel/'),
+    url_test('/projects/namoroka/', '/firefox/channel/desktop/'),
     url_test('/projects/nspr/', 'https://developer.mozilla.org/docs/NSPR'),
     url_test('/projects/netlib/',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Necko'),
@@ -1034,7 +1035,7 @@ URLS = flatten((
     url_test('/projects/rt-messaging/', 'http://chatzilla.hacksrus.com/'),
     url_test('/projects/rt-messaging/chatzilla/',
              'http://chatzilla.hacksrus.com/'),
-    url_test('/projects/shiretoko/', '/firefox/channel/'),
+    url_test('/projects/shiretoko/', '/firefox/channel/desktop/'),
     url_test('/projects/string/',
              'https://developer.mozilla.org/en/XPCOM_string_guide'),
     url_test('/projects/tech-evangelism/',

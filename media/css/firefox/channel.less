@@ -4,195 +4,673 @@
 
 @import "../sandstone/lib.less";
 
-#toggler-container {
-    margin: 120px auto 40px auto;
-    padding: 0;
-    width: 900px;
-    position: relative;
-    height: 225px;
-    list-style-type: none;
-    display: block;
+@navActiveColor: #979797;
 
-    li {
-        list-style-type: none;
-        display: block;
+#wrapper {
+    padding: 0;
+    width: 100%;
+}
+
+.container {
+    padding: 0;
+    width: @widthDesktop - (@baseLine * 2);
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Main header and page masthead
+
+#masthead {
+    background: #005da5;
+    height: 52px;
+    padding: 0;
+    width: 100%;
+
+    nav {
+        margin: 0;
+        li {
+            .font-size(18px);
+
+            a:link,
+            a:visited {
+                color: #fff;
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        .container {
+            width: 100%;
+        }
+
+        nav {
+            padding: 0;
+
+            li {
+                a:link,
+                a:visited {
+                    .font-size(@baseFontSize);
+                    color: @textColorSecondary;
+                }
+            }
+        }
+
+        #nav-main-menu {
+            margin: 20px 0 0;
+
+            &:before {
+                left: 12px;
+            }
+        }
+
+        #tabzilla {
+            margin-right: 10px;
+        }
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+
+    .html-rtl #masthead {
+
+        #nav-main-menu:before {
+            right: 12px;
+        }
+
+        #tabzilla {
+            margin-left: 10px;
+            margin-right: 0;
+        }
+    }
+}
+
+#nav-main {
+
+    .toggle {
+        background: transparent url('/media/img/firefox/template/icon-menu.svg') center center no-repeat;
+        .background-size(22px auto);
+        height: 51px;
+        left: 0;
+        top: 0;
+        width: 51px;
+
+        &.open {
+            background-position: center center;
+        }
+    }
+}
+
+.html-rtl #nav-main .toggle {
+    right: 0;
+}
+
+.main-header {
+    background: #00a7e0;
+    text-align: center;
+
+    h1, h2 {
+        color: #fff;
+        text-shadow: none;
+    }
+
+    h1 {
+        .at2x('/media/img/firefox/template/release-logo.png', 120px, 126px);
+        .background-size(120px 126px);
+        .font-size(48px);
+        .open-sans;
+        background-position: top 40px center;
+        background-repeat: no-repeat;
+        font-weight: bold;
+        padding: 166px 0 @baseLine;
+    }
+
+    h2 {
+        .font-size(30px);
+        line-height: 1.5;
+        margin: 0 auto;
+        max-width: 23em;
+        padding-bottom: 32px;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        h1 {
+            .font-size(44px);
+        }
+
+        h2 {
+            .font-size(24px);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        h1 {
+            .font-size(40px);
+        }
+
+        h2 {
+            .font-size(20px);
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+
+        h1 {
+            .background-size(100px 106px);
+            .font-size(36px);
+            padding-top: 150px;
+        }
+
+        h2 {
+            .font-size(18px);
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Platform navigation
+
+.platform-nav {
+    background: #1f366c;
+
+    ul {
         margin: 0;
         padding: 0;
-        position: absolute;
-        top: 25px;
-        -webkit-transition: all 0.6s ease-in-out;
-        -moz-transition: all 0.6s ease-in-out;
 
-        a {
+        li {
+            .font-size(24px);
+            .inline-block;
+            margin: 0 40px;
+            padding: @baseLine 0;
+
+            a:link,
+            a:visited {
+                .transition(color .1s ease-in-out);
+                color: #fff;
+            }
+
+            a:hover,
+            a:active,
+            a:focus {
+                .transition(color .1s ease-in-out);
+                color: @navActiveColor;
+                text-decoration: none;
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        ul li {
+            .font-size(22px);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        .container {
+            width: 100%;
+        }
+
+        ul li {
+            .font-size(20px);
+            background: #dcdcdc;
+            border-top: 2px solid #fff;
             display: block;
-            position: relative;
-            top: 0;
-            -webkit-transition: all 0.1s ease-in-out;
-            -moz-transition: all 0.1s ease-in-out;
-        }
+            margin: 0;
+            padding: (@baseLine / 2) 0;
+            width: auto;
 
-        img {
-            height: 150px;
-            width: 150px;
-            -webkit-transition: all 0.6s ease-in-out;
-            -moz-transition: all 0.6s ease-in-out;
-            -ms-interpolation-mode: bicubic;
-        }
+            a:link,
+            a:visited {
+                color: @linkBlue;
+            }
 
-        a:hover {
-            top: -5px;
+            a:hover,
+            a:active,
+            a:focus {
+                color: @linkBlueHover;
+            }
         }
     }
 }
 
-/* Default styles */
+html[lang^="en"] {
+    .platform-nav ul li {
+        text-transform: uppercase;
 
-.pager-tabs {
-    #beta-link { left: 335px; z-index: 3; top: 0; }
-    #aurora-link    { left: 110px; z-index: 1; }
-    #firefox-link  { left: 635px; z-index: 2; }
-
-    #beta-link img {
-        height: 225px;
-        width: 225px;
+        &:last-child {
+            text-transform: none;
+        }
     }
 }
 
-.pager-page {
-    position: relative;
+#platform-desktop .platform-nav .nav-desktop,
+#platform-android .platform-nav .nav-android,
+#platform-ios .platform-nav .nav-ios {
+    border-bottom: 5px solid @navActiveColor;
+
+    a:link,
+    a:visited {
+        color: @navActiveColor;
+    }
+
+    a:hover {
+        cursor: default;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        background: #1f366c;
+        border-bottom: none;
+
+        a:link,
+        a:visited,
+        a:hover,
+        a:active,
+        a:focus {
+            color: #fff;
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Channel components
+
+.channel {
+    padding-top: @baseLine * 2;
     text-align: center;
-    .channel-title {
-        position: absolute;
-        top: -380px;
-        left: 0;
-        width: 100%;
-    }
-}
 
-.no-js .pager-page .channel-title {
-    position: static;
-}
+    header {
+        background-position: top left;
+        background-repeat: no-repeat;
+        float: left;
+        margin-bottom: @baseLine;
+        min-height: 220px;
+        padding-left: 240px;
+        text-align: left;
+        width: 460px;
 
-/* Selected styles */
+        h2 {
+            .font-size(36px);
+            font-weight: bold;
+            text-shadow: none;
+        }
 
-.pager-selected-firefox #beta-link   { left: 110px; z-index: 1; }
-.pager-selected-firefox #aurora-link { left: 635px; z-index: 2; }
-
-.pager-selected-beta #aurora-link  { left: 110px; z-index: 1; }
-.pager-selected-beta #firefox-link { left: 635px; z-index: 2; }
-
-.pager-selected-developer #firefox-link { left: 110px; z-index: 1; }
-.pager-selected-developer #beta-link    { left: 635px; z-index: 2; }
-
-.pager-selected-firefox #firefox-link,
-.pager-selected-beta    #beta-link,
-.pager-selected-developer  #aurora-link {
-    top: 0;
-    left: 335px;
-    z-index: 3;
-}
-
-.pager-selected-firefox #firefox-link a:hover,
-.pager-selected-beta    #beta-link    a:hover,
-.pager-selected-developer  #aurora-link  a:hover {
-    top: 0;
-}
-
-/* To override default image styles */
-
-.pager-selected-firefox #beta-link,
-.pager-selected-developer  #beta-link {
-    top: 25px;
-}
-
-.pager-selected-firefox #beta-link img,
-.pager-selected-developer  #beta-link img {
-    width: 150px;
-    height: 150px;
-}
-
-.pager-selected-firefox #firefox-link img,
-.pager-selected-beta    #beta-link img,
-.pager-selected-developer  #aurora-link img {
-    height: 225px;
-    width: 225px;
-}
-
-#carousel-left,
-#carousel-right {
-    position: absolute;
-    display: block;
-    left: 48px;
-    top: 70px;
-    height: 80px;
-    width: 78px;
-    background: url(/media/img/firefox/channel/carousel-arrows.png) 0 0 no-repeat;
-}
-
-#carousel-right {
-    left: auto;
-    right: 48px;
-    background-position: 0 -100px;
-}
-
-#main-content {
-    background: url(/media/img/firefox/channel/carousel-bg.png) 50% 70px no-repeat;
-}
-
-.download-box {
-    .inline-block;
-    margin: 0 (@gridGutterWidth / 2);
-    text-align: left;
-}
-
-p.more {
-    margin-top: @baseLine;
-    margin-bottom: @baseLine / 2;
-}
-
-p.more a:after {
-    content: ' »';
-}
-
-.warning,
-.info {
-    width: 70%;
-    color: @textColorSecondary;
-}
-
-.warning {
-    margin: (@baseLine * 2) auto @baseLine;
-}
-
-.info {
-    margin: @baseLine auto;
-}
-
-.blueprint {
-    .warning,
-    .info {
-        color: #fff;
-    }
-}
-
-.space {
-    #main-content {
-    background-image: url(/media/img/firefox/channel/carousel-bg-space.png);
-    }
-    .pager-page h3 {
-        color: @textColorSpaceYellow;
-    }
-    .warning,
-    .info {
-        color: #888;
-
-        a {
-            color: @linkSpacePurple;
+        p {
+            .font-size(28px);
         }
     }
 
+    .download-button,
+    .testflight-cta {
+        float: right;
+        margin-bottom: @baseLine;
+        max-width: 220px;
+    }
+
+    .fx-privacy-link {
+        a:link,
+        a:visited {
+            color: @linkBlue;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: @linkBlueHover;
+        }
+    }
+
+    .notice {
+        .font-size(18px);
+        clear: both;
+    }
+
+    footer {
+        background: #f0f0f2;
+        margin-top: 10px;
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                .font-size(18px);
+                .inline-block;
+                margin: 0;
+                padding: @baseLine 0;
+
+                &:after {
+                    color: #56565a;
+                    content: '|';
+                    margin: 0 10px;
+                }
+
+                &:last-child:after {
+                    content: none;
+                }
+            }
+        }
+
+
+        a:link,
+        a:visited {
+            color: @linkBlue;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: @linkBlueHover;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        header {
+            min-height: 160px;
+            padding-left: 180px;
+            width: 270px;
+
+            h2 {
+                .font-size(30px);
+            }
+
+            p {
+                .font-size(24px);
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        header {
+            background-position: top center;
+            float: none;
+            min-height: 0;
+            padding: 160px 0 0;
+            text-align: center;
+            width: auto;
+        }
+
+        .download-button,
+        .testflight-cta {
+            float: none;
+            text-align: center;
+        }
+
+        .notice {
+            .font-size(@baseFontSize);
+        }
+
+        footer ul {
+            padding-bottom: @baseLine;
+
+            li {
+                .font-size(@largeFontSize);
+                display: block;
+                padding: @baseLine 0 0;
+
+                &:after {
+                    content: none;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+
+        header {
+            padding: 115px 0 0;
+
+            h2 {
+                .font-size(26px);
+            }
+
+            p {
+                .font-size(22px);
+            }
+        }
+
+        .notice,
+        footer ul li {
+            .font-size(@baseFontSize);
+        }
+    }
 }
 
-.pager-page h3 {
-    margin-bottom: @baseLine;
+.html-rtl .channel {
+
+    header {
+        background-position: top right;
+        float: right;
+        padding-left: 0;
+        padding-right: 240px;
+        text-align: right;
+    }
+
+    .download-button,
+    .testflight-cta {
+        float: left;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        header {
+            background-position: top center;
+            float: none;
+            padding-right: 0;
+            text-align: center;
+        }
+
+        .download-button,
+        .testflight-cta {
+            float: none;
+        }
+    }
+}
+
+#beta header {
+    .at2x('/media/img/firefox/template/beta-logo.png', 180px, 189px);
+
+    @media only screen and (max-width: @breakDesktop) {
+        .background-size(150px 158px);
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .background-size(100px 105px);
+    }
+}
+
+#developer header {
+    .at2x('/media/img/firefox/template/developer-logo.png', 180px, 191px);
+
+    @media only screen and (max-width: @breakDesktop) {
+        .background-size(150px 159px);
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .background-size(100px 106px);
+    }
+}
+
+#aurora header {
+    .at2x('/media/img/firefox/template/aurora-logo.png', 180px, 195px);
+
+    @media only screen and (max-width: @breakDesktop) {
+        .background-size(150px 163px);
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .background-size(100px 108px);
+    }
+}
+
+#nightly header {
+    .at2x('/media/img/firefox/template/nightly-logo.png', 180px, 192px);
+
+    @media only screen and (max-width: @breakDesktop) {
+        .background-size(150px 160px);
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .background-size(100px 107px);
+    }
+}
+
+#testflight header {
+    .at2x('/media/img/firefox/channel/testflight.png', 180px, 136px);
+    min-height: 156px;
+
+    @media only screen and (max-width: @breakDesktop) {
+        .background-size(150px 113px);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding: 130px 0 0;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Help out section
+
+#help-out section {
+    margin: (@baseLine * 2) 0 (@baseLine * 3);
+    width: 350px;
+
+    &.bugzilla {
+        .at2x('/media/img/firefox/channel/alert-icon.png', 130px, 114px);
+        background-position: top 20px center;
+        background-repeat: no-repeat;
+        float: left;
+        padding-top: 162px;
+    }
+
+    &.test-pilot {
+        .at2x('/media/img/firefox/channel/test-pilot.png', 200px, 162px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        float: right;
+        padding-top: 162px;
+    }
+
+    h3 {
+        .font-size(24px);
+        .open-sans;
+        line-height: 1.3;
+        margin-bottom: @baseLine;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+
+        li {
+            .font-size(18px);
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        h3 {
+            .font-size(22px);
+        }
+
+        ul li {
+            .font-size(@largeFontSize);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: auto;
+
+        &.bugzilla,
+        &.test-pilot {
+            float: none;
+        }
+
+        h3 {
+            text-align: center;
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+
+        h3 {
+            .font-size(20px);
+        }
+
+        ul li {
+            .font-size(@baseFontSize);
+        }
+    }
+}
+
+#platform-android #help-out section,
+#platform-ios #help-out section {
+
+    &.bugzilla {
+        float: none;
+        margin: (@baseLine * 2) auto (@baseLine * 3);
+        text-align: center;
+        width: auto;
+    }
+}
+
+.html-rtl #help-out section {
+
+    &.bugzilla {
+        float: right;
+    }
+
+    &.test-pilot {
+        float: left;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        &.bugzilla,
+        &.test-pilot {
+            float: none;
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Newsletter
+
+#newsletter-subscribe {
+
+    h3 > span {
+        font-weight: bold;
+    }
+
+    #newsletter-form-thankyou.newsletter-form {
+        margin-left: 0;
+        width: auto;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Page footer
+
+#colophon {
+    margin: 0;
 }

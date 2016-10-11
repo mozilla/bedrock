@@ -1,0 +1,88 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/channel/base.html" %}
+
+{% add_lang_files "firefox/channel/index" %}
+
+{% block page_desc %}{{_('Download and test the latest Firefox for desktop features with Developer Edition, Beta and Nightly builds.')}}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ self.page_desc() }}{% endblock %}
+
+{% block body_id %}platform-desktop{% endblock %}
+
+{% block channels %}
+<section id="beta" class="channel">
+  <div class="container">
+    <header>
+      <h2>{{_('Beta')}}</h2>
+      <p>{{_('Test about-to-be-released features in the most stable pre-release build.')}}</p>
+    </header>
+    {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-beta-download") }}
+    <p class="notice">
+      {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
+      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+    </p>
+    <p class="notice">
+      {% trans feedback='https://input.mozilla.com/feedback' %}
+      <a rel="external" href="{{ feedback }}">Give us feedback</a> to help us put the final tweaks on performance and functionality in a stable environment.
+      {% endtrans %}
+    </p>
+  </div>
+  <footer>
+    <div class="container">
+      <ul>
+        <li><a href="{{ firefox_url('desktop', 'notes', 'beta') }}">{{_('Release Notes')}}</a></li>
+        <li><a href="{{ firefox_url('desktop', 'all', 'beta') }}">{{_('All Languages and Builds (incl. Win 64)')}}</a></li>
+      </ul>
+    </div>
+  </footer>
+</section>
+
+<section id="developer" class="channel">
+  <div class="container">
+    <header>
+      <h2>{{_('Developer Edition')}}</h2>
+      <p>{{_('Build, test, scale and more with the only browser built just for developers.')}}</p>
+    </header>
+    {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-developer-download") }}
+    <p class="notice">
+      {{_('Firefox Developer Edition automatically sends feedback to Mozilla.')}}
+      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+    </p>
+  </div>
+  <footer>
+    <div class="container">
+      <ul>
+        <li><a href="{{ firefox_url('desktop', 'notes', 'developer') }}">{{_('Release Notes')}}</a></li>
+        <li><a href="{{ url('firefox.developer') }}">{{_('Learn more')}}</a></li>
+        <li><a href="{{ firefox_url('desktop', 'all', 'developer') }}">{{_('All Languages and Builds (incl. Win 64)')}}</a></li>
+      </ul>
+    </div>
+  </footer>
+</section>
+
+<section id="nightly" class="channel">
+  <div class="container">
+    <header>
+      <h2>{{_('Nightly')}}</h2>
+      <p>{{_('Test brand new features daily (or… nightly). Enjoy at your own risk.')}}</p>
+    </header>
+    {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-nightly-download") }}
+    <p class="notice">
+      {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
+      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+    </p>
+  </div>
+  <footer>
+    <div class="container">
+      <ul>
+        <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{_('Nightly Blog')}}</a></li>
+        <li><a href="{{ firefox_url('desktop', 'all', 'nightly') }}">{{_('All Languages and Builds (incl. Win 64)')}}</a></li>
+      </ul>
+    </div>
+  </footer>
+</section>
+{% endblock %}

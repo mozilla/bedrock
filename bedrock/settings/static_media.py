@@ -226,9 +226,7 @@ PIPELINE_CSS = {
     },
     'firefox_channel': {
         'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/base/menu.less',
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/channel.less',
         ),
         'output_filename': 'css/firefox_channel-bundle.css',
@@ -1111,13 +1109,6 @@ PIPELINE_JS = {
             'js/firefox/android.js',
         ),
         'output_filename': 'js/firefox_android-bundle.js',
-    },
-    'firefox_channel': {
-        'source_filenames': (
-            'js/base/mozilla-pager.js',
-            'js/firefox/channel.js',
-        ),
-        'output_filename': 'js/firefox_channel-bundle.js',
     },
     'firefox_desktop_customize': {
         'source_filenames': (
