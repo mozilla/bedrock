@@ -29,6 +29,18 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/about-leadership-bundle.css',
     },
+    'book': {
+        'source_filenames': (
+            'css/mozorg/book.scss',
+        ),
+        'output_filename': 'css/book-bundle.css',
+    },
+    'credits': {
+        'source_filenames': (
+            'css/mozorg/credits.scss',
+        ),
+        'output_filename': 'css/credits-bundle.css',
+    },
     'credits-faq': {
         'source_filenames': (
             'css/mozorg/credits-faq.less',
@@ -573,6 +585,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/installer_help-bundle.css',
     },
+    'hacks-blog-newsletter': {
+        'source_filenames': (
+            'css/newsletter/hacks-blog-newsletter.scss',
+        ),
+        'output_filename': 'css/hacks-blog-newsletter-bundle.css',
+    },
     'history-slides': {
         'source_filenames': (
             'css/mozorg/history-slides.less',
@@ -648,11 +666,41 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mpl-bundle.css',
     },
+    'mpl-1-1': {
+        'source_filenames': (
+            'css/mozorg/mpl-1-1.scss',
+        ),
+        'output_filename': 'css/mpl-1-1-bundle.css',
+    },
+    'mpl-1-1-annotated': {
+        'source_filenames': (
+            'css/mozorg/mpl-1-1-annotated.scss',
+        ),
+        'output_filename': 'css/mpl-1-1-annotated-bundle.css',
+    },
+    'mpl-2-0': {
+        'source_filenames': (
+            'css/mozorg/mpl-2-0.scss',
+        ),
+        'output_filename': 'css/mpl-2-0-bundle.css',
+    },
+    'mpl-differences': {
+        'source_filenames': (
+            'css/mozorg/mpl-differences.scss',
+        ),
+        'output_filename': 'css/mpl-differences-bundle.css',
+    },
     'mozilla_accordion': {
         'source_filenames': (
             'css/base/mozilla-accordion.less',
         ),
         'output_filename': 'css/mozilla_accordion-bundle.css',
+    },
+    'namespaces': {
+        'source_filenames': (
+            'css/mozorg/namespaces.scss',
+        ),
+        'output_filename': 'css/namespaces-bundle.css',
     },
     'partnerships': {
         'source_filenames': (
@@ -1364,6 +1412,15 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
         ),
         'output_filename': 'js/geolocation-bundle.js',
+    },
+    'hacks-blog-newsletter': {
+        'source_filenames': (
+            'js/libs/jquery-1.11.3.min.js',
+            'js/libs/spin.min.js',
+            'js/newsletter/form.js',
+            'js/newsletter/hacks-blog-newsletter.js',
+        ),
+        'output_filename': 'js/hacks-blog-newsletter-bundle.js',
     },
     'home': {
         'source_filenames': (

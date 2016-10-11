@@ -5,112 +5,10 @@
   <meta name="generator" content="HTML Tidy for Linux/x86 (vers 25 March 2009), see www.w3.org">
 
   <title>Mozilla Public License 2.0: Changes from MPL 1.1</title>
-  <link href='https://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
 
-    <style>
-      /* Thanks to Eric Meyer for the inspiration
-         http://www.meyerweb.com/eric/css/edge/popups/demo.html
-      */
-
-      body {
-        font-family: 'Crimson Text', serif;
-        margin-right:auto;
-        max-width: 60em;
-      }
-
-      div#intro {
-        margin-left:auto;
-        max-width: 40em;
-      }
-
-      h1, h2, h3 {
-        font-family: 'Lora', serif;
-        font-variant: small-caps;
-      }
-
-      h1 {
-        text-align: center;
-      }
-
-      div#version {
-        text-align: center;
-        font-style: italic;
-      }
-
-      div#moveacross {
-        margin-left: 300px;
-        margin-top: 15px;
-<!--        border: 2px #b00000 solid;-->
-        padding: 5px;
-<!--        background-color: #ffffb0;-->
-      }
-
-      div#moveacross p:first-child {
-        margin-top: 0px;
-      }
-
-      div.subsection {
-        margin-left: 2em;
-      }
-
-      dt {
-        font-weight: bold;
-        margin-top: 1ex;
-        margin-bottom: 1ex;
-      }
-
-      div.popup li {
-         margin-bottom: 10px;
-      }
-
-      a.mouseover {
-        text-decoration: none;
-        background-color: yellow;
-<!--        color: green;-->
-      }
-
-      strike {
-        color: red;
-      }
-
-      strong {
-        color: blue;
-        font-weight: normal;
-        text-decoration: underline;
-      }
-
-      div#moveacross a:hover span {
-        display: block;
-        position: absolute;
-        left: 0px;
-        margin: 0px 5px 5px 5px;
-        padding: 5px;
-        border: 2px orange solid;
-        background-color: yellow;
-        width: 280px;
-        color: black;
-        font-weight: normal;
-        text-decoration: none;
-        font-size: 100%;
-        font-variant: normal;
-      }
-
-      div#moveacross a:hover {
-        background: #ffffb0;
-      }
-
-      div#moveacross a span {
-        display: none;
-      }
-
-      div#moveacross a:hover span {
-        display: block;
-      }
-
-    </style>
-
+  {% block page_css %}
+    {% stylesheet 'mpl-differences' %}
+  {% endblock %}
 </head>
 
 <body>
@@ -204,7 +102,7 @@ a good faith effort to explain the license in simpler language.</p>
 
   <p><strike>Subject to third party intellectual property claims, each</strike><strong>Each</strong> Contributor hereby grants You a world-wide, royalty-free, non-exclusive license<strong>:</strong></p>
 
-  <ol style="list-style-type: lower-alpha;">
+  <ol class="alpha">
     <li>
       <p>under intellectual property rights (other than patent or trademark) Licensable by <strong>such</strong> Contributor<strike>,</strike> to use, reproduce, <strong>make available,</strong> modify, display, perform, <strike>sublicense and</strike> distribute <strike>the Modifications created by such Contributor (or portions thereof)</strike><strong>, and otherwise exploit its Contributions,</strong> either on an unmodified basis, with <strike>other</strike> Modifications, <strike>as Covered Code and/</strike> or as part of a Larger Work; and</p>
     </li>
@@ -223,7 +121,7 @@ a good faith effort to explain the license in simpler language.</p>
   <p><strong>2.3. Limitations on Grant Scope.</strong></p>
 
   <p><strike>(d)</strike> <strong>The licenses granted in this Section <strong>2</strong> are the only rights granted under this License. No additional rights or licenses will be implied from the distribution or licensing of Covered Software under this License.</strong> Notwithstanding Section <strike>2.2(b)</strike><strong>2.1(b)</strong> above, no patent license is granted <strong>by a Contributor</strong>:</p>
-<ol style="list-style-type: lower-alpha;">
+<ol class="alpha">
 <li><strike>1)</strike> for any code that <strong>a</strong> Contributor has <strike>deleted from the Contributor Version</strike> <strong>removed from Covered Software</strong>; <strong>or</strong></li>
 <li><strike>2) separate from the Contributor Version; 3)</strike> for infringements caused by: <strong>(</strong>i) <strong>Your and any other</strong> third party<strong>'s</strong> modifications of <strike>Contributor Version</strike> <strong>Covered Software,</strong> or <strong>(</strong>ii) the combination of <strike>Modifications made by that Contributor</strike> <strong>its Contributions</strong> with other software (except as part of <strike>the</strike> <strong>its</strong> Contributor Version) <strike>or other devices</strike>; or</li> <li><strike>4)</strike> under Patent Claims infringed by Covered <strike>Code</strike> <strong>Software</strong> in the absence of <strike>Modifications made by that Contributor</strike> <strong>its Contributions</strong>.</li>
 </ol>

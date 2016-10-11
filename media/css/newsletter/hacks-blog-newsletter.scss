@@ -1,0 +1,93 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+body {
+    background: #f2f2f2;
+    font: 10px Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    font-weight: normal;
+    margin: 0 0 10px;
+}
+
+.billboard {
+    -moz-border-radius: 4px 4px 4px 4px;
+    background-color: #f2f2f2;
+    color: #000000;
+    min-height: 170px;
+    padding-top: 0.25em;
+    position: relative;
+}
+
+.form-contents,
+.form-submit {
+    background:white;
+    border: 1px solid #CCCCCC;
+    clear: both;
+    overflow: hidden;
+    padding: 0 5%;
+}
+
+.field-country {
+    margin: 5px 0;
+}
+
+#id_country {
+    width: 100%;
+}
+
+.form-contents {
+    border-bottom: none;
+}
+
+.form-submit {
+    border-top: none;
+}
+
+.billboard label {
+    display: block;
+    font-weight: bold;
+    line-height: 1em;
+    margin: 0.3em 0;
+}
+
+.billboard label#id_privacy {
+    display: inline;
+    font-size: 90%;
+    line-height: auto;
+    margin: 0;
+}
+
+.billboard input#id_email {
+    margin-top: 10px;
+    width: 95%;
+}
+
+.billboard .thank {
+    background: #E3FBE4;
+    color: #529214;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+}
+
+.billboard input.submit {
+    clear: both;
+    display: block;
+    font-size: 100%;
+    margin: 1em 0pt 1em 0pt;
+    width: auto;
+}
+
+.billboard .field-format label,
+.billboard .field-format input {
+    display: inline;
+}
+
+.hidden {
+    display: none;
+}

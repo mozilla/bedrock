@@ -5,21 +5,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Our Contributors</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <style type="text/css">
-    html {
-      background-color: #FFFFFF;
-    }
-
-    body {
-      color: #000000;
-    }
-
-    h1 {
-      text-align: center;
-    }
-  </style>
+  <title>Our Contributors</title>
+  {% block page_css %}
+    {% stylesheet 'credits' %}
+  {% endblock %}
   <link rel="stylesheet" href="chrome://global/skin/about.css" type="text/css">
 </head>
 
