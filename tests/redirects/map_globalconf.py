@@ -179,8 +179,8 @@ URLS = flatten((
     url_test('/firefox/nightly/whatsnew/', '/firefox/nightly/firstrun/'),
 
     # bug 1299947
-    url_test('/{firefox,}/beta/', '/firefox/channel/desktop/#beta'),
-    url_test('/{firefox,}/aurora/', '/firefox/channel/desktop/#developer'),
+    url_test('/{firefox/,}beta/', '/firefox/channel/desktop/#beta'),
+    url_test('/{firefox/,}aurora/', '/firefox/channel/desktop/#developer'),
     url_test('/mobile/beta/', '/firefox/channel/android/#beta'),
     url_test('/mobile/aurora/', '/firefox/channel/android/#aurora'),
 
