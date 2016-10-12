@@ -1,90 +1,239 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 @import "../../sandstone/lib.less";
+@import "../horizon-lib.less";
 
-.sky #outer-wrapper {
-    background: #eaeff2;
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(234,239,242,1) 0%, rgba(212,221,228,.4) 60%),
-                -webkit-linear-gradient(top, rgba(202,225,244,1) 0%, rgba(125,185,232,0) 100%);
-    background: radial-gradient(ellipse at center, rgba(234,239,242,1) 0%,rgba(212,221,228,.5) 50%),
-                linear-gradient(to bottom, rgba(202,225,244,1) 0%,rgba(125,185,232,0) 100%);
+.horizon {
+    .horizon-gradient;
+}
 
-    &:after {
-        z-index: 0;
-        content: "";
+.stars {
+    background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat;
+}
+
+.forest-container {
+    height: 483px;
+    margin-top: -254px;
+    position: relative;
+}
+
+.mountains-container {
+    height: 483px;
+    left: 50%;
+    margin-left: -885px;
+    position: absolute;
+    top: 0;
+    width: 1770px;
+
+    .layer {
+        left: 0;
         position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        background: url(/media/img/firefox/new/bg-noise.png);
+        width: 1770px;
     }
+}
+
+.sun {
+    height: 318px;
+    left: 50%;
+    margin-left: -161px;
+    position: absolute;
+    top: 30px;
+    width: 322px;
+}
+
+.mountains {
+    height: 482px;
+    top: 0;
+}
+
+.foreground-shape {
+    .at2x('/media/img/firefox/horizon/foreground.png', 1770px, 254px);
+    background-position: top left;
+    background-repeat: no-repeat;
+    bottom: 0;
+    height: 254px;
+}
+
+.trees-left {
+    bottom: 70px;
+    height: 602px;
+    left: -375px;
+    position: absolute;
+    width: 909px;
+    pointer-events: none;
+}
+
+.trees-right {
+    bottom: 120px;
+    height: 550px;
+    position: absolute;
+    right: -420px;
+    width: 922px;
+    pointer-events: none;
+}
+
+.fox {
+    bottom: 39px;
+    height: 254px;
+    position: absolute;
+    right: 140px;
+    width: 522px;
+}
+
+#outer-wrapper {
+    background: @horizonColorForeground;
+    overflow: hidden;
 }
 
 #wrapper {
-    width: 980px;
-    padding: 0 10px 0 10px;
-    z-index: 1;
-}
-
-#main-feature {
-    margin-top: 14px;
-    padding-bottom: 20px;
-
-    img {
-        display: none;
-    }
-}
-
-#main-headline {
-    margin: 12px 50px;
-    text-align: center;
-    .font-size(60px);
-    .transition(opacity 0.2s ease);
-}
-
-html[lang|="en"] #main-headline span:first-child {
-    display: inline-block;
+    padding-bottom: 0;
     width: 100%;
 }
 
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    #wrapper {
-        width: 760px;
-        padding: 0;
+#masthead {
+    padding: 0;
+
+    h2 {
+        float: left;
+
+        img {
+            height: 70px;
+            max-width: none;
+            width: 185px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
+            padding-top: @baseLine * 3;
+            text-align: center;
+        }
+    }
+}
+
+#tabzilla {
+    float: none;
+    position: absolute;
+    right: 10px;
+    top: 0;
+}
+
+.inner-container,
+#benefits ul,
+#newsletter-subscribe > .container {
+    margin: 0 auto;
+    width: @widthDesktop - (@gridGutterWidth * 2);
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet - (@gridGutterWidth * 2);
     }
 
-    #main-headline {
-        margin: 12px 0;
-        .font-size(55px);
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.large {
+    color: #fff;
+    text-shadow: none;
+}
+
+main {
+    .main-content {
+        margin-top: @baseLine * 2;
+        text-align: center;
+    }
+
+    .inner-container {
+        padding-bottom: 270px;
+    }
+
+    a:link,
+    a:visited {
+        color: #fff;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+
+    h1 {
+        .font-size(60px);
+        line-height: 1.2;
+        margin-bottom: @baseLine;
+
+        @media only screen and (max-width: @breakDesktop) {
+            .font-size(55px);
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(36px);
+        }
+    }
+
+    p {
+        color: #fff;
+    }
+}
+
+#mobile-download {
+    .clearfix;
+    margin-top: @baseLine * 2;
+
+    h2 {
+        .font-size(22px);
+        margin-bottom: @baseLine * 2;
+    }
+
+    ul {
+        .clearfix;
+        display: block;
+        list-style: none;
+        margin: @baseLine auto (@baseLine * 2);
+        padding: 0;
+        width: 384px;
+    }
+
+    li {
+        display: inline;
+        float: left;
+        height: 45px;
+        margin: 0 @baseLine;
+        padding: 0;
+        width: 152px;
+    }
+
+    a {
+        display: block;
+        margin-bottom: @baseLine;
     }
 }
 
 /* Mobile layout: 320px */
 @media only screen and (max-width: @breakTablet) {
-    #wrapper {
-        width: 320px;
-        padding: 0;
-    }
 
-    #masthead h2 {
-        display: none;
-    }
-
-    #main-feature {
-        .row {
-            .clearfix;
-            width: 300px;
-            margin: 0 auto;
+    #mobile-download {
+        ul {
+            margin-bottom: @baseLine;
+            width: auto;
         }
 
-        img {
-            display: block;
-            margin: 0 auto;
+        li {
+            float: none;
+            margin: 0 auto (@baseLine / 2);
         }
-    }
-
-    #main-headline {
-        margin: 12px 0;
-        .font-size(36px);
-        letter-spacing: -1px;
     }
 }
