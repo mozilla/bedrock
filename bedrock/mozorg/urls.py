@@ -220,7 +220,7 @@ urlpatterns = (
     url('^contribute/task/',
         views.ContributeTaskView.as_view(),
         name='mozorg.contribute.taskview'),
-    url('^plugincheck/', views.plugincheck, name='mozorg.plugincheck'),
+    page('plugincheck', 'mozorg/plugincheck.html'),
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url(r'^contributor-data/(?P<source_name>[a-z]{2,20})\.json$', views.mozid_data_view,
         name='mozorg.contributor-data'),

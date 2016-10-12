@@ -3,156 +3,279 @@
 // including it in the home.html template.
 @import "../sandstone/lib.less";
 
-#main-feature {
-    margin-top: @baseLine * 2;
-    padding-bottom: @baseLine * 2;
+h1, h2, h3, h4, h5, h6,
+h1.large {
+    text-shadow: none;
+}
 
-    @media only screen and (max-width: @breakTablet) {
-        margin: -20px 0 0;
-        padding-bottom: @baseLine;
-        text-align: center;
-    }
+#outer-wrapper {
+    background: #f0f4f7;
+}
 
-    &> .download-button {
-        display: none;
-        position: absolute;
-        top: 0;
-        right: 0;
-        &~ h1.large{
-            max-width: 700px;
-        }
-    }
-    .preamble {
-        margin-bottom: 0;
-        max-width: 700px;
-        .open-sans-light;
-        .font-size(24px);
-        font-weight: normal;
-        line-height: 1.2;
-        letter-spacing: -0.25px;
-        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.75);
-        color: rgb(72, 72, 72);
+#wrapper {
+    width: 100%;
+}
 
-        @media only screen and (max-width: @breakDesktop) {
-            max-width: 500px;
-            .font-size(1.2rem);
-        }
-    }
-
-    .firefox-logo {
-        float: left;
-        margin-right: 30px;
-        width: 145px;
-
-        @media only screen and (max-width: @breakDesktop) {
-            width: 115px;
-        }
-
-        @media only screen and (max-width: @breakTablet) {
-            float: none;
-            display: block;
-            margin: 0 auto;
-            width: 95px;
-        }
-    }
+.container,
+#masthead {
+    width: @widthDesktop - (@baseLine * 2);
 
     @media only screen and (max-width: @breakDesktop) {
-        .large {
-            .font-size(3.5rem);
-        }
+        width: @widthTablet - (@gridGutterWidth * 2);
     }
 
     @media only screen and (max-width: @breakTablet) {
-        .large {
-            .font-size(3rem);
-        }
+        width: @widthMobileLandscape;
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        .large {
-            .font-size(2.2rem);
-        }
+        width: @widthMobile - (@gridGutterWidth * 2);
     }
 }
 
-.billboard {
-    padding-top: 42px;
-    padding-bottom: 0;
-}
+/*--------------------------------------------------------------------------*/
+// Masthead
 
-.notice {
-    padding: 20px;
-    background: #ffe;
-    border: 1px solid #ccc;
-    margin: 0 0 20px;
+#masthead {
+    .at2x('/media/img/firefox/template/logo-large.png', 108px, 112px);
+    background-position: @baseLine @baseLine;
+    background-repeat: no-repeat;
+    height: 132px;
 
-    p {
-        margin: 0;
+    @media only screen and (max-width: @breakTablet) {
+        background-image: none;
+        height: auto;
     }
 }
 
-.billboard {
-    table {
-        width: 100%;
-        caption {
-            margin-bottom: @baseLine;
+.html-rtl #masthead {
+    background-position: right @baseLine top @baseLine;
+}
+
+#tabzilla {
+    z-index: 3;
+
+    &:before {
+        background: @textColorPrimary;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Main heading
+
+main > header {
+    padding: (@baseLine / 2) 0 (@baseLine * 2);
+    text-align: center;
+
+    .tagline {
+        .font-size(30px);
+        .open-sans-light;
+        line-height: 1.2;
+        margin: @baseLine auto;
+        max-width: 24em;
+
+        @media only screen and (max-width: @breakDesktop) {
             .font-size(24px);
         }
-        thead th {
-            padding: 0;
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(20px);
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
             .font-size(18px);
         }
-        tbody {
-            th, td {
-                padding: 20px 10px 20px 0;
-                .font-size(18px);
-                font-weight: normal;
-                .open-sans-light;
-            }
-            td {
-                .font-size(.9rem);
-            }
-        }
+    }
+    .tagline + p {
+        .font-size(18px);
+        .open-sans-light;
     }
 }
 
-.version-message-container {
-    display: none;
+/*--------------------------------------------------------------------------*/
+// Conditional message box
+
+.message-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: @baseLine * 2;
+    padding: (@baseLine * 2) @baseLine;
+    text-align: center;
 
     h2 {
         .font-size(24px);
-        letter-spacing: 0;
+        display: inline-block;
+        line-height: 1.2;
+        margin-bottom: @baseLine;
+        max-width: 25em;
+
+        &:before {
+            .inline-block;
+            background: url('/media/img/plugincheck/icon-alert.svg') center center no-repeat;
+            content: '';
+            height: 24px;
+            margin-right: 7px;
+            vertical-align: middle;
+            width: 24px;
+        }
     }
 
-    .download-button-wrapper {
-        margin: 1rem 0 40px 0;
+    .download-button {
+        display: block;
     }
 
-    .download-button-small.download-link {
-        margin-left: 30px;
+    .fx-privacy-link a {
+        color: @linkBlue;
+    }
+
+    p {
+        .font-size(20px);
+        .open-sans-light;
+        margin: 0 0 (@baseLine * 2);
     }
 }
 
-.plugin-status-container {
-    h3 {
-        .font-size(48px);
-        letter-spacing: -2px;
+.html-rtl .message-box h2:before {
+    margin-left: 7px;
+    margin-right: 0;
+}
+
+.firefox-out-of-date {
+    #out-of-date-container {
+        margin-bottom: -120px;
     }
 
-    .shadow-separator {
-        background: white url(/media/img/plugincheck/separators/section_shadow.png) center 10px no-repeat;
-        background-size: 100% auto;
-        padding: 45px 0 15px 0;
+    #plugin-status-container {
+        padding-top: 120px;
     }
+}
+
+#enable-js-container h2 {
+    margin: 0;
+    max-width: none;
+}
+
+.plugins-error {
+    padding: (@baseLine * 2) @baseLine;
+    text-align: center;
+
+    h2 {
+        .font-size(20px);
+        line-height: 1.3;
+        margin: 0 auto;
+        max-width: 24em;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Plugins container
+
+.plugincheck-loader {
+    background: #fff url('/media/img/plugincheck/loader.gif') left 20px no-repeat;
+    height: 64px;
+    margin: 0 auto;
+    padding: @baseLine 0;
+    width: 64px;
+}
+
+.table {
+    width: 100%;
+
+    caption {
+        .border-box;
+        .font-size(18px);
+        .open-sans-light;
+        background-color: #9b9b9b;
+        color: #fff;
+        margin-bottom: @baseLine;
+        padding: .5em;
+    }
+
+    thead {
+        visibility: collapse;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        thead {
+            visibility: visible;
+
+            th {
+                .visually-hidden();
+            }
+        }
+    }
+
+    tbody {
+        th, td {
+            .font-size(18px);
+            border: none;
+            font-weight: normal;
+            padding: 20px 10px 20px 0;
+        }
+
+        td {
+            .font-size(@largeFontSize);
+            .open-sans-light;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        tbody {
+            th {
+                display: block;
+                padding: 10px 0 5px 0;
+            }
+            td {
+                border-top: 0;
+                display: block;
+                padding: 5px 0 5px 67px;
+
+                &:last-child {
+                    padding-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
+.html-rtl .table {
+    @media only screen and (max-width: @breakTablet) {
+        tbody td {
+            padding: 5px 67px 5px 0;
+        }
+    }
+}
+
+#plugin-status-container {
+    background: #fff;
 
     .icon {
         float: left;
-        margin: -3px 5px 0 0;
+        margin-right: 5px;
+    }
+
+    .plugin-detail {
+        float: left;
+        width: 400px;
+
+        @media only screen and (max-width: @breakDesktop) {
+            width: 280px;
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            width: 360px;
+        }
+
+        @media only screen and (max-width: @breakMobileLandscape) {
+            width: 200px;
+        }
     }
 
     small {
+        .font-size(@largeFontSize);
+        .open-sans-light;
         display: block;
-        .font-size(@smallFontSize);
         line-height: 1.5;
     }
 
@@ -165,66 +288,178 @@
     }
 
     .plugin-status-action {
-        width:20%;
+        width: 20%;
+    }
+
+    .status-unknown .plugin-status-detail {
+        width: 80%;
+    }
+
+    .status-up-to-date .plugin-status-status {
+        width: 40%;
     }
 
     .vulnerability-link-txt {
         display: block;
         padding: 10px 0;
     }
-}
 
-.status-unknown {
-    .plugin-status-detail {
-        width: 80%;
+    .meta-status {
+        color: #333;
+        font-style: italic;
+
+        &.latest,
+        &.newer {
+            color: #4aa84a;
+        }
+
+        &.vulnerable {
+            color: #e55525;
+        }
+    }
+
+    .button {
+        padding: 10px 32px;
     }
 }
 
-.pluginfaq-container {
-    span.menu:before {
-        content:'\2630 ';
+.html-rtl #plugin-status-container {
+
+    .icon {
+        float: right;
+        margin-left: 5px;
+        margin-right: 0;
     }
 
-    span.menurev:after {
-        content:' \2630';
-    }
-}
-
-.container-column {
-    width: (@gridColumnWidth * 6) + (@gridGutterWidth * 5);
-    margin: 0 (@gridGutterWidth/2) @baseLine;
-    float: left;
-}
-
-.container-wide {
-    width: (@gridColumnWidth * 10) + (@gridGutterWidth * 9);
-    margin: 0 auto @baseLine;
-    float: none;
-    clear: both;
-    img {
-      height: auto;
-      display: block;
-      margin: 0 auto @baseLine;
-    }
-    .code-snippet {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+    .plugin-detail {
+        float: right;
     }
 }
 
-.code-snippet {
-    width: 90%;
-    margin: 0 0 @baseLine;
+.plugin-section-container {
+    padding: (@baseLine * 2) 0 0;
 }
 
-.blocklisted {
+#sec-plugin-outdated,
+#sec-plugin-unknown,
+#sec-plugin-uptodate,
+#sec-plugin-featured {
     display: none;
-    margin: 30px 0 40px 0;
-    padding: 8px 25px 8px 25px;
 }
 
-// newsletter section styles
+#vulnerable-warning {
+    .font-size(18px);
+    color: #e55525;
+    font-style: italic;
+    padding: 0 .5em;
+
+    @media only screen and (max-width: @breakTablet) {
+        display: block;
+        padding: (@baseLine / 2) 0;
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    #sec-plugin-unknown td {
+        padding-left: 0;
+    }
+
+    .html-rtl #sec-plugin-unknown td {
+        padding-right: 0;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Plugins accordion styles and page specific overrides
+
+#plugins-container {
+    .accordion h2 {
+        display: inline-block;
+        margin-bottom: @baseLine;
+        text-shadow: none;
+    }
+
+    .accordion.accordion-initialized [data-accordion-role="tabpanel"] {
+        padding: 0;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Featured plugins (Flash & Silverlight)
+
+#sec-plugin-featured {
+    padding: (@baseLine * 2) 0 @baseLine;
+
+    h2 {
+        margin-bottom: @baseLine * 2;
+    }
+
+    h4 {
+        .open-sans;
+        line-height: 1.3;
+        margin: 0;
+    }
+
+    ul {
+        display: table;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        li {
+            .font-size(@largeFontSize);
+            display: table-cell;
+            margin: 0;
+            padding: 0;
+            vertical-align: top;
+            width: 50%;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        padding-bottom: 0;
+
+        ul {
+            display: block;
+
+            li {
+                .clearfix;
+                display: block;
+                padding: 0 0 @baseLine;
+                width: auto;
+            }
+        }
+    }
+
+    .plugin-detail {
+        .open-sans-light;
+    }
+
+    small {
+        .font-size(@largeFontSize);
+        .open-sans-light;
+        display: block;
+        line-height: 1.5;
+    }
+
+    .plugin-meta span {
+        display: inline-block;
+
+        &:first-child {
+            margin-right: 1em;
+        }
+    }
+}
+
+.html-rtl #sec-plugin-featured .plugin-meta span:first-child {
+    margin-left: 1em;
+    margin-right: 0;
+}
+
+/*--------------------------------------------------------------------------*/
+// Newsletter
+
 .newsletter-container {
     margin-bottom: 30px;
 
@@ -241,8 +476,8 @@
             }
 
             h3 {
-                margin-bottom: 0;
                 .font-size(52px);
+                margin-bottom: 0;
 
                 @media only screen and (max-width: @breakDesktop) {
                     .font-size(38px);
@@ -255,8 +490,8 @@
         }
 
         h4 {
-            color: #fff;
             .font-size(32px);
+            color: #fff;
             line-height: 1.2;
             text-shadow: none;
 
@@ -269,9 +504,8 @@
         #newsletter-form-thankyou {
             float: none;
             margin: 0 auto;
-            margin-left: auto;
-            width: 50%;
             text-align: center;
+            width: 50%;
 
             @media only screen and (max-width: @breakTablet) {
                 width: 90%;
@@ -285,225 +519,62 @@
     }
 }
 
-// Mozilla Support Badge
-.moz-support {
-    clear: both;
-    background-color: #f7f8f8;
-    padding: 10px;
-    border: 2px solid #ededee;
-    margin: 0 auto @baseLine;
-    width: (@gridColumnWidth * 9) + (@gridGutterWidth * 8);
-    min-height: 55px;
-    h4 {
-        margin-bottom: 0;
+/*--------------------------------------------------------------------------*/
+// Plugin FAQ
+
+.plugin-faq-container {
+    margin-bottom: @baseLine * 2;
+
+    header {
+        .clearfix;
+        margin-bottom: @baseLine;
     }
-    .moz-support-logo {
+
+    h2 {
         float: left;
-        padding: 10px 40px 10px 15px;
-    }
-}
-
-#old_browser,
-#modern_browsers,
-#sec-plugin-vulnerable,
-#sec-plugin-outdated,
-#sec-plugin-unknown,
-#sec-plugin-uptodate {
-    display: none;
-}
-
-.warning {
-    .offset(2);
-    clear: both;
-    display: inline-block;
-    margin-bottom: @baseLine;
-    padding: 0 35px;
-    font-style: italic;
-    text-align: center;
-    .font-size(18px);
-}
-
-.plugincheck-loader {
-    background: #fff url('/media/img/plugincheck/loader.gif') 0 0 no-repeat;
-    margin: 16px auto;
-    width: 64px;
-    height: 64px;
-}
-
-// assume Fx users by default and hide nonFx user info.
-// assume js is enabled
-.not-supported,
-.enable-js {
-    display: none;
-}
-
-// Styles to show information for nonFx users
-.non-fx {
-    main,
-    .pluginfaq-container,
-    .plugin-status-container {
-        display: none;
+        max-width: 45%;
     }
 
-    .not-supported {
-        display: block;
-        background-color: #fff;
-        padding: @baseLine 0 10px 0;
-
-        header {
-            text-align: center;
-        }
-
-        section {
-            margin-bottom: @baseLine;
-            padding: @baseLine;
-            text-align: center;
-        }
-    }
-}
-
-// no-js styles
-.no-js {
-    .enable-js {
-        display: block;
-    }
-}
-
-// Flash exploit notice
-.flash-warning {
-    .warning;
-    color: #fff;
-    background-color: #a91300;
-    #gradient > .vertical(#da5132, #a91300);
-    padding: 20px;
-    font-style: normal;
-    margin: 20px auto;
-    display: block;
-    width: 80%;
-    border-radius: 8px;
-
-    a,
-    a:active,
-    a:hover,
-    a:link {
-        color: #fff;
-        .trailing-arrow();
+    [data-accordion-role="tab"] {
+        text-shadow: none;
     }
 
-    @media (max-width: @breakDesktop) {
-        width: auto;
-    }
-}
-
-#masthead .mozilla-share-cta {
-    z-index: 2;
-}
-
-html[lang="de"] {
-    #main-feature {
-        h2.large {
-            .font-size(62px);
-
-            @media only screen and (max-width: @breakDesktop) {
-                .font-size(42px);
-            }
-        }
+    .support-link {
+        .font-size(18px);
+        float: right;
+        max-width: 45%;
     }
 
-    h3 {
-        line-height: 1;
-    }
-
-    #newsletter-form input[type="submit"] {
+    p,
+    ul li {
         .font-size(@largeFontSize);
-    }
-}
-
-html[dir="rtl"] {
-    #main-feature > .download-button {
-        right: auto;
-        left: 0;
-    }
-}
-
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    #main-feature > .download-button {
-        position: relative;
-        margin-top: 20px;
+        max-width: 40em;
     }
 
-    .moz-support {
-        width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 9);
-    }
 
-    .container-column {
-        width: (@gridColumnWidthNarrow * 6) + (@gridGutterWidth * 5);
-    }
-
-    .container-wide {
-        width: (@gridColumnWidthNarrow * 10) + (@gridGutterWidth * 9);
-    }
-}
-
-/* Mobile Layout: 320px */
-@media only screen and (max-width: @breakTablet) {
-    #main-feature > .download-button {
-        position: relative;
-        margin-top: 20px;
-    }
-
-    .plugin-status-container {
-        small {
-            padding-left: 67px;
-        }
-    }
-
-    .billboard {
-        table {
-            thead {
-                th {
-                    .visually-hidden();
-                }
-            }
-            tbody {
-                th {
-                    display: block;
-                    padding: 10px 0 5px 0;
-                }
-                td {
-                    display: block;
-                    padding: 5px 0px 5px 67px;
-                    border-top: 0;
-                    &:last-child {
-                        padding-bottom: 20px;
-                    }
-                }
-            }
-        }
-    }
-
-    #sec-plugin-unknown {
-        small, td {
-            padding-left: 0;
-        }
-    }
-
-    .moz-support {
-        width: auto;
-        text-align: center;
-        .moz-support-logo {
+    @media only screen and (max-width: @breakTablet) {
+        h2,
+        .support-link {
             float: none;
-            display: block;
-            padding: 0;
-            margin: 10px auto;
+            max-width: none;
         }
     }
 
-    .container-column,
-    .container-wide {
-        width: auto;
-        float: none;
-        margin: 0 0 @baseLine;
+    span.menu:before {
+        content:'\2630 ';
+    }
+
+    span.menurev:after {
+        content:' \2630';
+    }
+}
+
+.html-rtl .plugin-faq-container {
+    h2 {
+        float: right;
+    }
+
+    .support-link {
+        float: left;
     }
 }
