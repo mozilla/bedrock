@@ -55,4 +55,4 @@ class TestThunderbirdAll(TestCase):
 
         num_builds = len(thunderbird_desktop.get_filtered_full_builds('release'))
         eq_(len(doc('tr[data-search]')), num_builds)
-        eq_(len(doc('tr#en-US a')), 4)
+        eq_(len(doc('tr#en-US a')), 5)

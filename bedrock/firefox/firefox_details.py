@@ -4,6 +4,7 @@ from operator import itemgetter
 from urllib import urlencode
 
 from django.conf import settings
+from bedrock.base.waffle import switch
 from product_details import ProductDetails
 from lib.l10n_utils.dotlang import _lazy as _
 
@@ -11,6 +12,11 @@ from lib.l10n_utils.dotlang import _lazy as _
 # TODO: port this to django-mozilla-product-details
 class _ProductDetails(ProductDetails):
     bouncer_url = 'https://download.mozilla.org/'
+
+    # Note allizom.org is the production endpoint for SHA-1.
+    # It uses this because that's the only SHA-1 certificate
+    # we have that's usable. (SHA-1 certs can no longer be issued).
+    sha1_bouncer_url = 'https://download-sha1.allizom.org/'
 
     def _matches_query(self, info, query):
         words = re.split(r',|,?\s+', query.strip().lower())
@@ -25,6 +31,7 @@ class FirefoxDesktop(_ProductDetails):
 
     # Human-readable platform names
     platform_labels = OrderedDict([
+        ('winsha1', 'Windows (XP/Vista)'),
         ('win', 'Windows'),
         ('win64', 'Windows 64-bit'),
         ('osx', 'OS X'),
@@ -62,6 +69,9 @@ class FirefoxDesktop(_ProductDetails):
 
     def __init__(self, **kwargs):
         super(FirefoxDesktop, self).__init__(**kwargs)
+
+    def get_bouncer_url(self, platform):
+        return self.sha1_bouncer_url if not switch('disable-sha1-downloads') and platform == 'winsha1' else self.bouncer_url
 
     def platforms(self, channel='release'):
         platforms = self.platform_labels.copy()
@@ -121,9 +131,10 @@ class FirefoxDesktop(_ProductDetails):
         for builds in all_builds:
             if locale in builds and version in builds[locale]:
                 _builds = builds[locale][version]
-                # Append 64-bit builds
+                # Append 64-bit builds and Sha-1
                 if 'Windows' in _builds:
                     _builds['Windows 64-bit'] = _builds['Windows']
+                    _builds['Windows (XP/Vista)'] = _builds['Windows']
                 if 'Linux' in _builds:
                     _builds['Linux 64-bit'] = _builds['Linux']
                 return version, _builds
@@ -207,23 +218,24 @@ class FirefoxDesktop(_ProductDetails):
         """
         _version = version
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
+        _platform = 'win' if platform == 'winsha1' else platform
 
         # Aurora has a special download link format
         if channel == 'alpha':
             # Download links are different for localized versions
             if locale == 'en-US':
                 # Use the stub installer for 32-bit Windows
-                if platform == 'win':
+                if _platform == 'win':
                     product = 'firefox-aurora-stub'
                 else:
                     product = 'firefox-aurora-latest-ssl'
             else:
                 product = 'firefox-aurora-latest-l10n'
 
-            return '?'.join([self.bouncer_url,
+            return '?'.join([self.get_bouncer_url(platform),
                              urlencode([
                                  ('product', product),
-                                 ('os', platform),
+                                 ('os', _platform),
                                  # Order matters, lang must be last for bouncer.
                                  ('lang', _locale),
                              ])])
@@ -231,14 +243,14 @@ class FirefoxDesktop(_ProductDetails):
         # Use direct archive links for Nightly
         if channel == 'nightly':
             _dir = self.nightly_url_base + ('' if locale == 'en-US' else '-l10n')
-            _suffix = self.platform_file_suffixes.get(platform)
+            _suffix = self.platform_file_suffixes.get(_platform)
 
             return '{dir}/firefox-{version}.{locale}.{suffix}'.format(
                 dir=_dir, version=_version, locale=_locale, suffix=_suffix)
 
         # stub installer exceptions
         # TODO: NUKE FROM ORBIT!
-        stub_langs = settings.STUB_INSTALLER_LOCALES.get(platform, [])
+        stub_langs = settings.STUB_INSTALLER_LOCALES.get(_platform, [])
         if (stub_langs and (stub_langs == settings.STUB_INSTALLER_ALL or
                             _locale.lower() in stub_langs) and
                            not force_full_installer and
@@ -261,10 +273,10 @@ class FirefoxDesktop(_ProductDetails):
         # (bypassing the transition page)
         if force_direct:
             # build a direct download link
-            return '?'.join([self.bouncer_url,
+            return '?'.join([self.get_bouncer_url(platform),
                              urlencode([
                                  ('product', 'firefox-%s' % _version),
-                                 ('os', platform),
+                                 ('os', _platform),
                                  # Order matters, lang must be last for bouncer.
                                  ('lang', _locale),
                              ])])
