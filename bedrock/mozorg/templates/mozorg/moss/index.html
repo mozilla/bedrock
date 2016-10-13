@@ -1,0 +1,302 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/moss/base.html" %}
+
+{% block body_id %}moss-home{% endblock %}
+
+{% block page_heading %}
+  {{ _('Mozilla Open Source Support') }}
+{% endblock %}
+
+{% block header_image %}
+  <div id="header-image-wrapper">
+    <img src="{{ static('img/mozorg/moss/header-home.jpg') }}" alt="">
+  </div>
+{% endblock %}
+
+{% block page_content %}
+<section class="moss-section">
+  <h2 class="moss-section-heading">{{ _('About MOSS') }}</h2>
+
+  <p class="moss-copy">
+  {% trans %}
+    Mozilla Open Source Support (MOSS) is Mozilla’s program for supporting the
+    Open Source and Free Software movement, with a yearly budget of around $3
+    million.
+  {% endtrans %}
+
+  {% trans %}
+    Mozilla was born out of and remains a part of this movement, and we prosper
+    because of its technology and activism.
+  {% endtrans %}
+
+  {% trans %}
+    And we know that open source software remains a key part of the Internet and
+    is essential for the online life of choice, innovation and opportunity we
+    seek to build.
+  {% endtrans %}
+  </p>
+
+  <p class="moss-copy">
+  {% trans %}
+    The Mozilla Open Source Support program recognizes and celebrates open
+    source projects that contribute to our work and the health of the Internet.
+  {% endtrans %}
+
+  {% trans %}
+    It encompasses “giving back” to projects that Mozilla already relies on
+    (“Foundational Technology”), “giving forward” to projects whose goals are in
+    alignment with ours (“Mission Partners”), and improving the security of the
+    open source ecosystem (“Secure Open Source”).
+  {% endtrans %}
+  </p>
+</section>
+
+<section class="moss-section">
+  <h2 class="moss-section-heading">{{ _('Project pillars') }}</h2>
+
+  <ul class="moss-list moss-list-thirds" id="moss-focus-list">
+    <li id="foundational-technology">
+      <h3 class="moss-subhead">{{ _('Foundational Technology') }}</h3>
+
+      <p class="moss-copy">
+      {% trans %}
+        The Foundational Technology track is open to any free software / open
+        source project that Mozilla relies on — either embedded in our products
+        or infrastructure, or just used to get work done.
+      {% endtrans %}
+      </p>
+
+      <div class="moss-ctas">
+        <p>
+          <a href="{{ url('mozorg.moss.foundational-technology') }}" class="moss-copy">{{ _('Learn More') }}</a>
+        </p>
+
+        <p>
+          <a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLSdSSJ2jCuNCSY2SlIReOPwuF-ILnkt7IpNk4YkLKPn1spJoMA/viewform" rel="external" class="button">{{ _('Apply Now') }}</a>
+        </p>
+      </div>
+    </li>
+    <li id="mission-partners">
+      <h3 class="moss-subhead">{{ _('Mission Partners') }}</h3>
+
+      <p class="moss-copy">
+      {% trans %}
+        The Mission Partners track is open to any free software / open source
+        project that significantly furthers Mozilla’s mission to ensure the
+        Internet is a global public resource, open and accessible to all.
+      {% endtrans %}
+      </p>
+
+      <div class="moss-ctas">
+        <p>
+          <a href="{{ url('mozorg.moss.mission-partners') }}" class="moss-copy">{{ _('Learn More') }}</a>
+        </p>
+
+        <p>
+          <a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLSe9a9h4afnJnDp3rRRHB4i1Xnb3otzfaQrb9uXVeoeXlB3NSg/viewform" rel="external" class="button">{{ _('Apply Now') }}</a>
+        </p>
+      </div>
+    </li>
+    <li id="secure-open-source">
+      <h3 class="moss-subhead">{{ _('Secure Open Source') }}</h3>
+
+      <p class="moss-copy">
+      {% trans %}
+        The Secure Open Source (“SOS”) track supports security audits for open
+        source software projects, and remedial work to rectify the problems
+        found.
+      {% endtrans %}
+
+      {% trans %}
+        Suggest a recipient.
+      {% endtrans %}
+      </p>
+
+      <div class="moss-ctas">
+        <p>
+          <a href="{{ url('mozorg.moss.secure-open-source') }}" class="moss-copy">{{ _('Learn More') }}</a>
+        </p>
+
+        <p>
+          <a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLScLwANEOvLBE6gnFVoiamqHOYzzkaChpdQJ7f0PlZGmfyy94w/viewform" rel="external" class="button">{{ _('Nominate Now') }}</a>
+        </p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section class="moss-section">
+  <h2 class="moss-section-heading">{{ _('A few details') }}</h2>
+
+  <p class="moss-copy">
+  {% trans %}
+    MOSS applications are considered in batches every three months.
+  {% endtrans %}
+
+  {% trans %}
+    Missing a deadline may cause a delay in the consideration of your
+    application.
+  {% endtrans %}
+
+  {% trans url1='https://wiki.mozilla.org/MOSS#Application_Deadlines' %}
+    Information on the next deadline can be found
+    <a href="{{ url1 }}">on the MOSS wiki</a>.
+  {% endtrans %}
+  </p>
+</section>
+
+<section class="moss-section">
+  <h2 class="moss-section-heading">{{ _('Who decides?') }}</h2>
+
+  <p class="moss-copy">
+  {% trans %}
+    We have formed a selection committee to assess awards on the Foundation
+    Technology and Mission Partners tracks.
+  {% endtrans %}
+
+  {% trans %}
+    It is comprised partly of current, committed Mozillians — they bring a good
+    working knowledge of Mozilla’s day- to-day activities and how various open
+    source projects are used.
+  {% endtrans %}
+
+  {% trans %}
+    There are also senior Mozilla Alumni — they are no longer actively involved
+    with Mozilla on a day-to-day basis but have a deep understanding of our
+    project and a different/outside perspective.
+  {% endtrans %}
+
+  {% trans %}
+    Finally, there are other open source experts — they bring knowledge of the
+    role of different projects within the open source ecosystem.
+  {% endtrans %}
+  </p>
+
+  <p class="moss-ctas">
+    <a href="https://wiki.mozilla.org/MOSS#Selection_Committee" rel="external" class="moss-copy">{{ _('Meet the committee') }}</a>
+  </p>
+</section>
+
+<section class="moss-section">
+  <h2 class="moss-section-heading">{{ _('Past Recipients') }}</h2>
+
+  <p class="moss-copy">
+  {% trans %}
+    Check out a few of the Mozilla Open Source Support past recipients.
+  {% endtrans %}
+  </p>
+
+  <ul class="moss-list moss-list-thirds">
+    <li>
+      <h3>{{ high_res_img('mozorg/moss/tor.png', {'alt': 'Tor', 'width': '300', 'height': '169'}) }}</h3>
+
+      <p class="moss-subhead">{{ _('$%(sum)s')|format(sum='152,500') }}</p>
+
+      <p class="moss-copy">
+      {% trans %}
+        Tor is free software and an open network that helps you defend against
+        network surveillance.
+      {% endtrans %}
+      </p>
+
+      <p class="moss-ctas">
+        <a href="https://www.torproject.org/" rel="external" class="moss-copy">www.torproject.org</a>
+      </p>
+    </li>
+    <li>
+      <h3>{{ high_res_img('mozorg/moss/tails.png', {'alt': 'Tails', 'width': '300', 'height': '169'}) }}</h3>
+
+      <p class="moss-subhead">{{ _('$%(sum)s')|format(sum='77,000') }}</p>
+
+      <p class="moss-copy">
+      {% trans %}
+        Tails is a live operating system that you can start on almost any
+        computer from a DVD, USB stick, or SD card.
+      {% endtrans %}
+      </p>
+
+      <p class="moss-ctas">
+        <a href="https://tails.boum.org/" rel="external" class="moss-copy">tails.boum.org</a>
+      </p>
+    </li>
+    <li>
+      <h3>{{ high_res_img('mozorg/moss/caddy.png', {'alt': 'Caddy', 'width': '300', 'height': '169'}) }}</h3>
+
+      <p class="moss-subhead">{{ _('$%(sum)s')|format(sum='50,000') }}</p>
+
+      <p class="moss-copy">
+      {% trans %}
+        Caddy is an alternative web server that is easy to configure and use.
+      {% endtrans %}
+      </p>
+
+      <p class="moss-ctas">
+        <a href="https://caddyserver.com/" rel="external" class="moss-copy">caddyserver.com</a>
+      </p>
+    </li>
+    <li>
+      <h3>{{ high_res_img('mozorg/moss/godot.png', {'alt': 'Godot', 'width': '300', 'height': '169'}) }}</h3>
+
+      <p class="moss-subhead">{{ _('$%(sum)s')|format(sum='20,000') }}</p>
+
+      <p class="moss-copy">
+      {% trans %}
+        Godot is an advanced, feature-packed, multi-platform 2D and 3D open
+        source game engine.
+      {% endtrans %}
+      </p>
+
+      <p class="moss-ctas">
+        <a href="https://godotengine.org/" rel="external" class="moss-copy">godotengine.org</a>
+      </p>
+    </li>
+    <li>
+      <h3>{{ high_res_img('mozorg/moss/pears.png', {'alt': 'PeARS', 'width': '300', 'height': '169'}) }}</h3>
+
+      <p class="moss-subhead">{{ _('$%(sum)s')|format(sum='15,500') }}</p>
+
+      <p class="moss-copy">
+        {{ _('PeARS is a search engine run by all and for all.') }}
+      </p>
+
+      <p class="moss-ctas">
+        <a href="http://pearsearch.org/" rel="external" class="moss-copy">pearsearch.org</a>
+      </p>
+    </li>
+    <li>
+      <h3>{{ high_res_img('mozorg/moss/nvaccess.png', {'alt': 'NV Access', 'width': '300', 'height': '169'}) }}</h3>
+
+      <p class="moss-subhead">{{ _('$%(sum)s')|format(sum='15,000') }}</p>
+
+      <p class="moss-copy">
+      {% trans %}
+        NVDA (NonVisual Desktop Access) is a free “screen reader” which enables
+        blind and vision impaired people to use computers.
+      {% endtrans %}
+      </p>
+
+      <p class="moss-ctas">
+        <a href="http://www.nvaccess.org/" rel="external" class="moss-copy">www.nvaccess.org</a>
+      </p>
+    </li>
+  </ul>
+</section>
+
+<section class="moss-section">
+  <h2 class="moss-section-heading">{{ _('Want to know more?') }}</h2>
+
+  <p class="moss-copy">
+  {% trans %}
+    Check out discussions and ask questions about MOSS in our active forums,
+    accessible either as a mailing list, a newsgroup or on the web.
+  {% endtrans %}
+  </p>
+
+  <p class="moss-ctas">
+    <a href="https://www.mozilla.org/en-US/about/forums/#moss" rel="external" class="moss-copy">{{ _('Discuss') }}</a>
+  </p>
+</section>
+{% endblock %}

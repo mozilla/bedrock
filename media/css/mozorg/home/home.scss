@@ -5,7 +5,6 @@
 @import '../../pebbles/components/buttons-download';
 
 
-$color-mozred-bright: saturate(lighten($color-mozred, 5%), 10%);
 $color-text-header: #2762A9;
 $color-text-dark: #56565A;
 
@@ -416,7 +415,7 @@ main {
     color: $color-text-dark;
 
     .section-headline {
-        color: #d93a33;
+        color: $color-mozred-bright;
     }
 
     &:before {
@@ -430,7 +429,7 @@ main {
 }
 
 #innovate .section-content {
-    background: #d93a33;
+    background: $color-mozred-bright;
     color: #fff;
 
     &:before {

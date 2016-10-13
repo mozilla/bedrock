@@ -39,12 +39,12 @@
 
     #who {
         a:before {
-            background-color: #d93a33;
+            background-color: $color-mozred-bright;
         }
 
         a:link,
         a:visited {
-            color: #d93a33;
+            color: $color-mozred-bright;
         }
 
         .icon use {
@@ -58,7 +58,7 @@
         }
 
         .icon use {
-            fill: #d93a33;
+            fill: $color-mozred-bright;
         }
     }
 }

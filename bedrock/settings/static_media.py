@@ -691,6 +691,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mpl-differences-bundle.css',
     },
+    'moss': {
+        'source_filenames': (
+            'css/mozorg/moss/common.scss',
+        ),
+        'output_filename': 'css/moss-bundle.css',
+    },
     'mozilla_accordion': {
         'source_filenames': (
             'css/base/mozilla-accordion.less',
