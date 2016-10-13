@@ -519,7 +519,12 @@ TWITTER_ACCOUNTS = (
 # Add optional parameters specific to accounts here
 # e.g. 'firefox': {'exclude_replies': False}
 TWITTER_ACCOUNT_OPTS = {}
-TWITTER_APP_KEYS = config('TWITTER_APP_KEYS', cast=json.loads, default='{}')
+TWITTER_APP_KEYS = {
+    'consumer_key': config('TWITTER_CONSUMER_KEY', default=''),
+    'consumer_secret': config('TWITTER_CONSUMER_SECRET', default=''),
+    'access_token': config('TWITTER_ACCESS_TOKEN', default=''),
+    'access_token_secret': config('TWITTER_ACCESS_TOKEN_SECRET', default=''),
+}
 
 # Contribute numbers
 # TODO: automate these

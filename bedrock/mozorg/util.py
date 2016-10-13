@@ -124,21 +124,20 @@ def get_fb_like_locale(request_locale):
     return lang
 
 
-def TwitterAPI(account):
+def TwitterAPI():
     """
     Connect to the Twitter REST API using the Tweepy library.
 
     https://dev.twitter.com/docs/api/1.1
     http://pythonhosted.org/tweepy/html/
     """
-    if account in settings.TWITTER_APP_KEYS:
-        keys = settings.TWITTER_APP_KEYS[account]
+    keys = settings.TWITTER_APP_KEYS
+    if keys['consumer_key']:
+        auth = tweepy.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
+        auth.set_access_token(keys['access_token'], keys['access_token_secret'])
+        return tweepy.API(auth)
     else:
-        keys = settings.TWITTER_APP_KEYS['default']
-    auth = tweepy.OAuthHandler(keys['CONSUMER_KEY'], keys['CONSUMER_SECRET'])
-    auth.set_access_token(keys['ACCESS_TOKEN'], keys['ACCESS_TOKEN_SECRET'])
-
-    return tweepy.API(auth)
+        return None
 
 
 def get_tweets(account):
@@ -148,6 +147,10 @@ def get_tweets(account):
     :returns: list of Status objects or None on error.
     """
     # API Docs https://dev.twitter.com/rest/reference/get/statuses/user_timeline
+    api = TwitterAPI()
+    if api is None:
+        return None
+
     account_opts = {
         'screen_name': account,
         'include_rts': True,
@@ -158,6 +161,6 @@ def get_tweets(account):
     }
     account_opts.update(settings.TWITTER_ACCOUNT_OPTS.get(account, {}))
     try:
-        return TwitterAPI(account).user_timeline(**account_opts)
+        return api.user_timeline(**account_opts)
     except Exception:
         return None

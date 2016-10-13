@@ -12,6 +12,10 @@ from bedrock.mozorg.util import get_tweets
 
 @cronjobs.register
 def update_tweets():
+    if not settings.TWITTER_APP_KEYS['consumer_key']:
+        # twitter auth not configured
+        return
+
     for account in settings.TWITTER_ACCOUNTS:
         tweets = get_tweets(account)
 

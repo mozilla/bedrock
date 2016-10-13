@@ -25,7 +25,7 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
 class TestTwitterAPI(TestCase):
     def test_default_call_options(self, twitter_api):
         get_tweets('walter')
-        twitter_api.assert_called_with('walter')
+        twitter_api.assert_called()
         twitter_api.return_value.user_timeline.assert_called_with(screen_name='walter',
                                                                   include_rts=True,
                                                                   exclude_replies=True,
@@ -33,12 +33,16 @@ class TestTwitterAPI(TestCase):
 
     def test_override_default_call_options(self, twitter_api):
         get_tweets('dude')
-        twitter_api.assert_called_with('dude')
+        twitter_api.assert_called()
         twitter_api.return_value.user_timeline.assert_called_with(screen_name='dude',
                                                                   abide=True,
                                                                   include_rts=False,
                                                                   exclude_replies=True,
                                                                   count=100)
+
+    def test_returns_none_if_api_not_configured(self, twitter_api):
+        twitter_api.return_value = None
+        self.assertIsNone(get_tweets('dude'))
 
 
 class TestGetFacebookLikeLocale(TestCase):
