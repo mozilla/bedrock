@@ -11,7 +11,7 @@ from django.utils.functional import lazy
 
 import dj_database_url
 from decouple import Csv, config
-from pathlib import Path
+from pathlib2 import Path
 
 from .static_media import PIPELINE_CSS, PIPELINE_JS  # noqa
 
@@ -113,8 +113,16 @@ PROD_DETAILS_CACHE_TIMEOUT = 60 * 15  # 15 min
 default_pdstorage = 'PDDatabaseStorage' if PROD else 'PDFileStorage'
 PROD_DETAILS_STORAGE = config('PROD_DETAILS_STORAGE',
                               default='product_details.storage.' + default_pdstorage)
-# path to update p-d data for testing before loading into DB
-PROD_DETAILS_TEST_DIR = config('PROD_DETAILS_TEST_DIR', default=path('product_details_json'))
+# path into which to clone the p-d json repo
+PROD_DETAILS_JSON_REPO_PATH = config('PROD_DETAILS_JSON_REPO_PATH',
+                                     default=path('product_details_json'))
+PROD_DETAILS_JSON_REPO_URI = config('PROD_DETAILS_JSON_REPO_URI',
+                                    default='https://github.com/mozilla/product-details-json.git')
+# path to updated p-d data for testing before loading into DB
+PROD_DETAILS_TEST_DIR = str(Path(PROD_DETAILS_JSON_REPO_PATH).joinpath('product-details'))
+# if the repo is cloned it will be most up-to-date
+if Path(PROD_DETAILS_TEST_DIR).is_dir():
+    PROD_DETAILS_DIR = PROD_DETAILS_TEST_DIR
 
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'bg',

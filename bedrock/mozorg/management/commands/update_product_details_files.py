@@ -4,8 +4,9 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
-from product_details.management.commands.update_product_details import Command as PDCommand
 from product_details.storage import PDDatabaseStorage, PDFileStorage
+
+from bedrock.utils.git import GitRepo
 
 FIREFOX_VERSION_KEYS = (
     'FIREFOX_NIGHTLY',
@@ -19,10 +20,11 @@ FIREFOX_VERSION_KEYS = (
 
 
 class Command(BaseCommand):
-
     def __init__(self, stdout=None, stderr=None, no_color=False):
         self.file_storage = PDFileStorage(json_dir=settings.PROD_DETAILS_TEST_DIR)
         self.db_storage = PDDatabaseStorage()
+        self.repo = GitRepo(settings.PROD_DETAILS_JSON_REPO_PATH,
+                            settings.PROD_DETAILS_JSON_REPO_URI)
         super(Command, self).__init__(stdout, stderr, no_color)
 
     def add_arguments(self, parser):
@@ -37,10 +39,8 @@ class Command(BaseCommand):
                                   'Defaults to "default".')),
 
     def handle(self, *args, **options):
-        if not settings.PROD_DETAILS_STORAGE.endswith('PDDatabaseStorage'):
-            raise CommandError('Must be setup for database product-details storage to use this')
-
-        self.update_file_data(options)
+        # don't really care about deleted files. almost never happens in p-d.
+        modified, _ = self.update_file_data()
         try:
             self.validate_data()
         except Exception:
@@ -49,32 +49,37 @@ class Command(BaseCommand):
         if not options['quiet']:
             print('Product Details data is valid')
 
-        self.load_changes(options)
+        if not settings.PROD_DETAILS_STORAGE.endswith('PDDatabaseStorage'):
+            # no need to continue if not using DB backend
+            return
+
+        if options['force']:
+            files_to_load = self.file_storage.all_json_files()
+        else:
+            files_to_load = self.filter_filenames(modified)
+
+        if files_to_load:
+            self.load_changes(options, files_to_load)
+        elif not options['quiet']:
+            print('Product Details data was already up to date')
 
         if not options['quiet']:
             print('Product Details data update is complete')
 
-    def load_changes(self, options):
+    def load_changes(self, options, modified_files):
         with transaction.atomic(using=options['database']):
-            for filename in self.file_storage.all_json_files():
-                fs_file_mtime = self.file_storage.last_modified_datetime(filename)
-                db_file_mtime = self.db_storage.last_modified_datetime(filename)
-                if options['force'] or not db_file_mtime or fs_file_mtime > db_file_mtime:
-                    self.db_storage.update(filename,
-                                           self.file_storage.content(filename),
-                                           self.file_storage.last_modified(filename))
-                    if not options['quiet']:
-                        print('Updated ' + filename)
+            for filename in modified_files:
+                self.db_storage.update(filename,
+                                       self.file_storage.content(filename),
+                                       self.file_storage.last_modified(filename))
+                if not options['quiet']:
+                    print('Updated ' + filename)
 
             self.db_storage.update('/', '', self.file_storage.last_modified('/'))
             self.db_storage.update('regions/', '', self.file_storage.last_modified('regions/'))
 
-    def update_file_data(self, options):
-        # json dir set in settings
-        command = PDCommand()
-        command._storage = self.file_storage
-        command.is_db_storage = False
-        command.handle(**options)
+    def update_file_data(self):
+        return self.repo.update()
 
     def count_builds(self, version_key, min_builds=20):
         version = self.file_storage.data('firefox_versions.json')[version_key]
@@ -91,3 +96,17 @@ class Command(BaseCommand):
         self.file_storage.clear_cache()
         for key in FIREFOX_VERSION_KEYS:
             self.count_builds(key)
+
+    def filter_filenames(self, filenames):
+        filtered_names = []
+        if filenames is None:
+            return filtered_names
+
+        for fn in filenames:
+            if not fn.endswith('.json'):
+                continue
+
+            filtered_names.append(str(
+                self.repo.path.joinpath(fn).relative_to(settings.PROD_DETAILS_TEST_DIR)))
+
+        return filtered_names

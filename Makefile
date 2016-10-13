@@ -43,7 +43,7 @@ shell: .docker-build
 	docker run --user `id -u` -it --env-file docker/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} bash
 
 sync-all: .docker-build
-	docker run --user `id -u` --env-file docker/dev.env -p 8000:8000 -v "$$PWD:/app" ${DEV_IMG_NAME} bin/sync_all
+	docker run --user `id -u` --env-file docker/demo.env -v "$$PWD:/app" ${DEV_IMG_NAME} bin/sync_all
 
 clean:
 	# python related things

@@ -9,7 +9,7 @@ from django.db.models.signals import post_save
 from django.test import override_settings
 
 from mock import patch
-from pathlib import Path
+from pathlib2 import Path
 
 from bedrock.mozorg.models import BlogArticle, TwitterCache
 from bedrock.mozorg.tests import TestCase

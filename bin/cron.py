@@ -10,7 +10,7 @@ from subprocess import check_call
 import requests
 from apscheduler.schedulers.blocking import BlockingScheduler
 from decouple import config
-from pathlib import Path
+from pathlib2 import Path
 
 
 schedule = BlockingScheduler()
@@ -107,7 +107,7 @@ def schedule_database_jobs():
     def update_blog_feeds():
         call_command('update_blog_feeds --database bedrock')
 
-    
+
 def schedul_l10n_jobs():
     @scheduled_job('interval', minutes=10)
     def update_locales():

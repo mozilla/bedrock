@@ -52,7 +52,7 @@ echo "Creating database if we need it..."
 echo "CREATE DATABASE IF NOT EXISTS \`${JOB_NAME}\`"|mysql -u $DB_USER -h $DB_HOST
 
 echo "Update product_details"
-python manage.py update_product_details --database bedrock
+python manage.py update_product_details_files --database bedrock
 
 echo "Check PEP-8"
 flake8 bedrock lib

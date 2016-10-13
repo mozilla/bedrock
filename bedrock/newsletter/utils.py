@@ -4,7 +4,7 @@ from django.core.cache import cache
 
 import basket
 import commonware.log
-from pathlib import Path
+from pathlib2 import Path
 
 log = commonware.log.getLogger('b.newsletter')
 

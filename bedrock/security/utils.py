@@ -3,8 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import codecs
-from functools import wraps
-import os
 import re
 
 import yaml
@@ -61,22 +59,3 @@ def parse_md_file(file_name):
         if mfsa_id:
             data['mfsa_id'] = mfsa_id
     return data, markdown(mdtext)
-
-
-def chdir(dirname=None):
-    """Decorator to run a function in a different directory then return."""
-    def decorator(func):
-
-        @wraps(func)
-        def inner(*args, **kwargs):
-            curdir = os.getcwd()
-            try:
-                if dirname is not None:
-                    os.chdir(dirname)
-                return func(*args, **kwargs)
-            finally:
-                os.chdir(curdir)
-
-        return inner
-
-    return decorator

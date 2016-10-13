@@ -10,7 +10,7 @@ from jinja2.nodes import Block
 from mock import patch, ANY, Mock
 from nose.plugins.skip import SkipTest
 from nose.tools import eq_, ok_
-from pathlib import Path
+from pathlib2 import Path
 from pyquery import PyQuery as pq
 
 from lib.l10n_utils import render
