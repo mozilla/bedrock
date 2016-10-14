@@ -1013,7 +1013,10 @@ RNA_SYNC_URL = config('RNA_SYNC_URL',
 
 MOFO_SECURITY_ADVISORIES_PATH = config('MOFO_SECURITY_ADVISORIES_PATH',
                                        default=path('mofo_security_advisories'))
-MOFO_SECURITY_ADVISORIES_REPO = 'https://github.com/mozilla/foundation-security-advisories.git'
+MOFO_SECURITY_ADVISORIES_REPO = config('MOFO_SECURITY_ADVISORIES_REPO',
+                                       default='https://github.com/mozilla/'
+                                               'foundation-security-advisories.git')
+MOFO_SECURITY_ADVISORIES_BRANCH = config('MOFO_SECURITY_ADVISORIES_BRANCH', default='master')
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/([a-zA-Z-]+/)?(shapeoftheweb|newsletter)/'

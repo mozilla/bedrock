@@ -33,8 +33,10 @@
           <dt>Risk</dt>
           <dd>{{ advisory.extra_data.risk }}</dd>
         {% endif %}
-        <dt>Impact</dt>
-        <dd><span class="level {{ advisory.impact_class }}">{{ advisory.impact }}</span></dd>
+        {% if advisory.impact %}
+          <dt>Impact</dt>
+          <dd><span class="level {{ advisory.impact_class }}">{{ advisory.impact }}</span></dd>
+        {% endif %}
         <dt>Products</dt>
         <dd>{{ ', '.join(advisory.products) }}</dd>
         <dt>Fixed in</dt>

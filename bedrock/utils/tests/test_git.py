@@ -75,7 +75,7 @@ def test_git_clone():
 
     git_mock['path'].mkdir.assert_called_with(parents=True, exist_ok=True)
     git_mock['git'].assert_called_with('clone', '--origin', 'bedrock-dev', '--depth', '1',
-                                       'https://example.com', '.')
+                                       '--branch', 'master', 'https://example.com', '.')
 
 
 @patch.object(git, 'rmtree')

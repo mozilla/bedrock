@@ -6,10 +6,11 @@ import codecs
 import re
 
 import yaml
+from django.template.loader import render_to_string
 from markdown import markdown
 
 
-FILENAME_RE = re.compile('mfsa(\d{4}-\d{2,3})\.md$')
+FILENAME_RE = re.compile('mfsa(\d{4}-\d{2,3})\.(md|yml)$')
 
 
 def mfsa_id_from_filename(filename):
@@ -59,3 +60,44 @@ def parse_md_file(file_name):
         if mfsa_id:
             data['mfsa_id'] = mfsa_id
     return data, markdown(mdtext)
+
+
+def parse_yml_file(file_name):
+    with codecs.open(file_name, encoding='utf8') as fh:
+        data = yaml.safe_load(fh)
+
+    if 'mfsa_id' not in data:
+        mfsa_id = mfsa_id_from_filename(file_name)
+        if mfsa_id:
+            data['mfsa_id'] = mfsa_id
+
+    return data, generate_yml_advisories_html(data['advisories'])
+
+
+def generate_yml_advisories_html(advisories):
+    html = []
+    for cve, advisory in advisories.items():
+        advisory['id'] = cve
+        advisory['impact_class'] = advisory['impact'].lower().split(None, 1)[0]
+        for bug in advisory['bugs']:
+            bug['url'] = parse_bug_url(bug['url'])
+        html.append(render_to_string('security/partials/cve.html', advisory))
+
+    return '\n\n'.join(html)
+
+
+def parse_bug_url(url):
+    """
+    Take a bug number, list of bug numbers, or a URL and output a URL.
+
+    url could be a bug number, a comma separated list of bug numbers, or a URL.
+    """
+    # could be an int
+    url = str(url).strip()
+    if re.match(r'^\d+$', url):
+        url = 'https://bugzilla.mozilla.org/show_bug.cgi?id=%s' % url
+    elif re.match(r'^[\d\s,]+$', url):
+        url = re.sub(r'\s', '', url).replace(',', '%2C')
+        url = 'https://bugzilla.mozilla.org/buglist.cgi?bug_id=%s' % url
+
+    return url

@@ -30,11 +30,13 @@ def test_filter_advisory_names():
         'README.md',
         'LICENSE.txt',
         'announce/2015/mfsa2015-01.md',
+        'announce/2015/mfsa2016-42.yml',
         'stuff/whatnot.md',
         'mfsa2015-02.md',
     ]
     good_filenames = [
         settings.MOFO_SECURITY_ADVISORIES_PATH + '/announce/2015/mfsa2015-01.md',
+        settings.MOFO_SECURITY_ADVISORIES_PATH + '/announce/2015/mfsa2016-42.yml',
         settings.MOFO_SECURITY_ADVISORIES_PATH + '/mfsa2015-02.md',
     ]
     eq_(update_security_advisories.filter_advisory_filenames(filenames), good_filenames)
@@ -45,10 +47,11 @@ def test_get_ids_from_files():
         'README.md',
         'LICENSE.txt',
         'announce/2015/mfsa2015-01.md',
+        'announce/2015/mfsa2016-42.yml',
         'stuff/whatnot.md',
         'mfsa2015-02.md',
     ]
-    good_ids = ['2015-01', '2015-02']
+    good_ids = ['2015-01', '2016-42', '2015-02']
     eq_(update_security_advisories.get_ids_from_files(filenames), good_ids)
 
 
