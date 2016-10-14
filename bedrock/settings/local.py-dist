@@ -5,18 +5,5 @@ ADMINS = ('foo@bar.com',)
 MANAGERS = ADMINS
 
 DEBUG = TEMPLATE_DEBUG = DEV = True
-
-# Google Tag Manager ID Example: GTM-123456
-GTM_CONTAINER_ID = ''
-
 SESSION_COOKIE_SECURE = False
 
-# Twitter apps' consumer key/secret and access token/secret
-TWITTER_APP_KEYS = {
-    'default': {
-        'CONSUMER_KEY': '',
-        'CONSUMER_SECRET': '',
-        'ACCESS_TOKEN': '',
-        'ACCESS_TOKEN_SECRET': ''
-    },
-}
