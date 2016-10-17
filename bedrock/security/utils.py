@@ -84,6 +84,8 @@ def generate_yml_advisories_html(data):
         advisory['id'] = cve
         advisory['impact_class'] = advisory['impact'].lower().split(None, 1)[0]
         for bug in advisory['bugs']:
+            if 'desc' not in bug:
+                bug['desc'] = 'Bug %s' % bug['url']
             bug['url'] = parse_bug_url(bug['url'])
         html.append(render_to_string('security/partials/cve.html', advisory))
 
