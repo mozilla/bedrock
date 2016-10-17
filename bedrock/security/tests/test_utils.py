@@ -4,7 +4,6 @@
 from textwrap import dedent
 from cStringIO import StringIO
 
-import yaml
 from mock import patch, call
 from nose.tools import eq_
 
@@ -13,6 +12,7 @@ from bedrock.security.utils import (
     mfsa_id_from_filename,
     parse_bug_url,
     parse_md_front_matter,
+    yaml_ordered_safe_load,
 )
 
 
@@ -71,8 +71,10 @@ def test_parse_bug_url():
 @patch('bedrock.security.utils.render_to_string')
 def test_generate_yml_advisories_html(rts_mock):
     rts_mock.return_value = 'html'
-    data = yaml.safe_load(YML_ADVISORY)
-    generate_yml_advisories_html(data['advisories'])
+    data = yaml_ordered_safe_load(StringIO(YML_ADVISORY))
+    html = generate_yml_advisories_html(data)
+    assert html.startswith('<p>Some <strong>HTML</strong> that relates '
+                           'to the whole lot of em.</p>')
     rts_mock.assert_has_calls([
         call('security/partials/cve.html', {
             'id': 'CVE-2016-2827',
@@ -104,11 +106,12 @@ def test_generate_yml_advisories_html(rts_mock):
     ])
 
 
-YML_ADVISORY = StringIO(dedent("""\
+YML_ADVISORY = dedent("""\
     announced: September 13, 2016
     fixed_in:
       - Firefox 49
     title: Security vulnerabilities fixed in Firefox 49
+    description: Some **HTML** that relates to the whole lot of em.
     advisories:
       CVE-2016-2827:
         title: A sample title for a CVE here
@@ -131,4 +134,4 @@ YML_ADVISORY = StringIO(dedent("""\
         bugs:
           - url: https://example.com/warning.html
             desc: A different site that is totally not bugzilla
-    """))
+    """)
