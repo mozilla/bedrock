@@ -72,12 +72,15 @@ def parse_yml_file(file_name):
         if mfsa_id:
             data['mfsa_id'] = mfsa_id
 
-    return data, generate_yml_advisories_html(data['advisories'])
+    return data, generate_yml_advisories_html(data)
 
 
-def generate_yml_advisories_html(advisories):
+def generate_yml_advisories_html(data):
     html = []
-    for cve, advisory in advisories.items():
+    if 'description' in data:
+        html.append(markdown(data['description']))
+
+    for cve, advisory in data['advisories'].iteritems():
         advisory['id'] = cve
         advisory['impact_class'] = advisory['impact'].lower().split(None, 1)[0]
         for bug in advisory['bugs']:
