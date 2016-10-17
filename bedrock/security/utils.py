@@ -4,6 +4,7 @@
 
 import codecs
 import re
+from collections import OrderedDict
 
 import yaml
 from django.template.loader import render_to_string
@@ -54,7 +55,7 @@ def parse_md_file(file_name):
     with codecs.open(file_name, encoding='utf8') as fh:
         yamltext, mdtext = parse_md_front_matter(fh)
 
-    data = yaml.safe_load(yamltext)
+    data = yaml_ordered_safe_load(yamltext)
     if 'mfsa_id' not in data:
         mfsa_id = mfsa_id_from_filename(file_name)
         if mfsa_id:
@@ -64,7 +65,7 @@ def parse_md_file(file_name):
 
 def parse_yml_file(file_name):
     with codecs.open(file_name, encoding='utf8') as fh:
-        data = yaml.safe_load(fh)
+        data = yaml_ordered_safe_load(fh)
 
     if 'mfsa_id' not in data:
         mfsa_id = mfsa_id_from_filename(file_name)
@@ -101,3 +102,21 @@ def parse_bug_url(url):
         url = 'https://bugzilla.mozilla.org/buglist.cgi?bug_id=%s' % url
 
     return url
+
+
+def yaml_ordered_safe_load(stream, object_pairs_hook=OrderedDict):
+    """
+    Load YAML mappings as OrderedDicts
+
+    from http://stackoverflow.com/a/21912744
+    """
+    class OrderedLoader(yaml.SafeLoader):
+        pass
+
+    def construct_mapping(loader, node):
+        loader.flatten_mapping(node)
+        return object_pairs_hook(loader.construct_pairs(node))
+
+    OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
+                                  construct_mapping)
+    return yaml.load(stream, OrderedLoader)
