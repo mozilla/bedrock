@@ -98,7 +98,7 @@ Make it run
 To make the server run, make sure you are inside a virtualenv, and then
 run the server::
 
-    $ gulp
+    $ ./manage.py runserver
 
 If you are not inside a virtualenv, you can activate it by doing::
 
@@ -106,15 +106,17 @@ If you are not inside a virtualenv, you can activate it by doing::
 
 If you get the error "NoneType is not iterable", you didn't check out the latest product-details. See the above section for that.
 
+Next, in a new terminal tab run gulp to watch for local file changes::
+
+    $ gulp
+
+This will automatically copy over CSS, JavaScript and image files to the /static directory as and when they change, which is needed for Django Pipeline to serve the assets as pages are requested.
+
 If you have problems with gulp, or you for some reason don't want to use it you can set::
 
     PIPELINE_COLLECTOR_ENABLED=True
 
-in your ``.env`` file or otherwise set it in your environment. Then you can run::
-
-    $ ./manage.py runserver
-
-and it will collect media for you as you make changes. The reason that this is not the preferred method is that it is much slower than using gulp.
+in your ``.env`` file or otherwise set it in your environment and it will collect media for you as you make changes. The reason that this is not the preferred method is that it is much slower than using gulp.
 
 Localization
 ------------
