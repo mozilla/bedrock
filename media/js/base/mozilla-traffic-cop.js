@@ -146,7 +146,21 @@ Mozilla.TrafficCop.prototype.generateRedirectUrl = function(url, querystring) {
     // conjure a random number between 1 and 100 (inclusive)
     var rando = Math.floor(Math.random() * 100) + 1;
 
-    url = url || window.location;
+    // make sure to disregard hash in original URL
+    if (!url) {
+        // build URL root, e.g. https://www.mozilla.org
+        url = window.location.protocol + '//' + window.location.hostname;
+
+        // handy for local testing
+        if (window.location.port !== '') {
+            // adds port, e.g. (https://www.mozilla.org):443
+            url += ':' + window.location.port;
+        }
+
+        // add suffix, e.g. (https://www.mozilla.org)/en-US/about/
+        url += window.location.pathname;
+    }
+
     querystring = querystring || window.location.search;
 
     // check to see if user has a cookie from a previously visited variation
