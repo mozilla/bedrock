@@ -2,12 +2,11 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function($, dataLayer) {
+(function($) {
     'use strict';
 
     var $html = $(document.documentElement);
     var client = window.Mozilla.Client;
-    var state; // track page state
 
     var uiTourSendEvent = function(action, data) {
         var event = new CustomEvent('mozUITour', {
@@ -50,57 +49,47 @@
         }
     };
 
-    if (client.isFirefoxDesktop ||client.isFirefoxAndroid) {
+    var getFirefoxStatus = function() {
+        var userMajorVersion = client._getFirefoxMajorVersion();
+        var latestMajorVersion = parseInt($html.attr('data-latest-firefox'), 10);
         // Detect whether the Firefox is up-to-date in a non-strict way. The minor version and channel are not
         // considered. This can/should be strict, once the UX especially for ESR users is decided. (Bug 939470)
-        if (client._isFirefoxUpToDate(false)) {
+        if (userMajorVersion === latestMajorVersion) {
             // the firefox-latest class prevents the download button from displaying
-            $html.addClass('firefox-latest');
+            return 'firefox-latest';
+        } else if (userMajorVersion > latestMajorVersion) {
+            // the firefox-pre-release class still shows the download button
+            return 'firefox-pre-release';
+        }
+        return 'firefox-old';
+    };
+
+    var setFirefoxStatus = function() {
+        var status = getFirefoxStatus();
+        $html.addClass(status);
+
+        if (status === 'firefox-latest' && client.isFirefoxDesktop) {
             // if user is on desktop release channel and has latest version, offer refresh button
-            if (client.isFirefoxDesktop) {
-                client.getFirefoxDetails(function(data) {
-                    // data.accurate will only be true if UITour API is working.
-                    if (data.channel === 'release' && data.accurate) {
-                        // Bug 1274207 only show reset button if user profile supports it.
-                        uiTourSendEvent('getConfiguration', {
-                            callbackID: uiTourWaitForCallback(showRefreshButton),
-                            configuration: 'canReset'
-                        });
-                    }
-                });
-            }
-        } else {
-            $html.addClass('firefox-old');
+            client.getFirefoxDetails(function(data) {
+                // data.accurate will only be true if UITour API is working.
+                if (data.channel === 'release' && data.accurate) {
+                    // Bug 1274207 only show reset button if user profile supports it.
+                    uiTourSendEvent('getConfiguration', {
+                        callbackID: uiTourWaitForCallback(showRefreshButton),
+                        configuration: 'canReset'
+                    });
+                }
+            });
         }
+    };
+
+    /**
+     * Firefox for Desktop and Android have different page states
+     * for latest, out-of-date, pre-release etc. For iOS there is
+     * only a single state that shows the download button.
+     */
+    if (client.isFirefoxDesktop ||client.isFirefoxAndroid) {
+        setFirefoxStatus();
     }
 
-    // Add GA custom tracking and external link tracking
-    state = 'Desktop, not Firefox';
-
-    if (client.platform === 'android') {
-        if ($html.hasClass('firefox-latest')) {
-            state = 'Android, Firefox up-to-date';
-        } else if ($html.hasClass('firefox-old')) {
-            state = 'Android, Firefox not up-to-date';
-        } else {
-            state = 'Android, not Firefox';
-        }
-    } else if (client.platform === 'ios') {
-        state = 'iOS';
-    } else if (client.platform === 'fxos') {
-        state = 'FxOS';
-    } else {
-        if ($html.hasClass('firefox-latest')) {
-            state = 'Desktop, Firefox up-to-date';
-        } else if ($html.hasClass('firefox-old')) {
-            state = 'Desktop, Firefox not up-to-date';
-        }
-    }
-
-    //GA Custom Dimension in Pageview
-    dataLayer.push({
-        'event': 'set-state',
-        'state': state
-    });
-
-})(window.jQuery, window.dataLayer = window.dataLayer || []);
+})(window.jQuery);

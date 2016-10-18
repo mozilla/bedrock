@@ -65,6 +65,8 @@
 }
 
 #download-buttons {
+    margin-bottom: @baseLine * 2;
+
     .download-dumb {
         text-align: center;
 
@@ -101,6 +103,20 @@ html.firefox-latest {
     /* hide download button and benefits */
     #benefits,
     #download-buttons {
+        display: none;
+    }
+}
+
+/* Pre-release Firefox users */
+html.firefox-pre-release {
+
+    .version-message-container,
+    #version-message-desktop-pre-release,
+    #newsletter-subscribe {
+        display: block;
+    }
+
+    #benefits {
         display: none;
     }
 }
@@ -162,17 +178,25 @@ html.android {
 
 // linux users with ARM processors
 html.linux.arm {
-    .version-message-container {
-        display: block;
-    }
 
     #version-message-linux-arm {
         display: inline;
     }
 
-    #version-message-desktop-latest,
-    #version-message-desktop-old {
+    #download-buttons {
         display: none;
+    }
+
+    &.firefox-latest {
+        #version-message-linux-arm {
+            display: none;
+        }
+    }
+
+    &.firefox-old {
+        #version-message-desktop-old {
+            display: none;
+        }
     }
 }
 
@@ -256,10 +280,6 @@ html.show-refresh {
     .hide-for-refresh {
         display: none;
     }
-}
-
-.linux.arm #download-buttons {
-    display: none;
 }
 
 #download-button-wrapper-mobile {
