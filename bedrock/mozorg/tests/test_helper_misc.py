@@ -62,12 +62,6 @@ def test_convert_to_high_res():
         '/media/thats-a-bummer-man-high-res.jpg')
 
 
-@patch('bedrock.mozorg.templatetags.misc.config')
-def test_switch_helper(config_mock):
-    misc.switch('dude-and-walter')
-    config_mock.assert_called_with('SWITCH_DUDE_AND_WALTER', default=settings.DEV, cast=bool)
-
-
 @patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
 class TestSecureURL(TestCase):
     host = 'www.mozilla.org'

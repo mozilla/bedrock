@@ -137,6 +137,14 @@ environment variable ``SWITCH_THE_DUDE``. If the value of that variable is any o
 is set to one of those "true" values, then all switches will be considered "on" unless they are
 explicitly "off" in the environment.
 
+You may also use these switches in Python in ``views.py`` files. For example::
+
+    from bedrock.base.waffle import switch
+
+    def home_view(request):
+        title = 'Staging Home' if switch('staging-site') else 'Prod Home'
+        ...
+
 Currently, these switches are used to enable/disable Optimizely on many pages of the site. We only add
 the Optimizely JavaScript snippet to a page when there is an active test to minimize the security risk
 of the service. We maintain a `page on the Mozilla wiki detailing our use of Optimizely

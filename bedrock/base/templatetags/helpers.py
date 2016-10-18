@@ -9,6 +9,25 @@ from django_jinja import library
 import jinja2
 
 from ..urlresolvers import reverse
+from bedrock.base import waffle
+
+
+@library.global_function
+def switch(name):
+    """A template helper that replaces waffle
+
+    * All calls default to True when DEV setting is True.
+    * If the env var is explicitly false it will be false even when DEV = True.
+    * Otherwise the call is False by default and True is a specific env var exists and is truthy.
+
+    For example:
+
+        {% if switch('dude-and-walter') %}
+
+    would check for an environment variable called `SWITCH_DUDE_AND_WALTER`. The string from the
+    `switch()` call is converted to uppercase and dashes replaced with underscores.
+    """
+    return waffle.switch(name)
 
 
 @library.global_function

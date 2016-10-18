@@ -312,7 +312,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/australis/fx38_0_5/firstrun.html'])
 
     @override_settings(DEV=True)
-    @patch('bedrock.mozorg.templatetags.misc.switch', Mock(return_value=True))
+    @patch('bedrock.base.templatetags.helpers.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0(self, render_mock):
         """Should use horizon firstrun template for 40.0"""
         req = self.rf.get('/en-US/firefox/firstrun/')
@@ -321,7 +321,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 
     @override_settings(DEV=True)
-    @patch('bedrock.mozorg.templatetags.misc.switch', Mock(return_value=True))
+    @patch('bedrock.base.templatetags.helpers.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_invalid_variation(self, render_mock):
         """
         Should use horizon firstrun template if an invalid variation is specified.
@@ -332,7 +332,7 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 
     @override_settings(DEV=True)
-    @patch('bedrock.mozorg.templatetags.misc.switch', Mock(return_value=True))
+    @patch('bedrock.base.templatetags.helpers.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_space_variant_non_enUS(self, render_mock):
         """
         Should use horizon firstrun template for non en-US 40.0+ with
