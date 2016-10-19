@@ -139,29 +139,23 @@ Mozilla.TrafficCop.prototype.isVariation = function(queryString) {
  * Generates a random percentage (between 1 and 100, inclusive) and determines
  * which (if any) variation should be matched.
  */
-Mozilla.TrafficCop.prototype.generateRedirectUrl = function(url, querystring) {
+Mozilla.TrafficCop.prototype.generateRedirectUrl = function(url) {
+    var hash;
     var redirect;
     var runningTotal;
+    var urlParts;
 
     // conjure a random number between 1 and 100 (inclusive)
     var rando = Math.floor(Math.random() * 100) + 1;
 
-    // make sure to disregard hash in original URL
-    if (!url) {
-        // build URL root, e.g. https://www.mozilla.org
-        url = window.location.protocol + '//' + window.location.hostname;
+    url = url || window.location.href;
 
-        // handy for local testing
-        if (window.location.port !== '') {
-            // adds port, e.g. (https://www.mozilla.org):443
-            url += ':' + window.location.port;
-        }
-
-        // add suffix, e.g. (https://www.mozilla.org)/en-US/about/
-        url += window.location.pathname;
+    // strip hash from URL (if present)
+    if (url.indexOf('#') > -1) {
+        urlParts = url.split('#');
+        url = urlParts[0];
+        hash = urlParts[1];
     }
-
-    querystring = querystring || window.location.search;
 
     // check to see if user has a cookie from a previously visited variation
     // also make sure variation in cookie is still valid (you never know)
@@ -195,10 +189,11 @@ Mozilla.TrafficCop.prototype.generateRedirectUrl = function(url, querystring) {
 
     // if a variation was chosen, construct a new URL
     if (this.redirectVariation) {
-        if (querystring) {
-            redirect = url + querystring + '&' + this.redirectVariation;
-        } else {
-            redirect = url + '?' + this.redirectVariation;
+        redirect = url + (url.indexOf('?') > -1 ? '&' : '?') + this.redirectVariation;
+
+        // re-insert hash (if originally present)
+        if (hash) {
+            redirect += '#' + hash;
         }
     }
 
