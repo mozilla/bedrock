@@ -76,6 +76,7 @@ function initLangSwitcher() {
             'languageSelected': $language.val(),
             'previousLanguage': previousLanguage
         });
+        $('#lang_form').attr('action', window.location.hash || '#');
         $('#lang_form').submit();
     });
 }
