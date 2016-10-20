@@ -30,7 +30,7 @@
     .font-size(11px);
     font-style: normal;
     font-weight: bold;
-    line-height: 14px;
+    line-height: 1;
     padding: 4px 2px 4px 4px;
     top: .714rem;
     left: 0;
@@ -56,6 +56,27 @@
     .title-shadow-box {
         .font-size(32px);
         letter-spacing: normal;
+    }
+    .cve {
+        margin: 1.5em 0 0 1.5em;
+        float: none;
+        width: inherit;
+
+        .summary {
+            dt {
+                .font-size(@baseFontSize);
+                padding: 6px;
+            }
+            dd {
+                .font-size(@smallFontSize);
+                padding: 6px 6px 6px 120px;
+                .level {
+                    font-size: inherit;
+                    padding: 3px;
+                    width: 80px;
+                }
+            }
+        }
     }
 }
 
@@ -105,7 +126,10 @@ p.note {
 }
 
 .level-heading {
+    padding-top: 6px;
     position: relative;
+    word-wrap: break-word;
+    .font-size(20px);
 
     a {
         color: inherit;
@@ -115,7 +139,7 @@ p.note {
         &:focus,
         &:active {
             .anchor {
-                visibility: visible;
+                color: @linkBlue;
             }
         }
     }
@@ -124,15 +148,14 @@ p.note {
         position: absolute;
         left: -1em;
         width: 1em;
-        visibility: hidden;
-        .font-size(@baseFontSize);
+        .font-size(@largeFontSize);
         color: @textColorLight;
         vertical-align: middle;
     }
 }
 
 #outer-wrapper {
-  overflow: hidden; /* Fix the layout on IE */
+    overflow: hidden; /* Fix the layout on IE */
 }
 
 #masthead {
@@ -157,35 +180,34 @@ p.note {
 
     article {
         header {
-       .logo {
-           position: relative;
-           float: right;
-           margin: -80px -20px 0 0;
-           vertical-align: top;
-       }
-       p {
-           clear: both;
-           margin: 1em 0;
-       }
-       .meta {
-           color: @textColorTertiary;
-           font-style: italic;
-       }
-       & + * {
-         clear: both;
-       }
+            .logo {
+                position: relative;
+                float: right;
+                margin: -80px -20px 0 0;
+                vertical-align: top;
+            }
+            p {
+                clear: both;
+                margin: 1em 0;
+            }
+            .meta {
+                color: @textColorTertiary;
+                font-style: italic;
+            }
+            & + * {
+                clear: both;
+            }
+        }
+
+        section {
+            margin-top: 2.5em;
+            padding: 0;
+
+            section {
+                margin-top: 1.5em;
+            }
+        }
     }
-
-    section {
-      margin-top: 2.5em;
-      padding: 0;
-
-      section {
-        margin-top: 1.5em;
-      }
-    }
-
-  }
 }
 
 
@@ -227,14 +249,14 @@ p.note {
     }
 }
 .sidebar {
-  float: left;
-  margin: 0;
-  padding: 0;
-  width: (@gridColumnWidth * 3) + (@gridGutterWidth * 5);
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: (@gridColumnWidth * 3) + (@gridGutterWidth * 5);
 
-  section, nav {
-    padding: 25px 25px 0;
-  }
+    section, nav {
+        padding: 25px 25px 0;
+    }
 
 }
 
@@ -258,21 +280,21 @@ p.note {
 /* Tablet & Mobile */
 
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-  #main-content {
-    width: @breakTablet;
-  }
+    #main-content {
+        width: @breakTablet;
+    }
 
-  .main-column {
-    .span_narrow(8);
-    margin: 0;
-    width: (@gridColumnWidthNarrow * 8) + (@gridGutterWidth * 8);
-  }
+    .main-column {
+        .span_narrow(8);
+        margin: 0;
+        width: (@gridColumnWidthNarrow * 8) + (@gridGutterWidth * 8);
+    }
 
-  .sidebar {
-    .span_narrow(4);
-    margin: 0;
-    width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 6);
-  }
+    .sidebar {
+        .span_narrow(4);
+        margin: 0;
+        width: (@gridColumnWidthNarrow * 4) + (@gridGutterWidth * 6);
+    }
 
     #older-vulnerabilities .main-column {
         .span-all();
@@ -281,56 +303,56 @@ p.note {
 }
 
 @media only screen and (max-width: @breakTablet) {
-  #masthead {
-    h2, .breadcrumbs {
-      display: none;
-    }
-  }
-
-  #main-content {
-    margin-top: 25px;
-  }
-
-  .main-column,
-  .sidebar {
-    .span-all();
-    margin: 0;
-  }
-
-  .main-column article header {
-    .logo {
-      float: left;
-      margin: -10px 0 0 -10px;
-      width: 80px;
-
-      & + h1,
-      & + h1 + .meta {
-        margin: 0 0 12px 80px;
-      }
-    }
-
-    .title-shadow-box {
-      margin-top: -50px;
-    }
-  }
-
-  .main-column article .highlight {
-    margin: 15px -15px;
-  }
-
-  html[dir="rtl"] {
-    .main-column article header {
-      .logo {
-        float: right;
-        margin: -10px -10px 0 0;
-
-        & + h1,
-        & + h1 + .meta {
-          margin: 0 80px 12px 0;
+    #masthead {
+        h2, .breadcrumbs {
+            display: none;
         }
-      }
     }
-  }
+
+    #main-content {
+        margin-top: 25px;
+    }
+
+    .main-column,
+    .sidebar {
+        .span-all();
+        margin: 0;
+    }
+
+    .main-column article header {
+        .logo {
+            float: left;
+            margin: -10px 0 0 -10px;
+            width: 80px;
+
+            & + h1,
+            & + h1 + .meta {
+                margin: 0 0 12px 80px;
+            }
+        }
+
+        .title-shadow-box {
+            margin-top: -50px;
+        }
+    }
+
+    .main-column article .highlight {
+        margin: 15px -15px;
+    }
+
+    html[dir="rtl"] {
+        .main-column article header {
+            .logo {
+                float: right;
+                margin: -10px -10px 0 0;
+
+                & + h1,
+                & + h1 + .meta {
+                    margin: 0 80px 12px 0;
+                }
+            }
+        }
+    }
 
 }
 
@@ -346,11 +368,11 @@ p.note {
 }
 
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-  #wrapper {
-    width: @breakMobileLandscape - @gridGutterWidth;
-  }
+    #wrapper {
+        width: @breakMobileLandscape - @gridGutterWidth;
+    }
 
-  #masthead {
-    width: @breakMobileLandscape - (@gridGutterWidth * 3);
-  }
+    #masthead {
+        width: @breakMobileLandscape - (@gridGutterWidth * 3);
+    }
 }
