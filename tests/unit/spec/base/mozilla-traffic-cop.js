@@ -190,7 +190,17 @@ describe('mozilla-traffic-cop.js', function () {
 
         it('should generate a redirect retaining the original querystring when present', function() {
             spyOn(window.Math, 'random').and.returnValue(0.74);
-            expect(cop.generateRedirectUrl('https://www.mozilla.org', '?foo=bar')).toEqual('https://www.mozilla.org?foo=bar&v=2');
+            expect(cop.generateRedirectUrl('https://www.mozilla.org?foo=bar')).toEqual('https://www.mozilla.org?foo=bar&v=2');
+        });
+
+        it('should generate a redirect retaining the original hash when present', function() {
+            spyOn(window.Math, 'random').and.returnValue(0.74);
+            expect(cop.generateRedirectUrl('https://www.mozilla.org#hash')).toEqual('https://www.mozilla.org?v=2#hash');
+        });
+
+        it('should generate a redirect retaining the original querystring and hash when present', function() {
+            spyOn(window.Math, 'random').and.returnValue(0.74);
+            expect(cop.generateRedirectUrl('https://www.mozilla.org?foo=bar#hash')).toEqual('https://www.mozilla.org?foo=bar&v=2#hash');
         });
 
         it('should use a valid variation stored in a cookie', function() {
