@@ -1169,3 +1169,6 @@ if CSP_EXTRA_FRAME_SRC:
 
 # support older browsers (mainly Safari)
 CSP_FRAME_SRC = CSP_CHILD_SRC
+
+if config('SWITCH_FLASHTALKING', default=DEV, cast=bool):
+    CSP_IMG_SRC += ('servedby.flashtalking.com',)

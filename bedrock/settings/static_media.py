@@ -1212,6 +1212,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene2-bundle.js',
     },
+    'firefox_new_pixel': {
+        'source_filenames': (
+            'js/firefox/new/pixel.js',
+        ),
+        'output_filename': 'js/firefox_new_pixel-bundle.js',
+    },
     'firefox_private_browsing': {
         'source_filenames': (
             'js/base/uitour-lib.js',
