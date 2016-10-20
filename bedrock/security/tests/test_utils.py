@@ -86,9 +86,9 @@ def test_generate_yml_advisories_html(rts_mock):
                            'Can also have full breaks and ***markdown***!\n',
             'bugs': [
                 {'url': 'https://bugzilla.mozilla.org/show_bug.cgi?id=1289085',
-                 'desc': 'stuff about the bugs'},
+                 'desc': 'Bug 1289085'},
                 {'url': 'https://bugzilla.mozilla.org/buglist.cgi?bug_id=1289085%2C1289087',
-                 'desc': 'other stuff about the bugs'},
+                 'desc': 'stuff about the bugs'},
             ]
         }),
         call('security/partials/cve.html', {
@@ -123,9 +123,8 @@ YML_ADVISORY = dedent("""\
           Can also have full breaks and ***markdown***!
         bugs:
           - url: 1289085
-            desc: stuff about the bugs
           - url: 1289085, 1289087
-            desc: other stuff about the bugs
+            desc: stuff about the bugs
       CVE-2016-5270:
         title: Another sampile title, this time with more length!
         impact: High
