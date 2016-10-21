@@ -294,15 +294,17 @@ Specific use cases:
 
 **sync**
 
-If ``'sync'`` is queried the object returned by the callback will contain an object called ``setup``. This can be used to determine if the user is already using Firefox Sync:
+If ``'sync'`` is queried the object returned can be used to determine if the user has Sync enabled, and also metrics on the number and types of devices used.
 
 .. code-block:: javascript
 
     Mozilla.UITour.getConfiguration('sync', function (config) {
-        if (config.setup === false) {
-            // user is not using Firefox Sync
-        }
+        console.log(config) // { setup: true, desktopDevices: 2, mobileDevices: 1, totalDevices: 3 }
     });
+
+.. Important::
+
+    Sync device count metrics only available in Firefox 50 onwards.
 
 **availableTargets**
 
