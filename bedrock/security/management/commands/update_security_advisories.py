@@ -10,7 +10,7 @@ from optparse import make_option
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.management.base import NoArgsCommand, BaseCommand
+from django.core.management.base import NoArgsCommand, BaseCommand, CommandError
 from django.db.models import Count
 
 from dateutil.parser import parse as parsedate
@@ -126,6 +126,11 @@ def get_ids_from_files(filenames):
     ids = [mfsa_id_from_filename(fn) for fn in filenames]
     # filter any Nones
     return [mfsa_id for mfsa_id in ids if mfsa_id]
+
+
+def filter_updated_from_deleted(modified_files, deleted_files):
+    mod_file_ids = get_ids_from_files(modified_files)
+    return [fn for fn in deleted_files if mfsa_id_from_filename(fn) not in mod_file_ids]
 
 
 def get_files_to_delete_from_db(filenames):
@@ -244,6 +249,7 @@ class Command(NoArgsCommand):
             printout('\nUpdated {0} files.'.format(updates))
 
         if deleted_files:
+            deleted_files = filter_updated_from_deleted(modified_files, deleted_files)
             delete_files(deleted_files)
             printout('Deleted {0} files.'.format(len(deleted_files)))
             num_products = delete_orphaned_products()
@@ -254,5 +260,5 @@ class Command(NoArgsCommand):
             printout('Nothing to update.')
 
         if errors:
-            sys.stderr.write('Encountered {0} errors:\n\n'.format(len(errors)) +
-                             '\n==========\n'.join(errors))
+            raise CommandError('Encountered {0} errors:\n\n'.format(len(errors)) +
+                               '\n==========\n'.join(errors))
