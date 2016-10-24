@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import google_play_button with context %}
+
 {% add_lang_files "firefox/new/horizon" %}
 
 {% extends "firefox/new/base.html" %}
@@ -38,7 +40,20 @@
               Thanks for choosing Firefox. Your download should begin automatically. If not, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
             {% endtrans %}
           </p>
-          {% include 'firefox/new/includes/mobile-promo.html' %}
+
+          <aside id="mobile-download">
+            <h2>{{ _('Get Firefox for Android and iOS.') }}</h2>
+            <ul>
+              <li class="android">
+                {{ google_play_button() }}
+              </li>
+              <li class="ios">
+                <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                </a>
+              </li>
+            </ul>
+          </aside>
         </div>
       </div>{#-- /.inner-container --#}
     </div>

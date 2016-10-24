@@ -49,10 +49,28 @@
               <p id="version-message-desktop-old" class="version-message">
                 {{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-firefox-latest-version') }}
               </p>
+              <p id="version-message-desktop-pre-release" class="version-message">
+                {% if l10n_has_tag('firefox_new_pre_release') %}
+                  {{_('You’re using a pre-release version of Firefox.') }}
+                {% else %}
+                  {{_('Congrats! You’re using the latest version of Firefox.')}}
+                {% endif %}
+              </p>
             </div>{#-- /.version-message-container --#}
           </header>
           <div class="main-content">
             <h1 class="hide-for-refresh">{{ _('Browse Freely') }}</h1>
+            <section id="download-buttons">
+              {# handles desktop users (windows, os x, linux) #}
+              <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
+                {{ download_firefox(alt_copy=_('Free Download')) }}
+              </div>
+
+              {# handles Android and iOS users #}
+              <div class="mobile download-button-wrapper" id="download-button-wrapper-mobile" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
+                {{ download_firefox(dom_id='download-button-mobile') }}
+              </div>
+            </section>{#-- /#download-buttons --#}
             <div id="refresh-firefox-wrapper">
               <h2>{{ _('Give Firefox a tune up') }}</h2>
               <button type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" data-button-name="Refresh Firefox" data-cta-position="Primary" class="button">{{ _('Refresh Firefox') }}</button>
@@ -60,13 +78,9 @@
             </div>
             <div class="desktop-latest-links-wrapper latest-links-wrapper">
               <ul>
-                <li class="hide-for-refresh"><a class="more" href="{{ url('firefox.desktop.index') }}">{{_('Looking for more info?')}}</a></li>
                 <li><a class="more" href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
                 <li><a class="more" href="{{ firefox_url('desktop', 'all') }}#{{ LANG }}">{{_('Want a fresh copy?')}}</a></li>
               </ul>
-              <div class="hide-for-refresh">
-                {% include 'firefox/new/includes/mobile-promo.html' %}
-              </div>
             </div>
             <div class="android-latest-links-wrapper latest-links-wrapper">
               <ul>
@@ -82,18 +96,6 @@
             <p id="version-message-linux-arm" class="version-message">
               {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
             </p>
-
-            <section id="download-buttons">
-              {# handles desktop users (windows, os x, linux) #}
-              <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
-                {{ download_firefox(alt_copy=_('Free Download')) }}
-              </div>
-
-              {# handles Android and iOS users #}
-              <div class="mobile download-button-wrapper" id="download-button-wrapper-mobile" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
-                {{ download_firefox(dom_id='download-button-mobile') }}
-              </div>
-            </section>{#-- /#download-buttons --#}
           </div>{#-- /.main-content --#}
         </div>{#-- /.inner-container --#}
       </div>
