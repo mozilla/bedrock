@@ -4,35 +4,9 @@
     <meta charset="UTF-8"/>
     <title>Mozilla XML Namespace</title>
 
-    <style type="text/css">
-        body {
-            font-family: sans-serif;
-            font-size: 16px;
-        }
-
-        h1 {
-            margin: 0em;
-            padding: 0em;
-            font-size: 2em;
-            line-height: 150%;
-        }
-
-        h2 {
-            margin: 0em;
-            padding: 0em;
-            font-size: 1.5em;
-            line-height: 150%;
-            font-style: italic;
-        }
-
-        dt {
-            font-weight: bolder;
-        }
-
-        dd + dt {
-            margin-top: 0.75em;
-        }
-    </style>
+    {% block page_css %}
+      {% stylesheet 'namespaces' %}
+    {% endblock %}
 </head>
 <body>
 <section>
@@ -45,7 +19,7 @@
         <dd><a href="{{ docs }}">{{ docs }}</a></dd>
     </dl>
     {% if slug == 'xul' %}
-        <p style="width: 100%; font-family: fantasy; font-variant: small-caps; font-weight: bold; font-size: xx-large; text-align: center;">
+        <p class="xul">
             There is no data.<br/>There is only XUL!</p>
     {% endif %}
 </section>

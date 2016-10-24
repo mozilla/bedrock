@@ -5,83 +5,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <title>Mozilla Public License version 1.1</title>
-    <style>
-      /* Thanks to Eric Meyer for the inspiration
-         http://www.meyerweb.com/eric/css/edge/popups/demo.html
-      */
-
-      h1 {
-        text-align: center;
-      }
-
-      div#version {
-        text-align: center;
-        font-style: italic;
-      }
-
-      div#moveacross {
-        margin-top: 15px;
-        border: 2px #b00000 solid;
-        padding: 5px;
-        background-color: #ffffb0;
-      }
-
-      div#moveacross p:first-child {
-        margin-top: 0px;
-      }
-
-      div.subsection {
-        margin-left: 2em;
-      }
-
-      dt {
-        font-weight: bold;
-        margin-top: 1ex;
-        margin-bottom: 1ex;
-      }
-
-      div.popup li {
-         margin-bottom: 10px;
-      }
-
-      a.mouseover {
-        text-decoration: none;
-        color: green;
-      }
-
-      div#moveacross a:hover span {
-        display: block;
-        position: absolute;
-        left: 0px;
-        margin: 0px 5px 5px 5px;
-        padding: 5px;
-        border: 2px orange solid;
-        background-color: yellow;
-        width: 280px;
-        color: black;
-        font-weight: normal;
-        text-decoration: none;
-      }
-
-
-      div#moveacross a:hover {
-        background: #ffffb0;
-      }
-
-      div#moveacross a span {
-        display: none;
-      }
-
-      div#moveacross a:hover span {
-        display: block;
-      }
-
-      /* Mark changes from 1.0 version */
-      div.changed {
-        color: red;
-      }
-
-    </style>
+		{% block page_css %}
+      {% stylesheet 'mpl-1-1-annotated' %}
+    {% endblock %}
   </head>
 
   <body>

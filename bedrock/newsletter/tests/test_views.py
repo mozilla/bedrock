@@ -10,7 +10,7 @@ from django.test.client import RequestFactory
 import basket
 from bedrock.base.urlresolvers import reverse
 from mock import DEFAULT, Mock, patch
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
@@ -48,16 +48,6 @@ def assert_redirect(response, url):
 class TestViews(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
-
-    def test_hacks_newsletter_frames_allow(self):
-        """
-        Bedrock pages get the 'x-frame-options: DENY' header by default.
-        The hacks newsletter page is framed, so needs to ALLOW.
-        """
-        with self.activate('en-US'):
-            resp = self.client.get(reverse('mozorg.hacks_newsletter'))
-
-        ok_('x-frame-options' not in resp)
 
     @patch('bedrock.newsletter.views.l10n_utils.render')
     def test_updated_allows_good_tokens(self, mock_render):

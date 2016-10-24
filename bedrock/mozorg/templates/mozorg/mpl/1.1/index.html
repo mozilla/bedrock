@@ -2,17 +2,9 @@
 <html lang="en">
 <head>
  <title>Mozilla Public License version 1.1</title>
- <style type="text/css">
-  .very-strong{
-   text-transform:uppercase;
-  }
-  dt{
-   font-weight:bold;
-  }
-  dd p{
-   margin:0;
-  }
- </style>
+ {% block page_css %}
+   {% stylesheet 'mpl-1-1' %}
+ {% endblock %}
 </head>
 <body>
  <p><small>(<a href="{{ static('MPL/1.1/index.txt') }}">Plain text version</a>)</small></p>

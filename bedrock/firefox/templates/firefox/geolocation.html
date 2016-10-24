@@ -21,11 +21,11 @@
 <div id="main-feature">
   <h1>{{ _('Location-Aware Browsing') }}</h1>
   <p>
-  {% trans url='#geo-demo', id='try-geolocation', style='display:none' %}
+  {% trans url='#geo-demo', id='try-geolocation' %}
     Firefox can tell websites where you’re located so you can find info
     that’s more relevant and more useful. It’s about making the Web smarter
     &ndash; and is done in a way that totally respects your privacy.
-    <a href="{{ url }}" id="{{ id }}" style="{{ style }}">Give it a try!</a>
+    <a href="{{ url }}" id="{{ id }}">Give it a try!</a>
   {% endtrans %}
   </p>
 </div>
@@ -217,7 +217,7 @@
 
 </section><!-- end #faq -->
 
-<div style="display:none">
+<div class="hidden">
   <div id="geo-demo">
     <div id="map_canvas"></div>
     <button id="locateButton" type="button">{{ _('Where am I?') }}</button>
