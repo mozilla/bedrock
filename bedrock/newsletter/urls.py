@@ -36,13 +36,6 @@ urlpatterns = (
         views.recovery,
         name='newsletter.recovery'),
 
-    # This particular view is used inside a frame somewhere else, so it
-    # has its own view and doesn't work like the rest of these newsletter
-    # signup pages.
-    url('^newsletter/hacks\.mozilla\.org/$',
-        views.hacks_newsletter,
-        name='mozorg.hacks_newsletter'),
-
     # Receives POSTs from all subscribe forms
     url('^newsletter/$',
         views.newsletter_subscribe,

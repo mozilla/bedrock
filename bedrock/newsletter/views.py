@@ -23,7 +23,6 @@ from jinja2 import Markup
 import lib.l10n_utils as l10n_utils
 import requests
 from lib.l10n_utils.dotlang import _, _lazy
-from commonware.decorators import xframe_allow
 from bedrock.base.urlresolvers import reverse
 
 from .forms import (EmailForm, ManageSubscriptionsForm, NewsletterForm, NewsletterFooterForm)
@@ -188,12 +187,6 @@ UNSUB_REASONS_SUBMITTED = 2
 # Here's a regex to match a UUID:
 UUID_REGEX = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
                         re.IGNORECASE)
-
-
-@xframe_allow
-def hacks_newsletter(request):
-    return l10n_utils.render(request,
-                             'newsletter/hacks.mozilla.org.html')
 
 
 @never_cache

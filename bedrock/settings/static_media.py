@@ -585,12 +585,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/installer_help-bundle.css',
     },
-    'hacks-blog-newsletter': {
-        'source_filenames': (
-            'css/newsletter/hacks-blog-newsletter.scss',
-        ),
-        'output_filename': 'css/hacks-blog-newsletter-bundle.css',
-    },
     'history-slides': {
         'source_filenames': (
             'css/mozorg/history-slides.less',
@@ -1412,15 +1406,6 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
         ),
         'output_filename': 'js/geolocation-bundle.js',
-    },
-    'hacks-blog-newsletter': {
-        'source_filenames': (
-            'js/libs/jquery-1.11.3.min.js',
-            'js/libs/spin.min.js',
-            'js/newsletter/form.js',
-            'js/newsletter/hacks-blog-newsletter.js',
-        ),
-        'output_filename': 'js/hacks-blog-newsletter-bundle.js',
     },
     'home': {
         'source_filenames': (
