@@ -107,9 +107,16 @@
               <li class="first about-item">
                 <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{_('About')}}</a>
               </li>
+              {% if LANG.startswith('en-') %}
+              <li class="technology-item">
+                {# L10n: these strings are both potential navigation labels #}
+                <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations" data-alt-text="{{ _('Innovations') }}">{{ _('Web Innovations') }}</a>
+              </li>
+              {% else %}
               <li class="contribute-item">
                 <a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-name="Participate">{{_('Participate')}}</a>
               </li>
+              {% endif %}
               <li class="products-item">
                 <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{_('Firefox')}}</a>
               </li>

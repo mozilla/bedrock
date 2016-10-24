@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% extends "base-pebbles.html" %}
 
 {% block page_title %}
   {{ _('We’re opening up a whole new Internet.') }}
@@ -19,30 +19,31 @@
   {% stylesheet 'technology' %}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment-technology-page') %}
-     {% javascript 'experiment-technology-page' %}
-  {% endif %}
-{% endblock %}
-
 {% block site_header %}
 <header id="masthead">
-  <div class="container">
+  <div class="content">
     <h1 class="masthead-logo">
       <a href="{{ url('mozorg.home') }}">
         <img src="{{ static('img/mozorg/template/mozilla-wordmark.svg') }}" alt="Mozilla">
       </a>
     </h1>
     {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='nav-download-firefox') }}
-    <nav id="nav-main">
+    <nav id="nav-main" class="masthead-nav-main">
       <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
-      <ul id="nav-main-menu">
+      <ul id="nav-main-menu" class="nav-main-menu">
         <li class="first">
           <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{ _('About') }}</a>
         </li>
-        <li>
-          <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations">{{ _('Web Innovations') }}</a>
+        {% if LANG.startswith('en-') %}
+        <li class="technology-item">
+          {# L10n: these strings are both potential navigation labels #}
+          <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations" data-alt-text="{{ _('Innovations') }}">{{ _('Web Innovations') }}</a>
         </li>
+        {% else %}
+        <li class="contribute-item">
+          <a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-name="Participate">{{_('Participate')}}</a>
+        </li>
+        {% endif %}
         <li>
           <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
         </li>
@@ -58,7 +59,7 @@
 {% block content %}
 <main role="main">
   <div class="main-heading-container">
-    <div class="container">
+    <div class="content">
       <header class="main-heading">
         <h1>{{ self.page_title() }}</h1>
         <p>{{ self.page_desc() }}</p>
@@ -68,7 +69,7 @@
 
   <div id="technologies">
     <section id="vr" class="odd">
-      <div class="container">
+      <div class="content">
         <div class="inner-container">
           <h2>{{ _('Making Virtual Reality a reality for all') }}</h2>
           <p>{{ _('Using A-Frame, developers, designers and artists are able to easily create accessible VR experiences.') }}</p>
@@ -84,7 +85,7 @@
     </section>
 
     <section id="gaming" class="even">
-      <div class="container">
+      <div class="content">
         <div class="inner-container">
           <h2>{{ _('Using the Web to change the game') }}</h2>
           <p>{{ _('With powerful Web technologies, pioneered by Mozilla, developers are pushing games to a new level.') }}</p>
@@ -100,7 +101,7 @@
     </section>
 
     <section id="iot" class="odd">
-      <div class="container">
+      <div class="content">
         <div class="inner-container">
           <h2>{{ _('Adding trust to the Internet of Things') }}</h2>
           <p>{{ _('Through open innovation, we’re bringing trust and transparency to networks of smart devices.') }}</p>
@@ -116,7 +117,7 @@
     </section>
 
     <section id="context-graph" class="even">
-      <div class="container">
+      <div class="content">
         <div class="inner-container">
           <h2>{{ _('Building a browser that gets you') }}</h2>
           <p>{{ _('The next generation of Web discovery is a browser that is more intuitive, useful and in tune with you.') }}</p>
@@ -132,7 +133,7 @@
     </section>
 
     <section id="rust" class="odd">
-      <div class="container">
+      <div class="content">
         <div class="inner-container">
           <h2>{{ _('Inventing a safer programming language') }}</h2>
           <p>{{ _('Supported by Mozilla, Rust allows browsers, systems and more to run much faster and more safely.') }}</p>
@@ -149,7 +150,7 @@
   </div>
 
   <aside id="newsletter-subscribe">
-    <div class="container">
+    <div class="content">
       {{ email_newsletter_form(newsletters='mozilla-foundation',
          title=_('What’s next?'),
          subtitle=_('Get the Mozilla newsletter for our latest tech news and more.'), button_class='light')
@@ -157,78 +158,9 @@
     </div>
   </aside>
 
-  {% block developer_resources %}
-  <section id="developer-resources">
-    <div class="container">
-      <header>
-        <h2>{{ _('Developer Resources') }}</h2>
-        <p>{{ _('Want to get in on the action? Take a deeper look at some of our technologies and start participating.') }}</p>
-      </header>
-      <ul>
-        <li>
-          <h3><abbr title="{{ _('Mozilla Developer Network') }}">{{ _('MDN') }}</abbr></h3>
-          <p>{{ _('Get devtools, docs and more.') }}</p>
-          <ul class="dev-links mdn">
-            <li><a rel="external" href="https://developer.mozilla.org/docs/Learn">{{ _('Learn to code') }}</a></li>
-            <li><a rel="external" href="https://developer.mozilla.org/docs/Tools">{{ _('Use Firefox dev tools') }}</a></li>
-          </ul>
-        </li>
-        <li>
-          <h3>{{ _('A-Frame') }}</h3>
-          <p>{{ _('Create 3D/VR experiences easily.') }}</p>
-          <ul class="dev-links vr">
-            <li><a rel="external" href="https://aframe.io/">{{ _('Explore A-Frame') }}</a></li>
-            <li><a rel="external" href="https://aframe.io/blog/">{{ _('Visit the blog') }}</a></li>
-          </ul>
-        </li>
-        <li>
-          <h3>{{ _('Internet of Things') }}</h3>
-          <p>{{ _('See what our team is up to.') }}</p>
-          <ul class="dev-links iot">
-            <li><a rel="external" href="https://wiki.mozilla.org/Connected_Devices">{{ _('Visit the wiki') }}</a></li>
-            <li><a rel="external" href="https://wiki.mozilla.org/Connected_Devices/Participation">{{ _('Start contributing') }}</a></li>
-          </ul>
-        </li>
-        <li>
-          <h3>{{ _('Rust') }}</h3>
-          <p>{{ _('Learn a new programming language.') }}</p>
-          <ul class="dev-links rust">
-            <li><a rel="external" href="https://www.rust-lang.org/">{{ _('Visit Rust') }}</a></li>
-            <li><a rel="external" href="https://www.rust-lang.org/contribute.html">{{ _('Get involved') }}</a></li>
-          </ul>
-        </li>
-        <li>
-          <h3>{{ _('Servo') }}</h3>
-          <p>{{ _('Meet our new browser engine.') }}</p>
-          <ul class="dev-links servo">
-            <li><a rel="external" href="https://servo.org/">{{ _('Visit Servo') }}</a></li>
-            <li><a rel="external" href="https://blog.servo.org/">{{ _('Read the blog') }}</a></li>
-          </ul>
-        </li>
-        <li>
-          <h3>{{ _('Let’s Encrypt') }}</h3>
-          <p>{{ _('Encrypt any website, easily and free.') }}</p>
-          <ul class="dev-links encrypt">
-            <li><a rel="external" href="https://letsencrypt.org/">{{ _('Learn more') }}</a></li>
-            <li><a rel="external" href="https://letsencrypt.org/getinvolved/">{{ _('Contribute') }}</a></li>
-          </ul>
-        </li>
-        <li>
-          <h3>{{ _('Gaming') }}</h3>
-          <p>{{ _('Build games on the open Web.') }}</p>
-          <ul class="dev-links gaming">
-            <li><a rel="external" href="https://games.mozilla.org/">{{ _('Learn more') }}</a></li>
-            <li><a rel="external" href="https://developer.mozilla.org/docs/Games">{{ _('Start building') }}</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </section>
-  {% endblock %}
-
   {% if articles %}
   <section id="blogs">
-    <div class="container">
+    <div class="content">
       <header>
         <h2>{{ _('Blogs') }}</h2>
         <p>{{ _('Read the latest from Mozilla’s technology blogs.') }}</p>

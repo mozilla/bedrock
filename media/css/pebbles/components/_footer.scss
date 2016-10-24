@@ -6,7 +6,7 @@
 
 
 #colophon {
-    @include fira-sans-light;
+    @include fira-sans;
     @include font-size(14px);
     background: #fff;
     color: $color-text-tertiary;
