@@ -169,7 +169,9 @@
     {% endblock %}
     {% block js %}{% endblock %}
     {% if settings.DEV %}
-      <script src="https://pontoon.mozilla.org/pontoon.js"></script>
+      <!--[if !lte IE 8]><!-->
+        <script src="https://pontoon.mozilla.org/pontoon.js"></script>
+      <!--<![endif]-->
     {% endif %}
   </body>
 </html>
