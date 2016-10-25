@@ -20,6 +20,7 @@ $color-text-tertiary:  #666;
 
 // Brand colors
 $color-mozred:  #c13832;
+$color-mozred-bright: saturate(lighten($color-mozred, 5%), 10%);
 $color-mozblue: #0c99d5;
 $color-mozgray: #56565a;
 

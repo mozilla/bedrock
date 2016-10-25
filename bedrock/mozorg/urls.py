@@ -220,10 +220,14 @@ urlpatterns = (
     url('^contribute/task/',
         views.ContributeTaskView.as_view(),
         name='mozorg.contribute.taskview'),
-    page('plugincheck', 'mozorg/plugincheck.html'),
-    url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url(r'^contributor-data/(?P<source_name>[a-z]{2,20})\.json$', views.mozid_data_view,
         name='mozorg.contributor-data'),
+    page('moss', 'mozorg/moss/index.html'),
+    page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),
+    page('moss/mission-partners', 'mozorg/moss/mission-partners.html'),
+    page('moss/secure-open-source', 'mozorg/moss/secure-open-source.html'),
+    page('plugincheck', 'mozorg/plugincheck.html'),
+    url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.technology, name='mozorg.technology'),
 
     # namespaces
