@@ -257,11 +257,6 @@ def home(request, template='mozorg/home/home.html'):
 
     if lang_file_is_active('mozorg/home/home-2016', l10n_utils.get_locale(request)):
         template = 'mozorg/home/home.html'
-
-        variant = request.GET.get('v', '')
-
-        if variant in ['a', 'b']:
-            template = 'mozorg/home/home-{0}.html'.format(variant)
     else:
         template = 'mozorg/home/home-voices.html'
 
