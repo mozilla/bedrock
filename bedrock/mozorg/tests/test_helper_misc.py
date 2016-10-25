@@ -15,7 +15,6 @@ from pyquery import PyQuery as pq
 from rna.models import Release
 
 from bedrock.base.templatetags.helpers import static
-from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.templatetags import misc
 from bedrock.mozorg.tests import TestCase
 
@@ -60,37 +59,6 @@ def test_convert_to_high_res():
     eq_(misc.convert_to_high_res('/media/img/the.dude.png'), '/media/img/the.dude-high-res.png')
     eq_(misc.convert_to_high_res('/media/thats-a-bummer-man.jpg'),
         '/media/thats-a-bummer-man-high-res.jpg')
-
-
-@patch('django.conf.settings.LANGUAGE_CODE', 'en-US')
-class TestSecureURL(TestCase):
-    host = 'www.mozilla.org'
-    test_path = '/firefox/partners/'
-    test_view_name = 'mozorg.partnerships'
-    req = RequestFactory(HTTP_HOST=host).get(test_path)
-    secure_req = RequestFactory(HTTP_HOST=host).get(test_path, {}, **{'wsgi.url_scheme': 'https'})
-
-    def _test(self, view_name, expected_url, ssl):
-        eq_(render("{{ secure_url('%s') }}" % view_name, {'request': (self.secure_req if ssl else self.req)}),
-            expected_url)
-
-    def test_no_ssl_with_view_name(self):
-        # Should output a reversed path without https
-        self._test(self.test_view_name,
-                   'http://' + self.host + reverse(self.test_view_name), False)
-
-    def test_no_ssl_without_view_name(self):
-        # Should output the current, full URL without https
-        self._test('', 'http://' + self.host + self.test_path, False)
-
-    def test_ssl_with_view_name(self):
-        # Should output a reversed, full secure URL
-        self._test(self.test_view_name,
-                   'https://' + self.host + reverse(self.test_view_name), True)
-
-    def test_ssl_without_view_name(self):
-        # Should output the current, full secure URL
-        self._test('', 'https://' + self.host + self.test_path, True)
 
 
 @patch('bedrock.mozorg.templatetags.misc._l10n_media_exists')

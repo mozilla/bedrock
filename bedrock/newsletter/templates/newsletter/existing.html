@@ -52,7 +52,8 @@
   {% endblock %}
 
   {% if formset and not switch('newsletter-maintenance-mode') %}
-    <form method="post" action="{{ secure_url() }}" id="existing-newsletter-form" class="container billboard"
+    {# using uri builder instead of named URL to easily maintain user newsletter token #}
+    <form method="post" action="{{ request.build_absolute_uri(request.path) }}" id="existing-newsletter-form" class="container billboard"
         data-initial-newsletters='{{ newsletters_subscribed }}'>
       {{ formset.management_form }}
 

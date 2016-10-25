@@ -16,7 +16,7 @@
   {% endblock %}
 
   {% if form %}
-    <form method="post" action="{{ secure_url() }}" id="newsletter-recovery-form" class="container billboard">
+    <form method="post" action="{{ url('newsletter.recovery') }}" id="newsletter-recovery-form" class="container billboard">
       {% if form.non_field_errors() %}
         <div class="errorlist">
           {{ form.non_field_errors() }}

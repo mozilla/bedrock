@@ -17,7 +17,7 @@
     <div id="content" class="unsub billboard">
       <h4>{{_('Would you mind telling us why you’re leaving?') }}</h4>
 
-      <form action="{{ secure_url('newsletter.updated') }}" method="post">
+      <form action="{{ url('newsletter.updated') }}" method="post">
         <input type="hidden" name="unsub" value="2" />
         <input type="hidden" name="token" value="{{ token }}" />
         <table class="table">

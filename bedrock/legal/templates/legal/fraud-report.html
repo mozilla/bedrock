@@ -124,7 +124,7 @@
           </div>
         {% endif %}
 
-        <form action="{{ secure_url('legal.fraud-report') }}" method="post" name="reportForm" id="reportForm" enctype="multipart/form-data">
+        <form action="{{ url('legal.fraud-report') }}" method="post" name="reportForm" id="reportForm" enctype="multipart/form-data">
           <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
           <div class="field required" id="url">

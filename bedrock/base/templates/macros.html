@@ -406,7 +406,7 @@
         </h2>
       {% endif %}
       <h2 class="thank-you hidden">{{ _('Your download link was sent.') }}</h2>
-      <form id="send-to-device-form" action="{{ secure_url('firefox.send-to-device-post') }}" method="post"{% if platform == 'select' %} class="dropdown"{% endif %}>
+      <form id="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post"{% if platform == 'select' %} class="dropdown"{% endif %}>
         <ul class="error-list hidden">
           <li class="sms">{{ _('Sorry. This number isn’t valid. Please enter a U.S. phone number.') }}</li>
           <li class="email">{{ _('Please enter an email address.') }}</li>
@@ -428,7 +428,7 @@
             {% else %}
               <input type="hidden" id="id-platform" name="platform" value="{{ platform }}">
             {% endif %}
-            <input type="hidden" name="source-url" value="{{ secure_url() }}">
+            <input type="hidden" name="source-url" value="{{ request.build_absolute_uri(request.path) }}">
             <input type="hidden" name="message-set" value="{{ message_set }}">
           </div>
           <div class="inline-field">
