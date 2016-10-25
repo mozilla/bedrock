@@ -302,79 +302,6 @@ main {
 }
 
 // *** IMPACT/INNOVATE *** //
-
-// icon links
-.icon-links {
-    margin: 20px 0;
-
-    li {
-        margin-bottom: 10px;
-    }
-
-    @media #{$mq-tablet} {
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
-        width: 60%;
-
-        li {
-            margin-bottom: 22px;
-            min-height: 40px;
-            padding: 0 0 0 54px;
-            position: relative;
-
-            a {
-                @include font-size(18px);
-
-                &:before {
-                    background: url('/media/img/home/2016/svg-sprite.svg');
-                    content: '';
-                    display: block;
-                    float: left;
-                    left: 0;
-                    position: absolute;
-                    width: 40px;
-                }
-            }
-        }
-    }
-
-    @media #{$mq-desktop} {
-        li a {
-            @include font-size(20px);
-        }
-    }
-}
-
-// set icons for each link
-#encryption a {
-    @include icon-link(43px, 0);
-}
-
-#teachtheweb a {
-    @include icon-link(32px, -43px);
-}
-
-#leandata a {
-    @include icon-link(34px, -75px);
-}
-
-#gaming a {
-    @include icon-link(34px, -109px);
-}
-
-#vr a {
-    @include icon-link(23px, -143px);
-}
-
-#servo a {
-    @include icon-link(30px, -166px);
-}
-
-#rust a {
-    @include icon-link(33px, -196px);
-}
-
 .section-content {
     @include border-box;
     min-width: $width-phone;
@@ -389,11 +316,18 @@ main {
         background-repeat: no-repeat;
     }
 
+    .section-headline {
+        @include font-size(32px);
+        margin-bottom: 20px;
+    }
+
     p {
         padding-bottom: 20px;
     }
 
     @media #{$mq-tablet} {
+        padding: 10px 40px 20px;
+
         p {
             @include font-size(18px);
         }
@@ -404,10 +338,6 @@ main {
             @include font-size(20px);
         }
     }
-}
-
-.section-headline {
-    margin-bottom: 20px;
 }
 
 #who .section-content {
@@ -423,8 +353,18 @@ main {
         background-position: center;
     }
 
-    a {
-        color: #00A7E0;
+    .icon-links {
+        a {
+            color: $color-mozred-bright;
+
+            &:before {
+                background-color: $color-mozred-bright;
+            }
+        }
+
+        .icon use {
+            fill: #fff;
+        }
     }
 }
 
@@ -437,8 +377,18 @@ main {
         background-position: center;
     }
 
-    a {
-        color: #fff;
+    .icon-links {
+        a {
+            color: #fff;
+
+            &:before {
+                background-color: #fff;
+            }
+        }
+
+        .icon use {
+            fill: $color-mozred-bright;
+        }
     }
 }
 
@@ -457,6 +407,98 @@ main {
         float: right;
         width: 50%;
     }
+}
+
+// icon links
+.icon-links {
+    margin: 20px 0;
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    a {
+        @include trailing-arrow;
+        font-weight: bold;
+        text-decoration: none;
+
+        &:after {
+            @include transition(right 150ms cubic-bezier(.30, -0.5, .60, 1.5));
+            position: relative;
+            right: 0;
+        }
+
+        &:hover:after,
+        &:focus:after {
+            right: -4px;
+        }
+    }
+
+    .icon {
+        display: none;
+    }
+
+    @media #{$mq-tablet} {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        width: 60%;
+
+        li {
+            margin: 30px 0 20px;
+            position: relative;
+            min-height: 40px;
+            padding: 0 0 0 54px;
+        }
+
+        a {
+            @include font-size(18px);
+
+            &:before {
+                @include transition(transform 150ms cubic-bezier(.30, -0.5, .60, 1.5));
+                border-radius: 50%;
+                content: '';
+                display: block;
+                height: 55px;
+                left: -25px;
+                position: absolute;
+                top: -12px;
+                width: 55px;
+            }
+
+            &:hover:before,
+            &:focus:before {
+                @include transform(scale(1.15));
+                @include transform-origin(50% 50%);
+            }
+        }
+
+        .icon {
+            border-radius: 50%;
+            display: inline-block;
+            height: 45px;
+            left: -25px;
+            padding: 5px;
+            position: absolute;
+            top: -12px;
+            width: 45px;
+
+            svg path,
+            svg rect {
+                fill: inherit;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        a {
+            @include font-size(20px);
+        }
+    }
+}
+
+#icon-sprite {
+    display: none;
 }
 
 
