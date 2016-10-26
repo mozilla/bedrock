@@ -1090,4 +1090,7 @@ URLS = flatten((
 
     # Bug 1262593
     url_test('/unix/remote.html', 'http://www-archive.mozilla.org/unix/remote.html'),
+
+    # Bug 1313023
+    url_test('/story', 'https://donate.mozilla.org/?source=story_redirect'),
 ))
