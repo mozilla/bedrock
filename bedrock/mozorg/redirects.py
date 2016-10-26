@@ -626,4 +626,7 @@ redirectpatterns = (
 
     # Bug 1262593
     redirect(r'^unix/remote\.html$', 'http://www-archive.mozilla.org/unix/remote.html'),
+
+    # Bug 1313023
+    redirect(r'^story/?$', 'https://donate.mozilla.org/?source=story_redirect'),
 )
