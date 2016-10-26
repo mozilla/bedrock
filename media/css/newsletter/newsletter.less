@@ -165,33 +165,51 @@
     }
 }
 
-#newsletter-recovery {
-    #newsletter-recovery-form {
-        .intro {
-            .span(4);
+#newsletter-recovery-form {
+    .intro {
+        .span(4);
+    }
+
+    .field {
+        .span(8);
+    }
+
+    .email-field {
+        position: relative;
+
+        .field-contents {
+            float: left;
+            width: 370px;
         }
-        .field {
-            .span(8);
+
+        label {
+            display: block;
+            margin: 0 0 5px @gridGutterWidth;
         }
-        .email-field {
-            label {
-                display: block;
-                margin: -1em 0 0 @gridGutterWidth;
-            }
-            input[type="email"] {
-                width: 350px;
-                margin-left: @gridGutterWidth;
-            }
-            input[type="submit"] {
-                position: absolute;
-                top: 45px;
-                right: 30px;
-                overflow: visible;
-            }
-            .errorlist {
-                margin-left: @gridGutterWidth;
-            }
+
+        input[type="email"] {
+            margin-left: @gridGutterWidth;
+            width: 330px;
         }
+
+        button[type="submit"] {
+            float: right;
+            max-width: 220px;
+        }
+
+        .errorlist {
+            margin-left: @gridGutterWidth;
+        }
+    }
+
+    &> .errorlist {
+        margin-bottom: (@baseLine * 2);
+        text-align: center;
+    }
+
+    .form-fields {
+        .clearfix;
+        position: relative;
     }
 }
 
@@ -287,7 +305,7 @@
         }
     }
 
-    #newsletter-recovery #newsletter-recovery-form {
+    #newsletter-recovery-form {
         .intro {
             .span_narrow(4);
         }
@@ -295,8 +313,15 @@
             .span_narrow(8);
         }
         .email-field {
+            .field-contents {
+                width: 260px;
+            }
             input[type="email"] {
-                width: 250px;
+                width: 210px;
+            }
+            button[type="submit"] {
+                max-width: 180px;
+                padding: 10px 15px;
             }
         }
     }
@@ -364,26 +389,31 @@
         }
     }
 
-    #newsletter-recovery #newsletter-recovery-form {
+    #newsletter-recovery-form {
         padding-top: @baseLine;
         .intro,
         .field {
             .span-all();
         }
         .email-field {
+            .field-contents {
+                float: none;
+                width: 100%;
+            }
             label {
                 display: block;
                 margin: @baseLine 0 0 0;
             }
-            input,
             input[type="email"] {
-                width: 100%;
-                margin: 0 0 @baseLine 0;
                 .border-box();
+                margin: 0 0 @baseLine 0;
+                width: 100%;
             }
-            input[type="submit"] {
-                position: static;
+            button[type="submit"] {
+                float: none;
                 margin-top: 0;
+                max-width: none;
+                width: 100%;
             }
             .errorlist {
                 margin: 0 0 @baseLine 0;
