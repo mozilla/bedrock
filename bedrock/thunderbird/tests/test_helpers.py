@@ -18,7 +18,7 @@ def render(s, context=None):
 class TestDownloadButtons(TestCase):
 
     def test_thunderbird(self):
-        """Should have 4 links on the Thunderbird download button"""
+        """Should have 5 links on the Thunderbird download button"""
         with self.activate('en-US'):
             rf = RequestFactory()
             get_request = rf.get('/fake')
@@ -27,14 +27,15 @@ class TestDownloadButtons(TestCase):
                             {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 4)
-        eq_(pq(list[0]).attr('class'), 'os_win')
-        eq_(pq(list[1]).attr('class'), 'os_osx')
-        eq_(pq(list[2]).attr('class'), 'os_linux')
-        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_winsha1')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
 
     def test_beta(self):
-        """Should have 4 links on the Thunderbird Beta download button"""
+        """Should have 5 links on the Thunderbird Beta download button"""
         with self.activate('en-US'):
             rf = RequestFactory()
             get_request = rf.get('/fake')
@@ -43,14 +44,15 @@ class TestDownloadButtons(TestCase):
                             {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 4)
-        eq_(pq(list[0]).attr('class'), 'os_win')
-        eq_(pq(list[1]).attr('class'), 'os_osx')
-        eq_(pq(list[2]).attr('class'), 'os_linux')
-        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_winsha1')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
 
     def test_earlybird(self):
-        """Should have 4 links on the Earlybird download button"""
+        """Should have 5 links on the Earlybird download button"""
         with self.activate('en-US'):
             rf = RequestFactory()
             get_request = rf.get('/fake')
@@ -59,11 +61,12 @@ class TestDownloadButtons(TestCase):
                             {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 4)
-        eq_(pq(list[0]).attr('class'), 'os_win')
-        eq_(pq(list[1]).attr('class'), 'os_osx')
-        eq_(pq(list[2]).attr('class'), 'os_linux')
-        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_winsha1')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
 
 
 class TestThunderbirdURL(TestCase):

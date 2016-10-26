@@ -206,6 +206,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_all-bundle.css',
     },
+    'firefox_all_old_ie': {
+        'source_filenames': (
+            'css/firefox/all-oldIE.less',
+        ),
+        'output_filename': 'css/firefox_all_old_ie-bundle.css',
+    },
     'firefox_android': {
         'source_filenames': (
             'css/firefox/family-nav.less',

@@ -18,19 +18,25 @@
         case 'Windows':
             newOsName = 'Windows 32-bit';
             $li.attr('data-sort', 1);
+            $li.addClass('win32');
+            break;
+        case 'Windows (XP/Vista)':
+            newOsName = 'Windows 32-bit';
+            $li.attr('data-sort', 2);
+            $li.addClass('winsha1');
             break;
         case 'Linux':
             newOsName = 'Linux 32-bit';
-            $li.attr('data-sort', 2);
-            break;
-        case 'Windows 64-bit':
             $li.attr('data-sort', 3);
             break;
-        case 'Linux 64-bit':
+        case 'Windows 64-bit':
             $li.attr('data-sort', 4);
             break;
-        case 'OS X':
+        case 'Linux 64-bit':
             $li.attr('data-sort', 5);
+            break;
+        case 'OS X':
+            $li.attr('data-sort', 6);
             break;
         }
 

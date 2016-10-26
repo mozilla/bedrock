@@ -52,7 +52,7 @@
           <tr>
             <th colspan="2" scope="col">{{ _('Language') }}</th>
             {% for p_name, p_label in platforms %}
-              <th scope="col">{{ p_label|replace('\n', '<br>'|safe) }}</th>
+              <th scope="col" class="{{ p_name }}">{{ p_label|replace('\n', '<br>'|safe) }}</th>
             {% endfor %}
           </tr>
         </thead>

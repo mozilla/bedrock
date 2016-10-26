@@ -7,17 +7,25 @@ from collections import OrderedDict
 from operator import itemgetter
 from urllib import urlencode
 
+from bedrock.base.waffle import switch
 from product_details import ProductDetails
 from lib.l10n_utils.dotlang import _
 
 
 # TODO: port this to django-mozilla-product-details
 class ThunderbirdDesktop(ProductDetails):
-    download_base_url_direct = 'https://download.mozilla.org/'
+    bouncer_url = 'https://download.mozilla.org/'
+
+    # Note allizom.org is the production endpoint for SHA-1.
+    # It uses this because that's the only SHA-1 certificate
+    # we have that's usable. (SHA-1 certs can no longer be issued).
+    sha1_bouncer_url = 'https://download-sha1.allizom.org/'
+
     download_base_url_ftp = 'https://ftp.mozilla.org/pub/mozilla.org/thunderbird/'
 
     # Human-readable platform names
     platform_labels = OrderedDict([
+        ('winsha1', 'Windows (XP/Vista)'),
         ('win', 'Windows'),
         ('osx', 'OS X'),
         ('linux', 'Linux'),
@@ -48,6 +56,9 @@ class ThunderbirdDesktop(ProductDetails):
 
     def platforms(self, channel='release'):
         return self.platform_labels.items()
+
+    def get_bouncer_url(self, platform):
+        return self.sha1_bouncer_url if not switch('disable-sha1-downloads') and platform == 'winsha1' else self.bouncer_url
 
     def latest_version(self, channel='release'):
         if not channel:
@@ -170,22 +181,23 @@ class ThunderbirdDesktop(ProductDetails):
         """
         _version = version
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
+        _platform = 'win' if platform == 'winsha1' else platform
 
         # Point the FTP server for Earlybird
         if channel == 'alpha':
             return '%snightly/latest-comm-aurora%s/thunderbird-%s.%s.%s' % (
                 self.download_base_url_ftp,
                 '' if locale == 'en-US' else '-l10n',
-                _version, _locale, self.file_suffixes[platform])
+                _version, _locale, self.file_suffixes[_platform])
 
         # Check if direct download link has been requested
         # (bypassing the transition page)
         if force_direct:
             # build a direct download link
-            return '?'.join([self.download_base_url_direct,
+            return '?'.join([self.get_bouncer_url(platform),
                              urlencode([
                                  ('product', 'thunderbird-%s-SSL' % _version),
-                                 ('os', platform),
+                                 ('os', _platform),
                                  # Order matters, lang must be last for bouncer.
                                  ('lang', _locale),
                              ])])
