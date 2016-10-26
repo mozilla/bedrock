@@ -17,21 +17,23 @@
 
   {% if form %}
     <form method="post" action="{{ secure_url() }}" id="newsletter-recovery-form" class="container billboard">
-      <p class="intro">{{ _('Enter your email address and we’ll send you a link to your email preference center.') }}</p>
-
       {% if form.non_field_errors() %}
         <div class="errorlist">
           {{ form.non_field_errors() }}
         </div>
       {% endif %}
 
-      <div class="field email-field">
-        <label for="id_email">{{ _('Your email address:') }}</label>
-        <div class="field-contents">
-          {{ form.email }}
-          {{ form.email.errors }}
+      <div class="form-fields">
+        <p class="intro">{{ _('Enter your email address and we’ll send you a link to your email preference center.') }}</p>
+
+        <div class="field email-field">
+          <div class="field-contents">
+            <label for="id_email">{{ _('Your email address:') }}</label>
+            {{ form.email }}
+            {{ form.email.errors }}
+          </div>
+          <button class="button" type="submit">{{ _('Send me a link') }}</button>
         </div>
-        <input type="submit" value="{{ _('Send me a link') }}" class="button">
       </div>
 
     </form>
