@@ -71,9 +71,9 @@ NEWSLETTER_STRINGS = {
         'description': _lazy(u'A monthly newsletter on how to get involved with Mozilla on your campus. '),
         'title': _lazy(u'Firefox Student Ambassadors')},
     u'app-dev': {
-        'description': _lazy(u'News for developers about Firefox OS, Firefox Marketplace and the '
-                             u'Open Web apps ecosystem.'),
-        'title': _lazy(u'Firefox Apps & Hacks')},
+        'description': _lazy(u'A developer\u2019s guide to highlights of Web platform '
+                             u'innovations, best practices, new documentation and more.'),
+        'title': _lazy(u'Mozilla Developer Newsletter')},
     u'aurora': {
         'description': _lazy(u'Aurora'),
         'title': _lazy(u'Aurora')},
