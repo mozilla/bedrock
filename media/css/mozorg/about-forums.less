@@ -18,10 +18,15 @@
     & > li {
         list-style-type: none;
         border-top: 1px dotted @borderColor;
-        padding: 10px 0;
-        margin: 0;
+        padding: 10px 20px;
+        margin: 0 -20px;
         .clearfix();
     }
+
+    & > li:target{
+        background: #fff9c4;
+    }
+    
     .summary {
         .span(5);
         margin-left: 0;
