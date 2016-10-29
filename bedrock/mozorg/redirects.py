@@ -629,4 +629,7 @@ redirectpatterns = (
 
     # Bug 1313023
     redirect(r'^story/?$', 'https://donate.mozilla.org/?source=story_redirect'),
+
+    # Bug 681572
+    redirect(r'^download.html$', 'firefox.family.index'),
 )
