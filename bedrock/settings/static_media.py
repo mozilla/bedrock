@@ -1093,6 +1093,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_dnt-bundle.js',
     },
+    'gtm-snippet': {
+        'source_filenames': (
+            'js/base/gtm-snippet.js',
+        ),
+        'output_filename': 'js/gtm-snippet-bundle.js',
+    },
     'firefox_accounts': {
         'source_filenames': (
             'js/base/mozilla-fxa-iframe.js',
