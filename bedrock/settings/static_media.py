@@ -839,8 +839,7 @@ PIPELINE_CSS = {
     },
     'technology': {
         'source_filenames': (
-            'css/newsletter/moznewsletter-subscribe.less',
-            'css/mozorg/technology.less',
+            'css/mozorg/technology.scss',
         ),
         'output_filename': 'css/technology-bundle.css',
     },
@@ -1574,14 +1573,6 @@ PIPELINE_JS = {
             'js/styleguide/docs/send-to-device.js',
         ),
         'output_filename': 'js/styleguide-docs-send-to-device-bundle.js',
-    },
-    'experiment-technology-page': {
-        'source_filenames': (
-            'js/base/mozilla-cookie-helper.js',
-            'js/base/mozilla-traffic-cop.js',
-            'js/mozorg/experiment-technology-page.js',
-        ),
-        'output_filename': 'js/experiment-technology-page-bundle.js',
     },
     'tracking-protection-tour': {
         'source_filenames': (

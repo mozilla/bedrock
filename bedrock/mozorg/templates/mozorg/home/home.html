@@ -55,7 +55,8 @@
         </li>
         {% if LANG.startswith('en-') %}
         <li class="technology-item">
-          <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations">{{ _('Web Innovations') }}</a>
+          {# L10n: these strings are both potential navigation labels #}
+          <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations" data-alt-text="{{ _('Innovations') }}">{{ _('Web Innovations') }}</a>
         </li>
         {% else %}
         <li class="contribute-item">

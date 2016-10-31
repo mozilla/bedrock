@@ -1,0 +1,881 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../pebbles/components/buttons-download';
+@import '../pebbles/components/newsletter';
+
+body {
+    border-top: none;
+    color: #56565A;
+}
+
+#outer-wrapper {
+    background: #fff;
+}
+
+main {
+    h1, h2, h3, h4, h5, h6 {
+        color: #56565a;
+        text-shadow: none;
+    }
+
+    p {
+        color: #56565a;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Page masthead
+
+#masthead {
+    background: #d93a33;
+    color: #fff;
+    padding: 0;
+    width: 100%;
+
+    .content {
+        position: relative;
+    }
+
+    .masthead-logo {
+        font-size: 100%;
+        height: 30px;
+        left: 0;
+        margin: 0;
+        padding: 10px 0 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+
+        img {
+            height: 30px;
+        }
+    }
+
+    .download-button {
+        display: none;
+
+        .download-list {
+            margin-bottom: 0;
+        }
+
+        .download-link {
+            @include font-size(14px);
+            border-radius: 0;
+            border: none;
+            padding: 15px 20px;
+            text-transform: uppercase;
+        }
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+
+    @media #{$mq-tablet} {
+        .masthead-nav-main {
+            margin-right: 0;
+
+            .nav-main-menu {
+                padding: 15px 0;
+
+                a:link,
+                a:visited {
+                    color: #fff;
+                }
+
+                li {
+                    border-left: 1px solid #fff;
+
+                    &:first-child {
+                        border-left: none;
+                    }
+                }
+            }
+        }
+
+        .masthead-logo {
+            float: left;
+            padding: 10px 0;
+            position: relative;
+            width: auto;
+        }
+
+        .download-button {
+            display: block;
+            float: right;
+
+            .download-link {
+                padding: 15px 12px;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .download-button .download-link {
+            padding: 15px 20px;
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Main page header
+
+.main-heading-container {
+    @include background-size(cover);
+    background-color: #ffdbc9;
+    background-image: url('/media/img/mozorg/technology/vr-header.svg');
+    background-position: top center;
+    background-repeat: no-repeat;
+    margin-bottom: 40px;
+    min-height: 435px;
+    padding: 60px 0 0;
+    position: relative;
+
+    .content {
+        padding: 0 10px 80px;
+        width: 280px;
+    }
+
+    .main-heading {
+        background-color: #fff;
+        background-color: rgba(255, 255, 255, .75);
+        padding: 50px 45px 30px;
+        text-align: center;
+        // Chrome
+        -webkit-clip-path: polygon(0 10%, 90% 0, 100% 94%, 10% 100%);
+        // Firefox
+        clip-path: url('/media/img/mozorg/technology/shapes.svg#skewed');
+        // Safari
+        clip-path: polygon(0 10%, 90% 0, 100% 94%, 10% 100%);
+    }
+
+    h1 {
+        @include font-size(28px);
+        color: #2e3a59;
+        font-weight: bold;
+    }
+
+    p {
+        @include font-size(16px);
+        color: #2e3a59;
+    }
+
+    @media #{$mq-phone-wide} {
+        padding: 60px 0 20px 0;
+
+        .content {
+            width: 440px;
+        }
+
+        h1 {
+            @include font-size(32px);
+        }
+
+        p {
+            @include font-size(18px);
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding: 80px 0 20px 0;
+
+        .content {
+            padding: 0 0 80px;
+            width: 720px;
+        }
+
+        .main-heading {
+            padding: 45px 60px 40px;
+        }
+
+        h1 {
+            @include font-size(38px);
+        }
+
+        p {
+            @include font-size(20px);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 120px 0 80px 0;
+
+        .content {
+            width: 960px;
+        }
+
+        .main-heading {
+            padding: 60px 75px;
+        }
+
+        h1 {
+            @include font-size(42px);
+        }
+
+        p {
+            @include font-size(24px);
+        }
+    }
+}
+
+@supports (transform: skewY(-2deg)) {
+    .main-heading-container {
+        margin-bottom: 0;
+
+        &:after {
+            @include transform-origin(100%);
+            @include transform(skewY(-2deg));
+            background: #fff;
+            bottom: 0;
+            content: '';
+            display: block;
+            height: 70px;
+            left: 0;
+            position: absolute;
+            right: 0;
+            width: 100%;
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Technologies section
+
+#technologies > section {
+    position: relative;
+    text-align: center;
+
+    .inner-container {
+        padding-bottom: 60px;
+        width: auto;
+    }
+
+    h2 {
+        @include font-size(22px);
+        font-weight: bold;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    p {
+        @include font-size(18px);
+        margin: 0 auto;
+        max-width: 30em;
+        text-align: center;
+    }
+
+    .button {
+        margin-top: 20px;
+    }
+
+    footer {
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+
+            li {
+                @include font-size(16px);
+                display: block;
+                padding: 20px 0;
+                width: 100%;
+
+                &:first-child {
+                    border-bottom: 1px solid #fff;
+                }
+            }
+        }
+
+        a:link,
+        a:visited {
+            color: #fff;
+            padding: 0 15px;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-phone-wide} {
+        h2 {
+            @include font-size(26px);
+        }
+
+        p {
+            @include font-size(18px);
+        }
+
+        .button {
+            @include font-size(20px);
+        }
+    }
+
+    @media #{$mq-tablet} {
+
+        .content {
+            padding:0;
+            position: relative;
+        }
+
+        .inner-container {
+            width: 320px;
+        }
+
+        &.odd .inner-container {
+            float: right;
+        }
+
+        &.even .inner-container {
+            float: left;
+        }
+
+        h2 {
+            @include font-size(32px);
+            text-align: left;
+        }
+
+        p {
+            @include font-size(20px);
+            max-width: none;
+            text-align: left;
+        }
+
+        .button {
+            @include font-size(22px);
+        }
+
+        footer {
+            @include clearfix;
+
+            ul {
+                li {
+                    @include font-size(18px);
+                    margin: 0;
+                    padding: 20px 0;
+                    width: 50%;
+
+                    &:first-child {
+                        border-bottom: none;
+                        float: left;
+                        text-align: right;
+
+                        a {
+                            border-right: 1px solid #fff;
+                        }
+                    }
+
+                    &:last-child {
+                        float: right;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        .content {
+            min-height: 450px;
+        }
+
+        .inner-container {
+            width: 440px;
+        }
+
+        h2 {
+            @include font-size(36px);
+        }
+
+        p {
+            @include font-size(24px);
+        }
+
+        .button {
+            @include font-size(26px);
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .content {
+            width: $width-desktop;
+        }
+    }
+}
+
+html[dir="rtl"] #technologies > section {
+    @media #{$mq-tablet} {
+        h2 {
+            text-align: right;
+        }
+
+        p {
+            text-align: right;
+        }
+    }
+}
+
+#vr {
+    .content {
+        @include background-size(220px 200px);
+        background-image: url('/media/img/mozorg/technology/a-frame.svg');
+        background-position: top center;
+        background-repeat: no-repeat;
+        padding-top: 220px;
+    }
+
+    footer {
+        background: #00a199;
+        border-bottom: 2px solid #006c66;
+    }
+
+    @media #{$mq-phone-wide} {
+
+        .content {
+            @include background-size(260px 236px);
+            padding-top: 256px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+
+        .content {
+            @include background-size(360px 327px);
+            background-position: top left;
+            padding-top: 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        .content {
+            @include background-size(425px, 386px);
+        }
+    }
+}
+
+#gaming {
+    background-color: #d6f1f5;
+    padding-top: 236px;
+    z-index: 0;
+
+    .inner-container {
+        padding-top: 40px;
+    }
+
+    footer {
+        background: #00b4cc;
+        border-bottom: 2px solid #008799;
+    }
+
+    &:after {
+        background-color: #a3f3fe;
+        background-image: url('/media/img/mozorg/technology/gaming-yeti.svg'),
+                          url('/media/img/mozorg/technology/gaming-background.svg');
+        background-position: bottom -60px right -30px, bottom right;
+        background-repeat: no-repeat, no-repeat;
+        -webkit-background-size: contain, cover;
+                background-size: contain, cover;
+        content: '';
+        height: 256px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    @media #{$mq-tablet} {
+        padding-top: 0;
+
+        &:after {
+            background-position: bottom -20px left 100px, bottom right;
+            height: 100%;
+            width: 50%;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        &:after {
+            background-position: bottom -20px left 250px, bottom right;
+        }
+    }
+}
+
+#iot {
+    padding-top: 216px;
+    z-index: 0;
+
+    .inner-container {
+        padding-top: 40px;
+    }
+
+    footer {
+        background: #005189;
+        border-bottom: 2px solid #1f366c;
+    }
+
+    &:before {
+        @include background-size(300px 236px);
+        background-image: url('/media/img/mozorg/technology/iot.svg');
+        background-position: top left;
+        background-repeat: no-repeat;
+        content: '';
+        height: 236px;
+        left: 50%;
+        margin-left: -150px;
+        position: absolute;
+        top: 0;
+        width: 300px;
+        z-index: -1;
+    }
+
+    @media #{$mq-phone-wide} {
+        padding-top: 256px;
+
+        &:before {
+            @include background-size(350px 276px);
+            height: 276px;
+            left: 50%;
+            margin-left: -175px;
+            width: 350px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding-top: 0;
+
+        &:before {
+            @include background-size(650px 512px);
+            background-position: top right -40px;
+            height: 100%;
+            left: 0;
+            margin-left: 0;
+            width: 50%;
+        }
+    }
+}
+
+#context-graph {
+    background-color: #f9ddc7;
+    padding-top: 213px;
+    z-index: 0;
+
+    .inner-container {
+        padding: 40px 0;
+    }
+
+    footer {
+        background: #ff8e33;
+        border-bottom: 2px solid #fa7100;
+    }
+
+    &:after {
+        @include background-size(240px 193px);
+        background-color: #fa7100;
+        background-image: url('/media/img/mozorg/technology/context-graph.svg');
+        background-position: top 20px center;
+        background-repeat: no-repeat;
+        content: '';
+        height: 233px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+    }
+
+    @media #{$mq-phone-wide} {
+        padding-top: 245px;
+
+        .inner-container {
+            padding-bottom: 0;
+        }
+
+        &:after {
+            @include background-size(280px 225px);
+            height: 265px;
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding-top: 0;
+
+        &:after {
+            @include background-size(400px 322px);
+            background-position: top 40px left 80px;
+            height: 100%;
+            width: 50%;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        &:after {
+            @include background-size(446px 359px);
+        }
+    }
+}
+
+#rust {
+
+    .inner-container {
+        padding-top: 40px;
+    }
+
+    footer {
+        background: #86170f;
+        border-bottom: 2px solid #640e08;
+    }
+
+    .content {
+        @include background-size(200px 200px);
+        background-image: url('/media/img/mozorg/technology/rust.svg');
+        background-position: top 20px center;
+        background-repeat: no-repeat;
+        padding-top: 200px;
+    }
+
+    @media #{$mq-phone-wide} {
+
+        .content {
+            @include background-size(240px 240px);
+            padding-top: 240px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+
+        .content {
+            @include background-size(320px 320px);
+            background-position: top 40px left;
+            padding-top: 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        .content {
+            @include background-size(348px 348px);
+            background-position: top 40px left 45px;
+        }
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Newsletter
+
+#newsletter-subscribe {
+    margin: 0;
+
+    h3,
+    h4,
+    p {
+        color: #fff;
+    }
+}
+
+/*--------------------------------------------------------------------------*/
+// Blogs feed
+
+#blogs {
+    background: #f2f2f2;
+    padding: 60px 0;
+
+    header {
+        margin-bottom: 40px;
+
+        h2 {
+            @include font-size(36px);
+            font-weight: bold;
+        }
+
+        p {
+            @include font-size(16px);
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    a:link,
+    a:visited {
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+
+    article {
+        margin-bottom: 20px;
+        padding-bottom: 40px;
+        position: relative;
+
+        h3 {
+            @include font-size(20px);
+            font-weight: bold;
+            line-height: 1.3;
+            max-width: 24em;
+
+            a:link,
+            a:visited {
+                color: #c33b32;
+            }
+        }
+
+        p {
+            @include font-size(16px);
+        }
+
+        .meta {
+            @include font-size(16px);
+
+            a:link,
+            a:visited {
+                color: #56565a;
+            }
+        }
+
+        time {
+            @include font-size(16px);
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .continue {
+            @include font-size(16px);
+            bottom: 20px;
+            color: #c33b32;
+            font-weight: bold;
+            position: absolute;
+        }
+    }
+
+    @media #{$mq-phone-wide} {
+
+        header {
+
+            h2 {
+                @include font-size(40px);
+            }
+
+            p {
+                @include font-size(18px);
+            }
+        }
+
+        article {
+            margin-bottom: 20px;
+
+            h3 {
+                @include font-size(24px);
+            }
+
+            .meta {
+                @include font-size(18px);
+            }
+        }
+    }
+
+    @media #{$mq-tablet} {
+
+        header {
+
+            h2 {
+                @include font-size(44px);
+            }
+
+            p {
+                @include font-size(20px);
+            }
+        }
+
+        article {
+
+            h3 {
+                @include font-size(28px);
+            }
+
+            p,
+            time {
+                @include font-size(16px);
+            }
+
+            .meta {
+                @include font-size(20px);
+            }
+
+            .continue {
+                @include font-size(16px);
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        header {
+
+            h2 {
+                @include font-size(48px);
+            }
+
+            p {
+                @include font-size(24px);
+            }
+        }
+
+        article {
+
+            h3 {
+                @include font-size(32px);
+            }
+
+            p,
+            time,
+            .continue {
+                @include font-size(18px);
+            }
+
+            .meta {
+                @include font-size(24px);
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .content {
+            width: $width-desktop;
+        }
+    }
+}
+
+html[dir="rtl"] #blogs {
+    @media #{$mq-tablet} {
+        article .continue {
+            left: 0;
+            right: auto;
+        }
+    }
+}

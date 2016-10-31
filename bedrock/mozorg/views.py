@@ -328,16 +328,11 @@ def contribute_friends(request):
 
 
 def technology(request):
-    template = 'mozorg/technology/index.html'
-
-    version = request.GET.get('v', None)
-
-    if version == 'b':
-        template = 'mozorg/technology/developer.html'
-
     try:
         articles = list(BlogArticle.objects.filter(blog_slug__in=TECH_BLOG_SLUGS)[:4])
     except Exception:
         articles = None
 
-    return l10n_utils.render(request, template, {'articles': articles})
+    return l10n_utils.render(request,
+                             'mozorg/technology.html',
+                             {'articles': articles})
