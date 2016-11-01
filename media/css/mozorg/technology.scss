@@ -458,7 +458,7 @@ html[dir="rtl"] #technologies > section {
     @media #{$mq-desktop} {
 
         .content {
-            @include background-size(425px, 386px);
+            @include background-size(425px 386px);
         }
     }
 }

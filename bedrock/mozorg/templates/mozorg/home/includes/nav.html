@@ -1,32 +1,19 @@
-{# This Source Code Form is subject to the terms of the Mozilla Public
- # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+{% set logo_src = static('img/home/2016/mozilla-wordmark.svg') %}
 
-{% extends "base-pebbles.html" %}
-
-{% block page_title %}
-  {{ _('Mozilla Open Source Support') }}
-{% endblock %}
-
-{% block page_title_suffix %}{% endblock %}
-
-{% block page_desc %}
-  {{ _('Get funding for your open source and free software projects from Mozilla.') }}
-{% endblock %}
-
-{% block page_css %}
-  {% stylesheet 'moss' %}
-{% endblock %}
-
-{% block body_class %}{% endblock %}
-
-{% block site_header %}
 <header class="section masthead" id="masthead">
   <div class="content">
+  {% if is_home %}
     <h1 class="masthead-logo">
-      <a href="{{ url('mozorg.home') }}"><img src="{{ static('img/home/2016/mozilla-wordmark.svg') }}" alt="Mozilla"></a>
+      <img src="{{ logo_src }}" alt="Mozilla">
     </h1>
-
+  {% else %}
+    <h2 class="masthead-logo">
+      <a href="{{ url('mozorg.home') }}">
+        <img src="{{ logo_src }}" alt="Mozilla">
+      </a>
+    </h2>
+  {% endif %}
+    {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='nav-download-firefox') }}
     <nav class="masthead-nav-main" id="nav-main">
       <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
       <ul class="nav-main-menu" id="nav-main-menu">
@@ -52,29 +39,4 @@
       </ul>
     </nav>
   </div>
-
-  <div id="header-image">{% block header_image %}{% endblock %}</div>
-
-  <div class="content" id="page-heading">
-    <h1>{% block page_heading %}{% endblock %}</h1>
-  </div>
 </header>
-{% endblock %}
-
-{% block content %}
-<main>
-  {% block page_content %}{% endblock %}
-</main>
-<aside id="newsletter-subscribe">
-  <div class="content">
-    {{ email_newsletter_form(newsletters='mozilla-foundation',
-       title=_('What’s next?'),
-       subtitle=_('Get the Mozilla newsletter for our latest tech news and more.'),
-       button_class='light',
-       spinner_color='#fff')
-    }}
-  </div>
-</aside>
-{% endblock %}
-
-{% block js %}{% endblock %}

@@ -46,39 +46,10 @@
 {% endblock %}
 
 {% block site_header %}
-{% include 'mozorg/home/includes/home-icons-sprite.svg' %}
-<header class="section masthead" id="masthead">
-  <div class="content">
-    <h1 class="masthead-logo">
-      <img src="{{ static('img/home/2016/mozilla-wordmark.svg') }}" alt="Mozilla">
-    </h1>
-    {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='nav-download-firefox') }}
-    <nav class="masthead-nav-main" id="nav-main">
-      <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
-      <ul class="nav-main-menu" id="nav-main-menu">
-        <li class="first about-item">
-          <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{ _('About') }}</a>
-        </li>
-        {% if LANG.startswith('en-') %}
-        <li class="technology-item">
-          {# L10n: these strings are both potential navigation labels #}
-          <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations" data-alt-text="{{ _('Innovations') }}">{{ _('Web Innovations') }}</a>
-        </li>
-        {% else %}
-        <li class="contribute-item">
-          <a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-name="Participate">{{ _('Participate') }}</a>
-        </li>
-        {% endif %}
-        <li class="products-item">
-          <a href="{{ url('firefox.family.index') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
-        </li>
-        <li class="donate-item">
-          <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{ _('Donate') }}</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
+  {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
+  {% with is_home = True %}
+    {% include 'mozorg/home/includes/nav.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block content %}

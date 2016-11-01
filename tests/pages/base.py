@@ -39,9 +39,8 @@ class BasePage(Page):
         _root_locator = (By.ID, 'nav-main')
         _toggle_locator = (By.CLASS_NAME, 'toggle')
         _menu_locator = (By.ID, 'nav-main-menu')
-        _about_locator = (By.CSS_SELECTOR, 'a[data-link-name="About"]')
+        _internet_health_locator = (By.CSS_SELECTOR, 'a[data-link-name="Internet Health"]')
         _technology_locator = (By.CSS_SELECTOR, 'a[data-link-name="Web Innovations"]')
-        _firefox_locator = (By.CSS_SELECTOR, 'a[data-link-name="Firefox"]')
 
         def show(self):
             assert not self.is_displayed, 'Menu is already displayed'
@@ -55,20 +54,15 @@ class BasePage(Page):
             return (self.find_element(*self._menu_locator).is_displayed() and
                 toggle.get_attribute('aria-expanded') == 'true')
 
-        def open_about(self):
-            self.find_element(*self._about_locator).click()
-            from about import AboutPage
-            return AboutPage(self.selenium, self.page.base_url).wait_for_page_to_load()
+        def open_internet_health(self):
+            self.find_element(*self._internet_health_locator).click()
+            from internet_health import InternetHealthPage
+            return InternetHealthPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
         def open_technology(self):
             self.find_element(*self._technology_locator).click()
             from technology import TechnologyPage
             return TechnologyPage(self.selenium, self.page.base_url).wait_for_page_to_load()
-
-        def open_firefox(self):
-            self.find_element(*self._firefox_locator).click()
-            from firefox.products import ProductsPage
-            return ProductsPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
     class Footer(Region):
 
