@@ -218,7 +218,13 @@ def confirm(request, token):
     # Assume rate limit error means user already confirmed and clicked confirm
     # link twice in quick succession
     if success or rate_limit_error:
-        return HttpResponseRedirect("%s?confirm=1" % reverse('newsletter.existing.token', kwargs={'token': token}))
+        qparams = ['confirm=1']
+        qs = request.META.get('QUERY_STRING', '')
+        if qs:
+            qparams.append(qs)
+        return HttpResponseRedirect("%s?%s" % (reverse('newsletter.existing.token',
+                                                       kwargs={'token': token}),
+                                               '&'.join(qparams)))
     else:
         return l10n_utils.render(
             request,

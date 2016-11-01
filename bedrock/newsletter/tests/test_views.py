@@ -443,7 +443,20 @@ class TestConfirmView(TestCase):
             confirm.return_value = {'status': 'ok'}
             rsp = self.client.get(self.url)
             self.assertEqual(302, rsp.status_code)
-            self.assertTrue(rsp['Location'].endswith("%s?confirm=1" % reverse('newsletter.existing.token', kwargs={'token': self.token})))
+            self.assertTrue(rsp['Location'].endswith("%s?confirm=1" %
+                                                     reverse('newsletter.existing.token',
+                                                             kwargs={'token': self.token})))
+
+    def test_normal_with_query_params(self):
+        """Confirm works with a valid token"""
+        with patch('basket.confirm') as confirm:
+            confirm.return_value = {'status': 'ok'}
+            rsp = self.client.get(self.url + '?utm_tracking=oh+definitely+yes&utm_source=malibu')
+            self.assertEqual(302, rsp.status_code)
+            self.assertTrue(rsp['Location'].endswith("%s?confirm=1&utm_tracking=oh+definitely+yes&"
+                                                     "utm_source=malibu" %
+                                                     reverse('newsletter.existing.token',
+                                                             kwargs={'token': self.token})))
 
     def test_basket_down(self):
         """If basket is down, we report the appropriate error"""
