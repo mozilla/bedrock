@@ -1093,4 +1093,7 @@ URLS = flatten((
 
     # Bug 1313023
     url_test('/story', 'https://donate.mozilla.org/?source=story_redirect'),
+
+    # Bug 681572
+    url_test('/download.html', '/firefox/products/'),
 ))
