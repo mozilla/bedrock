@@ -44,4 +44,5 @@ urlpatterns = (
     # Branded signup pages for individual newsletters
     page('newsletter/mozilla', 'newsletter/mozilla.html'),
     page('newsletter/firefox', 'newsletter/firefox.html'),
+    page('newsletter/developer', 'newsletter/developer.html'),
 )

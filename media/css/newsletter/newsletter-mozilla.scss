@@ -4,18 +4,6 @@
 
 @import '../pebbles/includes/lib';
 
-.content {
-    @include clearfix;
-
-    @media #{$mq-tablet} {
-        width: $width-tablet;
-    }
-
-    @media #{$mq-desktop} {
-        width: $width-desktop;
-    }
-}
-
 .section-intro {
     background: #373737 url('/media/img/newsletter/intro-mozsummit-600.jpg') center center no-repeat;
     @include background-size(cover);
@@ -209,4 +197,3 @@
         @include at2x('/media/img/sandstone/footer-mozilla-dark.png', 93px, 24px);
     }
 }
-
