@@ -221,11 +221,9 @@
       <h3>{{ _('Choose Firefox') }}</h3>
       {{ download_firefox('alpha', platform='desktop') }}
     </div>
-    {# See Bug 1095176 #}
+    {# See Bug 1313508 #}
     {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form('app-dev', 'Firefox Apps & Hacks', button_class='light') }}
-    {% elif LANG.startswith('es-') %}
-      {{ email_newsletter_form('app-dev', 'Firefox Apps y Hacks', button_class='light') }}
+      {{ email_newsletter_form('app-dev', 'Mozilla Developer Newsletter', button_class='light', include_language=False) }}
     {% else %}
       {{ super() }}
     {% endif %}

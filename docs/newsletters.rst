@@ -102,10 +102,6 @@ Bedrock came along and so are unlikely to be changed.
 
 /newsletter/ - subscribe to 'mozilla-and-you' newsletter (public name: "Firefox & You")
 
-/newsletter/hacks.mozilla.org/ - subscribe to 'app-dev' newsletter ('Firefox Apps & Hacks').
-This one is displayed as a frame inside some other page(s), so it works differently than
-the other signup pages.
-
 /newsletter/existing/USERTOKEN/ - user management of their preferences and subscriptions
 
 
