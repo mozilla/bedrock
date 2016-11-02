@@ -8,12 +8,6 @@
 
 {% extends "firefox/new/base.html" %}
 
-{% block experiments %}
-  {% if switch('experiment-firefox-new-oldie-nojs') %}
-    {% javascript 'experiment_firefox_new_oldie_nojs' %}
-  {% endif %}
-{% endblock %}
-
 {# all CSS must be in extrahead block for old IE #}
 {% block extrahead %}
   {% stylesheet 'firefox_new_common' %}
