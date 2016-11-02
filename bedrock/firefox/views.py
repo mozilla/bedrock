@@ -482,12 +482,6 @@ def new(request):
     else:
         template = 'firefox/new/scene1.html'
 
-        # en-US tests
-        locale = l10n_utils.get_locale(request)
-
-        if locale == 'en-US' and request.GET.get('v', None) == '1':
-            template = 'firefox/new/scene1-ie8.html'
-
     return l10n_utils.render(request, template)
 
 

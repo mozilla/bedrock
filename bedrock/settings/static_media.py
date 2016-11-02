@@ -1236,20 +1236,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene1-bundle.js',
     },
-    'experiment_firefox_new_oldie_nojs': {
-        'source_filenames': (
-            'js/base/mozilla-cookie-helper.js',
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/new/experiment-oldie-nojs.js',
-        ),
-        'output_filename': 'js/experiment_firefox_new_oldie_nojs-bundle.js',
-    },
-    'oldie-nojs': {
-        'source_filenames': (
-            'js/base/oldie-nojs.js',
-        ),
-        'output_filename': 'js/oldie-nojs-bundle.js',
-    },
     'firefox_new_scene2': {
         'source_filenames': (
             'js/firefox/new/scene2.js',

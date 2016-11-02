@@ -180,13 +180,6 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
-    # IE 8 no JS test (bug 1288517)
-    def test_ie8_variation(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=1')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1-ie8.html')
-
 
 class TestWin10WelcomeView(TestCase):
     def test_get_template_names_default(self):
