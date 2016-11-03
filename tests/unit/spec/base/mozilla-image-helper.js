@@ -27,9 +27,7 @@ describe('mozilla-image-helper.js', function() {
                             'data-src-ios="/img/browser-ios.png"' +
                             'data-src-ios-high-res="/img/browser-ios-high-res.png">';
 
-            window.site = {
-                platform: 'other'
-            };
+            window.site.platform = 'other';
             $img = $(tpl);
             $img.appendTo($('body'));
         });
@@ -103,9 +101,7 @@ describe('mozilla-image-helper.js', function() {
                             'data-src-windows-high-res="/img/browser-windows-high-res.png"' +
                             'data-src-mac="/img/browser-mac.png"' +
                             'data-src-mac-high-res="/img/browser-mac-high-res.png">';
-            window.site = {
-                platform: 'windows'
-            };
+            window.site.platform = 'windows';
             $img = $(tpl);
             $img.appendTo($('body'));
         });

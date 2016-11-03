@@ -3,7 +3,7 @@
 <!doctype html>
 {# Note the "windows" class, without javascript platform-specific
      assets default to windows #}
-<html class="windows x86 no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %} {% block gtm_page_id %}{% endblock %}>
+<html class="windows x86 no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %} {% block gtm_page_id %}{% endblock %} {% if settings.STUB_ATTRIBUTION_RATE %}data-stub-attribution-rate="{{ settings.STUB_ATTRIBUTION_RATE }}"{% endif %}>
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
@@ -146,7 +146,16 @@
     {% block site_js %}
       {% javascript 'common' %}
     {% endblock %}
+
+    {# Bug 1279291 #}
+    {% block stub_attribution %}
+      {% if settings.STUB_ATTRIBUTION_RATE %}
+        {% javascript 'stub-attribution' %}
+      {% endif %}
+    {% endblock %}
+
     {% block js %}{% endblock %}
+
     {% if settings.DEV %}
       <!--[if !lte IE 8]><!-->
         <script src="https://pontoon.mozilla.org/pontoon.js"></script>

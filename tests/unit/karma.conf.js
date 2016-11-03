@@ -33,6 +33,7 @@ module.exports = function(config) {
             'media/js/base/search-params.js',
             'media/js/base/svg-animation-check.js',
             'media/js/base/mozilla-svg-image-fallback.js',
+            'media/js/base/stub-attribution.js',
             'media/js/firefox/new-ios-redirect-helper.js',
             'media/js/firefox/tracking-protection-tour.js',
             'media/js/firefox/whatsnew/whatsnew-zh-tw-49.js',
@@ -64,6 +65,7 @@ module.exports = function(config) {
             'tests/unit/spec/plugincheck/lib/plugincheck.js',
             'tests/unit/spec/base/send-to-device.js',
             'tests/unit/spec/base/core-datalayer.js',
+            'tests/unit/spec/base/stub-attribution.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
                 watched: false,

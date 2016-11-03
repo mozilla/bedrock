@@ -11,9 +11,9 @@ from lib.l10n_utils.dotlang import _lazy as _
 
 # TODO: port this to django-mozilla-product-details
 class _ProductDetails(ProductDetails):
-    bouncer_url = 'https://download.mozilla.org/'
+    bouncer_url = settings.BOUNCER_URL
 
-    # Note allizom.org is the production endpoint for SHA-1.
+    # Note download-sha1.allizom.org is the production endpoint for SHA-1.
     # It uses this because that's the only SHA-1 certificate
     # we have that's usable. (SHA-1 certs can no longer be issued).
     sha1_bouncer_url = 'https://download-sha1.allizom.org/'

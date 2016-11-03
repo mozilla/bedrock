@@ -41,6 +41,9 @@ data-panel3-button="{{ _('Got it!') }}"
 {# Google Analytics should never be enabled on this page! #}
 {% block google_analytics %}{% endblock %}
 
+{# Stub Attribution data should never be collected on this page! #}
+{% block stub_attribution %}{% endblock %}
+
 {% block site_css %}
   {% stylesheet 'tracking-protection-tour' %}
 {% endblock %}
