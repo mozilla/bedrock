@@ -47,33 +47,35 @@ class TestUpdateProductDetailsFiles(TestCase):
         self.command.repo.path = PD_REPO_TEST_PATH
         self.command.repo.path_str = str(PD_REPO_TEST_PATH)
 
-    def test_handle_force_loads_all(self):
+    def test_handle_diff_loads_all(self):
         with patch.multiple(self.command, update_file_data=DEFAULT, validate_data=DEFAULT,
-                            file_storage=DEFAULT, load_changes=DEFAULT):
-            options = dict(force=True, quiet=False, database='default')
-            self.command.update_file_data.return_value = None, None
+                            file_storage=DEFAULT, load_changes=DEFAULT, repo=DEFAULT):
+            options = dict(quiet=False, database='default')
+            self.command.update_file_data.return_value = False
             self.command.handle(**options)
+            assert self.command.file_storage.all_json_files.called
+            self.command.load_changes. \
+                assert_called_with(options, self.command.file_storage.all_json_files())
+            assert self.command.repo.set_db_latest.called
+
+    def test_handle_error_no_set_latest(self):
+        with patch.multiple(self.command, update_file_data=DEFAULT, validate_data=DEFAULT,
+                            file_storage=DEFAULT, load_changes=DEFAULT, repo=DEFAULT):
+            options = dict(quiet=False, database='default')
+            self.command.update_file_data.return_value = False
+            self.command.load_changes.side_effect = Exception('broke yo')
+            with self.assertRaises(Exception):
+                self.command.handle(**options)
             assert self.command.file_storage.all_json_files.called
             self.command.load_changes.\
                 assert_called_with(options, self.command.file_storage.all_json_files())
+            assert not self.command.repo.set_db_latest.called
 
-    def test_handle_no_force_loads_from_git_diff(self):
+    def test_handle_no_diff_does_nothing(self):
         with patch.multiple(self.command, update_file_data=DEFAULT, validate_data=DEFAULT,
-                            file_storage=DEFAULT, load_changes=DEFAULT):
-            options = dict(force=False, quiet=False, database='default')
-            modified_files = ['product-details/dude.json', 'product-details/walter.json']
-            modified_json_files = ['dude.json', 'walter.json']
-            self.command.update_file_data.return_value = modified_files, []
+                            file_storage=DEFAULT, load_changes=DEFAULT, repo=DEFAULT):
+            options = dict(quiet=False, database='default')
+            self.command.update_file_data.return_value = True
             self.command.handle(**options)
             assert not self.command.file_storage.all_json_files.called
-            self.command.load_changes.assert_called_with(options, modified_json_files)
-
-    def test_filter_filenames(self):
-        modified_files = [
-            'product-details/dude.json',
-            'product-details/walter.json',
-            'product-details/.walter.json.last-modified',
-            'product-details/donnie.txt',
-        ]
-        modified_json_files = ['dude.json', 'walter.json']
-        self.assertListEqual(modified_json_files, self.command.filter_filenames(modified_files))
+            assert not self.command.repo.set_db_latest.called
