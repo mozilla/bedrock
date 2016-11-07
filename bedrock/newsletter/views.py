@@ -634,6 +634,6 @@ def newsletter_subscribe(request):
             if not errors:
                 ctx['success'] = True
 
-            return l10n_utils.render(request, 'newsletter/mozilla-and-you.html', ctx)
+            return l10n_utils.render(request, 'newsletter/index.html', ctx)
 
-    return l10n_utils.render(request, 'newsletter/mozilla-and-you.html')
+    return l10n_utils.render(request, 'newsletter/index.html')

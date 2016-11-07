@@ -3,7 +3,7 @@
 {% set_lang_files "mozorg/newsletters" %}
 
 {% set newsletter_title = _('Mozilla Newsletter') %}
-{% set newsletter_id = 'mozilla-and-you' %}
+{% set newsletter_id = 'mozilla-foundation' %}
 
 {% block page_title %}{{ _('Mozilla Newsletter') }}{% endblock %}
 
@@ -16,8 +16,3 @@
     </p>
   </div>
 {% endblock %}
-
-{% block success_confirm %}
-  <h3>{{ _('Thanks!') }}</h3>
-  {{ super() }}
-{% endblock success_confirm %}

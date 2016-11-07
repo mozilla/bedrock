@@ -670,7 +670,7 @@ class TestNewsletterSubscribe(TestCase):
         resp = self.request()
         doc = pq(resp.content)
         self.assertTrue(doc('#newsletter-form'))
-        self.assertTrue(doc('input[value="mozilla-and-you"]'))
+        self.assertTrue(doc('input[value="mozilla-foundation"]'))
 
     @patch('bedrock.newsletter.views.basket')
     def test_returns_success(self, basket_mock):
