@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/horizon" %}
+
+{% extends "firefox/new/scene1.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% stylesheet 'firefox_new_test_up_to_date_vb' %}
+{% endblock %}
+
+{% block main_content %}
+<div class="main-content">
+  <h1>{{ _('Browse Freely') }}</h1>
+  <div class="desktop-latest-links-wrapper latest-links-wrapper">
+    <ul>
+      <li><a class="more" rel="external" href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings">{{_('Reset your add-ons and settings')}}</a></li>
+      <li><a class="more" rel="external" href="https://support.mozilla.org/products/firefox">{{_('Need more help?')}}</a></li>
+    </ul>
+  </div>
+  <div class="android-latest-links-wrapper latest-links-wrapper">
+    <ul>
+      <li><a class="more" href="{{ url('firefox.android.index') }}">{{_('Learn more about Firefox for Mobile')}}</a></li>
+    </ul>
+  </div>
+  <div class="fxos-latest-links-wrapper latest-links-wrapper">
+    <ul>
+      <li><a class="more" href="{{ url('firefox.os.index') }}">{{_('Learn about Firefox OS')}}</a></li>
+      <li><a class="more" href="{{ url('firefox.family.index') }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
+    </ul>
+  </div>
+  <p id="version-message-linux-arm" class="version-message">
+    {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
+  </p>
+  <section id="download-buttons">
+    {# handles desktop users (windows, os x, linux) #}
+    <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
+      {{ download_firefox(alt_copy=_('Free Download')) }}
+    </div>
+
+    {# handles Android and iOS users #}
+    <div class="mobile download-button-wrapper" id="download-button-wrapper-mobile" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
+      {{ download_firefox(dom_id='download-button-mobile') }}
+    </div>
+  </section>{#-- /#download-buttons --#}
+</div>{#-- /.main-content --#}
+{% endblock %}

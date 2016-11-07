@@ -9,8 +9,8 @@
 {% extends "firefox/new/base.html" %}
 
 {% block experiments %}
-  {% if switch('experiment-firefox-new-oldie-nojs') %}
-    {% javascript 'experiment_firefox_new_oldie_nojs' %}
+  {% if switch('experiment-firefox-new-up-to-date-users') %}
+    {% javascript 'experiment-firefox-new-up-to-date-users' %}
   {% endif %}
 {% endblock %}
 
@@ -55,6 +55,7 @@
               </p>
             </div>{#-- /.version-message-container --#}
           </header>
+          {% block main_content %}
           <div class="main-content">
             <h1 class="hide-for-refresh">{{ _('Browse Freely') }}</h1>
             <section id="download-buttons">
@@ -94,6 +95,7 @@
               {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
             </p>
           </div>{#-- /.main-content --#}
+          {% endblock %}
         </div>{#-- /.inner-container --#}
       </div>
     </div>

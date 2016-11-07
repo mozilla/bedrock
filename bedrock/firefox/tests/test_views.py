@@ -180,12 +180,31 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
-    # IE 8 no JS test (bug 1288517)
-    def test_ie8_variation(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=1')
+    def test_scene_1_up_to_date_variant_a(self, render_mock):
+        # Double control group should get default template
+        req = RequestFactory().get('/firefox/new/?v=a')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1-ie8.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+
+    def test_scene_1_up_to_date_variant_b(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/variant/scene1-vb.html')
+
+    def test_scene_1_up_to_date_variant_c(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=c')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/variant/scene1-vc.html')
+
+    def test_scene_1_up_to_date_variant_locale(self, render_mock):
+        # Non-en-US locales should get default template
+        req = RequestFactory().get('/firefox/new/?v=c')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
 
 
 class TestWin10WelcomeView(TestCase):
