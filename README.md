@@ -34,7 +34,7 @@ list of mentored bugs.
 License
 -------
 
-This software is licensed under the [MPL/GPL/LGPL tri-license][MPL]. For more
+This software is licensed under the [MPL version 2.0][MPL]. For more
 information, read the file ``LICENSE``.
 
 [MPL]: https://www.mozilla.org/MPL/
