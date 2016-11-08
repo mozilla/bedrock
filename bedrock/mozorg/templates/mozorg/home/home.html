@@ -33,6 +33,12 @@
   {% stylesheet 'home' %}
 {% endblock %}
 
+{% block experiments %}
+  {% if LANG.startswith('en-') and switch('experiment-home-fx-copy') %}
+    {% javascript 'experiment-home-fx-copy' %}
+  {% endif %}
+{% endblock %}
+
 {% block optimizely %}
   {% if switch('mozorg-home-optimizely') %}
     {% include 'includes/optimizely.html' %}
@@ -171,33 +177,33 @@
     <div class="horizon">
       <div class="stars">
         <div class="content">
+        {% block fx_copy %}
           <h2>{{ _('Browse freely.') }}</h2>
-        </div>
+
+          <p>
+            {{ _('Discover unlimited potential, endless possibility and a wide open Web.') }}
+          </p>
+        {% endblock %}
+          <a id="fx-download-link" href="{{ url('firefox.new') }}">{{ _('Get Firefox today') }}</a>
+
+          <div id="fxmobile-download-buttons">
+            <ul>
+              <li class="android">
+                {{ google_play_button() }}
+              </li>
+              <li class="ios">
+                <a href="{{ firefox_ios_url('mozorg-homepage_prototype_b-button') }}" data-link-type="download" data-download-os="iOS">
+                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                </a>
+              </li>
+            </ul>
+          </div> {# --/#fxmobile-download-buttons --#}
+        </div> {# --/.content --#}
       </div> {# --/.stars --#}
     </div> {# --/.horizon --#}
 
     <div class="foreground">
       {% include 'firefox/includes/horizon.html' %}
-      <div class="content">
-        <p>
-          {{ _('Discover unlimited potential, endless possibility and a wide open Web.') }}
-        </p>
-
-        <a id="fx-download-link" href="{{ url('firefox.new') }}">{{ _('Get Firefox today') }}</a>
-
-        <div id="fxmobile-download-buttons">
-          <ul>
-            <li class="android">
-              {{ google_play_button() }}
-            </li>
-            <li class="ios">
-              <a href="{{ firefox_ios_url('mozorg-homepage_prototype_b-button') }}" data-link-type="download" data-download-os="iOS">
-                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div> {# --/.foreground --#}
   </section>
 
