@@ -26,8 +26,8 @@ redirectpatterns = (
     redirect(r'^ja/firefox/organizations/?$', 'https://www.mozilla.jp/business/',
              locale_prefix=False),
 
-    # bug 874913
-    redirect(r'products/download.html', 'firefox.new', query=''),
+    # bug 874913, 681572
+    redirect(r'^(products/)?download\.html', 'firefox.new', query=''),
 
     # bug 845580
     redirect(r'^home/?$', 'firefox.new'),
@@ -629,7 +629,4 @@ redirectpatterns = (
 
     # Bug 1313023
     redirect(r'^story/?$', 'https://donate.mozilla.org/?source=story_redirect'),
-
-    # Bug 681572
-    redirect(r'^download.html$', 'firefox.family.index'),
 )
