@@ -45,7 +45,8 @@ URLS = flatten((
     url_test('/zh-TW/download/', 'http://mozilla.com.tw/firefox/download/'),
 
     # bug 874913
-    url_test('/en-US/products/download.html{,?stuff=whatnot}', '/en-US/firefox/new/'),
+    url_test('/en-US/{,products/}download.html{,?stuff=whatnot}', '/en-US/firefox/new/'),
+    url_test('/{,products/}download.html{,?stuff=whatnot}', '/firefox/new/'),
 
     # bug 845580
     url_test('/en-US/home/', '/en-US/firefox/new/'),
@@ -1093,7 +1094,4 @@ URLS = flatten((
 
     # Bug 1313023
     url_test('/story', 'https://donate.mozilla.org/?source=story_redirect'),
-
-    # Bug 681572
-    url_test('/download.html', '/firefox/products/'),
 ))
