@@ -1458,6 +1458,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/home-bundle.js',
     },
+    'experiment-home-fx-copy': {
+        'source_filenames': (
+            'js/base/mozilla-cookie-helper.js',
+            'js/base/mozilla-traffic-cop.js',
+            'js/mozorg/home/experiment-home-fx-copy.js',
+        ),
+        'output_filename': 'js/experiment-home-fx-copy-bundle.js',
+    },
     'home-voices': {
         'source_filenames': (
             'js/mozorg/home/home-voices.js',

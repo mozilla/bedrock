@@ -255,8 +255,14 @@ def home_tweets(locale):
 def home(request, template='mozorg/home/home.html'):
     locale = l10n_utils.get_locale(request)
 
-    if lang_file_is_active('mozorg/home/index-2016', l10n_utils.get_locale(request)):
-        template = 'mozorg/home/home.html'
+    if lang_file_is_active('mozorg/home/index-2016', locale):
+        # check for variant - fx copy experiment
+        v = request.GET.get('v', None)
+
+        if (locale.startswith('en-') and v in ['a', 'b', 'c']):
+            template = 'mozorg/home/home-{0}.html'.format(v)
+        else:
+            template = 'mozorg/home/home.html'
     else:
         template = 'mozorg/home/home-voices.html'
 
