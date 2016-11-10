@@ -1,0 +1,43 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends 'base-pebbles.html' %}
+
+{% set_lang_files "mozorg/newsletters" %}
+
+{% block page_title %}{{ _('Love the web? So do we!') }}{% endblock page_title %}
+
+{% block body_class %}newsletter-developer{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'newsletter-developer' %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'newsletter-developer' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="section-intro">
+    <div class="content">
+      <div id="tabzilla">
+        <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="section-subscribe">
+    <div class="content">
+      <header class="header-main" role="banner">
+        <h1 class="page-title">{{ self.page_title() }}</h1>
+        <h2 class="section-title">{{ _('Join thousands of developers like you who are learning the best of web development.') }} {{ _('If you don’t like the Mozilla developer newsletter, you can easily unsubscribe (but we think you’ll like it).') }}</h2>
+      </header>
+      {{ email_newsletter_form(newsletters='app-dev', include_language=False, include_title=False, spinner_color='#0c99d5', button_class='hollow') }}
+    </div>
+  </section>
+</main>
+{% endblock %}
