@@ -7,6 +7,7 @@
 {% set_lang_files "mozorg/newsletters" %}
 
 {% block page_title %}{{ _('Sign up. Read up. Make a difference.') }}{% endblock page_title %}
+{% block page_desc %}{{ _('Get the Mozilla newsletter to stay informed about issues challenging the health of the Internet and to discover how you can get involved.') }}{% endblock %}
 
 {% block body_class %}newsletter-mozilla{% endblock %}
 
@@ -34,7 +35,7 @@
 
   <section class="section section-subscribe" id="subscribe">
     <div class="content">
-      <h2 class="section-title">{{ _('Get the Mozilla newsletter to stay informed about issues challenging the health of the Internet and to discover how you can get involved.') }}</h2>
+      <h2 class="section-title">{{ self.page_desc() }}</h2>
 
       {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832', button_class='red') }}
 

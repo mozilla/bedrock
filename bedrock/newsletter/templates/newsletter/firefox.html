@@ -7,6 +7,7 @@
 {% set_lang_files "mozorg/newsletters" %}
 
 {% block page_title %}{{ _('Put more fox in your inbox.') }}{% endblock page_title %}
+{% block page_desc %}{{ _('See where the Web can take you with monthly Firefox tips, tricks and Internet intel.') }}{% endblock %}
 
 {% block body_class %}newsletter-mozilla{% endblock %}
 
@@ -33,8 +34,8 @@
   <section class="section-subscribe">
     <div class="content">
       <header class="header-main" role="banner">
-        <h1 class="page-title">{{ _('Put more fox in your inbox.') }}</h1>
-        <h2 class="section-title">{{ _('See where the Web can take you with monthly Firefox tips, tricks and Internet intel.') }}</h2>
+        <h1 class="page-title">{{ self.page_title() }}</h1>
+        <h2 class="section-title">{{ self.page_desc() }}</h2>
       </header>
       {{ email_newsletter_form(include_title=False, spinner_color='#3a304b', button_class='hollow') }}
     </div>
