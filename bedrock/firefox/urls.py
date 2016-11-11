@@ -13,7 +13,6 @@ from bedrock.releasenotes import version_re
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
-firstrun_learnmore_re = latest_re % (version_re, 'firstrun/learnmore')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 tracking_protection_re = latest_re % (version_re, 'tracking-protection/start')
 platform_re = '(?P<platform>android|ios)'
@@ -75,8 +74,6 @@ urlpatterns = (
     url(r'^firefox/unsupported/win/$', views.windows_billboards),
     url('^firefox/dnt/$', views.dnt, name='firefox.dnt'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
-    url(firstrun_learnmore_re, views.FirstrunLearnMoreView.as_view(),
-        name='firefox.firstrun.learnmore'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
 
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
@@ -91,8 +88,6 @@ urlpatterns = (
 
     page('firefox/os/devices', 'firefox/os/devices.html'),
     page('firefox/os/devices/tv', 'firefox/os/tv.html'),
-
-    url(r'^firefox/windows-10/welcome/$', views.Win10Welcome.as_view(), name='firefox.win10-welcome'),
 
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),

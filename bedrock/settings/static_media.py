@@ -373,12 +373,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun-horizon-bundle.css',
     },
-    'firefox_firstrun_learnmore_yahoo_search': {
-        'source_filenames': (
-            'css/firefox/firstrun/learnmore/yahoo-search.less',
-        ),
-        'output_filename': 'css/firefox_firstrun_learnmore_yahoo_search-bundle.css',
-    },
     'firefox_firstrun_ravioli': {
         'source_filenames': (
             'css/firefox/firstrun/ravioli.less',
@@ -567,19 +561,6 @@ PIPELINE_CSS = {
             'css/firefox/whatsnew/whatsnew-50.less',
         ),
         'output_filename': 'css/firefox_whatsnew_50-bundle.css',
-    },
-    'firefox_win10_welcome': {
-        'source_filenames': (
-            'css/firefox/win10-welcome.less',
-        ),
-        'output_filename': 'css/firefox_win10_welcome-bundle.css',
-    },
-    'firefox_win10_welcome_variants': {
-        'source_filenames': (
-            'css/firefox/win10-welcome.less',
-            'css/firefox/win10-welcome-variants.less',
-        ),
-        'output_filename': 'css/firefox_win10_welcome_variants-bundle.css',
     },
     'firefox_releasenotes_firefox': {
         'source_filenames': (
@@ -1421,30 +1402,6 @@ PIPELINE_JS = {
             'js/firefox/whatsnew/whatsnew-zh-tw-49-init.js',
         ),
         'output_filename': 'js/firefox_whatsnew_zh_tw_49-bundle.js',
-    },
-    'firefox_firstrun_42_learnmore': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/base/mozilla-highlight-target.js',
-            'js/firefox/firstrun/learnmore/learnmore.js',
-        ),
-        'output_filename': 'js/firefox_firstrun_42_learnmore-bundle.js',
-    },
-    'firefox_firstrun_learnmore_yahoo_search': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/firefox/firstrun/learnmore/yahoo-search.js',
-        ),
-        'output_filename': 'js/firefox_firstrun_learnmore_yahoo_search-bundle.js',
-    },
-    'firefox_win10_welcome': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/base/mozilla-firefox-default.js',
-            'js/firefox/win10-welcome.js',
-            'js/firefox/win10-welcome-init.js',
-        ),
-        'output_filename': 'js/firefox_win10_welcome-bundle.js',
     },
     'geolocation': {
         'source_filenames': (
