@@ -5,6 +5,7 @@
 /* global __dirname, require */
 
 const gulp = require('gulp');
+const del = require('del');
 const karma = require('karma');
 const eslint = require('gulp-eslint');
 const watch = require('gulp-watch');
@@ -36,6 +37,10 @@ gulp.task('js:lint', () => {
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
+});
+
+gulp.task('static:clean', () => {
+    return del(['static/**', '!static', '!static/.gitignore']);
 });
 
 gulp.task('default', () => {
