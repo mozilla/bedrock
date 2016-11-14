@@ -564,6 +564,13 @@ main {
         @media #{$mq-tablet} {
             @include font-size(24px);
         }
+
+        @media #{$mq-desktop} {
+            p {
+                max-width: 780px; // keep text from going behind the trees
+                margin: 0 auto 40px;
+            }
+        }
     }
 
     .forest-container {
