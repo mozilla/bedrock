@@ -945,6 +945,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/annual_2014-bundle.css',
     },
+    'annual_2015': {
+        'source_filenames': (
+            'css/foundation/annual2013.less',
+            'css/foundation/annual2015.less',
+        ),
+        'output_filename': 'css/annual_2015-bundle.css',
+    },
     'thunderbird-features': {
         'source_filenames': (
             'css/base/menu-resp.less',
