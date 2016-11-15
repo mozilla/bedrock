@@ -1,0 +1,487 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+
+.fundraising-takeover * {
+    @include border-box;
+}
+
+.fundraising-takeover {
+    @include at2x('/media/img/home/fundraiser/bg-heart.png', 1980px, 420px);
+    @include transition(background-position 250ms ease-in-out);
+    background-color: #523e53;
+    background-position: 45.5% -175px;
+    background-repeat: no-repeat;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, .5);
+    color: #fff;
+    left: 0;
+    min-width: $width-phone;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+
+    @media #{$mq-tall} {
+        background-position: 45.5% top;
+    }
+
+    @media #{$mq-tablet} {
+        background-position: center -175px;
+    }
+
+    @media #{$mq-tablet} and #{$mq-tall} {
+        background-position: center top;
+    }
+
+    .header-strip {
+        background-color: #fff;
+        padding: 10px;
+        text-align: right;
+        text-transform: uppercase;
+        position: relative;
+
+        .content {
+            padding: 0 20px;
+            margin: 0 auto;
+        }
+
+        button {
+            @include font-size(14px);
+            @include trailing-arrow;
+            background: transparent none;
+            border: 0;
+            color: $color-mozred;
+            cursor: pointer;
+            padding-right: 10px;
+            position: relative;
+            text-decoration: none;
+
+            &:after {
+                @include transition(right 150ms ease-in);
+                position: absolute;
+                right: 0;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: underline;
+
+                &:after {
+                    right: -4px;
+                }
+            }
+        }
+    }
+
+    .snapshots {
+        @include hidden;
+    }
+}
+
+.takeover-content {
+    @include transition(padding 250ms ease-in-out);
+    margin: 0 auto;
+    padding: 130px 0 20px;
+    width: $width-phone;
+
+    @media #{$mq-tablet} {
+        width: 600px;
+        margin: 0 auto;
+    }
+
+    @media #{$mq-tall} {
+        padding: 300px 0 80px;
+    }
+}
+
+.fundraising-form {
+    width: $width-phone;
+
+    @media #{$mq-tablet} {
+        width: $width-phone-wide;
+    }
+
+    h2 {
+        @include background-size(160px, 42px);
+        @include image-replaced;
+        background-image: url('/media/img/home/2016/mozilla-wordmark.svg');
+        background-repeat: no-repeat;
+        height: 42px;
+        margin-bottom: .5em;
+        width: 160px;
+    }
+
+    h3 {
+        font-weight: normal;
+        margin-bottom: 1em;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0 -5px;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0 5px 10px;
+    }
+
+    .donate-options {
+        li {
+            width: 45%;
+
+            @media #{$mq-tablet} {
+                width: 30%;
+            }
+        }
+
+        label {
+            @include font-size(20px);
+            @include gradient-vertical(#a6a9b2, 0%, #83868f, 100%);
+            background-color: #999;
+            border-radius: .3em;
+            cursor: pointer;
+            display: inline-block;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+
+            &.selected {
+                @include gradient-vertical(#59b3f7, 0%, #3395d5, 100%);
+                background-color: #3da5ee;
+            }
+        }
+
+        #donate-custom {
+            @include border-box;
+            @include font-size(20px);
+            width: 100%;
+            height: 50px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        input[type="radio"] {
+            @include visually-hidden;
+        }
+
+        .custom {
+            width: 63%;
+            position: relative;
+
+            label {
+                background: transparent none;
+                display: inline;
+                height: 0;
+                padding: 0;
+                width: 0;
+            }
+
+            .label-text {
+                @include visually-hidden;
+            }
+
+            .currency-symbol {
+                @include font-size(20px);
+                color: $color-text-secondary;
+                display: block;
+                height: 100%;
+                left: 5px;
+                position: absolute;
+                text-align: center;
+                top: 0;
+                width: 30px;
+                z-index: 10;
+                line-height: 50px;
+            }
+        }
+
+        @media #{$mq-tablet} {
+            padding-right: 60px;
+        }
+    }
+
+    .recurring {
+        margin-top: 10px;
+
+        label {
+            margin-right: 20px;
+        }
+    }
+
+    .form-submit {
+        margin-top: 1em;
+    }
+}
+
+[lang="ar"],
+[lang="ca"],
+[lang="cs"],
+[lang="da"],
+[lang="ce"],
+[lang="dsb"],
+[lang="el"],
+[lang="es-ES"],
+[lang="fi"],
+[lang="fr"],
+[lang="hu"],
+[lang="it"],
+[lang="lt"],
+[lang="lv"],
+[lang="pl"],
+[lang="pt-PT"],
+[lang="ru"],
+[lang="sk"],
+[lang="sl"],
+[lang="sv-SE"],
+[lang="sr"] {
+    .fundraising-form .donate-options {
+        #donate-custom {
+            padding-left: 10px;
+            padding-right: 40px;
+        }
+        .custom .currency-symbol {
+            left: auto;
+            right: 5px;
+        }
+    }
+}
+
+.variant-b {
+    .fundraising-takeover {
+        background-image: linear-gradient(to bottom, #624964 0, #624964 95px, rgba(98, 73, 100, 0) 95px, rgba(98, 73, 100, 0) 100%);
+        background-position: center top;
+        @include background-size(auto);
+        padding: 0;
+
+        @media #{$mq-tall} {
+            background-image: linear-gradient(to bottom, #624964 0, #624964 260px, rgba(98, 73, 100, 0) 260px, rgba(98, 73, 100, 0) 100%);
+        }
+
+        @media #{$mq-tablet} {
+            background-image: none;
+        }
+    }
+
+    .takeover-content {
+        @include at2x('/media/img/home/fundraiser/heart.png', 210px, 175px);
+        @include transition(background-position 250ms ease-in-out, padding 250ms ease-in-out);
+        background-position: right -5px;
+        background-repeat: no-repeat;
+        position: relative;
+        padding-top: 110px;
+
+        @media #{$mq-tall} {
+            padding-top: 280px;
+            background-position: right 160px;
+        }
+
+        @media #{$mq-tablet} {
+            background-position: center 30px;
+        }
+
+        @media #{$mq-tablet} and #{$mq-tall} {
+            background-position: center 160px;
+        }
+    }
+
+    .snapshots {
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+
+        @media #{$mq-tablet} {
+            display: block;
+        }
+    }
+
+    .snap {
+        @include transition(left 450ms ease-out, right 450ms ease-out, transform 450ms ease-out);
+        @include transition-delay(100ms);
+        background-color: #fbf7f4;
+        background-repeat: no-repeat;
+        box-shadow: 2px 3px 5px rgba(0, 0, 0, .25);
+        height: 450px;
+        position: absolute;
+        width: 375px;
+    }
+
+    // Girls with wires
+    .shot-one {
+        display: none;
+
+        @media #{$mq-desktop} {
+            @include at2x('/media/img/home/fundraiser/snap-01.jpg', 375px, 450px);
+            @include transform(rotate(6deg));
+            display: block;
+            right: 80%;
+            top: -220px;
+        }
+
+        @media #{$mq-desktop-wide} {
+            right: 74%;
+        }
+
+        @media #{$mq-desktop-wide} and #{$mq-tall} {
+            right: 66%;
+        }
+    }
+
+    // Advocacy bullhorn
+    .shot-two {
+        display: none;
+
+        @media #{$mq-desktop} {
+            @include at2x('/media/img/home/fundraiser/snap-02.jpg', 375px, 450px);
+            @include transform(rotate(-3deg));
+            display: block;
+            left: 77%;
+            top: 280px;
+        }
+    }
+
+    // Audience
+    .shot-three {
+        display: none;
+
+        @media #{$mq-desktop} {
+            @include at2x('/media/img/home/fundraiser/snap-03.jpg', 375px, 450px);
+            @include transform(rotate(-5deg));
+            display: block;
+            right: 90%;
+            top: 35px;
+        }
+
+        @media #{$mq-desktop-wide} {
+            right: 80%;
+        }
+    }
+
+    // Teacher with kids
+    .shot-four {
+        @include at2x('/media/img/home/fundraiser/snap-04.jpg', 375px, 450px);
+        @include transform(rotate(9deg));
+        display: block;
+        left: 66%;
+        top: -25px;
+
+        @media #{$mq-desktop} {
+            left: 62%;
+        }
+    }
+
+    // Pointing at a laptop
+    .shot-five {
+        @include at2x('/media/img/home/fundraiser/snap-05.jpg', 375px, 450px);
+        @include transform(rotate(8deg));
+        display: block;
+        left: 60%;
+        top: 520px;
+
+        @media #{$mq-desktop} {
+            left: 70%;
+        }
+    }
+
+    // Laptop closeup
+    .shot-six {
+        @include at2x('/media/img/home/fundraiser/snap-06.jpg', 375px, 450px);
+        @include transform(rotate(-4deg));
+        display: block;
+        left: 64%;
+        top: 220px;
+
+        @media #{$mq-desktop} {
+            left: 66%;
+        }
+    }
+
+    // Fox and Mark Surman's back
+    .shot-seven {
+        display: none;
+
+        @media #{$mq-desktop} {
+            @include at2x('/media/img/home/fundraiser/snap-07.jpg', 375px, 450px);
+            @include transform(rotate(5deg));
+            display: block;
+            right: 83%;
+            top: 380px;
+        }
+
+        @media #{$mq-desktop-wide} {
+            right: 78%;
+        }
+    }
+}
+
+html[dir="rtl"] {
+    .fundraising-takeover {
+        background-position: 54.5% -175px;
+
+        @media #{$mq-tall} {
+            background-position: 54.5% top;
+        }
+
+        @media #{$mq-tablet} {
+            background-position: center -175px;
+        }
+
+        @media #{$mq-tablet} and #{$mq-tall} {
+            background-position: center top;
+        }
+        .header-strip {
+            text-align: left;
+
+            button:after {
+                @include transform(rotate(180deg));
+                left: -6px;
+                right: auto;
+            }
+        }
+    }
+
+    .variant-b .takeover-content {
+        background-position: left -5px;
+
+        @media #{$mq-tablet} {
+            @include transform(translateX(-200px));
+            background-position: center top;
+        }
+
+        @media #{$mq-tall} {
+            background-position: left 160px;
+        }
+
+        @media #{$mq-tablet} {
+            background-position: center 30px;
+        }
+
+        @media #{$mq-tablet} and #{$mq-tall} {
+            background-position: center 160px;
+        }
+    }
+}
+
+
+
+.page-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #666;
+    background-color: rgba(0, 0, 0, .7);
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+}

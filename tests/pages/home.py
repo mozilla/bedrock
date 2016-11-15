@@ -10,8 +10,23 @@ from pages.regions.download_button import DownloadButton
 
 class HomePage(BasePage):
 
+    _take_over_locator = (By.ID, 'fundraising_takeover')
+    _take_over_close_button_locator = (By.ID, 'close_takeover')
     _download_button_locator = (By.ID, 'nav-download-firefox')
     _get_firefox_link_locator = (By.ID, 'fx-download-link')
+
+    @property
+    def is_take_over_displayed(self):
+        return self.is_element_displayed(*self._take_over_locator)
+
+    def wait_for_page_to_load(self):
+        super(BasePage, self).wait_for_page_to_load()
+        el = self.find_element(By.TAG_NAME, 'html')
+        self.wait.until(lambda s: 'eoy-takeover' in el.get_attribute('class'))
+        if self.is_take_over_displayed:
+            self.find_element(*self._take_over_close_button_locator).click()
+            self.wait.until(lambda s: not self.is_take_over_displayed)
+        return self
 
     @property
     def download_button(self):

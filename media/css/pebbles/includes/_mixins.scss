@@ -163,7 +163,7 @@
     &:before {
         content: "\25B8\00A0"; // triangle+space
         white-space: nowrap;
-        @include transform(rotate, 180deg);
+        @include transform(rotate(180deg));
     }
 }
 
