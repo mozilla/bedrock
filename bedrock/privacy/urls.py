@@ -14,6 +14,7 @@ urlpatterns = (
     url(r'^/firefox-os/$', views.firefox_os_notices, name='privacy.notices.firefox-os'),
     url(r'^/firefox-cloud/$', views.firefox_cloud_notices, name='privacy.notices.firefox-cloud'),
     url(r'^/firefox-hello/$', views.firefox_hello_notices, name='privacy.notices.firefox-hello'),
+    url(r'^/firefox-focus/$', views.firefox_focus_notices, name='privacy.notices.firefox-focus'),
     url(r'^/thunderbird/$', views.thunderbird_notices, name='privacy.notices.thunderbird'),
     url(r'^/websites/$', views.websites_notices, name='privacy.notices.websites'),
     url(r'^/facebook/$', views.facebook_notices, name='privacy.notices.facebook'),

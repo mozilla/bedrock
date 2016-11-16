@@ -86,6 +86,10 @@ firefox_hello_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-hello.html',
     legal_doc_name='WebRTC_PrivacyNotice')
 
+firefox_focus_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-focus.html',
+    legal_doc_name='focus_privacy_notice')
+
 thunderbird_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/thunderbird.html',
     legal_doc_name='thunderbird_privacy_policy')
