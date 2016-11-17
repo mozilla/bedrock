@@ -31,6 +31,16 @@ list of mentored bugs.
 [bugzilla]: https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org&component=Bedrock
 [wiki]: https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org#Mentored_Bugs
 
+Code of Conduct
+---------------
+
+This repository is governed by Mozilla's code of conduct and etiquette guidelines.
+For more details please see the [Mozilla Community Participation Guidelines][participation]
+and [Developer Etiquette Guidelines][etiquette].
+
+[participation]: https://www.mozilla.org/about/governance/policies/participation/
+[etiquette]: https://bugzilla.mozilla.org/page.cgi?id=etiquette.html
+
 License
 -------
 
