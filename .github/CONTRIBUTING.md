@@ -8,3 +8,13 @@ Following these guidelines will very much increase the chances of a pleasant
 code-review experience.
 
 [bedrock docs]: http://bedrock.readthedocs.org/en/latest/contribute.html
+
+Code of Conduct
+---------------
+
+This repository is governed by Mozilla's code of conduct and etiquette guidelines.
+For more details please see the [Mozilla Community Participation Guidelines][participation]
+and [Developer Etiquette Guidelines][etiquette].
+
+[participation]: https://www.mozilla.org/about/governance/policies/participation/
+[etiquette]: https://bugzilla.mozilla.org/page.cgi?id=etiquette.html
