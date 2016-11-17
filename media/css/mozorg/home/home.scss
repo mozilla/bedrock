@@ -33,7 +33,7 @@ body {
 }
 
 // Header
-.masthead {
+#masthead {
     background: $color-mozred-bright;
     color: #fff;
 
@@ -63,7 +63,7 @@ body {
 }
 
 @media #{$mq-tablet} {
-    .masthead {
+    #masthead {
         background: $color-mozred-bright;
         padding: 0;
 

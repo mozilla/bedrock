@@ -125,6 +125,10 @@
     }
 }
 
+[dir='rtl'] #colophon .col-2 ul li {
+    float: right;
+}
+
 @media #{$mq-tablet} {
     [dir='rtl'] #colophon {
         .col,

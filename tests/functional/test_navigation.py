@@ -10,16 +10,12 @@ from pages.home import HomePage
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
     page = HomePage(selenium, base_url).open()
-    about_page = page.navigation.open_about()
-    assert about_page.seed_url in selenium.current_url
+    internet_health_page = page.navigation.open_internet_health()
+    assert internet_health_page.seed_url in selenium.current_url
 
     page.open()
     technology_page = page.navigation.open_technology()
     assert technology_page.seed_url in selenium.current_url
-
-    page.open()
-    firefox_page = page.navigation.open_firefox()
-    assert firefox_page.seed_url in selenium.current_url
 
 
 @pytest.mark.smoke
@@ -28,13 +24,9 @@ def test_navigation(base_url, selenium):
 def test_mobile_navigation(base_url, selenium):
     page = HomePage(selenium, base_url).open()
     page.navigation.show()
-    about_page = page.navigation.open_about()
-    assert about_page.seed_url in selenium.current_url
+    internet_health_page = page.navigation.open_internet_health()
+    assert internet_health_page.seed_url in selenium.current_url
 
     page.open().navigation.show()
     technology_page = page.navigation.open_technology()
     assert technology_page.seed_url in selenium.current_url
-
-    page.open().navigation.show()
-    firefox_page = page.navigation.open_firefox()
-    assert firefox_page.seed_url in selenium.current_url

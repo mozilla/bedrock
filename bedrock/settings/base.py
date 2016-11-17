@@ -501,6 +501,10 @@ BLOG_FEEDS = {
         'url': 'https://blog.mozilla.org/futurereleases/',
         'name': 'Future Releases',
     },
+    'internetcitizen': {
+        'url': 'https://blog.mozilla.org/internetcitizen/',
+        'name': 'Internet Citizen'
+    },
 }
 
 EVENTS_ICAL_FEEDS = (

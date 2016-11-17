@@ -189,3 +189,10 @@
         top: 0;
     }
 }
+
+html[dir="rtl"] #newsletter-subscribe {
+    h3,
+    h4 {
+        text-align: right;
+    }
+}

@@ -342,3 +342,14 @@ def technology(request):
     return l10n_utils.render(request,
                              'mozorg/technology.html',
                              {'articles': articles})
+
+
+def internet_health(request):
+    try:
+        articles = list(BlogArticle.objects.filter(blog_name='Internet Citizen')[:4])
+    except Exception:
+        articles = None
+
+    return l10n_utils.render(request,
+                             'mozorg/internet-health.html',
+                             {'articles': articles})

@@ -110,6 +110,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/lightbeam-bundle.css',
     },
+    'internet-health': {
+        'source_filenames': (
+            'css/mozorg/internet-health.scss',
+        ),
+        'output_filename': 'css/mozorg/internet_health-bundle.css',
+    },
     'itu': {
         'source_filenames': (
             'css/mozorg/itu.less',
