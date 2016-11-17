@@ -21,6 +21,10 @@
         {% endtrans %}
         </p>
 
+        <ul class="extra">
+          <li><a href="https://www.facebook.com/MozillaTaiwan/" class="facebook">Facebook</a></li>
+        </ul>
+
         <figure class="feature-img">
           {% set pin = static('img/contact/moz-map-pin.png')|absolute_url %}
           <img src="https://api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ pin|urlencode }}(121.56705,25.03265)/121.56705,25.03265,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
