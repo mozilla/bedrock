@@ -520,4 +520,8 @@ redirectpatterns = (
 
     # bug 1299947
     redirect('^firefox/channel/?$', 'firefox.channel.desktop'),
+
+    # Bug 1277196
+    redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/firstrun/learnmore/?$', 'firefox.features'),
+    redirect(r'^firefox/windows-10/welcome/?$', 'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10'),
 )

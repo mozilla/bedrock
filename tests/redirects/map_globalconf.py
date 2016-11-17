@@ -1094,4 +1094,10 @@ URLS = flatten((
 
     # Bug 1313023
     url_test('/story', 'https://donate.mozilla.org/?source=story_redirect'),
+
+    # Bug 1277196
+    url_test('/firefox/firstrun/learnmore', '/firefox/features/'),
+    url_test('/firefox/{49.0,49.0.1,50.0a1,51.0a2}/firstrun/learnmore', '/firefox/features/'),
+    url_test('/firefox/windows-10/welcome', 'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10'),
+
 ))

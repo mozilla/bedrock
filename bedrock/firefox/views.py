@@ -449,28 +449,6 @@ class FirstrunView(LatestFxView):
         return [template]
 
 
-class FirstrunLearnMoreView(LatestFxView):
-
-    def get_context_data(self, **kwargs):
-        ctx = super(FirstrunLearnMoreView, self).get_context_data(**kwargs)
-
-        # add funnelcake version to context for use in templates
-        ctx['f'] = self.request.GET.get('f', '')
-
-        return ctx
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        funnelcake = self.request.GET.get('f', '')
-
-        if locale == 'en-US' and funnelcake in ['64', '65']:
-            template = 'firefox/firstrun/learnmore/yahoo-search.html'
-        else:
-            template = 'firefox/firstrun/learnmore/learnmore.html'
-
-        return [template]
-
-
 class WhatsnewView(LatestFxView):
 
     def get_context_data(self, **kwargs):
@@ -539,21 +517,6 @@ class FeedbackView(TemplateView):
             context['donate_stars_url'] = self.donate_url.format(score)
 
         return context
-
-
-class Win10Welcome(l10n_utils.LangFilesMixin, TemplateView):
-
-    def get_template_names(self):
-        # check for variant in querystring for multi-variant testing.
-        v = self.request.GET.get('v', '')
-        template = 'firefox/win10-welcome.html'
-
-        # ensure variant is one of 4 accepted values and locale is en-US only.
-        # now on round 3 of testing, hence "-3" in template name
-        if (v in map(str, range(1, 11)) and self.request.locale == 'en-US'):
-            template = 'firefox/win10_variants/variant-3-' + v + '.html'
-
-        return [template]
 
 
 class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
