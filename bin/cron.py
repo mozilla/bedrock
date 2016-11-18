@@ -103,7 +103,7 @@ def schedule_database_jobs():
     def update_firefox_os_feeds():
         call_command('runscript update_firefox_os_feeds')
 
-    @scheduled_job('interval', hours=12)
+    @scheduled_job('interval', hours=1)
     def update_blog_feeds():
         call_command('update_blog_feeds --database bedrock')
 
