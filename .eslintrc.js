@@ -7,6 +7,7 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "rules": {
+        "no-global-assign": 2,
         "indent": [
             2,
             4

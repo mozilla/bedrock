@@ -58,10 +58,10 @@ describe('global.js', function() {
         });
 
         it('should call triggerIEDownload when clicked', function () {
-            triggerIEDownload = sinon.stub();
+            spyOn(window, 'triggerIEDownload');
             initDownloadLinks();
             $('.download-link').trigger('click');
-            expect(triggerIEDownload.called).toBeTruthy();
+            expect(triggerIEDownload).toHaveBeenCalled();
         });
 
     });
