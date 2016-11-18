@@ -22,6 +22,8 @@ from jinja2 import Markup
 
 import lib.l10n_utils as l10n_utils
 import requests
+
+from bedrock.base import waffle
 from lib.l10n_utils.dotlang import _, _lazy
 from bedrock.base.urlresolvers import reverse
 
@@ -258,6 +260,9 @@ def existing(request, token=None):
         messages.add_message(request, messages.ERROR, bad_token)
         # Redirect to the recovery page
         return redirect(reverse('newsletter.recovery'))
+
+    if waffle.switch('newsletter-maintenance-mode'):
+        return l10n_utils.render(request, 'newsletter/existing.html')
 
     unsub_parm = None
 
