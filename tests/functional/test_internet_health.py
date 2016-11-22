@@ -7,7 +7,6 @@ import pytest
 from pages.internet_health import InternetHealthPage
 
 
-@pytest.mark.skipif(reason='Skip test until cron job has run in production')
 @pytest.mark.nondestructive
 def test_blog_feed_is_displayed(base_url, selenium):
     page = InternetHealthPage(selenium, base_url).open()
