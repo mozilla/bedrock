@@ -39,11 +39,6 @@ URLS = flatten((
         'utm_source': 'mozilla.org'
     }),
 
-    # bug 764261, 841393, 996608, 1008162, 1067691, 1113136, 1119022, 1131680, 1115626
-    url_test('/zh-TW/', 'http://mozilla.com.tw/'),
-    url_test('/zh-TW/mobile/', 'http://mozilla.com.tw/firefox/mobile/'),
-    url_test('/zh-TW/download/', 'http://mozilla.com.tw/firefox/download/'),
-
     # bug 874913
     url_test('/en-US/{,products/}download.html{,?stuff=whatnot}', '/en-US/firefox/new/'),
     url_test('/{,products/}download.html{,?stuff=whatnot}', '/firefox/new/'),
