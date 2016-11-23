@@ -360,6 +360,7 @@ html[dir="rtl"] {
         }
 
         .inner-container {
+            min-height: 360px;
             width: 320px;
         }
 
@@ -418,10 +419,10 @@ html[dir="rtl"] {
         .content {
             @include background-size(350px 350px);
             background-position: top 30px left 60px;
-            min-height: 450px;
         }
 
         .inner-container {
+            min-height: 420px;
             width: 440px;
         }
 
