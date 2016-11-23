@@ -1409,6 +1409,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_whatsnew_zh_tw_49-bundle.js',
     },
+    'firefox_whatsnew_50': {
+        'source_filenames': (
+            'js/base/send-to-device.js',
+            'js/firefox/whatsnew/whatsnew-50.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_50-bundle.js',
+    },
     'geolocation': {
         'source_filenames': (
             'js/libs/mapbox-2.3.0.js',
