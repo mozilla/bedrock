@@ -4,6 +4,8 @@
 from bedrock.base.waffle import switch
 from bedrock.mozorg.util import page
 from bedrock.redirects.util import redirect
+from django.conf.urls import url
+from bedrock.foundation import views
 
 
 SOM_2015_ENABLED = switch('som-2015')
@@ -11,7 +13,7 @@ SOM_REDIRECT = ('foundation.annualreport.2015.index' if SOM_2015_ENABLED else
                 'foundation.annualreport.2014.index')
 
 urlpatterns = (
-    page('', 'foundation/index.html'),
+    url('^$', views.foundation_index, name='foundation.index'),
     page('about', 'foundation/about.html'),
     page('issues', 'foundation/issues.html'),
     page('advocacy', 'foundation/advocacy.html'),

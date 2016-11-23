@@ -18,13 +18,26 @@
   {% endif %}
 {% endblock %}
 
+{% block experiments %}
+  {% if LANG.startswith('en-') and switch('experiment-search-activist') %}
+    {% javascript 'experiment-search-activist' %}
+  {% endif %}
+{% endblock %}
+
 {% block js %}
   {% javascript 'about_video' %}
+
+  {% if version == 'b' and switch('mozorg-search-activist') %}
+    {% javascript 'search-activist' %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
 <main>
   <header class="page-header">
+  {% if version == 'b' and switch('mozorg-search-activist') %}
+    {% include 'includes/google-search-activist.html' %}
+  {% endif %}
     <h1><span class="content">{{ _('Get to know Mozilla') }}</span></h1>
   </header>
 

@@ -360,3 +360,23 @@ def internet_health(request):
     return l10n_utils.render(request,
                              'mozorg/internet-health.html',
                              {'articles': articles})
+
+
+def about(request):
+    locale = l10n_utils.get_locale(request)
+    version = request.GET.get('v', None)
+
+    if (locale != 'en-US' or version != 'b'):
+        version = None
+
+    return l10n_utils.render(request, 'mozorg/about.html', {'version': version})
+
+
+def about_manifesto(request):
+    locale = l10n_utils.get_locale(request)
+    version = request.GET.get('v', None)
+
+    if (locale != 'en-US' or version != 'b'):
+        version = None
+
+    return l10n_utils.render(request, 'mozorg/about/manifesto.html', {'version': version})
