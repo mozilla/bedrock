@@ -62,7 +62,6 @@
   </footer>
 </section>
 
-{# Nighly download links for Android are not yet available Bug 1241114
 <section id="nightly" class="channel">
   <div class="container">
     <header>
@@ -75,8 +74,14 @@
       <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
     </p>
   </div>
+  <footer>
+    <div class="container">
+      <ul>
+        <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{_('Nightly Blog')}}</a></li>
+      </ul>
+    </div>
+  </footer>
 </section>
-#}
 {% endblock %}
 
 {% block test_pilot %}{% endblock %}

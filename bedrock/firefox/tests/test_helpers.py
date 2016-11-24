@@ -197,6 +197,35 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[5]).attr('class'), 'os_linux64')
 
     @patch.object(firefox_android._storage, 'data',
+                  Mock(return_value=dict(nightly_version='48.0a2')))
+    def test_latest_nightly_android(self):
+        """Android Gingerbread (2.3) is no longer supported as of Firefox 48"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        doc = pq(render("{{ download_firefox('nightly', platform='android') }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 2)
+        eq_(pq(list[0]).attr('class'), 'os_android armv7up api-15')
+        eq_(pq(list[1]).attr('class'), 'os_android x86')
+
+    @patch.object(firefox_android._storage, 'data',
+                  Mock(return_value=dict(nightly_version='47.0a2')))
+    def test_legacy_nightly_android(self):
+        """Android Gingerbread (2.3) is supported as of Firefox 47"""
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        doc = pq(render("{{ download_firefox('nightly', platform='android') }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 3)
+        eq_(pq(list[0]).attr('class'), 'os_android armv7up api-9')
+        eq_(pq(list[1]).attr('class'), 'os_android armv7up api-15')
+        eq_(pq(list[2]).attr('class'), 'os_android x86')
+
+    @patch.object(firefox_android._storage, 'data',
                   Mock(return_value=dict(alpha_version='48.0a2')))
     def test_latest_aurora_android(self):
         """Android Gingerbread (2.3) is no longer supported as of Firefox 48"""
