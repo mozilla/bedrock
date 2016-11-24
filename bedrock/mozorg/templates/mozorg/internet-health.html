@@ -4,9 +4,23 @@
 
 {% extends "base-pebbles.html" %}
 
-{% block page_title %}{{ _('Keeping the Internet healthy') }}{% endblock %}
+{% block page_title %}
+  {%- if l10n_has_tag('internet-health-meta-update') -%}
+    {{ _('Internet Health') }}
+  {%- else -%}
+    {{ _('Keeping the Internet healthy') }}
+  {%- endif -%}
+{% endblock %}
 
-{% block page_desc %}{{ _('The Internet is our largest shared global resource. Help us keep it healthy, open and safe.') }}{% endblock %}
+{% block page_desc %}
+  {%- if l10n_has_tag('internet-health-meta-update') -%}
+    {{ _('The healthier the Internet is, the more it benefits everyone. We can all be a part of keeping the Internet open, safe and accessible.') }}
+  {%- else -%}
+    {{ _('The Internet is our largest shared global resource. Help us keep it healthy, open and safe.') }}
+  {%- endif -%}
+{% endblock %}
+
+{% block page_image %}{{ static('img/mozorg/internet-health/header-small.jpg') }}{% endblock %}
 
 {% block body_id %}internet-health{% endblock %}
 {% block body_class %}{% endblock %}
