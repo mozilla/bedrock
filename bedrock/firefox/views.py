@@ -537,14 +537,6 @@ def new(request):
     else:
         template = 'firefox/new/scene1.html'
 
-        # en-US tests
-        locale = l10n_utils.get_locale(request)
-        version = request.GET.get('v', None)
-
-        # note version 'a' is omitted here as it's a double control group
-        if locale == 'en-US' and version in ['b', 'c']:
-            template = 'firefox/new/variant/scene1-v{0}.html'.format(version)
-
     return l10n_utils.render(request, template)
 
 
