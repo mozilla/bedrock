@@ -22,15 +22,15 @@ def android_builds(channel, builds=None):
         ('x86', 'x86'),
     ])
 
-    if channel == 'alpha':
-        version = int(firefox_android.latest_version('alpha').split('.', 1)[0])
+    if channel in ['alpha', 'nightly']:
+        version = int(firefox_android.latest_version(channel).split('.', 1)[0])
 
         for type, arch_pretty in variations.iteritems():
             # Android Gingerbread (2.3) is no longer supported as of Firefox 48
             if version >= 48 and type == 'api-9':
                 continue
 
-            link = firefox_android.get_download_url('alpha', type)
+            link = firefox_android.get_download_url(channel, type)
             builds.append({'os': 'android',
                            'os_pretty': 'Android',
                            'os_arch_pretty': 'Android %s' % arch_pretty,
@@ -120,17 +120,17 @@ def download_firefox(ctx, channel='release', platform='all',
     dom_id = dom_id or 'download-button-%s-%s' % (
         'desktop' if platform == 'all' else platform, channel)
 
-    l_version = firefox_desktop.latest_builds(locale, channel)
-    if l_version:
-        version, platforms = l_version
-    else:
-        locale = 'en-US'
-        version, platforms = firefox_desktop.latest_builds('en-US', channel)
-
     # Gather data about the build for each platform
     builds = []
 
     if show_desktop:
+        l_version = firefox_desktop.latest_builds(locale, channel)
+        if l_version:
+            version, platforms = l_version
+        else:
+            locale = 'en-US'
+            version, platforms = firefox_desktop.latest_builds('en-US', channel)
+
         for plat_os, plat_os_pretty in firefox_desktop.platform_labels.iteritems():
             # Fallback to en-US if this plat_os/version isn't available
             # for the current locale
@@ -167,9 +167,11 @@ def download_firefox(ctx, channel='release', platform='all',
                            'download_link_direct': download_link_direct})
 
     if show_android:
+        version = firefox_android.latest_version(channel)
         builds = android_builds(channel, builds)
 
     if show_ios:
+        version = firefox_ios.latest_version(channel)
         builds.append({'os': 'ios',
                        'os_pretty': 'iOS',
                        'download_link': firefox_ios.get_download_url()})

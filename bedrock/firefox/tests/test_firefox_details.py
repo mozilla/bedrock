@@ -345,8 +345,14 @@ class TestFirefoxDesktop(TestCase):
 
 
 @patch.object(firefox_android._storage, 'data',
-              Mock(return_value=dict(version='22.0.1', beta_version='23.0')))
+              Mock(return_value=dict(version='22.0.1',
+                                     beta_version='23.0',
+                                     alpha_version='24.0a2',
+                                     nightly_version='25.0a1')))
 class TestFirefoxAndroid(TestCase):
+    archive_url_base = 'https://archive.mozilla.org/pub/mobile/nightly/'
+    google_play_url_base = ('https://play.google.com/store/apps/details'
+                            '?id=org.mozilla.')
 
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
@@ -367,6 +373,50 @@ class TestFirefoxAndroid(TestCase):
         """Android Gingerbread (2.3) is supported as of Firefox 47"""
         platforms = [key for (key, value) in firefox_android.platforms('alpha')]
         eq_(platforms, ['android', 'android-api-9', 'android-x86'])
+
+    def test_get_download_url_nightly(self):
+        """
+        get_download_url should return a mozilla-central archive link depending
+        on the architecture type.
+        """
+        eq_(firefox_android.get_download_url('nightly', 'api-15'),
+            self.archive_url_base + 'latest-mozilla-central-android-api-15/'
+            'fennec-25.0a1.multi.android-arm.apk')
+        eq_(firefox_android.get_download_url('nightly', 'x86'),
+            self.archive_url_base + 'latest-mozilla-central-android-x86/'
+            'fennec-25.0a1.multi.android-i386.apk')
+
+    def test_get_download_url_aurora(self):
+        """
+        get_download_url should return a mozilla-aurora archive link depending
+        on the architecture type.
+        """
+        eq_(firefox_android.get_download_url('alpha', 'api-15'),
+            self.archive_url_base + 'latest-mozilla-aurora-android-api-15/'
+            'fennec-24.0a2.multi.android-arm.apk')
+        eq_(firefox_android.get_download_url('alpha', 'x86'),
+            self.archive_url_base + 'latest-mozilla-aurora-android-x86/'
+            'fennec-24.0a2.multi.android-i386.apk')
+
+    def test_get_download_url_beta(self):
+        """
+        get_download_url should return the same Google Play link of the
+        'org.mozilla.firefox_beta' product regardless of the architecture type.
+        """
+        ok_(firefox_android.get_download_url('beta', 'api-15')
+            .startswith(self.google_play_url_base + 'firefox_beta'))
+        ok_(firefox_android.get_download_url('beta', 'x86')
+            .startswith(self.google_play_url_base + 'firefox_beta'))
+
+    def test_get_download_url_release(self):
+        """
+        get_download_url should return the same Google Play link of the
+        'org.mozilla.firefox' product regardless of the architecture type.
+        """
+        ok_(firefox_android.get_download_url('release', 'api-15')
+            .startswith(self.google_play_url_base + 'firefox'))
+        ok_(firefox_android.get_download_url('release', 'x86')
+            .startswith(self.google_play_url_base + 'firefox'))
 
 
 @patch.object(firefox_ios._storage, 'data',
