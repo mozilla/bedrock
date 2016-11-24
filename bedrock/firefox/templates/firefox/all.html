@@ -23,7 +23,7 @@
   {%- if channel == 'beta' -%}
     {{ _('Download Firefox Beta in your language and experience cutting edge features before they make it to final release. Provide feedback to help us refine and polish the next version of Firefox.') }}
   {%- elif channel == 'alpha' -%}
-    {{ _('Download Firefox Developer Edition in your language to experience the newest features and innovations in an unstable environment even before they go to Beta. Give us feedback that will determine what makes it to Final Release and help shape the future of Firefox.') }}
+    {{ _('Download %s in your language to experience the newest features and innovations in an unstable environment even before they go to Beta. Give us feedback that will determine what makes it to Final Release and help shape the future of Firefox.')|format(channel_label) }}
   {%- elif channel == 'nightly' -%}
     {{ _('Are you a power-user comfortable installing pre-alpha software? Install Nightly and help us improve Firefox quality, hunt crashes and regressions and test new features as they get coded!') }}
   {%- elif channel == 'esr' -%}
@@ -34,7 +34,7 @@
 {% endblock %}
 
 {% block page_favicon %}
-  {%- if channel == 'alpha' -%}
+  {%- if platform == 'desktop' and channel == 'alpha' -%}
     {{ static('img/firefox/developer/favicon.png') }}
   {%- elif channel == 'nightly' -%}
     {{ static('img/firefox/nightly/favicon.png') }}
@@ -44,7 +44,7 @@
 {% endblock %}
 
 {% block page_favicon_large %}
-  {%- if channel == 'alpha' -%}
+  {%- if platform == 'desktop' and channel == 'alpha' -%}
     {{ static('img/firefox/developer/favicon-196.png') }}
   {%- elif channel == 'nightly' -%}
     {{ static('img/firefox/nightly/favicon-196.png') }}
@@ -54,7 +54,7 @@
 {% endblock %}
 
 {% block page_image %}
-  {%- if channel == 'alpha' -%}
+  {%- if platform == 'desktop' and channel == 'alpha' -%}
     {{ static('img/firefox/developer/page-image.png') }}
   {%- elif channel == 'nightly' -%}
     {{ static('img/firefox/nightly/page-image.png') }}
@@ -65,7 +65,7 @@
 
 {% block body_id %}firefox-all{% endblock %}
 {% block body_class -%}
-  sky {{ platform }} {{ channel }} {% if channel == 'alpha' %}blueprint{% endif %}
+  sky {{ platform }} {{ channel }} {% if platform == 'desktop' and channel == 'alpha' %}blueprint{% endif %}
 {% endblock %}
 
 {% block page_css %}
@@ -79,7 +79,7 @@
 {% endblock %}
 
 {% block site_header_logo %}
-  {% if channel == 'alpha' %}
+  {% if platform == 'desktop' and channel == 'alpha' %}
     <h2><a href="{{ url('firefox.developer') }}">{{ high_res_img('firefox/developer/title.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</a></h2>
   {% elif channel == 'nightly' %}
     <h2>{{ high_res_img('firefox/template/header-logo-nightly.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '70'}) }}</h2>
@@ -112,7 +112,9 @@
     </ul>
   </header>
 
-  {{ build_search_box(query, full_builds, test_builds) }}
+  {% if platform == 'desktop' %}
+    {{ build_search_box(query, full_builds, test_builds) }}
+  {% endif %}
 
   <main id="main-content" role="main" class="pager pager-with-tabs pager-no-history">
   {% if full_builds_next %}
@@ -178,7 +180,7 @@
 
 {% block js %}
   {# searching with js only makes sense if we're displaying all #}
-  {% if not query %}
+  {% if platform == 'desktop' and not query %}
     {% javascript 'firefox_all' %}
   {% endif %}
 {% endblock %}

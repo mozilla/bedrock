@@ -150,16 +150,12 @@ class TestFirefoxAll(TestCase):
 
     def test_android(self):
         """
-        Android x64 builds are only available in multi and en-US locales.
+        Android x64 builds are only available in multi locale.
         """
         resp = self.client.get(self._get_url('android'))
         doc = pq(resp.content)
         eq_(len(doc('tr#multi a')), 2)
         eq_(len(doc('tr#multi .android-x86')), 1)
-        eq_(len(doc('tr#en-US a')), 2)
-        eq_(len(doc('tr#en-US .android-x86')), 1)
-        eq_(len(doc('tr#fr a')), 1)
-        eq_(len(doc('tr#fr .android-x86')), 0)
 
     def test_404(self):
         """
@@ -167,9 +163,6 @@ class TestFirefoxAll(TestCase):
         Also, Firefox for Android doesn't have the ESR channel.
         """
         resp = self.client.get(self._get_url('ios'))
-        self.assertEqual(resp.status_code, 404)
-
-        resp = self.client.get(self._get_url('android', 'aurora'))
         self.assertEqual(resp.status_code, 404)
 
         resp = self.client.get(self._get_url('android', 'organizations'))
