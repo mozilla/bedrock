@@ -468,18 +468,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_scene2-bundle.css',
     },
-    'firefox_new_test_up_to_date_vb': {
-        'source_filenames': (
-            'css/firefox/new/variant/scene1-vb.less',
-        ),
-        'output_filename': 'css/firefox_new_test_up_to_date_vb-bundle.css',
-    },
-    'firefox_new_test_up_to_date_vc': {
-        'source_filenames': (
-            'css/firefox/new/variant/scene1-vc.less',
-        ),
-        'output_filename': 'css/firefox_new_test_up_to_date_vc-bundle.css',
-    },
     'firefox_organizations': {
         'source_filenames': (
             'css/firefox/organizations.less',

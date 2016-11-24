@@ -8,12 +8,6 @@
 
 {% extends "firefox/new/base.html" %}
 
-{% block experiments %}
-  {% if switch('experiment-firefox-new-up-to-date-users') %}
-    {% javascript 'experiment-firefox-new-up-to-date-users' %}
-  {% endif %}
-{% endblock %}
-
 {# all CSS must be in extrahead block for old IE #}
 {% block extrahead %}
   {% stylesheet 'firefox_new_common' %}
@@ -55,9 +49,8 @@
               </p>
             </div>{#-- /.version-message-container --#}
           </header>
-          {% block main_content %}
           <div class="main-content">
-            <h1 class="hide-for-refresh">{{ _('Browse Freely') }}</h1>
+            <h1>{{ _('Browse Freely') }}</h1>
             <section id="download-buttons">
               {# handles desktop users (windows, os x, linux) #}
               <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
@@ -69,20 +62,23 @@
                 {{ download_firefox(dom_id='download-button-mobile') }}
               </div>
             </section>{#-- /#download-buttons --#}
+            <p id="version-message-linux-arm" class="version-message">
+              {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
+            </p>
             <div id="refresh-firefox-wrapper">
-              <h2>{{ _('Give Firefox a tune up') }}</h2>
-              <button type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" data-button-name="Refresh Firefox" data-cta-position="Primary" class="button">{{ _('Refresh Firefox') }}</button>
-              <a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link" rel="external">{{ _('Learn more') }}</a>
+              <div class="refresh-inner-wrapper">
+                <button type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" data-button-name="Refresh Firefox" data-cta-position="Primary" class="button">{{ _('Refresh Firefox') }}</button>
+                <a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link" rel="external">{{ _('Learn more') }}</a>
+              </div>
             </div>
             <div class="desktop-latest-links-wrapper latest-links-wrapper">
               <ul>
-                <li><a class="more" href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
-                <li><a class="more" href="{{ firefox_url('desktop', 'all') }}#{{ LANG }}">{{_('Want a fresh copy?')}}</a></li>
+                <li><a class="more" rel="external" href="https://support.mozilla.org/products/firefox?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
               </ul>
             </div>
             <div class="android-latest-links-wrapper latest-links-wrapper">
               <ul>
-                <li><a class="more" href="{{ url('firefox.android.index') }}">{{_('Learn more about Firefox for Mobile')}}</a></li>
+                <li><a class="more" rel="external" href="https://support.mozilla.org/products/mobile">{{_('Need help?')}}</a></li>
               </ul>
             </div>
             <div class="fxos-latest-links-wrapper latest-links-wrapper">
@@ -91,11 +87,7 @@
                 <li><a class="more" href="{{ url('firefox.family.index') }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
               </ul>
             </div>
-            <p id="version-message-linux-arm" class="version-message">
-              {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
-            </p>
           </div>{#-- /.main-content --#}
-          {% endblock %}
         </div>{#-- /.inner-container --#}
       </div>
     </div>
