@@ -588,6 +588,10 @@ redirectpatterns = (
     # bug 1003737
     redirect(r'^impressum/?$', '/about/legal/impressum/'),
 
+    # Bug 682619
+    redirect(r'^support/thunderbird(/.*)?$', 'https://support.mozilla.org/products/thunderbird'),
+    redirect(r'^support/firefox(/.*)?$', 'https://support.mozilla.org/products/firefox'),
+
     # bug 1236910
     redirect(r'^support(/.*)?$', 'https://support.mozilla.org/'),
 
