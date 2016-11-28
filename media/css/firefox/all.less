@@ -79,8 +79,6 @@ body.nightly {
 #language-search {
     padding-top: @baseLine;
     padding-bottom: @baseLine;
-    margin-left: @gridGutterWidth * 1.5;
-    margin-right: @gridGutterWidth * 1.5;
     input[type=search] {
         .span(3);
         float: none;
@@ -284,7 +282,7 @@ body.nightly {
             vertical-align: middle;
         }
         .search-column {
-            width: 340px;
+            width: 460px;
             padding: 5px 0;
         }
         .other-column {
@@ -346,16 +344,17 @@ body.nightly {
     }
 
     #language-search {
-        margin-left: @gridGutterWidth;
-        margin-right: @gridGutterWidth;
         input[type=search] {
-            .span(3);
+            width: 100%;
             float: none;
             margin-left: 0;
             vertical-align: middle;
         }
+        button {
+            width: 100%;
+            margin-top: 10px;
+        }
         .search-column {
-            margin: 0 0 (@baseLine / 2) 0;
             float: none;
             width: auto;
         }
