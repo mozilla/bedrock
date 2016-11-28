@@ -366,6 +366,8 @@ PIPELINE_CSS = {
     },
     'nightly_whatsnew': {
         'source_filenames': (
+            'css/base/simple_footer.less',
+            'css/firefox/horizon/background.less',
             'css/firefox/nightly_whatsnew.less',
         ),
         'output_filename': 'css/nightly_whatsnew-bundle.css',
@@ -456,6 +458,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/simple_footer.less',
             'css/base/send-to-device.less',
+            'css/firefox/horizon/background.less',
             'css/firefox/mobile-download-desktop.less',
         ),
         'output_filename': 'css/firefox_mobile_download_desktop_bundle.css',
@@ -467,6 +470,7 @@ PIPELINE_CSS = {
             'css/tabzilla/tabzilla-static.less',
             'css/base/simple_footer.less',
             'css/base/platform-footer-links.less',
+            'css/firefox/horizon/background.less',
             'css/firefox/new/common.less',
         ),
         'output_filename': 'css/firefox_new_common-bundle.css',
@@ -567,6 +571,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/simple_footer.less',
             'css/base/send-to-device.less',
+            'css/firefox/horizon/background.less',
             'css/firefox/mobile-download-desktop.less',
             'css/firefox/whatsnew/whatsnew-50.less',
         ),

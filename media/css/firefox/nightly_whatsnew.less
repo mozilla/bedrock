@@ -3,18 +3,74 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../sandstone/lib.less';
+@import "horizon/lib.less";
 
-#masthead h2 img {
-    width: 305px;
+#outer-wrapper {
+    background: @horizonColorForeground;
+    overflow: hidden;
+}
 
-    @media (max-width: @breakMobileLandscape) {
-        width: 100%;
-        height: auto;
+#wrapper {
+    padding-bottom: 0;
+    width: 100%;
+}
+
+.inner-container {
+    margin: 0 auto;
+    width: @widthDesktop - (@gridGutterWidth * 2);
+
+    @media only screen and (max-width: @breakDesktop) {
+        width: @widthTablet - (@gridGutterWidth * 2);
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        width: @widthMobile - (@gridGutterWidth * 2);
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.large {
+    color: #fff;
+    text-shadow: none;
+}
+
+#masthead {
+    padding: 0;
+
+    h2 {
+        float: left;
+
+        img {
+            height: 70px;
+            max-width: none;
+            width: 305px;
+
+            @media (max-width: @breakMobileLandscape) {
+                height: auto;
+                width: 100%;
+            }
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            float: none;
+            padding-top: @baseLine * 3;
+            text-align: center;
+        }
     }
 }
 
 main {
     .main-content {
+        margin-top: @baseLine * 2;
         text-align: left;
         text-shadow: 1px 1px 0 rgba(0, 0, 0, .3);
 
@@ -39,13 +95,32 @@ main {
         }
     }
 
+    .inner-container {
+        padding-bottom: 270px;
+    }
+
     h1 {
+        .font-size(60px);
         color: #FFA800;
+        line-height: 1.2;
+        margin-bottom: @baseLine;
+
+        @media only screen and (max-width: @breakDesktop) {
+            .font-size(55px);
+        }
+
+        @media only screen and (max-width: @breakTablet) {
+            .font-size(36px);
+        }
     }
 
     h2 {
         .font-size(1.5rem);
         line-height: 1.2;
+    }
+
+    p {
+        color: #fff;
     }
 
     a {
