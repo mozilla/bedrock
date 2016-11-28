@@ -345,7 +345,9 @@ class TestFirefoxDesktop(TestCase):
 
 
 @patch.object(firefox_android._storage, 'data',
-              Mock(return_value=dict(version='22.0.1', beta_version='23.0')))
+              Mock(return_value=dict(version='22.0.1', beta_version='23.0',
+                                     alpha_version='24.0a2',
+                                     nightly_version='25.0a1')))
 class TestFirefoxAndroid(TestCase):
 
     def test_latest_release_version(self):
@@ -356,17 +358,64 @@ class TestFirefoxAndroid(TestCase):
         """latest_version should return the latest beta version."""
         eq_(firefox_android.latest_version('beta'), '23.0')
 
-    @patch.object(firefox_android, 'latest_version', Mock(return_value='48.0a2'))
-    def test_latest_alpha_platforms(self):
-        """Android Gingerbread (2.3) is no longer supported as of Firefox 48"""
-        platforms = [key for (key, value) in firefox_android.platforms('alpha')]
-        eq_(platforms, ['android', 'android-x86'])
+    def test_get_download_url_direct_arm(self):
+        """
+        get_download_url should return a Bouncer or archive download link for
+        each Firefox channel, with api-15 specified as the OS.
+        """
+        url = firefox_android.get_download_url('release', 'api-15', 'multi', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'fennec-latest'),
+                              ('os', 'android'), ('lang', 'multi')])
 
-    @patch.object(firefox_android, 'latest_version', Mock(return_value='47.0a2'))
-    def test_legacy_alpha_platforms(self):
-        """Android Gingerbread (2.3) is supported as of Firefox 47"""
-        platforms = [key for (key, value) in firefox_android.platforms('alpha')]
-        eq_(platforms, ['android', 'android-api-9', 'android-x86'])
+        url = firefox_android.get_download_url('beta', 'api-15', 'multi', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'fennec-beta-latest'),
+                              ('os', 'android'), ('lang', 'multi')])
+
+        eq_(firefox_android.get_download_url('alpha', 'api-15', 'multi', True),
+            'https://archive.mozilla.org/pub/mobile/nightly/latest-mozilla-'
+            'aurora-android-api-15/fennec-24.0a2.multi.android-arm.apk')
+
+        eq_(firefox_android.get_download_url('nightly', 'api-15', 'multi', True),
+            'https://archive.mozilla.org/pub/mobile/nightly/latest-mozilla-'
+            'central-android-api-15/fennec-25.0a1.multi.android-arm.apk')
+
+    def test_get_download_url_direct_x86(self):
+        """
+        get_download_url should return a Bouncer or archive download link for
+        each Firefox channel, with x86 specified as the OS.
+        """
+        url = firefox_android.get_download_url('release', 'x86', 'multi', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'fennec-latest'),
+                              ('os', 'android-x86'), ('lang', 'multi')])
+
+        url = firefox_android.get_download_url('beta', 'x86', 'multi', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'fennec-beta-latest'),
+                              ('os', 'android-x86'), ('lang', 'multi')])
+
+        eq_(firefox_android.get_download_url('alpha', 'x86', 'multi', True),
+            'https://archive.mozilla.org/pub/mobile/nightly/latest-mozilla-'
+            'aurora-android-x86/fennec-24.0a2.multi.android-i386.apk')
+
+        eq_(firefox_android.get_download_url('nightly', 'x86', 'multi', True),
+            'https://archive.mozilla.org/pub/mobile/nightly/latest-mozilla-'
+            'central-android-x86/fennec-25.0a1.multi.android-i386.apk')
+
+    def test_get_download_url_store(self):
+        """
+        get_download_url should return a Google Play download link for each
+        Firefox channel.
+        """
+        url = 'https://play.google.com/store/apps/details?id=org.mozilla.'
+        ok_(firefox_android.get_download_url('release')
+                .startswith(url + 'firefox'))
+        ok_(firefox_android.get_download_url('beta')
+                .startswith(url + 'firefox_beta'))
+        ok_(firefox_android.get_download_url('alpha')
+                .startswith(url + 'fennec_aurora'))
 
 
 @patch.object(firefox_ios._storage, 'data',

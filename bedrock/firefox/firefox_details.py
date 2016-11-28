@@ -294,13 +294,13 @@ class FirefoxDesktop(_ProductDetails):
 class FirefoxAndroid(_ProductDetails):
     # Architecture names defined in bouncer and these human-readable names
     platform_labels = OrderedDict([
-        ('android', _('Modern devices\n(Android 4.0+)')),
-        ('android-api-9', _('Legacy devices\n(Android 2.3)')),
-        ('android-x86', _('Intel devices\n(Android 4.0+ x86 CPU)')),
+        ('android', _('ARM devices\n(Android 4.0.3+)')),
+        ('android-x86', _('Intel devices\n(Android 4.0.3+ x86 CPU)')),
     ])
 
     # Human-readable channel names
     channel_labels = {
+        'nightly': _('Firefox Nightly'),
         'alpha': _('Firefox Aurora'),
         'beta': _('Firefox Beta'),
         'release': _('Firefox'),
@@ -308,6 +308,7 @@ class FirefoxAndroid(_ProductDetails):
 
     # Version property names in product-details
     version_map = {
+        'nightly': 'nightly_version',
         'alpha': 'alpha_version',
         'beta': 'beta_version',
         'release': 'version',
@@ -320,6 +321,12 @@ class FirefoxAndroid(_ProductDetails):
         'release': 'builds',
     }
 
+    # OS names defined in bouncer
+    arch_map = {
+        'api-15': 'android',
+        'x86': 'android-x86',
+    }
+
     # Product names defined in bouncer
     product_map = {
         'beta': 'fennec-beta-latest',
@@ -327,29 +334,27 @@ class FirefoxAndroid(_ProductDetails):
     }
 
     store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
-    aurora_url_base = ('https://archive.mozilla.org/pub/mobile/nightly/'
-                       'latest-mozilla-aurora-android')
-    aurora_urls = {
-        'api-9': aurora_url_base + '-api-9/fennec-%s.multi.android-arm.apk',
-        'api-15': aurora_url_base + '-api-15/fennec-%s.multi.android-arm.apk',
-        'x86': aurora_url_base + '-x86/fennec-%s.multi.android-i386.apk',
+
+    # Product IDs defined on Google Play
+    store_product_ids = {
+        'alpha': 'org.mozilla.fennec_aurora',
+        'beta': 'org.mozilla.firefox_beta',
+        'release': 'org.mozilla.firefox',
+    }
+
+    archive_url_base = ('https://archive.mozilla.org/pub/mobile/nightly/'
+                        'latest-mozilla-%s-android')
+    archive_urls_channel = {
+        'nightly': archive_url_base % 'central',
+        'alpha': archive_url_base % 'aurora',
+    }
+    archive_urls_arch = {
+        'api-15': '-api-15/fennec-%s.multi.android-arm.apk',
+        'x86': '-x86/fennec-%s.multi.android-i386.apk',
     }
 
     def platforms(self, channel='release'):
-        platforms = self.platform_labels.copy()
-        major_version = int(self.latest_version(channel).split('.', 1)[0])
-
-        # Android Gingerbread (2.3) is no longer supported as of Firefox 48
-        if major_version >= 48:
-            platforms['android'] = _('ARM devices\n(Android 4.0.3+)')
-            platforms['android-x86'] = _('Intel devices\n(Android 4.0.3+ x86 CPU)')
-            del platforms['android-api-9']
-
-        # Android Honeycomb (3.x) was supported on Firefox 45 and below
-        if major_version <= 45:
-            platforms['android'] = _('Modern devices\n(Android 3.0+)')
-
-        return platforms.items()
+        return self.platform_labels.copy().items()
 
     def latest_version(self, channel):
         version = self.version_map.get(channel, 'version')
@@ -365,13 +370,11 @@ class FirefoxAndroid(_ProductDetails):
         :param query: a string to match against native or english locale name
         :return: list
         """
-        product = self.product_map.get(channel, 'fennec-latest')
-        locales = [build['locale']['code'] for build in builds]
         f_builds = []
 
-        # Prepend multi-locale build
-        locales.sort()
-        locales.insert(0, 'multi')
+        # For now, only list the multi-locale builds because the single-locale
+        # builds are fragile (Bug 1301650)
+        locales = ['multi']
 
         for locale in locales:
             if locale == 'multi':
@@ -394,21 +397,14 @@ class FirefoxAndroid(_ProductDetails):
             if query is not None and not self._matches_query(build_info, query):
                 continue
 
-            for arch, label in self.platform_labels.iteritems():
+            for arch, os in self.arch_map.iteritems():
                 # x86 builds are not localized yet
-                if arch == 'android-x86' and locale not in ['multi', 'en-US']:
+                if arch == 'x86' and locale not in ['multi', 'en-US']:
                     continue
 
-                params = urlencode([
-                    ('product', product),
-                    ('os', arch),
-                    # Order matters, lang must be last for bouncer.
-                    ('lang', locale),
-                ])
-
-                build_info['platforms'][arch] = {
-                    'download_url': '?'.join([self.bouncer_url, params])
-                }
+                # Use a direct link instead of Google Play
+                link = self.get_download_url(channel, arch, locale, True)
+                build_info['platforms'][os] = {'download_url': link}
 
             f_builds.append(build_info)
 
@@ -430,13 +426,35 @@ class FirefoxAndroid(_ProductDetails):
         # We don't have pre-release builds yet
         return []
 
-    def get_download_url(self, channel, type=None):
-        if channel == 'alpha':
-            return self.aurora_urls[type] % self.latest_version('alpha')
+    def get_download_url(self, channel, arch='api-15', locale='multi',
+                         force_direct=False):
+        """
+        Return filtered builds for the fully translated releases.
+        :param channel: one of self.version_map.keys().
+        :param arch: one of self.arch_map.keys().
+        :param locale: e.g. pt-BR.
+        :param force_direct: if False, return a link to the Google Play store.
+        :return: list
+        """
+        # Use a direct link for Nightly until Bug 1241114 is solved
+        if channel == 'nightly':
+            force_direct = True
 
-        if channel == 'beta':
-            return self.store_url.replace('org.mozilla.firefox',
-                                          'org.mozilla.firefox_beta')
+        if force_direct:
+            if channel in ['nightly', 'alpha']:
+                return (self.archive_urls_channel[channel] +
+                    self.archive_urls_arch[arch]) % self.latest_version(channel)
+
+            return '?'.join([self.bouncer_url, urlencode([
+                    ('product', self.product_map.get(channel, 'fennec-latest')),
+                    ('os', self.arch_map[arch]),
+                    # Order matters, lang must be last for bouncer.
+                    ('lang', locale),
+                ])])
+
+        if channel in ['alpha', 'beta']:
+            return self.store_url.replace(self.store_product_ids['release'],
+                                          self.store_product_ids[channel])
 
         return self.store_url
 

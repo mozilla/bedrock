@@ -57,12 +57,13 @@
     <div class="container">
       <ul>
         <li><a href="{{ firefox_url('android', 'notes', 'aurora') }}">{{_('Release Notes')}}</a></li>
+        <li><a href="https://support.mozilla.org/kb/participate-firefox-android-testing-program">{{_('Learn more')}}</a></li>
+        <li><a href="{{ firefox_url('android', 'all', 'aurora') }}">{{_('All Languages and Builds')}}</a></li>
       </ul>
     </div>
   </footer>
 </section>
 
-{# Nighly download links for Android are not yet available Bug 1241114
 <section id="nightly" class="channel">
   <div class="container">
     <header>
@@ -75,8 +76,15 @@
       <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
     </p>
   </div>
+  <footer>
+    <div class="container">
+      <ul>
+        <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{_('Nightly Blog')}}</a></li>
+        <li><a href="{{ firefox_url('android', 'all', 'nightly') }}">{{_('All Languages and Builds')}}</a></li>
+      </ul>
+    </div>
+  </footer>
 </section>
-#}
 {% endblock %}
 
 {% block test_pilot %}{% endblock %}
