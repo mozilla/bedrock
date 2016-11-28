@@ -348,6 +348,19 @@ class TestFirefoxDesktop(TestCase):
               Mock(return_value=dict(version='22.0.1', beta_version='23.0')))
 class TestFirefoxAndroid(TestCase):
 
+    def test_get_download_url(self):
+        """
+        get_download_url should return a Google Play download link for each
+        Firefox channel.
+        """
+        url = 'https://play.google.com/store/apps/details?id=org.mozilla.'
+        ok_(firefox_android.get_download_url('release')
+                .startswith(url + 'firefox'))
+        ok_(firefox_android.get_download_url('beta')
+                .startswith(url + 'firefox_beta'))
+        ok_(firefox_android.get_download_url('alpha')
+                .startswith(url + 'fennec_aurora'))
+
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
         eq_(firefox_android.latest_version('release'), '22.0.1')
