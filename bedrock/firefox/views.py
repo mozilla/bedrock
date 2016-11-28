@@ -435,7 +435,10 @@ class FirstrunView(LatestFxView):
         if detect_channel(version) == 'alpha':
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
-            if locale == 'en-US' and funnelcake == '90':
+            # Yahoo search retention funnelcake test
+            if locale == 'en-US' and funnelcake == '92':
+                template = 'firefox/firstrun/yahoo-retention.html'
+            elif locale == 'en-US' and funnelcake == '90':
                 # ravioli/katie couric promo
                 template = 'firefox/firstrun/ravioli.html'
             else:

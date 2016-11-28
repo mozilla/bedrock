@@ -379,6 +379,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun-horizon-bundle.css',
     },
+    'firefox_firstrun_yahoo_retention': {
+        'source_filenames': (
+            'css/firefox/firstrun/yahoo-retention.less',
+        ),
+        'output_filename': 'css/firefox_firstrun_yahoo_retention-bundle.css',
+    },
     'firefox_firstrun_ravioli': {
         'source_filenames': (
             'css/firefox/firstrun/ravioli.less',
@@ -1415,6 +1421,13 @@ PIPELINE_JS = {
             'js/firefox/whatsnew/whatsnew-50.js',
         ),
         'output_filename': 'js/firefox_whatsnew_50-bundle.js',
+    },
+    'firefox_firstrun_yahoo_retention': {
+        'source_filenames': (
+            'js/base/uitour-lib.js',
+            'js/firefox/firstrun/yahoo-retention.js',
+        ),
+        'output_filename': 'js/firefox_firstrun_yahoo_retention-bundle.js',
     },
     'geolocation': {
         'source_filenames': (
