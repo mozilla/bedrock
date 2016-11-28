@@ -83,7 +83,14 @@
         <li class="policy-firefox-os"><a href="{{ url('privacy.notices.firefox-os') }}">{{ _('Firefox OS') }}</a></li>
         <li class="policy-firefox-cloud"><a href="{{ url('privacy.notices.firefox-cloud') }}">{{ _('Firefox Cloud Services') }}</a></li>
         <li class="policy-marketplace"><a href="https://marketplace.firefox.com/privacy-policy">{{ _('Firefox Marketplace') }}</a></li>
-        <li class="policy-firefox-focus"><a href="{{ url('privacy.notices.firefox-focus') }}">{{ _('Firefox Focus') }}</a></li>
+        <li class="policy-firefox-focus">
+        {% if LANG == 'de' %}
+          {# bug 1319207 - As product names are not exposed to L10n, best to specify unique name for de #}
+          <a href="{{ url('privacy.notices.firefox-klar') }}">Firefox Klar</a>
+        {% else %}
+          <a href="{{ url('privacy.notices.firefox-focus') }}">{{ _('Firefox Focus') }}</a>
+        {% endif %}
+        </li>
         <li class="policy-persona"><a href="{{ url('persona.privacy-policy') }}">{{ _('Persona') }}</a></li>
         <li class="policy-thunderbird"><a href="{{ url('privacy.notices.thunderbird') }}">{{ _('Thunderbird') }}</a></li>
       </ul>

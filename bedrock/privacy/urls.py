@@ -15,6 +15,8 @@ urlpatterns = (
     url(r'^/firefox-cloud/$', views.firefox_cloud_notices, name='privacy.notices.firefox-cloud'),
     url(r'^/firefox-hello/$', views.firefox_hello_notices, name='privacy.notices.firefox-hello'),
     url(r'^/firefox-focus/$', views.firefox_focus_notices, name='privacy.notices.firefox-focus'),
+    # bug 1319207 - special URL for Firefox Focus in de locale
+    url(r'^/firefox-klar/$', views.firefox_focus_notices, name='privacy.notices.firefox-klar'),
     url(r'^/thunderbird/$', views.thunderbird_notices, name='privacy.notices.thunderbird'),
     url(r'^/websites/$', views.websites_notices, name='privacy.notices.websites'),
     url(r'^/facebook/$', views.facebook_notices, name='privacy.notices.facebook'),
