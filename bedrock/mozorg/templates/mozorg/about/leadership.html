@@ -124,7 +124,7 @@
 
       <article id="chris-beard" data-id="chris-beard" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
-          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/chris-beard.jpg') }}">
+          {{ high_res_img('mozorg/about/leadership/chris-beard.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Chris Beard</h4></figcaption>
         </figure>
 
@@ -222,7 +222,7 @@
 
       <article id="jim-cook" data-id="jim-cook" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
-          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/jim-cook.jpg') }}">
+          {{ high_res_img('mozorg/about/leadership/jim-cook.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Jim Cook</h4></figcaption>
         </figure>
 
@@ -1135,8 +1135,14 @@
       </li>
       <li class="vcard" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
-          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/chris-beard.jpg') }}">
+          {{ high_res_img('mozorg/about/leadership/chris-beard.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Chris Beard</h4></figcaption>
+        </figure>
+      </li>
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('mozorg/about/leadership/julie-hanna.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Julie Hanna</h4></figcaption>
         </figure>
       </li>
       <li class="vcard" itemscope itemtype="http://schema.org/Person">
