@@ -671,6 +671,32 @@ html[dir="rtl"] #technologies > section {
     }
 }
 
+// Rust modal video overlay
+#video-container {
+    display: none;
+}
+
+#modal .window .inner #video-container.overlay-contents {
+    background: #000;
+    display: block;
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+    top: 20px;
+
+    @media #{$mq-tablet} {
+        top: 40px;
+    }
+
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
 /*--------------------------------------------------------------------------*/
 // Newsletter
 
