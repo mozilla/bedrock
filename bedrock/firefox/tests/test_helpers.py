@@ -145,6 +145,26 @@ class TestDownloadButtons(TestCase):
         for link in links:
             ok_('stub' not in pq(link).attr('href'))
 
+    def test_nightly_desktop(self):
+        """
+        The Nightly channel should have the Windows universal stub installer
+        instead of the Windows 64-bit build
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_firefox('nightly', platform='desktop') }}",
+                        {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_winsha1')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        ok_('stub' in pq(pq(list[1]).find('a')[0]).attr('href'))
+
     def test_aurora_desktop(self):
         """The Aurora channel should have Windows 64 build"""
         rf = RequestFactory()

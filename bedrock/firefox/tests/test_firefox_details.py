@@ -157,13 +157,16 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'linux64'),
                               ('lang', 'pt-BR')])
 
-    def test_get_download_url_nightly(self):
-        """The Nightly version should give us a direct url."""
+    def test_get_download_url_nightly_stub(self):
+        """
+        The Nightly version should give us a direct url. For Windows platforms,
+        a universal stub installer is served by default.
+        """
         url_base = 'https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/'
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'win', 'en-US', True),
-            url_base + 'firefox-50.0a1.en-US.win32.installer.exe')
+            url_base + 'firefox-50.0a1.en-US.win32.installer-stub.exe')
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'win64', 'en-US', True),
-            url_base + 'firefox-50.0a1.en-US.win64.installer.exe')
+            url_base + 'firefox-50.0a1.en-US.win32.installer-stub.exe')
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'osx', 'en-US', True),
             url_base + 'firefox-50.0a1.en-US.mac.dmg')
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'linux', 'en-US', True),
@@ -171,18 +174,56 @@ class TestFirefoxDesktop(TestCase):
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'linux64', 'en-US', True),
             url_base + 'firefox-50.0a1.en-US.linux-x86_64.tar.bz2')
 
-    def test_get_download_url_nightly_l10n(self):
-        """Nightly non en-US should have a slightly different directory name."""
+    def test_get_download_url_nightly_full(self):
+        """
+        The Nightly version should give us a direct url. For Windows platforms,
+        a full installer is served if the force_full_installer option is enabled.
+        """
+        url_base = 'https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central/'
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'win', 'en-US', True, True),
+            url_base + 'firefox-50.0a1.en-US.win32.installer.exe')
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'win64', 'en-US', True, True),
+            url_base + 'firefox-50.0a1.en-US.win64.installer.exe')
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'osx', 'en-US', True, True),
+            url_base + 'firefox-50.0a1.en-US.mac.dmg')
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'linux', 'en-US', True, True),
+            url_base + 'firefox-50.0a1.en-US.linux-i686.tar.bz2')
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'linux64', 'en-US', True, True),
+            url_base + 'firefox-50.0a1.en-US.linux-x86_64.tar.bz2')
+
+    def test_get_download_url_nightly_l10n_stub(self):
+        """
+        Nightly non en-US should have a slightly different directory name. For
+        Windows platforms, a universal stub installer is served by default.
+        """
         url_base = 'https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central-l10n/'
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'win', 'pt-BR', True),
-            url_base + 'firefox-50.0a1.pt-BR.win32.installer.exe')
+            url_base + 'firefox-50.0a1.pt-BR.win32.installer-stub.exe')
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'win64', 'pt-BR', True),
-            url_base + 'firefox-50.0a1.pt-BR.win64.installer.exe')
+            url_base + 'firefox-50.0a1.pt-BR.win32.installer-stub.exe')
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'osx', 'pt-BR', True),
             url_base + 'firefox-50.0a1.pt-BR.mac.dmg')
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'linux', 'pt-BR', True),
             url_base + 'firefox-50.0a1.pt-BR.linux-i686.tar.bz2')
         eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'linux64', 'pt-BR', True),
+            url_base + 'firefox-50.0a1.pt-BR.linux-x86_64.tar.bz2')
+
+    def test_get_download_url_nightly_l10n_full(self):
+        """
+        Nightly non en-US should have a slightly different directory name. For
+        Windows platforms, a full installer is served if the force_full_installer
+        option is enabled.
+        """
+        url_base = 'https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central-l10n/'
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'win', 'pt-BR', True, True),
+            url_base + 'firefox-50.0a1.pt-BR.win32.installer.exe')
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'win64', 'pt-BR', True, True),
+            url_base + 'firefox-50.0a1.pt-BR.win64.installer.exe')
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'osx', 'pt-BR', True, True),
+            url_base + 'firefox-50.0a1.pt-BR.mac.dmg')
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'linux', 'pt-BR', True, True),
+            url_base + 'firefox-50.0a1.pt-BR.linux-i686.tar.bz2')
+        eq_(firefox_desktop.get_download_url('nightly', '50.0a1', 'linux64', 'pt-BR', True, True),
             url_base + 'firefox-50.0a1.pt-BR.linux-x86_64.tar.bz2')
 
     def test_get_download_url_scene2_funnelcake(self):

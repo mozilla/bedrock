@@ -245,6 +245,10 @@ class FirefoxDesktop(_ProductDetails):
             _dir = self.nightly_url_base + ('' if locale == 'en-US' else '-l10n')
             _suffix = self.platform_file_suffixes.get(_platform)
 
+            # Use a different file name for the Windows stub installer
+            if _platform in ['win', 'win64'] and not force_full_installer:
+                _suffix = 'win32.installer-stub.exe'
+
             return '{dir}/firefox-{version}.{locale}.{suffix}'.format(
                 dir=_dir, version=_version, locale=_locale, suffix=_suffix)
 

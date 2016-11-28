@@ -132,6 +132,17 @@ def download_firefox(ctx, channel='release', platform='all',
 
     if show_desktop:
         for plat_os, plat_os_pretty in firefox_desktop.platform_labels.iteritems():
+            os_pretty = plat_os_pretty
+
+            # Firefox Nightly: The Windows stub installer is now universal,
+            # automatically detecting a 32-bit and 64-bit desktop, so the
+            # win64-specific entry can be skipped.
+            if channel == 'nightly':
+                if plat_os == 'win':
+                    os_pretty = 'Windows 32/64-bit'
+                if plat_os == 'win64':
+                    continue
+
             # Fallback to en-US if this plat_os/version isn't available
             # for the current locale
             _locale = locale if plat_os_pretty in platforms else 'en-US'
@@ -162,7 +173,7 @@ def download_firefox(ctx, channel='release', platform='all',
                     download_link_direct = False
 
             builds.append({'os': plat_os,
-                           'os_pretty': plat_os_pretty,
+                           'os_pretty': os_pretty,
                            'download_link': download_link,
                            'download_link_direct': download_link_direct})
 
