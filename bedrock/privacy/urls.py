@@ -13,7 +13,6 @@ urlpatterns = (
     url(r'^/firefox/$', views.firefox_notices, name='privacy.notices.firefox'),
     url(r'^/firefox-os/$', views.firefox_os_notices, name='privacy.notices.firefox-os'),
     url(r'^/firefox-cloud/$', views.firefox_cloud_notices, name='privacy.notices.firefox-cloud'),
-    url(r'^/firefox-hello/$', views.firefox_hello_notices, name='privacy.notices.firefox-hello'),
     url(r'^/firefox-focus/$', views.firefox_focus_notices, name='privacy.notices.firefox-focus'),
     # bug 1319207 - special URL for Firefox Focus in de locale
     url(r'^/firefox-klar/$', views.firefox_focus_notices, name='privacy.notices.firefox-klar'),
@@ -34,6 +33,8 @@ urlpatterns = (
     page('/archive/firefox/2012-12', 'privacy/archive/firefox-2012-12.html'),
     page('/archive/firefox/2013-05', 'privacy/archive/firefox-2013-05.html'),
     page('/archive/firefox/third-party', 'privacy/archive/firefox-third-party.html'),
+    page('/archive/hello/2014-11', 'privacy/archive/hello-2014-11.html'),
+    page('/archive/hello/2016-03', 'privacy/archive/hello-2016-03.html'),
     page('/archive/thunderbird/2010-06', 'privacy/archive/thunderbird-2010-06.html'),
     page('/archive/websites/2013-08', 'privacy/archive/websites-2013-08.html'),
 )

@@ -29,7 +29,6 @@ def pytest_generate_tests(metafunc):
         '/privacy/firefox/',
         '/privacy/firefox-os/',
         '/privacy/firefox-cloud/',
-        '/privacy/firefox-hello/',
         '/privacy/thunderbird/',
         '/security/',
         '/security/advisories/',
