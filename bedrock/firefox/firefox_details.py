@@ -308,6 +308,7 @@ class FirefoxAndroid(_ProductDetails):
 
     # Version property names in product-details
     version_map = {
+        'nightly': 'nightly_version',
         'alpha': 'alpha_version',
         'beta': 'beta_version',
         'release': 'version',
@@ -327,12 +328,12 @@ class FirefoxAndroid(_ProductDetails):
     }
 
     store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
-    aurora_url_base = ('https://archive.mozilla.org/pub/mobile/nightly/'
-                       'latest-mozilla-aurora-android')
-    aurora_urls = {
-        'api-9': aurora_url_base + '-api-9/fennec-%s.multi.android-arm.apk',
-        'api-15': aurora_url_base + '-api-15/fennec-%s.multi.android-arm.apk',
-        'x86': aurora_url_base + '-x86/fennec-%s.multi.android-i386.apk',
+    archive_url_base = ('https://archive.mozilla.org/pub/mobile/nightly/'
+                        'latest-mozilla-%s-android')
+    archive_urls = {
+        'api-9': archive_url_base + '-api-9/fennec-%s.multi.android-arm.apk',
+        'api-15': archive_url_base + '-api-15/fennec-%s.multi.android-arm.apk',
+        'x86': archive_url_base + '-x86/fennec-%s.multi.android-i386.apk',
     }
 
     def platforms(self, channel='release'):
@@ -431,8 +432,11 @@ class FirefoxAndroid(_ProductDetails):
         return []
 
     def get_download_url(self, channel, type=None):
+        if channel == 'nightly':
+            return self.archive_urls[type] % ('central', self.latest_version(channel))
+
         if channel == 'alpha':
-            return self.aurora_urls[type] % self.latest_version('alpha')
+            return self.archive_urls[type] % ('aurora', self.latest_version(channel))
 
         if channel == 'beta':
             return self.store_url.replace('org.mozilla.firefox',
