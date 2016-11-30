@@ -34,8 +34,8 @@
 {% endblock %}
 
 {% block experiments %}
-  {% if LANG.startswith('en-') and switch('experiment-home-fx-copy') %}
-    {% javascript 'experiment-home-fx-copy' %}
+  {% if l10n_has_tag('mozorg-home-fundraising-2016') and switch('experiment-home-fundraising-2016') %}
+    {% javascript 'experiment-home-fundraising-2016' %}
   {% endif %}
 {% endblock %}
 
@@ -212,6 +212,15 @@
   </aside>
 
 </main>
+
+{% if l10n_has_tag('mozorg-home-fundraising-2016') and switch('mozorg-home-fundraising-2016') %}
+  {% block home_takeover %}
+    {% with variant = 'takeoverA' %}
+      {% include 'mozorg/home/includes/takeover-2016.html' %}
+    {% endwith %}
+  {% endblock %}
+{% endif %}
+
 {% endblock %}
 
 {% block js %}

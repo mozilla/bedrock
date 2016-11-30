@@ -254,13 +254,19 @@ def home_tweets(locale):
 
 def home(request, template='mozorg/home/home.html'):
     locale = l10n_utils.get_locale(request)
+    donate_params = settings.DONATE_PARAMS.get(
+        locale, settings.DONATE_PARAMS['en-US'])
+
+    # presets are stored as a string but, for the takeover modal
+    # we need it as a list.
+    donate_params['preset_list'] = donate_params['presets'].split(',')
 
     if lang_file_is_active('mozorg/home/index-2016', locale):
-        # check for variant - fx copy experiment
+        # check for variant - fundraising takeover
         v = request.GET.get('v', None)
 
-        if (locale.startswith('en-') and v in ['a', 'b', 'c']):
-            template = 'mozorg/home/home-{0}.html'.format(v)
+        if (v == 'b'):
+            template = 'mozorg/home/home-b.html'.format(v)
         else:
             template = 'mozorg/home/home.html'
     else:
@@ -268,6 +274,7 @@ def home(request, template='mozorg/home/home.html'):
 
     return l10n_utils.render(
         request, template, {
+            'donate_params': donate_params,
             'has_contribute': lang_file_is_active('mozorg/contribute'),
             'tweets': home_tweets(locale),
             'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(

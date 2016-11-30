@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -675,291 +676,349 @@ DONATE_LINK = ('https://donate.mozilla.org/{locale}/?presets={presets}'
 DONATE_PARAMS = {
     'en-US': {
         'currency': 'usd',
+        'symbol': '$',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'an': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'as': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'ast': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'brx': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'ca': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'cs': {
         'currency': 'czk',
+        'symbol': u'Kč',
         'presets': '400,200,100,55',
         'default': '200'
     },
     'cy': {
         'currency': 'gbp',
+        'symbol': u'£',
         'presets': '20,10,5,3',
         'default': '10'
     },
     'da': {
         'currency': 'dkk',
+        'symbol': 'kr',
         'presets': '160,80,40,20',
         'default': '80'
     },
     'de': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'dsb': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'el': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'en-GB': {
         'currency': 'gbp',
+        'symbol': u'£',
         'presets': '20,10,5,3',
         'default': '10'
     },
     'es-ES': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'es-MX': {
         'currency': 'mxn',
+        'symbol': '$',
         'presets': '240,120,60,35',
         'default': '120'
     },
     'eo': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'et': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'eu': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'fi': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'fr': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'fy-NL': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'ga-IE': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'gd': {
         'currency': 'gbp',
+        'symbol': u'£',
         'presets': '20,10,5,3',
         'default': '10'
     },
     'gl': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'gu-IN': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'he': {
         'currency': 'ils',
+        'symbol': u'₪',
         'presets': '60,30,15,9',
         'default': '30'
     },
     'hi-IN': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'hsb': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'hu': {
         'currency': 'huf',
+        'symbol': 'Ft',
         'presets': '4000,2000,1000,600',
         'default': '2000'
     },
     'id': {
         'currency': 'idr',
+        'symbol': 'Rp',
         'presets': '270000,140000,70000,40000',
         'default': '140000'
     },
     'in': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'it': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'ja': {
         'currency': 'jpy',
+        'symbol': u'¥',
         'presets': '1600,800,400,250',
         'default': '800'
     },
     'ja-JP': {
         'currency': 'jpy',
+        'symbol': u'¥',
         'presets': '1600,800,400,250',
         'default': '800'
     },
     'ja-JP-mac': {
         'currency': 'jpy',
+        'symbol': u'¥',
         'presets': '1600,800,400,250',
         'default': '800'
     },
     'kn': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'lij': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'lt': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'lv': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'ml': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'mr': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'nb-NO': {
         'currency': 'nok',
+        'symbol': 'kr',
         'presets': '160,80,40,20',
         'default': '80'
     },
     'nn-NO': {
         'currency': 'nok',
+        'symbol': 'kr',
         'presets': '160,80,40,20',
         'default': '80'
     },
     'nl': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'or': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'pa-IN': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'pl': {
         'currency': 'pln',
+        'symbol': u'zł',
         'presets': '80,40,20,10',
         'default': '40'
     },
     'pt-BR': {
         'currency': 'brl',
+        'symbol': 'R$',
         'presets': '375,187,90,55',
         'default': '187'
     },
     'pt-PT': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'ru': {
         'currency': 'rub',
+        'symbol': u'₽',
         'presets': '1000,500,250,140',
         'default': '500'
     },
     'sat': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'sk': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'sl': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'sv-SE': {
         'currency': 'sek',
+        'symbol': 'kr',
         'presets': '160,80,40,20',
         'default': '80'
     },
     'sr': {
         'currency': 'eur',
+        'symbol': u'€',
         'presets': '100,50,25,15',
         'default': '50'
     },
     'ta': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'te': {
         'currency': 'inr',
+        'symbol': u'₹',
         'presets': '1000,500,250,150',
         'default': '500'
     },
     'th': {
         'currency': 'thb',
+        'symbol': u'฿',
         'presets': '500,250,125,75',
         'default': '250'
     },

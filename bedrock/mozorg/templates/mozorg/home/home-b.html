@@ -6,10 +6,13 @@
 
 {% add_lang_files "mozorg/home/index-2016" %}
 
-{% block fx_copy %}
-  <h2>The Web is yours</h2>
+{% block body_class %}{{ super() }} variant-b{% endblock %}
 
-  <p>
-    Explore it your way with the speed and security of Firefox.
-  </p>
-{% endblock %}
+{% if l10n_has_tag('mozorg-home-fundraising-2016') and switch('mozorg-home-fundraising-2016') %}
+  {% block home_takeover %}
+    {% with variant = 'takeoverB' %}
+      {% include 'mozorg/home/includes/takeover-2016.html' %}
+    {% endwith %}
+  {% endblock %}
+{% endif %}
+

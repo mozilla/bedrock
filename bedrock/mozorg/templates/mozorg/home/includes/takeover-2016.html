@@ -1,0 +1,79 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+<article id="fundraising_takeover" class="fundraising-takeover hidden">
+  <div class="snapshots">
+    <span class="snap shot-one"></span>
+    <span class="snap shot-two"></span>
+    <span class="snap shot-three"></span>
+    <span class="snap shot-four"></span>
+    <span class="snap shot-five"></span>
+    <span class="snap shot-six"></span>
+    <span class="snap shot-seven"></span>
+  </div>
+
+  <div class="header-strip">
+    <p class="content"><button type="button" id="close_takeover">{{ _('Continue to mozilla.org') }}</button></p>
+  </div>
+
+  <div class="takeover-content">
+    <form id="fundraising-form" class="fundraising-form" method="get" action="https://donate.mozilla.org/{{ LANG }}/" data-locale="{{ LANG }}" data-currency="{{ donate_params.currency }}">
+      <header>
+        <h2>Mozilla</h2>
+        <h3>{{ _('Proudly non-profit. <br>Donate before Dec 31.') }}</h3>
+      </header>
+
+      <fieldset class="donate-options">
+        <ul>
+        {% for amount in donate_params.preset_list %}
+          <li>
+            <label for="donate{{ amount }}" {% if amount == donate_params.default %}class="selected"{% endif %} data-amount="{{ amount }}">
+              <input type="radio" value="{{ amount }}" id="donate{{ amount }}" name="amount"
+              {% if amount == donate_params.default %}checked="checked"{% endif %}>
+              {# L10n: Inserts a sum with currency symbol, e.g. '$100'. Adapt the string in your translation for your locale conventions if needed, ex: %(sum)s %(symbol)s #}
+              {{ _('%(symbol)s%(sum)s')|format(symbol=donate_params.symbol, sum=amount) }}
+            </label>
+          </li>
+       {% endfor %}
+          <li class="custom">
+            <label for="donate-custom" class="own-amount"><span class="label-text">{{ _('Enter your own amount') }}</span> <span class="currency-symbol">{{ donate_params.symbol }}</span></label>
+            <input type="text" name="amount" id="donate-custom">
+          </li>
+        </ul>
+      </fieldset>
+
+      <fieldset class="recurring">
+        <ul>
+          <li>
+            <label for="onetime">
+              <input type="radio" value="single" id="onetime" name="frequency" checked> {{ _('One-time') }}
+            </label>
+          </li>
+          <li>
+            <label for="monthly">
+              <input type="radio" value="monthly" id="monthly" name="frequency"> {{ _('Monthly') }}
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+
+      <p class="form-submit">
+        <input type="hidden" name="currency" value="{{ donate_params.currency }}">
+        <input type="hidden" name="presets" value="{{ donate_params.presets }}">
+
+        {# GA params #}
+        <input type="hidden" name="ref" value="EOYFR2016">
+        <input type="hidden" name="utm_campaign" value="EOYFR2016">
+        <input type="hidden" name="utm_source" value="mozilla.org">
+        <input type="hidden" name="utm_medium" value="referral">
+        <input type="hidden" name="utm_content" value="{{ variant|safe }}">
+
+        <button type="submit" class="form-button light">{{ _('Donate Now') }}</button>
+      </p>
+   </form>
+  </div>
+
+</article>
+
+<div class="page-overlay hidden"></div>
