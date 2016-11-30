@@ -980,7 +980,6 @@ URLS = flatten((
     url_test('/firefox/mobile/', '/firefox/android/'),
     url_test('/mobile/37.0{,beta,a2}/releasenotes', '/firefox/android/37.0{,beta,a2}/releasenotes/'),
     url_test('/projects/firefox/3.6.13/whatsnew/', '/firefox/3.6.13/whatsnew/'),
-    url_test('/en-US/firefox/3.6.13/{firstrun,whatsnew}/', '/en-US/firefox/new/'),
     url_test('/apps/', 'https://marketplace.firefox.com/'),
     url_test('/dnt/', '/firefox/dnt/'),
     url_test('/metrofirefox/', '/firefox/'),

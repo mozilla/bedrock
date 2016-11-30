@@ -15,7 +15,6 @@ from django.conf import settings
 from django.http import (Http404, HttpResponseRedirect,
                          HttpResponsePermanentRedirect)
 from django.utils.cache import patch_response_headers
-from django.views.decorators.cache import cache_control
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import TemplateView
@@ -366,59 +365,7 @@ def show_40_firstrun(version):
     return version >= Version('40.0')
 
 
-class LatestFxView(TemplateView):
-
-    """
-    Base class to be extended by views that require visitor to be
-    using latest version of Firefox. Classes extending this class must
-    implement either `get_template_names` function or provide
-    `template_name` class attribute. Control where to redirect non
-    Firefox users by setting the `non_fx_redirect` attribute to
-    a url name.
-    """
-    non_fx_redirect = 'firefox.new'
-
-    @cache_control(max_age=0)
-    def dispatch(self, *args, **kwargs):
-        return super(LatestFxView, self).dispatch(*args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        # required for newsletter form post that is handled in
-        # newsletter/templatetags/helpers.py
-        return self.get(request, *args, **kwargs)
-
-    def redirect_to(self):
-        """
-        Redirect visitors based on their user-agent.
-
-        - Up-to-date Firefox users pass through.
-        - Other Firefox users go to the new page.
-        - Non Firefox users go to the configured page.
-        """
-        query = self.request.META.get('QUERY_STRING')
-        query = '?' + query if query else ''
-
-        user_agent = self.request.META.get('HTTP_USER_AGENT', '')
-        if 'Firefox' not in user_agent:
-            return reverse(self.non_fx_redirect) + query
-            # TODO : Where to redirect bug 757206
-
-        return None
-
-    def render_to_response(self, context, **response_kwargs):
-        redirect_url = self.redirect_to()
-
-        if redirect_url is not None:
-            return HttpResponsePermanentRedirect(redirect_url)
-        else:
-            return l10n_utils.render(self.request,
-                                     self.get_template_names(),
-                                     context,
-                                     **response_kwargs)
-
-
-class FirstrunView(LatestFxView):
-
+class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
 
@@ -452,8 +399,7 @@ class FirstrunView(LatestFxView):
         return [template]
 
 
-class WhatsnewView(LatestFxView):
-
+class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
 

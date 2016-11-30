@@ -10,7 +10,7 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
-from mock import ANY, call, Mock, patch
+from mock import call, Mock, patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
@@ -176,24 +176,11 @@ class TestFirefoxAll(TestCase):
         self.assertEqual(resp.status_code, 404)
 
 
-none_mock = Mock()
-none_mock.return_value = None
-
-
-@patch.object(fx_views.WhatsnewView, 'redirect_to', none_mock)
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestWhatsNew(TestCase):
     def setUp(self):
         self.view = fx_views.WhatsnewView.as_view()
         self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
-
-    @override_settings(DEV=True)
-    def test_can_post(self, render_mock):
-        """Home page must accept post for newsletter signup."""
-        req = self.rf.post('/en-US/firefox/whatsnew/')
-        self.view(req)
-        # would return 405 before calling render otherwise
-        render_mock.assert_called_once_with(req, ['firefox/australis/whatsnew.html'], ANY)
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_35_0_a2_whatsnew(self, render_mock):
@@ -275,21 +262,11 @@ class TestWhatsNew(TestCase):
     # end 50.0 whatsnew tests
 
 
-@patch.object(fx_views.FirstrunView, 'redirect_to', none_mock)
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):
     def setUp(self):
         self.view = fx_views.FirstrunView.as_view()
         self.rf = RequestFactory()
-
-    @override_settings(DEV=True)
-    def test_can_post(self, render_mock):
-        """Home page must accept post for newsletter signup."""
-        req = self.rf.post('/en-US/firefox/firstrun/')
-        self.view(req)
-        # would return 405 before calling render otherwise
-        render_mock.assert_called_once_with(req,
-            ['firefox/australis/firstrun.html'], ANY)
 
     @override_settings(DEV=True)
     def test_fx_australis_29(self, render_mock):
