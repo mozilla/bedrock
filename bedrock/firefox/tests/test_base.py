@@ -150,26 +150,22 @@ class TestFirefoxAll(TestCase):
 
     def test_android(self):
         """
-        Android x64 builds are only available in multi and en-US locales.
+        The Firefox for Android download table should only show the multi-locale
+        builds for api-15 and x86.
         """
         resp = self.client.get(self._get_url('android'))
         doc = pq(resp.content)
-        eq_(len(doc('tr#multi a')), 2)
-        eq_(len(doc('tr#multi .android-x86')), 1)
-        eq_(len(doc('tr#en-US a')), 2)
-        eq_(len(doc('tr#en-US .android-x86')), 1)
-        eq_(len(doc('tr#fr a')), 1)
-        eq_(len(doc('tr#fr .android-x86')), 0)
+        eq_(len(doc('tbody tr')), 1)
+        eq_(len(doc('tbody tr#multi a')), 2)
+        eq_(len(doc('tbody tr#multi .android')), 1)
+        eq_(len(doc('tbody tr#multi .android-x86')), 1)
 
     def test_404(self):
         """
-        Firefox for iOS and Firefox Aurora for Android don't have the /all/ page.
-        Also, Firefox for Android doesn't have the ESR channel.
+        Firefox for iOS doesn't have the /all/ page. Also, Firefox for Android
+        doesn't have the ESR channel.
         """
         resp = self.client.get(self._get_url('ios'))
-        self.assertEqual(resp.status_code, 404)
-
-        resp = self.client.get(self._get_url('android', 'aurora'))
         self.assertEqual(resp.status_code, 404)
 
         resp = self.client.get(self._get_url('android', 'organizations'))

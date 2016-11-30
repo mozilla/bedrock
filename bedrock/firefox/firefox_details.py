@@ -294,9 +294,9 @@ class FirefoxDesktop(_ProductDetails):
 class FirefoxAndroid(_ProductDetails):
     # Architecture names defined in bouncer and these human-readable names
     platform_labels = OrderedDict([
-        ('android', _('Modern devices\n(Android 4.0+)')),
-        ('android-api-9', _('Legacy devices\n(Android 2.3)')),
-        ('android-x86', _('Intel devices\n(Android 4.0+ x86 CPU)')),
+        ('api-15', _('Modern devices\n(Android 4.0+)')),
+        ('api-9', _('Legacy devices\n(Android 2.3)')),
+        ('x86', _('Intel devices\n(Android 4.0+ x86 CPU)')),
     ])
 
     # Human-readable channel names
@@ -321,6 +321,13 @@ class FirefoxAndroid(_ProductDetails):
         'release': 'builds',
     }
 
+    # Platform names defined in bouncer
+    platform_map = OrderedDict([
+        ('api-15', 'android'),
+        ('api-9', 'android-api-9'),
+        ('x86', 'android-x86'),
+    ])
+
     # Product names defined in bouncer
     product_map = {
         'beta': 'fennec-beta-latest',
@@ -330,6 +337,10 @@ class FirefoxAndroid(_ProductDetails):
     store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
     archive_url_base = ('https://archive.mozilla.org/pub/mobile/nightly/'
                         'latest-mozilla-%s-android')
+    archive_repo = {
+        'nightly': 'central',
+        'alpha': 'aurora',
+    }
     archive_urls = {
         'api-9': archive_url_base + '-api-9/fennec-%s.multi.android-arm.apk',
         'api-15': archive_url_base + '-api-15/fennec-%s.multi.android-arm.apk',
@@ -337,7 +348,13 @@ class FirefoxAndroid(_ProductDetails):
     }
 
     def platforms(self, channel='release'):
-        platforms = self.platform_labels.copy()
+        # Use an OrderedDict to always put the api-15 build in front
+        platforms = OrderedDict()
+
+        # key is a bouncer platform name, value is the human-readable label
+        for arch, platform in self.platform_map.iteritems():
+            platforms[platform] = self.platform_labels[arch]
+
         major_version = int(self.latest_version(channel).split('.', 1)[0])
 
         # Android Gingerbread (2.3) is no longer supported as of Firefox 48
@@ -366,13 +383,12 @@ class FirefoxAndroid(_ProductDetails):
         :param query: a string to match against native or english locale name
         :return: list
         """
-        product = self.product_map.get(channel, 'fennec-latest')
         locales = [build['locale']['code'] for build in builds]
         f_builds = []
 
-        # Prepend multi-locale build
-        locales.sort()
-        locales.insert(0, 'multi')
+        # For now, only list the multi-locale builds because the single-locale
+        # builds are fragile (Bug 1301650)
+        locales = ['multi']
 
         for locale in locales:
             if locale == 'multi':
@@ -395,21 +411,14 @@ class FirefoxAndroid(_ProductDetails):
             if query is not None and not self._matches_query(build_info, query):
                 continue
 
-            for arch, label in self.platform_labels.iteritems():
+            for arch, platform in self.platform_map.iteritems():
                 # x86 builds are not localized yet
-                if arch == 'android-x86' and locale not in ['multi', 'en-US']:
+                if arch == 'x86' and locale not in ['multi', 'en-US']:
                     continue
 
-                params = urlencode([
-                    ('product', product),
-                    ('os', arch),
-                    # Order matters, lang must be last for bouncer.
-                    ('lang', locale),
-                ])
-
-                build_info['platforms'][arch] = {
-                    'download_url': '?'.join([self.bouncer_url, params])
-                }
+                # Use a direct link instead of Google Play for the /all/ page
+                url = self.get_download_url(channel, arch, locale, True)
+                build_info['platforms'][platform] = {'download_url': url}
 
             f_builds.append(build_info)
 
@@ -431,12 +440,34 @@ class FirefoxAndroid(_ProductDetails):
         # We don't have pre-release builds yet
         return []
 
-    def get_download_url(self, channel, type=None):
-        if channel == 'nightly':
-            return self.archive_urls[type] % ('central', self.latest_version(channel))
+    def get_download_url(self, channel, arch='api-15', locale='multi',
+                         force_direct=False):
+        """
+        Get direct download url for the product.
+        :param channel: one of self.version_map.keys() such as nightly, beta.
+        :param arch: one of self.platform_map.keys() such as api-15, x86.
+        :param locale: e.g. pt-BR.
+        :param force_direct: Force the download URL to be direct or bouncer
+                instead of Google Play.
+        :return: string url
+        """
+        # Use a direct link for Nightly/Aurora until Bug 1241114 is solved
+        if channel in ['nightly', 'alpha']:
+            force_direct = True
 
-        if channel == 'alpha':
-            return self.archive_urls[type] % ('aurora', self.latest_version(channel))
+        if force_direct:
+            # Use a direct archive link for Nightly/Aurora
+            if channel in ['nightly', 'alpha']:
+                return self.archive_urls[arch] % (self.archive_repo[channel],
+                                                  self.latest_version(channel))
+
+            # Use a bouncer link for Beta/Release
+            return '?'.join([self.bouncer_url, urlencode([
+                ('product', self.product_map.get(channel, 'fennec-latest')),
+                ('os', self.platform_map[arch]),
+                # Order matters, lang must be last for bouncer.
+                ('lang', locale),
+            ])])
 
         if channel == 'beta':
             return self.store_url.replace('org.mozilla.firefox',
