@@ -42,15 +42,13 @@ redirectpatterns = (
     # bug 657049, 1238851
     redirect(r'^firefox/accountmanager/?$', 'https://developer.mozilla.org/Persona'),
 
-    # bug 1307091
-    redirect(r'^firefox/nightly/?$', 'firefox.all', to_kwargs={'channel': 'nightly'},
-             permanent=False),
-
-    # Bug 1009247, 1101220, 1299947
+    # Bug 1009247, 1101220, 1299947, 1314603
     redirect(r'^(firefox/)?beta/?$', 'firefox.channel.desktop', anchor='beta'),
     redirect(r'^(firefox/)?aurora/?$', 'firefox.channel.desktop', anchor='developer'),
+    redirect(r'^(firefox/)?nightly/?$', 'firefox.channel.desktop', anchor='nightly'),
     redirect(r'^mobile/beta/?$', 'firefox.channel.android', anchor='beta'),
     redirect(r'^mobile/aurora/?$', 'firefox.channel.android', anchor='aurora'),
+    redirect(r'^mobile/nightly/?$', 'firefox.channel.android', anchor='nightly'),
 
     # bug 988044
     redirect(r'^firefox/unsupported-systems\.html$', 'firefox.unsupported-systems'),

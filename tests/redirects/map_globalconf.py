@@ -179,11 +179,13 @@ URLS = flatten((
     # bug 1275483
     url_test('/firefox/nightly/whatsnew/', '/firefox/nightly/firstrun/'),
 
-    # bug 1299947
+    # bug 1299947, 1314603
     url_test('/{firefox/,}beta/', '/firefox/channel/desktop/#beta'),
     url_test('/{firefox/,}aurora/', '/firefox/channel/desktop/#developer'),
+    url_test('/{firefox/,}nightly/', '/firefox/channel/desktop/#nightly'),
     url_test('/mobile/beta/', '/firefox/channel/android/#beta'),
     url_test('/mobile/aurora/', '/firefox/channel/android/#aurora'),
+    url_test('/mobile/nightly/', '/firefox/channel/android/#nightly'),
 
     url_test('/firefox/unsupported-systems.html', '/firefox/unsupported-systems/'),
     url_test('/download/', '/firefox/new/'),
@@ -799,9 +801,6 @@ URLS = flatten((
     # bug 657049, 1238851
     url_test('/firefox/accountmanager/', 'https://developer.mozilla.org/Persona'),
     url_test('/persona{/{about,developer-faq}/,}', 'https://developer.mozilla.org/Persona'),
-
-    # bug 1307091
-    url_test('/firefox/nightly/', '/firefox/nightly/all/', status_code=requests.codes.found),
 
     # bug 1209720
     url_test('/thunderbird/releasenotes' '/thunderbird/notes/'),
