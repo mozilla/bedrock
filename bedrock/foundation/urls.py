@@ -1,9 +1,14 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-
+from bedrock.base.waffle import switch
 from bedrock.mozorg.util import page
 from bedrock.redirects.util import redirect
+
+
+SOM_2015_ENABLED = switch('som-2015')
+SOM_REDIRECT = ('foundation.annualreport.2015.index' if SOM_2015_ENABLED else
+                'foundation.annualreport.2014.index')
 
 urlpatterns = (
     page('', 'foundation/index.html'),
@@ -13,8 +18,7 @@ urlpatterns = (
     page('leadership-network', 'foundation/leadership-network.html'),
 
     # Bug 1317727  /foundation/annualreport/2015/
-    redirect(r'^annualreport/$',
-             'foundation.annualreport.2015.index',
+    redirect(r'^annualreport/$', SOM_REDIRECT,
              name='foundation.annualreport', locale_prefix=False),
 
     # Older annual report financial faqs - these are linked from blog posts
@@ -61,9 +65,6 @@ urlpatterns = (
     page('annualreport/2014', 'foundation/annualreport/2014/index.html'),
     page('annualreport/2014/faq', 'foundation/annualreport/2014/faq.html'),
 
-    page('annualreport/2015', 'foundation/annualreport/2015/index.html'),
-    page('annualreport/2015/faq', 'foundation/annualreport/2015/faq.html'),
-
     page('feed-icon-guidelines', 'foundation/feed-icon-guidelines/index.html'),
     page('feed-icon-guidelines/faq', 'foundation/feed-icon-guidelines/faq.html'),
 
@@ -91,3 +92,9 @@ urlpatterns = (
     # documents
     page('documents', 'foundation/documents/index.html'),
 )
+
+if SOM_2015_ENABLED:
+    urlpatterns += (
+        page('annualreport/2015', 'foundation/annualreport/2015/index.html'),
+        page('annualreport/2015/faq', 'foundation/annualreport/2015/faq.html'),
+    )
