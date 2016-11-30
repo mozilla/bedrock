@@ -8,6 +8,7 @@ from cgi import escape
 from collections import defaultdict
 from operator import itemgetter
 
+from django.conf import settings
 from django.contrib import messages
 from django.forms.formsets import formset_factory
 from django.http import HttpResponseRedirect
@@ -383,6 +384,8 @@ def existing(request, token=None):
             # Also pass their updated list of newsletters they want to be
             # subscribed to, for basket to implement.
             kwargs = {}
+            if settings.BASKET_API_KEY:
+                kwargs['api_key'] = settings.BASKET_API_KEY
             for k in ['lang', 'format', 'country']:
                 if user[k] != data[k]:
                     kwargs[k] = data[k]
