@@ -1097,4 +1097,9 @@ URLS = flatten((
     url_test('/firefox/firstrun/learnmore', '/firefox/features/'),
     url_test('/firefox/{49.0,49.0.1,50.0a1,51.0a2}/firstrun/learnmore', '/firefox/features/'),
     url_test('/firefox/windows-10/welcome', 'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10'),
+
+    # bug 1319207
+    url_test('/de/privacy/firefox-focus/', '/de/privacy/firefox-klar/'),
+    url_test('/fr/privacy/firefox-klar/', '/fr/privacy/firefox-focus/'),
+    url_test('/es-ES/privacy/firefox-klar/', '/es-ES/privacy/firefox-focus/'),
 ))
