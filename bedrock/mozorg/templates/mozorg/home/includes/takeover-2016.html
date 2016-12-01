@@ -28,11 +28,10 @@
         <ul>
         {% for amount in donate_params.preset_list %}
           <li>
-            <label for="donate{{ amount }}" {% if amount == donate_params.default %}class="selected"{% endif %} data-amount="{{ amount }}">
-              <input type="radio" value="{{ amount }}" id="donate{{ amount }}" name="amount"
-              {% if amount == donate_params.default %}checked="checked"{% endif %}>
+            <label for="donate{{ amount }}" {% if amount == donate_params.default %}class="selected"{% endif %}>
+              <input type="radio" value="{{ amount }}" id="donate{{ amount }}" name="amount" {% if amount == donate_params.default %}checked="checked"{% endif %}>
               {# L10n: Inserts a sum with currency symbol, e.g. '$100'. Adapt the string in your translation for your locale conventions if needed, ex: %(sum)s %(symbol)s #}
-              {{ _('%(symbol)s%(sum)s')|format(symbol=donate_params.symbol, sum=amount) }}
+              <span class="label-text" data-amount="{{ amount }}">{{ _('%(symbol)s%(sum)s')|format(symbol=donate_params.symbol, sum=amount) }}</span>
             </label>
           </li>
        {% endfor %}

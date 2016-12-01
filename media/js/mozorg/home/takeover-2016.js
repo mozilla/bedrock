@@ -19,6 +19,7 @@
     var $donateOptionsSection = $('.donate-options');
     var $donateCustom = $('#donate-custom');
     var $optionLabels = $('label[class!="own-amount"]', $donateOptionsSection);
+    var $optionLabelsText = $('label[class!="own-amount"] .label-text', $donateOptionsSection);
     var $options = $('input[type="radio"]', $donateOptionsSection);
 
     // Replaces label text with appropriately formatted numbers in supporting browsers
@@ -31,7 +32,7 @@
             minimumFractionDigits: 0
         });
 
-        $optionLabels.each(function() {
+        $optionLabelsText.each(function() {
             $(this).text(numberFormat.format($(this).data('amount')));
         });
     }
