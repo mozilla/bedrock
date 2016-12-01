@@ -698,6 +698,12 @@ DONATE_PARAMS = {
         'presets': '100,50,25,15',
         'default': '50'
     },
+    'bn-IN': {
+        'currency': 'inr',
+        'symbol': u'₹',
+        'presets': '1000,500,250,150',
+        'default': '500'
+    },
     'brx': {
         'currency': 'inr',
         'symbol': u'₹',
@@ -751,6 +757,18 @@ DONATE_PARAMS = {
         'symbol': u'£',
         'presets': '20,10,5,3',
         'default': '10'
+    },
+    'es-AR': {
+        'currency': 'ars',
+        'symbol': '$',
+        'presets': '1600,800,400,200',
+        'default': '800'
+    },
+    'es-CL': {
+        'currency': 'clp',
+        'symbol': '$',
+        'presets': '68000,34000,17000,10200',
+        'default': '34000'
     },
     'es-ES': {
         'currency': 'eur',
@@ -1021,6 +1039,18 @@ DONATE_PARAMS = {
         'symbol': u'฿',
         'presets': '500,250,125,75',
         'default': '250'
+    },
+    'zh-CN': {
+        'currency': 'cny',
+        'symbol': u'¥',
+        'presets': '700,350,175,100',
+        'default': '350'
+    },
+    'zh-TW': {
+        'currency': 'twd',
+        'symbol': 'NT$',
+        'presets': '3200,1600,800,475',
+        'default': '1600'
     },
 }
 
