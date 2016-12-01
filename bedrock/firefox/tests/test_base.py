@@ -129,8 +129,8 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(self._get_url())
         doc = pq(resp.content)
-        eq_(len(doc('.build-table')), 2)
-        eq_(len(doc('.not-found.hide')), 2)
+        eq_(len(doc('.build-table')), 1)
+        eq_(len(doc('.not-found.hide')), 1)
 
         num_builds = len(firefox_desktop.get_filtered_full_builds('release'))
         num_builds += len(firefox_desktop.get_filtered_test_builds('release'))
