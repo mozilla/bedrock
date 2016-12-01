@@ -104,7 +104,7 @@
         <div class="inner-container">
           <h2>{{ _('Inventing a safer programming language') }}</h2>
           <p>{{ _('Supported by Mozilla, Rust allows browsers, systems and more to run much faster and more safely.') }}</p>
-          <a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Rust" class="button">{{ _('Learn more') }}</a>
+          <a rel="external" href="https://www.youtube.com/watch?list=PLo3w8EB99pqJ74XIGe72c9hBZWz9Y16cY&v=8EPsnf_ZYU0" class="button" data-video-title="Rust and the Future of Systems Programming">{{ _('Watch the video') }}</a>
         </div>
       </div>
       <footer>
@@ -148,9 +148,15 @@
   </section>
   {% endif %}
 
+  <div id="video-container">
+    <div class="video"></div>
+  </div>
+
 </main>
 {% endblock %}
 
 {% block email_form %}{% endblock %}
 
-{% block js %}{% endblock %}
+{% block js %}
+  {% javascript 'technology' %}
+{% endblock %}

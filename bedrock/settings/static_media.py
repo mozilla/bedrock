@@ -865,6 +865,7 @@ PIPELINE_CSS = {
     },
     'technology': {
         'source_filenames': (
+            'css/base/mozilla-modal.less',
             'css/mozorg/technology.scss',
         ),
         'output_filename': 'css/technology-bundle.css',
@@ -1612,6 +1613,13 @@ PIPELINE_JS = {
             'js/styleguide/docs/send-to-device.js',
         ),
         'output_filename': 'js/styleguide-docs-send-to-device-bundle.js',
+    },
+    'technology': {
+        'source_filenames': (
+            'js/base/mozilla-modal.js',
+            'js/mozorg/technology.js',
+        ),
+        'output_filename': 'js/technology-bundle.js',
     },
     'tracking-protection-tour': {
         'source_filenames': (
