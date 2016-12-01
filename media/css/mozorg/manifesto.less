@@ -25,6 +25,29 @@
     overflow: hidden; /* Avoid overflows by the picture grids */
 }
 
+#wrapper {
+    width: 100%;
+}
+
+#masthead,
+#main-content,
+.content {
+    width: @widthDesktop;
+    margin: 0 auto;
+
+    @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+        width: @widthTablet;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: @widthMobile;
+    }
+
+    @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
+        width: @widthMobileLandscape;
+    }
+}
+
 #main-feature {
     padding: 40px 20px;
     text-align: center;
@@ -36,14 +59,14 @@
 
     p {
         margin: 20px auto 0;
-        width: 620px;
+        max-width: 620px;
         color: #4E4F53;
         .font-size(20px);
     }
 }
 
-#main-content {
-    padding: 0;
+.moz-search {
+    margin-bottom: 20px;
 }
 
 #main-content-inner {
@@ -55,6 +78,10 @@
 
     & > section:not(:first-of-type) {
         margin-top: 40px;
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        width: auto;
     }
 }
 
@@ -470,13 +497,13 @@
 
 
 #mosaic-column-1 {
-    left: -50px;
+    left: -30px;
     background: url('/media/img/mozorg/about/manifesto/bg-faces-2.png') 0 0 no-repeat,
                 url('/media/img/mozorg/about/manifesto/bg-faces-1.png') 0 1440px no-repeat;
 }
 
 #mosaic-column-2 {
-    right: -50px;
+    right: -30px;
     background: url('/media/img/mozorg/about/manifesto/bg-faces-1.png') 0 0 no-repeat,
                 url('/media/img/mozorg/about/manifesto/bg-faces-2.png') 0 1440px no-repeat;
 }
@@ -858,11 +885,11 @@ html[dir="rtl"] {
 
 @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
     #mosaic-column-1 {
-        left: -190px;
+        left: -150px;
     }
 
     #mosaic-column-2 {
-        right: -190px;
+        right: -150px;
     }
 
     html.js {
@@ -877,10 +904,6 @@ html[dir="rtl"] {
 /* Mobile */
 
 @media only screen and (max-width: @breakTablet) {
-    #main-content-inner {
-        width: auto;
-    }
-
     #main-feature p {
         width: auto;
     }
