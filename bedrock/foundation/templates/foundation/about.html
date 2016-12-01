@@ -47,9 +47,12 @@
     {# L10n: This "Chair" is the chairperson of the board of directors, not something to sit on #}
     <li>Mitchell Baker, {{ _('Chair') }}</li>
     <li>Brian Behlendorf</li>
-    <li>Bob Lisbonne</li>
     <li>Cathy Davidson</li>
+    <li>Bob Lisbonne</li>
     <li>Ronaldo Lemos</li>
+  {% if switch('leadership-turvey-announce') %}
+    <li>Helen Turvey</li>
+  {% endif %}
   </ul>
 
   <h4>{{ _('Emeritus Board Members') }}</h4>
