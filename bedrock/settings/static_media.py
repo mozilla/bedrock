@@ -35,6 +35,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/book-bundle.css',
     },
+    'browser-test': {
+        'source_filenames': (
+            'css/mozorg/browser-test.scss',
+        ),
+        'output_filename': 'css/browser-test-bundle.css',
+    },
     'credits': {
         'source_filenames': (
             'css/mozorg/credits.scss',

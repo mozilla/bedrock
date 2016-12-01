@@ -167,6 +167,22 @@
     }
 }
 
+// Adds a right-pointing double-caret after
+@mixin trailing-double-caret {
+    &:after {
+        content: "\00A0\00BB"; /* nbsp raquo */
+        white-space: nowrap;
+    }
+}
+
+// Adds a left-pointing double-caret before
+@mixin leading-double-caret {
+    &:before {
+        content: "\00AB\00A0"; /* laquo nbsp */
+        white-space: nowrap;
+    }
+}
+
 
 // Multiple columns
 @mixin multi-column($width: auto, $count: auto, $gap: normal) {
@@ -195,5 +211,3 @@
          -o-column-break-inside: avoid;
             column-break-inside: avoid;
 }
-
-

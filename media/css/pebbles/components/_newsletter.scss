@@ -20,7 +20,7 @@
     .form-title {
         background: url('/media/img/newsletter/mozorg-newsletter.svg') center top no-repeat;
         @include background-size(100px 100px);
-        padding: 120px 0 20px 0px;
+        padding: 120px 0 20px 0;
         text-align: center;
     }
 

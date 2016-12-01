@@ -1,0 +1,175 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../pebbles/components/dev-newsletter';
+
+body {
+    border-color: #005187;
+}
+
+#tabzilla a {
+    background: url('/media/img/tabzilla/tabzilla-static-developer.svg') top left no-repeat;
+}
+
+#masthead > .content {
+    max-width: $width-desktop;
+}
+
+main > header {
+    background: #fff;
+    padding: 20px 0 40px;
+    text-align: center;
+
+    .content {
+        margin: 0 auto;
+        max-width: 540px;
+    }
+
+    h1 {
+        @include font-size(28px);
+        color: #005187;
+    }
+
+    h2 {
+        @include font-size(16px);
+        color: #005187;
+        font-weight: normal;
+        line-height: 1.3;
+    }
+
+    a.button {
+        @include trailing-double-caret();
+        margin: 20px auto 10px;
+    }
+
+
+    small {
+        @include font-size(10px);
+        color: #666;
+        display: block;
+        font-style: italic;
+    }
+
+    @media #{$mq-phone-wide} {
+        h1 {
+            @include font-size(30px);
+        }
+    }
+
+    @media #{$mq-tablet} {
+        h1 {
+            @include font-size(38px);
+        }
+
+        h2 {
+            @include font-size(18px);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        h1 {
+            @include font-size(42px);
+        }
+
+        h2 {
+            @include font-size(22px);
+        }
+
+        a.button:link {
+            @include font-size(24px);
+        }
+    }
+}
+
+main {
+    @include clearfix();
+    background: #fafafa;
+
+    &> .content {
+        max-width: $width-desktop;
+        padding: 50px 20px;
+    }
+
+    .benefits {
+
+        h2 {
+            @include font-size(18px);
+            line-height: 1.3;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            margin-bottom: 20px;
+        }
+
+        .poweder-by {
+            margin-top: 20px;
+        }
+
+        @media #{$mq-desktop} {
+            h2 {
+                @include font-size(20px);
+            }
+        }
+
+        a:link,
+        a:visited {
+            color: #299cd3;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: #005187;
+            text-decoration: underline;
+        }
+    }
+
+    .callout {
+        background: #e4eff6;
+        color: #005187;
+        padding: 20px;
+
+        h2 {
+            @include font-size(18px);
+            color: #005187;
+        }
+
+        p {
+            @include font-size(14px);
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        strong {
+            display: block;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .benefits {
+            @include span(8);
+            padding: 0 40px 0 0;
+        }
+
+        .callout {
+            @include span(4);
+            padding: 30px;
+        }
+    }
+}
+
+#colophon {
+    background: #eee;
+    color: #9b9b9b;
+    margin-top: 0;
+
+    a {
+        color: #299cd3;
+    }
+}
