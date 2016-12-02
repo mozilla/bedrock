@@ -10,20 +10,18 @@ from django.contrib.staticfiles.finders import find as find_static
 from django.core.context_processors import csrf
 from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import redirect, render as django_render
+from django.template.loader import render_to_string
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import last_modified, require_safe
 from django.views.generic import TemplateView
-from django.shortcuts import redirect, render as django_render
-from django.template.loader import render_to_string
 
 import basket
-from bedrock.base.templatetags.helpers import static
-from lib import l10n_utils
 from commonware.decorators import xframe_allow
-from bedrock.base.urlresolvers import reverse
-from lib.l10n_utils.dotlang import _, lang_file_is_active
 
+from bedrock.base.templatetags.helpers import static
+from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (WebToLeadForm, ContributeStudentAmbassadorForm)
@@ -31,7 +29,8 @@ from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import ContributorActivity, TwitterCache, BlogArticle
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
-
+from lib import l10n_utils
+from lib.l10n_utils.dotlang import _, lang_file_is_active
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')

@@ -111,6 +111,89 @@ Make sure to namespace your templates by putting them in a directory
 named after your app, so instead of templates/template.html they would
 be in templates/blog/template.html if `blog` was the name of your app.
 
+Variation Views
+^^^^^^^^^^^^^^^
+
+We have a generic view that allows you to easily create and use a/b testing
+templates. If you'd like to have either separate templates or just a template
+context variable for switching, this will help you out. For example::
+
+    # urls.py
+
+    from django.conf.urls import url
+
+    from bedrock.utils.views import VariationTemplateView
+
+    urlpatterns = [
+        url(r'^testing/$',
+            VariationTemplateView.as_view(template_name='testing.html',
+                                          template_context_variations=['a', 'b']),
+            name='testing'),
+    ]
+
+This will give you a context variable called `variation` that will either be an empty
+string if no param is set, or `a` if `?v=a` is in the URL, or `b` if `?v=b` is in the
+URL. No other options will be valid for the `v` query parameter and `variation` will
+be empty if any other value is passed in for `v` via the URL. So in your template code
+you'd simply do the following::
+
+    {% if variation == 'b' %}<p>This is the B variation of our test. Enjoy!</p>{% endif %}
+
+If you'd rather have a fully separate template for your test, you can use the
+`template_name_variations` argument to the view instead of `template_context_variations`::
+
+    # urls.py
+
+    from django.conf.urls import url
+
+    from bedrock.utils.views import VariationTemplateView
+
+    urlpatterns = [
+        url(r'^testing/$',
+            VariationTemplateView.as_view(template_name='testing.html',
+                                          template_name_variations=['1', '2']),
+            name='testing'),
+    ]
+
+This will not provide any extra template context variables, but will instead look for
+alternate template names. If the URL is `testing/?v=1`, it will use a tempalte named
+`testing-1.html`, if `v=2` it will use `testing-2.html`, and for everything else it will
+use the default. It simply puts a dash and the variation value between the template
+file name and file extension.
+
+It is theoretically possible to use the template name and template context versions
+of this view together, but that would be an odd situation and potentially inappropriate
+for this utility.
+
+You can also limit your variations to certain locales. By default the variations will work
+for any localization of the page, but if you supply a list of locales to the `variation_locales`
+argument to the view then it will only set the variation context variable or alter the template
+name (depending on the options explained above) when requested at one of said locales. For example,
+the template name example above could be modified to only work for English or German like so::
+
+    # urls.py
+
+    from django.conf.urls import url
+
+    from bedrock.utils.views import VariationTemplateView
+
+    urlpatterns = [
+        url(r'^testing/$',
+            VariationTemplateView.as_view(template_name='testing.html',
+                                          template_name_variations=['1', '2'],
+                                          variation_locales=['en-US', 'de']),
+            name='testing'),
+    ]
+
+Any request to the page in for example French would not use the alternate template even if a
+valid variation were given in the URL.
+
+.. note::
+
+    If you'd like to add this functionality to an existing Class-Based View, there is
+    a mixin that implements this pattern that should work with most views:
+    `bedrock.utils.views.VariationMixin`.
+
 Coding Style Guides
 -------------------
 

@@ -182,6 +182,26 @@ FALLBACK_LOCALES = {
 }
 
 
+def lazy_lang_group():
+    """Groups languages with a common prefix into a map keyed on said prefix"""
+    from django.conf import settings
+
+    groups = {}
+    langs = settings.DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
+    for lang in langs:
+        if '-' in lang:
+            prefix, _ = lang.split('-', 1)
+            groups.setdefault(prefix, []).append(lang)
+
+    # add any group prefix to the group list if it is also a supported lang
+    for groupid in groups.keys():
+        if groupid in langs:
+            groups[groupid].append(groupid)
+
+    # exclude groups with a single member
+    return {gid: glist for gid, glist in groups.iteritems() if len(glist) > 1}
+
+
 def lazy_lang_url_map():
     from django.conf import settings
 
@@ -199,6 +219,7 @@ def lazy_langs():
             for lang in langs if lang in product_details.languages}
 
 
+LANG_GROUPS = lazy(lazy_lang_group, dict)()
 LANGUAGE_URL_MAP = lazy(lazy_lang_url_map, dict)()
 LANGUAGES = lazy(lazy_langs, dict)()
 
