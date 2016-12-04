@@ -29,6 +29,8 @@ def pytest_generate_tests(metafunc):
         soup = BeautifulSoup(r.content, 'html.parser')
         table = soup.find('table', class_='build-table')
         urls = [a['href'] for a in table.find_all('a')]
+        # Bug 1321262 skip broken feccec link for 'be' until bug is resolved
+        urls = [url for url in urls if 'product=fennec-latest&os=android&lang=be' not in url]
         assert len(urls) > 0
         argvalues.extend(urls)
     metafunc.parametrize('url', argvalues)
