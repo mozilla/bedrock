@@ -17,12 +17,6 @@
 
 {% block body_id %}manifesto-landing{% endblock %}
 
-{% block experiments %}
-  {% if LANG.startswith('en-') and switch('experiment-search-activist') %}
-    {% javascript 'experiment-search-activist' %}
-  {% endif %}
-{% endblock %}
-
 {% block string_data %}
   data-principle-read-more='{{ _('See more…') }}'
   data-principle-nav-prev='{{ _('Previous principle') }}'
@@ -64,7 +58,7 @@
       </div>
     </header>
 
-  {% if version == 'b' and switch('mozorg-search-activist') %}
+  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
     {% include 'includes/google-search-activist.html' %}
   {% endif %}
 
@@ -339,7 +333,7 @@
   <![endif]-->
   {% javascript 'manifesto' %}
 
-  {% if version == 'b' and switch('mozorg-search-activist') %}
+  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
     {% javascript 'search-activist' %}
   {% endif %}
 {% endblock %}
