@@ -499,6 +499,26 @@ def sync(request):
     return l10n_utils.render(request, 'firefox/sync.html', {'version': version})
 
 
+def channel_desktop(request):
+    locale = l10n_utils.get_locale(request)
+    version = request.GET.get('v', None)
+
+    if (locale != 'en-US' or version != 'b'):
+        version = None
+
+    return l10n_utils.render(request, 'firefox/channel/desktop.html', {'version': version})
+
+
+def developer(request):
+    locale = l10n_utils.get_locale(request)
+    version = request.GET.get('v', None)
+
+    if (locale != 'en-US' or version != 'b'):
+        version = None
+
+    return l10n_utils.render(request, 'firefox/developer.html', {'version': version})
+
+
 def ios_testflight(request):
     # no country field, so no need to send locale
     newsletter_form = NewsletterFooterForm('ios-beta-test-flight', '')

@@ -11,20 +11,8 @@
     var searchField;
     var searchButton;
 
-    // Cycle through suggested terms
-    function changeTerm() {
-        var term = displayTerm.data('term') || 0;
-        displayTerm.data('term', term === terms.length -1 ? 0 : term + 1).text(terms[term]).fadeIn(150).delay(3500).fadeOut(150, changeTerm);
-    }
-    changeTerm();
-
-    // Click on a suggested term to fill the field
-    displayTerm.on('click', function() {
-        searchField.val(displayTerm.text());
-    });
-
-    // Activist search
-    var cx = '014783244707853607354:bbpl3emdsii';
+    // Insert the script that renders the search box
+    var cx = $searchBar.data('search-type');
     var gcse = document.createElement('script');
     gcse.type = 'text/javascript';
     gcse.async = true;
@@ -32,6 +20,18 @@
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(gcse, s);
 
+    // Cycle through suggested terms
+    function changeTerm() {
+        var term = displayTerm.data('term') || 0;
+        displayTerm.data('term', term === terms.length -1 ? 0 : term + 1).text(terms[term]).fadeIn(150).delay(3500).fadeOut(150, changeTerm);
+    }
+
+    // Click on a suggested term to fill the field
+    displayTerm.on('click', function() {
+        searchField.val(displayTerm.text());
+    });
+
+    // Track searches
     var setGTMSearch = function() {
         var element = window.google.search.cse.element.getElement('mozsearch');
         var query = element.getInputQuery();
@@ -54,6 +54,7 @@
                 setGTMSearch();
             }
         });
+        changeTerm();
     };
 
     // Setup callback for when CSE is ready

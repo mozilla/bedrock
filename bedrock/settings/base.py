@@ -1273,5 +1273,12 @@ if CSP_EXTRA_FRAME_SRC:
 # support older browsers (mainly Safari)
 CSP_FRAME_SRC = CSP_CHILD_SRC
 
+# Bug 1319244 - testing cross-site search
+GOOG_CUSTOM_SEARCH_TYPES = {
+    'general': '014783244707853607354:ifn1iyzxd1a',
+    'developer': '014783244707853607354:s-9zxgjd2o0',
+    'activist': '014783244707853607354:bbpl3emdsii',
+}
+
 if config('SWITCH_FLASHTALKING', default=DEV, cast=bool):
     CSP_IMG_SRC += ('servedby.flashtalking.com',)

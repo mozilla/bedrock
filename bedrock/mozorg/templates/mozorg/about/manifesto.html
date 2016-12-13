@@ -8,8 +8,9 @@
 {% else %}
   {#- Show the redesigned landing page -#}
 
-{% from 'macros.html' import twitter_share_url, share_cta with context %}
 {% extends 'mozorg/base-resp.html' %}
+
+{% from 'macros.html' import twitter_share_url, share_cta, google_custom_search with context %}
 
 {% block page_title %}{{ _('The Mozilla Manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
@@ -59,7 +60,7 @@
     </header>
 
   {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-    {% include 'includes/google-search-activist.html' %}
+    {{ google_custom_search(settings.GOOG_CUSTOM_SEARCH_TYPES['activist'], 'moz-search-activist', _('Cybersecurity'), _('Net Neutrality, Encryption, Surveillance, Copyright Law, Cybersecurity')) }}
   {% endif %}
 
     <div id="main-content">
@@ -334,7 +335,7 @@
   {% javascript 'manifesto' %}
 
   {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-    {% javascript 'search-activist' %}
+    {% javascript 'custom-search' %}
   {% endif %}
 {% endblock %}
 

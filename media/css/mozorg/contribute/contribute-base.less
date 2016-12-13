@@ -1237,7 +1237,6 @@ textarea:focus {
 }
 
 
-
 /*-------------------------------------------------------------------------*/
 // @RTL - right to left
 [dir='rtl'] {
@@ -1350,6 +1349,20 @@ textarea:focus {
 }
 
 
+/*-------------------------------------------------------------------------*/
+// Search
+.moz-search {
+    background-color: darken(@mozillaRed, 5%);
+    border-bottom: 2px solid #fff;
+
+    .content {
+        max-width: @widthDesktop;
+    }
+}
+
+[lang^="en"] #outer-wrapper {
+    border-top: 0;
+}
 
 /*-------------------------------------------------------------------------*/
 // @Tablet Layout: 760px
