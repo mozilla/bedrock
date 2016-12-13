@@ -1565,14 +1565,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/search-activist-bundle.js',
     },
-    'experiment-search-activist': {
-        'source_filenames': (
-            'js/base/mozilla-cookie-helper.js',
-            'js/base/mozilla-traffic-cop.js',
-            'js/mozorg/experiment-search-activist.js',
-        ),
-        'output_filename': 'js/experiment-search-activist-bundle.js',
-    },
     'smarton': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',

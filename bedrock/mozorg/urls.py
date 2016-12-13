@@ -11,8 +11,8 @@ from bedrock.redirects.util import redirect
 
 urlpatterns = (
     url('^$', views.home, name='mozorg.home'),
-    url('^about/$', views.about, name='mozorg.about'),
-    url('^about/manifesto/$', views.about_manifesto, name='mozorg.about.manifesto'),
+    page('about', 'mozorg/about.html'),
+    page('about/manifesto', 'mozorg/about/manifesto.html'),
     page('about/manifesto/details', 'mozorg/about/manifesto-details.html'),
     page('about/leadership', 'mozorg/about/leadership.html'),
     page('about/policy/lean-data', 'mozorg/about/policy/lean-data.html'),
