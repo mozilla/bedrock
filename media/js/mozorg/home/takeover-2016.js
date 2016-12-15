@@ -37,14 +37,28 @@
         });
     }
 
-    // sets the mozorg.takeover state to true indicating that the user has
-    // seen the takeover modal during their current session.
-    function storeSession() {
+    // Check for cookie support (stolen from Modernizr)
+    function testCookies() {
         try {
-            sessionStorage.setItem('mozorg.takeover.seen', 'true');
-        } catch (ex) {
-            // yum, errors taste nice ;)
+            // Create cookie
+            document.cookie = 'cookietest=1';
+            var ret = document.cookie.indexOf('cookietest=') !== -1;
+            // Delete cookie
+            document.cookie = 'cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT';
+            return ret;
         }
+        catch (e) {
+            return false;
+        }
+    }
+
+    // Sets a cookie so you won't see the takeover again for seven days
+    function seenTakover() {
+        var date = new Date();
+        date.setTime(date.getTime() + (7 * 24 * 60 * 60 * 1000));
+        var expires = date.toUTCString();
+
+        Mozilla.Cookies.setItem('eoy-takeover', 'true', expires);
     }
 
     // Shows and hides the takeover modal
@@ -67,18 +81,19 @@
         $options.removeAttr('checked');
     }
 
-    // Shows the take over modal, sets the required entry in
-    // session storage and adds an `esc` key handler to close
-    // the modal.
+    // Shows the take over modal, sets the seven day cookie
+    // and adds an `esc` key handler to close the modal.
     function initTakeOver() {
         // format the currency in browsers that support it
         if (intlNumberFormatSupported) {
             formatCurrency();
         }
+
         // show the takeover
         toggleModal();
-        // set mozorg.takeover.seen to true
-        storeSession();
+
+        // set the cookie
+        seenTakover();
 
         // trap key events, listening for escape.
         // we only want to do this here so, we do not attach the event
@@ -132,14 +147,10 @@
     // the donate.m.o site does not work for it.
     // Modal is waffled so first ensure it exists.
     if (arrayIndexOfSupported && $takeoverModal.length > 0) {
-        try {
-            // only show the takeover modal if the user has not already seen it
-            // during this session.
-            if (sessionStorage.getItem('mozorg.takeover.seen') !== 'true') {
-                initTakeOver();
-            }
-        } catch (ex) {
-            // Nothing to see here
+        // only show the takeover modal if the user has not
+        // already seen it (has no cookie).
+        if (testCookies() && !Mozilla.Cookies.hasItem('eoy-takeover')) {
+            initTakeOver();
         }
     }
 
