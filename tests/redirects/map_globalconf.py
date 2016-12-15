@@ -1102,4 +1102,8 @@ URLS = flatten((
     url_test('/de/privacy/firefox-focus/', '/de/privacy/firefox-klar/'),
     url_test('/fr/privacy/firefox-klar/', '/fr/privacy/firefox-focus/'),
     url_test('/es-ES/privacy/firefox-klar/', '/es-ES/privacy/firefox-focus/'),
+
+    # Bug 1317260
+    url_test('/about/governance/policies/security-group/certs/policy/{inclusion,maintenance,enforcement}/',
+             '/about/governance/policies/security-group/certs/policy/#{inclusion,maintenance,enforcement}')
 ))
