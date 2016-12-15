@@ -28,6 +28,10 @@ class Command(BaseCommand):
         super(Command, self).__init__(stdout, stderr, no_color)
 
     def add_arguments(self, parser):
+        parser.add_argument('-f', '--force', action='store_true', dest='force', default=False,
+                            help=('Download product details even if they have '
+                                  'not been updated since the last fetch.'))
+
         parser.add_argument('-q', '--quiet', action='store_true', dest='quiet', default=False,
                             help='If no error occurs, swallow all output.'),
         parser.add_argument('--database', default='default',
@@ -36,11 +40,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # don't really care about deleted files. almost never happens in p-d.
-        if not self.update_file_data():
-            if not options['quiet']:
-                print('Product Details data was already up to date')
-            return
-
+        modified, _ = self.update_file_data()
         try:
             self.validate_data()
         except Exception:
@@ -53,8 +53,15 @@ class Command(BaseCommand):
             # no need to continue if not using DB backend
             return
 
-        self.load_changes(options, self.file_storage.all_json_files())
-        self.repo.set_db_latest()
+        if options['force']:
+            files_to_load = self.file_storage.all_json_files()
+        else:
+            files_to_load = self.filter_filenames(modified)
+
+        if files_to_load:
+            self.load_changes(options, files_to_load)
+        elif not options['quiet']:
+            print('Product Details data was already up to date')
 
         if not options['quiet']:
             print('Product Details data update is complete')
@@ -72,8 +79,7 @@ class Command(BaseCommand):
             self.db_storage.update('regions/', '', self.file_storage.last_modified('regions/'))
 
     def update_file_data(self):
-        self.repo.update()
-        return self.repo.has_changes()
+        return self.repo.update()
 
     def count_builds(self, version_key, min_builds=20):
         version = self.file_storage.data('firefox_versions.json')[version_key]
@@ -90,3 +96,17 @@ class Command(BaseCommand):
         self.file_storage.clear_cache()
         for key in FIREFOX_VERSION_KEYS:
             self.count_builds(key)
+
+    def filter_filenames(self, filenames):
+        filtered_names = []
+        if filenames is None:
+            return filtered_names
+
+        for fn in filenames:
+            if not fn.endswith('.json'):
+                continue
+
+            filtered_names.append(str(
+                self.repo.path.joinpath(fn).relative_to(settings.PROD_DETAILS_TEST_DIR)))
+
+        return filtered_names

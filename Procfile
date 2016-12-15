@@ -1,2 +1,2 @@
 web: ./docker/run.sh
-clock: ./docker/run-clock.sh
+clock: ./bin/cron.py db

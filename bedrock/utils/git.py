@@ -4,7 +4,6 @@
 from __future__ import print_function, unicode_literals
 
 import os
-from hashlib import sha256
 from shutil import rmtree
 from subprocess import check_output, STDOUT
 try:
@@ -15,8 +14,6 @@ except ImportError:
 from django.conf import settings
 
 from pathlib2 import Path
-
-from bedrock.utils.models import GitRepoState
 
 
 GIT = getattr(settings, 'GIT_BIN', 'git')
@@ -32,9 +29,6 @@ class GitRepo(object):
             remote_name = 'bedrock-dev' if settings.DEV else 'bedrock-prod'
 
         self.remote_name = remote_name
-        db_latest_key = '%s:%s:%s:%s' % (self.path_str, remote_url or '',
-                                              remote_name, branch_name)
-        self.db_latest_key = sha256(db_latest_key).hexdigest()
 
     def git(self, *args):
         """Run a git command against the current repo"""
@@ -54,19 +48,13 @@ class GitRepo(object):
 
     @property
     def current_hash(self):
-        """The git revision ID (hash) of the current HEAD or None if no repo"""
-        try:
-            return self.git('rev-parse', 'HEAD')
-        except OSError:
-            return None
+        """The git revision ID (hash) of the current HEAD"""
+        return self.git('rev-parse', 'HEAD')
 
     @property
     def remote_names(self):
-        """Return a list of the remote names in the repo or None if no repo"""
-        try:
-            return self.git('remote').split()
-        except OSError:
-            return None
+        """Return a list of the remote names in the repo"""
+        return self.git('remote').split()
 
     def has_remote(self):
         """Return True if the repo has a remote by the correct name"""
@@ -132,28 +120,8 @@ class GitRepo(object):
                 rmtree(self.path_str, ignore_errors=True)
                 self.clone()
             else:
-                return self.pull()
+                return self.diff(*self.pull())
         else:
             self.clone()
 
         return None, None
-
-    def reset(self, new_head):
-        self.git('reset', '--hard', new_head)
-
-    def get_db_latest(self):
-        try:
-            return GitRepoState.objects.get(repo_id=self.db_latest_key).latest_ref
-        except GitRepoState.DoesNotExist:
-            return None
-
-    def has_changes(self):
-        return self.current_hash != self.get_db_latest()
-
-    def set_db_latest(self, latest_ref=None):
-        latest_ref = latest_ref or self.current_hash
-        rs, created = GitRepoState.objects.get_or_create(repo_id=self.db_latest_key,
-                                                         defaults={'latest_ref': latest_ref})
-        if not created:
-            rs.latest_ref = latest_ref
-            rs.save()
