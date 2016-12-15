@@ -50,20 +50,11 @@
     }
 }
 
-// let JS decide if we should show the intro download button
-.js #overview-intro-download-wrapper {
-    display: none;
-}
-
-#sticky-download-desktop {
-    display: none;
-}
-
 // up to date message
 
 #overview-intro-up-to-date {
     display: none;
-    padding: 10px 0 20px;
+    padding: 20px 0;
     font-style: italic;
 
     &.active {
@@ -1003,12 +994,6 @@ html[lang^="en"] #sticky-download-desktop .download-link .download-content {
         h1 {
             .font-size(32px);
         }
-    }
-
-    #overview-intro-download-wrapper {
-        // js displays the button for non fx browsers, so this needs to be
-        // important to override the generated inline style
-        display: none !important;
     }
 
     #customize {

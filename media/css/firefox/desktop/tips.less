@@ -295,23 +295,18 @@ html[lang^='en'] #tips-nav-direct li a span:after {
 #footer {
     .clearfix();
     padding-top: @baseLine * 2;
-
-    &.hide-download {
-        #footer-download {
-            display: none;
-        }
-
-        #footer-share {
-            float: none;
-            width: auto;
-            margin-right: 0;
-        }
-    }
 }
 
 #footer-download {
     float: left;
     width: 470px;
+
+    .fx-privacy-link {
+        a:link,
+        a:visited {
+            color: @linkBlue;
+        }
+    }
 }
 
 #footer-share {

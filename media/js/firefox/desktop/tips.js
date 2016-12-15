@@ -5,24 +5,12 @@
 (function($, Hammer) {
     'use strict';
 
-    var client = window.Mozilla.Client;
     var $window = $(window);
     var $tipPrev = $('#tip-prev');
     var $tipNext = $('#tip-next');
     var $tipsNavDirect = $('#tips-nav-direct');
     var $tipsTabLinks = $tipsNavDirect.find('a');
     var $tipsNavDots = $('#tips-nav-dots');
-
-    // only show download button for users on desktop platforms, using either a non-Firefox browser
-    // or an out of date version of Firefox.
-    // bug 1301721 only use major Firefox version until 49.0 is released
-    if (client.isFirefoxDesktop) {
-        if (client._isFirefoxUpToDate(false)) {
-            $('#footer').addClass('hide-download');
-        }
-    } else if (client.isMobile) {
-        $('#footer').addClass('hide-download');
-    }
 
     // mozilla pager stuff must be in doc ready wrapper
     $(function() {
