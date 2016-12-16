@@ -633,4 +633,8 @@ redirectpatterns = (
 
     # Bug 1313023
     redirect(r'^story/?$', 'https://donate.mozilla.org/?source=story_redirect'),
+
+    # Bug 1317260
+    redirect(r'^about/governance/policies/security-group/certs/policy/(?P<anchor>inclusion|maintenance|enforcement)/?',
+             '/about/governance/policies/security-group/certs/policy/#{anchor}')
 )
