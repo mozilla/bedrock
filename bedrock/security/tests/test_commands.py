@@ -56,15 +56,6 @@ def test_get_ids_from_files():
     eq_(update_security_advisories.get_ids_from_files(filenames), good_ids)
 
 
-def test_filter_updated_from_deleted():
-    modified_files = update_security_advisories.filter_advisory_filenames(['mfsa2016-42.yml'])
-    deleted_files = update_security_advisories.filter_advisory_filenames(['mfsa2016-42.md',
-                                                                          'mfsa2016-43.md'])
-    to_delete = update_security_advisories.filter_updated_from_deleted(modified_files,
-                                                                       deleted_files)
-    eq_(to_delete, deleted_files[1:])
-
-
 def make_mfsa(mfsa_id):
     update_security_advisories.add_or_update_advisory({
         'mfsa_id': mfsa_id,
@@ -92,22 +83,21 @@ class TestDBActions(TestCase):
         eq_(update_security_advisories.delete_orphaned_products(), 2)
         eq_(Product.objects.get().name, 'Firefox 43.0.1')
 
+    @patch.object(update_security_advisories, 'get_all_mfsa_files')
     @patch.object(update_security_advisories, 'delete_files')
     @patch.object(update_security_advisories, 'update_db_from_file')
     @patch.object(update_security_advisories, 'GitRepo')
-    def test_file_name_extension_change(self, git_mock, udbff_mock, df_mock):
+    def test_file_name_extension_change(self, git_mock, udbff_mock, df_mock, gamf_mock):
         """
         An MFSA file can now be either .md or .yml. Make sure this is an update, not a delete.
         """
         make_mfsa('2016-42')
         make_mfsa('2016-43')
-        repo = git_mock()
-        modified_files = ['mfsa2016-42.yml']
-        deleted_files = ['mfsa2016-42.md', 'mfsa2016-43.md']
-        repo.update.return_value = (modified_files, deleted_files)
-        update_security_advisories.Command().handle_noargs(quiet=True, force=False,
-                                                           no_git=False, clear_db=False)
+        all_files = ['mfsa2016-42.yml']
+        gamf_mock.return_value = all_files
+        git_mock().has_changes.return_value = True
+        update_security_advisories.Command().handle_noargs(quiet=True, no_git=False,
+                                                           clear_db=False)
         udbff_mock.assert_called_with(update_security_advisories.filter_advisory_filenames(
-            modified_files)[0])
-        df_mock.assert_called_with(update_security_advisories.filter_advisory_filenames(
-            ['mfsa2016-43.md']))
+            all_files)[0])
+        df_mock.assert_called_with(['mfsa2016-43.md'])

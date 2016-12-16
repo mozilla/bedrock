@@ -30,6 +30,17 @@ def test_git_current_hash():
     git_mock.assert_called_with('rev-parse', 'HEAD')
 
 
+@pytest.mark.django_db
+def test_git_db_latest():
+    g = git.GitRepo('.', 'https://example.com/repo.git', 'testing', 'master')
+    assert g.db_latest_key == '39329169f489eca9254339aec5826b86fc49437c6a2ca85328798ead5a906cc0'
+    assert g.get_db_latest() is None
+    g.set_db_latest('deadbeef')
+    assert g.get_db_latest() == 'deadbeef'
+    g.set_db_latest('deadbeef1234')
+    assert g.get_db_latest() == 'deadbeef1234'
+
+
 def test_git_full_branch_name():
     g = git.GitRepo('.', branch_name='dude', remote_name='the')
     assert g.full_branch_name == 'the/dude'
@@ -107,8 +118,7 @@ def test_git_update(rmtree_mock):
         rmtree_mock.assert_not_called()
         git_mock['clone'].assert_not_called()
         assert git_mock['pull'].called
-        assert git_mock['diff'].called
-        assert val == git_mock['diff'].return_value
+        assert val == git_mock['pull'].return_value
 
 
 def test_git_diff():
