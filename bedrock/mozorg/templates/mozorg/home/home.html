@@ -148,13 +148,15 @@
     <div class="horizon">
       <div class="stars">
         <div class="content">
-        {% block fx_copy %}
-          <h2>{{ _('Browse freely.') }}</h2>
 
-          <p>
-            {{ _('Discover unlimited potential, endless possibility and a wide open Web.') }}
-          </p>
-        {% endblock %}
+        {% if l10n_has_tag('mozorg-home-fxcopy-unleash') %}
+          <h2>{{ _('Unleash your Internet') }}</h2>
+          <p>{{ _('Set the Web free and your mind will follow.') }}</p>
+        {% else %}
+          <h2>{{ _('Browse freely.') }}</h2>
+          <p>{{ _('Discover unlimited potential, endless possibility and a wide open Web.') }}</p>
+        {% endif %}
+
           <a id="fx-download-link" href="{{ url('firefox.new') }}">{{ _('Get Firefox today') }}</a>
 
           <div id="fxmobile-download-buttons">
