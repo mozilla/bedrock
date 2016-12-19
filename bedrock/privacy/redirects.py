@@ -7,4 +7,7 @@ redirectpatterns = (
     # special de URL should not be accessible from other locales
     no_redirect(r'^de/privacy/firefox-klar/?', locale_prefix=False),
     redirect(r'^privacy/firefox-klar/?', 'privacy.notices.firefox-focus'),
+
+    # bug 1321033 - Hello EOL
+    redirect(r'^privacy/firefox-hello/?$', 'privacy.archive.hello-2016-03'),
 )
