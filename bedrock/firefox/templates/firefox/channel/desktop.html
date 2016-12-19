@@ -9,7 +9,7 @@
 {% add_lang_files "firefox/channel/index" %}
 
 {% block experiments %}
-  {% if LANG.startswith('en-') and switch('mozorg-search-developer') %}
+  {% if LANG.startswith('en-') and switch('experiment-search-developer') %}
     {% javascript 'experiment-search-developer' %}
   {% endif %}
 {% endblock %}
