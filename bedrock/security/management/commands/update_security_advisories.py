@@ -128,11 +128,6 @@ def get_ids_from_files(filenames):
     return [mfsa_id for mfsa_id in ids if mfsa_id]
 
 
-def filter_updated_from_deleted(modified_files, deleted_files):
-    mod_file_ids = get_ids_from_files(modified_files)
-    return [fn for fn in deleted_files if mfsa_id_from_filename(fn) not in mod_file_ids]
-
-
 def get_files_to_delete_from_db(filenames):
     """Delete any advisories in the DB that have no file in the repo."""
     file_ids = set(get_ids_from_files(filenames))
@@ -154,11 +149,6 @@ class Command(NoArgsCommand):
     help = 'Refresh database of MoFo Security Advisories.'
     lock_key = 'command-lock:update_security_advisories'
     option_list = BaseCommand.option_list + (
-        make_option('--force',
-                    action='store_true',
-                    dest='force',
-                    default=False,
-                    help='Force updating files even if up-to-date.'),
         make_option('--quiet',
                     action='store_true',
                     dest='quiet',
@@ -168,12 +158,12 @@ class Command(NoArgsCommand):
                     action='store_true',
                     dest='no_git',
                     default=False,
-                    help='No update, just import files (implies --force)'),
+                    help='No update, just import all files'),
         make_option('--clear-db',
                     action='store_true',
                     dest='clear_db',
                     default=False,
-                    help='Clear all security advisory data before update (implies --force)'),
+                    help='Clear all security advisory data and load all files'),
     )
 
     def get_lock(self):
@@ -194,14 +184,10 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         quiet = options['quiet']
-        force = options['force']
         no_git = options['no_git']
         clear_db = options['clear_db']
-        if no_git or clear_db:
-            force = True
-        cloned = False
+        force = no_git or clear_db
         repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO, branch_name=ADVISORIES_BRANCH)
-        modified_files = deleted_files = []
 
         def printout(msg, ending=None):
             if not quiet:
@@ -214,51 +200,41 @@ class Command(NoArgsCommand):
 
         if not no_git:
             printout('Updating repository.')
-            modified_files, deleted_files = repo.update()
-            if modified_files is None:
-                cloned = True
-            else:
-                modified_files = filter_advisory_filenames(modified_files)
-                deleted_files = filter_advisory_filenames(deleted_files)
+            repo.update()
 
-        if force or cloned:
-            printout('Reading all files.')
-            modified_files = get_all_mfsa_files()
-            if clear_db:
-                deleted_files = []
-            else:
-                deleted_files = get_files_to_delete_from_db(modified_files)
+        if not (force or repo.has_changes()):
+            printout('Nothing to update.')
+            return
 
         errors = []
         updates = 0
-        if modified_files:
-            for mf in modified_files:
-                mf = os.path.join(ADVISORIES_PATH, mf)
-                try:
-                    update_db_from_file(mf)
-                except Exception as e:
-                    errors.append('ERROR parsing %s: %s' % (mf, e))
-                    if not quiet:
-                        sys.stdout.write('E')
-                        sys.stdout.flush()
-                    continue
+        all_files = get_all_mfsa_files()
+        for mf in all_files:
+            mf = os.path.join(ADVISORIES_PATH, mf)
+            try:
+                update_db_from_file(mf)
+            except Exception as e:
+                errors.append('ERROR parsing %s: %s' % (mf, e))
                 if not quiet:
-                    sys.stdout.write('.')
+                    sys.stdout.write('E')
                     sys.stdout.flush()
-                updates += 1
-            printout('\nUpdated {0} files.'.format(updates))
+                continue
+            if not quiet:
+                sys.stdout.write('.')
+                sys.stdout.flush()
+            updates += 1
+        printout('\nUpdated {0} files.'.format(updates))
 
-        if deleted_files:
-            deleted_files = filter_updated_from_deleted(modified_files, deleted_files)
+        if not clear_db:
+            deleted_files = get_files_to_delete_from_db(all_files)
             delete_files(deleted_files)
             printout('Deleted {0} files.'.format(len(deleted_files)))
             num_products = delete_orphaned_products()
             if num_products:
                 printout('Deleted {0} orphaned products.'.format(num_products))
 
-        if not modified_files and not deleted_files:
-            printout('Nothing to update.')
-
         if errors:
             raise CommandError('Encountered {0} errors:\n\n'.format(len(errors)) +
                                '\n==========\n'.join(errors))
+
+        repo.set_db_latest()

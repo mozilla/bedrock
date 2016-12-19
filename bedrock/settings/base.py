@@ -390,6 +390,7 @@ INSTALLED_APPS = (
     'bedrock.releasenotes',
     'bedrock.thunderbird',
     'bedrock.shapeoftheweb',
+    'bedrock.utils',
     # last so that redirects here will be last
     'bedrock.redirects',
 
