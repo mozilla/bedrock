@@ -16,9 +16,6 @@ redirectpatterns = (
         'utm_source': 'mozilla.org'
     }),
 
-    # bug 764261, 841393, 996608, 1008162, 1067691, 1113136, 1119022, 1131680, 1115626
-    redirect(r'^zh-TW/?$', 'http://mozilla.com.tw/', locale_prefix=False),
-
     # bug 1013082
     redirect(r'^ja/?$', 'https://www.mozilla.jp/', locale_prefix=False),
 

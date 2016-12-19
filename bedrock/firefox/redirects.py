@@ -11,8 +11,6 @@ def firefox_mobile_faq(request, *args, **kwargs):
 
 redirectpatterns = (
     # overrides
-    redirect('^zh-TW/mobile/?', 'http://mozilla.com.tw/firefox/mobile/', locale_prefix=False),
-    redirect('^zh-TW/download/?', 'http://mozilla.com.tw/firefox/download/', locale_prefix=False),
 
     redirect(r'^firefox/aurora/all/?$', 'firefox.all', to_kwargs={'channel': 'developer'}),
 
