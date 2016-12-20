@@ -535,59 +535,63 @@ ul.section-items {
 
 // Download Buttons hide/show
 
-.download-buttons > div {
+.download-link {
+    margin-bottom: 10px;
+}
+
+.fx-privacy-link {
+    a:link,
+    a:visited {
+        color: @linkBlue;
+    }
+}
+
+.all-download .message {
     display: none;
 }
+
+.desktop-download-button {
+    display: block;
+}
+.android-download-button {
+    display: none;
+}
+.ios-download-button {
+    display: none;
+}
+
 .android {
-    &.non-firefox .download-buttons .non-firefox-cta {
-        .desktop-download-button {
-            display: none;
-        }
-        .android-download-button {
-            display: block;
-        }
+    .desktop-download-button {
+        display: none;
     }
-}
-.ios {
-    &.non-firefox .download-buttons .non-firefox-cta {
-        & .desktop-download-button {
-            display: none;
-        }
-        .ios-download-button {
-            display: block;
-        }
-    }
-}
-.firefox-up-to-date {
-    .download-buttons .firefox-latest-cta {
+    .android-download-button {
         display: block;
     }
-    .all-download p.message {
+    .ios-download-button {
         display: none;
     }
 }
-.firefox-old {
-    .download-buttons .firefox-old-cta {
-       display: block;
+.ios {
+    .desktop-download-button {
+        display: none;
     }
-}
-
-.non-firefox {
-    .download-buttons .non-firefox-cta {
+    .android-download-button {
+        display: none;
+    }
+    .ios-download-button {
         display: block;
-
-        > div {
-            display: none;
-        }
-        & .desktop-download-button {
-           display: block;
-        }
     }
 }
 
 .ios,
 .android {
     .all-download {
-        display: none;
+        a {
+            display: none;
+        }
+
+        .message {
+            display: block;
+        }
     }
 }

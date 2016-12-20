@@ -11,12 +11,6 @@
         // hide the footer download button and extend email form to full width
         $('#download-wrapper').show();
         $('#subscribe-wrapper').addClass('columned');
-
-        // show the download button on the overview page intro section
-        $('#overview-intro-download-wrapper').fadeIn('fast');
-
-        // show download button in sticky nav on overview page
-        $('#sticky-download-desktop').fadeIn('fast');
     }
 
     // only show download buttons for users on desktop platforms, using either a non-Firefox browser

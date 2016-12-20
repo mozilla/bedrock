@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.desktop.desktop import DesktopPage
 
 
-@pytest.mark.skip_if_firefox(reason='Download button is not shown for up-to-date Firefox browsers.')
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_primary_download_button_displayed(base_url, selenium):

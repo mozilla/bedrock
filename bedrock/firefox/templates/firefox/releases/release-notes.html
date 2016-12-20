@@ -267,24 +267,16 @@
           <a rel="external" href="{{ firefox_url('desktop', 'all', channel=channel_name|lower()) }}">{{ _('All Firefox downloads') }}</a>
         </div>
         <div class="download-buttons">
-          <div class="firefox-latest-cta">
-            <p class="version-message">Congrats! You’re using the latest version of Firefox.</p>
-          </div>
-          <div class="non-firefox-cta">
-            <div class="desktop-download-button">
-              {{ download_firefox() }}
-            </div>
-            <div class="android-download-button">
-              {{ google_play_button() }}
-            </div>
-            <div class="ios-download-button">
-              <a rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
-              </a>
-            </div>
-          </div>
-          <div class="firefox-old-cta">
+          <div class="desktop-download-button">
             {{ download_firefox() }}
+          </div>
+          <div class="android-download-button">
+            {{ google_play_button() }}
+          </div>
+          <div class="ios-download-button">
+            <a rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
+            </a>
           </div>
         </div>
       </div>
