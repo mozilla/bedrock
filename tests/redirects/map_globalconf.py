@@ -1100,5 +1100,12 @@ URLS = flatten((
 
     # Bug 1317260
     url_test('/about/governance/policies/security-group/certs/policy/{inclusion,maintenance,enforcement}/',
-             '/about/governance/policies/security-group/certs/policy/#{inclusion,maintenance,enforcement}')
+             '/about/governance/policies/security-group/certs/policy/#{inclusion,maintenance,enforcement}'),
+
+    # Bug 936362
+    # only upper-case for XBL. /xbl is a namespace URL for the standard.
+    url_test('/XBL', 'https://developer.mozilla.org/docs/XBL'),
+    url_test('/xbl', status_code=200),
+    url_test('/RDF', 'https://developer.mozilla.org/docs/RDF'),
+    url_test('/rdf', 'https://developer.mozilla.org/docs/RDF'),
 ))

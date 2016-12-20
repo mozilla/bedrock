@@ -633,5 +633,10 @@ redirectpatterns = (
 
     # Bug 1317260
     redirect(r'^about/governance/policies/security-group/certs/policy/(?P<anchor>inclusion|maintenance|enforcement)/?',
-             '/about/governance/policies/security-group/certs/policy/#{anchor}')
+             '/about/governance/policies/security-group/certs/policy/#{anchor}'),
+
+    # Bug 936362
+    # only upper-case for XBL. /xbl is a namespace URL for the standard.
+    redirect(r'^XBL/?$', 'https://developer.mozilla.org/docs/XBL'),
+    redirect(r'^RDF/?$', 'https://developer.mozilla.org/docs/RDF', re_flags='i'),
 )
