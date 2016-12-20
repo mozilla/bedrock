@@ -37,21 +37,6 @@
         });
     }
 
-    // Check for cookie support (stolen from Modernizr)
-    function testCookies() {
-        try {
-            // Create cookie
-            document.cookie = 'cookietest=1';
-            var ret = document.cookie.indexOf('cookietest=') !== -1;
-            // Delete cookie
-            document.cookie = 'cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT';
-            return ret;
-        }
-        catch (e) {
-            return false;
-        }
-    }
-
     // Sets a cookie so you won't see the takeover again for seven days
     function seenTakover() {
         var date = new Date();
@@ -146,10 +131,10 @@
     // Do not bother showing the modal for users of IE8 and below
     // the donate.m.o site does not work for it.
     // Modal is waffled so first ensure it exists.
-    if (arrayIndexOfSupported && $takeoverModal.length > 0) {
+    if (arrayIndexOfSupported && $takeoverModal.length > 0 && typeof Mozilla.Cookies !== 'undefined') {
         // only show the takeover modal if the user has not
         // already seen it (has no cookie).
-        if (testCookies() && !Mozilla.Cookies.hasItem('eoy-takeover')) {
+        if (Mozilla.Cookies.enabled() && !Mozilla.Cookies.hasItem('eoy-takeover')) {
             initTakeOver();
         }
     }
