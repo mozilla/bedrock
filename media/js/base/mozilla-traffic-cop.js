@@ -77,6 +77,11 @@ Mozilla.TrafficCop.prototype.init = function() {
         return;
     }
 
+    // If cookie helper is not defined or cookies are not enabled, do nothing.
+    if (typeof Mozilla.Cookies === 'undefined' || !Mozilla.Cookies.enabled()) {
+        return;
+    }
+
     // make sure config is valid (id & variations present)
     if (this.verifyConfig()) {
         // make sure current page doesn't match a variation
@@ -199,4 +204,3 @@ Mozilla.TrafficCop.prototype.generateRedirectUrl = function(url) {
 
     return redirect;
 };
-

@@ -11,6 +11,7 @@ describe('mozilla-traffic-cop.js', function () {
     beforeEach(function() {
         // stub out Mozilla.Cookie lib
         window.Mozilla.Cookies = sinon.stub();
+        window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
         window.Mozilla.Cookies.setItem = sinon.stub().returns(true);
         window.Mozilla.Cookies.getItem = sinon.stub().returns(false);
         window.Mozilla.Cookies.hasItem = sinon.stub().returns(false);
@@ -47,6 +48,12 @@ describe('mozilla-traffic-cop.js', function () {
             cop.init();
             expect(cop.verifyConfig).toHaveBeenCalled();
             window._dntEnabled = dntBak;
+        });
+
+        it('should not initialize is cookies are disabled', function() {
+            spyOn(window.Mozilla.Cookies, 'enabled').and.returnValue(false);
+            cop.init();
+            expect(cop.verifyConfig).not.toHaveBeenCalled();
         });
     });
 

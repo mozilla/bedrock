@@ -11,7 +11,8 @@ Mozilla Traffic Cop
 `mozilla-traffic-cop.js` handles redirecting users to different A/B/x variations
 through a query parameter.
 
-**`mozilla-traffic-cop.js` requires `mozilla-cookie-helper.js`.**
+**`mozilla-traffic-cop.js` requires `mozilla-cookie-helper.js`, which is included as
+default in the `site.js` bundle for most pages.**
 
 How It Works
 ------------
@@ -33,7 +34,7 @@ could be considered the "control".)
 If a variation is chosen, a cookie is set (for the session only) that will
 send the user back to the same variation if/when the page is again visited.
 
-Any querystring parameters present when a user initially lands on a page will be
+Any query string parameters present when a user initially lands on a page will be
 propagated to the variation redirect.
 
 Configuration
@@ -43,7 +44,7 @@ Each instance of the Traffic Cop requires two pieces of configuration:
 
 - A string ID that is unique to other currently running tests (to avoid
 confusion when reading cookies)
-- A variations object that lists all variations by querystring along with the
+- A variations object that lists all variations by query string along with the
 associated visitor percentage
 
 An implementation might look like::
@@ -95,7 +96,6 @@ Implementation
 To add a Traffic Cop to a page, create a new JS bundle for the experiment that
 includes:
 
-- `mozilla-cookie-helper.js`
 - `mozilla-traffic-cop.js`
 - A new JS file that configures and initializes the experiment
 

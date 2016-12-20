@@ -1005,6 +1005,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/base/site.js',  # this is automatically included on every page
             'js/base/dnt-helper.js',
+            'js/base/mozilla-cookie-helper.js',
             'js/base/core-datalayer-page-id.js',
         ),
         'output_filename': 'js/site-bundle.js',
@@ -1283,14 +1284,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_pixel-bundle.js',
     },
-    'experiment-firefox-new-up-to-date-users': {
-        'source_filenames': (
-            'js/base/mozilla-cookie-helper.js',
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/new/experiment-up-to-date-users.js',
-        ),
-        'output_filename': 'js/experiment-firefox-new-up-to-date-users-bundle.js',
-    },
     'firefox_private_browsing': {
         'source_filenames': (
             'js/base/uitour-lib.js',
@@ -1461,7 +1454,6 @@ PIPELINE_JS = {
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.waypoints.min.js',
             'js/mozorg/home/home.js',
-            'js/base/mozilla-cookie-helper.js',
             'js/mozorg/home/takeover-2016.js',
         ),
         'output_filename': 'js/home-bundle.js',
@@ -1476,7 +1468,6 @@ PIPELINE_JS = {
     'home-voices': {
         'source_filenames': (
             'js/mozorg/home/home-voices.js',
-            'js/base/mozilla-cookie-helper.js',
             'js/mozorg/home/takeover-2016.js',
         ),
         'output_filename': 'js/home-voices-bundle.js',
@@ -1578,7 +1569,6 @@ PIPELINE_JS = {
     },
     'experiment-search-developer': {
         'source_filenames': (
-            'js/base/mozilla-cookie-helper.js',
             'js/base/mozilla-traffic-cop.js',
             'js/base/experiment-search-developer.js',
         ),
