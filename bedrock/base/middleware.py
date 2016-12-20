@@ -61,6 +61,10 @@ class LocaleURLMiddleware(object):
             if query_string:
                 full_path = '?'.join(
                     [full_path, force_text(query_string, errors='ignore')])
+                if 'icn=locale' not in full_path:
+                    full_path += '&icn=locale'
+            else:
+                full_path += '?icn=locale'
 
             response = HttpResponsePermanentRedirect(full_path)
 
