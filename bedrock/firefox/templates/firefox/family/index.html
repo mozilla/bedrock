@@ -31,9 +31,13 @@
         {{ download_firefox(alt_copy=_('Download'), dom_id='download-button-old-fx') }}
       </div>
       <div class="message" id="dlbar-nonfx">
-        {{ _('Choose Independent.') }}
-        {{ _('Choose Firefox.') }}
-        {{ download_firefox(alt_copy=_('Download'), dom_id='download-button-non-fx') }}
+        {% if l10n_has_tag('download_browse_freely') %}
+          {{ _('Browse Freely') }}
+        {% else %}
+          {{ _('Choose Independent.') }}
+          {{ _('Choose Firefox.') }}
+        {% endif %}
+        {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='download-button-non-fx') }}
       </div>
       <div class="message" id="dlbar-nonfx-android">
         <a rel="external" href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK }}" data-link-type="download" data-download-os="Android">{{ _('Get Firefox for Android') }}</a>
