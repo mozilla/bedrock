@@ -2,16 +2,24 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import google_play_button with context %}
-
 {% add_lang_files "firefox/new/horizon" %}
 
 {% extends "firefox/new/base.html" %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-new-all-links-pt2', ['en-US']) %}
+    {% javascript 'experiment_firefox_new_scene1_all_links_pt2' %}
+  {% endif %}
+{% endblock %}
 
 {# all CSS must be in extrahead block for old IE #}
 {% block extrahead %}
   {% stylesheet 'firefox_new_common' %}
   {% stylesheet 'firefox_new_scene1' %}
+
+  {% if version in ['1', '2'] %}
+    {% stylesheet 'firefox_new_scene1_variations_pt2' %}
+  {% endif %}
 {% endblock %}
 
 {% block body_id %}firefox-new-scene1{% endblock %}
@@ -87,6 +95,12 @@
                 <li><a class="more" href="{{ url('firefox.family.index') }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
               </ul>
             </div>
+
+            {% if version == '2' %}
+              <div id="test-inpage-wrapper">
+                {% include 'firefox/new/_all-test-variations-pt2-addl-links.html' %}
+              </div>
+            {% endif %}
           </div>{#-- /.main-content --#}
         </div>{#-- /.inner-container --#}
       </div>
@@ -118,9 +132,28 @@
   </div>
 </main>
 
+{% if version == '1' %}
+  <div id="test-modal-wrapper">
+    <div id="test-modal">
+      <div id="test-modal-content">
+        {% include 'firefox/new/_all-test-variations-pt2-addl-links.html' %}
+
+        <section id="test-modal-secondary-cta" class="test-section">
+          <h3>Download Firefox <span id="test-modal-user-platform"></span></h3>
+          {{ download_firefox(alt_copy=_('Free Download'), dom_id="fx-modal-download") }}
+        </section>{#-- /#fx-modal-secondary-cta --#}
+      </div>{#-- /#fx-modal-content --#}
+    </div>{#-- /#fx-modal --#}
+  </div>{#-- /#fx-modal-wrapper -_#}
+{% endif %}
+
 {% include 'firefox/includes/schemaorg-app.html' %}
 {% endblock %}
 
 {% block js %}
   {% javascript 'firefox_new_scene1' %}
+
+  {% if version in ['1', '2'] %}
+    {% javascript 'firefox_new_scene1_variations_pt2' %}
+  {% endif %}
 {% endblock %}

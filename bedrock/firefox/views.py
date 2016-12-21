@@ -479,6 +479,7 @@ def new(request):
         return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
     scene = request.GET.get('scene', None)
+    version = None
 
     if scene == '2':
         template = 'firefox/new/scene2.html'
@@ -486,7 +487,16 @@ def new(request):
     else:
         template = 'firefox/new/scene1.html'
 
-    return l10n_utils.render(request, template)
+        locale = l10n_utils.get_locale(request)
+        if locale == 'en-US':
+            version = request.GET.get('v', None)
+
+            # 1: adds link under primary CTA that opens modal
+            # 2: adds modal content directly on page, beneath primary CTA
+            if version not in ['1', '2']:
+                version = None
+
+    return l10n_utils.render(request, template, {'version': version})
 
 
 def ios_testflight(request):

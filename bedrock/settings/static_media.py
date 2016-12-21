@@ -488,6 +488,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_scene2-bundle.css',
     },
+    'firefox_new_scene1_variations_pt2': {
+        'source_filenames': (
+            'css/base/mozilla-modal.less',
+            'css/firefox/new/all-test-variations-pt2.less',
+        ),
+        'output_filename': 'css/firefox_new_scene1_variations_pt2-bundle.css',
+    },
     'firefox_organizations': {
         'source_filenames': (
             'css/firefox/organizations.less',
@@ -1277,6 +1284,20 @@ PIPELINE_JS = {
             'js/firefox/new/scene2.js',
         ),
         'output_filename': 'js/firefox_new_scene2-bundle.js',
+    },
+    'experiment_firefox_new_scene1_all_links_pt2': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/new/experiment-all-links-pt2.js',
+        ),
+        'output_filename': 'js/experiment_firefox_new_scene1_all_links_pt2-bundle.js',
+    },
+    'firefox_new_scene1_variations_pt2': {
+        'source_filenames': (
+            'js/base/mozilla-modal.js',
+            'js/firefox/new/all-test-variations-pt2.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_variations_pt2-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (
