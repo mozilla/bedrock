@@ -6,11 +6,18 @@ $(function() {
     'use strict';
 
     var ltr = document.dir === 'ltr';
+    var historyEnabled = typeof history.replaceState === 'function';
+
+    // Use the History API to update location.hash
+    var updateHistory = function (sectionId) {
+        if (historyEnabled) {
+            history.replaceState({}, document.title, sectionId ? '#' + sectionId : '.');
+        }
+    };
 
     // Set up the modal navigation
     var navModal = function (direction) {
         var $origin = $('.modal-origin').removeClass('modal-origin');
-        var sectionId = $origin.attr('id');
         var action;
 
         if (direction === 1) {
@@ -22,6 +29,9 @@ $(function() {
             $origin = $origin.prev().length ? $origin.prev()
                                             : $origin.siblings(':last');
         }
+
+        // Get the new section ID
+        var sectionId = $origin.attr('id');
 
         $('#modal').attr('aria-labelledby', sectionId).focus();
         $('#modal .inner').attr('id', sectionId + '-overlay');
@@ -35,6 +45,8 @@ $(function() {
             'browserAction': action,
             'section': sectionId.match(/\d+/)[0]
         });
+
+        updateHistory(sectionId);
     };
 
     // Set up the modal
@@ -71,6 +83,11 @@ $(function() {
 
                         navModal($this.hasClass('prev') ? -1 : 1);
                     });
+
+                    updateHistory(sectionId);
+                },
+                'onDestroy': function () {
+                    updateHistory();
                 }
             });
 
@@ -214,4 +231,9 @@ $(function() {
 
         }
     });
+
+    // Open the modal automatically if valid location.hash is given
+    if (location.hash.match(/^#principle\-\d+$/) && $(location.hash).length) {
+        $(location.hash).click();
+    }
 });
