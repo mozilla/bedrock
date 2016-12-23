@@ -200,9 +200,9 @@
   <aside class="section section-newsletter" id="newsletter-subscribe">
     <div class="content">
     {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='hollow light', spinner_color='#fff') }}
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='button-hollow button-light', spinner_color='#fff') }}
     {% else %}
-      {{ email_newsletter_form(button_class='hollow light', spinner_color='#fff') }}
+      {{ email_newsletter_form(button_class='button-hollow button-light', spinner_color='#fff') }}
     {% endif %}
     </div>
   </aside>

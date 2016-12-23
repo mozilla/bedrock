@@ -28,7 +28,7 @@
       <a class="dl-button" rel="external" href="{{ firefox_ios_url('mozorg-ios_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
         <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
       </a>
-      <button class="send-to button green" type="button" data-button-name="Get Firefox for iOS" data-cta-position="Nav">{{ _('Get Firefox for iOS') }}</button>
+      <button class="send-to button button-green" type="button" data-button-name="Get Firefox for iOS" data-cta-position="Nav">{{ _('Get Firefox for iOS') }}</button>
     </div>
   {% endcall %}
 {% endblock %}
@@ -147,7 +147,7 @@
   <aside id="newsletter-subscribe" class="light ga-section" data-ga-label="Keep up with all things Firefox.">
     <div class="container">
       {# L10n: Line break for visual formatting. #}
-      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='dark') }}
+      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='button-dark') }}
     </div>
   </aside>
 {% endblock %}

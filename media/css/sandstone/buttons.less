@@ -27,18 +27,18 @@
 @mozOrangeHover: #f5894f;
 @mozOrangeBorder: #e55525;
 
-/* the basis for all buttons on bedrock */
-.base-button {
-    position: relative;
-    .inline-block;
-    background: none;
-    padding: (@baseLine / 2) 36px;
-    border-radius: 4px;
+// the basis for all buttons on bedrock
+.base-button() {
     .font-size(20px);
-    text-align: center;
-    cursor: pointer;
-    text-shadow: none;
+    .inline-block;
     .transition(background-color .1s ease-in-out);
+    background: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: (@baseLine / 2) 36px;
+    position: relative;
+    text-align: center;
+    text-shadow: none;
 
     @media only screen and (max-width: @breakMobileLandscape) {
         .font-size(18px);
@@ -55,7 +55,7 @@
     }
 }
 
-/* buttons used for forms or where a button element makes semantic sense */
+// buttons used for forms or where a button element makes semantic sense
 input[type="submit"].form-button,
 button.form-button {
     .base-button;
@@ -69,7 +69,7 @@ button.form-button {
         border-color: @mozBlueHover;
     }
 
-    &.dark {
+    &.button-dark {
         color: @mozDark;
         border-color: @mozDark;
 
@@ -80,7 +80,7 @@ button.form-button {
         }
     }
 
-    &.light {
+    &.button-light {
         color: @light;
         border-color: @light;
 
@@ -91,11 +91,11 @@ button.form-button {
         }
     }
 
-    &.general {
+    &.button-general {
         .font-size(@largeFontSize);
     }
 
-    &.red {
+    &.button-red {
         background-color: @mozRed;
         color: @light;
         border: 2px solid @mozRedBorder;
@@ -107,7 +107,7 @@ button.form-button {
     }
 }
 
-/* All buttons not in a form context such as CTA and download buttons */
+// All buttons not in a form context such as CTA and download buttons
 .button,
 button.button,
 .blueprint .button,
@@ -124,7 +124,7 @@ a.button:visited {
         color: @light;
     }
 
-    &.dark {
+    &.button-dark {
         background-color: @mozDark;
         color: @light;
         border-color: @mozDarkBorder;
@@ -135,7 +135,7 @@ a.button:visited {
         }
     }
 
-    &.green {
+    &.button-green {
         background-color: @mozGreen;
         color: @light;
         border: 2px solid @mozGreenBorder;
@@ -146,7 +146,7 @@ a.button:visited {
         }
     }
 
-    &.red {
+    &.button-red {
         background-color: @mozRed;
         color: @light;
         border: 2px solid @mozRedBorder;
@@ -157,7 +157,7 @@ a.button:visited {
         }
     }
 
-    &.orange {
+    &.button-orange {
         background-color: @mozOrange;
         color: @light;
         border: 2px solid @mozOrangeBorder;
@@ -168,7 +168,7 @@ a.button:visited {
         }
     }
 
-    &.transparent-light {
+    &.button-transparent-light {
         background-color: transparent;
         color: @light;
         border: 2px solid @light;
@@ -180,7 +180,7 @@ a.button:visited {
     }
 }
 
-/* privacy policy link that accompany most download buttons */
+// privacy policy link that accompany most download buttons
 .fx-privacy-link {
     display: block;
     .font-size(@largeFontSize);
@@ -226,7 +226,7 @@ a.button:visited {
     }
 }
 
-/* fxfamilynav overrides */
+// fxfamilynav overrides
 .fxfamilynav-cta-wrapper {
     .button,
     a.button:link,
@@ -236,7 +236,7 @@ a.button:visited {
     }
 }
 
-/* download button and related containers specific */
+// download button and related containers specific
 ul.download-list {
     list-style-type: none;
     margin-bottom: 10px;
@@ -297,17 +297,19 @@ ul.download-list {
     }
 }
 
-/* Product download buttons */
-.download-button .ios-download,
-.download-button .linux-arm-download,
-.download-button .unrecognized-download,
-.download-button .unsupported-download,
-.download-button .unsupported-download-osx,
-.download-button .nojs-download {
-    display: none;
+// Product download buttons
+.download-button {
+    .ios-download,
+    .linux-arm-download,
+    .unrecognized-download,
+    .unsupported-download,
+    .unsupported-download-osx,
+    .nojs-download {
+        display: none;
+    }
 }
 
-/* OS detection */
+// OS detection
 .download-button .os_winsha1,
 .download-button .os_win64,
 .download-button .os_linux,
@@ -385,7 +387,7 @@ ul.download-list {
     }
 }
 
-/* Android architecture detection */
+// Android architecture detection
 .download-button .download-list .os_android.api-9,
 .download-button .download-list .os_android.x86,
 .download-button .download-other.os_android .api-15,
@@ -406,7 +408,7 @@ ul.download-list {
     display: inline !important;
 }
 
-/* IE on Windows XP, Server 2003, Vista need sha-1 button */
+// IE on Windows XP, Server 2003, Vista need sha-1 button
 .windows.sha-1 .download-button .os_win {
     display: none !important;
 }
@@ -415,7 +417,7 @@ ul.download-list {
     display: block !important;
 }
 
-/* l10n download button tweaks */
+// l10n download button tweaks
 html[lang="ml"] {
     .button {
         padding: 10px 16px;

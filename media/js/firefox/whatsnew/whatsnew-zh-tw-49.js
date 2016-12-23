@@ -23,9 +23,9 @@ Mozilla.HkTwWhatsNew = (function($) {
     function _enableDefaultContent() {
         _$shield = $('#tracking-protection-animation');
 
-        Mozilla.HighlightTarget.init('.button.dark');
+        Mozilla.HighlightTarget.init('.button.button-dark');
 
-        $('.button.dark').on('highlight-target', function() {
+        $('.button.button-dark').on('highlight-target', function() {
             _$shield.addClass('blocked');
         });
     }

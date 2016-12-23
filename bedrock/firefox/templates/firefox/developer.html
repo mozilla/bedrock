@@ -241,7 +241,7 @@
     </div>
     {# See Bug 1313508 #}
     {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form('app-dev', 'Mozilla Developer Newsletter', button_class='light', include_language=False) }}
+      {{ email_newsletter_form('app-dev', 'Mozilla Developer Newsletter', button_class='button-light', include_language=False) }}
     {% else %}
       {{ super() }}
     {% endif %}

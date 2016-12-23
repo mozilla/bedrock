@@ -10,7 +10,7 @@ var featuredPluginsTmpl = '<li class="featured-plugin">' +
                         '</p>' +
                         '<p class="plugin-actions">' +
                         '{{#outdated}}' +
-                        '<a href="{{ url }}" class="action-link button orange" target="_blank" rel="noopener noreferrer" data-name="{{plugin_name}}" data-status="{{status}}">{{button_txt}}</a>' +
+                        '<a href="{{ url }}" class="action-link button button-orange" target="_blank" rel="noopener noreferrer" data-name="{{plugin_name}}" data-status="{{status}}">{{button_txt}}</a>' +
                         '{{/outdated}}' +
                         '{{#vulnerability_url}}' +
                         '<a class="vulnerability-link-txt" href="{{ vulnerability_url }}" target="_blank" rel="noopener noreferrer">{{ vulnerability_link_txt }}</a></td>' +
@@ -29,7 +29,7 @@ var otherPluginsTmpl = '<tr><th scope="row">' +
                     '<td><div class="meta-status {{status}}">{{plugin_status}}</div><div class="plugin_version">v. {{ plugin_version }}</div></td>' +
                     '{{#outdated}}' +
                     '<td class="action">' +
-                    '<a href="{{ url }}" class="action-link button orange" target="_blank" rel="noopener noreferrer" data-name="{{plugin_name}}" data-status="{{status}}">{{button_txt}}</a>' +
+                    '<a href="{{ url }}" class="action-link button button-orange" target="_blank" rel="noopener noreferrer" data-name="{{plugin_name}}" data-status="{{status}}">{{button_txt}}</a>' +
                     '{{#vulnerability_url}}' +
                     '<a class="vulnerability-link-txt" href="{{ vulnerability_url }}" target="_blank" rel="noopener noreferrer">{{ vulnerability_link_txt }}</a></td>' +
                     '{{/vulnerability_url}}' +

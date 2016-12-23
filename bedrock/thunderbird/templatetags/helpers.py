@@ -15,7 +15,7 @@ from lib.l10n_utils import get_locale
 @jinja2.contextfunction
 def download_thunderbird(ctx, channel='release', dom_id=None,
                          locale=None, force_direct=False,
-                         alt_copy=None, button_color='green'):
+                         alt_copy=None, button_color='button-green'):
     """ Output a "Download Thunderbird" button.
 
     :param ctx: context from calling template.
