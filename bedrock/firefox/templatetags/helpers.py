@@ -22,7 +22,7 @@ def android_builds(channel, builds=None):
         ('x86', 'x86'),
     ])
 
-    if channel in ['alpha', 'nightly']:
+    if channel == 'nightly':
         version = int(firefox_android.latest_version(channel).split('.', 1)[0])
 
         for type, arch_pretty in variations.iteritems():
@@ -65,6 +65,8 @@ def firefox_footer_links(ctx, channel='release', platform='all'):
     :param platform: Target platform: 'desktop', 'android', or 'ios'.
     :return: The footer links html.
     """
+    # channel could be Undefined, so double check the value
+    channel = 'release' if not isinstance(channel, str) else channel
 
     show_desktop = platform in ['all', 'desktop']
     show_android = platform in ['all', 'android']

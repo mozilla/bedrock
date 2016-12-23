@@ -266,14 +266,15 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 2)
-        eq_(pq(list[0]).attr('class'), 'os_android armv7up api-15')
-        eq_(pq(list[1]).attr('class'), 'os_android x86')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'os_android')
 
         links = doc('.download-list li a')
-        eq_(links.length, 2)
-        ok_(pq(links[0]).attr('href').startswith('https://archive.mozilla.org'))
-        ok_(pq(links[1]).attr('href').startswith('https://archive.mozilla.org'))
+        eq_(links.length, 1)
+        ok_(pq(links[0]).attr('href').startswith('https://play.google.com'))
+
+        list = doc('.download-other .arch')
+        eq_(list.length, 0)
 
     @patch.object(firefox_android._storage, 'data',
                   Mock(return_value=dict(alpha_version='47.0a2')))
@@ -285,16 +286,15 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 3)
-        eq_(pq(list[0]).attr('class'), 'os_android armv7up api-9')
-        eq_(pq(list[1]).attr('class'), 'os_android armv7up api-15')
-        eq_(pq(list[2]).attr('class'), 'os_android x86')
+        eq_(list.length, 1)
+        eq_(pq(list[0]).attr('class'), 'os_android')
 
         links = doc('.download-list li a')
-        eq_(links.length, 3)
-        ok_(pq(links[0]).attr('href').startswith('https://archive.mozilla.org'))
-        ok_(pq(links[1]).attr('href').startswith('https://archive.mozilla.org'))
-        ok_(pq(links[2]).attr('href').startswith('https://archive.mozilla.org'))
+        eq_(links.length, 1)
+        ok_(pq(links[0]).attr('href').startswith('https://play.google.com'))
+
+        list = doc('.download-other .arch')
+        eq_(list.length, 0)
 
     def test_beta_mobile(self):
         rf = RequestFactory()

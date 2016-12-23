@@ -339,6 +339,13 @@ class FirefoxAndroid(_ProductDetails):
     }
 
     store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
+    # Product IDs defined on Google Play
+    store_product_ids = {
+        'alpha': 'org.mozilla.fennec_aurora',
+        'beta': 'org.mozilla.firefox_beta',
+        'release': 'org.mozilla.firefox',
+    }
+
     archive_url_base = ('https://archive.mozilla.org/pub/mobile/nightly/'
                         'latest-mozilla-%s-android')
     archive_repo = {
@@ -444,7 +451,7 @@ class FirefoxAndroid(_ProductDetails):
         # We don't have pre-release builds yet
         return []
 
-    def get_download_url(self, channel, arch='api-15', locale='multi',
+    def get_download_url(self, channel='release', arch='api-15', locale='multi',
                          force_direct=False):
         """
         Get direct download url for the product.
@@ -455,8 +462,8 @@ class FirefoxAndroid(_ProductDetails):
                 instead of Google Play.
         :return: string url
         """
-        # Use a direct link for Nightly/Aurora until Bug 1241114 is solved
-        if channel in ['nightly', 'alpha']:
+        # Use a direct link for Nightly until Bug 1241114 is solved
+        if channel == 'nightly':
             force_direct = True
 
         if force_direct:
@@ -473,9 +480,9 @@ class FirefoxAndroid(_ProductDetails):
                 ('lang', locale),
             ])])
 
-        if channel == 'beta':
-            return self.store_url.replace('org.mozilla.firefox',
-                                          'org.mozilla.firefox_beta')
+        if channel != 'release':
+            return self.store_url.replace(self.store_product_ids['release'],
+                                          self.store_product_ids[channel])
 
         return self.store_url
 
