@@ -43,13 +43,3 @@ deployment:
     owner: mozilla
     commands:
       - bin/circleci-demo-deploy.sh
-  jenkins:
-    branch: master
-    owner: mozilla
-    commands:
-      - bin/circleci-trigger-jenkins.sh
-  release:
-    tag: /\d{4}-\d{2}-\d{2}(\.\d)?/
-    owner: mozilla
-    commands:
-      - bin/circleci-trigger-jenkins.sh

@@ -14,4 +14,5 @@ done
 echo "tagged $tag_value"
 if [[ "$1" == "--push" ]]; then
   git push "$moz_git_remote" "$tag_value"
+  git push "$moz_git_remote" master:prod
 fi
