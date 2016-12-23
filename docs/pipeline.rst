@@ -64,8 +64,7 @@ pushes, this is all handled by the pipeline, and is subject to change according 
 #. Check that staging deployment is green:
     #. View `deployment pipeline <https://ci.us-west.moz.works/view/Bedrock%20Pipeline/?fullscreen=true>`_
     #. If any staging tests fail above, check retries, e.g. `bedrock_test_stage_eu_west`_
-#. Add a tag for the deployment by running ``bin/tag-release.sh``
-#. Push tags to trigger prod push (``git push --tags``)
+#. Tag and push the deployment by running ``bin/tag-release.sh --push``
 
 Pipeline integration
 --------------------
