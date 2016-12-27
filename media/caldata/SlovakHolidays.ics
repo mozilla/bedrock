@@ -10,8 +10,8 @@ SUMMARY:Veľký piatok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090410
 DTEND;VALUE=DATE:20090411
-DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -23,8 +23,8 @@ SUMMARY:Veľkonočný pondelok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090413
 DTEND;VALUE=DATE:20090414
-DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -36,8 +36,8 @@ SUMMARY:Veľký piatok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20100402
 DTEND;VALUE=DATE:20100403
-DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -49,8 +49,8 @@ SUMMARY:Veľkonočný pondelok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20100405
 DTEND;VALUE=DATE:20100406
-DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -62,8 +62,8 @@ SUMMARY:Veľký piatok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20110422
 DTEND;VALUE=DATE:20110423
-DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -75,8 +75,8 @@ SUMMARY:Veľkonočný pondelok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20110425
 DTEND;VALUE=DATE:20110426
-DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -88,8 +88,8 @@ SUMMARY:Veľký piatok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20120406
 DTEND;VALUE=DATE:20120407
-DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -101,8 +101,8 @@ SUMMARY:Veľkonočný pondelok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20120409
 DTEND;VALUE=DATE:20120410
-DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -114,8 +114,8 @@ SUMMARY:Veľký piatok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20130329
 DTEND;VALUE=DATE:20130330
-DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -127,8 +127,8 @@ SUMMARY:Veľkonočný pondelok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20130401
 DTEND;VALUE=DATE:20130402
-DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -140,8 +140,8 @@ SUMMARY:Veľký piatok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20140418
 DTEND;VALUE=DATE:20140419
-DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -153,8 +153,8 @@ SUMMARY:Veľkonočný pondelok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20140421
 DTEND;VALUE=DATE:20140422
-DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -166,8 +166,8 @@ SUMMARY:Veľký piatok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20150403
 DTEND;VALUE=DATE:20150404
-DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -179,8 +179,8 @@ SUMMARY:Veľkonočný pondelok
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20150406
 DTEND;VALUE=DATE:20150407
-DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -189,12 +189,12 @@ LAST-MODIFIED:20090120T111853Z
 DTSTAMP:20090120T111043Z
 UID:9911fd75-1e7d-4706-bd0e-93331c730845
 SUMMARY:Deň vzniku Slovenskej republiky
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090101
 DTEND;VALUE=DATE:20090102
-DESCRIPTION:Deň vzniku Slovenskej republiky\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Deň vzniku Slovenskej republiky\n[ Dni pracovného voľna ]\n
+ -----------------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 X-MOZ-GENERATION:4
 END:VEVENT
@@ -204,12 +204,12 @@ LAST-MODIFIED:20090120T111911Z
 DTSTAMP:20090120T111754Z
 UID:fe978744-bdbb-4909-8c56-c5cc9328fcbc
 SUMMARY:Sviatok práce
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090501
 DTEND;VALUE=DATE:20090502
-DESCRIPTION:Sviatok práce\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Sviatok práce\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 X-MOZ-GENERATION:1
 END:VEVENT
@@ -219,12 +219,12 @@ LAST-MODIFIED:20090120T112020Z
 DTSTAMP:20090120T111931Z
 UID:55a06b57-4fa1-4806-948d-9f2680629887
 SUMMARY:Deň víťazstva nad fašizmom
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090508
 DTEND;VALUE=DATE:20090509
-DESCRIPTION:Deň víťazstva nad fašizmom\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Deň víťazstva nad fašizmom\n[ Dni pracovného voľna ]\n--
+ ---------------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -233,12 +233,12 @@ LAST-MODIFIED:20090120T112145Z
 DTSTAMP:20090120T112051Z
 UID:68968cc8-6a5d-48f2-a4c4-a67e9a2ace6c
 SUMMARY:Sviatok svätého Cyrila a Metoda
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090705
 DTEND;VALUE=DATE:20090706
-DESCRIPTION:Sviatok svätého Cyrila a Metoda\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Sviatok svätého Cyrila a Metoda\n[ Dni pracovného voľna ]\
+ n-----------------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -247,13 +247,13 @@ LAST-MODIFIED:20090120T112259Z
 DTSTAMP:20090120T112204Z
 UID:8efce7ee-c908-4936-b56a-d27c2fe832f1
 SUMMARY:Výročie Slovenského národného povstania
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090829
 DTEND;VALUE=DATE:20090830
-DESCRIPTION:Výročie Slovenského národného povstania\n[ Dni 
- pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Výročie Slovenského národného povstania\n[ Dni pracovnéh
+ o voľna ]\n-----------------------------------------------------\nwww.moz
+ illa.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -262,12 +262,12 @@ LAST-MODIFIED:20090120T112354Z
 DTSTAMP:20090120T112314Z
 UID:7699b865-1281-4317-afc1-3f3de2bb86a8
 SUMMARY:Deň ústavy Slovenskej republiky
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090901
 DTEND;VALUE=DATE:20090902
-DESCRIPTION:Deň ústavy Slovenskej republiky\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Deň ústavy Slovenskej republiky\n[ Dni pracovného voľna ]\
+ n-----------------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -276,12 +276,12 @@ LAST-MODIFIED:20090120T112522Z
 DTSTAMP:20090120T112406Z
 UID:3f64a00a-b019-4d0d-8b60-d149b1d94541
 SUMMARY:Sedembolestná Panna Mária
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090915
 DTEND;VALUE=DATE:20090916
-DESCRIPTION:Sedembolestná Panna Mária\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Sedembolestná Panna Mária\n[ Dni pracovného voľna ]\n-----
+ ------------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 X-MOZ-GENERATION:1
 END:VEVENT
@@ -291,12 +291,12 @@ LAST-MODIFIED:20090120T112627Z
 DTSTAMP:20090120T112551Z
 UID:218c5295-4c5b-4bbf-9140-6a97dac18b27
 SUMMARY:Sviatok všetkých svätých
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20091101
 DTEND;VALUE=DATE:20091102
-DESCRIPTION:Sviatok všetkých svätých\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Sviatok všetkých svätých\n[ Dni pracovného voľna ]\n----
+ -------------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -304,15 +304,15 @@ CREATED:20090120T111440Z
 LAST-MODIFIED:20090120T112704Z
 DTSTAMP:20090120T111440Z
 UID:e0b6a4ac-7cdf-4066-a38f-2ddefc2cb575
-SUMMARY:Zjavenie Pána (Traja králi a vianočný sviatok pravoslávnych 
- kresťanov)
-RRULE:FREQ=YEARLY;INTERVAL=1
+SUMMARY:Zjavenie Pána (Traja králi a vianočný sviatok pravoslávnych k
+ resťanov)
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20090106
 DTEND;VALUE=DATE:20090107
-DESCRIPTION:Zjavenie Pána (Traja králi a vianočný sviatok 
- pravoslávnych kresťanov)\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Zjavenie Pána (Traja králi a vianočný sviatok pravoslávny
+ ch kresťanov)\n[ Dni pracovného voľna ]\n------------------------------
+ -----------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 X-MOZ-GENERATION:3
 END:VEVENT
@@ -322,12 +322,12 @@ LAST-MODIFIED:20090120T112735Z
 DTSTAMP:20090120T112638Z
 UID:1d2f04cf-4e56-40c9-b0ef-41f6950a7949
 SUMMARY:Deň boja za slobodu a demokraciu
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20091117
 DTEND;VALUE=DATE:20091118
-DESCRIPTION:Deň boja za slobodu a demokraciu\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Deň boja za slobodu a demokraciu\n[ Dni pracovného voľna ]\
+ n-----------------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -336,12 +336,12 @@ LAST-MODIFIED:20090120T112825Z
 DTSTAMP:20090120T112755Z
 UID:db65a619-2aec-4d51-9ab4-df1038d0fe38
 SUMMARY:Štedrý deň
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20091224
 DTEND;VALUE=DATE:20091225
-DESCRIPTION:Štedrý deň\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Štedrý deň\n[ Dni pracovného voľna ]\n-------------------
+ ----------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -350,12 +350,12 @@ LAST-MODIFIED:20090120T112907Z
 DTSTAMP:20090120T112833Z
 UID:8efbe13f-9b14-4134-86da-bdfd65cf9142
 SUMMARY:Prvý sviatok vianočný
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20091225
 DTEND;VALUE=DATE:20091226
-DESCRIPTION:Prvý sviatok vianočný\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Prvý sviatok vianočný\n[ Dni pracovného voľna ]\n--------
+ ---------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
@@ -364,12 +364,142 @@ LAST-MODIFIED:20090120T112943Z
 DTSTAMP:20090120T112909Z
 UID:f5ec85a9-a3f5-4a98-ad09-1e7909e020a0
 SUMMARY:Druhý sviatok vianočný
-RRULE:FREQ=YEARLY;INTERVAL=1
+RRULE:FREQ=YEARLY
 CATEGORIES:Sviatok
 DTSTART;VALUE=DATE:20091226
 DTEND;VALUE=DATE:20091227
-DESCRIPTION:Druhý sviatok vianočný\n[ Dni pracovného voľna 
- ]\n-----------------------------------------------------\nwww.mozilla.sk
+DESCRIPTION:Druhý sviatok vianočný\n[ Dni pracovného voľna ]\n-------
+ ----------------------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114415Z
+LAST-MODIFIED:20161217T155144Z
+DTSTAMP:20161217T155144Z
+UID:ad8a7ec8-2a2d-49a4-9108-63f72cb56cbb
+SUMMARY:Veľký piatok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20160325
+DTEND;VALUE=DATE:20160326
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114415Z
+LAST-MODIFIED:20161217T155308Z
+DTSTAMP:20161217T155308Z
+UID:c02deba2-97fb-4174-90a6-976e4c4e4f7e
+SUMMARY:Veľký piatok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20170414
+DTEND;VALUE=DATE:20170415
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114415Z
+LAST-MODIFIED:20161217T155313Z
+DTSTAMP:20161217T155313Z
+UID:1fcdec9f-fda5-4918-bcd5-5f67e883a811
+SUMMARY:Veľký piatok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20180330
+DTEND;VALUE=DATE:20180331
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114415Z
+LAST-MODIFIED:20161217T155330Z
+DTSTAMP:20161217T155330Z
+UID:e789799a-2019-4844-95dd-a4ac7ee8e9d7
+SUMMARY:Veľký piatok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20190419
+DTEND;VALUE=DATE:20190420
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114415Z
+LAST-MODIFIED:20161217T155347Z
+DTSTAMP:20161217T155347Z
+UID:5475d967-dcb3-4ae1-a50e-4e6a4759ac18
+SUMMARY:Veľký piatok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20200410
+DTEND;VALUE=DATE:20200411
+DESCRIPTION:Veľký piatok\n[ Dni pracovného voľna ]\n------------------
+ -----------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114434Z
+LAST-MODIFIED:20161217T155441Z
+DTSTAMP:20161217T155441Z
+UID:0ac99e99-f969-454a-abb7-2d9514ae8220
+SUMMARY:Veľkonočný pondelok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20160328
+DTEND;VALUE=DATE:20160329
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114434Z
+LAST-MODIFIED:20161217T155453Z
+DTSTAMP:20161217T155453Z
+UID:1a1efa29-05c9-4674-b818-10a319012920
+SUMMARY:Veľkonočný pondelok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20170417
+DTEND;VALUE=DATE:20170418
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114434Z
+LAST-MODIFIED:20161217T155459Z
+DTSTAMP:20161217T155459Z
+UID:b101f4bd-13e3-4f61-8ac5-35e4950d67d1
+SUMMARY:Veľkonočný pondelok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20180402
+DTEND;VALUE=DATE:20180403
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114434Z
+LAST-MODIFIED:20161217T155505Z
+DTSTAMP:20161217T155505Z
+UID:1fdff3c8-b923-49f8-89fb-f9531b1172bd
+SUMMARY:Veľkonočný pondelok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20190422
+DTEND;VALUE=DATE:20190423
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+CREATED:20090120T114434Z
+LAST-MODIFIED:20161217T155510Z
+DTSTAMP:20161217T155510Z
+UID:ef627f01-aa4d-4a64-848d-35886fa16823
+SUMMARY:Veľkonočný pondelok
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20200413
+DTEND;VALUE=DATE:20200414
+DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
 END:VCALENDAR
