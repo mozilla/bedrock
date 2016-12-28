@@ -8,8 +8,7 @@
     font-weight: normal;
     font-style: normal;
     src: url('/media/fonts/FiraSans-Regular.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-Regular.woff') format('woff'),
-         url('/media/fonts/FiraSans-Regular.ttf') format('truetype');
+         url('/media/fonts/FiraSans-Regular.woff') format('woff');
 }
 
 @font-face {
@@ -17,8 +16,7 @@
     font-weight: bold;
     font-style: normal;
     src: url('/media/fonts/FiraSans-Bold.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-Bold.woff') format('woff'),
-         url('/media/fonts/FiraSans-Bold.ttf') format('truetype');
+         url('/media/fonts/FiraSans-Bold.woff') format('woff');
 }
 
 @font-face {
@@ -26,8 +24,7 @@
     font-weight: normal;
     font-style: italic;
     src: url('/media/fonts/FiraSans-Italic.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-Italic.woff') format('woff'),
-         url('/media/fonts/FiraSans-Italic.ttf') format('truetype');
+         url('/media/fonts/FiraSans-Italic.woff') format('woff');
 }
 
 @font-face {
@@ -35,8 +32,7 @@
     font-weight: bold;
     font-style: italic;
     src: url('/media/fonts/FiraSans-BoldItalic.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-BoldItalic.woff') format('woff'),
-         url('/media/fonts/FiraSans-BoldItalic.ttf') format('truetype');
+         url('/media/fonts/FiraSans-BoldItalic.woff') format('woff');
 }
 
 @font-face {
@@ -44,8 +40,7 @@
     font-weight: normal;
     font-style: normal;
     src: url('/media/fonts/FiraSans-Light.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-Light.woff') format('woff'),
-         url('/media/fonts/FiraSans-Light.ttf') format('truetype');
+         url('/media/fonts/FiraSans-Light.woff') format('woff');
 }
 
 @font-face {
@@ -53,8 +48,7 @@
     font-weight: normal;
     font-style: italic;
     src: url('/media/fonts/FiraSans-LightItalic.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-LightItalic.woff') format('woff'),
-         url('/media/fonts/FiraSans-LightItalic.ttf') format('truetype');
+         url('/media/fonts/FiraSans-LightItalic.woff') format('woff');
 }
 
 // Light Bold is Regular
@@ -63,8 +57,7 @@
     font-weight: bold;
     font-style: normal;
     src: url('/media/fonts/FiraSans-Regular.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-Regular.woff') format('woff'),
-         url('/media/fonts/FiraSans-Regular.ttf') format('truetype');
+         url('/media/fonts/FiraSans-Regular.woff') format('woff');
 }
 
 // Light Bold Italic is Regular Italic
@@ -73,6 +66,5 @@
     font-weight: bold;
     font-style: italic;
     src: url('/media/fonts/FiraSans-Italic.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-Italic.woff') format('woff'),
-         url('/media/fonts/FiraSans-Italic.ttf') format('truetype');
+         url('/media/fonts/FiraSans-Italic.woff') format('woff');
 }

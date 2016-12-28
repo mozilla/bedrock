@@ -11,52 +11,6 @@
     '../components/buttons',
     '../components/buttons-download';
 
-
-// @Fonts
-// oldIE only supports EOT so we needn't include TTF or Woff.
-@font-face {
-    font-family: 'Fira Sans';
-    font-style: normal;
-    font-weight: normal;
-    src: url('/media/fonts/FiraSans-Regular.eot?#iefix') format('embedded-opentype');
-}
-
-@font-face {
-    font-family: 'Fira Sans';
-    font-style: normal;
-    font-weight: bold;
-    src: url('/media/fonts/FiraSans-Bold.eot?#iefix') format('embedded-opentype');
-}
-
-@font-face {
-    font-family: 'Fira Sans';
-    font-style: italic;
-    font-weight: normal;
-    src: url('/media/fonts/FiraSans-Italic.eot?#iefix') format('embedded-opentype');
-}
-
-@font-face {
-    font-family: 'Fira Sans';
-    font-style: italic;
-    font-weight: bold;
-    src: url('/media/fonts/FiraSans-BoldItalic.eot?#iefix') format('embedded-opentype');
-}
-
-@font-face {
-    font-family: 'Fira Sans Light';
-    font-style: normal;
-    font-weight: normal;
-    src: url('/media/fonts/FiraSans-Light.eot?#iefix') format('embedded-opentype');
-}
-
-@font-face {
-    font-family: 'Fira Sans Light';
-    font-style: italic;
-    font-weight: bold;
-    src: url('/media/fonts/FiraSans-LightItalic.eot?#iefix') format('embedded-opentype');
-}
-
-
 // An arbitrary container for translatable strings to use in scripts
 #strings {
     display: none;
