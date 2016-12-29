@@ -10,13 +10,15 @@ import jinja2
 
 from ..urlresolvers import reverse
 from bedrock.base import waffle
+from bedrock.utils import expand_locale_groups
 
 
 @library.global_function
-def switch(name):
+@jinja2.contextfunction
+def switch(cxt, name, locales=None):
     """A template helper that replaces waffle
 
-    * All calls default to True when DEV setting is True.
+    * All calls default to True when DEV setting is True (for the listed locales).
     * If the env var is explicitly false it will be false even when DEV = True.
     * Otherwise the call is False by default and True is a specific env var exists and is truthy.
 
@@ -26,7 +28,15 @@ def switch(name):
 
     would check for an environment variable called `SWITCH_DUDE_AND_WALTER`. The string from the
     `switch()` call is converted to uppercase and dashes replaced with underscores.
+
+    If the `locales` argument is a list of locales then it will only check the switch in those
+    locales, and return False otherwise. The `locales` argument could also contain a "locale group",
+    which is a list of locales for a prefix (e.g. "en" expands to "en-US, en-GB, en-ZA").
     """
+    if locales:
+        if cxt['LANG'] not in expand_locale_groups(locales):
+            return False
+
     return waffle.switch(name)
 
 

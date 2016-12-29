@@ -9,6 +9,7 @@ from bedrock.mozorg.util import page
 import views
 import bedrock.releasenotes.views
 from bedrock.releasenotes import version_re
+from bedrock.utils.views import VariationTemplateView
 
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
@@ -30,7 +31,11 @@ urlpatterns = (
     url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
         views.all_downloads, name='firefox.all'),
     page('firefox/accounts', 'firefox/accounts.html'),
-    url(r'^firefox/channel/desktop/$', views.channel_desktop, name='firefox.channel.desktop'),
+    url(r'^firefox/channel/desktop/$',
+        VariationTemplateView.as_view(template_name='firefox/channel/desktop.html',
+                                      template_context_variations=['b'],
+                                      variation_locales=['en-US']),
+        name='firefox.channel.desktop'),
     page('firefox/channel/android', 'firefox/channel/android.html'),
     page('firefox/channel/ios', 'firefox/channel/ios.html'),
     page('firefox/desktop', 'firefox/desktop/index.html'),
@@ -38,7 +43,11 @@ urlpatterns = (
     page('firefox/desktop/customize', 'firefox/desktop/customize.html'),
     page('firefox/desktop/tips', 'firefox/desktop/tips.html'),
     page('firefox/desktop/trust', 'firefox/desktop/trust.html'),
-    url(r'^firefox/developer/$', views.developer, name='firefox.developer'),
+    url(r'^firefox/developer/$',
+        VariationTemplateView.as_view(template_name='firefox/developer.html',
+                                      template_context_variations=['b'],
+                                      variation_locales=['en-US']),
+        name='firefox.developer'),
     page('firefox/features', 'firefox/features.html'),
     page('firefox/geolocation', 'firefox/geolocation.html'),
     page('firefox/interest-dashboard', 'firefox/interest-dashboard.html'),
@@ -52,7 +61,11 @@ urlpatterns = (
     page('firefox/private-browsing', 'firefox/private-browsing.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
-    url(r'^firefox/sync/$', views.sync, name='firefox.sync'),
+    url(r'^firefox/sync/$',
+        VariationTemplateView.as_view(template_name='firefox/sync.html',
+                                      template_context_variations=['2', '3'],
+                                      variation_locales=['en-US']),
+        name='firefox.sync'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
     url(r'^firefox/new/$', views.new, name='firefox.new'),
     page('firefox/organizations/faq', 'firefox/organizations/faq.html'),
