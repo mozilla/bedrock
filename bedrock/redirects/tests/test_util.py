@@ -12,7 +12,7 @@ from nose.tools import eq_, ok_
 
 from bedrock.redirects.middleware import RedirectsMiddleware
 from bedrock.redirects.util import (get_resolver, header_redirector, is_firefox_redirector,
-                                    no_redirect, redirect, ua_redirector)
+                                    no_redirect, redirect, ua_redirector, platform_redirector)
 
 
 class TestHeaderRedirector(TestCase):
@@ -50,6 +50,33 @@ class TestIsFirefoxRedirector(TestCase):
         url = callback(self.rf.get('/take/comfort/',
                                    HTTP_USER_AGENT='Mozilla Firefox/17.0 Iceweasel/17.0.1'))
         self.assertEqual(url, '/flout/')
+
+
+class TestPlatformRedirector(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_desktop_redirects(self):
+        callback = platform_redirector('/red/', '/green/', '/blue/')
+        url = callback(self.rf.get('/take/comfort/',
+                                   HTTP_USER_AGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; '
+                                                   'rv:53.0) Gecko/20100101 Firefox/53.0'))
+        self.assertEqual(url, '/red/')
+
+    def test_android_redirects(self):
+        callback = platform_redirector('/red/', '/green/', '/blue/')
+        url = callback(self.rf.get('/take/comfort/',
+                                   HTTP_USER_AGENT='Mozilla/5.0 (Android 6.0.1; Mobile; rv:51.0) '
+                                                   'Gecko/51.0 Firefox/51.0'))
+        self.assertEqual(url, '/green/')
+
+    def test_ios_redirects(self):
+        callback = platform_redirector('/red/', '/green/', '/blue/')
+        url = callback(self.rf.get('/take/comfort/',
+                                   HTTP_USER_AGENT='Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like '
+                                                   'Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, '
+                                                   'like Gecko) Mobile/8F190'))
+        self.assertEqual(url, '/blue/')
 
 
 class TestNoRedirectUrlPattern(TestCase):
