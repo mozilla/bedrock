@@ -2,9 +2,8 @@
 
 @font-face {
   font-family: 'Font Awesome';
-  src: url('/media/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-       url('/media/fonts/fontawesome-webfont.woff') format('woff'),
-       url('/media/fonts/fontawesome-webfont.ttf') format('truetype');
+  src: url('/media/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+       url('/media/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -64,7 +63,7 @@ a.twitter-follow-button {
     overflow: hidden;
     padding: 10px 10px 10px 68px;
     line-height: @baseLine;
-  
+
     header {
       .timestamp {
         float: right;
@@ -72,30 +71,30 @@ a.twitter-follow-button {
         .font-size(@smallFontSize);
         line-height: @baseLine;
         letter-spacing: 0;
-  
+
         a {
           color: @textColorTertiary;
         }
-  
+
         .full {
           .visually-hidden();
         }
       }
     }
-  
+
     [itemprop="author"] {
       a {
         color: inherit;
-  
+
         &:hover, &:focus, &:active {
           text-decoration: none;
-  
+
           [itemprop="name"] {
             text-decoration: underline;
           }
         }
       }
-  
+
       img {
         float: left;
         margin: 0 0 0 -58px;
@@ -103,80 +102,80 @@ a.twitter-follow-button {
         width: 48px;
         height: 48px;
       }
-  
+
       [itemprop="name"] {
         font-weight: bold;
       }
-  
+
       [itemprop="alternateName"] {
         .font-size(@smallFontSize);
         color: @textColorTertiary;
       }
     }
-  
+
     div {
       p {
         margin: 0;
         line-height: @baseLine;
       }
-  
+
       img {
         margin: 5px 0;
         width: 100%;
         vertical-align: top;
       }
-  
+
       .retweet-credit {
         .font-size(@smallFontSize);
         color: @textColorLight;
-  
+
         &:before {
           .inline-block;
           font-family: 'Font Awesome', sans-serif;
           content: '\0F079\00A0';
         }
-  
+
         a {
           color: inherit;
         }
       }
     }
-  
+
     footer {
       overflow: hidden;
-  
+
       .actions {
         float: right;
         margin: 0;
-  
+
         li {
           .inline-block;
           margin: 0 0 0 8px;
           padding: 0;
           .font-size(@smallFontSize);
-  
+
           &:first-child {
             margin-left: 0;
           }
         }
-  
+
         a {
           color: @textColorTertiary;
-  
+
           &:before {
             .inline-block;
             font-family: 'Font Awesome', sans-serif;
           }
         }
-  
+
         .reply:before {
           content: '\0F112\00A0';
         }
-  
+
         .retweet:before {
           content: '\0F079\00A0';
         }
-  
+
         .favorite:before {
           content: '\0F005\00A0';
         }
