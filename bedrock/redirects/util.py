@@ -66,6 +66,22 @@ def is_firefox_redirector(fx_dest, nonfx_dext):
     return decider
 
 
+def platform_redirector(desktop_dest, android_dest, ios_dest):
+    android_re = re.compile(r'\bAndroid\b', flags=re.I)
+    ios_re = re.compile(r'\b(iPhone|iPad|iPod)\b', flags=re.I)
+
+    def decider(request, *args, **kwargs):
+        value = request.META.get('HTTP_USER_AGENT', '')
+        if android_re.search(value):
+            return android_dest
+        elif ios_re.search(value):
+            return ios_dest
+        else:
+            return desktop_dest
+
+    return decider
+
+
 def no_redirect(pattern, locale_prefix=True, re_flags=None):
     """
     Return a url matcher that will stop the redirect middleware and force

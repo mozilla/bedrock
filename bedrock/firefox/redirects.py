@@ -1,4 +1,5 @@
-from bedrock.redirects.util import redirect, is_firefox_redirector, no_redirect
+from bedrock.redirects.util import (redirect, is_firefox_redirector,
+                                    platform_redirector, no_redirect)
 
 
 def firefox_mobile_faq(request, *args, **kwargs):
@@ -514,8 +515,12 @@ redirectpatterns = (
     redirect(r'^firefox/hello/?$', 'https://support.mozilla.org/kb/hello-status'),
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/hello/start/?$', 'https://support.mozilla.org/kb/hello-status'),
 
-    # bug 1299947
-    redirect('^firefox/channel/?$', 'firefox.channel.desktop'),
+    # bug 1299947, 1326383
+    redirect(r'^firefox/channel/?$',
+             platform_redirector('firefox.channel.desktop',
+                                 'firefox.channel.android',
+                                 'firefox.channel.ios'),
+             cache_timeout=0),
 
     # Bug 1277196
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/firstrun/learnmore/?$', 'firefox.features'),

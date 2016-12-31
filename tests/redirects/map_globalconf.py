@@ -182,6 +182,19 @@ URLS = flatten((
     url_test('/mobile/aurora/', '/firefox/channel/android/#aurora'),
     url_test('/mobile/nightly/', '/firefox/channel/android/#nightly'),
 
+    # bug 1299947, 1326383
+    url_test('/firefox/channel/', '/firefox/channel/android/',
+             req_headers={'User-Agent': 'Mozilla/5.0 (Android 6.0.1; Mobile; rv:51.0) '
+                                        'Gecko/51.0 Firefox/51.0'},
+             resp_headers={'Cache-Control': 'max-age=0'}),
+    url_test('/firefox/channel/', '/firefox/channel/ios/',
+             req_headers={'User-Agent': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like '
+                                        'Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, '
+                                        'like Gecko) Mobile/8F190'},
+             resp_headers={'Cache-Control': 'max-age=0'}),
+    url_test('/firefox/channel/', '/firefox/channel/desktop/',
+             resp_headers={'Cache-Control': 'max-age=0'}),
+
     url_test('/firefox/unsupported-systems.html', '/firefox/unsupported-systems/'),
     url_test('/download/', '/firefox/new/'),
 
