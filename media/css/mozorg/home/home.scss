@@ -97,6 +97,15 @@ body {
             color: #fff;
         }
     }
+}
+
+@media #{$mq-desktop} {
+    #nav-main-menu,
+    .js #nav-main-menu {
+        li {
+            padding: 0 20px;
+        }
+    }
 
     #nav-download-firefox {
         display: inline-block;
@@ -116,15 +125,6 @@ body {
 
         .fx-privacy-link {
             display: none;
-        }
-    }
-}
-
-@media #{$mq-desktop} {
-    #nav-main-menu,
-    .js #nav-main-menu {
-        li {
-            padding: 0 20px;
         }
     }
 }
@@ -849,4 +849,3 @@ main {
         @include at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
     }
 }
-
