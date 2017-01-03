@@ -25,12 +25,16 @@ def ircNotification(stage, result) {
 }
 
 if ( branch == 'master') {
-    ircNotification('Dev Deploy', 'starting')
-    build 'bedrock_base_image'
+    node {
+        ircNotification('Dev Deploy', 'starting')
+        build 'bedrock_base_image'
+    }
 }
 else if ( branch == 'prod') {
-    ircNotification('Prod Deploy', 'starting')
-    build 'bedrock_base_image'
+    node {
+        ircNotification('Prod Deploy', 'starting')
+        build 'bedrock_base_image'
+    }
 }
 else if ( branch ==~ /^demo__[\w-]+$/ ) {
     node {
