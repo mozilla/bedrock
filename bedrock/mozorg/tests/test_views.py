@@ -64,29 +64,6 @@ class TestHome(TestCase):
         render_mock.assert_called_once_with(req,
             'mozorg/home/home-voices.html', ANY)
 
-    # home Fx copy tests - bug 1313717
-    def test_valid_variant(self, render_mock):
-        req = self.rf.get('/?v=b')
-        req.locale = 'en-US'
-        views.home(req)
-        render_mock.assert_called_once_with(req,
-            'mozorg/home/home-b.html', ANY)
-
-    def test_invalid_variant(self, render_mock):
-        req = self.rf.get('/?v=3')
-        req.locale = 'en-US'
-        views.home(req)
-        render_mock.assert_called_once_with(req,
-            'mozorg/home/home.html', ANY)
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: True)
-    def test_valid_variant_invalid_locale(self, render_mock):
-        req = self.rf.get('/?v=a')
-        req.locale = 'fr'
-        views.home(req)
-        render_mock.assert_called_once_with(req,
-            'mozorg/home/home.html', ANY)
-
 
 class TestViews(TestCase):
     @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})

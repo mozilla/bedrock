@@ -33,12 +33,6 @@
   {% stylesheet 'home' %}
 {% endblock %}
 
-{% block experiments %}
-  {% if l10n_has_tag('mozorg-home-fundraising-2016') and switch('experiment-home-fundraising-2016') %}
-    {% javascript 'experiment-home-fundraising-2016' %}
-  {% endif %}
-{% endblock %}
-
 {% block optimizely %}
   {% if switch('mozorg-home-optimizely') %}
     {% include 'includes/optimizely.html' %}
@@ -214,14 +208,6 @@
   </aside>
 
 </main>
-
-{% if l10n_has_tag('mozorg-home-fundraising-2016') and switch('mozorg-home-fundraising-2016') %}
-  {% block home_takeover %}
-    {% with variant = 'takeoverA' %}
-      {% include 'mozorg/home/includes/takeover-2016.html' %}
-    {% endwith %}
-  {% endblock %}
-{% endif %}
 
 {% endblock %}
 

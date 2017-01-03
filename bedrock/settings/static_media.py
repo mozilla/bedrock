@@ -623,7 +623,6 @@ PIPELINE_CSS = {
             'css/mozorg/home/home-voices.less',
             'css/mozorg/home/home-voices-promo.less',
             'css/newsletter/moznewsletter-subscribe.less',
-            'css/mozorg/home/takeover-2016.scss',
         ),
         'output_filename': 'css/home-voices-bundle.css',
     },
@@ -637,7 +636,6 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/home.scss',
-            'css/mozorg/home/takeover-2016.scss',
         ),
         'output_filename': 'css/home-bundle.css',
     },
@@ -1454,21 +1452,12 @@ PIPELINE_JS = {
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.waypoints.min.js',
             'js/mozorg/home/home.js',
-            'js/mozorg/home/takeover-2016.js',
         ),
         'output_filename': 'js/home-bundle.js',
-    },
-    'experiment-home-fundraising-2016': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/mozorg/home/experiment-home-fundraising-2016.js',
-        ),
-        'output_filename': 'js/experiment-home-fundraising-2016-bundle.js',
     },
     'home-voices': {
         'source_filenames': (
             'js/mozorg/home/home-voices.js',
-            'js/mozorg/home/takeover-2016.js',
         ),
         'output_filename': 'js/home-voices-bundle.js',
     },
