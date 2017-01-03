@@ -1,6 +1,7 @@
 BASE_IMG_NAME = bedrock_base
 DEV_IMG_NAME = bedrock_dev
-FINAL_IMG_NAME = bedrock_dev_final
+GIT_SHA = $(shell git rev-parse HEAD)
+FINAL_IMG_NAME = bedrock_dev_final:${GIT_SHA}
 
 default:
 	@echo "You need to specify a subcommand."
@@ -30,7 +31,7 @@ build:
 	touch .docker-build
 
 build-final: .docker-build
-	docker build -f docker/dockerfiles/bedrock_dev_final -t bedrock_dev_final .
+	docker build -f docker/dockerfiles/bedrock_dev_final -t ${FINAL_IMG_NAME} .
 	touch .docker-build-final
 
 run: .docker-build
@@ -60,7 +61,8 @@ clean:
 	-rm -rf docs/_build/
 
 	# state files
-	-rm .docker-build
+	-rm -f .docker-build
+	-rm -f .docker-build-final
 
 test: .docker-build
 	docker run --user `id -u` --env-file docker/test.env -v "$$PWD:/app" ${DEV_IMG_NAME} docker/run-tests.sh
