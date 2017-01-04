@@ -10,6 +10,12 @@ def firefox_mobile_faq(request, *args, **kwargs):
     return 'firefox.android.faq'
 
 
+def firefox_channel(*args, **kwargs):
+    return platform_redirector('firefox.channel.desktop',
+                               'firefox.channel.android',
+                               'firefox.channel.ios')
+
+
 redirectpatterns = (
     # overrides
 
@@ -41,10 +47,10 @@ redirectpatterns = (
     # bug 657049, 1238851
     redirect(r'^firefox/accountmanager/?$', 'https://developer.mozilla.org/Persona'),
 
-    # Bug 1009247, 1101220, 1299947, 1314603
-    redirect(r'^(firefox/)?beta/?$', 'firefox.channel.desktop', anchor='beta'),
-    redirect(r'^(firefox/)?aurora/?$', 'firefox.channel.desktop', anchor='developer'),
-    redirect(r'^(firefox/)?nightly/?$', 'firefox.channel.desktop', anchor='nightly'),
+    # Bug 1009247, 1101220, 1299947, 1314603, 1328409
+    redirect(r'^(firefox/)?beta/?$', firefox_channel(), cache_timeout=0, anchor='beta'),
+    redirect(r'^(firefox/)?aurora/?$', firefox_channel(), cache_timeout=0, anchor='aurora'),
+    redirect(r'^(firefox/)?nightly/?$', firefox_channel(), cache_timeout=0, anchor='nightly'),
     redirect(r'^mobile/beta/?$', 'firefox.channel.android', anchor='beta'),
     redirect(r'^mobile/aurora/?$', 'firefox.channel.android', anchor='aurora'),
     redirect(r'^mobile/nightly/?$', 'firefox.channel.android', anchor='nightly'),
@@ -516,11 +522,7 @@ redirectpatterns = (
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/hello/start/?$', 'https://support.mozilla.org/kb/hello-status'),
 
     # bug 1299947, 1326383
-    redirect(r'^firefox/channel/?$',
-             platform_redirector('firefox.channel.desktop',
-                                 'firefox.channel.android',
-                                 'firefox.channel.ios'),
-             cache_timeout=0),
+    redirect(r'^firefox/channel/?$', firefox_channel(), cache_timeout=0),
 
     # Bug 1277196
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/firstrun/learnmore/?$', 'firefox.features'),

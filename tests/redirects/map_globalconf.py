@@ -8,6 +8,10 @@ import requests
 
 from .base import flatten, url_test
 
+UA_ANDROID = {'User-Agent': 'Mozilla/5.0 (Android 6.0.1; Mobile; rv:51.0) Gecko/51.0 Firefox/51.0'}
+UA_IOS = {'User-Agent': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) '
+                        'AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190'}
+
 URLS = flatten((
     # bug 832348 **/index.html -> **/
     url_test('/any/random/url/with/index.html', '/any/random/url/with/'),
@@ -174,24 +178,26 @@ URLS = flatten((
     # bug 1275483
     url_test('/firefox/nightly/whatsnew/', '/firefox/nightly/firstrun/'),
 
-    # bug 1299947, 1314603
-    url_test('/{firefox/,}beta/', '/firefox/channel/desktop/#beta'),
-    url_test('/{firefox/,}aurora/', '/firefox/channel/desktop/#developer'),
-    url_test('/{firefox/,}nightly/', '/firefox/channel/desktop/#nightly'),
-    url_test('/mobile/beta/', '/firefox/channel/android/#beta'),
-    url_test('/mobile/aurora/', '/firefox/channel/android/#aurora'),
-    url_test('/mobile/nightly/', '/firefox/channel/android/#nightly'),
+    # bug 1299947, 1314603, 1328409
+    url_test('/{beta,aurora,nightly}/', '/firefox/channel/android/#{beta,aurora,nightly}',
+             req_headers=UA_ANDROID, resp_headers={'Cache-Control': 'max-age=0'}),
+    url_test('/{beta,aurora,nightly}/', '/firefox/channel/ios/#{beta,aurora,nightly}',
+             req_headers=UA_IOS, resp_headers={'Cache-Control': 'max-age=0'}),
+    url_test('/{beta,aurora,nightly}/', '/firefox/channel/desktop/#{beta,aurora,nightly}',
+             resp_headers={'Cache-Control': 'max-age=0'}),
+    url_test('/firefox/{beta,aurora,nightly}/', '/firefox/channel/android/#{beta,aurora,nightly}',
+             req_headers=UA_ANDROID, resp_headers={'Cache-Control': 'max-age=0'}),
+    url_test('/firefox/{beta,aurora,nightly}/', '/firefox/channel/ios/#{beta,aurora,nightly}',
+             req_headers=UA_IOS, resp_headers={'Cache-Control': 'max-age=0'}),
+    url_test('/firefox/{beta,aurora,nightly}/', '/firefox/channel/desktop/#{beta,aurora,nightly}',
+             resp_headers={'Cache-Control': 'max-age=0'}),
+    url_test('/mobile/{beta,aurora,nightly}/', '/firefox/channel/android/#{beta,aurora,nightly}'),
 
     # bug 1299947, 1326383
     url_test('/firefox/channel/', '/firefox/channel/android/',
-             req_headers={'User-Agent': 'Mozilla/5.0 (Android 6.0.1; Mobile; rv:51.0) '
-                                        'Gecko/51.0 Firefox/51.0'},
-             resp_headers={'Cache-Control': 'max-age=0'}),
+             req_headers=UA_ANDROID, resp_headers={'Cache-Control': 'max-age=0'}),
     url_test('/firefox/channel/', '/firefox/channel/ios/',
-             req_headers={'User-Agent': 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like '
-                                        'Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, '
-                                        'like Gecko) Mobile/8F190'},
-             resp_headers={'Cache-Control': 'max-age=0'}),
+             req_headers=UA_IOS, resp_headers={'Cache-Control': 'max-age=0'}),
     url_test('/firefox/channel/', '/firefox/channel/desktop/',
              resp_headers={'Cache-Control': 'max-age=0'}),
 
