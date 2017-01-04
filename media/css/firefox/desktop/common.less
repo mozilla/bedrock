@@ -87,11 +87,6 @@ html[dir="rtl"] {
     }
 }
 
-//override JS inline color style for spin.js
-#newsletter-spinner .spinner > div > div {
-    background-color: #fff !important;
-}
-
 // force dl button links to be white in blue bg footer
 #subscribe-download-wrapper .download-button small.download-other {
     color: #fff;
@@ -876,9 +871,9 @@ html[dir="rtl"] {
     }
 
     #download-wrapper {
-        // js displays the buttons for non fx browsers, so this needs to be
-        // important to override the generated inline style
-        display: none !important;
+        /* js displays the buttons for non fx browsers, so this needs to be
+         * important to override the generated inline style */
+        display: none !important; /* stylelint-disable-line declaration-no-important */
     }
 
     #main-content .container {

@@ -1,9 +1,9 @@
 /* Bug 993709 */
 
 @font-face {
-  font-family: X-LocaleSpecific;
-  font-weight: normal;
-  src: /* OS X */
+    font-family: X-LocaleSpecific;
+    font-weight: normal;
+    src: /* OS X */
        local(FZLTXHK--GBK1-0), /* = Lantinghei SC Extralight */
        local(HiraginoSansGB-W3),
        /* Windows */
@@ -13,9 +13,9 @@
 }
 
 @font-face {
-  font-family: X-LocaleSpecific;
-  font-weight: bold;
-  src: /* OS X */
+    font-family: X-LocaleSpecific;
+    font-weight: bold;
+    src: /* OS X */
        local(FZLTZHK--GBK1-0), /* = Lantinghei SC Demibold */
        local(HiraginoSansGB-W6),
        /* Windows */
@@ -25,9 +25,9 @@
 }
 
 @font-face {
-  font-family: X-LocaleSpecific-Extrabold;
-  font-weight: 800;
-  src: /* OS X */
+    font-family: X-LocaleSpecific-Extrabold;
+    font-weight: 800;
+    src: /* OS X */
        local(FZLTTHK--GBK1-0), /* = Lantinghei SC Heavy */
        local(HiraginoSansGB-W6),
        /* Windows */
@@ -39,5 +39,6 @@
 /* Bug 973171 */
 
 * {
-  font-style: normal !important;
+    /* !important required for locale specific override */
+    font-style: normal !important; /* stylelint-disable-line declaration-no-important */
 }

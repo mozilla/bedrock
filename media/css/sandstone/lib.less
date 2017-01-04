@@ -404,7 +404,8 @@
 
 // Hide visually, but not to screen readers
 .visually-hidden() {
-    position: absolute!important;
+    /* !important required to ensure element is hidden when mixin is applied */
+    position: absolute !important; /* stylelint-disable-line declaration-no-important */
     height: 1px;
     width: 1px;
     margin: -1px;
@@ -494,7 +495,7 @@
   -webkit-column-break-inside: avoid;
      -moz-column-break-inside: avoid;
        -o-column-break-inside: avoid;
-          column-break-inside: avoid;
+                 break-inside: avoid;
 }
 
 // A helper mixin for applying high-resolution background images (http://www.retinajs.com)

@@ -33,6 +33,7 @@ test:
   pre:
     - mkdir -p "$CIRCLE_TEST_REPORTS/django"
   override:
+    - gulp css:lint
     - gulp js:lint
     - gulp js:test
     - make test-image

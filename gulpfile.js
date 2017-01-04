@@ -9,12 +9,20 @@ const del = require('del');
 const karma = require('karma');
 const eslint = require('gulp-eslint');
 const watch = require('gulp-watch');
+const gulpStylelint = require('gulp-stylelint');
 
-const lintPaths = [
+const lintPathsJS = [
     'media/js/**/*.js',
     '!media/js/libs/*.js',
     'tests/unit/spec/**/*.js',
     'gulpfile.js'
+];
+
+const lintPathsCSS = [
+    'media/css/**/*.scss',
+    'media/css/**/*.less',
+    'media/css/**/*.css',
+    '!media/css/libs/*'
 ];
 
 gulp.task('media:watch', () => {
@@ -33,10 +41,21 @@ gulp.task('js:test', done => {
 });
 
 gulp.task('js:lint', () => {
-    return gulp.src(lintPaths)
+    return gulp.src(lintPathsJS)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
+});
+
+
+gulp.task('css:lint', () => {
+    return gulp.src(lintPathsCSS)
+        .pipe(gulpStylelint({
+            reporters: [{
+                formatter: 'string',
+                console: true
+            }]
+        }));
 });
 
 gulp.task('static:clean', () => {
@@ -45,5 +64,21 @@ gulp.task('static:clean', () => {
 
 gulp.task('default', () => {
     gulp.start('media:watch');
-    gulp.watch(lintPaths, ['js:lint']);
+
+    gulp.watch(lintPathsJS).on('change', file => {
+        return gulp.src(file.path)
+            .pipe(eslint())
+            .pipe(eslint.format());
+    });
+
+    gulp.watch(lintPathsCSS).on('change', file => {
+        return gulp.src(file.path)
+            .pipe(gulpStylelint({
+                failAfterError: false,
+                reporters: [{
+                    formatter: 'string',
+                    console: true
+                }]
+            }));
+    });
 });

@@ -4,8 +4,8 @@
 
 @import '../includes/lib';
 
-
-// Custom Google search
+/* !important required Custom Google search JS overrides */
+/* stylelint-disable declaration-no-important  */
 
 .moz-search {
     @include clearfix;
@@ -125,3 +125,5 @@
 .gsc-modal-background-image {
     background-color: #000 !important;
 }
+
+/* stylelint-enable */

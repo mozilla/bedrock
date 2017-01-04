@@ -14,6 +14,8 @@
 
 /* Bug 944269 */
 
+/* !important required for locale specific override */
+/* stylelint-disable declaration-no-important  */
 * {
   letter-spacing: normal !important;
 }
@@ -29,3 +31,4 @@ h6,
 legend {
   line-height: 1.5 !important;
 }
+/* stylelint-enable */
