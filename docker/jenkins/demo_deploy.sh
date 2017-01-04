@@ -25,3 +25,5 @@ if deis apps:create "$DEIS_APP_NAME" --no-remote; then
 fi
 echo "Pulling $DOCKER_IMAGE_TAG into Deis app $DEIS_APP_NAME"
 deis pull "$DOCKER_IMAGE_TAG" -a "$DEIS_APP_NAME"
+
+bin/irc-notify.sh --demo_url "https://${DEIS_APP_NAME}.us-west.moz.works/"
