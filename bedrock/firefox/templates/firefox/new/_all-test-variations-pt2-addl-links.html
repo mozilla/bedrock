@@ -1,0 +1,22 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+
+<section id="test-primary-ctas" class="test-section">
+  <h4>Firefox for other platforms</h4>
+
+  <ul id="test-direct-downloads"></ul>
+
+  <ul id="test-mobile-downloads">
+    <li class="android">
+      {{ google_play_button() }}
+    </li>
+    <li class="ios">
+      <a href="{{ firefox_ios_url('mozorg-fxnew_page_scene1_modal-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+        <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+      </a>
+    </li>
+  </ul>
+</section>{#-- /#test-primary-ctas --#}
