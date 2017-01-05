@@ -5,7 +5,7 @@
 @import '../includes/lib';
 
 
-/* privacy policy link that accompany most download buttons */
+// privacy policy link that accompany most download buttons
 .fx-privacy-link {
     @include font-size(16px);
     display: block;
@@ -24,7 +24,7 @@
 }
 
 
-/* fxfamilynav overrides */
+// fxfamilynav overrides
 .fxfamilynav-cta-wrapper {
     .button,
     a.button:link,
@@ -34,7 +34,8 @@
     }
 }
 
-/* download button and related containers specific */
+
+// download button and related containers
 ul.download-list {
     list-style-type: none;
     margin-bottom: 10px;
@@ -95,17 +96,19 @@ ul.download-list {
     }
 }
 
-/* Product download buttons */
-.download-button .ios-download,
-.download-button .linux-arm-download,
-.download-button .unrecognized-download,
-.download-button .unsupported-download,
-.download-button .unsupported-download-osx,
-.download-button .nojs-download {
-    display: none;
+// Product download buttons
+.download-button {
+    .ios-download,
+    .linux-arm-download,
+    .unrecognized-download,
+    .unsupported-download,
+    .unsupported-download-osx,
+    .nojs-download {
+        display: none;
+    }
 }
 
-/* OS detection */
+// OS detection
 .download-button .os_winsha1,
 .download-button .os_win64,
 .download-button .os_linux,
@@ -183,7 +186,7 @@ ul.download-list {
     }
 }
 
-/* Android architecture detection */
+// Android architecture detection
 .download-button .download-list .os_android.api-9,
 .download-button .download-list .os_android.x86,
 .download-button .download-other.os_android .api-15,
@@ -204,7 +207,7 @@ ul.download-list {
     display: inline !important;
 }
 
-/* IE on Windows XP, Server 2003, Vista need sha-1 button */
+// IE on Windows XP, Server 2003, Vista need sha-1 button
 .windows.sha-1 .download-button .os_win {
     display: none !important;
 }
@@ -213,7 +216,7 @@ ul.download-list {
     display: block !important;
 }
 
-/* l10n download button tweaks */
+// l10n download button tweaks
 html[lang="ml"] {
     .button {
         padding: 10px 16px;

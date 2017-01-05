@@ -14,9 +14,9 @@
         });
     }
 
-    Mozilla.HighlightTarget.init('.button.dark');
+    Mozilla.HighlightTarget.init('.button.button-dark');
 
-    $('.button.dark').on('highlight-target', function() {
+    $('.button.button-dark').on('highlight-target', function() {
         $shield.addClass('blocked');
     });
 

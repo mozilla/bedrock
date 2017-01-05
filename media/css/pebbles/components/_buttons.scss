@@ -2,17 +2,45 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import
-    '../includes/lib',
-    'base-button';
+@import '../includes/lib';
 
+// The basis for all buttons on mozilla.org
+%base-button {
+    @include font-size(18px);
+    @include transition(background-color 100ms ease-in-out);
+    background: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+    display: inline-block;
+    padding: .5em 36px;
+    position: relative;
+    text-align: center;
+    text-shadow: none;
+    text-decoration: none;
+
+    @media #{$mq-tablet} {
+        @include font-size(20px);
+    }
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
 
 // Standard solid buttons, especially those not in a form context such as CTA and download buttons
 .button,
 button.button,
 a.button:link,
 a.button:visited {
-    @include base-button;
+    @extend %base-button;
     background-color: $color-mozblue;
     border-color: darken($color-mozblue, 3%);
     color: $color-button-light;
@@ -22,7 +50,7 @@ a.button:visited {
         background-color: saturate(lighten($color-mozblue, 5%), 10%);
     }
 
-    &.dark {
+    &.button-dark {
         background-color: $color-button-dark;
         border-color: darken($color-button-dark, 3%);
         color: $color-button-light;
@@ -33,7 +61,7 @@ a.button:visited {
         }
     }
 
-    &.green {
+    &.button-green {
         background-color: $color-button-green;
         border-color: darken($color-button-green, 3%);
         color: $color-button-light;
@@ -44,7 +72,7 @@ a.button:visited {
         }
     }
 
-    &.red {
+    &.button-red {
         background-color: $color-mozred;
         border-color: darken($color-mozred, 3%);
         color: $color-button-light;
@@ -54,7 +82,7 @@ a.button:visited {
         }
     }
 
-    &.orange {
+    &.button-orange {
         background-color: $color-button-orange;
         border-color: darken($color-button-orange, 3%);
         color: $color-button-light;
@@ -67,14 +95,14 @@ a.button:visited {
 }
 
 // Hollow buttons, especially when used in forms
-.button.hollow,
-button.button.hollow,
-a.button.hollow:link,
-a.button.hollow:visited,
+.button.button-hollow,
+button.button.button-hollow,
+a.button.button-hollow:link,
+a.button.button-hollow:visited,
 button.form-button,
 input[type="submit"].form-button,
-input[type='button'].form-button  {
-    @include base-button;
+input[type='button'].form-button {
+    @extend %base-button;
     background-color: transparent;
     border-color: $color-mozblue;
     color: $color-mozblue;
@@ -86,7 +114,7 @@ input[type='button'].form-button  {
         color: saturate(lighten($color-mozblue, 5%), 10%);
     }
 
-    &.light {
+    &.button-light {
         color: $color-button-light;
         border-color: $color-button-light;
 
@@ -98,7 +126,7 @@ input[type='button'].form-button  {
         }
     }
 
-    &.dark {
+    &.button-dark {
         color: $color-button-dark;
         border-color: $color-button-dark;
 
@@ -110,7 +138,7 @@ input[type='button'].form-button  {
         }
     }
 
-    &.red {
+    &.button-red {
         color: $color-mozred;
         border-color: $color-mozred;
 

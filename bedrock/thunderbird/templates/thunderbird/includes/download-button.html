@@ -7,7 +7,7 @@
     <h4>{{ _('Download Thunderbird') }} — {{ locale_name|safe }}</h4>
     <ul>
       {% for plat in builds -%}
-        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="download-link button green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
+        <li><a href="{{ plat.download_link_direct or plat.download_link }}" class="download-link button button-green">{{ plat.os_arch_pretty or plat.os_pretty }}</a></li>
       {%- endfor %}
     </ul>
   </div>
