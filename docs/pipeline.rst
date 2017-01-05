@@ -34,37 +34,50 @@ Pull request
 Once a pull request is submitted, `CircleCI`_ will run both the Python and  JavaScript
 unit tests, as well as the smoke suite of redirect headless HTTP(s) response checks.
 
-Push to master (not tagged)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Push to master branch (not tagged)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Whenever a change is pushed to the master branch but not tagged, the smoke suite of
 headless (see :ref:`testing-redirects`) and UI tests (see :ref:`smoke-functional-tests`)
-are run against Firefox on Linux. If successful, the change is pushed to the dev and
-staging environments, and the full suite of headless and UI tests are then run against
+are run against Firefox on Linux. If successful, the change is pushed to the dev environment,
+and the full suite of headless and UI tests are then run against
 Firefox on Windows 10 using `Sauce Labs`_. This is handled by the pipeline, and is subject
 to change according to the `per-push properties file`_ in the repository.
 
 .. _tagged-commit:
 
-Push to master (tagged)
-~~~~~~~~~~~~~~~~~~~~~~~
+Push to prod branch (tagged)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When a tagged commit is pushed to the master branch, everything that happens during a
+When a tagged commit is pushed to the prod branch, everything that happens during a
 untagged push is still run. In addition, the full suite of UI tests is run against
 Chrome and Internet Explorer on Windows 10, and the sanity suite is run against older
 versions of Internet Explorer (currently IE6 & IE7). If successful, the change is
-pushed to production and the same tests are then run against production. As with untagged
-pushes, this is all handled by the pipeline, and is subject to change according to the
-`per-tag properties file`_ in the repository.
+pushed to staging, tested, and then to production and the same tests are then run against
+production. As with untagged pushes, this is all handled by the pipeline, and is subject
+to change according to the `per-tag properties file`_ in the repository.
 
-**Push to master cheat sheet**
+**Push to prod cheat sheet**
 
 #. Check out the ``master`` branch
 #. Make sure the ``master`` branch is up to date with ``mozilla/bedrock master``
-#. Check that staging deployment is green:
+#. Check that dev deployment is green:
     #. View `deployment pipeline <https://ci.us-west.moz.works/view/Bedrock%20Pipeline/?fullscreen=true>`_
-    #. If any staging tests fail above, check retries, e.g. `bedrock_test_stage_eu_west`_
+    #. If any staging tests fail above, check retries, e.g. `bedrock_test_dev_eu_west`_
 #. Tag and push the deployment by running ``bin/tag-release.sh --push``
+
+.. note::
+
+    By default the ``tag-release.sh`` script will push to the ``origin`` git remote. If you'd
+    like for it to push to a different remote name you can either pass in a ``-r`` or
+    ``--remote`` argument, or set the ``MOZ_GIT_REMOTE`` environment variable. So the following
+    are equivalent::
+
+        $ bin/tag-release.sh --push -r mozilla
+        $ MOZ_GIT_REMOTE=mozilla bin/tag-release.sh --push
+
+    And if you'd like to just tag and not push the tag anywhere, you may omit the ``--push``
+    parameter.
 
 Pipeline integration
 --------------------
