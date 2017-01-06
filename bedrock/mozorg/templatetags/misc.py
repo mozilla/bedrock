@@ -27,7 +27,7 @@ import jinja2
 from django_jinja import library
 
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.templatetags.helpers import static, url
+from bedrock.base.templatetags.helpers import static
 from bedrock.firefox.firefox_details import firefox_ios
 
 
@@ -48,20 +48,6 @@ def add_string_to_image_url(url, addition):
 def convert_to_high_res(url):
     """Convert a file name to the high-resolution version."""
     return add_string_to_image_url(url, 'high-res')
-
-
-@library.global_function
-@jinja2.contextfunction
-def secure_url(ctx, viewname=None):
-    """Retrieve a full secure URL especially for form submissions"""
-    _path = url(viewname) if viewname else None
-    _url = ctx['request'].build_absolute_uri(_path)
-
-    # only force https if current page was requested via SSL
-    # otherwise, CSRF/AJAX errors will occur (submitting to https from http)
-    if ctx['request'].is_secure():
-        return _url.replace('http://', 'https://')
-    return _url
 
 
 def l10n_img_file_name(ctx, url):

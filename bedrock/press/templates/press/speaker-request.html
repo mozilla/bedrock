@@ -35,7 +35,7 @@
         </div>
       {% endif %}
 
-      <form action="{{ secure_url('press.speaker-request') }}" method="post" name="speaker-request-form" id="speaker-request-form" enctype="multipart/form-data">
+      <form action="{{ url('press.speaker-request') }}" method="post" name="speaker-request-form" id="speaker-request-form" enctype="multipart/form-data">
         {{ csrf() }}
 
         <fieldset>
