@@ -8,9 +8,9 @@
 Mozilla Pager
 =============
 
-`mozilla-pager.js` converts a section of markup into a tabbed or carousel interface. At minimum, each pager requires the following HTML elements:
+``mozilla-pager.js`` converts a section of markup into a tabbed or carousel interface. At minimum, each pager requires the following HTML elements:
 
-**`mozilla-pager.js` requires jQuery 1.11.0 or later.**
+**``mozilla-pager.js`` requires jQuery 1.11.0 or later.**
 
 - A container with the class ``pager``, which contains,
     - A container with the class ``pager-content``, which contains,

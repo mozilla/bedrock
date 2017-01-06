@@ -51,7 +51,7 @@ Mozilla.TrafficCop = function(config) {
     // store total percentage of users targeted
     this.totalPercentage = 0;
 
-    this.redirectVariation;
+    this.redirectVariation = null;
 
     // calculate and store total percentage of variations
     for (var v in this.variations) {
@@ -146,13 +146,12 @@ Mozilla.TrafficCop.prototype.isVariation = function(queryString) {
  */
 Mozilla.TrafficCop.prototype.generateRedirectUrl = function(url) {
     var hash;
+    var rando;
     var redirect;
     var runningTotal;
     var urlParts;
 
-    // conjure a random number between 1 and 100 (inclusive)
-    var rando = Math.floor(Math.random() * 100) + 1;
-
+    // url parameter only supplied for unit tests
     url = url || window.location.href;
 
     // strip hash from URL (if present)
@@ -174,6 +173,9 @@ Mozilla.TrafficCop.prototype.generateRedirectUrl = function(url) {
             return Mozilla.TrafficCop.noVariationCookieValue;
         }
     } else {
+        // conjure a random number between 1 and 100 (inclusive)
+        rando = Math.floor(Math.random() * 100) + 1;
+
         // make sure random number falls in the distribution range
         if (rando <= this.totalPercentage) {
             runningTotal = 0;
