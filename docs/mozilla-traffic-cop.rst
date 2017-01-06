@@ -8,11 +8,11 @@
 Mozilla Traffic Cop
 ===================
 
-`mozilla-traffic-cop.js` handles redirecting users to different A/B/x variations
-through a query parameter.
+``mozilla-traffic-cop.js`` handles redirecting users to different A/B/x
+variations through a query parameter.
 
-**`mozilla-traffic-cop.js` requires `mozilla-cookie-helper.js`, which is included as
-default in the `site.js` bundle for most pages.**
+**``mozilla-traffic-cop.js`` requires ``mozilla-cookie-helper.js``, which is
+included as default in the ``site.js`` bundle for most pages.**
 
 How It Works
 ------------
@@ -42,10 +42,8 @@ Configuration
 
 Each instance of the Traffic Cop requires two pieces of configuration:
 
-- A string ID that is unique to other currently running tests (to avoid
-confusion when reading cookies)
-- A variations object that lists all variations by query string along with the
-associated visitor percentage
+- A string ID that is unique to other currently running tests (to avoid confusion when reading cookies)
+- A variations object that lists all variations by query string along with the associated visitor percentage
 
 An implementation might look like::
 
@@ -60,7 +58,7 @@ An implementation might look like::
 
     cop.init();
 
-In the above example, the string `exp_firefox_new_headline` will be used as the
+In the above example, the string "exp_firefox_new_headline" will be used as the
 cookie name should a variation be chosen.
 
 The test will have 3 variations, each targeting 25% of users.
@@ -82,13 +80,13 @@ create tiers. Take the following config::
 
 The implied tiers would be:
 
-- v=c: 1-25
-- v=a: 26-50
-- v=f: 51-75
+- ``v=c``: 1-25
+- ``v=a``: 26-50
+- ``v=f``: 51-75
 - (no redirect): 76-100
 
 So, if the random percentage chosen was 44, the user would be redirected to
-`v=a`.
+``{current url}?v=a``.
 
 Implementation
 --------------
@@ -96,13 +94,13 @@ Implementation
 To add a Traffic Cop to a page, create a new JS bundle for the experiment that
 includes:
 
-- `mozilla-traffic-cop.js`
+- ``mozilla-traffic-cop.js``
 - A new JS file that configures and initializes the experiment
 
 .. Important::
 
-    Place this new bundle in the `experiments` block of the page, wrapped in a
-    `switch` for easy enabling and disabling::
+    Place this new bundle in the ``experiments`` block of the page, wrapped in a
+    ``switch`` for easy enabling and disabling::
 
         {% block experiments %}
           {% if switch('experiment-firefox-new') %}
