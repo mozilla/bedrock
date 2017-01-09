@@ -1,0 +1,20 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/technology.html" %}
+
+{% block hero_cta %}
+<a rel="external" href="https://www.youtube.com/watch?list=PLo3w8EB99pqJ74XIGe72c9hBZWz9Y16cY&v=8EPsnf_ZYU0" class="button" data-video-title="Rust and the Future of Systems Programming">{{ _('Watch the video') }}</a>
+{% endblock %}
+
+{% block rust_cta %}
+<a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Rust" class="button">{{ _('Learn more') }}</a>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'technology-rust-video-test' %}
+  {% if LANG.startswith('en-') and switch('mozorg-search-developer') %}
+    {% javascript 'custom-search' %}
+  {% endif %}
+{% endblock %}
