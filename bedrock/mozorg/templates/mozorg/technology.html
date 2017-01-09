@@ -15,6 +15,12 @@
 {% block body_id %}technology{% endblock %}
 {% block body_class %}{% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-technology-rust-video', ['en-US']) %}
+    {% javascript 'experiment-technology-rust-video' %}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {% stylesheet 'technology' %}
 {% endblock %}
@@ -25,6 +31,7 @@
 
 {% block content %}
 <main role="main">
+  {% block page_hero %}
   <div class="main-heading-container">
     <div class="content">
       <header class="main-heading">
@@ -33,6 +40,7 @@
       </header>
     </div>
   </div>
+  {% endblock %}
 
   <div id="technologies">
     <section id="vr" class="odd">
@@ -104,7 +112,9 @@
         <div class="inner-container">
           <h2>{{ _('Inventing a safer programming language') }}</h2>
           <p>{{ _('Supported by Mozilla, Rust allows browsers, systems and more to run much faster and more safely.') }}</p>
+          {% block rust_cta %}
           <a rel="external" href="https://www.youtube.com/watch?list=PLo3w8EB99pqJ74XIGe72c9hBZWz9Y16cY&v=8EPsnf_ZYU0" class="button" data-video-title="Rust and the Future of Systems Programming">{{ _('Watch the video') }}</a>
+          {% endblock %}
         </div>
       </div>
       <footer>
