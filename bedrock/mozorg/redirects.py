@@ -642,4 +642,8 @@ redirectpatterns = (
 
     # Bug 1332008
     redirect(r'^protocol/?$', 'https://blog.mozilla.org/opendesign/'),
+
+    # Bug 1322959 - vanity URL
+    redirect(r'^onlineprivacy/?$', 'mozorg.internet-health.privacy-security'),
+
 )

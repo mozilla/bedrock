@@ -229,6 +229,7 @@ urlpatterns = (
     url(r'^contributor-data/(?P<source_name>[a-z]{2,20})\.json$', views.mozid_data_view,
         name='mozorg.contributor-data'),
     url('^internet-health/$', views.internet_health, name='mozorg.internet-health'),
+    page('internet-health/privacy-security', 'mozorg/internet-health/privacy-security.html'),
     page('moss', 'mozorg/moss/index.html'),
     page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),
     page('moss/mission-partners', 'mozorg/moss/mission-partners.html'),

@@ -66,12 +66,7 @@
 
           <ul class="ctas">
             <li>
-              <a href="{{ url('teach.smarton.index') }}">{{ _('Get privacy and security tips') }}</a>
-            </li>
-            <li>
-              <a rel="external" href="https://theglassroomnyc.org/?utm_source=mozilla.org&amp;utm_medium=website&amp;utm_campaign=the-glass-room&amp;utm_content=IHLandingPage">
-                {{ _('Visit the Glass Room') }}
-              </a>
+              <a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Learn more') }}</a>
             </li>
           </ul>
         </div>
@@ -194,7 +189,7 @@
     </section>
   </div>
 
-{% if l10n_has_tag('mozorg-health-report') and switch('internet-health-report-live') %}
+{% if l10n_has_tag('mozorg-health-report') %}
   <section id="health-report" class="section">
     <div class="content">
       <a href="https://internethealthreport.org" rel="external">

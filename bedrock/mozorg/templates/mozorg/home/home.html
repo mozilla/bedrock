@@ -86,11 +86,19 @@
         </h2>
         <p>
         {% block people_copy %}
+        {% if l10n_has_tag('mozorg-home-impact-health') %}
+          {% trans %}
+            Working to keep the Internet healthy, open and accessible to all, we
+            teach web literacy, provide tools and advocate on behalf of every
+            individual who values the Internet as a global public resource.
+          {% endtrans %}
+        {% else %}
           {% trans %}
             Working at the grassroots and policy levels, we teach web literacy,
             provide tools and advocate on behalf of every individual who values
             an internet built on fairness, inclusion and respect.
           {% endtrans %}
+        {% endif %}
         {% endblock %}
         </p>
 
