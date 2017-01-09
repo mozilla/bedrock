@@ -168,13 +168,22 @@
     </div><!-- close #outer-wrapper -->
 
     <!--[if IE 9]>
-      <script src="{{ static('js/libs/matchMedia.js') }}"></script>
+      {% javascript 'matchmedia' %}
     <![endif]-->
 
-    {% block site_js %}
-      {% javascript 'common' %}
-    {% endblock %}
-    {% block js %}{% endblock %}
+    {# Serve first-class & page-specified JS to IE 9 and up #}
+    <!--[if !lte IE 8]><!-->
+      {% block site_js %}
+        {% javascript 'common' %}
+      {% endblock %}
+      {% block js %}{% endblock %}
+    <!--<![endif]-->
+
+    {# Serve minimal JS to IE 8 and below #}
+    <!--[if lte IE 8]>
+      {% javascript 'common-oldie' %}
+    <![endif]-->
+
     {% if settings.DEV %}
       <!--[if !lte IE 8]><!-->
         <script src="https://pontoon.mozilla.org/pontoon.js"></script>

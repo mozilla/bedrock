@@ -5,7 +5,7 @@
 // init core dataLayer object and push into dataLayer
 $(function() {
     var analytics = Mozilla.Analytics;
-    var client = Mozilla.Client;
+    var client = Mozilla.Client || null;
     var dataLayer = window.dataLayer = window.dataLayer || [];
 
     function sendCoreDataLayer() {
@@ -22,7 +22,7 @@ $(function() {
         dataLayer.push(dataLayerCore);
     }
 
-    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
+    if (client && (client.isFirefoxDesktop || client.isFirefoxAndroid)) {
         client.getFirefoxDetails(function(details) {
             dataLayer.push(details);
             sendCoreDataLayer();

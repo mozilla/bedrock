@@ -153,10 +153,33 @@
 
     </div><!-- close #outer-wrapper -->
 
+    {#
+      The logic mess below will be simplified when all pages are refactored
+      to behave well in old IE without page-specific JS.
+    #}
+    {% if force_modern_js != True %}
+      {#
+        Unless specifically requested by current page, hide first-class
+        & page-specific JS from IE 8 and below.
+      #}
+      <!--[if !lte IE 8]><!-->
+    {% endif %}
     {% block site_js %}
       {% javascript 'common' %}
     {% endblock %}
     {% block js %}{% endblock %}
+    {% if force_modern_js != True %}
+      <!--<![endif]-->
+
+      {#
+        Give old IE a slimmed down bundle with only jQuery, global, and
+        GTM scripts.
+      #}
+      <!--[if lte IE 8]>
+        {% javascript 'common-oldie' %}
+      <![endif]-->
+    {% endif %}
+
     {% if settings.DEV %}
       <!--[if !lte IE 8]><!-->
         <script src="https://pontoon.mozilla.org/pontoon.js"></script>
