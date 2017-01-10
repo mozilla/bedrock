@@ -1,7 +1,7 @@
 #!/bin/bash -xe
-GIT_COMMIT=${GIT_COMMIT:-$(git rev-parse HEAD)}
-cp docker/dockerfiles/bedrock_integration_tests Dockerfile
-docker build -t bedrock_integration_tests:${GIT_COMMIT} --pull=true .
+
+# $1 should be the properties file for this run
+source "$1"
 
 if [ -z "${BASE_URL}" ]; then
   # start bedrock
@@ -48,7 +48,12 @@ if [ "${DRIVER}" = "Remote" ]; then
   done
 fi
 
-docker run -v `pwd`/results:/app/results \
+# make sure results dir exists or docker will create it
+# and it will be owned by root
+RESULTS_DIR="$PWD/results"
+rm -rf "$RESULTS_DIR"
+mkdir -p "$RESULTS_DIR"
+docker run -v "${RESULTS_DIR}:/app/results" -u $(stat -c "%u:%g" "$RESULTS_DIR") \
   ${DOCKER_LINKS[@]} \
   -e BASE_URL=${BASE_URL} \
   -e DRIVER=${DRIVER} \

@@ -31,11 +31,13 @@ indent_size = 4
 [*.html]
 indent_size = 2
 
+[*.yml]
+indent_size = 2
+
 [Jenkinsfile]
 indent_size = 4
 
-# Matches the exact files package.json and .travis.yml
-[{package.json, .travis.yml}]
+[package.json]
 indent_size = 2
 
 [Makefile]

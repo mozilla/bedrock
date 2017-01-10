@@ -20,6 +20,9 @@ CMD="${CMD} -r a"
 CMD="${CMD} --verbose"
 CMD="${CMD} -n ${PYTEST_PROCESSES}"
 CMD="${CMD} --base-url ${BASE_URL}"
+# rerun a flaky test once
+# DO NOT INCREASE THIS
+CMD="${CMD} --reruns 1"
 # Disable HTML report due to https://github.com/pytest-dev/pytest/issues/1351
 # CMD="${CMD} --html ${RESULTS_PATH}/index.html"
 CMD="${CMD} --junitxml ${RESULTS_PATH}/junit.xml"

@@ -1,18 +1,18 @@
 #!/bin/bash
 set -eo pipefail
 
-# Required environment variables if using --stage and --status:
+# Required environment variables if using --stage:
 # BRANCH_NAME, BUILD_NUMBER, BUILD_URL
 
 # defaults and constants
-BUILD_NUMBER="${BUILD_NUMBER:-0}"
-NICK="bedrock-deployer-$BUILD_NUMBER"
+NICK="hms-flintstone"
 CHANNEL="#www"
 SERVER="irc.mozilla.org:6697"
 # colors and styles: values from the following links
 # http://www.mirc.com/colors.html
 # http://stackoverflow.com/a/13382032
 RED=$'\x034'
+YELLOW=$'\x038'
 GREEN=$'\x039'
 BLUE=$'\x0311'
 BOLD=$'\x02'
@@ -28,10 +28,6 @@ while [[ $# -gt 1 ]]; do
             ;;
         --status)
             STATUS="$2"
-            shift # past argument
-            ;;
-        --demo_url)
-            DEMO_URL="$2"
             shift # past argument
             ;;
         -m|--message)
@@ -54,31 +50,43 @@ while [[ $# -gt 1 ]]; do
     shift # past argument or value
 done
 
-if [[ -z "$MESSAGE" ]]; then
-    if [[ -n "$STATUS" ]]; then
-        STATUS=$(echo "$STATUS" | tr '[:lower:]' '[:upper:]')
-        case "$STATUS" in
-          'SUCCESS')
-            STATUS_COLOR="${BOLD}${GREEN}"
-            ;;
-          'FAILURE')
-            STATUS_COLOR="${BOLD}${RED}"
-            ;;
-          *)
-            STATUS_COLOR="$BLUE"
-            ;;
-        esac
-        MESSAGE="${STAGE}: ${STATUS_COLOR}${STATUS}${NORMAL}:"
-        MESSAGE="$MESSAGE Branch ${BOLD}${BRANCH_NAME}${NORMAL} build #${BUILD_NUMBER}: ${BUILD_URL}"
-    elif [[ -n "$DEMO_URL" ]]; then
-        MESSAGE="${BOLD}${GREEN}SUCCESS${NORMAL}: Demo deployed: ${DEMO_URL}"
-    else
-        echo "Missing required arguments"
-        echo
-        echo "Usage: irc-notify.sh [--stage STAGE --status STATUS] [--demo_url DEMO_URL]"
-        echo "Optional args: --irc_nick, --irc_server, --irc_channel"
-        exit 1
-    fi
+if [[ -n "$STATUS" ]]; then
+    STATUS=$(echo "$STATUS" | tr '[:lower:]' '[:upper:]')
+    case "$STATUS" in
+      'SUCCESS')
+        STATUS_COLOR="🎉 ${BOLD}${GREEN}"
+        ;;
+      'SHIPPED')
+        STATUS_COLOR="🚢 ${BOLD}${GREEN}"
+        ;;
+      'WARNING')
+        STATUS_COLOR="⚠️ ${BOLD}${YELLOW}"
+        ;;
+      'FAILURE')
+        STATUS_COLOR="🚨 ${BOLD}${RED}"
+        ;;
+      *)
+        STATUS_COLOR="✨ $BLUE"
+        ;;
+    esac
+    STATUS="${STATUS_COLOR}${STATUS}${NORMAL}: "
+fi
+
+if [[ -n "$STAGE" ]]; then
+    MESSAGE="${STATUS}${STAGE}:"
+    MESSAGE="$MESSAGE Branch ${BOLD}${BRANCH_NAME}${NORMAL} build #${BUILD_NUMBER}: ${BUILD_URL}"
+elif [[ -n "$MESSAGE" ]]; then
+    MESSAGE="${STATUS}${MESSAGE}"
+else
+    echo "Missing required arguments"
+    echo
+    echo "Usage: irc-notify.sh [--stage STAGE]|[-m MESSAGE]"
+    echo "Optional args: --status, --irc_nick, --irc_server, --irc_channel"
+    exit 1
+fi
+
+if [[ -n "$BUILD_NUMBER" ]]; then
+    NICK="${NICK}-${BUILD_NUMBER}"
 fi
 
 (
