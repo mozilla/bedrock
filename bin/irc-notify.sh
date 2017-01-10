@@ -13,6 +13,7 @@ SERVER="irc.mozilla.org:6697"
 # http://www.mirc.com/colors.html
 # http://stackoverflow.com/a/13382032
 RED=$'\x034'
+YELLOW=$'\x038'
 GREEN=$'\x039'
 BLUE=$'\x0311'
 BOLD=$'\x02'
@@ -61,6 +62,9 @@ if [[ -z "$MESSAGE" ]]; then
           'SUCCESS')
             STATUS_COLOR="${BOLD}${GREEN}"
             ;;
+          'WARNING')
+            STATUS_COLOR="${BOLD}${YELLOW}"
+            ;;
           'FAILURE')
             STATUS_COLOR="${BOLD}${RED}"
             ;;
@@ -68,7 +72,7 @@ if [[ -z "$MESSAGE" ]]; then
             STATUS_COLOR="$BLUE"
             ;;
         esac
-        MESSAGE="${STAGE}: ${STATUS_COLOR}${STATUS}${NORMAL}:"
+        MESSAGE="${STATUS_COLOR}${STATUS}${NORMAL}: ${STAGE}:"
         MESSAGE="$MESSAGE Branch ${BOLD}${BRANCH_NAME}${NORMAL} build #${BUILD_NUMBER}: ${BUILD_URL}"
     elif [[ -n "$DEMO_URL" ]]; then
         MESSAGE="${BOLD}${GREEN}SUCCESS${NORMAL}: Demo deployed: ${DEMO_URL}"

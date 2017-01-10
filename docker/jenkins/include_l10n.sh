@@ -6,23 +6,14 @@
 #
 set -xe
 
-# Used to trigger downstream Jenkins jobs
-PARAM_FILE=.parameters
-TRIGGER_FILE=.docker-updated
-FORCE_TIME_TRIGGER_UPDATE=.timetriggerupdate
-rm -rf $TRIGGER_FILE $PARAM_FILE
-
 if [[ $BUILD_CAUSE == "REMOTECAUSE" ]]
 then
     LATEST_TAG=$(git describe --abbrev=0 --tags)
     # parent (~0) of latest tag is the commit that was tagged
     GIT_COMMIT=$(git rev-parse ${LATEST_TAG}~0)
 fi
-echo "GIT_COMMIT=$GIT_COMMIT" >> $PARAM_FILE
 
 DOCKER_IMAGE_TAG=${DOCKER_REPOSITORY}:${GIT_COMMIT}
-
-touch $TRIGGER_FILE
 
 if [[ ! -e locale ]];
 then
