@@ -615,6 +615,19 @@ Closes the current tab.
     only one tab. You may need to provide a work around for this edge case in your code.
     This function is also only available in Firefox 46 onward.
 
+showNewTab();
+^^^^^^^^^^^^^
+
+Opens about:newtab in the same tab.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.showNewTab();
+
+.. Important::
+
+    This function is only available in Firefox 51 onward.
+
 .. _Mozilla Central: http://dxr.mozilla.org/mozilla-central/source/browser/components/uitour/UITour-lib.js
 .. _Telemetry: https://wiki.mozilla.org/Telemetry
 .. _FHR: https://support.mozilla.org/en-US/kb/firefox-health-report-understand-your-browser-perf
