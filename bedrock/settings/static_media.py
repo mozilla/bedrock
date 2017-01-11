@@ -519,14 +519,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_os_devices-bundle.css',
     },
-    'firefox_os_mwc_2015_preview': {
-        'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/firefox/family-nav.less',
-            'css/firefox/os/mwc-2015-preview.less',
-        ),
-        'output_filename': 'css/firefox_os_mwc_2015_preview-bundle.css',
-    },
     'firefox_os_tv': {
         'source_filenames': (
             'css/firefox/fxos-nav.less',
@@ -1335,17 +1327,6 @@ PIPELINE_JS = {
             'js/firefox/os/devices.js',
         ),
         'output_filename': 'js/firefox_os_devices-bundle.js',
-    },
-    'firefox_os_mwc_2015_preview': {
-        'source_filenames': (
-            'js/base/mozilla-modal.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/mwc-2015-map.js',
-            'js/firefox/os/mwc-2015-preview.js',
-        ),
-        'output_filename': 'js/firefox_os_mwc_2015_preview-bundle.js',
     },
     'firefox_os_tv': {
         'source_filenames': (

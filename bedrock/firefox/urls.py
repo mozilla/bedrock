@@ -97,8 +97,6 @@ urlpatterns = (
 
     page('firefox/os', 'firefox/os/index.html'),
 
-    page('mwc', 'firefox/os/mwc-2015-preview.html'),
-
     page('firefox/os/devices', 'firefox/os/devices.html'),
     page('firefox/os/devices/tv', 'firefox/os/tv.html'),
 
