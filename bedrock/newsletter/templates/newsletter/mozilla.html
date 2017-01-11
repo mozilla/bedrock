@@ -6,8 +6,22 @@
 
 {% set_lang_files "mozorg/newsletters" %}
 
-{% block page_title %}{{ _('Sign up. Read up. Make a difference.') }}{% endblock page_title %}
-{% block page_desc %}{{ _('Get the Mozilla newsletter to stay informed about issues challenging the health of the Internet and to discover how you can get involved.') }}{% endblock %}
+{% block page_title %}
+  {# L10n: line break for visual formatting #}
+  {% if l10n_has_tag('mozilla_newsletter_copy') %}
+    {{ _('Sign up, read up,<br> stay informed.') }}
+  {% else %}
+    {{ _('Sign up. Read up.<br> Make a difference.') }}
+  {% endif %}
+{% endblock page_title %}
+
+{% block page_desc %}
+  {% if l10n_has_tag('mozilla_newsletter_copy') %}
+    {{ _('Get smart on the issues affecting your life online.') }}
+  {% else %}
+    {{ _('Get the Mozilla newsletter to stay informed about issues challenging the health of the Internet and to discover how you can get involved.') }}
+  {% endif %}
+{% endblock %}
 
 {% block body_class %}newsletter-mozilla{% endblock %}
 
@@ -34,8 +48,7 @@
       <div id="tabzilla">
         <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
       </div>
-      {# L10n: line break for visual formatting #}
-      <h1 class="page-title">{{ _('Sign up. Read up.<br> Make a difference.') }}</h1>
+      <h1 class="page-title">{{ self.page_title() }}</h1>
     </div>
   </header>
 
