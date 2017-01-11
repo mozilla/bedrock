@@ -104,22 +104,12 @@
           <nav id="nav-main" role="navigation">
             <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
             <ul id="nav-main-menu">
-            {% if LANG.startswith('en-') %}
               <li class="first internet-health-item">
                 <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Internet Health">{{ _('Internet Health') }}</a>
               </li>
               <li class="technology-item">
-                {# L10n: these strings are both potential navigation labels #}
-                <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations" data-alt-text="{{ _('Innovations') }}">{{ _('Web Innovations') }}</a>
+                <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations">{{ _('Web Innovations') }}</a>
               </li>
-            {% else %}
-              <li class="first about-item">
-                <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-name="About">{{ _('About') }}</a>
-              </li>
-              <li class="contribute-item">
-                <a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-name="Participate">{{ _('Participate') }}</a>
-              </li>
-            {% endif %}
               <li class="last donate-item">
                 <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{_('Donate')}}</a>
               </li>
