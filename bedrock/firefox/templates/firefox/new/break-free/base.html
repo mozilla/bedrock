@@ -1,0 +1,44 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+{% block page_title %}{{_('Free Web Browser')}}{% endblock %}
+{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, Mac OS X, Linux, Android and iOS today!')}}{% endblock %}
+
+{% block old_ie_styles %}{% endblock %}
+{% block site_css %}{% endblock %}
+{% block page_css %}{% endblock %}
+
+{# all CSS must be in extrahead block for old IE #}
+{% block extrahead %}
+  {% stylesheet 'firefox_new_break_free' %}
+{% endblock %}
+
+{% block site_header %}
+<header class="section masthead" id="masthead">
+  <div class="content">
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+    </div>
+    <h1>{{ high_res_img('firefox/new/break-free/heading.png', {'alt': _('Break free with Firefox'), 'width': '620', 'height': '131'}) }}</h1>
+  </div>
+</header>
+{% endblock %}
+
+{% block body_id %}break-free{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {% with fx_footer_links=True %}
+    {% include 'firefox/includes/simple_footer.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}{% endblock %}

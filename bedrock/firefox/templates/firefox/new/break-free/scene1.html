@@ -1,0 +1,18 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/break-free/base.html" %}
+
+{% block content %}
+<div class="main-content content">
+  {{ download_firefox(alt_copy=_('Free Download')) }}
+
+  <p class="tagline">{{ _('Faster than a freight train. More privacy than a secret decoder ring. Whenever you call for a better browser,
+  Firefox is there!') }}</p>
+</div>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_new_scene1_break_free' %}
+{% endblock %}

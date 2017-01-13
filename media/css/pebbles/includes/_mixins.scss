@@ -139,6 +139,13 @@
     display: none;
 }
 
+// Inline block hack for pages that still need to support old IE.
+@mixin inline-block {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
 
 // not the most up to date method, but works in IE7
 @mixin image-replaced {
