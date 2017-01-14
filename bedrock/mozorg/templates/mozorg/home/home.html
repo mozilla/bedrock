@@ -42,6 +42,7 @@
 {% block site_header %}
   {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
   {% with is_home = True %}
+    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
     {% include 'mozorg/home/includes/nav.html' %}
   {% endwith %}
 {% endblock %}
@@ -208,6 +209,10 @@
   </aside>
 
 </main>
+
+{% if LANG.startswith('en-') and switch('mozorg-home-brand-announce') %}
+  {% include 'mozorg/home/includes/brand-takeover.html' %}
+{% endif %}
 
 {% endblock %}
 

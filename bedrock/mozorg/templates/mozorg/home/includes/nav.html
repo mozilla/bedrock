@@ -1,4 +1,6 @@
-{% set logo_src = static('img/home/2016/mozilla-wordmark.svg') %}
+{% if not logo_src %}
+  {% set logo_src = static('img/pebbles/moz-wordmark-light-reverse.svg') %}
+{% endif %}
 
 <header class="section masthead" id="masthead">
   <div class="content">
