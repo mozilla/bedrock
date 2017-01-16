@@ -635,7 +635,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/home.scss',
-            'css/mozorg/home/brand-takeover.scss',
+            'css/mozorg/home/brand-popup.scss',
         ),
         'output_filename': 'css/home-bundle.css',
     },
@@ -1455,7 +1455,7 @@ PIPELINE_JS = {
             'js/libs/jquery.cycle2.min.js',
             'js/libs/jquery.waypoints.min.js',
             'js/mozorg/home/home.js',
-            'js/mozorg/home/brand-takeover.js',
+            'js/mozorg/home/brand-popup.js',
         ),
         'output_filename': 'js/home-bundle.js',
     },

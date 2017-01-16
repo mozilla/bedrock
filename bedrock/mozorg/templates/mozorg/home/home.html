@@ -72,6 +72,10 @@
   {% endblock %}
   </section>
 
+  {% if LANG.startswith('en-') and switch('mozorg-home-brand-popup') %}
+    {% include 'mozorg/home/includes/brand-popup.html' %}
+  {% endif %}
+
   <section class="section" id="who-innovate-wrapper">
     <section class="section-wrapper" id="who">
       <div class="section-content">
@@ -209,11 +213,6 @@
   </aside>
 
 </main>
-
-{% if LANG.startswith('en-') and switch('mozorg-home-brand-announce') %}
-  {% include 'mozorg/home/includes/brand-takeover.html' %}
-{% endif %}
-
 {% endblock %}
 
 {% block js %}
