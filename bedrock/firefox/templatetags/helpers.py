@@ -15,12 +15,16 @@ from lib.l10n_utils import get_locale
 
 
 def android_builds(channel, builds=None):
+    channel = channel.lower()
     builds = builds or []
     variations = OrderedDict([
         ('api-9', 'Gingerbread'),
         ('api-15', 'Ice Cream Sandwich+'),
         ('x86', 'x86'),
     ])
+
+    if channel == 'aurora':
+        channel = 'alpha'
 
     if channel == 'nightly':
         version = int(firefox_android.latest_version(channel).split('.', 1)[0])

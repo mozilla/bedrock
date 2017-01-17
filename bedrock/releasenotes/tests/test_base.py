@@ -8,7 +8,7 @@ from django.test.utils import override_settings
 
 from bedrock.base.urlresolvers import reverse
 from mock import patch, Mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 from pathlib2 import Path
 from pyquery import PyQuery as pq
 from rna.models import Release
@@ -197,17 +197,25 @@ class TestRNAViews(TestCase):
         mock_releasenotes_url.assert_called_with(
             release.equivalent_desktop_release.return_value)
 
-    @patch('bedrock.releasenotes.views.android_builds')
-    def test_get_download_url_android(self, mock_android_builds):
+    def test_get_download_url_android(self):
         """
         Shoud return the download link for the release.channel from
-        android_builds
+        android_builds. Note that the channel names are from ship-it, so those
+        are different from the internal names like release, beta or alpha.
         """
-        mock_android_builds.return_value = [{'download_link': '/download'}]
-        release = Mock(product='Firefox for Android')
+        store_url = 'https://play.google.com/store/apps/details?id=%s'
+
+        release = Mock(product='Firefox for Android', channel='Release')
         link = views.get_download_url(release)
-        eq_(link, '/download')
-        mock_android_builds.assert_called_with(release.channel)
+        ok_(link.startswith(store_url % 'org.mozilla.firefox'))
+
+        release = Mock(product='Firefox for Android', channel='Beta')
+        link = views.get_download_url(release)
+        ok_(link.startswith(store_url % 'org.mozilla.firefox_beta'))
+
+        release = Mock(product='Firefox for Android', channel='Aurora')
+        link = views.get_download_url(release)
+        ok_(link.startswith(store_url % 'org.mozilla.fennec_aurora'))
 
     def test_get_download_url_thunderbird(self):
         release = Mock(product='Thunderbird')
