@@ -42,7 +42,9 @@
 {% block site_header %}
   {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
   {% with is_home = True %}
-    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+    {% if switch('mozorg-home-brand-announce') %}
+      {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+    {% endif %}
     {% include 'mozorg/home/includes/nav.html' %}
   {% endwith %}
 {% endblock %}
