@@ -194,6 +194,18 @@
     </section>
   </div>
 
+{% if l10n_has_tag('mozorg-health-report') and switch('internet-health-report-live') %}
+  <section id="health-report" class="section">
+    <div class="content">
+      <a href="https://internethealthreport.org" rel="external">
+        {# L10n: Line break for visual layout #}
+        <h2><span>{{ _('Check out Mozilla’s <br>Internet Health Report') }}</span></h2>
+        <p class="cta">{{ _('Read up on what’s helping (and what’s hurting) our world’s largest shared resource.') }}</p>
+      </a>
+    </div>
+  </section>
+{% endif %}
+
   <aside id="newsletter-subscribe">
     <div class="content">
       {{ email_newsletter_form(newsletters='mozilla-foundation',

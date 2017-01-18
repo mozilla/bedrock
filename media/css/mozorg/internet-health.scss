@@ -590,6 +590,82 @@ html[dir="rtl"] #pillars > section {
     }
 }
 
+
+//*--------------------------------------------------------------------------*/
+// Health report
+
+#health-report {
+    @include font-size(18px);
+    background: #00e6ff;
+    padding: 20px 0;
+    text-align: center;
+
+    h2 {
+        @include font-size(22px);
+        color: #000;
+        font-weight: bold;
+        line-height: 1.4;
+
+        span {
+            background: $colorHeading;
+        }
+    }
+
+    .cta {
+        margin: 0;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-text-primary;
+        display: block;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: $color-text-tertiary;
+
+        .cta {
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-phone-wide} {
+        h2 {
+            @include font-size(26px);
+        }
+    }
+
+    @media #{$mq-tablet} {
+        @include font-size(20px);
+        text-align: left;
+
+        h2 {
+            @include font-size(32px);
+
+            br {
+                display: none;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        @include font-size(24px);
+
+        h2 {
+            @include font-size(36px);
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .content {
+            width: $width-desktop;
+        }
+    }
+}
+
 /*--------------------------------------------------------------------------*/
 // Newsletter
 
