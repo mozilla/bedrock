@@ -6,17 +6,16 @@
 
 
 .brand-takeover {
+    @include transition(background-color 450ms ease, color 450ms ease);
     background: #fff;
     box-shadow: 0 3px 3px rgba(0, 0, 0, .5);
     color: #000;
-    left: 0;
+    left: 20px;
     min-width: $width-phone;
     position: absolute;
-    top: 0;
-    width: 100%;
+    right: 20px;
+    top: 20px;
     z-index: 999;
-
-    @include transition(background-color 450ms ease, color 450ms ease);
 
     &.dark {
         background: #000;
@@ -84,16 +83,32 @@
         position: relative;
 
         .content {
-            padding: 0;
+            padding: 0 20px;
             margin: 0 auto;
+            text-align: center;
+
+            min-width: $width-phone - 40px;
 
             @media #{$mq-tablet} {
-                padding: 0 20px;
+                width: $width-tablet - 40px;
+            }
+
+            @media #{$mq-desktop} {
+                width: $width-desktop - 40px;
+            }
+
+            @media #{$mq-desktop-wide} {
+                width: $width-desktop-wide - 40px;
             }
         }
 
         img {
             float: left;
+            display: none;
+
+            @media #{$mq-phone-wide} {
+                display: inline-block;
+            }
         }
 
         button {
@@ -103,13 +118,16 @@
             border: 0;
             color: #000;
             cursor: pointer;
-            float: right;
             height: 36px;
             padding-right: 10px;
             position: relative;
-            text-align: right;
             text-decoration: none;
             text-transform: uppercase;
+
+            @media #{$mq-phone-wide} {
+                float: right;
+                text-align: right;
+            }
 
 
             &:after {
