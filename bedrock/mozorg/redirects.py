@@ -639,4 +639,7 @@ redirectpatterns = (
     # only upper-case for XBL. /xbl is a namespace URL for the standard.
     redirect(r'^XBL/?$', 'https://developer.mozilla.org/docs/XBL'),
     redirect(r'^RDF/?$', 'https://developer.mozilla.org/docs/RDF', re_flags='i'),
+
+    # Bug 1332008
+    redirect(r'^protocol/?$', 'https://blog.mozilla.org/opendesign/'),
 )

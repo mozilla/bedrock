@@ -1127,4 +1127,7 @@ URLS = flatten((
     url_test('/xbl', status_code=200),
     url_test('/RDF', 'https://developer.mozilla.org/docs/RDF'),
     url_test('/rdf', 'https://developer.mozilla.org/docs/RDF'),
+
+    # Bug 1332008
+    url_test('{/en-US,}/protocol/', 'https://blog.mozilla.org/opendesign/'),
 ))
