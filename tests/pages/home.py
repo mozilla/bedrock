@@ -22,7 +22,7 @@ class HomePage(BasePage):
     def wait_for_page_to_load(self):
         super(BasePage, self).wait_for_page_to_load()
         el = self.find_element(By.TAG_NAME, 'html')
-        self.wait.until(lambda s: 'brand-takeover' in el.get_attribute('class'))
+        self.wait.until(lambda s: 'brand-takeover-loaded' in el.get_attribute('class'))
         if self.is_take_over_displayed:
             self.find_element(*self._take_over_close_button_locator).click()
             self.wait.until(lambda s: not self.is_take_over_displayed)

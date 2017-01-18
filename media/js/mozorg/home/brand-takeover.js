@@ -180,6 +180,6 @@ function onYouTubeIframeAPIReady() {
         }
     }
 
-    $('html').addClass('brand-takeover');
+    $('html').addClass('brand-takeover-loaded');
 
 })(jQuery);

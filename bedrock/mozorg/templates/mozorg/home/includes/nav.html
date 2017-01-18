@@ -1,12 +1,8 @@
 {% if not logo_src %}
-  {% if switch('mozorg-home-brand-announce') %}
-    {% set logo_src = static('img/pebbles/moz-wordmark-light-reverse.svg') %}
-  {% else %}
-    {% set logo_src = static('img/home/2016/mozilla-wordmark.svg') %}
-  {% endif %}
+  {% set logo_src = static('img/pebbles/moz-wordmark-light-reverse.svg') %}
 {% endif %}
 
-<header class="section masthead {% if switch('mozorg-home-brand-announce') %}rebrand{% endif %}" id="masthead">
+<header class="section masthead" id="masthead">
   <div class="content">
   {% if is_home %}
     <h1 class="masthead-logo">
