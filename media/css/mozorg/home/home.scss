@@ -34,15 +34,15 @@ body {
 
 // Header
 #masthead {
-    background: #ff8c8e;
-    color: #000;
+    background: $color-mozred-bright;
+    color: #fff;
 
     .content {
         padding: 51px 20px 0;
     }
 
     .masthead-logo {
-        background: #ff8c8e;
+        background: $color-mozred-bright;
         height: 30px;
         left: 0;
         margin: 0;
@@ -58,13 +58,22 @@ body {
     }
 }
 
+#masthead.rebrand {
+    background: #ff8c8e;
+    color: #000;
+
+    .masthead-logo {
+        background: #ff8c8e;
+    }
+}
+
 #nav-download-firefox {
     display: none;
 }
 
 @media #{$mq-tablet} {
     #masthead {
-        background: #ff8c8e;
+        background: $color-mozred-bright;
         padding: 0;
 
         .content {
@@ -83,12 +92,27 @@ body {
         padding: 15px 0;
 
         li {
-            border-right: 1px solid #000;
+            border-right: 1px solid #fff;
 
             &:last-child {
                 border-right: 0;
                 padding-right: 0;
             }
+        }
+
+        a,
+        a:hover,
+        a:focus {
+            color: #fff;
+        }
+    }
+
+    #masthead.rebrand {
+        background: #ff8c8e;
+
+        #nav-main-menu li,
+        .js #nav-main-menu li {
+            border-right-color: #000;
         }
 
         a,
