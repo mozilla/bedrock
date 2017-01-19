@@ -27,7 +27,13 @@
           <h2>{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</h2>
         </header>
         <div class="main-content">
-          <h1>{{ _('Enjoy online freedom.') }}</h1>
+          <h1>
+          {% if l10n_has_tag('firefox_new_scene_2_headline') %}
+            {{ _('The last independent browser.') }}
+          {% else %}
+            {{ _('Enjoy online freedom.') }}
+          {% endif %}
+          </h1>
 
           <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
             {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
