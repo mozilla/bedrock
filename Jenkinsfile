@@ -5,12 +5,6 @@
 def config
 def utils
 
-/**
- * Do the work.
- *
- * Below here is the definition of all of deployment and testing.
- */
-
 stage ('Checkout') {
     node {
         checkout scm
@@ -30,14 +24,15 @@ stage ('Checkout') {
 }
 
 if ( config.branches.containsKey(env.BRANCH_NAME) ) {
+    def branchConfig = config.branches[env.BRANCH_NAME]
     stage ('Build') {
         node {
             unstash 'workspace'
-            utils.ircNotification(config, 'Test & Deploy', 'starting')
+            utils.ircNotification(config, [stage: 'Test & Deploy', status: 'starting'])
             try {
                 utils.buildDockerImage(dockerfile: 'bedrock_base', update: true)
             } catch(err) {
-                utils.ircNotification(config, 'Base Build', 'failure')
+                utils.ircNotification(config, [stage: 'Base Build', status: 'failure'])
                 throw err
             }
         }
@@ -47,7 +42,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 try {
                     utils.buildDockerImage(dockerfile: 'bedrock_code', fromDockerfile: 'bedrock_base')
                 } catch(err) {
-                    utils.ircNotification(config, 'Code Build', 'failure')
+                    utils.ircNotification(config, [stage: 'Code Build', status: 'failure'])
                     throw err
                 }
             }
@@ -58,7 +53,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 try {
                     utils.pushDockerhub('mozorg/bedrock_base')
                 } catch(err) {
-                    utils.ircNotification(config, 'Dockerhub Base Push', 'warning')
+                    utils.ircNotification(config, [stage: 'Dockerhub Base Push', status: 'warning'])
                 }
             }
         }
@@ -73,7 +68,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                         sh 'docker/jenkins/run_tests.sh'
                     }
                 } catch(err) {
-                    utils.ircNotification(config, 'Unit Test Code Image', 'failure')
+                    utils.ircNotification(config, [stage: 'Unit Test Code Image', status: 'failure'])
                     throw err
                 }
             }
@@ -84,7 +79,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 try {
                     utils.pushDockerhub('mozorg/bedrock_code')
                 } catch(err) {
-                    utils.ircNotification(config, 'Dockerhub Code Push', 'warning')
+                    utils.ircNotification(config, [stage: 'Dockerhub Code Push', status: 'warning'])
                 }
             }
         }
@@ -96,10 +91,10 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             try {
                 utils.buildDockerImage(dockerfile: 'bedrock_l10n', fromDockerfile: 'bedrock_code', script: 'include_l10n.sh')
             } catch(err) {
-                utils.ircNotification(config, 'L10n Build', 'failure')
+                utils.ircNotification(config, [stage: 'L10n Build', status: 'failure'])
                 throw err
             }
-            utils.ircNotification(config, 'Docker Builds', 'complete')
+            utils.ircNotification(config, [stage: 'Docker Builds', status: 'complete'])
         }
     }
 
@@ -113,7 +108,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 try {
                     utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
                 } catch(err) {
-                    utils.ircNotification(config, 'Dockerhub Push Failed', 'warning')
+                    utils.ircNotification(config, [stage: 'Dockerhub Push Failed', status: 'warning'])
                 }
             }
         },
@@ -123,7 +118,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 try {
                     utils.pushPrivateReg(config.regions.usw.registry_port)
                 } catch(err) {
-                    utils.ircNotification(config, 'US-West Registry Push', 'failure')
+                    utils.ircNotification(config, [stage: 'US-West Registry Push', status: 'failure'])
                     throw err
                 }
             }
@@ -134,7 +129,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 try {
                     utils.pushPrivateReg(config.regions.euw.registry_port)
                 } catch(err) {
-                    utils.ircNotification(config, 'EU-West Registry Push', 'failure')
+                    utils.ircNotification(config, [stage: 'EU-West Registry Push', status: 'failure'])
                     throw err
                 }
             }
@@ -144,14 +139,14 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             unstash 'tests'
             // prep for next stage
             sh 'docker/jenkins/build_integration_test_image.sh'
-            utils.ircNotification(config, 'Docker Image Pushes', 'complete')
+            utils.ircNotification(config, [stage: 'Docker Image Pushes', status: 'complete'])
         }
     }
 
-    def branchConfig = config.branches[env.BRANCH_NAME]
     for (appname in branchConfig.apps) {
         for (regionId in branchConfig.regions) {
-            region = config.regions[regionId]
+            def region = config.regions[regionId]
+            def appURL = "https://${appname}.${region.name}.moz.works"
             def stageName = "Deploy ${appname}-${region.name}"
             stage (stageName) {
                 node {
@@ -164,7 +159,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                                 sh 'docker/jenkins/push2deis.sh'
                             }
                         } catch(err) {
-                            utils.ircNotification(config, stageName, 'failure')
+                            utils.ircNotification(config, [stage: stageName, status: 'failure'])
                             throw err
                         }
                     }
@@ -183,14 +178,15 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 } catch(err) {
                     node {
                         unstash 'scripts'
-                        utils.ircNotification(config, "Integration Tests ${region.name}", 'failure')
+                        utils.ircNotification(config, [stage: "Integration Tests ${region.name}", status: 'failure'])
                     }
                     throw err
                 }
             }
             node {
                 unstash 'scripts'
-                utils.ircNotification(config, stageName, 'success')
+                // huge success \o/
+                utils.ircNotification(config, [message: appURL, status: 'shipped'])
             }
         }
     }
@@ -200,7 +196,8 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
  */
 else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
     node {
-        utils.ircNotification(config, 'Demo Deploy', 'starting')
+        utils.ircNotification(config, [stage: 'Demo Deploy', status: 'starting'])
+        appname = utils.demoAppName(env.BRANCH_NAME)
         try {
             stage ('build') {
                 sh 'make clean'
@@ -210,7 +207,7 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
                 sh 'make build-final'
             }
         } catch(err) {
-            utils.ircNotification(config, 'Demo Build', 'failure')
+            utils.ircNotification(config, [stage: 'Demo Build', status: 'failure'])
             throw err
         }
 
@@ -219,13 +216,16 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
                 withCredentials([[$class: 'StringBinding',
                                   credentialsId: 'SENTRY_DEMO_DSN',
                                   variable: 'SENTRY_DEMO_DSN']]) {
-                    withEnv(['DEIS_PROFILE=usw', 'PRIVATE_REGISTRY=localhost:5001']) {
+                    withEnv(['DEIS_PROFILE=usw',
+                             "DEIS_APP_NAME=${appname}",
+                             "PRIVATE_REGISTRY=localhost:${config.regions.usw.registry_port}"]) {
                         sh './docker/jenkins/demo_deploy.sh'
                     }
                 }
+                utils.ircNotification(config, [app_url: "https://${appname}.us-west.moz.works/"])
             }
         } catch(err) {
-            utils.ircNotification(config, 'Demo Deploy', 'failure')
+            utils.ircNotification(config, [stage: 'Demo Deploy', status: 'failure'])
             throw err
         }
     }

@@ -30,6 +30,10 @@ branches:
     integration_tests:
       - firefox
       - headless
+      - chrome
+      - ie
+      - ie6
+      - ie7
 
 regions:
   usw:

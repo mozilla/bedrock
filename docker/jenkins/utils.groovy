@@ -2,14 +2,23 @@
  * Define utility functions.
  */
 
+def demoAppName(branchname) {
+    def appname = branchname[5..-1].replaceAll('_', '-')
+    return "bedrock-demo-${appname}".toString()
+}
+
 /**
  * Send a notice to #www on irc.mozilla.org with the build result
  *
  * @param stage step of build/deploy
  * @param result outcome of build (will be uppercased)
 */
-def ircNotification(config, stage, status) {
-    sh "bin/irc-notify.sh --irc_nick '${config.irc.nick}' --irc_channel '${config.irc.channel}' --stage '${stage}' --status '${status}'"
+def ircNotification(config, Map args) {
+    def command = "bin/irc-notify.sh --irc_nick '${config.irc.nick}' --irc_channel '${config.irc.channel}'"
+    for (arg in args) {
+        command += " --${arg.key} '${arg.value}'"
+    }
+    sh command
 }
 
 def buildDockerImage(Map kwargs) {
