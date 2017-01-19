@@ -1,13 +1,13 @@
 /* Bug 776967 */
 
 @font-face {
-  font-family: X-LocaleSpecific-Light;
-  font-weight: normal;
-  src: url('/media/fonts/l10n/mplus-2c-light-fulah-subset.woff') format('woff');
+    font-family: X-LocaleSpecific-Light;
+    font-weight: normal;
+    src: url('/media/fonts/l10n/mplus-2c-light-fulah-subset.woff') format('woff');
 }
 
 @font-face {
-  font-family: X-LocaleSpecific;
-  font-weight: normal;
-  src: url('/media/fonts/l10n/mplus-2c-regular-fulah-subset.woff') format('woff');
+    font-family: X-LocaleSpecific;
+    font-weight: normal;
+    src: url('/media/fonts/l10n/mplus-2c-regular-fulah-subset.woff') format('woff');
 }

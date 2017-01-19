@@ -96,6 +96,9 @@ ul.download-list {
     }
 }
 
+/* !important used for strict download link enforcement */
+/* stylelint-disable declaration-no-important  */
+
 // Product download buttons
 .download-button {
     .ios-download,
@@ -215,6 +218,8 @@ ul.download-list {
 .windows.sha-1 .download-button .os_winsha1 {
     display: block !important;
 }
+
+/* stylelint-enable */
 
 // l10n download button tweaks
 html[lang="ml"] {

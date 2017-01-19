@@ -93,6 +93,12 @@ body {
 	}
 }
 
+/* Larger font size in English */
+html[lang|="en"] .banner blockquote {
+  .font-size(48px);
+  line-height: 1.1;
+}
+
 .content-section {
 	padding-top: @baseLine * 3;
 	padding-bottom: @baseLine;
@@ -228,7 +234,10 @@ body {
 }
 
 .site-footer {
-	padding: 0 !important;
+
+	&.content {
+		padding: 0;
+	}
 
 	ul {
 		margin: 0 auto;
@@ -384,13 +393,17 @@ html[dir="rtl"] {
 			margin-bottom: 40px;
 		}
 		blockquote {
-			.font-size(30px) !important;
+			.font-size(30px);
 			padding-left: 50px;
 			&:before {
 				width: 40px;
 				height: 40px;
 			}
 		}
+	}
+
+	html[lang|="en"] .banner blockquote {
+		.font-size(30px);
 	}
 
 	.content {
@@ -497,15 +510,15 @@ html[dir="rtl"] {
 	}
 
 	.box-links {
-		margin: 20px auto !important;
+		margin: 20px auto;
 		li {
-			float: none !important;
-			margin: 20px auto !important;
+			float: none;
+			margin: 20px auto;
 		}
 	}
 
 	.videos {
-		float: none !important;
+		float: none;
 		width: 380px;
 		margin: @baseLine auto;
 		li {
@@ -538,10 +551,10 @@ html[dir="rtl"] {
 		.banner h1 {
 			margin: 40px 0 20px;
 		}
-		blockquote {
+		.banner blockquote {
 			margin-right: -20px;
 			margin-left: 0;
-			padding: @baseLine !important;
+			padding: @baseLine;
 		}
 		.videos li a {
 			background-position: 20px 138px;
@@ -572,8 +585,12 @@ html[dir="rtl"] {
 			margin-left: -20px;
 			width: @breakMobile - (@baseLine * 2);
 			padding: @baseLine;
-			.font-size(26px) !important;
+			.font-size(26px);
 		}
+	}
+
+	html[lang|="en"] .banner blockquote {
+		.font-size(26px);
 	}
 
 	.content-section header h1 {
@@ -616,12 +633,6 @@ html[lang="ar"] {
 	.box-links li a {
 		line-height: 1.5;
 	}
-}
-
-/* Larger font size in English */
-html[lang|="en"] .banner blockquote {
-  .font-size(48px);
-  line-height: 1.1;
 }
 
 /* No Italic in Chinese */

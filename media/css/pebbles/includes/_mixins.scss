@@ -125,7 +125,8 @@
     margin: -1px;
     overflow: hidden;
     padding: 0;
-    position: absolute !important;
+    /* !important required to ensure element is hidden when mixin is applied */
+    position: absolute !important; /* stylelint-disable-line declaration-no-important */
     width: 1px;
 }
 
@@ -209,5 +210,5 @@
     -webkit-column-break-inside: avoid;
        -moz-column-break-inside: avoid;
          -o-column-break-inside: avoid;
-            column-break-inside: avoid;
+                   break-inside: avoid;
 }

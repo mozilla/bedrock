@@ -551,27 +551,6 @@ html[lang|="en"] {
             }
         }
 
-        .download-other {
-            margin-top: 11px;
-            .font-size(14px);
-            text-align: center;
-
-            a:link,
-            a:visited {
-                color: #fff;
-            }
-
-            &.download-other-desktop {
-                display: block !important;
-
-                /* unless we're in iOS or Android */
-                .ios &,
-                .android & {
-                    display: none !important;
-                }
-            }
-        }
-
         .ios-download,
         .linux-arm-download,
         .unsupported-download {
@@ -713,10 +692,6 @@ html[lang|="en"] {
     .promo-small-landscape.firefox-download {
         .fxos-link {
             display: inline-block;
-        }
-
-        .download-other.download-other-desktop {
-            display: none !important;
         }
     }
 }

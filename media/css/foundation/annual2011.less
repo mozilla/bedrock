@@ -65,7 +65,7 @@ a.vid-youtube:focus {
   width: auto;
   padding: 0px 20px 20px;
   position: relative;
-  margin-top: -10px; 
+  margin-top: -10px;
 
   h1 {
     font-style: normal;
@@ -634,7 +634,7 @@ body.noscroll {
 #story-slider {
   overflow: hidden;
   top: 0;
-  
+
   .vcard {
     background: rgba(255,100,0,.1);
     width: 175px;
@@ -642,7 +642,7 @@ body.noscroll {
     margin: 0 5px;
     position: relative;
     list-style: none;
-    
+
     .photo {
       position: absolute;
       top: 0;
@@ -958,7 +958,8 @@ body.noscroll {
     position: static;
     padding: 0;
     margin: 20px 0 0;
-    background: transparent none !important;
+    /* important! required for overriding many section specific selectors */
+    background: transparent none !important; /* stylelint-disable-line declaration-no-important */
     color: inherit;
     a:link,
     a:visited {
