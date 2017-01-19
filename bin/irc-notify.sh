@@ -40,7 +40,7 @@ while [[ $# -gt 1 ]]; do
             shift # past argument
             ;;
         --irc_nick)
-            NICK="$2"
+            NICK="$2-$BUILD_NUMBER"
             shift # past argument
             ;;
         --irc_server)

@@ -1,0 +1,46 @@
+branches:
+  master:
+    regions:
+      - usw
+      - euw
+    apps:
+      - bedrock-dev
+    integration_tests:
+      - firefox
+      - headless
+  prod:
+    regions:
+      - usw
+      - euw
+    apps:
+      - bedrock-stage
+      - bedrock-prod
+    integration_tests:
+      - chrome
+      - ie
+      - ie6
+      - ie7
+  # for testing
+  deploy-via-jenkinsfile:
+    regions:
+      - usw
+      - euw
+    apps:
+      - bedrock-jenkinsfile-test
+    integration_tests:
+      - firefox
+      - headless
+
+regions:
+  usw:
+    deis_profile: usw
+    name: us-west
+    registry_port: 5001
+  euw:
+    deis_profile: euw
+    name: eu-west
+    registry_port: 5000
+
+irc:
+  nick: hms-flintstone
+  channel: "#www"

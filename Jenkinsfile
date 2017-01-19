@@ -1,110 +1,9 @@
 #!groovy
 
-/**
- * Define deployment & integration test targets.
- */
-def allRegions = [
-    [deisProfile: 'usw', name: 'us-west'],
-    [deisProfile: 'euw', name: 'eu-west'],
-]
-def deployAndTestProps = [
-    master: [
-        regions: allRegions,
-        apps: ['bedrock-dev'],
-        integration_tests: ['firefox', 'headless'],
-    ],
-    prod: [
-        regions: allRegions,
-        apps: ['bedrock-stage', 'bedrock-prod'],
-        integration_tests: ['chrome', 'ie', 'ie6', 'ie7'],
-    ],
-]
+@Library('github.com/mozmar/jenkins-pipeline@master')
 
-/**
- * Define utility functions.
- */
-
-/**
- * Send a notice to #www on irc.mozilla.org with the build result
- *
- * @param stage step of build/deploy
- * @param result outcome of build (will be uppercased)
-*/
-def ircNotification(stage, status) {
-    sh "bin/irc-notify.sh --stage '${stage}' --status '${status}'"
-}
-
-def buildDockerImage(Map kwargs) {
-    def update = kwargs.update ? 'true' : 'false'
-    def repo = kwargs.dockerRepo ?: 'mozorg'
-    def script = kwargs.script ?: 'build_image.sh'
-    def environs = ["UPDATE_DOCKER_IMAGES=${update}",
-                    "DOCKERFILE=${kwargs.dockerfile}",
-                    "DOCKER_REPOSITORY=${repo}/${kwargs.dockerfile}"]
-    if (kwargs.fromDockerfile) {
-        environs << "FROM_DOCKER_REPOSITORY=${repo}/${kwargs.fromDockerfile}"
-    }
-    withEnv(environs) {
-        sh "docker/jenkins/${script}"
-    }
-}
-
-def pushDockerhub(from_repo, to_repo='') {
-    to_repo = to_repo ?: from_repo
-    withCredentials([[$class: 'StringBinding',
-                      credentialsId: 'DOCKER_PASSWORD',
-                      variable: 'DOCKER_PASSWORD']]) {
-        withEnv(['DOCKER_USERNAME=mozjenkins',
-                 "FROM_DOCKER_REPOSITORY=${from_repo}",
-                 "DOCKER_REPOSITORY=${to_repo}"]) {
-            retry(2) {
-                sh 'docker/jenkins/push2dockerhub.sh'
-            }
-        }
-    }
-}
-
-def pushPrivateReg(region) {
-    def registryPorts = [usw: '5001', euw: '5000']
-    retry(3) {
-        // TODO Fix DEIS_APPS before merge
-        // DEIS_APPS=bedrock-dev,bedrock-stage,bedrock-prod
-        withEnv(['FROM_DOCKER_REPOSITORY=mozorg/bedrock_l10n',
-                 "PRIVATE_REGISTRIES=localhost:${registryPorts[region]}",
-                 'DEIS_APPS=bedrock-jenkinsfile-test']) {
-            sh 'docker/jenkins/push2privateregistries.sh'
-        }
-    }
-}
-
-def integrationTestJob(propFileName, appName, region) {
-    def testsBaseDir = 'docker/jenkins/properties/integration_tests'
-    def testsFileExt = '.properties'
-    return {
-        node {
-            unstash 'scripts'
-            unstash 'tests'
-            def fullFilename = "${testsBaseDir}/${propFileName}${testsFileExt}"
-            def testScript = "docker/jenkins/run_integration_tests.sh ${fullFilename}".toString()
-            withCredentials([[$class: 'UsernamePasswordMultiBinding',
-                              credentialsId: 'SAUCELABS_CREDENTIALS',
-                              usernameVariable: 'SAUCELABS_USERNAME',
-                              passwordVariable: 'SAUCELABS_API_KEY']]) {
-                withEnv(["BASE_URL=https://${appName}.${region}.moz.works",
-                         "SELENIUM_VERSION=2.52.0"]) {
-                    try {
-                        retry(2) {
-                            sh testScript
-                        }
-                    }
-                    finally {
-                        junit 'results/*.xml'
-                    }
-                }
-            }
-        }
-    }
-}
+def config
+def utils
 
 /**
  * Do the work.
@@ -117,35 +16,38 @@ stage ('Checkout') {
         checkout scm
         sh 'git submodule sync'
         sh 'git submodule update --init --recursive'
-        env.GIT_COMMIT = sh([returnStdout: true, script: 'git rev-parse HEAD']).trim()
+        // defined in the Library loaded above
+        setGitEnvironmentVariables()
+        // load the config
+        config = readYaml file: 'jenkins.yml'
+        // load the utility functions used below
+        utils = load 'docker/jenkins/utils.groovy'
+        // save the files for later
         stash name: 'scripts', includes: 'bin/,docker/'
         stash name: 'tests', includes: 'tests/,requirements/'
         stash 'workspace'
     }
 }
 
-if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
-    stage ('Build Base') {
+if ( config.branches.containsKey(env.BRANCH_NAME) ) {
+    stage ('Build') {
         node {
             unstash 'workspace'
-            ircNotification('Test & Deploy', 'starting')
+            utils.ircNotification(config, 'Test & Deploy', 'starting')
             try {
-                buildDockerImage(dockerfile: 'bedrock_base', update: true)
+                utils.buildDockerImage(dockerfile: 'bedrock_base', update: true)
             } catch(err) {
-                ircNotification('Base Build', 'failure')
+                utils.ircNotification(config, 'Base Build', 'failure')
                 throw err
             }
         }
-    }
-
-    stage ('Build Code') {
         parallel build: {
             node {
                 unstash 'workspace'
                 try {
-                    buildDockerImage(dockerfile: 'bedrock_code', fromDockerfile: 'bedrock_base')
+                    utils.buildDockerImage(dockerfile: 'bedrock_code', fromDockerfile: 'bedrock_base')
                 } catch(err) {
-                    ircNotification('Code Build', 'failure')
+                    utils.ircNotification(config, 'Code Build', 'failure')
                     throw err
                 }
             }
@@ -154,9 +56,9 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
             node {
                 unstash 'scripts'
                 try {
-                    pushDockerhub('mozorg/bedrock_base')
+                    utils.pushDockerhub('mozorg/bedrock_base')
                 } catch(err) {
-                    ircNotification('Dockerhub Base Push', 'warning')
+                    utils.ircNotification(config, 'Dockerhub Base Push', 'warning')
                 }
             }
         }
@@ -171,7 +73,7 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
                         sh 'docker/jenkins/run_tests.sh'
                     }
                 } catch(err) {
-                    ircNotification('Unit Test Code Image', 'failure')
+                    utils.ircNotification(config, 'Unit Test Code Image', 'failure')
                     throw err
                 }
             }
@@ -180,9 +82,9 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
             node {
                 unstash 'scripts'
                 try {
-                    pushDockerhub('mozorg/bedrock_code')
+                    utils.pushDockerhub('mozorg/bedrock_code')
                 } catch(err) {
-                    ircNotification('Dockerhub Code Push', 'warning')
+                    utils.ircNotification(config, 'Dockerhub Code Push', 'warning')
                 }
             }
         }
@@ -192,24 +94,26 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
         node {
             unstash 'scripts'
             try {
-                buildDockerImage(dockerfile: 'bedrock_l10n', fromDockerfile: 'bedrock_code', script: 'include_l10n.sh')
+                utils.buildDockerImage(dockerfile: 'bedrock_l10n', fromDockerfile: 'bedrock_code', script: 'include_l10n.sh')
             } catch(err) {
-                ircNotification('L10n Build', 'failure')
+                utils.ircNotification(config, 'L10n Build', 'failure')
                 throw err
             }
-            ircNotification('Docker Builds', 'complete')
+            utils.ircNotification(config, 'Docker Builds', 'complete')
         }
     }
 
     stage ('Push Images') {
         // push images to docker hub and internal registries
+        // FIXME(pmac) this should be dynamic based on which regions to which
+        //             this branch will be deployed
         parallel dockerhub: {
             node {
                 unstash 'scripts'
                 try {
-                    pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
+                    utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
                 } catch(err) {
-                    ircNotification('Dockerhub Push Failed', 'warning')
+                    utils.ircNotification(config, 'Dockerhub Push Failed', 'warning')
                 }
             }
         },
@@ -217,9 +121,9 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
             node {
                 unstash 'scripts'
                 try {
-                    pushPrivateReg('usw')
+                    utils.pushPrivateReg(config.regions.usw.registry_port)
                 } catch(err) {
-                    ircNotification('US-West Registry Push', 'failure')
+                    utils.ircNotification(config, 'US-West Registry Push', 'failure')
                     throw err
                 }
             }
@@ -228,9 +132,9 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
             node {
                 unstash 'scripts'
                 try {
-                    pushPrivateReg('euw')
+                    utils.pushPrivateReg(config.regions.euw.registry_port)
                 } catch(err) {
-                    ircNotification('EU-West Registry Push', 'failure')
+                    utils.ircNotification(config, 'EU-West Registry Push', 'failure')
                     throw err
                 }
             }
@@ -240,18 +144,19 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
             unstash 'tests'
             // prep for next stage
             sh 'docker/jenkins/build_integration_test_image.sh'
-            ircNotification('Docker Image Pushes', 'complete')
+            utils.ircNotification(config, 'Docker Image Pushes', 'complete')
         }
     }
 
-    def deployProps = deployAndTestProps[env.BRANCH_NAME]
-    for (appname in deployProps.apps) {
-        for (region in deployProps.regions) {
+    def branchConfig = config.branches[env.BRANCH_NAME]
+    for (appname in branchConfig.apps) {
+        for (regionId in branchConfig.regions) {
+            region = config.regions[regionId]
             def stageName = "Deploy ${appname}-${region.name}"
             stage (stageName) {
                 node {
                     unstash 'scripts'
-                    withEnv(["DEIS_PROFILE=${region.deisProfile}",
+                    withEnv(["DEIS_PROFILE=${region.deis_profile}",
                              "DOCKER_REPOSITORY=${appname}",
                              "DEIS_APPLICATION=${appname}"]) {
                         try {
@@ -259,7 +164,7 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
                                 sh 'docker/jenkins/push2deis.sh'
                             }
                         } catch(err) {
-                            ircNotification(stageName, 'failure')
+                            utils.ircNotification(config, stageName, 'failure')
                             throw err
                         }
                     }
@@ -267,8 +172,8 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
             }
             // queue up test closures
             def allTests = [:]
-            for (filename in deployProps.integration_tests) {
-                allTests[filename] = integrationTestJob(filename, appname, region.name)
+            for (filename in branchConfig.integration_tests) {
+                allTests[filename] = utils.integrationTestJob(filename, appname, region.name)
             }
             stage ("Test ${appname}-${region.name}") {
                 try {
@@ -278,14 +183,14 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
                 } catch(err) {
                     node {
                         unstash 'scripts'
-                        ircNotification("Integration Tests ${region.name}", 'failure')
+                        utils.ircNotification(config, "Integration Tests ${region.name}", 'failure')
                     }
                     throw err
                 }
             }
             node {
                 unstash 'scripts'
-                ircNotification(stageName, 'success')
+                utils.ircNotification(config, stageName, 'success')
             }
         }
     }
@@ -295,7 +200,7 @@ if ( deployAndTestProps.containsKey(env.BRANCH_NAME) ) {
  */
 else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
     node {
-        ircNotification('Demo Deploy', 'starting')
+        utils.ircNotification(config, 'Demo Deploy', 'starting')
         try {
             stage ('build') {
                 sh 'make clean'
@@ -305,7 +210,7 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
                 sh 'make build-final'
             }
         } catch(err) {
-            ircNotification('Demo Build', 'failure')
+            utils.ircNotification(config, 'Demo Build', 'failure')
             throw err
         }
 
@@ -320,7 +225,7 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
                 }
             }
         } catch(err) {
-            ircNotification('Demo Deploy', 'failure')
+            utils.ircNotification(config, 'Demo Deploy', 'failure')
             throw err
         }
     }
