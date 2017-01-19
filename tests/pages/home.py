@@ -17,6 +17,10 @@ class HomePage(BasePage):
     _get_firefox_link_locator = (By.ID, 'fx-download-link')
 
     @property
+    def is_popup_present(self):
+        return self.is_element_present(*self._popup_locator)
+
+    @property
     def is_popup_displayed(self):
         return self.is_element_displayed(*self._popup_close_button_locator)
 
@@ -24,11 +28,12 @@ class HomePage(BasePage):
         super(BasePage, self).wait_for_page_to_load()
         el = self.find_element(By.TAG_NAME, 'html')
         self.wait.until(lambda s: 'brand-popup-ready' in el.get_attribute('class'))
-        popup = self.selenium.find_element(*self._popup_locator)
-        if 'show' in popup.get_attribute('class'):
-            self.wait.until(lambda s: self.is_popup_displayed)
-            self.find_element(*self._popup_close_button_locator).click()
-            self.wait.until(expected.staleness_of(popup))
+        if self.is_popup_present:
+            popup = self.selenium.find_element(*self._popup_locator)
+            if 'show' in popup.get_attribute('class'):
+                self.wait.until(lambda s: self.is_popup_displayed)
+                self.find_element(*self._popup_close_button_locator).click()
+                self.wait.until(expected.staleness_of(popup))
         return self
 
     @property
