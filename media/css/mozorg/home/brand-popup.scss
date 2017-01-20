@@ -41,11 +41,10 @@
         text-transform: uppercase;
 
         span {
+            @include box-decoration-break(clone);
             @include transition(background-color 150ms ease-out);
             background-color: #ebc044;
             padding: 10px 15px;
-            -webkit-box-decoration-break: clone;
-            box-decoration-break: clone;
 
             &:after {
                 content: "\00A0\00A0\003E"; // space+space+arrow

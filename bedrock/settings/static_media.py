@@ -124,6 +124,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mozorg/internet_health-bundle.css',
     },
+    'health-privacy-security': {
+        'source_filenames': (
+            'css/mozorg/internet-health/privacy-security.scss',
+        ),
+        'output_filename': 'css/mozorg/health-privacy-security.css',
+    },
     'itu': {
         'source_filenames': (
             'css/mozorg/itu.less',
@@ -1478,6 +1484,13 @@ PIPELINE_JS = {
             'js/firefox/installer-help.js',
         ),
         'output_filename': 'js/installer_help-bundle.js',
+    },
+    'internet-health-subpage': {
+        'source_filenames': (
+            'js/base/mozilla-smoothscroll.js',
+            'js/mozorg/internet-health/health-subpage.js',
+        ),
+        'output_filename': 'js/internet-health-subpage-bundle.js',
     },
     'legal_fraud_report': {
         'source_filenames': (

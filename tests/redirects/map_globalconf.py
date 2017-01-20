@@ -1130,4 +1130,7 @@ URLS = flatten((
 
     # Bug 1332008
     url_test('{/en-US,}/protocol/', 'https://blog.mozilla.org/opendesign/'),
+
+    # Bug 1322959
+    url_test('/onlineprivacy', '/internet-health/privacy-security/'),
 ))

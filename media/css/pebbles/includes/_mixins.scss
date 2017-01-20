@@ -116,6 +116,10 @@
             background-size: $sizes;
 }
 
+@mixin box-decoration-break($value: slice) {
+    -webkit-box-decoration-break: $value;
+            box-decoration-break: $value;
+}
 
 // Hide an element visually, but not from screen readers
 @mixin visually-hidden {

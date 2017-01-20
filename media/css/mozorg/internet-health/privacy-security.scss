@@ -1,0 +1,615 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/buttons-download';
+@import '../../pebbles/components/newsletter';
+
+$colorLink: #7d337e; // purple
+
+body {
+    border-top: none;
+    color: #56565A;
+}
+
+#outer-wrapper {
+    background: #fff;
+}
+
+main .content {
+    max-width: $width-desktop;
+}
+
+
+//*--------------------------------------------------------------------------*/
+// Page masthead
+#masthead {
+    background: #4a4a4a;
+    color: #fff;
+    padding: 0;
+    width: 100%;
+
+    .masthead-logo {
+        font-size: 100%;
+        height: 30px;
+        left: 0;
+        margin: 0;
+        padding: 10px 0 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+
+        img {
+            height: 30px;
+        }
+    }
+
+    .download-button {
+        display: none;
+
+        .download-list {
+            margin-bottom: 0;
+        }
+
+        .download-link {
+            @include font-size(14px);
+            border-radius: 0;
+            border: none;
+            padding: 15px 20px;
+            text-transform: uppercase;
+        }
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+
+    .masthead-nav-main {
+        .toggle {
+            background-color: darken(#4a4a4a, 10%);
+        }
+
+        .nav-main-menu a:hover {
+            border-color: $colorLink;
+            color: $colorLink;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .masthead-nav-main {
+            margin-right: 0;
+
+            .nav-main-menu {
+                padding: 15px 0;
+
+                a:link,
+                a:visited {
+                    color: #fff;
+                }
+
+                li {
+                    border-left: 1px solid #fff;
+
+                    &:first-child {
+                        border-left: none;
+                    }
+                }
+            }
+        }
+
+        .masthead-logo {
+            float: left;
+            padding: 10px 0;
+            position: relative;
+            width: auto;
+        }
+
+        .download-button {
+            display: block;
+            float: right;
+
+            .download-link {
+                padding: 15px 12px;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .download-button .download-link {
+            padding: 15px 20px;
+        }
+    }
+}
+
+html[dir="rtl"] {
+    @media #{$mq-tablet} {
+        #masthead .masthead-nav-main .nav-main-menu li {
+            border-left: none;
+            border-right: 1px solid #fff;
+
+            &:first-child {
+                border-right: none;
+            }
+        }
+    }
+}
+
+
+//*--------------------------------------------------------------------------*/
+// Main page header
+.main-heading {
+    background: #96368e url('/media/img/mozorg/internet-health/privacy/bg-head.png') -30px -80px no-repeat;
+    position: relative;
+    padding: 20px 0;
+    color: #fff;
+
+    .page-title {
+        color: #fff;
+        margin-bottom: .5em;
+
+        @media #{$mq-tablet} {
+            @include span(5);
+        }
+    }
+}
+
+.head-intro {
+    color: #fff;
+    @include font-size(18px);
+
+    @media #{$mq-tablet} {
+        @include font-size(20px);
+        @include span(7);
+    }
+}
+
+.head-pagenav {
+    border: 1px solid rgba(255, 255, 255, .5);
+    padding: 20px;
+    clear: both;
+    @include clearfix;
+
+    .head-pagenav-title {
+        @include font-size(18px);
+        margin-bottom: 1em;
+
+        @media #{$mq-tablet} {
+            float: left;
+            width: 30%;
+            padding-top: 20px;
+        }
+    }
+
+    ul {
+        margin: 0;
+
+        @media #{$mq-tablet} {
+            @include flexbox;
+            float: right;
+            width: 65%;
+        }
+    }
+
+    li {
+        @include border-box;
+        @include font-size(14px);
+        text-align: left;
+        text-transform: uppercase;
+
+        @media #{$mq-tablet} {
+            width: 33%;
+            display: inline-block;
+            text-align: center;
+        }
+    }
+
+    a {
+        color: #fff;
+        display: block;
+        line-height: 1.2;
+        padding: 15px 0 15px 50px;
+        position: relative;
+        text-decoration: none;
+
+        @media #{$mq-tablet} {
+            padding: 85px 10px 0;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        &:before {
+            @include at2x('/media/img/mozorg/internet-health/privacy/nav-sprite.png', 38px, 113px);
+            background-repeat: no-repeat;
+            content: '';
+            height: 38px;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 38px;
+
+            @media #{$mq-tablet} {
+                @include background-size(75px, 225px);
+                height: 75px;
+                left: 50%;
+                margin-left: -37px;
+                top: 0;
+                width: 75px;
+            }
+        }
+
+        &.nav-control:before {
+            background-position: center 0;
+        }
+
+        &.nav-surveillance:before {
+            background-position: center -38px;
+        }
+
+        &.nav-cybersecurity:before {
+            background-position: center -75px;
+        }
+
+        @media #{$mq-tablet} {
+            &.nav-control:before {
+            background-position: center 0;
+            }
+
+            &.nav-surveillance:before {
+                background-position: center -75px;
+            }
+
+            &.nav-cybersecurity:before {
+                background-position: center -150px;
+            }
+        }
+    }
+}
+
+
+
+//*--------------------------------------------------------------------------*/
+// Topics
+
+.topic {
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+
+    a:link,
+    a:visited {
+        color: $color-text-secondary;
+        font-weight: bold;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: $color-text-tertiary;
+    }
+}
+
+.topic-intro {
+    @include clearfix;
+    padding-top: 40px;
+}
+
+.topic-intro-main {
+    @include font-size(18px);
+    margin-bottom: 20px;
+
+    @media #{$mq-tablet} {
+        @include font-size(20px);
+        @include span(7);
+    }
+}
+
+.topic-title {
+    margin: 0 0 1em;
+}
+
+.topic-intro-aside {
+    position: relative;
+    margin-top: -20px;
+    padding-top: 230px;
+
+    &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 250px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-position: center center;
+        background-repeat: no-repeat;
+        z-index: 10;
+    }
+
+    @media #{$mq-tablet} {
+        @include span(5);
+    }
+}
+
+.pullquote {
+    @include font-size(18px);
+    margin: -80px 0 20px;
+    padding: 90px 50px 30px;
+    z-index: 9;
+
+    p {
+        margin: 0;
+    }
+
+    .quote {
+        position: relative;
+        padding: 20px 0;
+
+        &:before,
+        &:after {
+            @include font-size(60px);
+            font-weight: bold;
+            position: absolute;
+            height: 40px;
+        }
+
+        &:before {
+            content: '“';
+            left: -20px;
+            top: -.5em;
+        }
+
+        &:after {
+            content: '”';
+            right: -20px;
+            bottom: 0;
+        }
+    }
+
+    .quote-source {
+        @include font-size(12px);
+        margin-top: 1em;
+
+        cite {
+            font-style: normal;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+.topic-action {
+    ol {
+        margin: 0 0 2em;
+        counter-reset: li;
+    }
+
+    li {
+        @include font-size(16px);
+        margin: 0;
+        padding: .825em 0 .825em 50px;
+        position: relative;
+
+        &:before {
+            @include font-size(20px);
+            background: $color-text-secondary;
+            border-radius: 100%;
+            color: #fff;
+            content: counter(li);
+            counter-increment: li;
+            display: block;
+            font-weight: bold;
+            height: 1.5em;
+            left: 0;
+            line-height: 1.55;
+            position: absolute;
+            text-align: center;
+            top: .65em;
+            width: 1.5em;
+        }
+
+        @media #{$mq-tablet} {
+            @include font-size(18px);
+            padding-left: 100px;
+
+            &:before {
+                left: 20px;
+            }
+        }
+    }
+}
+
+@media #{$mq-tablet} {
+    .topic-action-title {
+        padding: 20px 0 0 100px;
+        min-height: 60px;
+        position: relative;
+
+        &:before {
+            @include at2x('/media/img/mozorg/internet-health/privacy/action-sprite.png', 80px, 110px);
+            background-repeat: no-repeat;
+            content: '';
+            display: block;
+            left: 0;
+            position: absolute;
+            top: 10px;
+            width: 80px;
+            height: 55px;
+        }
+    }
+
+    .topic-action-moz .topic-action-title:before {
+        background-position: 0 0;
+    }
+
+    .topic-action-you .topic-action-title:before {
+        background-position: 0 -55px;
+    }
+}
+
+// User Control
+#control {
+    background: #c4e89c; // green
+
+    .topic-intro-aside:before {
+        @include at2x('/media/img/mozorg/internet-health/privacy/topic-control.png', 250px, 221px);
+    }
+
+    .pullquote {
+        background: #8fda80;
+    }
+}
+
+// Cybersecurity
+#security {
+    background: #cbf3f7; // blue
+
+    .topic-intro-aside:before {
+        @include at2x('/media/img/mozorg/internet-health/privacy/topic-security.png', 215px, 250px);
+    }
+
+    .pullquote {
+        background: #76f2ff;
+    }
+}
+
+// Government surveillance
+#surveillance {
+    background: #ffd8ee; // pink
+
+    .topic-intro-aside:before {
+        @include at2x('/media/img/mozorg/internet-health/privacy/topic-surveillance.png', 271px, 250px);
+    }
+
+    .pullquote {
+        background: #ff9ed5;
+    }
+}
+
+//*--------------------------------------------------------------------------*/
+// Health report
+
+.health-report {
+    @include font-size(20px);
+    background: #52fffe;
+    padding: 20px 0;
+
+    a:link,
+    a:visited {
+        color: $color-text-secondary;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: $color-text-tertiary;
+    }
+
+    h2 {
+        margin-bottom: .75em;
+    }
+
+    .report-cta {
+        @include box-decoration-break(clone);
+        display: inline;
+        background: #feeb33;
+        padding: 0 20px;
+    }
+
+    @media #{$mq-tablet} {
+        @include font-size(24px);
+    }
+}
+
+
+//*--------------------------------------------------------------------------*/
+// Newsletter
+
+#newsletter-subscribe {
+    @include at2x('/media/img/mozorg/internet-health/privacy/bg-newsletter.png', 1025px, 423px);
+    background-color: #d02687;
+    background-position: -40px -80px;
+    background-repeat: no-repeat;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+
+    a {
+        color: #fff;
+    }
+
+    .content {
+        padding: 20px;
+
+        @media #{$mq-tablet} {
+            @include at2x('/media/img/mozorg/internet-health/privacy/newsletter-objects.png', 402px, 295px);
+            background-repeat: no-repeat;
+            background-position: right top;
+        }
+    }
+
+    .form-title {
+        background-image: none;
+        float: none;
+        margin: 0 0 1em;
+        padding: 0;
+        width: auto;
+
+        h4 {
+            @include font-size(20px);
+            line-height: 1.4;
+        }
+    }
+
+    #newsletter-form {
+        padding: 0;
+        margin: 20px 0;
+
+        input[type="email"] {
+            background: #000;
+            border-radius: 0;
+            border: 0;
+            color: #fff;
+        }
+
+        .form-button {
+            background: #fff;
+            border-radius: 0;
+            border: 0;
+            color: $color-text-primary;
+            text-transform: uppercase;
+
+            &:hover,
+            &:focus {
+                background: #999;
+                color: #fff;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .thank,
+        .errorlist {
+            width: 380px;
+        }
+    }
+
+}
+
+//*--------------------------------------------------------------------------*/
+// Footer
+
+#colophon {
+    background: #56565a;
+    color: #d1d2d3;
+    margin-top: 0;
+}
