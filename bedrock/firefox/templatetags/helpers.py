@@ -14,6 +14,67 @@ from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils import get_locale
 
 
+def desktop_builds(channel, builds=None, locale=None, force_direct=False,
+                   force_full_installer=False, force_funnelcake=False,
+                   funnelcake_id=False):
+    builds = builds or []
+
+    l_version = firefox_desktop.latest_builds(locale, channel)
+    if l_version:
+        version, platforms = l_version
+    else:
+        locale = 'en-US'
+        version, platforms = firefox_desktop.latest_builds('en-US', channel)
+
+    for plat_os, plat_os_pretty in firefox_desktop.platform_labels.iteritems():
+        os_pretty = plat_os_pretty
+
+        # Firefox Nightly: The Windows stub installer is now universal,
+        # automatically detecting a 32-bit and 64-bit desktop, so the
+        # win64-specific entry can be skipped.
+        if channel == 'nightly':
+            if plat_os == 'win':
+                os_pretty = 'Windows 32/64-bit'
+            if plat_os == 'win64':
+                continue
+
+        # Fallback to en-US if this plat_os/version isn't available
+        # for the current locale
+        _locale = locale if plat_os_pretty in platforms else 'en-US'
+
+        # And generate all the info
+        download_link = firefox_desktop.get_download_url(
+            channel, version, plat_os, _locale,
+            force_direct=force_direct,
+            force_full_installer=force_full_installer,
+            force_funnelcake=force_funnelcake,
+            funnelcake_id=funnelcake_id,
+        )
+
+        # If download_link_direct is False the data-direct-link attr
+        # will not be output, and the JS won't attempt the IE popup.
+        if force_direct:
+            # no need to run get_download_url again with the same args
+            download_link_direct = False
+        else:
+            download_link_direct = firefox_desktop.get_download_url(
+                channel, version, plat_os, _locale,
+                force_direct=True,
+                force_full_installer=force_full_installer,
+                force_funnelcake=force_funnelcake,
+                funnelcake_id=funnelcake_id,
+            )
+            if download_link_direct == download_link:
+                download_link_direct = False
+
+        builds.append({'os': plat_os,
+                       'os_pretty': os_pretty,
+                       'download_link': download_link,
+                       'download_link_direct': download_link_direct})
+
+    return builds
+
+
 def android_builds(channel, builds=None):
     channel = channel.lower()
     builds = builds or []
@@ -105,7 +166,7 @@ def download_firefox(ctx, channel='release', platform='all',
     """ Output a "download firefox" button.
 
     :param ctx: context from calling template.
-    :param channel: name of channel: 'release', 'beta' or 'alpha'.
+    :param channel: name of channel: 'release', 'beta', 'alpha', or 'nightly'.
     :param platform: Target platform: 'desktop', 'android', 'ios', or 'all'.
     :param dom_id: Use this string as the id attr on the element.
     :param locale: The locale of the download. Default to locale of request.
@@ -130,58 +191,10 @@ def download_firefox(ctx, channel='release', platform='all',
     builds = []
 
     if show_desktop:
-        l_version = firefox_desktop.latest_builds(locale, channel)
-        if l_version:
-            version, platforms = l_version
-        else:
-            locale = 'en-US'
-            version, platforms = firefox_desktop.latest_builds('en-US', channel)
-
-        for plat_os, plat_os_pretty in firefox_desktop.platform_labels.iteritems():
-            os_pretty = plat_os_pretty
-
-            # Firefox Nightly: The Windows stub installer is now universal,
-            # automatically detecting a 32-bit and 64-bit desktop, so the
-            # win64-specific entry can be skipped.
-            if channel == 'nightly':
-                if plat_os == 'win':
-                    os_pretty = 'Windows 32/64-bit'
-                if plat_os == 'win64':
-                    continue
-
-            # Fallback to en-US if this plat_os/version isn't available
-            # for the current locale
-            _locale = locale if plat_os_pretty in platforms else 'en-US'
-
-            # And generate all the info
-            download_link = firefox_desktop.get_download_url(
-                channel, version, plat_os, _locale,
-                force_direct=force_direct,
-                force_full_installer=force_full_installer,
-                force_funnelcake=force_funnelcake,
-                funnelcake_id=funnelcake_id,
-            )
-
-            # If download_link_direct is False the data-direct-link attr
-            # will not be output, and the JS won't attempt the IE popup.
-            if force_direct:
-                # no need to run get_download_url again with the same args
-                download_link_direct = False
-            else:
-                download_link_direct = firefox_desktop.get_download_url(
-                    channel, version, plat_os, _locale,
-                    force_direct=True,
-                    force_full_installer=force_full_installer,
-                    force_funnelcake=force_funnelcake,
-                    funnelcake_id=funnelcake_id,
-                )
-                if download_link_direct == download_link:
-                    download_link_direct = False
-
-            builds.append({'os': plat_os,
-                           'os_pretty': os_pretty,
-                           'download_link': download_link,
-                           'download_link_direct': download_link_direct})
+        version = firefox_desktop.latest_version(channel)
+        builds = desktop_builds(channel, builds, locale, force_direct,
+                                force_full_installer, force_funnelcake,
+                                funnelcake_id)
 
     if show_android:
         version = firefox_android.latest_version(channel)
@@ -216,6 +229,46 @@ def download_firefox(ctx, channel='release', platform='all',
     }
 
     html = render_to_string('firefox/includes/download-button.html', data,
+                            request=ctx['request'])
+    return jinja2.Markup(html)
+
+
+@library.global_function
+@jinja2.contextfunction
+def download_firefox_desktop_list(ctx, channel='release', dom_id=None, locale=None,
+                                  force_full_installer=False):
+    """
+    Return a HTML list of platform download links for Firefox desktop
+
+    :param channel: name of channel: 'release', 'beta',  'alpha' or 'nightly'.
+    :param dom_id: Use this string as the id attr on the element.
+    :param locale: The locale of the download. Default to locale of request.
+    :param force_full_installer: Force the installer download to not be
+            the stub installer (for aurora).
+
+    """
+    dom_id = dom_id or 'download-platform-list-%s' % (channel)
+    locale = locale or get_locale(ctx['request'])
+
+    # Make sure funnelcake_id is not passed as builds are often Windows only.
+    builds = desktop_builds(channel, None, locale, True,
+                            force_full_installer, False, False)
+
+    for plat in builds:
+        # Add 32-bit label for Windows and Linux builds.
+        if channel != 'nightly':
+            if plat['os'] == 'win' or plat['os'] == 'winsha1':
+                plat['os_pretty'] = 'Windows 32-bit'
+
+        if plat['os'] == 'linux':
+            plat['os_pretty'] = 'Linux 32-bit'
+
+    data = {
+        'id': dom_id,
+        'builds': builds
+    }
+
+    html = render_to_string('firefox/includes/download-list.html', data,
                             request=ctx['request'])
     return jinja2.Markup(html)
 

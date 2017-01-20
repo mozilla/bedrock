@@ -6,20 +6,10 @@
 
 {% extends "firefox/new/base.html" %}
 
-{% block experiments %}
-  {% if switch('experiment-firefox-new-all-links-pt2', ['en-US']) %}
-    {% javascript 'experiment_firefox_new_scene1_all_links_pt2' %}
-  {% endif %}
-{% endblock %}
-
 {# all CSS must be in extrahead block for old IE #}
 {% block extrahead %}
   {% stylesheet 'firefox_new_common' %}
   {% stylesheet 'firefox_new_scene1' %}
-
-  {% if version in ['1', '2'] %}
-    {% stylesheet 'firefox_new_scene1_variations_pt2' %}
-  {% endif %}
 {% endblock %}
 
 {% block body_id %}firefox-new-scene1{% endblock %}
@@ -30,7 +20,7 @@
     <div class="horizon">
       <div class="stars">
         <div class="inner-container">
-          <header id="masthead" data-version="{{ version }}">
+          <header id="masthead">
             <div id="tabzilla">
               <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
             </div>
@@ -95,11 +85,8 @@
                 <li><a class="more" href="{{ url('firefox.family.index') }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
               </ul>
             </div>
-
-            {% if version == '2' %}
-              <div id="test-inpage-wrapper">
-                {% include 'firefox/new/_all-test-variations-pt2-addl-links.html' %}
-              </div>
+            {% if l10n_has_tag('firefox_new_other_platforms') %}
+              <button id="other-platforms-modal-link" class="hidden" type="button">{{_('Download Firefox for another platform')}}</button>
             {% endif %}
           </div>{#-- /.main-content --#}
         </div>{#-- /.inner-container --#}
@@ -130,30 +117,44 @@
       </div>
     </aside>
   </div>
+
+  {% if l10n_has_tag('firefox_new_other_platforms') %}
+  <div id="other-platforms">
+    <div class="container">
+      <section class="section-other-platforms">
+        <h4>{{_('Firefox for other platforms') }}</h4>
+
+        {{ download_firefox_desktop_list() }}
+
+        <ul class="other-platforms-mobile">
+          <li class="android">
+            {{ google_play_button() }}
+          </li>
+          <li class="ios">
+            <a href="{{ firefox_ios_url('mozorg-fxnew_page_scene1_modal-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section-current-platform">
+        {# L10n: span's below are for visual formatting and line break. #}
+        <h4 class="heading-windows">{{_('Download Firefox <span>for Windows</span>') }}</h4>
+        <h4 class="heading-osx">{{_('Download Firefox <span>for OSX</span>') }}</h4>
+        <h4 class="heading-linux">{{_('Download Firefox <span>for Linux</span>') }}</h4>
+
+        {{ download_firefox(dom_id='download-other-platforms-modal', alt_copy=_('Free Download')) }}
+      </section>
+    </div>
+  </div>
+  {% endif %}
+
 </main>
-
-{% if version == '1' %}
-  <div id="test-modal-wrapper">
-    <div id="test-modal">
-      <div id="test-modal-content">
-        {% include 'firefox/new/_all-test-variations-pt2-addl-links.html' %}
-
-        <section id="test-modal-secondary-cta" class="test-section">
-          <h3>Download Firefox <span id="test-modal-user-platform"></span></h3>
-          {{ download_firefox(alt_copy=_('Free Download'), dom_id="fx-modal-download") }}
-        </section>{#-- /#fx-modal-secondary-cta --#}
-      </div>{#-- /#fx-modal-content --#}
-    </div>{#-- /#fx-modal --#}
-  </div>{#-- /#fx-modal-wrapper -_#}
-{% endif %}
 
 {% include 'firefox/includes/schemaorg-app.html' %}
 {% endblock %}
 
 {% block js %}
   {% javascript 'firefox_new_scene1' %}
-
-  {% if version in ['1', '2'] %}
-    {% javascript 'firefox_new_scene1_variations_pt2' %}
-  {% endif %}
 {% endblock %}

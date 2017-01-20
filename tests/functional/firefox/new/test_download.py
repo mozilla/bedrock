@@ -23,3 +23,11 @@ def test_click_download_button(base_url, selenium):
     page = DownloadPage(selenium, base_url).open()
     thank_you_page = page.download_firefox()
     assert thank_you_page.seed_url in selenium.current_url
+
+
+@pytest.mark.nondestructive
+def test_other_platforms_modal(base_url, selenium):
+    page = DownloadPage(selenium, base_url).open()
+    modal = page.open_other_platforms_modal()
+    assert modal.is_displayed
+    modal.close()
