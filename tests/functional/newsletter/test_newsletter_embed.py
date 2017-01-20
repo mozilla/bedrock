@@ -27,7 +27,8 @@ from pages.smarton.base import SmartOnBasePage
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize(('page_class', 'url_kwargs'), [
-    pytest.mark.smoke((HomePage, None)),
+    pytest.mark.skip_if_internet_explorer(pytest.mark.smoke((HomePage, None)),
+        reason='https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/11169/'),
     (AboutPage, None),
     pytest.mark.smoke((ContributePage, None)),
     (TwitterTaskPage, None),
@@ -62,7 +63,10 @@ def test_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [HomePage, ContributePage])
+@pytest.mark.parametrize('page_class', [
+    pytest.mark.skip_if_internet_explorer(HomePage,
+        reason='https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/11169/'),
+    ContributePage])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
@@ -75,7 +79,10 @@ def test_newsletter_successful_sign_up(page_class, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [HomePage, ContributePage])
+@pytest.mark.parametrize('page_class', [
+    pytest.mark.skip_if_internet_explorer(HomePage,
+        reason='https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/11169/'),
+    ContributePage])
 def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
