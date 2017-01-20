@@ -9,6 +9,7 @@ import pytest
 from pages.home import HomePage
 
 
+@pytest.mark.skip_if_internet_explorer(reason='https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/11169/')
 @pytest.mark.nondestructive
 def test_change_language(base_url, selenium):
     page = HomePage(selenium, base_url).open()
