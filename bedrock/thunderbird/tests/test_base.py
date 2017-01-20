@@ -6,12 +6,11 @@ import os
 
 from django.conf import settings
 
-from bedrock.base.urlresolvers import reverse
-from mock import patch
+from mock import patch, Mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
-from bedrock.thunderbird import views as tb_views
+from bedrock.base.urlresolvers import reverse
 from bedrock.thunderbird.details import ThunderbirdDesktop
 from bedrock.mozorg.tests import TestCase
 
@@ -23,7 +22,8 @@ GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
 thunderbird_desktop = ThunderbirdDesktop(json_dir=PROD_DETAILS_DIR)
 
 
-@patch.object(tb_views, 'thunderbird_desktop', thunderbird_desktop)
+@patch('bedrock.thunderbird.views.thunderbird_desktop._storage.data',
+       Mock(side_effect=thunderbird_desktop._storage.data))
 class TestThunderbirdAll(TestCase):
     def _get_url(self, channel='release'):
         with self.activate('en-US'):
