@@ -6,7 +6,7 @@
 
 
 @font-face {
-    font-family: 'FA-Icons-Contact';
+    font-family: FA-Icons-Contact;
     src: url('/media/fonts/icons-contact.woff2?20-12-2016') format('woff2'),
          url('/media/fonts/icons-contact.woff?20-12-2016') format('woff');
     font-weight: normal;
@@ -175,12 +175,35 @@
 }
 
 @keyframes develop {
-    0%   { filter: invert(40%) sepia(100%); opacity: .1; }
-    25%  { filter: invert(20%) sepia(90%);  opacity: .25; }
-    50%  { filter: invert(10%) sepia(80%);  opacity: .5; }
-    75%  { filter: invert(0) sepia(60%);    opacity: .75; }
-    85%  { filter: invert(0) sepia(40%);    opacity: .85; }
-    100% { filter: invert(0) sepia(0);      opacity: 1; }
+    0%   {
+      filter: invert(40%) sepia(100%);
+      opacity: .1;
+    }
+
+    25%  {
+      filter: invert(20%) sepia(90%);
+      opacity: .25;
+    }
+
+    50%  {
+      filter: invert(10%) sepia(80%);
+      opacity: .5;
+    }
+
+    75%  {
+      filter: invert(0) sepia(60%);
+      opacity: .75;
+    }
+
+    85%  {
+      filter: invert(0) sepia(40%);
+      opacity: .85;
+    }
+
+    100% {
+      filter: invert(0) sepia(0);
+      opacity: 1;
+    }
 }
 
 
@@ -575,7 +598,7 @@
 
             &:before {
                 color: $color-link;
-                font: 105% 'FA-Icons-Contact';
+                font: 105% FA-Icons-Contact;
                 position: absolute;
                 left: 0;
                 top: .125em;
