@@ -1302,5 +1302,14 @@ GOOG_CUSTOM_SEARCH_TYPES = {
     'activist': '014783244707853607354:bbpl3emdsii',
 }
 
-if config('SWITCH_FLASHTALKING', default=DEV, cast=bool):
-    CSP_IMG_SRC += ('servedby.flashtalking.com',)
+# Bug 1331069 - Replace Flashtalking Tracking Pixel With DoubleClick
+FLASH_TALKING_URL = 'https://servedby.flashtalking.com/spot/8/6247;40428;4669/?spotName=Mozilla_Download_Conversion'
+DOUBLE_CLICK_URL = ('https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;'
+                    'tag_for_child_directed_treatment=;ord=1;num=1?&_dc_ck=try')
+
+TRACKING_PIXEL_URL = DOUBLE_CLICK_URL if config('SWITCH_DOUBLE_CLICK', default=DEV, cast=bool) else FLASH_TALKING_URL
+
+if config('SWITCH_TRACKING_PIXEL', default=DEV, cast=bool):
+    CSP_IMG_SRC += (
+        'ad.doubleclick.net' if config('SWITCH_DOUBLE_CLICK', default=DEV, cast=bool) else 'servedby.flashtalking.com',
+    )
