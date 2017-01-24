@@ -1,0 +1,44 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/way-of-the-fox/base.html" %}
+
+{% from "macros.html" import google_play_button with context %}
+
+{% block body_class %}scene-2{% endblock %}
+
+{% block content_body %}
+<div class="main-content content">
+  <div id="download-button-wrapper-desktop">
+    {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
+  </div>
+  <p class="help">
+    {# fallback_url is replaced by the platform download link via JS, but if
+       something fails the user should still get a link to a working download path. #}
+    {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
+      Thanks for choosing Firefox. Your download should begin automatically. If not, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
+    {% endtrans %}
+  </p>
+  <aside id="mobile-download">
+    <h2>{{ _('Get Firefox for Android and iOS.') }}</h2>
+    <ul>
+      <li class="android">
+        {{ google_play_button() }}
+      </li>
+      <li class="ios">
+        <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+        </a>
+      </li>
+    </ul>
+  </aside>
+</div>
+{% endblock %}
+
+{% block js %}
+  {% if switch('flashtalking') %}
+    {% javascript 'firefox_new_pixel' %}
+  {% endif %}
+  {% javascript 'firefox_new_scene2' %}
+{% endblock %}

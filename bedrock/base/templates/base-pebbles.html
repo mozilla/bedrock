@@ -52,7 +52,9 @@
       <script src="{{ static('js/libs/html5shiv.js') }}"></script>
 
       {# Basic styles, only for IE8 and lower #}
+      {% block old_ie_styles %}
       {% stylesheet 'oldIE-pebbles' %}
+      {% endblock %}
     <![endif]-->
 
     <!--[if !lte IE 8]><!-->

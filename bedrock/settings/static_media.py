@@ -501,6 +501,20 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_scene1_variations_pt2-bundle.css',
     },
+    'firefox_new_break_free': {
+        'source_filenames': (
+            'css/pebbles/global.scss',
+            'css/firefox/new/break-free.scss',
+        ),
+        'output_filename': 'css/firefox_new_break_free-bundle.css',
+    },
+    'firefox_new_way_of_the_fox': {
+        'source_filenames': (
+            'css/pebbles/global.scss',
+            'css/firefox/new/way-of-the-fox.scss',
+        ),
+        'output_filename': 'css/firefox_new_way_of_the_fox-bundle.css',
+    },
     'firefox_organizations': {
         'source_filenames': (
             'css/firefox/organizations.less',
@@ -1281,6 +1295,18 @@ PIPELINE_JS = {
             'js/firefox/new/scene2.js',
         ),
         'output_filename': 'js/firefox_new_scene2-bundle.js',
+    },
+    'firefox_new_scene1_break_free': {
+        'source_filenames': (
+            'js/firefox/new/break-free.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_break_free-bundle.js',
+    },
+    'firefox_new_scene1_way_of_the_fox': {
+        'source_filenames': (
+            'js/firefox/new/way-of-the-fox.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_way_of_the_fox-bundle.js',
     },
     'experiment_firefox_new_scene1_all_links_pt2': {
         'source_filenames': (

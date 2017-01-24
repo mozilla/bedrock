@@ -1,0 +1,142 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../includes/lib';
+
+#colophon {
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+    margin-top: 0;
+    z-index: 1;
+
+    .content {
+        @include clearfix;
+        margin: 0 auto;
+        padding: 0 20px;
+        text-align: center;
+        width: auto;
+
+        @media #{$mq-phone-wide} {
+            width: $width-phone-wide;
+        }
+
+        @media #{$mq-tablet} {
+            text-align: left;
+            width: $width-tablet;
+        }
+
+        @media #{$mq-desktop} {
+            width: $width-desktop;
+        }
+    }
+
+    .mozlogo {
+        background: url('/media/img/pebbles/moz-wordmark-dark-reverse.svg') no-repeat;
+        @include background-size(100px, 32px);
+        @include image-replaced();
+        @include inline-block;
+        background-repeat: no-repeat;
+        height: 32px;
+        margin: 0 auto 40px;
+        position: static;
+        display: block;
+        width: 100px;
+
+        @media #{$mq-tablet} {
+            float: left;
+            margin-bottom: 20px;
+        }
+    }
+
+    ul {
+        @include font-size(13px);
+        list-style: none;
+        margin: 0;
+        text-align: center;
+
+        li {
+
+            display: block;
+            margin: 0 0 .25em;
+
+            &:after {
+                content: '';
+            }
+
+            &:last-child {
+                margin: 0 0 .25em;
+
+                &:after {
+                    content: '';
+                }
+            }
+
+            a {
+                @include inline-block;
+            }
+        }
+
+        @media #{$mq-tablet} {
+            float: right;
+            text-align: right;
+
+            li {
+                clear: right;
+                display: inline;
+                margin-left: 10px;
+                margin-right: 10px;
+
+                &:after {
+                    color: $color-text-primary;
+                    content: '•';
+                    margin: 0 -10px 0 10px;
+                }
+
+                &:last-child {
+                    margin: 0 0 0 10px;
+                }
+            }
+        }
+    }
+
+    .fx-footer-links {
+        clear: both;
+        margin-top: 20px / 2;
+    }
+
+    form {
+        @include inline-block;
+        margin-bottom: 10px;
+
+        label {
+            color: $color-text-tertiary;
+        }
+
+        @media #{$mq-tablet} {
+            margin-bottom: 0;
+        }
+    }
+}
+
+html[dir="rtl"] #colophon {
+    @media #{$mq-tablet} {
+        .mozlogo {
+            float: right;
+        }
+
+        ul {
+            float: left;
+
+            li {
+                &:after {
+                    margin: 0 10px 0 -10px;
+                }
+
+                &:last-child {
+                    margin: 0 10px 0 0;
+                }
+            }
+        }
+    }
+}

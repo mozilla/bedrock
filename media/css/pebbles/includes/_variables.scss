@@ -26,8 +26,8 @@ $color-mozgray: #56565a;
 
 // Link colors
 $color-link-blue: #00a7e0;
-
 $color-link: $color-link-blue; // standard links (blue)
+$color-link-yellow: #ffbb38;
 
 // Button colors
 $color-button-light: #fff;
@@ -60,4 +60,3 @@ $mq-tall:           '(min-height: 600px)';
 // Grid columns
 $column-width:  8.333%; // 100% / 12 columns
 $gutter-width:  20px;
-

@@ -1,0 +1,193 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/buttons-download';
+@import '../../pebbles/components/footer-simple';
+@import '../../pebbles/components/platform-footer-links';
+
+#outer-wrapper {
+    background: #0c99d5;
+}
+
+#tabzilla:before {
+    background-color: #4a4a4a;
+}
+
+#masthead {
+    @include at2x('/media/img/firefox/new/break-free/pattern-halftone.png');
+    @include background-size(20px 223px);
+    background-color: #ffcd02;
+    background-repeat: repeat-x;
+    padding-bottom: 10px;
+    position: relative;
+    text-align: center;
+
+    @media #{$mq-high-res} {
+        @include background-size(20px 223px);
+    }
+
+    h1 {
+        clear: right;
+        padding-bottom: 20px;
+        position: relative;
+
+        &:before {
+            @include at2x('/media/img/firefox/template/logo-large.png');
+            @include background-size(108px 112px);
+            background-repeat: no-repeat;
+            content: '';
+            display: block;
+            height: 108px;
+            margin: 0 auto 5px;
+            width: 112px;
+        }
+
+        @media #{$mq-high-res} {
+            &:before {
+                @include background-size(108px 112px);
+            }
+        }
+    }
+
+    &:after {
+        background: #fff;
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 20px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        width: 100%;
+        visibility: visible;
+        border-top: 2px solid #000;
+        border-bottom: 2px solid #000;
+    }
+}
+
+@supports (transform: skewY(-1deg)) {
+    @media screen and (max-width: 1400px) {
+        #masthead:after {
+            @include transform-origin(100%);
+            @include transform(skewY(-1deg));
+        }
+    }
+}
+
+.main-content {
+    text-align: center;
+    padding: 45px 20px 100px;
+
+    .download-link.button.button-green {
+        @include font-size(22px);
+        text-shadow: 1px 2px 0 rgba(0, 0, 0, .3);
+        border: 1px solid #42722c;
+    }
+
+    .fx-privacy-link {
+        @include font-size(16px);
+        margin-bottom: 40px;
+    }
+
+    h2 ,
+    p {
+        color: #fff;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, .5);
+    }
+
+    p {
+        font-weight: bold;
+        font-style: italic;
+        @include font-size(20px);
+        max-width: 24em;
+        margin: 0 auto 20px;
+
+        @media #{$mq-tablet} {
+            @include font-size(24px);
+        }
+
+        @media #{$mq-desktop} {
+            @include font-size(28px);
+        }
+
+        a:link,
+        a:visited {
+            color: $color-link-yellow;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+// keep the button technically visible to grab correct download link for
+// backup download link
+.js .scene-2 #download-button-wrapper-desktop {
+    height: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+
+    #primary-download-button {
+        margin: 1px 0 0 1px;
+    }
+}
+
+#mobile-download {
+    @include clearfix;
+    margin-top: 40px;
+
+    h2 {
+        @include font-size(18px);
+        margin-bottom: 40px;
+    }
+
+    ul {
+        display: block;
+        list-style: none;
+        margin: 20px auto;
+        padding: 0;
+        width: auto;
+    }
+
+    li {
+        display: inline;
+        height: 45px;
+        margin: 0 auto 40px;
+        padding: 0;
+        width: 152px;
+    }
+
+    a {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    @media #{$mq-tablet} {
+        h2 {
+            @include font-size(22px);
+        }
+
+        ul {
+            @include clearfix;
+            width: 384px;
+            margin: 20px auto 40px;
+        }
+
+        li {
+            float: left;
+            margin: 0 20px;
+        }
+    }
+}
+
+#colophon {
+    border-top: 2px solid #000;
+}

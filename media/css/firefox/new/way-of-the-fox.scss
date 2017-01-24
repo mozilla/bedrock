@@ -1,0 +1,145 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/buttons-download';
+@import '../../pebbles/components/footer-simple';
+@import '../../pebbles/components/platform-footer-links';
+
+#outer-wrapper {
+    background-color: #6fd0d6;
+    background-image: linear-gradient(0deg, #eca77d 0%, #f5cb91 14%, #deddb1 28%, #aee3d1 54%, #8edbd5 77%, #6fd0d6 100%);
+}
+
+#tabzilla:before {
+    background-color: #4a4a4a;
+}
+
+#masthead {
+    padding-bottom: 10px;
+    position: relative;
+    text-align: center;
+
+    h1 {
+        clear: right;
+        padding: 20px 0;
+        position: relative;
+    }
+}
+
+.main-content {
+    text-align: center;
+    padding: 20px 20px 100px;
+
+    .download-link.button.button-green {
+        @include font-size(22px);
+        text-shadow: 1px 2px 0 rgba(0, 0, 0, .3);
+        border: 1px solid #42722c;
+    }
+
+    .fx-privacy-link {
+        @include font-size(16px);
+        margin-bottom: 40px;
+
+        a:link,
+        a:visited {
+            color: #242d2e;
+        }
+    }
+
+    p {
+        @include font-size(20px);
+        color: #242d2e;
+        font-style: italic;
+        font-weight: bold;
+        margin: 0 auto 20px;
+        max-width: 22em;
+
+        span {
+            color: #cf440d;
+        }
+
+        @media #{$mq-tablet} {
+            @include font-size(28px);
+        }
+
+        @media #{$mq-desktop} {
+            @include font-size(32px);
+        }
+
+        a:link,
+        a:visited {
+            color: #cf440d;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+// keep the button technically visible to grab correct download link for
+// backup download link
+.js .scene-2 #download-button-wrapper-desktop {
+    height: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+
+    #primary-download-button {
+        margin: 1px 0 0 1px;
+    }
+}
+
+#mobile-download {
+    @include clearfix;
+    margin-top: 40px;
+
+    h2 {
+        @include font-size(18px);
+        margin-bottom: 40px;
+    }
+
+    ul {
+        display: block;
+        list-style: none;
+        margin: 20px auto;
+        padding: 0;
+        width: auto;
+    }
+
+    li {
+        display: inline;
+        height: 45px;
+        margin: 0 auto 40px;
+        padding: 0;
+        width: 152px;
+    }
+
+    a {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    @media #{$mq-tablet} {
+        h2 {
+            @include font-size(22px);
+        }
+
+        ul {
+            @include clearfix;
+            width: 384px;
+            margin: 20px auto 40px;
+        }
+
+        li {
+            float: left;
+            margin: 0 20px;
+        }
+    }
+}

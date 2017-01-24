@@ -479,15 +479,32 @@ def new(request):
         return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
     scene = request.GET.get('scene', None)
+    experience = request.GET.get('xv', None)
+    locale = l10n_utils.get_locale(request)
     version = None
 
     if scene == '2':
-        template = 'firefox/new/scene2.html'
+        if locale == 'en-US':
+            if experience == 'breakfree':
+                template = 'firefox/new/break-free/scene2.html'
+            elif experience == 'wayofthefox':
+                template = 'firefox/new/way-of-the-fox/scene2.html'
+            else:
+                template = 'firefox/new/scene2.html'
+        else:
+            template = 'firefox/new/scene2.html'
     # if no/incorrect scene specified, show scene 1
     else:
-        template = 'firefox/new/scene1.html'
+        if locale == 'en-US':
+            if experience == 'breakfree':
+                template = 'firefox/new/break-free/scene1.html'
+            elif experience == 'wayofthefox':
+                template = 'firefox/new/way-of-the-fox/scene1.html'
+            else:
+                template = 'firefox/new/scene1.html'
+        else:
+            template = 'firefox/new/scene1.html'
 
-        locale = l10n_utils.get_locale(request)
         if locale == 'en-US':
             version = request.GET.get('v', None)
 
