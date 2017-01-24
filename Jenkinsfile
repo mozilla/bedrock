@@ -148,45 +148,48 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             def region = config.regions[regionId]
             def appURL = "https://${appname}.${region.name}.moz.works"
             def stageName = "Deploy ${appname}-${region.name}"
-            stage (stageName) {
-                node {
-                    unstash 'scripts'
-                    withEnv(["DEIS_PROFILE=${region.deis_profile}",
-                             "DOCKER_REPOSITORY=${appname}",
-                             "DEIS_APPLICATION=${appname}"]) {
-                        try {
-                            retry(3) {
-                                sh 'docker/jenkins/push2deis.sh'
+            // ensure no deploy/test cycle happens in parallel for an app/region
+            lock (stageName) {
+                stage (stageName) {
+                    node {
+                        unstash 'scripts'
+                        withEnv(["DEIS_PROFILE=${region.deis_profile}",
+                                 "DOCKER_REPOSITORY=${appname}",
+                                 "DEIS_APPLICATION=${appname}"]) {
+                            try {
+                                retry(3) {
+                                    sh 'docker/jenkins/push2deis.sh'
+                                }
+                            } catch(err) {
+                                utils.ircNotification(config, [stage: stageName, status: 'failure'])
+                                throw err
                             }
-                        } catch(err) {
-                            utils.ircNotification(config, [stage: stageName, status: 'failure'])
-                            throw err
                         }
                     }
                 }
-            }
-            // queue up test closures
-            def allTests = [:]
-            for (filename in branchConfig.integration_tests) {
-                allTests[filename] = utils.integrationTestJob(filename, appname, region.name)
-            }
-            stage ("Test ${appname}-${region.name}") {
-                try {
-                    // wait for server to be ready
-                    sleep(time: 10, unit: 'SECONDS')
-                    parallel allTests
-                } catch(err) {
-                    node {
-                        unstash 'scripts'
-                        utils.ircNotification(config, [stage: "Integration Tests ${region.name}", status: 'failure'])
-                    }
-                    throw err
+                // queue up test closures
+                def allTests = [:]
+                for (filename in branchConfig.integration_tests) {
+                    allTests[filename] = utils.integrationTestJob(filename, appname, region.name)
                 }
-            }
-            node {
-                unstash 'scripts'
-                // huge success \o/
-                utils.ircNotification(config, [message: appURL, status: 'shipped'])
+                stage ("Test ${appname}-${region.name}") {
+                    try {
+                        // wait for server to be ready
+                        sleep(time: 10, unit: 'SECONDS')
+                        parallel allTests
+                    } catch(err) {
+                        node {
+                            unstash 'scripts'
+                            utils.ircNotification(config, [stage: "Integration Tests ${region.name}", status: 'failure'])
+                        }
+                        throw err
+                    }
+                }
+                node {
+                    unstash 'scripts'
+                    // huge success \o/
+                    utils.ircNotification(config, [message: appURL, status: 'shipped'])
+                }
             }
         }
     }
@@ -212,17 +215,19 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
         }
 
         try {
-            stage ('deploy') {
-                withCredentials([[$class: 'StringBinding',
-                                  credentialsId: 'SENTRY_DEMO_DSN',
-                                  variable: 'SENTRY_DEMO_DSN']]) {
-                    withEnv(['DEIS_PROFILE=usw',
-                             "DEIS_APP_NAME=${appname}",
-                             "PRIVATE_REGISTRY=localhost:${config.regions.usw.registry_port}"]) {
-                        sh './docker/jenkins/demo_deploy.sh'
+            lock (appname) {
+                stage ('deploy') {
+                    withCredentials([[$class: 'StringBinding',
+                                      credentialsId: 'SENTRY_DEMO_DSN',
+                                      variable: 'SENTRY_DEMO_DSN']]) {
+                        withEnv(['DEIS_PROFILE=usw',
+                                 "DEIS_APP_NAME=${appname}",
+                                 "PRIVATE_REGISTRY=localhost:${config.regions.usw.registry_port}"]) {
+                            sh './docker/jenkins/demo_deploy.sh'
+                        }
                     }
+                    utils.ircNotification(config, [app_url: "https://${appname}.us-west.moz.works/"])
                 }
-                utils.ircNotification(config, [app_url: "https://${appname}.us-west.moz.works/"])
             }
         } catch(err) {
             utils.ircNotification(config, [stage: 'Demo Deploy', status: 'failure'])

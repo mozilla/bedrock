@@ -15,8 +15,9 @@ fi
 
 DOCKER_IMAGE_TAG=${DOCKER_REPOSITORY}:${GIT_COMMIT}
 
-if [[ ! -e locale ]];
+if [[ ! -d locale/.git ]];
 then
+    rm -rf locale
     git clone --depth 1 https://github.com/mozilla-l10n/bedrock-l10n locale
 fi;
 
