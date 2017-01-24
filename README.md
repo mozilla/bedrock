@@ -52,5 +52,3 @@ information, read the file ``LICENSE``.
 ![](http://i.imgur.com/ElotJSI.jpg)
 
 credit [@designerham](https://github.com/designerham)
-
-Testing commit to try to trigger simulteous jenkinsfile builds
