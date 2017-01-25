@@ -482,9 +482,14 @@ def new(request):
     experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
 
+    # Onboarding funnelcake experiment (Bug 1333435).
+    funnelcake_id = request.GET.get('f', False)
+
     if scene == '2':
         if locale == 'en-US':
-            if experience == 'breakfree':
+            if funnelcake_id in ['99', '100']:
+                template = 'firefox/new/onboarding/scene2.html'
+            elif experience == 'breakfree':
                 template = 'firefox/new/break-free/scene2.html'
             elif experience == 'wayofthefox':
                 template = 'firefox/new/way-of-the-fox/scene2.html'
@@ -495,7 +500,9 @@ def new(request):
     # if no/incorrect scene specified, show scene 1
     else:
         if locale == 'en-US':
-            if experience == 'breakfree':
+            if funnelcake_id in ['99', '100']:
+                template = 'firefox/new/onboarding/scene1.html'
+            elif experience == 'breakfree':
                 template = 'firefox/new/break-free/scene1.html'
             elif experience == 'wayofthefox':
                 template = 'firefox/new/way-of-the-fox/scene1.html'
