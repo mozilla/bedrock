@@ -28,6 +28,15 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
     stage ('Build') {
         node {
             unstash 'workspace'
+            // make sure we should continue
+            if ( branchConfig.require_tag ) {
+                try {
+                    sh 'docker/jekins/check_if_tag.sh'
+                } catch(err) {
+                    utils.ircNotification(config, [stage: 'Git Tag Check', status: 'failure'])
+                    throw err
+                }
+            }
             utils.ircNotification(config, [stage: 'Test & Deploy', status: 'starting'])
             try {
                 utils.buildDockerImage(dockerfile: 'bedrock_base', update: true)

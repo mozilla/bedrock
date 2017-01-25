@@ -9,6 +9,7 @@ branches:
       - firefox
       - headless
   prod:
+    require_tag: true
     regions:
       - usw
       - euw
@@ -22,6 +23,7 @@ branches:
       - ie7
   # for testing
   deploy-via-jenkinsfile:
+    require_tag: true
     regions:
       - usw
       - euw
