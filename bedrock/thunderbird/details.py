@@ -28,7 +28,7 @@ class ThunderbirdDesktop(ProductDetails):
     platform_labels = OrderedDict([
         ('winsha1', 'Windows (XP/Vista)'),
         ('win', 'Windows'),
-        ('osx', 'OS X'),
+        ('osx', 'macOS'),
         ('linux', 'Linux'),
         ('linux64', 'Linux 64-bit'),
     ])

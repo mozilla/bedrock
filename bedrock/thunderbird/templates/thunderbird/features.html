@@ -223,7 +223,13 @@
         <div class="col">
           <section>
             <h3>{{ _('Automated Update') }}</h3>
-            <p>{{ _('Thunderbird’s update system checks to see if you’re running the latest version, and notifies you when a security update is available. These security updates are small (usually 200KB - 700KB), giving you only what you need and making the security update quick to download and install. The automated update system provides updates for Thunderbird on Windows, Mac OS X, and Linux in over 40 different languages.') }}</p>
+            <p>
+            {% if l10n_has_tag('macos_branding') %}
+              {{ _('Thunderbird’s update system checks to see if you’re running the latest version, and notifies you when a security update is available. These security updates are small (usually 200KB - 700KB), giving you only what you need and making the security update quick to download and install. The automated update system provides updates for Thunderbird on Windows, macOS, and Linux in over 40 different languages.') }}
+            {% else %}
+              {{ _('Thunderbird’s update system checks to see if you’re running the latest version, and notifies you when a security update is available. These security updates are small (usually 200KB - 700KB), giving you only what you need and making the security update quick to download and install. The automated update system provides updates for Thunderbird on Windows, OS X, and Linux in over 40 different languages.') }}
+            {% endif %}
+            </p>
             <img src="{{ static('img/thunderbird/features/automated-update.png') }}" alt="">
           </section>
         </div>

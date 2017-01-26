@@ -151,9 +151,11 @@
     </p>
     <noscript>
     <p>
-    {% trans %}
-      On Mac OS X, go to Firefox &gt; Preferences… &gt; Privacy. On Linux, go to Edit &gt; Preferences &gt; Privacy.
-    {% endtrans %}
+    {% if l10n_has_tag('macos_branding') %}
+      {{ _('On macOS, go to Firefox &gt; Preferences… &gt; Privacy. On Linux, go to Edit &gt; Preferences &gt; Privacy.') }}
+    {% else %}
+      {{ _('On OS X, go to Firefox &gt; Preferences… &gt; Privacy. On Linux, go to Edit &gt; Preferences &gt; Privacy.') }}
+    {% endif %}
     </p>
     </noscript>
     <p>
