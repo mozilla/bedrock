@@ -115,7 +115,7 @@
 
   <h3>{{ _('Get Involved') }}</h3>
   <p>
-  {% trans url_community='https://www.mozilla.org/contribute/', url_donation='https://donate.mozilla.org/en-US/?presets=100,50,25,15&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org&utm_medium=referral&utm_content=foundation&currency=usd' %}
+  {% trans url_community='https://www.mozilla.org/contribute/', url_donation=donate_url('foundation') %}
     Join us and help protect the internet as a global public resource. To get started, <a href="{{ url_community }}">join our community</a> or <a href="{{ url_donation }}">make a donation</a>.
   {% endtrans %}
   </p>

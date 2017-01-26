@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% set_lang_files "foundation/index" %}
 {% extends "base-resp.html" %}
 
 {% block page_title_suffix %}{% endblock %}
@@ -13,18 +14,18 @@
 {% block body_class %}sand{% endblock %}
 
 {% set navigation_bar = [
-    (url('foundation.index'), 'index', 'The Mozilla Foundation'),
-    (url('foundation.about'), 'about', 'About the Foundation'),
-    ('https://mzl.la/foundation-strategy', 'strategy', '2016-2018 Strategy'),
-    (url('foundation.licensing'), 'licensing', 'Licensing & Trademarks'),
-    (url('foundation.documents.index'), 'documents', 'Public Documents'),
-    ('https://careers.mozilla.org/', 'careers', 'Careers'),
+    (url('foundation.index'), 'index', _('The Mozilla Foundation')),
+    (url('foundation.about'), 'about', _('About the Foundation')),
+    ('https://mzl.la/foundation-strategy', 'strategy', _('2016-2018 Strategy')),
+    (url('foundation.licensing'), 'licensing', _('Licensing & Trademarks')),
+    (url('foundation.documents.index'), 'documents', _('Public Documents')),
+    ('https://careers.mozilla.org/', 'careers', _('Careers')),
 ] %}
 
 {% set programs = [
-  (url('foundation.issues'), 'issues', 'Key Internet Issues'),
-  (url('foundation.advocacy'), 'advocacy', 'Advocacy'),
-  (url('foundation.leadership-network'), 'leadership-network', 'Leadership Network')
+  (url('foundation.issues'), 'issues', _('Key Internet Issues')),
+  (url('foundation.advocacy'), 'advocacy', _('Advocacy')),
+  (url('foundation.leadership-network'), 'leadership-network', _('Leadership Network'))
 ] %}
 
 {% block content %}
