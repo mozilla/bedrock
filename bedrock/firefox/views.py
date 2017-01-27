@@ -8,7 +8,6 @@ import hmac
 import re
 from collections import OrderedDict
 from time import time
-from urllib import quote_plus
 from urlparse import urlparse
 
 from django.conf import settings
@@ -20,6 +19,7 @@ from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import TemplateView
 
 import basket
+import querystringsafe_base64
 from commonware.response.decorators import xframe_allow
 from product_details.version_compare import Version
 
@@ -153,7 +153,7 @@ def stub_attribution_code(request):
     if has_value:
         codes['timestamp'] = str(int(time()))
         code = '&'.join('='.join(attr) for attr in codes.items())
-        code = quote_plus(code)
+        code = querystringsafe_base64.encode(code)
         sig = hmac.new(key, code, hashlib.sha256).hexdigest()
         response = HttpResponseJSON({
             'attribution_code': code,

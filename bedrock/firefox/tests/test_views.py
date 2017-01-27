@@ -3,16 +3,16 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
-from urllib import unquote_plus
 from urlparse import parse_qs
 
 from django.test import override_settings
 from django.test.client import RequestFactory
 
-from bedrock.base.urlresolvers import reverse
+import querystringsafe_base64
 from mock import ANY, patch, Mock
 from nose.tools import eq_, ok_
 
+from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
 
@@ -67,12 +67,12 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=31536000'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(unquote_plus(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         'f9335b128511aed0109ecf21bb364d7637feca0b1ffcebbf7490e4966f71eca0')
+                         'bd6c54115eb1f331b64bec83225a667fa0e16090d7d6abb33dab6305cd858a9d')
 
     def test_returns_valid_data(self):
         params = {'utm_source': 'brandt', 'utm_medium': 'aether'}
@@ -89,12 +89,12 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=31536000'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(unquote_plus(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '59c7743ece9b60b4fd1e9816c85deb22b3550d86ef3b0cf1592e835f58ff2d96')
+                         'ab55c9b24e230f08d3ad50bf9a3a836ef4405cfb6919cb1df8efe208be38e16d')
 
     def test_handles_referrer(self):
         params = {'utm_source': 'brandt', 'referrer': 'https://duckduckgo.com/privacy'}
@@ -111,12 +111,12 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=31536000'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(unquote_plus(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         'f9335b128511aed0109ecf21bb364d7637feca0b1ffcebbf7490e4966f71eca0')
+                         'bd6c54115eb1f331b64bec83225a667fa0e16090d7d6abb33dab6305cd858a9d')
 
     def test_handles_referrer_no_source(self):
         params = {'referrer': 'https://example.com:5000/searchin', 'utm_medium': 'aether'}
@@ -133,12 +133,12 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=31536000'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(unquote_plus(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '18e26666e63a0742926cf9e9e62154085cc12c5058831b2d3196c298d87c7e52')
+                         '6b3dbb178e9abc22db66530df426b17db8590e8251fc153ba443e81ca60e355e')
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)
     def test_rate_limit(self):
