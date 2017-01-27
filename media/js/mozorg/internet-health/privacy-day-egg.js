@@ -15,6 +15,11 @@
         setTimeout(function() {
             endEgg();
         }, 150);
+
+        window.dataLayer.push({
+            'event': 'easter egg',
+            'interaction': 'activate'
+        });
     });
 
     function endEgg() {
