@@ -303,6 +303,14 @@ PIPELINE = {
     'PIPELINE_COLLECTOR_ENABLED': config('PIPELINE_COLLECTOR_ENABLED', not DEBUG, cast=bool),
 }
 
+
+def set_whitenoise_headers(headers, path, url):
+    if '/fonts/' in url or '/caldata/' in url:
+        cache_control = 'public, max-age={}'.format(604800)  # one week
+        headers['Cache-Control'] = cache_control
+
+
+WHITENOISE_ADD_HEADERS_FUNCTION = set_whitenoise_headers
 WHITENOISE_ROOT = config('WHITENOISE_ROOT', default=path('root_files'))
 WHITENOISE_MAX_AGE = 6 * 60 * 60  # 6 hours
 
@@ -340,6 +348,8 @@ BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default=None)
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
+    # must be after SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -363,6 +373,8 @@ if ENABLE_CSP_MIDDLEWARE:
 
 INSTALLED_APPS = (
     'cronjobs',  # for ./manage.py cron * cmd line tasks
+    # needs to be above django.contrib.staticfiles
+    'whitenoise.runserver_nostatic',
 
     # Django contrib apps
     'django.contrib.auth',
