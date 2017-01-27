@@ -14,6 +14,10 @@
 
 {% block page_css %}
   {% stylesheet 'health-privacy-security' %}
+
+  {% if switch('data-privacy-day-2017') %}
+    {% stylesheet 'privacy-day-egg' %}
+  {% endif %}
 {% endblock %}
 
 {% block site_header %}
@@ -366,10 +370,36 @@
   </aside>
 
 </main>
+
+{% if switch('data-privacy-day-2017') %}
+  <div id="kzp" class="gone">
+    <div id="toast1"></div>
+    <div class="kz gr" id="kz1"></div>
+    <div class="kz rd" id="kz2"></div>
+    <div class="kz bl" id="kz3"></div>
+    <div class="kz pr" id="kz4"></div>
+    <div class="kz gr" id="kz5"></div>
+    <div class="kz rd" id="kz6"></div>
+    <div class="kz bl" id="kz7"></div>
+    <div class="kz pr" id="kz8"></div>
+    <div class="kz gr" id="kz9"></div>
+    <div class="kz rd" id="kz10"></div>
+    <div class="kz bl" id="kz11"></div>
+    <div class="kz pr" id="kz12"></div>
+    <div class="kz au" id="kz13"><a id="kzkid" href="https://www.youtube.com/watch?v=cRpdIrq7Rbo" rel="external">{{ _('Watch the video') }}</a></div>
+    <div class="kz gr" id="kz14"></div>
+    <div class="kz rd" id="kz15"></div>
+    <div class="kz bl" id="kz16"></div>
+  </div>
+{% endif %}
+
 {% endblock %}
 
 {% block email_form %}{% endblock %}
 
 {% block js %}
   {% javascript 'internet-health-subpage' %}
+  {% if switch('data-privacy-day-2017') %}
+    {% javascript 'privacy-day-egg' %}
+  {% endif %}
 {% endblock %}

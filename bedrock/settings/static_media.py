@@ -130,6 +130,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mozorg/health-privacy-security.css',
     },
+    'privacy-day-egg': {
+        'source_filenames': (
+            'css/mozorg/internet-health/privacy-day-egg.scss',
+        ),
+        'output_filename': 'css/mozorg/privacy-day-egg-bundle.css',
+    },
     'itu': {
         'source_filenames': (
             'css/mozorg/itu.less',
@@ -1517,6 +1523,13 @@ PIPELINE_JS = {
             'js/mozorg/internet-health/health-subpage.js',
         ),
         'output_filename': 'js/internet-health-subpage-bundle.js',
+    },
+    'privacy-day-egg': {
+        'source_filenames': (
+            'js/libs/konami-code.js',
+            'js/mozorg/internet-health/privacy-day-egg.js',
+        ),
+        'output_filename': 'js/privacy-day-egg-bundle.js',
     },
     'legal_fraud_report': {
         'source_filenames': (
