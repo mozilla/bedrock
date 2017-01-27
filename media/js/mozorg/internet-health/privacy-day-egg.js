@@ -17,8 +17,9 @@
         }, 150);
 
         window.dataLayer.push({
-            'event': 'easter egg',
-            'interaction': 'activate'
+            'event': 'in-page-interaction',
+            'eLabel': 'kazoo day',
+            'eAction': 'easter-egg'
         });
     });
 
