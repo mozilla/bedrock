@@ -481,7 +481,6 @@ def new(request):
     scene = request.GET.get('scene', None)
     experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
-    version = None
 
     if scene == '2':
         if locale == 'en-US':
@@ -505,15 +504,7 @@ def new(request):
         else:
             template = 'firefox/new/scene1.html'
 
-        if locale == 'en-US':
-            version = request.GET.get('v', None)
-
-            # 1: adds link under primary CTA that opens modal
-            # 2: adds modal content directly on page, beneath primary CTA
-            if version not in ['1', '2']:
-                version = None
-
-    return l10n_utils.render(request, template, {'version': version})
+    return l10n_utils.render(request, template)
 
 
 def ios_testflight(request):

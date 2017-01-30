@@ -341,6 +341,92 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[0]).attr('class'), 'os_ios')
 
 
+class TestDownloadList(TestCase):
+
+    def latest_version(self):
+        return product_details.firefox_versions['LATEST_FIREFOX_VERSION']
+
+    def check_desktop_links(self, links):
+        """Desktop links should have the correct firefox version"""
+        # valid product strings
+        keys = [
+            'firefox-%s' % self.latest_version(),
+            'firefox-stub',
+            'firefox-latest',
+            'firefox-beta-stub',
+            'firefox-beta-latest',
+        ]
+
+        for link in links:
+            url = pq(link).attr('href')
+            ok_(any(key in url for key in keys))
+
+    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
+    def test_firefox_desktop_list_release(self):
+        """
+        All release download links must be directly to https://download.mozilla.org.
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox_desktop_list() }}",
+                        {'request': get_request}))
+
+        # Check that links classes are ordered as expected.
+        list = doc('.download-platform-list li')
+        eq_(list.length, 6)
+        eq_(pq(list[0]).attr('class'), 'os_winsha1')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_win64')
+        eq_(pq(list[3]).attr('class'), 'os_osx')
+        eq_(pq(list[4]).attr('class'), 'os_linux')
+        eq_(pq(list[5]).attr('class'), 'os_linux64')
+
+        links = doc('.download-platform-list a')
+
+        # Check desktop links have the correct version
+        self.check_desktop_links(links)
+
+        # The first link should be sha-1 bouncer.
+        first_link = pq(links[0])
+        ok_(first_link.attr('href')
+            .startswith('https://download-sha1.allizom.org'))
+
+        # All other links should be to regular bouncer.
+        for link in links[1:5]:
+            link = pq(link)
+            ok_(link.attr('href')
+                .startswith('https://download.mozilla.org'))
+
+    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
+    def test_firefox_desktop_list_nightly(self):
+        """
+        All nightly download links must be directly to https://archive.mozilla.org.
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox_desktop_list(channel='nightly') }}",
+                        {'request': get_request}))
+
+        # Check that links classes are ordered as expected.
+        list = doc('.download-platform-list li')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_winsha1')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
+
+        # Check that the links are direct to archive.mozilla.org.
+        links = doc('.download-platform-list a')
+
+        for link in links[1:5]:
+            link = pq(link)
+            ok_(link.attr('href')
+                .startswith('https://archive.mozilla.org'))
+
+
 class TestFirefoxURL(TestCase):
     rf = RequestFactory()
 

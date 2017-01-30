@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
 from pages.regions.download_button import DownloadButton
+from pages.regions.modal import Modal
 
 
 class DownloadPage(FirefoxBasePage):
@@ -13,6 +14,8 @@ class DownloadPage(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/new/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
+    _modal_link_locator = (By.ID, 'other-platforms-modal-link')
+    _modal_content_locator = (By.ID, 'other-platforms')
 
     @property
     def download_button(self):
@@ -23,3 +26,9 @@ class DownloadPage(FirefoxBasePage):
         self.download_button.click()
         from pages.firefox.new.thank_you import ThankYouPage
         return ThankYouPage(self.selenium, self.base_url).wait_for_page_to_load()
+
+    def open_other_platforms_modal(self):
+        modal = Modal(self)
+        self.find_element(*self._modal_link_locator).click()
+        self.wait.until(lambda s: modal.displays(self._modal_content_locator))
+        return modal

@@ -9,7 +9,7 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 
 import querystringsafe_base64
-from mock import ANY, patch, Mock
+from mock import patch, Mock
 from nose.tools import eq_, ok_
 
 from bedrock.base.urlresolvers import reverse
@@ -322,81 +322,62 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
 
     def test_scene_2_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
-
-    # /all tests (bug 1325198)
-    def test_all_variation_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=1')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', {'version': '1'})
-
-    def test_all_variation_2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=2')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', {'version': '2'})
-
-    def test_all_variation_invalid(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=3')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', {'version': None})
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
     # ad-campaign experience tests (bug 1329661)
     def test_break_free_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=breakfree')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/break-free/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/break-free/scene1.html')
 
     def test_break_free_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=breakfree')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/break-free/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/break-free/scene2.html')
 
     def test_break_free_locale_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', {'version': None})
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
 
     def test_break_free_locale_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', {'version': None})
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
     def test_way_of_the_fox_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=wayofthefox')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/way-of-the-fox/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/way-of-the-fox/scene1.html')
 
     def test_way_of_the_fox_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=wayofthefox')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/way-of-the-fox/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/way-of-the-fox/scene2.html')
 
     def test_way_of_the_fox_locale_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=wayofthefox')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', {'version': None})
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
 
     def test_way_of_the_fox_locale_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', {'version': None})
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
 
 class TestFeedbackView(TestCase):

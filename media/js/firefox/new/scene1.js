@@ -7,6 +7,7 @@
 
     var $html = $(document.documentElement);
     var client = window.Mozilla.Client;
+    var $modalLink = $('#other-platforms-modal-link');
 
     var uiTourSendEvent = function(action, data) {
         var event = new CustomEvent('mozUITour', {
@@ -83,6 +84,24 @@
         }
     };
 
+    var initOtherPlatformsModal = function() {
+        // show the modal cta button
+        $modalLink.removeClass('hidden');
+
+        $modalLink.on('click', function(e) {
+            e.preventDefault();
+            Mozilla.Modal.createModal(this, $('#other-platforms'), {
+                title: $(this).text()
+            });
+
+            window.dataLayer.push({
+                'event': 'in-page-interaction',
+                'eAction': 'link click',
+                'eLabel': 'Download Firefox for another platform'
+            });
+        });
+    };
+
     /**
      * Firefox for Desktop and Android have different page states
      * for latest, out-of-date, pre-release etc. For iOS there is
@@ -90,6 +109,14 @@
      */
     if (client.isFirefoxDesktop ||client.isFirefoxAndroid) {
         setFirefoxStatus();
+    }
+
+    /**
+     * Enable modal to optionally download Firefox for other platforms.
+     * Don't show the modal for iOS or Android.
+     */
+    if ($modalLink.length && client.isDesktop) {
+        initOtherPlatformsModal();
     }
 
 })(window.jQuery);
