@@ -225,7 +225,7 @@ class FirefoxDesktop(_ProductDetails):
             # Download links are different for localized versions
             if locale == 'en-US':
                 # Use the stub installer for 32-bit Windows
-                if _platform == 'win':
+                if _platform == 'win' and not force_full_installer:
                     product = 'firefox-aurora-stub'
                 else:
                     product = 'firefox-aurora-latest-ssl'
