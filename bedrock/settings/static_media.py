@@ -12,7 +12,6 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-video-poster.less',
             'css/newsletter/moznewsletter-subscribe.less',
-            'css/pebbles/components/google-search.scss',
             'css/mozorg/about.less',
         ),
         'output_filename': 'css/about-bundle.css',
@@ -95,7 +94,6 @@ PIPELINE_CSS = {
     'foundation': {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
-            'css/pebbles/components/google-search.scss',
             'css/foundation/foundation.less',
         ),
         'output_filename': 'css/foundation-bundle.css',
@@ -271,7 +269,6 @@ PIPELINE_CSS = {
     'firefox_channel': {
         'source_filenames': (
             'css/newsletter/fxnewsletter-subscribe.less',
-            'css/pebbles/components/google-search.scss',
             'css/firefox/channel.less',
         ),
         'output_filename': 'css/firefox_channel-bundle.css',
@@ -430,7 +427,6 @@ PIPELINE_CSS = {
             'css/base/mozilla-modal.less',
             'css/base/mozilla-share-cta.less',
             'css/base/menu-resp.less',
-            'css/pebbles/components/google-search.scss',
             'css/firefox/developer.less',
         ),
         'output_filename': 'css/firefox_developer-bundle.css',
@@ -677,7 +673,6 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/base/mozilla-share-cta.less',
-            'css/pebbles/components/google-search.scss',
             'css/mozorg/manifesto.less',
         ),
         'output_filename': 'css/manifesto-bundle.css',
@@ -877,7 +872,6 @@ PIPELINE_CSS = {
     'technology': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
-            'css/pebbles/components/google-search.scss',
             'css/mozorg/technology.scss',
         ),
         'output_filename': 'css/technology-bundle.css',
@@ -891,7 +885,6 @@ PIPELINE_CSS = {
     'contribute-base': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
-            'css/pebbles/components/google-search.scss',
             'css/mozorg/contribute/contribute-base.less',
         ),
         'output_filename': 'css/contribute-base-bundle.css',
@@ -936,7 +929,6 @@ PIPELINE_CSS = {
     },
     'page_not_found': {
         'source_filenames': (
-            'css/pebbles/components/google-search.scss',
             'css/base/page-not-found.less',
         ),
         'output_filename': 'css/page_not_found-bundle.css',
@@ -1581,19 +1573,6 @@ PIPELINE_JS = {
             'js/privacy/privacy.js',
         ),
         'output_filename': 'js/privacy-bundle.js',
-    },
-    'custom-search': {
-        'source_filenames': (
-            'js/base/google-custom-search.js',
-        ),
-        'output_filename': 'js/custom-search-bundle.js',
-    },
-    'experiment-search-developer': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/base/experiment-search-developer.js',
-        ),
-        'output_filename': 'js/experiment-search-developer-bundle.js',
     },
     'smarton': {
         'source_filenames': (

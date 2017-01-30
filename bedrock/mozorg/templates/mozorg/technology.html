@@ -4,8 +4,6 @@
 
 {% extends "base-pebbles.html" %}
 
-{% from 'macros.html' import google_custom_search with context %}
-
 {% block page_title %}
   {{ _('We’re opening up a whole new Internet.') }}
 {% endblock %}
@@ -23,10 +21,6 @@
 
 {% block site_header %}
   {% include 'mozorg/home/includes/nav.html' %}
-
-  {% if LANG.startswith('en-') and switch('mozorg-search-developer') %}
-    {{ google_custom_search(settings.GOOG_CUSTOM_SEARCH_TYPES['developer'], 'moz-search-developer', _('Virtual Reality'), _('Internet of Things, Add-ons, Events, JavaScript Help, Virtual Reality')) }}
-  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -165,8 +159,4 @@
 
 {% block js %}
   {% javascript 'technology' %}
-
-  {% if LANG.startswith('en-') and switch('mozorg-search-developer') %}
-    {% javascript 'custom-search' %}
-  {% endif %}
 {% endblock %}

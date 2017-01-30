@@ -10,7 +10,7 @@
 
 {% extends 'mozorg/base-resp.html' %}
 
-{% from 'macros.html' import twitter_share_url, share_cta, google_custom_search with context %}
+{% from 'macros.html' import twitter_share_url, share_cta with context %}
 
 {% block page_title %}{{ _('The Mozilla Manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
@@ -58,10 +58,6 @@
         <p itemprop="description">{{ self.page_desc() }}</p>
       </div>
     </header>
-
-  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-    {{ google_custom_search(settings.GOOG_CUSTOM_SEARCH_TYPES['activist'], 'moz-search-activist', _('Cybersecurity'), _('Net Neutrality, Encryption, Surveillance, Copyright Law, Cybersecurity')) }}
-  {% endif %}
 
     <div id="main-content">
       <div id="main-content-inner">
@@ -333,10 +329,6 @@
     {% javascript 'matchmedia_addlistener' %}
   <![endif]-->
   {% javascript 'manifesto' %}
-
-  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-    {% javascript 'custom-search' %}
-  {% endif %}
 {% endblock %}
 
   {#- End the redesigned landing page -#}

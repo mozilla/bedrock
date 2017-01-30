@@ -4,15 +4,7 @@
 
 {% extends "firefox/channel/base.html" %}
 
-{% from 'macros.html' import google_custom_search with context %}
-
 {% add_lang_files "firefox/channel/index" %}
-
-{% block experiments %}
-  {% if LANG.startswith('en-') and switch('experiment-search-developer') %}
-    {% javascript 'experiment-search-developer' %}
-  {% endif %}
-{% endblock %}
 
 {% block page_desc %}{{_('Download and test the latest Firefox for desktop features with Developer Edition, Beta and Nightly builds.')}}{% endblock %}
 
@@ -20,12 +12,6 @@
 {% block page_og_desc %}{{ self.page_desc() }}{% endblock %}
 
 {% block body_id %}platform-desktop{% endblock %}
-
-{% block search %}
-  {% if version == 'b' and switch('mozorg-search-developer') %}
-    {{ google_custom_search(settings.GOOG_CUSTOM_SEARCH_TYPES['developer'], 'moz-search-developer', _('Virtual Reality'), _('Internet of Things, Add-ons, Events, JavaScript Help, Virtual Reality')) }}
-  {% endif %}
-{% endblock %}
 
 {% block channels %}
 <section id="beta" class="channel">
@@ -101,10 +87,4 @@
     </div>
   </footer>
 </section>
-{% endblock %}
-
-{% block js %}
-  {% if LANG.startswith('en-') and switch('mozorg-search-developer') %}
-    {% javascript 'custom-search' %}
-  {% endif %}
 {% endblock %}

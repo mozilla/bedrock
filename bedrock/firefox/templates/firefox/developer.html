@@ -4,8 +4,6 @@
 
 {% extends "firefox/base-resp.html" %}
 
-{% from 'macros.html' import google_custom_search with context %}
-
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Firefox Developer Edition')}}{% endblock %}
 {% block page_favicon %}{{ static('img/firefox/developer/favicon.png') }}{% endblock %}
@@ -28,30 +26,14 @@
   {% stylesheet 'firefox_developer' %}
 {% endblock %}
 
-{% block experiments %}
-  {% if LANG.startswith('en-') and switch('experiment-search-developer') %}
-    {% javascript 'experiment-search-developer' %}
-  {% endif %}
-{% endblock %}
-
 {% block js %}
   {% javascript 'firefox_developer' %}
-
-  {% if version == 'b' and switch('mozorg-search-developer') %}
-    {% javascript 'custom-search' %}
-  {% endif %}
 {% endblock %}
 
 {% block site_header_share %}
   {% set share_urls = { 'twitter': 'http://mzl.la/1KJ1Yct', 'googleplus': 'http://mzl.la/1FuzQJk', 'facebook': 'http://mzl.la/1zTb4Aw' } -%}
   {% set share_text = _('Design, build and debug the Web without ever leaving your browser with the new Firefox Developer Edition!') %}
   {{ share_cta(_('Share'), share_urls, share_text, 'spread-firefox-developer', 'sky mini') }}
-{% endblock %}
-
-{% block site_header_unwrapped %}
-  {% if version == 'b' and switch('mozorg-search-developer') %}
-    {{ google_custom_search(settings.GOOG_CUSTOM_SEARCH_TYPES['developer'], 'moz-search-developer', _('Virtual Reality'), _('Internet of Things, Add-ons, Events, JavaScript Help, Virtual Reality')) }}
-  {% endif %}
 {% endblock %}
 
 {% block content %}
