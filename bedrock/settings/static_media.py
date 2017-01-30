@@ -100,12 +100,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/foundation-bundle.css',
     },
-    'gigabit': {
-        'source_filenames': (
-            'css/gigabit/gigabit.less',
-        ),
-        'output_filename': 'css/gigabit-bundle.css',
-    },
     'grants': {
         'source_filenames': (
             'css/grants/grants.less',
