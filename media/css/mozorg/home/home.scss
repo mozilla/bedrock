@@ -19,15 +19,6 @@ $horizonColorBackground: #092d6c;
     background-repeat: no-repeat;
 }
 
-// mixin for icon links in who/innovate sections
-@mixin icon-link($height, $bgOffset) {
-    &:before {
-        background-position: 0 $bgOffset;
-        height: $height;
-        top: 0;
-    }
-}
-
 body {
     border-top: 0;
 }
@@ -345,7 +336,7 @@ main {
     }
 }
 
-#who .section-content {
+#impact {
     background: #fff;
     color: $color-text-dark;
 
@@ -353,7 +344,7 @@ main {
         color: $color-mozred-bright;
     }
 
-    &:before {
+    .section-content:before {
         @include at2x('/media/img/home/2016/speaker.png', 200px, 200px);
         background-position: center;
     }
@@ -373,11 +364,11 @@ main {
     }
 }
 
-#innovate .section-content {
+#innovate {
     background: $color-mozred-bright;
     color: #fff;
 
-    &:before {
+    .section-content:before {
         @include at2x('/media/img/home/2016/vr.png', 200px, 200px);
         background-position: center;
     }
@@ -397,19 +388,15 @@ main {
     }
 }
 
-// float layout for wider viewports
+// two column faux table layout for wider viewports
 @media #{$mq-tablet} {
-    #who-innovate-wrapper {
-        @include clearfix;
+    #impact-innovate-wrapper {
+        display: table;
     }
 
-    #who {
-        float: left;
-        width: 50%;
-    }
-
+    #impact,
     #innovate {
-        float: right;
+        display: table-cell;
         width: 50%;
     }
 }

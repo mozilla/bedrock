@@ -76,8 +76,8 @@
     {% include 'mozorg/home/includes/brand-popup.html' %}
   {% endif %}
 
-  <section class="section" id="who-innovate-wrapper">
-    <section class="section-wrapper" id="who">
+  <section class="section" id="impact-innovate-wrapper">
+    <section class="section-wrapper" id="impact">
       <div class="section-content">
         <h2 class="section-headline">
           {% block people_title %}
@@ -112,6 +112,11 @@
           <li id="leandata">
             <a href="{{ url('mozorg.about.policy.lean-data') }}"><svg class="icon"><use xlink:href="#icon-leandata"></use></svg>{{ _('Try the Lean Data Toolkit') }}</a>
           </li>
+        {% if l10n_has_tag('mozorg-home-health-report') %}
+          <li id="nethealth">
+            <a rel="external" href="https://internethealthreport.org"><svg class="icon"><use xlink:href="#icon-nethealth"></use></svg>{{ _('Read our Internet Health Report') }}</a>
+          </li>
+        {% endif %}
         </ul>
       </div>
     </section>
