@@ -1264,12 +1264,6 @@
       </li>
       <li class="vcard" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
-          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/reid-hoffman.jpg') }}">
-          <figcaption><h4 class="fn" itemprop="name">Reid Hoffman</h4></figcaption>
-        </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/karim-lakhani.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Karim Lakhani</h4></figcaption>
         </figure>
@@ -1320,6 +1314,13 @@
     <h3 class="group-title">{{ _('Emeritus Board Members') }}</h3>
 
     <div class="gallery">
+      <article id="reid-hoffman" class="vcard" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/reid-hoffman.jpg') }}">
+          <figcaption><h4 class="fn" itemprop="name">Reid Hoffman</h4></figcaption>
+        </figure>
+      </article>
+
       <article id="joi-ito" class="vcard" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/joi-ito.jpg') }}">
