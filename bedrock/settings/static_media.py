@@ -1614,6 +1614,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/smarton-landing-bundle.js',
     },
+    'stub-attribution': {
+        'source_filenames': (
+            'js/base/search-params.js',
+            'js/base/stub-attribution.js',
+            'js/base/stub-attribution-init.js',
+        ),
+        'output_filename': 'js/stub-attribution-bundle.js',
+    },
     'styleguide': {
         'source_filenames': (
             'js/styleguide/styleguide.js',

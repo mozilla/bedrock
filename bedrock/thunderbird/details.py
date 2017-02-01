@@ -7,6 +7,7 @@ from collections import OrderedDict
 from operator import itemgetter
 from urllib import urlencode
 
+from django.conf import settings
 from bedrock.base.waffle import switch
 from product_details import ProductDetails
 from lib.l10n_utils.dotlang import _
@@ -14,9 +15,9 @@ from lib.l10n_utils.dotlang import _
 
 # TODO: port this to django-mozilla-product-details
 class ThunderbirdDesktop(ProductDetails):
-    bouncer_url = 'https://download.mozilla.org/'
+    bouncer_url = settings.BOUNCER_URL
 
-    # Note allizom.org is the production endpoint for SHA-1.
+    # Note download-sha1.allizom.org is the production endpoint for SHA-1.
     # It uses this because that's the only SHA-1 certificate
     # we have that's usable. (SHA-1 certs can no longer be issued).
     sha1_bouncer_url = 'https://download-sha1.allizom.org/'
