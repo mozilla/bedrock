@@ -648,4 +648,7 @@ redirectpatterns = (
 
     # Bug 1333146
     redirect(r'^internet-?health-?report/?$', 'https://internethealthreport.org/'),
+
+    # Bug 1335040
+    redirect(r'^gigabit(/.*)?', 'https://learning.mozilla.org/gigabit/'),
 )

@@ -16,7 +16,6 @@ urlpatterns = (
     # Main pages
     url(r'^lightbeam/', include('bedrock.lightbeam.urls')),
     url(r'^foundation/', include('bedrock.foundation.urls')),
-    url(r'^gigabit/', include('bedrock.gigabit.urls')),
     url(r'^grants/', include('bedrock.grants.urls')),
     url(r'^infobar/', include('bedrock.infobar.urls')),
     url(r'^about/legal/', include('bedrock.legal.urls')),

@@ -1137,4 +1137,7 @@ URLS = flatten((
     # Bug 1333146
     url_test('/internet-health-report', 'https://internethealthreport.org/'),
     url_test('/internethealthreport/', 'https://internethealthreport.org/'),
+
+    # Bug 1335040
+    url_test('/gigabit/{,apply/}', 'https://learning.mozilla.org/gigabit/'),
 ))

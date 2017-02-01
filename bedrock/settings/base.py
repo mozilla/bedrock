@@ -404,7 +404,6 @@ INSTALLED_APPS = (
     'bedrock.lightbeam',
     'bedrock.firefox',
     'bedrock.foundation',
-    'bedrock.gigabit',
     'bedrock.grants',
     'bedrock.infobar',
     'bedrock.legal',
@@ -448,7 +447,6 @@ VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
     '/privacy/',
     '/foundation/',
     '/teach/',
-    '/gigabit/',
     '/lightbeam/',
 )
 
