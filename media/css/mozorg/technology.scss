@@ -352,7 +352,8 @@ main {
 
         footer {
             @include clearfix;
-            li {
+
+            ul li {
                 @include font-size(18px);
                 margin: 0;
                 padding: 20px 0;
