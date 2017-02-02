@@ -18,6 +18,7 @@
     "declaration-block-no-shorthand-property-overrides": true,
     "declaration-block-single-line-max-declarations": [1, { "severity": "warning" }],
     "declaration-block-trailing-semicolon": ["always", { "severity": "warning" }],
+    "declaration-block-semicolon-newline-after": ["always-multi-line", { "severity": "warning"  }],
     "block-no-empty": true,
     "selector-no-empty": true,
     "selector-pseudo-class-no-unknown": true,
