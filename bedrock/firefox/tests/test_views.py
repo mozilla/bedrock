@@ -379,6 +379,54 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
+    def test_onboarding_f_98_scene_1_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?f=98')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+
+    def test_onboarding_f_99_scene_1_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?f=99')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene1.html')
+
+    def test_onboarding_f_100_scene_1_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?f=100')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene1.html')
+
+    def test_onboarding_locale_scene_1_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?f=99')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+
+    def test_onboarding_f_98_scene_2_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&f=98')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+
+    def test_onboarding_f_99_scene_2_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&f=99')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene2.html')
+
+    def test_onboarding_f_100_scene_2_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&f=100')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene2.html')
+
+    def test_onboarding_locale_scene_2_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&f=99')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+
 
 class TestFeedbackView(TestCase):
     def test_get_template_names_default_unhappy(self):
