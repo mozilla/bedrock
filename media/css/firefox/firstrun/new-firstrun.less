@@ -1,0 +1,215 @@
+@import "../../sandstone/lib.less";
+
+@font-face {
+    font-family: 'Fira Sans Light';
+    src: url('/media/fonts/FiraSans-Light.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fira Sans Light';
+    src: url('/media/fonts/FiraSans-SemiBold.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-SemiBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Fira Sans Light';
+}
+
+img {
+    width: 100%;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    object-fit: cover;
+}
+
+#night-foreground-fox, #foreground-fox {
+    z-index: 3;
+}
+
+#scene-blur, #mountains, #trees, #foreground-fox, #sky {
+    opacity: 0;
+}
+
+#sunrise {
+    transform: translate3d(0, 30%, 0);
+}
+
+#scene-blur {
+    z-index: 4;
+}
+
+#fxa {
+    border: none;
+    position: relative;
+    transition: height .3s ease-in-out;
+}
+
+#fxa-iframe-config {
+    background: #fff;
+    border-radius: 5px;
+    padding: 25px 15px 20px 15px;
+    display: inline-block;
+    margin-left: 65px;
+}
+
+.fxaccounts-container {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 695px;
+    height: 395px;
+    z-index: 10;
+    opacity: 0;
+    color: #fff;
+}
+
+#left-divider {
+    width: 300px;
+    height: 60%;
+    float: left;
+    margin: 79px 0;
+    position: relative;
+
+    img {
+        position: relative;
+        width: 250px;
+        height: auto;
+    }
+
+    p {
+        margin: 0;
+        position: absolute;
+        line-height: 150%;
+        font-size: 1.1em;
+    }
+
+    a {
+        position: absolute;
+        bottom:0;
+        color: #edb200;
+        font-size: .9em;
+
+        &:hover {
+            color: #d99100;
+        }
+    }
+}
+
+#title {
+    font-weight: bold;
+    font-size: 1.8em;
+    margin: 20px 0;
+}
+
+#scene[data-sunrise=true] {
+
+    #firefox-logo {
+      background-image: url('/media/img/firefox/template/release-logo-high-res.png');
+      height: 80px;
+      width: 80px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: -55px;
+      right: 125px;
+    }
+
+    button {
+        margin: 10px auto;
+        display: block;
+        cursor: pointer;
+        background-color: #0996f8;
+        -moz-appearance: none;
+        color: #fff;
+        border: 1px solid #0670cc;
+        border-radius: 3px;
+        box-shadow: 0 0 0 0 transparent;
+        height: 24px;
+        padding: 3px 10px;
+
+        &:hover {
+            background-color: #0670cc;
+            border-color: #005bab;
+        }
+    }
+
+    #sunrise {
+        transition: transform 1.7s cubic-bezier(.41,.61,.54,.96) .5s;
+        transform: none;
+    }
+
+    #mountains, #trees, #foreground-fox, #sky {
+        transition: opacity 2.3s ease-in-out .9s;
+        opacity: 1;
+    }
+}
+
+#scene[data-modal=true] {
+
+    #night-sky, #night-mountains, #night-trees, #night-foreground-fox {
+        display: none;
+    }
+
+    #scene-blur {
+        transition: opacity .7s;
+        opacity: 1;
+    }
+
+   .fxaccounts-container {
+        transition: opacity .3s;
+        opacity: 1;
+    }
+}
+
+#scene[data-sign-in=true] {
+
+    .fxaccounts-container {
+        display: none;
+    }
+
+    #scene-blur {
+        opacity: 0;
+    }
+
+    #sunrise, #sky, #mountains, #trees, #foreground-fox {
+        opacity: 1;
+        transition: transform 2s cubic-bezier(.9,.03,.60,.22) .3s;
+    }
+
+    #sunrise {
+        transform-origin: 50% 60%;
+        transform: scale(16);
+    }
+
+    #sky {
+        transform: scale(4);
+    }
+
+    #mountains {
+        transform: scale(2) translate3d(0, 38%, 0);
+    }
+
+    #trees {
+        transform: scale(2) translate3d(0, 34%, 0);
+    }
+
+    #foreground-fox {
+        transform: scale(2.5) translate3d(0, 28%, 0)
+    }
+}

@@ -382,8 +382,11 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         if detect_channel(version) == 'alpha':
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
+            # New onboarding animation funnecake
+            if locale == 'en-US' and funnelcake in ['99', '100']:
+                template = 'firefox/firstrun/new-firstrun.html'
             # Yahoo search retention funnelcake test
-            if locale == 'en-US' and funnelcake == '92':
+            elif locale == 'en-US' and funnelcake == '92':
                 template = 'firefox/firstrun/yahoo-retention.html'
             elif locale == 'en-US' and funnelcake == '90':
                 # ravioli/katie couric promo
