@@ -353,27 +353,25 @@ main {
         footer {
             @include clearfix;
 
-            ul {
-                li {
-                    @include font-size(18px);
-                    margin: 0;
-                    padding: 20px 0;
-                    width: 50%;
+            ul li {
+                @include font-size(18px);
+                margin: 0;
+                padding: 20px 0;
+                width: 50%;
 
-                    &:first-child {
-                        border-bottom: none;
-                        float: left;
-                        text-align: right;
+                &:first-child {
+                    border-bottom: none;
+                    float: left;
+                    text-align: right;
 
-                        a {
-                            border-right: 1px solid #fff;
-                        }
+                    a {
+                        border-right: 1px solid #fff;
                     }
+                }
 
-                    &:last-child {
-                        float: right;
-                        text-align: left;
-                    }
+                &:last-child {
+                    float: right;
+                    text-align: left;
                 }
             }
         }
