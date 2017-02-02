@@ -39,7 +39,7 @@ class TestStubAttributionCode(TestCase):
         req = self._get_request({'dude': 'abides'})
         resp = views.stub_attribution_code(req)
         self.assertEqual(resp.status_code, 400)
-        assert resp['cache-control'] == 'max-age=31536000'
+        assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         self.assertEqual(data['error'], 'no params')
 
@@ -48,7 +48,7 @@ class TestStubAttributionCode(TestCase):
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
         self.assertEqual(resp.status_code, 400)
-        assert resp['cache-control'] == 'max-age=31536000'
+        assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         self.assertEqual(data['error'], 'no params')
 
@@ -64,7 +64,7 @@ class TestStubAttributionCode(TestCase):
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
         self.assertEqual(resp.status_code, 200)
-        assert resp['cache-control'] == 'max-age=31536000'
+        assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
@@ -86,7 +86,7 @@ class TestStubAttributionCode(TestCase):
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
         self.assertEqual(resp.status_code, 200)
-        assert resp['cache-control'] == 'max-age=31536000'
+        assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
@@ -108,7 +108,7 @@ class TestStubAttributionCode(TestCase):
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
         self.assertEqual(resp.status_code, 200)
-        assert resp['cache-control'] == 'max-age=31536000'
+        assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
@@ -130,7 +130,7 @@ class TestStubAttributionCode(TestCase):
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
         self.assertEqual(resp.status_code, 200)
-        assert resp['cache-control'] == 'max-age=31536000'
+        assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
@@ -146,7 +146,7 @@ class TestStubAttributionCode(TestCase):
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
         self.assertEqual(resp.status_code, 200)
-        assert resp['cache-control'] == 'max-age=31536000'
+        assert resp['cache-control'] == 'max-age=300'
 
     @override_settings(STUB_ATTRIBUTION_RATE=0)
     def test_rate_limit_disabled(self):
@@ -154,7 +154,7 @@ class TestStubAttributionCode(TestCase):
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
         self.assertEqual(resp.status_code, 429)
-        assert resp['cache-control'] == 'max-age=600'
+        assert resp['cache-control'] == 'max-age=300'
 
     @override_settings(STUB_ATTRIBUTION_HMAC_KEY='')
     def test_no_hmac_key_set(self):
@@ -162,7 +162,7 @@ class TestStubAttributionCode(TestCase):
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
         self.assertEqual(resp.status_code, 403)
-        assert resp['cache-control'] == 'max-age=600'
+        assert resp['cache-control'] == 'max-age=300'
 
 
 class TestSendToDeviceView(TestCase):
