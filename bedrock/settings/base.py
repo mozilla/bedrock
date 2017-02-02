@@ -1214,7 +1214,7 @@ ADMINS = MANAGERS = config('ADMINS', cast=json.loads,
 GTM_CONTAINER_ID = config('GTM_CONTAINER_ID', default='')
 GMAP_API_KEY = config('GMAP_API_KEY', default='')
 STUB_ATTRIBUTION_HMAC_KEY = config('STUB_ATTRIBUTION_HMAC_KEY', default='')
-STUB_ATTRIBUTION_RATE = config('STUB_ATTRIBUTION_RATE', default=1, cast=float)
+STUB_ATTRIBUTION_RATE = config('STUB_ATTRIBUTION_RATE', default=1 if DEV else 0, cast=float)
 
 STATSD_CLIENT = config('STATSD_CLIENT', default='django_statsd.clients.normal')
 STATSD_HOST = config('STATSD_HOST', default='127.0.0.1')
