@@ -5,26 +5,12 @@
 
 {% extends "base-resp.html" %}
 
-{% from 'macros.html' import google_custom_search with context %}
-
 {% block gtm_page_id %}data-gtm-page-id="404"{% endblock %}
 
 {% block page_title %}{{ _('404: Page Not Found') }}{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'page_not_found' %}
-{% endblock %}
-
-{% block js %}
-  {% if LANG.startswith('en-') and switch('mozorg-search-general') %}
-    {% javascript 'custom-search' %}
-  {% endif %}
-{% endblock %}
-
-{% block site_header_unwrapped %}
-  {% if LANG.startswith('en-') and switch('mozorg-search-general') %}
-    {{ google_custom_search(settings.GOOG_CUSTOM_SEARCH_TYPES['general'], 'moz-search-general', _('Internet Health'), _('Volunteer, Events, Add-ons, Firefox, Internet Health')) }}
-  {% endif %}
 {% endblock %}
 
 {% block content %}

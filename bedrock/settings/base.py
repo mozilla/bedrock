@@ -1240,8 +1240,6 @@ CSP_DEFAULT_SRC = (
     '*.mozilla.net',
     '*.mozilla.org',
     '*.mozilla.com',
-    'www.google.com',
-    'cse.google.com',
 )
 CSP_IMG_SRC = CSP_DEFAULT_SRC + (
     'data:',
@@ -1251,9 +1249,6 @@ CSP_IMG_SRC = CSP_DEFAULT_SRC + (
     '*.tiles.mapbox.com',
     'api.mapbox.com',
     'creativecommons.org',
-    'www.googleapis.com',
-    'clients1.google.com',
-    '*.gstatic.com',
 )
 CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
     # TODO fix things so that we don't need this
@@ -1265,12 +1260,9 @@ CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
     'optimizely.s3.amazonaws.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
-    'cse.google.com',
     'tagmanager.google.com',
     'www.youtube.com',
     's.ytimg.com',
-    'clients1.google.com',
-    'www.googleapis.com',
 )
 CSP_STYLE_SRC = CSP_DEFAULT_SRC + (
     # TODO fix things so that we don't need this
@@ -1286,7 +1278,6 @@ CSP_CHILD_SRC = (
     'accounts.firefox.com',
     'accounts.firefox.com.cn',
     'www.youtube.com',
-    'cse.google.com',
 )
 CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
     '*.optimizely.com',
@@ -1306,13 +1297,6 @@ if CSP_EXTRA_FRAME_SRC:
 
 # support older browsers (mainly Safari)
 CSP_FRAME_SRC = CSP_CHILD_SRC
-
-# Bug 1319244 - testing cross-site search
-GOOG_CUSTOM_SEARCH_TYPES = {
-    'general': '014783244707853607354:ifn1iyzxd1a',
-    'developer': '014783244707853607354:s-9zxgjd2o0',
-    'activist': '014783244707853607354:bbpl3emdsii',
-}
 
 # Bug 1331069 - Double Click tracking pixel for download page.
 TRACKING_PIXEL_URL = ('https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;'

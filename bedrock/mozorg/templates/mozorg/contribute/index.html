@@ -4,19 +4,11 @@
 
 {% extends "mozorg/contribute/contribute-base.html" %}
 
-{% from 'macros.html' import google_custom_search with context %}
-
 {% block page_title %}
     {{ _('Volunteer Opportunities at Mozilla') }}
 {% endblock %}
 
 {% block body_id %}landing{% endblock %}
-
-{% block site_header_unwrapped %}
-  {% if LANG.startswith('en-') and switch('mozorg-search-general') %}
-    {{ google_custom_search(settings.GOOG_CUSTOM_SEARCH_TYPES['general'], 'moz-search-general', _('Internet Health'), _('Volunteer, Events, Add-ons, Firefox, Internet Health')) }}
-  {% endif %}
-{% endblock %}
 
 {% block contrib_nav_cta %}{% endblock %}
 
@@ -161,8 +153,4 @@
 {% block js %}
   {% javascript 'contribute-base' %}
   {% javascript 'contribute-landing' %}
-
-  {% if LANG.startswith('en-') and switch('mozorg-search-general') %}
-    {% javascript 'custom-search' %}
-  {% endif %}
 {% endblock %}

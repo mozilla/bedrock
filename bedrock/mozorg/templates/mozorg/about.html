@@ -4,8 +4,6 @@
 
 {% extends "mozorg/base-resp.html" %}
 
-{% from 'macros.html' import google_custom_search with context %}
-
 {% block page_title %}{{ _('Get to know Mozilla') }}{% endblock %}
 {% block body_id %}about{% endblock %}
 {% block body_class %}sand{% endblock %}
@@ -22,19 +20,11 @@
 
 {% block js %}
   {% javascript 'about_video' %}
-
-  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-    {% javascript 'custom-search' %}
-  {% endif %}
 {% endblock %}
 
 {% block content %}
 <main>
   <header class="page-header">
-  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-    {{ google_custom_search(settings.GOOG_CUSTOM_SEARCH_TYPES['activist'], 'moz-search-activist', _('Cybersecurity'), _('Net Neutrality, Encryption, Surveillance, Copyright Law, Cybersecurity')) }}
-  {% endif %}
-
     <h1><span class="content">{{ _('Get to know Mozilla') }}</span></h1>
   </header>
 

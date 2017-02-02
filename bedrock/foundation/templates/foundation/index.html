@@ -4,23 +4,9 @@
 
 {% extends "foundation/base-resp.html" %}
 
-{% from 'macros.html' import google_custom_search with context %}
-
 {% block page_title %}{{ _('The Mozilla Foundation') }}{% endblock %}
 
 {% set body_id = "index" %}
-
-{% block js %}
-  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-    {% javascript 'custom-search' %}
-  {% endif %}
-{% endblock %}
-
-{% block search %}
-  {% if LANG.startswith('en-') and switch('mozorg-search-activist') %}
-    {{ google_custom_search(settings.GOOG_CUSTOM_SEARCH_TYPES['activist'], 'moz-search-activist', _('Cybersecurity'), _('Net Neutrality, Encryption, Surveillance, Copyright Law, Cybersecurity')) }}
-  {% endif %}
-{% endblock %}
 
 {% block article_header %}
   <p>

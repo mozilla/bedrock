@@ -474,27 +474,3 @@
     </footer>
   </section>
 {%- endmacro %}
-
-
-{% macro google_custom_search(search_type, type_class, default_term, term_list) %}
-{#
-  Parameters -
-    search_type:  The 'cx' hash for the specific custom search configuration, defined in settings/base.py
-                  Example: settings.GOOG_CUSTOM_SEARCH_TYPES['general']
-                  Defaults to general search.
-
-    search_class: A class added to the bar for use as a style hook to customize the presentation.
-
-    term_list:    A comma separated list of suggested terms displayed in a loop via JS.
-
-    default_term: A static suggested term to avoid an empty label if JS fails. This should
-                  usually be the same as the last term in the list (last to avoid clumsy repetition
-                  when JS kicks in to start the cycle).
-#}
-  <aside id="moz-search" class="moz-search {{ search_class }}" data-terms="{{ term_list }}" data-search-type="{% if search_type %}{{ search_type }}{% else %}{{ settings.GOOG_CUSTOM_SEARCH_TYPES['general'] }}{% endif %}">
-    <div class="content">
-      <label class="search-label" for="gsc-i-id1"><span class="search-label-prefix">{{ _('Search Mozilla:') }}</span> <span class="search-label-term">{{ default_term }}</span></label>
-      <gcse:search gname="mozsearch"></gcse:search>
-    </div>
-  </aside>
-{%- endmacro %}
