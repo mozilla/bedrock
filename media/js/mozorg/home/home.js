@@ -38,7 +38,7 @@
 
     function enableWaypoints() {
         impactInnovationWaypoint = new Waypoint({
-            element: '#who-innovate-wrapper',
+            element: '#impact-innovate-wrapper',
             handler: handleWaypoint('impact-innovation'),
             offset: '40%'
         });
