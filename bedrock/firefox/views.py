@@ -125,7 +125,7 @@ def stub_attribution_code(request):
         response = HttpResponseJSON({'error': 'service not configured'}, status=403)
 
     if response:
-        patch_response_headers(response, 600)  # 10 min
+        patch_response_headers(response, 300)  # 5 min
         return response
 
     data = request.GET
@@ -162,7 +162,7 @@ def stub_attribution_code(request):
     else:
         response = HttpResponseJSON({'error': 'no params'}, status=400)
 
-    patch_response_headers(response, 31536000)  # 1 year
+    patch_response_headers(response, 300)  # 5 min
     return response
 
 
