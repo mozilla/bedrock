@@ -609,7 +609,30 @@ html[dir="rtl"] {
 // Footer
 
 #colophon {
-    background: #56565a;
-    color: #d1d2d3;
-    margin-top: 0;
+    background: #666;
+    color: #fff;
+    margin: 0;
+
+    a,
+    a:link {
+        color: #23c7db;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: darken(#23c7db, 10%);
+    }
+
+    a:hover,
+    a:focus {
+        color: #23c7db;
+        text-decoration: underline;
+    }
+
+    .logo a {
+        background: url('/media/img/pebbles/moz-wordmark-light-reverse.svg') no-repeat;
+        @include background-size(100px 32px);
+        height: 32px;
+        width: 100px;
+    }
 }

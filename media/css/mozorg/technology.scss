@@ -900,3 +900,32 @@ html[dir="rtl"] #blogs {
         }
     }
 }
+
+#colophon {
+    background: #fff;
+    color: #666;
+    margin: 0;
+
+    a,
+    a:link {
+        color: #23c7db;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: darken(#23c7db, 10%);
+    }
+
+    a:hover,
+    a:focus {
+        color: #23c7db;
+        text-decoration: underline;
+    }
+
+    .logo a {
+        background: url('/media/img/pebbles/moz-wordmark-dark-reverse.svg') no-repeat;
+        @include background-size(100px 32px);
+        height: 32px;
+        width: 100px;
+    }
+}
