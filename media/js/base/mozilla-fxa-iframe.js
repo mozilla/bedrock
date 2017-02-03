@@ -173,12 +173,9 @@ Mozilla.FxaIframe = (function() {
         _userCallback('onVerificationComplete', data);
     };
 
-    var _onLogin = function() {
+    var _onLogin = function(data) {
         _sendGAEvent('fxa-signin');
-
-        // no custom callback here, as redirect may cancel callback
-
-        window.location.href = _host + '/settings';
+        _userCallback('onLogin', data);
     };
 
     // public properties/methods

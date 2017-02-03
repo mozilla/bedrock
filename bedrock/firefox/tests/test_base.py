@@ -387,6 +387,39 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 
+    # New Firstrun Wow-moment funnelcake tests
+    @override_settings(DEV=True)
+    def test_firstrun_wow_funnelcake(self, render_mock):
+        """Should use new-firstrun template for f=99 and f=100"""
+        # test for f=99
+        req = self.rf.get('/firefox/firstrun/?f=99')
+        self.view(req, version='50.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/new-firstrun.html'])
+
+        # test for f=100
+        req = self.rf.get('/firefox/firstrun/?f=100')
+        self.view(req, version='50.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/new-firstrun.html'])
+
+    @override_settings(DEV=True)
+    def test_firstrun_wow_funnelcake_other_locales(self, render_mock):
+        """Should not use new-firstrun template for non en-US locales"""
+        req = self.rf.get('/firefox/firstrun/?f=99')
+        req.locale = 'de'
+        self.view(req, version='50.0')
+        template = render_mock.call_args[0][1]
+        ok_(template != ['firefox/firstrun/new-firstrun.html'])
+
+    @override_settings(DEV=True)
+    def test_firstrun_wow_funnelcake_control(self, render_mock):
+        """Should use firstrun horizon control template for f=98"""
+        req = self.rf.get('/firefox/firstrun/?f=98')
+        self.view(req, version='50.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
+
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class FxVersionRedirectsMixin(object):
