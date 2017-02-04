@@ -54,7 +54,7 @@ html, body {
     .container {
         padding-top: 30px;
         min-height: 320px;
-        background: url(/media/img/firefox/os/devices/fox.png) center bottom no-repeat;
+        background: url('/media/img/firefox/os/devices/fox.png') center bottom no-repeat;
     }
 
     .logo {
@@ -125,7 +125,7 @@ html, body {
         top: 0;
         bottom: 0;
         width: 100%;
-        background: url(/media/img/firefox/os/devices/bg-noise.png);
+        background: url('/media/img/firefox/os/devices/bg-noise.png');
     }
 }
 
@@ -147,14 +147,14 @@ html, body {
         color: #676767;
         text-shadow: none;
         background: #ccc;
-        box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1),
-                        inset 0px -1px 0px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1),
+                        inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
 
         &:hover,
         &:focus {
             background: darken(#ccc, 3%);
-            box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.1),
-                        inset 0px -1px 0px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1),
+                        inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
         }
     }
 }
@@ -265,7 +265,7 @@ html[lang^="en"] #purchase-device-sticky {
             bottom: -25px;
             margin-left: -14px;
             content: '';
-            background: url(/media/img/firefox/os/devices/device-thumbnail-selected-triangle.png) center center no-repeat;
+            background: url('/media/img/firefox/os/devices/device-thumbnail-selected-triangle.png') center center no-repeat;
             width: 28px;
             height: 26px;
             display: block;
@@ -288,14 +288,14 @@ html[lang^="en"] #purchase-device-sticky {
 
             .is-available {
                 display: none;
-                background: url(/media/img/firefox/os/devices/available.png) left center no-repeat;
+                background: url('/media/img/firefox/os/devices/available.png') left center no-repeat;
                 padding-left: @baseLine;
                 color: @textColorSecondary;
             }
 
             .coming-soon {
                 display: inline-block;
-                background: url(/media/img/firefox/os/devices/coming-soon.png) left center no-repeat;
+                background: url('/media/img/firefox/os/devices/coming-soon.png') left center no-repeat;
                 padding-left: @baseLine;
                 font-style: italic;
                 color: #999;
@@ -353,7 +353,7 @@ html[lang^="en"] #purchase-device-sticky {
                 display: block;
                 position: relative;
                 z-index: 10;
-                background: url(/media/img/firefox/pager-tabs.png) 0 0 no-repeat;
+                background: url('/media/img/firefox/pager-tabs.png') 0 0 no-repeat;
                 height: 40px;
                 line-height: 40px;
                 color: @linkSkyBlue;
@@ -377,7 +377,7 @@ html[lang^="en"] #purchase-device-sticky {
     float: right;
     margin: 5px 25px 0 0;
     .image-replaced();
-    background: url(/media/img/firefox/os/devices/close.png) center center no-repeat;
+    background: url('/media/img/firefox/os/devices/close.png') center center no-repeat;
     width: 25px;
     height: 26px;
 }
@@ -518,7 +518,7 @@ html[lang^="en"] #purchase-device-sticky {
     }
 
     li {
-        background: url(/media/img/firefox/os/devices/sprite-stats.png) left top no-repeat;
+        background: url('/media/img/firefox/os/devices/sprite-stats.png') left top no-repeat;
         margin: 0 0 (@baseLine * 1.5) 0;
         list-style-type: none;
         padding-left: 46px;
@@ -697,7 +697,7 @@ html[lang^="en"] #purchase-device-sticky {
        (                min-resolution: 144dpi) {
 
     #header .container {
-        background-image: url(/media/img/firefox/os/devices/fox-hires.png);
+        background-image: url('/media/img/firefox/os/devices/fox-hires.png');
         background-size: 878px 511px;
     }
 }
@@ -815,7 +815,7 @@ html[lang^="en"] #purchase-device-sticky {
         .container {
             padding-top: 44px;
             min-height: 0;
-            background: url(/media/img/firefox/os/devices/fox-sm.png) 20px -20px no-repeat
+            background: url('/media/img/firefox/os/devices/fox-sm.png') 20px -20px no-repeat;
         }
 
         .logo {
@@ -1057,7 +1057,7 @@ html[lang^="en"] #purchase-device-sticky {
        only screen and (max-width: @breakTablet) and (                min-resolution: 144dpi) {
 
     #header .container {
-        background-image: url(/media/img/firefox/os/devices/fox.png);
+        background-image: url('/media/img/firefox/os/devices/fox.png');
         background-size: 400px 233px;
     }
 }

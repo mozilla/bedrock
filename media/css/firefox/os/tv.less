@@ -7,12 +7,12 @@
 /* Template */
 
 body {
-    background: #005189 url(/media/img/sandstone/grain.png);
+    background: #005189 url('/media/img/sandstone/grain.png');
 }
 
 .blueprint #outer-wrapper {
     /* fallback for older browsers */
-    background: url(/media/img/firefox/os/devices/tv/bg-screen.jpg) no-repeat center top;
+    background: url('/media/img/firefox/os/devices/tv/bg-screen.jpg') no-repeat center top;
     background:
         url('/media/img/firefox/os/devices/tv/bg-screen.jpg') no-repeat center top,
         url('/media/img/firefox/os/devices/tv/bg-gradient.png') repeat-x;
@@ -70,7 +70,7 @@ body {
         /* Glare effect over TV frame and screenshot */
         content: ' '; // no-break space;
         z-index: 2;
-        background: url(/media/img/firefox/os/devices/tv/screen-glare.png);
+        background: url('/media/img/firefox/os/devices/tv/screen-glare.png');
         .background-size(100% auto);
         background-repeat: no-repeat;
         position: absolute;
@@ -167,7 +167,7 @@ body {
             .font-size(26px);
         }
     }
-    .pager:before { height: 356px }
+    .pager:before { height: 356px; }
 }
 
 /* Mobile layout: 320px */
@@ -192,7 +192,7 @@ body {
         margin: 10px; // Turn off left/right space left for next/prev buttons
     }
     .pager-nav-links-wrapper { display: none; }
-    .pager:before { height: 178px }
+    .pager:before { height: 178px; }
     .details {
         .font-size(18px);
         margin: auto;
@@ -201,5 +201,5 @@ body {
 
 /* Wide Mobile Layout: 480px */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
-    .pager:before { height: 244px }
+    .pager:before { height: 244px; }
 }
