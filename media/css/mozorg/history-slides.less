@@ -56,7 +56,7 @@
         list-style-type: none;
         margin-bottom: @baseLine;
         padding-bottom: 10px;
-        background: url(/media/img/mission/thin-stripe.png) center bottom repeat-x;
+        background: url('/media/img/mission/thin-stripe.png') center bottom repeat-x;
         min-height: 7em;
 
         &:nth-last-child(-n+3) {
@@ -97,7 +97,7 @@
     padding: 20px 0 0 160px;
 
     .number {
-        background: url(/media/img/mozorg/history/numbers.png) no-repeat;
+        background: url('/media/img/mozorg/history/numbers.png') no-repeat;
         display: block;
         float: left;
         margin: 0 20px 5px -150px;
@@ -182,7 +182,7 @@
         width: 44px;
         height: 60px;
         border: 0;
-        background: transparent url(/media/img/mozorg/history/slide-arrows.png) no-repeat;
+        background: transparent url('/media/img/mozorg/history/slide-arrows.png') no-repeat;
         display: block;
         text-indent: -99em;
         cursor: pointer;
@@ -365,7 +365,7 @@
     .message,
     .block1,
     .block2 {
-        background: url(/media/img/mozorg/history/fact01-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact01-pads.png') no-repeat;
     }
 
     .number {
@@ -459,7 +459,7 @@
     .block1,
     .block2,
     .block3 {
-        background: url(/media/img/mozorg/history/fact02-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact02-pads.png') no-repeat;
     }
 
     .number {
@@ -508,7 +508,7 @@
 
     .logo {
         .transition(opacity .25s ease-in);
-        background: transparent url(/media/img/mozorg/history/fxlogo.png) no-repeat;
+        background: transparent url('/media/img/mozorg/history/fxlogo.png') no-repeat;
         display: block;
         height: 152px;
         width: 132px;
@@ -618,7 +618,7 @@
 
 @-webkit-keyframes fact02-logo-out {
       0% { top: 41px; }
-     10% { top: 30px }
+     10% { top: 30px; }
      20% { top: 50px; }
      70%,
     100% { top: 400px; }
@@ -626,7 +626,7 @@
 
 @keyframes fact02-logo-out {
       0% { top: 41px; }
-     10% { top: 30px }
+     10% { top: 30px; }
      20% { top: 50px; }
      70%,
     100% { top: 400px; }
@@ -645,7 +645,7 @@
     .number,
     .message,
     .block1 {
-        background: url(/media/img/mozorg/history/fact03-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact03-pads.png') no-repeat;
     }
 
     .number {
@@ -716,7 +716,7 @@
     .number,
     .message,
     .block1 {
-        background: url(/media/img/mozorg/history/fact04-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact04-pads.png') no-repeat;
     }
 
     .number {
@@ -801,7 +801,7 @@
     .block1,
     .block2,
     .block3 {
-        background: url(/media/img/mozorg/history/fact05-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact05-pads.png') no-repeat;
     }
 
     .number {
@@ -916,7 +916,7 @@
     .message,
     .block1,
     .keyhole {
-        background: url(/media/img/mozorg/history/fact06-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact06-pads.png') no-repeat;
     }
 
     .number {
@@ -930,7 +930,7 @@
             .transform(rotateY(90deg));
             .transform-style(preserve-3d);
             background-color: #000;
-            background-image: url(/media/img/mozorg/history/fact06-pads.png), url(/media/img/mozorg/history/fact06-pads.png);
+            background-image: url('/media/img/mozorg/history/fact06-pads.png'), url('/media/img/mozorg/history/fact06-pads.png');
             background-position: 0 -117px, -86px -117px;
             display: block;
             height: 56px;
@@ -1035,7 +1035,7 @@
     .number,
     .message,
     .block1 {
-        background: url(/media/img/mozorg/history/fact07-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact07-pads.png') no-repeat;
     }
 
     .number {
@@ -1107,7 +1107,7 @@
     .message,
     .block1,
     .block2 {
-        background: url(/media/img/mozorg/history/fact08-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact08-pads.png') no-repeat;
     }
 
     .number {
@@ -1201,7 +1201,7 @@
     .block2,
     .logo,
     .logo span {
-        background: url(/media/img/mozorg/history/fact09-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact09-pads.png') no-repeat;
     }
 
     .number {
@@ -1319,8 +1319,15 @@
 }
 
 @-webkit-keyframes fact09-logo-spin {
-      0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes fact09-logo-spin {
@@ -1344,7 +1351,7 @@
     .message,
     .block1,
     .block2 {
-        background: url(/media/img/mozorg/history/fact10-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact10-pads.png') no-repeat;
     }
 
     .number {
@@ -1456,7 +1463,7 @@
     .message,
     .block1,
     .droid {
-        background: url(/media/img/mozorg/history/fact11-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact11-pads.png') no-repeat;
     }
 
     .number {
@@ -1585,7 +1592,7 @@
     .block2,
     .stars,
     .rocket {
-        background: url(/media/img/mozorg/history/fact12-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact12-pads.png') no-repeat;
     }
 
     .number {
@@ -1720,8 +1727,15 @@
 }
 
 @-webkit-keyframes fact12-stars-spin {
-      0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes fact12-stars-spin {
@@ -1730,23 +1744,51 @@
 }
 
 @-webkit-keyframes fact12-rocket-in {
-      0% { margin-left: -2600px; margin-top: 700px; }
-    100% { margin-left: -287px; margin-top: 0; }
+    0% {
+        margin-left: -2600px;
+        margin-top: 700px;
+    }
+
+    100% {
+        margin-left: -287px;
+        margin-top: 0;
+    }
 }
 
 @keyframes fact12-rocket-in {
-      0% { margin-left: -2600px; margin-top: 700px; }
-    100% { margin-left: -287px; margin-top: 0; }
+    0% {
+        margin-left: -2600px;
+        margin-top: 700px;
+    }
+
+    100% {
+        margin-left: -287px;
+        margin-top: 0;
+    }
 }
 
 @-webkit-keyframes fact12-rocket-out {
-      0% { margin-left: -287px; margin-top: 0; }
-    100% { margin-left: 1200px; margin-top: -600px; }
+    0% {
+        margin-left: -287px;
+        margin-top: 0;
+    }
+
+    100% {
+        margin-left: 1200px;
+        margin-top: -600px;
+    }
 }
 
 @keyframes fact12-rocket-out {
-      0% { margin-left: -287px; margin-top: 0; }
-    100% { margin-left: 1200px; margin-top: -600px; }
+    0% {
+        margin-left: -287px;
+        margin-top: 0;
+    }
+
+    100% {
+        margin-left: 1200px;
+        margin-top: -600px;
+    }
 }
 
 
@@ -1763,7 +1805,7 @@
     .number,
     .message,
     .block1 {
-        background: url(/media/img/mozorg/history/fact13-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact13-pads.png') no-repeat;
     }
 
     .number {
@@ -1847,7 +1889,7 @@
     .shadow,
     .phone,
     .fox {
-        background: url(/media/img/mozorg/history/fact14-pads.png) no-repeat;
+        background: url('/media/img/mozorg/history/fact14-pads.png') no-repeat;
     }
 
     .shadow,
@@ -2052,7 +2094,7 @@
     .message,
     .block1,
     .block2 {
-        background-image: url(/media/img/mozorg/history/fact15-pads.png);
+        background-image: url('/media/img/mozorg/history/fact15-pads.png');
     }
 
     .number {
@@ -2146,7 +2188,7 @@
     #fact01 .back,
     #fact06 .back,
     #fact11 .back {
-        background-image: url(/media/img/mozorg/history/path-red.png);
+        background-image: url('/media/img/mozorg/history/path-red.png');
         background-position: 0 50%;
     }
 
@@ -2165,7 +2207,7 @@
     #fact02 .back,
     #fact07 .back,
     #fact12 .back {
-        background-image: url(/media/img/mozorg/history/path-darkblue.png);
+        background-image: url('/media/img/mozorg/history/path-darkblue.png');
         background-position: -200px 50%;
     }
 
@@ -2184,7 +2226,7 @@
     #fact03 .back,
     #fact08 .back,
     #fact13 .back {
-        background-image: url(/media/img/mozorg/history/path-green.png);
+        background-image: url('/media/img/mozorg/history/path-green.png');
         background-position: -400px 50%;
     }
 
@@ -2203,7 +2245,7 @@
     #fact04 .back,
     #fact09 .back,
     #fact14 .back {
-        background-image: url(/media/img/mozorg/history/path-lightblue.png);
+        background-image: url('/media/img/mozorg/history/path-lightblue.png');
         background-position: -600px 50%;
     }
 
@@ -2222,7 +2264,7 @@
     #fact05 .back,
     #fact10 .back,
     #fact15 .back {
-        background-image: url(/media/img/mozorg/history/path-orange.png);
+        background-image: url('/media/img/mozorg/history/path-orange.png');
         background-position: -800px 50%;
     }
 
@@ -2308,7 +2350,7 @@
         &:nth-last-child(-n+3) {
             margin-bottom: @baseLine;
             padding-bottom: 10px;
-            background: url(/media/img/mission/thin-stripe.png) center bottom repeat-x;
+            background: url('/media/img/mission/thin-stripe.png') center bottom repeat-x;
         }
 
         &:last-child {
