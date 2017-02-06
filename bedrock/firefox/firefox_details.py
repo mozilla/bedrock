@@ -34,7 +34,7 @@ class FirefoxDesktop(_ProductDetails):
         ('winsha1', 'Windows (XP/Vista)'),
         ('win', 'Windows'),
         ('win64', 'Windows 64-bit'),
-        ('osx', 'OS X'),
+        ('osx', 'macOS'),
         ('linux', 'Linux'),
         ('linux64', 'Linux 64-bit'),
     ])
