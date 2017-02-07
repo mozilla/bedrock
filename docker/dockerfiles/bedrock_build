@@ -3,7 +3,8 @@ FROM mozorg/bedrock_base:${GIT_COMMIT}
 ENV PATH=/node_modules/.bin:$PATH
 ENV PIPELINE_LESS_BINARY=lessc
 ENV PIPELINE_SASS_BINARY=node-sass
-ENV PIPELINE_YUGLIFY_BINARY=yuglify
+ENV PIPELINE_UGLIFYJS_BINARY=uglifyjs
+ENV PIPELINE_CLEANCSS_BINARY=cleancss
 
 RUN apt-get install -y --no-install-recommends nodejs-legacy npm
 
