@@ -2,12 +2,13 @@
 set -eo pipefail
 
 # Required environment variables if using --stage:
-# BRANCH_NAME, BUILD_NUMBER, BUILD_URL
+# BRANCH_NAME, BUILD_NUMBER
 
 # defaults and constants
 NICK="hms-flintstone"
 CHANNEL="#www"
 SERVER="irc.mozilla.org:6697"
+BLUE_BUILD_URL="https://ci.us-west.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/detail/${BRANCH_NAME}/${BUILD_NUMBER}/pipeline"
 # colors and styles: values from the following links
 # http://www.mirc.com/colors.html
 # http://stackoverflow.com/a/13382032
@@ -74,7 +75,7 @@ fi
 
 if [[ -n "$STAGE" ]]; then
     MESSAGE="${STATUS}${STAGE}:"
-    MESSAGE="$MESSAGE Branch ${BOLD}${BRANCH_NAME}${NORMAL} build #${BUILD_NUMBER}: ${BUILD_URL}"
+    MESSAGE="$MESSAGE Branch ${BOLD}${BRANCH_NAME}${NORMAL} build #${BUILD_NUMBER}: ${BLUE_BUILD_URL}"
 elif [[ -n "$MESSAGE" ]]; then
     MESSAGE="${STATUS}${MESSAGE}"
 else
