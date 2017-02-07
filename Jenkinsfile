@@ -147,7 +147,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 // queue up test closures
                 def allTests = [:]
                 for (filename in branchConfig.integration_tests) {
-                    allTests[filename] = utils.integrationTestJob(filename, appname, region.name)
+                    allTests[filename] = utils.integrationTestJob(filename, appURL)
                 }
                 stage ("Test ${appname}-${region.name}") {
                     try {

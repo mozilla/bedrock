@@ -61,7 +61,7 @@ def pushPrivateReg(port, apps) {
     }
 }
 
-def integrationTestJob(propFileName, appName, region) {
+def integrationTestJob(propFileName, appURL) {
     def testsBaseDir = 'docker/jenkins/properties/integration_tests'
     def testsFileExt = '.properties'
     return {
@@ -74,7 +74,7 @@ def integrationTestJob(propFileName, appName, region) {
                               credentialsId: 'SAUCELABS_CREDENTIALS',
                               usernameVariable: 'SAUCELABS_USERNAME',
                               passwordVariable: 'SAUCELABS_API_KEY']]) {
-                withEnv(["BASE_URL=https://${appName}.${region}.moz.works",
+                withEnv(["BASE_URL=${appURL}",
                          "SELENIUM_VERSION=2.52.0"]) {
                     try {
                         sh testScript
