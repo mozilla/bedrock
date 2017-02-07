@@ -157,7 +157,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                     } catch(err) {
                         node {
                             unstash 'scripts'
-                            utils.ircNotification(config, [stage: "Integration Tests ${region.name}", status: 'failure'])
+                            utils.ircNotification(config, [stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
                         }
                         throw err
                     }
