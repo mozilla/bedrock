@@ -51,11 +51,11 @@ def pushDockerhub(from_repo, to_repo='') {
     }
 }
 
-def pushPrivateReg(port) {
+def pushPrivateReg(port, apps) {
     retry(3) {
         withEnv(['FROM_DOCKER_REPOSITORY=mozorg/bedrock_l10n',
                  "PRIVATE_REGISTRIES=localhost:${port}",
-                 'DEIS_APPS=bedrock-dev,bedrock-stage,bedrock-prod']) {
+                 "DEIS_APPS=${apps.join(',')}"]) {
             sh 'docker/jenkins/push2privateregistries.sh'
         }
     }

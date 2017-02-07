@@ -114,7 +114,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             node {
                 unstash 'scripts'
                 try {
-                    utils.pushPrivateReg(region.registry_port)
+                    utils.pushPrivateReg(region.registry_port, branchConfig.apps)
                 } catch(err) {
                     utils.ircNotification(config, [stage: stageName, status: 'failure'])
                     throw err
