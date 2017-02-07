@@ -122,7 +122,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             }
         }
         for (appname in branchConfig.apps) {
-            def appURL = "https://${appname}.${region.name}.moz.works"
+            def appURL = "https://${appname}${branchConfig.app_name_suffix}.${region.name}.moz.works"
             stageName = "Deploy ${appname}-${region.name}"
             // ensure no deploy/test cycle happens in parallel for an app/region
             lock (stageName) {
