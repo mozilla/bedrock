@@ -205,7 +205,7 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
                             sh './docker/jenkins/demo_deploy.sh'
                         }
                     }
-                    utils.ircNotification(config, [app_url: "https://${appname}.us-west.moz.works/"])
+                    utils.ircNotification(config, [message: "https://${appname}.us-west.moz.works/", status: 'shipped'])
                 } catch(err) {
                     utils.ircNotification(config, [stage: 'Demo Deploy', status: 'failure'])
                     throw err
