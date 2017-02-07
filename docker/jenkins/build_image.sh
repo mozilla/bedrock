@@ -2,7 +2,7 @@
 #
 set -ex
 DOCKER_IMAGE_TAG=${DOCKER_REPOSITORY}:${GIT_COMMIT}
-TMP_DOCKER_TAG=${JOB_NAME}${BUILD_NUMBER}
+TMP_DOCKER_TAG=${BUILD_TAG}
 
 # If docker image exists and no force rebuild do nothing
 FORCE_REBUILD=`echo "$FORCE_REBUILD" | tr '[:upper:]' '[:lower:]'`
