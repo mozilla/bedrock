@@ -3,7 +3,7 @@
  */
 
 def demoAppName(branchname) {
-    def appname = branchname[5..-1].replaceAll('_', '-')
+    def appname = branchname[6..-1].replaceAll('_', '-')
     return "bedrock-demo-${appname}".toString()
 }
 
