@@ -139,7 +139,7 @@ Mozilla.FxaIframe = (function() {
             break;
         // user has logged in (instead of signing up)
         case 'login':
-            _onLogin();
+            _onLogin(data);
             break;
         }
     };
@@ -175,7 +175,26 @@ Mozilla.FxaIframe = (function() {
 
     var _onLogin = function(data) {
         _sendGAEvent('fxa-signin');
-        _userCallback('onLogin', data);
+
+        // ****************************************************************** //
+        // ****************************************************************** //
+        // If an 'onLogin' handler is supplied, it *must* redirect the user away
+        // from the current page! (see below)
+        // ****************************************************************** //
+        // ****************************************************************** //
+
+        // After a successful login, the FxA iframe, due to the
+        // 'haltAfterSignIn=True' parameter, will appear to spin, displaying a
+        // "Working..." error message that never goes away (even though the
+        // login is successful). Because of this, a redirect *must* happen
+        // after the 'login' postMessage.
+        if (typeof _config['onLogin'] === 'function') {
+            // We are trusting that the 'onLogin' handler does *something* to
+            // hide the FxA iframe.
+            _userCallback('onLogin', data);
+        } else {
+            window.doRedirect(_host + '/settings');
+        }
     };
 
     // public properties/methods

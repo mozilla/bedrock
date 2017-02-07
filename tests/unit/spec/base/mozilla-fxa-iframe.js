@@ -188,5 +188,41 @@ describe('mozilla-fxa-iframe.js', function() {
 
             window.postMessage(JSON.stringify(messageData), '*');
         });
+
+        it('should redirect the user to FxA host /settings URL if no custom handler defined', function(done) {
+            var messageData = {
+                command: 'login'
+            };
+
+            spyOn(window, 'doRedirect').and.callFake(function(destination) {
+                expect(destination).toEqual(fxaHost + '/settings');
+                done();
+            });
+
+            Mozilla.FxaIframe.init();
+
+            window.postMessage(JSON.stringify(messageData), '*');
+        });
+
+        it('should execute callback for login postMessage', function(done) {
+            var messageData = {
+                command: 'login'
+            };
+
+            config = {
+                onLogin: function(data) {
+                    var command = data.command;
+                    expect(config.onLogin).toHaveBeenCalled();
+                    expect(command).toEqual('login');
+                    done();
+                }
+            };
+
+            spyOn(config, 'onLogin').and.callThrough();
+
+            Mozilla.FxaIframe.init(config);
+
+            window.postMessage(JSON.stringify(messageData), '*');
+        });
     });
 });

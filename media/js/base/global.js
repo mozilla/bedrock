@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* exported triggerIEDownload, initDownloadLinks, initMobileDownloadLinks,
-   maybeSwitchToDistDownloadLinks, initLangSwitcher */
+   maybeSwitchToDistDownloadLinks, initLangSwitcher, doRedirect */
 
 // download buttons
 
@@ -79,6 +79,13 @@ function initLangSwitcher() {
         $('#lang_form').attr('action', window.location.hash || '#');
         $('#lang_form').submit();
     });
+}
+
+// client-side redirects (handy for testing)
+function doRedirect(destination) {
+    if (destination) {
+        window.location.href = destination;
+    }
 }
 
 // Create text translation function using #strings element.
