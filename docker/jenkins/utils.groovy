@@ -3,7 +3,7 @@
  */
 
 def demoAppName(branchname) {
-    def appname = branchname[5..-1].replaceAll('_', '-')
+    def appname = branchname[6..-1].replaceAll('_', '-')
     return "bedrock-demo-${appname}".toString()
 }
 
@@ -51,17 +51,17 @@ def pushDockerhub(from_repo, to_repo='') {
     }
 }
 
-def pushPrivateReg(port) {
+def pushPrivateReg(port, apps) {
     retry(3) {
         withEnv(['FROM_DOCKER_REPOSITORY=mozorg/bedrock_l10n',
                  "PRIVATE_REGISTRIES=localhost:${port}",
-                 'DEIS_APPS=bedrock-dev,bedrock-stage,bedrock-prod']) {
+                 "DEIS_APPS=${apps.join(',')}"]) {
             sh 'docker/jenkins/push2privateregistries.sh'
         }
     }
 }
 
-def integrationTestJob(propFileName, appName, region) {
+def integrationTestJob(propFileName, appURL) {
     def testsBaseDir = 'docker/jenkins/properties/integration_tests'
     def testsFileExt = '.properties'
     return {
@@ -74,7 +74,7 @@ def integrationTestJob(propFileName, appName, region) {
                               credentialsId: 'SAUCELABS_CREDENTIALS',
                               usernameVariable: 'SAUCELABS_USERNAME',
                               passwordVariable: 'SAUCELABS_API_KEY']]) {
-                withEnv(["BASE_URL=https://${appName}.${region}.moz.works",
+                withEnv(["BASE_URL=${appURL}",
                          "SELENIUM_VERSION=2.52.0"]) {
                     try {
                         sh testScript

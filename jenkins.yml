@@ -10,6 +10,7 @@ branches:
       - headless
   prod:
     require_tag: true
+    app_name_suffix: "-deis"
     regions:
       - usw
       - euw

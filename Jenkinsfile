@@ -114,7 +114,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             node {
                 unstash 'scripts'
                 try {
-                    utils.pushPrivateReg(region.registry_port)
+                    utils.pushPrivateReg(region.registry_port, branchConfig.apps)
                 } catch(err) {
                     utils.ircNotification(config, [stage: stageName, status: 'failure'])
                     throw err
@@ -122,7 +122,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             }
         }
         for (appname in branchConfig.apps) {
-            def appURL = "https://${appname}.${region.name}.moz.works"
+            def appURL = "https://${appname}${branchConfig.app_name_suffix}.${region.name}.moz.works"
             stageName = "Deploy ${appname}-${region.name}"
             // ensure no deploy/test cycle happens in parallel for an app/region
             lock (stageName) {
@@ -147,7 +147,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 // queue up test closures
                 def allTests = [:]
                 for (filename in branchConfig.integration_tests) {
-                    allTests[filename] = utils.integrationTestJob(filename, appname, region.name)
+                    allTests[filename] = utils.integrationTestJob(filename, appURL)
                 }
                 stage ("Test ${appname}-${region.name}") {
                     try {
@@ -157,7 +157,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                     } catch(err) {
                         node {
                             unstash 'scripts'
-                            utils.ircNotification(config, [stage: "Integration Tests ${region.name}", status: 'failure'])
+                            utils.ircNotification(config, [stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
                         }
                         throw err
                     }
@@ -205,7 +205,7 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
                             sh './docker/jenkins/demo_deploy.sh'
                         }
                     }
-                    utils.ircNotification(config, [app_url: "https://${appname}.us-west.moz.works/"])
+                    utils.ircNotification(config, [message: "https://${appname}.us-west.moz.works/", status: 'shipped'])
                 } catch(err) {
                     utils.ircNotification(config, [stage: 'Demo Deploy', status: 'failure'])
                     throw err
