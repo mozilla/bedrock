@@ -3,12 +3,15 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 <!DOCTYPE html>
-<html lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-channel="{% block channel %}{% endblock %}">
+<html lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-channel="{% block channel %}{% endblock %}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %}>
   <head>
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
     <title>{% filter striptags|e %}{% block title %}{% endblock %}{% endfilter %}</title>
     {{ l10n_css() }}
+    {% block google_analytics %}
+      {% include 'includes/google-analytics.html' %}
+    {% endblock %}
     {% stylesheet 'thunderbird-start' %}
   </head>
   <body class="sky">
