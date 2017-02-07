@@ -53,11 +53,9 @@ def pushDockerhub(from_repo, to_repo='') {
 
 def pushPrivateReg(port) {
     retry(3) {
-        // TODO Fix DEIS_APPS before merge
-        // DEIS_APPS=bedrock-dev,bedrock-stage,bedrock-prod
         withEnv(['FROM_DOCKER_REPOSITORY=mozorg/bedrock_l10n',
                  "PRIVATE_REGISTRIES=localhost:${port}",
-                 'DEIS_APPS=bedrock-jenkinsfile-test']) {
+                 'DEIS_APPS=bedrock-dev,bedrock-stage,bedrock-prod']) {
             sh 'docker/jenkins/push2privateregistries.sh'
         }
     }
