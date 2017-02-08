@@ -1,8 +1,9 @@
 FROM mozorg/bedrock_code:${GIT_COMMIT}
 
-COPY . ./locale/
+COPY ./locale ./locale
+COPY ./bedrock.db ./
 
 # Change User
 USER root
-RUN chown webdev.webdev -R locale
+RUN chown webdev.webdev -R .
 USER webdev

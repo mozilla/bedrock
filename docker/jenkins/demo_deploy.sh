@@ -6,7 +6,7 @@ DOCKER_IMAGE_TAG="${DEIS_APP_NAME}:${GIT_COMMIT}"
 # used for pushing to registry
 PRIVATE_IMAGE_TAG="${PRIVATE_REGISTRY}/${DOCKER_IMAGE_TAG}"
 
-docker tag "bedrock_dev_final:${GIT_COMMIT}" "$PRIVATE_IMAGE_TAG"
+docker tag "mozorg/bedrock_demo:${GIT_COMMIT}" "$PRIVATE_IMAGE_TAG"
 docker push "$PRIVATE_IMAGE_TAG"
 
 echo "Creating the demo app $DEIS_APP_NAME"

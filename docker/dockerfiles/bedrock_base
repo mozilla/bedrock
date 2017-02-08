@@ -1,25 +1,24 @@
-FROM quay.io/mozmar/base
+FROM quay.io/mozmar/base:latest
 
+# Set Python-related environment variables to reduce annoying-ness
+ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1
 ENV LANG=C.UTF-8
+RUN update-alternatives --install /bin/sh sh /bin/bash 10
+RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
 
 WORKDIR /app
 EXPOSE 8000
 CMD ["./docker/run.sh"]
 
-RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
-
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-                    gettext build-essential python python-dev python-pip python-setuptools \
-                    libxml2-dev libxslt1.1 libxslt1-dev \
-                    nodejs-legacy npm git libpq-dev
+                    gettext build-essential python-{dev,pip,setuptools} \
+                    libxml2-dev libxslt1.1 libxslt1-dev git libpq-dev
 
 COPY ./requirements /app/requirements
 
-# Install app
-RUN pip install --no-cache-dir -r requirements/dev.txt
+# Install Python deps
 RUN pip install --no-cache-dir -r requirements/prod.txt
 RUN pip install --no-cache-dir -r requirements/docker.txt
-RUN pip install --no-cache-dir -r requirements/test.txt

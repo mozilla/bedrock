@@ -1,7 +1,13 @@
 #!/bin/bash -xe
 
 # $1 should be the properties file for this run
-source "$1"
+source "docker/jenkins/properties/integration_tests/${1}.properties"
+
+if [[ -z "$GIT_COMMIT" ]]; then
+  GIT_COMMIT=$(git rev-parse HEAD)
+fi
+
+BUILD_NUMBER="${BUILD_NUMBER:-0}"
 
 if [ -z "${BASE_URL}" ]; then
   # start bedrock
@@ -51,9 +57,10 @@ fi
 # make sure results dir exists or docker will create it
 # and it will be owned by root
 RESULTS_DIR="$PWD/results"
+DOCKER_RESULTS_DIR="/app/results"
 rm -rf "$RESULTS_DIR"
 mkdir -p "$RESULTS_DIR"
-docker run -v "${RESULTS_DIR}:/app/results" -u $(stat -c "%u:%g" "$RESULTS_DIR") \
+docker run -v "${RESULTS_DIR}:${DOCKER_RESULTS_DIR}" -u $(stat -c "%u:%g" "$RESULTS_DIR") \
   ${DOCKER_LINKS[@]} \
   -e BASE_URL=${BASE_URL} \
   -e DRIVER=${DRIVER} \
@@ -69,4 +76,7 @@ docker run -v "${RESULTS_DIR}:/app/results" -u $(stat -c "%u:%g" "$RESULTS_DIR")
   -e SCREEN_RESOLUTION=${SCREEN_RESOLUTION} \
   -e MARK_EXPRESSION="${MARK_EXPRESSION}" \
   -e TESTS_PATH="${TESTS_PATH}" \
-  bedrock_integration_tests:${GIT_COMMIT}
+  -e RESULTS_PATH="${DOCKER_RESULTS_DIR}" \
+  -e PYTEST_PROCESSES=5 \
+  -e PRIVACY="public restricted" \
+  mozorg/bedrock_test:${GIT_COMMIT} bin/run-integration-tests.sh

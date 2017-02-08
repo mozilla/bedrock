@@ -1,4 +1,4 @@
-FROM quay.io/mozmar/base
+FROM quay.io/mozmar/base:latest
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
                                       build-essential python python-dev python-pip python-setuptools

@@ -2,18 +2,7 @@ machine:
   services:
     - docker
   node:
-    version: 4.2.6
-  environment:
-    # Deis
-    DEIS_CONTROLLER: https://deis.us-west.moz.works
-    DEIS_USERNAME: circleci
-    # Docker
-    QUAY_EMAIL: mozmar@example.com
-    QUAY_USERNAME: mozmar+circleci
-    DOCKER_REPOSITORY: quay.io/mozmar/bedrock
-    DOCKER_IMAGE_TAG: "$DOCKER_REPOSITORY:$CIRCLE_BRANCH"
-    BASE_DOCKER_REPOSITORY: quay.io/mozmar/bedrock_base
-    BASE_DOCKER_IMAGE_TAG: "$BASE_DOCKER_REPOSITORY:$CIRCLE_BRANCH"
+    version: 6.1.0
 
 checkout:
   post:
@@ -25,9 +14,9 @@ dependencies:
     - node_modules
     - "~/docker"
   override:
+    - docker/jenkins/build_images.sh --test
     - npm install -g gulp-cli
     - npm install
-    - bin/circleci-docker-build.sh
 
 test:
   pre:
@@ -36,4 +25,4 @@ test:
     - gulp css:lint
     - gulp js:lint
     - gulp js:test
-    - make test-image
+    - docker/jenkins/run_tests.sh

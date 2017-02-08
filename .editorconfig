@@ -28,6 +28,9 @@ indent_size = 4
 [*.scss]
 indent_size = 4
 
+[*.sh]
+indent_size = 4
+
 [*.html]
 indent_size = 2
 
@@ -35,6 +38,9 @@ indent_size = 2
 indent_size = 2
 
 [Jenkinsfile]
+indent_size = 4
+
+[*.groovy]
 indent_size = 4
 
 [package.json]

@@ -2,14 +2,11 @@
 #
 # Runs unit_tests
 #
-set -ex
+set -exo pipefail
 
-ENV_FILE=`mktemp`
-cat << EOF > $ENV_FILE
-DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1,
-SECRET_KEY=39114b6a-2858-4caf-8878-482a24ee9542
-ADMINS=["thedude@example.com"]
-EOF
+if [[ -z "$GIT_COMMIT" ]]; then
+  GIT_COMMIT=$(git rev-parse HEAD)
+fi
 
-docker run --env-file $ENV_FILE ${DOCKER_REPOSITORY}:${GIT_COMMIT:-$(git rev-parse HEAD)} py.test lib bedrock
+TEST_IMAGE_TAG="mozorg/bedrock_test:${GIT_COMMIT}"
+docker run --env-file docker/test.env "$TEST_IMAGE_TAG"

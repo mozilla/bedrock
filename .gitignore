@@ -22,6 +22,7 @@ tmp/*
 *.less.css
 db.sql
 /locale
+/results
 Thumbs.db
 Desktop.ini
 venv
@@ -41,3 +42,4 @@ tests/functional/results.html
 tests/functional/assets/style.css
 .eslintcache
 .docker-build*
+Dockerfile-*

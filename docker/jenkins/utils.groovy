@@ -28,21 +28,6 @@ def ircNotification(config, Map args) {
     sh command
 }
 
-def buildDockerImage(Map kwargs) {
-    def update = kwargs.update ? 'true' : 'false'
-    def repo = kwargs.dockerRepo ?: 'mozorg'
-    def script = kwargs.script ?: 'build_image.sh'
-    def environs = ["UPDATE_DOCKER_IMAGES=${update}",
-                    "DOCKERFILE=${kwargs.dockerfile}",
-                    "DOCKER_REPOSITORY=${repo}/${kwargs.dockerfile}"]
-    if (kwargs.fromDockerfile) {
-        environs << "FROM_DOCKER_REPOSITORY=${repo}/${kwargs.fromDockerfile}"
-    }
-    withEnv(environs) {
-        sh "docker/jenkins/${script}"
-    }
-}
-
 def pushDockerhub(from_repo, to_repo='') {
     to_repo = to_repo ?: from_repo
     withCredentials([[$class: 'StringBinding',
@@ -68,26 +53,25 @@ def pushPrivateReg(port, apps) {
     }
 }
 
-def integrationTestJob(propFileName, appURL) {
-    def testsBaseDir = 'docker/jenkins/properties/integration_tests'
-    def testsFileExt = '.properties'
+def integrationTestJob(propFileName, appURL='') {
     return {
         node {
             unstash 'scripts'
             unstash 'tests'
-            def fullFilename = "${testsBaseDir}/${propFileName}${testsFileExt}"
-            def testScript = "docker/jenkins/run_integration_tests.sh ${fullFilename}".toString()
+            def testScript = "docker/jenkins/run_integration_tests.sh ${propFileName}".toString()
             withCredentials([[$class: 'UsernamePasswordMultiBinding',
                               credentialsId: 'SAUCELABS_CREDENTIALS',
                               usernameVariable: 'SAUCELABS_USERNAME',
                               passwordVariable: 'SAUCELABS_API_KEY']]) {
-                withEnv(["BASE_URL=${appURL}",
-                         "SELENIUM_VERSION=2.52.0"]) {
+                withEnv(["BASE_URL=${appURL}"]) {
                     try {
                         sh testScript
                     }
                     finally {
                         junit 'results/*.xml'
+                        if ( propFileName == 'local' ) {
+                            sh 'docker/jenkins/cleanup_after_functional_tests.sh'
+                        }
                     }
                 }
             }
