@@ -178,7 +178,6 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
 else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
     node {
         utils.ircNotification(config, [stage: 'Demo Deploy', status: 'starting'])
-        appname = utils.demoAppName(env.BRANCH_NAME)
         stage ('build') {
             milestone()
             try {
@@ -193,6 +192,7 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
             }
         }
 
+        def appname = utils.demoAppName(env.BRANCH_NAME)
         stage ('deploy') {
             lock (appname) {
                 milestone()
@@ -206,13 +206,13 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
                             sh './docker/jenkins/demo_deploy.sh'
                         }
                     }
-                    utils.ircNotification(config, [message: "https://${appname}.us-west.moz.works/", status: 'shipped'])
                 } catch(err) {
                     utils.ircNotification(config, [stage: 'Demo Deploy', status: 'failure'])
                     throw err
                 }
             }
         }
+        utils.ircNotification(config, [message: utils.demoAppURL(appname), status: 'shipped'])
     }
 }
 else {

@@ -7,6 +7,13 @@ def demoAppName(branchname) {
     return "bedrock-demo-${appname}".toString()
 }
 
+def demoAppURL(appname) {
+    if ( appname ==~ /^bedrock-demo-[1-5]$/ ) {
+        return "https://www-demo${appname[-1]}.allizom.org"
+    }
+    return "https://${appname}.us-west.moz.works"
+}
+
 /**
  * Send a notice to #www on irc.mozilla.org with the build result
  *
