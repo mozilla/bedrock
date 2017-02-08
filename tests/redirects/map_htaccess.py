@@ -127,7 +127,7 @@ URLS = flatten((
     url_test('/firefox/beta/feedbackprivacypolicy/', '/privacy/firefox/'),
 
     # Bug 424204
-    url_test('/{de,fr}/firefox/help/', 'https://support.mozilla.com/{de,fr}/kb/'),
+    url_test('/en-US/firefox/help/', 'https://support.mozilla.org/'),
 
     # Bug 1255882
     url_test('/some/url///', '/some/url/'),
