@@ -20,7 +20,7 @@ while [[ $# -ge 1 ]]; do
 done
 
 # ensure all tags synced
-git fetch --tags
+git fetch --tags "$moz_git_remote"
 date_tag=$(date +"%Y-%m-%d")
 tag_suffix=0
 tag_value="$date_tag"
