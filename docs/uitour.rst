@@ -545,7 +545,7 @@ Sets a key value pair as a treatment tag for recording in `FHR`_.
 getTreatmentTag(name, callback);
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Retrieved the value for a set `FHR`_. treatment tag.
+Retrieved the value for a set `FHR`_ treatment tag.
 
 * ``name`` tag name to be retrieved
 * ``callback`` function to execute once the data has been retrieved
