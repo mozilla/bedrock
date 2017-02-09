@@ -180,7 +180,7 @@ FALLBACK_LOCALES = {
     'es-AR': 'es-ES',
     'es-CL': 'es-ES',
     'es-MX': 'es-ES',
-    'zh-HK': 'zh-HK'
+    'zh-HK': 'zh-TW'
 }
 
 
