@@ -332,9 +332,13 @@ def technology(request):
     except Exception:
         articles = None
 
-    return l10n_utils.render(request,
-                             'mozorg/technology.html',
-                             {'articles': articles})
+    template = 'mozorg/technology.html'
+    version = request.GET.get('v', None)
+
+    if version == 'b':
+        template = 'mozorg/technology-b.html'
+
+    return l10n_utils.render(request, template, {'articles': articles})
 
 
 def internet_health(request):
