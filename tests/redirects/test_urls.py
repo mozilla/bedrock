@@ -81,5 +81,6 @@ def test_x_robots_tag(base_url):
     '/thunderbird/all/',
     '/thunderbird/releases/'
 ])
-def test_url(url, base_url):
-    assert_valid_url(url, base_url=base_url, follow_redirects=True)
+def test_url(url, base_url, follow_redirects=False):
+    assert_valid_url(url, base_url=base_url,
+                     follow_redirects=follow_redirects)
