@@ -170,6 +170,7 @@ CANONICAL_LOCALES = {
     'sv': 'sv-SE',
     'zh-hant': 'zh-TW',  # Bug 1263193
     'zh-hant-tw': 'zh-TW',  # Bug 1263193
+    'zh-hant-hk': 'zh-TW'
 }
 
 # Unlocalized pages are usually redirected to the English (en-US) equivalent,
@@ -179,6 +180,7 @@ FALLBACK_LOCALES = {
     'es-AR': 'es-ES',
     'es-CL': 'es-ES',
     'es-MX': 'es-ES',
+    'zh-HK': 'zh-HK'
 }
 
 
