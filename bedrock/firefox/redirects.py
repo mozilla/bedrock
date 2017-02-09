@@ -144,7 +144,6 @@ redirectpatterns = (
     # Bug 1110927
     redirect(r'^(products/)?firefox/start/central\.html$', 'firefox.new'),
     redirect(r'^firefox/sync/firstrun\.html$', 'firefox.sync'),
-    redirect(r'^firefox/panorama/?$', 'https://support.mozilla.org/kb/tab-groups-organize-tabs'),
 
     # Bug 920212
     redirect(r'^firefox/fx/?$', 'firefox.new'),
