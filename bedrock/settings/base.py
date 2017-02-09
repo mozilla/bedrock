@@ -168,9 +168,10 @@ CANONICAL_LOCALES = {
     'no': 'nb-NO',
     'pt': 'pt-BR',
     'sv': 'sv-SE',
-    'zh-hant': 'zh-TW',  # Bug 1263193
+    'zh-hant': 'zh-TW',     # Bug 1263193
     'zh-hant-tw': 'zh-TW',  # Bug 1263193
-    'zh-hant-hk': 'zh-TW'
+    'zh-hk': 'zh-TW',       # Bug 1338072
+    'zh-hant-hk': 'zh-TW',  # Bug 1338072
 }
 
 # Unlocalized pages are usually redirected to the English (en-US) equivalent,
@@ -180,7 +181,6 @@ FALLBACK_LOCALES = {
     'es-AR': 'es-ES',
     'es-CL': 'es-ES',
     'es-MX': 'es-ES',
-    'zh-HK': 'zh-TW'
 }
 
 
