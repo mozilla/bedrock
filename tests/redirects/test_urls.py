@@ -75,7 +75,6 @@ def test_x_robots_tag(base_url):
     '/firefox/unsupported-systems/',
     '/firefox/unsupported/EOL/',
     # Legacy URLs (Bug 1110927)
-    '/firefox/panorama/',
     '/firefox/start/central.html',
     '/firefox/sync/firstrun.html',
     # Thunberbird URLs

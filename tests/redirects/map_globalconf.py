@@ -314,7 +314,6 @@ URLS = flatten((
     # Bug 1110927
     url_test('/firefox/start/central.html', '/firefox/new/'),
     url_test('/firefox/sync/firstrun.html', '/firefox/sync/'),
-    url_test('/firefox/panorama/', 'https://support.mozilla.org/kb/tab-groups-organize-tabs'),
 
     # bug 876810
     url_test('/hacking/commit-access-policy/',
