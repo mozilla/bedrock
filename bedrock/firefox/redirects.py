@@ -314,7 +314,7 @@ redirectpatterns = (
     redirect(r'^sync/?$', 'firefox.sync'),
 
     # Bug 424204
-    redirect(r'^firefox/help/?$', 'https://support.mozilla.com/{locale}kb/'),
+    redirect(r'^firefox/help/?$', 'https://support.mozilla.org/'),
 
     redirect(r'^fxandroid/?$', 'firefox.android.index'),
 
