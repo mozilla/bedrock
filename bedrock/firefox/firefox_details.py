@@ -26,8 +26,6 @@ class _ProductDetails(ProductDetails):
 
 class FirefoxDesktop(_ProductDetails):
     download_base_url_transition = '/firefox/new/?scene=2'
-    nightly_url_base = ('https://archive.mozilla.org/pub/firefox/nightly/'
-                        'latest-mozilla-central')
 
     # Human-readable platform names
     platform_labels = OrderedDict([
@@ -38,15 +36,6 @@ class FirefoxDesktop(_ProductDetails):
         ('linux', 'Linux'),
         ('linux64', 'Linux 64-bit'),
     ])
-
-    # Firefox Nightly file name suffixes
-    platform_file_suffixes = {
-        'win': 'win32.installer.exe',
-        'win64': 'win64.installer.exe',
-        'osx': 'mac.dmg',
-        'linux': 'linux-i686.tar.bz2',
-        'linux64': 'linux-x86_64.tar.bz2',
-    }
 
     # Human-readable channel names
     channel_labels = {
@@ -220,17 +209,22 @@ class FirefoxDesktop(_ProductDetails):
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
         _platform = 'win' if platform == 'winsha1' else platform
 
-        # Aurora has a special download link format
-        if channel == 'alpha':
-            # Download links are different for localized versions
-            if locale == 'en-US':
-                # Use the stub installer for 32-bit Windows
-                if _platform == 'win' and not force_full_installer:
-                    product = 'firefox-aurora-stub'
-                else:
-                    product = 'firefox-aurora-latest-ssl'
+        # Nightly and Aurora have a special download link format
+        # see bug 1324001
+        if channel in ['alpha', 'nightly']:
+            prod_name = 'firefox-nightly' if channel == 'nightly' else 'firefox-aurora'
+            # Use the stub installer for 32-bit Windows
+            if _platform == 'win' and not force_full_installer:
+                # Download links are different for localized versions
+                suffix = 'stub'
+                if locale != 'en-US':
+                    suffix = 'stub-l10n'
             else:
-                product = 'firefox-aurora-latest-l10n'
+                suffix = 'latest-ssl'
+                if locale != 'en-US':
+                    suffix = 'latest-l10n-ssl'
+
+            product = '%s-%s' % (prod_name, suffix)
 
             return '?'.join([self.get_bouncer_url(platform),
                              urlencode([
@@ -239,18 +233,6 @@ class FirefoxDesktop(_ProductDetails):
                                  # Order matters, lang must be last for bouncer.
                                  ('lang', _locale),
                              ])])
-
-        # Use direct archive links for Nightly
-        if channel == 'nightly':
-            _dir = self.nightly_url_base + ('' if locale == 'en-US' else '-l10n')
-            _suffix = self.platform_file_suffixes.get(_platform)
-
-            # Use a different file name for the Windows stub installer
-            if _platform in ['win', 'win64'] and not force_full_installer:
-                _suffix = 'win32.installer-stub.exe'
-
-            return '{dir}/firefox-{version}.{locale}.{suffix}'.format(
-                dir=_dir, version=_version, locale=_locale, suffix=_suffix)
 
         # stub installer exceptions
         # TODO: NUKE FROM ORBIT!

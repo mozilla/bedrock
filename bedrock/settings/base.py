@@ -605,8 +605,6 @@ EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX', default='[bedrock] ')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
-AURORA_STUB_INSTALLER = False
-
 # special value that means all locales are enabled.
 STUB_INSTALLER_ALL = '__ALL__'
 # values should be a list of lower case locales per platform for which a

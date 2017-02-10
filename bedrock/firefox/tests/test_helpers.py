@@ -107,44 +107,6 @@ class TestDownloadButtons(TestCase):
         # The seventh link is mobile and should not have the attr
         ok_(pq(links[6]).attr('data-direct-link') is None)
 
-    @override_settings(AURORA_STUB_INSTALLER=True)
-    def test_stub_aurora_installer_enabled_locales(self):
-        """Check that the stub is not served to locales"""
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        get_request.locale = 'fr'
-        doc = pq(render("{{ download_firefox('alpha') }}",
-                        {'request': get_request}))
-
-        links = doc('.download-list a')
-        for link in links:
-            ok_('stub' not in pq(link).attr('href'))
-
-    @override_settings(AURORA_STUB_INSTALLER=False)
-    def test_stub_aurora_installer_disabled_locale(self):
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        get_request.locale = 'fr'
-        doc = pq(render("{{ download_firefox('alpha') }}",
-                        {'request': get_request}))
-
-        links = doc('.download-list a')[:4]
-        for link in links:
-            ok_('stub' not in pq(link).attr('href'))
-
-    @override_settings(AURORA_STUB_INSTALLER=True)
-    def test_stub_aurora_installer_override_locale(self):
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        get_request.locale = 'fr'
-        doc = pq(render("{{ download_firefox('alpha', "
-                        "force_full_installer=True) }}",
-                        {'request': get_request}))
-
-        links = doc('.download-list a')[:4]
-        for link in links:
-            ok_('stub' not in pq(link).attr('href'))
-
     def test_nightly_desktop(self):
         """
         The Nightly channel should have the Windows universal stub installer
@@ -399,9 +361,43 @@ class TestDownloadList(TestCase):
                 .startswith('https://download.mozilla.org'))
 
     @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
+    def test_firefox_desktop_list_aurora(self):
+        """
+        All aurora download links must be directly to https://download.mozilla.org.
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'en-US'
+        doc = pq(render("{{ download_firefox_desktop_list(channel='alpha') }}",
+                        {'request': get_request}))
+
+        # Check that links classes are ordered as expected.
+        list = doc('.download-platform-list li')
+        eq_(list.length, 6)
+        eq_(pq(list[0]).attr('class'), 'os_winsha1')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_win64')
+        eq_(pq(list[3]).attr('class'), 'os_osx')
+        eq_(pq(list[4]).attr('class'), 'os_linux')
+        eq_(pq(list[5]).attr('class'), 'os_linux64')
+
+        links = doc('.download-platform-list a')
+
+        # The first link should be sha-1 bouncer.
+        first_link = pq(links[0])
+        ok_(first_link.attr('href')
+            .startswith('https://download-sha1.allizom.org'))
+
+        # All other links should be to regular bouncer.
+        for link in links[1:5]:
+            link = pq(link)
+            ok_(link.attr('href')
+                .startswith('https://download.mozilla.org'))
+
+    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_firefox_desktop_list_nightly(self):
         """
-        All nightly download links must be directly to https://archive.mozilla.org.
+        All nightly download links must be directly to https://download.mozilla.org.
         """
         rf = RequestFactory()
         get_request = rf.get('/fake')
@@ -418,13 +414,18 @@ class TestDownloadList(TestCase):
         eq_(pq(list[3]).attr('class'), 'os_linux')
         eq_(pq(list[4]).attr('class'), 'os_linux64')
 
-        # Check that the links are direct to archive.mozilla.org.
         links = doc('.download-platform-list a')
 
+        # The first link should be sha-1 bouncer.
+        first_link = pq(links[0])
+        ok_(first_link.attr('href')
+            .startswith('https://download-sha1.allizom.org'))
+
+        # All other links should be to regular bouncer.
         for link in links[1:5]:
             link = pq(link)
             ok_(link.attr('href')
-                .startswith('https://archive.mozilla.org'))
+                .startswith('https://download.mozilla.org'))
 
 
 class TestFirefoxURL(TestCase):
