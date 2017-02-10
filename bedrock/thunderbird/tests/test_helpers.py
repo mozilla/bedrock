@@ -1,7 +1,10 @@
+from urlparse import parse_qs, urlparse
+
 from django.test.client import RequestFactory
 
 from django_jinja.backend import Jinja2
-from nose.tools import eq_
+from mock import patch, Mock
+from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
@@ -17,6 +20,7 @@ def render(s, context=None):
 
 class TestDownloadButtons(TestCase):
 
+    @patch('bedrock.thunderbird.details.switch', Mock(return_value=False))
     def test_thunderbird(self):
         """Should have 5 links on the Thunderbird download button"""
         with self.activate('en-US'):
@@ -34,12 +38,19 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[3]).attr('class'), 'os_linux')
         eq_(pq(list[4]).attr('class'), 'os_linux64')
 
+        for i, link in enumerate(doc('.download-list a')):
+            href = pq(link).attr('href')
+            ok_(href.startswith('https://download-sha1.allizom.org/' if i == 0 else
+                                'https://download.mozilla.org'))
+            self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['en-US'])
+
+    @patch('bedrock.thunderbird.details.switch', Mock(return_value=False))
     def test_beta(self):
         """Should have 5 links on the Thunderbird Beta download button"""
-        with self.activate('en-US'):
+        with self.activate('fr'):
             rf = RequestFactory()
             get_request = rf.get('/fake')
-            get_request.locale = 'en-US'
+            get_request.locale = 'fr'
             doc = pq(render("{{ download_thunderbird('beta') }}",
                             {'request': get_request}))
 
@@ -50,6 +61,12 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[2]).attr('class'), 'os_osx')
         eq_(pq(list[3]).attr('class'), 'os_linux')
         eq_(pq(list[4]).attr('class'), 'os_linux64')
+
+        for i, link in enumerate(doc('.download-list a')):
+            href = pq(link).attr('href')
+            ok_(href.startswith('https://download-sha1.allizom.org/' if i == 0 else
+                                'https://download.mozilla.org'))
+            self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['fr'])
 
     def test_earlybird(self):
         """Should have 5 links on the Earlybird download button"""
@@ -67,6 +84,35 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[2]).attr('class'), 'os_osx')
         eq_(pq(list[3]).attr('class'), 'os_linux')
         eq_(pq(list[4]).attr('class'), 'os_linux64')
+
+        for link in doc('.download-list a'):
+            href = pq(link).attr('href')
+            ok_(href.startswith('https://ftp.mozilla.org'))
+            ok_(href.find('/thunderbird/nightly/latest-comm-aurora/'))
+            ok_(href.find('a2.en-US.'))
+
+    def test_earlybird_l10n(self):
+        """Should offer download URLs with a different directory from en-US"""
+        with self.activate('fr'):
+            rf = RequestFactory()
+            get_request = rf.get('/fake')
+            get_request.locale = 'fr'
+            doc = pq(render("{{ download_thunderbird('alpha') }}",
+                            {'request': get_request}))
+
+        list = doc('.download-list li')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_winsha1')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
+
+        for link in doc('.download-list a'):
+            href = pq(link).attr('href')
+            ok_(href.startswith('https://ftp.mozilla.org'))
+            ok_(href.find('/thunderbird/nightly/latest-comm-aurora-l10n/'))
+            ok_(href.find('a2.fr.'))
 
 
 class TestThunderbirdURL(TestCase):

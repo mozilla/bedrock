@@ -193,18 +193,19 @@ class ThunderbirdDesktop(ProductDetails):
 
         # Check if direct download link has been requested
         # (bypassing the transition page)
-        if force_direct:
-            # build a direct download link
-            return '?'.join([self.get_bouncer_url(platform),
-                             urlencode([
-                                 ('product', 'thunderbird-%s-SSL' % _version),
-                                 ('os', _platform),
-                                 # Order matters, lang must be last for bouncer.
-                                 ('lang', _locale),
-                             ])])
-        else:
-            # build a link to the transition page
-            return self.download_base_url_transition
+        if not force_direct:
+            # Currently we don't have the transition page for Thunderbird, so
+            # return a direct link instead
+            pass
+
+        # build a direct download link
+        return '?'.join([self.get_bouncer_url(platform),
+                         urlencode([
+                             ('product', 'thunderbird-%s-SSL' % _version),
+                             ('os', _platform),
+                             # Order matters, lang must be last for bouncer.
+                             ('lang', _locale),
+                         ])])
 
 
 thunderbird_desktop = ThunderbirdDesktop()
