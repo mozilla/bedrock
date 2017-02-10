@@ -42,13 +42,9 @@ def download_thunderbird(ctx, channel='release', dom_id=None,
     builds = []
 
     for plat_os, plat_os_pretty in thunderbird_desktop.platform_labels.iteritems():
-        # Fallback to en-US if this plat_os/version isn't available
-        # for the current locale
-        _locale = locale if plat_os_pretty in platforms else 'en-US'
-
         # And generate all the info
         download_link = thunderbird_desktop.get_download_url(
-            channel, version, plat_os, _locale,
+            channel, version, plat_os, locale,
             force_direct=force_direct,
         )
 
@@ -59,7 +55,7 @@ def download_thunderbird(ctx, channel='release', dom_id=None,
             download_link_direct = False
         else:
             download_link_direct = thunderbird_desktop.get_download_url(
-                channel, version, plat_os, _locale,
+                channel, version, plat_os, locale,
                 force_direct=True,
             )
             if download_link_direct == download_link:

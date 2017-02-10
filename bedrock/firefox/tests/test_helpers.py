@@ -1,3 +1,5 @@
+from urlparse import parse_qs, urlparse
+
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -69,14 +71,16 @@ class TestDownloadButtons(TestCase):
 
         # The first link should be sha-1 bouncer.
         first_link = pq(links[0])
-        ok_(first_link.attr('href')
-            .startswith('https://download-sha1.allizom.org'))
+        first_href = first_link.attr('href')
+        ok_(first_href.startswith('https://download-sha1.allizom.org'))
+        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['fr'])
         ok_(first_link.attr('data-direct-link') is None)
 
         for link in links[1:5]:
             link = pq(link)
-            ok_(link.attr('href')
-                .startswith('https://download.mozilla.org'))
+            href = link.attr('href')
+            ok_(href.startswith('https://download.mozilla.org'))
+            self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['fr'])
             # direct links should not have the data attr.
             ok_(link.attr('data-direct-link') is None)
 
@@ -351,14 +355,16 @@ class TestDownloadList(TestCase):
 
         # The first link should be sha-1 bouncer.
         first_link = pq(links[0])
-        ok_(first_link.attr('href')
-            .startswith('https://download-sha1.allizom.org'))
+        first_href = first_link.attr('href')
+        ok_(first_href.startswith('https://download-sha1.allizom.org'))
+        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['en-US'])
 
         # All other links should be to regular bouncer.
         for link in links[1:5]:
             link = pq(link)
-            ok_(link.attr('href')
-                .startswith('https://download.mozilla.org'))
+            href = link.attr('href')
+            ok_(href.startswith('https://download.mozilla.org'))
+            self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['en-US'])
 
     @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_firefox_desktop_list_aurora(self):
@@ -385,14 +391,16 @@ class TestDownloadList(TestCase):
 
         # The first link should be sha-1 bouncer.
         first_link = pq(links[0])
-        ok_(first_link.attr('href')
-            .startswith('https://download-sha1.allizom.org'))
+        first_href = first_link.attr('href')
+        ok_(first_href.startswith('https://download-sha1.allizom.org'))
+        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['en-US'])
 
         # All other links should be to regular bouncer.
         for link in links[1:5]:
             link = pq(link)
-            ok_(link.attr('href')
-                .startswith('https://download.mozilla.org'))
+            href = link.attr('href')
+            ok_(href.startswith('https://download.mozilla.org'))
+            self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['en-US'])
 
     @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_firefox_desktop_list_nightly(self):
@@ -418,14 +426,16 @@ class TestDownloadList(TestCase):
 
         # The first link should be sha-1 bouncer.
         first_link = pq(links[0])
-        ok_(first_link.attr('href')
-            .startswith('https://download-sha1.allizom.org'))
+        first_href = first_link.attr('href')
+        ok_(first_href.startswith('https://download-sha1.allizom.org'))
+        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['en-US'])
 
         # All other links should be to regular bouncer.
         for link in links[1:5]:
             link = pq(link)
-            ok_(link.attr('href')
-                .startswith('https://download.mozilla.org'))
+            href = link.attr('href')
+            ok_(href.startswith('https://download.mozilla.org'))
+            self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['en-US'])
 
 
 class TestFirefoxURL(TestCase):

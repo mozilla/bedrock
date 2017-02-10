@@ -38,13 +38,9 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
             if plat_os == 'win64':
                 continue
 
-        # Fallback to en-US if this plat_os/version isn't available
-        # for the current locale
-        _locale = locale if plat_os_pretty in platforms else 'en-US'
-
         # And generate all the info
         download_link = firefox_desktop.get_download_url(
-            channel, version, plat_os, _locale,
+            channel, version, plat_os, locale,
             force_direct=force_direct,
             force_full_installer=force_full_installer,
             force_funnelcake=force_funnelcake,
@@ -58,7 +54,7 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
             download_link_direct = False
         else:
             download_link_direct = firefox_desktop.get_download_url(
-                channel, version, plat_os, _locale,
+                channel, version, plat_os, locale,
                 force_direct=True,
                 force_full_installer=force_full_installer,
                 force_funnelcake=force_funnelcake,
