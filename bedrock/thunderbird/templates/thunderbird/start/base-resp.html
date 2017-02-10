@@ -10,6 +10,7 @@
     <title>{% filter striptags|e %}{% block title %}{% endblock %}{% endfilter %}</title>
     {{ l10n_css() }}
     {% javascript 'site' %}
+    {% javascript 'common' %}
     {% block google_analytics %}
       {% include 'includes/google-analytics.html' %}
     {% endblock %}
