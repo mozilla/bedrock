@@ -110,7 +110,7 @@ redirectpatterns = (
     redirect(r'^ports/os2/?$', 'https://wiki.mozilla.org/Ports/os2'),
     redirect(r'^ports(?P<path>.*)', 'http://www-archive.mozilla.org/ports{path}'),
 
-    redirect(r'^b2g', 'firefox.os.index'),
+    redirect(r'^b2g', 'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 781914
     redirect(r'^contribute/areas.html$', 'mozorg.contribute.index'),
