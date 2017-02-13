@@ -12,7 +12,11 @@
     {# Remove the span tags from the headline next time it changes: #}
     <h1 class="large">{{ _('Read all about it in our <span>newsletter</span>') }}</h1>
     <p>
-      {% trans %}Subscribe to monthly updates and keep current with Mozilla news, including the latest tips and tricks for getting the most out of your Firefox browser. It’s the perfect way for us to keep in touch!{% endtrans %}
+      {% if l10n_has_tag('mozilla_newsletter_2017') %}
+        {{ _('Subscribe to updates and keep current with Mozilla news. It’s the perfect way for us to keep in touch!') }}
+      {% else %}
+        {{ _('Subscribe to monthly updates and keep current with Mozilla news, including the latest tips and tricks for getting the most out of your Firefox browser. It’s the perfect way for us to keep in touch!') }}
+      {% endif %}
     </p>
   </div>
 {% endblock %}
