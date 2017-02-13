@@ -16,9 +16,10 @@ can be cloned and kept up-to-date using the ``l10n_update`` management command:
 
     $ ./manage.py l10n_update
 
-If you don't already have a ``locale`` directory it will clone the git repo containing
-the translation files (either the dev or prod files depending on your ``DEV`` setting),
-and if you do it will update those files to the latest versions.
+If you don't already have a ``locale`` directory, this command will clone the
+git repo containing the translation files (either the dev or prod files
+depending on your ``DEV`` setting). If the folder is already present, it will
+update the repository to the latest version.
 
 .lang files
 -----------
@@ -43,34 +44,20 @@ list them on the command line:
 
     $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/contribute.html
 
-Command line glob matching will work as well if you want all of the html files
-in a directory for example:
+Command line glob matching will work as well if you want all of the HTML files
+in a directory, for example:
 
 .. code-block:: console
 
     $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/*.html
 
-That will use gettext to get all the needed localizations from python
-and html files, and will convert the result into a bunch of .lang
+That will use gettext to get all the needed localizations from Python
+and HTML files, and will convert the result into a series of .lang
 files inside ``locale/templates``. This directory represents the
 "reference" set of strings to be translated, and you are free to
 modify or split up .lang files here as needed (just make sure they are
 being referenced correctly, from the code, see
 :ref:`Which .lang file should it use? <which-lang>`).
-
-To merge new strings into locale directories, run:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_merge
-
-If you want to merge only specific locales, you can pass any number of
-them as arguments:
-
-.. code-block:: console
-
-    $ ./manage.py l10n_merge fr de
-
 
 .. _using-lang:
 
@@ -153,11 +140,11 @@ know which one to use when translating a particular string?
 * All translations from Python files are put into main.lang. This
   should be a very limited set of strings and most likely should be
   available to all pages.
-* Templates always load in `main.lang` and `download_button.lang`.
+* Templates always load `main.lang` and `download_button.lang`.
 * Additionally, each template has its own .lang file, so a template at
   `mozorg/firefox.html` would use the .lang file at
   `<locale>/mozorg/firefox.lang`.
-* Templates can override which lang files are loaded. The above 3
+* Templates can override which .lang files are loaded. The above
   global ones are always loaded, but instead of loading
   `<locale>/mozorg/firefox.lang`, the template can specify a list of
   additional lang files to load with a template block:
@@ -169,13 +156,13 @@ know which one to use when translating a particular string?
 That will make the page load `foo.lang` and `bar.lang` in addition to
 `main.lang` and `download_button.lang`.
 
-When strings are extracted from a template, that are added to the
+When strings are extracted from a template, they are added to the
 template-specific .lang file. If the template explicitly specifies
 .lang files like above, it will add the strings to the first .lang
 file specified, so extracted strings from the above template would go
 into `foo.lang`.
 
-You can similarly specify extra lang files in your Python source as well.
+You can similarly specify extra .lang files in your Python source as well.
 Simply add a module-level constant in the file named `LANG_FILES`. The
 value should be either a string, or a list of strings, similar to the
 `add_lang_files` tag above.
@@ -248,7 +235,7 @@ When the command ``./manage.py l10n_extract`` is run, it generates
 the corresponding files in the ``locale`` folder (see below for more
 info on this command).
 
-The german version of this template is created at
+The German version of this template is created at
 ``locale/de/templates/appname/example.html``. The contents of it are:
 
 .. code-block:: jinja
@@ -434,7 +421,8 @@ This function will check the .lang file(s) of the current page for the tag
 "Firefox benefits" will be displayed.
 
 When using ``l10n_has_tag``, be sure to coordinate with the localization team to
-decide on a good tag name.
+decide on a good tag name. Always use underscores instead of hyphens if you need
+to visually separate words.
 
 Locale-specific Templates
 -------------------------
