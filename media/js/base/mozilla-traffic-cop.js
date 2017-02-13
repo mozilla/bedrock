@@ -14,6 +14,7 @@ if (typeof Mozilla === 'undefined') {
  *
  * var cop = new Mozilla.TrafficCop({
  *     id: 'exp_firefox_new_all_link',
+ *     cookieExpires: 48,
  *     variations: {
  *         'v=1': 25,
  *         'v=2': 25,
@@ -27,6 +28,9 @@ if (typeof Mozilla === 'undefined') {
  * @param Object config: Object literal containing the following:
  *      String id (required): Unique-ish string for cookie identification.
  *          Only needs to be unique to other currently running tests.
+ *      Number cookieExpires (optional): Number of hours browser should remember
+ *          the variation chosen for the user. Defaults to 24 (hours). A value
+ *          of 0 will result in a session-length cookie.
  *      Object variations (required): Object holding key/value pairs of
  *          variations and their respective traffic percentages. Example:
  *
@@ -50,6 +54,9 @@ Mozilla.TrafficCop = function(config) {
 
     // store total percentage of users targeted
     this.totalPercentage = 0;
+
+    // store experiment cookie expiry (defaults to 24 hours)
+    this.cookieExpires = (config.cookieExpires !== undefined) ? config.cookieExpires : 24;
 
     this.redirectVariation = null;
 
@@ -93,13 +100,13 @@ Mozilla.TrafficCop.prototype.init = function() {
             if (redirectUrl) {
                 // if we get a variation, send the user and store a cookie
                 if (redirectUrl !== Mozilla.TrafficCop.noVariationCookieValue) {
-                    Mozilla.Cookies.setItem(this.id, this.redirectVariation);
+                    Mozilla.Cookies.setItem(this.id, this.redirectVariation, this.cookieExpiresDate());
                     window.location.href = redirectUrl;
                 }
             } else {
                 // if no variation, set a cookie so user isn't re-entered into
                 // the dice roll on next page load
-                Mozilla.Cookies.setItem(this.id, Mozilla.TrafficCop.noVariationCookieValue);
+                Mozilla.Cookies.setItem(this.id, Mozilla.TrafficCop.noVariationCookieValue, this.cookieExpiresDate());
             }
         }
     }
@@ -119,7 +126,28 @@ Mozilla.TrafficCop.prototype.verifyConfig = function() {
         return false;
     }
 
+    // make sure cookieExpires is null or a number
+    if (typeof this.cookieExpires !== 'number') {
+        return false;
+    }
+
     return true;
+};
+
+/*
+ * Generates an expiration date for the visitor's cookie.
+ * 'date' param used only for unit testing.
+ */
+Mozilla.TrafficCop.prototype.cookieExpiresDate = function(date) {
+    // default to null, meaning a session-length cookie
+    var d = null;
+
+    if (this.cookieExpires > 0) {
+        d = date || new Date();
+        d.setHours(d.getHours() + this.cookieExpires);
+    }
+
+    return d;
 };
 
 /*
