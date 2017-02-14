@@ -637,20 +637,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/history-slides-bundle.css',
     },
-    'home-voices': {
-        'source_filenames': (
-            'css/mozorg/home/home-voices.less',
-            'css/mozorg/home/home-voices-promo.less',
-            'css/newsletter/moznewsletter-subscribe.less',
-        ),
-        'output_filename': 'css/home-voices-bundle.css',
-    },
-    'home-voices-ie8': {
-        'source_filenames': (
-            'css/mozorg/home/home-voices-ie8.less',
-        ),
-        'output_filename': 'css/home-voices-ie8-bundle.css',
-    },
     'home': {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
@@ -1434,12 +1420,6 @@ PIPELINE_JS = {
             'js/mozorg/home/home.js',
         ),
         'output_filename': 'js/home-bundle.js',
-    },
-    'home-voices': {
-        'source_filenames': (
-            'js/mozorg/home/home-voices.js',
-        ),
-        'output_filename': 'js/home-voices-bundle.js',
     },
     'history-slides': {
         'source_filenames': (

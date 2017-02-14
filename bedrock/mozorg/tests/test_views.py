@@ -24,46 +24,6 @@ from scripts import update_tableau_data
 _ALL = settings.STUB_INSTALLER_ALL
 
 
-@patch('bedrock.mozorg.views.l10n_utils.render')
-class TestHome(TestCase):
-    def setUp(self):
-        self.rf = RequestFactory()
-
-    @override_settings(MOBILIZER_LOCALE_LINK={'en-US': 'His Dudeness', 'de': 'Herr Dude'})
-    def test_gets_right_mobilizer_url(self, resp_mock):
-        """Home page should get correct mobilizer link for locale."""
-        req = self.rf.get('/')
-        req.locale = 'de'
-        views.home(req)
-        ctx = resp_mock.call_args[0][2]
-        self.assertEqual(ctx['mobilizer_link'], 'Herr Dude')
-
-    @override_settings(MOBILIZER_LOCALE_LINK={'en-US': 'His Dudeness', 'de': 'Herr Dude'})
-    def test_gets_default_mobilizer_url(self, resp_mock):
-        """Home page should get default mobilizer link for other locale."""
-        req = self.rf.get('/')
-        req.locale = 'xx'  # does not exist
-        views.home(req)
-        ctx = resp_mock.call_args[0][2]
-        self.assertEqual(ctx['mobilizer_link'], 'His Dudeness')
-
-    # testing home page
-    def test_en_us(self, render_mock):
-        req = self.rf.get('/')
-        req.locale = 'en-US'
-        views.home(req)
-        render_mock.assert_called_once_with(req,
-            'mozorg/home/home.html', ANY)
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
-    def test_old_home_template(self, render_mock):
-        req = self.rf.get('/')
-        req.locale = 'es-ES'
-        views.home(req)
-        render_mock.assert_called_once_with(req,
-            'mozorg/home/home-voices.html', ANY)
-
-
 class TestViews(TestCase):
     @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
     def test_download_button_funnelcake(self):
