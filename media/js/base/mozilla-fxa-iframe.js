@@ -129,6 +129,18 @@ Mozilla.FxaIframe = (function() {
         case 'resize':
             _onResize(data);
             break;
+        // user has entered email address and password
+        case 'form_enabled':
+            _onFormEnabled(data);
+            break;
+        // user has deleted email address or password
+        case 'form_disabled':
+            _onFormDisabled(data);
+            break;
+        // user has chnaged pages within the iframe
+        case 'navigated':
+            _onNavigated(data);
+            break;
         // user has signed up, but not yet verified email
         case 'signup_must_verify':
             _onSignupMustVerify(data);
@@ -156,6 +168,18 @@ Mozilla.FxaIframe = (function() {
         // update iframe to accommodate new height
         _showIframe(data.data.height);
         _userCallback('onResize', data);
+    };
+
+    var _onFormEnabled = function(data) {
+        _userCallback('onFormEnabled', data);
+    };
+
+    var _onFormDisabled = function(data) {
+        _userCallback('onFormDisabled', data);
+    };
+
+    var _onNavigated = function(data) {
+        _userCallback('onNavigated', data);
     };
 
     var _onSignupMustVerify = function(data) {
@@ -206,6 +230,9 @@ Mozilla.FxaIframe = (function() {
         //         page - defaults to 'fxa')
         //     onLoaded: function called after iframe 'loaded' postMessage
         //     onResize: function called after iframe 'resize' postMessage
+        //     onFormEnabled: function called after user has entered information in the form
+        //     onFormDisabled: function called after user has removed information from the form
+        //     onNavigated: function called after user has submitted a form
         //     onSignupMustVerify: function called after iframe
         //         'signup_must_verify' postMessage
         //     onVerificationComplete: function called after iframe

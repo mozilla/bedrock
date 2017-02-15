@@ -146,6 +146,69 @@ describe('mozilla-fxa-iframe.js', function() {
             window.postMessage(JSON.stringify(messageData), '*');
         });
 
+        it('should execute callback for form_enabled postMessage', function(done) {
+            var messageData = {
+                command: 'form_enabled'
+            };
+
+            config = {
+                onFormEnabled: function(data) {
+                    var command = data.command;
+                    expect(config.onFormEnabled).toHaveBeenCalled();
+                    expect(command).toEqual('form_enabled');
+                    done();
+                }
+            };
+
+            spyOn(config, 'onFormEnabled').and.callThrough();
+
+            Mozilla.FxaIframe.init(config);
+
+            window.postMessage(JSON.stringify(messageData), '*');
+        });
+
+        it('should execute callback for form_disabled postMessage', function(done) {
+            var messageData = {
+                command: 'form_disabled'
+            };
+
+            config = {
+                onFormDisabled: function(data) {
+                    var command = data.command;
+                    expect(config.onFormDisabled).toHaveBeenCalled();
+                    expect(command).toEqual('form_disabled');
+                    done();
+                }
+            };
+
+            spyOn(config, 'onFormDisabled').and.callThrough();
+
+            Mozilla.FxaIframe.init(config);
+
+            window.postMessage(JSON.stringify(messageData), '*');
+        });
+
+        it('should execute callback for navigated postMessage', function(done) {
+            var messageData = {
+                command: 'navigated'
+            };
+
+            config = {
+                onNavigated: function(data) {
+                    var command = data.command;
+                    expect(config.onNavigated).toHaveBeenCalled();
+                    expect(command).toEqual('navigated');
+                    done();
+                }
+            };
+
+            spyOn(config, 'onNavigated').and.callThrough();
+
+            Mozilla.FxaIframe.init(config);
+
+            window.postMessage(JSON.stringify(messageData), '*');
+        });
+
         it('should execute callback for signup_must_verify postMessage', function(done) {
             var messageData = {
                 command: 'signup_must_verify',

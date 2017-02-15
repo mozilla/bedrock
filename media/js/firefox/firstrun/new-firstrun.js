@@ -9,8 +9,22 @@
         var scene = document.getElementById('scene');
         var skipbutton = document.getElementById('skip-button');
 
-        var hideSkipButton = function () {
-            skipbutton.style.display = 'none';
+        var hideOrShowSkipButton = function (data) {
+            switch(data.data.url) {
+            case 'signin':
+            case 'signup':
+            case 'reset_password':
+                skipbutton.disabled = false;
+                skipbutton.classList.remove('skipbutton-hidden');
+                break;
+            default:
+                skipbutton.classList.add('skipbutton-hidden');
+                break;
+            }
+        };
+
+        var disableSkipButton = function () {
+            skipbutton.disabled = true;
         };
 
         var onVerificationComplete = function () {
@@ -32,7 +46,8 @@
                 gaEventName: 'firstrun-fxa',
                 onVerificationComplete: onVerificationComplete,
                 onLogin: onVerificationComplete,
-                onSignupMustVerify: hideSkipButton
+                onFormEnabled: disableSkipButton,
+                onNavigated:  hideOrShowSkipButton
             });
         });
 

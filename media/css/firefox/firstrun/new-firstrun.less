@@ -144,10 +144,22 @@ img {
         height: 24px;
         padding: 3px 10px;
 
-        &:hover {
+        &:not([disabled]):hover {
             background-color: #0670cc;
             border-color: #005bab;
         }
+    }
+
+    button[disabled] {
+      background-color: #ebebeb;
+      border-color: #b1b1b1;
+      color: #6a6a6a;
+      opacity: .5;
+      cursor: default;
+    }
+
+    .skipbutton-hidden {
+      display: none;
     }
 
     #sunrise {
