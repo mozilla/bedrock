@@ -14,26 +14,36 @@ $base-line-height: 1.5;
 
 
 // Text colors
-$color-text-primary:   #444;
-$color-text-secondary: #484848;
-$color-text-tertiary:  #666;
+$color-text-primary:    #000;
+$color-text-secondary:  #484848;
+$color-text-tertiary:   #666;
 
 // Brand colors
-$color-mozred:  #c13832;
-$color-mozred-bright: saturate(lighten($color-mozred, 5%), 10%);
-$color-mozblue: #0c99d5;
-$color-mozgray: #56565a;
+$color-mozred:          #c13832;
+$color-mozred-bright:   saturate(lighten($color-mozred, 5%), 10%);
+$color-mozblue:         #0c99d5;
+$color-mozgray:         #56565a;
+
+$color-brand-cyan:      #82d1f5;
+$color-brand-coral:     #ff8c8e;
+$color-brand-yellow:    #ffed00;
+$color-brand-lilac:     #b0b2e9;
+$color-brand-orange:    #faba00;
+$color-brand-lime:      #b6d806;
+$color-brand-neonblue:  #0ff;
+$color-brand-neonpink:  #fa8cff;
+$color-brand-neongreen: #abff10;
 
 // Link colors
-$color-link-blue: #00a7e0;
-$color-link: $color-link-blue; // standard links (blue)
-$color-link-yellow: #ffbb38;
+$color-link-blue:       #00a7e0;
+$color-link:            $color-link-blue; // standard links (blue)
+$color-link-yellow:     #ffbb38;
 
 // Button colors
-$color-button-light: #fff;
-$color-button-dark: #00539f;
-$color-button-green: #4caf50;
-$color-button-orange: #f26c23;
+$color-button-light:    #fff;
+$color-button-dark:     #00539f;
+$color-button-green:    #4caf50;
+$color-button-orange:   #f26c23;
 
 
 // Content widths

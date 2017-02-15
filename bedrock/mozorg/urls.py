@@ -230,6 +230,7 @@ urlpatterns = (
         name='mozorg.contributor-data'),
     url('^internet-health/$', views.internet_health, name='mozorg.internet-health'),
     page('internet-health/privacy-security', 'mozorg/internet-health/privacy-security.html'),
+    page('internet-health/digital-inclusion', 'mozorg/internet-health/digital-inclusion.html'),
     page('moss', 'mozorg/moss/index.html'),
     page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),
     page('moss/mission-partners', 'mozorg/moss/mission-partners.html'),
