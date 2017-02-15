@@ -11,8 +11,10 @@ Mozilla Traffic Cop
 ``mozilla-traffic-cop.js`` handles redirecting users to different A/B/x
 variations through a query parameter.
 
-**``mozilla-traffic-cop.js`` requires ``mozilla-cookie-helper.js``, which is
-included as default in the ``site.js`` bundle for most pages.**
+.. note::
+
+    ``mozilla-traffic-cop.js`` requires ``mozilla-cookie-helper.js``, which is
+    included by default in the ``site.js`` bundle for most pages.
 
 How It Works
 ------------
@@ -31,8 +33,9 @@ will choose the appropriate variation and redirect the user.
 If the percentage exceeds that of the config, no redirect will occur. (This
 could be considered the "control".)
 
-If a variation is chosen, a cookie is set (for the session only) that will
-send the user back to the same variation if/when the page is again visited.
+If a variation is chosen, a cookie is set that will send the user back to the
+same variation if/when the page is again visited. (See below for setting cookie
+duration.)
 
 Any query string parameters present when a user initially lands on a page will be
 propagated to the variation redirect.
@@ -45,9 +48,11 @@ Each instance of the Traffic Cop requires two pieces of configuration:
 - A string ID that is unique to other currently running tests (to avoid confusion when reading cookies)
 - A variations object that lists all variations by query string along with the associated visitor percentage
 
-An implementation might look like::
+An implementation might look like:
 
-    var cop = new Mozilla.TrafficCop({
+.. code-block:: javascript
+
+    var eddie = new Mozilla.TrafficCop({
         id: 'exp_firefox_new_headline',
         variations: {
             'v=1': 25,
@@ -56,20 +61,44 @@ An implementation might look like::
         }
     });
 
-    cop.init();
+    eddie.init();
 
 In the above example, the string "exp_firefox_new_headline" will be used as the
 cookie name should a variation be chosen.
 
 The test will have 3 variations, each targeting 25% of users.
 
+There is also an optional configuration value to specify how long the cookie
+associated with a visitor for an individual experiment will last:
+``cookieExpires``. This value must be a ``Number`` and represents the number of
+hours the cookie will last. If omitted, the cookie will last for 24 hours. A
+value of 0 will result in a session-length cookie.
+
+An implementation with ``cookieExpires`` set might look like:
+
+.. code-block:: javascript
+
+    var lou = new Mozilla.TrafficCop({
+        id: 'exp_mozorg_homepage_spring_2017',
+        cookieExpires: 48, // 2 days
+        variations: {
+            'v=1': 25,
+            'v=2': 25,
+            'v=3': 25
+        }
+    });
+
+    lou.init();
+
 How a Variation is Chosen
 -------------------------
 
 Variations are sorted in the order provided, and percentages are tallied to
-create tiers. Take the following config::
+create tiers. Take the following config:
 
-    var cop = new Mozilla.TrafficCop({
+.. code-block:: javascript
+
+    var rex = new Mozilla.TrafficCop({
         id: 'exp_firefox_new_headline',
         variations: {
             'v=c': 25,
@@ -100,7 +129,9 @@ includes:
 .. Important::
 
     Place this new bundle in the ``experiments`` block of the page, wrapped in a
-    ``switch`` for easy enabling and disabling::
+    ``switch`` for easy enabling and disabling:
+
+    .. code-block:: jinja
 
         {% block experiments %}
           {% if switch('experiment-firefox-new') %}
