@@ -114,6 +114,21 @@ class TestRNAViews(TestCase):
         releasenotes_url.assert_called_with('mock release')
 
     @patch('bedrock.releasenotes.views.get_release_or_404')
+    @patch('bedrock.releasenotes.views.releasenotes_url')
+    def test_release_notes_thunderbird_beta_redirect(self, releasenotes_url,
+                                                     get_release_or_404):
+        """
+        Should redirect to url for Thunderbird Beta release
+        """
+        get_release_or_404.side_effect = [Http404, 'mock release']
+        releasenotes_url.return_value = '/thunderbird/51.0beta/releasenotes/'
+        response = views.release_notes(self.request, '51.0', 'Thunderbird')
+        eq_(response.status_code, 302)
+        eq_(response['location'], '/thunderbird/51.0beta/releasenotes/')
+        get_release_or_404.assert_called_with('51.0beta', 'Thunderbird')
+        releasenotes_url.assert_called_with('mock release')
+
+    @patch('bedrock.releasenotes.views.get_release_or_404')
     def test_system_requirements(self, get_release_or_404):
         """
         Should use release returned from get_release_or_404, with a

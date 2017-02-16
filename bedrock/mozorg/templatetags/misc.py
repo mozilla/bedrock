@@ -430,6 +430,8 @@ def absolute_url(url):
 @library.global_function
 def releasenotes_url(release):
     prefix = 'aurora' if release.channel == 'Aurora' else 'release'
+    if release.product == 'Thunderbird':
+        return reverse('thunderbird.notes', args=[release.version])
     if release.product == 'Firefox for Android':
         return reverse('firefox.android.releasenotes', args=(release.version, prefix))
     if release.product == 'Firefox for iOS':
