@@ -209,6 +209,10 @@ class FirefoxDesktop(_ProductDetails):
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
         _platform = 'win' if platform == 'winsha1' else platform
 
+        # Bug 1340087 - Only include funnelcake params for Windows 32bit en-US builds by default.
+        include_funnelcake_param = (funnelcake_id and _platform in settings.FUNNELCAKE_PLATFORMS and
+                                    _locale in settings.FUNNELCAKE_LOCALES)
+
         # Nightly and Aurora have a special download link format
         # see bug 1324001
         if channel in ['alpha', 'nightly']:
@@ -246,13 +250,13 @@ class FirefoxDesktop(_ProductDetails):
                 suffix = 'latest'
 
             _version = ('beta-' if channel == 'beta' else '') + suffix
-        elif not funnelcake_id:
+        elif not include_funnelcake_param:
             # Force download via SSL. Stub installers are always downloaded via SSL.
             # Funnelcakes may not be ready for SSL download
             _version += '-SSL'
 
         # append funnelcake id to version if we have one
-        if funnelcake_id:
+        if include_funnelcake_param:
             _version = '{vers}-f{fc}'.format(vers=_version, fc=funnelcake_id)
 
         # Check if direct download link has been requested

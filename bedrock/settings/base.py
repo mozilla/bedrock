@@ -1304,3 +1304,7 @@ if config('SWITCH_TRACKING_PIXEL', default=DEV, cast=bool):
     CSP_IMG_SRC += (
         'ad.doubleclick.net',
     )
+
+# Bug 1340087 - Funnelcake experiments default to Windows 32bit and en-US builds only.
+FUNNELCAKE_PLATFORMS = config('FUNNELCAKE_PLATFORMS', default='win', cast=Csv())
+FUNNELCAKE_LOCALES = config('FUNNELCAKE_LOCALES', default='en-US', cast=Csv())
