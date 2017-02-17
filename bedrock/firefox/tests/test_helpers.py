@@ -129,7 +129,9 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[2]).attr('class'), 'os_osx')
         eq_(pq(list[3]).attr('class'), 'os_linux')
         eq_(pq(list[4]).attr('class'), 'os_linux64')
-        ok_('stub' in pq(pq(list[1]).find('a')[0]).attr('href'))
+        # stub disabled for now for non-en-US locales
+        # bug 1339870
+        # ok_('stub' in pq(pq(list[1]).find('a')[0]).attr('href'))
 
     def test_aurora_desktop(self):
         """The Aurora channel should have Windows 64 build"""
