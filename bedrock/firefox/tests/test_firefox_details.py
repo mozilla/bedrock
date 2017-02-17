@@ -507,17 +507,10 @@ class TestFirefoxAndroid(TestCase):
         """latest_version should return the latest beta version."""
         eq_(firefox_android.latest_version('beta'), '23.0')
 
-    @patch.object(firefox_android, 'latest_version', Mock(return_value='48.0a2'))
     def test_latest_alpha_platforms(self):
-        """Android Gingerbread (2.3) is no longer supported as of Firefox 48"""
+        """latest_version should return the latest Aurora version."""
         platforms = [key for (key, value) in firefox_android.platforms('alpha')]
         eq_(platforms, ['android', 'android-x86'])
-
-    @patch.object(firefox_android, 'latest_version', Mock(return_value='47.0a2'))
-    def test_legacy_alpha_platforms(self):
-        """Android Gingerbread (2.3) is supported as of Firefox 47"""
-        platforms = [key for (key, value) in firefox_android.platforms('alpha')]
-        eq_(platforms, ['android', 'android-api-9', 'android-x86'])
 
     def test_get_download_url_nightly(self):
         """

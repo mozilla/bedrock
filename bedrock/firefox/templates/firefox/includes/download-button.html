@@ -34,7 +34,6 @@
 {% set download_class = download_class ~ ' download-button-android' if not (show_desktop or show_ios) else download_class %}
 {% set download_class = download_class ~ ' download-button-desktop' if not (show_android or show_ios) else download_class %}
 {% set download_class = download_class ~ ' download-button-ios' if not (show_desktop or show_android) else download_class %}
-{% set download_class = download_class ~ ' mavericks-required' if mavericks_required else download_class %}
 
 <div id="{{ id }}" class="{{ download_class }}">
   {# no JS #}
