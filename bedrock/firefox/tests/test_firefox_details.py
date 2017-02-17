@@ -164,7 +164,7 @@ class TestFirefoxDesktop(TestCase):
         """Aurora non en-US should have a slightly different product name."""
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-stub-l10n'),
+                             [('product', 'firefox-aurora-latest-l10n-ssl'),
                               ('os', 'win'),
                               ('lang', 'pt-BR')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win64', 'pt-BR', True)
@@ -254,7 +254,7 @@ class TestFirefoxDesktop(TestCase):
         """Nightly non en-US should have a slightly different product name."""
         url = firefox_desktop.get_download_url('nightly', '50.0a1', 'win', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-nightly-stub-l10n'),
+                             [('product', 'firefox-nightly-latest-l10n-ssl'),
                               ('os', 'win'),
                               ('lang', 'pt-BR')])
         url = firefox_desktop.get_download_url('nightly', '50.0a1', 'win64', 'pt-BR', True)

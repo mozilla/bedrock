@@ -218,11 +218,9 @@ class FirefoxDesktop(_ProductDetails):
         if channel in ['alpha', 'nightly']:
             prod_name = 'firefox-nightly' if channel == 'nightly' else 'firefox-aurora'
             # Use the stub installer for 32-bit Windows
-            if _platform == 'win' and not force_full_installer:
+            if _platform == 'win' and locale == 'en-US' and not force_full_installer:
                 # Download links are different for localized versions
                 suffix = 'stub'
-                if locale != 'en-US':
-                    suffix = 'stub-l10n'
             else:
                 suffix = 'latest-ssl'
                 if locale != 'en-US':
