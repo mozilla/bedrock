@@ -47,7 +47,7 @@
             if (pf.indexOf('MacPPC') !== -1) {
                 return 'oldmac';
             }
-            if (/Mac OS X 10.[0-5]\D/.test(ua)) {
+            if (/Mac OS X 10.[0-8]\D/.test(ua)) {
                 return 'oldmac';
             }
             if (pf.indexOf('iPhone') !== -1 ||
@@ -169,18 +169,6 @@
             }
         } else {
             h.className = h.className.replace('windows', platform);
-
-            // Firefox 49 has dropped the support for OS X 10.6-10.8. Add a class name to show an unsupported platform
-            // message to people using those older versions. Once Firefox 49 hits the Release channel, update the
-            // "oldmac" platform detection above and remove this.
-            if (platform === 'osx' && version && version.match(/^10\.[678]$/)) {
-                h.className += ' pre-mavericks';
-            }
-
-            // Add class to support downloading Firefox Aurora for Android Gingerbread
-            if (platform === 'android' && version && parseFloat(version) === 2.3) {
-                h.className += ' gingerbread';
-            }
         }
 
         // Add class to reflect the microprocessor architecture info

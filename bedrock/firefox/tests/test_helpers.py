@@ -12,7 +12,6 @@ from pyquery import PyQuery as pq
 from product_details import product_details
 from bedrock.mozorg.tests import TestCase
 from bedrock.firefox.templatetags import helpers
-from bedrock.firefox.firefox_details import firefox_android
 
 jinja_env = Jinja2.get_default()
 
@@ -184,10 +183,8 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[4]).attr('class'), 'os_linux')
         eq_(pq(list[5]).attr('class'), 'os_linux64')
 
-    @patch.object(firefox_android._storage, 'data',
-                  Mock(return_value=dict(nightly_version='48.0a2')))
     def test_latest_nightly_android(self):
-        """Android Gingerbread (2.3) is no longer supported as of Firefox 48"""
+        """The download button should have 2 direct archive links"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
         doc = pq(render("{{ download_firefox('nightly', platform='android') }}",
@@ -203,51 +200,8 @@ class TestDownloadButtons(TestCase):
         ok_(pq(links[0]).attr('href').startswith('https://archive.mozilla.org'))
         ok_(pq(links[1]).attr('href').startswith('https://archive.mozilla.org'))
 
-    @patch.object(firefox_android._storage, 'data',
-                  Mock(return_value=dict(nightly_version='47.0a2')))
-    def test_legacy_nightly_android(self):
-        """Android Gingerbread (2.3) is supported as of Firefox 47"""
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        doc = pq(render("{{ download_firefox('nightly', platform='android') }}",
-                        {'request': get_request}))
-
-        list = doc('.download-list li')
-        eq_(list.length, 3)
-        eq_(pq(list[0]).attr('class'), 'os_android armv7up api-9')
-        eq_(pq(list[1]).attr('class'), 'os_android armv7up api-15')
-        eq_(pq(list[2]).attr('class'), 'os_android x86')
-
-        links = doc('.download-list li a')
-        eq_(links.length, 3)
-        ok_(pq(links[0]).attr('href').startswith('https://archive.mozilla.org'))
-        ok_(pq(links[1]).attr('href').startswith('https://archive.mozilla.org'))
-        ok_(pq(links[2]).attr('href').startswith('https://archive.mozilla.org'))
-
-    @patch.object(firefox_android._storage, 'data',
-                  Mock(return_value=dict(alpha_version='48.0a2')))
     def test_latest_aurora_android(self):
-        """Android Gingerbread (2.3) is no longer supported as of Firefox 48"""
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        doc = pq(render("{{ download_firefox('alpha', platform='android') }}",
-                        {'request': get_request}))
-
-        list = doc('.download-list li')
-        eq_(list.length, 1)
-        eq_(pq(list[0]).attr('class'), 'os_android')
-
-        links = doc('.download-list li a')
-        eq_(links.length, 1)
-        ok_(pq(links[0]).attr('href').startswith('https://play.google.com'))
-
-        list = doc('.download-other .arch')
-        eq_(list.length, 0)
-
-    @patch.object(firefox_android._storage, 'data',
-                  Mock(return_value=dict(alpha_version='47.0a2')))
-    def test_legacy_aurora_android(self):
-        """Android Gingerbread (2.3) is supported as of Firefox 47"""
+        """The download button should have a Google Play link"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
         doc = pq(render("{{ download_firefox('alpha', platform='android') }}",
@@ -265,6 +219,7 @@ class TestDownloadButtons(TestCase):
         eq_(list.length, 0)
 
     def test_beta_mobile(self):
+        """The download button should have a Google Play link"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
         doc = pq(render("{{ download_firefox('beta', platform='android') }}",
@@ -282,6 +237,7 @@ class TestDownloadButtons(TestCase):
         eq_(list.length, 0)
 
     def test_firefox_mobile(self):
+        """The download button should have a Google Play link"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
         doc = pq(render("{{ download_firefox(platform='android') }}",

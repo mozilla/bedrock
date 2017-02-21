@@ -136,6 +136,7 @@ ul.download-list {
 .linux .download-button .os_linux,
 .linux.x86.x64 .download-button .os_linux64,
 .windows .download-button .os_win,
+.osx .download-button .os_osx,
 .android .download-button .os_android,
 .download-button-android .os_android,
 .android .download-button-desktop .download-list,
@@ -149,15 +150,6 @@ ul.download-list {
     display: block !important;
 }
 
-// Add another rule for old browsers where :not isn't supported. If this is
-// mixed with the rule above, the entire rule will be invalid on those legacy
-// environments and some tests will fail.
-.osx:not(.pre-mavericks) .download-button .os_osx,
-.osx.pre-mavericks .download-button:not(.mavericks-required) .os_osx {
-    display: block !important;
-}
-
-.osx.pre-mavericks .download-button.mavericks-required .unsupported-download-osx,
 .windows.arm .download-button .unsupported-download,
 .linux.arm .download-button .linux-arm-download,
 .oldwin .download-button .unsupported-download,
@@ -167,7 +159,6 @@ ul.download-list {
 }
 
 // Hide the privacy link if platform is unsupported.
-.osx.pre-mavericks .download-button.mavericks-required .fx-privacy-link,
 .windows.arm .download-button .fx-privacy-link,
 .linux.arm .download-button .fx-privacy-link,
 .oldwin .download-button .fx-privacy-link,
@@ -190,22 +181,17 @@ ul.download-list {
 }
 
 // Android architecture detection
-.download-button .download-list .os_android.api-9,
 .download-button .download-list .os_android.x86,
 .download-button .download-other.os_android .api-15,
-.android.gingerbread .download-button .download-list .os_android.api-15,
-.android.gingerbread .download-button .download-other.os_android .api-9,
 .android.x86 .download-button .download-list .os_android.armv7up,
 .android.x86 .download-button .download-other.os_android .x86 {
     display: none !important;
 }
 
-.android.gingerbread .download-button .download-list .os_android.api-9,
 .android.x86 .download-button .download-list .os_android.x86 {
     display: block !important;
 }
 
-.android.gingerbread .download-button .download-other.os_android .api-15,
 .android.x86 .download-button .download-other.os_android .armv7up {
     display: inline !important;
 }

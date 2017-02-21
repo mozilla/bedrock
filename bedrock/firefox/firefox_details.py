@@ -282,9 +282,8 @@ class FirefoxDesktop(_ProductDetails):
 class FirefoxAndroid(_ProductDetails):
     # Architecture names defined in bouncer and these human-readable names
     platform_labels = OrderedDict([
-        ('api-15', _('Modern devices\n(Android 4.0+)')),
-        ('api-9', _('Legacy devices\n(Android 2.3)')),
-        ('x86', _('Intel devices\n(Android 4.0+ x86 CPU)')),
+        ('api-15', _('ARM devices\n(Android 4.0.3+)')),
+        ('x86', _('Intel devices\n(Android 4.0.3+ x86 CPU)')),
     ])
 
     # Human-readable channel names
@@ -312,7 +311,6 @@ class FirefoxAndroid(_ProductDetails):
     # Platform names defined in bouncer
     platform_map = OrderedDict([
         ('api-15', 'android'),
-        ('api-9', 'android-api-9'),
         ('x86', 'android-x86'),
     ])
 
@@ -337,7 +335,6 @@ class FirefoxAndroid(_ProductDetails):
         'alpha': 'aurora',
     }
     archive_urls = {
-        'api-9': archive_url_base + '-api-9/fennec-%s.multi.android-arm.apk',
         'api-15': archive_url_base + '-api-15/fennec-%s.multi.android-arm.apk',
         'x86': archive_url_base + '-x86/fennec-%s.multi.android-i386.apk',
     }
@@ -349,18 +346,6 @@ class FirefoxAndroid(_ProductDetails):
         # key is a bouncer platform name, value is the human-readable label
         for arch, platform in self.platform_map.iteritems():
             platforms[platform] = self.platform_labels[arch]
-
-        major_version = int(self.latest_version(channel).split('.', 1)[0])
-
-        # Android Gingerbread (2.3) is no longer supported as of Firefox 48
-        if major_version >= 48:
-            platforms['android'] = _('ARM devices\n(Android 4.0.3+)')
-            platforms['android-x86'] = _('Intel devices\n(Android 4.0.3+ x86 CPU)')
-            del platforms['android-api-9']
-
-        # Android Honeycomb (3.x) was supported on Firefox 45 and below
-        if major_version <= 45:
-            platforms['android'] = _('Modern devices\n(Android 3.0+)')
 
         return platforms.items()
 

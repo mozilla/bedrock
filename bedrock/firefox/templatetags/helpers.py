@@ -75,7 +75,6 @@ def android_builds(channel, builds=None):
     channel = channel.lower()
     builds = builds or []
     variations = OrderedDict([
-        ('api-9', 'Gingerbread'),
         ('api-15', 'Ice Cream Sandwich+'),
         ('x86', 'x86'),
     ])
@@ -84,13 +83,7 @@ def android_builds(channel, builds=None):
         channel = 'alpha'
 
     if channel == 'nightly':
-        version = int(firefox_android.latest_version(channel).split('.', 1)[0])
-
         for type, arch_pretty in variations.iteritems():
-            # Android Gingerbread (2.3) is no longer supported as of Firefox 48
-            if version >= 48 and type == 'api-9':
-                continue
-
             link = firefox_android.get_download_url(channel, type)
             builds.append({'os': 'android',
                            'os_pretty': 'Android',
@@ -206,9 +199,6 @@ def download_firefox(ctx, channel='release', platform='all',
     langs = firefox_desktop.languages
     locale_name = langs[locale]['native'] if locale in langs else locale
 
-    # Firefox 49+ requires OS X 10.9 Mavericks and later
-    mavericks_required = show_desktop and int(version.split('.', 1)[0]) >= 49
-
     data = {
         'locale_name': locale_name,
         'version': version,
@@ -221,7 +211,6 @@ def download_firefox(ctx, channel='release', platform='all',
         'show_ios': show_ios,
         'alt_copy': alt_copy,
         'button_color': button_color,
-        'mavericks_required': mavericks_required,
     }
 
     html = render_to_string('firefox/includes/download-button.html', data,
