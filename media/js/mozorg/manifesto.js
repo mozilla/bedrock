@@ -7,6 +7,7 @@ $(function() {
 
     var ltr = document.dir === 'ltr';
     var historyEnabled = typeof history.replaceState === 'function';
+    var utils = Mozilla.Utils;
 
     // Use the History API to update location.hash
     var updateHistory = function (sectionId) {
@@ -65,9 +66,9 @@ $(function() {
                     var $nav = $('<nav role="presentation"></nav>').insertBefore('#modal-close');
 
                     $('<button class="next" aria-controls="modal"></button>')
-                        .text(window.trans('principle-nav-next')).appendTo($nav);
+                        .text(utils.trans('principle-nav-next')).appendTo($nav);
                     $('<button class="prev" aria-controls="modal"></button>')
-                        .text(window.trans('principle-nav-prev')).appendTo($nav);
+                        .text(utils.trans('principle-nav-prev')).appendTo($nav);
 
                     $nav.on('click', 'button', function () {
                         var $this = $(this);
@@ -105,7 +106,7 @@ $(function() {
             }
         });
 
-        $('<p class="more"></p>').text(window.trans('principle-read-more').replace('…', ''))
+        $('<p class="more"></p>').text(utils.trans('principle-read-more').replace('…', ''))
             .appendTo($this.find('header'));
     });
 

@@ -188,12 +188,13 @@
          */
         initMobileNav: function () {
             var id = $('#entry-container .entry').prop('id');
+            var utils = Mozilla.Utils;
             // Create select form inputs for primary mobile navigation
             $('.nav-category').each(function() {
                 var $this = $(this);
                 var tab = $this.find('ul').data('tab');
                 var $select = $('<select class="nav-category-select">').prependTo('#page-content');
-                $('<option value="" disabled selected>-- ' + window.trans('nav-' + tab) + ' --</option>').prependTo($select);
+                $('<option value="" disabled selected>-- ' + utils.trans('nav-' + tab) + ' --</option>').prependTo($select);
                 $this.find('li').each(function() {
                     var $li = $(this),
                         $a = $li.find('> a'),

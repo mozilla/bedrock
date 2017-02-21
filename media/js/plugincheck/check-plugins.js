@@ -3,7 +3,8 @@
 $(function() {
     'use strict';
 
-    var client = window.Mozilla.Client;
+    var client = Mozilla.Client;
+    var utils = Mozilla.Utils;
     var wrapper = $('#wrapper');
 
     // Plugin containers
@@ -25,19 +26,19 @@ $(function() {
     var $upToDatePluginsBody = $('#plugin-uptodate');
 
     // Plugin button text and status strings
-    var _updateNowButtonText = window.trans('buttonUpdateNow');
-    var _learnMoreButtonText = window.trans('buttonLearnMore');
-    var _iconAltText = window.trans('iconAltTxt');
-    var _pluginStatusUpToDate = window.trans('upToDate');
-    var _pluginStatusVulnerable = window.trans('vulnerable');
-    var _pluginStatusOutdated = window.trans('outdated');
-    var _pluginStatusUnknown = window.trans('unknown');
+    var _updateNowButtonText = utils.trans('buttonUpdateNow');
+    var _learnMoreButtonText = utils.trans('buttonLearnMore');
+    var _iconAltText = utils.trans('iconAltTxt');
+    var _pluginStatusUpToDate = utils.trans('upToDate');
+    var _pluginStatusVulnerable = utils.trans('vulnerable');
+    var _pluginStatusOutdated = utils.trans('outdated');
+    var _pluginStatusUnknown = utils.trans('unknown');
 
     // Total number of vulnerable plugins that are *not* featured plugins.
     var _otherPluginVulnerableCount = 0;
 
     // Plugin icons
-    var mediaURL = window.trans('mediaUrl') + 'img/plugincheck/app-icons/';
+    var mediaURL = utils.trans('mediaUrl') + 'img/plugincheck/app-icons/';
     var readerRegEx = /Adobe \b(Reader|Acrobat)\b.*/;
     var iconFor = function (pluginName) {
         if (pluginName.indexOf('Flash') >= 0) {

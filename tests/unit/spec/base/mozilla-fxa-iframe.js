@@ -257,7 +257,7 @@ describe('mozilla-fxa-iframe.js', function() {
                 command: 'login'
             };
 
-            spyOn(window, 'doRedirect').and.callFake(function(destination) {
+            spyOn(Mozilla.Utils, 'doRedirect').and.callFake(function(destination) {
                 expect(destination).toEqual(fxaHost + '/settings');
                 done();
             });

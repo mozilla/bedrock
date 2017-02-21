@@ -6,6 +6,7 @@
     'use strict';
 
     var ltr = document.dir === 'ltr';
+    var utils = Mozilla.Utils;
 
     // Set up the modal navigation
     var navModal = function(direction) {
@@ -44,9 +45,9 @@
                     var $nav = $('<nav role="presentation"></nav>').insertBefore('#modal-close');
 
                     $('<button class="next" aria-controls="modal"></button>')
-                        .text(window.trans('global-next')).appendTo($nav);
+                        .text(utils.trans('global-next')).appendTo($nav);
                     $('<button class="prev" aria-controls="modal">prev</button>')
-                        .text(window.trans('global-previous')).appendTo($nav);
+                        .text(utils.trans('global-previous')).appendTo($nav);
 
                     $nav.on('click', 'button', function() {
                         var $this = $(this);

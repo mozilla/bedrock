@@ -5,10 +5,12 @@
 (function($) {
     'use strict';
 
+    var utils = Mozilla.Utils;
+
     if ($('.story-more').length > 0) {
         var person = $('.story-title .name').text();
         var $more = $('.story-more');
-        var $moreToggle = $('<div class="more-toggle"><button type="button">' + window.trans('more') + '</button></div>');
+        var $moreToggle = $('<div class="more-toggle"><button type="button">' + utils.trans('more') + '</button></div>');
         $moreToggle.insertAfter($more);
         var $toggleButton = $('.more-toggle button');
 
@@ -18,7 +20,7 @@
         $toggleButton.on('click', function() {
             $more.slideToggle('fast', function() {
                 if ($more.is(':visible')) {
-                    $toggleButton.addClass('open').text(window.trans('less'));
+                    $toggleButton.addClass('open').text(utils.trans('less'));
                     $(this).attr('aria-hidden', 'false');
                     window.dataLayer.push({
                         'event': 'mozillian-stories-interaction',
@@ -26,7 +28,7 @@
                         'location': 'main'
                     });
                 } else {
-                    $toggleButton.removeClass('open').text(window.trans('more'));
+                    $toggleButton.removeClass('open').text(utils.trans('more'));
                     $(this).attr('aria-hidden', 'true');
                     window.dataLayer.push({
                         'event': 'mozillian-stories-interaction',

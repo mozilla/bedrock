@@ -11,7 +11,7 @@ module.exports = function(config) {
         files: [
             'media/js/libs/jquery-1.11.3.min.js',
             'media/js/base/site.js',
-            'media/js/base/global.js',
+            'media/js/base/mozilla-utils.js',
             'media/js/base/dnt-helper.js',
             'media/js/base/core-datalayer-page-id.js',
             'media/js/base/mozilla-accordion-gatrack.js',
@@ -43,7 +43,7 @@ module.exports = function(config) {
             'media/js/base/send-to-device.js',
             'media/js/base/core-datalayer.js',
             'tests/unit/spec/base/site.js',
-            'tests/unit/spec/base/global.js',
+            'tests/unit/spec/base/mozilla-utils.js',
             'tests/unit/spec/base/dnt-helper.js',
             'tests/unit/spec/base/core-datalayer-page-id.js',
             'tests/unit/spec/base/mozilla-client.js',

@@ -33,6 +33,7 @@ function onYouTubeIframeAPIReady() {
     var queryIsLargeScreen = matchMedia('(min-width: 900px)');
     var isHighRes = Mozilla.ImageHelper.isHighDpi();
     var client = Mozilla.Client;
+    var utils = Mozilla.Utils;
 
     function onYouTubeIframeAPIReady() {
 
@@ -94,12 +95,12 @@ function onYouTubeIframeAPIReady() {
 
     // make sure we strip any HTML tags before injecting door hanger text
     function getText(string) {
-        return $('<div/>').html(window.trans(string)).text();
+        return $('<div/>').html(utils.trans(string)).text();
     }
 
     // shows the Dev Tools doorhanger step
     function showDevToolsDoorhanger() {
-        var icon = isHighRes ? window.trans('devtoolsIconHighRes') : window.trans('devtoolsIcon');
+        var icon = isHighRes ? utils.trans('devtoolsIconHighRes') : utils.trans('devtoolsIcon');
         var buttons = [];
         var options = {};
 
@@ -162,7 +163,7 @@ function onYouTubeIframeAPIReady() {
 
     // shows the Sync doorhanger step
     function showSyncDoorhanger() {
-        var icon = isHighRes ? window.trans('syncIconHighRes') : window.trans('syncIcon');
+        var icon = isHighRes ? utils.trans('syncIconHighRes') : utils.trans('syncIcon');
         var buttons = [
             {
                 label: getText('doorhangerClose'),
@@ -218,7 +219,7 @@ function onYouTubeIframeAPIReady() {
 
         skipTour();
 
-        icon = isHighRes ? window.trans('syncIconHighRes') : window.trans('syncIcon');
+        icon = isHighRes ? utils.trans('syncIconHighRes') : utils.trans('syncIcon');
 
         options = {
             closeButtonCallback: hideAnnotation
