@@ -45,7 +45,7 @@ You shouldn't need to customize anything in there yet.
 
 Sync the database and all of the external data locally. This gets product-details, security-advisories, credits, release notes, etc::
 
-    $ bin/sync_all
+    $ bin/sync-all.sh
 
 Lastly, you need to have `Node.js <https://nodejs.org/>`_ and
 `NPM <https://docs.npmjs.com/getting-started/installing-node>`_ installed. The node

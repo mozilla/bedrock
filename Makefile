@@ -44,7 +44,7 @@ shell: .docker-build
 	docker run --user `id -u` -it --env-file docker/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} bash
 
 sync-all: .docker-build
-	docker run --user `id -u` --env-file docker/demo.env -v "$$PWD:/app" ${DEV_IMG_NAME} bin/sync_all
+	docker run --user `id -u` --env-file docker/demo.env -v "$$PWD:/app" ${DEV_IMG_NAME} bin/sync-all.sh
 
 clean:
 	# python related things
@@ -69,10 +69,10 @@ clean:
 	-rm -f .docker-build-final
 
 test: .docker-build
-	docker run --user `id -u` --env-file docker/test.env -v "$$PWD:/app" ${DEV_IMG_NAME} docker/run-tests.sh
+	docker run --user `id -u` --env-file docker/test.env -v "$$PWD:/app" ${DEV_IMG_NAME} bin/run-tests.sh
 
 test-image: .docker-build-final
-	docker run --env-file docker/test.env ${FINAL_IMG_NAME} docker/run-tests.sh
+	docker run --env-file docker/test.env ${FINAL_IMG_NAME} bin/run-tests.sh
 
 docs:
 	docker run --user `id -u` --env-file docker/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} bash -c "make -C docs/ clean && make -C docs/ html"

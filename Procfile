@@ -1,2 +1,2 @@
-web: ./docker/run.sh
-clock: ./docker/run-clock.sh
+web: ./bin/run.sh
+clock: ./bin/run-clock.sh

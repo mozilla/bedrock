@@ -74,7 +74,7 @@ fi
 
 # include the data that the deployments need
 if $DEMO_MODE && ! imageExists "demo"; then
-    dockerRun demo code bin/sync_all
+    dockerRun demo code bin/sync-all.sh
     docker/jenkins/docker_build.sh "demo"
 fi
 if $PROD_MODE && ! imageExists "l10n"; then
