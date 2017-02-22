@@ -1,0 +1,11 @@
+FROM mozorg/bedrock_code:${GIT_COMMIT}
+
+CMD ["./docker/run-tests.sh"]
+USER root
+
+RUN pip install --no-cache-dir -r requirements/test.txt
+COPY ./setup.cfg ./
+COPY ./tests ./tests
+
+RUN chown webdev.webdev -R .
+USER webdev

@@ -56,6 +56,10 @@ clean:
 
 	# test related things
 	-rm -f .coverage
+	-rm -rf results
+
+	# static files
+	git clean -fdx static
 
 	# docs files
 	-rm -rf docs/_build/

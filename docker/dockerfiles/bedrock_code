@@ -1,20 +1,25 @@
-FROM ${FROM_DOCKER_REPOSITORY}:${GIT_COMMIT}
+FROM mozorg/bedrock_base:${GIT_COMMIT}
 
-COPY . /app
+# changes infrequently
+COPY ./bin ./bin
+COPY ./etc ./etc
+COPY ./lib ./lib
+COPY ./root_files ./root_files
+COPY ./scripts ./scripts
+COPY ./wsgi ./wsgi
+COPY ./manage.py ./
+COPY ./LICENSE ./
+COPY ./newrelic.ini ./
+COPY ./contribute.json ./
 
-RUN echo "${GIT_COMMIT}" > static/revision.txt
+# changes more frequently
+COPY ./docker ./docker
+COPY ./vendor-local ./vendor-local
+COPY ./bedrock ./bedrock
+COPY ./media ./media
+COPY ./static ./static
 
-# --unsafe-perm required for lockdown to function
-RUN npm install --production --unsafe-perm
-RUN ./manage.py collectstatic -l --noinput
-
-# Cleanup
-RUN rm -rf node_modules
-RUN ./docker/bin/softlinkstatic.py
-RUN apt-get purge -y nodejs npm python-dev build-essential libxml2-dev libxslt1-dev
-RUN apt-get autoremove -y
-RUN rm -rf /var/lib/{apt,dpkg,cache,log} /usr/share/doc /usr/share/man /tmp/* /var/cache/*
-
+ENV GIT_SHA ${GIT_COMMIT}
 # Change User
 RUN chown webdev.webdev -R .
 USER webdev

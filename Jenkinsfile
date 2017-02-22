@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('github.com/mozmar/jenkins-pipeline@20170126.1')
+@Library('github.com/mozmar/jenkins-pipeline@20170214.1')
 
 def config
 def utils
@@ -10,12 +10,15 @@ stage ('Checkout') {
         checkout scm
         sh 'git submodule sync'
         sh 'git submodule update --init --recursive'
-        // defined in the Library loaded above
-        setGitEnvironmentVariables()
+        // clean up
+        sh 'make clean'
         // load the config
         config = readYaml file: 'jenkins.yml'
         // load the utility functions used below
         utils = load 'docker/jenkins/utils.groovy'
+        // defined in the Library loaded above
+        setGitEnvironmentVariables()
+        setConfigEnvironmentVariables(config)
         // save the files for later
         stash name: 'scripts', includes: 'bin/,docker/'
         stash name: 'tests', includes: 'tests/,requirements/'
@@ -39,62 +42,47 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                 }
             }
             utils.ircNotification(config, [stage: 'Test & Deploy', status: 'starting'])
-            try {
-                utils.buildDockerImage(dockerfile: 'bedrock_base', update: true)
-                utils.buildDockerImage(dockerfile: 'bedrock_code', fromDockerfile: 'bedrock_base')
-            } catch(err) {
-                utils.ircNotification(config, [stage: 'Docker Build', status: 'failure'])
-                throw err
+            lock ("bedrock-docker-${env.GIT_COMMIT}") {
+                try {
+                    sh 'docker/jenkins/build_images.sh --prod --test'
+                } catch(err) {
+                    utils.ircNotification(config, [stage: 'Docker Build', status: 'failure'])
+                    throw err
+                }
             }
         }
     }
 
     milestone()
     stage ('Test Images') {
-        node {
-            unstash 'scripts'
-            try {
-                withEnv(['DOCKER_REPOSITORY=mozorg/bedrock_code']) {
-                    sh 'docker/jenkins/run_tests.sh'
+        parallel([
+            integration_tests: utils.integrationTestJob('local'),
+            unit_tests: {
+                node {
+                    unstash 'scripts'
+                    try {
+                        sh 'docker/jenkins/run_tests.sh'
+                    } catch(err) {
+                        utils.ircNotification(config, [stage: 'Unit Test', status: 'failure'])
+                        throw err
+                    }
                 }
-            } catch(err) {
-                utils.ircNotification(config, [stage: 'Unit Test', status: 'failure'])
-                throw err
-            }
-            utils.ircNotification(config, [stage: 'Docker Builds & Tests', status: 'complete'])
-        }
+            },
+        ])
     }
 
     milestone()
     stage ('Push Public Images') {
-        parallel([
-            dockerhub: {
-                node {
-                    unstash 'scripts'
-                    try {
-                        utils.buildDockerImage(dockerfile: 'bedrock_l10n', fromDockerfile: 'bedrock_code', script: 'include_l10n.sh')
-                    } catch(err) {
-                        utils.ircNotification(config, [stage: 'L10n Build', status: 'failure'])
-                        throw err
-                    }
-                    try {
-                        utils.pushDockerhub('mozorg/bedrock_base')
-                        utils.pushDockerhub('mozorg/bedrock_code')
-                        utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
-                    } catch(err) {
-                        utils.ircNotification(config, [stage: 'Dockerhub Push Failed', status: 'warning'])
-                    }
-                }
-            },
-            integration_tests: {
-                node {
-                    unstash 'scripts'
-                    unstash 'tests'
-                    // prep for next stage
-                    sh 'docker/jenkins/build_integration_test_image.sh'
-                }
-            },
-        ])
+        node {
+            unstash 'scripts'
+            try {
+                utils.pushDockerhub('mozorg/bedrock_base')
+                utils.pushDockerhub('mozorg/bedrock_code')
+                utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
+            } catch(err) {
+                utils.ircNotification(config, [stage: 'Dockerhub Push Failed', status: 'warning'])
+            }
+        }
     }
 
     /**
@@ -179,16 +167,14 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
     node {
         utils.ircNotification(config, [stage: 'Demo Deploy', status: 'starting'])
         stage ('build') {
-            milestone()
-            try {
-                sh 'make clean'
-                sh 'make sync-all'
-                sh 'echo "ENV GIT_SHA ${GIT_COMMIT}" >> docker/dockerfiles/bedrock_dev_final'
-                sh 'echo "RUN echo ${GIT_COMMIT} > static/revision.txt" >> docker/dockerfiles/bedrock_dev_final'
-                sh 'make build-final'
-            } catch(err) {
-                utils.ircNotification(config, [stage: 'Demo Build', status: 'failure'])
-                throw err
+            lock ("bedrock-docker-${env.GIT_COMMIT}") {
+                milestone()
+                try {
+                    sh 'docker/jenkins/build_images.sh --demo'
+                } catch(err) {
+                    utils.ircNotification(config, [stage: 'Demo Build', status: 'failure'])
+                    throw err
+                }
             }
         }
 

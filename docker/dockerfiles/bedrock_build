@@ -1,0 +1,14 @@
+FROM mozorg/bedrock_base:${GIT_COMMIT}
+
+ENV PATH=/node_modules/.bin:$PATH
+ENV PIPELINE_LESS_BINARY=lessc
+ENV PIPELINE_SASS_BINARY=node-sass
+ENV PIPELINE_YUGLIFY_BINARY=yuglify
+
+RUN apt-get install -y --no-install-recommends nodejs-legacy npm
+
+COPY ./node_modules /
+COPY ./package.json /
+COPY ./lockdown.json /
+# --unsafe-perm required for lockdown to function
+RUN cd / && npm install --production --unsafe-perm
