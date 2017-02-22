@@ -85,7 +85,7 @@ Pipeline integration
 Our `Jenkinsfile`_ will run the integration tests based on information in our `jenkins.yml file`_.
 This file specifies various test names per branch that will cause it to use different
 parameters, allowing it to be called in many different ways to cover the testing
-needs. The job executes `this script <https://github.com/mozilla/bedrock/blob/master/docker/jenkins/run_integration_tests.sh>`_,
+needs. The job executes `this script <https://github.com/mozilla/bedrock/blob/master/docker/bin/run_integration_tests.sh>`_,
 which then runs `this Docker image <https://github.com/mozilla/bedrock/blob/master/docker/dockerfiles/bedrock_test>`_,
 and ultimately runs `another script <https://github.com/mozilla/bedrock/blob/master/bin/run-integration-tests.sh>`_.
 The two scripts can also be executed locally to replicate the way Jenkins operates.
@@ -124,7 +124,7 @@ Adding test runs
 ~~~~~~~~~~~~~~~~
 
 Test runs can be added by creating a new properties section in the
-`integration tests script <https://github.com/mozilla/bedrock/blob/master/docker/jenkins/run_integration_tests.sh>`_
+`integration tests script <https://github.com/mozilla/bedrock/blob/master/docker/bin/run_integration_tests.sh>`_
 with the parameters of the new test run. This is simply a bash script and you can duplicate a clause of the case staement.
 For example, if you wanted to run tests in Firefox on both Windows 10 and
 OS X, you could create the following clauses:

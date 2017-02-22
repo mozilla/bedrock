@@ -9,4 +9,4 @@ if [[ -z "$GIT_COMMIT" ]]; then
 fi
 
 TEST_IMAGE_TAG="mozorg/bedrock_test:${GIT_COMMIT}"
-docker run --env-file docker/test.env "$TEST_IMAGE_TAG"
+docker run --env-file docker/envfiles/test.env "$TEST_IMAGE_TAG"

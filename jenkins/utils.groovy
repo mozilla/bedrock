@@ -37,7 +37,7 @@ def pushDockerhub(from_repo, to_repo='') {
                  "FROM_DOCKER_REPOSITORY=${from_repo}",
                  "DOCKER_REPOSITORY=${to_repo}"]) {
             retry(2) {
-                sh 'docker/jenkins/push2dockerhub.sh'
+                sh 'docker/bin/push2dockerhub.sh'
             }
         }
     }
@@ -48,7 +48,7 @@ def pushPrivateReg(port, apps) {
         withEnv(['FROM_DOCKER_REPOSITORY=mozorg/bedrock_l10n',
                  "PRIVATE_REGISTRIES=localhost:${port}",
                  "DEIS_APPS=${apps.join(',')}"]) {
-            sh 'docker/jenkins/push2privateregistries.sh'
+            sh 'docker/bin/push2privateregistries.sh'
         }
     }
 }
@@ -58,7 +58,7 @@ def integrationTestJob(propFileName, appURL='') {
         node {
             unstash 'scripts'
             unstash 'tests'
-            def testScript = "docker/jenkins/run_integration_tests.sh ${propFileName}".toString()
+            def testScript = "docker/bin/run_integration_tests.sh ${propFileName}".toString()
             withCredentials([[$class: 'UsernamePasswordMultiBinding',
                               credentialsId: 'SAUCELABS_CREDENTIALS',
                               usernameVariable: 'SAUCELABS_USERNAME',
@@ -70,7 +70,7 @@ def integrationTestJob(propFileName, appURL='') {
                     finally {
                         junit 'results/*.xml'
                         if ( propFileName == 'local' ) {
-                            sh 'docker/jenkins/cleanup_after_functional_tests.sh'
+                            sh 'docker/bin/cleanup_after_functional_tests.sh'
                         }
                     }
                 }

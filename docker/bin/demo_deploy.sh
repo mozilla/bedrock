@@ -12,7 +12,7 @@ docker push "$PRIVATE_IMAGE_TAG"
 echo "Creating the demo app $DEIS_APP_NAME"
 if deis apps:create "$DEIS_APP_NAME" --no-remote; then
   echo "Configuring the new demo app"
-  deis config:push -a "$DEIS_APP_NAME" -p docker/demo.env
+  deis config:push -a "$DEIS_APP_NAME" -p docker/envfiles/demo.env
   # Sentry DSN is potentially sensitive. Turn off command echo.
   set +x
   if [[ -n "$SENTRY_DEMO_DSN" ]]; then

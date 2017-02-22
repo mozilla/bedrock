@@ -15,7 +15,7 @@ stage ('Checkout') {
         // load the config
         config = readYaml file: 'jenkins.yml'
         // load the utility functions used below
-        utils = load 'docker/jenkins/utils.groovy'
+        utils = load 'jenkins/utils.groovy'
         // defined in the Library loaded above
         setGitEnvironmentVariables()
         setConfigEnvironmentVariables(config)
@@ -35,7 +35,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             // make sure we should continue
             if ( branchConfig.require_tag ) {
                 try {
-                    sh 'docker/jenkins/check_if_tag.sh'
+                    sh 'docker/bin/check_if_tag.sh'
                 } catch(err) {
                     utils.ircNotification(config, [stage: 'Git Tag Check', status: 'failure'])
                     throw err
@@ -44,7 +44,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
             utils.ircNotification(config, [stage: 'Test & Deploy', status: 'starting'])
             lock ("bedrock-docker-${env.GIT_COMMIT}") {
                 try {
-                    sh 'docker/jenkins/build_images.sh --prod --test'
+                    sh 'docker/bin/build_images.sh --prod --test'
                 } catch(err) {
                     utils.ircNotification(config, [stage: 'Docker Build', status: 'failure'])
                     throw err
@@ -56,12 +56,12 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
     milestone()
     stage ('Test Images') {
         parallel([
-            integration_tests: utils.integrationTestJob('smoke'),
+            smoke_tests: utils.integrationTestJob('smoke'),
             unit_tests: {
                 node {
                     unstash 'scripts'
                     try {
-                        sh 'docker/jenkins/run_tests.sh'
+                        sh 'docker/bin/run_tests.sh'
                     } catch(err) {
                         utils.ircNotification(config, [stage: 'Unit Test', status: 'failure'])
                         throw err
@@ -124,7 +124,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
                                  "DEIS_APPLICATION=${appname}"]) {
                             try {
                                 retry(3) {
-                                    sh 'docker/jenkins/push2deis.sh'
+                                    sh 'docker/bin/push2deis.sh'
                                 }
                             } catch(err) {
                                 utils.ircNotification(config, [stage: stageName, status: 'failure'])
@@ -170,7 +170,7 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
             lock ("bedrock-docker-${env.GIT_COMMIT}") {
                 milestone()
                 try {
-                    sh 'docker/jenkins/build_images.sh --demo'
+                    sh 'docker/bin/build_images.sh --demo'
                 } catch(err) {
                     utils.ircNotification(config, [stage: 'Demo Build', status: 'failure'])
                     throw err
@@ -189,7 +189,7 @@ else if ( env.BRANCH_NAME ==~ /^demo__[\w-]+$/ ) {
                         withEnv(['DEIS_PROFILE=usw',
                                  "DEIS_APP_NAME=${appname}",
                                  "PRIVATE_REGISTRY=localhost:${config.regions.usw.registry_port}"]) {
-                            sh './docker/jenkins/demo_deploy.sh'
+                            sh './docker/bin/demo_deploy.sh'
                         }
                     }
                 } catch(err) {

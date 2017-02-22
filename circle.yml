@@ -14,7 +14,7 @@ dependencies:
     - node_modules
     - "~/docker"
   override:
-    - docker/jenkins/build_images.sh --test
+    - docker/bin/build_images.sh --test
     - npm install -g gulp-cli
     - npm install
 
@@ -25,4 +25,4 @@ test:
     - gulp css:lint
     - gulp js:lint
     - gulp js:test
-    - docker/jenkins/run_tests.sh
+    - docker/bin/run_tests.sh
