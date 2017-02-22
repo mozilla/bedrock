@@ -1,7 +1,52 @@
 #!/bin/bash -xe
 
-# $1 should be the properties file for this run
-source "docker/jenkins/properties/integration_tests/${1}.properties"
+# $1 should be the properties name for this run
+# defaults
+DRIVER=SauceLabs
+MARK_EXPRESSION="not headless"
+
+case $1 in
+  chrome)
+    BROWSER_NAME=chrome
+    PLATFORM="Windows 10"
+    ;;
+  firefox)
+    BROWSER_NAME=firefox
+    BROWSER_VERSION="45.0"
+    PLATFORM="Windows 10"
+    ;;
+  ie)
+    BROWSER_NAME="internet explorer"
+    PLATFORM="Windows 10"
+    ;;
+  ie6)
+    BROWSER_NAME="internet explorer"
+    BROWSER_VERSION="6.0"
+    PLATFORM="Windows XP"
+    MARK_EXPRESSION="sanity and not headless"
+    ;;
+  ie7)
+    BROWSER_NAME="internet explorer"
+    BROWSER_VERSION="7.0"
+    PLATFORM="Windows XP"
+    MARK_EXPRESSION="sanity and not headless"
+    ;;
+  headless)
+    DRIVER=
+    MARK_EXPRESSION=headless
+    ;;
+  smoke)
+    DRIVER=Remote
+    MARK_EXPRESSION=smoke
+    ;;
+  *)
+    set +x
+    echo "Missing or invalid required argument"
+    echo
+    echo "Usage: run_integration_tests.sh <chrome|firefox|ie{,6,7}|headless|smoke>"
+    exit 1
+    ;;
+esac
 
 if [[ -z "$GIT_COMMIT" ]]; then
   GIT_COMMIT=$(git rev-parse HEAD)
@@ -62,21 +107,21 @@ rm -rf "$RESULTS_DIR"
 mkdir -p "$RESULTS_DIR"
 docker run -v "${RESULTS_DIR}:${DOCKER_RESULTS_DIR}" -u $(stat -c "%u:%g" "$RESULTS_DIR") \
   ${DOCKER_LINKS[@]} \
-  -e BASE_URL=${BASE_URL} \
-  -e DRIVER=${DRIVER} \
-  -e SAUCELABS_USERNAME=${SAUCELABS_USERNAME} \
-  -e SAUCELABS_API_KEY=${SAUCELABS_API_KEY} \
-  -e BROWSER_NAME="${BROWSER_NAME}" \
-  -e BROWSER_VERSION=${BROWSER_VERSION} \
-  -e PLATFORM="${PLATFORM}" \
-  -e SELENIUM_HOST=${SELENIUM_HOST} \
-  -e SELENIUM_PORT=${SELENIUM_PORT} \
-  -e SELENIUM_VERSION=${SELENIUM_VERSION} \
-  -e BUILD_TAG=${BUILD_TAG} \
-  -e SCREEN_RESOLUTION=${SCREEN_RESOLUTION} \
-  -e MARK_EXPRESSION="${MARK_EXPRESSION}" \
-  -e TESTS_PATH="${TESTS_PATH}" \
-  -e RESULTS_PATH="${DOCKER_RESULTS_DIR}" \
-  -e PYTEST_PROCESSES=5 \
-  -e PRIVACY="public restricted" \
+  -e "BASE_URL=${BASE_URL}" \
+  -e "DRIVER=${DRIVER}" \
+  -e "SAUCELABS_USERNAME=${SAUCELABS_USERNAME}" \
+  -e "SAUCELABS_API_KEY=${SAUCELABS_API_KEY}" \
+  -e "BROWSER_NAME=${BROWSER_NAME}" \
+  -e "BROWSER_VERSION=${BROWSER_VERSION}" \
+  -e "PLATFORM=${PLATFORM}" \
+  -e "SELENIUM_HOST=${SELENIUM_HOST}" \
+  -e "SELENIUM_PORT=${SELENIUM_PORT}" \
+  -e "SELENIUM_VERSION=${SELENIUM_VERSION}" \
+  -e "BUILD_TAG=${BUILD_TAG}" \
+  -e "SCREEN_RESOLUTION=${SCREEN_RESOLUTION}" \
+  -e "MARK_EXPRESSION=${MARK_EXPRESSION}" \
+  -e "TESTS_PATH=${TESTS_PATH}" \
+  -e "RESULTS_PATH=${DOCKER_RESULTS_DIR}" \
+  -e "PYTEST_PROCESSES=5" \
+  -e "PRIVACY=public restricted" \
   mozorg/bedrock_test:${GIT_COMMIT} bin/run-integration-tests.sh

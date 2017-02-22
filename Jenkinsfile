@@ -56,7 +56,7 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
     milestone()
     stage ('Test Images') {
         parallel([
-            integration_tests: utils.integrationTestJob('local'),
+            integration_tests: utils.integrationTestJob('smoke'),
             unit_tests: {
                 node {
                     unstash 'scripts'

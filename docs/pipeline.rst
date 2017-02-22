@@ -83,10 +83,10 @@ Pipeline integration
 --------------------
 
 Our `Jenkinsfile`_ will run the integration tests based on information in our `jenkins.yml file`_.
-This file specifies various test names per branch that will cause it to load different
+This file specifies various test names per branch that will cause it to use different
 parameters, allowing it to be called in many different ways to cover the testing
-needs. The job finds the parameters file and executes `this script <https://github.com/mozilla/bedrock/blob/master/docker/jenkins/run_integration_tests.sh>`_,
-which then runs `this Docker image <https://github.com/mozilla/bedrock/blob/master/docker/dockerfiles/bedrock_integration_tests>`_,
+needs. The job executes `this script <https://github.com/mozilla/bedrock/blob/master/docker/jenkins/run_integration_tests.sh>`_,
+which then runs `this Docker image <https://github.com/mozilla/bedrock/blob/master/docker/dockerfiles/bedrock_test>`_,
 and ultimately runs `another script <https://github.com/mozilla/bedrock/blob/master/bin/run-integration-tests.sh>`_.
 The two scripts can also be executed locally to replicate the way Jenkins operates.
 
@@ -96,7 +96,7 @@ will be used for testing. The ``DRIVER`` parameter is set to ``Remote``, which c
 local instance of Selenium Grid to be started in Docker and used for the browser-based
 functional UI tests.
 
-The test scripts above will be run once for each properties file specified in the `jenkins.yml file`_
+The test scripts above will be run once for each properties name specified in the `jenkins.yml file`_
 for the branch being built and tested. Pushes to `master` will run different tests than pushes to `prod`
 for example.
 
@@ -123,37 +123,31 @@ default can be set and then can be overridden in the individual job configuratio
 Adding test runs
 ~~~~~~~~~~~~~~~~
 
-Test runs can be added by creating new `properties files`_ with the parameters of the new
-test run. These are simply bash syntax files that set environment variables.
- For example, if you wanted to run tests in Firefox on both Windows 10 and
-OS X, you could create the following files
+Test runs can be added by creating a new properties section in the
+`integration tests script <https://github.com/mozilla/bedrock/blob/master/docker/jenkins/run_integration_tests.sh>`_
+with the parameters of the new test run. This is simply a bash script and you can duplicate a clause of the case staement.
+For example, if you wanted to run tests in Firefox on both Windows 10 and
+OS X, you could create the following clauses:
 
-win10-firefox.properties
-........................
+.. code-block:: bash
 
-.. code-block:: none
-
-    export DRIVER=SauceLabs
-    export BROWSER_NAME=firefox
-    export PLATFORM="Windows 10"
-    export MARK_EXPRESSION="not headless""
-
-osx-firefox.properties
-......................
-
-.. code-block:: none
-
-    export DRIVER=SauceLabs
-    export BROWSER_NAME=firefox
-    export PLATFORM="OS X 10.11"
-    export MARK_EXPRESSION="not headless"
+    case $1 in
+      osx-firefox)
+        BROWSER_NAME=firefox
+        PLATFORM="OS X 10.11"
+        ;;
+      win10-firefox)
+        BROWSER_NAME=firefox
+        PLATFORM="Windows 10"
+        ;;
 
 You can use `Sauce Labs platform configurator`_ to help with the parameter values.
 
-If you have an account on our Jenkins server, you can build the `bedrock_integration_tests_runner`_
-job and pass in the ``BASE_URL`` and other parameters of your choosing. This is also useful for
-testing against deployed demo environments. For a good baseline, use the values from ``win10-firefox.properties``_
-above.
+If you have commit rights to our Github repo (mozilla/bedrock) you can simply push
+your branch to the branch named ``run-integration-tests``, and the ``bedrock-integration-tests``
+app will be deployed and all of the integration tests defined in the ``jenkins.yml``
+file for that branch will be run. Please announce in our IRC channel (#www on irc.mozilla.org)
+that you'll be doing this so that we don't get conflicts.
 
 Known issues in Jenkins
 -----------------------
@@ -171,7 +165,6 @@ A `bug for the IRC plugin`_ has been raised.
 .. _Sauce Labs: https://saucelabs.com/
 .. _Jenkinsfile: https://github.com/mozilla/bedrock/tree/master/Jenkinsfile
 .. _jenkins.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins.yml
-.. _properties files: https://github.com/mozilla/bedrock/tree/master/docker/jenkins/properties/integration_tests
 .. _bedrock_integration_tests_runner: https://ci.us-west.moz.works/view/Bedrock/job/bedrock_integration_tests_runner/
 .. _configured in Jenkins: https://ci.us-west.moz.works/configure
 .. _become unresponsive: https://issues.jenkins-ci.org/browse/JENKINS-28175
