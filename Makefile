@@ -35,16 +35,16 @@ build-final: .docker-build
 	touch .docker-build-final
 
 run: .docker-build
-	docker run --env-file docker/dev.env -p 8000:8000 -v "$$PWD:/app" ${DEV_IMG_NAME}
+	docker run --env-file docker/envfiles/dev.env -p 8000:8000 -v "$$PWD:/app" ${DEV_IMG_NAME}
 
 django-shell: .docker-build
-	docker run --user `id -u` -it --env-file docker/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} python manage.py shell
+	docker run --user `id -u` -it --env-file docker/envfiles/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} python manage.py shell
 
 shell: .docker-build
-	docker run --user `id -u` -it --env-file docker/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} bash
+	docker run --user `id -u` -it --env-file docker/envfiles/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} bash
 
 sync-all: .docker-build
-	docker run --user `id -u` --env-file docker/demo.env -v "$$PWD:/app" ${DEV_IMG_NAME} bin/sync_all
+	docker run --user `id -u` --env-file docker/envfiles/demo.env -v "$$PWD:/app" ${DEV_IMG_NAME} bin/sync-all.sh
 
 clean:
 	# python related things
@@ -69,12 +69,12 @@ clean:
 	-rm -f .docker-build-final
 
 test: .docker-build
-	docker run --user `id -u` --env-file docker/test.env -v "$$PWD:/app" ${DEV_IMG_NAME} docker/run-tests.sh
+	docker run --user `id -u` --env-file docker/envfiles/test.env -v "$$PWD:/app" ${DEV_IMG_NAME} bin/run-tests.sh
 
 test-image: .docker-build-final
-	docker run --env-file docker/test.env ${FINAL_IMG_NAME} docker/run-tests.sh
+	docker run --env-file docker/envfiles/test.env ${FINAL_IMG_NAME} bin/run-tests.sh
 
 docs:
-	docker run --user `id -u` --env-file docker/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} bash -c "make -C docs/ clean && make -C docs/ html"
+	docker run --user `id -u` --env-file docker/envfiles/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} bash -c "make -C docs/ clean && make -C docs/ html"
 
 .PHONY: default clean build build-final docs run test sync-all test-image shell django-shell

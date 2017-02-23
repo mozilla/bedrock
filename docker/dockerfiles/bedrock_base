@@ -10,7 +10,7 @@ RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
 
 WORKDIR /app
 EXPOSE 8000
-CMD ["./docker/run.sh"]
+CMD ["./bin/run.sh"]
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \

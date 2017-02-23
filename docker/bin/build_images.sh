@@ -48,11 +48,11 @@ function dockerRun() {
     env_file="$1"
     image_tag="mozorg/bedrock_${2}:${GIT_COMMIT}"
     cmd="$3"
-    docker run --user $(id -u) -v "$PWD:/app" --env-file "docker/${env_file}.env" "$image_tag" bash -c "$cmd"
+    docker run --user $(id -u) -v "$PWD:/app" --env-file "docker/envfiles/${env_file}.env" "$image_tag" bash -c "$cmd"
 }
 
 if ! imageExists "base"; then
-    docker/jenkins/docker_build.sh --pull "base"
+    docker/bin/docker_build.sh --pull "base"
 fi
 
 # build the static files using the builder image
@@ -60,24 +60,24 @@ fi
 if ! imageExists "code"; then
     # build a staticfiles builder image
     if ! imageExists "build"; then
-        docker/jenkins/docker_build.sh "build"
+        docker/bin/docker_build.sh "build"
     fi
-    dockerRun prod build docker/jenkins/build_staticfiles.sh
+    dockerRun prod build docker/bin/build_staticfiles.sh
     echo "${GIT_COMMIT}" > static/revision.txt
-    docker/jenkins/docker_build.sh "code"
+    docker/bin/docker_build.sh "code"
 fi
 
 # build a tester image for non-demo deploys
 if $TEST_MODE && ! imageExists "test"; then
-    docker/jenkins/docker_build.sh "test"
+    docker/bin/docker_build.sh "test"
 fi
 
 # include the data that the deployments need
 if $DEMO_MODE && ! imageExists "demo"; then
-    dockerRun demo code bin/sync_all
-    docker/jenkins/docker_build.sh "demo"
+    dockerRun demo code bin/sync-all.sh
+    docker/bin/docker_build.sh "demo"
 fi
 if $PROD_MODE && ! imageExists "l10n"; then
     dockerRun prod code "python manage.py l10n_update"
-    docker/jenkins/docker_build.sh -c "locale" "l10n"
+    docker/bin/docker_build.sh -c "locale" "l10n"
 fi

@@ -27,16 +27,14 @@ branches:
       - ie
       - ie6
       - ie7
-  # for testing
-  deploy-via-jenkinsfile:
+  run-integration-tests:
     regions:
       - usw
-      - euw
     apps:
-      - bedrock-jenkinsfile-test
+      - bedrock-integration-tests
     integration_tests:
-      - firefox
       - headless
+      - firefox
       - chrome
       - ie
       - ie6

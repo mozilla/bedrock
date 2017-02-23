@@ -45,7 +45,7 @@ You shouldn't need to customize anything in there yet.
 
 Sync the database and all of the external data locally. This gets product-details, security-advisories, credits, release notes, etc::
 
-    $ bin/sync_all
+    $ bin/sync-all.sh
 
 Lastly, you need to have `Node.js <https://nodejs.org/>`_ and
 `NPM <https://docs.npmjs.com/getting-started/installing-node>`_ installed. The node
@@ -88,9 +88,9 @@ To test a single app, specify the app by name in the command above. e.g.::
     If your local tests run fine, but when you submit a pull-request the tests fail in
     `CircleCI <https://circleci.com/gh/mozilla/bedrock>`_, it could be due to the
     difference in settings between what you have in ``.env``
-    and what CircleCI uses: ``docker/demo.env``. You can run tests as close to Circle
+    and what CircleCI uses: ``docker/envfiles/demo.env``. You can run tests as close to Circle
     as possible by moving your ``.env`` file to another name (e.g. ``.env-backup``), then
-    copying ``docker/demo.env`` to ``.env``, and running tests again.
+    copying ``docker/envfiles/demo.env`` to ``.env``, and running tests again.
 
 Make it run
 -----------
