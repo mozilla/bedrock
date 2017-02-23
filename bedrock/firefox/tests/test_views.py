@@ -12,7 +12,6 @@ import querystringsafe_base64
 from mock import patch, Mock
 from nose.tools import eq_, ok_
 
-from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
 
@@ -307,17 +306,6 @@ class TestSendToDeviceView(TestCase):
 @override_settings(DEV=False)
 @patch('bedrock.firefox.views.l10n_utils.render')
 class TestFirefoxNew(TestCase):
-    def test_frames_allow(self, render_mock):
-        """
-        Bedrock pages get the 'x-frame-options: DENY' header by default.
-        The firefox/new page needs to be framable for things like stumbleupon.
-        Bug 1004598.
-        """
-        with self.activate('en-US'):
-            resp = self.client.get(reverse('firefox.new'))
-
-        ok_('x-frame-options' not in resp)
-
     def test_scene_1_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'

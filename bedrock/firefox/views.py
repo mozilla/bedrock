@@ -20,7 +20,6 @@ from django.views.generic.base import TemplateView
 
 import basket
 import querystringsafe_base64
-from commonware.response.decorators import xframe_allow
 from product_details.version_compare import Version
 
 from lib import l10n_utils
@@ -475,7 +474,6 @@ class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
     template_name = 'firefox/tracking-protection-tour.html'
 
 
-@xframe_allow
 def new(request):
     # Remove legacy query parameters (Bug 1236791)
     if request.GET.get('product', None) or request.GET.get('os', None):
