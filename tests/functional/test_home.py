@@ -7,8 +7,6 @@ import pytest
 from pages.home import HomePage
 
 
-@pytest.mark.skip_if_internet_explorer(reason='https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/11169/')
-@pytest.mark.skip_if_firefox(reason='Download button is not shown to Firefox browsers.')
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
@@ -16,7 +14,6 @@ def test_download_button_is_displayed(base_url, selenium):
     assert page.download_button.is_displayed
 
 
-@pytest.mark.skip_if_internet_explorer(reason='https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/11169/')
 @pytest.mark.sanity
 @pytest.mark.smoke
 @pytest.mark.nondestructive

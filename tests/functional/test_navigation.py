@@ -7,7 +7,6 @@ import pytest
 from pages.home import HomePage
 
 
-@pytest.mark.skip_if_internet_explorer(reason='https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/11169/')
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
     page = HomePage(selenium, base_url).open()
@@ -19,7 +18,6 @@ def test_navigation(base_url, selenium):
     assert technology_page.seed_url in selenium.current_url
 
 
-@pytest.mark.skip_if_internet_explorer(reason='https://ci.us-west.moz.works/job/bedrock_integration_tests_runner/11169/')
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.viewport('mobile')
