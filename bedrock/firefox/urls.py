@@ -87,11 +87,6 @@ urlpatterns = (
     # This dummy page definition makes it possible to link to /firefox/ (Bug 878068)
     url('^firefox/$', views.fx_home_redirect, name='firefox'),
 
-    page('firefox/os', 'firefox/os/index.html'),
-
-    page('firefox/os/devices', 'firefox/os/devices.html'),
-    page('firefox/os/devices/tv', 'firefox/os/tv.html'),
-
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),
         bedrock.releasenotes.views.latest_notes, name='firefox.notes'),

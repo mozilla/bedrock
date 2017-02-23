@@ -544,31 +544,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_organizations-bundle.css',
     },
-    'firefox_os_2_5': {
-        'source_filenames': (
-            'css/firefox/fxos-nav.less',
-            'css/firefox/os/in-the-news.less',
-            'css/firefox/os/firefox-os-2-5.less',
-        ),
-        'output_filename': 'css/firefox_os_2_5-bundle.css',
-    },
-    'firefox_os_devices': {
-        'source_filenames': (
-            'css/libs/tipsy.css',
-            'css/firefox/fxos-nav.less',
-            'css/base/mozilla-modal.less',
-            'css/firefox/os/get_device.less',
-            'css/firefox/os/devices.less',
-        ),
-        'output_filename': 'css/firefox_os_devices-bundle.css',
-    },
-    'firefox_os_tv': {
-        'source_filenames': (
-            'css/firefox/fxos-nav.less',
-            'css/firefox/os/tv.less',
-        ),
-        'output_filename': 'css/firefox_os_tv-bundle.css',
-    },
     'firefox_private_browsing': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -871,7 +846,6 @@ PIPELINE_CSS = {
             'css/styleguide/identity-thunderbird.less',
             'css/styleguide/identity-webmaker.less',
             'css/styleguide/communications.less',
-            'css/styleguide/products-firefox-os.less',
         ),
         'output_filename': 'css/styleguide-bundle.css',
     },
@@ -1351,37 +1325,6 @@ PIPELINE_JS = {
             'js/firefox/private-browsing.js'
         ),
         'output_filename': 'js/firefox_private_browsing-bundle.js',
-    },
-    'firefox_os_2_5': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/fxos-nav.js',
-        ),
-        'output_filename': 'js/firefox_os_2_5-bundle.js',
-    },
-    'firefox_os_devices': {
-        'source_filenames': (
-            'js/libs/jquery.tipsy.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/base/mozilla-pager.js',
-            'js/base/mozilla-modal.js',
-            'js/base/mozilla-smoothscroll.js',
-            'js/firefox/fxos-nav.js',
-            'js/firefox/os/partner_data.js',
-            'js/firefox/os/devices.js',
-        ),
-        'output_filename': 'js/firefox_os_devices-bundle.js',
-    },
-    'firefox_os_tv': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/fxos-nav.js',
-            'js/base/mozilla-pager.js',
-        ),
-        'output_filename': 'js/firefox_os_tv-bundle.js',
     },
     'firefox_interest_dashboard': {
         'source_filenames': (

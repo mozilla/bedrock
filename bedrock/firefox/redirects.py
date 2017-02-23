@@ -21,12 +21,8 @@ redirectpatterns = (
 
     redirect(r'^firefox/aurora/all/?$', 'firefox.all', to_kwargs={'channel': 'developer'}),
 
-    # bug 831810 & 1142583 & 1239960
-    redirect(r'^mwc/?$', 'firefox.os.devices', re_flags='i', query={
-        'utm_campaign': 'mwc-redirect',
-        'utm_medium': 'referral',
-        'utm_source': 'mozilla.org',
-    }),
+    # bug 831810 & 1142583 & 1239960, 1329931
+    redirect(r'^mwc/?$', 'https://support.mozilla.org/products/firefox-os', re_flags='i'),
 
     # bug 748503
     redirect(r'^projects/firefox/[^/]+a[0-9]+/firstrun(?P<p>.*)$',
@@ -293,21 +289,14 @@ redirectpatterns = (
              'https://support.mozilla.org/kb/push-notifications-firefox'),
 
     # Bug 1239960
-    redirect(r'^firefox/partners/?$', 'firefox.os.index'),
+    redirect(r'^firefox/partners/?$', 'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 1243060
     redirect(r'^firefox/tiles/?$',
              'https://support.mozilla.org/kb/about-tiles-new-tab'),
 
-    # Bug 1239863
-    redirect(r'^firefox/os/1\.1/?$', 'firefox.os.index'),
-    redirect(r'^firefox/os/1\.3/?$', 'firefox.os.index'),
-    redirect(r'^firefox/os/1\.3t/?$', 'firefox.os.index'),
-    redirect(r'^firefox/os/1\.4/?$', 'firefox.os.index'),
-    redirect(r'^firefox/os/2\.0/?$', 'firefox.os.index'),
-    redirect(r'^firefox/os/2\.5/?$', 'firefox.os.index'),
-    redirect(r'^firefox/os/faq/?$',
-             'https://support.mozilla.org/products/firefox-os'),
+    # Bug 1239863, 1329931
+    redirect(r'^firefox/os(/.*)?$', 'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 1252332
     redirect(r'^sync/?$', 'firefox.sync'),

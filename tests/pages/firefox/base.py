@@ -28,35 +28,12 @@ class FirefoxBasePage(ScrollElementIntoView, BasePage):
     def family_navigation(self):
         return self.FamilyNavigation(self)
 
-    @property
-    def fxos_navigation(self):
-        return self.FxOSNavigation(self)
-
     class FamilyNavigation(FirefoxBaseRegion):
 
         _root_locator = (By.ID, 'fxfamilynav-header')
         _active_primary_nav_locator = (By.CSS_SELECTOR, '#fxfamilynav-primary li.active a')
         _adjunct_nav_button_locator = (By.ID, 'fxfamilynav-adjunctnav-trigger')
         _adjunct_nav_menu_locator = (By.ID, 'fxfamilynav-adjunctnav')
-
-        def open_adjunct_menu(self):
-            self.find_element(*self._adjunct_nav_button_locator).click()
-            self.wait.until(expected.visibility_of_element_located(self._adjunct_nav_menu_locator))
-
-        @property
-        def is_adjunct_menu_displayed(self):
-            return self.is_element_displayed(*self._adjunct_nav_menu_locator)
-
-        @property
-        def active_primary_nav_id(self):
-            return self.find_element(*self._active_primary_nav_locator).get_attribute('data-id')
-
-    class FxOSNavigation(FirefoxBaseRegion):
-
-        _root_locator = (By.ID, 'fxosnav-header')
-        _active_primary_nav_locator = (By.CSS_SELECTOR, '#fxosnav-primary li.active a')
-        _adjunct_nav_button_locator = (By.ID, 'fxosnav-adjunctnav-trigger')
-        _adjunct_nav_menu_locator = (By.ID, 'fxosnav-adjunctnav')
 
         def open_adjunct_menu(self):
             self.find_element(*self._adjunct_nav_button_locator).click()

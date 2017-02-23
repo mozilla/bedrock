@@ -782,12 +782,8 @@ URLS = flatten((
     # bug 878871
     url_test('/firefoxos/is.great/', '/firefox/os/'),
 
-    # bug 831810 & 1142583
-    url_test('/{mwc,MWC}/', '/firefox/os/devices/', query={
-        'utm_campaign': 'mwc-redirect',
-        'utm_medium': 'referral',
-        'utm_source': 'mozilla.org',
-    }),
+    # bug 831810 & 1142583, 1329931
+    url_test('/{mwc,MWC}/', 'https://support.mozilla.org/products/firefox-os'),
 
     # bug 878926
     url_test('/{de/,}firefoxflicks/{,stuff}',
@@ -982,9 +978,9 @@ URLS = flatten((
     url_test('/privacy/you/', '/teach/smarton/'),
     url_test('/privacy/tips/', '/teach/smarton/'),
 
-    # bug 1239960
-    url_test('/firefox/partners/', '/firefox/os/'),
-    url_test('/b2g/', '/firefox/os/'),
+    # bug 1239960, 1329931
+    url_test('/firefox/partners/', 'https://support.mozilla.org/products/firefox-os'),
+    url_test('/b2g/', 'https://support.mozilla.org/products/firefox-os'),
 
     # from mcom-tests
     url_test('/firefox/', '/en-US/firefox/'),
@@ -1010,17 +1006,6 @@ URLS = flatten((
     # Bug 1243060
     url_test('/firefox/tiles/',
              'https://support.mozilla.org/kb/about-tiles-new-tab'),
-
-    # Bug 1239863
-    url_test('/firefox/os/2.5/', '/firefox/os/'),
-    url_test('/firefox/os/2.0/', '/firefox/os/'),
-    url_test('/firefox/os/1.3t/', '/firefox/os/'),
-    url_test('/firefox/os/1.3/', '/firefox/os/'),
-    url_test('/firefox/os/1.4/', '/firefox/os/'),
-    url_test('/firefox/os/1.1/', '/firefox/os/'),
-    url_test('/firefox/os/faq/',
-             'https://support.mozilla.org/products/firefox-os'),
-
     # Bug 1252332
     url_test('/sync/', '/firefox/sync/'),
 
@@ -1139,4 +1124,11 @@ URLS = flatten((
 
     # Bug 1335040
     url_test('/gigabit/{,apply/}', 'https://learning.mozilla.org/gigabit/'),
+
+    # Bug 1329931
+    url_test('/styleguide/products/firefox-os/{,subpages/}',
+             'https://developer.mozilla.org/docs/Archive/Firefox_OS'),
+
+    # Bug 1329931
+    url_test('/firefox/os/{,devices/}', 'https://support.mozilla.org/products/firefox-os'),
 ))

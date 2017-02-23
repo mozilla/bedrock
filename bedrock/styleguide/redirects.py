@@ -12,4 +12,8 @@ redirectpatterns = (
              'styleguide.websites.sandstone-intro'),
     redirect(r'^styleguide/websites/sandstone/tabzilla/?$',
              'styleguide.websites.sandstone-intro'),
+
+    # Bug 1329931
+    redirect(r'^styleguide/products/firefox-os(/.*)?$',
+             'https://developer.mozilla.org/docs/Archive/Firefox_OS'),
 )
