@@ -53,34 +53,38 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
         }
     }
 
-    milestone()
-    stage ('Test Images') {
-        parallel([
-            smoke_tests: utils.integrationTestJob('smoke'),
-            unit_tests: {
-                node {
-                    unstash 'scripts'
-                    try {
-                        sh 'docker/bin/run_tests.sh'
-                    } catch(err) {
-                        utils.ircNotification(config, [stage: 'Unit Test', status: 'failure'])
-                        throw err
+    if ( branchConfig.smoke_tests ) {
+        milestone()
+        stage ('Test Images') {
+            parallel([
+                smoke_tests: utils.integrationTestJob('smoke'),
+                unit_tests: {
+                    node {
+                        unstash 'scripts'
+                        try {
+                            sh 'docker/bin/run_tests.sh'
+                        } catch(err) {
+                            utils.ircNotification(config, [stage: 'Unit Test', status: 'failure'])
+                            throw err
+                        }
                     }
-                }
-            },
-        ])
+                },
+            ])
+        }
     }
 
-    milestone()
-    stage ('Push Public Images') {
-        node {
-            unstash 'scripts'
-            try {
-                utils.pushDockerhub('mozorg/bedrock_base')
-                utils.pushDockerhub('mozorg/bedrock_code')
-                utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
-            } catch(err) {
-                utils.ircNotification(config, [stage: 'Dockerhub Push Failed', status: 'warning'])
+    if ( branchConfig.push_public_registry ) {
+        milestone()
+        stage ('Push Public Images') {
+            node {
+                unstash 'scripts'
+                try {
+                    utils.pushDockerhub('mozorg/bedrock_base')
+                    utils.pushDockerhub('mozorg/bedrock_code')
+                    utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
+                } catch(err) {
+                    utils.ircNotification(config, [stage: 'Dockerhub Push Failed', status: 'warning'])
+                }
             }
         }
     }
@@ -94,67 +98,73 @@ if ( config.branches.containsKey(env.BRANCH_NAME) ) {
      *
      * A failure at any step of the above should fail the entire job
      */
-    milestone()
-    for (regionId in branchConfig.regions) {
-        def region = config.regions[regionId]
-        def stageName = "Private Push: ${region.name}"
-        stage (stageName) {
-            node {
-                unstash 'scripts'
-                try {
-                    utils.pushPrivateReg(region.registry_port, branchConfig.apps)
-                } catch(err) {
-                    utils.ircNotification(config, [stage: stageName, status: 'failure'])
-                    throw err
+    if ( branchConfig.apps ) {
+        milestone()
+        // default to usw only
+        def regions = branchConfig.regions ?: ['usw']
+        for (regionId in regions) {
+            def region = config.regions[regionId]
+            def stageName = "Private Push: ${region.name}"
+            stage (stageName) {
+                node {
+                    unstash 'scripts'
+                    try {
+                        utils.pushPrivateReg(region.registry_port, branchConfig.apps)
+                    } catch(err) {
+                        utils.ircNotification(config, [stage: stageName, status: 'failure'])
+                        throw err
+                    }
                 }
             }
-        }
-        for (appname in branchConfig.apps) {
-            def appSuffix = branchConfig.app_name_suffix ?: ''
-            def appURL = "https://${appname}${appSuffix}.${region.name}.moz.works"
-            stageName = "Deploy ${appname}-${region.name}"
-            // ensure no deploy/test cycle happens in parallel for an app/region
-            lock (stageName) {
-                milestone()
-                stage (stageName) {
-                    node {
-                        unstash 'scripts'
-                        withEnv(["DEIS_PROFILE=${region.deis_profile}",
-                                 "DOCKER_REPOSITORY=${appname}",
-                                 "DEIS_APPLICATION=${appname}"]) {
-                            try {
-                                retry(3) {
-                                    sh 'docker/bin/push2deis.sh'
+            for (appname in branchConfig.apps) {
+                def appSuffix = branchConfig.app_name_suffix ?: ''
+                def appURL = "https://${appname}${appSuffix}.${region.name}.moz.works"
+                stageName = "Deploy ${appname}-${region.name}"
+                // ensure no deploy/test cycle happens in parallel for an app/region
+                lock (stageName) {
+                    milestone()
+                    stage (stageName) {
+                        node {
+                            unstash 'scripts'
+                            withEnv(["DEIS_PROFILE=${region.deis_profile}",
+                                     "DOCKER_REPOSITORY=${appname}",
+                                     "DEIS_APPLICATION=${appname}"]) {
+                                try {
+                                    retry(3) {
+                                        sh 'docker/bin/push2deis.sh'
+                                    }
+                                } catch(err) {
+                                    utils.ircNotification(config, [stage: stageName, status: 'failure'])
+                                    throw err
                                 }
+                            }
+                        }
+                    }
+                    if ( branchConfig.apps ) {
+                        // queue up test closures
+                        def allTests = [:]
+                        for (filename in branchConfig.integration_tests) {
+                            allTests[filename] = utils.integrationTestJob(filename, appURL)
+                        }
+                        stage ("Test ${appname}-${region.name}") {
+                            try {
+                                // wait for server to be ready
+                                sleep(time: 10, unit: 'SECONDS')
+                                parallel allTests
                             } catch(err) {
-                                utils.ircNotification(config, [stage: stageName, status: 'failure'])
+                                node {
+                                    unstash 'scripts'
+                                    utils.ircNotification(config, [stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
+                                }
                                 throw err
                             }
                         }
                     }
-                }
-                // queue up test closures
-                def allTests = [:]
-                for (filename in branchConfig.integration_tests) {
-                    allTests[filename] = utils.integrationTestJob(filename, appURL)
-                }
-                stage ("Test ${appname}-${region.name}") {
-                    try {
-                        // wait for server to be ready
-                        sleep(time: 10, unit: 'SECONDS')
-                        parallel allTests
-                    } catch(err) {
-                        node {
-                            unstash 'scripts'
-                            utils.ircNotification(config, [stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
-                        }
-                        throw err
+                    node {
+                        unstash 'scripts'
+                        // huge success \o/
+                        utils.ircNotification(config, [message: appURL, status: 'shipped'])
                     }
-                }
-                node {
-                    unstash 'scripts'
-                    // huge success \o/
-                    utils.ircNotification(config, [message: appURL, status: 'shipped'])
                 }
             }
         }

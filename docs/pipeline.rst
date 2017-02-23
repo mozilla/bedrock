@@ -104,10 +104,34 @@ Configuration
 ~~~~~~~~~~~~~
 
 Many of the options are configured via environment variables passed from the initial
-script, to the Docker image and onto the final script. This means that global defaults
-can be `configured in Jenkins`_. Note that admin access is required to make changes to the
-global configuration, and there is a known issue that may cause Jenkins to `become
-unresponsive`_ after a configuration change.
+script, to the Docker image and onto the final script. Many of these options can be
+set in the `jenkins.yml file`_. In the ``branches`` section of ``jenkins.yml`` you may specify
+any branch name and set how it should be built by jenkins. Take the following example:
+
+.. code-block:: yaml
+
+    branches:
+      change-all-the-things:
+        smoke_tests: true
+        apps:
+          - bedrock-probably-broken
+
+This configuration would cause commits pushed to a branch named ``change-all-the-things`` to have docker
+images built for them, have the smoke and unit tests run, and deploy to a deis app named ``bedrock-probably-broken``
+in our us-west deis cluster. It will not (yet) create that deis app for you like a demo deployment would,
+but you can set it to deploy to any existing app you want. Note that said app must have the ``jenkins`` user added via the
+``deis perms:create jenkins -a <your app name>`` command.
+
+The available branch configuration options are as follows:
+
+* ``smoke_tests``: boolean. Set to ``true`` to cause the unit and smoke test suites run against the docker images.
+* ``push_public_registry``: boolean. Set to ``true`` to cause the built images to be pushed to the public docker hub.
+* ``require_tag``: boolean. Set to ``true`` to require that the commit being built have a git tag in the format YYYY-MM-DD.X.
+* ``app_name_suffix``: string. Set to a value to have the IRC notification alter the URL of the deployed app. (only useful for stage and prod)
+* ``regions``: list. A list of strings indicating the deployment regions for the set of apps. The valid values are in the ``regions`` area of
+  the jenkins.yml file. If omitted a deployment to only ``usw`` is assumed.
+* ``apps``: list. A list of strings indicating the deis app name(s) to which to deploy. If omitted no deployments will occur.
+* ``integration_tests``: list. A list of strings indicating the types of integration tests to run. If omitted no tests will run.
 
 Updating Selenium
 ~~~~~~~~~~~~~~~~~

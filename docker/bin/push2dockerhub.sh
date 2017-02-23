@@ -9,8 +9,10 @@ set -ex
 
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e $DOCKER_USERNAME@example.com
 
-# Tag using git hash
-docker tag $FROM_DOCKER_REPOSITORY:${GIT_COMMIT} $DOCKER_REPOSITORY:${GIT_COMMIT}
+if [[ "$FROM_DOCKER_REPOSITORY" != "$DOCKER_REPOSITORY" ]]; then
+    # Tag using git hash
+    docker tag $FROM_DOCKER_REPOSITORY:${GIT_COMMIT} $DOCKER_REPOSITORY:${GIT_COMMIT}
+fi
 
 # Push to docker hub
 docker push $DOCKER_REPOSITORY:${GIT_COMMIT}
