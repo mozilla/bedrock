@@ -7,6 +7,9 @@
 #
 set -ex
 
+BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $BIN_DIR/set_git_env_vars.sh
+
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e $DOCKER_USERNAME@example.com
 
 if [[ "$FROM_DOCKER_REPOSITORY" != "$DOCKER_REPOSITORY" ]]; then
@@ -17,8 +20,7 @@ fi
 # Push to docker hub
 docker push $DOCKER_REPOSITORY:${GIT_COMMIT}
 
-GIT_TAG="$(git describe --tags --exact-match $GIT_COMMIT 2> /dev/null || true)"
-if [[ ! -z $GIT_TAG ]]; then
+if [[ "$GIT_TAG_DATE_BASED" == true ]]; then
     docker tag $FROM_DOCKER_REPOSITORY:${GIT_COMMIT} $DOCKER_REPOSITORY:$GIT_TAG
     docker push $DOCKER_REPOSITORY:$GIT_TAG
     docker tag $FROM_DOCKER_REPOSITORY:${GIT_COMMIT} $DOCKER_REPOSITORY:latest

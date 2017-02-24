@@ -1,12 +1,14 @@
 #!/bin/bash
 
-TAG=$(git describe --tags --exact-match $GIT_COMMIT 2> /dev/null)
-if [[ -n "$TAG" ]]; then
-    if [[ "$TAG" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}(\.[0-9])?$ ]]; then
-        echo "Build tagged as $TAG"
+BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $BIN_DIR/set_git_env_vars.sh
+
+if [[ -n "$GIT_TAG" ]]; then
+    if [[ "$GIT_TAG_DATE_BASED" == true ]]; then
+        echo "Build tagged as $GIT_TAG"
         exit 0
     else
-        echo "Build tagged but in the wrong format: $TAG"
+        echo "Build tagged but in the wrong format: $GIT_TAG"
         exit 1
     fi
 else

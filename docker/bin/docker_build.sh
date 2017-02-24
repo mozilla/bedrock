@@ -2,9 +2,8 @@
 
 set -exo pipefail
 
-if [[ -z "$GIT_COMMIT" ]]; then
-  export GIT_COMMIT=$(git rev-parse HEAD)
-fi
+BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $BIN_DIR/set_git_env_vars.sh
 
 DOCKER_REPO="${DOCKER_REPO:-mozorg}"
 DOCKER_NO_CACHE=false

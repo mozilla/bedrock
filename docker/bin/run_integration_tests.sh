@@ -48,9 +48,8 @@ case $1 in
     ;;
 esac
 
-if [[ -z "$GIT_COMMIT" ]]; then
-  GIT_COMMIT=$(git rev-parse HEAD)
-fi
+BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $BIN_DIR/set_git_env_vars.sh
 
 BUILD_NUMBER="${BUILD_NUMBER:-0}"
 
