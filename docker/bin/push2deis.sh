@@ -8,7 +8,7 @@
 
 set -ex
 
-deis pull $DOCKER_REPOSITORY:$GIT_COMMIT -a $DEIS_APPLICATION
+deis pull "$DOCKER_REPOSITORY:$GIT_COMMIT" -a $DEIS_APPLICATION
 if [[ -n "$NEWRELIC_API_KEY" ]]; then
     curl -H "x-api-key:$NEWRELIC_API_KEY" \
          -d "deployment[app_name]=$NEWRELIC_APP_NAME" \

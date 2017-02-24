@@ -7,12 +7,14 @@
 #
 set -ex
 
+DOCKER_TAG="${BRANCH_NAME}-${GIT_COMMIT}"
+
 # Push to private registry
 for PRIVATE_REGISTRY in ${PRIVATE_REGISTRIES//,/ };
 do
     for DEIS_APP in ${DEIS_APPS//,/ };
     do
-        docker tag $FROM_DOCKER_REPOSITORY:${GIT_COMMIT} $PRIVATE_REGISTRY/$DEIS_APP:${GIT_COMMIT}
+        docker tag $FROM_DOCKER_REPOSITORY:${DOCKER_TAG} $PRIVATE_REGISTRY/$DEIS_APP:${GIT_COMMIT}
         docker push $PRIVATE_REGISTRY/$DEIS_APP:${GIT_COMMIT}
     done
 done
