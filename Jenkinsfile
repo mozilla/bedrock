@@ -10,6 +10,12 @@ stage ('Checkout') {
         checkout scm
         sh 'git submodule sync'
         sh 'git submodule update --init --recursive'
+        try {
+            env.GIT_TAG = sh([returnStdout: true, script: 'git describe --tags --exact-match $GIT_COMMIT']).trim()
+        } catch(e) {
+            echo 'git commit not tagged'
+        }
+        sh 'env'
         // clean up
         sh 'make clean'
         // load the config
