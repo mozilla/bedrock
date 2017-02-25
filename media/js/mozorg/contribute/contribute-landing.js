@@ -16,6 +16,9 @@
             title: '',
             onCreate: function() {
                 playVideo();
+            },
+            onDestroy: function() {
+                pauseVideo();
             }
         });
 
@@ -42,6 +45,11 @@
                 });
             });
         }
+    };
+
+    // Pause the video when the modal is closed (Bug 1341242)
+    var pauseVideo = function() {
+        document.getElementById('htmlPlayer').pause();
     };
 
     // Track user scrolling through each section on the landing page
