@@ -24,16 +24,6 @@ all_children = [
             PageNode('Wordmarks', path='wordmarks', template='styleguide/identity/firefox-wordmarks.html'),
             PageNode('Color', path='color', template='styleguide/identity/firefox-color.html'),
         )),
-        PageNode('Firefox OS', path='firefoxos', children=(
-            PageNode('Overview', path='overview', template='styleguide/identity/firefoxos-overview.html'),
-            PageNode('Branding', path='branding', template='styleguide/identity/firefoxos-branding.html'),
-            PageNode('Partners', path='partners', template='styleguide/identity/firefoxos-partners.html'),
-            PageNode('Community', path='community', template='styleguide/identity/firefoxos-community.html'),
-            PageNode('Typography', path='typography', template='styleguide/identity/firefoxos-typography.html'),
-            PageNode('Usage', path='usage', template='styleguide/identity/firefoxos-usage.html'),
-            PageNode('Color', path='color', template='styleguide/identity/firefoxos-color.html'),
-            # PageNode('Promo Materials', path='promo', template='styleguide/identity/firefoxos-promo-materials.html'),
-        )),
         PageNode('Marketplace', path='marketplace', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/marketplace-branding.html'),
             PageNode('Color', path='color', template='styleguide/identity/marketplace-color.html'),

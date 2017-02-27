@@ -16,4 +16,8 @@ redirectpatterns = (
     # Bug 1329931
     redirect(r'^styleguide/products/firefox-os(/.*)?$',
              'https://developer.mozilla.org/docs/Archive/Firefox_OS'),
+
+    # Bug 1329931 & 1342043
+    redirect(r'^styleguide/identity/firefoxos(/.*)?$',
+             'https://developer.mozilla.org/docs/Archive/Firefox_OS'),
 )
