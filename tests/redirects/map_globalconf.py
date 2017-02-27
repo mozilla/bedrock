@@ -1126,9 +1126,13 @@ URLS = flatten((
     url_test('/gigabit/{,apply/}', 'https://learning.mozilla.org/gigabit/'),
 
     # Bug 1329931
+    url_test('/firefox/os/{,devices/}', 'https://support.mozilla.org/products/firefox-os'),
+
+    # Bug 1329931
     url_test('/styleguide/products/firefox-os/{,subpages/}',
              'https://developer.mozilla.org/docs/Archive/Firefox_OS'),
 
-    # Bug 1329931
-    url_test('/firefox/os/{,devices/}', 'https://support.mozilla.org/products/firefox-os'),
+    # Bug 1329931 & 1342043
+    url_test('/styleguide/identity/firefoxos/{,subpages/}',
+             'https://developer.mozilla.org/docs/Archive/Firefox_OS'),
 ))

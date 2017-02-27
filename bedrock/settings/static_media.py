@@ -841,7 +841,6 @@ PIPELINE_CSS = {
             'css/styleguide/identity-mozilla.less',
             'css/styleguide/identity-firefox.less',
             'css/styleguide/identity-firefox-family.less',
-            'css/styleguide/identity-firefoxos.less',
             'css/styleguide/identity-marketplace.less',
             'css/styleguide/identity-thunderbird.less',
             'css/styleguide/identity-webmaker.less',
