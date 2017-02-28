@@ -31,5 +31,5 @@ done
 echo "tagged $tag_value"
 if [[ "$do_push" == true ]]; then
   git push "$moz_git_remote" "$tag_value"
-  git push "$moz_git_remote" master:prod
+  git push "$moz_git_remote" HEAD:prod
 fi
