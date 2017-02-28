@@ -14,7 +14,7 @@
 {% block body_id %}firefox-new-scene2{% endblock %}
 
 {% block string_data %}
-  data-tracking-pixel={{ settings.TRACKING_PIXEL_URL }}
+  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
 {% endblock %}
 
 {% block content %}
