@@ -15,4 +15,3 @@ fi
 ./manage.py l10n_update
 #requires twitter api credentials not distributed publicly
 ./manage.py cron update_tweets
-./manage.py runscript update_firefox_os_feeds

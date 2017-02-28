@@ -1,14 +1,11 @@
 from collections import OrderedDict
 
-from django.core.cache import cache
 from django.conf import settings
-from django.db.utils import DatabaseError
 
 import jinja2
 from django.template.loader import render_to_string
 from django_jinja import library
 
-from bedrock.firefox.models import FirefoxOSFeedLink
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android, firefox_ios
 from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils import get_locale
@@ -297,34 +294,3 @@ def firefox_url(platform, page, channel=None):
         return settings.FIREFOX_MOBILE_SYSREQ_URL
 
     return reverse('firefox.%s' % page, kwargs=kwargs)
-
-
-@library.global_function
-def firefox_os_feed_links(locale, force_cache_refresh=False):
-    if locale in settings.FIREFOX_OS_FEED_LOCALES:
-        cache_key = 'firefox-os-feed-links-' + locale
-        if not force_cache_refresh:
-            links = cache.get(cache_key)
-            if links:
-                return links
-        try:
-            links = list(
-                FirefoxOSFeedLink.objects.filter(locale=locale).order_by(
-                    '-id').values_list('link', 'title')[:10])
-        except DatabaseError:
-            links = []
-        cache.set(cache_key, links)
-        return links
-    elif '-' in locale:
-        return firefox_os_feed_links(locale.split('-')[0])
-
-
-@library.global_function
-def firefox_os_blog_link(locale):
-    try:
-        return settings.FXOS_PRESS_BLOG_LINKS[locale]
-    except KeyError:
-        if '-' in locale:
-            return firefox_os_blog_link(locale.split('-')[0])
-        else:
-            return None
