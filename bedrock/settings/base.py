@@ -682,17 +682,6 @@ PRESS_BLOGS = {
     'pl': 'press-pl/',
 }
 
-FXOS_PRESS_BLOG_LINKS = {
-    'en': 'https://blog.mozilla.org/press/category/firefox-os/',
-    'de': 'https://blog.mozilla.org/press-de/category/firefox-os/',
-    'es-ES': 'https://blog.mozilla.org/press-es/category/firefox-os/',
-    'es': 'https://blog.mozilla.org/press-latam/category/firefox-os/',
-    'fr': 'https://blog.mozilla.org/press-fr/category/firefox-os/',
-    'it': 'https://blog.mozilla.org/press-it/category/firefox-os/',
-    'pb-BR': 'https://blog.mozilla.org/press-br/category/firefox-os/',
-    'pl': 'https://blog.mozilla.org/press-pl/category/firefox-os/',
-}
-
 MOBILIZER_LOCALE_LINK = {
     'en-US': 'https://wiki.mozilla.org/FirefoxOS/Community/Mobilizers',
     'hu': 'https://www.facebook.com/groups/mobilizerhungary/',
@@ -1193,18 +1182,6 @@ REST_FRAMEWORK = {
 
     'DEFAULT_FILTER_BACKENDS': ('rna.filters.TimestampedFilterBackend',)
 }
-
-FIREFOX_OS_FEEDS = (
-    ('de', 'https://blog.mozilla.org/press-de/category/firefox-os/feed/'),
-    ('en-US', 'https://blog.mozilla.org/blog/category/firefox-os/feed/'),
-    ('es-ES', 'https://blog.mozilla.org/press-es/category/firefox-os/feed/'),
-    ('es', 'https://blog.mozilla.org/press-latam/category/firefox-os/feed/'),
-    ('fr', 'https://blog.mozilla.org/press-fr/category/firefox-os/feed/'),
-    ('it', 'https://blog.mozilla.org/press-it/category/firefox-os/feed/'),
-    ('pl', 'https://blog.mozilla.org/press-pl/category/firefox-os/feed/'),
-    ('pt-BR', 'https://blog.mozilla.org/press-br/category/firefox-os/feed/'),
-)
-FIREFOX_OS_FEED_LOCALES = [feed[0] for feed in FIREFOX_OS_FEEDS]
 
 TABLEAU_DB_URL = config('TABLEAU_DB_URL', default=None)
 

@@ -13,5 +13,4 @@ deis run -a $DEIS_APPLICATION -- '\
 ./manage.py update_product_details_files --database bedrock; \
 ./manage.py update_externalfiles; \
 ./manage.py update_security_advisories; \
-./manage.py cron update_tweets; \
-./manage.py runscript update_firefox_os_feeds'
+./manage.py cron update_tweets'
