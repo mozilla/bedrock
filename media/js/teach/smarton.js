@@ -10,6 +10,7 @@
 
     var $document = $(document);
     var $body = $('body');
+    var utils = Mozilla.Utils;
 
     if (window.Mozilla.Client.isFirefox) {
         $body.addClass('is-firefox');
@@ -67,7 +68,7 @@
     // Set up the sticky footer
     var $doSection = $('#do');
     var $pageFooter = $('#footer-cta');
-    var buttonClose = '<button type="button" class="close" title="'+ window.trans('global-close') +'">'+ window.trans('global-close') +'</button>';
+    var buttonClose = '<button type="button" class="close" title="'+ utils.trans('global-close') +'">'+ utils.trans('global-close') +'</button>';
 
     if (($pageFooter.length > 0) && tallMode) {
         // Stick the footer when we're near the end of the page

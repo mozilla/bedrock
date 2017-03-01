@@ -16,7 +16,7 @@ Mozilla.Modal = (function(w, $) {
     var $contentParent;
     var $content;
 
-    var closeText = (typeof w.trans === 'undefined') ? 'Close' : w.trans('global-close');
+    var closeText = (typeof Mozilla.Utils === 'undefined') ? 'Close' : Mozilla.Utils.trans('global-close');
 
     /*
     origin: element that triggered the modal

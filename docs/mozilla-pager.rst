@@ -253,7 +253,7 @@ You can configure some appearance and behavior of the library by supplying custo
     Time page is visible during auto rotate. Defaults to ``7000`` (milliseconds).
 
 ``Mozilla.Pager.NEXT_TEXT``
-    Sets the text displayed in the `next` link in the generated navigation. Defaults to 'Next'. Note that any new value supplied should be localized (likely using the ``window.trans`` function).
+    Sets the text displayed in the `next` link in the generated navigation. Defaults to 'Next'. Note that any new value supplied should be localized (likely using the ``Mozilla.Utils.trans`` function).
 
 ``Mozilla.Pager.PREV_TEXT``
     Same as above, but for the `previous` link.

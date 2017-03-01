@@ -217,7 +217,7 @@ Mozilla.FxaIframe = (function() {
             // hide the FxA iframe.
             _userCallback('onLogin', data);
         } else {
-            window.doRedirect(_host + '/settings');
+            Mozilla.Utils.doRedirect(_host + '/settings');
         }
     };
 

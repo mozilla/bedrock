@@ -264,8 +264,8 @@ Mozilla.Pager.PAGE_DURATION = Mozilla.Pager.PAGE_DURATION || 150;    // millisec
 Mozilla.Pager.PAGE_AUTO_DURATION = Mozilla.Pager.PAGE_AUTO_DURATION || 850;    // milliseconds
 // Time page is visible during auto rotate.
 Mozilla.Pager.AUTO_ROTATE_INTERVAL = Mozilla.Pager.AUTO_ROTATE_INTERVAL || 7000;  // milliseconds
-Mozilla.Pager.NEXT_TEXT = Mozilla.Pager.NEXT_TEXT || window.trans('global-next');
-Mozilla.Pager.PREV_TEXT = Mozilla.Pager.PREV_TEXT || window.trans('global-previous');
+Mozilla.Pager.NEXT_TEXT = Mozilla.Pager.NEXT_TEXT || Mozilla.Utils.trans('global-next');
+Mozilla.Pager.PREV_TEXT = Mozilla.Pager.PREV_TEXT || Mozilla.Utils.trans('global-previous');
 Mozilla.Pager.HIDDEN_CLASS = 'hidden'; // sets display: none;
 
 // Should not be overridden by implementing script.

@@ -5,6 +5,8 @@
 $(function() {
     'use strict';
 
+    var utils = Mozilla.Utils;
+
     /**
      * Detects whether do not track is enabled and takes one of two possible actions:
      * 1. If an element with the id #dnt-enabled exists it will
@@ -37,8 +39,8 @@ $(function() {
 
     setDoNotTrackStatus();
 
-    var panelOpenText = window.trans('tabpanel-open-text');
-    var panelCloseText = window.trans('tabpanel-close-text');
+    var panelOpenText = utils.trans('tabpanel-open-text');
+    var panelCloseText = utils.trans('tabpanel-close-text');
 
     // Accordion widgets in the highlight box
     $('#main-content .accordion').each(function(accordionIndex) {
