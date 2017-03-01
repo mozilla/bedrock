@@ -183,7 +183,7 @@
             },
             geometry: {
                 type: 'Point',
-                coordinates: [139.727765, 35.665208]
+                coordinates: [139.782650, 35.689750]
             }
         }, {
             type: 'Feature',

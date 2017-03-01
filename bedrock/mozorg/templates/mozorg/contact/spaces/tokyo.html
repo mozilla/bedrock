@@ -15,15 +15,15 @@
         <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
         {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
         {% trans %}
-          <span itemprop="streetAddress" class="street-address">7-5-6 Roppongi, Minato-ku</span><br>
-          <span itemprop="addressLocality" class="locality">Tokyo</span> <span itemprop="postalCode" class="postal-code">106-0032</span><br>
+          <span itemprop="streetAddress" class="street-address">3rd floor, 10-13 Nihonbashi Tomizawa-cho, Chuo-ku</span><br>
+          <span itemprop="addressLocality" class="locality">Tokyo</span> <span itemprop="postalCode" class="postal-code">103-0006</span><br>
           <span itemprop="addressCountry" class="country-name">Japan</span>
         {% endtrans %}
         </p>
 
         <figure class="feature-img">
           {% set pin = static('img/contact/moz-map-pin.png')|absolute_url %}
-          <img src="https://api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ pin|urlencode }}(139.727765,35.665208)/139.727765,35.665208,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
+          <img src="https://api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ pin|urlencode }}(139.782650,35.689750)/139.782650,35.689750,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
         </figure>
       </div>
 
