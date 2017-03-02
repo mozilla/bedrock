@@ -52,7 +52,7 @@ function dockerRun() {
     env_file="$1"
     image_tag="mozorg/bedrock_${2}:${GIT_COMMIT}"
     cmd="$3"
-    docker run --user $(id -u) -v "$PWD:/app" --env-file "docker/envfiles/${env_file}.env" "$image_tag" bash -c "$cmd"
+    docker run --rm --user $(id -u) -v "$PWD:/app" --env-file "docker/envfiles/${env_file}.env" "$image_tag" bash -c "$cmd"
 }
 
 if ! imageExists "base"; then
