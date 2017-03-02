@@ -48,23 +48,20 @@ case $1 in
     ;;
 esac
 
-if [[ -z "$GIT_COMMIT" ]]; then
-  GIT_COMMIT=$(git rev-parse HEAD)
-fi
-
-BUILD_NUMBER="${BUILD_NUMBER:-0}"
+BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $BIN_DIR/set_git_env_vars.sh
 
 if [ -z "${BASE_URL}" ]; then
   # start bedrock
-  docker run -d \
-    --name bedrock-code-${BUILD_NUMBER} \
+  docker run -d --rm \
+    --name bedrock-code-${GIT_COMMIT_SHORT} \
     -e ALLOWED_HOSTS="*" \
     -e SECRET_KEY=foo \
     -e DEBUG=False \
     -e DATABASE_URL=sqlite:////tmp/temp.db \
     mozorg/bedrock_code:${GIT_COMMIT}
 
-  DOCKER_LINKS=(--link bedrock-code-${BUILD_NUMBER}:bedrock)
+  DOCKER_LINKS=(--link bedrock-code-${GIT_COMMIT_SHORT}:bedrock)
   BASE_URL="http://bedrock:8000"
 fi
 
@@ -79,21 +76,21 @@ if [ "${DRIVER}" = "Remote" ]; then
   docker pull selenium/node-firefox:${SELENIUM_VERSION}
 
   # start selenium grid hub
-  docker run -d \
-    --name bedrock-selenium-hub-${BUILD_NUMBER} \
+  docker run -d --rm \
+    --name bedrock-selenium-hub-${GIT_COMMIT_SHORT} \
     selenium/hub:${SELENIUM_VERSION}
-  DOCKER_LINKS=(${DOCKER_LINKS[@]} --link bedrock-selenium-hub-${BUILD_NUMBER}:hub)
+  DOCKER_LINKS=(${DOCKER_LINKS[@]} --link bedrock-selenium-hub-${GIT_COMMIT_SHORT}:hub)
   SELENIUM_HOST="hub"
 
   # start selenium grid nodes
   for NODE_NUMBER in `seq ${NUMBER_OF_NODES:-5}`; do
-    docker run -d \
-      --name bedrock-selenium-node-${NODE_NUMBER}-${BUILD_NUMBER} \
+    docker run -d --rm \
+      --name bedrock-selenium-node-${NODE_NUMBER}-${GIT_COMMIT_SHORT} \
       ${DOCKER_LINKS[@]} \
       selenium/node-firefox:${SELENIUM_VERSION}
     while ! ${SELENIUM_READY}; do
-      IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' bedrock-selenium-node-${NODE_NUMBER}-${BUILD_NUMBER}`
-      CMD="docker run --link bedrock-selenium-hub-${BUILD_NUMBER}:hub tutum/curl curl http://hub:4444/grid/api/proxy/?id=http://${IP}:5555 | grep 'proxy found'"
+      IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' bedrock-selenium-node-${NODE_NUMBER}-${GIT_COMMIT_SHORT}`
+      CMD="docker run --rm --link bedrock-selenium-hub-${GIT_COMMIT_SHORT}:hub tutum/curl curl http://hub:4444/grid/api/proxy/?id=http://${IP}:5555 | grep 'proxy found'"
       if eval ${CMD}; then SELENIUM_READY=true; fi
     done
   done
@@ -105,7 +102,7 @@ RESULTS_DIR="$PWD/results"
 DOCKER_RESULTS_DIR="/app/results"
 rm -rf "$RESULTS_DIR"
 mkdir -p "$RESULTS_DIR"
-docker run -v "${RESULTS_DIR}:${DOCKER_RESULTS_DIR}" -u $(stat -c "%u:%g" "$RESULTS_DIR") \
+docker run --rm -v "${RESULTS_DIR}:${DOCKER_RESULTS_DIR}" -u $(stat -c "%u:%g" "$RESULTS_DIR") \
   ${DOCKER_LINKS[@]} \
   -e "BASE_URL=${BASE_URL}" \
   -e "DRIVER=${DRIVER}" \

@@ -2,9 +2,8 @@
 
 set -exo pipefail
 
-if [[ -z "$GIT_COMMIT" ]]; then
-  GIT_COMMIT=$(git rev-parse HEAD)
-fi
+BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $BIN_DIR/set_git_env_vars.sh
 
 BUILD_IMAGE_TAG="mozorg/bedrock_build:${GIT_COMMIT}"
 CODE_IMAGE_TAG="mozorg/bedrock_code:${GIT_COMMIT}"
@@ -40,7 +39,12 @@ function imageExists() {
     if $DOCKER_REBUILD; then
         return 1
     fi
-    docker history -q "mozorg/bedrock_${1}:${GIT_COMMIT}" > /dev/null 2>&1
+    if [[ "$1" == "l10n" ]]; then
+        DOCKER_TAG="${BRANCH_NAME}-${GIT_COMMIT}"
+    else
+        DOCKER_TAG="${GIT_COMMIT}"
+    fi
+    docker history -q "mozorg/bedrock_${1}:${DOCKER_TAG}" > /dev/null 2>&1
     return $?
 }
 
@@ -48,7 +52,7 @@ function dockerRun() {
     env_file="$1"
     image_tag="mozorg/bedrock_${2}:${GIT_COMMIT}"
     cmd="$3"
-    docker run --user $(id -u) -v "$PWD:/app" --env-file "docker/envfiles/${env_file}.env" "$image_tag" bash -c "$cmd"
+    docker run --rm --user $(id -u) -v "$PWD:/app" --env-file "docker/envfiles/${env_file}.env" "$image_tag" bash -c "$cmd"
 }
 
 if ! imageExists "base"; then
@@ -78,6 +82,11 @@ if $DEMO_MODE && ! imageExists "demo"; then
     docker/bin/docker_build.sh "demo"
 fi
 if $PROD_MODE && ! imageExists "l10n"; then
-    dockerRun prod code "python manage.py l10n_update"
+    if [[ "$BRANCH_NAME" == "prod" ]]; then
+        ENVFILE="prod";
+    else
+        ENVFILE="master";
+    fi
+    dockerRun $ENVFILE code "python manage.py l10n_update"
     docker/bin/docker_build.sh -c "locale" "l10n"
 fi

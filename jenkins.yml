@@ -1,8 +1,12 @@
 environment:
   SELENIUM_VERSION: 2.52.0
 
+# see the following for documentation of these options
+# http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
 branches:
   master:
+    push_public_registry: true
+    smoke_tests: true
     regions:
       - usw
       - euw
@@ -12,6 +16,8 @@ branches:
       - firefox
       - headless
   prod:
+    push_public_registry: true
+    smoke_tests: true
     require_tag: true
     app_name_suffix: "-deis"
     regions:
@@ -28,6 +34,7 @@ branches:
       - ie6
       - ie7
   run-integration-tests:
+    smoke_tests: true
     regions:
       - usw
     apps:
@@ -39,6 +46,8 @@ branches:
       - ie
       - ie6
       - ie7
+  run-smoke-tests:
+    smoke_tests: true
 
 regions:
   usw:
