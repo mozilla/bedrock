@@ -81,17 +81,6 @@
     <section id="innovation" class="even">
       <div class="content">
         <div class="inner-container">
-        {% if l10n_has_tag('internet_health_digital_inclusion') %}
-          <h2><span>{{ _('Make room for everyone') }}</span></h2>
-          <p>
-          {% trans %}
-            The quality of the Internet is a reflection of the diversity of the
-            people who are able to access and contribute to it. We create technology,
-            policy and outreach programs that welcome all people online, regardless
-            of race, income, nationality, or gender.
-          {% endtrans %}
-          </p>
-        {% else %}
           <h2><span>{{ _('Discover open innovation') }}</span></h2>
           <p>
           {% trans %}
@@ -101,11 +90,13 @@
             through shared ideas and code.
           {% endtrans %}
           </p>
-        {% endif %}
 
           <ul class="ctas">
             <li>
-              <a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Learn more') }}</a>
+              <a rel="external" href="https://toolkit.mozilla.org/">{{ _('Explore our Open Innovation Toolkit') }}</a>
+            </li>
+            <li>
+              <a rel="external" href="https://science.mozilla.org/">{{ _('Visit the Mozilla Science Lab') }}</a>
             </li>
           </ul>
         </div>
@@ -158,7 +149,7 @@
 
           <ul class="ctas">
             <li>
-              <a rel="external" href="https://mozilla.github.io/womenandweb/">{{ _('Check out Mozilla’s Women &amp; Web Literacy program') }}</a>
+              <a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Learn more') }}</a>
             </li>
           </ul>
         </div>
