@@ -10,27 +10,26 @@ from django.contrib.staticfiles.finders import find as find_static
 from django.core.context_processors import csrf
 from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import redirect, render as django_render
+from django.shortcuts import render as django_render
 from django.template.loader import render_to_string
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import last_modified, require_safe
 from django.views.generic import TemplateView
 
-import basket
 from commonware.decorators import xframe_allow
 
 from bedrock.base.templatetags.helpers import static
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.decorators import cache_control_expires
-from bedrock.mozorg.forms import (WebToLeadForm, ContributeStudentAmbassadorForm)
+from bedrock.mozorg.forms import (WebToLeadForm)
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import ContributorActivity, TwitterCache, BlogArticle
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from lib import l10n_utils
-from lib.l10n_utils.dotlang import _, lang_file_is_active
+from lib.l10n_utils.dotlang import lang_file_is_active
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
@@ -175,25 +174,6 @@ def contribute_studentambassadors_landing(request):
     return l10n_utils.render(request,
                              'mozorg/contribute/studentambassadors/landing.html',
                              {'tweets': tweets})
-
-
-@csrf_protect
-def contribute_studentambassadors_join(request):
-    form = ContributeStudentAmbassadorForm(request.POST or None)
-    if form.is_valid():
-        try:
-            form.save()
-        except basket.BasketException:
-            msg = form.error_class(
-                [_('We apologize, but an error occurred in our system. '
-                   'Please try again later.')])
-            form.errors['__all__'] = msg
-        else:
-            return redirect('mozorg.contribute.studentambassadors.thanks')
-    return l10n_utils.render(
-        request,
-        'mozorg/contribute/studentambassadors/join.html', {'form': form}
-    )
 
 
 def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'):

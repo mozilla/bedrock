@@ -654,4 +654,8 @@ redirectpatterns = (
 
     # Bug 1335040
     redirect(r'^gigabit(/.*)?', 'https://learning.mozilla.org/gigabit/'),
+
+    # Bug 1324504
+    redirect(r'^/contribute/studentambassadors/join/?$', 'https://campus.mozilla.community/'),
+    redirect(r'^/contribute/studentambassadors/thanks/?$', 'https://campus.mozilla.community/'),
 )
