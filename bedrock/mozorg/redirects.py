@@ -646,6 +646,9 @@ redirectpatterns = (
     # Bug 1322959 - vanity URL
     redirect(r'^onlineprivacy/?$', 'mozorg.internet-health.privacy-security'),
 
+    # Bug 1335569 - vanity URL
+    redirect(r'^digital-inclusion/?$', 'mozorg.internet-health.digital-inclusion'),
+
     # Bug 1333146
     redirect(r'^internet-?health-?report/?$', 'https://internethealthreport.org/'),
 

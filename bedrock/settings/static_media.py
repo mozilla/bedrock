@@ -116,11 +116,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mozorg/internet_health-bundle.css',
     },
-    'health-privacy-security': {
+    'health-subpage': {
         'source_filenames': (
-            'css/mozorg/internet-health/privacy-security.scss',
+            'css/mozorg/internet-health/health-subpage.scss',
         ),
-        'output_filename': 'css/mozorg/health-privacy-security.css',
+        'output_filename': 'css/mozorg/health-subpage-bundle.css',
     },
     'privacy-day-egg': {
         'source_filenames': (

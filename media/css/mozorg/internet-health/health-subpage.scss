@@ -1,0 +1,760 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/buttons-download';
+@import '../../pebbles/components/newsletter';
+
+
+//* -------------------------------------------------------------------------- */
+// Color scheme setup
+$color-theme-privacy: $color-brand-lilac;
+$color-theme-privacy-light: lighten($color-brand-lilac, 15%);
+$color-theme-privacy-accent: $color-brand-yellow;
+
+$color-theme-inclusion: $color-brand-cyan;
+$color-theme-inclusion-light: lighten($color-brand-cyan, 20%);
+$color-theme-inclusion-accent: $color-brand-yellow;
+
+// A mixin to apply theme colors to specific elements
+@mixin theme-color($theme-name, $theme-color, $theme-color-light, $theme-accent) {
+    .#{$theme-name} {
+        .main-header,
+        .topic-title span,
+        .health-subnav .current a {
+            background-color: $theme-color;
+        }
+
+        .topic-intro-aside {
+            background-color: $theme-color-light;
+        }
+
+        .topic-action h4 {
+            background-image: -webkit-repeating-linear-gradient(top, transparent 0, transparent .75em, $theme-accent .75em, $theme-accent 1em);
+            background-image:         repeating-linear-gradient(to bottom, transparent 0, transparent .75em, $theme-accent .75em, $theme-accent 1em);
+        }
+    }
+}
+
+// Pass body classes to the mixin
+@include theme-color('theme-privacy', $color-theme-privacy, $color-theme-privacy-light, $color-theme-privacy-accent);
+@include theme-color('theme-inclusion', $color-theme-inclusion, $color-theme-inclusion-light, $color-theme-inclusion-accent);
+
+
+// Extra custom bits for privacy page
+.theme-privacy {
+    .main-header {
+        @include background-size(568px 719px);
+        background-color: #9899cc;
+        background-image: url('/media/img/mozorg/internet-health/privacy/privacy-header-bg.png');
+        color: #fff;
+    }
+
+    .head-pagenav a:before {
+        background-image: url('/media/img/mozorg/internet-health/privacy/privacy-nav-sprite.png');
+    }
+}
+
+
+// Extra custom bits for inclusion page
+.theme-inclusion {
+    .main-header {
+        background-image: url('/media/img/mozorg/internet-health/inclusion/inclusion-header-bg.png');
+    }
+
+    .head-pagenav a:before {
+        background-image: url('/media/img/mozorg/internet-health/inclusion/inclusion-nav-sprite.png');
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Common elements
+body {
+    border-top: none;
+}
+
+#outer-wrapper {
+    background: #fff;
+}
+
+main .content {
+    max-width: $width-desktop;
+}
+
+
+//*--------------------------------------------------------------------------*/
+// Page masthead
+#masthead {
+    background: #fff;
+    color: #000;
+    padding: 0;
+    width: 100%;
+
+    .masthead-logo {
+        font-size: 100%;
+        height: 30px;
+        left: 0;
+        margin: 0;
+        padding: 10px 0 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+
+        img {
+            height: 30px;
+        }
+    }
+
+    .download-button {
+        display: none;
+
+        .download-list {
+            margin-bottom: 0;
+        }
+
+        .download-link {
+            @include font-size(14px);
+            border-radius: 0;
+            border: none;
+            padding: 15px 20px;
+            text-transform: uppercase;
+        }
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+
+    .masthead-nav-main {
+        .toggle {
+            background-color: #000;
+        }
+
+        .nav-main-menu a:hover {
+            border-color: #000;
+            color: #000;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .masthead-nav-main {
+            margin-right: 0;
+
+            .nav-main-menu {
+                padding: 15px 0;
+
+                a:link,
+                a:visited {
+                    color: #000;
+                }
+
+                li {
+                    border-left: 1px solid #000;
+
+                    &:first-child {
+                        border-left: none;
+                    }
+                }
+            }
+        }
+
+        .masthead-logo {
+            float: left;
+            padding: 10px 0;
+            position: relative;
+            width: auto;
+        }
+
+        .download-button {
+            display: block;
+            float: right;
+
+            .download-link {
+                padding: 15px 12px;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .download-button .download-link {
+            padding: 15px 20px;
+        }
+    }
+}
+
+html[dir="rtl"] {
+    @media #{$mq-tablet} {
+        #masthead .masthead-nav-main .nav-main-menu li {
+            border-left: none;
+            border-right: 1px solid #fff;
+
+            &:first-child {
+                border-right: none;
+            }
+        }
+    }
+}
+
+
+//*--------------------------------------------------------------------------*/
+// Health subpages navigation
+.health-subnav {
+    @include font-size(18px);
+    background-color: #000;
+    text-transform: lowercase;
+
+    .content {
+        padding: 0;
+    }
+
+    a {
+        color: #fff;
+        display: block;
+        padding: .25em 20px;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+
+    .current a {
+        color: #000;
+        background-color: #eee;
+    }
+
+    @media #{$mq-phone-wide} {
+        .content {
+            padding: 0 20px;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        a {
+            display: block;
+            padding: 1em 20px;
+        }
+    }
+}
+
+
+//*--------------------------------------------------------------------------*/
+// Main page header
+.main-header {
+    position: relative;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+
+    .page-title {
+        margin-bottom: .5em;
+    }
+
+    @media #{$mq-tall} {
+        padding-top: 40px;
+    }
+}
+
+.head-intro {
+    @include font-size(18px);
+
+    @media #{$mq-tablet} {
+        @include font-size(24px);
+    }
+}
+
+.head-pagenav {
+    @include clearfix;
+    background-color: rgba(0, 0, 0, .12);
+
+    .head-pagenav-title {
+        @include box-decoration-break(clone);
+        @include font-size(18px);
+        background-color: #000;
+        color: #fff;
+        display: inline-block;
+        font-weight: normal;
+        margin: .5em 0 .5em -10px;
+        padding: .15em 10px;
+    }
+
+    ul {
+        margin: 1em 0 0;
+    }
+
+    li {
+        @include border-box;
+        margin: 0 0 1em;
+        text-transform: uppercase;
+    }
+
+    a {
+        color: #fff;
+        display: block;
+        line-height: 1.2;
+        padding: 1em 0 1em 65px;
+        position: relative;
+        text-decoration: none;
+
+        @media #{$mq-tablet} {
+            padding: 25px 20px 25px 100px;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        &:before {
+            @include background-size(50px 150px);
+            background-repeat: no-repeat;
+            content: '';
+            height: 50px;
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 50px;
+        }
+
+        &.nav-one:before {
+            background-position: center 0;
+        }
+
+        &.nav-two:before {
+            background-position: center -50px;
+        }
+
+        &.nav-three:before {
+            background-position: center -100px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        ul {
+            @include flexbox;
+        }
+
+        li {
+            display: inline-block;
+            margin: 0;
+            width: 33%;
+        }
+
+        a:before {
+            @include background-size(75px 225px);
+            height: 75px;
+            width: 75px;
+        }
+
+        a.nav-one:before {
+            background-position: center 0;
+        }
+
+        a.nav-two:before {
+            background-position: center -75px;
+        }
+
+        a.nav-three:before {
+            background-position: center -150px;
+        }
+    }
+}
+
+
+
+//*--------------------------------------------------------------------------*/
+// Topics
+
+.topic-intro {
+    @include clearfix;
+}
+
+.topic-intro-main {
+    @include font-size(18px);
+    border-top: 4px solid $color-text-secondary;
+    padding-top: 2em;
+
+    @media #{$mq-tablet} {
+        @include font-size(20px);
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.topic-first .topic-intro-main {
+    border-top: 0;
+}
+
+.topic-title {
+    margin: 0 0 1em;
+    line-height: 1.35;
+
+    span {
+        @include box-decoration-break(clone);
+        background-color: #ccc;
+        padding: 0 10px;
+    }
+
+    @media #{$mq-tablet} {
+        margin: 0 -40px 1em;
+    }
+}
+
+.topic-intro-aside {
+    @include font-size(18px);
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    margin: 2em 0 0;
+
+    .note {
+        position: relative;
+        z-index: 3;
+    }
+
+    .note-source {
+        @include font-size(14px);
+        margin: 0;
+
+        cite {
+            font-style: normal;
+        }
+    }
+
+    .aside-accent {
+        @include font-size(120px);
+        bottom: -10px;
+        color: #fff;
+        font-weight: bold;
+        left: -10px;
+        line-height: 1;
+        position: absolute;
+        z-index: 1;
+    }
+
+    @media #{$mq-tablet} {
+        @include font-size(26px);
+        padding: 30px 15%;
+    }
+}
+
+.topic-tagline {
+    @include font-size(20px);
+    font-style: italic;
+
+    @media #{$mq-tablet} {
+        @include font-size(26px);
+    }
+}
+
+.topic-action {
+    padding: 20px 0;
+
+    h4 {
+        @include box-decoration-break(clone);
+        display: inline;
+
+        & + p {
+            margin-top: .5em;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        ul {
+            @include flexbox;
+            @include flex-wrap;
+        }
+
+        li {
+            margin-right: 9.5%;
+            margin-bottom: 1em;
+            width: 40%;
+        }
+    }
+
+    .topic-action-you {
+        margin-bottom: 3em;
+    }
+}
+
+.topic-action-title {
+    margin: 0 0 1em;
+}
+
+
+//*--------------------------------------------------------------------------*/
+// Health report
+
+.health-report {
+    @include font-size(20px);
+    background-color: $color-brand-neonblue;
+
+    a:link,
+    a:visited {
+        color: #000;
+        font-weight: bold;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: $color-text-tertiary;
+    }
+
+    h2 {
+        margin-bottom: .75em;
+    }
+
+    .report-cta span {
+        @include box-decoration-break(clone);
+        background-color: $color-brand-yellow;
+        padding: 0 20px;
+    }
+
+    @media #{$mq-tablet} {
+        @include at2x('/media/img/mozorg/internet-health/healthreport.png', 750px, 423px);
+        @include font-size(24px);
+        background-position: right top;
+        background-repeat: no-repeat;
+        min-height: 150px;
+        padding: 60px 0;
+
+        h2,
+        .report-cta {
+            width: 50%;
+        }
+    }
+}
+
+
+
+//*--------------------------------------------------------------------------*/
+// Newsletter
+
+#newsletter-subscribe {
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+
+    a {
+        color: #fff;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .form-title {
+        background-image: none;
+        float: none;
+        margin: 0 0 1em;
+        padding: 0;
+        width: auto;
+
+        h4 {
+            @include font-size(20px);
+            line-height: 1.4;
+        }
+    }
+
+    #newsletter-form {
+        padding: 0;
+        margin: 20px 0;
+
+        input[type="email"] {
+            border-radius: 0;
+            border: 0;
+        }
+
+        .form-button {
+            background: $color-brand-neonpink;
+            border-radius: 0;
+            border: 0;
+            color: #000;
+            text-transform: uppercase;
+
+            &:hover,
+            &:focus {
+                background: lighten($color-brand-neonpink, 5%);
+            }
+        }
+    }
+
+    @media #{$mq-tablet} {
+        @include at2x('/media/img/mozorg/internet-health/newsletter-bg.png', 1152px, 592px);
+        background-repeat: no-repeat;
+        background-position: center top;
+
+        .thank,
+        .errorlist {
+            width: 280px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        @include background-size(1440px 740px);
+        background-position: center top;
+
+        .thank,
+        .errorlist {
+            width: 380px;
+        }
+    }
+}
+
+
+
+//*--------------------------------------------------------------------------*/
+// Keep the old IHR and Newsletter sections on the privacy page, at least for now
+
+#health-privacy-security {
+
+    // Health report
+    .health-report {
+        @include font-size(20px);
+        background: #52fffe;
+        padding: 20px 0;
+
+        a:link,
+        a:visited {
+            color: $color-text-secondary;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: $color-text-tertiary;
+        }
+
+        h2 {
+            margin-bottom: .75em;
+        }
+
+        .report-cta {
+            @include box-decoration-break(clone);
+            display: inline;
+            background: #feeb33;
+            padding: 0 20px;
+        }
+
+        @media #{$mq-tablet} {
+            @include font-size(24px);
+        }
+    }
+
+
+    // Newsletter
+    #newsletter-subscribe {
+        @include at2x('/media/img/mozorg/internet-health/privacy/bg-newsletter.png', 1025px, 423px);
+        background-color: #d02687;
+        background-position: -40px -80px;
+        background-repeat: no-repeat;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+
+        a {
+            color: #fff;
+        }
+
+        .content {
+            padding: 20px;
+
+            @media #{$mq-tablet} {
+                @include at2x('/media/img/mozorg/internet-health/privacy/newsletter-objects.png', 402px, 295px);
+                background-repeat: no-repeat;
+                background-position: right top;
+            }
+        }
+
+        .form-title {
+            background-image: none;
+            float: none;
+            margin: 0 0 1em;
+            padding: 0;
+            width: auto;
+
+            h4 {
+                @include font-size(20px);
+                line-height: 1.4;
+            }
+        }
+
+        #newsletter-form {
+            padding: 0;
+            margin: 20px 0;
+
+            input[type="email"] {
+                background: #000;
+                border-radius: 0;
+                border: 0;
+                color: #fff;
+            }
+
+            .form-button {
+                background: #fff;
+                border-radius: 0;
+                border: 0;
+                color: $color-text-primary;
+                text-transform: uppercase;
+
+                &:hover,
+                &:focus {
+                    background: #999;
+                    color: #fff;
+                }
+            }
+        }
+
+        @media #{$mq-desktop} {
+            .thank,
+            .errorlist {
+                width: 380px;
+            }
+        }
+    }
+}
+
+//*--------------------------------------------------------------------------*/
+// Footer
+
+#colophon {
+    background: #000;
+    color: #fff;
+    margin: 0;
+
+    a,
+    a:link {
+        color: #23c7db;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: darken(#23c7db, 10%);
+    }
+
+    a:hover,
+    a:focus {
+        color: #23c7db;
+        text-decoration: underline;
+    }
+
+    .logo a {
+        background: url('/media/img/pebbles/moz-wordmark-light-reverse.svg') no-repeat;
+        @include background-size(100px 32px);
+        height: 32px;
+        width: 100px;
+    }
+}

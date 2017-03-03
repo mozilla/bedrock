@@ -7,13 +7,13 @@
 {% block page_title %}{{ _('A Healthy Internet is Secure and Private') }}{% endblock %}
 
 {% block page_desc %}{{ _('The Internet only stays healthy if we trust it as a safe place – to explore, transact, connect, and create.') }}{% endblock %}
-{% block page_image %}{{ static('img/mozorg/internet-health/privacy/meta-image-columns.jpg') }}{% endblock %}
+{% block page_image %}{{ static('img/mozorg/internet-health/privacy/privacy-meta-image.png') }}{% endblock %}
 
 {% block body_id %}health-privacy-security{% endblock %}
-{% block body_class %}{% endblock %}
+{% block body_class %}theme-privacy{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'health-privacy-security' %}
+  {% stylesheet 'health-subpage' %}
 
   {% if switch('data-privacy-day-2017') %}
     {% stylesheet 'privacy-day-egg' %}
@@ -21,12 +21,22 @@
 {% endblock %}
 
 {% block site_header %}
+  {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
   {% include 'mozorg/home/includes/nav.html' %}
 {% endblock %}
 
 {% block content %}
+{% if l10n_has_tag('internet_health_digital_inclusion') %}
+<nav id="health-subnav" class="health-subnav">
+  <ul class="content">
+    <li class="current"><a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Privacy &amp; Security') }}</a></li>
+    <li><a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Digital Inclusion') }}</a></li>
+  </ul>
+</nav>
+{% endif %}
+
 <main role="main">
-  <header class="section main-heading">
+  <header class="section main-header">
     <div class="content">
       <h1 class="page-title">{{ self.page_title() }}</h1>
 
@@ -45,8 +55,10 @@
           </strong>
         </p>
       </div>
+    </div>
 
-      <nav class="head-pagenav">
+    <nav class="section head-pagenav">
+      <div class="content">
         <h2 class="head-pagenav-title">
         {% trans %}
           Here are three areas where we can make a difference.
@@ -54,21 +66,29 @@
         </h2>
 
         <ul>
-          <li><a class="nav-control" href="#control">{{ _('User Control') }}</a></li>
-          <li><a class="nav-cybersecurity" href="#security">{{ _('Cyber Security') }}</a></li>
-          <li><a class="nav-surveillance" href="#surveillance">{{ _('Government Surveillance') }}</a></li>
+          <li><a class="nav-one" href="#control">{{ _('User Control') }}</a></li>
+          <li><a class="nav-two" href="#security">{{ _('Cyber Security') }}</a></li>
+          <li><a class="nav-three" href="#surveillance">{{ _('Government Surveillance') }}</a></li>
         </ul>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </header>
 
-  <section id="control" class="section topic">
+  <section id="control" class="section topic-first">
 
     <section class="topic-intro">
       <div class="content">
 
         <div class="topic-intro-main">
-          <h2 class="topic-title">{{ _('User Control: Deciding who can collect your data') }}</h2>
+          <h2 class="topic-title"><span>{{ _('User Control: Deciding who can collect your data') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            We should all be able to choose – with clarity and confidence – what
+            information we share with what companies, understanding the tradeoffs
+            we’re making when we do.
+          {% endtrans %}
+          </p>
 
           <p>
           {% trans %}
@@ -77,34 +97,28 @@
             we’re sharing or when, and opting out is seldom on the menu.
           {% endtrans %}
           </p>
-
-          <p><strong>
-          {% trans %}
-            We should all be able to choose – with clarity and confidence – what
-            information we share with what companies, understanding the tradeoffs
-            we’re making when we do.
-          {% endtrans %}
-          </strong></p>
         </div>
 
-        <div class="topic-intro-aside">
-          <blockquote class="pullquote">
-            <p class="quote">
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
             {% trans %}
               91% of adults agree that consumers have lost control of how personal
               information is collected and used by companies.
             {% endtrans %}
             </p>
 
-            <p class="quote-source">
+            <p class="note-source">
               <cite>
               {% trans pew='http://www.pewinternet.org/2015/05/20/americans-attitudes-about-privacy-security-and-surveillance/' %}
                 Source: <a href="{{ pew }}" rel="external">Pew Research Center</a>, May 2015
               {% endtrans %}
               </cite>
             </p>
-          </blockquote>
-        </div>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('91%') }}</span>
+        </aside>
       </div>
     </section>
 
@@ -112,55 +126,90 @@
       <div class="content">
         <div class="topic-action-you">
           <h3 class="topic-action-title">{{ _('What you can do about user control') }}</h3>
-          <ol>
+          <ul>
             <li>
-            {% trans
-                ios='https://support.apple.com/HT203033',
-                android='https://support.google.com/googleplay/answer/6014972' %}
-              Make sure your mobile apps access only the info they need. Control your
-              privacy and location settings on <a href="{{ ios }}" rel="external">iOS</a>
-              and <a href="{{ android }}" rel="external">Android</a>.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Control your apps') }}</h4>
+            {% endif %}
+              <p>
+              {% trans
+                  ios='https://support.apple.com/HT203033',
+                  android='https://support.google.com/googleplay/answer/6014972' %}
+                Make sure your mobile apps access only the info they need. Control your
+                privacy and location settings on <a href="{{ ios }}" rel="external">iOS</a>
+                and <a href="{{ android }}" rel="external">Android</a>.
+              {% endtrans %}
+              </p>
             </li>
             <li>
-            {% trans
-                google='https://www.google.com/ads/preferences',
-                yahoo='https://info.yahoo.com/privacy/us/yahoo/opt_out/targeting/details.html',
-                facebook='https://www.facebook.com/settings?tab=ads&amp;view',
-                acxiom='https://aboutthedata.com/' %}
-              Know your settings. You can manage your profile and preferences for
-              <a href="{{ google }}">Google</a>, <a href="{{ yahoo }}">Yahoo!</a> and
-              <a href="{{ facebook }}">Facebook</a> ads, and even
-              <a href="{{ acxiom }}">edit data that’s been collected about you by Acxiom</a>,
-              one of the world’s largest marketing data brokers.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Manage your preferences') }}</h4>
+              <p>
+              {% trans
+                  google='https://www.google.com/ads/preferences',
+                  yahoo='https://info.yahoo.com/privacy/us/yahoo/opt_out/targeting/details.html',
+                  facebook='https://www.facebook.com/settings?tab=ads&amp;view' %}
+                Know your settings. You can manage your profile and preferences for
+                <a href="{{ google }}">Google</a>, <a href="{{ yahoo }}">Yahoo!</a> and
+                <a href="{{ facebook }}">Facebook</a> ads.
+              {% endtrans %}
+            {% else %}
+              <p>
+              {% trans
+                  google='https://www.google.com/ads/preferences',
+                  yahoo='https://info.yahoo.com/privacy/us/yahoo/opt_out/targeting/details.html',
+                  facebook='https://www.facebook.com/settings?tab=ads&amp;view',
+                  acxiom='https://aboutthedata.com/' %}
+                Know your settings. You can manage your profile and preferences for
+                <a href="{{ google }}">Google</a>, <a href="{{ yahoo }}">Yahoo!</a> and
+                <a href="{{ facebook }}">Facebook</a> ads, and even
+                <a href="{{ acxiom }}">edit data that’s been collected about you by Acxiom</a>,
+                one of the world’s largest marketing data brokers.
+              {% endtrans %}
+            {% endif %}
+              </p>
             </li>
-          </ol>
+          </ul>
         </div>
 
         <div class="topic-action-moz">
           <h3 class="topic-action-title">{{ _('What Mozilla is doing about user control') }}</h3>
-          <ol>
+          <ul>
             <li>
-            {% trans privacy=url('privacy') %}
-              Writing <a href="{{ privacy }}">our own privacy policy</a> in clear,
-              understandable language.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Writing our own policy') }}</h4>
+            {% endif %}
+              <p>
+              {% trans privacy=url('privacy') %}
+                Writing <a href="{{ privacy }}">our own privacy policy</a> in clear,
+                understandable language.
+              {% endtrans %}
+              </p>
             </li>
             <li>
-            {% trans focus='https://itunes.apple.com/us/app/firefox-focus-privacy-browser/id1055677337?mt=8' %}
-              Walking the talk with our own products, with features like the
-              Forget Button, and <a href="{{ focus }}">Firefox Focus</a>, our
-              private browser for iOS.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Creating supportive products') }}</h4>
+            {% endif %}
+              <p>
+              {% trans focus='https://itunes.apple.com/us/app/firefox-focus-privacy-browser/id1055677337?mt=8' %}
+                Walking the talk with our own products, with features like the
+                Forget Button, and <a href="{{ focus }}">Firefox Focus</a>, our
+                private browser for iOS.
+              {% endtrans %}
+              </p>
             </li>
             <li>
-            {% trans leandata=url('mozorg.about.policy.lean-data') + '?control' %}
-              Encouraging and educating the industry about
-              <a href="{{ leandata }}">lean data practices</a>.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Educating the industry') }}</h4>
+            {% endif %}
+              <p>
+              {% trans leandata=url('mozorg.about.policy.lean-data') + '?control' %}
+                Encouraging and educating the industry about
+                <a href="{{ leandata }}">lean data practices</a>.
+              {% endtrans %}
+              </p>
             </li>
-          </ol>
+          </ul>
         </div>
       </div>
     </section>
@@ -171,7 +220,13 @@
     <section class="topic-intro">
       <div class="content">
         <div class="topic-intro-main">
-          <h2 class="topic-title">{{ _('Cyber Security: Locking down your sensitive information') }}</h2>
+          <h2 class="topic-title"><span>{{ _('Cyber Security: Locking down your sensitive information') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            We should all have the ability to protect our online identity.
+          {% endtrans %}
+          </p>
 
           <p>
           {% trans %}
@@ -181,30 +236,26 @@
             may be at risk of theft without you even knowing it.
           {% endtrans %}
           </p>
-
-          <p><strong>
-          {% trans %}
-            We should all have the ability to protect our online identity.
-          {% endtrans %}
-          </strong></p>
         </div>
 
-        <div class="topic-intro-aside">
-          <blockquote class="pullquote">
-            <p class="quote">
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
             {% trans %}
               Breaches affected hundreds of millions of accounts in 2013-2016. In December 2016, the biggest breach in history was reported: 1 billion accounts.
             {% endtrans %}
             </p>
-            <p class="quote-source">
+            <p class="note-source">
               <cite>
               {% trans wiki='https://en.wikipedia.org/wiki/List_of_data_breaches' %}
                 Source:  Wikipedia, <a href="{{ wiki }}" rel="external">List of data breaches</a>, 2013-2016
               {% endtrans %}
               </cite>
             </p>
-          </blockquote>
-        </div>
+          </div>
+          {# L10n: this is an abbreviation for the number "1 billion" used as decoration in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('1B') }}</span>
+        </aside>
       </div>
     </section>
 
@@ -212,53 +263,80 @@
       <div class="content">
         <div class="topic-action-you">
           <h3 class="topic-action-title">{{ _('What you can do about cyber security') }}</h3>
-          <ol>
+          <ul>
             <li>
-            {% trans
-                strongpass='https://support.mozilla.org/kb/create-secure-passwords-keep-your-identity-safe',
-                passmanager='https://www.wired.com/2016/01/you-need-a-password-manager/' %}
-              <a href="{{ strongpass }}" rel="external">Choose strong, unique pins and passwords</a>,
-              and use a <a href="{{ passmanager }}" rel="external">password manager</a>.
-              (Note: we haven’t tried them all – see what works for you.)
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Choose strong passwords') }}</h4>
+            {% endif %}
+              <p>
+              {% trans
+                  strongpass='https://support.mozilla.org/kb/create-secure-passwords-keep-your-identity-safe',
+                  passmanager='https://www.wired.com/2016/01/you-need-a-password-manager/' %}
+                <a href="{{ strongpass }}" rel="external">Choose strong, unique pins and passwords</a>,
+                and use a <a href="{{ passmanager }}" rel="external">password manager</a>.
+                (Note: we haven’t tried them all – see what works for you.)
+              {% endtrans %}
+              </p>
             </li>
             <li>
-            {% trans twofactor='https://www.lockdownyourlogin.com/' %}
-              An extra step goes a long way. For the best protection, take advantage of
-              <a href="{{ twofactor }}" rel="external">2-factor authentication</a> wherever it’s offered.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Use 2-factor authentication') }}</h4>
+            {% endif %}
+              <p>
+              {% trans twofactor='https://www.lockdownyourlogin.com/' %}
+                An extra step goes a long way. For the best protection, take advantage of
+                <a href="{{ twofactor }}" rel="external">2-factor authentication</a> wherever it’s offered.
+              {% endtrans %}
+              </p>
             </li>
-          </ol>
+          </ul>
         </div>
 
         <div class="topic-action-moz">
           <h3 class="topic-action-title">{{ _('What Mozilla is doing about cyber security') }}</h3>
-          <ol>
+          <ul>
             <li>
-            {% trans
-                codemoji='https://advocacy.mozilla.org/encrypt/codemoji/',
-                letsencrypt='https://letsencrypt.org/' %}
-              Educating about the value of <a href="{{ codemoji }}" rel="external">encryption</a>,
-              and advocating for its <a href="{{ letsencrypt }}" rel="external">universal adoption</a>.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Supporting encryption') }}</h4>
+            {% endif %}
+              <p>
+              {% trans
+                  codemoji='https://advocacy.mozilla.org/encrypt/codemoji/',
+                  letsencrypt='https://letsencrypt.org/' %}
+                Educating about the value of <a href="{{ codemoji }}" rel="external">encryption</a>,
+                and advocating for its <a href="{{ letsencrypt }}" rel="external">universal adoption</a>.
+              {% endtrans %}
+              </p>
             </li>
             <li>
-            {% trans leandata=url('mozorg.about.policy.lean-data') %}
-              Educating the industry about <a href="{{ leandata }}">lean data practices</a>.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Educating the industry') }}</h4>
+            {% endif %}
+              <p>
+              {% trans leandata=url('mozorg.about.policy.lean-data') %}
+                Educating the industry about <a href="{{ leandata }}">lean data practices</a>.
+              {% endtrans %}
+              </p>
             </li>
-          </ol>
+          </ul>
         </div>
       </div>
     </section>
 
   </section>{# end #cybersecurity #}
 
-  <section id="surveillance" class="section topic">
+  <section id="surveillance" class="section topic topic-last">
     <section class="topic-intro">
       <div class="content">
         <div class="topic-intro-main">
-          <h2 class="topic-title">{{ _('Government Surveillance: Keeping prying eyes and ears out of your business') }}</h2>
+          <h2 class="topic-title"><span>{{ _('Government Surveillance: Keeping prying eyes and ears out of your business') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            We should all have the freedom to be ourselves — online and off –
+            without surveillance, judgment and imposed societal bias.
+          {% endtrans %}
+          </p>
 
           <p>
           {% trans %}
@@ -268,24 +346,18 @@
             do take liberties with your privacy.
           {% endtrans %}
           </p>
-
-          <p><strong>
-          {% trans %}
-            We should all have the freedom to be ourselves — online and off –
-            without surveillance, judgment and imposed societal bias.
-          {% endtrans %}
-          </strong></p>
         </div>
 
-        <div class="topic-intro-aside">
-          <blockquote class="pullquote">
-            <p class="quote">
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
             {% trans %}
               Just four in 10 (38%) of internet users trust that their activities
               on the internet are not being monitored.
             {% endtrans %}
             </p>
-            <p class="quote-source">
+
+            <p class="note-source">
               <cite>
               {# L10n: 'Centre for International Governance Innovation' is a proper name for an organization. #}
               {% trans cigi='https://www.cigionline.org/internet-survey-2016' %}
@@ -293,8 +365,10 @@
               {% endtrans %}
               </cite>
             </p>
-          </blockquote>
-        </div>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('38%') }}</span>
+        </aside>
       </div>
     </section>
 
@@ -302,46 +376,71 @@
       <div class="content">
         <div class="topic-action-you">
           <h3 class="topic-action-title">{{ _('What you can do about government surveillance') }}</h3>
-          <ol>
+          <ul>
             <li>
-            {% trans encryptedapps='http://www.greenbot.com/article/3119449/android/the-best-messaging-apps-with-end-to-end-encryption.html' %}
-              Choose apps that keep your conversations encrypted. <a href="{{ encryptedapps }}" rel="external">Here’s a list</a>.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Encrypt your data') }}</h4>
+            {% endif %}
+              <p>
+              {% trans encryptedapps='http://www.greenbot.com/article/3119449/android/the-best-messaging-apps-with-end-to-end-encryption.html' %}
+                Choose apps that keep your conversations encrypted. <a href="{{ encryptedapps }}" rel="external">Here’s a list</a>.
+              {% endtrans %}
+              </p>
             </li>
             <li>
-            {% trans
-                strongpass='https://support.mozilla.org/kb/create-secure-passwords-keep-your-identity-safe?surveillance',
-                passmanager='https://www.wired.com/2016/01/you-need-a-password-manager/?surveillance' %}
-              <a href="{{ strongpass }}" rel="external"> Choose strong, unique pins and passwords</a>,
-              and use a <a href="{{ passmanager }}" rel="external">password manager</a>. (Note: we haven’t
-              tried all the options on these lists – see what works for you.)
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Choose strong passwords') }}</h4>
+            {% endif %}
+              <p>
+              {% trans
+                  strongpass='https://support.mozilla.org/kb/create-secure-passwords-keep-your-identity-safe?surveillance',
+                  passmanager='https://www.wired.com/2016/01/you-need-a-password-manager/?surveillance' %}
+                <a href="{{ strongpass }}" rel="external"> Choose strong, unique pins and passwords</a>,
+                and use a <a href="{{ passmanager }}" rel="external">password manager</a>. (Note: we haven’t
+                tried all the options on these lists – see what works for you.)
+              {% endtrans %}
+              </p>
             </li>
-          </ol>
+          </ul>
         </div>
 
         <div class="topic-action-moz">
           <h3 class="topic-action-title">{{ _('What Mozilla is doing about government surveillance') }}</h3>
-          <ol>
+          <ul>
             <li>
-            {% trans reform='https://blog.mozilla.org/netpolicy/2016/09/19/improving-government-disclosure-of-security-vulnerabilities/' %}
-              Recommending <a href="{{ reform }}" rel="external">reform at the policy level</a>
-              to improve government disclosure of security vulnerabilities.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Advocating for reform') }}</h4>
+            {% endif %}
+              <p>
+              {% trans reform='https://blog.mozilla.org/netpolicy/2016/09/19/improving-government-disclosure-of-security-vulnerabilities/' %}
+                Recommending <a href="{{ reform }}" rel="external">reform at the policy level</a>
+                to improve government disclosure of security vulnerabilities.
+              {% endtrans %}
+              </p>
             </li>
             <li>
-            {% trans usafreedom='https://blog.mozilla.org/netpolicy/2015/06/02/mozilla-applauds-u-s-senates-passage-of-the-usa-freedom-act/' %}
-              Calling on lawmakers all over the globe to rein in mass surveillance, and
-              <a href="{{ usafreedom }}" rel="external">helping to pass the USA Freedom Act</a>.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Calling on lawmakers') }}</h4>
+            {% endif %}
+              <p>
+              {% trans usafreedom='https://blog.mozilla.org/netpolicy/2015/06/02/mozilla-applauds-u-s-senates-passage-of-the-usa-freedom-act/' %}
+                Calling on lawmakers all over the globe to rein in mass surveillance, and
+                <a href="{{ usafreedom }}" rel="external">helping to pass the USA Freedom Act</a>.
+              {% endtrans %}
+              </p>
             </li>
             <li>
-            {% trans standford='http://cyberlaw.stanford.edu/events/government-hacking-rule-41' %}
-              Cohosting <a href="{{ standford }}" rel="external">talks with Stanford’s Center for Internet and Society</a>
-              about government hacking.
-            {% endtrans %}
+            {% if l10n_has_tag('internet_health_subpage_rebrand') %}
+              <h4>{{ _('Partnering with educators') }}</h4>
+            {% endif %}
+              <p>
+              {% trans standford='http://cyberlaw.stanford.edu/events/government-hacking-rule-41' %}
+                Cohosting <a href="{{ standford }}" rel="external">talks with Stanford’s Center for Internet and Society</a>
+                about government hacking.
+              {% endtrans %}
+              </p>
             </li>
-          </ol>
+          </ul>
         </div>
       </div>
     </section>
@@ -352,9 +451,11 @@
     <div class="content">
       <h2>{{ _('Hungry for more?') }}</h2>
       <p class="report-cta">
-      {% trans healthreport='https://internethealthreport.org' %}
-        Keep reading about Privacy and Security in our <a href="{{ healthreport }}">Internet Health Report</a>.
-      {% endtrans %}
+        <span>
+        {% trans healthreport='https://internethealthreport.org' %}
+          Read on about Digital Inclusion in our <a href="{{ healthreport }}">Internet Health Report</a>.
+        {% endtrans %}
+        </span>
       </p>
     </div>
   </section>

@@ -1118,6 +1118,9 @@ URLS = flatten((
     # Bug 1322959
     url_test('/onlineprivacy', '/internet-health/privacy-security/'),
 
+    # Bug 1335569
+    url_test('/digital-inclusion', '/internet-health/digital-inclusion/'),
+
     # Bug 1333146
     url_test('/internet-health-report', 'https://internethealthreport.org/'),
     url_test('/internethealthreport/', 'https://internethealthreport.org/'),
