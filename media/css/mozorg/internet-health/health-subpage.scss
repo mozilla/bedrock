@@ -17,6 +17,10 @@ $color-theme-inclusion: $color-brand-cyan;
 $color-theme-inclusion-light: lighten($color-brand-cyan, 20%);
 $color-theme-inclusion-accent: $color-brand-yellow;
 
+$color-theme-innovation: $color-brand-coral;
+$color-theme-innovation-light: lighten($color-brand-coral, 15%);
+$color-theme-innovation-accent: $color-brand-yellow;
+
 // A mixin to apply theme colors to specific elements
 @mixin theme-color($theme-name, $theme-color, $theme-color-light, $theme-accent) {
     .#{$theme-name} {
@@ -40,6 +44,7 @@ $color-theme-inclusion-accent: $color-brand-yellow;
 // Pass body classes to the mixin
 @include theme-color('theme-privacy', $color-theme-privacy, $color-theme-privacy-light, $color-theme-privacy-accent);
 @include theme-color('theme-inclusion', $color-theme-inclusion, $color-theme-inclusion-light, $color-theme-inclusion-accent);
+@include theme-color('theme-innovation', $color-theme-innovation, $color-theme-innovation-light, $color-theme-innovation-accent);
 
 
 // Extra custom bits for privacy page
@@ -48,7 +53,6 @@ $color-theme-inclusion-accent: $color-brand-yellow;
         @include background-size(568px 719px);
         background-color: #9899cc;
         background-image: url('/media/img/mozorg/internet-health/privacy/privacy-header-bg.png');
-        color: #fff;
     }
 
     .head-pagenav a:before {
@@ -65,6 +69,19 @@ $color-theme-inclusion-accent: $color-brand-yellow;
 
     .head-pagenav a:before {
         background-image: url('/media/img/mozorg/internet-health/inclusion/inclusion-nav-sprite.png');
+    }
+}
+
+
+// Extra custom bits for innovation page
+.theme-innovation {
+    .main-header {
+        @include background-size(620px 913px);
+        background-image: url('/media/img/mozorg/internet-health/innovation/header-background.png');
+    }
+
+    .head-pagenav a:before {
+        background-image: url('/media/img/mozorg/internet-health/innovation/nav-sprite.png');
     }
 }
 
@@ -251,6 +268,7 @@ html[dir="rtl"] {
     background-attachment: fixed;
     background-repeat: no-repeat;
     border-top: 1px solid rgba(0, 0, 0, .1);
+    color: #fff;
 
     .page-title {
         margin-bottom: .5em;
@@ -276,8 +294,8 @@ html[dir="rtl"] {
     .head-pagenav-title {
         @include box-decoration-break(clone);
         @include font-size(18px);
-        background-color: #000;
-        color: #fff;
+        background-color: #fff;
+        color: #000;
         display: inline-block;
         font-weight: normal;
         margin: .5em 0 .5em -10px;
