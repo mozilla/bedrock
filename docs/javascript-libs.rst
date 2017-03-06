@@ -17,8 +17,3 @@ Mozilla Accordion
 -----------------
 
 :ref:`mozilla-accordion.js<mozillaaccordion>`
-
-Mozilla Traffic Cop
--------------------
-
-:ref:`mozilla-traffic-cop.js<mozillatrafficcop>`
