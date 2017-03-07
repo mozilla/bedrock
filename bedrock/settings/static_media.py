@@ -65,6 +65,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/commit-access-requirements.css',
     },
+    'css-grid-demo': {
+        'source_filenames': (
+            'css/mozorg/developer/css-grid-demo.scss',
+        ),
+        'output_filename': 'css/css-grid-demo-bundle.css',
+    },
     'about-forums': {
         'source_filenames': (
             'css/mozorg/about-forums.less',
@@ -1103,6 +1109,15 @@ PIPELINE_JS = {
             'js/mozorg/about-leadership.js',
         ),
         'output_filename': 'js/about-leadership-bundle.js',
+    },
+    'css-grid-demo': {
+        'source_filenames': (
+            'js/base/mozilla-smoothscroll.js',
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/mozorg/developer/css-grid-demo.js',
+        ),
+        'output_filename': 'js/css-grid-demo-bundle.js',
     },
     'dnt': {
         'source_filenames': (

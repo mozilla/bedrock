@@ -233,6 +233,7 @@ urlpatterns = (
     page('plugincheck', 'mozorg/plugincheck.html'),
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.technology, name='mozorg.technology'),
+    page('developer/css-grid', 'mozorg/developer/css-grid-demo.html'),
 
     # namespaces
     url(r'^2004/em-rdf$', views.namespaces, {'namespace': 'em-rdf'}),

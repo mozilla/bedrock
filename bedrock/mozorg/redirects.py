@@ -658,4 +658,11 @@ redirectpatterns = (
     # Bug 1324504
     redirect(r'^/contribute/studentambassadors/join/?$', 'https://campus.mozilla.community/'),
     redirect(r'^/contribute/studentambassadors/thanks/?$', 'https://campus.mozilla.community/'),
+
+    # Bug 1340600 - vanity URL
+    redirect(r'^css-?grid/?$', 'mozorg.developer.css-grid-demo', query={
+        'utm_source': 'redirect',
+        'utm_medium': 'collateral',
+        'utm_campaign': 'css-grid',
+    }),
 )
