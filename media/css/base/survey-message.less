@@ -1,0 +1,76 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import "../sandstone/lib.less";
+
+#survey-message {
+    .border-box;
+    background: #fff0b3;
+    bottom: 0;
+    min-height: 30px;
+    overflow: hidden;
+    padding: 10px 20px;
+    position: fixed;
+    text-align: center;
+    transform: translateY(100%);
+    width: 100%;
+    z-index: 9999;
+
+    &.hidden {
+        display: none;
+    }
+
+    &.animate {
+        .transition(transform .25s ease-in);
+        .transform(translateY(0));
+    }
+
+    .survey-invite {
+        .font-size(12px);
+        color: #000;
+        margin: 0 25px;
+
+        @media only screen and (max-width: @breakTablet) {
+            span {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .survey-button {
+        display: inline-block;
+        background-color: #00b6e0;
+        border-radius: 2px;
+        color: #fff;
+        height: 20px;
+        margin-left: 10px;
+        padding: 1px 5px;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    .survey-button-close {
+        .image-replaced;
+        .transition(transform .1s);
+        background: url('/media/img/mozorg/template/icon-close.svg') center center no-repeat;
+        border: none;
+        height: 20px;
+        padding: 0;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        width: 20px;
+
+        &:hover,
+        &:active,
+        &:focus {
+            .transform(scale(1.1));
+        }
+    }
+}

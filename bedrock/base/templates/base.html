@@ -156,6 +156,16 @@
 
     {% block js %}{% endblock %}
 
+    {# Bug 1341425: Task completion survey #}
+    {% block task_completion_survey %}
+      {% if switch('task-completion-rate-survey', ['en-GB', 'en-US', 'en-ZA']) %}
+        <!--[if !lte IE 8]><!-->
+          {% include 'includes/survey.html' %}
+          {% javascript 'task-completion-rate-survey' %}
+        <!--<![endif]-->
+      {% endif %}
+    {% endblock %}
+
     {% if settings.DEV %}
       <!--[if !lte IE 8]><!-->
         <script src="https://pontoon.mozilla.org/pontoon.js"></script>
