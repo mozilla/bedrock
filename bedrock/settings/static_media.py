@@ -927,12 +927,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/contribute-studentambassadors-landing-bundle.css',
     },
-    'contribute-studentambassadors-join': {
-        'source_filenames': (
-            'css/mozorg/contribute/studentambassadors/join.less',
-        ),
-        'output_filename': 'css/contribute-studentambassadors-join-bundle.css',
-    },
     'page_not_found': {
         'source_filenames': (
             'css/base/page-not-found.less',
@@ -1095,12 +1089,6 @@ PIPELINE_JS = {
             'js/mozorg/contribute/contribute-stories.js',
         ),
         'output_filename': 'js/contribute-stories.js',
-    },
-    'contribute-studentambassadors-join': {
-        'source_filenames': (
-            'js/mozorg/contribute/contribute-studentambassadors-join.js',
-        ),
-        'output_filename': 'js/contribute-studentambassadors-join-bundle.js',
     },
     'contribute-taskview': {
         'source_filenames': (

@@ -1138,4 +1138,8 @@ URLS = flatten((
     # Bug 1329931 & 1342043
     url_test('/styleguide/identity/firefoxos/{,subpages/}',
              'https://developer.mozilla.org/docs/Archive/Firefox_OS'),
+
+    # Bug 1324504
+    url_test('/contribute/studentambassadors/join/', 'https://campus.mozilla.community/'),
+    url_test('/contribute/studentambassadors/thanks/', 'https://campus.mozilla.community/'),
 ))

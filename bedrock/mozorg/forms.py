@@ -15,11 +15,8 @@ from django.utils.safestring import mark_safe
 
 from localflavor.us.us_states import STATE_CHOICES
 
-import basket
-
 from lib.l10n_utils.dotlang import _
 from lib.l10n_utils.dotlang import _lazy
-from product_details import product_details
 
 
 FORMATS = (('H', _lazy('HTML')), ('T', _lazy('Text')))
@@ -398,117 +395,3 @@ class USStateSelectBlank(widgets.Select):
             empty_msg = ''
         us_states_blank = (('', empty_msg),) + STATE_CHOICES
         super(USStateSelectBlank, self).__init__(attrs, choices=us_states_blank)
-
-
-class ContributeStudentAmbassadorForm(forms.Form):
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
-    email = forms.EmailField(max_length=100)
-    status = forms.ChoiceField(
-        choices=(('', ''),
-                 ('student', _lazy('Student')), ('teacher', _lazy('Teacher')),
-                 ('administrator', _lazy('Administrator')),
-                 ('other', _lazy('Other'))))
-    school = forms.CharField(max_length=100)
-    grad_year = forms.ChoiceField(
-        required=False,
-        choices=([('', _lazy('Expected Graduation Year'))] +
-                 [(i, str(i)) for i in range(datetime.now().year,
-                                             datetime.now().year + 8)]))
-    major = forms.ChoiceField(
-        required=False,
-        choices=[('', ''),
-                 ('computer science', _lazy('Computer Science')),
-                 ('computer engineering', _lazy('Computer Engineering')),
-                 ('engineering', _lazy('Engineering (other)')),
-                 ('social science', _lazy('Social Science')),
-                 ('science', _lazy('Science (other)')),
-                 ('business/marketing', _lazy('Business/Marketing')),
-                 ('education', _lazy('Education')),
-                 ('mathematics', _lazy('Mathematics')),
-                 ('other', _lazy('Other'))])
-    major_free_text = forms.CharField(max_length=100, required=False)
-    city = forms.CharField(max_length=100)
-    country = forms.ChoiceField()
-    fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
-                            label=_lazy('Email format preference:'),
-                            choices=FORMATS, initial='H')
-    age_confirmation = forms.BooleanField(
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'I’m 18 years old and eligible to participate in '
-                    'the program'))
-    share_information = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'Please share my contact information and interests with '
-                    'related Mozilla contributors for the purpose of '
-                    'collaborating on Mozilla projects'))
-    privacy = forms.BooleanField(widget=PrivacyWidget)
-    nl_mozilla_and_you = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'Firefox & You: A monthly newsletter packed with tips to'
-                    ' improve your browsing experience'))
-    nl_about_mozilla = forms.BooleanField(
-        required=False,
-        widget=widgets.CheckboxInput(),
-        label=_lazy(u'About Mozilla: News from the Mozilla Project'))
-    # honeypot
-    office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
-    source_url = forms.URLField(required=False)
-
-    def __init__(self, *args, **kwargs):
-        locale = kwargs.get('locale', 'en-US')
-        super(ContributeStudentAmbassadorForm, self).__init__(*args, **kwargs)
-        country_list = product_details.get_regions(locale).items()
-        country_list = sorted(country_list, key=lambda country: country[1])
-        country_list.insert(0, ('', ''))
-        self.fields['country'].choices = country_list
-
-    def clean(self, *args, **kwargs):
-        super(ContributeStudentAmbassadorForm, self).clean(*args, **kwargs)
-        if (self.cleaned_data.get('status', '') == 'student' and
-                not self.cleaned_data.get('grad_year', '')):
-            self._errors['grad_year'] = (
-                self.error_class([_('This field is required.')]))
-        return self.cleaned_data
-
-    def clean_grad_year(self):
-        return self.cleaned_data.get('grad_year', '')
-
-    def clean_share_information(self):
-        if self.cleaned_data.get('share_information', False):
-            return 'Y'
-        return 'N'
-
-    def clean_office_fax(self):
-        honeypot = self.cleaned_data.pop('office_fax', None)
-
-        if honeypot:
-            raise forms.ValidationError(
-                _('Your submission could not be processed'))
-
-    def newsletters(self):
-        newsletters = ['ambassadors']
-        for newsletter in ['nl_mozilla_and_you', 'nl_about_mozilla']:
-            if self.cleaned_data.get(newsletter, False):
-                newsletters.append(newsletter[3:].replace('_', '-'))
-        return newsletters
-
-    def save(self):
-        data = self.cleaned_data
-        basket.subscribe(
-            data['email'],
-            self.newsletters(),
-            format=data['fmt'],
-            country=data['country'],
-            source_url=data['source_url'],
-            first_name=data['first_name'],
-            last_name=data['last_name'],
-            fsa_current_status=data['status'],
-            fsa_school=data['school'],
-            fsa_grad_year=data['grad_year'],
-            fsa_major=data['major_free_text'] or data['major'],
-            fsa_city=data['city'],
-            fsa_allow_share=data['share_information'],
-        )
