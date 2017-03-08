@@ -219,12 +219,14 @@ class FirefoxDesktop(_ProductDetails):
             fc_locales = config('FUNNELCAKE_%s_LOCALES' % funnelcake_id, default='', cast=Csv())
             include_funnelcake_param = _platform in fc_platforms and _locale in fc_locales
 
+        stub_langs = settings.STUB_INSTALLER_LOCALES.get(channel, {}).get(_platform, [])
         # Nightly and Aurora have a special download link format
         # see bug 1324001
         if channel in ['alpha', 'nightly']:
             prod_name = 'firefox-nightly' if channel == 'nightly' else 'firefox-aurora'
-            # Use the stub installer for 32-bit Windows
-            if _platform == 'win' and locale == 'en-US' and not force_full_installer:
+            # Use the stub installer for approved platforms
+            if (stub_langs and (stub_langs == settings.STUB_INSTALLER_ALL or _locale.lower() in stub_langs) and
+                    not force_full_installer):
                 # Download links are different for localized versions
                 suffix = 'stub'
             else:
@@ -243,12 +245,8 @@ class FirefoxDesktop(_ProductDetails):
                              ])])
 
         # stub installer exceptions
-        # TODO: NUKE FROM ORBIT!
-        stub_langs = settings.STUB_INSTALLER_LOCALES.get(_platform, [])
-        if (stub_langs and (stub_langs == settings.STUB_INSTALLER_ALL or
-                            _locale.lower() in stub_langs) and
-                           not force_full_installer and
-                           channel in ['beta', 'release']):
+        if (stub_langs and (stub_langs == settings.STUB_INSTALLER_ALL or _locale.lower() in stub_langs) and
+                not force_full_installer):
             suffix = 'stub'
             if force_funnelcake:
                 suffix = 'latest'

@@ -27,14 +27,14 @@ _ALL = settings.STUB_INSTALLER_ALL
 
 class TestViews(TestCase):
     @patch.dict(os.environ, FUNNELCAKE_5_LOCALES='en-US', FUNNELCAKE_5_PLATFORMS='win')
-    @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
+    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': _ALL}})
     def test_download_button_funnelcake(self):
         """The download button should have the funnelcake ID."""
         with self.activate('en-US'):
             resp = self.client.get(reverse('mozorg.home'), {'f': '5'})
             ok_('product=firefox-stub-f5&' in resp.content)
 
-    @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
+    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': _ALL}})
     def test_download_button_bad_funnelcake(self):
         """The download button should not have a bad funnelcake ID."""
         with self.activate('en-US'):

@@ -88,7 +88,7 @@ class TestFirefoxDesktop(TestCase):
         # Windows 64-bit
         url = firefox_desktop.get_download_url('release', '38.0', 'win64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-38.0-SSL'),
+                             [('product', 'firefox-stub'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
         # Linux 64-bit
@@ -110,7 +110,7 @@ class TestFirefoxDesktop(TestCase):
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-latest-ssl'),
+                             [('product', 'firefox-aurora-stub'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'osx', 'en-US', True)
@@ -200,7 +200,7 @@ class TestFirefoxDesktop(TestCase):
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('nightly', '50.0a1', 'win64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-nightly-latest-ssl'),
+                             [('product', 'firefox-nightly-stub'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('nightly', '50.0a1', 'osx', 'en-US', True)
@@ -285,7 +285,7 @@ class TestFirefoxDesktop(TestCase):
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', funnelcake_id='64')
         self.assertEqual(url, scene2 + '&f=64')
 
-    @override_settings(STUB_INSTALLER_LOCALES={'win': settings.STUB_INSTALLER_ALL})
+    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': settings.STUB_INSTALLER_ALL}})
     def get_download_url_ssl(self):
         """
         SSL-enabled links should always be used except Windows stub installers.
@@ -482,7 +482,7 @@ class TestFirefoxDesktop(TestCase):
         url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'fr', force_direct=True, funnelcake_id='64')
         ok_('-f64' not in url)
 
-    @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
+    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': ['en-us']}, 'beta': {'win': ['en-us']}})
     def test_force_funnelcake_en_us_win_only(self):
         """
         Ensure that force_funnelcake doesn't affect non configured locale urls
@@ -495,7 +495,7 @@ class TestFirefoxDesktop(TestCase):
                                                force_funnelcake=True)
         ok_('product=firefox-beta-latest&' not in url)
 
-    @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
+    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': ['en-us']}, 'beta': {'win': ['en-us']}})
     def test_force_full_installer_en_us_win_only(self):
         """
         Ensure that force_full_installer doesn't affect non configured locales
@@ -508,7 +508,7 @@ class TestFirefoxDesktop(TestCase):
                                                force_full_installer=True)
         ok_('product=firefox-beta-latest&' not in url)
 
-    @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
+    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': ['en-us']}, 'beta': {'win': ['en-us']}})
     def test_stub_installer_en_us_win_only(self):
         """
         Ensure that builds not in the setting don't get stub.
