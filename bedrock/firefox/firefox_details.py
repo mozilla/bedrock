@@ -4,8 +4,11 @@ from operator import itemgetter
 from urllib import urlencode
 
 from django.conf import settings
-from bedrock.base.waffle import switch
+
+from decouple import Csv, config
 from product_details import ProductDetails
+
+from bedrock.base.waffle import switch
 from lib.l10n_utils.dotlang import _lazy as _
 
 
@@ -208,10 +211,13 @@ class FirefoxDesktop(_ProductDetails):
         _version = version
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
         _platform = 'win' if platform == 'winsha1' else platform
+        include_funnelcake_param = False
 
-        # Bug 1340087 - Only include funnelcake params for Windows 32bit en-US builds by default.
-        include_funnelcake_param = (funnelcake_id and _platform in settings.FUNNELCAKE_PLATFORMS and
-                                    _locale in settings.FUNNELCAKE_LOCALES)
+        # Bug 1345467 - Only allow specifically configured funnelcake builds
+        if funnelcake_id:
+            fc_platforms = config('FUNNELCAKE_%s_PLATFORMS' % funnelcake_id, default='', cast=Csv())
+            fc_locales = config('FUNNELCAKE_%s_LOCALES' % funnelcake_id, default='', cast=Csv())
+            include_funnelcake_param = _platform in fc_platforms and _locale in fc_locales
 
         # Nightly and Aurora have a special download link format
         # see bug 1324001

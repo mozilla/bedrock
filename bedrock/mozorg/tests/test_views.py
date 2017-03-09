@@ -2,6 +2,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+import os
 from datetime import date
 import json
 
@@ -65,6 +66,7 @@ class TestHome(TestCase):
 
 
 class TestViews(TestCase):
+    @patch.dict(os.environ, FUNNELCAKE_5_LOCALES='en-US', FUNNELCAKE_5_PLATFORMS='win')
     @override_settings(STUB_INSTALLER_LOCALES={'win': _ALL})
     def test_download_button_funnelcake(self):
         """The download button should have the funnelcake ID."""

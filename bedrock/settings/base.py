@@ -1282,6 +1282,10 @@ if config('SWITCH_TRACKING_PIXEL', default=DEV, cast=bool):
         'ad.doubleclick.net',
     )
 
-# Bug 1340087 - Funnelcake experiments default to Windows 32bit and en-US builds only.
-FUNNELCAKE_PLATFORMS = config('FUNNELCAKE_PLATFORMS', default='win', cast=Csv())
-FUNNELCAKE_LOCALES = config('FUNNELCAKE_LOCALES', default='en-US', cast=Csv())
+# Bug 1345467: Funnelcakes are now explicitly configured in the environment.
+# Set experiment specific variables like the following:
+#
+# FUNNELCAKE_103_PLATFORMS=win,win64
+# FUNNELCAKE_103_LOCALES=de,fr,en-US
+#
+# where "103" in the variable name is the funnelcake ID.
