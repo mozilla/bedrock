@@ -42,10 +42,6 @@ def get_languages_for_newsletters(newsletters=None):
 
     If no newsletters are provided, it will return language codes
     supported by all newsletters.
-
-    These are 2-letter language codes and `do not` include the country part,
-    even if the newsletter languages list does.  E.g. this returns 'pt',
-    not 'pt-Br'
     """
     all_newsletters = get_newsletters()
     if newsletters is None:
@@ -57,7 +53,7 @@ def get_languages_for_newsletters(newsletters=None):
 
     langs = set()
     for newsletter in newsletters:
-        langs.update(lang[:2].lower() for lang in newsletter.get('languages', []))
+        langs.update(newsletter.get('languages', []))
 
     return langs
 
