@@ -62,6 +62,7 @@
         @media #{$mq-desktop-wide} {
             width: $width-desktop-wide;
         }
+
     }
 
     .col {
@@ -75,33 +76,35 @@
         }
     }
 
-    .col-2 ul {
-        overflow: hidden;
-
-        &.fx-footer-links {
-            li {
-                float: none;
+    @media #{$mq-tablet} {
+        .primary {
+            border-bottom: 1px solid $color-text-tertiary;
+            .col-1 {
+                @include span(2);
+            }
+            .col-2, .col-3 {
+                @include span(5);
             }
         }
 
-        li {
-            float: left;
-
-            &.wrap:before {
-                content: '\00A0\00B7\00A0'; // &nbsp;&middot;&nbsp;
+        .secondary {
+            padding-top: 20px;
+            .col-1 {
+                @include span(4);
             }
-
-            &.clear {
-                clear: both;
+            .col-2 {
+                @include span(8);
             }
+        }
+
+        .license {
+            margin-bottom: 0;
         }
     }
 
-    .links-social li {
-        ul {
-            display: inline;
-            margin: 0;
-        }
+    .social-links {
+        display: inline;
+        margin: 0;
 
         li {
             display: inline;
@@ -120,19 +123,28 @@
         }
     }
 
-    .lang-switcher {
-        margin-top: 20px;
+    .legal-links {
+        li {
+            display: inline;
+            &:before {
+                content: ' | ';
+            }
+            &:first-child:before {
+                content: '';
+            }
+        }
     }
 }
 
-[dir='rtl'] #colophon .col-2 ul li {
-    float: right;
+[dir='rtl'] #colophon .col-2, [dir='rtl'] #colophon .col-3 {
+    float: none;
 }
 
 @media #{$mq-tablet} {
     [dir='rtl'] #colophon {
         .col,
-        .col-2 ul li {
+        .col-2,
+        .col-3 {
             float: right;
         }
     }

@@ -52,9 +52,7 @@
 {% block email_form %}{% endblock %}
 
 {% block site_footer %}
-  {% with fx_footer_links=True %}
-    {% include 'firefox/includes/simple_footer.html' %}
-  {% endwith %}
+  {% include 'includes/site-footer.html' %}
 {% endblock %}
 
 {% block js %}{% endblock %}
