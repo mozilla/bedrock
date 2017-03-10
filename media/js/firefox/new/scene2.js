@@ -10,6 +10,7 @@
     var $platformLink = $('#download-button-wrapper-desktop .download-list li:visible .download-link');
     var downloadURL;
 
+    // Only auto-start the download if a visible platform link is detected.
     if ($platformLink.length) {
         downloadURL = $platformLink.attr('href');
 
@@ -17,12 +18,14 @@
         // TODO: Remove and generate link in bedrock.
         $directDownloadLink.attr('href', downloadURL);
 
-        // if user is not on an IE that blocks JS triggered downloads, start the
-        // platform-detected download after window (read: images) have loaded.
-        // only auto-start the download if a visible platform link is detected.
+        // If user is not on an IE that blocks JS triggered downloads, start the
+        // platform-detected download a second after DOM ready event. We don't rely on
+        // the window load event as we have third-party tracking pixels.
         if (!isIELT9) {
-            $(window).on('load', function() {
-                window.location.href = downloadURL;
+            $(function() {
+                setTimeout(function() {
+                    window.location.href = downloadURL;
+                }, 1000);
             });
         }
     }

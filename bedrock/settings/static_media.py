@@ -1300,7 +1300,8 @@ PIPELINE_JS = {
     },
     'firefox_new_pixel': {
         'source_filenames': (
-            'js/firefox/new/pixel.js',
+            'js/base/mozilla-pixel.js',
+            'js/base/mozilla-pixel-init.js',
         ),
         'output_filename': 'js/firefox_new_pixel-bundle.js',
     },
