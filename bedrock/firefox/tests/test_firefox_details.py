@@ -399,7 +399,7 @@ class TestFirefoxDesktop(TestCase):
         """latest_major_version should return 0 when no int."""
         eq_(firefox_desktop.latest_major_version('release'), 0)
 
-    @override_settings(FUNNELCAKE_LOCALES=('en-US',), FUNNELCAKE_PLATFORMS=('win',))
+    @patch.dict(os.environ, FUNNELCAKE_64_LOCALES='en-US', FUNNELCAKE_64_PLATFORMS='win')
     def test_funnelcake_direct_links_en_us_win_only(self):
         """
         Ensure funnelcake params are included for Windows en-US builds only.
@@ -419,7 +419,7 @@ class TestFirefoxDesktop(TestCase):
         url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'en-US', force_direct=True, funnelcake_id='64')
         ok_('product=firefox-45.0-f64' not in url)
 
-    @override_settings(FUNNELCAKE_LOCALES=('en-US', 'de'), FUNNELCAKE_PLATFORMS=('linux', 'osx'))
+    @patch.dict(os.environ, FUNNELCAKE_64_LOCALES='en-US,de', FUNNELCAKE_64_PLATFORMS='linux,osx')
     def test_funnelcake_direct_links_locales_linux_osx_(self):
         """
         Ensure funnelcake params are included for Linux and OSX en-US builds only.
@@ -450,6 +450,37 @@ class TestFirefoxDesktop(TestCase):
 
         url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'fr', force_direct=True, funnelcake_id='64')
         ok_('product=firefox-45.0-f64' not in url)
+
+    def test_no_funnelcake_direct_links_if_not_configured(self):
+        """
+        Ensure funnelcake params are included for Linux and OSX en-US builds only.
+        """
+        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, funnelcake_id='64')
+        ok_('-f64' not in url)
+
+        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_full_installer=True, funnelcake_id='64')
+        ok_('-f64' not in url)
+
+        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_funnelcake=True, funnelcake_id='64')
+        ok_('-f64' not in url)
+
+        url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'de', force_direct=True, funnelcake_id='64')
+        ok_('-f64' not in url)
+
+        url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'en-US', force_direct=True, funnelcake_id='64')
+        ok_('-f64' not in url)
+
+        url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'fr', force_direct=True, funnelcake_id='64')
+        ok_('-f64' not in url)
+
+        url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'de', force_direct=True, funnelcake_id='64')
+        ok_('-f64' not in url)
+
+        url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'en-US', force_direct=True, funnelcake_id='64')
+        ok_('-f64' not in url)
+
+        url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'fr', force_direct=True, funnelcake_id='64')
+        ok_('-f64' not in url)
 
     @override_settings(STUB_INSTALLER_LOCALES={'win': ['en-us']})
     def test_force_funnelcake_en_us_win_only(self):
