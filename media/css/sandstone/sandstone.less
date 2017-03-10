@@ -738,33 +738,35 @@ nav.menu-bar {
 /* {{{ Footer */
 
 #colophon {
-    color: @textColorTertiary;
-    padding: 48px 0;
     .font-size(@baseFontSize);
-    line-height: 1.3;
     background: #fff;
+    color: @textColorTertiary;
+    line-height: 1.3;
+    margin: 0;
+    padding: 48px 0;
     width: 100%;
 
-    .row {
-        width: 960px;
-        margin: 0 auto;
-    }
-
-    a,
-    a:link {
+    a:link,
+    a:visited {
         color: @linkBlue;
+        text-decoration: none;
     }
 
     a:hover,
     a:focus,
-    a:active,
-    a:visited {
-        color: darken(@linkBlue, 10%);
+    a:active {
+        color: @linkBlueHover;
+        text-decoration: underline;
     }
 
-    h1 {
-        margin-bottom: @baseLine / 2;
-        .font-size(@baseFontSize);
+    li {
+        margin: 0;
+        list-style-type: none;
+    }
+
+    .row {
+        width: 960px;
+        margin: 0 auto;
     }
 
     p, ul {
@@ -772,10 +774,156 @@ nav.menu-bar {
         line-height: 1.5;
     }
 
-    li {
-        margin: 0;
-        list-style-type: none;
+    .logo {
+        margin-bottom: .5em;
+
+        a {
+            .image-replaced();
+            display: inline-block;
+            background: url('/media/img/pebbles/moz-wordmark-dark-reverse.svg') no-repeat;
+            .background-size(100px, 32px);
+            height: 32px;
+            width: 100px;
+        }
     }
+
+    &.dark {
+        background: #000;
+        color: #fff;
+
+        a:link,
+        a:visited {
+            color: #23c7db;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: #23c7db;
+            text-decoration: underline;
+        }
+    }
+
+    &.blue {
+        background-color: #005189;
+        color: #fff;
+
+        a:link,
+        a:visited {
+            color: #bee1f5;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+
+    &.dark,
+    &.blue {
+        .logo a {
+            background-image: url('/media/img/pebbles/moz-wordmark-light-reverse.svg');
+        }
+    }
+}
+
+#colophon.universal {
+
+    .row {
+        .clearfix;
+    }
+
+    h5 {
+        font-weight: bold;
+    }
+
+    ul {
+        margin-bottom: @baseLine;
+    }
+
+    .primary {
+        border-bottom: 1px solid @textColorTertiary;
+
+        .col-1 {
+            width: 140px;
+        }
+        .col-2, .col-3 {
+            width: 374px;
+        }
+    }
+
+    &.dark,
+    &.blue {
+        h5 {
+            color: #fff;
+            text-shadow: none;
+        }
+
+        .primary {
+            border-bottom: 1px solid #fff;
+        }
+    }
+
+    .secondary {
+        padding-top: @baseLine;
+
+        .col-1 {
+            width: 300px;
+        }
+        .col-2 {
+            width: 612px;
+        }
+    }
+
+    .col {
+        float: left;
+        margin-left: 24px;
+    }
+
+    .social-links {
+        display: inline;
+        margin: 0;
+
+        li {
+            display: inline;
+
+            &:before {
+                content: "\00B7\00A0"; /* &middot;&nbsp; */
+            }
+
+            &:first-child:before {
+                content: "";
+            }
+
+            span {
+                .visually-hidden; /* for a11y */
+            }
+        }
+    }
+
+    .legal-links {
+        li {
+            display: inline;
+            &:before {
+                content: " | ";
+            }
+            &:first-child:before {
+                content: "";
+            }
+        }
+    }
+}
+
+.html-rtl #colophon.universal {
+    .col {
+        float: right;
+    }
+}
+
+#colophon.old {
 
     .col {
         float: left;
@@ -785,14 +933,6 @@ nav.menu-bar {
         & > *:last-child {
             margin-bottom: 0;
         }
-    }
-
-    .logo a {
-        .image-replaced();
-        display: inline-block;
-        .at2x('/media/img/sandstone/footer-mozilla.png', 93px, 24px);
-        width: 93px;
-        height: 24px;
     }
 
     .col-2 ul {
@@ -841,7 +981,7 @@ nav.menu-bar {
     }
 }
 
-.html-rtl #colophon {
+.html-rtl #colophon.old {
     .col, .col-2 ul li {
         float: right;
     }

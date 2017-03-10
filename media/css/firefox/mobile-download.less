@@ -101,6 +101,10 @@ html[lang|="en"] #main-headline span:first-child {
     background: url('/media/img/firefox/mobile/scene2-mobile-promo-device-lineup.png') center center no-repeat;
 }
 
+#colophon {
+    z-index: 1;
+}
+
 // page will be en-US only for a time, so hiding the lang chooser
 .footer-lang {
     display: none;
@@ -124,28 +128,6 @@ html[lang|="en"] #main-headline span:first-child {
     #wrapper {
         width: 320px;
         padding: 0;
-    }
-
-    #colophon {
-        .primary {
-            text-align: left;
-
-            li {
-                display: block;
-                margin-left: 0;
-
-                a, a:link, a:visited {
-                    display: block;
-                    border-left: none;
-                    border-top: 1px dotted @textColorLight;
-                    padding: 10px;
-                }
-
-                &:first-child a {
-                    border: 0;
-                }
-            }
-        }
     }
 
     #masthead h2 {

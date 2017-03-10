@@ -595,11 +595,12 @@ img {
 
 
 // Footer
-#colophon {
+#colophon.universal,
+#colophon.old {
     background: #fff;
     color: @textColorTertiary;
     .font-size(.875em);
-    margin: 1em 0 0;
+    margin: 0;
     padding: (@baseLine * 2) 0;
     width: 100%;
 
@@ -607,24 +608,6 @@ img {
         width: @widthDesktop - (@gridGutterWidth * 2);
         zoom: 1;
         margin: 0 auto;
-    }
-
-    .footer-logo,
-    .footer-license,
-    .footer-nav {
-        margin: 0 (@gridGutterWidth / 2);
-    }
-
-    .footer-logo {
-        .span(3);
-    }
-
-    .footer-license {
-        .span(3);
-    }
-
-    .footer-nav {
-        .span(2);
     }
 
     a:link,
@@ -641,15 +624,7 @@ img {
     p {
         margin-bottom: @baseLine / 2;
     }
-
-    .footer-nav li {
-        list-style-type: none;
-        margin: 0 0 2px 0;
-    }
 }
-
-
-
 
 // Don't display the dynamic platform images when js is disabled
 // because the ones in the noscript tag will be shown

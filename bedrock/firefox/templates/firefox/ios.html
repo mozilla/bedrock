@@ -153,8 +153,12 @@
 {% endblock %}
 
 {% block site_footer %}
-  {% with fx_footer_links=True, current_platform='ios' %}
-    {% include 'includes/site-footer.html' %}
+  {% with footer_class='blue' %}
+    {% if LANG.startswith('en-') %}
+      {% include 'includes/site-footer-new.html' %}
+    {% else %}
+      {% include 'includes/site-footer.html' %}
+    {% endif %}
   {% endwith %}
 {% endblock %}
 

@@ -205,24 +205,3 @@ $color-fox-purple: #3a304b;
 .js #form-details {
     display: block;
 }
-
-#colophon {
-    background: #d1d2d3;
-    color: #56565a;
-    margin: 0;
-
-    a {
-        color: $color-link-blue;
-
-        &:hover,
-        &:focus,
-        &:active,
-        &:visited {
-            color: darken($color-link-blue, 8%);
-        }
-    }
-
-    .logo a {
-        @include at2x('/media/img/sandstone/footer-mozilla-dark.png', 93px, 24px);
-    }
-}

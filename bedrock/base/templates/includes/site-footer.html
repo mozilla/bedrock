@@ -1,4 +1,4 @@
-      <footer id="colophon" class="{% block footer_class %}{% endblock %}">
+      <footer id="colophon" class="old{% if footer_class %} {{ footer_class }}{% endif %}">
         <nav class="row">
           <div class="col col-1">
             <div class="logo"><a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">Mozilla</a></div>
@@ -17,14 +17,6 @@
               <li class="wrap"><a href="{{ donate_url('footer') }}" class="donate" data-link-type="footer" data-link-name="Donate">{{ _('Donate') }}</a></li>
               <li class="clear"><a href="https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org" data-link-type="footer" data-link-name="Contribute to this site">{{ _('Contribute to this site') }}</a></li>
             </ul>
-
-            {% if fx_footer_links %}
-              {% if current_platform %}
-                {{ firefox_footer_links(channel=current_channel, platform=current_platform) }}
-              {% else %}
-                {{ firefox_footer_links(channel=current_channel) }}
-              {% endif %}
-            {% endif %}
 
             <ul class="links-legal">
               <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
