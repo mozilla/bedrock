@@ -8,6 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from pages.partnerships import PartnershipsPage
 
 
+@pytest.mark.skipif(reason='Need to find a non-destructive solution for testing submission of form')
 @pytest.mark.nondestructive
 def test_request_partnership(base_url, selenium):
     page = PartnershipsPage(selenium, base_url).open()
