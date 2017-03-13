@@ -682,15 +682,6 @@ PRESS_BLOGS = {
     'pl': 'press-pl/',
 }
 
-MOBILIZER_LOCALE_LINK = {
-    'en-US': 'https://wiki.mozilla.org/FirefoxOS/Community/Mobilizers',
-    'hu': 'https://www.facebook.com/groups/mobilizerhungary/',
-    'pt-BR': 'https://wiki.mozilla.org/Mobilizers/MobilizerBrasil/',
-    'pl': 'https://wiki.mozilla.org/Mobilizers/MobilizerPolska/',
-    'gr': 'https://wiki.mozilla.org/Mobilizer/MobilizerGreece/',
-    'cs': 'https://wiki.mozilla.org/Mobilizer/MobilizerCzechRepublic/'
-}
-
 DONATE_LINK = ('https://donate.mozilla.org/{locale}/?presets={presets}'
     '&amount={default}&ref=EOYFR2015&utm_campaign=EOYFR2015'
     '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
@@ -1082,16 +1073,6 @@ FIREFOX_TWITTER_ACCOUNTS = {
     'en-US': 'https://twitter.com/firefox',
     'es-ES': 'https://twitter.com/firefox_es',
     'pt-BR': 'https://twitter.com/firefoxbrasil',
-}
-
-# Twitter accounts to display on homepage per locale
-HOMEPAGE_TWITTER_ACCOUNTS = {
-    'en-US': 'firefox',
-    'es-AR': 'firefox_es',
-    'es-CL': 'firefox_es',
-    'es-ES': 'firefox_es',
-    'es-MX': 'firefox_es',
-    'pt-BR': 'firefoxbrasil',
 }
 
 # Mapbox token for spaces and communities pages

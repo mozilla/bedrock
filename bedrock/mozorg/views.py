@@ -5,7 +5,6 @@
 import json
 from cgi import escape
 
-from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
 from django.core.context_processors import csrf
 from django.core.mail import EmailMessage
@@ -29,7 +28,6 @@ from bedrock.mozorg.models import ContributorActivity, TwitterCache, BlogArticle
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from lib import l10n_utils
-from lib.l10n_utils.dotlang import lang_file_is_active
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
@@ -224,27 +222,8 @@ class Robots(TemplateView):
         return {'disallow_all': not hostname == 'www.mozilla.org'}
 
 
-def home_tweets(locale):
-    account = settings.HOMEPAGE_TWITTER_ACCOUNTS.get(locale)
-    if account:
-        return TwitterCache.objects.get_tweets_for(account)
-    return []
-
-
-def home(request, template='mozorg/home/home.html'):
-    locale = l10n_utils.get_locale(request)
-
-    if lang_file_is_active('mozorg/home/index-2016', locale):
-        template = 'mozorg/home/home.html'
-    else:
-        template = 'mozorg/home/home-voices.html'
-
-    return l10n_utils.render(
-        request, template, {
-            'has_contribute': lang_file_is_active('mozorg/contribute'),
-            'tweets': home_tweets(locale),
-            'mobilizer_link': settings.MOBILIZER_LOCALE_LINK.get(
-                locale, settings.MOBILIZER_LOCALE_LINK['en-US'])})
+def home(request):
+    return l10n_utils.render(request, 'mozorg/home/home.html')
 
 
 NAMESPACES = {
