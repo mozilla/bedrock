@@ -84,6 +84,13 @@
       data-global-previous="{{ _('Previous') }}"
       data-global-update-firefox="{{ _('Update your Firefox') }}"
       {% block string_data %}{% endblock %}></div>
+
+    {% block global_nav %}
+      {% if LANG.startswith('en-') %}
+        {% include 'includes/global-nav.html' %}
+      {% endif %}
+    {% endblock %}
+
     <div id="outer-wrapper">
 
     {# for headers not to be confined by #wrapper (like fx family nav) #}
@@ -92,6 +99,7 @@
       <div id="wrapper">
 
       {% block site_header %}
+        {% if not LANG.startswith('en-') %}
         <header id="masthead">
 
         {% block tabzilla_tab %}
@@ -130,6 +138,7 @@
         {% block site_header_share %}{% endblock %}
 
         </header>
+        {% endif %}
       {% endblock %}
 
       {% block messages %}

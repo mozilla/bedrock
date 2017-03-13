@@ -88,6 +88,9 @@
       {% block string_data %}{% endblock %}></div>
 
   {% block site_header %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
     <header class="section masthead" id="masthead">
       <div class="content">
 
@@ -98,20 +101,20 @@
       {% endblock %}
 
       {% block site_header_nav %}
-        <nav class="masthead-nav-main" id="nav-main">
-          <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
-          <ul class="nav-main-menu" id="nav-main-menu">
-            <li class="first internet-health-item">
-              <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Internet Health">{{ _('Internet Health') }}</a>
-            </li>
-            <li class="technology-item">
-              <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations">{{ _('Web Innovations') }}</a>
-            </li>
-            <li class="last donate-item">
-              <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{_('Donate')}}</a>
-            </li>
-          </ul>
-        </nav>
+          <nav class="masthead-nav-main" id="nav-main">
+            <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
+            <ul class="nav-main-menu" id="nav-main-menu">
+              <li class="first internet-health-item">
+                <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Internet Health">{{ _('Internet Health') }}</a>
+              </li>
+              <li class="technology-item">
+                <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations">{{ _('Web Innovations') }}</a>
+              </li>
+              <li class="last donate-item">
+                <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{_('Donate')}}</a>
+              </li>
+            </ul>
+          </nav>
       {% endblock %}
 
       {% block site_header_logo %}
@@ -120,6 +123,7 @@
 
       </div>
     </header>
+  {% endif %}
   {% endblock %}
 
   {#--

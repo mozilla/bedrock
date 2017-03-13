@@ -36,6 +36,17 @@ label {
     display: none; /* oldIE never gets a mobile menu. */
 }
 
+/* oldIE never gets slide out drawer */
+.moz-global-nav {
+    .nav-button-menu {
+        display: none;
+    }
+}
+
+.moz-global-nav-drawer {
+    display: none;
+}
+
 #colophon .logo {
     font-size: 100%;
 }

@@ -17,8 +17,12 @@
 {% endblock %}
 
 {% block site_header %}
-  {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
-  {% include 'mozorg/home/includes/nav.html' %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
+    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+    {% include 'mozorg/home/includes/nav.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}

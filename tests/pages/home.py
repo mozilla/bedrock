@@ -10,7 +10,7 @@ from pages.regions.download_button import DownloadButton
 
 class HomePage(BasePage):
 
-    _download_button_locator = (By.ID, 'nav-download-firefox')
+    _download_button_locator = (By.ID, 'global-nav-download-firefox')
     _get_firefox_link_locator = (By.ID, 'fx-download-link')
 
     @property

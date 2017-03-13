@@ -32,6 +32,11 @@
     .border-box;
 }
 
+// fix for global selector border-box usage above.
+.moz-global-nav-drawer {
+    width: 320px;
+}
+
 html,
 body {
     background-color: @backgroundColor;
@@ -335,7 +340,7 @@ video {
 }
 
 a.taskview-button,
-button {
+main button {
     display: block;
     background-color: @buttonColor;
     margin-top: @baseLine;

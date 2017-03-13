@@ -10,23 +10,31 @@
 
 {% block body_class %}{{ super() }} firefox-friends{% endblock %}
 
+{% block global_nav %}{% endblock %}
+
 {% block page_css %}
   {% stylesheet 'contribute-friends' %}
 {% endblock %}
 
 {% block contrib_page_title %}{{ _('Join Firefox Friends today!') }}{% endblock %}
 
-{% block alt_header %}
-<div id="masthead-content">
-  <img src="{{ static('img/contribute/friends/firefox-friends-logo.svg') }}" width="186" class="ff-logo" data-png="{{ static('img/contribute/friends/firefox-friends-logo.png') }}" data-fallback="true" alt="{{ _('Firefox Friends logo') }}" />
-  <div class="ff-header-content">
-    <h1>{{ _('Are You<br> a Firefox Fan?') }}</h1>
-
-    <p class="ff-copy">
-      {{ _('If you believe in defending a free and open Internet and you think Firefox is the best browser on the planet, sign up here to show your support.') }}
-    </p>
+{% block site_header %}
+<header id="masthead">
+  <div id="tabzilla">
+    <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
   </div>
-</div>
+
+  <div id="masthead-content">
+    <img src="{{ static('img/contribute/friends/firefox-friends-logo.svg') }}" width="186" class="ff-logo" data-png="{{ static('img/contribute/friends/firefox-friends-logo.png') }}" data-fallback="true" alt="{{ _('Firefox Friends logo') }}" />
+    <div class="ff-header-content">
+      <h1>{{ _('Are You<br> a Firefox Fan?') }}</h1>
+
+      <p class="ff-copy">
+        {{ _('If you believe in defending a free and open Internet and you think Firefox is the best browser on the planet, sign up here to show your support.') }}
+      </p>
+    </div>
+  </div>
+</header>
 {% endblock %}
 
 {% block contrib_head %}{% endblock contrib_head %}

@@ -151,6 +151,7 @@ PIPELINE_CSS = {
     'responsive': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/base/global-nav.less',
             'css/tabzilla/tabzilla-static.less',
             'css/base/survey-message.less',
         ),
@@ -463,6 +464,7 @@ PIPELINE_CSS = {
     'firefox_mobile_download': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
+            'css/base/global-nav.less',
             'css/tabzilla/tabzilla-static.less',
             'css/firefox/mobile-download.less',
         ),
@@ -1017,6 +1019,8 @@ PIPELINE_JS = {
             'js/base/mozilla-client.js',
             'js/base/mozilla-image-helper.js',
             'js/base/nav-main-resp.js',
+            'js/base/class-list-polyfill.js',
+            'js/base/mozilla-global-nav.js',
             'js/base/base-page-init.js',
             'js/base/core-datalayer.js',
             'js/base/core-datalayer-init.js',
