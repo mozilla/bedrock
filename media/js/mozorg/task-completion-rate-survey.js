@@ -63,6 +63,11 @@ $(function () {
         $surveyButton.attr('href', surveyLink);
     }
 
+    // default sample rate limit 10%
+    function withinSampleRate() {
+        return (Math.random() < 0.1) ? true : false;
+    }
+
     /**
      * Task completion rate surevey (bug 1341425).
      */
@@ -76,8 +81,10 @@ $(function () {
             return;
         }
 
-        setParams();
-        showSurvey();
-        bindEvents();
+        if (withinSampleRate()) {
+            setParams();
+            showSurvey();
+            bindEvents();
+        }
     }
 });
