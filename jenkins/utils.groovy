@@ -64,13 +64,15 @@ def integrationTestJob(propFileName, appURL='') {
                               usernameVariable: 'SAUCELABS_USERNAME',
                               passwordVariable: 'SAUCELABS_API_KEY']]) {
                 withEnv(["BASE_URL=${appURL}"]) {
-                    try {
-                        sh testScript
-                    }
-                    finally {
-                        junit 'results/*.xml'
-                        if ( propFileName == 'smoke' ) {
-                            sh 'docker/bin/cleanup_after_functional_tests.sh'
+                    retry(1) {
+                        try {
+                            sh testScript
+                        }
+                        finally {
+                            junit 'results/*.xml'
+                            if ( propFileName == 'smoke' ) {
+                                sh 'docker/bin/cleanup_after_functional_tests.sh'
+                            }
                         }
                     }
                 }
