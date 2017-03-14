@@ -9,7 +9,7 @@
   "dependencies": {
     "less": "2.7.1",
     "lockdown": "https://github.com/mozilla/npm-lockdown/archive/v0.0.8.tar.gz",
-    "node-sass": "3.8.0",
+    "node-sass": "4.5.0",
     "yuglify": "0.1.4"
   },
   "repository": {
@@ -25,7 +25,7 @@
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
-    "gulp-stylelint": "^3.7.0",
+    "gulp-stylelint": "^3.9.0",
     "gulp-watch": "^4.3.6",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
