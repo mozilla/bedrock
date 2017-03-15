@@ -96,6 +96,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+USE_ETAGS = config('USE_ETAGS', default=not DEBUG, cast=bool)
+
 # just here so Django doesn't complain
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
