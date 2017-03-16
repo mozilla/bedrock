@@ -613,10 +613,24 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 STUB_INSTALLER_ALL = '__ALL__'
 # values should be a list of lower case locales per platform for which a
 # stub installer is available. Hopefully this can all be moved to bouncer.
+# for release and beta
 STUB_INSTALLER_LOCALES = {
-    'win': STUB_INSTALLER_ALL,
-    'osx': [],
-    'linux': [],
+    'release': {
+        'win': STUB_INSTALLER_ALL,
+        'win64': STUB_INSTALLER_ALL,
+    },
+    'beta': {
+        'win': STUB_INSTALLER_ALL,
+        'win64': STUB_INSTALLER_ALL,
+    },
+    'alpha': {
+        'win': ['en-us'],
+        'win64': ['en-us'],
+    },
+    'nightly': {
+        'win': ['en-us'],
+        'win64': ['en-us'],
+    },
 }
 
 # Google Analytics
