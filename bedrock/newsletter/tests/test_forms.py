@@ -74,11 +74,13 @@ class TestRenderers(TestCase):
 
 
 class TestManageSubscriptionsForm(TestCase):
-    def test_locale(self):
+    @mock.patch('bedrock.newsletter.forms.get_lang_choices')
+    def test_locale(self, langs_mock):
         """Get initial lang, country from the right places"""
         # Get initial lang and country from 'initial' if provided there,
         # else from the locale passed in
         # First, not passed in
+        langs_mock.return_value = [['en', 'English'], ['pt', 'Portuguese']]
         locale = "en-US"
         form = ManageSubscriptionsForm(locale=locale, initial={})
         self.assertEqual('en', form.initial['lang'])
