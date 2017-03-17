@@ -121,6 +121,7 @@
             box-decoration-break: $value;
 }
 
+
 // Hide an element visually, but not from screen readers
 @mixin visually-hidden {
     border: 0;
@@ -200,15 +201,12 @@
 @mixin multi-column($width: auto, $count: auto, $gap: normal) {
     -webkit-column-width: $width;
        -moz-column-width: $width;
-         -o-column-width: $width;
             column-width: $width;
     -webkit-column-count: $count;
        -moz-column-count: $count;
-         -o-column-count: $count;
             column-count: $count;
       -webkit-column-gap: $gap;
          -moz-column-gap: $gap;
-           -o-column-gap: $gap;
               column-gap: $gap;
 }
 
@@ -220,6 +218,5 @@
     page-break-inside: avoid;
     -webkit-column-break-inside: avoid;
        -moz-column-break-inside: avoid;
-         -o-column-break-inside: avoid;
                    break-inside: avoid;
 }

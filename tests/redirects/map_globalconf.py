@@ -1142,4 +1142,11 @@ URLS = flatten((
     # Bug 1324504
     url_test('/contribute/studentambassadors/join/', 'https://campus.mozilla.community/'),
     url_test('/contribute/studentambassadors/thanks/', 'https://campus.mozilla.community/'),
+
+     # Bug 1340600
+    url_test('/css-grid', '/developer/css-grid/', query={
+        'utm_source': 'redirect',
+        'utm_medium': 'collateral',
+        'utm_campaign': 'css-grid',
+    }),
 ))

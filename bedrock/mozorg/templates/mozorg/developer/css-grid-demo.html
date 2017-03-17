@@ -1,0 +1,664 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}{{ _('CSS Grid and Grid Inspector in Firefox') }}{% endblock %}
+
+{% block page_desc %}{{ _(' Explore new possibilities in web design with CSS Grid and Firefox’s Grid Inspector tool') }}{% endblock %}
+{% block page_image %}{{ static('img/mozorg/developer/css-grid/grid-meta-image.jpg') }}{% endblock %}
+
+{% block body_id %}css-grid-demo{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'css-grid-demo' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header id="page-intro" class="section">
+    <nav id="page-nav" class="content">
+      <ul class="page-nav-menu">
+        <li><a href="#demos">{{ _('Demos') }}</a></li>
+        <li><a href="#inspector">{{ _('DevTools: Grid Inspector') }}</a></li>
+        <li><a href="#resources">{{ _('Resources') }}</a></li>
+      </ul>
+    </nav>
+
+    <div class="content grid-content">
+      <h1 class="page-title">{{ _('CSS Grid') }}</h1>
+
+      <p class="moz-logo"><a href="{{ url('mozorg.home') }}"><img src="{{ static('img/pebbles/moz-wordmark-dark-reverse.svg') }}" alt="Mozilla"></a></p>
+
+      {# L10n: <br> for visual formatting #}
+      <p class="tagline-1">{{ _('CSS Grid simplifies existing layout patterns<br> <em>and</em> adds new possibilities for graphic design.') }}</p>
+
+      {# L10n: <br> for visual formatting #}
+      <p class="tagline-2">{{ _('It’s a layout framework — <br>without the framework.') }}</p>
+
+      <p class="tagline-3">
+        <span>Layout.</span>
+        <span>Inspect.</span>
+        <span>Design.</span>
+        <span>Enjoy.</span>
+      </p>
+
+      <span class="a" role="presentation"></span>
+      <span class="b" role="presentation"></span>
+      <span class="c" role="presentation"></span>
+      <span class="d" role="presentation"></span>
+      <span class="e" role="presentation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <span class="f" role="presentation"></span>
+      <span class="g" role="presentation"></span>
+    </div>
+  </header>
+
+  <section id="demos">
+
+{# Demo 1 - Fixed and Fluid #}
+    <article id="demo-one" class="section demo-section example-1">
+      <div class="content grid-content">
+        <header>
+          <h2>{{ _('Fixed or Flexible') }}</h2>
+        </header>
+
+        <div class="demo-intro">
+          <p>
+          {% trans fr_unit='https://www.w3.org/TR/css3-grid-layout/#fr-unit' %}
+            You can create a grid with fixed track sizes or with flexible sizes using
+            percentages or the new <a href="{{ fr_unit }}" rel="external"><code>fr</code>
+            fractional unit</a>.
+          {% endtrans %}
+          </p>
+        </div>
+
+        <ul class="demo-controls">
+          <li><button type="button" class="example-switch active" data-example-class="example-1" data-example="demo-1-example-1" aria-controls="demo-1-example-1">{{ _('Example 1') }}</button></li>
+          <li><button type="button" class="example-switch" data-example-class="example-2" data-example="demo-1-example-2" aria-controls="demo-1-example-2">{{ _('Example 2') }}</button></li>
+          <li><button type="button" class="example-switch" data-example-class="example-3" data-example="demo-1-example-3" aria-controls="demo-1-example-3">{{ _('Example 3') }}</button></li>
+        </ul>
+
+        <div class="demo-space">
+          <div class="fallback">
+            <img src="{{ static('img/mozorg/developer/css-grid/screen-demo1.jpg') }}" alt="" width="800" height="440">
+
+            <p>
+            {% trans firefox=url('firefox.new') %}
+              It looks like your web browser doesn’t support CSS Grid.<br>
+              To see this demo, try viewing this page in <a href="{{ firefox }}">the latest Firefox</a>.
+            {% endtrans %}
+            </p>
+          </div>
+
+          <div class="grid-container">
+            <div class="item-1">1</div>
+            <div class="item-2">2</div>
+            <div class="item-3">3</div>
+            <div class="item-4">4</div>
+            <div class="item-5">5</div>
+            <div class="item-6">6</div>
+          </div>
+        </div>
+
+        <div id="demo-one-code" class="demo-code">
+          <h3>CSS</h3>
+
+          <div id="demo-1-ex-1" class="code-example code-1">
+<pre>
+/* Three columns: 100px each */
+.grid-container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-gap: 20px;
+}</pre>
+          </div>
+
+          <div id="demo-1-ex-2" class="code-example code-2">
+<pre>
+/* Three columns: 1 fraction, 2 fractions, 3 fractions */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr;
+    grid-gap: 20px;
+}</pre>
+          </div>
+
+          <div id="demo-1-ex-3" class="code-example code-3">
+<pre>
+/* Three columns: 50%, 100px, and the remaining available fraction */
+/* Two rows: 100px and 200px */
+.grid-container {
+    display: grid;
+    grid-template-columns: 50% 100px 1fr;
+    grid-template-rows: 100px 200px;
+    grid-gap: 20px;
+}</pre>
+          </div>
+
+        </div>
+
+      </div>
+    </article>
+
+
+{# Demo 2 - Placement and Alignment #}
+    <article id="demo-two" class="section demo-section example-1">
+      <div class="content grid-content">
+        <header>
+          <h2>{{ _('Place &amp; Align') }}</h2>
+        </header>
+
+        <div class="demo-intro">
+          <p>
+          {% trans %}
+            You can place items at precise locations on the grid independent of their
+            HTML source order. Alignment features control how items align when placed
+            into a grid area, and also how the whole grid is aligned.
+          {% endtrans %}
+          </p>
+        </div>
+
+        <ul class="demo-controls">
+          <li><button type="button" class="example-switch active" data-example-class="example-1" data-example="demo-2-example-1" aria-controls="demo-2-example-1">{{ _('Example 1') }}</button></li>
+          <li><button type="button" class="example-switch" data-example-class="example-2" data-example="demo-2-example-2" aria-controls="demo-2-example-2">{{ _('Example 2') }}</button></li>
+          <li><button type="button" class="example-switch" data-example-class="example-3" data-example="demo-3-example-3" aria-controls="demo-2-example-3">{{ _('Example 3') }}</button></li>
+        </ul>
+
+        <div class="demo-space">
+          <div class="fallback">
+            <img src="{{ static('img/mozorg/developer/css-grid/screen-demo2.jpg') }}" alt="" width="800" height="440">
+
+            <p>
+            {% trans firefox=url('firefox.new') %}
+              It looks like your web browser doesn’t support CSS Grid.<br>
+              To see this demo, try viewing this page in <a href="{{ firefox }}">the latest Firefox</a>.
+            {% endtrans %}
+            </p>
+          </div>
+
+          <div class="grid-container">
+            <div class="item-1">1</div>
+            <div class="item-2">2</div>
+            <div class="item-3">3</div>
+            <div class="item-4">4</div>
+          </div>
+        </div>
+
+        <div class="demo-code">
+          <h3>CSS</h3>
+
+          <div id="demo-2-example-1" class="code-example code-1">
+<pre>
+/* Repeat a 1fr column 3 times */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+.item-1 {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.item-2 {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.item-3 {
+    grid-column: 3;
+    grid-row: 3;
+}
+
+.item-4 {
+    grid-column: 3;
+    grid-row: 1;
+}</pre>
+          </div>
+
+          <div id="demo-2-example-2" class="code-example code-2" aria-hidden="true">
+<pre>
+/* Repeat a 1fr row 4 times and a 1fr column 3 times */
+/* Map names to each grid cell */
+.grid-container {
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(3, 1fr);
+    grid-gap: 20px;
+    grid-template-areas:
+        'header header header'
+        'sidebar content content'
+        'sidebar content content'
+        'footer footer footer';
+}
+
+.item-1 {
+    grid-area: content;
+}
+
+.item-2 {
+    grid-area: sidebar;
+}
+
+.item-3 {
+    grid-area: header;
+}
+
+.item-4 {
+    grid-area: footer;
+}</pre>
+          </div>
+
+          <div id="demo-2-example-3" class="code-example code-3" aria-hidden="true">
+<pre>
+/* Repeat a 1fr column 4 times */
+/* Automatic rows, each a minimum of 100px and maximum of 1fr tall */
+/* Map names to each grid cell */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(100px, 1fr);
+    grid-gap: 20px;
+    grid-template-areas:
+        'a a b b'
+        'a a b b'
+        'c c d d'
+        'c c d d';
+}
+
+.item-1 {
+    grid-area: a;
+    align-self: end;
+}
+
+.item-2 {
+    grid-area: b;
+    align-self: start;
+}
+
+.item-3 {
+    grid-area: c;
+    align-self: end;
+}
+
+.item-4 {
+    grid-area: d;
+    align-self: start;
+}</pre>
+          </div>
+
+        </div>
+
+      </div>
+    </article>
+
+
+{# Demo 3 - Spanning and Overlapping #}
+    <article id="demo-three" class="section demo-section example-1">
+      <div class="content grid-content">
+        <header>
+          <h2>{{ _('Span &amp; Overlap') }}</h2>
+        </header>
+
+        <div class="demo-intro">
+          <p>
+          {% trans z_index='https://developer.mozilla.org/docs/Web/CSS/z-index' %}
+            Items can span multiple grid cells and areas can overlap each other. You can
+            control the layering with <a href="{{ z_index }}" rel="external">z-index</a>.
+          {% endtrans %}
+          </p>
+        </div>
+
+        <ul class="demo-controls">
+          <li><button type="button" class="example-switch active" data-example-class="example-1" data-example="demo-3-example-1" aria-controls="demo-3-example-1">{{ _('Example 1') }}</button></li>
+          <li><button type="button" class="example-switch" data-example-class="example-2" data-example="demo-3-example-2" aria-controls="demo-3-example-2">{{ _('Example 2') }}</button></li>
+          <li><button type="button" class="example-switch" data-example-class="example-3" data-example="demo-3-example-3" aria-controls="demo-3-example-3">{{ _('Example 3') }}</button></li>
+        </ul>
+
+        <div class="demo-space">
+          <div class="fallback">
+            <img src="{{ static('img/mozorg/developer/css-grid/screen-demo3.jpg') }}" alt="" width="800" height="440">
+
+            <p>
+            {% trans firefox=url('firefox.new') %}
+              It looks like your web browser doesn’t support CSS Grid.<br>
+              To see this demo, try viewing this page in <a href="{{ firefox }}">the latest Firefox</a>.
+            {% endtrans %}
+            </p>
+          </div>
+
+          <div class="grid-container">
+            <div class="item-1">1</div>
+            <div class="item-2">2</div>
+            <div class="item-3">3</div>
+            <div class="item-4">4</div>
+            <div class="item-5">5</div>
+            <div class="item-6">6</div>
+          </div>
+        </div>
+
+        <div class="demo-code">
+          <h3>CSS</h3>
+
+          <div id="demo-3-example-1" class="code-example code-1">
+<pre>
+/* Repeat 3 rows named "row", each between 120px and 1fr tall */
+/* Repeat 4 columns named "col", each 1fr wide */
+.grid-container {
+    display: grid;
+    grid-template: repeat(3, [row] minmax(120px, 1fr)) / repeat(4, [col] 1fr);
+    grid-gap: 20px;
+}
+
+.item-1 {
+    grid-column: col 1 / span 4;
+    grid-row: row 1;
+}
+
+.item-2 {
+    grid-column: col 4;
+    grid-row: row 1 / span 3;
+}
+
+.item-3 {
+    grid-column: col 1;
+    grid-row: row 2;
+}
+
+.item-4 {
+    grid-column: col 2 / span 2;
+    grid-row: row 2;
+}
+
+.item-5 {
+    grid-column: col 1;
+    grid-row: row 3;
+}
+
+.item-6 {
+    grid-column: col 2 / span 2;
+    grid-row: row 3;
+}</pre>
+          </div>
+
+          <div id="demo-3-example-2" class="code-example code-2" aria-hidden="true">
+<pre>
+/* Repeat 4 1fr rows named "row" and 5 1fr columns named "col" */
+.grid-container {
+    display: grid;
+    grid-template: repeat(4, [row] 1fr) / repeat(5, [col] 1fr);
+    grid-gap: 20px;
+}
+
+.item-1 {
+    grid-column: col 1;
+    grid-row: row 1;
+    z-index: 1;
+}
+
+.item-2 {
+    grid-column: col 1 / span 2;
+    grid-row: row 1 / span 2;
+    z-index: 2;
+}
+
+.item-3 {
+    grid-column: col 1 / span 3;
+    grid-row: row 1 / span 3;
+    z-index: 3;
+}
+
+.item-4 {
+    grid-column: col 3 / span 3;
+    grid-row: row 2 / span 3;
+    z-index: 3;
+}
+
+.item-5 {
+    grid-column: col 4 / span 2;
+    grid-row: row 3 / span 2;
+    z-index: 2;
+}
+
+.item-6 {
+    grid-column: col 5;
+    grid-row: row 4;
+    z-index: 1;
+}</pre>
+          </div>
+
+          <div id="demo-3-example-3" class="code-example code-3" aria-hidden="true">
+<pre>
+/* Repeat 6 1fr rows named "row" and 6 1fr columns named "col" */
+.grid-container {
+    display: grid;
+    grid-template: repeat(6, [row] 1fr) / repeat(6, [col] 1fr);
+    grid-gap: 20px;
+}
+
+.item-1 {
+    grid-column: col 1 / span 3;
+    grid-row: row 1 / span 2;
+    z-index: 3;
+}
+
+.item-2 {
+    grid-column: col 3 / span 4;
+    grid-row: row 2 / span 3;
+    z-index: 3;
+}
+
+.item-3 {
+    grid-column: col 5 / span 2;
+    grid-row: row 1 / span 5;
+    z-index: 3;
+}
+
+.item-4 {
+    grid-column: col 2;
+    grid-row:  row 2 / span 4;
+    z-index: 2;
+}
+
+.item-5 {
+    grid-column: col 1 / span 3;
+    grid-row: row 4 / span 3;
+    z-index: 1;
+}
+
+.item-6 {
+    grid-column: col 4 / span 3;
+    grid-row: row 5 / span 2;
+    z-index: 4;
+}</pre>
+          </div>
+
+        </div>
+
+      </div>
+    </article>
+
+  </section>
+
+  <article id="inspector" class="section">
+    <div class="content grid-content">
+
+      <header>
+        <h2>{{ _('Inspect the Design') }}</h2>
+        <p>
+        {% trans inspector='https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Examine_grid_layouts' %}
+          Firefox’s <a href="{{ inspector }}">Grid Inspector Tool</a> lets you see the
+          grid lines in the browser while you’re creating a layout or studying other
+          examples of CSS Grid in action. In fact, this entire page was laid out using
+          CSS Grid. Try it out!
+        {% endtrans %}
+        </p>
+      </header>
+
+      <ol class="gallery inspector-steps">
+        <li>
+          <figure>
+            {{ high_res_img('mozorg/developer/css-grid/inspect-step1.jpg', {'alt': '', 'width': '440', 'height': '242', 'class': 'screenshot'}) }}
+            <figcaption>
+            {% trans %}
+              In Firefox, right click and select “Inspect Element.”
+            {% endtrans %}
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure>
+            {{ high_res_img('mozorg/developer/css-grid/inspect-step2.jpg', {'alt': '', 'width': '440', 'height': '242', 'class': 'screenshot'}) }}
+            <figcaption>
+            {% trans grid_icon=high_res_img('mozorg/developer/css-grid/grid-icon.png', {'alt': 'Grid', 'width': '12', 'height': '12'}) %}
+              In the Developer Tools, find an element with a <code>display: grid;</code> declaration and click the {{ grid_icon }} icon.
+            {% endtrans %}
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure>
+            {{ high_res_img('mozorg/developer/css-grid/inspect-step3.jpg', {'alt': '', 'width': '440', 'height': '242', 'class': 'screenshot'}) }}
+            <figcaption>
+            {% trans %}
+              You'll see the grid overlaid on the page, including grid lines and tracks.
+            {% endtrans %}
+            </figcaption>
+          </figure>
+        </li>
+      </ol>
+
+      <figure class="video">
+        <div class="video-wrap">
+          <iframe id="grid-video" class="video-frame" width="853" height="480" src="" frameborder="0" allowfullscreen data-frame-src="https://www.youtube-nocookie.com/embed/16enLRDbOyY?rel=0">
+            <p><a href="https://www.youtube.com/watch?v=16enLRDbOyY" rel="external">{{ _('Watch the video') }}</a></p>
+          </iframe>
+        </div>
+      </figure>
+
+    </div>
+  </article>
+
+  <article id="resources">
+    <section class="section resources-top">
+      <div class="content">
+        <header>
+          <h2>{{ _('Want to learn more?') }}</h2>
+          <p>{{ _('Here is a short list of our favorite resources.') }}</p>
+        </header>
+
+        <ul class="gallery top-resources">
+          <li>
+            <a href="https://developer.mozilla.org/docs/Web/CSS/CSS_Grid_Layout" rel="external">
+              <img class="screenshot" src="{{ static('img/mozorg/developer/css-grid/resource-mdn.png') }}" width="440" height="242" alt="">
+              {{ _('MDN reference documentation') }} <span><span>{{ _('Read more') }}</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="http://gridbyexample.com/" rel="external">
+              <img class="screenshot" src="{{ static('img/mozorg/developer/css-grid/resource-gridbyexample.png') }}" width="440" height="242" alt="">
+              {{ _('Rachel Andrew’s Grid by Example') }} <span><span>{{ _('Read more') }}</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="http://labs.jensimmons.com/" rel="external">
+              <img class="screenshot" src="{{ static('img/mozorg/developer/css-grid/resource-simmonslab.png') }}" width="440" height="242" alt="">
+              {{ _('Jen Simmons’ Layout Lab') }} <span><span>{{ _('Read more') }}</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="http://jensimmons.com/post/feb-27-2017/learn-css-grid" rel="external">
+              <img class="screenshot" src="{{ static('img/mozorg/developer/css-grid/resource-learngrid.png') }}" width="440" height="242" alt="">
+              {{ _('Learn CSS Grid') }} <span><span>{{ _('Read more') }}</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="http://jensimmons.com/post/feb-28-2017/benefits-learning-how-code-layouts-css" rel="external">
+              <img class="screenshot" src="{{ static('img/mozorg/developer/css-grid/resource-benefits.png') }}" width="440" height="242" alt="">
+              {{ _('The benefits of learning how to code layouts with CSS') }} <span><span>{{ _('Read more') }}</span></span>
+            </a>
+          </li>
+          <li>
+            <a href="https://rachelandrew.co.uk/archives/2017/02/20/a-box-alignment-cheatsheet/" rel="external">
+              <img class="screenshot" src="{{ static('img/mozorg/developer/css-grid/resource-alignmentcheat.png') }}" width="440" height="242" alt="">
+              {{ _('A Box Alignment Cheat Sheet') }} <span><span>{{ _('Read more') }}</span></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section resources-further">
+      <div class="content">
+        <h3>{{ _('Further reading') }}</h3>
+        <ul class="further-reading">
+          <li><a href="http://jensimmons.com/" rel="external">{{ _('Jen Simmons’ website') }}</a></li>
+          <li><a href="https://rachelandrew.co.uk/" rel="external">{{ _('Rachel Andrew’s website') }}</a></li>
+          <li>{{ _('W3C spec: <a href="%s" rel="external">CSS Grid Layout Module Level 1</a>')|format('https://www.w3.org/TR/css-grid-1/')|safe }}</li>
+          <li><a href="https://developer.mozilla.org/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout" rel="external">{{ _('Basic concepts of grid layout') }}</a></li>
+          <li>Rachel Andrew’s <a href="https://github.com/rachelandrew/cssgrid-ama" rel="external">{{ _('CSS AMA on Github') }}</a></li>
+          <li><a href="http://gridbyexample.com/learn/2016/12/17/learning-grid-day17/" rel="external">{{ _('Video demo of CSS Grid Inspector') }}</a></li>
+          <li><a href="https://hacks.mozilla.org/2016/12/css-grid-and-grid-highlighter-now-in-firefox-developer-edition/" rel="external">{{ _('CSS Grid and Grid Highlighter Now in Firefox Developer Edition') }}</a></li>
+
+          <li>{{ _('Grid Inspector Tool documentation: <a href="%s" rel="external">How to Examine Grid Layouts</a>')|format('https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Examine_grid_layouts')|safe }}</li>
+          <li><a href="https://hacks.mozilla.org/2015/09/the-future-of-layout-with-css-grid-layouts/" rel="external">{{ _('The future of layout with CSS: Grid Layouts') }}</a></li>
+          <li>
+          {% trans
+              gridby='http://gridbyexample.com/browsers/',
+              caniuse='http://caniuse.com/#feat=css-grid'
+          %}
+            Up to date information on status of CSS Grid support in browsers at
+            <a href="{{ gridby }}" rel="external">gridbyexample.com/browsers</a>
+            or <a href="{{ caniuse }}" rel="external">caniuse</a>.
+          {% endtrans %}
+          </li>
+        </ul>
+
+      </div>
+    </section>
+  </article>
+
+  <section id="download-firefox" class="section">
+    <div class="not-fx">
+      <div class="content grid-content">
+        <div class="cta">
+          {# L10n: <br> for visual formatting #}
+          <h2><span>{{ _('Don’t have Firefox &amp; want to try<br> the Grid Inspector tool?') }}</span></h2>
+        </div>
+        <div class="fx-download">
+          {{ download_firefox(dom_id='btn-download-notfx', button_color='button-hollow button-light') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="old-fx">
+      <div class="content grid-content">
+        <div class="cta">
+          <h2><span>{{ _('It looks like you’re using an older version of Firefox that doesn’t support CSS Grid.') }}</span></h2>
+        </div>
+        <div class="fx-download">
+          {{ download_firefox(alt_copy=_('Update Firefox Now'), dom_id='btn-download-oldfx', button_color='button-hollow button-light') }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# Inline SVG needed for cross-browser clip-path. #}
+  {% include 'mozorg/developer/clip-paths.svg' %}
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+{% block task_completion_survey %}{% endblock %}
+
+{% block js %}
+  {% javascript 'css-grid-demo' %}
+{% endblock %}
