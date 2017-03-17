@@ -1,0 +1,406 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}{{ _('Open Innovation: Vital to Internet Health') }}{% endblock %}
+
+{% block page_desc %}{{ _('Open Innovation means innovating collectively through shared ideas and open source code.') }}{% endblock %}
+{% block page_image %}{{ static('img/mozorg/internet-health/innovation/meta-image.png') }}{% endblock %}
+
+{% block body_id %}health-open-innovation{% endblock %}
+{% block body_class %}theme-innovation{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'health-subpage' %}
+{% endblock %}
+
+{% block site_header %}
+  {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+  {% include 'mozorg/home/includes/nav.html' %}
+{% endblock %}
+
+{% block content %}
+<nav id="health-subnav" class="health-subnav">
+  <ul class="content">
+    <li><a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Privacy &amp; Security') }}</a></li>
+    <li><a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Digital Inclusion') }}</a></li>
+    <li class="current"><a href="{{ url('mozorg.internet-health.open-innovation') }}">{{ _('Open Innovation') }}</a></li>
+  </ul>
+</nav>
+
+<main role="main">
+  <header class="section main-header">
+    <div class="content">
+      <h1 class="page-title">{{ _('A healthy Internet is open for innovation') }}</h1>
+
+      <div class="head-intro">
+        <p>
+        {% trans %}
+          The Internet was built on the promise that any one of us might create the next
+          big thing. But in order to keep creating, imagining, and reinventing our future
+          online, the building blocks of the Web must be open to all. And together, we
+          need to make sure the policies and laws that govern those building blocks are
+          fair and functional.
+        {% endtrans %}
+          <strong>
+            {{ _('A healthy Internet is created by you.') }}
+          </strong>
+        </p>
+      </div>
+    </div>
+
+    <nav class="section head-pagenav">
+      <div class="content">
+        <h2 class="head-pagenav-title">{{ _('Here are three areas where we can make a difference.') }}</h2>
+
+        <ul>
+          <li><a class="nav-one" href="#opensource">{{ _('Support Open Source') }}</a></li>
+          <li><a class="nav-two" href="#copyright">{{ _('Engage in Copyright Reform') }}</a></li>
+          <li><a class="nav-three" href="#patents">{{ _('Influence Patent Policy') }}</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section id="opensource" class="section topic topic-first">
+
+    <section class="topic-intro">
+      <div class="content">
+
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Open Source: Keeping the building blocks of the Web open for creativity') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            Open source should continue to be the heart of the Internet, so we can all
+            see, verify, and contribute to its future.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Open source software – technology built with code that is open for view,
+            use, and modification – is the engine that powers a huge amount of the
+            Internet, from servers to operating systems to the bots that fetch your
+            search results. It’s the infrastructure that makes the Web a truly public
+            resource: transparent, trustworthy, and collaborative, so that anyone with
+            an idea can contribute. But much like our IRL infrastructure, we have to
+            commit the attention and resources to maintain it.
+          {% endtrans %}
+          </p>
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+              {% trans %}
+                GitHub, the world’s largest open source community, includes 19 million
+                developers, 100,000 teams, and 52 million repositories for established
+                and developing technologies.
+              {% endtrans %}
+            </p>
+
+            <p class="note-source">
+              <cite>
+              {% trans  github='https://github.com' %}
+                Source: <a href="{{ github }}">GitHub</a>
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('52M') }}</span>
+        </aside>
+
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can support open source') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Contribute to a project') }}</h4>
+              <p>
+              {% trans contribute=url('mozorg.contribute.index'),
+                       open_hatch='https://openhatch.org/'
+              %}
+                Contribute to an existing open source project. Become a <a href="{{ contribute }}">Mozillian!</a>
+                Or use <a href="{{ open_hatch }}">OpenHatch</a> to match your skillset to a project.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Create something new') }}</h4>
+              <p>
+              {% trans toolkit='https://toolkit.mozilla.org/' %}
+                Not sure where to start? Try our <a href="{{ toolkit }}">Open Innovation Toolkit</a>.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is supporting open source') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Contributing to the ecosystem') }}</h4>
+              <p>
+              {% trans mdn='https://developer.mozilla.org/' %}
+                Contributing directly to the open source ecosystem through our products,
+                build systems, and back end systems, and fostering community through the
+                <a href="{{ mdn }}">Mozilla Developer Network</a>.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Offering support') }}</h4>
+              <p>
+              {% trans moss=url('mozorg.moss.index') %}
+                Establishing <a href="{{ moss }}">MOSS</a>, the Mozilla Open Source
+                Support program, to give back to the movement we were born from.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+  </section>{# end #diversity #}
+
+
+  <section id="copyright" class="section topic">
+    <section class="topic-intro">
+      <div class="content">
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Copyright: Reforming laws for our digital reality') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            We should all be able to share, reuse and reinterpret the creativity that
+            inspires us on the Internet.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Intellectual Property (IP) rights were designed as a practical solution to
+            advance creativity in all its forms: arts, science, business, and technology.
+            In order for IP to continue sowing seeds for the future of the Web, our laws
+            need to support the speed and spirit of collaboration that defines our
+            digital world.
+          {% endtrans %}
+          </p>
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+            {% trans %}
+              There are now an estimated 1 billion Creative Commons-licensed works
+              online that encourage reuse, including texts, photos, and music.
+            {% endtrans %}
+            </p>
+            <p class="note-source">
+              <cite>
+              {% trans cc='https://stateof.creativecommons.org/2015/' %}
+                Source: <a href="{{ cc }}">Creative Commons</a>, 2015
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('1B') }}</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can engage in copyright reform') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Keep the pressure on') }}</h4>
+              <p>
+              {% trans single_market='https://ec.europa.eu/commission/priorities/digital-single-market_en',
+                       change='https://www.changecopyright.org/' %}
+                Protests against SOPA/PIPA in the US and ACTA in Europe led to the
+                shelving of laws that may have hindered open innovation. EU citizens: the
+                <a href="{{ single_market }}">Digital Single Market</a> could produce
+                good or bad new copyright law. <a href="{{ change }}">Join us</a> and
+                others in the fight!
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Get creative') }}</h4>
+              <p>
+              {% trans attribution='https://wiki.creativecommons.org/wiki/Best_practices_for_attribution' %}
+                Keep making memes, posting links, and getting creative on the Web with
+                <a href="{{ attribution }}">respectful attribution</a>.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is engaged in copyright reform') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Standing up for reform') }}</h4>
+              <p>
+              {% trans europe='https://blog.mozilla.org/netpolicy/2015/05/28/copyright-reform-in-the-european-union/' %}
+                Making the case for copyright reform in <a href="{{ europe }}">Europe</a>.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Advocating for protections') }}</h4>
+              <p>
+              {% trans internet_users='https://blog.mozilla.org/netpolicy/2016/03/07/challenges-to-openness-under-u-s-copyright-law/',
+                       creators='https://blog.mozilla.org/netpolicy/2017/02/21/we-are-all-creators-now/',
+                       intermediaries='https://blog.mozilla.org/netpolicy/2016/04/05/reining-in-abuses-of-the-dmca-notice-system/'
+              %}
+                Advocating for clear protections for <a href="{{ internet_users }}">Internet users</a>,
+                <a href="{{ creators }}">creators</a>, and <a href="{{ intermediaries }}">intermediaries</a>
+                with the U.S. Copyright Office.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </section>{# end #respect #}
+
+
+  <section id="patents" class="section topic">
+    <section class="topic-intro">
+      <div class="content">
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Patents: Building a system that encourages innovation') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            Our patent system should work with and for open innovation, not against it.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Patents were designed to create incentive for innovation. But the patent
+            system and software development don’t always get along so well. Software
+            patents are often written so broadly that they’re open to misinterpretation,
+            and exclusive rights can far outlive the shelf life of the software itself.
+            All of which creates obstacles and uncertainty for innovators, and leaves
+            the door open for patent trolls and endless litigation.
+          {% endtrans %}
+          </p>
+
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+            {% trans %}
+              High Tech patents are the subject of more disputes than all other patents combined.
+            {% endtrans %}
+            </p>
+            <p class="note-source">
+              <cite>
+              {% trans patents='https://www.unifiedpatents.com/news/2016/12/28/2016-annual-patent-dispute-report' %}
+                Source: <a href="{{ patents }}">Unified Patents</a>, 2016
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can influence patent policy') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Use open source software') }}</h4>
+              <p>
+              {% trans
+                  alt_1='https://www.opensourcealternative.org/category/alternatives/',
+                  alt_2='https://www.osalt.com/'
+                 %}
+                Look for open source alternatives to the products you use every day.
+                You can find options <a href="{{ alt_1 }}">here</a> and <a href="{{ alt_2 }}">here</a>.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is influencing patent policy') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Advocating for change') }}</h4>
+              <p>
+              {% trans court='https://blog.mozilla.org/netpolicy/2017/01/23/patent-rights-should-be-balanced-by-consumer-rights/' %}
+                Advocating for change in the <a href="{{ court }}">US Supreme Court</a>.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Keeping our patents open') }}</h4>
+              <p>
+              {% trans patent_license='https://www.mozilla.org/en-US/about/policy/patents/license/' %}
+                Offering everyone a royalty-free non-exclusive license to all of Mozilla’s
+                patents under the <a href="{{ patent_license }}">Mozilla Open Software Patent License Agreement</a>.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </section>{# end #access #}
+
+  <section id="health-report" class="section health-report">
+    <div class="content">
+      <h2>{{ _('Hungry for more?') }}</h2>
+      <p class="report-cta">
+        <span>
+        {% trans healthreport='https://internethealthreport.org' %}
+          Read on about Open Innovation in our <a href="{{ healthreport }}">Internet Health Report</a>.
+        {% endtrans %}
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <aside id="newsletter-subscribe">
+    <div class="content">
+      {{ email_newsletter_form(newsletters='mozilla-foundation',
+         title=_('Stay informed.'),
+         subtitle=_('Sign up. Read up. Get the Mozilla newsletter to stay smart on the issues affecting your life online.'),
+         button_class='button-light')
+      }}
+    </div>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {% javascript 'internet-health-subpage' %}
+{% endblock %}
