@@ -109,42 +109,6 @@ def ios_builds(channel, builds=None):
 
 @library.global_function
 @jinja2.contextfunction
-def firefox_footer_links(ctx, channel='release', platform='all'):
-    """ Outputs Firefox footer links
-    :param ctx: context from calling template.
-    :param channel: name of channel: 'release', 'beta' or 'alpha'.
-    :param platform: Target platform: 'desktop', 'android', or 'ios'.
-    :return: The footer links html.
-    """
-    # channel could be Undefined, so double check the value
-    channel = 'release' if not isinstance(channel, str) else channel
-
-    show_desktop = platform in ['all', 'desktop']
-    show_android = platform in ['all', 'android']
-    show_ios = platform in ['all', 'ios']
-    alt_channel = '' if channel == 'release' else channel
-
-    # Gather data about the build for each platform
-    builds = []
-
-    if show_android:
-        builds = android_builds(channel, builds)
-
-    data = {
-        'show_desktop': show_desktop,
-        'show_android': show_android,
-        'show_ios': show_ios,
-        'channel': alt_channel,
-        'builds': builds,
-    }
-
-    html = render_to_string('firefox/includes/firefox-footer-links.html', data,
-                            request=ctx['request'])
-    return jinja2.Markup(html)
-
-
-@library.global_function
-@jinja2.contextfunction
 def download_firefox(ctx, channel='release', platform='all',
                      dom_id=None, locale=None, force_direct=False,
                      force_full_installer=False, force_funnelcake=False,

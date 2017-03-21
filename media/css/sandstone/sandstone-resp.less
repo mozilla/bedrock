@@ -987,30 +987,190 @@ nav.menu-bar {
 /* {{{ Footer */
 
 #colophon {
-    color: @textColorTertiary;
-    padding: (@baseLine * 2) 0;
-    .font-size(@smallFontSize);
-    line-height: 1.3;
+    .font-size(14px);
     background: #fff;
+    color: @textColorTertiary;
+    line-height: 1.5;
+    margin: 0;
+    padding: 40px 0;
     width: 100%;
-    margin: 1em 0 0;
 
-    a,
-    a:link {
+    p {
+        color: inherit;
+    }
+
+    a:link,
+    a:visited {
         color: @linkBlue;
+        text-decoration: none;
     }
 
     a:hover,
     a:focus,
-    a:active,
-    a:visited {
-        color: darken(@linkBlue, 10%);
+    a:active {
+        color: @linkBlueHover;
+        text-decoration: underline;
     }
 
-    h1 {
-        margin-bottom: @baseLine / 2;
-        .font-size(@baseFontSize);
+    .logo {
+        margin-bottom: .5em;
+
+        a {
+            .image-replaced();
+            display: inline-block;
+            background: url('/media/img/pebbles/moz-wordmark-dark-reverse.svg') no-repeat;
+            .background-size(100px, 32px);
+            height: 32px;
+            width: 100px;
+        }
     }
+
+    li {
+        margin: 0;
+        list-style-type: none;
+    }
+
+    &.dark {
+        background: #000;
+        color: #fff;
+
+        a:link,
+        a:visited {
+            color: #23c7db;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: #23c7db;
+            text-decoration: underline;
+        }
+    }
+
+    &.blue {
+        background-color: #005189;
+        color: #fff;
+
+        a:link,
+        a:visited {
+            color: #bee1f5;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+
+    &.dark,
+    &.blue {
+        .logo a {
+            background-image: url('/media/img/pebbles/moz-wordmark-light-reverse.svg');
+        }
+    }
+}
+
+#colophon.universal {
+
+    h5 {
+        font-weight: bold;
+    }
+
+    .row {
+        .border-box;
+        .clearfix;
+        margin: 0 auto;
+        padding: 0 10px;
+        width: @widthDesktop;
+    }
+
+    .col {
+        .span(4);
+    }
+
+    .primary {
+        border-bottom: 1px solid @textColorTertiary;
+
+        .col-1 {
+            .span(2);
+        }
+        .col-2, .col-3 {
+            .span(5);
+        }
+    }
+
+    &.dark,
+    &.blue {
+        h5 {
+            color: #fff;
+            text-shadow: none;
+        }
+
+        .primary {
+            border-bottom: 1px solid #fff;
+        }
+    }
+
+    .secondary {
+        padding-top: 20px;
+
+        .col-1 {
+            .span(4);
+        }
+        .col-2 {
+            .span(8);
+        }
+    }
+
+    .license {
+        margin-bottom: 0;
+    }
+
+    .social-links {
+        display: inline;
+        margin: 0;
+
+        li {
+            display: inline;
+
+            &:before {
+                content: "\00B7\00A0"; /* &middot;&nbsp; */
+            }
+
+            &:first-child:before {
+                content: "";
+            }
+
+            span {
+                .visually-hidden; /* for a11y */
+            }
+        }
+    }
+
+    .legal-links {
+        li {
+            display: inline;
+            &:before {
+                content: " | ";
+            }
+            &:first-child:before {
+                content: "";
+            }
+        }
+    }
+}
+
+.html-rtl #colophon.universal {
+    .col {
+        float: right;
+    }
+}
+
+#colophon.old {
 
     p, ul {
         margin-bottom: @baseLine / 2;
@@ -1020,14 +1180,6 @@ nav.menu-bar {
     li {
         margin: 0;
         list-style-type: none;
-    }
-
-    .logo a {
-        .image-replaced();
-        display: inline-block;
-        .at2x('/media/img/sandstone/footer-mozilla.png', 93px, 24px);
-        width: 93px;
-        height: 24px;
     }
 
     .row {
@@ -1090,7 +1242,7 @@ nav.menu-bar {
     }
 }
 
-.html-rtl #colophon {
+.html-rtl #colophon.old {
     .col, .col-2 ul li {
         float: right;
     }
@@ -1160,7 +1312,41 @@ nav.menu-bar {
         }
     }
 
-    #colophon {
+    #colophon.universal {
+        .row {
+            width: @widthTablet - (@gridGutterWidth * 2);
+            padding: 0;
+        }
+
+        .primary {
+            .col-1 {
+                .span_narrow(2);
+            }
+            .col-2, .col-3 {
+                .span_narrow(5);
+            }
+        }
+
+        .secondary {
+            padding-top: 20px;
+            .col-1 {
+                .span(4);
+            }
+            .col-2 {
+                .span(5);
+            }
+        }
+
+        .license {
+            margin-bottom: @baseLine / 2;
+        }
+    }
+
+    .html-rtl #colophon.universal .col {
+        float: none;
+    }
+
+    #colophon.old {
         .row {
             width: @widthTablet - (@gridGutterWidth * 2);
         }
@@ -1187,7 +1373,7 @@ nav.menu-bar {
         }
     }
 
-    .html-rtl #colophon {
+    .html-rtl #colophon.old {
         .col-2,
         .col-3,
         .logo {
@@ -1236,7 +1422,6 @@ nav.menu-bar {
     .row {
         margin-left: auto;
     }
-
 
     #masthead {
 
@@ -1289,7 +1474,6 @@ nav.menu-bar {
                 margin-left: .3em;
             }
         }
-
     }
 
     .blueprint #masthead nav li {
@@ -1391,7 +1575,37 @@ nav.menu-bar {
         }
     }
 
-    #colophon {
+    #colophon.universal {
+        .row {
+            width: @widthMobileLandscape - @gridGutterWidth;
+        }
+
+        .primary {
+            border-bottom: none;
+        }
+
+        &.dark,
+        &.blue {
+            .primary {
+                border-bottom: none;
+            }
+        }
+
+        .primary,
+        .secondary {
+            .col {
+                width: auto;
+                float: none;
+                margin-bottom: @baseLine / 2;
+            }
+        }
+
+        .license {
+            margin-bottom: @baseLine / 2;
+        }
+    }
+
+    #colophon.old {
         .row {
             width: @widthMobile - @gridGutterWidth;
         }
@@ -1544,14 +1758,15 @@ nav.menu-bar {
         padding-right: 0;
     }
 
-    #colophon {
-        .row {
-            width: @widthMobileLandscape - @gridGutterWidth;
-        }
-    }
-
     .mozID #wrapper .container {
         width: @widthMobileLandscape;
+    }
+
+    #colophon.universal,
+    #colophon.old {
+        .row {
+            width: @widthMobileLandscape;
+        }
     }
 }
 /* }}} */
@@ -1563,6 +1778,13 @@ nav.menu-bar {
 
     .title-shadow-box:after {
         display: none;
+    }
+
+    #colophon.universal,
+    #colophon.old {
+        .row {
+            width: @widthMobile;
+        }
     }
 }
 

@@ -317,35 +317,13 @@
 {% block email_form %}{% endblock %}
 
 {% block site_footer %}
-
-  {# Default to Firefox desktop release channel #}
-  {% set platform = 'desktop' %}
-  {% set channel = 'release' %}
-
-  {% if release.product == 'Firefox' %}
-    {% if release.channel == 'Beta' %}
-      {% set channel = 'beta' %}
-    {# Developer Edition still uses legacy channel names #}
-    {% elif release.channel == 'Aurora' %}
-      {% set channel = 'alpha' %}
+  {% with footer_class='dark' %}
+    {% if LANG.startswith('en-') %}
+      {% include 'includes/site-footer-new.html' %}
+    {% else %}
+      {% include 'includes/site-footer.html' %}
     {% endif %}
-  {% elif release.product == 'Firefox for Android' %}
-    {% set platform = 'android' %}
-    {% if release.channel == 'Beta' %}
-      {% set channel = 'beta' %}
-    {% elif release.channel == 'Aurora' %}
-      {% set channel = 'alpha' %}
-    {% endif %}
-  {% elif release.product == 'Firefox for iOS' %}
-    {% set platform = 'ios' %}
-  {% elif release.product == 'Firefox Extended Support Release' %}
-    {% set channel = 'organizations' %}
-  {% endif %}
-
-  {% with fx_footer_links=True, current_platform=platform, current_channel=channel %}
-    {% include 'includes/site-footer.html' %}
   {% endwith %}
-
 {% endblock %}
 
 {% block js %}

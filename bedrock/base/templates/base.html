@@ -138,7 +138,11 @@
     </div><!-- close #wrapper -->
 
     {% block site_footer %}
-      {% include 'includes/site-footer.html' %}
+      {% if LANG.startswith('en-') %}
+        {% include 'includes/site-footer-new.html' %}
+      {% else %}
+        {% include 'includes/site-footer.html' %}
+      {% endif %}
     {% endblock %}
 
     </div><!-- close #outer-wrapper -->

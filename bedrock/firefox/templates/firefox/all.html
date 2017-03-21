@@ -173,12 +173,6 @@
   </aside>
 {% endblock %}
 
-{% block site_footer %}
-  {% with fx_footer_links=True, current_platform=platform, current_channel=channel %}
-    {% include 'includes/site-footer.html' %}
-  {% endwith %}
-{% endblock %}
-
 {% block js %}
   {# searching with js only makes sense if we're displaying all #}
   {% if platform == 'desktop' and not query %}

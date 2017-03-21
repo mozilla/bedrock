@@ -399,12 +399,6 @@
   </div>
 {% endblock %}
 
-{% block site_footer %}
-  {% with fx_footer_links=True, current_platform='android' %}
-    {% include 'includes/site-footer.html' %}
-  {% endwith %}
-{% endblock %}
-
 {% block js %}
 <!--[if IE 9]>
   {% javascript 'matchmedia_addlistener' %}

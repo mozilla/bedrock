@@ -51,9 +51,7 @@
 .com-reps .rep,
 .com-mozcamps .overlay-wrap img,
 .com-emerging .meet,
-.sus-links,
-#colophon .footer-nav,
-#colophon .footer-license p+p {
+.sus-links {
   display: none;
 }
 
@@ -199,14 +197,4 @@ h1, h2, h3, h4, h5, h6 {
 #story-slider .vcard:nth-child(odd),
 #story-slider-clone .vcard:nth-child(odd) {
   clear: left;
-}
-
-#colophon {
-  border-top: 1px solid;
-  padding-top: 30px;
-}
-
-#colophon .footer-logo {
-  float: left;
-  margin: 0 20px 10px 0;
 }
