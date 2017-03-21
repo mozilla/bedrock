@@ -88,7 +88,7 @@ class TestFirefoxDesktop(TestCase):
         # Windows 64-bit
         url = firefox_desktop.get_download_url('release', '38.0', 'win64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-stub'),
+                             [('product', 'firefox-38.0-SSL'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
         # Linux 64-bit
@@ -110,7 +110,7 @@ class TestFirefoxDesktop(TestCase):
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-aurora-stub'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'osx', 'en-US', True)
