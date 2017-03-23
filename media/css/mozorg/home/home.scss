@@ -649,6 +649,10 @@ main {
         &.visible {
             display: block;
         }
+
+        .android-systems-link {
+            @include font-size(16px);
+        }
     }
 }
 

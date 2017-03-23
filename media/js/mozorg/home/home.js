@@ -48,6 +48,10 @@
     if (mozClient.isMobile && !mozClient.isFirefox) {
         $('#fxmobile-download-buttons').addClass('visible');
         $('#fx-download-link').addClass('hidden');
+
+        if (window.site.platform === 'android') {
+            $('.android-systems-link').removeClass('hidden');
+        }
     }
 
     $(function() {
