@@ -1127,6 +1127,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/gtm-snippet-bundle.js',
     },
+    'optimizely-snippet': {
+        'source_filenames': (
+            'js/base/optimizely-snippet.js',
+        ),
+        'output_filename': 'js/optimizely-snippet-bundle.js',
+    },
     'firefox_accounts': {
         'source_filenames': (
             'js/base/mozilla-fxa-iframe.js',
