@@ -9,8 +9,21 @@
 {% add_lang_files "firefox/sendto" %}
 
 {% block page_title_prefix %}{{ _('Firefox for iOS') }} — {% endblock %}
-{% block page_title %}{{ _('Mobile Web browser for your iPhone, iPad and iPod touch') }}{% endblock %}
-{% block page_desc %}{{ _('Add Firefox to your iPhone, iPad and iPod touch.') }}{% endblock %}
+{% block page_title %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Free Mobile Browser App for iPhone, iPad, iOS | Firefox') }}
+{% else %}
+  {{ _('Mobile Web browser for your iPhone, iPad and iPod touch') }}
+{% endif %}
+{% endblock %}
+
+{% block page_desc %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Join the millions browsing better on iPhone and iPad. Firefox is fast and private. Install Firefox for iOS now!') }}
+{% else %}
+  {{ _('Add Firefox to your iPhone, iPad and iPod touch.') }}
+{% endif %}
+{% endblock %}
 
 {% block body_id %}firefox-ios{% endblock %}
 {% block body_class %}

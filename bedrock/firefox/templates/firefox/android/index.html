@@ -9,8 +9,22 @@
 {% add_lang_files "firefox/sendto" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _('Firefox for Android — Mobile Web browser — More ways to customize and protect your privacy') }}{% endblock %}
-{% block page_desc %}{{ _('Only Firefox for Android offers so many ways to make your mobile browsing experience truly your own') }}{% endblock %}
+{% block page_title %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Fast, Free Android Browser for Tablets and Phones | Firefox') }}
+{% else %}
+  {{ _('Firefox for Android — Mobile Web browser — More ways to customize and protect your privacy') }}
+{% endif %}
+{% endblock %}
+
+{% block page_desc %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Join the millions browsing better on tablets and phones. Firefox is fast and private. Install Firefox for Android now!') }}
+{% else %}
+  {{ _('Only Firefox for Android offers so many ways to make your mobile browsing experience truly your own') }}
+{% endif %}
+{% endblock %}
+
 {% block body_id %}firefox-android{% endblock %}
 {% block body_class %}firefox-android{% endblock %}
 

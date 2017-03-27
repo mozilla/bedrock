@@ -6,10 +6,24 @@
 
 {% add_lang_files "firefox/channel/index" %}
 
-{% block page_desc %}{{_('Download and test the latest Firefox for Android features with Aurora, Beta and Nightly builds.')}}{% endblock %}
+{% block page_title %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Try New Features in a Pre-Release Android Browser | Firefox') }}
+{% else %}
+  {{ _('Download and test future releases of Firefox for desktop, Android and iOS.') }}
+{% endif %}
+{% endblock %}
+
+{% block page_desc %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{_('Experience cutting-edge features in a pre-release browser for Android: Firefox Beta, Firefox Aurora and Firefox Nightly. Install now!')}}
+{% else %}
+  {{_('Download and test the latest Firefox for Android features with Aurora, Beta and Nightly builds.')}}
+{% endif %}
+{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}{{ self.page_desc() }}{% endblock %}
+{% block page_og_desc %}{ self.page_desc() }}{% endblock %}
 
 {% block body_id %}platform-android{% endblock %}
 
