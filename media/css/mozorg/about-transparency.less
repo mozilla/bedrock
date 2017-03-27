@@ -213,9 +213,10 @@ main {
 .nav-previous {
     .border-box;
     background: #f3f3f3;
-    border: 1px solid rgba(0, 0, 0, .05);
+    border: solid rgba(0, 0, 0, .05);
+    border-width: 1px 0;
     padding: 20px;
-    margin-top: @baseLine;
+    margin: @baseLine 0 -40px;
 
     ul {
         list-style: none;
@@ -258,4 +259,8 @@ main {
             }
         }
     }
+}
+
+#colophon {
+    margin-top: 40px;
 }
