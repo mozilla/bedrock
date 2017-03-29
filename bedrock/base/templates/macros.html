@@ -184,6 +184,9 @@
     <a href="{{ url('firefox.family.index') }}" class="fxfamilynav-logo">{{ _('Firefox') }}</a>
     <nav id="fxfamilynav" class="fxfamilynav" role="navigation">
       <ul id="fxfamilynav-primary" class="primary-nav">
+        <li{% if activenav == 'firefox' %} class="active"{% endif %} id="fxfamilynav-home-link">
+          <a data-id="firefox" href="{{ url('firefox.family.index') }}" class="primary-link" data-link-type="nav" data-link-name="Firefox"><div>{{ _('Firefox') }}</div></a>
+        </li>
         <li{% if activenav == 'desktop' %} class="active"{% endif %}>
           <a data-id="desktop" href="{{ url('firefox.desktop.index') }}" class="primary-link" data-link-type="nav" data-link-name="for Desktop"><div>{{ _('Desktop') }}</div></a>
         </li>
@@ -230,8 +233,8 @@
     {# Page will dictate CTA (button, usually) to be placed in this wrapper #}
     <div id="fxfamilynav-cta-wrapper" class="fxfamilynav-cta-wrapper">{% if caller %}{{ caller() }}{% endif %}</div>
 
-    {# Features nav item does not (yet?) have an adjunct nav #}
-    {% if activenav != 'features' %}
+    {# Features & Firefox nav items do not (yet?) have an adjunct nav #}
+    {% if activenav not in ('features', 'firefox') %}
     <button type="button" id="fxfamilynav-adjunctnav-trigger" class="fxfamilynav-adjunctnav-trigger" aria-controls="fxfamilynav-adjunctnav">
       <span>{{ _('Menu') }}</span>
       <div class="trigger-dots">

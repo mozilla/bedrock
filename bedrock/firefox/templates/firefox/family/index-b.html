@@ -1,0 +1,162 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import fxfamilynav with context %}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-family', ['en-US']) %}
+    {% javascript 'experiment_firefox_family' %}
+  {% endif %}
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Free Web Browser for Android, iOS, Desktop | Firefox')}}{% endblock %}
+{% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_family_index_b' %}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block site_header_unwrapped %}
+  {% call fxfamilynav('firefox') %}
+    {{ download_firefox(dom_id="sticky-download-desktop", alt_copy=_('Download')) }}
+  {% endcall %}
+{% endblock %}
+
+{% block content %}
+
+<section class="content-section" id="intro">
+  <div class="content">
+    <h2>
+      {{ _('Firefox Web Browser: <br>Fast. Private. Safe.') }}
+    </h2>
+
+    <p>
+    {% trans %}
+      Firefox is faster, more private, and always independent. <br>Available on
+      desktop and mobile.
+    {% endtrans %}
+    </p>
+
+    {{ download_firefox(dom_id="download-firefox") }}
+  </div>
+</section>
+
+<section class="content-section" id="fast">
+  <div class="content">
+    <div class="copy">
+      <h3>{{ _('Browse faster with Firefox') }}</h3>
+
+      <p>
+      {% trans url1=url('mozorg.home'), url2='https://blog.mozilla.org/firefox/tag/fastest/' %}
+        Firefox is faster than ever before, thanks to a new multi-process
+        architecture that improves browser speed and page-load time.
+        <a href="{{ url1 }}">Mozilla</a>, the non-profit that builds Firefox,
+        invented a new programming language to
+        <a rel="external" href="{{ url2 }}">make Firefox faster</a>. Our rapid
+        browser update schedule means Firefox loads faster and is more stable
+        every time you use it.
+      {% endtrans %}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="private-browsing">
+  <div class="content">
+    <div class="copy">
+      <h3>{{ _('Get Firefox for Private Browsing') }}</h3>
+
+      <p>
+      {% trans url1=url('firefox.private-browsing'),
+               url2='https://addons.mozilla.org/firefox/collections/mozilla/privacy/' %}
+        What does your browser history say about you? Who has access to your browser
+        history? Plenty of browsers offer an incognito mode, but only Firefox offers
+        advanced tracking protection: Just
+        <a href="{{ url1 }}">open a private browsing window</a> and enjoy safe
+        browsing again. Enhance your private browsing experience with dozens of
+        <a href="{{ url2 }}">privacy add-ons</a> — for ad blocking, private
+        search, VPN and more.
+      {% endtrans %}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="better">
+  <div class="content">
+    <div class="copy">
+      <h3>{{ _('Choose Firefox, A Better Browser') }}</h3>
+
+      <p>
+      {% trans url1=url('mozorg.home'), url2=url('firefox.new') %}
+        Most browsers are designed to limit your choices and protect a corporate
+        agenda, but not Firefox. Firefox is the only independent web browser,
+        proudly <a href="{{ url1 }}">built by a non-profit</a> on a mission to
+        make the best web browser in the universe. Firefox is a better browser:
+        free from corporate agendas, free from bottom-line calculations, and
+        <a href="{{ url2 }}">free to download now</a>.
+      {% endtrans %}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="everywhere">
+  <div class="content">
+    <div class="copy">
+      <h3>{{ _('Use Firefox Everywhere') }}</h3>
+
+      <p>
+      {% trans url1=url('firefox.ios'), url2=url('firefox.desktop.index'),
+               url3=url('firefox.android.index'), url4=url('firefox.all'),
+               url5=url('firefox.sync') %}
+        Looking for the best browser for desktop and mobile? Firefox is
+        available on <a href="{{ url1 }}">iOS</a>,
+        <a href="{{ url2 }}">Windows, macOS, Linux</a>, and
+        <a href="{{ url3 }}">Android</a>. Need a better browser in your
+        language? <a href="{{ url4 }}">Firefox is available in 90 languages</a>.
+        With Firefox Sync, you can install Firefox everywhere and
+        <a href="{{ url5 }}">share bookmarks across devices</a>.
+      {% endtrans %}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="today">
+  <div class="content">
+    <h3>{{ _('Get Firefox today.') }}</h3>
+
+    {{ download_firefox(dom_id="download-firefox-today") }}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block email_form %}
+  <aside id="newsletter-subscribe">
+    <div class="content container">
+      {# L10n: Line break for visual formatting. #}
+      {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='button-light') }}
+    </div>
+  </aside>
+{% endblock %}
+
+{% block site_footer %}
+  {% with footer_class='dark' %}
+    {% include 'includes/site-footer-new.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_family_index_b' %}
+{% endblock %}
