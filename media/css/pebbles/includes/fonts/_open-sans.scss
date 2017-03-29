@@ -28,25 +28,9 @@
 }
 
 @font-face {
-    font-family: 'Open Sans Light';
-    font-weight: normal;
-    font-style: normal;
-    src: url('/media/fonts/opensans-light.woff2') format('woff2'),
-         url('/media/fonts/opensans-light.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Open Sans Light';
+    font-family: 'Open Sans';
     font-weight: bold;
-    font-style: normal;
-    src: url('/media/fonts/opensans-semibold.woff2') format('woff2'),
-         url('/media/fonts/opensans-semibold.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Open Sans Light';
-    font-weight: normal;
     font-style: italic;
-    src: url('/media/fonts/opensans-lightitalic.woff2') format('woff2'),
-         url('/media/fonts/opensans-lightitalic.woff') format('woff');
+    src: url('/media/fonts/opensans-bolditalic.woff2') format('woff2'),
+         url('/media/fonts/opensans-bolditalic.woff') format('woff');
 }

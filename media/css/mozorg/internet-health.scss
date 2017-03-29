@@ -176,7 +176,7 @@ html[dir="rtl"] {
         @include font-size(28px);
         color: #000;
         font-weight: bold;
-        line-height: 1.4;
+        line-height: 1.5;
 
         span {
             background-color: $colorHeading;
@@ -297,7 +297,7 @@ html[dir="rtl"] {
         @include font-size(22px);
         color: #000;
         font-weight: bold;
-        line-height: 1.4;
+        line-height: 1.5;
         text-align: center;
     }
 
@@ -603,7 +603,7 @@ html[dir="rtl"] #pillars > section {
         @include font-size(22px);
         color: #000;
         font-weight: bold;
-        line-height: 1.4;
+        line-height: 1.5;
 
         span {
             background: $colorHeading;

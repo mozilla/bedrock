@@ -4,13 +4,8 @@
 
 
 // Font families
-@mixin fira-sans {
-    font-family: $font-fira-sans;
-}
-
-@mixin fira-sans-light {
-    font-family: 'Fira Sans Light', X-LocaleSpecific-Light, $font-fira-sans;
-    font-weight: normal;
+@mixin open-sans {
+    font-family: $font-open-sans;
 }
 
 
