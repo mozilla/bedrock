@@ -6,9 +6,9 @@
 // The custom X-LocaleSpecific font family is defined with a @font-face rule in
 // locale-specific stylesheets which can be found at /media/css/l10n/. See
 // /docs/l10n.rst for details.
-$font-fira-sans: 'Fira Sans', X-LocaleSpecific, sans-serif;
+$font-open-sans: 'Open Sans', X-LocaleSpecific, sans-serif;
 
-$base-font-stack: $font-fira-sans;
+$base-font-stack: $font-open-sans;
 $base-font-size: 100%;
 $base-line-height: 1.5;
 

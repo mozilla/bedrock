@@ -5,7 +5,6 @@
 @import '../includes/lib';
 
 #colophon {
-    @include fira-sans;
     @include font-size(14px);
     background: #fff;
     color: $color-text-primary;
