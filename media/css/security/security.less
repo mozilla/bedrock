@@ -380,3 +380,23 @@ p.note {
         width: @breakMobileLandscape - (@gridGutterWidth * 3);
     }
 }
+
+/* Bug bounty payouts */
+#payouts {
+    margin-bottom: 15px;
+}
+
+#payouts th {
+    .font-size(@largeFontSize);
+    padding: 10px 12px;
+}
+
+#payouts tr {
+    padding-left: 10px;
+    text-align: center;
+}
+
+#payouts tr td:first-child, #payouts tr th:first-child {
+    padding-left: 0;
+    text-align: left;
+}
