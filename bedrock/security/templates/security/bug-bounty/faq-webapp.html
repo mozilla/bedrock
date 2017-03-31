@@ -1,6 +1,8 @@
 {% extends "security/base.html" %}
 
 {% block page_title %}Mozilla Web Application Security Bug Bounty FAQ{% endblock %}
+{% set body_id = "faq-webapp" %}
+
 
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
@@ -13,342 +15,173 @@
 {% block article %}
   <article class="section-content" itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name" class="title-shadow-box">Web Application Security Bug Bounty FAQ</h1>
+      <h1 itemprop="name" class="title-shadow-box">Web Bug Bounty FAQ</h1>
     </header>
 
     <div itemprop="articleBody">
-      <p>This FAQ covers websites and services. If you are reporting on a client software issue
-        (e.g. a security issue in the Firefox browser), please see the
-        <a href="{{ url('security.bug-bounty.faq') }}">Client Security Bug Bounty Program FAQ.</a>
-        For more about the background of the bug bounty program see the
-        <a href="{{ url('security.bug-bounty') }}">official guidelines</a>
-        governing the program.</p>
-
       <h3>General questions</h3>
+
       <ul>
         <li><a href="#why">Why do we include web applications as part
-          of our security Bug Bounty Program?</a></li>
+          of our bug bounty program?</a></li>
         <li><a href="#howto">How can I find potential vulnerabilities
-          and are there things I shouldn't do in trying to find them?</a></li>
-        <li><a href="#bounty-amount">Is the amount of the bounty
-          different for web applications vulnerabilities?</a></li>
-        <li><a href="#severity-ratings">Is there a list of severity ratings
-          with examples?</a></li>
+          and are there things I shouldn't do in trying to discover them?</a></li>
+        <li><a href="{{ url('security.web-bug-bounty') }}#payouts-section">What are the bounty payouts?</a></li>
       </ul>
 
       <h3>Eligible bugs</h3>
+
       <ul>
         <li><a href="#eligible-bugs">Which domains and web applications will be
           considered to be part of the bug bounty?</a></li>
-        <li><a href="#issues">What types of issues will be considered as
-          part of the bounty program?</a></li>
-        <li><a href="#dos-bugs">Why won't you provide a reward for denial of service
+        <li><a href="{{ url('security.web-bug-bounty') }}#payouts-section">
+          What types of issues will be considered as part of the bounty program?</a></li>
+        <li><a href="#dos-bugs">Why don't you provide a reward for denial of service
           bugs?</a></li>
-        <li><a href="#sites-not-listed">What about sites which are not listed?</a></li>
       </ul>
 
       <h3>Bug reporting</h3>
+
       <ul>
         <li><a href="#what-next">Once I have found a vulnerability,
           what next?</a></li>
         <li><a href="#nondisclosure">If I report the bug directly to you,
-          do I have to keep the bug confidential and not publish information
-          about it in order to receive a reward?</a></li>
-        <li><a href="#cooperation">I don’t have the time or desire to work
-          with you further in investigating and fixing the bug; can I still get a
-          bug bounty reward?</a></li>
+          do I have to keep the bug confidential in order to receive a bouncy?</a></li>
+        <li><a href="#cooperation">If I don’t have the time to assist you further, can I still receive a
+          bug bounty?</a></li>
+        <li><a href="#attack-scenario">What does a valid attack scenario look like?</a></li>
+        <li><a href="#step-by-step-exploit">What does a valid step-by-step exploit process look like?</a></li>
+        <li><a href="#xss-reporting">How should I report an XSS vulnerability?</a></li>
       </ul>
 
       <h2>General questions</h2>
-      <dl class="faq">
-        <dt class="question" id="why">Why do we include web applications
-          as part of our security Bug Bounty Program?</dt>
-        <dd class="answer">
-          <p>Mozilla client software relies on web services, and Mozilla’s community uses
-          websites and services to communicate and coordinate activity.
-          Our goal is to make our products and services more secure.
-          Mozilla community members submitted bugs before we had an official bounty program
-          to reward researchers. The bounty program is designed to incentivize bug reporting towards the websites,
-          services, and types of bugs we’d like community members to focus on.</p>
-        </dd>
 
-        <dt class="question" id="howto">How can I find potential vulnerabilities
-          and are there things I shouldn’t do in trying to find them?</dt>
-        <dd class="answer">
-          <p>We have received many questions around how to find web application
-            security issues. The most common concern is the use of automatic tools.
-            We ask that people don’t use automatic tools against our web services
-            as it is important to maintain our services and availability. We do
-            encourage people to examine typical areas for vulnerabilities such as
-            authentication and session management. Since our code is open source, you are
-            encourage to run on the software on your own server instance or just look
-            at the source code for potential issues.</p>
-            <p>On Mozilla’s Wiki, you can find information about some of our
-              <a href="https://wiki.mozilla.org/Security/TestingToolchains/">security testing toolchains.</a></p>
-            <p>See the list below for the domains and applications which are in scope.</p>
-        </dd>
+      <h4 id="why">Why do we include web applications
+          as part of our bug bounty program?</h4>
+          <p>Mozilla client software relies heavily on web services, and Mozilla’s
+          community uses our websites and services to communicate and coordinate activity.
+          Our goal is to make these products and services as safe and secure as possible.
+          </p>
 
-        <dt class="question" id="bounty-amount">Is the amount of the bounty
-          different for web applications vulnerabilities?</dt>
-        <dd class="answer">
-          <p>Payments vary according to the severity of the issue, with the range
-            starting at $500 (US) for moderate severity and up to $3000 (US) for
-            High or Critical vulnerabilities.</p>
-        </dd>
-
-        <dt class="question" id="severity-ratings">Is there a list of severity
-          ratings with examples?</dt>
-        <dd class="answer">
-          <p>Yes, here it is:
-            <a href="https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings">
-              Web Application Severity Ratings</a></p>
-              The bounty committee’s reward is based on the security and privacy
-              impact of the bug and ultimately the importance of the website or service.
-        </dd>
-      </dl>
+      <h4 id="howto">How can I find potential vulnerabilities
+        and are there things I shouldn’t do in trying to discover them?</h4>
+        <p>We have received many questions around how to discover web application
+          security issues, largely revolving around use of automated attack tools
+          such as ZAP and Burp.</p>
+        <p>
+          We request that people refrain from using automated tools against our production web
+          services, as it is important to maintain our services' availability and minimize
+          unintentional vandalism. Since our code is open source, you are encouraged to run
+          it on your own server instance or examine the it directly for potential issues.
+        </p>
 
       <h2>Eligible bugs</h2>
-      <dl class="faq">
-        <dt class="question" id="eligible-bugs">Which domains and web applications
-          will be considered to be part of the bug bounty?</dt>
-        <dd class="answer">
-          <p>Below is the list of domains eligible for Mozilla’s website and services
-            security bug bounty. Please check it regularly, as it changes over time.</p>
 
-          <h4>www.mozilla.com/org</h4>
-          <ul>
-          	<li>www.mozilla.com</li>
-          	<li>www.mozilla.org</li>
-          	<li>www.firefox.com</li>
-          	<li>www.getfirefox.com</li>
-          </ul>
+      <h4 id="eligible-bugs">Which domains and web applications will be considered to be part of the bug bounty?</h4>
+      <p>Although all of our non-community websites are considered in scope for acknowledgment on our
+      <a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">hall of fame</a>, only
+      a limited subset are eligible for monetary payouts. Please see our
+      <a href="{{ url('security.bug-bounty.web-eligible-sites') }}">list of eligible sites</a>
+      for additional information.</p>
 
-          <h4>ABSearch</h4>
-          <ul>
-          	<li>Search.services.mozilla.com</li>
-          </ul>
-
-          <h4>Addons.mozilla.org</h4>
-          <ul>
-          	<li>addon.mozilla.org</li>
-          	<li>addons.mozilla.org</li>
-          	<li>blocklist.addons.mozilla.org</li>
-          	<li>builder.addons.mozilla.org</li>
-          	<li>services.addons.mozilla.org</li>
-          	<li>static.addons.mozilla.net</li>
-          	<li>versioncheck-bg.addons.mozilla.org</li>
-          	<li>Versioncheck.addons.mozilla.org</li>
-          </ul>
-
-          <h4>bugzilla.mozilla.org</h4>
-          <p>
-            <strong>Please don’t use automated scanners and create bugs for testing on the production instance.</strong>
-            Install your own local copy for testing from
-            <a href="https://github.com/mozilla/webtools-bmo-bugzilla">https://github.com/mozilla/webtools-bmo-bugzilla</a>.
-          </p>
-          <ul>
-          	<li>bugzilla.mozilla.org</li>
-          </ul>
-
-          <h4>Product Delivery</h4>
-          <ul>
-          	<li>download-installer.cdn.mozilla.net</li>
-          	<li>Download.mozilla.org</li>
-          </ul>
-
-          <h4>AUS/Balrog</h4>
-          <ul>
-          	<li>aus3.mozilla.org</li>
-          	<li>aus4.mozilla.org</li>
-          	<li>aus5.mozilla.org</li>
-          	<li>Aus.mozilla.org</li>
-          </ul>
-
-          <h4>Firefox Accounts</h4>
-          <ul>
-          	<li>accounts.firefox.com</li>
-          	<li>api.accounts.firefox.com</li>
-          	<li>oauth.accounts.firefox.com</li>
-          	<li>profile.accounts.firefox.com</li>
-          	<li>Verifier.accounts.firefox.com</li>
-          </ul>
-
-          <h4>Firefox Sync</h4>
-          <ul>
-          	<li>*.$region.sync.services.mozilla.com</li>
-          	<li>Token.services.mozilla.com</li>
-          </ul>
-
-          <h4>Firefox Hello</h4>
-          <ul>
-          	<li>hello.firefox.com</li>
-          	<li>Loop.services.mozilla.com</li>
-          </ul>
-
-          <h4>Location (MLS)</h4>
-          <ul>
-          	<li>location.services.mozilla.com</li>
-          	<li>Location-leaderboard.services.mozilla.com</li>
-          </ul>
-
-          <h4>Marketplace.firefox.com</h4>
-          <ul>
-          	<li>marketplace.firefox.com</li>
-          	<li>receiptcheck.marketplace.firefox.com</li>
-          	<li>Static.marketplace.firefox.com</li>
-          </ul>
-
-          <h4>Observatory</h4>
-          <ul>
-            <li>http-observatory.security.mozilla.org</li>
-            <li>observatory.mozilla.org</li>
-          </ul>
-
-          <h4>Push</h4>
-          <ul>
-          	<li>push.services.mozilla.com</li>
-          	<li>Updates.push.services.mozilla.com</li>
-          </ul>
-
-          <h4>Telemetry</h4>
-          <ul>
-          	<li>incoming.telemetry.mozilla.org</li>
-          	<li>telemetry-experiment.cdn.mozilla.net</li>
-          	<li>analysis.telemetry.mozilla.org</li>
-          	<li>sql.telemetry.mozilla.org</li>
-          	<li>Metrics.services.mozilla.com</li>
-          </ul>
-
-          <h4>Test Pilot</h4>
-          <ul>
-          	<li>testpilot.firefox.com</li>
-          </ul>
-
-          <h4>Tiles</h4>
-          <ul>
-          	<li>tiles.cdn.mozilla.net</li>
-          	<li>tiles.services.mozilla.com</li>
-          </ul>
-
-          <h4>Tracking Protection</h4>
-          <ul>
-          	<li>shavar.services.mozilla.com</li>
-          	<li>tracking.services.mozilla.com</li>
-          </ul>
-
-          <p>The Mozilla Developer Network (developer.mozilla.org) and wiki.mozilla.org have been removed from this
-            list due to site vandalism by researchers looking for security issues. They will be
-            added back at a later date when a test server is deployed to avoid negative impacts
-            on our primary reference site.</p>
-
-          <p>Only Mozilla websites and services are in scope. Issue categories explicitly excluded
-            from eligibility include denial of service attacks, email phishing attacks
-            against employees, our offices, etc. Additionally, flaws relying on out-of-date
-            browsers, plugins, or add-ons, which require extremely unlikely/unusual user
-            interaction, and banner and version information are generally not eligible.</p>
-        </dd>
-
-        <dt class="question" id="sites-not-listed">What about sites which are not
-          listed?</dt>
-        <dd class="answer">
-          <p>If you find an issue with a site which is not “officially” part under the
-            website and services bug bounty program, we would still like to know. If the bug is
-            extraordinary, we might still consider the bug to be nominated for a bounty. In
-            the past we have paid for interesting bugs which are outside of normal
-            policy, but it’s the rare exception and not the rule. It's hard to define “extraordinary”,
-            since by definition there are no common examples.
-            If you are searching security issues for the joy of it or to help the Mozilla project,
-            we would appreciate reports on non-eligible sites.
-            If you are looking for bug bounties, focus on the sites listed as eligible, don’t hunt for
-            “extraordinary” bugs on sites not listed in thie FAQ.
-            .</p>
-        </dd>
-
-        <dt class="question" id="issues">What types of issues will be considered
-          as part of the bounty program?</dt>
-        <dd class="answer">
-          <p>While there are many types of web vulnerabilities, the list below directly
-            affects our users and our infrastructure. These are just a few examples.</p>
-          <ul>
-            <li>Cross-site request forgery</li>
-            <li>Mixed-content scripts</li>
-            <li>Authentication or authorization flaws</li>
-            <li>Server-side code execution bugs</li>
-            <li>Cross-site scripting bugs (XSS) other than self-XSS</li>
-            <li>Remote File Include (RFI)</li>
-            <li>Local File Include (LFI)</li>
-            <li>Injection issues and logic bugs with a demonstrated Medium to higher security impact. Example: A bug that leaks user email addresses intended to remain private qualifies. Being able to change an inconsequential piece of data associated with a user where there is no other demonstrated security issue and/or zero to low impact does not.</li>
-          </ul>
-          <p>We generally consider HTML and text injection to be low-risk and thus not bounty-eligible.</p>
-          <p>Redirect issues are generally ineligible unless they can be used as part of a more significant attack such as CRLF injection or XSS.</p>
-          <p>The <a href="https://wiki.mozilla.org/WebAppSec/Web_App_Severity_Ratings">
-              Web Application Severity Ratings</a> explains how Mozilla measures website and
-              service security risk. Medium, High, and Critical issues reported are eligible
-              for bounties when confirmed.</p>
-        </dd>
-
-        <dt class="question" id="dos-bugs">Why won’t you provide a reward
-          for denial of service bugs?</dt>
-        <dd class="answer">
-          <p>Because DoS bugs are generally less serious than other web application
-            security bugs and in many cases a DoS doesn’t need to involve a technical
-            vulnerability within a web application. We have decided to concentrate our
-            resources on rewarding people who find what we consider to be more
-            serious security problems.</p>
-        </dd>
-      </dl>
+      <h4 id="dos-bugs">Why don’t you provide a reward for denial-of-service bugs?</h4>
+      <p>Denial-of-services bugs are generally less serious than other web application
+        security bugs and in many cases don't require a technical vulnerability
+        within the web application.</p>
 
       <h2>Bug reporting</h2>
-      <dl class="faq">
-        <dt class="question" id="what-next">Once I have found a
-          vulnerability, what next?</dt>
-        <dd class="answer">
-          <p>
-            <strong>Follow the <a href="{{ url('security.web-bug-bounty') }}">guide on submitting a web or service security bug</a> and then
-            <a href="https://bugzilla.mozilla.org/form.web.bounty">file a bug</a>.</strong>
-            When filing, please verify that you have followed the guidance on how to
-            write your report in order to assure it is evaluated as quickly as possible.
-            Repeat the attack using only your own description in order to prevent
-            errors and omissions, then update your documentation to be submitted.
-            <strong>Please do not ever submit website vulnerabilities via email.</strong>
-            <i>Bounty award amount is dependent on following the bug submission instructions. 
-            To summarize: Write step-by-step instructions, follow them again yourself with zero-knowledge
-            to verify completeness, and describe the impact of the attack. Please do not send links to videos.</i>
-          </p>
-        </dd>
 
-        <dt class="question" id="nondisclosure">If I report the bug
-          directly to you, do I have to keep the bug confidential and not publish
-          information about it in order to receive a reward?</dt>
-        <dd class="answer">
-          <p>No. We’re rewarding you for finding a bug, not trying to buy
-            your silence. However if you report the bug through the standard
-            Mozilla process and haven’t already published information about it then
-            we do ask that you follow the guidelines set forth in the official
-            policy on
-            <a href="{{ url('mozorg.about.governance.policies.security.bugs') }}">handling Mozilla security bugs</a>.
-            Under this policy security-sensitive bug reports in our Bugzilla system
-            may be kept private for a limited period of time to give us a chance to
-            fix the bug before the bug is made public, with an option for the bug reporter
-            (or others) to open the bug to public view earlier whenever circumstances
-            warrant it (e.g., if you feel your bug report is being completely ignored).
-            However, in the interest of protecting our users, we would appreciate a
-            reasonable amount of time to address the issue before the information is
-            publicly disclosed.</p>
-        </dd>
+      <h4 id="nondisclosure">If I report the bug
+        directly to you, do I have to keep the bug confidential to receive a bounty?</h4>
+      <p>
+        We’re rewarding you for finding a bug, not trying to buy
+        your silence. However, if you report the bug through the standard
+        Mozilla process and haven’t already published information about it then
+        we do ask that you keep the bug private for a limited period of time to
+        give us a chance to fix the bug before the bug is made public.
+      </p>
 
-        <dt class="question" id="cooperation">I don’t have the time or
-          desire to work with you further in investigating and fixing the bug;
-          can I still get a bug bounty reward?</dt>
-        <dd class="answer">
-          <p>Yes. Again, we’re rewarding you for finding a bug, not trying to
-            buy your cooperation. However we do invite you to work together with
-            us, and we hope that you’ll accept that offer in the spirit in which it
-            was intended. In return you’ll get the opportunity to work as a full
-            member of the team fixing your bug and see “from the inside” exactly
-            how Mozilla security bugs get resolved.</p>
-        </dd>
-      </dl>
+      <p>
+        Bug reporters may open the bug to public view earlier whenever circumstances
+        warrant it (e.g., if you feel your bug report is being completely ignored).
+        However, in the interests of protecting our users, we would appreciate a
+        reasonable amount of time to address the issue before the information is
+        publicly disclosed.
+      </p>
+
+      <h4 id="cooperation">If I don’t have the time to assist you further, can I still receive a
+          bug bounty?</h4>
+      <p>We’re rewarding you for finding a bug, not trying to buy your cooperation.</p>
+      <p>
+        However, we do invite you to work together with
+        us, and we hope that you’ll accept that offer in the spirit in which it
+        was intended. In return, you’ll get the opportunity to work as a full
+        member of the team and see exactly how Mozilla security
+        bugs are resolved.
+      </p>
+
+      <h4 id="attack-scenario">What does a valid attack scenario look like?</h4>
+      <p>
+        Please describe how an attacker would use the bug you
+        are submitting, any necessary conditions for it to work, and what the attacker
+        would gain through a successful attack.
+      </p>
+
+      <p>Please answer the following questions to the best of your ability:</p>
+
+      <ol>
+        <li>What is the necessary position of the attacker?
+          <ul>
+            <li>Do you need to be logged in or unauthenticated?</li>
+            <li>Do certain cookies need to be set?</li>
+            <li>Do you need to connect from a specific system?</li>
+          </ul>
+        </li>
+
+        <li>Are there any other assumptions that must be made about the victim?
+          <ul>
+            <li>Do they need to be running a specific web browser?</li>
+            <li>Does the victim need to be tricked into clicking on a specific link?</li>
+            <li>Does the user need to be a member of a specific group?</li>
+          </ul>
+        </li>
+
+        <li>How might a malicious actor use this attack?
+          <ul>
+            <li>Stealing a victim's session information</li>
+            <li>Redirect users to malicious websites</li>
+            <li>Read files on server outside the web root</li>
+            <li>Executing remote OS commands</li>
+            <li>XSSing users</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h4 id="step-by-step-exploit">What does a valid step-by-step exploit process look like?</h4>
+      <p>Please describe the process required, step-by-step, in the proper order.
+         If there are multiple parties involved, please describe them all clearly. For example:</p>
+
+      <ol>
+        <li>Visit <code>https://shop.firefox.com/order?name=value&amp;name2=value2</code></li>
+        <li>Click the "Log in" link and login</li>
+        <li>Click the "Order" button</li>
+        <li>Place order for "Firefox Plush"
+        <li>Continue navigation to the Shipping Address page</li>
+        <li>Add the following payload <code>"&gt;&lt;img src=x onerror=alert(document.domain);// &gt;</code> into the "City" field, then click Submit</li>
+        <li>The XSS payload ends up in the <code>POST</code> parameter named <code>city_order</code></li>
+        <li>Visitors to the page <code>/past_orders_by_city</code> are affected by stored XSS</li>
+      </ol>
+
+      <p>Include the HTTP request(s), any necessary header values and/or <code>POST</code> parameters along with your bug submission.</p>
+      <p>Once you have <em>written</em> your step-by-step instructions, repeat the attack by following
+        them exactly. This helps prevent errors and omissions in your submission.</p>
+
+      <h4 id="xss-reporting">How should I report an XSS vulnerability?</h4>
+      <p>For a reflected XSS vulnerabilities, the affected URL along with a working payload is usually sufficient.
+      For stored XSS attacks, please describe the step-by-step exploit process, as above.</p>
+      <p>Please use <code>alert(document.domain)</code> and not <code>alert(1)</code> in your proof-of-concept.</p>
+      <p>Self-XSSes &mdash; where the attacker tricks users into copying and pasting malicious script content &mdash; are not eligible for bounties.</p>
+
     </div>
   </article>
 {% endblock %}
