@@ -6,7 +6,20 @@
 
 {% extends "/firefox/base-resp.html" %}
 
-{% block page_title %}{{ _('Keep your Firefox in sync') }}{% endblock %}
+{% block page_title %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Use Bookmarks, Tabs and Passwords Across Devices | Firefox') }}
+{% else %}
+  {{ _('Keep your Firefox in sync') }}
+{% endif %}
+{% endblock %}
+
+{% block page_desc %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Bring your Firefox bookmarks, tabs, or passwords wherever you go with Firefox Sync. Share between computers and mobile devices. Get Firefox now!') }}
+{% endif %}
+{% endblock %}
+
 {% block body_id %}firefox-sync{% endblock %}
 {% block body_class %}
   {{ super() }}

@@ -7,8 +7,22 @@
 {% extends "firefox/base-resp.html" %}
 
 {% block page_image %}{{ static('img/firefox/private-browsing/private-browsing-meta.png') }}{% endblock %}
-{% block page_title %}{{ _('Firefox Web browser — Private Browsing with Tracking Protection — Mozilla') }}{% endblock %}
-{% block page_desc %}{{ _('Get more protection and the most privacy, only from Firefox. No other browser gives you so much control over your digital footprint.')}}{% endblock %}
+{% block page_title %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Private Browser Protects Your Online Privacy | Firefox') }}
+{% else %}
+  {{ _('Firefox Web browser — Private Browsing with Tracking Protection — Mozilla') }}
+{% endif %}
+{% endblock %}
+
+{% block page_desc %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Firefox protects your online privacy and blocks trackers that follow you around the web. Get Firefox for private browsing!') }}
+{% else %}
+  {{ _('Get more protection and the most privacy, only from Firefox. No other browser gives you so much control over your digital footprint.') }}
+{% endif %}
+{% endblock %}
+
 {% block body_id %}firefox-private-browsing{% endblock %}
 {% block body_class %}mozid{% endblock %}
 

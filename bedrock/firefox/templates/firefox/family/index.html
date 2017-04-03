@@ -6,15 +6,20 @@
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}
-{% if l10n_has_tag('fx49_remove_hello') %}
-  {{ _('Firefox – Desktop browser, Android, iOS, Sync, Private Browsing') }}
-{% elif l10n_has_tag('tracking_protection') %}
-  {{ _('Firefox – Desktop browser, Android, iOS, OS, Hello, Sync, Private Browsing') }}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Free Web Browser for Android, iOS, Desktop | Firefox') }}
 {% else %}
-  {{ _('Firefox — Desktop browser, Android, OS, Hello, Sync, Marketplace') }}
+  {{ _('Firefox – Desktop browser, Android, iOS, Sync, Private Browsing') }}
 {% endif %}
 {% endblock %}
-{% block page_desc %}{{ _('Learn more about our complete lineup of products for desktop and mobile browsing (and more) that help keep you in control online. Free yourself with Firefox.') }}{% endblock %}
+
+{% block page_desc %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!') }}
+{% else %}
+  {{ _('Learn more about our complete lineup of products for desktop and mobile browsing (and more) that help keep you in control online. Free yourself with Firefox.') }}
+{% endif %}
+{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'firefox_family' %}

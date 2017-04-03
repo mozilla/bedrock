@@ -6,7 +6,21 @@
 
 {% add_lang_files "firefox/channel/index" %}
 
-{% block page_desc %}{{_('Download and test the latest Firefox for desktop features with Developer Edition, Beta and Nightly builds.')}}{% endblock %}
+{% block page_title %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Try New Browser Features in Pre-Release Versions | Firefox') }}
+{% else %}
+  {{ _('Download and test future releases of Firefox for desktop, Android and iOS.') }}
+{% endif %}
+{% endblock %}
+
+{% block page_desc %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{_('Experience cutting-edge browser features in pre-release versions: Firefox Developer Edition, Firefox Beta and Firefox Nightly. Download now!')}}
+{% else %}
+  {{_('Download and test the latest Firefox for desktop features with Developer Edition, Beta and Nightly builds.')}}
+{% endif %}
+{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}{{ self.page_desc() }}{% endblock %}

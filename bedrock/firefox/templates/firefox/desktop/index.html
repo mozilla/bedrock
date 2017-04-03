@@ -8,11 +8,19 @@
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}
-  {% if l10n_has_tag('home_title_update') %}
-    {{ _("Firefox Web browser — Trusted, Flexible, Fast — Committed to you, your privacy and an open Web") }}
+  {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+    {{ _('Free Web Browser for Mac, Windows, Linux | Firefox') }}
+  {% elif l10n_has_tag('home_title_update') %}
+    {{ _('Firefox Web browser — Trusted, Flexible, Fast — Committed to you, your privacy and an open Web') }}
   {% else %}
     {{ _("Firefox Web browser — Trusted, Flexible, Fast — There's never been a better time") }}
   {% endif %}
+{% endblock %}
+
+{% block page_desc %}
+{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+  {{ _('Millions of people around the world trust Firefox Web browsers on Mac, Windows and Linux computers. Fast. Private. Download now!') }}
+{% endif %}
 {% endblock %}
 
 {% block page_css %}
