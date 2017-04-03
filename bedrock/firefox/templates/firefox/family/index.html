@@ -8,12 +8,8 @@
 {% block page_title %}
 {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
   {{ _('Free Web Browser for Android, iOS, Desktop | Firefox') }}
-{% elif l10n_has_tag('fx49_remove_hello') %}
-  {{ _('Firefox – Desktop browser, Android, iOS, Sync, Private Browsing') }}
-{% elif l10n_has_tag('tracking_protection') %}
-  {{ _('Firefox – Desktop browser, Android, iOS, OS, Hello, Sync, Private Browsing') }}
 {% else %}
-  {{ _('Firefox — Desktop browser, Android, OS, Hello, Sync, Marketplace') }}
+  {{ _('Firefox – Desktop browser, Android, iOS, Sync, Private Browsing') }}
 {% endif %}
 {% endblock %}
 
