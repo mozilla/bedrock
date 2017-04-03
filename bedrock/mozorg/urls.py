@@ -237,6 +237,9 @@ urlpatterns = (
     page('internet-health/privacy-security', 'mozorg/internet-health/privacy-security.html'),
     page('internet-health/digital-inclusion', 'mozorg/internet-health/digital-inclusion.html'),
     page('internet-health/open-innovation', 'mozorg/internet-health/open-innovation.html'),
+    page('internet-health/web-literacy', 'mozorg/internet-health/web-literacy.html'),
+    page('internet-health/decentralization', 'mozorg/internet-health/decentralization.html'),
+
     page('moss', 'mozorg/moss/index.html'),
     page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),
     page('moss/mission-partners', 'mozorg/moss/mission-partners.html'),

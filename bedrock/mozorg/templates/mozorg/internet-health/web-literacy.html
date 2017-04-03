@@ -1,0 +1,428 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}{{ _('Web Literacy: Vital to Internet Health') }}{% endblock %}
+
+{% block page_desc %}{{ _('Web literacy means having the skills to read, write, and participate online. A healthy internet is yours to master.') }}{% endblock %}
+{% block page_image %}{{ static('img/mozorg/internet-health/web-literacy/literacy-meta-image.jpg') }}{% endblock %}
+
+{% block body_id %}health-web-literacy{% endblock %}
+{% block body_class %}theme-literacy{% endblock %}
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="internet-health"{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'health-subpage' %}
+{% endblock %}
+
+{% block site_header %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
+    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+    {% include 'mozorg/home/includes/nav.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<nav id="health-subnav" class="health-subnav">
+  <ul class="content">
+    <li><a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Privacy &amp; Security') }}</a></li>
+    <li><a href="{{ url('mozorg.internet-health.open-innovation') }}">{{ _('Open Innovation') }}</a></li>
+    <li><a href="{{ url('mozorg.internet-health.decentralization') }}">{{ _('Decentralization') }}</a></li>
+    <li><a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Digital Inclusion') }}</a></li>
+    <li class="current"><a href="{{ url('mozorg.internet-health.web-literacy') }}">{{ _('Web Literacy') }}</a></li>
+  </ul>
+</nav>
+
+<main role="main">
+  <header class="section main-header">
+    <div class="content">
+      <h1 class="page-title">{{ _('A healthy Internet means everyone has the skills to thrive') }}</h1>
+
+      <div class="head-intro">
+        <p>
+        {% trans %}
+          People everywhere should have the knowledge they need to tap into the full
+          power of the Internet – and use it to make their lives and the world better.
+          This means everyone needs to be able to read, write, and participate online.
+        {% endtrans %}
+          <strong>
+          {% trans %}
+            A healthy Internet is yours to master.
+          {% endtrans %}
+          </strong>
+        </p>
+      </div>
+    </div>
+
+    <nav class="section head-pagenav">
+      <div class="content">
+        <h2 class="head-pagenav-title">
+        {% trans %}
+          Here are three areas where we can make a difference.
+        {% endtrans %}
+        </h2>
+
+        <ul>
+          <li><a class="nav-one" href="#meaningful">{{ _('Making Web Literacy Meaningful') }}</a></li>
+          <li><a class="nav-two" href="#teaching">{{ _('Teaching Web Literacy Effectively') }}</a></li>
+          <li><a class="nav-three" href="#citizenship">{{ _('Cultivating Digital Citizenship') }}</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section id="meaningful" class="section topic topic-first">
+
+    <section class="topic-intro">
+      <div class="content">
+
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Making Web literacy meaningful for everyone') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            Web literacy should mean all the skills we need to think, create, and thrive online.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Many people hear the term Web literacy and think it means learning to code,
+            or <abbr>STEM</abbr> (science, technology, engineering, math) education. But
+            Web literacy is much broader than that – it should include all the skills to
+            be confident and competent online. To be empowered digital citizens, we all
+            need to know how to navigate, how to share, what information to trust, and
+            most importantly, how to expand the frontiers of our knowledge.
+          {% endtrans %}
+          </p>
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+            {% trans %}
+              82% of American middle-schoolers assessed couldn’t tell the difference
+              between an ad labeled “sponsored content” and a real news story on a website.
+            {% endtrans %}
+            </p>
+
+            <p class="note-source">
+              <cite>
+              {% trans wwwf='https://ed.stanford.edu/news/stanford-researchers-find-students-have-trouble-judging-credibility-information-online' %}
+                Source: <a href="{{ stanford }}">Stanford University</a>
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('82%') }}</span>
+        </aside>
+
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can develop meaningful Web literacy') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Learn to spot fake news') }}</h4>
+              <p>
+              {# L10n: 'IFLA' as an acronym is a proper name but its expanded form may be translated. Check the website: ifla.org #}
+              {% trans quiz='http://www.theglobeandmail.com/community/digital-lab/fake-news-quiz/article33821986/',
+                  primer='http://www.ifla.org/publications/node/11174' %}
+                Take a <a href="{{ quiz }}">fake news quiz</a>, or <a href="{{ primer }}">follow this helpful primer</a>
+                from our friends at the <abbr title="International Federation of Library Associations and Institutions">IFLA</abbr>.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Tinker with X-Ray Goggles') }}</h4>
+              <p>
+              {% trans goggles='https://goggles.mozilla.org' %}
+                See and remix the code on your favorite Web pages with <a href="{{ goggles }}">this fun Mozilla tool</a>.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Join the club') }}</h4>
+              <p>
+              {% trans clubs='https://learning.mozilla.org/clubs' %}
+                Join or start <a href="{{ clubs }}">your local Mozilla club</a> to learn the Web among your peers.
+              {% endtrans %}
+              </p>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is making Web literacy meaningful for everyone') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Defining the term') }}</h4>
+              <p>
+              {% trans map='https://learning.mozilla.org/web-literacy' %}
+                Collaborating with leaders in the field to create Mozilla’s <a href="{{ map }}">Web Literacy Map</a>
+                that provides a clear, practical definition of web literacy.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Advocating for education policy') }}</h4>
+              <p>
+              {% trans education='https://medium.com/read-write-participate/what-essential-web-skills-are-missing-from-current-learning-standards-66e1b6e99c72' %}
+                Working with educations and policymakers to help make Web literacy <a href="{{ education }}">as foundational to education as reading and math</a>.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+  </section>{# end #meaningful #}
+
+
+  <section id="teaching" class="section topic">
+    <section class="topic-intro">
+      <div class="content">
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Teaching Web literacy effectively') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            Web literacy should be as foundational to education as reading, writing,
+            and math – and it should be taught everywhere learning happens.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Learning Web literacy is like any other essential skill: we learn best by
+            doing. And in the digital world, learning happens not just with teachers
+            in the classroom, but everywhere there’s an Internet connection. We need
+            all kinds of educators to have the knowledge and resources to teach Web
+            literacy the way kids learn it best. And we need to make sure every student
+            grows up not just on the Web, but fluent in the way it works.
+          {% endtrans %}
+          </p>
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+            {% trans %}
+              Increasing the number of young adults with Internet skills is a United
+              Nations Sustainable Development Goal, and the UN now tracks schools with
+              computers and Internet.
+            {% endtrans %}
+            </p>
+            <p class="note-source">
+              <cite>
+              {% trans itu='http://www.itu.int/en/ITU-D/Statistics/Documents/publications/misr2016/MISR2016-w4.pdf' %}
+                Source: <a href="{{ itu }}">ITU</a>
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can teach Web literacy') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Become a Web teacher') }}</h4>
+              <p>
+              {% trans activities='https://learning.mozilla.org/activities' %}
+                Use <a href="{{ activities }}">these activities and instructions</a>
+                to help your kids and your community build strong Web literacy skills.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Ask for it') }}</h4>
+              <p>
+              {% trans %}
+                Tell your school – and those of your kids – that Web literacy is
+                essential to education, and should go beyond having computers in
+                the classroom.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is teaching Web literacy') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Supporting teachers') }}</h4>
+              <p>
+              {% trans activities='https://learning.mozilla.org/activities',
+                  hive='https://hivelearningnetworks.org/' %}
+                Giving educators of all kinds the <a href="{{ activities }}">skills and tools</a>
+                they need to teach Web literacy, including knowledge-sharing efforts like
+                <a href="{{ hive }}">Hive Learning Networks</a>.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Supporting youth') }}</h4>
+              <p>
+              {% trans learning='https://learning.mozilla.org/blog/',
+                  un_women='https://learning.mozilla.org/blog/new-partnership-with-un-women-to-teach-key-digital-skills-to-women' %}
+                Creating opportunities and building communities to support youth accessing
+                the Web and <a href="{{ learning }}">learning how to use it</a>, like our
+                <a href="{{ un_women }}">partnership with UN Women</a> to teach digital
+                skills to girls and women in Africa.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </section>{# end #teaching #}
+
+  <section id="citizenship" class="section topic">
+    <section class="topic-intro">
+      <div class="content">
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Cultivating digital citizenship') }}</span></h2>
+
+          <p>
+          {% trans %}
+            A fundamental part of Web literacy is understanding the forces that
+            shape our lives online: the companies building our experiences, the
+            politicians crafting and supporting government policies, and the power
+            we hold as digital citizens to create the Internet we want. Having a
+            say in our shared future on the Web means deciding which values are
+            most important to us, and standing up for those values when they are
+            threatened.
+          {% endtrans %}
+          </p>
+
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+            {% trans %}
+              Indian Citizens sent over 750,000 emails to the Telecom Authority of
+              India in just one week, ultimately influencing their government’s
+              decision to ban discriminatory pricing practices.
+            {% endtrans %}
+            </p>
+            <p class="note-source">
+              <cite>
+              {% trans motherboard='https://motherboard.vice.com/en_us/article/indias-new-open-internet-law-is-stronger-than-the-united-states' %}
+                Source: <a href="{{ motherboard }}">Motherboard</a>
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('750K') }}</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can cultivate your digital citizenship') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Get informed') }}</h4>
+              <p>
+              {% trans privacy=url('mozorg.internet-health.privacy-security'),
+                  inclusion=url('mozorg.internet-health.digital-inclusion') %}
+                Which aspect of your online life matters most to you?
+                <a href="{{ privacy }}">Privacy</a>? Net neutrality? <a href="{{ inclusion }}">Inclusion</a>?
+                Learn about the issues, and find your own way to take action.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is cultivating digital citizenship') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Raising awareness') }}</h4>
+              <p>
+              {% trans reform_copyright='https://changecopyright.org/' %}
+                Creating space for understanding, conversation, and community around
+                what makes a healthy Internet – like the page you’re reading right now,
+                and campaigns such as <a href="{{ reform_copyright }}">Reform Copyright</a>.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Educating legislators') }}</h4>
+              <p>
+              {% trans advocating='https://blog.mozilla.org/netpolicy/2017/02/21/we-are-all-creators-now/' %}
+                <a href="{{ advocating }}">Advocating at the policy level</a> to make sure
+                politicians understand the role that digital citizens play in our society,
+                and adopt policies to empower citizens.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </section>{# end #citizenship #}
+
+  <section id="health-report" class="section health-report">
+    <div class="content">
+      <h2>{{ _('Hungry for more?') }}</h2>
+      <p class="report-cta">
+        <span>
+        {% trans healthreport='https://internethealthreport.org' %}
+          Read on about Web Literacy in our <a href="{{ healthreport }}">Internet Health Report</a>.
+        {% endtrans %}
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <aside id="newsletter-subscribe">
+    <div class="content">
+      {{ email_newsletter_form(newsletters='mozilla-foundation',
+         title=_('Stay informed.'),
+         subtitle=_('Sign up. Read up. Get the Mozilla newsletter to stay smart on the issues affecting your life online.'),
+         button_class='button-light')
+      }}
+    </div>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {% with footer_class='dark' %}
+    {% if LANG.startswith('en-') %}
+      {% include 'includes/site-footer-new.html' %}
+    {% else %}
+      {% include 'includes/site-footer.html' %}
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'internet-health-subpage' %}
+{% endblock %}
