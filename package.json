@@ -7,10 +7,11 @@
     "preinstall": "lockdown"
   },
   "dependencies": {
+    "clean-css-cli": "4.0.5",
     "less": "2.7.1",
     "lockdown": "https://github.com/mozilla/npm-lockdown/archive/v0.0.8.tar.gz",
     "node-sass": "4.5.0",
-    "yuglify": "0.1.4"
+    "uglify-js": "2.7.5"
   },
   "repository": {
     "type": "git",

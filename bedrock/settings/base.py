@@ -273,7 +273,7 @@ MEDIA_ROOT = config('MEDIA_ROOT', default=path('media'))
 STATIC_URL = config('STATIC_URL', default='/media/')
 STATIC_ROOT = config('STATIC_ROOT', default=path('static'))
 STATICFILES_STORAGE = ('pipeline.storage.NonPackagingPipelineStorage' if DEBUG else
-                       'bedrock.base.storage.ManifestPipelineStorage')
+                       'bedrock.base.pipeline_storage.ManifestPipelineStorage')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -299,10 +299,14 @@ PIPELINE = {
     'LESS_BINARY': config('PIPELINE_LESS_BINARY',
                           default=path('node_modules', 'less', 'bin', 'lessc')),
     'LESS_ARGUMENTS': config('PIPELINE_LESS_ARGUMENTS', default='-s'),
-    'JS_COMPRESSOR': 'pipeline.compressors.yuglify.YuglifyCompressor',
-    'CSS_COMPRESSOR': 'pipeline.compressors.yuglify.YuglifyCompressor',
-    'YUGLIFY_BINARY': config('PIPELINE_YUGLIFY_BINARY',
-                            default=path('node_modules', '.bin', 'yuglify')),
+    'JS_COMPRESSOR': 'pipeline.compressors.uglifyjs.UglifyJSCompressor',
+    'UGLIFYJS_BINARY': config('PIPELINE_UGLIFYJS_BINARY',
+                              default=path('node_modules', '.bin', 'uglifyjs')),
+    'UGLIFYJS_ARGUMENTS': config('PIPELINE_UGLIFYJS_ARGUMENTS', default='--support-ie8'),
+    'CSS_COMPRESSOR': 'bedrock.base.pipeline_compressors.CleanCSSCompressor',
+    'CLEANCSS_BINARY': config('PIPELINE_CLEANCSS_BINARY',
+                              default=path('node_modules', '.bin', 'cleancss')),
+    'CLEANCSS_ARGUMENTS': config('PIPELINE_CLEANCSS_ARGUMENTS', default='--compatibility ie7'),
     'PIPELINE_ENABLED': config('PIPELINE_ENABLED', not DEBUG, cast=bool),
     'PIPELINE_COLLECTOR_ENABLED': config('PIPELINE_COLLECTOR_ENABLED', not DEBUG, cast=bool),
 }
