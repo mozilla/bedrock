@@ -12,20 +12,7 @@
     <div itemprop="articleBody">
       <h2>Introduction</h2>
 
-      <p>The Mozilla Bug Bounty Program is designed to encourage security research into Mozilla's websites and services and to reward those who help protect our users and infrastructure.</p>
-
-      <h2>Eligibility</h2>
-
-      <p>All security bugs must follow the following general criteria to be eligible:</p>
-
-      <ul>
-        <li>Security bug must be original and previously unreported.</li>
-        <li>Submitter must not be the author of the buggy code nor otherwise involved in its contribution to the Mozilla project.</li>
-        <li>Employees of the Mozilla Foundation and its subsidiaries are ineligible.</li>
-        <li>Community volunteer members involved with bug handling or who have security bug access are not eligible during their period of involvement.</li>
-      </ul>
-
-      <p>If a bug is reported by a team or by multiple researchers simultaneously, the bounty will be split evenly amongst them.</p>
+      <p>The Mozilla Bug Bounty Program is designed to encourage security research into Mozilla's websites and services and to reward those who find unique and original bugs in our web infrastructure.</p>
 
       <h2 id="payouts-section">Payouts</h2>
 
@@ -46,16 +33,16 @@
             <td>$500</td>
           </tr>
           <tr>
-            <td>Authentication Bypass</td>
+            <td>Authentication Bypass<sup>2</sup></td>
             <td>$3000</td>
             <td>$1500</td>
-            <td>&nbsp;&nbsp;ACK<sup>2</sup></td>
+            <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
           </tr>
           <tr>
             <td>SQL Injection</td>
             <td>$3000</td>
             <td>$1500</td>
-            <td>ACK</td>
+            <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
           </tr>
           <tr>
             <td>CSRF<sup>3</sup></td>
@@ -67,44 +54,57 @@
             <td>XSS<sup>4</sup></td>
             <td>$2500</td>
             <td>$1000</td>
-            <td>ACK</td>
+            <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
           </tr>
           <tr>
             <td>XXE</td>
             <td>$2500</td>
             <td>$1000</td>
-            <td>ACK</td>
+            <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
           </tr>
           <tr>
-            <td>XSS<sup>4</sup> (blocked by CSP)</td>
+            <td>Domain Takeovers</td>
+            <td>$2500</td>
+            <td>$1000</td>
+            <td>$250/$100<sup>5</sup></td>
+          </tr>
+          <tr>
+            <td>XSS (minor)</td>
+            <td>$1000</td>
             <td>$500</td>
-            <td>ACK</td>
+            <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
+          </tr>
+          <tr>
+            <td>XSS (blocked by CSP)</td>
+            <td>$500</td>
+            <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
             <td>--</td>
           </tr>
           <tr>
-            <td>Clickjacking<sup>5</sup></td>
+            <td>Clickjacking<sup>6</sup></td>
             <td>$500</td>
             <td>$250</td>
             <td>--</td>
           </tr>
           <tr>
             <td>Open Redirects</td>
-            <td>ACK</td>
-            <td>ACK</td>
-            <td>ACK</td>
+            <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
+            <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a></td>
+            <td><a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">HoF</a>/--<sup>5</sup></td>
           </tr>
         </tbody>
       </table>
 
       <ol>
         <li>Excludes community websites</li>
-        <li>Acknowledgement on our 
-          <a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">hall of fame</a>
-        </li>
+        <li>Includes IDORs that bypass authentication or authorization for significant actions</li>
         <li>Significant actions only, such as changing email/passwords, deleting accounts, etc.</li>
-        <li>Excludes self-XSS</li>
+        <li>Must be able to conduct significant action (i.e., not defacement, phishing, cookie injection, etc.)</li>
+        <li>For domains falling outside mozilla.org, mozilla.com, mozilla.net, or firefox.com</li>
         <li>Lack of clickjacking protection (XFO, CSP) is insufficient to claim a bounty</li>
       </ol>
+
+      <p>Any bounty that receives a payout also obtains inclusion on our <a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">Hall of Fame</a>.</p>
 
 
       <h2 id="exclusions">Exclusions</h2>
@@ -146,6 +146,18 @@
       <p>Once you have <em>written</em> your step-by-step instructions, repeat the attack by following them exactly. This helps prevent errors and omissions in your submission.</p>
 
       <p>We prefer to receive bug reports in English. If English is not your native language and you are not fluent, please submit bugs in your native language. Please note that this may delay our response time.</p>
+
+      <h2>Eligibility</h2>
+
+      <p>All security bugs must follow the following general criteria to be eligible:</p>
+
+      <ul>
+        <li>Security bug must be original and previously unreported.</li>
+        <li>Submitter must not be the author of the buggy code nor otherwise involved in its contribution to the Mozilla project.</li>
+        <li>Employees of the Mozilla Foundation and its subsidiaries are ineligible.</li>
+      </ul>
+
+      <p>If a bug is reported by a team or by multiple researchers simultaneously, the bounty will be split evenly amongst them.</p>
     </div>
   </article>
 {% endblock %}
