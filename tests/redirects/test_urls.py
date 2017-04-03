@@ -1,22 +1,11 @@
 """Test redirects from the global.conf file."""
 from __future__ import absolute_import
-from operator import itemgetter
 
 import pytest
 import requests
 
 from .base import assert_valid_url
 from .map_410 import URLS_410
-from .map_external import URLS as EXTERNAL_URLS
-
-
-@pytest.mark.headless
-@pytest.mark.nondestructive
-@pytest.mark.parametrize('url', EXTERNAL_URLS, ids=itemgetter('url'))
-def test_external_url(url):
-    del url['location']
-    url['follow_redirects'] = True
-    assert_valid_url(**url)
 
 
 @pytest.mark.smoke
