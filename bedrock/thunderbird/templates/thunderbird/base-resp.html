@@ -14,58 +14,80 @@
 
 {% block body_class %}sky{% endblock %}
 
-{% block site_header_nav %}
-<nav id="nav-main" role="navigation">
-  <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
-  <ul id="nav-main-menu" class="has-submenus">
-    <li class="first" id="nav-main-features"><a href="{{ url('thunderbird.index') }}" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{_('Thunderbird')}}</a>
-      <ul aria-expanded="false" id="nav-main-features-submenu" class="submenu">
-        <li class="first">
-          <a href="{{ url('thunderbird.channel') }}" tabindex="-1">
-            {{_('Releases')}}
-          </a>
-        </li>
-        <li>
-          <a href="{{ url('thunderbird.features') }}" tabindex="-1">
-            {{_('Features')}}
-          </a>
-        </li>
-        <li class="last">
-          <a href="{{ url('thunderbird.organizations') }}" tabindex="-1">
-            {{_('Thunderbird for Organizations')}}
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li id="nav-main-addons">
-      <a href="https://addons.mozilla.org/thunderbird/" tabindex="0" aria-owns="nav-main-addons-submenu" aria-haspopup="true">
-        {{_('Add-ons')}}
-      </a>
-      <ul aria-expanded="false" id="nav-main-addons-submenu" class="submenu">
-        <li class="first">
-          <a href="https://addons.mozilla.org/thunderbird/extensions/" tabindex="-1">
-            {{_('Add-ons')}}
-          </a>
-        </li>
-        <li class="last">
-          <a href="https://addons.mozilla.org/thunderbird/themes/" tabindex="-1">
-            {{_('Themes')}}
-          </a>
-        </li>
-      </ul>
-    </li>
-    <li class="last" id="nav-main-support">
-      <a href="https://support.mozilla.org/products/thunderbird/" tabindex="0">
-        {{_('Support')}}
-      </a>
-    </li>
-  </ul>
-</nav>
+{% block global_nav %}{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+
+  {% block tabzilla_tab %}
+    <div id="tabzilla">
+      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+    </div>
+  {% endblock %}
+
+  {% block site_header_nav %}
+  <nav id="nav-main" role="navigation">
+    <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
+    <ul id="nav-main-menu" class="has-submenus">
+      <li class="first" id="nav-main-features"><a href="{{ url('thunderbird.index') }}" tabindex="0" aria-owns="nav-main-features-submenu" aria-haspopup="true">{{_('Thunderbird')}}</a>
+        <ul aria-expanded="false" id="nav-main-features-submenu" class="submenu">
+          <li class="first">
+            <a href="{{ url('thunderbird.channel') }}" tabindex="-1">
+              {{_('Releases')}}
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('thunderbird.features') }}" tabindex="-1">
+              {{_('Features')}}
+            </a>
+          </li>
+          <li class="last">
+            <a href="{{ url('thunderbird.organizations') }}" tabindex="-1">
+              {{_('Thunderbird for Organizations')}}
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li id="nav-main-addons">
+        <a href="https://addons.mozilla.org/thunderbird/" tabindex="0" aria-owns="nav-main-addons-submenu" aria-haspopup="true">
+          {{_('Add-ons')}}
+        </a>
+        <ul aria-expanded="false" id="nav-main-addons-submenu" class="submenu">
+          <li class="first">
+            <a href="https://addons.mozilla.org/thunderbird/extensions/" tabindex="-1">
+              {{_('Add-ons')}}
+            </a>
+          </li>
+          <li class="last">
+            <a href="https://addons.mozilla.org/thunderbird/themes/" tabindex="-1">
+              {{_('Themes')}}
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="last" id="nav-main-support">
+        <a href="https://support.mozilla.org/products/thunderbird/" tabindex="0">
+          {{_('Support')}}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  {% endblock %}
+
+  {% block site_header_logo %}
+    <h2><a href="{{ url('thunderbird.index') }}">{{ high_res_img('thunderbird/template/logo-wordmark.png', {'alt': 'Thunderbird', 'width': '260', 'height': '72'}) }}</a></h2>
+  {% endblock %}
+
+  {% block alt_header %}{% endblock %}
+
+  {% block subnav %}{% endblock %}
+
+  {% block breadcrumbs %}{% endblock %}
+
+  {% block site_header_share %}{% endblock %}
+
+  </header>
 {% endblock %}
 
 {% block email_form %}
 {% endblock email_form %}
-
-{% block site_header_logo %}
-<h2><a href="{{ url('thunderbird.index') }}">{{ high_res_img('thunderbird/template/logo-wordmark.png', {'alt': 'Thunderbird', 'width': '260', 'height': '72'}) }}</a></h2>
-{% endblock %}

@@ -9,24 +9,25 @@ from pages.home import HomePage
 
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
-    page = HomePage(selenium, base_url).open()
-    internet_health_page = page.navigation.open_internet_health()
+    locale = 'de'
+    page = HomePage(selenium, base_url, locale).open()
+    internet_health_page = page.navigation.open_internet_health(locale)
     assert internet_health_page.seed_url in selenium.current_url
 
     page.open()
-    technology_page = page.navigation.open_technology()
+    technology_page = page.navigation.open_technology(locale)
     assert technology_page.seed_url in selenium.current_url
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.viewport('mobile')
 def test_mobile_navigation(base_url, selenium):
-    page = HomePage(selenium, base_url).open()
+    locale = 'de'
+    page = HomePage(selenium, base_url, locale).open()
     page.navigation.show()
-    internet_health_page = page.navigation.open_internet_health()
+    internet_health_page = page.navigation.open_internet_health(locale)
     assert internet_health_page.seed_url in selenium.current_url
 
     page.open().navigation.show()
-    technology_page = page.navigation.open_technology()
+    technology_page = page.navigation.open_technology(locale)
     assert technology_page.seed_url in selenium.current_url

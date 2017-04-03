@@ -26,7 +26,11 @@
 {% endblock %}
 
 {% block site_header %}
-  {% include 'mozorg/home/includes/nav.html' %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
+    {% include 'mozorg/home/includes/nav.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}

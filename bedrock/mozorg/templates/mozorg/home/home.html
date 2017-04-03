@@ -38,11 +38,15 @@
 {% endblock %}
 
 {% block site_header %}
-  {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
-  {% with is_home = True %}
-    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
-    {% include 'mozorg/home/includes/nav.html' %}
-  {% endwith %}
+{% include 'mozorg/home/includes/home-icons-sprite.svg' %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
+    {% with is_home = True %}
+      {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+      {% include 'mozorg/home/includes/nav.html' %}
+    {% endwith %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}

@@ -74,15 +74,15 @@ class BasePage(Page):
             return (self.find_element(*self._menu_locator).is_displayed() and
                 toggle.get_attribute('aria-expanded') == 'true')
 
-        def open_internet_health(self):
+        def open_internet_health(self, locale='en-US'):
             self.find_element(*self._internet_health_locator).click()
             from internet_health import InternetHealthPage
-            return InternetHealthPage(self.selenium, self.page.base_url).wait_for_page_to_load()
+            return InternetHealthPage(self.selenium, self.page.base_url, locale).wait_for_page_to_load()
 
-        def open_technology(self):
+        def open_technology(self, locale='en-US'):
             self.find_element(*self._technology_locator).click()
             from technology import TechnologyPage
-            return TechnologyPage(self.selenium, self.page.base_url).wait_for_page_to_load()
+            return TechnologyPage(self.selenium, self.page.base_url, locale).wait_for_page_to_load()
 
     class Footer(Region):
 

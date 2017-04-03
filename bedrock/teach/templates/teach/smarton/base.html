@@ -34,10 +34,11 @@
         {{ _('The SmartOn Series is like your Internet owner’s manual: the place to learn the most useful intel and tips from Mozilla policy peeps and programmers.') }}
       </p>
       <p class="series-link"><a href="{{ url('teach.smarton.index') }}" data-link-type="nav" data-link-name="See all SmartOns">{{ _('See all SmartOns') }}</a></p>
-
+      {% if not LANG.startswith('en') %}
       <div id="tabzilla">
         <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
       </div>
+      {% endif %}
     </div>
   </header>
   {% endblock %}
