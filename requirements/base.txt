@@ -1,6 +1,6 @@
-Django==1.8.15 \
-    --hash=sha256:e2e41aeb4fb757575021621dc28fceb9ad137879ae0b854067f1726d9a772807 \
-    --hash=sha256:863e543ac985d5cfbce09213fa30bc7c802cbdf60d6db8b5f9dab41e1341eacd
+Django==1.8.18 \
+    --hash=sha256:d8e2fd119756ab10b43a31052c3c8efbc262064b81eecb7871372de4d37b1a94 \
+    --hash=sha256:c7611cdd5e2539a443b7960c7cafd867d986c2720a1b44808deaa60ce3da50c7
 django-pipeline==1.6.8 \
     --hash=sha256:a6a9ce2003ae10e729768b6d79a4b3db330d876b86225eb7743b6f5696bafa59 \
     --hash=sha256:b7cdc2efe27e478ddd38e878dd7b5e5ac121c2898fd85accf3187e19137fe6b7
