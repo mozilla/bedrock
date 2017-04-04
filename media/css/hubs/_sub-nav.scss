@@ -14,22 +14,8 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
     @include clearfix();
     background: #fff;
     display: none; // hidden for mobile
+    height: 52px;
     overflow: hidden;
-
-    @media #{$mq-nav-tablet} {
-        display: block;
-        margin-bottom: 20px;
-        transition: box-shadow 0.2s ease, transform 0.2s ease;
-
-        &.stuck {
-            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-            position: fixed;
-            top: 0;
-            transform: translateY(-4px);
-            width: 100%;
-            z-index: 200;
-        }
-    }
 
     a:link,
     a:visited {
@@ -66,6 +52,7 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
         &> li {
             display: inline-block;
             padding: 0 6px;
+            transition: padding 0.2s ease-out;
 
             a:hover,
             a:active,
@@ -78,11 +65,36 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
                 outline: none;
             }
         }
+    }
 
-        @media #{$mq-nav-desktop} {
-            &> li {
-                padding: 0 21px;
+    @media #{$mq-nav-tablet} {
+        display: block;
+        margin-bottom: 20px;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+        &.stuck {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            transform: translateY(-4px);
+            width: 100%;
+            z-index: 200;
+
+            // squish nav items for tablet so dl button can fit
+            .subnav-primary-links > li {
+                padding-right: 3px;
             }
+        }
+    }
+
+    @media #{$mq-nav-desktop} {
+        .subnav-primary-links > li {
+            padding: 0 21px;
+        }
+
+        // squish nav items for desktop so dl button can fit
+        &.stuck .subnav-primary-links > li {
+            padding-right: 12px;
         }
     }
 }
@@ -120,7 +132,7 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
     margin: 8px 0 0 0;
     opacity: 0;
     transform: translateY(-100px);
-    transition: opacity 0.3s ease 0.1s, transform 0.4s ease-in-out 0.1s;
+    transition: opacity 0.3s ease 0.1s, transform 0.4s ease-in-out;
     visibility: hidden;
 
     .download-list {
@@ -171,13 +183,6 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
 
     @media #{$mq-nav-desktop} {
         margin-right: 10px;
-
-        .download-link {
-            &:link,
-            &:visited {
-                padding: 5px 10px;
-            }
-        }
     }
 
     .fx-privacy-link {

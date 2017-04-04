@@ -251,10 +251,6 @@ def windows_billboards(req):
     return l10n_utils.render(req, 'firefox/unsupported/win2k.html')
 
 
-def fx_home_redirect(request):
-    return HttpResponseRedirect(reverse('firefox.new'))
-
-
 def dnt(request):
     response = l10n_utils.render(request, 'firefox/dnt.html')
     response['Vary'] = 'DNT'
@@ -613,3 +609,21 @@ class FirefoxProductIOSView(BlogPostsView):
             template_name = 'firefox/ios.html'
 
         return [template_name]
+
+
+class FirefoxHubView(BlogPostsView):
+    blog_posts_limit = 1
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['home']
+    template_name = 'firefox/hub/home.html'
+
+    def get(self, request, *args, **kwargs):
+        locale = l10n_utils.get_locale(request)
+
+        # until we get localizable copy, non en-US locales continue to get
+        # redirect, though now it's a 302
+        if locale != 'en-US':
+            return HttpResponseRedirect(reverse('firefox.new'))
+        else:
+            return super(FirefoxHubView, self).get(request, *args, **kwargs)
