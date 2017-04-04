@@ -66,7 +66,12 @@
               </p>
               <ul class="nav-menu-secondary-links">
                 <li>
-                  <a href="{{ url('firefox.family.index')}}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
+                {% if LANG == 'en-US' %}
+                  {% set about_url = url('firefox') %}
+                {% else %}
+                  {% set about_url = url('firefox.family.index') %}
+                {% endif %}
+                  <a href="{{ about_url}}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
                     {{ _('About Firefox') }}
                   </a>
                 </li>

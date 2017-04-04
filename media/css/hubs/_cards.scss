@@ -1,0 +1,341 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+@import 'cta-link';
+
+$color-burnt-orange: #9c432a;
+$card-padding: 20px;
+
+.card {
+    padding: 20px 0 40px;
+
+    &.card-stacked {
+        border-top: 1px solid #000;
+    }
+}
+
+.card-heading {
+    text-transform: lowercase;
+
+    a:link,
+    a:visited {
+        color: #000;
+        text-decoration: none;
+    }
+
+    a:active,
+    a:hover,
+    a:focus,
+    a:visited:focus,
+    a:visited:hover,
+    a:visited:active {
+        color: $color-burnt-orange;
+    }
+}
+
+// the copy & cta for a card (not the .card-label)
+.card-content {
+    background: #fff;
+    padding: 20px 20px 20px $card-padding;
+
+    p {
+        a:link,
+        a:visited {
+            color: $color-burnt-orange;
+            text-decoration: underline;
+        }
+
+        a:active,
+        a:hover,
+        a:focus,
+        a:visited:focus,
+        a:visited:hover,
+        a:visited:active {
+            color: lighten($color-burnt-orange, 10%);
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding-left: $card-padding * 2;
+    }
+}
+
+// the little highlighted bit of text at the top of a card
+.card-label {
+    @include font-size(24px);
+    background: #000;
+    color: #fff;
+    display: inline-block;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    padding: 0 5px 0 $card-padding;
+    text-transform: lowercase;
+
+    @media #{$mq-tablet} {
+        padding-left: $card-padding * 3;
+    }
+}
+
+// the primary link within .card-content
+.card-cta {
+    @extend .cta-link;
+}
+
+.featured-image-card {
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    overflow: hidden;
+    padding-bottom: 0;
+    position: relative;
+
+    .card-content,
+    .card-label {
+        position: relative;
+        z-index: 2;
+    }
+
+    .card-label {
+        background: #fff;
+        color: #000;
+        margin-bottom: 20px;
+    }
+
+    .card-content {
+        margin-right: $card-padding;
+        margin-top: 40px;
+        padding-top: 40px;
+    }
+
+    @media #{$mq-phone-wide} {
+        .card-content {
+            margin-top: 80px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .card-content {
+            margin-right: $card-padding * 2;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .card-content {
+            margin-top: 200px;
+        }
+    }
+
+    @supports (display: grid) {
+        @media #{$mq-desktop} {
+            margin-bottom: 0;
+            padding-bottom: 10%;
+
+            .card-content {
+                margin-top: auto;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            padding-bottom: 0;
+        }
+    }
+}
+
+// specific styles for a card with an image. used with .card
+.image-card {
+    .card-content-wrapper {
+        background-position: top left;
+        background-repeat: no-repeat;
+        padding-top: 120px;
+    }
+
+    .card-content {
+        margin-right: $card-padding;
+    }
+
+    @media #{$mq-tablet} {
+        .card-content {
+            margin-right: auto;
+            padding-bottom: $card-padding * 3;
+            padding-right: $card-padding * 2;
+            padding-top: 60px;
+            width: 40%;
+        }
+    }
+}
+
+.three-card-monte {
+    @media #{$mq-desktop} {
+        @include clearfix();
+
+        .card {
+            float: right;
+            width: calc(50% - 10px);
+        }
+
+        .card:first-child {
+            float: left;
+        }
+    }
+
+    @supports (display: grid) {
+        @media #{$mq-desktop} {
+            display: grid;
+            grid-gap: 20px;
+            // two columns of equal size / 2 rows of equal size
+            // grid-template: 1fr 1fr / 1fr 1fr; // equivalent to line below
+            grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+            // create a named area 'image-card' that spans two columns in the first row
+            // _______________________
+            // | image-card | card-2 |
+            // |            |--------|
+            // |            | card-3 |
+            // _______________________
+            //
+            grid-template-areas: 'image-card card-2'
+                                 'image-card card-3';
+
+            &:after {
+                content: none;
+            }
+
+            .card {
+                float: none;
+                width: auto;
+
+                &:first-child {
+                    float: none;
+                    grid-area: image-card; // stick the first .card in the 'image-card' grid template area
+                }
+
+                &:nth-child(2) {
+                    grid-area: card-2;
+                }
+
+                &:nth-child(3) {
+                    grid-area: card-3;
+                }
+            }
+        }
+    }
+}
+
+.card-blog {
+    &.card-image {
+        .card-blog-image {
+            display: block;
+            margin-bottom: 20px;
+            width: 300px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        &.card-image {
+            .card-content {
+                display: flex;
+                padding-left: 0;
+            }
+
+            .card-blog-image {
+                margin-bottom: 0;
+                margin-right: $card-padding * 2;
+                flex: 0 0 400px;
+            }
+
+            .card-content-inner {
+                flex: 0 0 calc(100% - (400px + $card-padding * 2));
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+
+.quote-intro {
+    @include font-size-level4;
+    border-bottom: 1px solid #9b9b9b;
+    display: inline-block;
+    padding-bottom: 10px;
+
+    @media #{$mq-tablet} {
+        width: 50%;
+    }
+}
+
+.quote {
+    @include font-size-level2;
+    margin-bottom: 20px;
+}
+
+.quote-primary .quote {
+    font-style: italic;
+}
+
+.related-card {
+    .card-image {
+        display: none;
+    }
+
+    .card-content {
+        padding-left: 0;
+    }
+
+    @media #{$mq-tablet} {
+        .card-content {
+            @include clearfix();
+        }
+
+        .card-image {
+            display: block;
+            float: left;
+            margin-right: 20px;
+            width: 300px;
+        }
+
+        .card-content-inner {
+            float: left;
+            width: calc(100% - 320px);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .card-content {
+            display: flex;
+        }
+
+        .card-image {
+            float: none;
+            flex: 0 0 300px;
+        }
+
+        .card-content-inner {
+            display: flex;
+            flex: 0 0 calc(100% - 320px);
+        }
+
+        .card-content-inner-inner {
+            display: flex;
+            margin-right: 5%;
+            flex: 0 0 40%;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-cta-wrapper {
+            align-items: center;
+            display: flex;
+            flex: 0 0 55%;
+            justify-content: center;
+        }
+    }
+}
+
