@@ -19,6 +19,8 @@
   {% stylesheet 'about-base' %}
 {% endblock %}
 
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
+
 {% block content %}
 
 <div id="main-content">

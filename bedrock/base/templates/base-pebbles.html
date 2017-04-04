@@ -79,7 +79,7 @@
     {% endblock %}
   </head>
 
-  <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}"{% block body_attrs %}{% endblock %}>
+  <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
     <div id="strings"
       data-global-close="{{ _('Close') }}"
       data-global-next="{{ _('Next') }}"

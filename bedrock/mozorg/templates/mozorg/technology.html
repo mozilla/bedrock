@@ -14,6 +14,7 @@
 
 {% block body_id %}technology{% endblock %}
 {% block body_class %}{% endblock %}
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="technology"{% endblock %}
 
 {% block experiments %}
   {% if switch('experiment-technology-rust-video', ['en-US']) %}

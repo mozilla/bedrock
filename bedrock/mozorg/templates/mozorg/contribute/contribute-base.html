@@ -9,6 +9,7 @@
 {% add_lang_files "mozorg/contribute/index" %}
 
 {% block body_class %}{{ super() }} contribute{% endblock %}
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="get-involved"{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'contribute-base' %}

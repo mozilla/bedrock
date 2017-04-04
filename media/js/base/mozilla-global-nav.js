@@ -63,7 +63,6 @@
          * @param {String} id - optional accordion id to expand on open.
          */
         toggleDrawer: function(accordionId) {
-
             _page.classList.toggle('moz-nav-open');
 
             if (_page.classList.contains('moz-nav-open')) {
@@ -76,14 +75,19 @@
             // for a smoother transition when the drawer moves.
             clearTimeout(_drawerTimeout);
             _drawerTimeout = setTimeout(function() {
-                if (_page.classList.contains('moz-nav-open')) {
-                    if (accordionId) {
-                        mozGlobalNav.toggleDrawerMenu(accordionId);
-                    }
-                } else {
-                    mozGlobalNav.closeSecondaryMenuItems();
-                }
+                mozGlobalNav.afterDrawerToggle(accordionId);
             }, 320);
+        },
+
+        afterDrawerToggle: function(accordionId) {
+            if (_page.classList.contains('moz-nav-open')) {
+                var id = accordionId ? accordionId : document.body.getAttribute('data-global-nav-current-link');
+                if (id) {
+                    mozGlobalNav.toggleDrawerMenu(id);
+                }
+            } else {
+                mozGlobalNav.closeDrawerMenu();
+            }
         },
 
         // handle menu button & mask click events to toggle drawer
@@ -95,26 +99,20 @@
             document.addEventListener('keydown', mozGlobalNav.handleEscKey, false);
             _page.addEventListener('focusin', mozGlobalNav.handleDrawerFocusOut, false);
 
-            window.dataLayer.push({
-                'event': 'global-nav',
-                'interaction': 'menu-open'
-            });
+            _drawer.setAttribute('aria-hidden', 'false');
         },
 
         onDrawerClose: function() {
             document.removeEventListener('keydown', mozGlobalNav.handleEscKey, false);
             _page.removeEventListener('focusin', mozGlobalNav.handleDrawerFocusOut, false);
 
+            _drawer.setAttribute('aria-hidden', 'true');
+
             // clear selected link in horizontal primary navigation
             mozGlobalNav.clearSelectedNavLink();
 
             // return focus to the menu button.
             _menuButton.focus();
-
-            window.dataLayer.push({
-                'event': 'global-nav',
-                'interaction': 'menu-close'
-            });
         },
 
         // Keeps keyboard focus in the drawer when in open state.
@@ -164,42 +162,49 @@
 
         // Toggle vertical navigation menu in the side drawer.
         toggleDrawerMenu: function(id) {
-            var link = document.querySelector('.nav-menu-primary-links > li > .summary > a[data-id="'+ id +'"]');
+            var link = document.querySelector('.nav-menu-primary-links > li > .summary[data-id="'+ id +'"] > a');
             var heading = link.parentNode;
-            var interaction;
 
             if (link && heading && heading.classList.contains('summary')) {
                 link.focus();
 
                 if (!heading.classList.contains('selected')) {
-                    mozGlobalNav.selectNavLink(id);
-                    mozGlobalNav.closeSecondaryMenuItems();
-                    interaction = 'expand';
-                } else {
-                    interaction = 'collapse';
+                    mozGlobalNav.closeDrawerMenu();
                 }
 
                 heading.classList.toggle('selected');
 
                 if (heading.classList.contains('selected')) {
+                    // Set aria roles for expanded state.
+                    heading.setAttribute('aria-selected', 'true');
+                    heading.setAttribute('aria-expanded', 'true');
+
+                    // Set GA attribute for next time heading is clicked.
+                    link.setAttribute('data-link-name', 'collapse');
+
                     // When expanding a menu, adjust the scroll position if needed.
                     mozGlobalNav.handleAccordionTransition(heading);
-                }
+                } else {
+                    // Set aria roles for collapsed state.
+                    heading.setAttribute('aria-selected', 'false');
+                    heading.setAttribute('aria-expanded', 'false');
 
-                window.dataLayer.push({
-                    'event': 'global-nav',
-                    'interaction': 'secondary-nav-' + interaction,
-                    'secondary-nav-heading': id
-                });
+                    // Set GA attribute for next time heading is clicked.
+                    link.setAttribute('data-link-name', 'expand');
+                }
             }
         },
 
-        // Closes all vertical navigation menu items.
-        closeSecondaryMenuItems: function() {
-            var menuLinks = document.querySelectorAll('.nav-menu-primary-links > li > .summary');
+        // Closes currently selected vertical navigation menu.
+        closeDrawerMenu: function() {
+            var summary = document.querySelector('.nav-menu-primary-links .summary.selected');
+            var link = document.querySelector('.nav-menu-primary-links .summary.selected > a');
 
-            for (var i = 0; i < menuLinks.length; i++) {
-                menuLinks[i].classList.remove('selected');
+            if (summary && link) {
+                summary.classList.remove('selected');
+                summary.setAttribute('aria-selected', 'false');
+                summary.setAttribute('aria-expanded', 'false');
+                link.setAttribute('data-link-name', 'expand');
             }
         },
 
@@ -213,13 +218,17 @@
             if (target) {
                 mozGlobalNav.clearSelectedNavLink();
                 target.classList.add('selected');
+                target.setAttribute('aria-selected', 'true');
             }
         },
 
         // Clears the currently selected horizontal navigation link.
         clearSelectedNavLink: function() {
-            for (var i = 0; i < _navLinks.length; i++) {
-                _navLinks[i].classList.remove('selected');
+            var target = document.querySelector('.nav-primary-links > li > a.selected');
+
+            if (target) {
+                target.classList.remove('selected');
+                target.setAttribute('aria-selected', 'false');
             }
         },
 
@@ -242,7 +251,7 @@
         // Handle clicks on the vertical drawer navigation links.
         handleDrawerLinkClick: function(e) {
             e.preventDefault();
-            var target = e.target.getAttribute('data-id');
+            var target = e.target.parentNode.getAttribute('data-id');
 
             if (target) {
                 mozGlobalNav.toggleDrawerMenu(target);
@@ -280,6 +289,35 @@
         },
 
         /**
+         * Sets initial WAI-ARIA roles for global navigation state
+         */
+        initARIARoles: function() {
+            var accordion = document.querySelector('.nav-menu-primary-links');
+            var accordionHeadings = accordion.querySelectorAll('.summary');
+            var rolePrefix = 'moz-global-nav-item-';
+
+            accordion.setAttribute('role', 'tablist');
+            document.querySelector('.nav-primary-links').setAttribute('role', 'tablist');
+
+            for (var i = 0; i < accordionHeadings.length; i++) {
+                accordionHeadings[i].setAttribute('role', 'tab');
+                accordionHeadings[i].setAttribute('aria-selected', 'false');
+                accordionHeadings[i].setAttribute('aria-expanded', 'false');
+                accordionHeadings[i].setAttribute('aria-controls',
+                    rolePrefix + accordionHeadings[i].getAttribute('data-id'));
+
+                _navLinks[i].setAttribute('role', 'tab');
+                _navLinks[i].setAttribute('aria-selected', 'false');
+                _navLinks[i].setAttribute('aria-controls',
+                    rolePrefix + _navLinks[i].getAttribute('data-id'));
+            }
+
+            _drawer.setAttribute('aria-hidden', 'true');
+            _menuButton.setAttribute('aria-controls', 'moz-global-nav-drawer');
+            _closeButton.setAttribute('aria-controls', 'moz-global-nav-drawer');
+        },
+
+        /**
          * Adds an element to document.body for the semi-opaque overlay visible
          * when the horizontal drawer menu is open.
          */
@@ -302,6 +340,7 @@
 
                 _menuButton.classList.remove('nav-hidden');
 
+                mozGlobalNav.initARIARoles();
                 mozGlobalNav.createNavMask();
                 mozGlobalNav.bindEvents();
             } else {

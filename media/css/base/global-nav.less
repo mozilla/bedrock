@@ -9,7 +9,7 @@
 
 @colorFirefoxLightOrange: #ff9500;
 
-@breakNavTablet:  880px;
+@breakNavTablet:  840px;
 @breakNavDesktop: 1070px;
 
 /* -------------------------------------------------------------------------- */
@@ -97,22 +97,23 @@
         height: 25px;
         margin: 0 0 0 17px;
         padding: 13px 0;
-        transition: fill 0.1s ease-in-out;
 
         a {
+            .image-replaced;
+            background: url('/media/img/pebbles/moz-wordmark-dark-reverse.svg') top left no-repeat;
             display: block;
+            width: 78px;
             height: 25px;
-
-            &:hover .p,
-            &:focus .p,
-            &:active .p {
-                fill: #646464;
-                transition: fill 0.1s ease-in-out;
-            }
         }
 
         @media only screen and (max-width: @breakNavDesktop) {
-            margin-left: 10px;
+            margin-left: 5px;
+
+            a {
+                .background-size(25px 25px);
+                background-image: url('/media/img/favicon/favicon-196x196.png');
+                width: 25px;
+            }
         }
     }
 
@@ -124,8 +125,12 @@
         position: relative;
         overflow: hidden;
 
+        @media only screen and (max-width: @breakNavTablet) {
+            padding-top: 20px;
+        }
+
         @media only screen and (max-width: @breakNavDesktop) {
-            margin-left: 10px;
+            margin-left: 5px;
         }
     }
 
@@ -198,10 +203,10 @@
     bottom: 0;
     color: #fff;
     left: -320px;
-    padding: 20px 42px;
+    padding: 20px;
     position: absolute;
     top: 0;
-    width: 236px;
+    width: 280px;
     z-index: 1000;
 
     a:link,
@@ -229,20 +234,65 @@
         -moz-appearance: none;
         -webkit-appearance: none;
         .font-size(13px);
-        background: url('/media/img/nav/drawer-close.svg') left center no-repeat;
+        background-color: #000;
         border: none;
-        color: #000;
+        cursor: pointer;
         height: 22px;
-        left: 10px;
-        margin-top: 30px;
-        padding: 0 0 0 30px;
+        margin: 30px 0 0 22px;
+        padding: 0;
         text-transform: uppercase;
-        transition: color 0.1s ease-in-out;
+
+        .rect {
+            transform-origin: center center;
+            transition: transform .12s ease-in-out;
+            transform: translate(0, 0) rotate(45deg);
+        }
+
+        .center {
+            transform: rotate(45deg);
+        }
 
         &:hover,
+        &:active,
         &:focus {
-            color: #fff;
-            transition: color 0.1s ease-in-out;
+            .top-left {
+                transform: translate(-7px, -7px) rotate(45deg);
+            }
+
+            .top-right {
+                transform: translate(7px, -7px) rotate(45deg);
+            }
+
+            .bottom-left {
+                transform: translate(-7px, 7px) rotate(45deg);
+            }
+
+            .bottom-right {
+                transform: translate(7px, 7px) rotate(45deg);
+            }
+        }
+
+        @media only screen and (max-width: @breakNavDesktop) {
+
+            .rect {
+                transition: none;
+            }
+
+            .top-left {
+                transform: translate(-7px, -7px) rotate(45deg);
+            }
+
+            .top-right {
+                transform: translate(7px, -7px) rotate(45deg);
+            }
+
+            .bottom-left {
+                transform: translate(-7px, 7px) rotate(45deg);
+            }
+
+            .bottom-right {
+                transform: translate(7px, 7px) rotate(45deg);
+            }
         }
 
         &:focus {
@@ -254,8 +304,18 @@
         }
     }
 
+    .nav-menu-inner-container {
+        margin-top: 42px;
+        position: relative;
+    }
+
+    .nav-menu-scroll-pane {
+        padding: 0 22px;
+        width: 234px;
+    }
+
     .nav-menu-primary-links {
-        padding-top: 30px;
+        padding-bottom: 40px;
         list-style-type: none;
 
         &> li {
@@ -369,6 +429,41 @@
     }
 }
 
+body[data-global-nav-current-link="firefox"] .nav-primary-links .item-firefox {
+    &> a:link,
+    &> a:visited {
+        color: @colorFirefoxLightOrange;
+    }
+}
+
+body[data-global-nav-current-link="internet-health"] .item-internet-health {
+    &> a:link,
+    &> a:visited {
+        color: @colorBrandCyan;
+    }
+}
+
+body[data-global-nav-current-link="technology"] .item-technology {
+    &> a:link,
+    &> a:visited {
+        color: @colorBrandLilac;
+    }
+}
+
+body[data-global-nav-current-link="about-us"] .item-about-us {
+    &> a:link,
+    &> a:visited {
+        color: @colorBrandLime;
+    }
+}
+
+body[data-global-nav-current-link="get-involved"] .item-get-involved {
+    &> a:link,
+    &> a:visited {
+        color: @colorBrandCoral;
+    }
+}
+
 /* -------------------------------------------------------------------------- */
 // Semi-opaque mask shown when side drawer is open.
 
@@ -396,7 +491,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
 
 #global-nav-download-firefox {
     float: right;
-    margin-right: 42px;
+    margin: -2px 20px 0 0;
 
     .download-list {
         margin: 0;
@@ -411,12 +506,24 @@ html.moz-nav-open .moz-global-nav-page-mask {
         .font-size(14px);
         background: inherit;
         border-radius: 0;
-        border: 1px solid @colorFirefoxLightOrange;
-        color: darken(@colorFirefoxLightOrange, 5%);
+        border: none;
+        color: #646464;
         display: inline-block;
-        padding: 13px 20px;
+        padding: 14px 10px;
         text-decoration: none;
         transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+
+        .download-title {
+            font-weight: bold;
+
+            &:before {
+                .font-size(16px);
+                color: @colorFirefoxLightOrange;
+                content: "\2193\00A0"; // downward-arrow+space
+                transition: color 0.1s ease-in-out;
+                white-space: nowrap;
+            }
+        }
 
         &:hover,
         &:focus,
@@ -424,16 +531,21 @@ html.moz-nav-open .moz-global-nav-page-mask {
             background-color: @colorFirefoxLightOrange;
             color: #fff;
             transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+
+            .download-title:before {
+                color: #fff;
+                transition: color 0.1s ease-in-out;
+            }
         }
     }
 
     @media only screen and (max-width: @breakNavDesktop) {
-        margin-right: 25px;
+        margin-right: 10px;
 
         .download-link {
             &:link,
             &:visited {
-                padding: 13px 10px;
+                padding: 14px 10px;
             }
         }
     }
@@ -487,13 +599,13 @@ html.moz-nav-open .moz-global-nav-page-mask {
 
 // Default (non-animated) drawer for old browsers.
 body {
-    position: relative;
     overflow-x: hidden;
 }
 
 html.moz-nav-open {
     body {
         left: 320px;
+        position: relative;
     }
 }
 
@@ -505,10 +617,14 @@ html.moz-nav-open {
     }
 
     html.moz-nav-open {
+        height: 100%;
+
         body {
+            height: 100%;
             left: 0;
-            transition: transform .25s ease-in-out;
+            overflow: hidden;
             transform: translateX(320px);
+            transition: transform .25s ease-in-out;
         }
 
         .moz-global-nav-drawer {
@@ -517,12 +633,77 @@ html.moz-nav-open {
         }
     }
 
-
     .moz-global-nav-drawer {
+        bottom: auto;
+        height: 100%;
         left: 0;
         transform: translateX(-320px);
         transition: visibility 0s .4s;
         visibility: hidden;
+
+        .nav-menu-inner-container {
+            margin-top: 22px;
+            height: 100%;
+        }
+
+        .nav-menu-scroll-pane {
+            bottom: 100px;
+            overflow-y: scroll;
+            position: absolute;
+            top: 0;
+            width: 254px;
+
+            &::-webkit-scrollbar {
+                width: 8px;
+                height: 100%;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #000;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                width: 8px;
+                height: 8px;
+                background: #999;
+                border-radius: 8px;
+            }
+        }
+
+        .nav-menu-primary-links {
+            padding-right: 20px;
+        }
+    }
+
+    @media only screen and (max-width: @breakNavDesktop) {
+        html.moz-nav-open {
+            height: auto;
+
+            body {
+                height: auto;
+                overflow-x: hidden;
+                overflow-y: initial;
+            }
+        }
+
+        .moz-global-nav-drawer {
+            bottom: 0;
+            height: auto;
+
+            .nav-menu-inner-container {
+                height: auto;
+            }
+
+            .nav-menu-scroll-pane {
+                position: static;
+                overflow-y: visible;
+                width: 234px;
+            }
+
+            .nav-menu-primary-links {
+                padding-right: 0;
+            }
+        }
     }
 }
 

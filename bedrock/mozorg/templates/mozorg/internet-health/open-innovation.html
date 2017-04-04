@@ -11,6 +11,7 @@
 
 {% block body_id %}health-open-innovation{% endblock %}
 {% block body_class %}theme-innovation{% endblock %}
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="internet-health"{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'health-subpage' %}

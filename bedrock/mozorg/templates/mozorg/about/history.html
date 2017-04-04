@@ -9,6 +9,7 @@
 {% block page_title %}{{ _('Looking back. Looking ahead.') }}{% endblock %}
 {% block body_id %}about-history{% endblock %}
 {% block body_class %}sand{% endblock %}
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'history-slides' %}
