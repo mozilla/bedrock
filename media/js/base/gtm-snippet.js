@@ -3,6 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function() {
+    'use strict';
+
     var GTM_CONTAINER_ID = document.getElementsByTagName('html')[0].getAttribute('data-gtm-container-id');
 
     // If doNotTrack is not enabled, it is ok to add GTM
