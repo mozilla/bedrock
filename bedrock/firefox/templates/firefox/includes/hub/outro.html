@@ -1,0 +1,15 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+<aside class="outro">
+  <div class="content">
+    <section class="outro-item outro-item-newsletter">
+      <div class="outro-item-detail">
+        <h2>{{ _('Hungry for more?') }}</h2>
+        <p class="tagline">{{ _('Get the latest &amp; greatest from Firefox delivered straight to your inbox.') }}</p>
+        {{ email_newsletter_form(include_title=False, spinner_color='#000', button_class='button-hollow light') }}
+      </div>
+    </section>
+  </div> {#--/.content--#}
+</aside> {#--/.outro--#}

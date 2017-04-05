@@ -1,0 +1,131 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/base.html" %}
+
+{# L10n: strings for this page are not considered final and aren't ready for localization. #}
+
+{% block page_title %}{{ _('Firefox, a different browser for different times. Browse free.') }}{% endblock %}
+{% block page_desc %}{{ _('Browse the Internet as it was meant to be...free, safe, and accessible to everyone. Browse independently with Firefox.') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/features/page-image-independent.jpg') }}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-independent{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Firefox: Rebel with a cause') }}</span></h1>
+  <p class="tagline">
+  {% trans %}
+    Firefox is independent and a part of the non-profit Mozilla, which fights
+    for your online rights, keeps corporate powers in check, and makes the
+    Internet accessible to everyone, everywhere.
+  {% endtrans %}
+  </p>
+{% endblock %}
+
+{% block features_list %}
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/independent/no-strings.jpg') }}" alt="">
+        <h3>{{ _('No strings attached') }}</h3>
+        <p>
+        {% trans %}
+          Firefox is built by a non-profit. That means we can do things that others
+          can’t, like build new products and features without a hidden agenda. We
+          champion your right to privacy with tools like Private Browsing with Tracking
+          Protection, which go beyond what Google Chrome and Microsoft Edge offer.
+        {% endtrans %}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/independent/what-you-see.jpg') }}" alt="">
+        <h3>{{ _('What you see is what you get') }}</h3>
+        <p>
+        {% trans %}
+          We believe the Internet is for people, not profit. Unlike other companies,
+          we don’t sell access to your data. <em>You’re</em> in control over who sees
+          your search and browsing history. Choice— that’s what a healthy Internet is
+          all about!
+        {% endtrans %}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/independent/mission.jpg') }}" alt="">
+        <h3>{{ _('A browser on a mission') }}</h3>
+        <p>
+        {% trans %}
+          Firefox is a browser with a conscience. As part of the technology non-profit
+          Mozilla, we fight for your online rights, keep corporate powers in check,
+          and help educate developing countries on healthy Internet practices. So when
+          you choose Firefox, we’re choosing you, too.
+        {% endtrans %}
+        </p>
+      </li>
+    </ul>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}
+
+{% block values %}
+<section class="values">
+  <div class="content">
+
+    <div class="cards-container">
+      <section id="card-modern" class="card image-card card-private">
+        <a href="{{ url('firefox.features.private-browsing') }}" class="card-image" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+          <img src="{{ static('img/firefox/hub/value-private.jpg') }}" alt="">
+        </a>
+        <div class="card-content">
+          <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+            <h2 class="card-title">{{ _('More Privacy') }}</h2>
+          </a>
+          <p>
+          {% trans %}
+            Firefox doesn’t sell access to your personal information like other companies.
+            From privacy tools to tracking protection, you’re in charge of who sees what.
+          {% endtrans %}
+          </p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+              {{ _('Here’s how Firefox protects your privacy') }}
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section id="card-modern" class="card image-card card-modern">
+        <a href="{{ url('firefox.features.fast') }}" class="card-image" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+          <img src="{{ static('img/firefox/hub/value-modern.jpg') }}" alt="">
+        </a>
+        <div class="card-content">
+          <a href="{{ url('firefox.features.fast') }}" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+            <h2 class="card-title">{{ _('More Performance') }}</h2>
+          </a>
+          <p>
+          {% trans %}
+            Bring it, Internet! We’ve spent the last year supercharging Firefox’s
+            performance. Now start up to 30% faster, tab hop 86% quicker, and scroll
+            like a speed demon.
+          {% endtrans %}
+          </p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+              {{ _('Get more done with Firefox speeds') }}
+            </a>
+          </p>
+        </div>
+      </section>
+    </div> {#--/.cards-container--#}
+  </div> {#--/.content--#}
+</section> {#--/.values--#}
+{% endblock %}

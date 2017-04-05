@@ -1,0 +1,79 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+//* -------------------------------------------------------------------------- */
+// Firefox Hub: News Feed Component
+
+.news-feed {
+    margin: 0;
+
+    &> li {
+        @include clearfix;
+    }
+
+    .entry {
+        img {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        @media #{$mq-tablet} {
+            padding: 20px 0 20px 300px;
+
+            img {
+                float: left;
+                margin: 0 0 40px -300px;
+                width: 260px;
+            }
+
+            .cta-link {
+                width: 50%;
+            }
+        }
+
+        @media #{$mq-desktop} {
+            padding: 20px 0 20px 460px;
+
+            img {
+                margin-left: -460px;
+                width: 420px;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            a.entry-block,
+            .entry-summary {
+                max-width: 34em;
+            }
+        }
+
+        a.entry-block {
+            display: block;
+            text-decoration: none;
+
+            &:link,
+            &:visited {
+                h3 {
+                    @include transition(color .1s ease-in-out);
+                    color: $color-text-primary;
+                }
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+                h3 {
+                    @include transition(color .1s ease-in-out);
+                    color: #9C432A;
+                }
+            }
+        }
+    }
+
+    .entry-title {
+        @include font-size-level2;
+    }
+}
