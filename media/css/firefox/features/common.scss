@@ -1,0 +1,234 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/newsletter';
+@import '../../pebbles/includes/fonts/zilla-slab';
+@import '../../hubs/sub-nav';
+@import '../../hubs/buttons';
+@import '../../hubs/cta-link';
+
+$color-burnt-orange: #9c432a;
+
+// copied from pebbles/components/_global-nav.scss
+// should be moved to a common location in pebbles?
+$color-firefox-light-orange: #ff9500;
+$mq-nav-tablet:     'screen and (min-width: 880px)';
+$mq-nav-desktop:    'screen and (min-width: 1070px)';
+
+main {
+    @include font-size(20px);
+    @include zilla-slab;
+
+    .content:before {
+        @include gradient-horizontal($start-color: #69b9d0, $end-color: $color-burnt-orange);
+        content: '';
+        display: block;
+        height: 6px;
+        margin: 20px 0 25px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Common elements
+
+.section-title {
+    @include font-size(24px);
+    text-transform: lowercase;
+    margin: 0 0 20px;
+
+    span {
+        @include box-decoration-break(clone);
+        background-color: #000;
+        color: #fff;
+        padding: 0 5px 0 60px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Page header
+
+.header-intro {
+
+    h1 {
+        color: #fff;
+        line-height: 1.3;
+        text-transform: lowercase;
+
+        span {
+            @include box-decoration-break(clone);
+            background: #000;
+        }
+    }
+
+    .tagline {
+        @include font-size-level3;
+        color: $color-text-secondary;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 0;
+        text-transform: lowercase;
+    }
+
+    .hero-image {
+        display: block;
+        margin: 20px auto 0;
+    }
+
+    .header-download {
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .content:before {
+        height: 10px;
+    }
+
+    @media #{$mq-tablet} {
+
+        .hero-image {
+            margin-top: 60px;
+        }
+
+        .header-container {
+            @include clearfix;
+        }
+
+        .header-content {
+            @include span(6);
+            padding-left: 0;
+        }
+
+        .header-download {
+            @include span(6);
+            padding: 60px 0 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        h1 {
+            @include font-size(72px);
+        }
+
+        .tagline {
+            @include font-size(32px);
+        }
+
+        .header-content {
+            @include span(8);
+            padding-left: 0;
+        }
+
+        .header-download {
+            @include span(4);
+            padding: 60px 0 0;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        h1 {
+            @include font-size(95px);
+        }
+
+        .tagline {
+            @include font-size(48px);
+        }
+
+        .header-content {
+            @include span(9);
+            padding-left: 0;
+        }
+
+        .header-download {
+            @include span(3);
+            padding: 60px 0 0;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Features grid list
+
+.features-list {
+    @media #{$mq-phone-wide} {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.features-list-item {
+    padding-bottom: 20px;
+
+    @media #{$mq-tablet} {
+        width: 420px;
+        margin: 0 12px;
+    }
+
+    &:last-child {
+        padding-bottom: 0;
+    }
+
+    h3 {
+        margin-bottom: 10px;
+    }
+
+    small {
+        display: block;
+        font-style: italic;
+        margin-bottom: 20px;
+    }
+
+    img {
+        margin-bottom: 20px;
+        max-width: 420px;
+        width: 100%;
+    }
+}
+
+html[lang^="en"] .features-list-item {
+
+    h3 {
+        text-transform: lowercase;
+    }
+}
+
+@supports(display: grid) {
+    .features-list {
+        @media #{$mq-phone-wide} {
+            display: grid;
+            grid-gap: 40px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media #{$mq-desktop} {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .features-list-item {
+        @media #{$mq-tablet} {
+            width: auto;
+            margin: 0;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Download button overrides
+
+.fx-privacy-link {
+    a:link,
+    a:visited {
+        @include font-size(14px);
+        @include open-sans();
+        color: $color-burnt-orange;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+}

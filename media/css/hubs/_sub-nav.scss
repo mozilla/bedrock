@@ -1,0 +1,200 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+// copied from pebbles/components/_global-nav.scss
+// should be moved to a common location in pebbles?
+$color-firefox-light-orange: #ff9500;
+$mq-nav-tablet:     'screen and (min-width: 840px)';
+$mq-nav-desktop:    'screen and (min-width: 1070px)';
+
+.moz-sub-nav {
+    @include clearfix();
+    background: #fff;
+    display: none; // hidden for mobile
+    overflow: hidden;
+
+    @media #{$mq-nav-tablet} {
+        display: block;
+        margin-bottom: 20px;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+        &.stuck {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            transform: translateY(-4px);
+            width: 100%;
+            z-index: 200;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: #000;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #000;
+        text-decoration: underline;
+        transition: color 0.1s ease-in-out;
+    }
+
+    .nav-horizontal-menu {
+        border-top: 2px solid #000;
+        margin: 0 10px 0 60px;
+
+        @media #{$mq-nav-desktop} {
+            margin-left: 84px;
+            margin-right: 20px;
+        }
+    }
+
+    .subnav-primary-links {
+        @include font-size(16px);
+        float: left;
+        list-style-type: none;
+        margin: 0;
+        padding: 13px 0;
+
+        &> li {
+            display: inline-block;
+            padding: 0 6px;
+
+            a:hover,
+            a:active,
+            a:focus {
+                color: $color-firefox-light-orange;
+                text-decoration: none;
+            }
+
+            a:focus {
+                outline: none;
+            }
+        }
+
+        @media #{$mq-nav-desktop} {
+            &> li {
+                padding: 0 21px;
+            }
+        }
+    }
+}
+
+// black outline firefox logo
+#fx-global-nav-home-link {
+    display: block;
+    float: left;
+    height: 26px;
+    margin-right: 9px;
+    padding-top: 10px;
+    width: 26px;
+
+    .fx-subnav-logo-path {
+        transition: fill 0.1s ease-in-out;
+    }
+
+    &:hover {
+        .fx-subnav-logo-path {
+            fill: $color-firefox-light-orange;
+        }
+    }
+
+    @media #{$mq-nav-desktop} {
+        margin-right: 73px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Customized Firefox download button for sub navigation.
+// Near-total copy pasta from global-nav.html. TODO: DRY this up
+
+#sub-nav-download-firefox {
+    float: right;
+    margin: 8px 0 0 0;
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: opacity 0.3s ease 0.1s, transform 0.4s ease-in-out 0.1s;
+    visibility: hidden;
+
+    .download-list {
+        margin: 0;
+
+        &> li {
+            margin: 0;
+        }
+    }
+
+    .download-link:link,
+    .download-link:visited {
+        @include font-size(14px);
+        background: inherit;
+        border-radius: 0;
+        border: none;
+        color: #646464;
+        display: inline-block;
+        padding: 5px 10px;
+        text-decoration: none;
+        transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+
+        .download-title {
+            font-weight: bold;
+
+            &:before {
+                @include font-size(16px);
+                color: $color-firefox-light-orange;
+                content: "\2193\00A0"; // downward-arrow+space
+                transition: color 0.1s ease-in-out;
+                white-space: nowrap;
+            }
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $color-firefox-light-orange;
+            color: #fff;
+            transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+
+            .download-title:before {
+                color: #fff;
+                transition: color 0.1s ease-in-out;
+            }
+        }
+    }
+
+    @media #{$mq-nav-desktop} {
+        margin-right: 10px;
+
+        .download-link {
+            &:link,
+            &:visited {
+                padding: 5px 10px;
+            }
+        }
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+}
+
+@media #{$mq-nav-tablet} {
+    .moz-sub-nav.stuck #sub-nav-download-firefox {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+
+    .other .moz-sub-nav.stuck #sub-nav-download-firefox,
+    .oldwin .moz-sub-nav.stuck #sub-nav-download-firefox,
+    .oldmac .moz-sub-nav.stuck #sub-nav-download-firefox {
+        display: none;
+    }
+}

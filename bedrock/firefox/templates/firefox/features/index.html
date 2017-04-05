@@ -1,0 +1,230 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/base.html" %}
+
+{# L10n: strings for this page are not considered final and aren't ready for localization. #}
+
+{% block page_title %}{{ _('Firefox Features: Privacy, Speed, Independence and more') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox is the only browser built for you by an independent nonprofit, Mozilla. Check out all the features that make Firefox better than the rest.') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/features/page-image-landing.jpg') }}{% endblock %}
+
+{% block body_id %}firefox-features-landing{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Firefox features') }}</span></h1>
+{% endblock %}
+
+{% block features_header_image %}
+  {{ high_res_img('firefox/features/hero-landing.png', {'class': 'hero-image', 'alt': '', 'width': '720'}) }}
+{% endblock %}
+
+{% block features_list %}
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Modern features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fx-content-hub" data-link-type="link" data-link-name="Your favorite Add-ons and Extensions" data-link-position="modern 1">
+          <img src="{{ static('img/firefox/features/thumbnails/addons.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Your favorite Add-ons and Extensions') }}</h3>
+        <p>{{ _('Adblock, Ublock, LastPass and thousands more.') }}</p>
+        <p>
+          <a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fx-content-hub" class="cta-link" data-link-type="link" data-link-name="Your favorite Add-ons and Extensions" data-link-position="modern 1">
+            {{ _('Get powerful Add-ons') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="https://addons.mozilla.org/firefox/themes/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fx-content-hub" data-link-type="link" data-link-name="Customize your browser" data-link-position="modern 2">
+          <img src="{{ static('img/firefox/features/thumbnails/customize.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Customize your browser') }}</h3>
+        <p>{{ _('Personalize Firefox with everything from themes to privacy tools.') }}</p>
+        <p>
+          <a href="https://addons.mozilla.org/firefox/themes/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fx-content-hub" class="cta-link" data-link-type="link" data-link-name="Customize your browser" data-link-position="modern 2">
+            {{ _('Make Firefox yours') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="{{ url('firefox.features.fast') }}" data-link-type="link" data-link-name="Browse Faster" data-link-position="modern 3">
+          <img src="{{ static('img/firefox/features/thumbnails/fast.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Browse Faster') }}</h3>
+        <p>{{ _('Start faster, tab hop quicker, get more done.') }}</p>
+        <p>
+          <a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-name="Browse Faster" data-link-position="modern 3">
+            {{ _('Do more with Firefox') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="{{ url('firefox.sync') }}" data-link-type="link" data-link-name="Sync Between Devices" data-link-position="modern 4">
+          <img src="{{ static('img/firefox/features/thumbnails/sync.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Sync Between Devices') }}</h3>
+        <p>{{ _('Get your tabs, logins, and history on the go.') }}</p>
+        <p>
+          <a href="{{ url('firefox.sync') }}" class="cta-link" data-link-type="link" data-link-name="Sync Between Devices" data-link-position="modern 4">
+            {{ _('Use Firefox everywhere') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="{{ url('firefox.android.index') }}" data-link-type="link" data-link-name="Firefox for Android" data-link-position="modern 5">
+          <img src="{{ static('img/firefox/features/thumbnails/mobile.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Firefox for Android') }}</h3>
+        <p>{{ _('Our most customizable Firefox for Android yet.') }}</p>
+        <p>
+          <a href="{{ url('firefox.android.index') }}" class="cta-link" data-link-type="link" data-link-name="Firefox for Android" data-link-position="modern 5">
+            {{ _('Take control of your browser') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="{{ url('firefox.ios') }}" data-link-type="link" data-link-name="Firefox for iOS" data-link-position="modern 6">
+          <img src="{{ static('img/firefox/features/thumbnails/mobile.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Firefox for iOS') }}</h3>
+        <p>{{ _('The speed you need. The privacy you trust.') }}</p>
+        <p>
+          <a href="{{ url('firefox.ios') }}" class="cta-link" data-link-type="link" data-link-name="Firefox for iOS" data-link-position="modern 6">
+            {{ _('Go beyond the default') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="https://testpilot.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fx-content-hub" data-link-type="link" data-link-name="Firefox Test Pilot" data-link-position="modern 7">
+          <img src="{{ static('img/firefox/features/thumbnails/test-pilot.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Firefox Test Pilot') }}</h3>
+        <p>{{ _('Experimental features that can simplify your life.') }}</p>
+        <p>
+          <a href="https://testpilot.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fx-content-hub" class="cta-link" data-link-type="link" data-link-name="Firefox Test Pilot" data-link-position="modern 7">
+            {{ _('Help launch new features') }}
+          </a>
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Privacy features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-name="Ad Tracker Blocking" data-link-position="privacy 1">
+          <img src="{{ static('img/firefox/features/thumbnails/tracking-protection.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Ad Tracker Blocking') }}</h3>
+        <p>{{ _('Firefox Private Browsing blocks ads with trackers.') }}</p>
+        <p>
+          <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-name="Ad Tracker Blocking" data-link-position="privacy 1">
+            {{ _('Block ad trackers') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-name="More Powerful Private Browsing" data-link-position="privacy 2">
+          <img src="{{ static('img/firefox/features/thumbnails/private-browsing.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('More Powerful Private Browsing') }}</h3>
+        <p>{{ _('More protection than Incognito mode or InPrivate.') }}</p>
+        <p>
+          <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-name="More Powerful Private Browsing" data-link-position="privacy 2">
+            {{ _('Get better privacy') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-name="More Private" data-link-position="privacy 3">
+          <img src="{{ static('img/firefox/features/thumbnails/private.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('More Private') }}</h3>
+        <p>{{ _('We don’t sell access to your online data. Period.') }}</p>
+        <p>
+          <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-name="More Private" data-link-position="privacy 3">
+            {{ _('Get Firefox for Privacy') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="{{ url('privacy') }}" data-link-type="link" data-link-name="Limited Data Collection" data-link-position="privacy 4">
+          <img src="{{ static('img/firefox/features/thumbnails/limited-data-collection.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Limited Data Collection') }}</h3>
+        <p>{{ _('Opted-in to privacy, so you can browse freely.') }}</p>
+        <p>
+          <a href="{{ url('privacy') }}" class="cta-link" data-link-type="link" data-link-name="Limited Data Collection" data-link-position="privacy 4">
+            {{ _('Read our privacy policy') }}
+          </a>
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Independence features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <a href="{{ url('mozorg.mission') }}" data-link-type="link" data-link-name="By Non-Profit, Mozilla" data-link-position="independence 1">
+          <img src="{{ static('img/firefox/features/thumbnails/non-profit.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('By Non-Profit, Mozilla') }}</h3>
+        <p>{{ _('Protecting the health of the internet.') }}</p>
+        <p>
+          <a href="{{ url('mozorg.mission') }}" class="cta-link" data-link-type="link" data-link-name="By Non-Profit, Mozilla" data-link-position="independence 1">
+            {{ _('Read Mozilla’s mission') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-name="Open Source" data-link-position="independence 2">
+          <img src="{{ static('img/firefox/features/thumbnails/open-source.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Open Source') }}</h3>
+        <p>{{ _('We’re always transparent.') }}</p>
+        <p>
+          <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-name="Open Source" data-link-position="independence 2">
+            {{ _('See what makes us different') }}
+          </a>
+        </p>
+      </li>
+      <li class="features-list-item">
+        <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-name="Protect Your Rights" data-link-position="independence 3">
+          <img src="{{ static('img/firefox/features/thumbnails/independent.jpg') }}" alt="">
+        </a>
+        <h3>{{ _('Protect Your Rights') }}</h3>
+        <p>{{ _('We help keep corporate powers in check.') }}</p>
+        <p>
+          <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-name="Protect Your Rights" data-link-position="independence 3">
+            {{ _('Choose independence') }}
+          </a>
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+{% endblock %}
+
+{% block news %}{% endblock %}
+{% block values %}{% endblock %}
+{% block outro %}{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {% if switch('statcounter-experiment') %}
+    {% javascript 'stat_counter' %}
+    {% include 'includes/stat_counter.html' %}
+  {% endif %}
+{% endblock %}
