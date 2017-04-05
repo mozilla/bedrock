@@ -1,0 +1,126 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/base.html" %}
+
+{% block page_title %}{{ _('Private Browser Protects Your Online Privacy') }} | {{ _('Firefox') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox protects your online privacy and blocks trackers that follow you around the web. Get Firefox for private browsing!') }}{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/features/page-image-private.jpg') }}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-private{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Firefox: More protection. Less worry.') }}</span></h1>
+  <p class="tagline">
+  {% trans %}
+    We’re obsessed with protecting your privacy. That’s why we’ve made Firefox Private
+    Browsing more powerful than the others.
+  {% endtrans %}
+  </p>
+{% endblock %}
+
+{% block features_list %}
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/private/no-trace.jpg') }}" alt="">
+        <h3>{{ _('Leave no trace') }}</h3>
+        <p>
+        {% trans %}
+          Sharing is caring, but that should be your call. Firefox Private Browsing
+          automatically erases your online info like passwords, cookies, and history
+          from your computer. So that when you close out, you leave no trace.
+        {% endtrans %}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/private/zero-chill.jpg') }}" alt="">
+        <h3>{{ _('Trackers have zero chill') }}</h3>
+        <p>
+        {% trans %}
+          Some websites and ads attach hidden trackers that collect your browsing info
+          long after you’ve left. Only Firefox Private Browsing has tracking protection
+          to block them automatically, so you can browse with peace of mind.
+        {% endtrans %}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/private/baggage.jpg') }}" alt="">
+        <h3>{{ _('Drop the ad baggage') }}</h3>
+        <p>
+        {% trans %}
+          Not only do trackers collect info, they can weigh down your browsing speeds.
+          Only Firefox Private Browsing blocks ads with hidden trackers, so you can drop
+          the baggage and browse freely.
+        {% endtrans %}
+        </p>
+      </li>
+    </ul>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}
+
+{% block values %}
+<section class="values">
+  <div class="content">
+    <div class="cards-container">
+      <section id="card-modern" class="card image-card card-modern">
+        <a href="{{ url('firefox.features.fast') }}" class="card-image" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+          <img src="{{ static('img/firefox/hub/value-modern.jpg') }}" alt="">
+        </a>
+        <div class="card-content">
+          <a href="{{ url('firefox.features.fast') }}" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+            <h2 class="card-title">{{ _('More Performance') }}</h2>
+          </a>
+          <p>
+          {% trans %}
+            Bring it, Internet! We’ve spent the last year supercharging Firefox’s
+            performance. Now start up to 30% faster, tab hop 86% quicker, and scroll
+            like a speed demon.
+          {% endtrans %}
+          </p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+              {{ _('Get more done with Firefox speeds') }}
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section id="card-independent" class="card image-card card-independent">
+        <a href="{{ url('firefox.features.independent') }}" class="card-image" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+        <img src="{{ static('img/firefox/hub/value-indie.jpg') }}" alt="">
+        </a>
+        <div class="card-content">
+          <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+            <h2 class="card-title">{{ _('More Freedom') }}</h2>
+          </a>
+          <p>
+          {% trans %}
+            Following the pack isn’t our style. As part of the non-profit Mozilla,
+            Firefox leads the fight to protect your online rights, and champion an
+            Internet that benefits everyone—not just a few.
+          {% endtrans %}
+          </p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+              {{ _('Browse independently with Firefox') }}
+            </a>
+          </p>
+        </div>
+      </section>
+    </div> {#--/.cards-container--#}
+  </div> {#--/.content--#}
+</section> {#--/.values--#}
+{% endblock %}

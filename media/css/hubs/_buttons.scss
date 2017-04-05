@@ -1,0 +1,80 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+$color-burnt-orange: #9c432a;
+
+.button,
+button.button,
+button.form-button,
+a.button:link,
+a.button:visited {
+    &.button-hollow,
+    &.button-hollow-arrow {
+        @include font-size(18px);
+        @include open-sans();
+        background: transparent;
+        border-radius: 0;
+
+        strong {
+            font-weight: bold;
+        }
+
+        &.dark {
+            border-color: $color-burnt-orange;
+            color: $color-burnt-orange;
+
+            &:hover,
+            &:focus {
+                background: $color-burnt-orange;
+                color: #fff;
+            }
+        }
+
+        &.light {
+            border-color: #fff;
+            color: #fff;
+
+            &:hover,
+            &:focus {
+                background: #fff;
+                color: #000;
+            }
+        }
+    }
+
+    &.button-hollow-arrow {
+
+        &:hover,
+        &:focus {
+            strong:before {
+                background-position: left -14px;
+            }
+        }
+
+        strong {
+            font-weight: bold;
+
+            &:before {
+                @include background-size(12px 28px);
+                background-position: left top;
+                content: '';
+                display: block;
+                float: left;
+                height: 14px;
+                margin: 8px 10px 0 0;
+                width: 12px;
+            }
+        }
+
+        &.dark strong:before {
+            background-image: url('/media/img/hubs/down-arrow-dark-sprite.png');
+        }
+
+        &.light strong:before {
+            background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
+        }
+    }
+}
