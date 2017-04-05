@@ -4,6 +4,12 @@
 
 {% extends "firefox/base-resp.html" %}
 
+{% block experiments %}
+  {% if switch('experiment-firefox-family', ['en-US']) %}
+    {% javascript 'experiment_firefox_family' %}
+  {% endif %}
+{% endblock %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}
 {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
@@ -22,7 +28,7 @@
 {% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_family' %}
+  {% stylesheet 'firefox_family_index' %}
 {% endblock %}
 
 {% block body_class %}mozid{% endblock %}
