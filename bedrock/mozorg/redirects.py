@@ -184,8 +184,8 @@ redirectpatterns = (
     # Bug 784411 /about/mission/ -> /mission/
     redirect(r'^about/mission/?$', '/mission/'),
 
-    # Bug 1171763 - delete researchers and projects and redirect
-    redirect(r'^research/.+', '/research/'),
+    # Bug 1171763, 1347752 - /research/ -> research.m.o
+    redirect(r'^research(/.*)?$', 'https://research.mozilla.org/'),
 
     # Bug 800298 /webmaker/ -> wm.o and /webmaker/videos/ ->
     # wm.o/videos/

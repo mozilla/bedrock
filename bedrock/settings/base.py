@@ -420,7 +420,6 @@ INSTALLED_APPS = (
     'bedrock.persona',
     'bedrock.press',
     'bedrock.privacy',
-    'bedrock.research',
     'bedrock.styleguide',
     'bedrock.tabzilla',
     'bedrock.teach',
