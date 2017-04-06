@@ -1065,6 +1065,9 @@ URLS = flatten((
     # Bug 784411
     url_test('/about/mission/', '/mission/'),
 
+    # Bug 1171763, 1347752 - /research/ -> research.m.o
+    url_test('/research/{,projects/,researchers/}', 'https://research.mozilla.org/'),
+
     # Bug 1260423
     url_test('/firefox/choose', '/firefox/new/'),
 

@@ -30,7 +30,6 @@ urlpatterns = (
     url(r'', include('bedrock.thunderbird.urls')),
     url(r'', include('bedrock.mozorg.urls')),
     url(r'', include('bedrock.newsletter.urls')),
-    url(r'', include('bedrock.research.urls')),
     url(r'', include('bedrock.teach.urls')),
 
     # L10n example.

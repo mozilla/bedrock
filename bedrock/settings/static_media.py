@@ -792,12 +792,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/projects-calendar-bundle.css',
     },
-    'research': {
-        'source_filenames': (
-            'css/research/research.less',
-        ),
-        'output_filename': 'css/research-bundle.css',
-    },
     'security': {
         'source_filenames': (
             'css/security/security.less',
