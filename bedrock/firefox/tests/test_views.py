@@ -469,3 +469,48 @@ class TestFirefoxFeatures(TestCase):
         req.locale = 'de'
         views.features_landing(req)
         render_mock.assert_called_once_with(req, 'firefox/features.html')
+
+
+@override_settings(DEV=False)
+class TestFirefoxProductDesktopView(TestCase):
+    def test_en_us_template(self):
+        view = views.FirefoxProductDesktopView()
+        view.request = RequestFactory().get('/firefox/desktop/')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/products/desktop.html'])
+
+    def test_locales_template(self):
+        view = views.FirefoxProductDesktopView()
+        view.request = RequestFactory().get('/firefox/desktop/')
+        view.request.locale = 'fr'
+        eq_(view.get_template_names(), ['firefox/desktop/index.html'])
+
+
+@override_settings(DEV=False)
+class TestFirefoxProductAndroidView(TestCase):
+    def test_en_us_template(self):
+        view = views.FirefoxProductAndroidView()
+        view.request = RequestFactory().get('/firefox/android/')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/products/android.html'])
+
+    def test_locales_template(self):
+        view = views.FirefoxProductAndroidView()
+        view.request = RequestFactory().get('/firefox/android/')
+        view.request.locale = 'fr'
+        eq_(view.get_template_names(), ['firefox/android/index.html'])
+
+
+@override_settings(DEV=False)
+class TestFirefoxProductIOSView(TestCase):
+    def test_en_us_template(self):
+        view = views.FirefoxProductIOSView()
+        view.request = RequestFactory().get('/firefox/ios/')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/products/ios.html'])
+
+    def test_locales_template(self):
+        view = views.FirefoxProductIOSView()
+        view.request = RequestFactory().get('/firefox/ios/')
+        view.request.locale = 'fr'
+        eq_(view.get_template_names(), ['firefox/ios.html'])

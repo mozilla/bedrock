@@ -1,0 +1,23 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-product-page' %}
+{% endblock %}
+
+{% block site_footer %}
+  {% with footer_class='dark' %}
+    {% if LANG.startswith('en-') %}
+      {% include 'includes/site-footer-new.html' %}
+    {% else %}
+      {% include 'includes/site-footer.html' %}
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox-product-page' %}
+{% endblock %}
