@@ -1,0 +1,69 @@
+{#
+ # I'm putting this in the includes folder for reference, though it
+ # probably wouldn't really work as an include and you might just
+ # have to copy/paste this into your pages.
+ #
+ # The grid is set up for three cards with one featured with an image.
+ # They stack blog-style in smaller viewports.
+ #
+ # For the feature pages that only only have two cards, remove `is-three-cards`.
+ # Both can be image cards when there are only two.
+ #
+ #}
+
+<div class="cards-container is-three-cards">
+  <section id="private" class="card card-private image-card is-featured">
+    <a href="#" class="card-image" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+      <img src="{{ static('img/firefox/hub/value-private.jpg') }}" alt="">
+    </a>
+    <p class="card-label"><strong>{{ _('Private') }}</strong></p>
+    <div class="card-content">
+      <a href="#" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+        <h2 class="card-title">{{ _('More Privacy') }}</h2>
+      </a>
+      <p>
+      {% trans %}
+        Firefox doesn’t sell access to your personal information like other
+        browsers. From privacy tools to tracking protection, you’re in charge
+        of who sees what.
+      {% endtrans %}
+      </p>
+      <p class="card-cta"><a href="#" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">{{ ('Here’s how Firefox protects your privacy') }}</a></p>
+    </div>
+  </section>
+
+  <section id="modern" class="card card-modern">
+    <p class="card-label"><strong>{{ _('Modern') }}</strong></p>
+    <div class="card-content">
+      <a href="#" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+        <h2 class="card-title">{{ _('More Performance') }}</h2>
+      </a>
+      <p>
+      {% trans %}
+        Bring it, Internet! We’ve spent the last year supercharging Firefox’s
+        performance. Now start up to 30% faster, tab hop 86% quicker, and
+        scroll like a speed demon.
+      {% endtrans %}
+      </p>
+      <p class="card-cta"><a href="#" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">{{ _('Get more done with Firefox speeds') }}</a></p>
+    </div>
+  </section>
+
+  <section id="independent" class="card card-independent">
+    <p class="card-label"><strong>{{ _('Independent') }}</strong></p>
+    <div class="card-content">
+      <a href="#" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+        <h2 class="card-title">{{ _('More Freedom') }}</h2>
+      </a>
+      <p>
+      {% trans %}
+        Following the pack isn’t our style. As part of the non-profit Mozilla,
+        Firefox leads the fight to protect your online rights, and champion an
+        Internet that benefits everyone — not just a few.
+      {% endtrans %}
+      </p>
+      <p class="card-cta"><a href="#" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">{{ _('Browse independently with Firefox') }}</a></p>
+    </div>
+  </section>
+</div> {#--/.cards-container--#}
+
