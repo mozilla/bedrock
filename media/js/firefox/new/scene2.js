@@ -10,6 +10,9 @@
     var $platformLink = $('#download-button-wrapper-desktop .download-list li:visible .download-link');
     var downloadURL;
 
+    // Bug 1354334 - add a hint for test automation that page has loaded.
+    $('html').addClass('download-ready');
+
     // Only auto-start the download if a visible platform link is detected.
     if ($platformLink.length) {
         downloadURL = $platformLink.attr('href');

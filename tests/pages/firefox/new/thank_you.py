@@ -13,6 +13,13 @@ class ThankYouPage(FirefoxBasePage):
 
     _direct_download_link_locator = (By.ID, 'direct-download-link')
 
+    # Bug 1354334 - sometimes download is triggered before window.load.
+    def wait_for_page_to_load(self):
+        self.wait.until(lambda s: self.seed_url in s.current_url)
+        el = self.find_element(By.TAG_NAME, 'html')
+        self.wait.until(lambda s: 'download-ready' in el.get_attribute('class'))
+        return self
+
     @property
     def is_direct_download_link_displayed(self):
         return self.is_element_displayed(*self._direct_download_link_locator)
