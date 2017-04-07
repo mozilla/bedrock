@@ -1708,4 +1708,10 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/matchmedia_addlistener-bundle.js',
     },
+    'stat_counter': {
+        'source_filenames': (
+            'js/base/stat-counter.js',
+        ),
+        'output_filename': 'js/stat-counter-bundle.js',
+    },
 }
