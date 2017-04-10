@@ -1,0 +1,319 @@
+[
+    {
+        "id": 10,
+        "date": "2017-03-14T13:58:50",
+        "date_gmt": "2017-03-14T20:58:50",
+        "guid": {
+            "rendered": "https:\/\/blog.mozilla.org\/firefox\/?p=10"
+        },
+        "modified": "2017-03-15T15:14:33",
+        "modified_gmt": "2017-03-15T22:14:33",
+        "slug": "fast-responsive-reliable-browser-multi-tab-age",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/fast-responsive-reliable-browser-multi-tab-age\/",
+        "title": {
+            "rendered": "Fast, Responsive, Reliable: A Browser For the Multi-Tab Age"
+        },
+        "content": {
+            "rendered": "<p>Take a look at your browser window: how many tabs do you have open? It\u2019s likely your answer is somewhere between \u201cten\u201d and \u201ca ton,\u201d and you\u2019re not alone. These days, users consume web content in a smorgasbord of tabs, leaving pages open (to look at later) even as we open new ones (for more immediate tasks and browsing). Most of the time, the web offers five-star buffet service, responding to our commands and serving up satisfying content on command.<\/p>\n<p><img class=\"size-full wp-image-45 alignnone\" src=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Multi-Process_PullQuote.png\" alt=\"\" width=\"1200\" height=\"630\" srcset=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Multi-Process_PullQuote.png 1200w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Multi-Process_PullQuote-300x158.png 300w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Multi-Process_PullQuote-768x403.png 768w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Multi-Process_PullQuote-600x315.png 600w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Multi-Process_PullQuote-1000x525.png 1000w\" sizes=\"(max-width: 1200px) 100vw, 1200px\" \/><\/p>\n<p>But then there are times when you stand in line at the Internet buffet moving nowhere. You eye the lavish food displays while one person stalls, carefully picking over the salad and heaping spoonfuls of entr\u00e9es onto his tray. This kind of hang time is frustrating. Your browser, overloaded with processing, temporarily freezes and fails to respond to your clicks and keystrokes, no matter how insistently you tap away. This is because some pages require a lot of your computer\u2019s processing power, and the machine puts all of its energy into processing the page, rather than responding to you.<\/p>\n<p>Last August, we began the rollout of Electrolysis (e10s), our multi-process browser functionality. Basically, multi-process means that the browser runs in two separate lanes: one for the user interface, and another for your many tabs (i.e., web content). This means that Firefox can react quickly to your insistent taps (input), instead of temporarily freezing while processing a page (or, let\u2019s be honest, your dozens of open pages!) In terms of numbers, the multi-process Firefox browser hangs 86% less while web pages are loading, and 75% less after loading.<\/p>\n<p>This means that the Firefox browser is more stable than ever before. You know how a single hanging page can lead to the entire browser crashing? Because multi-process Firefox runs user interface and content processes separately, if a page ever hangs and crashes, it doesn\u2019t take the whole browser down with it.<\/p>\n<p>We know you expect a flexible and responsive browsing experience that keeps pace with your internet appetite. The Firefox user experience is now faster, smoother, and more reliable than ever before. So feel free to feast on the Internet, and save room for dessert. Or (let\u2019s be honest) \u2014 desserts.<\/p>\n<hr \/>\n<h4 style=\"text-align: center;\">Browse Fast. Browse Free<\/h4>\n<p><a href=\"https:\/\/www.mozilla.org\/en-US\/firefox\/new\/?scene=2\"><img class=\"size-medium wp-image-12 aligncenter\" src=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/02\/Screen-Shot-2017-02-17-at-11.14.12-AM-300x64.png\" alt=\"Download Firefox Now\" width=\"300\" height=\"64\" srcset=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/02\/Screen-Shot-2017-02-17-at-11.14.12-AM-300x64.png 300w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/02\/Screen-Shot-2017-02-17-at-11.14.12-AM.png 456w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><\/a><\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Take a look at your browser window: how many tabs do you have open? It\u2019s likely your answer is somewhere between \u201cten\u201d and \u201ca ton,\u201d and you\u2019re not alone. These &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/firefox\/fast-responsive-reliable-browser-multi-tab-age\/\">Read more<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 144,
+        "featured_media": 0,
+        "comment_status": "closed",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            1
+        ],
+        "tags": [
+            43,
+            301510
+        ],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts\/10"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/users\/144"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/comments?post=10"
+                }
+            ],
+            "version-history": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts\/10\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/media\/45"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/media?parent=10"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/categories?post=10"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags?post=10"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 69,
+        "date": "2017-03-13T12:56:57",
+        "date_gmt": "2017-03-13T19:56:57",
+        "guid": {
+            "rendered": "https:\/\/blog.mozilla.org\/firefox\/?p=69"
+        },
+        "modified": "2017-04-04T08:36:59",
+        "modified_gmt": "2017-04-04T15:36:59",
+        "slug": "smooth-scrolling-web-browser-removes-jank",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/smooth-scrolling-web-browser-removes-jank\/",
+        "title": {
+            "rendered": "Smooth Scrolling: How a Web Browser Removes Jank"
+        },
+        "content": {
+            "rendered": "<p>Here\u2019s the scenario: it\u2019s about 6 AM on a weekday, and your alarm didn\u2019t go off. You\u2019re rushing to catch a flight that you\u2019re probably going to be late for. Your phone is displaying your approaching Lyft car, which you figure might help you win some time. Hurrying to get the info from the airline\u2019s site on your laptop (because you forgot to download the app, of course), you\u2019re scrolling through the obligatory travel disclosures when your browser window suddenly freezes on you, mid-scroll. Right then the Lyft arrives, the driver sends you a text. Frustration ensues as you try in vain to get the browser to respond; the Lyft honks outside when suddenly, the page responds to your scrolling efforts, and you end up at the bottom of the page. Thankfully, you learn that the flight is delayed 20 minutes, but no thanks to your slow browser!<\/p>\n<p><img class=\"alignnone size-full wp-image-72\" src=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Smooth-Scrolling_2-01_1.gif\" alt=\"Smooth Scrolling Web Browser\" width=\"1201\" height=\"631\" \/><\/p>\n<p>This responsiveness issue is known as jank, and it\u2019s a problem we&#8217;ve addressed with the rollout of Electrolysis (e10s), our multi-process browser functionality. The solution to scrolling-induced browser jank is called asynchronous panning and zooming (APZ). APZ allows content to be pre-rendered before it enters the viewing window.<\/p>\n<p>Though we\u2019ve had variations of APZ around for a while, our new multi-process Firefox makes scrolling smoother and more responsive than ever. With the older, single-process Firefox browser, jank was the result of the browser being unable to handle the demands of the juggling required to display a web page at the same time as user input (like scrolling).<\/p>\n<p>Multiple processes means that your clicks and scrolls can be managed much more efficiently because they are immediately processed, rather than getting stalled behind other content (and making you late for your flight.)<\/p>\n<hr \/>\n<h4 style=\"text-align: center;\">Browse Fast. Browse Free<\/h4>\n<p><a href=\"https:\/\/www.mozilla.org\/en-US\/firefox\/new\/?scene=2\"><img class=\"size-medium wp-image-12 aligncenter\" src=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/02\/Screen-Shot-2017-02-17-at-11.14.12-AM-300x64.png\" alt=\"Download Firefox Now\" width=\"300\" height=\"64\" srcset=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/02\/Screen-Shot-2017-02-17-at-11.14.12-AM-300x64.png 300w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/02\/Screen-Shot-2017-02-17-at-11.14.12-AM.png 456w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><\/a><\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Here\u2019s the scenario: it\u2019s about 6 AM on a weekday, and your alarm didn\u2019t go off. You\u2019re rushing to catch a flight that you\u2019re probably going to be late for. &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/firefox\/smooth-scrolling-web-browser-removes-jank\/\">Read more<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 144,
+        "featured_media": 0,
+        "comment_status": "closed",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            1
+        ],
+        "tags": [
+            301510,
+            302022,
+            302197,
+            301766
+        ],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts\/69"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/users\/144"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/comments?post=69"
+                }
+            ],
+            "version-history": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts\/69\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/media\/72"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/media?parent=69"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/categories?post=69"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags?post=69"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 74,
+        "date": "2017-03-12T14:15:32",
+        "date_gmt": "2017-03-12T21:15:32",
+        "guid": {
+            "rendered": "https:\/\/blog.mozilla.org\/firefox\/?p=74"
+        },
+        "modified": "2017-04-04T08:37:02",
+        "modified_gmt": "2017-04-04T15:37:02",
+        "slug": "put-trust-rust-shipping-now-firefox",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/put-trust-rust-shipping-now-firefox\/",
+        "title": {
+            "rendered": "Put your Trust in Rust &#8211; Shipping Now in Firefox"
+        },
+        "content": {
+            "rendered": "<p>At Mozilla, security is one of our highest priorities, as the openness and accessibility of the Internet are threatened when user safety and privacy is not protected. Seven years ago we began sponsoring the development of the Rust programming language, with the vision of building a systems programming language that emphasizes security, speed, and parallelism. Parallelism means that multiple CPU cores can execute different code at the same time, and it makes for computing that is more powerful and efficient.<\/p>\n<p><img class=\"alignnone size-full wp-image-75\" src=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust.png\" alt=\"Trustworthy browser\" width=\"1200\" height=\"630\" srcset=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust.png 1200w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-300x158.png 300w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-768x403.png 768w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-600x315.png 600w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-1000x525.png 1000w\" sizes=\"(max-width: 1200px) 100vw, 1200px\" \/><\/p>\n<p>With many languages, writing parallel programs is a challenge because developers have to go to great lengths to avoid errors. This means the code has a higher probability of containing bugs, which can lead to security vulnerabilities \u2014 and a single programming mistake can be greatly damaging to web security, like a leak in a dam.<\/p>\n<p>&nbsp;<\/p>\n<p>Rust, as a memory-safe programming language, solves this because it\u2019s able to check source code before it\u2019s converted (or \u201ccompiled\u201d) into low-level instructions, making it far easier for developers to write programs with confidence that the code is safe. This feature is akin to having a guardian angel watching over your work, pointing out errors and guiding you towards safe and secure code. This empowers developers to feel more comfortable and confident in building parallel algorithms, which with <a href=\"https:\/\/medium.com\/mozilla-tech\/a-quantum-leap-for-the-web-a3b7174b3c12\">Project Quantum<\/a> \u2014 our effort to develop Mozilla\u2019s future web engine \u2014 will greatly speed up the browser.<\/p>\n<p>&nbsp;<\/p>\n<p>Last summer, with the release of Firefox 48, we shipped<a href=\"https:\/\/hacks.mozilla.org\/2016\/07\/shipping-rust-in-firefox\/\"> the very first browser component to be written in the Rust programming language<\/a> \u2014 an MP4 parser for video files. Streaming media files in your browser can be particularly risky if you don\u2019t know or trust the source of the file, as these can maliciously take advantage of bugs in a browser\u2019s code. Rust\u2019s memory-safe capabilities prevent these vulnerabilities from being built into the code in the first place.<\/p>\n<p>&nbsp;<\/p>\n<p>We\u2019re proud to have helped create a language that will power our next-generation browser and put user security and privacy first.<\/p>\n<hr \/>\n<h4 style=\"text-align: center;\">Browse Fast. Browse Free<\/h4>\n<p><a href=\"https:\/\/www.mozilla.org\/en-US\/firefox\/new\/?scene=2\"><img class=\"size-medium wp-image-12 aligncenter\" src=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/02\/Screen-Shot-2017-02-17-at-11.14.12-AM-300x64.png\" alt=\"Download Firefox Now\" width=\"300\" height=\"64\" srcset=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/02\/Screen-Shot-2017-02-17-at-11.14.12-AM-300x64.png 300w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/02\/Screen-Shot-2017-02-17-at-11.14.12-AM.png 456w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><\/a><\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>At Mozilla, security is one of our highest priorities, as the openness and accessibility of the Internet are threatened when user safety and privacy is not protected. Seven years ago &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/firefox\/put-trust-rust-shipping-now-firefox\/\">Read more<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 144,
+        "featured_media": 75,
+        "comment_status": "closed",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            1
+        ],
+        "tags": [
+            301510,
+            847,
+            617,
+            16179,
+            69
+        ],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts\/74"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/users\/144"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/comments?post=74"
+                }
+            ],
+            "version-history": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts\/74\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/media\/75"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/media?parent=74"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/categories?post=74"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags?post=74"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    }
+]

@@ -1,0 +1,139 @@
+{
+    "id": 75,
+    "date": "2017-03-14T14:13:24",
+    "date_gmt": "2017-03-14T21:13:24",
+    "guid": {
+        "rendered": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust.png"
+    },
+    "modified": "2017-03-14T14:14:55",
+    "modified_gmt": "2017-03-14T21:14:55",
+    "slug": "put-your-trust-in-rust",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "https:\/\/blog.mozilla.org\/firefox\/put-trust-rust-shipping-now-firefox\/put-your-trust-in-rust\/",
+    "title": {
+        "rendered": "Put-Your-Trust-in-Rust"
+    },
+    "author": 1431,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "template": "",
+    "meta": [],
+    "description": {
+        "rendered": "<p class=\"attachment\"><a href='https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust.png'><img width=\"300\" height=\"158\" src=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-300x158.png\" class=\"attachment-medium size-medium\" alt=\"Trustworthy browser\" srcset=\"https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-300x158.png 300w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-768x403.png 768w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-600x315.png 600w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-1000x525.png 1000w, https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust.png 1200w\" sizes=\"(max-width: 300px) 100vw, 300px\" \/><\/a><\/p>\n<p>Firefox puts user security and privacy first<\/p>\n"
+    },
+    "caption": {
+        "rendered": "<p>Firefox puts user security and privacy first<\/p>\n"
+    },
+    "alt_text": "Trustworthy browser",
+    "media_type": "image",
+    "mime_type": "image\/png",
+    "media_details": {
+        "width": 1200,
+        "height": 630,
+        "file": "2017\/03\/Put-Your-Trust-in-Rust.png",
+        "sizes": {
+            "thumbnail": {
+                "file": "Put-Your-Trust-in-Rust-150x150.png",
+                "width": 150,
+                "height": 150,
+                "mime_type": "image\/png",
+                "source_url": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-150x150.png"
+            },
+            "medium": {
+                "file": "Put-Your-Trust-in-Rust-300x158.png",
+                "width": 300,
+                "height": 158,
+                "mime_type": "image\/png",
+                "source_url": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-300x158.png"
+            },
+            "medium_large": {
+                "file": "Put-Your-Trust-in-Rust-768x403.png",
+                "width": 768,
+                "height": 403,
+                "mime_type": "image\/png",
+                "source_url": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-768x403.png"
+            },
+            "large": {
+                "file": "Put-Your-Trust-in-Rust-600x315.png",
+                "width": 600,
+                "height": 315,
+                "mime_type": "image\/png",
+                "source_url": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-600x315.png"
+            },
+            "post-large": {
+                "file": "Put-Your-Trust-in-Rust-600x330.png",
+                "width": 600,
+                "height": 330,
+                "mime_type": "image\/png",
+                "source_url": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-600x330.png"
+            },
+            "post-thumbnail": {
+                "file": "Put-Your-Trust-in-Rust-300x165.png",
+                "width": 300,
+                "height": 165,
+                "mime_type": "image\/png",
+                "source_url": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-300x165.png"
+            },
+            "extra-large": {
+                "file": "Put-Your-Trust-in-Rust-1000x525.png",
+                "width": 1000,
+                "height": 525,
+                "mime_type": "image\/png",
+                "source_url": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust-1000x525.png"
+            },
+            "full": {
+                "file": "Put-Your-Trust-in-Rust.png",
+                "width": 1200,
+                "height": 630,
+                "mime_type": "image\/png",
+                "source_url": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust.png"
+            }
+        },
+        "image_meta": {
+            "aperture": "0",
+            "credit": "",
+            "camera": "",
+            "caption": "",
+            "created_timestamp": "0",
+            "copyright": "",
+            "focal_length": "0",
+            "iso": "0",
+            "shutter_speed": "0",
+            "title": "",
+            "orientation": "0",
+            "keywords": []
+        }
+    },
+    "post": 74,
+    "source_url": "https:\/\/blog.mozilla.org\/firefox\/files\/2017\/03\/Put-Your-Trust-in-Rust.png",
+    "_links": {
+        "self": [
+            {
+                "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/media\/75"
+            }
+        ],
+        "collection": [
+            {
+                "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/media"
+            }
+        ],
+        "about": [
+            {
+                "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/types\/attachment"
+            }
+        ],
+        "author": [
+            {
+                "embeddable": true,
+                "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/users\/1431"
+            }
+        ],
+        "replies": [
+            {
+                "embeddable": true,
+                "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/comments?post=75"
+            }
+        ]
+    }
+}

@@ -38,3 +38,9 @@ funcsigs==1.0.2 \
 pbr==1.10.0 \
     --hash=sha256:f5cf7265a80636ecff66806d13494cbf9d77a3758a65fd8b4d4d4bee81b0c375 \
     --hash=sha256:186428c270309e6fdfe2d5ab0949ab21ae5f7dea831eab96701b86bd666af39c
+responses==0.5.1 \
+    --hash=sha256:3a907f7aae2fd2286d06cfdf238957786c38bbcadc451adceecc769a4ef882b7 \
+    --hash=sha256:8cad64c45959a651ceaf0023484bd26180c927fea64a81e63d334ddf6377ecea
+cookies==2.2.1 \
+    --hash=sha256:15bee753002dff684987b8df8c235288eb8d45f8191ae056254812dfd42c81d3 \
+    --hash=sha256:d6b698788cae4cfa4e62ef8643a9ca332b79bd96cb314294b864ae8d7eb3ee8e
