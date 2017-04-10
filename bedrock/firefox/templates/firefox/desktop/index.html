@@ -7,6 +7,7 @@
 {% extends "firefox/desktop/desktop-base.html" %}
 
 {% block page_title_prefix %}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
 {% block page_title %}
   {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
     {{ _('Free Web Browser for Mac, Windows, Linux | Firefox') }}

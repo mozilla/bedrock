@@ -7,6 +7,8 @@
 {% extends "firefox/base-resp.html" %}
 
 {% block page_image %}{{ static('img/firefox/private-browsing/private-browsing-meta.png') }}{% endblock %}
+{% block page_title_prefix %}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
 {% block page_title %}
 {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
   {{ _('Private Browser Protects Your Online Privacy | Firefox') }}
