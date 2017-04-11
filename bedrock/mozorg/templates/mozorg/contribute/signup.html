@@ -13,12 +13,6 @@
   {% stylesheet 'contribute-signup' %}
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('contribute-signup-optimizely') %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block contrib_nav_cta %}{% endblock %}
 {% block contrib_country_form %}{% endblock %}
 

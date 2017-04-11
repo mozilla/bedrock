@@ -25,12 +25,6 @@
 
 {% block body_class %}newsletter-mozilla{% endblock %}
 
-{% block optimizely %}
-  {% if switch('mozilla-newsletter-optimizely') %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {% stylesheet 'newsletter-mozilla' %}
 {% endblock %}

@@ -23,12 +23,6 @@
   {% stylesheet 'plugincheck' %}
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('plugincheck-optimizely') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block string_data %}
   {# L10n: This is a button telling the user to update their plugin #}
   data-button-update-now="{{ _('Update Now') }}"

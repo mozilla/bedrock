@@ -14,12 +14,6 @@
   {% stylesheet 'firefox_accounts' %}
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('firefox-accounts') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block body_class %}{% endblock %}
 {% block site_header_nav %}{% endblock %}
 

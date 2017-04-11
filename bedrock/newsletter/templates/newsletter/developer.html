@@ -11,12 +11,6 @@
 
 {% block body_class %}newsletter-developer{% endblock %}
 
-{% block optimizely %}
-  {% if switch('developer-newsletter-optimizely') %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {% stylesheet 'newsletter-developer' %}
 {% endblock %}

@@ -16,12 +16,6 @@
   {% javascript 'about_video' %}
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('mozorg-mission-optimizely') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 <main>
   <header class="page-header">

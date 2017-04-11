@@ -9,12 +9,6 @@
 {% block page_title %}{{ _('Your download was interrupted') }}{% endblock %}
 {% block body_id %}installer-help{% endblock %}
 
-{% block optimizely %}
-  {% if switch('firefox-installer-help-optimizely') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {% stylesheet 'installer_help' %}
 {% endblock %}
