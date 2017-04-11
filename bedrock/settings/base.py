@@ -430,6 +430,7 @@ INSTALLED_APPS = (
     'bedrock.thunderbird',
     'bedrock.shapeoftheweb',
     'bedrock.utils',
+    'bedrock.wordpress',
     # last so that redirects here will be last
     'bedrock.redirects',
 
@@ -543,7 +544,18 @@ BLOG_FEEDS = {
     },
     'internetcitizen': {
         'url': 'https://blog.mozilla.org/internetcitizen/',
-        'name': 'Internet Citizen'
+        'name': 'Internet Citizen',
+    },
+}
+# same as above, but uses the JSON REST API and thus gets
+# more data (e.g. tags and featured image urls).
+# TODO: Once this rolls out for the Firefox blog, we should
+# convert the others and remove the old XML feed blogs above.
+WP_BLOGS = {
+    'firefox': {
+        'url': 'https://blog.mozilla.org/firefox/',
+        'name': 'The Firefox Frontier',
+        'num_posts': 20,
     },
 }
 

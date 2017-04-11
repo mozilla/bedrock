@@ -1,0 +1,353 @@
+[
+    {
+        "id": 43,
+        "count": 1,
+        "description": "",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/tag\/browser\/",
+        "name": "browser",
+        "slug": "browser",
+        "taxonomy": "post_tag",
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags\/43"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/taxonomies\/post_tag"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts?tags=43"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 301510,
+        "count": 3,
+        "description": "",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/tag\/fastest\/",
+        "name": "fastest",
+        "slug": "fastest",
+        "taxonomy": "post_tag",
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags\/301510"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/taxonomies\/post_tag"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts?tags=301510"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 302022,
+        "count": 1,
+        "description": "",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/tag\/jank\/",
+        "name": "jank",
+        "slug": "jank",
+        "taxonomy": "post_tag",
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags\/302022"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/taxonomies\/post_tag"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts?tags=302022"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 847,
+        "count": 1,
+        "description": "",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/tag\/privacy\/",
+        "name": "privacy",
+        "slug": "privacy",
+        "taxonomy": "post_tag",
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags\/847"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/taxonomies\/post_tag"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts?tags=847"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 617,
+        "count": 1,
+        "description": "",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/tag\/programming\/",
+        "name": "programming",
+        "slug": "programming",
+        "taxonomy": "post_tag",
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags\/617"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/taxonomies\/post_tag"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts?tags=617"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 16179,
+        "count": 1,
+        "description": "",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/tag\/rust\/",
+        "name": "rust",
+        "slug": "rust",
+        "taxonomy": "post_tag",
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags\/16179"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/taxonomies\/post_tag"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts?tags=16179"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 302197,
+        "count": 1,
+        "description": "",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/tag\/scrolling\/",
+        "name": "scrolling",
+        "slug": "scrolling",
+        "taxonomy": "post_tag",
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags\/302197"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/taxonomies\/post_tag"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts?tags=302197"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 69,
+        "count": 1,
+        "description": "",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/tag\/security\/",
+        "name": "security",
+        "slug": "security",
+        "taxonomy": "post_tag",
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags\/69"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/taxonomies\/post_tag"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts?tags=69"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 301766,
+        "count": 1,
+        "description": "",
+        "link": "https:\/\/blog.mozilla.org\/firefox\/tag\/web-browser\/",
+        "name": "web browser",
+        "slug": "web-browser",
+        "taxonomy": "post_tag",
+        "meta": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags\/301766"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/tags"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/taxonomies\/post_tag"
+                }
+            ],
+            "wp:post_type": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/firefox\/wp-json\/wp\/v2\/posts?tags=301766"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    }
+]
