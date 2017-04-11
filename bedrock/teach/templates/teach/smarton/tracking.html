@@ -8,12 +8,6 @@
 {% block page_desc %}{{ _('What you do online is your business, and you can keep it that way. Get smart on tracking.') }}{% endblock %}
 {% block page_image %}{{ static('img/teach/smarton/tracking/tracking-hero-white.jpg') }}{% endblock %}
 
-{% block optimizely %}
-  {% if switch('smarton-tracking-optimizely') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block body_id %}smarton-tracking{% endblock %}
 {% block body_class %}smarton theme-tracking state-default{% endblock %}
 

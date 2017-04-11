@@ -23,12 +23,6 @@
 {#- Override <meta property="og:url"> for social share -#}
 {% block page_og_url %}{{ url('firefox') }}{% endblock %}
 
-{% block optimizely %}
-  {% if switch('firefox-whatsnew-optimizely') %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}{% endblock %}
 
 {% block page_title_prefix %}{% endblock %}

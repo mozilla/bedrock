@@ -12,12 +12,6 @@
   {% stylesheet 'about' %}
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('mozorg-about-optimizely') %}
-     {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block js %}
   {% javascript 'about_video' %}
 {% endblock %}

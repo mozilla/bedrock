@@ -37,12 +37,6 @@
   {{ fxfamilynav('features', 'dark') }}
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('firefox-sync') %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 {% include 'firefox/includes/sync-animation.html' %}
 <header role="banner" class="intro container">

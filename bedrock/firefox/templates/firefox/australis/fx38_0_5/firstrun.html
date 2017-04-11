@@ -29,12 +29,6 @@
   {% stylesheet 'firefox_fx38_0_5_firstrun' %}
 {% endblock %}
 
-{% block optimizely %}
-  {% if switch('firefox-firstrun-optimizely') %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block site_header %}
   <header id="masthead">
     {% block tabzilla_tab %}
