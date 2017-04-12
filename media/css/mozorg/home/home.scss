@@ -34,24 +34,11 @@ body {
 
     .masthead-logo {
         background: #ff8c8e;
-        height: 30px;
-        left: 0;
-        margin: 0;
-        padding: 10px 0;
-        position: absolute;
-        text-align: center;
-        top: 0;
-        width: 100%;
-
-        img {
-            height: 30px;
-        }
     }
 }
 
 .masthead-nav-main .toggle {
     background-color: #ff8c8e;
-    background-image: url('/media/img/pebbles/icon-menu-dark.svg');
 }
 
 #nav-download-firefox {
@@ -65,12 +52,6 @@ body {
 
         .content {
             padding-top: 0;
-        }
-
-        .masthead-logo {
-            float: left;
-            position: relative;
-            width: 115px;
         }
     }
 
