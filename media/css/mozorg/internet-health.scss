@@ -46,22 +46,6 @@ main {
         position: relative;
     }
 
-    .masthead-logo {
-        font-size: 100%;
-        height: 30px;
-        left: 0;
-        margin: 0;
-        padding: 10px 0 0;
-        position: absolute;
-        text-align: center;
-        top: 0;
-        width: 100%;
-
-        img {
-            height: 30px;
-        }
-    }
-
     .download-button {
         display: none;
 
@@ -85,6 +69,7 @@ main {
     .masthead-nav-main {
         .toggle {
             background-color: darken(#4a4a4a, 10%);
+            background-image: url('/media/img/pebbles/icon-menu-light.svg');
         }
 
         .nav-main-menu a:hover {
@@ -113,13 +98,6 @@ main {
                     }
                 }
             }
-        }
-
-        .masthead-logo {
-            float: left;
-            padding: 10px 0;
-            position: relative;
-            width: auto;
         }
     }
 

@@ -10,14 +10,29 @@
         padding-top: 0;
         padding-bottom: 0;
     }
-}
 
-.masthead-logo {
-    @include font-size(16px);
-    margin: 0;
-    padding: 30px 0 20px;
-}
+    .masthead-logo {
+        @include font-size(16px);
+        height: 30px;
+        left: 0;
+        margin: 0;
+        padding: 10px 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
 
+        img {
+            height: 30px;
+        }
+
+        @media #{$mq-tablet} {
+            float: left;
+            position: relative;
+            width: 94px;
+        }
+    }
+}
 
 .masthead-nav-main {
     @include font-size(14px);
@@ -39,7 +54,7 @@
 
     .toggle {
         @include image-replaced;
-        background: $color-mozred url('/media/img/pebbles/icon-menu-light.svg') center center no-repeat;
+        background: transparent url('/media/img/pebbles/icon-menu-dark.svg') center center no-repeat;
         @include background-size(22px auto);
         cursor: pointer;
         display: block;
@@ -108,7 +123,7 @@
             position: static;
             background: transparent;
             box-shadow: none;
-            padding: 20px 0;
+            padding: 10px 0;
 
             li {
                 display: inline;
