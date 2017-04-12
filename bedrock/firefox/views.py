@@ -29,6 +29,7 @@ from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
+from bedrock.utils.views import VariationMixin
 
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
@@ -401,7 +402,10 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         return [template]
 
 
-class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
+class WhatsnewView(VariationMixin, l10n_utils.LangFilesMixin, TemplateView):
+    template_context_variations = ['a', 'b']
+    variation_locales = ['zh-TW']
+
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
 
