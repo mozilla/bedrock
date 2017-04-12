@@ -6,6 +6,7 @@ $(function() {
     'use strict';
 
     var utils = Mozilla.Utils;
+    var client = Mozilla.Client;
 
     /**
      * Detects whether do not track is enabled and takes one of two possible actions:
@@ -106,4 +107,9 @@ $(function() {
             }
         }
     });
+
+    // Bug 1354304: temporarily hide download button on privacy page for funnelcake experiment.
+    if (client.isFirefox) {
+        $('#global-nav-download-firefox').hide();
+    }
 });
