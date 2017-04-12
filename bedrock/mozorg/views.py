@@ -24,9 +24,11 @@ from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (WebToLeadForm)
 from bedrock.mozorg.forums import ForumsFile
-from bedrock.mozorg.models import ContributorActivity, TwitterCache, BlogArticle
+from bedrock.mozorg.models import ContributorActivity, TwitterCache
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
+from bedrock.utils.views import VariationMixin
+from bedrock.wordpress.views import BlogPostsView
 from lib import l10n_utils
 
 credits_file = CreditsFile('credits')
@@ -285,27 +287,16 @@ def contribute_friends(request):
                              {'newsletter_form': newsletter_form})
 
 
-def technology(request):
-    try:
-        articles = list(BlogArticle.objects.filter(blog_slug__in=TECH_BLOG_SLUGS)[:4])
-    except Exception:
-        articles = None
-
-    template = 'mozorg/technology.html'
-    version = request.GET.get('v', None)
-
-    if version == 'b':
-        template = 'mozorg/technology-b.html'
-
-    return l10n_utils.render(request, template, {'articles': articles})
+class TechnologyView(VariationMixin, BlogPostsView):
+    template_name = 'mozorg/technology.html'
+    template_name_variations = ['b']
+    blog_slugs = TECH_BLOG_SLUGS
+    blog_posts_limit = 4
+    blog_posts_template_variable = 'articles'
 
 
-def internet_health(request):
-    try:
-        articles = list(BlogArticle.objects.filter(blog_name='Internet Citizen')[:4])
-    except Exception:
-        articles = None
-
-    return l10n_utils.render(request,
-                             'mozorg/internet-health.html',
-                             {'articles': articles})
+class IHView(BlogPostsView):
+    template_name = 'mozorg/internet-health.html'
+    blog_posts_limit = 4
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'internetcitizen'
