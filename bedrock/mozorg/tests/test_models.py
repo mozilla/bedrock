@@ -6,60 +6,11 @@
 from django.core.cache import cache
 from django.db.utils import DatabaseError
 from django.db.models.signals import post_save
-from django.test import override_settings
 
 from mock import patch
-from pathlib2 import Path
 
-from bedrock.mozorg.models import BlogArticle, TwitterCache
+from bedrock.mozorg.models import TwitterCache
 from bedrock.mozorg.tests import TestCase
-
-
-HACKS_FILE = Path(__file__).parent.joinpath('test_files', 'data', 'hacks-blog.xml')
-TEST_BLOG_FEEDS = {
-    'hacks': {
-        'name': 'Hacks',
-        'url': 'https://hacks.mozilla.org',
-        'feed_url': str(HACKS_FILE),
-    }
-}
-
-
-@override_settings(BLOG_FEEDS=TEST_BLOG_FEEDS)
-class TestBlogArticle(TestCase):
-    @classmethod
-    def setUpClass(cls):
-        super(TestBlogArticle, cls).setUpClass()
-        BlogArticle.update_feeds(num_articles=4)
-
-    def test_htmlify(self):
-        a = BlogArticle.objects.first()
-        self.assertNotIn('Continue reading', a.htmlify())
-
-    def test_ordering(self):
-        a = BlogArticle.objects.first()
-        self.assertEqual(a.link, 'https://hacks.mozilla.org/2016/09/firefox-49-fixes-'
-                                 'sites-designed-with-webkit-in-mind-and-more/')
-
-    def test_blog_link(self):
-        a = BlogArticle.objects.first()
-        self.assertEqual(a.blog_link, TEST_BLOG_FEEDS['hacks']['url'])
-
-    def test_parse_feed(self):
-        feed = BlogArticle.parse_feed('dude', {
-            'feed_url': str(HACKS_FILE),
-            'name': 'The Dude Feeds',
-        })
-        self.assertEqual(feed.mozorg_feed_id, 'dude')
-        self.assertEqual(feed.mozorg_feed_name, 'The Dude Feeds')
-
-    @patch('bedrock.mozorg.models.parse')
-    def test_parse_feed_no_feed_url(self, parse_mock):
-        BlogArticle.parse_feed('dude', {
-            'url': 'https://example.com',
-            'name': 'The Dude Feeds',
-        })
-        parse_mock.assert_called_with('https://example.com/feed/atom/')
 
 
 @patch.object(TwitterCache.objects, 'get')

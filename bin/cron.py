@@ -101,7 +101,6 @@ def schedule_database_jobs():
 
     @scheduled_job('interval', hours=1)
     def update_blog_feeds():
-        call_command('update_blog_feeds --database bedrock')
         call_command('update_wordpress --database bedrock')
 
 

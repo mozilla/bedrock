@@ -527,30 +527,7 @@ TEMPLATES = [
     },
 ]
 
-# unless an entry has a "feed_url" entry, the feed URL will be
-# the "url" entry + "/feed/atom/", which works for our WP blogs.
-BLOG_FEEDS = {
-    'hacks': {
-        'url': 'https://hacks.mozilla.org/',
-        'name': 'Hacks',
-    },
-    'cd': {
-        'url': 'https://connected.mozilla.org/',
-        'name': 'Connected Devices',
-    },
-    'futurereleases': {
-        'url': 'https://blog.mozilla.org/futurereleases/',
-        'name': 'Future Releases',
-    },
-    'internetcitizen': {
-        'url': 'https://blog.mozilla.org/internetcitizen/',
-        'name': 'Internet Citizen',
-    },
-}
-# same as above, but uses the JSON REST API and thus gets
-# more data (e.g. tags and featured image urls).
-# TODO: Once this rolls out for the Firefox blog, we should
-# convert the others and remove the old XML feed blogs above.
+# use the Wordpress JSON REST API to get blog data
 WP_BLOGS = {
     'firefox': {
         'url': 'https://blog.mozilla.org/firefox/',
