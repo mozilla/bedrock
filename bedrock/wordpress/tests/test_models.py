@@ -1,7 +1,7 @@
 from django.test import override_settings
 
 from bedrock.wordpress import api
-from bedrock.wordpress.models import BlogPost
+from bedrock.wordpress import models
 
 import pytest
 import responses
@@ -15,6 +15,10 @@ TEST_WP_BLOGS = {
         'name': 'The Firefox Frontier',
         'num_posts': 10,
     },
+    'hacks': {
+        'url': 'https://hacks.mozilla.org/',
+        'name': 'Hacks',
+    },
 }
 
 
@@ -23,10 +27,10 @@ def get_test_file_content(filename):
         return fh.read()
 
 
-def setup_responses():
-    posts_url = api._api_url(TEST_WP_BLOGS['firefox']['url'], 'posts', None)
-    tags_url = api._api_url(TEST_WP_BLOGS['firefox']['url'], 'tags', None)
-    media_url = api._api_url(TEST_WP_BLOGS['firefox']['url'], 'media', 75)
+def setup_responses(blog='firefox'):
+    posts_url = api._api_url(TEST_WP_BLOGS[blog]['url'], 'posts', None)
+    tags_url = api._api_url(TEST_WP_BLOGS[blog]['url'], 'tags', None)
+    media_url = api._api_url(TEST_WP_BLOGS[blog]['url'], 'media', 75)
     responses.add(responses.GET, posts_url, body=get_test_file_content('posts.json'))
     responses.add(responses.GET, tags_url, body=get_test_file_content('tags.json'))
     responses.add(responses.GET, media_url, body=get_test_file_content('media_75.json'))
@@ -49,9 +53,11 @@ def test_get_posts_data():
 @override_settings(WP_BLOGS=TEST_WP_BLOGS)
 @pytest.mark.django_db
 def test_refresh_posts():
-    setup_responses()
-    BlogPost.objects.refresh('firefox')
-    blog = BlogPost.objects.filter_by_blog('firefox')
+    setup_responses('firefox')
+    models.BlogPost.objects.refresh('firefox')
+    setup_responses('hacks')
+    models.BlogPost.objects.refresh('hacks')
+    blog = models.BlogPost.objects.filter_by_blogs('firefox')
     assert len(blog) == 3
     bp = blog.get(wp_id=10)
     assert bp.tags == ['browser', 'fastest']
@@ -60,6 +66,8 @@ def test_refresh_posts():
     assert bp.tags == ['fastest', 'privacy', 'programming', 'rust', 'security']
     assert bp.featured_media['id'] == 75
     assert bp.get_featured_image_url('large').endswith('Put-Your-Trust-in-Rust-600x315.png')
+    blog = models.BlogPost.objects.filter_by_blogs('firefox', 'hacks')
+    assert len(blog) == 6
 
 
 @responses.activate
@@ -67,8 +75,22 @@ def test_refresh_posts():
 @pytest.mark.django_db
 def test_filter_by_tags():
     setup_responses()
-    BlogPost.objects.refresh('firefox')
-    blog = BlogPost.objects.filter_by_blog('firefox')
+    models.BlogPost.objects.refresh('firefox')
+    blog = models.BlogPost.objects.filter_by_blogs('firefox')
     assert len(blog.filter_by_tags('browser')) == 1
     assert len(blog.filter_by_tags('fastest')) == 3
     assert len(blog.filter_by_tags('browser', 'jank')) == 2
+
+
+@responses.activate
+@override_settings(WP_BLOGS=TEST_WP_BLOGS)
+@pytest.mark.django_db
+def test_featured_tag():
+    setup_responses()
+    models.BlogPost.objects.refresh('firefox')
+    blog = models.BlogPost.objects.filter_by_blogs('firefox')
+    p = blog.filter_by_tags('browser')[0]
+    assert p.get_featured_tag(['browser', 'dude']) == 'browser'
+    p = blog.filter_by_tags('browser', 'jank')[0]
+    assert p.get_featured_tag(['browser', 'jank', 'dude']) in ['browser', 'jank']
+    assert p.get_featured_tag(['dude']) == ''
