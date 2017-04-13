@@ -125,6 +125,9 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
     else:
         assert resp.status_code == status_code
     if location and not follow_redirects:
+        # remove locale redirect indicator if present
+        if 'icn=locale' in resp_location:
+            resp_location = re.sub(r'[?&]icn=locale', '', resp_location)
         if query:
             # all query values must be lists
             for k, v in query.items():

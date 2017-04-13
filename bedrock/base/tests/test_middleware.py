@@ -17,6 +17,24 @@ class TestLocaleURLMiddleware(TestCase):
         path = '/the/dude/'
         req = self.rf.get(path, HTTP_ACCEPT_LANGUAGE='de')
         resp = LocaleURLMiddleware().process_request(req)
+        self.assertEqual(resp['Location'], '/de' + path + '?icn=locale')
+
+    @override_settings(DEV_LANGUAGES=('de', 'fr'),
+                       FF_EXEMPT_LANG_PARAM_URLS=())
+    def test_redirects_to_correct_language_with_qs(self):
+        """Should redirect to lang prefixed url, preserving query string."""
+        path = '/the/dude/?abiding=true'
+        req = self.rf.get(path, HTTP_ACCEPT_LANGUAGE='de')
+        resp = LocaleURLMiddleware().process_request(req)
+        self.assertEqual(resp['Location'], '/de' + path + '&icn=locale')
+
+    @override_settings(DEV_LANGUAGES=('de', 'fr'),
+                       FF_EXEMPT_LANG_PARAM_URLS=())
+    def test_lang_redirect_no_dupe_icn(self):
+        """Should redirect to lang prefixed url and avoid duplicating icn param."""
+        path = '/the/dude/?icn=locale'
+        req = self.rf.get(path, HTTP_ACCEPT_LANGUAGE='de')
+        resp = LocaleURLMiddleware().process_request(req)
         self.assertEqual(resp['Location'], '/de' + path)
 
     @override_settings(DEV_LANGUAGES=('es', 'fr'),
@@ -27,7 +45,7 @@ class TestLocaleURLMiddleware(TestCase):
         path = '/the/dude/'
         req = self.rf.get(path, HTTP_ACCEPT_LANGUAGE='de')
         resp = LocaleURLMiddleware().process_request(req)
-        self.assertEqual(resp['Location'], '/en-US' + path)
+        self.assertEqual(resp['Location'], '/en-US' + path + '?icn=locale')
 
     @override_settings(DEV_LANGUAGES=('de', 'fr'),
                        FF_EXEMPT_LANG_PARAM_URLS=('/other/',))
@@ -58,4 +76,4 @@ class TestLocaleURLMiddleware(TestCase):
                           HTTP_ACCEPT_LANGUAGE='de')
         resp = LocaleURLMiddleware().process_request(req)
         self.assertEqual(resp['Location'],
-                         '/de' + path + corrected_querystring)
+                         '/de' + path + corrected_querystring + '&icn=locale')
