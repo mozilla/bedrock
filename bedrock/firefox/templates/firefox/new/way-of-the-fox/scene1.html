@@ -4,6 +4,12 @@
 
 {% extends "firefox/new/way-of-the-fox/base.html" %}
 
+{% block optimizely %}
+  {% if switch('firefox-new-optimizely', ['en-US']) %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block content_body %}
 <div class="main-content content">
   {{ download_firefox(alt_copy=_('Free Download')) }}
