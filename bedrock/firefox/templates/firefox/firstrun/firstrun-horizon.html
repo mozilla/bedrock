@@ -46,7 +46,13 @@
           <div id="tabzilla">
             <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
           </div>
-          <h1>{{ _('Almost done!') }}</h1>
+          <h1>
+            {% if l10n_has_tag('firstrun_headline_201704') %}
+              {{ _('Free as a fox') }}
+            {% else %}
+              {{ _('Almost done!') }}
+            {% endif %}
+          </h1>
           {% if l10n_has_tag('firstrun_subhead_201605') %}
             {# L10n: line break below is for visual formatting only #}
             <h2>{{ _('Get your passwords, bookmarks<br> and history on the go.') }}</h2>
