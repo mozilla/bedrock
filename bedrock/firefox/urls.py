@@ -118,6 +118,4 @@ urlpatterns = (
 
     url('^firefox/stub_attribution_code/$', views.stub_attribution_code,
         name='firefox.stub_attribution_code'),
-
-    page('firefox/foo', 'firefox/base-pebbles.html'),
 )
