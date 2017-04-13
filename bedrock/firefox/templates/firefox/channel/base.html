@@ -7,7 +7,7 @@
 {% add_lang_files "firefox/channel/index" %}
 
 {% block page_title_prefix %}{% endblock %}
-
+{% block page_title_suffix %}{% endblock %}
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
 {% block page_og_title %}{{ self.page_title() }}{% endblock %}
 

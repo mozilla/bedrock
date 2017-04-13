@@ -6,6 +6,7 @@
 
 {% add_lang_files "firefox/channel/index" %}
 
+{% block page_title_suffix %}{% endblock %}
 {% block page_title %}
 {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
   {{ _('Try New Browser Features in Pre-Release Versions | Firefox') }}
