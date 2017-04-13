@@ -1,0 +1,31 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+@font-face {
+    font-family: 'Zilla Slab';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/media/fonts/ZillaSlab-Regular.woff2') format('woff2'),
+         url('/media/fonts/ZillaSlab-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Zilla Slab';
+    font-weight: bold;
+    font-style: normal;
+    src: url('/media/fonts/ZillaSlab-Bold.woff2') format('woff2'),
+         url('/media/fonts/ZillaSlab-Bold.woff') format('woff');
+}
+
+// Use this highlight variant with caution and plan for a fallback
+// in a standard, non-highlight font. Your color choices should be
+// equally readable with a non-highlight variant.
+@font-face {
+    font-family: 'Zilla Slab Highlight';
+    font-weight: bold;
+    font-style: normal;
+    src: url('/media/fonts/ZillaSlab-BoldHighlight.woff2') format('woff2'),
+         url('/media/fonts/ZillaSlab-BoldHighlight.woff') format('woff');
+}
