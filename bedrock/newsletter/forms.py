@@ -59,6 +59,20 @@ def get_lang_choices(newsletters=None):
     return sorted(lang_choices, key=itemgetter(1))
 
 
+def get_regions(locale):
+    """Return a localized, sorted list of regions"""
+    regions = product_details.get_regions(locale)
+
+    # Decode double-escaped region names in some locales
+    for key, value in regions.iteritems():
+        try:
+            regions[key] = value.decode('unicode-escape')
+        except UnicodeEncodeError:
+            pass
+
+    return sorted(regions.iteritems(), key=itemgetter(1))
+
+
 def newsletter_title(newsletter):
     """Given a newsletter's key, return its title if we can,
     otherwise return the key
@@ -139,8 +153,7 @@ class ManageSubscriptionsForm(forms.Form):
                              required=False)
 
     def __init__(self, locale, *args, **kwargs):
-        regions = product_details.get_regions(locale)
-        regions = sorted(regions.iteritems(), key=itemgetter(1))
+        regions = get_regions(locale)
         lang_choices = get_lang_choices()
         languages = [x[0] for x in lang_choices]
 
@@ -239,8 +252,7 @@ class NewsletterFooterForm(forms.Form):
     # has to take a newsletters argument so it can figure
     # out which languages to list in the form.
     def __init__(self, newsletters, locale, data=None, *args, **kwargs):
-        regions = product_details.get_regions(locale)
-        regions = sorted(regions.iteritems(), key=itemgetter(1))
+        regions = get_regions(locale)
 
         try:
             newsletters = validate_newsletters(newsletters)
