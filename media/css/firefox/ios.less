@@ -737,3 +737,10 @@ html[lang=ja] {
         text-align: left;
     }
 }
+// Bug 1231732
+html[lang|="en"] {
+  .fxfamilynav-cta-wrapper .send-to {
+      margin-top: 10px;
+  }
+}
+
