@@ -69,6 +69,10 @@
 
 {% block js %}
   {% javascript 'firefox_features' %}
+  {% if switch('statcounter-experiment') %}
+    {% javascript 'stat_counter' %}
+    {% include 'includes/stat_counter.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block task_completion_survey %}{% endblock %}

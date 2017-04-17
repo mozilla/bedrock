@@ -276,4 +276,8 @@
     {% javascript 'matchmedia_addlistener' %}
   <![endif]-->
   {% javascript 'firefox_sync' %}
+  {% if switch('statcounter-experiment') %}
+    {% javascript 'stat_counter' %}
+    {% include 'includes/stat_counter.html' %}
+  {% endif %}
 {% endblock %}
