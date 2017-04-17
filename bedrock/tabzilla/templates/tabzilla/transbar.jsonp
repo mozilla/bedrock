@@ -5,5 +5,6 @@ _({
     {# L10n: Your translation can just say Yes -#}
     "accept": "{{ _('Yes, please!')|js_escape }}",
     {# L10n: Your translation can just say No -#}
-    "cancel": "{{ _('No, thanks.')|js_escape }}"
+    "cancel": "{{ _('No, thanks.')|js_escape }}",
+    "lastestfx": "{{ latest_firefox_version }}"
 })
