@@ -58,7 +58,16 @@
             <section id="download-buttons">
               {# handles desktop users (windows, os x, linux) #}
               <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
-                {{ download_firefox(alt_copy=_('Free Download')) }}
+                {# **WARNING**
+
+                  The `locale_in_transition` parameter should be used very carefully. It's included
+                  here because this template and scene2 share a lang file, and are therefore
+                  translated into the same list of locales. Adding this to another download button
+                  would significantly restrict the builds of Firefox available for download.
+
+                  Bug 1290962
+                #}
+                {{ download_firefox(alt_copy=_('Free Download'), locale_in_transition=True) }}
               </div>
 
               {# handles Android and iOS users #}

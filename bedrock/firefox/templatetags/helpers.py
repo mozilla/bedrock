@@ -13,7 +13,7 @@ from lib.l10n_utils import get_locale
 
 def desktop_builds(channel, builds=None, locale=None, force_direct=False,
                    force_full_installer=False, force_funnelcake=False,
-                   funnelcake_id=False):
+                   funnelcake_id=False, locale_in_transition=False):
     builds = builds or []
 
     l_version = firefox_desktop.latest_builds(locale, channel)
@@ -42,6 +42,7 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
             force_full_installer=force_full_installer,
             force_funnelcake=force_funnelcake,
             funnelcake_id=funnelcake_id,
+            locale_in_transition=locale_in_transition,
         )
 
         # If download_link_direct is False the data-direct-link attr
@@ -112,7 +113,8 @@ def ios_builds(channel, builds=None):
 def download_firefox(ctx, channel='release', platform='all',
                      dom_id=None, locale=None, force_direct=False,
                      force_full_installer=False, force_funnelcake=False,
-                     alt_copy=None, button_color='button-green'):
+                     alt_copy=None, button_color='button-green',
+                     locale_in_transition=False):
     """ Output a "download firefox" button.
 
     :param ctx: context from calling template.
@@ -144,7 +146,7 @@ def download_firefox(ctx, channel='release', platform='all',
         version = firefox_desktop.latest_version(channel)
         builds = desktop_builds(channel, builds, locale, force_direct,
                                 force_full_installer, force_funnelcake,
-                                funnelcake_id)
+                                funnelcake_id, locale_in_transition)
 
     if show_android:
         version = firefox_android.latest_version(channel)
