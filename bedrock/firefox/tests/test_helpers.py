@@ -48,8 +48,8 @@ class TestDownloadButtons(TestCase):
 
         # Check that the rest of the links are Android and iOS
         eq_(pq(links[4]).attr('href'), settings.GOOGLE_PLAY_FIREFOX_LINK)
-        eq_(pq(links[5]).attr('href'), settings.APPLE_APPSTORE_FIREFOX_LINK
-                                            .replace('/{country}/', '/'))
+        eq_(pq(links[5]).attr('href'),
+            settings.APPLE_APPSTORE_FIREFOX_LINK.replace('/{country}/', '/'))
 
     @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_button_force_direct(self):
@@ -80,6 +80,34 @@ class TestDownloadButtons(TestCase):
             self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['fr'])
             # direct links should not have the data attr.
             ok_(link.attr('data-direct-link') is None)
+
+    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
+    def test_button_locale_in_transition(self):
+        """
+        If the locale_in_transition parameter is True, the link to scene2 should include the locale
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_firefox(locale_in_transition=true) }}",
+                        {'request': get_request}))
+
+        links = doc('.download-list a')
+
+        for link in links[1:5]:
+            link = pq(link)
+            href = link.attr('href')
+            eq_(href, '/fr/firefox/new/?scene=2')
+
+        doc = pq(render("{{ download_firefox(locale_in_transition=false) }}",
+                        {'request': get_request}))
+
+        links = doc('.download-list a')
+
+        for link in links[1:5]:
+            link = pq(link)
+            href = link.attr('href')
+            eq_(href, '/firefox/new/?scene=2')
 
     @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_button_has_data_attr_if_not_direct(self):

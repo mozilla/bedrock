@@ -50,7 +50,7 @@
             <section id="download-buttons">
               {# handles desktop users (windows, os x, linux) #}
               <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
-                {{ download_firefox(alt_copy=_('Free Download')) }}
+                {{ download_firefox(alt_copy=_('Free Download'), locale_in_transition=True) }}
               </div>
               {# handles Android and iOS users #}
               <div class="mobile download-button-wrapper" id="download-button-wrapper-mobile" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">

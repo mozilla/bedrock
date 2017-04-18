@@ -193,7 +193,8 @@ class FirefoxDesktop(_ProductDetails):
 
     def get_download_url(self, channel, version, platform, locale,
                          force_direct=False, force_full_installer=False,
-                         force_funnelcake=False, funnelcake_id=None):
+                         force_funnelcake=False, funnelcake_id=None,
+                         locale_in_transition=False):
         """
         Get direct download url for the product.
         :param channel: one of self.version_map.keys().
@@ -206,6 +207,7 @@ class FirefoxDesktop(_ProductDetails):
         :param force_funnelcake: Force the download version for en-US Windows to be
                 'latest', which bouncer will translate to the funnelcake build.
         :param funnelcake_id: ID for the the funnelcake build.
+        :param locale_in_transition: Include the locale in the transition URL
         :return: string url
         """
         _version = version
@@ -274,13 +276,15 @@ class FirefoxDesktop(_ProductDetails):
                              ])])
         else:
             # build a link to the transition page
-
+            transition_url = self.download_base_url_transition
             if funnelcake_id:
                 # include funnelcake in scene 2 URL
-                return '&f='.join([self.download_base_url_transition,
-                                   funnelcake_id])
-            else:
-                return self.download_base_url_transition
+                transition_url += '&f=%s' % funnelcake_id
+
+            if locale_in_transition:
+                transition_url = '/%s%s' % (locale, transition_url)
+
+            return transition_url
 
 
 class FirefoxAndroid(_ProductDetails):
