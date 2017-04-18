@@ -9,7 +9,6 @@ fi
 ./manage.py rnasync
 ./manage.py cron update_ical_feeds
 ./manage.py update_product_details_files --database bedrock
-./manage.py update_blog_feeds --database bedrock
 ./manage.py update_wordpress --database bedrock
 ./manage.py update_externalfiles
 ./manage.py update_security_advisories

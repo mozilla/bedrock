@@ -151,7 +151,7 @@
           <li>
             <article>
               <h3><a rel="external" href="{{ article.link }}">{{ article.blog_title }}</a></h3>
-              <p class="meta"><a href="{{ article.blog_link }}">{{ article.blog_name }}</a> <time datetime="{{ article.published }}">{{ article.published|l10n_format_date }}</time></p>
+              <p class="meta"><a href="{{ article.blog_link }}">{{ article.blog_name }}</a> <time datetime="{{ article.date }}">{{ article.date|l10n_format_date }}</time></p>
               <p>{{ article.htmlify() }}</p>
               <a rel="external" class="continue" href="{{ article.link }}">{{ _('Continue reading') }}</a>
             </article>
