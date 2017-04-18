@@ -1317,7 +1317,7 @@ if config('SWITCH_TRACKING_PIXEL', default=DEV, cast=bool):
 # See https://bugzilla.mozilla.org/show_bug.cgi?id=1352821
 if config('SWITCH_STATCOUNTER_EXPERIMENT', default=DEV, cast=bool):
     CSP_IMG_SRC += ('*.statcounter.com',)
-    CSP_SCRIPT_SRC += ('www.statcounter.com',)
+    CSP_SCRIPT_SRC += ('secure.statcounter.com',)
 
 # Bug 1345467: Funnelcakes are now explicitly configured in the environment.
 # Set experiment specific variables like the following:
