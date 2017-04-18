@@ -15,8 +15,7 @@
         /* eslint-enable camelcase, no-unused-vars */
         var newScriptTag = document.createElement('script');
         var target = document.getElementsByTagName('script')[0];
-        var scJsHost = (('https:' === document.location.protocol) ? 'https://secure.' : 'http://www.');
-        newScriptTag.src = scJsHost + 'statcounter.com/counter/counter.js';
+        newScriptTag.src = 'https://secure.statcounter.com/counter/counter.js';
         target.parentNode.insertBefore(newScriptTag, target);
     }
 })();
