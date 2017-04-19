@@ -24,6 +24,7 @@ urlpatterns = (
     page('bug-bounty/faq', 'security/bug-bounty/faq.html'),
     page('bug-bounty/faq-webapp', 'security/bug-bounty/faq-webapp.html'),
     page('bug-bounty/hall-of-fame', 'security/bug-bounty/hall-of-fame.html'),
+    page('bug-bounty/web-eligible-sites', 'security/bug-bounty/web-eligible-sites.html'),
     page('bug-bounty/web-hall-of-fame', 'security/bug-bounty/web-hall-of-fame.html'),
     url(r'^advisories/$',
         AdvisoriesView.as_view(), name='security.advisories'),

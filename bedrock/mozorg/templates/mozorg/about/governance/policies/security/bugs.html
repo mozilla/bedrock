@@ -12,10 +12,10 @@
 
   <p>{{ _(' Version 1.1') }}</p>
 
-  <p><strong>{% trans mail='mailto:security@mozilla.org?subject=Mozilla%20security%20bug%20report' %}
-    IMPORTANT: Anyone who believes they have found a Mozilla-related security vulnerability can and should report
-it by sending email to the address <a href="{{ mail }}">security@mozilla.org</a>.
-  {% endtrans %}</strong></p>
+  <p><strong>
+    IMPORTANT: Anyone who believes they have found a Mozilla-related security vulnerability should visit
+    our <a href="{{ url('security.bug-bounty') }}">bug bounty program</a> for information on how to submit them.
+  </strong></p>
 
   <h2 id="intro">{{ _('Introduction') }}</h2>
 

@@ -8,15 +8,28 @@
   {% stylesheet 'security' %}
 {% endblock %}
 
-{% set navigation_bar = [
+{% set navigation_bar_security = [
     (url('security.index'), 'security-index', 'Mozilla Security'),
-    (url('security.advisories'), 'advisories', 'Security Advisories'),
+    (url('security.advisories'), 'advisories', 'Advisories'),
     (url('security.known-vulnerabilities'), 'known-vulnerabilities', 'Known Vulnerabilities'),
-    (url('security.bug-bounty'), 'bug-bounty', 'Bug Bounty'),
-    (url('security.bug-bounty.hall-of-fame'), 'hall-of-fame', 'Firefox Hall Of Fame'),
-    (url('security.bug-bounty.web-hall-of-fame'), 'web-hall-of-fame', 'Mozilla Web and Services Hall Of Fame'),
-    ('https://blog.mozilla.com/security/', 'blog', 'Security Blog'),
+    ('https://blog.mozilla.com/security/', 'blog', 'Blog'),
 ] %}
+
+{% set navigation_bar_client_bounty = [
+    (url('security.client-bug-bounty'), None, 'Client Bug Bounty'),
+    (url('security.client-bug-bounty'), 'client-bug-bounty', 'Guidelines'),
+    (url('security.bug-bounty.faq'), 'faq', 'Frequently Asked Questions'),
+    (url('security.bug-bounty.hall-of-fame'), 'hall-of-fame', 'Hall of Fame'),
+] %}
+
+{% set navigation_bar_web_bounty = [
+    (url('security.web-bug-bounty'), 'wbb', 'Web Bug Bounty'),
+    (url('security.web-bug-bounty'), 'web-bug-bounty', 'Guidelines'),
+    (url('security.bug-bounty.web-eligible-sites'), 'web-eligible-sites', 'Eligible Websites'),
+    (url('security.bug-bounty.faq-webapp'), 'faq-webapp', 'Frequently Asked Questions'),
+    (url('security.bug-bounty.web-hall-of-fame'), 'web-hall-of-fame', 'Hall of Fame'),
+] %}
+
 
 {% block body_class %}sand{% endblock %}
 
@@ -39,7 +52,7 @@
         {% block side_nav %}
           <nav>
             <ul>
-            {% for href, id, caption in navigation_bar %}
+            {% for href, id, caption in navigation_bar_security %}
               <li>
               {% if id == body_id %}
                 <b>{{ caption|e }}</b>
@@ -50,6 +63,35 @@
             {% endfor %}
             </ul>
           </nav>
+
+          <nav>
+            <ul>
+            {% for href, id, caption in navigation_bar_client_bounty %}
+              <li>
+              {% if id == body_id %}
+                <b>{{ caption|e }}</b>
+              {% else %}
+                <a href="{{ href|e }}">{{ caption|e }}</a>
+              {% endif %}
+              </li>
+            {% endfor %}
+            </ul>
+          </nav>
+
+          <nav>
+            <ul>
+            {% for href, id, caption in navigation_bar_web_bounty %}
+              <li>
+              {% if id == body_id %}
+                <b>{{ caption|e }}</b>
+              {% else %}
+                <a href="{{ href|e }}">{{ caption|e }}</a>
+              {% endif %}
+              </li>
+            {% endfor %}
+            </ul>
+          </nav>
+
         {% endblock %}
         {% block side_extra %}
         {% endblock %}
