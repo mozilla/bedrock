@@ -600,7 +600,6 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/send-to-device.less',
             'css/firefox/horizon/background.less',
-            'css/firefox/mobile-download-desktop.less',
             'css/firefox/whatsnew/whatsnew-50.less',
         ),
         'output_filename': 'css/firefox_whatsnew_50-bundle.css',
@@ -1430,6 +1429,13 @@ PIPELINE_JS = {
             'js/firefox/whatsnew/whatsnew-50.js',
         ),
         'output_filename': 'js/firefox_whatsnew_50-bundle.js',
+    },
+    'experiment_whatsnew_50_zhtw': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/whatsnew/experiment-whatsnew-50-zhtw.js',
+        ),
+        'output_filename': 'js/experiment_firefox_whatsnew_50_zhtw-bundle.js',
     },
     'firefox_firstrun_yahoo_retention': {
         'source_filenames': (
