@@ -1284,6 +1284,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene1-bundle.js',
     },
+    'firefox_new_scene1_experiment_funnelcakes_110_113': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/new/experiment-funnelcakes-110-113.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_experiment_funnelcakes_110_113-bundle.js',
+    },
     'firefox_new_scene2': {
         'source_filenames': (
             'js/firefox/new/scene2.js',
