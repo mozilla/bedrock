@@ -1,0 +1,53 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../sandstone/lib.less';
+
+// generates a < tablet media query for all sections (except intro)
+.common-mobile-props(@padding: 250px) {
+    @media only screen and (max-width: @breakTablet) {
+        background-position: bottom 20px center;
+        min-height: 0;
+        padding-bottom: @padding;
+
+        .copy {
+            float: none;
+            width: auto;
+        }
+    }
+}
+
+#intro {
+    background-image: url('/media/img/firefox/new/conformity-not-default/intro-high-res.png');
+
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    @media only screen and (max-width: @breakDesktop) {
+        background-image: url('/media/img/firefox/new/conformity-not-default/intro.png');
+        p {
+            .font-size(22px);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        p {
+            .font-size(18px);
+            line-height: 1.6;
+            margin-bottom: 40px;
+
+            br {
+                display: none;
+            }
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .content {
+            text-align: center;
+        }
+
+        background-image: url('/media/img/firefox/new/conformity-not-default/intro-mobile.png');
+    }
+}
