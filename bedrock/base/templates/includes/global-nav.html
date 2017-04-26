@@ -1,32 +1,36 @@
 <nav role="navigation" class="moz-global-nav" id="moz-global-nav">
     <div class="nav-horizontal-menu">
 
-      <button type="button" class="nav-button-menu nav-hidden" id="nav-button-menu" aria-controls="moz-global-nav-drawer">
+      <button type="button" class="nav-button-menu nav-hidden" id="nav-button-menu" data-link-type="nav" data-link-position="open button" data-link-name="expand" data-link-group="nav element">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 25" width="12" height="25">
           <title>{{_('Menu')}}</title>
-            <rect class="p1" fill="#231f20" x="3" width="5" height="6"/>
-            <rect class="p2" fill="#231f20" x="3" y="9.5" width="5" height="6"/>
-            <rect class="p3" fill="#231f20" x="3" y="19" width="5" height="6"/>
+            <rect class="p1" fill="#231f20" x="3" width="5" height="6"></rect>
+            <rect class="p2" fill="#231f20" x="3" y="9.5" width="5" height="6"></rect>
+            <rect class="p3" fill="#231f20" x="3" y="19" width="5" height="6"></rect>
         </svg>
       </button>
 
       <h2 class="nav-logo">
-        <a href="{{ url('mozorg.home') }}">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 578.55 185.54" width="78" height="25">
-            <title>{{_('Mozilla')}}</title>
-            <path class="p" d="M503.5 117.21c0 4.92 2.37 8.82 9 8.82 7.8 0 16.11-5.6 16.61-18.31a80.86 80.86 0 0 0-11-1c-7.83-.01-14.61 2.19-14.61 10.49z"/>
-            <path class="p" d="M0 0v185.54h578.55V0zm163.78 139.93h-32V96.87c0-13.22-4.41-18.31-13.05-18.31-10.51 0-14.75 7.46-14.75 18.14v26.64h10.12v16.61h-32V96.87c0-13.22-4.4-18.31-13.05-18.31-10.51 0-14.75 7.46-14.75 18.14v26.64h14.54v16.61H22.22v-16.61h10.17V80.09h-11V63.48h32.87V75c4.58-8.13 12.55-13.05 23.22-13.05 11 0 21.19 5.26 24.92 16.45 4.24-10.17 12.88-16.45 24.92-16.45 13.73 0 26.28 8.31 26.28 26.45v34.94h10.17zm48.65 1.69c-23.56 0-39.84-14.41-39.84-38.82 0-22.38 13.56-40.86 41-40.86s40.86 18.48 40.86 39.84c.02 24.42-17.61 39.85-42.02 39.85zm121.72-1.69h-66.8l-2.2-11.53 42-48.32h-23.9l-3.39 11.87-15.77-1.69 2.71-26.79H334L335.69 75l-42.4 48.34H318l3.56-11.87 17.29 1.69zm41.36 0h-22.89v-27.46h22.89zm0-49h-22.89V63.48h22.89zm12 49L420.6 23.34h21.53l-33.06 116.59zm44.42 0L465 23.34h21.53l-33.04 116.59zm113.92 1.69c-10.17 0-15.76-5.94-16.78-15.26-4.41 7.8-12.21 15.26-24.58 15.26-11 0-23.56-5.94-23.56-21.87 0-18.82 18.14-23.22 35.6-23.22a100.23 100.23 0 0 1 12.55.68v-2.54c0-7.8-.17-17.12-12.55-17.12-4.58 0-8.14.34-11.7 2.2L502 90.6l-17.46-1.87 3.39-19.83c13.39-5.43 20.17-7 32.72-7 16.45 0 30.35 8.48 30.35 25.94v33.23c0 4.41 1.69 5.94 5.26 5.94a11.5 11.5 0 0 0 3.22-.51l.17 11.53a29.57 29.57 0 0 1-13.77 3.6z"/>
-            <path class="p" d="M213.27 78.73c-11.19 0-18.14 8.3-18.14 22.72 0 13.22 6.1 23.39 18 23.39 11.36 0 18.82-9.15 18.82-23.73-.03-15.43-8.33-22.38-18.68-22.38z"/>
-          </svg>
-        </a>
+        <a href="{{ url('mozorg.home') }}">{{_('Mozilla')}}</a>
       </h2>
 
       <ul class="nav-primary-links">
-        <li class="item-firefox"><a href="{{ url('firefox.new') }}" data-id="firefox">{{ _('Firefox') }}</a></li>
-        <li class="item-internet-health"><a href="{{ url('mozorg.internet-health') }}" data-id="internet-health">{{ _('Internet Health') }}</a></li>
-        <li class="item-technology"><a href="{{ url('mozorg.technology') }}" data-id="technology">{{ _('Technology') }}</a></li>
-        <li class="item-about-us"><a href="{{ url('mozorg.about') }}" data-id="about-us">{{ _('About Us') }}</a></li>
-        <li class="item-get-involved"><a href="{{ url('mozorg.contribute.index') }}" data-id="get-involved">{{ _('Get Involved') }}</a></li>
+        {{ global_nav_active_class }}
+        <li class="item-firefox">
+          <a href="{{ url('firefox.new') }}" data-id="firefox" data-link-type="nav" data-link-position="top" data-link-name="expand" data-link-group="Firefox">{{ _('Firefox') }}</a>
+        </li>
+        <li class="item-internet-health">
+          <a href="{{ url('mozorg.internet-health') }}" data-id="internet-health" data-link-type="nav" data-link-position="top" data-link-name="expand" data-link-group="Internet Health">{{ _('Internet Health') }}</a>
+        </li>
+        <li class="item-technology">
+          <a href="{{ url('mozorg.technology') }}" data-id="technology" data-link-type="nav" data-link-position="top" data-link-name="expand" data-link-group="Technology">{{ _('Technology') }}</a>
+        </li>
+        <li class="item-about-us">
+          <a href="{{ url('mozorg.about') }}" data-id="about-us" data-link-type="nav" data-link-position="top" data-link-name="expand" data-link-group="About Us">{{ _('About Us') }}</a>
+        </li>
+        <li class="item-get-involved">
+          <a href="{{ url('mozorg.contribute.index') }}" data-id="get-involved" data-link-type="nav" data-link-position="top" data-link-name="expand" data-link-group="Get Involved">{{ _('Get Involved') }}</a>
+        </li>
       </ul>
 
       {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='global-nav-download-firefox') }}
@@ -35,243 +39,267 @@
 
 <nav class="moz-global-nav-drawer" id="moz-global-nav-drawer">
 
-  <button type="button" class="nav-drawer-close-button" id="nav-drawer-close-button" aria-controls="moz-global-nav-drawer">{{_('Close')}}</button>
+  <button type="button" class="nav-drawer-close-button" id="nav-drawer-close-button" data-link-type="nav" data-link-position="close button" data-link-name="collapse" data-link-group="nav element">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.3 23.3" width="23" height="23">
+      <title>{{_('Close')}}</title>
+      <g fill="#fff">
+        <rect x="8.7" y="8.7" class="rect center" width="6" height="6"></rect>
+        <rect x="8.7" y="8.7" class="rect top-left" width="6" height="6"></rect>
+        <rect x="8.7" y="8.7" class="rect top-right" width="6" height="6"></rect>
+        <rect x="8.7" y="8.7" class="rect bottom-left" width="6" height="6"></rect>
+        <rect x="8.7" y="8.7" class="rect bottom-right" width="6" height="6"></rect>
+      </g>
+    </svg>
+  </button>
 
-  <ul class="nav-menu-primary-links">
-    <li class="item-firefox">
-      <h3 class="summary"><a href="{{ url('firefox.new') }}" data-id="firefox">{{ _('Firefox') }}</a></h3>
-      <div class="detail">
-        <div class="detail-container">
-          <p class="intro">
-            {{ _('Get the only browser built for people, not profit.') }}
-          </p>
-          <ul class="nav-menu-secondary-links">
-            <li>
-              <a href="{{ url('firefox.family.index')}}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
-                {{ _('About Firefox') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('firefox.desktop.index')}}" data-link-type="nav" data-link-name="Desktop Browser" data-link-group="Firefox">
-                {{ _('Desktop Browser') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('firefox.ios')}}" data-link-type="nav" data-link-name="iOS Browser" data-link-group="Firefox">
-                {{ _('iOS Browser') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('firefox.android.index')}}" data-link-type="nav" data-link-name="Android Browser" data-link-group="Firefox">
-                {{ _('Android Browser') }}
-              </a>
-            </li>
-            <li>
-              <a href="https://support.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=support" data-link-type="nav" data-link-name="Support" data-link-group="Firefox">
-                {{ _('Support') }}
-              </a>
-            </li>
-            <li>
-              <a href="https://addons.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=add-ons" data-link-type="nav" data-link-name="Add-ons" data-link-group="Firefox">
-                {{ _('Add-ons') }}
-              </a>
-            </li>
-          </ul>
+  <div class="nav-menu-inner-container">
+    <div class="nav-menu-scroll-pane">
+      <ul class="nav-menu-primary-links">
+        <li class="item-firefox">
+          <h3 class="summary" data-id="firefox">
+            <a href="{{ url('firefox.new') }}" data-link-type="nav" data-link-position="side" data-link-name="expand" data-link-group="Firefox">{{ _('Firefox') }}</a>
+          </h3>
+          <div class="detail">
+            <div class="detail-container">
+              <p class="intro">
+                {{ _('Get the only browser built for people, not profit.') }}
+              </p>
+              <ul class="nav-menu-secondary-links">
+                <li>
+                  <a href="{{ url('firefox.family.index')}}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
+                    {{ _('About Firefox') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('firefox.desktop.index')}}" data-link-type="nav" data-link-name="Desktop Browser" data-link-group="Firefox">
+                    {{ _('Desktop Browser') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('firefox.ios')}}" data-link-type="nav" data-link-name="iOS Browser" data-link-group="Firefox">
+                    {{ _('iOS Browser') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('firefox.android.index')}}" data-link-type="nav" data-link-name="Android Browser" data-link-group="Firefox">
+                    {{ _('Android Browser') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://support.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=support" data-link-type="nav" data-link-name="Support" data-link-group="Firefox">
+                    {{ _('Support') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://addons.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=add-ons" data-link-type="nav" data-link-name="Add-ons" data-link-group="Firefox">
+                    {{ _('Add-ons') }}
+                  </a>
+                </li>
+              </ul>
 
-          <aside class="nav-promo">
-            <span class="meta">{{ _('Faster Browser') }}</span>
-            <a class="thumbnail" href="https://blog.mozilla.org/firefox/fast-responsive-reliable-browser-multi-tab-age/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Fast, Responsive, Reliable: A Browser for the Multi-Tab Age" data-link-group="Firefox">
-              <figure>
-                {{ high_res_img('nav/promos/better-browser.png', {'alt': '', 'width': '204', 'height': '140'}) }}
-                <figcaption>{{ _('Fast, Responsive, Reliable: A Browser for the Multi-Tab Age') }}</figcaption>
-              </figure>
-            </a>
-          </aside>
+              <aside class="nav-promo">
+                <span class="meta">{{ _('Faster Browser') }}</span>
+                <a class="thumbnail" href="https://blog.mozilla.org/firefox/fast-responsive-reliable-browser-multi-tab-age/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Fast, Responsive, Reliable: A Browser for the Multi-Tab Age" data-link-group="Nav Article">
+                  <figure>
+                    {{ high_res_img('nav/promos/better-browser.png', {'alt': '', 'width': '204', 'height': '140'}) }}
+                    <figcaption>{{ _('Fast, Responsive, Reliable: A Browser for the Multi-Tab Age') }}</figcaption>
+                  </figure>
+                </a>
+              </aside>
 
-          <aside class="nav-promo">
-            <span class="meta">{{ _('Better Browsing') }}</span>
-            <a class="thumbnail" href="https://blog.mozilla.org/firefox/smooth-scrolling-web-browser-removes-jank/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Smooth Scrolling: How a Web Browser Removes Jank" data-link-group="Firefox">
-              <figure>
-                {{ high_res_img('nav/promos/smooth-scrolling.png', {'alt': '', 'width': '204', 'height': '140'}) }}
-                <figcaption>{{ _('Smooth Scrolling: How a Web Browser Removes Jank') }}</figcaption>
-              </figure>
-            </a>
-          </aside>
-        </div>
-      </div>
-    </li>
-    <li class="item-internet-health">
-      <h3 class="summary"><a href="{{ url('mozorg.internet-health') }}" data-id="internet-health">{{ _('Internet Health') }}</a></h3>
-      <div class="detail">
-        <div class="detail-container">
-          <p class="intro">
-            {{ _('Internet Health is crucial for the world to thrive. A healthy Internet is one that is private, inclusive, and collaborative.') }}
-          </p>
+              <aside class="nav-promo">
+                <span class="meta">{{ _('Better Browsing') }}</span>
+                <a class="thumbnail" href="https://blog.mozilla.org/firefox/smooth-scrolling-web-browser-removes-jank/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Smooth Scrolling: How a Web Browser Removes Jank" data-link-group="Nav Article">
+                  <figure>
+                    {{ high_res_img('nav/promos/smooth-scrolling.png', {'alt': '', 'width': '204', 'height': '140'}) }}
+                    <figcaption>{{ _('Smooth Scrolling: How a Web Browser Removes Jank') }}</figcaption>
+                  </figure>
+                </a>
+              </aside>
+            </div>
+          </div>
+        </li>
+        <li class="item-internet-health">
+          <h3 class="summary" data-id="internet-health">
+            <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-position="side" data-link-name="expand" data-link-group="Internet Health">{{ _('Internet Health') }}</a>
+          </h3>
+          <div class="detail">
+            <div class="detail-container">
+              <p class="intro">
+                {{ _('Internet Health is crucial for the world to thrive. A healthy Internet is one that is private, inclusive, and collaborative.') }}
+              </p>
 
-          <ul class="nav-menu-secondary-links">
-            <li>
-              <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Overview" data-link-group="Internet Health">
-                {{ _('What is Internet Health?') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('mozorg.internet-health.privacy-security') }}" data-link-type="nav" data-link-name="Privacy & Security" data-link-group="Internet Health">
-                {{ _('Privacy &amp; Security') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('mozorg.internet-health.digital-inclusion') }}" data-link-type="nav" data-link-name="Digital Inclusion" data-link-group="Internet Health">
-                {{ _('Digital Inclusion') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('mozorg.internet-health.open-innovation') }}" data-link-type="nav" data-link-name="Open Innovation" data-link-group="Internet Health">
-                {{ _('Open Innovation') }}
-              </a>
-            </li>
-          </ul>
+              <ul class="nav-menu-secondary-links">
+                <li>
+                  <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Overview" data-link-group="Internet Health">
+                    {{ _('What is Internet Health?') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('mozorg.internet-health.privacy-security') }}" data-link-type="nav" data-link-name="Privacy & Security" data-link-group="Internet Health">
+                    {{ _('Privacy &amp; Security') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('mozorg.internet-health.digital-inclusion') }}" data-link-type="nav" data-link-name="Digital Inclusion" data-link-group="Internet Health">
+                    {{ _('Digital Inclusion') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('mozorg.internet-health.open-innovation') }}" data-link-type="nav" data-link-name="Open Innovation" data-link-group="Internet Health">
+                    {{ _('Open Innovation') }}
+                  </a>
+                </li>
+              </ul>
 
-          <aside class="nav-promo">
-            <span class="meta">{{ _('Privacy') }}</span>
-            <a class="thumbnail" href="https://blog.mozilla.org/internetcitizen/2017/01/25/facebook-privacy-tips/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Facebook privacy tips: How to share without oversharing" data-link-group="Internet Health">
-              <figure>
-                {{ high_res_img('nav/promos/fb-share-tips.png', {'alt': '', 'width': '204', 'height': '140'}) }}
-                <figcaption>{{ _('Facebook privacy tips: How to share without oversharing') }}</figcaption>
-              </figure>
-            </a>
-          </aside>
+              <aside class="nav-promo">
+                <span class="meta">{{ _('Privacy') }}</span>
+                <a class="thumbnail" href="https://blog.mozilla.org/internetcitizen/2017/01/25/facebook-privacy-tips/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Facebook privacy tips: How to share without oversharing" data-link-group="Nav Article">
+                  <figure>
+                    {{ high_res_img('nav/promos/fb-share-tips.png', {'alt': '', 'width': '204', 'height': '140'}) }}
+                    <figcaption>{{ _('Facebook privacy tips: How to share without oversharing') }}</figcaption>
+                  </figure>
+                </a>
+              </aside>
 
-          <aside class="nav-promo">
-            <span class="meta">{{ _('Security') }}</span>
-            <a class="thumbnail" href="https://blog.mozilla.org/internetcitizen/2017/01/25/better-password-security/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Don’t Get Pwned: A Guide to Safer Logins" data-link-group="Internet Health">
-              <figure>
-                {{ high_res_img('nav/promos/safer-logins.png', {'alt': '', 'width': '204', 'height': '140'}) }}
-                <figcaption>{{ _('Don’t Get Pwned: A Guide to Safer Logins') }}</figcaption>
-              </figure>
-            </a>
-          </aside>
-        </div>
-      </div>
-    </li>
-    <li class="item-technology">
-      <h3 class="summary"><a href="{{ url('mozorg.technology') }}" data-id="technology">{{ _('Technology') }}</a></h3>
-      <div class="detail">
-        <div class="detail-container">
-          <p class="intro">
-            {{ _('Participate and explore our latest innovations — technology built in the open and designed to help keep the Internet healthy.') }}
-          </p>
+              <aside class="nav-promo">
+                <span class="meta">{{ _('Security') }}</span>
+                <a class="thumbnail" href="https://blog.mozilla.org/internetcitizen/2017/01/25/better-password-security/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Don’t Get Pwned: A Guide to Safer Logins" data-link-group="Nav Article">
+                  <figure>
+                    {{ high_res_img('nav/promos/safer-logins.png', {'alt': '', 'width': '204', 'height': '140'}) }}
+                    <figcaption>{{ _('Don’t Get Pwned: A Guide to Safer Logins') }}</figcaption>
+                  </figure>
+                </a>
+              </aside>
+            </div>
+          </div>
+        </li>
+        <li class="item-technology">
+          <h3 class="summary" data-id="technology">
+            <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-position="side" data-link-name="expand" data-link-group="Technology">{{ _('Technology') }}</a>
+          </h3>
+          <div class="detail">
+            <div class="detail-container">
+              <p class="intro">
+                {{ _('Participate and explore our latest innovations — technology built in the open and designed to help keep the Internet healthy.') }}
+              </p>
 
-          <ul class="nav-menu-secondary-links">
-            <li>
-              <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations" data-link-group="Technology">
-                {{ _('Web Innovations') }}
-              </a>
-            </li>
-            <li>
-              <a href="https://developer.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=MDN" data-link-type="nav" data-link-name="MDN" data-link-group="Technology">
-                <abbr title="{{ _('Mozilla Developer Network') }}">{{ _('MDN') }}</abbr>
-              </a>
-            </li>
-          </ul>
+              <ul class="nav-menu-secondary-links">
+                <li>
+                  <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations" data-link-group="Technology">
+                    {{ _('Web Innovations') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://developer.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=MDN" data-link-type="nav" data-link-name="MDN" data-link-group="Technology">
+                    <abbr title="{{ _('Mozilla Developer Network') }}">{{ _('MDN') }}</abbr>
+                  </a>
+                </li>
+              </ul>
 
-          <aside class="nav-promo">
-            <span class="meta">{{ _('Optimized for Design') }}</span>
-            <a class="thumbnail" href="https://hacks.mozilla.org/2017/03/a-new-css-grid-demo-on-mozilla-org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="A new CSS Grid demo" data-link-group="Technology">
-              <figure>
-                {{ high_res_img('nav/promos/css-grid-demo.png', {'alt': '', 'width': '204', 'height': '140'}) }}
-                <figcaption>{{ _('A new CSS Grid demo') }}</figcaption>
-              </figure>
-            </a>
-          </aside>
+              <aside class="nav-promo">
+                <span class="meta">{{ _('Optimized for Design') }}</span>
+                <a class="thumbnail" href="https://hacks.mozilla.org/2017/03/a-new-css-grid-demo-on-mozilla-org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: A new CSS Grid demo" data-link-group="Nav Article">
+                  <figure>
+                    {{ high_res_img('nav/promos/css-grid-demo.png', {'alt': '', 'width': '204', 'height': '140'}) }}
+                    <figcaption>{{ _('A new CSS Grid demo') }}</figcaption>
+                  </figure>
+                </a>
+              </aside>
 
-          <aside class="nav-promo">
-            <span class="meta">{{ _('Game-changing Browser') }}</span>
-            <a class="thumbnail web-assembly" href="https://blog.mozilla.org/blog/2017/03/07/lots-new-in-firefox-game-changing-webassembly-support/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Lots new in Firefox, including “game-changing” support for WebAssembly" data-link-group="Technology">
-              <figure>
-                {{ high_res_img('nav/promos/web-assembly.png', {'alt': '', 'width': '204', 'height': '140'}) }}
-                <figcaption>{{ _('Lots new in Firefox, including support for WebAssembly') }}</figcaption>
-              </figure>
-            </a>
-          </aside>
-        </div>
-      </div>
-    </li>
-    <li class="item-about-us">
-      <h3 class="summary"><a href="{{ url('mozorg.about') }}" data-id="about-us">{{ _('About Us') }}</a></h3>
-      <div class="detail">
-        <div class="detail-container">
-          <p class="intro">
-            {{ _('We’re Mozilla, the proudly non-profit champions of a healthy Internet – keeping it open and accessible to all.') }}
-          </p>
+              <aside class="nav-promo">
+                <span class="meta">{{ _('Game-changing Browser') }}</span>
+                <a class="thumbnail web-assembly" href="https://blog.mozilla.org/blog/2017/03/07/lots-new-in-firefox-game-changing-webassembly-support/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Lots new in Firefox, including “game-changing” support for WebAssembly" data-link-group="Nav Article">
+                  <figure>
+                    {{ high_res_img('nav/promos/web-assembly.png', {'alt': '', 'width': '204', 'height': '140'}) }}
+                    <figcaption>{{ _('Lots new in Firefox, including support for WebAssembly') }}</figcaption>
+                  </figure>
+                </a>
+              </aside>
+            </div>
+          </div>
+        </li>
+        <li class="item-about-us">
+          <h3 class="summary" data-id="about-us">
+            <a href="{{ url('mozorg.about') }}" data-link-type="nav" data-link-position="side" data-link-name="expand" data-link-group="About Us">{{ _('About Us') }}</a>
+          </h3>
+          <div class="detail">
+            <div class="detail-container">
+              <p class="intro">
+                {{ _('We’re Mozilla, the proudly non-profit champions of a healthy Internet – keeping it open and accessible to all.') }}
+              </p>
 
-          <ul class="nav-menu-secondary-links">
-            <li>
-              <a href="{{ url('mozorg.mission') }}" data-link-type="nav" data-link-name="Our Mission" data-link-group="About Us">
-                {{ _('Our Mission') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('mozorg.about.history') }}" data-link-type="nav" data-link-name="Our History" data-link-group="About Us">
-                {{ _('Our History') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('mozorg.about.leadership') }}" data-link-type="nav" data-link-name="Our Leadership" data-link-group="About Us">
-                {{ _('Leadership') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('foundation.index') }}" data-link-type="nav" data-link-name="Foundation" data-link-group="About Us">
-                {{ _('Foundation') }}
-              </a>
-            </li>
-            <li>
-              <a href="https://blog.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=blogs" data-link-type="nav" data-link-name="Blogs" data-link-group="About Us">
-                {{ _('Blogs') }}
-              </a>
-            </li>
-            <li>
-              <a href="https://careers.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=careers" data-link-type="nav" data-link-name="Careers" data-link-group="About Us">
-                {{ _('Careers') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="nav" data-link-name="Contact Us" data-link-group="About Us">
-                {{ _('Contact Us') }}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
-    <li class="item-get-involved">
-      <h3 class="summary"><a href="{{ url('mozorg.contribute.index') }}" data-id="get-involved">{{ _('Get Involved') }}</a></h3>
-      <div class="detail">
-        <div class="detail-container">
-          <p class="intro">
-            {{ _('You can help Mozilla keep the Internet healthy – attend an event, volunteer, or make a donation.') }}
-          </p>
+              <ul class="nav-menu-secondary-links">
+                <li>
+                  <a href="{{ url('mozorg.mission') }}" data-link-type="nav" data-link-name="Our Mission" data-link-group="About Us">
+                    {{ _('Our Mission') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('mozorg.about.history') }}" data-link-type="nav" data-link-name="Our History" data-link-group="About Us">
+                    {{ _('Our History') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('mozorg.about.leadership') }}" data-link-type="nav" data-link-name="Our Leadership" data-link-group="About Us">
+                    {{ _('Leadership') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('foundation.index') }}" data-link-type="nav" data-link-name="Foundation" data-link-group="About Us">
+                    {{ _('Foundation') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://blog.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=blogs" data-link-type="nav" data-link-name="Blogs" data-link-group="About Us">
+                    {{ _('Blogs') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://careers.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=careers" data-link-type="nav" data-link-name="Careers" data-link-group="About Us">
+                    {{ _('Careers') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="nav" data-link-name="Contact Us" data-link-group="About Us">
+                    {{ _('Contact Us') }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="item-get-involved">
+          <h3 class="summary" data-id="get-involved">
+            <a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-position="side" data-link-name="expand" data-link-group="Get Involved">{{ _('Get Involved') }}</a>
+          </h3>
+          <div class="detail">
+            <div class="detail-container">
+              <p class="intro">
+                {{ _('You can help Mozilla keep the Internet healthy – attend an event, volunteer, or make a donation.') }}
+              </p>
 
-          <ul class="nav-menu-secondary-links">
-            <li>
-              <a href="{{ donate_url('global-nav') }}" data-link-type="nav" data-link-name="Give" data-link-group="Get Involved">
-                {{ _('Give') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-name="Volunteer" data-link-group="Get Involved">
-                {{ _('Volunteer') }}
-              </a>
-            </li>
-            <li>
-              <a href="{{ url('mozorg.contribute.events') }}" data-link-type="nav" data-link-name="Events" data-link-group="Get Involved">
-                {{ _('Events') }}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
-  </ul>
-
+              <ul class="nav-menu-secondary-links">
+                <li>
+                  <a href="{{ donate_url('global-nav') }}" data-link-type="nav" data-link-name="Give" data-link-group="Get Involved">
+                    {{ _('Give') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-name="Volunteer" data-link-group="Get Involved">
+                    {{ _('Volunteer') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('mozorg.contribute.events') }}" data-link-type="nav" data-link-name="Events" data-link-group="Get Involved">
+                    {{ _('Events') }}
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div><!-- close .nav-menu-scroll-pane -->
+  </div><!-- close .nav-menu-inner-container -->
 </nav>

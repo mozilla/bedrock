@@ -24,6 +24,7 @@
 
 {% block body_id %}internet-health{% endblock %}
 {% block body_class %}{% endblock %}
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="internet-health"{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'internet-health' %}

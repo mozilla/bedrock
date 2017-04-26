@@ -7,6 +7,7 @@
 {% block page_title %}{{ _('Get to know Mozilla') }}{% endblock %}
 {% block body_id %}about{% endblock %}
 {% block body_class %}sand{% endblock %}
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'about' %}
