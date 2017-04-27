@@ -132,9 +132,7 @@
               <h4>{{ note.tag }}</h4>
               <ul class="section-items">
               {% endif %}
-                <li id="note-{{ note.id }}">
-                  {{ note.note|markdown|safe }}
-                </li>
+              {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
             </div>
@@ -147,9 +145,7 @@
               <h4>{{ note.tag }}</h4>
               <ul class="section-items">
               {% endif %}
-                <li id="note-{{ note.id }}">
-                  {{ note.note|markdown|safe }}
-                </li>
+              {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
             </div>
@@ -162,9 +158,7 @@
               <h4>{{ note.tag }}</h4>
               <ul class="section-items">
               {% endif %}
-                <li id="note-{{ note.id }}">
-                  {{ note.note|markdown|safe }}
-                </li>
+              {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
             </div>
@@ -177,9 +171,7 @@
               <h4>{{ note.tag }}</h4>
               <ul class="section-items">
               {% endif %}
-                <li id="note-{{ note.id }}">
-                  {{ note.note|markdown|safe }}
-                </li>
+              {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
               <a class="mdn-icon more" rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a>
@@ -193,9 +185,7 @@
               <h4>{{ note.tag }}</h4>
               <ul class="section-items">
               {% endif %}
-                <li id="note-{{ note.id }}">
-                  {{ note.note|markdown|safe }}
-                </li>
+              {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
             </div>
@@ -208,9 +198,7 @@
               <h4>{{ note.tag }}</h4>
               <ul class="section-items">
               {% endif %}
-                <li id="note-{{ note.id }}">
-                  {{ note.note|markdown|safe }}
-                </li>
+              {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
             </div>
@@ -223,9 +211,7 @@
               <h4>{{ note.tag }}</h4>
               <ul class="section-items untagged">
               {% endif %}
-                <li id="note-{{ note.id }}">
-                  {{ note.note|markdown|safe }}
-                </li>
+              {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
             </div>
@@ -240,9 +226,7 @@
               <h4>{{ _('unresolved') }}</h4>
               <ul class="section-items">
               {% endif %}
-                <li id="note-{{ note.id }}">
-                  {{ note.note|markdown|safe }}
-                </li>
+              {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
             </div>
@@ -327,3 +311,12 @@
     {% include 'includes/stat_counter.html' %}
   {% endif %}
 {% endblock %}
+
+{% macro note_entry(note) %}
+  <li id="note-{{ note.id }}">
+    {{ note.note|markdown|safe }}
+    {% if release.channel == 'Nightly' and note.bug -%}
+    <span class="bug-id"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">{{ _('Bug %d')|format(note.bug) }}</a></span>
+    {%- endif %}
+  </li>
+{% endmacro %}
