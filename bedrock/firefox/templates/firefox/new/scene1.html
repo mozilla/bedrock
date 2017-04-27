@@ -6,6 +6,12 @@
 
 {% extends "firefox/new/base.html" %}
 
+{% block experiments %}
+  {% if switch('experiment-firefox-new-funnelcakes-110-113', ['en-US']) %}
+    {% javascript 'firefox_new_scene1_experiment_funnelcakes_110_113' %}
+  {% endif %}
+{% endblock %}
+
 {% block optimizely %}
   {% if switch('firefox-new-optimizely', ['en-US']) %}
     {% include 'includes/optimizely.html' %}
