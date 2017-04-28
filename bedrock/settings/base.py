@@ -1219,7 +1219,7 @@ STATSD_PREFIX = config('STATSD_PREFIX', default='bedrock')
 
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
 
-MOZILLA_LOCATION_SERVICES_KEY = 'ec4d0c4b-b9ac-4d72-9197-289160930e14'
+MOZILLA_LOCATION_SERVICES_KEY = 'a9b98c12-d9d5-4015-a2db-63536c26dc14'
 
 DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default=None)
 
