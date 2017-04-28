@@ -383,7 +383,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
             # New onboarding animation funnecake
-            if locale == 'en-US' and funnelcake in ['99', '100']:
+            if locale == 'en-US' and funnelcake in ['99', '100', '111', '112', '113']:
                 template = 'firefox/firstrun/new-firstrun.html'
             # Yahoo search retention funnelcake test
             elif locale == 'en-US' and funnelcake == '92':
@@ -492,7 +492,7 @@ def new(request):
 
     if scene == '2':
         if locale == 'en-US':
-            if funnelcake_id in ['99', '100', '110', '111', '112', '113']:
+            if funnelcake_id in ['99', '100', '111', '112', '113']:
                 template = 'firefox/new/onboarding/scene2.html'
             elif experience == 'breakfree':
                 template = 'firefox/new/break-free/scene2.html'
@@ -505,7 +505,7 @@ def new(request):
     # if no/incorrect scene specified, show scene 1
     else:
         if locale == 'en-US':
-            if funnelcake_id in ['99', '100', '110', '111', '112', '113']:
+            if funnelcake_id in ['99', '100', '111', '112', '113']:
                 template = 'firefox/new/onboarding/scene1.html'
             elif experience == 'breakfree':
                 template = 'firefox/new/break-free/scene1.html'

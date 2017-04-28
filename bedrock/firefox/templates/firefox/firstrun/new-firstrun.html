@@ -27,8 +27,10 @@
         <a href="{{ url('firefox.sync') }}">{{_('Learn more about Firefox Accounts')}}</a>
       </div>
       <div id="firefox-logo"></div>
+      {# Bug 1354710: firstrun pages need to pass funnelcake parameters to FxA #}
+      {% set utm_source = 'firstrun' if not funnelcake_id else 'firstrun_f' + funnelcake_id %}
       <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
-        <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}signin?utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=firstrun&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrunwow{{ funnelcake_id }}&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
+        <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}signin?utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source={{ utm_source }}&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrunwow{{ funnelcake_id }}&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
         <button id="skip-button">{{_('Skip this step')}}</button>
       </div>
     </div>
