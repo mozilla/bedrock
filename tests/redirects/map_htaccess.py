@@ -130,7 +130,13 @@ URLS = flatten((
     url_test('/en-US/firefox/help/', 'https://support.mozilla.org/'),
 
     # Bug 1255882
+    url_test('/some/url///', '/some/url/'),
+    url_test('////', '/en-US/'),
+    url_test('/en-US///', '/en-US/'),
     url_test('/de/firefox/about/', '/de/about/'),
+
+    # bug 1300373
+    url_test('/%2fgoogle.com//', '/google.com/'),
 
     # bug 453506, 1255882
     url_test('/editor/editor-embedding.html',
