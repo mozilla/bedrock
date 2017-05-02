@@ -20,6 +20,8 @@ from bedrock.mozorg.decorators import cache_control_expires
 
 log = commonware.log.getLogger('redirects.util')
 LOCALE_RE = r'^(?P<locale>\w{2,3}(?:-\w{2})?/)?'
+HTTP_RE = re.compile(r'^https?://', re.IGNORECASE)
+PROTOCOL_RELATIVE_RE = re.compile(r'^//+')
 # redirects registry
 redirectpatterns = []
 
@@ -185,11 +187,14 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
         else:
             to_value = to
 
-        try:
-            redirect_url = reverse(to_value, args=to_args, kwargs=to_kwargs)
-        except NoReverseMatch:
-            # Assume it's a URL
+        if to_value.startswith('/') or HTTP_RE.match(to_value):
             redirect_url = to_value
+        else:
+            try:
+                redirect_url = reverse(to_value, args=to_args, kwargs=to_kwargs)
+            except NoReverseMatch:
+                # Assume it's a URL
+                redirect_url = to_value
 
         if prepend_locale and redirect_url.startswith('/') and kwargs.get('locale'):
             redirect_url = '/{locale}' + redirect_url.lstrip('/')
@@ -215,6 +220,9 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
 
         if anchor:
             redirect_url = '#'.join([redirect_url, anchor])
+
+        if PROTOCOL_RELATIVE_RE.match(redirect_url):
+            redirect_url = '/' + redirect_url.lstrip('/')
 
         return redirect_class(redirect_url)
 
