@@ -17,10 +17,10 @@
             id: 'experiment-funnelcakes-110-113',
             cookieExpires: 168, // 1 week
             variations: {
-                'f=110': 1,
-                'f=111': 1,
-                'f=112': 1,
-                'f=113': 1
+                'f=110': 7,
+                'f=111': 7,
+                'f=112': 7,
+                'f=113': 7
             }
         });
 
