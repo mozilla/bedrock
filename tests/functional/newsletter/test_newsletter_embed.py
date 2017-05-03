@@ -38,9 +38,7 @@ from pages.smarton.base import SmartOnBasePage
     (StumblerTaskPage, None),
     (MissionPage, None),
     (FirefoxAllPage, None),
-    pytest.mark.smoke((DesktopPage, None)),
     (CustomizePage, None),
-    (FirefoxDesktopBasePage, {'slug': 'fast'}),
     (FirefoxDesktopBasePage, {'slug': 'trust'}),
     (FirefoxSyncPage, None),
     (PluginCheckPage, None),
@@ -57,6 +55,20 @@ def test_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
     page.newsletter.expand_form()
     assert '' == page.newsletter.email
     assert 'United States' == page.newsletter.country
+    assert not page.newsletter.privacy_policy_accepted
+    assert page.newsletter.is_privacy_policy_link_displayed
+
+
+@pytest.mark.nondestructive
+@pytest.mark.parametrize(('page_class', 'url_kwargs', 'locale'), [
+    (DesktopPage, None, 'de'),
+    (FirefoxDesktopBasePage, {'slug': 'fast'}, 'de')])
+def test_newsletter_default_values_locales(page_class, url_kwargs, locale, base_url, selenium):
+    url_kwargs = url_kwargs or {}
+    locale = locale or 'en-US'
+    page = page_class(selenium, base_url, locale, **url_kwargs).open()
+    page.newsletter.expand_form()
+    assert '' == page.newsletter.email
     assert not page.newsletter.privacy_policy_accepted
     assert page.newsletter.is_privacy_policy_link_displayed
 

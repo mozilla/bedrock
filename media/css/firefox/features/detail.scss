@@ -1,0 +1,44 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../hub/news-feed';
+@import '../hub/outro';
+@import '../hub/cards-block';
+
+/* -------------------------------------------------------------------------- */
+// Page header
+
+.header-intro {
+
+    @media #{$mq-tablet} {
+        h1 {
+            @include font-size(42px);
+        }
+
+        .tagline {
+            @include font-size(22px);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        h1 {
+            @include font-size(58px);
+        }
+
+        .tagline {
+            @include font-size(24px);
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        h1 {
+            @include font-size(82px);
+        }
+
+        .tagline {
+            @include font-size(34px);
+        }
+    }
+}

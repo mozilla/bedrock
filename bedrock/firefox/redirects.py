@@ -515,4 +515,10 @@ redirectpatterns = (
     # Bug 1277196
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/firstrun/learnmore/?$', 'firefox.features'),
     redirect(r'^firefox/windows-10/welcome/?$', 'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10'),
+
+    # Bug 1355184
+    redirect(r'^en-US/firefox/private-browsing/?', 'firefox.features.private-browsing', locale_prefix=False),
+
+    # Bug 1355189
+    redirect(r'^en-US/firefox/desktop/fast/?', 'firefox.features.fast', locale_prefix=False),
 )

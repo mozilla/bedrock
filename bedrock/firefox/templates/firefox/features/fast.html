@@ -1,0 +1,120 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/base.html" %}
+
+{% block page_title %}{{ _('Firefox is faster and more powerful than ever before') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox lets you do more, faster. Our new, powerful multi-process platform easily handles all your tabs without bogging down your computer.') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/features/page-image-fast.jpg') }}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-fast{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('We’ve been working out') }}</span></h1>
+  <p class="tagline">{{ _('Firefox is now faster and leaner than ever.') }}</p>
+{% endblock %}
+
+{% block features_list %}
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/fast/low-memory.jpg') }}" alt="">
+        <h3>{{ _('Bang for your bytes') }}</h3>
+        <p>
+        {% trans %}
+          No one likes a computer hog! Firefox is a lean, mean (actually we’re pretty
+          nice) browsing machine. We also use less memory than Chrome, so it’s easier
+          for your computer to keep running other programs without being weighed down.
+        {% endtrans %}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/fast/multi-tabs.jpg') }}" alt="">
+        <h3>{{ _('All the tabs, none of the lags') }}</h3>
+        <p>
+        {% trans %}
+          Multi-tasking with multiple tabs just got easier. Firefox is now a multi-process
+          browser, which means that your tabs stay fresh and won’t take forever to reload.
+          With 86% less hang time, it’s a snap to tab hop even as you open up more.
+        {% endtrans %}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/fast/gaming.jpg') }}" alt="">
+        <h3>{{ _('Rack up those XPs') }}</h3>
+        <p>
+        {% trans %}
+          We led the tech to run 3D games at near-native speeds, and now Firefox is
+          bringing better performance to online gaming. Our powerful browser reduces
+          lags, speeds up ping times, and optimizes overall gameplay through faster,
+          leaner browsing.
+        {% endtrans %}
+        </p>
+      </li>
+    </ul>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}
+
+{% block values %}
+<section class="values">
+  <div class="content">
+    <div class="cards-container">
+      <section id="card-modern" class="card image-card card-private">
+        <a href="{{ url('firefox.features.private-browsing') }}" class="card-image" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+          <img src="{{ static('img/firefox/hub/value-private.jpg') }}" alt="">
+        </a>
+        <div class="card-content">
+          <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+            <h2 class="card-title">{{ _('More Privacy') }}</h2>
+          </a>
+          <p>
+          {% trans %}
+            Firefox doesn’t sell access to your personal information like other companies.
+            From privacy tools to tracking protection, you’re in charge of who sees what.
+          {% endtrans %}
+          </p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+              {{ _('Here’s how Firefox protects your privacy') }}
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section id="card-independent" class="card image-card card-independent">
+        <a href="{{ url('firefox.features.independent') }}" class="card-image" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+        <img src="{{ static('img/firefox/hub/value-indie.jpg') }}" alt="">
+        </a>
+        <div class="card-content">
+          <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+            <h2 class="card-title">{{ _('More Freedom') }}</h2>
+          </a>
+          <p>
+          {% trans %}
+            Following the pack isn’t our style. As part of the non-profit Mozilla,
+            Firefox leads the fight to protect your online rights, and champion an
+            Internet that benefits everyone—not just a few.
+          {% endtrans %}
+          </p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+              {{ _('Browse independently with Firefox') }}
+            </a>
+          </p>
+        </div>
+      </section>
+    </div> {#--/.cards-container--#}
+  </div> {#--/.content--#}
+</section> {#--/.values--#}
+{% endblock %}

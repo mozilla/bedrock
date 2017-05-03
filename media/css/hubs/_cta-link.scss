@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+
+// This probably needs a better name. It may
+// be part of the recently expanded palette so
+// it could be a global value added to pebbles.
+$color-burnt-orange: #9c432a;
+
+a.cta-link {
+    @include font-size(18px);
+    border-bottom: 2px solid $color-burnt-orange;
+    color: $color-burnt-orange;
+    display: inline-block;
+    font-family: $font-open-sans;
+    font-weight: bold;
+    padding: 0 10% 10px 0;
+    position: relative;
+    text-decoration: none;
+    width: 80%;
+
+    &:after {
+        background: url('/media/img/firefox/hub/cta-arrow.svg') center right no-repeat;
+        content: '';
+        display: block;
+        height: 14px;
+        padding: 10px 0 0 10px;
+        position: absolute;
+        right: 0;
+        top: 2px;
+        transition: margin-right 100ms ease-in-out;
+        width: 12px;
+    }
+
+    &:hover,
+    &:focus {
+        color: lighten($color-burnt-orange, 10%);
+        border-color: lighten($color-burnt-orange, 10%);
+
+        &:after {
+            margin-right: -4px;
+        }
+    }
+}
