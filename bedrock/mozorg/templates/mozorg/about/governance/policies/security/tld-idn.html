@@ -7,13 +7,9 @@
 {% block page_title %}{{ _('IDN-enabled TLDs') }}{% endblock %}
 {% block body_class %}sand{% endblock %}
 
-{% block page_css %}
-  {% stylesheet 'security-tld-idn' %}
-{% endblock %}
-
 {% block article %}
 
-<h1 class="title-banner">{{ _('IDN-enabled TLDs') }}</h1>
+<h1 class="title-shadow-box">{{ _('IDN-enabled TLDs') }}</h1>
 
 <p><strong>{% trans url='https://wiki.mozilla.org/IDN_Display_Algorithm' %}
 This document is of historical interest only. Firefox now uses <a href="{{ url }}">an algorithm</a> to decide which IDNs to display. The whitelist mechanism still remains in the product for backwards compatibility, but the whitelist of domains is no longer updated.

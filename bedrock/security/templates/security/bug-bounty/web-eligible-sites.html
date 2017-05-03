@@ -1,0 +1,189 @@
+{% extends "security/base.html" %}
+
+{% block page_title %}Mozilla Web Application Security Bug Bounty FAQ{% endblock %}
+{% set body_id = "web-eligible-sites" %}
+
+
+{% block breadcrumbs %}
+  <nav class="breadcrumbs">
+    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
+    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
+    <a href="{{ url('security.bug-bounty') }}">{{ _(' Bug Bounty ') }}</a> &gt;
+  </nav>
+{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name" class="title-shadow-box">Eligible Websites &amp; Services</h1>
+    </header>
+
+    <div itemprop="articleBody">
+      <h2 id="critical-sites"><b>Critical</b></h2>
+
+      <p>These websites and services are considered critical to Mozilla operations and pay out at the highest bounty rate.</p>
+
+      <h3>ABSearch</h3>
+      <ul>
+        <li>search.services.mozilla.com</li>
+      </ul>
+
+      <h3>Add-ons</h3>
+      <ul>
+        <li>addons.cdn.mozilla.net</li>
+        <li>addons.mozilla.org</li>
+        <li>blocklist.addons.mozilla.org</li>
+        <li>builder.addons.mozilla.org</li>
+        <li>compatibility-lookup.services.mozilla.com</li>
+        <li>discovery.addons.mozilla.org</li>
+        <li>services.addons.mozilla.org</li>
+        <li>static.addons.mozilla.net</li>
+        <li>versioncheck-bg.addons.mozilla.org</li>
+        <li>versioncheck.addons.mozilla.org</li>
+      </ul>
+
+      <h3>Bedrock (www)</h3>
+      <ul>
+        <li>www.firefox.com</li>
+        <li>www.getfirefox.com</li>
+        <li>www.mozilla.com</li>
+        <li>www.mozilla.org</li>
+      </ul>
+
+      <h3>Bugzilla</h3>
+      <ul>
+        <li>bugzilla.mozilla.org</li>
+        <li>*.bmoattachments.org (excludes XSS and open redirects)</li>
+      </ul>
+      <p>
+        <strong>Please do not use automated scanners, create, or modify bugs when testing Bugzilla.</strong>
+        <br>Instead, install your own local copy for testing from <a href="https://github.com/mozilla/webtools-bmo-bugzilla">webtools-bmo-bugzilla</a>
+        or use our <a href="https://bugzilla-dev.allizom.org/">development instance</a>.
+      </p>
+
+      <h3>Crash Reports</h3>
+      <ul>
+        <li>crash-reports.mozilla.com</li>
+        <li>crash-reports-xpsp2.mozilla.com</li>
+        <li>crash-stats.mozilla.com</li>
+      </ul>
+
+      <h3>Downloads (Product Delivery)</h3>
+      <ul>
+        <li>archive.mozilla.org</li>
+        <li>download.mozilla.org</li>
+      </ul>
+
+      <h3>Firefox Accounts</h3>
+      <ul>
+        <li>accounts.firefox.com</li>
+        <li>api.accounts.firefox.com</li>
+        <li>oauth.accounts.firefox.com</li>
+        <li>profile.accounts.firefox.com</li>
+        <li>verifier.accounts.firefox.com</li>
+      </ul>
+
+      <h4>Firefox Settings (Kinto)</h4>
+      <ul>
+        <li>firefox.settings.services.mozilla.com</li>
+        <li>webextensions.settings.services.mozilla.com</li>
+      </ul>
+
+      <h3>Firefox Sync</h3>
+      <ul>
+        <li>*.sync.services.mozilla.com</li>
+        <li>token.services.mozilla.com</li>
+      </ul>
+
+      <h3>Firefox Updates (AUS/Balrug)</h3>
+      <ul>
+        <li>aus3.mozilla.org</li>
+        <li>aus4.mozilla.org</li>
+        <li>aus5.mozilla.org</li>
+      </ul>
+
+      <h3>Push</h3>
+      <ul>
+        <li>push.services.mozilla.com</li>
+        <li>updates.push.services.mozilla.com</li>
+      </ul>
+
+      <h3>Shield</h3>
+      <ul>
+        <li>self-repair.mozilla.org</li>
+      </ul>
+
+      <h3>Source Control</h3>
+      <ul>
+        <li>hg.mozilla.org (except website, see below)</li>
+      </ul>
+
+      <h3>Test Pilot</h3>
+      <ul>
+        <li>testpilot.firefox.com</li>
+      </ul>
+
+      <h3>Tracking Protection</h3>
+      <ul>
+        <li>shavar.services.mozilla.com</li>
+        <li>tracking.services.mozilla.com</li>
+      </ul>
+
+      <h2 id="core-sites"><b>Core</b></h2>
+
+      <p>Core websites pay out bounties, but at a reduced rate.</p>
+
+      <h3>Internal</h3>
+      <ul>
+        <li>login.mozilla.com</li>
+        <li>mana.mozilla.org</li>
+        <li>phonebook.mozilla.org</li>
+      </ul>
+
+      <h3>Observatory</h3>
+      <ul>
+        <li>http-observatory.security.mozilla.org</li>
+        <li>observatory.mozilla.org</li>
+        <li>tls-observatory.services.mozilla.com</li>
+      </ul>
+
+      <h3>Shield</h3>
+      <ul>
+        <li>qsurvey.mozilla.com</li>
+      </ul>
+
+      <h3>Source Control</h3>
+      <ul>
+        <li>hg.mozilla.org (website only)</li>
+      </ul>
+
+      <h3>Taskcluster</h3>
+      <ul>
+        <li>auth.taskcluster.net</li>
+        <li>aws-provisioner.taskcluster.net</li>
+        <li>cloud-mirror.taskcluster.net</li>
+        <li>cors-proxy.taskcluster.net</li>
+        <li>docs.taskcluster.net</li>
+        <li>events.taskcluster.net</li>
+        <li>github.taskcluster.net</li>
+        <li>grafana.taskcluster.net</li>
+        <li>hooks.taskcluster.net</li>
+        <li>index.taskcluster.net</li>
+        <li>login.taskcluster.net</li>
+        <li>loop.telemetry.mozilla.org</li>
+        <li>notify.taskcluster.net</li>
+        <li>public-artifacts.taskcluster.net</li>
+        <li>pulse.taskcluster.net</li>
+        <li>purge-cache.taskcluster.net</li>
+        <li>queue.taskcluster.net</li>
+        <li>references.taskcluster.net</li>
+        <li>scheduler.taskcluster.net</li>
+        <li>schemas.taskcluster.net</li>
+        <li>secrets.taskcluster.net</li>
+        <li>statsum.taskcluster.net</li>
+        <li>taskcluster.net</li>
+        <li>tools.taskcluster.net</li>
+      </ul>
+    </div>
+  </article>
+{% endblock %}

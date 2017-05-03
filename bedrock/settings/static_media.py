@@ -804,12 +804,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/security-bug-bounty-hall-of-fame-bundle.css',
     },
-    'security-tld-idn': {
-        'source_filenames': (
-            'css/mozorg/security-tld-idn.less',
-        ),
-        'output_filename': 'css/security-tld-idn-bundle.css',
-    },
     'smarton': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',

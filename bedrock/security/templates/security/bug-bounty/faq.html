@@ -1,6 +1,8 @@
 {% extends "security/base.html" %}
 
 {% block page_title %}Mozilla Security Bug Bounty Program{% endblock %}
+{% set body_id = "faq" %}
+
 
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
@@ -15,12 +17,14 @@
     <header>
       <h1 itemprop="name" class="title-shadow-box">Bug Bounty Program FAQ</h1>
     </header>
+
     <div itemprop="articleBody">
       <p>This FAQ attempts to answer various questions about the Mozilla
         security bug bounty program sponsored by the Mozilla Foundation. For
-        more information see the <a href="https://blog.mozilla.org/press/2004/08/mozilla-foundation-announces-security-bug-bounty-program/">original
-          announcement</a> and the <a href="{{ url('security.bug-bounty') }}">official
-          guidelines</a> governing the program.</p>
+        more information see the
+        <a href="https://blog.mozilla.org/press/2004/08/mozilla-foundation-announces-security-bug-bounty-program/">original announcement</a>
+        and the <a href="{{ url('security.bug-bounty') }}">official guidelines</a>
+        governing the program.</p>
 
       <h3>General questions</h3>
 
@@ -81,18 +85,14 @@
       <h2>General questions</h2>
 
       <dl class="faq">
-        <dt class="question" id="why">Why is the Mozilla Foundation doing
-          this?</dt>
-
-        <dd class="answer">
+        <dt id="why">Why is the Mozilla Foundation doing this?</dt>
+        <dd>
           <p>Because we want to encourage more people to find and report
             security bugs in our products, so that we can make our products even
             more secure than they already are. It's as simple as that.</p>
         </dd>
 
-        <dt class="question" id="eligibility">Are Mozilla developers
-          eligible for the bug bounty reward?</dt>
-
+        <dt id="eligibility">Are Mozilla developers eligible for the bug bounty reward?</dt>
         <dd class="answer">
           <p>Yes. Anyone is eligible to receive a reward except for employees of
             the Mozilla Foundation and its subsidiaries and the creators and
@@ -107,41 +107,36 @@
       <h2>Eligible software</h2>
 
       <dl class="faq">
-        <dt class="question" id="other-products">Can I get the bug
-          bounty reward if I discover a bug in Camino, Galeon, K-Meleon, Netscape
-          7, Mozilla Suite, SeaMonkey, or other products based on Mozilla code?</dt>
-
-        <dd class="answer">
+        <dt id="other-products">Can I get the bug bounty reward if I discover a bug in Camino,
+          Galeon, K-Meleon, Netscape 7, Mozilla Suite, SeaMonkey, or other products based on Mozilla code?</dt>
+        <dd>
           <p>Only if we can reproduce the problem in the most recent version
             of Firefox, Firefox for Android, and/or Thunderbird.</p>
         </dd>
 
-        <dt class="question" id="bugzilla-etc">Does the bug bounty cover
+        <dt id="bugzilla-etc">Does the bug bounty cover
           bugs found in Bugzilla, Tinderbox, Bonsai, and other software created
           and distributed as part of the Mozilla project?</dt>
-
-        <dd class="answer">
+        <dd>
           <p>No. We have decided to use our limited resources to focus on our
             end-user products, as opposed to the other software produced and used
             by the Mozilla project.</p>
         </dd>
 
-        <dt class="question" id="most-recent">What do you mean by the
+        <dt id="most-recent">What do you mean by the
           "most recent version" of Firefox, Firefox for Android, and/or
           Thunderbird?</dt>
-
-        <dd class="answer">
+        <dd>
           <p>In general we mean the releases available for download on the <a
             href="{{ url('firefox.family.index') }}">mozilla.org download pages</a> at the time the
             bug was reported. However we will also consider paying rewards for
             security bugs as discussed in the questions and answers below.</p>
         </dd>
 
-        <dt class="question" id="older-releases">Can I get the bug
+        <dt id="older-releases">Can I get the bug
           bounty reward if I discover a bug in an older release of Firefox,
           Firefox for Android, and/or Thunderbird?</dt>
-
-        <dd class="answer">
+        <dd>
           <p>In general bugs found in earlier releases are eligible for a
             reward only if we can reproduce the problem using the most recent
             version.</p>
@@ -156,34 +151,31 @@
             "fixed" solely as a byproduct of other unrelated changes.)</p>
         </dd>
 
-        <dt class="question" id="development-releases">Can I get the bug bounty
+        <dt id="development-releases">Can I get the bug bounty
           reward if I discover a bug in a pre-release version of Firefox, Firefox for
           Android, or Thunderbird?</dt>
-
-        <dd class="answer">
+        <dd>
           <p>Yes, as long as the bug otherwise meets the published bug bounty
-            program guidelines. Bugs found in Aurora and Beta releases of Firefox and
+            program guidelines. Bugs found in Developer Edition and Beta releases of Firefox and
             Firefox for Android, EarlyBird and Beta releases of Thunderbird are eligible as
             long the bug is reproducible in the latest nightly mozilla-central build and has
             not been previously reported.</p>
         </dd>
 
-        <dt class="question" id="third-party-releases">Can I get the bug
+        <dt id="third-party-releases">Can I get the bug
           bounty reward if I discover a bug that occurs in a third-party release
           of Firefox, Firefox for Android, and/or Thunderbird (e.g., a localized
           build, optimized build, or third-party Firefox, Firefox for Android, or
           Thunderbird distribution)?</dt>
-
-        <dd class="answer">
+        <dd>
           <p>Yes, if the bug can be reproduced in an official Mozilla
             Foundation release and otherwise meets the published guidelines.</p>
         </dd>
 
-        <dt class="question" id="platform-specific">Can I get the bug
+        <dt id="platform-specific">Can I get the bug
           bounty reward if I discover a bug that occurs only on a particular
           operating system?</dt>
-
-        <dd class="answer">
+        <dd>
           <p>Yes, if the operating system is officially supported by the most
             recent version of the product for which you're reporting the bug. (For
             a list of supported operating systems and hardware configurations see
@@ -197,10 +189,8 @@
       <h2>Eligible bugs</h2>
 
       <dl class="faq">
-        <dt class="question" id="eligible-bugs">What types of security bugs are
-          eligible?</dt>
-
-        <dd class="answer">
+        <dt id="eligible-bugs">What types of security bugs are eligible?</dt>
+        <dd>
           <p>Reproducible security bugs that are determined to be rated
             <a href="https://wiki.mozilla.org/Security_Severity_Ratings">sec-critical or
               sec-high</a> are eligible. In general we consider critical security bugs to be
@@ -217,10 +207,8 @@
             service attacks to be eligible in the sense described above.</p>
         </dd>
 
-        <dt class="question" id="dos-bugs">Why won't you provide a
-          reward for denial of service (DoS) bugs?</dt>
-
-        <dd class="answer">
+        <dt id="dos-bugs">Why won't you provide a reward for denial of service (DoS) bugs?</dt>
+        <dd>
           <p>Because DoS bugs are generally less serious than other security
             bugs (e.g., they typically do not lead to corruption or destruction of
             user data, much less theft of data), and in many cases a DoS attack
@@ -235,11 +223,9 @@
       <h2>Bug reporting, etc.</h2>
 
       <dl class="faq">
-        <dt class="question" id="already-published">I've already
-          published information about the bug, and didn't go through the Mozilla
-          bug process; can I still get a reward?</dt>
-
-        <dd class="answer">
+        <dt id="already-published">I've already published information about the bug,
+          and didn't go through the Mozilla bug process; can I still get a reward?</dt>
+        <dd>
           <p>Yes, as long as the bug report occurred after the official
             announcement of the bug bounty program on August 2, 2004, and otherwise
             meets the published bug bounty program guidelines (e.g., the bug has
@@ -252,11 +238,10 @@
             bug is made known as soon as possible to the people who can fix it.</p>
         </dd>
 
-        <dt class="question" id="nondisclosure">If I report the bug
+        <dt id="nondisclosure">If I report the bug
           directly to you, do I have to keep the bug confidential and not publish
           information about it in order to receive a reward?</dt>
-
-        <dd class="answer">
+        <dd>
           <p>No. We're rewarding you for finding a bug, not trying to buy
             your silence. However if you report the bug through the standard
             Mozilla process and haven't already published information about it then
@@ -270,11 +255,10 @@
             bug report is being completely ignored).</p>
         </dd>
 
-        <dt class="question" id="cooperation">I don't have the time or
+        <dt id="cooperation">I don't have the time or
           desire to work with you further in investigating and fixing the bug;
           can I still get a bug bounty reward?</dt>
-
-        <dd class="answer">
+        <dd>
           <p>Yes. Again, we're rewarding you for finding a bug, not trying to
             buy your cooperation. However we do invite you to work together with
             us, and we hope that you'll accept that offer in the spirit in which it

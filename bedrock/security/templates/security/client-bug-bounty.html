@@ -1,7 +1,7 @@
 {% extends "security/base.html" %}
 
 {% block page_title %}Mozilla Security Bug Bounty Program{% endblock %}
-{% set body_id = "bug-bounty" %}
+{% set body_id = "client-bug-bounty" %}
 
 {% block article %}
   <article class="section-content" itemscope itemtype="http://schema.org/Article">
@@ -37,7 +37,7 @@
 
       <p>Mozilla will pay a bounty for client and security bugs as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
 
-       <p> Eligible security bugs may be present in any of the current main development or released versions of Firefox, Thunderbird, Firefox for Android, or FirefoxOS as released by Mozilla Corporation (e.g. Nightly mozilla-central, Firefox Developer Edition, or Beta test versions, as well as the final release product versions)</p>
+       <p> Eligible security bugs may be present in any of the current main development or released versions of Firefox or Firefox for Android as released by Mozilla Corporation (e.g. Nightly mozilla-central or Beta test versions, as well as the final release product versions)</p>
 
         <p>The security rating given by the Bounty Committee for a bug must be rated a "sec-critical" or a "sec-high" in order for it to be eligible for a bounty. Some "sec-moderate" bugs may be eligible for the bounty as well. (See <a href="https://wiki.mozilla.org/Security_Severity_Ratings">Security Ratings</a> for details of the rating qualifications.)</p>
 
@@ -91,7 +91,7 @@
           <li>When creating the bug, be sure to check the box near the bottom of the entry form that marks this bug report as confidential.</li>
           <li>Attach a "proof of concept" testcase, or point to explicit code that identifies the vulnerability or exploit.  While not required, such a testcase will help us judge submissions more quickly and accurately.</li>
           <li>If you have debug output or output from a tool demonstrating the issue, please include it in the bug. (If it is very long, please attach it to the bug as an attached file.)</li>
-          <li>Notify the Mozilla Security Group by email to security@mozilla.org and include the number of the bug you filed and a brief summary of the issue.</li>
+          <li>Notify the Mozilla Security Group by email to security@mozilla.org and include the number of the bug you filed and a brief summary of the issue. <strong>Do not send the actual vulnerability via email.</strong></li>
     </ul>
 
     <p>We ask that you be available to follow along and provide further information on the bug as needed, and invite you to work together with Mozilla engineers in reproducing, diagnosing, and fixing the bug. As part of this process we will provide you full access to participate in our internal discussions about the bug; for more information read our policy for handling security bugs.</p>
