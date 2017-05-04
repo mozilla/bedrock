@@ -1,0 +1,506 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}{{ _('Decentralization: Vital to Internet Health') }}{% endblock %}
+
+{% block page_desc %}{{ _('A decentralized internet, owned by all of us, is where net neutrality, interoperability, competition, and local contribution thrive.') }}{% endblock %}
+{% block page_image %}{{ static('img/mozorg/internet-health/decentralization/decentralization-meta-image.jpg') }}{% endblock %}
+
+{% block body_id %}health-decentralization{% endblock %}
+{% block body_class %}theme-decentralization{% endblock %}
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="internet-health"{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'health-subpage' %}
+{% endblock %}
+
+{% block site_header %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
+    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+    {% include 'mozorg/home/includes/nav.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<nav id="health-subnav" class="health-subnav">
+  <ul class="content">
+    <li><a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Privacy &amp; Security') }}</a></li>
+    <li><a href="{{ url('mozorg.internet-health.open-innovation') }}">{{ _('Open Innovation') }}</a></li>
+    <li class="current"><a href="{{ url('mozorg.internet-health.decentralization') }}">{{ _('Decentralization') }}</a></li>
+    <li><a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Digital Inclusion') }}</a></li>
+    <li><a href="{{ url('mozorg.internet-health.web-literacy') }}">{{ _('Web Literacy') }}</a></li>
+  </ul>
+</nav>
+
+<main role="main">
+  <header class="section main-header">
+    <div class="content">
+      <h1 class="page-title">{{ _('A healthy Internet is created and owned by us all') }}</h1>
+
+      <div class="head-intro">
+        <p>
+        {% trans %}
+          The Internet owes much of its success to openness: its open, shared structure
+          has made it easy for everyone to build, surf, and thrive on it. But a few big
+          companies are closing in,  closing doors, and creating walled gardens that
+          concentrate their ownership and control of the Web. Together, we can fight
+          to make sure no one limits our Internet access, experience, or creation.
+        {% endtrans %}
+          <strong>
+          {% trans %}
+            A healthy Internet belongs to you.
+          {% endtrans %}
+          </strong>
+        </p>
+      </div>
+    </div>
+
+    <nav class="section head-pagenav">
+      <div class="content">
+        <h2 class="head-pagenav-title">
+        {% trans %}
+          Here are four areas where we can make a difference.
+        {% endtrans %}
+        </h2>
+
+        <ul>
+          <li><a class="nav-one" href="#neutrality">{{ _('Net Neutrality') }}</a></li>
+          <li><a class="nav-two" href="#interoperability">{{ _('Interoperability') }}</a></li>
+          <li><a class="nav-three" href="#choice">{{ _('Competition and Choice') }}</a></li>
+          <li><a class="nav-four" href="#local">{{ _('Local Contribution') }}</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section id="neutrality" class="section topic topic-first">
+
+    <section class="topic-intro">
+      <div class="content">
+
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Decentralization means Net Neutrality') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            No one should be able to restrict our access to the Web for their own gain.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            We rely on network providers – telcos and cable companies – for access to the
+            Internet. Which puts them in a position to restrict that access for their own
+            business objectives, favoring their own products, blocking sites or brands, or
+            charging different prices and offering different speeds depending on content
+            type. Net neutrality prohibits network providers from discriminating based on
+            content, so everyone has equal access.
+          {% endtrans %}
+          </p>
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+            {% trans %}
+              As of December 2016, 47 countries currently have laws in place to
+              protect Net Neutrality.
+            {% endtrans %}
+            </p>
+
+            <p class="note-source">
+              <cite>
+              {% trans accessnow='https://www.thisisnetneutrality.org/' %}
+                Source: <a href="{{ wwwf }}">Access Now</a>, 2015
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('47') }}</span>
+        </aside>
+
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can support net neutrality') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Keep speaking up') }}</h4>
+              <p>
+              {% trans %}
+                The fight for net neutrality continues all over the world. The rules that
+                have been adopted in the US and Europe need to be defended and enforced.
+                Reach out to your government official wherever you live, and express your
+                support.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is supporting net neutrality') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Advocating policy change') }}</h4>
+              <p>
+              {% trans usa='https://blog.mozilla.org/netpolicy/2017/01/20/calling-on-the-new-administration-to-make-the-internet-a-priority/',
+                       europe='https://blog.mozilla.org/netpolicy/2016/06/20/eu-users-can-stand-up-for-net-neutrality/',
+                       india='https://blog.mozilla.org/netpolicy/2016/07/01/protecting-the-open-internet-in-india/' %}
+                Working directly with legislative bodies to craft policy frameworks for
+                and meaningful enforcement of net neutrality in the <a href="{{ usa }}">United States</a>,
+                <a href="{{ europe }}">Europe</a>, <a href="{{ india }}">India</a>, and all over the world.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Building community') }}</h4>
+              <p>
+              {% trans %}
+                Fostering a global community of passionate Internet users who share our vision.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+  </section>{# end #neutrality #}
+
+
+  <section id="interoperability" class="section topic">
+    <section class="topic-intro">
+      <div class="content">
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Decentralization means Interoperability') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            The Web should remain open and interoperable, so we can keep our experience
+            consistent, transparent, and full of possibility.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Interoperability is a big word with a simple result: your Web experience is basically
+            the same across browsers, hardware, and operating systems because it was designed that
+            way – and built with the open standards to support it. Open standards also allow anyone
+            to invent new ways to make your Web experience better. But interoperability is losing
+            ground to closed systems – and we’re losing transparency, participation, and innovation
+            along with it.
+          {% endtrans %}
+          </p>
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+            {% trans %}
+              73% of Internet users have seen someone harassed online and 40% have personally experienced it.
+            {% endtrans %}
+            </p>
+            <p class="note-source">
+              <cite>
+              {% trans pew='http://www.pewinternet.org/2014/10/22/online-harassment/' %}
+                Source: <a href="{{ pew }}">Pew Research</a>, 2014
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('73%') }}</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can support interoperability') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Go independent') }}</h4>
+              <p>
+              {% trans %}
+                Innovation can still come from anywhere – especially if we support it.
+                Try out apps and products from companies you don’t already know.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is supporting interoperability') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Setting the standards') }}</h4>
+              <p>
+              {% trans ietf='https://www.ietf.org/',
+                       w3c='https://www.w3.org/' %}
+                Working with and even leading open standards bodies, like <a href="{{ ietf }}">IETF</a>
+                and <a href="{{ w3c }}">W3C</a>.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Walking the talk') }}</h4>
+              <p>
+              {% trans mdn='https://developer.mozilla.org' %}
+                Building interoperability into our own products, and empowering web developers
+                through initiatives like the <a href="{{ mdn }}">Mozilla Developer Network</a>.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </section>{# end #interoperability #}
+
+
+  <section id="choice" class="section topic">
+    <section class="topic-intro">
+      <div class="content">
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Decentralization means Competition and Choice') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            The Internet should continue to foster healthy competition among companies,
+            opportunity for entrepreneurs, and meaningful choices for users.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {# L10n: "the whole enchilada" is American slang for a complete package. You can substitute a similar colloquial term or translate as "the complete package" #}
+          {% trans %}
+            A personalized Internet is an exciting prospect. But more and more, that
+            means opting into a single company’s ecosystem – which streamlines your
+            experience right now, but may seriously limit your choices in the future.
+            Competitors will be reduced to those few companies who can offer the whole
+            enchilada, thus consolidating the power of existing tech giants and making
+            it much harder for entrepreneurs to disrupt the market with great ideas.
+          {% endtrans %}
+          </p>
+
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+            {% trans %}
+              In most EU member countries, Google controls more than 90 percent of
+              the search market. In some countries, it controls as much as 97%.
+            {% endtrans %}
+            </p>
+            <p class="note-source">
+              <cite>
+              {% trans atlantic='https://www.theatlantic.com/technology/archive/2015/04/europeans-use-google-way-way-more-than-americans-do/390612/' %}
+                Source: <a href="{{ atlantic }}">The Atlantic</a>, 2015
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('97%') }}</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can influence competition and choice') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Know the tradeoffs') }}</h4>
+              <p>
+              {% trans %}
+                Make sure you understand the tradeoffs of that seamless online experience
+                before you opt into a single ecosystem. Support the companies and services
+                that best reflect your needs – and your values.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is influencing competition and choice') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Opposing gatekeeper power') }}</h4>
+              <p>
+              {% trans netpolicy='https://blog.mozilla.org/netpolicy/' %}
+                <a href="{{ netpolicy }}">Advocating</a> for net neutrality, copyright
+                reform, and other issues all over the world.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Championing openness') }}</h4>
+              <p>
+              {% trans standards='https://wiki.mozilla.org/Standards',
+                       mpl='https://www.mozilla.org/MPL/license-policy/' %}
+                Building with <a href="{{ standards }}">open standards</a> and open source
+                in our own products, and <a href="{{ mpl }}">supporting openness</a> at every opportunity.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </section>{# end #choice #}
+
+
+  <section id="local" class="section topic">
+    <section class="topic-intro">
+      <div class="content">
+        <div class="topic-intro-main">
+          <h2 class="topic-title"><span>{{ _('Decentralization means Local Contribution') }}</span></h2>
+
+          <p class="topic-tagline">
+          {% trans %}
+            We should all be able to contribute to the Web, so it reflects and serves
+            all of its users.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Today 3 billion people all over the world use the Internet to learn, work,
+            play, and connect. But not everyone is able to contribute to it equally.
+            Which means the Web doesn’t reflect the full diversity of its users, doesn’t
+            work as well for some people as others, and can even marginalize certain
+            communities and individuals.
+          {% endtrans %}
+          </p>
+
+        </div>
+
+        <aside class="topic-intro-aside">
+          <div class="note">
+            <p>
+            {% trans %}
+              Chinese, Spanish, Arabic and Portuguese speaking internet users make up
+              37.5% of the total online population, but only 11% of the Web is in
+              their language.
+            {% endtrans %}
+            </p>
+            <p class="note-source">
+              <cite>
+              {% trans wikipedia='https://en.wikipedia.org/wiki/Languages_used_on_the_Internet' %}
+                Source: <a href="{{ wikipedia }}">Wikipedia</a>
+              {% endtrans %}
+              </cite>
+            </p>
+          </div>
+          {# L10n: this is used as a decorative element in a callout box. #}
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('37.5%') }}</span>
+        </aside>
+      </div>
+    </section>
+
+    <section class="topic-action">
+      <div class="content">
+        <div class="topic-action-you">
+          <h3 class="topic-action-title">{{ _('How you can support local contribution') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Start making') }}</h4>
+              <p>
+              {% trans thimble='https://thimble.mozilla.org/' %}
+                Try your hand at creating Web content you care about, in your language.
+                <a href="{{ thimble }}">Thimble</a> is a great way to start.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="topic-action-moz">
+          <h3 class="topic-action-title">{{ _('How Mozilla is supporting local contribution') }}</h3>
+          <ul>
+            <li>
+              <h4>{{ _('Teaching makers') }}</h4>
+              <p>
+              {% trans tools='https://learning.mozilla.org/tools',
+                       teaching='https://learning.mozilla.org/activities' %}
+                Providing the <a href="{{ tools }}">tools</a> and <a href="{{ teaching }}">teaching</a>
+                to foster the next generation of Web creators.
+              {% endtrans %}
+              </p>
+            </li>
+            <li>
+              <h4>{{ _('Teaching localization') }}</h4>
+              <p>
+              {% trans l10n='https://developer.mozilla.org/docs/Mozilla/Localization' %}
+                Providing the <a href="{{ l10n }}">blueprint for localization</a>, so Web content
+                can be made relevant for people in different languages and locales.
+              {% endtrans %}
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </section>{# end #local #}
+
+
+  <section id="health-report" class="section health-report">
+    <div class="content">
+      <h2>{{ _('Hungry for more?') }}</h2>
+      <p class="report-cta">
+        <span>
+        {% trans healthreport='https://internethealthreport.org' %}
+          Read on about Decentralization in our <a href="{{ healthreport }}">Internet Health Report</a>.
+        {% endtrans %}
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <aside id="newsletter-subscribe">
+    <div class="content">
+      {{ email_newsletter_form(newsletters='mozilla-foundation',
+         title=_('Stay informed.'),
+         subtitle=_('Sign up. Read up. Get the Mozilla newsletter to stay smart on the issues affecting your life online.'),
+         button_class='button-light')
+      }}
+    </div>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {% with footer_class='dark' %}
+    {% if LANG.startswith('en-') %}
+      {% include 'includes/site-footer-new.html' %}
+    {% else %}
+      {% include 'includes/site-footer.html' %}
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'internet-health-subpage' %}
+{% endblock %}

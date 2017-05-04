@@ -30,8 +30,14 @@
 <nav id="health-subnav" class="health-subnav">
   <ul class="content">
     <li><a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Privacy &amp; Security') }}</a></li>
-    <li class="current"><a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Digital Inclusion') }}</a></li>
     <li><a href="{{ url('mozorg.internet-health.open-innovation') }}">{{ _('Open Innovation') }}</a></li>
+  {% if l10n_has_tag('health-decentralization-and-literacy') %}
+    <li><a href="{{ url('mozorg.internet-health.decentralization') }}">{{ _('Decentralization') }}</a></li>
+  {% endif %}
+    <li class="current"><a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Digital Inclusion') }}</a></li>
+  {% if l10n_has_tag('health-decentralization-and-literacy') %}
+    <li><a href="{{ url('mozorg.internet-health.web-literacy') }}">{{ _('Web Literacy') }}</a></li>
+  {% endif %}
   </ul>
 </nav>
 
@@ -143,7 +149,7 @@
               <h4>{{ _('Build resources') }}</h4>
               <p>
               {% trans wiki_support='https://donate.wikimedia.org',
-                       wiki_contribute='https://wikipedia.org/wiki/Wikipedia:Who_writes_Wikipedia'
+                       wiki_contribute='https://www.wikipedia.org/'
               %}
                 Support a resource like <a href="{{ wiki_support }}">Wikipedia</a> that drastically lowers the barriers to
                 knowledge – or better yet, <a href="{{ wiki_contribute }}">help build it</a>. Wikipedia needs more, and more
@@ -338,6 +344,18 @@
             <li>
               <h4>{{ _('Donate your tech') }}</h4>
               <p>
+            {% if LANG.startswith('en-') %}
+                Donate your old computers, laptops, and phones to non-profits like
+                <a href="http://www.dell.com/learn/us/en/uscorp1/corp-comm/us-goodwill-reconnect">Reconnect</a>,
+                <a href="https://en.wikipedia.org/wiki/StRUT">Students Recycling Used Technology</a>, or
+                <a href="http://interconnection.org/">Interconnection</a>,
+                who refurbish and redistribute them to underserved communities.
+            {% elif l10n_has_tag('inclusion-donate-tech') %}
+              {% trans %}
+                Donate your old computers, laptops, and phones to non-profits that refurbish
+                and redistribute them to underserved communities.
+              {% endtrans %}
+            {% else %}
               {% trans
                   reconnect='http://www.dell.com/learn/us/en/uscorp1/corp-comm/us-goodwill-reconnect',
                   strut='https://en.wikipedia.org/wiki/StRUT',
@@ -347,6 +365,7 @@
                 <a href="{{ strut }}">Students Recycling Used Technology</a>, or <a href="{{ interconnection }}">Interconnection</a>,
                 who refurbish and redistribute them to underserved communities.
               {% endtrans %}
+            {% endif %}
               </p>
             </li>
             <li>

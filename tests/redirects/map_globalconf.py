@@ -1155,4 +1155,7 @@ URLS = flatten((
         'utm_medium': 'collateral',
         'utm_campaign': 'css-grid',
     }),
+
+    # Bug 1361194
+    url_test('/internethealth', '/internet-health/'),
 ))

@@ -20,6 +20,14 @@ $color-theme-innovation: $color-brand-coral;
 $color-theme-innovation-light: lighten($color-brand-coral, 15%);
 $color-theme-innovation-accent: $color-brand-yellow;
 
+$color-theme-literacy: #f26c23;
+$color-theme-literacy-light: lighten($color-theme-literacy, 30%);
+$color-theme-literacy-accent: $color-brand-yellow;
+
+$color-theme-decentralization: #a0bf00;
+$color-theme-decentralization-light: #e2ef9b;
+$color-theme-decentralization-accent: $color-brand-yellow;
+
 // A mixin to apply theme colors to specific elements
 @mixin theme-color($theme-name, $theme-color, $theme-color-light, $theme-accent) {
     .#{$theme-name} {
@@ -34,8 +42,8 @@ $color-theme-innovation-accent: $color-brand-yellow;
         }
 
         .topic-action h4 {
-            background-image: -webkit-repeating-linear-gradient(top, transparent 0, transparent .75em, $theme-accent .75em, $theme-accent 1em);
-            background-image:         repeating-linear-gradient(to bottom, transparent 0, transparent .75em, $theme-accent .75em, $theme-accent 1em);
+            background-image: -webkit-repeating-linear-gradient(top, transparent 0, transparent .8em, $theme-accent .8em, $theme-accent 1.1em);
+            background-image:         repeating-linear-gradient(to bottom, transparent 0, transparent .8em, $theme-accent .8em, $theme-accent 1.1em);
         }
     }
 }
@@ -44,6 +52,8 @@ $color-theme-innovation-accent: $color-brand-yellow;
 @include theme-color('theme-privacy', $color-theme-privacy, $color-theme-privacy-light, $color-theme-privacy-accent);
 @include theme-color('theme-inclusion', $color-theme-inclusion, $color-theme-inclusion-light, $color-theme-inclusion-accent);
 @include theme-color('theme-innovation', $color-theme-innovation, $color-theme-innovation-light, $color-theme-innovation-accent);
+@include theme-color('theme-literacy', $color-theme-literacy, $color-theme-literacy-light, $color-theme-literacy-accent);
+@include theme-color('theme-decentralization', $color-theme-decentralization, $color-theme-decentralization-light, $color-theme-decentralization-accent);
 
 
 // Extra custom bits for privacy page
@@ -81,6 +91,50 @@ $color-theme-innovation-accent: $color-brand-yellow;
 
     .head-pagenav a:before {
         background-image: url('/media/img/mozorg/internet-health/innovation/nav-sprite.png');
+    }
+}
+
+// Extra custom bits for web literacy page
+.theme-literacy {
+    .main-header {
+        @include background-size(515px 758px);
+        background-image: url('/media/img/mozorg/internet-health/web-literacy/literacy-header-background.png');
+        background-repeat: repeat-x;
+    }
+
+    .head-pagenav a:before {
+        background-image: url('/media/img/mozorg/internet-health/web-literacy/literacy-nav-sprite.png');
+    }
+}
+
+// Extra custom bits for decentralization page
+.theme-decentralization {
+    .main-header {
+        @include background-size(515px 758px);
+        background-image: url('/media/img/mozorg/internet-health/decentralization/decentralization-header-background.png');
+        background-repeat: repeat-x;
+    }
+
+    .head-pagenav a:before {
+        @include background-size(50px 200px);
+        background-image: url('/media/img/mozorg/internet-health/decentralization/decentralization-nav-sprite.png');
+    }
+
+    @media #{$mq-tablet} {
+        .head-pagenav {
+            ul {
+                flex-wrap: wrap;
+            }
+
+            li {
+                width: 50%;
+                margin-bottom: 20px;
+            }
+
+            a:before {
+                @include background-size(75px 300px);
+            }
+        }
     }
 }
 
@@ -330,6 +384,10 @@ html[dir="rtl"] {
         &.nav-three:before {
             background-position: center -100px;
         }
+
+        &.nav-four:before {
+            background-position: center -150px;
+        }
     }
 
     @media #{$mq-tablet} {
@@ -359,6 +417,10 @@ html[dir="rtl"] {
 
         a.nav-three:before {
             background-position: center -150px;
+        }
+
+        a.nav-four:before {
+            background-position: center -225px;
         }
     }
 }
@@ -422,6 +484,16 @@ html[dir="rtl"] {
 
         cite {
             font-style: normal;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: $color-text-primary;
+
+        &:hover,
+        &:focus {
+            color: $color-text-tertiary;
         }
     }
 
