@@ -334,6 +334,18 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_features-bundle.css',
     },
+    'firefox-features-hub-common': {
+        'source_filenames': (
+            'css/firefox/features/common.scss',
+        ),
+        'output_filename': 'css/firefox-features-hub-common-bundle.css',
+    },
+    'firefox-features-hub-detail': {
+        'source_filenames': (
+            'css/firefox/features/detail.scss',
+        ),
+        'output_filename': 'css/firefox-features-hub-detail-bundle.css',
+    },
     'firefox-interest-dashboard': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -1233,6 +1245,14 @@ PIPELINE_JS = {
             'js/firefox/family-nav.js',
         ),
         'output_filename': 'js/firefox_features-bundle.js',
+    },
+    'firefox-features-hub': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
+        ),
+        'output_filename': 'js/firefox-features-hub-bundle.js',
     },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (

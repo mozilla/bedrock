@@ -453,3 +453,19 @@ class TestFeedbackView(TestCase):
 
         ctx = view.get_context_data()
         self.assertFalse('donate_stars_url' in ctx)
+
+
+@override_settings(DEV=False)
+@patch('bedrock.firefox.views.l10n_utils.render')
+class TestFirefoxFeatures(TestCase):
+    def test_en_us_template(self, render_mock):
+        req = RequestFactory().get('/firefox/features/')
+        req.locale = 'en-US'
+        views.features_landing(req)
+        render_mock.assert_called_once_with(req, 'firefox/features/index.html')
+
+    def test_locales_template(self, render_mock):
+        req = RequestFactory().get('/firefox/features/')
+        req.locale = 'de'
+        views.features_landing(req)
+        render_mock.assert_called_once_with(req, 'firefox/features.html')

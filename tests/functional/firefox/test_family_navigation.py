@@ -8,27 +8,29 @@ from pages.firefox.family_navigation import FirefoxPage
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', [
-    pytest.mark.smoke(('android')),
-    pytest.mark.smoke(('desktop')),
-    pytest.mark.smoke(('ios')),
-    pytest.mark.smoke(('features'))])
-def test_family_navigation_active_nav(slug, base_url, selenium):
-    page = FirefoxPage(selenium, base_url, slug=slug).open()
+@pytest.mark.parametrize(('slug', 'locale'), [
+    ('android', 'de'),
+    ('desktop', 'de'),
+    ('ios', 'de'),
+    ('features', 'de')])
+def test_family_navigation_active_nav(slug, locale, base_url, selenium):
+    locale = locale or 'en-US'
+    page = FirefoxPage(selenium, base_url, locale, slug=slug).open()
     assert page.family_navigation.active_primary_nav_id == slug
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', [
-    pytest.mark.smoke(('android')),
-    pytest.mark.smoke(('desktop')),
-    ('desktop/customize'),
-    ('desktop/fast'),
-    ('desktop/trust'),
-    ('dnt'),
-    ('interest-dashboard'),
-    pytest.mark.smoke(('ios'))])
-def test_family_navigation_adjunct_menu(slug, base_url, selenium):
-    page = FirefoxPage(selenium, base_url, slug=slug).open()
+@pytest.mark.parametrize(('slug', 'locale'), [
+    ('android', 'de'),
+    ('desktop', 'de'),
+    ('desktop/customize', None),
+    ('desktop/fast', 'de'),
+    ('desktop/trust', None),
+    ('dnt', None),
+    ('interest-dashboard', None),
+    ('ios', 'de')])
+def test_family_navigation_adjunct_menu(slug, locale, base_url, selenium):
+    locale = locale or 'en-US'
+    page = FirefoxPage(selenium, base_url, locale, slug=slug).open()
     page.family_navigation.open_adjunct_menu()
     assert page.family_navigation.is_adjunct_menu_displayed
