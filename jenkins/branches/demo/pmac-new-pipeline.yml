@@ -1,0 +1,8 @@
+# see the following for documentation of these options
+# http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
+demo: true
+regions:
+  - virginia
+integration_tests:
+  - headless
+  - firefox

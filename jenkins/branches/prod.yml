@@ -1,0 +1,21 @@
+# see the following for documentation of these options
+# http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
+push_public_registry: true
+smoke_tests: true
+require_tag: true
+app_name_suffix: "-deis"
+regions:
+  - usw
+  - euw
+  - virginia
+  - tokyo
+apps:
+  - bedrock-stage
+  - bedrock-prod
+integration_tests:
+  - headless
+  - firefox
+  - chrome
+  - ie
+  - ie6
+  - ie7

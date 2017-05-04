@@ -1,0 +1,22 @@
+environment:
+  SELENIUM_VERSION: 2.52.0
+
+regions:
+  usw:
+    deis_profile: usw
+    name: us-west
+    registry_port: 5001
+    deis_bin: deis
+  euw:
+    deis_profile: euw
+    name: eu-west
+    registry_port: 5000
+    deis_bin: deis
+  virginia:
+    deis_profile: virginia
+    name: virginia
+    deis_bin: deis2
+  tokyo:
+    deis_profile: tokyo
+    name: tokyo
+    deis_bin: deis2

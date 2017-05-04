@@ -69,8 +69,7 @@ Squashing your commits
 ----------------------
 
 Should your pull request contain more than one commit, sometimes we may ask you
-to squash them into a single commit before merging. You can do this with `git
-rebase`.
+to squash them into a single commit before merging. You can do this with `git rebase`.
 
 As an example, let's say your pull request contains two commits. To squash them
 into a single commit, you can follow these instructions:
@@ -137,9 +136,9 @@ Server architecture
 **On-demand demos**
 
 - *URLs:* Demo instances can also be spun up on-demand by pushing a branch to the mozilla
-  bedrock repo that matches a specific naming convention (the branch name must contain
-  ``demo__``). `CircleCI`_ will then automate spinning up a demo instance based on that
-  branch. For example, pushing a branch named ``demo__feature`` would create a demo
+  bedrock repo that matches a specific naming convention (the branch name must start with
+  ``demo/``). Jenkins will then automate spinning up a demo instance based on that
+  branch. For example, pushing a branch named ``demo/feature`` would create a demo
   instance with the following URL: ``https://bedrock-demo-feature.us-west.moz.works/``
 - *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
 - *Bedrock Git branch:* any branch we want, manually updated
@@ -148,7 +147,7 @@ Server architecture
 
     Deployed demo instances are not yet automatically cleaned up when branches are deleted,
     so to avoid lots of instances piling up it is currently recommended to try and limit
-    a single demo instance per developer, reusing a branch such as `demo__<your_username>`.
+    a single demo instance per developer, reusing a branch such as `demo/<your_username>`.
 
 **Dev**
 
