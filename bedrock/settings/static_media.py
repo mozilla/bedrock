@@ -566,6 +566,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_private_browsing-bundle.css',
     },
+    'firefox-product-page': {
+        'source_filenames': (
+            'css/firefox/product-page.scss',
+        ),
+        'output_filename': 'css/firefox-product-page-bundle.css',
+    },
     'firefox_releases_index': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -1320,6 +1326,14 @@ PIPELINE_JS = {
             'js/firefox/private-browsing.js'
         ),
         'output_filename': 'js/firefox_private_browsing-bundle.js',
+    },
+    'firefox-product-page': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
+        ),
+        'output_filename': 'js/firefox-product-page-bundle.js',
     },
     'firefox_interest_dashboard': {
         'source_filenames': (

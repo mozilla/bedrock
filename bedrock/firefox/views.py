@@ -30,6 +30,7 @@ from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
 from bedrock.utils.views import VariationMixin
+from bedrock.wordpress.views import BlogPostsView
 
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
@@ -526,3 +527,54 @@ def ios_testflight(request):
     return l10n_utils.render(request,
                              'firefox/testflight.html',
                              {'newsletter_form': newsletter_form})
+
+
+class FirefoxProductDesktopView(BlogPostsView):
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['browser', 'featured']
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
+        if locale == 'en-US':
+            template_name = 'firefox/products/desktop.html'
+        else:
+            template_name = 'firefox/desktop/index.html'
+
+        return [template_name]
+
+
+class FirefoxProductAndroidView(BlogPostsView):
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['mobile', 'featured']
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
+        if locale == 'en-US':
+            template_name = 'firefox/products/android.html'
+        else:
+            template_name = 'firefox/android/index.html'
+
+        return [template_name]
+
+
+class FirefoxProductIOSView(BlogPostsView):
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['mobile', 'featured']
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
+        if locale == 'en-US':
+            template_name = 'firefox/products/ios.html'
+        else:
+            template_name = 'firefox/ios.html'
+
+        return [template_name]
