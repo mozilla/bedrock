@@ -11,7 +11,7 @@
       {% for article in articles %}
         <li>
           <article class="entry">
-            <a class="entry-block" rel="bookmark" href="{{ article.link }}?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fx-content-hub" data-link-name="{{ article.blog_title }}" data-link-type="link" data-link-position="Fresh from the blog">
+            <a class="entry-block" rel="bookmark" href="{{ article.link }}?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" data-link-name="{{ article.blog_title }}" data-link-type="link" data-link-position="Fresh from the blog">
               {% set thumbnail = article.get_featured_image_url(size='large') %}
               {% if thumbnail %}
                 <img src="{{ thumbnail }}" alt="">
@@ -24,7 +24,7 @@
               <p>{{ article.htmlify() }}</p>
             </div>
             <p class="entry-cta">
-              <a href="{{ article.link }}?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fx-content-hub" class="cta-link" data-link-name="{{ article.blog_title }}" data-link-type="link" data-link-position="Fresh from the blog">{{ article.blog_name }}</a>
+              <a href="{{ article.link }}?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" class="cta-link" data-link-name="{{ article.blog_title }}" data-link-type="link" data-link-position="Fresh from the blog">{{ article.blog_name }}</a>
             </p>
           </article>
         </li>
