@@ -13,7 +13,7 @@ class ChannelAndroidPage(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/channel/android'
 
     _beta_download_locator = (By.ID, 'android-beta-download')
-    _aurora_download_locator = (By.ID, 'android-aurora-download')
+    _nightly_download_locator = (By.ID, 'android-nightly-download')
 
     @property
     def beta_download_button(self):
@@ -21,6 +21,6 @@ class ChannelAndroidPage(FirefoxBasePage):
         return DownloadButton(self, root=el)
 
     @property
-    def aurora_download_button(self):
-        el = self.find_element(*self._aurora_download_locator)
+    def nightly_download_button(self):
+        el = self.find_element(*self._nightly_download_locator)
         return DownloadButton(self, root=el)

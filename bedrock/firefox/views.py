@@ -282,6 +282,12 @@ def all_downloads(request, platform, channel):
     if platform == 'android' and channel == 'esr':
         raise Http404
 
+    # Aurora for Android is gone; the population has been migrated to Nightly.
+    # Redirect /firefox/android/aurora/all/ to /firefox/android/nightly/all/
+    if platform == 'android' and channel == 'alpha':
+        return HttpResponsePermanentRedirect(
+            reverse('firefox.all', kwargs={'platform': 'android', 'channel': 'nightly'}))
+
     version = product.latest_version(channel)
     query = request.GET.get('q')
 

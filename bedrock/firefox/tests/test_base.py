@@ -171,6 +171,12 @@ class TestFirefoxAll(TestCase):
         resp = self.client.get(self._get_url('android', 'organizations'))
         self.assertEqual(resp.status_code, 404)
 
+    def test_301(self):
+        """Android Aurora download page should be redirected to Nightly"""
+        resp = self.client.get(self._get_url('android', 'aurora'))
+        eq_(resp.status_code, 301)
+        ok_(resp['Location'].endswith('/firefox/android/nightly/all/'))
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestWhatsNew(TestCase):

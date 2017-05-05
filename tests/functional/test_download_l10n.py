@@ -23,7 +23,6 @@ def pytest_generate_tests(metafunc):
         '/firefox/organizations/all/',
         '/firefox/android/all/',
         '/firefox/android/beta/all/',
-        '/firefox/android/aurora/all/',
         '/firefox/android/nightly/all/',
     )
     argvalues = []

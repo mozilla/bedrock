@@ -12,4 +12,4 @@ from pages.firefox.channel.android import ChannelAndroidPage
 def test_download_buttons_are_displayed(base_url, selenium):
     page = ChannelAndroidPage(selenium, base_url).open()
     assert page.beta_download_button.is_displayed
-    assert page.aurora_download_button.is_displayed
+    assert page.nightly_download_button.is_displayed
