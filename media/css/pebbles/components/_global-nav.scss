@@ -121,13 +121,13 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
     // Horizontal link menu container
     .nav-horizontal-menu {
         @include clearfix;
-        padding: 20px 0 10px;
+        padding: 10px 0 10px;
         position: relative;
         overflow: hidden;
         margin-left: 5px;
 
         @media #{$mq-nav-tablet} {
-            padding-top: 40px;
+            padding-top: 25px;
         }
 
         @media #{$mq-nav-desktop} {
