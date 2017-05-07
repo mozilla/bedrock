@@ -49,7 +49,7 @@ class TabzillaViewTests(TestCase):
         """
         with self.activate('en-US'):
             resp = self.client.get(reverse('tabzilla'))
-        self.assertEqual(resp['cache-control'], 'max-age=43200')  # 12h
+        self.assertEqual(resp['cache-control'], 'private, max-age=43200')  # 12h
 
         now_date = floor(time.time())
         exp_date = parse_http_date(resp['expires'])
