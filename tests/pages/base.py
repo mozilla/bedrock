@@ -4,7 +4,6 @@
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-from selenium.webdriver.support import expected_conditions as expected
 
 from pypom import Page, Region
 from regions.newsletter import NewsletterEmbedForm
@@ -17,29 +16,10 @@ class BasePage(Page):
     def __init__(self, selenium, base_url, locale='en-US', **url_kwargs):
         super(BasePage, self).__init__(selenium, base_url, locale=locale, **url_kwargs)
 
-    _survey_message_locator = (By.ID, 'survey-message')
-    _survey_close_button_locator = (By.CSS_SELECTOR, '#survey-message .survey-button-close')
-
-    @property
-    def is_survey_message_present(self):
-        return self.is_element_present(*self._survey_message_locator)
-
-    @property
-    def is_survey_message_displayed(self):
-        return self.is_element_displayed(*self._survey_message_locator)
-
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)
         el = self.find_element(By.TAG_NAME, 'html')
         self.wait.until(lambda s: 'loaded' in el.get_attribute('class'))
-        # Bug 1341425: Task completion rate survey on mozilla.org
-        if self.is_survey_message_present:
-            if self.is_survey_message_displayed:
-                survey = self.find_element(*self._survey_message_locator)
-                self.wait.until(lambda s: 'animate' in survey.get_attribute('class'))
-                self.wait.until(expected.element_to_be_clickable(self._survey_close_button_locator))
-                self.find_element(*self._survey_close_button_locator).click()
-                self.wait.until(lambda s: not self.is_survey_message_displayed)
         return self
 
     @property

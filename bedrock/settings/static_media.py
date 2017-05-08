@@ -144,7 +144,6 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/tabzilla/tabzilla-static.less',
-            'css/base/survey-message.less',
         ),
         'output_filename': 'css/common-bundle.css',
     },
@@ -153,7 +152,6 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone-resp.less',
             'css/base/global-nav.less',
             'css/tabzilla/tabzilla-static.less',
-            'css/base/survey-message.less',
         ),
         'output_filename': 'css/responsive-bundle.css',
     },
@@ -1619,12 +1617,6 @@ PIPELINE_JS = {
             'js/styleguide/docs/send-to-device.js',
         ),
         'output_filename': 'js/styleguide-docs-send-to-device-bundle.js',
-    },
-    'task-completion-rate-survey': {
-        'source_filenames': (
-            'js/mozorg/task-completion-rate-survey.js',
-        ),
-        'output_filename': 'js/task-completion-rate-survey-bundle.js',
     },
     'technology': {
         'source_filenames': (
