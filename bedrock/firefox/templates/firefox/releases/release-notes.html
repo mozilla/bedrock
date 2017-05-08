@@ -76,15 +76,9 @@
           {% if release.product == 'Firefox for Android' %}
             <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
             <li class="current">{{ _('Android') }}</li>
-            <li><a href="{{ url('firefox.notes', platform='ios') }}">{{ _('iOS') }}</a></li>
-          {% elif release.product == 'Firefox for iOS' %}
-            <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
-            <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
-            <li class="current">{{ _('iOS') }}</li>
           {% else %}
             <li class="current">{{ _('Desktop') }}</li>
             <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
-            <li><a href="{{ url('firefox.notes', platform='ios') }}">{{ _('iOS') }}</a></li>
           {% endif %}
             <li class="submenu-title">
               <a href="#" role="button" aria-controls="nav-submenu" aria-expanded="false">{{ _('Other Releases') }}</a>
