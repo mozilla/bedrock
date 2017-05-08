@@ -4,6 +4,8 @@
 
 {% extends "firefox/releases/release-notes.html" %}
 
+{% set channel_name = 'Nightly' %}
+
 {% block extrahead %}
 <link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly Notes Feed') }}" href="{{ url('firefox.nightly.notes.feed') }}">
 {% endblock %}
