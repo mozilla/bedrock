@@ -11,25 +11,3 @@
 {% endblock %}
 
 {% set channel_name = 'Aurora' %}
-
-{% block platform_switch %}
-  <nav id="nav" class="navigator">
-    <div class="container">
-      <ul class="menu">
-        <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
-        <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
-        <li class="current submenu-title">
-          <a>{{ _('Other Releases') }}</a>
-          <ul class="submenu">
-            <li class="title">{{ _('Recent Desktop Releases') }}</li>
-            <li><a href="{{ url('firefox.notes', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
-            <li><a href="{{ url('firefox.notes', channel='developer') }}">{{ _('Latest Developer Edition') }}</a></li>
-            <li class="title">{{ _('Recent Android Releases') }}</a></li>
-            <li><a href="{{ url('firefox.notes', platform='android', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
-            <li><a href="{{ url('firefox.notes', platform='android', channel='aurora') }}">{{ _('Latest Aurora') }}</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-{% endblock %}

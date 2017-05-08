@@ -73,22 +73,32 @@
       <nav id="nav" class="navigator">
         <div class="container">
           <ul class="menu">
-          {% if release.product == 'Firefox for Android' %}
+          {% if release.product == 'Firefox' and release.channel == 'Release' %}
+            <li class="current">{{ _('Desktop') }}</li>
+          {% else %}
             <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
+          {% endif %}
+          {% if release.product == 'Firefox for Android' and release.channel == 'Release' %}
             <li class="current">{{ _('Android') }}</li>
           {% else %}
-            <li class="current">{{ _('Desktop') }}</li>
             <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
           {% endif %}
-            <li class="submenu-title">
+            <li class="{% if release.channel != 'Release' %}current {% endif %}submenu-title">
               <a href="#" role="button" aria-controls="nav-submenu" aria-expanded="false">{{ _('Other Releases') }}</a>
               <ul class="submenu" id="nav-submenu">
-                <li class="title">{{ _('Recent Desktop Releases') }}</li>
-                <li><a href="{{ url('firefox.notes', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
-                <li><a href="{{ url('firefox.notes', channel='developer') }}">{{ _('Latest Developer Edition') }}</a></li>
-                <li class="title">{{ _('Recent Android Releases') }}</li>
-                <li><a href="{{ url('firefox.notes', platform='android', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
-                <li><a href="{{ url('firefox.notes', platform='android', channel='aurora') }}">{{ _('Latest Aurora') }}</a></li>
+                <li>
+                  <span class="title">{{ _('Recent Desktop Releases') }}</span>
+                  <ul>
+                    <li><a href="{{ url('firefox.notes', channel='beta') }}">{{ _('Latest Beta &amp; Developer Edition') }}</a></li>
+                    <li><a href="{{ url('firefox.notes', channel='nightly') }}">{{ _('Latest Nightly') }}</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="title">{{ _('Recent Android Releases') }}</span>
+                  <ul>
+                    <li><a href="{{ url('firefox.notes', platform='android', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
+                  </ul>
+                </li>
               </ul>
             </li>
           </ul>
