@@ -2,18 +2,17 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/new/fx-lifestyle-base.html" %}
+{% extends "firefox/new/fx-lifestyle/base.html" %}
 
 {% block page_css %}
-  {{ super() }}
   {% stylesheet 'firefox_new_private_not_option' %}
 {% endblock %}
 
 {% block head_content %}
-  <h2>
+  <h2 id="head_content_title" data-experience="privatenotoption">
     We don’t want to know.
   </h2>
-  
+
   <p>
     Firefox automatically opts you IN to strict privacy standards. In fact, we’re always looking for ways<br> to keep you safe.
   </p>

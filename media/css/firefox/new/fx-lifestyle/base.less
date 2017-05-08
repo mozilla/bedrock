@@ -2,36 +2,19 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../sandstone/lib.less';
-
-@blue: #0a99d5;
-@grey: #EFEFEF;
-
-// generates a < tablet media query for all sections (except intro)
-.common-mobile-props(@padding: 250px) {
-    @media only screen and (max-width: @breakTablet) {
-        background-position: bottom 20px center;
-        min-height: 0;
-        padding-bottom: @padding;
-
-        .copy {
-            float: none;
-            width: auto;
-        }
-    }
-}
+@import '../../../sandstone/lib.less';
 
 #outer-wrapper {
-    background: @grey;
+    background: #efefef;
 }
 
 #wrapper {
     background: #fff;
     width: auto;
 
-    // add icon to download buttons *not* in family nav
+    // add icon to download buttons
     .download-button .download-title:after {
-        background: url('/media/img/firefox/family/index-b/download-arrow.svg') center right no-repeat;
+        background: url('/media/img/firefox/new/fx-lifestyle/download-arrow.svg') center right no-repeat;
         content: '';
         display: inline-block;
         height: 20px;
@@ -41,15 +24,29 @@
 }
 
 #intro {
+    min-height: 500px;
+
     &.content-section {
         padding-top: 60px;
     }
 
     .copy {
         float: right;
+
+        p {
+            a:active,
+            a:focus,
+            a:hover,
+            a:link,
+            a:visited {
+                color: #484848;
+            }
+        }
     }
 
      @media only screen and (max-width: @breakTablet) {
+        min-height: 0;
+
         .copy {
             padding-right: 0;
         }
@@ -58,11 +55,11 @@
     .content {
         background-position: bottom center;
         text-align: right;
-        color: white;
+        color: #fff;
     }
 
     h2 {
-        color: white;
+        color: #fff;
     }
 
     p {
@@ -72,23 +69,22 @@
     }
 }
 
-#tabzilla:before {
-    background-color: @blue;
+// always hide special scene 2 button (as it forces direct download)
+#download-button-wrapper-desktop {
+    height: 0;
+    visibility: hidden;
+    width: 0;
 }
 
-#newsletter-form {
-    display: none;
-}
+// hide primary CTA when on scene 2
+.fx-lifestyle-scene2 {
+    #wrapper {
+        padding-bottom: 0;
+    }
 
-.fxfamilynav-header {
-    // Safari 5.1+, Chrome 10+
-    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-        -webkit-linear-gradient(@blue, @blue);
-    background-image: -o-linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-        -o-linear-gradient(@blue, @blue);
-    // the standard
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-        linear-gradient(@blue, @blue);
+    #download-button-wrapper-scene1 {
+        display: none;
+    }
 }
 
 .content-section {
@@ -108,7 +104,7 @@
     width: @widthDesktop - 20px;
 
     a {
-        color: @blue;
+        color: #0a99d5;
         font-weight: bold;
     }
 
@@ -187,7 +183,7 @@ h3 {
 
     @media only screen and (max-width: @breakMobileLandscape) {
         width: auto;
-        padding: 0 0;
+        padding: 0;
 
         p {
             .font-size(14px);
@@ -196,13 +192,23 @@ h3 {
     }
 }
 
-.fx-privacy-link {
+.copy .fx-privacy-link {
     a:active,
     a:focus,
     a:hover,
     a:link,
     a:visited {
         color: #d9d9d9;
+    }
+}
+
+#today .fx-privacy-link {
+    a:active,
+    a:focus,
+    a:hover,
+    a:link,
+    a:visited {
+        color: inherit;
     }
 }
 
@@ -217,10 +223,16 @@ h3 {
         float: right;
     }
 
-    @media only screen and (max-width: @breakTablet) {
+    @media only screen and (max-width: @breakDesktop) {
         h3,
         .download-button {
             float: none;
+            text-align: center;
+        }
+
+        .download-button {
+            display: block;
+            margin: 0 auto;
         }
     }
 }
@@ -242,7 +254,7 @@ h3 {
     text-align: left;
 
     li {
-        margin: 0 0;
+        margin: 0;
     }
 
     p {
@@ -257,10 +269,10 @@ h3 {
 #content-2 {
     padding-left: 35px;
     padding-right: 35px;
-    margin: 0 0;
+    margin: 0;
 
     @media only screen and (max-width: @breakDesktop) {
-        padding: 0 0;
+        padding: 0;
     }
 }
 
@@ -269,7 +281,7 @@ h3 {
     padding: 0 30px;
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        padding: 0 0;
+        padding: 0;
     }
 }
 

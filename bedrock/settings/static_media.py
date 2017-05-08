@@ -542,31 +542,26 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_way_of_the_fox-bundle.css',
     },
-    'firefox_new_lifestyle_base': {
-        'source_filenames': (
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/family-nav.less',
-            'css/firefox/new/fx-lifestyle-base.less',
-        ),
-        'output_filename': 'css/firefox_new_lifestyle_base.css',
-    },
     'firefox_new_private_not_option': {
         'source_filenames': (
-            'css/firefox/new/private-not-option.less',
+            'css/firefox/new/fx-lifestyle/base.less',
+            'css/firefox/new/fx-lifestyle/private-not-option.less',
         ),
         'output_filename': 'css/firefox_new_private_not_option_bundle.css',
     },
     'firefox_new_conformity_not_default': {
         'source_filenames': (
-            'css/firefox/new/conformity-not-default.less',
+            'css/firefox/new/fx-lifestyle/base.less',
+            'css/firefox/new/fx-lifestyle/conformity-not-default.less',
         ),
         'output_filename': 'css/firefox_new_private_not_option_bundle.css',
     },
     'firefox_new_browse_up_to_you': {
         'source_filenames': (
-            'css/firefox/new/browse-up-to-you.less',
+            'css/firefox/new/fx-lifestyle/base.less',
+            'css/firefox/new/fx-lifestyle/browse-up-to-you.less',
         ),
-        'output_filename': 'css/firefox_new_browse_up_to_you.css',
+        'output_filename': 'css/firefox_new_browse_up_to_you_bundle.css',
     },
     'firefox_new_onboarding_common': {
         'source_filenames': (
@@ -1358,6 +1353,12 @@ PIPELINE_JS = {
             'js/firefox/new/way-of-the-fox.js',
         ),
         'output_filename': 'js/firefox_new_scene1_way_of_the_fox-bundle.js',
+    },
+    'firefox_new_scene1_fx_lifestyle': {
+        'source_filenames': (
+            'js/firefox/new/fx-lifestyle.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_fx_lifestyle-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (

@@ -2,20 +2,19 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/new/fx-lifestyle-base.html" %}
+{% extends "firefox/new/fx-lifestyle/base.html" %}
 
 {% block page_css %}
-  {{ super() }}
   {% stylesheet 'firefox_new_conformity_not_default' %}
 {% endblock %}
 
 {% block head_content %}
-  <h2>
+  <h2 id="head_content_title" data-experience="conformitynotdefault">
     You do you.
   </h2>
 
   <p>
-    We get what it’s like to be different. We’re the only non-corporate, non-conformist browser. We celebrate everybody’s right to break the mold, buck the trends, and demand better than the default.
+    We get what it’s like to be different. We’re the only non-profit, non-conformist browser. We celebrate everybody’s right to break the mold, buck the trends, and demand better than the default.
   </p>
 {% endblock %}
 
@@ -31,7 +30,7 @@
   <h3>Lock it up</h3>
 
   <p>
-    Because we’re backed by a non-profit, we make your privacy the default. When you browse on Firefox, what you browse is your business.
+    As part of the non-profit Mozilla, Firefox leads the fight to protect your online rights. When you browse on Firefox, what you browse is your business.
   </p>
 {% endblock %}
 
@@ -39,7 +38,7 @@
   <h3>Put a leopard on it</h3>
 
   <p>
-    You may not believe this, but your browsing bar could have a leopard on it. Right now. Or Snoopy. Or Adriana Lima. Or it could just be aggressively purple. There’s a theme out there that’s so you.
+    You may not believe this, but your browsing bar could have a leopard on it. Right now. Or a planet. Or a unicorn. Or it could just be aggressively purple. There’s a theme out there that’s so you.
   </p>
 {% endblock %}
 

@@ -2,20 +2,19 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/new/fx-lifestyle-base.html" %}
+{% extends "firefox/new/fx-lifestyle/base.html" %}
 
 {% block page_css %}
-  {{ super() }}
   {% stylesheet 'firefox_new_browse_up_to_you' %}
 {% endblock %}
 
 {% block head_content %}
-  <h2>
+  <h2 id="head_content_title" data-experience="browseuptoyou">
     Go your own way.
   </h2>
-  
+
   <p>
-    Browse your way. Go your way. Do them both at the same time with Firefox. 
+    Browse your way. Go your way. Do them both at the same time with Firefox.
   </p>
 {% endblock %}
 
@@ -39,7 +38,7 @@
   <h3>On your device</h3>
 
   <p>
-    When you have Firefox on your phone or tablet, all your tabs, bookmarks, and logins go with you.
+    When you have Firefox on your phone or tablet, all your tabs, bookmarks, and logins can go with you.
   </p>
 {% endblock %}
 

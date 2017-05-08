@@ -2,31 +2,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../sandstone/lib.less';
-
-// generates a < tablet media query for all sections (except intro)
-.common-mobile-props(@padding: 250px) {
-    @media only screen and (max-width: @breakTablet) {
-        background-position: bottom 20px center;
-        min-height: 0;
-        padding-bottom: @padding;
-
-        .copy {
-            float: none;
-            width: auto;
-        }
-    }
-}
+@import '../../../sandstone/lib.less';
 
 #intro {
-    background-image: url('/media/img/firefox/new/browse-up-to-you/intro-high-res.png');
-
+    background-image: url('/media/img/firefox/new/fx-lifestyle/conformity-not-default/intro-high-res.jpg');
     background-position: center top;
     background-repeat: no-repeat;
 
     @media only screen and (max-width: @breakDesktop) {
-        background-image: url('/media/img/firefox/new/browse-up-to-you/intro.png');
-
+        background-image: url('/media/img/firefox/new/fx-lifestyle/conformity-not-default/intro.jpg');
         p {
             .font-size(22px);
         }
@@ -45,10 +29,10 @@
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        background-image: url('/media/img/firefox/new/browse-up-to-you/intro-mobile.png');
-
         .content {
             text-align: center;
         }
+
+        background-image: url('/media/img/firefox/new/fx-lifestyle/conformity-not-default/intro-mobile.jpg');
     }
 }
