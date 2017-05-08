@@ -1,0 +1,61 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{# L10n: strings for this page are not considered final and aren't ready for localization. #}
+
+{% block page_title_prefix %}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-features-hub-common' %}
+{% endblock %}
+
+{% block content %}
+{% include 'firefox/includes/hub/sub-nav.html' %}
+<main role="main">
+  {% block features_header %}
+    <header class="header-intro">
+      <div class="content">
+        <div class="header-container">
+          <div class="header-content">
+            {% block features_header_content %}{% endblock %}
+          </div>
+          <div class="header-download">
+            {{ download_firefox(dom_id='features-header-download', button_color='button-hollow-arrow dark') }}
+          </div>
+        </div>
+        {% block features_header_image %}{% endblock %}
+      </div> {#--/.content--#}
+    </header> {#--/.header-intro--#}
+  {% endblock %}
+
+  {% block features_list %}{% endblock %}
+
+  {% block news %}
+    {% include 'firefox/includes/hub/news-feed.html' %}
+  {% endblock %}
+
+  {% block values %}{% endblock %}
+
+  {% block outro %}
+    {% include 'firefox/includes/hub/outro.html' %}
+  {% endblock %}
+
+</main>
+{% endblock %}
+
+{% block site_footer %}
+  {% with footer_class='dark' %}
+    {% if LANG.startswith('en-') %}
+      {% include 'includes/site-footer-new.html' %}
+    {% else %}
+      {% include 'includes/site-footer.html' %}
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox-features-hub' %}
+{% endblock %}

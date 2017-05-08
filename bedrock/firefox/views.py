@@ -30,6 +30,7 @@ from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
 from bedrock.utils.views import VariationMixin
+from bedrock.wordpress.views import BlogPostsView
 
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
@@ -248,10 +249,6 @@ def windows_billboards(req):
         if major_version == 5 and minor_version == 1:
             return l10n_utils.render(req, 'firefox/unsupported/winxp.html')
     return l10n_utils.render(req, 'firefox/unsupported/win2k.html')
-
-
-def fx_home_redirect(request):
-    return HttpResponseRedirect(reverse('firefox.new'))
 
 
 def dnt(request):
@@ -526,3 +523,107 @@ def ios_testflight(request):
     return l10n_utils.render(request,
                              'firefox/testflight.html',
                              {'newsletter_form': newsletter_form})
+
+
+def features_landing(request):
+    locale = l10n_utils.get_locale(request)
+
+    if locale == 'en-US':
+        template = 'firefox/features/index.html'
+    else:
+        template = 'firefox/features.html'
+
+    return l10n_utils.render(request, template)
+
+
+class FeaturesPrivateBrowsingView(BlogPostsView):
+    template_name = 'firefox/features/private-browsing.html'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['privacy', 'security', 'featured']
+
+
+class FeaturesFastView(BlogPostsView):
+    template_name = 'firefox/features/fast.html'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['fastest', 'featured']
+
+
+class FeaturesIndependentView(BlogPostsView):
+    template_name = 'firefox/features/independent.html'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['browser', 'featured']
+
+
+class FirefoxProductDesktopView(BlogPostsView):
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['browser', 'featured']
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
+        if locale == 'en-US':
+            template_name = 'firefox/products/desktop.html'
+        else:
+            template_name = 'firefox/desktop/index.html'
+
+        return [template_name]
+
+
+class FirefoxProductAndroidView(BlogPostsView):
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['mobile', 'featured']
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
+        if locale == 'en-US':
+            template_name = 'firefox/products/android.html'
+        else:
+            template_name = 'firefox/android/index.html'
+
+        return [template_name]
+
+
+class FirefoxProductIOSView(BlogPostsView):
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['mobile', 'featured']
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
+        if locale == 'en-US':
+            template_name = 'firefox/products/ios.html'
+        else:
+            template_name = 'firefox/ios.html'
+
+        return [template_name]
+
+
+class FirefoxHubView(BlogPostsView):
+    blog_posts_limit = 1
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['home']
+    template_name = 'firefox/hub/home.html'
+
+    def get(self, request, *args, **kwargs):
+        locale = l10n_utils.get_locale(request)
+
+        # until we get localizable copy, non en-US locales continue to get
+        # redirect, though now it's a 302
+        if locale != 'en-US':
+            return HttpResponseRedirect(reverse('firefox.new'))
+        else:
+            return super(FirefoxHubView, self).get(request, *args, **kwargs)

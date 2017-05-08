@@ -984,7 +984,8 @@ URLS = flatten((
 
     # from mcom-tests
     url_test('/firefox/', '/en-US/firefox/'),
-    url_test('/en-US/firefox/', '/firefox/new/'),
+    url_test('/en-US/firefox/', '/en-US/firefox/', follow_redirects=True),
+    url_test('/fr/firefox/', '/firefox/new/', follow_redirects=True),
     url_test('/firefox/new/', '/en-US/firefox/new/'),
     url_test('/firefox/mobile/', '/firefox/android/'),
     url_test('/mobile/37.0{,beta,a2}/releasenotes', '/firefox/android/37.0{,beta,a2}/releasenotes/'),
@@ -1158,4 +1159,10 @@ URLS = flatten((
 
     # Bug 1361194
     url_test('/internethealth', '/internet-health/'),
+
+    # Bug 1355184
+    url_test('/en-US/firefox/private-browsing/', '/firefox/features/private-browsing/'),
+
+    # Bug 1355189
+    url_test('/en-US/firefox/desktop/fast/', '/firefox/features/fast/'),
 ))

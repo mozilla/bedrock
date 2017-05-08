@@ -332,6 +332,18 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_features-bundle.css',
     },
+    'firefox-features-hub-common': {
+        'source_filenames': (
+            'css/firefox/features/common.scss',
+        ),
+        'output_filename': 'css/firefox-features-hub-common-bundle.css',
+    },
+    'firefox-features-hub-detail': {
+        'source_filenames': (
+            'css/firefox/features/detail.scss',
+        ),
+        'output_filename': 'css/firefox-features-hub-detail-bundle.css',
+    },
     'firefox-interest-dashboard': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -441,6 +453,12 @@ PIPELINE_CSS = {
             'css/firefox/geolocation.less'
         ),
         'output_filename': 'css/firefox_geolocation-bundle.css',
+    },
+    'firefox-hub-home': {
+        'source_filenames': (
+            'css/firefox/hub/home.scss',
+        ),
+        'output_filename': 'css/firefox-hub-home-bundle.css',
     },
     'firefox_developer': {
         'source_filenames': (
@@ -563,6 +581,12 @@ PIPELINE_CSS = {
             'css/firefox/private_browsing/private-browsing.less',
         ),
         'output_filename': 'css/firefox_private_browsing-bundle.css',
+    },
+    'firefox-product-page': {
+        'source_filenames': (
+            'css/firefox/product-page.scss',
+        ),
+        'output_filename': 'css/firefox-product-page-bundle.css',
     },
     'firefox_releases_index': {
         'source_filenames': (
@@ -1232,6 +1256,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_features-bundle.js',
     },
+    'firefox-features-hub': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
+        ),
+        'output_filename': 'js/firefox-features-hub-bundle.js',
+    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'js/base/uitour-lib.js',
@@ -1318,6 +1350,14 @@ PIPELINE_JS = {
             'js/firefox/private-browsing.js'
         ),
         'output_filename': 'js/firefox_private_browsing-bundle.js',
+    },
+    'firefox-product-page': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
+        ),
+        'output_filename': 'js/firefox-product-page-bundle.js',
     },
     'firefox_interest_dashboard': {
         'source_filenames': (
@@ -1452,6 +1492,14 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
         ),
         'output_filename': 'js/geolocation-bundle.js',
+    },
+    'firefox-hub-home': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
+        ),
+        'output_filename': 'js/firefox-hub-home-bundle.js',
     },
     'home': {
         'source_filenames': (

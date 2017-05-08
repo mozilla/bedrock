@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{# News feed is currently shown to English locales only. #}
+{% if LANG.startswith('en') and articles %}
+<section class="news">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Fresh from our Blog') }}</span></h2>
+    <ul class="news-feed">
+      {% for article in articles %}
+        <li>
+          <article class="entry">
+            <a class="entry-block" rel="bookmark" href="{{ article.link }}?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" data-link-name="{{ article.blog_title }}" data-link-type="link" data-link-position="Fresh from the blog">
+              {% set thumbnail = article.get_featured_image_url(size='large') %}
+              {% if thumbnail %}
+                <img src="{{ thumbnail }}" alt="">
+              {% else %}
+                <img src="{{ static('img/firefox/hub/news-fallback-thumbnail.jpg') }}" alt="">
+              {% endif %}
+              <h3 class="entry-title">{{ article.blog_title }}</h3>
+            </a>
+            <div class="entry-summary">
+              <p>{{ article.htmlify() }}</p>
+            </div>
+            <p class="entry-cta">
+              <a href="{{ article.link }}?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" class="cta-link" data-link-name="{{ article.blog_title }}" data-link-type="link" data-link-position="Fresh from the blog">{{ article.blog_name }}</a>
+            </p>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+
+  </div> {#--/.content--#}
+</section> {#--/.news--#}
+{% endif %}
