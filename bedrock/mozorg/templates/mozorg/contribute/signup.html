@@ -83,7 +83,7 @@
 
   <section class="tasks-challenging">
     <header>
-      <h2>{{ _('Try something more challenging') }}</h2>
+      <h2>{{ _('Learn about how contributors build Mozilla') }}</h2>
     </header>
     <ul class="challenging">
       <li class="task">
@@ -131,6 +131,61 @@
         </button>
         <div class="tooltip hidden" aria-hidden="true">
           <p>{{ _('Mozilla Stumbler is an open-source wireless network scanner which collects GPS, cellular and wireless network metadata for our crowd-sourced location database.') }}</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="tasks-building">
+    <header>
+      <h2>{{ _('Dive right in and build something') }}</h2>
+    </header>
+    <ul class="building">
+      <li class="task hacking">
+        <a href="https://hg.mozilla.org/mozilla-central/" data-task="Firefox Source Code">
+          <h3 class="hacking">
+            <span class="outline-button more">{{ _('Hack on Firefox itself!') }}</span>
+          </h3>
+        </a>
+
+        <button type="button" class="tooltip-trigger">
+          <span>{{ _('more info') }}</span>
+          {% include 'mozorg/contribute/includes/info-icon.svg' %}
+        </button>
+        <div class="tooltip hidden" aria-hidden="true">
+          <p>{{ _('This source repository defines our core product, Firefox. Similar repositories contain the source code for our other projects.') }}</p>
+        </div>
+      </li>
+
+      <li class="task">
+        <a href="https://wiki.mozilla.org/L10n:Home_Page" data-task="Translate Firefox">
+          <h3 class="translate">
+            <span class="outline-button more">{{ _('Translate Firefox into your local language') }}</span>
+          </h3>
+        </a>
+
+        <button type="button" class="tooltip-trigger">
+          <span>{{ _('more info') }}</span>
+          {% include 'mozorg/contribute/includes/info-icon.svg' %}
+        </button>
+        <div class="tooltip hidden" aria-hidden="true">
+          <p>{{ _('Almost all of our translations are compiled by contributors. Each one is created by a community group who split the work between themselves.') }}</p>
+        </div>
+      </li>
+
+      <li class="task">
+        <a href="https://wiki.mozilla.org/Main_Page" data-task="And More">
+          <h3 class="wiki">
+            <span class="outline-button more">{{ _('Check out our wiki for more ideas') }}</span>
+          </h3>
+        </a>
+
+        <button type="button" class="tooltip-trigger">
+          <span>{{ _('more info') }}</span>
+          {% include 'mozorg/contribute/includes/info-icon.svg' %}
+        </button>
+        <div class="tooltip hidden" aria-hidden="true">
+          <p>{{ _('The wiki documents very nearly all ways that anyone has ever helped us out. Even the parts that aren\'t specifically intended as introductory material for newcomers may be useful to you in your quest to understand how things get accomplished around here.') }}</p>
         </div>
       </li>
     </ul>

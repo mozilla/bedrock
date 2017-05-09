@@ -50,13 +50,14 @@ main {
 }
 
 .simple,
-.challenging {
+.challenging,
+.building {
     text-align: center;
     list-style: none;
     .clearfix;
 }
 
-.tasks-challenging {
+.tasks-building {
     padding-bottom: 80px;
 
     @media only screen and (max-width: @breakTablet) {
@@ -175,6 +176,21 @@ main {
                 background-position: -399px -205px;
             }
         }
+
+        &.hacking:before {
+            background-image: url("/media/img/styleguide/identity/firefox/usage-logo.png");
+            background-position: 22px 22px;
+        }
+
+        &.translate:before {
+            background-image: url("https://wiki.mozilla.org/images/a/af/Localization.png");
+            background-position: 57px 60px;
+        }
+
+        &.wiki:before {
+            background-image: url("https://wiki.mozilla.org/assets/logos/mozilla-wiki-logo-alt-135px.png");
+            background-position: 28px 28px;
+        }
     }
 
     h3:hover:before,
@@ -234,6 +250,10 @@ main {
             fill: #909090;
         }
     }
+}
+
+.hacking .tooltip-trigger {
+    top: -10px;
 }
 
 .tooltip {
