@@ -77,6 +77,8 @@
                   {{ _('<span>Firefox Beta</span> for Android') }}
                 {% elif channel == 'alpha' %}
                   {{ _('<span>Firefox Aurora</span> for Android') }}
+                {% elif channel == 'nightly' %}
+                  {{ _('<span>Firefox Nightly</span> for Android') }}
                 {% else %}
                   {{ _('<span>Firefox</span> for Android') }}
                 {% endif %}
@@ -87,6 +89,8 @@
                   {{ _('Firefox Beta') }}
                 {% elif channel == 'alpha' %}
                   {{ _('<span>Firefox</span> Developer Edition') }}
+                {% elif channel == 'nightly' %}
+                  {{ _('Firefox Nightly') }}
                 {% else %}
                   {{ _('Download Firefox') }}
                 {% endif %}

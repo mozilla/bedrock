@@ -63,6 +63,10 @@
       <div class="download-box" id="aurora-desktop">
         {{ download_firefox('alpha', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang) }}
       </div>
+
+      <div class="download-box" id="nightly-desktop">
+        {{ download_firefox('nightly', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang) }}
+      </div>
     {% endif %}
   </div>
  </div>
