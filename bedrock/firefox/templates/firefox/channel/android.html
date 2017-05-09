@@ -16,7 +16,9 @@
 {% endblock %}
 
 {% block page_desc %}
-{% if l10n_has_tag('firefox_title_meta_bug1345338') %}
+{% if l10n_has_tag('firefox_title_meta_bug1357373') %}
+  {{_('Experience cutting-edge features in a pre-release browser for Android: Firefox Beta and Firefox Nightly. Install now!')}}
+{% elif l10n_has_tag('firefox_title_meta_bug1345338') %}
   {{_('Experience cutting-edge features in a pre-release browser for Android: Firefox Beta, Firefox Aurora and Firefox Nightly. Install now!')}}
 {% else %}
   {{_('Download and test the latest Firefox for Android features with Aurora, Beta and Nightly builds.')}}
@@ -51,29 +53,6 @@
       <ul>
         <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{_('Release Notes')}}</a></li>
         <li><a href="{{ firefox_url('android', 'all', 'beta') }}">{{_('All Languages and Builds')}}</a></li>
-      </ul>
-    </div>
-  </footer>
-</section>
-
-<section id="aurora" class="channel">
-  <div class="container">
-    <header>
-      <h2>{{_('Aurora')}}</h2>
-      <p>{{_('Help determine what features will go into the next Firefox for Android.')}}</p>
-    </header>
-    {{ download_firefox('alpha', platform='android', alt_copy=_('Download'), dom_id="android-aurora-download") }}
-    <p class="notice">
-      {{_('Firefox Aurora automatically sends feedback to Mozilla.')}}
-      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
-    </p>
-  </div>
-  <footer>
-    <div class="container">
-      <ul>
-        <li><a href="{{ firefox_url('android', 'notes', 'aurora') }}">{{_('Release Notes')}}</a></li>
-        <li><a href="https://support.mozilla.org/kb/participate-firefox-android-testing-program">{{_('Learn more')}}</a></li>
-        <li><a href="{{ firefox_url('android', 'all', 'aurora') }}">{{_('All Languages and Builds')}}</a></li>
       </ul>
     </div>
   </footer>
