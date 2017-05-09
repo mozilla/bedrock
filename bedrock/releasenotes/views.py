@@ -6,7 +6,7 @@ import re
 from django.conf import settings
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 
 from bedrock.base.urlresolvers import reverse
 from lib import l10n_utils
@@ -234,3 +234,29 @@ def releases_index(request, product):
         request, '{product}/releases/index.html'.format(product=product.lower()),
         {'releases': sorted(releases.items(), reverse=True)}
     )
+
+
+def nightly_feed(request):
+    """Serve an Atom feed with the latest changes in Firefox Nightly"""
+    notes = []
+    query = Q(product='Firefox', channel='Nightly')
+    releases = sorted(get_list_or_404(Release, query),
+                      key=lambda x: x.release_date, reverse=True)[0:5]
+
+    for release in releases:
+        if release.is_public:
+            link = reverse('firefox.desktop.releasenotes',
+                           args=(release.version, 'release'))
+
+            for note in release.notes()[0]:
+                if note.is_public and note.tag:
+                    note.link = link + '#note-' + str(note.id)
+                    note.version = release.version
+                    notes.append(note)
+
+    # Sort by date in descending order
+    notes = sorted(notes, key=lambda x: x.modified, reverse=True)
+
+    return l10n_utils.render(request, 'firefox/releases/nightly-feed.xml',
+                             {'notes': notes},
+                             content_type='application/atom+xml')

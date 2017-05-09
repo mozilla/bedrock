@@ -3,3 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% extends "firefox/releases/release-notes.html" %}
+
+{% block extrahead %}
+<link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly Notes Feed') }}" href="{{ url('firefox.nightly.notes.feed') }}">
+{% endblock %}
