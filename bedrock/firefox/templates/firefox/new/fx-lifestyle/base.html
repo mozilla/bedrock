@@ -4,6 +4,10 @@
 
 {% extends "firefox/base-resp.html" %}
 
+{% block extra_meta %}
+  <meta name="robots" content="noindex,follow">
+{% endblock %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Free Web Browser for Android, iOS, Desktop | Firefox')}}{% endblock %}
 {% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
