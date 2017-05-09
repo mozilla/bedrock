@@ -98,3 +98,22 @@ class TestKVRedirects(TestCase):
         path = '/en-US/security/known-vulnerabilities/the-dude-abides-15.html'
         resp = self.client.get(path)
         eq_(resp.status_code, 410)
+
+
+class TestOldAdvisories(TestCase):
+    def _test_redirect(self, path, expected):
+        # old urls lack '/en-US' prefix, but that will be the first redirect.
+        resp = self.client.get('/en-US' + path)
+        eq_(resp.status_code, 301)
+        ok_(resp['Location'].endswith(expected))
+
+    def test_old_urls(self):
+        """Should redirect old URLs properly."""
+        self._test_redirect('/security/announce/mfsa2005-31.html',
+                            '/security/advisories/mfsa2005-31/')
+        self._test_redirect('/security/announce/2005/mfsa2005-40.html',
+                            '/security/advisories/mfsa2005-40/')
+        self._test_redirect('/security/advisories/2008/mfsa2008-47.html',
+                            '/security/advisories/mfsa2008-47/')
+        self._test_redirect('/security/advisories/mfsa2008-66/mfsa2008-37.html',
+                            '/security/advisories/mfsa2008-37/')
