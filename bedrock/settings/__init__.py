@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import logging.config
 import sys
 
 from .base import *  # noqa
@@ -58,6 +59,7 @@ CACHES['externalfiles'] = {
 
 MEDIA_URL = CDN_BASE_URL + MEDIA_URL
 STATIC_URL = CDN_BASE_URL + STATIC_URL
+logging.config.dictConfig(LOGGING)
 
 if (len(sys.argv) > 1 and sys.argv[1] == 'test') or sys.argv[0].endswith('py.test'):
     # Using the CachedStaticFilesStorage for tests breaks all the things.
