@@ -4,17 +4,22 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.base import BasePage
+from pages.firefox.base import FirefoxBasePage
 from pages.regions.download_button import DownloadButton
+from pages.regions.news_feed import NewsFeed
 
 
-class FeaturesBasePage(BasePage):
+class FirefoxHubHomePage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/features/{slug}'
+    URL_TEMPLATE = '/{locale}/firefox/'
 
-    _download_button_locator = (By.ID, 'features-header-download')
+    _download_button_locator = (By.ID, 'download-intro')
 
     @property
     def download_button(self):
         el = self.find_element(*self._download_button_locator)
         return DownloadButton(self, root=el)
+
+    @property
+    def news_feed(self):
+        return NewsFeed(self)

@@ -17,8 +17,10 @@ from pages.contribute.task.stumbler import StumblerTaskPage
 from pages.mission import MissionPage
 from pages.firefox.all import FirefoxAllPage
 from pages.firefox.desktop.desktop import DesktopPage
+from pages.firefox.desktop.hub import FirefoxDesktopHubPage
 from pages.firefox.desktop.customize import CustomizePage
 from pages.firefox.desktop.all import FirefoxDesktopBasePage
+from pages.firefox.home import FirefoxHubHomePage
 from pages.firefox.sync import FirefoxSyncPage
 from pages.plugincheck import PluginCheckPage
 from pages.smarton.landing import SmartOnLandingPage
@@ -38,6 +40,8 @@ from pages.smarton.base import SmartOnBasePage
     (StumblerTaskPage, None),
     (MissionPage, None),
     (FirefoxAllPage, None),
+    pytest.mark.smoke((FirefoxHubHomePage, None)),
+    (FirefoxDesktopHubPage, None),
     (CustomizePage, None),
     (FirefoxDesktopBasePage, {'slug': 'trust'}),
     (FirefoxSyncPage, None),
@@ -74,7 +78,7 @@ def test_newsletter_default_values_locales(page_class, url_kwargs, locale, base_
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [HomePage, ContributePage])
+@pytest.mark.parametrize('page_class', [HomePage, ContributePage, FirefoxHubHomePage])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
@@ -87,7 +91,7 @@ def test_newsletter_successful_sign_up(page_class, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [HomePage, ContributePage])
+@pytest.mark.parametrize('page_class', [HomePage, ContributePage, FirefoxHubHomePage])
 def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
