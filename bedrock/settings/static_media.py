@@ -563,6 +563,22 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_browse_up_to_you_bundle.css',
     },
+    'firefox_new_more_protection': {
+        'source_filenames': (
+            'css/firefox/new/fx-lifestyle/base.less',
+            'css/firefox/new/fx-lifestyle/conformity-not-default.less',
+            'css/firefox/new/fx-lifestyle/more-protection.less',
+        ),
+        'output_filename': 'css/firefox_new_more_protection_bundle.css',
+    },
+    'firefox_new_working_out': {
+        'source_filenames': (
+            'css/firefox/new/fx-lifestyle/base.less',
+            'css/firefox/new/fx-lifestyle/browse-up-to-you.less',
+            'css/firefox/new/fx-lifestyle/working-out.less',
+        ),
+        'output_filename': 'css/firefox_new_working_out_bundle.css',
+    },
     'firefox_new_onboarding_common': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',

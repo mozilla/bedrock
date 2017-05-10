@@ -367,11 +367,87 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
+    # moar ad campaign pages bug 1363543
+
+    def test_private_not_option_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=privatenotoption')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/private-not-option/scene1.html')
+
+    def test_private_not_option_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=privatenotoption')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/private-not-option/scene2.html')
+
+    def test_conformity_not_default_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=conformitynotdefault')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/conformity-not-default/scene1.html')
+
+    def test_conformity_not_default_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=conformitynotdefault')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/conformity-not-default/scene2.html')
+
+    def test_browse_up_to_you_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=browseuptoyou')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/browse-up-to-you/scene1.html')
+
+    def test_browse_up_to_you_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=browseuptoyou')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/browse-up-to-you/scene2.html')
+
+    def test_more_protection_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=moreprotection')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/more-protection/scene1.html')
+
+    def test_more_protection_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=moreprotection')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/more-protection/scene2.html')
+
+    def test_working_out_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=workingout')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/working-out/scene1.html')
+
+    def test_working_out_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=workingout')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/working-out/scene2.html')
+
+    def test_you_do_you_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=youdoyou')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/you-do-you/scene1.html')
+
+    def test_you_do_you_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=youdoyou')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/you-do-you/scene2.html')
+
     def test_onboarding_f_98_scene_1_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?f=98')
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+
+    # onboarding experiment bug 1333435
 
     def test_onboarding_f_99_scene_1_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?f=99')
