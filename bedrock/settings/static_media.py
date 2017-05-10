@@ -554,7 +554,7 @@ PIPELINE_CSS = {
             'css/firefox/new/fx-lifestyle/base.less',
             'css/firefox/new/fx-lifestyle/conformity-not-default.less',
         ),
-        'output_filename': 'css/firefox_new_private_not_option_bundle.css',
+        'output_filename': 'css/firefox_new_conformity_not_default_bundle.css',
     },
     'firefox_new_browse_up_to_you': {
         'source_filenames': (
