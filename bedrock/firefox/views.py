@@ -507,6 +507,12 @@ def new(request):
                 template = 'firefox/new/fx-lifestyle/conformity-not-default/scene2.html'
             elif experience == 'browseuptoyou':
                 template = 'firefox/new/fx-lifestyle/browse-up-to-you/scene2.html'
+            elif experience == 'moreprotection':
+                template = 'firefox/new/fx-lifestyle/more-protection/scene2.html'
+            elif experience == 'workingout':
+                template = 'firefox/new/fx-lifestyle/working-out/scene2.html'
+            elif experience == 'youdoyou':
+                template = 'firefox/new/fx-lifestyle/you-do-you/scene2.html'
             else:
                 template = 'firefox/new/scene2.html'
         else:
@@ -526,6 +532,12 @@ def new(request):
                 template = 'firefox/new/fx-lifestyle/conformity-not-default/scene1.html'
             elif experience == 'browseuptoyou':
                 template = 'firefox/new/fx-lifestyle/browse-up-to-you/scene1.html'
+            elif experience == 'moreprotection':
+                template = 'firefox/new/fx-lifestyle/more-protection/scene1.html'
+            elif experience == 'workingout':
+                template = 'firefox/new/fx-lifestyle/working-out/scene1.html'
+            elif experience == 'youdoyou':
+                template = 'firefox/new/fx-lifestyle/you-do-you/scene1.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:
