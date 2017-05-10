@@ -579,6 +579,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_working_out_bundle.css',
     },
+    'firefox_new_its_your_web': {
+        'source_filenames': (
+            'css/firefox/new/fx-lifestyle/base.less',
+            'css/firefox/new/fx-lifestyle/its-your-web.less',
+        ),
+        'output_filename': 'css/firefox_new_its_your_web_bundle.css',
+    },
     'firefox_new_onboarding_common': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',

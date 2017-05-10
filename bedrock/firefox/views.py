@@ -513,6 +513,8 @@ def new(request):
                 template = 'firefox/new/fx-lifestyle/working-out/scene2.html'
             elif experience == 'youdoyou':
                 template = 'firefox/new/fx-lifestyle/you-do-you/scene2.html'
+            elif experience == 'itsyourweb':
+                template = 'firefox/new/fx-lifestyle/its-your-web/scene2.html'
             else:
                 template = 'firefox/new/scene2.html'
         else:
@@ -538,6 +540,8 @@ def new(request):
                 template = 'firefox/new/fx-lifestyle/working-out/scene1.html'
             elif experience == 'youdoyou':
                 template = 'firefox/new/fx-lifestyle/you-do-you/scene1.html'
+            elif experience == 'itsyourweb':
+                template = 'firefox/new/fx-lifestyle/its-your-web/scene1.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:

@@ -441,6 +441,18 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/you-do-you/scene2.html')
 
+    def test_its_your_web_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=itsyourweb')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/its-your-web/scene1.html')
+
+    def test_its_your_web_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=itsyourweb')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/its-your-web/scene2.html')
+
     def test_onboarding_f_98_scene_1_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?f=98')
         req.locale = 'en-US'
