@@ -4,8 +4,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
-import logging
 import platform
+import sys
 from os.path import abspath
 
 from django.utils.functional import lazy
@@ -63,7 +63,7 @@ PYLIBMC_MIN_COMPRESS_LEN = 150 * 1024
 PYLIBMC_COMPRESS_LEVEL = 1  # zlib.Z_BEST_SPEED
 
 # Logging
-LOG_LEVEL = config('LOG_LEVEL', cast=int, default=logging.INFO)
+LOG_LEVEL = config('LOG_LEVEL', default='INFO')
 HAS_SYSLOG = True
 SYSLOG_TAG = "http_app_bedrock"
 LOGGING_CONFIG = None
@@ -1157,8 +1157,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r'^/([a-zA-Z-]+/)?(shapeoftheweb|newsletter)/'
 
 LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
     'root': {
-        'level': 'WARNING',
+        'level': LOG_LEVEL,
+        'handlers': ['console'],
     },
     'formatters': {
         'verbose': {
@@ -1167,8 +1170,8 @@ LOGGING = {
     },
     'handlers': {
         'console': {
-            'level': 'DEBUG',
             'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
             'formatter': 'verbose'
         }
     },
