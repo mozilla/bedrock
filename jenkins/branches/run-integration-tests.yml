@@ -1,0 +1,14 @@
+# see the following for documentation of these options
+# http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
+smoke_tests: true
+regions:
+  - usw
+apps:
+  - bedrock-integration-tests
+integration_tests:
+  - headless
+  - firefox
+  - chrome
+  - ie
+  - ie6
+  - ie7

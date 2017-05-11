@@ -8,7 +8,8 @@ set -eo pipefail
 NICK="hms-flintstone"
 CHANNEL="#www"
 SERVER="irc.mozilla.org:6697"
-BLUE_BUILD_URL="https://ci.us-west.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/detail/${BRANCH_NAME}/${BUILD_NUMBER}/pipeline"
+BLUE_BUILD_URL="https://ci.us-west.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline"
+BLUE_BUILD_URL="${BLUE_BUILD_URL}/detail/${BRANCH_NAME/\//%2f}/${BUILD_NUMBER}/pipeline"
 # colors and styles: values from the following links
 # http://www.mirc.com/colors.html
 # http://stackoverflow.com/a/13382032

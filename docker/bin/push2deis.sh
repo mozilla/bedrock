@@ -8,7 +8,22 @@
 
 set -ex
 
-deis pull "$DOCKER_REPOSITORY:$GIT_COMMIT" -a $DEIS_APPLICATION
+BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $BIN_DIR/set_git_env_vars.sh
+
+DEIS_BIN="${DEIS_BIN:-deis}"
+
+if [[ "$DEIS_BIN" == "deis2" ]]; then
+    if [[ "$DEMO_MODE" == "true" ]]; then
+        DOCKER_REPO="mozorg/bedrock_demo:${GIT_COMMIT}"
+    else
+        DOCKER_REPO="mozorg/bedrock:${BRANCH_NAME}-${GIT_COMMIT}"
+    fi
+else
+    DOCKER_REPO="$DOCKER_PRIVATE_REPO:${GIT_COMMIT}"
+fi
+
+$DEIS_BIN pull "$DOCKER_REPO" -a $DEIS_APPLICATION
 if [[ -n "$NEWRELIC_API_KEY" ]]; then
     curl -H "x-api-key:$NEWRELIC_API_KEY" \
          -d "deployment[app_name]=$NEWRELIC_APP_NAME" \

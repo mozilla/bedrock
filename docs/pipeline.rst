@@ -42,7 +42,7 @@ headless (see :ref:`testing-redirects`) and UI tests (see :ref:`smoke-functional
 are run against Firefox on Linux. If successful, the change is pushed to the dev environment,
 and the full suite of headless and UI tests are then run against
 Firefox on Windows 10 using `Sauce Labs`_. This is handled by the pipeline, and is subject
-to change according to the settings in the `jenkins.yml file`_ in the repository.
+to change according to the settings in the `master.yml file`_ in the repository.
 
 .. _tagged-commit:
 
@@ -55,7 +55,7 @@ Chrome and Internet Explorer on Windows 10, and the sanity suite is run against 
 versions of Internet Explorer (currently IE6 & IE7). If successful, the change is
 pushed to staging, tested, and then to production and the same tests are then run against
 production. As with untagged pushes, this is all handled by the pipeline, and is subject
-to change according to the settings in the `jenkins.yml file`_ in the repository.
+to change according to the settings in the `prod.yml file`_ in the repository.
 
 **Push to prod cheat sheet**
 
@@ -82,8 +82,8 @@ to change according to the settings in the `jenkins.yml file`_ in the repository
 Pipeline integration
 --------------------
 
-Our `Jenkinsfile`_ will run the integration tests based on information in our `jenkins.yml file`_.
-This file specifies various test names per branch that will cause it to use different
+Our `Jenkinsfile`_ will run the integration tests based on information in our `branch-specific YAML files`_.
+These files specify various test names per branch that will cause it to use different
 parameters, allowing it to be called in many different ways to cover the testing
 needs. The job executes `this script <https://github.com/mozilla/bedrock/blob/master/docker/bin/run_integration_tests.sh>`_,
 which then runs `this Docker image <https://github.com/mozilla/bedrock/blob/master/docker/dockerfiles/bedrock_test>`_,
@@ -96,7 +96,7 @@ will be used for testing. The ``DRIVER`` parameter is set to ``Remote``, which c
 local instance of Selenium Grid to be started in Docker and used for the browser-based
 functional UI tests.
 
-The test scripts above will be run once for each properties name specified in the `jenkins.yml file`_
+The test scripts above will be run once for each properties name specified in the `branch-specific YAML files`_
 for the branch being built and tested. Pushes to `master` will run different tests than pushes to `prod`
 for example.
 
@@ -104,22 +104,21 @@ Configuration
 ~~~~~~~~~~~~~
 
 Many of the options are configured via environment variables passed from the initial
-script, to the Docker image and onto the final script. Many of these options can be
-set in the `jenkins.yml file`_. In the ``branches`` section of ``jenkins.yml`` you may specify
-any branch name and set how it should be built by jenkins. Take the following example:
+script to the Docker image and onto the final script. Many of these options can be
+set in the `branch-specific YAML files`_ in the repository. In the `branch-specific YAML files`_
+folder you can copy any file there to match the name of your branch and modify it
+to set how it should be built by jenkins. Take the following example:
 
 .. code-block:: yaml
-
-    branches:
-      change-all-the-things:
-        smoke_tests: true
-        apps:
-          - bedrock-probably-broken
+    # jenkins/branches/change-all-the-things.yml
+    smoke_tests: true
+    apps:
+      - bedrock-probably-broken
 
 This configuration would cause commits pushed to a branch named ``change-all-the-things`` to have docker
 images built for them, have the smoke and unit tests run, and deploy to a deis app named ``bedrock-probably-broken``
-in our us-west deis cluster. It will not (yet) create that deis app for you like a demo deployment would,
-but you can set it to deploy to any existing app you want. Note that said app must have the ``jenkins`` user added via the
+in our us-west deis cluster. If you'd like it to create the deis app and pre-fill a local database for your app,
+you can set ``demo: true`` in the file. Note that if the app already exists it must have the ``jenkins`` user added via the
 ``deis perms:create jenkins -a <your app name>`` command.
 
 The available branch configuration options are as follows:
@@ -129,9 +128,18 @@ The available branch configuration options are as follows:
 * ``require_tag``: boolean. Set to ``true`` to require that the commit being built have a git tag in the format YYYY-MM-DD.X.
 * ``app_name_suffix``: string. Set to a value to have the IRC notification alter the URL of the deployed app. (only useful for stage and prod)
 * ``regions``: list. A list of strings indicating the deployment regions for the set of apps. The valid values are in the ``regions`` area of
-  the jenkins.yml file. If omitted a deployment to only ``usw`` is assumed.
+  the ``jenkins/global.yml`` file. If omitted a deployment to only ``usw`` is assumed.
 * ``apps``: list. A list of strings indicating the deis app name(s) to which to deploy. If omitted no deployments will occur.
+* ``demo``: boolean. Set to ``true`` to have the deployed app in demo mode, which means it will have a pre-filled local
+  database and the deis app will be created and configured for you if it doesn't already exist.
 * ``integration_tests``: list. A list of strings indicating the types of integration tests to run. If omitted no tests will run.
+
+You can also set app configuration environment variables via deployment as well for demos. The default environment variables
+are set in `jenkins/branches/demo/default.env`. To modify your app's settings you can create an env file named after your branch
+(e.g `jenkins/branches/demo/pmac-l10n.env` for the branch `demo/pmac-l10n.env`). The combination
+of values from `demo/default.env`, your branch specific env file, and a region specific env file (e.g. `jenkins/regions/virginia.env`)
+will be used to configure the app. So you only need to add the variables that differ from the default files to your file,
+and you can override any values from the default files as well.
 
 Updating Selenium
 ~~~~~~~~~~~~~~~~~
@@ -188,7 +196,9 @@ A `bug for the IRC plugin`_ has been raised.
 .. _CircleCI: https://circleci.com/
 .. _Sauce Labs: https://saucelabs.com/
 .. _Jenkinsfile: https://github.com/mozilla/bedrock/tree/master/Jenkinsfile
-.. _jenkins.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins.yml
+.. _branch-specific YAML files: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/
+.. _master.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/master.yml
+.. _prod.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/prod.yml
 .. _bedrock_integration_tests_runner: https://ci.us-west.moz.works/view/Bedrock/job/bedrock_integration_tests_runner/
 .. _configured in Jenkins: https://ci.us-west.moz.works/configure
 .. _become unresponsive: https://issues.jenkins-ci.org/browse/JENKINS-28175

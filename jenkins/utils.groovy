@@ -3,15 +3,15 @@
  */
 
 def demoAppName(branchname) {
-    def appname = branchname[6..-1].replaceAll('_', '-')
+    def appname = branchname[5..-1].replaceAll('_', '-')
     return "bedrock-demo-${appname}".toString()
 }
 
-def demoAppURL(appname) {
+def demoAppURL(appname, region) {
     if ( appname ==~ /^bedrock-demo-[1-5]$/ ) {
         return "https://www-demo${appname[-1]}.allizom.org"
     }
-    return "https://${appname}.us-west.moz.works"
+    return "https://${appname}.${region.name}.moz.works"
 }
 
 /**
@@ -20,8 +20,8 @@ def demoAppURL(appname) {
  * @param stage step of build/deploy
  * @param result outcome of build (will be uppercased)
 */
-def ircNotification(config, Map args) {
-    def command = "bin/irc-notify.sh --irc_nick '${config.irc.nick}' --irc_channel '${config.irc.channel}'"
+def ircNotification(Map args) {
+    def command = "bin/irc-notify.sh"
     for (arg in args) {
         command += " --${arg.key} '${arg.value}'"
     }
@@ -45,8 +45,7 @@ def pushDockerhub(from_repo, to_repo='') {
 
 def pushPrivateReg(port, apps) {
     retry(3) {
-        withEnv(['FROM_DOCKER_REPOSITORY=mozorg/bedrock_l10n',
-                 "PRIVATE_REGISTRIES=localhost:${port}",
+        withEnv(["PRIVATE_REGISTRIES=localhost:${port}",
                  "DEIS_APPS=${apps.join(',')}"]) {
             sh 'docker/bin/push2privateregistries.sh'
         }
