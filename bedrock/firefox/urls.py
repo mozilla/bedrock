@@ -66,13 +66,11 @@ urlpatterns = (
     url(r'^firefox/ios/testflight', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile-download', 'firefox/mobile-download.html'),
     page('firefox/mobile-download/desktop', 'firefox/mobile-download-desktop.html'),
-    url('^firefox/products/$',
-        VariationTemplateView.as_view(template_name='firefox/family/index.html',
-                                      template_name_variations=['b'],
-                                      variation_locales=['en-US']),
-        name='firefox.family.index'),
     page('firefox/private-browsing', 'firefox/private-browsing.html', alt_canonical_paths={
         'en-US': '/firefox/features/private-browsing/',
+    }),
+    page('firefox/products', 'firefox/family/index.html', alt_canonical_paths={
+        'en-US': '/firefox/',
     }),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
