@@ -453,13 +453,27 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/its-your-web/scene2.html')
 
+    # browse against the machine bug 1363802
+
+    def test_batm_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=batmfree')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/scene1.html')
+
+    def test_batm_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=batmfree')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')
+
+    # onboarding experiment bug 1333435
+
     def test_onboarding_f_98_scene_1_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?f=98')
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
-
-    # onboarding experiment bug 1333435
 
     def test_onboarding_f_99_scene_1_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?f=99')
