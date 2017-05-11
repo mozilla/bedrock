@@ -92,11 +92,10 @@ if ( config.apps ) {
             }
         }
         for (appname in config.apps) {
-            appSuffix = config.app_name_suffix ?: ''
             if ( config.demo ) {
                 appURL = utils.demoAppURL(appname, region)
             } else {
-                appURL = "https://${appname}${appSuffix}.${region.name}.moz.works"
+                appURL = "https://${appname}.${region.name}.moz.works"
             }
             stageName = "Deploy ${appname}-${region.name}"
             // ensure no deploy/test cycle happens in parallel for an app/region
