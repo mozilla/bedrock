@@ -117,28 +117,27 @@ ul.submenu {
     box-shadow: 0 1px 1px 0 rgba(50, 50, 50, 0.4);
     display: none;
     margin-top: 0;
-    padding: 5px 10px 15px 10px;
+    padding: 5px 15px 15px 15px;
     position: absolute;
     text-align: left;
-    width: 300px;
     z-index: 1;
+    white-space: nowrap;
 
     li {
-        display: inline;
+        display: block;
         .font-size(14px);
         text-align: left;
         text-transform: none;
         margin-left: 0;
-        padding: 5px;
         background-color: transparent;
-    }
 
-    li.title {
-        .font-size(10px);
-        color: #333;
-        display: block;
-        text-transform: uppercase;
-        padding: 15px 5px 0 5px;
+        .title {
+            display: block;
+            .font-size(10px);
+            color: #333;
+            text-transform: uppercase;
+            padding: 15px 0 0;
+        }
     }
 }
 
@@ -387,7 +386,6 @@ ul.section-items {
     ul.submenu  {
         background-color: #fff;
         left: 0;
-        width: 190px;
 
         li {
             border: none;
@@ -465,7 +463,6 @@ ul.section-items {
         ul.submenu {
             background-color: #fff;
             left: 25%;
-            width: 50%;
 
             li {
                 border: none;
