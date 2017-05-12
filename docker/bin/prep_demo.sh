@@ -16,7 +16,7 @@ ENV_FILES=(
 
 # reads which ever of the above files exist in order and combines values
 # pre-installed in jenkins
-ENV_VALUES=( $(envcat "${ENV_FILES[@]}") )
+ENV_VALUES=( $(bin/envcat "${ENV_FILES[@]}") )
 
 if [[ -n "$SENTRY_DEMO_DSN" ]]; then
     ENV_VALUES+=( "SENTRY_DSN=$SENTRY_DEMO_DSN" )
