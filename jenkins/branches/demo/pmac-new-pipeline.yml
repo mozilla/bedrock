@@ -3,6 +3,6 @@
 demo: true
 regions:
   - virginia
+  - tokyo
 integration_tests:
   - headless
-  - firefox
