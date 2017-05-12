@@ -75,11 +75,15 @@
           <ul class="menu">
           {% if release.product == 'Firefox' and release.channel == 'Release' %}
             <li class="current">{{ _('Desktop') }}</li>
+          {% elif release.channel == 'Release' and equivalent_release_url %}
+            <li><a href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
           {% else %}
             <li><a href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
           {% endif %}
           {% if release.product == 'Firefox for Android' and release.channel == 'Release' %}
             <li class="current">{{ _('Android') }}</li>
+          {% elif release.channel == 'Release' and equivalent_release_url %}
+            <li><a href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
           {% else %}
             <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
           {% endif %}
