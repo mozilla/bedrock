@@ -1161,8 +1161,8 @@ URLS = flatten((
     url_test('/internethealth', '/internet-health/'),
 
     # Bug 1355184
-    url_test('/en-US/firefox/private-browsing/', '/firefox/features/private-browsing/'),
+    url_test('/en-US/firefox/private-browsing/', '/en-US/firefox/features/private-browsing/'),
 
     # Bug 1355189
-    url_test('/en-US/firefox/desktop/fast/', '/firefox/features/fast/'),
+    url_test('/en-US/firefox/desktop/fast/', '/en-US/firefox/features/fast/'),
 ))

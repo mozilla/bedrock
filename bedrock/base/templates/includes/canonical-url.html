@@ -1,10 +1,17 @@
     <link rel="canonical" hreflang="{{ LANG|replace('en-US', 'en') }}" href="{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}">
     <link rel="alternate" hreflang="x-default" href="{{ settings.CANONICAL_URL + canonical_path }}">
     {% if translations -%}
-    {% for code, label in translations|dictsort -%}
-    <link rel="alternate" hreflang="{{ code|replace('en-US', 'en') }}" href="{{ settings.CANONICAL_URL + '/' + code + canonical_path }}" title="{{ label|safe|replace('English (US)', 'English') }}">
-    {% if code == 'en-US' -%}{# Append en-CA for Bug 1097049 -#}
-    <link rel="alternate" hreflang="{{ code|replace('en-US', 'en-CA') }}" href="{{ settings.CANONICAL_URL + '/' + code + canonical_path }}" title="{{ label|safe|replace('English (US)', 'English (Canada)') }}">
-    {% endif -%}
-    {% endfor -%}
+      {% for code, label in translations|dictsort -%}
+        {% if alt_canonical_paths and code in alt_canonical_paths -%}
+          {% set loop_canonical_path = alt_canonical_paths[code] -%}
+        {% else -%}
+          {% set loop_canonical_path = canonical_path -%}
+        {% endif -%}
+        {% if code == 'en-US' -%}
+        <link rel="alternate" hreflang="en" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English">
+        <link rel="alternate" hreflang="en-CA" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English (Canada)">
+        {% else -%}
+        <link rel="alternate" hreflang="{{ code }}" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% endif -%}
+      {% endfor -%}
     {% endif %}
