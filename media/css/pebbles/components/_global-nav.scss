@@ -5,14 +5,6 @@
 @import '../pebbles/includes/lib';
 
 /* -------------------------------------------------------------------------- */
-// Common variables
-
-$color-firefox-light-orange: #ff9500;
-
-$mq-nav-tablet:     'screen and (min-width: 840px)';
-$mq-nav-desktop:    'screen and (min-width: 1070px)';
-
-/* -------------------------------------------------------------------------- */
 // Horizontal top navigation
 
 .moz-global-nav {
@@ -178,6 +170,11 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
         .nav-primary-links {
             display: block;
         }
+    }
+
+    @media #{$mq-nav-desktop} {
+        max-width: $width-max-content;
+        margin: 0 auto;
     }
 }
 
@@ -494,7 +491,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
 
 #global-nav-download-firefox {
     float: right;
-    margin: -2px 10px 0 0;
+    margin: -2px 20px 0 0;
 
     .download-list {
         margin: 0;
@@ -542,8 +539,12 @@ html.moz-nav-open .moz-global-nav-page-mask {
         }
     }
 
+    @media #{$mq-nav-tablet} {
+        margin-right: 60px;
+    }
+
     @media #{$mq-nav-desktop} {
-        margin-right: 20px;
+        margin-right: 85px;
 
         .download-link {
             &:link,
