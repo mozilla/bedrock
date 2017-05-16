@@ -1391,7 +1391,6 @@ PIPELINE_JS = {
     },
     'firefox_new_scene1_batm': {
         'source_filenames': (
-            'js/base/mozilla-modal.js',
             'js/firefox/new/scene1-batm.js',
         ),
         'output_filename': 'js/firefox_new_scene1_batm-bundle.js',

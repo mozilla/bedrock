@@ -453,16 +453,52 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/its-your-web/scene2.html')
 
-    # browse against the machine bug 1363802
+    # browse against the machine bug 1363802, 1364988.
 
-    def test_batm_scene_1(self, render_mock):
+    def test_batmfree_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=batmfree')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/batm/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/free.html')
 
-    def test_batm_scene_2(self, render_mock):
+    def test_batmfree_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=batmfree')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')
+
+    def test_batmprivate_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=batmprivate')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/private.html')
+
+    def test_batmprivate_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=batmprivate')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')
+
+    def test_batmnimble_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=batmnimble')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/nimble.html')
+
+    def test_batmnimble_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=batmnimble')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')
+
+    def test_batmresist_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=batmresist')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/resist.html')
+
+    def test_batmresist_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=batmresist')
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')

@@ -5,10 +5,12 @@
 (function($) {
     'use strict';
 
+    var exp = $('#main-header-copy').data('experience');
+
     $('.download-link').each(function(i, link) {
-        if (link.href.indexOf('scene=2') > -1) {
+        if (exp && link.href.indexOf('scene=2') > -1) {
             // specify v=1 template for scene 2
-            link.href = link.href.replace('scene=2', 'scene=2&xv=batmfree');
+            link.href = link.href.replace('scene=2', 'scene=2&xv=' + exp);
         }
     });
 
