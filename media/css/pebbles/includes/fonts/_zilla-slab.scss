@@ -18,3 +18,19 @@
     src: url('/media/fonts/ZillaSlab-Bold.woff2') format('woff2'),
          url('/media/fonts/ZillaSlab-Bold.woff') format('woff');
 }
+
+@font-face {
+    font-family: 'Zilla Slab';
+    font-weight: normal;
+    font-style: italic;
+    src: url('/media/fonts/ZillaSlab-RegularItalic.woff2') format('woff2'),
+         url('/media/fonts/ZillaSlab-RegularItalic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Zilla Slab';
+    font-weight: bold;
+    font-style: italic;
+    src: url('/media/fonts/ZillaSlab-BoldItalic.woff2') format('woff2'),
+         url('/media/fonts/ZillaSlab-BoldItalic.woff') format('woff');
+}

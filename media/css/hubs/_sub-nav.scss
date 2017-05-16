@@ -12,6 +12,7 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
 
 .moz-sub-nav {
     @include clearfix();
+    @include open-sans;
     background: #fff;
     display: none; // hidden for mobile
     height: 52px;

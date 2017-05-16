@@ -129,11 +129,13 @@
     }
 
     .field-format label {
+        @include open-sans;
         margin-right: 20px;
     }
 
     .privacy-check-label {
         @include font-size(14px);
+        @include open-sans;
         display: block;
         padding-left: 30px;
         position: relative;
@@ -151,6 +153,7 @@
 
         small {
             @include font-size(12px);
+            @include open-sans;
         }
     }
 }

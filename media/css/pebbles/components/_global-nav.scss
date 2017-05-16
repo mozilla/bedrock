@@ -16,6 +16,7 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
 // Horizontal top navigation
 
 .moz-global-nav {
+    @include open-sans;
     position: relative;
     background: #fff;
     overflow: hidden;
@@ -324,8 +325,7 @@ $mq-nav-desktop:    'screen and (min-width: 1070px)';
     }
 
     .intro {
-        @include font-size(14px);
-        font-style: italic;
+        @include font-size(13px);
         margin: 0 0 20px;
     }
 
@@ -694,6 +694,7 @@ html.moz-nav-open {
 // Side drawer promo thumbnails.
 
 .moz-global-nav-drawer {
+    @include open-sans;
 
     .nav-promo {
         display: none;
@@ -730,10 +731,9 @@ html.moz-nav-open {
         }
 
         .meta {
-            @include font-size(13px);
+            @include font-size(12px);
             color: #fff;
             display: block;
-            font-style: italic;
             padding: 0 0 5px 5px;
             text-align: left;
         }

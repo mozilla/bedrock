@@ -18,6 +18,18 @@ html.noscroll {
     #modal {
         position: absolute;
     }
+
+    @media #{$mq-tablet} {
+        height: auto;
+
+        body {
+            height: auto;
+        }
+
+        #modal {
+            position: fixed;
+        }
+    }
 }
 
 

@@ -6,6 +6,7 @@
 
 // The basis for all buttons on mozilla.org
 %base-button {
+    @include open-sans;
     @include font-size(18px);
     @include transition(background-color 100ms ease-in-out);
     background: none;

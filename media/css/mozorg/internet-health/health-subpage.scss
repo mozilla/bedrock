@@ -249,7 +249,7 @@ html[dir="rtl"] {
 //*--------------------------------------------------------------------------*/
 // Health subpages navigation
 .health-subnav {
-    @include font-size(18px);
+    @include open-sans;
     background-color: #000;
     text-transform: lowercase;
 
@@ -339,6 +339,7 @@ html[dir="rtl"] {
 
     li {
         @include border-box;
+        @include open-sans;
         margin: 0 0 1em;
         text-transform: uppercase;
     }
@@ -480,6 +481,7 @@ html[dir="rtl"] {
 
     .note-source {
         @include font-size(14px);
+        @include open-sans;
         margin: 0;
 
         cite {

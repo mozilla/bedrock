@@ -8,6 +8,7 @@
 // privacy policy link that accompany most download buttons
 .fx-privacy-link {
     @include font-size(16px);
+    @include open-sans;
     display: block;
     text-align: center;
     text-shadow: none;
@@ -81,6 +82,7 @@ ul.download-list {
 
 .download-other {
     @include font-size(11px);
+    @include open-sans;
     color: $color-text-tertiary;
 
     a:link,

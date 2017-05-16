@@ -390,6 +390,7 @@ main {
 
             li {
                 @include font-size(16px);
+                @include open-sans;
                 display: block;
                 padding: 20px 0;
                 width: 100%;
@@ -897,6 +898,7 @@ html[dir="rtl"] #technologies > section {
 
         .continue {
             @include font-size(16px);
+            @include open-sans;
             bottom: 20px;
             color: #c33b32;
             font-weight: bold;
