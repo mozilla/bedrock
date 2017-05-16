@@ -58,6 +58,9 @@ Mozilla.TrafficCop = function(config) {
     // store experiment cookie expiry (defaults to 24 hours)
     this.cookieExpires = (config.cookieExpires !== undefined) ? config.cookieExpires : 24;
 
+    // store pref to store referrer cookie on redirect (default to true)
+    this.storeReferrerCookie = (config.storeReferrerCookie === false) ? false : true;
+
     this.redirectVariation = null;
 
     // calculate and store total percentage of variations
@@ -71,6 +74,7 @@ Mozilla.TrafficCop = function(config) {
 };
 
 Mozilla.TrafficCop.noVariationCookieValue = 'novariation';
+Mozilla.TrafficCop.referrerCookieName = 'mozilla-traffic-cop-original-referrer';
 
 /*
  * Initialize the traffic cop. Validates variations, ensures user is not
@@ -80,7 +84,7 @@ Mozilla.TrafficCop.prototype.init = function() {
     var redirectUrl;
 
     // respect the DNT
-    if (typeof window._dntEnabled === 'function' && window._dntEnabled()) {
+    if (typeof Mozilla.dntEnabled === 'function' && Mozilla.dntEnabled()) {
         return;
     }
 
@@ -97,16 +101,30 @@ Mozilla.TrafficCop.prototype.init = function() {
             // roll the dice to see if user should be send to a variation
             redirectUrl = this.generateRedirectUrl();
 
-            if (redirectUrl) {
-                // if we get a variation, send the user and store a cookie
-                if (redirectUrl !== Mozilla.TrafficCop.noVariationCookieValue) {
-                    Mozilla.Cookies.setItem(this.id, this.redirectVariation, this.cookieExpiresDate());
-                    window.location.href = redirectUrl;
+            // if we get a variation, send the user and store a cookie
+            if (redirectUrl && redirectUrl !== Mozilla.TrafficCop.noVariationCookieValue) {
+                // Store the original referrer for use after redirect takes place so analytics can
+                // keep track of where visitors are coming from.
+
+                // Traffic Cop does nothing with this referrer - it's up to the implementing site to
+                // send it on to an analytics platform (or whatever).
+                if (this.storeReferrerCookie) {
+                    Mozilla.TrafficCop.setReferrerCookie(this.cookieExpiresDate());
+                // a previous experiment may have set the cookie, so explicitly remove it here
+                } else {
+                    Mozilla.TrafficCop.clearReferrerCookie();
                 }
+
+                Mozilla.Cookies.setItem(this.id, this.redirectVariation, this.cookieExpiresDate());
+
+                Mozilla.TrafficCop.performRedirect(redirectUrl);
             } else {
                 // if no variation, set a cookie so user isn't re-entered into
                 // the dice roll on next page load
                 Mozilla.Cookies.setItem(this.id, Mozilla.TrafficCop.noVariationCookieValue, this.cookieExpiresDate());
+
+                // same as above - referrer cookie could be set from previous experiment, so best to clear
+                Mozilla.TrafficCop.clearReferrerCookie();
             }
         }
     }
@@ -233,4 +251,27 @@ Mozilla.TrafficCop.prototype.generateRedirectUrl = function(url) {
     }
 
     return redirect;
+};
+
+Mozilla.TrafficCop.performRedirect = function(redirectURL) {
+    window.location.href = redirectURL;
+};
+
+Mozilla.TrafficCop.setReferrerCookie = function(expirationDate, referrer) {
+    // in order of precedence, referrer should be:
+    // 1. custom value passed in via unit test
+    // 2. value of document.referrer
+    // 3. 'direct' string literal
+    referrer = referrer || Mozilla.TrafficCop.getDocumentReferrer() || 'direct';
+
+    Mozilla.Cookies.setItem(Mozilla.TrafficCop.referrerCookieName, referrer, expirationDate);
+};
+
+Mozilla.TrafficCop.clearReferrerCookie = function() {
+    Mozilla.Cookies.removeItem(Mozilla.TrafficCop.referrerCookieName);
+};
+
+// wrapper around document.referrer for better unit testing
+Mozilla.TrafficCop.getDocumentReferrer = function() {
+    return document.referrer;
 };

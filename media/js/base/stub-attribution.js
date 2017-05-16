@@ -222,7 +222,7 @@ if (typeof Mozilla === 'undefined') {
             return false;
         }
 
-        if (window._dntEnabled()) {
+        if (Mozilla.dntEnabled()) {
             return false;
         }
 

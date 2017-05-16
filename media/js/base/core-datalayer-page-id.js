@@ -6,7 +6,7 @@ if (typeof Mozilla == 'undefined') {
     var Mozilla = {};
 }
 
-(function() {
+(function(Mozilla) {
     // init dataLayer object
     var dataLayer = window.dataLayer = window.dataLayer || [];
     var Analytics = {};
@@ -22,12 +22,40 @@ if (typeof Mozilla == 'undefined') {
         return pageId ? pageId : pathName.replace(/^(\/\w{2}\-\w{2}\/|\/\w{2,3}\/)/, '/');
     };
 
+    Analytics.getTrafficCopReferrer = function() {
+        var referrer;
+
+        // if referrer cookie exists, store the value and remove the cookie
+        if (Mozilla.Cookies && Mozilla.Cookies.hasItem('mozilla-traffic-cop-original-referrer')) {
+            referrer = Mozilla.Cookies.getItem('mozilla-traffic-cop-original-referrer');
+
+            // referrer shouldn't persist
+            Mozilla.Cookies.removeItem('mozilla-traffic-cop-original-referrer');
+        }
+
+        return referrer;
+    };
+
+    Analytics.buildDataObject = function() {
+        var dataObj = {
+            'event': 'page-id-loaded',
+            'pageId': Analytics.getPageId()
+        };
+
+        var referrer = Analytics.getTrafficCopReferrer();
+
+        // if original referrer exists, pass it to GTM
+        if (referrer) {
+            // Traffic Cop sets the referrer to 'direct' if document.referer is empty
+            // prior to the redirect, so this value will either be a URL or the string 'direct'.
+            dataObj.customReferrer = referrer;
+        }
+
+        return dataObj;
+    };
+
     // Push page ID into dataLayer so it's ready when GTM container loads.
-    dataLayer.push({
-        'event': 'page-id-loaded',
-        'pageId': Analytics.getPageId()
-    });
+    dataLayer.push(Analytics.buildDataObject());
 
     Mozilla.Analytics = Analytics;
-})();
-
+})(window.Mozilla);
