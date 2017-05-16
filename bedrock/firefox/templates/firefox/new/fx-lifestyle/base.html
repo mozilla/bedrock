@@ -17,6 +17,10 @@
 {% block body_id %}firefox{% endblock %}
 {% block body_class %}{% endblock %}
 
+{% block string_data %}
+  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
+{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block content %}

@@ -586,6 +586,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_its_your_web_bundle.css',
     },
+    'firefox_new_batm': {
+        'source_filenames': (
+            'css/firefox/new/batm.scss',
+        ),
+        'output_filename': 'css/firefox_new_batm-bundle.css',
+    },
     'firefox_new_onboarding_common': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -1382,6 +1388,12 @@ PIPELINE_JS = {
             'js/firefox/new/fx-lifestyle.js',
         ),
         'output_filename': 'js/firefox_new_scene1_fx_lifestyle-bundle.js',
+    },
+    'firefox_new_scene1_batm': {
+        'source_filenames': (
+            'js/firefox/new/scene1-batm.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_batm-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (
