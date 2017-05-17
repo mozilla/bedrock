@@ -523,4 +523,7 @@ redirectpatterns = (
     # Bug 1355189
     redirect(r'^en-US/firefox/desktop/fast/?', '/en-US/firefox/features/fast/',
              locale_prefix=False),
+
+    # Bug 1361181
+    redirect(r'^en-US/firefox/products/?', '/en-US/firefox/', locale_prefix=False),
 )
