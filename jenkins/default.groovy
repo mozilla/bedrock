@@ -76,6 +76,7 @@ if ( config.push_public_registry != false ) {
  */
 if ( config.apps ) {
     milestone()
+    tested_apps = []
     // default to usw only
     def regions = config.regions ?: ['usw']
     for (regionId in regions) {
@@ -92,11 +93,10 @@ if ( config.apps ) {
             }
         }
         for (appname in config.apps) {
-            appSuffix = config.app_name_suffix ?: ''
             if ( config.demo ) {
                 appURL = utils.demoAppURL(appname, region)
             } else {
-                appURL = "https://${appname}${appSuffix}.${region.name}.moz.works"
+                appURL = "https://${appname}.${region.name}.moz.works"
             }
             stageName = "Deploy ${appname}-${region.name}"
             // ensure no deploy/test cycle happens in parallel for an app/region
@@ -140,11 +140,14 @@ if ( config.apps ) {
                             utils.ircNotification([stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
                             throw err
                         }
+                        tested_apps << "${appname}-${region.name}".toString()
                     }
-                    // huge success \o/
-                    utils.ircNotification([message: "${appURL} passed all tests!", status: 'success'])
                 }
             }
         }
+    }
+    if ( tested_apps ) {
+        // huge success \o/
+        utils.ircNotification([message: "All tests passed: ${tested_apps.join(', ')}", status: 'success'])
     }
 }
