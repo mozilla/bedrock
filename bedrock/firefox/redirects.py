@@ -513,8 +513,18 @@ redirectpatterns = (
     redirect(r'^firefox/channel/?$', firefox_channel(), cache_timeout=0),
 
     # Bug 1277196
-    redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/firstrun/learnmore/?$', 'firefox.features'),
-    redirect(r'^firefox/windows-10/welcome/?$', 'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10'),
+    redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/firstrun/learnmore/?$', 'firefox.features', query={
+        'utm_source': 'firefox-browser',
+        'utm_medium': 'firefox-browser',
+        'utm_campaign': 'redirect',
+        'utm_content': 'learnmore-tab',
+    }),
+    redirect(r'^firefox/windows-10/welcome/?$', 'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10', query={
+        'utm_source': 'firefox-browser',
+        'utm_medium': 'firefox-browser',
+        'utm_campaign': 'redirect',
+        'utm_content': 'windows10-welcome-tab',
+    }),
 
     # Bug 1355184
     redirect(r'^en-US/firefox/private-browsing/?', '/en-US/firefox/features/private-browsing/',
