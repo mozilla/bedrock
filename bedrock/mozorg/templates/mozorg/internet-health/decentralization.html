@@ -115,9 +115,15 @@
 
             <p class="note-source">
               <cite>
-              {% trans accessnow='https://www.thisisnetneutrality.org/' %}
-                Source: <a href="{{ wwwf }}">Access Now</a>, 2015
-              {% endtrans %}
+              {% if l10n_has_tag('health-decentralization-link') %}
+                {% trans accessnow='https://www.thisisnetneutrality.org/' %}
+                  Source: <a href="{{ accessnow }}">Access Now</a>
+                {% endtrans %}
+              {% else %}
+                {% trans wwwf='https://www.thisisnetneutrality.org/' %}
+                  Source: <a href="{{ wwwf }}">Access Now</a>, 2015
+                {% endtrans %}
+              {% endif %}
               </cite>
             </p>
           </div>
