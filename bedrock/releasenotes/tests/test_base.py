@@ -1,6 +1,8 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from dateutil.parser import parse as date_parse
+
 from django.core.cache import caches
 from django.http import Http404
 from django.test.client import RequestFactory
@@ -11,7 +13,7 @@ from mock import patch, Mock
 from nose.tools import eq_, ok_
 from pathlib2 import Path
 from pyquery import PyQuery as pq
-from rna.models import Release
+from rna.models import Release, Note
 
 from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
@@ -251,6 +253,48 @@ class TestRNAViews(TestCase):
             '/en-US/firefox/ios/1.4/system-requirements/')
         eq_(views.check_url('Firefox', '42.0'),
             '/en-US/firefox/42.0/system-requirements/')
+
+    @patch('bedrock.releasenotes.views.get_list_or_404')
+    def test_nightly_feed(self, get_list_or_404):
+        """Nightly Notes feed should be served with public changes"""
+        release_1 = Mock()
+        release_1.version = '55.0a1'
+        release_1.is_public = True
+        release_1.release_date = date_parse('2017-03-06T00:00:00')
+        release_1.notes.return_value = ([
+            Note(id=1, tag='New', note='New 1', is_public=True,
+                 modified=date_parse('2017-04-20T13:27:28')),
+            Note(id=2, tag='New', note='New 2', is_public=True,
+                 modified=date_parse('2017-04-20T13:28:32')),
+            Note(id=11, tag='Changed', note='Change 1', is_public=True,
+                 modified=date_parse('2017-04-20T13:27:50')),
+            Note(id=12, tag='Changed', note='Change 2', is_public=True,
+                 modified=date_parse('2017-04-20T13:28:03')),
+            Note(id=13, tag='Changed', note='Change 3', is_public=False,
+                 modified=date_parse('2017-04-20T13:28:16')),
+        ], [
+            Note(id=21, tag='', note='Known issue 1', is_public=True,
+                 modified=date_parse('2017-04-20T13:30:12')),
+        ])
+
+        release_2 = Mock()
+        release_2.version = '56.0a1'
+        release_2.is_public = True
+        release_2.release_date = date_parse('2017-05-08T00:00:00')
+        release_2.notes.return_value = ([
+            Note(id=31, tag='New', note='New 1', is_public=True,
+                 modified=date_parse('2017-05-08T13:27:28')),
+        ], [])
+
+        get_list_or_404.return_value = [release_1, release_2]
+        views.nightly_feed(self.request)
+
+        eq_(len(self.last_ctx['notes']), 5)
+        eq_(self.last_ctx['notes'][0].id, 31)
+        eq_(self.last_ctx['notes'][1].id, 2)
+        eq_(self.last_ctx['notes'][2].id, 12)
+        eq_(self.last_ctx['notes'][3].id, 11)
+        eq_(self.last_ctx['notes'][4].id, 1)
 
 
 class TestReleaseNotesIndex(TestCase):
