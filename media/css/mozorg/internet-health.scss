@@ -287,6 +287,7 @@ html[dir="rtl"] {
     }
 
     .ctas {
+        @include open-sans;
         margin-top: 20px;
     }
 
@@ -749,6 +750,7 @@ html[dir="rtl"] #pillars > section {
 
         .continue {
             @include font-size(16px);
+            @include open-sans;
             bottom: 20px;
             font-weight: bold;
             position: absolute;

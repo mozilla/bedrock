@@ -18,19 +18,3 @@
     src: url('/media/fonts/opensans-bold.woff2') format('woff2'),
          url('/media/fonts/opensans-bold.woff') format('woff');
 }
-
-@font-face {
-    font-family: 'Open Sans';
-    font-weight: normal;
-    font-style: italic;
-    src: url('/media/fonts/opensans-italic.woff2') format('woff2'),
-         url('/media/fonts/opensans-italic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    font-weight: bold;
-    font-style: italic;
-    src: url('/media/fonts/opensans-bolditalic.woff2') format('woff2'),
-         url('/media/fonts/opensans-bolditalic.woff') format('woff');
-}

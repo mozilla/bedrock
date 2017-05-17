@@ -391,6 +391,7 @@ main {
     }
 
     a {
+        @include open-sans;
         @include trailing-arrow;
         font-weight: bold;
         text-decoration: none;
@@ -531,6 +532,7 @@ main {
 
         a,
         a:hover {
+            @include open-sans;
             color: #fff;
         }
 
@@ -729,6 +731,13 @@ main {
         margin: 0 auto;
     }
 
+    input,
+    select,
+    textarea,
+    .form-details small {
+        @include open-sans;
+    }
+
     .form-title {
         @include background-size(100px, 100px);
         background-position: center top;
@@ -753,6 +762,11 @@ main {
     .form-contents {
         .field {
             margin: 0 0 1em;
+        }
+
+        .field-format label,
+        .field-privacy label {
+            @include open-sans;
         }
     }
 

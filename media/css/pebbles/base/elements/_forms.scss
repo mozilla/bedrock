@@ -9,7 +9,7 @@ button,
 input,
 select,
 textarea {
-    font-family: inherit; // must inherit or falls back to UA stylesheet/system font
+    @include open-sans;
 }
 
 textarea {
