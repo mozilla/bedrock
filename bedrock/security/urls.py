@@ -39,6 +39,7 @@ urlpatterns = (
         ProductVersionView.as_view(), name='security.product-version-advisories'),
     url(r'^known-vulnerabilities/(?P<filename>.*)\.html$', KVRedirectsView.as_view()),
 
-    url(r'^announce/\d{4}/mfsa(?P<pk>\d{4}-\d{2,3})\.html$', OldAdvisoriesView.as_view()),
+    url(r'^(?:announce|advisories)(?:/.*)?/mfsa(?P<pk>\d{4}-\d{2,3})\.html$',
+        OldAdvisoriesView.as_view()),
     url(r'^announce/$', OldAdvisoriesListView.as_view()),
 )
