@@ -76,6 +76,9 @@
 @colorBrandNeonpink:  #fa8cff;
 @colorBrandNeongreen: #abff10;
 
+// product brand colors
+@colorFirefoxLightOrange: #ff9500;
+
 .open-sans() {
     font-family: @baseFontFamily;
 }
@@ -139,6 +142,10 @@
 @breakMobileLandscape:    480px;
 @breakMobile:             320px;
 
+// Breakpoints for global navigation
+@breakNavTablet:  860px;
+@breakNavDesktop: 1140px;
+
 // Page widths for common breakpoints
 
 // Desktop:
@@ -174,6 +181,9 @@
 @widthTablet:             760px;
 @widthMobileLandscape:    440px;
 @widthMobile:             320px;
+
+// for fluid width hub pages bug 1363708.
+@widthMaxContent: 1420px; // 85px left padding + 1250px content + 85px right padding
 
 .clearfix() {
     zoom: 1;

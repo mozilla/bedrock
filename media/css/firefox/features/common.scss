@@ -3,18 +3,13 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
 @import '../../pebbles/components/newsletter';
 @import '../../hubs/sub-nav';
 @import '../../hubs/buttons';
 @import '../../hubs/cta-link';
 
 $color-burnt-orange: #9c432a;
-
-// copied from pebbles/components/_global-nav.scss
-// should be moved to a common location in pebbles?
-$color-firefox-light-orange: #ff9500;
-$mq-nav-tablet:     'screen and (min-width: 880px)';
-$mq-nav-desktop:    'screen and (min-width: 1070px)';
 
 main {
     @include font-size(20px);
@@ -166,8 +161,8 @@ main {
     padding-bottom: 20px;
 
     @media #{$mq-tablet} {
-        width: 420px;
-        margin: 0 12px;
+        width: 30%;
+        margin-right: 3%;
     }
 
     &:last-child {

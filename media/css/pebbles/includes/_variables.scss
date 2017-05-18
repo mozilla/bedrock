@@ -51,6 +51,9 @@ $color-button-dark:     #00539f;
 $color-button-green:    #4caf50;
 $color-button-orange:   #f26c23;
 
+// Product brand colors
+$color-firefox-light-orange: #ff9500;
+
 
 // Content widths
 $width-phone:           300px;
@@ -58,6 +61,10 @@ $width-phone-wide:      460px;
 $width-tablet:          740px;
 $width-desktop:         980px;
 $width-desktop-wide:    1380px;
+
+
+// for fluid width hub pages bug 1363708.
+$width-max-content: 1420px; // 85px left padding + 1250px content + 85px right padding
 
 
 // Media queries
@@ -71,6 +78,10 @@ $mq-high-res:       'only screen and (-webkit-min-device-pixel-ratio: 1.5), only
 
 $mq-short:          '(max-height: 600px)';
 $mq-tall:           '(min-height: 600px)';
+
+// Media queries for global nav and subnav
+$mq-nav-tablet:     'screen and (min-width: 860px)';
+$mq-nav-desktop:    'screen and (min-width: 1140px)';
 
 
 // Grid columns

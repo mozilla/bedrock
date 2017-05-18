@@ -1,0 +1,29 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+// override .content breakpoints to match navigation.
+$mq-desktop: $mq-nav-desktop;
+$mq-tablet: $mq-nav-tablet;
+
+// override .content widths and padding for fluid pages.
+.content {
+    width: auto;
+
+    @media #{$mq-tablet} {
+        width: auto;
+        padding: 20px 60px;
+    }
+
+    @media #{$mq-desktop} {
+        width: auto;
+        padding: 20px 85px;
+    }
+
+    @media #{$mq-desktop-wide} {
+        width: auto;
+        max-width: $width-max-content;
+    }
+}

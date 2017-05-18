@@ -5,20 +5,14 @@
 @import "../sandstone/lib.less";
 
 /* -------------------------------------------------------------------------- */
-// Common variables
-
-@colorFirefoxLightOrange: #ff9500;
-
-@breakNavTablet:  840px;
-@breakNavDesktop: 1070px;
-
-/* -------------------------------------------------------------------------- */
 // Horizontal top navigation
 
 .moz-global-nav {
-    position: relative;
     background: #fff;
+    margin: 0 auto;
+    max-width: @widthMaxContent;
     overflow: hidden;
+    position: relative;
 
     a:link,
     a:visited {
@@ -490,7 +484,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
 
 #global-nav-download-firefox {
     float: right;
-    margin: -2px 20px 0 0;
+    margin: -2px 85px 0 0;
 
     .download-list {
         margin: 0;
@@ -539,7 +533,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
     }
 
     @media only screen and (max-width: @breakNavDesktop) {
-        margin-right: 10px;
+        margin-right: 60px;
 
         .download-link {
             &:link,
@@ -547,6 +541,10 @@ html.moz-nav-open .moz-global-nav-page-mask {
                 padding: 14px 10px;
             }
         }
+    }
+
+    @media only screen and (max-width: @breakNavTablet) {
+        margin-right: 20px;
     }
 
     .fx-privacy-link {
