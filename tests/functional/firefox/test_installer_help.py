@@ -15,3 +15,4 @@ def test_download_buttons_displayed(base_url, selenium):
     assert page.firefox_download_button.is_displayed
     assert page.beta_download_button.is_displayed
     assert page.dev_edition_download_button.is_displayed
+    assert page.nightly_download_button.is_displayed
