@@ -60,7 +60,9 @@ main {
     @media #{$mq-tablet} {
 
         .hero-image {
+            height: 400px;
             margin-top: 60px;
+            width: 720px;
         }
 
         .header-container {
@@ -158,10 +160,32 @@ main {
     }
 
     img {
+        display: block;
         margin-bottom: 20px;
         max-width: 420px;
+        opacity: 1;
+        transition: opacity 0.3s;
         width: 100%;
     }
+
+    img[data-src] {
+        opacity: 0;
+        display: none;
+    }
+
+    &> a {
+        background-color: #eee;
+        display: block;
+        margin-bottom: 20px;
+
+        img {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.js .features-list-item img[data-src] {
+    display: block;
 }
 
 @supports(display: grid) {

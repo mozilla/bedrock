@@ -1306,6 +1306,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox-features-hub-bundle.js',
     },
+    'firefox-features-landing': {
+        'source_filenames': (
+            'js/firefox/features-landing.js',
+        ),
+        'output_filename': 'js/firefox-features-landing-bundle.js',
+    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'js/base/uitour-lib.js',
