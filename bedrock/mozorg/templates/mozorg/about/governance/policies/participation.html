@@ -5,68 +5,518 @@
 {% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Community Participation Guidelines') }}{% endblock %}
-{% block body_id %}about-governance-roles{% endblock %}
+{% block body_id %}participation-guidelines{% endblock %}
 
 
 {% block article %}
 <h1 class="title-shadow-box">{{ _('Mozilla Community Participation Guidelines') }}</h1>
-<h4>{{ _('Proposed Version 1.1. Updated: March 24, 2016') }}</h4>
+<h4>{{ _('Version 2.3 – Updated May 16, 2017') }}</h4>
 
-<section>
-  <h2>{{ _('Community Participation Guidelines') }}</h2>
-  <p>{{ _('These guidelines describe the type of community we are building. They work in conjunction with') }}</p>
-  <ul>
-    <li>{{ _('the Anti-Harassment/Discrimination Policy <a href="#note-1">[1]</a> which sets out protections and obligations of Mozilla employees, and is crafted with specific jurisdictional legal definitions and requirements in mind.') }}</li>
-    <li>{{ _('Mozilla groups for escalation and dispute resolution.') }}</li>
+<section id="introduction">
+  <p>
+  {% trans %}
+    The heart of Mozilla is people. We put people first and do our best
+    to recognize, appreciate and respect the diversity of our global
+    contributors. The Mozilla Project welcomes contributions from everyone
+    who shares our goals and wants to contribute in a healthy and constructive
+    manner within our community. As such, we have adopted this code of
+    conduct and require all those who participate to agree and adhere
+    to these Community Participation Guidelines in order to help us create
+    a safe and positive community experience for all.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    These guidelines aim to support a community where all people should
+    feel safe to participate, introduce new ideas and inspire others,
+    regardless of:
+  {% endtrans %}
+  </p>
+
+  <ul class="prose">
+    <li>{{ _('Background') }}</li>
+    <li>{{ _('Family status') }}</li>
+    <li>{{ _('Gender') }}</li>
+    <li>{{ _('Gender identity or expression') }}</li>
+    <li>{{ _('Marital status') }}</li>
+    <li>{{ _('Sex') }}</li>
+    <li>{{ _('Sexual orientation') }}</li>
+    <li>{{ _('Native language') }}</li>
+    <li>{{ _('Age') }}</li>
+    <li>{{ _('Ability') }}</li>
+    <li>{{ _('Race and/or ethnicity') }}</li>
+    <li>{{ _('National origin') }}</li>
+    <li>{{ _('Socioeconomic status') }}</li>
+    <li>{{ _('Religion') }}</li>
+    <li>{{ _('Geographic location') }}</li>
+    <li>{{ _('Any other dimension of diversity') }}</li>
   </ul>
-  <p>{{ _('The Community Participation Guidelines cover our behavior as members of the Mozilla Community in Mozilla-related forums, mailing lists, wikis, web sites, IRC channels, bugs, events, public meetings or person to person, Mozilla-related correspondence.') }}</p>
-  <p>{{ _('The Community Participation Guidelines have two parts -- an Inclusion and Diversity section and a general section called “Interaction Style” about how we treat each other. Each is an important part of the community we’re building.') }}</p>
 
-  <section>
-    <h3>{{ _('Diversity and Inclusion') }}</h3>
-    <ul>
-      <li>{{ _('The Mozilla Project welcomes and encourages participation by everyone. It doesn’t matter how you identify yourself or how others perceive you: we welcome you. We welcome contributions from everyone as long as they interact constructively with our community, including, but not limited to people of varied age, culture, ethnicity, gender, gender-identity, language, race, sexual orientation, geographical location and religious views.') }}</li>
-      <li>{{ _('Mozilla-based activities should be inclusive and should support such diversity.') }}</li>
-      <li>{{ _('Some Mozillians may identify with activities or organizations that do not support the same inclusion and diversity standards as Mozilla. When this is the case:') }}
-        <ul>
-          <li>{{ _('(a) support for exclusionary practices must not be carried into Mozilla activities.') }}</li>
-          <li>{{ _('(b) support for exclusionary practices in non-Mozilla activities should not be expressed in Mozilla spaces (which extends to Mozilla-hosted events, even if not in our spaces).') }}</li>
-          <li>{{ _('(c) if (a) and (b) are met, other Mozillians should treat this as a private matter, not a Mozilla issue.') }}</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>{{ _('Raising Issues Related to Diversity and Inclusion') }}</h3>
-    <p>{{ _('If you believe you’re experiencing practices which don’t meet the terms outlined above, please contact inclusion@mozilla.com which reaches our VP of People, D&amp;I Program Manager, and Employee Relations Specialist. They can provide a range of resources, from a private consultation to other community resources, and of course cover the legal aspects the Mozilla organization should address.') }}</p>
-    <p>{{ _('Intentional efforts to exclude people from Mozilla activities are not acceptable and will be dealt with appropriately. It’s hard to imagine how one might unintentionally do this, but if this happens we will figure out how to make it not happen again. We suspect there will be some questions about when and if something moves from a private to a public matter, which we’ll have to sort out.') }}</p>
-  </section>
-
-  <section>
-    <h3>{{ _('Interaction Style') }}</h3>
-    <p>{{ _('This is a more general section about how we treat each other. Each aspect is an important part of the community we’re building.') }}</p>
-    <ul>
-      <li>{{ _('Be respectful. We may not always agree, but disagreement is no excuse for poor manners. We will all experience some frustration now and then, but we don’t allow that frustration to turn into a personal attack. A community where people feel uncomfortable or threatened is not a productive one.') }}</li>
-      <li>{{ _('Try to understand different perspectives. Our goal should not be to “win” every disagreement or argument. A more productive goal is to be open to ideas that make our own ideas better. “Winning” is when different perspectives make our work richer and stronger.') }}</li>
-      <li>{{ _('Do not threaten violence.') }}</li>
-      <li>{{ _('Empower others to speak.') }}</li>
-      <li>{{ _('Strive for excellence. For our products to be great our communities must be healthy and vigorous. Being respectful does not mean papering over disagreements or accepting less than we can do.') }}</li>
-      <li>{{ _('Don’t expect to agree with every decision.') }}</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>{{ _('Raising Issues Related To Interaction Style') }}</h3>
-    <ul>
-      <li>{{ _('Inevitably, conflicts will arise. Sometimes we’ll differ about style or about what’s respectful. Sometimes attempts at humor will backfire.') }}</li>
-      <li>{{ _('We are also likely to have some discussions about if and when criticism is respectful and when it’s not. We *must* be able to speak directly when we disagree and when we think we need to improve. We cannot sugar-coat hard truths. Doing so respectfully is hard, doing so when other don’t seem to be listening is harder, and hearing such comments when one is the recipient can be even harder still. We need to be honest and direct, as well as respectful. That takes work. If you need help with discussion, again, please contact inclusion@mozilla.com.') }}</li>
-    </ul>
-  </section>
-
-  <footer>
-    <p id="note-1">{{ _('[1] The anti-harassment policy is accessible to paid staff <a href="%s">here</a>.')|format('https://mana.mozilla.org/wiki/display/PR/Policy') }}</p>
-  </footer>
+  <p>
+  {% trans %}
+    Openness, collaboration and participation are core aspects of our work —
+    from development on Firefox to collaboratively designing curriculum. We
+    gain strength from diversity and actively seek participation from those
+    who enhance it. These guidelines exist to enable diverse individuals
+    and groups to interact and collaborate to mutual advantage. This document
+    outlines both expected and prohibited behavior.
+  {% endtrans %}
+  </p>
 </section>
 
+<section id="when-to-use">
+  <h2>{{ _('When and How to Use These Guidelines') }}</h2>
+
+  <p>
+  {% trans %}
+    These guidelines outline our behavior expectations as members of
+    the Mozilla community in all Mozilla activities, both offline and
+    online. Your participation is contingent upon following these
+    guidelines in all Mozilla activities, including but not limited to:
+  {% endtrans %}
+  </p>
+
+  <ul class="prose">
+    <li>{{ _('Working in Mozilla spaces.') }}</li>
+    <li>{{ _('Working with other Mozillians and other Mozilla community participants virtually or co-located.') }}</li>
+    <li>{{ _('Representing Mozilla at public events.') }}</li>
+    <li>{{ _('Representing Mozilla in social media (official accounts, staff accounts, personal accounts, Facebook pages).') }}</li>
+    <li>{{ _('Participating in Mozilla offsites and trainings.') }}</li>
+    <li>{{ _('Participating in Mozilla-related forums, mailing lists, wikis, websites, chat channels, bugs, group or person-to-person meetings, and Mozilla-related correspondence.') }}</li>
+  </ul>
+
+  <p>
+  {% trans note1='#note-1' %}
+    These guidelines work in conjunction with our Anti-Harassment/Discrimination
+    Policies<a href="{{ note1 }}">[1]</a>, which sets out protections for, and obligations
+    of, Mozilla employees. The Anti-Harassment/Discrimination Policy is crafted with
+    specific legal definitions and requirements in mind.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans mailto_inclusion='mailto:inclusion@mozilla.com' %}
+    If you experience behavior outside of Mozilla communities, in person
+    or online, that makes participation in Mozilla not a safe and positive
+    community experience for all, please contact us at
+    <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a>. While these
+    guidelines / code of conduct are specifically aimed at Mozilla’s work and
+    community, we recognize that it is possible for actions taken outside of
+    Mozilla’s online or inperson spaces  to have a deep impact on community
+    health. (For example, in the past, we publicly identified an anonymous
+    posting aimed at a Mozilla employee in a non-Mozilla forum as clear grounds
+    for removal from the Mozilla community.) This is an active topic in the
+    diversity and inclusion realm. We anticipate wide-ranging discussions
+    among our communities about appropriate boundaries.
+  {% endtrans %}
+  </p>
+</section>
+
+<section id="expected-behavior">
+  <h2>{{ _('Expected Behavior') }}</h2>
+
+  <p>
+  {% trans %}
+    The following behaviors are expected of all Mozillians:
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Be Respectful') }}</h3>
+  <p>
+  {% trans %}
+    Value each other’s ideas, styles and viewpoints. We may not always agree,
+    but disagreement is no excuse for poor manners. Be open to different
+    possibilities and to being wrong. Be kind in all interactions and
+    communications, especially when debating the merits of different options.
+    Be aware of your impact and how intense interactions may be affecting
+    people. Be direct, constructive and positive. Take responsibility for
+    your impact and your mistakes – if someone says they have been harmed
+    through your words or actions, listen carefully, apologize sincerely,
+    and correct the behavior going forward.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Be Direct but Professional') }}</h3>
+  <p>
+  {% trans %}
+    We are likely to have some discussions about if and when criticism is
+    respectful and when it’s not. We <em>must</em> be able to speak directly
+    when we disagree and when we think we need to improve. We cannot withhold
+    hard truths. Doing so respectfully is hard, doing so when others don’t seem
+    to be listening is harder, and hearing such comments when one is the recipient
+    can be even harder still. We need to be honest and direct, as well as respectful.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Be Inclusive') }}</h3>
+  <p>
+  {% trans %}
+    Seek diverse perspectives. Diversity of views and of people on teams
+    powers innovation, even if it is not always comfortable. Encourage all
+    voices. Help new perspectives be heard and listen actively. If you find
+    yourself dominating a discussion, it is especially important to step
+    back and encourage other voices to join in. Be aware of how much time
+    is taken up by dominant members of the group. Provide alternative ways to
+    contribute or participate when possible.
+  {% endtrans %}
+
+  <p>
+  {% trans %}
+    Be inclusive of everyone in an interaction, respecting and facilitating
+    people’s participation whether they are:
+  {% endtrans %}
+  </p>
+
+  <ul class="prose">
+    <li>{{ _('Remote (on video or phone)') }}</li>
+    <li>{{ _('Not native language speakers') }}</li>
+    <li>{{ _('Coming from a different culture') }}</li>
+    <li>{{ _('Using pronouns other than “he” or “she”') }}</li>
+    <li>{{ _('Living in a different time zone') }}</li>
+    <li>{{ _('Facing other challenges to participate') }}</li>
+  </ul>
+
+  <p>
+  {% trans %}
+    Think about how you might facilitate alternative ways to contribute or
+    participate. If you find yourself dominating a discussion, step back.
+    Make way for other voices and listen actively to them.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Understand Different Perspectives') }}</h3>
+  <p>
+  {% trans %}
+    Our goal should not be to “win” every disagreement or argument. A more
+    productive goal is to be open to ideas that make our own ideas better.
+    Strive to be an example for inclusive thinking. “Winning” is when
+    different perspectives make our work richer and stronger.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Appreciate and Accommodate Our Similarities and Differences') }}</h3>
+  <p>
+  {% trans %}
+    Mozillians come from many cultures and backgrounds. Cultural differences
+    can encompass everything from official religious observances to personal
+    habits to clothing. Be respectful of people with different cultural
+    practices, attitudes and beliefs. Work to eliminate your own biases,
+    prejudices and discriminatory practices. Think of others’ needs from
+    their point of view. Use preferred titles (including pronouns) and the
+    appropriate tone of voice. Respect people’s right to privacy and
+    confidentiality. Be open to learning from and educating others as well
+    as educating yourself; it is unrealistic to expect Mozillians to know
+    the cultural practices of every ethnic and cultural group, but everyone
+    needs to recognize one’s native culture is only part of positive
+    interactions.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Lead by Example') }}</h3>
+  <p>
+  {% trans mission=url('mozorg.mission') %}
+    By matching your actions with your words, you become a person others
+    want to follow. Your actions influence others to behave and respond in
+    ways that are valuable and appropriate for our organizational outcomes.
+    Design your community and your work for inclusion. Hold yourself and
+    others accountable for inclusive behaviors. Make decisions based on
+    the highest good for <a href="{{ mission }}">Mozilla’s mission</a>.
+  {% endtrans %}
+  </p>
+</section>
+
+<section id="unacceptable-behavior">
+  <h2>{{ _('Behavior That Will Not Be Tolerated') }}</h2>
+
+  <p>
+  {% trans %}
+    The following behaviors are considered to be unacceptable under
+    these guidelines.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Violence and Threats of Violence') }}</h3>
+  <p>
+  {% trans %}
+    Violence and threats of violence are not acceptable - online or
+    offline. This includes incitement of violence toward any individual,
+    including encouraging a person to commit self-harm. This also
+    includes posting or threatening to post other people’s personally
+    identifying information (“doxxing”) online.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Personal Attacks') }}</h3>
+  <p>
+  {% trans %}
+    Conflicts will inevitably arise, but frustration should never turn
+    into a personal attack. It is not okay to insult, demean or belittle
+    others. Attacking someone for their opinions, beliefs and ideas is
+    not acceptable. It is important to speak directly when we disagree
+    and when we think we need to improve, but such discussions must be
+    conducted respectfully and professionally, remaining focused on the
+    issue at hand.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Derogatory Language') }}</h3>
+  <p>
+  {% trans %}
+    Hurtful or harmful language related to:
+  {% endtrans %}
+  </p>
+
+  <ul class="prose">
+    <li>{{ _('Background') }}</li>
+    <li>{{ _('Family status') }}</li>
+    <li>{{ _('Gender') }}</li>
+    <li>{{ _('Gender identity or expression') }}</li>
+    <li>{{ _('Marital status') }}</li>
+    <li>{{ _('Sex') }}</li>
+    <li>{{ _('Sexual orientation') }}</li>
+    <li>{{ _('Native language') }}</li>
+    <li>{{ _('Age') }}</li>
+    <li>{{ _('Ability') }}</li>
+    <li>{{ _('Race and/or ethnicity') }}</li>
+    <li>{{ _('National origin') }}</li>
+    <li>{{ _('Socioeconomic status') }}</li>
+    <li>{{ _('Religion') }}</li>
+    <li>{{ _('Geographic location') }}</li>
+    <li>{{ _('Other attributes') }}</li>
+  </ul>
+
+  <p>
+  {% trans %}
+    is not acceptable. This includes deliberately referring to someone
+    by a gender that they do not identify with, and/or questioning the
+    legitimacy of an individual’s gender identity. If you’re unsure if
+    a word is derogatory, don’t use it. This also includes repeated
+    subtle and/or indirect discrimination; when asked to stop, stop
+    the behavior in question.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Unwelcome Sexual Attention or Physical Contact') }}</h3>
+  <p>
+  {% trans %}
+    Unwelcome sexual attention or unwelcome physical contact is not
+    acceptable. This includes sexualized comments, jokes or imagery in
+    interactions, communications or presentation materials, as well as
+    inappropriate touching, groping, or sexual advances. This includes
+    touching a person without permission, including sensitive areas
+    such as their hair, pregnant stomach, mobility device (wheelchair,
+    scooter, etc) or tattoos. This also includes physically blocking
+    or intimidating another person. Physical contact or simulated
+    physical contact (such as emojis like “kiss”) without affirmative
+    consent is not acceptable. This includes sharing or distribution
+    of sexualized images or text.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Disruptive Behavior') }}</h3>
+  <p>
+  {% trans %}
+    Sustained disruption of events, forums, or meetings, including
+    talks and presentations, will not be tolerated. This includes:
+  {% endtrans %}
+  </p>
+
+  <ul class="prose">
+    <li>{{ _('‘Talking over’ or ‘heckling’ speakers.') }}</li>
+    <li>{{ _('Drinking alcohol to excess or using recreational drugs
+      to excess, or pushing others to do so.') }}</li>
+    <li>{{ _('Making derogatory comments about those who abstain from
+      alcohol or other substances, pushing people to drink, talking about
+      their abstinence or preferences to others, or pressuring them to
+      drink - physically or through jeering.') }}</li>
+    <li>{{ _('Otherwise influencing crowd actions that cause hostility
+      in the session.') }}</li>
+  </ul>
+
+  <h3>{{ _('Influencing Unacceptable Behavior') }}</h3>
+  <p>
+  {% trans %}
+    We will treat influencing or leading such activities the same way
+    we treat the activities themselves, and thus the same consequences
+    apply.
+  {% endtrans %}
+  </p>
+</section>
+
+<section id="consequences">
+  <h2>{{ _('Consequences of Unacceptable Behavior') }}</h2>
+  <p>
+  {% trans %}
+    Bad behavior from any Mozillian, including those with decision-making
+    authority, will not be tolerated. Intentional efforts to exclude people
+    (except as part of a consequence of the guidelines or other official
+    action) from Mozilla activities are not acceptable and will be dealt
+    with appropriately.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Reports of harassment/discrimination will be promptly and thoroughly
+    investigated by the people responsible for the safety of the space,
+    event or activity. Appropriate measures will be taken to address
+    the situation.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Anyone asked to stop unacceptable behavior is expected to comply
+    immediately. Violation of these guidelines can result in you being
+    ask to leave an event or online space, either temporarily or for
+    the duration of the event, or being banned from participation in
+    spaces, or future events and activities in perpetuity.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans note1='#note-1' %}
+    Mozilla Staff are held accountable, in addition to these guidelines,
+    to Mozilla’s staff Anti-Harassment/Discrimination Policies <a href="{{ note1 }}">[1]</a>.
+    Mozilla staff in violation of these guidelines may be subject to
+    further consequences, such as disciplinary action, up to and
+    including termination of employment. For contractors or vendors,
+    violation of these guidelines may affect continuation or renewal
+    of contract.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    In addition, any participants who abuse the reporting process will
+    be considered to be in violation of these guidelines and subject
+    to the same consequences. False reporting, especially to retaliate
+    or exclude, will not be accepted or tolerated.
+  {% endtrans %}
+  </p>
+</section>
+
+<section id="reporting">
+  <h2>{{ _('Reporting') }}</h2>
+  <p>
+  {% trans mailto_inclusion='mailto:inclusion@mozilla.com',
+      di_leader='Larissa Shapiro',
+      dir_orgdev='Tyler Haugen' %}
+    If you believe you’re experiencing unacceptable behavior that will
+    not be tolerated as outlined above, please contact
+    <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a> and
+    the designated person for your event, activity or Mozilla space.
+    Inclusion@ reaches our Diversity &amp; Inclusion Leader, {{ di_leader }},
+    and our Director of Organizational Development, {{ dir_orgdev }}.
+    After receiving a concise description of your situation, they will
+    review and determine next steps.  In addition to conducting any
+    investigation, they can provide a range of resources, from a
+    private consultation to other community resources. They will involve
+    other colleagues, including legal counsel, only as needed to
+    appropriately address each situation.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Please also report to us if you observe a potentially dangerous
+    situation, someone in distress, or violations of these guidelines,
+    even if the situation is not happening to you.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    If you feel you have been unfairly accused of violating these guidelines,
+    please follow the same reporting process.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Who to Contact') }}</h3>
+  <p>
+  {% trans mailto_inclusion='mailto:inclusion@mozilla.com' %}
+    <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a>
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Mozilla Spaces') }}</h3>
+  <p>
+  {% trans %}
+    Each physical or virtual Mozilla space shall have a designated contact.
+  {% endtrans %}
+  </p>
+
+  <h3>{{ _('Mozilla Events') }}</h3>
+  <p>
+  {% trans %}
+    All Mozilla events will have designated a specific safety guideline
+    with emergency and anti-abuse contacts at the event as well as online.
+    These contacts will be posted prominently throughout the event, and in
+    print and online materials. Event leaders are requested to speak at
+    the event about the guidelines and to ask participants to review and
+    agree to them when they sign up for the event.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans mailto_inclusion='mailto:inclusion@mozilla.com' %}
+    Reports will receive an email notice of receipt. Once an incident
+    has been investigated and a decision has been communicated to the
+    relevant parties, all have the opportunity to appeal this decision
+    by sending an email to <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a>.
+  {% endtrans %}
+  </p>
+</section>
+
+<section id="questions">
+  <h2>Ask questions</h2>
+  <p>
+  {% trans mailto_inclusion='mailto:inclusion@mozilla.com' %}
+    Everyone is encouraged to ask questions about these guidelines.
+    If you are organizing an event or activity, reach out for tips
+    building inclusion for your event, activity or space. Your input
+    is welcome and you will always get a response within 24 hours
+    (or on the next weekday, if it is the weekend) if you reach out to
+    <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a>. If
+    you wish you receive notice when we update the guidelines, drop
+    us a line and we will add you to the updates notification list.
+  {% endtrans %}
+  </p>
+</section>
+
+<section id="license">
+  <h2>{{ _('License and attribution') }}</h2>
+  <p>
+  {% trans license='https://creativecommons.org/licenses/by-sa/3.0/' %}
+    This set of guidelines is distributed under a
+    <a href="{{ license }}" rel="license">Creative Commons Attribution-ShareAlike license</a>.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans ubuntu_coc='https://www.ubuntu.com/about/about-ubuntu/conduct',
+      viewsource_coc='https://viewsourceconf.org/berlin-2016/code-of-conduct/',
+      rustlang_coc='https://www.rust-lang.org/conduct.html',
+      citizen_coc='http://citizencodeofconduct.org/',
+      lgbtqtech_coc='http://lgbtq.technology/coc.html',
+      wiscon_coc='http://wiscon.net/policies/anti-harassment/code-of-conduct/' %}
+    These guidelines have been adapted with modifications from
+    Mozilla’s original Community Participation Guidelines, the
+    <a href="{{ ubuntu_coc }}">Ubuntu Code of Conduct</a>,  Mozilla’s
+    <a href="{{ viewsource_coc }}">View Source Conference Code of Conduct</a>, and the
+    <a href="{{ rustlang_coc }}">Rust Language Code of Conduct</a>, which are based on
+    Stumptown Syndicate’s <a href="{{ citizen_coc }}">Citizen Code of Conduct</a>.
+    Additional text from the
+    <a href="{{ lgbtqtech_coc }}">LGBTQ in Technology Code of Conduct</a> and the
+    <a href="{{ wiscon_coc }}">WisCon code of conduct</a>. This document and all
+    associated processes are only possible with the hard work of
+    many, many Mozillians.
+  {% endtrans %}
+  </p>
+</section>
+
+<footer>
+  <p id="note-1">{{ _('[1] The anti-harassment policy is accessible to paid staff <a href="%s">here</a>.')|format('https://mana.mozilla.org/wiki/display/PR/Policy') }}</p>
+</footer>
 {% endblock %}
