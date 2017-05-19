@@ -65,7 +65,7 @@
 
 {% block body_id %}firefox-all{% endblock %}
 {% block body_class -%}
-  sky {{ platform }} {{ channel }} {% if platform == 'desktop' and channel in ['alpha', 'nightly'] %}blueprint{% endif %}
+  sky {{ platform }} {{ channel }} {% if channel == 'alpha' %}blueprint{% endif %} {% if channel == 'nightly' %}space{% endif %}
 {% endblock %}
 
 {% block page_css %}

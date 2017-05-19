@@ -76,20 +76,22 @@ a.more {
     }
 }
 
-// Aurora visual style
+// Nightly visual style
 .space {
     color: #fff;
+    background: #000;
 
     #outer-wrapper {
-        background: #04020b url("/media/img/sandstone/bg-space.png") repeat-x;
+        background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat,
+                    linear-gradient(to bottom, #000, #002048 1000px, #000 2000px);
     }
 
     a {
-        color: @linkSpaceBlue;
+        color: @linkBlue;
         &:hover,
         &:focus,
         &:active {
-            color: lighten(@linkSpaceBlue, 10%);
+            color: lighten(@linkBlue, 10%);
         }
     }
 
@@ -102,7 +104,7 @@ a.more {
         a,
         a:link,
         a:visited {
-            color: @linkSpacePurple;
+            color: @linkBlue;
         }
         li {
             a,
@@ -128,11 +130,11 @@ a.more {
     }
 
     a {
-        color: @linkSpaceBlue;
+        color: @linkBlue;
         &:hover,
         &:focus,
         &:active {
-            color: lighten(@linkSpaceBlue, 10%);
+            color: lighten(@linkBlue, 10%);
         }
     }
 
