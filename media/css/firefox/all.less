@@ -4,34 +4,6 @@
 
 @import "../sandstone/lib.less";
 
-body.nightly {
-    color: #FFF;
-    background: #000;
-    #outer-wrapper {
-        background: #000;
-        background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat,
-                    linear-gradient(to bottom, #000, #002048 1000px, #000 2000px);
-    }
-    a {
-        color: #EB9500;
-        &:hover,
-        &:focus,
-        &:active {
-            color: lighten(#EB9500, 10%);
-        }
-    }
-    h1, h2, h3 {
-        color: #61CCFF;
-        text-shadow: none;
-    }
-    #masthead h2 img {
-        height: auto;
-    }
-    #main-feature h2 {
-        color: #FFF;
-    }
-}
-
 .build-table-container {
     .hide {
         display: none;
@@ -63,6 +35,10 @@ body.nightly {
             content: "\00A0\00BB";
         }
     }
+}
+
+.space #main-feature h2 {
+    color: #FFF;
 }
 
 #language-search {
@@ -207,13 +183,6 @@ body.nightly {
                 text-decoration: none;
             }
         }
-    }
-}
-
-/* Aurora Download Page */
-.space #main-content table tbody {
-    tr, th, td {
-        border-color: rgba(255,255,255,0.2);
     }
 }
 

@@ -7,3 +7,21 @@
 {% block extrahead %}
 <link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly Notes Feed') }}" href="{{ url('firefox.nightly.notes.feed') }}">
 {% endblock %}
+
+{% block body_class %}fx-notes space{% endblock %}
+
+{% block site_header_logo %}
+  <h2>{{ high_res_img('firefox/template/header-logo-nightly.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '70'}) }}</h2>
+{% endblock %}
+
+{% block notes_heading_primary %}
+  <h1>{{ _('See what landed recently in <span>Firefox Nightly</span>!') }}</h1>
+{% endblock %}
+
+{% block site_footer %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/site-footer-new.html' %}
+  {% else %}
+    {% include 'includes/site-footer.html' %}
+  {% endif %}
+{% endblock %}
