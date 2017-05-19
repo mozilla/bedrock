@@ -1,0 +1,136 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/newsletter';
+@import '../../hubs/mixins';
+@import '../../hubs/masthead';
+@import '../../hubs/sections';
+@import '../../hubs/sub-nav';
+@import '../../hubs/buttons';
+@import '../../hubs/cards-block';
+@import '../../hubs/card-image-large';
+@import '../../hubs/common';
+@import '../../hubs/news-feed';
+@import 'hub/newsletter';
+
+main {
+    @include font-size(20px);
+    @include zilla-slab;
+
+    .content {
+        @include horizontal-rule-before($start-color: #b1f5f5, $end-color: #00a6d6);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Page header
+
+.header-intro {
+
+    h1 {
+        color: #fff;
+        line-height: 1.3;
+
+        span {
+            @include box-decoration-break(clone);
+            background: #000;
+        }
+    }
+
+    .tagline {
+        @include font-size-level3;
+        color: $color-text-secondary;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 0;
+    }
+
+    .content:before {
+        height: 10px;
+    }
+
+    @media #{$mq-tablet} {
+
+        .header-container {
+            @include clearfix;
+        }
+
+        .header-content {
+            @include span(6);
+            padding-left: 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        h1 {
+            @include font-size(72px);
+        }
+
+        .tagline {
+            @include font-size(32px);
+        }
+
+        .header-content {
+            @include span(8);
+            padding-left: 0;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        h1 {
+            @include font-size(95px);
+        }
+
+        .tagline {
+            @include font-size(48px);
+        }
+
+        .header-content {
+            @include span(9);
+            padding-left: 0;
+        }
+    }
+}
+
+html[dir="rtl"] {
+    .header-intro .header-content {
+        float: right;
+        padding: 0 0 0 10px;
+    }
+}
+
+// Issues block does not been a divider right after the header.
+.issues .content:before {
+    content: none;
+}
+
+/* -------------------------------------------------------------------------- */
+// Large image cards
+
+.net-neutrality {
+    .card-content-wrapper {
+        background-image: url('/media/img/mozorg/internet-health/hub/net-neutrality.png');
+        @include background-size(100%, auto);
+    }
+}
+
+.report {
+    .card-content-wrapper {
+        background-image: url('/media/img/mozorg/internet-health/hub/health-report.png');
+        @include background-size(100%, auto);
+    }
+
+    @media #{$mq-tablet} {
+        .card-content-wrapper {
+            @include at2x('/media/img/mozorg/internet-health/hub/health-report.png', 100%, auto);
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .card-content-wrapper {
+            padding-top: 200px;
+        }
+    }
+}

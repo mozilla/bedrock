@@ -11,8 +11,8 @@ class InternetHealthPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/internet-health'
 
-    _blog_feed_locator = (By.ID, 'blogs')
-    _blog_feed_articles_locator = (By.CSS_SELECTOR, '#blogs article')
+    _blog_feed_locator = (By.CLASS_NAME, 'news-feed')
+    _blog_feed_articles_locator = (By.CSS_SELECTOR, '.news-feed article')
 
     @property
     def is_blog_feed_displayed(self):

@@ -1,0 +1,33 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+// A single card with a large, full width background image
+
+.card-image-large {
+    padding: 0 0 40px;
+
+    .card-content-wrapper {
+        background-position: top left;
+        background-repeat: no-repeat;
+        padding-top: 120px;
+    }
+
+    .card-content {
+        background: #fff;
+        margin-right: 20px;
+        padding: 20px;
+    }
+
+    @media #{$mq-tablet} {
+        .card-content {
+            margin-right: auto;
+            padding-bottom: 20px * 3;
+            padding-right: 20px * 2;
+            padding-top: 60px;
+            width: 40%;
+        }
+    }
+}

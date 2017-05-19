@@ -1,0 +1,108 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../pebbles/includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Internet Health hub newsletter component
+
+// Remove horizontal divider since the component has a colored background.
+.newsletter .content:before {
+    content: none;
+}
+
+.newsletter-container {
+    background-color: #000;
+    color: #fff;
+    margin-bottom: 40px;
+    padding: 20px;
+
+    a:link,
+    a:visited {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    @media #{$mq-tablet} {
+        @include at2x('/media/img/mozorg/internet-health/hub/newsletter.png', 100%, auto);
+        background-position: top left;
+        background-repeat: no-repeat;
+    }
+
+    h2 {
+        @include font-size-level2;
+    }
+
+    .tagline {
+        @include font-size-level3;
+    }
+
+    @media #{$mq-desktop} {
+        padding: 40px;
+    }
+
+    @media #{$mq-desktop-wide} {
+        min-height: 358px;
+    }
+}
+
+.newsletter-detail {
+    @media #{$mq-tablet} {
+        width: 45%;
+    }
+}
+
+html[dir="rtl"] {
+    .newsletter-container {
+        @include clearfix;
+    }
+    .newsletter-detail {
+        float: left;
+    }
+}
+
+#newsletter-form {
+    width: 100%;
+
+    @media screen and (min-width: 640px) {
+        max-width: 300px;
+    }
+
+    input[type="email"] {
+        @include open-sans();
+        border-color: #fff;
+        border-radius: 0;
+        padding: .5em 10px;
+        width: 100%;
+    }
+
+    #form-details {
+        @include font-size(16px);
+        padding-top: 20px;
+    }
+
+    button[type="submit"] {
+        margin: 20px 0 5px;
+    }
+
+    label {
+        @include font-size(16px);
+    }
+
+    select {
+        @include open-sans();
+        max-width: 100%;
+    }
+
+    .field {
+        margin-bottom: 5px;
+    }
+}
+
+#footer-email-errors {
+    .errorlist {
+        background: #fff;
+        color: $color-mozred;
+    }
+}

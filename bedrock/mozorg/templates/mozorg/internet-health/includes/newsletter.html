@@ -1,0 +1,15 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ <aside class="newsletter">
+   <div class="content">
+     <section class="newsletter-container">
+       <div class="newsletter-detail">
+         <h2>{{ _('Stay informed') }}</h2>
+         <p class="tagline">{{ _('Get the Mozilla newsletter and stay up to date on Internet Health news and topics.') }}</p>
+         {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#fff', button_class='button-hollow light') }}
+       </div>
+     </section>
+   </div> {#--/.content--#}
+ </aside> {#--/.newsletter--#}
