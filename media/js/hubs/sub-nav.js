@@ -26,7 +26,7 @@ js/libs/jquery.waypoints-sticky.min.js
 
     // It's your world, IE
     if (typeof matchMedia !== 'undefined') {
-        mqShowNav = matchMedia('(min-width: 840px)'); // magic number :(
+        mqShowNav = matchMedia('(min-width: 760px)');
 
         mqShowNav.addListener(function(mq) {
             if (mq.matches) {

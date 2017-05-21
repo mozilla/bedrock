@@ -79,10 +79,6 @@ $mq-high-res:       'only screen and (-webkit-min-device-pixel-ratio: 1.5), only
 $mq-short:          '(max-height: 600px)';
 $mq-tall:           '(min-height: 600px)';
 
-// Media queries for global nav and subnav
-$mq-nav-tablet:     'screen and (min-width: 860px)';
-$mq-nav-desktop:    'screen and (min-width: 1140px)';
-
 
 // Grid columns
 $column-width:  8.333%; // 100% / 12 columns
