@@ -20,7 +20,10 @@ def pytest_generate_tests(metafunc):
         '/thunderbird/')
     argvalues = []
     for path in paths:
-        r = requests.get(base_url + path)
+        try:
+            r = requests.get(base_url + path)
+        except requests.RequestException:
+            r = requests.get(base_url + path)
         soup = BeautifulSoup(r.content, 'html.parser')
         urls = [a['href'] for a in soup.find('ul', class_='download-list').find_all('a')]
         # Bug 1266682 remove links to Play Store to avoid rate limiting in automation.
