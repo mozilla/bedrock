@@ -13,12 +13,6 @@
 
 {% block body_id %}firefox-features-landing{% endblock %}
 
-{% block optimizely %}
-  {% if switch('firefox-features-optimizely', ['en-US']) %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block features_header_content %}
   <h1><span>{{ _('Firefox features') }}</span></h1>
 {% endblock %}
