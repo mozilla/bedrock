@@ -9,7 +9,7 @@
     @include open-sans;
     background: #fff;
     display: none; // hidden for mobile
-    height: 52px;
+    min-height: 52px;
     overflow: hidden;
 
     a:link,
@@ -28,8 +28,10 @@
     }
 
     .nav-horizontal-menu {
+        @include clearfix;
         border-top: 2px solid #000;
         margin: 0 60px;
+        position: relative;
 
         @media #{$mq-nav-desktop} {
             margin: 0 85px;
@@ -41,27 +43,33 @@
         margin: 0 auto;
     }
 
-    .subnav-primary-links {
-        @include font-size(16px);
+    .sub-nav-primary-links-container {
         float: left;
+        width: 100%;
+    }
+
+    .sub-nav-primary-links {
+        @include font-size(16px);
         list-style-type: none;
         margin: 0;
-        padding: 13px 0;
+        padding: 13px 0 0;
 
         &> li {
             display: inline-block;
-            padding: 0 6px;
-            transition: padding 0.2s ease-out;
+            padding: 0 12px 13px 0;
 
             a:hover,
             a:active,
             a:focus {
-                color: $color-firefox-light-orange;
                 text-decoration: none;
             }
 
             a:focus {
                 outline: none;
+            }
+
+            &:last-child {
+                padding-right: 0;
             }
         }
     }
@@ -69,7 +77,10 @@
     @media #{$mq-nav-tablet} {
         display: block;
         margin-bottom: 20px;
-        transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 43px;
+        }
 
         &.stuck {
             box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
@@ -79,55 +90,119 @@
             width: 100%;
             z-index: 200;
 
-            // squish nav items for tablet so dl button can fit
-            .subnav-primary-links > li {
-                padding-right: 3px;
+            .sub-nav-primary-links-container {
+                width: 78%;
+            }
+
+            .sub-nav-download-wrapper {
+                height: auto;
+                width: 22%;
+            }
+
+            .sub-nav-primary-links li {
+                padding-right: 6px;
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+
+            .sub-nav-logo-link + .sub-nav-primary-links  {
+                margin-left: 37px;
             }
         }
     }
 
     @media #{$mq-nav-desktop} {
-        .subnav-primary-links > li {
-            padding: 0 21px;
+
+        .sub-nav-primary-links {
+            li {
+                padding: 0 42px 13px 0;
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
         }
 
-        // squish nav items for desktop so dl button can fit
-        &.stuck .subnav-primary-links > li {
-            padding-right: 12px;
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 120px;
+        }
+
+        &.stuck {
+            .sub-nav-primary-links-container {
+                width: 80%;
+            }
+
+            .sub-nav-download-wrapper {
+                width: 20%;
+            }
+
+            .sub-nav-primary-links li {
+                padding-right: 24px;
+            }
+
+            .sub-nav-logo-link + .sub-nav-primary-links  {
+                margin-left: 120px;
+            }
+        }
+    }
+
+    // black outline firefox logo
+    .sub-nav-logo-link {
+        display: block;
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 26px;
+        padding-top: 10px;
+        width: 26px;
+
+        .sub-nav-logo-path {
+            transition: fill 0.1s ease-in-out;
+        }
+    }
+
+    .sub-nav-download-wrapper {
+        float: right;
+        text-align: right;
+        overflow: hidden;
+        width: 0;
+        height: 0;
+    }
+}
+
+// A mixin to apply theme colors to specific elements
+@mixin theme-color($theme-name, $theme-color) {
+    .moz-sub-nav.#{$theme-name} {
+        .sub-nav-primary-links > li {
+            a:hover,
+            a:active,
+            a:focus {
+                color: $theme-color;
+            }
+        }
+
+        .sub-nav-logo-link {
+            &:hover,
+            a:active,
+            &:focus {
+                .sub-nav-logo-path {
+                    fill: $theme-color;
+                }
+            }
         }
     }
 }
 
-// black outline firefox logo
-#fx-global-nav-home-link {
-    display: block;
-    float: left;
-    height: 26px;
-    margin-right: 9px;
-    padding-top: 10px;
-    width: 26px;
-
-    .fx-subnav-logo-path {
-        transition: fill 0.1s ease-in-out;
-    }
-
-    &:hover {
-        .fx-subnav-logo-path {
-            fill: $color-firefox-light-orange;
-        }
-    }
-
-    @media #{$mq-nav-desktop} {
-        margin-right: 73px;
-    }
-}
+@include theme-color('firefox', $color-firefox-light-orange);
+@include theme-color('internet-health', $color-brand-cyan);
 
 /* -------------------------------------------------------------------------- */
 // Customized Firefox download button for sub navigation.
 // Near-total copy pasta from global-nav.html. TODO: DRY this up
 
 #sub-nav-download-firefox {
-    float: right;
     margin: 8px 0 0 0;
     opacity: 0;
     transform: translateY(-100px);
