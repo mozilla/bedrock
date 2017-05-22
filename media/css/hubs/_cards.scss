@@ -17,21 +17,14 @@ $card-padding: 20px;
     }
 }
 
-.card-heading {
-    text-transform: lowercase;
+.card-heading a:link,
+.card-heading a:visited {
+    color: #000;
+    text-decoration: none;
 
-    a:link,
-    a:visited {
-        color: #000;
-        text-decoration: none;
-    }
-
-    a:active,
-    a:hover,
-    a:focus,
-    a:visited:focus,
-    a:visited:hover,
-    a:visited:active {
+    &:active,
+    &:hover,
+    &:focus {
         color: $color-burnt-orange;
     }
 }
@@ -45,16 +38,14 @@ $card-padding: 20px;
         a:link,
         a:visited {
             color: $color-burnt-orange;
-            text-decoration: underline;
-        }
+            text-decoration: none;
 
-        a:active,
-        a:hover,
-        a:focus,
-        a:visited:focus,
-        a:visited:hover,
-        a:visited:active {
-            color: lighten($color-burnt-orange, 10%);
+            &:active,
+            &:hover,
+            &:focus {
+                color: lighten($color-burnt-orange, 10%);
+                text-decoration: underline;
+            }
         }
     }
 
@@ -72,10 +63,9 @@ $card-padding: 20px;
     line-height: 1.1;
     margin-bottom: 20px;
     padding: 0 5px 0 $card-padding;
-    text-transform: lowercase;
 
     @media #{$mq-tablet} {
-        padding-left: $card-padding * 3;
+        padding-left: $card-padding * 2;
     }
 }
 

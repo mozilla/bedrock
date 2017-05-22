@@ -7,7 +7,7 @@
 {# L10n: strings for this page are not considered final and aren't ready for localization. #}
 
 {% block page_title %}
-  {{ _('Fast, private browser for desktop, iOS and Android') }}
+  {{ _('Fast, private browser for desktop, iOS and Android') }} | {{ _('Firefox') }}
 {% endblock %}
 
 {% block page_desc %}
@@ -36,22 +36,18 @@
   {% include 'firefox/includes/hub/sub-nav.html' %}
 
   <div id="hub-content">
-    <section id="intro-features" class="page-section">
+    <section id="intro-features" class="section header-intro">
       <div class="content">
-
-        <div id="intro">
-          <div class="column">
-            <h1 id="page-heading"><span>{{ _('Firefox') }}</span></h1>
-
-            <p>
-              {{ _('The 100% fresh, free-range, ethical browser') }}
-            </p>
+        <div class="header-container">
+          <div class="header-content">
+            <h1 class="page-title"><span>{{ _('Firefox') }}</span></h1>
+            <p class="tagline"><span>{{ _('The 100% fresh, free-range, ethical browser') }}</span></p>
           </div>
 
-          <div class="column" id="download-intro-wrapper">
+          <div class="header-download">
             {{ download_firefox(dom_id='download-intro', button_color='button-hollow-arrow dark') }}
           </div>
-        </div> {#--/#intro--#}
+        </div>
 
         <div id="features" class="three-card-monte">
           <section id="private" class="card featured-image-card">
@@ -105,15 +101,17 @@
             </div>
           </section> {#--/#independent.card--#}
         </div> {#--/#features--#}
+
       </div> {#--/.content--#}
     </section> {#--/#features.page-section--#}
 
     {% if LANG.startswith('en-') %}
-    <section class="page-section">
+    <section class="section">
       <div class="content">
-        <div class="card quote-card quote-primary">
-          <strong class="card-label">Buzz About Firefox</strong>
 
+        <h2 class="section-title"><span>Buzz about Firefox</span></h2>
+
+        <div class="card quote-card quote-primary">
           <div class="card-content">
             <p class="quote-intro">
               Vogue Culture News says:
@@ -127,15 +125,16 @@
             </blockquote>
           </div> {#--/.card-content--#}
         </div> {#--/.card--#}
-      </div> {#--/.page-section--#}
+      </div> {#--/.section--#}
     </section>
     {% endif %}
 
     {% include 'includes/news-feed.html' %}
 
     {% if LANG.startswith('en-') %}
-    <section id="feeds" class="page-section">
+    <section id="feeds" class="section">
       <div class="content">
+
         <section id="third-party-feed">
           <div class="card card-stacked">
             <div class="card-content">
@@ -165,15 +164,16 @@
             </div>
           </div>
         </section> {#--/#third-party-feed.content--#}
+
       </div> {#--/.content--#}
     </section>
     {% endif %}
 
-    <section id="sync" class="page-section">
+    <section id="sync" class="section">
       <div class="content">
-        <div id="sync-card" class="card image-card">
-          <strong class="card-label">{{ _('Firefox to-go') }}</strong>
+        <h2 class="section-title"><span>{{ _('Firefox to-go') }}</span></h2>
 
+        <div id="sync-card" class="card image-card">
           <div class="card-content-wrapper">
             <div class="card-content">
               <h2 class="card-heading">{{ _('Take Firefox to go!') }}</h2>
@@ -192,6 +192,7 @@
             </div>
           </div> {#--/.card-content-wrapper--#}
         </div>
+
       </div> {#--/.content--#}
     </section> {#--/#sync--#}
 
