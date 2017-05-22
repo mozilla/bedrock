@@ -495,7 +495,7 @@ def new(request):
 
     if scene == '2':
         if locale == 'en-US':
-            if funnelcake_id in ['99', '100', '111', '112', '113']:
+            if funnelcake_id in ['99', '100']:
                 template = 'firefox/new/onboarding/scene2.html'
             elif experience == 'breakfree':
                 template = 'firefox/new/break-free/scene2.html'
@@ -524,7 +524,7 @@ def new(request):
     # if no/incorrect scene specified, show scene 1
     else:
         if locale == 'en-US':
-            if funnelcake_id in ['99', '100', '111', '112', '113']:
+            if funnelcake_id in ['99', '100']:
                 template = 'firefox/new/onboarding/scene1.html'
             elif experience == 'breakfree':
                 template = 'firefox/new/break-free/scene1.html'
