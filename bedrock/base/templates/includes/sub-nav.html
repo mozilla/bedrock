@@ -1,0 +1,20 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{# hidden for screens smaller than 880px wide #}
+<nav class="moz-sub-nav {% block sub_nav_class %}{% endblock %}" role="navigation">
+  <div class="nav-horizontal-menu-container">
+    <div class="nav-horizontal-menu">
+      <div class="sub-nav-primary-links-container">
+        {% block sub_nav_logo %}{% endblock %}
+        <ul class="sub-nav-primary-links">
+          {% block sub_nav_primary_links %}{% endblock %}
+        </ul>
+      </div>
+      <div class="sub-nav-download-wrapper">
+        {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='sub-nav-download-firefox') }}
+      </div>
+    </div>
+  </div>
+</nav>
