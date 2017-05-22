@@ -1,0 +1,14 @@
+smoke_tests: true
+regions:
+  - usw
+  - virginia
+demo: true
+apps:
+  - bedrock-demo-meinheld
+integration_tests:
+  - headless
+  - firefox
+  - chrome
+  - ie
+  - ie6
+  - ie7

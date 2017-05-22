@@ -27,7 +27,10 @@ def pytest_generate_tests(metafunc):
     )
     argvalues = []
     for path in paths:
-        r = requests.get(base_url + path)
+        try:
+            r = requests.get(base_url + path)
+        except requests.RequestException:
+            r = requests.get(base_url + path)
         soup = BeautifulSoup(r.content, 'html.parser')
         table = soup.find('table', class_='build-table')
         urls = [a['href'] for a in table.find_all('a')]
