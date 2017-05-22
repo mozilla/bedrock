@@ -250,20 +250,46 @@
       <div class="container">
         <div class="all-download">
           <p class="message">{{ _('Download the latest version of Firefox') }}</p>
-          <a rel="external" href="{{ firefox_url('desktop', 'all', channel=channel_name|lower()) }}">{{ _('All Firefox downloads') }}</a>
+          {% if release.product == 'Firefox for Android' %}
+            {% if release.channel in ['Nightly', 'Aurora'] %}
+              <a href="{{ firefox_url('android', 'all', channel='nightly') }}">{{ _('All Firefox Nightly for Android downloads') }}</a>
+            {% else %}
+              <a href="{{ firefox_url('android', 'all', channel=channel_name|lower()) }}">{{ _('All Firefox %s for Android downloads')|format(channel_name) }}</a>
+            {% endif %}
+          {% elif release.product == 'Firefox Extended Support Release' %}
+            <a href="{{ firefox_url('desktop', 'all', channel='organizations') }}">{{ _('All Firefox ESR downloads') }}</a>
+          {% elif release.product == 'Firefox' %}
+            {% if release.channel == 'Aurora' %}
+              <a href="{{ firefox_url('desktop', 'all', channel='alpha') }}">{{ _('All Firefox Developer Edition downloads') }}</a>
+            {% else %}
+              <a href="{{ firefox_url('desktop', 'all', channel=channel_name|lower()) }}">{{ _('All Firefox %s downloads')|format(channel_name) }}</a>
+            {% endif %}
+          {% endif %}
         </div>
         <div class="download-buttons">
-          <div class="desktop-download-button">
-            {{ download_firefox() }}
-          </div>
-          <div class="android-download-button">
-            {{ google_play_button() }}
-          </div>
-          <div class="ios-download-button">
+          {% if release.product == 'Firefox for iOS' %}
             <a rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
               <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
             </a>
-          </div>
+          {% elif release.product == 'Firefox for Android' %}
+            {% if release.channel in ['Nightly', 'Aurora'] %}
+              {{ download_firefox('nightly', platform='android', alt_copy=_('Download')) }}
+            {% elif release.channel == 'Beta' %}
+              {{ download_firefox('beta', platform='android', alt_copy=_('Download')) }}
+            {% else %}
+              {{ google_play_button() }}
+            {% endif %}
+          {% elif release.product == 'Firefox' %}
+            {% if release.channel == 'Nightly' %}
+              {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly')) }}
+            {% elif release.channel == 'Aurora' %}
+              {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition')) }}
+            {% elif release.channel == 'Beta' %}
+              {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Beta')) }}
+            {% else %}
+              {{ download_firefox() }}
+            {% endif %}
+          {% endif %}
         </div>
       </div>
     </section>
