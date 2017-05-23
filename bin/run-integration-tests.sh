@@ -14,6 +14,9 @@ set -xe
 : ${TESTS_PATH:="tests"}
 : ${RESULTS_PATH:="${TESTS_PATH}/results"}
 
+# wait for BASE_URL server to be available
+urlwait "$BASE_URL"
+
 # Common arguments
 CMD="py.test"
 CMD="${CMD} -r a"
