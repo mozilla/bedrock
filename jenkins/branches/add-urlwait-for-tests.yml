@@ -1,0 +1,3 @@
+demo: true
+smoke_tests: true
+push_public_registry: false
