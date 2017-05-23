@@ -59,6 +59,7 @@ if [ -z "${BASE_URL}" ]; then
     -e SECRET_KEY=foo \
     -e DEBUG=False \
     -e DATABASE_URL=sqlite:////tmp/temp.db \
+    -e GUNICORN_WORKER_CLASS=sync \
     mozorg/bedrock_code:${GIT_COMMIT}
 
   DOCKER_LINKS=(--link bedrock-code-${GIT_COMMIT_SHORT}:bedrock)
