@@ -22,6 +22,12 @@
 {% block body_id %}{% endblock %}
 {% block body_class %}{% endblock %}
 
+{% block optimizely %}
+  {% if switch('firefox-home-optimizely', ['en-US']) %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {% stylesheet 'firefox-hub-home' %}
 {% endblock %}

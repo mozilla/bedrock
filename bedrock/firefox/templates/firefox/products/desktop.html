@@ -12,6 +12,11 @@
 
 {% block body_id %}firefox-product-desktop{% endblock %}
 
+{% block optimizely %}
+  {% if switch('firefox-products-desktop-optimizely', ['en-US']) %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
 
 {% block product_header_content %}
   <h1 class="page-title"><span>{{ _('Firefox for Desktop') }}</span></h1>
