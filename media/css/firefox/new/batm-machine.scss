@@ -1,0 +1,540 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+
+@font-face {
+    font-family: 'Droid Sans Mono';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/media/fonts/DroidSansMono.woff2') format('woff2'),
+         url('/media/fonts/DroidSansMono.woff') format('woff');
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+html,
+body {
+    background: #ec8c32;
+    background: linear-gradient(135deg, #ec8c32 0%,#e5472c 100%);
+    border-top: 0;
+    min-height: 100%;
+}
+
+main {
+    background: #fff;
+    margin: 20px;
+    padding: 20px;
+}
+
+// * -------------------------------------------------------------------------- */
+// Animated machine - lights blink, eye moves
+
+@keyframes eye-move {
+    0%,
+    80%,
+    100% {
+        left: 10%;
+        top: 5%;
+    }
+
+    20%,
+    30% {
+        left: 40%;
+        top: 10%;
+    }
+
+    50%,
+    60% {
+        left: 25%;
+        top: 50%;
+    }
+}
+
+@keyframes eye-glow {
+    0%,
+    100% {
+        box-shadow: 0 0 8px 4px rgba(255, 0, 0, .75);
+    }
+
+    50% {
+        box-shadow: 0 0 6px 4px rgba(255, 0, 0, .5);
+    }
+}
+
+.machine-animated {
+    main {
+        margin: 20px auto;
+
+        @media #{$mq-desktop} {
+            width: 800px;
+        }
+
+        @media #{$mq-desktop-wide} {
+            width: 1200px;
+        }
+    }
+
+    .machine {
+        position: relative;
+
+        @media #{$mq-desktop} {
+            background: #000 url('/media/img/firefox/new/batm/bg-machine-anim.gif') center top no-repeat;
+            @include background-size(800px 446px);
+            width: 800px;
+            height: 440px;
+        }
+
+        @media #{$mq-desktop-wide} {
+            @include background-size(1200px 668px);
+            background-image: url('/media/img/firefox/new/batm/bg-machine-anim-large.gif');
+            width: 1200px;
+            height: 650px;
+        }
+    }
+
+    .points {
+        margin: 0;
+
+        li {
+            display: none;
+
+            &#point-3 {
+                display: block;
+                text-align: center;
+            }
+        }
+
+        @media #{$mq-desktop} {
+            li {
+                display: block;
+                position: absolute;
+                width: 290px;
+            }
+
+            .label {
+                @include clearfix;
+                @include font-size(12px);
+                font-family: 'Droid Sans Mono', 'Andale Mono', monospace;
+                background-color: #fff;
+                box-shadow: 4px 6px 0 rgba(0, 0, 0, .2);
+                display: none;
+                padding: 15px;
+                width: 260px;
+
+                &:focus {
+                    outline: 0;
+                }
+            }
+
+            .open {
+                @include image-replaced;
+                -webkit-appearance: none;
+                   -moz-appearance: none;
+                        appearance: none;
+                background-color: #fff;
+                border-radius: 100%;
+                border: 4px solid #ec8c32;
+                bottom: -22px;
+                box-shadow: 2px 3px 0 rgba(0, 0, 0, .2);
+                cursor: pointer;
+                height: 40px;
+                left: -22px;
+                position: absolute;
+                transition: border-color .2s ease;
+                width: 40px;
+                z-index: 2;
+
+                &:before {
+                    @include font-size(24px);
+                    background-color: #fff;
+                    content: '+';
+                    display: block;
+                    left: 0;
+                    line-height: 32px;
+                    position: absolute;
+                    text-align: center;
+                    text-indent: 0;
+                    top: 0;
+                    width: 32px;
+                }
+
+                &:hover,
+                &:focus {
+                    border-color: #e5472c;
+                }
+            }
+
+            .next {
+                @include font-size(14px);
+                @include trailing-arrow;
+                -webkit-appearance: none;
+                   -moz-appearance: none;
+                        appearance: none;
+                background: transparent none;
+                border: 0;
+                clear: both;
+                cursor: pointer;
+                display: block;
+                float: right;
+                font-weight: bold;
+                margin-top: .75em;
+                padding: 0;
+                transition: color .2s ease;
+
+                &:hover,
+                &:focus {
+                    color: #ea7530;
+                }
+            }
+
+            #point-3 .label {
+                background-color: #ea7530;
+                color: #fff;
+                text-align: left;
+            }
+
+            h2 {
+                @include font-size(16px);
+                font-weight: normal;
+                text-transform: uppercase;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        #point-1 {
+            left: 100px;
+            bottom: 290px;
+        }
+
+        #point-2 {
+            left: auto;
+            right: 340px;
+            top: 90px;
+
+            .open {
+                bottom: auto;
+                left: auto;
+                right: -22px;
+                top: -22px;
+            }
+        }
+
+        #point-3 {
+            left: auto;
+            top: auto;
+            right: 40px;
+            bottom: 40px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        #point-1 {
+            left: 210px;
+            bottom: 450px;
+        }
+
+        #point-2 {
+            left: 660px;
+            bottom: 470px;
+            top: auto;
+
+            .open {
+                bottom: -22px;
+                top: auto;
+                left: -22px;
+                right: auto;
+            }
+        }
+
+        #point-3 {
+            right: 80px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .eye {
+            height: 30px;
+            left: 375px;
+            position: absolute;
+            top: 275px;
+            width: 60px;
+
+            span {
+                animation: 9s ease-in-out eye-move infinite, 2s ease eye-glow infinite;
+                background: #f00;
+                border-radius: 50%;
+                box-shadow: 0 0 8px 4px rgba(255, 0, 0, .75);
+                display: block;
+                height: 10px;
+                position: absolute;
+                width: 25px;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .eye {
+            height: 35px;
+            width: 70px;
+            left: 535px;
+            top: 378px;
+
+            span {
+                width: 30px;
+                height: 12px;
+            }
+        }
+
+        .points:after {
+            animation: 2s ease eye-glow infinite;
+            background: #f00;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 4px rgba(255, 0, 0, .75);
+            content: '';
+            display: block;
+            height: 8px;
+            position: absolute;
+            right: 13px;
+            top: 238px;
+            width: 18px;
+        }
+    }
+
+    .download-cta {
+        @include clearfix;
+        margin: 40px auto 20px;
+
+        h1 {
+            @include at2x('/media/img/logos/firefox/logo-wordmark-small.png', 200px, 75px);
+            @include border-box;
+            @include font-size-level3;
+            background-position: center top;
+            background-repeat: no-repeat;
+            padding-top: 100px;
+            text-align: center;
+
+            @media #{$mq-desktop} {
+                @include span(6);
+                background-position: 20px 3px;
+                padding-left: 20px;
+                text-align: left;
+            }
+
+            @media #{$mq-desktop-wide} {
+                @include font-size-level2;
+                @include span(8);
+                min-height: 75px;
+                padding-left: 260px;
+                padding-top: .5em;
+                text-align: center;
+            }
+        }
+
+        .download-button {
+            display: block;
+            margin: 40px auto 0;
+            text-align: center;
+
+            @media #{$mq-desktop} {
+                @include span(6);
+                float: right;
+                margin-top: 12px;
+            }
+
+            @media #{$mq-desktop-wide} {
+                @include span(4);
+            }
+        }
+    }
+}
+
+.machine-static {
+    .page-hero {
+        background: #000 url('/media/img/firefox/new/batm/bg-machine.jpg') center bottom no-repeat;
+        @include background-size(cover);
+        margin: -20px -20px 40px;
+        min-height: 100px;
+        padding: 80px 0;
+        text-align: center;
+
+        h1 {
+            color: #000;
+            line-height: 1.3;
+
+            span {
+                @include box-decoration-break(clone);
+                background-color: #fff;
+                padding: 0 5px;
+            }
+        }
+
+        @media #{$mq-desktop} {
+            background-image: url('/media/img/firefox/new/batm/bg-machine-high-res.jpg');
+            min-height: 200px;
+            padding-bottom: 100px;
+        }
+
+        @media #{$mq-desktop-wide} {
+            min-height: 260px;
+        }
+    }
+
+    .copy {
+        @include clearfix;
+        margin: 40px 0;
+        padding: 0;
+        position: relative;
+        text-align: center;
+
+        li {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            @include font-size(20px);
+            margin-bottom: 20px;
+        }
+
+        p {
+            @include font-size(16px);
+            margin: 0 auto;
+            max-width: 420px;
+        }
+
+        @media #{$mq-desktop} {
+            margin: 60px 0 40px;
+
+            li {
+                float: left;
+                width: 33%;
+            }
+
+            h2 {
+                @include font-size(25px);
+                padding: 0 20px;
+            }
+
+            p {
+                padding: 0 40px;
+            }
+        }
+    }
+
+    .download-cta {
+        text-align: center;
+    }
+
+    .tagline {
+        @include font-size-level3;
+        @include at2x('/media/img/logos/firefox/logo-wordmark-small.png', 200px, 75px);
+        background-position: center top;
+        background-repeat: no-repeat;
+        padding-top: 100px;
+    }
+}
+
+.scene-2 main header {
+    margin-bottom: 160px;
+}
+
+a.button:link.button-hollow,
+a.button:visited.button-hollow {
+    background: #ea7530;
+    border-color: #ea7530;
+    border-radius: 0;
+    color: #fff;
+    -webkit-transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+    transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+
+    strong {
+        font-weight: bold;
+    }
+
+    &:hover,
+    &:focus {
+        background: #fff;
+        border-color: #ea7530;
+        color: #000;
+    }
+
+    @media #{$mq-desktop} {
+        @include font-size(22px);
+    }
+}
+
+.fx-privacy-link {
+
+    a:link,
+    a:visited {
+        color: #000;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+
+    @media #{$mq-desktop} {
+        @include font-size(14px);
+    }
+}
+
+// always hide special scene 2 button (as it forces direct download)
+#download-button-wrapper-desktop {
+    height: 0;
+    visibility: hidden;
+    width: 0;
+}
+
+@supports(animation: fade-in .5s ease-in-out 0s 1 normal both) {
+    .js .scene-1 main {
+        opacity: 0;
+    }
+
+    .js.ready {
+        main {
+            animation: fade-in .3s ease-in-out 0s 1 normal both;
+
+            header p {
+                animation: fade-in .5s ease-in-out .3s 1 normal both;
+            }
+
+            .copy li {
+                &:nth-child(1) {
+                    animation: fade-in .5s ease-in-out .4s 1 normal both;
+                }
+
+                &:nth-child(2) {
+                    animation: fade-in .5s ease-in-out .55s 1 normal both;
+                }
+
+                &:nth-child(3) {
+                    animation: fade-in .5s ease-in-out .7s 1 normal both;
+                }
+            }
+
+            .download-cta {
+                animation: fade-in .5s ease-in-out .55s 1 normal both;
+            }
+        }
+    }
+}

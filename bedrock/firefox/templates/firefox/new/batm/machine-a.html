@@ -1,0 +1,61 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+
+{% extends "firefox/new/batm/base.html" %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_new_batm_machine' %}
+{% endblock %}
+
+{% block body_class %}scene-1 machine-animated{% endblock %}
+
+{% block string_data %}
+  data-global-open="{{ _('Open') }}"
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <section class="machine">
+    <div class="eye"><span></span></div>
+
+    <ul class="points">
+      <li class="point" id="point-1">
+        <div class="label" data-point="Point 1, Welcome to the machine">
+          <h2>{{ _('Welcome to the machine') }}</h2>
+          <p>{{ _('This is where they get to know you (whether you know it or not). Because your data is their success.') }}</p>
+        </div>
+      </li>
+      <li class="point" id="point-2">
+        <div class="label" data-point="Point 2, Machine earning">
+          <h2>{{ _('Machine earning') }}</h2>
+          <p>{{ _('Here’s where the magic happens. And by “magic,” we mean the steady monetization of personal information.') }}</p>
+        </div>
+      </li>
+      <li class="point" id="point-3">
+        <div class="label" data-point="Point 3, Opt out with Firefox">
+          <h2>{{ _('Opt out with Firefox') }}</h2>
+          <p>{{ _('Firefox doesn’t sell access to your personal information. From privacy tools to tracking protection, you control who sees what.') }}</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <div class="download-cta">
+    <h1 id="main-header-copy" data-experience="batmprivate">{{_('Browse against the machine')}}</h1>
+
+    {{ download_firefox(alt_copy=_('Download Firefox'), locale_in_transition=True, button_color='button-hollow') }}
+  </div>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  <!--[if IE 9]>
+    {% javascript 'matchmedia_addlistener' %}
+  <![endif]-->
+
+  {% javascript 'firefox_new_scene1_batm_anim' %}
+{% endblock %}

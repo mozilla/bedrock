@@ -6,9 +6,9 @@
 
 {% extends "firefox/new/batm/scene1.html" %}
 
-{% block optimizely %}
-  {% if switch('firefox-new-batmprivate-optimizely', ['en-US']) %}
-    {% include 'includes/optimizely.html' %}
+{% block experiments %}
+  {% if switch('experiment-firefox-new-batm-anim', ['en-US']) %}
+    {% javascript 'experiment_firefox_new_batm_anim' %}
   {% endif %}
 {% endblock %}
 
