@@ -49,7 +49,7 @@ if (typeof Mozilla === 'undefined') {
 
     Pixel.init = function() {
         // Do not set pixels if visitor has DNT enabled.
-        if (!window._dntEnabled()) {
+        if (!Mozilla.dntEnabled()) {
             Pixel.setPixels();
         }
     };

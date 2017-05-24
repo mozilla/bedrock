@@ -1,4 +1,11 @@
-/* exported _dntEnabled */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+// create namespace
+if (typeof Mozilla === 'undefined') {
+    var Mozilla = {};
+}
 
 /**
  * Returns true or false based on whether doNotTack is enabled. It also takes into account the
@@ -9,8 +16,7 @@
  * @params {string} [ua] - An optional mock userAgent string to ease unit testing.
  * @returns {boolean} true if enabled else false
  */
-function _dntEnabled(dnt, ua) {
-
+Mozilla.dntEnabled = function(dnt, ua) {
     'use strict';
 
     // for old version of IE we need to use the msDoNotTrack property of navigator
@@ -45,4 +51,4 @@ function _dntEnabled(dnt, ua) {
     }
 
     return dntStatus === 'Enabled' ? true : false;
-}
+};

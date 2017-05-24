@@ -121,14 +121,14 @@ describe('stub-attribution.js', function() {
         });
 
         it('should return false if browser has DNT enabled', function() {
-            spyOn(window, '_dntEnabled').and.returnValue(true);
+            spyOn(Mozilla, 'dntEnabled').and.returnValue(true);
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
         });
 
         it('should return true for windows users who satisfy all other requirements', function() {
             window.site.platform = 'windows';
             spyOn(window.site, 'needsSha1').and.returnValue(false);
-            spyOn(window, '_dntEnabled').and.returnValue(false);
+            spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeTruthy();
         });
     });

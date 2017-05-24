@@ -6,7 +6,7 @@
 
     // If doNotTrack is not enabled, it is ok to add StatCounter
     // @see https://bugzilla.mozilla.org/show_bug.cgi?id=1217896 for more details
-    if (typeof window._dntEnabled === 'function' && !window._dntEnabled() && STATCOUNTER_PROJECT_ID && STATCOUNTER_SECURITY_ID) {
+    if (typeof Mozilla.dntEnabled === 'function' && !Mozilla.dntEnabled() && STATCOUNTER_PROJECT_ID && STATCOUNTER_SECURITY_ID) {
         // Statcounter needs the following vars scoped globally as lowercase, so disable the eslint errors thrown by camelcase and no-unused-vars
         /* eslint-disable camelcase, no-unused-vars */
         var sc_project = window.sc_project = STATCOUNTER_PROJECT_ID;

@@ -9,7 +9,7 @@
 
     // If doNotTrack is not enabled, it is ok to add Optimizely
     // @see https://bugzilla.mozilla.org/show_bug.cgi?id=1217896 for more details
-    if (typeof window._dntEnabled === 'function' && !window._dntEnabled() && OPTIMIZELY_PROJECT_ID) {
+    if (typeof Mozilla.dntEnabled === 'function' && !Mozilla.dntEnabled() && OPTIMIZELY_PROJECT_ID) {
         (function(d, optID) {
             var newScriptTag = d.createElement('script');
             var target = d.getElementsByTagName('script')[0];
