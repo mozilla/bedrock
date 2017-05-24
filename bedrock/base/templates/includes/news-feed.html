@@ -24,7 +24,7 @@
               <p>{{ article.htmlify() }}</p>
             </div>
             <p class="entry-cta">
-              <a href="{{ article.link }}?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" class="cta-link" data-link-name="{{ article.blog_title }}" data-link-type="link" data-link-position="Fresh from the blog">{{ article.blog_name }}</a>
+              <a href="{{ article.link }}?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" class="cta-link" rel="nofollow" data-link-name="{{ article.blog_title }}" data-link-type="link" data-link-position="Fresh from the blog">{{ _('Read more') }}</a>
             </p>
           </article>
         </li>
