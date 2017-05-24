@@ -43,17 +43,6 @@ $color-dusty-blue:      #69b9d0;
     }
 }
 
-[lang^="en"] {
-    .section-title,
-    .page-title,
-    .header-intro .tagline,
-    .card-title,
-    .card-label,
-    .feature-title {
-        text-transform: lowercase;
-    }
-}
-
 
 //* -------------------------------------------------------------------------- */
 // Page head
@@ -64,15 +53,12 @@ $color-dusty-blue:      #69b9d0;
 
     .page-title {
         @include font-size(55px);
+        color: #fff;
         line-height: 1.3;
 
-        &:first-letter {
-            letter-spacing: .025em;
-        }
-
         span {
-            background: #000;
-            color: #fff;
+            @include box-decoration-break(clone);
+            background-color: #000;
         }
 
         @media #{$mq-desktop} {
@@ -115,10 +101,9 @@ $color-dusty-blue:      #69b9d0;
 
     .fx-privacy-link a:link,
     .fx-privacy-link a:visited {
-        @include font-size(14px);
+        @include font-size(12px);
         color: $color-burnt-orange;
         font-family: $font-open-sans;
-        font-weight: bold;
         text-decoration: none;
 
         &:hover,

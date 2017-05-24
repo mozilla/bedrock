@@ -18,23 +18,16 @@
     padding: 20px;
     color: #fff;
 
+    h2 {
+        @include font-size-level2;
+    }
+
     .tagline {
-        font-style: italic;
+        @include font-size-level3;
     }
 
     @media #{$mq-desktop} {
         padding: 40px;
-    }
-
-    @media #{$mq-desktop-wide} {
-        h2 {
-            @include font-size(64px);
-        }
-
-        .tagline {
-            @include font-size(36px);
-            line-height: 1.2;
-        }
     }
 
     @media #{$mq-desktop-wide} {
@@ -50,34 +43,43 @@
 
 .outro-item-newsletter {
     background-color: #0a84ff;
-    @include at2x('/media/img/firefox/hub/critters.jpg', 280px, 230px);
+    @include at2x('/media/img/firefox/hub/critters.png', 280px, 230px);
     background-repeat: no-repeat;
     background-position: top -50px center;
     padding-top: 190px;
 
-    @media screen and (min-width: 560px) {
-        @include background-size(400px, 328px);
-        background-position: right -140px top -20px;
-        padding-top: 20px;
+    h2,
+    .tagline {
+        text-align: center;
+    }
 
-        .outro-item-detail {
-            width: 50%;
-        }
+    .newsletter-form {
+        margin: 0 auto;
     }
 
     @media #{$mq-tablet} {
         @include background-size(500px, 410px);
-        background-position: right -160px top -40px;
+        background-position: right -120px top -40px;
+        padding-top: 20px;
+
+        h2,
+        .tagline {
+            text-align: left;
+        }
+
+        .newsletter-form {
+            margin: 0;
+        }
     }
 
     @media #{$mq-desktop} {
         @include background-size(600px, 494px);
-        background-position: right -120px top -60px;
+        background-position: right -80px top -60px;
     }
 
     @media #{$mq-desktop-wide} {
         @include background-size(750px, 617px);
-        background-position: right -60px top -140px;
+        background-position: right -20px top -140px;
     }
 
     a:link,

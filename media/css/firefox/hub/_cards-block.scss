@@ -40,7 +40,6 @@
         @include font-size-level4;
         line-height: 1.1;
         margin: 0 0 20px;
-        text-transform: lowercase;
 
         strong {
             background: #000;
@@ -51,7 +50,6 @@
 
     .card-title {
         @include font-size-level2;
-        text-transform: lowercase;
     }
 
     // Some cards have an image. Used with .card
@@ -87,10 +85,6 @@
     }
 
     @media #{$mq-tablet} {
-        .card-cta {
-            width: 60%;
-        }
-
         .image-card {
             padding-left: 300px;
 
@@ -149,10 +143,6 @@
 
             .card-content {
                 padding: 20px 40px;
-            }
-
-            .card-cta {
-                width: auto;
             }
 
             .image-card {
