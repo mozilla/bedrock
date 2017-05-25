@@ -10,8 +10,6 @@
     var _menuButton = document.getElementById('nav-button-menu');
     var _nav = document.getElementById('moz-global-nav');
     var _page = document.getElementsByTagName('html')[0];
-    var _navLinks;
-    var _drawerTimeout;
 
     // feature detects
     var _supportsBoundingClientRect = 'getBoundingClientRect' in document.createElement('div');
@@ -69,24 +67,6 @@
                 mozGlobalNav.onDrawerOpen(accordionId);
             } else {
                 mozGlobalNav.onDrawerClose();
-            }
-
-            // Add a little delay before toggling the accordion
-            // for a smoother transition when the drawer moves.
-            clearTimeout(_drawerTimeout);
-            _drawerTimeout = setTimeout(function() {
-                mozGlobalNav.afterDrawerToggle(accordionId);
-            }, 320);
-        },
-
-        afterDrawerToggle: function(accordionId) {
-            if (_page.classList.contains('moz-nav-open')) {
-                var id = accordionId ? accordionId : document.body.getAttribute('data-global-nav-current-link');
-                if (id) {
-                    mozGlobalNav.toggleDrawerMenu(id);
-                }
-            } else {
-                mozGlobalNav.closeDrawerMenu();
             }
         },
 
@@ -258,27 +238,12 @@
             }
         },
 
-        // Handle clicks on the horozontal navigation links.
-        handleNavLinkClick: function(e) {
-            e.preventDefault();
-            var id = e.target.getAttribute('data-id');
-
-            if (id) {
-                mozGlobalNav.selectNavLink(id);
-                mozGlobalNav.toggleDrawer(id);
-            }
-        },
-
         // Bind common event handlers for the navigation menu
         bindEvents: function() {
             var menuLinks = document.querySelectorAll('.nav-menu-primary-links > li > .summary > a');
 
             for (var i = 0; i < menuLinks.length; i++) {
                 menuLinks[i].addEventListener('click', mozGlobalNav.handleDrawerLinkClick, false);
-            }
-
-            for (var j = 0; j < _navLinks.length; j++) {
-                _navLinks[j].addEventListener('click', mozGlobalNav.handleNavLinkClick, false);
             }
 
             _menuButton.addEventListener('click', mozGlobalNav.handleToggleDrawerEvent, false);
@@ -297,7 +262,6 @@
             var rolePrefix = 'moz-global-nav-item-';
 
             accordion.setAttribute('role', 'tablist');
-            document.querySelector('.nav-primary-links').setAttribute('role', 'tablist');
 
             for (var i = 0; i < accordionHeadings.length; i++) {
                 accordionHeadings[i].setAttribute('role', 'tab');
@@ -305,11 +269,6 @@
                 accordionHeadings[i].setAttribute('aria-expanded', 'false');
                 accordionHeadings[i].setAttribute('aria-controls',
                     rolePrefix + accordionHeadings[i].getAttribute('data-id'));
-
-                _navLinks[i].setAttribute('role', 'tab');
-                _navLinks[i].setAttribute('aria-selected', 'false');
-                _navLinks[i].setAttribute('aria-controls',
-                    rolePrefix + _navLinks[i].getAttribute('data-id'));
             }
 
             _drawer.setAttribute('aria-hidden', 'true');
@@ -336,10 +295,7 @@
          */
         init: function() {
             if (mozGlobalNav.cutsTheMustard()) {
-                _navLinks = document.querySelectorAll('.nav-primary-links > li > a');
-
                 _menuButton.classList.remove('nav-hidden');
-
                 mozGlobalNav.initARIARoles();
                 mozGlobalNav.createNavMask();
                 mozGlobalNav.bindEvents();
