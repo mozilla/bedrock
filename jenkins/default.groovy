@@ -56,6 +56,7 @@ if ( config.push_public_registry != false ) {
             else {
                 utils.pushDockerhub('mozorg/bedrock_base')
                 utils.pushDockerhub('mozorg/bedrock_build')
+                utils.pushDockerhub('mozorg/bedrock_test')
                 utils.pushDockerhub('mozorg/bedrock_code')
                 utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
             }
