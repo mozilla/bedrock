@@ -44,8 +44,3 @@ cat "docker/dockerfiles/bedrock_$DOCKERFILE" | envsubst '$GIT_COMMIT' > "$FINAL_
 
 # build the docker image
 docker build -t "$DOCKER_IMAGE_TAG" --pull="$DOCKER_PULL" --no-cache="$DOCKER_NO_CACHE" -f "$FINAL_DOCKERFILE" "$DOCKER_CTX"
-
-if [[ "$GIT_TAG_DATE_BASED" == true ]]; then
-    docker tag "$DOCKER_IMAGE_TAG" "${DOCKER_REPO}/bedrock_${DOCKERFILE}:${GIT_TAG}"
-    docker tag "$DOCKER_IMAGE_TAG" "${DOCKER_REPO}/bedrock_${DOCKERFILE}:latest"
-fi
