@@ -15,11 +15,6 @@ js/libs/jquery.waypoints-sticky.min.js
     var mqShowNav;
     var subNavSticky;
 
-    // It's your world, IE
-    if (typeof matchMedia !== 'undefined') {
-        mqShowNav = matchMedia('(min-width: 840px)'); // magic number :(
-    }
-
     function enableDesktop() {
         if (mqShowNav) {
             subNavSticky = new Waypoint.Sticky({
@@ -29,15 +24,21 @@ js/libs/jquery.waypoints-sticky.min.js
         }
     }
 
-    mqShowNav.addListener(function(mq) {
-        if (mq.matches) {
-            enableDesktop();
-        } else {
-            subNavSticky.destroy();
-        }
-    });
+    // It's your world, IE
+    if (typeof matchMedia !== 'undefined') {
+        mqShowNav = matchMedia('(min-width: 840px)'); // magic number :(
 
-    if (mqShowNav.matches) {
-        enableDesktop();
+        mqShowNav.addListener(function(mq) {
+            if (mq.matches) {
+                enableDesktop();
+            } else {
+                subNavSticky.destroy();
+            }
+        });
+
+        if (mqShowNav.matches) {
+            enableDesktop();
+        }
     }
+
 })(window.jQuery, window.Waypoint);
