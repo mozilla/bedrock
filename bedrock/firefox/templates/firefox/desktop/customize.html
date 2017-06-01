@@ -259,8 +259,4 @@
   {% javascript 'matchmedia_addlistener' %}
   <![endif]-->
   {% javascript 'firefox_desktop_customize' %}
-  {% if switch('statcounter-experiment') %}
-    {% javascript 'stat_counter' %}
-    {% include 'includes/stat_counter.html' %}
-  {% endif %}
 {% endblock %}

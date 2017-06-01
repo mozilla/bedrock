@@ -221,11 +221,3 @@
 {% block news %}{% endblock %}
 {% block values %}{% endblock %}
 {% block outro %}{% endblock %}
-
-{% block js %}
-  {{ super() }}
-  {% if switch('statcounter-experiment') %}
-    {% javascript 'stat_counter' %}
-    {% include 'includes/stat_counter.html' %}
-  {% endif %}
-{% endblock %}

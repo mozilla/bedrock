@@ -47,9 +47,4 @@
 
 {% block js %}
   {% javascript 'firefox_whatsnew_zh_tw_49' %}
-  {% if switch('statcounter-experiment') %}
-    {% javascript 'stat_counter' %}
-    {% include 'includes/stat_counter.html' %}
-  {% endif %}
 {% endblock %}
-

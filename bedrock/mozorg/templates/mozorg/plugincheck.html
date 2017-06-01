@@ -224,8 +224,4 @@
 
 {% block js %}
   {% javascript 'plugincheck' %}
-  {% if switch('statcounter-experiment') %}
-    {% javascript 'stat_counter' %}
-    {% include 'includes/stat_counter.html' %}
-  {% endif %}
 {% endblock %}
