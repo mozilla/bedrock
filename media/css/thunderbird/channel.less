@@ -32,7 +32,8 @@ main {
 
     section {
         overflow: hidden;
-        .span(6);
+        width: 45%;
+        margin: 0 auto;
     }
 
     header {
@@ -65,7 +66,7 @@ main {
     }
 }
 
-/* Tablet & Mobile Layout: 760px */
+/* Tablet Layout: <1000px */
 @media only screen and (max-width: @breakDesktop) {
     main {
         header {
@@ -83,14 +84,7 @@ main {
     }
 }
 
-/* Tablet Layout: 760px */
-@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-    main section {
-        .span_narrow(6);
-    }
-}
-
-/* Mobile & Wide Mobile layout: 480px */
+/* Mobile & Wide Mobile layout: <760px */
 @media only screen and (max-width: @breakTablet) {
     #main-feature h1 {
         .font-size(@largeFontSize * 3);

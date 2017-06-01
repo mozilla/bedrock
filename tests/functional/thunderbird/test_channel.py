@@ -13,4 +13,3 @@ from pages.thunderbird.channel import ThunderbirdChannelPage
 def test_download_buttons_are_displayed(base_url, selenium):
     page = ThunderbirdChannelPage(selenium, base_url).open()
     assert page.beta_download_button.is_displayed
-    assert page.earlybird_download_button.is_displayed

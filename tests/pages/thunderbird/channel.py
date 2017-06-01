@@ -12,15 +12,9 @@ class ThunderbirdChannelPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/thunderbird/channel'
 
-    _earlybird_download_button_locator = (By.ID, 'download-button-desktop-alpha')
     _beta_download_button_locator = (By.ID, 'download-button-desktop-beta')
 
     @property
     def beta_download_button(self):
         el = self.find_element(*self._beta_download_button_locator)
-        return DownloadButton(self, root=el)
-
-    @property
-    def earlybird_download_button(self):
-        el = self.find_element(*self._earlybird_download_button_locator)
         return DownloadButton(self, root=el)
