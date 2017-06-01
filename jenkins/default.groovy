@@ -129,7 +129,8 @@ if ( config.apps ) {
                 if ( config.integration_tests ) {
                     // queue up test closures
                     def allTests = [:]
-                    for (filename in config.integration_tests) {
+                    def regionTests = config.integration_tests[regionId]
+                    for (filename in regionTests) {
                         allTests[filename] = utils.integrationTestJob(filename, appURL)
                     }
                     stage ("Test ${appname}-${region.name}") {

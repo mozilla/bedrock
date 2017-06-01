@@ -6,9 +6,10 @@ regions:
 apps:
   - bedrock-integration-tests
 integration_tests:
-  - headless
-  - firefox
-  - chrome
-  - ie
-  - ie6
-  - ie7
+  usw:
+    - headless
+    - firefox
+    - chrome
+    - ie
+    - ie6
+    - ie7
