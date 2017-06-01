@@ -1119,12 +1119,6 @@ TABZILLA_INFOBAR_OPTIONS = 'update translation'
 # Optimize.ly project code
 OPTIMIZELY_PROJECT_ID = config('OPTIMIZELY_PROJECT_ID', default='')
 
-# Statcounter project id
-STATCOUNTER_PROJECT_ID = config('STATCOUNTER_PROJECT_ID', default='')
-
-# Statcounter security id
-STATCOUNTER_SECURITY_ID = config('STATCOUNTER_SECURITY_ID', default='')
-
 # Fx Accounts iframe source
 FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
                         default='https://accounts.firefox.com/')
@@ -1311,11 +1305,6 @@ if config('SWITCH_TRACKING_PIXEL', default=DEV, cast=bool):
 
     if any([x.startswith('yahoo') for x in ENABLED_PIXELS]):
         CSP_IMG_SRC += ('sp.analytics.yahoo.com',)
-
-# See https://bugzilla.mozilla.org/show_bug.cgi?id=1352821
-if config('SWITCH_STATCOUNTER_EXPERIMENT', default=DEV, cast=bool):
-    CSP_IMG_SRC += ('*.statcounter.com',)
-    CSP_SCRIPT_SRC += ('secure.statcounter.com',)
 
 # Bug 1345467: Funnelcakes are now explicitly configured in the environment.
 # Set experiment specific variables like the following:

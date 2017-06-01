@@ -123,8 +123,4 @@ A modified copy of firefox/mobile-download-desktop.html
 
 {% block js %}
   {% javascript 'firefox_whatsnew_50' %}
-  {% if switch('statcounter-experiment') %}
-    {% javascript 'stat_counter' %}
-    {% include 'includes/stat_counter.html' %}
-  {% endif %}
 {% endblock %}

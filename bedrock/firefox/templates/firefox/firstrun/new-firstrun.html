@@ -10,10 +10,6 @@
 
 {% block js %}
   {% javascript 'firefox_new_firstrun' %}
-  {% if switch('statcounter-experiment') %}
-    {% javascript 'stat_counter' %}
-    {% include 'includes/stat_counter.html' %}
-  {% endif %}
 {% endblock %}
 
 {% block global_nav %}{% endblock %}
