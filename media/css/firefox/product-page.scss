@@ -4,13 +4,14 @@
 
 @import
     '../pebbles/includes/lib',
+    '../hubs/mixins',
     '../hubs/sections',
     '../pebbles/components/newsletter',
     '../hubs/sub-nav',
     '../hubs/buttons',
-    '../hubs/cta-link',
+    '../hubs/common',
     '../hubs/news-feed',
-    'hub/cards-block',
+    '../hubs/cards-block',
     'hub/outro';
 
 $color-burnt-orange:    #9c432a;
@@ -22,25 +23,9 @@ $color-dusty-blue:      #69b9d0;
     @include zilla-slab;
 }
 
-.section > .content:before,
-.news > .content:before {
-    @include gradient-horizontal($start-color: $color-dusty-blue, $end-color: $color-burnt-orange);
-    content: '';
-    display: block;
-    height: 6px;
-    margin: 0 0 25px;
-}
-
-.section-title {
-    @include font-size(24px);
-    margin: 0 0 20px;
-
-    span {
-        @include box-decoration-break(clone);
-        background-color: #000;
-        color: #fff;
-        padding: 0 5px 0 60px;
-    }
+.section > .content,
+.news > .content {
+    @include horizontal-rule-before($start-color: $color-dusty-blue, $end-color: $color-burnt-orange);
 }
 
 

@@ -3,11 +3,12 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../pebbles/includes/lib';
+@import '../../hubs/mixins';
 @import '../../hubs/sections';
 @import '../../pebbles/components/newsletter';
 @import '../../hubs/sub-nav';
 @import '../../hubs/buttons';
-@import '../../hubs/cta-link';
+@import '../../hubs/common';
 
 $color-burnt-orange: #9c432a;
 
@@ -15,27 +16,8 @@ main {
     @include font-size(20px);
     @include zilla-slab;
 
-    .content:before {
-        @include gradient-horizontal($start-color: #69b9d0, $end-color: $color-burnt-orange);
-        content: '';
-        display: block;
-        height: 6px;
-        margin: 0 0 25px;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Common elements
-
-.section-title {
-    @include font-size(24px);
-    margin: 0 0 20px;
-
-    span {
-        @include box-decoration-break(clone);
-        background-color: #000;
-        color: #fff;
-        padding: 0 5px 0 60px;
+    .content {
+        @include horizontal-rule-before($start-color: #69b9d0, $end-color: $color-burnt-orange);
     }
 }
 
