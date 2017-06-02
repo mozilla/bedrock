@@ -1171,4 +1171,7 @@ URLS = flatten((
 
     # Bug 1361181
     url_test('/en-US/firefox/products/', '/en-US/firefox/'),
+
+    # Bug 1369732
+    url_test('{/en-US,}/Firefox', '{/en-US,}/firefox/'),
 ))
