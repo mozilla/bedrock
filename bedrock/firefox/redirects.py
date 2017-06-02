@@ -536,4 +536,7 @@ redirectpatterns = (
 
     # Bug 1361181
     redirect(r'^en-US/firefox/products/?', '/en-US/firefox/', locale_prefix=False),
+
+    # bug 1369732
+    redirect(r'^Firefox/?$', 'firefox'),
 )
