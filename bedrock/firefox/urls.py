@@ -9,7 +9,6 @@ from bedrock.mozorg.util import page
 import views
 import bedrock.releasenotes.views
 from bedrock.releasenotes import version_re
-from bedrock.utils.views import VariationTemplateView
 
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
@@ -74,11 +73,7 @@ urlpatterns = (
     }),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
-    url(r'^firefox/sync/$',
-        VariationTemplateView.as_view(template_name='firefox/sync.html',
-                                      template_context_variations=['2', '3'],
-                                      variation_locales=['en-US']),
-        name='firefox.sync'),
+    url(r'^firefox/sync/$', views.sync, name='firefox.sync'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
     url(r'^firefox/new/$', views.new, name='firefox.new'),
     page('firefox/organizations/faq', 'firefox/organizations/faq.html'),
