@@ -296,7 +296,7 @@ class FirefoxAndroid(_ProductDetails):
 
     # Human-readable channel names
     channel_labels = {
-        'alpha': _('Firefox Aurora'),
+        'nightly': _('Firefox Nightly'),
         'beta': _('Firefox Beta'),
         'release': _('Firefox'),
     }
@@ -304,14 +304,12 @@ class FirefoxAndroid(_ProductDetails):
     # Version property names in product-details
     version_map = {
         'nightly': 'nightly_version',
-        'alpha': 'alpha_version',
         'beta': 'beta_version',
         'release': 'version',
     }
 
     # Build property names in product-details
     build_map = {
-        'alpha': 'alpha_builds',
         'beta': 'beta_builds',
         'release': 'builds',
     }
@@ -330,8 +328,9 @@ class FirefoxAndroid(_ProductDetails):
 
     store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
     # Product IDs defined on Google Play
+    # Nightly reuses the Aurora ID to migrate the user base
     store_product_ids = {
-        'alpha': 'org.mozilla.fennec_aurora',
+        'nightly': 'org.mozilla.fennec_aurora',
         'beta': 'org.mozilla.firefox_beta',
         'release': 'org.mozilla.firefox',
     }
@@ -340,7 +339,6 @@ class FirefoxAndroid(_ProductDetails):
                         'latest-mozilla-%s-android')
     archive_repo = {
         'nightly': 'central',
-        'alpha': 'aurora',
     }
     archive_urls = {
         'api-15': archive_url_base + '-api-15/fennec-%s.multi.android-arm.apk',
@@ -439,13 +437,9 @@ class FirefoxAndroid(_ProductDetails):
                 instead of Google Play.
         :return: string url
         """
-        # Use a direct link for Nightly until Bug 1241114 is solved
-        if channel == 'nightly':
-            force_direct = True
-
         if force_direct:
-            # Use a direct archive link for Nightly/Aurora
-            if channel in ['nightly', 'alpha']:
+            # Use a direct archive link for Nightly
+            if channel == 'nightly':
                 return self.archive_urls[arch] % (self.archive_repo[channel],
                                                   self.latest_version(channel))
 
