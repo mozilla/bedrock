@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 from django.conf import settings
 
 import jinja2
@@ -70,30 +68,11 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
 
 
 def android_builds(channel, builds=None):
-    channel = channel.lower()
     builds = builds or []
-    variations = OrderedDict([
-        ('api-15', 'Ice Cream Sandwich+'),
-        ('x86', 'x86'),
-    ])
-
-    if channel == 'aurora':
-        channel = 'alpha'
-
-    if channel == 'nightly':
-        for type, arch_pretty in variations.iteritems():
-            link = firefox_android.get_download_url(channel, type)
-            builds.append({'os': 'android',
-                           'os_pretty': 'Android',
-                           'os_arch_pretty': 'Android %s' % arch_pretty,
-                           'arch': 'x86' if type == 'x86' else 'armv7up %s' % type,
-                           'arch_pretty': arch_pretty,
-                           'download_link': link})
-    else:
-        link = firefox_android.get_download_url(channel)
-        builds.append({'os': 'android',
-                       'os_pretty': 'Android',
-                       'download_link': link})
+    link = firefox_android.get_download_url(channel.lower())
+    builds.append({'os': 'android',
+                   'os_pretty': 'Android',
+                   'download_link': link})
 
     return builds
 

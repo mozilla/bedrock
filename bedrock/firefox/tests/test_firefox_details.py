@@ -534,7 +534,6 @@ class TestFirefoxDesktop(TestCase):
 @patch.object(firefox_android._storage, 'data',
               Mock(return_value=dict(version='22.0.1',
                                      beta_version='23.0',
-                                     alpha_version='24.0a2',
                                      nightly_version='25.0a1')))
 class TestFirefoxAndroid(TestCase):
     archive_url_base = 'https://archive.mozilla.org/pub/mobile/nightly/'
@@ -549,22 +548,16 @@ class TestFirefoxAndroid(TestCase):
         """latest_version should return the latest beta version."""
         eq_(firefox_android.latest_version('beta'), '23.0')
 
-    def test_latest_alpha_platforms(self):
-        """latest_version should return the latest Aurora version."""
-        platforms = [key for (key, value) in firefox_android.platforms('alpha')]
-        eq_(platforms, ['android', 'android-x86'])
-
     def test_get_download_url_nightly(self):
         """
-        get_download_url should return a mozilla-central archive link depending
-        on the architecture type, even if the force_direct option is unspecified.
+        get_download_url should return the same Google Play link of the
+        'org.mozilla.fennec_aurora' product regardless of the architecture type,
+        if the force_direct option is unspecified.
         """
-        eq_(firefox_android.get_download_url('nightly', 'api-15'),
-            self.archive_url_base + 'latest-mozilla-central-android-api-15/'
-            'fennec-25.0a1.multi.android-arm.apk')
-        eq_(firefox_android.get_download_url('nightly', 'x86'),
-            self.archive_url_base + 'latest-mozilla-central-android-x86/'
-            'fennec-25.0a1.multi.android-i386.apk')
+        ok_(firefox_android.get_download_url('nightly', 'api-15')
+            .startswith(self.google_play_url_base + 'fennec_aurora'))
+        ok_(firefox_android.get_download_url('nightly', 'x86')
+            .startswith(self.google_play_url_base + 'fennec_aurora'))
 
     def test_get_download_url_nightly_direct(self):
         """
@@ -577,29 +570,6 @@ class TestFirefoxAndroid(TestCase):
         eq_(firefox_android.get_download_url('nightly', 'x86', 'multi', True),
             self.archive_url_base + 'latest-mozilla-central-android-x86/'
             'fennec-25.0a1.multi.android-i386.apk')
-
-    def test_get_download_url_aurora(self):
-        """
-        get_download_url should return the same Google Play link of the
-        'org.mozilla.fennec_aurora' product regardless of the architecture type,
-        if the force_direct option is unspecified.
-        """
-        ok_(firefox_android.get_download_url('alpha', 'api-15')
-            .startswith(self.google_play_url_base + 'fennec_aurora'))
-        ok_(firefox_android.get_download_url('alpha', 'x86')
-            .startswith(self.google_play_url_base + 'fennec_aurora'))
-
-    def test_get_download_url_aurora_direct(self):
-        """
-        get_download_url should return a mozilla-aurora archive link depending
-        on the architecture type, if the force_direct option is True.
-        """
-        eq_(firefox_android.get_download_url('alpha', 'api-15', 'multi', True),
-            self.archive_url_base + 'latest-mozilla-aurora-android-api-15/'
-            'fennec-24.0a2.multi.android-arm.apk')
-        eq_(firefox_android.get_download_url('alpha', 'x86', 'multi', True),
-            self.archive_url_base + 'latest-mozilla-aurora-android-x86/'
-            'fennec-24.0a2.multi.android-i386.apk')
 
     def test_get_download_url_beta(self):
         """

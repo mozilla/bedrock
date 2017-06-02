@@ -230,7 +230,7 @@ class TestRNAViews(TestCase):
         link = views.get_download_url(release)
         ok_(link.startswith(store_url % 'org.mozilla.firefox_beta'))
 
-        release = Mock(product='Firefox for Android', channel='Aurora')
+        release = Mock(product='Firefox for Android', channel='Nightly')
         link = views.get_download_url(release)
         ok_(link.startswith(store_url % 'org.mozilla.fennec_aurora'))
 

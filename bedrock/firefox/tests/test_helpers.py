@@ -210,27 +210,10 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[5]).attr('class'), 'os_linux64')
 
     def test_latest_nightly_android(self):
-        """The download button should have 2 direct archive links"""
-        rf = RequestFactory()
-        get_request = rf.get('/fake')
-        doc = pq(render("{{ download_firefox('nightly', platform='android') }}",
-                        {'request': get_request}))
-
-        list = doc('.download-list li')
-        eq_(list.length, 2)
-        eq_(pq(list[0]).attr('class'), 'os_android armv7up api-15')
-        eq_(pq(list[1]).attr('class'), 'os_android x86')
-
-        links = doc('.download-list li a')
-        eq_(links.length, 2)
-        ok_(pq(links[0]).attr('href').startswith('https://archive.mozilla.org'))
-        ok_(pq(links[1]).attr('href').startswith('https://archive.mozilla.org'))
-
-    def test_latest_aurora_android(self):
         """The download button should have a Google Play link"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
-        doc = pq(render("{{ download_firefox('alpha', platform='android') }}",
+        doc = pq(render("{{ download_firefox('nightly', platform='android') }}",
                         {'request': get_request}))
 
         list = doc('.download-list li')
