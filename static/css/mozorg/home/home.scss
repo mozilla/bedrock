@@ -1,0 +1,848 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/components/buttons-download';
+
+
+$color-text-header: #2762A9;
+$color-text-dark: #56565A;
+
+// download page and firstrun colors
+$horizonColorForeground: #2d253a;
+$horizonColorBackground: #092d6c;
+
+// static horizon background gradient
+@mixin horizon-gradient() {
+    background-color: $horizonColorBackground;
+    background-image: linear-gradient(-180deg, #092d6c 0%, #10659c 40%, #7babbf 68%, #e9c39f 85%, #ff9a4a 100%);
+    background-repeat: no-repeat;
+}
+
+// mixin for icon links in who/innovate sections
+@mixin icon-link($height, $bgOffset) {
+    &:before {
+        background-position: 0 $bgOffset;
+        height: $height;
+        top: 0;
+    }
+}
+
+body {
+    border-top: 0;
+}
+
+// Header
+.masthead {
+    background: $color-mozred-bright;
+    color: #fff;
+
+    .content {
+        padding: 51px 20px 0;
+    }
+
+    .masthead-logo {
+        background: $color-mozred-bright;
+        height: 30px;
+        left: 0;
+        margin: 0;
+        padding: 10px 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+
+        img {
+            height: 30px;
+        }
+    }
+}
+
+#nav-download-firefox {
+    display: none;
+}
+
+@media #{$mq-tablet} {
+    .masthead {
+        background: $color-mozred-bright;
+        padding: 0;
+
+        .content {
+            padding-top: 0;
+        }
+
+        .masthead-logo {
+            float: left;
+            position: relative;
+            width: 115px;
+        }
+    }
+
+    #nav-main-menu,
+    .js #nav-main-menu {
+        padding: 15px 0;
+
+        li {
+            border-right: 1px solid #fff;
+
+            &:last-child {
+                border-right: 0;
+                padding-right: 0;
+            }
+        }
+
+        a,
+        a:hover,
+        a:focus {
+            color: #fff;
+        }
+    }
+
+    #nav-download-firefox {
+        display: inline-block;
+        float: right;
+
+        ul.download-list {
+            margin-bottom: 0;
+        }
+
+        .button {
+            @include font-size(14px);
+            border-radius: 0;
+            padding: 13px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .fx-privacy-link {
+            display: none;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    #nav-main-menu,
+    .js #nav-main-menu {
+        li {
+            padding: 0 20px;
+        }
+    }
+}
+
+// flexbox layout for savvy browsers to push nav items to the right
+@supports (display: flex) {
+    @media #{$mq-tablet} {
+        #nav-main-menu,
+        .js #nav-main-menu {
+            @include flexbox;
+            @include justify-content(flex-end);
+        }
+    }
+}
+
+main {
+    overflow: hidden;
+}
+
+
+// *** INTRO *** //
+#intro {
+    background: #00a7de;
+    color: #fff;
+    position: relative;
+
+    h2,
+    h3 {
+        @include border-box;
+        color: #fff;
+        margin: 0 auto;
+        text-align: center;
+        text-shadow: 0 0 10px rgba(0, 0, 0, .01),
+                     0 0 5px rgba(0, 0, 0, .025),
+                     0 1px 1px rgba(0, 0, 0, .5);
+    }
+
+    .content {
+        background: rgba(0, 20, 40, .5);
+        display: block;
+        height: 100%;
+        padding: 20px;
+        position: relative;
+        width: 100%;
+        z-index: 2;
+    }
+
+    h2 {
+        @include font-size(32px);
+        font-style: italic;
+        line-height: 1.3;
+        padding: 70px 40px;
+        max-width: $width-desktop;
+
+        @media #{$mq-tablet} {
+            @include font-size(48px);
+        }
+
+        @media #{$mq-tablet} and #{$mq-tall} {
+            padding: 110px 40px;
+        }
+
+        @media #{$mq-desktop} and #{$mq-tall} {
+            padding: 130px 40px;
+        }
+
+        @media #{$mq-desktop-wide} {
+            @include font-size(56px);
+        }
+
+        @media #{$mq-desktop-wide} and #{$mq-tall} {
+            padding: 150px 40px;
+        }
+    }
+
+    h3 {
+        @include font-size(20px);
+        line-height: 1.3;
+        padding: 0 40px 10px;
+        max-width: $width-tablet;
+
+        @media #{$mq-tablet} {
+            @include font-size(22px);
+        }
+
+        @media #{$mq-desktop} {
+            @include font-size(26px);
+        }
+
+        @media #{$mq-desktop-wide} {
+            @include font-size(28px);
+            padding-bottom: 20px;
+        }
+    }
+
+    #home-slideshow {
+        height: 100%;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .slide {
+        @include background-size(cover);
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: none;
+        height: 100%;
+        width: 100%;
+    }
+
+    #slide-two {
+        display: block;
+        background-image: url('/media/img/home/2016/intro/intro-learning-600.jpg');
+    }
+
+    @media #{$mq-tablet} {
+        .slide {
+            display: block;
+        }
+
+        #slide-one {
+            background-image: url('/media/img/home/2016/intro/intro-mitchell-1000.jpg');
+        }
+
+        #slide-two {
+            background-image: url('/media/img/home/2016/intro/intro-learning-1000.jpg');
+        }
+
+        #slide-three {
+            background-image: url('/media/img/home/2016/intro/intro-advocacy-1000.jpg');
+        }
+
+        #slide-four {
+            background-image: url('/media/img/home/2016/intro/intro-vr-1000.jpg');
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        #slide-one {
+            background-image: url('/media/img/home/2016/intro/intro-mitchell-2000.jpg');
+        }
+
+        #slide-two {
+            background-image: url('/media/img/home/2016/intro/intro-learning-2000.jpg');
+        }
+
+        #slide-three {
+            background-image: url('/media/img/home/2016/intro/intro-advocacy-2000.jpg');
+        }
+
+        #slide-four {
+            background-image: url('/media/img/home/2016/intro/intro-vr-2000.jpg');
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    [lang^='en'] {
+        #intro h2 {
+            @include font-size(56px);
+        }
+    }
+}
+
+@media #{$mq-desktop-wide} {
+    [lang^='en'] {
+        #intro h2 {
+            @include font-size(64px);
+        }
+    }
+}
+
+// *** IMPACT/INNOVATE *** //
+.section-content {
+    @include border-box;
+    min-width: $width-phone;
+    padding: 10px 20px 20px;
+    text-align: center;
+
+    &:before {
+        content: '';
+        display: block;
+        height: 250px;
+        margin-bottom: 20px;
+        background-repeat: no-repeat;
+    }
+
+    .section-headline {
+        @include font-size(32px);
+        margin-bottom: 20px;
+    }
+
+    p {
+        padding-bottom: 20px;
+    }
+
+    @media #{$mq-tablet} {
+        padding: 10px 40px 20px;
+
+        p {
+            @include font-size(18px);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        p {
+            @include font-size(20px);
+        }
+    }
+}
+
+#who .section-content {
+    background: #fff;
+    color: $color-text-dark;
+
+    .section-headline {
+        color: $color-mozred-bright;
+    }
+
+    &:before {
+        @include at2x('/media/img/home/2016/speaker.png', 200px, 200px);
+        background-position: center;
+    }
+
+    .icon-links {
+        a {
+            color: $color-mozred-bright;
+
+            &:before {
+                background-color: $color-mozred-bright;
+            }
+        }
+
+        .icon use {
+            fill: #fff;
+        }
+    }
+}
+
+#innovate .section-content {
+    background: $color-mozred-bright;
+    color: #fff;
+
+    &:before {
+        @include at2x('/media/img/home/2016/vr.png', 200px, 200px);
+        background-position: center;
+    }
+
+    .icon-links {
+        a {
+            color: #fff;
+
+            &:before {
+                background-color: #fff;
+            }
+        }
+
+        .icon use {
+            fill: $color-mozred-bright;
+        }
+    }
+}
+
+// float layout for wider viewports
+@media #{$mq-tablet} {
+    #who-innovate-wrapper {
+        @include clearfix;
+    }
+
+    #who {
+        float: left;
+        width: 50%;
+    }
+
+    #innovate {
+        float: right;
+        width: 50%;
+    }
+}
+
+// icon links
+.icon-links {
+    margin: 20px 0;
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    a {
+        @include trailing-arrow;
+        font-weight: bold;
+        text-decoration: none;
+
+        &:after {
+            @include transition(right 150ms cubic-bezier(.30, -0.5, .60, 1.5));
+            position: relative;
+            right: 0;
+        }
+
+        &:hover:after,
+        &:focus:after {
+            right: -4px;
+        }
+    }
+
+    .icon {
+        display: none;
+    }
+
+    @media #{$mq-tablet} {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        width: 60%;
+
+        li {
+            margin: 30px 0 20px;
+            position: relative;
+            min-height: 40px;
+            padding: 0 0 0 54px;
+        }
+
+        a {
+            @include font-size(18px);
+
+            &:before {
+                @include transition(transform 150ms cubic-bezier(.30, -0.5, .60, 1.5));
+                border-radius: 50%;
+                content: '';
+                display: block;
+                height: 55px;
+                left: -25px;
+                position: absolute;
+                top: -12px;
+                width: 55px;
+            }
+
+            &:hover:before,
+            &:focus:before {
+                @include transform(scale(1.15));
+                @include transform-origin(50% 50%);
+            }
+        }
+
+        .icon {
+            border-radius: 50%;
+            display: inline-block;
+            height: 45px;
+            left: -25px;
+            padding: 5px;
+            position: absolute;
+            top: -12px;
+            width: 45px;
+
+            svg path,
+            svg rect {
+                fill: inherit;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        a {
+            @include font-size(20px);
+        }
+    }
+}
+
+#icon-sprite {
+    display: none;
+}
+
+
+// ** FIREFOX ** //
+#firefox {
+    background: #2d253a;
+    color: #fff;
+    text-align: center;
+
+    h2 {
+        @include font-size(24px);
+        padding-top: 40px;
+
+        &:before {
+            @include at2x('/media/img/firefox/template/logo-large.png');
+            @include background-size(100%);
+            background-repeat: no-repeat;
+            content: '';
+            display: block;
+            height: 84px;
+            margin: 0 auto 10px;
+            width: 80px;
+        }
+
+        @media #{$mq-phone-wide} {
+            @include font-size(36px);
+
+            &:before {
+                height: 142px;
+                width: 136px;
+            }
+        }
+
+        @media #{$mq-high-res} {
+            &:before {
+                @include background-size(100%);
+            }
+        }
+    }
+
+    .horizon {
+        @include horizon-gradient;
+
+        .content {
+            padding-bottom: 270px;
+        }
+    }
+
+    .stars {
+        background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat;
+    }
+
+    .foreground .content {
+        padding-bottom: 60px;
+
+        p {
+            margin-bottom: 40px;
+        }
+
+        a,
+        a:hover {
+            color: #fff;
+        }
+
+        @media #{$mq-tablet} {
+            @include font-size(24px);
+        }
+    }
+
+    .forest-container {
+        height: 483px;
+        margin-top: -254px;
+        position: relative;
+    }
+
+    .mountains-container {
+        height: 483px;
+        left: 50%;
+        // offset assets to get the fox in the viewport
+        margin-left: -1046px;
+        position: absolute;
+        top: 0;
+        width: 1770px;
+
+        .layer {
+            left: 0;
+            position: absolute;
+            width: 1770px;
+        }
+
+        @media #{$mq-tablet} {
+            // re-center assets
+            margin-left: -885px;
+        }
+    }
+
+    .sun {
+        height: 318px;
+        left: 50%;
+        margin-left: -161px;
+        position: absolute;
+        top: 30px;
+        width: 322px;
+    }
+
+    .mountains {
+        height: 482px;
+        top: 0;
+    }
+
+    .foreground-shape {
+        @include at2x('/media/img/firefox/horizon/foreground.png', 1770px, 254px);
+        background-position: top left;
+        background-repeat: no-repeat;
+        bottom: 0;
+        height: 254px;
+    }
+
+    .trees-left {
+        bottom: 70px;
+        height: 602px;
+        left: -375px;
+        position: absolute;
+        width: 909px;
+    }
+
+    .trees-right {
+        bottom: 120px;
+        height: 550px;
+        position: absolute;
+        right: -420px;
+        width: 922px;
+    }
+
+    .fox {
+        bottom: 39px;
+        height: 254px;
+        position: absolute;
+        right: 140px;
+        width: 522px;
+    }
+
+    #fxmobile-download-buttons {
+        // hide by default - show with JS based on platform
+        display: none;
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        &.visible {
+            display: block;
+        }
+    }
+}
+
+// Externals (Add-ons, careers, support)
+.section-externals {
+    background: #f5f5f5;
+    text-align: center;
+
+    ul {
+        position: relative;
+        padding: 60px 0 40px;
+        @include clearfix;
+
+        li {
+            max-width: $width-phone-wide;
+            margin: 0 auto 30px;
+
+            @media #{$mq-tablet} {
+                float: left;
+                width: 33.3%;
+                margin: 0;
+            }
+        }
+    }
+
+    h3 {
+        @include font-size(18px);
+        color: $color-text-secondary;
+        padding-top: 100px;
+        position: relative;
+
+        &:before {
+            @include background-size(fill);
+            background-position: center center;
+            background-repeat: no-repeat;
+            content: '';
+            height: 84px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        @media #{$mq-tablet} {
+            @include font-size(20px);
+        }
+    }
+
+    a {
+        display: block;
+        padding: 0 20px;
+        text-align: center;
+        text-decoration: none;
+
+        &.add-ons h3:before {
+            background-image: url('/media/img/home/2016/icon-addons.svg');
+        }
+        &.careers h3:before {
+            background-image: url('/media/img/home/2016/icon-careers.svg');
+        }
+        &.help h3:before {
+            background-image: url('/media/img/home/2016/icon-help.svg');
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+
+            h3 {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    p {
+        @include font-size(16px);
+        color: $color-text-secondary;
+    }
+}
+
+
+// Newsletter
+#newsletter-subscribe.section-newsletter {
+    margin: 0;
+    background: $color-mozred-bright;
+
+    .newsletter-form,
+    .form-title,
+    .form-contents {
+        @include clearfix;
+        float: none;
+        margin: 0 auto;
+    }
+
+    .form-title {
+        @include background-size(100px, 100px);
+        background-position: center top;
+        margin-top: 0;
+        min-height: 0;
+        padding-left: 0;
+        padding-top: 120px;
+        text-align: center;
+
+        h3 {
+            @include font-size(32px);
+            font-style: italic;
+            text-align: center;
+        }
+
+        h4 {
+            @include font-size(18px);
+            font-weight: normal;
+            line-height: 1.5;
+        }
+    }
+
+    .form-contents {
+        .field {
+            margin: 0 0 1em;
+        }
+    }
+
+    .errorlist {
+        padding: 10px;
+    }
+
+    #newsletter-form-thankyou {
+        padding: 0;
+    }
+}
+
+.js #form-details {
+    @include hidden;
+}
+
+@media #{$mq-tablet} {
+    #newsletter-subscribe.section-newsletter {
+        .newsletter-form {
+            padding-left: 380px;
+            width: 310px;
+
+            .form-title {
+                @include background-size(120px 120px);
+                @include border-box;
+                background-position: left top;
+                float: left;
+                margin-left: -380px;
+                padding:10px 0 0 140px;
+                width: 350px;
+                height: 115px;
+                h3,
+                h4 {
+                    text-align: left;
+                }
+            }
+
+            .form-contents,
+            .form-submit {
+                @include border-box;
+                float: left;
+                margin: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+#colophon {
+    background: #666;
+    color: #fff;
+    margin: 0;
+
+    a,
+    a:link {
+        color: #23c7db;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: darken(#23c7db, 10%);
+    }
+
+    a:hover,
+    a:focus {
+        color: #23c7db;
+        text-decoration: underline;
+    }
+
+    .logo a {
+        @include at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
+    }
+}
+
