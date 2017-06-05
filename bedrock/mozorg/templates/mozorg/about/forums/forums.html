@@ -4,6 +4,9 @@
 
 {% extends "mozorg/about-base.html" %}
 
+{# Bug 1370337: MDN forums have moved from Google Groups to Discourse #}
+{% set mdn_forums = ['mozilla.mdn', 'mozilla.dev.mdc', 'mozilla.dev.mdn'] %}
+
 {% block page_title %}{{ _('Forums') }}{% endblock %}
 {% block body_id %}about-forums{% endblock %}
 
@@ -73,10 +76,20 @@
         <li id="{{ forum.dashed }}">
           <div class="summary">
             <h4>{{ forum.id }}<a href="#{{ forum.dashed }}">#</a></h4>
-            <p class="description">{{ forum.description|safe }}</p>
+            <p class="description">
+              {%- if forum.id in mdn_forums -%}
+                {{ _('Discussions about MDN Web Docs have moved to Discourse.') }}
+              {%- else -%}
+                {{ forum.description|safe }}
+              {%- endif -%}
+            </p>
           </div>
           <ul class="subscribe">
-            {% if forum.id.startswith('mozilla.') %}
+            {% if forum.id in mdn_forums %}
+              <li>{{ _('Follow:') }} <a href="https://discourse.mozilla-community.org/c/mdn">{{ _('MDN category on Discourse') }}</a></li>
+              <li>{{ _('Email-in:') }} <a href="mailto:mdn@mozilla-community.org">mdn@mozilla-community.org</a></li>
+              <li>{{ _('Archives, up to June 2017:') }} <a href="https://groups.google.com/group/{{ forum.id }}/topics">{{ _('%s Google Group')|format(forum.id) }}</a></li>
+            {% elif forum.id.startswith('mozilla.') %}
               <li>{{ _('Mailing List:') }} <a href="https://lists.mozilla.org/listinfo/{{ forum.dashed }}">{{ forum.dashed }}&#64;lists.mozilla.org</a></li>
               <li>{{ _('Newsgroup:') }} <a href="news://news.mozilla.org/{{ forum.id }}">{{ forum.id }}</a></li>
               <li>{{ _('Web:') }} <a href="http://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
