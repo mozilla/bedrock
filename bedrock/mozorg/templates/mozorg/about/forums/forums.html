@@ -33,12 +33,12 @@
   </p>
 
   <p>
-  {{ _('Mozilla newsgroups are sponsored by <a href="%s">Giganews Newsgroups</a>, to whom we are very grateful.')|format('http://www.giganews.com/') }}
-  <a href="http://www.giganews.com/"><img src="{{ static('img/mozorg/about/giganews.png') }}" alt="" height="25" width="89" /></a>
+  {{ _('Mozilla newsgroups are sponsored by <a href="%s">Giganews Newsgroups</a>, to whom we are very grateful.')|format('https://www.giganews.com/') }}
+  <a href="https://www.giganews.com/"><img src="{{ static('img/mozorg/about/giganews.png') }}" alt="" height="25" width="89" /></a>
   </p>
 
   <form method="get" action="https://groups.google.com/groups">
-  <a href="http://www.google.com/"><img
+  <a href="https://www.google.com/"><img
        src="https://www.google.com/logos/Logo_25wht.gif"
        width="75" height="32" alt="Google" /></a>
      <input type="text" name="as_q" maxlength="256" value="" placeholder="{{ _('Search Forums') }}" />
@@ -92,7 +92,7 @@
             {% elif forum.id.startswith('mozilla.') %}
               <li>{{ _('Mailing List:') }} <a href="https://lists.mozilla.org/listinfo/{{ forum.dashed }}">{{ forum.dashed }}&#64;lists.mozilla.org</a></li>
               <li>{{ _('Newsgroup:') }} <a href="news://news.mozilla.org/{{ forum.id }}">{{ forum.id }}</a></li>
-              <li>{{ _('Web:') }} <a href="http://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
+              <li>{{ _('Web:') }} <a href="https://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
             {% else %}
               <li>{{ _('Mailing List:') }} <a href='https://mail.mozilla.org/listinfo/{{ forum.dashed }}'>{{ forum.dashed }}&#64;mozilla.org</a></li>
             {% endif %}
@@ -119,7 +119,7 @@ with an <a href="%(irchelp_url)s">IRC</a> client.')|format(irc_url='https://wiki
 
 <p>
 {{ _('Giganews is sponsoring free access to the Mozilla Development Forums’ Usenet hierarchy "mozilla.*".') }}
-{{ _('Please respect the parts of their <a href="%s">Acceptable Use Policy</a> which are relevant to non-Giganews subscribers.')|format('http://www.giganews.com/legal/aup.html') }}
+{{ _('Please respect the parts of their <a href="%s">Acceptable Use Policy</a> which are relevant to non-Giganews subscribers.')|format('https://www.giganews.com/legal/aup.html') }}
 {{ _('Use <b>news.mozilla.org</b> as the news server address in your news client.') }}
 {{ _('You will not need to use any authentication information.') }}
 </p>
