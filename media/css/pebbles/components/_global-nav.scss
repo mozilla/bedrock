@@ -9,9 +9,9 @@
 
 .moz-global-nav {
     @include open-sans;
-    position: relative;
     background: #fff;
     overflow: hidden;
+    position: relative;
 
     a:link,
     a:visited {
@@ -100,7 +100,7 @@
             height: 25px;
         }
 
-        @media #{$mq-nav-desktop} {
+        @media #{$mq-desktop} {
             margin-left: 17px;
 
             a {
@@ -114,16 +114,16 @@
     // Horizontal link menu container
     .nav-horizontal-menu {
         @include clearfix;
-        padding: 10px 0 10px;
-        position: relative;
-        overflow: hidden;
         margin-left: 5px;
+        overflow: hidden;
+        padding: 10px 0;
+        position: relative;
 
-        @media #{$mq-nav-tablet} {
+        @media #{$mq-tablet} {
             padding-top: 25px;
         }
 
-        @media #{$mq-nav-desktop} {
+        @media #{$mq-desktop} {
             margin-left: 17px;
         }
     }
@@ -135,11 +135,16 @@
         float: left;
         list-style-type: none;
         margin: 0 0 0 10px;
-        padding: 13px 0;
+        padding: 13px 0 0;
 
         &> li {
             display: inline-block;
-            padding: 0 6px;
+            line-height: 1.2;
+            padding: 0 20px 10px 0;
+
+            &:last-child {
+                padding-right: 0;
+            }
 
             a:hover,
             a:active,
@@ -152,15 +157,26 @@
             }
         }
 
-        @media #{$mq-nav-tablet} {
+        @media #{$mq-tablet} {
+            @include border-box;
             display: block;
+            margin-left: 20px;
+            width: calc(100% - 370px);
         }
 
-        @media #{$mq-nav-desktop} {
-            margin-left: 21px;
+        @media #{$mq-desktop} {
+            width: calc(100% - 480px);
+        }
+
+        @media #{$mq-desktop-wide} {
+            margin-left: 40px;
 
             &> li {
-                padding: 0 21px;
+                padding-right: 40px;
+
+                &:last-child {
+                    padding-right: 0;
+                }
             }
         }
     }
@@ -172,7 +188,7 @@
         }
     }
 
-    @media #{$mq-nav-desktop} {
+    @media #{$mq-desktop} {
         max-width: $width-max-content;
         margin: 0 auto;
     }
@@ -266,7 +282,7 @@
             transform: translate(7px, 7px) rotate(45deg);
         }
 
-        @media #{$mq-nav-desktop} {
+        @media #{$mq-desktop} {
 
             .rect {
                 transition: transform .12s ease-in-out;
@@ -539,11 +555,16 @@ html.moz-nav-open .moz-global-nav-page-mask {
         }
     }
 
-    @media #{$mq-nav-tablet} {
+    @media #{$mq-tablet} {
         margin-right: 60px;
+        width: 200px;
+
+        .download-link {
+            float: right;
+        }
     }
 
-    @media #{$mq-nav-desktop} {
+    @media #{$mq-desktop} {
         margin-right: 85px;
 
         .download-link {
@@ -641,7 +662,7 @@ html.moz-nav-open {
         visibility: hidden;
     }
 
-    @media #{$mq-nav-desktop} {
+    @media #{$mq-desktop} {
         html.moz-nav-open {
             height: 100%;
 
@@ -741,7 +762,7 @@ html.moz-nav-open {
     }
 
     // only show promos on taller desktop viewports
-    @media #{$mq-nav-tablet} {
+    @media #{$mq-tablet} {
         .nav-promo {
             display: block;
         }

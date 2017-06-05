@@ -4,10 +4,6 @@
 
 @import '../pebbles/includes/lib';
 
-// override .content breakpoints to match navigation.
-$mq-desktop: $mq-nav-desktop;
-$mq-tablet: $mq-nav-tablet;
-
 // override .content widths and padding for fluid pages.
 .content {
     width: auto;

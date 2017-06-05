@@ -33,7 +33,7 @@
         margin: 0 60px;
         position: relative;
 
-        @media #{$mq-nav-desktop} {
+        @media #{$mq-desktop} {
             margin: 0 85px;
         }
     }
@@ -45,7 +45,7 @@
 
     .sub-nav-primary-links-container {
         float: left;
-        width: 100%;
+        width: calc(100% - 200px);
     }
 
     .sub-nav-primary-links {
@@ -56,7 +56,7 @@
 
         &> li {
             display: inline-block;
-            padding: 0 12px 13px 0;
+            padding: 0 20px 10px 0;
 
             a:hover,
             a:active,
@@ -74,12 +74,12 @@
         }
     }
 
-    @media #{$mq-nav-tablet} {
+    @media #{$mq-tablet} {
         display: block;
         margin-bottom: 20px;
 
         .sub-nav-logo-link + .sub-nav-primary-links  {
-            margin-left: 43px;
+            margin-left: 45px;
         }
 
         &.stuck {
@@ -90,34 +90,17 @@
             width: 100%;
             z-index: 200;
 
-            .sub-nav-primary-links-container {
-                width: 78%;
-            }
-
             .sub-nav-download-wrapper {
                 height: auto;
-                width: 22%;
-            }
-
-            .sub-nav-primary-links li {
-                padding-right: 6px;
-
-                &:last-child {
-                    padding-right: 0;
-                }
-            }
-
-            .sub-nav-logo-link + .sub-nav-primary-links  {
-                margin-left: 37px;
+                width: 200px;
             }
         }
     }
 
-    @media #{$mq-nav-desktop} {
-
+    @media #{$mq-desktop} {
         .sub-nav-primary-links {
             li {
-                padding: 0 42px 13px 0;
+                padding: 0 20px 10px 0;
 
                 &:last-child {
                     padding-right: 0;
@@ -126,25 +109,17 @@
         }
 
         .sub-nav-logo-link + .sub-nav-primary-links  {
-            margin-left: 120px;
+            margin-left: 98px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .sub-nav-primary-links li {
+            padding-right: 40px;
         }
 
-        &.stuck {
-            .sub-nav-primary-links-container {
-                width: 80%;
-            }
-
-            .sub-nav-download-wrapper {
-                width: 20%;
-            }
-
-            .sub-nav-primary-links li {
-                padding-right: 24px;
-            }
-
-            .sub-nav-logo-link + .sub-nav-primary-links  {
-                margin-left: 120px;
-            }
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 120px;
         }
     }
 
@@ -255,7 +230,7 @@
         }
     }
 
-    @media #{$mq-nav-desktop} {
+    @media #{$mq-desktop} {
         margin-right: 10px;
     }
 
@@ -264,7 +239,7 @@
     }
 }
 
-@media #{$mq-nav-tablet} {
+@media #{$mq-tablet} {
     .moz-sub-nav.stuck #sub-nav-download-firefox {
         opacity: 1;
         transform: translateY(0);
