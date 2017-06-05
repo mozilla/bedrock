@@ -1449,35 +1449,3 @@ a:visited {
        display: none;
     }
 }
-
-/*--------------------------------------------------------------------------*/
-// Footer
-
-#colophon {
-    background: #000;
-    color: #fff;
-    margin: 0;
-
-    a,
-    a:link {
-        color: $color-brand-cyan;
-        text-decoration: none;
-    }
-
-    a:visited {
-        color: darken($color-brand-cyan, 10%);
-    }
-
-    a:hover,
-    a:focus {
-        color: $color-brand-cyan;
-        text-decoration: underline;
-    }
-
-    .logo a {
-        background: url('/media/img/pebbles/moz-wordmark-light-reverse.svg') no-repeat;
-        @include background-size(100px 32px);
-        height: 32px;
-        width: 100px;
-    }
-}

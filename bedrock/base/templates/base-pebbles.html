@@ -139,11 +139,7 @@
     {% block content %}{% endblock %}
 
     {% block site_footer %}
-      {% if LANG.startswith('en-') %}
-        {% include 'includes/site-footer-new.html' %}
-      {% else %}
-        {% include 'includes/site-footer.html' %}
-      {% endif %}
+      {% include 'includes/site-footer.html' %}
     {% endblock %}
   </div>
 

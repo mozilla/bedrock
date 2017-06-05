@@ -14,8 +14,6 @@ body {
 
 #outer-wrapper {
     background: transparent;
-    width: 1280px;
-    margin: 0 auto;
     margin-top: 7px;
 }
 
@@ -215,10 +213,6 @@ body {
     }
 }
 
-#colophon {
-  background-color: transparent;
-}
-
 dl.faq dt {
     color: #0095dd;
     line-height: 133%;
@@ -284,7 +278,7 @@ html[dir="rtl"] {
 }
 
 @media (max-width: 1279px) {
-    #outer-wrapper, #wrapper {
+    #wrapper {
         width: @breakDesktop;
     }
 
@@ -312,7 +306,7 @@ html[dir="rtl"] {
 
 // tablet (760 - 1000)
 @media (max-width: @breakDesktop) {
-    #outer-wrapper, #wrapper {
+    #wrapper {
         width: @breakTablet;
     }
 
@@ -382,7 +376,7 @@ html[dir="rtl"] {
 
 /* wide mobile (480 - 760) */
 @media (max-width: @breakTablet) {
-    #outer-wrapper, #wrapper {
+    #wrapper {
         width: @breakMobileLandscape;
     }
 
@@ -465,7 +459,7 @@ html[dir="rtl"] {
 }
 
 @media (max-width: @breakMobileLandscape) {
-    #outer-wrapper, #wrapper {
+    #wrapper {
         width: @breakMobile;
     }
 

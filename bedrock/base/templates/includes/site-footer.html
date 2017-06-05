@@ -1,52 +1,64 @@
-      <footer id="colophon" class="old{% if footer_class %} {{ footer_class }}{% endif %}">
-        <nav class="row">
-          <div class="col col-1">
-            <div class="logo"><a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">Mozilla</a></div>
-            <p class="license">
-              {%- trans url=url('foundation.licensing.website-content') -%}
-              Portions of this content are ©1998–{{ current_year }} by individual
-              mozilla.org contributors. Content available under
-              a <a href="{{ url }}">Creative Commons license</a>.
-              {%- endtrans -%}
-            </p>
-          </div>
-          <div class="col col-2">
-            <ul class="links-join">
-              <li><a href="{{ url('mozorg.about') }}" data-link-type="footer" data-link-name="About">{{ _('About') }}</a></li>
-              <li class="wrap"><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact Us">{{ _('Contact Us') }}</a></li>
-              <li class="wrap"><a href="{{ donate_url('footer') }}" class="donate" data-link-type="footer" data-link-name="Donate">{{ _('Donate') }}</a></li>
-              <li class="clear"><a href="https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org" data-link-type="footer" data-link-name="Contribute to this site">{{ _('Contribute to this site') }}</a></li>
-            </ul>
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-            <ul class="links-legal">
-              <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
-              <li class="wrap"><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
-              <li class="wrap"><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
-              <li class="clear"><a href="{{ url('legal.fraud-report') }}" data-link-type="footer" data-link-name="Report Trademark Abuse">{{ _('Report Trademark Abuse') }}</a></li>
+<footer id="colophon" class="{% if footer_class %}{{ footer_class }}{% endif %}">
+  <div class="content">
+    <nav class="primary">
+      <div class="logo">
+        <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">{{ _('Mozilla') }}</a>
+      </div>
+      <section class="mozilla">
+        <h5>{{ _('Mozilla') }}</h5>
+        <ul class="mozilla-links">
+          <li><a href="{{ url('mozorg.about') }}" data-link-type="footer" data-link-name="About">{{ _('About') }}</a></li>
+          <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact Us">{{ _('Contact Us') }}</a></li>
+          <li><a href="{{ donate_url('footer') }}" class="donate" data-link-type="footer" data-link-name="Donate">{{ _('Donate') }}</a></li>
+          <li><a href="https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org" data-link-type="footer" data-link-name="Contribute to this site">{{ _('Contribute to this site') }}</a></li>
+          <li>
+            <ul class="social-links">
+              <li><a class="twitter" href="https://twitter.com/mozilla" data-link-type="footer" data-link-name="Twitter (@mozilla)">{{ _('Twitter') }}<span> (@mozilla)</span></a></li>
+              <li><a class="facebook" href="https://www.facebook.com/mozilla" data-link-type="footer" data-link-name="Facebook (Mozilla)">{{ _('Facebook') }}<span> (Mozilla)</span></a></li>
+              <li><a class="instagram" href="https://www.instagram.com/mozillagram/" data-link-type="footer" data-link-name="Instagram (@mozillagram)">{{ _('Instagram') }}<span> (@mozillagram)</span></a></li>
             </ul>
-          </div>
-          <div class="col col-3">
-            <ul class="links-social">
-              <li>
-                {{ _('Mozilla:') }}
-                <ul>
-                  <li><a href="https://twitter.com/mozilla" data-link-type="footer" data-link-name="Twitter (@mozilla)">{{ _('Twitter') }}<span> (@mozilla)</span></a></li>
-                  <li><a href="https://www.facebook.com/mozilla" data-link-type="footer" data-link-name="Facebook (Mozilla)">{{ _('Facebook') }}<span> (Mozilla)</span></a></li>
-                  <li><a href="https://www.instagram.com/mozillagram/" data-link-type="footer" data-link-name="Instagram (@mozillagram)">{{ _('Instagram') }}<span> (@mozillagram)</span></a></li>
-                </ul>
-              </li>
-              <li>
-                {{ _('Firefox:') }}
-                <ul>
-                  <li><a href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ _('Twitter') }}<span> (@firefox)</span></a></li>
-                  <li><a href="https://www.facebook.com/Firefox" data-link-type="footer" data-link-name="Facebook (Firefox)">{{ _('Facebook') }}<span> (Firefox)</span></a></li>
-                  <li><a href="https://www.youtube.com/firefoxchannel" data-link-type="footer" data-link-name="YouTube (firefoxchannel)">{{ _('YouTube') }}<span> (firefoxchannel)</span></a></li>
-                </ul>
-              </li>
+          </li>
+        </ul>
+      </section>
+      <section class="firefox">
+        <h5>{{ _('Firefox') }}</h5>
+        <ul class="firefox-links">
+          <li><a href="{{ url('firefox') }}" data-link-type="footer" data-link-name="Download Firefox now">{{ _('Download Firefox Web Browser') }}</a></li>
+          <li><a href="{{ url('firefox.desktop.index') }}" data-link-type="footer" data-link-name="Desktop Browser for Mac, Windows, Linux">{{ _('Desktop Browser for Mac, Windows, Linux') }}</a></li>
+          <li><a href="{{ url('firefox.android.index') }}" data-link-type="footer" data-link-name="Mobile Browser for Android">{{ _('Mobile Browser for Android') }}</a></li>
+          <li><a href="{{ url('firefox.ios') }}" data-link-type="footer" data-link-name="Mobile Browser for iOS">{{ _('Mobile Browser for iOS') }}</a></li>
+          <li>
+            <ul class="social-links">
+              <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ _('Twitter') }}<span> (@firefox)</span></a></li>
+              <li><a class="facebook" href="https://www.facebook.com/Firefox" data-link-type="footer" data-link-name="Facebook (Firefox)">{{ _('Facebook') }}<span> (Firefox)</span></a></li>
+              <li><a class="youtube" href="https://www.youtube.com/firefoxchannel" data-link-type="footer" data-link-name="YouTube (firefoxchannel)">{{ _('YouTube') }}<span> (firefoxchannel)</span></a></li>
             </ul>
-            <div class="lang-switcher">
-              {% include 'includes/lang_switcher.html' %}
-            </div>
-          </div>
-        </nav>
-      </footer>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+    <nav class="secondary">
+        <div class="small-links">
+          <ul>
+            <li><a rel="nofollow" href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
+            <li><a rel="nofollow" href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
+            <li><a rel="nofollow" href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
+          </ul>
+          <p class="license">
+          {%- trans url=url('foundation.licensing.website-content') -%}
+            Portions of this content are ©1998–{{ current_year }} by individual mozilla.org
+            contributors. Content available under a <a rel="license" href="{{ url }}">Creative Commons license</a>.
+          {%- endtrans -%}
+          </p>
+        </div>
+        <div class="lang-switcher">
+          {% include 'includes/lang_switcher.html' %}
+        </div>
+    </nav>
+  </div>
+</footer>
