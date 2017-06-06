@@ -671,3 +671,14 @@ class FirefoxHubView(BlogPostsView):
             return HttpResponseRedirect(reverse('firefox.new'))
         else:
             return super(FirefoxHubView, self).get(request, *args, **kwargs)
+
+
+def sync(request):
+    locale = l10n_utils.get_locale(request)
+
+    if locale.startswith('en-'):
+        template = 'firefox/sync-en.html'
+    else:
+        template = 'firefox/sync.html'
+
+    return l10n_utils.render(request, template)

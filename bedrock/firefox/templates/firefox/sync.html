@@ -40,21 +40,24 @@
 {% endblock %}
 
 {% block content %}
-{% include 'firefox/includes/sync-animation.html' %}
-<header role="banner" class="intro container">
-  <div class="show-fx-31-signed-in">
-    <h1>{{ _('Ready, Set, Sync') }}</h1>
-    <p>
-      {{ _('You’re signed up and ready to access <em>your</em> Firefox anywhere, anytime.') }}
-    </p>
-  </div>
-  <div class="show-fx-31-signed-out show-fx-29-30 show-fx-28-older show-fx-android show-not-fx show-default">
-    <h1>{{ _('Take your Web with you') }}</h1>
-    <p>
-      {{ _('Sync Firefox wherever you use it to access your bookmarks, passwords, tabs and more from any smartphone, tablet or computer.') }}
-    </p>
-  </div>
-</header>
+  {% include 'firefox/includes/sync-animation.html' %}
+
+  {% block banner %}
+    <header role="banner" class="intro container">
+      <div class="show-fx-31-signed-in">
+        <h1>{{ _('Ready, Set, Sync') }}</h1>
+        <p>
+          {{ _('You’re signed up and ready to access <em>your</em> Firefox anywhere, anytime.') }}
+        </p>
+      </div>
+      <div class="show-fx-31-signed-out show-fx-29-30 show-fx-28-older show-fx-android show-not-fx show-default">
+        <h1>{{ _('Take your Web with you') }}</h1>
+        <p>
+          {{ _('Sync Firefox wherever you use it to access your bookmarks, passwords, tabs and more from any smartphone, tablet or computer.') }}
+        </p>
+      </div>
+    </header>
+  {% endblock %}
 
 <section class="primary">
   <div class="inner-wrapper">
@@ -73,6 +76,7 @@
         </p>
       </div>
 
+    {% block not_fx_warning %}
       <div class="show-not-fx warning">
         <p>
           {% if l10n_has_tag('firefox_sync_non_fx') %}
@@ -82,16 +86,19 @@
           {% endif %}
         </p>
       </div>
+    {% endblock %}
 
       {# Primary Buttons #}
 
       <div class="buttons">
         <div class="show-fx-31-signed-in">
-        {% if l10n_has_tag('firefox_sync_mobile_buttons_update') %}
-          <p>
-            {{ _('Now sync Firefox with your iOS and Android devices.') }}
-          </p>
-        {% endif %}
+        {% block mobile_buttons_text %}
+          {% if l10n_has_tag('firefox_sync_mobile_buttons_update') %}
+            <p>
+              {{ _('Now sync Firefox with your iOS and Android devices.') }}
+            </p>
+          {% endif %}
+        {% endblock %}
           <ul class="primary-buttons">
             <li>
               {{ google_play_button(id='cta-android') }}
@@ -207,6 +214,7 @@
 <section class="secondary">
   <div class="inner-wrapper">
     <div class="container">
+    {% block features %}
       <header>
         <h2>{{ _('Sync a little. Sync a lot.') }}</h2>
         <p>
@@ -237,6 +245,7 @@
           </p>
         </div>
       </div>
+    {% endblock %}
     </div>
   </div>
 </section>
@@ -253,7 +262,9 @@
       </header>
       <aside>
         <p>
+        {% block everywhere_copy %}
           {{ _('To get the full Sync experience, take your Web with you everywhere you use Firefox. Connect your smartphone, tablet, computer and laptop.') }}
+        {% endblock %}
         </p>
       </aside>
     </div>

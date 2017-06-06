@@ -652,3 +652,25 @@ class TestFirefoxProductIOSView(TestCase):
         view.request = RequestFactory().get('/firefox/ios/')
         view.request.locale = 'fr'
         eq_(view.get_template_names(), ['firefox/ios.html'])
+
+
+@override_settings(DEV=False)
+@patch('bedrock.firefox.views.l10n_utils.render')
+class TestSync(TestCase):
+    def test_en_us_template(self, render_mock):
+        req = RequestFactory().get('/firefox/sync/')
+        req.locale = 'en-US'
+        views.sync(req)
+        render_mock.assert_called_once_with(req, 'firefox/sync-en.html')
+
+    def test_en_gb_template(self, render_mock):
+        req = RequestFactory().get('/firefox/sync/')
+        req.locale = 'en-GB'
+        views.sync(req)
+        render_mock.assert_called_once_with(req, 'firefox/sync-en.html')
+
+    def test_locales_template(self, render_mock):
+        req = RequestFactory().get('/firefox/sync/')
+        req.locale = 'de'
+        views.sync(req)
+        render_mock.assert_called_once_with(req, 'firefox/sync.html')
