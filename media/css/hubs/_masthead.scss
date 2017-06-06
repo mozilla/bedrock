@@ -1,0 +1,154 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+/*--------------------------------------------------------------------------*/
+// Old style masthead for locales that don't yet have the global nav
+
+#masthead {
+    color: #000;
+    padding: 0;
+    width: 100%;
+
+    .content {
+        position: relative;
+    }
+
+    .masthead-nav-main {
+        float: left;
+    }
+
+    .download-button {
+        display: none;
+
+        .download-list {
+            margin-bottom: 0;
+        }
+
+        .download-link {
+            @include font-size(14px);
+            border-radius: 0;
+            border: none;
+            font-weight: bold;
+            padding: 15px 20px;
+        }
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+
+    .masthead-nav-main {
+        text-transform: none;
+        font-weight: bold;
+        @include open-sans;
+        @include font-size(16px);
+
+        .nav-main-menu a:hover {
+            border-color: #000;
+            color: #000;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .masthead-nav-main {
+            margin-right: 0;
+
+            .nav-main-menu {
+                padding: 15px 0;
+
+                a:link,
+                a:visited {
+                    color: #000;
+                }
+
+                li:first-child {
+                    border-left: none;
+                }
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        .download-button {
+            display: block;
+            float: right;
+
+            .download-link {
+                padding: 15px 20px;
+            }
+        }
+    }
+}
+
+#nav-download-firefox {
+    float: right;
+
+    .download-list {
+        margin: 0;
+
+        &> li {
+            margin: 0;
+        }
+    }
+
+    .download-link:link,
+    .download-link:visited {
+        @include font-size(14px);
+        background: inherit;
+        border-radius: 0;
+        border: none;
+        color: #646464;
+        display: inline-block;
+        padding: 14px 10px;
+        text-decoration: none;
+        transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+
+        .download-title {
+            font-weight: bold;
+
+            &:before {
+                @include font-size(16px);
+                color: $color-firefox-light-orange;
+                content: "\2193\00A0"; // downward-arrow+space
+                transition: color 0.1s ease-in-out;
+                white-space: nowrap;
+            }
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $color-firefox-light-orange;
+            color: #fff;
+            transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+
+            .download-title:before {
+                color: #fff;
+                transition: color 0.1s ease-in-out;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .download-link {
+            &:link,
+            &:visited {
+                padding: 14px 20px;
+            }
+        }
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+}
+
+.other #nav-download-firefox,
+.oldwin #nav-download-firefox,
+.oldmac #nav-download-firefox {
+    display: none;
+}

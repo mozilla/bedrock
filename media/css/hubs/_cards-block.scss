@@ -5,7 +5,7 @@
 @import '../pebbles/includes/lib';
 
 // A block of content cards, some with images.
-// Accommodates up to three cards with one highlighted as the featured card.
+// Accommodates up to three or five cards with one highlighted as the featured card.
 
 .cards-container {
     .card {
@@ -41,7 +41,8 @@
         line-height: 1.1;
         margin: 0 0 20px;
 
-        strong {
+        strong,
+        span {
             background: #000;
             color: #fff;
             padding: 0 5px 0 40px;
@@ -60,7 +61,8 @@
             top: 80px;
             z-index: 2;
 
-            strong {
+            strong,
+            span {
                 background: #fff;
                 color: #000;
             }
@@ -77,10 +79,33 @@
 
         .card-content {
             background-color: #fff;
-            margin: -160px 40px 0 0;
+            margin: -180px 40px 0 0;
             padding: 20px 40px;
             position: relative;
             z-index: 2;
+        }
+    }
+
+    @media #{$mq-phone-wide} {
+        .image-card {
+            .card-content {
+                padding: 0;
+                margin: 0;
+            }
+
+            .card-image {
+                display: block;
+                margin: 0 0 20px;
+                overflow: hidden;
+                position: relative;
+                text-align: center;
+                width: 420px;
+
+                img {
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
         }
     }
 
@@ -100,15 +125,7 @@
             .card-image {
                 float: left;
                 margin: 0 0 0 -300px;
-                overflow: hidden;
-                position: relative;
-                text-align: center;
                 width: 260px;
-
-                img {
-                    display: block;
-                    margin: 0 auto;
-                }
             }
         }
     }
@@ -128,7 +145,8 @@
             }
         }
 
-        &.is-three-cards {
+        &.is-three-cards,
+        &.is-five-cards  {
             .card {
                 @include border-box;
                 border-bottom: 0;
@@ -175,7 +193,8 @@
 
 // Alternative grid layout when there are three cards
 @supports (display: grid) {
-    .cards-container.is-three-cards {
+    .cards-container.is-three-cards,
+    .cards-container.is-five-cards {
 
         @media #{$mq-desktop} {
             display: grid;
@@ -235,6 +254,17 @@
         @media #{$mq-desktop-wide} {
             .image-card {
                 grid-template-rows: minmax(260px, 40%) min-content min-content;
+            }
+        }
+    }
+
+    .cards-container.is-five-cards {
+        @media #{$mq-desktop} {
+            grid-template-rows: repeat(4, min-content);
+
+            // Featured card takes the left side
+            .image-card.is-featured {
+                grid-row: 1 / span 4;
             }
         }
     }

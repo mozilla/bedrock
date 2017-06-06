@@ -11,4 +11,4 @@ from pages.internet_health import InternetHealthPage
 def test_blog_feed_is_displayed(base_url, selenium):
     page = InternetHealthPage(selenium, base_url).open()
     assert page.is_blog_feed_displayed
-    assert page.number_of_blog_articles_present == 4
+    assert page.number_of_blog_articles_present == 3

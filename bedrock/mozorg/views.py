@@ -30,6 +30,7 @@ from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.utils.views import VariationMixin
 from bedrock.wordpress.views import BlogPostsView
 from lib import l10n_utils
+from lib.l10n_utils.dotlang import lang_file_is_active
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
@@ -296,7 +297,16 @@ class TechnologyView(VariationMixin, BlogPostsView):
 
 
 class IHView(BlogPostsView):
-    template_name = 'mozorg/internet-health.html'
-    blog_posts_limit = 4
+    blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'internetcitizen'
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
+        if lang_file_is_active('mozorg/internet-health/index', locale):
+            template_name = 'mozorg/internet-health/index.html'
+        else:
+            template_name = 'mozorg/internet-health.html'
+
+        return [template_name]

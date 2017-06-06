@@ -122,6 +122,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mozorg/internet_health-bundle.css',
     },
+    'internet-health-hub': {
+        'source_filenames': (
+            'css/mozorg/internet-health/index.scss',
+        ),
+        'output_filename': 'css/mozorg/internet-health-hub-bundle.css',
+    },
     'health-subpage': {
         'source_filenames': (
             'css/mozorg/internet-health/health-subpage.scss',
@@ -1554,6 +1560,14 @@ PIPELINE_JS = {
             'js/firefox/installer-help.js',
         ),
         'output_filename': 'js/installer_help-bundle.js',
+    },
+    'internet-health-hub': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
+        ),
+        'output_filename': 'js/internet-health-hub-bundle.js',
     },
     'internet-health-subpage': {
         'source_filenames': (
