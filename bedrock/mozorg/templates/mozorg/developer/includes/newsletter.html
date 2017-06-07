@@ -1,0 +1,17 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ <aside class="newsletter">
+   <div class="content">
+     <section class="newsletter-container">
+       <div class="newsletter-detail">
+          <div class="newsletter-title">
+            <h2>{{ _('Sign up for the Mozilla Developer Newsletter') }}</h2>
+            <p class="tagline">{{ _('Get Mozilla developer news, tips, and resources sent straight to your inbox') }}</p>
+          </div>
+         {{ email_newsletter_form(newsletters='app-dev', include_title=False, spinner_color='#000', button_class='button-hollow dark') }}
+       </div>
+     </section>
+   </div> {#--/.content--#}
+ </aside> {#--/.newsletter--#}

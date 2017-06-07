@@ -1,0 +1,138 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../pebbles/includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Developer hub newsletter component
+
+// Remove horizontal divider since the component has a colored background.
+.newsletter .content:before {
+    content: none;
+}
+
+.newsletter-container {
+    @include clearfix;
+    background-color: #86d2f1;
+    color: #000;
+    margin-bottom: 40px;
+    padding: 20px;
+
+    a:link,
+    a:visited {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    @media #{$mq-tablet} {
+        @include at2x('/media/img/mozorg/developer/hub/newsletter.png', 100%, auto);
+        background-position: right top;
+        background-repeat: no-repeat;
+    }
+
+    h2 {
+        @include font-size-level2;
+    }
+
+    .tagline {
+        @include font-size-level3;
+    }
+
+    @media #{$mq-desktop} {
+        padding: 40px;
+    }
+}
+
+.newsletter-title {
+    @media #{$mq-tablet} {
+        @include span(6);
+    }
+}
+
+html[dir="rtl"] {
+    .newsletter-container {
+        @include clearfix;
+    }
+    .newsletter-detail {
+        float: left;
+    }
+}
+
+#newsletter-form {
+    @include open-sans;
+    width: 100%;
+    max-width: 400px;
+
+    @media #{$mq-tablet} {
+        @include span(5);
+        padding-top: 20px;
+    }
+
+    @media #{$mq-desktop} {
+        margin-left: $column-width;
+    }
+
+    input[type="email"] {
+        border-color: #fff;
+        border-radius: 0;
+        padding: .5em 10px;
+        width: 100%;
+    }
+
+    #form-details {
+        @include font-size(16px);
+        padding-top: 20px;
+    }
+
+    button[type="submit"] {
+        border-color: #000;
+        color: #000;
+        margin: 20px 0 5px;
+
+        &:hover,
+        &:focus {
+            border-color: #175a77;
+            color: #fff;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: #000;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-link-blue-dark;
+        }
+    }
+
+    label {
+        @include font-size(16px);
+    }
+
+    select {
+        @include open-sans();
+        max-width: 100%;
+    }
+
+    .field {
+        margin-bottom: 5px;
+    }
+}
+
+#footer-email-errors .errorlist {
+    background-color: #fff;
+    color: $color-mozred;
+    max-width: 400px;
+    padding: 20px;
+
+    @media #{$mq-tablet} {
+        @include span(5);
+    }
+
+    @media #{$mq-desktop} {
+        margin-left: $column-width;
+    }
+}
