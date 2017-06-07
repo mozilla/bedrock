@@ -21,6 +21,13 @@
   {{ high_res_img('firefox/features/hero-landing.png', {'class': 'hero-image', 'alt': '', 'width': '720'}) }}
 {% endblock %}
 
+{% macro lazy_image(image_name) -%}
+<img src="{{ static('img/firefox/features/thumbnails/placeholder.png') }}" data-src="{{ static('img/firefox/features/thumbnails/' + image_name) }}" alt="">
+<noscript>
+  <img src="{{ static('img/firefox/features/thumbnails/' + image_name) }}" alt="">
+</noscript>
+{%- endmacro %}
+
 {% block features_list %}
 <section class="features-list-section">
   <div class="content">
@@ -29,7 +36,7 @@
     <ul class="features-list">
       <li class="features-list-item">
         <a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" data-link-type="link" data-link-name="Your favorite Add-ons and Extensions" data-link-position="modern 1">
-          <img src="{{ static('img/firefox/features/thumbnails/addons.jpg') }}" alt="">
+          {{ lazy_image('addons.jpg') }}
         </a>
         <h3>{{ _('Your favorite Add-ons and Extensions') }}</h3>
         <p>{{ _('Adblock, Ublock, LastPass and thousands more.') }}</p>
@@ -41,7 +48,7 @@
       </li>
       <li class="features-list-item">
         <a href="https://addons.mozilla.org/firefox/themes/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" data-link-type="link" data-link-name="Customize your browser" data-link-position="modern 2">
-          <img src="{{ static('img/firefox/features/thumbnails/customize.jpg') }}" alt="">
+          {{ lazy_image('customize.jpg') }}
         </a>
         <h3>{{ _('Customize your browser') }}</h3>
         <p>{{ _('Personalize Firefox with everything from themes to privacy tools.') }}</p>
@@ -53,7 +60,7 @@
       </li>
       <li class="features-list-item">
         <a href="{{ url('firefox.features.fast') }}" data-link-type="link" data-link-name="Browse Faster" data-link-position="modern 3">
-          <img src="{{ static('img/firefox/features/thumbnails/fast.jpg') }}" alt="">
+          {{ lazy_image('fast.jpg') }}
         </a>
         <h3>{{ _('Browse Faster') }}</h3>
         <p>{{ _('Start faster, tab hop quicker, get more done.') }}</p>
@@ -65,7 +72,7 @@
       </li>
       <li class="features-list-item">
         <a href="{{ url('firefox.sync') }}" data-link-type="link" data-link-name="Sync Between Devices" data-link-position="modern 4">
-          <img src="{{ static('img/firefox/features/thumbnails/sync.jpg') }}" alt="">
+          {{ lazy_image('sync.jpg') }}
         </a>
         <h3>{{ _('Sync Between Devices') }}</h3>
         <p>{{ _('Get your tabs, logins, and history on the go.') }}</p>
@@ -77,7 +84,7 @@
       </li>
       <li class="features-list-item">
         <a href="{{ url('firefox.android.index') }}" data-link-type="link" data-link-name="Firefox for Android" data-link-position="modern 5">
-          <img src="{{ static('img/firefox/features/thumbnails/android.jpg') }}" alt="">
+          {{ lazy_image('android.jpg') }}
         </a>
         <h3>{{ _('Firefox for Android') }}</h3>
         <p>{{ _('Our most customizable Firefox for Android yet.') }}</p>
@@ -89,7 +96,7 @@
       </li>
       <li class="features-list-item">
         <a href="{{ url('firefox.ios') }}" data-link-type="link" data-link-name="Firefox for iOS" data-link-position="modern 6">
-          <img src="{{ static('img/firefox/features/thumbnails/ios.jpg') }}" alt="">
+          {{ lazy_image('ios.jpg') }}
         </a>
         <h3>{{ _('Firefox for iOS') }}</h3>
         <p>{{ _('The speed you need. The privacy you trust.') }}</p>
@@ -101,7 +108,7 @@
       </li>
       <li class="features-list-item">
         <a href="https://testpilot.firefox.com/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-content-hub" data-link-type="link" data-link-name="Firefox Test Pilot" data-link-position="modern 7">
-          <img src="{{ static('img/firefox/features/thumbnails/test-pilot.jpg') }}" alt="">
+          {{ lazy_image('test-pilot.jpg') }}
         </a>
         <h3>{{ _('Firefox Test Pilot') }}</h3>
         <p>{{ _('Experimental features that can simplify your life.') }}</p>
@@ -122,7 +129,7 @@
     <ul class="features-list">
       <li class="features-list-item">
         <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-name="Ad Tracker Blocking" data-link-position="privacy 1">
-          <img src="{{ static('img/firefox/features/thumbnails/tracking-protection.jpg') }}" alt="">
+          {{ lazy_image('tracking-protection.jpg') }}
         </a>
         <h3>{{ _('Ad Tracker Blocking') }}</h3>
         <p>{{ _('Firefox Private Browsing blocks ads with trackers.') }}</p>
@@ -134,7 +141,7 @@
       </li>
       <li class="features-list-item">
         <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-name="More Powerful Private Browsing" data-link-position="privacy 2">
-          <img src="{{ static('img/firefox/features/thumbnails/private-browsing.jpg') }}" alt="">
+          {{ lazy_image('private-browsing.jpg') }}
         </a>
         <h3>{{ _('More Powerful Private Browsing') }}</h3>
         <p>{{ _('More protection than Incognito mode or InPrivate.') }}</p>
@@ -146,7 +153,7 @@
       </li>
       <li class="features-list-item">
         <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-name="More Private" data-link-position="privacy 3">
-          <img src="{{ static('img/firefox/features/thumbnails/private.jpg') }}" alt="">
+          {{ lazy_image('private.jpg') }}
         </a>
         <h3>{{ _('More Private') }}</h3>
         <p>{{ _('We don’t sell access to your online data. Period.') }}</p>
@@ -158,7 +165,7 @@
       </li>
       <li class="features-list-item">
         <a href="{{ url('privacy') }}" data-link-type="link" data-link-name="Limited Data Collection" data-link-position="privacy 4">
-          <img src="{{ static('img/firefox/features/thumbnails/limited-data-collection.jpg') }}" alt="">
+          {{ lazy_image('limited-data-collection.jpg') }}
         </a>
         <h3>{{ _('Limited Data Collection') }}</h3>
         <p>{{ _('Opted-in to privacy, so you can browse freely.') }}</p>
@@ -179,7 +186,7 @@
     <ul class="features-list">
       <li class="features-list-item">
         <a href="{{ url('mozorg.mission') }}" data-link-type="link" data-link-name="By Non-Profit, Mozilla" data-link-position="independence 1">
-          <img src="{{ static('img/firefox/features/thumbnails/non-profit.jpg') }}" alt="">
+          {{ lazy_image('non-profit.jpg') }}
         </a>
         <h3>{{ _('By Non-Profit, Mozilla') }}</h3>
         <p>{{ _('Protecting the health of the internet.') }}</p>
@@ -191,7 +198,7 @@
       </li>
       <li class="features-list-item">
         <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-name="Open Source" data-link-position="independence 2">
-          <img src="{{ static('img/firefox/features/thumbnails/open-source.jpg') }}" alt="">
+          {{ lazy_image('open-source.jpg') }}
         </a>
         <h3>{{ _('Open Source') }}</h3>
         <p>{{ _('We’re always transparent.') }}</p>
@@ -203,7 +210,7 @@
       </li>
       <li class="features-list-item">
         <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-name="Protect Your Rights" data-link-position="independence 3">
-          <img src="{{ static('img/firefox/features/thumbnails/independent.jpg') }}" alt="">
+          {{ lazy_image('independent.jpg') }}
         </a>
         <h3>{{ _('Protect Your Rights') }}</h3>
         <p>{{ _('We help keep corporate powers in check.') }}</p>
@@ -221,3 +228,8 @@
 {% block news %}{% endblock %}
 {% block values %}{% endblock %}
 {% block outro %}{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {% javascript 'firefox-features-landing' %}
+{% endblock %}
