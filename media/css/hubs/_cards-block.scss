@@ -19,7 +19,8 @@
         &> a:visited {
             text-decoration: none;
 
-            h2 {
+            h2,
+            h3 {
                 @include transition(color .1s ease-in-out);
                 color: $color-text-primary;
             }
@@ -28,7 +29,8 @@
         &> a:hover,
         &> a:active,
         &> a:focus {
-            h2 {
+            h2,
+            h3 {
                 @include transition(color .1s ease-in-out);
                 color: #175a77;
             }

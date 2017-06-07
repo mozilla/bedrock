@@ -67,9 +67,13 @@
             {% endif %}
             <h2 class="card-label"><span>{{ value|e }}</span></h2>
             <div class="card-content">
-              <h3 class="card-title">{{ title|e }}</h3>
               {% if loop.first %}
+                <a href="{{ url|e }}" data-link-type="link" data-link-position="Issue - {{ value|e }}" data-link-name="{{ title|e }}">
+                  <h3 class="card-title">{{ title|e }}</h3>
+                </a>
                 <p>{{ intro|e }}</p>
+              {% else %}
+                <h3 class="card-title">{{ title|e }}</h3>
               {% endif %}
               <p class="card-cta">
                 <a href="{{ url|e }}" class="cta-link" data-link-type="link" data-link-position="Issue - {{ value|e }}" data-link-name="{{ title|e }}">
@@ -91,7 +95,9 @@
 
         <div class="card-content-wrapper">
           <div class="card-content">
-            <h3 class="card-heading">{{ _('Net Neutrality is under threat…again.') }}</h3>
+            <a href="https://advocacy.mozilla.org/net-neutrality" data-link-name="Get involved now" data-link-type="link" data-link-position="net-neutrality">
+              <h3 class="card-heading">{{ _('Net Neutrality is under threat…again.') }}</h3>
+            </a>
 
             <p>
             {% trans %}
@@ -119,7 +125,9 @@
 
         <div class="card-content-wrapper">
           <div class="card-content">
-            <h3 class="card-heading">{{ _('All about Internet Health') }}</h3>
+            <a href="https://internethealthreport.org" data-link-name="Read the Internet Health Report" data-link-type="link" data-link-position="Internet Health Report">
+              <h3 class="card-heading">{{ _('All about Internet Health') }}</h3>
+            </a>
             <p>{{ _('The Internet got a full check-up and the results are in.') }}</p>
             <a href="https://internethealthreport.org" class="cta-link" data-link-name="Read the Internet Health Report" data-link-type="link" data-link-position="Internet Health Report">
               {{ _('Read the Internet Health Report') }}
