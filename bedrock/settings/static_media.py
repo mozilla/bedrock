@@ -674,6 +674,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew_50-bundle.css',
     },
+    'firefox_whatsnew_54': {
+        'source_filenames': (
+            'css/base/send-to-device.less',
+            'css/firefox/horizon/background.less',
+            'css/firefox/whatsnew/whatsnew-54.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_54-bundle.css',
+    },
     'firefox_releasenotes_firefox': {
         'source_filenames': (
             'css/firefox/releasenotes-firefox.less',
@@ -1513,12 +1521,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_whatsnew_50-bundle.js',
     },
-    'experiment_whatsnew_50_zhtw': {
+    'firefox_whatsnew_54': {
         'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/whatsnew/experiment-whatsnew-50-zhtw.js',
+            'js/base/send-to-device.js',
+            'js/firefox/whatsnew/whatsnew-54.js',
         ),
-        'output_filename': 'js/experiment_firefox_whatsnew_50_zhtw-bundle.js',
+        'output_filename': 'js/firefox_whatsnew_50-bundle.js',
     },
     'firefox_firstrun_yahoo_retention': {
         'source_filenames': (

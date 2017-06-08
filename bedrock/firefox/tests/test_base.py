@@ -263,6 +263,18 @@ class TestWhatsNew(TestCase):
 
     # end 50.0 whatsnew tests
 
+    # begin 54.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_54_0(self, render_mock):
+        """Should use standard template for 54.0"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='54.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/fx54/whatsnew-54.html'])
+
+    # end 50.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):

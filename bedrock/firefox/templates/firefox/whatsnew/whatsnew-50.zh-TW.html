@@ -6,12 +6,6 @@
 
 {% add_lang_files "firefox/sendto" "download" %}
 
-{% block experiments %}
-  {% if switch('firefox-whatsnew-50-zhtw', ['zh-TW']) %}
-      {% javascript 'experiment_whatsnew_50_zhtw' %}
-  {% endif %}
-{% endblock %}
-
 {% block header_content %}
   <h4><span>你的 Firefox 已是最新版本。</span></h4>
   <h2>想要隨時隨地都能使用 Firefox 嗎？</h2>
