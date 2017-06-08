@@ -507,7 +507,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
 
 #global-nav-download-firefox {
     float: right;
-    margin: -2px 20px 0 0;
+    margin: 11px 20px 0 0;
 
     .download-list {
         margin: 0;
@@ -520,12 +520,12 @@ html.moz-nav-open .moz-global-nav-page-mask {
     .download-link:link,
     .download-link:visited {
         @include font-size(14px);
-        background: inherit;
+        background: #11bb69;
         border-radius: 0;
         border: none;
-        color: #646464;
+        color: #fff;
         display: inline-block;
-        padding: 14px 10px;
+        padding: 4px 10px;
         text-decoration: none;
         transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
 
@@ -533,34 +533,39 @@ html.moz-nav-open .moz-global-nav-page-mask {
             font-weight: bold;
 
             &:before {
-                @include font-size(16px);
-                color: $color-firefox-light-orange;
-                content: "\2193\00A0"; // downward-arrow+space
-                transition: color 0.1s ease-in-out;
-                white-space: nowrap;
+                @include background-size(12px 28px);
+                background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
+                background-position: left top;
+                content: '';
+                display: block;
+                float: left;
+                height: 14px;
+                margin: 4px 10px 0 0;
+                width: 12px;
             }
         }
 
         &:hover,
         &:focus,
         &:active {
-            background-color: $color-firefox-light-orange;
+            background-color: #039c6d;
             color: #fff;
             transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
-
-            .download-title:before {
-                color: #fff;
-                transition: color 0.1s ease-in-out;
-            }
         }
     }
 
     @media #{$mq-tablet} {
+        margin-top: 5px;
         margin-right: 60px;
         width: 200px;
 
         .download-link {
             float: right;
+
+            &:link,
+            &:visited {
+                padding: 8px 10px;
+            }
         }
     }
 
@@ -570,7 +575,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
         .download-link {
             &:link,
             &:visited {
-                padding: 14px 20px;
+                padding: 8px 20px;
             }
         }
     }

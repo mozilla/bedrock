@@ -4,6 +4,11 @@
 
 @import '../pebbles/includes/lib';
 
+// These could eventually be the global colors for links in pebbles.
+$color-link-blue: #0e9ad8;
+$color-link-blue-dark: #175a77;
+
+
 /* -------------------------------------------------------------------------- */
 // Section titles
 
@@ -23,15 +28,10 @@
 /* -------------------------------------------------------------------------- */
 // CTA link
 
-// This probably needs a better name. It may
-// be part of the recently expanded palette so
-// it could be a global value added to pebbles.
-$color-burnt-orange: #9c432a;
-
 a.cta-link {
     @include font-size(18px);
-    border-bottom: 2px solid $color-burnt-orange;
-    color: $color-burnt-orange;
+    border-bottom: 2px solid $color-link-blue;
+    color: $color-link-blue;
     display: inline-block;
     font-family: $font-open-sans;
     font-weight: bold;
@@ -39,28 +39,49 @@ a.cta-link {
     padding: 0 10% 10px 0;
     position: relative;
     text-decoration: none;
+    transition: color 100ms ease-in-out;
     width: 80%;
 
     &:after {
-        background: url('/media/img/hubs/cta-arrow.svg') center right no-repeat;
+        background: url('/media/img/hubs/cta-arrow.svg') 0 0 no-repeat;
+        @include background-size(14px, 24px);
         content: '';
         display: block;
-        height: 14px;
-        padding: 10px 0 0 10px;
+        height: 12px;
         position: absolute;
         right: 0;
-        top: 2px;
+        bottom: .9em;
         transition: margin-right 100ms ease-in-out;
-        width: 12px;
+        width: 14px;
     }
 
     &:hover,
-    &:focus {
-        color: lighten($color-burnt-orange, 10%);
-        border-color: lighten($color-burnt-orange, 10%);
+    &:focus,
+    &:active {
+        border-color: $color-link-blue-dark;
+        color: $color-link-blue-dark;
+        text-decoration: none;
 
         &:after {
+            background-position: 0 -12px;
             margin-right: -4px;
         }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Download button overrides
+
+.fx-privacy-link a:link,
+.fx-privacy-link a:visited {
+    @include font-size(12px);
+    color: $color-link-blue;
+    font-family: $font-open-sans;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: $color-link-blue-dark;
+        text-decoration: underline;
     }
 }

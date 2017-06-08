@@ -4,31 +4,31 @@
 
 @import '../pebbles/includes/lib';
 
-$color-burnt-orange: #9c432a;
+// These could eventually be the global colors for links in pebbles.
+$color-link-blue: #0e9ad8;
+$color-link-blue-dark: #175a77;
 
 .button,
 button.button,
 button.form-button,
 a.button:link,
 a.button:visited {
-    &.button-hollow,
-    &.button-hollow-arrow {
-        @include font-size(18px);
+    strong {
+        font-weight: bold;
+    }
+
+    &.button-hollow {
         @include open-sans();
         background: transparent;
         border-radius: 0;
 
-        strong {
-            font-weight: bold;
-        }
-
         &.dark {
-            border-color: $color-burnt-orange;
-            color: $color-burnt-orange;
+            border-color: $color-link-blue;
+            color: $color-link-blue-dark;
 
             &:hover,
             &:focus {
-                background: $color-burnt-orange;
+                background: $color-link-blue-dark;
                 color: #fff;
             }
         }
@@ -45,36 +45,29 @@ a.button:visited {
         }
     }
 
-    &.button-hollow-arrow {
+    &.button-arrow {
+        @include font-size(18px);
+        @include open-sans();
+        background-color: #11bb69;
+        border-radius: 0;
+        border: 0;
+        color: #fff;
 
         &:hover,
         &:focus {
-            strong:before {
-                background-position: left -14px;
-            }
+            background-color: #039c6d;
         }
 
-        strong {
-            font-weight: bold;
-
-            &:before {
-                @include background-size(12px 28px);
-                background-position: left top;
-                content: '';
-                display: block;
-                float: left;
-                height: 14px;
-                margin: 8px 10px 0 0;
-                width: 12px;
-            }
-        }
-
-        &.dark strong:before {
-            background-image: url('/media/img/hubs/down-arrow-dark-sprite.png');
-        }
-
-        &.light strong:before {
+        strong:before {
+            @include background-size(12px 28px);
             background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
+            background-position: left top;
+            content: '';
+            display: block;
+            float: left;
+            height: 14px;
+            margin: 8px 10px 0 0;
+            width: 12px;
         }
     }
 }
