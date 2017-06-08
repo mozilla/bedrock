@@ -416,7 +416,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
 class WhatsnewView(VariationMixin, l10n_utils.LangFilesMixin, TemplateView):
     template_context_variations = ['a', 'b']
-    variation_locales = ['zh-TW']
+    variation_locales = ['de']
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
