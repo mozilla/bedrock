@@ -337,15 +337,15 @@ def donate_url(ctx, source=''):
 
     For en-US this would output:
 
-        https://donate.mozilla.org/en-US/?presets=100,50,25,15&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
+        https://donate.mozilla.org/en-US/?presets=100,50,25,15&amount=50&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
 
     For de this would output:
 
-        https://donate.mozilla.org/de/?presets=100,50,25,15&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=eur
+        https://donate.mozilla.org/de/?presets=100,50,25,15&amount=50&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=eur
 
     For a locale not defined in settings.DONATE this would output:
 
-        https://donate.mozilla.org/ca/?presets=100,50,25,15&amount=50&ref=EOYFR2015&utm_campaign=EOYFR2015&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
+        https://donate.mozilla.org/ca/?presets=100,50,25,15&amount=50&utm_source=mozilla.org&utm_medium=referral&utm_content=footer&currency=usd
 
     """
     locale = getattr(ctx['request'], 'locale', 'en-US')

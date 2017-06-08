@@ -451,8 +451,7 @@ class WhatsnewView(VariationMixin, l10n_utils.LangFilesMixin, TemplateView):
 class FeedbackView(TemplateView):
 
     donate_url = ('https://donate.mozilla.org/'
-       '?ref=EOYFR2015&utm_campaign=EOYFR2015'
-       '&utm_source=Heartbeat_survey&utm_medium=referral'
+       '?utm_source=Heartbeat_survey&utm_medium=referral'
        '&utm_content=Heartbeat_{0}stars')
 
     def get_score(self):

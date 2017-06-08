@@ -714,8 +714,8 @@ PRESS_BLOGS = {
     'pl': 'press-pl/',
 }
 
-DONATE_LINK = ('https://donate.mozilla.org/{locale}/?presets={presets}'
-    '&amount={default}&ref=EOYFR2015&utm_campaign=EOYFR2015'
+DONATE_LINK = ('https://donate.mozilla.org/{locale}/'
+    '?presets={presets}&amount={default}'
     '&utm_source=mozilla.org&utm_medium=referral&utm_content={source}'
     '&currency={currency}')
 
