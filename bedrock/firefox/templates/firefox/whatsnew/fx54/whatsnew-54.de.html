@@ -1,0 +1,25 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx54/whatsnew-54.html" %}
+
+{% add_lang_files "firefox/sendto" "download" %}
+
+{% block experiments %}
+  {% if switch('firefox-whatsnew-54-de', ['de']) %}
+    {% javascript 'experiment_whatsnew_54_de' %}
+  {% endif %}
+{% endblock %}
+
+{% block body_content %}
+  {% if variation == 'b' %} {# QR code #}
+    <div id="qr-wrapper" class="primary-cta">
+      <img src="{{ static('img/firefox/whatsnew_54/qrcode.png') }}" width="250" height="250" alt="" />
+    </div>
+  {% else %} {# send to device widget / control #}
+    <div id="send-to-device-wrapper" class="primary-cta">
+      {{ send_to_device(include_title=False, message_set=send_to_device_message_set) }}
+    </div>
+  {% endif %}
+{% endblock %}
