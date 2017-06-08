@@ -4,6 +4,9 @@
 
 {% extends "mozorg/about-base.html" %}
 
+{# Bug 1370337: MDN forums have moved from Google Groups to Discourse #}
+{% set mdn_forums = ['mozilla.mdn', 'mozilla.dev.mdc', 'mozilla.dev.mdn'] %}
+
 {% block page_title %}{{ _('Forums') }}{% endblock %}
 {% block body_id %}about-forums{% endblock %}
 
@@ -30,12 +33,12 @@
   </p>
 
   <p>
-  {{ _('Mozilla newsgroups are sponsored by <a href="%s">Giganews Newsgroups</a>, to whom we are very grateful.')|format('http://www.giganews.com/') }}
-  <a href="http://www.giganews.com/"><img src="{{ static('img/mozorg/about/giganews.png') }}" alt="" height="25" width="89" /></a>
+  {{ _('Mozilla newsgroups are sponsored by <a href="%s">Giganews Newsgroups</a>, to whom we are very grateful.')|format('https://www.giganews.com/') }}
+  <a href="https://www.giganews.com/"><img src="{{ static('img/mozorg/about/giganews.png') }}" alt="" height="25" width="89" /></a>
   </p>
 
   <form method="get" action="https://groups.google.com/groups">
-  <a href="http://www.google.com/"><img
+  <a href="https://www.google.com/"><img
        src="https://www.google.com/logos/Logo_25wht.gif"
        width="75" height="32" alt="Google" /></a>
      <input type="text" name="as_q" maxlength="256" value="" placeholder="{{ _('Search Forums') }}" />
@@ -73,13 +76,23 @@
         <li id="{{ forum.dashed }}">
           <div class="summary">
             <h4>{{ forum.id }}<a href="#{{ forum.dashed }}">#</a></h4>
-            <p class="description">{{ forum.description|safe }}</p>
+            <p class="description">
+              {%- if forum.id in mdn_forums -%}
+                {{ _('Discussions about MDN Web Docs have moved to Discourse.') }}
+              {%- else -%}
+                {{ forum.description|safe }}
+              {%- endif -%}
+            </p>
           </div>
           <ul class="subscribe">
-            {% if forum.id.startswith('mozilla.') %}
+            {% if forum.id in mdn_forums %}
+              <li>{{ _('Follow:') }} <a href="https://discourse.mozilla-community.org/c/mdn">{{ _('MDN category on Discourse') }}</a></li>
+              <li>{{ _('Email-in:') }} <a href="mailto:mdn@mozilla-community.org">mdn@mozilla-community.org</a></li>
+              <li>{{ _('Archives, up to June 2017:') }} <a href="https://groups.google.com/group/{{ forum.id }}/topics">{{ _('%s Google Group')|format(forum.id) }}</a></li>
+            {% elif forum.id.startswith('mozilla.') %}
               <li>{{ _('Mailing List:') }} <a href="https://lists.mozilla.org/listinfo/{{ forum.dashed }}">{{ forum.dashed }}&#64;lists.mozilla.org</a></li>
               <li>{{ _('Newsgroup:') }} <a href="news://news.mozilla.org/{{ forum.id }}">{{ forum.id }}</a></li>
-              <li>{{ _('Web:') }} <a href="http://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
+              <li>{{ _('Web:') }} <a href="https://groups.google.com/group/{{ forum.id }}/topics">Google Groups</a></li>
             {% else %}
               <li>{{ _('Mailing List:') }} <a href='https://mail.mozilla.org/listinfo/{{ forum.dashed }}'>{{ forum.dashed }}&#64;mozilla.org</a></li>
             {% endif %}
@@ -106,7 +119,7 @@ with an <a href="%(irchelp_url)s">IRC</a> client.')|format(irc_url='https://wiki
 
 <p>
 {{ _('Giganews is sponsoring free access to the Mozilla Development Forums’ Usenet hierarchy "mozilla.*".') }}
-{{ _('Please respect the parts of their <a href="%s">Acceptable Use Policy</a> which are relevant to non-Giganews subscribers.')|format('http://www.giganews.com/legal/aup.html') }}
+{{ _('Please respect the parts of their <a href="%s">Acceptable Use Policy</a> which are relevant to non-Giganews subscribers.')|format('https://www.giganews.com/legal/aup.html') }}
 {{ _('Use <b>news.mozilla.org</b> as the news server address in your news client.') }}
 {{ _('You will not need to use any authentication information.') }}
 </p>
