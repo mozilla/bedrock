@@ -359,6 +359,15 @@ def show_50_whatsnew(version):
     return version >= Version('50.0')
 
 
+def show_54_whatsnew(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('54.0')
+
+
 def show_40_firstrun(version):
     try:
         version = Version(version)
@@ -434,7 +443,11 @@ class WhatsnewView(VariationMixin, l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/dev-whatsnew.html'
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
+        elif show_54_whatsnew(version):
+            # zh-TW has locale-specific template: whatsnew-54.zh-TW.html
+            template = 'firefox/whatsnew/fx54/whatsnew-54.html'
         elif show_50_whatsnew(version):
+            # zh-TW has locale-specific template: whatsnew-50.zh-TW.html
             template = 'firefox/whatsnew/whatsnew-50.html'
         # zh-TW on 49.0 gets a special template
         elif locale == 'zh-TW' and show_49_0_whatsnew(version):
