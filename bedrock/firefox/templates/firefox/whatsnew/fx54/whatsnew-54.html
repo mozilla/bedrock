@@ -51,7 +51,7 @@ A modified copy of firefox/mobile-download-desktop.html
         <div class="inner-container">
           <header id="masthead">
             <div id="mozilla-logo">
-              <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="mozilla">Mozilla</a>
+              <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
             </div>
             <h2>{{ high_res_img('firefox/template/logo-large.png', {'alt': 'Firefox', 'width': '136', 'height': '142'}) }}</h2>
           </header>
@@ -90,7 +90,7 @@ A modified copy of firefox/mobile-download-desktop.html
             {% block body_content %}
               {# Hide the widget if user is not in a supported basket locale #}
               {% if show_send_to_device %}
-                <div id="send-to-device-wrapper">
+                <div id="send-to-device-wrapper" class="primary-cta">
                   {{ send_to_device(include_title=False, message_set=send_to_device_message_set) }}
                 </div>
               {% endif %}
