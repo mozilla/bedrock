@@ -39,3 +39,6 @@ pytest-rerunfailures==2.0.1 \
 pytest-base-url==1.1.0 \
     --hash=sha256:90a1ce6a00a558231117b5aee32300edecbc0c2fd701c13e8cec62177900d28c \
     --hash=sha256:001c1b2678dae82c2891db415251361b29ed6824cb2085e4821635119499071e
+urlwait==0.4 \
+    --hash=sha256:fc39ff2c8abbcaad5043e1f79699dcb15a036cc4b0ff4d1aa825ea105d4889ff \
+    --hash=sha256:395fc0c2a7f9736858a2c2f449aa20c6e9da1f86bfc2d1fda4f2f5b78a5c115a
