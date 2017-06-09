@@ -6,17 +6,24 @@
 
 {% extends "firefox/new/batm/base.html" %}
 
-{% block body_class %}scene-1{% endblock %}
+{% block page_css %}
+  {% stylesheet 'firefox_new_batm_machine' %}
+{% endblock %}
+
+{% block body_class %}scene-1 machine-static{% endblock %}
 
 {% block content %}
 <main role="main">
-  <header>
-    <h1>{{_('Browse against the machine')}}</h1>
-    {% block main_header_copy %}{% endblock %}
+  <header class="page-hero">
+    <h1 id="main-header-copy" data-experience="batmprivate"><span>{{ _('Browse against the machine') }}</span></h1>
   </header>
+
   <div class="download-cta">
+    <p class="tagline">{{_('Break free with Firefox, for people not profit.')}}</p>
+
     {{ download_firefox(alt_copy=_('Download Firefox'), locale_in_transition=True, button_color='button-hollow') }}
   </div>
+
   <ul class="copy">
     <li>
       <h2>{{_('Click it to the man')}}</h2>
@@ -31,6 +38,7 @@
       <p>{{_('We’ve spent the last year supercharging Firefox’s performance. Now you can start up faster, switch tabs quicker, and scroll like there’s no tomorrow.')}}</p>
     </li>
   </ul>
+
 </main>
 {% endblock %}
 

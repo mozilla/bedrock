@@ -500,6 +500,7 @@ def new(request):
 
     scene = request.GET.get('scene', None)
     experience = request.GET.get('xv', None)
+    variant = request.GET.get('v', None)
     locale = l10n_utils.get_locale(request)
 
     # Onboarding funnelcake experiment (Bug 1333435).
@@ -559,7 +560,12 @@ def new(request):
             elif experience == 'batmfree':
                 template = 'firefox/new/batm/free.html'
             elif experience == 'batmprivate':
-                template = 'firefox/new/batm/private.html'
+                if variant == 'a':
+                    template = 'firefox/new/batm/machine-a.html'
+                elif variant == 'b':
+                    template = 'firefox/new/batm/machine-b.html'
+                else:
+                    template = 'firefox/new/batm/private.html'
             elif experience == 'batmnimble':
                 template = 'firefox/new/batm/nimble.html'
             elif experience == 'batmresist':
