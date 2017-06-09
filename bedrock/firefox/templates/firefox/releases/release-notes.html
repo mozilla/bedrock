@@ -313,6 +313,7 @@
     </div>
     <div class="col">
       <h2>{{ _('Other Resources') }}</h2>
+      {% block extra_resources %}{% endblock %}
       <a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a>
       <a rel="external"  href="{{ release.get_bug_search_url() }}">{{ _('Complete list of changes for this release') }}</a>
       <a rel="external" href="https://blog.mozilla.org/press/kits/">{{ _('Press Kit') }}</a>
