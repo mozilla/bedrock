@@ -1,0 +1,124 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/base.html" %}
+
+{# L10n: strings for this page are not considered final and aren't ready for localization. #}
+
+{% block page_title %}{{ _('Firefox Browser: Use Less Memory, Get More Speed') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block page_desc %}{{ _('Is your computer slow? Your browser might be using too much memory. Switch to Firefox today for more speed.') }}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-memory{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Less memory usage than Chrome') }}</span></h1>
+  <p class="tagline">{{ _('If your web browser uses too much memory, switch to Firefox') }}</p>
+{% endblock %}
+
+{% block features_list %}
+<section class="features-list-section">
+  <div class="content">
+    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
+
+    <ul class="features-list">
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/memory/fast.png') }}" alt="">
+        <h3>{{ _('Speed up your computer') }}</h3>
+        <p>
+        {% trans %}
+          Every computer program you run takes up some memory. When too much is used,
+          your system can slooooowww down. Firefox aims for a balance &mdash; using
+          enough memory to let you browse smoothly and leaving plenty of memory to keep
+          your computer responsive.
+        {% endtrans %}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/memory.png') }}" alt="">
+        <h3>{{ _('Stop running out of memory') }}</h3>
+        <p>
+        {% trans url='https://blog.mozilla.org/firefox/fx54memorytest/' %}
+          <a href="{{ url }}">Chrome uses up to 1.77x more memory than Firefox</a>.
+          If your computer is already low on memory, this can cause a significant slowdown.
+          Using Firefox’s latest version with multi-process can result in more available
+          memory to run your favorite programs.
+        {% endtrans %}
+        </p>
+      </li>
+      <li class="features-list-item">
+        <img src="{{ static('img/firefox/features/thumbnails/private-browsing.jpg') }}" alt="">
+        <h3>{{ _('Browse faster, privately') }}</h3>
+        <p>
+        {% trans url=url('firefox.features.private-browsing') %}
+          Explore the web faster with <a href="{{ url }}">Firefox Private Browsing</a>.
+          Only Firefox’s private mode includes tracking protection which blocks ads with
+          trackers from loading on pages. Decluttering sites means web pages can load
+          faster.
+        {% endtrans %}
+        </p>
+      </li>
+    </ul>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}
+
+{% block values %}
+<section class="values">
+  <div class="content">
+    <div class="cards-container">
+      <section id="card-modern" class="card image-card card-private">
+        <a href="{{ url('firefox.features.private-browsing') }}" class="card-image" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+          <img src="{{ static('img/firefox/hub/value-private.jpg') }}" alt="">
+        </a>
+        <div class="card-content">
+          <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+            <h2 class="card-title">{{ _('More Privacy') }}</h2>
+          </a>
+          <p>
+          {% trans %}
+            Firefox doesn’t sell access to your personal information like other companies.
+            From privacy tools to tracking protection, you’re in charge of who sees what.
+          {% endtrans %}
+          </p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+              {{ _('Here’s how Firefox protects your privacy') }}
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <section id="card-independent" class="card image-card card-independent">
+        <a href="{{ url('firefox.features.independent') }}" class="card-image" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+        <img src="{{ static('img/firefox/hub/value-indie.jpg') }}" alt="">
+        </a>
+        <div class="card-content">
+          <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+            <h2 class="card-title">{{ _('More Freedom') }}</h2>
+          </a>
+          <p>
+          {% trans %}
+            Following the pack isn’t our style. As part of the non-profit Mozilla,
+            Firefox leads the fight to protect your online rights, and champion an
+            Internet that benefits everyone—not just a few.
+          {% endtrans %}
+          </p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+              {{ _('Browse independently with Firefox') }}
+            </a>
+          </p>
+        </div>
+      </section>
+    </div> {#--/.cards-container--#}
+  </div> {#--/.content--#}
+</section> {#--/.values--#}
+{% endblock %}
