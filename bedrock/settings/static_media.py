@@ -1547,6 +1547,20 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_whatsnew_50-bundle.js',
     },
+    'experiment_whatsnew_54_de': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/whatsnew/experiment-whatsnew-54-de.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_54_de-bundle.js',
+    },
+    'experiment_whatsnew_54_ja_zhcn': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/whatsnew/experiment-whatsnew-54-ja-zhcn.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_54_ja_zhcn-bundle.js',
+    },
     'firefox_firstrun_yahoo_retention': {
         'source_filenames': (
             'js/base/uitour-lib.js',

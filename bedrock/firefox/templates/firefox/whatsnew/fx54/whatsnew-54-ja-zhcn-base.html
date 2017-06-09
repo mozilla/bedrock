@@ -1,0 +1,22 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx54/whatsnew-54.html" %}
+
+{% add_lang_files "firefox/whatsnew_50" "firefox/sendto" %}
+
+{% block experiments %}
+  {% if switch('firefox-whatsnew-54-ja-zhcn', ['ja', 'zh-CN']) %}
+    {% javascript 'experiment_whatsnew_54_ja_zhcn' %}
+  {% endif %}
+{% endblock %}
+
+{% block body_content %}
+  {% if variation == 'd' %} {# QR code #}
+    <div id="qr-wrapper" class="primary-cta">
+      <img src="{{ static('img/firefox/whatsnew_54/qrcode.png') }}" width="250" height="250" alt="" />
+    </div>
+  {% endif %}
+  {# control is ?v=c, which is just the app store badges #}
+{% endblock %}

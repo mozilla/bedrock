@@ -4,8 +4,6 @@
 
 {% extends "firefox/whatsnew/fx54/whatsnew-54.html" %}
 
-{% add_lang_files "firefox/sendto" "download" %}
-
 {% block header_content %}
   <h4><span>你的 Firefox 已是最新版本。</span></h4>
   <h2>想要隨時隨地都能使用 Firefox 嗎？</h2>
@@ -14,7 +12,7 @@
 {% endblock %}
 
 {% block body_content %}
-  <div id="qr-wrapper">
+  <div id="qr-wrapper" class="primary-cta">
     <img src="{{ static('img/firefox/whatsnew_54/qrcode.png') }}" width="250" height="250" alt="" />
   </div>
 {% endblock %}
