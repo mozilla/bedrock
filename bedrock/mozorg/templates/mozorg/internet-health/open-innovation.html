@@ -4,6 +4,8 @@
 
 {% extends "base-pebbles.html" %}
 
+{% add_lang_files "mozorg/internet-health/shared" %}
+
 {% block page_title %}{{ _('Open Innovation: Vital to Internet Health') }}{% endblock %}
 
 {% block page_desc %}{{ _('Open Innovation means innovating collectively through shared ideas and open source code.') }}{% endblock %}
@@ -31,13 +33,9 @@
   <ul class="content">
     <li><a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Privacy &amp; Security') }}</a></li>
     <li class="current"><a href="{{ url('mozorg.internet-health.open-innovation') }}">{{ _('Open Innovation') }}</a></li>
-  {% if l10n_has_tag('health-decentralization-and-literacy') %}
     <li><a href="{{ url('mozorg.internet-health.decentralization') }}">{{ _('Decentralization') }}</a></li>
-  {% endif %}
     <li><a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Digital Inclusion') }}</a></li>
-  {% if l10n_has_tag('health-decentralization-and-literacy') %}
     <li><a href="{{ url('mozorg.internet-health.web-literacy') }}">{{ _('Web Literacy') }}</a></li>
-  {% endif %}
   </ul>
 </nav>
 
