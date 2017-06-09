@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0">
   <title>{{ _('Firefox Nightly Notes') }}</title>
   <subtitle>{{ _('Firefox Nightly gets a new version every day and as a consequence, the release notes for the Nightly channel are updated continuously to reflect features that have reached sufficient maturity to benefit from community feedback and bug reports.') }}</subtitle>
   <author>
@@ -14,9 +14,11 @@
   <link rel="alternate" type="text/html" href="{{ url('firefox.notes', channel='nightly')|absolute_url }}"/>
   <icon>{{ static('img/firefox/nightly/favicon.png')|absolute_url }}</icon>
   <updated>{{ notes[0].modified.isoformat() }}</updated>
+  <webfeeds:cover image="{{ static('img/firefox/nightly/page-image.png')|absolute_url }}" />
+  <webfeeds:icon>{{ static('img/firefox/nightly/favicon-196.png')|absolute_url }}</webfeeds:icon>
   {% for note in notes %}
   <entry>
-    <title>{{ note.note|markdown|striptags|truncate(100) }}</title>
+    <title type="html">{{ note.note|markdown|striptags|safe|truncate(100) }}</title>
     <id>{{ note.link|absolute_url }}</id>
     <link rel="alternate" type="text/html" href="{{ note.link|absolute_url }}"/>
     <updated>{{ note.modified.isoformat() }}</updated>
