@@ -31,7 +31,9 @@
   {% block features_list %}{% endblock %}
 
   {% block news %}
-    {% include 'includes/news-feed.html' %}
+    {% with campaign='fx-content-hub' %}
+      {% include 'includes/news-feed.html' %}
+    {% endwith %}
   {% endblock %}
 
   {% block values %}{% endblock %}

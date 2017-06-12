@@ -129,7 +129,9 @@
     </section>
     {% endif %}
 
-    {% include 'includes/news-feed.html' %}
+    {% with campaign='fx-content-hub' %}
+      {% include 'includes/news-feed.html' %}
+    {% endwith %}
 
     {% if LANG.startswith('en-') %}
     <section id="feeds" class="section">

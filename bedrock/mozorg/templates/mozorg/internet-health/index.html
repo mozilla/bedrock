@@ -108,7 +108,9 @@
     </div> {#--/.content--#}
   </section> {#--/.net-neutrality--#}
 
-  {% include 'includes/news-feed.html' %}
+  {% with campaign='ih-content-hub' %}
+    {% include 'includes/news-feed.html' %}
+  {% endwith %}
 
   <section class="report">
     <div class="content">
