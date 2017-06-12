@@ -13,6 +13,9 @@
 @import '../../hubs/news-feed';
 @import './outro';
 
+$color-link-blue: #0e9ad8;
+$color-link-blue-dark: #175a77;
+
 #hub-content {
     @include font-size(20px);
     @include zilla-slab;
@@ -104,20 +107,6 @@
             padding-top: 60px;
         }
     }
-
-    .fx-privacy-link a:link,
-    .fx-privacy-link a:visited {
-        @include font-size(12px);
-        color: $color-burnt-orange;
-        font-family: $font-open-sans;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            color: darken($color-burnt-orange, 10%);
-        }
-    }
-
 }
 
 

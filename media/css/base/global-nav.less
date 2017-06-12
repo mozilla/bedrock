@@ -507,7 +507,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
 
 #global-nav-download-firefox {
     float: right;
-    margin: -2px 85px 0 0;
+    margin: 5px 85px 0 0;
     width: 200px;
 
     .download-list {
@@ -525,12 +525,12 @@ html.moz-nav-open .moz-global-nav-page-mask {
     .download-link:link,
     .download-link:visited {
         .font-size(14px);
-        background: inherit;
+        background: #11bb69;
         border-radius: 0;
         border: none;
-        color: #646464;
+        color: #fff;
         display: inline-block;
-        padding: 14px 10px;
+        padding: 8px 20px;
         text-decoration: none;
         transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
 
@@ -538,25 +538,24 @@ html.moz-nav-open .moz-global-nav-page-mask {
             font-weight: bold;
 
             &:before {
-                .font-size(16px);
-                color: @colorFirefoxLightOrange;
-                content: "\2193\00A0"; // downward-arrow+space
-                transition: color 0.1s ease-in-out;
-                white-space: nowrap;
+                .background-size(12px 28px);
+                background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
+                background-position: left top;
+                content: '';
+                display: block;
+                float: left;
+                height: 14px;
+                margin: 4px 10px 0 0;
+                width: 12px;
             }
         }
 
         &:hover,
         &:focus,
         &:active {
-            background-color: @colorFirefoxLightOrange;
+            background-color: #039c6d;
             color: #fff;
             transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
-
-            .download-title:before {
-                color: #fff;
-                transition: color 0.1s ease-in-out;
-            }
         }
     }
 
@@ -566,13 +565,21 @@ html.moz-nav-open .moz-global-nav-page-mask {
         .download-link {
             &:link,
             &:visited {
-                padding: 14px 10px;
+                padding: 8px 10px;
             }
         }
     }
 
     @media only screen and (max-width: @breakTablet) {
+        margin-top: 11px;
         margin-right: 20px;
+
+        .download-link {
+            &:link,
+            &:visited {
+                padding: 4px 10px;
+            }
+        }
     }
 
     .fx-privacy-link {

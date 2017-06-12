@@ -4,7 +4,9 @@
 
 @import '../pebbles/includes/lib';
 
-$color-burnt-orange: #9c432a;
+$color-link-blue: #0e9ad8;
+$color-link-blue-dark: #175a77;
+
 $card-padding: 20px;
 
 .card {
@@ -23,7 +25,7 @@ $card-padding: 20px;
     &:active,
     &:hover,
     &:focus {
-        color: $color-burnt-orange;
+        color: $color-link-blue-dark;
     }
 }
 
@@ -35,13 +37,13 @@ $card-padding: 20px;
     p {
         a:link,
         a:visited {
-            color: $color-burnt-orange;
+            color: $color-link-blue;
             text-decoration: none;
 
             &:active,
             &:hover,
             &:focus {
-                color: lighten($color-burnt-orange, 10%);
+                color: $color-link-blue-dark;
                 text-decoration: underline;
             }
         }

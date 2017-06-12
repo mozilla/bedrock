@@ -7,6 +7,8 @@
 //* -------------------------------------------------------------------------- */
 // Firefox Hub: News Feed Component
 
+$color-link-blue-dark: #175a77;
+
 .news-feed {
     margin: 0;
 
@@ -68,7 +70,7 @@
             &:focus {
                 h3 {
                     @include transition(color .1s ease-in-out);
-                    color: #9C432A;
+                    color: $color-link-blue-dark;
                 }
             }
         }

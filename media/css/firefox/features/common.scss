@@ -10,14 +10,16 @@
 @import '../../hubs/buttons';
 @import '../../hubs/common';
 
-$color-burnt-orange: #9c432a;
+
+$color-link-blue: #0e9ad8;
+$color-link-blue-dark: #175a77;
 
 main {
     @include font-size(20px);
     @include zilla-slab;
 
     .content {
-        @include horizontal-rule-before($start-color: #69b9d0, $end-color: $color-burnt-orange);
+        @include horizontal-rule-before($start-color: #69b9d0, $end-color: #9c432a);
     }
 }
 
@@ -186,14 +188,22 @@ main {
     p {
         a:link,
         a:visited {
-            color: $color-burnt-orange;
+            color: $color-link-blue;
             text-decoration: none;
-        }
 
-        a:hover,
-        a:active,
-        a:focus {
-            text-decoration: underline;
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color-link-blue-dark;
+                text-decoration: underline;
+            }
+
+            // Shameful specificity hack. Need to clean this up later.
+            &.cta-link:hover,
+            &.cta-link:focus,
+            &.cta-link:active {
+                text-decoration: none;
+            }
         }
     }
 }
@@ -220,24 +230,5 @@ main {
             width: auto;
             margin: 0;
         }
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Download button overrides
-
-.fx-privacy-link {
-    a:link,
-    a:visited {
-        @include font-size(14px);
-        @include open-sans();
-        color: $color-burnt-orange;
-        text-decoration: none;
-    }
-
-    a:hover,
-    a:active,
-    a:focus {
-        text-decoration: underline;
     }
 }
