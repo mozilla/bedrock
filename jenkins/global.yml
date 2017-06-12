@@ -12,10 +12,6 @@ regions:
     name: eu-west
     registry_port: 5000
     deis_bin: deis
-  virginia:
-    deis_profile: virginia
-    name: virginia
-    deis_bin: deis2
   tokyo:
     deis_profile: tokyo
     name: tokyo
