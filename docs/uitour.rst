@@ -336,9 +336,13 @@ The ``defaultUpdateChannel`` key has many possible values, the most important be
 
 The ``distribution`` key holds the value for the Firefox distributionId property. This value will be ``default`` in most cases but can differ for repack or funnelcake builds.
 
+The ``createdWeeksAgo`` key returns the number of weeks since the profile was created, starting from 0 for profiles dating less than seven days old.
+
+The ``resetWeeksAgo`` key returns the number of weeks since the profile was last reset, starting from 0 for profiles reset less than seven days ago. If the profile has never been reset it returns ``null``.
+
 .. Important::
 
-    ``appinfo`` is only available in Firefox 35 onward. The ``defaultBrowser`` property will only be returned on Firefox 40 or later. The ``distribution`` property will only be returned on Firefox 48 or later.
+    ``appinfo`` is only available in Firefox 35 onward. The ``defaultBrowser`` property will only be returned on Firefox 40 or later. The ``distribution`` property will only be returned on Firefox 48 or later.  Properties ``createdWeeksAgo`` and ``resetWeeksAgo`` will only be returned on Firefox 56 or later.
 
 **selectedSearchEngine**
 
