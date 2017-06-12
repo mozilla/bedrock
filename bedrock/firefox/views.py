@@ -623,6 +623,14 @@ class FeaturesIndependentView(BlogPostsView):
     blog_tags = ['browser', 'featured']
 
 
+class FeaturesMemoryView(BlogPostsView):
+    template_name = 'firefox/features/memory.html'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['memory', 'featured']
+
+
 class FirefoxProductDesktopView(BlogPostsView):
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'

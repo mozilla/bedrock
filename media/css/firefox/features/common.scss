@@ -182,6 +182,20 @@ main {
             margin-bottom: 0;
         }
     }
+
+    p {
+        a:link,
+        a:visited {
+            color: $color-burnt-orange;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
+    }
 }
 
 .js .features-list-item img[data-src] {
