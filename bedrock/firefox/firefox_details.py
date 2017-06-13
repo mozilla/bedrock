@@ -222,20 +222,19 @@ class FirefoxDesktop(_ProductDetails):
             include_funnelcake_param = _platform in fc_platforms and _locale in fc_locales
 
         stub_langs = settings.STUB_INSTALLER_LOCALES.get(channel, {}).get(_platform, [])
-        # Nightly and Developer Edition have a special download link format
-        # see bug 1324001, 1357379
+        # Nightly and Aurora have a special download link format
+        # see bug 1324001
         if channel in ['alpha', 'nightly']:
-            prod_name = 'firefox-nightly' if channel == 'nightly' else 'firefox-devedition'
+            prod_name = 'firefox-nightly' if channel == 'nightly' else 'firefox-aurora'
             # Use the stub installer for approved platforms
             if (stub_langs and (stub_langs == settings.STUB_INSTALLER_ALL or _locale.lower() in stub_langs) and
                     not force_full_installer):
                 # Download links are different for localized versions
                 suffix = 'stub'
-            elif channel == 'nightly' and locale != 'en-US':
-                # Nightly uses a different product name for localized builds
-                suffix = 'latest-l10n-ssl'
             else:
                 suffix = 'latest-ssl'
+                if locale != 'en-US':
+                    suffix = 'latest-l10n-ssl'
 
             product = '%s-%s' % (prod_name, suffix)
 
