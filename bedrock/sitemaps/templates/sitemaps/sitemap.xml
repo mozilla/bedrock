@@ -1,0 +1,24 @@
+{# NOTE: Changes here should also be reflected in base/templates/includes/canonical-url.html -#}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {% for path, locales in urls|dictsort -%}
+  <url>
+    <loc>{{ settings.CANONICAL_URL }}{{ path }}</loc>
+    {#- Bug 1364470: Drop ISO 639-2 and -3 locales not supported by Google -#}
+    {% for locale in locales if locale|length != 3 -%}
+      {% set alt_url = alternate_url(path, locale) %}
+      {%- if alt_url -%}
+        {%- set loop_path = alt_url -%}
+      {%- else -%}
+        {%- set loop_path = path -%}
+      {%- endif %}
+      {% if locale == 'en-US' -%}
+        <xhtml:link rel="alternate" hreflang="en" href="{{ settings.CANONICAL_URL }}/{{ locale }}{{ loop_path }}" />
+        <xhtml:link rel="alternate" hreflang="en-CA" href="{{ settings.CANONICAL_URL }}/{{ locale }}{{ loop_path }}" />
+      {%- else -%}
+        <xhtml:link rel="alternate" hreflang="{{ locale }}" href="{{ settings.CANONICAL_URL }}/{{ locale }}{{ loop_path }}" />
+      {%- endif %}
+    {%- endfor %}
+  </url>
+  {% endfor -%}
+</urlset>

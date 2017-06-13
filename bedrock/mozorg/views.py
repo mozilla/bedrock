@@ -13,7 +13,7 @@ from django.shortcuts import render as django_render
 from django.template.loader import render_to_string
 from django.views.decorators.cache import cache_page
 from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.http import last_modified, require_safe
+from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
 from commonware.decorators import xframe_allow
@@ -21,7 +21,6 @@ from commonware.decorators import xframe_allow
 from bedrock.base.templatetags.helpers import static
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.credits import CreditsFile
-from bedrock.mozorg.decorators import cache_control_expires
 from bedrock.mozorg.forms import (WebToLeadForm)
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import ContributorActivity, TwitterCache
@@ -66,28 +65,6 @@ def mozid_data_view(request, source_name):
              'new': activity['new__sum']} for activity in qs]
 
     return HttpResponseJSON(data, cors=True)
-
-
-class ContributeTaskView(l10n_utils.LangFilesMixin, TemplateView):
-
-    tasks = [
-        'devtools-challenger',
-        'firefox-mobile',
-        'encryption',
-        'follow-mozilla',
-        'joy-of-coding',
-        'stumbler',
-    ]
-
-    def get_template_names(self):
-        task = filter(None, self.request.path.split('/'))[-1]
-
-        if task in self.tasks:
-            template = 'mozorg/contribute/tasks/{0}.html'.format(task)
-        else:
-            raise Http404
-
-        return [template]
 
 
 @xframe_allow
@@ -197,8 +174,6 @@ def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'
     return l10n_utils.render(request, template, data)
 
 
-@cache_control_expires(2)
-@last_modified(credits_file.last_modified_callback)
 @require_safe
 def credits_view(request):
     """Display the names of our contributors."""
@@ -207,8 +182,6 @@ def credits_view(request):
     return django_render(request, 'mozorg/credits.html', ctx)
 
 
-@cache_control_expires(2)
-@last_modified(forums_file.last_modified_callback)
 @require_safe
 def forums_view(request):
     """Display our mailing lists and newsgroups."""

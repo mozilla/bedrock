@@ -10,4 +10,5 @@ disallow: /*/firstrun/
 disallow: /*/newsletter/existing/
 disallow: /*/whatsnew/
 disallow: /b/
-{% endif %}
+{% endif -%}
+Sitemap: {{ request.scheme }}://{{ request.get_host() }}/sitemap.xml

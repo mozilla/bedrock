@@ -2,6 +2,7 @@ import datetime
 import urllib
 import urlparse
 
+from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.utils.encoding import smart_str
 
@@ -93,3 +94,13 @@ def urlencode(txt):
 @library.global_function
 def static(path):
     return staticfiles_storage.url(path)
+
+
+@library.global_function
+def alternate_url(path, locale):
+    alt_paths = settings.ALT_CANONICAL_PATHS
+    path = path.lstrip('/')
+    if path in alt_paths and locale in alt_paths[path]:
+        return alt_paths[path][locale]
+
+    return None

@@ -258,6 +258,42 @@ SUPPORTED_NONLOCALES = [
     'csp-violation-capture',
 ]
 
+# Path to the XML sitemap
+XML_SITEMAP_DIR = '/media/sitemaps'
+XML_SITEMAP_INDEX = XML_SITEMAP_DIR + '/index.xml'
+
+# Pages that we don't want be indexed by search engines.
+NOINDEX_URLS = [
+    r'^(404|500)/',
+    r'^about/partnerships/contact-bizdev/',
+    r'^contribute/(embed|event)/',
+    r'^csp-violation-capture',
+    r'^firefox/sms/sent/',
+    r'^firefox/unsupported/',
+    r'^firefox/send-to-device-post',
+    r'^firefox/feedback',
+    r'^firefox/stub_attribution_code/',
+    r'^infobar/',
+    r'^l10n_example/',
+    r'^m/',
+    r'^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated)/',
+    r'^tabzilla/',
+    r'/system-requirements/$',
+    r'.*/(firstrun|thanks)/$',
+]
+
+ALT_CANONICAL_PATHS = {
+    'firefox/desktop/fast/': {
+        'en-US': '/firefox/features/fast/',
+    },
+    'firefox/private-browsing/': {
+        'en-US': '/firefox/features/private-browsing/',
+    },
+    'firefox/products/': {
+        'en-US': '/firefox/',
+    },
+}
+
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS', cast=Csv(),
     default='www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org')
@@ -431,6 +467,7 @@ INSTALLED_APPS = (
     'bedrock.shapeoftheweb',
     'bedrock.utils',
     'bedrock.wordpress',
+    'bedrock.sitemaps',
     # last so that redirects here will be last
     'bedrock.redirects',
 

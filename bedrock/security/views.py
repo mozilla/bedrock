@@ -117,6 +117,8 @@ class ProductVersionView(LangFilesMixin, ListView):
 
 
 class CachedRedirectView(RedirectView):
+    permanent = True
+
     @method_decorator(cache_control_expires(24 * 30))  # 30 days
     def dispatch(self, request, *args, **kwargs):
         return super(CachedRedirectView, self).dispatch(request, *args, **kwargs)
