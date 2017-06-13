@@ -15,6 +15,12 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
     builds = builds or []
 
     l_version = firefox_desktop.latest_builds(locale, channel)
+
+    # Developer Edition is now based on the Beta channel, so the build list
+    # should be generated from the Beta locales.
+    if channel == 'alpha':
+        l_version = firefox_desktop.latest_builds(locale, 'beta')
+
     if l_version:
         version, platforms = l_version
     else:
