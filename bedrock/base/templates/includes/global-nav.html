@@ -17,7 +17,12 @@
       <ul class="nav-primary-links">
         {{ global_nav_active_class }}
         <li class="item-firefox">
-          <a href="{{ url('firefox.new') }}" data-id="firefox" data-link-type="nav" data-link-position="top" data-link-name="expand" data-link-group="Firefox">{{ _('Firefox') }}</a>
+          {% if LANG == 'en-US' %}
+            {% set firefox_url = url('firefox') %}
+          {% else %}
+            {% set firefox_url = url('firefox.new') %}
+          {% endif %}
+          <a href="{{ firefox_url }}" data-id="firefox" data-link-type="nav" data-link-position="top" data-link-name="expand" data-link-group="Firefox">{{ _('Firefox') }}</a>
         </li>
         <li class="item-internet-health">
           <a href="{{ url('mozorg.internet-health') }}" data-id="internet-health" data-link-type="nav" data-link-position="top" data-link-name="expand" data-link-group="Internet Health">{{ _('Internet Health') }}</a>
@@ -57,7 +62,7 @@
       <ul class="nav-menu-primary-links">
         <li class="item-firefox">
           <h3 class="summary" data-id="firefox">
-            <a href="{{ url('firefox.new') }}" data-link-type="nav" data-link-position="side" data-link-name="expand" data-link-group="Firefox">{{ _('Firefox') }}</a>
+            <a href="{{ firefox_url }}" data-link-type="nav" data-link-position="side" data-link-name="expand" data-link-group="Firefox">{{ _('Firefox') }}</a>
           </h3>
           <div class="detail">
             <div class="detail-container">
@@ -71,7 +76,7 @@
                 {% else %}
                   {% set about_url = url('firefox.family.index') %}
                 {% endif %}
-                  <a href="{{ about_url}}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
+                  <a href="{{ about_url }}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
                     {{ _('About Firefox') }}
                   </a>
                 </li>
