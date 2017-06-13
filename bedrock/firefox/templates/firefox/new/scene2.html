@@ -36,7 +36,13 @@
           <div id="tabzilla">
             <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
           </div>
-          <h2>{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</h2>
+          <h2>
+          {% if LANG == 'en-US' %}
+            <a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</a>
+          {% else %}
+            {{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}
+          {% endif %}
+          </h2>
         </header>
         <div class="main-content">
           <h1>
