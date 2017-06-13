@@ -98,96 +98,93 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'linux64'),
                               ('lang', 'en-US')])
 
-    def test_get_download_url_devedition(self):
+    def test_get_download_url_aurora(self):
         """
-        The Developer Edition version should give us a bouncer url. For Windows,
-        a stub url should be returned.
+        The Aurora version should give us a bouncer url. For Windows, a stub url
+        should be returned.
         """
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-stub'),
+                             [('product', 'firefox-aurora-stub'),
                               ('os', 'win'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'osx', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'osx'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'linux', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'linux'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'linux64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'linux64'),
                               ('lang', 'en-US')])
 
-    def test_get_download_url_devedition_full(self):
+    def test_get_download_url_aurora_full(self):
         """
-        The Developer Edition version should give us a bouncer url. For Windows,
-        a full url should be returned.
+        The Aurora version should give us a bouncer url. For Windows, a full url
+        should be returned.
         """
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win', 'en-US', True, True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'win'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win64', 'en-US', True, True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'osx', 'en-US', True, True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'osx'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'linux', 'en-US', True, True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'linux'),
                               ('lang', 'en-US')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'linux64', 'en-US', True, True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-ssl'),
                               ('os', 'linux64'),
                               ('lang', 'en-US')])
 
-    def test_get_download_url_devedition_l10n(self):
-        """
-        The Developer Edition version should give us a bouncer url. For Windows,
-        a full url should be returned. The product name is the same as en-US.
-        """
+    def test_get_download_url_aurora_l10n(self):
+        """Aurora non en-US should have a slightly different product name."""
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-l10n-ssl'),
                               ('os', 'win'),
                               ('lang', 'pt-BR')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win64', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-l10n-ssl'),
                               ('os', 'win64'),
                               ('lang', 'pt-BR')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'osx', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-l10n-ssl'),
                               ('os', 'osx'),
                               ('lang', 'pt-BR')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'linux', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-l10n-ssl'),
                               ('os', 'linux'),
                               ('lang', 'pt-BR')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'linux64', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-aurora-latest-l10n-ssl'),
                               ('os', 'linux64'),
                               ('lang', 'pt-BR')])
 
