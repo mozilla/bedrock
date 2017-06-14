@@ -24,10 +24,10 @@
 {% endblock %}
 
 {% block product_header_download %}
-  <a class="dl-button app-store" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
+  <a class="dl-button app-store" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS" data-download-location="primary cta">
     <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
   </a>
-  <a class="dl-button google-play" href="{{ settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="Android">
+  <a class="dl-button google-play" href="{{ settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="Android" data-download-location="primary cta">
     {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
   </a>
   <small class="fx-privacy-link">
