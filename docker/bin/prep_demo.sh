@@ -22,4 +22,5 @@ if [[ -n "$SENTRY_DEMO_DSN" ]]; then
     ENV_VALUES+=( "SENTRY_DSN=$SENTRY_DEMO_DSN" )
 fi
 
-$DEIS_BIN config:set -a "$DEIS_APPLICATION" "${ENV_VALUES[@]}" || true
+# silence output to ensure no secret leakage
+$DEIS_BIN config:set -a "$DEIS_APPLICATION" "${ENV_VALUES[@]}" > /dev/null 2>&1 || true
