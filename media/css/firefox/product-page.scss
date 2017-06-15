@@ -30,7 +30,6 @@ $color-link-blue-dark: #175a77;
     @include horizontal-rule-before($start-color: $color-dusty-blue, $end-color: $color-burnt-orange);
 }
 
-
 //* -------------------------------------------------------------------------- */
 // Page head
 .header-intro {
@@ -70,8 +69,12 @@ $color-link-blue-dark: #175a77;
         padding-bottom: 40px;
     }
 
-    .dl-button img {
-        width: 190px;
+    .dl-button {
+        display: inline-block;
+
+        img {
+            width: 190px;
+        }
     }
 
     @media #{$mq-desktop} {
