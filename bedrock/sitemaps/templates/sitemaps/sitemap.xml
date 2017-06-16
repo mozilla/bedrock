@@ -3,7 +3,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   {% for path, locales in urls|dictsort -%}
   <url>
-    <loc>{{ settings.CANONICAL_URL }}{{ path }}</loc>
+    {% if locales %}
+      {% set default_lang = '/' + settings.LANGUAGE_CODE %}
+    {% else %}
+      {% set default_lang = '' %}
+    {% endif %}
+    <loc>{{ settings.CANONICAL_URL }}{{ default_lang }}{{ path }}</loc>
     {#- Bug 1364470: Drop ISO 639-2 and -3 locales not supported by Google -#}
     {% for locale in locales if locale|length != 3 -%}
       {% set alt_url = alternate_url(path, locale) %}
