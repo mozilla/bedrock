@@ -93,5 +93,8 @@
   {% if switch('tracking-pixel') %}
     {% javascript 'firefox_new_pixel' %}
   {% endif %}
+  {% if funnelcake_id == '106' and LANG in win64_funnelcake_locales %}
+    {% javascript 'experiment_firefox_new_fc_win64_scene2' %}
+  {% endif %}
   {% javascript 'firefox_new_scene2' %}
 {% endblock %}

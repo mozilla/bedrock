@@ -9,7 +9,7 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 
 import querystringsafe_base64
-from mock import patch, Mock
+from mock import patch, Mock, ANY
 from nose.tools import eq_, ok_
 
 from bedrock.firefox import views
@@ -310,13 +310,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
     def test_scene_2_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     # ad-campaign experience tests (bug 1329661)
     def test_break_free_scene_1(self, render_mock):
@@ -335,13 +335,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
     def test_break_free_locale_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     def test_way_of_the_fox_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=wayofthefox')
@@ -359,13 +359,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=wayofthefox')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
     def test_way_of_the_fox_locale_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     # moar ad campaign pages bug 1363543
 
@@ -535,7 +535,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?f=98')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
     def test_onboarding_f_99_scene_1_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?f=99')
@@ -553,13 +553,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?f=99')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
     def test_onboarding_f_98_scene_2_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&f=98')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     def test_onboarding_f_99_scene_2_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&f=99')
@@ -577,7 +577,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?scene=2&f=99')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
 
 class TestFeedbackView(TestCase):
