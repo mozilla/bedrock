@@ -13,17 +13,6 @@ from pages.firefox.features.feature import FeaturePage
     ('independent'),
     ('fast'),
     ('memory')])
-def test_news_feed_is_displayed(slug, base_url, selenium):
-    page = FeaturePage(selenium, base_url, slug=slug).open()
-    assert len(page.news_feed.articles) == 3
-
-
-@pytest.mark.nondestructive
-@pytest.mark.parametrize('slug', [
-    ('private-browsing'),
-    ('independent'),
-    ('fast'),
-    ('memory')])
 def test_download_button_is_displayed(slug, base_url, selenium):
     page = FeaturePage(selenium, base_url, slug=slug).open()
     assert page.download_button.is_displayed

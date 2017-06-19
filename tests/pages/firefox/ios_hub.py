@@ -5,7 +5,6 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
-from pages.regions.news_feed import NewsFeed
 
 
 class FirefoxIOSHubPage(FirefoxBasePage):
@@ -17,7 +16,3 @@ class FirefoxIOSHubPage(FirefoxBasePage):
     @property
     def is_app_store_button_displayed(self):
         return self.is_element_displayed(*self._app_store_button_locator)
-
-    @property
-    def news_feed(self):
-        return NewsFeed(self)

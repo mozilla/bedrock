@@ -13,9 +13,3 @@ from pages.firefox.desktop.hub import FirefoxDesktopHubPage
 def test_download_buttons_displayed(base_url, selenium):
     page = FirefoxDesktopHubPage(selenium, base_url).open()
     assert page.download_button.is_displayed
-
-
-@pytest.mark.nondestructive
-def test_news_feed_is_displayed(base_url, selenium):
-    page = FirefoxDesktopHubPage(selenium, base_url).open()
-    assert len(page.news_feed.articles) == 3
