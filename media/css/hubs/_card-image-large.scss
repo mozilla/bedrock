@@ -6,6 +6,8 @@
 
 // A single card with a large, full width background image
 
+$color-link-blue-dark: #175a77;
+
 .card-image-large {
     padding: 0 0 40px;
 
@@ -19,6 +21,24 @@
         background: #fff;
         margin-right: 20px;
         padding: 20px;
+
+        &> a:link,
+        &> a:visited {
+            text-decoration: none;
+            h3 {
+                @include transition(color .1s ease-in-out);
+                color: $color-text-primary;
+            }
+        }
+
+        &> a:hover,
+        &> a:active,
+        &> a:focus {
+            h3 {
+                @include transition(color .1s ease-in-out);
+                color: $color-link-blue-dark;
+            }
+        }
     }
 
     @media #{$mq-tablet} {

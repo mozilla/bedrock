@@ -175,7 +175,7 @@ main {
         display: none;
     }
 
-    &> a {
+    .image-container {
         background-color: #eee;
         display: block;
         margin-bottom: 20px;
@@ -204,6 +204,25 @@ main {
             &.cta-link:active {
                 text-decoration: none;
             }
+        }
+    }
+
+    &> a:link,
+    &> a:visited {
+        display: block;
+        text-decoration: none;
+        h3 {
+            @include transition(color .1s ease-in-out);
+            color: $color-text-primary;
+        }
+    }
+
+    &> a:hover,
+    &> a:active,
+    &> a:focus {
+        h3 {
+            @include transition(color .1s ease-in-out);
+            color: $color-link-blue-dark;
         }
     }
 }

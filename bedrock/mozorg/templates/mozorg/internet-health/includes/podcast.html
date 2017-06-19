@@ -9,17 +9,18 @@
 
        <div class="card-content-wrapper">
          <div class="card-content">
-           <h3 class="card-heading">{{ _('The ultimate Internet Health podcast') }}</h3>
+            <a href="https://irlpodcast.org/" data-link-name="Check out our podcasts" data-link-type="link" data-link-position="Podcast">
+              <h3 class="card-heading">{{ _('The ultimate Internet Health podcast') }}</h3>
+            </a>
+            <p>
+              {% trans %}
+              Listen up! We’re chatting all things Internet Health and how you can get involved.
+              {% endtrans %}
+            </p>
 
-           <p>
-           {% trans %}
-             Listen up! We’re chatting all things Internet Health and how you can get involved.
-           {% endtrans %}
-           </p>
-
-           <a href="https://irlpodcast.org/" class="cta-link" data-link-name="Check out our podcasts" data-link-type="link" data-link-position="Podcast">
-             {{ _('Check out our podcasts') }}
-           </a>
+            <a href="https://irlpodcast.org/" class="cta-link" data-link-name="Check out our podcasts" data-link-type="link" data-link-position="Podcast">
+              {{ _('Check out our podcasts') }}
+            </a>
          </div>
        </div> {#--/.card-content-wrapper--#}
      </div>

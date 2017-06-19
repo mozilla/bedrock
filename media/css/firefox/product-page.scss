@@ -125,6 +125,25 @@ $color-link-blue-dark: #175a77;
             padding-bottom: 0;
         }
 
+        &> a:link,
+        &> a:visited {
+            display: block;
+            text-decoration: none;
+            h3 {
+                @include transition(color .1s ease-in-out);
+                color: $color-text-primary;
+            }
+        }
+
+        &> a:hover,
+        &> a:active,
+        &> a:focus {
+            h3 {
+                @include transition(color .1s ease-in-out);
+                color: $color-link-blue-dark;
+            }
+        }
+
         img {
             display: block;
             margin: 0 auto 20px;
