@@ -162,12 +162,13 @@ class TestFirefoxDesktop(TestCase):
 
     def test_get_download_url_devedition_l10n(self):
         """
-        The Developer Edition version should give us a bouncer url. For Windows,
-        a full url should be returned. The product name is the same as en-US.
+        The Developer Edition version should give us a bouncer url. A stub url
+        should be returned for win32, while other platforms get a full url.
+        The product name is the same as en-US.
         """
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-devedition-latest-ssl'),
+                             [('product', 'firefox-devedition-stub'),
                               ('os', 'win'),
                               ('lang', 'pt-BR')])
         url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win64', 'pt-BR', True)
@@ -254,10 +255,14 @@ class TestFirefoxDesktop(TestCase):
                               ('lang', 'en-US')])
 
     def test_get_download_url_nightly_l10n(self):
-        """Nightly non en-US should have a slightly different product name."""
+        """
+        The Nightly version should give us a bouncer url. A stub url should be
+        returned for win32, while other platforms get a full url. The product
+        name is slightly different from en-US.
+        """
         url = firefox_desktop.get_download_url('nightly', '50.0a1', 'win', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-nightly-latest-l10n-ssl'),
+                             [('product', 'firefox-nightly-stub'),
                               ('os', 'win'),
                               ('lang', 'pt-BR')])
         url = firefox_desktop.get_download_url('nightly', '50.0a1', 'win64', 'pt-BR', True)

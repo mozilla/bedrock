@@ -638,13 +638,13 @@ STUB_INSTALLER_LOCALES = {
         # 'win64': STUB_INSTALLER_ALL,
     },
     'alpha': {
-        'win': ['en-us'],
+        'win': STUB_INSTALLER_ALL,
         # should come back in Fx 55
         # bug 1348610
         # 'win64': ['en-us'],
     },
     'nightly': {
-        'win': ['en-us'],
+        'win': STUB_INSTALLER_ALL,
         'win64': ['en-us'],
     },
 }
