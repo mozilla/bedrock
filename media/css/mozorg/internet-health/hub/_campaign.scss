@@ -1,0 +1,132 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../pebbles/includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Campaign hero image
+
+$color-campaign-background: #0f161b;
+
+.hero-image {
+    background: $color-campaign-background;
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+// hide the header for english locales that see the campaign hero image
+html[lang^="en"] {
+    .header-intro {
+        display: none;
+    }
+
+    .news {
+        padding-top: 60px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Campaign articles & Download Firefox CTA
+
+.campaign-articles,
+.download-firefox {
+    background: $color-campaign-background;
+
+    .content:before {
+        content: none;
+    }
+
+    .news-feed,
+    .content-container {
+        padding: 20px;
+    }
+
+    @media #{$mq-tablet} {
+        .news-feed,
+        .content-container {
+            padding: 20px 40px;
+        }
+    }
+}
+
+.campaign-articles {
+    .content {
+        padding-bottom: 0;
+    }
+
+    .news-feed {
+        background: #fff;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Download Firefox CTA specific styles
+
+.download-firefox {
+
+    .content {
+        padding-top: 0;
+    }
+
+    .content-container {
+        @include clearfix;
+        background: #dddada url('/media/img/firefox/template/logo-jumbo-high-res.png') top 20px center no-repeat;
+        @include background-size(160px, auto);
+        padding-top: 200px;
+    }
+
+    .content-info {
+        position: relative;
+        text-align: center;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    @media #{$mq-tablet} {
+
+        .content-container {
+            @include background-size(260px, auto);
+            background-position: top 20px left 40px;
+            padding-top: 20px;
+        }
+
+        .content-info {
+            text-align: left;
+            padding-left: 300px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        .content-container {
+            @include background-size(420px, auto);
+        }
+
+        .content-info {
+            padding-left: 460px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+
+        h2 {
+            float: left;
+            margin-bottom: 40px;
+            padding-right: 5%;
+            width: 45%;
+        }
+
+        .download-button {
+            float: left;
+            text-align: center;
+            width: 50%;
+        }
+    }
+
+}

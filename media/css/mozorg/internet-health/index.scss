@@ -13,6 +13,7 @@
 @import '../../hubs/card-image-large';
 @import '../../hubs/common';
 @import '../../hubs/news-feed';
+@import 'hub/campaign';
 @import 'hub/newsletter';
 
 main {
@@ -101,6 +102,7 @@ html[dir="rtl"] {
     }
 }
 
+
 // Issues block does not been a divider right after the header.
 .issues .content:before {
     content: none;
@@ -111,8 +113,27 @@ html[dir="rtl"] {
 
 .net-neutrality {
     .card-content-wrapper {
-        background-image: url('/media/img/mozorg/internet-health/hub/net-neutrality.png');
+        background-image: url('/media/img/mozorg/internet-health/hub/net-neutrality-large.png');
         @include background-size(100%, auto);
+    }
+}
+
+.podcast {
+    .card-content-wrapper {
+        background-image: url('/media/img/mozorg/internet-health/hub/podcast.jpg');
+        @include background-size(100%, auto);
+    }
+
+    @media #{$mq-tablet} {
+        .card-content-wrapper {
+            @include at2x('/media/img/mozorg/internet-health/hub/podcast.jpg', 100%, auto);
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .card-content-wrapper {
+            padding-top: 160px;
+        }
     }
 }
 

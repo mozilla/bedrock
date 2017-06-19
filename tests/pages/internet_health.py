@@ -5,19 +5,16 @@
 from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
+from pages.regions.download_button import DownloadButton
 
 
 class InternetHealthPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/internet-health'
 
-    _blog_feed_locator = (By.CLASS_NAME, 'news-feed')
-    _blog_feed_articles_locator = (By.CSS_SELECTOR, '.news-feed article')
+    _download_button_locator = (By.ID, 'internet-health-promo-download')
 
     @property
-    def is_blog_feed_displayed(self):
-        return self.is_element_displayed(*self._blog_feed_locator)
-
-    @property
-    def number_of_blog_articles_present(self):
-        return len(self.find_elements(*self._blog_feed_articles_locator))
+    def download_button(self):
+        el = self.find_element(*self._download_button_locator)
+        return DownloadButton(self, root=el)

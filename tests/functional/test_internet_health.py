@@ -7,8 +7,8 @@ import pytest
 from pages.internet_health import InternetHealthPage
 
 
+@pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_blog_feed_is_displayed(base_url, selenium):
+def test_download_button_is_displayed(base_url, selenium):
     page = InternetHealthPage(selenium, base_url).open()
-    assert page.is_blog_feed_displayed
-    assert page.number_of_blog_articles_present == 3
+    assert page.download_button.is_displayed
