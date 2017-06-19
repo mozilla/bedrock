@@ -2,13 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "firefox/shared" %}
+
 {% extends "firefox/features/base.html" %}
 
-{# L10n: strings for this page are not considered final and aren't ready for localization. #}
-
 {% block page_title %}{{ _('Firefox, a different browser for different times. Browse free.') }}{% endblock %}
-{% block page_title_suffix %}{% endblock %}
-{% block page_desc %}{{ _('Browse the Internet as it was meant to be...free, safe, and accessible to everyone. Browse independently with Firefox.') }}{% endblock %}
+{% block page_desc %}{{ _('Browse the Internet as it was meant to be… free, safe and accessible to all. Declare your online independence.') }}{% endblock %}
 {% block page_image %}{{ static('img/firefox/features/page-image-independent.jpg') }}{% endblock %}
 
 {% block page_css %}
@@ -23,7 +22,7 @@
   <p class="tagline">
   {% trans %}
     Firefox is independent and a part of the non-profit Mozilla, which fights
-    for your online rights, keeps corporate powers in check, and makes the
+    for your online rights, keeps corporate powers in check and makes the
     Internet accessible to everyone, everywhere.
   {% endtrans %}
   </p>
@@ -54,7 +53,7 @@
         {% trans %}
           We believe the Internet is for people, not profit. Unlike other companies,
           we don’t sell access to your data. <em>You’re</em> in control over who sees
-          your search and browsing history. Choice— that’s what a healthy Internet is
+          your search and browsing history. Choice — that’s what a healthy Internet is
           all about!
         {% endtrans %}
         </p>
@@ -65,7 +64,7 @@
         <p>
         {% trans %}
           Firefox is a browser with a conscience. As part of the technology non-profit
-          Mozilla, we fight for your online rights, keep corporate powers in check,
+          Mozilla, we fight for your online rights, keep corporate powers in check
           and help educate developing countries on healthy Internet practices. So when
           you choose Firefox, we’re choosing you, too.
         {% endtrans %}
@@ -88,12 +87,13 @@
         </a>
         <div class="card-content">
           <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-            <h2 class="card-title">{{ _('More Privacy') }}</h2>
+            <h2 class="card-title">{{ _('More privacy') }}</h2>
           </a>
           <p>
           {% trans %}
-            Firefox doesn’t sell access to your personal information like other companies.
-            From privacy tools to tracking protection, you’re in charge of who sees what.
+            Firefox doesn’t sell access to your personal information like
+            other companies. From privacy tools to tracking protection,
+            you’re in charge of who sees what.
           {% endtrans %}
           </p>
           <p class="card-cta">
@@ -110,18 +110,19 @@
         </a>
         <div class="card-content">
           <a href="{{ url('firefox.features.fast') }}" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
-            <h2 class="card-title">{{ _('More Performance') }}</h2>
+            <h2 class="card-title">{{ _('More performance') }}</h2>
           </a>
           <p>
+          {# L10n Note: “Bring it” is a friendly challenge. In this case, we are showing our confidence in Fx’s increased speed. An alternate translation would be “Let’s go, Internet!” #}
           {% trans %}
-            Bring it, Internet! We’ve spent the last year supercharging Firefox’s
-            performance. Now start up to 30% faster, tab hop 86% quicker, and scroll
-            like a speed demon.
+            Bring it, Internet! We’ve spent the last year supercharging
+            Firefox’s performance. Now start up faster, tab hop quicker and
+            scroll like a speed demon.
           {% endtrans %}
           </p>
           <p class="card-cta">
             <a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
-              {{ _('Get more done with Firefox speeds') }}
+              {{ _('Get more done with Firefox') }}
             </a>
           </p>
         </div>

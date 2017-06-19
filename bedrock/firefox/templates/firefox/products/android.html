@@ -4,9 +4,9 @@
 
 {% from "macros.html" import google_play_button with context %}
 
-{% extends "firefox/products/product-base.html" %}
+{% add_lang_files "firefox/shared" %}
 
-{# L10n: strings for this page are not considered final and aren't ready for localization. #}
+{% extends "firefox/products/product-base.html" %}
 
 {% block page_title %}{{ _('Fast, Free Android Browser for Tablets and Phones') }} | {{ _('Firefox') }} {% endblock %}
 {% block page_desc %}{{ _('Choose a better browser for your tablet and phone. Firefox is fast and private. Install Firefox for Android now!') }}{% endblock %}
@@ -99,39 +99,48 @@
         </a>
         <div class="card-content">
           <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-            <h2 class="card-title">{{ _('More Privacy') }}</h2>
+            <h2 class="card-title">{{ _('More privacy') }}</h2>
           </a>
           <p>
           {% trans %}
-            Firefox doesn’t sell access to your personal information like other
-            browsers. From privacy tools to tracking protection, you’re in charge
-            of who sees what.
+            Firefox doesn’t sell access to your personal information like
+            other companies. From privacy tools to tracking protection,
+            you’re in charge of who sees what.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">{{ ('Here’s how Firefox protects your privacy') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+              {{ _('Here’s how Firefox protects your privacy') }}
+            </a>
+          </p>
         </div>
       </section>
 
       <section id="modern" class="card card-modern">
         <div class="card-content">
           <a href="{{ url('firefox.features.fast') }}" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
-            <h2 class="card-title">{{ _('More Performance') }}</h2>
+            <h2 class="card-title">{{ _('More performance') }}</h2>
           </a>
           <p>
+          {# L10n Note: “Bring it” is a friendly challenge. In this case, we are showing our confidence in Fx’s increased speed. An alternate translation would be “Let’s go, Internet!” #}
           {% trans %}
-            Bring it, Internet! We’ve spent the last year supercharging Firefox’s
-            performance. Now start up to 30% faster, tab hop 86% quicker, and
+            Bring it, Internet! We’ve spent the last year supercharging
+            Firefox’s performance. Now start up faster, tab hop quicker and
             scroll like a speed demon.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">{{ _('Get more done with Firefox speeds') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+              {{ _('Get more done with Firefox') }}
+            </a>
+          </p>
         </div>
       </section>
 
       <section id="independent" class="card card-independent">
         <div class="card-content">
           <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-            <h2 class="card-title">{{ _('More Freedom') }}</h2>
+            <h2 class="card-title">{{ _('More freedom') }}</h2>
           </a>
           <p>
           {% trans %}
@@ -140,7 +149,11 @@
             Internet that benefits everyone — not just a few.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">{{ _('Browse independently with Firefox') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+              {{ _('Browse independently with Firefox') }}
+            </a>
+          </p>
         </div>
       </section>
     </div> {#--/.cards-container--#}

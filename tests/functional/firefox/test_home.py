@@ -4,12 +4,12 @@
 
 import pytest
 
-from pages.firefox.home import FirefoxHubHomePage
+from pages.firefox.home import FirefoxHomePage
 
 
 @pytest.mark.smoke
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_buttons_displayed(base_url, selenium):
-    page = FirefoxHubHomePage(selenium, base_url).open()
+    page = FirefoxHomePage(selenium, base_url).open()
     assert page.download_button.is_displayed

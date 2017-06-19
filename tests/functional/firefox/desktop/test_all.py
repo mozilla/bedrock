@@ -10,7 +10,6 @@ from pages.firefox.desktop.all import FirefoxDesktopBasePage
 @pytest.mark.skip_if_firefox(reason='Download button is not shown for up-to-date Firefox browsers.')
 @pytest.mark.nondestructive
 @pytest.mark.parametrize(('slug', 'locale'), [
-    ('', 'de'),
     ('customize', None),
     ('fast', 'de'),
     ('trust', None)])

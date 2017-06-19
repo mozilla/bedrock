@@ -2,19 +2,16 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "firefox/shared" %}
+
 {% extends "firefox/base-pebbles.html" %}
 
-{# L10n: strings for this page are not considered final and aren't ready for localization. #}
-
 {% block page_title %}
-  {{ _('Fast, private browser for desktop, iOS and Android') }} | {{ _('Firefox') }}
+  {{ _('A better, faster, private browser for today') }} | {{ _('Firefox') }}
 {% endblock %}
 
 {% block page_desc %}
-  {% trans %}
-    Private, secure, and compatible, Firefox is the now even faster on Windows,
-    Mac, iOS, and Android. Start browsing better.
-  {% endtrans %}
+  {{ _('Firefox is now even better on Desktop, Windows, Mac, Linux, iOS and Android. See the difference.') }}
 {% endblock %}
 
 {% block page_image %}{{ static('img/logos/firefox/logo-wordmark-large.png') }}{% endblock %}
@@ -40,7 +37,8 @@
       <div class="content">
         <div class="header-container">
           <div class="header-content">
-            <h1 class="page-title"><span>{{ _('Firefox') }}</span></h1>
+            <h1 class="page-title"><span>{{ _('Firefox browser') }}</span></h1>
+            {# L10n: this is the main page heading shown underneath the Firefox logo. Here is an alternative page heading should the main heading not translate easily: "Browse like you’re meant to… fast, free and privately." #}
             <p class="tagline"><span>{{ _('The 100% fresh, free-range, ethical browser') }}</span></p>
           </div>
 
@@ -52,7 +50,11 @@
         <div id="features" class="three-card-monte">
           <section id="private" class="card featured-image-card">
             <div class="card-content">
-              <h2 class="card-heading"><a href="{{ url('firefox.features.private-browsing') }}" data-link-name="More Privacy" data-link-type="link" data-link-position="Value - Private" data-hub="Firefox">{{ _('More Privacy') }}</a></h2>
+              <h2 class="card-heading">
+                <a href="{{ url('firefox.features.private-browsing') }}" data-link-name="More Privacy" data-link-type="link" data-link-position="Value - Private" data-hub="Firefox">
+                  {{ _('More privacy') }}
+                </a>
+              </h2>
 
               <p>
               {% trans %}
@@ -69,12 +71,17 @@
           </section> {#--/.card--#}
           <section id="modern" class="card card-stacked">
             <div class="card-content">
-              <h2 class="card-heading"><a href="{{ url('firefox.features.fast') }}" data-link-name="More Speed" data-link-type="link" data-link-position="Value - Modern" data-hub="Firefox">{{ _('More Speed') }}</a></h2>
+              <h2 class="card-heading">
+                <a href="{{ url('firefox.features.fast') }}" data-link-name="More Speed" data-link-type="link" data-link-position="Value - Modern" data-hub="Firefox">
+                  {{ _('More speed') }}
+                </a>
+              </h2>
 
               <p>
+              {# L10n Note: “Bring it” is a friendly challenge. In this case, we are showing our confidence in Fx’s increased speed. An alternate translation would be “Let’s go, Internet!” #}
               {% trans %}
                 Bring it, Internet! We’ve spent the last year supercharging
-                Firefox’s performance. Now start up faster, tab hop quicker, and
+                Firefox’s performance. Now start up faster, tab hop quicker and
                 scroll like a speed demon.
               {% endtrans %}
               </p>
@@ -86,14 +93,17 @@
           </section>
           <section id="independent" class="card card-stacked">
             <div class="card-content">
-              <h2 class="card-heading"><a href="{{ url('firefox.features.independent') }}" data-link-name="More Freedom" data-link-type="link" data-link-position="Value - Independent" data-hub="Firefox">{{ _('More Freedom') }}</a></h2>
+              <h2 class="card-heading">
+                <a href="{{ url('firefox.features.independent') }}" data-link-name="More Freedom" data-link-type="link" data-link-position="Value - Independent" data-hub="Firefox">
+                  {{ _('More freedom') }}
+                </a>
+              </h2>
 
               <p>
               {% trans %}
-                Following the pack isn’t our style. As part of the non-profit
-                Mozilla, Firefox leads the fight to protect your online rights,
-                and champion an Internet that benefits everyone&mdash;not just a
-                few.
+                Following the pack isn’t our style. As part of the non-profit Mozilla,
+                Firefox leads the fight to protect your online rights and champion an
+                Internet that benefits everyone — not just a few.
               {% endtrans %}
               </p>
 

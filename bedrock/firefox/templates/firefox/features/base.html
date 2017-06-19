@@ -2,9 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/base-pebbles.html" %}
+{% add_lang_files "firefox/shared" %}
 
-{# L10n: strings for this page are not considered final and aren't ready for localization. #}
+{% extends "firefox/base-pebbles.html" %}
 
 {% block optimizely %}
   {% if switch('firefox-features-optimizely', ['en-US']) %}

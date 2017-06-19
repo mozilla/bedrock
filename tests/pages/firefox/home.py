@@ -8,7 +8,7 @@ from pages.firefox.base import FirefoxBasePage
 from pages.regions.download_button import DownloadButton
 
 
-class FirefoxHubHomePage(FirefoxBasePage):
+class FirefoxHomePage(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/'
 

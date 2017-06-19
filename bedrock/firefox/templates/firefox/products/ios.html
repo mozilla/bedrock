@@ -2,12 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% add_lang_files "firefox/shared" %}
+
 {% extends "firefox/products/product-base.html" %}
 
-{# L10n: strings for this page are not considered final and aren't ready for localization. #}
-
 {% block page_title %}{{ _('Free Mobile Browser App for iPhone, iPad, iOS') }} | {{ _('Firefox') }}{% endblock %}
-{% block page_desc %}{{ _('Join the millions browsing better on iPhone and iPad. Firefox is fast and private. Install Firefox for iOS now!') }}{% endblock %}
+{% block page_desc %}{{ _('Join the millions browsing faster on iPad and iPhone with peace of mind, privacy protection. Install Firefox for iOS now!') }}{% endblock %}
 {% block page_image %}{{ static('img/firefox/products/ios/product-ios-meta.jpg') }}{% endblock %}
 
 {% block body_id %}firefox-product-ios{% endblock %}
@@ -37,12 +37,12 @@
     <ul class="features-list">
       <li class="features-list-item">
         <img src="{{ static('img/firefox/products/ios/feature-ios-sync.jpg') }}" alt="">
-        <h3 class="feature-title">{{ _('Device hop like a pro') }}</h3>
+        <h3 class="feature-title">{{ _('Switch devices like a pro') }}</h3>
         <div class="feature-desc">
           <p>
           {% trans %}
             When you move, Firefox moves with you. Take your favorite bookmarks,
-            open tabs, passwords, and history with you across devices.
+            open tabs, passwords and history with you across devices.
           {% endtrans %}
           </p>
         </div>
@@ -64,6 +64,7 @@
 
       <li class="features-list-item">
         <img src="{{ static('img/firefox/products/ios/feature-ios-search.jpg') }}" alt="">
+        {# L10n: Know-it-all is used to define a person who behaves as if they know everything. Here it is used in a positive way #}
         <h3 class="feature-title">{{ _('Be a know-it-all') }}</h3>
         <div class="feature-desc">
           <p>
@@ -93,48 +94,61 @@
         </a>
         <div class="card-content">
           <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-            <h2 class="card-title">{{ _('More Freedom') }}</h2>
+            <h2 class="card-title">{{ _('More freedom') }}</h2>
           </a>
           <p>
           {% trans %}
             Following the pack isn’t our style. As part of the non-profit Mozilla,
-            Firefox leads the fight to protect your online rights, and champion an
+            Firefox leads the fight to protect your online rights and champion an
             Internet that benefits everyone — not just a few.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">{{ _('Browse independently with Firefox') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+              {{ _('Browse independently with Firefox') }}
+            </a>
+          </p>
         </div>
       </section>
 
       <section id="private" class="card card-private">
         <div class="card-content">
           <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-            <h2 class="card-title">{{ _('More Privacy') }}</h2>
+            <h2 class="card-title">{{ _('More privacy') }}</h2>
           </a>
           <p>
           {% trans %}
-            Firefox doesn’t sell access to your personal information like other
-            browsers. From privacy tools to tracking protection, you’re in charge
-            of who sees what.
+            Firefox doesn’t sell access to your personal information like
+            other companies. From privacy tools to tracking protection,
+            you’re in charge of who sees what.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">{{ ('Here’s how Firefox protects your privacy') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+              {{ _('Here’s how Firefox protects your privacy') }}
+            </a>
+          </p>
         </div>
       </section>
 
       <section id="modern" class="card card-modern">
         <div class="card-content">
           <a href="{{ url('firefox.features.fast') }}" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
-            <h2 class="card-title">{{ _('More Performance') }}</h2>
+            <h2 class="card-title">{{ _('More performance') }}</h2>
           </a>
           <p>
+          {# L10n Note: “Bring it” is a friendly challenge. In this case, we are showing our confidence in Fx’s increased speed. An alternate translation would be “Let’s go, Internet!” #}
           {% trans %}
-            Bring it, Internet! We’ve spent the last year supercharging Firefox’s
-            performance. Now start up to 30% faster, tab hop 86% quicker, and
+            Bring it, Internet! We’ve spent the last year supercharging
+            Firefox’s performance. Now start up faster, tab hop quicker and
             scroll like a speed demon.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">{{ _('Get more done with Firefox speeds') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+              {{ _('Get more done with Firefox') }}
+            </a>
+          </p>
         </div>
       </section>
     </div> {#--/.cards-container--#}

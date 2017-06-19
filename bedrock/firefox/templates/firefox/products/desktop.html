@@ -2,12 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% add_lang_files "firefox/shared" %}
+
 {% extends "firefox/products/product-base.html" %}
 
-{# L10n: strings for this page are not considered final and aren't ready for localization. #}
-
-{% block page_title %}{{ _('Fast, private, modern browser for desktop computers') }} | {{ _('Firefox') }} {% endblock %}
-{% block page_desc %}{{ _('Firefox is a faster, safer and more private browser than ever before — for Windows, Mac, and Linux desktop computers. Download now!') }}{% endblock %}
+{% block page_title %}{{ _('Desktop computers meet the faster, private Firefox ') }}{% endblock %}
+{% block page_desc %}{{ _('Better desktop browsing is here. Get Firefox for Windows, Mac, and Linux.') }}{% endblock %}
 {% block page_image %}{{ static('img/firefox/products/desktop/product-desktop-meta.jpg') }}{% endblock %}
 
 {% block body_id %}firefox-product-desktop{% endblock %}
@@ -20,7 +20,7 @@
 
 {% block product_header_content %}
   <h1 class="page-title"><span>{{ _('Firefox for Desktop') }}</span></h1>
-  <p class="tagline">{{ _('Get more done — faster with Firefox.') }}</p>
+  <p class="tagline">{{ _('Get more done, even faster.') }}</p>
 {% endblock %}
 
 {% block product_header_download %}
@@ -81,7 +81,7 @@
         <div class="feature-desc">
           <p>
           {% trans %}
-            Firefox is more than just a browser. Backed by Mozilla, a nonprofit, we’re the
+            Firefox is more than just a browser. Backed by Mozilla, a non-profit, we’re the
             only independent browser that also fights to protect your online privacy and
             keeps corporate powers in check.
           {% endtrans %}
@@ -107,48 +107,61 @@
         </a>
         <div class="card-content">
           <a href="{{ url('firefox.features.fast') }}">
-            <h2 class="card-title">{{ _('More Performance') }}</h2>
+            <h2 class="card-title">{{ _('More performance') }}</h2>
           </a>
           <p>
+          {# L10n Note: “Bring it” is a friendly challenge. In this case, we are showing our confidence in Fx’s increased speed. An alternate translation would be “Let’s go, Internet!” #}
           {% trans %}
-            Bring it, Internet! We’ve spent the last year supercharging Firefox’s
-            performance. Now start up to 30% faster, tab hop 86% quicker, and
+            Bring it, Internet! We’ve spent the last year supercharging
+            Firefox’s performance. Now start up faster, tab hop quicker and
             scroll like a speed demon.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">{{ _('Get more done with Firefox speeds') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+              {{ _('Get more done with Firefox') }}
+            </a>
+          </p>
         </div>
       </section>
 
       <section id="private" class="card card-private">
         <div class="card-content">
           <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-            <h2 class="card-title">{{ _('More Privacy') }}</h2>
+            <h2 class="card-title">{{ _('More privacy') }}</h2>
           </a>
           <p>
           {% trans %}
-            Firefox doesn’t sell access to your personal information like other
-            browsers. From privacy tools to tracking protection, you’re in charge
-            of who sees what.
+            Firefox doesn’t sell access to your personal information like
+            other companies. From privacy tools to tracking protection,
+            you’re in charge of who sees what.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">{{ ('Here’s how Firefox protects your privacy') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+              {{ _('Here’s how Firefox protects your privacy') }}
+            </a>
+          </p>
         </div>
       </section>
 
       <section id="independent" class="card card-independent">
         <div class="card-content">
           <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-            <h2 class="card-title">{{ _('More Freedom') }}</h2>
+            <h2 class="card-title">{{ _('More freedom') }}</h2>
           </a>
           <p>
           {% trans %}
             Following the pack isn’t our style. As part of the non-profit Mozilla,
-            Firefox leads the fight to protect your online rights, and champion an
+            Firefox leads the fight to protect your online rights and champion an
             Internet that benefits everyone — not just a few.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">{{ _('Browse independently with Firefox') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+              {{ _('Browse independently with Firefox') }}
+            </a>
+          </p>
         </div>
       </section>
     </div> {#--/.cards-container--#}

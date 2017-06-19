@@ -9,26 +9,21 @@ from pages.firefox.family_navigation import FirefoxPage
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize(('slug', 'locale'), [
-    ('android', 'de'),
-    ('desktop', 'de'),
-    ('ios', 'de'),
-    ('features', 'de')])
+    ('desktop/customize', None),
+    ('desktop/trust', None)])
 def test_family_navigation_active_nav(slug, locale, base_url, selenium):
     locale = locale or 'en-US'
     page = FirefoxPage(selenium, base_url, locale, slug=slug).open()
-    assert page.family_navigation.active_primary_nav_id == slug
+    assert page.family_navigation.active_primary_nav_id == 'desktop'
 
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize(('slug', 'locale'), [
-    ('android', 'de'),
-    ('desktop', 'de'),
     ('desktop/customize', None),
     ('desktop/fast', 'de'),
     ('desktop/trust', None),
     ('dnt', None),
-    ('interest-dashboard', None),
-    ('ios', 'de')])
+    ('interest-dashboard', None)])
 def test_family_navigation_adjunct_menu(slug, locale, base_url, selenium):
     locale = locale or 'en-US'
     page = FirefoxPage(selenium, base_url, locale, slug=slug).open()

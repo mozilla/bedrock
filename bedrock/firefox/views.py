@@ -23,6 +23,7 @@ import querystringsafe_base64
 from product_details.version_compare import Version
 
 from lib import l10n_utils
+from lib.l10n_utils.dotlang import lang_file_is_active
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
@@ -599,7 +600,7 @@ def ios_testflight(request):
 def features_landing(request):
     locale = l10n_utils.get_locale(request)
 
-    if locale == 'en-US':
+    if lang_file_is_active('firefox/features/index', locale):
         template = 'firefox/features/index.html'
     else:
         template = 'firefox/features.html'
@@ -664,7 +665,7 @@ class FirefoxProductDesktopView(BlogPostsView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
 
-        if locale == 'en-US':
+        if lang_file_is_active('firefox/products/desktop', locale):
             template_name = 'firefox/products/desktop.html'
         else:
             template_name = 'firefox/desktop/index.html'
@@ -681,7 +682,7 @@ class FirefoxProductAndroidView(BlogPostsView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
 
-        if locale == 'en-US':
+        if lang_file_is_active('firefox/products/android', locale):
             template_name = 'firefox/products/android.html'
         else:
             template_name = 'firefox/android/index.html'
@@ -698,7 +699,7 @@ class FirefoxProductIOSView(BlogPostsView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
 
-        if locale == 'en-US':
+        if lang_file_is_active('firefox/products/ios', locale):
             template_name = 'firefox/products/ios.html'
         else:
             template_name = 'firefox/ios.html'
@@ -724,12 +725,11 @@ class FirefoxHubView(BlogPostsView):
     def get(self, request, *args, **kwargs):
         locale = l10n_utils.get_locale(request)
 
-        # until we get localizable copy, non en-US locales continue to get
-        # redirect, though now it's a 302
-        if locale != 'en-US':
-            return HttpResponseRedirect(reverse('firefox.new'))
-        else:
+        # If locale does not have hub page translated, redirect to /new.
+        if lang_file_is_active('firefox/hub/home', locale):
             return super(FirefoxHubView, self).get(request, *args, **kwargs)
+        else:
+            return HttpResponseRedirect(reverse('firefox.new'))
 
 
 def sync(request):

@@ -4,11 +4,12 @@
 
 import pytest
 
-from pages.firefox.desktop.desktop import DesktopPage
+from pages.firefox.desktop.desktop import FirefoxDesktopPage
 
 
+@pytest.mark.smoke
+@pytest.mark.sanity
 @pytest.mark.nondestructive
-def test_primary_download_button_displayed(base_url, selenium):
-    page = DesktopPage(selenium, base_url, locale='de').open()
-    page.wait_for_download_button_to_display()
-    assert page.primary_download_button.is_displayed
+def test_download_buttons_displayed(base_url, selenium):
+    page = FirefoxDesktopPage(selenium, base_url).open()
+    assert page.download_button.is_displayed
