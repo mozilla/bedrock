@@ -6,6 +6,12 @@
 
 {% extends "firefox/new/base.html" %}
 
+{% block experiments %}
+  {% if switch('firefox-new-search-retention-funnelcakes', ['en-US']) %}
+    {% javascript 'experiment_firefox_new_fc_search_retention' %}
+  {% endif %}
+{% endblock %}
+
 {% block optimizely %}
   {% if switch('firefox-new-optimizely', ['en-US']) %}
     {% include 'includes/optimizely.html' %}
