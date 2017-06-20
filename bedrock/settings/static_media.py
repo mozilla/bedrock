@@ -372,6 +372,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_faq-bundle.css',
     },
+    'firefox_focus': {
+        'source_filenames': (
+            'css/firefox/focus.scss',
+        ),
+        'output_filename': 'css/firefox_focus-bundle.css',
+    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'css/firefox/australis/fx38_0_5/firstrun.less',

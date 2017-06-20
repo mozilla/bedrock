@@ -682,6 +682,14 @@ class FirefoxProductIOSView(BlogPostsView):
         return [template_name]
 
 
+class FirefoxFocusView(BlogPostsView):
+    template_name = 'firefox/products/focus.html'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['privacy', 'mobile', 'featured']
+
+
 class FirefoxHubView(BlogPostsView):
     blog_posts_limit = 1
     blog_posts_template_variable = 'articles'

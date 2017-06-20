@@ -1,0 +1,53 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import
+    '../pebbles/includes/lib',
+    '../hubs/mixins';
+
+.section > .content,
+.news > .content {
+    @include horizontal-rule-before($start-color: #993399, $end-color: #cc3333);
+}
+
+// Hide default nav download buttons as they do not cater for Firefox Focus.
+#global-nav-download-firefox,
+#sub-nav-download-firefox {
+    display: none;
+}
+
+/* -------------------------------------------------------------------------- */
+// Page header
+
+.header-intro {
+
+    .page-title {
+        @include font-size(42px);
+    }
+
+    .tagline {
+        @include font-size(22px);
+        max-width: 35ch;
+    }
+
+    @media #{$mq-tablet} {
+        .page-title {
+            @include font-size(64px);
+        }
+
+        .tagline {
+            @include font-size(28px);
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .page-title {
+            @include font-size(78px);
+        }
+
+        .tagline {
+            @include font-size(34px);
+        }
+    }
+}
