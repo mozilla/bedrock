@@ -8,7 +8,12 @@
 
 {% block extrahead %}
 <link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly Notes Feed') }}" href="{{ url('firefox.nightly.notes.feed') }}">
+<link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly News Feed') }}" href="https://blog.nightly.mozilla.org/feed/">
 {% endblock %}
+
+{% block page_favicon %}{{ static('img/firefox/nightly/favicon.png') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/nightly/favicon-196.png') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/nightly/page-image.png') }}{% endblock %}
 
 {% block body_class %}fx-notes space{% endblock %}
 
@@ -18,6 +23,10 @@
 
 {% block notes_heading_primary %}
   <h1>{{ _('See what landed recently in <span>Firefox Nightly</span>!') }}</h1>
+{% endblock %}
+
+{% block extra_resources %}
+  <a rel="external" href="https://blog.nightly.mozilla.org/">{{ _('Firefox Nightly News') }}</a>
 {% endblock %}
 
 {% block site_footer %}
