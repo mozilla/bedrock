@@ -258,10 +258,6 @@ SUPPORTED_NONLOCALES = [
     'csp-violation-capture',
 ]
 
-# Path to the XML sitemap
-XML_SITEMAP_DIR = '/media/sitemaps'
-XML_SITEMAP_INDEX = XML_SITEMAP_DIR + '/index.xml'
-
 # Pages that we don't want be indexed by search engines.
 NOINDEX_URLS = [
     r'^(404|500)/',
@@ -273,6 +269,7 @@ NOINDEX_URLS = [
     r'^firefox/send-to-device-post',
     r'^firefox/feedback',
     r'^firefox/stub_attribution_code/',
+    r'^.+/(firstrun|whatsnew)/$',
     r'^infobar/',
     r'^l10n_example/',
     r'^m/',
@@ -280,6 +277,26 @@ NOINDEX_URLS = [
     r'^tabzilla/',
     r'/system-requirements/$',
     r'.*/(firstrun|thanks)/$',
+    r'^rna/',
+    r'^healthz/$',
+    r'^country-code\.json$',
+    # exclude redirects
+    r'^foundation/annualreport/$'
+    r'^firefox/notes/$'
+    r'^teach/$'
+    r'^thunderbird/(release)?notes/$'
+    r'^about/legal/impressum/$',
+    r'^security/announce/'
+]
+
+# Pages we do want indexed but don't show up in automated URL discovery
+# or are only available in a non-default locale
+EXTRA_INDEX_URLS = [
+    '/de/privacy/firefox-klar/',
+    '/de/firefox/desktop/fast/',
+    '/de/firefox/products/',
+    '/de/firefox/private-browsing/',
+    '/de/about/legal/impressum/',
 ]
 
 ALT_CANONICAL_PATHS = {

@@ -5,34 +5,28 @@ from __future__ import print_function, unicode_literals
 
 import json
 import re
-import sys
 
 from django.core import urlresolvers
 from django.conf import settings
 from django.template.loader import get_template
-from django.test.client import Client
-
-from mock import patch, Mock
-
-from bedrock.base.templatetags.helpers import alternate_url
+from django.test import override_settings
 
 
-@patch('bedrock.firefox.views.basket', Mock())
-@patch('bedrock.newsletter.forms.NewsletterFooterForm', Mock())
-@patch('bedrock.newsletter.views.basket', Mock())
-@patch('bedrock.newsletter.utils.basket', Mock())
-@patch('bedrock.newsletter.utils.cache', Mock())
+# DEV should always be False for this to avoid some URLs that are only present in DEV=True mode
+@override_settings(DEV=False)
 def update_sitemaps():
-    client = Client()
-    urls = {}
-    alt_urls = {}
+    urls = []
     excludes = [
         re.compile(r) for r in settings.NOINDEX_URLS + [
             r'.*%\(.*\).*',
+            r'.*//$',
             r'^media/',
             r'^robots\.txt$',
         ]
     ]
+
+    # start with the ones we know we want
+    urls.extend(settings.EXTRA_INDEX_URLS)
 
     # get_resolver is an undocumented but convenient function.
     # Try to retrieve all valid URLs on this site.
@@ -45,61 +39,31 @@ def update_sitemaps():
 
         path_prefix = path.split('/', 2)[0]
         nonlocale = path_prefix in settings.SUPPORTED_NONLOCALES
-        path = '/' + path
         if nonlocale:
-            urls[path] = []
+            path = '/%s' % path
         else:
-            # Send a request to each page. It takes a while to finish this process
-            # but it's probably a reliable way to get complete data.
-            with patch('lib.l10n_utils.django_render') as render:
-                try:
-                    alt_path = alternate_url(path, settings.LANGUAGE_CODE)
-                    if alt_path:
-                        # de seems most likely to exist
-                        response = client.get('/de' + path)
-                    else:
-                        response = client.get('/' + settings.LANGUAGE_CODE + path)
-                except Exception:
-                    raise
+            path = '/%s/%s' % (settings.LANGUAGE_CODE, path)
 
-            # Exclude redirects
-            if isinstance(response.status_code, int):
-                continue
+        if path not in urls:
+            urls.append(path)
 
-            # Retrieve the translation list from the context data
-            ctx = render.call_args[0][2]
-            urls[path] = sorted(ctx['translations'].keys())
-
-        sys.stdout.write('.')
-        sys.stdout.flush()
-
-    # Now the urls dictionary contains path/locales pairs like this:
-    # {'/firefox/new/': ['ach', 'af', 'ak', 'an', 'ar', 'ast', ...]}
-
+    urls.sort()
     # Output static files
     output_json(urls)
-    output_xml(urls, alt_urls)
+    output_xml(urls)
 
 
 def output_json(urls):
-    # Prepare a directory to save a JSON file
-    output_file = settings.ROOT_PATH.joinpath('root_files', 'all-urls.json')
+    output_file = settings.ROOT_PATH.joinpath('root_files', 'default-urls.json')
 
     # Output the data as a JSON file for convenience
     with output_file.open('wb') as json_file:
         json.dump(urls, json_file)
 
 
-def output_xml(urls, alt_urls):
-    # Prepare a directory to save XML files
-    output_dir = settings.ROOT_PATH.joinpath('root_files')
-    # index_tmpl = get_template('sitemaps/index.xml').template
+def output_xml(urls):
+    output_file = settings.ROOT_PATH.joinpath('root_files', 'sitemap.xml')
     sitemap_tmpl = get_template('sitemaps/sitemap.xml').template
 
-    # Output the XML sitemap index file
-    # ctx = {'settings': settings}
-    # index_tmpl.stream(ctx).dump(str(output_dir.joinpath('sitemap.xml')))
-
-    # Output the XML sitemaps for each locale
-    ctx = {'settings': settings, 'urls': urls, 'alt_urls': alt_urls}
-    sitemap_tmpl.stream(ctx).dump(str(output_dir.joinpath('sitemap.xml')))
+    ctx = {'canonical_url': settings.CANONICAL_URL, 'paths': urls}
+    sitemap_tmpl.stream(ctx).dump(str(output_file))

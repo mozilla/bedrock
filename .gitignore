@@ -44,4 +44,4 @@ tests/functional/assets/style.css
 .docker-build*
 Dockerfile-*
 root_files/sitemap.xml
-root_files/all-urls.json
+root_files/default-urls.json
