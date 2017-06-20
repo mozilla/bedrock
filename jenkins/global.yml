@@ -16,3 +16,7 @@ regions:
     deis_profile: tokyo
     name: tokyo
     deis_bin: deis2
+  frankfurt:
+    deis_profile: frankfurt
+    name: frankfurt
+    deis_bin: deis2
