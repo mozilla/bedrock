@@ -256,6 +256,7 @@ SUPPORTED_NONLOCALES = [
     'microsummaries',
     'xbl',
     'csp-violation-capture',
+    'country-code.json',
 ]
 
 ALLOWED_HOSTS = config(
