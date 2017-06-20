@@ -39,9 +39,8 @@ urlpatterns = (
     url(r'^healthz/$', 'bedrock.base.views.health_check'),
     url(r'^csp-violation-capture$', 'bedrock.base.views.csp_violation_capture',
         name='csp-violation-capture'),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^country-code\.json$', 'bedrock.base.views.geolocate',
+        name='geolocate')
 )
 
 if settings.DEBUG:

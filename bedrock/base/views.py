@@ -3,12 +3,48 @@ import logging
 
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest
+from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_safe
+
+from bedrock.mozorg.util import HttpResponseJSON
+from lib import l10n_utils
 
 from raven.contrib.django.models import client
 
-from lib import l10n_utils
+
+@require_safe
+@never_cache
+def geolocate(request):
+    """Return the country code provided by our CDN
+
+    https://support.cloudflare.com/hc/en-us/articles/200168236-What-does-CloudFlare-IP-Geolocation-do-
+
+    Mimics the responses from the Mozilla Location Service:
+
+    https://mozilla.github.io/ichnaea/api/region.html
+    """
+    if settings.DEV:
+        country_code = settings.DEV_GEO_COUNTRY_CODE
+    else:
+        country_code = request.META.get('HTTP_CF_IPCOUNTRY', 'XX')
+
+    if country_code == 'XX' or len(country_code) != 2:
+        return HttpResponseJSON({
+            "error": {
+                "errors": [{
+                    "domain": "geolocation",
+                    "reason": "notFound",
+                    "message": "Not found",
+                }],
+                "code": 404,
+                "message": "Not found",
+            }
+        }, status=404)
+
+    return HttpResponseJSON({
+        'country_code': country_code,
+    })
 
 
 def health_check(request):
