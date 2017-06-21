@@ -1432,6 +1432,19 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/experiment_firefox_new_fc_search_retention.js',
     },
+    'experiment_firefox_new_fc_win64': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/new/experiment-win64-funnelcakes.js',
+        ),
+        'output_filename': 'js/experiment_firefox_new_fc_win64.js',
+    },
+    'experiment_firefox_new_fc_win64_scene2': {
+        'source_filenames': (
+            'js/firefox/new/experiment-win64-funnelcakes-scene2.js',
+        ),
+        'output_filename': 'js/experiment_firefox_new_fc_win64_scene2.js',
+    },
     'firefox_new_pixel': {
         'source_filenames': (
             'js/base/mozilla-pixel.js',
