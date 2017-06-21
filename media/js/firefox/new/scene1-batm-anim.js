@@ -5,7 +5,9 @@
 (function($) {
     'use strict';
 
-    var exp = $('#main-header-copy').data('experience');
+    var title = $('#main-header-copy');
+    var exp = title.data('experience');
+    var variant = title.data('variant');
     var mqDesktop;
     var buttonOpen = '<button type="button" class="open" title="'+ Mozilla.Utils.trans('global-open') +'">'+ Mozilla.Utils.trans('global-open') +'</button>';
     var buttonNext = '<button type="button" class="next" title="'+ Mozilla.Utils.trans('global-next') +'">'+ Mozilla.Utils.trans('global-next') +'</button>';
@@ -15,9 +17,9 @@
     var point3 = $('#point-3 .label');
 
     $('.download-link').each(function(i, link) {
-        if (exp && link.href.indexOf('scene=2') > -1) {
+        if (exp && variant && link.href.indexOf('scene=2') > -1) {
             // specify v=1 template for scene 2
-            link.href = link.href.replace('scene=2', 'scene=2&xv=' + exp);
+            link.href = link.href.replace('scene=2', 'scene=2&xv=' + exp + '&v=' + variant);
         }
     });
 
