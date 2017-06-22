@@ -8,7 +8,7 @@
     var client = Mozilla.Client;
     var $survey = $('#firefox-new-survey-link');
 
-    if (!client.isMobile && Math.random() < 0.5) {
+    if (!client.isMobile && $survey.length && Math.random() < 0.5) {
         var link = $survey.attr('href');
         $survey.attr('href', link + window.location.search);
         $survey.css('display', 'block');
