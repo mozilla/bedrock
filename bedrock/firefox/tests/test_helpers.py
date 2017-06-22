@@ -110,6 +110,31 @@ class TestDownloadButtons(TestCase):
             eq_(href, '/firefox/new/?scene=2')
 
     @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
+    def test_download_location_attribute(self):
+        """
+        If the download_location parameter is set, it should be included as a data attribute.
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_firefox(download_location='primary cta') }}",
+                        {'request': get_request}))
+
+        links = doc('.download-list a')
+
+        for link in links:
+            link = pq(link)
+            eq_(link.attr('data-download-location'), 'primary cta')
+
+        doc = pq(render("{{ download_firefox() }}", {'request': get_request}))
+
+        links = doc('.download-list a')
+
+        for link in links[1:5]:
+            link = pq(link)
+            ok_(link.attr('data-download-location') is None)
+
+    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_button_has_data_attr_if_not_direct(self):
         """
         If the button points to the thank you page, it should have a

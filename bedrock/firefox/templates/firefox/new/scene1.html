@@ -81,12 +81,12 @@
 
                   Bug 1290962
                 #}
-                {{ download_firefox(alt_copy=_('Free Download'), locale_in_transition=True) }}
+                {{ download_firefox(alt_copy=_('Free Download'), locale_in_transition=True, download_location='primary cta') }}
               </div>
 
               {# handles Android and iOS users #}
               <div class="mobile download-button-wrapper" id="download-button-wrapper-mobile" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
-                {{ download_firefox(dom_id='download-button-mobile') }}
+                {{ download_firefox(dom_id='download-button-mobile', download_location='primary cta') }}
               </div>
             </section>{#-- /#download-buttons --#}
             <p id="version-message-linux-arm" class="version-message">
@@ -156,10 +156,10 @@
 
         <ul class="other-platforms-mobile">
           <li class="android">
-            {{ google_play_button() }}
+            {{ google_play_button(anchor_attributes={'data-download-location': 'other'}) }}
           </li>
           <li class="ios">
-            <a href="{{ firefox_ios_url('mozorg-fxnew_page_scene1_modal-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+            <a href="{{ firefox_ios_url('mozorg-fxnew_page_scene1_modal-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other">
               <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
             </a>
           </li>
@@ -172,7 +172,7 @@
         <h4 class="heading-osx">{{_('Download Firefox <span>for macOS</span>') }}</h4>
         <h4 class="heading-linux">{{_('Download Firefox <span>for Linux</span>') }}</h4>
 
-        {{ download_firefox(dom_id='download-other-platforms-modal', alt_copy=_('Free Download'), locale_in_transition=True) }}
+        {{ download_firefox(dom_id='download-other-platforms-modal', alt_copy=_('Free Download'), locale_in_transition=True, download_location='other') }}
       </section>
     </div>
   </div>

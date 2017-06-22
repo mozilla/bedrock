@@ -61,7 +61,7 @@
   <ul class="download-list">
     {% for plat in builds %}
       <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
-        <a class="download-link button {{button_color}}"
+        <a class="download-link button {{ button_color }}"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ plat.download_link_direct }}"{% endif %}
            data-link-type="download"
@@ -69,7 +69,8 @@
            data-download-version="{{ plat.os }}"
            {% if plat.os == 'android' %}data-download-os="Android"
            {% elif plat.os == 'ios' %}data-download-os="iOS"
-           {% else %}data-download-os="Desktop"{% endif %}>
+           {% else %}data-download-os="Desktop"{% endif %}
+           {% if download_location %}data-download-location="{{ download_location }}"{% endif %}>
           <strong class="download-title">
             {% if alt_copy %}
               {{ alt_copy }}

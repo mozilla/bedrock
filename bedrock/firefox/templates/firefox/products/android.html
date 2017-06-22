@@ -21,11 +21,11 @@
 
 {% block product_header_download %}
   {% if LANG.startswith('en-') %}
-  <a class="dl-button google-play" rel="external noreferrer" href="{{ alt_href|default(settings.GOOGLE_PLAY_FIREFOX_LINK, True) }}" data-link-type="download" data-download-os="Android" data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}">
+  <a class="dl-button google-play" rel="external noreferrer" href="{{ alt_href|default(settings.GOOGLE_PLAY_FIREFOX_LINK, True) }}" data-link-type="download" data-download-os="Android" data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}" data-download-location="primary cta">
     {{ high_res_img('firefox/products/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '190', 'height': '57'}) }}
   </a>
   {% else %}
-    {{ google_play_button(class_name='dl-button') }}
+    {{ google_play_button(class_name='dl-button', anchor_attributes={'data-download-location': 'primary cta'}) }}
   {% endif %}
 {% endblock %}
 
