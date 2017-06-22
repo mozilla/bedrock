@@ -43,6 +43,9 @@
             {{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}
           {% endif %}
           </h2>
+          {% if switch('firefox-new-survey', ['en-US']) %}
+            {% include 'firefox/new/survey.html' %}
+          {% endif %}
         </header>
         <div class="main-content">
           <h1>
