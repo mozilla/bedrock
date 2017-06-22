@@ -631,6 +631,14 @@ class FeaturesMemoryView(BlogPostsView):
     blog_tags = ['memory', 'featured']
 
 
+class FeaturesBookmarksView(BlogPostsView):
+    template_name = 'firefox/features/bookmarks.html'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['modern', 'private', 'featured']
+
+
 class FirefoxProductDesktopView(BlogPostsView):
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
