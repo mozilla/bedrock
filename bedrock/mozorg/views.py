@@ -310,3 +310,10 @@ class IHView(BlogPostsView):
             template_name = 'mozorg/internet-health.html'
 
         return [template_name]
+
+
+class DeveloperView(BlogPostsView):
+    template_name = 'mozorg/developer/index.html'
+    blog_slugs = 'hacks'
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'

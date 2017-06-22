@@ -1,0 +1,13 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "includes/sub-nav.html" %}
+
+{% block sub_nav_class %}technology{% endblock %}
+
+{% block sub_nav_primary_links %}
+<li><a href="{{ url('mozorg.technology') }}" data-link-name="Web Innovations" data-link-type="nav" data-link-position="subnav">{{ _('Web Innovations') }}</a></li>
+<li><a href="{{ url('mozorg.developer') }}" data-link-name="Mozilla Developers" data-link-type="nav" data-link-position="subnav">{{ _('Mozilla Developers') }}</a></li>
+<li><a href="https://developer.mozilla.org" data-link-name="MDN" data-link-type="nav" data-link-position="subnav">{{ _('MDN') }}</a></li>
+{% endblock %}

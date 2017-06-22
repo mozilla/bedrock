@@ -1,0 +1,443 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}{{ _('Developer Tools &amp; Resources') }}{% endblock %}
+{% block page_title_suffix %} | Mozilla{% endblock %}
+
+{% block page_desc %}{{ _('Find tools, resources, links videos and more for Mozilla developers.') }}{% endblock %}
+
+{% block page_image %}{{ static('img/mozorg/developer/hub/page-image.png') }}{% endblock %}
+
+{% block body_id %}developer-hub{% endblock %}
+{% block body_class %}{% endblock %}
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="technology"{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'developer-hub' %}
+{% endblock %}
+
+{% block site_header %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
+    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+    {% include 'mozorg/home/includes/nav.html' %}
+  {% endif %}
+{% endblock %}
+
+{% macro lazy_image(image_name) -%}
+<div class="image-container">
+  <img src="{{ static('img/mozorg/developer/hub/placeholder.png') }}" data-src="{{ static('img/mozorg/developer/hub/' + image_name) }}" alt="">
+  <noscript>
+    <img src="{{ static('img/mozorg/developer/hub/' + image_name) }}" alt="">
+  </noscript>
+</div>
+{%- endmacro %}
+
+{% block content %}
+{% include 'mozorg/developer/includes/sub-nav.html' %}
+{% include 'mozorg/developer/includes/icon-sprite.svg' %}
+
+<main role="main">
+  <header class="header-intro">
+    <div class="content">
+      <div class="header-container">
+        <div class="header-content">
+          <h1><span>{{ _('Mozilla Developers') }}</span></h1>
+          <p class="tagline">{{ _('Developer tools, resources, videos and more') }}</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="devtools">
+    <div class="content">
+
+      <div class="developer-tools card card-image-large">
+        <div class="card-content-wrapper">
+          <div class="card-content">
+            <a href="https://developer.mozilla.org/docs/Tools?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-name="Firefox DevTools" data-link-type="link" data-link-position="Firefox DevTools">
+              <h3 class="card-title">{{ _('Firefox DevTools') }}</h3>
+            </a>
+
+            <p>
+            {% trans %}
+              Modern tools for Web development.
+            {% endtrans %}
+            </p>
+
+            <a href="https://developer.mozilla.org/docs/Tools?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" class="cta-link" data-link-name="Explore DevTools" data-link-type="link" data-link-position="Firefox DevTools">
+              {{ _('Explore DevTools') }}
+            </a>
+          </div>
+        </div> {#--/.card-content-wrapper--#}
+      </div>
+
+    </div> {#--/.content--#}
+  </section> {#--/.devtools--#}
+
+  <section class="resources">
+    <div class="content">
+      <h2 class="section-title"><span>{{ _('Developer Resources') }}</span></h2>
+
+      <div class="card-group">
+        <div class="card card-image-large resource-mdn">
+          <div class="card-content-wrapper">
+            <div class="card-content">
+              <a href="https://developer.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-name="MDN" data-link-type="link" data-link-position="Developer resources">
+                <h3 class="card-title">{{ _('MDN') }}</h3>
+              </a>
+
+              <p>{{ _('The best resource for the Open Web.') }}</p>
+
+              <a href="https://developer.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" class="cta-link" data-link-name="Check out MDN" data-link-type="link" data-link-position="Developer resources">
+                {{ _('Check out MDN') }}
+              </a>
+            </div>
+          </div> {#--/.card-content-wrapper--#}
+        </div>
+
+        <div class="card">
+          <a class="card-image" href="https://developer.mozilla.org/docs/Tools?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-type="link" data-link-position="Developer resources" data-link-name="Firefox DevTools">
+            {{ lazy_image('resource-devtools.jpg') }}
+            <h3 class="card-title">{{ _('Firefox DevTools') }}</h3>
+          </a>
+
+          <div class="card-desc">
+            <p>{{ _('Edit and debug HTML, CSS, and JavaScript.') }}</p>
+          </div>
+
+          <p class="card-cta">
+            <a href="https://developer.mozilla.org/docs/Tools?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" class="cta-link" data-link-type="link" data-link-position="Developer resources" data-link-name="Learn more">{{ _('Learn more') }}</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <a class="card-image" href="https://research.mozilla.org/webassembly/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-type="link" data-link-position="Developer resources" data-link-name="WebAssembly">
+            {{ lazy_image('resource-webassembly.png') }}
+            <h3 class="card-title">{{ _('WebAssembly') }}</h3>
+          </a>
+
+          <div class="card-desc">
+            <p>{{ _('Use the .wasm format as a compiler target.') }}</p>
+          </div>
+
+          <p class="card-ta">
+            <a href="https://research.mozilla.org/webassembly/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" class="cta-link" data-link-type="link" data-link-position="Developer resources" data-link-name="More about WebAssembly">{{ _('More about WebAssembly') }}</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <a class="card-image" href="https://medium.com/mozilla-tech/keep-the-web-open-with-cross-browser-testing-e3006662a042" data-link-type="link" data-link-position="Developer resources" data-link-name="Cross-browser testing">
+            {{ lazy_image('resource-webcompat.png') }}
+            <h3 class="card-title">{{ _('Cross-browser testing') }}</h3>
+          </a>
+
+          <div class="card-desc">
+            <p>{{ _('Easily test your site on every browser and operating system.') }}</p>
+          </div>
+
+          <p class="card-cta">
+            <a href="https://medium.com/mozilla-tech/keep-the-web-open-with-cross-browser-testing-e3006662a042" class="cta-link" data-link-type="link" data-link-position="Developer resources" data-link-name="Start testing">{{ _('Start testing') }}</a>
+          </p>
+        </div>
+
+      </div>{#--/.card-group--#}
+
+    </div> {#--/.content--#}
+  </section> {#--/.report--#}
+
+  <section class="events">
+    <div class="content">
+      <h2 class="section-title"><span>{{ _('Events to Check Out') }}</span></h2>
+
+      <ul class="news-feed">
+        <li>
+          <article class="entry">
+            <a class="entry-block" rel="bookmark" href="https://hacks.mozilla.org/2017/02/devroadshow/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-name="Developer Roadshow" data-link-type="link" data-link-position="Events">
+              <img src="{{ static('img/mozorg/developer/hub/event-roadshow.jpg') }}" alt="">
+              <h3 class="entry-title">{{ _('Developer Roadshow') }}</h3>
+            </a>
+            <div class="entry-summary">
+              <p>{{ _('Mozilla-focused events for people who build the Web.') }}</p>
+            </div>
+            <p class="entry-cta">
+              <a href="https://hacks.mozilla.org/2017/02/devroadshow/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" class="cta-link" data-link-name="See dates" data-link-type="link" data-link-position="Events">{{ _('See dates') }}</a>
+            </p>
+          </article>
+        </li>
+      </ul>
+
+    </div> {#--/.content--#}
+  </section> {#--/.events--#}
+
+  {% with campaign='developer-hub' %}
+    {% include 'includes/news-feed.html' %}
+  {% endwith %}
+
+  {% include 'mozorg/developer/includes/newsletter.html' %}
+
+  <section class="projects">
+    <div class="content">
+      <h2 class="section-title"><span>{{ _('Projects We Love') }}</span></h2>
+
+      <div class="card-group">
+        <div class="card card-double">
+          <div class="card-image">
+            <a href="{{ url('mozorg.developer.css-grid-demo') }}" data-link-type="link" data-link-position="Projects" data-link-name="CSS Grid Layouts">
+              {{ lazy_image('project-cssgrid.png') }}
+              <h3 class="card-title">{{ _('CSS Grid Layouts') }}</h3>
+            </a>
+          </div>
+
+          <div class="card-desc">
+            <p>{{ _('A new layout system for the Web.') }}</p>
+          </div>
+
+          <p class="card-cta">
+            <a href="{{ url('mozorg.developer.css-grid-demo') }}" class="cta-link" data-link-type="link" data-link-position="Projects" data-link-name="See grids in action">
+              {{ _('See grids in action') }}
+            </a>
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-image">
+            <a href="https://wiki.mozilla.org/Quantum" data-link-type="link" data-link-position="Projects" data-link-name="Project Quantum">
+              {{ lazy_image('project-quantum.jpg') }}
+              <h3 class="card-title">{{ _('Project Quantum') }}</h3>
+            </a>
+          </div>
+
+          <div class="card-desc">
+            <p>{{ _('Mozilla’s next-generation web engine.') }}</p>
+          </div>
+
+          <p class="card-cta">
+            <a href="https://wiki.mozilla.org/Quantum" class="cta-link" data-link-type="link" data-link-position="Projects" data-link-name="Get involved">
+              {{ _('Get involved') }}
+            </a>
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-image">
+            <a href="https://www.rust-lang.org/" data-link-type="link" data-link-position="Projects" data-link-name="Rust">
+              {{ lazy_image('project-rust.jpg') }}
+              <h3 class="card-title">{{ _('Rust') }}</h3>
+            </a>
+          </div>
+
+          <div class="card-desc">
+            <p>{{ _('A systems programming language that is fast and safe.') }}</p>
+          </div>
+
+          <p class="card-cta">
+            <a href="https://www.rust-lang.org/" class="cta-link" data-link-type="link" data-link-position="Projects" data-link-name="Check out Rust">
+              {{ _('Check out Rust') }}
+            </a>
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-image">
+            <a href="https://developer.mozilla.org/docs/Games?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-type="link" data-link-position="Projects" data-link-name="Game Development">
+              {{ lazy_image('project-gamedev.jpg') }}
+              <h3 class="card-title">{{ _('Game Development') }}</h3>
+            </a>
+          </div>
+
+          <div class="card-desc">
+            <p>{{ _('Powerful Web technologies that help push games to the new level.') }}</p>
+          </div>
+
+          <p class="card-cta">
+            <a href="https://developer.mozilla.org/docs/Games?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" class="cta-link" data-link-type="link" data-link-position="Projects" data-link-name="Learn more">
+              {{ _('Learn more') }}
+            </a>
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-image">
+            <a href="https://aframe.io" data-link-type="link" data-link-position="Projects" data-link-name="A-Frame for WebVR">
+              {{ lazy_image('project-aframe.png') }}
+              <h3 class="card-title">{{ _('A-Frame for WebVR') }}</h3>
+            </a>
+          </div>
+
+          <div class="card-desc">
+            <p>{{ _('Build exciting virtual reality Web pages using HTML.') }}</p>
+          </div>
+
+          <p class="card-cta">
+            <a href="https://aframe.io/" class="cta-link" data-link-type="link" data-link-position="Projects" data-link-name="Start building">
+              {{ _('Start building') }}
+            </a>
+          </p>
+        </div>
+
+      </div>{#--/.card-group--#}
+
+    </div> {#--/.content--#}
+  </section> {#--/.projects--#}
+
+  <section class="videos">
+    <div class="content">
+      <h2 class="section-title"><span>{{ _('Videos to Watch') }}</span></h2>
+
+      <div class="card-group">
+        <div class="card card-double">
+          <a class="card-image video-play" href="https://youtu.be/16enLRDbOyY" data-link-type="link" data-link-position="Videos to watch" data-link-name="Announcing CSS Grid and the Firefox Grid Inspector tool">
+            <div class="video-thumbnail">
+              {{ lazy_image('video-gridinspector.jpg') }}
+              <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
+            </div>
+            <h3 class="card-title">{{ _('Announcing CSS Grid and the Firefox Grid Inspector tool') }}</h3>
+          </a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="16enLRDbOyY"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <a class="card-image video-play" href="https://youtu.be/MaJCfdmr9Wg" data-link-type="link" data-link-position="Videos to watch" data-link-name="WebAssembly: A game changer">
+            <div class="video-thumbnail">
+              {{ lazy_image('video-webassembly.jpg') }}
+              <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
+            </div>
+            <h3 class="card-title">{{ _('WebAssembly: A game changer') }}</h3>
+          </a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="MaJCfdmr9Wg"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <a class="card-image video-play" href="https://youtu.be/8EPsnf_ZYU0" data-link-type="link" data-link-position="Videos to watch" data-link-name="Rust and the future of systems programming">
+            <div class="video-thumbnail">
+              {{ lazy_image('video-rust.jpg') }}
+              <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
+            </div>
+            <h3 class="card-title">{{ _('Rust and the future of systems programming') }}</h3>
+          </a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="8EPsnf_ZYU0"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <a class="card-image video-play" href="https://youtu.be/TT7ugKuUMv0" data-link-type="link" data-link-position="Videos to watch" data-link-name="WebGL 2 demo">
+            <div class="video-thumbnail">
+              {{ lazy_image('video-webgldemo.jpg') }}
+              <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
+            </div>
+            <h3 class="card-title">{{ _('WebGL 2 demo') }}</h3>
+          </a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="TT7ugKuUMv0"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <a class="card-image video-play" href="https://youtu.be/QK4hKWmJVLo" data-link-type="link" data-link-position="Videos to watch" data-link-name="Firefox Developer Tools: debugger overview">
+            <div class="video-thumbnail">
+              {{ lazy_image('video-debugger.jpg') }}
+              <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
+            </div>
+            <h3 class="card-title">{{ _('Firefox Developer Tools: debugger overview') }}</h3>
+          </a>
+          <div class="responsive-video-container">
+            <div class="video" data-video-id="QK4hKWmJVLo"></div>
+          </div>
+        </div>
+
+      </div>{#--/.card-group--#}
+
+    </div> {#--/.content--#}
+  </section> {#--/.videos--#}
+
+  <section class="social">
+    <div class="content">
+      <h2 class="section-title"><span>{{ _('Stay Connected') }}</span></h2>
+
+      <ul class="social-groups">
+        <li>
+          <h3>{{ _('Mozilla Hacks') }}</h3>
+          <ul class="social-group-links">
+            <li>
+              <a href="https://hacks.mozilla.org/" data-link-type="link" data-link-position="Stay Connected" data-link-name="Mozilla Hacks: Blog">
+                <svg class="icon"><use xlink:href="#icon-rss"></use></svg> {{ _('Blog') }}
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/MozHacks" data-link-type="link" data-link-position="Stay Connected" data-link-name="Mozilla Hacks: @MozHacks">
+                <svg class="icon"><use xlink:href="#icon-twitter"></use></svg> @MozHacks
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>{{ _('MDN') }}</h3>
+          <ul class="social-group-links">
+            <li>
+              <a href="https://twitter.com/MozDevNet" data-link-type="link" data-link-position="Stay Connected" data-link-name="MDN: @MozDevNet">
+                <svg class="icon"><use xlink:href="#icon-twitter"></use></svg> @MozDevNet
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>{{ _('Mozilla Tech') }}</h3>
+          <ul class="social-group-links">
+            <li>
+              <a href="https://medium.com/mozilla-tech" data-link-type="link" data-link-position="Stay Connected" data-link-name="Mozilla Tech: Blog">
+                <svg class="icon"><use xlink:href="#icon-rss"></use></svg> {{ _('Blog') }}
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/channel/UCijjo5gfAscWgNCKFHWm1EA" data-link-type="link" data-link-position="Stay Connected" data-link-name="Mozilla Tech: YouTube">
+                <svg class="icon"><use xlink:href="#icon-youtube"></use></svg> {{ _('YouTube') }}
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <h3>{{ _('Firefox Developer Tools') }}</h3>
+          <ul class="social-group-links">
+            <li>
+              <a href="https://twitter.com/firefoxdevtools" data-link-type="link" data-link-position="Stay Connected" data-link-name="Firefox Developer Tools: @FirefoxDevTools">
+                <svg class="icon"><use xlink:href="#icon-twitter"></use></svg> @FirefoxDevTools
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+    </div> {#--/.content--#}
+  </section> {#--/.social--#}
+
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_footer %}
+  {% with footer_class='dark' %}
+    {% if LANG.startswith('en-') %}
+      {% include 'includes/site-footer-new.html' %}
+    {% else %}
+      {% include 'includes/site-footer.html' %}
+    {% endif %}
+  {% endwith %}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'developer-hub' %}
+{% endblock %}
