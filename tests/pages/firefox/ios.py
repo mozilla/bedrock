@@ -5,18 +5,13 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
-from pages.regions.send_to_device import SendToDevice
 
 
-class IOSPage(FirefoxBasePage):
+class FirefoxIOSPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/ios'
+    URL_TEMPLATE = '/{locale}/firefox/ios/'
 
-    _app_store_button_locator = (By.CSS_SELECTOR, '#intro .appstore-badge')
-
-    @property
-    def send_to_device(self):
-        return SendToDevice(self)
+    _app_store_button_locator = (By.CSS_SELECTOR, '.header-download .app-store')
 
     @property
     def is_app_store_button_displayed(self):

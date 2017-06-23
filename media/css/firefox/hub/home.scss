@@ -5,6 +5,7 @@
 @import '../../pebbles/includes/lib';
 @import '../../hubs/mixins';
 @import '../../hubs/sections';
+@import '../../hubs/masthead';
 @import '../../pebbles/components/newsletter';
 @import '../../hubs/sub-nav';
 @import '../../hubs/cards';
@@ -26,11 +27,11 @@ $color-link-blue-dark: #175a77;
     .fx-privacy-link a {
         @include open-sans();
     }
-}
 
-.section > .content,
-.news > .content {
-    @include horizontal-rule-before($start-color: #69B9D0, $end-color: #9a4229);
+    .section > .content,
+    .news > .content {
+        @include horizontal-rule-before($start-color: #69B9D0, $end-color: #9a4229);
+    }
 }
 
 //* -------------------------------------------------------------------------- */

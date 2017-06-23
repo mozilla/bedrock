@@ -6,6 +6,7 @@
     '../pebbles/includes/lib',
     '../hubs/mixins',
     '../hubs/sections',
+    '../hubs/masthead',
     '../pebbles/components/newsletter',
     '../hubs/sub-nav',
     '../hubs/buttons',
@@ -23,11 +24,11 @@ $color-link-blue-dark: #175a77;
 .page-content {
     @include font-size(20px);
     @include zilla-slab;
-}
 
-.section > .content,
-.news > .content {
-    @include horizontal-rule-before($start-color: $color-dusty-blue, $end-color: $color-burnt-orange);
+    .section > .content,
+    .news > .content {
+        @include horizontal-rule-before($start-color: $color-dusty-blue, $end-color: $color-burnt-orange);
+    }
 }
 
 //* -------------------------------------------------------------------------- */

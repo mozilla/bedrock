@@ -2,12 +2,11 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "firefox/shared" %}
+
 {% extends "firefox/features/base.html" %}
 
-{# L10n: strings for this page are not considered final and aren't ready for localization. #}
-
-{% block page_title %}{{ _('Firefox Browser: Use Less Memory, Get More Speed') }}{% endblock %}
-{% block page_title_suffix %}{% endblock %}
+{% block page_title %}{{ _('Firefox Browser: Use less memory, get more speed') }}{% endblock %}
 {% block page_desc %}{{ _('Is your computer slow? Your browser might be using too much memory. Switch to Firefox today for more speed.') }}{% endblock %}
 
 {% block page_css %}
@@ -19,7 +18,7 @@
 
 {% block features_header_content %}
   <h1><span>{{ _('Less memory usage than Chrome') }}</span></h1>
-  <p class="tagline">{{ _('If your web browser uses too much memory, switch to Firefox') }}</p>
+  <p class="tagline">{{ _('If your web browser uses too much memory, switch to Firefox.') }}</p>
 {% endblock %}
 
 {% block features_list %}
@@ -34,9 +33,9 @@
         <p>
         {% trans %}
           Every computer program you run takes up some memory. When too much is used,
-          your system can slooooowww down. Firefox aims for a balance &mdash; using
-          enough memory to let you browse smoothly and leaving plenty of memory to keep
-          your computer responsive.
+          your system can slooooowww down. Firefox aims for a balance — using enough
+          memory to let you browse smoothly and leaving plenty of memory to keep your
+          computer responsive.
         {% endtrans %}
         </p>
       </li>
@@ -80,12 +79,13 @@
         </a>
         <div class="card-content">
           <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-            <h2 class="card-title">{{ _('More Privacy') }}</h2>
+            <h2 class="card-title">{{ _('More privacy') }}</h2>
           </a>
           <p>
           {% trans %}
-            Firefox doesn’t sell access to your personal information like other companies.
-            From privacy tools to tracking protection, you’re in charge of who sees what.
+            Firefox doesn’t sell access to your personal information like
+            other companies. From privacy tools to tracking protection,
+            you’re in charge of who sees what.
           {% endtrans %}
           </p>
           <p class="card-cta">
@@ -102,13 +102,13 @@
         </a>
         <div class="card-content">
           <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-            <h2 class="card-title">{{ _('More Freedom') }}</h2>
+            <h2 class="card-title">{{ _('More freedom') }}</h2>
           </a>
           <p>
           {% trans %}
             Following the pack isn’t our style. As part of the non-profit Mozilla,
-            Firefox leads the fight to protect your online rights, and champion an
-            Internet that benefits everyone—not just a few.
+            Firefox leads the fight to protect your online rights and champion an
+            Internet that benefits everyone — not just a few.
           {% endtrans %}
           </p>
           <p class="card-cta">

@@ -4,25 +4,17 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.desktop.all import FirefoxDesktopBasePage
+from pages.firefox.base import FirefoxBasePage
 from pages.regions.download_button import DownloadButton
 
 
-class DesktopPage(FirefoxDesktopBasePage):
+class FirefoxDesktopPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/desktop'
+    URL_TEMPLATE = '/{locale}/firefox/desktop/'
 
-    _primary_download_locator = (By.CSS_SELECTOR, '#overview-intro-download-wrapper .download-button')
-    _secondary_download_locator = (By.CSS_SELECTOR, '#subscribe-download-wrapper .download-button')
+    _download_button_locator = (By.ID, 'product-header-download')
 
     @property
-    def primary_download_button(self):
-        el = self.find_element(*self._primary_download_locator)
+    def download_button(self):
+        el = self.find_element(*self._download_button_locator)
         return DownloadButton(self, root=el)
-
-    def wait_for_download_button_to_display(self):
-        self.wait.until(lambda s: self.primary_download_button.is_displayed)
-
-    def wait_for_page_to_load(self):
-        super(FirefoxDesktopBasePage, self).wait_for_page_to_load()
-        return self

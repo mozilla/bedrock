@@ -2,9 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "firefox/products/product-base.html" %}
+{% add_lang_files "firefox/shared" %}
 
-{# L10n: strings for this page are not considered final and aren't ready for localization. #}
+{% extends "firefox/products/product-base.html" %}
 
 {% block page_css %}
   {{ super() }}
@@ -49,12 +49,12 @@
     <ul class="features-list">
       <li class="features-list-item">
         <img src="{{ static('img/firefox/products/focus/feature-focus-block.png') }}" alt="">
-        <h3 class="feature-title">{{ _('Give ad trackers the hand') }}</h3>
+        <h3 class="feature-title">{{ _('Forget the ad trackers') }}</h3>
         <div class="feature-desc">
           <p>
           {% trans %}
-            Block the ads, and the trackers that skulk around collecting data about your browsing.
-            Firefox Focus doesn’t remember you, so neither can they.
+            Block ads with sneaky trackers that secretly collect your data by keeping a clean slate.
+            Firefox Focus won’t remember you, so neither will they.
           {% endtrans %}
           </p>
         </div>
@@ -62,12 +62,12 @@
 
       <li class="features-list-item">
         <img src="{{ static('img/firefox/products/focus/feature-focus-history.png') }}" alt="">
-        <h3 class="feature-title">{{ _('Put your history in the bin') }}</h3>
+        <h3 class="feature-title">{{ _('Make a fresh start') }}</h3>
         <div class="feature-desc">
           <p>
           {% trans %}
-            Your entire browsing session — passwords, history, cookies — are wiped out with a single
-            click, whenever you want a clean slate.
+            Wipe out your entire browsing session — passwords, history, cookies — with a single click,
+            whenever the mood strikes.
           {% endtrans %}
           </p>
         </div>
@@ -75,12 +75,12 @@
 
       <li class="features-list-item">
         <img src="{{ static('img/firefox/products/focus/feature-focus-fast.png') }}" alt="">
-        <h3 class="feature-title">{{ _('Blast through every page') }}</h3>
+        <h3 class="feature-title">{{ _('Pick up browsing speed') }}</h3>
         <div class="feature-desc">
           <p>
           {% trans %}
-            Ads drag down more than your morale. Blocking ads can mean a cleaner, more clutter-free
-            screen, and rocketship-fast loading.
+            Browse lighter and clutter-free by blocking pesky ads that wear down loading speeds and
+            your patience.
           {% endtrans %}
           </p>
         </div>
@@ -103,7 +103,7 @@
         </a>
         <div class="card-content">
           <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-            <h2 class="card-title">{{ _('More Privacy') }}</h2>
+            <h2 class="card-title">{{ _('More privacy') }}</h2>
           </a>
           <p>
           {% trans %}
@@ -112,14 +112,18 @@
             of who sees what.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">{{ ('Here’s how Firefox protects your privacy') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
+              {{ _('Here’s how Firefox protects your privacy') }}
+            </a>
+          </p>
         </div>
       </section>
 
       <section id="independent" class="card card-independent">
         <div class="card-content">
           <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-            <h2 class="card-title">{{ _('More Freedom') }}</h2>
+            <h2 class="card-title">{{ _('More freedom') }}</h2>
           </a>
           <p>
           {% trans %}
@@ -128,23 +132,32 @@
             Internet that benefits everyone — not just a few.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">{{ _('Browse independently with Firefox') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
+              {{ _('Browse independently with Firefox') }}
+            </a>
+          </p>
         </div>
       </section>
 
       <section id="modern" class="card card-modern">
         <div class="card-content">
           <a href="{{ url('firefox.features.fast') }}" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
-            <h2 class="card-title">{{ _('More Performance') }}</h2>
+            <h2 class="card-title">{{ _('More performance') }}</h2>
           </a>
           <p>
+          {# L10n Note: “Bring it” is a friendly challenge. In this case, we are showing our confidence in Fx’s increased speed. An alternate translation would be “Let’s go, Internet!” #}
           {% trans %}
-            Bring it, Internet! We’ve spent the last year supercharging Firefox’s
-            performance. Now start up to 30% faster, tab hop 86% quicker, and
+            Bring it, Internet! We’ve spent the last year supercharging
+            Firefox’s performance. Now start up faster, tab hop quicker and
             scroll like a speed demon.
           {% endtrans %}
           </p>
-          <p class="card-cta"><a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">{{ _('Get more done with Firefox speeds') }}</a></p>
+          <p class="card-cta">
+            <a href="{{ url('firefox.features.fast') }}" class="cta-link" data-link-type="link" data-link-position="Value - Modern" data-link-name="More Performance">
+              {{ _('Get more done with Firefox') }}
+            </a>
+          </p>
         </div>
       </section>
     </div> {#--/.cards-container--#}
