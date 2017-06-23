@@ -179,7 +179,7 @@
 // Near-total copy pasta from global-nav.html. TODO: DRY this up
 
 #sub-nav-download-firefox {
-    margin: 8px 0 0 0;
+    margin: 7px 0 0;
     opacity: 0;
     transform: translateY(-100px);
     transition: opacity 0.3s ease 0.1s, transform 0.4s ease-in-out;
@@ -201,7 +201,7 @@
         border: none;
         color: #fff;
         display: inline-block;
-        padding: 4px 10px;
+        padding: 8px 10px;
         text-decoration: none;
         transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
 
@@ -228,10 +228,6 @@
             color: #fff;
             transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
         }
-    }
-
-    @media #{$mq-desktop} {
-        margin-right: 10px;
     }
 
     .fx-privacy-link {

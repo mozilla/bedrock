@@ -571,13 +571,6 @@ html.moz-nav-open .moz-global-nav-page-mask {
 
     @media #{$mq-desktop} {
         margin-right: 85px;
-
-        .download-link {
-            &:link,
-            &:visited {
-                padding: 8px 20px;
-            }
-        }
     }
 
     .fx-privacy-link {
