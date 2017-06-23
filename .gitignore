@@ -43,3 +43,5 @@ tests/functional/assets/style.css
 .eslintcache
 .docker-build*
 Dockerfile-*
+root_files/sitemap.xml
+root_files/default-urls.json

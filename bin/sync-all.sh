@@ -13,5 +13,6 @@ fi
 ./manage.py update_externalfiles
 ./manage.py update_security_advisories
 ./manage.py l10n_update
+./manage.py update_sitemaps
 #requires twitter api credentials not distributed publicly
 ./manage.py cron update_tweets

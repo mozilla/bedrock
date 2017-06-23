@@ -88,5 +88,6 @@ if $PROD_MODE && ! imageExists "l10n"; then
         ENVFILE="master";
     fi
     dockerRun $ENVFILE code "python manage.py l10n_update"
-    docker/bin/docker_build.sh -c "locale" "l10n"
+    dockerRun $ENVFILE code "python manage.py update_sitemaps"
+    docker/bin/docker_build.sh "l10n"
 fi
