@@ -1,6 +1,6 @@
 FROM mozorg/bedrock_code:${GIT_COMMIT}
 
-COPY locale .
+COPY ./locale ./locale
 COPY ./root_files/sitemap.xml ./root_files/
 COPY ./root_files/default-urls.json ./root_files/
 
