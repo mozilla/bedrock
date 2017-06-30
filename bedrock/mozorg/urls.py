@@ -89,7 +89,6 @@ urlpatterns = (
     page('contact/spaces/portland', 'mozorg/contact/spaces/portland.html'),
     page('contact/spaces/san-francisco', 'mozorg/contact/spaces/san-francisco.html'),
     page('contact/spaces/taipei', 'mozorg/contact/spaces/taipei.html'),
-    page('contact/spaces/tokyo', 'mozorg/contact/spaces/tokyo.html'),
     page('contact/spaces/toronto', 'mozorg/contact/spaces/toronto.html'),
     page('contact/spaces/vancouver', 'mozorg/contact/spaces/vancouver.html'),
 

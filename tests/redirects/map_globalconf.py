@@ -129,12 +129,6 @@ URLS = flatten((
     url_test('/ports/os2/', 'https://wiki.mozilla.org/Ports/os2'),
     url_test('/ports/other-things/', 'http://www-archive.mozilla.org/ports/other-things/'),
 
-    # bug 1013082
-    url_test('/ja/', 'https://www.mozilla.jp/'),
-
-    # bug 1051686
-    url_test('/ja/firefox/organizations/', 'https://www.mozilla.jp/business/'),
-
     # bug 1205632
     url_test('/js/language/',
              'https://developer.mozilla.org/docs/Web/JavaScript/Language_Resources'),
@@ -142,16 +136,6 @@ URLS = flatten((
     url_test('/js/language/es4/', 'http://www.ecmascript-lang.org'),
     url_test('/js/language/E262-3-errata.html',
              'http://www-archive.mozilla.org/js/language/E262-3-errata.html'),
-
-    # bug 1138280
-    url_test('/ja/firefox/beta/notes/', 'https://www.mozilla.jp/firefox/beta/notes/'),
-    url_test('/ja/thunderbird/notes/', 'https://www.mozilla.jp/thunderbird/notes/'),
-    url_test('/ja/thunderbird/android/2.2beta/releasenotes/',
-             'https://www.mozilla.jp/thunderbird/android/2.2beta/releasenotes/'),
-
-    # bug 987059, 1050149, 1072170, 1208358
-    url_test('/ja/about/', 'https://www.mozilla.jp/about/mozilla/'),
-    url_test('/ja/about/japan/', 'https://www.mozilla.jp/about/japan/'),
 
     # bug 927442
     url_test('{/firefox,}/community/', '/contribute/'),
@@ -226,9 +210,6 @@ URLS = flatten((
 
     # bug 882845
     url_test('/firefox/toolkit/download-to-your-devices/because-i-say-so/', '/firefox/new/'),
-
-    # bug 1091977
-    url_test('/ja/contribute/random/stuff/', 'https://www.mozilla.jp/community/'),
 
     # bug 1014823
     url_test('/pt-BR/{products/,}firefox/releases/whatsnew/', '/pt-BR/firefox/whatsnew/'),
@@ -951,10 +932,6 @@ URLS = flatten((
     url_test('/firefox/hello/feedbacksurvey/',
              'https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687',
              status_code=requests.codes.found),
-
-    # bug 1224060
-    url_test('/ja/firefox/ios/1.0/{releasenotes,system-requirements}/',
-             'https://www.mozilla.jp/firefox/ios/1.0/{releasenotes,system-requirements}/'),
 
     # bug 1236791
     url_test('/en-US/firefox/new/?product=firefox-{3.6.8,13.0.1}{&os={osx〈=en-US,win},}',
