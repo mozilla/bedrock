@@ -30,7 +30,6 @@ from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
-from bedrock.utils.views import VariationMixin
 from bedrock.wordpress.views import BlogPostsView
 
 
@@ -415,11 +414,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         return [template]
 
 
-class WhatsnewView(VariationMixin, l10n_utils.LangFilesMixin, TemplateView):
-    # a & b are for de, c & d are for ja/zh-CN
-    template_context_variations = ['a', 'b', 'c', 'd']
-    variation_locales = ['de', 'ja', 'zh-CN']
-
+class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
 
@@ -446,7 +441,7 @@ class WhatsnewView(VariationMixin, l10n_utils.LangFilesMixin, TemplateView):
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
         elif show_54_whatsnew(version):
-            # zh-TW has locale-specific template: whatsnew-54.zh-TW.html
+            # ja, zh-CN, and zh-TW have locale-specific templates
             template = 'firefox/whatsnew/fx54/whatsnew-54.html'
         elif show_50_whatsnew(version):
             # zh-TW has locale-specific template: whatsnew-50.zh-TW.html
