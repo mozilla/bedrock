@@ -85,7 +85,13 @@
   <div class="container">
     <header>
       <h2>{{_('Nightly')}}</h2>
-      <p>{{_('Test brand new features daily (or… nightly). Enjoy at your own risk.')}}</p>
+      <p>
+        {%- if l10n_has_tag('nightly_description_bug1375100') -%}
+          {{_('Get a sneak peek at our next generation web browser, and help us make it the best browser it can be: try Firefox Nightly.')}}
+        {%- else -%}
+          {{_('Test brand new features daily (or… nightly). Enjoy at your own risk.')}}
+        {%- endif -%}
+      </p>
     </header>
     {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-nightly-download") }}
     <p class="notice">
