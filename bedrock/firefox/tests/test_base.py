@@ -273,7 +273,7 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew/fx54/whatsnew-54.html'])
 
-    # end 50.0 whatsnew tests
+    # end 54.0 whatsnew tests
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
