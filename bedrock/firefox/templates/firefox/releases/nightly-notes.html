@@ -28,11 +28,3 @@
 {% block extra_resources %}
   <a rel="external" href="https://blog.nightly.mozilla.org/">{{ _('Firefox Nightly News') }}</a>
 {% endblock %}
-
-{% block site_footer %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/site-footer-new.html' %}
-  {% else %}
-    {% include 'includes/site-footer.html' %}
-  {% endif %}
-{% endblock %}

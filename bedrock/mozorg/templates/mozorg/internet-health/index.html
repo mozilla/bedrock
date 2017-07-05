@@ -151,16 +151,6 @@
 
 {% block email_form %}{% endblock %}
 
-{% block site_footer %}
-  {% with footer_class='dark' %}
-    {% if LANG.startswith('en-') %}
-      {% include 'includes/site-footer-new.html' %}
-    {% else %}
-      {% include 'includes/site-footer.html' %}
-    {% endif %}
-  {% endwith %}
-{% endblock %}
-
 {% block js %}
   {% javascript 'internet-health-hub' %}
 {% endblock %}

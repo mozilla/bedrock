@@ -128,14 +128,4 @@
 </section>{#-- /#terms-conditions --#}
 {% endblock %}
 
-{% block site_footer %}
-  {% with footer_class='blue' %}
-    {% if LANG.startswith('en-') %}
-      {% include 'includes/site-footer-new.html' %}
-    {% else %}
-      {% include 'includes/site-footer.html' %}
-    {% endif %}
-  {% endwith %}
-{% endblock %}
-
 {% block email_form %}{% endblock %}

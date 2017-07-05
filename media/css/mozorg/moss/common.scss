@@ -361,16 +361,6 @@ main {
     }
 }
 
-#colophon {
-    background: #56565a;
-    color: #fff;
-    margin-top: 0;
-
-    .logo a {
-        @include at2x('/media/img/sandstone/footer-mozilla-white.png', 93px, 24px);
-    }
-}
-
 // index page
 #moss-home #header-image {
     background: #d1d2d3;

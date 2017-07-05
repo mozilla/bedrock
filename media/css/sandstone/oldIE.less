@@ -54,7 +54,8 @@ body {
 #masthead,
 #main-feature,
 #main-content,
-#colophon,
+#colophon .content,
+.moz-global-nav .nav-horizontal-menu,
 .billboard,
 .container {
     .clearfix();
@@ -603,40 +604,6 @@ img {
     color: #fff;
     padding-top: @baseLine / 2;
     padding-bottom: @baseLine / 2;
-}
-
-
-
-// Footer
-#colophon.universal,
-#colophon.old {
-    background: #fff;
-    color: @textColorTertiary;
-    .font-size(.875em);
-    margin: 0;
-    padding: (@baseLine * 2) 0;
-    width: 100%;
-
-    .row {
-        width: @widthDesktop - (@gridGutterWidth * 2);
-        zoom: 1;
-        margin: 0 auto;
-    }
-
-    a:link,
-    a:visited {
-        color: @linkBlue;
-    }
-
-    a:hover,
-    a:focus,
-    a:active {
-        color: darken(@linkBlue, 10%);
-    }
-
-    p {
-        margin-bottom: @baseLine / 2;
-    }
 }
 
 // Don't display the dynamic platform images when js is disabled

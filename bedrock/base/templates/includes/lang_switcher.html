@@ -4,14 +4,7 @@
 
 {% if translations|length > 1 %}
 <form id="lang_form" method="get" action="#">
-  <label for="page-language-select">
-    {# Remove 'en-' conditional once all locales have translated string below. #}
-    {% if LANG.startswith('en-') %}
-      {{ _('Page language:') }}
-    {% else %}
-      {{ _('Other languages:') }}
-    {% endif %}
-  </label>
+  <label for="page-language-select">{{ _('Language') }}</label>
   <select id="page-language-select" name="lang" dir="ltr">
     {% for code, label in translations|dictsort -%}
       {# Don't escape the label as it may include entity references

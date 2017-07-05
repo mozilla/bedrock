@@ -166,16 +166,6 @@
   </aside>
 {% endblock %}
 
-{% block site_footer %}
-  {% with footer_class='blue' %}
-    {% if LANG.startswith('en-') %}
-      {% include 'includes/site-footer-new.html' %}
-    {% else %}
-      {% include 'includes/site-footer.html' %}
-    {% endif %}
-  {% endwith %}
-{% endblock %}
-
 {% block js %}
   <!--[if IE 9]>
     {% javascript 'matchmedia_addlistener' %}
