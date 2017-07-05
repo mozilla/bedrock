@@ -15,7 +15,15 @@
 {% block body_id %}firefox-product-android{% endblock %}
 
 {% block product_header_content %}
-  <h1 class="page-title"><span>{{ _('Firefox for Android') }}</span></h1>
+  <h1 class="page-title">
+    <span>
+    {% if l10n_has_tag('firefox_hub_titles_062017') %}
+      {{ _('Firefox browser for Android') }}
+    {% else %}
+      {{ _('Firefox for Android') }}
+    {% endif %}
+    </span>
+  </h1>
   <p class="tagline">{{ _('Our most customizable Firefox for Android yet.') }}</p>
 {% endblock %}
 

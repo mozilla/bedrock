@@ -40,42 +40,58 @@
 }
 
 
-// Consistent font sizes for headings and titles.
-// Don't misuse these mixins; they're for headings! Use the regular font-size mixin for other elements.
-// Type scale based on a 1.333 ratio (Perfect Fourth) with 16px base, rounded to whole pixels for simplicity.
-// See: http://www.modularscale.com/?16&px&1.333&web&text
+// Consistent font sizes. Avoid sizing text arbitrarily and use this
+// set of predefined sizes. Sizes adapt at common breakpoints, and
+// there's some redundancy at smaller sizes because we don't want things
+// getting too tiny.
 // Usage:
 //  .foo { @include font-size-level1; }
 
 @mixin font-size-huge { // For especially huge titles
-    @include font-size(50px);
+    @include font-size(48px);
 
     @media #{$mq-tablet} {
-        @include font-size(90px);
+        @include font-size(60px);
+    }
+
+    @media #{$mq-desktop} {
+        @include font-size(72px);
     }
 }
 
 @mixin font-size-level1 {
-    @include font-size(38px);
+    @include font-size(36px);
 
     @media #{$mq-tablet} {
-        @include font-size(50px);
+        @include font-size(48px);
+    }
+
+    @media #{$mq-desktop} {
+        @include font-size(60px);
     }
 }
 
 @mixin font-size-level2 {
-    @include font-size(28px);
+    @include font-size(24px);
 
     @media #{$mq-tablet} {
-        @include font-size(38px);
+        @include font-size(36px);
+    }
+
+    @media #{$mq-desktop} {
+        @include font-size(48px);
     }
 }
 
 @mixin font-size-level3 {
-    @include font-size(21px);
+    @include font-size(18px);
 
     @media #{$mq-tablet} {
-        @include font-size(28px);
+        @include font-size(24px);
+    }
+
+    @media #{$mq-desktop} {
+        @include font-size(36px);
     }
 }
 
@@ -83,6 +99,42 @@
     @include font-size(16px);
 
     @media #{$mq-tablet} {
-        @include font-size(21px);
+        @include font-size(18px);
     }
+
+    @media #{$mq-desktop} {
+        @include font-size(24px);
+    }
+}
+
+@mixin font-size-level5 {
+    @include font-size(14px);
+
+    @media #{$mq-tablet} {
+        @include font-size(16px);
+    }
+
+    @media #{$mq-desktop} {
+        @include font-size(18px);
+    }
+}
+
+@mixin font-size-level6 {
+    @include font-size(14px);
+
+    @media #{$mq-tablet} {
+        @include font-size(16px);
+    }
+}
+
+@mixin font-size-small {
+    @include font-size(12px);
+
+    @media #{$mq-tablet} {
+        @include font-size(14px);
+    }
+}
+
+@mixin font-size-extra-small {
+    @include font-size(12px);
 }

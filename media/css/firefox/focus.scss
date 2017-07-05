@@ -19,38 +19,3 @@
 #masthead #nav-download-firefox {
     display: none;
 }
-
-/* -------------------------------------------------------------------------- */
-// Page header
-
-.header-intro {
-
-    .page-title {
-        @include font-size(42px);
-    }
-
-    .tagline {
-        @include font-size(22px);
-        max-width: 35ch;
-    }
-
-    @media #{$mq-tablet} {
-        .page-title {
-            @include font-size(64px);
-        }
-
-        .tagline {
-            @include font-size(28px);
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .page-title {
-            @include font-size(78px);
-        }
-
-        .tagline {
-            @include font-size(34px);
-        }
-    }
-}

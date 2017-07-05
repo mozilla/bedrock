@@ -1,0 +1,97 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Page header
+
+.header-intro {
+    h1 {
+        @include font-size-huge;
+        color: #fff;
+        line-height: 1.3;
+
+        span {
+            @include box-decoration-break(clone);
+            background-color: #000;
+        }
+    }
+
+    .tagline {
+        @include font-size-level3;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 0;
+        max-width: 25em;
+    }
+
+    .hero-image {
+        display: block;
+        margin: 20px auto 0;
+    }
+
+    .header-download {
+        text-align: center;
+        padding-top: 40px;
+    }
+
+    .dl-button {
+        display: inline-block;
+
+        img {
+            width: 190px;
+        }
+    }
+
+    .content:before {
+        height: 10px;
+    }
+
+    @media #{$mq-tablet} {
+
+        .hero-image {
+            height: 400px;
+            margin-top: 60px;
+            width: 720px;
+        }
+
+        .header-container {
+            @include clearfix;
+        }
+
+        .header-content {
+            @include span(6);
+            padding-left: 0;
+        }
+
+        .header-download {
+            @include span(6);
+            padding: 60px 0 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        .header-content {
+            @include span(8);
+            padding-left: 0;
+        }
+
+        .header-download {
+            @include span(4);
+            padding: 60px 0 0;
+        }
+    }
+}
+
+html[dir="rtl"] .header-intro {
+    @media #{$mq-tablet} {
+        .header-content {
+            float: right;
+            padding-left: 10px;
+            padding-right: 0;
+        }
+    }
+}
