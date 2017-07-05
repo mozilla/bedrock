@@ -3,10 +3,10 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 
-// Convert pixel units to rems, assuming a 16px base size
+// Convert pixel units to rems, assuming a 18px base size
 // Usage: remify(24px)
 @function remify($pixels) {
-    $rems: $pixels / 16px;
+    $rems: $pixels / 18px;
     @return #{$rems}rem;
 }
 

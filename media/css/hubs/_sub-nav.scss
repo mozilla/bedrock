@@ -248,3 +248,54 @@
         display: none;
     }
 }
+
+html[dir="rtl"] {
+    .sub-nav-primary-links-container {
+        float: right;
+    }
+
+    .sub-nav-primary-links > li {
+        padding: 0 0 10px 20px;
+
+        &:last-child {
+            padding-left: 0;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 0;
+            margin-right: 45px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 0;
+            margin-right: 98px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .sub-nav-primary-links li {
+            padding-left: 40px;
+            padding-right: 0;
+        }
+
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 0;
+            margin-right: 120px;
+        }
+    }
+
+    // black outline firefox logo
+    .sub-nav-logo-link {
+        left: auto;
+        right: 0;
+    }
+
+    .sub-nav-download-wrapper {
+        float: left;
+        text-align: left;
+    }
+}

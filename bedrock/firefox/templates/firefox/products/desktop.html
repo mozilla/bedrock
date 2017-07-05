@@ -19,7 +19,15 @@
 {% endblock %}
 
 {% block product_header_content %}
-  <h1 class="page-title"><span>{{ _('Firefox for Desktop') }}</span></h1>
+  <h1 class="page-title">
+    <span>
+    {% if l10n_has_tag('firefox_hub_titles_062017') %}
+      {{ _('Firefox browser for desktop') }}
+    {% else %}
+      {{ _('Firefox for Desktop') }}
+    {% endif %}
+    </span>
+  </h1>
   <p class="tagline">{{ _('Get more done, even faster.') }}</p>
 {% endblock %}
 

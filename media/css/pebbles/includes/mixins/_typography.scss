@@ -48,41 +48,73 @@
 //  .foo { @include font-size-level1; }
 
 @mixin font-size-huge { // For especially huge titles
-    @include font-size(50px);
+    @include font-size(48px);
 
     @media #{$mq-tablet} {
-        @include font-size(90px);
+        @include font-size(60px);
+    }
+
+    @media #{$mq-desktop-wide} {
+        @include font-size(72px);
     }
 }
 
 @mixin font-size-level1 {
-    @include font-size(38px);
+    @include font-size(44px);
 
     @media #{$mq-tablet} {
-        @include font-size(50px);
+        @include font-size(52px);
+    }
+
+    @media #{$mq-desktop-wide} {
+        @include font-size(60px);
     }
 }
 
 @mixin font-size-level2 {
-    @include font-size(28px);
+    @include font-size(32px);
 
     @media #{$mq-tablet} {
-        @include font-size(38px);
+        @include font-size(40px);
+    }
+
+    @media #{$mq-desktop-wide} {
+        @include font-size(48px);
     }
 }
 
 @mixin font-size-level3 {
-    @include font-size(21px);
+    @include font-size(24px);
 
     @media #{$mq-tablet} {
-        @include font-size(28px);
+        @include font-size(30px);
+    }
+
+    @media #{$mq-desktop-wide} {
+        @include font-size(36px);
     }
 }
 
 @mixin font-size-level4 {
-    @include font-size(16px);
+    @include font-size(18px);
 
     @media #{$mq-tablet} {
-        @include font-size(21px);
+        @include font-size(20px);
     }
+
+    @media #{$mq-desktop-wide} {
+        @include font-size(24px);
+    }
+}
+
+@mixin font-size-level5 {
+    @include font-size(18px);
+}
+
+@mixin font-size-small {
+    @include font-size(14px);
+}
+
+@mixin font-size-extra-small {
+    @include font-size(12px);
 }
