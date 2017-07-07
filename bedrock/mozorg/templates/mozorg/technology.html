@@ -53,13 +53,18 @@
         <div class="inner-container">
           <h2>{{ _('Making Virtual Reality a reality for all') }}</h2>
           <p>{{ _('Using A-Frame, developers, designers and artists are able to easily create accessible VR experiences.') }}</p>
-          <a rel="external" href="https://mozvr.com/#showcase" class="button">{{ _('Try it out') }}</a>
+          <a rel="external" href="https://aframe.io/" class="button">{{ _('Explore A-Frame') }}</a>
         </div>
       </div>
       <footer>
         <ul>
-          <li><a rel="external" href="https://aframe.io/">{{ _('Explore A-Frame') }}</a></li>
+        {% if l10n_has_tag('emerging_tech_links') %}
+          <li><a rel="external" href="https://research.mozilla.org/mixed-reality/">{{ _('Learn about WebVR') }}</a></li>
+          <li><a rel="external" href="https://aframe.io/blog/">{{ _('Visit A-Frame blog') }}</a></li>
+        {% else %}
+          <li><a rel="external" href="https://research.mozilla.org/mixed-reality/">{{ _('Learn more') }}</a></li>
           <li><a rel="external" href="https://aframe.io/blog/">{{ _('Visit the blog') }}</a></li>
+        {% endif %}
         </ul>
       </footer>
     </section>
@@ -69,12 +74,20 @@
         <div class="inner-container">
           <h2>{{ _('Using the Web to change the game') }}</h2>
           <p>{{ _('With powerful Web technologies, pioneered by Mozilla, developers are pushing games to a new level.') }}</p>
-          <a rel="external" href="https://www.openwebgames.com/#/demos.html" class="button">{{ _('Play some demos') }}</a>
+          {% if l10n_has_tag('emerging_tech_links') %}
+            <a rel="external" href="https://games.mozilla.org/" class="button">{{ _('See what’s new') }}</a>
+          {% else %}
+            <a rel="external" href="https://www.openwebgames.com/#/demos.html" class="button">{{ _('Play some demos') }}</a>
+          {% endif %}
         </div>
       </div>
       <footer>
         <ul>
+        {% if l10n_has_tag('emerging_tech_links') %}
+          <li><a rel="external" href="https://research.mozilla.org/webassembly/">{{ _('Meet WebAssembly') }}</a></li>
+        {% else %}
           <li><a rel="external" href="https://games.mozilla.org/">{{ _('Learn more') }}</a></li>
+        {% endif %}
           <li><a rel="external" href="https://developer.mozilla.org/docs/Games">{{ _('Start building') }}</a></li>
         </ul>
       </footer>
@@ -116,10 +129,13 @@
       <div class="content">
         <div class="inner-container">
           <h2>{{ _('Inventing a safer programming language') }}</h2>
-          <p>{{ _('Supported by Mozilla, Rust allows browsers, systems and more to run much faster and more safely.') }}</p>
-          {% block rust_cta %}
-          <a rel="external" href="https://www.youtube.com/watch?list=PLo3w8EB99pqJ74XIGe72c9hBZWz9Y16cY&v=8EPsnf_ZYU0" class="button" data-video-title="Rust and the Future of Systems Programming">{{ _('Watch the video') }}</a>
-          {% endblock %}
+          {% if l10n_has_tag('emerging_tech_links') %}
+            <p>{{ _('Sponsored by Mozilla, Rust allows browsers, systems and more to run much faster and more safely.') }}</p>
+            <a rel="external" href="https://research.mozilla.org/rust/" class="button">{{ _('Learn about Rust') }}</a>
+          {% else %}
+            <p>{{ _('Supported by Mozilla, Rust allows browsers, systems and more to run much faster and more safely.') }}</p>
+            <a rel="external" href="https://www.youtube.com/watch?list=PLo3w8EB99pqJ74XIGe72c9hBZWz9Y16cY&v=8EPsnf_ZYU0" class="button" data-video-title="Rust and the Future of Systems Programming">{{ _('Watch the video') }}</a>
+          {% endif %}
         </div>
       </div>
       <footer>
@@ -173,5 +189,7 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'technology' %}
+  {% if not l10n_has_tag('emerging_tech_links') %}
+    {% javascript 'technology' %}
+  {% endif %}
 {% endblock %}
