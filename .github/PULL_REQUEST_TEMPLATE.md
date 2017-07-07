@@ -1,5 +1,5 @@
 ## Description
 
-## Bugzilla link
+## Issue / Bugzilla link
 
 ## Testing
