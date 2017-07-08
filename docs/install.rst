@@ -33,9 +33,9 @@ If you are on OSX and some of the compiled dependencies fails to compile, try ex
     $ export ARCHFLAGS="-arch i386 -arch x86_64"
     $ pip install -r requirements/test.txt
 
-If you are on Linux, you will need at least the following packages or their equivalent for your distro:
+If you are on Linux, you will need at least the following packages or their equivalent for your distro::
 
-    python-dev libxslt-dev
+    $ python-dev libxslt-dev
 
 Now configure the application to run locally by creating your local settings environment file::
 
