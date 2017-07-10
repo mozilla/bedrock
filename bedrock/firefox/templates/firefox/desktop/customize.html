@@ -246,7 +246,7 @@
 
       {% include 'firefox/includes/sync-animation.html' %}
 
-      <a class="button" id="sync-button" href="http://www.mozilla.org/mobile/sync/" data-link-type="button" data-link-name="Learn more about Sync" data-cta-position="Secondary"><span></span>{{ _('Learn more about Sync') }}</a>
+      <a class="button" id="sync-button" href="{{ url('firefox.features.sync') }}" data-link-type="button" data-link-name="Learn more about Sync" data-cta-position="Secondary"><span></span>{{ _('Learn more about Sync') }}</a>
       <br>
       <a class="more" rel="external" data-interaction="outbound link" href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync">{{ _('Get help with Sync') }}</a>
     </div>

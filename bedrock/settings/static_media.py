@@ -357,6 +357,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-features-hub-detail-bundle.css',
     },
+    'firefox-features-sync': {
+        'source_filenames': (
+            'css/firefox/features/sync.scss',
+        ),
+        'output_filename': 'css/firefox-features-sync-bundle.css',
+    },
     'firefox-interest-dashboard': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -719,14 +725,6 @@ PIPELINE_CSS = {
             'css/firefox/releasenotes.less',
         ),
         'output_filename': 'css/firefox_releasenotes-bundle.css',
-    },
-    'firefox_sync': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/sync.less',
-        ),
-        'output_filename': 'css/firefox_sync-bundle.css',
     },
     'firefox_sync_anim': {
         'source_filenames': (
@@ -1361,6 +1359,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox-features-landing-bundle.js',
     },
+    'firefox-features-sync': {
+        'source_filenames': (
+            'js/base/uitour-lib.js',
+            'js/firefox/features-sync.js',
+        ),
+        'output_filename': 'js/firefox-features-sync-bundle.js',
+    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'js/base/uitour-lib.js',
@@ -1511,18 +1516,6 @@ PIPELINE_JS = {
             'js/base/mozilla-accordion-gatrack.js',
         ),
         'output_filename': 'js/firefox_faq-bundle.js',
-    },
-    'firefox_sync': {
-        'source_filenames': (
-            'js/base/search-params.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/sync-animation.js',
-            'js/base/uitour-lib.js',
-            'js/firefox/sync.js',
-        ),
-        'output_filename': 'js/firefox_sync-bundle.js',
     },
     'firefox_feedback': {
         'source_filenames': (

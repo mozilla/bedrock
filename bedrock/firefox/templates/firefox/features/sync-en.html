@@ -1,0 +1,71 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+
+{% extends "/firefox/features/sync.html" %}
+
+{% block intro %}
+  <div class="show-fx-31-signed-in">
+    <strong>Browse boldly. Connect your devices.</strong>
+    <p>
+      Add Firefox on your personal devices to get your bookmarks, open tabs and
+      passwords anywhere. Get secure access to everything you need when you sign
+      into your Firefox Account.
+    </p>
+  </div>
+  <div class="show-fx-31-signed-out show-fx-android">
+    <strong>Your web, how you like it, everywhere</strong>
+    <p>
+      Sign into your Firefox Account to access your protected passwords, open
+      tabs and bookmarks. Add Firefox to your personal devices and securely
+      connect your browsing experience everywhere. Keep everything set up how
+      you like it, wherever you go.
+    </p>
+  </div>
+  <div class="show-not-fx show-default">
+    <strong>If you lived here you'd be home by now</strong>
+    <p>
+      Download or open Firefox to start securely connecting your browsing
+      experience on all your personal devices. Sign into your Firefox Account to
+      access your protected passwords, open tabs and bookmarks. Keep everything
+      set up how you like it, wherever you go.
+    </p>
+  </div>
+{% endblock %}
+
+{% block features_ul %}
+  <ul class="features-list">
+    <li class="features-list-item">
+      <img src="{{ static('img/firefox/features/thumbnails/sync/personal.jpg') }}" alt="">
+      <h3>Personal</h3>
+      <p>
+        That shopping rabbit hole you started on your laptop this morning? Pick
+        up where you left off on your phone tonight. That dinner recipe you
+        discovered at lunchtime? Open it on your kitchen tablet, instantly.
+        Connect your personal devices, securely.
+      </p>
+    </li>
+    <li class="features-list-item">
+      <img src="{{ static('img/firefox/features/thumbnails/sync/secure.jpg') }}" alt="">
+      <h3>Secure</h3>
+      <p>
+        Your Firefox Account is the doorway to all your web stuff—we help you
+        keep it safe. Your data is always in your control, unreadable by anyone
+        else, and encrypted with your account password. We protect it and hand
+        you the key.
+      </p>
+    </li>
+    <li class="features-list-item">
+      <img src="{{ static('img/firefox/features/thumbnails/sync/accessible.jpg') }}" alt="">
+      <h3>Accessible</h3>
+      <p>
+        Catch up on your open tabs and saved reads over Saturday morning coffee.
+        Find your bookmarks and passwords anywhere you use Firefox—your
+        smartphone, tablet or laptop. Connect everything you need and nothing
+        you don’t.
+      </p>
+    </li>
+  </ul>
+{% endblock %}

@@ -20,7 +20,7 @@ from pages.firefox.desktop.desktop import FirefoxDesktopPage
 from pages.firefox.desktop.customize import CustomizePage
 from pages.firefox.desktop.all import FirefoxDesktopBasePage
 from pages.firefox.home import FirefoxHomePage
-from pages.firefox.sync import FirefoxSyncPage
+from pages.firefox.features.feature import FeaturePage
 from pages.plugincheck import PluginCheckPage
 from pages.smarton.landing import SmartOnLandingPage
 from pages.smarton.base import SmartOnBasePage
@@ -43,7 +43,7 @@ from pages.smarton.base import SmartOnBasePage
     (FirefoxDesktopPage, None),
     (CustomizePage, None),
     (FirefoxDesktopBasePage, {'slug': 'trust'}),
-    (FirefoxSyncPage, None),
+    (FeaturePage, {'slug': 'sync'}),
     (PluginCheckPage, None),
     (SmartOnLandingPage, None),
     pytest.mark.skip_if_not_firefox((SmartOnBasePage, {'slug': 'tracking'}),
