@@ -2,6 +2,15 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% macro lazy_image(image_url, placeholder_url) -%}
+<div class="lazy-image-container">
+  <img src="{{ static(placeholder_url) }}" data-src="{{ static(image_url) }}" alt="">
+  <noscript>
+    <img src="{{ static(image_url) }}" alt="">
+  </noscript>
+</div>
+{%- endmacro %}
+
 {% macro facebook_share_url(url) -%}
   {{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(url|urlencode)|e }}
 {%- endmacro %}

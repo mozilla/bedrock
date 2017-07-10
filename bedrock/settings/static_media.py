@@ -1217,6 +1217,7 @@ PIPELINE_JS = {
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/hubs/sub-nav.js',
             'js/base/mozilla-modal.js',
+            'js/base/mozilla-lazy-load.js',
             'js/mozorg/developer/developer-hub.js',
         ),
         'output_filename': 'js/developer-hub-bundle.js',
@@ -1355,6 +1356,7 @@ PIPELINE_JS = {
     },
     'firefox-features-landing': {
         'source_filenames': (
+            'js/base/mozilla-lazy-load.js',
             'js/firefox/features-landing.js',
         ),
         'output_filename': 'js/firefox-features-landing-bundle.js',

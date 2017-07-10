@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import lazy_image with context %}
+
 {% extends "base-pebbles.html" %}
 
 {% block page_title %}{{ _('Developer Tools &amp; Resources') }}{% endblock %}
@@ -28,18 +30,11 @@
   {% endif %}
 {% endblock %}
 
-{% macro lazy_image(image_name) -%}
-<div class="image-container">
-  <img src="{{ static('img/mozorg/developer/hub/placeholder.png') }}" data-src="{{ static('img/mozorg/developer/hub/' + image_name) }}" alt="">
-  <noscript>
-    <img src="{{ static('img/mozorg/developer/hub/' + image_name) }}" alt="">
-  </noscript>
-</div>
-{%- endmacro %}
-
 {% block content %}
 {% include 'mozorg/developer/includes/sub-nav.html' %}
 {% include 'mozorg/developer/includes/icon-sprite.svg' %}
+
+{% set lazy_image_placeholder = 'img/mozorg/developer/hub/placeholder.png' %}
 
 <main role="main">
   <header class="header-intro">
@@ -102,7 +97,7 @@
 
         <div class="card">
           <a class="card-image" href="https://developer.mozilla.org/docs/Tools?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-type="link" data-link-position="Developer resources" data-link-name="Firefox DevTools">
-            {{ lazy_image('resource-devtools.jpg') }}
+            {{ lazy_image('img/mozorg/developer/hub/resource-devtools.jpg', lazy_image_placeholder) }}
             <h3 class="card-title">{{ _('Firefox DevTools') }}</h3>
           </a>
 
@@ -117,7 +112,7 @@
 
         <div class="card">
           <a class="card-image" href="https://research.mozilla.org/webassembly/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-type="link" data-link-position="Developer resources" data-link-name="WebAssembly">
-            {{ lazy_image('resource-webassembly.png') }}
+            {{ lazy_image('img/mozorg/developer/hub/resource-webassembly.png', lazy_image_placeholder) }}
             <h3 class="card-title">{{ _('WebAssembly') }}</h3>
           </a>
 
@@ -132,7 +127,7 @@
 
         <div class="card">
           <a class="card-image" href="https://medium.com/mozilla-tech/keep-the-web-open-with-cross-browser-testing-e3006662a042" data-link-type="link" data-link-position="Developer resources" data-link-name="Cross-browser testing">
-            {{ lazy_image('resource-webcompat.png') }}
+            {{ lazy_image('img/mozorg/developer/hub/resource-webcompat.png', lazy_image_placeholder) }}
             <h3 class="card-title">{{ _('Cross-browser testing') }}</h3>
           </a>
 
@@ -188,7 +183,7 @@
         <div class="card card-double">
           <div class="card-image">
             <a href="{{ url('mozorg.developer.css-grid-demo') }}" data-link-type="link" data-link-position="Projects" data-link-name="CSS Grid Layouts">
-              {{ lazy_image('project-cssgrid.png') }}
+              {{ lazy_image('img/mozorg/developer/hub/project-cssgrid.png', lazy_image_placeholder) }}
               <h3 class="card-title">{{ _('CSS Grid Layouts') }}</h3>
             </a>
           </div>
@@ -207,7 +202,7 @@
         <div class="card">
           <div class="card-image">
             <a href="https://wiki.mozilla.org/Quantum" data-link-type="link" data-link-position="Projects" data-link-name="Project Quantum">
-              {{ lazy_image('project-quantum.jpg') }}
+              {{ lazy_image('img/mozorg/developer/hub/project-quantum.jpg', lazy_image_placeholder) }}
               <h3 class="card-title">{{ _('Project Quantum') }}</h3>
             </a>
           </div>
@@ -226,7 +221,7 @@
         <div class="card">
           <div class="card-image">
             <a href="https://www.rust-lang.org/" data-link-type="link" data-link-position="Projects" data-link-name="Rust">
-              {{ lazy_image('project-rust.jpg') }}
+              {{ lazy_image('img/mozorg/developer/hub/project-rust.jpg', lazy_image_placeholder) }}
               <h3 class="card-title">{{ _('Rust') }}</h3>
             </a>
           </div>
@@ -245,7 +240,7 @@
         <div class="card">
           <div class="card-image">
             <a href="https://developer.mozilla.org/docs/Games?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-type="link" data-link-position="Projects" data-link-name="Game Development">
-              {{ lazy_image('project-gamedev.jpg') }}
+              {{ lazy_image('img/mozorg/developer/hub/project-gamedev.jpg', lazy_image_placeholder) }}
               <h3 class="card-title">{{ _('Game Development') }}</h3>
             </a>
           </div>
@@ -264,7 +259,7 @@
         <div class="card">
           <div class="card-image">
             <a href="https://aframe.io" data-link-type="link" data-link-position="Projects" data-link-name="A-Frame for WebVR">
-              {{ lazy_image('project-aframe.png') }}
+              {{ lazy_image('img/mozorg/developer/hub/project-aframe.png', lazy_image_placeholder) }}
               <h3 class="card-title">{{ _('A-Frame for WebVR') }}</h3>
             </a>
           </div>
@@ -293,7 +288,7 @@
         <div class="card card-double">
           <a class="card-image video-play" href="https://youtu.be/16enLRDbOyY" data-link-type="link" data-link-position="Videos to watch" data-link-name="Announcing CSS Grid and the Firefox Grid Inspector tool">
             <div class="video-thumbnail">
-              {{ lazy_image('video-gridinspector.jpg') }}
+              {{ lazy_image('img/mozorg/developer/hub/video-gridinspector.jpg', lazy_image_placeholder) }}
               <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
             </div>
             <h3 class="card-title">{{ _('Announcing CSS Grid and the Firefox Grid Inspector tool') }}</h3>
@@ -306,7 +301,7 @@
         <div class="card">
           <a class="card-image video-play" href="https://youtu.be/MaJCfdmr9Wg" data-link-type="link" data-link-position="Videos to watch" data-link-name="WebAssembly: A game changer">
             <div class="video-thumbnail">
-              {{ lazy_image('video-webassembly.jpg') }}
+              {{ lazy_image('img/mozorg/developer/hub/video-webassembly.jpg', lazy_image_placeholder) }}
               <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
             </div>
             <h3 class="card-title">{{ _('WebAssembly: A game changer') }}</h3>
@@ -319,7 +314,7 @@
         <div class="card">
           <a class="card-image video-play" href="https://youtu.be/8EPsnf_ZYU0" data-link-type="link" data-link-position="Videos to watch" data-link-name="Rust and the future of systems programming">
             <div class="video-thumbnail">
-              {{ lazy_image('video-rust.jpg') }}
+              {{ lazy_image('img/mozorg/developer/hub/video-rust.jpg', lazy_image_placeholder) }}
               <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
             </div>
             <h3 class="card-title">{{ _('Rust and the future of systems programming') }}</h3>
@@ -332,7 +327,7 @@
         <div class="card">
           <a class="card-image video-play" href="https://youtu.be/TT7ugKuUMv0" data-link-type="link" data-link-position="Videos to watch" data-link-name="WebGL 2 demo">
             <div class="video-thumbnail">
-              {{ lazy_image('video-webgldemo.jpg') }}
+              {{ lazy_image('img/mozorg/developer/hub/video-webgldemo.jpg', lazy_image_placeholder) }}
               <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
             </div>
             <h3 class="card-title">{{ _('WebGL 2 demo') }}</h3>
@@ -345,7 +340,7 @@
         <div class="card">
           <a class="card-image video-play" href="https://youtu.be/QK4hKWmJVLo" data-link-type="link" data-link-position="Videos to watch" data-link-name="Firefox Developer Tools: debugger overview">
             <div class="video-thumbnail">
-              {{ lazy_image('video-debugger.jpg') }}
+              {{ lazy_image('img/mozorg/developer/hub/video-debugger.jpg', lazy_image_placeholder) }}
               <svg class="play-button"><use xlink:href="#video-play-button"></use></svg>
             </div>
             <h3 class="card-title">{{ _('Firefox Developer Tools: debugger overview') }}</h3>
