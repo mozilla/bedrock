@@ -1,0 +1,90 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}
+  {{ _('Thank You') }}
+{% endblock %}
+
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}
+  {{ _('Thank you page.') }}
+{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'thank-you-b' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main>
+  <section class="thank-you-section">
+    <div class="left-section">
+      <canvas id="confetti-canvas"></canvas>
+      <div class="left-section-cta">
+        <div class="thank-you-header">
+          <div>It's all</div>
+          <div>thanks</div>
+          <div>to you</div>
+        </div>
+        <p>
+          Choosing Firefox helps Mozilla<br/>make the Internet a better place.
+        </p>
+      </div>
+    </div>
+    <div class="right-section">
+      <div class="thank-you-actions-container">
+        <div class="desc">Here's more super-easy things</br>you can do to keep supporting</br>our mission:</div>
+        <div class="thank-you-action">
+          <div class="time">1 min</div>
+          <div>
+            <a href="https://support.mozilla.org/kb/make-firefox-your-default-browser">Set as your default</a>
+          </div>
+        </div>
+        <div class="thank-you-action">
+          <div class="time">1 min</div>
+          <div>
+            <a href="https://twitter.com/home?status=%F0%9F%94%A5%2B%F0%9F%A6%8A=%F0%9F%99%8C%F0%9F%8F%BE%20Join%20me%20in%20the%20fight%20for%20an%20open%20web%20by%20choosing%20Firefox!%20https%3A//mozilla.org/firefox/new">Send a tweet</a>
+          </div>
+        </div>
+        <div class="thank-you-action">
+          <div class="time">2 min</div>
+          <div>
+            <a href="https://support.mozilla.org/kb/install-firefox-android-device-using-google-play">Download Firefox</a>
+          </div>
+        </div>
+        <div class="thank-you-action">
+          <div class="time">4 min</div>
+          <div>
+            <a href="https://www.mozilla.org/internet-health/privacy-security/">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<aside id="newsletter-subscribe">
+  <div class="content">
+    {{ email_newsletter_form(newsletters='mozilla-foundation',
+       title=_('Stay in touch for more cool stuff'),
+       subtitle=_('Get the latest & greatest from Firefox<br/>delivered straight to your inbox.'),
+       button_class='button-light',
+       spinner_color='#fff')
+    }}
+  </div>
+</aside>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'thank-you' %}
+{% endblock %}
+
+{% block body_id %}thank-you{% endblock %}
+
+{% block page_content %}
+
+{% endblock %}

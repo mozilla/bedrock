@@ -251,6 +251,8 @@ urlpatterns = (
     page('plugincheck', 'mozorg/plugincheck.html'),
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.TechnologyView.as_view(), name='mozorg.technology'),
+    page('thank-you', 'mozorg/thank-you/thank-you-a.html'),
+    page('thank-you-b', 'mozorg/thank-you/thank-you-b.html'),
 
     url('^developer/$', views.DeveloperView.as_view(), name='mozorg.developer'),
     page('developer/css-grid', 'mozorg/developer/css-grid-demo.html'),

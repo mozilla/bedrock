@@ -1,0 +1,165 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/newsletter';
+
+body {
+    border-top: 0;
+}
+
+@font-face {
+    font-family: antonioregular;
+    src: url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
+         url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: antoniobold;
+    src: url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
+         url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+main {
+    .thank-you-section {
+      overflow: hidden;
+    }
+    .left-section {
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(85deg, #45A5B3, #808FC5);
+      color: #FFFFFF;
+
+      #confetti-canvas {
+          position: absolute;
+          height: 710px;
+          width: 793px;
+          right: 0;
+          left: 0;
+          margin-left: auto;
+          margin-right: auto;
+          @media #{$mq-desktop} {
+            margin-left: 0;
+            margin-right: 0;
+            left: auto;
+          }
+      }
+    }
+
+    .left-section,
+    .right-section {
+      @media #{$mq-desktop} {
+        float: left;
+        width: 50%;
+      }
+    }
+
+    .left-section-cta {
+      position: relative;
+      text-align: center;
+      padding: 70px 0;
+      box-sizing: border-box;
+
+      @media #{$mq-desktop} {
+        margin-left: auto;
+        width: 793px;
+        height: 710px;
+      }
+    }
+
+    .thank-you-header {
+        font-family: antoniobold;
+        text-transform: uppercase;
+        font-size: 6rem;
+        line-height: 6rem;
+        div {
+          color: #F8EB57;
+          text-shadow: -4px 0px 0px #D76628, -6px 0px 0px #000000;
+        }
+        div:first-child {
+          color: #FFFFFF;
+          text-shadow: -4px 0px 0px #94D1AF, -6px 0px 0px #000000;
+        }
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+
+    @media #{$mq-phone-wide} {
+        padding: 0 30px;
+    }
+
+    @media #{$mq-tablet} {
+        padding: 0;
+    }
+    .thank-you-actions-container {
+        padding-left: 50px;
+
+        @media #{$mq-desktop} {
+          width: 793px;
+          margin-right: auto;
+        }
+        margin-top: 70px;
+        .desc, .time {
+            font-family: antoniobold;
+            text-transform: uppercase;
+        }
+        .desc {
+            padding-left: 50px;
+            color: #000000;
+            font-size: 2rem;
+        }
+        .time {
+            color: #CB6937;
+        }
+        .thank-you-action {
+            background: #FFFFFF;
+            padding: 24px 0;
+            margin: 9px 0;
+            a {
+                padding-left: 50px;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+#newsletter-subscribe {
+  background: #F8EB57;
+  color: #000000;
+  a {
+    color: #000000;
+  }
+  #id_email {
+    border-radius: 0;
+    &:focus {
+      box-shadow: 0 0 0 2px #000000;
+    }
+  }
+  #footer_email_submit {
+    background: #FFFFFF;
+    color: #000000;
+    border: none;
+    border-radius: 0;
+  }
+  .form-title {
+    padding-left: 0;
+    margin-top: 0;
+    max-width: 530px;
+    width: 100%;
+    background-image: none;
+    color: #000000;
+    h3 {
+        font-size: 1.9rem;
+        font-family: antoniobold;
+        text-transform: uppercase;
+    }
+  }
+}

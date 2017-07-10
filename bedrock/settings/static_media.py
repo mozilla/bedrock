@@ -812,6 +812,18 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/moss-bundle.css',
     },
+    'thank-you-a': {
+        'source_filenames': (
+            'css/mozorg/thank-you/thank-you-a.scss',
+        ),
+        'output_filename': 'css/thank_you_a-bundle.css',
+    },
+    'thank-you-b': {
+        'source_filenames': (
+            'css/mozorg/thank-you/thank-you-b.scss',
+        ),
+        'output_filename': 'css/thank_you_b-bundle.css',
+    },
     'mozilla_accordion': {
         'source_filenames': (
             'css/base/mozilla-accordion.less',
@@ -1613,6 +1625,12 @@ PIPELINE_JS = {
             'js/mozorg/internet-health/health-subpage.js',
         ),
         'output_filename': 'js/internet-health-subpage-bundle.js',
+    },
+    'thank-you': {
+        'source_filenames': (
+            'js/mozorg/thank-you/confetti.js',
+        ),
+        'output_filename': 'js/thank-you-bundle.js',
     },
     'privacy-day-egg': {
         'source_filenames': (

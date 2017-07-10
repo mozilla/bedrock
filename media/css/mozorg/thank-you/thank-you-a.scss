@@ -1,0 +1,159 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/newsletter';
+
+body {
+    border-top: 0;
+}
+
+@font-face {
+    font-family: antonioregular;
+    src: url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
+         url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: antoniobold;
+    src: url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
+         url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+main {
+    overflow: hidden;
+    position: relative;
+    padding: 0 10px;
+    background: linear-gradient(85deg, #45A5B3, #808FC5);
+    color: #FFFFFF;
+
+    #confetti-canvas {
+        position: absolute;
+        height: 710px;
+        width: 100%;
+        max-width: 2200px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    .thank-you-header {
+        font-family: antoniobold;
+        text-transform: uppercase;
+        font-size: 6rem;
+        line-height: 6rem;
+        div {
+          color: #F8EB57;
+          text-shadow: -4px 0px 0px #D76628, -6px 0px 0px #000000;
+        }
+        div:first-child {
+          color: #FFFFFF;
+          text-shadow: -4px 0px 0px #94D1AF, -6px 0px 0px #000000;
+        }
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+
+    @media #{$mq-phone-wide} {
+        padding: 0 30px;
+    }
+
+    @media #{$mq-tablet} {
+        padding: 0;
+    }
+    .thank-you-actions-container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -9px;
+        .thank-you-action {
+            background: #FFFFFF;
+            padding: 24px;
+            margin: 9px;
+            width: 100%;
+            @media #{$mq-tablet} {
+              width: calc(50% - 66px);
+            }
+            .desc, .time {
+                font-family: antoniobold;
+                text-transform: uppercase;
+            }
+            .desc {
+                color: #000000;
+                font-size: 1.3rem;
+            }
+            .time {
+                color: #CB6937;
+            }
+            a {
+                font-weight: bold;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+#newsletter-subscribe {
+  background: #F8EB57;
+  color: #000000;
+  a {
+    color: #000000;
+  }
+  #id_email {
+    border-radius: 0;
+    &:focus {
+      box-shadow: 0 0 0 2px #000000;
+    }
+  }
+  #footer_email_submit {
+    background: #FFFFFF;
+    color: #000000;
+    border: none;
+    border-radius: 0;
+  }
+  .form-title {
+    padding-left: 0;
+    margin-top: 0;
+    max-width: 530px;
+    width: 100%;
+    background-image: none;
+    color: #000000;
+    h3 {
+        font-size: 1.9rem;
+        font-family: antoniobold;
+        text-transform: uppercase;
+    }
+  }
+}
+
+.thank-you-section {
+    border-bottom: 2px solid #b4b4b4;
+    padding: 40px 0;
+    position: relative;
+
+    &:last-of-type {
+        border: 0;
+    }
+
+    @media #{$mq-tablet} {
+        border-width: 4px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        width: 540px;
+    }
+
+    @media #{$mq-desktop} {
+        padding: 70px 20px;
+        width: 900px;
+    }
+
+    @media #{$mq-desktop-wide} {
+        width: 1020px;
+    }
+}

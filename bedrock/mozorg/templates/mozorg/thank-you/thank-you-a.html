@@ -1,0 +1,86 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}
+  {{ _('Thank You') }}
+{% endblock %}
+
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}
+  {{ _('Thank you page.') }}
+{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'thank-you-a' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main>
+  <canvas id="confetti-canvas"></canvas>
+  <section class="thank-you-section">
+    <div class="thank-you-header">
+      <div>It's all</div>
+      <div>thanks to you</div>
+    </div>
+    <p>
+      Choosing Firefox helps Mozilla make the Internet<br/>a better place. Here's what you can do next:
+    </p>
+    <div class="thank-you-actions-container">
+      <div class="thank-you-action">
+        <div class="desc">Make Firefox your default browser</div>
+        <div class="time">1 min action</div>
+        <div>
+          <a href="https://support.mozilla.org/kb/make-firefox-your-default-browser">Set as your default</a>
+        </div>
+      </div>
+      <div class="thank-you-action">
+        <div class="desc">Get Firefox on your phone</div>
+        <div class="time">2 min install</div>
+        <div>
+          <a href="https://support.mozilla.org/kb/install-firefox-android-device-using-google-play">Download Firefox</a>
+        </div>
+      </div>
+      <div class="thank-you-action">
+        <div class="desc">Tell your friends about Firefox</div>
+        <div class="time">1 min share</div>
+        <div>
+          <a href="https://twitter.com/home?status=%F0%9F%94%A5%2B%F0%9F%A6%8A=%F0%9F%99%8C%F0%9F%8F%BE%20Join%20me%20in%20the%20fight%20for%20an%20open%20web%20by%20choosing%20Firefox!%20https%3A//mozilla.org/firefox/new">Send a tweet</a>
+        </div>
+      </div>
+      <div class="thank-you-action">
+        <div class="desc">Make the Internet a safer place</div>
+        <div class="time">4 min read</div>
+        <div>
+          <a href="https://www.mozilla.org/internet-health/privacy-security/">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<aside id="newsletter-subscribe">
+  <div class="content">
+    {{ email_newsletter_form(newsletters='mozilla-foundation',
+       title=_('Stay in touch for more cool stuff'),
+       subtitle=_('Get the latest & greatest from Firefox<br/>delivered straight to your inbox.'),
+       button_class='button-light',
+       spinner_color='#fff')
+    }}
+  </div>
+</aside>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'thank-you' %}
+{% endblock %}
+
+{% block body_id %}thank-you{% endblock %}
+
+{% block page_content %}
+
+{% endblock %}
