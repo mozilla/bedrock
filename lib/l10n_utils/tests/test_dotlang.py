@@ -117,7 +117,9 @@ class TestDotlang(TestCase):
                 u'F\xe9licitations&nbsp;! '
                 u'Votre Firefox a \xe9t\xe9 mis \xe0 jour.',
             u'Your Firefox is out of date.':
-                u'Votre Firefox ne semble pas \xe0 jour.'
+                u'Votre Firefox ne semble pas \xe0 jour.',
+            u'Firefox Beta': u'Firefox Beta',
+            u'Firefox Aurora': u'Firefox Aurora',
         }
         eq_(parsed, expected)
 
@@ -130,10 +132,9 @@ class TestDotlang(TestCase):
                 u'Votre Firefox a \xe9t\xe9 mis \xe0 jour.',
             u'Your Firefox is out of date.':
                 u'Votre Firefox ne semble pas \xe0 jour.',
-            u'Firefox Beta':
-                u'Firefox Beta',
-            u'Firefox Aurora':
-                u'Firefox Aurora'
+            u'Firefox Beta': u'Firefox Beta',
+            u'Firefox Aurora': u'Firefox Aurora',
+            u'Firefox Developer Edition': u'Firefox Developer Edition',
         }
         eq_(parsed, expected)
 
@@ -151,7 +152,15 @@ class TestDotlang(TestCase):
             u'Your Firefox is out of date.': [
                 None,
                 u'Votre Firefox ne semble pas \xe0 jour.',
-            ]
+            ],
+            u'Firefox Beta': [
+                None,
+                u'Firefox Beta',
+            ],
+            u'Firefox Aurora': [
+                None,
+                u'Firefox Aurora',
+            ],
         }
         eq_(parsed, expected)
 

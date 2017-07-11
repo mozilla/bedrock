@@ -52,6 +52,7 @@ def parse(path, skip_untranslated=True, extract_comments=False):
         comment = None
 
         for line in lines:
+            l10n_tag = None
             if u'�' in line:
                 mail_error(path, line)
 
@@ -68,9 +69,10 @@ def parse(path, skip_untranslated=True, extract_comments=False):
             elif source:
                 for tag in ('{ok}', '{l10n-extra}'):
                     if line.lower().endswith(tag):
+                        l10n_tag = tag.strip('{}')
                         line = line[:-len(tag)]
                 line = line.strip()
-                if skip_untranslated and source == line:
+                if skip_untranslated and source == line and l10n_tag != 'ok':
                     continue
                 if extract_comments:
                     trans[source] = [comment, line]
