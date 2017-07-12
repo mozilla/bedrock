@@ -480,6 +480,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_developer-bundle.css',
     },
+    'firefox_developer_2017': {
+        'source_filenames': (
+            'css/firefox/developer-2017.scss',
+        ),
+        'output_filename': 'css/firefox_developer_2017-bundle.css',
+    },
     'firefox_ios': {
         'source_filenames': (
             'css/firefox/family-nav.less',

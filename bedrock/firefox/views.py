@@ -736,3 +736,14 @@ def sync(request):
         template = 'firefox/sync.html'
 
     return l10n_utils.render(request, template)
+
+
+def FirefoxProductDevEditionView(request, template='firefox/products/developer.html'):
+    locale = l10n_utils.get_locale(request)
+
+    if lang_file_is_active('firefox/products/developer', locale):
+        template = 'firefox/products/developer.html'
+    else:
+        template = 'firefox/developer.html'
+
+    return l10n_utils.render(request, template)
