@@ -572,15 +572,7 @@ def new(request):
         else:
             template = 'firefox/new/scene1.html'
 
-    if (template in ['firefox/new/scene1.html', 'firefox/new/scene2.html']):
-        # Win64 funnelcake experiment (bug 1309847)
-        context = {
-            'win64_funnelcake_locales': ['de', 'es-ES', 'fr', 'pt-BR', 'ru']
-        }
-
-        return l10n_utils.render(request, template, context)
-    else:
-        return l10n_utils.render(request, template)
+    return l10n_utils.render(request, template)
 
 
 def ios_testflight(request):
