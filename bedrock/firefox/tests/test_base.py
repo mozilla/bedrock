@@ -317,124 +317,19 @@ class TestFirstRun(TestCase):
     @override_settings(DEV=True)
     @patch('bedrock.base.templatetags.helpers.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0(self, render_mock):
-        """Should use horizon firstrun template for 40.0"""
+        """Should use new onboarding template as default"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='40.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
+        eq_(template, ['firefox/firstrun/onboarding.html'])
 
     @override_settings(DEV=True)
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
     @patch('bedrock.base.templatetags.helpers.switch', Mock(return_value=True))
-    def test_fx_firstrun_40_0_invalid_variation(self, render_mock):
-        """
-        Should use horizon firstrun template if an invalid variation is specified.
-        """
-        req = self.rf.get('/en-US/firefox/firstrun/?v=8')
-        self.view(req, version='46.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
-
-    @override_settings(DEV=True)
-    @patch('bedrock.base.templatetags.helpers.switch', Mock(return_value=True))
-    def test_fx_firstrun_40_0_space_variant_non_enUS(self, render_mock):
-        """
-        Should use horizon firstrun template for non en-US 40.0+ with
-        ?v=[1,2,3,4,5,6] query param
-        """
-        req = self.rf.get('/firefox/firstrun/?v=2')
-        req.locale = 'de'
-        self.view(req, version='46.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
-
-        req = self.rf.get('/firefox/firstrun/?v=5')
-        req.locale = 'de'
-        self.view(req, version='46.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
-
-    # ravioli funnelcake tests
-    @override_settings(DEV=True)
-    def test_ravioli_funnelcake(self, render_mock):
-        """Should use ravioli template for f=90"""
-        req = self.rf.get('/firefox/firstrun/?f=90')
-        self.view(req, version='49.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/ravioli.html'])
-
-    @override_settings(DEV=True)
-    def test_ravioli_other_funnelcake(self, render_mock):
-        """Should use firstrun horizon template for non-ravioli funnelcakes"""
-        req = self.rf.get('/firefox/firstrun/?f=89')
-        self.view(req, version='49.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
-
-    @override_settings(DEV=True)
-    def test_ravioli_other_locales(self, render_mock):
-        """Should use firstrun horizon template for non en-US locales"""
-        req = self.rf.get('/firefox/firstrun/?f=90')
-        req.locale = 'de'
-        self.view(req, version='49.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
-
-    # Yahoo search retention funnelcake tests
-    @override_settings(DEV=True)
-    def test_yahoo_retention_funnelcake(self, render_mock):
-        """Should use yahoo retention template for f=92"""
-        req = self.rf.get('/firefox/firstrun/?f=92')
-        self.view(req, version='50.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/yahoo-retention.html'])
-
-    @override_settings(DEV=True)
-    def test_yahoo_retention_funnelcake_control(self, render_mock):
-        """Should use firstrun horizon control template for f=91"""
-        req = self.rf.get('/firefox/firstrun/?f=91')
-        self.view(req, version='50.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
-
-    @override_settings(DEV=True)
-    def test_yahoo_retention_funnelcake_other_locales(self, render_mock):
-        """Should use firstrun horizon template for non en-US locales"""
-        req = self.rf.get('/firefox/firstrun/?f=92')
-        req.locale = 'de'
-        self.view(req, version='50.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
-
-    # New Firstrun Wow-moment funnelcake tests
-    @override_settings(DEV=True)
-    def test_firstrun_wow_funnelcake(self, render_mock):
-        """Should use new-firstrun template for f=99 and f=100"""
-        # test for f=99
-        req = self.rf.get('/firefox/firstrun/?f=99')
-        self.view(req, version='50.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/new-firstrun.html'])
-
-        # test for f=100
-        req = self.rf.get('/firefox/firstrun/?f=100')
-        self.view(req, version='50.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/new-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_firstrun_wow_funnelcake_other_locales(self, render_mock):
-        """Should not use new-firstrun template for non en-US locales"""
-        req = self.rf.get('/firefox/firstrun/?f=99')
-        req.locale = 'de'
-        self.view(req, version='50.0')
-        template = render_mock.call_args[0][1]
-        ok_(template != ['firefox/firstrun/new-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_firstrun_wow_funnelcake_control(self, render_mock):
-        """Should use firstrun horizon control template for f=98"""
-        req = self.rf.get('/firefox/firstrun/?f=98')
-        self.view(req, version='50.0')
+    def test_fx_firstrun_40_0_old_template(self, render_mock):
+        """Should use older horizon firstrun for non active locales"""
+        req = self.rf.get('/de/firefox/firstrun/')
+        self.view(req, version='40.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
 

@@ -310,11 +310,25 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene1.html')
 
     def test_scene_2_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2')
         req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene2.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_scene_1_old_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_scene_2_old_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2')
+        req.locale = 'de'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
@@ -331,17 +345,19 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/break-free/scene2.html')
 
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_break_free_locale_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene1.html')
 
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_break_free_locale_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene2.html')
 
     def test_way_of_the_fox_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=wayofthefox')
@@ -355,17 +371,19 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/way-of-the-fox/scene2.html')
 
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_way_of_the_fox_locale_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=wayofthefox')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene1.html')
 
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_way_of_the_fox_locale_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&xv=breakfree')
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=wayofthefox')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene2.html')
 
     # moar ad campaign pages bug 1363543
 
@@ -528,56 +546,6 @@ class TestFirefoxNew(TestCase):
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')
-
-    # onboarding experiment bug 1333435
-
-    def test_onboarding_f_98_scene_1_template(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?f=98')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
-
-    def test_onboarding_f_99_scene_1_template(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?f=99')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene1.html')
-
-    def test_onboarding_f_100_scene_1_template(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?f=100')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene1.html')
-
-    def test_onboarding_locale_scene_1_template(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?f=99')
-        req.locale = 'de'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
-
-    def test_onboarding_f_98_scene_2_template(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&f=98')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
-
-    def test_onboarding_f_99_scene_2_template(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&f=99')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene2.html')
-
-    def test_onboarding_f_100_scene_2_template(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&f=100')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/onboarding/scene2.html')
-
-    def test_onboarding_locale_scene_2_template(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&f=99')
-        req.locale = 'de'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
 
 class TestFeedbackView(TestCase):
