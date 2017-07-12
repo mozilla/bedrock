@@ -1395,14 +1395,12 @@ PIPELINE_JS = {
     'firefox_new_scene1': {
         'source_filenames': (
             'js/base/mozilla-modal.js',
-            'js/firefox/new/survey.js',
             'js/firefox/new/scene1.js',
         ),
         'output_filename': 'js/firefox_new_scene1-bundle.js',
     },
     'firefox_new_scene2': {
         'source_filenames': (
-            'js/firefox/new/survey.js',
             'js/firefox/new/scene2.js',
         ),
         'output_filename': 'js/firefox_new_scene2-bundle.js',
