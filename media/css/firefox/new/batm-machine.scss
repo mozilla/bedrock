@@ -39,40 +39,7 @@ main {
 }
 
 // * -------------------------------------------------------------------------- */
-// Animated machine - lights blink, eye moves
-
-@keyframes eye-move {
-    0%,
-    80%,
-    100% {
-        left: 10%;
-        top: 5%;
-    }
-
-    20%,
-    30% {
-        left: 40%;
-        top: 10%;
-    }
-
-    50%,
-    60% {
-        left: 25%;
-        top: 50%;
-    }
-}
-
-@keyframes eye-glow {
-    0%,
-    100% {
-        box-shadow: 0 0 8px 4px rgba(255, 0, 0, .75);
-    }
-
-    50% {
-        box-shadow: 0 0 6px 4px rgba(255, 0, 0, .5);
-    }
-}
-
+// Animated machine
 .machine-animated {
     main {
         margin: 20px auto;
@@ -89,18 +56,13 @@ main {
     .machine {
         position: relative;
 
-        @media #{$mq-desktop} {
-            background: #000 url('/media/img/firefox/new/batm/bg-machine-anim.gif') center top no-repeat;
-            @include background-size(800px 446px);
-            width: 800px;
-            height: 440px;
-        }
+        video {
+            display: none;
 
-        @media #{$mq-desktop-wide} {
-            @include background-size(1200px 668px);
-            background-image: url('/media/img/firefox/new/batm/bg-machine-anim-large.gif');
-            width: 1200px;
-            height: 650px;
+            @media #{$mq-desktop} {
+                display: block;
+                width: 100%;
+            }
         }
     }
 
@@ -126,76 +88,26 @@ main {
             .label {
                 @include clearfix;
                 @include font-size(12px);
-                font-family: 'Droid Sans Mono', 'Andale Mono', monospace;
                 background-color: #fff;
                 box-shadow: 4px 6px 0 rgba(0, 0, 0, .2);
-                display: none;
+                font-family: 'Droid Sans Mono', 'Andale Mono', monospace;
                 padding: 15px;
+                position: relative;
                 width: 260px;
 
-                &:focus {
-                    outline: 0;
-                }
-            }
-
-            .open {
-                @include image-replaced;
-                -webkit-appearance: none;
-                   -moz-appearance: none;
-                        appearance: none;
-                background-color: #fff;
-                border-radius: 100%;
-                border: 4px solid #ec8c32;
-                bottom: -22px;
-                box-shadow: 2px 3px 0 rgba(0, 0, 0, .2);
-                cursor: pointer;
-                height: 40px;
-                left: -22px;
-                position: absolute;
-                transition: border-color .2s ease;
-                width: 40px;
-                z-index: 2;
-
                 &:before {
-                    @include font-size(24px);
                     background-color: #fff;
-                    content: '+';
+                    border-radius: 100%;
+                    border: 4px solid #ec8c32;
+                    bottom: -14px;
+                    box-shadow: 2px 3px 0 rgba(0, 0, 0, .2);
+                    content: '';
                     display: block;
-                    left: 0;
-                    line-height: 32px;
+                    height: 20px;
+                    left: -14px;
                     position: absolute;
-                    text-align: center;
-                    text-indent: 0;
-                    top: 0;
-                    width: 32px;
-                }
-
-                &:hover,
-                &:focus {
-                    border-color: #e5472c;
-                }
-            }
-
-            .next {
-                @include font-size(14px);
-                @include trailing-arrow;
-                -webkit-appearance: none;
-                   -moz-appearance: none;
-                        appearance: none;
-                background: transparent none;
-                border: 0;
-                clear: both;
-                cursor: pointer;
-                display: block;
-                float: right;
-                font-weight: bold;
-                margin-top: .75em;
-                padding: 0;
-                transition: color .2s ease;
-
-                &:hover,
-                &:focus {
-                    color: #ea7530;
+                    width: 20px;
+                    z-index: 2;
                 }
             }
 
@@ -203,6 +115,11 @@ main {
                 background-color: #ea7530;
                 color: #fff;
                 text-align: left;
+
+                &:before {
+                    content: none;
+                    display: none;
+                }
             }
 
             h2 {
@@ -219,26 +136,16 @@ main {
 
     @media #{$mq-desktop} {
         #point-1 {
-            left: 100px;
-            bottom: 290px;
+            left: 60px;
+            bottom: 325px;
         }
 
         #point-2 {
-            left: auto;
-            right: 340px;
-            top: 90px;
-
-            .open {
-                bottom: auto;
-                left: auto;
-                right: -22px;
-                top: -22px;
-            }
+            left: 520px;
+            bottom: 330px;
         }
 
         #point-3 {
-            left: auto;
-            top: auto;
             right: 40px;
             bottom: 40px;
         }
@@ -246,74 +153,17 @@ main {
 
     @media #{$mq-desktop-wide} {
         #point-1 {
-            left: 210px;
+            left: 135px;
             bottom: 450px;
         }
 
         #point-2 {
-            left: 660px;
-            bottom: 470px;
-            top: auto;
-
-            .open {
-                bottom: -22px;
-                top: auto;
-                left: -22px;
-                right: auto;
-            }
+            left: 760px;
+            bottom: 520px;
         }
 
         #point-3 {
-            right: 80px;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        .eye {
-            height: 30px;
-            left: 375px;
-            position: absolute;
-            top: 275px;
-            width: 60px;
-
-            span {
-                animation: 9s ease-in-out eye-move infinite, 2s ease eye-glow infinite;
-                background: #f00;
-                border-radius: 50%;
-                box-shadow: 0 0 8px 4px rgba(255, 0, 0, .75);
-                display: block;
-                height: 10px;
-                position: absolute;
-                width: 25px;
-            }
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .eye {
-            height: 35px;
-            width: 70px;
-            left: 535px;
-            top: 378px;
-
-            span {
-                width: 30px;
-                height: 12px;
-            }
-        }
-
-        .points:after {
-            animation: 2s ease eye-glow infinite;
-            background: #f00;
-            border-radius: 50%;
-            box-shadow: 0 0 8px 4px rgba(255, 0, 0, .75);
-            content: '';
-            display: block;
-            height: 8px;
-            position: absolute;
-            right: 13px;
-            top: 238px;
-            width: 18px;
+            right: 60px;
         }
     }
 
@@ -365,97 +215,12 @@ main {
     }
 }
 
-.machine-static {
-    .page-hero {
-        background: #000 url('/media/img/firefox/new/batm/bg-machine.jpg') center bottom no-repeat;
-        @include background-size(cover);
-        margin: -20px -20px 40px;
-        min-height: 100px;
-        padding: 80px 0;
-        text-align: center;
-
-        h1 {
-            color: #000;
-            line-height: 1.3;
-
-            span {
-                @include box-decoration-break(clone);
-                background-color: #fff;
-                padding: 0 5px;
-            }
-        }
-
-        @media #{$mq-desktop} {
-            background-image: url('/media/img/firefox/new/batm/bg-machine-high-res.jpg');
-            min-height: 200px;
-            padding-bottom: 100px;
-        }
-
-        @media #{$mq-desktop-wide} {
-            min-height: 260px;
-        }
-    }
-
-    .copy {
-        @include clearfix;
-        margin: 40px 0;
-        padding: 0;
-        position: relative;
-        text-align: center;
-
-        li {
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            @include font-size(20px);
-            margin-bottom: 20px;
-        }
-
-        p {
-            @include font-size(16px);
-            margin: 0 auto;
-            max-width: 420px;
-        }
-
-        @media #{$mq-desktop} {
-            margin: 60px 0 40px;
-
-            li {
-                float: left;
-                width: 33%;
-            }
-
-            h2 {
-                @include font-size(25px);
-                padding: 0 20px;
-            }
-
-            p {
-                padding: 0 40px;
-            }
-        }
-    }
-
-    .download-cta {
-        text-align: center;
-    }
-
-    .tagline {
-        @include font-size-level3;
-        @include at2x('/media/img/logos/firefox/logo-wordmark-small.png', 200px, 75px);
-        background-position: center top;
-        background-repeat: no-repeat;
-        padding-top: 100px;
-    }
-}
-
 .scene-2 main header {
     margin-bottom: 160px;
 }
 
-a.button:link.button-hollow,
-a.button:visited.button-hollow {
+a.button:link.button-arrow,
+a.button:visited.button-arrow {
     background: #ea7530;
     border-color: #ea7530;
     border-radius: 0;
@@ -465,6 +230,18 @@ a.button:visited.button-hollow {
 
     strong {
         font-weight: bold;
+
+        &:before {
+            @include background-size(12px 28px);
+            background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
+            background-position: left top;
+            content: '';
+            display: block;
+            float: left;
+            height: 14px;
+            margin: 10px 10px 0 0;
+            width: 12px;
+        }
     }
 
     &:hover,
@@ -472,6 +249,10 @@ a.button:visited.button-hollow {
         background: #fff;
         border-color: #ea7530;
         color: #000;
+
+        strong:before {
+            background-position: left -14px;
+        }
     }
 
     @media #{$mq-desktop} {
