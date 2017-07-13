@@ -4,6 +4,12 @@
 
 {% extends "firefox/new/fx-lifestyle/base.html" %}
 
+{% block optimizely %}
+  {% if switch('firefox-new-fxlifestyleworkingout-optimizely', ['en-US']) %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {% stylesheet 'firefox_new_working_out' %}
 {% endblock %}
