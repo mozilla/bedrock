@@ -13,7 +13,15 @@
 {% block body_id %}firefox-product-ios{% endblock %}
 
 {% block product_header_content %}
-  <h1 class="page-title"><span>{{ _('Firefox for iOS') }}</span></h1>
+  <h1 class="page-title">
+    <span>
+    {% if l10n_has_tag('firefox_hub_titles_062017') %}
+      {{ _('Firefox browser for iOS') }}
+    {% else %}
+      {{ _('Firefox for iOS') }}
+    {% endif %}
+    </span>
+  </h1>
   <p class="tagline">{{ _('The speed you need. The privacy you trust.') }}</p>
 {% endblock %}
 

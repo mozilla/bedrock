@@ -19,7 +19,15 @@
 {% block sub_nav_download_button %}{% endblock %}
 
 {% block product_header_content %}
-  <h1 class="page-title"><span>{{ _('Firefox Focus Browser') }}</span></h1>
+  <h1 class="page-title">
+    <span>
+    {% if l10n_has_tag('firefox_hub_titles_062017') %}
+      {{ _('Firefox Focus browser') }}
+    {% else %}
+      {{ _('Firefox Focus Browser') }}
+    {% endif %}
+    </span>
+  </h1>
   <p class="tagline">{{ _('Keep it private with automatic ad blocking and tracking protection on iOS and Android.') }}</p>
 {% endblock %}
 

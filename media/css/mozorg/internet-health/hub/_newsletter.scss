@@ -31,11 +31,11 @@
     }
 
     h2 {
-        @include font-size-level2;
+        @include font-size-level3;
     }
 
     .tagline {
-        @include font-size-level3;
+        @include font-size-level4;
     }
 
     @media #{$mq-desktop} {
@@ -63,6 +63,7 @@ html[dir="rtl"] {
 }
 
 #newsletter-form {
+    @include open-sans;
     width: 100%;
 
     @media screen and (min-width: 640px) {
@@ -70,7 +71,7 @@ html[dir="rtl"] {
     }
 
     input[type="email"] {
-        @include open-sans();
+        @include open-sans;
         border-color: #fff;
         border-radius: 0;
         padding: .5em 10px;
@@ -78,7 +79,7 @@ html[dir="rtl"] {
     }
 
     #form-details {
-        @include font-size(16px);
+        @include font-size-small;
         padding-top: 20px;
     }
 
@@ -87,11 +88,15 @@ html[dir="rtl"] {
     }
 
     label {
-        @include font-size(16px);
+        @include font-size-small;
+    }
+
+    small {
+        @include font-size-extra-small;
     }
 
     select {
-        @include open-sans();
+        @include open-sans;
         max-width: 100%;
     }
 

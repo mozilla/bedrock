@@ -20,35 +20,27 @@
         float: left;
     }
 
-    .download-button {
-        display: none;
-
-        .download-list {
-            margin-bottom: 0;
-        }
-
-        .download-link {
-            @include font-size(14px);
-            border-radius: 0;
-            border: none;
-            font-weight: bold;
-            padding: 15px 20px;
-        }
-    }
-
     .fx-privacy-link {
         display: none;
     }
 
     .masthead-nav-main {
-        text-transform: none;
-        font-weight: bold;
-        @include open-sans;
         @include font-size(16px);
+        @include open-sans;
+        font-weight: bold;
+        margin: 0 0 0 20px;
+        text-transform: none;
 
-        .nav-main-menu a:hover {
-            border-color: #000;
-            color: #000;
+        .nav-main-menu {
+
+            li {
+                padding: 0 20px 0 0;
+            }
+
+            a:hover {
+                border-color: #000;
+                color: #000;
+            }
         }
     }
 
@@ -71,20 +63,19 @@
         }
     }
 
-    @media #{$mq-desktop} {
+    @media #{$mq-desktop-wide} {
+        .masthead-nav-main {
+            margin: 0 0 0 40px;
 
-        .download-button {
-            display: block;
-            float: right;
-
-            .download-link {
-                padding: 15px 20px;
+            .nav-main-menu li {
+                padding: 0 40px 0 0;
             }
         }
     }
 }
 
 #nav-download-firefox {
+    display: none;
     float: right;
     margin: 11px 0 0;
 
@@ -133,7 +124,8 @@
         }
     }
 
-    @media #{$mq-tablet} {
+    @media #{$mq-desktop} {
+        display: block;
         margin-top: 5px;
         width: 200px;
 
@@ -146,14 +138,51 @@
             }
         }
     }
-
-    .fx-privacy-link {
-        display: none;
-    }
 }
 
 .other #nav-download-firefox,
 .oldwin #nav-download-firefox,
 .oldmac #nav-download-firefox {
     display: none;
+}
+
+html[dir="rtl"] {
+    #masthead {
+
+        .masthead-logo {
+            @media #{$mq-tablet} {
+                float: right;
+            }
+        }
+
+        .masthead-nav-main {
+            float: right;
+            margin: 0 20px 0 0;
+
+            .nav-main-menu li {
+                padding: 0 0 0 20px;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            .masthead-nav-main {
+                margin: 0 40px 0 0;
+
+                .nav-main-menu li {
+                    padding: 0 0 0 40px;
+                }
+            }
+        }
+    }
+
+    #nav-download-firefox {
+        float: left;
+
+        @media #{$mq-tablet} {
+
+            .download-link {
+                float: left;
+            }
+        }
+    }
 }
