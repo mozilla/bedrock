@@ -7,15 +7,12 @@
 
     window.dataLayer = window.dataLayer || [];
 
-    setTimeout(Mozilla.syncAnimation, 1000);
-
-    /* This shows six different content variations, depending on the browser/state
+    /* This shows five different content variations, depending on the browser/state
      * 1. Firefox 31+ (signed-in to Sync) <-- default
      * 2. Firefox 31+ (signed-out of Sync)
-     * 3. Firefox 29 or 30
-     * 4. Firefox 28 or older
-     * 5. Firefox for Android
-     * 6. Not Firefox (any other browser)
+     * 3. Firefox 30 or older
+     * 4. Firefox for Android
+     * 5. Not Firefox (any other browser)
      */
 
     // Variation #1: Firefox 31+ signed-in to Sync
@@ -27,30 +24,21 @@
     var state = 'Unknown';
     var syncCapable = false;
     var body = $('body');
-    var $fxaEmailForm = $('#fxa-email-form');
-    var $fxaEmailElements = $('.fxa-email');
-    var $fxaEmailField = $('#fxa-email');
-    var fxaEmail;
-    var hasSessionStorage = false;
 
     var swapState = function(stateClass) {
         body.removeClass('state-default');
         body.addClass(stateClass);
-
-        if (stateClass === 'state-fx-31-signed-out') {
-            initVariationsForm();
-        }
     };
 
-    // Variations 1-5 are Firefox
+    // Variations 1-4 are Firefox
     if (client.isFirefox) {
-        // Variation #5: Firefox for Android
-        if (client.isFirefoxAndroid) {
 
+        // Variation #4: Firefox for Android
+        if (client.isFirefoxAndroid) {
             swapState('state-fx-android');
             state = 'Firefox for Android';
 
-        // Variation #1-4: Firefox for Desktop
+        // Variation #1-3: Firefox for Desktop
         } else if (client.isFirefoxDesktop) {
 
             if (fxMasterVersion >= 31) {
@@ -81,20 +69,13 @@
                     });
                 });
 
-            // Variation #3: Firefox 29 or 30
-            } else if (fxMasterVersion === 29 || fxMasterVersion === 30) {
-                swapState('state-fx-29-30');
-                state = 'Firefox 29 or 30';
-
-            // Variation #4: Firefox 28 or older
-            } else if (fxMasterVersion <= 28) {
-                swapState('state-fx-28-older');
-                state = 'Firefox 28 or Older';
+            // Variation #3: Firefox 30 or older
+            } else if (fxMasterVersion <= 30) {
+                swapState('state-fx-30-older');
+                state = 'Firefox 30 or older';
             }
-
         }
-
-    // Variation #6: Not Firefox
+    // Variation #5: Not Firefox
     } else {
         swapState('state-not-fx');
         state = 'Not Firefox';
@@ -120,47 +101,4 @@
 
         Mozilla.UITour.showFirefoxAccounts(params.utmParamsFxA());
     });
-
-    // v2/3 variations only for Fx 31+ signed out of sync
-    function initVariationsForm() {
-        // only show email field if sessionStorage is available
-        try {
-            window.sessionStorage.setItem('moz-session-storage-check', true);
-            window.sessionStorage.removeItem('moz-session-storage-check');
-
-            $fxaEmailElements.addClass('active');
-            $fxaEmailField.attr('required', 'required');
-
-            hasSessionStorage = true;
-        } catch(ex) {
-            // empty block
-        }
-
-        $fxaEmailForm.on('submit', function(e) {
-            e.preventDefault();
-
-            $fxaEmailForm.off('submit');
-
-            window.dataLayer.push({
-                'event': 'sync-interactions',
-                'interaction': 'form submit',
-                'form-name': $.trim($('#cta-sync-variation').text()),
-                'test-variation': $('#variation').val()
-            });
-
-            // store email in sessionStorage and clear the field
-            if (hasSessionStorage) {
-                fxaEmail = $fxaEmailField.val();
-
-                // basic email validation
-                if (/(.+)@(.+)\.(.+){2,}/.test(fxaEmail)) {
-                    window.sessionStorage.setItem('fxa-email', $fxaEmailField.val());
-                }
-
-                $fxaEmailField.removeAttr('required').val('');
-            }
-
-            $fxaEmailForm.submit();
-        });
-    }
 })(window.jQuery, window.Mozilla);

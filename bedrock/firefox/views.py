@@ -643,6 +643,17 @@ class FeaturesPasswordManagerView(BlogPostsView):
     blog_tags = ['modern', 'private', 'featured']
 
 
+def FeaturesSyncView(request):
+    locale = l10n_utils.get_locale(request)
+
+    if locale.startswith('en-'):
+        template = 'firefox/features/sync-en.html'
+    else:
+        template = 'firefox/features/sync.html'
+
+    return l10n_utils.render(request, template)
+
+
 class FirefoxProductDesktopView(BlogPostsView):
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
@@ -717,17 +728,6 @@ class FirefoxHubView(BlogPostsView):
             return super(FirefoxHubView, self).get(request, *args, **kwargs)
         else:
             return HttpResponseRedirect(reverse('firefox.new'))
-
-
-def sync(request):
-    locale = l10n_utils.get_locale(request)
-
-    if locale.startswith('en-'):
-        template = 'firefox/sync-en.html'
-    else:
-        template = 'firefox/sync.html'
-
-    return l10n_utils.render(request, template)
 
 
 def FirefoxProductDevEditionView(request, template='firefox/products/developer.html'):

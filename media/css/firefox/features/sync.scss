@@ -1,0 +1,104 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+
+.header-intro .header-download {
+    @media #{$mq-tablet} {
+        padding-top: 20px;
+    }
+}
+
+.primary-buttons {
+    margin-bottom: 0.5em;
+}
+
+.warning span {
+    background: #fb8e92;
+}
+
+@media #{$mq-tablet} {
+    #sync-intro-copy-cta-wrapper {
+        @include clearfix();
+    }
+
+    #sync-intro-copy {
+        @include span(6);
+        padding-left: 0;
+    }
+
+    #sync-intro-cta {
+        @include span(6);
+        text-align: center;
+    }
+}
+
+@media #{$mq-desktop} {
+    #sync-intro-copy {
+        @include span(8);
+        padding-left: 0;
+    }
+
+    #sync-intro-cta {
+        @include span(4);
+    }
+}
+
+@media #{$mq-desktop-wide} {
+    #sync-intro-copy {
+        @include span(9);
+        padding-left: 0;
+    }
+
+    #sync-intro-cta {
+        @include span(3);
+    }
+}
+
+// no CTA for android
+.state-fx-android {
+    #sync-intro-copy,
+    #sync-intro-cta {
+        @include span-all();
+    }
+}
+
+#sync-intro-instructions ol {
+    list-style-type: numeric;
+    margin: 20px 0 20px 20px;
+}
+
+// Hide elements marked for specific variations by default
+.show-fx-31-signed-in,
+.show-fx-31-signed-out,
+.show-fx-30-older,
+.show-fx-android,
+.show-ios,
+.show-not-fx,
+.show-default {
+    display: none;
+}
+
+// Show elements for current variation
+.state-fx-31-signed-in  .show-fx-31-signed-in,
+.state-fx-31-signed-out .show-fx-31-signed-out,
+.state-fx-30-older      .show-fx-30-older,
+.state-fx-android       .show-fx-android,
+.state-not-fx           .show-not-fx,
+.state-default          .show-default {
+    display: block;
+}
+
+.state-fx-android {
+    .cta {
+        h3,
+        .android-button {
+            display: none;
+        }
+        .container {
+            background-image: none;
+        }
+    }
+}
