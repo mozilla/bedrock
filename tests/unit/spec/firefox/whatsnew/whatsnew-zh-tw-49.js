@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn, done */
+/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
 
 describe('whatsnew/whatsnew-zh-tw-49.js', function() {
     'use strict';
@@ -52,7 +52,7 @@ describe('whatsnew/whatsnew-zh-tw-49.js', function() {
             });
         });
 
-        it('should return false if country does not match', function() {
+        it('should return false if country does not match', function(done) {
             var geoCheckPromise = Mozilla.HkTwWhatsNew.geoCheck('us', searchEngineMap);
 
             geoCheckPromise.then(function() {
