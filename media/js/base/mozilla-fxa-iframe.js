@@ -217,7 +217,9 @@ Mozilla.FxaIframe = (function() {
             // hide the FxA iframe.
             _userCallback('onLogin', data);
         } else {
-            Mozilla.Utils.doRedirect(_host + '/settings');
+            // `?service=sync` is a temporary workaround to avoid an
+            // unwanted redirect back to /signin. See bug 1380825.
+            Mozilla.Utils.doRedirect(_host + '/settings?service=sync');
         }
     };
 

@@ -258,7 +258,7 @@ describe('mozilla-fxa-iframe.js', function() {
             };
 
             spyOn(Mozilla.Utils, 'doRedirect').and.callFake(function(destination) {
-                expect(destination).toEqual(fxaHost + '/settings');
+                expect(destination).toEqual(fxaHost + '/settings?service=sync');
                 done();
             });
 
