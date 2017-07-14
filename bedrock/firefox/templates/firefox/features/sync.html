@@ -9,17 +9,11 @@
 {% extends "firefox/features/base.html" %}
 
 {% block page_title %}
-  {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
-    {{ _('Use Bookmarks, Tabs and Passwords Across Devices | Firefox') }}
-  {% else %}
-    {{ _('Keep your Firefox in sync') }}
-  {% endif %}
+  {{ _('Use Bookmarks, Tabs and Passwords Across Devices | Firefox') }}
 {% endblock %}
 
 {% block page_desc %}
-  {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
-    {{ _('Bring your Firefox bookmarks, tabs, or passwords wherever you go with Firefox Sync. Share between computers and mobile devices. Get Firefox now!') }}
-  {% endif %}
+  {{ _('Bring your Firefox bookmarks, tabs, or passwords wherever you go with Firefox Sync. Share between computers and mobile devices. Get Firefox now!') }}
 {% endblock %}
 
 {% block page_css %}
@@ -60,29 +54,46 @@
         <div class="show-not-fx warning">
           <p>
             <span>
-            {% if l10n_has_tag('firefox_sync_non_fx') %}
               {{ _('Sync is just one of the great features you’ll only get with Firefox.') }}
-            {% else %}
-              {{ _('Sync is just one of the great features you’ll only get with Firefox. Discover them all!') }}
-            {% endif %}
             </span>
           </p>
         </div>
 
-      {% block intro %}
         <div class="show-fx-31-signed-in">
-          <h1>{{ _('Ready, Set, Sync') }}</h1>
+        {% if l10n_has_tag('sync-update-q3-2017') %}
+          <strong>{{ _('Browse boldly. Connect your devices.') }}</strong>
+          <p>
+            {{ _('Add Firefox on your personal devices to get your bookmarks, open tabs and passwords anywhere. Get secure access to everything you need when you sign into your Firefox Account.') }}
+          </p>
+        {% else %}
+          <strong>{{ _('Ready, Set, Sync') }}</strong>
           <p>
             {{ _('You’re signed up and ready to access <em>your</em> Firefox anywhere, anytime.') }}
           </p>
+        {% endif %}
         </div>
-        <div class="show-fx-31-signed-out show-fx-android show-not-fx show-default">
-          <h1>{{ _('Take your Web with you') }}</h1>
+
+      {% if l10n_has_tag('sync-update-q3-2017') %}
+        <div class="show-fx-31-signed-out show-fx-android show-fx-ios">
+          <strong>{{ _('Your web, how you like it, everywhere') }}</strong>
+          <p>
+            {{ _('Sign into your Firefox Account to access your protected passwords, open tabs and bookmarks. Add Firefox to your personal devices and securely connect your browsing experience everywhere. Keep everything set up how you like it, wherever you go.') }}
+          </p>
+        </div>
+        <div class="show-not-fx show-default">
+          <strong>{{ _('If you lived here you’d be home by now') }}</strong>
+          <p>
+            {{ _('Download or open Firefox to start securely connecting your browsing experience on all your personal devices. Sign into your Firefox Account to access your protected passwords, open tabs and bookmarks. Keep everything set up how you like it, wherever you go.') }}
+          </p>
+        </div>
+      {% else %}
+        <div class="show-fx-31-signed-out show-fx-android show-fx-ios show-not-fx show-default">
+          <strong>{{ _('Take your Web with you') }}</strong>
           <p>
             {{ _('Sync Firefox wherever you use it to access your bookmarks, passwords, tabs and more from any smartphone, tablet or computer.') }}
           </p>
         </div>
-      {% endblock %}
+      {% endif %}
       </div>{#--/#sync-intro-copy--#}
 
       <div id="sync-intro-cta">
@@ -129,31 +140,52 @@
   <div class="content">
     <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
 
-  {% block features_ul %}
     <ul class="features-list">
       <li class="features-list-item">
         <img src="{{ static('img/firefox/features/thumbnails/sync/personal.jpg') }}" alt="">
+      {% if l10n_has_tag('sync-update-q3-2017') %}
+        <h3>{{ _('Personal') }}</h3>
+        <p>
+          {{ _('That shopping rabbit hole you started on your laptop this morning? Pick up where you left off on your phone tonight. That dinner recipe you discovered at lunchtime? Open it on your kitchen tablet, instantly. Connect your personal devices, securely.') }}
+        </p>
+      {% else %}
         <h3>{{ _('At home') }}</h3>
         <p>
           {{ _('Move from your desk to the couch without skipping a beat. Access your open tabs on your smartphone, or keeping browsing your bookmarks right on your tablet.') }}
         </p>
+      {% endif %}
       </li>
+
       <li class="features-list-item">
         <img src="{{ static('img/firefox/features/thumbnails/sync/secure.jpg') }}" alt="">
+      {% if l10n_has_tag('sync-update-q3-2017') %}
+        <h3>{{ _('Secure') }}</h3>
+        <p>
+          {{ _('Your Firefox Account is the doorway to all your web stuff—we help you keep it safe. Your data is always in your control, unreadable by anyone else, and encrypted with your account password. We protect it and hand you the key.') }}
+        </p>
+      {% else %}
         <h3>{{ _('At work') }}</h3>
         <p>
           {{ _('Stay connected to all of your important information. Sync the passwords and bookmarks that you might need to access at any time. Just like Firefox, it’s safe as can be.') }}
         </p>
+      {% endif %}
       </li>
+
       <li class="features-list-item">
         <img src="{{ static('img/firefox/features/thumbnails/sync/accessible.jpg') }}" alt="">
+      {% if l10n_has_tag('sync-update-q3-2017') %}
+        <h3>{{ _('Accessible') }}</h3>
+        <p>
+          {{ _('Catch up on your open tabs and saved reads over Saturday morning coffee. Find your bookmarks and passwords anywhere you use Firefox—your smartphone, tablet or laptop. Connect everything you need and nothing you don’t.') }}
+        </p>
+      {% else %}
         <h3>{{ _('On the go') }}</h3>
         <p>
           {{ _('Keep up with your favorite sites, or finish that story you started at home — wherever you go. With Sync, it’s never been easier.') }}
         </p>
+      {% endif %}
       </li>
     </ul>
-  {% endblock %}
 
   </div> {#--/.content--#}
 </section>

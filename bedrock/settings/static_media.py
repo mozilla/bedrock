@@ -1357,14 +1357,15 @@ PIPELINE_JS = {
     'firefox-features-landing': {
         'source_filenames': (
             'js/base/mozilla-lazy-load.js',
-            'js/firefox/features-landing.js',
+            'js/firefox/features/landing.js',
         ),
         'output_filename': 'js/firefox-features-landing-bundle.js',
     },
     'firefox-features-sync': {
         'source_filenames': (
             'js/base/uitour-lib.js',
-            'js/firefox/features-sync.js',
+            'js/firefox/features/sync.js',
+            'js/firefox/features/sync-init.js',
         ),
         'output_filename': 'js/firefox-features-sync-bundle.js',
     },
