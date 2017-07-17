@@ -6,6 +6,7 @@
 @import '../../hubs/mixins';
 @import '../../hubs/sections';
 @import '../../hubs/masthead';
+@import '../../hubs/header';
 @import '../../pebbles/components/newsletter';
 @import '../../hubs/sub-nav';
 @import '../../hubs/buttons';
@@ -15,113 +16,8 @@
 $color-link-blue: #0e9ad8;
 $color-link-blue-dark: #175a77;
 
-main {
-    @include font-size(20px);
-    @include zilla-slab;
-
-    .content {
-        @include horizontal-rule-before($start-color: #69b9d0, $end-color: #9c432a);
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Page header
-
-.header-intro {
-    h1 {
-        color: #fff;
-        line-height: 1.3;
-
-        span {
-            @include box-decoration-break(clone);
-            background-color: #000;
-        }
-    }
-
-    .tagline {
-        @include font-size-level3;
-        color: $color-text-secondary;
-        font-weight: bold;
-        line-height: 1.2;
-        margin-bottom: 0;
-    }
-
-    .hero-image {
-        display: block;
-        margin: 20px auto 0;
-    }
-
-    .header-download {
-        text-align: center;
-        padding-top: 40px;
-    }
-
-    .content:before {
-        height: 10px;
-    }
-
-    @media #{$mq-tablet} {
-
-        .hero-image {
-            height: 400px;
-            margin-top: 60px;
-            width: 720px;
-        }
-
-        .header-container {
-            @include clearfix;
-        }
-
-        .header-content {
-            @include span(6);
-            padding-left: 0;
-        }
-
-        .header-download {
-            @include span(6);
-            padding: 60px 0 0;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        h1 {
-            @include font-size(72px);
-        }
-
-        .tagline {
-            @include font-size(32px);
-        }
-
-        .header-content {
-            @include span(8);
-            padding-left: 0;
-        }
-
-        .header-download {
-            @include span(4);
-            padding: 60px 0 0;
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        h1 {
-            @include font-size(95px);
-        }
-
-        .tagline {
-            @include font-size(48px);
-        }
-
-        .header-content {
-            @include span(9);
-            padding-left: 0;
-        }
-
-        .header-download {
-            @include span(3);
-            padding: 60px 0 0;
-        }
-    }
+main .content {
+    @include horizontal-rule-before($start-color: #69b9d0, $end-color: #9c432a);
 }
 
 #firefox-features-landing {

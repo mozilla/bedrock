@@ -6,12 +6,12 @@
 
 
 html {
-    font-size: 100%;
+    font-size: 112.5%;
     background: #fff;
 }
 
 body {
-    font-size: 100%;
+    @include font-size(18px);
     background: #fff;
     color: $color-text-primary;
     font-family: $base-font-stack;

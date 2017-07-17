@@ -17,6 +17,10 @@ $card-padding: 20px;
     }
 }
 
+.card-heading {
+    @include font-size-level3;
+}
+
 .card-heading a:link,
 .card-heading a:visited {
     color: #000;
@@ -80,7 +84,7 @@ $card-padding: 20px;
 
 // the little highlighted bit of text at the top of a card
 .card-label {
-    @include font-size(24px);
+    @include font-size-level4;
     background: #000;
     color: #fff;
     display: inline-block;
@@ -281,7 +285,7 @@ $card-padding: 20px;
 }
 
 .quote {
-    @include font-size-level2;
+    @include font-size-level3;
     margin-bottom: 20px;
 }
 

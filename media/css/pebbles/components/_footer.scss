@@ -6,7 +6,6 @@
 
 #colophon {
     @include open-sans;
-    @include font-size(14px);
     background: #000;
     color: #fff;
     line-height: 1.3;
@@ -34,7 +33,7 @@
         margin-bottom: .9em;
 
         @media #{$mq-desktop} {
-            @include font-size(18px);
+            @include font-size-level5;
         }
     }
 
@@ -55,7 +54,6 @@
     }
 
     .logo {
-        @include font-size(16px);
         margin-bottom: 40px;
 
         a {
@@ -107,8 +105,12 @@
         }
     }
 
+    .primary {
+        @include font-size(16px);
+    }
+
     .secondary {
-        @include font-size(12px);
+        @include font-size-extra-small;
     }
 
     .small-links {
@@ -171,12 +173,6 @@
             @include span(4);
             margin-top: 2.25em;
             padding: 0 20px 0 0;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        .primary {
-            @include font-size(16px);
         }
     }
 }

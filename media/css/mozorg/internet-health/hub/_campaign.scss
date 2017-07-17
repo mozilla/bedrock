@@ -85,6 +85,7 @@ html[lang^="en"] {
     }
 
     h2 {
+        @include font-size-level3;
         margin-bottom: 20px;
     }
 

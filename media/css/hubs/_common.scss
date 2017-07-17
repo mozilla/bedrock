@@ -13,7 +13,7 @@ $color-link-blue-dark: #175a77;
 // Section titles
 
 .section-title {
-    @include font-size(24px);
+    @include font-size-level4;
     margin: 0 0 20px;
 
     span {
@@ -21,7 +21,7 @@ $color-link-blue-dark: #175a77;
         background-color: #000;
         color: #fff;
         line-height: 1.3;
-        padding: 0 5px 0 60px;
+        padding: 0 5px 0 40px;
     }
 }
 
@@ -29,7 +29,7 @@ $color-link-blue-dark: #175a77;
 // CTA link
 
 a.cta-link {
-    @include font-size(18px);
+    @include font-size-level6;
     border-bottom: 2px solid $color-link-blue;
     color: $color-link-blue;
     display: inline-block;
