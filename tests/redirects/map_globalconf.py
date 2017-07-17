@@ -1063,6 +1063,10 @@ URLS = flatten((
     url_test('/styleguide/websites/sandstone/forms/', '/styleguide/websites/sandstone/'),
     url_test('/styleguide/websites/sandstone/tabzilla/', '/styleguide/websites/sandstone/'),
 
+    # Bug 1365076
+    url_test('/styleguide/identity/mozilla/branding/', 'https://designlanguage.mozilla.org/'),
+    url_test('/styleguide/identity/mozilla/color/', 'https://designlanguage.mozilla.org/'),
+
     # Bug 784411
     url_test('/about/mission/', '/mission/'),
 
