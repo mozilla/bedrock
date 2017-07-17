@@ -380,17 +380,18 @@ Here's an example of ``intl.css``:
 Localizers can specify locale-specific fonts in one of the following ways:
 
 * Choose best-looking fonts widely used on major platforms, and specify those
-with the ``src: local(name)`` syntax
+  with the ``src: local(name)`` syntax
 * Find a best-looking free Web font, add the font files to ``/media/fonts/``,
-and specify those with the ``src: url(path)`` syntax
+  and specify those with the ``src: url(path)`` syntax
 * Create a custom Web font to complement missing glyphs in *Open Sans*, add the
-font files to ``/media/fonts/``, and specify those with the ``src: url(path)``
-syntax. The `M+ font family
-<http://mplus-fonts.sourceforge.jp/mplus-outline-fonts/index-en.html>`_ offers
-various international glyphs and looks similar to *Open Sans*. You can create a
-subset of the *M+ 2c* font using a tool found on the Web. See `Bug 776967
-<https://bugzilla.mozilla.org/show_bug.cgi?id=776967>`_ for the Fulah (ff)
-locale's example.
+  font files to ``/media/fonts/l10n/``, and specify those with the
+  ``src: url(path)`` syntax. `M+ 2c <http://mplus-fonts.osdn.jp/about-en.html>`_
+  offers various international glyphs and looks similar to Open Sans, while
+  `Noto Sans <https://www.google.com/get/noto/>`_ is good for the bold and
+  italic variants. You can create subsets of these alternative fonts in the WOFF
+  and WOFF2 formats using a tool found on the Web. See `Bug 1360812
+  <https://bugzilla.mozilla.org/show_bug.cgi?id=1360812>`_ for the Fulah (ff)
+  locale's example
 
 Developers should use the ``.open-sans`` mixin instead of ``font-family: 'Open
 Sans'`` to specify the default font family in CSS. This mixin has both *Open
