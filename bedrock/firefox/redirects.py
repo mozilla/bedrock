@@ -542,4 +542,8 @@ redirectpatterns = (
 
     # bug 1370587
     redirect(r'^firefox/sync/?', 'firefox.features.sync'),
+
+    # bug 1370574
+    # should be removed when send tabs page goes live
+    redirect(r'^firefox/features/send-tabs/?', 'firefox.features.sync', permanent=False),
 )
