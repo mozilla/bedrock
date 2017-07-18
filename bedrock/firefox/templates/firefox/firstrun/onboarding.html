@@ -1,15 +1,29 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/onboarding" %}
+
 {% extends "bare.html" %}
+
+{% block page_image %}{{ static('img/firefox/template/page-image.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/favicon-196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/firefox/ios-icon-180.png') }}{% endblock %}
+
+{% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
+{% block twitter_id %}firefox{% endblock %}
 
 {% block page_title %}
   {{ _('Welcome to Firefox') }}
 {% endblock %}
 
 {% block site_css %}
-  {% stylesheet 'firefox_new_firstrun' %}
+  {% stylesheet 'firefox_firstrun_onboarding' %}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_new_firstrun' %}
+  {% javascript 'firefox_firstrun_onboarding' %}
 {% endblock %}
 
 {% block global_nav %}{% endblock %}

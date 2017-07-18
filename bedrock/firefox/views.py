@@ -387,22 +387,14 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         return ctx
 
     def get_template_names(self):
-        funnelcake = self.request.GET.get('f', '')
         locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
 
         if detect_channel(version) == 'alpha':
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
-            # New onboarding animation funnecake
-            if locale == 'en-US' and funnelcake in ['99', '100', '111', '112', '113']:
-                template = 'firefox/firstrun/new-firstrun.html'
-            # Yahoo search retention funnelcake test
-            elif locale == 'en-US' and funnelcake == '92':
-                template = 'firefox/firstrun/yahoo-retention.html'
-            elif locale == 'en-US' and funnelcake == '90':
-                # ravioli/katie couric promo
-                template = 'firefox/firstrun/ravioli.html'
+            if lang_file_is_active('firefox/new/onboarding', locale):
+                template = 'firefox/firstrun/onboarding.html'
             else:
                 template = 'firefox/firstrun/firstrun-horizon.html'
         elif show_38_0_5_firstrun(version):
@@ -500,14 +492,9 @@ def new(request):
     variant = request.GET.get('v', None)
     locale = l10n_utils.get_locale(request)
 
-    # Onboarding funnelcake experiment (Bug 1333435).
-    funnelcake_id = request.GET.get('f', False)
-
     if scene == '2':
         if locale == 'en-US':
-            if funnelcake_id in ['99', '100']:
-                template = 'firefox/new/onboarding/scene2.html'
-            elif experience == 'breakfree':
+            if experience == 'breakfree':
                 template = 'firefox/new/break-free/scene2.html'
             elif experience == 'wayofthefox':
                 template = 'firefox/new/way-of-the-fox/scene2.html'
@@ -528,15 +515,15 @@ def new(request):
             elif experience in ['batmfree', 'batmprivate', 'batmnimble', 'batmresist']:
                 template = 'firefox/new/batm/scene2.html'
             else:
-                template = 'firefox/new/scene2.html'
+                template = 'firefox/new/onboarding/scene2.html'
+        elif lang_file_is_active('firefox/new/onboarding', locale):
+            template = 'firefox/new/onboarding/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     # if no/incorrect scene specified, show scene 1
     else:
         if locale == 'en-US':
-            if funnelcake_id in ['99', '100']:
-                template = 'firefox/new/onboarding/scene1.html'
-            elif experience == 'breakfree':
+            if experience == 'breakfree':
                 template = 'firefox/new/break-free/scene1.html'
             elif experience == 'wayofthefox':
                 template = 'firefox/new/way-of-the-fox/scene1.html'
@@ -568,7 +555,9 @@ def new(request):
             elif experience == 'batmresist':
                 template = 'firefox/new/batm/resist.html'
             else:
-                template = 'firefox/new/scene1.html'
+                template = 'firefox/new/onboarding/scene1.html'
+        elif lang_file_is_active('firefox/new/onboarding', locale):
+            template = 'firefox/new/onboarding/scene1.html'
         else:
             template = 'firefox/new/scene1.html'
 

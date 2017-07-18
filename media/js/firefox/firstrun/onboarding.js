@@ -32,7 +32,8 @@
             document.getElementById('sunrise').addEventListener('transitionend', function(event) {
                 if (event.propertyName === 'transform') {
                     window.setTimeout(function () {
-                        Mozilla.UITour.showNewTab();
+                        // Bug 1381051 sign in should redirect to about:home instead of about:newtab.
+                        window.location.href = 'about:home';
                     }, 200);
                 }
             }, false);

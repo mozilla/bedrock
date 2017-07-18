@@ -2,7 +2,21 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "firefox/new/onboarding" %}
+
 {% extends "firefox/new/onboarding/base.html" %}
+
+{% block experiments %}
+  {% if switch('firefox-new-search-retention-funnelcakes', ['en-US']) %}
+    {% javascript 'experiment_firefox_new_fc_search_retention' %}
+  {% endif %}
+{% endblock %}
+
+{% block optimizely %}
+  {% if switch('firefox-new-optimizely', ['en-US']) %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
 
 {# all CSS must be in extrahead block for old IE #}
 {% block extrahead %}
@@ -37,11 +51,7 @@
                 {{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-firefox-latest-version') }}
               </p>
               <p id="version-message-desktop-pre-release" class="version-message">
-                {% if l10n_has_tag('firefox_new_pre_release') %}
-                  {{_('You’re using a pre-release version of Firefox.') }}
-                {% else %}
-                  {{_('Congrats! You’re using the latest version of Firefox.')}}
-                {% endif %}
+                {{_('You’re using a pre-release version of Firefox.') }}
               </p>
             </div>{#-- /.version-message-container --#}
           </header>

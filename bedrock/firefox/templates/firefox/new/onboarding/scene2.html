@@ -2,7 +2,19 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "firefox/new/onboarding" %}
+
 {% extends "firefox/new/onboarding/base.html" %}
+
+{% block extra_meta %}
+  <meta name="robots" content="noindex,follow">
+{% endblock %}
+
+{% block optimizely %}
+  {% if switch('firefox-new-scene2-optimizely', ['en-US']) %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
 
 {% block extrahead %}
   {% stylesheet 'firefox_new_onboarding_common' %}
