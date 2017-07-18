@@ -357,6 +357,9 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-features-hub-detail-bundle.css',
     },
+    # This bundle is currently used on both /features/sync & /features/send-tabs
+    # because they happen to share everything. If/when divergence happens,
+    # send-tabs should get it's own .scss file.
     'firefox-features-sync': {
         'source_filenames': (
             'css/firefox/features/sync.scss',
@@ -1348,6 +1351,9 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox-features-landing-bundle.js',
     },
+    # This bundle is currently used on both /features/sync & /features/send-tabs
+    # because they happen to share everything. If/when divergence happens,
+    # send-tabs should get it's own .js files.
     'firefox-features-sync': {
         'source_filenames': (
             'js/base/uitour-lib.js',
