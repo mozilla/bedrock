@@ -61,6 +61,12 @@
          * @param {String} id - optional accordion id to expand on open.
          */
         toggleDrawer: function(accordionId) {
+
+            // make sure we're at the top of the window before opening drawer.
+            if (!_page.classList.contains('moz-nav-open')) {
+                window.scrollTo(0, 0);
+            }
+
             _page.classList.toggle('moz-nav-open');
 
             if (_page.classList.contains('moz-nav-open')) {

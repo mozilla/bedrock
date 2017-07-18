@@ -122,3 +122,6 @@ data-panel3-button="{{ _('Got it!') }}"
 {% block site_js %}
   {% javascript 'tracking-protection-tour' %}
 {% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}

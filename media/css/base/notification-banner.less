@@ -1,0 +1,154 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+/* -------------------------------------------------------------------------- */
+// Notification Banner
+
+
+.notification-banner {
+    #gradient.horizontal(@startColor: #dad9d8, @endColor: #f4f2f2);
+    background-image: url('/media/img/notification/background.png');
+    background-color: #dad9d8;
+    background-position: top center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+
+    .content {
+        .border-box;
+        .clearfix;
+        margin: 0 auto;
+        padding: 40px 20px;
+        width: @widthDesktop;
+    }
+
+    h2 {
+        .font-size(48px);
+        color: #000;
+        font-weight: bold;
+        text-shadow: none;
+    }
+
+    p {
+        .font-size(16px);
+        color: #000;
+        font-style: italic;
+    }
+
+    .content-container {
+        float: left;
+        position: relative;
+        width: 65%;
+
+        &:after {
+            .at2x('/media/img/notification/alarm-bell.png', 383px, 380px);
+            background-repeat: no-repeat;
+            content: '';
+            height: 380px;
+            position: absolute;
+            right: -320px;
+            top: -80px;
+            width: 383px;
+        }
+    }
+
+    .notification-banner-confirm {
+        background: #0e9ad8;
+        color: #fff;
+        display: inline-block;
+        padding: .5em 36px;
+
+        &:link,
+        &:visited {
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            .transition(background-color .1s ease-in-out);
+            background-color: lighten(#0e9ad8, 5%);
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    .notification-banner-close {
+        .font-size(16px);
+        .image-replaced;
+        .transition(opacity .2s ease-in-out);
+        background: #000 url('/media/img/notification/close.svg') center center no-repeat;
+        .background-size(12px 12px);
+        border-radius: 100%;
+        border: none;
+        float: right;
+        height: 30px;
+        margin-top: -20px;
+        opacity: 0.6;
+        width: 30px;
+
+        &:hover,
+        &:focus {
+            .transition(opacity .2s ease-in-out);
+            opacity: 1;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktopWide) {
+        h2 {
+            .font-size(36px);
+        }
+
+        p {
+            .font-size(16px);
+        }
+    }
+
+    @media only screen and (min-width: @breakDesktopWide) {
+        .content {
+            width: @widthDesktopWide;
+        }
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+
+        .content {
+            padding: 20px;
+            width: @widthTablet;
+        }
+
+        .content-container:after {
+            .background-size(192px 190px);
+            height: 190px;
+            right: -200px;
+            top: 0;
+            width: 192px;
+        }
+
+        .notification-banner-close {
+            margin-top: 0;
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+        .content {
+            width: auto;
+        }
+
+        .content-container:after {
+            content: none;
+        }
+
+        h2 {
+            .font-size(24px);
+        }
+    }
+
+    @media only screen and (max-width: @breakMobileLandscape) {
+        .content-container {
+            width: 80%;
+        }
+    }
+}

@@ -1,0 +1,123 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Notification Banner
+
+.notification-banner {
+    @include gradient-horizontal($start-color: #dad9d8, $end-color: #f4f2f2);
+    background-color: #dad9d8;
+    background-image: url('/media/img/notification/background.png');
+    background-position: top center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+
+    p {
+        font-style: italic;
+    }
+
+    .content-container {
+        float: left;
+        position: relative;
+        width: 80%;
+    }
+
+    .notification-banner-confirm {
+        @include font-size(16px);
+        @include open-sans;
+        background: #0e9ad8;
+        color: #fff;
+        display: inline-block;
+        padding: .5em 36px;
+
+        &:link,
+        &:visited {
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            @include transition(background-color .1s ease-in-out);
+            background-color: lighten(#0e9ad8, 5%);
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    .notification-banner-close {
+        @include image-replaced;
+        @include transition(opacity .2s ease-in-out);
+        background: #000 url('/media/img/notification/close.svg') center center no-repeat;
+        @include background-size(12px 12px);
+        border-radius: 100%;
+        border: none;
+        float: right;
+        height: 30px;
+        opacity: 0.6;
+        width: 30px;
+
+        &:hover,
+        &:focus {
+            @include transition(opacity .2s ease-in-out);
+            opacity: 1;
+        }
+    }
+
+    @media #{$mq-phone-wide} {
+        .content-container {
+            width: 65%;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .content-container:after {
+            @include at2x('/media/img/notification/alarm-bell.png', 192px, 190px);
+            background-repeat: no-repeat;
+            content: '';
+            height: 190px;
+            position: absolute;
+            right: -200px;
+            top: 0;
+            width: 192px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        h2 {
+            @include font-size-level3;
+        }
+
+        .content {
+            padding-bottom: 40px;
+            padding-top: 40px;
+        }
+
+        .content-container:after {
+            @include background-size(383px 380px);
+            height: 380px;
+            right: -320px;
+            top: -80px;
+            width: 383px;
+        }
+
+        .notification-banner-close {
+            margin-top: -20px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+
+        h2 {
+            @include font-size-level2;
+        }
+
+        p {
+            @include font-size-level4;
+        }
+    }
+}
