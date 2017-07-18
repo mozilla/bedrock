@@ -57,8 +57,9 @@
     }
 }
 
-// no CTA for android
-.state-fx-android {
+// no CTA for android or iOS
+.state-fx-android,
+.state-fx-ios {
     #sync-intro-copy,
     #sync-intro-cta {
         @include span-all();
@@ -75,7 +76,7 @@
 .show-fx-31-signed-out,
 .show-fx-30-older,
 .show-fx-android,
-.show-ios,
+.show-fx-ios,
 .show-not-fx,
 .show-default {
     display: none;
@@ -86,19 +87,8 @@
 .state-fx-31-signed-out .show-fx-31-signed-out,
 .state-fx-30-older      .show-fx-30-older,
 .state-fx-android       .show-fx-android,
+.state-fx-ios           .show-fx-ios,
 .state-not-fx           .show-not-fx,
 .state-default          .show-default {
     display: block;
-}
-
-.state-fx-android {
-    .cta {
-        h3,
-        .android-button {
-            display: none;
-        }
-        .container {
-            background-image: none;
-        }
-    }
 }
