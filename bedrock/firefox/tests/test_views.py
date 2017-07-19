@@ -521,25 +521,13 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')
 
-    # browse against the machine animation bug 1366397
-
-    def test_batma_scene_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=batmprivate&v=a')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/batm/machine-a.html')
-
-    def test_batma_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&xv=batmprivate&v=a')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')
+    # browse against the machine animation bug 1380044
 
     def test_batmb_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=batmprivate&v=b')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/batm/machine-b.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/batm/machine.html')
 
     def test_batmb_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=batmprivate&v=b')

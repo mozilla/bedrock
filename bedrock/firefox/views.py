@@ -544,10 +544,8 @@ def new(request):
             elif experience == 'batmfree':
                 template = 'firefox/new/batm/free.html'
             elif experience == 'batmprivate':
-                if variant == 'a':
-                    template = 'firefox/new/batm/machine-a.html'
-                elif variant == 'b':
-                    template = 'firefox/new/batm/machine-b.html'
+                if variant == 'b':
+                    template = 'firefox/new/batm/machine.html'
                 else:
                     template = 'firefox/new/batm/private.html'
             elif experience == 'batmnimble':

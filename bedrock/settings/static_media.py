@@ -1448,6 +1448,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene1_batm_anim-bundle.js',
     },
+    'experiment_firefox_new_batm_anim': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/new/experiment-firefox-new-batm-anim.js',
+        ),
+        'output_filename': 'js/experiment_firefox_new_batm_anim-bundle.js',
+    },
     'experiment_firefox_new_fc_search_retention': {
         'source_filenames': (
             'js/base/mozilla-traffic-cop.js',

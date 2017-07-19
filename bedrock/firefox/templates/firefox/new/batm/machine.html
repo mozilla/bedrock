@@ -12,14 +12,13 @@
 
 {% block body_class %}scene-1 machine-animated{% endblock %}
 
-{% block string_data %}
-  data-global-open="{{ _('Open') }}"
-{% endblock %}
-
 {% block content %}
 <main role="main">
   <section class="machine">
-    <div class="eye"><span></span></div>
+    <video id="machine" preload="auto" autoplay loop muted>
+      <source src="{{ static('img/firefox/new/batm/batm-animation.webm') }}" type="video/webm">
+      <source src="{{ static('img/firefox/new/batm/batm-animation.mp4') }}" type="video/mp4">
+    </video>
 
     <ul class="points">
       <li class="point" id="point-1">
@@ -46,7 +45,7 @@
   <div class="download-cta">
     <h1 id="main-header-copy" data-experience="batmprivate" data-variant="a">{{_('Browse against the machine')}}</h1>
 
-    {{ download_firefox(alt_copy=_('Download Firefox'), locale_in_transition=True, button_color='button-hollow') }}
+    {{ download_firefox(alt_copy=_('Download Firefox'), locale_in_transition=True, button_color='button-arrow') }}
   </div>
 
 </main>
