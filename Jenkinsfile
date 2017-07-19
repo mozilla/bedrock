@@ -1,6 +1,6 @@
 #!groovy
 
-@Library('github.com/mozmar/jenkins-pipeline@20170315.1')
+@Library('github.com/mozmeao/jenkins-pipeline@20170315.1')
 
 def loadBranch(String branch) {
     // load the utility functions used below

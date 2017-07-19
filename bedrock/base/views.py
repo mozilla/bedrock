@@ -59,7 +59,7 @@ def server_error_view(request, template_name='500.html'):
 @csrf_exempt
 @require_POST
 def csp_violation_capture(request):
-    # HT @glogiotatidis https://github.com/mozmar/lumbergh/pull/180/
+    # HT @glogiotatidis https://github.com/mozmeao/lumbergh/pull/180/
     if not settings.CSP_REPORT_ENABLE:
         # mitigation option for a flood of violation reports
         return HttpResponse()
