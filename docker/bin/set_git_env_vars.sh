@@ -15,3 +15,11 @@ if [[ -z "$GIT_BRANCH" ]]; then
     export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
     export BRANCH_NAME="$GIT_BRANCH"
 fi
+
+echo "######### Git Info ###########"
+echo
+echo "GIT_COMMIT:         ${GIT_COMMIT}"
+echo "GIT_COMMIT_SHORT:   ${GIT_COMMIT_SHORT}"
+echo "GIT_TAG:            ${GIT_TAG}"
+echo "GIT_TAG_DATE_BASED: ${GIT_TAG_DATE_BASED}"
+echo "GIT_BRANCH:         ${GIT_BRANCH}"

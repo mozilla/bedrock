@@ -1,0 +1,6 @@
+# see the following for documentation of these options
+# http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
+demo: true
+require_tag: true
+regions:
+  - usw
