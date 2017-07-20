@@ -410,8 +410,6 @@ BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default=None)
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
-    # must be after SecurityMiddleware
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -435,8 +433,6 @@ if ENABLE_CSP_MIDDLEWARE:
 
 INSTALLED_APPS = (
     'cronjobs',  # for ./manage.py cron * cmd line tasks
-    # needs to be above django.contrib.staticfiles
-    'whitenoise.runserver_nostatic',
 
     # Django contrib apps
     'django.contrib.auth',
