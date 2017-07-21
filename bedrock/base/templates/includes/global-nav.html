@@ -24,6 +24,9 @@
           {% endif %}
           <a href="{{ firefox_url }}" data-link-type="nav" data-link-position="top" data-link-name="Firefox">{{ _('Firefox') }}</a>
         </li>
+        <li class="item-pocket">
+          <a href="https://getpocket.com/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=pocket" data-link-type="nav" data-link-position="top" data-link-name="Pocket">{{ _('Pocket') }}</a>
+        </li>
         <li class="item-internet-health">
           <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-position="top" data-link-name="Internet Health">{{ _('Internet Health') }}</a>
         </li>
@@ -106,7 +109,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://support.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=support" data-link-type="nav" data-link-name="Support" data-link-group="Firefox">
+                  <a href="https://support.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=support" data-link-type="nav" data-link-name="Support" data-link-group="Firefox">
                     {{ _('Support') }}
                   </a>
                 </li>
@@ -114,7 +117,7 @@
 
               <aside class="nav-promo">
                 <span class="meta">{{ _('Faster Browser') }}</span>
-                <a class="thumbnail" href="https://blog.mozilla.org/firefox/fast-responsive-reliable-browser-multi-tab-age/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Fast, Responsive, Reliable: A Browser for the Multi-Tab Age" data-link-group="Nav Article">
+                <a class="thumbnail" href="https://blog.mozilla.org/firefox/fast-responsive-reliable-browser-multi-tab-age/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Fast, Responsive, Reliable: A Browser for the Multi-Tab Age" data-link-group="Nav Article">
                   <figure>
                     {{ high_res_img('nav/promos/better-browser.png', {'alt': '', 'width': '204', 'height': '140'}) }}
                     <figcaption>{{ _('Fast, Responsive, Reliable: A Browser for the Multi-Tab Age') }}</figcaption>
@@ -124,7 +127,7 @@
 
               <aside class="nav-promo">
                 <span class="meta">{{ _('Better Browsing') }}</span>
-                <a class="thumbnail" href="https://blog.mozilla.org/firefox/smooth-scrolling-web-browser-removes-jank/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Smooth Scrolling: How a Web Browser Removes Jank" data-link-group="Nav Article">
+                <a class="thumbnail" href="https://blog.mozilla.org/firefox/smooth-scrolling-web-browser-removes-jank/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Smooth Scrolling: How a Web Browser Removes Jank" data-link-group="Nav Article">
                   <figure>
                     {{ high_res_img('nav/promos/smooth-scrolling.png', {'alt': '', 'width': '204', 'height': '140'}) }}
                     <figcaption>{{ _('Smooth Scrolling: How a Web Browser Removes Jank') }}</figcaption>
@@ -133,6 +136,24 @@
               </aside>
             </div>
           </div>
+        </li>
+        <li class="item-pocket">
+          <h3 class="summary" data-id="pocket">
+            <a href="?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=pocket" data-link-type="nav" data-link-position="side" data-link-name="expand" data-link-group="Pocket">{{ _('Pocket') }}</a>
+          </h3>
+          <div class="detail">
+            <div class="detail-container">
+              <p class="intro">
+                {{ _('When you find something you want to view later, put it in Pocket.') }}
+              </p>
+
+              <ul class="nav-menu-secondary-links">
+                <li>
+                  <a href="?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=pocket" data-link-type="nav" data-link-name="Get Pocket" data-link-group="Pocket">
+                    {{ _('Get Pocket') }}
+                  </a>
+                </li>
+              </ul>
         </li>
         <li class="item-internet-health">
           <h3 class="summary" data-id="internet-health">
@@ -179,7 +200,7 @@
 
               <aside class="nav-promo">
                 <span class="meta">{{ _('Privacy') }}</span>
-                <a class="thumbnail" href="https://blog.mozilla.org/internetcitizen/2017/01/25/facebook-privacy-tips/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Facebook privacy tips: How to share without oversharing" data-link-group="Nav Article">
+                <a class="thumbnail" href="https://blog.mozilla.org/internetcitizen/2017/01/25/facebook-privacy-tips/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Facebook privacy tips: How to share without oversharing" data-link-group="Nav Article">
                   <figure>
                     {{ high_res_img('nav/promos/fb-share-tips.png', {'alt': '', 'width': '204', 'height': '140'}) }}
                     <figcaption>{{ _('Facebook privacy tips: How to share without oversharing') }}</figcaption>
@@ -189,7 +210,7 @@
 
               <aside class="nav-promo">
                 <span class="meta">{{ _('Security') }}</span>
-                <a class="thumbnail" href="https://blog.mozilla.org/internetcitizen/2017/01/25/better-password-security/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Don’t Get Pwned: A Guide to Safer Logins" data-link-group="Nav Article">
+                <a class="thumbnail" href="https://blog.mozilla.org/internetcitizen/2017/01/25/better-password-security/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Don’t Get Pwned: A Guide to Safer Logins" data-link-group="Nav Article">
                   <figure>
                     {{ high_res_img('nav/promos/safer-logins.png', {'alt': '', 'width': '204', 'height': '140'}) }}
                     <figcaption>{{ _('Don’t Get Pwned: A Guide to Safer Logins') }}</figcaption>
@@ -221,7 +242,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://developer.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=MDN" data-link-type="nav" data-link-name="MDN" data-link-group="Technology">
+                  <a href="https://developer.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=MDN" data-link-type="nav" data-link-name="MDN" data-link-group="Technology">
                     <abbr title="{{ _('Mozilla Developer Network') }}">{{ _('MDN') }}</abbr>
                   </a>
                 </li>
@@ -229,7 +250,7 @@
 
               <aside class="nav-promo">
                 <span class="meta">{{ _('Optimized for Design') }}</span>
-                <a class="thumbnail" href="https://hacks.mozilla.org/2017/03/a-new-css-grid-demo-on-mozilla-org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: A new CSS Grid demo" data-link-group="Nav Article">
+                <a class="thumbnail" href="https://hacks.mozilla.org/2017/03/a-new-css-grid-demo-on-mozilla-org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: A new CSS Grid demo" data-link-group="Nav Article">
                   <figure>
                     {{ high_res_img('nav/promos/css-grid-demo.png', {'alt': '', 'width': '204', 'height': '140'}) }}
                     <figcaption>{{ _('A new CSS Grid demo') }}</figcaption>
@@ -239,7 +260,7 @@
 
               <aside class="nav-promo">
                 <span class="meta">{{ _('Game-changing Browser') }}</span>
-                <a class="thumbnail web-assembly" href="https://blog.mozilla.org/blog/2017/03/07/lots-new-in-firefox-game-changing-webassembly-support/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Lots new in Firefox, including “game-changing” support for WebAssembly" data-link-group="Nav Article">
+                <a class="thumbnail web-assembly" href="https://blog.mozilla.org/blog/2017/03/07/lots-new-in-firefox-game-changing-webassembly-support/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Lots new in Firefox, including “game-changing” support for WebAssembly" data-link-group="Nav Article">
                   <figure>
                     {{ high_res_img('nav/promos/web-assembly.png', {'alt': '', 'width': '204', 'height': '140'}) }}
                     <figcaption>{{ _('Lots new in Firefox, including support for WebAssembly') }}</figcaption>
@@ -281,12 +302,12 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://blog.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=blogs" data-link-type="nav" data-link-name="Blogs" data-link-group="About Us">
+                  <a href="https://blog.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=blogs" data-link-type="nav" data-link-name="Blogs" data-link-group="About Us">
                     {{ _('Blogs') }}
                   </a>
                 </li>
                 <li>
-                  <a href="https://careers.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;global-nav&amp;utm_content=careers" data-link-type="nav" data-link-name="Careers" data-link-group="About Us">
+                  <a href="https://careers.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=careers" data-link-type="nav" data-link-name="Careers" data-link-group="About Us">
                     {{ _('Careers') }}
                   </a>
                 </li>
