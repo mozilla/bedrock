@@ -760,19 +760,24 @@ nav.menu-bar {
         text-decoration: none;
     }
 
-    a:link,
-    a:visited {
+    a:hover,
+    a:active,
+    a:focus {
         color: #fff;
         font-weight: normal;
-        text-decoration: none;
+        text-decoration: underline;
     }
 
     h5 {
         .font-size(18px);
         color: #fff;
-        font-weight: bold;
         margin-bottom: .9em;
         text-shadow: none;
+
+        a:link,
+        a:visited {
+            font-weight: bold;
+        }
     }
 
     li {
