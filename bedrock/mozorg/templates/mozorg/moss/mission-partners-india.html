@@ -5,7 +5,7 @@
 {% extends "mozorg/moss/base.html" %}
 
 {% block page_title %}
-  {{ _('Mission Partners') }}
+  {{ _('Global Mission Partners: India') }}
   &mdash;
   {{ super() }}
 {% endblock %}
@@ -13,7 +13,7 @@
 {% block body_id %}moss-mission-partners{% endblock %}
 
 {% block page_heading %}
-  {{ _('Mission Partners') }}
+  {{ _('Global Mission Partners: India') }}
 {% endblock %}
 
 {% block page_content %}
@@ -22,16 +22,17 @@
 
   <p class="moss-copy">
   {% trans url1=url('mozorg.about.manifesto') %}
-    The Mission Partners track is open to any open source or free software
-    project that is undertaking an activity which significantly furthers
-    Mozilla’s <a href="{{ url1 }}">mission</a>.
+    The Global Mission Partners: India track is open to any open source or
+    free software project that is undertaking an activity which significantly
+    furthers Mozilla’s <a href="{{ url1 }}">mission</a>, and for which the
+    applicant(s) are based in India.
   {% endtrans %}
   </p>
 
   <div class="moss-ctas">
     <p class="moss-copy">{{ _('Ready to go?') }}</p>
 
-    <a href="https://docs.google.com/forms/d/1rwYQTT-9-eldS-kElY646bMwMzJpxfL8lDskX86xgCQ/viewform" rel="external" class="button">{{ _('Apply Now') }}</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHq-tzjUjtx-jqHd1muy1PGX9m5CO7kepl5n6_-ID2mOKi2A/viewform" rel="external" class="button">{{ _('Apply Now') }}</a>
   </div>
 </section>
 
@@ -66,8 +67,8 @@
 
       <p class="moss-copy">
       {% trans %}
-        The project’s home can be anywhere in the world where we can make
-        payment without undue burden.
+        The applicant needs to be an individual resident in India, or a
+        company or non-profit registered in India.
       {% endtrans %}
       </p>
     </li>
@@ -123,8 +124,8 @@
   {% endtrans %}
 
   {% trans %}
-    The minimum award for the Mission Partners track is $10,000, and the maximum
-    is $250,000.
+    The minimum award for the Global Mission Partners: India track is
+    ₹1,25,000, and the maximum is ₹50,00,000.
   {% endtrans %}
   </p>
 </section>
@@ -222,7 +223,7 @@
       {{ _('I’m ready!') }}
     </p>
 
-    <a href="https://docs.google.com/forms/d/1rwYQTT-9-eldS-kElY646bMwMzJpxfL8lDskX86xgCQ/viewform" rel="external" class="button">{{ _('Apply Now') }}</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHq-tzjUjtx-jqHd1muy1PGX9m5CO7kepl5n6_-ID2mOKi2A/viewform" rel="external" class="button">{{ _('Apply Now') }}</a>
   </div>
 </section>
 
@@ -282,7 +283,5 @@
     </dd>
   </dl>
 </section>
-
-{% include('mozorg/moss/_alittlebitmore.html') %}
 
 {% endblock %}
