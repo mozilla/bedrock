@@ -4,6 +4,12 @@
 
 {% extends "firefox/new/batm/base.html" %}
 
+{% block optimizely %}
+  {% if switch('firefox-new-batm-scene2-optimizely', ['en-US']) %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block body_class %}scene-2{% endblock %}
 
 {% block string_data %}
