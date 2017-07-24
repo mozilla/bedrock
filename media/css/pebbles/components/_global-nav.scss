@@ -404,6 +404,16 @@
         }
     }
 
+    .item-pocket {
+        a:hover,
+        a:active,
+        a:focus,
+        a.selected,
+        a.currrent {
+            color: $color-pocket-red;
+        }
+    }
+
     .item-internet-health {
         a:hover,
         a:active,
