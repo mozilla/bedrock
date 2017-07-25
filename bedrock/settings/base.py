@@ -287,7 +287,8 @@ NOINDEX_URLS = [
     r'^teach/$'
     r'^thunderbird/(release)?notes/$'
     r'^about/legal/impressum/$',
-    r'^security/announce/'
+    r'^security/announce/',
+    r'^etc/',
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery
@@ -482,6 +483,7 @@ INSTALLED_APPS = (
     'bedrock.utils',
     'bedrock.wordpress',
     'bedrock.sitemaps',
+    'bedrock.etc',
     # last so that redirects here will be last
     'bedrock.redirects',
 
