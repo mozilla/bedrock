@@ -671,4 +671,7 @@ redirectpatterns = (
 
     # Bug 1361194
     redirect(r'^internethealth/?$', 'mozorg.internet-health'),
+
+    # Bug 1384370
+    redirect(r'^developers/?$', 'mozorg.developer'),
 )
