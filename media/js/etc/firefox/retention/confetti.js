@@ -57,61 +57,61 @@
         // Initial code thanks to https://codepen.io/linrock/pen/Amdhr
         var Confetti = function () {
             function Confetti() {
-              _classCallCheck(this, Confetti);
+                _classCallCheck(this, Confetti);
 
-              this.rgb = COLORS[~~range(0, 4)];
-              this.replace();
-              this.start = Date.now() / 1000;
-              this.now = this.start;
-              this.diff = 0;
-            }
-
-            _createClass(Confetti, [{
-              key: 'replace',
-              value: function replace() {
-                this.opacity = defaultOpacity;
-                this.x = range(-100, width - confettiSize + 100);
-                this.y = range(-100, height - confettiSize);
-                this.xmax = width - confettiSize;
-                this.ymax = height - confettiSize;
-
-                this.dop = range(4, 6);
-                this.vx = (range(-0.2, 0.2) + xpos) * 200;
-                this.vy = confettiSize + range(1, 2) * 150;
+                this.rgb = COLORS[~~range(0, 4)];
+                this.replace();
                 this.start = Date.now() / 1000;
                 this.now = this.start;
                 this.diff = 0;
-              }
+            }
+
+            _createClass(Confetti, [{
+                key: 'replace',
+                value: function replace() {
+                    this.opacity = defaultOpacity;
+                    this.x = range(-100, width - confettiSize + 100);
+                    this.y = range(-100, height - confettiSize);
+                    this.xmax = width - confettiSize;
+                    this.ymax = height - confettiSize;
+
+                    this.dop = range(4, 6);
+                    this.vx = (range(-0.2, 0.2) + xpos) * 200;
+                    this.vy = confettiSize + range(1, 2) * 150;
+                    this.start = Date.now() / 1000;
+                    this.now = this.start;
+                    this.diff = 0;
+                }
             }, {
-              key: 'draw',
-              value: function draw() {
-                this.now = Date.now() / 1000;
-                this.diff = this.now - this.start;
+                key: 'draw',
+                value: function draw() {
+                    this.now = Date.now() / 1000;
+                    this.diff = this.now - this.start;
 
-                this.x += this.vx * this.diff;
-                this.y += this.vy * this.diff;
-                this.opacity += this.dop * this.diff;
+                    this.x += this.vx * this.diff;
+                    this.y += this.vy * this.diff;
+                    this.opacity += this.dop * this.diff;
 
-                if (this.opacity > 1) {
-                    this.opacity = 1;
-                    this.dop *= -1;
+                    if (this.opacity > 1) {
+                        this.opacity = 1;
+                        this.dop *= -1;
+                    }
+                    if (this.opacity < 0 || this.y > this.ymax) {
+                        this.replace();
+                    }
+                    if (!(0 < this.x < this.xmax)) {
+                        this.x = (this.x + this.xmax) % this.xmax;
+                    }
+                    context.beginPath();
+                    context.rect(~~this.x, ~~this.y, confettiSize, confettiSize);
+                    context.globalAlpha = this.opacity;
+                    context.fillStyle = this.rgb;
+                    context.fill();
+                    this.start = Date.now() / 1000;
                 }
-                if (this.opacity < 0 || this.y > this.ymax) {
-                    this.replace();
-                }
-                if (!(0 < this.x < this.xmax)) {
-                    this.x = (this.x + this.xmax) % this.xmax;
-                }
-                context.beginPath();
-                context.rect(~~this.x, ~~this.y, confettiSize, confettiSize);
-                context.globalAlpha = this.opacity;
-                context.fillStyle = this.rgb;
-                context.fill();
-                this.start = Date.now() / 1000;
-              }
             }]);
 
-          return Confetti;
+            return Confetti;
         }();
 
         var confetti = [];
