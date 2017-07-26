@@ -1161,4 +1161,8 @@ URLS = flatten((
 
     # Bug 1370587
     url_test('/firefox/sync/', '/firefox/features/sync/'),
+
+    # Bug 1380845
+    url_test('/persona/privacy-policy/', '/privacy/archive/persona/2017-07/'),
+    url_test('/persona/terms-of-service/', '/privacy/archive/persona/2017-07/#terms-of-service'),
 ))

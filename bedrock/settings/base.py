@@ -468,7 +468,6 @@ INSTALLED_APPS = (
     'bedrock.legal',
     'bedrock.mozorg',
     'bedrock.newsletter',
-    'bedrock.persona',
     'bedrock.press',
     'bedrock.privacy',
     'bedrock.styleguide',
