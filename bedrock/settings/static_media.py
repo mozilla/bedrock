@@ -812,18 +812,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/moss-bundle.css',
     },
-    'thank-you-a': {
-        'source_filenames': (
-            'css/mozorg/thank-you/thank-you-a.scss',
-        ),
-        'output_filename': 'css/thank_you_a-bundle.css',
-    },
-    'thank-you-b': {
-        'source_filenames': (
-            'css/mozorg/thank-you/thank-you-b.scss',
-        ),
-        'output_filename': 'css/thank_you_b-bundle.css',
-    },
     'mozilla_accordion': {
         'source_filenames': (
             'css/base/mozilla-accordion.less',
@@ -1084,6 +1072,18 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/thunderbird-start-bundle.css',
     },
+    'firefox-retention-thank-you-a': {
+        'source_filenames': (
+            'css/etc/firefox/retention/thank-you-a.scss',
+        ),
+        'output_filename': 'css/firefox-retention-thank-you-a-bundle.css',
+    },
+    'firefox-retention-thank-you-b': {
+        'source_filenames': (
+            'css/etc/firefox/retention/thank-you-b.scss',
+        ),
+        'output_filename': 'css/firefox-retention-thank-you-b-bundle.css',
+    }
 }
 
 PIPELINE_JS = {
@@ -1626,12 +1626,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/internet-health-subpage-bundle.js',
     },
-    'thank-you': {
-        'source_filenames': (
-            'js/mozorg/thank-you/confetti.js',
-        ),
-        'output_filename': 'js/thank-you-bundle.js',
-    },
     'privacy-day-egg': {
         'source_filenames': (
             'js/libs/konami-code.js',
@@ -1857,4 +1851,10 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/matchmedia_addlistener-bundle.js',
     },
+    'firefox-retention-thank-you': {
+        'source_filenames': (
+            'js/etc/firefox/retention/confetti.js',
+        ),
+        'output_filename': 'js/firefox-retention-thank-you-bundle.js',
+    }
 }

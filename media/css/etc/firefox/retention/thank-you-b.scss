@@ -2,11 +2,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import '../../pebbles/components/newsletter';
+@import '../../../pebbles/includes/lib';
+@import '../../../pebbles/components/newsletter';
 
 body {
     border-top: 0;
+}
+
+html {
+    font-size: 100%;
 }
 
 @font-face {
@@ -53,7 +57,7 @@ main {
 
       #confetti-canvas {
           position: absolute;
-          height: 765px;
+          height: 865px;
           width: 793px;
           right: 0;
           left: 0;
@@ -84,7 +88,7 @@ main {
       @media #{$mq-desktop} {
         margin-left: auto;
         width: 793px;
-        height: 745px;
+        height: 845px;
       }
     }
 
