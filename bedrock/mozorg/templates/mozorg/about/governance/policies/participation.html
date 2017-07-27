@@ -503,7 +503,7 @@
       wiscon_coc='http://wiscon.net/policies/anti-harassment/code-of-conduct/' %}
     These guidelines have been adapted with modifications from
     Mozilla’s original Community Participation Guidelines, the
-    <a href="{{ ubuntu_coc }}">Ubuntu Code of Conduct</a>,  Mozilla’s
+    <a href="{{ ubuntu_coc }}">Ubuntu Code of Conduct</a>, Mozilla’s
     <a href="{{ viewsource_coc }}">View Source Conference Code of Conduct</a>, and the
     <a href="{{ rustlang_coc }}">Rust Language Code of Conduct</a>, which are based on
     Stumptown Syndicate’s <a href="{{ citizen_coc }}">Citizen Code of Conduct</a>.
@@ -512,6 +512,25 @@
     <a href="{{ wiscon_coc }}">WisCon code of conduct</a>. This document and all
     associated processes are only possible with the hard work of
     many, many Mozillians.
+  {% endtrans %}
+  </p>
+</section>
+
+<section id="modifications">
+  <h2>{{ _('Modifications to these guidelines') }}</h2>
+  <p>
+  {% trans guidelines=url('mozorg.about.governance.policies.participation'),
+      group='https://groups.google.com/d/forum/mozilla-cpg' %}
+    Mozilla may amend the guidelines from time to time and may also
+    vary the procedures it sets out where appropriate in a particular
+    case. Your agreement to comply with the guidelines will be deemed
+    agreement to any changes to it. In case Mozilla amends the guidelines,
+    the updated version can be found at
+    <a href="{{ guidelines }}">https://www.mozilla.org/about/governance/policies/participation/</a>.
+    You can sign up for push updates by subscribing to
+    <a href="{{ group }}">https://groups.google.com/d/forum/mozilla-cpg</a>.
+    This policy does not form part of any Mozilla employee’s contract
+    of employment or otherwise have contractual effect.
   {% endtrans %}
   </p>
 </section>
