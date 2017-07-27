@@ -2,6 +2,14 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/*
+Dearest future developer - This file currently serves both /features/sync and
+/features/send-tabs because they are practically identical. If/when divergence
+occurs, send-tabs should get its own .js file.
+
+Thank you for your hard work.
+*/
+
 // Create namespace
 if (typeof Mozilla === 'undefined') {
     var Mozilla = {};
