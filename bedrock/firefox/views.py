@@ -512,6 +512,14 @@ def new(request):
                 template = 'firefox/new/fx-lifestyle/you-do-you/scene2.html'
             elif experience == 'itsyourweb':
                 template = 'firefox/new/fx-lifestyle/its-your-web/scene2.html'
+            elif experience == 'fast':
+                template = 'firefox/new/sem/fast/scene2.html'
+            elif experience == 'secure':
+                template = 'firefox/new/sem/secure/scene2.html'
+            elif experience == 'nonprofit':
+                template = 'firefox/new/sem/nonprofit/scene2.html'
+            elif experience == 'compatible':
+                template = 'firefox/new/sem/compatible/scene2.html'
             elif experience in ['batmfree', 'batmprivate', 'batmnimble', 'batmresist']:
                 template = 'firefox/new/batm/scene2.html'
             else:
@@ -541,6 +549,14 @@ def new(request):
                 template = 'firefox/new/fx-lifestyle/you-do-you/scene1.html'
             elif experience == 'itsyourweb':
                 template = 'firefox/new/fx-lifestyle/its-your-web/scene1.html'
+            elif experience == 'fast':
+                template = 'firefox/new/sem/fast/scene1.html'
+            elif experience == 'secure':
+                template = 'firefox/new/sem/secure/scene1.html'
+            elif experience == 'nonprofit':
+                template = 'firefox/new/sem/nonprofit/scene1.html'
+            elif experience == 'compatible':
+                template = 'firefox/new/sem/compatible/scene1.html'
             elif experience == 'batmfree':
                 template = 'firefox/new/batm/free.html'
             elif experience == 'batmprivate':
