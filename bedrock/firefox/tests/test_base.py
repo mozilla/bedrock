@@ -275,6 +275,45 @@ class TestWhatsNew(TestCase):
 
     # end 54.0 whatsnew tests
 
+    # begin 54.0 whatsnew experiment tests
+
+    def test_fx_54_0_va(self, render_mock):
+        """Should use standard template for supported locale for 54.0 ?v=a"""
+        req = self.rf.get('/firefox/whatsnew/?v=a')
+        req.locale = 'in'
+        self.view(req, version='54.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/fx54/whatsnew-54.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_54_0_vb(self, render_mock):
+        """Should use -b template for supported locale for 54.0 ?v=b"""
+        req = self.rf.get('/firefox/whatsnew/?v=b')
+        req.locale = 'it'
+        self.view(req, version='54.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/fx54/whatsnew-54-b.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_54_0_vc(self, render_mock):
+        """Should use -c template for supported locale for 54.0 ?v=c"""
+        req = self.rf.get('/firefox/whatsnew/?v=c')
+        req.locale = 'es-MX'
+        self.view(req, version='54.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/fx54/whatsnew-54-c.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_54_0_unsupported_locale_variation(self, render_mock):
+        """Should use standard template for unsupported locale for 54.0"""
+        req = self.rf.get('/firefox/whatsnew/?v=c')
+        req.locale = 'fr'
+        self.view(req, version='54.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/fx54/whatsnew-54.html'])
+
+    # end 54.0 whatsnew experiment tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):
