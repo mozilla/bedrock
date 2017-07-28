@@ -246,11 +246,6 @@ redirectpatterns = (
     # bug 960543
     redirect(r'^firefox/(?P<vers>[23])\.0/eula', '/legal/eula/firefox-{vers}/'),
 
-    # bug 1224060
-    redirect(
-        r'^ja/firefox/ios/(?P<vers>[0-9]+(\.[0-9]+)*)/(?P<file>releasenotes|system-requirements)',
-        'https://www.mozilla.jp/firefox/ios/{vers}/{file}/', locale_prefix=False),
-
     # bug 1150713
     redirect(r'^firefox/sms(?:/.*)?$', 'firefox.family.index'),
 
