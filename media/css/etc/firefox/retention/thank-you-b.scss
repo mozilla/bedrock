@@ -3,224 +3,88 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../../pebbles/includes/lib';
-@import '../../../pebbles/components/newsletter';
-
-body {
-    border-top: 0;
-}
-
-html {
-    font-size: 100%;
-}
-
-@font-face {
-    font-family: antonioregular;
-    src: url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
-         url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: antoniobold;
-    src: url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
-         url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    font-weight: normal;
-    font-style: normal;
-    src: url('/media/fonts/opensans-regular.woff2') format('woff2'),
-         url('/media/fonts/opensans-regular.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Open Sans';
-    font-weight: bold;
-    font-style: normal;
-    src: url('/media/fonts/opensans-semibold.woff2') format('woff2'),
-         url('/media/fonts/opensans-semibold.woff') format('woff');
-}
 
 main {
-    .thank-you-section {
-      overflow: hidden;
-    }
-    .left-section {
-      overflow: hidden;
-      position: relative;
-      background: #45A5B3;
-      color: #FFFFFF;
+    section {
+        &.left-panel {
+            overflow: hidden;
+            position: relative;
+            padding-top: 108px;
+            background: #45A5B3;
+            color: #FFFFFF;
 
-      #confetti-canvas {
-          position: absolute;
-          height: 865px;
-          width: 793px;
-          right: 0;
-          left: 0;
-          margin-left: auto;
-          margin-right: auto;
-          @media #{$mq-desktop} {
-            margin-left: 0;
-            margin-right: 0;
-            left: auto;
-          }
-      }
-    }
-
-    .left-section,
-    .right-section {
-      @media #{$mq-desktop} {
-        float: left;
-        width: 50%;
-      }
-    }
-
-    .left-section-cta {
-      position: relative;
-      text-align: center;
-      padding: 108px 0 70px 0;
-      box-sizing: border-box;
-
-      @media #{$mq-desktop} {
-        margin-left: auto;
-        width: 793px;
-        height: 845px;
-      }
-    }
-
-    .thank-you-header {
-        font-family: antoniobold;
-        text-transform: uppercase;
-        font-size: 8.125rem;
-        line-height: 8.125rem;
-        div {
-          color: #F8EB57;
-          text-shadow: -5px 0 0 rgb(215, 102, 40), -8px 0 0 rgba(32, 35, 36, 0.3);
-        }
-        div:first-child {
-          color: #FFFFFF;
-          text-shadow: -5px 0 0 rgb(148, 209, 175), -8px 0 0 rgba(32, 35, 36, 0.3);
-        }
-    }
-
-    p {
-        font-size: 1.3rem;
-        font-family: "Open Sans";
-        font-size: 1.75rem;
-        font-weight: bold;
-    }
-
-    @media #{$mq-phone-wide} {
-        padding: 0 30px;
-    }
-
-    @media #{$mq-tablet} {
-        padding: 0;
-    }
-    .thank-you-actions-container {
-        padding-left: 50px;
-
-        @media #{$mq-desktop} {
-          width: 793px;
-          margin-right: auto;
-        }
-        margin-top: 94px;
-        .desc-header, .time, .desc {
-            font-family: antoniobold;
-            text-transform: uppercase;
-        }
-        .desc-header {
-            padding-left: 71px;
-            color: #4D4D4D;
-            font-size: 2.25rem;
-            line-height: 3.25rem;
-        }
-        .time {
-            color: #CB6937;
-            font-size: 1.375rem;
-            margin-bottom: -34px;
-        }
-        .desc {
-            padding-left: 71px;
-            font-size: 1.75rem;
-            color: #4D4D4D;
-        }
-        .thank-you-action {
-            background: #FFFFFF;
-            padding: 22px 0;
-            margin: 9px 0;
-            a {
-                font-weight: bold;
-                text-decoration: none;
-                font-family: "Open Sans";
-                font-size: 1.125rem;
-                margin-top: 0.03rem;
-                padding-left: 71px;
-                display: inline-block;
-                &:visited {
-                  color: #00a7e0;
+            #confetti-canvas {
+                position: absolute;
+                height: 865px;
+                width: 793px;
+                right: 0;
+                left: 0;
+                top: 0;
+                margin-left: auto;
+                margin-right: auto;
+                @media #{$mq-desktop} {
+                    margin-left: 0;
+                    margin-right: 0;
+                    left: auto;
                 }
-                &:after {
-                  content: '';
-                  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTRweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgMTQgMTQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQ1LjIgKDQzNTE0KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5hcnJvd19mb3J3YXJkIC0gbWF0ZXJpYWw8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iVGhhbmstWW91LS0tTGFuZGluZy1QYWdlLXYxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNDkxLjAwMDAwMCwgLTU3MC4wMDAwMDApIiBmaWxsPSIjMEU5QUQ4Ij4KICAgICAgICAgICAgPGcgaWQ9IkNPTlRFTlQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI2My4wMDAwMDAsIDQ0Ny4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJMSU5LLTEiPgogICAgICAgICAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJhcnJvd19mb3J3YXJkLS0tbWF0ZXJpYWwiIHBvaW50cz0iMjM1IDEyMy4zMiAyNDEuNjggMTMwIDIzNSAxMzYuNjggMjMzLjgyIDEzNS41IDIzOC40OCAxMzAuODIgMjI4LjMyIDEzMC44MiAyMjguMzIgMTI5LjE4IDIzOC40OCAxMjkuMTggMjMzLjgyIDEyNC41Ij48L3BvbHlnb24+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==');
-                  height: 14px;
-                  width: 14px;
-                  background-repeat: no-repeat;
-                  display: inline-block;
-                  margin-left: 8px;
+            }
+
+            header {
+                box-sizing: border-box;
+                text-align: center;
+
+                h1 {
+                    font-size: 8.125rem;
+                    line-height: 8.125rem;
+                }
+
+                @media #{$mq-desktop} {
+                    margin-left: auto;
+                    width: 793px;
+                    height: 737px;
                 }
             }
         }
-    }
-}
 
-#newsletter-subscribe {
-  background: #F8EB57;
-  color: #000000;
-  padding-top: 0;
-  .content {
-    padding: 20px 0;
-  }
-  a {
-    color: #000000;
-  }
-  #id_email {
-    border-radius: 0;
-    &:focus {
-      box-shadow: 0 0 0 2px #000000;
+        &.right-panel {
+            padding-top: 94px;
+            padding-left: 50px;
+            box-sizing: border-box;
+
+            @media #{$mq-desktop} {
+              width: 793px;
+              margin-right: auto;
+            }
+            h1 {
+                padding-left: 71px;
+                color: #4D4D4D;
+                font-size: 2.25rem;
+                line-height: 3.25rem;
+            }
+            article {
+                background: #FFFFFF;
+                padding: 22px 0;
+                margin: 9px 0;
+                h1 {
+                    font-size: 1.75rem;
+                    line-height: 2.625rem;
+                }
+                a {
+                    margin-top: 0.03rem;
+                    padding-left: 71px;
+                }
+                .time {
+                    margin-bottom: -34px;
+                }
+            }
+        }
+
+        &.left-panel,
+        &.right-panel {
+            @media #{$mq-desktop} {
+                float: left;
+                width: 50%;
+            }
+        }
     }
-  }
-  #footer_email_submit {
-    background: #FFFFFF;
-    color: #000000;
-    border: none;
-    border-radius: 0;
-  }
-  .form-title {
-    padding-left: 0;
-    margin-top: 0;
-    max-width: 530px;
-    width: 100%;
-    background-image: none;
-    color: #000000;
-    h3 {
-        font-family: antoniobold;
-        text-transform: uppercase;
-        font-size: 1.75rem;
-        color: #2F2F2F;
-        line-height: 2.1rem;
-        font-weight: normal;
-    }
-    h4 {
-        font-family: "Open Sans";
-        font-weight: bold;
-        font-size: 1.125rem;
-        color: #676767;
-        line-height: 1.5rem;
-    }
-  }
 }

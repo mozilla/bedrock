@@ -5,16 +5,17 @@
 {% extends "base-pebbles.html" %}
 
 {% block page_title %}
-  {{ _('Thank You') }}
+  Thank You
 {% endblock %}
 
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}
-  {{ _('Thank you page.') }}
+  Thank you page.
 {% endblock %}
 
 {% block page_css %}
+  {% stylesheet 'firefox-retention-thank-you' %}
   {% stylesheet 'firefox-retention-thank-you-b' %}
 {% endblock %}
 
@@ -22,53 +23,45 @@
 
 {% block content %}
 <main>
-  <section class="thank-you-section">
-    <div class="left-section">
-      <canvas id="confetti-canvas"></canvas>
-      <div class="left-section-cta">
-        <div class="thank-you-header">
-          <div>It's all</div>
-          <div>thanks</div>
-          <div>to you</div>
-        </div>
-        <p>
-          Choosing Firefox helps Mozilla<br/>make the Internet a better place.
-        </p>
-      </div>
-    </div>
-    <div class="right-section">
-      <div class="thank-you-actions-container">
-        <div class="desc-header">Here's more super-easy things</br>you can do to keep supporting</br>our mission:</div>
-        <div class="thank-you-action">
-          <div class="time">1 min</div>
-          <div class="desc">Make Firefox your default browser</div>
-          <div>
-            <a href="https://support.mozilla.org/kb/make-firefox-your-default-browser">Set as your default</a>
-          </div>
-        </div>
-        <div class="thank-you-action">
-          <div class="time">1 min</div>
-          <div class="desc">Tell your friends about Firefox</div>
-          <div>
-            <a href="https://twitter.com/home?status=%F0%9F%94%A5%2B%F0%9F%A6%8A=%F0%9F%99%8C%F0%9F%8F%BE%20Join%20me%20in%20the%20fight%20for%20an%20open%20web%20by%20choosing%20Firefox!%20https%3A//mozilla.org/firefox/new">Send a tweet</a>
-          </div>
-        </div>
-        <div class="thank-you-action">
-          <div class="time">2 min</div>
-          <div class="desc">Get Firefox on your phone</div>
-          <div>
-            <a href="https://support.mozilla.org/kb/install-firefox-android-device-using-google-play">Download Firefox</a>
-          </div>
-        </div>
-        <div class="thank-you-action">
-          <div class="time">4 min</div>
-          <div class="desc">Make the Internet a safer place</div>
-          <div>
-            <a href="https://www.mozilla.org/internet-health/privacy-security/">Learn more</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section class="left-panel">
+    <canvas id="confetti-canvas"></canvas>
+    <header>
+      <h1>
+        <span class="white">It's all</span></br>
+        thanks</br>
+        to you
+      </h1>
+      <p>
+        Choosing Firefox helps Mozilla<br/>make the Internet a better place.
+      </p>
+    </header>
+  </section>
+  <section class="right-panel">
+    <h1>
+      Here's more super-easy things</br>
+      you can do to keep supporting</br>
+      our mission:
+    </h1>
+    <article>
+      <div class="time">1 min</div>
+      <h1>Make Firefox your default browser</h1>
+      <a href="https://support.mozilla.org/kb/make-firefox-your-default-browser">Set as your default</a>
+    </article>
+    <article>
+      <div class="time">1 min</div>
+      <h1>Tell your friends about Firefox</h1>
+      <a href="https://twitter.com/home?status=%F0%9F%94%A5%2B%F0%9F%A6%8A=%F0%9F%99%8C%F0%9F%8F%BE%20Join%20me%20in%20the%20fight%20for%20an%20open%20web%20by%20choosing%20Firefox!%20https%3A//mozilla.org/firefox/new">Send a tweet</a>
+    </article>
+    <article>
+      <div class="time">2 min</div>
+      <h1>Get Firefox on your phone</h1>
+      <a href="https://support.mozilla.org/kb/install-firefox-android-device-using-google-play">Download Firefox</a>
+    </article>
+    <article>
+      <div class="time">4 min</div>
+      <h1>Make the Internet a safer place</h1>
+      <a href="https://www.mozilla.org/internet-health/privacy-security/">Learn more</a>
+    </article>
   </section>
 </main>
 <aside id="newsletter-subscribe">
