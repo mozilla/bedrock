@@ -4,6 +4,21 @@
 
 @import '../../sandstone/lib.less';
 
+@font-face {
+    font-family: antoniobold;
+    src: url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
+         url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h2,
+h3 {
+    font-family: antoniobold, 'Open Sans', sans-serif;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
 #outer-wrapper {
     background: #efefef;
 }
@@ -28,10 +43,9 @@
     background-image: url('/media/img/firefox/new/sem/background.png');
     background-position: right top;
     background-repeat: no-repeat;
-    min-height: 400px;
 
     &.content-section {
-        padding-top: 60px;
+        padding-top: 120px;
     }
 
     .copy {
@@ -53,6 +67,10 @@
     }
 
     @media only screen and (max-width: @breakTablet) {
+
+        &.content-section {
+            padding-top: 80px;
+        }
 
         .copy {
             padding-right: 0;
@@ -90,10 +108,10 @@
 
 .content-section {
     color: #484848;
-    padding: 50px 0;
+    padding: 70px 0;
 
     @media only screen and (max-width: @breakDesktop) {
-        padding: 40px 0;
+        padding: 70px 0;
     }
 
     @media only screen and (max-width: @breakTablet) {
@@ -258,6 +276,7 @@ h3 {
 
     h3 {
         .font-size(28px);
+        margin-bottom: 26px;
     }
 
     li {
