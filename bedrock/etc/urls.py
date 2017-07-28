@@ -5,6 +5,6 @@
 from bedrock.mozorg.util import page
 
 urlpatterns = (
-    page('thank-you', 'firefox/retention/thank-you-a.html'),
-    page('thank-you-b', 'firefox/retention/thank-you-b.html')
+    page('firefox/retention/thank-you-a', 'etc/firefox/retention/thank-you-a.html'),
+    page('firefox/retention/thank-you-b', 'etc/firefox/retention/thank-you-b.html')
 )
