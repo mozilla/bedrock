@@ -248,6 +248,7 @@ urlpatterns = (
     page('moss', 'mozorg/moss/index.html'),
     page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),
     page('moss/mission-partners', 'mozorg/moss/mission-partners.html'),
+    page('moss/mission-partners-india', 'mozorg/moss/mission-partners-india.html'),
     page('moss/secure-open-source', 'mozorg/moss/secure-open-source.html'),
     url(r'plugincheck/$', views.plugincheck, name='mozorg.plugincheck'),
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),

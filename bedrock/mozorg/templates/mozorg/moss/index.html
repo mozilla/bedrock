@@ -48,8 +48,11 @@
   {% trans %}
     It encompasses “giving back” to projects that Mozilla already relies on
     (“Foundational Technology”), “giving forward” to projects whose goals are in
-    alignment with ours (“Mission Partners”), and improving the security of the
-    open source ecosystem (“Secure Open Source”).
+    alignment with ours (“Mission Partners” and “Global Mission Partners:
+    India”), and improving the security of the open source ecosystem (“Secure
+    Open Source”). ”Global Mission Partners: India” is a pilot effort to focus
+    resources on a vibrant regional open source community - in this case,
+    in India.
   {% endtrans %}
   </p>
 </section>
@@ -84,7 +87,7 @@
 
       <p class="moss-copy">
       {% trans %}
-        The Mission Partners track is open to any free software / open source
+        The Mission Partners tracks are open to any free software / open source
         project that significantly furthers Mozilla’s mission to ensure the
         Internet is a global public resource, open and accessible to all.
       {% endtrans %}
@@ -92,7 +95,8 @@
 
       <div class="moss-ctas">
         <p>
-          <a href="{{ url('mozorg.moss.mission-partners') }}" class="moss-copy">{{ _('Learn More') }}</a>
+          <a href="{{ url('mozorg.moss.mission-partners') }}" class="moss-copy">{{ _('Learn More: Worldwide') }}</a><br>
+          <a href="{{ url('mozorg.moss.mission-partners-india') }}" class="moss-copy">{{ _('Learn More: India') }}</a>
         </p>
 
         <p>
@@ -149,12 +153,12 @@
 
   <p class="moss-copy">
   {% trans %}
-    We have formed a selection committee to assess awards on the Foundation
+    We have formed two selection committees to assess awards on the Foundation
     Technology and Mission Partners tracks.
   {% endtrans %}
 
   {% trans %}
-    It is comprised partly of current, committed Mozillians — they bring a good
+    They are comprised partly of current, committed Mozillians — they bring a good
     working knowledge of Mozilla’s day- to-day activities and how various open
     source projects are used.
   {% endtrans %}
@@ -172,7 +176,8 @@
   </p>
 
   <p class="moss-ctas">
-    <a href="https://wiki.mozilla.org/MOSS#Selection_Committee" rel="external" class="moss-copy">{{ _('Meet the committee') }}</a>
+    <a href="https://wiki.mozilla.org/MOSS#Selection_Committee" rel="external" class="moss-copy">{{ _('Core Committee') }}</a> |
+    <a href="https://wiki.mozilla.org/MOSS/GMP_India#Selection_Committee" rel="external" class="moss-copy">{{ _('India Committee') }}</a>
   </p>
 </section>
 
