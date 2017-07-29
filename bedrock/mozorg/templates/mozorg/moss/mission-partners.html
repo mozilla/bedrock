@@ -69,6 +69,12 @@
         The project’s home can be anywhere in the world where we can make
         payment without undue burden.
       {% endtrans %}
+
+      {% trans %}
+        We have a reasonably strong preference for funding legal organizations
+        rather than individuals representing projects, although exceptional
+        circumstances could lead to some flexibility.
+      {% endtrans %}
       </p>
     </li>
     <li>
@@ -230,6 +236,45 @@
   <h2 class="moss-section-heading">{{ _('FAQs') }}</h2>
 
   <dl class="moss-dl">
+    <dt class="moss-copy">
+    {% trans %}
+      What if my project doesn’t have a legal organizational home?
+    {% endtrans %}
+
+    {% trans %}
+      I see this is disfavored, and exceptional circumstances are required.
+    {% endtrans %}
+
+    {% trans %}
+      What might count as “exceptional”?
+    {% endtrans %}
+    </dt>
+
+    <dd class="moss-copy">
+    {% trans %}
+      You tell us.
+    {% endtrans %}
+
+    {% trans %}
+      If a project doesn’t have a legal organizational home, we will be handing
+      a large sum of money to an individual with only limited accountability.
+    {% endtrans %}
+
+    {% trans %}
+      This means a higher level of complexity and risk.
+    {% endtrans %}
+
+    {% trans %}
+      So you need to describe why it’s reasonable and important for us to accept
+      that additional risk.
+    {% endtrans %}
+
+    {% trans %}
+      We will listen because Mozilla is a pretty flexible organization, but we
+      can’t promise the result will be as you hope.
+    {% endtrans %}
+    </dd>
+
     <dt class="moss-copy">
       {{ _('What is an “endorser”?') }}
     </dt>
