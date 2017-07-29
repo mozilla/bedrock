@@ -15,8 +15,8 @@
         <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
         {# L10n: Addresses are marked up with hCard microformat and Schema.org. See http://microformats.org/wiki/h-card and http://schema.org/PostalAddress #}
         {% trans %}
-          <span itemprop="streetAddress" class="street-address">Haus 10, Treppe 6 <br>Voltastr. 5</span><br>
-          <span itemprop="postalCode" class="postal-code">13355</span>
+          <span itemprop="streetAddress" class="street-address">GSG-Hof Schlesische Straße<br>Geb&auml;ude 3, 4. Obergeschoss<br>Schlesische Straße 27</span><br>
+          <span itemprop="postalCode" class="postal-code">10997</span>
           <span itemprop="addressLocality" class="locality">Berlin</span><br>
           <span itemprop="addressCountry" class="country-name">Germany</span>
         {% endtrans %}
@@ -29,7 +29,7 @@
 
         <figure class="feature-img">
           {% set pin = static('img/contact/moz-map-pin.png')|absolute_url %}
-          <img src="https://api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ pin|urlencode }}(13.38935,52.54175)/13.38935,52.54175,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
+          <img src="https://api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ pin|urlencode }}(13.44914,52.49947)/13.44914,52.49947,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
         </figure>
       </div>
 
