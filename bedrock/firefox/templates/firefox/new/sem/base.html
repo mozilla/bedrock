@@ -1,0 +1,96 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-resp.html" %}
+
+{% block extra_meta %}
+  <meta name="robots" content="noindex,follow">
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}Free Web Browser for Android, iOS, Desktop | Firefox{% endblock %}
+{% block page_desc %}Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_new_sem' %}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block string_data %}
+  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+
+<section class="content-section" id="intro">
+  <div class="content">
+    <img src="{{ static('img/firefox/template/logo-jumbo.png') }}" id="intro-logo" />
+    <div class="copy">
+      {% block head_content %}
+      {% endblock %}
+
+      <div id="download-button-wrapper-scene1">
+        {{ download_firefox( locale_in_transition=true, dom_id="download-firefox") }}
+      </div>
+
+      {# this button is used only for scene 2's #}
+      <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
+        {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% block details_contain %}
+<section class="content-section" id="details-contain">
+  <div class="content">
+    <ul id="details">
+      <li id="content-1">
+        <h3>More Browser Speed</h3>
+        <p>
+          Bring it, Internet! We’ve spent the last year supercharging Firefox’s performance. Now start up faster, tab hop quicker, and scroll like a speed demon.
+        </p>
+      </li>
+
+      <li id="content-2">
+        <h3>More Browser Privacy</h3>
+        <p>
+          Firefox doesn’t sell access to your personal information like other companies. From privacy tools to tracking protection, you’re in charge of who sees what.
+        </p>
+      </li>
+
+      <li id="content-3">
+        <h3>More Browser Freedom</h3>
+        <p>
+          Following the pack isn’t our style. As part of the non-profit Mozilla, Firefox leads the fight to protect your online rights, and champion an Internet that benefits everyone—not just a few.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+{% endblock %}
+
+{% block today %}
+<section class="content-section" id="today">
+  <div class="content">
+    <div id="download-contain">
+      <h3>Browse freely with Firefox today.</h3>
+
+      {{ download_firefox( locale_in_transition=true, dom_id="download-firefox-today") }}
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_new_scene1_sem' %}
+{% endblock %}

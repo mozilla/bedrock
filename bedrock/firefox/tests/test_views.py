@@ -471,6 +471,56 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/fx-lifestyle/its-your-web/scene2.html')
 
+    # sem program campaign bug 1383063
+
+    def test_fast_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=fast')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/fast/scene1.html')
+
+    def test_fast_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=fast')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/fast/scene2.html')
+
+    def test_secure_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=secure')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/secure/scene1.html')
+
+    def test_secure_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=secure')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/secure/scene2.html')
+
+    def test_nonprofit_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=nonprofit')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/nonprofit/scene1.html')
+
+    def test_nonprofit_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=nonprofit')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/nonprofit/scene2.html')
+
+    def test_compatible_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=compatible')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/compatible/scene1.html')
+
+    def test_compatiblet_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=compatible')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/compatible/scene2.html')
+
     # browse against the machine bug 1363802, 1364988.
 
     def test_batmfree_scene_1(self, render_mock):

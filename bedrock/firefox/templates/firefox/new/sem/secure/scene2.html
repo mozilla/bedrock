@@ -1,0 +1,27 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/sem/base.html" %}
+
+{% block body_class %}fx-sem-scene2{% endblock %}
+
+{% block head_content %}
+  <h2>
+    Thanks for choosing Firefox
+  </h2>
+
+  <p>
+    Your download should begin automatically. <br>If not, <a id="direct-download-link" href="{{ url('firefox.all') }}">click here</a>.
+  </p>
+{% endblock %}
+
+{% block details_contain %}{% endblock %}
+{% block today %}{% endblock %}
+
+{% block js %}
+  {% if switch('tracking-pixel') %}
+    {% javascript 'firefox_new_pixel' %}
+  {% endif %}
+  {% javascript 'firefox_new_scene2' %}
+{% endblock %}
