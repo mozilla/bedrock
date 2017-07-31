@@ -247,7 +247,7 @@ urlpatterns = (
     page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),
     page('moss/mission-partners', 'mozorg/moss/mission-partners.html'),
     page('moss/secure-open-source', 'mozorg/moss/secure-open-source.html'),
-    page('plugincheck', 'mozorg/plugincheck.html'),
+    url(r'plugincheck/$', views.plugincheck, name='mozorg.plugincheck'),
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.TechnologyView.as_view(), name='mozorg.technology'),
 

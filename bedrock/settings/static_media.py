@@ -859,6 +859,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/plugincheck-bundle.css',
     },
+    'plugincheck-update': {
+        'source_filenames': (
+            'css/plugincheck/plugincheck-update.scss',
+        ),
+        'output_filename': 'css/plugincheck-update.css',
+    },
     'press': {
         'source_filenames': (
             'css/press/press.less',
@@ -1699,6 +1705,12 @@ PIPELINE_JS = {
             'js/plugincheck/check-plugins.js',
         ),
         'output_filename': 'js/plugincheck-bundle.js',
+    },
+    'plugincheck-update': {
+        'source_filenames': (
+            'js/plugincheck/plugincheck-update.js',
+        ),
+        'output_filename': 'js/plugincheck-update-bundle.js',
     },
     'press_speaker_request': {
         'source_filenames': (
