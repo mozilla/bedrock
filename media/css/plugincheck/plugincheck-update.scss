@@ -1,0 +1,92 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import
+    '../pebbles/includes/lib',
+    '../hubs/sections',
+    '../hubs/buttons',
+    '../pebbles/components/newsletter',
+    '../firefox/hub/outro';
+
+
+.message {
+    text-align: center;
+    max-width: $width-tablet;
+    margin: 40px auto;
+
+    h1 {
+        @include font-size-level2;
+    }
+
+    .tagline {
+        @include font-size-level4;
+    }
+
+    .cta {
+        padding-top: 20px;
+    }
+
+    .support {
+        margin: 20px auto;
+    }
+}
+
+.fx-privacy-link {
+    @include font-size-small;
+
+    a:link,
+    a:visited {
+        color: $color-link;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: darken($color-link, 10%);
+        }
+    }
+}
+
+// Assume not Firefox until proven otherwise.
+// This is the non-JS default.
+.message-firefox-current,
+.message-firefox-old {
+    display: none;
+}
+
+// Current Firefox
+.firefox-current {
+    .message-not-firefox,
+    .message-firefox-old {
+        display: none;
+    }
+
+    .message-firefox-current {
+        display: block;
+    }
+}
+
+// Out-of-date Firefox
+.firefox-old {
+    .message-firefox-current,
+    .message-not-firefox {
+        display: none;
+    }
+
+    .message-firefox-old {
+        display: block;
+    }
+}
+
+// Everybody else
+.not-firefox {
+    .message-firefox-current,
+    .message-firefox-old {
+        display: none;
+    }
+
+    .message-not-firefox {
+        display: block;
+    }
+}
+
