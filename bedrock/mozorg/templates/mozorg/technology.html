@@ -96,15 +96,26 @@
     <section id="iot" class="odd">
       <div class="content">
         <div class="inner-container">
+          {% if l10n_has_tag('iot_links') %}
+          <h2>{{ _('Building the Web of Things') }}</h2>
+          <p>{{ _('We’re working to create an open, Web of Things framework of software and services that can bridge the communication gap between connected devices.') }}</p>
+          <a rel="external" href="https://hacks.mozilla.org/2017/06/building-the-web-of-things/" class="button">{{ _('Learn more') }}</a>
+          {% else %}
           <h2>{{ _('Adding trust to the Internet of Things') }}</h2>
           <p>{{ _('Through open innovation, we’re bringing trust and transparency to networks of smart devices.') }}</p>
           <a rel="external" href="https://connected.mozilla.org/2016/08/26/the-project-sensorweb-poster-experiment/" class="button">{{ _('Learn more') }}</a>
+          {% endif %}
         </div>
       </div>
       <footer>
         <ul>
+          {% if l10n_has_tag('iot_links') %}
+          <li><a rel="external" href="http://iot.mozilla.org/">{{ _('Visit Mozilla IoT') }}</a></li>
+          <li><a rel="external" href="https://github.com/mozilla-iot">{{ _('Start contributing') }}</a></li>
+          {% else %}
           <li><a rel="external" href="https://wiki.mozilla.org/Connected_Devices">{{ _('Visit the wiki') }}</a></li>
           <li><a rel="external" href="https://wiki.mozilla.org/Connected_Devices/Participation">{{ _('Start contributing') }}</a></li>
+          {% endif %}
         </ul>
       </footer>
     </section>
