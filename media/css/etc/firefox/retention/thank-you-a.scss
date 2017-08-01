@@ -1,0 +1,64 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../pebbles/includes/lib';
+
+main {
+    position: relative;
+    padding: 0 10px;
+    background: #45A5B3;
+    color: #FFFFFF;
+
+    #confetti-canvas {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        max-width: 2200px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+
+    section,
+    header {
+        margin: 0 auto;
+
+        h1 {
+            font-size: 6.25rem;
+            line-height: 6.25rem;
+        }
+    }
+    header {
+        padding: 70px 9px 0;
+        width: 100%;
+        max-width: 1038px;
+    }
+    section {
+        display: flex;
+        flex-wrap: wrap;
+        padding-bottom: 70px;
+        position: relative;
+        max-width: 1038px;
+
+        article {
+            background: #FFFFFF;
+            padding: 24px;
+            margin: 9px;
+            width: 100%;
+            @media #{$mq-tablet} {
+                width: calc(50% - 66px);
+            }
+            h1 {
+                color: #4D4D4D;
+                font-size: 1.75rem;
+                line-height: 2.1rem;
+            }
+            a {
+                margin-top: 1.2rem;
+            }
+        }
+    }
+}

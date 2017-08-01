@@ -1,0 +1,153 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../pebbles/includes/lib';
+@import '../../../pebbles/components/newsletter';
+
+body {
+    border-top: 0;
+}
+
+html {
+    font-size: 100%;
+}
+
+@font-face {
+    font-family: antonioregular;
+    src: url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
+         url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: antoniobold;
+    src: url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
+         url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-style: normal;
+    src: url('/media/fonts/opensans-semibold.woff2') format('woff2'),
+         url('/media/fonts/opensans-semibold.woff') format('woff');
+}
+
+#newsletter-subscribe {
+    background: #F8EB57;
+    color: #000000;
+    padding-top: 0;
+    .content {
+        padding: 20px 0;
+    }
+    a {
+        color: #000000;
+    }
+    #id_email {
+        border-radius: 0;
+        &:focus {
+            box-shadow: 0 0 0 2px #000000;
+        }
+    }
+    #footer_email_submit {
+        background: #FFFFFF;
+        color: #000000;
+        border: none;
+        border-radius: 0;
+    }
+  .form-title {
+      padding-left: 0;
+      margin-top: 0;
+      max-width: 530px;
+      width: 100%;
+      background-image: none;
+      color: #000000;
+      h3 {
+          font-family: antoniobold, sans-serif;
+          text-transform: uppercase;
+          font-size: 1.75rem;
+          color: #2F2F2F;
+          line-height: 2.1rem;
+          font-weight: normal;
+      }
+      h4 {
+          font-family: "Open Sans";
+          font-weight: bold;
+          font-size: 1.125rem;
+          color: #676767;
+          line-height: 1.5rem;
+      }
+  }
+}
+
+main {
+    overflow: hidden;
+
+    @media #{$mq-phone-wide} {
+        padding: 0 30px;
+    }
+
+    @media #{$mq-tablet} {
+        padding: 0;
+    }
+
+    header {
+        position: relative;
+        box-sizing: border-box;
+        h1 {
+            color: #F8EB57;
+            text-shadow: -5px 0 0 rgb(215, 102, 40), -8px 0 0 rgba(32, 35, 36, 0.3);
+            .white {
+                color: #FFFFFF;
+                text-shadow: -5px 0 0 rgb(148, 209, 175), -8px 0 0 rgba(32, 35, 36, 0.3);
+            }
+        }
+
+        p {
+            font-family: "Open Sans";
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+    }
+
+    h1, .time {
+        font-family: antoniobold, sans-serif;
+        text-transform: uppercase;
+        font-weight: normal;
+        margin: 0;
+    }
+
+    section {
+        article {
+            .time {
+                color: #CB6937;
+                font-size: 1.375rem;
+            }
+            a {
+                margin-top: 1.2rem;
+
+                font-weight: bold;
+                text-decoration: none;
+                font-family: "Open Sans";
+                font-size: 1.125rem;
+                display: inline-block;
+                &:visited {
+                  color: #00a7e0;
+                }
+                &:after {
+                  content: '';
+                  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTRweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgMTQgMTQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQ1LjIgKDQzNTE0KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5hcnJvd19mb3J3YXJkIC0gbWF0ZXJpYWw8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iVGhhbmstWW91LS0tTGFuZGluZy1QYWdlLXYxIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNDkxLjAwMDAwMCwgLTU3MC4wMDAwMDApIiBmaWxsPSIjMEU5QUQ4Ij4KICAgICAgICAgICAgPGcgaWQ9IkNPTlRFTlQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI2My4wMDAwMDAsIDQ0Ny4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJMSU5LLTEiPgogICAgICAgICAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJhcnJvd19mb3J3YXJkLS0tbWF0ZXJpYWwiIHBvaW50cz0iMjM1IDEyMy4zMiAyNDEuNjggMTMwIDIzNSAxMzYuNjggMjMzLjgyIDEzNS41IDIzOC40OCAxMzAuODIgMjI4LjMyIDEzMC44MiAyMjguMzIgMTI5LjE4IDIzOC40OCAxMjkuMTggMjMzLjgyIDEyNC41Ij48L3BvbHlnb24+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==');
+                  height: 14px;
+                  width: 14px;
+                  background-repeat: no-repeat;
+                  display: inline-block;
+                  margin-left: 8px;
+                }
+            }
+        }
+    }
+}

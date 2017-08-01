@@ -1087,6 +1087,20 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/thunderbird-start-bundle.css',
     },
+    'etc-firefox-retention-thank-you-a': {
+        'source_filenames': (
+            'css/etc/firefox/retention/thank-you.scss',
+            'css/etc/firefox/retention/thank-you-a.scss',
+        ),
+        'output_filename': 'css/etc-firefox-retention-thank-you-a-bundle.css',
+    },
+    'etc-firefox-retention-thank-you-b': {
+        'source_filenames': (
+            'css/etc/firefox/retention/thank-you.scss',
+            'css/etc/firefox/retention/thank-you-b.scss',
+        ),
+        'output_filename': 'css/etc-firefox-retention-thank-you-b-bundle.css',
+    }
 }
 
 PIPELINE_JS = {
@@ -1869,4 +1883,10 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/matchmedia_addlistener-bundle.js',
     },
+    'etc-firefox-retention-thank-you': {
+        'source_filenames': (
+            'js/etc/firefox/retention/confetti.js',
+        ),
+        'output_filename': 'js/etc-firefox-retention-thank-you-bundle.js',
+    }
 }
