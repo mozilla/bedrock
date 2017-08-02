@@ -48,7 +48,7 @@
         </a></h3>
         <ul>
         {% for advisory in version.advisories.all() %}
-          <li class="level-item"><a href="{{ advisory.get_absolute_url() }}">
+          <li class="level-item"><a href="{{ advisory.get_absolute_url() }}" data=version="{{ version.html_id }}">
             <span class="level {{ advisory.impact_class }}">{{ advisory.id }}</span> {{ advisory.title|safe }}
           </a></li>
         {% endfor %}
