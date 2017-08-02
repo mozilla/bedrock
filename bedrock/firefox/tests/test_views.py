@@ -521,6 +521,18 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/sem/compatible/scene2.html')
 
+    def test_unsupported_browser_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=unsupported-browser')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/unsupported-browser/scene1.html')
+
+    def test_unsupported_browser_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=unsupported-browser')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/unsupported-browser/scene2.html')
+
     # browse against the machine bug 1363802, 1364988.
 
     def test_batmfree_scene_1(self, render_mock):
