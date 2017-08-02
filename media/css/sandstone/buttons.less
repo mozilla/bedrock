@@ -402,7 +402,8 @@ ul.download-list {
     display: none !important;
 }
 
-.windows.sha-1 .download-button .os_winsha1 {
+.windows.sha-1 .download-button[data-channel="release"] .os_winsha1,
+.windows.sha-1 .download-button:not([data-channel="release"]) .unsupported-download {
     display: block !important;
 }
 

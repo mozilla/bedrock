@@ -173,18 +173,17 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 5)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_osx')
-        eq_(pq(list[3]).attr('class'), 'os_linux')
-        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(list.length, 4)
+        eq_(pq(list[0]).attr('class'), 'os_win')
+        eq_(pq(list[1]).attr('class'), 'os_osx')
+        eq_(pq(list[2]).attr('class'), 'os_linux')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
         # stub disabled for now for non-en-US locales
         # bug 1339870
         # ok_('stub' in pq(pq(list[1]).find('a')[0]).attr('href'))
 
     def test_aurora_desktop(self):
-        """The Aurora channel should have Windows 64 build"""
+        """The Aurora channel should have 5 links including Windows 64 build"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
@@ -192,16 +191,15 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 6)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_win64')
-        eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
-        eq_(pq(list[5]).attr('class'), 'os_linux64')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_win')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
 
     def test_beta_desktop(self):
-        """The Beta channel should not have Windows 64 build yet"""
+        """The Beta channel should have 5 links including Windows 64 build"""
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
@@ -209,16 +207,18 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 6)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_win64')
-        eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
-        eq_(pq(list[5]).attr('class'), 'os_linux64')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_win')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
 
     def test_firefox_desktop(self):
-        """The Release channel should not have Windows 64 build yet"""
+        """
+        The Release channel should have 6 links including Windows 64 build as
+        well as SHA-1 ESR build for XP/Vista
+        """
         rf = RequestFactory()
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
@@ -371,24 +371,15 @@ class TestDownloadList(TestCase):
 
         # Check that links classes are ordered as expected.
         list = doc('.download-platform-list li')
-        eq_(list.length, 6)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_win64')
-        eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
-        eq_(pq(list[5]).attr('class'), 'os_linux64')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_win')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
 
-        links = doc('.download-platform-list a')
-
-        # The first link should be sha-1 bouncer.
-        first_link = pq(links[0])
-        first_href = first_link.attr('href')
-        ok_(first_href.startswith('https://download-sha1.allizom.org'))
-        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['en-US'])
-
-        # All other links should be to regular bouncer.
-        for link in links[1:5]:
+        # All links should be to regular bouncer.
+        for link in doc('.download-platform-list a'):
             link = pq(link)
             href = link.attr('href')
             ok_(href.startswith('https://download.mozilla.org'))
@@ -407,23 +398,14 @@ class TestDownloadList(TestCase):
 
         # Check that links classes are ordered as expected.
         list = doc('.download-platform-list li')
-        eq_(list.length, 5)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_osx')
-        eq_(pq(list[3]).attr('class'), 'os_linux')
-        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(list.length, 4)
+        eq_(pq(list[0]).attr('class'), 'os_win')
+        eq_(pq(list[1]).attr('class'), 'os_osx')
+        eq_(pq(list[2]).attr('class'), 'os_linux')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
 
-        links = doc('.download-platform-list a')
-
-        # The first link should be sha-1 bouncer.
-        first_link = pq(links[0])
-        first_href = first_link.attr('href')
-        ok_(first_href.startswith('https://download-sha1.allizom.org'))
-        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['en-US'])
-
-        # All other links should be to regular bouncer.
-        for link in links[1:5]:
+        # All links should be to regular bouncer.
+        for link in doc('.download-platform-list a'):
             link = pq(link)
             href = link.attr('href')
             ok_(href.startswith('https://download.mozilla.org'))
