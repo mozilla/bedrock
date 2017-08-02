@@ -520,6 +520,8 @@ def new(request):
                 template = 'firefox/new/sem/nonprofit/scene2.html'
             elif experience == 'compatible':
                 template = 'firefox/new/sem/compatible/scene2.html'
+            elif experience == 'unsupported-browser':
+                template = 'firefox/new/sem/unsupported-browser/scene2.html'
             elif experience in ['batmfree', 'batmprivate', 'batmnimble', 'batmresist']:
                 template = 'firefox/new/batm/scene2.html'
             else:
@@ -557,6 +559,8 @@ def new(request):
                 template = 'firefox/new/sem/nonprofit/scene1.html'
             elif experience == 'compatible':
                 template = 'firefox/new/sem/compatible/scene1.html'
+            elif experience == 'unsupported-browser':
+                template = 'firefox/new/sem/unsupported-browser/scene1.html'
             elif experience == 'batmfree':
                 template = 'firefox/new/batm/free.html'
             elif experience == 'batmprivate':
