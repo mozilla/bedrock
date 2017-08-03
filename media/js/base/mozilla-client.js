@@ -239,7 +239,7 @@ if (typeof Mozilla === 'undefined') {
         };
 
         var onRetrieved = function (accurate, version, channel, distribution) {
-            document.removeEventListener('mozUITourResponse', listener);
+            document.removeEventListener('mozUITourResponse', listener, false);
 
             var isESR = channel === 'esr';
             var isUpToDate = Client._isFirefoxUpToDate(accurate, accurate ? isESR : false, version);
@@ -270,7 +270,7 @@ if (typeof Mozilla === 'undefined') {
         var timer = window.setTimeout(fallback, 400);
 
         // Trigger the API
-        document.addEventListener('mozUITourResponse', listener);
+        document.addEventListener('mozUITourResponse', listener, false);
         document.dispatchEvent(new CustomEvent('mozUITour', {
             'bubbles': true,
             'detail': {

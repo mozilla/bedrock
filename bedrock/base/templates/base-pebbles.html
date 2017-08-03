@@ -160,6 +160,13 @@
 
     {% block js %}{% endblock %}
 
+    {# Bug 1381776 #}
+    {% block update_notification %}
+      {% if switch('firefox-update-notification', ['en-US']) %}
+        {% javascript 'firefox-update-notification' %}
+      {% endif %}
+    {% endblock %}
+
     {% if settings.DEV %}
       <!--[if !lte IE 8]><!-->
         <script src="https://pontoon.mozilla.org/pontoon.js"></script>

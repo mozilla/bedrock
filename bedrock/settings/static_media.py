@@ -157,6 +157,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
             'css/base/global-nav.less',
+            'css/base/notification-banner.less',
             'css/tabzilla/tabzilla-static.less',
         ),
         'output_filename': 'css/responsive-bundle.css',
@@ -1596,6 +1597,13 @@ PIPELINE_JS = {
             'js/firefox/whatsnew/whatsnew-54.js',
         ),
         'output_filename': 'js/firefox_whatsnew_50-bundle.js',
+    },
+    'firefox-update-notification': {
+        'source_filenames': (
+            'js/base/mozilla-notification-banner.js',
+            'js/base/mozilla-notification-banner-init.js',
+        ),
+        'output_filename': 'js/firefox-update-notification-bundle.js',
     },
     'geolocation': {
         'source_filenames': (
