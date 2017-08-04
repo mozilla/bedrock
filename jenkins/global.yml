@@ -7,11 +7,6 @@ regions:
     name: us-west
     registry_port: 5001
     deis_bin: deis
-  euw:
-    deis_profile: euw
-    name: eu-west
-    registry_port: 5000
-    deis_bin: deis
   tokyo:
     deis_profile: tokyo
     name: tokyo
