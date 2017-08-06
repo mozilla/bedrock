@@ -5,7 +5,6 @@ smoke_tests: true
 require_tag: true
 regions:
   - usw
-  - euw
   - tokyo
   - frankfurt
 apps:
@@ -19,7 +18,5 @@ integration_tests:
     - ie
     - ie6
     - ie7
-  euw:
-    - headless
   tokyo:
     - headless

@@ -4,7 +4,6 @@ push_public_registry: true
 smoke_tests: true
 regions:
   - usw
-  - euw
   - tokyo
   - frankfurt
 apps:
@@ -12,8 +11,6 @@ apps:
 integration_tests:
   usw:
     - firefox
-    - headless
-  euw:
     - headless
   tokyo:
     - headless
