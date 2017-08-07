@@ -1,0 +1,16 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_50" "firefox/sendto" %}
+
+{% extends "firefox/whatsnew/fx54/whatsnew-54.html" %}
+
+{% block body_content %}
+  <div id="qr-wrapper" class="primary-cta">
+    <img src="{{ static('img/firefox/whatsnew_54/qrcode-vb.png') }}" width="250" height="250" alt="" />
+  </div>
+{% endblock %}
+
+{# no store badges for variation b #}
+{% block mobile_download_buttons %}{% endblock %}
