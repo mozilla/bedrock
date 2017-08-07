@@ -31,9 +31,11 @@ def setup_responses(blog='firefox'):
     posts_url = api._api_url(TEST_WP_BLOGS[blog]['url'], 'posts', None)
     tags_url = api._api_url(TEST_WP_BLOGS[blog]['url'], 'tags', None)
     media_url = api._api_url(TEST_WP_BLOGS[blog]['url'], 'media', 75)
+    media_url_404 = api._api_url(TEST_WP_BLOGS[blog]['url'], 'media', 42)
     responses.add(responses.GET, posts_url, body=get_test_file_content('posts.json'))
     responses.add(responses.GET, tags_url, body=get_test_file_content('tags.json'))
     responses.add(responses.GET, media_url, body=get_test_file_content('media_75.json'))
+    responses.add(responses.GET, media_url_404, status=404)
 
 
 @responses.activate
@@ -43,10 +45,10 @@ def test_get_posts_data():
     data = api.get_posts_data('firefox')
     assert data['wp_blog_slug'] == 'firefox'
     assert data['posts'][0]['tags'] == ['browser', 'fastest']
-    assert not data['posts'][0]['featured_media']
-    assert not data['posts'][1]['featured_media']
+    assert data['posts'][0]['featured_media'] == {}
+    assert data['posts'][1]['featured_media'] == {}
     assert data['posts'][2]['featured_media']['id'] == 75
-    assert len(responses.calls) == 3
+    assert len(responses.calls) == 4
 
 
 @responses.activate
@@ -68,6 +70,17 @@ def test_refresh_posts():
     assert bp.get_featured_image_url('large').endswith('Put-Your-Trust-in-Rust-600x315.png')
     blog = models.BlogPost.objects.filter_by_blogs('firefox', 'hacks')
     assert len(blog) == 6
+
+
+@responses.activate
+@override_settings(WP_BLOGS=TEST_WP_BLOGS)
+@pytest.mark.django_db
+def test_refresh_posts_missing_media():
+    setup_responses()
+    models.BlogPost.objects.refresh('firefox')
+    blog = models.BlogPost.objects.filter_by_blogs('firefox')
+    bp = blog.get(wp_id=10)
+    assert bp.get_featured_image_url('large') is None
 
 
 @responses.activate

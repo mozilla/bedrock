@@ -54,11 +54,14 @@ def get_posts_data(feed_id, num_posts=None):
     for post in posts:
         post['tags'] = [tags[t] for t in post['tags']]
         # some blogs set featured_media to 0 when none is set
-        if 'featured_media' in post and post['featured_media']:
-            media = get_wp_data(feed_id, 'media', post['featured_media'])
-            if media:
-                post['featured_media'] = media
-        else:
+        if 'featured_media' in post:
+            if post['featured_media']:
+                media = get_wp_data(feed_id, 'media', post['featured_media'])
+                if media:
+                    post['featured_media'] = media
+                    continue
+
+            # blank featured_media value if anything went wrong
             post['featured_media'] = {}
 
     return {
