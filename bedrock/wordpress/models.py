@@ -144,5 +144,5 @@ class BlogPost(models.Model):
     def get_featured_image_url(self, size='large'):
         try:
             return self.featured_media['media_details']['sizes'][size]['source_url']
-        except KeyError:
+        except (KeyError, TypeError):
             return None
