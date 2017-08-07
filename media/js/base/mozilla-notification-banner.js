@@ -12,6 +12,7 @@ if (typeof Mozilla === 'undefined') {
 
     var NotificationBanner = {};
     var _options = {};
+    var _sampleRate = 0; //in JS 0 coerces to a falsy value, so no rate limiting is applied by default.
 
     NotificationBanner.COOKIE_CODE_ID = 'mozilla-notification-banner';
     NotificationBanner.COOKIE_EXPIRATION_DAYS = 21; // default cookie expiry 21 days
@@ -98,17 +99,25 @@ if (typeof Mozilla === 'undefined') {
      * Handles interaction with notification CTA button.
      */
     NotificationBanner.confirm = function(e) {
-        // for control + click just set the cookie.
-        if (e.metaKey || e.ctrlKey) {
-            NotificationBanner.setCookie(NotificationBanner.COOKIE_INTERACTION_VALUE);
-            NotificationBanner.trackGAConfirm();
-        }
-        // else redirect after setting the cookie.
-        else {
+        // custom callback for cta click
+        if (typeof _options.confirmClick === 'function') {
             e.preventDefault();
+            _options.confirmClick.call(e.target);
             NotificationBanner.setCookie(NotificationBanner.COOKIE_INTERACTION_VALUE);
             NotificationBanner.trackGAConfirm();
-            NotificationBanner.doRedirect(e.target);
+        } else {
+            // for control + click just set the cookie.
+            if (e.metaKey || e.ctrlKey) {
+                NotificationBanner.setCookie(NotificationBanner.COOKIE_INTERACTION_VALUE);
+                NotificationBanner.trackGAConfirm();
+            }
+            // else redirect after setting the cookie.
+            else {
+                e.preventDefault();
+                NotificationBanner.setCookie(NotificationBanner.COOKIE_INTERACTION_VALUE);
+                NotificationBanner.trackGAConfirm();
+                NotificationBanner.doRedirect(e.target);
+            }
         }
     };
 
@@ -145,6 +154,7 @@ if (typeof Mozilla === 'undefined') {
         _message.innerHTML = options.message;
 
         _confirm.className = 'notification-banner-confirm';
+        _confirm.id = 'notification-banner-confirm';
         _confirm.href = options.url;
         _confirm.innerHTML = options.confirm;
 
@@ -179,7 +189,7 @@ if (typeof Mozilla === 'undefined') {
             data['data-ex-experiment'] = options.experimentName;
             data['data-ex-present'] = 'true';
         }
-        
+
         window.dataLayer.push(data);
     };
 
@@ -220,6 +230,69 @@ if (typeof Mozilla === 'undefined') {
     };
 
     /**
+     * Convenience method for testing purposes.
+     */
+    NotificationBanner.getSampleRate = function() {
+        return _sampleRate;
+    };
+
+    /**
+     * Sets an optional sample rate limit for selecting a notification config.
+     * @param {Number} rate - value must be between 0 and 1.
+     */
+    NotificationBanner.setSampleRate = function(rate) {
+        // isNaN tries to coerce values to a Number before comparing
+        // so we need to special case booleans and falsy values :/
+        if (!rate || typeof rate === 'boolean') {
+            _sampleRate = 0;
+            return;
+        }
+
+        _sampleRate = isNaN(rate) ? 0 : Math.min(Math.max(parseFloat(rate), 0), 1);
+    };
+
+    /**
+     * Determines if user falls within sample rate limit to see a notification.
+     * If a sample rate is not set function will return true.
+     * @return {Boolean}
+     */
+    NotificationBanner.withinSampleRate = function() {
+        // if there's no sample rate set, return true.
+        if (!_sampleRate) {
+            return true;
+        }
+        return (Math.random() <= _sampleRate) ? true : false;
+    };
+
+    /**
+     * Selects a messaging option to use for the notification.
+     * Value returned can be dependant on if a cookie already exists or the visitor falls within an optional
+     * sample rate limit, else a config will be selected at random.
+     * @param {Array} options - array of object literals with the same format defined for init()
+     * @return {Object} object literal or null if option is not found or out of sample rate.
+     */
+    NotificationBanner.getOptions = function(options) {
+        var cookie = NotificationBanner.getCookie();
+        var choice = Math.floor(Math.random() * options.length); // choose one of (n) possible variations.
+        var result = null;
+
+        // if we already have a cookie, return the same config again.
+        if (cookie) {
+            for (var i in options) {
+                if (options[i].id === cookie) {
+                    result = options[i];
+                    break;
+                }
+            }
+        // else return a randomly selected config.
+        } else if (NotificationBanner.withinSampleRate()) {
+            result = options[choice];
+        }
+
+        return result;
+    };
+
+    /**
      * Generic browser feature detect required for displaying a notification.
      * @return {Boolean}
      */
@@ -245,6 +318,7 @@ if (typeof Mozilla === 'undefined') {
      * {String} url (required) - URL for main CTA link.
      * {String} close (required) - Copy string for close button.
      * {String} closeLabel (required) - String for labelling close button in GA (this should always be English).
+     * {Function} confirmClick (optional) - Callback to be executed on confirm CTA click.
      */
     NotificationBanner.init = function(options) {
         // Basic feature detection for showing the notification.

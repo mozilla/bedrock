@@ -2,13 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/base-resp.html" %}
+{% extends "firefox/whatsnew/base.html" %}
 
 {% add_lang_files "firefox/whatsnew_42" %}
-
-{% block gtm_page_id %}data-gtm-page-id="/firefox/whatsnew/"{% endblock %}
-
-{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
 {% block page_og_title %}
@@ -67,6 +63,3 @@
 {% block email_form %}{% endblock%}
 
 {% block js %}{% endblock %}
-
-{# Bug 1381776 #}
-{% block update_notification %}{% endblock %}

@@ -4,15 +4,9 @@
 
 {% add_lang_files "firefox/new/onboarding" %}
 
-{% extends "bare.html" %}
+{% extends "firefox/firstrun/base.html" %}
 
-{% block page_image %}{{ static('img/firefox/template/page-image.png') }}{% endblock %}
-{% block page_favicon %}{{ static('img/firefox/favicon.ico') }}{% endblock %}
-{% block page_favicon_large %}{{ static('img/firefox/favicon-196.png') }}{% endblock %}
-{% block page_ios_icon %}{{ static('img/firefox/ios-icon-180.png') }}{% endblock %}
-
-{% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
-{% block twitter_id %}firefox{% endblock %}
+{% block body_id %}firstrun-onboarding{% endblock %}
 
 {% block page_title %}
   {{ _('Welcome to Firefox') }}
@@ -27,6 +21,7 @@
 {% endblock %}
 
 {% block global_nav %}{% endblock %}
+{% block site_header %}{% endblock %}
 
 {% block content %}
   <div id="scene">
@@ -58,5 +53,5 @@
   </div>
 {% endblock %}
 
-{# Bug 1381776 #}
-{% block update_notification %}{% endblock %}
+{% block site_footer %}{% endblock %}
+{% block email_form %}{% endblock %}

@@ -149,6 +149,7 @@ PIPELINE_CSS = {
     'common': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
+            'css/base/notification-banner.less',
             'css/tabzilla/tabzilla-static.less',
         ),
         'output_filename': 'css/common-bundle.css',
@@ -423,25 +424,18 @@ PIPELINE_CSS = {
     },
     'firefox_firstrun_onboarding': {
         'source_filenames': (
+            'css/base/notification-banner.less',
             'css/firefox/firstrun/onboarding.less',
             'css/base/mozilla-fxa-iframe.less',
         ),
         'output_filename': 'css/firefox_firstrun_onboarding-bundle.css',
-    },
-    'firefox_firstrun': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/base/mozilla-fxa-iframe.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/firefox/firstrun/firstrun.less',
-        ),
-        'output_filename': 'css/firefox_firstrun-bundle.css',
     },
     'firefox_firstrun_horizon': {
         'source_filenames': (
             'css/sandstone/sandstone.less',
             'css/base/mozilla-fxa-iframe.less',
             'css/tabzilla/tabzilla-static.less',
+            'css/base/notification-banner.less',
             'css/firefox/firstrun/firstrun-horizon.less',
         ),
         'output_filename': 'css/firefox_firstrun-horizon-bundle.css',
@@ -679,6 +673,13 @@ PIPELINE_CSS = {
             'css/firefox/australis/australis-page-stacked.less',
         ),
         'output_filename': 'css/firefox_tour_none-bundle.css',
+    },
+    'firefox-update-notification-modal': {
+        'source_filenames': (
+            'css/base/mozilla-modal.less',
+            'css/base/notification-modal.less',
+        ),
+        'output_filename': 'css/firefox-update-notification-modal-bundle.css',
     },
     'firefox_whatsnew_42': {
         'source_filenames': (
@@ -1609,6 +1610,14 @@ PIPELINE_JS = {
             'js/base/mozilla-notification-banner-init.js',
         ),
         'output_filename': 'js/firefox-update-notification-bundle.js',
+    },
+    'firefox-update-notification-modal': {
+        'source_filenames': (
+            'js/base/mozilla-modal.js',
+            'js/base/mozilla-notification-banner.js',
+            'js/base/mozilla-notification-banner-modal-init.js',
+        ),
+        'output_filename': 'js/firefox-update-notification-modal-bundle.js',
     },
     'geolocation': {
         'source_filenames': (
