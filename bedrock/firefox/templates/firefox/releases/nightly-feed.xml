@@ -15,7 +15,7 @@
   <icon>{{ static('img/firefox/nightly/favicon.png')|absolute_url }}</icon>
   <updated>{{ notes[0].modified.isoformat() }}</updated>
   <webfeeds:cover image="{{ static('img/firefox/nightly/page-image.png')|absolute_url }}" />
-  <webfeeds:icon>{{ static('img/firefox/nightly/favicon-196.png')|absolute_url }}</webfeeds:icon>
+  <webfeeds:icon>{{ static('img/firefox/nightly/favicon-192.png')|absolute_url }}</webfeeds:icon>
   {% for note in notes %}
   <entry>
     <title type="html">{{ note.note|markdown|striptags|safe|truncate(100) }}</title>
