@@ -96,6 +96,15 @@ $color-devteal: #00c8d9;
         margin: 20px auto 40px;
         max-width: $width-tablet;
         text-align: center;
+
+        & + .tagline {
+            margin-top: -20px;
+        }
+    }
+
+    .tagline {
+        @include font-size-level5;
+        text-align: center;
     }
 
     .hero-image {
@@ -111,7 +120,7 @@ $color-devteal: #00c8d9;
         text-align: center;
 
         a.button-hollow {
-            @include font-size(18px);
+            @include font-size-level5;
             border-color: $color-devteal;
             border-radius: 0;
             color: $color-devteal;
@@ -129,7 +138,7 @@ $color-devteal: #00c8d9;
     // Download button
     .download-button {
         .download-link.button-arrow {
-            @include font-size(18px);
+            @include font-size-level5;
             background-color: $color-devteal;
             border-radius: 0;
             border: 0;
@@ -156,7 +165,7 @@ $color-devteal: #00c8d9;
         }
 
         .fx-privacy-link {
-            @include font-size(14px);
+            @include font-size-small;
 
             a:link,
             a:visited {
@@ -174,7 +183,8 @@ $color-devteal: #00c8d9;
 }
 
 .section-grid,
-.section-features {
+.section-features,
+.section-extensions {
     background-color: $color-devblue-alt;
 }
 
@@ -188,17 +198,12 @@ $color-devteal: #00c8d9;
         margin: 40px auto;
     }
 
-    .tagline {
-        @include font-size(18px);
-        margin-top: -20px;
-    }
-
     .download-button {
         margin: 40px auto;
     }
 
     .feedback-note {
-        @include font-size(14px);
+        @include font-size-small;
         margin: 0 auto 1.5em;
         max-width: $width-phone;
 
@@ -219,11 +224,11 @@ $color-devteal: #00c8d9;
         margin-top: 60px;
 
         .gallery-item {
-            @include font-size(14px);
+            @include font-size-small;
             text-align: center;
 
             h3 {
-                @include font-size(18px);
+                @include font-size-level5;
                 margin: 0 auto .5em;
             }
         }
@@ -267,7 +272,7 @@ $color-devteal: #00c8d9;
     }
 
     a.button.button-hollow {
-        @include font-size(18px);
+        @include font-size-level5;
         color: #fff;
         border-color: #fff;
         border-radius: 0;
@@ -345,6 +350,54 @@ $color-devteal: #00c8d9;
 
 
 //*------------------------------------------------------------------*/
+// Frameworks
+.frameworks-list {
+    margin: 60px auto 40px;
+
+    .framework {
+        text-align: center;
+    }
+
+    .icon {
+        display: block;
+        margin: 0 auto 20px;
+    }
+
+    .name {
+        @include font-size-level5;
+        font-weight: normal;
+        color: #fff;
+        opacity: 0;
+        transition: opacity 150ms ease-in;
+    }
+
+    a:link,
+    a:visited {
+        display: block;
+        text-decoration: none;
+
+        &:hover .name,
+        &:focus .name,
+        &:active .name {
+            opacity: 1;
+        }
+    }
+
+    .desc,
+    .cta {
+        @include font-size-small;
+        margin: 1em 20px;
+    }
+
+    .cta a:link,
+    .cta a:visited {
+        @include trailing-arrow;
+    }
+}
+
+
+
+//*------------------------------------------------------------------*/
 // Features
 .features-list {
     margin: 40px auto;
@@ -359,7 +412,7 @@ $color-devteal: #00c8d9;
     }
 
     .name {
-        @include font-size(18px);
+        @include font-size-level5;
         font-weight: normal;
         color: #fff;
     }
@@ -377,7 +430,7 @@ $color-devteal: #00c8d9;
 
     .desc,
     .cta {
-        @include font-size(14px);
+        @include font-size-small;
         margin: 1em 20px;
     }
 
@@ -436,12 +489,12 @@ $color-devteal: #00c8d9;
         }
 
         #form-details {
-            @include font-size(16px);
+            @include font-size-level6;
             padding-top: 20px;
         }
 
         button[type="submit"] {
-            @include font-size(18px);
+            @include font-size-level5;
             border-color: $color-devteal;
             border-radius: 0;
             color: $color-devteal;

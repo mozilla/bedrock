@@ -84,6 +84,38 @@
     </div>
   </section>
 
+{% if l10n_has_tag('devedition_frameworks') %}
+  <section class="section section-extensions">
+    <div class="content">
+      <h2 class="section-title">{{ _('Framework DevTool Extensions') }}</h2>
+      <p class="tagline">{{ _('Inspect and debug framework apps with these extensions for Firefox.') }}</p>
+
+      <ul class="frameworks-list gallery-list has-three-cols">
+        <li class="gallery-item framework">
+          <a href="https://addons.mozilla.org/firefox/addon/react-devtools/?utm_source=devedition&amp;utm_medium=install&amp;utm_campaign=frameworks&amp;utm_content=react">
+            <img class="icon" src="{{ static('img/firefox/products/developer/logo-react.svg') }}" alt="">
+            <h3 class="name">React</h3>
+          </a>
+        </li>
+        <li class="gallery-item framework">
+          <a href="https://addons.mozilla.org/firefox/addon/vue-js-devtools/?utm_source=devedition&amp;utm_medium=install&amp;utm_campaign=frameworks&amp;utm_content=vue">
+            <img class="icon" src="{{ static('img/firefox/products/developer/logo-vuejs.svg') }}" alt="">
+            <h3 class="name">Vue.js</h3>
+          </a>
+        </li>
+        <li class="gallery-item framework">
+          <a href="https://addons.mozilla.org/firefox/addon/remotedev/?utm_source=devedition&amp;utm_medium=install&amp;utm_campaign=frameworks&amp;utm_content=redux">
+            <img class="icon" src="{{ static('img/firefox/products/developer/logo-redux.svg') }}" alt="">
+            <h3 class="name">Redux</h3>
+          </a>
+        </li>
+      </ul>
+
+      <p class="section-cta"><a href="https://addons.mozilla.org/firefox/collections/mozilla/framework-devtools/?utm_source=devedition&amp;utm_medium=install&amp;utm_campaign=frameworks&amp;utm_content=bundle" class="button button-hollow">{{ _('Explore more extensions') }}</a></p>
+    </div>
+  </section>
+{% endif %}
+
   <section class="section section-engage">
     <div class="content">
 
