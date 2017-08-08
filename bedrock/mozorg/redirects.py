@@ -200,6 +200,10 @@ redirectpatterns = (
     redirect(r'^persona(?:/(?:about|developer-faq))?/?$',
              'https://developer.mozilla.org/Persona'),
 
+    # Bug 1380845 - Redirect persona privacy policy to archive.
+    redirect(r'^persona/privacy-policy/?$', '/privacy/archive/persona/2017-07/'),
+    redirect(r'^persona/terms-of-service/?$', '/privacy/archive/persona/2017-07/#terms-of-service'),
+
     # Bug 981176 - For now we'll hard-code a redirect to 1.3
     # In the future this should automatically go to the
     # latest version's notes

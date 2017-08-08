@@ -38,4 +38,5 @@ urlpatterns = (
     page('/archive/hello/2016-03', 'privacy/archive/hello-2016-03.html'),
     page('/archive/thunderbird/2010-06', 'privacy/archive/thunderbird-2010-06.html'),
     page('/archive/websites/2013-08', 'privacy/archive/websites-2013-08.html'),
+    page('/archive/persona/2017-07', 'privacy/archive/persona-2017-07.html'),
 )

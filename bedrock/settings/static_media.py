@@ -840,12 +840,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/partnerships-bundle.css',
     },
-    'persona': {
-        'source_filenames': (
-            'css/persona/persona.less',
-        ),
-        'output_filename': 'css/persona-bundle.css',
-    },
     'powered-by': {
         'source_filenames': (
             'css/mozorg/powered-by.less',
