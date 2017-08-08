@@ -1670,6 +1670,9 @@ PIPELINE_JS = {
     },
     'internet-health-subpage': {
         'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
             'js/base/mozilla-smoothscroll.js',
             'js/mozorg/internet-health/health-subpage.js',
         ),
