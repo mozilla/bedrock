@@ -30,7 +30,9 @@ h4 {
 #firstrun-header {
     margin: 0;
     padding-top: 240px;
-    background: url('/media/img/firefox/firstrun/logo-nightly.png') no-repeat 50% 30px;
+    .at2x('/media/img/firefox/firstrun/logo-nightly.png', 179px, 185px);
+    background-repeat: no-repeat;
+    background-position: 50% 30px;
     text-align: center;
 }
 
@@ -202,7 +204,7 @@ html[dir="rtl"] {
 @media only screen and (max-width: @breakTablet) {
     #firstrun-header {
         background-position: top center;
-        padding: 180px 0 0;
+        padding: 200px 0 0;
     }
     html[dir="rtl"] main .blue-box.badge,
     main .blue-box.badge {
