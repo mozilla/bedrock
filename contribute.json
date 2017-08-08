@@ -4,7 +4,7 @@
     "repository": {
         "url": "https://github.com/mozilla/bedrock",
         "license": "MPL2",
-        "tests": "https://travis-ci.org/mozilla/bedrock/"
+        "tests": "https://ci.us-west.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/activity/?branch=master"
     },
     "participate": {
         "home": "https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org",
@@ -14,14 +14,10 @@
         "irc-contacts": [
             "agibson",
             "craigcook",
-            "pmac",
-            "bensternthal",
-            "espressive",
-            "jgmize",
             "jpetto",
+            "pmac",
             "kohei",
-            "malexis",
-            "sgarrity"
+            "jgmize"
         ]
     },
     "bugs": {
@@ -41,8 +37,9 @@
     },
     "keywords": [
         "python",
-        "less-css",
+        "sass-css",
         "django",
+        "jinja2",
         "html5",
         "jquery"
     ]
