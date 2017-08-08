@@ -8,7 +8,7 @@
     var client = window.Mozilla.Client;
     var body = $('body');
 
-    if (client._isFirefoxDesktop) {
+    if (client.isFirefoxDesktop) {
         client.getFirefoxDetails(function(details) {
             if (details.isUpToDate && details.channel === 'release') {
                 body.addClass('firefox-current');

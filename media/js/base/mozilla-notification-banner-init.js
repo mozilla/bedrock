@@ -71,7 +71,7 @@ $(function() {
     Mozilla.NotificationBanner.COOKIE_CODE_ID = 'moz-notification-fx-out-of-date';
 
     // Notification should only be shown to users on Firefox for desktop.
-    if (client._isFirefoxDesktop) {
+    if (client.isFirefoxDesktop) {
         client.getFirefoxDetails(function(details) {
             // User must be out of date and on release channel.
             if (!details.isUpToDate && details.channel === 'release') {
