@@ -679,25 +679,19 @@ STUB_INSTALLER_ALL = '__ALL__'
 STUB_INSTALLER_LOCALES = {
     'release': {
         'win': STUB_INSTALLER_ALL,
-        # should come back in Fx 55
-        # bug 1348610
-        # 'win64': STUB_INSTALLER_ALL,
+        'win64': STUB_INSTALLER_ALL,
     },
     'beta': {
         'win': STUB_INSTALLER_ALL,
-        # should come back in Fx 55
-        # bug 1348610
-        # 'win64': STUB_INSTALLER_ALL,
+        'win64': STUB_INSTALLER_ALL,
     },
     'alpha': {
         'win': STUB_INSTALLER_ALL,
-        # should come back in Fx 55
-        # bug 1348610
-        # 'win64': ['en-us'],
+        'win64': STUB_INSTALLER_ALL,
     },
     'nightly': {
         'win': STUB_INSTALLER_ALL,
-        'win64': ['en-us'],
+        'win64': STUB_INSTALLER_ALL,
     },
 }
 
