@@ -77,6 +77,8 @@ urlpatterns = (
          'mozorg/about/policy/transparency/jan-jun-2016.html'),
     page('about/policy/transparency/jul-dec-2016',
          'mozorg/about/policy/transparency/jul-dec-2016.html'),
+    page('about/policy/transparency/jan-jun-2017',
+         'mozorg/about/policy/transparency/jan-jun-2017.html'),
 
     page('contact', 'mozorg/contact/contact-landing.html'),
     page('contact/spaces', 'mozorg/contact/spaces/spaces-landing.html'),

@@ -4,10 +4,10 @@
 
 {% extends "mozorg/about/policy/transparency/report-base.html" %}
 
-{% block page_title %}{{ _('Transparency Report - July–December, 2016') }}{% endblock %}
+{% block page_title %}{{ _('Transparency Report - January–June, 2017') }}{% endblock %}
 
 {% block report_title %}
-  <h1>{{ _('Transparency Report') }} <span>{{ _('Reporting Period: July 1, 2016 to December 31, 2016') }}</span></h1>
+  <h1>{{ _('Transparency Report') }} <span>{{ _('Reporting Period: January 1, 2017 to June 30, 2017') }}</span></h1>
 {% endblock %}
 
 {% block report_body %}
@@ -136,19 +136,19 @@
         <tbody>
           <tr>
             <th scope="row">{{ _('Firefox Add-ons') }}</th>
-            <td>4</td>
+            <td>3</td>
             <td>0</td>
           </tr>
           <tr>
             <th scope="row">{{ _('Firefox Marketplace (Apps)') }}</th>
-            <td>0</td>
+            <td>1</td>
             <td>0</td>
           </tr>
         </tbody>
       </table>
 
       <h3>{{ _('Trademark') }}</h3>
-      <p>{{ _('In the Reporting Period, we received 65 Trademark Takedown Notices and 1 Counter Notice') }}</p>
+      <p>{{ _('In the Reporting Period, we received 71 Trademark Takedown Notices and 1 Counter Notice') }}</p>
 
       <table class="table">
         <thead>
@@ -165,7 +165,7 @@
         <tbody>
           <tr>
             <th scope="row">{{ _('Firefox Add-ons') }}</th>
-            <td>65</td>
+            <td>71</td>
             <td>1</td>
           </tr>
           <tr>
@@ -186,35 +186,33 @@
       <h3>{{ _('Legislative Reform') }}</h3>
 
       <p>
-      {% trans
-          shared_responsibility='https://blog.mozilla.org/blog/2016/09/13/cybersecurity-is-a-shared-responsibility/',
-          security_vuln='https://blog.mozilla.org/netpolicy/2016/09/19/improving-government-disclosure-of-security-vulnerabilities/',
-          speaker_gov='http://cyberlaw.stanford.edu/events/government-hacking-vulnerabilities-equities-process',
-          speaker_hack='http://cyberlaw.stanford.edu/events/government-hacking-rule-41',
-          gag_orders='https://blog.mozilla.org/mozilla-brief-of-joint-amicus-in-msft-v-doj/',
-          eu_privacy='https://blog.mozilla.org/netpolicy/files/2017/01/Mozilla-Filing_E-Privacy-Survey.pdf',
-          india_cloud='https://blog.mozilla.org/netpolicy/files/2016/07/Mozilla-Submissions-TRAI-Consultation-on-Cloud-Computing.pdf'
-      %}
-        In the Reporting Period, we highlighted the need to see
-        <a href="{{ shared_responsibility }}">cybersecurity as a shared responsibility</a>,
-        called for <a href="{{ security_vuln }}">reform of how the U.S. Government handles security vulnerabilities</a>
-        and sponsored a speaker series on <a href="{{ speaker_gov }}">government</a>
-        <a href="{{ speaker_hack }}">hacking</a>. Together with other
-        tech companies, we <a href="{{ gag_orders }}">advocated against the U.S. Government’s use of unlimited indefinite gag orders</a>.
-        We also filed comments on the <a href="{{ eu_privacy }}">EU’s proposed e-Privacy Regulation</a> as well as
-        <a href="{{ india_cloud }}">India’s proposed Cloud Computing regulations</a>.
+      {% trans link_patch='https://blog.mozilla.org/netpolicy/2017/05/17/working-together-towards-secure-internet-vep-reform/' %}
+        In the Reporting Period, we worked to <a href="{{ link_patch }}">support the introduction of the Protecting Our Ability to Counter Hacking (PATCH) Act</a>, which codifies and includes important reforms to the U.S. Government’s process for handling vulnerabilities.
+      {% endtrans %}
+
+      {% trans link_amicus='https://blog.mozilla.org/blog/2017/01/06/fighting-back-against-unlawful-warrants-and-indefinite-gag-orders-to-protect-internet-privacy-and-security/' %}
+        We joined with other major technology companies to file an <a href="{{ link_amicus }}">amicus brief</a> supporting Facebook’s ability to challenge both a search warrant and an accompanying indefinite gag order.
+      {% endtrans %}
+
+      {% trans link_govhack1='http://cyberlaw.stanford.edu/events/government-hacking-assessing-and-mitigating-security-risk',
+          link_govhack2='http://cyberlaw.stanford.edu/blog/2017/05/government-hacking-evidence-and-vulnerability-disclosure-court' %}
+        We continued to sponsor a speaker series on <a href="{{ link_govhack1 }}">government</a> <a href="{{ link_govhack2 }}">hacking</a>.
       {% endtrans %}
       </p>
 
       <p>
-      {% trans
-          eu_copyright='https://www.changecopyright.org/',
-          dmca_1201='https://blog.mozilla.org/netpolicy/files/2017/01/AdditionalCommentsonSection1201Study.pdf',
-          berec_neutrality='https://blog.mozilla.org/netpolicy/files/2016/07/Mozilla-comments-on-draft-BEREC-guidelines-of-EU-net-neutrality-rules.pdf'
-      %}
-        We also <a href="{{ eu_copyright }}">campaigned to reform Europe’s copyright laws</a>,
-        filed comments with the U.S. Copyright Office on their <a href="{{ dmca_1201 }}">review of Section 1201 of the Digital Millennium Copyright Act</a>,
-        and filed <a href="{{ berec_neutrality }}">comments with the Body of European Regulators of Electronic Communications on their net neutrality implementation guidelines</a>.
+      {% trans link_dmca='https://blog.mozilla.org/netpolicy/2017/02/21/we-are-all-creators-now/' %}
+        We filed comment with the U.S. Copyright Office on their <a href="{{ link_dmca }}">review of Section 512 of the Digital Millennium Copyright Act</a> (DMCA).
+      {% endtrans %}
+
+      {% trans link_eucopyright='http://www.ipprotheinternet.com/interviews/interview.php?interview_id=116',
+          link_eprivacy='https://blog.mozilla.org/netpolicy/2017/06/07/engaging-e-privacy-european-parliament/',
+          link_dataecon='https://blog.mozilla.org/netpolicy/files/2017/04/Mozilla-EU-Data-Economy-submission.pdf' %}
+        In the EU, we’ve worked to influence the EU Commission’s <a href="{{ link_eucopyright }}">ongoing copyright reform efforts</a>, and continued to engage with the EU <a href="{{ link_eprivacy }}">e-Privacy Regulation</a> and <a href="{{ link_dataecon }}">Data Economy consultation</a>.
+      {% endtrans %}
+
+      {% trans link_aadhaar='https://blog.mozilla.org/netpolicy/2017/05/26/aadhaar-isnt-progress/' %}
+        Together with the Mozilla Community in India, we also <a href="{{ link_aadhaar }}">published an op-ed</a> highlighting the need for privacy protections in Aadhaar, the Indian national biometric identity system.
       {% endtrans %}
       </p>
 
@@ -233,11 +231,33 @@
           </tr>
           <tr>
             <th scope="row">{{ _('Other <a href="%s">Specific User</a> Data Disclosure')|format(url('mozorg.about.policy.transparency.index') + '#dfn-specific-user') }}</th>
-            <td>0</td>
+            <td>1<sup>*</sup></td>
           </tr>
         </tbody>
       </table>
 
+      <footer class="footnotes">
+        <p class="footnote" id="footnote1">
+        {% trans link_cybertipline='http://www.missingkids.org/cybertipline' %}
+          * Information about possible child sexual exploitation can be voluntarily reported by anyone to the National Center for Missing & Exploited Children’s (NCMEC) <a href="{{ link_cybertipline }}">CyberTipline</a>. We take this issue seriously. In the Reporting Period, Mozilla disclosed Specific User data to the NCMEC in connection with content that was uploaded to a Mozilla service and implicated child sexual exploitation.
+        {% endtrans %}
+        </p>
+      </footer>
+
     </div>
   </section>
 {% endblock %}
+
+{% block report_nav %}
+  <aside class="section nav-block">
+    <nav class="content nav-report two-up">
+      <ul>
+        <li><a href="{{ url('mozorg.about.policy.transparency.index') + '#faq' }}">{{ _('FAQ') }}</a></li>
+        <li><a href="{{ url('mozorg.about.policy.transparency.index') + '#definitions' }}">{{ _('Definitions') }}</a></li>
+      </ul>
+    </nav>
+
+    {% include 'mozorg/about/policy/transparency/includes/past-reports.html' %}
+  </aside>
+{% endblock %}
+
