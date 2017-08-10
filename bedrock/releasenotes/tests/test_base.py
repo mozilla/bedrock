@@ -358,10 +358,10 @@ class TestNotesRedirects(TestCase):
                    '/firefox/23.0beta/releasenotes/')
 
     @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
-           Mock(return_value='24.0a2'))
+           Mock(return_value='23.0b1'))
     def test_desktop_developer_version(self):
         self._test('/firefox/developer/notes/',
-                   '/firefox/24.0a2/auroranotes/')
+                   '/firefox/23.0beta/releasenotes/')
 
     @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
            Mock(return_value='24.2.0esr'))
@@ -429,10 +429,10 @@ class TestSysreqRedirect(TestCase):
                    '/firefox/23.0beta/system-requirements/')
 
     @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
-           Mock(return_value='24.0a2'))
+           Mock(return_value='23.0b1'))
     def test_desktop_developer_version(self):
         self._test('/firefox/developer/system-requirements/',
-                   '/firefox/24.0a2/system-requirements/')
+                   '/firefox/23.0beta/system-requirements/')
 
     @patch('bedrock.releasenotes.views.firefox_desktop.latest_version',
            Mock(return_value='24.2.0esr'))
