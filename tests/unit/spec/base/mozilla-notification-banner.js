@@ -276,6 +276,47 @@ describe('mozilla-notification-banner.js', function() {
             expect(Mozilla.NotificationBanner.doRedirect).not.toHaveBeenCalled();
             expect(Mozilla.NotificationBanner.trackGAConfirm).toHaveBeenCalled();
         });
+
+        it('should execute a callback if supplied', function() {
+            var options = {
+                'id': 'fx-out-of-date-banner-copy1-direct-1',
+                'name': 'fx-out-of-date',
+                'experimentName': 'fx-out-of-date-banner-copy1',
+                'experimentVariant': 'direct-1',
+                'heading': 'Your browser security is at risk.',
+                'message': 'Update Firefox now to protect yourself from the latest malware.',
+                'confirm': 'Update now',
+                'confirmAction': 'Update Firefox',
+                'confirmLabel': 'Firefox for Desktop',
+                'url': '/firefox/new/?scene=2',
+                'close': 'Close',
+                'closeLabel': 'Close',
+                confirmClick: function() {}
+            };
+
+            var event = {
+                'metaKey': false,
+                'ctrlKey': false,
+                'target': '/firefox/new/?scene=2',
+                'preventDefault': function () {}
+            };
+
+            spyOn(Mozilla.NotificationBanner, 'cutsTheMustard').and.returnValue(true);
+            spyOn(Mozilla.NotificationBanner, 'getCookie').and.returnValue(null);
+            spyOn(Mozilla.NotificationBanner, 'show');
+            spyOn(Mozilla.NotificationBanner, 'setCookie');
+            spyOn(Mozilla.NotificationBanner, 'doRedirect');
+            spyOn(Mozilla.NotificationBanner, 'trackGAConfirm');
+            spyOn(event, 'preventDefault');
+            spyOn(options, 'confirmClick');
+            Mozilla.NotificationBanner.init(options);
+            Mozilla.NotificationBanner.confirm(event);
+            expect(event.preventDefault).toHaveBeenCalled();
+            expect(options.confirmClick).toHaveBeenCalled();
+            expect(Mozilla.NotificationBanner.setCookie).toHaveBeenCalledWith(Mozilla.NotificationBanner.COOKIE_INTERACTION_VALUE);
+            expect(Mozilla.NotificationBanner.trackGAConfirm).toHaveBeenCalled();
+            expect(Mozilla.NotificationBanner.doRedirect).not.toHaveBeenCalled();
+        });
     });
 
     describe('close', function() {
@@ -349,6 +390,161 @@ describe('mozilla-notification-banner.js', function() {
             var cookie = Mozilla.NotificationBanner.getCookie();
             expect(Mozilla.Cookies.getItem).toHaveBeenCalledWith(Mozilla.NotificationBanner.COOKIE_CODE_ID);
             expect(cookie).toEqual(null);
+        });
+    });
+
+    describe('setSampleRate', function() {
+
+        afterEach(function() {
+            Mozilla.NotificationBanner.setSampleRate(0);
+        });
+
+        it('should set the sample rate as expected', function() {
+            Mozilla.NotificationBanner.setSampleRate(0.05);
+            var result = Mozilla.NotificationBanner.getSampleRate();
+            expect(result).toEqual(0.05);
+        });
+
+        it('should not set values less than 0 or exceeding 1', function() {
+            Mozilla.NotificationBanner.setSampleRate(-1);
+            var result = Mozilla.NotificationBanner.getSampleRate();
+            expect(result).toEqual(0);
+
+            Mozilla.NotificationBanner.setSampleRate(2);
+            var result2 = Mozilla.NotificationBanner.getSampleRate();
+            expect(result2).toEqual(1);
+        });
+
+        it('should not set invalid types', function() {
+            Mozilla.NotificationBanner.setSampleRate(null);
+            var result = Mozilla.NotificationBanner.getSampleRate();
+            expect(result).toEqual(0);
+
+            Mozilla.NotificationBanner.setSampleRate('foo');
+            var result2 = Mozilla.NotificationBanner.getSampleRate();
+            expect(result2).toEqual(0);
+
+            Mozilla.NotificationBanner.setSampleRate(true);
+            var result3 = Mozilla.NotificationBanner.getSampleRate();
+            expect(result3).toEqual(0);
+
+            Mozilla.NotificationBanner.setSampleRate('');
+            var result4 = Mozilla.NotificationBanner.getSampleRate();
+            expect(result4).toEqual(0);
+        });
+    });
+
+    describe('withinSampleRate', function() {
+
+        beforeEach(function() {
+            Mozilla.NotificationBanner.setSampleRate(0.05);
+        });
+
+        afterEach(function() {
+            Mozilla.NotificationBanner.setSampleRate(0);
+        });
+
+        it('should return true if within rate limit', function() {
+            spyOn(Math, 'random').and.returnValue(0.04);
+            var result = Mozilla.NotificationBanner.withinSampleRate();
+            expect(result).toBeTruthy();
+        });
+
+        it('should return false if exceeding rate limit', function() {
+            spyOn(Math, 'random').and.returnValue(0.06);
+            var result = Mozilla.NotificationBanner.withinSampleRate();
+            expect(result).toBeFalsy();
+        });
+
+        it('should return true if sample rate is not set', function() {
+            Mozilla.NotificationBanner.setSampleRate(0);
+            var result = Mozilla.NotificationBanner.withinSampleRate();
+            expect(result).toBeTruthy();
+
+            Mozilla.NotificationBanner.setSampleRate(null);
+            var result1 = Mozilla.NotificationBanner.withinSampleRate();
+            expect(result1).toBeTruthy();
+        });
+    });
+
+    describe('getOptions', function() {
+
+        var _options = [
+            {
+                'id': 'fx-out-of-date-banner-copy1-direct-1',
+                'name': 'fx-out-of-date',
+                'experimentName': 'fx-out-of-date-banner-copy1',
+                'experimentVariant': 'direct-1',
+                'heading': 'Your browser security is at risk.',
+                'message': 'Update Firefox now to protect yourself from the latest malware.',
+                'confirm': 'Update now',
+                'confirmAction': 'Update Firefox',
+                'confirmLabel': 'Firefox for Desktop',
+                'url': '/firefox/new/?scene=2',
+                'close': 'Close',
+                'closeLabel': 'Close',
+            },
+            {
+                'id': 'fx-out-of-date-banner-copy1-direct-2',
+                'name': 'fx-out-of-date',
+                'experimentName': 'fx-out-of-date-banner-copy1',
+                'experimentVariant': 'direct-2',
+                'heading': 'Your Firefox is out-of-date.',
+                'message': 'Get the most recent version to keep browsing securely.',
+                'confirm': 'Update Firefox',
+                'confirmAction': 'Update Firefox',
+                'confirmLabel': 'Firefox for Desktop',
+                'url': '/firefox/new/?scene=2',
+                'close': 'Close',
+                'closeLabel': 'Close'
+            },
+            {
+                'id': 'fx-out-of-date-banner-copy1-foxy-1',
+                'name': 'fx-out-of-date',
+                'experimentName': 'fx-out-of-date-banner-copy1',
+                'experimentVariant': 'foxy-1',
+                'heading': 'Psst… it’s time for a tune up',
+                'message': 'Stay safe and fast with a quick update.',
+                'confirm': 'Update Firefox',
+                'confirmAction': 'Update Firefox',
+                'confirmLabel': 'Firefox for Desktop',
+                'url': '/firefox/new/?scene=2',
+                'close': 'Close',
+                'closeLabel': 'Close'
+            }
+        ];
+
+        it('should return a config if a cookie exists', function() {
+            spyOn(Mozilla.NotificationBanner, 'getCookie').and.returnValue('fx-out-of-date-banner-copy1-foxy-1');
+            var choice = Mozilla.NotificationBanner.getOptions(_options);
+            expect(choice).toEqual(_options[2]);
+        });
+
+        it('should return null if a non-matching cookie exists', function() {
+            spyOn(Mozilla.NotificationBanner, 'getCookie').and.returnValue('foo');
+            var choice = Mozilla.NotificationBanner.getOptions(_options);
+            expect(choice).toEqual(null);
+        });
+
+        it('should return an options object if within rate limiting', function() {
+            spyOn(Mozilla.NotificationBanner, 'getCookie').and.returnValue(null);
+            spyOn(Mozilla.NotificationBanner, 'withinSampleRate').and.returnValue(true);
+            var choice = Mozilla.NotificationBanner.getOptions(_options, true);
+            expect(choice).not.toEqual(null);
+        });
+
+        it('should return an null if exceeding rate limiting', function() {
+            spyOn(Mozilla.NotificationBanner, 'getCookie').and.returnValue(null);
+            spyOn(Mozilla.NotificationBanner, 'withinSampleRate').and.returnValue(false);
+            var choice = Mozilla.NotificationBanner.getOptions(_options, true);
+            expect(choice).toEqual(null);
+        });
+
+        it('should return a randomly selected config', function() {
+            spyOn(Mozilla.NotificationBanner, 'getCookie').and.returnValue(null);
+            spyOn(Math, 'random').and.returnValue(1);
+            var choice = Mozilla.NotificationBanner.getOptions(_options);
+            expect(choice).toEqual(_options[3]);
         });
     });
 });

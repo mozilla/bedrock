@@ -6,17 +6,13 @@
 
 {% add_lang_files "firefox/whatsnew_50" "firefox/sendto" %}
 
-{% extends "firefox/base-resp.html" %}
+{% extends "firefox/whatsnew/base.html" %}
 
 {% block experiments %}
   {% if switch('firefox-experiment-whatsnew-54', variation_locales) %}
     {% javascript 'experiment_whatsnew_54' %}
   {% endif %}
 {% endblock %}
-
-{% block gtm_page_id %}data-gtm-page-id="/firefox/whatsnew/"{% endblock %}
-
-{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block page_title %}{{_('Download Firefox for Android and iOS')}}{% endblock %}
 
@@ -130,6 +126,3 @@
 {% block js %}
   {% javascript 'firefox_whatsnew_54' %}
 {% endblock %}
-
-{# Bug 1381776 #}
-{% block update_notification %}{% endblock %}

@@ -4,11 +4,7 @@
 
 {% add_lang_files "firefox/whatsnew_38" %}
 
-{% extends "firefox/base.html" %}
-
-{% block gtm_page_id %}data-gtm-page-id="/firefox/firstrun/"{% endblock %}
-
-{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+{% extends "firefox/firstrun/base.html" %}
 
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
 {% block page_og_title %}
@@ -100,6 +96,3 @@
 {% block js %}
   {% javascript 'firefox_firstrun' %}
 {% endblock %}
-
-{# Bug 1381776 #}
-{% block update_notification %}{% endblock %}

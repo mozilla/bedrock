@@ -1,0 +1,101 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+/* -------------------------------------------------------------------------- */
+// Notification modal container styles
+
+.notification-modal-content {
+    display: none;
+    margin-top: 20px;
+    padding: 40px 20px;
+
+    h2,
+    h3 {
+        color: #000;
+        font-weight: bold;
+        line-height: 1.3;
+        margin: 0 0 12px 0;
+    }
+
+    h2 {
+        .font-size(32px);
+    }
+
+    h3 {
+        .font-size(24px);
+    }
+
+    p,
+    ol {
+        .font-size(18px);
+    }
+
+    small {
+        .font-size(16px);
+    }
+
+    p {
+        margin-top: 40px;
+    }
+
+    a:link,
+    a:visited {
+        color: @linkBlue;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+
+    @media only screen and (max-width: @breakDesktop) {
+        h2 {
+            .font-size(24px);
+        }
+
+        h3 {
+            .font-size(18px);
+        }
+    }
+}
+
+.js #modal {
+    .notification-modal-content {
+        display: block;
+    }
+
+    .window .inner .overlay-contents {
+        background: #fff;
+    }
+}
+
+/* Hide header visually and add top padding to compensate */
+#modal > .window > .inner {
+    padding-top: 40px;
+
+    header {
+        .visually-hidden;
+    }
+}
+
+// For Firefox update notification show platform specific instructions for Winodws/Mac/Linux.
+.notification-modal-content {
+    ol.mac {
+        display: none;
+    }
+}
+
+.osx .notification-modal-content {
+    ol.win-lin {
+        display: none;
+    }
+
+    ol.mac {
+        display: block;
+    }
+}
