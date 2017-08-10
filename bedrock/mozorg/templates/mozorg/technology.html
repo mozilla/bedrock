@@ -51,16 +51,22 @@
     <section id="vr" class="odd">
       <div class="content">
         <div class="inner-container">
+        {% if l10n_has_tag('mozorg_tech_webvr') %}
+          <h2>{{ _('Bringing Virtual Reality to the web platform') }}</h2>
+          <p>{{ _('Using WebVR, developers, designers and artists can share VR experiences on the web.') }}</p>
+          <a rel="external" href="https://vr.mozilla.org/" class="button">{{ _('Learn more') }}</a>
+        {% else %}
           <h2>{{ _('Making Virtual Reality a reality for all') }}</h2>
           <p>{{ _('Using A-Frame, developers, designers and artists are able to easily create accessible VR experiences.') }}</p>
           <a rel="external" href="https://aframe.io/" class="button">{{ _('Explore A-Frame') }}</a>
+        {% endif %}
         </div>
       </div>
       <footer>
         <ul>
         {% if l10n_has_tag('emerging_tech_links') %}
           <li><a rel="external" href="https://research.mozilla.org/mixed-reality/">{{ _('Learn about WebVR') }}</a></li>
-          <li><a rel="external" href="https://aframe.io/blog/">{{ _('Visit A-Frame blog') }}</a></li>
+          <li><a rel="external" href="https://aframe.io/">{{ _('Explore A-Frame') }}</a></li>
         {% else %}
           <li><a rel="external" href="https://research.mozilla.org/mixed-reality/">{{ _('Learn more') }}</a></li>
           <li><a rel="external" href="https://aframe.io/blog/">{{ _('Visit the blog') }}</a></li>
