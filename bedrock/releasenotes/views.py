@@ -146,7 +146,9 @@ def latest_notes(request, product='firefox', platform=None, channel=None):
 
     if not channel:
         channel = 'release'
-    if channel in ['aurora', 'developer']:
+    if channel == 'developer':
+        channel = 'beta'
+    if channel == 'aurora':
         channel = 'alpha'
     if channel == 'organizations':
         channel = 'esr'
@@ -165,8 +167,8 @@ def latest_notes(request, product='firefox', platform=None, channel=None):
     if channel == 'esr':
         version = re.sub(r'esr$', '', version)
 
-    dir = 'auroranotes' if channel == 'alpha' else 'releasenotes'
-    path = [product, version, dir]
+    notes_dir = 'auroranotes' if channel == 'alpha' else 'releasenotes'
+    path = [product, version, notes_dir]
     locale = getattr(request, 'locale', None)
     if product == 'firefox' and platform != 'desktop':
         path.insert(1, platform)
@@ -177,7 +179,7 @@ def latest_notes(request, product='firefox', platform=None, channel=None):
 
 def latest_sysreq(request, channel, product):
     if product == 'firefox' and channel == 'developer':
-        channel = 'alpha'
+        channel = 'beta'
     if channel == 'organizations':
         channel = 'esr'
 
