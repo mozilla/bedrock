@@ -5,13 +5,22 @@
 (function($) {
     'use strict';
 
-    var exp = $('#main-header-copy').data('experience');
+    var title = $('#main-header-copy');
+    var exp = title.data('experience');
+    var variant = title.data('variant');
+    var newParams = 'scene=2';
+
+    // conditionally construct new params for download links
+    if (exp) {
+        newParams += '&xv=' + exp;
+    }
+
+    if (variant) {
+        newParams += '&v=' + variant;
+    }
 
     $('.download-link').each(function(i, link) {
-        if (exp && link.href.indexOf('scene=2') > -1) {
-            // specify v=1 template for scene 2
-            link.href = link.href.replace('scene=2', 'scene=2&xv=' + exp);
-        }
+        link.href = link.href.replace('scene=2', newParams);
     });
 
     // trigger fade-in CSS animation

@@ -1464,11 +1464,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene1_batm-bundle.js',
     },
-    'firefox_new_scene1_batm_anim': {
+    'experiment_firefox_new_batm_anim': {
         'source_filenames': (
-            'js/firefox/new/scene1-batm-anim.js',
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/new/experiment-firefox-new-batm-anim.js',
         ),
-        'output_filename': 'js/firefox_new_scene1_batm_anim-bundle.js',
+        'output_filename': 'js/experiment_firefox_new_batm_anim-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (
