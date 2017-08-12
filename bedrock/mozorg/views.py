@@ -263,7 +263,6 @@ def contribute_friends(request):
 
 class TechnologyView(VariationMixin, BlogPostsView):
     template_name = 'mozorg/technology.html'
-    template_name_variations = ['b']
     blog_slugs = TECH_BLOG_SLUGS
     blog_posts_limit = 4
     blog_posts_template_variable = 'articles'

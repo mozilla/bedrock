@@ -16,12 +16,6 @@
 {% block body_class %}{% endblock %}
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="technology"{% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment-technology-rust-video', ['en-US']) %}
-    {% javascript 'experiment-technology-rust-video' %}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {% stylesheet 'technology' %}
 {% endblock %}
@@ -36,7 +30,6 @@
 
 {% block content %}
 <main role="main">
-  {% block page_hero %}
   <div class="main-heading-container">
     <div class="content">
       <header class="main-heading">
@@ -45,7 +38,6 @@
       </header>
     </div>
   </div>
-  {% endblock %}
 
   <div id="technologies">
     <section id="vr" class="odd">
