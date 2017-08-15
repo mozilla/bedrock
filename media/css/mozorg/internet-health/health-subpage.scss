@@ -4,6 +4,7 @@
 
 @import '../../pebbles/includes/lib';
 @import '../../pebbles/components/newsletter';
+@import '../../hubs/sub-nav';
 
 
 //* -------------------------------------------------------------------------- */
@@ -169,7 +170,7 @@ main .content {
         }
 
         .download-link {
-            @include font-size(14px);
+            @include font-size-small;
             border-radius: 0;
             border: none;
             padding: 15px 20px;
@@ -247,52 +248,6 @@ html[dir="rtl"] {
 
 
 //*--------------------------------------------------------------------------*/
-// Health subpages navigation
-.health-subnav {
-    @include open-sans;
-    background-color: #000;
-    text-transform: lowercase;
-
-    .content {
-        padding: 0;
-    }
-
-    a {
-        color: #fff;
-        display: block;
-        padding: .25em 20px;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            color: #fff;
-            text-decoration: underline;
-        }
-    }
-
-    .current a {
-        color: #000;
-        background-color: #eee;
-    }
-
-    @media #{$mq-phone-wide} {
-        .content {
-            padding: 0 20px;
-        }
-
-        li {
-            display: inline-block;
-        }
-
-        a {
-            display: block;
-            padding: 1em 20px;
-        }
-    }
-}
-
-
-//*--------------------------------------------------------------------------*/
 // Main page header
 .main-header {
     position: relative;
@@ -311,11 +266,7 @@ html[dir="rtl"] {
 }
 
 .head-intro {
-    @include font-size(18px);
-
-    @media #{$mq-tablet} {
-        @include font-size(24px);
-    }
+    @include font-size-level4;
 }
 
 .head-pagenav {
@@ -324,7 +275,7 @@ html[dir="rtl"] {
 
     .head-pagenav-title {
         @include box-decoration-break(clone);
-        @include font-size(18px);
+        @include font-size-level5;
         background-color: #fff;
         color: #000;
         display: inline-block;
@@ -436,12 +387,11 @@ html[dir="rtl"] {
 }
 
 .topic-intro-main {
-    @include font-size(18px);
+    @include font-size-level4;
     border-top: 4px solid $color-text-secondary;
     padding-top: 2em;
 
     @media #{$mq-tablet} {
-        @include font-size(20px);
         padding-left: 40px;
         padding-right: 40px;
     }
@@ -467,7 +417,7 @@ html[dir="rtl"] {
 }
 
 .topic-intro-aside {
-    @include font-size(18px);
+    @include font-size-level4;
     overflow: hidden;
     padding: 20px;
     position: relative;
@@ -480,7 +430,7 @@ html[dir="rtl"] {
     }
 
     .note-source {
-        @include font-size(14px);
+        @include font-size-small;
         @include open-sans;
         margin: 0;
 
@@ -511,18 +461,13 @@ html[dir="rtl"] {
     }
 
     @media #{$mq-tablet} {
-        @include font-size(26px);
         padding: 30px 15%;
     }
 }
 
 .topic-tagline {
-    @include font-size(20px);
+    @include font-size-level4;
     font-style: italic;
-
-    @media #{$mq-tablet} {
-        @include font-size(26px);
-    }
 }
 
 .topic-action {
@@ -564,7 +509,7 @@ html[dir="rtl"] {
 // Health report
 
 .health-report {
-    @include font-size(20px);
+    @include font-size-level4;
     background-color: $color-brand-neonblue;
 
     a:link,
@@ -591,7 +536,6 @@ html[dir="rtl"] {
 
     @media #{$mq-tablet} {
         @include at2x('/media/img/mozorg/internet-health/healthreport.png', 750px, 423px);
-        @include font-size(24px);
         background-position: right top;
         background-repeat: no-repeat;
         min-height: 150px;
@@ -631,7 +575,6 @@ html[dir="rtl"] {
         width: auto;
 
         h4 {
-            @include font-size(20px);
             line-height: 1.4;
         }
     }
@@ -690,7 +633,7 @@ html[dir="rtl"] {
 
     // Health report
     .health-report {
-        @include font-size(20px);
+        @include font-size-level4;
         background: #52fffe;
         padding: 20px 0;
 
@@ -716,10 +659,6 @@ html[dir="rtl"] {
             display: inline;
             background: #feeb33;
             padding: 0 20px;
-        }
-
-        @media #{$mq-tablet} {
-            @include font-size(24px);
         }
     }
 
@@ -756,7 +695,6 @@ html[dir="rtl"] {
             width: auto;
 
             h4 {
-                @include font-size(20px);
                 line-height: 1.4;
             }
         }

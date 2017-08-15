@@ -29,15 +29,7 @@
 {% endblock %}
 
 {% block content %}
-<nav id="health-subnav" class="health-subnav">
-  <ul class="content">
-    <li><a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Privacy &amp; Security') }}</a></li>
-    <li><a href="{{ url('mozorg.internet-health.open-innovation') }}">{{ _('Open Innovation') }}</a></li>
-    <li class="current"><a href="{{ url('mozorg.internet-health.decentralization') }}">{{ _('Decentralization') }}</a></li>
-    <li><a href="{{ url('mozorg.internet-health.digital-inclusion') }}">{{ _('Digital Inclusion') }}</a></li>
-    <li><a href="{{ url('mozorg.internet-health.web-literacy') }}">{{ _('Web Literacy') }}</a></li>
-  </ul>
-</nav>
+{% include 'mozorg/internet-health/includes/sub-nav.html' %}
 
 <main role="main">
   <header class="section main-header">
