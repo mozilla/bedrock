@@ -26,7 +26,6 @@ from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import ContributorActivity, TwitterCache
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
-from bedrock.utils.views import VariationMixin
 from bedrock.wordpress.views import BlogPostsView
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import lang_file_is_active
@@ -261,12 +260,20 @@ def contribute_friends(request):
                              {'newsletter_form': newsletter_form})
 
 
-class TechnologyView(VariationMixin, BlogPostsView):
-    template_name = 'mozorg/technology.html'
-    template_name_variations = ['b']
+class TechnologyView(BlogPostsView):
     blog_slugs = TECH_BLOG_SLUGS
     blog_posts_limit = 4
     blog_posts_template_variable = 'articles'
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
+        if locale.startswith('en-'):
+            template_name = 'mozorg/technology-en.html'
+        else:
+            template_name = 'mozorg/technology.html'
+
+        return [template_name]
 
 
 class IHView(BlogPostsView):

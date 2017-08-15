@@ -16,12 +16,6 @@
 {% block body_class %}{% endblock %}
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="technology"{% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment-technology-rust-video', ['en-US']) %}
-    {% javascript 'experiment-technology-rust-video' %}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {% stylesheet 'technology' %}
 {% endblock %}
@@ -151,7 +145,7 @@
             <a rel="external" href="https://research.mozilla.org/rust/" class="button">{{ _('Learn about Rust') }}</a>
           {% else %}
             <p>{{ _('Supported by Mozilla, Rust allows browsers, systems and more to run much faster and more safely.') }}</p>
-            <a rel="external" href="https://www.youtube.com/watch?list=PLo3w8EB99pqJ74XIGe72c9hBZWz9Y16cY&v=8EPsnf_ZYU0" class="button" data-video-title="Rust and the Future of Systems Programming">{{ _('Watch the video') }}</a>
+            <a rel="external" href="https://research.mozilla.org/rust/" class="button">{{ _('Learn more') }}</a>
           {% endif %}
         </div>
       </div>
@@ -206,7 +200,7 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% if not l10n_has_tag('emerging_tech_links') %}
+  {% if LANG.startswith('en-') %}
     {% javascript 'technology' %}
   {% endif %}
 {% endblock %}
