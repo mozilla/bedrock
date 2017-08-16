@@ -76,8 +76,16 @@
                 <li>
                 {% if LANG == 'en-US' %}
                   {% set about_url = url('firefox') %}
+                  {% set desktop_text = 'Desktop' %}
+                  {% set android_text = 'Android' %}
+                  {% set ios_text = 'iOS' %}
+                  {% set focus_text = 'Focus' %}
                 {% else %}
                   {% set about_url = url('firefox.family.index') %}
+                  {% set desktop_text = _('Desktop Browser') %}
+                  {% set android_text = _('Android Browser') %}
+                  {% set ios_text = _('iOS Browser') %}
+                  {% set focus_text = _('Focus Browser') %}
                 {% endif %}
                   <a href="{{ about_url }}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
                     {{ _('About Firefox') }}
@@ -85,22 +93,22 @@
                 </li>
                 <li>
                   <a href="{{ url('firefox.desktop.index')}}" data-link-type="nav" data-link-name="Desktop Browser" data-link-group="Firefox">
-                    {{ _('Desktop Browser') }}
+                    {{ desktop_text }}
                   </a>
                 </li>
                 <li>
                   <a href="{{ url('firefox.ios')}}" data-link-type="nav" data-link-name="iOS Browser" data-link-group="Firefox">
-                    {{ _('iOS Browser') }}
+                    {{ ios_text }}
                   </a>
                 </li>
                 <li>
                   <a href="{{ url('firefox.android.index')}}" data-link-type="nav" data-link-name="Android Browser" data-link-group="Firefox">
-                    {{ _('Android Browser') }}
+                    {{ android_text }}
                   </a>
                 </li>
                 <li>
                   <a href="{{ url('firefox.focus')}}" data-link-type="nav" data-link-name="Focus Browser" data-link-group="Firefox">
-                    {{ _('Focus Browser') }}
+                    {{ focus_text }}
                   </a>
                 </li>
                 <li>
@@ -115,25 +123,28 @@
                 </li>
               </ul>
 
-              <aside class="nav-promo">
-                <span class="meta">{{ _('Faster Browser') }}</span>
-                <a class="thumbnail" href="https://blog.mozilla.org/firefox/fast-responsive-reliable-browser-multi-tab-age/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Fast, Responsive, Reliable: A Browser for the Multi-Tab Age" data-link-group="Nav Article">
-                  <figure>
-                    {{ high_res_img('nav/promos/better-browser.png', {'alt': '', 'width': '204', 'height': '140'}) }}
-                    <figcaption>{{ _('Fast, Responsive, Reliable: A Browser for the Multi-Tab Age') }}</figcaption>
-                  </figure>
-                </a>
-              </aside>
+              {% if LANG != 'en-US' %}
+                <aside class="nav-promo">
+                  <span class="meta">{{ _('Faster Browser') }}</span>
+                  <a class="thumbnail" href="https://blog.mozilla.org/firefox/fast-responsive-reliable-browser-multi-tab-age/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Fast, Responsive, Reliable: A Browser for the Multi-Tab Age" data-link-group="Nav Article">
+                    <figure>
+                      {{ high_res_img('nav/promos/better-browser.png', {'alt': '', 'width': '204', 'height': '140'}) }}
+                      <figcaption>{{ _('Fast, Responsive, Reliable: A Browser for the Multi-Tab Age') }}</figcaption>
+                    </figure>
+                  </a>
+                </aside>
 
-              <aside class="nav-promo">
-                <span class="meta">{{ _('Better Browsing') }}</span>
-                <a class="thumbnail" href="https://blog.mozilla.org/firefox/smooth-scrolling-web-browser-removes-jank/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Smooth Scrolling: How a Web Browser Removes Jank" data-link-group="Nav Article">
-                  <figure>
-                    {{ high_res_img('nav/promos/smooth-scrolling.png', {'alt': '', 'width': '204', 'height': '140'}) }}
-                    <figcaption>{{ _('Smooth Scrolling: How a Web Browser Removes Jank') }}</figcaption>
-                  </figure>
-                </a>
-              </aside>
+                <aside class="nav-promo">
+                  <span class="meta">{{ _('Better Browsing') }}</span>
+                  <a class="thumbnail" href="https://blog.mozilla.org/firefox/smooth-scrolling-web-browser-removes-jank/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=promo" data-link-type="nav" data-link-name="Nav Aritcle: Smooth Scrolling: How a Web Browser Removes Jank" data-link-group="Nav Article">
+                    <figure>
+                      {{ high_res_img('nav/promos/smooth-scrolling.png', {'alt': '', 'width': '204', 'height': '140'}) }}
+                      <figcaption>{{ _('Smooth Scrolling: How a Web Browser Removes Jank') }}</figcaption>
+                    </figure>
+                  </a>
+                </aside>
+              {% endif %}
+
             </div>
           </div>
         </li>
