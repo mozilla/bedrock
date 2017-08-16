@@ -353,3 +353,22 @@ class TestInternetHealth(TestCase):
         view.request = RequestFactory().get('/internet-health/')
         view.request.locale = 'es-ES'
         eq_(view.get_template_names(), ['mozorg/internet-health.html'])
+
+
+@patch('bedrock.mozorg.views.l10n_utils.render')
+class TestTechnology(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_technology_template(self, render_mock):
+        view = views.TechnologyView()
+        view.request = RequestFactory().get('/technology/')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['mozorg/technology-en.html'])
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_technology_locale_template(self, render_mock):
+        view = views.TechnologyView()
+        view.request = RequestFactory().get('/technology/')
+        view.request.locale = 'es-ES'
+        eq_(view.get_template_names(), ['mozorg/technology.html'])

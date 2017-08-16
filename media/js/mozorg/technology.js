@@ -21,8 +21,8 @@ function onYouTubeIframeAPIReady() {
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     function onYouTubeIframeAPIReady() {
-        // show video modal when user clicks "watch now" button
-        $('#rust a.button').attr('role', 'button').click(function(e) {
+        // show video modal when user clicks play button
+        $('.hero-rust-video a.video-play').attr('role', 'button').click(function(e) {
             e.preventDefault();
 
             var $videoContainer = $('#video-container');

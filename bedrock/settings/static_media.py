@@ -1827,20 +1827,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/technology-bundle.js',
     },
-    'technology-rust-video-test': {
-        'source_filenames': (
-            'js/base/mozilla-modal.js',
-            'js/mozorg/technology-rust-video-test.js',
-        ),
-        'output_filename': 'js/technology-rust-video-test-bundle.js',
-    },
-    'experiment-technology-rust-video': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/mozorg/experiment-technology-rust-video.js',
-        ),
-        'output_filename': 'js/experiment-technology-rust-video.js',
-    },
     'tracking-protection-tour': {
         'source_filenames': (
             'js/libs/jquery-1.11.3.min.js',
