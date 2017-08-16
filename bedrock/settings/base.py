@@ -1148,8 +1148,10 @@ DONATE_PARAMS = {
 
 # Official Firefox Twitter accounts
 FIREFOX_TWITTER_ACCOUNTS = {
+    'de': 'https://twitter.com/firefox_DE',
     'en-US': 'https://twitter.com/firefox',
     'es-ES': 'https://twitter.com/firefox_es',
+    'fr': 'https://twitter.com/firefox_FR',
     'pt-BR': 'https://twitter.com/firefoxbrasil',
 }
 
