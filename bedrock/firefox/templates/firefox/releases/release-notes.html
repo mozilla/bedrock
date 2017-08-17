@@ -121,7 +121,7 @@
           </div>
           <div class="description">
               <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
-              <p>{{ release.text|markdown|safe }}</p>
+              <p>{{ release.text|safe }}</p>
           </div>
           {% endblock %}
         </div>
@@ -133,8 +133,8 @@
     <section class="notes-section">
       <div class="features" id="new-features">
         <div class="container">
-        {% if new_features %}
-          {% for note in new_features if note.tag == "New" %}
+        {% if release.notes %}
+          {% for note in release.notes if note.tag == "New" %}
             {% if loop.first %}
             <div class="section-wrapper" id="{{ note.tag|lower() }}">
               <h4>{{ note.tag }}</h4>
@@ -147,7 +147,7 @@
             {% endif %}
           {% endfor %}
 
-          {% for note in new_features if note.tag == "Fixed" %}
+          {% for note in release.notes if note.tag == "Fixed" %}
             {% if loop.first %}
             <div class="section-wrapper" id="{{ note.tag|lower() }}">
               <h4>{{ note.tag }}</h4>
@@ -160,7 +160,7 @@
             {% endif %}
           {% endfor %}
 
-          {% for note in new_features if note.tag == "Changed" %}
+          {% for note in release.notes if note.tag == "Changed" %}
             {% if loop.first %}
             <div class="section-wrapper" id="{{ note.tag|lower() }}">
               <h4>{{ note.tag }}</h4>
@@ -173,7 +173,7 @@
             {% endif %}
           {% endfor %}
 
-          {% for note in new_features if note.tag == "Developer" %}
+          {% for note in release.notes if note.tag == "Developer" %}
             {% if loop.first %}
             <div class="section-wrapper" id="{{ note.tag|lower() }}">
               <h4>{{ note.tag }}</h4>
@@ -182,25 +182,12 @@
               {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
-              <a class="mdn-icon more" rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a>
+              <a class="mdn-icon more" rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
             </div>
             {% endif %}
           {% endfor %}
 
-          {% for note in new_features if note.tag == "HTML5" %}
-            {% if loop.first %}
-            <div class="section-wrapper" id="{{ note.tag|lower() }}">
-              <h4>{{ note.tag }}</h4>
-              <ul class="section-items">
-              {% endif %}
-              {{ note_entry(note) }}
-              {% if loop.last %}
-              </ul>
-            </div>
-            {% endif %}
-          {% endfor %}
-
-          {% for note in new_features if note.tag == "Resolved" %}
+          {% for note in release.notes if note.tag == "HTML5" %}
             {% if loop.first %}
             <div class="section-wrapper" id="{{ note.tag|lower() }}">
               <h4>{{ note.tag }}</h4>
@@ -213,7 +200,20 @@
             {% endif %}
           {% endfor %}
 
-          {% for note in new_features if not note.tag %}
+          {% for note in release.notes if note.tag == "Resolved" %}
+            {% if loop.first %}
+            <div class="section-wrapper" id="{{ note.tag|lower() }}">
+              <h4>{{ note.tag }}</h4>
+              <ul class="section-items">
+              {% endif %}
+              {{ note_entry(note) }}
+              {% if loop.last %}
+              </ul>
+            </div>
+            {% endif %}
+          {% endfor %}
+
+          {% for note in release.notes if not note.tag %}
             {% if loop.first %}
             <div class="section-wrapper" id="{{ note.tag|lower() }}">
               <h4>{{ note.tag }}</h4>
@@ -225,10 +225,8 @@
             </div>
             {% endif %}
           {% endfor %}
-        {% endif %}
 
-        {% if known_issues %}
-          {% for note in known_issues %}
+          {% for note in release.notes if note.tag == "Known" %}
             {% if loop.first %}
             <div class="section-wrapper" id="known">
               <h4>{{ _('unresolved') }}</h4>
@@ -314,7 +312,7 @@
     <div class="col">
       <h2>{{ _('Other Resources') }}</h2>
       {% block extra_resources %}{% endblock %}
-      <a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version() }}">{{ _('Developer Information') }}</a>
+      <a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
       <a rel="external"  href="{{ release.get_bug_search_url() }}">{{ _('Complete list of changes for this release') }}</a>
       <a rel="external" href="https://blog.mozilla.org/press/kits/">{{ _('Press Kit') }}</a>
       <a rel="external" href="https://blog.mozilla.org/press/">{{ _('Mozilla and Firefox News') }}</a>
@@ -335,7 +333,7 @@
 
 {% macro note_entry(note) %}
   <li id="note-{{ note.id }}">
-    {{ note.note|markdown|safe }}
+    {{ note.note|safe }}
     {% if release.channel == 'Nightly' and note.bug -%}
     <span class="bug-id"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">{{ _('Bug %d')|format(note.bug) }}</a></span>
     {%- endif %}

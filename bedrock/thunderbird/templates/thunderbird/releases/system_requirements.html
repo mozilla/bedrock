@@ -23,7 +23,7 @@
 
   <div id="main-content">
     <article class="main-column">
-        {{ release.system_requirements|markdown|safe }}
+        {{ release.system_requirements|safe }}
     </article>
   </div>
   {% block sidebar %}{% endblock %}

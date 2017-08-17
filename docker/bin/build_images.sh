@@ -88,6 +88,7 @@ if $PROD_MODE && ! imageExists "l10n"; then
         ENVFILE="master";
     fi
     dockerRun $ENVFILE code "python manage.py l10n_update"
+    dockerRun $ENVFILE code "python manage.py update_release_notes"
     dockerRun $ENVFILE code "python manage.py update_sitemaps"
     docker/bin/docker_build.sh "l10n"
 fi

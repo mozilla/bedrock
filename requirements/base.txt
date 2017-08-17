@@ -50,9 +50,6 @@ whitenoise==3.3.0 \
 django-localflavor==1.1 \
     --hash=sha256:3b5503b512248af661cf91e4f402327619ffc3bc5b3b0ea774a969ed3bf84594 \
     --hash=sha256:afd6627cd0fd396824e44a5e4f7bfe9c8d7a45d9bf09b4db2c0683d92681ba93
-djangorestframework==3.3.2 \
-    --hash=sha256:5634b1ff56581bf0fe4075e86227fc9693c1ca031c7213c9ae942c445c24817b \
-    --hash=sha256:4962418a57804f8323282728a4f9b9496e78caec1adda352170697752eff01bf
 django-filter==0.11.0 \
     --hash=sha256:7d17547b65216cc5c6fbc04aee55088ccd5917c0775304d96f7017c26c789cd7 \
     --hash=sha256:00cc47935afbbd83260fdd283b0aa790e658d2a71922049f6e467dca8a124537
@@ -100,11 +97,6 @@ puente==0.4.1 \
 babel==2.3.4 \
     --hash=sha256:3318ed2960240d61cbc6558858ee00c10eed77a6508c4d1ed8e6f7f48399c975 \
     --hash=sha256:c535c4403802f6eb38173cd4863e419e2274921a01a8aad8a5b497c131c62875
-https://github.com/pmclanahan/django-synctool/archive/5f7cf9bad741e60bd9df32aa90e71425d98e437c.tar.gz#egg=django-synctool==1.1.1 \
-    --hash=sha256:2dd290c5339769e3c40d644b5248236bec7c558eaccb922badd7c39c5fd5e095
-django-mozilla-rna==2.0.2 \
-    --hash=sha256:da0e199ef08b3ed7200232b2724cee82812d70edfcea63202c48408e3241eb4f \
-    --hash=sha256:c75c905a0cfe744af143d7e7007ed5376ed0f27bf0db00b790dd9421eae027a0
 django-jinja==2.1.3 \
     --hash=sha256:64446ae1de3593136042147cb16ba9a3aa4449370d9c26c1ec9b7553b2d1c809
 django-jinja-markdown==1.0 \

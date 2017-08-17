@@ -12,11 +12,11 @@ from jinja2 import Markup
 from mock import patch
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
-from rna.models import Release
 
 from bedrock.base.templatetags.helpers import static
 from bedrock.mozorg.templatetags import misc
 from bedrock.mozorg.tests import TestCase
+from bedrock.releasenotes.models import Release
 
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -505,8 +505,8 @@ class TestReleaseNotesURL(TestCase):
         """
         Should return the results of reverse with the correct args
         """
-        release = Release(
-            channel='Aurora', version='42.0a2', product='Firefox for Android')
+        release = Release(dict(
+            channel='Aurora', version='42.0a2', product='Firefox for Android'))
         eq_(misc.releasenotes_url(release), mock_reverse.return_value)
         mock_reverse.assert_called_with(
             'firefox.android.releasenotes', args=('42.0a2', 'aurora'))
@@ -516,7 +516,7 @@ class TestReleaseNotesURL(TestCase):
         """
         Should return the results of reverse with the correct args
         """
-        release = Release(version='42.0', product='Firefox')
+        release = Release(dict(version='42.0', product='Firefox'))
         eq_(misc.releasenotes_url(release), mock_reverse.return_value)
         mock_reverse.assert_called_with(
             'firefox.desktop.releasenotes', args=('42.0', 'release'))

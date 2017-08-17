@@ -85,11 +85,6 @@ def schedule_database_jobs():
     def update_security_advisories():
         call_command('update_security_advisories')
 
-    @scheduled_job('interval', minutes=5)
-    def rnasync():
-        # running in a subprocess as rnasync was not designed for long-running process
-        call_command('rnasync')
-
     @scheduled_job('interval', hours=6)
     def update_tweets():
         call_command('cron update_tweets')
@@ -108,6 +103,10 @@ def schedul_l10n_jobs():
     @scheduled_job('interval', minutes=10)
     def update_locales():
         call_command('l10n_update')
+
+    @scheduled_job('interval', minutes=5)
+    def update_release_notes():
+        call_command('update_release_notes --quiet')
 
 
 if __name__ == '__main__':
