@@ -258,23 +258,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_all_old_ie-bundle.css',
     },
-    'firefox_android': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/base/mozilla-modal.less',
-            'css/base/send-to-device-micro.less',
-            'css/base/mozilla-accordion.less',
-            'css/firefox/android.less',
-        ),
-        'output_filename': 'css/firefox_android-bundle.css',
-    },
-    'firefox_android_all': {
-        'source_filenames': (
-            'css/base/menu-resp.less',
-            'css/firefox/android/all.less',
-        ),
-        'output_filename': 'css/firefox-android-all.css',
-    },
     'firefox_unsupported': {
         'source_filenames': (
             'css/firefox/unsupported.less',
@@ -340,13 +323,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_desktop_trust-bundle.css',
     },
-    'firefox_features': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/features.less',
-        ),
-        'output_filename': 'css/firefox_features-bundle.css',
-    },
     'firefox-features-hub-common': {
         'source_filenames': (
             'css/firefox/features/common.scss',
@@ -374,21 +350,6 @@ PIPELINE_CSS = {
             'css/firefox/interest-dashboard.less',
         ),
         'output_filename': 'css/firefox-interest-dashboard-bundle.css',
-    },
-    'firefox_family_index': {
-        'source_filenames': (
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/family/index.less',
-        ),
-        'output_filename': 'css/firefox_family_index-bundle.css',
-    },
-    'firefox_faq': {
-        'source_filenames': (
-            'css/base/menu-resp.less',
-            'css/firefox/faq.less',
-            'css/base/mozilla-accordion.less',
-        ),
-        'output_filename': 'css/firefox_faq-bundle.css',
     },
     'firefox_focus': {
         'source_filenames': (
@@ -463,30 +424,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-hub-home-bundle.css',
     },
-    'firefox_developer': {
-        'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/base/mozilla-share-cta.less',
-            'css/base/menu-resp.less',
-            'css/firefox/developer.less',
-        ),
-        'output_filename': 'css/firefox_developer-bundle.css',
-    },
     'firefox_developer_2017': {
         'source_filenames': (
             'css/firefox/developer-2017.scss',
         ),
         'output_filename': 'css/firefox_developer_2017-bundle.css',
-    },
-    'firefox_ios': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/base/mozilla-modal.less',
-            'css/base/send-to-device-micro.less',
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/ios.less',
-        ),
-        'output_filename': 'css/firefox_ios-bundle.css',
     },
     'firefox_ios_testflight': {
         'source_filenames': (
@@ -1273,22 +1215,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_all-bundle.js',
     },
-    'firefox_android': {
-        'source_filenames': (
-            'js/base/mozilla-accordion.js',
-            'js/base/mozilla-smoothscroll.js',
-            'js/base/mozilla-accordion-gatrack.js',
-            'js/libs/jquery.cycle2.min.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/sync-animation.js',
-            'js/base/mozilla-modal.js',
-            'js/base/send-to-device.js',
-            'js/firefox/android.js',
-        ),
-        'output_filename': 'js/firefox_android-bundle.js',
-    },
     'firefox_desktop_customize': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
@@ -1341,22 +1267,6 @@ PIPELINE_JS = {
             'js/firefox/desktop/common.js',
         ),
         'output_filename': 'js/firefox_desktop_trust-bundle.js',
-    },
-    'firefox_developer': {
-        'source_filenames': (
-            'js/firefox/developer.js',
-            'js/base/mozilla-modal.js',
-            'js/base/mozilla-share-cta.js',
-        ),
-        'output_filename': 'js/firefox_developer-bundle.js',
-    },
-    'firefox_features': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-        ),
-        'output_filename': 'js/firefox_features-bundle.js',
     },
     'firefox-features-hub': {
         'source_filenames': (
@@ -1507,38 +1417,11 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_interest_dashboard-bundle.js',
     },
-    'firefox_family_index': {
-        'source_filenames': (
-            'js/firefox/family-index.js',
-        ),
-        'output_filename': 'js/firefox_family_index-bundle.js',
-    },
-    'firefox_faq': {
-        'source_filenames': (
-            'js/base/mozilla-accordion.js',
-            'js/base/mozilla-accordion-gatrack.js',
-        ),
-        'output_filename': 'js/firefox_faq-bundle.js',
-    },
     'firefox_feedback': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',
         ),
         'output_filename': 'js/firefox_feedback-bundle.js',
-    },
-    'firefox_ios': {
-        'source_filenames': (
-            'js/base/mozilla-smoothscroll.js',
-            'js/base/mozilla-modal.js',
-            'js/base/search-params.js',
-            'js/base/send-to-device.js',
-            'js/base/uitour-lib.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/ios.js',
-        ),
-        'output_filename': 'js/firefox_ios-bundle.js',
     },
     'firefox_mobile_download_desktop': {
         'source_filenames': (

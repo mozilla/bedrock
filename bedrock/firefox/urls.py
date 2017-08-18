@@ -42,10 +42,8 @@ urlpatterns = (
     page('firefox/desktop/customize', 'firefox/desktop/customize.html'),
     page('firefox/desktop/tips', 'firefox/desktop/tips.html'),
     page('firefox/desktop/trust', 'firefox/desktop/trust.html'),
-    url(r'firefox/developer/$',
-        views.FirefoxProductDevEditionView,
-        name='firefox.developer'),
-    url(r'firefox/features/$', views.features_landing, name='firefox.features'),
+    page('firefox/developer', 'firefox/products/developer.html'),
+    page('firefox/features', 'firefox/features/index.html'),
     url('^firefox/features/private-browsing/$',
         views.FeaturesPrivateBrowsingView.as_view(),
         name='firefox.features.private-browsing'),
@@ -83,9 +81,6 @@ urlpatterns = (
     page('firefox/mobile-download/desktop', 'firefox/mobile-download-desktop.html'),
     page('firefox/private-browsing', 'firefox/private-browsing.html', alt_canonical_paths={
         'en-US': '/firefox/features/private-browsing/',
-    }),
-    page('firefox/products', 'firefox/family/index.html', alt_canonical_paths={
-        'en-US': '/firefox/',
     }),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),

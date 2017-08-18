@@ -190,11 +190,11 @@
 
 <header id="fxfamilynav-header" class="fxfamilynav-header{% if (navclass) %} {{ navclass }}{% endif %}">
   <div class="container">
-    <a href="{{ url('firefox.family.index') }}" class="fxfamilynav-logo">{{ _('Firefox') }}</a>
+    <a href="{{ url('firefox') }}" class="fxfamilynav-logo">{{ _('Firefox') }}</a>
     <nav id="fxfamilynav" class="fxfamilynav" role="navigation">
       <ul id="fxfamilynav-primary" class="primary-nav">
         <li{% if activenav == 'firefox' %} class="active"{% endif %} id="fxfamilynav-home-link">
-          <a data-id="firefox" href="{{ url('firefox.family.index') }}" class="primary-link" data-link-type="nav" data-link-name="Firefox"><div>{{ _('Firefox') }}</div></a>
+          <a data-id="firefox" href="{{ url('firefox') }}" class="primary-link" data-link-type="nav" data-link-name="Firefox"><div>{{ _('Firefox') }}</div></a>
         </li>
         <li{% if activenav == 'desktop' %} class="active"{% endif %}>
           <a data-id="desktop" href="{{ url('firefox.desktop.index') }}" class="primary-link" data-link-type="nav" data-link-name="for Desktop"><div>{{ _('Desktop') }}</div></a>
@@ -206,7 +206,7 @@
           <a data-id="ios" href="{{ url('firefox.ios') }}" class="primary-link" data-link-type="nav" data-link-name="for iOS"><div>{{ _('iOS') }}</div></a>
         </li>
         <li class="related{% if activenav == 'features' %} active{% endif %}">
-          <a data-id="features" href="{{ url('firefox.features') }}" class="primary-link" data-link-type="nav" data-link-name="Features"><div>{{ _('Features') }}</div></a>
+          <a data-id="features" href="{{ url('firefox.features.index') }}" class="primary-link" data-link-type="nav" data-link-name="Features"><div>{{ _('Features') }}</div></a>
         </li>
       </ul>
     </nav>{#-- /#fxfamilynav --#}

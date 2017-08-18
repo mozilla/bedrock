@@ -69,7 +69,7 @@ URLS = flatten((
              'https://wiki.mozilla.org/Websites/Directory'),
 
     # bug 885856
-    url_test('/projects/index.{de,fr,hr,sq}.html', '/{de,fr,hr,sq}/firefox/products/'),
+    url_test('/projects/index.{de,fr,hr,sq}.html', '/{de,fr,hr,sq}/firefox/'),
 
     # bug 856075
     url_test('/projects/technologies.html',
@@ -290,7 +290,7 @@ URLS = flatten((
     url_test('/firefox/{46.0,46.0.1,46.0a1,46.0a2}/hello/start', 'https://support.mozilla.org/kb/hello-status'),
 
     # bug 1148127
-    url_test('/products/', '/firefox/products/'),
+    url_test('/products/', '/firefox/'),
 
     # Bug 1110927
     url_test('/firefox/start/central.html', '/firefox/new/'),
@@ -339,7 +339,7 @@ URLS = flatten((
     url_test('/firefox/{performance,happy,speed,memory}/', '/firefox/desktop/fast/'),
     url_test('/firefox/security/', '/firefox/desktop/trust/'),
     url_test('/firefox/technology/', 'https://developer.mozilla.org/docs/Tools'),
-    url_test('/firefox/sms/{,sent}', '/firefox/products/'),
+    url_test('/firefox/sms/{,sent}', '/firefox/'),
 
     # Bug 979527
     url_test('{/products,}/firefox/central{/,.html}', '/firefox/new/',
@@ -730,7 +730,7 @@ URLS = flatten((
     # bug 961010
     url_test('/mobile/credits/credits-people-list.html', '/credits/'),
 
-    url_test('/{mobile,fennec}/', '/firefox/products/'),
+    url_test('/{mobile,fennec}/', '/firefox/'),
 
     # bug 876668
     url_test('/mobile/customize/', '/firefox/android/'),
@@ -1031,7 +1031,7 @@ URLS = flatten((
 
     # Bug 654614 /blocklist -> addons.m.o/blocked
     url_test('/blocklist/', 'https://addons.mozilla.org/blocked/'),
-    url_test('/products/firefox/{,stuff/}', '/firefox/products/'),
+    url_test('/products/firefox/{,stuff/}', '/firefox/'),
 
     # Bug 1255785
     url_test('/styleguide/identity/mozilla/logo-prototype/', '/styleguide/'),
@@ -1153,9 +1153,6 @@ URLS = flatten((
     # Bug 1355189
     url_test('/en-US/firefox/desktop/fast/', '/en-US/firefox/features/fast/'),
 
-    # Bug 1361181
-    url_test('/en-US/firefox/products/', '/en-US/firefox/'),
-
     # Bug 1369732
     url_test('{/en-US,}/Firefox', '{/en-US,}/firefox/'),
 
@@ -1165,4 +1162,7 @@ URLS = flatten((
     # Bug 1380845
     url_test('/persona/privacy-policy/', '/privacy/archive/persona/2017-07/'),
     url_test('/persona/terms-of-service/', '/privacy/archive/persona/2017-07/#terms-of-service'),
+
+    # Bug 1386112
+    url_test('/firefox/android/faq/', 'https://support.mozilla.org/products/mobile'),
 ))
