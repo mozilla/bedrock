@@ -85,7 +85,27 @@
                 <li><a class="more" href="{{ url('firefox.family.index') }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
               </ul>
             </div>
-            <button id="other-platforms-modal-link" class="hidden" type="button">{{_('Firefox for Other Platforms & Languages')}}</button>
+
+            <div id="other-platforms-languages-wrapper" class="hidden">
+              <button id="other-platforms-modal-link" type="button">
+              {% if l10n_has_tag('firefox_new_install_options') %}
+                {{ _('Advanced install options & other platforms') }}
+              {% else %}
+                {{ _('Firefox for other platforms') }}
+              {% endif %}
+              </button>
+
+              <p>
+                <a href="{{ url('firefox.all') }}">
+                {% if l10n_has_tag('firefox_new_install_options') %}
+                  {{ _('Other languages') }}
+                {% else %}
+                  {{ _('Available Languages') }}
+                {% endif %}
+                </a>
+              </p>
+            </div>
+
             <section id="benefits">
               <ul>
                 <li>
@@ -118,7 +138,13 @@
   <div id="other-platforms">
     <div class="container">
       <section class="section-other-platforms">
-        <h4>{{_('Firefox for other platforms') }}</h4>
+        <h4>
+        {% if l10n_has_tag('firefox_new_install_options') %}
+          {{ _('Advanced Install Options & Other Platforms') }}
+        {% else %}
+          {{_('Firefox for other platforms') }}
+        {% endif %}
+        </h4>
 
         {{ download_firefox_desktop_list() }}
 

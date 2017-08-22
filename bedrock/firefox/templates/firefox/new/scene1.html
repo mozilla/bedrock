@@ -105,9 +105,11 @@
                 <li><a class="more" href="{{ url('firefox.family.index') }}">{{_('Discover all the ways to take Firefox on the go')}}</a></li>
               </ul>
             </div>
-            {% if l10n_has_tag('firefox_new_other_platforms') %}
-              <button id="other-platforms-modal-link" class="hidden" type="button">{{_('Firefox for Other Platforms & Languages')}}</button>
-            {% endif %}
+
+            <div id="other-platforms-languages-wrapper" class="hidden">
+              <button id="other-platforms-modal-link" type="button">{{_('Firefox for Other Platforms & Languages')}}</button>
+            </div>
+
           </div>{#-- /.main-content --#}
         </div>{#-- /.inner-container --#}
       </div>
@@ -138,7 +140,6 @@
     </aside>
   </div>
 
-  {% if l10n_has_tag('firefox_new_other_platforms') %}
   <div id="other-platforms">
     <div class="container">
       <section class="section-other-platforms">
@@ -168,7 +169,6 @@
       </section>
     </div>
   </div>
-  {% endif %}
 
 </main>
 

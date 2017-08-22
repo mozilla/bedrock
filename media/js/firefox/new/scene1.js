@@ -8,6 +8,7 @@
     var $html = $(document.documentElement);
     var client = window.Mozilla.Client;
     var $modalLink = $('#other-platforms-modal-link');
+    var $otherPlatformsLanguagesWrapper = $('#other-platforms-languages-wrapper');
 
     var uiTourSendEvent = function(action, data) {
         var event = new CustomEvent('mozUITour', {
@@ -86,7 +87,7 @@
 
     var initOtherPlatformsModal = function() {
         // show the modal cta button
-        $modalLink.removeClass('hidden');
+        $otherPlatformsLanguagesWrapper.removeClass('hidden');
 
         $modalLink.on('click', function(e) {
             e.preventDefault();

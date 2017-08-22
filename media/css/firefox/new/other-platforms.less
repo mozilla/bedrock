@@ -196,23 +196,28 @@ html[dir="rtl"] #other-platforms {
     }
 }
 
-#other-platforms-modal-link {
+#other-platforms-languages-wrapper {
     .font-size(16px);
-    background: none;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 20px;
+    margin-top: 60px;
 
     &.hidden {
         display: none;
     }
 
-    &:active,
-    &:focus,
-    &:hover {
-        text-decoration: underline;
+    #other-platforms-modal-link {
+        .font-size(16px);
+        background: none;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        margin-bottom: 6px;
+
+        &:active,
+        &:focus,
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
 
