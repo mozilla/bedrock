@@ -354,7 +354,6 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/australis/fx38_0_5/firstrun.html'])
 
     @override_settings(DEV=True)
-    @patch('bedrock.base.templatetags.helpers.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0(self, render_mock):
         """Should use new onboarding template as default"""
         req = self.rf.get('/en-US/firefox/firstrun/')
@@ -364,13 +363,40 @@ class TestFirstRun(TestCase):
 
     @override_settings(DEV=True)
     @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
-    @patch('bedrock.base.templatetags.helpers.switch', Mock(return_value=True))
     def test_fx_firstrun_40_0_old_template(self, render_mock):
         """Should use older horizon firstrun for non active locales"""
-        req = self.rf.get('/de/firefox/firstrun/')
+        req = self.rf.get('/firefox/firstrun/')
+        req.locale = 'de'
         self.view(req, version='40.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
+
+    # Bug 1392473 copy test on /firstrun
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_copy_experiment_a(self, render_mock):
+        """Should use onboarding-a template for control experiment"""
+        req = self.rf.get('/en-US/firefox/firstrun/?v=a')
+        self.view(req, version='55.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/onboarding-a.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_copy_experiment_b(self, render_mock):
+        """Should use onboarding-b template for copy experiment"""
+        req = self.rf.get('/en-US/firefox/firstrun/?v=b')
+        self.view(req, version='55.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/onboarding-b.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_copy_experiment_other_locales(self, render_mock):
+        """Should use regular firstrun for other locales"""
+        req = self.rf.get('/firefox/firstrun/?v=b')
+        req.locale = 'de'
+        self.view(req, version='55.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/onboarding.html'])
 
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
