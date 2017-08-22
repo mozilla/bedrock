@@ -7,65 +7,35 @@ $(function() {
     'use strict';
 
     var client = window.Mozilla.Client;
+    var utils = window.Mozilla.Utils;
 
-    var options = [
-        {
-            'id': 'fx-out-of-date-banner-copy1-direct-1',
-            'name': 'fx-out-of-date',
-            'experimentName': 'fx-out-of-date-banner-copy1',
-            'experimentVariant': 'direct-1',
-            'heading': 'Your browser security is at risk.',
-            'message': 'Update Firefox now to protect yourself from the latest malware.',
-            'confirm': 'Update now',
-            'confirmAction': 'Update Firefox',
-            'confirmLabel': 'Firefox for Desktop',
-            'url': '/firefox/new/?scene=2',
-            'close': 'Close',
-            'closeLabel': 'Close'
-        },
-        {
-            'id': 'fx-out-of-date-banner-copy1-direct-2',
-            'name': 'fx-out-of-date',
-            'experimentName': 'fx-out-of-date-banner-copy1',
-            'experimentVariant': 'direct-2',
-            'heading': 'Your Firefox is out-of-date.',
-            'message': 'Get the most recent version to keep browsing securely.',
-            'confirm': 'Update Firefox',
-            'confirmAction': 'Update Firefox',
-            'confirmLabel': 'Firefox for Desktop',
-            'url': '/firefox/new/?scene=2',
-            'close': 'Close',
-            'closeLabel': 'Close'
-        },
-        {
-            'id': 'fx-out-of-date-banner-copy1-foxy-1',
-            'name': 'fx-out-of-date',
-            'experimentName': 'fx-out-of-date-banner-copy1',
-            'experimentVariant': 'foxy-1',
-            'heading': 'Psst… it’s time for a tune up',
-            'message': 'Stay safe and fast with a quick update.',
-            'confirm': 'Update Firefox',
-            'confirmAction': 'Update Firefox',
-            'confirmLabel': 'Firefox for Desktop',
-            'url': '/firefox/new/?scene=2',
-            'close': 'Close',
-            'closeLabel': 'Close'
-        },
-        {
-            'id': 'fx-out-of-date-banner-copy1-foxy-2',
-            'name': 'fx-out-of-date',
-            'experimentName': 'fx-out-of-date-banner-copy1',
-            'experimentVariant': 'foxy-2',
-            'heading': 'Time to browse better!',
-            'message': 'Get the latest version of Firefox for extra speed and safety.',
-            'confirm': 'Update now',
-            'confirmAction': 'Update Firefox',
-            'confirmLabel': 'Firefox for Desktop',
-            'url': '/firefox/new/?scene=2',
-            'close': 'Close',
-            'closeLabel': 'Close'
-        }
-    ];
+    var headingText;
+    var messageText;
+    var confirmText;
+    var closeText;
+
+    // try to get localized copy
+    // if any of the below fail, the banner will detect missing strings and
+    // will not initialize
+    if (typeof utils !== 'undefined') {
+        headingText = utils.trans('global-fx-out-of-date-banner-heading');
+        messageText = utils.trans('global-fx-out-of-date-banner-message');
+        confirmText = utils.trans('global-fx-out-of-date-banner-confirm');
+        closeText = utils.trans('global-close');
+    }
+
+    var config = {
+        'id': 'fx-out-of-date-banner',
+        'name': 'fx-out-of-date',
+        'heading': headingText,
+        'message': messageText,
+        'confirm': confirmText,
+        'url': '/firefox/new/?scene=2',
+        'close': closeText,
+        'gaConfirmAction': 'Update Firefox', // GA - English only
+        'gaConfirmLabel': 'Firefox for Desktop', // GA - English only
+        'gaCloseLabel': 'Close' // GA - English only
+    };
 
     // Set a unique cookie ID for fx-out-of-date notification.
     Mozilla.NotificationBanner.COOKIE_CODE_ID = 'moz-notification-fx-out-of-date';
@@ -78,11 +48,7 @@ $(function() {
 
                 // Check that cookies are enabled before seeing if one already exists.
                 if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
-                    var choice = Mozilla.NotificationBanner.getOptions(options);
-
-                    if (choice) {
-                        Mozilla.NotificationBanner.init(choice);
-                    }
+                    Mozilla.NotificationBanner.init(config);
                 }
             }
         });

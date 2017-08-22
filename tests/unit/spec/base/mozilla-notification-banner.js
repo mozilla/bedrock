@@ -28,11 +28,11 @@ describe('mozilla-notification-banner.js', function() {
             'heading': 'Your browser security is at risk.',
             'message': 'Update Firefox now to protect yourself from the latest malware.',
             'confirm': 'Update now',
-            'confirmAction': 'Update Firefox',
-            'confirmLabel': 'Firefox for Desktop',
+            'gaConfirmAction': 'Update Firefox',
+            'gaConfirmLabel': 'Firefox for Desktop',
             'url': '/firefox/new/?scene=2',
             'close': 'Close',
-            'closeLabel': 'Close'
+            'gaCloseLabel': 'Close'
         };
 
         it('should call show() if cookie does not exist', function() {
@@ -43,7 +43,7 @@ describe('mozilla-notification-banner.js', function() {
             expect(Mozilla.NotificationBanner.show).toHaveBeenCalled();
         });
 
-        it('should call show() if cookie value does not equal "interacted', function() {
+        it('should call show() if cookie value does not equal "interacted"', function() {
             spyOn(Mozilla.NotificationBanner, 'cutsTheMustard').and.returnValue(true);
             spyOn(Mozilla.NotificationBanner, 'getCookie').and.returnValue('foo');
             spyOn(Mozilla.NotificationBanner, 'show');
@@ -94,11 +94,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your browser security is at risk.',
                 'message': 'Update Firefox now to protect yourself from the latest malware.',
                 'confirm': 'Update now',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close'
+                'gaCloseLabel': 'Close'
             };
 
             expect(Mozilla.NotificationBanner.validateOptions(options)).toBeTruthy();
@@ -111,11 +111,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your browser security is at risk.',
                 'message': 'Update Firefox now to protect yourself from the latest malware.',
                 'confirm': 'Update now',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close'
+                'gaCloseLabel': 'Close'
             };
 
             expect(Mozilla.NotificationBanner.validateOptions(options)).toBeFalsy();
@@ -133,11 +133,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your browser security is at risk.',
                 'message': 'Update Firefox now to protect yourself from the latest malware.',
                 'confirm': 'Update now',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close'
+                'gaCloseLabel': 'Close'
             };
 
             spyOn(Mozilla.NotificationBanner, 'bind');
@@ -164,11 +164,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your browser security is at risk.',
                 'message': 'Update Firefox now to protect yourself from the latest malware.',
                 'confirm': 'Update now',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close'
+                'gaCloseLabel': 'Close'
             };
 
             spyOn(window.dataLayer, 'push');
@@ -189,11 +189,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your browser security is at risk.',
                 'message': 'Update Firefox now to protect yourself from the latest malware.',
                 'confirm': 'Update now',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close'
+                'gaCloseLabel': 'Close'
             };
 
             spyOn(window.dataLayer, 'push');
@@ -220,11 +220,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your browser security is at risk.',
                 'message': 'Update Firefox now to protect yourself from the latest malware.',
                 'confirm': 'Update now',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close'
+                'gaCloseLabel': 'Close'
             };
 
             var notification = Mozilla.NotificationBanner.create(options);
@@ -286,11 +286,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your browser security is at risk.',
                 'message': 'Update Firefox now to protect yourself from the latest malware.',
                 'confirm': 'Update now',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close',
+                'gaCloseLabel': 'Close',
                 confirmClick: function() {}
             };
 
@@ -332,11 +332,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your browser security is at risk.',
                 'message': 'Update Firefox now to protect yourself from the latest malware.',
                 'confirm': 'Update now',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close'
+                'gaCloseLabel': 'Close'
             };
 
             spyOn(Mozilla.NotificationBanner, 'bind');
@@ -478,11 +478,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your browser security is at risk.',
                 'message': 'Update Firefox now to protect yourself from the latest malware.',
                 'confirm': 'Update now',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close',
+                'gaCloseLabel': 'Close',
             },
             {
                 'id': 'fx-out-of-date-banner-copy1-direct-2',
@@ -492,11 +492,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Your Firefox is out-of-date.',
                 'message': 'Get the most recent version to keep browsing securely.',
                 'confirm': 'Update Firefox',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close'
+                'gaCloseLabel': 'Close'
             },
             {
                 'id': 'fx-out-of-date-banner-copy1-foxy-1',
@@ -506,11 +506,11 @@ describe('mozilla-notification-banner.js', function() {
                 'heading': 'Psst… it’s time for a tune up',
                 'message': 'Stay safe and fast with a quick update.',
                 'confirm': 'Update Firefox',
-                'confirmAction': 'Update Firefox',
-                'confirmLabel': 'Firefox for Desktop',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
                 'url': '/firefox/new/?scene=2',
                 'close': 'Close',
-                'closeLabel': 'Close'
+                'gaCloseLabel': 'Close'
             }
         ];
 

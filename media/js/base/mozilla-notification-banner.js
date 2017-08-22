@@ -59,7 +59,7 @@ if (typeof Mozilla === 'undefined') {
             'data-banner-name': _options.name,
             'data-banner-dismissal': '1',
             'eAction' : 'banner dismissal',
-            'eLabel': _options.closeLabel,
+            'eLabel': _options.gaCloseLabel,
             'event': 'in-page-interaction'
         });
     };
@@ -89,8 +89,8 @@ if (typeof Mozilla === 'undefined') {
         window.dataLayer.push({
             'data-banner-name': _options.name,
             'data-banner-click': '1',
-            'eAction' : _options.confirmAction,
-            'eLabel': _options.confirmLabel,
+            'eAction' : _options.gaConfirmAction,
+            'eLabel': _options.gaConfirmLabel,
             'event': 'in-page-interaction'
         });
     };
@@ -218,11 +218,11 @@ if (typeof Mozilla === 'undefined') {
             typeof options.heading !== 'string' ||
             typeof options.message !== 'string' ||
             typeof options.confirm !== 'string' ||
-            typeof options.confirmAction !== 'string' ||
-            typeof options.confirmLabel !== 'string' ||
+            typeof options.gaConfirmAction !== 'string' ||
+            typeof options.gaConfirmLabel !== 'string' ||
             typeof options.url !== 'string' ||
             typeof options.close !== 'string' ||
-            typeof options.closeLabel !== 'string') {
+            typeof options.gaCloseLabel !== 'string') {
             return false;
         }
 
@@ -313,11 +313,11 @@ if (typeof Mozilla === 'undefined') {
      * {String} heading (required) - Copy string for notification heading.
      * {String} message (required) - Copy string for notification message / subheading.
      * {String} confirm (required) - Copy string for main CTA button.
-     * {String} confirmAction (required) - String for action of CTA button in GA (this should always be English).
-     * {String} confirmLabel (required) - String for labelling CTA button in GA (this should always be English).
      * {String} url (required) - URL for main CTA link.
      * {String} close (required) - Copy string for close button.
-     * {String} closeLabel (required) - String for labelling close button in GA (this should always be English).
+     * {String} gaConfirmAction (required) - String for action of CTA button in GA (this should always be English).
+     * {String} gaConfirmLabel (required) - String for labeling CTA button in GA (this should always be English).
+     * {String} gaCloseLabel (required) - String for labeling close button in GA (this should always be English).
      * {Function} confirmClick (optional) - Callback to be executed on confirm CTA click.
      */
     NotificationBanner.init = function(options) {
