@@ -39,7 +39,7 @@ redirectpatterns = (
              'https://wiki.mozilla.org/Websites/Directory', locale_prefix=False),
 
     # bug 885856
-    redirect(r'^projects/index\.(de|fr|hr|sq).html$', '/{}/firefox/products/',
+    redirect(r'^projects/index\.(de|fr|hr|sq).html$', '/{}/firefox/',
              locale_prefix=False),
 
     # bug 856075
@@ -115,7 +115,7 @@ redirectpatterns = (
              'https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org'),
 
     # Bug 763665, 1148127
-    redirect(r'^projects/?$', 'firefox.family.index'),
+    redirect(r'^projects/?$', 'firefox'),
 
     # Bug 792185 Brand Toolkit -> Style Guide
     redirect(r'^firefox/brand/?$', 'styleguide.home'),

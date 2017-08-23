@@ -36,7 +36,7 @@ def url_test(url, location=None, status_code=requests.codes.moved_permanently,
     example:
 
         url_test('/about/drivers{/,.html}', 'https://wiki.mozilla.org/Firefox/Drivers'),
-        url_test('/projects/index.{de,fr,hr,sq}.html', '/{de,fr,hr,sq}/firefox/products/'),
+        url_test('/projects/index.{de,fr,hr,sq}.html', '/{de,fr,hr,sq}/firefox/'),
         url_test('/firefox/notes/', re.compile(r'\/firefox\/[\d\.]+\/releasenotes\/'),
         url_test('/firefox/android/{,beta/}notes/', re.compile(r'\\/firefox\\/android\\/[\\d\\.]+{,beta}\\/releasenotes\\/'
 

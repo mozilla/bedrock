@@ -1621,7 +1621,7 @@ redirectpatterns = (
     redirect('^mirroring\.html$', 'http://www-archive.mozilla.org/mirroring.html'),
     redirect('^mirrors\.html$', 'http://www-archive.mozilla.org/mirrors.html'),
     redirect('^mission\.html$', '/mission/'),
-    redirect('^mozilla1\.x$', '/firefox/products/'),
+    redirect('^mozilla1\.x$', '/firefox/'),
     redirect('^my-mozilla\.html$', '/'),
     redirect('^newlayout/bugathon\.html$', 'http://developer.mozilla.org/en/Gecko_BugAThon'),
     redirect('^newlayout/codestock$', '/docs/codestock99'),

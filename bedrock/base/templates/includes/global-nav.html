@@ -17,12 +17,7 @@
       <ul class="nav-primary-links">
         {{ global_nav_active_class }}
         <li class="item-firefox">
-          {% if LANG == 'en-US' %}
-            {% set firefox_url = url('firefox') %}
-          {% else %}
-            {% set firefox_url = url('firefox.new') %}
-          {% endif %}
-          <a href="{{ firefox_url }}" data-link-type="nav" data-link-position="top" data-link-name="Firefox">{{ _('Firefox') }}</a>
+          <a href="{{ url('firefox') }}" data-link-type="nav" data-link-position="top" data-link-name="Firefox">{{ _('Firefox') }}</a>
         </li>
         <li class="item-pocket">
           <a href="https://getpocket.com/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=pocket" data-link-type="nav" data-link-position="top" data-link-name="Pocket">{{ _('Pocket') }}</a>
@@ -75,19 +70,17 @@
               <ul class="nav-menu-secondary-links">
                 <li>
                 {% if LANG == 'en-US' %}
-                  {% set about_url = url('firefox') %}
                   {% set desktop_text = 'Desktop' %}
                   {% set android_text = 'Android' %}
                   {% set ios_text = 'iOS' %}
                   {% set focus_text = 'Focus' %}
                 {% else %}
-                  {% set about_url = url('firefox.family.index') %}
                   {% set desktop_text = _('Desktop Browser') %}
                   {% set android_text = _('Android Browser') %}
                   {% set ios_text = _('iOS Browser') %}
                   {% set focus_text = _('Focus Browser') %}
                 {% endif %}
-                  <a href="{{ about_url }}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
+                  <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
                     {{ _('About Firefox') }}
                   </a>
                 </li>
@@ -112,7 +105,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="{{ url('firefox.features')}}" data-link-type="nav" data-link-name="Features" data-link-group="Firefox">
+                  <a href="{{ url('firefox.features.index')}}" data-link-type="nav" data-link-name="Features" data-link-group="Firefox">
                     {{ _('Features') }}
                   </a>
                 </li>

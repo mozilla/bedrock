@@ -11,8 +11,7 @@ from time import time
 from urlparse import urlparse
 
 from django.conf import settings
-from django.http import (Http404, HttpResponseRedirect,
-                         HttpResponsePermanentRedirect)
+from django.http import (Http404, HttpResponsePermanentRedirect)
 from django.utils.cache import patch_response_headers
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
@@ -612,17 +611,6 @@ def ios_testflight(request):
                              {'newsletter_form': newsletter_form})
 
 
-def features_landing(request):
-    locale = l10n_utils.get_locale(request)
-
-    if lang_file_is_active('firefox/features/index', locale):
-        template = 'firefox/features/index.html'
-    else:
-        template = 'firefox/features.html'
-
-    return l10n_utils.render(request, template)
-
-
 class FeaturesPrivateBrowsingView(BlogPostsView):
     template_name = 'firefox/features/private-browsing.html'
     blog_posts_limit = 3
@@ -664,11 +652,11 @@ class FeaturesBookmarksView(BlogPostsView):
 
 
 class FeaturesPasswordManagerView(BlogPostsView):
-    template_name = 'firefox/features/password-manager.html'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['modern', 'private', 'featured']
+    template_name = 'firefox/features/password-manager.html'
 
 
 class FirefoxProductDesktopView(BlogPostsView):
@@ -676,16 +664,7 @@ class FirefoxProductDesktopView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['browser', 'featured']
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-
-        if lang_file_is_active('firefox/products/desktop', locale):
-            template_name = 'firefox/products/desktop.html'
-        else:
-            template_name = 'firefox/desktop/index.html'
-
-        return [template_name]
+    template_name = 'firefox/products/desktop.html'
 
 
 class FirefoxProductAndroidView(BlogPostsView):
@@ -693,16 +672,7 @@ class FirefoxProductAndroidView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['mobile', 'featured']
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-
-        if lang_file_is_active('firefox/products/android', locale):
-            template_name = 'firefox/products/android.html'
-        else:
-            template_name = 'firefox/android/index.html'
-
-        return [template_name]
+    template_name = 'firefox/products/android.html'
 
 
 class FirefoxProductIOSView(BlogPostsView):
@@ -710,24 +680,15 @@ class FirefoxProductIOSView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['mobile', 'featured']
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-
-        if lang_file_is_active('firefox/products/ios', locale):
-            template_name = 'firefox/products/ios.html'
-        else:
-            template_name = 'firefox/ios.html'
-
-        return [template_name]
+    template_name = 'firefox/products/ios.html'
 
 
 class FirefoxFocusView(BlogPostsView):
-    template_name = 'firefox/products/focus.html'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['privacy', 'mobile', 'featured']
+    template_name = 'firefox/products/focus.html'
 
 
 class FirefoxHubView(BlogPostsView):
@@ -736,23 +697,3 @@ class FirefoxHubView(BlogPostsView):
     blog_slugs = 'firefox'
     blog_tags = ['home']
     template_name = 'firefox/hub/home.html'
-
-    def get(self, request, *args, **kwargs):
-        locale = l10n_utils.get_locale(request)
-
-        # If locale does not have hub page translated, redirect to /new.
-        if lang_file_is_active('firefox/hub/home', locale):
-            return super(FirefoxHubView, self).get(request, *args, **kwargs)
-        else:
-            return HttpResponseRedirect(reverse('firefox.new'))
-
-
-def FirefoxProductDevEditionView(request, template='firefox/products/developer.html'):
-    locale = l10n_utils.get_locale(request)
-
-    if lang_file_is_active('firefox/products/developer', locale):
-        template = 'firefox/products/developer.html'
-    else:
-        template = 'firefox/developer.html'
-
-    return l10n_utils.render(request, template)

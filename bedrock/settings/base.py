@@ -296,7 +296,6 @@ NOINDEX_URLS = [
 EXTRA_INDEX_URLS = [
     '/de/privacy/firefox-klar/',
     '/de/firefox/desktop/fast/',
-    '/de/firefox/products/',
     '/de/firefox/private-browsing/',
     '/de/about/legal/impressum/',
 ]
@@ -307,9 +306,6 @@ ALT_CANONICAL_PATHS = {
     },
     'firefox/private-browsing/': {
         'en-US': '/firefox/features/private-browsing/',
-    },
-    'firefox/products/': {
-        'en-US': '/firefox/',
     },
 }
 
