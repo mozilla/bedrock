@@ -57,6 +57,7 @@ $color-link-blue-dark: #175a77;
 
     .tagline {
         text-align: center;
+        max-width: none;
 
         span {
             @include box-decoration-break(repeat);
@@ -67,15 +68,21 @@ $color-link-blue-dark: #175a77;
 
     @media #{$mq-tablet} {
         h1 {
-            @include at2x('/media/img/logos/firefox/logo-wordmark-large-noshadow.png', 375px, 141px);
-            height: 141px;
             margin-left: 0;
             margin-right: 0;
-            width: 375px;
         }
 
         .tagline {
+            max-width: 25em;
             text-align: left;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        h1 {
+            @include at2x('/media/img/logos/firefox/logo-wordmark-large-noshadow.png', 375px, 141px);
+            height: 141px;
+            width: 375px;
         }
     }
 }
