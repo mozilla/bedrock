@@ -17,8 +17,6 @@ from pages.contribute.task.stumbler import StumblerTaskPage
 from pages.mission import MissionPage
 from pages.firefox.all import FirefoxAllPage
 from pages.firefox.desktop.desktop import FirefoxDesktopPage
-from pages.firefox.desktop.customize import CustomizePage
-from pages.firefox.desktop.all import FirefoxDesktopBasePage
 from pages.firefox.home import FirefoxHomePage
 from pages.firefox.features.feature import FeaturePage
 from pages.plugincheck import PluginCheckPage
@@ -41,8 +39,6 @@ from pages.smarton.base import SmartOnBasePage
     (FirefoxAllPage, None),
     pytest.mark.smoke((FirefoxHomePage, None)),
     (FirefoxDesktopPage, None),
-    (CustomizePage, None),
-    (FirefoxDesktopBasePage, {'slug': 'trust'}),
     (FeaturePage, {'slug': 'sync'}),
     (PluginCheckPage, None),
     (SmartOnLandingPage, None),

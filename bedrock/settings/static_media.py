@@ -286,43 +286,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-dashboard-bundle.css',
     },
-    'firefox_desktop': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/desktop/intro-anim.less',
-            'css/base/svg-animation-check.less',
-            'css/firefox/desktop/index.less',
-        ),
-        'output_filename': 'css/firefox_desktop-bundle.css',
-    },
-    'firefox_desktop_fast': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/desktop/fast.less',
-        ),
-        'output_filename': 'css/firefox_desktop_fast-bundle.css',
-    },
-    'firefox_desktop_customize': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/desktop/customize.less',
-        ),
-        'output_filename': 'css/firefox_desktop_customize-bundle.css',
-    },
-    'firefox_desktop_tips': {
-        'source_filenames': (
-            'css/base/mozilla-share-cta.less',
-            'css/firefox/desktop/tips.less',
-        ),
-        'output_filename': 'css/firefox_desktop_tips-bundle.css',
-    },
-    'firefox_desktop_trust': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/desktop/trust.less',
-        ),
-        'output_filename': 'css/firefox_desktop_trust-bundle.css',
-    },
     'firefox-features-hub-common': {
         'source_filenames': (
             'css/firefox/features/common.scss',
@@ -584,16 +547,6 @@ PIPELINE_CSS = {
             'css/firefox/organizations.less',
         ),
         'output_filename': 'css/firefox_organizations-bundle.css',
-    },
-    'firefox_private_browsing': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/tracking-protection-animation.less',
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/private_browsing/private-browsing-conditionals.less',
-            'css/firefox/private_browsing/private-browsing.less',
-        ),
-        'output_filename': 'css/firefox_private_browsing-bundle.css',
     },
     'firefox-product-page': {
         'source_filenames': (
@@ -1222,59 +1175,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_all-bundle.js',
     },
-    'firefox_desktop_customize': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/sync-animation.js',
-            'js/firefox/desktop/common.js',
-            'js/firefox/desktop/customize.js',
-        ),
-        'output_filename': 'js/firefox_desktop_customize-bundle.js',
-    },
-    'firefox_desktop_fast': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/desktop/common.js',
-            'js/firefox/desktop/speed-graph.js',
-            'js/firefox/desktop/fast.js',
-        ),
-        'output_filename': 'js/firefox_desktop_fast-bundle.js',
-    },
-    'firefox_desktop_index': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/desktop/common.js',
-            'js/firefox/desktop/speed-graph.js',
-            'js/base/svg-animation-check.js',
-            'js/firefox/desktop/intro-anim.js',
-            'js/firefox/desktop/index.js',
-        ),
-        'output_filename': 'js/firefox_desktop_index-bundle.js',
-    },
-    'firefox_desktop_tips': {
-        'source_filenames': (
-            'js/base/mozilla-pager.js',
-            'js/libs/hammer.1.1.2.min.js',
-            'js/base/mozilla-share-cta.js',
-            'js/firefox/desktop/tips.js',
-        ),
-        'output_filename': 'js/firefox_desktop_tips-bundle.js',
-    },
-    'firefox_desktop_trust': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/desktop/common.js',
-        ),
-        'output_filename': 'js/firefox_desktop_trust-bundle.js',
-    },
     'firefox-features-hub': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
@@ -1394,17 +1294,6 @@ PIPELINE_JS = {
             'js/base/mozilla-pixel-init.js',
         ),
         'output_filename': 'js/firefox_new_pixel-bundle.js',
-    },
-    'firefox_private_browsing': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/base/mozilla-highlight-target.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-            'js/firefox/private-browsing.js'
-        ),
-        'output_filename': 'js/firefox_private_browsing-bundle.js',
     },
     'firefox-product-page': {
         'source_filenames': (

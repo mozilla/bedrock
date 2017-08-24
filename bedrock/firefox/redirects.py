@@ -145,9 +145,9 @@ redirectpatterns = (
     redirect(r'^firefox/fx/?$', 'firefox.new'),
 
     # Bug 979531, 1003727, 979664, 979654, 979660
-    redirect(r'^firefox/customize/?$', 'firefox.desktop.customize'),
-    redirect(r'^firefox/(?:performance|happy|speed|memory)/?$', 'firefox.desktop.fast'),
-    redirect(r'^firefox/security/?$', 'firefox.desktop.trust'),
+    redirect(r'^firefox/customize/?$', 'https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars'),
+    redirect(r'^firefox/(?:performance|happy|speed|memory)/?$', 'firefox.features.fast'),
+    redirect(r'^firefox/security/?$', 'firefox.features.independent'),
     redirect(r'^firefox/technology/?$', 'https://developer.mozilla.org/docs/Tools'),
 
     # Bug 979527
@@ -521,14 +521,6 @@ redirectpatterns = (
         'utm_content': 'windows10-welcome-tab',
     }),
 
-    # Bug 1355184
-    redirect(r'^en-US/firefox/private-browsing/?', '/en-US/firefox/features/private-browsing/',
-             locale_prefix=False),
-
-    # Bug 1355189
-    redirect(r'^en-US/firefox/desktop/fast/?', '/en-US/firefox/features/fast/',
-             locale_prefix=False),
-
     # Bug 1361181, 1386112
     redirect(r'^firefox/products/?', 'firefox'),
 
@@ -540,4 +532,11 @@ redirectpatterns = (
 
     # bug 1386112
     redirect(r'^firefox/android/faq/?', 'https://support.mozilla.org/products/mobile'),
+
+    # bug 1392796
+    redirect(r'^firefox/desktop/fast/?', 'firefox.features.fast'),
+    redirect(r'^firefox/desktop/trust/?', 'firefox.features.independent'),
+    redirect(r'^firefox/desktop/tips/?', 'firefox.features.index'),
+    redirect(r'^firefox/desktop/customize/?', 'https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars'),
+    redirect(r'^firefox/private-browsing/?', 'firefox.features.private-browsing'),
 )
