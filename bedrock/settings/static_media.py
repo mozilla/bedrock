@@ -1186,6 +1186,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_dnt-bundle.js',
     },
+    'experiment-firstrun-copy': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/firstrun/experiment-firstrun-copy.js',
+        ),
+        'output_filename': 'js/experiment-firstrun-copy.js',
+    },
     'gtm-snippet': {
         'source_filenames': (
             'js/base/gtm-snippet.js',
