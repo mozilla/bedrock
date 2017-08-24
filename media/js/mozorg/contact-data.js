@@ -171,23 +171,6 @@
         }, {
             type: 'Feature',
             properties: {
-                id: 'tokyo',
-                'marker-color': markerColor,
-                'marker-size': markerSize,
-                'icon': {
-                    'iconUrl': markerIcon,
-                    'iconSize': iconSize,
-                    'iconAnchor': iconAnchor,
-                    'popupAnchor': popupAnchor
-                }
-            },
-            geometry: {
-                type: 'Point',
-                coordinates: [139.782650, 35.689750]
-            }
-        }, {
-            type: 'Feature',
-            properties: {
                 id: 'toronto',
                 'marker-color': markerColor,
                 'marker-size': markerSize,

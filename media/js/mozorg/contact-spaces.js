@@ -1038,9 +1038,6 @@
                 case '#map-taiwan-taipei':
                     itemId = 'taipei';
                     break;
-                case '#map-japan':
-                    itemId = 'tokyo';
-                    break;
                 case '#map-canada-toronto':
                     itemId = 'toronto';
                     break;
