@@ -5,7 +5,8 @@ smoke_tests: false
 regions:
   - frankfurt
 apps:
-  - bedrock-dev
+  - bedrock-stage
+  - bedrock-prod
 integration_tests:
   frankfurt:
     - headless

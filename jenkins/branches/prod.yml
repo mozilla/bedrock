@@ -20,3 +20,5 @@ integration_tests:
     - ie7
   tokyo:
     - headless
+  frankfurt:
+    - headless
