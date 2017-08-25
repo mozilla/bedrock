@@ -58,7 +58,12 @@
     <nav class="secondary">
         <div class="small-links">
           <ul>
-            <li><a rel="nofollow" href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
+            {% if LANG.startswith('en-') %} 
+              {% set privacy_text = _('Website Privacy Notice') %}
+            {% else %}
+              {% set privacy_text = _('Privacy') %}
+            {% endif %}
+            <li><a rel="nofollow" href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ privacy_text }}</a></li>
             <li><a rel="nofollow" href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
             <li><a rel="nofollow" href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
           </ul>

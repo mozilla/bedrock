@@ -58,6 +58,11 @@
     {% if channel != 'alpha' %}{# Earlybird release notes are not available yet #}
     <a href="{{ thunderbird_url('notes', channel) }}">{{ _('What’s New') }}</a> |
     {% endif %}
-    <a href="{{ url('privacy.notices.thunderbird') }}">{{ _('Privacy') }}</a>
+    {% if LANG.startswith('en-') %} 
+      {% set privacy_text = _('Thunderbird Privacy Notice') %}
+    {% else %}
+      {% set privacy_text = _('Privacy') %}
+    {% endif %}
+    <a href="{{ url('privacy.notices.thunderbird') }}">{{ privacy_text }}</a>
   </small>
 </div>

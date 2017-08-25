@@ -59,7 +59,12 @@
     </ul>
     <ul>
       <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
-      <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
+      {% if LANG.startswith('en-') %} 
+        {% set privacy_text = _('Website Privacy Notice') %}
+      {% else %}
+        {% set privacy_text = _('Privacy') %}
+      {% endif %}
+      <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ privacy_text }}</a></li>
     </ul>
   </footer>
 {% endblock %}
