@@ -1,8 +1,10 @@
 bedrock
 =======
 
-*bedrock* is the code name of mozilla.org. It is as shiny,
+*bedrock* is the code name of [mozilla.org][mozilla]. It is as shiny,
 awesome, and open sourcy as always. Perhaps even a little more.
+
+[mozilla]: https://www.mozilla.org/
 
 [![Circle CI](https://circleci.com/gh/mozilla/bedrock.svg?style=svg)](https://circleci.com/gh/mozilla/bedrock)
 
