@@ -16,6 +16,12 @@
   {% stylesheet 'firefox_firstrun' %}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-firstrun-membership', ['en-US']) %}
+    {% javascript 'experiment-firstrun-membership' %}
+  {% endif %}
+{% endblock %}
+
 {% block js %}
   {% javascript 'firefox_firstrun' %}
 {% endblock %}
