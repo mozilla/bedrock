@@ -304,27 +304,30 @@ class TestReleaseNotesIndex(TestCase):
         self.pd_cache.clear()
 
     @patch('bedrock.releasenotes.views.l10n_utils.render')
-    @patch('bedrock.releasenotes.views.firefox_desktop', firefox_desktop)
+    @patch('bedrock.releasenotes.views.firefox_desktop._storage.data',
+           Mock(side_effect=firefox_desktop._storage.data))
     def test_relnotes_index_firefox(self, render_mock):
         with self.activate('en-US'):
             self.client.get(reverse('firefox.releases.index'))
         releases = render_mock.call_args[0][2]['releases']
         eq_(len(releases), len(firefox_desktop.firefox_history_major_releases))
-        eq_(releases[0][0], 36.0)
-        eq_(releases[0][1]['major'], '36.0')
-        eq_(releases[0][1]['minor'], [])
-        eq_(releases[3][0], 33.1)
-        eq_(releases[3][1]['major'], '33.1')
-        eq_(releases[3][1]['minor'], ['33.1.1'])
-        eq_(releases[4][0], 33.0)
-        eq_(releases[4][1]['major'], '33.0')
-        eq_(releases[4][1]['minor'], ['33.0.1', '33.0.2', '33.0.3'])
-        eq_(releases[6][0], 31.0)
-        eq_(releases[6][1]['major'], '31.0')
-        eq_(releases[6][1]['minor'],
-            ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0', '31.5.0'])
+        eq_(releases[0][0], 50.0)
+        eq_(releases[0][1]['major'], '50.0')
+        eq_(releases[0][1]['minor'], ['50.0.1', '50.0.2', '50.1.0'])
+        eq_(releases[1][0], 49.0)
+        eq_(releases[1][1]['major'], '49.0')
+        eq_(releases[1][1]['minor'], ['49.0.1', '49.0.2'])
+        eq_(releases[5][0], 45.0)
+        eq_(releases[5][1]['major'], '45.0')
+        eq_(releases[5][1]['minor'], ['45.0.1', '45.0.2', '45.1.1', '45.2.0',
+                                      '45.3.0', '45.4.0', '45.5.0', '45.5.1',
+                                      '45.6.0'])
+        eq_(releases[8][0], 42.0)
+        eq_(releases[8][1]['major'], '42.0')
+        eq_(releases[8][1]['minor'], [])
 
-    @patch('bedrock.releasenotes.views.thunderbird_desktop', thunderbird_desktop)
+    @patch('bedrock.releasenotes.views.thunderbird_desktop._storage.data',
+           Mock(side_effect=thunderbird_desktop._storage.data))
     def test_relnotes_index_thunderbird(self):
         with self.activate('en-US'):
             response = self.client.get(reverse('thunderbird.releases.index'))
