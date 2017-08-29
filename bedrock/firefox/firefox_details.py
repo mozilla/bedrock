@@ -53,7 +53,7 @@ class FirefoxDesktop(_ProductDetails):
     # Version property names in product-details
     version_map = {
         'nightly': 'FIREFOX_NIGHTLY',
-        'alpha': 'FIREFOX_AURORA',
+        'alpha': 'FIREFOX_DEVEDITION',
         'devedition': 'FIREFOX_DEVEDITION',
         'beta': 'LATEST_FIREFOX_DEVEL_VERSION',
         'esr': 'FIREFOX_ESR',
