@@ -60,7 +60,7 @@ if [ -z "${BASE_URL}" ]; then
     -e DEBUG=False \
     -e DATABASE_URL=sqlite:////tmp/temp.db \
     -e GUNICORN_WORKER_CLASS=sync \
-    mozorg/bedrock_code:${GIT_COMMIT}
+    mozorg/bedrock_code:${GIT_COMMIT} bin/run-for-integration-tests.sh
 
   DOCKER_LINKS=(--link bedrock-code-${GIT_COMMIT_SHORT}:bedrock)
   BASE_URL="http://bedrock:8000"
