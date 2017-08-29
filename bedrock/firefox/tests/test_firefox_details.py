@@ -42,7 +42,8 @@ GOOD_BUILDS = {
 GOOD_VERSIONS = {
     'LATEST_FIREFOX_VERSION': '25.0',
     'LATEST_FIREFOX_DEVEL_VERSION': '26.0b2',
-    'FIREFOX_AURORA': '27.0a1',
+    'FIREFOX_DEVEDITION': '26.0b2',
+    'FIREFOX_AURORA': '',
     'FIREFOX_ESR': '24.1.0esr',
 }
 
@@ -69,7 +70,7 @@ class TestLatestBuilds(TestCase):
         self.assertIs(result[1], GOOD_PLATS)
 
         result = firefox_desktop.latest_builds('en-US', 'alpha')
-        self.assertEqual(result[0], '27.0a1')
+        self.assertEqual(result[0], '26.0b2')
         self.assertIs(result[1], GOOD_PLATS)
 
 
