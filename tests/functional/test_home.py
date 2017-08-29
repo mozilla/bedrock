@@ -7,6 +7,7 @@ import pytest
 from pages.home import HomePage
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1392501')  # Q3 homepage test
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
@@ -14,6 +15,7 @@ def test_download_button_is_displayed(base_url, selenium):
     assert page.download_button.is_displayed
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1392501')  # Q3 homepage test
 @pytest.mark.sanity
 @pytest.mark.smoke
 @pytest.mark.nondestructive

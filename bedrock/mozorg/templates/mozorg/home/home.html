@@ -45,7 +45,7 @@
 
 {% block content %}
 <main role="main" class="main wrapper">
-  <section class="section section-intro intro-control" id="intro">
+  <section class="section section-intro" id="intro">
   {% block intro %}
     <div id="home-slideshow">
       <div class="slide" id="slide-one"></div>
@@ -71,13 +71,8 @@
   <section class="section" id="impact-innovate-wrapper">
     <section class="section-wrapper" id="impact">
       <div class="section-content">
-        <h2 class="section-headline">
-          {% block people_title %}
-            {{ _('Our impact') }}
-          {% endblock %}
-        </h2>
+        <h2 class="section-headline">{{ _('Our impact') }}</h2>
         <p>
-        {% block people_copy %}
         {% if l10n_has_tag('mozorg-home-impact-health') %}
           {% trans %}
             Working to keep the Internet healthy, open and accessible to all, we
@@ -91,7 +86,6 @@
             an internet built on fairness, inclusion and respect.
           {% endtrans %}
         {% endif %}
-        {% endblock %}
         </p>
 
         <ul id="icon-links-who" class="icon-links">
@@ -115,19 +109,13 @@
 
     <section class="section-wrapper" id="innovate">
       <div class="section-content">
-        <h2 class="section-headline">
-          {% block innovation_title %}
-            {{ _('Our innovations') }}
-          {% endblock %}
-        </h2>
+        <h2 class="section-headline">{{ _('Our innovations') }}</h2>
         <p>
-        {% block innovation_copy %}
-          {% trans %}
-            Using the web as the platform, we build open, innovative
-            technologies that allow developers to work free of closed, corporate
-            ecosystems and create faster, safer web experiences for us all.
-          {% endtrans %}
-        {% endblock %}
+        {% trans %}
+          Using the web as the platform, we build open, innovative
+          technologies that allow developers to work free of closed, corporate
+          ecosystems and create faster, safer web experiences for us all.
+        {% endtrans %}
         </p>
 
         <ul id="icon-links-innovate" class="icon-links">
@@ -148,6 +136,7 @@
     </section>
   </section>{#-- /#who-innovate-wrapper --#}
 
+  {% block section_firefox %}
   <section class="section" id="firefox">
     <div class="horizon">
       <div class="stars">
@@ -184,6 +173,7 @@
       {% include 'firefox/includes/horizon.html' %}
     </div> {# --/.foreground --#}
   </section>
+  {% endblock %}
 
   <section class="section section-externals" id="externals">
     <ul class="content">
