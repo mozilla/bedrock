@@ -10,7 +10,7 @@ from bedrock.utils.git import GitRepo
 
 FIREFOX_VERSION_KEYS = (
     'FIREFOX_NIGHTLY',
-    'FIREFOX_AURORA',
+    'FIREFOX_DEVEDITION',
     'FIREFOX_ESR',
     'FIREFOX_ESR_NEXT',
     'LATEST_FIREFOX_DEVEL_VERSION',

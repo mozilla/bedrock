@@ -44,6 +44,7 @@ class FirefoxDesktop(_ProductDetails):
     channel_labels = {
         'nightly': _('Firefox Nightly'),
         'alpha': _('Developer Edition'),
+        'devedition': _('Developer Edition'),
         'beta': _('Firefox Beta'),
         'esr': _('Firefox Extended Support Release'),
         'release': _('Firefox'),
@@ -53,6 +54,7 @@ class FirefoxDesktop(_ProductDetails):
     version_map = {
         'nightly': 'FIREFOX_NIGHTLY',
         'alpha': 'FIREFOX_AURORA',
+        'devedition': 'FIREFOX_DEVEDITION',
         'beta': 'LATEST_FIREFOX_DEVEL_VERSION',
         'esr': 'FIREFOX_ESR',
         'esr_next': 'FIREFOX_ESR_NEXT',
@@ -146,7 +148,7 @@ class FirefoxDesktop(_ProductDetails):
         # Developer Edition is now based on the Beta channel, so the build list
         # should be generated from the Beta locales.
         if channel == 'alpha':
-            version = self.latest_version('beta')
+            version = self.latest_version('devedition')
 
         f_builds = []
         for locale, build in builds.iteritems():
