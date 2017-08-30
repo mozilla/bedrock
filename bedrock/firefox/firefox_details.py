@@ -77,6 +77,10 @@ class FirefoxDesktop(_ProductDetails):
         try:
             return self.firefox_versions[version]
         except KeyError:
+            if channel in ['alpha', 'devedition']:
+                # beta as a fall-back until all product-details data is updated
+                return self.latest_version('beta')
+
             return None
 
     def latest_major_version(self, channel):
@@ -144,15 +148,6 @@ class FirefoxDesktop(_ProductDetails):
         :return: list
         """
         version = version or self.latest_version(channel)
-
-        # Developer Edition is now based on the Beta channel, so the build list
-        # should be generated from the Beta locales.
-        if channel == 'alpha':
-            version = self.latest_version('devedition')
-            if version is None:
-                # will be used until all product-details are updated
-                # to include FIREFOX_DEVEDITION
-                version = self.latest_version('beta')
 
         f_builds = []
         for locale, build in builds.iteritems():

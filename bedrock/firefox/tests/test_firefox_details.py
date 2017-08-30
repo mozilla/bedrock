@@ -46,12 +46,45 @@ GOOD_VERSIONS = {
     'FIREFOX_AURORA': '',
     'FIREFOX_ESR': '24.1.0esr',
 }
+GOOD_VERSIONS_NO_DEV = {
+    'LATEST_FIREFOX_VERSION': '25.0',
+    'LATEST_FIREFOX_DEVEL_VERSION': '26.0b2',
+    'FIREFOX_AURORA': '',
+    'FIREFOX_ESR': '24.1.0esr',
+}
 
 
 @patch.object(firefox_desktop, 'firefox_primary_builds', GOOD_BUILDS)
 @patch.object(firefox_desktop, 'firefox_beta_builds', {})
 @patch.object(firefox_desktop, 'firefox_versions', GOOD_VERSIONS)
 class TestLatestBuilds(TestCase):
+    def test_latest_builds(self):
+        """Should return platforms if localized build does exist."""
+        result = firefox_desktop.latest_builds('de', 'release')
+        self.assertEqual(result[0], '25.0')
+        self.assertIs(result[1], GOOD_PLATS)
+
+    def test_latest_builds_is_none_if_no_build(self):
+        """Should return None if the localized build for the channel doesn't exist."""
+        result = firefox_desktop.latest_builds('fr', 'release')
+        self.assertIsNone(result)
+
+    def test_latest_builds_channels(self):
+        """Should work with all channels."""
+        result = firefox_desktop.latest_builds('en-US', 'beta')
+        self.assertEqual(result[0], '26.0b2')
+        self.assertIs(result[1], GOOD_PLATS)
+
+        result = firefox_desktop.latest_builds('en-US', 'alpha')
+        self.assertEqual(result[0], '26.0b2')
+        self.assertIs(result[1], GOOD_PLATS)
+
+
+@patch.object(firefox_desktop, 'firefox_primary_builds', GOOD_BUILDS)
+@patch.object(firefox_desktop, 'firefox_beta_builds', {})
+@patch.object(firefox_desktop, 'firefox_versions', GOOD_VERSIONS_NO_DEV)
+class TestLatestBuildsNoDevEdition(TestCase):
+    """Should get same results as above and not blow up"""
     def test_latest_builds(self):
         """Should return platforms if localized build does exist."""
         result = firefox_desktop.latest_builds('de', 'release')
