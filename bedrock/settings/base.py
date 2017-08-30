@@ -295,19 +295,14 @@ NOINDEX_URLS = [
 # or are only available in a non-default locale
 EXTRA_INDEX_URLS = [
     '/de/privacy/firefox-klar/',
-    '/de/firefox/desktop/fast/',
-    '/de/firefox/private-browsing/',
     '/de/about/legal/impressum/',
 ]
 
-ALT_CANONICAL_PATHS = {
-    'firefox/desktop/fast/': {
-        'en-US': '/firefox/features/fast/',
-    },
-    'firefox/private-browsing/': {
-        'en-US': '/firefox/features/private-browsing/',
-    },
-}
+# Pages that have different URLs for different locales, e.g.
+#   'firefox/private-browsing/': {
+#       'en-US': '/firefox/features/private-browsing/',
+#   },
+ALT_CANONICAL_PATHS = {}
 
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS', cast=Csv(),

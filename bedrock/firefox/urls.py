@@ -36,12 +36,6 @@ urlpatterns = (
     url(r'^firefox/desktop/$',
         views.FirefoxProductDesktopView.as_view(),
         name='firefox.desktop.index'),
-    page('firefox/desktop/fast', 'firefox/desktop/fast.html', alt_canonical_paths={
-        'en-US': '/firefox/features/fast/',
-    }),
-    page('firefox/desktop/customize', 'firefox/desktop/customize.html'),
-    page('firefox/desktop/tips', 'firefox/desktop/tips.html'),
-    page('firefox/desktop/trust', 'firefox/desktop/trust.html'),
     page('firefox/developer', 'firefox/products/developer.html'),
     page('firefox/features', 'firefox/features/index.html'),
     url('^firefox/features/private-browsing/$',
@@ -79,9 +73,6 @@ urlpatterns = (
     url(r'^firefox/ios/testflight', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile-download', 'firefox/mobile-download.html'),
     page('firefox/mobile-download/desktop', 'firefox/mobile-download-desktop.html'),
-    page('firefox/private-browsing', 'firefox/private-browsing.html', alt_canonical_paths={
-        'en-US': '/firefox/features/private-browsing/',
-    }),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
