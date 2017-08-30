@@ -151,15 +151,17 @@
 
 <h4>{{ _('Is Mozilla Firefox ESR available in my language?') }}</h4>
 <p>
-{% trans url1='..', url2='https://mail.mozilla.org/listinfo/enterprise-de',
-		url3='https://www.mozilla.jp/business/', url4='mailto:stormy@mozilla.com' %}
+{% trans list_en='https://mail.mozilla.org/listinfo/enterprise',
+         list_fr='https://mail.mozilla.org/listinfo/enterprise-fr',
+         list_de='https://mail.mozilla.org/listinfo/enterprise-de',
+         contact='mailto:sledru@mozilla.com' %}
 	Firefox ESR is available in every locale currently available for Firefox.
 	Because of the precise needs of Firefox ESR, it’s important that anyone
-	deploying the build be registered and participate in an EWG
-	<a href="{{ url1 }}">mailing list</a>. The mailing list is only available
-	in <a href="{{ url2 }}">German</a>, <a href="{{ url3 }}">Japanese</a> and
-	English, but if you would like to volunteer to lead a Firefox ESR mailing
-	list in your language, please get <a href="{{ url4 }}">in touch</a>.
+	deploying the build be registered and participate in an EWG mailing list.
+	The mailing list is only available in <a href="{{ list_en }}">English</a>,
+	<a href="{{ list_fr }}">French</a> and <a href="{{ list_de }}">German</a>,
+	but if you would like to volunteer to lead a Firefox ESR mailing list in
+	your language, please <a href="{{ contact }}">get in touch</a>.
 {% endtrans %}
 </p>
 
