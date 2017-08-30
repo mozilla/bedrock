@@ -687,3 +687,20 @@ class TestFeedbackView(TestCase):
 
         ctx = view.get_context_data()
         self.assertFalse('donate_stars_url' in ctx)
+
+
+@override_settings(DEV=False)
+@patch('bedrock.firefox.views.l10n_utils.render')
+class TestSyncPage(TestCase):
+    def test_sync_page_template(self, render_mock):
+        req = RequestFactory().get('/firefox/features/sync/')
+        req.locale = 'en-US'
+        views.sync_page(req)
+        render_mock.assert_called_once_with(req, 'firefox/features/sync.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_old_sync_page_template(self, render_mock):
+        req = RequestFactory().get('/firefox/features/sync/')
+        req.locale = 'de'
+        views.sync_page(req)
+        render_mock.assert_called_once_with(req, 'firefox/features/sync-old.html')

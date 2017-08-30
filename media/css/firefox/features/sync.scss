@@ -100,3 +100,14 @@ Thank you for your hard work.
 .state-default          .show-default {
     display: block;
 }
+
+// Heading variations need to be inline level elements
+.state-fx-31-signed-in  h1 > span.show-fx-31-signed-in,
+.state-fx-31-signed-out h1 > span.show-fx-31-signed-out,
+.state-fx-30-older      h1 > span.show-fx-30-older,
+.state-fx-android       h1 > span.show-fx-android,
+.state-fx-ios           h1 > span.show-fx-ios,
+.state-not-fx           h1 > span.show-not-fx,
+.state-default          h1 > span.show-default {
+    display: inline;
+}

@@ -14,8 +14,7 @@ from pages.firefox.features.feature import FeaturePage
     ('fast'),
     ('memory'),
     ('bookmarks'),
-    ('password-manager'),
-    ('sync')])
+    ('password-manager')])
 def test_download_button_is_displayed(slug, base_url, selenium):
     page = FeaturePage(selenium, base_url, slug=slug).open()
     assert page.download_button.is_displayed
