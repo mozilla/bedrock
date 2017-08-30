@@ -149,6 +149,10 @@ class FirefoxDesktop(_ProductDetails):
         # should be generated from the Beta locales.
         if channel == 'alpha':
             version = self.latest_version('devedition')
+            if version is None:
+                # will be used until all product-details are updated
+                # to include FIREFOX_DEVEDITION
+                version = self.latest_version('beta')
 
         f_builds = []
         for locale, build in builds.iteritems():
