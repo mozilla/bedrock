@@ -30,6 +30,10 @@ main {
             font-size: 6.25rem;
             line-height: 6.25rem;
         }
+
+        p {
+            max-width: 684px;
+        }
     }
     header {
         padding: 70px 9px 0;

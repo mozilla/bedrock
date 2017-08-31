@@ -32,6 +32,9 @@ main {
             header {
                 box-sizing: border-box;
                 text-align: center;
+                max-width: 490px;
+                margin-left: auto;
+                margin-right: auto;
 
                 h1 {
                     font-size: 8.125rem;
@@ -56,25 +59,32 @@ main {
               margin-right: auto;
             }
             h1 {
-                padding-left: 71px;
+                padding-left: 72px;
                 color: #4D4D4D;
                 font-size: 2.25rem;
                 line-height: 3.25rem;
+                width: 100%;
+                max-width: 484px;
             }
             article {
                 background: #FFFFFF;
                 padding: 22px 0;
                 margin: 9px 0;
                 h1 {
+                    padding-left: 0;
                     font-size: 1.75rem;
                     line-height: 2.625rem;
+                    max-width: none;
                 }
                 a {
                     margin-top: 0.03rem;
-                    padding-left: 71px;
+                    padding-left: 72px;
                 }
                 .time {
-                    margin-bottom: -34px;
+                    vertical-align: top;
+                    line-height: 2.25rem;
+                    min-width: 72px;
+                    display: inline-block;
                 }
             }
         }
