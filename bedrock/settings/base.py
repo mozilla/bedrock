@@ -259,7 +259,9 @@ SUPPORTED_NONLOCALES = [
     'country-code.json',
 ]
 
-# Pages that we don't want be indexed by search engines.
+# Pages that we don't want to be indexed by search engines.
+# Only impacts sitemap generator. If you need to disallow indexing of
+# specific URLs, add them to mozorg/templates/mozorg/robots.txt.
 NOINDEX_URLS = [
     r'^(404|500)/',
     r'^about/partnerships/contact-bizdev/',
