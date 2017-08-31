@@ -65,7 +65,6 @@
 }
 
 #download-buttons {
-    margin-bottom: @baseLine * 2;
 
     .download-dumb {
         text-align: center;
@@ -100,11 +99,6 @@ html.firefox-latest {
         display: block;
     }
 
-    /* hide benefits */
-    #benefits {
-        display: none;
-    }
-
     #download-buttons {
         margin: @baseLine 0 0;
     }
@@ -121,10 +115,6 @@ html.firefox-pre-release {
     #version-message-desktop-pre-release,
     #newsletter-subscribe {
         display: block;
-    }
-
-    #benefits {
-        display: none;
     }
 }
 
@@ -390,9 +380,7 @@ html.show-refresh {
 
 #benefits {
     .clearfix;
-    background: @horizonColorForeground;
-    margin-top: -70px;
-    padding: 0 0 (@baseLine * 3);
+    margin: 60px 0 70px;
 
     ul {
         list-style-type: none;
@@ -422,7 +410,7 @@ html.show-refresh {
         position: relative;
 
         &:before {
-            .at2x('/media/img/firefox/new/benefits-sprite.png', 54px, 147px);
+            background-image: url('/media/img/firefox/new/icon-sprite.svg');
             background-repeat: no-repeat;
             content: '';
             left: 0;
@@ -431,25 +419,26 @@ html.show-refresh {
             width: 100%;
         }
 
-        &.performance:before {
+        &.fast:before {
             background-position: center top;
-            height: 47px;
+            height: 42px;
         }
 
-        &.privacy:before {
-            background-position: center -47px;
-            height: 50px;
+        &.far:before {
+            background-position: center -44px;
+            height: 42px;
         }
 
-        &.good:before {
-            background-position: center -98px;
-            height: 49px;
+        &.forward:before {
+            background-position: center -88px;
+            height: 41px;
         }
     }
 
     p {
         .font-size(18px);
         padding: 0 @baseLine;
+        color: #bbcbff;
     }
 
     a {
@@ -461,7 +450,7 @@ html.show-refresh {
 #newsletter-subscribe {
     background: @horizonColorForeground;
     display: none;
-    margin-top: -50px;
+    margin-top: -100px;
 
     .container {
         .clearfix;

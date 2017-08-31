@@ -346,23 +346,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/nightly_whatsnew-bundle.css',
     },
-    'firefox_firstrun_onboarding': {
+    'firefox_firstrun': {
         'source_filenames': (
             'css/base/notification-banner.less',
-            'css/firefox/firstrun/onboarding.less',
+            'css/firefox/firstrun/firstrun.less',
             'css/base/mozilla-fxa-iframe.less',
         ),
-        'output_filename': 'css/firefox_firstrun_onboarding-bundle.css',
-    },
-    'firefox_firstrun_horizon': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/base/mozilla-fxa-iframe.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/base/notification-banner.less',
-            'css/firefox/firstrun/firstrun-horizon.less',
-        ),
-        'output_filename': 'css/firefox_firstrun-horizon-bundle.css',
+        'output_filename': 'css/firefox_firstrun-bundle.css',
     },
     'firefox_feedback': {
         'source_filenames': (
@@ -422,16 +412,15 @@ PIPELINE_CSS = {
             'css/sandstone/sandstone-resp.less',
             'css/tabzilla/tabzilla-static.less',
             'css/base/platform-footer-links.less',
-            'css/firefox/horizon/background.less',
             'css/firefox/new/common.less',
         ),
         'output_filename': 'css/firefox_new_common-bundle.css',
     },
     'firefox_new_scene1': {
         'source_filenames': (
-            'css/newsletter/fxnewsletter-subscribe.less',
             'css/base/mozilla-modal.less',
             'css/firefox/new/other-platforms.less',
+            'css/newsletter/fxnewsletter-subscribe.less',
             'css/firefox/new/scene1.less',
         ),
         'output_filename': 'css/firefox_new_scene1-bundle.css',
@@ -517,30 +506,6 @@ PIPELINE_CSS = {
             'css/firefox/new/batm-machine.scss',
         ),
         'output_filename': 'css/firefox_new_batm_machine-bundle.css',
-    },
-    'firefox_new_onboarding_common': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/base/platform-footer-links.less',
-            'css/firefox/new/onboarding/common.less',
-        ),
-        'output_filename': 'css/firefox_new_onboarding_common-bundle.css',
-    },
-    'firefox_new_onboarding_scene1': {
-        'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/firefox/new/other-platforms.less',
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/new/onboarding/scene1.less',
-        ),
-        'output_filename': 'css/firefox_new_onboarding_scene1-bundle.css',
-    },
-    'firefox_new_onboarding_scene2': {
-        'source_filenames': (
-            'css/firefox/new/onboarding/scene2.less',
-        ),
-        'output_filename': 'css/firefox_new_onboarding_scene2-bundle.css',
     },
     'firefox_organizations': {
         'source_filenames': (
@@ -1214,14 +1179,6 @@ PIPELINE_JS = {
             'js/firefox/firstrun/firstrun.js',
         ),
         'output_filename': 'js/firefox_firstrun-bundle.js',
-    },
-    'firefox_firstrun_onboarding': {
-        'source_filenames': (
-            'js/base/mozilla-fxa-iframe.js',
-            'js/base/uitour-lib.js',
-            'js/firefox/firstrun/onboarding.js',
-        ),
-        'output_filename': 'js/firefox_firstrun_onboarding-bundle.js',
     },
     'firefox_developer_firstrun': {
         'source_filenames': (

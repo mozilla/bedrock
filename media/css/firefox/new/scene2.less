@@ -10,7 +10,7 @@
 }
 
 .js .help {
-    .font-size(20px);
+    .font-size(19px);
     .open-sans-light;
     display: block;
     margin-top: @baseLine * 2;
@@ -32,4 +32,54 @@
 
 #direct-download-link {
     color: @textColorSpaceYellow;
+}
+
+
+#mobile-download {
+    .clearfix;
+    margin-top: @baseLine * 2;
+
+    h2 {
+        .font-size(22px);
+        margin-bottom: @baseLine * 2;
+    }
+
+    ul {
+        .clearfix;
+        display: block;
+        list-style: none;
+        margin: @baseLine auto (@baseLine * 2);
+        padding: 0;
+        width: 384px;
+    }
+
+    li {
+        display: inline;
+        float: left;
+        height: 45px;
+        margin: 0 @baseLine;
+        padding: 0;
+        width: 152px;
+    }
+
+    a {
+        display: block;
+        margin-bottom: @baseLine;
+    }
+}
+
+/* Mobile layout: 320px */
+@media only screen and (max-width: @breakTablet) {
+
+    #mobile-download {
+        ul {
+            margin-bottom: @baseLine;
+            width: auto;
+        }
+
+        li {
+            float: none;
+            margin: 0 auto (@baseLine / 2);
+        }
+    }
 }

@@ -2,11 +2,39 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% add_lang_files "firefox/new/onboarding" %}
+
 {% extends "firefox/base.html" %}
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
 
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block page_desc %}
+  {% if l10n_has_tag('macos_branding') %}
+    {{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!')}}
+  {% else %}
+    {{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, Mac OS X, Linux, Android and iOS today!')}}
+  {% endif %}
+{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}{{ _('Chart your own course') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}{% endblock %}
+
+{#- Override <meta property="og:url"> for social share -#}
+{% block page_og_url %}{{ url('firefox') }}{% endblock %}
+
 {% block gtm_page_id %}data-gtm-page-id="/firefox/firstrun/"{% endblock %}
+
+{% block optimizely %}
+{% if switch('firefox-firstrun-optimizely') %}
+  {% include 'includes/optimizely.html' %}
+{% endif %}
+{% endblock %}
 
 {% block extrahead %}
   {% if switch('firefox-update-notification-modal', ['en-US']) %}

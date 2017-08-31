@@ -3,10 +3,18 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import "../../sandstone/lib.less";
-@import "../horizon/lib.less";
+
+.horizon {
+    background: url('/media/img/firefox/new/horizon-night.svg') bottom center no-repeat;
+    min-height: 937px;
+}
+
+.stars {
+    background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat;
+}
 
 #outer-wrapper {
-    background: @horizonColorForeground;
+    background: #1E4488;
     overflow: hidden;
 }
 
@@ -20,6 +28,10 @@
 
     h2 {
         float: left;
+
+        a {
+            display: block;
+        }
 
         img {
             height: 70px;
@@ -42,7 +54,6 @@
 }
 
 .inner-container,
-#benefits ul,
 #newsletter-subscribe > .container {
     margin: 0 auto;
     width: @widthDesktop - (@gridGutterWidth * 2);
@@ -72,8 +83,15 @@ h6,
 }
 
 main {
+    .main-container {
+        #gradient .vertical(#13387A, #526ACC);
+        background-image: linear-gradient(to top, #2d253a 0, #2d253a 254px, transparent 255px),
+                          linear-gradient(-180deg, #13387A 0, #1261B3 30%, #526ACC 60%);
+    }
+
     .main-content {
         margin-top: @baseLine * 2;
+        padding: 0 100px;
         text-align: center;
     }
 
@@ -96,66 +114,31 @@ main {
         .font-size(60px);
         line-height: 1.2;
         margin-bottom: @baseLine;
-
-        @media only screen and (max-width: @breakDesktop) {
-            .font-size(55px);
-        }
-
-        @media only screen and (max-width: @breakTablet) {
-            .font-size(36px);
-        }
     }
 
     p {
         color: #fff;
     }
-}
 
-#mobile-download {
-    .clearfix;
-    margin-top: @baseLine * 2;
+    @media only screen and (max-width: @breakDesktop) {
 
-    h2 {
-        .font-size(22px);
-        margin-bottom: @baseLine * 2;
-    }
-
-    ul {
-        .clearfix;
-        display: block;
-        list-style: none;
-        margin: @baseLine auto (@baseLine * 2);
-        padding: 0;
-        width: 384px;
-    }
-
-    li {
-        display: inline;
-        float: left;
-        height: 45px;
-        margin: 0 @baseLine;
-        padding: 0;
-        width: 152px;
-    }
-
-    a {
-        display: block;
-        margin-bottom: @baseLine;
-    }
-}
-
-/* Mobile layout: 320px */
-@media only screen and (max-width: @breakTablet) {
-
-    #mobile-download {
-        ul {
-            margin-bottom: @baseLine;
-            width: auto;
+        .main-content {
+            padding: 0 60px;
         }
 
-        li {
-            float: none;
-            margin: 0 auto (@baseLine / 2);
+        h1 {
+            .font-size(55px);
+        }
+    }
+
+    @media only screen and (max-width: @breakTablet) {
+
+        .main-content {
+            padding: 0;
+        }
+
+        h1 {
+            .font-size(36px);
         }
     }
 }
