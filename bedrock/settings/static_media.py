@@ -1363,26 +1363,8 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/base/send-to-device.js',
             'js/firefox/whatsnew/whatsnew-54.js',
-            'js/firefox/whatsnew/whatsnew-54-init.js',
         ),
         'output_filename': 'js/firefox_whatsnew_54-bundle.js',
-    },
-    # the following 2 bundles are related to the WNP 55 experiment
-    'firefox_whatsnew_54_experiment': {
-        'source_filenames': (
-            'js/base/send-to-device.js',
-            'js/firefox/whatsnew/whatsnew-54.js',
-            'js/firefox/whatsnew/whatsnew-54-experiment-badge-urls.js',
-            'js/firefox/whatsnew/whatsnew-54-init.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_54_experiment-bundle.js',
-    },
-    'experiment_whatsnew_54': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/whatsnew/experiment-whatsnew-54.js',
-        ),
-        'output_filename': 'js/experiment_whatsnew_54-bundle.js',
     },
     'firefox-update-notification': {
         'source_filenames': (

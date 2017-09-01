@@ -8,12 +8,6 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block experiments %}
-  {% if switch('firefox-experiment-whatsnew-54', variation_locales) %}
-    {% javascript 'experiment_whatsnew_54' %}
-  {% endif %}
-{% endblock %}
-
 {% block page_title %}{{_('Download Firefox for Android and iOS')}}{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
@@ -55,60 +49,46 @@
             <h2>{{ high_res_img('firefox/template/logo-large.png', {'alt': 'Firefox', 'width': '136', 'height': '142'}) }}</h2>
           </header>
           <div class="main-content">
-          {% block header_content %}
-            {# If user is in a locale with translated basket messages... #}
-            {% if show_send_to_device %}
-              {% if l10n_has_tag('fx53_whatsnew') %}
-                <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
-                <h2>{{ _('Now get on the go.') }}</h2>
+          {# If user is in a locale with translated basket messages... #}
+          {% if show_send_to_device %}
+            {% if l10n_has_tag('fx53_whatsnew') %}
+              <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
+              <h2>{{ _('Now get on the go.') }}</h2>
 
-                {# L10n: Line break below for visual formatting only #}
-                <h1>{{ _('Send Firefox to your phone<br> and unleash your Internet.') }}</h1>
-              {% else %}
-                {# Pre-localized headline taken from unsupported-systems.html #}
-                <h2>{{ _('Thanks for choosing Firefox!') }}</h2>
-                {# Pre-localized headline taken from send to device widget #}
-                <h1>{{ _('Send Firefox to your smartphone or tablet') }}</h1>
-              {% endif %}
-            {# For users not in a locale with translated basket messages... #}
+              {# L10n: Line break below for visual formatting only #}
+              <h1>{{ _('Send Firefox to your phone<br> and unleash your Internet.') }}</h1>
             {% else %}
-              {% if l10n_has_tag('fx53_whatsnew') %}
-                <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
-                <h2>{{ _('Now get on the go.') }}</h2>
-
-                {# L10n: Line break below for visual formatting only #}
-                <h1>{{ _('Download Firefox for your smartphone and tablet.') }}</h1>
-              {% else %}
-                {# Generic, pre-localized headline #}
-                <h1>{{ _('Download Firefox') }}</h1>
-              {% endif %}
+              {# Pre-localized headline taken from unsupported-systems.html #}
+              <h2>{{ _('Thanks for choosing Firefox!') }}</h2>
+              {# Pre-localized headline taken from send to device widget #}
+              <h1>{{ _('Send Firefox to your smartphone or tablet') }}</h1>
             {% endif %}
-          {% endblock %}
+          {# For users not in a locale with translated basket messages... #}
+          {% else %}
+            {% if l10n_has_tag('fx53_whatsnew') %}
+              <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
+              <h2>{{ _('Now get on the go.') }}</h2>
+
+              <h1>{{ _('Download Firefox for your smartphone and tablet.') }}</h1>
+            {% else %}
+              {# Generic, pre-localized headline #}
+              <h1>{{ _('Download Firefox') }}</h1>
+            {% endif %}
+          {% endif %}
 
             <div class="content">
-            {% block body_content %}
-              {# Hide the widget if user is not in a supported basket locale #}
-              {% if show_send_to_device %}
-                <div id="send-to-device-wrapper" class="primary-cta">
-                  {{ send_to_device(include_title=False, message_set=send_to_device_message_set) }}
-                </div>
-              {% endif %}
-            {% endblock %}
-
-            {% block mobile_download_buttons %}
-              <ul id="mobile-download-buttons">
-                <li class="android">
-                  {{ google_play_button(alt_href=play_store_url, anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'id': 'playStoreLink'}) }}
-                </li>
-                <li class="ios">
-                  <a id="appStoreLink" href="{{ app_store_url }}" data-link-type="download" data-download-os="iOS">
-                    <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-                  </a>
-                </li>
-              </ul>
-            {% endblock %}
-
+            {# Hide the widget if user is not in a supported basket locale #}
+            {% if show_send_to_device %}
+              <div id="send-to-device-wrapper" class="primary-cta">
+                {{ send_to_device(include_title=False, message_set=send_to_device_message_set) }}
+              </div>
+            {% else %}
+              <div id="qr-wrapper" class="primary-cta">
+                <img src="{{ static('img/firefox/whatsnew_54/qrcode.png') }}" width="250" height="250" alt="" />
+              </div>
+            {% endif %}
             </div>{# --/.content --#}
+
           </div>{#-- /.main-content --#}
         </div>{#-- /.inner-container --#}
       </div>{#-- /.stars --#}
@@ -124,5 +104,7 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_whatsnew_54' %}
+  {% if show_send_to_device %}
+    {% javascript 'firefox_whatsnew_54' %}
+  {% endif %}
 {% endblock %}
