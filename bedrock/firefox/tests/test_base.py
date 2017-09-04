@@ -151,7 +151,7 @@ class TestFirefoxAll(TestCase):
     def test_android(self):
         """
         The Firefox for Android download table should only show the multi-locale
-        builds for api-15 and x86.
+        builds for ARM and x86.
         """
         resp = self.client.get(self._get_url('android'))
         doc = pq(resp.content)
