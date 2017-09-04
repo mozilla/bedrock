@@ -394,11 +394,9 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
             if locale == 'en-US' and exp in ['a', 'b']:
-                template = 'firefox/firstrun/onboarding-{0}.html'.format(exp)
-            elif lang_file_is_active('firefox/new/onboarding', locale):
-                template = 'firefox/firstrun/onboarding.html'
+                template = 'firefox/firstrun/index-{0}.html'.format(exp)
             else:
-                template = 'firefox/firstrun/firstrun-horizon.html'
+                template = 'firefox/firstrun/index.html'
         elif show_38_0_5_firstrun(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         else:
@@ -543,12 +541,10 @@ def new(request):
             elif experience in ['batmfree', 'batmprivate', 'batmnimble', 'batmresist']:
                 template = 'firefox/new/batm/scene2.html'
             else:
-                template = 'firefox/new/onboarding/scene2.html'
+                template = 'firefox/new/scene2.html'
         # aside from en-US, this will only be seen for 'de' locale
         elif lang_file_is_active('firefox/new/batm', locale) and experience == 'batmprivate':
             template = 'firefox/new/batm/scene2.html'
-        elif lang_file_is_active('firefox/new/onboarding', locale):
-            template = 'firefox/new/onboarding/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     # if no/incorrect scene specified, show scene 1
@@ -594,11 +590,9 @@ def new(request):
                 else:
                     template = 'firefox/new/batm/private.html'
             else:
-                template = 'firefox/new/onboarding/scene1.html'
+                template = 'firefox/new/scene1.html'
         elif lang_file_is_active('firefox/new/batm', locale) and experience == 'batmprivate':
             template = 'firefox/new/batm/private.html'
-        elif lang_file_is_active('firefox/new/onboarding', locale):
-            template = 'firefox/new/onboarding/scene1.html'
         else:
             template = 'firefox/new/scene1.html'
 

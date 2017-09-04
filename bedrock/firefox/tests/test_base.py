@@ -355,39 +355,29 @@ class TestFirstRun(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_firstrun_40_0(self, render_mock):
-        """Should use new onboarding template as default"""
+        """Should use default firstrun template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='40.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/onboarding.html'])
-
-    @override_settings(DEV=True)
-    @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
-    def test_fx_firstrun_40_0_old_template(self, render_mock):
-        """Should use older horizon firstrun for non active locales"""
-        req = self.rf.get('/firefox/firstrun/')
-        req.locale = 'de'
-        self.view(req, version='40.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-horizon.html'])
+        eq_(template, ['firefox/firstrun/index.html'])
 
     # Bug 1392473 copy test on /firstrun
 
     @override_settings(DEV=True)
     def test_fx_firstrun_copy_experiment_a(self, render_mock):
-        """Should use onboarding-a template for control experiment"""
+        """Should use index-a template for control experiment"""
         req = self.rf.get('/en-US/firefox/firstrun/?v=a')
         self.view(req, version='55.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/onboarding-a.html'])
+        eq_(template, ['firefox/firstrun/index-a.html'])
 
     @override_settings(DEV=True)
     def test_fx_firstrun_copy_experiment_b(self, render_mock):
-        """Should use onboarding-b template for copy experiment"""
+        """Should use index-b template for copy experiment"""
         req = self.rf.get('/en-US/firefox/firstrun/?v=b')
         self.view(req, version='55.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/onboarding-b.html'])
+        eq_(template, ['firefox/firstrun/index-b.html'])
 
     @override_settings(DEV=True)
     def test_fx_firstrun_copy_experiment_other_locales(self, render_mock):
@@ -396,7 +386,7 @@ class TestFirstRun(TestCase):
         req.locale = 'de'
         self.view(req, version='55.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/onboarding.html'])
+        eq_(template, ['firefox/firstrun/index.html'])
 
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)

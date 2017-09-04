@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/new/horizon" %}
+{% add_lang_files "firefox/new/onboarding" %}
 
 {% extends "firefox/new/base.html" %}
 
@@ -29,29 +29,18 @@
 
 {% block content %}
 <main role="main" id="stage">
-  <div class="horizon">
+  <div class="main-container">
+    <div class="horizon">
     <div class="stars">
       <div class="inner-container">
         <header id="masthead">
           <div id="tabzilla">
             <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
           </div>
-          <h2>
-          {% if LANG == 'en-US' %}
-            <a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</a>
-          {% else %}
-            {{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}
-          {% endif %}
-          </h2>
+          <h2><a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</a></h2>
         </header>
         <div class="main-content">
-          <h1>
-          {% if l10n_has_tag('firefox_new_scene_2_headline') %}
-            {{ _('The last independent browser.') }}
-          {% else %}
-            {{ _('Enjoy online freedom.') }}
-          {% endif %}
-          </h1>
+          <h1>{{ _('Behold! The open web awaits.') }}</h1>
 
           <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
             {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
@@ -82,7 +71,7 @@
       </div>{#-- /.inner-container --#}
     </div>
   </div>
-  {% include 'firefox/includes/horizon.html' %}
+</div>
 </main>
 
 {% include 'firefox/includes/schemaorg-app.html' %}

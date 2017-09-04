@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/new/horizon" %}
+{% add_lang_files "firefox/new/onboarding" %}
 
 {% extends "firefox/new/base.html" %}
 
@@ -30,13 +30,7 @@
             <div id="tabzilla">
               <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
             </div>
-            <h2>
-            {% if LANG == 'en-US' %}
-              <a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</a>
-            {% else %}
-              {{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}
-            {% endif %}
-            </h2>
+            <h2><a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</a></h2>
             <div class="version-message-container">
               <p id="version-message-android-latest" class="version-message">
                 {{_('You’re browsing freely with the latest version of Firefox.')}}
@@ -51,16 +45,12 @@
                 {{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-firefox-latest-version') }}
               </p>
               <p id="version-message-desktop-pre-release" class="version-message">
-                {% if l10n_has_tag('firefox_new_pre_release') %}
-                  {{_('You’re using a pre-release version of Firefox.') }}
-                {% else %}
-                  {{_('Congrats! You’re using the latest version of Firefox.')}}
-                {% endif %}
+                {{_('You’re using a pre-release version of Firefox.') }}
               </p>
             </div>{#-- /.version-message-container --#}
           </header>
           <div class="main-content">
-            <h1>{{ _('Browse Freely') }}</h1>
+            <h1>{{ _('Chart your own course') }}</h1>
             <section id="download-buttons">
               {# handles desktop users (windows, os x, linux) #}
               <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
@@ -75,7 +65,6 @@
                 #}
                 {{ download_firefox(alt_copy=_('Free Download'), locale_in_transition=True, download_location='primary cta') }}
               </div>
-
               {# handles Android and iOS users #}
               <div class="mobile download-button-wrapper" id="download-button-wrapper-mobile" data-upgrade-subtitle="{{_('Get it free on Google Play')}}">
                 {{ download_firefox(dom_id='download-button-mobile', download_location='primary cta') }}
@@ -107,32 +96,47 @@
             </div>
 
             <div id="other-platforms-languages-wrapper" class="hidden">
-              <button id="other-platforms-modal-link" type="button">{{_('Firefox for Other Platforms & Languages')}}</button>
+              <button id="other-platforms-modal-link" type="button">
+              {% if l10n_has_tag('firefox_new_install_options') %}
+                {{ _('Advanced install options & other platforms') }}
+              {% else %}
+                {{ _('Firefox for other platforms') }}
+              {% endif %}
+              </button>
+
+              <p>
+                <a href="{{ url('firefox.all') }}">
+                {% if l10n_has_tag('firefox_new_install_options') %}
+                  {{ _('Other languages') }}
+                {% else %}
+                  {{ _('Available Languages') }}
+                {% endif %}
+                </a>
+              </p>
             </div>
 
+            <section id="benefits">
+              <ul>
+                <li>
+                  <h2 class="fast">{{_('Go Fast') }}</h2>
+                  <p>{{_('You have things to do. Get them done faster.') }}</p>
+                </li>
+                <li>
+                  <h2 class="far">{{_('Go Far') }}</h2>
+                  <p>{{_('Go anywhere, with more built-in privacy tools than any other browser.') }}</p>
+                </li>
+                <li>
+                  <h2 class="forward">{{_('Go Forward') }}</h2>
+                  <p>{{_('Use the only browser built for people, not profit.') }}</p>
+                </li>
+              </ul>
+            </section>
           </div>{#-- /.main-content --#}
         </div>{#-- /.inner-container --#}
       </div>
     </div>
   </div>
   <div class="foreground">
-    {% include 'firefox/includes/horizon.html' %}
-    <section id="benefits">
-      <ul>
-        <li>
-          <h2 class="performance">{{_('Freedom is fast') }}</h2>
-          <p>{{_('Go anywhere you want on the Web — with a quickness.') }}</p>
-        </li>
-        <li>
-          <h2 class="privacy">{{_('Freedom is personal') }}</h2>
-          <p>{{_('Enjoy the most built-in privacy tools of any browser.') }}</p>
-        </li>
-        <li>
-          <h2 class="good">{{_('Freedom is yours') }}</h2>
-          <p>{{_('Use the only browser built for people, not profit.') }}</p>
-        </li>
-      </ul>
-    </section>
     <aside id="newsletter-subscribe">
       <div class="container">
         {{ email_newsletter_form(title=_('Keep up with<br> all things Firefox.'), button_class='button-light', spinner_color='#fff') }}
@@ -143,7 +147,13 @@
   <div id="other-platforms">
     <div class="container">
       <section class="section-other-platforms">
-        <h4>{{_('Firefox for other platforms') }}</h4>
+        <h4>
+        {% if l10n_has_tag('firefox_new_install_options') %}
+          {{ _('Advanced Install Options & Other Platforms') }}
+        {% else %}
+          {{_('Firefox for other platforms') }}
+        {% endif %}
+        </h4>
 
         {{ download_firefox_desktop_list() }}
 
@@ -169,7 +179,6 @@
       </section>
     </div>
   </div>
-
 </main>
 
 {% include 'firefox/includes/schemaorg-app.html' %}
