@@ -39,6 +39,11 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
             if plat_os == 'win64':
                 continue
 
+        # Output Windows XP/Vista link only for the regular Release channel,
+        # which actually serves Firefox 52 ESR.
+        if channel != 'release' and plat_os == 'winsha1':
+            continue
+
         # And generate all the info
         download_link = firefox_desktop.get_download_url(
             channel, version, plat_os, locale,
