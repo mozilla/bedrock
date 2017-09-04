@@ -509,7 +509,12 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     if scene == '2':
-        if locale == 'en-US':
+        # `batmprivate` and `fast` variations are currently localized for both en-US and de locales.
+        if lang_file_is_active('firefox/new/batm', locale) and experience == 'batmprivate':
+            template = 'firefox/new/batm/scene2.html'
+        elif lang_file_is_active('firefox/new/sem', locale) and experience == 'fast':
+            template = 'firefox/new/sem/fast/scene2.html'
+        elif locale == 'en-US':
             if experience == 'breakfree':
                 template = 'firefox/new/break-free/scene2.html'
             elif experience == 'wayofthefox':
@@ -528,8 +533,6 @@ def new(request):
                 template = 'firefox/new/fx-lifestyle/you-do-you/scene2.html'
             elif experience == 'itsyourweb':
                 template = 'firefox/new/fx-lifestyle/its-your-web/scene2.html'
-            elif experience == 'fast':
-                template = 'firefox/new/sem/fast/scene2.html'
             elif experience == 'secure':
                 template = 'firefox/new/sem/secure/scene2.html'
             elif experience == 'nonprofit':
@@ -538,18 +541,22 @@ def new(request):
                 template = 'firefox/new/sem/compatible/scene2.html'
             elif experience == 'unsupported-browser':
                 template = 'firefox/new/sem/unsupported-browser/scene2.html'
-            elif experience in ['batmfree', 'batmprivate', 'batmnimble', 'batmresist']:
+            elif experience in ['batmfree', 'batmnimble', 'batmresist']:
                 template = 'firefox/new/batm/scene2.html'
             else:
                 template = 'firefox/new/scene2.html'
-        # aside from en-US, this will only be seen for 'de' locale
-        elif lang_file_is_active('firefox/new/batm', locale) and experience == 'batmprivate':
-            template = 'firefox/new/batm/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     # if no/incorrect scene specified, show scene 1
     else:
-        if locale == 'en-US':
+        if lang_file_is_active('firefox/new/batm', locale) and experience == 'batmprivate':
+            if variant == 'b' and locale == 'en-US':
+                template = 'firefox/new/batm/machine.html'
+            else:
+                template = 'firefox/new/batm/private.html'
+        elif lang_file_is_active('firefox/new/sem', locale) and experience == 'fast':
+            template = 'firefox/new/sem/fast/scene1.html'
+        elif locale == 'en-US':
             if experience == 'breakfree':
                 template = 'firefox/new/break-free/scene1.html'
             elif experience == 'wayofthefox':
@@ -568,8 +575,6 @@ def new(request):
                 template = 'firefox/new/fx-lifestyle/you-do-you/scene1.html'
             elif experience == 'itsyourweb':
                 template = 'firefox/new/fx-lifestyle/its-your-web/scene1.html'
-            elif experience == 'fast':
-                template = 'firefox/new/sem/fast/scene1.html'
             elif experience == 'secure':
                 template = 'firefox/new/sem/secure/scene1.html'
             elif experience == 'nonprofit':
@@ -584,15 +589,8 @@ def new(request):
                 template = 'firefox/new/batm/nimble.html'
             elif experience == 'batmresist':
                 template = 'firefox/new/batm/resist.html'
-            elif experience == 'batmprivate':
-                if variant == 'b':
-                    template = 'firefox/new/batm/machine.html'
-                else:
-                    template = 'firefox/new/batm/private.html'
             else:
                 template = 'firefox/new/scene1.html'
-        elif lang_file_is_active('firefox/new/batm', locale) and experience == 'batmprivate':
-            template = 'firefox/new/batm/private.html'
         else:
             template = 'firefox/new/scene1.html'
 
