@@ -459,18 +459,6 @@ class TestFirefoxNew(TestCase):
 
     # sem program campaign bug 1383063
 
-    def test_fast_scene_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=fast')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/sem/fast/scene1.html')
-
-    def test_fast_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&xv=fast')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/sem/fast/scene2.html')
-
     def test_secure_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=secure')
         req.locale = 'en-US'
@@ -518,6 +506,48 @@ class TestFirefoxNew(TestCase):
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/sem/unsupported-browser/scene2.html')
+
+    # localized sem /fast page bug 1392680
+
+    def test_fast_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=fast')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/fast/scene1.html')
+
+    def test_fast_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=fast')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/fast/scene2.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    def test_fast_locale_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=fast')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/fast/scene1.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    def test_fast_locale_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=fast')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/sem/fast/scene2.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_fast_not_translated_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=fast')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_fast_not_translated_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=fast')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
     # browse against the machine bug 1363802, 1364988.
 

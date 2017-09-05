@@ -2,6 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{# Bug 1392680: (limited) localization of ?xv=fast variation only #}
+{% add_lang_files "firefox/new/sem" %}
+
 {% extends "firefox/base-resp.html" %}
 
 {% block extra_meta %}
@@ -9,8 +12,8 @@
 {% endblock %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}Free Web Browser for Android, iOS, Desktop | Firefox{% endblock %}
-{% block page_desc %}Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!{% endblock %}
+{% block page_title %}{{ _('Free Web Browser for Android, iOS, Desktop') }} | {{ _('Firefox') }}{% endblock %}
+{% block page_desc %}{{ _('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!') }}{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'firefox_new_sem' %}
@@ -35,7 +38,7 @@
       {% endblock %}
 
       <div id="download-button-wrapper-scene1">
-        {{ download_firefox( locale_in_transition=true, dom_id="download-firefox") }}
+        {{ download_firefox(locale_in_transition=true, dom_id="download-firefox") }}
       </div>
 
       {# this button is used only for scene 2's #}
@@ -51,23 +54,33 @@
   <div class="content">
     <ul id="details">
       <li id="content-1">
-        <h3>More Browser Speed</h3>
+        <h3>{{ _('More Browser Speed') }}</h3>
         <p>
-          Bring it, Internet! We’ve spent the last year supercharging Firefox’s performance. Now start up faster, tab hop quicker, and scroll like a speed demon.
+        {% trans %}
+          Bring it, Internet! We’ve spent the last year supercharging Firefox’s performance.
+          Now start up faster, tab hop quicker, and scroll like a speed demon.
+        {% endtrans %}
         </p>
       </li>
 
       <li id="content-2">
-        <h3>More Browser Privacy</h3>
+        <h3>{{ _('More Browser Privacy') }}</h3>
         <p>
-          Firefox doesn’t sell access to your personal information like other companies. From privacy tools to tracking protection, you’re in charge of who sees what.
+        {% trans %}
+          Firefox doesn’t sell access to your personal information like other companies.
+          From privacy tools to tracking protection, you’re in charge of who sees what.
+        {% endtrans %}
         </p>
       </li>
 
       <li id="content-3">
-        <h3>More Browser Freedom</h3>
+        <h3>{{ _('More Browser Freedom') }}</h3>
         <p>
-          Following the pack isn’t our style. As part of the non-profit Mozilla, Firefox leads the fight to protect your online rights, and champion an Internet that benefits everyone—not just a few.
+        {% trans %}
+          Following the pack isn’t our style. As part of the non-profit Mozilla, Firefox
+          leads the fight to protect your online rights, and champion an Internet that
+          benefits everyone—not just a few.
+        {% endtrans %}
         </p>
       </li>
     </ul>
@@ -79,9 +92,9 @@
 <section class="content-section" id="today">
   <div class="content">
     <div id="download-contain">
-      <h3>Browse freely with Firefox today.</h3>
+      <h3>{{ _('Browse freely with Firefox today.') }}</h3>
 
-      {{ download_firefox( locale_in_transition=true, dom_id="download-firefox-today") }}
+      {{ download_firefox(locale_in_transition=true, dom_id="download-firefox-today") }}
     </div>
   </div>
 </section>

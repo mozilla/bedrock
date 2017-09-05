@@ -2,17 +2,19 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "firefox/new/sem" %}
+
 {% extends "firefox/new/sem/base.html" %}
 
 {% block body_class %}fx-sem-scene2{% endblock %}
 
 {% block head_content %}
-  <h2>
-    Thanks for choosing Firefox
-  </h2>
+  <h2>{{ _('Thanks for choosing Firefox') }}</h2>
 
   <p>
-    Your download should begin automatically. <br>If not, <a id="direct-download-link" href="{{ url('firefox.all') }}">click here</a>.
+  {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
+    Your download should begin automatically. <br>If not, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
+  {% endtrans %}
   </p>
 {% endblock %}
 
