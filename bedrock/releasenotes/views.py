@@ -103,7 +103,6 @@ def check_url(product, version):
         return reverse('firefox.system_requirements', args=[version])
 
 
-@cache_control_expires(1)
 def release_notes(request, version, product='Firefox'):
     if not version:
         raise Http404
