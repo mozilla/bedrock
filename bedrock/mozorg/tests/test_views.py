@@ -337,25 +337,6 @@ class TestMozIDDataView(TestCase):
 
 
 @patch('bedrock.mozorg.views.l10n_utils.render')
-class TestInternetHealth(TestCase):
-    def setUp(self):
-        self.rf = RequestFactory()
-
-    def test_internet_health_hub_template(self, render_mock):
-        view = views.IHView()
-        view.request = RequestFactory().get('/internet-health/')
-        view.request.locale = 'en-US'
-        eq_(view.get_template_names(), ['mozorg/internet-health/index.html'])
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
-    def test_old_internet_health_template(self, render_mock):
-        view = views.IHView()
-        view.request = RequestFactory().get('/internet-health/')
-        view.request.locale = 'es-ES'
-        eq_(view.get_template_names(), ['mozorg/internet-health.html'])
-
-
-@patch('bedrock.mozorg.views.l10n_utils.render')
 class TestTechnology(TestCase):
     def setUp(self):
         self.rf = RequestFactory()

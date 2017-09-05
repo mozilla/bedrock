@@ -277,19 +277,10 @@ class TechnologyView(BlogPostsView):
 
 
 class IHView(BlogPostsView):
+    template_name = 'mozorg/internet-health/index.html'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'internetcitizen'
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-
-        if lang_file_is_active('mozorg/internet-health/index', locale):
-            template_name = 'mozorg/internet-health/index.html'
-        else:
-            template_name = 'mozorg/internet-health.html'
-
-        return [template_name]
 
 
 class DeveloperView(BlogPostsView):
