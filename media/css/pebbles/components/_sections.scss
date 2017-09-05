@@ -15,18 +15,22 @@
 .content {
     @include border-box;
     margin: 0 auto;
-    padding: 20px;
     min-width: $width-phone;
+    padding: 20px;
+    width: auto;
 
     @media #{$mq-tablet} {
-        width: $width-tablet;
+        padding: 20px 60px;
+        width: auto;
     }
 
     @media #{$mq-desktop} {
-        width: $width-desktop;
+        padding: 20px 85px;
+        width: auto;
     }
 
     @media #{$mq-desktop-wide} {
-        width: $width-desktop-wide;
+        max-width: $width-max-content;
+        width: auto;
     }
 }

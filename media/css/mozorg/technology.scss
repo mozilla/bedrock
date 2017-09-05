@@ -385,12 +385,11 @@ main {
     @media #{$mq-tablet} {
 
         .content {
-            padding:0;
             position: relative;
         }
 
         .inner-container {
-            width: 320px;
+            width: 300px;
         }
 
         &.odd .inner-container {
@@ -439,6 +438,8 @@ main {
     @media #{$mq-desktop} {
         .content {
             min-height: 420px;
+            width: $width-desktop;
+            padding: 0;
         }
 
         .inner-container {
