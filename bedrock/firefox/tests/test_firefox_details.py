@@ -573,19 +573,19 @@ class TestFirefoxDesktop(TestCase):
         ok_('product=firefox-beta-stub&' not in url)
 
 
-@patch.object(firefox_android._storage, 'data',
-              Mock(return_value=dict(version='22.0.1',
-                                     beta_version='23.0',
-                                     nightly_version='25.0a1')))
 class TestFirefoxAndroid(TestCase):
     archive_url_base = 'https://archive.mozilla.org/pub/mobile/nightly/'
     google_play_url_base = ('https://play.google.com/store/apps/details'
                             '?id=org.mozilla.')
 
+    @patch.object(firefox_android._storage, 'data',
+                  Mock(return_value=dict(version='22.0.1')))
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
         eq_(firefox_android.latest_version('release'), '22.0.1')
 
+    @patch.object(firefox_android._storage, 'data',
+                  Mock(return_value=dict(beta_version='23.0')))
     def test_latest_beta_version(self):
         """latest_version should return the latest beta version."""
         eq_(firefox_android.latest_version('beta'), '23.0')
@@ -596,22 +596,39 @@ class TestFirefoxAndroid(TestCase):
         'org.mozilla.fennec_aurora' product regardless of the architecture type,
         if the force_direct option is unspecified.
         """
-        ok_(firefox_android.get_download_url('nightly', 'api-15')
+        ok_(firefox_android.get_download_url('nightly', 'arm')
             .startswith(self.google_play_url_base + 'fennec_aurora'))
         ok_(firefox_android.get_download_url('nightly', 'x86')
             .startswith(self.google_play_url_base + 'fennec_aurora'))
 
+    @patch.object(firefox_android._storage, 'data',
+                  Mock(return_value=dict(nightly_version='55.0a1')))
+    def test_get_download_url_nightly_direct_legacy(self):
+        """
+        get_download_url should return a mozilla-central archive link depending
+        on the architecture type, if the force_direct option is True. The ARM
+        build URL should have api-15 instead of api-16.
+        """
+        eq_(firefox_android.get_download_url('nightly', 'arm', 'multi', True),
+            self.archive_url_base + 'latest-mozilla-central-android-api-15/'
+            'fennec-55.0a1.multi.android-arm.apk')
+        eq_(firefox_android.get_download_url('nightly', 'x86', 'multi', True),
+            self.archive_url_base + 'latest-mozilla-central-android-x86/'
+            'fennec-55.0a1.multi.android-i386.apk')
+
+    @patch.object(firefox_android._storage, 'data',
+                  Mock(return_value=dict(nightly_version='56.0a1')))
     def test_get_download_url_nightly_direct(self):
         """
         get_download_url should return a mozilla-central archive link depending
         on the architecture type, if the force_direct option is True.
         """
-        eq_(firefox_android.get_download_url('nightly', 'api-15', 'multi', True),
-            self.archive_url_base + 'latest-mozilla-central-android-api-15/'
-            'fennec-25.0a1.multi.android-arm.apk')
+        eq_(firefox_android.get_download_url('nightly', 'arm', 'multi', True),
+            self.archive_url_base + 'latest-mozilla-central-android-api-16/'
+            'fennec-56.0a1.multi.android-arm.apk')
         eq_(firefox_android.get_download_url('nightly', 'x86', 'multi', True),
             self.archive_url_base + 'latest-mozilla-central-android-x86/'
-            'fennec-25.0a1.multi.android-i386.apk')
+            'fennec-56.0a1.multi.android-i386.apk')
 
     def test_get_download_url_beta(self):
         """
@@ -619,7 +636,7 @@ class TestFirefoxAndroid(TestCase):
         'org.mozilla.firefox_beta' product regardless of the architecture type,
         if the force_direct option is unspecified.
         """
-        ok_(firefox_android.get_download_url('beta', 'api-15')
+        ok_(firefox_android.get_download_url('beta', 'arm')
             .startswith(self.google_play_url_base + 'firefox_beta'))
         ok_(firefox_android.get_download_url('beta', 'x86')
             .startswith(self.google_play_url_base + 'firefox_beta'))
@@ -629,7 +646,7 @@ class TestFirefoxAndroid(TestCase):
         get_download_url should return a bouncer link depending on the
         architecture type, if the force_direct option is True.
         """
-        url = firefox_android.get_download_url('beta', 'api-15', 'multi', True)
+        url = firefox_android.get_download_url('beta', 'arm', 'multi', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'fennec-beta-latest'),
                               ('os', 'android'), ('lang', 'multi')])
@@ -644,7 +661,7 @@ class TestFirefoxAndroid(TestCase):
         'org.mozilla.firefox' product regardless of the architecture type,
         if the force_direct option is unspecified.
         """
-        ok_(firefox_android.get_download_url('release', 'api-15')
+        ok_(firefox_android.get_download_url('release', 'arm')
             .startswith(self.google_play_url_base + 'firefox'))
         ok_(firefox_android.get_download_url('release', 'x86')
             .startswith(self.google_play_url_base + 'firefox'))
@@ -654,7 +671,7 @@ class TestFirefoxAndroid(TestCase):
         get_download_url should return a bouncer link depending on the
         architecture type, if the force_direct option is True.
         """
-        url = firefox_android.get_download_url('release', 'api-15', 'multi', True)
+        url = firefox_android.get_download_url('release', 'arm', 'multi', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'fennec-latest'),
                               ('os', 'android'), ('lang', 'multi')])

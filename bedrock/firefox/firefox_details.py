@@ -296,10 +296,10 @@ class FirefoxDesktop(_ProductDetails):
 
 
 class FirefoxAndroid(_ProductDetails):
-    # Architecture names defined in bouncer and these human-readable names
+    # Human-readable architecture names
     platform_labels = OrderedDict([
-        ('api-15', _('ARM devices\n(Android 4.0.3+)')),
-        ('x86', _('Intel devices\n(Android 4.0.3+ x86 CPU)')),
+        ('arm', _('ARM devices\n(Android %s+)')),
+        ('x86', _('Intel devices\n(Android %s+ x86 CPU)')),
     ])
 
     # Human-readable channel names
@@ -324,7 +324,7 @@ class FirefoxAndroid(_ProductDetails):
 
     # Platform names defined in bouncer
     platform_map = OrderedDict([
-        ('api-15', 'android'),
+        ('arm', 'android'),
         ('x86', 'android-x86'),
     ])
 
@@ -349,23 +349,38 @@ class FirefoxAndroid(_ProductDetails):
         'nightly': 'central',
     }
     archive_urls = {
-        'api-15': archive_url_base + '-api-15/fennec-%s.multi.android-arm.apk',
-        'x86': archive_url_base + '-x86/fennec-%s.multi.android-i386.apk',
+        'arm': archive_url_base + '-%s/fennec-%s.multi.android-arm.apk',
+        'x86': archive_url_base + '-%s/fennec-%s.multi.android-i386.apk',
     }
 
     def platforms(self, channel='release'):
-        # Use an OrderedDict to always put the api-15 build in front
+        # Use an OrderedDict to always put the ARM build in front
         platforms = OrderedDict()
+
+        # Supported Android version has been changed with Firefox 56
+        version_int = self.latest_major_version(channel)
+        min_version = '4.0.3' if version_int < 56 else '4.1'
 
         # key is a bouncer platform name, value is the human-readable label
         for arch, platform in self.platform_map.iteritems():
-            platforms[platform] = self.platform_labels[arch]
+            platforms[platform] = self.platform_labels[arch] % min_version
 
         return platforms.items()
 
     def latest_version(self, channel):
         version = self.version_map.get(channel, 'version')
         return self.mobile_details[version]
+
+    def latest_major_version(self, channel):
+        """Return latest major version as an int."""
+        lv = self.latest_version(channel)
+        if lv is None:
+            return 0
+
+        try:
+            return int(lv.split('.')[0])
+        except ValueError:
+            return 0
 
     def _get_filtered_builds(self, builds, channel, version=None, query=None):
         """
@@ -434,12 +449,12 @@ class FirefoxAndroid(_ProductDetails):
         # We don't have pre-release builds yet
         return []
 
-    def get_download_url(self, channel='release', arch='api-15', locale='multi',
+    def get_download_url(self, channel='release', arch='arm', locale='multi',
                          force_direct=False):
         """
         Get direct download url for the product.
         :param channel: one of self.version_map.keys() such as nightly, beta.
-        :param arch: one of self.platform_map.keys() such as api-15, x86.
+        :param arch: one of self.platform_map.keys() either arm or x86.
         :param locale: e.g. pt-BR.
         :param force_direct: Force the download URL to be direct or bouncer
                 instead of Google Play.
@@ -448,7 +463,15 @@ class FirefoxAndroid(_ProductDetails):
         if force_direct:
             # Use a direct archive link for Nightly
             if channel == 'nightly':
+                if arch == 'x86':
+                    api_version = 'x86'
+                elif self.latest_major_version(channel) < 56:
+                    api_version = 'api-15'
+                else:
+                    api_version = 'api-16'
+
                 return self.archive_urls[arch] % (self.archive_repo[channel],
+                                                  api_version,
                                                   self.latest_version(channel))
 
             # Use a bouncer link for Beta/Release
