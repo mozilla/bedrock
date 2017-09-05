@@ -11,6 +11,7 @@ from django.test.client import RequestFactory
 import querystringsafe_base64
 from mock import patch, Mock
 from nose.tools import eq_, ok_
+from pyquery import PyQuery as pq
 
 from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
@@ -626,6 +627,27 @@ class TestFirefoxNew(TestCase):
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')
+
+
+class TestFirefoxNewNoIndex(TestCase):
+    def test_scene_1_noindex(self):
+        # Scene 1 of /firefox/new/ should never contain a noindex tag.
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'en-US'
+        response = views.new(req)
+        doc = pq(response.content)
+        robots = doc('meta[name="robots"]')
+        eq_(robots.length, 0)
+
+    def test_scene_2_noindex(self):
+        # Scene 2 of /firefox/new/ should always contain a noindex tag.
+        req = RequestFactory().get('/firefox/new/?scene=2')
+        req.locale = 'en-US'
+        response = views.new(req)
+        doc = pq(response.content)
+        robots = doc('meta[name="robots"]')
+        eq_(robots.length, 1)
+        ok_('noindex' in robots.attr('content'))
 
 
 class TestFeedbackView(TestCase):
