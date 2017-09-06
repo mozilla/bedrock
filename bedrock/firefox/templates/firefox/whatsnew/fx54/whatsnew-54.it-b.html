@@ -1,0 +1,54 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx54/whatsnew-54.html" %}
+
+{% add_lang_files "firefox/whatsnew_50" "firefox/sendto" %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_whatsnew_it_55' %}
+{% endblock %}
+
+{% block header_content %}
+  <h4 class="up-to-date"><span>Firefox è aggiornato.</span></h4>
+  <h2>Ora sei pronto a partire.</h2>
+  <h1>Invia a te stesso il link <br>per scaricare Firefox <br>per dispositivi mobile</h1>
+{% endblock %}
+
+{% block body_content %}
+  <div id="send-to-device-wrapper" class="primary-cta">
+    <section id="send-to-device" class="no-title">
+      <div class="form-container">
+        <form id="send-to-device-form" data-subject="Il tuo link per scaricare Firefox" data-link="https://mzl.la/2wmYY9K">
+          <ul class="error-list hidden">
+            <li class="email">{{ _('Please enter an email address.') }}</li>
+          </ul>
+          <div class="input">
+            <div class="inline-field">
+              <label id="form-input-label" for="id-input" data-alt="{{ _('Enter your email') }}">{{ _('Enter your email') }}</label>
+              <div class="form-input">
+                <input id="id-input" name="phone-or-email" type="text" required>
+              </div>
+              <div class="form-submit">
+                <button id="id-send" type="submit" class="button">Inviami una email
+</button>
+              </div>
+            </div>
+          </div>
+          <div class="thank-you hidden">
+            <p class="email">{{ _('Check your device for the email!') }}</p>
+            <a href="#" role="button" class="more send-another">{{ _('Send to another device') }}</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+{% endblock %}
+
+{# no store badges for variation b #}
+{% block mobile_download_buttons %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_whatsnew_54_mailto_experiment' %}
+{% endblock %}

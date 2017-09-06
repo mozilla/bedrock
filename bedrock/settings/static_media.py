@@ -556,6 +556,15 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew_zh_tw_49-bundle.css',
     },
+    'firefox_whatsnew_it_55': {
+        'source_filenames': (
+            'css/base/send-to-device.less',
+            'css/firefox/horizon/background.less',
+            'css/firefox/whatsnew/whatsnew-54.less',
+            'css/firefox/whatsnew/whatsnew-it-55.less',
+        ),
+        'output_filename': 'css/firefox_whatsnew_it_55-bundle.css',
+    },
     'firefox_whatsnew_50': {
         'source_filenames': (
             'css/base/send-to-device.less',
@@ -1330,6 +1339,14 @@ PIPELINE_JS = {
             'js/base/send-to-device.js',
             'js/firefox/whatsnew/whatsnew-54.js',
             'js/firefox/whatsnew/whatsnew-54-experiment-badge-urls.js',
+            'js/firefox/whatsnew/whatsnew-54-init.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_54_experiment-bundle.js',
+    },
+    'firefox_whatsnew_54_mailto_experiment': {
+        'source_filenames': (
+            'js/base/mailto-device.js',
+            'js/firefox/whatsnew/whatsnew-54.js',
             'js/firefox/whatsnew/whatsnew-54-init.js',
         ),
         'output_filename': 'js/firefox_whatsnew_54_experiment-bundle.js',
