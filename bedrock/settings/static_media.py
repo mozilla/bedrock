@@ -1336,6 +1336,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_whatsnew_54_experiment-bundle.js',
     },
+    'firefox_whatsnew_54_mailto_experiment': {
+        'source_filenames': (
+            'js/base/mailto-device.js',
+            'js/firefox/whatsnew/whatsnew-54.js',
+            'js/firefox/whatsnew/whatsnew-54-init.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_54_experiment-bundle.js',
+    },
     'experiment_whatsnew_54': {
         'source_filenames': (
             'js/base/mozilla-traffic-cop.js',

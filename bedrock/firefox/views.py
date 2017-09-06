@@ -446,7 +446,10 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
         elif show_54_whatsnew(version):
-            if (variation in ['b', 'c'] and locale in self.variation_locales):
+            if (variation == 'b' and locale == 'it'):
+                # test mailto widget
+                template = 'firefox/whatsnew/fx54/whatsnew-54.it-b.html'
+            elif (variation in ['b', 'c'] and locale in self.variation_locales):
                 template = 'firefox/whatsnew/fx54/whatsnew-54-{0}.html'.format(variation)
             else:
                 # ja, zh-CN, and zh-TW have locale-specific templates
