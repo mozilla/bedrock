@@ -48,6 +48,9 @@
                 {{_('You’re using a pre-release version of Firefox.') }}
               </p>
             </div>{#-- /.version-message-container --#}
+            {% if switch('firefox-new-survey', ['en-US']) %}
+              {% include 'firefox/new/survey.html' %}
+            {% endif %}
           </header>
           <div class="main-content">
             <h1>{{ _('Chart your own course') }}</h1>
