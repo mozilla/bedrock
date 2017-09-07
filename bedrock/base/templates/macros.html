@@ -290,7 +290,13 @@
       <h2 class="thank-you hidden">{{ _('Your download link was sent.') }}</h2>
       <form id="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post"{% if platform == 'select' %} class="dropdown"{% endif %}>
         <ul class="error-list hidden">
-          <li class="sms">{{ _('Sorry. This number isn’t valid. Please enter a U.S. phone number.') }}</li>
+          <li class="sms">
+          {% if l10n_has_tag('sendto_updates_bug1395342') %}
+            {{ _('Sorry, we can’t send SMS messages to this phone number.') }}
+          {% else %}
+            {{ _('Sorry. This number isn’t valid. Please enter a U.S. phone number.') }}
+          {% endif %}
+          </li>
           <li class="email">{{ _('Please enter an email address.') }}</li>
           <li class="platform">{{ _('Please make a selection before proceeding.') }}</li>
           <li class="system">{{ _('An error occurred in our system. Please try again later.') }}</li>
@@ -314,7 +320,7 @@
             <input type="hidden" name="message-set" value="{{ message_set }}">
           </div>
           <div class="inline-field">
-            <label id="form-input-label" for="id-input" data-alt="{{ _('Enter your email or 10-digit phone number') }}">{{ _('Enter your email') }}</label>
+            <label id="form-input-label" for="id-input" data-alt="{% if l10n_has_tag('sendto_updates_bug1395342') %}{{ _('Enter your email or phone number') }}{% else %}{{ _('Enter your email or 10-digit phone number') }}{% endif %}">{{ _('Enter your email') }}</label>
             <div class="form-input">
               <input id="id-input" name="phone-or-email" type="text" required>
             </div>
@@ -325,7 +331,12 @@
             </div>
           </div>
           <p class="legal sms">
-            {{ _('SMS service available to U.S. phone numbers only. SMS &amp; data rates may apply.')}} {{ _('The intended recipient of the email or SMS must have consented.')}} <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
+          {% if l10n_has_tag('sendto_updates_bug1395342') %}
+            {{ _('SMS service available in select countries only. SMS &amp; data rates may apply.') }}
+          {% else %}
+            {{ _('SMS service available to U.S. phone numbers only. SMS &amp; data rates may apply.') }}
+          {% endif %}
+            {{ _('The intended recipient of the email or SMS must have consented.')}} <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
           </p>
           <p class="legal email">
             {{ _('The intended recipient of the email must have consented.')}} <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
