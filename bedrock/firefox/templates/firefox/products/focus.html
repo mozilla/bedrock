@@ -39,7 +39,12 @@
     {{ high_res_img('firefox/android/btn-google-play.png', {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True}) }}
   </a>
   <small class="fx-privacy-link">
-    <a href="{{ url('privacy.notices.firefox-focus') }}">{{ _('Firefox Privacy') }}</a>
+    {% if LANG.startswith('en-') %} 
+      {% set privacy_text = _('Focus Privacy Notice') %}
+    {% else %}
+      {% set privacy_text = _('Firefox Privacy') %}
+    {% endif %}
+    <a href="{{ url('privacy.notices.firefox-focus') }}">{{ privacy_text }}</a>
   </small>
 {% endblock %}
 
