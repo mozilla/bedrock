@@ -135,11 +135,6 @@ $color-fox-purple: #3a304b;
         margin: 0 0 20px;
     }
 
-    .field-format label {
-        @include open-sans;
-        margin-right: 20px;
-    }
-
     .privacy-check-label {
         @include font-size(14px);
         @include open-sans;

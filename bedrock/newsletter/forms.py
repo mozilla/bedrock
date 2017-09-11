@@ -227,9 +227,6 @@ class NewsletterFooterForm(forms.Form):
     # currently used on /contribute/friends/ (custom markup)
     first_name = forms.CharField(widget=forms.TextInput, required=False)
     last_name = forms.CharField(widget=forms.TextInput, required=False)
-    fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
-                            choices=FORMATS,
-                            initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
     source_url = forms.URLField(required=False)
     newsletters = forms.CharField(widget=forms.HiddenInput,

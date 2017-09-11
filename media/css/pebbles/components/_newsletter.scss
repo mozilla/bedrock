@@ -51,13 +51,6 @@
         }
     }
 
-    // html/text radio buttons
-    .field-format label {
-        @include open-sans;
-        display: inline;
-        margin-right: 20px;
-    }
-
     // privacy checkbox
     .field-privacy {
         @include font-size(12px);

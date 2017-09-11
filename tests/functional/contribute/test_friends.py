@@ -14,8 +14,6 @@ def test_signup_default_values(base_url, selenium):
     page = ContributeFriendsPage(selenium, base_url).open()
     assert '' == page.email
     assert 'United States' == page.country
-    assert page.html_format_selected
-    assert not page.text_format_selected
     assert not page.privacy_policy_accepted
     assert page.is_privacy_policy_link_displayed
 
@@ -34,7 +32,6 @@ def test_successful_sign_up(base_url, selenium):
     page = ContributeFriendsPage(selenium, base_url).open()
     page.type_email('success@example.com')
     page.select_country('Germany')
-    page.select_text_format()
     page.accept_privacy_policy()
     page.click_sign_me_up()
     assert page.sign_up_successful

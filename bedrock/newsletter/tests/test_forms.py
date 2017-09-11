@@ -178,13 +178,11 @@ class TestNewsletterFooterForm(TestCase):
             'first_name': 'Walter',
             'last_name': 'Sobchak',
             'privacy': True,
-            'fmt': 'H',
             'newsletters': self.newsletter_name,
         }
         form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data.copy())
         self.assertTrue(form.is_valid(), form.errors)
         cleaned_data = form.cleaned_data
-        self.assertEqual(data['fmt'], cleaned_data['fmt'])
         self.assertEqual(data['lang'], cleaned_data['lang'])
 
     def test_country_default(self):
@@ -229,7 +227,6 @@ class TestNewsletterFooterForm(TestCase):
         data = {
             'email': 'foo@example.com',
             'privacy': True,
-            'fmt': 'H',
             'newsletters': self.newsletter_name,
         }
         form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data.copy())
@@ -244,7 +241,6 @@ class TestNewsletterFooterForm(TestCase):
         data = {
             'email': 'foo@example.com',
             'privacy': False,
-            'fmt': 'H',
             'newsletters': self.newsletter_name,
         }
         form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data)
@@ -261,7 +257,6 @@ class TestNewsletterFooterForm(TestCase):
             'email': 'fred@example.com',
             'lang': 'fr',
             'privacy': True,
-            'fmt': 'H',
             'newsletters': '',
         }
         form = NewsletterFooterForm('', locale='en-US', data=data.copy())
@@ -274,7 +269,6 @@ class TestNewsletterFooterForm(TestCase):
             'email': 'fred@example.com',
             'lang': 'fr',
             'privacy': True,
-            'fmt': 'H',
             'newsletters': invalid_newsletter,
         }
         form = NewsletterFooterForm(invalid_newsletter, locale='en-US', data=data.copy())

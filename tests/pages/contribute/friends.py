@@ -16,13 +16,11 @@ class ContributeFriendsPage(ContributeBasePage):
     _email_locator = (By.ID, 'id_email')
     _fx_and_you_locator = (By.ID, 'id_fx-and-you')
     _country_locator = (By.ID, 'id_country')
-    _html_format_locator = (By.ID, 'id_fmt_0')
     _newsletters_locator = (By.ID, 'id_newsletters')
     _privacy_policy_checkbox_locator = (By.ID, 'id_privacy')
     _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] span a')
     _signup_form_locator = (By.ID, 'newsletter-form')
     _submit_button_locator = (By.ID, 'footer_email_submit')
-    _text_format_locator = (By.ID, 'id_fmt_1')
     _thank_you_locator = (By.CSS_SELECTOR, '#newsletter-form-thankyou h3')
 
     @property
@@ -33,10 +31,6 @@ class ContributeFriendsPage(ContributeBasePage):
     def country(self):
         el = self.find_element(*self._country_locator)
         return el.find_element(By.CSS_SELECTOR, 'option[selected]').text
-
-    @property
-    def html_format_selected(self):
-        return self.find_element(*self._html_format_locator).is_selected()
 
     @property
     def is_signup_form_displayed(self):
@@ -59,10 +53,6 @@ class ContributeFriendsPage(ContributeBasePage):
     def sign_up_successful(self):
         return self.is_element_displayed(*self._thank_you_locator)
 
-    @property
-    def text_format_selected(self):
-        return self.find_element(*self._text_format_locator).is_selected()
-
     def accept_fx_and_you(self):
         el = self.find_element(*self._fx_and_you_locator)
         assert not el.is_selected(), 'Firefox and you has already been accepted'
@@ -82,9 +72,6 @@ class ContributeFriendsPage(ContributeBasePage):
     def select_country(self, value):
         el = self.find_element(*self._country_locator)
         Select(el).select_by_visible_text(value)
-
-    def select_text_format(self):
-        self.find_element(*self._text_format_locator).click()
 
     def type_email(self, value):
         self.find_element(*self._email_locator).send_keys(value)

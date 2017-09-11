@@ -18,8 +18,6 @@ def test_default_values(page_class, base_url, selenium):
     assert '' == page.email
     assert 'United States' == page.country
     assert 'English' == page.language
-    assert page.html_format_selected
-    assert not page.text_format_selected
     assert not page.privacy_policy_accepted
     assert page.is_privacy_policy_link_displayed
 
@@ -30,8 +28,6 @@ def test_default_values_developer_newsletter(base_url, selenium):
     page = DeveloperNewsletterPage(selenium, base_url).open()
     assert '' == page.email
     assert 'United States' == page.country
-    assert page.html_format_selected
-    assert not page.text_format_selected
     assert not page.privacy_policy_accepted
     assert page.is_privacy_policy_link_displayed
 
@@ -43,7 +39,6 @@ def test_successful_sign_up(page_class, base_url, selenium):
     page.type_email('success@example.com')
     page.select_country('United Kingdom')
     page.select_language('Deutsch')
-    page.select_text_format()
     page.accept_privacy_policy()
     page.click_sign_me_up()
     assert page.sign_up_successful
@@ -54,7 +49,6 @@ def test_successful_sign_up_developer_newsletter(base_url, selenium):
     page = DeveloperNewsletterPage(selenium, base_url).open()
     page.type_email('success@example.com')
     page.select_country('United Kingdom')
-    page.select_text_format()
     page.accept_privacy_policy()
     page.click_sign_me_up()
     assert page.sign_up_successful

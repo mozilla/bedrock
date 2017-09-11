@@ -61,9 +61,6 @@
             {{ form.lang|safe }}
           </div>
         {% endif %}
-        <div class="field field-format">
-          {{ form.fmt|safe }}
-        </div>
         <div class="field field-privacy {% if form.privacy.errors %}form-field-error{% endif %}">
           {{ form.privacy|safe }}
         </div>
