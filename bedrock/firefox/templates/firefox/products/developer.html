@@ -8,9 +8,9 @@
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Firefox Developer Edition')}}{% endblock %}
-{% block page_favicon %}{{ static('img/firefox/developer/favicon.png') }}{% endblock %}
-{% block page_favicon_large %}{{ static('img/firefox/developer/favicon-196.png') }}{% endblock %}
-{% block page_image %}{{ static('img/firefox/developer/page-image.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/products/developer/quantum/favicon.png') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/products/developer/quantum/favicon-196.png') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/products/developer/quantum/page-image.png') }}{% endblock %}
 
 {% block page_desc %}
   {{_('Built for those who build the Web. The only browser made for developers like you.')}}
@@ -33,7 +33,7 @@
   <section class="section section-intro">
     <div class="content">
 
-      <h1 class="fx-logo">{{ high_res_img('firefox/developer/title.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</h1>
+      <h1 class="fx-logo">{{ high_res_img('firefox/products/developer/quantum/logo-wordmark.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '88'}) }}</h1>
       <h2 class="section-title">{{ _('Modern tools for the Open Web') }}</h2>
       <p class="tagline">{{ _('Create and debug web experiences with powerful, open source tools.') }}</p>
 
@@ -280,15 +280,15 @@
     <div class="content">
 
       <div class="dev-footer-download">
-        <h3 class="fx-logo">{{ high_res_img('firefox/developer/title.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</h3>
+        <h3 class="fx-logo">{{ high_res_img('firefox/products/developer/quantum/logo-wordmark.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '88'}) }}</h3>
         {{ download_firefox('alpha', platform='desktop', dom_id='footer-download', button_color='button-arrow', download_location='footer cta') }}
       </div>
 
       <div class="dev-footer-newsletter">
       {% if LANG.startswith('en-') %}
-        {{ email_newsletter_form('app-dev', 'Get the Mozilla Developer Newsletter', button_class='button-light', include_language=False) }}
+        {{ email_newsletter_form('app-dev', 'Get the Mozilla Developer Newsletter', button_class='button-hollow button-light', include_language=False) }}
       {% else %}
-        {{ super() }}
+        {{ email_newsletter_form(spinner_color='#fff', button_class='button-hollow button-light') }}
       {% endif %}
       </div>
     </div>
