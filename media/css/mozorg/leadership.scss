@@ -528,20 +528,24 @@
     margin: 0 auto;
 
     @media #{$mq-phone-wide} {
-        width: $width-phone-wide;
+        display: flex;
+        flex-wrap: wrap;
     }
 
     @media #{$mq-tablet} {
         margin: 0 -10px;
-        width: auto;
     }
 }
 
 .vcard {
     width: 160px;
     padding: 0 20px .25em;
-    margin: 0 auto 20px;
+    margin: 10px auto;
     position: relative;
+
+    @media #{$mq-phone-wide} {
+        margin: 10px 10px 20px;
+    }
 
     .headshot {
         display: block;
@@ -552,7 +556,6 @@
         color: $color-text-primary;
         text-decoration: none;
         text-align: center;
-        @include transition(transform 200ms ease, box-shadow 200ms ease);
     }
 
     &:focus {
@@ -658,46 +661,22 @@
             text-decoration: underline;
         }
     }
+}
+
+@supports(display: grid) {
+    .gallery {
+        margin: 0;
+    }
 
     @media #{$mq-phone-wide} {
-        float: left;
-        margin: 0 10px 20px;
-
-        &:nth-child(odd) {
-            clear: left;
-        }
-    }
-
-    @media #{$mq-tablet} {
-        &:nth-child(odd) {
-            clear: none;
+        .gallery {
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         }
 
-        &:nth-child(3n+1) {
-            clear: left;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        &:nth-child(odd),
-        &:nth-child(3n+1) {
-            clear: none;
-        }
-
-        &:nth-child(4n+1) {
-            clear: left;
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        &:nth-child(odd),
-        &:nth-child(3n+1),
-        &:nth-child(4n+1) {
-            clear: none;
-        }
-
-        &:nth-child(6n+1) {
-            clear: left;
+        .vcard {
+            margin: 0 0 10px;
         }
     }
 }
