@@ -25,7 +25,15 @@
         });
     };
 
-    HomePageB.ctaSyncClick = function(e) {
+    HomePageB.ctaSyncClick = function() {
+        HomePageB.dataLayer.push({
+            'event': 'in-page-interaction',
+            'eAction': 'Button Click',
+            'eLabel': 'Sync Promo'
+        });
+    };
+
+    HomePageB.ctaSyncClickFxA = function(e) {
         e.preventDefault();
 
         HomePageB.dataLayer.push({
@@ -50,8 +58,12 @@
         HomePageB.fxVersion = HomePageB.client.FirefoxMajorVersion;
         HomePageB.params = new window._SearchParams();
 
-        HomePageB.ctaSync;
         HomePageB.ctaPocket;
+        HomePageB.ctaSync = document.getElementById('fxa-sign-in');
+
+        // default to standard click handler (GA only)
+        // may change if on Fx desktop signed out of Sync
+        HomePageB.ctaSync.addEventListener('click', HomePageB.ctaSyncClick, false);
 
         /* This shows five different content variations, depending on the browser/state
          * 1. Not Firefox (any other browser) <-- default
@@ -99,9 +111,9 @@
                             HomePageB.setBodyClass('state-fx-signed-out');
                             HomePageB.state = 'Firefox 31 or Higher: Signed-Out';
 
-                            // Sync sign in flow button only visible for Fx31+ signed OUT of Sync
-                            HomePageB.ctaSync = document.getElementById('fxa-sign-in');
-                            HomePageB.ctaSync.addEventListener('click', HomePageB.ctaSyncClick, false);
+                            // De-activate standard click handler in favor of one that loads about:accounts
+                            HomePageB.ctaSync.removeEventListener('click', HomePageB.ctaSyncClick, false);
+                            HomePageB.ctaSync.addEventListener('click', HomePageB.ctaSyncClickFxA, false);
                         }
 
                         // Note - the above results in Nightly/Beta users having no way to download
