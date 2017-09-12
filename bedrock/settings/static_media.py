@@ -612,6 +612,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/home-bundle.css',
     },
+    'home-b': {
+        'source_filenames': (
+            'css/newsletter/moznewsletter-subscribe.less',
+            'css/mozorg/home/home-b.scss',
+        ),
+        'output_filename': 'css/home-b-bundle.css',
+    },
     'legal': {
         'source_filenames': (
             'css/legal/legal.less',
@@ -992,6 +999,8 @@ PIPELINE_JS = {
             'js/base/base-page-init.js',
             'js/base/core-datalayer.js',
             'js/base/core-datalayer-init.js',
+            # primarily needed by stub attribution script (+ a couple others)
+            'js/base/search-params.js',
         ),
         'output_filename': 'js/common-bundle.js',
     },
@@ -1366,6 +1375,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/home-bundle.js',
     },
+    'home-b': {
+        'source_filenames': (
+            'js/base/uitour-lib.js',
+            'js/mozorg/home/home-b.js',
+            'js/mozorg/home/home-b-init.js',
+        ),
+        'output_filename': 'js/home-b-bundle.js',
+    },
     'history-slides': {
         'source_filenames': (
             'js/libs/jquery.sequence.js',
@@ -1507,7 +1524,6 @@ PIPELINE_JS = {
     },
     'stub-attribution': {
         'source_filenames': (
-            'js/base/search-params.js',
             'js/base/stub-attribution.js',
             'js/base/stub-attribution-init.js',
         ),
