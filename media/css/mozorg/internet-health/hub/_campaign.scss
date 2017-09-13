@@ -9,15 +9,6 @@
 
 $color-campaign-background: #0f161b;
 
-.hero-image {
-    background: $color-campaign-background;
-
-    img {
-        display: block;
-        margin: 0 auto;
-    }
-}
-
 // hide the header for english locales that see the campaign hero image
 html[lang^="en"] {
     .header-intro {
