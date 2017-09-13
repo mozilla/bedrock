@@ -32,7 +32,8 @@ main {
             header {
                 box-sizing: border-box;
                 text-align: center;
-                max-width: 490px;
+                max-width: 793px;
+                width: 100%;
                 margin-left: auto;
                 margin-right: auto;
 
@@ -41,10 +42,17 @@ main {
                     line-height: 8.125rem;
                 }
 
-                @media #{$mq-desktop} {
+                h1, p {
+                    width: 100%;
+                    max-width: 490px;
                     margin-left: auto;
-                    width: 793px;
+                    margin-right: auto;
+                }
+
+                @media #{$mq-desktop} {
                     height: 737px;
+                    margin-left: auto;
+                    margin-right: 0;
                 }
             }
         }
