@@ -39,6 +39,7 @@ class BasePage(Page):
         _root_locator = (By.ID, 'nav-main')
         _toggle_locator = (By.CLASS_NAME, 'toggle')
         _menu_locator = (By.ID, 'nav-main-menu')
+        _firefox_locator = (By.CSS_SELECTOR, 'a[data-link-name="Firefox"]')
         _internet_health_locator = (By.CSS_SELECTOR, 'a[data-link-name="Internet Health"]')
         _technology_locator = (By.CSS_SELECTOR, 'a[data-link-name="Web Innovations"]')
 
@@ -53,6 +54,11 @@ class BasePage(Page):
             toggle = self.find_element(*self._toggle_locator)
             return (self.find_element(*self._menu_locator).is_displayed() and
                 toggle.get_attribute('aria-expanded') == 'true')
+
+        def open_firefox(self, locale='en-US'):
+            self.find_element(*self._firefox_locator).click()
+            from firefox.home import FirefoxHomePage
+            return FirefoxHomePage(self.selenium, self.page.base_url, locale).wait_for_page_to_load()
 
         def open_internet_health(self, locale='en-US'):
             self.find_element(*self._internet_health_locator).click()

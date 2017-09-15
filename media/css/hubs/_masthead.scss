@@ -47,6 +47,7 @@
     @media #{$mq-tablet} {
         .masthead-nav-main {
             margin-right: 0;
+            width: 80%;
 
             .nav-main-menu {
                 padding: 15px 0;
@@ -56,19 +57,32 @@
                     color: #000;
                 }
 
-                li:first-child {
-                    border-left: none;
+                li {
+                    display: inline-block;
+                    padding: 0 20px 10px 0;
+
+                    &:first-child {
+                        border-left: none;
+                    }
                 }
+
             }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .masthead-nav-main {
+            width: 60%;
         }
     }
 
     @media #{$mq-desktop-wide} {
         .masthead-nav-main {
             margin: 0 0 0 40px;
+            width: 70%;
 
             .nav-main-menu li {
-                padding: 0 40px 0 0;
+                padding: 0 40px 10px 0;
             }
         }
     }
@@ -126,7 +140,6 @@
 
     @media #{$mq-desktop} {
         display: block;
-        margin-top: 5px;
         width: 200px;
 
         .download-link {

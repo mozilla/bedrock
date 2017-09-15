@@ -128,7 +128,7 @@
             li {
                 display: inline;
                 border: 0;
-                padding: 0 10px;
+                padding: 0 5px;
             }
 
             a {
@@ -157,7 +157,13 @@
 
 @media #{$mq-desktop} {
     .masthead-nav-main .nav-main-menu li {
-            padding: 0 20px;
+        padding: 0 10px;
+    }
+}
+
+@media #{$mq-desktop-wide} {
+    .masthead-nav-main .nav-main-menu li {
+        padding: 0 20px;
     }
 }
 

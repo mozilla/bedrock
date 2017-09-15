@@ -102,7 +102,10 @@
         {% block site_header_nav %}
         <nav id="nav-main" role="navigation">
           <ul>
-            <li class="first internet-health-item">
+            <li class="first firefox-item">
+              <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
+            </li>
+            <li class="internet-health-item">
               <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Internet Health">{{ _('Internet Health') }}</a>
             </li>
             <li class="technology-item">

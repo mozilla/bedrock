@@ -11,6 +11,10 @@ from pages.home import HomePage
 def test_navigation(base_url, selenium):
     locale = 'de'
     page = HomePage(selenium, base_url, locale).open()
+    firefox_page = page.navigation.open_firefox(locale)
+    assert firefox_page.seed_url in selenium.current_url
+
+    page.open()
     internet_health_page = page.navigation.open_internet_health(locale)
     assert internet_health_page.seed_url in selenium.current_url
 
@@ -25,6 +29,10 @@ def test_mobile_navigation(base_url, selenium):
     locale = 'de'
     page = HomePage(selenium, base_url, locale).open()
     page.navigation.show()
+    firefox_page = page.navigation.open_firefox(locale)
+    assert firefox_page.seed_url in selenium.current_url
+
+    page.open().navigation.show()
     internet_health_page = page.navigation.open_internet_health(locale)
     assert internet_health_page.seed_url in selenium.current_url
 
