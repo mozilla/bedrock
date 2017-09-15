@@ -75,6 +75,8 @@ main {
     }
 
     @media #{$mq-desktop-wide} {
+        @include background-size(cover);
+
         .content {
             max-width: $width-max-content;
         }
