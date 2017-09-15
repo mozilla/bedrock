@@ -8,6 +8,7 @@ MARK_EXPRESSION="not headless"
 case $1 in
   chrome)
     BROWSER_NAME=chrome
+    BROWSER_VERSION="60.0"
     PLATFORM="Windows 10"
     ;;
   firefox)
