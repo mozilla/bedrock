@@ -751,6 +751,9 @@ URLS = flatten((
     url_test('/contribute/local/asia.html', '/contact/communities/asia-south-pacific/'),
     url_test('/contribute/local/southpole.html', '/contact/communities/antarctica/'),
 
+    # bug 1393622
+    url_test('/contact/spaces/{auckland,tokyo}/', '/contact/spaces/'),
+
     # bug 875052
     url_test('/about/get-involved/whanot/', '/contribute/'),
 

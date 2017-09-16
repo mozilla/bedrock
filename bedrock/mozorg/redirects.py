@@ -457,6 +457,9 @@ redirectpatterns = (
     redirect(r'^contribute/local/asia\.html$', '/contact/communities/asia-south-pacific/'),
     redirect(r'^contribute/local/southpole\.html$', '/contact/communities/antarctica/'),
 
+    # bug 1393622
+    redirect(r'contact/spaces/(?:auckland|tokyo)/?$', '/contact/spaces/'),
+
     redirect('^contribute/buttons/', 'https://affiliates.mozilla.org/'),
 
     # bug 875052
