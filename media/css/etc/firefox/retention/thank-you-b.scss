@@ -51,7 +51,6 @@ main {
 
                 @media #{$mq-desktop} {
                     height: 737px;
-                    margin-left: auto;
                     margin-right: 0;
                 }
             }
@@ -67,12 +66,11 @@ main {
               margin-right: auto;
             }
             h1 {
-                padding-left: 72px;
                 color: #4D4D4D;
                 font-size: 2.25rem;
                 line-height: 3.25rem;
-                width: 100%;
                 max-width: 484px;
+                box-sizing: border-box;
             }
             article {
                 background: #FFFFFF;
@@ -83,16 +81,18 @@ main {
                     font-size: 1.75rem;
                     line-height: 2.625rem;
                     max-width: none;
+                    display: inline-block;
                 }
                 a {
                     margin-top: 0.03rem;
-                    padding-left: 72px;
                 }
                 .time {
                     vertical-align: top;
                     line-height: 2.25rem;
                     min-width: 72px;
                     display: inline-block;
+                    padding-right: 0.5rem;
+                    box-sizing: border-box;
                 }
             }
         }
