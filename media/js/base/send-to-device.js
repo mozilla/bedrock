@@ -29,6 +29,7 @@ if (typeof Mozilla === 'undefined') {
         this.$sendAnotherLink = this.$form.find('.send-another');
         this.$formHeading = this.$widget.find('.form-heading');
         this.spinnerColor = this.$widget.data('spinnerColor') || '#000';
+        this.countries = this.$widget.data('countries');
 
         this.spinner = new Spinner({
             lines: 12, // The number of lines to draw
@@ -49,31 +50,45 @@ if (typeof Mozilla === 'undefined') {
     // static value for user country code
     SendToDevice.COUNTRY_CODE = '';
 
-    SendToDevice.prototype.geoCallback;
+    SendToDevice.prototype.geoCallback; // jshint ignore:line
 
     /**
      * Initialise the form messaging and bind events.
      */
     SendToDevice.prototype.init = function() {
         if (this.$widget.length === 1) {
-            this.checkLocation();
+            this.getLocation();
             this.bindEvents();
         }
     };
 
     /**
-     * Checks to see if the visitor is located in the US
-     * using MLS https://location.services.mozilla.com/api
+     * Gets the country code of the location of the user
+     * using bedrock's /country-code.json service
      */
-    SendToDevice.prototype.checkLocation = function() {
+    SendToDevice.prototype.getLocation = function() {
         var self = this;
-        var key = this.$widget.data('key');
 
-        // should location.services.mozilla.com be slow to load,
+        // if a dev has added ?geo=<country code> to the URL
+        // we can skip the geo lookup and act as if it worked
+        if (window.location.search.indexOf('geo=') !== -1) {
+            var urlRe = /geo=([a-z]{2})/i;
+            var match = urlRe.exec(window.location.search);
+            if (match) {
+                SendToDevice.COUNTRY_CODE = match[1].toLowerCase();
+                self.updateMessaging();
+                if (typeof self.geoCallback === 'function') {
+                    self.geoCallback(SendToDevice.COUNTRY_CODE);
+                }
+                return;
+            }
+        }
+
+        // should /country-code.json be slow to load,
         // just show the email messaging after 5 seconds waiting.
         this.formTimeout = setTimeout(self.updateMessaging, 5000);
 
-        $.get('https://location.services.mozilla.com/v1/country?key=' + key)
+        $.get('/country-code.json')
             .done(function(data) {
                 if (data && data.country_code) {
                     SendToDevice.COUNTRY_CODE = data.country_code.toLowerCase();
@@ -91,6 +106,14 @@ if (typeof Mozilla === 'undefined') {
     };
 
     /**
+     * Returns boolean indication whether or not the user is in a supported country
+     */
+    SendToDevice.prototype.inSupportedCountry = function() {
+        var ccode = SendToDevice.COUNTRY_CODE;
+        return (ccode && this.countries.indexOf('|' + ccode + '|') !== -1);
+    };
+
+    /**
      * Checks to update the form messaging based on the users location
      */
     SendToDevice.prototype.updateMessaging = function() {
@@ -98,9 +121,8 @@ if (typeof Mozilla === 'undefined') {
         if (!this.formLoaded) {
             this.formLoaded = true;
 
-            // if the page visitor is in the US, show the SMS messaging / copy
-            // can also append '?geo=us' query param for easier testing/debugging
-            if (SendToDevice.COUNTRY_CODE === 'us' || window.location.href.indexOf('?geo=us') !== -1) {
+            // if the page visitor is in a supportec country, show the SMS messaging / copy
+            if (this.inSupportedCountry()) {
                 this.showSMS();
             }
         }
@@ -111,7 +133,7 @@ if (typeof Mozilla === 'undefined') {
      */
     SendToDevice.prototype.showSMS = function() {
         var $label = this.$formFields.find('#form-input-label');
-        this.$form.addClass('us');
+        this.$form.addClass('sms-country');
         $label.html($label.data('alt'));
         this.$input.attr('placeholder', this.$input.data('alt'));
         this.smsEnabled = true;

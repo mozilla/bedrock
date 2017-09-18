@@ -16,7 +16,7 @@ describe('send-to-device.js', function() {
     beforeEach(function () {
 
         var formMarkup = [
-            '<section id="send-to-device" data-key="foo">' +
+            '<section id="send-to-device" data-countries="|us|gb|">' +
                 '<div class="form-container">' +
                     '<form id="send-to-device-form">' +
                         '<ul class="error-list hidden"></ul>' +
@@ -52,18 +52,31 @@ describe('send-to-device.js', function() {
     describe('instantiation', function() {
 
         it('should create a new instance of SendToDevice', function() {
-            spyOn(form, 'checkLocation');
+            spyOn(form, 'getLocation');
             spyOn(form, 'bindEvents');
             form.init();
             expect(form instanceof Mozilla.SendToDevice).toBeTruthy();
-            expect(form.checkLocation).toHaveBeenCalled();
+            expect(form.getLocation).toHaveBeenCalled();
             expect(form.bindEvents).toHaveBeenCalled();
         });
     });
 
-    describe('checkLocation', function() {
+    describe('inSupportedCountry', function() {
+        it('should be true for countries in data-countries, and false for others', function() {
+            Mozilla.SendToDevice.COUNTRY_CODE = 'de';
+            expect(form.inSupportedCountry()).toBeFalsy();
+            Mozilla.SendToDevice.COUNTRY_CODE = 'cn';
+            expect(form.inSupportedCountry()).toBeFalsy();
+            Mozilla.SendToDevice.COUNTRY_CODE = 'gb';
+            expect(form.inSupportedCountry()).toBeTruthy();
+            Mozilla.SendToDevice.COUNTRY_CODE = 'us';
+            expect(form.inSupportedCountry()).toBeTruthy();
+        });
+    });
 
-        it('should call MSL to update the messaging', function() {
+    describe('getLocation', function() {
+
+        it('should call bedrock geo to update the messaging', function() {
             spyOn($, 'get').and.callFake(function () {
                 var d = $.Deferred();
                 var data = {
@@ -74,7 +87,7 @@ describe('send-to-device.js', function() {
             });
             spyOn(form, 'updateMessaging').and.callThrough();
             form.init();
-            expect($.get).toHaveBeenCalledWith('https://location.services.mozilla.com/v1/country?key=foo');
+            expect($.get).toHaveBeenCalledWith('/country-code.json');
             expect(form.updateMessaging).toHaveBeenCalled();
             expect(Mozilla.SendToDevice.COUNTRY_CODE).toEqual('us');
         });
@@ -127,14 +140,14 @@ describe('send-to-device.js', function() {
             spyOn(form, 'showSMS').and.callThrough();
             form.init();
             expect(form.showSMS).toHaveBeenCalled();
-            expect($('#send-to-device-form').hasClass('us')).toBeTruthy();
+            expect($('#send-to-device-form').hasClass('sms-country')).toBeTruthy();
         });
 
-        it('should not call showSMS if users is outside the US', function() {
+        it('should not call showSMS if users is outside a supported country', function() {
             spyOn($, 'get').and.callFake(function () {
                 var d = $.Deferred();
                 var data = {
-                    country_code: 'gb'
+                    country_code: 'de'
                 };
                 d.resolve(data);
                 return d.promise();

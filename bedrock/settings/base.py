@@ -1181,6 +1181,7 @@ SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
 
 # country code for /country-code.json to return in dev mode
 DEV_GEO_COUNTRY_CODE = config('DEV_GEO_COUNTRY_CODE', default='US')
+SEND_TO_DEVICE_COUNTRIES = config('SEND_TO_DEVICE_COUNTRIES', default='US', cast=Csv())
 
 RNA_SYNC_URL = config('RNA_SYNC_URL',
                       default='https://nucleus.mozilla.org/rna/sync/')

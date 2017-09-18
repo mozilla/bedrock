@@ -15,6 +15,11 @@ from bedrock.utils import expand_locale_groups
 
 
 @library.global_function
+def send_to_device_countries():
+    return '|%s|' % '|'.join(cc.lower() for cc in settings.SEND_TO_DEVICE_COUNTRIES)
+
+
+@library.global_function
 @jinja2.contextfunction
 def switch(cxt, name, locales=None):
     """A template helper that replaces waffle
