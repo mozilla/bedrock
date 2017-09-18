@@ -5,6 +5,7 @@
 @import '../../../pebbles/includes/lib';
 
 main {
+    position: relative;
     section {
         &.left-panel {
             overflow: hidden;
@@ -50,7 +51,6 @@ main {
                 }
 
                 @media #{$mq-desktop} {
-                    height: 737px;
                     margin-right: 0;
                 }
             }
@@ -70,38 +70,49 @@ main {
                 font-size: 2.25rem;
                 line-height: 3.25rem;
                 max-width: 484px;
-                box-sizing: border-box;
+                padding: 0 8px 0 72px;
             }
             article {
                 background: #FFFFFF;
                 padding: 22px 0;
                 margin: 9px 0;
                 h1 {
-                    padding-left: 0;
                     font-size: 1.75rem;
                     line-height: 2.625rem;
-                    max-width: none;
-                    display: inline-block;
+                    overflow: hidden;
+                    padding: 0 8px;
                 }
                 a {
                     margin-top: 0.03rem;
+                    text-transform: initial;
+                    line-height: 1.5;
+                    display: block;
                 }
                 .time {
                     vertical-align: top;
                     line-height: 2.25rem;
-                    min-width: 72px;
-                    display: inline-block;
-                    padding-right: 0.5rem;
-                    box-sizing: border-box;
+                    min-width: 64px;
+                    display: block;
+                    float: left;
                 }
             }
         }
 
-        &.left-panel,
-        &.right-panel {
-            @media #{$mq-desktop} {
-                float: left;
+        @media #{$mq-desktop} {
+            &.left-panel,
+            &.right-panel {
                 width: 50%;
+            }
+
+            &.left-panel {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+            }
+
+            &.right-panel {
+                float: right;
+                min-height: 845px;
             }
         }
     }
