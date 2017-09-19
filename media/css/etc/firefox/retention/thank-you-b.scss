@@ -5,6 +5,7 @@
 @import '../../../pebbles/includes/lib';
 
 main {
+    position: relative;
     section {
         &.left-panel {
             overflow: hidden;
@@ -32,7 +33,8 @@ main {
             header {
                 box-sizing: border-box;
                 text-align: center;
-                max-width: 490px;
+                max-width: 793px;
+                width: 100%;
                 margin-left: auto;
                 margin-right: auto;
 
@@ -41,10 +43,15 @@ main {
                     line-height: 8.125rem;
                 }
 
-                @media #{$mq-desktop} {
+                h1, p {
+                    width: 100%;
+                    max-width: 490px;
                     margin-left: auto;
-                    width: 793px;
-                    height: 737px;
+                    margin-right: auto;
+                }
+
+                @media #{$mq-desktop} {
+                    margin-right: 0;
                 }
             }
         }
@@ -59,41 +66,53 @@ main {
               margin-right: auto;
             }
             h1 {
-                padding-left: 72px;
                 color: #4D4D4D;
                 font-size: 2.25rem;
                 line-height: 3.25rem;
-                width: 100%;
                 max-width: 484px;
+                padding: 0 8px 0 72px;
             }
             article {
                 background: #FFFFFF;
                 padding: 22px 0;
                 margin: 9px 0;
                 h1 {
-                    padding-left: 0;
                     font-size: 1.75rem;
                     line-height: 2.625rem;
-                    max-width: none;
+                    overflow: hidden;
+                    padding: 0 8px;
                 }
                 a {
                     margin-top: 0.03rem;
-                    padding-left: 72px;
+                    text-transform: initial;
+                    line-height: 1.5;
+                    display: block;
                 }
                 .time {
                     vertical-align: top;
                     line-height: 2.25rem;
-                    min-width: 72px;
-                    display: inline-block;
+                    min-width: 64px;
+                    display: block;
+                    float: left;
                 }
             }
         }
 
-        &.left-panel,
-        &.right-panel {
-            @media #{$mq-desktop} {
-                float: left;
+        @media #{$mq-desktop} {
+            &.left-panel,
+            &.right-panel {
                 width: 50%;
+            }
+
+            &.left-panel {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+            }
+
+            &.right-panel {
+                float: right;
+                min-height: 845px;
             }
         }
     }

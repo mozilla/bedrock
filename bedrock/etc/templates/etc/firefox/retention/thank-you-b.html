@@ -46,28 +46,32 @@
       {{ _('Here’s more super-easy things you can do to keep supporting our mission:') }}
     </h1>
     <article>
+      <span class="time">{{ _('1 min') }}</span>
       <h1>
-        <span class="time">{{ _('1 min') }}</span>{{ _('Make Firefox your default browser') }}
+        {{ _('Make Firefox your default browser') }}
+        <a href="https://support.mozilla.org/kb/make-firefox-your-default-browser">{{ _('Set as your default') }}</a>
       </h1>
-      <a href="https://support.mozilla.org/kb/make-firefox-your-default-browser">{{ _('Set as your default') }}</a>
     </article>
     <article>
+      <span class="time">{{ _('1 min') }}</span>
       <h1>
-        <span class="time">{{ _('1 min') }}</span>{{ _('Tell your friends about Firefox') }}
+        {{ _('Tell your friends about Firefox') }}
+        <a href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s%s'|format('https://mozilla.org/firefox/new'|urlencode, '%F0%9F%94%A5%2B%F0%9F%A6%8A=%F0%9F%99%8C%F0%9F%8F%BE%20', _('Join me in the fight for an open web by choosing Firefox!')|urlencode)|e }}">{{ _('Send a tweet') }}</a>
       </h1>
-      <a href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s%s'|format('https://mozilla.org/firefox/new'|urlencode, '%F0%9F%94%A5%2B%F0%9F%A6%8A=%F0%9F%99%8C%F0%9F%8F%BE%20', _('Join me in the fight for an open web by choosing Firefox!')|urlencode)|e }}">{{ _('Send a tweet') }}</a>
     </article>
     <article>
+      <span class="time">{{ _('2 min') }}</span>
       <h1>
-        <span class="time">{{ _('2 min') }}</span>{{ _('Get Firefox on your phone') }}
+        {{ _('Get Firefox on your phone') }}
+        <a href="{{ url('firefox.mobile-download-desktop') }}">{{ _('Download Firefox') }}</a>
       </h1>
-      <a href="https://support.mozilla.org/kb/install-firefox-android-device-using-google-play">{{ _('Download Firefox') }}</a>
     </article>
     <article>
+      <span class="time">{{ _('4 min') }}</span>
       <h1>
-        <span class="time">{{ _('4 min') }}</span>{{ _('Make the Internet a safer place') }}
+        {{ _('Make the Internet a safer place') }}
+        <a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Learn more') }}</a>
       </h1>
-      <a href="https://www.mozilla.org/internet-health/privacy-security/">{{ _('Learn more') }}</a>
     </article>
   </section>
 </main>
