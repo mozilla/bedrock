@@ -6,6 +6,12 @@
 
 {% extends "firefox/new/base.html" %}
 
+{% block experiments %}
+  {% if switch('firefox-new-cliqz-funnelcakes', ['de']) %}
+    {% javascript 'experiment_firefox_new_cliqz_funnelcakes' %}
+  {% endif %}
+{% endblock %}
+
 {% block optimizely %}
   {% if switch('firefox-new-optimizely', ['en-US']) %}
     {% include 'includes/optimizely.html' %}
@@ -189,4 +195,7 @@
 
 {% block js %}
   {% javascript 'firefox_new_scene1' %}
+  {% if switch('firefox-new-cliqz-funnelcakes', ['de']) %}
+    {% javascript 'firefox_new_cliqz_funnelcakes' %}
+  {% endif %}
 {% endblock %}

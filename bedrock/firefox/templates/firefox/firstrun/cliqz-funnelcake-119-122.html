@@ -1,0 +1,55 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/firstrun/index.html" %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_firstrun_cliqz_funnelcake' %}
+{% endblock %}
+
+{% block page_content %}
+  <section id="header">
+    <h2>
+    {#
+      TODO: We need clarification on which funnelcakes should show which logo.
+      I've asked in the Google doc.
+    #}
+    {% if funnelcake_id in ['121', '122'] %}
+      {{ high_res_img('firefox/firstrun-cliqz/firefox-cliqz-logos.png', {'alt': '', 'width': '165', 'height': '45'}) }}
+    {% else %}
+      {{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': '', 'width': '185', 'height': '70'}) }}
+    {% endif %}
+    </h2>
+  </section>
+
+  <section id="content">
+    <h1>Schneller und sicherer surfen!</h1>
+
+    {{ high_res_img('firefox/firstrun-cliqz/cliqz.png', {'alt': '', 'width': '640', 'height': '249'}) }}
+
+    <div id="features">
+      <ul>
+        <li>
+          <h2>Schnellsuche</h2>
+          <p>Adresszeile und Suchfeld sind jetzt eins</p>
+        </li>
+        <li>
+          <h2>Mehr Privatsphäre</h2>
+          <p>Schutz für Deine persönlichen Daten</p>
+        </li>
+      </ul>
+    </div>
+
+    <button type="button" id="skip-button" class="link-button">
+      LOS GEHT'S
+    </button>
+  </section>
+{% endblock %}
+
+{# Don't display notification for test variation #}
+{% block update_notification %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_firstrun_cliqz_funnelcake' %}
+{% endblock %}

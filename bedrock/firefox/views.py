@@ -421,6 +421,15 @@ def show_57_dev_firstrun(version):
     return version >= Version('57.0')
 
 
+def show_56_cliqz_firstrun(locale, version, funnelcake):
+    try:
+        version = Version(version)
+    except ValueError:
+        version = 0
+
+    return locale == 'de' and version >= Version('56.0') and funnelcake in ['119', '120', '121', '122']
+
+
 class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
@@ -434,6 +443,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
         exp = self.request.GET.get('v')
+        f = self.request.GET.get('f', None)
 
         if detect_channel(version) == 'alpha':
             if show_57_dev_firstrun(version) and lang_file_is_active(
@@ -441,6 +451,8 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
                     template = 'firefox/developer-quantum-firstrun.html'
             else:
                 template = 'firefox/dev-firstrun.html'
+        elif show_56_cliqz_firstrun(locale, version, f):
+            template = 'firefox/firstrun/cliqz-funnelcake-119-122.html'
         elif show_40_firstrun(version):
             if locale == 'en-US' and exp in ['a', 'b']:
                 template = 'firefox/firstrun/membership-{0}.html'.format(exp)
