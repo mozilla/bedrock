@@ -56,21 +56,34 @@ main {
             }
         }
 
+        &.grid-layout {
+            display: table;
+            .grid-row {
+                display: table-row;
+                .grid-column {
+                    display: table-cell;
+                }
+            }
+        }
+
         &.right-panel {
             padding-top: 94px;
             padding-left: 50px;
+            padding-bottom: 74px;
             box-sizing: border-box;
 
             @media #{$mq-desktop} {
               width: 793px;
               margin-right: auto;
             }
-            h1 {
-                color: #4D4D4D;
-                font-size: 2.25rem;
-                line-height: 3.25rem;
-                max-width: 484px;
-                padding: 0 8px 0 72px;
+            .grid-column-header {
+                h1 {
+                    color: #4D4D4D;
+                    font-size: 2.25rem;
+                    line-height: 3.25rem;
+                    max-width: 484px;
+                    padding: 0 8px 31px 0;
+                }
             }
             article {
                 background: #FFFFFF;
@@ -80,7 +93,8 @@ main {
                     font-size: 1.75rem;
                     line-height: 2.625rem;
                     overflow: hidden;
-                    padding: 0 8px;
+                    padding: 0 8px 53px 0;
+                    width: 100%;
                 }
                 a {
                     margin-top: 0.03rem;
@@ -91,9 +105,8 @@ main {
                 .time {
                     vertical-align: top;
                     line-height: 2.25rem;
-                    min-width: 64px;
-                    display: block;
-                    float: left;
+                    padding-right: 26px;
+                    white-space: nowrap;
                 }
             }
         }
