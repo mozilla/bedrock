@@ -16,8 +16,6 @@ class NewsletterBasePage(BasePage):
     _email_locator = (By.ID, 'id_email')
     _country_locator = (By.ID, 'id_country')
     _language_locator = (By.ID, 'id_lang')
-    _html_format_locator = (By.ID, 'id_fmt_0')
-    _text_format_locator = (By.ID, 'id_fmt_1')
     _privacy_policy_checkbox_locator = (By.ID, 'id_privacy')
     _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] a')
     _submit_button_locator = (By.ID, 'footer_email_submit')
@@ -47,20 +45,6 @@ class NewsletterBasePage(BasePage):
     def select_language(self, value):
         el = self.find_element(*self._language_locator)
         Select(el).select_by_visible_text(value)
-
-    @property
-    def html_format_selected(self):
-        return self.find_element(*self._html_format_locator).is_selected()
-
-    def select_html_format(self):
-        self.find_element(*self._html_format_locator).click()
-
-    @property
-    def text_format_selected(self):
-        return self.find_element(*self._text_format_locator).is_selected()
-
-    def select_text_format(self):
-        self.find_element(*self._text_format_locator).click()
 
     @property
     def privacy_policy_accepted(self):

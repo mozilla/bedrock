@@ -554,7 +554,6 @@ class TestNewsletterSubscribe(TestCase):
         data = {
             'newsletters': 'flintstones',
             'email': 'fred@example.com',
-            'fmt': 'H',
         }
         resp = self.ajax_request(data)
         resp_data = json.loads(resp.content)
@@ -572,7 +571,6 @@ class TestNewsletterSubscribe(TestCase):
         data = {
             'newsletters': 'flintstones',
             'email': 'fred@example.com',
-            'fmt': 'H',
             'privacy': True,
             'country': '<svg/onload=alert("NEFARIOUSNESS")>',
         }
@@ -591,7 +589,6 @@ class TestNewsletterSubscribe(TestCase):
         data = {
             'newsletters': 'flintstones',
             'email': 'fred@example.com',
-            'fmt': 'H',
             'privacy': True,
         }
         source_url = 'https://example.com/bambam'
@@ -599,7 +596,7 @@ class TestNewsletterSubscribe(TestCase):
         resp_data = json.loads(resp.content)
         self.assertDictEqual(resp_data, {'success': True})
         basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
-                                                 format='H', source_url=source_url)
+                                                 source_url=source_url)
 
     @patch('bedrock.newsletter.views.basket')
     def test_use_source_url_with_referer(self, basket_mock):
@@ -608,7 +605,6 @@ class TestNewsletterSubscribe(TestCase):
         data = {
             'newsletters': 'flintstones',
             'email': 'fred@example.com',
-            'fmt': 'H',
             'privacy': True,
             'source_url': source_url
         }
@@ -616,7 +612,7 @@ class TestNewsletterSubscribe(TestCase):
         resp_data = json.loads(resp.content)
         self.assertDictEqual(resp_data, {'success': True})
         basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
-                                                 format='H', source_url=source_url)
+                                                 source_url=source_url)
 
     @patch('bedrock.newsletter.views.basket')
     def test_returns_ajax_success(self, basket_mock):
@@ -624,14 +620,12 @@ class TestNewsletterSubscribe(TestCase):
         data = {
             'newsletters': 'flintstones',
             'email': 'fred@example.com',
-            'fmt': 'H',
             'privacy': True,
         }
         resp = self.ajax_request(data)
         resp_data = json.loads(resp.content)
         self.assertDictEqual(resp_data, {'success': True})
-        basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
-                                                 format='H')
+        basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones')
 
     @patch.object(basket, 'subscribe')
     def test_returns_ajax_invalid_email(self, subscribe_mock):
@@ -641,7 +635,6 @@ class TestNewsletterSubscribe(TestCase):
         data = {
             'newsletters': 'flintstones',
             'email': 'fred@example.com',
-            'fmt': 'H',
             'privacy': True,
         }
         resp = self.ajax_request(data)
@@ -657,7 +650,6 @@ class TestNewsletterSubscribe(TestCase):
         data = {
             'newsletters': 'flintstones',
             'email': 'fred@example.com',
-            'fmt': 'H',
             'privacy': True,
         }
         resp = self.ajax_request(data)
@@ -678,7 +670,6 @@ class TestNewsletterSubscribe(TestCase):
         data = {
             'newsletters': 'flintstones',
             'email': 'fred@example.com',
-            'fmt': 'H',
             'privacy': True,
         }
         resp = self.request(data)
@@ -686,8 +677,7 @@ class TestNewsletterSubscribe(TestCase):
         self.assertFalse(doc('#footer_email_submit'))
         self.assertFalse(doc('input[value="mozilla-and-you"]'))
         self.assertTrue(doc('#email-form').hasClass('thank'))
-        basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
-                                                 format='H')
+        basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones')
 
     @patch('bedrock.newsletter.views.basket')
     def test_returns_failure(self, basket_mock):
@@ -695,7 +685,6 @@ class TestNewsletterSubscribe(TestCase):
         data = {
             'newsletters': 'flintstones',
             'email': 'fred@example.com',
-            'fmt': 'H',
         }
         resp = self.request(data)
         doc = pq(resp.content)
