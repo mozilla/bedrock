@@ -35,23 +35,6 @@
         }, {
             type: 'Feature',
             properties: {
-                id: 'auckland',
-                'marker-color': markerColor,
-                'marker-size': markerSize,
-                'icon': {
-                    'iconUrl': markerIcon,
-                    'iconSize': iconSize,
-                    'iconAnchor': iconAnchor,
-                    'popupAnchor': popupAnchor
-                }
-            },
-            geometry: {
-                type: 'Point',
-                coordinates: [174.777106, -36.866596]
-            }
-        }, {
-            type: 'Feature',
-            properties: {
                 id: 'beijing',
                 'marker-color': markerColor,
                 'marker-size': markerSize,
@@ -167,23 +150,6 @@
             geometry: {
                 type: 'Point',
                 coordinates: [121.56705, 25.03265]
-            }
-        }, {
-            type: 'Feature',
-            properties: {
-                id: 'tokyo',
-                'marker-color': markerColor,
-                'marker-size': markerSize,
-                'icon': {
-                    'iconUrl': markerIcon,
-                    'iconSize': iconSize,
-                    'iconAnchor': iconAnchor,
-                    'popupAnchor': popupAnchor
-                }
-            },
-            geometry: {
-                type: 'Point',
-                coordinates: [139.782650, 35.689750]
             }
         }, {
             type: 'Feature',

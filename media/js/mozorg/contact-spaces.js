@@ -1017,9 +1017,6 @@
                 case '#map-mountain_view':
                     itemId = 'mountain-view';
                     break;
-                case '#map-new-zealand':
-                    itemId = 'auckland';
-                    break;
                 case '#map-china':
                     itemId = 'beijing';
                     break;
@@ -1037,9 +1034,6 @@
                     break;
                 case '#map-taiwan-taipei':
                     itemId = 'taipei';
-                    break;
-                case '#map-japan':
-                    itemId = 'tokyo';
                     break;
                 case '#map-canada-toronto':
                     itemId = 'toronto';
