@@ -20,7 +20,6 @@ from commonware.decorators import xframe_allow
 
 from bedrock.base.templatetags.helpers import static
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.waffle import switch
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import (WebToLeadForm)
 from bedrock.mozorg.forums import ForumsFile
@@ -201,8 +200,8 @@ class Robots(TemplateView):
 def home(request):
     locale = l10n_utils.get_locale(request)
 
-    if locale == 'en-US' and switch('experiment-home-q32017'):
-        template = 'mozorg/home/home-b.html'
+    if locale == 'en-US':
+        template = 'mozorg/home/home-new.html'
     else:
         template = 'mozorg/home/home.html'
 

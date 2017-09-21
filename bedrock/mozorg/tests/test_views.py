@@ -14,7 +14,7 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from bedrock.base.urlresolvers import reverse
-from mock import ANY, Mock, patch
+from mock import ANY, patch
 from nose.tools import eq_, ok_
 
 from bedrock.mozorg.tests import TestCase
@@ -357,29 +357,13 @@ class TestTechnology(TestCase):
 
 @patch('bedrock.mozorg.views.l10n_utils.render')
 class TestHome(TestCase):
-    @patch('bedrock.mozorg.views.switch', Mock(return_value=True))
-    def test_home_enUS_experiment_enabled(self, render_mock):
+    def test_home_enUS(self, render_mock):
         request = RequestFactory().get('/')
         request.locale = 'en-US'
         views.home(request)
-        render_mock.assert_called_once_with(request, 'mozorg/home/home-b.html')
+        render_mock.assert_called_once_with(request, 'mozorg/home/home-new.html')
 
-    @patch('bedrock.mozorg.views.switch', Mock(return_value=False))
-    def test_home_enUS_experiment_disabled(self, render_mock):
-        request = RequestFactory().get('/')
-        request.locale = 'en-US'
-        views.home(request)
-        render_mock.assert_called_once_with(request, 'mozorg/home/home.html')
-
-    @patch('bedrock.mozorg.views.switch', Mock(return_value=True))
-    def test_home_non_enUS_experiment_enabled(self, render_mock):
-        request = RequestFactory().get('/')
-        request.locale = 'fr'
-        views.home(request)
-        render_mock.assert_called_once_with(request, 'mozorg/home/home.html')
-
-    @patch('bedrock.mozorg.views.switch', Mock(return_value=False))
-    def test_home_non_enUS_experiment_disabled(self, render_mock):
+    def test_home_non_enUS(self, render_mock):
         request = RequestFactory().get('/')
         request.locale = 'fr'
         views.home(request)
