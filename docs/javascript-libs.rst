@@ -17,3 +17,13 @@ Mozilla Accordion
 -----------------
 
 :ref:`mozilla-accordion.js<mozillaaccordion>`
+
+Mozilla Image Lazy Loader
+-------------------------
+
+:ref:`mozilla-lazy-load.js<mozillalazyload>`
+
+Mozilla Notification Banner
+---------------------------
+
+:ref:`mozilla-notification-banner.js<mozillanotificationbanner>`
