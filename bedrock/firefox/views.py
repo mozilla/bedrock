@@ -393,6 +393,16 @@ def show_40_firstrun(version):
     return version >= Version('40.0')
 
 
+def show_57_dev_firstrun(version):
+    version = version[:-2]
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('57.0')
+
+
 class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
@@ -408,7 +418,11 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         exp = self.request.GET.get('v')
 
         if detect_channel(version) == 'alpha':
-            template = 'firefox/dev-firstrun.html'
+            if show_57_dev_firstrun(version) and lang_file_is_active(
+                    'firefox/developer-quantum-firstrun', locale):
+                    template = 'firefox/developer-quantum-firstrun.html'
+            else:
+                template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
             if locale == 'en-US' and exp in ['a', 'b']:
                 template = 'firefox/firstrun/index-{0}.html'.format(exp)

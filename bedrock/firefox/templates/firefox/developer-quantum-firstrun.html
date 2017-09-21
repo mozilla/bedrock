@@ -1,0 +1,236 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/shared" %}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_title %}{{_('Firefox Developer Edition')}}{% endblock %}
+{% block page_desc %}{{ _('Firefox Developer Edition is the blazing fast browser that offers cutting edge developer tools and latest features like CSS Grid support and framework debugging') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/products/developer/quantum/page-image.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/products/developer/quantum/favicon.png') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/products/developer/quantum/favicon-196.png') }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_developer_quantum_firstrun' %}
+{% endblock %}
+
+{% block body_id %}firefox-developer{% endblock %}
+{% block body_class %}firefox-developer{% endblock %}
+
+{% block content %}
+<main role="main">
+  <section class="section section-intro">
+    <div class="content">
+      <div class="section-body">
+        <h1 class="page-title">{{ _('Welcome to the all-new Firefox Quantum: Developer Edition') }}</h1>
+        <p class="tagline">{{ _('Firefox has been rebuilt from the ground-up to be faster, sleeker, and more powerful than ever.') }}</p>
+
+        <ul class="features-list gallery-list has-three-cols">
+          <li>
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/devtools-icon.svg') }}" alt="">
+            <h3>{{ _('Firefox Devtools') }}</h3>
+            <p class="cta"><a href="#devtools" class="button button-hollow">{{ _('Learn more') }}</a></p>
+          </li>
+          <li>
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/css-grid-icon.svg') }}" alt="">
+            <h3>{{ _('Master CSS Grid') }}</h3>
+            <p class="cta"><a href="#cssgrid" class="button button-hollow">{{ _('Learn more') }}</a></p>
+          </li>
+          <li>
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/next-gen-icon.svg') }}" alt="">
+            <h3>{{ _('Next-Gen CSS Engine') }}</h3>
+            <p class="cta"><a href="#nextgen" class="button button-hollow">{{ _('Learn more') }}</a></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-newsletter">
+    <div class="content">
+    {% if LANG.startswith('en-') %}
+      {# L10n: line break for visual formatting #}
+      {{ email_newsletter_form('app-dev', 'Mozilla Developer Newsletter', subtitle=_('Get developer news, tricks and resources <br /> sent straight to your inbox.'), button_class='button-hollow button-light', include_language=False) }}
+    {% else %}
+      {{ email_newsletter_form(spinner_color='#fff', button_class='button-hollow button-light') }}
+    {% endif %}
+    </div>
+  </section>
+
+  <section class="section section-highlights">
+    <div class="content">
+
+      <div class="highlight-tools">
+        <h2 class="section-title"><span>{{ _('New Tools') }}</span></h2>
+
+        <div class="section-body">
+          <h3 id="devtools" class="body-title">{{ _('Firefox DevTools') }}</h3>
+
+          <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/hero-debugger-ani.gif') }}" alt="">
+          <p>
+          {% trans %}
+            The new Firefox DevTools are powerful, flexible, and best of all,
+            hackable. This includes a best-in-class JavaScript debugger, which
+            can target multiple browsers and is built in React and Ember.
+          {% endtrans %}
+        </div>
+      </div>
+
+      <div class="highlight-features">
+        <h2 class="section-title"><span>{{ _('Innovative Features') }}</span></h2>
+
+        <div class="section-body">
+          <h3 id="cssgrid" class="body-title">{{ _('Master CSS Grid') }}</h3>
+
+          <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/hero-cssgrid-ani.gif') }}" alt="">
+          <p>
+          {% trans %}
+            Firefox is the only browser with tools built specifically for
+            building and designing with CSS Grid. These tools allow you to
+            visualize the grid, display associated area names, preview
+            transformations on the grid and much more.
+          {% endtrans %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-performance">
+    <div class="content">
+      <h2 id="nextgen" class="section-title"><span>{{ _('Faster Performance') }}</span></h2>
+
+      <div class="section-body">
+        <h3 class="body-title">{{ _('A Next-Generation CSS Engine (hint: it’s fast)') }}</h3>
+        <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/stylo-engine.svg') }}" alt="">
+        <p>
+        {% trans %}
+          Firefox Quantum includes a new CSS engine, written in Rust, that has state-of-the-art innovations and is blazingly fast.
+        {% endtrans %}
+        </p>
+        <p class="cta"><a href="https://hacks.mozilla.org/2017/08/inside-a-super-fast-css-engine-quantum-css-aka-stylo/" class="button button-hollow">{{ _('Learn more') }}</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-features">
+    <div class="content">
+      <h2 class="section-title"><span>{{ _('Design. Code. Test. Refine.') }}</span></h2>
+
+      <div class="section-body">
+        {# L10n: line break for visual formatting #}
+        <h3 class="body-title">{{ _('Build and Perfect your sites<br> with Firefox DevTools') }}</h3>
+
+        <ul class="features-list gallery-list has-three-cols">
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-inspector.svg') }}" alt="">
+            <h3 class="name">{{ _('Inspector') }}</h3>
+            <p class="desc">{{ _('Inspect and refine code to build pixel-perfect layouts.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-console.svg') }}" alt="">
+            <h3 class="name">{{ _('Console') }}</h3>
+            <p class="desc">{{ _('Track CSS, JavaScript, security and network issues.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-debugger.svg') }}" alt="">
+            <h3 class="name">{{ _('Debugger') }}</h3>
+            <p class="desc">{{ _('Powerful JavaScript debugger with support for your framework.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-network.svg') }}" alt="">
+            <h3 class="name">{{ _('Network') }}</h3>
+            <p class="desc">{{ _('Monitor network requests that can slow or block your site.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-storage.svg') }}" alt="">
+            <h3 class="name">{{ _('Storage panel') }}</h3>
+            <p class="desc">{{ _('Add, modify and remove cache, cookies, databases and session data.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-responsive-mode.svg') }}" alt="">
+            <h3 class="name">{{ _('Responsive Design Mode') }}</h3>
+            <p class="desc">{{ _('Test sites on emulated devices in your browser.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-visual-editing.svg') }}" alt="">
+            <h3 class="name">{{ _('Visual Editing') }}</h3>
+            <p class="desc">{{ _('Fine-tune animations, alignment and padding.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-performance.svg') }}" alt="">
+            <h3 class="name">{{ _('Performance') }}</h3>
+            <p class="desc">{{ _('Unblock bottlenecks, streamline processes, optimize assets.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-memory.svg') }}" alt="">
+            <h3 class="name">{{ _('Memory') }}</h3>
+            <p class="desc">{{ _('Find memory leaks and make your application zippy.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-web-audio.svg') }}" alt="">
+            <h3 class="name">{{ _('Web Audio') }}</h3>
+            <p class="desc">{{ _('The only developer tool for inspecting the Web Audio API.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-scratchpad.svg') }}" alt="">
+            <h3 class="name">{{ _('Scratchpad') }}</h3>
+            <p class="desc">{{ _('Edit, write, run and execute JavaScript in real time.') }}</p>
+          </li>
+
+          <li class="gallery-item feature">
+            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-style-editor.svg') }}" alt="">
+            <h3 class="name">{{ _('Style Editor') }}</h3>
+            <p class="desc">{{ _('Edit and manage all your CSS stylesheets in your browser.') }}</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section-engage">
+    <div class="content">
+
+      <section class="speak-up">
+        <h3>{{ _('Speak up') }}</h3>
+        <p>{{ _('Feedback makes us better. Tell us how we can improve the browser and Developer tools.') }}</p>
+        <p class="cta"><a href="https://discourse.mozilla-community.org/c/devtools" class="button button-hollow">{{ _('Join the conversation') }}</a></p>
+      </section>
+
+      <section class="get-involved">
+        <h3>{{ _('Get involved') }}</h3>
+        <p>{{ _('Help build the last independent browser. Write code, fix bugs, make add-ons, and more.') }}</p>
+        <p class="cta"><a href="https://devtools-html.github.io/" class="button button-hollow">{{ _('Start now') }}</a></p>
+      </section>
+
+    </div>
+  </section>
+
+  <section class="section section-download">
+    <div class="content">
+      <div class="section-body">
+        <h2>{{ _('Want to be on the cutting-edge?') }}</h2>
+        <p>Firefox Nightly receives daily updates and allows you to access features months before they go mainstream.</p>
+        {{ download_firefox('nightly', platform='desktop', dom_id='footer-download', button_color='button-arrow', download_location='footer cta') }}
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}
