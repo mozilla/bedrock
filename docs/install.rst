@@ -48,18 +48,20 @@ Sync the database and all of the external data locally. This gets product-detail
     $ bin/sync-all.sh
 
 Lastly, you need to have `Node.js <https://nodejs.org/>`_ and
-`NPM <https://docs.npmjs.com/getting-started/installing-node>`_ installed. The node
-dependencies for running the site can be installed with ``npm``::
+`Yarn <https://yarnpkg.com/>`_ installed. The node
+dependencies for running the site can be installed with ``yarn``::
 
-    $ npm install
+    $ yarn
 
-You may also need to install the `Gulp <http://gulpjs.com/>`_ cli globally.
+You may also need to install the `Gulp <http://gulpjs.com/>`_ cli globally::
+
+    $ npm install -g gulp-cli
 
 .. note::
 
-    Bedrock uses `npm-lockdown <https://github.com/mozilla/npm-lockdown>`_ to ensure that Node.js
-    packages that get installed are the exact ones we meant (similar to peep.py for python). Refer
-    to the `lockdown documentation <https://github.com/mozilla/npm-lockdown#adding-new-modules>`_
+    Bedrock uses yarn to ensure that Node.js
+    packages that get installed are the exact ones we meant (similar to pip hash checking mode for python). Refer
+    to the `yarn documentation <https://yarnpkg.com/en/docs/yarn-workflow>`_
     for adding or upgrading Node.js dependencies.
 
 .. _run-python-tests:

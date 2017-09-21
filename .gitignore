@@ -46,3 +46,4 @@ tests/functional/assets
 Dockerfile-*
 root_files/sitemap.xml
 root_files/default-urls.json
+node_modules

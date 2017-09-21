@@ -1,21 +1,10 @@
-FROM quay.io/mozmar/base:latest
-
-# Set Python-related environment variables to reduce annoying-ness
-ENV PYTHONUNBUFFERED=1
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PIP_DISABLE_PIP_VERSION_CHECK=1
-ENV LANG=C.UTF-8
-RUN update-alternatives --install /bin/sh sh /bin/bash 10
-RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
+FROM mozmeao/base:python-2.7
 
 WORKDIR /app
 EXPOSE 8000
 CMD ["./bin/run.sh"]
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-                    gettext build-essential python-{dev,pip,setuptools} \
-                    libxml2-dev libxslt1.1 libxslt1-dev git libpq-dev
+RUN apt-install gettext build-essential libxml2-dev libxslt1.1 libxslt1-dev git libpq-dev
 
 COPY ./requirements /app/requirements
 
