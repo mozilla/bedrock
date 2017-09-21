@@ -107,7 +107,10 @@
           <nav class="masthead-nav-main" id="nav-main">
             <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
             <ul class="nav-main-menu" id="nav-main-menu">
-              <li class="first internet-health-item">
+              <li class="first firefox-item">
+                <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
+              </li>
+              <li class="internet-health-item">
                 <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Internet Health">{{ _('Internet Health') }}</a>
               </li>
               <li class="technology-item">
