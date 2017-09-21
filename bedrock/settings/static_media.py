@@ -612,12 +612,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/home-bundle.css',
     },
-    'home-b': {
+    'home_new': {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
-            'css/mozorg/home/home-b.scss',
+            'css/mozorg/home/home-new.scss',
         ),
-        'output_filename': 'css/home-b-bundle.css',
+        'output_filename': 'css/home_new-bundle.css',
     },
     'legal': {
         'source_filenames': (
@@ -1375,13 +1375,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/home-bundle.js',
     },
-    'home-b': {
+    'home_new': {
         'source_filenames': (
             'js/base/uitour-lib.js',
-            'js/mozorg/home/home-b.js',
-            'js/mozorg/home/home-b-init.js',
+            'js/mozorg/home/home-new.js',
+            'js/mozorg/home/home-new-init.js',
         ),
-        'output_filename': 'js/home-b-bundle.js',
+        'output_filename': 'js/home_new-bundle.js',
     },
     'history-slides': {
         'source_filenames': (

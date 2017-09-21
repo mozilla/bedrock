@@ -6,13 +6,7 @@
 @import '../../hubs/buttons';
 
 body {
-    @include open-sans;
     border-top: 0;
-}
-
-h2,
-h3 {
-    @include zilla-slab;
 }
 
 // hide download button in the nav
@@ -59,13 +53,12 @@ main {
     }
 
     h2 {
-        @include font-size-level1;
+        @include font-size-level2;
         margin-bottom: 30px;
     }
 
     h3 {
         @include font-size-level4;
-        @include open-sans;
         line-height: 1.3;
     }
 
@@ -85,6 +78,15 @@ main {
 
 #intro-mozilla {
     margin-bottom: 60px;
+}
+
+[lang="en"] #intro-mozilla h2 {
+    @include zilla-slab();
+
+    span {
+        background: #000;
+        color: #fff;
+    }
 }
 
 #intro-promo-content-wrapper {
@@ -185,7 +187,7 @@ main {
     padding: 10px 20px 20px;
 
     .section-headline {
-        @include font-size-level2;
+        @include font-size-level3;
         margin-bottom: 20px;
     }
 
@@ -193,8 +195,24 @@ main {
         padding-bottom: 20px;
     }
 
+    a {
+        @include open-sans();
+    }
+
     @media #{$mq-tablet} {
         padding: 10px 40px 20px;
+    }
+
+    @media #{$mq-desktop} {
+        // line up with left edge of mozilla logo in nav
+        &:first-child {
+            padding-left: 84px;
+        }
+
+        // equal padding on right side
+        &:last-child {
+            padding-right: 84px;
+        }
     }
 }
 
@@ -355,8 +373,8 @@ main {
     }
 
     h3 {
-        @include font-size-level3;
-        color: $color-text-secondary;
+        @include font-size-level4;
+        font-weight: 100;
         margin-bottom: 0.8rem;
         padding-top: 120px;
         position: relative;
@@ -399,24 +417,18 @@ main {
         }
     }
 
-    p {
-        color: $color-text-secondary;
-    }
-
     @media #{$mq-tablet} {
         .content {
             width: auto;
-        }
-
-        a {
-            padding: 0 20px;
         }
 
         ul {
             padding-top: 60px;
 
             li {
+                @include border-box;
                 float: left;
+                padding: 0 20px;
                 width: 33.3%;
                 margin: 0;
             }
@@ -427,6 +439,8 @@ main {
         .content {
             margin: 0 auto;
             max-width: $width-max-content;
+            // align left with mozilla logo in nav
+            padding: 0 84px;
         }
     }
 }
@@ -464,7 +478,7 @@ main {
         }
 
         h4 {
-            @include font-size-level4;
+            @include font-size-level5;
             color: #000;
             font-weight: normal;
             line-height: 1.5;
@@ -544,6 +558,17 @@ main {
             float: left;
             margin: 0;
             width: 100%;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    #newsletter-subscribe.section-newsletter .newsletter-form {
+        padding-left: 540px;
+
+        .form-title {
+            margin-left: -540px;
+            width: 510px;
         }
     }
 }

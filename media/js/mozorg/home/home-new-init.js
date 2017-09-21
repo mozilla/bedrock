@@ -5,7 +5,7 @@
 (function(Mozilla) {
     'use strict';
 
-    Mozilla.HomePageB.init({
+    Mozilla.HomePage.init({
         client: window.Mozilla.Client
     });
 })(window.Mozilla);
