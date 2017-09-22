@@ -145,7 +145,7 @@ NEWSLETTER_STRINGS = {
     u'mozilla-and-you': {
         'description': _lazy(u'A monthly newsletter and special announcements giving you tips to '
                              u'improve your experience with Firefox on your desktop and Android device.'),
-        'title': _lazy(u'Firefox + You')},
+        'title': _lazy(u'Firefox')},
     u'mozilla-festival': {
         'description': u"Special announcements about Mozilla's annual, hands-on festival "
                        u"dedicated to forging the future of the open Web.",
@@ -153,7 +153,7 @@ NEWSLETTER_STRINGS = {
     u'mozilla-foundation': {
         'description': _lazy(u'News and special updates about our work to promote openness, innovation '
                              u'and participation on the Internet, including ways for you to get involved.'),
-        'title': _lazy(u'Mozilla Foundation')},
+        'title': _lazy(u'Mozilla')},
     u'mozilla-general': {
         'description': _lazy(u'Special announcements and messages from the team dedicated to keeping '
                              u'the Web free and open.'),
