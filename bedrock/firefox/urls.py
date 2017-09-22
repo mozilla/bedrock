@@ -57,7 +57,7 @@ urlpatterns = (
         views.FeaturesPasswordManagerView.as_view(),
         name='firefox.features.password-manager'),
     page('firefox/features/send-tabs', 'firefox/features/send-tabs.html'),
-    page('firefox/features/sync', 'firefox/features/sync.html'),
+    url('^firefox/features/sync/$', views.sync_page, name='firefox.features.sync'),
     url(r'^firefox/focus/$',
         views.FirefoxFocusView.as_view(),
         name='firefox.focus'),

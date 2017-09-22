@@ -27,7 +27,9 @@
             {% block features_header_content %}{% endblock %}
           </div>
           <div class="header-download">
-            {{ download_firefox(dom_id='features-header-download', button_color='button-arrow', download_location='primary cta') }}
+            {% block features_header_download %}
+              {{ download_firefox(dom_id='features-header-download', button_color='button-arrow', download_location='primary cta') }}
+            {% endblock %}
           </div>
         </div>
         {% block features_header_image %}{% endblock %}
