@@ -1,0 +1,83 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_56" %}
+
+{% extends "firefox/whatsnew/base-pebbles.html" %}
+
+{% block page_title %}{{ _('Firefox is up to date') }}{% endblock %}
+{% block page_desc %}{{ _('Built for speed. Primed for performance.') }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-whatsnew-56' %}
+{% endblock %}
+
+{% block site_header %}
+<header class="up-to-date-header">
+  <div class="content">
+    <h1>{{ self.page_title() }}</h1>
+  </div>
+</header>
+<section class="intro">
+  <div class="content">
+    <div class="intro-wrapper">
+      <div class="intro-content">
+        <h2>{{ self.page_desc() }}</h2>
+        <p>
+        {% trans %}
+          From the instant you start the browser to the moment you load a web page,
+          you’ll see the effects of the hard work taking place behind the scenes at Mozilla.
+          Since the start of the year, we’ve made big changes to Firefox to bring you:
+        {% endtrans %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="features-section">
+  <div class="content">
+    <ul class="features-list">
+      <li>{{ _('More responsive tab switching') }}</li>
+      <li>{{ _('Faster page loading with less memory use') }}</li>
+      <li>{{ _('Support for next generation web technologies, like WebVR and WebGL for gaming') }}</li>
+    </ul>
+  </div>
+</div>
+
+<section class="whats-next">
+  <div class="content">
+    <h2>{{ _('What’s next for Firefox') }}</h2>
+
+    <p>
+    {% trans %}
+      We’ve been laying the groundwork for our biggest release of the year, coming in November.
+      The New Firefox will feature even more improvements to speed and performance, with a modern,
+      intuitive design to match.
+    {% endtrans %}
+    </p>
+
+    <ul>
+      <li>
+        <h3 class="search">{{ _('Find it faster') }}</h3>
+        <p>{{ _('The address bar that does it all: Use it to search, recover, save and share pages as you go.') }}</p>
+      </li>
+      <li>
+        <h3 class="library">{{ _('Hold it together') }}</h3>
+        <p>{{ _('The new Firefox library puts the great things you’ve found and saved in one convenient place.') }}</p>
+      </li>
+      <li>
+        <h3 class="new-tab">{{ _('Keep it fresh') }}</h3>
+        <p>{{ _('The all-new New Tab gives you quick access to your top sites and recommendations from around the web.') }}</p>
+      </li>
+    </ul>
+  </div>
+</section>
+{% endblock %}
+
+{% block email_form %}{% endblock%}
+
+{% block js %}{% endblock %}

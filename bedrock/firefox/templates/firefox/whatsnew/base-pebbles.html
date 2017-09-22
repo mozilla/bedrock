@@ -1,0 +1,32 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block gtm_page_id %}data-gtm-page-id="/firefox/whatsnew/"{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}{{ _('See what’s new with Firefox') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ _('Faster, more responsive and powerfully private. Check out the latest from the browser that has your back.') }}{% endblock %}
+
+{#- Override <meta property="og:url"> for social share -#}
+{% block page_og_url %}{{ url('firefox') }}{% endblock %}
+
+{% block extrahead %}
+  {% if switch('firefox-update-notification-modal', ['en-US']) %}
+    {% stylesheet 'firefox-update-notification-modal' %}
+  {% endif %}
+{% endblock %}
+
+{# Bug 1387984 #}
+{% block update_notification %}
+  {% if switch('firefox-update-notification-modal', ['en-US']) %}
+    {% include 'includes/firefox-update-instructions.html' %}
+    {% javascript 'firefox-update-notification-modal' %}
+  {% endif %}
+{% endblock %}
