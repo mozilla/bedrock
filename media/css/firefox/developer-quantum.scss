@@ -1,0 +1,620 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import
+    '../pebbles/includes/lib',
+    '../pebbles/components/newsletter',
+    '../hubs/sub-nav';
+
+$color-dev-lightblue: #30cde2;
+$color-dev-mediumblue: #306efe;
+
+@mixin section-curve {
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    content: '';
+    display: block;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    visibility: visible;
+    z-index: 10;
+}
+
+.firefox-developer {
+    main {
+        @include open-sans;
+    }
+
+    .section-title {
+        @include font-size-level5;
+        margin: 20px auto 40px;
+        max-width: $width-tablet;
+        text-align: center;
+        text-transform: uppercase;
+
+        span {
+            padding-bottom: 2px;
+            border-bottom: 3px solid;
+        }
+    }
+
+    .hero-image {
+        display: block;
+        margin: 0 auto 40px;
+    }
+
+    .section-body {
+        max-width: $width-desktop;
+        margin: 0 auto;
+    }
+
+    .body-title {
+        @include font-size-level3;
+        margin: 0 auto 1.5em;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    // Download button
+    .download-button {
+        .download-link.button-arrow {
+            @include font-size-level5;
+            background: $color-dev-mediumblue linear-gradient(120deg, $color-dev-lightblue 0, $color-dev-mediumblue 100%) no-repeat;
+            border-radius: 100px;
+            border: 0;
+            margin-bottom: 10px;
+            padding: 1em 40px;
+
+            strong:before {
+                @include background-size(12px 28px);
+                background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
+                background-position: left top;
+                content: '';
+                display: block;
+                float: left;
+                height: 14px;
+                margin: .35em 10px 0 0;
+                width: 12px;
+            }
+        }
+
+        .fx-privacy-link {
+            @include font-size-small;
+
+            a:link,
+            a:visited {
+                text-decoration: none;
+                color: $color-link;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    // Conflicting download button in nav is confusing.
+    // Hide it for now pending a better solution.
+    #global-nav-download-firefox,
+    #sub-nav-download-firefox,
+    #nav-download-firefox {
+        display: none;
+    }
+
+    // Adjust nav width now that we don't need room for a button.
+    .moz-global-nav .nav-primary-links {
+        width: 100%;
+
+        @media #{$mq-tablet} {
+            width: calc(100% - 160px);
+        }
+
+        @media #{$mq-desktop} {
+            width: calc(100% - 250px);
+        }
+    }
+
+    .moz-sub-nav .sub-nav-primary-links-container {
+        width: 100%;
+    }
+}
+
+
+//*------------------------------------------------------------------*/
+// Intro
+.section-intro {
+    background-color: #fff;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    text-align: center;
+
+    .page-title {
+        @include font-size-level2;
+        text-transform: uppercase;
+        margin: 0 auto 1em;
+    }
+
+    .tagline {
+        max-width: $width-tablet;
+        text-align: center;
+        margin: 0 auto 1.5em;
+    }
+
+    .download-button {
+        margin: 40px auto 20px;
+    }
+
+    .feedback-note {
+        @include font-size-small;
+        margin: 0 auto 2em;
+        max-width: $width-phone;
+        color: #aaa;
+
+        a:link,
+        a:visited {
+            @include trailing-arrow;
+            text-decoration: none;
+
+            &:hover,
+            &:focus,
+            &:active {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .hero-image {
+        display: none;
+    }
+
+    @media #{$mq-tablet} {
+        @include background-size(1700px 450px);
+        background-image: url('/media/img/firefox/products/developer/quantum/hero-background.png');
+        padding-top: 40px;
+
+        .hero-image {
+            display: block;
+            margin: 40px auto -60px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        @include at2x('/media/img/firefox/products/developer/quantum/hero-background.png', 3400px, 900px);
+
+        .hero-image {
+            margin-top: 60px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .hero-image {
+            margin-bottom: -80px;
+        }
+    }
+}
+
+
+//*------------------------------------------------------------------*/
+// Performance
+.section-performance {
+    .section-title {
+        color: $color-dev-mediumblue;
+
+        span {
+            border-color: $color-dev-mediumblue;
+        }
+    }
+
+    .section-body {
+        text-align: center;
+    }
+
+    .hero-image {
+        width: 580px;
+    }
+
+    .cta {
+        margin: 20px auto 40px;
+    }
+
+    a.button.button-hollow {
+        color: $color-dev-mediumblue;
+        border-color: $color-dev-mediumblue;
+        border-radius: 100px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: transparentize($color-dev-mediumblue, .95);
+            border-color: lighten($color-dev-mediumblue, 5%);
+            color: lighten($color-dev-mediumblue, 5%);
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding-bottom: 80px;
+
+        &:before {
+            @include background-size(3000px 172px);
+            @include section-curve;
+            background-image: url('/media/img/firefox/products/developer/quantum/curve-performance-top.svg');
+            height: 172px;
+            top: -171px;
+        }
+    }
+}
+
+
+//*------------------------------------------------------------------*/
+// Highlights
+.section-highlights {
+    background: $color-dev-mediumblue;
+    color: #fff;
+
+    .hero-image {
+        box-shadow: 0 15px 20px rgba(0, 0, 0, .1);
+    }
+
+    .highlight-tools {
+        padding-bottom: 20px;
+        margin-bottom: 40px;
+    }
+
+    @media #{$mq-tablet} {
+        padding-bottom: 100px;
+
+        &:before {
+            @include background-size(3000px 140px);
+            @include section-curve;
+            background-image: url('/media/img/firefox/products/developer/quantum/curve-highlights-top.svg');
+            height: 140px;
+            top: -139px;
+        }
+
+        .highlight-tools,
+        .highlight-features {
+            @include border-box;
+            @include span(6);
+            margin-bottom: 0;
+            padding: 20px 40px;
+        }
+
+        .section-title,
+        .body-title {
+            text-align: left;
+        }
+    }
+}
+
+
+//*------------------------------------------------------------------*/
+// Features
+.section-features {
+    background: #1f2534;
+    color: #fff;
+    z-index: 10;
+
+    @media #{$mq-tablet} {
+        &:before {
+            @include background-size(3000px 108px);
+            @include section-curve;
+            background-image: url('/media/img/firefox/products/developer/quantum/curve-features-top.svg');
+            height: 108px;
+            top: -108px;
+        }
+
+        &:after {
+            @include background-size(3000px 182px);
+            @include section-curve;
+            background-image: url('/media/img/firefox/products/developer/quantum/curve-features-bottom.svg');
+            bottom: -181px;
+            height: 182px;
+        }
+
+        .features-list {
+            margin: 40px auto -20px;
+        }
+    }
+}
+
+.features-list {
+    max-width: $width-desktop;
+
+    .feature {
+        text-align: center;
+    }
+
+    .icon {
+        display: block;
+        margin: 0 auto 20px;
+    }
+
+    .name {
+        @include font-size-level5;
+        font-weight: normal;
+        color: #fff;
+    }
+
+    .desc {
+        @include font-size-small;
+        margin: 1em 20px;
+    }
+}
+
+
+//*------------------------------------------------------------------*/
+// Gallery list
+.gallery-list {
+    @include clearfix;
+
+    .gallery-item {
+        margin-bottom: 40px;
+
+        @media #{$mq-phone-wide} {
+            @include span(6);
+
+            &:nth-child(2n+1) {
+                clear: left;
+            }
+        }
+
+        @media #{$mq-tablet} {
+            @include span(4);
+
+            &:nth-child(2n+1) {
+                clear: none;
+            }
+
+            &:nth-child(3n+1) {
+                clear: left;
+            }
+        }
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-phone-wide} {
+        .gallery-list {
+            display: grid;
+            grid-gap: 40px 20px;
+            grid-template-columns: repeat(2, 1fr);
+
+            // Undo the clearfix so it doesn't bork the grid
+            &:after {
+                content: none;
+            }
+
+            // Reset all the things
+            .gallery-item {
+                clear: none;
+                float: none;
+                margin: 0;
+                padding: 0;
+                width: auto;
+            }
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .gallery-list {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+
+//*------------------------------------------------------------------*/
+// Engagement
+.section-engage {
+    background: $color-dev-mediumblue linear-gradient(120deg, $color-dev-lightblue 0, $color-dev-mediumblue 100%) no-repeat;
+    color: #fff;
+    text-align: center;
+
+    h3 {
+        @include font-size(24px);
+        margin: 0 0 20px;
+    }
+
+    .speak-up {
+        border-bottom: 1px solid #fff;
+        margin-bottom: 40px;
+        padding-bottom: 40px;
+    }
+
+    @media #{$mq-tablet} {
+        padding: 160px 20px 40px;
+
+        h3 {
+            @include font-size-level3;
+        }
+
+        .speak-up,
+        .get-involved {
+            @include border-box;
+            @include span(6);
+            padding: 20px 40px;
+        }
+
+        .speak-up {
+            border-bottom: 0;
+            margin-bottom: 0;
+            padding-bottom: 20px;
+        }
+
+        .get-involved {
+            border-left: 1px solid #fff;
+        }
+    }
+
+    a.button.button-hollow {
+        @include font-size-level5;
+        border-color: #fff;
+        border-radius: 100px;
+        color: #fff;
+        margin-top: 20px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: rgba(255, 255, 255, .1);
+            border-color: #fff;
+            color: #fff;
+        }
+    }
+}
+
+
+//*------------------------------------------------------------------*/
+// Download
+.section-download {
+    text-align: center;
+
+    .section-body {
+        @include at2x('/media/img/logos/firefox/logo-developer-quantum.png', 165px, 165px);
+        @include border-box;
+        background-position: center 20px;
+        background-repeat: no-repeat;
+        max-width: $width-desktop;
+        padding-top: 220px;
+    }
+
+    h2 {
+        @include font-size-level3;
+        font-weight: normal;
+        margin: 0 0 1.5em;
+    }
+
+    @media #{$mq-tablet} {
+        padding: 40px 0;
+        text-align: left;
+
+        &:after {
+            @include background-size(3000px 62px);
+            @include section-curve;
+            background-image: url('/media/img/firefox/products/developer/quantum/curve-download-bottom.svg');
+            bottom: -61px;
+            height: 62px;
+        }
+
+        .section-body {
+            @include background-size(200px 200px);
+            background-position: 80px center;
+            min-height: 200px;
+            padding-left: 360px;
+            padding-top: 20px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 80px 0;
+
+        .section-body {
+            @include background-size(300px 300px);
+            background-position: 80px center;
+            min-height: 295px;
+            padding-left: 520px;
+            padding-top: 20px;
+        }
+    }
+}
+
+
+//*------------------------------------------------------------------*/
+// Newsletter
+.section-newsletter {
+    background: #2b2c32 url('/media/img/firefox/products/developer/quantum/newsletter-background.svg') center bottom no-repeat;
+    @include background-size(3000px 348px);
+    color: #fff;
+    min-height: 150px;
+    padding: 40px 0;
+
+    .content {
+        max-width: $width-desktop;
+    }
+
+    .form-title h3 {
+        font-weight: normal;
+        margin: 0 0 .5em;
+    }
+
+    #newsletter-form {
+        margin: 0 auto;
+        text-align: center;
+        width: $width-phone;
+
+        input[type="email"] {
+            border-color: #fff;
+            border-radius: 0;
+            padding: .5em 10px;
+        }
+
+        #form-details {
+            @include font-size-level6;
+            padding-top: 20px;
+        }
+
+        button[type="submit"] {
+            @include font-size-level5;
+            margin: 20px 0 5px;
+            width: auto;
+            border-radius: 100px;
+        }
+
+        select {
+            max-width: 100%;
+        }
+
+        .field {
+            margin-bottom: 5px;
+        }
+    }
+
+    .thank {
+        max-width: $width-tablet;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #footer-email-errors {
+        .errorlist {
+            background: #fff;
+            color: $color-mozred;
+            padding: 20px 30px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding: 100px 0 40px;
+
+        #newsletter-form {
+            padding-left: 360px;
+            text-align: left;
+            width: auto;
+        }
+
+        .form-title {
+            float: left;
+            margin-left: -320px;
+            width: 300px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 160px 0 60px;
+
+        #newsletter-form {
+            padding-left: 520px;
+            text-align: left;
+        }
+
+        .form-title {
+            margin-left: -490px;
+            width: 470px;
+        }
+    }
+}

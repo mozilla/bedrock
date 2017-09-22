@@ -383,6 +383,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_developer_2017-bundle.css',
     },
+    'firefox_developer_quantum': {
+        'source_filenames': (
+            'css/firefox/developer-quantum.scss',
+        ),
+        'output_filename': 'css/firefox_developer_quantum-bundle.css',
+    },
     'firefox_ios_testflight': {
         'source_filenames': (
             'css/firefox/testflight.less',
