@@ -5,6 +5,7 @@ from django.conf.urls import url
 
 from bedrock.redirects.util import redirect
 from bedrock.mozorg.util import page
+from bedrock.base.waffle import switch
 
 import views
 import bedrock.releasenotes.views
@@ -133,3 +134,9 @@ urlpatterns = (
     url('^firefox/stub_attribution_code/$', views.stub_attribution_code,
         name='firefox.stub_attribution_code'),
 )
+
+# Bug 1396005 Firefox 57 Quantum Preview page.
+if switch('57-quantum-preview'):
+    urlpatterns += (
+        page('firefox/quantum', 'firefox/quantum.html'),
+    )

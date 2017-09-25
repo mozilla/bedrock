@@ -1,0 +1,998 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../pebbles/components/newsletter';
+@import '../pebbles/components/modal';
+@import '../hubs/sections';
+
+$color-quantum-blue: #0a84ff;
+
+/* -------------------------------------------------------------------------- */
+// Common elements
+
+body {
+    @include open-sans;
+}
+
+#outer-wrapper {
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+.button.photon,
+.button.photon:link,
+.button.photon:visited {
+    @include font-size(18px);
+    @include transition(box-shadow .1s ease-in-out);
+    background: #ff8e00;
+    background: linear-gradient(to right, #c40771 17%, #ff8e00 56%, #ffef4c 100%);
+    border-radius: 100px;
+    border: none;
+    box-shadow: 0 0 11px 0 rgba(0, 0, 0, .25);
+    color: #fff;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background: #ff8e00;
+        background: linear-gradient(to right, #c40771 17%, #ff8e00 56%, #ffef4c 100%);
+        box-shadow: 0 0 11px 0 rgba(255, 255, 255, .25);
+        color: #fff;
+    }
+}
+
+.button.photon-flat,
+.button.photon-flat:link,
+.button.photon-flat:visited {
+    @include font-size(18px);
+    @include transition(background .1s ease-in-out);
+    background: #0A84FF;
+    border-radius: 100px;
+    border: none;
+    color: #fff;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background: lighten(#0A84FF, 5%);
+        color: #fff;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Top header
+
+.main-header {
+    background: #0060df;
+    background: url('/media/img/firefox/quantum/fox-tail-header.png') top -60px center no-repeat,
+                linear-gradient(148deg, #0060df 7%, #0479f4 20%, #0681fc 27%, #02bdf1 60%, #01d3f0 67%, #05f0e6 100%);
+    color: #fff;
+    padding: 60px 0 50px;
+    position: relative;
+    z-index: 1;
+
+    h1 {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 189px, 189px);
+        @include font-size-level2;
+        background-position: top center;
+        background-repeat: no-repeat;
+        padding-top: 210px;
+    }
+
+    h2 {
+        @include font-size-level3;
+    }
+
+    a:link,
+    a:visited {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    p {
+        margin: 40px auto;
+        max-width: 24em;
+    }
+
+    .cta-wrapper {
+        display: inline-block;
+        text-align: center;
+    }
+
+    .beta-link {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .header-content {
+        @include background-size(300px 222px);
+        background-image: url('/media/img/firefox/quantum/new-tab.png');
+        background-position: bottom -40px center;
+        background-repeat: no-repeat;
+        padding-bottom: 240px;
+        text-align: center;
+    }
+
+    .header-image {
+        z-index: 1;
+
+        img {
+            display: none;
+        }
+    }
+
+    &:after {
+        background: transparent url('/media/img/firefox/quantum/wave-top.svg') top center no-repeat;
+        bottom: -40px;
+        content: '';
+        display: block;
+        height: 355px;
+        left: 50%;
+        margin-left: -2122px;
+        position: absolute;
+        width: 3844px;
+    }
+
+    @media #{$mq-phone-wide} {
+        padding: 60px 0 40px;
+
+        .header-content {
+            @include background-size(400px 296px);
+            padding-bottom: 320px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding: 60px 0 30px;
+
+        .header-content {
+            @include background-size(500px 370px);
+            padding-bottom: 390px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 60px 0;
+
+        h1 {
+            background-position: top left;
+        }
+
+        p {
+            margin: 40px 0;
+        }
+
+        .content {
+            z-index: 2;
+        }
+
+        .header-content {
+            background: none;
+            float: left;
+            padding-bottom: 0;
+            text-align: left;
+            width: 45%;
+        }
+
+        .header-image {
+            float: right;
+            margin-top: 40px;
+            width: 50%;
+
+            img {
+                display: block;
+                height: 662px;
+                max-width: none;
+                width: 922px;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding: 60px 0 30px;
+    }
+}
+
+html[dir="rtl"] .main-header {
+
+    @media #{$mq-desktop} {
+
+        h1 {
+            background-position: top right;
+        }
+
+        .header-content {
+            float: right;
+            text-align: right;
+        }
+
+        .header-image {
+            float: left;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Key features sections
+
+.key-features-section {
+    background: #fff;
+
+    h2 {
+        @include font-size-level3;
+        color: $color-quantum-blue;
+        margin-bottom: 20px;
+        padding-top: 40px;
+        position: relative;
+
+        &:before {
+            background: $color-quantum-blue;
+            border-radius: 5px;
+            content: '';
+            height: 5px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 130px;
+        }
+    }
+
+    .key-feature {
+        background-position: top center;
+        background-repeat: no-repeat;
+        margin-top: 40px;
+        text-align: center;
+
+        h2:before {
+            left: 50%;
+            margin-left: -65px;
+        }
+
+        a:link,
+        a:visited {
+            color: $color-quantum-blue;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: $color-quantum-blue;
+            text-decoration: underline;
+        }
+
+        &.fast {
+            @include at2x('/media/img/firefox/quantum/faster.png', 130px, 141px);
+            padding-top: 160px;
+        }
+
+        &.performance {
+            @include at2x('/media/img/firefox/quantum/performance.png', 160px, 150px);
+            padding-top: 170px;
+        }
+
+        &.privacy {
+            @include at2x('/media/img/firefox/quantum/privacy.png', 300px, 242px);
+            padding-top: 260px;
+        }
+
+        &.mozilla {
+            @include at2x('/media/img/firefox/quantum/mozilla.png', 300px, 261px);
+            padding-top: 280px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .key-feature {
+            @include clearfix;
+            background-position: top right;
+            margin: 40px 0 120px;
+            text-align: left;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &.fast,
+            &.performance,
+            &.privacy,
+            &.mozilla {
+                h2:before {
+                    left: 0;
+                    margin-left: 0;
+                }
+            }
+
+            &.design {
+                text-align: center;
+            }
+
+            .key-feature-content {
+                width: 45%;
+
+                p {
+                    max-width: 24em;
+                }
+            }
+
+            &.fast {
+                @include background-size(195px 212px);
+                min-height: 250px;
+                padding-top: 0;
+            }
+
+            &.performance {
+                @include background-size(239px 225px);
+                min-height: 250px;
+                padding-top: 0;
+            }
+
+            &.privacy {
+                @include background-size(370px 298px);
+                min-height: 320px;
+                padding-top: 0;
+            }
+
+            &.mozilla {
+                @include background-size(350px 305px);
+                min-height: 320px;
+                padding-top: 0;
+            }
+
+            &:nth-child(even) {
+                background-position: top left;
+
+                .key-feature-content {
+                    float: right;
+                    text-align: right;
+
+                    h2:before {
+                        left: auto;
+                        right: 0;
+                    }
+
+                    p {
+                        float: right;
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 60px 0 0;
+
+        .key-feature {
+
+            &.fast {
+                @include background-size(260px 282px);
+                min-height: 300px;
+            }
+
+            &.performance {
+                @include background-size(319px 300px);
+                min-height: 320px;
+            }
+
+            &.privacy {
+                @include background-size(470px 378px);
+                min-height: 420px;
+            }
+
+            &.mozilla {
+                @include background-size(450px 392px);
+                min-height: 420px;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .key-feature {
+            background-position: top right 160px;
+
+            &:nth-child(even) {
+                background-position: top left 160px;
+            }
+
+            &.privacy {
+                @include background-size(585px 471px);
+                background-position: top right 60px;
+                min-height: 490px;
+            }
+
+            &.mozilla {
+                @include background-size(541px 471px);
+                background-position: top left 60px;
+                min-height: 490px;
+            }
+        }
+    }
+}
+
+html[dir="rtl"] .key-features-section .key-feature {
+
+    h2:before {
+        left: 50%;
+        margin-left: -65px;
+    }
+
+    @media #{$mq-tablet} {
+        background-position: top left;
+        text-align: right;
+
+        &.fast,
+        &.performance,
+        &.privacy,
+        &.mozilla {
+            h2:before {
+                left: auto;
+                margin-left: 0;
+                right: 0;
+            }
+        }
+
+        &.design {
+            text-align: center;
+        }
+
+        &:nth-child(even) {
+            background-position: top right;
+
+            .key-feature-content {
+                float: left;
+                text-align: left;
+
+                h2:before {
+                    left: 0;
+                    right: auto;
+                }
+
+                p {
+                    float: left;
+                }
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        background-position: top left 160px;
+
+        &:nth-child(even) {
+            background-position: top right 160px;
+        }
+
+        &.privacy {
+            background-position: top left 60px;
+        }
+
+        &.mozilla {
+            background-position: top right 60px;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Features carousel
+
+.feature-carousel-container {
+    margin: 0 auto;
+    max-width: 700px;
+    position: relative;
+
+    p {
+        margin: 20px auto 40px;
+        max-width: 34em;
+    }
+
+    .feature-carousel-previous,
+    .feature-carousel-next {
+        display: none;
+    }
+
+    @media #{$mq-desktop-wide} {
+        max-width: 850px;
+    }
+}
+
+.supports-videos .feature-carousel-container {
+
+    .feature-carousel-previous,
+    .feature-carousel-next {
+        @include image-replaced();
+        @include transition(background-color .1s ease-in-out);
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border-radius: 100%;
+        border: none;
+        display: none;
+        height: 74px;
+        position: absolute;
+        top: 30%;
+        width: 74px;
+
+        &:hover,
+        &:focus {
+            background-color: #f7f7f7;
+        }
+    }
+
+    .feature-carousel-previous {
+        @include at2x('/media/img/firefox/quantum/carousel/arrow-left.png', 74px, 74px);
+        left: -110px;
+    }
+
+    .feature-carousel-next {
+        @include at2x('/media/img/firefox/quantum/carousel/arrow-right.png', 74px, 74px);
+        right: -110px;
+    }
+
+    @media #{$mq-desktop} {
+        .feature-carousel-previous,
+        .feature-carousel-next {
+            display: block;
+        }
+    }
+}
+
+.feature-carousel {
+    margin: 0 auto;
+    overflow: hidden;
+
+    li {
+        width: 100%;
+    }
+
+    figure {
+        display: block;
+        margin: 0 auto 20px;
+        max-width: 850px;
+        text-align: center;
+        width: 100%;
+    }
+
+    figcaption {
+        color: #b1b1b3;
+        margin-top: 20px;
+    }
+
+    video {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
+        height: auto;
+        width: 100%;
+    }
+}
+
+.supports-videos .feature-carousel li {
+    @media #{$mq-desktop} {
+        display: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Sticky header
+
+.sticky-footer {
+    background: #fff;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .2);
+    display: none;
+    text-align: center;
+
+    p {
+        @include font-size-level5;
+        display: inline-block;
+        line-height: 2.5;
+        margin: -4px 0 0;
+        padding-left: 55px;
+        position: relative;
+
+        &:before {
+            @include at2x('/media/img/logos/firefox/logo-quantum.png', 45px, 45px);
+            background-position: left center;
+            background-repeat: no-repeat;
+            content: '';
+            height: 45px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 45px;
+        }
+    }
+
+    .button.photon-flat {
+        @include font-size-level6;
+        display: inline-block;
+        margin-left: .5em;
+    }
+
+    &.stuck {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    @media #{$mq-desktop} {
+        display: block;
+    }
+
+    @media #{$mq-desktop-wide} {
+        p {
+            @include font-size-level4;
+            padding-left: 70px;
+
+            &:before {
+                @include background-size(60px 60px);
+                height: 60px;
+                width: 60px;
+            }
+        }
+
+        .button.photon-flat {
+            @include font-size-level5;
+        }
+    }
+}
+
+#colophon {
+    padding-bottom: 100px;
+}
+
+html[dir="rtl"] .sticky-footer {
+
+    p {
+        padding-left: 0;
+        padding-right: 55px;
+
+        &:before {
+            left: auto;
+            right: 0;
+        }
+    }
+
+    .button.photon-flat {
+        margin-left: 0;
+        margin-right: .5em;
+    }
+
+    @media #{$mq-desktop-wide} {
+        p {
+            padding-left: 0;
+            padding-right: 70px;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Other features list
+
+.other-features {
+    background: #0a84ff url('/media/img/firefox/quantum/fox-tail-features.png') top -160px center no-repeat;
+    color: #fff;
+    padding-bottom: 250px;
+    position: relative;
+    text-align: center;
+
+    &:after {
+        background: transparent url('/media/img/firefox/quantum/wave-middle.svg') top center no-repeat;
+        bottom: -10px;
+        content: '';
+        display: block;
+        height: 304px;
+        left: 50%;
+        margin-left: -1910px;
+        position: absolute;
+        width: 3821px;
+    }
+
+    .content {
+        padding-top: 60px;
+    }
+
+    h2 {
+        @include font-size-level3;
+        margin-bottom: 60px;
+        padding-top: 40px;
+        position: relative;
+
+        &:before {
+            background: #fff;
+            border-radius: 5px;
+            content: '';
+            height: 5px;
+            left: 50%;
+            margin-left: -65px;
+            position: absolute;
+            top: 0;
+            width: 130px;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    h3 {
+        @include font-size(18px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        font-weight: bold;
+        margin-bottom: 20px;
+        padding-top: 180px;
+
+        &.new-tab {
+            background-image: url('/media/img/firefox/quantum/features/new-tab.svg');
+        }
+
+        &.library {
+            background-image: url('/media/img/firefox/quantum/features/library.svg');
+        }
+
+        &.extensions {
+            background-image: url('/media/img/firefox/quantum/features/extensions.svg');
+        }
+
+        &.mobile-browsing {
+            background-image: url('/media/img/firefox/quantum/features/mobile-browsing.svg');
+        }
+    }
+
+    @media #{$mq-phone-wide} {
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+
+            li {
+                margin: 0 auto;
+                width: 50%;
+
+                p {
+                    padding: 0 20px 20px;
+                }
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 60px 0 250px;
+
+        ul li {
+            width: 25%;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding: 60px 0 280px;
+    }
+}
+
+@supports(display: grid) {
+
+    .other-features ul {
+        @media #{$mq-phone-wide} {
+            display: grid;
+            grid-gap: 40px;
+            grid-template-columns: repeat(2, 1fr);
+
+            li {
+                width: auto;
+
+                p {
+                    padding: 0 0 20px;
+                }
+            }
+        }
+
+        @media #{$mq-desktop} {
+            grid-template-columns: repeat(4, 1fr);
+
+            li {
+                width: auto;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Bottom sign up cta
+
+.secondary-sign-up {
+    background: #0060df;
+    background: url('/media/img/firefox/quantum/fox-tail-sign-up.png') top -100px center no-repeat,
+                linear-gradient(-80deg, #0060df 11%, #0080ff 45%, #00feff 82%, #06fde1 100%);
+    color: #fff;
+    padding-top: 390px;
+    position: relative;
+
+    &:before {
+        background: transparent url('/media/img/firefox/quantum/wave-bottom.svg') top center no-repeat;
+        content: '';
+        display: block;
+        height: 390px;
+        left: 50%;
+        margin-left: -2307px;
+        position: absolute;
+        top: -20px;
+        width: 4615px;
+    }
+
+    h2 {
+        @include font-size-level3;
+        line-height: 1.3;
+        margin: 20px auto;
+        max-width: 18em;
+    }
+
+    .secondary-sign-up-content {
+        margin: -140px 0 40px;
+        padding-top: 165px;
+        position: relative;
+        text-align: center;
+
+        &:before {
+            @include at2x('/media/img/firefox/quantum/laptop.png', 280px, 165px);
+            background-position: top left;
+            background-repeat: no-repeat;
+            content: '';
+            height: 165px;
+            left: 50%;
+            margin-left: -140px;
+            position: absolute;
+            top: 0;
+            width: 280px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .secondary-sign-up-content {
+            margin-bottom: 0;
+            min-height: 180px;
+            padding: 0 0 0 320px;
+            text-align: left;
+
+            h2 {
+                margin: 20px 0;
+            }
+
+            &:before {
+                left: 0;
+                margin-left: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .secondary-sign-up-content {
+            min-height: 300px;
+            padding-left: 460px;
+
+            &:before {
+                @include background-size(422px 248px);
+                height: 248px;
+                width: 422px;
+            }
+        }
+    }
+}
+
+html[dir="rtl"] .secondary-sign-up {
+
+    @media #{$mq-tablet} {
+        .secondary-sign-up-content {
+            padding: 0 320px 0 0;
+            text-align: right;
+
+
+            &:before {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .secondary-sign-up-content {
+            padding-right: 460px;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Newsletter modal
+
+.newsletter-modal {
+    .content {
+        background: #fff;
+        text-align: center;
+    }
+
+    .form-contents {
+        margin: 0 auto;
+        max-width: 260px;
+    }
+
+    .field-email input {
+        max-width: 100%;
+    }
+
+    .field {
+        margin-bottom: 20px;
+    }
+
+    .button.photon {
+        box-shadow: none;
+        margin: 10px auto 20px;
+        max-width: 260px;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .25);
+
+        &:hover,
+        &:focus {
+            box-shadow: 0 0 11px 0 rgba(0, 0, 0, .25);
+        }
+    }
+
+    h3 {
+        @include font-size-level4;
+        color: $color-quantum-blue;
+        line-height: 1.4;
+        margin: 20px auto 40px;
+        max-width: 20em;
+    }
+
+    h4 {
+        @include font-size-level5;
+        margin-bottom: 40px;
+    }
+
+    select {
+        max-width: 100%;
+    }
+}
+
+#footer-email-errors {
+    color: #ff0000;
+}
+
+#newsletter-form-thankyou {
+    padding-top: 100px;
+}
+
+.js .newsletter-modal {
+    display: none;
+}
+
+#modal .newsletter-modal {
+    display: block;
+
+    .content {
+        min-width: 260px;
+    }
+}
+
+#modal .window .inner {
+    background: transparent;
+    max-width: 760px;
+
+    //compensate for no modal title.
+    .overlay-contents {
+        padding-top: 60px;
+    }
+}
