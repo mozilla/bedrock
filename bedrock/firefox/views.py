@@ -645,14 +645,14 @@ class FeaturesBookmarksView(BlogPostsView):
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
-    blog_tags = ['modern', 'private', 'featured']
+    blog_tags = ['modern', 'privacy', 'featured']
 
 
 class FeaturesPasswordManagerView(BlogPostsView):
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
-    blog_tags = ['modern', 'private', 'featured']
+    blog_tags = ['modern', 'privacy', 'featured']
     template_name = 'firefox/features/password-manager.html'
 
 
