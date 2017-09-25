@@ -384,6 +384,16 @@ def show_56_whatsnew(version, oldversion):
         return version >= v56
 
 
+def show_57_dev_whatsnew(version):
+    version = version[:-2]
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('57.0')
+
+
 def show_40_firstrun(version):
     try:
         version = Version(version)
@@ -446,7 +456,11 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
 
         channel = detect_channel(version)
         if channel == 'alpha':
-            template = 'firefox/dev-whatsnew.html'
+            if show_57_dev_whatsnew(version) and lang_file_is_active(
+                    'firefox/developer-quantum-whatsnew', locale):
+                    template = 'firefox/developer-quantum-whatsnew.html'
+            else:
+                template = 'firefox/dev-whatsnew.html'
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
         elif show_56_whatsnew(version, oldversion):
