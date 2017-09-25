@@ -49,28 +49,28 @@
       <span class="time">{{ _('1 min') }}</span>
       <h1>
         {{ _('Make Firefox your default browser') }}
-        <a href="https://support.mozilla.org/kb/make-firefox-your-default-browser">{{ _('Set as your default') }}</a>
+        <a data-link-type="link" data-link-name="Set as your default" href="https://support.mozilla.org/kb/make-firefox-your-default-browser">{{ _('Set as your default') }}</a>
       </h1>
     </article>
     <article>
       <span class="time">{{ _('1 min') }}</span>
       <h1>
         {{ _('Tell your friends about Firefox') }}
-        <a href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s%s'|format('https://mozilla.org/firefox/new'|urlencode, '%F0%9F%94%A5%2B%F0%9F%A6%8A=%F0%9F%99%8C%F0%9F%8F%BE%20', _('Join me in the fight for an open web by choosing Firefox!')|urlencode)|e }}">{{ _('Send a tweet') }}</a>
+        <a data-link-type="link" data-link-name="Send a tweet" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s%s'|format('https://mozilla.org/firefox/new'|urlencode, '%F0%9F%94%A5%2B%F0%9F%A6%8A=%F0%9F%99%8C%F0%9F%8F%BE%20', _('Join me in the fight for an open web by choosing Firefox!')|urlencode)|e }}">{{ _('Send a tweet') }}</a>
       </h1>
     </article>
     <article>
       <span class="time">{{ _('2 min') }}</span>
       <h1>
         {{ _('Get Firefox on your phone') }}
-        <a href="{{ url('firefox.mobile-download-desktop') }}">{{ _('Download Firefox') }}</a>
+        <a data-link-type="link" data-link-name="Download Firefox" href="{{ url('firefox.mobile-download-desktop') }}">{{ _('Download Firefox') }}</a>
       </h1>
     </article>
     <article>
       <span class="time">{{ _('4 min') }}</span>
       <h1>
         {{ _('Make the Internet a safer place') }}
-        <a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Learn more') }}</a>
+        <a data-link-type="link" data-link-name="Make the Internet as Safer Place" href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('Learn more') }}</a>
       </h1>
     </article>
   </section>
