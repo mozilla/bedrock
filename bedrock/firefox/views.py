@@ -210,8 +210,17 @@ def send_to_device_ajax(request):
 
         if data_type == 'number':
             if platform in MESSAGES['sms']:
+                data = {
+                    'mobile_number': phone_or_email,
+                    'msg_name': MESSAGES['sms'][platform],
+                    'lang': locale,
+                }
+                country = request.POST.get('country')
+                if country and re.match(r'^[a-z]{2}$', country, flags=re.I):
+                    data['country'] = country
+
                 try:
-                    basket.send_sms(phone_or_email, MESSAGES['sms'][platform])
+                    basket.request('post', 'subscribe_sms', data=data)
                 except basket.BasketException:
                     return HttpResponseJSON({'success': False, 'errors': ['system']},
                                             status=400)
