@@ -38,7 +38,7 @@
         <div class="key-feature-content">
           <h2>{{ _('2x faster') }}</h2>
           <p>
-          {% trans url='https://blog.mozilla.org/firefox/quantum-performance-test/' %}
+          {% trans url='https://blog.mozilla.org/firefox-de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
             Powered by a new, cutting-edge engine, Firefox has <a href="{{ url }}">doubled its speed</a>
             from last year. Because the Internet waits for no one.
           {% endtrans %}
@@ -49,7 +49,7 @@
         <div class="key-feature-content">
           <h2>{{ _('Lean, mean speed machine') }}</h2>
           <p>
-          {% trans url='https://blog.mozilla.org/firefox/quantum-performance-test/' %}
+          {% trans url='https://blog.mozilla.org/firefox-de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
             Firefox Quantum’s new engine uses <a href="{{ url }}">30% less memory</a> than Chrome,
             so other programs won’t slow down during browsing. Now that’s a win-win.
           {% endtrans %}
@@ -143,7 +143,7 @@
         <div class="key-feature-content">
           <h2>{{ _('Powerful privacy') }}</h2>
           <p>
-          {% trans url='https://blog.mozilla.org/firefox/tracking-protection-study/' %}
+          {% trans url='https://blog.mozilla.org/firefox-de/die-studie-zum-schutz-vor-aktivitatsverfolgung/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/tracking-protection-study/' %}
             You’re in control of your online information. Use Firefox Private Browsing to block ads
             with trackers for extra peace of mind… and pages that load <a href="{{ url }}">up to 44% faster</a>.
           {% endtrans %}
