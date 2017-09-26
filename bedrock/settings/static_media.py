@@ -752,6 +752,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/press-bundle.css',
     },
+    'firefox_privacy': {
+        'source_filenames': (
+            'css/privacy/firefox-privacy.scss',
+        ),
+        'output_filename': 'css/firefox-privacy-bundle.css',
+    },
     'privacy': {
         'source_filenames': (
             'css/privacy/privacy.less',
@@ -1524,6 +1530,13 @@ PIPELINE_JS = {
             'js/press/speaker-request.js',
         ),
         'output_filename': 'js/press_speaker_request-bundle.js',
+    },
+    'firefox_privacy': {
+        'source_filenames': (
+            'js/base/uitour-lib.js',
+            'js/privacy/firefox-privacy.js',
+        ),
+        'output_filename': 'js/firefox-privacy-bundle.js',
     },
     'privacy': {
         'source_filenames': (

@@ -1,0 +1,319 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import
+    '../pebbles/includes/lib',
+    '../pebbles/includes/fonts/open-sans';
+
+article {
+    @include open-sans;
+}
+
+$light-gray-background: #f2f2f2;
+
+.privacy-head,
+.privacy-lead-in,
+.privacy-footnote {
+    background-color: $light-gray-background;
+    color: #333;
+}
+
+/* POLICY HEADER */
+.privacy-head {
+    padding: 20px;
+    text-align: left;
+
+    @media #{$mq-tablet} {
+        padding: 20px 30px;
+    }
+
+    @media #{$mq-desktop} {
+        position: sticky;
+        top: 0;
+        padding: 0;
+        text-align: center;
+        z-index: 2;
+
+        .privacy-head-wrapper {
+            margin: 0 auto;
+            padding-left: 17px;
+            max-width: 1420px;
+        }
+    }
+
+    h1 {
+        display: inline-block;
+        @include font-size-level2
+
+        @media #{$mq-desktop} {
+            margin: 40px 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        &:before {
+            display: inline-block;
+            content: '';
+            @include at2x('/media/img/firefox/template/logo-large.png', 30px, 33px);
+            width: 30px;
+            height: 33px;
+            vertical-align: middle;
+
+            @media #{$mq-tablet} {
+                @include background-size(40px 43px);
+                width: 40px;
+                height: 43px;
+            }
+
+            @media #{$mq-desktop} {
+                @include background-size(60px 63px);
+                width: 60px;
+                height: 63px;
+            }
+        }
+    }
+
+    .privacy-header-firefox {
+        display: none;
+
+        @media #{$mq-desktop} {
+            display: inline-block;
+            margin-left: 10px;
+        }
+    }
+
+    .privacy-header-policy {
+        font-weight: normal;
+    }
+
+    time {
+        display: inline-block;
+        @include font-size-level6
+        font-weight: normal;
+        font-style: italic;
+    }
+}
+
+/* POLICY LEAD-IN */
+.privacy-lead-in {
+    h2 {
+        margin-bottom: 20px;
+        @include font-size-level3
+        font-weight: bold;
+        text-align: left;
+
+        @media #{$mq-tablet} {
+            font-weight: normal;
+        }
+
+        @media #{$mq-desktop} {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+    }
+
+    .optional-lead-in {
+        display: none;
+
+        @media #{$mq-tablet} {
+            display: block;
+        }
+    }
+}
+
+/* POLICY MAIN CONTENT */
+main {
+    margin: 0 auto;
+    padding-bottom: (20px * 3);
+    width: 94%;
+
+    @media #{$mq-desktop} {
+        width: 800px;
+        max-width: 800px;
+    }
+
+    h2 {
+        margin: 0;
+        margin-top: (20px * 3);
+        @include font-size-level3;
+        font-weight: normal;
+    }
+
+    h3 {
+        margin: (20px * 2) 0 20px;
+        @include font-size-level4;
+        font-weight: normal;
+
+        @media #{$mq-tablet} {
+            font-weight: bold;
+        }
+
+        @media #{$mq-desktop} {
+            font-weight: normal;
+        }
+    }
+
+    div {
+        ul,
+        p {
+            @include font-size(16px);
+        }
+    }
+
+    hr {
+        display: none;
+    }
+}
+
+/* ADDITIONAL STYLES WHEN JS IS ENABLED */
+main.interactive-widget {
+    h2 {
+        display: inline-block;
+        position: relative;
+        max-width: 320px;
+
+         @media #{$mq-tablet} {
+             margin-bottom: 32px;
+             max-width: 630px;
+         }
+    }
+
+    & > section:last-child h2 {
+        margin-top: 47px;
+
+        @media #{$mq-tablet} {
+            margin-top: 64px;
+        }
+    }
+
+    h3 {
+        margin: 16px 0;
+        cursor: pointer;
+
+        &:after {
+            display: inline-block;
+            float: right;
+            content: '';
+            background: transparent url('/media/img/privacy/arrowhead-up-16.svg') 0 0 no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    h3.collapsed {
+        &:after {
+            background-image: url('/media/img/privacy/arrowhead-down-16.svg');
+        }
+    }
+
+    section section {
+        border-bottom: 1px solid $color-text-tertiary;
+    }
+
+    .toggle {
+        display: inline-block;
+        float: right;
+        background: none;
+        margin-top: 45px;
+        padding: 10px;
+        border: 0;
+        border-bottom: 2px solid $color-text-secondary;
+        @include font-size(14px);
+        cursor: pointer;
+
+        @media #{$mq-tablet} {
+            margin-top: 65px;
+        }
+    }
+
+    .data-choices {
+        position: relative;
+        background-color: $light-gray-background;
+        margin-bottom: 10px;
+        padding: 10px;
+        text-align: center;
+
+        @media #{$mq-desktop} {
+            text-align: left;
+        }
+
+        p {
+            display: inline-block;
+            margin: 0;
+        }
+
+        button {
+            display: block;
+            background-color: $color-button-light;
+            margin: 10px auto;
+            padding: 5px 10px;
+            border: 1px solid $color-text-secondary;
+            @include font-size(14px);
+            cursor: pointer;
+
+            @media #{$mq-desktop} {
+                display: inline-block;
+                position: absolute;
+                top: 8px;
+                right: 10px;
+                margin: 0;
+            }
+        }
+    }
+}
+
+/* POLICY FOOTNOTE */
+.privacy-footnote {
+    padding: (20px * 3) 0 20px;
+}
+
+/* UTILITIES */
+.content-girdle {
+    margin: 0 auto;
+    padding-bottom: (20px * 3);
+    width: 94%;
+
+    @media #{$mq-desktop} {
+        width: 800px;
+        max-width: 800px;
+    }
+}
+
+/* RTL LANGUAGES */
+html[dir="rtl"]{
+    .privacy-head {
+        text-align: right;
+
+        @media #{$mq-desktop} {
+            text-align: center;
+        }
+    }
+
+    .privacy-lead-in {
+        h2 {
+            text-align: right;
+        }
+    }
+
+    main.interactive-widget {
+
+        .toggle {
+            float: left;
+        }
+
+        @media #{$mq-desktop} {
+            .data-choices {
+                text-align: right;
+
+                button {
+                    right: auto;
+                    left: 10px;
+                }
+            }
+        }
+    }
+}

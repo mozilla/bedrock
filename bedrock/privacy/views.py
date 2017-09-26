@@ -71,7 +71,7 @@ class PrivacyDocView(LegalDocView):
 
 
 firefox_notices = PrivacyDocView.as_view(
-    template_name='privacy/notices/firefox.html',
+    template_name='privacy/notices/firefox-quantum.html',
     legal_doc_name='firefox_privacy_notice')
 
 firefox_os_notices = PrivacyDocView.as_view(
