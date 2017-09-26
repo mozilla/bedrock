@@ -74,6 +74,11 @@
         <p>{{ _('The all-new New Tab gives you quick access to your top sites and recommendations from around the web.') }}</p>
       </li>
     </ul>
+
+    {# Bug 1401308: Only link to /firefox/quantum/ for locales that have the page translated. #}
+    {% if LANG.startswith('en') or LANG == 'de' %}
+    <a class="button photon-flat" href="{{ url('firefox.quantum') }}">{{ _('Learn more') }}</a>
+    {% endif %}
   </div>
 </section>
 {% endblock %}

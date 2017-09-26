@@ -330,7 +330,7 @@ html[dir="rtl"] .features-list {
     }
 
     ul li {
-        margin: 40px auto;
+        margin: 40px auto 60px;
         max-width: 24em;
 
         h3 {
@@ -357,6 +357,20 @@ html[dir="rtl"] .features-list {
 
         p {
             margin: 0;
+        }
+    }
+
+    .button.photon-flat {
+        @include background-size(18px);
+        background: #00e8ff;
+        border-radius: 100px;
+        border: none;
+        color: #000;
+        margin-bottom: 60px;
+
+        &:hover,
+        &:active {
+            background: lighten(#00e8ff, 10%);
         }
     }
 
