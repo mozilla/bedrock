@@ -377,6 +377,22 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/index.html'])
 
+    @override_settings(DEV=True)
+    def test_fx_firstrun_56_0(self, render_mock):
+        """Should use the default dev edition firstrun template"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='56.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/dev-firstrun.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_57_0(self, render_mock):
+        """Should use 57 quantum firstrun template"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='57.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/developer-quantum-firstrun.html'])
+
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class FxVersionRedirectsMixin(object):

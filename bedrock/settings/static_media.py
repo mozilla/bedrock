@@ -333,6 +333,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_developer_firstrun-bundle.css',
     },
+    'firefox_developer_quantum_firstrun': {
+        'source_filenames': (
+            'css/firefox/developer-quantum.scss',
+            'css/firefox/developer-quantum-firstrun.scss',
+        ),
+        'output_filename': 'css/firefox_developer_quantum_firstrun-bundle.css',
+    },
     'nightly_firstrun': {
         'source_filenames': (
             'css/firefox/nightly_firstrun.less',
