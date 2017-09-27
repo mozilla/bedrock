@@ -428,7 +428,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
         if detect_channel(version) == 'alpha':
             if show_57_dev_firstrun(version) and lang_file_is_active(
-                    'firefox/developer-quantum-firstrun', locale):
+                    'firefox/products/developer-quantum', locale):
                     template = 'firefox/developer-quantum-firstrun.html'
             else:
                 template = 'firefox/dev-firstrun.html'
@@ -467,7 +467,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         channel = detect_channel(version)
         if channel == 'alpha':
             if show_57_dev_whatsnew(version) and lang_file_is_active(
-                    'firefox/developer-quantum-whatsnew', locale):
+                    'firefox/products/developer-quantum', locale):
                     template = 'firefox/developer-quantum-whatsnew.html'
             else:
                 template = 'firefox/dev-whatsnew.html'
