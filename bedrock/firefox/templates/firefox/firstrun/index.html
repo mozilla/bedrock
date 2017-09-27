@@ -16,12 +16,6 @@
   {% stylesheet 'firefox_firstrun' %}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment-firstrun-copy', ['en-US']) %}
-    {% javascript 'experiment-firstrun-copy' %}
-  {% endif %}
-{% endblock %}
-
 {% block js %}
   {% javascript 'firefox_firstrun' %}
 {% endblock %}
@@ -33,11 +27,9 @@
   <div id="scene">
     <div class="fxaccounts-container">
       <div id="left-divider">
-        {% block main_copy %}
         <h1 id="title">{{_('Already using Firefox?')}}</h1>
         <p>{{_('Sign in to your account and we’ll sync the bookmarks, passwords and other great things you’ve saved to Firefox on other devices.')}}</p>
         <a href="{{ url('firefox.features.sync') }}">{{_('Learn more about Firefox Accounts')}}</a>
-        {% endblock %}
       </div>
       <div id="firefox-logo"></div>
       {# Bug 1354710: firstrun pages need to pass funnelcake parameters to FxA #}

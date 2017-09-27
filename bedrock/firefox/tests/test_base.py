@@ -350,33 +350,6 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/index.html'])
 
-    # Bug 1392473 copy test on /firstrun
-
-    @override_settings(DEV=True)
-    def test_fx_firstrun_copy_experiment_a(self, render_mock):
-        """Should use index-a template for control experiment"""
-        req = self.rf.get('/en-US/firefox/firstrun/?v=a')
-        self.view(req, version='55.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/index-a.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_firstrun_copy_experiment_b(self, render_mock):
-        """Should use index-b template for copy experiment"""
-        req = self.rf.get('/en-US/firefox/firstrun/?v=b')
-        self.view(req, version='55.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/index-b.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_firstrun_copy_experiment_other_locales(self, render_mock):
-        """Should use regular firstrun for other locales"""
-        req = self.rf.get('/firefox/firstrun/?v=b')
-        req.locale = 'de'
-        self.view(req, version='55.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/index.html'])
-
     @override_settings(DEV=True)
     def test_fx_firstrun_56_0(self, render_mock):
         """Should use the default dev edition firstrun template"""
