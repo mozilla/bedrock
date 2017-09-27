@@ -10,6 +10,7 @@
 {% block page_title_suffix %}{% endblock %}
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
 {% block page_og_title %}{{ self.page_title() }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/template/page-image-quantum.png') }}{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'firefox_channel' %}
@@ -20,8 +21,8 @@
 {% block site_header %}
 <header id="masthead">
   <div class="container">
-    <div id="tabzilla">
-      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
+    <div class="logo">
+      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="Mozilla">Mozilla</a>
     </div>
     <nav id="nav-main">
       <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
