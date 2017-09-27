@@ -26,7 +26,10 @@
 
 {% set header = doc.body.section.extract() %}
 {% set lead_in = doc.body.section.extract() %}
-{% set footnote = doc.body.select('#footnote')[0].extract() %}
+{% set footnote = doc.body.select('#footnote') %}
+{% if footnote %}
+    {% set footnote = footnote[0].extract()
+{% endif %}
 
 <header class="privacy-head">
   <div class="privacy-head-wrapper">
@@ -54,11 +57,13 @@
   {% endfor %}
 </main>
 
+{% if footnote %}
 <section class="privacy-footnote">
   <div class="content-girdle">
     {{ footnote.div|join|safe }}
   </div>
 </section>
+{% endif %}
 </article>
 {% endblock %}
 
