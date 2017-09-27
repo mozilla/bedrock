@@ -70,8 +70,17 @@ class PrivacyDocView(LegalDocView):
         return doc
 
 
-firefox_notices = PrivacyDocView.as_view(
-    template_name='privacy/notices/firefox-quantum.html',
+class FirefoxPrivacyDocView(PrivacyDocView):
+    template_name = 'privacy/notices/firefox.html'
+
+    def get_legal_doc(self):
+        doc = super(FirefoxPrivacyDocView, self).get_legal_doc()
+        if len(doc['content'].select('.privacy-header-firefox')) > 0:
+            self.template_name = 'privacy/notices/firefox-quantum.html'
+        return doc
+
+
+firefox_notices = FirefoxPrivacyDocView.as_view(
     legal_doc_name='firefox_privacy_notice')
 
 firefox_os_notices = PrivacyDocView.as_view(
