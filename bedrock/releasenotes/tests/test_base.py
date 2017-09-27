@@ -1,7 +1,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from dateutil.parser import parse as date_parse
 
 from django.core.cache import caches
 from django.http import Http404
@@ -13,21 +12,26 @@ from mock import patch, Mock
 from nose.tools import eq_, ok_
 from pathlib2 import Path
 from pyquery import PyQuery as pq
-from rna.models import Release, Note
 
 from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import views
+from bedrock.releasenotes.models import Release, ReleaseNotFound
 from bedrock.thunderbird.details import ThunderbirdDesktop
 
 
-DATA_PATH = str(Path(__file__).parent / 'data')
+TESTS_PATH = Path(__file__).parent
+DATA_PATH = str(TESTS_PATH.joinpath('data'))
 firefox_desktop = FirefoxDesktop(json_dir=DATA_PATH)
 thunderbird_desktop = ThunderbirdDesktop(json_dir=DATA_PATH)
+RELEASES_PATH = str(TESTS_PATH)
 
 
-class TestRNAViews(TestCase):
+@override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
+class TestReleaseViews(TestCase):
     def setUp(self):
+        caches['release-notes'].clear()
+        self.activate('en-US')
         self.factory = RequestFactory()
         self.request = self.factory.get('/')
 
@@ -46,30 +50,24 @@ class TestRNAViews(TestCase):
         """
         return self.mock_render.call_args[0][2]
 
-    @patch('bedrock.releasenotes.views.get_object_or_404')
-    @patch('bedrock.releasenotes.views.Q')
-    def test_get_release_or_404(self, Q, get_object_or_404):
+    @patch('bedrock.releasenotes.models.get_release')
+    def test_get_release_or_404(self, get_release):
         eq_(views.get_release_or_404('version', 'product'),
-            get_object_or_404.return_value)
-        get_object_or_404.assert_called_with(
-            Release, Q.return_value, version='version')
-        Q.assert_called_once_with(product='product')
+            get_release.return_value)
+        get_release.assert_called_with('product', 'version')
+        get_release.side_effect = ReleaseNotFound
+        with self.assertRaises(Http404):
+            views.get_release_or_404('version', 'product')
 
-    @patch('bedrock.releasenotes.views.get_object_or_404')
-    @patch('bedrock.releasenotes.views.Q')
-    def test_get_release_or_404_esr(self, Q, get_object_or_404):
-        eq_(views.get_release_or_404('24.5.0', 'Firefox'),
-            get_object_or_404.return_value)
-        Q.assert_any_call(product='Firefox')
-        Q.assert_any_call(product='Firefox Extended Support Release')
+    def test_get_release_or_404_esr(self):
+        rel = views.get_release_or_404('24.5.0', 'Firefox')
+        eq_(rel.version, '24.5.0')
+        eq_(rel.channel, 'ESR')
 
-    @patch('bedrock.releasenotes.views.get_object_or_404')
-    @patch('bedrock.releasenotes.views.Q')
-    def test_get_release_or_404_endswith_esr(self, Q, get_object_or_404):
-        eq_(views.get_release_or_404('45.0esr', 'Firefox'),
-            get_object_or_404.return_value)
-        Q.assert_any_call(product='Firefox')
-        Q.assert_any_call(product='Firefox Extended Support Release')
+    def test_get_release_or_404_endswith_esr(self):
+        rel = views.get_release_or_404('45.0esr', 'Firefox')
+        eq_(rel.version, '45.0esr')
+        eq_(rel.channel, 'ESR')
 
     @override_settings(DEV=False)
     @patch('bedrock.releasenotes.views.release_notes_template')
@@ -83,17 +81,14 @@ class TestRNAViews(TestCase):
         template to l10n_utils.render.
         """
         mock_release = get_release_or_404.return_value
-        mock_release.major_version.return_value = '34'
-        mock_release.notes.return_value = ([Release(id=1), Release(id=2)],
-                                           [Release(id=3), Release(id=4)])
+        mock_release.major_version = '34'
+        mock_release.notes.return_value = ([Release({}), Release({})],
+                                           [Release({}), Release({})])
 
         views.release_notes(self.request, '27.0')
         get_release_or_404.assert_called_with('27.0', 'Firefox')
-        mock_release.notes.assert_called_with(public_only=True)
         eq_(self.last_ctx['version'], '27.0')
         eq_(self.last_ctx['release'], mock_release)
-        eq_(self.last_ctx['new_features'], [Release(id=1), Release(id=2)])
-        eq_(self.last_ctx['known_issues'], [Release(id=3), Release(id=4)])
         eq_(self.mock_render.call_args[0][1],
             mock_release_notes_template.return_value)
         mock_equiv_rel_url.assert_called_with(mock_release)
@@ -171,12 +166,12 @@ class TestRNAViews(TestCase):
             'firefox/releases/release-notes.html')
 
     @override_settings(DEV=False)
-    @patch('bedrock.releasenotes.views.get_object_or_404')
-    def test_non_public_release(self, get_object_or_404):
+    @patch('bedrock.releasenotes.models.get_release')
+    def test_non_public_release(self, get_release):
         """
         Should raise 404 if not release.is_public and not settings.DEV
         """
-        get_object_or_404.return_value = Release(is_public=False)
+        get_release.return_value = Release({'is_public': False})
         with self.assertRaises(Http404):
             views.get_release_or_404('42', 'Firefox')
 
@@ -254,47 +249,22 @@ class TestRNAViews(TestCase):
         eq_(views.check_url('Firefox', '42.0'),
             '/en-US/firefox/42.0/system-requirements/')
 
-    @patch('bedrock.releasenotes.views.get_list_or_404')
-    def test_nightly_feed(self, get_list_or_404):
+    @override_settings(DEV=False)
+    def test_nightly_feed(self):
         """Nightly Notes feed should be served with public changes"""
-        release_1 = Mock()
-        release_1.version = '55.0a1'
-        release_1.is_public = True
-        release_1.release_date = date_parse('2017-03-06T00:00:00')
-        release_1.notes.return_value = ([
-            Note(id=1, tag='New', note='New 1', is_public=True,
-                 modified=date_parse('2017-04-20T13:27:28')),
-            Note(id=2, tag='New', note='New 2', is_public=True,
-                 modified=date_parse('2017-04-20T13:28:32')),
-            Note(id=11, tag='Changed', note='Change 1', is_public=True,
-                 modified=date_parse('2017-04-20T13:27:50')),
-            Note(id=12, tag='Changed', note='Change 2', is_public=True,
-                 modified=date_parse('2017-04-20T13:28:03')),
-            Note(id=13, tag='Changed', note='Change 3', is_public=False,
-                 modified=date_parse('2017-04-20T13:28:16')),
-        ], [
-            Note(id=21, tag='', note='Known issue 1', is_public=True,
-                 modified=date_parse('2017-04-20T13:30:12')),
-        ])
-
-        release_2 = Mock()
-        release_2.version = '56.0a1'
-        release_2.is_public = True
-        release_2.release_date = date_parse('2017-05-08T00:00:00')
-        release_2.notes.return_value = ([
-            Note(id=31, tag='New', note='New 1', is_public=True,
-                 modified=date_parse('2017-05-08T13:27:28')),
-        ], [])
-
-        get_list_or_404.return_value = [release_1, release_2]
         views.nightly_feed(self.request)
+        eq_(len(self.last_ctx['notes']), 24)
+        eq_(self.last_ctx['notes'][0].id, 787237)
+        eq_(self.last_ctx['notes'][1].id, 787246)
+        eq_(self.last_ctx['notes'][2].id, 787245)
+        eq_(self.last_ctx['notes'][3].id, 787115)
+        eq_(self.last_ctx['notes'][4].id, 787108)
 
-        eq_(len(self.last_ctx['notes']), 5)
-        eq_(self.last_ctx['notes'][0].id, 31)
-        eq_(self.last_ctx['notes'][1].id, 2)
-        eq_(self.last_ctx['notes'][2].id, 12)
-        eq_(self.last_ctx['notes'][3].id, 11)
-        eq_(self.last_ctx['notes'][4].id, 1)
+    @override_settings(DEV=True)
+    def test_nightly_feed_dev_mode(self):
+        """Nightly Notes feed should be served with all changes in DEV"""
+        views.nightly_feed(self.request)
+        eq_(len(self.last_ctx['notes']), 26)
 
 
 class TestReleaseNotesIndex(TestCase):

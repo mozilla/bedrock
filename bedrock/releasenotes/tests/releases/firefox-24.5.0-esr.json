@@ -1,0 +1,27 @@
+{
+  "bug_list": "",
+  "bug_search_url": "https://bugzilla.mozilla.org/buglist.cgi?f1=cf_status_firefox_esr24&o1=anywordssubstr&o2=equals&query_format=advanced&f2=cf_tracking_firefox_esr24&v1=fixed%20verified&v2=29%2B",
+  "channel": "ESR",
+  "created": "2014-04-24T21:49:38+00:00",
+  "is_public": true,
+  "modified": "2014-06-10T08:59:37+00:00",
+  "notes": [
+    {
+      "bug": null,
+      "created": "2013-11-25T00:24:50+00:00",
+      "id": 107,
+      "is_public": true,
+      "modified": "2015-05-12T16:59:10+00:00",
+      "note": "Security fixes can be found <a href=\"https://www.mozilla.org/security/known-vulnerabilities/firefoxESR.html\">here</a>",
+      "sort_num": 0,
+      "tag": "Fixed"
+    }
+  ],
+  "product": "Firefox Extended Support Release",
+  "release_date": "2014-04-29",
+  "slug": "firefox-24.5.0-esr",
+  "system_requirements": " ",
+  "text": " ",
+  "title": "Firefox Extended Support Release 24.5.0 ESR",
+  "version": "24.5.0"
+}

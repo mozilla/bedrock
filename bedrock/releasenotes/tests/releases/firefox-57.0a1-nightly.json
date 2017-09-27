@@ -1,0 +1,77 @@
+{
+  "bug_list": "",
+  "bug_search_url": "",
+  "channel": "Nightly",
+  "created": "2017-08-02T14:20:49.003000+00:00",
+  "is_public": true,
+  "modified": "2017-09-13T08:55:02.648000+00:00",
+  "notes": [
+    {
+      "bug": 1387254,
+      "created": "2017-08-07T08:00:48.092000+00:00",
+      "id": 787203,
+      "is_public": true,
+      "modified": "2017-08-07T08:00:48.092000+00:00",
+      "note": "Firefox Nightly has a new logo",
+      "sort_num": 0,
+      "tag": "New"
+    },
+    {
+      "bug": 1373650,
+      "created": "2017-08-17T08:23:04.304000+00:00",
+      "id": 787237,
+      "is_public": true,
+      "modified": "2017-09-11T07:02:27.350000+00:00",
+      "note": "Added an option to the Page Action menu to report a website issue in Firefox Nightly and Firefox Dev Edition",
+      "sort_num": 0,
+      "tag": "New"
+    },
+    {
+      "bug": 1349227,
+      "created": "2017-08-31T07:52:29.636000+00:00",
+      "id": 787243,
+      "is_public": false,
+      "modified": "2017-08-31T07:55:06.229000+00:00",
+      "note": "Firefox Nightly now gets updated twice a day so as to help our communities in EMEA and Asia regions to catch regressions and report them during the Americas night.",
+      "sort_num": 0,
+      "tag": "New"
+    },
+    {
+      "bug": 1388902,
+      "created": "2017-09-04T11:13:42.634000+00:00",
+      "id": 787244,
+      "is_public": false,
+      "modified": "2017-09-04T11:13:42.634000+00:00",
+      "note": " The \"Share\" button was removed. If you relied on this feature, you can install the [Share Backported][1] extension instead.\r\n\r\n[1]: https://addons.mozilla.org/firefox/addon/share-backported/",
+      "sort_num": 0,
+      "tag": "Changed"
+    },
+    {
+      "bug": 1346488,
+      "created": "2017-09-07T13:00:41.753000+00:00",
+      "id": 787245,
+      "is_public": true,
+      "modified": "2017-09-07T13:00:41.753000+00:00",
+      "note": "Firefox is getting a major Visual Redesign ([Photon project][1]) activated on the Nightly channel and which will ship with Firefox 57 on the release channel.\r\n\r\n[1]: https://wiki.mozilla.org/Firefox/Photon/Updates",
+      "sort_num": 0,
+      "tag": "Changed"
+    },
+    {
+      "bug": 1385463,
+      "created": "2017-09-07T13:21:44.911000+00:00",
+      "id": 787246,
+      "is_public": true,
+      "modified": "2017-09-07T13:21:44.911000+00:00",
+      "note": "The browser's \"autoscrolling\" feature now uses asynchronous scrolling, similar to other input methods like mousewheel, providing a smoother scrolling experience.",
+      "sort_num": 0,
+      "tag": "Fixed"
+    }
+  ],
+  "product": "Firefox",
+  "release_date": "2017-08-02",
+  "slug": "firefox-57.0a1-nightly",
+  "system_requirements": "## Windows\r\n\r\n### Operating Systems (32-bit and 64-bit)\r\n - Windows 7\r\n - Windows 8\r\n - Windows 10\r\n\r\n### Recommended Hardware\r\n-  Pentium 4 or newer processor that supports SSE2\r\n-  512MB of RAM / 2GB of RAM for the 64-bit version\r\n-  200MB of hard drive space\r\n\r\n---\r\n\r\n## Mac\r\n\r\n### Operating Systems\r\n- macOS 10.9\r\n- macOS 10.10\r\n- macOS 10.11\r\n- macOS 10.12\r\n- macOS 10.13\r\n\r\n### Recommended Hardware\r\n- Macintosh computer with an Intel x86 processor\r\n- 512 MB of RAM\r\n- 200 MB hard drive space\r\n\r\n---\r\n\r\n## GNU/Linux\r\n\r\n### Software Requirements\r\n\r\n*Please note that GNU/Linux distributors may provide packages for your distribution which have different requirements.*\r\n\r\n- Firefox will not run at all without the following libraries or packages:\r\n    - GTK+ 3.4 or higher\r\n    - GLib 2.22 or higher\r\n    - Pango 1.14 or higher\r\n    - X.Org 1.0 or higher (1.7 or higher is recommended)\r\n    - libstdc++ 4.6.1 or higher\r\n- For optimal functionality, we recommend the following libraries or packages:\r\n    - NetworkManager 0.7 or higher\r\n    - DBus 1.0 or higher\r\n    - GNOME 2.16 or higher\r\n    - PulseAudio\r\n\r\n  [1]: https://support.mozilla.org/kb/get-latest-version-firefox-windows-xp-vista",
+  "text": "Firefox Nightly gets a new version every day and as a consequence, the release notes for the Nightly channel are updated continuously to reflect features that have reached sufficient maturity to benefit from community feedback and bug reports. Features listed here may or may not make a final release of Firefox.\r\n\r\nIn addition to these release notes, you can follow ongoing development on our [@FirefoxNightly][1] Twitter account as well as read our [Nightly Blog][2].\r\n\r\n[1]: https://twitter.com/FirefoxNightly\r\n[2]: https://blog.nightly.mozilla.org",
+  "title": "Firefox 57.0a1 Nightly",
+  "version": "57.0a1"
+}

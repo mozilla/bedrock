@@ -14,6 +14,6 @@
   </div>
   <div class="description">
       <h2>{{ _('Version {version}, first offered to Firefox Developer Edition channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
-      <p>{{ release.text|markdown|safe }}</p>
+      <p>{{ release.text|safe }}</p>
   </div>
 {% endblock %}

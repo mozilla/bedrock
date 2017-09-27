@@ -33,6 +33,7 @@ test-results.xml
 tests/unit/coverage
 bedrock/externalfiles/files_cache
 mofo_security_advisories
+release_notes
 product_details_json
 supervisord.log
 .idea

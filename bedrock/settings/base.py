@@ -243,7 +243,6 @@ SUPPORTED_NONLOCALES = [
     'contribute.json',
     'credits',
     'gameon',
-    'rna',
     'robots.txt',
     'telemetry',
     'webmaker',
@@ -280,7 +279,6 @@ NOINDEX_URLS = [
     r'^tabzilla/',
     r'/system-requirements/$',
     r'.*/(firstrun|thanks)/$',
-    r'^rna/',
     r'^healthz/$',
     r'^country-code\.json$',
     # exclude redirects
@@ -445,7 +443,6 @@ INSTALLED_APPS = (
     'django_jinja_markdown',
     'django_statsd',
     'pagedown',
-    'rest_framework',
     'pipeline',
     'localflavor',
     'django_jinja',
@@ -483,7 +480,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'lib.l10n_utils',
     'captcha',
-    'rna',
 )
 
 # Must match the list at CloudFlare if the
@@ -1183,8 +1179,9 @@ SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
 DEV_GEO_COUNTRY_CODE = config('DEV_GEO_COUNTRY_CODE', default='US')
 SEND_TO_DEVICE_COUNTRIES = config('SEND_TO_DEVICE_COUNTRIES', default='US', cast=Csv())
 
-RNA_SYNC_URL = config('RNA_SYNC_URL',
-                      default='https://nucleus.mozilla.org/rna/sync/')
+RELEASE_NOTES_PATH = config('RELEASE_NOTES_PATH', default=path('release_notes'))
+RELEASE_NOTES_REPO = config('RELEASE_NOTES_REPO', default='https://github.com/mozilla/release-notes.git')
+RELEASE_NOTES_BRANCH = config('RELEASE_NOTES_BRANCH', default='master')
 
 MOFO_SECURITY_ADVISORIES_PATH = config('MOFO_SECURITY_ADVISORIES_PATH',
                                        default=path('mofo_security_advisories'))
@@ -1225,25 +1222,6 @@ LOGGING = {
 }
 
 PASSWORD_HASHERS = ['django.contrib.auth.hashers.PBKDF2PasswordHasher']
-
-REST_FRAMEWORK = {
-    # Use hyperlinked styles by default.
-    # Only used if the `serializer_class` attribute is not set on a view.
-    'DEFAULT_MODEL_SERIALIZER_CLASS':
-        'rna.serializers.HyperlinkedModelSerializerWithPkField',
-
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ),
-
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-
-    'DEFAULT_FILTER_BACKENDS': ('rna.filters.TimestampedFilterBackend',)
-}
 
 TABLEAU_DB_URL = config('TABLEAU_DB_URL', default=None)
 
