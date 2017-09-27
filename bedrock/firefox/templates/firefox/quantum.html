@@ -27,7 +27,8 @@
         <p>{{ _('Launches November 14, 2017. Sign up to stay in the know and get launch updates.') }}</p>
         <div class="cta-wrapper">
           <a class="button photon sign-up" href="{{ url('newsletter.firefox') }}" data-link-type="link" data-link-name="Notify me">{{ _('Notify me') }}</a>
-          <a class="beta-link" href="{{ url('firefox.channel.desktop')}}#beta" data-link-type="link" data-link-name="Or try beta">{{ _('Or try beta') }}</a>
+          {#- Use a language neutral link here to make sure people can download Quantum in their own language #}
+          <a class="beta-link" href="/firefox/channel/desktop/#beta" data-link-type="link" data-link-name="Or try beta">{{ _('Or try beta') }}</a>
         </div>
       </div>
     </div>
