@@ -7,7 +7,7 @@
 {% extends "firefox/base-pebbles.html" %}
 
 {% block page_title %}{{_('Firefox Developer Edition')}}{% endblock %}
-{% block page_desc %}{{ _('Built for those who build the Web. The only browser made for developers like you.') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox Developer Edition is the blazing fast browser that offers cutting edge developer tools and the latest features like CSS Grid support and framework debugging') }}{% endblock %}
 {% block page_image %}{{ static('img/firefox/products/developer/quantum/page-image.png') }}{% endblock %}
 {% block page_favicon %}{{ static('img/firefox/products/developer/quantum/favicon.png') }}{% endblock %}
 {% block page_favicon_large %}{{ static('img/firefox/products/developer/quantum/favicon-196.png') }}{% endblock %}
@@ -39,7 +39,7 @@
         </p>
       </div>
 
-      {{ high_res_img('firefox/products/developer/quantum/hero-screenshot.png', {'class': 'hero-image', 'alt': '', 'width': '1216', 'height': '397'}) }}
+      {{ high_res_img('firefox/products/developer/quantum/hero-screenshot.png', {'class': 'hero-image', 'alt': '', 'width': '1200', 'height': '400'}) }}
 
     </div>
   </section>
@@ -217,7 +217,7 @@
   <section class="section section-newsletter">
     <div class="content">
     {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form('app-dev', 'Get the Mozilla Developer Newsletter', button_class='button-hollow button-light', include_language=False) }}
+      {{ email_newsletter_form('app-dev', title='Get the most out of Firefox Developer Edition', subtitle='Learn about Dev Edition and subscribe to the Mozilla Developer Newsletter.', button_class='button-hollow button-light', include_language=False) }}
     {% else %}
       {{ email_newsletter_form(spinner_color='#fff', button_class='button-hollow button-light') }}
     {% endif %}

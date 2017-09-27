@@ -46,14 +46,13 @@ $color-dev-mediumblue: #306efe;
     }
 
     .section-body {
-        max-width: $width-desktop;
         margin: 0 auto;
     }
 
     .body-title {
         @include font-size-level3;
+        font-weight: normal;
         margin: 0 auto 1.5em;
-        text-transform: uppercase;
         text-align: center;
     }
 
@@ -135,7 +134,7 @@ $color-dev-mediumblue: #306efe;
 
     .page-title {
         @include font-size-level2;
-        text-transform: uppercase;
+        font-weight: normal;
         margin: 0 auto 1em;
     }
 
@@ -212,6 +211,11 @@ $color-dev-mediumblue: #306efe;
 
     .section-body {
         text-align: center;
+
+        p {
+            max-width: $width-tablet;
+            margin: 0 auto 1.5em;
+        }
     }
 
     .hero-image {
@@ -257,7 +261,7 @@ $color-dev-mediumblue: #306efe;
     color: #fff;
 
     .hero-image {
-        box-shadow: 0 15px 20px rgba(0, 0, 0, .1);
+        box-shadow: 0 15px 20px rgba(0, 0, 0, .15), 0 3px 6px rgba(0, 0, 0, .15);
     }
 
     .highlight-tools {
@@ -323,8 +327,6 @@ $color-dev-mediumblue: #306efe;
 }
 
 .features-list {
-    max-width: $width-desktop;
-
     .feature {
         text-align: center;
     }
@@ -336,8 +338,9 @@ $color-dev-mediumblue: #306efe;
 
     .name {
         @include font-size-level5;
-        font-weight: normal;
         color: #fff;
+        font-weight: normal;
+        text-transform: uppercase;
     }
 
     .desc {
@@ -402,6 +405,7 @@ $color-dev-mediumblue: #306efe;
 
     @media #{$mq-tablet} {
         .gallery-list {
+            grid-gap: 40px 60px;
             grid-template-columns: repeat(3, 1fr);
         }
     }
@@ -417,6 +421,7 @@ $color-dev-mediumblue: #306efe;
 
     h3 {
         @include font-size(24px);
+        font-weight: normal;
         margin: 0 0 20px;
     }
 
@@ -427,7 +432,7 @@ $color-dev-mediumblue: #306efe;
     }
 
     @media #{$mq-tablet} {
-        padding: 160px 20px 40px;
+        padding: 180px 20px 60px;
 
         h3 {
             @include font-size-level3;
@@ -538,19 +543,28 @@ $color-dev-mediumblue: #306efe;
     }
 
     .form-title h3 {
+        @include font-size-level4;
         font-weight: normal;
         margin: 0 0 .5em;
+    }
+
+    .form-title h4 {
+        @include font-size-level5;
+        font-weight: normal;
+        margin: 0 0 1.25em;
+        line-height: 1.4;
     }
 
     #newsletter-form {
         margin: 0 auto;
         text-align: center;
-        width: $width-phone;
 
         input[type="email"] {
             border-color: #fff;
             border-radius: 0;
+            max-width: 400px;
             padding: .5em 10px;
+            width: 90%;
         }
 
         #form-details {
@@ -599,8 +613,9 @@ $color-dev-mediumblue: #306efe;
 
         .form-title {
             float: left;
-            margin-left: -320px;
-            width: 300px;
+            margin-left: -360px;
+            text-align: right;
+            width: 320px;
         }
     }
 
@@ -613,8 +628,8 @@ $color-dev-mediumblue: #306efe;
         }
 
         .form-title {
-            margin-left: -490px;
-            width: 470px;
+            margin-left: -520px;
+            width: 480px;
         }
     }
 }
