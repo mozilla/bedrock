@@ -28,7 +28,7 @@
 {% set lead_in = doc.body.section.extract() %}
 {% set footnote = doc.body.select('#footnote') %}
 {% if footnote %}
-    {% set footnote = footnote[0].extract()
+    {% set footnote = footnote[0].extract() %}
 {% endif %}
 
 <header class="privacy-head">
