@@ -4,8 +4,6 @@
 
 @import "../sandstone/lib.less";
 
-@navActiveColor: #979797;
-
 #wrapper {
     padding: 0;
     width: 100%;
@@ -32,7 +30,7 @@
 // Main header and page masthead
 
 #masthead {
-    background: #005da5;
+    background: #002275;
     min-height: 52px;
     padding: 0;
     width: 100%;
@@ -46,6 +44,21 @@
             a:visited {
                 color: #fff;
             }
+        }
+    }
+
+    .logo {
+        .font-size(16px);
+        float: right;
+        margin: 10px 0 0 12px;
+
+        a {
+            background: url('/media/img/pebbles/moz-wordmark-light-reverse.svg') no-repeat;
+            .background-size(100px, 32px);
+            .image-replaced;
+            display: inline-block;
+            height: 32px;
+            width: 100px;
         }
     }
 
@@ -75,10 +88,15 @@
             }
         }
 
-        #tabzilla {
-            margin-right: 10px;
+        .logo {
+            margin-right: 12px;
         }
     }
+}
+
+.html-rtl #masthead .logo {
+    float: left;
+    margin: 10px 12px 0 0;
 }
 
 @media only screen and (max-width: @breakTablet) {
@@ -89,7 +107,7 @@
             right: 12px;
         }
 
-        #tabzilla {
+        .logo {
             margin-left: 10px;
             margin-right: 0;
         }
@@ -117,7 +135,9 @@
 }
 
 .main-header {
-    background: #00a7e0;
+    background: #0060df;
+    background: url('/media/img/firefox/channel/header-bg-tail.png') top -220px center no-repeat,
+                linear-gradient(148deg, #0060df 7%, #0479f4 20%, #0681fc 27%, #02bdf1 60%, #01d3f0 67%, #05f0e6 100%);
     text-align: center;
 
     h1, h2 {
@@ -126,14 +146,14 @@
     }
 
     h1 {
-        .at2x('/media/img/firefox/template/release-logo.png', 120px, 126px);
-        .background-size(120px 126px);
+        .at2x('/media/img/logos/firefox/logo-quantum.png', 130px, 130px);
+        .background-size(130px 130px);
         .font-size(48px);
         .open-sans;
         background-position: top 40px center;
         background-repeat: no-repeat;
         font-weight: bold;
-        padding: 166px 0 @baseLine;
+        padding: 175px 0 @baseLine;
     }
 
     h2 {
@@ -169,9 +189,7 @@
     @media only screen and (max-width: @breakMobileLandscape) {
 
         h1 {
-            .background-size(100px 106px);
             .font-size(36px);
-            padding-top: 150px;
         }
 
         h2 {
@@ -184,7 +202,7 @@
 // Platform navigation
 
 .platform-nav {
-    background: #1f366c;
+    background: #003eaa;
 
     ul {
         margin: 0;
@@ -206,7 +224,7 @@
             a:active,
             a:focus {
                 .transition(color .1s ease-in-out);
-                color: @navActiveColor;
+                color: darken(#fff, 10%);
                 text-decoration: none;
             }
         }
@@ -261,14 +279,12 @@ html[lang^="en"] {
 #platform-desktop .platform-nav .nav-desktop,
 #platform-android .platform-nav .nav-android,
 #platform-ios .platform-nav .nav-ios {
-    border-bottom: 5px solid @navActiveColor;
+    border-bottom: 5px solid #fff;
 
-    a:link,
-    a:visited {
-        color: @navActiveColor;
-    }
-
-    a:hover {
+    a:hover,
+    a:active,
+    a:focus {
+        color: #fff;
         cursor: default;
     }
 
@@ -434,7 +450,7 @@ html[lang^="en"] {
     @media only screen and (max-width: @breakMobileLandscape) {
 
         header {
-            padding: 115px 0 0;
+            padding: 150px 0 0;
 
             h2 {
                 .font-size(26px);
@@ -484,38 +500,41 @@ html[lang^="en"] {
 }
 
 #beta header {
-    .at2x('/media/img/firefox/template/beta-logo.png', 180px, 189px);
+    .at2x('/media/img/logos/firefox/beta-logo.png', 180px, 178px);
+    .background-size(180px 178px);
 
     @media only screen and (max-width: @breakDesktop) {
-        .background-size(150px 158px);
+        .background-size(150px 148px);
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        .background-size(100px 105px);
+        .background-size(130px 129px);
     }
 }
 
 #developer header {
-    .at2x('/media/img/firefox/template/developer-logo.png', 180px, 191px);
+    .at2x('/media/img/logos/firefox/logo-developer-quantum.png', 180px, 180px);
+    .background-size(180px 180px);
 
     @media only screen and (max-width: @breakDesktop) {
-        .background-size(150px 159px);
+        .background-size(150px 150px);
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        .background-size(100px 106px);
+        .background-size(130px 130px);
     }
 }
 
 #nightly header {
-    .at2x('/media/img/firefox/template/nightly-logo.png', 180px, 186px);
+    .at2x('/media/img/logos/firefox/nightly-logo.png', 180px, 180px);
+    .background-size(180px 180px);
 
     @media only screen and (max-width: @breakDesktop) {
-        .background-size(150px 155px);
+        .background-size(150px 150px);
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
-        .background-size(100px 103px);
+        .background-size(130px 130px);
     }
 }
 
