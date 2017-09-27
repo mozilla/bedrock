@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/shared" %}
+{% add_lang_files "firefox/products/developer-quantum" "firefox/shared" %}
 
 {% extends "firefox/base-pebbles.html" %}
 
@@ -222,7 +222,7 @@
     <div class="content">
       <div class="section-body">
         <h2>{{ _('Want to be on the cutting-edge?') }}</h2>
-        <p>Firefox Nightly receives daily updates and allows you to access features months before they go mainstream.</p>
+        <p>{{ _('Firefox Nightly receives daily updates and allows you to access features months before they go mainstream.') }}</p>
         {{ download_firefox('nightly', platform='desktop', dom_id='footer-download', button_color='button-arrow', download_location='footer cta') }}
       </div>
     </div>
