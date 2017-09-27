@@ -14,7 +14,6 @@
 @import '../../hubs/card-image-large';
 @import '../../hubs/common';
 @import '../../hubs/news-feed';
-@import 'hub/campaign';
 @import 'hub/newsletter';
 
 main .content {
@@ -33,6 +32,12 @@ main .content {
     .card-content-wrapper {
         background-image: url('/media/img/mozorg/internet-health/hub/net-neutrality-large.png');
         @include background-size(100%, auto);
+    }
+}
+
+.common-voice {
+    .card-content-wrapper {
+        @include at2x('/media/img/mozorg/internet-health/hub/common-voice.png', 100%, auto);
     }
 }
 
