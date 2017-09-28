@@ -7,7 +7,22 @@
 {% block sub_nav_class %}technology{% endblock %}
 
 {% block sub_nav_primary_links %}
-<li><a href="{{ url('mozorg.technology') }}" data-link-name="Web Innovations" data-link-type="nav" data-link-position="subnav">{{ _('Web Innovations') }}</a></li>
-<li><a href="{{ url('mozorg.developer') }}" data-link-name="Mozilla Developers" data-link-type="nav" data-link-position="subnav">{{ _('Mozilla Developers') }}</a></li>
-<li><a href="https://developer.mozilla.org" data-link-name="MDN" data-link-type="nav" data-link-position="subnav">{{ _('MDN') }}</a></li>
+<li>
+  <a href="{{ url('mozorg.developer') }}" data-link-name="Developer Hub" data-link-type="nav" data-link-position="subnav">{{ _('Developer Hub') }}</a>
+</li>
+<li>
+  <a href="https://research.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=dev-tech-sub-nav&amp;utm_content=Research" data-link-name="Research" data-link-type="nav" data-link-position="subnav">{{ _('Research') }}</a>
+</li>
+<li>
+  <a href="https://vr.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=dev-tech-sub-nav&amp;utm_content=VR" data-link-name="Virtual Reality" data-link-type="nav" data-link-position="subnav">{{ _('Virtual Reality') }}</a>
+</li>
+<li>
+  <a href="https://games.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=dev-tech-sub-nav&amp;utm_content=Games" data-link-name="Games" data-link-type="nav" data-link-position="subnav">{{ _('Games') }}</a>
+</li>
+<li>
+  <a href="https://developer.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=dev-tech-sub-nav&amp;utm_content=Documentation" data-link-name="Documentation" data-link-type="nav" data-link-position="subnav">{{ _('Documentation') }}</a>
+</li>
+<li>
+  <a href="https://hacks.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=dev-tech-sub-nav&amp;utm_content=HacksBlog" data-link-name="Hacks Blog" data-link-type="nav" data-link-position="subnav">{{ _('Hacks blog') }}</a>
+</li>
 {% endblock %}
