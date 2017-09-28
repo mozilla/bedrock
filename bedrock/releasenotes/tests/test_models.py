@@ -68,10 +68,18 @@ class TestReleaseModel(TestCase):
         android = rel.equivalent_release_for_product('Firefox for Android')
         assert android is None
 
+    @patch.object(models, 'get_release_from_file')
+    def test_equivalent_release_for_product_no_public_match(self, grff_mock):
+        rel = models.Release(dict(product='Firefox', version='56.0', is_public=True, channel='Release'))
+        grff_mock.return_value = models.Release(dict(product='Firefox for Android', is_public=False, version='56.0.2', channel='Release'))
+        android = rel.equivalent_release_for_product('Firefox for Android')
+        assert android is None
+
     def test_note_fixed_in_release(self):
         rel = models.get_release('firefox', '55.0a1')
         note = rel.notes[11]
-        assert note.fixed_in_release.get_absolute_url() == '/en-US/firefox/55.0a1/releasenotes/'
+        with self.activate('en-US'):
+            assert note.fixed_in_release.get_absolute_url() == '/en-US/firefox/55.0a1/releasenotes/'
 
     def test_field_processors(self):
         rel = models.get_release('firefox', '57.0a1')

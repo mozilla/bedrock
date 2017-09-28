@@ -156,7 +156,8 @@ class Release(RNModel):
         if releases:
             releases = [get_release_from_file(fn) for fn in releases]
             releases = [r for r in releases if r.is_public]
-            return sorted(releases, reverse=True, key=attrgetter('version_obj'))[0]
+            if releases:
+                return sorted(releases, reverse=True, key=attrgetter('version_obj'))[0]
 
         return None
 
