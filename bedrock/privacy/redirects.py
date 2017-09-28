@@ -14,4 +14,7 @@ redirectpatterns = (
 
     # bug 1321033 - Hello EOL
     redirect(r'^privacy/firefox-hello/?$', 'privacy.archive.hello-2016-03'),
+
+    # bug 1394042 - Firefox Cloud Services redirect to Fx
+    redirect(r'^privacy/firefox-cloud/?$', 'privacy.notices.firefox'),
 )
