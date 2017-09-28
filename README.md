@@ -22,7 +22,7 @@ general technical documentation. In addition, there are project-specific
 Contributing
 ------------
 
-Patches are welcome! Feel free to fork and contribute to this project on
+Your PR (Pull Requests) are welcome! Feel free to fork and contribute to this project on
 [github][gh-bedrock]. If you find a problem and wish to report it, please [file
 a bug][bugzilla].
 
