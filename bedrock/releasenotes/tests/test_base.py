@@ -96,34 +96,30 @@ class TestReleaseViews(TestCase):
             mock_release.channel, 'Firefox', 34)
 
     @patch('bedrock.releasenotes.views.get_release_or_404')
-    @patch('bedrock.releasenotes.views.releasenotes_url')
-    def test_release_notes_beta_redirect(self, releasenotes_url,
-                                         get_release_or_404):
+    def test_release_notes_beta_redirect(self, get_release_or_404):
         """
         Should redirect to url for beta release
         """
-        get_release_or_404.side_effect = [Http404, 'mock release']
-        releasenotes_url.return_value = '/firefox/27.0beta/releasenotes/'
+        release = Mock()
+        release.get_absolute_url.return_value = '/firefox/27.0beta/releasenotes/'
+        get_release_or_404.side_effect = [Http404, release]
         response = views.release_notes(self.request, '27.0')
         eq_(response.status_code, 302)
         eq_(response['location'], '/firefox/27.0beta/releasenotes/')
         get_release_or_404.assert_called_with('27.0beta', 'Firefox')
-        releasenotes_url.assert_called_with('mock release')
 
     @patch('bedrock.releasenotes.views.get_release_or_404')
-    @patch('bedrock.releasenotes.views.releasenotes_url')
-    def test_release_notes_thunderbird_beta_redirect(self, releasenotes_url,
-                                                     get_release_or_404):
+    def test_release_notes_thunderbird_beta_redirect(self, get_release_or_404):
         """
         Should redirect to url for Thunderbird Beta release
         """
-        get_release_or_404.side_effect = [Http404, 'mock release']
-        releasenotes_url.return_value = '/thunderbird/51.0beta/releasenotes/'
+        release = Mock()
+        release.get_absolute_url.return_value = '/thunderbird/51.0beta/releasenotes/'
+        get_release_or_404.side_effect = [Http404, release]
         response = views.release_notes(self.request, '51.0', 'Thunderbird')
         eq_(response.status_code, 302)
         eq_(response['location'], '/thunderbird/51.0beta/releasenotes/')
         get_release_or_404.assert_called_with('51.0beta', 'Thunderbird')
-        releasenotes_url.assert_called_with('mock release')
 
     @patch('bedrock.releasenotes.views.get_release_or_404')
     def test_system_requirements(self, get_release_or_404):
@@ -175,39 +171,31 @@ class TestReleaseViews(TestCase):
         with self.assertRaises(Http404):
             views.get_release_or_404('42', 'Firefox')
 
-    @patch('bedrock.releasenotes.views.releasenotes_url')
-    def test_no_equivalent_release_url(self, mock_releasenotes_url):
+    def test_no_equivalent_release_url(self):
         """
-        Should return None without calling releasenotes_url
+        Should return None
         """
         release = Mock()
         release.equivalent_android_release.return_value = None
         release.equivalent_desktop_release.return_value = None
         eq_(views.equivalent_release_url(release), None)
-        eq_(mock_releasenotes_url.called, 0)
 
-    @patch('bedrock.releasenotes.views.releasenotes_url')
-    def test_android_equivalent_release_url(self, mock_releasenotes_url):
+    def test_android_equivalent_release_url(self):
         """
         Should return the url for the equivalent android release
         """
         release = Mock()
         eq_(views.equivalent_release_url(release),
-            mock_releasenotes_url.return_value)
-        mock_releasenotes_url.assert_called_with(
-            release.equivalent_android_release.return_value)
+            release.equivalent_android_release.return_value.get_absolute_url.return_value)
 
-    @patch('bedrock.releasenotes.views.releasenotes_url')
-    def test_desktop_equivalent_release_url(self, mock_releasenotes_url):
+    def test_desktop_equivalent_release_url(self):
         """
         Should return the url for the equivalent desktop release
         """
         release = Mock()
         release.equivalent_android_release.return_value = None
         eq_(views.equivalent_release_url(release),
-            mock_releasenotes_url.return_value)
-        mock_releasenotes_url.assert_called_with(
-            release.equivalent_desktop_release.return_value)
+            release.equivalent_desktop_release.return_value.get_absolute_url.return_value)
 
     def test_get_download_url_android(self):
         """

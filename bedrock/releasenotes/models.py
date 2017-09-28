@@ -8,11 +8,14 @@ from django.conf import settings
 from django.core.cache import caches
 from django.http import Http404
 from django.utils.dateparse import parse_date, parse_datetime
+from django.utils.functional import cached_property
 from django.utils.text import slugify
 
 import markdown
 from product_details.version_compare import Version
 from raven.contrib.django.raven_compat.models import client as sentry_client
+
+from bedrock.base.urlresolvers import reverse
 
 
 cache = caches['release-notes']
@@ -41,6 +44,10 @@ def process_is_public(is_public):
     return is_public
 
 
+def process_note_release(rel_data):
+    return Release(rel_data)
+
+
 FIELD_PROCESSORS = {
     'release_date': parse_date,
     'created': parse_datetime,
@@ -50,6 +57,7 @@ FIELD_PROCESSORS = {
     'note': process_markdown,
     'text': process_markdown,
     'system_requirements': process_markdown,
+    'fixed_in_release': process_note_release,
 }
 
 
@@ -95,18 +103,25 @@ class Release(RNModel):
     created = None
     modified = None
     notes = None
-    _version_obj = None
 
-    @property
+    @cached_property
     def major_version(self):
         return str(self.version_obj.major)
 
-    @property
+    @cached_property
     def version_obj(self):
-        if self._version_obj is None:
-            self._version_obj = Version(self.version)
+        return Version(self.version)
 
-        return self._version_obj
+    def get_absolute_url(self):
+        prefix = 'aurora' if self.channel == 'Aurora' else 'release'
+        if self.product == 'Thunderbird':
+            return reverse('thunderbird.notes', args=[self.version])
+        if self.product == 'Firefox for Android':
+            return reverse('firefox.android.releasenotes', args=(self.version, prefix))
+        if self.product == 'Firefox for iOS':
+            return reverse('firefox.ios.releasenotes', args=(self.version, prefix))
+        else:
+            return reverse('firefox.desktop.releasenotes', args=(self.version, prefix))
 
     def get_bug_search_url(self):
         if self.bug_search_url:
