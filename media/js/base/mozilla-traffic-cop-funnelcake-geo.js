@@ -29,7 +29,6 @@ Expectations (expressed in logic below) of these kinds of tests:
     TCFCGeoExp.init = function(config) {
         var experimentConfig = config.experimentConfig;
         var countryCode = config.countryCode;
-
         var experimentId = experimentConfig.Id;
         var geoNonmatchCookieName = experimentId + '_non' + countryCode;
 
@@ -60,7 +59,7 @@ Expectations (expressed in logic below) of these kinds of tests:
     };
 
     // checks to see if visitor was previously entered into a variation
-    TCFCGeoExp.checkInCohort = function(hasCookies, experimentId) {
+    TCFCGeoExp.checkInCohort = function(experimentId) {
         // check if user already was served a variation
         return Mozilla.Cookies.hasItem(experimentId);
     };
@@ -124,7 +123,6 @@ Expectations (expressed in logic below) of these kinds of tests:
     // starts the traffic cop experiment
     TCFCGeoExp.runExperiment = function(config) {
         var rawls = new Mozilla.TrafficCop(config);
-
         rawls.init();
     };
 

@@ -27,7 +27,7 @@
 {% block body_id %}firefox-new-scene1{% endblock %}
 
 {% block content %}
-<main role="main">
+<main role="main" {% if funnelcake_id %}data-funnelcake-id="{{ funnelcake_id }}"{% endif %}>
   <div class="main-container">
     <div class="horizon">
       <div class="stars">

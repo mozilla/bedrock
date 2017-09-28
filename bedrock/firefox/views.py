@@ -427,7 +427,7 @@ def show_56_cliqz_firstrun(locale, version, funnelcake):
     except ValueError:
         version = 0
 
-    return locale == 'de' and version >= Version('56.0') and funnelcake in ['119', '120', '121', '122']
+    return locale == 'de' and version >= Version('56.0') and funnelcake in ['120', '121', '122']
 
 
 class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):

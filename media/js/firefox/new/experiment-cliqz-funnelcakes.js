@@ -7,11 +7,10 @@
 
     // initialize experiment - performs env check and does geo-lookup
     Mozilla.TCFCGeoExp.init({
-        countryCode: 'us',
+        countryCode: 'de',
         experimentConfig: {
             id: 'experiment_cliqz_funnelcake',
             variations: {
-                // TODO: update these percentages - currently just guesses
                 'f=119': 25,
                 'f=120': 25,
                 'f=121': 25,

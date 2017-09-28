@@ -16,7 +16,7 @@ describe('mozilla-traffic-cop-funnelcake-geo.js', function() {
             expect(Mozilla.TCFCGeoExp.checkInCohort('foo')).toBeTruthy();
         });
 
-        it('should return false if user does not has the provided cookie', function() {
+        it('should return false if user does not have the provided cookie', function() {
             spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(false);
             expect(Mozilla.TCFCGeoExp.checkInCohort('foo')).toBeFalsy();
         });
@@ -28,7 +28,7 @@ describe('mozilla-traffic-cop-funnelcake-geo.js', function() {
             expect(Mozilla.TCFCGeoExp.checkGeoNonmatch('foo')).toBeFalsy();
         });
 
-        it('should return true if user does not has the provided cookie', function() {
+        it('should return true if user does not have the provided cookie', function() {
             spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(false);
             expect(Mozilla.TCFCGeoExp.checkGeoNonmatch('foo')).toBeTruthy();
         });

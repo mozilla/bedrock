@@ -10,10 +10,10 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 400;
     display: block;
-    margin: 0 0 12px 0;
+    font-weight: 400;
     letter-spacing: -.035em;
+    margin: 0 0 12px 0;
 }
 
 #scene-images img {
@@ -67,10 +67,10 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 1;
 
     h2 {
-        padding-top: 18px;
-        padding-left: 20px;
-        padding-bottom: 10px;
         margin: 0 10px;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        padding-top: 18px;
 
         img {
             height: 45px;
@@ -80,21 +80,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #content {
-    padding: 0 100px;
-    text-align: center;
     color: #fff;
+    padding: 0;
     position: relative;
+    text-align: center;
     z-index: 5;
 
     h1 {
-        font-size: 36px;
+        .font-size(42px);
+        font-weight: 300;
         line-height: 1.2;
         margin-bottom: 27px;
-        font-weight: 300;
     }
 }
 
 #features {
+    .clearfix;
     padding: 8px 20px;
 
     ul {
@@ -113,24 +114,36 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     h2 {
+        .font-size(20px);
         margin-bottom: 10px;
         padding-top: 10px;
-        font-size: 20px;
     }
 
     p {
+        .font-size(18px);
+        font-weight: 200;
+        line-height: 20px;
         margin-top: 0;
         padding: 0 48px;
-        font-size: 18px;
-        line-height: 20px;
-        font-weight: 200;
+    }
+
+    &.single {
+
+        li {
+            float: none;
+            width: 100%;
+        }
+
+        li:nth-child(2) {
+            display: none;
+        }
     }
 }
 
 #first-run {
-    width: 640px;
-    height: auto;
     box-shadow: 0 2px 80px 0 rgba(0, 0, 0, 0.5);
+    height: auto;
+    width: 640px;
 }
 
 #scene[data-sunrise=true] {
@@ -142,8 +155,8 @@ h1, h2, h3, h4, h5, h6 {
         color: #fff;
         cursor: pointer;
         display: inline-block;
-        font-size: 18px;
-        margin-top: 10px;
+        font-size: 20px;
+        margin-top: 20px;
         padding: 6px 20px;
         text-align: center;
         text-decoration: none;
