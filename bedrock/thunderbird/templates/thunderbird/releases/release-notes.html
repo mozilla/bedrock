@@ -79,7 +79,7 @@
               {{ note.note|safe }}
             {% if note.fixed_in_release %}
               <p class="note">
-                <a href="{{ releasenotes_url(note.fixed_in_release) }}">
+                <a href="{{ note.fixed_in_release.get_absolute_url() }}">
                   {{ _('Resolved in v{version_number}')|f(version_number=note.fixed_in_release.version) }}
                 </a>
               </p>

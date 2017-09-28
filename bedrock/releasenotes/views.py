@@ -13,7 +13,6 @@ from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android, firefox_ios
 from bedrock.firefox.templatetags.helpers import android_builds, ios_builds
 from bedrock.thunderbird.details import thunderbird_desktop
-from bedrock.mozorg.templatetags.misc import releasenotes_url
 from bedrock.releasenotes.models import get_release_or_404, get_releases_or_404
 
 SUPPORT_URLS = {
@@ -41,7 +40,7 @@ def equivalent_release_url(release):
     equivalent_release = (release.equivalent_android_release() or
                           release.equivalent_desktop_release())
     if equivalent_release:
-        return releasenotes_url(equivalent_release)
+        return equivalent_release.get_absolute_url()
 
 
 def get_download_url(release):
@@ -93,7 +92,7 @@ def release_notes(request, version, product='Firefox'):
         release = get_release_or_404(version, product)
     except Http404:
         release = get_release_or_404(version + 'beta', product)
-        return HttpResponseRedirect(releasenotes_url(release))
+        return HttpResponseRedirect(release.get_absolute_url())
 
     return l10n_utils.render(
         request, release_notes_template(release.channel, product,

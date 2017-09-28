@@ -16,7 +16,6 @@ from pyquery import PyQuery as pq
 from bedrock.base.templatetags.helpers import static
 from bedrock.mozorg.templatetags import misc
 from bedrock.mozorg.tests import TestCase
-from bedrock.releasenotes.models import Release
 
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -497,29 +496,6 @@ class TestAbsoluteURLFilter(TestCase):
         eq_(misc.absolute_url('/en-US/firefox/new/'), expected)
         eq_(misc.absolute_url('//www.mozilla.org/en-US/firefox/new/'), expected)
         eq_(misc.absolute_url('https://www.mozilla.org/en-US/firefox/new/'), expected)
-
-
-class TestReleaseNotesURL(TestCase):
-    @patch('bedrock.mozorg.templatetags.misc.reverse')
-    def test_aurora_android_releasenotes_url(self, mock_reverse):
-        """
-        Should return the results of reverse with the correct args
-        """
-        release = Release(dict(
-            channel='Aurora', version='42.0a2', product='Firefox for Android'))
-        eq_(misc.releasenotes_url(release), mock_reverse.return_value)
-        mock_reverse.assert_called_with(
-            'firefox.android.releasenotes', args=('42.0a2', 'aurora'))
-
-    @patch('bedrock.mozorg.templatetags.misc.reverse')
-    def test_desktop_releasenotes_url(self, mock_reverse):
-        """
-        Should return the results of reverse with the correct args
-        """
-        release = Release(dict(version='42.0', product='Firefox'))
-        eq_(misc.releasenotes_url(release), mock_reverse.return_value)
-        mock_reverse.assert_called_with(
-            'firefox.desktop.releasenotes', args=('42.0', 'release'))
 
 
 class TestFirefoxIOSURL(TestCase):

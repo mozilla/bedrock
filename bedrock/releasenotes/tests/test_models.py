@@ -19,6 +19,26 @@ RELEASES_PATH = str(Path(__file__).parent)
 release_cache = caches['release-notes']
 
 
+@patch('bedrock.releasenotes.models.reverse')
+class TestReleaseNotesURL(TestCase):
+    def test_aurora_android_releasenotes_url(self, mock_reverse):
+        """
+        Should return the results of reverse with the correct args
+        """
+        release = models.Release(dict(
+            channel='Aurora', version='42.0a2', product='Firefox for Android'))
+        assert release.get_absolute_url() == mock_reverse.return_value
+        mock_reverse.assert_called_with('firefox.android.releasenotes', args=('42.0a2', 'aurora'))
+
+    def test_desktop_releasenotes_url(self, mock_reverse):
+        """
+        Should return the results of reverse with the correct args
+        """
+        release = models.Release(dict(version='42.0', product='Firefox'))
+        assert release.get_absolute_url() == mock_reverse.return_value
+        mock_reverse.assert_called_with('firefox.desktop.releasenotes', args=('42.0', 'release'))
+
+
 @override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
 class TestReleaseModel(TestCase):
     def setUp(self):
@@ -47,6 +67,11 @@ class TestReleaseModel(TestCase):
         rel = models.get_release('firefox', '45.0esr', 'esr')
         android = rel.equivalent_release_for_product('Firefox for Android')
         assert android is None
+
+    def test_note_fixed_in_release(self):
+        rel = models.get_release('firefox', '55.0a1')
+        note = rel.notes[11]
+        assert note.fixed_in_release.get_absolute_url() == '/en-US/firefox/55.0a1/releasenotes/'
 
     def test_field_processors(self):
         rel = models.get_release('firefox', '57.0a1')
