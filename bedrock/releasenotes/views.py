@@ -2,18 +2,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import re
+from operator import attrgetter
 
 from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
 
 from lib import l10n_utils
-from product_details import product_details
 
 from bedrock.base.urlresolvers import reverse
-from bedrock.firefox.firefox_details import firefox_desktop, firefox_android, firefox_ios
+from bedrock.firefox.firefox_details import firefox_desktop
 from bedrock.firefox.templatetags.helpers import android_builds, ios_builds
+from bedrock.releasenotes.models import get_latest_release_or_404, get_release_or_404, get_releases_or_404
 from bedrock.thunderbird.details import thunderbird_desktop
-from bedrock.releasenotes.models import get_release_or_404, get_releases_or_404
 
 SUPPORT_URLS = {
     'Firefox for Android': 'https://support.mozilla.org/products/mobile',
@@ -116,69 +116,32 @@ def system_requirements(request, version, product='Firefox'):
         {'release': release, 'version': version})
 
 
-def latest_notes(request, product='firefox', platform=None, channel=None):
+def latest_release(product='firefox', platform=None, channel=None):
     if not platform:
         platform = 'desktop'
+    elif platform == 'android':
+        product = 'firefox for android'
+    elif platform == 'ios':
+        product = 'firefox for ios'
 
     if not channel:
         channel = 'release'
-    if channel == 'developer':
+    elif channel in ['developer', 'earlybird']:
         channel = 'beta'
-    if channel == 'aurora':
-        channel = 'alpha'
-    if channel == 'organizations':
+    elif channel == 'organizations':
         channel = 'esr'
 
-    if product == 'thunderbird':
-        version = thunderbird_desktop.latest_version(channel)
-    elif platform == 'android':
-        version = firefox_android.latest_version(channel)
-    elif platform == 'ios':
-        version = firefox_ios.latest_version(channel)
-    else:
-        version = firefox_desktop.latest_version(channel)
-
-    if channel == 'beta':
-        version = re.sub(r'b\d+$', 'beta', version)
-    if channel == 'esr':
-        version = re.sub(r'esr$', '', version)
-
-    notes_dir = 'auroranotes' if channel == 'alpha' else 'releasenotes'
-    path = [product, version, notes_dir]
-    locale = getattr(request, 'locale', None)
-    if product == 'firefox' and platform != 'desktop':
-        path.insert(1, platform)
-    if locale:
-        path.insert(0, locale)
-    return HttpResponseRedirect('/' + '/'.join(path) + '/')
+    return get_latest_release_or_404(product, channel)
 
 
-def latest_sysreq(request, channel, product):
-    if product == 'firefox' and channel == 'developer':
-        channel = 'beta'
-    if channel == 'organizations':
-        channel = 'esr'
+def latest_notes(request, product='firefox', platform=None, channel=None):
+    release = latest_release(product, platform, channel)
+    return HttpResponseRedirect(release.get_absolute_url())
 
-    if product == 'thunderbird':
-        version = thunderbird_desktop.latest_version(channel)
-    elif product == 'mobile':
-        version = firefox_android.latest_version(channel)
-    elif product == 'ios':
-        version = firefox_ios.latest_version(channel)
-    else:
-        version = firefox_desktop.latest_version(channel)
 
-    if channel == 'beta':
-        version = re.sub(r'b\d+$', 'beta', version)
-    if channel == 'esr':
-        version = re.sub(r'^(\d+).+', r'\1.0', version)
-
-    dir = 'system-requirements'
-    path = [product, version, dir]
-    locale = getattr(request, 'locale', None)
-    if locale:
-        path.insert(0, locale)
-    return HttpResponseRedirect('/' + '/'.join(path) + '/')
+def latest_sysreq(request, product='firefox', platform=None, channel=None):
+    release = latest_release(product, platform, channel)
+    return HttpResponseRedirect(release.get_sysreq_url())
 
 
 def releases_index(request, product):
@@ -190,8 +153,8 @@ def releases_index(request, product):
         major_releases = firefox_desktop.firefox_history_major_releases
         minor_releases = firefox_desktop.firefox_history_stability_releases
     elif product == 'Thunderbird':
-        major_releases = product_details.thunderbird_history_major_releases
-        minor_releases = product_details.thunderbird_history_stability_releases
+        major_releases = thunderbird_desktop.thunderbird_history_major_releases
+        minor_releases = thunderbird_desktop.thunderbird_history_stability_releases
 
     for release in major_releases:
         major_version = float(re.findall(r'^\d+\.\d+', release)[0])
@@ -217,25 +180,23 @@ def releases_index(request, product):
 def nightly_feed(request):
     """Serve an Atom feed with the latest changes in Firefox Nightly"""
     notes = {}
-    releases = sorted(get_releases_or_404('firefox', 'nightly'),
-                      key=lambda x: x.release_date, reverse=True)[0:5]
+    releases = get_releases_or_404('firefox', 'nightly')[0:5]
 
     for release in releases:
-        if release.is_public:
-            link = reverse('firefox.desktop.releasenotes',
-                           args=(release.version, 'release'))
+        link = reverse('firefox.desktop.releasenotes',
+                        args=(release.version, 'release'))
 
-            for note in release.notes:
-                if note.id in notes:
-                    continue
+        for note in release.notes:
+            if note.id in notes:
+                continue
 
-                if note.is_public and note.tag:
-                    note.link = link + '#note-' + str(note.id)
-                    note.version = release.version
-                    notes[note.id] = note
+            if note.is_public and note.tag:
+                note.link = link + '#note-' + str(note.id)
+                note.version = release.version
+                notes[note.id] = note
 
     # Sort by date in descending order
-    notes = sorted(notes.values(), key=lambda x: x.modified, reverse=True)
+    notes = sorted(notes.values(), key=attrgetter('modified'), reverse=True)
 
     return l10n_utils.render(request, 'firefox/releases/nightly-feed.xml',
                              {'notes': notes},
