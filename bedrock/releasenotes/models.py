@@ -2,6 +2,7 @@ import codecs
 import json
 import os
 from glob import glob
+from hashlib import sha256
 from operator import attrgetter
 
 from django.conf import settings
@@ -187,12 +188,45 @@ def get_release(product, version, channel=None):
     raise ReleaseNotFound()
 
 
+def get_data_version():
+    """Add the etag from the repo to the cache keys.
+
+    This will ensure that the cache is invalidated when the repo is updated.
+    """
+    etag_key = 'releasenotes:repo:etag'
+    etag = cache.get(etag_key)
+    print etag
+    if not etag:
+        etag_file = os.path.join(release_notes_path(), '.latest-update-etag')
+        if os.path.exists(etag_file):
+            try:
+                with codecs.open(etag_file) as fh:
+                    etag = fh.read().strip()
+                    cache.set(etag_key, etag, 60)  # 1 min
+            except IOError:
+                etag = 'default'
+        else:
+            etag = 'default'
+
+    return etag
+
+
+def get_cache_key(key):
+    """Cache key returned will be a sha256 hash of the key and repo data version.
+
+    This ensures that we can use a long cache for the release files while still
+    getting fast invalidation when we check the small repo data version file
+    at most once per minute.
+    """
+    return sha256('%s:%s' % (get_data_version(), key)).hexdigest()
+
+
 def get_release_from_file(file_name):
-    release = cache.get(file_name)
+    release = cache.get(get_cache_key(file_name))
     if not release:
         release = get_release_from_file_system(file_name)
         if release:
-            cache.set(file_name, release, 300)  # 5 min
+            cache.set(file_name, release, 7200)  # 2 hours
 
     return release
 

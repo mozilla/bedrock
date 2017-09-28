@@ -160,22 +160,24 @@ class TestGetRelease(TestCase):
         grfn_mock.assert_has_calls(expected_calls)
 
 
+@override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
 @patch.object(models, 'cache')
+@patch.object(models, 'get_cache_key')
 @patch.object(models, 'get_release_from_file_system')
 class TestGetReleaseFromFile(TestCase):
-    def test_get_release_from_file(self, grffs_mock, cache_mock):
+    def test_get_release_from_file(self, grffs_mock, cache_key_mock, cache_mock):
         cache_mock.get.return_value = 'dude'
         assert models.get_release_from_file('walter') == 'dude'
-        cache_mock.get.assert_called_with('walter')
+        cache_key_mock.assert_called_with('walter')
         grffs_mock.assert_not_called()
 
-    def test_get_release_from_file_no_cache(self, grffs_mock, cache_mock):
+    def test_get_release_from_file_no_cache(self, grffs_mock, cache_key_mock, cache_mock):
         cache_mock.get.return_value = None
         grffs_mock.return_value = 'donnie'
         assert models.get_release_from_file('walter') == 'donnie'
-        cache_mock.get.assert_called_with('walter')
+        cache_key_mock.assert_called_with('walter')
         grffs_mock.assert_called_with('walter')
-        cache_mock.set.assert_called_with('walter', 'donnie', 300)
+        cache_mock.set.assert_called_with('walter', 'donnie', 7200)
 
 
 @override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
@@ -219,3 +221,41 @@ class TestGetFileID(TestCase):
         assert models.get_file_id('Firefox', 'Release', '57.0') == 'firefox-57.0-release'
         assert models.get_file_id('Firefox Extended Support Release', 'ESR', '52.0') == 'firefox-52.0-esr'
         assert models.get_file_id('Firefox for Android', 'Beta', '57.0b2') == 'firefox-for-android-57.0b2-beta'
+
+
+@override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
+@patch.object(models, 'cache')
+class TestGetDataVersion(TestCase):
+    def test_get_data_version(self, cache_mock):
+        cache_mock.get.return_value = None
+        # value from the test data in .latest-update-etag
+        assert models.get_data_version() == '"bae656422b8d046543540f42b1658938f"'
+        cache_mock.set.assert_called_with('releasenotes:repo:etag', '"bae656422b8d046543540f42b1658938f"', 60)
+
+    def test_get_data_version_cache_hit(self, cache_mock):
+        cache_mock.get.return_value = 'dude'
+        assert models.get_data_version() == 'dude'
+        cache_mock.set.assert_not_called()
+
+    @patch.object(models, 'os')
+    def test_get_data_version_file_not_found(self, os_mock, cache_mock):
+        cache_mock.get.return_value = None
+        os_mock.path.exists.return_value = False
+        assert models.get_data_version() == 'default'
+        cache_mock.set.assert_not_called()
+
+    @patch.object(models, 'codecs')
+    def test_get_data_version_io_error(self, open_mock, cache_mock):
+        cache_mock.get.return_value = None
+        open_mock.open.side_effect = IOError
+        assert models.get_data_version() == 'default'
+        cache_mock.set.assert_not_called()
+
+
+@patch.object(models, 'get_data_version')
+@patch.object(models, 'sha256')
+class TestGetCacheKey(TestCase):
+    def test_get_cache_key(self, sha_mock, gdv_mock):
+        gdv_mock.return_value = 'dude'
+        assert models.get_cache_key('abide') == sha_mock.return_value.hexdigest()
+        sha_mock.assert_called_with('dude:abide')

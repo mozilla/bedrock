@@ -219,23 +219,26 @@ class TestReleaseViews(TestCase):
 
     def test_get_download_url_thunderbird(self):
         release = Mock(product='Thunderbird')
-        link = views.get_download_url(release)
+        with self.activate('en-US'):
+            link = views.get_download_url(release)
         eq_(link, '/en-US/thunderbird/')
 
     def test_get_download_url_thunderbird_beta(self):
         release = Mock(product='Thunderbird', channel='Beta')
-        link = views.get_download_url(release)
+        with self.activate('en-US'):
+            link = views.get_download_url(release)
         eq_(link, '/en-US/thunderbird/channel/')
 
     def test_check_url(self):
-        eq_(views.check_url('Firefox for Android', '45.0'),
-            'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
-        eq_(views.check_url('Firefox for Android', '46.0'),
-            '/en-US/firefox/android/46.0/system-requirements/')
-        eq_(views.check_url('Firefox for iOS', '1.4'),
-            '/en-US/firefox/ios/1.4/system-requirements/')
-        eq_(views.check_url('Firefox', '42.0'),
-            '/en-US/firefox/42.0/system-requirements/')
+        with self.activate('en-US'):
+            eq_(views.check_url('Firefox for Android', '45.0'),
+                'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
+            eq_(views.check_url('Firefox for Android', '46.0'),
+                '/en-US/firefox/android/46.0/system-requirements/')
+            eq_(views.check_url('Firefox for iOS', '1.4'),
+                '/en-US/firefox/ios/1.4/system-requirements/')
+            eq_(views.check_url('Firefox', '42.0'),
+                '/en-US/firefox/42.0/system-requirements/')
 
     @override_settings(DEV=False)
     def test_nightly_feed(self):
