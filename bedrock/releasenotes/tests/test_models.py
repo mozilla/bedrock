@@ -39,7 +39,7 @@ class TestReleaseNotesURL(TestCase):
         mock_reverse.assert_called_with('firefox.desktop.releasenotes', args=('42.0', 'release'))
 
 
-@override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
+@override_settings(RELEASE_NOTES_PATH=RELEASES_PATH, DEV=False)
 class TestReleaseModel(TestCase):
     def setUp(self):
         release_cache.clear()
@@ -57,7 +57,7 @@ class TestReleaseModel(TestCase):
         assert 'custom url' == rel.get_bug_search_url()
 
     def test_equivalent_release_for_product(self):
-        """Based on the test files the equivalent release for 56 should be 56.0.2."""
+        """Based on the test files the equivalent release for 56 should be 56.0.2"""
         rel = models.get_release('firefox', '56.0', 'release')
         android = rel.equivalent_release_for_product('Firefox for Android')
         assert android.version == '56.0.2'
