@@ -20,16 +20,10 @@ case $1 in
     BROWSER_NAME="internet explorer"
     PLATFORM="Windows 10"
     ;;
-  ie6)
+  ie8)
     BROWSER_NAME="internet explorer"
-    BROWSER_VERSION="6.0"
-    PLATFORM="Windows XP"
-    MARK_EXPRESSION="sanity and not headless"
-    ;;
-  ie7)
-    BROWSER_NAME="internet explorer"
-    BROWSER_VERSION="7.0"
-    PLATFORM="Windows XP"
+    BROWSER_VERSION="8.0"
+    PLATFORM="Windows 7"
     MARK_EXPRESSION="sanity and not headless"
     ;;
   headless)
