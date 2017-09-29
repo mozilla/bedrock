@@ -135,14 +135,14 @@ h1, h2, h3, h4, h5, h6 {
 
     &:after {
         background: transparent url('/media/img/firefox/quantum/wave-top.svg') top center no-repeat;
+        @include background-size(3844px 335px);
         bottom: -40px;
         content: '';
         display: block;
         height: 355px;
-        left: 50%;
-        margin-left: -2122px;
+        left: 0;
         position: absolute;
-        width: 3844px;
+        width: 100%;
     }
 
     @media #{$mq-phone-wide} {
