@@ -59,13 +59,13 @@ def test_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [ContributePage, FirefoxHomePage,
-    pytest.mark.skip_if_firefox(HomePage, reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1399945')])
+@pytest.mark.parametrize('page_class', [HomePage, ContributePage, FirefoxHomePage])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
     page.newsletter.type_email('success@example.com')
     page.newsletter.select_country('United Kingdom')
+    page.newsletter.select_text_format()
     page.newsletter.accept_privacy_policy()
     page.newsletter.click_sign_me_up()
     assert page.newsletter.sign_up_successful
