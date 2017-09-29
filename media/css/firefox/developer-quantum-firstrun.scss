@@ -53,8 +53,8 @@ body {
 
     .page-title {
         @include font-size-level2;
-        text-transform: uppercase;
         margin: 0 auto 20px;
+        max-width: $width-tablet;
 
         &:before {
             display: block;
@@ -67,9 +67,9 @@ body {
     }
 
     .tagline {
+        margin: 0 auto 80px;
         max-width: $width-tablet;
         text-align: center;
-        margin: 0 auto 80px;
     }
 
     .features-list {
@@ -132,7 +132,6 @@ body {
 
         h3 {
             @include font-size(18px);
-            text-transform: uppercase;
 
             @media #{$mq-desktop} {
                 @include font-size(28px);

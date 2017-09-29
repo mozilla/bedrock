@@ -24,7 +24,6 @@ from product_details.version_compare import Version
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import lang_file_is_active
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.waffle import switch
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
@@ -723,7 +722,7 @@ class FirefoxHubView(BlogPostsView):
 def FirefoxProductDeveloperView(request):
     locale = l10n_utils.get_locale(request)
 
-    if lang_file_is_active('firefox/products/developer-quantum', locale) and switch('fx-product-page-dev-quantum'):
+    if lang_file_is_active('firefox/products/developer-quantum', locale):
         template = 'firefox/products/developer-quantum.html'
     else:
         template = 'firefox/products/developer.html'
