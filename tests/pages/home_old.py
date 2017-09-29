@@ -8,11 +8,16 @@ from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
 
 
-class HomePage(BasePage):
+class OldHomePage(BasePage):
 
-    _download_button_locator = (By.ID, 'download-intro')
+    _download_button_locator = (By.ID, 'nav-download-firefox')
+    _get_firefox_link_locator = (By.ID, 'fx-download-link')
 
     @property
     def download_button(self):
         el = self.find_element(*self._download_button_locator)
         return DownloadButton(self, root=el)
+
+    @property
+    def is_get_firefox_link_displayed(self):
+        return self.is_element_displayed(*self._get_firefox_link_locator)

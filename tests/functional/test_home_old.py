@@ -4,11 +4,18 @@
 
 import pytest
 
-from pages.home import HomePage
+from pages.home_old import OldHomePage
 
 
-@pytest.mark.skip_if_firefox(reason='Home page download button is hidden from Firefox users')
+@pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
-    page = HomePage(selenium, base_url).open()
+    page = OldHomePage(selenium, base_url, locale='de').open()
     assert page.download_button.is_displayed
+
+
+@pytest.mark.sanity
+@pytest.mark.nondestructive
+def test_get_firefox_link_is_displayed(base_url, selenium):
+    page = OldHomePage(selenium, base_url, locale='de').open()
+    assert page.is_get_firefox_link_displayed
