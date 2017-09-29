@@ -64,7 +64,7 @@ class SpacesPage(ContactPage):
 
     URL_TEMPLATE = '/{locale}/contact/spaces'
 
-    _spaces_locator = (By.ID, 'nav-spaces li')
+    _spaces_locator = (By.CSS_SELECTOR, '#nav-spaces li')
 
     @property
     def spaces(self):
