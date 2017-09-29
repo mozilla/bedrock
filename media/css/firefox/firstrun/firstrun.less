@@ -113,6 +113,37 @@ img {
     margin: 20px 0;
 }
 
+#skip-button {
+    -moz-appearance: none;
+    background-color: #0996f8;
+    border-radius: 3px;
+    border: 1px solid #0670cc;
+    box-shadow: 0 0 0 0 transparent;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    height: 24px;
+    margin: 10px auto;
+    padding: 3px 10px;
+
+    &:not([disabled]):hover {
+        background-color: #0670cc;
+        border-color: #005bab;
+    }
+}
+
+#skip-button[disabled] {
+    background-color: #ebebeb;
+    border-color: #b1b1b1;
+    color: #6a6a6a;
+    cursor: default;
+    opacity: .5;
+}
+
+.skipbutton-hidden {
+    display: none;
+}
+
 #scene[data-sunrise=true] {
 
     #firefox-logo {
@@ -125,37 +156,6 @@ img {
       right: 125px;
       top: -55px;
       width: 80px;
-    }
-
-    button {
-        -moz-appearance: none;
-        background-color: #0996f8;
-        border-radius: 3px;
-        border: 1px solid #0670cc;
-        box-shadow: 0 0 0 0 transparent;
-        color: #fff;
-        cursor: pointer;
-        display: block;
-        height: 24px;
-        margin: 10px auto;
-        padding: 3px 10px;
-
-        &:not([disabled]):hover {
-            background-color: #0670cc;
-            border-color: #005bab;
-        }
-    }
-
-    button[disabled] {
-        background-color: #ebebeb;
-        border-color: #b1b1b1;
-        color: #6a6a6a;
-        cursor: default;
-        opacity: .5;
-    }
-
-    .skipbutton-hidden {
-        display: none;
     }
 
     #sunrise {
