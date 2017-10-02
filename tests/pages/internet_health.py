@@ -12,7 +12,7 @@ class InternetHealthPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/internet-health'
 
-    _download_button_locator = (By.ID, 'internet-health-promo-download')
+    _download_button_locator = (By.ID, 'global-nav-download-firefox')
 
     @property
     def download_button(self):
