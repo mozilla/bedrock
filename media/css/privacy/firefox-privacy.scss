@@ -44,10 +44,10 @@ $light-gray-background: #f2f2f2;
 
     h1 {
         display: inline-block;
-        @include font-size-level2
+        @include font-size-level3
 
         @media #{$mq-desktop} {
-            margin: 40px 0;
+            margin: 20px 0 20px;
         }
 
         a {
@@ -101,7 +101,7 @@ $light-gray-background: #f2f2f2;
 /* POLICY LEAD-IN */
 .privacy-lead-in {
     h2 {
-        margin-bottom: 20px;
+        padding: 20px 0;
         @include font-size-level3
         font-weight: bold;
         text-align: left;
@@ -154,6 +154,14 @@ main {
 
         @media #{$mq-desktop} {
             font-weight: normal;
+        }
+    }
+
+    ul {
+        margin-left: 20px;
+
+        li {
+            list-style-type: disc;
         }
     }
 
