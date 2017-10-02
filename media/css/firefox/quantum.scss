@@ -687,14 +687,14 @@ html[dir="rtl"] .sticky-footer {
 
     &:after {
         background: transparent url('/media/img/firefox/quantum/wave-middle.svg') top center no-repeat;
+        @include background-size(3821px 304px);
         bottom: -10px;
         content: '';
         display: block;
         height: 304px;
-        left: 50%;
-        margin-left: -1910px;
+        left: 0;
         position: absolute;
-        width: 3821px;
+        width: 100%;
     }
 
     .content {
@@ -824,14 +824,14 @@ html[dir="rtl"] .sticky-footer {
 
     &:before {
         background: transparent url('/media/img/firefox/quantum/wave-bottom.svg') top center no-repeat;
+        @include background-size(4615px 385px);
         content: '';
         display: block;
         height: 390px;
-        left: 50%;
-        margin-left: -2307px;
+        left: 0;
         position: absolute;
         top: -20px;
-        width: 4615px;
+        width: 100%;
     }
 
     h2 {
