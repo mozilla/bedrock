@@ -10,6 +10,7 @@
         {%- endif -%}
         {%- if code == 'en-US' -%}
         <link rel="alternate" hreflang="en" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English">
+        <link rel="alternate" hreflang="en-US" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English (USA)">
         <link rel="alternate" hreflang="en-CA" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English (Canada)">
         {% elif code|length != 3 -%}{#- Bug 1364470: Drop ISO 639-2 and -3 locales not supported by Google -#}
         <link rel="alternate" hreflang="{{ code }}" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
