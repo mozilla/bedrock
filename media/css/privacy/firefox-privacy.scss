@@ -38,7 +38,7 @@ $light-gray-background: #f2f2f2;
         .privacy-head-wrapper {
             margin: 0 auto;
             padding-left: 17px;
-            max-width: 1420px;
+            max-width: 1024px;
         }
     }
 
@@ -73,6 +73,7 @@ $light-gray-background: #f2f2f2;
                 @include background-size(60px 63px);
                 width: 60px;
                 height: 63px;
+                margin: 0 10px 0 0;
             }
         }
     }
@@ -82,7 +83,6 @@ $light-gray-background: #f2f2f2;
 
         @media #{$mq-desktop} {
             display: inline-block;
-            margin-left: 10px;
         }
     }
 
@@ -95,6 +95,7 @@ $light-gray-background: #f2f2f2;
         @include font-size-level6
         font-weight: normal;
         font-style: italic;
+        margin: 0 0 0 10px;
     }
 }
 
@@ -298,6 +299,16 @@ html[dir="rtl"]{
 
         @media #{$mq-desktop} {
             text-align: center;
+        }
+
+        h1::before {
+            @media #{$mq-desktop} {
+                margin: 0 0 0 10px;
+            }
+        }
+
+        time {
+            margin: 0 10px 0 0;
         }
     }
 
