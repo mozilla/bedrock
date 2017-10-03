@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from bedrock.base.urlresolvers import reverse, split_path, Prefixer
+from bedrock.base.urlresolvers import find_supported, reverse, split_path, Prefixer
 from mock import patch, Mock
 from nose.tools import eq_, ok_
 
@@ -133,7 +133,7 @@ class TestPrefixer(TestCase):
         prefixer = Prefixer(request)
         eq_(prefixer.get_best_language('de, es'), 'de')
 
-    @override_settings(LANGUAGE_URL_MAP={'en-us': 'en-US', 'es-ar': 'es-AR'},
+    @override_settings(LANGUAGE_URL_MAP={'en-gb': 'en-GB', 'en-us': 'en-US', 'es-ar': 'es-AR'},
                        CANONICAL_LOCALES={'es': 'es-ES', 'en': 'en-US'})
     def test_get_best_language_prefix_match(self):
         """
@@ -145,7 +145,7 @@ class TestPrefixer(TestCase):
         prefixer = Prefixer(request)
         eq_(prefixer.get_best_language('en'), 'en-US')
         eq_(prefixer.get_best_language('en-CA'), 'en-US')
-        eq_(prefixer.get_best_language('en-GB'), 'en-US')
+        eq_(prefixer.get_best_language('en-GB'), 'en-GB')
         eq_(prefixer.get_best_language('en-US'), 'en-US')
         eq_(prefixer.get_best_language('es'), 'es-ES')
         eq_(prefixer.get_best_language('es-AR'), 'es-AR')
@@ -171,3 +171,35 @@ class TestPrefixer(TestCase):
         request = self.factory.get('/')
         prefixer = Prefixer(request)
         eq_(prefixer.get_best_language('en; q=1,'), None)
+
+    @override_settings(LANGUAGE_URL_MAP={'en-ar': 'en-AR', 'en-gb': 'en-GB', 'en-us': 'en-US'},
+                       CANONICAL_LOCALES={'en': 'en-US'})
+    def test_prefixer_with_non_supported_locale(self):
+        """
+        Should set prefixer.locale to a supported locale that repects CANONICAL_LOCALES
+        when given a URL with a non-supported locale.
+        """
+        request = self.factory.get('/en-CA/')
+        prefixer = Prefixer(request)
+        assert prefixer.locale == 'en-US'
+
+
+@override_settings(LANGUAGE_URL_MAP={'es-ar': 'es-AR', 'en-gb': 'en-GB', 'es-us': 'es-US'},
+                   CANONICAL_LOCALES={'es': 'es-ES', 'en': 'en-US'})
+class TestFindSupported(TestCase):
+    def test_find_supported(self):
+        assert find_supported('en-CA') == 'en-US'
+        assert find_supported('en-US') == 'en-US'
+        assert find_supported('en-GB') == 'en-GB'
+        assert find_supported('en') == 'en-US'
+        assert find_supported('es-MX') == 'es-ES'
+        assert find_supported('es-AR') == 'es-AR'
+        assert find_supported('es') == 'es-ES'
+
+    def test_find_supported_none(self):
+        """
+        Should return None if it can't find any supported locale.
+        """
+        assert find_supported('de') is None
+        assert find_supported('fr') is None
+        assert find_supported('dude') is None
