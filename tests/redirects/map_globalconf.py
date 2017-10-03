@@ -973,15 +973,6 @@ URLS = flatten((
     url_test('/apps/', 'https://marketplace.firefox.com/'),
     url_test('/dnt/', '/firefox/dnt/'),
     url_test('/metrofirefox/', '/firefox/'),
-    url_test('/en-US/firefox/android/{,beta/}notes/',
-             re.compile(r'/en-US/firefox/android/[\\d\\.]+{,beta}/releasenotes/'),
-             status_code=requests.codes.found),
-    url_test('/en-US/firefox/android/aurora/notes/',
-             re.compile(r'/en-US/firefox/android/[\d\.a-zA-Z]+/auroranotes/'),
-             status_code=requests.codes.found),
-    url_test('/en-US/firefox/notes/',
-             re.compile(r'/en-US/firefox/[\d\.]+/releasenotes/'),
-             status_code=requests.codes.found),
     url_test('/firefox/brand/', '/styleguide/'),
 
     # Bug 1243060
