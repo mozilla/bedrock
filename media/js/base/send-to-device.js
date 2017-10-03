@@ -216,6 +216,10 @@ if (typeof Mozilla === 'undefined') {
             return;
         }
 
+        if (SendToDevice.COUNTRY_CODE) {
+            formData += '&country=' + SendToDevice.COUNTRY_CODE;
+        }
+
         // else POST and let the server work out whether the input is a
         // valid email address or US phone number.
         $.post(action, formData)

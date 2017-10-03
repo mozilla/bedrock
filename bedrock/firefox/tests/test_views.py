@@ -171,13 +171,14 @@ class TestSendToDeviceView(TestCase):
         self.mock_subscribe = patcher.start()
         self.addCleanup(patcher.stop)
 
-        patcher = patch('bedrock.firefox.views.basket.send_sms')
+        patcher = patch('bedrock.firefox.views.basket.request')
         self.mock_send_sms = patcher.start()
         self.addCleanup(patcher.stop)
 
-    def _request(self, data, expected_status=200):
-        rf = RequestFactory()
-        resp = views.send_to_device_ajax(rf.post('/', data))
+    def _request(self, data, expected_status=200, locale='en-US'):
+        req = RequestFactory().post('/', data)
+        req.locale = locale
+        resp = views.send_to_device_ajax(req)
         eq_(resp.status_code, expected_status)
         return json.loads(resp.content)
 
@@ -196,7 +197,62 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '5558675309',
         })
         ok_(resp_data['success'])
-        self.mock_send_sms.assert_called_with('15558675309', views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'])
+        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
+            'mobile_number': '15558675309',
+            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
+            'lang': 'en-US',
+        })
+
+    def test_send_android_sms_non_en_us(self):
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': '5558675309',
+        }, locale='de')
+        ok_(resp_data['success'])
+        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
+            'mobile_number': '15558675309',
+            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
+            'lang': 'de',
+        })
+
+    def test_send_android_sms_with_country(self):
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': '5558675309',
+            'country': 'de',
+        })
+        ok_(resp_data['success'])
+        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
+            'mobile_number': '15558675309',
+            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
+            'lang': 'en-US',
+            'country': 'de',
+        })
+
+    def test_send_android_sms_with_invalid_country(self):
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': '5558675309',
+            'country': 'X2',
+        })
+        ok_(resp_data['success'])
+        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
+            'mobile_number': '15558675309',
+            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
+            'lang': 'en-US',
+        })
+
+        resp_data = self._request({
+            'platform': 'android',
+            'phone-or-email': '5558675309',
+            'country': 'dude',
+        })
+        ok_(resp_data['success'])
+        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
+            'mobile_number': '15558675309',
+            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
+            'lang': 'en-US',
+        })
 
     def test_send_android_sms_basket_error(self):
         self.mock_send_sms.side_effect = views.basket.BasketException
@@ -256,8 +312,11 @@ class TestSendToDeviceView(TestCase):
             'message-set': 'the-dude-is-not-in',
         })
         ok_(resp_data['success'])
-        self.mock_send_sms.assert_called_with('15558675309',
-                                               views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['ios'])
+        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
+            'mobile_number': '15558675309',
+            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['ios'],
+            'lang': 'en-US',
+        })
 
     # /firefox/android/ embedded widget (bug 1221328)
     def test_android_embedded_email(self):
@@ -279,8 +338,11 @@ class TestSendToDeviceView(TestCase):
             'message-set': 'fx-android',
         })
         ok_(resp_data['success'])
-        self.mock_send_sms.assert_called_with('15558675309',
-                                               views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['sms']['android'])
+        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
+            'mobile_number': '15558675309',
+            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['sms']['android'],
+            'lang': 'en-US',
+        })
 
     # /firefox/mobile-download/desktop
     def test_fx_mobile_download_desktop_email(self):
@@ -300,8 +362,11 @@ class TestSendToDeviceView(TestCase):
             'message-set': 'fx-mobile-download-desktop',
         })
         ok_(resp_data['success'])
-        self.mock_send_sms.assert_called_with('15558675309',
-                                               views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['sms']['all'])
+        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
+            'mobile_number': '15558675309',
+            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['sms']['all'],
+            'lang': 'en-US',
+        })
 
 
 @override_settings(DEV=False)
