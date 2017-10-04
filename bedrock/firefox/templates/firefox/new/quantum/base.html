@@ -1,0 +1,95 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+{% block page_title %}{{_('Free Web Browser')}}{% endblock %}
+{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!')}}{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}{{_('Download the fastest Firefox ever')}}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{_('Faster page loading, less memory usage and packed with features, the new Firefox is here.')}}{% endblock %}
+
+{% block optimizely %}
+  {% if switch('firefox-new-optimizely') %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block old_ie_styles %}{% endblock %}
+{% block site_css %}{% endblock %}
+{% block page_css %}{% endblock %}
+
+{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
+{% block extrahead %}
+  {% stylesheet 'pebbles' %}
+  {% stylesheet 'firefox_new_quantum_common' %}
+{% endblock %}
+
+{% block body_id %}{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="main-content">
+    {% block messages %}{% endblock %}
+    <div class="content">
+      <div class="header-logos">
+        <h2><a class="firefox" href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': 'Firefox', 'width': '133', 'height': '51'}) }}</a></h2>
+        <h2><a class="mozilla" href="{{ url('mozorg.home') }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="Mozilla" width="101" height="34"></a></h2>
+      </div>
+      {% if switch('firefox-new-survey', ['en-US']) %}
+        <div class="survey-link-container">
+          {% include 'firefox/new/survey.html' %}
+        </div>
+      {% endif %}
+      <div class="header-container">
+        <div class="header-content">
+          {% block main_content %}{% endblock %}
+        </div>
+        <div class="header-image">
+          {{ high_res_img('firefox/new/quantum/browser.png', {'alt': _('Screenshot'), 'width': '700', 'height': '529'}) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="content">
+      <ul>
+        <li class="faster">
+          <h3>{{_('2x Faster') }}</h3>
+          <p>{{_('The best Firefox ever') }}</p>
+        </li>
+        <li class="lighter">
+          <h3>{{_('Lightweight') }}</h3>
+          <p>{{_('Uses 30% less memory than Chrome') }}</p>
+        </li>
+        <li class="private">
+          <h3>{{_('Powerfully private') }}</h3>
+          <p>{{_('Truly Private Browsing with Tracking Protection') }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  {% block additional_content %}{% endblock %}
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}

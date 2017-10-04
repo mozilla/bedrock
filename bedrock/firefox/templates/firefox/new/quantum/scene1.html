@@ -1,0 +1,125 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/quantum/base.html" %}
+
+{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
+{% block extrahead %}
+  {{ super() }}
+  {% stylesheet 'firefox_new_quantum_scene1' %}
+{% endblock %}
+
+{% block body_id %}firefox-new-scene1{% endblock %}
+
+{% block messages %}
+<div class="version-message-container">
+  <div class="content">
+    <p class="version-message firefox-latest">{{_('Congrats! You’re using the latest version of Firefox.') }}</p>
+    <p class="version-message android-old">{{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-latest-version-firefox-android')}}</p>
+    <p class="version-message desktop-old">{{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-firefox-latest-version') }}</p>
+    <p class="version-message firefox-pre-release">{{_('You’re using a pre-release version of Firefox.') }}</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block main_content %}
+<header>
+  <h1>{{_('Meet Firefox Quantum') }}</h1>
+  <h2>{{_('New. Fast. For good.') }}</h2>
+</header>
+
+<div class="main-download">
+  <div class="main-cta-wrapper">
+    <div class="download-button-wrapper">
+      {# **WARNING**
+
+        The `locale_in_transition` parameter should be used very carefully. It's included
+        here because this template and scene2 share a lang file, and are therefore
+        translated into the same list of locales. Adding this to another download button
+        would significantly restrict the builds of Firefox available for download.
+
+        Bug 1290962
+      #}
+      {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, button_color='quantum', download_location='primary cta') }}
+    </div>
+
+    <div id="refresh-firefox-wrapper">
+      <div class="refresh-inner-wrapper">
+        <button class="button quantum-hollow" type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" data-button-name="Refresh Firefox" data-cta-position="Primary">{{ _('Refresh Firefox') }}</button>
+        <small><a rel="external" href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link">{{ _('Learn more') }}</a></small>
+      </div>
+    </div>
+  </div>
+
+  <p class="linux-arm-download-instructions">
+    {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
+  </p>
+
+  <ul id="other-platforms-languages-wrapper" class="small-links desktop hidden">
+    <li><button id="other-platforms-modal-link" type="button">{{_('Advanced install options & other platforms') }}</button></li>
+    <li><a href="{{ url('firefox.all') }}">{{_('Download in another language') }}</a></li>
+    <li><a rel="external" href="https://support.mozilla.org/products/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+  </ul>
+
+  <ul class="small-links android">
+    <li><a href="{{ url('firefox.all', channel='android') }}">{{_('Download in another language') }}</a></li>
+    <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+  </ul>
+
+  <ul class="small-links ios">
+    <li><a rel="external" href="https://support.mozilla.org/en-US/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+  </ul>
+</div>
+{% endblock %}
+
+{% block additional_content %}
+<aside class="newsletter-container">
+  <div class="content">
+    <div id="newsletter-subscribe">
+      <div class="newsletter-title">
+          <h3>{{ _('Keep up with<br> all things Firefox.') }}</h3>
+      </div>
+      <div class="newsletter-form-content">
+        {{ email_newsletter_form(include_title=False, button_class='quantum-hollow-light', spinner_color='#fff') }}
+      </div>
+    </div>
+  </div>
+</aside>
+
+<div id="other-platforms">
+  <div class="content">
+    <section class="section-other-platforms">
+      <h4>{{ _('Advanced Install Options & Other Platforms') }}</h4>
+
+      {{ download_firefox_desktop_list() }}
+
+      <ul class="other-platforms-mobile">
+        <li class="android">
+          {{ google_play_button(anchor_attributes={'data-download-location': 'other'}) }}
+        </li>
+        <li class="ios">
+          <a href="{{ firefox_ios_url('mozorg-fxnew_page_scene1_modal-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section-current-platform">
+      {# L10n: span's below are for visual formatting and line break. #}
+      <h4 class="heading-windows">{{_('Download Firefox <span>for Windows</span>') }}</h4>
+      <h4 class="heading-mac">{{_('Download Firefox <span>for macOS</span>') }}</h4>
+      <h4 class="heading-linux">{{_('Download Firefox <span>for Linux</span>') }}</h4>
+
+      {{ download_firefox(dom_id='download-other-platforms-modal', alt_copy=_('Download Now'), locale_in_transition=True, download_location='other') }}
+    </section>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_new_scene1' %}
+{% endblock %}

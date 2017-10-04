@@ -402,13 +402,33 @@ class TestSendToDeviceView(TestCase):
 @override_settings(DEV=False)
 @patch('bedrock.firefox.views.l10n_utils.render')
 class TestFirefoxNew(TestCase):
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
     def test_scene_1_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/quantum/scene1.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_scene_2_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/quantum/scene2.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_scene_1_template_locale_inactive(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
 
-    def test_scene_2_template(self, render_mock):
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_scene_2_template_locale_inactive(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2')
         req.locale = 'en-US'
         views.new(req)
@@ -428,18 +448,20 @@ class TestFirefoxNew(TestCase):
         render_mock.assert_called_once_with(req, 'firefox/new/break-free/scene2.html')
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
     def test_break_free_locale_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/quantum/scene1.html')
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
     def test_break_free_locale_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=breakfree')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/quantum/scene2.html')
 
     def test_way_of_the_fox_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=wayofthefox')
@@ -454,18 +476,20 @@ class TestFirefoxNew(TestCase):
         render_mock.assert_called_once_with(req, 'firefox/new/way-of-the-fox/scene2.html')
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
     def test_way_of_the_fox_locale_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=wayofthefox')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/quantum/scene1.html')
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
     def test_way_of_the_fox_locale_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=wayofthefox')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/quantum/scene2.html')
 
     # moar ad campaign pages bug 1363543
 
