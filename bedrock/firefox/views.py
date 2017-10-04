@@ -433,6 +433,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
         version = self.kwargs.get('version') or ''
+        exp = self.request.GET.get('v')
 
         if detect_channel(version) == 'alpha':
             if show_57_dev_firstrun(version) and lang_file_is_active(
@@ -441,7 +442,10 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             else:
                 template = 'firefox/dev-firstrun.html'
         elif show_40_firstrun(version):
-            template = 'firefox/firstrun/index.html'
+            if locale == 'en-US' and exp in ['a', 'b']:
+                template = 'firefox/firstrun/membership-{0}.html'.format(exp)
+            else:
+                template = 'firefox/firstrun/index.html'
         elif show_38_0_5_firstrun(version):
             template = 'firefox/australis/fx38_0_5/firstrun.html'
         else:

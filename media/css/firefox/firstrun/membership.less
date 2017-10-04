@@ -1,0 +1,260 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../sandstone/fonts.less";
+@import "../../sandstone/lib.less";
+
+@colorPhotonBlue: #0d96ff;
+
+@font-face {
+    font-family: 'Zilla Slab';
+    font-weight: bold;
+    font-style: normal;
+    src: url('/media/fonts/ZillaSlab-Bold.woff2') format('woff2'),
+         url('/media/fonts/ZillaSlab-Bold.woff') format('woff');
+}
+
+html {
+    .font-size(100%);
+    height: 100%;
+}
+
+body {
+    .font-size(@baseFontSize);
+    background: #2b314f url('/media/img/firefox/firstrun-membership/background.png') top center no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: #fff;
+    font-family: @baseFontFamily;
+    height: 100%;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+    font-family: 'Zilla Slab', 'Open Sans', X-LocaleSpecific, sans-serif;
+    font-weight: bold;
+    letter-spacing: normal;
+    text-shadow: none;
+}
+
+#wrapper {
+    margin: 0 auto;
+    width: 885px;
+}
+
+main > header {
+    .at2x('/media/img/firefox/template/logo-large.png', 140px, 140px);
+    background-position: top 100px right 100px;
+    background-repeat: no-repeat;
+    border-bottom: 3px solid #fff;
+    padding: 80px 0 0 50px;
+
+    h1 {
+        .font-size(48px);
+        margin: 0 0 20px;
+    }
+
+    p {
+        .font-size(18px);
+        .open-sans-light;
+        margin-bottom: 40px;
+        max-width: 30em;
+    }
+}
+
+.step-1.hidden,
+.step-2.hidden {
+    display: none;
+}
+
+.step-1 {
+    .clearfix;
+    display: flex;
+    margin: 40px 0;
+    position: relative;
+}
+
+.carousel-container {
+    background: url('/media/img/firefox/firstrun-membership/carousel-bg.png') top center no-repeat;
+    background-size: cover;
+    float: left;
+    overflow: hidden;
+    width: 550px;
+}
+
+.carousel {
+    position: relative;
+
+    .carousel-item {
+        padding: 30px 50px 320px;
+        width: 450px;
+
+        h2 {
+            .font-size(32px);
+        }
+
+        p {
+            line-height: 1.7;
+        }
+
+        &.independence {
+            background: url('/media/img/firefox/firstrun-membership/icon-independence.svg') bottom 80px left 134px no-repeat;
+        }
+
+        &.privacy {
+            background: url('/media/img/firefox/firstrun-membership/icon-privacy.svg') bottom 80px left 162px no-repeat;
+        }
+
+        &.technology {
+            background: url('/media/img/firefox/firstrun-membership/icon-technology.svg') bottom 80px left 153px no-repeat;
+        }
+    }
+}
+
+.js .carousel .carousel-item {
+    display: none;
+}
+
+.js .carousel .carousel-item:first-child {
+    display: block;
+}
+
+.carousel-pager {
+    bottom: 20px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 550px;
+    z-index: 1000;
+
+    span {
+        border-radius: 50%;
+        border: 3px solid #fff;
+        cursor: pointer;
+        display: inline-block;
+        height: 13px;
+        margin: 0 5px;
+        overflow: hidden;
+        text-indent: -999em;
+        transition: background-color .2s ease-in-out;
+        width: 13px;
+
+        &:hover {
+            background: rgba(255, 255, 255, .5);
+        }
+
+        &.cycle-pager-active {
+            background: #fff;
+        }
+    }
+}
+
+.path-selector {
+    background: #fff;
+    color: #000;
+    float: left;
+    padding: 30px 40px;
+    position: relative;
+    text-align: center;
+    width: 255px;
+
+    h2 {
+        .font-size(24px);
+        color: #000;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        button {
+            .font-size(12px);
+            background: transparent;
+            border-radius: 20px;
+            border: 3px solid @colorPhotonBlue;
+            color: @colorPhotonBlue;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 20px 0;
+            padding: 12px 8px;
+            text-transform: uppercase;
+            transition: background .2s ease-in-out, color .2s ease-in-out;
+            width: 100%;
+
+            &:hover,
+            &:focus {
+                background: @colorPhotonBlue;
+                color: #fff;
+            }
+        }
+    }
+
+    .later {
+        .font-size(12px);
+        bottom: 40px;
+        color: @colorPhotonBlue;
+        font-weight: bold;
+        left: 60px;
+        position: absolute;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+.step-2 {
+    .clearfix;
+    margin: 40px 0;
+    position: relative;
+
+    header {
+        float: left;
+        padding-left: 50px;
+        width: 385px;
+
+        h2 {
+            .font-size(36px);
+            line-height: 1.2;
+        }
+
+        p {
+            .font-size(18px);
+            max-width: 14em;
+        }
+
+        ul {
+            .font-size(18px);
+        }
+    }
+
+    .fxaccounts {
+        background-color: #fff;
+        border-radius: 8px;
+        float: left;
+        width: 400px;
+    }
+}
+
+#fxa {
+    border: none;
+    display: block;
+    height: 504px;
+    margin-right: 50px;
+    overflow: hidden;
+    transition: height 0.25s ease;
+    width: 400px;
+}

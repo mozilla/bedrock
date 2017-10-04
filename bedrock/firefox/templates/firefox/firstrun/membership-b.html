@@ -1,0 +1,81 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/firstrun/base.html" %}
+
+{% block body_id %}firstrun-membership{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block page_title %}{{ _('Welcome to Firefox') }}{% endblock %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_firstrun_membership' %}
+{% endblock %}
+
+{% block global_nav %}{% endblock %}
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main>
+  <header>
+    <h1>{{ self.page_title() }}</h1>
+    <p>{{ _('You’ve just joined a community that believes in browsing freely. And signing up for a Firefox Account will free you up even more, with automatic syncing across devices to take your browsing with you. Make a selection below to stay connected to what you care about most.') }}</p>
+  </header>
+
+  <div class="step-1">
+    <div class="carousel-container">
+      <div class="carousel">
+        <section class="carousel-item independence">
+          <h2>{{ _('“I’m all about independence”') }}</h2>
+          <p>{{ _('I care about having a non-profit alternative to corporate greed. Get me started with a Firefox Account and show me how to maintain my independence online.') }}</p>
+        </section>
+        <section class="carousel-item privacy">
+          <h2>{{ _('“I want to stay safe online”') }}</h2>
+          <p>{{ _('I care that Firefox is watching out for me, without actually watching me. Get me started with a Firefox Account and keep me up to date on how to protect my privacy online.') }}</p>
+        </section>
+        <section class="carousel-item technology">
+          <h2>{{ _('“I’m into the latest technology”') }}</h2>
+          <p>{{ _('I care that FIrefox is fast, lightweight and keeps getting better. Get me started with a Firefox Account and keep me on the cutting edge of life online.') }}</p>
+        </section>
+        <div class="carousel-pager"></div>
+      </div>
+    </div>
+
+    <section class="path-selector">
+      <h2>{{ _('Pick your Firefox path') }}</h2>
+      <p>{{ _('Get the Firefox that suits you best.') }}</p>
+      <ul>
+        <li><button type="button" data-index="0" data-id="membership-idealo" data-label="Independence">{{ _('Independence') }}</button></li>
+        <li><button type="button" data-index="1" data-id="membership-comm" data-label="Privacy">{{ _('Privacy') }}</button></li>
+        <li><button type="button" data-index="2" data-id="membership-tech" data-label="Technology">{{ _('Technology') }}</button></li>
+      </ul>
+      <a href="{{ url('newsletter.mozilla') }}" class="later">{{ _('Remind me later') }}</a>
+    </section>
+  </div>
+  <div class="step-2 hidden">
+    <header>
+      <h2>{{ _('Get started and get Firefox to go.') }}</h2>
+      <p>{{ _('Pick up exactly where you left off on your devices with one login. Instantly view your:') }}</p>
+      <ul>
+        <li>{{ _('Open tabs') }}</li>
+        <li>{{ _('Saved passwords') }}</li>
+        <li>{{ _('Bookmarks') }}</li>
+      </ul>
+    </header>
+    <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
+      <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=firstrun&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrun&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block site_footer %}{% endblock %}
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_firstrun_membership' %}
+{% endblock %}
+
+{# Don't display notification for test variation #}
+{% block update_notification %}{% endblock %}
