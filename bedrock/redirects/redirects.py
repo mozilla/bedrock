@@ -2053,4 +2053,12 @@ redirectpatterns = (
     # Bug 1255882
     # multiple trailing slashes
     redirect(r'^(.*[^/])//+$', '/{}/', locale_prefix=False),
+    # bug 1405436
+    # trailing end parenthesis
+    redirect(r'^(.*)/\)$', '/{}/', locale_prefix=False),
+    # trailing LRM (Left to Right Mark)
+    # These were causing 404s due to bad Wordpress links ending in "%E2%80%8E"
+    # When passing through the URL system it is a \u200E character.
+    # https://en.wikipedia.org/wiki/Left-to-right_mark
+    redirect(ur'^(.*)\u200E$', '/{}', locale_prefix=False),
 )
