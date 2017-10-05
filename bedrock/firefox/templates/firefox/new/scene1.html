@@ -6,6 +6,12 @@
 
 {% extends "firefox/new/base.html" %}
 
+{% block experiments %}
+  {% if switch('firefox-new-cliqz-funnelcakes', ['de']) %}
+    {% javascript 'experiment_firefox_new_cliqz_funnelcakes' %}
+  {% endif %}
+{% endblock %}
+
 {% block optimizely %}
   {% if switch('firefox-new-optimizely', ['en-US']) %}
     {% include 'includes/optimizely.html' %}
@@ -21,7 +27,7 @@
 {% block body_id %}firefox-new-scene1{% endblock %}
 
 {% block content %}
-<main role="main">
+<main role="main" {% if funnelcake_id %}data-funnelcake-id="{{ funnelcake_id }}"{% endif %}>
   <div class="main-container">
     <div class="horizon">
       <div class="stars">
@@ -189,4 +195,7 @@
 
 {% block js %}
   {% javascript 'firefox_new_scene1' %}
+  {% if switch('firefox-new-cliqz-funnelcakes', ['de']) %}
+    {% javascript 'firefox_new_cliqz_funnelcakes' %}
+  {% endif %}
 {% endblock %}

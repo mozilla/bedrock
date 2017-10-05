@@ -368,6 +368,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun_membership-bundle.css',
     },
+    'firefox_firstrun_cliqz_funnelcake': {
+        'source_filenames': (
+            'css/firefox/firstrun/firstrun-cliqz-funnelcake.less',
+        ),
+        'output_filename': 'css/firefox_firstrun_cliqz_funnelcake-bundle.css',
+    },
     'firefox_feedback': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
@@ -1242,6 +1248,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_firstrun_membership-bundle.js',
     },
+    'firefox_firstrun_cliqz_funnelcake': {
+        'source_filenames': (
+            'js/firefox/firstrun/firstrun-cliqz-funnelcake.js',
+        ),
+        'output_filename': 'js/firefox_firstrun_cliqz_funnelcake-bundle.js',
+    },
     'firefox_developer_firstrun': {
         'source_filenames': (
             'js/base/uitour-lib.js',
@@ -1308,6 +1320,20 @@ PIPELINE_JS = {
             'js/firefox/new/experiment-firefox-new-batm-anim.js',
         ),
         'output_filename': 'js/experiment_firefox_new_batm_anim-bundle.js',
+    },
+    'experiment_firefox_new_cliqz_funnelcakes': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/base/mozilla-traffic-cop-funnelcake-geo.js',
+            'js/firefox/new/experiment-cliqz-funnelcakes.js',
+        ),
+        'output_filename': 'js/experiment_firefox_new_cliqz_funnelcakes-bundle.js',
+    },
+    'firefox_new_cliqz_funnelcakes': {
+        'source_filenames': (
+            'js/firefox/new/cliqz-funnelcakes.js',
+        ),
+        'output_filename': 'js/firefox_new_cliqz_funnelcakes-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (

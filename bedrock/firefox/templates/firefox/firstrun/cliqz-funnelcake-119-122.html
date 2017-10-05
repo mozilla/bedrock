@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/firstrun/index.html" %}
+
+{% block site_css %}
+  {% stylesheet 'firefox_firstrun_cliqz_funnelcake' %}
+{% endblock %}
+
+{% block page_content %}
+  <section id="header">
+    <h2>{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</h2>
+  </section>
+
+  <section id="content">
+    <h1>Schneller surfen und suchen!</h1>
+
+    {% if funnelcake_id == '120' %}
+      {{ high_res_img('firefox/firstrun-cliqz/firstrun-firefox.png', {'alt': '', 'width': '673', 'height': '280'}) }}
+    {% else %}
+      {{ high_res_img('firefox/firstrun-cliqz/firstrun-cliqz.png', {'alt': '', 'width': '680', 'height': '300'}) }}
+    {% endif %}
+
+    <div id="features" {% if funnelcake_id == '120' %} class="single"{% endif %}>
+      <ul>
+        <li>
+          <h2>Schnellsuche</h2>
+          <p>Adresszeile und Suchfeld sind jetzt eins</p>
+        </li>
+        <li>
+          <h2>Direkte Antworten</h2>
+          <p>Nützliche Infos in Echtzeit</p>
+        </li>
+      </ul>
+    </div>
+
+    <button type="button" id="skip-button" class="link-button">
+      LOS GEHT'S
+    </button>
+  </section>
+{% endblock %}
+
+{# Don't display notification for test variation #}
+{% block update_notification %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_firstrun_cliqz_funnelcake' %}
+{% endblock %}
