@@ -272,7 +272,7 @@ class TestGetAllReleases(TestCase):
         globs = []
         calls = []
         for i in range(5):
-            globs.append('%s.json' % (i + 1))
+            globs.append('firefox-%s.json' % (i + 1))
             calls.append(call(globs[-1]))
             releases.append(models.Release(dict(product='Firefox',
                                                 channel='Release',
@@ -284,6 +284,37 @@ class TestGetAllReleases(TestCase):
         glob_mock.return_value = globs
         cache_mock.get.return_value = None
         reversed_releases = list(reversed(releases))
+        assert models.get_all_releases('firefox', 'release') == reversed_releases
+        grff_mock.assert_has_calls(calls)
+        cache_mock.get.assert_called_with('dude')
+        cache_mock.set.assert_called_with('dude', reversed_releases, models.LONG_RN_CACHE_TIMEOUT)
+
+    def test_get_all_releases_only_product(self, grff_mock, glob_mock, cache_mock):
+        """Should only return the specific product asked for"""
+        releases = []
+        globs = []
+        calls = []
+        for i in range(2):
+            globs.append('firefox-%s.json' % (i + 1))
+            calls.append(call(globs[-1]))
+            releases.append(models.Release(dict(product='Firefox',
+                                                channel='Release',
+                                                is_public=True,
+                                                version='56.0.%s' % (i + 1),
+                                                release_date='2017-01-0%s' % (i + 1))))
+        # android ones are newer
+        for i in range(2):
+            globs.append('firefox-for-android-%s.json' % (i + 1))
+            releases.append(models.Release(dict(product='Firefox For Android',
+                                                channel='Release',
+                                                is_public=True,
+                                                version='56.0.%s' % (i + 1),
+                                                release_date='2017-01-1%s' % (i + 1))))
+
+        grff_mock.side_effect = releases
+        glob_mock.return_value = globs
+        cache_mock.get.return_value = None
+        reversed_releases = list(reversed(releases[:2]))
         assert models.get_all_releases('firefox', 'release') == reversed_releases
         grff_mock.assert_has_calls(calls)
         cache_mock.get.assert_called_with('dude')
@@ -301,7 +332,7 @@ class TestGetAllReleases(TestCase):
         globs = []
         calls = []
         for i in range(5):
-            globs.append('%s.json' % (i + 1))
+            globs.append('firefox-%s.json' % (i + 1))
             calls.append(call(globs[-1]))
             releases.append(models.Release(dict(product='Firefox',
                                                 channel='Release',
