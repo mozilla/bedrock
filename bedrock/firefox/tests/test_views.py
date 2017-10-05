@@ -280,9 +280,9 @@ class TestSendToDeviceView(TestCase):
         })
         ok_(resp_data['success'])
         self.mock_subscribe.assert_called_with('dude@example.com',
-                                                views.SEND_TO_DEVICE_MESSAGE_SETS['default']['email']['android'],
-                                                source_url='https://nihilism.info',
-                                                lang='en-US')
+                                               views.SEND_TO_DEVICE_MESSAGE_SETS['default']['email']['android'],
+                                               source_url='https://nihilism.info',
+                                               lang='en-US')
 
     def test_send_android_email_basket_error(self):
         self.mock_subscribe.side_effect = views.basket.BasketException

@@ -1231,7 +1231,50 @@ SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
 
 # country code for /country-code.json to return in dev mode
 DEV_GEO_COUNTRY_CODE = config('DEV_GEO_COUNTRY_CODE', default='US')
-SEND_TO_DEVICE_COUNTRIES = config('SEND_TO_DEVICE_COUNTRIES', default='US', cast=Csv())
+SEND_TO_DEVICE_MESSAGE_SETS = {
+    'default': {
+        'sms_countries': config('STD_SMS_COUNTRIES_DEFAULT', default='US', cast=Csv()),
+        'sms': {
+            'ios': 'ff-ios-download',
+            'android': 'SMS_Android',
+        },
+        'email': {
+            'android': 'download-firefox-android',
+            'ios': 'download-firefox-ios',
+            'all': 'download-firefox-mobile',
+        }
+    },
+    'fx-android': {
+        'sms_countries': config('STD_SMS_COUNTRIES_ANDROID', default='US', cast=Csv()),
+        'sms': {
+            'ios': 'ff-ios-download',
+            'android': 'android-download-embed',
+        },
+        'email': {
+            'android': 'get-android-embed',
+            'ios': 'download-firefox-ios',
+            'all': 'download-firefox-mobile',
+        }
+    },
+    'fx-mobile-download-desktop': {
+        'sms_countries': config('STD_SMS_COUNTRIES_DESKTOP', default='US', cast=Csv()),
+        'sms': {
+            'all': 'mobile-heartbeat',
+        },
+        'email': {
+            'all': 'download-firefox-mobile-reco',
+        }
+    },
+    'fx-50-whatsnew': {
+        'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW50', default='US', cast=Csv()),
+        'sms': {
+            'all': 'whatsnewfifty',
+        },
+        'email': {
+            'all': 'download-firefox-mobile-whatsnew',
+        }
+    }
+}
 
 RELEASE_NOTES_PATH = config('RELEASE_NOTES_PATH', default=path('release_notes'))
 RELEASE_NOTES_REPO = config('RELEASE_NOTES_REPO', default='https://github.com/mozilla/release-notes.git')

@@ -41,47 +41,7 @@ INSTALLER_CHANNElS = [
     'alpha',
     # 'nightly',  # soon
 ]
-
-SEND_TO_DEVICE_MESSAGE_SETS = {
-    'default': {
-        'sms': {
-            'ios': 'ff-ios-download',
-            'android': 'SMS_Android',
-        },
-        'email': {
-            'android': 'download-firefox-android',
-            'ios': 'download-firefox-ios',
-            'all': 'download-firefox-mobile',
-        }
-    },
-    'fx-android': {
-        'sms': {
-            'ios': 'ff-ios-download',
-            'android': 'android-download-embed',
-        },
-        'email': {
-            'android': 'get-android-embed',
-            'ios': 'download-firefox-ios',
-            'all': 'download-firefox-mobile',
-        }
-    },
-    'fx-mobile-download-desktop': {
-        'sms': {
-            'all': 'mobile-heartbeat',
-        },
-        'email': {
-            'all': 'download-firefox-mobile-reco',
-        }
-    },
-    'fx-50-whatsnew': {
-        'sms': {
-            'all': 'whatsnewfifty',
-        },
-        'email': {
-            'all': 'download-firefox-mobile-whatsnew',
-        }
-    }
-}
+SEND_TO_DEVICE_MESSAGE_SETS = settings.SEND_TO_DEVICE_MESSAGE_SETS
 
 STUB_VALUE_NAMES = [
     # name, default value

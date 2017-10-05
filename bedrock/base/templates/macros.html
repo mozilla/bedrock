@@ -276,7 +276,7 @@
     {% set ios_link = firefox_ios_url('mozorg') %}
   {% endif %}
   {% set android_link = settings.GOOGLE_PLAY_FIREFOX_LINK %}
-  <section id="send-to-device" class="{% if include_logo %}logo {% endif %}{% if include_title %}title{% else %}no-title{% endif %}" data-countries="{{ send_to_device_countries() }}"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
+  <section id="send-to-device" class="{% if include_logo %}logo {% endif %}{% if include_title %}title{% else %}no-title{% endif %}" data-countries="{{ send_to_device_sms_countries(message_set) }}"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
     <div class="form-container">
       {% if include_title %}
         <h2 class="form-heading">
