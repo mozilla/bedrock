@@ -7,10 +7,7 @@ COPY ./lib ./lib
 COPY ./root_files ./root_files
 COPY ./scripts ./scripts
 COPY ./wsgi ./wsgi
-COPY ./manage.py ./
-COPY ./LICENSE ./
-COPY ./newrelic.ini ./
-COPY ./contribute.json ./
+COPY manage.py LICENSE newrelic.ini contribute.json ./
 
 # changes more frequently
 COPY ./docker ./docker

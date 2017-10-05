@@ -2,7 +2,7 @@ machine:
   services:
     - docker
   node:
-    version: 6.1.0
+    version: 6.11.3
 
 checkout:
   post:
@@ -16,7 +16,7 @@ dependencies:
   override:
     - docker/bin/build_images.sh --test
     - npm install -g gulp-cli
-    - npm install
+    - yarn install --pure-lockfile
 
 test:
   pre:
