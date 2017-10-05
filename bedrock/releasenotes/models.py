@@ -1,6 +1,7 @@
 import codecs
 import json
 import os
+import re
 from glob import glob
 from hashlib import sha256
 from operator import attrgetter
@@ -290,10 +291,15 @@ def get_all_releases(product, channel='release'):
     file_prefix = get_file_id(product, channel, '*')
     cache_key = get_cache_key('all:%s:%s' % (product, channel))
     releases = cache.get(cache_key)
+    product_prefix = file_prefix.split('*')[0]
+    # ensure only files for the specific product are returned
+    # without this the file glob would match e.g. "firefox-for-android-56.0-release.json"
+    # when the glob was "firefox-*-release.json"
+    product_re = re.compile(r'%s\d' % product_prefix)
     if not releases:
         releases = glob(os.path.join(release_notes_path(), file_prefix + '.json'))
         if releases:
-            releases = (get_release_from_file(r) for r in releases)
+            releases = (get_release_from_file(r) for r in releases if product_re.search(r))
             releases = sorted((r for r in releases if r.is_public),
                               key=attrgetter('release_date'), reverse=True)
             if releases:
