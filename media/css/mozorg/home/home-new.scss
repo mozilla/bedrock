@@ -5,14 +5,11 @@
 @import '../../pebbles/includes/lib';
 @import '../../hubs/buttons';
 
-body {
-    @include open-sans;
-    border-top: 0;
-}
+// offset of nav logo at 1000px+ viewports
+$nav-margin: 84px;
 
-h2,
-h3 {
-    @include zilla-slab;
+body {
+    border-top: 0;
 }
 
 // hide download button in the nav
@@ -21,14 +18,12 @@ h3 {
 }
 
 // adjust nav spacing to use space freed up by hiding the dl button
-@media #{$mq-tablet} {
-    .moz-global-nav .nav-primary-links {
+.moz-global-nav .nav-primary-links {
+    @media #{$mq-tablet} {
         width: calc(100% - 110px);
     }
-}
 
-@media #{$mq-desktop} {
-    .moz-global-nav .nav-primary-links {
+    @media #{$mq-desktop} {
         width: calc(100% - 220px);
     }
 }
@@ -50,6 +45,16 @@ main {
         margin: 0 auto;
     }
 
+    h2 {
+        @include font-size-level2;
+        margin-bottom: 30px;
+    }
+
+    h3 {
+        @include font-size-level4;
+        line-height: 1.3;
+    }
+
     .content {
         display: block;
         padding: 40px 20px;
@@ -58,20 +63,30 @@ main {
         z-index: 2;
     }
 
-    h2 {
-        @include font-size-level1;
-        margin-bottom: 30px;
-    }
+    // swiped from css/hubs/_common.scss
+    .fx-privacy-link a:link,
+    .fx-privacy-link a:visited {
+        @include font-size(12px);
+        color: $color-link-blue;
+        font-family: $font-open-sans;
+        text-decoration: none;
 
-    h3 {
-        @include font-size-level4;
-        @include open-sans;
-        line-height: 1.3;
+        &:hover,
+        &:focus {
+            color: $color-link-blue-dark;
+            text-decoration: underline;
+        }
     }
 
     @media #{$mq-tablet} {
         background-image: url('/media/img/home/2016/b/hero-bg-desktop.jpg');
         background-position: center center;
+    }
+
+    @media #{$mq-desktop} {
+        .content {
+            padding: 40px 0;
+        }
     }
 
     @media #{$mq-desktop-wide} {
@@ -84,7 +99,17 @@ main {
 }
 
 #intro-mozilla {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
+}
+
+// only English can handle zilla slab
+[lang="en"] #intro-mozilla h2 {
+    @include zilla-slab();
+
+    span {
+        background: #000;
+        color: #fff;
+    }
 }
 
 #intro-promo-content-wrapper {
@@ -102,10 +127,26 @@ main {
             margin-bottom: 10px;
             width: 80px;
         }
-    }
 
-    .fx-privacy-link a {
-        color: #000;
+        @media #{$mq-tablet} {
+            padding-right: 100px;
+
+            &:before {
+                content: none;
+            }
+
+            &:after {
+                @include at2x('/media/img/logos/firefox/logo-small.png', 80px, 80px);
+                content: '';
+                display: inline-block;
+                height: 80px;
+                margin-top: -30px;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                width: 80px;
+            }
+        }
     }
 
     // hide all promos by default
@@ -123,30 +164,9 @@ main {
     &.state-default       .show-default {
         display: block;
     }
-
-    @media #{$mq-tablet} {
-        h2 {
-            padding-right: 100px;
-
-            &:before {
-                content: none;
-            }
-
-            &:after {
-                @include at2x('/media/img/logos/firefox/logo-small.png', 80px, 80px);
-                content: '';
-                display: inline-block;
-                height: 80px;
-                margin-top: -40px;
-                position: absolute;
-                top: 50%;
-                right: 0;
-                width: 80px;
-            }
-        }
-    }
 }
 
+// columnize intro content for desktop viewports
 @media #{$mq-desktop} {
     #intro-wrapper:after {
         @include clearfix;
@@ -156,17 +176,25 @@ main {
     #intro-promo {
         float: left;
         position: relative;
-        width: 50%;
     }
 
     #intro-mozilla {
         margin-bottom: 0;
         padding: 0;
+        width: 50%;
+
+        .intro-content {
+            // line up with nav
+            padding-left: $nav-margin;
+        }
     }
 
     #intro-promo {
         @include border-box;
-        padding: 0 20px;
+        // line up with nav
+        margin-right: $nav-margin;
+        padding: 0 0 0 20px;
+        width: calc(50% - #{$nav-margin});
     }
 
     #intro-promo-content-wrapper {
@@ -185,7 +213,7 @@ main {
     padding: 10px 20px 20px;
 
     .section-headline {
-        @include font-size-level2;
+        @include font-size-level3;
         margin-bottom: 20px;
     }
 
@@ -193,8 +221,24 @@ main {
         padding-bottom: 20px;
     }
 
+    a {
+        @include open-sans();
+    }
+
     @media #{$mq-tablet} {
         padding: 10px 40px 20px;
+    }
+
+    @media #{$mq-desktop} {
+        // line up with left edge of mozilla logo in nav
+        &:first-child {
+            padding-left: $nav-margin;
+        }
+
+        // equal padding on right side
+        &:last-child {
+            padding-right: $nav-margin;
+        }
     }
 }
 
@@ -214,19 +258,22 @@ main {
 // two column faux table layout for wider viewports
 @media #{$mq-tablet} {
     #impact-innovate-wrapper {
-        display: table;
         padding-bottom: 80px;
+
+        &:after {
+            @include clearfix;
+        }
     }
 
     #impact,
     #innovate {
-        display: table-cell;
+        float: left;
         width: 50%;
     }
 
     #impact {
-        @include border-box;
         border-right: 1px solid rgba(0, 0, 0, 0.2);
+        width: calc(50% - 1px);
     }
 }
 
@@ -355,8 +402,8 @@ main {
     }
 
     h3 {
-        @include font-size-level3;
-        color: $color-text-secondary;
+        @include font-size-level4;
+        font-weight: 100;
         margin-bottom: 0.8rem;
         padding-top: 120px;
         position: relative;
@@ -399,26 +446,39 @@ main {
         }
     }
 
-    p {
-        color: $color-text-secondary;
-    }
-
     @media #{$mq-tablet} {
         .content {
             width: auto;
-        }
-
-        a {
-            padding: 0 20px;
         }
 
         ul {
             padding-top: 60px;
 
             li {
+                @include border-box;
                 float: left;
+                padding: 0 20px;
                 width: 33.3%;
                 margin: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .content {
+            margin: 0;
+            // line up with navigation
+            padding-left: $nav-margin;
+            padding-right: $nav-margin;
+        }
+
+        ul li {
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
             }
         }
     }
@@ -464,7 +524,7 @@ main {
         }
 
         h4 {
-            @include font-size-level4;
+            @include font-size-level5;
             color: #000;
             font-weight: normal;
             line-height: 1.5;
@@ -544,6 +604,17 @@ main {
             float: left;
             margin: 0;
             width: 100%;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    #newsletter-subscribe.section-newsletter .newsletter-form {
+        padding-left: 540px;
+
+        .form-title {
+            margin-left: -540px;
+            width: 510px;
         }
     }
 }
