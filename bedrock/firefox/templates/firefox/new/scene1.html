@@ -10,6 +10,10 @@
   {% if switch('firefox-new-cliqz-funnelcakes', ['de']) %}
     {% javascript 'experiment_firefox_new_cliqz_funnelcakes' %}
   {% endif %}
+
+  {% if switch('firefox-new-unbranded-search-funnelcakes', ['en-US']) %}
+    {% javascript 'experiment_firefox_new_unbranded_search_funnelcakes' %}
+  {% endif %}
 {% endblock %}
 
 {% block optimizely %}
