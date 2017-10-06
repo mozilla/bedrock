@@ -99,18 +99,14 @@ def schedule_database_jobs():
         call_command('update_wordpress --database bedrock')
 
     @scheduled_job('interval', minutes=5)
-    def update_release_notes_data():
-        call_command('update_release_notes_data --quiet')
+    def update_release_notes():
+        call_command('update_release_notes --quiet')
 
 
 def schedul_l10n_jobs():
     @scheduled_job('interval', minutes=10)
     def update_locales():
         call_command('l10n_update')
-
-    @scheduled_job('interval', minutes=5)
-    def update_release_notes():
-        call_command('update_release_notes --quiet')
 
 
 if __name__ == '__main__':

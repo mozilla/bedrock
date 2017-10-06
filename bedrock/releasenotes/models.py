@@ -1,25 +1,22 @@
 import codecs
 import json
 import os
-import re
 from glob import glob
-from hashlib import sha256
 from operator import attrgetter
 
 from django.conf import settings
 from django.core.cache import caches
 from django.db import models, transaction
 from django.http import Http404
-from django.utils.dateparse import parse_date, parse_datetime
+from django.utils.dateparse import parse_datetime
 from django.utils.functional import cached_property
-from django.utils.text import slugify
 
 import markdown
 from django_extensions.db.fields.json import JSONField
 from product_details.version_compare import Version
-from raven.contrib.django.raven_compat.models import client as sentry_client
 
 from bedrock.base.urlresolvers import reverse
+from bedrock.releasenotes.utils import memoize
 
 
 LONG_RN_CACHE_TIMEOUT = 7200  # 2 hours
@@ -27,10 +24,6 @@ cache = caches['release-notes']
 markdowner = markdown.Markdown(extensions=[
     'tables', 'codehilite', 'fenced_code', 'toc', 'nl2br'
 ])
-
-
-def release_notes_path():
-    return os.path.join(settings.RELEASE_NOTES_PATH, 'releases')
 
 
 def process_markdown(value):
@@ -50,24 +43,16 @@ def process_is_public(is_public):
 
 
 def process_note_release(rel_data):
-    return Release(rel_data)
+    return ProductRelease(**rel_data)
 
 
 FIELD_PROCESSORS = {
-    'release_date': parse_date,
     'created': parse_datetime,
     'modified': parse_datetime,
-    'notes': process_notes,
     'is_public': process_is_public,
     'note': process_markdown,
-    'text': process_markdown,
-    'system_requirements': process_markdown,
     'fixed_in_release': process_note_release,
 }
-
-
-class ReleaseNotFound(Exception):
-    pass
 
 
 class RNModel(object):
@@ -111,45 +96,50 @@ class NotesField(JSONField):
 
 
 class ProductReleaseQuerySet(models.QuerySet):
-    def public(self):
-        if settings.DEV:
-            return self.all()
-
-        return self.filter(is_public=True)
-
-    def product(self, product_name, channel_name=None):
+    def product(self, product_name, channel_name=None, version=None):
+        if product_name.lower() == 'firefox extended support release':
+            product_name = 'firefox'
+            channel_name = 'esr'
         q = self.filter(product__iexact=product_name)
         if channel_name:
             q = q.filter(channel__iexact=channel_name)
+        if version:
+            q = q.filter(version=version)
 
         return q
 
 
 class ProductReleaseManager(models.Manager):
     def get_queryset(self):
-        return ProductReleaseQuerySet(self.model, using=self._db)
+        qs = ProductReleaseQuerySet(self.model, using=self._db)
+        if settings.DEV:
+            return qs
 
-    def public(self):
-        return self.get_queryset().public()
+        return qs.filter(is_public=True)
 
-    def product(self, product_name, channel_name=None):
-        return self.get_queryset().product(product_name, channel_name)
+    def product(self, product_name, channel_name=None, version=None):
+        return self.get_queryset().product(product_name, channel_name, version)
 
     def refresh(self):
-        count = 0
+        release_objs = []
+        rn_path = os.path.join(settings.RELEASE_NOTES_PATH, 'releases')
         with transaction.atomic(using=self.db):
             self.all().delete()
-            releases = glob(os.path.join(release_notes_path(), '*.json'))
+            releases = glob(os.path.join(rn_path, '*.json'))
             for release_file in releases:
                 with codecs.open(release_file, 'r', encoding='utf-8') as rel_fh:
                     data = json.load(rel_fh)
+                    # doing this to simplify queries for Firefox since it is always
+                    # looked up with product=Firefox and relies on the version number
+                    # and channel to determine ESR.
                     if data['product'] == 'Firefox Extended Support Release':
                         data['product'] = 'Firefox'
                         data['channel'] = 'ESR'
-                    self.create(**data)
-                    count += 1
+                    release_objs.append(ProductRelease(**data))
 
-        return count
+            self.bulk_create(release_objs)
+
+        return len(release_objs)
 
 
 class ProductRelease(models.Model):
@@ -175,26 +165,11 @@ class ProductRelease(models.Model):
 
     objects = ProductReleaseManager()
 
+    class Meta:
+        ordering = ['-release_date']
+
     def __unicode__(self):
         return self.title
-
-
-class Release(RNModel):
-    CHANNELS = ['release', 'esr', 'beta', 'aurora', 'nightly']
-    product = None
-    channel = None
-    version = None
-    slug = None
-    title = None
-    release_date = None
-    text = ''
-    is_public = True
-    bug_list = None
-    bug_search_url = None
-    system_requirements = None
-    created = None
-    modified = None
-    notes = None
 
     @cached_property
     def major_version(self):
@@ -258,13 +233,9 @@ class Release(RNModel):
         channel and major version with the highest minor version,
         or None if no such releases exist
         """
-        major_version_file_id = get_file_id(product, self.channel, self.major_version + '.*')
-        releases = glob(os.path.join(release_notes_path(), major_version_file_id + '.json'))
+        releases = ProductRelease.objects.product(product, self.channel).filter(version__startswith='%s.' % self.major_version)
         if releases:
-            releases = [get_release_from_file(fn) for fn in releases]
-            releases = [r for r in releases if r.is_public]
-            if releases:
-                return sorted(releases, reverse=True, key=attrgetter('version_obj'))[0]
+            return sorted(releases, reverse=True, key=attrgetter('version_obj'))[0]
 
         return None
 
@@ -277,142 +248,47 @@ class Release(RNModel):
             return self.equivalent_release_for_product('Firefox')
 
 
+@memoize(LONG_RN_CACHE_TIMEOUT)
 def get_release(product, version, channel=None):
-    channels = [channel] if channel else Release.CHANNELS
+    channels = [channel] if channel else ProductRelease.CHANNELS
     if product.lower() == 'firefox extended support release':
-        product = 'firefox'
         channels = ['esr']
     for channel in channels:
-        file_name = get_release_file_name(product, channel, version)
-        if not file_name:
+        try:
+            return ProductRelease.objects.product(product, channel, version).get()
+        except ProductRelease.DoesNotExist:
             continue
-
-        release = get_release_from_file(file_name)
-        if release is not None:
-            return release
-
-    raise ReleaseNotFound()
-
-
-def get_data_version():
-    """Add the etag from the repo to the cache keys.
-
-    This will ensure that the cache is invalidated when the repo is updated.
-    """
-    etag_key = 'releasenotes:repo:etag'
-    etag = cache.get(etag_key)
-    if not etag:
-        etag_file = os.path.join(release_notes_path(), '.latest-update-etag')
-        if os.path.exists(etag_file):
-            try:
-                with codecs.open(etag_file) as fh:
-                    etag = fh.read().strip()
-                    cache.set(etag_key, etag, 60)  # 1 min
-            except IOError:
-                etag = 'default'
-        else:
-            etag = 'default'
-
-    return etag
-
-
-def get_cache_key(key):
-    """Cache key returned will be a sha256 hash of the key and repo data version.
-
-    This ensures that we can use a long cache for the release files while still
-    getting fast invalidation when we check the small repo data version file
-    at most once per minute.
-    """
-    return sha256('%s:%s' % (get_data_version(), key)).hexdigest()
-
-
-def get_release_from_file(file_name):
-    cache_key = get_cache_key(file_name)
-    release = cache.get(cache_key)
-    if not release:
-        release = get_release_from_file_system(file_name)
-        if release:
-            cache.set(cache_key, release, LONG_RN_CACHE_TIMEOUT)
-
-    return release
-
-
-def get_release_from_file_system(file_name):
-    try:
-        with codecs.open(file_name, 'r', encoding='utf-8') as rel_fh:
-            return Release(json.load(rel_fh))
-    except Exception:
-        sentry_client.captureException()
-        return None
-
-
-def get_release_file_name(product, channel, version):
-    file_id = get_file_id(product, channel, version)
-    file_name = os.path.join(release_notes_path(), '{}.json'.format(file_id))
-    if os.path.exists(file_name):
-        return file_name
 
     return None
 
 
-def get_file_id(product, channel, version):
-    product = slugify(product)
-    channel = channel.lower()
-    if product == 'firefox-extended-support-release':
-        product = 'firefox'
-        channel = 'esr'
-    return '-'.join([product, version, channel])
-
-
 def get_release_or_404(version, product):
-    try:
-        release = get_release(product, version)
-    except ReleaseNotFound:
-        raise Http404
-
-    if not release.is_public:
+    release = get_release(product, version)
+    if release is None:
         raise Http404
 
     return release
 
 
-def get_all_releases(product, channel='release'):
-    file_prefix = get_file_id(product, channel, '*')
-    cache_key = get_cache_key('all:%s:%s' % (product, channel))
-    releases = cache.get(cache_key)
-    product_prefix = file_prefix.split('*')[0]
-    # ensure only files for the specific product are returned
-    # without this the file glob would match e.g. "firefox-for-android-56.0-release.json"
-    # when the glob was "firefox-*-release.json"
-    product_re = re.compile(r'%s\d' % product_prefix)
-    if not releases:
-        releases = glob(os.path.join(release_notes_path(), file_prefix + '.json'))
-        if releases:
-            releases = (get_release_from_file(r) for r in releases if product_re.search(r))
-            releases = sorted((r for r in releases if r.is_public),
-                              key=attrgetter('release_date'), reverse=True)
-            if releases:
-                cache.set(cache_key, releases, LONG_RN_CACHE_TIMEOUT)
-
-    return releases
+@memoize(LONG_RN_CACHE_TIMEOUT)
+def get_releases(product, channel, num_results=10):
+    return ProductRelease.objects.product(product, channel)[:num_results]
 
 
-def get_releases_or_404(product, channel):
-    releases = get_all_releases(product, channel)
+def get_releases_or_404(product, channel, num_results=10):
+    releases = get_releases(product, channel, num_results)
     if releases:
         return releases
 
     raise Http404
 
 
+@memoize(LONG_RN_CACHE_TIMEOUT)
 def get_latest_release(product, channel='release'):
-    cache_key = get_cache_key('latest:%s:%s' % (product, channel))
-    release = cache.get(cache_key)
-    if not release:
-        releases = get_all_releases(product, channel)
-        if releases:
-            release = releases[0]
-            cache.set(cache_key, release, LONG_RN_CACHE_TIMEOUT)
+    try:
+        release = ProductRelease.objects.product(product, channel)[0]
+    except IndexError:
+        release = None
 
     return release
 

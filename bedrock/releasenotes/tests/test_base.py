@@ -16,7 +16,7 @@ from pyquery import PyQuery as pq
 from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import views
-from bedrock.releasenotes.models import Release, ReleaseNotFound
+from bedrock.releasenotes.models import ProductRelease
 from bedrock.thunderbird.details import ThunderbirdDesktop
 
 
@@ -30,6 +30,7 @@ RELEASES_PATH = str(TESTS_PATH)
 @override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
 class TestReleaseViews(TestCase):
     def setUp(self):
+        ProductRelease.objects.refresh()
         caches['release-notes'].clear()
         self.activate('en-US')
         self.factory = RequestFactory()
@@ -55,7 +56,7 @@ class TestReleaseViews(TestCase):
         eq_(views.get_release_or_404('version', 'product'),
             get_release.return_value)
         get_release.assert_called_with('product', 'version')
-        get_release.side_effect = ReleaseNotFound
+        get_release.return_value = None
         with self.assertRaises(Http404):
             views.get_release_or_404('version', 'product')
 
@@ -82,8 +83,7 @@ class TestReleaseViews(TestCase):
         """
         mock_release = get_release_or_404.return_value
         mock_release.major_version = '34'
-        mock_release.notes.return_value = ([Release({}), Release({})],
-                                           [Release({}), Release({})])
+        mock_release.notes.return_value = []
 
         views.release_notes(self.request, '27.0')
         get_release_or_404.assert_called_with('27.0', 'Firefox')
@@ -165,9 +165,9 @@ class TestReleaseViews(TestCase):
     @patch('bedrock.releasenotes.models.get_release')
     def test_non_public_release(self, get_release):
         """
-        Should raise 404 if not release.is_public and not settings.DEV
+        Should raise 404 if release is not public and not settings.DEV
         """
-        get_release.return_value = Release({'is_public': False})
+        get_release.return_value = None
         with self.assertRaises(Http404):
             views.get_release_or_404('42', 'Firefox')
 
@@ -305,7 +305,7 @@ class TestNotesRedirects(TestCase):
         eq_(response['Location'], 'http://testserver/en-US' + url_to)
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox', version='22.0', channel='Release'))))
+           Mock(return_value=ProductRelease(product='Firefox', version='22.0', channel='Release')))
     def test_desktop_release_version(self):
         self._test('/firefox/notes/',
                    '/firefox/22.0/releasenotes/')
@@ -313,49 +313,49 @@ class TestNotesRedirects(TestCase):
                    '/firefox/22.0/releasenotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox', version='23.0beta', channel='Beta'))))
+           Mock(return_value=ProductRelease(product='Firefox', version='23.0beta', channel='Beta')))
     def test_desktop_beta_version(self):
         self._test('/firefox/beta/notes/',
                    '/firefox/23.0beta/releasenotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox', version='23.0beta', channel='Beta'))))
+           Mock(return_value=ProductRelease(product='Firefox', version='23.0beta', channel='Beta')))
     def test_desktop_developer_version(self):
         self._test('/firefox/developer/notes/',
                    '/firefox/23.0beta/releasenotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox', version='24.2.0', channel='ESR'))))
+           Mock(return_value=ProductRelease(product='Firefox', version='24.2.0', channel='ESR')))
     def test_desktop_esr_version(self):
         self._test('/firefox/organizations/notes/',
                    '/firefox/24.2.0/releasenotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox for Android', version='22.0', channel='Release'))))
+           Mock(return_value=ProductRelease(product='Firefox for Android', version='22.0', channel='Release')))
     def test_android_release_version(self):
         self._test('/firefox/android/notes/',
                    '/firefox/android/22.0/releasenotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox for Android', version='23.0beta', channel='Beta'))))
+           Mock(return_value=ProductRelease(product='Firefox for Android', version='23.0beta', channel='Beta')))
     def test_android_beta_version(self):
         self._test('/firefox/android/beta/notes/',
                    '/firefox/android/23.0beta/releasenotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox for Android', version='24.0a2', channel='Aurora'))))
+           Mock(return_value=ProductRelease(product='Firefox for Android', version='24.0a2', channel='Aurora')))
     def test_android_aurora_version(self):
         self._test('/firefox/android/aurora/notes/',
                    '/firefox/android/24.0a2/auroranotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox for iOS', version='1.4', channel='Release'))))
+           Mock(return_value=ProductRelease(product='Firefox for iOS', version='1.4', channel='Release')))
     def test_ios_release_version(self):
         self._test('/firefox/ios/notes/',
                    '/firefox/ios/1.4/releasenotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Thunderbird', version='22.0', channel='Release'))))
+           Mock(return_value=ProductRelease(product='Thunderbird', version='22.0', channel='Release')))
     def test_thunderbird_release_version(self):
         self._test('/thunderbird/notes/',
                    '/thunderbird/22.0/releasenotes/')
@@ -363,13 +363,13 @@ class TestNotesRedirects(TestCase):
                    '/thunderbird/22.0/releasenotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Thunderbird', version='41.0beta', channel='Beta'))))
+           Mock(return_value=ProductRelease(product='Thunderbird', version='41.0beta', channel='Beta')))
     def test_thunderbird_beta_version(self):
         self._test('/thunderbird/beta/notes/',
                    '/thunderbird/41.0beta/releasenotes/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Thunderbird', version='41.0beta', channel='Beta'))))
+           Mock(return_value=ProductRelease(product='Thunderbird', version='41.0beta', channel='Beta')))
     def test_thunderbird_earlybird_version(self):
         self._test('/thunderbird/earlybird/notes/',
                    '/thunderbird/41.0beta/releasenotes/')
@@ -384,31 +384,31 @@ class TestSysreqRedirect(TestCase):
         eq_(response['Location'], 'http://testserver/en-US' + url_to)
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox', version='22.0', channel='Release'))))
+           Mock(return_value=ProductRelease(product='Firefox', version='22.0', channel='Release')))
     def test_desktop_release_version(self):
         self._test('/firefox/system-requirements/',
                    '/firefox/22.0/system-requirements/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox', version='23.0beta', channel='Beta'))))
+           Mock(return_value=ProductRelease(product='Firefox', version='23.0beta', channel='Beta')))
     def test_desktop_beta_version(self):
         self._test('/firefox/beta/system-requirements/',
                    '/firefox/23.0beta/system-requirements/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox', version='23.0beta', channel='Beta'))))
+           Mock(return_value=ProductRelease(product='Firefox', version='23.0beta', channel='Beta')))
     def test_desktop_developer_version(self):
         self._test('/firefox/developer/system-requirements/',
                    '/firefox/23.0beta/system-requirements/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Firefox', version='24.2.0', channel='ESR'))))
+           Mock(return_value=ProductRelease(product='Firefox', version='24.2.0', channel='ESR')))
     def test_desktop_esr_version(self):
         self._test('/firefox/organizations/system-requirements/',
                    '/firefox/24.2.0/system-requirements/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Thunderbird', version='22.0', channel='Release'))))
+           Mock(return_value=ProductRelease(product='Thunderbird', version='22.0', channel='Release')))
     def test_thunderbird_release_version(self):
         self._test('/thunderbird/system-requirements/',
                    '/thunderbird/22.0/system-requirements/')
@@ -416,7 +416,7 @@ class TestSysreqRedirect(TestCase):
                    '/thunderbird/22.0/system-requirements/')
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=Release(dict(product='Thunderbird', version='41.0beta', channel='Beta'))))
+           Mock(return_value=ProductRelease(product='Thunderbird', version='41.0beta', channel='Beta')))
     def test_thunderbird_beta_version(self):
         self._test('/thunderbird/beta/system-requirements/',
                    '/thunderbird/41.0beta/system-requirements/')

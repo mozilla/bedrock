@@ -20,11 +20,11 @@ class SimpleDictCache(LocMemCache):
     def get(self, key, default=None, version=None):
         key = self.make_key(key, version=version)
         self.validate_key(key)
-        value = None
+        value = default
         with self._lock.reader():
             if not self._has_expired(key):
                 value = self._cache[key]
-        if value is not None:
+        if value is not default:
             return value
 
         with self._lock.writer():
