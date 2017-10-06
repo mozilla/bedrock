@@ -98,6 +98,10 @@ def schedule_database_jobs():
     def update_blog_feeds():
         call_command('update_wordpress --database bedrock')
 
+    @scheduled_job('interval', minutes=5)
+    def update_release_notes_data():
+        call_command('update_release_notes_data --quiet')
+
 
 def schedul_l10n_jobs():
     @scheduled_job('interval', minutes=10)

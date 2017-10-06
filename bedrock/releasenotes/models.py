@@ -8,12 +8,14 @@ from operator import attrgetter
 
 from django.conf import settings
 from django.core.cache import caches
+from django.db import models, transaction
 from django.http import Http404
 from django.utils.dateparse import parse_date, parse_datetime
 from django.utils.functional import cached_property
 from django.utils.text import slugify
 
 import markdown
+from django_extensions.db.fields.json import JSONField
 from product_details.version_compare import Version
 from raven.contrib.django.raven_compat.models import client as sentry_client
 
@@ -88,6 +90,93 @@ class Note(RNModel):
     sort_num = None
     created = None
     modified = None
+
+
+class MarkdownField(models.TextField):
+    """Field that takes Markdown text as input and saves HTML to the database"""
+    def pre_save(self, model_instance, add):
+        value = super(MarkdownField, self).pre_save(model_instance, add)
+        value = process_markdown(value)
+        setattr(model_instance, self.attname, value)
+        return value
+
+
+class NotesField(JSONField):
+    """Field that returns a list of Note objects instead of dicts"""
+    def from_db_value(self, value, expression, connection, context):
+        if not value:
+            return value
+
+        return process_notes(self.to_python(value))
+
+
+class ProductReleaseQuerySet(models.QuerySet):
+    def public(self):
+        if settings.DEV:
+            return self.all()
+
+        return self.filter(is_public=True)
+
+    def product(self, product_name, channel_name=None):
+        q = self.filter(product__iexact=product_name)
+        if channel_name:
+            q = q.filter(channel__iexact=channel_name)
+
+        return q
+
+
+class ProductReleaseManager(models.Manager):
+    def get_queryset(self):
+        return ProductReleaseQuerySet(self.model, using=self._db)
+
+    def public(self):
+        return self.get_queryset().public()
+
+    def product(self, product_name, channel_name=None):
+        return self.get_queryset().product(product_name, channel_name)
+
+    def refresh(self):
+        count = 0
+        with transaction.atomic(using=self.db):
+            self.all().delete()
+            releases = glob(os.path.join(release_notes_path(), '*.json'))
+            for release_file in releases:
+                with codecs.open(release_file, 'r', encoding='utf-8') as rel_fh:
+                    data = json.load(rel_fh)
+                    if data['product'] == 'Firefox Extended Support Release':
+                        data['product'] = 'Firefox'
+                        data['channel'] = 'ESR'
+                    self.create(**data)
+                    count += 1
+
+        return count
+
+
+class ProductRelease(models.Model):
+    CHANNELS = ('Nightly', 'Aurora', 'Beta', 'Release', 'ESR')
+    PRODUCTS = ('Firefox', 'Firefox for Android',
+                'Firefox Extended Support Release', 'Firefox OS',
+                'Thunderbird', 'Firefox for iOS')
+
+    product = models.CharField(max_length=50)
+    channel = models.CharField(max_length=50)
+    version = models.CharField(max_length=25)
+    slug = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    release_date = models.DateField()
+    text = MarkdownField(blank=True)
+    is_public = models.BooleanField(default=False)
+    bug_list = models.TextField(blank=True)
+    bug_search_url = models.CharField(max_length=2000, blank=True)
+    system_requirements = MarkdownField(blank=True)
+    created = models.DateTimeField()
+    modified = models.DateTimeField()
+    notes = NotesField(blank=True)
+
+    objects = ProductReleaseManager()
+
+    def __unicode__(self):
+        return self.title
 
 
 class Release(RNModel):
