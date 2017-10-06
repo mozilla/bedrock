@@ -654,6 +654,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/home.scss',
+            'css/mozorg/home/fx-quantum-promo.scss',
         ),
         'output_filename': 'css/home-bundle.css',
     },
@@ -661,6 +662,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/home-b.scss',
+            'css/mozorg/home/fx-quantum-promo.scss',
         ),
         'output_filename': 'css/home-b-bundle.css',
     },
