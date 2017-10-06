@@ -44,7 +44,7 @@ $light-gray-background: #f2f2f2;
 
     h1 {
         display: inline-block;
-        @include font-size-level3
+        @include font-size-level4;
 
         @media #{$mq-desktop} {
             margin: 20px 0 20px;
@@ -70,9 +70,9 @@ $light-gray-background: #f2f2f2;
             }
 
             @media #{$mq-desktop} {
-                @include background-size(60px 63px);
-                width: 60px;
-                height: 63px;
+                @include background-size(50px 53px);
+                width: 50px;
+                height: 53px;
                 margin: 0 10px 0 0;
             }
         }
@@ -103,16 +103,13 @@ $light-gray-background: #f2f2f2;
 .privacy-lead-in {
     h2 {
         padding: 20px 0;
-        @include font-size-level3
-        font-weight: bold;
+        @include font-size-level3;
+        font-weight: normal;
         text-align: left;
-
-        @media #{$mq-tablet} {
-            font-weight: normal;
-        }
+        line-height: 1.3;
 
         @media #{$mq-desktop} {
-            margin-bottom: 40px;
+            margin-bottom: 10px;
             text-align: center;
         }
     }
@@ -129,31 +126,25 @@ $light-gray-background: #f2f2f2;
 /* POLICY MAIN CONTENT */
 main {
     margin: 0 auto;
-    padding-bottom: (20px * 3);
+    padding-bottom: 60px;
     width: 94%;
 
     @media #{$mq-desktop} {
-        width: 800px;
-        max-width: 800px;
+        max-width: 600px;
     }
 
     h2 {
         margin: 0;
-        margin-top: (20px * 3);
+        margin-top: 60px;
         @include font-size-level3;
         font-weight: normal;
     }
 
     h3 {
-        margin: (20px * 2) 0 20px;
+        margin: 40px 0 32px;
         @include font-size-level4;
-        font-weight: normal;
 
         @media #{$mq-tablet} {
-            font-weight: bold;
-        }
-
-        @media #{$mq-desktop} {
             font-weight: normal;
         }
     }
@@ -180,14 +171,22 @@ main {
 
 /* ADDITIONAL STYLES WHEN JS IS ENABLED */
 main.interactive-widget {
+    header {
+        position: relative;
+    }
+
     h2 {
         display: inline-block;
-        position: relative;
-        max-width: 320px;
+        max-width: 220px;
+
+         @media #{$mq-phone-wide} {
+             margin-bottom: 32px;
+             max-width: 550px;
+         }
 
          @media #{$mq-tablet} {
              margin-bottom: 32px;
-             max-width: 630px;
+             max-width: 500px;
          }
     }
 
@@ -200,10 +199,12 @@ main.interactive-widget {
     }
 
     h3 {
-        margin: 16px 0;
+        margin: 16px 0 32px;
         cursor: pointer;
 
         &:after {
+            position: relative;
+            top: 10px;
             display: inline-block;
             float: right;
             content: '';
@@ -224,18 +225,19 @@ main.interactive-widget {
     }
 
     .toggle {
+        position: absolute;
+        right: 0;
+        bottom: 0;
         display: inline-block;
-        float: right;
         background: none;
-        margin-top: 45px;
-        padding: 10px;
+        padding: 5px;
         border: 0;
-        border-bottom: 2px solid $color-text-secondary;
+        border-bottom: 3px solid $color-text-secondary;
         @include font-size(14px);
         cursor: pointer;
 
-        @media #{$mq-tablet} {
-            margin-top: 65px;
+        @media #{$mq-phone-wide} {
+            bottom: 20px;
         }
     }
 
@@ -257,10 +259,11 @@ main.interactive-widget {
 
         button {
             display: block;
-            background-color: $color-button-light;
+            background-color: #c7c7c9;
             margin: 10px auto;
-            padding: 5px 10px;
-            border: 1px solid $color-text-secondary;
+            padding: 5px 20px;
+            border: 1px solid #c7c7c9;
+            border-radius: 2px;
             @include font-size(14px);
             cursor: pointer;
 
@@ -268,7 +271,7 @@ main.interactive-widget {
                 display: inline-block;
                 position: absolute;
                 top: 8px;
-                right: 10px;
+                right: 20px;
                 margin: 0;
             }
         }
@@ -277,18 +280,17 @@ main.interactive-widget {
 
 /* POLICY FOOTNOTE */
 .privacy-footnote {
-    padding: (20px * 3) 0 20px;
+    padding: 60px 0 20px;
 }
 
 /* UTILITIES */
 .content-girdle {
     margin: 0 auto;
-    padding-bottom: (20px * 3);
+    padding-bottom: 60px;
     width: 94%;
 
     @media #{$mq-desktop} {
-        width: 800px;
-        max-width: 800px;
+        max-width: 600px;
     }
 }
 
@@ -321,7 +323,8 @@ html[dir="rtl"]{
     main.interactive-widget {
 
         .toggle {
-            float: left;
+            right: auto;
+            left: 0;
         }
 
         @media #{$mq-desktop} {
