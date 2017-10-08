@@ -548,6 +548,6 @@ redirectpatterns = (
     redirect(r'^firefox/new/.+', '/firefox/new/'),
     redirect(r'^firefox/38.0.3/releasenotes/$', '/firefox/38.0.5/releasenotes/'),
     redirect(r'^firefox/default\.htm', '/firefox/'),
-    redirect(r'^firefox/android/\d', '/firefox/android/'),
+    redirect(r'^firefox/android/(?P<version>\d+\.\d+(?:\.\d+)?)$', '/firefox/android/{version}/releasenotes/'),
     redirect(r'^firefox/stats/', '/firefox/'),
 )

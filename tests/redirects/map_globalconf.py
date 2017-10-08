@@ -1177,6 +1177,6 @@ URLS = flatten((
     url_test('/firefox/{new,developer}/)', '/firefox/{new,developer}/'),
     url_test('/firefox/default.htm', '/firefox/'),
     url_test('/firefox/fx/dude', '/firefox/'),
-    url_test('/firefox/android/45.0', '/firefox/android/'),
+    url_test('/firefox/android/45.0', '/firefox/android/45.0/releasenotes/'),
     url_test('/firefox/stats/', '/firefox/'),
 ))
