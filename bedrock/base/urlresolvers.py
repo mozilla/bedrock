@@ -59,10 +59,13 @@ def _get_language_map():
 FULL_LANGUAGE_MAP = lazy(_get_language_map, dict)()
 
 
-def find_supported(test):
-    return [settings.LANGUAGE_URL_MAP[x] for
-            x in settings.LANGUAGE_URL_MAP if
-            x.split('-', 1)[0] == test.lower().split('-', 1)[0]]
+def find_supported(lang):
+    lang = lang.lower()
+    if lang in FULL_LANGUAGE_MAP:
+        return FULL_LANGUAGE_MAP[lang]
+    pre = lang.split('-')[0]
+    if pre in FULL_LANGUAGE_MAP:
+        return FULL_LANGUAGE_MAP[pre]
 
 
 def split_path(path_):
@@ -76,15 +79,11 @@ def split_path(path_):
     # Use partition instead of split since it always returns 3 parts
     first, _, rest = path.partition('/')
 
-    lang = first.lower()
-    if lang in FULL_LANGUAGE_MAP:
-        return FULL_LANGUAGE_MAP[lang], rest
+    supported = find_supported(first)
+    if supported:
+        return supported, rest
     else:
-        supported = find_supported(first)
-        if len(supported):
-            return supported[0], rest
-        else:
-            return '', path
+        return '', path
 
 
 class Prefixer(object):
@@ -115,12 +114,9 @@ class Prefixer(object):
         """Given an Accept-Language header, return the best-matching language."""
         ranked = parse_accept_lang_header(accept_lang)
         for lang, _ in ranked:
-            lang = lang.lower()
-            if lang in FULL_LANGUAGE_MAP:
-                return FULL_LANGUAGE_MAP[lang]
-            pre = lang.split('-')[0]
-            if pre in FULL_LANGUAGE_MAP:
-                return FULL_LANGUAGE_MAP[pre]
+            supported = find_supported(lang)
+            if supported:
+                return supported
 
     def fix(self, path):
         path = path.lstrip('/')
