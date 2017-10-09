@@ -106,6 +106,12 @@
             th, td {
                 padding: 10px 10px 10px 0;
             }
+            th {
+                font-weight: normal;
+                strong, span {
+                    display: block;
+                }
+            }
         }
         .unavailable {
             padding: 10px;
@@ -118,20 +124,23 @@
             a {
                 display: block;
                 padding: 10px 10px 10px 45px;
-                background: transparent url('/media/img/firefox/all/download-icons-desktop.png') left center no-repeat;
+                background: transparent url('/media/img/firefox/all/download-icons-desktop.png') left top no-repeat;
             }
 
             &.win64 a {
-                background-position: -300px 50%;
+                background-position: 0 -40px;
+            }
+            &.winsha1 a {
+                background-position: 0 -80px;
             }
             &.linux a {
-                background-position: -600px 50%;
+                background-position: 0 -160px;
             }
             &.linux64 a {
-                background-position: -900px 50%;
+                background-position: 0 -200px;
             }
             &.osx a {
-                background-position: -1200px 50%;
+                background-position: 0 -120px;
             }
             &[class*="android"] a {
                 .at2x('/media/img/firefox/all/download-icons-android.png', 40px, 120px);
@@ -243,25 +252,14 @@
             }
         }
     }
-
-    #main-content table thead th:not([colspan]) {
-        text-align: center;
-    }
-
 }
 
 /* Wide mobile layout: 480px; */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
     #main-content table tbody {
         th {
-            width: 50%;
-        }
-        td[lang] {
             float: left;
             width: 50%;
-        }
-        td.download {
-            margin-top: -18px;
         }
         tr:target th + td {
             padding-left: 10px;
@@ -335,16 +333,12 @@
             tr {
                 overflow: hidden;
                 border-top: 1px solid rgba(0, 0, 0, 0.2);
+                padding: 10px 0;
             }
             tbody {
                 th, td {
                     border: 0;
-                }
-                th {
-                    padding: 5px 0 0;
-                }
-                td {
-                    padding: 0 0 5px;
+                    padding: 0;
                 }
                 tr:target th + td {
                     padding-left: 10px;
