@@ -74,11 +74,17 @@
 
           <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/hero-debugger-ani.gif') }}" alt="">
           <p>
-          {% trans %}
-            The new Firefox DevTools are powerful, flexible, and best of all,
-            hackable. This includes a best-in-class JavaScript debugger, which
-            can target multiple browsers and is built in React and Ember.
-          {% endtrans %}
+          {% if l10n_has_tag('ember_reference_fix') %}
+            {% trans %}
+            The new Firefox DevTools are powerful, flexible, and best of all, hackable. This includes a best-in-class
+            JavaScript debugger, which can target multiple browsers and is built in React and Ember.
+            {% endtrans %}
+          {% else %}
+            {% trans %}
+            The new Firefox DevTools are powerful, flexible, and best of all, hackable. This includes a best-in-class
+            JavaScript debugger, which can target multiple browsers and is built in React and Redux.
+            {% endtrans %}
+          {% endif %}
         </div>
       </div>
 
