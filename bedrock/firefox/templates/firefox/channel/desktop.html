@@ -50,7 +50,7 @@
     <div class="container">
       <ul>
         <li><a href="{{ firefox_url('desktop', 'notes', 'beta') }}">{{_('Release Notes')}}</a></li>
-        <li><a href="{{ firefox_url('desktop', 'all', 'beta') }}">{{_('All Languages and Builds (incl. Win 64)')}}</a></li>
+        <li><a href="{{ firefox_url('desktop', 'all', 'beta') }}">{% if l10n_has_tag('firefox_channel_bug1387466') %}{{_('All Languages and Platforms')}}{% else %}{{_('All Languages and Builds')}}{% endif %}</a></li>
       </ul>
     </div>
   </footer>
@@ -75,7 +75,7 @@
       <ul>
         <li><a href="{{ firefox_url('desktop', 'notes', 'developer') }}">{{_('Release Notes')}}</a></li>
         <li><a href="{{ url('firefox.developer') }}">{{_('Learn more')}}</a></li>
-        <li><a href="{{ firefox_url('desktop', 'all', 'developer') }}">{{_('All Languages and Builds (incl. Win 64)')}}</a></li>
+        <li><a href="{{ firefox_url('desktop', 'all', 'developer') }}">{% if l10n_has_tag('firefox_channel_bug1387466') %}{{_('All Languages and Platforms')}}{% else %}{{_('All Languages and Builds')}}{% endif %}</a></li>
       </ul>
     </div>
   </footer>
@@ -104,7 +104,7 @@
       <ul>
         <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{_('Release Notes')}}</a></li>
         <li><a rel="external" href="https://blog.nightly.mozilla.org/">{{_('Nightly Blog')}}</a></li>
-        <li><a href="{{ firefox_url('desktop', 'all', 'nightly') }}">{{_('All Languages and Builds (incl. Win 64)')}}</a></li>
+        <li><a href="{{ firefox_url('desktop', 'all', 'nightly') }}">{% if l10n_has_tag('firefox_channel_bug1387466') %}{{_('All Languages and Platforms')}}{% else %}{{_('All Languages and Builds')}}{% endif %}</a></li>
       </ul>
     </div>
   </footer>
