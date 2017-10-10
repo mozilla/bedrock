@@ -668,44 +668,88 @@ def ios_testflight(request):
                              {'newsletter_form': newsletter_form})
 
 
+def features(request):
+    if switch('firefox-57-release'):
+        template = 'firefox/features/quantum/index.html'
+    else:
+        template = 'firefox/features/index.html'
+
+    return l10n_utils.render(request, template)
+
+
 class FeaturesPrivateBrowsingView(BlogPostsView):
-    template_name = 'firefox/features/private-browsing.html'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['privacy', 'security', 'featured']
 
+    def get_template_names(self):
+        if switch('firefox-57-release'):
+            template = 'firefox/features/quantum/private-browsing.html'
+        else:
+            template = 'firefox/features/private-browsing.html'
+
+        return [template]
+
 
 class FeaturesFastView(BlogPostsView):
-    template_name = 'firefox/features/fast.html'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['fastest', 'featured']
 
+    def get_template_names(self):
+        if switch('firefox-57-release'):
+            template = 'firefox/features/quantum/fast.html'
+        else:
+            template = 'firefox/features/fast.html'
+
+        return [template]
+
 
 class FeaturesIndependentView(BlogPostsView):
-    template_name = 'firefox/features/independent.html'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['browser', 'featured']
 
+    def get_template_names(self):
+        if switch('firefox-57-release'):
+            template = 'firefox/features/quantum/independent.html'
+        else:
+            template = 'firefox/features/independent.html'
+
+        return [template]
+
 
 class FeaturesMemoryView(BlogPostsView):
-    template_name = 'firefox/features/memory.html'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['memory', 'featured']
 
+    def get_template_names(self):
+        if switch('firefox-57-release'):
+            template = 'firefox/features/quantum/memory.html'
+        else:
+            template = 'firefox/features/memory.html'
+
+        return [template]
+
 
 class FeaturesBookmarksView(BlogPostsView):
-    template_name = 'firefox/features/bookmarks.html'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['modern', 'privacy', 'featured']
+
+    def get_template_names(self):
+        if switch('firefox-57-release'):
+            template = 'firefox/features/quantum/bookmarks.html'
+        else:
+            template = 'firefox/features/bookmarks.html'
+
+        return [template]
 
 
 class FeaturesPasswordManagerView(BlogPostsView):
@@ -713,7 +757,23 @@ class FeaturesPasswordManagerView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['modern', 'privacy', 'featured']
-    template_name = 'firefox/features/password-manager.html'
+
+    def get_template_names(self):
+        if switch('firefox-57-release'):
+            template = 'firefox/features/quantum/password-manager.html'
+        else:
+            template = 'firefox/features/password-manager.html'
+
+        return [template]
+
+
+def send_tabs(request):
+    if switch('firefox-57-release'):
+        template = 'firefox/features/quantum/send-tabs.html'
+    else:
+        template = 'firefox/features/send-tabs.html'
+
+    return l10n_utils.render(request, template)
 
 
 class FirefoxProductDesktopView(BlogPostsView):
@@ -768,11 +828,9 @@ def FirefoxProductDeveloperView(request):
 
 
 def sync_page(request):
-    locale = l10n_utils.get_locale(request)
-
-    if lang_file_is_active('firefox/features/sync', locale):
-        template = 'firefox/features/sync.html'
+    if switch('firefox-57-release'):
+        template = 'firefox/features/quantum/sync.html'
     else:
-        template = 'firefox/features/sync-old.html'
+        template = 'firefox/features/sync.html'
 
     return l10n_utils.render(request, template)

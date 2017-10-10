@@ -1,0 +1,156 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+
+{% add_lang_files "firefox/shared" "firefox/features/send-tabs" %}
+
+{% extends "firefox/features/quantum/base.html" %}
+
+{% block page_title %}
+  {{ _('Take your browser tabs to go') }} | {{ _('Firefox') }}
+{% endblock %}
+
+{% block page_desc %}
+  {{ _('Send your desktop browser tabs to phones, tablets and more with your Firefox Account.') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail-quantum' %}
+  {% stylesheet 'firefox-features-sync-quantum' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-send-tabs{% endblock %}
+
+{% block body_class %}
+  {{ super() }}
+  state-default
+{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Take your tabs to go') }}</span></h1>
+  {% if l10n_has_tag('send-tabs-update-08-2017') %}
+    <p class="tagline show-not-fx show-fx-31-signed-out show-fx-30-older show-default">{{ _('Share your open tabs seamlessly across mobile, desktop or tablet with Firefox.') }}</p>
+    <p class="tagline show-fx-31-signed-in">{{ _('View your open tabs across mobile and tablet devices by signing in to your Firefox Account.') }}</p>
+    <p class="tagline show-fx-android show-fx-ios">{{ _('View your open tabs across desktop and tablet too. Just sign in or create a Firefox account.') }}</p>
+  {% else %}
+    <p class="tagline show-fx-30-older warning">{{ _('It looks like you’re running an older version of Firefox.') }}</p>
+    <p class="tagline show-fx-31-signed-in">{{ _('You’re all set to start sending tabs.') }}</p>
+    <p class="tagline show-fx-31-signed-out show-fx-android show-fx-ios">{{ _('Sign in to your Firefox account to send tabs between devices.') }}</p>
+    <p class="tagline show-not-fx show-default">{{ _('Get Firefox on your devices to get started. Then, sign into your Firefox Account to share tabs.') }}</p>
+  {% endif %}
+{% endblock %}
+
+{% block features_header_download %}
+{% if l10n_has_tag('send-tabs-update-08-2017') %}
+  <div class="show-not-fx show-default">
+    {{ download_firefox(dom_id='features-header-download', button_color='button quantum', download_location='primary cta') }}
+  </div>
+  <div class="show-fx-31-signed-out">
+    <button class="button quantum-hollow" data-button-name="Create account" data-cta-position="Primary" id="cta-sync">
+      {{ _('Create account') }}
+    </button>
+  </div>
+  <div class="show-fx-31-signed-in">
+    <p>{{ _('Get the app') }}</p>
+    <ul class="primary-buttons">
+      <li>
+        {{ google_play_button(id='cta-android', anchor_attributes={'data-download-location': 'primary cta'}) }}
+      </li>
+      <li>
+        <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="primary cta" id="cta-ios">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="show-fx-30-older">
+    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-send-tabs-page" class="button quantum-hollow" data-link-type="link" data-link-name="Update your Firefox" id="cta-update">
+      {{ _('Update your Firefox') }}
+    </a>
+  </div>
+{% else %}
+  <div class="show-fx-31-signed-in">
+    <ul class="primary-buttons">
+      <li>
+        {{ google_play_button(id='cta-android', anchor_attributes={'data-download-location': 'other'}) }}
+      </li>
+      <li>
+        <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other" id="cta-ios">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+        </a>
+      </li>
+    </ul>
+
+    <p class="button-footer">
+      <a href="https://support.mozilla.org/kb/how-do-i-set-up-firefox-sync" class="ga-link" data-interaction="outbound link click">
+        {{ _('Need help?') }}
+      </a>
+    </p>
+  </div>
+
+  <div class="show-fx-31-signed-out">
+    <button class="button quantum-hollow" data-button-name="Get started with Sync" data-cta-position="Primary" id="cta-sync">
+      {{ _('Get started with Sync') }}
+    </button>
+  </div>
+
+  <div class="show-fx-30-older">
+    <a href="https://support.mozilla.org/kb/update-firefox-latest-version" class="button quantum-hollow" data-interaction="button click" data-element-action="Sync CTA" id="cta-update">
+      {{ _('Update your Firefox') }}
+    </a>
+  </div>
+
+  <div class="show-not-fx">
+    {{ download_firefox(button_color='quantum', download_location='other') }}
+  </div>
+{% endif %}
+  <div class="show-fx-android">
+    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-send-tabs-page" class="button quantum-hollow" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
+  </div>
+  <div class="show-fx-ios">
+      <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-send-tabs-page" class="button quantum-hollow" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
+  </div>
+{% endblock %}
+
+{% block features_list %}
+<section class="key-features-section main">
+  <div class="content">
+    <section class="key-feature send-tabs-feature-1">
+      <div class="key-feature-content">
+        <h2>{{ _('Free up your inbox') }}</h2>
+        <p>
+          {{ _('Still email links to yourself? Send tabs between devices instead.') }}
+        </p>
+      </div>
+    </section>
+
+    <section class="key-feature send-tabs-feature-2">
+      <div class="key-feature-content">
+        {# L10n: 'Device hop' is a casual term for moving from one device to another, e.g. from a phone to a desktop computer. #}
+        <h2>{{ _('Device hop like a pro') }}</h2>
+        <p>
+          {{ _('Start browsing in one place, pick up somewhere else.') }}
+        </p>
+      </div>
+    </section>
+
+    <section class="key-feature send-tabs-feature-3">
+      <div class="key-feature-content">
+        <h2>{{ _('Share without a care') }}</h2>
+        <p>
+          {{ _('Your data is secure with a Firefox Account.') }}
+        </p>
+      </div>
+    </section>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {% javascript 'firefox-features-sync' %}
+{% endblock %}

@@ -307,6 +307,35 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-features-sync-bundle.css',
     },
+    # begin FEATURES QUANTUM UPDATE
+    'firefox-features-hub-common-quantum': {
+        'source_filenames': (
+            'css/firefox/features/quantum/common.scss',
+        ),
+        'output_filename': 'css/firefox-features-hub-common-quantum-bundle.css',
+    },
+    'firefox-features-index-quantum': {
+        'source_filenames': (
+            'css/firefox/features/quantum/index.scss',
+        ),
+        'output_filename': 'css/firefox-features-index-quantum-bundle.css',
+    },
+    'firefox-features-hub-detail-quantum': {
+        'source_filenames': (
+            'css/firefox/features/quantum/detail.scss',
+        ),
+        'output_filename': 'css/firefox-features-hub-detail-quantum-bundle.css',
+    },
+    # This bundle is currently used on both /features/sync & /features/send-tabs
+    # because they happen to share everything. If/when divergence happens,
+    # send-tabs should get it's own .scss file.
+    'firefox-features-sync-quantum': {
+        'source_filenames': (
+            'css/firefox/features/quantum/sync.scss',
+        ),
+        'output_filename': 'css/firefox-features-sync-quantum-bundle.css',
+    },
+    # end FEATURES QUANTUM UPDATE
     'firefox-interest-dashboard': {
         'source_filenames': (
             'css/firefox/family-nav.less',

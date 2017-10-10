@@ -5,9 +5,9 @@
 @import '../../../pebbles/includes/lib';
 @import '../../../pebbles/components/modal';
 @import '../../../hubs/sections';
-@import 'buttons';
+@import '../../../quantum/buttons';
+@import '../../../quantum/newsletter';
 @import 'other-platforms';
-@import 'newsletter';
 
 $color-quantum-blue: #0a84ff;
 
@@ -245,4 +245,25 @@ html[dir="rtl"].show-refresh {
     }
 }
 
+/* -------------------------------------------------------------------------- */
+// Newsletter
 
+#newsletter-subscribe {
+    display: none;
+
+    @media #{$mq-tablet} {
+        display: none;
+    }
+}
+
+html.firefox-latest,
+html.firefox-pre-release {
+
+    #newsletter-subscribe {
+        display: block;
+
+        @media #{$mq-tablet} {
+            display: grid;
+        }
+    }
+}

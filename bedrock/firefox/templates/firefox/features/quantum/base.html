@@ -1,0 +1,66 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/shared" %}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block optimizely %}
+  {% if switch('firefox-features-optimizely', ['en-US']) %}
+    {% include 'includes/optimizely.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-features-hub-common-quantum' %}
+{% endblock %}
+
+{% block content %}
+  {% include 'firefox/includes/hub/sub-nav.html' %}
+
+  <main role="main">
+
+  {% block features_header %}
+    <header class="main-header" data-scroll-tracking="Main Header">
+      <div class="content">
+        <div class="header-content">
+          {% block features_header_content %}{% endblock %}
+          <div class="header-download">
+          {% block features_header_download %}
+            {{ download_firefox(dom_id='features-header-download', button_color='button quantum', download_location='primary cta') }}
+          {% endblock %}
+          </div>{#-- /.header-download --#}
+        </div>{#-- /.header-content --#}
+      </div>{#-- /.content --#}
+    </header>
+  {% endblock %}
+
+  {% block features_list %}{% endblock %}
+
+  {% block news %}
+    {% with campaign='fx-content-hub' %}
+      {% include 'includes/news-feed.html' %}
+    {% endwith %}
+  {% endblock %}
+
+  <aside class="newsletter-container">
+    <div class="content">
+      <div id="newsletter-subscribe">
+        <div class="newsletter-title">
+          <h3>{{ _('Hungry for more?') }}</h3>
+          <p class="tagline">{{ _('Get the latest &amp; greatest from Firefox delivered straight to your inbox.') }}</p>
+        </div>
+        <div class="newsletter-form-content">
+          {{ email_newsletter_form(include_title=False, button_class='quantum-hollow', spinner_color='#fff') }}
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox-features-hub' %}
+{% endblock %}

@@ -1,0 +1,75 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/shared" "firefox/features/private-browsing" %}
+
+{% extends "firefox/features/quantum/base.html" %}
+
+{% block page_title %}{{ _('Private Browser with extra tracking protection') }} | {{ _('Download Firefox') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox protects your online privacy and blocks trackers that follow you around the web.') }}{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/features/page-image-private.jpg') }}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail-quantum' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-private{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Firefox: More protection. Less worry.') }}</span></h1>
+  <p class="tagline">
+  {% trans %}
+    We’re obsessed with protecting your privacy. That’s why we’ve made Firefox Private
+    Browsing more powerful than the others.
+  {% endtrans %}
+  </p>
+{% endblock %}
+
+{% block features_list %}
+<section class="key-features-section main">
+  <div class="content">
+    <section class="key-feature private-browsing-feature-1">
+      <div class="key-feature-content">
+        <h2>{{ _('Browse without a trace') }}</h2>
+        <p>
+        {% trans %}
+          Sharing is caring, but that should be your call. Firefox Private Browsing
+          automatically erases your online info like passwords, cookies and history
+          from your computer. So that when you close out, you leave no trace.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+    <section class="key-feature private-browsing-feature-2">
+      <div class="key-feature-content">
+        <h2>{{ _('Catch those hidden trackers') }}</h2>
+        <p>
+        {% trans %}
+          Some websites and ads attach hidden trackers that collect your browsing info
+          long after you’ve left. Only Firefox Private Browsing has tracking protection
+          to block them automatically.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+    <section class="key-feature private-browsing-feature-3">
+      <div class="key-feature-content">
+        <h2>{{ _('Shake off tracking weight') }}</h2>
+        <p>
+        {% trans %}
+          Not only do trackers collect info, they can weigh down your browsing speeds.
+          Only Firefox Private Browsing blocks ads with hidden trackers, so you can drop
+          the baggage and browse freely.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}

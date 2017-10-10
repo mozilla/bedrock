@@ -1,0 +1,143 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import 'lib';
+
+
+/* -------------------------------------------------------------------------- */
+// Key features sections
+
+.key-features-section {
+    background: #fff;
+
+    h2 {
+        @include font-size-level3;
+        color: $color-quantum-blue;
+        margin-bottom: 20px;
+        padding-top: 40px;
+        position: relative;
+
+        &:before {
+            background: $color-quantum-blue;
+            border-radius: 5px;
+            content: '';
+            height: 5px;
+            left: 50%;
+            margin-left: -65px;
+            position: absolute;
+            top: 0;
+            width: 130px;
+        }
+    }
+
+    .key-feature {
+        background-position: top center;
+        background-repeat: no-repeat;
+        margin-top: 40px;
+        text-align: center;
+
+        a:link,
+        a:visited {
+            color: $color-quantum-blue;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: $color-quantum-blue;
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        h2:before {
+            left: 0;
+            margin-left: 0;
+        }
+
+        .key-feature {
+            @include clearfix;
+            background-position: top right;
+            margin: 40px 0 120px;
+            text-align: left;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .key-feature-content {
+                width: 45%;
+
+                p {
+                    max-width: 24em;
+                }
+            }
+
+            &:nth-child(even) {
+                background-position: top left;
+
+                .key-feature-content {
+                    float: right;
+                    text-align: right;
+
+                    h2:before {
+                        left: auto;
+                        right: 0;
+                    }
+
+                    p {
+                        float: right;
+                    }
+                }
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 60px 0 0;
+    }
+
+    @media #{$mq-desktop-wide} {
+        .key-feature {
+            background-position: top right 160px;
+
+            &:nth-child(even) {
+                background-position: top left 160px;
+            }
+        }
+    }
+}
+
+html[dir="rtl"] .key-features-section .key-feature {
+
+    @media #{$mq-tablet} {
+        background-position: top left;
+        text-align: right;
+
+        .key-feature-content h2:before {
+            left: auto;
+            right: 0;
+        }
+
+        &:nth-child(even) {
+            background-position: top right;
+
+            .key-feature-content {
+                float: left;
+                text-align: left;
+
+                h2:before {
+                    left: 0;
+                    right: auto;
+                }
+
+                p {
+                    float: left;
+                }
+            }
+        }
+    }
+}

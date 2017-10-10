@@ -5,6 +5,8 @@
 {# News feed is currently shown to English locales only. #}
 {% if LANG.startswith('en') and articles %}
 <section class="news">
+  <h2 class="content section-title-full-width"><span>{{ _('Fresh from our blog') }}</span></h2>
+
   <div class="content">
     <h2 class="section-title"><span>{{ _('Fresh from our blog') }}</span></h2>
     <ul class="news-feed">

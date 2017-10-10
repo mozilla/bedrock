@@ -1,0 +1,114 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+
+{% add_lang_files "firefox/shared" "firefox/features/sync" %}
+
+{% extends "firefox/features/quantum/base.html" %}
+
+{% block page_title %}
+  {{ _('Use Bookmarks, Tabs and Passwords Across Devices | Firefox') }}
+{% endblock %}
+
+{% block page_desc %}
+  {{ _('Bring your Firefox bookmarks, tabs, or passwords wherever you go with Firefox Sync. Share between computers and mobile devices. Get Firefox now!') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail-quantum' %}
+  {% stylesheet 'firefox-features-sync-quantum' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-sync{% endblock %}
+
+{% block body_class %}
+  {{ super() }}
+  state-default
+{% endblock %}
+
+{% block features_header_content %}
+  <h1>
+    <span class="show-not-fx show-fx-android show-fx-ios show-fx-31-signed-out show-fx-30-older show-default">{{ _('Browse uninterrupted with Firefox Sync') }}</span>
+    <span class="show-fx-31-signed-in">{{ _('Sync across devices') }}</span>
+  </h1>
+  <p class="tagline show-not-fx show-fx-31-signed-out show-fx-30-older show-default">{{ _('With Firefox on all your devices, you can access bookmarks, tabs and passwords with one easy sign-in.') }}</p>
+  <p class="tagline show-fx-31-signed-in">{{ _('Sign in to your Firefox Account on mobile or tablet to get your open tabs, bookmarks and passwords anywhere.') }}</p>
+  <p class="tagline show-fx-android show-fx-ios">{{ _('Sign in or create an account through your Firefox app for seamless browsing of passwords, bookmarks and open tabs.') }}</p>
+{% endblock %}
+
+{% block features_header_download %}
+  <div class="show-not-fx show-default">
+    {{ download_firefox(dom_id='features-header-download', button_color='button quantum', download_location='primary cta') }}
+  </div>
+  <div class="show-fx-31-signed-out">
+    <button class="button quantum-hollow" data-button-name="Create Account" data-cta-position="Primary" id="cta-sync">
+      {{ _('Create account') }}
+    </button>
+  </div>
+  <div class="show-fx-31-signed-in">
+    <p>{{ _('Get the app') }}</p>
+    <ul class="primary-buttons">
+      <li>
+        {{ google_play_button(id='cta-android', anchor_attributes={'data-download-location': 'primary cta'}) }}
+      </li>
+      <li>
+        <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="primary cta" id="cta-ios">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="show-fx-30-older">
+    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button quantum-hollow" data-link-type="link" data-link-name="Update your Firefox" id="cta-update">
+      {{ _('Update your Firefox') }}
+    </a>
+  </div>
+  <div class="show-fx-android">
+    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button quantum-hollow" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
+  </div>
+  <div class="show-fx-ios">
+      <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button quantum-hollow" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
+  </div>
+{% endblock %}
+
+{% block features_list %}
+  <section class="key-features-section main">
+    <div class="content">
+      <section class="key-feature sync-feature-1">
+        <div class="key-feature-content">
+          <h2>{{ _('Personal') }}</h2>
+          <p>
+            {{ _('That shopping rabbit hole you started on your laptop this morning? Pick up where you left off on your phone tonight. That dinner recipe you discovered at lunchtime? Open it on your kitchen tablet, instantly. Connect your personal devices, securely.') }}
+          </p>
+        </div>
+      </section>
+
+      <section class="key-feature sync-feature-2">
+        <div class="key-feature-content">
+          <h2>{{ _('Secure') }}</h2>
+          <p>
+            {{ _('Your Firefox Account is the doorway to all your web stuff—we help you keep it safe. Your data is always in your control, unreadable by anyone else, and encrypted with your account password. We protect it and hand you the key.') }}
+          </p>
+        </div>
+      </section>
+
+      <section class="key-feature sync-feature-3">
+        <div class="key-feature-content">
+          <h2>{{ _('Accessible') }}</h2>
+          <p>
+            {{ _('Catch up on your open tabs and saved reads over Saturday morning coffee. Find your bookmarks and passwords anywhere you use Firefox—your smartphone, tablet or laptop. Connect everything you need and nothing you don’t.') }}
+          </p>
+        </div>
+      </section>
+
+    </div> {#--/.content--#}
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {% javascript 'firefox-features-sync' %}
+{% endblock %}
