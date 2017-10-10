@@ -45,35 +45,62 @@
     </div>
   </header>
 
-  {% if LANG.startswith('en') %}
-    {% include 'mozorg/internet-health/includes/june-campaign.html' %}
-  {% else %}
-    <section class="net-neutrality">
-      <div class="content">
-        <div class="card-image-large">
-          <h2 class="section-title"><span>{{ _('Net Neutrality') }}</span></h2>
+{% if l10n_has_tag('health_hub_common_voice') %}
+  <section class="common-voice">
+    <div class="content">
+      <div class="card-image-large">
+        <h2 class="section-title"><span>{{ _('Common Voice') }}</span></h2>
 
-          <div class="card-content-wrapper">
-            <div class="card-content">
-              <a href="https://advocacy.mozilla.org/net-neutrality/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" data-link-name="Get involved now" data-link-type="link" data-link-position="net-neutrality">
-                <h3 class="card-heading">{{ _('Net Neutrality is under threat…again.') }}</h3>
-              </a>
+        <div class="card-content-wrapper">
+          <div class="card-content">
+            <a href="https://voice.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" data-link-name="Record in Common Voice" data-link-type="link" data-link-position="common-voice">
+              <h3 class="card-heading">{{ _('Let your voice be heard… literally') }}</h3>
+            </a>
 
-              <p>
-              {% trans %}
-                Time’s running out. Help protect an open Internet for everyone.
-              {% endtrans %}
-              </p>
+            <p>
+            {% trans %}
+              Contribute to the world’s first crowdsourced voice library. An open, free resource,
+              it will help innovators create technology that benefits — <em>and understands</em> — us all.
+            {% endtrans %}
+            </p>
 
-              <a href="https://advocacy.mozilla.org/net-neutrality/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" class="cta-link" data-link-name="Get involved now" data-link-type="link" data-link-position="net-neutrality">
-                {{ _('Get involved now') }}
-              </a>
-            </div>
-          </div> {#--/.card-content-wrapper--#}
-        </div>
-      </div> {#--/.content--#}
-    </section> {#--/.net-neutrality--#}
-  {% endif %}
+            <a href="https://voice.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" class="cta-link" data-link-name="Record in Common Voice" data-link-type="link" data-link-position="common-voice">
+              {{ _('Record in Common Voice') }}
+            </a>
+          </div>
+        </div> {#--/.card-content-wrapper--#}
+      </div>
+    </div> {#--/.content--#}
+  </section> {#--/.common-voice--#}
+
+{% else %}
+
+  <section class="net-neutrality">
+    <div class="content">
+      <div class="card-image-large">
+        <h2 class="section-title"><span>{{ _('Net Neutrality') }}</span></h2>
+
+        <div class="card-content-wrapper">
+          <div class="card-content">
+            <a href="https://advocacy.mozilla.org/net-neutrality/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" data-link-name="Get involved now" data-link-type="link" data-link-position="net-neutrality">
+              <h3 class="card-heading">{{ _('Net Neutrality is under threat…again.') }}</h3>
+            </a>
+
+            <p>
+            {% trans %}
+              Time’s running out. Help protect an open Internet for everyone.
+            {% endtrans %}
+            </p>
+
+            <a href="https://advocacy.mozilla.org/net-neutrality/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" class="cta-link" data-link-name="Get involved now" data-link-type="link" data-link-position="net-neutrality">
+              {{ _('Get involved now') }}
+            </a>
+          </div>
+        </div> {#--/.card-content-wrapper--#}
+      </div>
+    </div> {#--/.content--#}
+  </section> {#--/.net-neutrality--#}
+{% endif %}
 
   {% include 'mozorg/internet-health/includes/podcast.html' %}
 

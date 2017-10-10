@@ -142,7 +142,7 @@ redirectpatterns = (
     redirect(r'^firefox/sync/firstrun\.html$', 'firefox.features.sync'),
 
     # Bug 920212
-    redirect(r'^firefox/fx/?$', 'firefox.new'),
+    redirect(r'^firefox/fx(/.*)?', 'firefox'),
 
     # Bug 979531, 1003727, 979664, 979654, 979660
     redirect(r'^firefox/customize/?$', 'https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars'),
@@ -539,4 +539,15 @@ redirectpatterns = (
     redirect(r'^firefox/desktop/tips/?', 'firefox.features.index'),
     redirect(r'^firefox/desktop/customize/?', 'https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars'),
     redirect(r'^firefox/private-browsing/?', 'firefox.features.private-browsing'),
+
+    # bug 1405436
+    redirect(r'^firefox/organic', '/firefox/'),
+    redirect(r'^firefox/landing/better', '/firefox/'),
+    redirect(r'^firefox/(new/)?addon', 'https://addons.mozilla.org'),
+    redirect(r'^firefox/tips', '/firefox/features/'),
+    redirect(r'^firefox/new/.+', '/firefox/new/'),
+    redirect(r'^firefox/38.0.3/releasenotes/$', '/firefox/38.0.5/releasenotes/'),
+    redirect(r'^firefox/default\.htm', '/firefox/'),
+    redirect(r'^firefox/android/(?P<version>\d+\.\d+(?:\.\d+)?)$', '/firefox/android/{version}/releasenotes/'),
+    redirect(r'^firefox/stats/', '/firefox/'),
 )

@@ -80,6 +80,16 @@ class FirefoxPrivacyDocView(PrivacyDocView):
         return doc
 
 
+class FirefoxCliqzPrivacyDocView(PrivacyDocView):
+    template_name = 'privacy/notices/firefox-cliqz.html'
+
+    def get_legal_doc(self):
+        doc = super(FirefoxCliqzPrivacyDocView, self).get_legal_doc()
+        if len(doc['content'].select('.privacy-header-firefox')) > 0:
+            self.template_name = 'privacy/notices/firefox-cliqz-quantum.html'
+        return doc
+
+
 firefox_notices = FirefoxPrivacyDocView.as_view(
     legal_doc_name='firefox_privacy_notice')
 
@@ -87,8 +97,7 @@ firefox_os_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-os.html',
     legal_doc_name='firefox_os_privacy_notice')
 
-firefox_cliqz_notices = PrivacyDocView.as_view(
-    template_name='privacy/notices/firefox-cliqz.html',
+firefox_cliqz_notices = FirefoxCliqzPrivacyDocView.as_view(
     legal_doc_name='firefox-cliqz_privacy_notice')
 
 firefox_cloud_notices = PrivacyDocView.as_view(

@@ -44,10 +44,11 @@ $(function() {
 
     /**
      * Determine if Firefox client is out of date.
+     * @param {String} - Client version provided by UITour e.g. "58.0a1", "56.0".
      * @return {Boolean} - Returns true if client is at least 2 major versions out of date.
      */
-    var _isClientOutOfDate = function() {
-        var clientVersion = client.FirefoxMajorVersion;
+    var _isClientOutOfDate = function(version) {
+        var clientVersion = parseInt(version, 10);
         var latestVersion = parseInt($('html').attr('data-latest-firefox'), 10);
 
         if (!latestVersion || !clientVersion) {
@@ -64,12 +65,14 @@ $(function() {
     Mozilla.NotificationBanner.setSampleRate(0.05);
 
     // Notification should only be shown to Firefox desktop users more than 2 major versions out of date.
-    if (client.isFirefoxDesktop && _isClientOutOfDate()) {
+    if (client.isFirefoxDesktop) {
         client.getFirefoxDetails(function(details) {
-
-            // User must be on release channel and have cookies enabled.
-            if (details.channel === 'release' && typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
-                Mozilla.NotificationBanner.init(config);
+            // Don't rely on UA strings as they can be altered by extensions, so use UITour instead (Bug 1406299).
+            if (_isClientOutOfDate(details.version) && details.channel === 'release') {
+                // Check that cookies are enabled.
+                if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
+                    Mozilla.NotificationBanner.init(config);
+                }
             }
         });
     }

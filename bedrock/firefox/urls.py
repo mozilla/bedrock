@@ -110,7 +110,7 @@ urlpatterns = (
         bedrock.releasenotes.views.nightly_feed, name='firefox.nightly.notes.feed'),
     url('firefox/(?:latest/)?releasenotes/$', bedrock.releasenotes.views.latest_notes,
         {'product': 'firefox'}),
-    url('^firefox/(?:%s/)?system-requirements/$' % channel_re,
+    url('^firefox/(?:%s/)?(?:%s/)?system-requirements/$' % (platform_re, channel_re),
         bedrock.releasenotes.views.latest_sysreq,
         {'product': 'firefox'}, name='firefox.sysreq'),
     url(releasenotes_re, bedrock.releasenotes.views.release_notes, name='firefox.desktop.releasenotes'),

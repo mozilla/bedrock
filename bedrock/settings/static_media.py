@@ -361,6 +361,19 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun-bundle.css',
     },
+    'firefox_firstrun_membership': {
+        'source_filenames': (
+            'css/firefox/firstrun/membership.less',
+            'css/base/mozilla-fxa-iframe.less',
+        ),
+        'output_filename': 'css/firefox_firstrun_membership-bundle.css',
+    },
+    'firefox_firstrun_cliqz_funnelcake': {
+        'source_filenames': (
+            'css/firefox/firstrun/firstrun-cliqz-funnelcake.less',
+        ),
+        'output_filename': 'css/firefox_firstrun_cliqz_funnelcake-bundle.css',
+    },
     'firefox_feedback': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
@@ -641,15 +654,17 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/home.scss',
+            'css/mozorg/home/fx-quantum-promo.scss',
         ),
         'output_filename': 'css/home-bundle.css',
     },
-    'home-b': {
+    'home_new': {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
-            'css/mozorg/home/home-b.scss',
+            'css/mozorg/home/home-new.scss',
+            'css/mozorg/home/fx-quantum-promo.scss',
         ),
-        'output_filename': 'css/home-b-bundle.css',
+        'output_filename': 'css/home_new-bundle.css',
     },
     'legal': {
         'source_filenames': (
@@ -1220,6 +1235,27 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_firstrun-bundle.js',
     },
+    'experiment-firstrun-membership': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/firstrun/experiment-firstrun-membership.js',
+        ),
+        'output_filename': 'js/experiment-firstrun-copy.js',
+    },
+    'firefox_firstrun_membership': {
+        'source_filenames': (
+            'js/libs/jquery.cycle2.min.js',
+            'js/base/mozilla-fxa-iframe.js',
+            'js/firefox/firstrun/membership.js',
+        ),
+        'output_filename': 'js/firefox_firstrun_membership-bundle.js',
+    },
+    'firefox_firstrun_cliqz_funnelcake': {
+        'source_filenames': (
+            'js/firefox/firstrun/firstrun-cliqz-funnelcake.js',
+        ),
+        'output_filename': 'js/firefox_firstrun_cliqz_funnelcake-bundle.js',
+    },
     'firefox_developer_firstrun': {
         'source_filenames': (
             'js/base/uitour-lib.js',
@@ -1286,6 +1322,20 @@ PIPELINE_JS = {
             'js/firefox/new/experiment-firefox-new-batm-anim.js',
         ),
         'output_filename': 'js/experiment_firefox_new_batm_anim-bundle.js',
+    },
+    'experiment_firefox_new_cliqz_funnelcakes': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/base/mozilla-traffic-cop-funnelcake-geo.js',
+            'js/firefox/new/experiment-cliqz-funnelcakes.js',
+        ),
+        'output_filename': 'js/experiment_firefox_new_cliqz_funnelcakes-bundle.js',
+    },
+    'firefox_new_cliqz_funnelcakes': {
+        'source_filenames': (
+            'js/firefox/new/cliqz-funnelcakes.js',
+        ),
+        'output_filename': 'js/firefox_new_cliqz_funnelcakes-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (
@@ -1416,13 +1466,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/home-bundle.js',
     },
-    'home-b': {
+    'home_new': {
         'source_filenames': (
             'js/base/uitour-lib.js',
-            'js/mozorg/home/home-b.js',
-            'js/mozorg/home/home-b-init.js',
+            'js/mozorg/home/home-new.js',
+            'js/mozorg/home/home-new-init.js',
         ),
-        'output_filename': 'js/home-b-bundle.js',
+        'output_filename': 'js/home_new-bundle.js',
     },
     'history-slides': {
         'source_filenames': (

@@ -332,7 +332,7 @@ URLS = flatten((
     url_test('/security/transition.txt', '/media/security/transition.txt'),
 
     # Bug 920212
-    url_test('/firefox/fx/', '/firefox/new/'),
+    url_test('/firefox/fx/', '/firefox/'),
 
     # Bug 979531, 1003727, 979664, 979654, 979660, 1150713
     url_test('/firefox/customize/', 'https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars'),
@@ -973,15 +973,6 @@ URLS = flatten((
     url_test('/apps/', 'https://marketplace.firefox.com/'),
     url_test('/dnt/', '/firefox/dnt/'),
     url_test('/metrofirefox/', '/firefox/'),
-    url_test('/en-US/firefox/android/{,beta/}notes/',
-             re.compile(r'/en-US/firefox/android/[\\d\\.]+{,beta}/releasenotes/'),
-             status_code=requests.codes.found),
-    url_test('/en-US/firefox/android/aurora/notes/',
-             re.compile(r'/en-US/firefox/android/[\d\.a-zA-Z]+/auroranotes/'),
-             status_code=requests.codes.found),
-    url_test('/en-US/firefox/notes/',
-             re.compile(r'/en-US/firefox/[\d\.]+/releasenotes/'),
-             status_code=requests.codes.found),
     url_test('/firefox/brand/', '/styleguide/'),
 
     # Bug 1243060
@@ -1169,4 +1160,23 @@ URLS = flatten((
     url_test('/firefox/desktop/tips/', '/firefox/features/'),
     url_test('/firefox/desktop/customize/', 'https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars'),
     url_test('/firefox/private-browsing/', '/firefox/features/private-browsing/'),
+
+    # bug 1405436
+    url_test('/legal/eula/firefox.html', '/about/legal/terms/firefox/'),
+    url_test('/firefox/organic/', '/firefox/'),
+    url_test('/firefox/landing/better/', '/firefox/'),
+    url_test('/firefox/{new/,}addons/', 'https://addons.mozilla.org'),
+    url_test('/firefox/tips/', '/firefox/features/'),
+    url_test('/firefox/new/en', '/firefox/new/'),
+    # These are a wordpress artifact and result in a Left to Right Mark unicode control character
+    # https://en.wikipedia.org/wiki/Left-to-right_mark
+    url_test('/firefox/%E2%80%8E', '/firefox/'),
+    url_test('/firefox/new/%E2%80%8E', '/firefox/new/'),
+    url_test('/firefox/38.0.3/releasenotes/', '/firefox/38.0.5/releasenotes/'),
+    url_test('/firefox/)', '/firefox/'),
+    url_test('/firefox/{new,developer}/)', '/firefox/{new,developer}/'),
+    url_test('/firefox/default.htm', '/firefox/'),
+    url_test('/firefox/fx/dude', '/firefox/'),
+    url_test('/firefox/android/45.0', '/firefox/android/45.0/releasenotes/'),
+    url_test('/firefox/stats/', '/firefox/'),
 ))

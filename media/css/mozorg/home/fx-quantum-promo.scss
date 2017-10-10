@@ -1,0 +1,62 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+.quantum-promo {
+    background-color: #45caf3;
+    @include at2x('/media/img/mozorg/promo/quantum-promo-banner-phone.png', 760px, 200px);
+    background-repeat: no-repeat;
+    height: 200px;
+    max-height: 200px;
+    text-align: center;
+
+    @media #{$mq-tablet} {
+        @include at2x('/media/img/mozorg/promo/quantum-promo-banner.png', 1440px, 100px);
+        height: 100px;
+        max-height: 100px;
+    }
+
+    p {
+        display: inline-block;
+        color: #fff;
+        margin: 0;
+        margin-bottom: 15px;
+        @include font-size-level4;
+
+        @media #{$mq-tablet} {
+            margin-top: 20px;
+            margin-right: 5%;
+        }
+
+        &:before {
+            display: block;
+            content: '';
+            @include at2x('/media/img/logos/firefox/logo-quantum.png', 60px, 60px);
+            margin: 15px auto 10px;
+            width: 60px;
+            height: 60px;
+            vertical-align: middle;
+
+            @media #{$mq-tablet} {
+                display: inline-block;
+                margin: 0;
+                margin-right: 26px;
+            }
+        }
+    }
+
+    a.button.button-hollow {
+        display: block;
+        margin: 0 auto;
+        width: 100px;
+        max-width: 200px;
+        @include font-size-level5;
+
+        @media #{$mq-tablet} {
+            display: inline-block;
+            margin: 0;
+        }
+    }
+}

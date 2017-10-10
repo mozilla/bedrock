@@ -8,7 +8,7 @@ from django.conf import settings
 from django.core.cache import caches
 from django.test.utils import override_settings
 
-from mock import call, patch
+from mock import call, patch, Mock
 from pathlib2 import Path
 
 from bedrock.mozorg.tests import TestCase
@@ -28,7 +28,7 @@ class TestReleaseNotesURL(TestCase):
         release = models.Release(dict(
             channel='Aurora', version='42.0a2', product='Firefox for Android'))
         assert release.get_absolute_url() == mock_reverse.return_value
-        mock_reverse.assert_called_with('firefox.android.releasenotes', args=('42.0a2', 'aurora'))
+        mock_reverse.assert_called_with('firefox.android.releasenotes', args=['42.0a2', 'aurora'])
 
     def test_desktop_releasenotes_url(self, mock_reverse):
         """
@@ -36,7 +36,7 @@ class TestReleaseNotesURL(TestCase):
         """
         release = models.Release(dict(version='42.0', product='Firefox'))
         assert release.get_absolute_url() == mock_reverse.return_value
-        mock_reverse.assert_called_with('firefox.desktop.releasenotes', args=('42.0', 'release'))
+        mock_reverse.assert_called_with('firefox.desktop.releasenotes', args=['42.0', 'release'])
 
 
 @override_settings(RELEASE_NOTES_PATH=RELEASES_PATH, DEV=False)
@@ -160,22 +160,24 @@ class TestGetRelease(TestCase):
         grfn_mock.assert_has_calls(expected_calls)
 
 
+@override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
 @patch.object(models, 'cache')
+@patch.object(models, 'get_cache_key')
 @patch.object(models, 'get_release_from_file_system')
 class TestGetReleaseFromFile(TestCase):
-    def test_get_release_from_file(self, grffs_mock, cache_mock):
+    def test_get_release_from_file(self, grffs_mock, cache_key_mock, cache_mock):
         cache_mock.get.return_value = 'dude'
         assert models.get_release_from_file('walter') == 'dude'
-        cache_mock.get.assert_called_with('walter')
+        cache_key_mock.assert_called_with('walter')
         grffs_mock.assert_not_called()
 
-    def test_get_release_from_file_no_cache(self, grffs_mock, cache_mock):
+    def test_get_release_from_file_no_cache(self, grffs_mock, cache_key_mock, cache_mock):
         cache_mock.get.return_value = None
         grffs_mock.return_value = 'donnie'
         assert models.get_release_from_file('walter') == 'donnie'
-        cache_mock.get.assert_called_with('walter')
+        cache_key_mock.assert_called_with('walter')
         grffs_mock.assert_called_with('walter')
-        cache_mock.set.assert_called_with('walter', 'donnie', 300)
+        cache_mock.set.assert_called_with(cache_key_mock(), 'donnie', models.LONG_RN_CACHE_TIMEOUT)
 
 
 @override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
@@ -219,3 +221,142 @@ class TestGetFileID(TestCase):
         assert models.get_file_id('Firefox', 'Release', '57.0') == 'firefox-57.0-release'
         assert models.get_file_id('Firefox Extended Support Release', 'ESR', '52.0') == 'firefox-52.0-esr'
         assert models.get_file_id('Firefox for Android', 'Beta', '57.0b2') == 'firefox-for-android-57.0b2-beta'
+
+
+@override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
+@patch.object(models, 'cache')
+class TestGetDataVersion(TestCase):
+    def test_get_data_version(self, cache_mock):
+        cache_mock.get.return_value = None
+        # value from the test data in .latest-update-etag
+        assert models.get_data_version() == '"bae656422b8d046543540f42b1658938f"'
+        cache_mock.set.assert_called_with('releasenotes:repo:etag', '"bae656422b8d046543540f42b1658938f"', 60)
+
+    def test_get_data_version_cache_hit(self, cache_mock):
+        cache_mock.get.return_value = 'dude'
+        assert models.get_data_version() == 'dude'
+        cache_mock.set.assert_not_called()
+
+    @patch.object(models, 'os')
+    def test_get_data_version_file_not_found(self, os_mock, cache_mock):
+        cache_mock.get.return_value = None
+        os_mock.path.exists.return_value = False
+        assert models.get_data_version() == 'default'
+        cache_mock.set.assert_not_called()
+
+    @patch.object(models, 'codecs')
+    def test_get_data_version_io_error(self, open_mock, cache_mock):
+        cache_mock.get.return_value = None
+        open_mock.open.side_effect = IOError
+        assert models.get_data_version() == 'default'
+        cache_mock.set.assert_not_called()
+
+
+@patch.object(models, 'get_data_version')
+@patch.object(models, 'sha256')
+class TestGetCacheKey(TestCase):
+    def test_get_cache_key(self, sha_mock, gdv_mock):
+        gdv_mock.return_value = 'dude'
+        assert models.get_cache_key('abide') == sha_mock.return_value.hexdigest()
+        sha_mock.assert_called_with('dude:abide')
+
+
+@override_settings(DEV=False)
+@patch.object(models, 'cache')
+@patch.object(models, 'glob')
+@patch.object(models, 'get_release_from_file')
+@patch.object(models, 'get_cache_key', Mock(return_value='dude'))
+class TestGetAllReleases(TestCase):
+    def test_get_all_releases(self, grff_mock, glob_mock, cache_mock):
+        releases = []
+        globs = []
+        calls = []
+        for i in range(5):
+            globs.append('firefox-%s.json' % (i + 1))
+            calls.append(call(globs[-1]))
+            releases.append(models.Release(dict(product='Firefox',
+                                                channel='Release',
+                                                is_public=True,
+                                                version='56.0.%s' % (i + 1),
+                                                release_date='2017-01-0%s' % (i + 1))))
+
+        grff_mock.side_effect = releases
+        glob_mock.return_value = globs
+        cache_mock.get.return_value = None
+        reversed_releases = list(reversed(releases))
+        assert models.get_all_releases('firefox', 'release') == reversed_releases
+        grff_mock.assert_has_calls(calls)
+        cache_mock.get.assert_called_with('dude')
+        cache_mock.set.assert_called_with('dude', reversed_releases, models.LONG_RN_CACHE_TIMEOUT)
+
+    def test_get_all_releases_only_product(self, grff_mock, glob_mock, cache_mock):
+        """Should only return the specific product asked for"""
+        releases = []
+        globs = []
+        calls = []
+        for i in range(2):
+            globs.append('firefox-%s.json' % (i + 1))
+            calls.append(call(globs[-1]))
+            releases.append(models.Release(dict(product='Firefox',
+                                                channel='Release',
+                                                is_public=True,
+                                                version='56.0.%s' % (i + 1),
+                                                release_date='2017-01-0%s' % (i + 1))))
+        # android ones are newer
+        for i in range(2):
+            globs.append('firefox-for-android-%s.json' % (i + 1))
+            releases.append(models.Release(dict(product='Firefox For Android',
+                                                channel='Release',
+                                                is_public=True,
+                                                version='56.0.%s' % (i + 1),
+                                                release_date='2017-01-1%s' % (i + 1))))
+
+        grff_mock.side_effect = releases
+        glob_mock.return_value = globs
+        cache_mock.get.return_value = None
+        reversed_releases = list(reversed(releases[:2]))
+        assert models.get_all_releases('firefox', 'release') == reversed_releases
+        grff_mock.assert_has_calls(calls)
+        cache_mock.get.assert_called_with('dude')
+        cache_mock.set.assert_called_with('dude', reversed_releases, models.LONG_RN_CACHE_TIMEOUT)
+
+    def test_get_all_releases_no_files(self, grff_mock, glob_mock, cache_mock):
+        glob_mock.return_value = []
+        cache_mock.get.return_value = None
+        assert models.get_all_releases('firefox', 'release') == []
+        cache_mock.get.assert_called_with('dude')
+        cache_mock.set.assert_not_called()
+
+    def test_get_all_releases_none_public(self, grff_mock, glob_mock, cache_mock):
+        releases = []
+        globs = []
+        calls = []
+        for i in range(5):
+            globs.append('firefox-%s.json' % (i + 1))
+            calls.append(call(globs[-1]))
+            releases.append(models.Release(dict(product='Firefox',
+                                                channel='Release',
+                                                is_public=False,
+                                                version='56.0.%s' % (i + 1),
+                                                release_date='2017-01-0%s' % (i + 1))))
+        grff_mock.side_effect = releases
+        glob_mock.return_value = globs
+        cache_mock.get.return_value = None
+        assert models.get_all_releases('firefox', 'release') == []
+        grff_mock.assert_has_calls(calls)
+        cache_mock.get.assert_called_with('dude')
+        print cache_mock.set.mock_calls
+        cache_mock.set.assert_not_called()
+
+
+@override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
+@patch.object(models, 'cache')
+@patch.object(models, 'get_all_releases')
+class TestGetLatestRelease(TestCase):
+    def test_latest_release(self, gar_mock, cache_mock):
+        releases = [Mock(), Mock()]
+        gar_mock.return_value = releases
+        cache_mock.get.return_value = None
+        assert models.get_latest_release('firefox', 'release') == releases[0]
+        cache_mock.set.assert_called_with('cd1252c0b9e7db652d816a45c7c813696456bd124a64fc54452a73220831f081',
+                                          releases[0], models.LONG_RN_CACHE_TIMEOUT)

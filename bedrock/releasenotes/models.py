@@ -1,7 +1,9 @@
 import codecs
 import json
 import os
+import re
 from glob import glob
+from hashlib import sha256
 from operator import attrgetter
 
 from django.conf import settings
@@ -18,6 +20,7 @@ from raven.contrib.django.raven_compat.models import client as sentry_client
 from bedrock.base.urlresolvers import reverse
 
 
+LONG_RN_CACHE_TIMEOUT = 7200  # 2 hours
 cache = caches['release-notes']
 markdowner = markdown.Markdown(extensions=[
     'tables', 'codehilite', 'fenced_code', 'toc', 'nl2br'
@@ -113,15 +116,30 @@ class Release(RNModel):
         return Version(self.version)
 
     def get_absolute_url(self):
-        prefix = 'aurora' if self.channel == 'Aurora' else 'release'
         if self.product == 'Thunderbird':
             return reverse('thunderbird.notes', args=[self.version])
+
         if self.product == 'Firefox for Android':
-            return reverse('firefox.android.releasenotes', args=(self.version, prefix))
-        if self.product == 'Firefox for iOS':
-            return reverse('firefox.ios.releasenotes', args=(self.version, prefix))
+            urlname = 'firefox.android.releasenotes'
+        elif self.product == 'Firefox for iOS':
+            urlname = 'firefox.ios.releasenotes'
         else:
-            return reverse('firefox.desktop.releasenotes', args=(self.version, prefix))
+            urlname = 'firefox.desktop.releasenotes'
+
+        prefix = 'aurora' if self.channel == 'Aurora' else 'release'
+        return reverse(urlname, args=[self.version, prefix])
+
+    def get_sysreq_url(self):
+        if self.product == 'Thunderbird':
+            urlname = 'thunderbird.sysreq'
+        elif self.product == 'Firefox for Android':
+            urlname = 'firefox.android.system_requirements'
+        elif self.product == 'Firefox for iOS':
+            urlname = 'firefox.ios.system_requirements'
+        else:
+            urlname = 'firefox.system_requirements'
+
+        return reverse(urlname, args=[self.version])
 
     def get_bug_search_url(self):
         if self.bug_search_url:
@@ -187,12 +205,45 @@ def get_release(product, version, channel=None):
     raise ReleaseNotFound()
 
 
+def get_data_version():
+    """Add the etag from the repo to the cache keys.
+
+    This will ensure that the cache is invalidated when the repo is updated.
+    """
+    etag_key = 'releasenotes:repo:etag'
+    etag = cache.get(etag_key)
+    if not etag:
+        etag_file = os.path.join(release_notes_path(), '.latest-update-etag')
+        if os.path.exists(etag_file):
+            try:
+                with codecs.open(etag_file) as fh:
+                    etag = fh.read().strip()
+                    cache.set(etag_key, etag, 60)  # 1 min
+            except IOError:
+                etag = 'default'
+        else:
+            etag = 'default'
+
+    return etag
+
+
+def get_cache_key(key):
+    """Cache key returned will be a sha256 hash of the key and repo data version.
+
+    This ensures that we can use a long cache for the release files while still
+    getting fast invalidation when we check the small repo data version file
+    at most once per minute.
+    """
+    return sha256('%s:%s' % (get_data_version(), key)).hexdigest()
+
+
 def get_release_from_file(file_name):
-    release = cache.get(file_name)
+    cache_key = get_cache_key(file_name)
+    release = cache.get(cache_key)
     if not release:
         release = get_release_from_file_system(file_name)
         if release:
-            cache.set(file_name, release, 300)  # 5 min
+            cache.set(cache_key, release, LONG_RN_CACHE_TIMEOUT)
 
     return release
 
@@ -236,10 +287,50 @@ def get_release_or_404(version, product):
     return release
 
 
-def get_releases_or_404(product, channel):
+def get_all_releases(product, channel='release'):
     file_prefix = get_file_id(product, channel, '*')
-    releases = glob(os.path.join(release_notes_path(), file_prefix + '.*'))
+    cache_key = get_cache_key('all:%s:%s' % (product, channel))
+    releases = cache.get(cache_key)
+    product_prefix = file_prefix.split('*')[0]
+    # ensure only files for the specific product are returned
+    # without this the file glob would match e.g. "firefox-for-android-56.0-release.json"
+    # when the glob was "firefox-*-release.json"
+    product_re = re.compile(r'%s\d' % product_prefix)
+    if not releases:
+        releases = glob(os.path.join(release_notes_path(), file_prefix + '.json'))
+        if releases:
+            releases = (get_release_from_file(r) for r in releases if product_re.search(r))
+            releases = sorted((r for r in releases if r.is_public),
+                              key=attrgetter('release_date'), reverse=True)
+            if releases:
+                cache.set(cache_key, releases, LONG_RN_CACHE_TIMEOUT)
+
+    return releases
+
+
+def get_releases_or_404(product, channel):
+    releases = get_all_releases(product, channel)
     if releases:
-        return [get_release_from_file(r) for r in releases]
+        return releases
+
+    raise Http404
+
+
+def get_latest_release(product, channel='release'):
+    cache_key = get_cache_key('latest:%s:%s' % (product, channel))
+    release = cache.get(cache_key)
+    if not release:
+        releases = get_all_releases(product, channel)
+        if releases:
+            release = releases[0]
+            cache.set(cache_key, release, LONG_RN_CACHE_TIMEOUT)
+
+    return release
+
+
+def get_latest_release_or_404(product, channel):
+    release = get_latest_release(product, channel)
+    if release:
+        return release
 
     raise Http404
