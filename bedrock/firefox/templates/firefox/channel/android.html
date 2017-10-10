@@ -52,7 +52,7 @@
     <div class="container">
       <ul>
         <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{_('Release Notes')}}</a></li>
-        <li><a href="{{ firefox_url('android', 'all', 'beta') }}">{{_('All Languages and Builds')}}</a></li>
+        <li><a href="{{ firefox_url('android', 'all', 'beta') }}">{% if l10n_has_tag('firefox_channel_bug1387466') %}{{_('All Languages and Platforms')}}{% else %}{{_('All Languages and Builds')}}{% endif %}</a></li>
       </ul>
     </div>
   </footer>
