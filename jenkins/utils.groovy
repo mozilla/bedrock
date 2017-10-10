@@ -15,7 +15,7 @@ def demoAppURL(appname, region) {
 }
 
 /**
- * Send a notice to #www on irc.mozilla.org with the build result
+ * Send a notice to #www-notify on irc.mozilla.org with the build result
  *
  * @param stage step of build/deploy
  * @param result outcome of build (will be uppercased)
