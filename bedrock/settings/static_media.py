@@ -1337,6 +1337,14 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_cliqz_funnelcakes-bundle.js',
     },
+    'experiment_firefox_new_unbranded_search_funnelcakes': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/base/mozilla-traffic-cop-funnelcake-geo.js',
+            'js/firefox/new/experiment-unbranded-search-funnelcakes.js',
+        ),
+        'output_filename': 'js/experiment_firefox_new_unbranded_search_funnelcakes-bundle.js',
+    },
     'firefox_new_pixel': {
         'source_filenames': (
             'js/base/mozilla-pixel.js',
