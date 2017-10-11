@@ -786,6 +786,34 @@ class TestFeedbackView(TestCase):
 
 @override_settings(DEV=False)
 @patch('bedrock.firefox.views.l10n_utils.render')
+class TestFirefoxFeatures(TestCase):
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_new_firefox_page_loads_with_active_switch(self, render_mock):
+        view = views.FirefoxHubView()
+        view.request = RequestFactory().get('/firefox/')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/firefox-quantum.html'])
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_firefox_hub_page_loads_with_inactive_switch(self, render_mock):
+        view = views.FirefoxHubView()
+        view.request = RequestFactory().get('/firefox/')
+        view.request.locale = 'en-US'
+        eq_(view.get_template_names(), ['firefox/hub/home.html'])
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_firefox_hub_page_loads_with_inactive_locale(self, render_mock):
+        view = views.FirefoxHubView()
+        view.request = RequestFactory().get('/firefox/')
+        view.request.locale = 'fr'
+        eq_(view.get_template_names(), ['firefox/hub/home.html'])
+
+
+@override_settings(DEV=False)
+@patch('bedrock.firefox.views.l10n_utils.render')
 class TestSyncPage(TestCase):
     def test_sync_page_template(self, render_mock):
         req = RequestFactory().get('/firefox/features/sync/')
