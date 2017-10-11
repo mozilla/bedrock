@@ -28,9 +28,11 @@ from bedrock.base import waffle
 from lib.l10n_utils.dotlang import _, _lazy
 from bedrock.base.urlresolvers import reverse
 
-from .forms import (EmailForm, ManageSubscriptionsForm, NewsletterForm, NewsletterFooterForm)
+from .forms import (CountrySelectForm, EmailForm, ManageSubscriptionsForm,
+                    NewsletterForm, NewsletterFooterForm)
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
+from bedrock.base.views import get_geo_from_request
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter import utils
 
@@ -190,6 +192,29 @@ UNSUB_REASONS_SUBMITTED = 2
 # Here's a regex to match a UUID:
 UUID_REGEX = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
                         re.IGNORECASE)
+
+
+@never_cache
+def set_country(request, token):
+    """Allow a user to set their country"""
+    initial = {}
+    countrycode = get_geo_from_request(request)
+    if countrycode:
+        initial['country'] = countrycode.lower()
+
+    form = CountrySelectForm('en-US', data=request.POST or None, initial=initial)
+    if form.is_valid():
+        try:
+            basket.update_user(token, **form.cleaned_data)
+        except basket.BasketException:
+            log.exception("Error updating user's country in basket")
+            messages.add_message(
+                request, messages.ERROR, general_error
+            )
+        else:
+            return redirect(reverse('newsletter.country_success'))
+
+    return l10n_utils.render(request, 'newsletter/country.html', {'form': form})
 
 
 @never_cache

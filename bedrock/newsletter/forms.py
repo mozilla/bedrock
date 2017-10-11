@@ -116,6 +116,21 @@ class TableCheckboxInput(widgets.CheckboxInput):
         return mark_safe("<td>" + out + "</td>")
 
 
+class CountrySelectForm(forms.Form):
+    """
+    Form used on a page dedicated to allowing an existing subscriber to provide
+    us with their country so that we can include them in mailings relevant to
+    their area of the world.
+    """
+    country = forms.ChoiceField(choices=[])  # will set choices based on locale
+
+    def __init__(self, locale, *args, **kwargs):
+        regions = product_details.get_regions(locale)
+        regions = sorted(regions.iteritems(), key=itemgetter(1))
+        super(CountrySelectForm, self).__init__(*args, **kwargs)
+        self.fields['country'].choices = regions
+
+
 class ManageSubscriptionsForm(forms.Form):
     """
     Form used on manage subscriptions page for the user's information,

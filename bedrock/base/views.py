@@ -13,6 +13,19 @@ from lib import l10n_utils
 from raven.contrib.django.models import client
 
 
+def get_geo_from_request(request):
+    """Return an uppercase 2 letter country code retrieved from request headers."""
+    if settings.DEV:
+        country_code = settings.DEV_GEO_COUNTRY_CODE
+    else:
+        country_code = request.META.get('HTTP_CF_IPCOUNTRY', 'XX')
+
+    if country_code == 'XX' or len(country_code) != 2:
+        return None
+
+    return country_code.upper()
+
+
 @require_safe
 @never_cache
 def geolocate(request):
@@ -24,12 +37,8 @@ def geolocate(request):
 
     https://mozilla.github.io/ichnaea/api/region.html
     """
-    if settings.DEV:
-        country_code = settings.DEV_GEO_COUNTRY_CODE
-    else:
-        country_code = request.META.get('HTTP_CF_IPCOUNTRY', 'XX')
-
-    if country_code == 'XX' or len(country_code) != 2:
+    country_code = get_geo_from_request(request)
+    if country_code is None:
         return HttpResponseJSON({
             "error": {
                 "errors": [{

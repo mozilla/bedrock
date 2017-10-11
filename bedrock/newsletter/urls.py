@@ -27,9 +27,14 @@ urlpatterns = (
         name='newsletter.updated'),
 
     # Confirm subscriptions
-    url('^newsletter/confirm/(?P<token>' + uuid_regex + ')/$',
+    url('^newsletter/confirm/(?P<token>%s)/$' % uuid_regex,
         views.confirm,
         name='newsletter.confirm'),
+
+    # Update country
+    url('^newsletter/country/(?P<token>%s)/$' % uuid_regex,
+        views.set_country,
+        name='newsletter.country'),
 
     # Request recovery message with link to manage subscriptions
     url('^newsletter/recovery/',
@@ -45,4 +50,5 @@ urlpatterns = (
     page('newsletter/mozilla', 'newsletter/mozilla.html'),
     page('newsletter/firefox', 'newsletter/firefox.html'),
     page('newsletter/developer', 'newsletter/developer.html'),
+    page('newsletter/country/success', 'newsletter/country_success.html'),
 )
