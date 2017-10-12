@@ -88,4 +88,11 @@ a.button:visited {
 
 .fx-privacy-link a {
     @include font-size-extra-small;
+    text-decoration: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: underline;
+    }
 }

@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.desktop.desktop import FirefoxDesktopPage
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1397519')
 @pytest.mark.smoke
 @pytest.mark.sanity
 @pytest.mark.nondestructive
