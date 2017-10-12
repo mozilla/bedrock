@@ -1,0 +1,278 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Features scroller
+
+.features-scroller-section.page-section {
+    background-color: #f9f9fa;
+    padding: 0;
+    position: relative;
+
+    .content {
+        padding: 0;
+    }
+
+    .features-scroller-container {
+        position: relative;
+    }
+
+    .feature-content {
+        background-color: #f9f9fa;
+        padding-top: 60px;
+
+        figure {
+            padding: 0 20px;
+
+            img,
+            video {
+                box-shadow: 2px 3px 8px 0 rgba(0, 0, 0, .2);
+            }
+        }
+
+        figcaption {
+            padding: 0 20px;
+        }
+
+        h2 {
+            margin: 40px 0 20px;
+        }
+
+        p {
+            margin: 0 auto;
+            max-width: 30em;
+        }
+
+        &:last-child {
+            padding-bottom: 60px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        text-align: left;
+
+        &:before {
+            background-color: #ff1ad9;
+            background-image: linear-gradient(143deg, #ff1ad9 0%, #ff24c7 8%, #ff30b2 18%, #ff9400 100%);
+            bottom: 0;
+            content: '';
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 50%;
+        }
+
+        .content {
+            padding: 0 85px;
+        }
+
+        .features-scroller-content {
+            padding-left: 35%;
+        }
+
+        .feature-content {
+            padding: 160px 0 0 10%;
+
+            figure,
+            figcaption {
+                padding: 0;
+            }
+
+            p {
+                margin: 0;
+                max-width: none;
+            }
+        }
+    }
+}
+
+
+html[dir="rtl"] .features-scroller-section.page-section {
+
+    .feature-content:last-child {
+        padding-bottom: 60px;
+    }
+
+    @media #{$mq-desktop} {
+        text-align: right;
+
+        &:before {
+            left: auto;
+            right: 0;
+        }
+
+        .features-scroller-content {
+            padding-left: 0;
+            padding-right: 35%;
+        }
+
+        .feature-content {
+            padding: 160px 10% 0 0;
+        }
+    }
+}
+
+.features-scroller-section.page-section .features-scroller-header {
+    color: #fff;
+    background-color: #ff1ad9;
+    background-image: linear-gradient(143deg, #ff1ad9 0%, #ff24c7 8%, #ff30b2 18%, #ff9400 100%);
+
+    .features-scroller-header-container {
+        padding: 40px 0;
+    }
+
+    .features-scroller-nav {
+        display: none;
+    }
+
+    h2.section-title:before {
+        background: #fff;
+    }
+
+    ul {
+        margin: 20px 0 0;
+
+        li {
+
+            a:link,
+            a:visited {
+                @include font-size-level4;
+                color: #000;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            a.current:link,
+            a.current:visited,
+            a.current:hover,
+            a.current:active,
+            a.current:focus {
+                color: #fff;
+                font-weight: bold;
+                text-decoration: none;
+                cursor: default;
+            }
+        }
+    }
+
+    .previous,
+    .next {
+        display: none;
+    }
+
+    @media #{$mq-desktop} {
+        background: transparent;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        text-align: left;
+        top: 0;
+        width: 35%;
+        z-index: 100;
+
+        .features-scroller-header-container {
+            left: 0;
+            padding: 100px 40px 60px 0;
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0;
+        }
+
+        .features-scroller-nav {
+            display: block;
+        }
+
+        h2.section-title:before {
+            left: 0;
+            margin-left: 0;
+        }
+
+        ul {
+            margin: 40px 0;
+        }
+
+        .previous,
+        .next {
+            @include image-replaced;
+            border: none;
+            cursor: pointer;
+            display: block;
+            font-size: 0;
+            height: 28px;
+            margin-bottom: 20px;
+            width: 26px;
+        }
+
+        .previous {
+            background: transparent url('/media/img/quantum/icon-arrow-up.svg') top left no-repeat;
+        }
+
+        .next {
+            background: transparent url('/media/img/quantum/icon-arrow-down.svg') top left no-repeat;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+
+        ul {
+            border-left: 5px solid #fff;
+            margin: 40px 0 40px 10px;
+            position: relative;
+
+            &:before {
+                @include transition(transform .1s linear);
+                content: '';
+                top: 0;
+                left: -5px;
+                width: 5px;
+                height: 25%;
+                background: #000;
+                position: absolute;
+            }
+
+            li {
+                padding: 10px 60px;
+            }
+        }
+    }
+}
+
+html[dir="rtl"] .features-scroller-section.page-section .features-scroller-header {
+
+    @media #{$mq-desktop} {
+        left: auto;
+        right: 0;
+        text-align: right;
+
+        .features-scroller-header-container {
+            left: auto;
+            right: 0;
+            padding: 100px 0 60px 40px;
+        }
+
+        h2.section-title:before {
+            left: auto;
+            right: 0;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+
+        ul {
+            border-left: none;
+            border-right: 5px solid #fff;
+            margin: 40px 10px 40px 0;
+
+            &:before {
+                right: -5px;
+                left: auto;
+            }
+        }
+    }
+}

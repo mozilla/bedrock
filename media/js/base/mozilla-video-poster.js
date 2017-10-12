@@ -69,7 +69,16 @@ Mozilla.VideoPosterHelper.prototype.bindEvents = function () {
         var $poster = $(this);
         var $video = $poster.closest('.moz-video-container').find('video');
         $video.css('visibility', 'visible');
-        $video[0].play();
+        var videoMedia = $video[0];
+
+        try {
+            if (videoMedia && videoMedia.readyState && videoMedia.readyState > 0) {
+                videoMedia.play();
+            }
+        } catch(e) {
+            // fail silently.
+        }
+
         $poster.hide();
     });
 };

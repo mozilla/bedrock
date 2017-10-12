@@ -749,6 +749,15 @@ class FirefoxProductDesktopView(BlogPostsView):
     blog_tags = ['browser', 'featured']
     template_name = 'firefox/products/desktop.html'
 
+    def render_to_response(self, context, **response_kwargs):
+        if switch('firefox-57-release'):
+            return HttpResponsePermanentRedirect(reverse('firefox'))
+        else:
+            return l10n_utils.render(self.request,
+                                     self.get_template_names(),
+                                     context,
+                                     **response_kwargs)
+
 
 class FirefoxProductAndroidView(BlogPostsView):
     blog_posts_limit = 3
@@ -779,7 +788,15 @@ class FirefoxHubView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['home']
-    template_name = 'firefox/hub/home.html'
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+
+        if switch('firefox-57-release') and lang_file_is_active('firefox/hub/home-quantum', locale):
+            template_name = 'firefox/hub/home-quantum.html'
+        else:
+            template_name = 'firefox/hub/home.html'
+        return [template_name]
 
 
 def FirefoxProductDeveloperView(request):

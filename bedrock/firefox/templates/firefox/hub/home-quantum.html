@@ -1,0 +1,390 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% add_lang_files "firefox/shared" %}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_title %}{{ _('The new, fast browser for Mac, PC and Linux') }} | {{ _('Firefox') }}{% endblock %}
+{% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-hub-quantum' %}
+{% endblock %}
+
+{% block body_id %}firefox-home{% endblock %}
+
+{% block content %}
+{% include 'firefox/includes/hub/sub-nav.html' %}
+<main role="main">
+  <header class="page-section main-header-section">
+    <div class="content">
+      <div class="header-content">
+      {% if LANG.startswith('en') %}
+        <h1>The new <strong>Firefox</strong></h1>
+      {% else %}
+        <h1>{{ _('The New Firefox') }}</h1>
+      {% endif %}
+        <h2>{{ _('Meet Firefox Quantum.') }}</h2>
+        <h3>{{ _('Fast for good.') }}</h3>
+
+        {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), button_color='quantum', locale_in_transition=True, download_location='primary cta') }}
+      </div>
+      <div class="header-image">
+        {{ high_res_img('firefox/hub/quantum/hero-laptop.png', {'alt': '', 'width': '903', 'height': '509'}) }}
+      </div>
+    </div>
+  </header>
+
+  <section class="page-section whats-new-section" data-scroll-tracking="whats new">
+    <div class="content">
+      <div class="whats-new-content">
+          <h2 class="section-title">{{ _('What’s new?') }}</h2>
+
+          <ul>
+            <li>{{ _('A powerful, new engine that’s built for rapidfire performance.') }}</li>
+            <li>{{ _('Better, faster page loading that uses less computer memory.') }}</li>
+            <li>{{ _('Gorgeous design and smart features for intelligent browsing.') }}</li>
+          </ul>
+
+          <p class="quote">
+            {{ _('“Faster and even more minimalist, Firefox Quantum makes Chrome look old.”') }} —
+            <cite><a rel="external" href="https://www.digitaltrends.com/web/firefox-quantum-hands-on-review/">{{ _('(Digital Trends)') }}</a></cite>
+          </p>
+      </div>
+      <div class="whats-new-image">
+        {{ high_res_img('firefox/hub/quantum/new-tab.png', {'alt': _('Screenshot of the redesigned Firefox new-tab page.'), 'width': '849', 'height': '540'}) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section key-features-section">
+    <div class="key-feature" data-scroll-tracking="2x Faster">
+      <div class="content">
+        <div class="key-feature-container">
+          <div class="key-feature-content">
+            <h2 class="section-title">{{ _('2x Faster') }}</h2>
+            <p>
+            {% trans url='https://blog.mozilla.org/firefox-de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
+              Crazy <a href="{{ url }}">powerful browser engine</a>? Check. Less time waiting around for pages to load?
+              Also, check. Get the best Firefox yet.
+            {% endtrans %}
+            </p>
+          </div>
+          <div class="key-feature-media video">
+            <div class="moz-video-container">
+              <button class="moz-video-button" type="button" aria-controls="faster-video">{{ _('Watch the video') }}</button>
+              <div class="video-container">
+                <video id="faster-video" preload="metadata" controls poster="{{ static('img/firefox/hub/quantum/quantum-vs-chrome-poster.png') }}" data-ga-label="Quantum vs Chrome Video">
+                  <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.webm" type="video/webm">
+                  <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.ogv" type="video/ogg; codecs='theora, vorbis'">
+                  <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.mp4" type="video/mp4">
+                  <a href="https://www.youtube.com/watch?v=YIywpvHewc0">
+                    <img src="{{ static('img/firefox/hub/quantum/quantum-vs-chrome-poster.png') }}" alt="">
+                  </a>
+                </video>
+              </div>{#-- /.video-container --#}
+            </div>{#-- /.moz-video-container --#}
+          </div>{#-- /.key-feature-media --#}
+        </div>{#-- /.key-feature-content --#}
+      </div>{#-- /.content --#}
+    </div>
+
+    <div class="key-feature" data-scroll-tracking="30% lighter than chrome">
+      <div class="content">
+        <div class="key-feature-container">
+          <div class="key-feature-content">
+            <h2 class="section-title">{{ _('30% lighter than Chrome') }}</h2>
+            <p>
+            {% trans url='https://blog.mozilla.org/firefox-de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
+              <a href="{{ url }}">Less memory usage</a> means more space for your computer to keep running smoothly.
+              Your other programs will thank you.
+            {% endtrans %}
+            </p>
+          </div>
+          <div class="key-feature-media image">
+            {{ high_res_img('firefox/hub/quantum/less-memory.png', {'alt': '', 'width': '645', 'height': '400'}) }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-feature" data-scroll-tracking="Smooth browsing">
+      <div class="content">
+        <div class="key-feature-container">
+          <div class="key-feature-content">
+            <h2 class="section-title">{{ _('Smooth browsing') }}</h2>
+            <p>
+            {% trans %}
+              Whether you’ve opened 10 or 1000, switching between tabs is faster than ever
+              with Firefox’s new, responsive engine.
+            {% endtrans %}
+            </p>
+          </div>
+          <div class="key-feature-media image">
+            {{ high_res_img('firefox/hub/quantum/smooth-browsing.png', {'alt': _('Firefox screenshot showing many open tabs and browser windows running simultaneously.'), 'width': '645', 'height': '400'}) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section data-import-section" data-scroll-tracking="Moving browsers? We got you.">
+    <div class="content">
+      <header>
+        <h2 class="section-title">{{ _('Moving browsers? We got you.') }}</h2>
+        <p>{{ _('Instantly import your online info and favorites from any other browser.') }}</p>
+      </header>
+
+      <div class="data-import-features">
+        <ul>
+          <li class="bookmarks">{{ _('Bookmarks') }}</li>
+          <li class="auto-fill">{{ _('Auto Fill') }}</li>
+          <li class="passwords">{{ _('Passwords') }}</li>
+          <li class="history">{{ _('History') }}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section privacy-section" data-scroll-tracking="Seriously Private Browsing">
+    <div class="content">
+      <header>
+        <h2 class="section-title">{{ _('Seriously Private Browsing') }}</h2>
+        <p class="tagline">{{ _('The most powerful private browsing mode with added tracking protection.') }}</p>
+      </header>
+
+      <ul>
+        <li class="private-browsing">
+          <h3>{{ _('Private Browsing') }}</h3>
+          <p>
+          {% trans %}
+            Firefox blocks online trackers while you browse and won’t remember
+            your history after you’re done.
+          {% endtrans %}
+          </p>
+        </li>
+        <li class="tracking-protection">
+          <h3>{{ _('Tracking Protection') }}</h3>
+          <p>
+          {% trans %}
+            Some ads have hidden trackers that follow you online. Rude. We know.
+            That’s why our powerful tool stops them cold.
+          {% endtrans %}
+          </p>
+        </li>
+        <li class="faster-loading">
+          <h3>{{ _('Faster Page Loading') }}</h3>
+          <p>
+          {% trans url='https://blog.mozilla.org/firefox-de/die-studie-zum-schutz-vor-aktivitatsverfolgung/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/tracking-protection-study/' %}
+            By blocking some ads and scripts that bog down browsing,
+            <a href="{{ url }}">pages load up to 44% faster</a>. Now that’s a win-win.
+          {% endtrans %}
+          </p>
+        </li>
+      </ul>
+
+      <div class="privacy-section-media">
+        {{ high_res_img('firefox/hub/quantum/private-browsing.png', {'alt': '', 'width': '502', 'height': '325'}) }}
+        {{ high_res_img('firefox/hub/quantum/tracking-protection.png', {'alt': '', 'width': '503', 'height': '305'}) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section features-scroller-section">
+    <div class="content">
+      <div class="features-scroller-container">
+        <header class="features-scroller-header">
+          <div class="features-scroller-header-container">
+              <h2 class="section-title">{{ _('Firefox Quantum features') }}</h2>
+              <nav class="features-scroller-nav" data-current="video-screenshots">
+                <ul>
+                  <li><a class="current" href="#video-screenshots">{{ _('Screenshots') }}</a></li>
+                  <li><a href="#video-pocket">{{ _('Pocket') }}</a></li>
+                  <li><a href="#video-gaming">{{ _('Gaming & VR') }}</a></li>
+                  <li><a href="#video-library">{{ _('Library') }}</a></li>
+                </ul>
+
+                <button class="previous" type="button">{{ _('Previous') }}</button>
+                <button class="next" type="button">{{ _('Next') }}</button>
+              </nav>
+          </div>
+        </header>
+        <div class="features-scroller-content">
+          <div id="video-screenshots" class="feature-content screenshots" data-ga-label="Features: Screenshots">
+            <figure>
+              <video preload="metadata" muted controls playsinline poster="{{ static('img/firefox/hub/quantum/video-screenshots-poster.png') }}" data-ga-label="Features: Screenshots">
+                <source src="https://assets.mozilla.net/video/firefox-home/screenshots.webm" type="video/webm">
+                <source src="https://assets.mozilla.net/video/firefox-home/screenshots.ogv" type="video/ogg; codecs='theora, vorbis'">
+                <source src="https://assets.mozilla.net/video/firefox-home/screenshots.mp4" type="video/mp4">
+                <img src="{{ static('img/firefox/hub/quantum/video-screenshots-poster.png') }}" alt="">
+              </video>
+            </figure>
+            <figcaption>
+              <h2>{{ _('Screenshots') }}</h2>
+              <p>
+              {% trans %}
+                Uncomplicate screenshots. Take and share them directly from Firefox. That means no more
+                searching for mysterious file names on your computer.
+              {% endtrans %}
+              </p>
+            </figcaption>
+          </div>
+
+          <div id="video-pocket" class="feature-content pocket" data-ga-label="Features: Pocket">
+            <figure>
+              <video preload="metadata" muted controls playsinline poster="{{ static('img/firefox/hub/quantum/video-pocket-poster.png') }}" data-ga-label="Features: Pocket">
+                <source src="https://assets.mozilla.net/video/firefox-home/pocket.webm" type="video/webm">
+                <source src="https://assets.mozilla.net/video/firefox-home/pocket.ogv" type="video/ogg; codecs='theora, vorbis'">
+                <source src="https://assets.mozilla.net/video/firefox-home/pocket.mp4" type="video/mp4">
+                <img src="{{ static('img/firefox/hub/quantum/video-pocket-poster.png') }}" alt="">
+              </video>
+            </figure>
+            <figcaption>
+              <h2>{{ _('Pocket') }}</h2>
+              <p>
+              {% trans %}
+                Built right into the toolbar, it’s the ultimate save-for-later feature. View your articles,
+                videos and pages across any device.
+              {% endtrans %}
+              </p>
+            </figcaption>
+          </div>
+
+          <div id="video-gaming" class="feature-content gaming-vr" data-ga-label="Features: Gaming & VR">
+            <figure>
+              <video preload="metadata" muted controls playsinline poster="{{ static('img/firefox/hub/quantum/video-gaming-poster.png') }}" data-ga-label="Features: Gaming & VR">
+                <source src="https://assets.mozilla.net/video/firefox-home/gaming.webm" type="video/webm">
+                <source src="https://assets.mozilla.net/video/firefox-home/gaming.ogv" type="video/ogg; codecs='theora, vorbis'">
+                <source src="https://assets.mozilla.net/video/firefox-home/gaming.mp4" type="video/mp4">
+                <img src="{{ static('img/firefox/hub/quantum/video-gaming-poster.png') }}" alt="">
+              </video>
+            </figure>
+            <figcaption>
+              {# L10n: VR can be spelled out as "Virtual Reality" if clearer. #}
+              <h2>{{ _('Gaming & VR') }}</h2>
+              <p>
+              {% trans %}
+                Engineered for next-gen gaming, Firefox has built-in support for WASM and WebVR.
+                No additional installation needed!
+              {% endtrans %}
+              </p>
+            </figcaption>
+          </div>
+
+          <div id="video-library" class="feature-content library" data-ga-label="Features: Library">
+            <figure>
+              <video preload="metadata" muted controls playsinline poster="{{ static('img/firefox/hub/quantum/video-bookmarking-poster.png') }}" data-ga-label="Features: Library">
+                <source src="https://assets.mozilla.net/video/firefox-home/bookmarking.webm" type="video/webm">
+                <source src="https://assets.mozilla.net/video/firefox-home/bookmarking.ogv" type="video/ogg; codecs='theora, vorbis'">
+                <source src="https://assets.mozilla.net/video/firefox-home/bookmarking.mp4" type="video/mp4">
+                <img src="{{ static('img/firefox/hub/quantum/video-bookmarking-poster.png') }}" alt="">
+              </video>
+            </figure>
+            <figcaption>
+              <h2>{{ _('Library') }}</h2>
+              <p>
+              {% trans %}
+                Save time! Find all your favorite content like Pocket saves, bookmarks, browsing history,
+                screenshots and downloads in one spot.
+              {% endtrans %}
+              </p>
+            </figcaption>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section customization-section" data-scroll-tracking="Customization Features">
+    <div class="content">
+      <h2 class="section-title">{{ _('Customization Features') }}</h2>
+
+      <ul>
+        <li class="extensions">
+          <h3>{{ _('Extensions') }}</h3>
+          <p>
+          {# L10n: Locales can substitute their most popular extensions OR they can use "Personalize Firefox with thousands of extensions like password managers, ad blockers and more." #}
+          {% trans %}
+            Customize Firefox with thousands of extensions like LastPass,
+            uBlock Origin, Evernote and more.
+          {% endtrans %}
+          </p>
+        </li>
+        <li class="themes">
+          <h3>{{ _('Themes') }}</h3>
+          <p>
+          {% trans %}
+            Make over Firefox to suit your mood! Choose a new look from
+            our theme categories or create your own.
+          {% endtrans %}
+          </p>
+        </li>
+        <li class="toolbar">
+          <h3>{{ _('Toolbar') }}</h3>
+          <p>
+          {% trans %}
+            Set up Firefox your way. Drag and drop features in and out
+            of your toolbar for easy access.
+          {% endtrans %}
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="page-section sync-section" data-scroll-tracking="Sync your devices">
+    <div class="content">
+      <div class="sync-section-content">
+        <h2 class="section-title">{{ _('Sync your devices') }}</h2>
+        <p>
+        {% trans %}
+          Seamlessly access passwords, bookmarks and more. Plus, use our Send Tabs feature
+          to instantly share open tabs between desktop, mobile and tablet.
+        {% endtrans %}
+        </p>
+      </div>
+
+      <div class="sync-section-image">
+        {{ high_res_img('firefox/hub/quantum/sync.png', {'alt': _('Image of Gif shared from desktop to mobile using the Send Tab feature.'), 'width': '788', 'height': '571'}) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section browse-for-good-section" data-scroll-tracking="Browse for good">
+    <div class="content">
+      <div class="browse-for-good-section-container">
+        <div class="browse-for-good-section-content">
+          <h2 class="section-title">{{ _('Browse for good') }}</h2>
+          <p>
+          {% trans %}
+            More than meets the eye. Did you know Firefox is backed by the not-for-profit
+            Mozilla? The organization keeps the Internet healthier through programs that
+            support tech education for girls, create trust around factual news, bring
+            civility to the comments section and more.
+          {% endtrans %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section secondary-download-section" data-scroll-tracking="Footer download CTA">
+    <div class="content">
+    {% if LANG.startswith('en') %}
+      <h2>The new <strong>Firefox</strong></h2>
+    {% else %}
+      <h2>{{ _('The New Firefox') }}</h2>
+    {% endif %}
+      <p>{{ _('Meet Firefox Quantum.') }}</p>
+      <p>{{ _('Fast for good.') }}</p>
+      {{ download_firefox(dom_id='footer-download', alt_copy=_('Download now'), button_color='quantum', locale_in_transition=True, download_location='other') }}
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox-hub-quantum' %}
+{% endblock %}
