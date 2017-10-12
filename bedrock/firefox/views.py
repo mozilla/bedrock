@@ -220,9 +220,12 @@ def send_to_device_ajax(request):
 
                 try:
                     basket.request('post', 'subscribe_sms', data=data)
-                except basket.BasketException:
-                    return HttpResponseJSON({'success': False, 'errors': ['system']},
-                                            status=400)
+                except basket.BasketException as e:
+                    if e.desc == 'mobile_number is invalid':
+                        return HttpResponseJSON({'success': False, 'errors': ['number']})
+                    else:
+                        return HttpResponseJSON({'success': False, 'errors': ['system']},
+                                                status=400)
             else:
                 return HttpResponseJSON({'success': False, 'errors': ['platform']})
         else:  # email
