@@ -177,8 +177,8 @@ class TestDownloadButtons(TestCase):
         eq_(pq(list[0]).attr('class'), 'os_winsha1')
         eq_(pq(list[1]).attr('class'), 'os_win')
         eq_(pq(list[2]).attr('class'), 'os_osx')
-        eq_(pq(list[3]).attr('class'), 'os_linux')
-        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux')
         # stub disabled for now for non-en-US locales
         # bug 1339870
         # ok_('stub' in pq(pq(list[1]).find('a')[0]).attr('href'))
@@ -194,11 +194,11 @@ class TestDownloadButtons(TestCase):
         list = doc('.download-list li')
         eq_(list.length, 6)
         eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_win')
         eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
-        eq_(pq(list[5]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(pq(list[5]).attr('class'), 'os_linux')
 
     def test_beta_desktop(self):
         """The Beta channel should not have Windows 64 build yet"""
@@ -211,11 +211,11 @@ class TestDownloadButtons(TestCase):
         list = doc('.download-list li')
         eq_(list.length, 6)
         eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_win')
         eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
-        eq_(pq(list[5]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(pq(list[5]).attr('class'), 'os_linux')
 
     def test_firefox_desktop(self):
         """The Release channel should not have Windows 64 build yet"""
@@ -228,11 +228,11 @@ class TestDownloadButtons(TestCase):
         list = doc('.download-list li')
         eq_(list.length, 6)
         eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_win')
         eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
-        eq_(pq(list[5]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(pq(list[5]).attr('class'), 'os_linux')
 
     def test_latest_nightly_android(self):
         """The download button should have a Google Play link"""
@@ -334,11 +334,11 @@ class TestDownloadList(TestCase):
         list = doc('.download-platform-list li')
         eq_(list.length, 6)
         eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_win')
         eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
-        eq_(pq(list[5]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(pq(list[5]).attr('class'), 'os_linux')
 
         links = doc('.download-platform-list a')
 
@@ -373,11 +373,11 @@ class TestDownloadList(TestCase):
         list = doc('.download-platform-list li')
         eq_(list.length, 6)
         eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_win64')
+        eq_(pq(list[2]).attr('class'), 'os_win')
         eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
-        eq_(pq(list[5]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(pq(list[5]).attr('class'), 'os_linux')
 
         links = doc('.download-platform-list a')
 
@@ -411,8 +411,8 @@ class TestDownloadList(TestCase):
         eq_(pq(list[0]).attr('class'), 'os_winsha1')
         eq_(pq(list[1]).attr('class'), 'os_win')
         eq_(pq(list[2]).attr('class'), 'os_osx')
-        eq_(pq(list[3]).attr('class'), 'os_linux')
-        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux')
 
         links = doc('.download-platform-list a')
 

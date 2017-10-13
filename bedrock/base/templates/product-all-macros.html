@@ -50,7 +50,7 @@
         </caption>
         <thead>
           <tr>
-            <th colspan="2" scope="col">{{ _('Language') }}</th>
+            <th scope="col">{{ _('Language') }}</th>
             {% for p_name, p_label in platforms %}
               <th scope="col" class="{{ p_name }}">{{ p_label|replace('\n', '<br>'|safe) }}</th>
             {% endfor %}
@@ -69,8 +69,10 @@
 
 {% macro build_row(platforms, build) %}
   <tr id="{{ build.locale }}" data-search="{{ build.name_en|lower }}, {{ build.name_native|lower }}">
-    <th scope="row">{{ build.name_en }}</th>
-    <td lang="{{ build.locale }}">{{ build.name_native }}</td>
+    <th scope="row">
+      <strong lang="en">{{ build.name_en }}</strong>
+      <span lang="{{ build.locale }}">{{ build.name_native }}</span>
+    </th>
     {% for p_name, p_label in platforms %}
       {{ build_link(build, p_name, _('Download for %(platform)s in %(locale)s')|format(platform=p_label|replace('\n', ' '), locale=build.name_en)) }}
     {% endfor %}

@@ -33,11 +33,11 @@ class FirefoxDesktop(_ProductDetails):
     # Human-readable platform names
     platform_labels = OrderedDict([
         ('winsha1', 'Windows (XP/Vista)'),
-        ('win', 'Windows'),
         ('win64', 'Windows 64-bit'),
+        ('win', 'Windows 32-bit'),
         ('osx', 'macOS'),
-        ('linux', 'Linux'),
         ('linux64', 'Linux 64-bit'),
+        ('linux', 'Linux 32-bit'),
     ])
 
     # Human-readable channel names
