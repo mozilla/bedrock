@@ -41,24 +41,33 @@
 
         skipbutton.onclick = onVerificationComplete;
 
-        Mozilla.Client.getFirefoxDetails(function(data) {
-            Mozilla.FxaIframe.init({
-                distribution: data.distribution,
-                gaEventName: 'firstrun-fxa',
-                onVerificationComplete: onVerificationComplete,
-                onLogin: onVerificationComplete,
-                onFormEnabled: disableSkipButton,
-                onNavigated:  hideOrShowSkipButton
-            });
+        Mozilla.UITour.getConfiguration('sync', function(config) {
+            if (config.setup) {
+                // skip showing the sign in form if the user is signed in
+                document.getElementById('sky').addEventListener('transitionend', function() {
+                    onVerificationComplete();
+                });
+            } else {
+                document.getElementById('sky').addEventListener('transitionend', function(event) {
+                    if (event.propertyName === 'opacity') {
+                        scene.dataset.modal = 'true';
+                    }
+                }, false);
+
+                Mozilla.Client.getFirefoxDetails(function(data) {
+                    Mozilla.FxaIframe.init({
+                        distribution: data.distribution,
+                        gaEventName: 'firstrun-fxa',
+                        onVerificationComplete: onVerificationComplete,
+                        onLogin: onVerificationComplete,
+                        onFormEnabled: disableSkipButton,
+                        onNavigated:  hideOrShowSkipButton
+                    });
+                });
+            }
         });
 
         scene.dataset.sunrise = 'true';
-
-        document.getElementById('sky').addEventListener('transitionend', function(event) {
-            if (event.propertyName === 'opacity') {
-                scene.dataset.modal = 'true';
-            }
-        }, false);
     };
 
     document.onreadystatechange = function () {
