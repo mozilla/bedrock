@@ -1,0 +1,26 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/features/send-tabs.html" %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'experiment-send-tabs' %}
+{% endblock %}
+
+{% block features_header_image %}
+ <figure class="video send-tabs">
+  <div class="video-wrap">
+    <iframe width="700" height="390" src="https://www.youtube.com/embed/CM40b14i41M?rel=0" frameborder="0" allowfullscreen>
+    <p><a href="https://www.youtube.com/watch?v=CM40b14i41M">{{ _('Watch this video') }}</a></p>
+     </iframe>
+  </div>
+  <figcaption>
+    <p>{{ _('Stop emailing links to yourself! Sierra walks us through the Firefox feature Send Tabs.') }}</p>
+  </figcaption>
+</figure>
+{% endblock %}
+
+{# Don't display notification for test variation #}
+{% block update_notification %}{% endblock %}
