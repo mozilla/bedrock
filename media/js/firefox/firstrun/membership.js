@@ -123,7 +123,7 @@
         window.dataLayer.push({
             'event': 'in-page-interaction',
             'eAction': 'Link Click',
-            'eLabel': 'Remind Me Later'
+            'eLabel': 'Skip this step'
         });
     }
 
