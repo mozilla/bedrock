@@ -1,0 +1,87 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../pebbles/includes/lib';
+@import '../../../hubs/sections';
+
+.main-content {
+    a:link,
+    a:visited {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: #fff;
+        text-decoration: underline;
+    }
+}
+
+.help {
+    display: none;
+}
+
+.js .help {
+    @include font-size-level5;
+    display: block;
+    margin-top: 40px;
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active,
+    a:focus {
+        color: #05d0ff;
+    }
+
+    @media #{$mq-tablet} {
+        max-width: 21em;
+    }
+}
+
+// keep the button technically visible to grab correct download link for
+// backup download link
+.js #download-button-wrapper-desktop {
+    height: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+
+    #primary-download-button {
+        margin: 1px 0 0 1px;
+    }
+}
+
+.mobile-download {
+    margin: 40px 0 80px;
+
+    h2 {
+        @include font-size-small;
+        margin-bottom: 40px;
+    }
+
+    a {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    @media #{$mq-tablet} {
+        ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+    }
+}
+
+html[dir="rtl"] .mobile-download {
+    @media #{$mq-tablet} {
+        ul li {
+            margin-left: 20px;
+            margin-right: 0;
+        }
+    }
+}

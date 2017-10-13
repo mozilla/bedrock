@@ -24,6 +24,7 @@ from product_details.version_compare import Version
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import lang_file_is_active
 from bedrock.base.urlresolvers import reverse
+from bedrock.base.waffle import switch
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
@@ -596,8 +597,12 @@ def new(request):
                 template = 'firefox/new/sem/unsupported-browser/scene2.html'
             elif experience in ['batmfree', 'batmnimble', 'batmresist']:
                 template = 'firefox/new/batm/scene2.html'
+            elif switch('firefox-57-release'):
+                template = 'firefox/new/quantum/scene2.html'
             else:
                 template = 'firefox/new/scene2.html'
+        elif lang_file_is_active('firefox/new/quantum', locale) and switch('firefox-57-release'):
+            template = 'firefox/new/quantum/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     # if no/incorrect scene specified, show scene 1
@@ -642,8 +647,12 @@ def new(request):
                 template = 'firefox/new/batm/nimble.html'
             elif experience == 'batmresist':
                 template = 'firefox/new/batm/resist.html'
+            elif switch('firefox-57-release'):
+                template = 'firefox/new/quantum/scene1.html'
             else:
                 template = 'firefox/new/scene1.html'
+        elif lang_file_is_active('firefox/new/quantum', locale) and switch('firefox-57-release'):
+            template = 'firefox/new/quantum/scene1.html'
         else:
             template = 'firefox/new/scene1.html'
 

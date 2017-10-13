@@ -1,0 +1,235 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../pebbles/includes/animations';
+@import '../../../pebbles/includes/lib';
+
+#newsletter-subscribe {
+    background: #fff;
+    border-top: 1px solid #d7d7db;
+    color: #000;
+    display: none;
+    padding: 40px 0;
+
+    .newsletter-title {
+        background: url('/media/img/firefox/new/quantum/icon-newsletter.svg') center top no-repeat;
+        @include background-size(120px 82px);
+        padding: 100px 0 20px 0;
+        text-align: center;
+    }
+
+    .newsletter-form-content {
+        width: 280px;
+        margin: 0 auto;
+    }
+
+    // newsletter title and "Thanks!" after submission
+    h3 {
+        color: $color-quantum-blue;
+        font-weight: normal;
+        line-height: 1.3;
+        margin: 0 0 0.2em;
+        text-align: center;
+    }
+
+    .field {
+        margin-bottom: 10px;
+
+        label {
+            display: block;
+            margin-bottom: 0.1em;
+        }
+    }
+
+    // html/text radio buttons
+    .field-format label {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    // privacy checkbox
+    .field-privacy {
+        @include font-size-extra-small;
+
+        input {
+            float: left;
+        }
+
+        .title {
+            display: block;
+            padding-left: 25px;
+        }
+    }
+
+    a {
+        color: #000;
+    }
+
+    input[type='email'] {
+        @include border-box;
+        @include transition(all 0.1s linear);
+        background: #ededf0;
+        border-radius: 100px;
+        border: 2px solid #ededf0;
+        line-height: 1.1;
+        padding: 0.75em 20px;
+        width: 100%;
+    }
+
+    ::placeholder {
+        @include font-size-level6;
+        text-align: center;
+    }
+
+    ::-moz-placeholder {
+        @include font-size-level6;
+        text-align: center;
+    }
+
+    #footer_email_submit {
+        @include font-size-level5;
+        padding: .6em 36px;
+    }
+
+    select {
+        @include font-size-small;
+        line-height: 1.5;
+        max-width: 80%;
+    }
+
+    // copy underneath "Sign Up Now" button
+    p.form-details {
+        margin-top: 8px;
+
+        small {
+            @include font-size-extra-small;
+        }
+    }
+
+    // wrapper for thank you elements
+    .thank {
+        padding-top: 20px;
+
+        p {
+            @include animation(pebbles-fade-in 0.5s ease-in 0.8s 1 normal both);
+            margin-top: 20px;
+        }
+    }
+
+    .errorlist {
+        color: #d70022;
+
+        li {
+            padding-bottom: 20px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        grid-template-columns: 2fr 300px;
+        grid-gap: 40px;
+        padding: 40px;
+
+        .newsletter-form-content {
+            width: 300px;
+        }
+
+        .newsletter-title {
+            @include background-size(201px 138px);
+            background-position: left top;
+            padding-top: 160px;
+            text-align: left;
+        }
+
+        h3 {
+            text-align: left;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 40px;
+
+        .newsletter-title {
+            @include background-size(201px 138px);
+            min-height: 140px;
+            padding: 0 0 0 240px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding: 40px 85px;
+
+        .newsletter-title {
+            padding-left: 260px;
+        }
+    }
+}
+
+// fancy gradient colored text for modern browsers.
+@supports(background-clip: text) {
+    #newsletter-subscribe h3 {
+        background: linear-gradient(-90deg, #05c8e5 0%, #008bff 100%);
+        background-clip: text;
+        color: transparent;
+    }
+}
+
+.js {
+    // hide details for JS users
+    // (displayed when email field is focused)
+    #form-details,
+    .form-details {
+        display: none;
+    }
+
+    #newsletter-spinner {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
+
+html[dir="rtl"] #newsletter-subscribe {
+    @media #{$mq-tablet} {
+        .newsletter-title {
+            background-position: right top;
+            text-align: right;
+        }
+
+        h3 {
+            text-align: right;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .newsletter-title {
+            padding: 0 240px 0 0;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .newsletter-title {
+            padding-left: 0;
+            padding-right: 260px;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Newsletter section shown for up-to-date and pre-release Firefox users
+
+html.firefox-latest,
+html.firefox-pre-release {
+
+    #newsletter-subscribe {
+        display: block;
+
+        @media #{$mq-tablet} {
+            display: grid;
+        }
+    }
+}
+
+
