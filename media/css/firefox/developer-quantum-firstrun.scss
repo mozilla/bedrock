@@ -105,6 +105,12 @@ body {
     }
 }
 
+.section-features {
+    .features-learn-more {
+        @include font-size-small;
+    }
+}
+
 @supports (display: grid) {
     @media #{$mq-phone-wide} {
         .gallery-list {
