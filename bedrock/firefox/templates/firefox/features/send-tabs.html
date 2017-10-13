@@ -22,6 +22,10 @@
   {% stylesheet 'firefox-features-sync' %}
 {% endblock %}
 
+{% block experiments %}
+  {% javascript 'experiment-send-tabs' %}
+{% endblock %}
+
 {% block body_id %}firefox-features-send-tabs{% endblock %}
 
 {% block body_class %}
