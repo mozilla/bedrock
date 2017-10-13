@@ -28,20 +28,20 @@ stage ('Build Images') {
 if ( config.smoke_tests ) {
     milestone()
     stage ('Test Images') {
-        parallel([
-            smoke_tests: utils.integrationTestJob('smoke'),
-            unit_tests: {
-                node {
-                    unstash 'scripts'
-                    try {
+        try {
+            parallel([
+                smoke_tests: utils.integrationTestJob('smoke'),
+                unit_tests: {
+                    node {
+                        unstash 'scripts'
                         sh 'docker/bin/run_tests.sh'
-                    } catch(err) {
-                        utils.ircNotification([stage: 'Unit Test', status: 'failure'])
-                        throw err
                     }
-                }
-            },
-        ])
+                },
+            ])
+        } catch(err) {
+            utils.ircNotification([stage: 'Unit Test', status: 'failure'])
+            throw err
+        }
     }
 }
 
