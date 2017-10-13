@@ -402,6 +402,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun-bundle.css',
     },
+    'firefox_firstrun_quantum': {
+        'source_filenames': (
+            'css/base/notification-banner.less',
+            'css/firefox/firstrun/firstrun_quantum.less',
+            'css/base/mozilla-fxa-iframe.less',
+        ),
+        'output_filename': 'css/firefox_firstrun_quantum-bundle.css',
+    },
     'firefox_firstrun_cliqz_funnelcake': {
         'source_filenames': (
             'css/firefox/firstrun/firstrun-cliqz-funnelcake.less',
@@ -1316,6 +1324,14 @@ PIPELINE_JS = {
             'js/firefox/firstrun/firstrun.js',
         ),
         'output_filename': 'js/firefox_firstrun-bundle.js',
+    },
+    'firefox_firstrun_quantum': {
+        'source_filenames': (
+            'js/base/uitour-lib.js',
+            'js/base/mozilla-fxa-iframe.js',
+            'js/firefox/firstrun/firstrun_quantum.js',
+        ),
+        'output_filename': 'js/firefox_firstrun_quantum-bundle.js',
     },
     'firefox_firstrun_cliqz_funnelcake': {
         'source_filenames': (
