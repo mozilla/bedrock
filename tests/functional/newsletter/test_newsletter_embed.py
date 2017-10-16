@@ -24,8 +24,6 @@ from pages.smarton.landing import SmartOnLandingPage
 from pages.smarton.base import SmartOnBasePage
 
 
-@pytest.mark.skipif((FirefoxHomePage, None),
-    reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1405076')
 @pytest.mark.nondestructive
 @pytest.mark.parametrize(('page_class', 'url_kwargs'), [
     pytest.mark.smoke((HomePage, None)),
@@ -61,11 +59,7 @@ def test_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [
-    HomePage,
-    ContributePage,
-    pytest.mark.skipif((FirefoxHomePage, None),
-        reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1405076')])
+@pytest.mark.parametrize('page_class', [HomePage, ContributePage, FirefoxHomePage])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
@@ -78,11 +72,7 @@ def test_newsletter_successful_sign_up(page_class, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [
-    HomePage,
-    ContributePage,
-    pytest.mark.skipif((FirefoxHomePage, None),
-        reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1405076')])
+@pytest.mark.parametrize('page_class', [HomePage, ContributePage, FirefoxHomePage])
 def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
