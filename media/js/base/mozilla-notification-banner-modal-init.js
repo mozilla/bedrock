@@ -14,19 +14,18 @@ $(function() {
     var confirmText;
     var closeText;
 
+    if (typeof utils === 'undefined' || typeof client === 'undefined') {
+        return;
+    }
+
     var _clickCallback = function() {
         Mozilla.Modal.createModal(this, $('.notification-modal-content'));
     };
 
-    // try to get localized copy
-    // if any of the below fail, the banner will detect missing strings and
-    // will not initialize
-    if (typeof utils !== 'undefined') {
-        headingText = utils.trans('global-fx-out-of-date-banner-heading');
-        messageText = utils.trans('global-fx-out-of-date-banner-message');
-        confirmText = utils.trans('global-fx-out-of-date-banner-confirm');
-        closeText = utils.trans('global-close');
-    }
+    headingText = utils.trans('global-fx-out-of-date-banner-heading');
+    messageText = utils.trans('global-fx-out-of-date-banner-message');
+    confirmText = utils.trans('global-fx-out-of-date-banner-confirm');
+    closeText = utils.trans('global-close');
 
     var config = {
         'id': 'fx-out-of-date-banner',
@@ -42,22 +41,6 @@ $(function() {
         'gaCloseLabel': 'Close' // GA - English only
     };
 
-    /**
-     * Determine if Firefox client is out of date.
-     * @param {String} - Client version provided by UITour e.g. "58.0a1", "56.0".
-     * @return {Boolean} - Returns true if client is at least 2 major versions out of date.
-     */
-    var _isClientOutOfDate = function(version) {
-        var clientVersion = parseInt(version, 10);
-        var latestVersion = parseInt($('html').attr('data-latest-firefox'), 10);
-
-        if (!latestVersion || !clientVersion) {
-            return false;
-        }
-
-        return clientVersion < latestVersion - 1;
-    };
-
     // Set a unique cookie ID for fx-out-of-date notification.
     Mozilla.NotificationBanner.COOKIE_CODE_ID = 'moz-notification-fx-out-of-date';
 
@@ -68,7 +51,8 @@ $(function() {
     if (client.isFirefoxDesktop) {
         client.getFirefoxDetails(function(details) {
             // Don't rely on UA strings as they can be altered by extensions, so use UITour instead (Bug 1406299).
-            if (_isClientOutOfDate(details.version) && details.channel === 'release') {
+            // User must be more than 2 major versions out of date and on release channel.
+            if (client.isFirefoxOutOfDate(details.version, 2) && details.channel === 'release') {
                 // Check that cookies are enabled.
                 if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
                     Mozilla.NotificationBanner.init(config);

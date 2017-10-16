@@ -515,4 +515,36 @@ describe('mozilla-client.js', function() {
 
     });
 
+    describe('isFirefoxOutOfDate', function () {
+
+        it('should return true if version number is less than the number of major versions specified out of date', function () {
+            var result = Mozilla.Client.isFirefoxOutOfDate('50.0', 2, '56.0.1');
+            expect(result).toBeTruthy();
+
+            var result2 = Mozilla.Client.isFirefoxOutOfDate('54.0', 2, '56.0');
+            expect(result2).toBeTruthy();
+
+            var result3 = Mozilla.Client.isFirefoxOutOfDate('54.0a1', 2, '56.0.1a1');
+            expect(result3).toBeTruthy();
+
+            var result4 = Mozilla.Client.isFirefoxOutOfDate('54.0.1', 1, '56.0');
+            expect(result4).toBeTruthy();
+        });
+
+        it('should return false if version number is equal to or greater than number of major versions specified out of date', function () {
+            var result = Mozilla.Client.isFirefoxOutOfDate('56.0', 2, '56.0.1');
+            expect(result).toBeFalsy();
+
+            var result2 = Mozilla.Client.isFirefoxOutOfDate('58.0a2', 2, '56.0.1');
+            expect(result2).toBeFalsy();
+
+            var result3 = Mozilla.Client.isFirefoxOutOfDate('55.0', 2, '56.0.1');
+            expect(result3).toBeFalsy();
+
+            var result4 = Mozilla.Client.isFirefoxOutOfDate('56.0', 1, '56.0.1');
+            expect(result4).toBeFalsy();
+        });
+
+    });
+
 });

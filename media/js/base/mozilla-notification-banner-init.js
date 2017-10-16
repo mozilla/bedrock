@@ -14,15 +14,14 @@ $(function() {
     var confirmText;
     var closeText;
 
-    // try to get localized copy
-    // if any of the below fail, the banner will detect missing strings and
-    // will not initialize
-    if (typeof utils !== 'undefined') {
-        headingText = utils.trans('global-fx-out-of-date-banner-heading');
-        messageText = utils.trans('global-fx-out-of-date-banner-message');
-        confirmText = utils.trans('global-fx-out-of-date-banner-confirm');
-        closeText = utils.trans('global-close');
+    if (typeof utils === 'undefined' || typeof client === 'undefined') {
+        return;
     }
+
+    headingText = utils.trans('global-fx-out-of-date-banner-heading');
+    messageText = utils.trans('global-fx-out-of-date-banner-message');
+    confirmText = utils.trans('global-fx-out-of-date-banner-confirm');
+    closeText = utils.trans('global-close');
 
     var config = {
         'id': 'fx-out-of-date-banner',
@@ -43,8 +42,9 @@ $(function() {
     // Notification should only be shown to users on Firefox for desktop.
     if (client.isFirefoxDesktop) {
         client.getFirefoxDetails(function(details) {
-            // User must be out of date and on release channel.
-            if (!details.isUpToDate && details.channel === 'release') {
+            // Don't rely on UA strings as they can be altered by extensions, so use UITour instead (Bug 1406299).
+            // User must be more than 2 major versions out of date and on release channel.
+            if (client.isFirefoxOutOfDate(details.version, 2) && details.channel === 'release') {
 
                 // Check that cookies are enabled before seeing if one already exists.
                 if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
