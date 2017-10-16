@@ -43,7 +43,7 @@ $(function() {
     if (client.isFirefoxDesktop) {
         client.getFirefoxDetails(function(details) {
             // Don't rely on UA strings as they can be altered by extensions, so use UITour instead (Bug 1406299).
-            // User must be more than 2 major versions out of date and on release channel.
+            // User must be at least 2 major versions out of date and on release channel.
             if (client.isFirefoxOutOfDate(details.version, 2) && details.channel === 'release') {
 
                 // Check that cookies are enabled before seeing if one already exists.

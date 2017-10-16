@@ -212,7 +212,7 @@ if (typeof Mozilla === 'undefined') {
     };
 
     /**
-     * Determine if a version number is more than a specific number of major releases old.
+     * Determine if a client version number is at least a specific number of major releases old.
      * @param {String} clientVer - Client version number "58.0a1", "56.0".
      * @param {Number} majorVer - Number of major versions old a client considered 'out of date' should be.
      * @param {String} latestVer - Current latest release version number.
@@ -221,13 +221,13 @@ if (typeof Mozilla === 'undefined') {
     Client.isFirefoxOutOfDate = function(clientVer, majorVer, latestVer) {
         var clientVersion = parseInt(clientVer, 10);
         var latestVersion = typeof latestVer === 'undefined' ? parseInt($('html').attr('data-latest-firefox'), 10) : parseInt(latestVer, 10);
-        var majorVersions = parseInt(majorVer, 10) - 1;
+        var majorVersions = Math.max(parseInt(majorVer, 10), 1); // majorVersions must be at least 1.
 
         if (isNaN(latestVersion) || isNaN(clientVersion) || isNaN(majorVersions)) {
             return false;
         }
 
-        return clientVersion < latestVersion - majorVersions;
+        return clientVersion <= latestVersion - majorVersions;
     };
 
     /**
