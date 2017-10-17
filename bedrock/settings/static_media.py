@@ -576,12 +576,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-quantum-bundle.css',
     },
-    'firefox-quantum-landing': {
-        'source_filenames': (
-            'css/firefox/quantum-landing.scss',
-        ),
-        'output_filename': 'css/firefox_quantum_landing-bundle.css',
-    },
     'firefox_releases_index': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -1393,16 +1387,6 @@ PIPELINE_JS = {
             'js/firefox/quantum.js',
         ),
         'output_filename': 'js/firefox-quantum-bundle.js',
-    },
-    'firefox-quantum-landing': {
-        'source_filenames': (
-            'js/libs/jquery.cycle2.min.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/hubs/sub-nav.js',
-            'js/firefox/quantum-landing.js',
-        ),
-        'output_filename': 'js/firefox_quantum_landing-bundle.js',
     },
     'firefox_interest_dashboard': {
         'source_filenames': (
