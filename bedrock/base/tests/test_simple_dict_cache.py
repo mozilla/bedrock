@@ -94,6 +94,11 @@ class SimpleDictCacheTests(TestCase):
         self.assertEqual(cache.get("does_not_exist"), None)
         self.assertEqual(cache.get("does_not_exist", "bang!"), "bang!")
 
+    def test_non_none_default(self):
+        # Should cache None values if default is not None
+        cache.set('is_none', None)
+        self.assertIsNone(cache.get('is_none', 'bang!'))
+
     def test_get_many(self):
         # Multiple cache keys can be returned using get_many
         cache.set('a', 'a')

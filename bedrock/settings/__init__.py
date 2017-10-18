@@ -51,6 +51,7 @@ CACHES['product-details'] = {
 CACHES['release-notes'] = {
     'BACKEND': 'bedrock.base.cache.SimpleDictCache',
     'LOCATION': 'release-notes',
+    'TIMEOUT': 5,
     'OPTIONS': {
         'MAX_ENTRIES': 300,  # currently 564 json files but most are rarely accessed
         'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached

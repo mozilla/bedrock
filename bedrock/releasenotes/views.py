@@ -180,7 +180,7 @@ def releases_index(request, product):
 def nightly_feed(request):
     """Serve an Atom feed with the latest changes in Firefox Nightly"""
     notes = {}
-    releases = get_releases_or_404('firefox', 'nightly')[0:5]
+    releases = get_releases_or_404('firefox', 'nightly', 5)
 
     for release in releases:
         link = reverse('firefox.desktop.releasenotes',
@@ -191,7 +191,7 @@ def nightly_feed(request):
                 continue
 
             if note.is_public and note.tag:
-                note.link = link + '#note-' + str(note.id)
+                note.link = '%s#note-%s' % (link, note.id)
                 note.version = release.version
                 notes[note.id] = note
 
