@@ -188,6 +188,11 @@ URLS = flatten((
     url_test('/firefox/unsupported-systems.html', '/firefox/unsupported-systems/'),
     url_test('/download/', '/firefox/new/'),
 
+    # Bug 1409554
+    url_test('/{firefox,mobile}/download/', '/firefox/new/'),
+    # also deals with anything after download/
+    url_test('/firefox/download/stuff/', '/firefox/new/'),
+
     url_test('/firefox/firefox.exe', '/'),
     # should be case insensitive
     url_test('/pt-BR/FireFox/Firefox.EXE', '/pt-BR/'),
