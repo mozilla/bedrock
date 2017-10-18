@@ -24,6 +24,16 @@ $color-quantum-blue: #0a84ff;
     &:hover {
         text-decoration: underline;
     }
+
+    @media #{$mq-tablet} {
+        text-align: left;
+    }
+}
+
+html[dir="rtl"] #other-platforms-modal-link {
+    @media #{$mq-tablet} {
+        text-align: right;
+    }
 }
 
 /* -------------------------------------------------------------------------- */
