@@ -1,0 +1,38 @@
+{% extends 'newsletter/base.html' %}
+
+{% block gtm_page_id %}data-gtm-page-id="/newsletter/country/"{% endblock %}
+
+{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+
+{% block body_id %}newsletter-country{% endblock body_id %}
+
+{% block page_title %}Newsletter Country{% endblock page_title %}
+
+{% block content %}
+  {% if switch('newsletter-maintenance-mode') %}
+    <div id="main-feature">
+      <p class="billboard">
+        This page is in maintenance mode and is temporarily unavailable.<br>
+        To update your email preferences, please check back in a little while. Thanks!
+      </p>
+    </div>
+  {% else %}
+    <div id="main-feature">
+      <h1>Thanks for updating your info with us!</h1>
+      <p>
+        Simply select your country from the list below and hit "submit."<br>
+        We've pre-filled what we think is correct, but make sure to check that it's right
+        before clicking the button. Thanks!
+      </p>
+    </div>
+    {# using uri builder instead of named URL to easily maintain user newsletter token #}
+    <form method="post" action="{{ request.build_absolute_uri(request.path) }}" id="country-newsletter-form" class="container billboard">
+      {{ form.as_p() }}
+      <div class="field submit-field">
+        <input type="submit" value="Submit" class="button">
+      </div>
+    </form>
+  {% endif %}
+{% endblock %}
+
+{% block site_footer %}{% endblock %}

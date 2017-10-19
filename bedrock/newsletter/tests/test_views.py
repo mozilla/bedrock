@@ -9,7 +9,7 @@ from django.test.client import RequestFactory
 
 import basket
 from bedrock.base.urlresolvers import reverse
-from mock import DEFAULT, Mock, patch
+from mock import ANY, DEFAULT, Mock, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -486,6 +486,32 @@ class TestConfirmView(TestCase):
             self.assertFalse(context['success'])
             self.assertFalse(context['generic_error'])
             self.assertTrue(context['token_error'])
+
+
+class TestSetCountryView(TestCase):
+    def setUp(self):
+        self.token = unicode(uuid.uuid4())
+        self.url = reverse('newsletter.country', kwargs={'token': self.token})
+
+    def test_normal_submit(self):
+        """Confirm works with a valid token"""
+        with patch('basket.update_user') as uu_mock:
+            uu_mock.return_value = {'status': 'ok'}
+            rsp = self.client.post(self.url, {'country': 'gb'})
+
+        self.assertEqual(302, rsp.status_code)
+        uu_mock.assert_called_with(self.token, country='gb')
+        assert_redirect(rsp, reverse('newsletter.country_success'))
+
+    @patch('basket.update_user')
+    @patch('bedrock.newsletter.views.messages')
+    def test_basket_down(self, messages_mock, uu_mock):
+        """If basket is down, we report the appropriate error"""
+        uu_mock.side_effect = basket.BasketException()
+        rsp = self.client.post(self.url, {'country': 'gb'})
+        self.assertEqual(200, rsp.status_code)
+        uu_mock.assert_called_with(self.token, country='gb')
+        messages_mock.add_message.assert_called_with(ANY, messages_mock.ERROR, ANY)
 
 
 class TestRecoveryView(TestCase):
